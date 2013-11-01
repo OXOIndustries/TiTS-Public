@@ -1,8 +1,8 @@
 ﻿function celiseIsCrew():Boolean {
-	return (flags[RECRUITED_CELISE] > 0 && flags[CELISE_ONBOARD] > 0);
+	return (flags["RECRUITED_CELISE"] > 0 && flags["CELISE_ONBOARD"] > 0);
 }
 function celiseIsFollower():Boolean {
-	return (flags[RECRUITED_CELISE] > 0);
+	return (flags["RECRUITED_CELISE"] > 0);
 }
 
 //Crewmember Celise’s Screen
@@ -348,7 +348,7 @@ function yepGetInMyBallsUBitch():void {
 	}
 	else output("taint");
 	output(" with warm pleasure and explains, <i>“</i>");
-	if(flags[TIMES_CELISE_IN_BALLS] > 0) output("<i>Don’t you remember? Well, let me explain again while you enjoy the pleasure. </i>");
+	if(flags["TIMES_CELISE_IN_BALLS"] > 0) output("<i>Don’t you remember? Well, let me explain again while you enjoy the pleasure. </i>");
 	output("<i>The part of me that’s inside you right now is stimulating your body to orgasm, as you can surely feel.”</i>  You cry out a moan as an answer, unable to articulate anything more complex. Your body pumps the cum around inside itself, but it doesn’t seem to go anywhere. <i>“Yeah, I’m redirecting the yummy stuff back into your [pc.balls], but I’m tricking </i>");
 	if(pc.balls <= 1) output("<i>it</i>");
 	else output("<i>them</i>");
