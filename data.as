@@ -98,6 +98,7 @@ function cloneDict(original:Dictionary):Dictionary
 	for(var key:Object in original) 
 	{
 		cloned[key] = original[key];
+		trace("Key, value = ", key, cloned[key]);
 	}
 	return cloned;
 }

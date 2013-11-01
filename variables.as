@@ -121,14 +121,18 @@ function setupCharacters():void {
 var pc:creature = characters[0];
 var celise:creature = characters[CELISE];
 var rival:creature = characters[RIVAL];
-var flags:Array = new Array();
+var flags:Dictionary = new Dictionary();
 initializeFlags();
 
 
-function initializeFlags():void {
+function initializeFlags():void 
+{
+	flags = new Dictionary();
+	/*
 	for (var x:int = 0; x < 10000; x++) {
 		flags[x] = undefined;
 	}
+	*/
 }
 
 function setCheatPointers():void {
