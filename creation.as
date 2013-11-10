@@ -35,6 +35,7 @@ function startCharacterCreation():void {
 	addButton(0,"Human",chooseStartingRace);
 	addButton(1,"Ausar",chooseStartingRace,"ausar");
 	addButton(2,"Kaithrit",chooseStartingRace,"kaithrit");
+	addButton(3,"Multicock",chooseStartingRace,"multicock");
 	addButton(4,"Cheat",chooseHowPCIsRaised);
 	//I added this!  ~Pervineer
 	addButton(5,"Load test.txt", loadTestFile);
@@ -89,6 +90,19 @@ function chooseStartingRace(race:String = "human"):void {
 		addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
+	else if(pc.originalRace == "half-multicock") {
+		pc.earType = FELINE;
+		pc.tailType = FELINE;
+		pc.tailCount = 2;
+		pc.addTailFlag(LONG);
+		pc.addTailFlag(FURRED);
+		output("male or female");
+		addButton(0,"Male",setStartingSex,1);
+		addButton(1,"Female",setStartingSex,3);
+		pc.createCock();
+		pc.createCock();
+		//addButton(2,"Herm.",setStartingSex,2);
+	}
 	output(", and what should the unborn child be named?");
 	displayInput();
 	input.text = "";
@@ -110,6 +124,8 @@ function setStartingSex(sex:int = 1):void {
 	}
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
+		pc.balls = 2;
+		pc.ballSize = 1.5;
 		if (pc.originalRace == "half-ausar") {
 			pc.shiftCock(0,CANINE);
 		}
@@ -605,20 +621,20 @@ function classConfirm(arg:int = 0):void {
 function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
 	if(arg == SMUGGLER) {
-		pc.rangedWeapon = clone(holdOutPistol);
+		pc.rangedWeapon = clone(items[0]);
 	}
 	if(arg == MERCENARY) {
-		pc.rangedWeapon = clone(eagleClassHandgun);
+		pc.rangedWeapon = clone(items[1]);
 	}
 	if(arg == ENGINEER) {
-		pc.rangedWeapon = clone(scopedPistol);
+		pc.rangedWeapon = clone(items[2]);
 	}
-	pc.meleeWeapon = clone(knife);
-	pc.armor = clone(dressClothes);
-	if(!pc.hasVagina()) pc.lowerUndergarment = clone(spaceBriefs);
-	else pc.lowerUndergarment = clone(spacePanties);
-	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(undershirt);
-	else pc.upperUndergarment = clone(spaceBra);
+	pc.meleeWeapon = clone(items[4]);
+	pc.armor = clone(items[7]);
+	if(!pc.hasVagina()) pc.lowerUndergarment = clone(items[9]);
+	else pc.lowerUndergarment = clone(items[8]);
+	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(items[11]);
+	else pc.upperUndergarment = clone(items[10]);
 	tutorialSkipOption();
 }
 

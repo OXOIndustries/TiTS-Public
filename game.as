@@ -11,7 +11,7 @@
 	//Queued events can fire off too!
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		eventQueue[eventQueue.length-1];
+		eventQueue[eventQueue.length-1]();
 		//Strip out the most recent:
 		eventQueue.splice(eventQueue.length-1,1);
 	}
@@ -23,7 +23,11 @@
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
 	clearMenu();
 	//Standard buttons:
-	addButton(2,"Inventory",inventoryScreen);
+	//Inventory shit
+	itemScreen = mainGameMenu;
+	lootScreen = inventory;
+	addButton(2,"Inventory",inventory);
+	//Other standard buttons
 	if(pc.lust() < 33) addDisabledButton(3,"Masturbate");
 	else addButton(3,"Masturbate",masturbateMenu);
 	if(!rooms[location].hasFlag(BED)) addButton(4,"Rest",rest);

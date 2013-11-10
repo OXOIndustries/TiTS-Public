@@ -392,8 +392,8 @@ function appearance(target:creature):void {
 			//Normal nips
 			if(target.breastRows[0].nippleType == DICK || target.breastRows[0].nippleType == NORMAL) { 
 				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(temp) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " each.");
+				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
+				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
 				if(target.breastRows[0].nippleType == DICK) {
 					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 				}		
@@ -401,8 +401,8 @@ function appearance(target:creature):void {
 			//Inverted type
 			else {
 				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(temp) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " each.");
+				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(0) + " each.");
+				else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(0)) + " each.");
 				if(target.breastRows[0].nippleType == FUCKABLE) {
 					output2(" While you may appear to have inverted nipples, your chest actually houses wet, slippery secrets. A finger or cock could easily slip inside you to give and get as much pleasure as any crotch-couched cunt.");
 				}
@@ -415,15 +415,16 @@ function appearance(target:creature):void {
 			}
 			//Lactation and breast cup final!
 			if(target.breastRows[0].fullness < 75) {}
-			else if(target.breastRows[0].fullness < 100) output2("  Your " + target.breastDescript(temp) + " are painful and sensitive from being so stuffed with milk.  You should release the pressure soon.");
-			else output2("  <b>Your " + target.breastDescript(temp) + " are so full that they feel about to burst!</b>");
-			if(target.breastRows[0].breastRating >= 1) output2("  You could easily fill a " + target.breastCup(temp) + " bra.");
+			else if(target.breastRows[0].fullness < 100) output2("  Your " + target.breastDescript(0) + " are painful and sensitive from being so stuffed with milk.  You should release the pressure soon.");
+			else output2("  <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst!</b>");
+			if(target.breastRows[0].breastRating >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
 		}
 		//many rows
 		else {
 			output2("You have " + num2Text(target.breastRows.length) + " rows of breasts");
 			if(target.biggestTitSize() < 1) output2(", all flat and fairly masculine in look.");
 			else output2(", the topmost pair starting at your chest.");
+			temp = 0;
 			while (temp < target.breastRows.length) {
 				if(temp == 0) output2(" Your uppermost row houses ");
 				if(temp == 1) output2(" The second group holds ");
@@ -545,10 +546,9 @@ function appearance(target:creature):void {
 			{
 				temp = 0;
 				rando = rand(4);
-				output2("Where a penis would normally be located, you have instead grown " + target.multiCockDescript() + ":");
+				output2("Where a penis would normally be located, you have instead grown your " + target.multiCockDescript() + ":");
 				while(temp < target.cocks.length) 
 				{
-					
 					//middle cock description
 					if(rando == 0) {
 						if(temp == 0)output2("\nYour first ");
@@ -632,18 +632,17 @@ function appearance(target:creature):void {
 					if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(temp) + ", tasting the air like a snake's tongue.");		
 					temp++;
 					rando++
-					output2("\n");
 					if(rando > 3) rando = 0;
 				}
 				//Worm flavor
-				if(target.hasStatusEffect("infested")) output2("Every now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.\n");
+				if(target.hasStatusEffect("infested")) output2("\nEvery now and again slimy worms coated in spunk slip partway out of your " + target.multiCockDescript() + ", tasting the air like tongues of snakes.");
 				//DONE WITH COCKS, moving on!
 			}
 		}
 		//Of Balls and Sacks!
 		if(target.balls > 0) {
 			if(target.cockTotal() == 0) output2("\n\n");
-			else if(target.cockTotal() > 1) output2("\n");
+			else if(target.cockTotal() > 1) output2("\n\n");
 			else output2(" ");
 			if(target.hasStatusEffect("Uniball")) {
 				if(target.skinType != GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding " + target.ballsDescript(true,true) + " snugly against you.");

@@ -87,6 +87,15 @@ var minutes:int = 0;
 var eventQueue:Array = new Array();
 var eventBuffer:String = "";
 
+//What inventory screen is up?
+var itemScreen = undefined;
+var lootScreen = undefined;
+var useFunction = undefined;
+var lootList:Array = new Array();
+var useItemFunction = undefined;
+var itemUser:creature = undefined;
+var itemTarget:creature = undefined;
+
 //Toggles
 var silly:Boolean = false;
 var easy:Boolean = false;

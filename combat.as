@@ -1,6 +1,10 @@
 ﻿//Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 var combatStage:int = 0;
 
+function inCombat():Boolean {
+	return (pc.hasStatusEffect("Round"));
+}
+
 function combatMainMenu():void {
 	clearOutput();
 	//Track round, expires on combat exit.

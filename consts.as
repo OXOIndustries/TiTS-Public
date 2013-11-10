@@ -119,6 +119,20 @@ const INDOOR:int = 0;
 const OUTDOOR:int = 1;
 const BED:int = 2;
 
+//ITEM TYPES
+const PILL:int = 0;
+const FOOD:int = 1;
+const POTION:int = 2;
+const MELEE_WEAPON:int = 3;
+const RANGED_WEAPON:int = 4;
+const ARMOR:int = 5;
+const SHIELD:int = 6;
+const UPPER_UNDERGARMENT:int = 7;
+const LOWER_UNDERGARMENT:int = 8;
+const ACCESSORY:int = 9;
+const DRUG:int = 10;
+const CLOTHING:int = 11;
+
 
 //CHARACTERS
 const CELISE:int = 1;

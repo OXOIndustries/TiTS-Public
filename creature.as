@@ -17,6 +17,10 @@
 			perks = new Array();
 			statusEffects = new Array();
 			keyItems = new Array();
+			inventory = new Array();
+			for(var z:int = 0; z < 30; z++) {
+				inventory[z] = new itemSlotClass();
+			}
 		}
 		//For cheateyness.
 		include "consts.as"
@@ -46,6 +50,8 @@
 		public var lowerUndergarment:itemSlotClass = new itemSlotClass();
 		public var accessory:itemSlotClass = new itemSlotClass();
 		public var shield:itemSlotClass = new itemSlotClass();
+		
+		public var inventory:Array = new Array();
 
 		//Primary stats
 		public var physiqueRaw:Number = 3;
@@ -238,7 +244,7 @@
 		
 		//Functions
 		//UTILITIES
-				public function num2Text(number:Number):String {
+		public function num2Text(number:Number):String {
 			var returnVar:String = null;
 			var numWords = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
 			if (number > 10 || int(number) != number) {
@@ -292,6 +298,8 @@
 					return pluralize(lipDescript());
 				case "lip":
 					return lipDescript();
+				case "tongue":
+					return tongueDescript();
 				case "base":
 				case "sheath":
 					return sheathDescript(arg2);
@@ -396,6 +404,12 @@
 				case "BallsDescript":
 				case "Balls":
 					return upperCase(ballsDescript());
+				case "sackDescript":
+				case "sack":
+					return sackDescript();
+				case "SackDescript":
+				case "Sack":
+					return upperCase(sackDescript());
 				case "chestDesc":
 				case "chest":
 					return chestDesc();
@@ -596,6 +610,9 @@
 			//Normal pluralizes
 			else str += "s";
 			return str;
+		}
+		public function inventorySlots():int {
+			return 10;
 		}
 		public function orgasm():void {
 			lustRaw = 0;
@@ -852,6 +869,9 @@
 		}
 		public function lipDescript():String {
 			return "lip";
+		}
+		public function tongueDescript():String {
+			return "tongue";
 		}
 		public function faceDesc():String {
 			var faceo:String = "";
@@ -2814,9 +2834,18 @@
 			if(tailType == CUNTSNAKE && tailCount > 0) return true;
 			return false;
 		}
+		public function tailCuntCapacity():Number {
+			if(!hasTailCunt()) return 0;
+			if(vaginalCapacity(0) > 30) return vaginalCapacity(0);
+			else return 30;
+		}
+		
 		public function hasTail():Boolean {
 			if(tailType != HUMAN) return true;
 			return false;
+		}
+		public function isBald():Boolean {
+			return (hairLength <= 0);
 		}
 		public function hasSockRoom():Boolean {
 			var index:int = cockTotal();
@@ -4544,7 +4573,7 @@
 				if(rando == 3) descript += "wriggling bunch of ";
 			}
 			//Append Nounse
-			if(hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType));
+			if(hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType,false,false));
 			else {
 				rando = rand(4);
 				if(rando == 0) descript += cockAdjective() + ", mutated cocks";
