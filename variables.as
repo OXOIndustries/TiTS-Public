@@ -88,9 +88,9 @@ var eventQueue:Array = new Array();
 var eventBuffer:String = "";
 
 //What inventory screen is up?
+var shopkeep:creature = undefined;
 var itemScreen = undefined;
 var lootScreen = undefined;
-var useFunction = undefined;
 var lootList:Array = new Array();
 var useItemFunction = undefined;
 var itemUser:creature = undefined;
@@ -100,7 +100,6 @@ var itemTarget:creature = undefined;
 var silly:Boolean = false;
 var easy:Boolean = false;
 var debug:Boolean = false;
-
 
 //Lazy man state checking
 var showingPCAppearance:Boolean = false;
@@ -130,6 +129,7 @@ function setupCharacters():void {
 var pc:creature = characters[0];
 var celise:creature = characters[CELISE];
 var rival:creature = characters[RIVAL];
+var geoff:creature = characters[GEOFF];
 var flags:Dictionary = new Dictionary();
 initializeFlags();
 
@@ -148,4 +148,5 @@ function setCheatPointers():void {
 	pc = characters[0];
 	celise = characters[CELISE];
 	rival = characters[RIVAL];
+	geoff = characters[GEOFF];
 }

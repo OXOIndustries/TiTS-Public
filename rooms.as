@@ -165,11 +165,12 @@ rooms[7].addFlag(OUTDOOR);
 
 //8. Esbeth’s Southern Path
 rooms[8].roomName = "Esbeth’s Southern Path";
-rooms[8].description = "The southern portion of Esbeth’s lone, circular road stretches east and west from here. To the west, it curls up to the north in a 90 degree bend. The scent of sweet alien flowers graces your nose here, a pleasant distraction from the aroma of charred-away vegetation and freshly installed plumbing that plagues most of this place. You can see the trees in the distance, dark and foreboding but undoubtedly full of life and riches.";
+rooms[8].description = "The southern portion of Esbeth’s lone, circular road stretches east and west from here. To the west, it curls up to the north in a 90 degree bend. The scent of sweet alien flowers graces your nose here, a pleasant distraction from the aroma of charred-away vegetation and freshly installed plumbing that plagues most of this place. You can see the trees in the distance, dark and foreboding but undoubtedly full of life and riches. To the south is what looks like a small, rambling junkyard, overflowing with spaceship and auto scrap. There is a flat-roofed stone hut buried in the detritus - a wooden sign bolted onto the front declares it to be THE ART OF SCRAPYARD MAINTENANCE. The ‘O’ is a painted Yin-Yang symbol.";
 rooms[8].planet = "PLANET: MHEN'GA";
 rooms[8].system = "SYSTEM: ARA ARA";
 rooms[8].westExit = 7;
 rooms[8].eastExit = 9;
+rooms[8].southExit = 88;
 rooms[8].addFlag(OUTDOOR);
 
 //9. Esbeth’s Southern Path
@@ -308,5 +309,17 @@ rooms[22].addFlag(OUTDOOR);
 31. The Lichen-Covered Jungle
 	Springingly lightly under your [feet] as you move, the soft soil and lichenous mulch below makes your journey surprisingly pleasant, aside from the omnipresent humidity. A wall of gray trees blocks the way west, and a trunk as big as three tanks put together blocks the way east. Buzzing insects swirl around everywhere, busy on their own errands. Thankful they don't seem to have much interest in you, perhaps due to your alien physiology.
 32. The Lichen-Covered Jungle
-	The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go.  Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.
+	The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go. Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.
 	*/
+	
+//88. Scrapyard Maintenance - see scrapyard.as for more info!
+rooms[88].roomName = "The Art of Scrapyard Maintenance";
+rooms[88].description = "";
+rooms[88].runOnEnter = scrapyardMaintenance;
+rooms[88].planet = "PLANET: MHEN'GA";
+rooms[88].system = "SYSTEM: ARA ARA";
+rooms[88].northExit = 8;
+rooms[88].addFlag(INDOOR);
+
+
+

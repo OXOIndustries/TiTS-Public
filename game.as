@@ -21,8 +21,9 @@
 	clearOutput();
 	output("<b>" + rooms[location].roomName + "</b>\n" + rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
-	clearMenu();
+	
 	//Standard buttons:
+	clearMenu();
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;

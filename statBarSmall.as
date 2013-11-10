@@ -27,6 +27,7 @@
 		private var glowFrames:Number = 0;
 		public var clearGlow:Boolean = false;
 		public var highBad:Boolean = false;
+		public var noBar:Boolean = false;
 		public function setMax(arg:Number):void {
 			max = arg;
 		}
@@ -34,7 +35,8 @@
 			goal = arg;
 			if(clearGlow) {
 				clearGlow = false;
-				values.filters = [];
+				glow.alpha = 0;
+				values.filters = [glow];
 			}
 			glowFrames = 35;
 			rate = Math.abs(current - goal) / glowFrames;
@@ -57,7 +59,6 @@
 				if(glowFrames > 0) {
 					if(glowFrames > 0) glowFrames--;
 					glow.alpha = (glowFrames / 24);
-					if(glowFrames == 0) trace("Clearing Glo: " + glowFrames + " on " + masks.labels.text + ".  Rough Alpha: " + glowFrames/48 + " Real Alpha: " + glow.alpha);
 					values.filters = [glow];
 				}
 			}
@@ -77,7 +78,7 @@
 				if(glowFrames == 99) trace("Glowing Green: " + glowFrames);
 			}
 			//GLOW BLACK IF DEBUFFED
-			else if(glowFrames > 0)
+			else if(glowFrames > 0 && (current > goal && !highBad) || (goal < current && highBad))
 			{
 				glowFrames--;
 				//barColor.color = Color.interpolateColor(0x00CC00, 0x8D31B0, current/goal o)); 
@@ -91,6 +92,7 @@
 				values.filters = [glow];
 				if(glowFrames == 99) trace("Glowing ORANGE: " + glowFrames);
 			}
+			else glowFrames--;
 			//This part adjusts the bar scrolling and coloration
 			if (goal < current)
 			{
@@ -126,7 +128,7 @@
 			}
 			values.text = String(Math.round(current));
 			//Set the width!
-			if(max is Number && current is Number) {
+			if(max is Number && current is Number && !noBar) {
 				bar.width = (current / max) * 180;
 				background.x = -1 * (1 - current / max) * 180;
 			}

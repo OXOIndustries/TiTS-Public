@@ -52,7 +52,14 @@
 		public var shield:itemSlotClass = new itemSlotClass();
 		
 		public var inventory:Array = new Array();
-
+		
+		public var typesBought:Array = new Array();
+		public var sellMarkup:Number = 1;
+		public var buyMarkdown:Number = 1;
+		public var keeperGreeting:String = "<i>\"Hello and welcome to my shop. Take a gander and let me know if you see anything you like,\"</i>  " + a + short + " says with a smile.";
+		public var keeperBuy:String = "What would you like to buy?";
+		public var keeperSell:String = "What would you like to sell?";
+		
 		//Primary stats
 		public var physiqueRaw:Number = 3;
 		public var reflexesRaw:Number = 3;
@@ -254,6 +261,12 @@
 				returnVar = numWords[number];
 			}
 			return(returnVar);
+		}
+		public function buysType(arg:int):Boolean {
+			for(var x:int = 0; x < typesBought.length; x++) {
+				if(arg == typesBought[x]) return true;
+			}
+			return false;
 		}
 		public function getDescription(arg,arg2) {
 			if(arg2 == "") arg2 = 0;
@@ -2504,6 +2517,9 @@
 			}
 			if(breastRows[index].nippleType == LIPPLES) return true;
 			return false;
+		}
+		public function hasDickNipples():Boolean {
+			return hasNippleCocks();
 		}
 		public function hasNippleCocks():Boolean {
 			var counter:Number = breastRows.length;

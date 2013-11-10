@@ -10,6 +10,8 @@ function startCharacterCreation():void {
 	hideMainMenu();
 	characters[0] = new creature;
 	initializeNPCs();
+	pc = characters[0];
+	pc.level = 1;
 	
 	/*
 	for (var x:int = 0; x < 10000; x++) {
@@ -20,7 +22,7 @@ function startCharacterCreation():void {
 	flags = new Dictionary();
 
 	currentPCNotes = undefined;
-	pc = characters[0];
+	
 	//Tag as in creation.
 	pc.createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();

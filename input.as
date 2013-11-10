@@ -138,6 +138,16 @@ function addButton(slot:int,cap:String = "",func = undefined,arg = undefined):vo
 	buttonData[slot].caption.text = cap;
 	menuPageChecker();
 }
+
+//Returns the position of the last used buttonData spot.
+function lastButton():int {
+	for(var x:int = buttonData.length; x >= 0; x--) {
+		if(buttonData[x].caption.text != "") break;
+	}
+	if(buttonData[x].caption.text == "" && x == 0) x = -1;
+	return x;
+}
+
 function addDisabledButton(slot:int,cap:String = ""):void {
 	if(slot <= 14) {
 		buttons[slot].alpha = .3;

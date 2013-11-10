@@ -187,7 +187,7 @@ function deglow():void {
 	playerLust.clearGlo();
 	playerEnergy.clearGlo();
 	playerXP.clearGlo();
-	playerLevel.clearGlo();
+	//playerLevel.clearGlo();
 	playerCredits.clearGlo();
 	playerPhysique.clearGlo();
 	playerReflexes.clearGlo();
@@ -204,9 +204,6 @@ function updatePCStats():void {
 	updateStatBar(playerHP,pc.HP(),pc.HPMax());
 	updateStatBar(playerLust,pc.lust(),pc.lustMax());
 	updateStatBar(playerEnergy,pc.energy(),pc.energyMax());
-	playerLevel.values.text = String(pc.level);
-	updateStatBar(playerXP,pc.XP,pc.level * pc.level * 100);
-	playerCredits.values.text = String(pc.credits);
 	
 	updateStatBar(playerPhysique,pc.physique(),pc.physiqueMax());	
 	updateStatBar(playerReflexes,pc.reflexes(),pc.reflexesMax());
@@ -218,6 +215,13 @@ function updatePCStats():void {
 	leftSideBar.days.text = String(days);
 	leftSideBar.sceneBy.visible = true;
 	leftSideBar.sceneByTag.visible = true;
+	//playerLevel.values.text = "" + pc.level;
+	updateStatBar(playerLevel,pc.level,20);
+	updateStatBar(playerXP,pc.XP,pc.level * pc.level * 100);
+	//playerCredits.values.text = String(pc.credits);	
+	updateStatBar(playerCredits,pc.credits,1000);
+	
+	trace("Level: " + pc.level);
 	updateNPCStats();
 }
 function timeText():String {
@@ -302,12 +306,12 @@ function holeChange(target:creature,hole:int,volume:Number,display:Boolean = tru
 	}
 	//If within top 10% of capacity, 50% stretch
 	else if(volume >= .9 * capacity && rand(2) == 0) {
-		pc.vaginas[0].vaginalLooseness++;
+		holePointer.looseness++;
 		stretched = true;
 	}
 	//if within 75th to 90th percentile, 25% stretch
 	else if(volume >= .75 * capacity && rand(4) == 0) {
-		pc.vaginas[0].vaginalLooseness++;
+		holePointer.looseness++;
 		stretched = true;
 	}
 	//If virgin

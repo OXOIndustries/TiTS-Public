@@ -274,4 +274,146 @@
 	//The rate at which you produce milk. Scales from 0 to INFINITY.
 	rival.milkRate = 0;
 	rival.ass.wetness = 0;
+	
+	
+	characters[GEOFF] = new creature();
+	geoff = characters[GEOFF];
+	geoff.short = "Geoff";
+	geoff.originalRace = "human";
+	geoff.a = "";
+	geoff.capitalA = "";
+	geoff.long = "";
+	geoff.customDodge = "";
+	geoff.customBlock = "";
+	geoff.plural = false;
+	geoff.lustVuln = 1;
+	geoff.meleeWeapon.attackVerb = "punch";
+	geoff.meleeWeapon.longName = "fist";
+	geoff.armor.longName = "A-type personal defense suit";
+	geoff.armor.defense = 50;
+	geoff.physiqueRaw = 3;
+	geoff.reflexesRaw = 3;
+	geoff.aimRaw = 3;
+	geoff.intelligenceRaw = 3;
+	geoff.willpowerRaw = 3;
+	geoff.libidoRaw = 30;
+	geoff.HPMod = 20;
+	geoff.shieldsRaw = 0;
+	geoff.HPRaw = geoff.HPMax();
+	geoff.energyRaw = 100;
+	geoff.lustRaw = 25;
+	geoff.resistances = new Array(1,1,1,1,1,1,1,1);
+	geoff.XP = 50;
+	geoff.level = 1;
+	geoff.credits = 1000;
+	
+	geoff.inventory[geoff.inventory.length] = clone(items[0]);
+	geoff.inventory[geoff.inventory.length] = clone(items[1]);
+	geoff.inventory[geoff.inventory.length] = clone(items[2]);
+	geoff.keeperSell = "<i>“You have items ready to be spiritually appraised and elevated, then?”</i>  Artie rubs his hands in anticipation as you approach his crate. <i>“Let’s see what you have and what they are, ahem, worth.”</i>\n";
+	geoff.keeperBuy = "Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name].  Looking to buy something?”</i>";
+	geoff.keeperGreeting = "Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.";
+	
+	geoff.femininity = 50;
+	geoff.eyeType = 0;
+	geoff.eyeColor = pc.eyeColor;
+	geoff.tallness = 65;
+	geoff.thickness = 50;
+	geoff.tone = 50;
+	geoff.hairColor = pc.hairColor;
+    geoff.scaleColor = pc.scaleColor;
+	geoff.furColor = pc.furColor;
+	geoff.hairLength = 12;
+	geoff.hairType = 0;
+	geoff.beardLength = 0;
+	geoff.beardStyle = 0;
+	geoff.skinType = SKIN;
+	geoff.skinTone = pc.skinTone;
+	geoff.skinFlags = new Array();
+	geoff.faceType = 0;
+	geoff.faceFlags = new Array();
+	geoff.tongueType = 0;
+	geoff.lipMod = 0;
+	geoff.earType = 0;
+	geoff.antennae = 0;
+	geoff.antennaeType = 0;
+	geoff.horns = 0;
+	geoff.hornType = 0;
+	geoff.armType = 0;
+	geoff.gills = false;
+	geoff.wingType = 0;
+	geoff.legType = HUMAN;
+	geoff.legCount = 2;
+	geoff.legFlags = new Array(PLANTIGRADE);
+	//0 - Waist
+	//1 - Middle of a long tail. Defaults to waist on bipeds.
+	//2 - Between last legs or at end of long tail.
+	//3 - On underside of a tail, used for driders and the like, maybe?
+	geoff.genitalSpot = 0;
+	geoff.tailType = 0;
+	geoff.tailCount = 0;
+	geoff.tailFlags = new Array();
+	//Used to set cunt or dick type for cunt/dick tails!
+	geoff.tailGenitalArg = 0;
+	//tailGenital:
+	//0 - none.
+	//1 - cock
+	//2 - vagina
+	geoff.tailGenital = 0;
+	//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+	geoff.tailVenom = 0;
+	//Tail recharge determines how fast venom/webs comes back per hour.
+	geoff.tailRecharge = 5;
+	//hipRating
+	//0 - boyish
+	//2 - slender
+	//4 - average
+	//6 - noticable/ample
+	//10 - curvy//flaring
+	//15 - child-bearing/fertile
+	//20 - inhumanly wide
+	geoff.hipRating = 4;
+	//buttRating
+	//0 - buttless
+	//2 - tight
+	//4 - average
+	//6 - noticable
+	//8 - large
+	//10 - jiggly
+	//13 - expansive
+	//16 - huge
+	//20 - inconceivably large/big/huge etc
+	geoff.buttRating = 4;
+	//No dicks here!
+	geoff.cocks = new Array();
+	//balls
+	geoff.balls = 0;
+	geoff.cumMultiplier = pc.cumMultiplier;
+	//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+	geoff.cumQuality = 1;
+	geoff.cumType = CUM;
+	geoff.ballSize = pc.ballSize;
+	geoff.ballFullness = pc.ballFullness;
+	//How many "normal" orgams worth of jizz your balls can hold.
+	geoff.ballEfficiency = pc.ballFullness;
+	//Scales from 0 (never produce more) to infinity.
+	geoff.refractoryRate = pc.refractoryRate;
+	geoff.minutesSinceCum = pc.minutesSinceCum;
+	geoff.timesCum = 55;
+	
+	//Goo is hyper friendly!
+	geoff.elasticity = 1;
+	//Fertility is a % out of 100. 
+	geoff.fertility = 5;
+	geoff.clitLength = .5;
+	geoff.pregnancyMultiplier = 1;
+	
+	geoff.breastRows[0].breastRating = 0;
+	geoff.nippleColor = pc.nippleColor;
+	geoff.milkMultiplier = 0;
+	geoff.milkType = MILK;
+	//The rate at which you produce milk. Scales from 0 to INFINITY.
+	geoff.milkRate = 0;
+	geoff.ass.wetness = 0;	
+	
 }
