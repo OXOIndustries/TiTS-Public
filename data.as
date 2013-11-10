@@ -92,6 +92,17 @@ function copyDicks(donor:creature,recipient:creature):void {
 	}
 }*/
 
+function cloneDict(original:Dictionary):Dictionary 
+{
+	var cloned:Dictionary = new Dictionary();
+	for(var key:Object in original) 
+	{
+		cloned[key] = original[key];
+		trace("Key, value = ", key, cloned[key]);
+	}
+	return cloned;
+}
+
 function saveGame(slot:String):void {
 	//Initialize the save file
 	var saveFile;
@@ -115,10 +126,14 @@ function saveGame(slot:String):void {
 	}
 	
 	//Save flags
-	saveFile.data.flags = new Array();
+	saveFile.data.flags = cloneDict(flags);
+
+	/*
 	for (x = 0; x < 10000; x++) {
 		saveFile.data.flags[x] = flags[x];
 	}
+	*/
+
 	//Save crap
 	saveFile.data.silly = silly;
 	saveFile.data.easy = easy;
@@ -162,9 +177,13 @@ function loadGame(slot:String):void {
 			foes[x] = clone(saveFile.data.foes[x]);
 		}
 		//Load flags
+		flags = cloneDict(saveFile.data.flags);
+		
+		/*
 		for (x = 0; x < 10000; x++) {
 			flags[x] = saveFile.data.flags[x];
 		}
+		*/
 		
 		//Load misc shit
 		days = saveFile.data.days;

@@ -1,8 +1,8 @@
 ﻿function celiseIsCrew():Boolean {
-	return (flags[RECRUITED_CELISE] > 0 && flags[CELISE_ONBOARD] > 0);
+	return (flags["RECRUITED_CELISE"] > 0 && flags["CELISE_ONBOARD"] > 0);
 }
 function celiseIsFollower():Boolean {
-	return (flags[RECRUITED_CELISE] > 0);
+	return (flags["RECRUITED_CELISE"] > 0);
 }
 
 //Crewmember Celise’s Screen
@@ -154,7 +154,7 @@ function celiseSucksYouDry():void {
 		output("\n\nYour [pc.vagina], bereft of proper penetration, spasms against a multitude of unbound tongues that rove across its engorged vulvae. Sometimes, they touch your clit, other times, they remain firmly affixed to your labia, dexterously twirling across your sex maddenly, but never plunging in or connecting with a clit properly enough to set you off. You’re kept writhing and dripping on the edge of orgasm while the constant pulling upon your other genitals drains you dry. Right about now, you’ve give anything to be properly penetrated, to properly cum.");
 	}
 	//{Tailcock}
-	if(pc.hasTailCock) {
+	if(pc.hasTailCock()) {
 		if(pc.tailCount == 1) {
 			output("\n\nYour [pc.tailCock] is dripping, though it is not leaking ejaculate with the fervor of your bound erection{s}. That doesn’t stop Celise from noticing the way the heated droplets of pre-cum spatter across her insubstantial skin. Almost lazily, she extends a pseudopod behind you. You cannot see the rising, gooey enclosure, but you certainly feel it when it makes contact with your trembling tailcock, spreading juice-dripping lips around your thick tailboner. Inch after inch of your throbbing, posterior phallus passes into the suckling hole, and before you know it, it’s squirting out just like your other cock");
 			if(pc.cockTotal() > 1) output("s");
@@ -348,7 +348,7 @@ function yepGetInMyBallsUBitch():void {
 	}
 	else output("taint");
 	output(" with warm pleasure and explains, <i>“</i>");
-	if(flags[TIMES_CELISE_IN_BALLS] > 0) output("<i>Don’t you remember? Well, let me explain again while you enjoy the pleasure. </i>");
+	if(flags["TIMES_CELISE_IN_BALLS"] > 0) output("<i>Don’t you remember? Well, let me explain again while you enjoy the pleasure. </i>");
 	output("<i>The part of me that’s inside you right now is stimulating your body to orgasm, as you can surely feel.”</i>  You cry out a moan as an answer, unable to articulate anything more complex. Your body pumps the cum around inside itself, but it doesn’t seem to go anywhere. <i>“Yeah, I’m redirecting the yummy stuff back into your [pc.balls], but I’m tricking </i>");
 	if(pc.balls <= 1) output("<i>it</i>");
 	else output("<i>them</i>");
