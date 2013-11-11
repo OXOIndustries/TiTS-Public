@@ -19,7 +19,7 @@
 	saveHere = true;
 	//Display the room description
 	clearOutput();
-	output("<b>" + rooms[location].roomName + "</b>\n" + rooms[location].description);
+	output(rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
 	
 	//Standard buttons:

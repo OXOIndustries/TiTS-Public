@@ -289,7 +289,7 @@
 	geoff.lustVuln = 1;
 	geoff.meleeWeapon.attackVerb = "punch";
 	geoff.meleeWeapon.longName = "fist";
-	geoff.armor.longName = "A-type personal defense suit";
+	geoff.armor.longName = "comfortable clothes";
 	geoff.armor.defense = 50;
 	geoff.physiqueRaw = 3;
 	geoff.reflexesRaw = 3;
@@ -317,13 +317,13 @@
 	geoff.keeperBuy = "Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name].  Looking to buy something?”</i>";
 	geoff.keeperGreeting = "Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.";
 	
-	geoff.femininity = 50;
+	geoff.femininity = 20;
 	geoff.eyeType = 0;
-	geoff.eyeColor = pc.eyeColor;
-	geoff.tallness = 65;
-	geoff.thickness = 50;
-	geoff.tone = 50;
-	geoff.hairColor = pc.hairColor;
+	geoff.eyeColor = "brown";
+	geoff.tallness = 78;
+	geoff.thickness = 20;
+	geoff.tone = 70;
+	geoff.hairColor = "brown";
     geoff.scaleColor = pc.scaleColor;
 	geoff.furColor = pc.furColor;
 	geoff.hairLength = 12;
@@ -389,19 +389,22 @@
 	geoff.buttRating = 4;
 	//No dicks here!
 	geoff.cocks = new Array();
+	geoff.createCock();
+	geoff.cocks[0].cLength = 6;
+	geoff.cocks[0].cThickness = 1.75;
 	//balls
-	geoff.balls = 0;
-	geoff.cumMultiplier = pc.cumMultiplier;
+	geoff.balls = 2;
+	geoff.cumMultiplier = 3;
 	//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 	geoff.cumQuality = 1;
 	geoff.cumType = CUM;
 	geoff.ballSize = pc.ballSize;
-	geoff.ballFullness = pc.ballFullness;
+	geoff.ballFullness = 10;
 	//How many "normal" orgams worth of jizz your balls can hold.
-	geoff.ballEfficiency = pc.ballFullness;
+	geoff.ballEfficiency = 10;
 	//Scales from 0 (never produce more) to infinity.
-	geoff.refractoryRate = pc.refractoryRate;
-	geoff.minutesSinceCum = pc.minutesSinceCum;
+	geoff.refractoryRate = 1;
+	geoff.minutesSinceCum = 3650;
 	geoff.timesCum = 55;
 	
 	//Goo is hyper friendly!
@@ -412,11 +415,10 @@
 	geoff.pregnancyMultiplier = 1;
 	
 	geoff.breastRows[0].breastRating = 0;
-	geoff.nippleColor = pc.nippleColor;
+	geoff.nippleColor = "brown";
 	geoff.milkMultiplier = 0;
 	geoff.milkType = MILK;
 	//The rate at which you produce milk. Scales from 0 to INFINITY.
 	geoff.milkRate = 0;
 	geoff.ass.wetness = 0;	
-	
 }

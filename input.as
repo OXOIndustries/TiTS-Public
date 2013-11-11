@@ -188,6 +188,7 @@ function addMainMenuButton(slot:int,cap:String = "",func = undefined,arg = undef
 }
 
 function buttonClick(evt:MouseEvent):void {
+	showBust(0);
 	if(evt.currentTarget.func == undefined) {
 		trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated function!");
 		return;

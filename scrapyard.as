@@ -1,4 +1,5 @@
 ﻿function scrapyardMaintenance():void {
+	author("Nonesuch");
 	if(flags["SCRAPYARD_SEEN"] == undefined) {
 		flags["SCRAPYARD_SEEN"] = 1;
 		output("You go through the open gate of the scrapyard and cautiously stick your head around the stone hut’s door. It is, if anything, even more packed with junk than the outside - the room is gloomy with the amount of stuff piled up against the walls and windows. Stands filled with everything from old shoes to busted hologram projectors jostle for room with silent, antiquated robots and mismatched gun racks slithering with spools of power connectors.");
@@ -23,6 +24,7 @@ function sellToArtie():void {
 }
 function buyFromGeoff():void {
 	clearOutput();
+	author("Nonesuch");
 	if(flags["MET_GEOFF"] == undefined) output("You pick your way through the clutter to the back part of the shop. Geoff is sat in front of a wall hung with armor, shields and other robust pieces of technology, evidently reconstructed from scrap. He wipes his hand on a rag as you reach him and then offers you it.\n\n<i>“Hey. Nice to see a new face,”</i>  he says. He grins at you sheepishly. <i>“Uh, everything you can see behind me is for sale. If you want to sell stuff, you’ll have to talk to Artie. The last time I bought something it turned out to have an evil aura, or something.”</i>");
 	else if(flags["SEXED_GEOFF"] == 1) output("Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name]. Looking to buy something? Or...”</i>  his grin becomes wider. <i>“...do you need a hand with something?”</i>");
 	else output("Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name]. Looking to buy something?”</i>");
@@ -50,6 +52,7 @@ function buyFromGeoff():void {
 //Talk
 function talkToGeoff():void {
 	clearOutput();
+	author("Nonesuch");
 	if(flags["SEXED_GEOFF"] == undefined) {
 		output("You ask the lanky, dreadlocked young man what brought him out to the frontier.");
 		output("\n\n<i>“Tuition fees,”</i>  he says simply, as he goes on cleaning engine parts. <i>“I grew up on Sigius VI and wanted to go into engineering. Got the grades, but my folks don’t have the money. When my dad mentioned my uncle was going to come out here with a business and was looking for an assistant, it seemed to me like a win-win: make the money I need, and see the stars. Once in a century opportunity for a hell of a gap year, man.”</i>  He sighs. <i>“I, uh, kinda forgot what my uncle is like.”</i>");
@@ -76,6 +79,7 @@ function talkToGeoff():void {
 
 function flirtWithGeoff():void {
 	clearOutput();
+	author("Nonesuch");
 	output("You smile suggestively and ask if he’s that good with his hands, perhaps he could give you a personal demonstration?");
 	
 	//PC is andro/masculine male/herm OR centaur/some other stupid shape with the genitals on the back:
@@ -164,6 +168,7 @@ function flirtWithGeoff():void {
 //Sex: 
 function GeoffRepeatFuck():void {
 	clearOutput();
+	author("Nonesuch");
 	output("You return his grin and slide your hand into his, and without a word the two of you debunk to the humidity and steam in the back.");
 	
 	//Female/Herm Repeat: 

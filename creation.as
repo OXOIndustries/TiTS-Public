@@ -12,6 +12,8 @@ function startCharacterCreation():void {
 	initializeNPCs();
 	pc = characters[0];
 	pc.level = 1;
+	pc.shield = clone(items[12]);
+	pc.shieldsRaw = pc.shieldsMax();
 	
 	/*
 	for (var x:int = 0; x < 10000; x++) {
@@ -633,6 +635,7 @@ function setClass(arg:int = 0):void {
 	}
 	pc.meleeWeapon = clone(items[4]);
 	pc.armor = clone(items[7]);
+	pc.shieldsRaw = pc.shieldsMax();
 	if(!pc.hasVagina()) pc.lowerUndergarment = clone(items[9]);
 	else pc.lowerUndergarment = clone(items[8]);
 	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(items[11]);

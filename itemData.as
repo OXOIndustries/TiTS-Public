@@ -360,3 +360,33 @@ items[11].critBonus = 0;
 items[11].evasion = 0;
 items[11].fortification = 0;
 items[11].bonusResistances = new Array(0,0,0,0,0,0,0,0);
+
+//Shield Generator
+//11
+items[12] = new itemSlotClass();
+items[12].indexNumber = 11;
+items[12].quantity = 1;
+items[12].stackSize = 1;
+items[12].type = SHIELD;
+//Used in inventory buttons
+items[12].shortName = "BasicShld";
+//Regular name
+items[12].longName = "cheap JoyCo shield generator";
+//Longass shit, not sure what used for yet.
+items[12].description = "a cheap JoyCo shield generator";
+//Displayed on tooltips during mouseovers
+items[12].tooltip = "A cheap, off-the-shelf shield generator that can be purchased at almost any JoyCo megastore.";
+items[12].attackVerb = "null";
+//Information
+items[12].basePrice = 50;
+items[12].attack = 0;
+items[12].damage = 0;
+items[12].damageType = PIERCING;
+items[12].defense = 0;
+items[12].shieldDefense = 0;
+items[12].shields = 40;
+items[12].sexiness = 0;
+items[12].critBonus = 0;
+items[12].evasion = 0;
+items[12].fortification = 0;
+items[12].bonusResistances = new Array(0,0,0,0,0,0,0,0);

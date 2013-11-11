@@ -254,7 +254,8 @@
 		public function num2Text(number:Number):String {
 			var returnVar:String = null;
 			var numWords = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
-			if (number > 10 || int(number) != number) {
+			if (number > 10
+				|| int(number) != number) {
 				returnVar = "" + number;
 			} 
 			else {
@@ -269,328 +270,262 @@
 			}
 			return false;
 		}
-		public function getDescription(arg,arg2) {
+		public function getDescription(arg:String,arg2) {
+			trace("STARTED GET DESCRIPTION");
+			var firstLetter:String = arg.substr(0,1);
+			firstLetter.toLowerCase();
+			var restOfString:String = arg.substr(1,arg.length);
+			var desc:String = firstLetter + restOfString;
+			if(desc == "cum") trace("IT'S CUM");
+			//var desc = arg;
+			trace("DESC: " + desc);
+			var buffer:String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if(arg2 == "") arg2 = 0;
-			switch (arg) {
+			switch (desc) {
 				case "short":
 				case "name":
-				case "Name":
-					return short;
+					buffer = short;
+					break;
 				case "race":
-					return race();
-				case "Race":
-					return upperCase(race());
+					buffer = race();
+					break;
 				case "armor":
-					return armor.longName;
+					buffer = armor.longName;
+					break;
 				case "lowerUndergarment":
-					return lowerUndergarment.longName;
+					buffer = lowerUndergarment.longName;
+					break;
 				case "upperUndergarment":
-					return upperUndergarment.longName;
+					buffer = upperUndergarment.longName;
+					break;
 				case "originalRace":
-					return originalRace;
-				case "OriginalRace":
-					return upperCase(originalRace);
+					buffer = originalRace;
+					break;
 				case "skinFurScales":
-					return skinFurScales();
-				case "SkinFurScales":
-					return upperCase(skinFurScales());
+					buffer = skinFurScales();
+					break;
 				case "skin":
-					return skin();
-				case "Skin":
-					return upperCase(skin());
+					buffer = skin();
+					break;
 				case "hairDescript":
-					return hairDescript();
-				case "HairDescript":
-					return upperCase(hairDescript());
+					buffer = hairDescript();
+					break;
 				case "hairsDescript":
-					return hairDescript();
-				case "HairsDescript":
-					return upperCase(hairsDescript());
+					buffer = hairDescript();
+					break;
 				case "face":
-					return face();
+					buffer = face();
+					break;
 				case "lips":
-					return pluralize(lipDescript());
+					buffer = pluralize(lipDescript());
+					break;
 				case "lip":
-					return lipDescript();
+					buffer = lipDescript();
+					break;
 				case "tongue":
-					return tongueDescript();
+					buffer = tongueDescript();
+					break;
 				case "base":
 				case "sheath":
-					return sheathDescript(arg2);
-				case "Base":
-				case "Sheath":
-					return upperCase(sheathDescript(arg2));
+					buffer = sheathDescript(arg2);
+					break;
 				case "knot":
-					return knotDescript(arg2);
-				case "Knot":
-					return upperCase(knotDescript(arg2));
+					buffer = knotDescript(arg2);
+					break;
 				case "multiCockDescript":
-					return multiCockDescript();
-				case "MultiCockDescript":
-					return upperCase(multiCockDescript());
+					buffer = multiCockDescript();
+					break;
 				case "cocks":
 				case "cocksDescript":
-					return cocksDescript();
-				case "Cocks":
-				case "CocksDescript":
-					return upperCase(cocksDescript());
+					buffer = cocksDescript();
+					break;
 				case "cocksDescriptLight":
 				case "cocksLight":
-					return cocksDescriptLight();
-				case "CocksDescriptLight":
-				case "CocksLight":
-					return upperCase(cocksDescriptLight());
+					buffer = cocksDescriptLight();
+					break;
 				case "cockNounComplex":
-					return cockNounComplex(arg2);
-				case "CockNounComplex":
-					return upperCase(cockNounComplex(arg2));
+					buffer = cockNounComplex(arg2);
+					break;
 				case "cockNounSimple":
-					return simpleCockNoun(arg2);
-				case "CockNounSimple":
-					return upperCase(simpleCockNoun(arg2));
+					buffer = simpleCockNoun(arg2);
+					break;
 				case "cockHead":
-					return cockHead(arg2);
-				case "CockHead":
-					return upperCase(cockHead(arg2));
+					buffer = cockHead(arg2);
+					break;
 				case "cockHeads":
-					return pluralize(cockHead(arg2));
-				case "CockHeads":
-					return pluralize(upperCase(cockHead(arg2)));
+					buffer = pluralize(cockHead(arg2));
+					break;
 				case "cockDescript":
 				case "cock":
-					return cockDescript(arg2);
-				case "CockDescript":
-				case "Cock":
-					return upperCase(cockDescript(arg2));
+					buffer = cockDescript(arg2);
+					break;
 				case "biggestCockDescript":
 				case "biggestCock":
 				case "cockBiggest":
-					return cockDescript(biggestCockIndex());
-				case "BiggestCockDescript":
-				case "BiggestCock":
-				case "CockBiggest":
-					return upperCase(cockDescript(biggestCockIndex()));
+					buffer = cockDescript(biggestCockIndex());
+					break;
 				case "biggestCockHead":
 				case "cockHeadBiggest":
-					return cockHead(biggestCockIndex());
-				case "BiggestCockHead":
-				case "CockHeadBiggest":
-					return upperCase(cockHead(biggestCockIndex()));
+					buffer = cockHead(biggestCockIndex());
+					break;
 				case "eachCockHead":
-					return eachCockHead();
-				case "EachCockHead":
-					return upperCase(eachCockHead());
+					buffer = eachCockHead();
+					break;
 				case "tailCock":
-					return tailCockDescript();
-				case "TailCock":
-					return upperCase(tailCockDescript());
+					buffer = tailCockDescript();
+					break;
 				case "nipple":				
 				case "nippleDescript":
-					return nippleDescript(arg2);
-				case "Nipple":
-				case "NippleDescript":
-					return upperCase(nippleDescript(arg2));
+					buffer = nippleDescript(arg2);
+					break;
 				case "nipples":
 				case "nipplesDescript":
-					return nipplesDescript(arg2);
-				case "Nipples":
-				case "NipplesDescript":
-					return upperCase(nipplesDescript(arg2));
+					buffer = nipplesDescript(arg2);
+					break;
 				case "nippleCockDescript":
-					return nippleCockDescript();
-				case "NippleCockDescript":
-					return upperCase(nippleCockDescript());
+					buffer = nippleCockDescript();
+					break;
 				case "nippleCocksDescript":
-					return pluralize(nippleCockDescript());
-				case "NippleCocksDescript":
-					return pluralize(upperCase(nippleCockDescript()));
+					buffer = pluralize(nippleCockDescript());
+					break;
 				case "eachCock":
-					return eachCock();
-				case "EachCock":
-					return upperCase(eachCock());
+					buffer = eachCock();
+					break;
 				case "oneCock":
-					return oneCock();
-				case "OneCock":
-					return upperCase(oneCock());
+					buffer = oneCock();
+					break;
 				case "ballsDescript":
 				case "balls":
-					return ballsDescript();
-				case "BallsDescript":
-				case "Balls":
-					return upperCase(ballsDescript());
+					buffer = ballsDescript();
+					break;
 				case "sackDescript":
 				case "sack":
-					return sackDescript();
-				case "SackDescript":
-				case "Sack":
-					return upperCase(sackDescript());
+					buffer = sackDescript();
+					break;
 				case "chestDesc":
 				case "chest":
-					return chestDesc();
-				case "ChestDesc":
-				case "Chest":
-					return upperCase(chestDesc());
+					buffer = chestDesc();
+					break;
 				case "allChestDescript":
 				case "fullChest":
-					return allChestDesc();
-				case "AllChestDescript":
-				case "FullChest":
-					return upperCase(allChestDesc());
+					buffer = allChestDesc();
+					break;
 				case "biggestBreastDescript":
-					return biggestBreastDescript();
-				case "BiggestBreastDescript":
-					return upperCase(biggestBreastDescript());
+					buffer = biggestBreastDescript();
+					break;
 				case "sheathDescript":
 				case "sheath":
-					return sheathDescript(arg2);
-				case "SheathDescript":
-				case "Sheath":
-					return upperCase(sheathDescript(arg2));
+					buffer = sheathDescript(arg2);
+					break;
 				case "biggestSheath":
-					return sheathDescript(biggestCockIndex());
-				case "BiggestSheath":
-					return upperCase(sheathDescript(biggestCockIndex()));
+					buffer = sheathDescript(biggestCockIndex());
+					break;
 				case "cockClit":
-					return cockClit(arg2);
-				case "CockClit":
-					return upperCase(cockClit(arg2));
+					buffer = cockClit(arg2);
+					break;
 				case "sackDescript":
-					return sackDescript();
-				case "SackDescript":
-					return upperCase(sackDescript());
+					buffer = sackDescript();
+					break;
 				case "assholeDescript":
 				case "asshole":
-					return assholeDescript();
-				case "AssholeDescript":
-				case "Asshole":
-					return upperCase(assholeDescript());
+					buffer = assholeDescript();
+					break;
 				case "buttDescript":
 				case "butt":
-					return buttDescript();
-				case "ButtDescript":
-				case "Butt":
-					return upperCase(buttDescript());
+					buffer = buttDescript();
+					break;
 				case "hipDescript":
 				case "hip":
-					return hipDescript();
-				case "HipDescript":
-				case "Hip":
-					return upperCase(hipDescript());
+					buffer = hipDescript();
+					break;
 				case "hipsDescript":
 				case "hips":
-					return hipsDescript();
-				case "HipsDescript":
-				case "Hips":
-					return upperCase(hipsDescript());
+					buffer = hipsDescript();
+					break;
 				case "vaginaDescript":
 				case "vagina":
 				case "pussy":
 				case "cunt":
-					return vaginaDescript(arg2);
-				case "VaginaDescript":
-				case "Vagina":
-				case "Pussy":
-					return upperCase(vaginaDescript(arg2));
+					buffer = vaginaDescript(arg2);
+					break;
 				case "vaginasDescript":
 				case "vaginas":
 				case "pussies":
-					return vaginasDescript();
-				case "VaginasDescript":
-				case "Vaginas":
-				case "Pussies":
-					return upperCase(vaginasDescript());
+					buffer = vaginasDescript();
+					break;
 				case "eachVagina":
-					return eachVagina();
-				case "EachVagina":
-					return upperCase(eachVagina());
+					buffer = eachVagina();
+					break;
 				case "oneVagina":
-					return oneVagina();
-				case "OneVagina":
-					return upperCase(oneVagina());
+					buffer = oneVagina();
+					break;
 				case "clitDescript":
 				case "clit":
-					return clitDescript();
-				case "ClitDescript":
-				case "Clit":
-					return upperCase(clitDescript());
+					buffer = clitDescript();
+					break;
 				case "eachClit":
-					return eachClit();
-				case "EachClit":
-					return upperCase(eachClit());
+					buffer = eachClit();
+					break;
 				case "oneClit":
-					return oneClit();
-				case "OneClit":
-					return upperCase(oneClit());
+					buffer = oneClit();
+					break;
 				case "clitsDescript":
 				case "clits":
-					return clitsDescript();
-				case "ClitsDescript":
-				case "Clits":
-					return upperCase(clitsDescript());
+					buffer = clitsDescript();
+					break;
 				case "tailVagina":
 				case "tailCunt":
-					return tailVaginaDescript();
-				case "TailVagina":
-				case "TailCunt":
-					return upperCase(tailVaginaDescript());
+					buffer = tailVaginaDescript();
+					break;
 				case "milkDescript":
 				case "milk":
-					return milkDescript();
-				case "MilkDescript":
-				case "Milk":
-					return upperCase(milkDescript());
+					buffer = milkDescript();
+					break;
 				case "cumDescript":
 				case "cum":
-					return cumDescript();
-				case "CumDescript":
-				case "Cum":
-					return upperCase(cumDescript());
+					buffer = cumDescript();
+					break;
 				case "girlCumDescript":
 				case "girlCum":
-					return girlCumDescript();
-				case "GirlCumDescript":
-				case "GirlCum":
-					return upperCase(girlCumDescript());
+					buffer = girlCumDescript();
+					break;
 				case "cumNoun":
-					return fluidNoun(cumType);
-				case "CumNoun":
-					return upperCase(fluidNoun(cumType));
+					buffer = fluidNoun(cumType);
+					break;
 				case "cumColor":
-					return cumColor();
-				case "CumColor":
-					return upperCase(cumColor());
+					buffer = cumColor();
+					break;
 				case "milkColor":
-					return milkColor();
-				case "MilkColor":
-					return upperCase(milkColor());
+					buffer = milkColor();
+					break;
+				case "tail":
+					buffer = tailDescript();
+					break;
 				case "legs":
-					return legs();
-				case "Legs":
-					return upperCase(legs());
+					buffer = legs();
+					break;
 				case "feet":
-					return feet();
-				case "Feet":
-					return upperCase(feet());
+					buffer = feet();
+					break;
 				case "foot":
-					return foot();
-				case "Foot":
-					return upperCase(foot());
+					buffer = foot();
+					break;
 				case "toes":
-					return toes();
-				case "Toes":
-					return upperCase(toes());
+					buffer = toes();
+					break;
 				case "knees":
-					return knees();
-				case "Knees":
-					return upperCase(knees());
+					buffer = knees();
+					break;
 				case "belly":
-					return bellyDescript();
-				case "Belly":
-					return upperCase(bellyDescript());
+					buffer = bellyDescript();
+					break;
 				default:
-					return "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					buffer = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					break;
 			}
-			return "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
+			trace("BUFFER OUT: " + buffer);
+			return buffer;
 		}
 		public function Num2Text(number:int):String {
 			return upperCase(num2Text(number));
@@ -771,6 +706,9 @@
 			return temp;
 		}
 		public function shields():Number {
+			return shieldsRaw;
+		}
+		public function shieldsMax():Number {
 			var temp:int = 0;
 			temp += meleeWeapon.shields;
 			temp += rangedWeapon.shields;
@@ -1124,6 +1062,9 @@
 				return "mounds of goo";
 			}
 			return leg(forceType,forceAdjective) + "s";
+		}
+		public function tailDescript():String {
+			return "tail";
 		}
 		public function leg(forceType:Boolean = false, forceAdjective:Boolean = false):String {
 			var select:Number = 0;
@@ -1746,14 +1687,11 @@
 		}
 		
 		private function storageValue(array,storageName,targetValue):Number {
-			trace("Finding storage value.");
 			if(array.length == 0) return 0;
 			if(!hasStorageName(array,storageName)) return 0;
 			for(var counter:int = 0; counter < array.length; counter++) {
-				trace("Loop through once");
 				if(array[counter].storageName == storageName) break;
 			}
-			trace("Finished Loop");
 			if(targetValue == 1) return array[counter].value1;
 			else if(targetValue == 2) return array[counter].value2;
 			else if(targetValue == 3) return array[counter].value3;

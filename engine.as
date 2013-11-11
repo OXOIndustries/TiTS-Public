@@ -93,6 +93,16 @@ function author(arg:String):void {
 
 
 //2. DISPLAY STUFF
+function showBust(arg:int):void {
+	//leftSideBar.sceneTitle.filters = [glow];
+	if(arg == 0) leftSideBar.npcBusts.visible = false;
+	else {
+		leftSideBar.sceneTitle.text = caps(characters[arg].short);
+		leftSideBar.npcBusts.visible = true;
+		leftSideBar.npcBusts.gotoAndStop(arg);
+	}
+}
+
 //EXAMPLE: setupStatBar(monsterSex,"SEX","Genderless");
 function setupStatBar(arg:MovieClip,title:String = "",value = undefined, max = undefined):void {
 	if(title != "" && title is String) arg.masks.labels.text = title;
@@ -110,6 +120,9 @@ function upperCase(str:String):String {
 	var firstChar:String = str.substr(0,1);
 	var restOfString:String = str.substr(1,str.length);
 	return firstChar.toUpperCase()+restOfString.toLowerCase();
+}
+function caps(str:String):String {
+	return str.toUpperCase();
 }
 function plural(str:String):String {
 	var lastChar:String = str.substr(str.length-1,str.length);
@@ -139,6 +152,7 @@ function leftBarClear():void {
 	leftSideBar.levelUpButton.visible = false;
 }
 function hidePCStats():void {
+	playerShields.visible = false;
 	playerHP.visible = false;
 	playerLust.visible = false;
 	playerEnergy.visible = false;
@@ -153,6 +167,7 @@ function hidePCStats():void {
 	playerLibido.visible = false;
 }
 function showPCStats():void {
+	playerShields.visible = true;
 	playerHP.visible = true;
 	playerLust.visible = true;
 	playerEnergy.visible = true;
@@ -183,6 +198,7 @@ function hideNPCStats():void {
 	monsterSex.visible = false;
 }
 function deglow():void {
+	playerShields.clearGlo();
 	playerHP.clearGlo();
 	playerLust.clearGlo();
 	playerEnergy.clearGlo();
@@ -201,6 +217,9 @@ function deglow():void {
 }	
 function updatePCStats():void {
 	showPCStats();
+	rightSidebar.nameText.text = pc.short;
+	trace("PC SHIELDS: " + pc.shields() + " MAX: " + pc.shieldsMax());
+	updateStatBar(playerShields,pc.shields(),pc.shieldsMax());
 	updateStatBar(playerHP,pc.HP(),pc.HPMax());
 	updateStatBar(playerLust,pc.lust(),pc.lustMax());
 	updateStatBar(playerEnergy,pc.energy(),pc.energyMax());
