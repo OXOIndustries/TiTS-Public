@@ -265,6 +265,7 @@
 		public function buysType(arg:int):Boolean {
 			for(var x:int = 0; x < typesBought.length; x++) {
 				if(arg == typesBought[x]) return true;
+				if(typesBought[x] == ALL) return true;
 			}
 			return false;
 		}

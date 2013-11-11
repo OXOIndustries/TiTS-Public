@@ -132,6 +132,7 @@ const LOWER_UNDERGARMENT:int = 8;
 const ACCESSORY:int = 9;
 const DRUG:int = 10;
 const CLOTHING:int = 11;
+const ALL:int = 12; //Used for pawn shops!
 
 //CHARACTERS
 const CELISE:int = 1;

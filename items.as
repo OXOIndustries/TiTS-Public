@@ -49,15 +49,23 @@ function buyItem():void {
 	var temp:Number = 0;
 	clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
+		trace("GOING THROUGH SHOPKEEP INVENTORY.");
 		//If slot has something in it.
 		if(shopkeep.inventory[x].quantity > 0) {
 			output("\n");
 			temp = getBuyPrice(shopkeep,shopkeep.inventory[x].basePrice);
 			if(temp > pc.credits) output("<b>(Too Expensive)</b> ");
 			output(upperCase(shopkeep.inventory[x].description) + " - " + temp + " credits.");
+			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
+				trace("SHOWAN BUTANS: " + x);
 				if(x <= 13) addButton(x,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
-				if(x > 13) addButton(x+1,shopkeep.inventory[x].shortName,buyItemGo,shopkeep.inventory[x]);
+				if(x > 13) addButton(x+1,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+			}
+			else {
+				trace("SHOWAN HIDE BUTTONS");
+				if(x <= 13) addDisabledButton(x,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity);
+				if(x > 13) addDisabledButton(x+1,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity);
 			}
 		}
 	}
@@ -84,6 +92,7 @@ function sellItem():void {
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
 		if(pc.inventory[x].quantity > 0) {
+			trace("PC inventory being checked for possible sale.");
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
@@ -98,6 +107,7 @@ function sellItem():void {
 function sellItemGo(arg:itemSlotClass):void {
 	clearOutput();
 	var price:Number = getSellPrice(shopkeep,arg.basePrice);
+	pc.credits += price;
 	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
 	if(arg.quantity == 0) arg.shortName = "";
@@ -250,7 +260,7 @@ function equipItem(arg:itemSlotClass):void {
 	if(arg.quantity == 0) arg.shortName = "";
 	
 	//If item to loot after!
-	if(holdingItem.shortName != "Rock" && holdingItem.shortName != "") {
+	if(holdingItem.shortName != "Rock" && holdingItem.shortName != "" && holdingItem.quantity > 0) {
 		output(" ");
 		lootList[lootList.length] = holdingItem;
 		itemCollect();
@@ -261,7 +271,8 @@ function equipItem(arg:itemSlotClass):void {
 	}
 }
 
-function itemCollect():void {
+function itemCollect(clearScreen:Boolean = false):void {
+	if(clearScreen) clearOutput();
 	var target = pc;
 	if(lootList.length == 0) {
 		output("There was an error looting an the item that was looted didn't actually exist.");
@@ -320,13 +331,14 @@ function itemCollect():void {
 			clearMenu();
 			addButton(0,"Replace",replaceItem);
 			addButton(1,"Discard",discardItem);
+			addButton(2,"Use",useLoot);
 		}
 	}
 }
 
 function discardItem():void {
 	clearOutput();
-	output("You discard " + lootList[0].longName + "[x" + lootList[0].quantity + "].");
+	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").");
 	lootList.splice(0,1);
 	clearMenu();
 	if(lootList.length > 0) addButton(0,"Next",itemCollect);
@@ -341,13 +353,14 @@ function replaceItem():void {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 			addButton(x,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,replaceItemGo,x);
 	}
-	addButton(13,"Use",useLoot);
-	addButton(14,"Abandon",abandonLoot);
+	addButton(14,"Back",itemCollect,true);
 }
 
 function useLoot():void {
-	useItem(lootList[0]);
+	var loot:itemSlotClass = clone(lootList[0]);
 	lootList.splice(0,1);
+	useItem(loot);
+	
 }
 function abandonLoot():void {
 	output("You toss out " + lootList[0].description + ".");

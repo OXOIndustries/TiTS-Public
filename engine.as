@@ -187,7 +187,7 @@ function deglow():void {
 	playerLust.clearGlo();
 	playerEnergy.clearGlo();
 	playerXP.clearGlo();
-	//playerLevel.clearGlo();
+	playerLevel.clearGlo();
 	playerCredits.clearGlo();
 	playerPhysique.clearGlo();
 	playerReflexes.clearGlo();
@@ -219,9 +219,8 @@ function updatePCStats():void {
 	updateStatBar(playerLevel,pc.level,20);
 	updateStatBar(playerXP,pc.XP,pc.level * pc.level * 100);
 	//playerCredits.values.text = String(pc.credits);	
-	updateStatBar(playerCredits,pc.credits,1000);
+	updateStatBar(playerCredits,pc.credits,100000000);
 	
-	trace("Level: " + pc.level);
 	updateNPCStats();
 }
 function timeText():String {

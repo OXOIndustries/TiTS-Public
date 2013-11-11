@@ -194,6 +194,7 @@ function loadGame(slot:String):void {
 		debug = saveFile.data.debug;
 		location = saveFile.data.locationKey;
 		shipLocation = saveFile.data.shipLocation;
+		lootList = new Array();		
 		
 		//Set pointers back where they belong!
 		setCheatPointers();
@@ -202,6 +203,7 @@ function loadGame(slot:String):void {
 		hideNPCStats();
 		showPCStats();
 		updatePCStats();
+		
 		output2("Game loaded from " + slot + "!");
 		clearGhostMenu();
 		addGhostButton(0,"Next",postLoadToZeGame);

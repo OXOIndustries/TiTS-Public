@@ -307,9 +307,12 @@
 	geoff.level = 1;
 	geoff.credits = 1000;
 	
-	geoff.inventory[geoff.inventory.length] = clone(items[0]);
-	geoff.inventory[geoff.inventory.length] = clone(items[1]);
-	geoff.inventory[geoff.inventory.length] = clone(items[2]);
+	geoff.inventory[0] = clone(items[0]);
+	geoff.inventory[1] = clone(items[1]);
+	geoff.inventory[2] = clone(items[2]);
+	geoff.typesBought[geoff.typesBought.length] = ALL;
+	geoff.sellMarkup = 1.3;
+	geoff.buyMarkdown = .25;
 	geoff.keeperSell = "<i>“You have items ready to be spiritually appraised and elevated, then?”</i>  Artie rubs his hands in anticipation as you approach his crate. <i>“Let’s see what you have and what they are, ahem, worth.”</i>\n";
 	geoff.keeperBuy = "Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name].  Looking to buy something?”</i>";
 	geoff.keeperGreeting = "Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.";
