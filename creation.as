@@ -742,6 +742,7 @@ function tutorialIntro4():void {
 //The Introduction of Celise (Goo Girl)
 function openDoorToTutorialCombat():void {
 	clearOutput();
+	showBust(CELISE);
 	setLocation("YOUR\nINHERITANCE","TAVROS STATION","SYSTEM: KALAS");
 	output("You step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
@@ -785,7 +786,9 @@ function celiseAI():void {
 
 //Win
 function defeatCelise():void {
+	pc.removeStatusEffect("Round");
 	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
+	showBust(CELISE);
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -799,15 +802,19 @@ function defeatCelise():void {
 //Ignore Celise
 function ignoreCelise():void {
 	clearOutput();
+	setLocation("KEYS","TAVROS STATION","SYSTEM: KALAS");
 	output("You ignore the hand and pull free, grabbing the keys as you step out to inspect your ship.");
 	//[Next]
 	clearMenu();
 	addButton(0,"Next",checkOutYourShip);
 }
-//Feed Celise [Male]
+
 function takeCelise():void {
+	pc.removeStatusEffect("Round");
 	clearOutput();
+	showBust(CELISE);
 	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
+	//Feed Celise [Male]
 	if(pc.hasCock()) {
 		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping every bit of exposed " + pc.skinFurScales() + " as you reveal yourself. As soon as your " + pc.cocksDescript());
 		if(pc.cockTotal() == 1) output(" is");
@@ -868,7 +875,7 @@ function takeCelise():void {
 		output("\n\nDo you take Celise on as your first crew member?");
 	}
 	//Orgasm, edit stats
-	//9999
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Take Her",takeCeliseAsACrewMember);
 	addButton(1,"Don't",ignoreCelise);
@@ -877,6 +884,7 @@ function takeCelise():void {
 //Take Celise on As A Crew Member
 function takeCeliseAsACrewMember():void {
 	clearOutput();
+	showBust(CELISE);
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
@@ -954,7 +962,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 		rival.buttRating += 2;
 	}
 	clearOutput();
-	setLocation("MEETING\n" + rival.short,"TAVROS STATION","SYSTEM: KALAS");
+	setLocation("MEETING\n" + rival.short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
 	output(rival.mf("He","She") + "’s " + rival.mf("male","female") + ", surely. Just as you make that conclusion, " + rival.mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + rival.mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
 	output("\n\nLuckily, the figure resolves into someone more familiar: " + rival.short + " Steele, obviously on station for the same reason as you. " + rival.short + " is your cousin, though in this case, familiarity breeds no affection. " + rival.mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
 	output("\n\n" + rival.short + " pulls you from your thoughts with a snide greeding, <i>“Greetings, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + rival.mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");

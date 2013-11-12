@@ -11,6 +11,7 @@ function combatMainMenu():void {
 	if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
 	else pc.addStatusValue("Round",1,1);
 	//Show what you're up against.
+	if(foes[0] == celise) showBust(CELISE);
 	for(var x:int = 0; x < foes.length; x++) {
 		if(x > 0) output("\n\n");
 		displayMonsterStatus(foes[x]);
@@ -408,15 +409,86 @@ function victoryRouting():void {
 	if(foes[0].short == "Celise") {
 		defeatCelise();
 	}
+	else genericVictory();
 }
+function genericVictory():void {
+	getCombatPrizes();
+}
+function getCombatPrizes(newScreen:Boolean = false):void {
+	if(newScreen) clearOutput();
+	
+	//Add credits and XP
+	var XPBuffer:int = 0;
+	var creditBuffer:int = 0;
+	for(var x:int = 0; x < foes.length; x++) {
+		XPBuffer = foes[x].XP;
+		creditBuffer += foes[x].credits;
+	}
+	pc.XP += XPBuffer;
+	pc.credits += creditBuffer;
+	
+	//Queue up items for looting
+	for(var x:int = 0; x < foes.length; x++) 
+	{
+		for(var y:int = 0; y < foes[x].inventory.length; y++) 
+		{
+			lootList[lootList.length] = clone(foes[x].inventory[y]);
+		}
+	}
+	//Exit combat as far as the game is concerned.
+	pc.removeStatusEffect("Round");
+	//Talk about who died and what you got.
+	output("You defeated ");
+	clearList();
+	for(x = 0; x < foes.length; x++) {
+		addToList(foes[x].a + foes[x].short);
+	}
+	output(formatList() + "!");
+	//Monies!
+	if(creditBuffer > 0) {
+		if(foes.length > 1) output(" They had ");
+		else output(foes[0].mfn(" He"," She", " It") + " had ");
+		output(num2Text(creditBuffer) + " credit");
+		if(creditBuffer > 1) output("s");
+		output(" loaded on an anonymous credit chit that you appropriate.");
+	}
+	clearMenu();
+	//Fill wallet and GTFO
+	if(lootList.length > 0) {
+		output(" You also find ");
+		clearList();
+		for(x = 0; x < lootList.length; x++) {
+			addToList(lootList[x].description + " (x" + lootList[x].quantity + ")");
+		}
+		output(formatList());
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		//Start loot
+		itemCollect();
+	}
+	//Just leave if no items.
+	else {
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
 function defeatRouting():void {
-	output("YOU LOSE");
+	if(foes[0].shortName == "BONERS") {}
+	else {
+		output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
+		pc.removeStatusEffect("Round");
+		processTime(90);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 function startCombat(encounter:String):void {
 	showNPCStats();
 	foes = new Array();
 	switch(encounter) {
 		case "celise":
+			showBust(CELISE);
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
 			foes[0] = clone(characters[CELISE]);
 			break;
