@@ -420,5 +420,153 @@
 	geoff.milkType = MILK;
 	//The rate at which you produce milk. Scales from 0 to INFINITY.
 	geoff.milkRate = 0;
-	geoff.ass.wetness = 0;	
+	geoff.ass.wetness = 0;
+	
+	characters[FLAHNE] = new creature();
+	flahne = characters[FLAHNE];
+	flahne.short = "Flahne";
+	flahne.originalRace = "loo'rahn";
+	flahne.a = "";
+	flahne.capitalA = "";
+	flahne.long = "Placeholder";
+	flahne.customDodge = "The goo twists a portion of its body out of the way of the attack, moving in a way that would be fatal for any vertebrate.";
+	flahne.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
+	flahne.plural = false;
+	flahne.lustVuln = 1;
+	flahne.meleeWeapon.attackVerb = "punch";
+	flahne.meleeWeapon.longName = "semi-solid fist";
+	flahne.armor.longName = "durable dermis";
+	flahne.armor.defense = 10;
+	flahne.physiqueRaw = 2;
+	flahne.reflexesRaw = 3;
+	flahne.aimRaw = 1;
+	flahne.intelligenceRaw = 4;
+	flahne.willpowerRaw = 1;
+	flahne.libidoRaw = 65;
+	flahne.HPMod = 15;
+	flahne.shieldsRaw = 0;
+	flahne.HPRaw = flahne.HPMax();
+	flahne.energyRaw = 100;
+	flahne.lustRaw = 15;
+	flahne.resistances = new Array(0,0,0,0,0,0,0,0);
+	flahne.XP = 50;
+	flahne.level = 1;
+	flahne.credits = 0;
+	
+	flahne.femininity = 90;
+	flahne.eyeType = 0;
+	flahne.eyeColor = "violet";
+	flahne.tallness = 60;
+	flahne.thickness = 80;
+	flahne.tone = 0;
+	flahne.hairColor = "amber";
+    flahne.scaleColor = "yellow";
+	flahne.furColor = "amber";
+	flahne.hairLength = 18;
+	flahne.hairType = 0;
+	flahne.beardLength = 0;
+	flahne.beardStyle = 0;
+	flahne.skinType = GOO;
+	flahne.skinTone = "yellow";
+	flahne.skinFlags = new Array(SQUISHY,LUBRICATED);
+	flahne.faceType = 0;
+	flahne.faceFlags = new Array();
+	flahne.tongueType = 0;
+	flahne.lipMod = 2;
+	flahne.earType = 0;
+	flahne.antennae = 2;
+	flahne.antennaeType = GOOEY;
+	flahne.horns = 0;
+	flahne.hornType = 0;
+	flahne.armType = 0;
+	flahne.gills = false;
+	flahne.wingType = 0;
+	flahne.legType = GOOEY;
+	flahne.legCount = 2;
+	flahne.legFlags = new Array(PLANTIGRADE);
+	//0 - Waist
+	//1 - Middle of a long tail. Defaults to waist on bipeds.
+	//2 - Between last legs or at end of long tail.
+	//3 - On underside of a tail, used for driders and the like, maybe?
+	flahne.genitalSpot = 0;
+	flahne.tailType = 0;
+	flahne.tailCount = 0;
+	flahne.tailFlags = new Array();
+	//Used to set cunt or dick type for cunt/dick tails!
+	flahne.tailGenitalArg = 0;
+	//tailGenital:
+	//0 - none.
+	//1 - cock
+	//2 - vagina
+	flahne.tailGenital = 0;
+	//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+	flahne.tailVenom = 0;
+	//Tail recharge determines how fast venom/webs comes back per hour.
+	flahne.tailRecharge = 5;
+	//hipRating
+	//0 - boyish
+	//2 - slender
+	//4 - average
+	//6 - noticable/ample
+	//10 - curvy//flaring
+	//15 - child-bearing/fertile
+	//20 - inhumanly wide
+	flahne.hipRating = 13;
+	//buttRating
+	//0 - buttless
+	//2 - tight
+	//4 - average
+	//6 - noticable
+	//8 - large
+	//10 - jiggly
+	//13 - expansive
+	//16 - huge
+	//20 - inconceivably large/big/huge etc
+	flahne.buttRating = 13;
+	//No dicks here!
+	flahne.cocks = new Array();
+	flahne.createCock();
+	flahne.cocks[0].cThickness = 4;
+	flahne.cocks[0].cLength = 16;
+	flahne.cocks[0].addFlag(LUBRICATED);
+	flahne.cocks[0].addFlag(SQUISHY);
+	flahne.cocks[0].addFlag(SMOOTH);
+	//balls
+	flahne.balls = 0;
+	flahne.cumMultiplier = 50;
+	//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+	flahne.cumQuality = 1;
+	flahne.cumType = CUM;
+	flahne.ballSize = 0;
+	flahne.ballFullness = 100;
+	//How many "normal" orgams worth of jizz your balls can hold.
+	flahne.ballEfficiency = 400;
+	//Scales from 0 (never produce more) to infinity.
+	flahne.refractoryRate = 9999;
+	flahne.minutesSinceCum = 65;
+	flahne.timesCum = 9001;
+	flahne.cockVirgin = false;
+	flahne.vaginalVirgin = false;
+	flahne.analVirgin = false;
+	flahne.vaginas = new Array();
+	flahne.createVagina();
+	flahne.vaginas[0].hymen = false;
+	flahne.vaginas[0].clits = 1;
+	flahne.vaginas[0].wetness = 4;
+	flahne.vaginas[0].looseness = 1;
+	flahne.vaginas[0].bonusCapacity = 100;
+	//Goo is hyper friendly!
+	flahne.elasticity = 3;
+	//Fertility is a % out of 100. 
+	flahne.fertility = 15;
+	flahne.clitLength = .5;
+	flahne.pregnancyMultiplier = 1;
+	
+	flahne.breastRows[0].breastRating = 15;
+	flahne.nippleColor = "honey";
+	flahne.milkMultiplier = 0;
+	flahne.milkType = MILK;
+	//The rate at which you produce milk. Scales from 0 to INFINITY.
+	flahne.milkRate = 0;
+	flahne.ass.wetness = 3;
 }

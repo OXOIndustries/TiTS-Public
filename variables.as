@@ -130,6 +130,7 @@ var pc:creature = characters[0];
 var celise:creature = characters[CELISE];
 var rival:creature = characters[RIVAL];
 var geoff:creature = characters[GEOFF];
+var flahne:creature = characters[CELISE];
 var flags:Dictionary = new Dictionary();
 initializeFlags();
 
@@ -149,4 +150,5 @@ function setCheatPointers():void {
 	celise = characters[CELISE];
 	rival = characters[RIVAL];
 	geoff = characters[GEOFF];
+	flahne = characters[FLAHNE];
 }

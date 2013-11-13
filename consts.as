@@ -138,6 +138,7 @@ const ALL:int = 12; //Used for pawn shops!
 const CELISE:int = 1;
 const RIVAL:int = 2;
 const GEOFF:int = 3;
+const FLAHNE:int = 4;
 
 /*PLOT FLAGS
 RECRUITED_CELISE

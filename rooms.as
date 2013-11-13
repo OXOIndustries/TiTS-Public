@@ -10,7 +10,7 @@ function initializeRooms():void {
 
 //99. Ship Interior
 rooms[99].roomName = "SHIP\nINTERIOR";
-rooms[99].description = "[pc.cocks]The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely ample room for you and your crew.";
+rooms[99].description = "The inside of your father's old Casstech Z14 is in remarkably great shape for such an old ship; the mechanics that were working on this really ought to be proud of themselves. Seats for two lie in the cockpit, and there is a servicable but small shower near the back. Three bunks are scattered around the cramped interior, providing barely ample room for you and your crew.";
 rooms[99].planet = "PLANET: MHEN'GA";
 rooms[99].system = "SYSTEM: ARA ARA";
 rooms[99].outExit = shipLocation;
@@ -117,6 +117,7 @@ rooms[2].planet = "PLANET: MHEN'GA";
 rooms[2].system = "SYSTEM: ARA ARA";
 rooms[2].westExit = 1;
 rooms[2].southExit = 3;
+rooms[2].runOnEnter = meetingFlahne;
 rooms[2].addFlag(INDOOR);
 
 //3. Esbeth’s Northern Path

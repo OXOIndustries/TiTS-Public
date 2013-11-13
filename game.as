@@ -160,6 +160,10 @@ function processTime(arg:int):void {
 		if(minutes >= 60) {
 			minutes = 0;
 			hours++;
+			if(flags["FLAHNE_PISSED"] > 0) {
+				flags["FLAHNE_PISSED"]--;
+				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
+			}
 			//Hours checks here!
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {

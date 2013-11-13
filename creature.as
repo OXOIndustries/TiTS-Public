@@ -249,6 +249,9 @@
 		public var eggs:int = 0;
 		public var fertilizedEggs:int = 0;
 		
+		//Used for misc shit
+		var list:Array = new Array();
+		
 		//Functions
 		//UTILITIES
 		public function num2Text(number:Number):String {
@@ -271,17 +274,17 @@
 			return false;
 		}
 		public function getDescription(arg:String,arg2) {
-			trace("STARTED GET DESCRIPTION");
 			var firstLetter:String = arg.substr(0,1);
-			firstLetter.toLowerCase();
+			firstLetter = firstLetter.toLowerCase();
 			var restOfString:String = arg.substr(1,arg.length);
 			var desc:String = firstLetter + restOfString;
-			if(desc == "cum") trace("IT'S CUM");
 			//var desc = arg;
-			trace("DESC: " + desc);
 			var buffer:String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if(arg2 == "") arg2 = 0;
 			switch (desc) {
+				case "gear":
+					buffer = gearDescript();
+					break;
 				case "short":
 				case "name":
 					buffer = short;
@@ -383,9 +386,11 @@
 					buffer = nipplesDescript(arg2);
 					break;
 				case "nippleCockDescript":
+				case "nippleCock":
 					buffer = nippleCockDescript();
 					break;
 				case "nippleCocksDescript":
+				case "nippleCocks":
 					buffer = pluralize(nippleCockDescript());
 					break;
 				case "eachCock":
@@ -501,6 +506,9 @@
 				case "tail":
 					buffer = tailDescript();
 					break;
+				case "leg":
+					buffer = leg();
+					break;
 				case "legs":
 					buffer = legs();
 					break;
@@ -547,7 +555,7 @@
 		public function upperCase(str:String):String {
 			var firstChar:String = str.substr(0,1);
 			var restOfString:String = str.substr(1,str.length);
-			return firstChar.toUpperCase()+restOfString.toLowerCase();
+			return firstChar.toUpperCase()+restOfString;
 		}
 		public function pluralize(str:String):String {
 			var lastChar:String = str.substr(str.length-1,str.length);
@@ -2237,6 +2245,7 @@
 		}
 		//Find the biggest cock that fits inside a given value
 		public function cockThatFits(fits:Number = 0, type:String = "area"):Number {
+			trace("Fits value: " + fits);
 			if(cocks.length <= 0) return -1;
 			var counter:Number = cocks.length;
 			//Current largest fitter
@@ -2248,8 +2257,9 @@
 						//If one already fits
 						if(index >= 0) {
 							//See if the newcomer beats the saved small guy
-							if(cockVolume(counter,true) > cockVolume(index,true))
-								index = counter;							
+							if(cockVolume(counter,true) > cockVolume(index,true)) {
+								index = counter;
+							}
 						}
 						//Store the index of fitting dick
 						else index = counter;
@@ -2428,6 +2438,11 @@
 		private function rand(max:Number):Number
 		{
 			return int(Math.random()*max);
+		}
+		public function wetness(arg:int = 0):Number {
+			//If the player has no vaginas
+			if(vaginas.length == 0 || arg >= vaginas.length) return 0;
+			return vaginas[arg].wetness;
 		}
 		public function vaginalCapacity(arg:int = 0):Number {
 			//If the player has no vaginas
@@ -2784,6 +2799,9 @@
 		public function hasTailCock():Boolean {
 			if(hasTailFlag(TAILCOCK) && tailCount > 0) return true;
 			return false;
+		}
+		public function hasCuntTail():Boolean {
+			return hasTailCunt();
 		}
 		public function hasTailCunt():Boolean {
 			if(tailType == CUNTSNAKE && tailCount > 0) return true;
@@ -3855,6 +3873,9 @@
 			if(plural) description = pluralize(description);
 			return description;
 		}
+		public function hasHair():Boolean {
+			return (hairLength == 0);
+		}
 		public function hairDescript(forceLength:Boolean = false, forceColor:Boolean = false):String {
 			var descript:String = "";
 			var descripted:Number = 0;
@@ -4545,6 +4566,38 @@
 				if(cocks[x].cType != first) return false;
 			}
 			return true;
+		}
+		private function clearList():void {
+			list = new Array();
+		}
+		private function addToList(arg):void {
+			list[list.length] = arg;
+		}
+		private function formatList():String {
+			var stuff:String = "";
+			if(list.length == 1) return list[0];
+			for(var x:int = 0; x < list.length; x++) {
+				stuff += list[x];
+				if(list.length == 2 && x == 1) {
+					stuff += " and ";
+				}
+				else if(x < list.length-2) {
+					stuff += ", ";
+				}
+				else if(x < list.length-1) {
+					stuff += ", and ";
+				}
+			}
+			list = new Array();
+			return stuff;	
+		}
+		public function gearDescript():String {
+			clearList();
+			if(armor.shortName != "") addToList(armor.longName);
+			if(upperUndergarment.shortName != "") addToList(upperUndergarment.longName);
+			if(lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
+			if(isNude()) addToList("gear");
+			return formatList();
 		}
 		//Basic multiple cock description.
 		public function cocksDescript():String {
