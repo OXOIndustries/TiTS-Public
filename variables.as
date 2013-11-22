@@ -125,12 +125,6 @@ function setupCharacters():void {
 	trace("One foe slot initialized.");
 }
 
-//Lazy man shortcuts! Need reset after reinitialization of data.
-var pc:creature = characters[0];
-var celise:creature = characters[CELISE];
-var rival:creature = characters[RIVAL];
-var geoff:creature = characters[GEOFF];
-var flahne:creature = characters[CELISE];
 var flags:Dictionary = new Dictionary();
 initializeFlags();
 

@@ -196,8 +196,11 @@ function loadGame(slot:String):void {
 		shipLocation = saveFile.data.shipLocation;
 		lootList = new Array();		
 		
+		//Update NPCs that didn't used to exist
+		initializeNPCs(true);				
 		//Set pointers back where they belong!
 		setCheatPointers();
+		
 		
 		//Update display and such!
 		hideNPCStats();

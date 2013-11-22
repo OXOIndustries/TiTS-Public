@@ -34,6 +34,7 @@ const SHEATHED:int = 26;
 const TAILCOCK:int = 27;
 const STINGER_BASED:int = 28;
 const STINGER_TIPPED:int = 29;
+const NUBBY:int = 30;
 //TYPES
 const HUMAN:int = 0;
 const EQUINE:int = 1;
@@ -79,6 +80,7 @@ const SKIN:int = 0;
 const FUR:int = 1;
 const SCALES:int = 2;
 const GOO:int = 3;
+const CHITIN:int = 4;
 		
 //NIPPLETYPES
 const NORMAL:int = 0;
@@ -139,6 +141,9 @@ const CELISE:int = 1;
 const RIVAL:int = 2;
 const GEOFF:int = 3;
 const FLAHNE:int = 4;
+const ZILPACK:int = 5;
+const ZIL:int = 6;
+const PENNY:int = 7;
 
 /*PLOT FLAGS
 RECRUITED_CELISE

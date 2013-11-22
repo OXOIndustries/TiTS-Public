@@ -196,7 +196,7 @@ function buttonClick(evt:MouseEvent):void {
 	trace("Button " + evt.currentTarget.caption.text + " clicked.");
 	if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
 	else evt.currentTarget.func(evt.currentTarget.arg);
-	if(pc.HP() > 0) updatePCStats();
+	updatePCStats();
 }
 
 function pushToBuffer():void {
@@ -447,9 +447,10 @@ function keyPress(evt:KeyboardEvent):void {
 function pressButton(arg:int = 0):void {
 	if(arg >= buttons.length || arg < 0) return;
 	if(buttons[arg].func == undefined) return;
+	if(!inCombat()) showBust(0);
 	if(buttons[arg].arg == undefined) buttons[arg].func();
 	else buttons[arg].func(buttons[arg].arg);
-	if(pc.HP() > 0) updatePCStats();
+	updatePCStats();
 }
 
 //3. SCROLL WHEEL STUFF

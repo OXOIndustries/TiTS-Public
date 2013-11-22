@@ -216,9 +216,7 @@ function deglow():void {
 	monsterEnergy.clearGlo();
 }	
 function updatePCStats():void {
-	showPCStats();
 	rightSidebar.nameText.text = pc.short;
-	trace("PC SHIELDS: " + pc.shields() + " MAX: " + pc.shieldsMax());
 	updateStatBar(playerShields,pc.shields(),pc.shieldsMax());
 	updateStatBar(playerHP,pc.HP(),pc.HPMax());
 	updateStatBar(playerLust,pc.lust(),pc.lustMax());
@@ -268,7 +266,7 @@ function updateNPCStats():void {
 function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
 	if(max != undefined) arg.setMax(max);
-	if(value != undefined) {
+	if(value != undefined && arg.visible == true) {
 		if(arg.getGoal() != value) {
 			arg.setGoal(value);
 			//trace("SETTING GOAL");

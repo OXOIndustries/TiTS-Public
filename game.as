@@ -22,6 +22,8 @@
 	output(rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
 	
+	if(inCombat()) output("\n\n<b>You're still in combat, you ninny!</b>");
+	
 	//Standard buttons:
 	clearMenu();
 	//Inventory shit
@@ -44,6 +46,7 @@
 	if(rooms[location].inExit != -1) addButton(5,rooms[location].inText,move,rooms[location].inExit);
 	if(rooms[location].outExit != -1) addButton(7,rooms[location].outText,move,rooms[location].outExit);
 	if(location == shipLocation) addButton(1,"Enter Ship",move,99);
+	addButton(14,"RESET NPCs",initializeNPCs);
 }
 
 function inventoryScreen():void {

@@ -311,6 +311,7 @@
 					buffer = skin();
 					break;
 				case "hairDescript":
+				case "hair":
 					buffer = hairDescript();
 					break;
 				case "hairsDescript":
@@ -353,6 +354,7 @@
 					buffer = simpleCockNoun(arg2);
 					break;
 				case "cockHead":
+				case "cockhead":
 					buffer = cockHead(arg2);
 					break;
 				case "cockHeads":
@@ -464,6 +466,10 @@
 				case "oneVagina":
 					buffer = oneVagina();
 					break;
+				case "vagOrAss":
+				case "pussyOrAsshole":
+					buffer = vagOrAss();
+					break;
 				case "clitDescript":
 				case "clit":
 					buffer = clitDescript();
@@ -499,6 +505,9 @@
 					break;
 				case "cumColor":
 					buffer = cumColor();
+					break;
+				case "girlCumColor":
+					buffer = girlCumColor();
 					break;
 				case "milkColor":
 					buffer = milkColor();
@@ -598,7 +607,10 @@
 			return HPRaw;
 		}
 		public function HPMax():Number {
-			return 50 + level * 25 + HPMod;
+			return 10 + level * 25 + HPMod;
+		}
+		public function maxHP():Number {
+			return HPMax();
 		}
 		public function maxOutHP():void {
 			HPRaw = HPMax();
@@ -1485,6 +1497,9 @@
 				}
 			}
 		}
+		public function isPregnant():Boolean {
+			return false;
+		}
 		public function canOvipositSpider():Boolean {
 			if(eggs >= 10 && hasTailFlag(OVIPOSITOR) && isDrider()) return true;
 			return false;
@@ -2187,6 +2202,15 @@
 			}
 			return index;
 		}
+		public function totalGirth():Number {
+			if(cocks.length == 0) return 0;
+			var counter:int = 0;
+			for(var x:int = 0; x < cocks.length; x++)
+			{
+				counter += cocks[x].cLength;
+			}
+			return counter;
+		}
 		public function thickestcThickness():Number {
 			if(cocks.length == 0) return 0;
 			var counter:Number = cocks.length;
@@ -2857,7 +2881,7 @@
 			cocks[slot].clearFlags();
 			
 			//Add bonus flags and shit.
-			if(type == CANINE) {
+			if(type == CANINE || type == VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
 				
 				cocks[0].addFlag(TAPERED);
@@ -4124,6 +4148,10 @@
 			else if(randt == 8) descript += "clit";
 			else if(randt == 9) descript += "button";
 			return descript;
+		}
+		public function vagOrAss():String {
+			if(hasVagina()) return vaginaDescript(0);
+			else return assholeDescript();
 		}
 		//Vaginas + Descript
 		public function tailVaginaDescript(forceAdjectives:Boolean = false,adjectives:Boolean = true):String {
@@ -5564,6 +5592,9 @@
 		}
 		public function cumColor():String {
 			return fluidColor(cumType);
+		}
+		public function girlCumColor():String {
+			return fluidColor(girlCumType);
 		}
 		public function milkColor():String {
 			return fluidColor(milkType);

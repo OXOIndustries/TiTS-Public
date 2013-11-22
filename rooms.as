@@ -192,6 +192,7 @@ rooms[10].planet = "PLANET: MHEN'GA";
 rooms[10].system = "SYSTEM: ARA ARA";
 rooms[10].westExit = 9;
 rooms[10].eastExit = 11;
+rooms[10].northExit = 89;
 rooms[10].addFlag(OUTDOOR);
 	
 //11. The Southeast Corner of Esbeth
@@ -299,19 +300,19 @@ rooms[22].addFlag(OUTDOOR);
 	Ferns sprout up on all sides of the path, but for some reason, they haven't encroached on it just yet. These particular specimens reach up about four feet, but just to the west there is a patch of them so giant that they tower overhead. You can also see that the vegetation and terrain around the path changes wildly to the east. There, the paths are much more open and the vegetation less dense. How odd.
 
 26. The Intersection of Ferns and Lichens
-	The ferns that hug the pathway to the west die off here under the weight of some very aggressive lichens that have scoured them away. The path western fades here, but the ground is open to the north and south so that you can tread across soft earth in whichever direction you like. A copse of gray trees covered in bioluminescent lichens grows to the east, the trunks so close together that there's no decent way to travel past them. The colorful composite organisms also carpet the ground in a blanket of shifting, almost psychedelic hues.
+	The ferns that hug the pathway to the west die off here under the weight of some very aggressive lichens that have scoured them away. The western path fades here, but the ground is open to the north and south so that you can tread across soft earth in whichever direction you like. A copse of gray trees covered in bioluminescent lichens grows to the east, the trunks so close together that there's no decent way to travel past them. The colorful composite organisms also carpet the ground in a blanket of shifting, almost psychedelic hues.
 27. A Bend in the Lichens
 	Twisting away, the wall of grown-over trees curves north and east from here, leaving you free to walk in either direction unhindered. Unfortunately, thorny bushes nearly six-feet high have grown up out of the lichen-covered ground to the west and south. What little you can see beyond them seems deeper, darker, and danker than the area you now inhabit. Glowing yellow lichens bathe the area around you in gentle luminance as you weigh your options.
 28. The Lichen-Covered Jungle
 	Hardly anything seems to grow here but trees, thorns, and lichens, and the lichens have grown over both of the former. The trees grow so closely together to the north that it would be impossible to squeeze between, while the thorns to the south are so large and thick that getting through them would be a huge pain. Purplish lights twinkle from some of the lichens around you, and it seems like every new step exposes you to a new color or trait from the oddly earth-like, indigenous life-form.
 29. The Intersection of Lichens and Giant Ironwoods
 	Here, dozens of multihued lichens clash against a larger and entirely different type of jungle life. Gigantic trees, each at least a dozen feet around, tower over you. Their rusty red bark gives them a surprisingly familiar appearance until you brush your hand against one. The stuff flakes right off on your fingers! Underneath where you touched shines a silvery metallic color. These trees' bark is literally iron hard.
-30. The Lichen-Covered Jungle
+30. Between Lichens and Ironwoods
 	There's plenty of space to explore on this north-south causeway thanks to the lichen that seems to have eaten back most of the other plant-life. Tight clusters of trees block the way west, and another gigantic variety sprouts up to the east, covered in rust-red bark that closer inspection reveals to be actual iron. The lichens bathe everything but the trees to the east in gentle bioluminescence. They can't seem to grow on the ferrous coverings of the eastern trunks and die off that way.
 
-31. The Lichen-Covered Jungle
-	Springingly lightly under your [feet] as you move, the soft soil and lichenous mulch below makes your journey surprisingly pleasant, aside from the omnipresent humidity. A wall of gray trees blocks the way west, and a trunk as big as three tanks put together blocks the way east. Buzzing insects swirl around everywhere, busy on their own errands. Thankful they don't seem to have much interest in you, perhaps due to your alien physiology.
-32. The Lichen-Covered Jungle
+31. Between Lichens and Ironwoods
+	Springingly lightly under your [feet] as you move, the soft soil and lichenous mulch below makes your journey surprisingly pleasant, aside from the omnipresent humidity. A wall of gray trees blocks the way west, and a trunk as big as three tanks put together blocks the east. Buzzing insects swirl around everywhere, busy on their own errands. Thankfully they don't seem to have much interest in you, perhaps due to your alien physiology.
+32. Between Lichens and Ironwoods
 	The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go. Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.
 	*/
 	
@@ -324,5 +325,12 @@ rooms[88].system = "SYSTEM: ARA ARA";
 rooms[88].northExit = 8;
 rooms[88].addFlag(INDOOR);
 
-
+//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
+rooms[89].roomName = "U.G.C. PEACE-\nKEEPERS";
+rooms[89].description = "This interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stoud and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
+rooms[89].runOnEnter = pennysOffice;
+rooms[89].planet = "PLANET: MHEN'GA";
+rooms[89].system = "SYSTEM: ARA ARA";
+rooms[89].southExit = 10;
+rooms[89].addFlag(INDOOR);
 
