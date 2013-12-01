@@ -1,13 +1,13 @@
-﻿package 
+﻿package classes
 {
-	public class itemSlotClass
+	public class ItemSlotClass
 	{
 		//constructor
-		public function itemSlotClass()
+		public function ItemSlotClass()
 		{
 			bonusResistances = new Array(0,0,0,0,0,0,0,0);
 		}
-		include "consts.as";
+		// include "consts.as";
 		//data
 		public var quantity:Number = 0;
 		//Used on inventory buttons

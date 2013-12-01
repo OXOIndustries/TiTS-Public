@@ -1,15 +1,15 @@
-﻿package
+﻿package classes
 {
-	public class vaginaClass
+	public class VaginaClass
 	{
 		//constructor
-		public function vaginaClass(vag:Boolean = true)
+		public function VaginaClass(vag:Boolean = true)
 		{
 			if(!vag) clits = 0;
 			hymen = false;
 		}
 		//For cheateyness.
-		include "consts.as";
+		//include "consts.as";
 		//data
 		//Type
 		//As per type constants in consts.as

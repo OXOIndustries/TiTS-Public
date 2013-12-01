@@ -66,7 +66,7 @@ function loadSaveDisplay(slot:String, slotName:String):String {
 	var holding:String = "";
 	//Initialize the save file
     var saveFile = SharedObject.getLocal(slot,"/");;
-	var pfileHolding:creature;
+	var pfileHolding:Creature;
 	if(saveFile.data.exists)
     {
 		if(saveFile.data.notes == undefined) {
@@ -85,9 +85,9 @@ function loadSaveDisplay(slot:String, slotName:String):String {
 	return slotName + ": <b>EMPTY</b>\n\n";
 }
 /*
-function copyDicks(donor:creature,recipient:creature):void {
+function copyDicks(donor:Creature,recipient:Creature):void {
 	for(var x:int = 0; x < donor.cocks.length; x++) {
-		recipient.cocks[0] = new cockClass();
+		recipient.cocks[0] = new CockClass();
 		recipient.cocks[0] = clone(recipient
 	}
 }*/

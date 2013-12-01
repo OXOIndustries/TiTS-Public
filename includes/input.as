@@ -873,6 +873,7 @@ function toggleEasy():void {
 }
 
 function initializeMainMenu():void {
+	return;
 	//Initialize main menu buttons
 	var ex:int = 210;
 	var why:int = 518;

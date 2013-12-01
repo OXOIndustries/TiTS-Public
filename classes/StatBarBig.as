@@ -1,4 +1,5 @@
-﻿package {
+﻿package classes
+{
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -6,10 +7,10 @@
 	import fl.motion.Color;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
-	public class statBarSmall extends MovieClip
+	public class StatBarBig extends MovieClip
 	{
 		//constructor
-		public function statBarSmall()
+		public function StatBarBig()
 		{
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
@@ -37,7 +38,7 @@
 				values.filters = [];
 			}
 			glowFrames = 35;
-			rate = Math.abs(current - goal) / glowFrames;
+			rate = Math.abs(current - goal) / 35;
 		}
 		public function getGoal():Number {
 			return goal;
@@ -69,10 +70,10 @@
 				//hpbar.transform.colorTransform = barColor;
 				//This gives the numbers a glowing effect when healing.
 				glow.color = 0x0099FF;
-				glow.blurX = 15;
-				glow.blurY = 15;
-				glow.strength = 3;
-				glow.alpha = ((100-glowFrames) / 100);
+				glow.blurX = 10;
+				glow.blurY = 10;
+				glow.strength = 2;
+				glow.alpha = ((48-glowFrames) / 48);
 				values.filters = [glow];
 				if(glowFrames == 99) trace("Glowing Green: " + glowFrames);
 			}
@@ -87,7 +88,7 @@
 				glow.blurX = 15;
 				glow.blurY = 15;
 				glow.strength = 4;
-				glow.alpha = ((100-glowFrames) / 100);
+				glow.alpha = ((48-glowFrames) / 48);
 				values.filters = [glow];
 				if(glowFrames == 99) trace("Glowing ORANGE: " + glowFrames);
 			}
@@ -125,6 +126,27 @@
 				}
 			}
 			values.text = String(Math.round(current));
+			//This controls the color of the bar
+			if (current != goal)
+			{
+				//RED
+				if (!highBad)
+				{
+					barColor.color = Color.interpolateColor(0xFF0000, 0x8D31B0, current/max); 
+					bar.transform.colorTransform = barColor;
+				}
+				//GREEN
+				else
+				{
+					barColor.color = Color.interpolateColor(0x8D31B0, 0xFF0000, current/max); 
+					bar.transform.colorTransform = barColor;
+				}
+			}	
+			if ((current == max && !highBad) || (current == min && highBad))
+			{
+				barColor.color = 0x8D31B0;
+				bar.transform.colorTransform = barColor;
+			}
 			//Set the width!
 			if(max is Number && current is Number) {
 				bar.width = (current / max) * 180;

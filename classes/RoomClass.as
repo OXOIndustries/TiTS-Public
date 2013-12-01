@@ -1,13 +1,13 @@
-﻿package 
+﻿package classes
 {
-	public class shipClass
+	public class RoomClass
 	{
 		//constructor
-		public function shipClass()
+		public function RoomClass()
 		{
 			choices = new Array();
 		}
-		include "consts.as";
+		// include "consts.as";
 		//data
 		public var planet:String = "";
 		//Used on inventory buttons

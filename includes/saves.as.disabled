@@ -12,7 +12,7 @@ function loadSaveDisplay(slot:String, slotName:String):String {
 	var holding:String = "";
 	//Initialize the save file
     var saveFile = SharedObject.getLocal(slot,"/");;
-	var pfileHolding:creature;
+	var pfileHolding:Creature;
 	if(saveFile.data.exists)
     {
 		if(saveFile.data.notes == undefined) {
@@ -215,9 +215,9 @@ function loadGame(slot:String):void
 //FURNITURE'S JUNK
 function saveGameObject(slot:String, isFile:Boolean):void
 {
-	import classes.cockClass;
-	import classes.vaginaClass;
-	import classes.breastRowClass;
+	import classes.CockClass;
+	import classes.VaginaClass;
+	import classes.BreastRowClass;
 	import classes.assClass;
 	import classes.perkClass;
 	import classes.statusAffectClass;
@@ -640,9 +640,9 @@ function loadGameObject(saveData:Object, slot:String = "VOID"):void
 	
 	//Autosave stuff
 	player.slotName = slot;
-	import classes.cockClass;
-	import classes.vaginaClass;
-	import classes.breastRowClass;
+	import classes.CockClass;
+	import classes.VaginaClass;
+	import classes.BreastRowClass;
 	import classes.assClass;
 	import classes.perkClass;
 	import classes.statusAffectClass;
@@ -1262,9 +1262,9 @@ function loadGame(slot:String):Boolean
 	inDungeon = false;
 	//Autosave stuff
 	player.slotName = slot;
-	import classes.cockClass;
-	import classes.vaginaClass;
-	import classes.breastRowClass;
+	import classes.CockClass;
+	import classes.VaginaClass;
+	import classes.BreastRowClass;
 	import classes.assClass;
 	import classes.perkClass;
 	import classes.statusAffectClass;
@@ -1620,9 +1620,9 @@ function loadGame(slot:String):Boolean
 
 /*function saveGame(slot:String):Boolean
 {
-	import classes.cockClass;
-	import classes.vaginaClass;
-	import classes.breastRowClass;
+	import classes.CockClass;
+	import classes.VaginaClass;
+	import classes.BreastRowClass;
 	import classes.assClass;
 	import classes.perkClass;
 	import classes.statusAffectClass;

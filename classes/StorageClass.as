@@ -1,9 +1,9 @@
-﻿package
+﻿package classes
 {
-	public class storageClass
+	public class StorageClass
 	{
 		//constructor
-		public function storageClass()
+		public function StorageClass()
 		{
 		}
 		//data

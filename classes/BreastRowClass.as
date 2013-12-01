@@ -1,13 +1,13 @@
-﻿package
+﻿package classes
 {
-	public class breastRowClass
+	public class BreastRowClass
 	{
 		//constructor
-		public function breastRowClass()
+		public function BreastRowClass()
 		{
 		}
 		//For cheateyness.
-		include "consts.as";
+		// include "consts.as";
 		
 		//VARS AHOOOYYY
 		public var breasts:Number = 2;
@@ -20,7 +20,7 @@
 		//If it reaches 100 it reduces lactation multiplier.
 		public var fullness:Number = 0;
 		public function fuckable():Boolean {
-			return (nippleType == FUCKABLE || nippleType == LIPPLES);
+			return (nippleType == GLOBAL.FUCKABLE || nippleType == GLOBAL.LIPPLES);
 		}
 	}
 }

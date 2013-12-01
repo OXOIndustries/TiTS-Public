@@ -111,17 +111,17 @@ function attackRouter(destinationFunc):void {
 }
 
 
-function enemyAttack(attacker:creature):void {
+function enemyAttack(attacker:Creature):void {
 	attack(attacker,pc);
 }
-function playerAttack(target:creature):void {
+function playerAttack(target:Creature):void {
 	attack(pc,target);
 }
-function playerRangedAttack(target:creature):void {
+function playerRangedAttack(target:Creature):void {
 	rangedAttack(pc,target);
 }
 
-function attack(attacker:creature, target:creature):void {
+function attack(attacker:Creature, target:Creature):void {
 	trace("Attacking in melee...");
 	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
@@ -193,7 +193,7 @@ function attack(attacker:creature, target:creature):void {
 	output("\n");
 	processCombat();
 }
-function rangedAttack(attacker:creature, target:creature):void {
+function rangedAttack(attacker:Creature, target:Creature):void {
 	trace("Ranged shot...");
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
@@ -267,7 +267,7 @@ function rangedAttack(attacker:creature, target:creature):void {
 }
 
 
-function HPDamage(victim:creature,damage:Number = 0, damageType = KINETIC):Number {
+function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number {
 	//Reduce damage by defense value
 	damage -= victim.defense();
 	
@@ -289,13 +289,13 @@ function HPDamage(victim:creature,damage:Number = 0, damageType = KINETIC):Numbe
 	return damage;
 }
 
-function shieldDamage(victim:creature,damage:Number = 0, damageType = KINETIC):Number {
+function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number {
 	//Reduce damage by shield defense value
 	damage -= victim.shieldDefense();
 	
 	//Apply type reductions!
 	//Kinetic does 40% damage to shields
-	if(damageType == KINETIC) damage *= 4;
+	if(damageType == GLOBAL.KINETIC) damage *= 4;
 	//Slashing does 55% damage to shields
 	else if(damageType == SLASHING) damage *= .55;
 	//Piercing does 75% damage to shields
@@ -387,7 +387,7 @@ function statusAffectUpdates():void {
 	processCombat();
 }
 
-function enemyAI(aggressor:creature):void {	
+function enemyAI(aggressor:Creature):void {	
 	//Foe specific AIs
 	switch(foes[0].short) {
 		case "Celise":

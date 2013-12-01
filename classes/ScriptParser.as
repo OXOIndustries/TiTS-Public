@@ -1,4 +1,5 @@
-﻿package {
+﻿package classes
+{
 	
 	import flash.utils.Dictionary;
 	

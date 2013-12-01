@@ -277,11 +277,11 @@ function buttChange(volume:Number,display:Boolean = true, spacingsF:Boolean = tr
 	return holeChange(pc,-1,volume,display,spacingsF,spacingsB);
 }
 
-function holeChange(target:creature,hole:int,volume:Number,display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean {
+function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean {
 	var stretched:Boolean = false;
 	var devirgined:Boolean = false;
 	var capacity:Number;
-	var holePointer:vaginaClass;
+	var holePointer:VaginaClass;
 	//Set capacity based on the hole.
 	if(hole == -1) {
 		capacity = target.analCapacity();

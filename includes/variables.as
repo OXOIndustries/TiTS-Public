@@ -51,22 +51,22 @@ var e:MouseEvent;
 var temp:int = 0;
 
 
-import creature;
-import itemSlotClass;
+import Creature;
+import ItemSlotClass;
 import flash.net.registerClassAlias;
 import ScriptParser;
 import shipClass;
 //import purpleButton;
 //import blueButton;
-registerClassAlias("creature", creature);
-registerClassAlias("itemSlotClass", itemSlotClass);
+registerClassAlias("Creature", Creature);
+registerClassAlias("ItemSlotClass", ItemSlotClass);
 registerClassAlias("shipClass", shipClass);
-registerClassAlias("cockClass", cockClass);
-registerClassAlias("vaginaClass", vaginaClass);
-registerClassAlias("breastRowClass",breastRowClass);
-registerClassAlias("itemSlotClass",itemSlotClass);
+registerClassAlias("CockClass", CockClass);
+registerClassAlias("VaginaClass", VaginaClass);
+registerClassAlias("BreastRowClass",BreastRowClass);
+registerClassAlias("ItemSlotClass",ItemSlotClass);
 registerClassAlias("roomClass",roomClass);
-registerClassAlias("storageClass",storageClass);
+registerClassAlias("StorageClass",StorageClass);
 
 
 var characters:Array = new Array();
@@ -118,9 +118,9 @@ function setupCharacters():void {
 }
 
 //Lazy man shortcuts! Need reset after reinitialization of data.
-var pc:creature = characters[0];
-var celise:creature = characters[CELISE];
-var rival:creature = characters[RIVAL];
+var pc:Creature = characters[0];
+var celise:Creature = characters[CELISE];
+var rival:Creature = characters[RIVAL];
 var flags:Dictionary = new Dictionary();
 initializeFlags();
 

@@ -1,6 +1,6 @@
 ﻿
 //Hold-out Pistol:
-var holdOutPistol:itemSlotClass = new itemSlotClass();
+var holdOutPistol:ItemSlotClass = new ItemSlotClass();
 holdOutPistol.quantity = 1;
 //Used on inventory buttons
 holdOutPistol.shortName = "Hld.Pistol";
@@ -26,7 +26,7 @@ holdOutPistol.fortification = 0;
 holdOutPistol.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Eagle Class Handgun:
-var eagleClassHandgun:itemSlotClass = new itemSlotClass();
+var eagleClassHandgun:ItemSlotClass = new ItemSlotClass();
 eagleClassHandgun.quantity = 1;
 //Used on inventory buttons
 eagleClassHandgun.shortName = "E.Handgun";
@@ -52,7 +52,7 @@ eagleClassHandgun.fortification = 0;
 eagleClassHandgun.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Scoped Pistol
-var scopedPistol:itemSlotClass = new itemSlotClass();
+var scopedPistol:ItemSlotClass = new ItemSlotClass();
 scopedPistol.quantity = 1;
 //Used on inventory buttons
 scopedPistol.shortName = "S.Pistol";
@@ -79,7 +79,7 @@ scopedPistol.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 
 //Mk. III Laser Pistol :
-var laserPistol:itemSlotClass = new itemSlotClass();
+var laserPistol:ItemSlotClass = new ItemSlotClass();
 laserPistol.quantity = 1;
 //Used on inventory buttons
 laserPistol.shortName = "LaserPistol";
@@ -105,7 +105,7 @@ laserPistol.fortification = 0;
 laserPistol.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //A knife
-var knife:itemSlotClass = new itemSlotClass();
+var knife:ItemSlotClass = new ItemSlotClass();
 knife.quantity = 1;
 //Used on inventory buttons
 knife.shortName = "Knife";
@@ -131,7 +131,7 @@ knife.fortification = 0;
 knife.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Dress Clothes
-var dressClothes:itemSlotClass = new itemSlotClass();
+var dressClothes:ItemSlotClass = new ItemSlotClass();
 dressClothes.quantity = 1;
 //Used on inventory buttons
 dressClothes.shortName = "DressClothes";
@@ -157,7 +157,7 @@ dressClothes.fortification = 0;
 dressClothes.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Space Panties
-var spacePanties:itemSlotClass = new itemSlotClass();
+var spacePanties:ItemSlotClass = new ItemSlotClass();
 spacePanties.quantity = 1;
 //Used on inventory buttons
 spacePanties.shortName = "Panties";
@@ -183,7 +183,7 @@ spacePanties.fortification = 0;
 spacePanties.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Dress Clothes
-var spaceBriefs:itemSlotClass = new itemSlotClass();
+var spaceBriefs:ItemSlotClass = new ItemSlotClass();
 spaceBriefs.quantity = 1;
 //Used on inventory buttons
 spaceBriefs.shortName = "SpaceBriefs";
@@ -209,7 +209,7 @@ spaceBriefs.fortification = 0;
 spaceBriefs.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Dress Clothes
-var spaceBra:itemSlotClass = new itemSlotClass();
+var spaceBra:ItemSlotClass = new ItemSlotClass();
 spaceBra.quantity = 1;
 //Used on inventory buttons
 spaceBra.shortName = "Bra";
@@ -235,7 +235,7 @@ spaceBra.fortification = 0;
 spaceBra.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
 //Dress Clothes
-var undershirt:itemSlotClass = new itemSlotClass();
+var undershirt:ItemSlotClass = new ItemSlotClass();
 undershirt.quantity = 1;
 //Used on inventory buttons
 undershirt.shortName = "Undershirt";

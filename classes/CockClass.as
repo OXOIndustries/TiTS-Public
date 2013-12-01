@@ -1,13 +1,14 @@
-﻿package
+﻿package classes
 {
-	public class cockClass
+	import classes.GLOBAL;
+	public class CockClass
 	{
 		//constructor
-		public function cockClass()
+		public function CockClass()
 		{
 		}
 		//For cheateyness.
-		include "consts.as"
+		// include "consts.as"
 		//data
 		//Cock length
 		public var cLength:Number = 5;
@@ -36,11 +37,11 @@
 			var cylinder:Number = 3.142 * cThickness/2 * cThickness/2 * (cLength - cThickness);
 			var tip:Number = (4/3 * 3.142 * cThickness/2 * cThickness/2 * cThickness/2)/2;
 			//If blunt, tip is converted to cylinder as well.
-			if(hasFlag(BLUNT)) tip = (3.142 * cThickness/2 * cThickness/2 * cThickness);
+			if(hasFlag(GLOBAL.BLUNT)) tip = (3.142 * cThickness/2 * cThickness/2 * cThickness);
 			//If flared, tip is multiplied by 1.3.
-			if(hasFlag(FLARED)) tip = tip * 1.3;
+			if(hasFlag(GLOBAL.FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
-			if(hasFlag(TAPERED)) {
+			if(hasFlag(GLOBAL.TAPERED)) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
@@ -53,8 +54,8 @@
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
 			var temp:Number = volume();
-			if(LUBRICATED) temp *= .75;
-			if(hasFlag(STICKY)) temp *= 1.25;
+			if(GLOBAL.LUBRICATED) temp *= .75;
+			if(hasFlag(GLOBAL.STICKY)) temp *= 1.25;
 			return Math.round(temp * 100) / 100;
 		}
 		//FLAG CHECKIN!

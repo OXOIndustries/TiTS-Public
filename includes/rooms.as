@@ -1,12 +1,13 @@
-﻿import roomClass;
+﻿
 
 var rooms:Array = new Array();
-initializeRooms();
+
 function initializeRooms():void {
 	for(var x:int = 0; x < 10000; x++) {
 		rooms[x] = new roomClass();
 	}
 }
+initializeRooms();
 
 //100. Hotel Room
 rooms[100].roomName = "Hotel Room";

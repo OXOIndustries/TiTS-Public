@@ -1,4 +1,5 @@
-﻿package  {
+﻿package classes
+{
 	import buttonClass;
 	public class purpleButton extends buttonClass {
 
