@@ -297,9 +297,9 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	//Kinetic does 40% damage to shields
 	if(damageType == GLOBAL.KINETIC) damage *= 4;
 	//Slashing does 55% damage to shields
-	else if(damageType == SLASHING) damage *= .55;
+	else if(damageType == GLOBAL.SLASHING) damage *= .55;
 	//Piercing does 75% damage to shields
-	else if(damageType == PIERCING) damage *= .75;
+	else if(damageType == GLOBAL.PIERCING) damage *= .75;
 	
 	//Apply victim resistances vs damage
 	damage *= victim.getShieldResistance(damageType);
@@ -414,10 +414,10 @@ function startCombat(encounter:String):void {
 	switch(encounter) {
 		case "celise":
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = clone(characters[CELISE]);
+			foes[0] = clone(characters[GLOBAL.CELISE]);
 			break;
 		default:
-			foes[0] = new creature();
+			foes[0] = new Creature();
 			break;
 	}
 	combatMainMenu();

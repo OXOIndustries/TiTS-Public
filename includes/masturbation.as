@@ -96,7 +96,7 @@ function vaginalFap():void {
 	output(" Your body gives a gentle shudder at that");
 	if(pc.hasTail()) output(", your [pc.tail] flicking wildly behind you");
 	output(".");
-	if(rooms[location].hasFlag(BED)) output("  You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legs] splay wide as twitch in a visible display of your enjoyment.");
+	if(rooms[location].hasFlag(GLOBAL.BED)) output("  You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legs] splay wide as twitch in a visible display of your enjoyment.");
 	else if(location == 99) output(" You're thankful to be in the comfort of your ship and splay your [pc.legs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
 	else output(" You slump down against the nearest upright surface since your [pc.legs] seem to be too busy quivering to properly support you.");
 	
@@ -135,7 +135,7 @@ function vaginalFap():void {
 		else if(pc.cumQ() <= 100) output(" By the time you finish, you've soaked yourself and have thick ribbons of [pc.cumColor] goo rolling down either side of your [pc.hips].");
 		else if(pc.cumQ() <= 300) {
 			output(" By the time you finish, you've soaked yourself in [pc.cumColor] from the waist to the neck in your lovegoo, and huge streamers of the stuff are running off you to puddle on the ");
-			if(rooms[location].hasFlag(BED)) output("bed");
+			if(rooms[location].hasFlag(GLOBAL.BED)) output("bed");
 			else if(location == 99) output("deck");
 			else output("ground");
 			output(".");
@@ -169,7 +169,7 @@ function singleDickFap():void {
 	output(" idly reach down to toy with [pc.oneCock], grabbing hold and feeling it fill out in your palm, stiffening in anticipatory lust - not that you needed any more. You're plenty horny, and you begin to stroke, working yourself towards greater levels of pleasure with great vigor, pumping hard and fast on your ");
 	if(pc.cockTotal() > 1) output("chosen ");
 	output(" phallus. The [pc.cockHead] plumps up nice and full in your grip, already swelling out to its full size");
-	if(pc.hasCockFlag(FLARED)) output(", the flare dangerously expanding already");
+	if(pc.hasCockFlag(GLOBAL.FLARED)) output(", the flare dangerously expanding already");
 	output(", hot, lusty, and ready for action.");
 	//In ship? Pull up porno!
 	if(location == 99) {
@@ -179,13 +179,13 @@ function singleDickFap():void {
 	}
 	//Bottom of dick intro
 	var selector:Array = new Array();
-	if(pc.hasCockFlag(KNOTTED)) selector[selector.length] = KNOTTED;
-	if(pc.hasCockFlag(SHEATHED)) selector[selector.length] = SHEATHED;
-	if(pc.hasCockFlag(STINGER_BASED)) selector[selector.length] = STINGER_BASED;
-	if(selector.length == 0) selector[selector.length] = HUMAN;
+	if(pc.hasCockFlag(GLOBAL.KNOTTED)) selector[selector.length] = GLOBAL.KNOTTED;
+	if(pc.hasCockFlag(GLOBAL.SHEATHED)) selector[selector.length] = GLOBAL.SHEATHED;
+	if(pc.hasCockFlag(GLOBAL.STINGER_BASED)) selector[selector.length] = GLOBAL.STINGER_BASED;
+	if(selector.length == 0) selector[selector.length] = GLOBAL.HUMAN;
 	var temp:int = selector[rand(selector.length)];
 	//Knotted
-	if(temp == KNOTTED) {
+	if(temp == GLOBAL.KNOTTED) {
 		output("\n\nYou start by gently feeling around the bottom of your ");
 		if(pc.cocks[0].knotMultiplier <= 1.4) output("dutifully swelling");
 		else if(pc.cocks[0].knotMultiplier <= 1.6) output("nice, thick");
@@ -195,11 +195,11 @@ function singleDickFap():void {
 		output(" knot, feeling the swollen cocklump pulse with every beat of your heart. The many veins visible around its circumference tingle pleasantly as they drum against your palm.");
 	}
 	//Sheath
-	else if(temp == SHEATHED) output("\n\nYou start by gently feeling around the sheath, rubbing the sensitive skin that would usually conceal your organ were it not so erect, and even let your fingers dip down into the folds between, running your them around the inside, feeling your hands on your dick and yet at the same time penetrating you. By the time you pull them free, your heady, musky aroma is thick in the air. You move up to the shaft a nano-second later, eager to get into the real action.");
+	else if(temp == GLOBAL.SHEATHED) output("\n\nYou start by gently feeling around the sheath, rubbing the sensitive skin that would usually conceal your organ were it not so erect, and even let your fingers dip down into the folds between, running your them around the inside, feeling your hands on your dick and yet at the same time penetrating you. By the time you pull them free, your heady, musky aroma is thick in the air. You move up to the shaft a nano-second later, eager to get into the real action.");
 	//Anemone Wavy
-	else if(temp == STINGER_BASED) {
+	else if(temp == GLOBAL.STINGER_BASED) {
 		output("\n\nYou start by gently feeling around the base of your shaft, letting your wriggling tendrils brush your knuckles, their stinging venom both painful and pleasant all at once. A chemical excitement spreads up your arm, darkening the [pc.skin]");
-		if(pc.skinType != SKIN) output(" under your [pc.skinFurScales]");
+		if(pc.skinType != GLOBAL.SKIN) output(" under your [pc.skinFurScales]");
 		output(", exciting your heart until you feel it's about to thud its way out of your chest. A ripple of sensual pleasure spreads out from your crotch as the venom circulates through your bloodstream to its goal.");
 	}
 	//Nothing special:
@@ -207,28 +207,28 @@ function singleDickFap():void {
 	
 	//Top of dick intro
 	selector = new Array();
-	if(pc.hasCockFlag(TAPERED)) selector[selector.length] = TAPERED;
-	if(pc.hasCockFlag(FLARED)) selector[selector.length] = FLARED;
-	if(pc.hasCockFlag(PREHENSILE)) selector[selector.length] = PREHENSILE;
-	if(pc.hasCockFlag(STINGER_TIPPED)) selector[selector.length] = STINGER_TIPPED;
-	if(selector.length == 0) selector[selector.length] = HUMAN;
+	if(pc.hasCockFlag(GLOBAL.TAPERED)) selector[selector.length] = GLOBAL.TAPERED;
+	if(pc.hasCockFlag(GLOBAL.FLARED)) selector[selector.length] = GLOBAL.FLARED;
+	if(pc.hasCockFlag(GLOBAL.PREHENSILE)) selector[selector.length] = GLOBAL.PREHENSILE;
+	if(pc.hasCockFlag(GLOBAL.STINGER_TIPPED)) selector[selector.length] = GLOBAL.STINGER_TIPPED;
+	if(selector.length == 0) selector[selector.length] = GLOBAL.HUMAN;
 	var temp:int = selector[rand(selector.length)];
 	
 	//Pointed
-	if(temp == TAPERED) {
+	if(temp == GLOBAL.TAPERED) {
 		output("\n\nSoon, you're panting with excitement, thrusting against your hand when your fingers touch the sensitive point to bury yourself back to down to your [pc.knot] in your hand's reflexively tight grip. You stroke up again, fondle yourself, and whine as your body forces you to thrust, embedding your pointed prick deep into your hand once more, pleasuring yourself with rapid humps and vice-like squeezes.");
 	}
 	//Flared
-	else if(temp == FLARED) {
+	else if(temp == GLOBAL.FLARED) {
 		output("\n\nSoon, you're panting with excitement, your [pc.hips] quivering as you dance your touches up past the middle of your flexing member. Your member gives a mighty shudder when you approach the flare, and that masculine ring thickens in response, engorging with fresh blood and becoming even more responsive to your touches.");
 		if(pc.isTaur()) output(" You fail to suppress a muted whinney as your body gives in to its animalistic instincts.");
 	}
 	//Anemone Wavy
-	else if(temp == STINGER_TIPPED) {
+	else if(temp == GLOBAL.STINGER_TIPPED) {
 		output("\n\nSoon, you're panting with excitement and stroking your hand up and down your length. It's hard and sensitive as you've come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
 	}
 	//Prehensile
-	else if(temp == PREHENSILE) {
+	else if(temp == GLOBAL.PREHENSILE) {
 		output("\n\nSoon, you're panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
 	}
 	//Nothing special
@@ -276,7 +276,7 @@ function singleDickFap():void {
 		else if(pc.cumQ() <= 20000) output(", nevermind the small, growing lake below");
 		else if(pc.cumQ() <= 30000) output(", nevermind the rapidly-deepening lake below");
 		else if(pc.cumQ() <= 50000) {
-			if(rooms[location].hasFlag(OUTDOOR)) output(", nevermind the swimming pool-like lake below");
+			if(rooms[location].hasFlag(GLOBAL.OUTDOOR)) output(", nevermind the swimming pool-like lake below");
 			else output(", nevermind the room-flooding pool you've created");
 		}
 		else output(", nevermind the physics-defying amount in the lake below");

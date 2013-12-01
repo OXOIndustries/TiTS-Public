@@ -6,7 +6,7 @@
 	else {
 		hideMenus();
 		if(leftSideBar.currentFrame >= 11) leftSideBar.appearanceButton.filters = [myGlow];
-		appearance(this.pc);
+		appearance(pc);
 		showingPCAppearance = true;
 		clearGhostMenu();
 		addGhostButton(0,"Back",pcAppearance,e);
@@ -143,7 +143,7 @@ function appearance(target:Creature):void {
 			if(pc.earType == GLOBAL.EQUINE) output2(" A pair of horse-like ears rise up from the top of your skull.");
 			else if(pc.earType == GLOBAL.CANINE) output2(" A pair of dog ears protrude from your skull, flopping down adorably.");
 			else if(pc.earType == GLOBAL.BOVINE) output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
-			else if(pc.earType == DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
+			else if(pc.earType == GLOBAL.DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
 			else if(pc.earType == GLOBAL.FELINE) output2(" A pair of cute, fuzzy cat ears have sprouted from the top of your skull.");
 			else if(pc.earType == GLOBAL.LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
 			else if(pc.earType == GLOBAL.LAPINE) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
@@ -160,7 +160,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.EQUINE) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of very horse-like ears that grow up from your head.");
 			else if(pc.earType == GLOBAL.CANINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
 			else if(pc.earType == GLOBAL.BOVINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
-			else if(pc.earType == DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
+			else if(pc.earType == GLOBAL.DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
 			else if(pc.earType == GLOBAL.FELINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute, fuzzy cat ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			else if(pc.earType == GLOBAL.LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
 			else if(pc.earType == GLOBAL.LAPINE) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
@@ -176,11 +176,11 @@ function appearance(target:Creature):void {
 		}
 		//Tongue
 		if(pc.tongueType == GLOBAL.NAGA || pc.tongueType == GLOBAL.SNAKE) output2(" A snake-like tongue occasionally flits between your lips, tasting the air.");
-		else if(pc.tongueType == DEMONIC) output2(" A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
+		else if(pc.tongueType == GLOBAL.DEMONIC) output2(" A slowly undulating tongue occasionally slips from between your lips. It hangs nearly two feet long when you let the whole thing slide out, though you can retract it to appear normal.");
 		else if(pc.tongueType == GLOBAL.DRACONIC) output2(" Your mouth contains a thick, fleshy tongue that, if you so desire, can telescope to a distance of about four feet. It has sufficient manual dexterity that you can use it almost like a third arm.");
 		//Horns
 		//Demonic horns
-		if(pc.hornType == DEMONIC) {
+		if(pc.hornType == GLOBAL.DEMONIC) {
 			if(pc.horns <= 2) output2(" A small pair of pointed horns has broken through the " + pc.skin() + " on your forehead, proclaiming some demonic taint to any who see them.");
 			else if(pc.horns <= 4) output2(" A quartet of prominent horns has broken through your " + pc.skin() + ". The back pair are longer, and curve back along your head. The front pair protrude forward demonically.");
 			else if(pc.horns <= 6) output2(" Six horns have sprouted through your " + pc.skin() + ", the back two pairs curve backwards over your head and down towards your neck, while the front two horns stand almost eight inches long upwards and a little forward.");
@@ -201,7 +201,7 @@ function appearance(target:Creature):void {
 			else output2(" Two pairs of horns, roughly a foot long, sprout from the sides of your head. They sweep back and give you a fearsome look, almost like the dragons from your village's legends.");
 		}
 		//Antlers!
-		else if(pc.hornType == DEER) {
+		else if(pc.hornType == GLOBAL.DEER) {
 			if(pc.horns > 0) output2(" Two antlers, forking into " + num2Text(pc.horns) + " points, have sprouted from the top of your head, forming a spiky, regal crown of bone.");
 		}
 		//BODY PG HERE
@@ -209,23 +209,23 @@ function appearance(target:Creature):void {
 		if(pc.wingType != GLOBAL.HUMAN) {
 			output2(", and ");
 			//WINGS!
-			if(target.wingType == SMALLBEE) output2("a pair of tiny-yet-beautiful bee-wings sprout from your back, too small to allow you to fly.");
-			if(target.wingType == BEE) output2("a pair of large bee-wings sprout from your back, reflecting the light through their clear membranes beautifully.  They flap quickly, allowing you to easily hover in place or fly.");
-			if(target.wingType == SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
-			if(target.wingType == DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders.  With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
+			if(target.wingType == GLOBAL.SMALLBEE) output2("a pair of tiny-yet-beautiful bee-wings sprout from your back, too small to allow you to fly.");
+			if(target.wingType == GLOBAL.BEE) output2("a pair of large bee-wings sprout from your back, reflecting the light through their clear membranes beautifully.  They flap quickly, allowing you to easily hover in place or fly.");
+			if(target.wingType == GLOBAL.SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
+			if(target.wingType == GLOBAL.DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders.  With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			if(target.wingType == GLOBAL.SHARK) output2("a large shark-like fin has sprouted between your shoulder blades.  With it you have far more control over swimming underwater.");
-			if(target.wingType == AVIAN) output2("a pair of large, feathery wings sprout from your back.  Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
+			if(target.wingType == GLOBAL.AVIAN) output2("a pair of large, feathery wings sprout from your back.  Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
 			if(target.wingType == SMALLGLOBAL.DRACONIC) output2("small, vestigial wings sprout from your shoulders.  They might look like bat's wings, but the membranes are covered in fine, delicate scales.");
 			else if(target.wingType == GLOBAL.DRACONIC) output2("magnificent wings sprout from your shoulders.  When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky.  They look a bit like bat's wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
-			else if(target.wingType == DRAGONFLY) output2("giant dragonfly wings hang from your shoulders.  At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
+			else if(target.wingType == GLOBAL.DRAGONFLY) output2("giant dragonfly wings hang from your shoulders.  At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
 		}
 		else output2(".");
 		//Wing arms
-		if(target.armType == AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
-		else if(target.armType == GLOBAL.ARACHNID || target.armType == DRIDER || target.armType == BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
+		if(target.armType == GLOBAL.AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
+		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
-		if(target.legType == MLP) output2("  From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
+		if(target.legType == GLOBAL.MLP) output2("  From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
 		else if(target.isTaur()) output2("  From the waist down, you have the body of a horse, with all four legs capped by hooves.");
 		//Hip info only displays if you aren't a centaur. 
 		if(!target.isTaur()) {
@@ -323,15 +323,15 @@ function appearance(target:Creature):void {
 		//TAILS
 		if(target.tailType == GLOBAL.EQUINE) output2("  A long " + target.furColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
 		if(target.tailType == GLOBAL.CANINE) output2("  A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
-		if(target.tailType == DEMONIC) output2("  A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
+		if(target.tailType == GLOBAL.DEMONIC) output2("  A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
 		if(target.tailType == GLOBAL.BOVINE) output2("  A long cowtail with a puffy tip swishes back and forth as if swatting at flies.");
-		if(target.tailType == DRIDER || target.tailType == GLOBAL.ARACHNID) {
+		if(target.tailType == GLOBAL.DRIDER || target.tailType == GLOBAL.ARACHNID) {
 			output2("  A large, spherical spider-abdomen has grown out from your backside, covered in shiny black chitin.  Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2("  Your bulging arachnid posterior feels fairly full of webbing.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2("  Your arachnid rear bulges and feels very full of webbing.");
 			if(target.tailVenom == 100) output2("  Your swollen spider-butt is distended with the sheer amount of webbing it's holding.");
 		}
-		if(target.tailType == BEE) {
+		if(target.tailType == GLOBAL.BEE) {
 			output2("  A large insectile bee-abdomen dangles from just above your backside, bobbing with its own weight as you shift.  It is covered in hard chitin with black and yellow stripes, and tipped with a dagger-like stinger.");
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2("  A single drop of poison hangs from your exposed stinger.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2("  Poisonous bee venom coats your stinger completely.");
@@ -347,7 +347,7 @@ function appearance(target:Creature):void {
 			output2("  A tapered tail hangs down from just above your " + target.buttDescript() + ".  It sways back and forth, assisting you with keeping your balance.");
 		}
 		if(target.tailType == GLOBAL.LAPINE) output2("  A short, soft bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
-		else if(target.tailType == AVIAN) output2("  A tail of feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
+		else if(target.tailType == GLOBAL.AVIAN) output2("  A tail of feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
 		else if(target.tailType == GLOBAL.KANGAROO) {
 			output2("  A conical, ");
 			if(target.skinType == 3) output2("gooey, " + target.skinTone);
@@ -367,17 +367,17 @@ function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.CANINE) output2("  Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
 		else if(target.legType == GLOBAL.NAGA) output2("  Below your waist your flesh is fused together into a very long snake-like tail.");
 		//Horse body is placed higher for readability purposes
-		else if(target.legType == SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
-		else if(target.legType == DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
-		else if(target.legType == BEE) output2("  Your legs are covered in a shimmering insectile carapace up to mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.  A bit of downy yellow and black fur fuzzes your upper thighs, just like a bee.");
-		else if(target.legType == GOOEY) output2("  In place of legs you have a shifting amorphous blob.  Thankfully it's quite easy to propel yourself around on.  The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
+		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
+		else if(target.legType == GLOBAL.DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
+		else if(target.legType == GLOBAL.BEE) output2("  Your legs are covered in a shimmering insectile carapace up to mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.  A bit of downy yellow and black fur fuzzes your upper thighs, just like a bee.");
+		else if(target.legType == GLOBAL.GOOEY) output2("  In place of legs you have a shifting amorphous blob.  Thankfully it's quite easy to propel yourself around on.  The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 		else if(target.legType == GLOBAL.FELINE) output2("  Two digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
 		else if(target.legType == GLOBAL.LIZAN) output2("  Two digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.LAPINE) output2("  Your legs thicken below the waist as they turn into soft-furred rabbit-like legs.  You even have large bunny feet that make hopping around a little easier than walking.");
-		else if(target.legType == AVIAN) output2("  Your legs are covered with " + target.furColor + " plumage.  Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
+		else if(target.legType == GLOBAL.AVIAN) output2("  Your legs are covered with " + target.furColor + " plumage.  Thankfully the thick, powerful thighs are perfect for launching you into the air, and your feet remain mostly human, even if they are two-toed and tipped with talons.");
 		else if(target.legType == GLOBAL.KANGAROO) output2("  Your furry legs have short thighs and long calves, with even longer feet ending in prominently-nailed toes.");
 		else if(target.legType == GLOBAL.ARACHNID) output2("  Your legs are covered in a reflective black, insectile carapace up to your mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.");
-		else if(target.legType == DRIDER) output2("  Where your legs would normally start you have grown the body of a spider, with eight spindly legs that sprout from its sides.");
+		else if(target.legType == GLOBAL.DRIDER) output2("  Where your legs would normally start you have grown the body of a spider, with eight spindly legs that sprout from its sides.");
 		else if(target.legType == GLOBAL.VULPINE) output2("  Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
 		else if(target.legType == GLOBAL.DRACONIC) output2("  Two human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.KUITAN) output2("  Your legs, though covered in fur, are humanlike.  Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
@@ -390,11 +390,11 @@ function appearance(target:Creature):void {
 			if(target.biggestTitSize() >= 1) output2("You have " + num2Text(target.breastRows[0].breasts) + " " + target.chestDesc() + ", capped with ");
 			else output2("You have a flat chest with unremarkable pectoral muscles, capped with ");
 			//Normal nips
-			if(target.breastRows[0].nippleType == DICK || target.breastRows[0].nippleType == NORMAL) { 
+			if(target.breastRows[0].nippleType == GLOBAL.DICK || target.breastRows[0].nippleType == GLOBAL.NORMAL) { 
 				//One nipple
 				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(temp) + " each.");
 				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " each.");
-				if(target.breastRows[0].nippleType == DICK) {
+				if(target.breastRows[0].nippleType == GLOBAL.DICK) {
 					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 				}		
 			}
@@ -403,13 +403,13 @@ function appearance(target:Creature):void {
 				//One nipple
 				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(temp) + " each.");
 				else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " each.");
-				if(target.breastRows[0].nippleType == FUCKABLE) {
+				if(target.breastRows[0].nippleType == GLOBAL.FUCKABLE) {
 					output2(" While you may appear to have inverted nipples, your chest actually houses wet, slippery secrets. A finger or cock could easily slip inside you to give and get as much pleasure as any crotch-couched cunt.");
 				}
-				else if(target.breastRows[0].nippleType == LIPPLES) {
+				else if(target.breastRows[0].nippleType == GLOBAL.LIPPLES) {
 					output2(" The plump lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
 				}
-				else if(target.breastRows[0].nippleType == FLAT) {
+				else if(target.breastRows[0].nippleType == GLOBAL.FLAT) {
 					output2(" There isn't any actual nub to your nipples - just flat areolae.");
 				}
 			}
@@ -433,7 +433,7 @@ function appearance(target:Creature):void {
 				if(target.breastRows[temp].breastRating >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
 				//DESCRIBE NIPPLE NAU!
 				//Normal nips
-				if(target.breastRows[temp].nippleType == DICK || target.breastRows[temp].nippleType == NORMAL) { 
+				if(target.breastRows[temp].nippleType == GLOBAL.DICK || target.breastRows[temp].nippleType == GLOBAL.NORMAL) { 
 					//One nipple
 					if(target.nipplesPerBreast == 1) {
 						output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
@@ -445,7 +445,7 @@ function appearance(target:Creature):void {
 						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
 						else output2("each.");
 					}
-					if(target.breastRows[0].nippleType == DICK) {
+					if(target.breastRows[0].nippleType == GLOBAL.DICK) {
 						output2(" You can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 					}		
 				}
@@ -463,13 +463,13 @@ function appearance(target:Creature):void {
 						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
 						else output2("each.");
 					}
-					if(target.breastRows[0].nippleType == FUCKABLE) {
+					if(target.breastRows[0].nippleType == GLOBAL.FUCKABLE) {
 						output2(" Your chest actually houses wet, slippery, secret entrances.");
 					}
-					else if(target.breastRows[0].nippleType == LIPPLES) {
+					else if(target.breastRows[0].nippleType == GLOBAL.LIPPLES) {
 						output2(" Plump lips cap off your chest in place of nipples.");
 					}
-					else if(target.breastRows[0].nippleType == FLAT) {
+					else if(target.breastRows[0].nippleType == GLOBAL.FLAT) {
 						output2(" There isn't any actual nub to your nipples - just flat areolae.");
 					}
 				}
@@ -509,11 +509,11 @@ function appearance(target:Creature):void {
 					output2("  The knot is " + Math.round(target.cocks[0].cThickness * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
 				}
 				//Demon cock flavor
-				if(target.cocks[0].cType == DEMONIC) {
+				if(target.cocks[0].cType == GLOBAL.DEMONIC) {
 					output2("  The crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused.  The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins.");
 				}
 				//Tentacle cock flavor
-				if(target.cocks[0].cType == TENTACLE) {
+				if(target.cocks[0].cType == GLOBAL.TENTACLE) {
 					output2("  The entirety of its green surface is covered in perspiring beads of slick moisture.  It frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
 				}
 				//Cat cock flavor
@@ -525,7 +525,7 @@ function appearance(target:Creature):void {
 					output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
 				}
 				//Anemone cock flavor
-				if(target.cocks[0].cType == ANEMONE || target.cocks[0].cType == GLOBAL.SIREN) {
+				if(target.cocks[0].cType == GLOBAL.ANEMONE || target.cocks[0].cType == GLOBAL.SIREN) {
 					output2("  The crown is surrounded by tiny tentacles with a venomous, aphrodisiac payload.  At its base a number of similar, longer tentacles have formed, guaranteeing that pleasure will be forced upon your partners.");
 				}
 				//Kangawang flavor
@@ -601,11 +601,11 @@ function appearance(target:Creature):void {
 						output2("  The knot is " + Math.round(target.cocks[temp].cThickness * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
 					}
 					//Demon cock flavor
-					if(target.cocks[temp].cType == DEMONIC) {
+					if(target.cocks[temp].cType == GLOBAL.DEMONIC) {
 						output2("  The crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused.  The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins.");
 					}
 					//Tentacle cock flavor
-					if(target.cocks[temp].cType == TENTACLE) {
+					if(target.cocks[temp].cType == GLOBAL.TENTACLE) {
 						output2("  The entirety of its green surface is covered in perspiring beads of slick moisture.  It frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
 					}
 					//Cat cock flavor
@@ -617,7 +617,7 @@ function appearance(target:Creature):void {
 						output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
 					}
 					//Anemone cock flavor
-					if(target.cocks[temp].cType == ANEMONE || target.cocks[temp].cType == GLOBAL.SIREN) {
+					if(target.cocks[temp].cType == GLOBAL.ANEMONE || target.cocks[temp].cType == GLOBAL.SIREN) {
 						output2("  The crown is surrounded by tiny tentacles with a venomous, aphrodisiac payload.  At its base a number of similar, longer tentacles have formed, guaranteeing that pleasure will be forced upon your partners.");
 					}
 					//Kangawang flavor

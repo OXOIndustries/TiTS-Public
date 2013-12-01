@@ -8,7 +8,7 @@
 }
 function startCharacterCreation():void {
 	hideMainMenu();
-	characters[0] = new creature;
+	characters[0] = new Creature();
 	initializeNPCs();
 	
 	/*
@@ -67,23 +67,23 @@ function chooseStartingRace(race:String = "human"):void {
 		addButton(1,"Female",setStartingSex,3);
 	}
 	else if(pc.originalRace == "half-ausar") {
-		pc.earType = CANINE;
-		pc.tailType = CANINE;
+		pc.earType = GLOBAL.CANINE;
+		pc.tailType = GLOBAL.CANINE;
 		pc.tailCount = 1;
-		pc.addTailFlag(LONG);
-		pc.addTailFlag(FLUFFY);
-		pc.addTailFlag(FURRED);
+		pc.addTailFlag(GLOBAL.LONG);
+		pc.addTailFlag(GLOBAL.FLUFFY);
+		pc.addTailFlag(GLOBAL.FURRED);
 		output("male or female");
 		addButton(0,"Male",setStartingSex,1);
 		addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-kaithrit") {
-		pc.earType = FELINE;
-		pc.tailType = FELINE;
+		pc.earType = GLOBAL.FELINE;
+		pc.tailType = GLOBAL.FELINE;
 		pc.tailCount = 2;
-		pc.addTailFlag(LONG);
-		pc.addTailFlag(FURRED);
+		pc.addTailFlag(GLOBAL.LONG);
+		pc.addTailFlag(GLOBAL.FURRED);
 		output("male or female");
 		addButton(0,"Male",setStartingSex,1);
 		addButton(1,"Female",setStartingSex,3);
@@ -111,10 +111,10 @@ function setStartingSex(sex:int = 1):void {
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
 		if (pc.originalRace == "half-ausar") {
-			pc.shiftCock(0,CANINE);
+			pc.shiftCock(0,GLOBAL.CANINE);
 		}
 		if (pc.originalRace ==  "half-kaithrit") {
-			pc.shiftCock(0,FELINE);
+			pc.shiftCock(0,GLOBAL.FELINE);
 		}
 		//MALE!
 		if(sex == 1) {
@@ -515,7 +515,7 @@ function applyAffinity(arg:String = "intelligence"):void {
 	pc.affinity = arg;
 	chooseHowPCIsRaised();
 }
-//How is the PC raised?
+//How is the pc raised?
 function chooseHowPCIsRaised():void {
 	clearOutput();
 	pc.physiqueRaw = 3;
@@ -585,17 +585,17 @@ function chooseClass():void {
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
 	output("<b>You are " + pc.short + "</b>, all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
 	clearMenu();
-	addButton(0,"Smuggler",classConfirm,SMUGGLER);
-	addButton(1,"Mercenary",classConfirm,MERCENARY);
-	addButton(2,"TechSpecialist",classConfirm,ENGINEER);
+	addButton(0,"Smuggler",classConfirm,GLOBAL.SMUGGLER);
+	addButton(1,"Mercenary",classConfirm,GLOBAL.MERCENARY);
+	addButton(2,"TechSpecialist",classConfirm,GLOBAL.ENGINEER);
 	addButton(14,"Back",chooseHowPCIsRaised);
 }
 function classConfirm(arg:int = 0):void {
 	clearOutput();
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
-	if(arg == SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
-	else if(arg == MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
-	else if(arg == ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
+	if(arg == GLOBAL.SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
+	else if(arg == GLOBAL.MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
+	else if(arg == GLOBAL.ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
 	output("\n\nIs this the career you’d like to pursue?");
 	clearMenu();
 	addButton(0,"Yes",setClass,arg);
@@ -604,13 +604,13 @@ function classConfirm(arg:int = 0):void {
 
 function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
-	if(arg == SMUGGLER) {
+	if(arg == GLOBAL.SMUGGLER) {
 		pc.rangedWeapon = clone(holdOutPistol);
 	}
-	if(arg == MERCENARY) {
+	if(arg == GLOBAL.MERCENARY) {
 		pc.rangedWeapon = clone(eagleClassHandgun);
 	}
-	if(arg == ENGINEER) {
+	if(arg == GLOBAL.ENGINEER) {
 		pc.rangedWeapon = clone(scopedPistol);
 	}
 	pc.meleeWeapon = clone(knife);
@@ -703,8 +703,8 @@ function tutorialIntro4():void {
 	output("\n\nSighing, you press the injector port to the inside of your arm.");
 	output("\n\n<i>“This recording is set up to rep-”</i>");
 	output("\n\nThe injector hisses as it pricks your skin, pouring its payload into your veins. There’s a bit of burning pain, but nothing as bad ");
-	if(pc.characterClass == ENGINEER) output("as the time you shocked yourself on an arc spanner");
-	else if(pc.characterClass == MERCENARY) output("as the time you took a slug in the leg");
+	if(pc.characterClass == GLOBAL.ENGINEER) output("as the time you shocked yourself on an arc spanner");
+	else if(pc.characterClass == GLOBAL.MERCENARY) output("as the time you took a slug in the leg");
 	else output("as the time you dropped your cargo on your foot, breaking more than a few toes in the process");
 	output(". You grow a little flushed for a moment as the tiny machines settle into you. It passes swiftly. All things considered, you feel... the same.");
 	output("\n\n<i>“Atta " + pc.mf("boy","girl") + ". I had something like that made for me after a particularly rough infection, though it wound up mutating me from exotic species’ sexual fluids as well.”</i>");
@@ -764,7 +764,7 @@ function celiseAI():void {
 
 //Win
 function defeatCelise():void {
-	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
+	setLocation("VICTORY OVER\nGLOBAL.CELISE","TAVROS STATION","SYSTEM: KALAS");
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -786,7 +786,7 @@ function ignoreCelise():void {
 //Feed Celise [Male]
 function takeCelise():void {
 	clearOutput();
-	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
+	setLocation("GLOBAL.CELISE","TAVROS STATION","SYSTEM: KALAS");
 	if(pc.hasCock()) {
 		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping every bit of exposed " + pc.skinFurScales() + " as you reveal yourself. As soon as your " + pc.cocksDescript());
 		if(pc.cockTotal() == 1) output(" is");
@@ -865,8 +865,8 @@ function takeCeliseAsACrewMember():void {
 	//{merge}
 	output("\n\nCelise jiggles jubilantly, the accumulated mass of goo below her waist churning with excitement as she applauds. She gulps in a huge breath of air, ballooning herself comically before exhaling it in a quiet <i>“Yayyyy...”</i> You glance at her curiously, and she shyly covers her mouth, whispering, <i>“Sorry.”</i>");
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
-	flags["RECRUITED_CELISE"] = 1;
-	flags["CELISE_ONBOARD"] = 1;
+	flags["GLOBAL.RECRUITED_CELISE"] = 1;
+	flags["GLOBAL.CELISE_ONBOARD"] = 1;
 	clearMenu();
 	addButton(0,"Next",checkOutYourShip);
 }

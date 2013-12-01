@@ -1,6 +1,6 @@
 ﻿function initializeNPCs():void {
-	characters[CELISE] = new creature();
-	celise = characters[CELISE];
+	characters[GLOBAL.CELISE] = new creature();
+	celise = characters[GLOBAL.CELISE];
 	celise.short = "Celise";
 	celise.originalRace = "galotian";
 	celise.a = "";
@@ -43,9 +43,9 @@
 	celise.hairType = 0;
 	celise.beardLength = 0;
 	celise.beardStyle = 0;
-	celise.skinType = GOO;
+	celise.skinType = GLOBAL.GOO;
 	celise.skinTone = "green";
-	celise.skinFlags = new Array(SQUISHY,LUBRICATED,AMORPHOUS);
+	celise.skinFlags = new Array(GLOBAL.SQUISHY,GLOBAL.LUBRICATED,GLOBAL.AMORPHOUS);
 	celise.faceType = 0;
 	celise.faceFlags = new Array();
 	celise.tongueType = 0;
@@ -58,9 +58,9 @@
 	celise.armType = 0;
 	celise.gills = false;
 	celise.wingType = 0;
-	celise.legType = GOOEY;
+	celise.legType = GLOBAL.GOOEY;
 	celise.legCount = 1;
-	celise.legFlags = new Array(AMORPHOUS);
+	celise.legFlags = new Array(GLOBAL.AMORPHOUS);
 	//0 - Waist
 	//1 - Middle of a long tail. Defaults to waist on bipeds.
 	//2 - Between last legs or at end of long tail.
@@ -107,7 +107,7 @@
 	celise.cumMultiplier = 50;
 	//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 	celise.cumQuality = 1;
-	celise.cumType = CUM;
+	celise.cumType = GLOBAL.CUM;
 	celise.ballSize = 24;
 	celise.ballFullness = 100;
 	//How many "normal" orgams worth of jizz your balls can hold.
@@ -136,14 +136,14 @@
 	celise.breastRows[0].breastRating = 14;
 	celise.nippleColor = "deep emerald";
 	celise.milkMultiplier = 0;
-	celise.milkType = MILK;
+	celise.milkType = GLOBAL.MILK;
 	//The rate at which you produce milk. Scales from 0 to INFINITY.
 	celise.milkRate = 1;
 	celise.ass.wetness = 5;
 	
 	//Rival!
-	characters[RIVAL] = new creature();
-	rival = characters[RIVAL];
+	characters[GLOBAL.RIVAL] = new creature();
+	rival = characters[GLOBAL.RIVAL];
 	rival.short = "Jack/Jill";
 	rival.originalRace = "human";
 	rival.a = "";
@@ -186,7 +186,7 @@
 	rival.hairType = 0;
 	rival.beardLength = 0;
 	rival.beardStyle = 0;
-	rival.skinType = SKIN;
+	rival.skinType = GLOBAL.SKIN;
 	rival.skinTone = pc.skinTone;
 	rival.skinFlags = new Array();
 	rival.faceType = 0;
@@ -201,9 +201,9 @@
 	rival.armType = 0;
 	rival.gills = false;
 	rival.wingType = 0;
-	rival.legType = HUMAN;
+	rival.legType = GLOBAL.HUMAN;
 	rival.legCount = 2;
-	rival.legFlags = new Array(PLANTIGRADE);
+	rival.legFlags = new Array(GLOBAL.PLANTIGRADE);
 	//0 - Waist
 	//1 - Middle of a long tail. Defaults to waist on bipeds.
 	//2 - Between last legs or at end of long tail.
@@ -250,7 +250,7 @@
 	rival.cumMultiplier = pc.cumMultiplier;
 	//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 	rival.cumQuality = 1;
-	rival.cumType = CUM;
+	rival.cumType = GLOBAL.CUM;
 	rival.ballSize = pc.ballSize;
 	rival.ballFullness = pc.ballFullness;
 	//How many "normal" orgams worth of jizz your balls can hold.
@@ -270,7 +270,7 @@
 	rival.breastRows[0].breastRating = 0;
 	rival.nippleColor = pc.nippleColor;
 	rival.milkMultiplier = 0;
-	rival.milkType = MILK;
+	rival.milkType = GLOBAL.MILK;
 	//The rate at which you produce milk. Scales from 0 to INFINITY.
 	rival.milkRate = 0;
 	rival.ass.wetness = 0;

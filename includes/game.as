@@ -26,7 +26,7 @@
 	addButton(2,"Inventory",inventoryScreen);
 	if(pc.lust() < 33) addDisabledButton(3,"Masturbate");
 	else addButton(3,"Masturbate",masturbateMenu);
-	if(!rooms[location].hasFlag(BED)) addButton(4,"Rest",rest);
+	if(!rooms[location].hasFlag(GLOBAL.BED)) addButton(4,"Rest",rest);
 	else addButton(4,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
 	if(rooms[location].runOnEnter != undefined) {

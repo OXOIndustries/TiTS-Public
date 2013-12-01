@@ -163,8 +163,8 @@ function loadGame(slot:String):void {
 		currentPCNotes = saveFile.data.notes;
 		//Clear character array and load the defaults!
 		characters = new Array();
-		setupCharacters();
-		initializeNPCs();
+		this.setupCharacters();
+		this.initializeNPCs();
 		
 		//Load it up!
 		for(var x:int = 0; x < saveFile.data.characters.length; x++) {
@@ -196,15 +196,15 @@ function loadGame(slot:String):void {
 		shipLocation = saveFile.data.shipLocation;
 		
 		//Set pointers back where they belong!
-		setCheatPointers();
+		this.setCheatPointers();
 		
 		//Update display and such!
-		hideNPCStats();
-		showPCStats();
-		updatePCStats();
-		output2("Game loaded from " + slot + "!");
-		clearGhostMenu();
-		addGhostButton(0,"Next",postLoadToZeGame);
+		this.hideNPCStats();
+		this.showPCStats();
+		this.updatePCStats();
+		this.output2("Game loaded from " + slot + "!");
+		this.clearGhostMenu();
+		this.addGhostButton(0,"Next",postLoadToZeGame);
 		return;
 	}
 	else output2("Error: Game not loaded.");

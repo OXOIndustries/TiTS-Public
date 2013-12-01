@@ -1,13 +1,12 @@
 ﻿
 
-var rooms:Array = new Array();
+rooms = new Array();
 
 function initializeRooms():void {
 	for(var x:int = 0; x < 10000; x++) {
-		rooms[x] = new roomClass();
+		rooms[x] = new RoomClass();
 	}
 }
-initializeRooms();
 
 //100. Hotel Room
 rooms[100].roomName = "Hotel Room";
@@ -15,7 +14,7 @@ rooms[100].description = "This small, station-bound room is attached to Anon's B
 rooms[100].planet = "TAVROS STATION";
 rooms[100].system = "SYSTEM: KALAS";
 rooms[100].eastExit = 101;
-rooms[100].addFlag(INDOOR);
+rooms[100].addFlag(GLOBAL.INDOOR);
 
 //101. Anon's Board Hall
 rooms[101].roomName = "Anon's Board Hall";
@@ -23,7 +22,7 @@ rooms[101].description = "Located at the top of a stairway above the bar, this s
 rooms[101].planet = "TAVROS STATION";
 rooms[101].system = "SYSTEM: KALAS";
 rooms[101].southExit = 102;
-rooms[101].addFlag(INDOOR);
+rooms[101].addFlag(GLOBAL.INDOOR);
 
 //102. Anon's Bar and Board
 rooms[102].roomName = "Anon's Bar and Board";
@@ -32,7 +31,7 @@ rooms[102].planet = "TAVROS STATION";
 rooms[102].system = "SYSTEM: KALAS";
 rooms[102].northExit = 101;
 rooms[102].westExit = 103;
-rooms[102].addFlag(INDOOR);
+rooms[102].addFlag(GLOBAL.INDOOR);
 
 //103. Merchant's Thoroughfare
 rooms[103].roomName = "Merchant's Thoroughfare";
@@ -41,7 +40,7 @@ rooms[103].planet = "TAVROS STATION";
 rooms[103].system = "SYSTEM: KALAS";
 rooms[103].eastExit = 102;
 rooms[103].inExit = 104;
-rooms[103].addFlag(INDOOR);
+rooms[103].addFlag(GLOBAL.INDOOR);
 
 //104. In The Lift - Merchant's Thoroughfare
 rooms[104].roomName = "In The Lift - Merchant's Thoroughfare";
@@ -49,7 +48,7 @@ rooms[104].description = "Steady, mechanical thrums suffice the stuffy air insid
 rooms[104].planet = "TAVROS STATION";
 rooms[104].system = "SYSTEM: KALAS";
 rooms[104].outExit = 103;
-rooms[104].addFlag(INDOOR);
+rooms[104].addFlag(GLOBAL.INDOOR);
 rooms[104].runOnEnter = hangarBonus;
 
 //105. The Hangar
@@ -59,7 +58,7 @@ rooms[105].planet = "TAVROS STATION";
 rooms[105].system = "SYSTEM: KALAS";
 rooms[105].inExit = 106;
 rooms[105].inText = "Lift";
-rooms[105].addFlag(INDOOR);
+rooms[105].addFlag(GLOBAL.INDOOR);
 
 //106. In The Lift - The Hangar
 rooms[106].roomName = "In The Lift - The Hangar";
@@ -67,7 +66,7 @@ rooms[106].description = "Steady, mechanical thrums suffice the stuffy air insid
 rooms[106].planet = "TAVROS STATION";
 rooms[106].system = "SYSTEM: KALAS";
 rooms[106].outExit = 105;
-rooms[106].addFlag(INDOOR);
+rooms[106].addFlag(GLOBAL.INDOOR);
 rooms[106].runOnEnter = hangarBonus;
 
 function hangarBonus():Boolean {
@@ -87,8 +86,8 @@ rooms[99].system = "SYSTEM: ARA ARA";
 rooms[99].outExit = shipLocation;
 rooms[99].outText = "Exit";
 rooms[99].runOnEnter = shipMenu;
-rooms[99].addFlag(INDOOR);
-rooms[99].addFlag(BED);
+rooms[99].addFlag(GLOBAL.INDOOR);
+rooms[99].addFlag(GLOBAL.BED);
 
 //0. Ship Hanger
 rooms[0].roomName = "Ship Hangar";
@@ -97,7 +96,7 @@ rooms[0].planet = "PLANET: MHEN'GA";
 rooms[0].system = "SYSTEM: ARA ARA";
 rooms[0].outExit = 1;
 rooms[0].outText = "Down";
-rooms[0].addFlag(OUTDOOR);
+rooms[0].addFlag(GLOBAL.OUTDOOR);
 
 //1 - Spaceport Elevator
 rooms[1].roomName = "Spaceport Elevator";
@@ -107,7 +106,7 @@ rooms[1].system = "SYSTEM: ARA ARA";
 rooms[1].inExit = 0;
 rooms[1].inText = "Up";
 rooms[1].eastExit = 2;
-rooms[1].addFlag(OUTDOOR);
+rooms[1].addFlag(GLOBAL.OUTDOOR);
 
 //2 - Flahne’s Office
 rooms[2].roomName = "Customs Office";
@@ -116,7 +115,7 @@ rooms[2].planet = "PLANET: MHEN'GA";
 rooms[2].system = "SYSTEM: ARA ARA";
 rooms[2].westExit = 1;
 rooms[2].southExit = 3;
-rooms[2].addFlag(INDOOR);
+rooms[2].addFlag(GLOBAL.INDOOR);
 
 //3. Esbeth’s Northern Path
 rooms[3].roomName = "Esbeth's Northern Path";
@@ -126,7 +125,7 @@ rooms[3].system = "SYSTEM: ARA ARA";
 rooms[3].northExit = 2;
 rooms[3].westExit = 4;
 rooms[3].eastExit = 16;
-rooms[3].addFlag(OUTDOOR);
+rooms[3].addFlag(GLOBAL.OUTDOOR);
 
 //4. The Northwest Corner of Esbeth
 rooms[4].roomName = "The Northwest Corner of Esbeth";
@@ -135,7 +134,7 @@ rooms[4].planet = "PLANET: MHEN'GA";
 rooms[4].system = "SYSTEM: ARA ARA";
 rooms[4].southExit = 5;
 rooms[4].eastExit = 3;
-rooms[4].addFlag(OUTDOOR);
+rooms[4].addFlag(GLOBAL.OUTDOOR);
 
 //5. Esbeth’s Western Path
 rooms[5].roomName = "Esbeth’s Western Path";
@@ -144,7 +143,7 @@ rooms[5].planet = "PLANET: MHEN'GA";
 rooms[5].system = "SYSTEM: ARA ARA";
 rooms[5].southExit = 6;
 rooms[5].northExit = 4;
-rooms[5].addFlag(OUTDOOR);
+rooms[5].addFlag(GLOBAL.OUTDOOR);
 
 //6. Esbeth’s Western Path
 rooms[6].roomName = "Esbeth’s Western Path";
@@ -153,7 +152,7 @@ rooms[6].planet = "PLANET: MHEN'GA";
 rooms[6].system = "SYSTEM: ARA ARA";
 rooms[6].northExit = 5;
 rooms[6].southExit = 7;
-rooms[6].addFlag(OUTDOOR);
+rooms[6].addFlag(GLOBAL.OUTDOOR);
 
 //7. The Southwest Corner of Esbeth
 rooms[7].roomName = "The Southwest Corner of Esbeth";
@@ -162,7 +161,7 @@ rooms[7].planet = "PLANET: MHEN'GA";
 rooms[7].system = "SYSTEM: ARA ARA";
 rooms[7].northExit = 6;
 rooms[7].eastExit = 8;
-rooms[7].addFlag(OUTDOOR);
+rooms[7].addFlag(GLOBAL.OUTDOOR);
 
 //8. Esbeth’s Southern Path
 rooms[8].roomName = "Esbeth’s Southern Path";
@@ -171,7 +170,7 @@ rooms[8].planet = "PLANET: MHEN'GA";
 rooms[8].system = "SYSTEM: ARA ARA";
 rooms[8].westExit = 7;
 rooms[8].eastExit = 9;
-rooms[8].addFlag(OUTDOOR);
+rooms[8].addFlag(GLOBAL.OUTDOOR);
 
 //9. Esbeth’s Southern Path
 rooms[9].roomName = "Esbeth’s Southern Path";
@@ -180,7 +179,7 @@ rooms[9].planet = "PLANET: MHEN'GA";
 rooms[9].system = "SYSTEM: ARA ARA";
 rooms[9].westExit = 8;
 rooms[9].eastExit = 10;
-rooms[9].addFlag(OUTDOOR);
+rooms[9].addFlag(GLOBAL.OUTDOOR);
 
 //10. Esbeth’s Southern Path
 rooms[10].roomName = "Esbeth’s Southern Path";
@@ -189,7 +188,7 @@ rooms[10].planet = "PLANET: MHEN'GA";
 rooms[10].system = "SYSTEM: ARA ARA";
 rooms[10].westExit = 9;
 rooms[10].eastExit = 11;
-rooms[10].addFlag(OUTDOOR);
+rooms[10].addFlag(GLOBAL.OUTDOOR);
 	
 //11. The Southeast Corner of Esbeth
 rooms[11].roomName = "The Southeast Corner of Esbeth";
@@ -198,7 +197,7 @@ rooms[11].planet = "PLANET: MHEN'GA";
 rooms[11].system = "SYSTEM: ARA ARA";
 rooms[11].northExit = 12;
 rooms[11].westExit = 10;
-rooms[11].addFlag(OUTDOOR);
+rooms[11].addFlag(GLOBAL.OUTDOOR);
 
 //12. Esbeth’s Eastern Path
 rooms[12].roomName = "Esbeth’s Eastern Path";
@@ -207,7 +206,7 @@ rooms[12].planet = "PLANET: MHEN'GA";
 rooms[12].system = "SYSTEM: ARA ARA";
 rooms[12].southExit = 11;
 rooms[12].northExit = 13;
-rooms[12].addFlag(OUTDOOR);
+rooms[12].addFlag(GLOBAL.OUTDOOR);
 
 //13. Esbeth’s Eastern Path at the Entrance
 rooms[13].roomName = "Esbeth’s Eastern Path at the Entrance";
@@ -217,7 +216,7 @@ rooms[13].system = "SYSTEM: ARA ARA";
 rooms[13].southExit = 12;
 rooms[13].northExit = 14;
 rooms[13].eastExit = 19;
-rooms[13].addFlag(OUTDOOR);
+rooms[13].addFlag(GLOBAL.OUTDOOR);
 
 //14. The Northeastern Corner of Esbeth
 rooms[14].roomName = "The Northeastern Corner of Esbeth";
@@ -226,7 +225,7 @@ rooms[14].planet = "PLANET: MHEN'GA";
 rooms[14].system = "SYSTEM: ARA ARA";
 rooms[14].westExit = 15;
 rooms[14].southExit = 13;
-rooms[14].addFlag(OUTDOOR);
+rooms[14].addFlag(GLOBAL.OUTDOOR);
 
 //15. Esbeth’s Northern Path
 rooms[15].roomName = "Esbeth’s Northern Path";
@@ -235,7 +234,7 @@ rooms[15].planet = "PLANET: MHEN'GA";
 rooms[15].system = "SYSTEM: ARA ARA";
 rooms[15].westExit = 16;
 rooms[15].eastExit = 14;
-rooms[15].addFlag(OUTDOOR);
+rooms[15].addFlag(GLOBAL.OUTDOOR);
 
 //16. Esbeth’s Northern Path
 rooms[16].roomName = "Esbeth’s Northern Path";
@@ -244,7 +243,7 @@ rooms[16].planet = "PLANET: MHEN'GA";
 rooms[16].system = "SYSTEM: ARA ARA";
 rooms[16].westExit = 3;
 rooms[16].eastExit = 15;
-rooms[16].addFlag(OUTDOOR);
+rooms[16].addFlag(GLOBAL.OUTDOOR);
 
 //17. Burt’s Badass Whatever
 //9999
@@ -259,7 +258,7 @@ rooms[19].planet = "PLANET: MHEN'GA";
 rooms[19].system = "SYSTEM: ARA ARA";
 rooms[19].westExit = 13;
 rooms[19].eastExit = 20;
-rooms[19].addFlag(OUTDOOR);
+rooms[19].addFlag(GLOBAL.OUTDOOR);
 
 //20. The Edge of the Jungle
 rooms[20].roomName = "The Edge of the Jungle";
@@ -268,7 +267,7 @@ rooms[20].planet = "PLANET: MHEN'GA";
 rooms[20].system = "SYSTEM: ARA ARA";
 rooms[20].eastExit = 21;
 rooms[20].westExit = 19;
-rooms[20].addFlag(OUTDOOR);
+rooms[20].addFlag(GLOBAL.OUTDOOR);
 
 //21. A Bend in the Fern-Shrouded Path
 rooms[21].roomName = "A Bend in the Fern-Shrouded Path";
@@ -277,7 +276,7 @@ rooms[21].planet = "PLANET: MHEN'GA";
 rooms[21].system = "SYSTEM: ARA ARA";
 rooms[21].northExit = 22;
 rooms[21].westExit = 20;
-rooms[21].addFlag(OUTDOOR);
+rooms[21].addFlag(GLOBAL.OUTDOOR);
 
 //22. A Fern-Shrouded Path
 rooms[22].roomName = "A Bend in the Fern-Shrouded Path";
@@ -285,7 +284,7 @@ rooms[22].description = "The air here is thick with pollen, nearly bringing a sn
 rooms[22].planet = "PLANET: MHEN'GA";
 rooms[22].system = "SYSTEM: ARA ARA";
 rooms[22].southExit = 21;
-rooms[22].addFlag(OUTDOOR);
+rooms[22].addFlag(GLOBAL.OUTDOOR);
 
 /*
 23. A Bend in the Fern-Shrouded Path

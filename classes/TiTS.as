@@ -25,7 +25,6 @@
 		// Smoosh all the included stuff into the TiTS class
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all (but only barely)
-		include "../includes/appearance.as";
 		include "../includes/celise.as";
 		include "../includes/combat.as";
 		include "../includes/creation.as";
@@ -34,52 +33,161 @@
 		include "../includes/game.as";
 		include "../includes/masturbation.as";
 		include "../includes/NPCTemplates.as";
+		include "../includes/input.as";
+		include "../includes/appearance.as";
+
 		// include "../includes/saves.as";
+
+		var pc:Creature;
+		var celise:Creature;
+		var rival:Creature; 
+		var flags:Dictionary;
+
+		var holdOutPistol:ItemSlotClass;
+		var rooms:Array;
+
+
+
+		var characters:Array;
+		var foes:Array;
+		var textBuffer:Array;
+		//Used for temp buffer stuff
+		var tempText:String;
+		var tempAuthor:String;
+		var currentPCNotes:String;
+		//Used for output()
+		var outputBuffer:String;
+		var outputBuffer2:String;
+		var authorBuffer:Array;
+		var textPage:int;
+		var days:int;
+		var hours:int;
+		var minutes:int;
+		var eventQueue:Array;
+		var eventBuffer:String;
+
+		//Toggles
+		var silly:Boolean;
+		var easy:Boolean;
+		var debug:Boolean;
+
+
+		//Lazy man state checking
+		var showingPCAppearance:Boolean;
+		var saveHere:Boolean;
+		var location:int;
+		var shipLocation:int;
+
+		//PERVINEER HERE!
+		var testBool:Boolean;
+		var testString:String;
+		var testInt:int;
+		//Pervineer here!
+		var parser:ScriptParser;
+
+
+		//temporary nonsense variables.
+		var e:MouseEvent;
+		var temp:int;
+
+		var input:TextField;
+		
+		var buttonDrawer:bottomButtonDrawer;
+		var buttons:Array;
+		var buttonData:Array;
+		var buttonPage:int;
+		var leftSideBar:leftBar;
+		var fadeOut:*;
+		var titsPurple:*;
+		var titsBlue:*;
+		var titsWhite:*;
+		var monsterHP:statBarBig;
+		var monsterLust:statBarBig;
+		var monsterEnergy:statBarBig;
+		var monsterLevel:statBarSmall;
+		var monsterRace:statBarSmall;
+		var monsterSex:statBarSmall;
+		var rightSidebar:rightBar;
+		var playerHP:statBarBig;
+		var playerLust:statBarBig;
+		var playerEnergy:statBarBig;
+		var buttonPagePrev:leftButton;
+		var buttonPageNext:rightButton;
+		var pagePrev:leftButton;
+		var pageNext:rightButton;
+		var playerLevel:statBarSmall;
+		var playerXP:statBarSmall;
+		var playerCredits:statBarSmall;
+		var playerPhysique:statBarSmall;
+		var playerReflexes:statBarSmall;
+		var playerAim:statBarSmall;
+		var playerIntelligence:statBarSmall;
+		var playerWillpower:statBarSmall;
+		var playerLibido:statBarSmall;
+		var format1:TextFormat;
+		var mainFont:Font3;
+		var mainTextField:TextField;
+		var mainTextField2:TextField;
+		var upScrollButton:arrow;
+		var downScrollButton:arrow;
+		var scrollBar:bar;
+		var scrollBG:bar;
+		var mainMenuButtons:Array;
+		var titleDisplay:titsLogo;
+		var warningBackground:warningBG;
+		var creditText:TextField;
+		var warningText:TextField;
+		var websiteDisplay:TextField;
+		var titleFormat:TextFormat;
+		var myGlow:GlowFilter;
 
 		public function CoC()
 		{
-
+			
 			// shove the variables declared in the included files into the TiTS constructor
 			// because they're set-up procedurally (BLEURRRGGGHHHH)
 			include "../includes/variables.as";
 			include "../includes/weaponVariables.as";
-			include "../includes/input.as";
-
 			include "../includes/rooms.as";
 
-			var buttonDrawer:bottomButtonDrawer = new bottomButtonDrawer;
+			setupInputEventHandlers();
+			initializeRooms();
+
+			buttonDrawer = new bottomButtonDrawer;
 			addChild(buttonDrawer);
 			buttonDrawer.x = 0;
 			buttonDrawer.y = 800;
 
 			//Build the buttons
-			var buttons:Array = new Array();
-			var buttonData:Array = new Array();
-			var buttonPage:int = 1;
+			buttons = new Array();
+			buttonData = new Array();
+			buttonPage = 1;
 			initializeButtons();
 
 			//Build left sidebar
-			var leftSideBar:leftBar = new leftBar;
+			leftSideBar = new leftBar;
 			leftSideBar.x = 0;
 			leftSideBar.y = 0;
 			addChild(leftSideBar);
 			//Fading out Perks and Level Up Buttons
-			var fadeOut = new ColorTransform();
+
+			fadeOut = new ColorTransform();
+			titsPurple = new ColorTransform();
+			titsBlue = new ColorTransform();
+			titsWhite = new ColorTransform();
+
 			fadeOut.color = 0x333E52;
-			var titsPurple = new ColorTransform();
 			titsPurple.color = 0x84449B;
-			var titsBlue = new ColorTransform();
 			titsBlue.color = 0x333E52;
-			var titsWhite = new ColorTransform();
 			titsWhite.color = 0xFFFFFF;
 
 			leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
 			leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
 
 
-			var monsterHP:statBarBig = new statBarBig();
-			var monsterLust:statBarBig = new statBarBig();
-			var monsterEnergy:statBarBig = new statBarBig();
+			monsterHP = new statBarBig();
+			monsterLust = new statBarBig();
+			monsterEnergy = new statBarBig();
 			addChild(monsterHP);
 			addChild(monsterLust);
 			addChild(monsterEnergy);
@@ -102,9 +210,9 @@
 			monsterHP.visible = false;
 			monsterLust.visible = false;
 			monsterEnergy.visible = false;
-			var monsterLevel:statBarSmall = new statBarSmall();
-			var monsterRace:statBarSmall = new statBarSmall();
-			var monsterSex:statBarSmall = new statBarSmall();
+			monsterLevel = new statBarSmall();
+			monsterRace = new statBarSmall();
+			monsterSex = new statBarSmall();
 			addChild(monsterLevel);
 			addChild(monsterRace);
 			addChild(monsterSex);
@@ -123,14 +231,14 @@
 			leftBarClear();
 
 			//Build the right sidebar
-			var rightSidebar:rightBar = new rightBar;
+			rightSidebar = new rightBar;
 			addChild(rightSidebar);
 			rightSidebar.nameText.text = "Penis";
 			rightSidebar.x = 1000;
 			rightSidebar.y = 0;
-			var playerHP:statBarBig = new statBarBig();
-			var playerLust:statBarBig = new statBarBig();
-			var playerEnergy:statBarBig = new statBarBig();
+			playerHP = new statBarBig();
+			playerLust = new statBarBig();
+			playerEnergy = new statBarBig();
 			addChild(playerHP);
 			addChild(playerLust);
 			addChild(playerEnergy);
@@ -150,29 +258,29 @@
 			playerLust.highBad = true;
 			playerEnergy.masks.labels.text = "ENERGY";
 			playerEnergy.values.text = "100";
-			var buttonPagePrev:leftButton = new leftButton;
+			buttonPagePrev = new leftButton;
 			addChild(buttonPagePrev);
 			buttonPagePrev.x = 1000;
 			buttonPagePrev.y = 750;
 			buttonPagePrev.alpha = .3;
-			var buttonPageNext:rightButton = new rightButton;
+			buttonPageNext = new rightButton;
 			addChild(buttonPageNext);
 			buttonPageNext.x = 1100;
 			buttonPageNext.y = 750;
 			buttonPageNext.alpha = .3;
-			var pagePrev:leftButton = new leftButton;
+			pagePrev = new leftButton;
 			addChild(pagePrev);
 			pagePrev.x = 010;
 			pagePrev.y = 750;
 			pagePrev.alpha = .3;
-			var pageNext:rightButton = new rightButton;
+			pageNext = new rightButton;
 			addChild(pageNext);
 			pageNext.x = 110;
 			pageNext.y = 750;
 			pageNext.alpha = .3;
-			var playerLevel:statBarSmall = new statBarSmall();
-			var playerXP:statBarSmall = new statBarSmall();
-			var playerCredits:statBarSmall = new statBarSmall();
+			playerLevel = new statBarSmall();
+			playerXP = new statBarSmall();
+			playerCredits = new statBarSmall();
 			playerLevel.x = 1010;
 			playerLevel.y = 415;
 			playerLevel.masks.labels.text = "LEVEL";
@@ -194,12 +302,12 @@
 			addChild(playerLevel);
 			addChild(playerXP);
 			addChild(playerCredits);
-			var playerPhysique:statBarSmall = new statBarSmall();
-			var playerReflexes:statBarSmall = new statBarSmall();
-			var playerAim:statBarSmall = new statBarSmall();
-			var playerIntelligence:statBarSmall = new statBarSmall();
-			var playerWillpower:statBarSmall = new statBarSmall();
-			var playerLibido:statBarSmall = new statBarSmall();
+			playerPhysique = new statBarSmall();
+			playerReflexes = new statBarSmall();
+			playerAim = new statBarSmall();
+			playerIntelligence = new statBarSmall();
+			playerWillpower = new statBarSmall();
+			playerLibido = new statBarSmall();
 			addChild(playerPhysique);
 			addChild(playerReflexes);
 			addChild(playerAim);
@@ -228,17 +336,17 @@
 
 
 			//Set up the main text field
-			var format1:TextFormat = new TextFormat();
+			format1 = new TextFormat();
 			format1.size = 18;
 			format1.color = 0xFFFFFF;
 			format1.tabStops = [35];
-			var mainFont:Font3 = new Font3;
+			mainFont = new Font3;
 			format1.font = mainFont.fontName;
-			var mainTextField:TextField = new TextField();
+			mainTextField = new TextField();
 			prepTextField(mainTextField);
 			mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
 			//Set up backup text field
-			var mainTextField2:TextField = new TextField();
+			mainTextField2 = new TextField();
 			prepTextField(mainTextField2);
 			function prepTextField(arg:TextField):void {
 				arg.border = false;
@@ -258,7 +366,7 @@
 			}
 
 			//Set up standard input box!
-			var input:TextField = new TextField();
+			input = new TextField();
 			input.width = 250;
 			input.height = 25;
 			input.backgroundColor = 0xFFFFFF;
@@ -271,18 +379,18 @@
 
 
 			//SCROLLBAR!
-			var upScrollButton:arrow = new arrow();
+			upScrollButton = new arrow();
 			upScrollButton.x = mainTextField.x + mainTextField.width;
 			upScrollButton.y = mainTextField.y
-			var downScrollButton:arrow = new arrow();
+			downScrollButton = new arrow();
 			downScrollButton.x = mainTextField.x + mainTextField.width + downScrollButton.width;
 			downScrollButton.y = mainTextField.y + mainTextField.height;
 			downScrollButton.rotation = 180;
-			var scrollBar:bar = new bar();
+			scrollBar = new bar();
 			scrollBar.x = mainTextField.x + mainTextField.width;
 			scrollBar.y = mainTextField.y + upScrollButton.height;
 			scrollBar.height = 50;
-			var scrollBG:bar = new bar();
+			scrollBG = new bar();
 			scrollBG.x = mainTextField.x + mainTextField.width;
 			scrollBG.y = mainTextField.y + upScrollButton.height;
 			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
@@ -300,14 +408,14 @@
 			addButton(16,"2Horse4Me",horsecock);
 
 			//4. MAIN MENU STUFF
-			var mainMenuButtons:Array = new Array();
-			var titleDisplay:titsLogo = new titsLogo();
-			var warningBackground:warningBG = new warningBG();
-			var creditText:TextField = new TextField();
-			var warningText:TextField = new TextField();
-			var websiteDisplay:TextField = new TextField();
-			var titleFormat:TextFormat = new TextFormat();
-			var myGlow:GlowFilter = new GlowFilter();
+			mainMenuButtons = new Array();
+			titleDisplay = new titsLogo();
+			warningBackground = new warningBG();
+			creditText = new TextField();
+			warningText = new TextField();
+			websiteDisplay = new TextField();
+			titleFormat = new TextFormat();
+			myGlow = new GlowFilter();
 			myGlow.color = 0x84449B;
 			myGlow.alpha = 1;
 			myGlow.blurX = 10;

@@ -8,18 +8,21 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.ui.Keyboard;
 
-upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
-scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
-this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
-stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
-leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
-leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
-leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataRouter);
+function setupInputEventHandlers():void
+{
+	upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
+	downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
+	this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
+	scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
+	this.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+	scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
+	stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
+	leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
+	leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
+	leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataRouter);
 
-updateScroll(e);
+	updateScroll(e);
+}
 
 //1. BUTTON STUFF
 function clearMenu():void {

@@ -47,81 +47,76 @@ scrollbar
 */
 
 //temporary nonsense variables.
-var e:MouseEvent;
-var temp:int = 0;
+temp = 0;
 
 
-import Creature;
-import ItemSlotClass;
+import classes.Creature;
+import classes.ItemSlotClass;
 import flash.net.registerClassAlias;
-import ScriptParser;
-import shipClass;
+import classes.ScriptParser;
+import classes.ShipClass;
 //import purpleButton;
 //import blueButton;
 registerClassAlias("Creature", Creature);
 registerClassAlias("ItemSlotClass", ItemSlotClass);
-registerClassAlias("shipClass", shipClass);
+registerClassAlias("shipClass", ShipClass);
 registerClassAlias("CockClass", CockClass);
 registerClassAlias("VaginaClass", VaginaClass);
 registerClassAlias("BreastRowClass",BreastRowClass);
 registerClassAlias("ItemSlotClass",ItemSlotClass);
-registerClassAlias("roomClass",roomClass);
+registerClassAlias("roomClass",RoomClass);
 registerClassAlias("StorageClass",StorageClass);
 
 
-var characters:Array = new Array();
-var foes:Array = new Array();
-var textBuffer:Array = new Array("","","","");
+characters = new Array();
+foes = new Array();
+textBuffer = new Array("","","","");
 //Used for temp buffer stuff
-var tempText:String = "";
-var tempAuthor:String = "";
-var currentPCNotes:String = undefined;
+tempText = "";
+tempAuthor = "";
+currentPCNotes = undefined;
 //Used for output()
-var outputBuffer:String = "";
-var outputBuffer2:String = "";
-var authorBuffer:Array = new Array("","","","");
-var textPage:int = 4;
-var days:int = 0;
-var hours:int = 0;
-var minutes:int = 0;
-var eventQueue:Array = new Array();
-var eventBuffer:String = "";
+outputBuffer = "";
+outputBuffer2 = "";
+authorBuffer = new Array("","","","");
+textPage = 4;
+days = 0;
+hours = 0;
+minutes = 0;
+eventQueue = new Array();
+eventBuffer = "";
 
 //Toggles
-var silly:Boolean = false;
-var easy:Boolean = false;
-var debug:Boolean = false;
+silly = false;
+easy = false;
+debug = false;
 
 
 //Lazy man state checking
-var showingPCAppearance:Boolean = false;
-var saveHere:Boolean = false;
-var location:int = 0;
-var shipLocation:int = 0;
+showingPCAppearance = false;
+saveHere = false;
+location = 0;
+shipLocation = 0;
 
-//PERVINEER HERE!
-var testBool:Boolean;
-var testString:String;
-var testInt:int;
 //Pervineer here!
-var parser:ScriptParser = new ScriptParser(this);
+parser = new ScriptParser(this);
 
 setupCharacters();
 
 function setupCharacters():void {
 	for(var count:int = 0; count < 100; count++) {
-		characters[count] = new creature();
+		characters[count] = new Creature();
 		trace("Character #" + count + " initialized.");
 	}
-	foes[0] = new creature();
+	foes[0] = new Creature();
 	trace("One foe slot initialized.");
 }
 
 //Lazy man shortcuts! Need reset after reinitialization of data.
-var pc:Creature = characters[0];
-var celise:Creature = characters[CELISE];
-var rival:Creature = characters[RIVAL];
-var flags:Dictionary = new Dictionary();
+pc = characters[0];
+celise = characters[GLOBAL.CELISE];
+rival = characters[GLOBAL.RIVAL];
+flags = new Dictionary();
 initializeFlags();
 
 
@@ -137,6 +132,6 @@ function initializeFlags():void
 
 function setCheatPointers():void {
 	pc = characters[0];
-	celise = characters[CELISE];
-	rival = characters[RIVAL];
+	celise = characters[GLOBAL.CELISE];
+	rival = characters[GLOBAL.RIVAL];
 }
