@@ -14,10 +14,20 @@
 	import flash.net.URLRequest;
 	import flash.text.Font;
 	import flash.text.TextField;
+	import flash.text.TextFieldType;
+	import flash.display.MovieClip;
+	import flash.text.Font;
+	import flash.text.TextField;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
+	import flash.text.AntiAliasType;
 	import flash.text.TextFormat;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
+
+	import classes.StatBarSmall;
+	import classes.StatBarBig;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -43,10 +53,23 @@
 		var rival:Creature; 
 		var flags:Dictionary;
 
-		var holdOutPistol:ItemSlotClass;
+		// this is a HORRIBLE, HORRIBLE way to do this. These should all be sub-classes of ItemSlotClass, and you just instantiate them by calling the constructor
+		// right now, they're all floating about in the TiTS 
+		var holdOutPistol:ItemSlotClass
+		var eagleClassHandgun:ItemSlotClass
+		var scopedPistol:ItemSlotClass
+		var laserPistol:ItemSlotClass
+		var knife:ItemSlotClass
+		var dressClothes:ItemSlotClass
+		var spacePanties:ItemSlotClass
+		var spaceBriefs:ItemSlotClass
+		var spaceBra:ItemSlotClass
+		var undershirt:ItemSlotClass
+
+
+		var version:String;
+
 		var rooms:Array;
-
-
 
 		var characters:Array;
 		var foes:Array;
@@ -101,31 +124,36 @@
 		var titsPurple:*;
 		var titsBlue:*;
 		var titsWhite:*;
-		var monsterHP:statBarBig;
-		var monsterLust:statBarBig;
-		var monsterEnergy:statBarBig;
-		var monsterLevel:statBarSmall;
-		var monsterRace:statBarSmall;
-		var monsterSex:statBarSmall;
-		var rightSidebar:rightBar;
-		var playerHP:statBarBig;
-		var playerLust:statBarBig;
-		var playerEnergy:statBarBig;
+		
 		var buttonPagePrev:leftButton;
 		var buttonPageNext:rightButton;
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
-		var playerLevel:statBarSmall;
-		var playerXP:statBarSmall;
-		var playerCredits:statBarSmall;
-		var playerPhysique:statBarSmall;
-		var playerReflexes:statBarSmall;
-		var playerAim:statBarSmall;
-		var playerIntelligence:statBarSmall;
-		var playerWillpower:statBarSmall;
-		var playerLibido:statBarSmall;
+		var rightSidebar:rightBar;
+
+		var monsterHP:StatBarBig;
+		var monsterLust:StatBarBig;
+		var monsterEnergy:StatBarBig;
+		var monsterLevel:StatBarSmall;
+		var monsterRace:StatBarSmall;
+		var monsterSex:StatBarSmall;
+		var playerHP:StatBarBig;
+		var playerLust:StatBarBig;
+		var playerEnergy:StatBarBig;
+
+
+		var playerLevel:StatBarSmall;
+		var playerXP:StatBarSmall;
+		var playerCredits:StatBarSmall;
+		var playerPhysique:StatBarSmall;
+		var playerReflexes:StatBarSmall;
+		var playerAim:StatBarSmall;
+		var playerIntelligence:StatBarSmall;
+		var playerWillpower:StatBarSmall;
+		var playerLibido:StatBarSmall;
+
 		var format1:TextFormat;
-		var mainFont:Font3;
+		// var mainFont:Font3;
 		var mainTextField:TextField;
 		var mainTextField2:TextField;
 		var upScrollButton:arrow;
@@ -141,17 +169,18 @@
 		var titleFormat:TextFormat;
 		var myGlow:GlowFilter;
 
-		public function CoC()
+		public function TiTS()
 		{
-			
+			trace("TiTS Constructor")
+
 			// shove the variables declared in the included files into the TiTS constructor
 			// because they're set-up procedurally (BLEURRRGGGHHHH)
 			include "../includes/variables.as";
 			include "../includes/weaponVariables.as";
 			include "../includes/rooms.as";
 
-			setupInputEventHandlers();
-			initializeRooms();
+			setupCharacters();
+
 
 			buttonDrawer = new bottomButtonDrawer;
 			addChild(buttonDrawer);
@@ -185,49 +214,59 @@
 			leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
 
 
-			monsterHP = new statBarBig();
-			monsterLust = new statBarBig();
-			monsterEnergy = new statBarBig();
+			monsterHP = new StatBarBig();
 			addChild(monsterHP);
-			addChild(monsterLust);
-			addChild(monsterEnergy);
 			monsterHP.x = 10;
 			monsterHP.y = 237;
-			monsterLust.x = 10;
-			monsterLust.y = 278;
-			monsterEnergy.x = 10;
-			monsterEnergy.y = 319;
 			monsterHP.background.x = -150;
 			monsterHP.bar.width = 30;
 			monsterHP.values.text = "10";
+			monsterHP.visible = false;
+
+			monsterLust = new StatBarBig();
+			addChild(monsterLust);
+			monsterLust.x = 10;
+			monsterLust.y = 278;
 			monsterLust.masks.labels.text = "LUST";
 			monsterLust.values.text = "25";
 			monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
 			monsterLust.bar.width = (25 / 100) * 180;
 			monsterLust.highBad = true;
+			monsterLust.visible = false;
+
+			monsterEnergy = new StatBarBig();
+			addChild(monsterEnergy);
+			monsterEnergy.x = 10;
+			monsterEnergy.y = 319;
 			monsterEnergy.masks.labels.text = "ENERGY";
 			monsterEnergy.values.text = "100";
-			monsterHP.visible = false;
-			monsterLust.visible = false;
 			monsterEnergy.visible = false;
-			monsterLevel = new statBarSmall();
-			monsterRace = new statBarSmall();
-			monsterSex = new statBarSmall();
+
+
+			monsterLevel = new StatBarSmall();
 			addChild(monsterLevel);
-			addChild(monsterRace);
-			addChild(monsterSex);
 			monsterLevel.x = 10;
 			monsterLevel.y = 363;
+			setupStatBar(monsterLevel,"LEVEL",5);
+			monsterLevel.visible = false;
+
+
+			monsterRace = new StatBarSmall();
+			addChild(monsterRace);
 			monsterRace.x = 10;
 			monsterRace.y = 392;
+			setupStatBar(monsterRace,"RACE","Galotian");
+			monsterRace.visible = false;
+
+
+			monsterSex = new StatBarSmall();
+			addChild(monsterSex);
 			monsterSex.x = 10;
 			monsterSex.y = 421;
-			setupStatBar(monsterLevel,"LEVEL",5);
-			setupStatBar(monsterRace,"RACE","Galotian");
 			setupStatBar(monsterSex,"SEX","Unknown");
-			monsterLevel.visible = false;
 			monsterSex.visible = false;
-			monsterRace.visible = false;
+
+
 			leftBarClear();
 
 			//Build the right sidebar
@@ -236,9 +275,10 @@
 			rightSidebar.nameText.text = "Penis";
 			rightSidebar.x = 1000;
 			rightSidebar.y = 0;
-			playerHP = new statBarBig();
-			playerLust = new statBarBig();
-			playerEnergy = new statBarBig();
+			trace("Calling statBar constructors");
+			playerHP = new StatBarBig();
+			playerLust = new StatBarBig();
+			playerEnergy = new StatBarBig();
 			addChild(playerHP);
 			addChild(playerLust);
 			addChild(playerEnergy);
@@ -278,9 +318,9 @@
 			pageNext.x = 110;
 			pageNext.y = 750;
 			pageNext.alpha = .3;
-			playerLevel = new statBarSmall();
-			playerXP = new statBarSmall();
-			playerCredits = new statBarSmall();
+			playerLevel = new StatBarSmall();
+			playerXP = new StatBarSmall();
+			playerCredits = new StatBarSmall();
 			playerLevel.x = 1010;
 			playerLevel.y = 415;
 			playerLevel.masks.labels.text = "LEVEL";
@@ -302,12 +342,12 @@
 			addChild(playerLevel);
 			addChild(playerXP);
 			addChild(playerCredits);
-			playerPhysique = new statBarSmall();
-			playerReflexes = new statBarSmall();
-			playerAim = new statBarSmall();
-			playerIntelligence = new statBarSmall();
-			playerWillpower = new statBarSmall();
-			playerLibido = new statBarSmall();
+			playerPhysique = new StatBarSmall();
+			playerReflexes = new StatBarSmall();
+			playerAim = new StatBarSmall();
+			playerIntelligence = new StatBarSmall();
+			playerWillpower = new StatBarSmall();
+			playerLibido = new StatBarSmall();
 			addChild(playerPhysique);
 			addChild(playerReflexes);
 			addChild(playerAim);
@@ -326,12 +366,14 @@
 			playerWillpower.y = 330;
 			playerLibido.x = 1010;
 			playerLibido.y = 359;
+
 			setupStatBar(playerPhysique,"PHYSIQUE",50,100);
 			setupStatBar(playerReflexes,"REFLEXES",30,100);
 			setupStatBar(playerAim,"AIM",30,100);
 			setupStatBar(playerIntelligence,"INTELLIGENCE",90,100);
 			setupStatBar(playerWillpower,"WILLPOWER",5,100);
 			setupStatBar(playerLibido,"LIBIDO",97,100);
+
 			hidePCStats();
 
 
@@ -340,8 +382,8 @@
 			format1.size = 18;
 			format1.color = 0xFFFFFF;
 			format1.tabStops = [35];
-			mainFont = new Font3;
-			format1.font = mainFont.fontName;
+			// mainFont = new Font3;
+			// format1.font = mainFont.fontName;
 			mainTextField = new TextField();
 			prepTextField(mainTextField);
 			mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
@@ -458,8 +500,9 @@
 			titleFormat.size = 18;
 			titleFormat.color = 0xFFFFFF;
 			titleFormat.tabStops = [35];
-			titleFormat.font = mainFont.fontName;
+			// titleFormat.font = mainFont.fontName;
 			titleFormat.align = TextFormatAlign.CENTER;
+
 			creditText.setTextFormat(titleFormat);
 			creditText.defaultTextFormat = titleFormat;
 			warningText.setTextFormat(titleFormat);
@@ -485,7 +528,10 @@
 			websiteDisplay.visible = false;
 			warningBackground.visible = false;
 
+			setupInputEventHandlers();
+
 			initializeMainMenu();
+			trace("Triggering frame script");
 			this.addFrameScript( 0, this.mainMenu );
 			//mainMenu();
 		}

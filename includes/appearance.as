@@ -215,7 +215,7 @@ function appearance(target:Creature):void {
 			if(target.wingType == GLOBAL.DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders.  With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			if(target.wingType == GLOBAL.SHARK) output2("a large shark-like fin has sprouted between your shoulder blades.  With it you have far more control over swimming underwater.");
 			if(target.wingType == GLOBAL.AVIAN) output2("a pair of large, feathery wings sprout from your back.  Though you usually keep the " + target.hairColor + "-colored wings folded close, they can unfurl to allow you to soar as gracefully as a bird.");
-			if(target.wingType == SMALLGLOBAL.DRACONIC) output2("small, vestigial wings sprout from your shoulders.  They might look like bat's wings, but the membranes are covered in fine, delicate scales.");
+			if(target.wingType == GLOBAL.SMALLDRACONIC) output2("small, vestigial wings sprout from your shoulders.  They might look like bat's wings, but the membranes are covered in fine, delicate scales.");
 			else if(target.wingType == GLOBAL.DRACONIC) output2("magnificent wings sprout from your shoulders.  When unfurled they stretch further than your arm span, and a single beat of them is all you need to set out toward the sky.  They look a bit like bat's wings, but the membranes are covered in fine, delicate scales and a wicked talon juts from the end of each bone.");
 			else if(target.wingType == GLOBAL.DRAGONFLY) output2("giant dragonfly wings hang from your shoulders.  At a whim, you could twist them into a whirring rhythm fast enough to lift you off the ground and allow you to fly.");
 		}

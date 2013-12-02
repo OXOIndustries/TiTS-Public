@@ -7,11 +7,13 @@
 	import fl.motion.Color;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
+	
 	public class StatBarBig extends MovieClip
 	{
 		//constructor
 		public function StatBarBig()
 		{
+			trace("Setting up StatBarBig");
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
 		//data

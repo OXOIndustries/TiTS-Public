@@ -8,6 +8,10 @@ function initializeRooms():void {
 	}
 }
 
+
+// BLARRRGH HORRIBLE
+initializeRooms();
+
 //100. Hotel Room
 rooms[100].roomName = "Hotel Room";
 rooms[100].description = "This small, station-bound room is attached to Anon's Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father's fortune. Luckily, the galaxy is vast. Your cousin won't be claiming if anything for at least a few months if the scale of your father's challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";

@@ -1,4 +1,4 @@
-﻿var version:String = "0.01c";
+﻿version = "0.01c";
 //===****** CHEAT NOTES ******===//
 //var my_color:Color = new Color(levelUpButton.plusses);
 //my_color.setRGB(0xFF0000); // this will turn mcTarget completly to red
@@ -101,16 +101,7 @@ shipLocation = 0;
 //Pervineer here!
 parser = new ScriptParser(this);
 
-setupCharacters();
 
-function setupCharacters():void {
-	for(var count:int = 0; count < 100; count++) {
-		characters[count] = new Creature();
-		trace("Character #" + count + " initialized.");
-	}
-	foes[0] = new Creature();
-	trace("One foe slot initialized.");
-}
 
 //Lazy man shortcuts! Need reset after reinitialization of data.
 pc = characters[0];
@@ -118,20 +109,3 @@ celise = characters[GLOBAL.CELISE];
 rival = characters[GLOBAL.RIVAL];
 flags = new Dictionary();
 initializeFlags();
-
-
-function initializeFlags():void 
-{
-	flags = new Dictionary();
-	/*
-	for (var x:int = 0; x < 10000; x++) {
-		flags[x] = undefined;
-	}
-	*/
-}
-
-function setCheatPointers():void {
-	pc = characters[0];
-	celise = characters[GLOBAL.CELISE];
-	rival = characters[GLOBAL.RIVAL];
-}

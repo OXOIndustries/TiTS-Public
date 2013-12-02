@@ -163,6 +163,8 @@ function loadGame(slot:String):void {
 		currentPCNotes = saveFile.data.notes;
 		//Clear character array and load the defaults!
 		characters = new Array();
+
+		// you don't need to clear this if it's overwritten again in a bit, you know.
 		this.setupCharacters();
 		this.initializeNPCs();
 		
@@ -217,4 +219,35 @@ function postLoadToZeGame():void {
 	leftSideBar.dataButton.filters = [];
 	hideMenus();
 	mainGameMenu();
+}
+
+
+
+// This is SO MUCH the wrong approach to setting up this sort of thing I can't even express myself properly.
+function setupCharacters():void {
+	for(var count:int = 0; count < 100; count++) {
+		characters[count] = new Creature();
+		//trace("Character #" + count + " initialized.");
+	}
+	foes[0] = new Creature();
+	trace("One foe slot initialized.");
+
+	trace("Setting up the PC")
+	this.pc = new Creature()
+}
+
+function initializeFlags():void 
+{
+	flags = new Dictionary();
+	/*
+	for (var x:int = 0; x < 10000; x++) {
+		flags[x] = undefined;
+	}
+	*/
+}
+
+function setCheatPointers():void {
+	pc = characters[0];
+	celise = characters[GLOBAL.CELISE];
+	rival = characters[GLOBAL.RIVAL];
 }

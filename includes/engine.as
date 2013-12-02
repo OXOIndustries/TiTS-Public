@@ -1,6 +1,9 @@
 ﻿import flash.events.MouseEvent;
 import flash.ui.Mouse;
 
+import classes.StatBarSmall;
+import classes.StatBarBig;
+	
 //Table of Contents
 //0. PARSER
 //1: TEXT FUNCTIONS
@@ -182,22 +185,24 @@ function hideNPCStats():void {
 	monsterRace.visible = false;
 	monsterSex.visible = false;
 }
-function deglow():void {
-	playerHP.clearGlo();
-	playerLust.clearGlo();
-	playerEnergy.clearGlo();
-	playerXP.clearGlo();
-	playerLevel.clearGlo();
-	playerCredits.clearGlo();
-	playerPhysique.clearGlo();
-	playerReflexes.clearGlo();
-	playerAim.clearGlo();
-	playerIntelligence.clearGlo();
-	playerWillpower.clearGlo();
-	playerLibido.clearGlo();
-	monsterHP.clearGlo();
-	monsterLust.clearGlo();
-	monsterEnergy.clearGlo();
+function deglow():void 
+{
+	trace("playerHP", playerHP);
+	this.playerHP.clearGlo();
+	this.playerLust.clearGlo();
+	this.playerEnergy.clearGlo();
+	this.playerXP.clearGlo();
+	this.playerLevel.clearGlo();
+	this.playerCredits.clearGlo();
+	this.playerPhysique.clearGlo();
+	this.playerReflexes.clearGlo();
+	this.playerAim.clearGlo();
+	this.playerIntelligence.clearGlo();
+	this.playerWillpower.clearGlo();
+	this.playerLibido.clearGlo();
+	this.monsterHP.clearGlo();
+	this.monsterLust.clearGlo();
+	this.monsterEnergy.clearGlo();
 }	
 function updatePCStats():void {
 	showPCStats();

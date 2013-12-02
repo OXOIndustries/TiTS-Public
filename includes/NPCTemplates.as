@@ -1,5 +1,5 @@
 ﻿function initializeNPCs():void {
-	characters[GLOBAL.CELISE] = new creature();
+	characters[GLOBAL.CELISE] = new Creature();
 	celise = characters[GLOBAL.CELISE];
 	celise.short = "Celise";
 	celise.originalRace = "galotian";
@@ -142,7 +142,7 @@
 	celise.ass.wetness = 5;
 	
 	//Rival!
-	characters[GLOBAL.RIVAL] = new creature();
+	characters[GLOBAL.RIVAL] = new Creature();
 	rival = characters[GLOBAL.RIVAL];
 	rival.short = "Jack/Jill";
 	rival.originalRace = "human";

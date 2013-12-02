@@ -201,5 +201,5 @@ function processTime(arg:int):void {
 		}
 		arg--;
 	}
-	//updatePCStats();
+	updatePCStats();
 }

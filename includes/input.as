@@ -686,7 +686,9 @@ function hideMenus():void {
 	hideData();
 }
 
-function mainMenu():void {
+function mainMenu():void 
+{
+	trace("Starting!");
 	if(leftSideBar.currentFrame >= 11) hideMenus();
 	
 	//Hide all current buttons
@@ -703,7 +705,7 @@ function mainMenu():void {
 	
 	//Texts
 	warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
-	creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + version + "</b>";
+	creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
 	
 	addMainMenuButton(0,"New Game",creationRouter);
 	addMainMenuButton(1,"Data",dataRouter);
@@ -875,8 +877,8 @@ function toggleEasy():void {
 	}
 }
 
-function initializeMainMenu():void {
-	return;
+function initializeMainMenu():void 
+{
 	//Initialize main menu buttons
 	var ex:int = 210;
 	var why:int = 518;
@@ -901,4 +903,5 @@ function initializeMainMenu():void {
 		mainMenuButtons[x].mouseChildren = false;
 		mainMenuButtons[x].visible = false;
 	}
+	trace("Setting up main menu");
 }
