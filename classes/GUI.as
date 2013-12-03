@@ -401,6 +401,7 @@
 			//Since downscroll starts clickable...
 			downScrollButton.buttonMode = true;
 
+			clearMenu();
 			/*
 			clearMenu();
 			addButton(0,"Horsecock",horsecock);
@@ -494,7 +495,9 @@
 		}
 
 		//Build the main 15 buttons!
-		public function initializeButtons():void {
+		public function initializeButtons():void 
+		{
+			trace("Initializing buttons")
 			var temp = 0;
 			//X and Y values for our buttons.
 			var ex:int = 52;
@@ -1081,6 +1084,7 @@
 
 		public function initializeMainMenu():void 
 		{
+			trace("Initializing main menu")
 			//Initialize main menu buttons
 			var ex:int = 210;
 			var why:int = 518;
@@ -1105,7 +1109,6 @@
 				mainMenuButtons[x].mouseChildren = false;
 				mainMenuButtons[x].visible = false;
 			}
-			trace("Setting up main menu");
 		}
 
 

@@ -121,6 +121,8 @@
 			this.userInterface.addButton(16,"2Horse4Me",horsecock);
 
 			setupInputEventHandlers()
+
+			//this.userInterface.initializeMainMenu();
 			
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
@@ -460,13 +462,15 @@
 			this.userInterface.hideNormalDisplayShit();
 			
 			//Show menu shits
+			trace("Making everything visible:")
 			this.userInterface.creditText.visible = true;
 			this.userInterface.warningText.visible = true;
 			this.userInterface.titleDisplay.visible = true;
 			this.userInterface.warningBackground.visible = true;
 			this.userInterface.websiteDisplay.visible = true;
 			//if(leftSideBar.mainMenuButton.alpha == 1) 
-			if(this.userInterface.leftSideBar.currentFrame >= 11) this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
+			if(this.userInterface.leftSideBar.currentFrame >= 11) 
+				this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
 			
 			//Texts
 			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
