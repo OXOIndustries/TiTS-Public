@@ -70,21 +70,28 @@ registerClassAlias("StorageClass",StorageClass);
 
 characters = new Array();
 foes = new Array();
-textBuffer = new Array("","","","");
+
+
+/*
+this.userInterface.textBuffer = new Array("","","","");
 //Used for temp buffer stuff
-tempText = "";
-tempAuthor = "";
-currentPCNotes = undefined;
+this.userInterface.tempText = "";
+this.userInterface.tempAuthor = "";
+this.userInterface.currentPCNotes = undefined;
 //Used for output()
-outputBuffer = "";
-outputBuffer2 = "";
-authorBuffer = new Array("","","","");
-textPage = 4;
-days = 0;
-hours = 0;
-minutes = 0;
+this.userInterface.outputBuffer = "";
+this.userInterface.outputBuffer2 = "";
+this.userInterface.authorBuffer = new Array("","","","");
+this.userInterface.textPage = 4;
+this.userInterface.days = 0;
+this.userInterface.hours = 0;
+this.userInterface.minutes = 0;
 eventQueue = new Array();
+*/
+
 eventBuffer = "";
+
+
 
 //Toggles
 silly = false;
@@ -93,7 +100,6 @@ debug = false;
 
 
 //Lazy man state checking
-showingPCAppearance = false;
 saveHere = false;
 location = 0;
 shipLocation = 0;

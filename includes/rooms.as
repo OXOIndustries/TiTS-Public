@@ -75,10 +75,10 @@ rooms[106].runOnEnter = hangarBonus;
 
 function hangarBonus():Boolean {
 	if(location == 104) {
-		addButton(0,"ToHangar",move,106);
+		this.userInterface.addButton(0,"ToHangar",move,106);
 	}
 	else if(location == 106) {
-		addButton(0,"ToMerchant",move,104);
+		this.userInterface.addButton(0,"ToMerchant",move,104);
 	}
 	return false;
 }

@@ -8,6 +8,8 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.ui.Keyboard;
 
+/*
+
 function setupInputEventHandlers():void
 {
 	upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
@@ -21,7 +23,7 @@ function setupInputEventHandlers():void
 	leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
 	leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataRouter);
 
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 
 //1. BUTTON STUFF
@@ -333,7 +335,7 @@ function keyPress(evt:KeyboardEvent):void {
 				keyTemp = mainTextField.bottomScrollV - mainTextField.scrollV + 1;
 				mainTextField.scrollV += keyTemp;
 			}
-			wheelUpdater(e);
+			wheelUpdater(this.userInterface.tempEvent);
 			break;
 		//PgUp
 		case 33:
@@ -343,17 +345,17 @@ function keyPress(evt:KeyboardEvent):void {
 				keyTemp = mainTextField.bottomScrollV - mainTextField.scrollV + 1;
 				mainTextField.scrollV -= keyTemp;
 			}
-			wheelUpdater(e);
+			wheelUpdater(this.userInterface.tempEvent);
 			break;
 		//Home
 		case 36:
 			mainTextField.scrollV = 1;
-			updateScroll(e);
+			updateScroll(this.userInterface.tempEvent);
 			break;
 		//End
 		case 35:
 			mainTextField.scrollV = mainTextField.maxScrollV;
-			updateScroll(e);
+			updateScroll(this.userInterface.tempEvent);
 			break;
 		//New page (6)
 		case 54:
@@ -453,7 +455,7 @@ function scrollPage(evt:MouseEvent):void {
 	else {
 		mainTextField.scrollV -= mainTextField.bottomScrollV - mainTextField.scrollV;
 	}
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 
 //Puts a listener on the next frame that removes itself and updates to fix the laggy bar updates
@@ -462,19 +464,19 @@ function wheelUpdater(evt:MouseEvent):void {
 }
 function wheelUpdater2(evt:Event):void {
 	this.removeEventListener(Event.ENTER_FRAME,wheelUpdater2);
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 
 //CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
 //Button the up arrow!
 function upScrollText():void {
 	mainTextField.scrollV--;
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 //Button the down arrow!
 function downScrollText():void {
 	mainTextField.scrollV++;
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 function clickScrollUp(evt:MouseEvent):void {
 	upScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollUp);
@@ -486,11 +488,11 @@ function clickScrollDown(evt:MouseEvent):void {
 }
 function continueScrollUp(evt:Event):void {
 	mainTextField.scrollV--;
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 function continueScrollDown(evt:Event):void {
 	mainTextField.scrollV++;
-	updateScroll(e);
+	updateScroll(this.userInterface.tempEvent);
 }
 function clearScrollDown(evt:MouseEvent):void {
 	downScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollDown);
@@ -695,11 +697,11 @@ function mainMenu():void
 	hideNormalDisplayShit();
 	
 	//Show menu shits
-	creditText.visible = true;
-	warningText.visible = true;2
-	titleDisplay.visible = true;
-	warningBackground.visible = true;
-	websiteDisplay.visible = true;
+	this.userInterface.creditText.visible = true;
+	this.userInterface.warningText.visible = true;2
+	this.userInterface.titleDisplay.visible = true;
+	this.userInterface.warningBackground.visible = true;
+	this.userInterface.websiteDisplay.visible = true;
 	//if(leftSideBar.mainMenuButton.alpha == 1) 
 	if(leftSideBar.currentFrame >= 11) leftSideBar.mainMenuButton.filters = [myGlow];
 	
@@ -905,3 +907,4 @@ function initializeMainMenu():void
 	}
 	trace("Setting up main menu");
 }
+*/

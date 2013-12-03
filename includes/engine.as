@@ -32,38 +32,46 @@ function outputParser(script:String, section:String=""):void {
 	output(parser.ParseScriptSection(script, section));
 }
 
+
+/*
+MOST of this should be broken up into simple shim-functions that call the real, relevant function in userInterface:GUI
+I'm breaking it out into a separate class, and just manipulating those class variables for the moment
+once that's working, I can start piecemeal moving things to functions in GUI.
+
+*/
+
 //1: TEXT FUNCTIONS
 function output(words:String):void {
-	outputBuffer += parser.ParseScriptSection(words,"");
-	mainTextField.htmlText = outputBuffer;
-	updateScroll(e);
+	this.userInterface.outputBuffer += parser.ParseScriptSection(words,"");
+	this.userInterface.mainTextField.htmlText = this.userInterface.outputBuffer;
+	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
 function clearOutput():void {
-	pushToBuffer();
-	mainTextField.visible = true;
-	mainTextField2.visible = false;
-	mainTextField.htmlText = "\n";
-	outputBuffer = "\n";
-	updateScroll(e);
-	leftSideBar.sceneBy.text = "Probably Fenoxo";
-	textPage = 4;
+	this.userInterface.pushToBuffer();
+	this.userInterface.mainTextField.visible = true;
+	this.userInterface.mainTextField2.visible = false;
+	this.userInterface.mainTextField.htmlText = "\n";
+	this.userInterface.outputBuffer = "\n";
+	this.userInterface.updateScroll(this.userInterface.tempEvent);
+	this.userInterface.leftSideBar.sceneBy.text = "Probably Fenoxo";
+	this.userInterface.textPage = 4;
 	bufferButtonUpdater();
 	//Menu buttons update!
-	menuButtonsOn();
-	deglow();
+	this.userInterface.menuButtonsOn();
+	this.userInterface.deglow();
 }
 //Used for main menu & data settings
 function clearOutput2():void {
-	mainTextField.visible = false;
-	mainTextField2.visible = true;
-	outputBuffer2 = "\n";
-	updateScroll(e);
+	this.userInterface.mainTextField.visible = false;
+	this.userInterface.mainTextField2.visible = true;
+	this.userInterface.outputBuffer2 = "\n";
+	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 function output2(words:String):void {
-	outputBuffer2 += parser.ParseScriptSection(words,"");
-	mainTextField2.htmlText = outputBuffer2;
-	updateScroll(e);
+	this.userInterface.outputBuffer2 += parser.ParseScriptSection(words,"");
+	this.userInterface.mainTextField2.htmlText = this.userInterface.outputBuffer2;
+	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
 function num2Text(number:Number):String {
@@ -89,26 +97,12 @@ function num2Text2(number:int):String {
 	return(returnVar);
 }
 function author(arg:String):void {
-	leftSideBar.sceneBy.visible = true;
-	leftSideBar.sceneByTag.visible = true;
-	leftSideBar.sceneBy.text = arg;
+	this.userInterface.leftSideBar.sceneBy.visible = true;
+	this.userInterface.leftSideBar.sceneByTag.visible = true;
+	this.userInterface.leftSideBar.sceneBy.text = arg;
 }
 
 
-//2. DISPLAY STUFF
-//EXAMPLE: setupStatBar(monsterSex,"SEX","Genderless");
-function setupStatBar(arg:MovieClip,title:String = "",value = undefined, max = undefined):void {
-	if(title != "" && title is String) arg.masks.labels.text = title;
-	if(max is Number && value is Number) {
-		arg.bar.width = (value / max) * 180;
-		arg.background.x = -1 * (1 - value / max) * 180;
-	}
-	if(max == undefined) {
-		arg.bar.visible = false;
-		arg.background.x = -180;
-	}
-	if(value != undefined) arg.values.text = String(value);
-}
 function upperCase(str:String):String {
 	var firstChar:String = str.substr(0,1);
 	var restOfString:String = str.substr(1,str.length);
@@ -128,124 +122,66 @@ function possessive(str:String):String {
 }
 
 function leftBarClear():void {
-	leftSideBar.sceneByTag.visible = false;
-	leftSideBar.sceneBy.visible = false;
-	leftSideBar.sceneTitle.visible = false;
-	leftSideBar.planet.visible = false;
-	leftSideBar.system.visible = false;
-	leftSideBar.time.visible = false;
-	leftSideBar.days.visible = false;
-	leftSideBar.quicksaveButton.visible = false;
-	leftSideBar.dataButton.visible = false;
-	leftSideBar.statsButton.visible = false;
-	leftSideBar.perksButton.visible = false;
-	leftSideBar.levelUpButton.visible = false;
+	this.userInterface.leftBarClear();
 }
 function hidePCStats():void {
-	playerHP.visible = false;
-	playerLust.visible = false;
-	playerEnergy.visible = false;
-	playerLevel.visible = false;
-	playerXP.visible = false;
-	playerCredits.visible = false;
-	playerPhysique.visible = false;
-	playerReflexes.visible = false;
-	playerAim.visible = false;
-	playerIntelligence.visible = false;
-	playerWillpower.visible = false;
-	playerLibido.visible = false;
+	this.userInterface.hidePCStats()
 }
 function showPCStats():void {
-	playerHP.visible = true;
-	playerLust.visible = true;
-	playerEnergy.visible = true;
-	playerLevel.visible = true;
-	playerXP.visible = true;
-	playerCredits.visible = true;
-	playerPhysique.visible = true;
-	playerReflexes.visible = true;
-	playerAim.visible = true;
-	playerIntelligence.visible = true;
-	playerWillpower.visible = true;
-	playerLibido.visible = true;
+	this.userInterface.showPCStats()
 }
 function showNPCStats():void {
-	monsterHP.visible = true;
-	monsterLust.visible = true;
-	monsterEnergy.visible = true;
-	monsterLevel.visible = true;
-	monsterRace.visible = true;
-	monsterSex.visible = true;
+	this.userInterface.showNPCStats()
 }
 function hideNPCStats():void {
-	monsterHP.visible = false;
-	monsterLust.visible = false;
-	monsterEnergy.visible = false;
-	monsterLevel.visible = false;
-	monsterRace.visible = false;
-	monsterSex.visible = false;
+	this.userInterface.hideNPCStats()
 }
 function deglow():void 
 {
-	trace("playerHP", playerHP);
-	this.playerHP.clearGlo();
-	this.playerLust.clearGlo();
-	this.playerEnergy.clearGlo();
-	this.playerXP.clearGlo();
-	this.playerLevel.clearGlo();
-	this.playerCredits.clearGlo();
-	this.playerPhysique.clearGlo();
-	this.playerReflexes.clearGlo();
-	this.playerAim.clearGlo();
-	this.playerIntelligence.clearGlo();
-	this.playerWillpower.clearGlo();
-	this.playerLibido.clearGlo();
-	this.monsterHP.clearGlo();
-	this.monsterLust.clearGlo();
-	this.monsterEnergy.clearGlo();
+	this.userInterface.deglow()
 }	
 function updatePCStats():void {
 	showPCStats();
-	updateStatBar(playerHP,pc.HP(),pc.HPMax());
-	updateStatBar(playerLust,pc.lust(),pc.lustMax());
-	updateStatBar(playerEnergy,pc.energy(),pc.energyMax());
-	playerLevel.values.text = String(pc.level);
-	updateStatBar(playerXP,pc.XP,pc.level * pc.level * 100);
-	playerCredits.values.text = String(pc.credits);
+	updateStatBar(this.userInterface.playerHP,pc.HP(),pc.HPMax());
+	updateStatBar(this.userInterface.playerLust,pc.lust(),pc.lustMax());
+	updateStatBar(this.userInterface.playerEnergy,pc.energy(),pc.energyMax());
+	this.userInterface.playerLevel.values.text = String(pc.level);
+	updateStatBar(this.userInterface.playerXP,pc.XP,pc.level * pc.level * 100);
+	this.userInterface.playerCredits.values.text = String(pc.credits);
 	
-	updateStatBar(playerPhysique,pc.physique(),pc.physiqueMax());	
-	updateStatBar(playerReflexes,pc.reflexes(),pc.reflexesMax());
-	updateStatBar(playerAim,pc.aim(),pc.aimMax());
-	updateStatBar(playerIntelligence,pc.intelligence(),pc.intelligenceMax());
-	updateStatBar(playerWillpower,pc.willpower(),pc.willpowerMax());
-	updateStatBar(playerLibido,pc.libido(),pc.libidoMax());
-	leftSideBar.time.text = timeText();
-	leftSideBar.days.text = String(days);
-	leftSideBar.sceneBy.visible = true;
-	leftSideBar.sceneByTag.visible = true;
+	updateStatBar(this.userInterface.playerPhysique,pc.physique(),pc.physiqueMax());	
+	updateStatBar(this.userInterface.playerReflexes,pc.reflexes(),pc.reflexesMax());
+	updateStatBar(this.userInterface.playerAim,pc.aim(),pc.aimMax());
+	updateStatBar(this.userInterface.playerIntelligence,pc.intelligence(),pc.intelligenceMax());
+	updateStatBar(this.userInterface.playerWillpower,pc.willpower(),pc.willpowerMax());
+	updateStatBar(this.userInterface.playerLibido,pc.libido(),pc.libidoMax());
+	this.userInterface.leftSideBar.time.text = timeText();
+	this.userInterface.leftSideBar.days.text = String(this.userInterface.days);
+	this.userInterface.leftSideBar.sceneBy.visible = true;
+	this.userInterface.leftSideBar.sceneByTag.visible = true;
 	updateNPCStats();
 }
 function timeText():String {
 	var buffer:String = ""
-	if(hours < 10) buffer += "0";
-	buffer += hours + ":";
-	if(minutes < 10) buffer += "0";
-	buffer += minutes;
+	if(this.userInterface.hours < 10) buffer += "0";
+	buffer += this.userInterface.hours + ":";
+	if(this.userInterface.minutes < 10) buffer += "0";
+	buffer += this.userInterface.minutes;
 	return buffer;
 }
 function updateNPCStats():void {
 	if(foes.length >= 1) {
-		updateStatBar(monsterHP,foes[0].HP(),foes[0].HPMax());
-		updateStatBar(monsterLust,foes[0].lust(),foes[0].lustMax());
-		updateStatBar(monsterEnergy,foes[0].energy(),foes[0].energyMax());
-		monsterLevel.values.text = String(foes[0].level);
-		monsterRace.values.text = "Galotian";
+		updateStatBar(this.userInterface.monsterHP,foes[0].HP(),foes[0].HPMax());
+		updateStatBar(this.userInterface.monsterLust,foes[0].lust(),foes[0].lustMax());
+		updateStatBar(this.userInterface.monsterEnergy,foes[0].energy(),foes[0].energyMax());
+		this.userInterface.monsterLevel.values.text = String(foes[0].level);
+		this.userInterface.monsterRace.values.text = "Galotian";
 		if(foes[0].hasCock()) {
-			if(foes[0].hasVagina())	monsterSex.values.text = "Hermaphrodite";
-			else monsterSex.values.text = "Male";
+			if(foes[0].hasVagina())	this.userInterface.monsterSex.values.text = "Hermaphrodite";
+			else this.userInterface.monsterSex.values.text = "Male";
 		}
-		else if(foes[0].hasVagina()) monsterSex.values.text = "Female";
-		else monsterSex.values.text = "????";
+		else if(foes[0].hasVagina()) this.userInterface.monsterSex.values.text = "Female";
+		else this.userInterface.monsterSex.values.text = "????";
 	}
 }
 function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
@@ -259,9 +195,9 @@ function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 	}
 }
 function setLocation(title:String,planet:String = "Error Planet",system:String = "Error System"):void {
-	leftSideBar.sceneTitle.text = title;
-	leftSideBar.planet.text = planet;
-	leftSideBar.system.text = system;
+	this.userInterface.leftSideBar.sceneTitle.text = title;
+	this.userInterface.leftSideBar.planet.text = planet;
+	this.userInterface.leftSideBar.system.text = system;
 }
 
 //3. UTILITY FUNCTIONS

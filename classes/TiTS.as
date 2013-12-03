@@ -26,8 +26,7 @@
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
 
-	import classes.StatBarSmall;
-	import classes.StatBarBig;
+	import classes.GUI
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -48,6 +47,9 @@
 
 		// include "../includes/saves.as";
 
+		var characters:Array;
+		var foes:Array;
+		
 		var pc:Creature;
 		var celise:Creature;
 		var rival:Creature; 
@@ -66,28 +68,14 @@
 		var spaceBra:ItemSlotClass
 		var undershirt:ItemSlotClass
 
+		var eventBuffer:String;
+		var eventQueue:Array;
 
 		var version:String;
 
 		var rooms:Array;
 
-		var characters:Array;
-		var foes:Array;
-		var textBuffer:Array;
-		//Used for temp buffer stuff
-		var tempText:String;
-		var tempAuthor:String;
-		var currentPCNotes:String;
-		//Used for output()
-		var outputBuffer:String;
-		var outputBuffer2:String;
-		var authorBuffer:Array;
-		var textPage:int;
-		var days:int;
-		var hours:int;
-		var minutes:int;
-		var eventQueue:Array;
-		var eventBuffer:String;
+		var temp:int;
 
 		//Toggles
 		var silly:Boolean;
@@ -96,7 +84,6 @@
 
 
 		//Lazy man state checking
-		var showingPCAppearance:Boolean;
 		var saveHere:Boolean;
 		var location:int;
 		var shipLocation:int;
@@ -108,70 +95,14 @@
 		//Pervineer here!
 		var parser:ScriptParser;
 
+		var userInterface:GUI;
 
-		//temporary nonsense variables.
-		var e:MouseEvent;
-		var temp:int;
-
-		var input:TextField;
-		
-		var buttonDrawer:bottomButtonDrawer;
-		var buttons:Array;
-		var buttonData:Array;
-		var buttonPage:int;
-		var leftSideBar:leftBar;
-		var fadeOut:*;
-		var titsPurple:*;
-		var titsBlue:*;
-		var titsWhite:*;
-		
-		var buttonPagePrev:leftButton;
-		var buttonPageNext:rightButton;
-		var pagePrev:leftButton;
-		var pageNext:rightButton;
-		var rightSidebar:rightBar;
-
-		var monsterHP:StatBarBig;
-		var monsterLust:StatBarBig;
-		var monsterEnergy:StatBarBig;
-		var monsterLevel:StatBarSmall;
-		var monsterRace:StatBarSmall;
-		var monsterSex:StatBarSmall;
-		var playerHP:StatBarBig;
-		var playerLust:StatBarBig;
-		var playerEnergy:StatBarBig;
-
-
-		var playerLevel:StatBarSmall;
-		var playerXP:StatBarSmall;
-		var playerCredits:StatBarSmall;
-		var playerPhysique:StatBarSmall;
-		var playerReflexes:StatBarSmall;
-		var playerAim:StatBarSmall;
-		var playerIntelligence:StatBarSmall;
-		var playerWillpower:StatBarSmall;
-		var playerLibido:StatBarSmall;
-
-		var format1:TextFormat;
-		// var mainFont:Font3;
-		var mainTextField:TextField;
-		var mainTextField2:TextField;
-		var upScrollButton:arrow;
-		var downScrollButton:arrow;
-		var scrollBar:bar;
-		var scrollBG:bar;
-		var mainMenuButtons:Array;
-		var titleDisplay:titsLogo;
-		var warningBackground:warningBG;
-		var creditText:TextField;
-		var warningText:TextField;
-		var websiteDisplay:TextField;
-		var titleFormat:TextFormat;
-		var myGlow:GlowFilter;
 
 		public function TiTS()
 		{
 			trace("TiTS Constructor")
+
+			this.userInterface = new GUI(this)
 
 			// shove the variables declared in the included files into the TiTS constructor
 			// because they're set-up procedurally (BLEURRRGGGHHHH)
@@ -182,448 +113,419 @@
 			setupCharacters();
 
 
-			buttonDrawer = new bottomButtonDrawer;
-			addChild(buttonDrawer);
-			buttonDrawer.x = 0;
-			buttonDrawer.y = 800;
+			// set up the user interface
 
-			//Build the buttons
-			buttons = new Array();
-			buttonData = new Array();
-			buttonPage = 1;
-			initializeButtons();
+			this.userInterface.clearMenu();
+			this.userInterface.addButton(0,"Horsecock",horsecock);
+			this.userInterface.addButton(14,"CLEAR!",clearOutput);
+			this.userInterface.addButton(16,"2Horse4Me",horsecock);
 
-			//Build left sidebar
-			leftSideBar = new leftBar;
-			leftSideBar.x = 0;
-			leftSideBar.y = 0;
-			addChild(leftSideBar);
-			//Fading out Perks and Level Up Buttons
-
-			fadeOut = new ColorTransform();
-			titsPurple = new ColorTransform();
-			titsBlue = new ColorTransform();
-			titsWhite = new ColorTransform();
-
-			fadeOut.color = 0x333E52;
-			titsPurple.color = 0x84449B;
-			titsBlue.color = 0x333E52;
-			titsWhite.color = 0xFFFFFF;
-
-			leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
-			leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
-
-
-			monsterHP = new StatBarBig();
-			addChild(monsterHP);
-			monsterHP.x = 10;
-			monsterHP.y = 237;
-			monsterHP.background.x = -150;
-			monsterHP.bar.width = 30;
-			monsterHP.values.text = "10";
-			monsterHP.visible = false;
-
-			monsterLust = new StatBarBig();
-			addChild(monsterLust);
-			monsterLust.x = 10;
-			monsterLust.y = 278;
-			monsterLust.masks.labels.text = "LUST";
-			monsterLust.values.text = "25";
-			monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
-			monsterLust.bar.width = (25 / 100) * 180;
-			monsterLust.highBad = true;
-			monsterLust.visible = false;
-
-			monsterEnergy = new StatBarBig();
-			addChild(monsterEnergy);
-			monsterEnergy.x = 10;
-			monsterEnergy.y = 319;
-			monsterEnergy.masks.labels.text = "ENERGY";
-			monsterEnergy.values.text = "100";
-			monsterEnergy.visible = false;
-
-
-			monsterLevel = new StatBarSmall();
-			addChild(monsterLevel);
-			monsterLevel.x = 10;
-			monsterLevel.y = 363;
-			setupStatBar(monsterLevel,"LEVEL",5);
-			monsterLevel.visible = false;
-
-
-			monsterRace = new StatBarSmall();
-			addChild(monsterRace);
-			monsterRace.x = 10;
-			monsterRace.y = 392;
-			setupStatBar(monsterRace,"RACE","Galotian");
-			monsterRace.visible = false;
-
-
-			monsterSex = new StatBarSmall();
-			addChild(monsterSex);
-			monsterSex.x = 10;
-			monsterSex.y = 421;
-			setupStatBar(monsterSex,"SEX","Unknown");
-			monsterSex.visible = false;
-
-
-			leftBarClear();
-
-			//Build the right sidebar
-			rightSidebar = new rightBar;
-			addChild(rightSidebar);
-			rightSidebar.nameText.text = "Penis";
-			rightSidebar.x = 1000;
-			rightSidebar.y = 0;
-			trace("Calling statBar constructors");
-			playerHP = new StatBarBig();
-			playerLust = new StatBarBig();
-			playerEnergy = new StatBarBig();
-			addChild(playerHP);
-			addChild(playerLust);
-			addChild(playerEnergy);
-			playerHP.x = 1010;
-			playerHP.y = 65;
-			playerLust.x = 1010;
-			playerLust.y = 106;
-			playerEnergy.x = 1010;
-			playerEnergy.y = 147;
-			playerHP.background.x = -150;
-			playerHP.bar.width = 30;
-			playerHP.values.text = "10";
-			playerLust.masks.labels.text = "LUST";
-			playerLust.values.text = "25";
-			playerLust.background.x = -1 * (1 - 25 / 100) * 180;
-			playerLust.bar.width = (25 / 100) * 180;
-			playerLust.highBad = true;
-			playerEnergy.masks.labels.text = "ENERGY";
-			playerEnergy.values.text = "100";
-			buttonPagePrev = new leftButton;
-			addChild(buttonPagePrev);
-			buttonPagePrev.x = 1000;
-			buttonPagePrev.y = 750;
-			buttonPagePrev.alpha = .3;
-			buttonPageNext = new rightButton;
-			addChild(buttonPageNext);
-			buttonPageNext.x = 1100;
-			buttonPageNext.y = 750;
-			buttonPageNext.alpha = .3;
-			pagePrev = new leftButton;
-			addChild(pagePrev);
-			pagePrev.x = 010;
-			pagePrev.y = 750;
-			pagePrev.alpha = .3;
-			pageNext = new rightButton;
-			addChild(pageNext);
-			pageNext.x = 110;
-			pageNext.y = 750;
-			pageNext.alpha = .3;
-			playerLevel = new StatBarSmall();
-			playerXP = new StatBarSmall();
-			playerCredits = new StatBarSmall();
-			playerLevel.x = 1010;
-			playerLevel.y = 415;
-			playerLevel.masks.labels.text = "LEVEL";
-			playerLevel.bar.visible = false;
-			playerLevel.background.x = -180;
-			playerLevel.values.text = "5";
-			playerXP.x = 1010;
-			playerXP.y = 444;
-			playerXP.masks.labels.text = "XP";
-			playerXP.bar.width = (50 / 500) * 180;
-			playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
-			playerXP.values.text = "50 / 1000";
-			playerCredits.x = 1010;
-			playerCredits.y = 473;
-			playerCredits.masks.labels.text = "CREDITS";
-			playerCredits.bar.visible = false;
-			playerCredits.background.x =  -180;
-			playerCredits.values.text = "Over 9000";
-			addChild(playerLevel);
-			addChild(playerXP);
-			addChild(playerCredits);
-			playerPhysique = new StatBarSmall();
-			playerReflexes = new StatBarSmall();
-			playerAim = new StatBarSmall();
-			playerIntelligence = new StatBarSmall();
-			playerWillpower = new StatBarSmall();
-			playerLibido = new StatBarSmall();
-			addChild(playerPhysique);
-			addChild(playerReflexes);
-			addChild(playerAim);
-			addChild(playerIntelligence);
-			addChild(playerWillpower);
-			addChild(playerLibido);
-			playerPhysique.x = 1010;
-			playerPhysique.y = 214;
-			playerReflexes.x = 1010;
-			playerReflexes.y = 243;
-			playerAim.x = 1010;
-			playerAim.y = 272;
-			playerIntelligence.x = 1010;
-			playerIntelligence.y = 301;
-			playerWillpower.x = 1010;
-			playerWillpower.y = 330;
-			playerLibido.x = 1010;
-			playerLibido.y = 359;
-
-			setupStatBar(playerPhysique,"PHYSIQUE",50,100);
-			setupStatBar(playerReflexes,"REFLEXES",30,100);
-			setupStatBar(playerAim,"AIM",30,100);
-			setupStatBar(playerIntelligence,"INTELLIGENCE",90,100);
-			setupStatBar(playerWillpower,"WILLPOWER",5,100);
-			setupStatBar(playerLibido,"LIBIDO",97,100);
-
-			hidePCStats();
-
-
-			//Set up the main text field
-			format1 = new TextFormat();
-			format1.size = 18;
-			format1.color = 0xFFFFFF;
-			format1.tabStops = [35];
-			// mainFont = new Font3;
-			// format1.font = mainFont.fontName;
-			mainTextField = new TextField();
-			prepTextField(mainTextField);
-			mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
-			//Set up backup text field
-			mainTextField2 = new TextField();
-			prepTextField(mainTextField2);
-			function prepTextField(arg:TextField):void {
-				arg.border = false;
-				arg.text = "Placeholder";
-				arg.background = false;
-				arg.multiline = true;
-				arg.wordWrap = true;
-				arg.border = false;
-				arg.x = 211;
-				arg.y = 5;
-				arg.height = 630;
-				arg.width = 760;
-				arg.setTextFormat(format1);
-				arg.defaultTextFormat = format1;
-				addChild(arg);
-				arg.visible = false;
-			}
-
-			//Set up standard input box!
-			input = new TextField();
-			input.width = 250;
-			input.height = 25;
-			input.backgroundColor = 0xFFFFFF;
-			input.border = true;
-			input.borderColor = 0xFFFFFF;
-
-			input.type = TextFieldType.INPUT;
-			input.setTextFormat(format1);
-			input.defaultTextFormat = format1;
-
-
-			//SCROLLBAR!
-			upScrollButton = new arrow();
-			upScrollButton.x = mainTextField.x + mainTextField.width;
-			upScrollButton.y = mainTextField.y
-			downScrollButton = new arrow();
-			downScrollButton.x = mainTextField.x + mainTextField.width + downScrollButton.width;
-			downScrollButton.y = mainTextField.y + mainTextField.height;
-			downScrollButton.rotation = 180;
-			scrollBar = new bar();
-			scrollBar.x = mainTextField.x + mainTextField.width;
-			scrollBar.y = mainTextField.y + upScrollButton.height;
-			scrollBar.height = 50;
-			scrollBG = new bar();
-			scrollBG.x = mainTextField.x + mainTextField.width;
-			scrollBG.y = mainTextField.y + upScrollButton.height;
-			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
-			scrollBG.transform.colorTransform = fadeOut;
-			addChild(scrollBG);
-			addChild(scrollBar);
-			addChild(upScrollButton);
-			addChild(downScrollButton);
-			//Since downscroll starts clickable...
-			downScrollButton.buttonMode = true;
-
-			clearMenu();
-			addButton(0,"Horsecock",horsecock);
-			addButton(14,"CLEAR!",clearOutput);
-			addButton(16,"2Horse4Me",horsecock);
-
-			//4. MAIN MENU STUFF
-			mainMenuButtons = new Array();
-			titleDisplay = new titsLogo();
-			warningBackground = new warningBG();
-			creditText = new TextField();
-			warningText = new TextField();
-			websiteDisplay = new TextField();
-			titleFormat = new TextFormat();
-			myGlow = new GlowFilter();
-			myGlow.color = 0x84449B;
-			myGlow.alpha = 1;
-			myGlow.blurX = 10;
-			myGlow.blurY = 10;
-			myGlow.strength = 5;
-
-			//Credit Text
-			creditText.border = false;
-			creditText.background = false;
-			creditText.multiline = true;
-			creditText.wordWrap = true;
-			creditText.border = false;
-			creditText.x = 210;
-			creditText.y = 305;
-			creditText.height = 77;
-			creditText.width = 780;
-			//Website Text
-			websiteDisplay.border = false;
-			websiteDisplay.htmlText = "http://www.trialsInTaintedSpace.com";
-			websiteDisplay.background = false;
-			websiteDisplay.multiline = true;
-			websiteDisplay.wordWrap = true;
-			websiteDisplay.border = false;
-			websiteDisplay.x = 210;
-			websiteDisplay.y = 475;
-			websiteDisplay.height = 25;
-			websiteDisplay.width = 780;
-			//Warning Text
-			warningText.border = false;
-
-			warningText.background = false;
-			warningText.multiline = true;
-			warningText.wordWrap = true;
-			warningText.border = false;
-			warningText.x = 305;
-			warningText.y = 390;
-			warningText.height = 75;
-			warningText.width = 655;
-			//Set the formats
-			titleFormat.size = 18;
-			titleFormat.color = 0xFFFFFF;
-			titleFormat.tabStops = [35];
-			// titleFormat.font = mainFont.fontName;
-			titleFormat.align = TextFormatAlign.CENTER;
-
-			creditText.setTextFormat(titleFormat);
-			creditText.defaultTextFormat = titleFormat;
-			warningText.setTextFormat(titleFormat);
-			warningText.defaultTextFormat = titleFormat;
-			websiteDisplay.setTextFormat(titleFormat);
-			websiteDisplay.defaultTextFormat = titleFormat;
-
-			titleDisplay.x = 368;
-			titleDisplay.y = 142;
-
-			//Add warning display
-			warningBackground.x = 210;
-			warningBackground.y = 380;
-			addChild(titleDisplay);
-			addChild(warningBackground);
-			addChild(creditText);
-			addChild(warningText);
-			addChild(websiteDisplay);
-			websiteDisplay.visible = false;
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			websiteDisplay.visible = false;
-			warningBackground.visible = false;
-
-			setupInputEventHandlers();
-
-			initializeMainMenu();
-			trace("Triggering frame script");
-			this.addFrameScript( 0, this.mainMenu );
+			setupInputEventHandlers()
+			
+			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
 		}
 
 		function horsecock():void {
 			clearOutput();
 			output("You reach down into the trashcan, unclasp the collar and slip it on.  You tighten it till it fits snugly against your skin, but isn't otherwise uncomfortable.  With a satisfying <b>click</b>, the clasp snaps shut, so you know there's no going back.  Urta's mouth drops as she watches you do this, completely at a loss for words.  Her cock, on the other hand, hardens, knowing just what to do.\n\nYou sink to your knees and then onto your hands in front of her, brazenly displaying your submission to the vixen goddess before you.  She leans back slightly, stunned by this action.  It takes her a minute to recover and pick her jaw up off the floor.  You dutifully wait, silently, until Urta issues a command.  She seems to sense this and clears her throat, clearly embarrassed and nervous. <i>\"Oh, um, good girl,\"</i> she murmurs, patting your head.  You rub your face into her palm, which brings a smile to Urta's face.\n\n<i>\"Well, since the girl at the store said this was a dog collar... you're going to be an obedient little puppy, aren't you pet?\"</i> Urta asks.  You bark an affirmative response. <i>\"And that makes me your Owner, doesn't it?\"</i>  You bark again.  Urta's smile widens, and the dick between her legs twitches happily.  Your foxy lover stands up and gives you a once-over, her stocking-clad legs walking circles around you.  You remain stock still until you feel one soft, furry paw press up against your covered groin.\n\n<i>\"You're a good little doggy, right?\"</i> Urta leans down and whispers in your ear from behind.  You nod and bark happily again.  <i>\"You don't look like a good doggy to me,\"</i> she murmurs, leaning back up and pressing that paw into your groin once more, slightly more insistent.  You find yourself growing wetter at the touch, but you can't help but wonder about her words.  What else is there to being a good dog?\n\n<i>\"Your clothes, pet,\"</i> your Owner says, catching your puzzled look.  <i>\"Good doggies don't wear anything but their collars.  Oh, of course!</i>\"  You start to stand and take off your comfortable clothes, but Urta places a hand on your shoulder.  <i>\"Stay on all fours, pet,\"</i> she warns, and you suddenly realize she's holding a rolled up copy of the Tel'Adre Times in her other hand.  You gulp, slightly scared but even more turned on at how she's taking charge.\n\n\You struggle out of your comfortable armor.  It takes a good minute of work, but then you sit on your hands and knees, bare naked except for the collar, in front of Urta.  You feel so vulnerable like this, like you're baring your soul to someone, but somehow it's OK because it's Urta, someone who started as a friend, bared her own soul to you, and became your lover.");
-			leftSideBar.sceneBy.text = "Third Games";
+			this.userInterface.leftSideBar.sceneBy.text = "Third Games";
 		}
 
-		//Build the main 15 buttons!
-		function initializeButtons():void {
-			var temp = 0;
-			//X and Y values for our buttons.
-			var ex:int = 52;
-			var why:int = 650;
-			var texts:String = "Random#: ";
-			while (temp < 60) {
-				buttonData[temp] = new purpleButton;
-				temp++;
+
+		public function setupInputEventHandlers():void
+		{
+			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
+			this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
+			this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
+			this.userInterface.scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
+			this.addEventListener(MouseEvent.MOUSE_UP,mouseUpHandler);
+			this.userInterface.scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
+			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
+			this.userInterface.leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
+			this.userInterface.leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
+			this.userInterface.leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataRouter);
+
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+
+
+		public function mainMenuToggle(e:MouseEvent):void {
+			if(this.userInterface.leftSideBar.mainMenuButton.alpha < 1) return;
+			if(this.userInterface.titleDisplay.visible) 
+				this.userInterface.hideMenus();
+			else mainMenu();
+		}
+
+		
+		public function buttonClick(evt:MouseEvent):void {
+			if(evt.currentTarget.func == undefined) {
+				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
+				return;
 			}
-			temp = 0;
-			while (temp < 15) {
-				//Adjust for new rows
-				if(temp % 5 == 0 && temp > 0) {
-					ex -= 790;
-					why += 50;
+			trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
+			else evt.currentTarget.func(evt.currentTarget.arg);
+			if(pc.HP() > 0) updatePCStats();
+		}
+
+		public function bufferButtonUpdater():void {
+			//If you can go right still.
+			if(this.userInterface.textPage < 4) {
+				if(this.userInterface.pageNext.alpha != 1) {
+					this.userInterface.pageNext.addEventListener(MouseEvent.CLICK,this.userInterface.forwardBuffer);
+					this.userInterface.pageNext.alpha = 1;
+					this.userInterface.pageNext.buttonMode = true;
 				}
-				//Add on from previous button value.
-				ex += 158;
-				
-				if (temp == 6 || temp == 10 || temp == 11 || temp == 12) {
-					buttons[temp] = new purpleButton;
+			}
+			//If you can't go right but the button aint turned off.
+			else if(this.userInterface.pageNext.alpha != .3) {
+				this.userInterface.pageNext.removeEventListener(MouseEvent.CLICK,this.userInterface.forwardBuffer);
+				this.userInterface.pageNext.alpha = .3;
+				this.userInterface.pageNext.buttonMode = false;
+			}
+			//Left hooo!
+			if(this.userInterface.textPage > 0) {
+				if(this.userInterface.pagePrev.alpha != 1) {
+					this.userInterface.pagePrev.addEventListener(MouseEvent.CLICK,this.userInterface.backBuffer);
+					this.userInterface.pagePrev.alpha = 1;
+					this.userInterface.pagePrev.buttonMode = true;
 				}
-				else {
-					buttons[temp] = new blueButton;
-				}
-				addChild(buttons[temp]);
-				buttons[temp].caption.htmlText = texts + String(Math.round(Math.random()*10));
-				buttons[temp].x = ex;
-				buttons[temp].y = why;
-				buttons[temp].mouseChildren = false;
-				//Add hotkey tags as appropriate.
-				switch(temp) {
-					case 0:
-						buttons[temp].hotkey.text = "1";
-						break;
-					case 1:
-						buttons[temp].hotkey.text = "2";
-						break;
-					case 2:
-						buttons[temp].hotkey.text = "3";
-						break;
-					case 3:
-						buttons[temp].hotkey.text = "4";
-						break;
-					case 4:
-						buttons[temp].hotkey.text = "5";
-						break;
-					case 5:
-						buttons[temp].hotkey.text = "Q";
-						break;
-					case 6:
-						buttons[temp].hotkey.text = "W";
-						break;
-					case 7:
-						buttons[temp].hotkey.text = "E";
-						break;
-					case 8:
-						buttons[temp].hotkey.text = "R";
-						break;
-					case 9:
-						buttons[temp].hotkey.text = "T";
-						break;
-					case 10:
-						buttons[temp].hotkey.text = "A";
-						break;
-					case 11:
-						buttons[temp].hotkey.text = "S";
-						break;
-					case 12:
-						buttons[temp].hotkey.text = "D";
-						break;
-					case 13:
-						buttons[temp].hotkey.text = "F";
-						break;
-					case 14:
-						buttons[temp].hotkey.text = "G";
-						break;
-				}
-				temp++;
+			}
+			//If you can't go right but the button aint turned off.
+			else if(this.userInterface.pagePrev.alpha != .3) {
+				this.userInterface.pagePrev.removeEventListener(MouseEvent.CLICK,this.userInterface.backBuffer);
+				this.userInterface.pagePrev.alpha = .3;
+				this.userInterface.pagePrev.buttonMode = false;
 			}
 		}
+
+
+		//2. KEYBOARD STUFF
+		//Handle all key presses!
+		public function keyPress(evt:KeyboardEvent):void {
+			if(stage.contains(this.userInterface.input)) 
+				return;
+			var keyTemp;
+			switch (evt.keyCode) {
+				//Up
+				case 38:
+					upScrollText();
+					break;
+				//Down
+				case 40:
+					downScrollText();
+					break;
+				//PgDn
+				case 34:
+					if(stage.focus == null) { 
+						trace("OUT OF FOCUS SCROLL");
+						keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
+						this.userInterface.mainTextField.scrollV += keyTemp;
+					}
+					wheelUpdater(this.userInterface.tempEvent);
+					break;
+				//PgUp
+				case 33:
+					//Scroll if text field isn't actively selected, like a BAWS.
+					if(stage.focus == null) { 
+						trace("OUT OF FOCUS SCROLL");
+						keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
+						this.userInterface.mainTextField.scrollV -= keyTemp;
+					}
+					wheelUpdater(this.userInterface.tempEvent);
+					break;
+				//Home
+				case 36:
+					this.userInterface.mainTextField.scrollV = 1;
+					this.userInterface.updateScroll(this.userInterface.tempEvent);
+					break;
+				//End
+				case 35:
+					this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
+					this.userInterface.updateScroll(this.userInterface.tempEvent);
+					break;
+				//New page (6)
+				case 54:
+					if(this.userInterface.buttonPageNext.alpha == 1) this.userInterface.pageButtons();
+					break;
+				//Back page (5)
+				case 89:
+					if(this.userInterface.buttonPagePrev.alpha == 1) this.userInterface.pageButtons(false);
+					break;
+				//1
+				case 49:
+					pressButton(0);
+					break;
+				//2
+				case 50:
+					pressButton(1);
+					break;
+				//3
+				case 51:
+					pressButton(2);
+					break;
+				//4
+				case 52:
+					pressButton(3);
+					break;
+				//5
+				case 53:
+					pressButton(4);
+					break;
+				//q
+				case 81:
+					pressButton(5);
+					break;
+				//w
+				case 87:
+					pressButton(6);
+					break;
+				//e
+				case 69:
+					pressButton(7);
+					break;
+				//r
+				case 82:
+					pressButton(8);
+					break;
+				//t
+				case 84:
+					pressButton(9);
+					break;
+				//a
+				case 65:
+					pressButton(10);
+					break;
+				//s
+				case 83:
+					pressButton(11);
+					break;
+				//d
+				case 68:
+					pressButton(12);
+					break;
+				//f
+				case 70:
+					pressButton(13);
+					break;
+				//g
+				case 71:
+					pressButton(14);
+					break;
+				//Space = Back/Next
+				case 32:
+					//Space pressed
+					if(this.userInterface.buttons[0].caption.text == "Next") pressButton(0);
+					else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
+					else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
+					break;
+				default:
+					trace("Key pressed! Keycode: " + evt.keyCode);
+					break;
+			}
+		}
+
+		public function pressButton(arg:int = 0):void {
+			if(arg >= this.userInterface.buttons.length || arg < 0) return;
+			if(this.userInterface.buttons[arg].func == undefined) return;
+			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
+			else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
+			if(pc.HP() > 0) updatePCStats();
+		}
+
+		//3. SCROLL WHEEL STUFF
+		//Scroll up or down a page based on click position!
+		public function scrollPage(evt:MouseEvent):void {
+			if(evt.stageY > this.userInterface.scrollBar.y) {
+				this.userInterface.mainTextField.scrollV += this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
+			}
+			else {
+				this.userInterface.mainTextField.scrollV -= this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
+			}
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+
+		//Puts a listener on the next frame that removes itself and updates to fix the laggy bar updates
+		public function wheelUpdater(evt:MouseEvent):void {
+			this.addEventListener(Event.ENTER_FRAME,wheelUpdater2);
+		}
+		public function wheelUpdater2(evt:Event):void {
+			this.removeEventListener(Event.ENTER_FRAME,wheelUpdater2);
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+
+		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
+		//Button the up arrow!
+		public function upScrollText():void {
+			this.userInterface.mainTextField.scrollV--;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		//Button the down arrow!
+		public function downScrollText():void {
+			this.userInterface.mainTextField.scrollV++;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+
+
+		public function clickScrollUp(evt:MouseEvent):void {
+			this.userInterface.upScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollUp);
+			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
+		}
+		public function clickScrollDown(evt:MouseEvent):void {
+			this.userInterface.downScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollDown);
+			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
+		}
+		public function continueScrollUp(evt:Event):void {
+			this.userInterface.mainTextField.scrollV--;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		public function continueScrollDown(evt:Event):void {
+			this.userInterface.mainTextField.scrollV++;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		public function clearScrollDown(evt:MouseEvent):void {
+			this.userInterface.downScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollDown);
+			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
+		}
+		public function clearScrollUp(evt:MouseEvent):void {
+			this.userInterface.upScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollUp);
+			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
+		}
+
+		//Turn dragging on and off!
+		public function mouseDownHandler(evt:MouseEvent):void{
+			var myRectangle:Rectangle = new Rectangle(this.userInterface.scrollBG.x, this.userInterface.scrollBG.y, 0, this.userInterface.scrollBG.height - this.userInterface.scrollBar.height);
+			this.userInterface.scrollBar.startDrag(false,myRectangle);
+			if(!this.userInterface.scrollBar.hasEventListener(Event.ENTER_FRAME)) this.userInterface.scrollBar.addEventListener(Event.ENTER_FRAME,scrollerUpdater);
+		}
+		public function mouseUpHandler(evt:MouseEvent):void{
+			this.userInterface.scrollBar.stopDrag();
+			this.userInterface.scrollBar.removeEventListener(Event.ENTER_FRAME,scrollerUpdater);
+		}
+
+		//Used to set position of bar while being dragged!
+		public function scrollerUpdater(evt:Event):void {
+			var progress:Number = (this.userInterface.scrollBar.y-this.userInterface.scrollBG.y) / (this.userInterface.scrollBG.height - this.userInterface.scrollBar.height - 1);
+				//trace("FRAME UPDATE: " + progress);
+				//trace("SCROLLBARY: " + scrollBar.y + " SCROLLBGY: " + scrollBG.y);
+				//trace("SCROLLBAR: " + scrollBar.height + " SCROLLBG: " + scrollBG.height);
+			var min = this.userInterface.mainTextField.scrollV;
+			var max = this.userInterface.mainTextField.maxScrollV;
+			this.userInterface.mainTextField.scrollV = progress * this.userInterface.mainTextField.maxScrollV;
+				//trace("SCROLL V: " + this.userInterface.mainTextField.scrollV + " SHOULD BE: " + progress * this.userInterface.mainTextField.maxScrollV);
+			scrollChecker();
+		}
+
+
+
+		//Turn up/down buttons on and off
+		public function scrollChecker():void {
+			var target = this.userInterface.mainTextField;
+			if(!target.visible) target = this.userInterface.mainTextField2;
+			//Turn off scroll button as appropriate.
+			if(target.scrollV >= target.maxScrollV) {
+				this.userInterface.downScrollButton.alpha = .50;
+				this.userInterface.downScrollButton.buttonMode = false;
+				this.userInterface.downScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
+			}
+			else if(this.userInterface.downScrollButton.alpha == .5) {
+				this.userInterface.downScrollButton.alpha = 1;
+				this.userInterface.downScrollButton.buttonMode = true;
+				this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
+			}
+			if(target.scrollV == 1) {
+				this.userInterface.upScrollButton.alpha = .50;
+				this.userInterface.upScrollButton.buttonMode = false;
+				this.userInterface.upScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
+			}
+			else if(this.userInterface.upScrollButton.alpha == .5) {
+				this.userInterface.upScrollButton.alpha = 1;
+				this.userInterface.upScrollButton.buttonMode = true;
+				this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
+			}
+		}
+
+
+		public function mainMenu():void 
+		{
+			trace("Main Menu called!");
+			if(this.userInterface.leftSideBar.currentFrame >= 11) 
+			{
+				trace("HideMenus")
+				this.userInterface.hideMenus();
+			}
+			
+			//Hide all current buttons
+			this.userInterface.hideNormalDisplayShit();
+			
+			//Show menu shits
+			this.userInterface.creditText.visible = true;
+			this.userInterface.warningText.visible = true;
+			this.userInterface.titleDisplay.visible = true;
+			this.userInterface.warningBackground.visible = true;
+			this.userInterface.websiteDisplay.visible = true;
+			//if(leftSideBar.mainMenuButton.alpha == 1) 
+			if(this.userInterface.leftSideBar.currentFrame >= 11) this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
+			
+			//Texts
+			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
+			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
+			
+			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
+			this.userInterface.addMainMenuButton(1,"Data",dataRouter);
+			this.userInterface.addMainMenuButton(2,"Credits",credits);
+			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
+			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
+			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
+		}
+
+
+		public function credits():void {
+			this.userInterface.hideMenus();
+			clearOutput2();
+			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
+			this.userInterface.clearGhostMenu();
+			this.userInterface.addGhostButton(0,"Back to Menu",mainMenu);
+		}
+		public function toggleSilly():void {
+			if(silly) {
+				silly = false;
+				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
+			}
+			else {
+				silly = true;
+				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
+			}
+		}
+		public function toggleDebug():void {
+			if(debug) {
+				debug = false;
+				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
+			}
+			else {
+				debug = true;
+				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
+			}
+		}
+		public function toggleEasy():void {
+			if(easy) {
+				easy = false;
+				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"
+			}
+			else {
+				easy = true;
+				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
+			}
+		}
+
+
+
 	}
 }

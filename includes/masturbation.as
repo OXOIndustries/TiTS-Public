@@ -1,5 +1,5 @@
 ﻿function masturbateMenu():void {
-	clearMenu();
+	this.userInterface.clearMenu();
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
@@ -20,11 +20,12 @@
 	}
 	for(var x:int = 0; x < texts.length; x++) {
 		if(x <= 13) {
-			addButton(x,texts[x],funcs[x],args[x]);
+			this.userInterface.addButton(x,texts[x],funcs[x],args[x]);
 		}
-		else addButton((x+1),texts[x],funcs[x],args[x]);
+		else 
+			this.userInterface.addButton((x+1),texts[x],funcs[x],args[x]);
 	}
-	addButton(14,"Back",mainGameMenu);
+	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 
 //Tailcock Fapping w/ Celise
@@ -55,8 +56,8 @@ function tailCockCeliseFaps():void {
 	processTime(45 + rand(5));
 	pc.orgasm();
 	celise.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 //Vaginal Fap
@@ -148,8 +149,8 @@ function vaginalFap():void {
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -288,7 +289,7 @@ function singleDickFap():void {
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 	

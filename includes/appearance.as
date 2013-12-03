@@ -1,15 +1,16 @@
 ﻿function pcAppearance(e:MouseEvent):void {
-	if(leftSideBar.appearanceButton.alpha < 1) return;
-	else if(showingPCAppearance) {
-		hideMenus();
+	if(this.userInterface.leftSideBar.appearanceButton.alpha < 1) return;
+	else if(this.userInterface.showingPCAppearance) {
+		this.userInterface.hideMenus();
 	}
 	else {
-		hideMenus();
-		if(leftSideBar.currentFrame >= 11) leftSideBar.appearanceButton.filters = [myGlow];
+		this.userInterface.hideMenus();
+		if(this.userInterface.leftSideBar.currentFrame >= 11) 
+			this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
 		appearance(pc);
-		showingPCAppearance = true;
-		clearGhostMenu();
-		addGhostButton(0,"Back",pcAppearance,e);
+		this.userInterface.showingPCAppearance = true;
+		this.userInterface.clearGhostMenu();
+		this.userInterface.addGhostButton(0,"Back",pcAppearance,e);
 	}
 }
 function appearance(target:Creature):void {

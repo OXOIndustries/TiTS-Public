@@ -4,8 +4,8 @@
 		clearOutput();
 		output("<b>" + possessive(pc.short) + " log:</b>" + eventBuffer);
 		eventBuffer = "";
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		this.userInterface.clearMenu();
+		this.userInterface.addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	//Queued events can fire off too!
@@ -21,43 +21,54 @@
 	clearOutput();
 	output("<b>" + rooms[location].roomName + "</b>\n" + rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
-	clearMenu();
+	this.userInterface.clearMenu();
 	//Standard buttons:
-	addButton(2,"Inventory",inventoryScreen);
-	if(pc.lust() < 33) addDisabledButton(3,"Masturbate");
-	else addButton(3,"Masturbate",masturbateMenu);
-	if(!rooms[location].hasFlag(GLOBAL.BED)) addButton(4,"Rest",rest);
-	else addButton(4,"Sleep",sleep);
+	this.userInterface.addButton(2,"Inventory",inventoryScreen);
+	if(pc.lust() < 33) 
+		this.userInterface.addDisabledButton(3,"Masturbate");
+	else 
+		this.userInterface.addButton(3,"Masturbate",masturbateMenu);
+	if(!rooms[location].hasFlag(GLOBAL.BED)) 
+		this.userInterface.addButton(4,"Rest",rest);
+	else 
+		this.userInterface.addButton(4,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
 	if(rooms[location].runOnEnter != undefined) {
 		if(rooms[location].runOnEnter()) return;
 	}
-	if(rooms[location].northExit != -1) addButton(6,"North",move,rooms[location].northExit);
-	if(rooms[location].eastExit != -1) addButton(12,"East",move,rooms[location].eastExit);
-	if(rooms[location].southExit != -1) addButton(11,"South",move,rooms[location].southExit);
-	if(rooms[location].westExit != -1) addButton(10,"West",move,rooms[location].westExit);
-	if(rooms[location].inExit != -1) addButton(5,rooms[location].inText,move,rooms[location].inExit);
-	if(rooms[location].outExit != -1) addButton(7,rooms[location].outText,move,rooms[location].outExit);
-	if(location == shipLocation) addButton(1,"Enter Ship",move,99);
+	if(rooms[location].northExit != -1) 
+		this.userInterface.addButton(6,"North",move,rooms[location].northExit);
+	if(rooms[location].eastExit != -1) 
+		this.userInterface.addButton(12,"East",move,rooms[location].eastExit);
+	if(rooms[location].southExit != -1) 
+		this.userInterface.addButton(11,"South",move,rooms[location].southExit);
+	if(rooms[location].westExit != -1) 
+		this.userInterface.addButton(10,"West",move,rooms[location].westExit);
+	if(rooms[location].inExit != -1) 
+		this.userInterface.addButton(5,rooms[location].inText,move,rooms[location].inExit);
+	if(rooms[location].outExit != -1) 
+		this.userInterface.addButton(7,rooms[location].outText,move,rooms[location].outExit);
+	if(location == shipLocation) 
+		this.userInterface.addButton(1,"Enter Ship",move,99);
 }
 
 function inventoryScreen():void {
 	clearOutput();
 	output("This is a placeholder, yo.");
-	clearMenu();
-	addButton(14,"Back",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
-		clearMenu();
+		this.userInterface.clearMenu();
 	}
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
 		count++;
 		if(!counter) {
-			addButton(count - 1,"Celise",celiseFollowerInteractions);
+			this.userInterface.addButton(count - 1,"Celise",celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
@@ -65,7 +76,7 @@ function crew(counter:Boolean = false):Number {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
-		addButton(14,"Back",mainGameMenu);
+		this.userInterface.addButton(14,"Back",mainGameMenu);
 	}
 	return count;
 }
@@ -77,8 +88,8 @@ function rest():void {
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
 	output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 function sleep():void {
 	clearOutput();
@@ -88,15 +99,16 @@ function sleep():void {
 	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
 	output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 function shipMenu():Boolean {
 	rooms[99].outExit = shipLocation;
-	addButton(9,"Fly",flyMenu);
+	this.userInterface.addButton(9,"Fly",flyMenu);
 	if(location == 99) {
-		if(crew(true) > 0) addButton(8,"Crew",crew);
+		if(crew(true) > 0) 
+			this.userInterface.addButton(8,"Crew",crew);
 	}
 	return false;
 }
@@ -104,10 +116,12 @@ function shipMenu():Boolean {
 function flyMenu():void {
 	clearOutput();
 	output("Where do you want to go?");
-	clearMenu();
-	if(shipLocation != 105) addButton(0,"Tavros",flyTo,"Tavros");
-	if(shipLocation != 0) addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
-	addButton(14,"Back",mainGameMenu);
+	this.userInterface.clearMenu();
+	if(shipLocation != 105) 
+		this.userInterface.addButton(0,"Tavros",flyTo,"Tavros");
+	if(shipLocation != 0) 
+		this.userInterface.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
+	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 
 function flyTo(arg:String):void {
@@ -124,8 +138,8 @@ function flyTo(arg:String):void {
 	}
 	output(" and step out of your ship.");
 	processTime(30270 + rand(10));
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 function move(arg:int = 100):void {
@@ -149,12 +163,12 @@ function processTime(arg:int):void {
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!
-		minutes++;
+		this.userInterface.minutes++;
 		
 		//Tick hours!
-		if(minutes >= 60) {
-			minutes = 0;
-			hours++;
+		if(this.userInterface.minutes >= 60) {
+			this.userInterface.minutes = 0;
+			this.userInterface.hours++;
 			//Hours checks here!
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {
@@ -194,9 +208,9 @@ function processTime(arg:int):void {
 				else eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
 			//Days ticks here!
-			if(hours >= 24) {
-				days++;
-				hours = 0;
+			if(this.userInterface.hours >= 24) {
+				this.userInterface.days++;
+				this.userInterface.hours = 0;
 			}
 		}
 		arg--;

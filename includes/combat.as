@@ -32,17 +32,20 @@ function combatMainMenu():void {
 		return;
 	}
 	//Combat menu
-	clearMenu();
-	addButton(0,"Attack",attackRouter,playerAttack);
-	addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-	addButton(5,"Tease",tease);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
+	this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+	this.userInterface.addButton(5,"Tease",tease);
 	//addButton(2,"
 }
 function celiseMenu():void {
-	clearMenu();
-	if(pc.statusEffectv1("Round") == 1) addButton(0,"Attack",attackRouter,playerAttack);
-	else if(pc.statusEffectv1("Round") == 2) addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-	else addButton(5,"Tease",tease);
+	this.userInterface.clearMenu();
+	if(pc.statusEffectv1("Round") == 1) 
+		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
+	else if(pc.statusEffectv1("Round") == 2) 
+		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+	else 
+		this.userInterface.addButton(5,"Tease",tease);
 }
 
 function processCombat():void {
@@ -52,14 +55,14 @@ function processCombat():void {
 	//Victory check first, because PC's are OP.
 	if(allFoesDefeated()) {
 		//Go back to main menu for victory announcement.
-		clearMenu();
-		addButton(0,"Victory",combatMainMenu);
+		this.userInterface.clearMenu();
+		this.userInterface.addButton(0,"Victory",combatMainMenu);
 		return;
 	}
 	if(pc.HP() <= 0 || pc.lust() >= 100) {
 		//YOU LOSE! GOOD DAY SIR!
-		clearMenu();
-		addButton(0,"Defeat",combatMainMenu);
+		this.userInterface.clearMenu();
+		this.userInterface.addButton(0,"Defeat",combatMainMenu);
 		return;
 	}
 	//If enemies still remain, do their AI routine.
@@ -75,8 +78,8 @@ function processCombat():void {
 		return;
 	}
 	combatStage = 0;
-	clearMenu();
-	addButton(0,"Next",combatMainMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",combatMainMenu);
 }
 
 function allFoesDefeated():Boolean {
@@ -100,14 +103,14 @@ function attackRouter(destinationFunc):void {
 		destinationFunc(foes[0]);
 		return;
 	}
-	clearMenu();
+	this.userInterface.clearMenu();
 	while(counter < foes.length) {
-		addButton(button,foes[0].short,destinationFunc,foes[counter]);
+		this.userInterface.addButton(button,foes[0].short,destinationFunc,foes[counter]);
 		counter++;
 		button++;
 	}
 	if(button < 14) button = 14;
-	addButton(button,"Back",combatMainMenu);
+	this.userInterface.addButton(button,"Back",combatMainMenu);
 }
 
 

@@ -13,24 +13,24 @@ function celiseFollowerInteractions():void {
 	output("\n\nSurprisingly, the green woman appears flat chested when you first arrive. Her torso is slim, lithe, and completely unadorned with nipples or even a belly button. Once she sees you, however, Celise’s kiss-hungry lips quirk up into a smile, and her mass of reserve goo shudders with the effort of rearranging itself. Two dark caps resolve on her chest, gaining in cohesion until they appear as a pair of perfect, pointy nipples. A moment later, the flesh beneath them surges, swelling outward with the barest hint of domed shape. More and more of Celise’s base vanishes, and those two budding orbs engorge with new mass by the second, swelling into heavy, dripping melons, their areolae widening and nipples thickening proportionally. Large breasts do not seem to satisfy the galotian temptress though, expanding beyond reasonable size and into the realm of the absurdly sexual., and with a coo of pleasure, she begins to knead her swollen tits, sinking fingers deeper inside them as they grow out over her hands.");
 	output("\n\nThe goo-girl watches you with a lusty smile while her breasts finish their absurd growth, eventually pulling her half-absorbed limbs out of her enormous bosom so that her fingers can regrow. She flutters eyelashes that have become so long that they drip to the floor in your direction while her mouth coos, <i>“Oh, is it snack time?”</i>");
 	output("  Celise is as sexually focused as ever. Do you give her a feeding or something else?");
-	clearMenu();
+	this.userInterface.clearMenu();
 	if(pc.hasCock() || pc.hasVagina()) {
 		if(pc.lust() < 33) {
 			output("\n\n<b>You aren't aroused enough to consider any sort of sexual situation with Celise.</b>");
-			addDisabledButton(0,"Feed");
+			this.userInterface.addDisabledButton(0,"Feed");
 		}
-		else addButton(0,"Feed",celiseFeedingRouter);
+		else this.userInterface.addButton(0,"Feed",celiseFeedingRouter);
 	}
 	else output("\n\n<b>You do not have any suitable genitalia to feed Celise with.</b>");
-	addButton(14,"Back",crew);
+	this.userInterface.addButton(14,"Back",crew);
 }
 
 //Leave Crewmember Celise’s Screen
 function leaveCelisesMenu():void {
 	clearOutput();
 	output("You wave at the ever-hungry emerald woman and head off, hearing a sigh of disappointment behind you as you go.");
-	clearMenu();
-	addButton(0,"Next",celiseFollowerInteractions);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",celiseFollowerInteractions);
 }
 
 function celiseFeedingRouter():void {
@@ -39,9 +39,9 @@ function celiseFeedingRouter():void {
 		else {
 			clearOutput();
 			output("Would you like to feed her using your male or female genitalia?");
-			clearMenu();
-			addButton(0,"Male",dudesFeedCelise);
-			addButton(1,"Female",feedCeliseBySavin);
+			this.userInterface.clearMenu();
+			this.userInterface.addButton(0,"Male",dudesFeedCelise);
+			this.userInterface.addButton(1,"Female",feedCeliseBySavin);
 		}
 	}
 	else if(pc.hasVagina()) feedCeliseBySavin();
@@ -77,11 +77,11 @@ function dudesFeedCelise():void {
 	output("\n\nCelise’s body surges up to recapture your escaping genitals, dragging you back inside her while you try to process her words. A dozen fingers tickle across your crotch while the spunk-drinking goo-girl ponders how best to harvest your seed. If you speak up now, she’d likely obey you, but if you wait, she’s going to pick one....");
 	//[Suck Out] [Squeeze Out] [Go In] [Say Nothing]
 	//9999
-	clearMenu();
-	addButton(0,"Suck Out",celiseSucksYouDry);
-	addButton(1,"SqueezeOut",celiseDoesSomeAnalMilking);
-	addButton(2,"Go In",celiseGoesInYerBallsYo);
-	addButton(3,"SayNothing",feedCeliseSayNothing);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Suck Out",celiseSucksYouDry);
+	this.userInterface.addButton(1,"SqueezeOut",celiseDoesSomeAnalMilking);
+	this.userInterface.addButton(2,"Go In",celiseGoesInYerBallsYo);
+	this.userInterface.addButton(3,"SayNothing",feedCeliseSayNothing);
 }
 
 //Say Nothing
@@ -214,8 +214,8 @@ function celiseSucksYouDry():void {
 	pc.orgasm();
 	celise.orgasm();
 	processTime(25+rand(4));
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 //Anal Milking
@@ -302,8 +302,8 @@ function celiseDoesSomeAnalMilking():void {
 	pc.orgasm();
 	celise.orgasm();
 	processTime(25+rand(4));
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 //Inside Milking
@@ -318,10 +318,10 @@ function celiseGoesInYerBallsYo():void {
 	output("<i>”</i>  She stops her fantasizing to cup [pc.oneCock] and lick the [pc.biggestCockHead]. <i>“Mmmm, are you ready?”</i>");
 	//These should be obvious where they go.
 	//[Yep] [Nevermind, suck] [Nevermind, milk me]
-	clearMenu();
-	addButton(0,"Yep",yepGetInMyBallsUBitch);
-	addButton(1,"No, Suck Me",celiseSucksYouDry);
-	addButton(2,"No, Milk Me",celiseDoesSomeAnalMilking);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Yep",yepGetInMyBallsUBitch);
+	this.userInterface.addButton(1,"No, Suck Me",celiseSucksYouDry);
+	this.userInterface.addButton(2,"No, Milk Me",celiseDoesSomeAnalMilking);
 }
 function yepGetInMyBallsUBitch():void {
 	clearOutput();
@@ -388,8 +388,8 @@ function yepGetInMyBallsUBitch():void {
 	celise.orgasm();
 	processTime(90+rand(5));
 	//[Next]
-	clearMenu();
-	addButton(0,"Next",celiseInBallsFinalEnding);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",celiseInBallsFinalEnding);
 }
 
 function celiseInBallsFinalEnding():void {
@@ -418,8 +418,8 @@ function celiseInBallsFinalEnding():void {
 	output("\n\nThe area is a total mess, but you’re sure the goo-girl will suck it up soon enough.");
 	processTime(7);
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 //Feed Celise (F)
@@ -471,8 +471,8 @@ function feedCeliseBySavin():void {
 	
 	processTime(35 + rand(10));
 	pc.orgasm();
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 //RoombaGoo
