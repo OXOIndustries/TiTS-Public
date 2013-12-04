@@ -34,6 +34,7 @@
 		// Smoosh all the included stuff into the TiTS class
 		// this is a HORRIBLE way of architecting the system, but it's better then not
 		// using classes at all (but only barely)
+		/* */
 		include "../includes/combat.as";
 		include "../includes/celise.as";
 		include "../includes/flahne.as";
