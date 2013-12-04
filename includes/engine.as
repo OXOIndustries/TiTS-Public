@@ -141,13 +141,12 @@ function deglow():void
 	this.userInterface.deglow()
 }	
 function updatePCStats():void {
-	showPCStats();
+	this.userInterface.rightSidebar.nameText.text = pc.short;
+	updateStatBar(this.userInterface.playerShields,pc.shields(),pc.shieldsMax());
+
 	updateStatBar(this.userInterface.playerHP,pc.HP(),pc.HPMax());
 	updateStatBar(this.userInterface.playerLust,pc.lust(),pc.lustMax());
 	updateStatBar(this.userInterface.playerEnergy,pc.energy(),pc.energyMax());
-	this.userInterface.playerLevel.values.text = String(pc.level);
-	updateStatBar(this.userInterface.playerXP,pc.XP,pc.level * pc.level * 100);
-	this.userInterface.playerCredits.values.text = String(pc.credits);
 	
 	updateStatBar(this.userInterface.playerPhysique,pc.physique(),pc.physiqueMax());	
 	updateStatBar(this.userInterface.playerReflexes,pc.reflexes(),pc.reflexesMax());
@@ -177,7 +176,8 @@ function updateNPCStats():void {
 		this.userInterface.monsterLevel.values.text = String(foes[0].level);
 		this.userInterface.monsterRace.values.text = "Galotian";
 		if(foes[0].hasCock()) {
-			if(foes[0].hasVagina())	this.userInterface.monsterSex.values.text = "Hermaphrodite";
+			if(foes[0].hasVagina())	
+				this.userInterface.monsterSex.values.text = "Hermaphrodite";
 			else this.userInterface.monsterSex.values.text = "Male";
 		}
 		else if(foes[0].hasVagina()) this.userInterface.monsterSex.values.text = "Female";
@@ -186,9 +186,12 @@ function updateNPCStats():void {
 }
 function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 	//if(title != "" && title is String) arg.masks.labels.text = title;
-	if(max != undefined) arg.setMax(max);
-	if(value != undefined) {
-		if(arg.getGoal() != value) {
+	if(max != undefined) 
+		arg.setMax(max);
+	if(value != undefined && arg.visible == true) 
+	{
+		if(arg.getGoal() != value) 
+		{
 			arg.setGoal(value);
 			//trace("SETTING GOAL");
 		}
@@ -243,12 +246,12 @@ function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = tru
 	}
 	//If within top 10% of capacity, 50% stretch
 	else if(volume >= .9 * capacity && rand(2) == 0) {
-		pc.vaginas[0].vaginalLooseness++;
+		holePointer.looseness++;
 		stretched = true;
 	}
 	//if within 75th to 90th percentile, 25% stretch
 	else if(volume >= .75 * capacity && rand(4) == 0) {
-		pc.vaginas[0].vaginalLooseness++;
+		holePointer.looseness++;
 		stretched = true;
 	}
 	//If virgin

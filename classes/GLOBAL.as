@@ -38,6 +38,7 @@
 		public static const TAILCOCK:int = 27;
 		public static const STINGER_BASED:int = 28;
 		public static const STINGER_TIPPED:int = 29;
+		public static const NUBBY:int = 30;
 		//TYPES
 		public static const HUMAN:int = 0;
 		public static const EQUINE:int = 1;
@@ -53,7 +54,7 @@
 		public static const DRACONIC:int = 11;
 		public static const LIZAN:int = 12;
 		public static const SNAKE:int = 13;
-		public static const NAGA:int = SNAKE;
+		public static const NAGA:int = GLOBAL.SNAKE;
 		public static const CENTAUR:int = 14;
 		public static const DEMONIC:int = 15;
 		public static const GOOEY:int = 16;
@@ -83,6 +84,7 @@
 		public static const FUR:int = 1;
 		public static const SCALES:int = 2;
 		public static const GOO:int = 3;
+		public static const CHITIN:int = 4;
 				
 		//NIPPLETYPES
 		public static const NORMAL:int = 0;
@@ -124,15 +126,46 @@
 		public static const BED:int = 2;
 
 
-		//CHARACTERS
-		public static const CELISE:int = 1;
-		public static const RIVAL:int = 2;
 
 		//PLOT FLAGS
 		public static const RECRUITED_CELISE:int = 0;
 		public static const CELISE_ONBOARD:int = 1;
 		public static const TIMES_CELISE_IN_BALLS:int = 2;
+		
 
+		//ITEM TYPES
+		public static const PILL:int = 0;
+		public static const FOOD:int = 1;
+		public static const POTION:int = 2;
+		public static const MELEE_WEAPON:int = 3;
+		public static const RANGED_WEAPON:int = 4;
+		public static const ARMOR:int = 5;
+		public static const SHIELD:int = 6;
+		public static const UPPER_UNDERGARMENT:int = 7;
+		public static const LOWER_UNDERGARMENT:int = 8;
+		public static const ACCESSORY:int = 9;
+		public static const DRUG:int = 10;
+		public static const CLOTHING:int = 11;
+		public static const ALL:int = 12; //Used for pawn shops!
+
+		//CHARACTERS
+		public static const CELISE:int = 1;
+		public static const RIVAL:int = 2;
+		public static const GEOFF:int = 3;
+		public static const FLAHNE:int = 4;
+		public static const ZILPACK:int = 5;
+		public static const ZIL:int = 6;
+		public static const PENNY:int = 7;
+
+		/*PLOT FLAGS
+		RECRUITED_CELISE
+		CELISE_ONBOARD
+		TIMES_CELISE_IN_BALLS
+		MET_GEOFF
+		SCRAPYARD_SEEN
+		SEXED_GEOFF
+		"GEOFF_FUCKED_DUDES_TWICE"
+		*/
 
 
 		

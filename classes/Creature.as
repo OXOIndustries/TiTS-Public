@@ -20,6 +20,14 @@
 			perks = new Array();
 			statusEffects = new Array();
 			keyItems = new Array();
+			
+			// FUCKING STOP PRE-ALLOCATING SHIT! You can push() something on an array ANY TIME YOU NEED!
+			// Or use dictionaries with "string" keys, and check if dict["sting"] == undefined to see if it's set!
+			inventory = new Array();
+			for(var z:int = 0; z < 30; z++) {
+				inventory[z] = new ItemSlotClass();
+			}
+
 		}
 		//For cheateyness.
 		// include "consts.as"
@@ -49,6 +57,15 @@
 		public var lowerUndergarment:ItemSlotClass = new ItemSlotClass();
 		public var accessory:ItemSlotClass = new ItemSlotClass();
 		public var shield:ItemSlotClass = new ItemSlotClass();
+
+		public var inventory:Array = new Array();
+		
+		public var typesBought:Array = new Array();
+		public var sellMarkup:Number = 1;
+		public var buyMarkdown:Number = 1;
+		public var keeperGreeting:String = "<i>\"Hello and welcome to my shop. Take a gander and let me know if you see anything you like,\"</i>  " + a + short + " says with a smile.";
+		public var keeperBuy:String = "What would you like to buy?";
+		public var keeperSell:String = "What would you like to sell?";
 
 		//Primary stats
 		public var physiqueRaw:Number = 3;
@@ -239,9 +256,11 @@
 		public var eggs:int = 0;
 		public var fertilizedEggs:int = 0;
 		
+		//Used for misc shit
+		var list:Array = new Array();
 		//Functions
 		//UTILITIES
-				public function num2Text(number:Number):String {
+		public function num2Text(number:Number):String {
 			var returnVar:String = null;
 			var numWords = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
 			if (number > 10 || int(number) != number) {
@@ -252,320 +271,286 @@
 			}
 			return(returnVar);
 		}
-		public function getDescription(arg,arg2) {
+
+		public function buysType(arg:int):Boolean {
+			for(var x:int = 0; x < typesBought.length; x++) {
+				if(arg == typesBought[x]) return true;
+				if(typesBought[x] == GLOBAL.ALL) return true;
+			}
+			return false;
+		}
+
+
+		public function getDescription(arg:String,arg2) {
+			var firstLetter:String = arg.substr(0,1);
+			firstLetter = firstLetter.toLowerCase();
+			var restOfString:String = arg.substr(1,arg.length);
+			var desc:String = firstLetter + restOfString;
+			//var desc = arg;
+			var buffer:String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if(arg2 == "") arg2 = 0;
-			switch (arg) {
+			switch (desc) {
+				case "gear":
+					buffer = gearDescript();
+					break;
 				case "short":
 				case "name":
-				case "Name":
-					return short;
+					buffer = short;
+					break;
 				case "race":
-					return race();
-				case "Race":
-					return upperCase(race());
+					buffer = race();
+					break;
 				case "armor":
-					return armor.longName;
+					buffer = armor.longName;
+					break;
 				case "lowerUndergarment":
-					return lowerUndergarment.longName;
+					buffer = lowerUndergarment.longName;
+					break;
 				case "upperUndergarment":
-					return upperUndergarment.longName;
+					buffer = upperUndergarment.longName;
+					break;
 				case "originalRace":
-					return originalRace;
-				case "OriginalRace":
-					return upperCase(originalRace);
+					buffer = originalRace;
+					break;
 				case "skinFurScales":
-					return skinFurScales();
-				case "SkinFurScales":
-					return upperCase(skinFurScales());
+					buffer = skinFurScales();
+					break;
 				case "skin":
-					return skin();
-				case "Skin":
-					return upperCase(skin());
+					buffer = skin();
+					break;
 				case "hairDescript":
-					return hairDescript();
-				case "HairDescript":
-					return upperCase(hairDescript());
+				case "hair":
+					buffer = hairDescript();
+					break;
 				case "hairsDescript":
-					return hairDescript();
-				case "HairsDescript":
-					return upperCase(hairsDescript());
+					buffer = hairDescript();
+					break;
 				case "face":
-					return face();
+					buffer = face();
+					break;
 				case "lips":
-					return pluralize(lipDescript());
+					buffer = pluralize(lipDescript());
+					break;
 				case "lip":
-					return lipDescript();
+					buffer = lipDescript();
+					break;
+				case "tongue":
+					buffer = tongueDescript();
+					break;
 				case "base":
 				case "sheath":
-					return sheathDescript(arg2);
-				case "Base":
-				case "Sheath":
-					return upperCase(sheathDescript(arg2));
+					buffer = sheathDescript(arg2);
+					break;
 				case "knot":
-					return knotDescript(arg2);
-				case "Knot":
-					return upperCase(knotDescript(arg2));
+					buffer = knotDescript(arg2);
+					break;
 				case "multiCockDescript":
-					return multiCockDescript();
-				case "MultiCockDescript":
-					return upperCase(multiCockDescript());
+					buffer = multiCockDescript();
+					break;
 				case "cocks":
 				case "cocksDescript":
-					return cocksDescript();
-				case "Cocks":
-				case "CocksDescript":
-					return upperCase(cocksDescript());
+					buffer = cocksDescript();
+					break;
 				case "cocksDescriptLight":
 				case "cocksLight":
-					return cocksDescriptLight();
-				case "CocksDescriptLight":
-				case "CocksLight":
-					return upperCase(cocksDescriptLight());
+					buffer = cocksDescriptLight();
+					break;
 				case "cockNounComplex":
-					return cockNounComplex(arg2);
-				case "CockNounComplex":
-					return upperCase(cockNounComplex(arg2));
+					buffer = cockNounComplex(arg2);
+					break;
 				case "cockNounSimple":
-					return simpleCockNoun(arg2);
-				case "CockNounSimple":
-					return upperCase(simpleCockNoun(arg2));
+					buffer = simpleCockNoun(arg2);
+					break;
 				case "cockHead":
-					return cockHead(arg2);
-				case "CockHead":
-					return upperCase(cockHead(arg2));
+				case "cockhead":
+					buffer = cockHead(arg2);
+					break;
 				case "cockHeads":
-					return pluralize(cockHead(arg2));
-				case "CockHeads":
-					return pluralize(upperCase(cockHead(arg2)));
+					buffer = pluralize(cockHead(arg2));
+					break;
 				case "cockDescript":
 				case "cock":
-					return cockDescript(arg2);
-				case "CockDescript":
-				case "Cock":
-					return upperCase(cockDescript(arg2));
+					buffer = cockDescript(arg2);
+					break;
 				case "biggestCockDescript":
 				case "biggestCock":
 				case "cockBiggest":
-					return cockDescript(biggestCockIndex());
-				case "BiggestCockDescript":
-				case "BiggestCock":
-				case "CockBiggest":
-					return upperCase(cockDescript(biggestCockIndex()));
+					buffer = cockDescript(biggestCockIndex());
+					break;
 				case "biggestCockHead":
 				case "cockHeadBiggest":
-					return cockHead(biggestCockIndex());
-				case "BiggestCockHead":
-				case "CockHeadBiggest":
-					return upperCase(cockHead(biggestCockIndex()));
+					buffer = cockHead(biggestCockIndex());
+					break;
 				case "eachCockHead":
-					return eachCockHead();
-				case "EachCockHead":
-					return upperCase(eachCockHead());
+					buffer = eachCockHead();
+					break;
 				case "tailCock":
-					return tailCockDescript();
-				case "TailCock":
-					return upperCase(tailCockDescript());
+					buffer = tailCockDescript();
+					break;
 				case "nipple":				
 				case "nippleDescript":
-					return nippleDescript(arg2);
-				case "Nipple":
-				case "NippleDescript":
-					return upperCase(nippleDescript(arg2));
+					buffer = nippleDescript(arg2);
+					break;
 				case "nipples":
 				case "nipplesDescript":
-					return nipplesDescript(arg2);
-				case "Nipples":
-				case "NipplesDescript":
-					return upperCase(nipplesDescript(arg2));
+					buffer = nipplesDescript(arg2);
+					break;
 				case "nippleCockDescript":
-					return nippleCockDescript();
-				case "NippleCockDescript":
-					return upperCase(nippleCockDescript());
+				case "nippleCock":
+					buffer = nippleCockDescript();
+					break;
 				case "nippleCocksDescript":
-					return pluralize(nippleCockDescript());
-				case "NippleCocksDescript":
-					return pluralize(upperCase(nippleCockDescript()));
+				case "nippleCocks":
+					buffer = pluralize(nippleCockDescript());
+					break;
 				case "eachCock":
-					return eachCock();
-				case "EachCock":
-					return upperCase(eachCock());
+					buffer = eachCock();
+					break;
 				case "oneCock":
-					return oneCock();
-				case "OneCock":
-					return upperCase(oneCock());
+					buffer = oneCock();
+					break;
 				case "ballsDescript":
 				case "balls":
-					return ballsDescript();
-				case "BallsDescript":
-				case "Balls":
-					return upperCase(ballsDescript());
+					buffer = ballsDescript();
+					break;
+				case "sackDescript":
+				case "sack":
+					buffer = sackDescript();
+					break;
 				case "chestDesc":
 				case "chest":
-					return chestDesc();
-				case "ChestDesc":
-				case "Chest":
-					return upperCase(chestDesc());
+					buffer = chestDesc();
+					break;
 				case "allChestDescript":
 				case "fullChest":
-					return allChestDesc();
-				case "AllChestDescript":
-				case "FullChest":
-					return upperCase(allChestDesc());
+					buffer = allChestDesc();
+					break;
 				case "biggestBreastDescript":
-					return biggestBreastDescript();
-				case "BiggestBreastDescript":
-					return upperCase(biggestBreastDescript());
+					buffer = biggestBreastDescript();
+					break;
 				case "sheathDescript":
 				case "sheath":
-					return sheathDescript(arg2);
-				case "SheathDescript":
-				case "Sheath":
-					return upperCase(sheathDescript(arg2));
+					buffer = sheathDescript(arg2);
+					break;
 				case "biggestSheath":
-					return sheathDescript(biggestCockIndex());
-				case "BiggestSheath":
-					return upperCase(sheathDescript(biggestCockIndex()));
+					buffer = sheathDescript(biggestCockIndex());
+					break;
 				case "cockClit":
-					return cockClit(arg2);
-				case "CockClit":
-					return upperCase(cockClit(arg2));
+					buffer = cockClit(arg2);
+					break;
 				case "sackDescript":
-					return sackDescript();
-				case "SackDescript":
-					return upperCase(sackDescript());
+					buffer = sackDescript();
+					break;
 				case "assholeDescript":
 				case "asshole":
-					return assholeDescript();
-				case "AssholeDescript":
-				case "Asshole":
-					return upperCase(assholeDescript());
+					buffer = assholeDescript();
+					break;
 				case "buttDescript":
 				case "butt":
-					return buttDescript();
-				case "ButtDescript":
-				case "Butt":
-					return upperCase(buttDescript());
+					buffer = buttDescript();
+					break;
 				case "hipDescript":
 				case "hip":
-					return hipDescript();
-				case "HipDescript":
-				case "Hip":
-					return upperCase(hipDescript());
+					buffer = hipDescript();
+					break;
 				case "hipsDescript":
 				case "hips":
-					return hipsDescript();
-				case "HipsDescript":
-				case "Hips":
-					return upperCase(hipsDescript());
+					buffer = hipsDescript();
+					break;
 				case "vaginaDescript":
 				case "vagina":
 				case "pussy":
 				case "cunt":
-					return vaginaDescript(arg2);
-				case "VaginaDescript":
-				case "Vagina":
-				case "Pussy":
-					return upperCase(vaginaDescript(arg2));
+					buffer = vaginaDescript(arg2);
+					break;
 				case "vaginasDescript":
 				case "vaginas":
 				case "pussies":
-					return vaginasDescript();
-				case "VaginasDescript":
-				case "Vaginas":
-				case "Pussies":
-					return upperCase(vaginasDescript());
+					buffer = vaginasDescript();
+					break;
 				case "eachVagina":
-					return eachVagina();
-				case "EachVagina":
-					return upperCase(eachVagina());
+					buffer = eachVagina();
+					break;
 				case "oneVagina":
-					return oneVagina();
-				case "OneVagina":
-					return upperCase(oneVagina());
+					buffer = oneVagina();
+					break;
+				case "vagOrAss":
+				case "pussyOrAsshole":
+					buffer = vagOrAss();
+					break;
 				case "clitDescript":
 				case "clit":
-					return clitDescript();
-				case "ClitDescript":
-				case "Clit":
-					return upperCase(clitDescript());
+					buffer = clitDescript();
+					break;
 				case "eachClit":
-					return eachClit();
-				case "EachClit":
-					return upperCase(eachClit());
+					buffer = eachClit();
+					break;
 				case "oneClit":
-					return oneClit();
-				case "OneClit":
-					return upperCase(oneClit());
+					buffer = oneClit();
+					break;
 				case "clitsDescript":
 				case "clits":
-					return clitsDescript();
-				case "ClitsDescript":
-				case "Clits":
-					return upperCase(clitsDescript());
+					buffer = clitsDescript();
+					break;
 				case "tailVagina":
 				case "tailCunt":
-					return tailVaginaDescript();
-				case "TailVagina":
-				case "TailCunt":
-					return upperCase(tailVaginaDescript());
+					buffer = tailVaginaDescript();
+					break;
 				case "milkDescript":
 				case "milk":
-					return milkDescript();
-				case "MilkDescript":
-				case "Milk":
-					return upperCase(milkDescript());
+					buffer = milkDescript();
+					break;
 				case "cumDescript":
 				case "cum":
-					return cumDescript();
-				case "CumDescript":
-				case "Cum":
-					return upperCase(cumDescript());
+					buffer = cumDescript();
+					break;
 				case "girlCumDescript":
 				case "girlCum":
-					return girlCumDescript();
-				case "GirlCumDescript":
-				case "GirlCum":
-					return upperCase(girlCumDescript());
+					buffer = girlCumDescript();
+					break;
 				case "cumNoun":
-					return fluidNoun(cumType);
-				case "CumNoun":
-					return upperCase(fluidNoun(cumType));
+					buffer = fluidNoun(cumType);
+					break;
 				case "cumColor":
-					return cumColor();
-				case "CumColor":
-					return upperCase(cumColor());
+					buffer = cumColor();
+					break;
+				case "girlCumColor":
+					buffer = girlCumColor();
+					break;
 				case "milkColor":
-					return milkColor();
-				case "MilkColor":
-					return upperCase(milkColor());
+					buffer = milkColor();
+					break;
+				case "tail":
+					buffer = tailDescript();
+					break;
+				case "leg":
+					buffer = leg();
+					break;
 				case "legs":
-					return legs();
-				case "Legs":
-					return upperCase(legs());
+					buffer = legs();
+					break;
 				case "feet":
-					return feet();
-				case "Feet":
-					return upperCase(feet());
+					buffer = feet();
+					break;
 				case "foot":
-					return foot();
-				case "Foot":
-					return upperCase(foot());
+					buffer = foot();
+					break;
 				case "toes":
-					return toes();
-				case "Toes":
-					return upperCase(toes());
+					buffer = toes();
+					break;
 				case "knees":
-					return knees();
-				case "Knees":
-					return upperCase(knees());
+					buffer = knees();
+					break;
 				case "belly":
-					return bellyDescript();
-				case "Belly":
-					return upperCase(bellyDescript());
+					buffer = bellyDescript();
+					break;
 				default:
-					return "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					buffer = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					break;
 			}
-			return "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
+			trace("BUFFER OUT: " + buffer);
+			return buffer;
 		}
 		public function Num2Text(number:int):String {
 			return upperCase(num2Text(number));
@@ -587,7 +572,7 @@
 		public function upperCase(str:String):String {
 			var firstChar:String = str.substr(0,1);
 			var restOfString:String = str.substr(1,str.length);
-			return firstChar.toUpperCase()+restOfString.toLowerCase();
+			return firstChar.toUpperCase()+restOfString;
 		}
 		public function pluralize(str:String):String {
 			var lastChar:String = str.substr(str.length-1,str.length);
@@ -599,6 +584,9 @@
 			//Normal pluralizes
 			else str += "s";
 			return str;
+		}
+		public function inventorySlots():int {
+			return 10;
 		}
 		public function orgasm():void {
 			lustRaw = 0;
@@ -627,7 +615,11 @@
 			return HPRaw;
 		}
 		public function HPMax():Number {
-			return 50 + level * 25 + HPMod;
+			return 10 + level * 25 + HPMod;
+		}
+		public function maxHP():Number {
+			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			return HPMax();
 		}
 		public function maxOutHP():void {
 			HPRaw = HPMax();
@@ -743,6 +735,9 @@
 			return temp;
 		}
 		public function shields():Number {
+			return shieldsRaw;
+		}
+		public function shieldsMax():Number {
 			var temp:int = 0;
 			temp += meleeWeapon.shields;
 			temp += rangedWeapon.shields;
@@ -855,6 +850,9 @@
 		}
 		public function lipDescript():String {
 			return "lip";
+		}
+		public function tongueDescript():String {
+			return "tongue";
 		}
 		public function faceDesc():String {
 			var faceo:String = "";
@@ -1093,6 +1091,9 @@
 				return "mounds of goo";
 			}
 			return leg(forceType,forceAdjective) + "s";
+		}
+		public function tailDescript():String {
+			return "tail";
 		}
 		public function leg(forceType:Boolean = false, forceAdjective:Boolean = false):String {
 			var select:Number = 0;
@@ -1504,6 +1505,9 @@
 					}
 				}
 			}
+		}
+		public function isPregnant():Boolean {
+			return false;
 		}
 		public function canOvipositSpider():Boolean {
 			if(eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
@@ -2210,6 +2214,15 @@
 			}
 			return index;
 		}
+		public function totalGirth():Number {
+			if(cocks.length == 0) return 0;
+			var counter:int = 0;
+			for(var x:int = 0; x < cocks.length; x++)
+			{
+				counter += cocks[x].cLength;
+			}
+			return counter;
+		}
 		public function thickestcThickness():Number {
 			if(cocks.length == 0) return 0;
 			var counter:Number = cocks.length;
@@ -2267,7 +2280,9 @@
 			return cocks[index].cLength;
 		}
 		//Find the biggest cock that fits inside a given value
-		public function cockThatFits(fits:Number = 0, type:String = "area"):Number {
+		public function cockThatFits(fits:Number = 0, type:String = "area"):Number 
+		{
+			trace("Fits value: " + fits);
 			if(cocks.length <= 0) return -1;
 			var counter:Number = cocks.length;
 			//Current largest fitter
@@ -2291,8 +2306,10 @@
 						//If one already fits
 						if(index >= 0) {
 							//See if the newcomer beats the saved small guy
-							if(cocks[counter].cLength > cocks[index].cLength)
+							if(cockVolume(counter,true) > cockVolume(index,true)) 
+							{
 								index = counter;							
+							}
 						}
 						//Store the index of fitting dick
 						else index = counter;
@@ -2460,6 +2477,11 @@
 		{
 			return int(Math.random()*max);
 		}
+		public function wetness(arg:int = 0):Number {
+			//If the player has no vaginas
+			if(vaginas.length == 0 || arg >= vaginas.length) return 0;
+			return vaginas[arg].wetness;
+		}
 		public function vaginalCapacity(arg:int = 0):Number {
 			//If the player has no vaginas
 			if(vaginas.length == 0) return 0;
@@ -2487,6 +2509,10 @@
 			}
 			if(breastRows[index].nippleType == GLOBAL.LIPPLES) return true;
 			return false;
+		}
+		public function hasDickNipples():Boolean {
+			trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
+			return hasNippleCocks();
 		}
 		public function hasNippleCocks():Boolean {
 			var counter:Number = breastRows.length;
@@ -2809,6 +2835,9 @@
 			if(cocks.length > 1) return true;
 			return false;
 		}
+		public function hasCuntTail():Boolean {
+			return hasTailCunt();
+		}
 		public function hasTailCock():Boolean {
 			if(hasTailFlag(GLOBAL.TAILCOCK) && tailCount > 0) return true;
 			return false;
@@ -2817,9 +2846,20 @@
 			if(tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;
 			return false;
 		}
+		public function tailCuntCapacity():Number {
+			if(!hasTailCunt()) return 0;
+			if(vaginalCapacity(0) > 30) return vaginalCapacity(0);
+			else return 30;
+		}
 		public function hasTail():Boolean {
 			if(tailType != GLOBAL.HUMAN) return true;
 			return false;
+		}
+		public function isBald():Boolean {
+			return (hairLength <= 0);
+		}
+		public function hasHair():Boolean {
+			return (hairLength == 0);
 		}
 		public function hasSockRoom():Boolean {
 			var index:int = cockTotal();
@@ -2861,13 +2901,15 @@
 			cocks[slot].clearFlags();
 			
 			//Add bonus flags and shit.
-			if(type == GLOBAL.CANINE) {
+			if(type == GLOBAL.CANINE || type == GLOBAL.VULPINE) 
+			{
 				cocks[slot].knotMultiplier = 1.25;
 				
 				cocks[0].addFlag(GLOBAL.TAPERED);
 				cocks[0].addFlag(GLOBAL.KNOTTED);
 			}
-			if(type == GLOBAL.EQUINE) {
+			if(type == GLOBAL.EQUINE) 
+			{
 				cocks[slot].knotMultiplier = 1;
 				cocks[0].addFlag(GLOBAL.BLUNT);
 				cocks[0].addFlag(GLOBAL.FLARED);
@@ -4126,6 +4168,10 @@
 			else if(randt == 9) descript += "button";
 			return descript;
 		}
+		public function vagOrAss():String {
+			if(hasVagina()) return vaginaDescript(0);
+			else return assholeDescript();
+		}
 		//Vaginas + Descript
 		public function tailVaginaDescript(forceAdjectives:Boolean = false,adjectives:Boolean = true):String {
 			//Vars
@@ -4550,7 +4596,7 @@
 				if(rando == 3) descript += "wriggling bunch of ";
 			}
 			//Append Nounse
-			if(hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType));
+			if(hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType,false,false));
 			else {
 				rando = rand(4);
 				if(rando == 0) descript += cockAdjective() + ", mutated cocks";
@@ -4567,6 +4613,40 @@
 				if(cocks[x].cType != first) return false;
 			}
 			return true;
+		}
+		private function clearList():void {
+			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			list = new Array();
+		}
+		private function addToList(arg):void {
+			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			list[list.length] = arg;
+		}
+		private function formatList():String {
+			var stuff:String = "";
+			if(list.length == 1) return list[0];
+			for(var x:int = 0; x < list.length; x++) {
+				stuff += list[x];
+				if(list.length == 2 && x == 1) {
+					stuff += " and ";
+				}
+				else if(x < list.length-2) {
+					stuff += ", ";
+				}
+				else if(x < list.length-1) {
+					stuff += ", and ";
+				}
+			}
+			list = new Array();
+			return stuff;	
+		}
+		public function gearDescript():String {
+			clearList();
+			if(armor.shortName != "") addToList(armor.longName);
+			if(upperUndergarment.shortName != "") addToList(upperUndergarment.longName);
+			if(lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
+			if(isNude()) addToList("gear");
+			return formatList();
 		}
 		//Basic multiple cock description.
 		public function cocksDescript():String {
@@ -5536,6 +5616,9 @@
 		}
 		public function milkColor():String {
 			return fluidColor(milkType);
+		}
+		public function girlCumColor():String {
+			return fluidColor(girlCumType);
 		}
 		public function fluidColor(arg:int):String {
 			var temp:int = rand(10);

@@ -13,7 +13,7 @@
 	trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		this.eventQueue[this.eventQueue.length-1];
+		this.eventQueue[this.eventQueue.length-1]();
 		//Strip out the most recent:
 		this.eventQueue.splice(this.eventQueue.length-1,1);
 	}
@@ -21,10 +21,17 @@
 	saveHere = true;
 	//Display the room description
 	clearOutput();
-	output("<b>" + rooms[location].roomName + "</b>\n" + rooms[location].description);
+	output(rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
-	this.userInterface.clearMenu();
+	if(inCombat()) output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
+	this.userInterface.clearMenu();
+	//Inventory shit
+	itemScreen = mainGameMenu;
+	lootScreen = inventory;
+	this.userInterface.addButton(2,"Inventory",inventory);
+	//Other standard buttons
+
 	this.userInterface.addButton(2,"Inventory",inventoryScreen);
 	if(pc.lust() < 33) 
 		this.userInterface.addDisabledButton(3,"Masturbate");
@@ -52,6 +59,7 @@
 		this.userInterface.addButton(7,rooms[location].outText,move,rooms[location].outExit);
 	if(location == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,99);
+	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
 }
 
 function inventoryScreen():void {
@@ -171,6 +179,10 @@ function processTime(arg:int):void {
 		if(this.userInterface.minutes >= 60) {
 			this.userInterface.minutes = 0;
 			this.userInterface.hours++;
+			if(flags["FLAHNE_PISSED"] > 0) {
+				flags["FLAHNE_PISSED"]--;
+				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
+			}
 			//Hours checks here!
 			//Cunt stretching stuff
 			if(pc.hasVagina()) {

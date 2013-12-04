@@ -31,7 +31,7 @@
 	//Build the bottom drawer
 	public class GUI extends MovieClip
 	{
-		
+		//leftSideBar.sceneTitle.filters = [glow];
 
 		var textBuffer:Array;
 		//Used for temp buffer stuff
@@ -80,6 +80,7 @@
 		var monsterLevel:StatBarSmall;
 		var monsterRace:StatBarSmall;
 		var monsterSex:StatBarSmall;
+		var playerShields:statBarBig;
 		var playerHP:StatBarBig;
 		var playerLust:StatBarBig;
 		var playerEnergy:StatBarBig;
@@ -240,9 +241,23 @@
 			playerHP = new StatBarBig();
 			playerLust = new StatBarBig();
 			playerEnergy = new StatBarBig();
+			playerShields = new StatBarBig();
+			this.titsClassPtr.addChild(playerShields);
 			this.titsClassPtr.addChild(playerHP);
 			this.titsClassPtr.addChild(playerLust);
 			this.titsClassPtr.addChild(playerEnergy);
+			playerShields.x = 1010;
+			playerShields.y = 65;
+			playerHP.x = 1010;
+			playerHP.y = 106;
+			playerLust.x = 1010;
+			playerLust.y = 147;
+			playerEnergy.x = 1010;
+			playerEnergy.y = 188;
+			playerShields.masks.labels.text = "SHIELDS";
+			playerShields.bar.width = 30;
+			playerShields.values.text = "10";
+			playerShields.background.x = -150;
 			playerHP.x = 1010;
 			playerHP.y = 65;
 			playerLust.x = 1010;
@@ -283,19 +298,21 @@
 			playerXP = new StatBarSmall();
 			playerCredits = new StatBarSmall();
 			playerLevel.x = 1010;
-			playerLevel.y = 415;
+			playerLevel.y = 456;
 			playerLevel.masks.labels.text = "LEVEL";
 			playerLevel.bar.visible = false;
 			playerLevel.background.x = -180;
 			playerLevel.values.text = "5";
+			playerLevel.noBar = true;
 			playerXP.x = 1010;
-			playerXP.y = 444;
+			playerXP.y = 485;
 			playerXP.masks.labels.text = "XP";
 			playerXP.bar.width = (50 / 500) * 180;
 			playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
 			playerXP.values.text = "50 / 1000";
 			playerCredits.x = 1010;
-			playerCredits.y = 473;
+			playerCredits.y = 514;
+			playerCredits.noBar = true;
 			playerCredits.masks.labels.text = "CREDITS";
 			playerCredits.bar.visible = false;
 			playerCredits.background.x =  -180;
@@ -316,17 +333,17 @@
 			this.titsClassPtr.addChild(playerWillpower);
 			this.titsClassPtr.addChild(playerLibido);
 			playerPhysique.x = 1010;
-			playerPhysique.y = 214;
+			playerPhysique.y = 255;
 			playerReflexes.x = 1010;
-			playerReflexes.y = 243;
+			playerReflexes.y = 284;
 			playerAim.x = 1010;
-			playerAim.y = 272;
+			playerAim.y = 313;
 			playerIntelligence.x = 1010;
-			playerIntelligence.y = 301;
+			playerIntelligence.y = 342;
 			playerWillpower.x = 1010;
-			playerWillpower.y = 330;
+			playerWillpower.y = 371;
 			playerLibido.x = 1010;
-			playerLibido.y = 359;
+			playerLibido.y = 400;
 
 			setupStatBar(playerPhysique,"PHYSIQUE",50,100);
 			setupStatBar(playerReflexes,"REFLEXES",30,100);
@@ -705,6 +722,15 @@
 			buttonData[slot].arg = arg;
 			buttonData[slot].caption.text = cap;
 			menuPageChecker();
+		}
+		//Returns the position of the last used buttonData spot.
+		function lastButton():int 
+		{
+			for(var x:int = buttonData.length; x >= 0; x--) {
+				if(buttonData[x].caption.text != "") break;
+			}
+			if(buttonData[x].caption.text == "" && x == 0) x = -1;
+			return x;
 		}
 		public function addDisabledButton(slot:int,cap:String = ""):void {
 			if(slot <= 14) {
@@ -1136,6 +1162,7 @@
 			leftSideBar.levelUpButton.visible = false;
 		}
 		public function hidePCStats():void {
+			playerShields.visible = false;
 			playerHP.visible = false;
 			playerLust.visible = false;
 			playerEnergy.visible = false;
@@ -1150,6 +1177,7 @@
 			playerLibido.visible = false;
 		}
 		public function showPCStats():void {
+			playerShields.visible = true;
 			playerHP.visible = true;
 			playerLust.visible = true;
 			playerEnergy.visible = true;
@@ -1181,7 +1209,7 @@
 		}
 		public function deglow():void 
 		{
-			trace("playerHP", playerHP);
+			this.playerShields.clearGlo();
 			this.playerHP.clearGlo();
 			this.playerLust.clearGlo();
 			this.playerEnergy.clearGlo();
@@ -1199,6 +1227,15 @@
 			this.monsterEnergy.clearGlo();
 		}	
 
+		function showBust(arg:int):void {
+			//leftSideBar.sceneTitle.filters = [glow];
+			if(arg == 0) leftSideBar.npcBusts.visible = false;
+			else {
+				leftSideBar.sceneTitle.text = caps(characters[arg].short);
+				leftSideBar.npcBusts.visible = true;
+				leftSideBar.npcBusts.gotoAndStop(arg);
+			}
+		}
 
 		//2. DISPLAY STUFF
 		//EXAMPLE: setupStatBar(monsterSex,"SEX","Genderless");

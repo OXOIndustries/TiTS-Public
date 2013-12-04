@@ -3,7 +3,7 @@
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
-	if(location == 99 && celiseIsCrew() && pc.hasCock()) {
+	if(location == 99 && celiseIsCrew() && pc.hasTailCock()) {
 		texts[texts.length] = "Porn&Celise";
 		funcs[funcs.length] = tailCockCeliseFaps;
 		args[args.length] = undefined;
@@ -16,6 +16,11 @@
 	if(pc.hasCock()) {
 		texts[texts.length] = "Penis";
 		funcs[funcs.length] = singleDickFap;
+		args[args.length] = undefined;
+	}
+	if(pc.cockTotal() >= 2) {
+		texts[texts.length] = "Penises";
+		funcs[funcs.length] = multiCockFap;
 		args[args.length] = undefined;
 	}
 	for(var x:int = 0; x < texts.length; x++) {
@@ -238,6 +243,7 @@ function singleDickFap():void {
 	//Precum addendum: requires high ball fullness or production!
 	if(pc.ballFullness >= 33 || pc.cumQ() >= 500) {
 		if(pc.cumQ() <= 25) output(" A single droplet of pre beads from your cumslit, and you gather it up to smear along your length, lubricating your playful fingertips.");
+		else if(pc.cumQ() <= 150) output(" A single droplet of pre beads from your cumslit, but it turns out to be the first of many when that droplet turns into a river of lubricating cockslime. You gather up the musky, sexual efflux and smear it over your shaft in a lubricating layer.");
 		else if(pc.cumQ() <= 150) output(" A single droplet of pre beads from your cumsit, but it turns out to be the first of many when that droplet turns into a river of lubricating cockslime. You gather up the musky, sexual efflux and smear it over your shaft in a lubricating layer.");
 		else output(" Fat droplets of pre roll out of your cumslit one after another, so fast that your crotch soon becomes sticky with the leaking sexual stuff. You gather up a handful of the stuff and smear it over your shaft, lubricating yourself for your playful fingertips.");
 		//Precum finisher
@@ -292,4 +298,251 @@ function singleDickFap():void {
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
+
+function multiCockFap():void {
+	clearOutput();
+	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
+	if(!pc.isNude()) {
+		output("strip out of your ");
+		clearList();
+		if(pc.armor.shortName != "") addToList("[pc.armor]");
+		if(pc.lowerUndergarment.shortName != "") addToList("[pc.lowerUndergarment]");
+		if(pc.upperUndergarment.shortName != "") addToList("[pc.upperUndergarment]");
+		output(formatList() + " to expose your [pc.cocks]. With the multiple endowments that you bear, there's no doubt that this is going to be a very messy, if enjoyable, experience.");
+	}
+	else output("find yourself a good spot to settle your nude form and remove the few pieces of kit you keep with you. There's no point in making a mess of your equipment after all.");
+	if(pc.libido() <= 33) {
+		output(" Your [pc.cocks] don't seem to react much to the changing environs, ");
+		if(pc.lust() <= 50) output("aside from slowly stiffening thanks to a few quick pumps");
+		else output("aside from getting a little harder when your hands make contact with one of them");
+	}
+	else if(pc.libido() <= 66) output("Your [pc.cocks] react like slowly-rousing beasts, each one getting thicker, harder, and eager for contact as though they're aware of what's to come");
+	else output("Your [pc.cocks] react like well-trained animals, stiffening to firm, full mast in seconds, so eager for pleasure that they bob in place excitedly whenever your hand comes close");
+	output(", and you sigh as your hands commence true self-pleasure.");
 	
+	//Two cocks: The ol' double-stroke
+	if(pc.cockTotal() == 2) {
+		output("\n\nYour groin seems perfectly made for you to masturbate; your [pc.cock 0] is in your right hand and your [pc.cock 1] is in your left. There's no worry of having a penis left out and trying to juggle it into some kind of rotation. You don't need to double-up both hands on one dick to try and increase the sensation. You can just... lie back and stroke. Up and down, you slide your hands on the slow journey, sometimes keeping them in a steady, matched rhythm, and other times alternating so that you jack up one while the other is on an oh-so-pleasurable downstroke.");
+	}
+	var tailPussied:Boolean = false;
+	var titFucked:Boolean = false;
+	var nippleFucked:Boolean = false;
+	var sucked:Boolean = false;
+	//Three dicks+
+	if(pc.cockTotal() >= 2) {
+		output("\n\nYour groin seems almost too bountiful, if such a thing is possible. There's all these wonderfully erect phalluses aching to be touched and yet you only have two hands to tend to them with.");
+		if(pc.hasTailCunt() && pc.tailCount >= pc.cockTotal() - 2) {		
+			output(" Without a single thought from you, your ");
+			if(pc.cockTotal() > 3) output("tails snake around and cover");
+			else output("tail snakes around and covers");
+			output(" every single unclaimed cock with a tight, fleshy sleeve");
+			if(pc.biggestCockVolume() > pc.tailCuntCapacity()) output(", even though at least one of your members is far to thick for a tail to handle more than the head");
+			output(". You whimper as feelings of fucking and being fucked war with the sensation of doubled masturbation at the forefront of your mind. The only winner here is pleasure, and you subsume yourself in it, stroking like wild while trying to hold back the mother of all orgasms.");
+			tailPussied = true;
+		}
+		else if(pc.tailCount >= pc.cockTotal() - 2 && pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.tailType != GLOBAL.HUMAN) {
+			output(" Lucky for you, you've got [pc.tails] that are more than capable of wrapping around an unclaimed tool and stroking up and down, letting you please every single cock at once in a symphony of pleasure ");
+			if(pc.cockTotal() >= 7) output("with so many different harmonies that it almost overloads your mind");
+			else output("so powerful that it's hard not to slip away into the ecstasy immediately");
+			output(".");
+		}
+		else output(" You aren't one to give up on a challenge, and you stroke yourself in earnest, letting each cock have a few strong pumps up and down before moving to the next of your many penises. You circle around, never staying on one cock too long, always moving to the next once it's aching for a touch, so much more sensitive after tasting a moment of denial.");
+	}
+	
+	
+	//precum options!
+	if(pc.ballFullness >= 33 || pc.cumQ() >= 500) {
+		if(pc.cumQ() <= 25) output("After a while of this, single pearls of pre-cum bead on your tips to shine in the light, begging to be touched and smeared over your sexy, throbbing fuck-sticks.");
+		else if(pc.cumQ() <= 150) output("After a while of this, single droplets of pre bead from your cumslits. They are the vanguard of a small contingent of lubricating leakages that rolls down the surfaces of your [pc.cockHeads] in a delightful way.");
+		else output("After a while of this, big droplets of pre-cum emerge from your cumslit, one after another. Each is hot on the heels of its predecessor, and in moments, your multitudinous masts are wreathed in eager cock-slime. There's so much that the rest of your crotch grows sticky with the wet-hot mess.");
+		output(" You gather up the distilled eagerness in the palm of each hand and firmly smear it down your lengths");
+		if(pc.cockTotal() > 2) {
+			output(", repeating the action ");
+			if(pc.cockTotal() == 3) output("once more");
+			else output("over and over");
+		}
+		output(" to ensure that every single shaft has a thick coating of its glorious ooze. The nerves inside [pc.eachCock] alight with pleasure at these touches, and you find yourself milking bigger and bigger deposits of liquid lust with each stroke until your masturbation fills the air with sloppy-sounding schlicks.");
+		//{tailcunt sucking going down}
+		if(tailPussied) {
+			output("Of course, the pre-cum from your member");
+			if(pc.cockTotal() >= 4 && pc.tailCount >= 2) output("s");
+			output(" subsumed in tail-mounted pussy is quickly devoured by your symbiotic appendages, but ");
+			if(pc.cockTotal() >= 4 && pc.tailCount >= 2) output("those dicks get");
+			else output("that dick gets");
+			output(" a coating of much slicker, more feminine fluids.");
+		}
+		//PRECUM END
+	}
+	//Vaginal blurb
+	if(pc.hasVagina()) {
+		output("\n\n[pc.EachVagina] is hot and wet ");
+		if(pc.balls > 0) {
+			output("enough to soak the underside of your [pc.sack], but you're far too busy to give ");
+			if(pc.vaginaTotal() == 1) output("it");
+			else output("them");
+			output(" the fucking ");
+			if(pc.vaginaTotal() > 1) output("they deserve");
+			else output("it deserves");
+			output(" right this minute. The sinful friction of your ball-skin against your vaginal lips will have to remain a simmering undercurrent of additional enjoyment while you focus on pleasing your pricks.");
+		}
+		else output("enough to look puffy and enticing, begging to be fucked, but you're far too busy with your pricks to divert into a simmering snatch right now.");
+	}
+	var choices:Array = new Array();
+	//Randomly select from available!
+	var x:int = pc.longestCock();
+	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength/pc.tallness >= 1/6) 
+		choices[choices.length] = 1;
+	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;
+	if(pc.cocks[x].cLength/pc.tallness >= 1/6 && (pc.hasCockFlag(GLOBAL.PREHENSILE,x) || pc.cocks[x].cLength/pc.tallness <= 1/3)) 
+		choices[choices.length] = 3;
+	if(pc.biggestTitSize() >= 5) choices[choices.length] = 4;
+	if(choices.length == 0) choices[choices.length] = 0;
+	var select:int = choices[rand(choices.length)];
+	//Nipplefuck
+	if(select == 1) {
+		nippleFucked = true;
+		output("\n\nThe excitement builds inside you, but you aren't yet ready to cum. You've got wonderful little [pc.nipples] perfectly made to assist in this task, and you're ");
+		if(pc.cocks[0].cLength/pc.tallness >= 1/5) output("plenty ");
+		output("long enough to pull it off.  Bending forward, you lower your [pc.fullChest] to line up ");
+		if(pc.cockTotal() > 2) output("the pulsating phalluses lucky enough to be in your hands");
+		else output("the dual phalluses");
+		output(" with your chest-mounted dick-pleasers. When the paired pairs of sexual organs make contact, the resulting electric tingle nearly causes you to jerk them out of alignment. You manage to hold firm... barely and lean down, pushing one [pc.cockHead] in your left side and one [pc.cockHead 1] in the other. Once you've sunk a few inches of phallic flesh directly into your ");
+		if(!pc.hasLipples()) output("squeezing cunt-nipples");
+		else output("suckling, fellating lipples");
+		output(", you hold your position, jacking up and down the exposed lengths while shifting your posture slightly to ensure there's a constant deluge of sensation assaulting the sensitive, paired glans.");
+		if(pc.totalNipples() > 2) output(" If only you had more hands to guide the rest into your other unoccupied tit-twats.");
+	}
+	//Single tailpussy, assumes the earlier tailpussy thing didn't happen. Requires a cock that fits.
+	else if(select == 2) {
+		tailPussied = true;
+		output("\n\n");
+		if(pc.tailCount > 1) output("One of y");
+		else output("Y");
+		output("our [pc.tail] arcs around while you are handling your [pc.cocks] in a way that reminds you vaguely of a snake's sinuous slithering, only with dripping pussy-juice in place of baleful hissing. It quickly snaps down onto [pc.oneCockHead], butting its outstretched folds against it before parting them with a quick thrust downward, devouring much of the shaft. You throw back your head and moan out at the overwhelmingly blissful gratification of fucking a pussy and having an overly-sensitive pussy fucked all at the same. Meanwhile, the greedy tail-twat pushes down until it hits your fast-pumping knuckle, and there, it stops, squeezing tight and beginning to ripple in heavenly contractions that threaten to milk every drop of pre-cum from your body.");
+	}
+	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!.
+	else if(select == 3) {
+		sucked = true;
+		output("\n\nAs you stroke, the gleaming, sensitive [pc.cockHead " + x + "] of your [pc.cock " + x + "] bounces ");
+		if(pc.cocks[x].cLength/pc.tallness < 1/2.5) output("at the bottom of your view, desperate for attention.");
+		else output("in front of your [pc.face], so hard and needy, practically begging for attention.");
+		output(" You humor it by ");
+		if(pc.cocks[x].cLength/pc.tallness >= 1/2.5) output("bending the anxious, phallic peak toward your mouth");
+		else output("bending down toward the anxious, phallic peak");
+		output(", planting a gentle kiss upon it. It immediately returns the kiss with a dollop of warm, wet pre-cum, sliming your [pc.lips] in a cock-gifted shine. You playfully extend your [pc.tongue] and lick around the circumference of your crown in slow circuits of wonderfully fellatic pleasure, swallowing whatever juices your member sees fit to express its joy with.");
+	}
+	//Titfuck - needs DD cups or higher and a dick at 1/6th height
+	else if(select == 4) {
+		titFucked = true;
+		output("\n\nYou decide to help yourself out by squishing ");
+		if(pc.totalcThickness() <= 6) output("all of your tools");
+		else {
+			if(pc.cockTotal() == 2) output("both");
+			else output("two");
+			output(" of your [pc.cocks]");
+		}
+		output(" into your cleavage and wrapping your arms around the whole mass, pinning the pre-leaking pricks into a valley of soft, supple [pc.skinFurScales] that you never want them to escape from. Once secure, you bounce yourself up and down along your lengths by leaning forward and back, letting your heavy breasts jiggle and shake around their charges, smothering yourself in the warm heaven of a bountiful bosom. It's so damn good that you have a hard time hanging to your senses - excepting touch, of course.");
+	}
+	//Can't quality for anything special, get half-assed scene.
+	else {
+		output("\n\nAt first, you try to keep your pace fairly steady, but the longer you go, the longer you stroke, the more anxious and jerky your hands become. Your [pc.hips] occasionally twitch as well, and your [pc.legs] are soon shaking in excitement. Moaning, you pick up the tempo, pumping [pc.eachCock] with long, furious strokes. You feel almost possessed by the building pleasure (and consummately increasing pressure), forced past the point where you could stop if you wanted to. Now, the brake handle has snapped off, and you're on a one-way train to ecstasy.");
+	}
+	//Stock pre-orgasm message
+	if(pc.balls > 0) {
+		output("\n\nYour [pc.balls] ");
+		if(pc.balls > 2) output("start to lurch and churn");
+		else output("starts to lurch and churn");
+		output(" in your tightening [pc.sack] as a satisfying warmth spreads through your core, squeezed through internal passageways by involuntary clenching and contracting muscles.");
+	}
+	else output("\n\nThe muscles in your abdomen abruptly begin to tighten and contract, squeezing in ways that make your [pc.cocks] jump in your hands, and you feel a building sense of warmth that's spreading through your core.");
+	output(" The further the heat spreads, the better it feels, and at the same time, the more you feel like you NEED to cum... to release all that pent-up, rising wave of passion before it overwhelms you.");
+	//JIZZBOMB!
+	output("\n\n");
+	//Bits for tailpussies/tailpussy
+	if(tailPussied) {
+		var singular:Boolean = (pc.tailCount == 1 || pc.tailCount < pc.cockTotal() - 2);
+		if(!singular) {
+			output("Your [pc.cum] erupts into the suckling, fluid-hungry entrances your [pc.tailCunts] provide, ");
+			if(pc.cumQ() <= 5) output("giving them a tiny appetizer.");
+			else if(pc.cumQ() <= 10) output("giving them a tasty snack.");
+			else if(pc.cumQ() <= 50) output("filling them with a tail-filling meal.");
+			else if(pc.cumQ() <= 150) output("flooding them with a tail-bloating feast.");
+			else output("filling them to such a degree that much of your ejaculate backwashes out the entrances as they weakly detach, too full for more.");
+		}
+		else {
+			output("Your [pc.cum] erupts into the suckling, fluid-hungry entrance your [pc.tailCunt] provides, ");
+			if(pc.cumQ() <= 5) output("giving it a tiny appetizer.");
+			else if(pc.cumQ() <= 10) output("giving it a tasty snack.");
+			else if(pc.cumQ() <= 50) output("filling it with a tail-filling meal.");
+			else if(pc.cumQ() <= 150) output("flooding it with a tail-bloating feast.");
+			else output("filling it to such a degree that much of your ejaculate backwashes out the entrance as it weakly detaches, too full for more.");
+		}
+		output(" ");
+	}
+	//Bits for titfuck
+	else if(titFucked) {
+		if(pc.cumQ() <= 5) output("A few weak droplets of cum leak into the space between your breasts, the only proof of your ecstasy.");
+		else if(pc.cumQ() <= 30) output("Splashes of [pc.cum] splatter across the tops of your quivering jugs as you unload, [pc.cumColor]-washing your chest with your passionate fluid.");
+		else if(pc.cumQ() <= 150) {
+			output("Large spurts of [pc.cum] fire out of [pc.eachCock], to drench your chest with a coat of [pc.cumColor] that drips off the sides in long rivulets. Some even lands ");
+			if(pc.isBald()) output("on your head");
+			else output("in your [pc.hair]");
+			output(" to drip down over your eyes.");
+		}
+		else {
+			output("Torrential geysers of [pc.cum] erupt from each of your tit-enclosed [pc.cockHeads], painting you in thick cock-juice from your head to your waist.");
+			if(pc.cumQ() >= 1000) output(" It drips everywhere, and yet there always seems to be more shooting out of your tit-enclosed phalluses.");
+		}
+	}
+	//Bits for suckin dat shit
+	else if(sucked) {
+		output("Your orgasm bursts right out of your [pc.cockHead] and into your mouth");
+		if(pc.cumQ() <= 5) output(", leaving a drop of [pc.cum] for you to savor as you ride out the culmination of your masturbation session.");
+		else if(pc.cumQ() <= 15) output(", leaving you with a few nicely-sized blobs of [pc.cum] to swallow as you ride out the culmination of your masturbation session.");
+		else if(pc.cumQ() <= 50) output("filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
+		else if(pc.cumQ() <= 200) output("flooding your cheeks with so much that you have you to hurriedly gulp to keep it from leaking out your [pc.lips].");
+		else if(pc.cumQ() <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there's still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
+		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you're likely unrecognizable.");
+		output(" ");
+	}
+	//Bits for nipplefucking
+	else if(nippleFucked) {
+		output("Your [pc.chest] becomes sensuously, perfectly warm as your [pc.cocks] unload into your [pc.nipples], slicking their internal passages with a ");
+		if(pc.cumQ() <= 5) output("dainty");
+		else if(pc.cumQ() <= 50) {}
+		else if(pc.cumQ() <= 150) output("large");
+		else output("tunnel-flooding");
+		output(" deposit of your liquid love. ");
+	}
+	//Everybody gets dese
+	if(!titFucked) {
+		output("You slam your hands down to your ");
+		if(pc.hasSheath(0) && pc.hasSheath(1)) output("sheaths");
+		else if(pc.hasSheath(0) || pc.hasSheath(1)) output("base and sheath");
+		else output("bases");
+		output(" and squeeze tight as you orgasm. ");
+		if(pc.cumQ() <= 5) output("[pc.Cum] shoots out in tiny, droplet-sized volleys. There's so little that you have to wonder if you should give your body time to recuperate or perhaps investigate something to decrease your refractory period.");
+		else if(pc.cumQ() <= 25) output("[pc.Cum] launches out in average volleys, spilling droplets all over your [pc.belly] that combine into a fair-sized pool.");
+		else if(pc.cumQ() <= 100) output("[pc.Cum] shoots out in thick ropes of creamy bliss, splattering across your [pc.fullChest] and [pc.belly] in such quantity that would shame a human.");
+		else if(pc.cumQ() <= 500) {
+			output("[pc.Cum] fires out of your [pc.cockHeads] in such huge, long ropes that you practically end up painting your [pc.belly] and [pc.chest] in a thick layer of the stuff.");
+			if(pc.cumQ() >= 250) output(" Small rivers of goo roll down your sides to puddle below you as your orgasm drags on.");
+		}
+		else {
+			output("[pc.Cum] erupts in torrents, each shot easily as big as the totally ejaculate of a normal man and then some. It not only splatters your [pc.belly], but also your [pc.chest], shoulders, and [pc.face]. Again and again, the huge pulses of goop fire, not stopping until you are suitably soaked and your [pc.balls] ");
+			if(pc.balls <= 1) output("is");
+			else output("are");
+			output(" significantly drained.");
+		}
+	}
+	//Wrap-up, no new PG
+	output(" Your [pc.legs] quiver and involuntarily thrust until you are spent, and then, you lie there, coated coated with your goo and grinning a sated smile.");
+	if(pc.libido() <= 25) output("\n\nYou wipe up as best you can and gear up after a few minutes of rest, feeling like you can take on the world.");
+	else if(pc.libido() <= 50) output("\n\nYou make a half-hearted attempt to wipe up before getting your gear back on and getting ready go back to exploring.");
+	else if(pc.libido() <= 75) output("\n\nYou barely bother to clear your sexual juices from your body before getting dressed and getting back to exploring the universe for sexy aliens to fuck.");
+	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
+	processTime(45 + rand(5));
+	pc.orgasm();
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
+}

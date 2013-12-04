@@ -198,6 +198,10 @@ function loadGame(slot:String):void {
 		debug = saveFile.data.debug;
 		location = saveFile.data.locationKey;
 		shipLocation = saveFile.data.shipLocation;
+		lootList = new Array();		
+		
+		//Update NPCs that didn't used to exist
+		this.initializeNPCs(true);				
 		
 		//Set pointers back where they belong!
 		this.setCheatPointers();
@@ -252,4 +256,6 @@ function setCheatPointers():void {
 	pc = characters[0];
 	celise = characters[GLOBAL.CELISE];
 	rival = characters[GLOBAL.RIVAL];
+	geoff = characters[GLOBAL.GEOFF];
+	flahne = characters[GLOBAL.FLAHNE];
 }
