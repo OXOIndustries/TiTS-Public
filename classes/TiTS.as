@@ -226,6 +226,24 @@
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
 		}
+		
+		// Passthrough to the interface class
+		// TODO: Dunno what Fen/Fake wants to do about this, adding passthroughs to the document class
+		// is kind of a shitty workaround to namespacing bullshit, but it works so w/e
+		public function clearMenu():void
+		{
+			this.userInterface.clearMenu();
+		}
+		
+		public function showBust(val:int):void
+		{
+			this.userInterface.showBust(val);
+		}
+		
+		public function addButton(slot:int, cap:String = "", func = undefined, arg = undefined):void
+		{
+			this.userInterface.addButton(slot, cap, func, arg);
+		}
 
 		public function horsecock():void {
 			clearOutput();
