@@ -58,11 +58,11 @@
 
 		var input:TextField;
 		
-		var buttonDrawer:bottomButtonDrawer;
+		var buttonDrawer:BottomButtonDrawer;
 		var buttons:Array;
 		var buttonData:Array;
 		var buttonPage:int;
-		public var leftSideBar:leftBar;
+		public var leftSideBar:LeftBar;
 		var fadeOut:*;
 		var titsPurple:*;
 		var titsBlue:*;
@@ -72,7 +72,7 @@
 		var buttonPageNext:rightButton;
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
-		public var rightSidebar:rightBar;
+		public var rightSidebar:RightBar;
 
 		var monsterHP:StatBarBig;
 		var monsterLust:StatBarBig;
@@ -80,7 +80,7 @@
 		var monsterLevel:StatBarSmall;
 		var monsterRace:StatBarSmall;
 		var monsterSex:StatBarSmall;
-		var playerShields:statBarBig;
+		var playerShields:StatBarBig;
 		var playerHP:StatBarBig;
 		var playerLust:StatBarBig;
 		var playerEnergy:StatBarBig;
@@ -102,8 +102,8 @@
 		var mainTextField2:TextField;
 		var upScrollButton:arrow;
 		var downScrollButton:arrow;
-		var scrollBar:bar;
-		var scrollBG:bar;
+		var scrollBar:Bar;
+		var scrollBG:Bar;
 		var mainMenuButtons:Array;
 		var titleDisplay:titsLogo;
 		var warningBackground:warningBG;
@@ -144,7 +144,7 @@
 			this.minutes = 0;
 
 
-			buttonDrawer = new bottomButtonDrawer;
+			buttonDrawer = new BottomButtonDrawer;
 			this.titsClassPtr.addChild(buttonDrawer);
 			buttonDrawer.x = 0;
 			buttonDrawer.y = 800;
@@ -156,7 +156,7 @@
 			initializeButtons();
 
 			//Build left sidebar
-			leftSideBar = new leftBar;
+			leftSideBar = new LeftBar;
 			leftSideBar.x = 0;
 			leftSideBar.y = 0;
 			this.titsClassPtr.addChild(leftSideBar);
@@ -232,7 +232,7 @@
 			leftBarClear();
 
 			//Build the right sidebar
-			rightSidebar = new rightBar;
+			rightSidebar = new RightBar;
 			this.titsClassPtr.addChild(rightSidebar);
 			rightSidebar.nameText.text = "Penis";
 			rightSidebar.x = 1000;
@@ -391,11 +391,11 @@
 			downScrollButton.x = mainTextField.x + mainTextField.width + downScrollButton.width;
 			downScrollButton.y = mainTextField.y + mainTextField.height;
 			downScrollButton.rotation = 180;
-			scrollBar = new bar();
+			scrollBar = new Bar();
 			scrollBar.x = mainTextField.x + mainTextField.width;
 			scrollBar.y = mainTextField.y + upScrollButton.height;
 			scrollBar.height = 50;
-			scrollBG = new bar();
+			scrollBG = new Bar();
 			scrollBG.x = mainTextField.x + mainTextField.width;
 			scrollBG.y = mainTextField.y + upScrollButton.height;
 			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
@@ -1209,6 +1209,7 @@
 		}
 		public function deglow():void 
 		{
+			trace("playerShields = ", playerShields);
 			this.playerShields.clearGlo();
 			this.playerHP.clearGlo();
 			this.playerLust.clearGlo();
@@ -1231,7 +1232,7 @@
 			//leftSideBar.sceneTitle.filters = [glow];
 			if(arg == 0) leftSideBar.npcBusts.visible = false;
 			else {
-				leftSideBar.sceneTitle.text = caps(characters[arg].short);
+				//leftSideBar.sceneTitle.text = caps(characters[arg].short);
 				leftSideBar.npcBusts.visible = true;
 				leftSideBar.npcBusts.gotoAndStop(arg);
 			}

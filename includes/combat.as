@@ -6,7 +6,8 @@ function inCombat():Boolean
 	return (pc.hasStatusEffect("Round"));
 }
 
-function combatMainMenu():void {
+function combatMainMenu():void 
+{
 	clearOutput();
 	//Track round, expires on combat exit.
 	if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
@@ -52,7 +53,8 @@ function combatMainMenu():void {
 		this.userInterface.addButton(0,"Recover",stunRecover);
 	}
 }
-function stunRecover():void {
+function stunRecover():void 
+{
 	clearOutput();
 	pc.addStatusValue("Stunned",1,-1);
 	if (pc.statusEffectv1("Stunned") <= 0)
@@ -64,7 +66,8 @@ function stunRecover():void {
 		output("You're still too stunned to act!");
 	processCombat();
 }
-function celiseMenu():void {
+function celiseMenu():void 
+{
 	this.userInterface.clearMenu();
 	if(pc.statusEffectv1("Round") == 1) 
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
@@ -74,7 +77,8 @@ function celiseMenu():void {
 		this.userInterface.addButton(5,"Tease",tease);
 }
 
-function processCombat():void {
+function processCombat():void 
+{
 	combatStage++;
 	trace("COMBAT STAGE:" + combatStage);
 	//Check to see if combat should be over or not.
@@ -108,7 +112,8 @@ function processCombat():void {
 	this.userInterface.addButton(0,"Next",combatMainMenu);
 }
 
-function allFoesDefeated():Boolean {
+function allFoesDefeated():Boolean 
+{
 	for(var x:int = 0; x < foes.length; x++) {
 		//If a foe is up, fail.
 		if(foes[x].HP() > 0 && foes[x].lust() < 100) return false;
@@ -117,12 +122,14 @@ function allFoesDefeated():Boolean {
 	return true;
 }
 
-function combatMiss(attacker:Creature, target:Creature):Boolean {
+function combatMiss(attacker:Creature, target:Creature):Boolean 
+{
 	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10) return true;
 	return false;
 }
 
-function attackRouter(destinationFunc):void {
+function attackRouter(destinationFunc):void 
+{
 {
 	clearOutput();
 	output("Who do you target?\n");
@@ -146,17 +153,21 @@ function attackRouter(destinationFunc):void {
 }
 
 
-function enemyAttack(attacker:Creature):void {
+function enemyAttack(attacker:Creature):void 
+{
 	attack(attacker,pc);
 }
-function playerAttack(target:Creature):void {
+function playerAttack(target:Creature):void 
+{
 	attack(pc,target);
 }
-function playerRangedAttack(target:Creature):void {
+function playerRangedAttack(target:Creature):void 
+{
 	rangedAttack(pc,target);
 }
 
-function attack(attacker:Creature, target:Creature):void {
+function attack(attacker:Creature, target:Creature):void 
+{
 	trace("Attacking in melee...");
 	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
@@ -229,7 +240,8 @@ function attack(attacker:Creature, target:Creature):void {
 	if(noProcess) output("\n");
 	else processCombat();
 }
-function rangedAttack(attacker:Creature, target:Creature):void {
+function rangedAttack(attacker:Creature, target:Creature):void 
+{
 	trace("Ranged shot...");
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
@@ -303,7 +315,8 @@ function rangedAttack(attacker:Creature, target:Creature):void {
 }
 
 
-function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number {
+function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number 
+{
 	//Reduce damage by defense value
 	damage -= victim.defense();
 	
@@ -325,7 +338,8 @@ function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC
 	return damage;
 }
 
-function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number {
+function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number 
+{
 	//Reduce damage by shield defense value
 	damage -= victim.shieldDefense();
 	
@@ -354,14 +368,16 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	return damage;
 }
 
-function tease():void {
+function tease():void 
+{
 	clearOutput();
 	output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.\n");
 	processCombat();
 }
 
-//Name, long descript, lust descript, and 
-function displayMonsterStatus(targetFoe):void {
+//Name, long descript, lust descript, and '"
+function displayMonsterStatus(targetFoe):void 
+{
 	if(targetFoe.HP() <= 0) {
 		output("<b>You've knocked the resistance out of " + targetFoe.a + targetFoe.short + ".</b>\n");
 	}
@@ -393,7 +409,8 @@ function displayMonsterStatus(targetFoe):void {
 	}
 }
 
-function showMonsterArousalFlavor(targetFoe):void {
+function showMonsterArousalFlavor(targetFoe):void 
+{
 	if(targetFoe.lust < 50) { 
 		return; 
 	}
@@ -423,11 +440,13 @@ function showMonsterArousalFlavor(targetFoe):void {
 	}
 	output("\n");
 }
-function statusAffectUpdates():void {
+function statusAffectUpdates():void 
+{
 	processCombat();
 }
 
-function enemyAI(aggressor:Creature):void {	
+function enemyAI(aggressor:Creature):void 
+{	
 	//Foe specific AIs
 	switch(foes[0].short) {
 		case "Celise":
@@ -442,7 +461,8 @@ function enemyAI(aggressor:Creature):void {
 	}
 }
 
-function victoryRouting():void {
+function victoryRouting():void 
+{
 	hideNPCStats();
 	if(foes[0].short == "Celise") {
 		defeatCelise();
@@ -453,7 +473,8 @@ function victoryRouting():void {
 	else genericVictory();
 }
 
-function defeatRouting():void {
+function defeatRouting():void 
+{
 	if(foes[0].short == "BONERS") {}
 	else if(foes[0].short == "two zil") {
 		loseToZilPair();
@@ -467,18 +488,21 @@ function defeatRouting():void {
 	}
 }
 
-function genericVictory():void {
+function genericVictory():void 
+{
 	getCombatPrizes();
 }
 
-function combatOver():void {
+function combatOver():void 
+{
 	pc.removeStatusEffect("Round");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 
-function getCombatPrizes(newScreen:Boolean = false):void {
+function getCombatPrizes(newScreen:Boolean = false):void 
+{
 	if(newScreen) clearOutput();
 	
 	//Add credits and XP

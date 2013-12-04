@@ -198,8 +198,9 @@
 			initializeFlags();
 
 
-
+			trace("Calling GUI Constructor");
 			this.userInterface = new GUI(this, stage)
+			trace("GUI Done");
 
 			// shove the variables declared in the included files into the TiTS constructor
 			// because they're set-up procedurally (GLOBAL.BLEURRRGGGHHHH)
@@ -259,8 +260,8 @@
 
 		
 		public function buttonClick(evt:MouseEvent):void {
-			if(!inCombat()) 
-				this.userInterface.showBust(0);
+			//if(!inCombat()) 
+			//	this.userInterface.showBust(0);
 			if(evt.currentTarget.func == undefined) {
 				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
 				return;
@@ -435,8 +436,8 @@
 				trace("Undefined button pressed! Something went wrong!");
 				return;
 			}
-			if(!inCombat()) 
-				this.userInterface.showBust(0);
+			//if(!inCombat()) 
+			//	this.userInterface.showBust(0);
 			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
 			else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
 			updatePCStats();

@@ -23,7 +23,8 @@
 	clearOutput();
 	output(rooms[location].description);
 	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
-	if(inCombat()) output("\n\n<b>You're still in combat, you ninny!</b>");
+	//if(inCombat()) 
+	//	output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
 	this.userInterface.clearMenu();
 	//Inventory shit
