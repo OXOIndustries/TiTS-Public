@@ -111,15 +111,19 @@
 		var websiteDisplay:TextField;
 		var titleFormat:TextFormat;
 		public var myGlow:GlowFilter;
-		var titsClassPtr:*;
 
-		public function GUI(titsClassPtr:*)
+
+		var titsClassPtr:*;
+		var stagePtr:*;
+
+		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
 		{
 			trace("GUI Constructor")
 
 			// Pointer to the TiTS class
 			// this is THE MOST HORRIBLE WORK-AROUND EVEN THEORETICALLY POSSIBLE.
-			this.titsClassPtr = titsClassPtr;
+			this.titsClassPtr = titsClassPtrArg;
+			this.stagePtr = stagePtrArg;
 
 			//Lazy man state checking
 			this.showingPCAppearance = false;
@@ -140,7 +144,7 @@
 
 
 			buttonDrawer = new bottomButtonDrawer;
-			addChild(buttonDrawer);
+			this.titsClassPtr.addChild(buttonDrawer);
 			buttonDrawer.x = 0;
 			buttonDrawer.y = 800;
 
@@ -154,7 +158,7 @@
 			leftSideBar = new leftBar;
 			leftSideBar.x = 0;
 			leftSideBar.y = 0;
-			addChild(leftSideBar);
+			this.titsClassPtr.addChild(leftSideBar);
 			//Fading out Perks and Level Up Buttons
 
 			fadeOut = new ColorTransform();
@@ -172,7 +176,7 @@
 
 
 			monsterHP = new StatBarBig();
-			addChild(monsterHP);
+			this.titsClassPtr.addChild(monsterHP);
 			monsterHP.x = 10;
 			monsterHP.y = 237;
 			monsterHP.background.x = -150;
@@ -181,7 +185,7 @@
 			monsterHP.visible = false;
 
 			monsterLust = new StatBarBig();
-			addChild(monsterLust);
+			this.titsClassPtr.addChild(monsterLust);
 			monsterLust.x = 10;
 			monsterLust.y = 278;
 			monsterLust.masks.labels.text = "LUST";
@@ -192,7 +196,7 @@
 			monsterLust.visible = false;
 
 			monsterEnergy = new StatBarBig();
-			addChild(monsterEnergy);
+			this.titsClassPtr.addChild(monsterEnergy);
 			monsterEnergy.x = 10;
 			monsterEnergy.y = 319;
 			monsterEnergy.masks.labels.text = "ENERGY";
@@ -201,7 +205,7 @@
 
 
 			monsterLevel = new StatBarSmall();
-			addChild(monsterLevel);
+			this.titsClassPtr.addChild(monsterLevel);
 			monsterLevel.x = 10;
 			monsterLevel.y = 363;
 			setupStatBar(monsterLevel,"LEVEL",5);
@@ -209,7 +213,7 @@
 
 
 			monsterRace = new StatBarSmall();
-			addChild(monsterRace);
+			this.titsClassPtr.addChild(monsterRace);
 			monsterRace.x = 10;
 			monsterRace.y = 392;
 			setupStatBar(monsterRace,"RACE","Galotian");
@@ -217,7 +221,7 @@
 
 
 			monsterSex = new StatBarSmall();
-			addChild(monsterSex);
+			this.titsClassPtr.addChild(monsterSex);
 			monsterSex.x = 10;
 			monsterSex.y = 421;
 			setupStatBar(monsterSex,"SEX","Unknown");
@@ -228,7 +232,7 @@
 
 			//Build the right sidebar
 			rightSidebar = new rightBar;
-			addChild(rightSidebar);
+			this.titsClassPtr.addChild(rightSidebar);
 			rightSidebar.nameText.text = "Penis";
 			rightSidebar.x = 1000;
 			rightSidebar.y = 0;
@@ -236,9 +240,9 @@
 			playerHP = new StatBarBig();
 			playerLust = new StatBarBig();
 			playerEnergy = new StatBarBig();
-			addChild(playerHP);
-			addChild(playerLust);
-			addChild(playerEnergy);
+			this.titsClassPtr.addChild(playerHP);
+			this.titsClassPtr.addChild(playerLust);
+			this.titsClassPtr.addChild(playerEnergy);
 			playerHP.x = 1010;
 			playerHP.y = 65;
 			playerLust.x = 1010;
@@ -256,22 +260,22 @@
 			playerEnergy.masks.labels.text = "ENERGY";
 			playerEnergy.values.text = "100";
 			buttonPagePrev = new leftButton;
-			addChild(buttonPagePrev);
+			this.titsClassPtr.addChild(buttonPagePrev);
 			buttonPagePrev.x = 1000;
 			buttonPagePrev.y = 750;
 			buttonPagePrev.alpha = .3;
 			buttonPageNext = new rightButton;
-			addChild(buttonPageNext);
+			this.titsClassPtr.addChild(buttonPageNext);
 			buttonPageNext.x = 1100;
 			buttonPageNext.y = 750;
 			buttonPageNext.alpha = .3;
 			pagePrev = new leftButton;
-			addChild(pagePrev);
+			this.titsClassPtr.addChild(pagePrev);
 			pagePrev.x = 010;
 			pagePrev.y = 750;
 			pagePrev.alpha = .3;
 			pageNext = new rightButton;
-			addChild(pageNext);
+			this.titsClassPtr.addChild(pageNext);
 			pageNext.x = 110;
 			pageNext.y = 750;
 			pageNext.alpha = .3;
@@ -296,21 +300,21 @@
 			playerCredits.bar.visible = false;
 			playerCredits.background.x =  -180;
 			playerCredits.values.text = "Over 9000";
-			addChild(playerLevel);
-			addChild(playerXP);
-			addChild(playerCredits);
+			this.titsClassPtr.addChild(playerLevel);
+			this.titsClassPtr.addChild(playerXP);
+			this.titsClassPtr.addChild(playerCredits);
 			playerPhysique = new StatBarSmall();
 			playerReflexes = new StatBarSmall();
 			playerAim = new StatBarSmall();
 			playerIntelligence = new StatBarSmall();
 			playerWillpower = new StatBarSmall();
 			playerLibido = new StatBarSmall();
-			addChild(playerPhysique);
-			addChild(playerReflexes);
-			addChild(playerAim);
-			addChild(playerIntelligence);
-			addChild(playerWillpower);
-			addChild(playerLibido);
+			this.titsClassPtr.addChild(playerPhysique);
+			this.titsClassPtr.addChild(playerReflexes);
+			this.titsClassPtr.addChild(playerAim);
+			this.titsClassPtr.addChild(playerIntelligence);
+			this.titsClassPtr.addChild(playerWillpower);
+			this.titsClassPtr.addChild(playerLibido);
 			playerPhysique.x = 1010;
 			playerPhysique.y = 214;
 			playerReflexes.x = 1010;
@@ -347,22 +351,7 @@
 			//Set up backup text field
 			mainTextField2 = new TextField();
 			prepTextField(mainTextField2);
-			function prepTextField(arg:TextField):void {
-				arg.border = false;
-				arg.text = "Placeholder";
-				arg.background = false;
-				arg.multiline = true;
-				arg.wordWrap = true;
-				arg.border = false;
-				arg.x = 211;
-				arg.y = 5;
-				arg.height = 630;
-				arg.width = 760;
-				arg.setTextFormat(format1);
-				arg.defaultTextFormat = format1;
-				addChild(arg);
-				arg.visible = false;
-			}
+
 
 			//Set up standard input box!
 			input = new TextField();
@@ -394,10 +383,10 @@
 			scrollBG.y = mainTextField.y + upScrollButton.height;
 			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
 			scrollBG.transform.colorTransform = fadeOut;
-			addChild(scrollBG);
-			addChild(scrollBar);
-			addChild(upScrollButton);
-			addChild(downScrollButton);
+			this.titsClassPtr.addChild(scrollBG);
+			this.titsClassPtr.addChild(scrollBar);
+			this.titsClassPtr.addChild(upScrollButton);
+			this.titsClassPtr.addChild(downScrollButton);
 			//Since downscroll starts clickable...
 			downScrollButton.buttonMode = true;
 
@@ -476,11 +465,11 @@
 			//Add warning display
 			warningBackground.x = 210;
 			warningBackground.y = 380;
-			addChild(titleDisplay);
-			addChild(warningBackground);
-			addChild(creditText);
-			addChild(warningText);
-			addChild(websiteDisplay);
+			this.titsClassPtr.addChild(titleDisplay);
+			this.titsClassPtr.addChild(warningBackground);
+			this.titsClassPtr.addChild(creditText);
+			this.titsClassPtr.addChild(warningText);
+			this.titsClassPtr.addChild(websiteDisplay);
 			websiteDisplay.visible = false;
 			creditText.visible = false;
 			warningText.visible = false;
@@ -523,7 +512,7 @@
 				else {
 					buttons[temp] = new blueButton;
 				}
-				addChild(buttons[temp]);
+				this.titsClassPtr.addChild(buttons[temp]);
 				buttons[temp].caption.htmlText = texts + String(Math.round(Math.random()*10));
 				buttons[temp].x = ex;
 				buttons[temp].y = why;
@@ -683,6 +672,24 @@
 			menuPageChecker();
 		}
 
+		public function prepTextField(arg:TextField):void 
+		{
+			arg.border = false;
+			arg.text = "Placeholder";
+			arg.background = false;
+			arg.multiline = true;
+			arg.wordWrap = true;
+			arg.border = false;
+			arg.x = 211;
+			arg.y = 5;
+			arg.height = 630;
+			arg.width = 760;
+			arg.setTextFormat(format1);
+			arg.defaultTextFormat = format1;
+			this.titsClassPtr.addChild(arg);
+			arg.visible = false;
+		}
+
 		public function addButton(slot:int,cap:String = "",func = undefined,arg = undefined):void {
 			if(slot <= 14) {
 				buttons[slot].alpha = 1;
@@ -794,7 +801,7 @@
 		}
 
 		public function displayInput():void {
-			if(!stage.contains(input)) addChild(input);
+			if(!this.stagePtr.contains(input)) this.titsClassPtr.addChild(input);
 			input.text = "";
 			input.visible = true;
 			input.width = 160;
@@ -806,12 +813,12 @@
 			for (var x:int = 0; x < 15; x++) {
 				buttons[x].hotkey.text = "-";
 			}
-			stage.focus = input;
+			this.stagePtr.focus = input;
 			input.text = "";
 			input.maxChars = 0;
 		}
 		public function removeInput():void {
-			removeChild(input);
+			this.titsClassPtr.removeChild(input);
 			menuButtonsOn();
 			buttons[0].hotkey.text = "1";
 			buttons[1].hotkey.text = "2";
@@ -946,18 +953,20 @@
 			pagePrev.visible = false;
 		}
 
-		public function menuButtonsOn():void {
+		public function menuButtonsOn():void 
+		{
+			trace("this.stagePtr = ", this.stagePtr);
 			if(!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") {
 				appearanceOn();
 			}
-			if(!stage.contains(input)) {
+			if(!this.stagePtr.contains(input)) {
 				mainMenuButtonOn();
-				dataOn();
+				this.dataOn();
 			}
 		}
 		public function menuButtonsOff():void {
 			appearanceOff();
-			dataOff();
+			this.dataOff();
 			mainMenuButtonOff();
 		}
 		public function hideMenus():void {
@@ -1098,7 +1107,7 @@
 				}
 				//Add on from previous button value.
 				ex += 158;
-				addChild(mainMenuButtons[x]);
+				this.titsClassPtr.addChild(mainMenuButtons[x]);
 				
 				mainMenuButtons[x].caption.htmlText = String(x);
 				

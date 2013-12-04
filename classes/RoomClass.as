@@ -2,9 +2,13 @@
 {
 	public class RoomClass
 	{
+		var titsClassPtr:*;
+
 		//constructor
-		public function RoomClass()
+		public function RoomClass(titsClassPtrArg:*)
 		{
+			
+			this.titsClassPtr = titsClassPtrArg;
 			choices = new Array();
 		}
 		// include "consts.as";

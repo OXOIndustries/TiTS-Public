@@ -9,11 +9,13 @@
 		return;
 	}
 	//Queued events can fire off too!
+	trace("EventQueue = ", eventQueue);
+	trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		eventQueue[eventQueue.length-1];
+		this.eventQueue[this.eventQueue.length-1];
 		//Strip out the most recent:
-		eventQueue.splice(eventQueue.length-1,1);
+		this.eventQueue.splice(this.eventQueue.length-1,1);
 	}
 	//Set up all appropriate flags
 	saveHere = true;
