@@ -756,7 +756,7 @@ function openDoorToTutorialCombat():void {
 	output("\n\nShe lurches forward, and for a second, you fear you’ll be engulfed before you can react. A blue flash interrupts her pell-mell undulations, and your Dad’s face appears between you, suspended in the air. He explains, <i>“Celise here is a fairly simple girl with simple needs. Unfortunately, she doesn’t respect anyone until she feels they’ve earned it. You’re going to have to fight her if you want to get the keys to your new ship.”</i>");
 	output("\n\nDamnit, Dad!\n\n<b>It’s a fight!</b>");
 	this.userInterface.clearMenu();
-	//this.userInterface.addButton(0,"Next",startCombat,"celise");
+	this.userInterface.addButton(0,"Next",startCombat,"celise");
 }
 
 function celiseAI():void {
@@ -787,7 +787,7 @@ function celiseAI():void {
 		foes[0].lustRaw = 100;
 		pc.lustRaw += 10;
 	}
-	//processCombat();
+	processCombat();
 }
 
 //Win

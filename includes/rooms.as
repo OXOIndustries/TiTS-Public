@@ -346,7 +346,7 @@ function initializeRooms():void
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms[89].roomName = "U.G.C. PEACE-\nKEEPERS";
 	rooms[89].description = "This interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stoud and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
-	//rooms[89].runOnEnter = pennysOffice;
+	rooms[89].runOnEnter = pennysOffice;
 	rooms[89].planet = "PLANET: MHEN'GA";
 	rooms[89].system = "SYSTEM: ARA ARA";
 	rooms[89].southExit = 10;

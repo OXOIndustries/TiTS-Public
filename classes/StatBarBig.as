@@ -13,7 +13,7 @@
 		//constructor
 		public function StatBarBig()
 		{
-			trace("Setting up a StatBarBig");
+			//trace("Setting up a StatBarBig");
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
 		//data
