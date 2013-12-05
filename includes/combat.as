@@ -130,7 +130,6 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 
 function attackRouter(destinationFunc):void 
 {
-{
 	clearOutput();
 	output("Who do you target?\n");
 	for(var x:int = 0; x < foes.length; x++) {
@@ -166,9 +165,7 @@ function playerRangedAttack(target:Creature):void
 	rangedAttack(pc,target);
 }
 
-function attack(attacker:Creature, target:Creature):void 
-{
-	trace("Attacking in melee...");
+function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
 	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
 	if (attacker.hasPerk("Multiple Attacks")) {
@@ -185,7 +182,15 @@ function attack(attacker:Creature, target:Creature):void
 		}
 	}
 	//Attack missed!
-	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10) {
+	if(combatMiss(attacker,target)) {
+		if(target.customDodge == "") {
+			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
+		}
+		else output(target.customDodge);
+	}
+	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
+	else if(special == 1 && rand(100) <= 45 && !target.hasStatusEffect("Stunned")) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
@@ -240,6 +245,7 @@ function attack(attacker:Creature, target:Creature):void
 	if(noProcess) output("\n");
 	else processCombat();
 }
+
 function rangedAttack(attacker:Creature, target:Creature):void 
 {
 	trace("Ranged shot...");
@@ -571,7 +577,7 @@ function startCombat(encounter:String):void
 		case "celise":
 			this.userInterface.showBust(GLOBAL.CELISE);
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = clone(characters[CELISE]);
+			foes[0] = clone(characters[GLOBAL.CELISE]);
 			break;
 		case "zilpack":
 			showBust(GLOBAL.ZILPACK);
@@ -579,7 +585,7 @@ function startCombat(encounter:String):void
 			foes[0] = clone(zilpack);
 			break;
 		default:
-			foes[0] = new creature();
+			foes[0] = new Creature();
 			break;
 	}
 	combatMainMenu();
