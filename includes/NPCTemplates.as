@@ -316,9 +316,9 @@
 		geoff.level = 1;
 		geoff.credits = 1000;
 		
-		geoff.inventory[0] = clone(items[0]);
-		geoff.inventory[1] = clone(items[1]);
-		geoff.inventory[2] = clone(items[2]);
+		geoff.inventory[0] = clone(items["0"]);
+		geoff.inventory[1] = clone(items["1"]);
+		geoff.inventory[2] = clone(items["2"]);
 		geoff.typesBought[geoff.typesBought.length] = GLOBAL.ALL;
 		geoff.sellMarkup = 1.3;
 		geoff.buyMarkdown = .25;

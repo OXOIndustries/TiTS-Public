@@ -87,7 +87,7 @@
 		var rooms:Object;
 
 		var temp:int;
-		var items:Array;
+		var items:Object;
 		//Toggles
 		var silly:Boolean;
 		var easy:Boolean;

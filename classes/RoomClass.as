@@ -30,13 +30,13 @@
 		public var choices:Array = new Array();
 		
 		//Exits - these point to the room key in rooms
-		public var northExit:String = -1;
-		public var eastExit:String = -1;
-		public var southExit:String = -1;
-		public var westExit:String = -1;
-		public var inExit:String = -1;
+		public var northExit:String = "";
+		public var eastExit:String = "";
+		public var southExit:String = "";
+		public var westExit:String = "";
+		public var inExit:String = "";
 		public var inText:String = "In";
-		public var outExit:String = -1;
+		public var outExit:String = "";
 		public var outText:String = "Out";
 		
 		//Functions

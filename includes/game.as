@@ -46,17 +46,17 @@
 	if(rooms[currentLocation].runOnEnter != undefined) {
 		if(rooms[currentLocation].runOnEnter()) return;
 	}
-	if(rooms[currentLocation].northExit != -1) 
+	if(rooms[currentLocation].northExit) 
 		this.userInterface.addButton(6,"North",move,rooms[currentLocation].northExit);
-	if(rooms[currentLocation].eastExit != -1) 
+	if(rooms[currentLocation].eastExit) 
 		this.userInterface.addButton(12,"East",move,rooms[currentLocation].eastExit);
-	if(rooms[currentLocation].southExit != -1) 
+	if(rooms[currentLocation].southExit) 
 		this.userInterface.addButton(11,"South",move,rooms[currentLocation].southExit);
-	if(rooms[currentLocation].westExit != -1) 
+	if(rooms[currentLocation].westExit) 
 		this.userInterface.addButton(10,"West",move,rooms[currentLocation].westExit);
-	if(rooms[currentLocation].inExit != -1) 
+	if(rooms[currentLocation].inExit) 
 		this.userInterface.addButton(5,rooms[currentLocation].inText,move,rooms[currentLocation].inExit);
-	if(rooms[currentLocation].outExit != -1) 
+	if(rooms[currentLocation].outExit) 
 		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
 	if(currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");

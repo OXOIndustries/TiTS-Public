@@ -187,31 +187,31 @@ function inventory():void {
 function unequip(arg:String, next:Boolean = true):void {
 	if(arg == "bra") {
 		lootList[lootList.length] = clone(pc.upperUndergarment);
-		pc.upperUndergarment = clone(items[6]);
+		pc.upperUndergarment = clone(items["6"]);
 	}
 	else if(arg == "underwear") {
 		lootList[lootList.length] = clone(pc.lowerUndergarment);
-		pc.lowerUndergarment = clone(items[6]);
+		pc.lowerUndergarment = clone(items["6"]);
 	}
 	else if(arg == "shield") {
 		lootList[lootList.length] = clone(pc.shield);
-		pc.shield = clone(items[6]);
+		pc.shield = clone(items["6"]);
 	}
 	else if(arg == "accessory") {
 		lootList[lootList.length] = clone(pc.accessory);
-		pc.accessory = clone(items[6]);
+		pc.accessory = clone(items["6"]);
 	}
 	else if(arg == "armor") {
 		lootList[lootList.length] = clone(pc.armor);
-		pc.armor = clone(items[6]);
+		pc.armor = clone(items["6"]);
 	}
 	else if(arg == "mWeapon") {
 		lootList[lootList.length] = clone(pc.meleeWeapon);
-		pc.meleeWeapon = clone(items[5]);
+		pc.meleeWeapon = clone(items["5"]);
 	}
 	else if(arg == "rWeapon") {
 		lootList[lootList.length] = clone(pc.rangedWeapon);
-		pc.rangedWeapon = clone(items[5]);
+		pc.rangedWeapon = clone(items["5"]);
 	}
 	clearOutput();
 	itemCollect();

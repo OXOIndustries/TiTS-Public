@@ -12,7 +12,7 @@ function startCharacterCreation():void {
 	initializeNPCs();
 	pc = characters[0];
 	pc.level = 1;
-	pc.shield = clone(items[12]);
+	pc.shield = clone(items["12"]);
 	pc.shieldsRaw = pc.shieldsMax();
 	
 	/*
@@ -631,21 +631,21 @@ function classConfirm(arg:int = 0):void {
 function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
 	if(arg == GLOBAL.SMUGGLER) {
-		pc.rangedWeapon = clone(items[0]);
+		pc.rangedWeapon = clone(items["0"]);
 	}
 	if(arg == GLOBAL.MERCENARY) {
-		pc.rangedWeapon = clone(items[1]);
+		pc.rangedWeapon = clone(items["1"]);
 	}
 	if(arg == GLOBAL.ENGINEER) {
-		pc.rangedWeapon = clone(items[2]);
+		pc.rangedWeapon = clone(items["2"]);
 	}
-	pc.meleeWeapon = clone(items[4]);
-	pc.armor = clone(items[7]);
+	pc.meleeWeapon = clone(items["4"]);
+	pc.armor = clone(items["7"]);
 	pc.shieldsRaw = pc.shieldsMax();
-	if(!pc.hasVagina()) pc.lowerUndergarment = clone(items[9]);
-	else pc.lowerUndergarment = clone(items[8]);
-	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(items[11]);
-	else pc.upperUndergarment = clone(items[10]);
+	if(!pc.hasVagina()) pc.lowerUndergarment = clone(items["9"]);
+	else pc.lowerUndergarment = clone(items["8"]);
+	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(items["11"]);
+	else pc.upperUndergarment = clone(items["10"]);
 	tutorialSkipOption();
 }
 
@@ -997,8 +997,8 @@ function ohShitGameStarts():void {
 	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
 	//[Next] - to station screens!
 	this.userInterface.clearMenu();
-	currentLocation = "TAVROS HANGAR";
-	shipLocation = "TAVROS HANGAR";
+	this.currentLocation = "TAVROS HANGAR";
+	this.shipLocation = "TAVROS HANGAR";
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 function demoOver():void {
