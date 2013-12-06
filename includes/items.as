@@ -39,7 +39,8 @@ function shop(keeper:Creature):void {
 	//Menuuuu!
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Buy Item",buyItem);
-	if(keeper.typesBought.length > 0) this.userInterface.addButton(1,"Sell Item",sellItem);
+	if(keeper.typesBought.length > 0) 
+		this.userInterface.addButton(1,"Sell Item",sellItem);
 	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 

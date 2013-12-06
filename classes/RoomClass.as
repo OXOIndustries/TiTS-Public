@@ -29,14 +29,14 @@
 		
 		public var choices:Array = new Array();
 		
-		//Exits - these point to the room#
-		public var northExit:int = -1;
-		public var eastExit:int = -1;
-		public var southExit:int = -1;
-		public var westExit:int = -1;
-		public var inExit:int = -1;
+		//Exits - these point to the room key in rooms
+		public var northExit:String = -1;
+		public var eastExit:String = -1;
+		public var southExit:String = -1;
+		public var westExit:String = -1;
+		public var inExit:String = -1;
 		public var inText:String = "In";
-		public var outExit:int = -1;
+		public var outExit:String = -1;
 		public var outText:String = "Out";
 		
 		//Functions
