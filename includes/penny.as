@@ -286,7 +286,7 @@ function getFucked4PennyEpilogue():void {
 //[Next]
 function postSexShower():void {
 	clearOutput();
-	setLocation("THE\nSHOWER",rooms[location].planet,rooms[location].system);
+	setLocation("THE\nSHOWER",rooms[currentLocation].planet,rooms[currentLocation].system);
 	output("The shower is blessedly warm, washing the away the filth of the encounter and easing the pain on your sore form. Flashes of memory play through your mind as you work clean, and your breathing slowly becomes heavier and more aroused as you remember the lascivious way in which you acted. You stop before you wind up on the floor masturbating, but you definitely think your libido has increased as a result.");
 	output("\n\nWhen you step out, the cell room is empty and the wonderful-smelling zil are gone....");
 	

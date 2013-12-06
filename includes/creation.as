@@ -997,8 +997,8 @@ function ohShitGameStarts():void {
 	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
 	//[Next] - to station screens!
 	this.userInterface.clearMenu();
-	location = 105;
-	shipLocation = 105;
+	currentLocation = "TAVROS HANGAR";
+	shipLocation = "TAVROS HANGAR";
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 function demoOver():void {

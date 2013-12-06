@@ -182,7 +182,7 @@
 			monsterHP.y = 237;
 			monsterHP.background.x = -150;
 			monsterHP.bar.width = 30;
-			monsterHP.values.text = "10";
+			monsterHP.values.text = "SOUTH ESBETH 3";
 			monsterHP.visible = false;
 
 			monsterLust = new StatBarBig();
@@ -201,7 +201,8 @@
 			monsterEnergy.x = 10;
 			monsterEnergy.y = 319;
 			monsterEnergy.masks.labels.text = "ENERGY";
-			monsterEnergy.values.text = "100";
+			monsterEnergy.values.text = "HOTEL ROOM"
+;
 			monsterEnergy.visible = false;
 
 
@@ -256,7 +257,7 @@
 			playerEnergy.y = 188;
 			playerShields.masks.labels.text = "SHIELDS";
 			playerShields.bar.width = 30;
-			playerShields.values.text = "10";
+			playerShields.values.text = "SOUTH ESBETH 3";
 			playerShields.background.x = -150;
 			playerHP.x = 1010;
 			playerHP.y = 65;
@@ -266,14 +267,15 @@
 			playerEnergy.y = 147;
 			playerHP.background.x = -150;
 			playerHP.bar.width = 30;
-			playerHP.values.text = "10";
+			playerHP.values.text = "SOUTH ESBETH 3";
 			playerLust.masks.labels.text = "LUST";
 			playerLust.values.text = "25";
 			playerLust.background.x = -1 * (1 - 25 / 100) * 180;
 			playerLust.bar.width = (25 / 100) * 180;
 			playerLust.highBad = true;
 			playerEnergy.masks.labels.text = "ENERGY";
-			playerEnergy.values.text = "100";
+			playerEnergy.values.text = "HOTEL ROOM"
+;
 			buttonPagePrev = new leftButton;
 			this.titsClassPtr.addChild(buttonPagePrev);
 			buttonPagePrev.x = 1000;
@@ -302,7 +304,7 @@
 			playerLevel.masks.labels.text = "LEVEL";
 			playerLevel.bar.visible = false;
 			playerLevel.background.x = -180;
-			playerLevel.values.text = "5";
+			playerLevel.values.text = "WEST ESBETH 1";
 			playerLevel.noBar = true;
 			playerXP.x = 1010;
 			playerXP.y = 485;
@@ -537,19 +539,19 @@
 				//Add hotkey tags as appropriate.
 				switch(temp) {
 					case 0:
-						buttons[temp].hotkey.text = "1";
+						buttons[temp].hotkey.text = "SPACEPORT ELEVATOR";
 						break;
 					case 1:
-						buttons[temp].hotkey.text = "2";
+						buttons[temp].hotkey.text = "CUSTOMS OFFICE";
 						break;
 					case 2:
-						buttons[temp].hotkey.text = "3";
+						buttons[temp].hotkey.text = "ESBETH'S NORTH PATH";
 						break;
 					case 3:
-						buttons[temp].hotkey.text = "4";
+						buttons[temp].hotkey.text = "NORTHWEST ESBETH";
 						break;
 					case 4:
-						buttons[temp].hotkey.text = "5";
+						buttons[temp].hotkey.text = "WEST ESBETH 1";
 						break;
 					case 5:
 						buttons[temp].hotkey.text = "Q";
@@ -846,11 +848,11 @@
 		public function removeInput():void {
 			this.titsClassPtr.removeChild(input);
 			menuButtonsOn();
-			buttons[0].hotkey.text = "1";
-			buttons[1].hotkey.text = "2";
-			buttons[2].hotkey.text = "3";
-			buttons[3].hotkey.text = "4";
-			buttons[4].hotkey.text = "5";
+			buttons[0].hotkey.text = "SPACEPORT ELEVATOR";
+			buttons[1].hotkey.text = "CUSTOMS OFFICE";
+			buttons[2].hotkey.text = "ESBETH'S NORTH PATH";
+			buttons[3].hotkey.text = "NORTHWEST ESBETH";
+			buttons[4].hotkey.text = "WEST ESBETH 1";
 			buttons[5].hotkey.text = "Q";
 			buttons[6].hotkey.text = "W";
 			buttons[7].hotkey.text = "E";

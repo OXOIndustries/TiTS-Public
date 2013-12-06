@@ -162,9 +162,9 @@ function updatePCStats():void {
 }
 function timeText():String {
 	var buffer:String = ""
-	if(this.userInterface.hours < 10) buffer += "0";
+	if(this.userInterface.hours < 10) buffer += "SHIP HANGAR";
 	buffer += this.userInterface.hours + ":";
-	if(this.userInterface.minutes < 10) buffer += "0";
+	if(this.userInterface.minutes < 10) buffer += "SHIP HANGAR";
 	buffer += this.userInterface.minutes;
 	return buffer;
 }

@@ -84,7 +84,7 @@
 
 		var version:String;
 
-		var rooms:Array;
+		var rooms:Object;
 
 		var temp:int;
 		var items:Array;
@@ -96,8 +96,8 @@
 
 		//Lazy man state checking
 		var saveHere:Boolean;
-		var location:int;
-		var shipLocation:int;
+		var currentLocation:String;
+		var shipLocation:String;
 
 		//PERVINEER HERE!
 		var testBool:Boolean;
@@ -173,8 +173,8 @@
 
 			//Lazy man state checking
 			saveHere = false;
-			location = 0;
-			shipLocation = 0;
+			currentLocation = "SHIP HANGAR";
+			shipLocation = "SHIP HANGAR";
 
 			//Pervineer here!
 			parser = new ScriptParser(this);

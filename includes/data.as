@@ -144,7 +144,7 @@ function saveGame(slot:String):void {
 	saveFile.data.days = this.userInterface.days;
 	saveFile.data.minutes = this.userInterface.minutes;
 	saveFile.data.hours = this.userInterface.hours;
-	saveFile.data.locationKey = location;
+	saveFile.data.locationKey = currentLocation;
 	saveFile.data.shipLocation = shipLocation;
 	saveFile.data.location = this.userInterface.leftSideBar.planet.text + ", " + this.userInterface.leftSideBar.system.text;
 	saveFile.data.location = saveFile.data.location.toLowerCase();
@@ -196,7 +196,7 @@ function loadGame(slot:String):void {
 		silly = saveFile.data.silly;
 		easy = saveFile.data.easy;
 		debug = saveFile.data.debug;
-		location = saveFile.data.locationKey;
+		currentLocation = saveFile.data.locationKey;
 		shipLocation = saveFile.data.shipLocation;
 		lootList = new Array();		
 		

@@ -297,11 +297,11 @@ function displayInput():void {
 function removeInput():void {
 	removeChild(input);
 	menuButtonsOn();
-	buttons[0].hotkey.text = "1";
-	buttons[1].hotkey.text = "2";
-	buttons[2].hotkey.text = "3";
-	buttons[3].hotkey.text = "4";
-	buttons[4].hotkey.text = "5";
+	buttons[0].hotkey.text = "SPACEPORT ELEVATOR";
+	buttons[1].hotkey.text = "CUSTOMS OFFICE";
+	buttons[2].hotkey.text = "ESBETH'S NORTH PATH";
+	buttons[3].hotkey.text = "NORTHWEST ESBETH";
+	buttons[4].hotkey.text = "WEST ESBETH 1";
 	buttons[5].hotkey.text = "Q";
 	buttons[6].hotkey.text = "W";
 	buttons[7].hotkey.text = "E";

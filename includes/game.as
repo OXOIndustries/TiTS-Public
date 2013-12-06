@@ -21,8 +21,8 @@
 	saveHere = true;
 	//Display the room description
 	clearOutput();
-	output(rooms[location].description);
-	setLocation(rooms[location].roomName,rooms[location].planet,rooms[location].system);
+	output(rooms[currentLocation].description);
+	setLocation(rooms[currentLocation].roomName,rooms[currentLocation].planet,rooms[currentLocation].system);
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
@@ -38,28 +38,28 @@
 		this.userInterface.addDisabledButton(3,"Masturbate");
 	else 
 		this.userInterface.addButton(3,"Masturbate",masturbateMenu);
-	if(!rooms[location].hasFlag(GLOBAL.BED)) 
+	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
 		this.userInterface.addButton(4,"Rest",rest);
 	else 
 		this.userInterface.addButton(4,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
-	if(rooms[location].runOnEnter != undefined) {
-		if(rooms[location].runOnEnter()) return;
+	if(rooms[currentLocation].runOnEnter != undefined) {
+		if(rooms[currentLocation].runOnEnter()) return;
 	}
-	if(rooms[location].northExit != -1) 
-		this.userInterface.addButton(6,"North",move,rooms[location].northExit);
-	if(rooms[location].eastExit != -1) 
-		this.userInterface.addButton(12,"East",move,rooms[location].eastExit);
-	if(rooms[location].southExit != -1) 
-		this.userInterface.addButton(11,"South",move,rooms[location].southExit);
-	if(rooms[location].westExit != -1) 
-		this.userInterface.addButton(10,"West",move,rooms[location].westExit);
-	if(rooms[location].inExit != -1) 
-		this.userInterface.addButton(5,rooms[location].inText,move,rooms[location].inExit);
-	if(rooms[location].outExit != -1) 
-		this.userInterface.addButton(7,rooms[location].outText,move,rooms[location].outExit);
-	if(location == shipLocation) 
-		this.userInterface.addButton(1,"Enter Ship",move,99);
+	if(rooms[currentLocation].northExit != -1) 
+		this.userInterface.addButton(6,"North",move,rooms[currentLocation].northExit);
+	if(rooms[currentLocation].eastExit != -1) 
+		this.userInterface.addButton(12,"East",move,rooms[currentLocation].eastExit);
+	if(rooms[currentLocation].southExit != -1) 
+		this.userInterface.addButton(11,"South",move,rooms[currentLocation].southExit);
+	if(rooms[currentLocation].westExit != -1) 
+		this.userInterface.addButton(10,"West",move,rooms[currentLocation].westExit);
+	if(rooms[currentLocation].inExit != -1) 
+		this.userInterface.addButton(5,rooms[currentLocation].inText,move,rooms[currentLocation].inExit);
+	if(rooms[currentLocation].outExit != -1) 
+		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
+	if(currentLocation == shipLocation) 
+		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
 }
 
@@ -115,9 +115,9 @@ function sleep():void {
 }
 
 function shipMenu():Boolean {
-	rooms[99].outExit = shipLocation;
+	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	this.userInterface.addButton(9,"Fly",flyMenu);
-	if(location == 99) {
+	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) 
 			this.userInterface.addButton(8,"Crew",crew);
 	}
@@ -128,9 +128,9 @@ function flyMenu():void {
 	clearOutput();
 	output("Where do you want to go?");
 	this.userInterface.clearMenu();
-	if(shipLocation != 105) 
+	if(shipLocation != "TAVROS HANGAR") 
 		this.userInterface.addButton(0,"Tavros",flyTo,"Tavros");
-	if(shipLocation != 0) 
+	if(shipLocation != "SHIP HANGAR") 
 		this.userInterface.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
 	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
@@ -138,13 +138,13 @@ function flyMenu():void {
 function flyTo(arg:String):void {
 	clearOutput();	
 	if(arg == "Mhen'ga") {
-		shipLocation = 0;
-		location = 0;
+		shipLocation = "SHIP HANGAR";
+		currentLocation = "SHIP HANGAR";
 		output("You fly to Mhen'ga");
 	}
 	else if(arg == "Tavros") {
-		shipLocation = 105;
-		location = 105;
+		shipLocation = "TAVROS HANGAR";
+		currentLocation = "TAVROS HANGAR";
 		output("You fly to Tavros");
 	}
 	output(" and step out of your ship.");
@@ -153,9 +153,9 @@ function flyTo(arg:String):void {
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
-function move(arg:int = 100):void {
-	processTime(rooms[location].moveMinutes);
-	location = arg;
+function move(arg:String):void {
+	processTime(rooms[currentLocation].moveMinutes);
+	currentLocation = arg;
 	//process time here, then back to mainGameMenu!
 	mainGameMenu();
 }

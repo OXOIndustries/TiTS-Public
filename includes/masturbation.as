@@ -3,7 +3,7 @@
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
-	if(location == 99 && celiseIsCrew() && pc.hasTailCock()) {
+	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
 		texts[texts.length] = "Porn&Celise";
 		funcs[funcs.length] = tailCockCeliseFaps;
 		args[args.length] = undefined;
@@ -102,8 +102,8 @@ function vaginalFap():void {
 	output(" Your body gives a gentle shudder at that");
 	if(pc.hasTail()) output(", your [pc.tail] flicking wildly behind you");
 	output(".");
-	if(rooms[location].hasFlag(GLOBAL.BED)) output("  You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legs] splay wide as twitch in a visible display of your enjoyment.");
-	else if(location == 99) output(" You're thankful to be in the comfort of your ship and splay your [pc.legs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
+	if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output("  You're thankful to have a bed, and you lean back against the headboard, letting your [pc.legs] splay wide as twitch in a visible display of your enjoyment.");
+	else if(currentLocation == "SHIP INTERIOR") output(" You're thankful to be in the comfort of your ship and splay your [pc.legs] out as much as the ship will allow, flexing your muscles in rapacious enjoyment.");
 	else output(" You slump down against the nearest upright surface since your [pc.legs] seem to be too busy quivering to properly support you.");
 	
 	//Second coochie touches!
@@ -141,8 +141,8 @@ function vaginalFap():void {
 		else if(pc.cumQ() <= 100) output(" By the time you finish, you've soaked yourself and have thick ribbons of [pc.cumColor] goo rolling down either side of your [pc.hips].");
 		else if(pc.cumQ() <= 300) {
 			output(" By the time you finish, you've soaked yourself in [pc.cumColor] from the waist to the neck in your lovegoo, and huge streamers of the stuff are running off you to puddle on the ");
-			if(rooms[location].hasFlag(GLOBAL.BED)) output("bed");
-			else if(location == 99) output("deck");
+			if(rooms[currentLocation].hasFlag(GLOBAL.BED)) output("bed");
+			else if(currentLocation == "SHIP INTERIOR") output("deck");
 			else output("ground");
 			output(".");
 		}
@@ -178,7 +178,7 @@ function singleDickFap():void {
 	if(pc.hasCockFlag(GLOBAL.FLARED)) output(", the flare dangerously expanding already");
 	output(", hot, lusty, and ready for action.");
 	//In ship? Pull up porno!
-	if(location == 99) {
+	if(currentLocation == "SHIP INTERIOR") {
 		output("\n\nWith your other hand, you manipulate the ship's computer to pull up some pornography from the extranet. At first, all you get are a bunch of pop-up holos about getting a space-order bride, pirating music, and cleaning malware off your computer systems, but eventually, you hit the jackpot");
 		if(silly) output(": XMiniatureGiantSpaceHamster.com");
 		output(". There's four breasted whores from Omikron Perseus VI, three-cocked trannies masturbating, and even a missionary sex in the consensual position for the sole purpose of procreation. You scroll through, picking video after video, watching increasingly debauched activities until [pc.eachCock] feels so full that it could burst.");
@@ -283,7 +283,7 @@ function singleDickFap():void {
 		else if(pc.cumQ() <= 20000) output(", nevermind the small, growing lake below");
 		else if(pc.cumQ() <= 30000) output(", nevermind the rapidly-deepening lake below");
 		else if(pc.cumQ() <= 50000) {
-			if(rooms[location].hasFlag(GLOBAL.OUTDOOR)) output(", nevermind the swimming pool-like lake below");
+			if(rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR)) output(", nevermind the swimming pool-like lake below");
 			else output(", nevermind the room-flooding pool you've created");
 		}
 		else output(", nevermind the physics-defying amount in the lake below");

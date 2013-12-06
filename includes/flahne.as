@@ -943,7 +943,7 @@ function playAndSpray():void {
 	//100 hours of pissed!
 	flags["FLAHNE_PISSED"] = 100;
 	flags["FLAHNE_DESK_DISABLED"] = 1;
-	location = 3;
+	currentLocation = "ESBETH'S NORTH PATH";
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
