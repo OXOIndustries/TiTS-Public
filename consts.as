@@ -144,6 +144,7 @@ const FLAHNE:int = 4;
 const ZILPACK:int = 5;
 const ZIL:int = 6;
 const PENNY:int = 7;
+const BURT:int = 8;
 
 /*PLOT FLAGS
 RECRUITED_CELISE

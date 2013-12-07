@@ -99,7 +99,12 @@ function showBust(arg:int):void {
 	else {
 		leftSideBar.sceneTitle.text = caps(characters[arg].short);
 		leftSideBar.npcBusts.visible = true;
-		leftSideBar.npcBusts.gotoAndStop(arg);
+		if(arg == RIVAL)
+		{
+			if(characters[arg].short == "Jill") leftSideBar.npcBusts.gotoAndStop(100);
+			else leftSideBar.npcBusts.gotoAndStop(arg);
+		}
+		else leftSideBar.npcBusts.gotoAndStop(arg);
 	}
 }
 

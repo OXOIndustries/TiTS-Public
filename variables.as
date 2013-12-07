@@ -1,4 +1,5 @@
-﻿var version:String = "0.01c";
+﻿var version:String = "0.01Turkey";
+var demo:Boolean = true;
 //===****** CHEAT NOTES ******===//
 //var my_color:Color = new Color(levelUpButton.plusses);
 //my_color.setRGB(0xFF0000); // this will turn mcTarget completly to red
@@ -145,4 +146,5 @@ function setCheatPointers():void {
 	rival = characters[RIVAL];
 	geoff = characters[GEOFF];
 	flahne = characters[FLAHNE];
+	burt = characters[BURT];
 }

@@ -143,6 +143,44 @@ function move(arg:int = 100):void {
 	mainGameMenu();
 }
 
+function statusTick():void {
+	for(var x:int = 0; x < pc.statusEffects.length; x++) 
+	{
+		//If times, count dat shit down.
+		if(pc.statusEffects[x].minutesLeft > 0) 
+		{
+			pc.statusEffects[x].minutesLeft--;
+			//TIMER OVER!
+			if(pc.statusEffects[x].minutesLeft <= 0) 
+			{
+				//CERTAIN STATUSES NEED TO CLEAR SOME SHIT.
+				if(pc.statusEffects[x].storageName == "Crabbst") 
+				{
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					pc.reflexesMod += pc.statusEffects[x].value2;
+					pc.aimMod += pc.statusEffects[x].value2;
+					pc.intelligenceMod += pc.statusEffects[x].value2;
+					pc.willpowerMod += pc.statusEffects[x].value2;
+				}
+				if(pc.statusEffects[x].storageName == "Mead") 
+				{
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+					pc.reflexesMod += pc.statusEffects[x].value2 * .5;
+					pc.aimMod += pc.statusEffects[x].value2 * .5;
+					pc.intelligenceMod += pc.statusEffects[x].value2 * .5;
+					pc.willpowerMod += pc.statusEffects[x].value2 * .5;
+				}
+				if(pc.statusEffects[x].storageName == "X-Zil-rate")
+				{
+					pc.physiqueMod -= pc.statusEffects[x].value2;
+				}
+				//KILL ZE STATUS
+				pc.statusEffects.splice(x,1);
+			}
+		}
+	}
+}
+
 function processTime(arg:int):void {
 	var x:int = 0;
 	var tightnessChanged:Boolean = false;
@@ -150,6 +188,9 @@ function processTime(arg:int):void {
 	var productionFactor:Number = 100/(1920 * ((pc.libido() * 3 + 100)/100));
 	//Double time
 	if(pc.hasPerk("Extra Ardor")) productionFactor *= 2;
+	//BOOZE QUADRUPLES TIEM!
+	if(pc.hasStatusEffect("X-Zil-rate") || pc.hasStatusEffect("Mead") || pc.hasStatusEffect("X-Zil-rate"))
+		productionFactor *= 4;
 	//Half time.
 	else if(pc.hasPerk("Ice Cold")) productionFactor /= 2;
 	//Actually apply lust.
@@ -158,6 +199,9 @@ function processTime(arg:int):void {
 		//Check for shit that happens.
 		//Actually move time!
 		minutes++;
+		
+		//Status Effect Updates
+		statusTick();
 		
 		//Tick hours!
 		if(minutes >= 60) {

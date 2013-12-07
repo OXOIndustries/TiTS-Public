@@ -7,6 +7,7 @@ var flahne:creature = characters[CELISE];
 var zilpack:creature = characters[ZILPACK];
 var zil:creature = characters[ZIL];
 var penny:creature = characters[PENNY];
+var burt:creature = characters[BURT];
 
 function initializeNPCs(justUpdate:Boolean = false):void {
 	if (!justUpdate || (justUpdate && characters[CELISE].short == "uncreated"))
@@ -892,5 +893,153 @@ function initializeNPCs(justUpdate:Boolean = false):void {
 		//The rate at which you produce milk. Scales from 0 to INFINITY.
 		penny.milkRate = 1;
 		penny.ass.wetness = 0;
+	}
+	if (!justUpdate || (justUpdate && characters[BURT].short == "uncreated"))
+	{
+		characters[BURT] = new creature();
+		burt = characters[BURT];
+		burt.short = "Burt";
+		burt.originalRace = "human";
+		burt.a = "";
+		burt.capitalA = "";
+		burt.long = "";
+		burt.customDodge = "";
+		burt.customBlock = "";
+		burt.plural = false;
+		burt.lustVuln = 1;
+		burt.meleeWeapon.attackVerb = "punch";
+		burt.meleeWeapon.longName = "fist";
+		burt.armor.longName = "comfortable clothes";
+		burt.armor.defense = 50;
+		burt.physiqueRaw = 3;
+		burt.reflexesRaw = 3;
+		burt.aimRaw = 3;
+		burt.intelligenceRaw = 3;
+		burt.willpowerRaw = 3;
+		burt.libidoRaw = 30;
+		burt.HPMod = 20;
+		burt.shieldsRaw = 0;
+		burt.HPRaw = burt.HPMax();
+		burt.energyRaw = 100;
+		burt.lustRaw = 25;
+		burt.resistances = new Array(1,1,1,1,1,1,1,1);
+		burt.XP = 50;
+		burt.level = 1;
+		burt.credits = 1000;
+		
+		burt.inventory[0] = clone(items[0]);
+		burt.inventory[1] = clone(items[1]);
+		burt.inventory[2] = clone(items[2]);
+		burt.typesBought[burt.typesBought.length] = ALL;
+		burt.sellMarkup = 1.3;
+		burt.buyMarkdown = .25;
+		burt.keeperSell = "boop";
+		burt.keeperBuy = "bop";
+		burt.keeperGreeting = "BLOOP.";
+		
+		burt.femininity = 20;
+		burt.eyeType = 0;
+		burt.eyeColor = "brown";
+		burt.tallness = 78;
+		burt.thickness = 20;
+		burt.tone = 70;
+		burt.hairColor = "brown";
+		burt.scaleColor = pc.scaleColor;
+		burt.furColor = pc.furColor;
+		burt.hairLength = 12;
+		burt.hairType = 0;
+		burt.beardLength = 0;
+		burt.beardStyle = 0;
+		burt.skinType = SKIN;
+		burt.skinTone = pc.skinTone;
+		burt.skinFlags = new Array();
+		burt.faceType = 0;
+		burt.faceFlags = new Array();
+		burt.tongueType = 0;
+		burt.lipMod = 0;
+		burt.earType = 0;
+		burt.antennae = 0;
+		burt.antennaeType = 0;
+		burt.horns = 0;
+		burt.hornType = 0;
+		burt.armType = 0;
+		burt.gills = false;
+		burt.wingType = 0;
+		burt.legType = HUMAN;
+		burt.legCount = 2;
+		burt.legFlags = new Array(PLANTIGRADE);
+		//0 - Waist
+		//1 - Middle of a long tail. Defaults to waist on bipeds.
+		//2 - Between last legs or at end of long tail.
+		//3 - On underside of a tail, used for driders and the like, maybe?
+		burt.genitalSpot = 0;
+		burt.tailType = 0;
+		burt.tailCount = 0;
+		burt.tailFlags = new Array();
+		//Used to set cunt or dick type for cunt/dick tails!
+		burt.tailGenitalArg = 0;
+		//tailGenital:
+		//0 - none.
+		//1 - cock
+		//2 - vagina
+		burt.tailGenital = 0;
+		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+		burt.tailVenom = 0;
+		//Tail recharge determines how fast venom/webs comes back per hour.
+		burt.tailRecharge = 5;
+		//hipRating
+		//0 - boyish
+		//2 - slender
+		//4 - average
+		//6 - noticable/ample
+		//10 - curvy//flaring
+		//15 - child-bearing/fertile
+		//20 - inhumanly wide
+		burt.hipRating = 4;
+		//buttRating
+		//0 - buttless
+		//2 - tight
+		//4 - average
+		//6 - noticable
+		//8 - large
+		//10 - jiggly
+		//13 - expansive
+		//16 - huge
+		//20 - inconceivably large/big/huge etc
+		burt.buttRating = 4;
+		//No dicks here!
+		burt.cocks = new Array();
+		burt.createCock();
+		burt.cocks[0].cLength = 18;
+		burt.cocks[0].cThickness = 2.75;
+		//balls
+		burt.balls = 2;
+		burt.cumMultiplier = 10;
+		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+		burt.cumQuality = 1;
+		burt.cumType = CUM;
+		burt.ballSize = 4.5;
+		burt.ballFullness = 10;
+		//How many "normal" orgams worth of jizz your balls can hold.
+		burt.ballEfficiency = 30;
+		//Scales from 0 (never produce more) to infinity.
+		burt.refractoryRate = 5;
+		burt.minutesSinceCum = 1650;
+		burt.timesCum = 899;
+		
+		//Goo is hyper friendly!
+		burt.elasticity = 1;
+		//Fertility is a % out of 100. 
+		burt.fertility = 5;
+		burt.clitLength = .5;
+		burt.pregnancyMultiplier = 1;
+		
+		burt.breastRows[0].breastRating = 0;
+		burt.nippleColor = "brown";
+		burt.milkMultiplier = 0;
+		burt.milkType = MILK;
+		//The rate at which you produce milk. Scales from 0 to INFINITY.
+		burt.milkRate = 0;
+		burt.ass.wetness = 0;
 	}
 }

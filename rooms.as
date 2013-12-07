@@ -248,13 +248,26 @@ rooms[16].planet = "PLANET: MHEN'GA";
 rooms[16].system = "SYSTEM: ARA ARA";
 rooms[16].westExit = 3;
 rooms[16].eastExit = 15;
+rooms[16].northExit = 17;
 rooms[16].addFlag(OUTDOOR);
 
 //17. Burt’s Badass Whatever
-//9999
+rooms[17].roomName = "BURT'S BADASS\nMEAD HALL";
+rooms[17].description = "This description is a placeholder. What? Don't look at me like that.";
+rooms[17].planet = "PLANET: MHEN'GA";
+rooms[17].system = "SYSTEM: ARA ARA";
+rooms[17].southExit = 16;
+rooms[17].northExit = 18;
+rooms[17].runOnEnter = burtsBarFunc;
+rooms[17].addFlag(INDOOR);
 
 //18. Burt’s Badass Whatever Part. II
-//9999
+rooms[18].roomName = "THE BACK\nOF BURT'S";
+rooms[18].description = "This description is a placeholder. What? Don't look at me like that. It makes me all tingly, Onii-chan!";
+rooms[18].planet = "PLANET: MHEN'GA";
+rooms[18].system = "SYSTEM: ARA ARA";
+rooms[18].southExit = 17;
+rooms[18].addFlag(INDOOR);
 
 //19. The Eastern Exit of Esbeth
 rooms[19].roomName = "EAST ESBETH\nEXIT";
