@@ -134,13 +134,19 @@
 				//RED
 				if (!highBad)
 				{
-					barColor.color = Color.interpolateColor(0xFF0000, 0x8D31B0, current/max); 
+					if(max == 0) 
+						barColor.color = Color.interpolateColor(0xFF0000, 0x8D31B0, current/1); 
+					else 
+						barColor.color = Color.interpolateColor(0xFF0000, 0x8D31B0, current/max); 
 					bar.transform.colorTransform = barColor;
 				}
 				//GREEN
 				else
 				{
-					barColor.color = Color.interpolateColor(0x8D31B0, 0xFF0000, current/max); 
+					if(max == 0) 
+						barColor.color = Color.interpolateColor(0x8D31B0, 0xFF0000, current/1); 
+					else 
+						barColor.color = Color.interpolateColor(0x8D31B0, 0xFF0000, current/max); 
 					bar.transform.colorTransform = barColor;
 				}
 			}	
@@ -151,8 +157,17 @@
 			}
 			//Set the width!
 			if(max is Number && current is Number) {
-				bar.width = (current / max) * 180;
-				background.x = -1 * (1 - current / max) * 180;
+				if(current > max) current = max;
+				if(max == 0)
+				{
+					bar.width = 0;
+					background.x = -1 * (1) * 180;
+				}
+				else
+				{	
+					bar.width = (current / max) * 180;
+					background.x = -1 * (1 - current / max) * 180;
+				}
 			}
 		}
 	}

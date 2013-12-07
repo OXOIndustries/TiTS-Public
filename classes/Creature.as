@@ -736,6 +736,9 @@
 		}
 		public function shields():Number {
 			return shieldsRaw;
+			if(shieldsRaw > shieldsMax()) 
+				shieldsRaw = shieldsMax();
+			return shieldsRaw;
 		}
 		public function shieldsMax():Number {
 			var temp:int = 0;
@@ -2486,6 +2489,29 @@
 			//If the player has no vaginas
 			if(vaginas.length == 0) return 0;
 			return vaginas[arg].capacity() * elasticity;
+		}
+		//Find the biggest cock that fits inside a given value
+		public function cuntThatFits(fits:Number = 0):Number {
+			if(vaginas.length <= 0) return -1;
+			var counter:Number = vaginas.length;
+			//Current largest fitter
+			var index:Number = -1;
+			while(counter > 0) {
+				counter--;
+				
+				if(vaginalCapacity(counter) >= fits) {
+					//If one already fits
+					if(index >= 0) {
+						//See if the newcomer beats the saved small guy
+						if(vaginalCapacity(counter) < vaginalCapacity(index)) {
+							index = counter;
+						}
+					}
+					//Store the index of fitting dick
+					else index = counter;
+				}
+			}
+			return index;
 		}
 		public function analCapacity():Number {
 			return ass.capacity() * elasticity;

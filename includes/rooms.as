@@ -274,13 +274,30 @@ function initializeRooms():void
 	rooms["NORTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["NORTH ESBETH 2"].westExit = "ESBETH'S NORTH PATH";
 	rooms["NORTH ESBETH 2"].eastExit = "NORTH ESBETH 1";
+	rooms["NORTH ESBETH 2"].northExit = "BURT'S MAIN HALL";
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 
-	//17. Burt’s Badass Whatever
-	//9999
 
-	//18. Burt’s Badass Whatever Part. II
-	//9999
+	//17. Burt’s Badass Whatever
+	rooms["BURT'S MAIN HALL"] = new RoomClass(this);
+	rooms["BURT'S MAIN HALL"].roomName = "BURT'S BADASS\nMEAD HALL";
+	rooms["BURT'S MAIN HALL"].description = "This description is a placeholder. What? Don't look at me like that.";
+	rooms["BURT'S MAIN HALL"].planet = "PLANET: MHEN'GA";
+	rooms["BURT'S MAIN HALL"].system = "SYSTEM: ARA ARA";
+	rooms["BURT'S MAIN HALL"].southExit = "NORTH ESBETH 2";
+	rooms["BURT'S MAIN HALL"].northExit = "BURT'S BACK END";
+	rooms["BURT'S MAIN HALL"].runOnEnter = burtsBarFunc;
+	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.INDOOR);
+
+	//"18". Burt’s Badass Whatever Part. II
+	rooms["BURT'S BACK END"] = new RoomClass(this);
+	rooms["BURT'S BACK END"].roomName = "THE BACK\nOF BURT'S";
+	rooms["BURT'S BACK END"].description = "This description is a placeholder. What? Don't look at me like that. It makes me all tingly, Onii-chan!";
+	rooms["BURT'S BACK END"].planet = "PLANET: MHEN'GA";
+	rooms["BURT'S BACK END"].system = "SYSTEM: ARA ARA";
+	rooms["BURT'S BACK END"].southExit = "BURT'S MAIN HALL";
+	rooms["BURT'S BACK END"].addFlag(GLOBAL.INDOOR);
+	// Amusing naming FTW
 
 	//19. The Eastern Exit of Esbeth
 	rooms["EAST ESBETH EXIT"] = new RoomClass(this);

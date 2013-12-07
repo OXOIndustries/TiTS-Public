@@ -156,6 +156,7 @@
 		public static const ZILPACK:int = 5;
 		public static const ZIL:int = 6;
 		public static const PENNY:int = 7;
+		public static const BURT:int = 8;
 
 		/*PLOT FLAGS
 		RECRUITED_CELISE

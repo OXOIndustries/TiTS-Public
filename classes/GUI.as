@@ -1234,9 +1234,18 @@
 			//leftSideBar.sceneTitle.filters = [glow];
 			if(arg == 0) leftSideBar.npcBusts.visible = false;
 			else {
-				//leftSideBar.sceneTitle.text = caps(characters[arg].short);
+				leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short;
 				leftSideBar.npcBusts.visible = true;
-				leftSideBar.npcBusts.gotoAndStop(arg);
+				if(arg == GLOBAL.RIVAL)
+				{
+					if(this.titsClassPtr.characters[arg].short == "Jill") 
+						leftSideBar.npcBusts.gotoAndStop(100);
+					else 
+						leftSideBar.npcBusts.gotoAndStop(arg);
+				}
+				else 
+					leftSideBar.npcBusts.gotoAndStop(arg);
+				
 			}
 		}
 

@@ -49,9 +49,12 @@
 		include "../includes/masturbation.as";
 		include "../includes/NPCTemplates.as";
 		include "../includes/input.as";
+		include "../includes/burt.as";
 		include "../includes/appearance.as";
 		include "../includes/rooms.as";
-
+	
+		//include "../includes/zilMale.as";
+		
 		
 
 		var characters:Array;
@@ -65,9 +68,12 @@
 		var zilpack:Creature;
 		var zil:Creature;
 		var penny:Creature;
+		var burt:Creature;
 
-		// this is a HORRIBLE, HORRIBLE way to do this. These should all be sub-classes of ItemSlotClass, and you just instantiate them by calling the constructor
-		// right now, they're all floating about in the TiTS class
+		// These are all floating around in the TiTS namespace. Really
+		// they should be stored in an item Object() or something
+		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
+		// with some of their parameters overridden procedurally
 		var holdOutPistol:ItemSlotClass
 		var eagleClassHandgun:ItemSlotClass
 		var scopedPistol:ItemSlotClass
@@ -193,16 +199,14 @@
 			zilpack = characters[GLOBAL.ZILPACK];
 			zil = characters[GLOBAL.ZIL];
 			penny = characters[GLOBAL.PENNY];
+			burt = characters[GLOBAL.BURT];
 
 			flags = new Dictionary();
 			initializeFlags();
 
 
-			// shove the variables declared in the included files into the TiTS constructor
-			// because they're set-up procedurally (GLOBAL.BLEURRRGGGHHHH)
 			this.userInterface = new GUI(this, stage)
 			
-			//include "../includes/variables.as";
 			include "../includes/weaponVariables.as";
 
 			setupCharacters();
