@@ -2933,10 +2933,30 @@
 		}
 		public function canAutoFellate(arg:int = 0):Boolean {
 			if(!hasCock()) return false;
-			return (cocks[arg].cLength >= 1/6 && (pc.hasCockFlag(GLOBAL.PREHENSILE,x) || pc.cocks[x].cLength/pc.tallness <= 1/3) && genitalLocation() <= 1);
+			if(arg >= 0) {
+				if(arg >= cocks.length) return false;
+				return (cocks[arg].cLength >= 1/6 && (hasCockFlag(GLOBAL.PREHENSILE,arg) || cocks[arg].cLength/tallness <= 1/3) && genitalLocation() <= 1);
+			}
+			//Negative is code for see if any can.
+			else {
+				for(var x:int = 0; x < cocks.length; x++) {
+					if (cocks[x].cLength >= 1/6 && (hasCockFlag(GLOBAL.PREHENSILE,x) || cocks[x].cLength/tallness <= 1/3) && genitalLocation() <= 1)
+						return true;
+				}
+				return false;
+			}
 		}
-		public function canSelfSuck():Boolean {
-			return canAutoFellate();
+		public function canSelfSuck(arg:int = 0):Boolean {
+			return canAutoFellate(arg);
+		}
+		public function aCockToSuck():int {
+			var choices:Array = new Array();
+			for(var x:int = 0; x < cocks.length; x++) {
+				if (cocks[x].cLength >= 1/6 && (hasCockFlag(GLOBAL.PREHENSILE,x) || cocks[x].cLength/tallness <= 1/3) && genitalLocation() <= 1)
+					choices[choices.length] = x;
+			}
+			if(choices.length == 0) return 0;
+			else return choices[rand(choices.length)];
 		}
 		//Change cock type
 		public function shiftCock(slot:int = 0,type:int = -1):void 
