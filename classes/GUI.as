@@ -56,7 +56,7 @@
 		public var tempEvent:MouseEvent;
 		var temp:int;
 
-		var input:TextField;
+		var textInput:TextField;
 		
 		var buttonDrawer:BottomButtonDrawer;
 		var buttons:Array;
@@ -150,10 +150,10 @@
 			this.buttonDrawer.y = 800;
 
 			//Build the buttons
-			buttons = new Array();
-			buttonData = new Array();
-			buttonPage = 1;
-			initializeButtons();
+			this.buttons = new Array();
+			this.buttonData = new Array();
+			this.buttonPage = 1;
+			this.initializeButtons();
 
 			//Build left sidebar
 			this.leftSideBar = new LeftBar;
@@ -162,227 +162,227 @@
 			this.titsClassPtr.addChild(this.leftSideBar);
 			//Fading out Perks and Level Up Buttons
 
-			fadeOut = new ColorTransform();
-			titsPurple = new ColorTransform();
-			titsBlue = new ColorTransform();
-			titsWhite = new ColorTransform();
+			this.fadeOut = new ColorTransform();
+			this.titsPurple = new ColorTransform();
+			this.titsBlue = new ColorTransform();
+			this.titsWhite = new ColorTransform();
 
-			fadeOut.color = 0x333E52;
-			titsPurple.color = 0x84449B;
-			titsBlue.color = 0x333E52;
-			titsWhite.color = 0xFFFFFF;
+			this.fadeOut.color = 0x333E52;
+			this.titsPurple.color = 0x84449B;
+			this.titsBlue.color = 0x333E52;
+			this.titsWhite.color = 0xFFFFFF;
 
 			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
 			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
 
 
-			monsterHP = new StatBarBig();
-			this.titsClassPtr.addChild(monsterHP);
-			monsterHP.x = 10;
-			monsterHP.y = 237;
-			monsterHP.background.x = -150;
-			monsterHP.bar.width = 30;
-			monsterHP.values.text = "SOUTH ESBETH 3";
-			monsterHP.visible = false;
+			this.monsterHP = new StatBarBig();
+			this.titsClassPtr.addChild(this.monsterHP);
+			this.monsterHP.x = 10;
+			this.monsterHP.y = 237;
+			this.monsterHP.background.x = -150;
+			this.monsterHP.bar.width = 30;
+			this.monsterHP.values.text = "SOUTH ESBETH 3";
+			this.monsterHP.visible = false;
 
-			monsterLust = new StatBarBig();
-			this.titsClassPtr.addChild(monsterLust);
-			monsterLust.x = 10;
-			monsterLust.y = 278;
-			monsterLust.masks.labels.text = "LUST";
-			monsterLust.values.text = "25";
-			monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
-			monsterLust.bar.width = (25 / 100) * 180;
-			monsterLust.highBad = true;
-			monsterLust.visible = false;
+			this.monsterLust = new StatBarBig();
+			this.titsClassPtr.addChild(this.monsterLust);
+			this.monsterLust.x = 10;
+			this.monsterLust.y = 278;
+			this.monsterLust.masks.labels.text = "LUST";
+			this.monsterLust.values.text = "25";
+			this.monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
+			this.monsterLust.bar.width = (25 / 100) * 180;
+			this.monsterLust.highBad = true;
+			this.monsterLust.visible = false;
 
-			monsterEnergy = new StatBarBig();
-			this.titsClassPtr.addChild(monsterEnergy);
-			monsterEnergy.x = 10;
-			monsterEnergy.y = 319;
-			monsterEnergy.masks.labels.text = "ENERGY";
-			monsterEnergy.values.text = "HOTEL ROOM"
+			this.monsterEnergy = new StatBarBig();
+			this.titsClassPtr.addChild(this.monsterEnergy);
+			this.monsterEnergy.x = 10;
+			this.monsterEnergy.y = 319;
+			this.monsterEnergy.masks.labels.text = "ENERGY";
+			this.monsterEnergy.values.text = "HOTEL ROOM"
 ;
-			monsterEnergy.visible = false;
+			this.monsterEnergy.visible = false;
 
 
-			monsterLevel = new StatBarSmall();
-			this.titsClassPtr.addChild(monsterLevel);
-			monsterLevel.x = 10;
-			monsterLevel.y = 363;
-			setupStatBar(monsterLevel,"LEVEL",5);
-			monsterLevel.visible = false;
+			this.monsterLevel = new StatBarSmall();
+			this.titsClassPtr.addChild(this.monsterLevel);
+			this.monsterLevel.x = 10;
+			this.monsterLevel.y = 363;
+			this.setupStatBar(this.monsterLevel,"LEVEL",5);
+			this.monsterLevel.visible = false;
 
 
-			monsterRace = new StatBarSmall();
-			this.titsClassPtr.addChild(monsterRace);
-			monsterRace.x = 10;
-			monsterRace.y = 392;
-			setupStatBar(monsterRace,"RACE","Galotian");
-			monsterRace.visible = false;
+			this.monsterRace = new StatBarSmall();
+			this.titsClassPtr.addChild(this.monsterRace);
+			this.monsterRace.x = 10;
+			this.monsterRace.y = 392;
+			this.setupStatBar(this.monsterRace,"RACE","Galotian");
+			this.monsterRace.visible = false;
 
 
-			monsterSex = new StatBarSmall();
-			this.titsClassPtr.addChild(monsterSex);
-			monsterSex.x = 10;
-			monsterSex.y = 421;
-			setupStatBar(monsterSex,"SEX","Unknown");
-			monsterSex.visible = false;
+			this.monsterSex = new StatBarSmall();
+			this.titsClassPtr.addChild(this.monsterSex);
+			this.monsterSex.x = 10;
+			this.monsterSex.y = 421;
+			this.setupStatBar(this.monsterSex,"SEX","Unknown");
+			this.monsterSex.visible = false;
 
 
 			leftBarClear();
 
 			//Build the right sidebar
-			rightSidebar = new RightBar;
-			this.titsClassPtr.addChild(rightSidebar);
-			rightSidebar.nameText.text = "Penis";
-			rightSidebar.x = 1000;
-			rightSidebar.y = 0;
+			this.rightSidebar = new RightBar;
+			this.titsClassPtr.addChild(this.rightSidebar);
+			this.rightSidebar.nameText.text = "Penis";
+			this.rightSidebar.x = 1000;
+			this.rightSidebar.y = 0;
 			trace("Calling statBar constructors");
-			playerHP = new StatBarBig();
-			playerLust = new StatBarBig();
-			playerEnergy = new StatBarBig();
-			playerShields = new StatBarBig();
+			this.playerHP = new StatBarBig();
+			this.playerLust = new StatBarBig();
+			this.playerEnergy = new StatBarBig();
+			this.playerShields = new StatBarBig();
 			this.titsClassPtr.addChild(playerShields);
 			this.titsClassPtr.addChild(playerHP);
 			this.titsClassPtr.addChild(playerLust);
 			this.titsClassPtr.addChild(playerEnergy);
-			playerShields.x = 1010;
-			playerShields.y = 65;
-			playerHP.x = 1010;
-			playerHP.y = 106;
-			playerLust.x = 1010;
-			playerLust.y = 147;
-			playerEnergy.x = 1010;
-			playerEnergy.y = 188;
-			playerShields.masks.labels.text = "SHIELDS";
-			playerShields.bar.width = 30;
-			playerShields.values.text = "SOUTH ESBETH 3";
-			playerShields.background.x = -150;
-			playerHP.x = 1010;
-			playerHP.y = 65;
-			playerLust.x = 1010;
-			playerLust.y = 106;
-			playerEnergy.x = 1010;
-			playerEnergy.y = 147;
-			playerHP.background.x = -150;
-			playerHP.bar.width = 30;
-			playerHP.values.text = "SOUTH ESBETH 3";
-			playerLust.masks.labels.text = "LUST";
-			playerLust.values.text = "25";
-			playerLust.background.x = -1 * (1 - 25 / 100) * 180;
-			playerLust.bar.width = (25 / 100) * 180;
-			playerLust.highBad = true;
-			playerEnergy.masks.labels.text = "ENERGY";
-			playerEnergy.values.text = "HOTEL ROOM"
+			this.playerShields.x = 1010;
+			this.playerShields.y = 65;
+			this.playerHP.x = 1010;
+			this.playerHP.y = 106;
+			this.playerLust.x = 1010;
+			this.playerLust.y = 147;
+			this.playerEnergy.x = 1010;
+			this.playerEnergy.y = 188;
+			this.playerShields.masks.labels.text = "SHIELDS";
+			this.playerShields.bar.width = 30;
+			this.playerShields.values.text = "SOUTH ESBETH 3";
+			this.playerShields.background.x = -150;
+			this.playerHP.x = 1010;
+			this.playerHP.y = 65;
+			this.playerLust.x = 1010;
+			this.playerLust.y = 106;
+			this.playerEnergy.x = 1010;
+			this.playerEnergy.y = 147;
+			this.playerHP.background.x = -150;
+			this.playerHP.bar.width = 30;
+			this.playerHP.values.text = "SOUTH ESBETH 3";
+			this.playerLust.masks.labels.text = "LUST";
+			this.playerLust.values.text = "25";
+			this.playerLust.background.x = -1 * (1 - 25 / 100) * 180;
+			this.playerLust.bar.width = (25 / 100) * 180;
+			this.playerLust.highBad = true;
+			this.playerEnergy.masks.labels.text = "ENERGY";
+			this.playerEnergy.values.text = "HOTEL ROOM"
 ;
-			buttonPagePrev = new leftButton;
-			this.titsClassPtr.addChild(buttonPagePrev);
-			buttonPagePrev.x = 1000;
-			buttonPagePrev.y = 750;
-			buttonPagePrev.alpha = .3;
-			buttonPageNext = new rightButton;
-			this.titsClassPtr.addChild(buttonPageNext);
-			buttonPageNext.x = 1100;
-			buttonPageNext.y = 750;
-			buttonPageNext.alpha = .3;
-			pagePrev = new leftButton;
-			this.titsClassPtr.addChild(pagePrev);
-			pagePrev.x = 010;
-			pagePrev.y = 750;
-			pagePrev.alpha = .3;
-			pageNext = new rightButton;
-			this.titsClassPtr.addChild(pageNext);
-			pageNext.x = 110;
-			pageNext.y = 750;
-			pageNext.alpha = .3;
-			playerLevel = new StatBarSmall();
-			playerXP = new StatBarSmall();
-			playerCredits = new StatBarSmall();
-			playerLevel.x = 1010;
-			playerLevel.y = 456;
-			playerLevel.masks.labels.text = "LEVEL";
-			playerLevel.bar.visible = false;
-			playerLevel.background.x = -180;
-			playerLevel.values.text = "WEST ESBETH 1";
-			playerLevel.noBar = true;
-			playerXP.x = 1010;
-			playerXP.y = 485;
-			playerXP.masks.labels.text = "XP";
-			playerXP.bar.width = (50 / 500) * 180;
-			playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
-			playerXP.values.text = "50 / 1000";
-			playerCredits.x = 1010;
-			playerCredits.y = 514;
-			playerCredits.noBar = true;
-			playerCredits.masks.labels.text = "CREDITS";
-			playerCredits.bar.visible = false;
-			playerCredits.background.x =  -180;
-			playerCredits.values.text = "Over 9000";
-			this.titsClassPtr.addChild(playerLevel);
-			this.titsClassPtr.addChild(playerXP);
-			this.titsClassPtr.addChild(playerCredits);
-			playerPhysique = new StatBarSmall();
-			playerReflexes = new StatBarSmall();
-			playerAim = new StatBarSmall();
-			playerIntelligence = new StatBarSmall();
-			playerWillpower = new StatBarSmall();
-			playerLibido = new StatBarSmall();
-			this.titsClassPtr.addChild(playerPhysique);
-			this.titsClassPtr.addChild(playerReflexes);
-			this.titsClassPtr.addChild(playerAim);
-			this.titsClassPtr.addChild(playerIntelligence);
-			this.titsClassPtr.addChild(playerWillpower);
-			this.titsClassPtr.addChild(playerLibido);
-			playerPhysique.x = 1010;
-			playerPhysique.y = 255;
-			playerReflexes.x = 1010;
-			playerReflexes.y = 284;
-			playerAim.x = 1010;
-			playerAim.y = 313;
-			playerIntelligence.x = 1010;
-			playerIntelligence.y = 342;
-			playerWillpower.x = 1010;
-			playerWillpower.y = 371;
-			playerLibido.x = 1010;
-			playerLibido.y = 400;
+			this.buttonPagePrev = new leftButton;
+			this.titsClassPtr.addChild(this.buttonPagePrev);
+			this.buttonPagePrev.x = 1000;
+			this.buttonPagePrev.y = 750;
+			this.buttonPagePrev.alpha = .3;
+			this.buttonPageNext = new rightButton;
+			this.titsClassPtr.addChild(this.buttonPageNext);
+			this.buttonPageNext.x = 1100;
+			this.buttonPageNext.y = 750;
+			this.buttonPageNext.alpha = .3;
+			this.pagePrev = new leftButton;
+			this.titsClassPtr.addChild(this.pagePrev);
+			this.pagePrev.x = 010;
+			this.pagePrev.y = 750;
+			this.pagePrev.alpha = .3;
+			this.pageNext = new rightButton;
+			this.titsClassPtr.addChild(this.pageNext);
+			this.pageNext.x = 110;
+			this.pageNext.y = 750;
+			this.pageNext.alpha = .3;
+			this.playerLevel = new StatBarSmall();
+			this.playerXP = new StatBarSmall();
+			this.playerCredits = new StatBarSmall();
+			this.playerLevel.x = 1010;
+			this.playerLevel.y = 456;
+			this.playerLevel.masks.labels.text = "LEVEL";
+			this.playerLevel.bar.visible = false;
+			this.playerLevel.background.x = -180;
+			this.playerLevel.values.text = "WEST ESBETH 1";
+			this.playerLevel.noBar = true;
+			this.playerXP.x = 1010;
+			this.playerXP.y = 485;
+			this.playerXP.masks.labels.text = "XP";
+			this.playerXP.bar.width = (50 / 500) * 180;
+			this.playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
+			this.playerXP.values.text = "50 / 1000";
+			this.playerCredits.x = 1010;
+			this.playerCredits.y = 514;
+			this.playerCredits.noBar = true;
+			this.playerCredits.masks.labels.text = "CREDITS";
+			this.playerCredits.bar.visible = false;
+			this.playerCredits.background.x =  -180;
+			this.playerCredits.values.text = "Over 9000";
+			this.titsClassPtr.addChild(this.playerLevel);
+			this.titsClassPtr.addChild(this.playerXP);
+			this.titsClassPtr.addChild(this.playerCredits);
+			this.playerPhysique = new StatBarSmall();
+			this.playerReflexes = new StatBarSmall();
+			this.playerAim = new StatBarSmall();
+			this.playerIntelligence = new StatBarSmall();
+			this.playerWillpower = new StatBarSmall();
+			this.playerLibido = new StatBarSmall();
+			this.titsClassPtr.addChild(this.playerPhysique);
+			this.titsClassPtr.addChild(this.playerReflexes);
+			this.titsClassPtr.addChild(this.playerAim);
+			this.titsClassPtr.addChild(this.playerIntelligence);
+			this.titsClassPtr.addChild(this.playerWillpower);
+			this.titsClassPtr.addChild(this.playerLibido);
+			this.playerPhysique.x = 1010;
+			this.playerPhysique.y = 255;
+			this.playerReflexes.x = 1010;
+			this.playerReflexes.y = 284;
+			this.playerAim.x = 1010;
+			this.playerAim.y = 313;
+			this.playerIntelligence.x = 1010;
+			this.playerIntelligence.y = 342;
+			this.playerWillpower.x = 1010;
+			this.playerWillpower.y = 371;
+			this.playerLibido.x = 1010;
+			this.playerLibido.y = 400;
 
-			setupStatBar(playerPhysique,"PHYSIQUE",50,100);
-			setupStatBar(playerReflexes,"REFLEXES",30,100);
-			setupStatBar(playerAim,"AIM",30,100);
-			setupStatBar(playerIntelligence,"INTELLIGENCE",90,100);
-			setupStatBar(playerWillpower,"WILLPOWER",5,100);
-			setupStatBar(playerLibido,"LIBIDO",97,100);
+			this.setupStatBar(this.playerPhysique,"PHYSIQUE",50,100);
+			this.setupStatBar(this.playerReflexes,"REFLEXES",30,100);
+			this.setupStatBar(this.playerAim,"AIM",30,100);
+			this.setupStatBar(this.playerIntelligence,"INTELLIGENCE",90,100);
+			this.setupStatBar(this.playerWillpower,"WILLPOWER",5,100);
+			this.setupStatBar(this.playerLibido,"LIBIDO",97,100);
 
-			hidePCStats();
+			this.hidePCStats();
 
 
 			//Set up the main text field
-			format1 = new TextFormat();
-			format1.size = 18;
-			format1.color = 0xFFFFFF;
-			format1.tabStops = [35];
+			this.format1 = new TextFormat();
+			this.format1.size = 18;
+			this.format1.color = 0xFFFFFF;
+			this.format1.tabStops = [35];
 			// mainFont = new Font3;
 			// format1.font = mainFont.fontName;
-			mainTextField = new TextField();
-			prepTextField(mainTextField);
-			mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
+			this.mainTextField = new TextField();
+			this.prepTextField(this.mainTextField);
+			this.mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
 			//Set up backup text field
-			mainTextField2 = new TextField();
-			prepTextField(mainTextField2);
+			this.mainTextField2 = new TextField();
+			this.prepTextField(this.mainTextField2);
 
 
 			//Set up standard input box!
-			input = new TextField();
-			input.width = 250;
-			input.height = 25;
-			input.backgroundColor = 0xFFFFFF;
-			input.border = true;
-			input.borderColor = 0xFFFFFF;
+			this.textInput = new TextField();
+			this.textInput.width = 250;
+			this.textInput.height = 25;
+			this.textInput.backgroundColor = 0xFFFFFF;
+			this.textInput.border = true;
+			this.textInput.borderColor = 0xFFFFFF;
 
-			input.type = TextFieldType.INPUT;
-			input.setTextFormat(format1);
-			input.defaultTextFormat = format1;
+			this.textInput.type = TextFieldType.INPUT;
+			this.textInput.setTextFormat(format1);
+			this.textInput.defaultTextFormat = format1;
 
 
 			//SCROLLBAR!
@@ -829,24 +829,24 @@
 		}
 
 		public function displayInput():void {
-			if(!this.stagePtr.contains(input)) this.titsClassPtr.addChild(input);
-			input.text = "";
-			input.visible = true;
-			input.width = 160;
-			input.x = mainTextField.x + 2;
-			input.y = mainTextField.y + 8 + mainTextField.textHeight;
-			input.visible = true;
+			if(!this.stagePtr.contains(textInput)) this.titsClassPtr.addChild(textInput);
+			textInput.text = "";
+			textInput.visible = true;
+			textInput.width = 160;
+			textInput.x = mainTextField.x + 2;
+			textInput.y = mainTextField.y + 8 + mainTextField.textHeight;
+			textInput.visible = true;
 			menuButtonsOff();
 			appearanceOff();
 			for (var x:int = 0; x < 15; x++) {
 				buttons[x].hotkey.text = "-";
 			}
-			this.stagePtr.focus = input;
-			input.text = "";
-			input.maxChars = 0;
+			this.stagePtr.focus = textInput;
+			textInput.text = "";
+			textInput.maxChars = 0;
 		}
 		public function removeInput():void {
-			this.titsClassPtr.removeChild(input);
+			this.titsClassPtr.removeChild(textInput);
 			menuButtonsOn();
 			buttons[0].hotkey.text = "SPACEPORT ELEVATOR";
 			buttons[1].hotkey.text = "CUSTOMS OFFICE";
@@ -987,7 +987,7 @@
 			if(!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") {
 				appearanceOn();
 			}
-			if(!this.stagePtr.contains(input)) {
+			if(!this.stagePtr.contains(this.textInput)) {
 				mainMenuButtonOn();
 				this.dataOn();
 			}

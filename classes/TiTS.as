@@ -331,7 +331,7 @@
 		//2. KEYBOARD STUFF
 		//Handle all key presses!
 		public function keyPress(evt:KeyboardEvent):void {
-			if(stage.contains(this.userInterface.input)) 
+			if(stage.contains(this.userInterface.textInput)) 
 				return;
 			var keyTemp;
 			switch (evt.keyCode) {

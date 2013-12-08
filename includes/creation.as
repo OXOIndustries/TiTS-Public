@@ -27,7 +27,7 @@ function startCharacterCreation():void {
 	//Tag as in creation.
 	pc.createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
-	if(stage.contains(this.userInterface.input)) this.userInterface.removeInput();
+	if(stage.contains(this.userInterface.textInput)) this.userInterface.removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
 	output("Victor Steele is one of the richest men in the galaxy. His fortune was gained through years of adventuring during the Thirteenth Great Planet Rush, almost two hundred years ago. Trillions of credits and a massive corporation grew up around him. To this day, Steele Industrial Technologies and Production, or Steele Tech, is one of the most respected names in its field. Unfortunately, the many mutations Victor underwent during his journeys wreaked havoc on his genome. Anti-agathic treatments have been decreasing in effectiveness as of late, and his doctors tell him that after two full centuries of life, he has a measly two decades left. This news is unwelcome, but he’s lived a rich, full life - fuller than most. With twenty years ahead of him, the suddenly old industrialite is looking toward finding a successor... or creating one.");
 	output("\n\nThat’s the solution. Victor can sire an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history. Perhaps he’ll even manage to raise them wisely enough to avoid the pitfalls he made as a youth. The next Planet Rush is a scant nineteen years ahead, so the timing is perfect. The United Galactic Confederacy has already sent out hundreds of warp gates, staggered so that they’ll all go online at the same time. These rushes are performed every century or two, expanding the reach of civilization light years into the stars, resulting in a galactic free-for-all. The concordant economic boom will be the perfect opportunity for Victor’s offspring to rise to greatness. They could become richer and more powerful than he ever was, and perhaps a better person as well.");
@@ -108,19 +108,19 @@ function chooseStartingRace(race:String = "human"):void {
 	}
 	output(", and what should the unborn child be named?");
 	this.userInterface.displayInput();
-	this.userInterface.input.text = "";
-	this.userInterface.input.maxChars = 12;
+	this.userInterface.textInput.text = "";
+	this.userInterface.textInput.maxChars = 12;
 }
 
 function setStartingSex(sex:int = 1):void {
 	var race:String = "human";
 	if(pc.originalRace != "human") race = pc.originalRace.substring(5);
-	if(this.userInterface.input.text == "") {
+	if(this.userInterface.textInput.text == "") {
 		chooseStartingRace(race);
 		output("\n\n\n<b>You must input a name.</b>");
 		return;
 	}
-	if(this.userInterface.input.length > 14) {
+	if(this.userInterface.textInput.length > 14) {
 		chooseStartingRace(race);
 		output("\n\n\n<b>Please select a name no more than fourteen characters long.</b>");
 		return;
@@ -183,7 +183,7 @@ function setStartingSex(sex:int = 1):void {
 			}
 		}
 	}
-	pc.short = this.userInterface.input.text;
+	pc.short = this.userInterface.textInput.text;
 	this.userInterface.rightSidebar.nameText.text = pc.short;
 	chooseHeight();
 }
@@ -210,31 +210,31 @@ function chooseHeight():void {
 
 function applyHeight():void {
 	var fail:Boolean = false;
-	if(isNaN(Number(this.userInterface.input.text))) {
+	if(isNaN(Number(this.userInterface.textInput.text))) {
 		clearOutput();
 		output("Choose a height using numbers only, please. And remember, the value should be given in inches.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.input.text) < 48) {
+	else if(Number(this.userInterface.textInput.text) < 48) {
 		clearOutput();
 		output("Choose a height above 48 inches tall, please.");
 		fail = true;
 	}
-	else if(Number(this.userInterface.input.text) > 84) {
+	else if(Number(this.userInterface.textInput.text) > 84) {
 		clearOutput();
 		output("Choose a height below 84 inches tall, please.");
 		fail = true;
 	}
 	if(fail) {
-		this.userInterface.input.text = "";
+		this.userInterface.textInput.text = "";
 		this.userInterface.displayInput();
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",applyHeight);
 		this.userInterface.addButton(14,"Back",startCharacterCreation);
 		return;
 	}
-	pc.tallness = Number(this.userInterface.input.text);
-	if(stage.contains(this.userInterface.input)) 
+	pc.tallness = Number(this.userInterface.textInput.text);
+	if(stage.contains(this.userInterface.textInput)) 
 		this.userInterface.removeInput();
 	chooseThickness();
 }
@@ -258,7 +258,7 @@ function chooseThickness():void {
 function applyThickness(arg:Number):void {
 	var fail:Boolean = false;
 	pc.thickness = arg;
-	if(stage.contains(this.userInterface.input)) 
+	if(stage.contains(this.userInterface.textInput)) 
 		this.userInterface.removeInput();
 	chooseHairColor();
 }
