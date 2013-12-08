@@ -97,7 +97,7 @@
 		var playerLibido:StatBarSmall;
 
 		var format1:TextFormat;
-		// var mainFont:Font3;
+		var mainFont:Font3;
 		var mainTextField:TextField;
 		var mainTextField2:TextField;
 		var upScrollButton:arrow;
@@ -362,8 +362,8 @@
 			this.format1.size = 18;
 			this.format1.color = 0xFFFFFF;
 			this.format1.tabStops = [35];
-			// mainFont = new Font3;
-			// format1.font = mainFont.fontName;
+			mainFont = new Font3;
+			format1.font = mainFont.fontName;
 			this.mainTextField = new TextField();
 			this.prepTextField(this.mainTextField);
 			this.mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
@@ -468,7 +468,7 @@
 			titleFormat.size = 18;
 			titleFormat.color = 0xFFFFFF;
 			titleFormat.tabStops = [35];
-			// titleFormat.font = mainFont.fontName;
+			titleFormat.font = mainFont.fontName;
 			titleFormat.align = TextFormatAlign.CENTER;
 
 			creditText.setTextFormat(titleFormat);
