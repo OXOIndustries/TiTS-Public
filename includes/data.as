@@ -67,10 +67,10 @@ function loadGameMenu():void {
 function loadSaveDisplay(slot:String, slotName:String):String {
 	var holding:String = "";
 	//Initialize the save file
-    var saveFile = SharedObject.getLocal(slot,"/");;
+	var saveFile = SharedObject.getLocal(slot,"/");;
 	var pfileHolding:Creature;
 	if(saveFile.data.exists)
-    {
+	{
 		if(saveFile.data.notes == undefined) {
 			saveFile.data.notes = "No notes available.";
 		}
