@@ -72,7 +72,7 @@
 		var buttonPageNext:rightButton;
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
-		public var rightSidebar:RightBar;
+		private var rightSidebar:RightBar;
 
 		var monsterHP:StatBarBig;
 		var monsterLust:StatBarBig;
@@ -588,7 +588,14 @@
 			}
 		}
 
-
+		public function getGuiPlayerNameText():String
+		{
+			return this.rightSidebar.nameText.text;
+		}
+		public function setGuiPlayerNameText(inName:String):void
+		{
+			this.rightSidebar.nameText.text = inName;
+		}
 
 		//1. BUTTON STUFF
 		public function clearMenu():void {

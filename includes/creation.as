@@ -33,7 +33,7 @@ function startCharacterCreation():void {
 	output("\n\nThat’s the solution. Victor can sire an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history. Perhaps he’ll even manage to raise them wisely enough to avoid the pitfalls he made as a youth. The next Planet Rush is a scant nineteen years ahead, so the timing is perfect. The United Galactic Confederacy has already sent out hundreds of warp gates, staggered so that they’ll all go online at the same time. These rushes are performed every century or two, expanding the reach of civilization light years into the stars, resulting in a galactic free-for-all. The concordant economic boom will be the perfect opportunity for Victor’s offspring to rise to greatness. They could become richer and more powerful than he ever was, and perhaps a better person as well.");
 	output("\n\nThe real question is, who should the lucky mother be? A lifelong accumulation of lovers has been suggesting he have kids for some time. Should he choose a pure human, like Victor, or perhaps a dog-like Ausar, famed for their loyal and friendly dispositions, fluffy tails, and pointed ears? Or would something else be the best choice? Decisions, decisions...");
 	hidePCStats();
-	this.userInterface.rightSidebar.nameText.text = "";
+	this.userInterface.setGuiPlayerNameText("");
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Human",chooseStartingRace);
 	this.userInterface.addButton(1,"Ausar",chooseStartingRace,"ausar");
@@ -184,7 +184,7 @@ function setStartingSex(sex:int = 1):void {
 		}
 	}
 	pc.short = this.userInterface.textInput.text;
-	this.userInterface.rightSidebar.nameText.text = pc.short;
+	this.userInterface.setGuiPlayerNameText(pc.short);
 	chooseHeight();
 }
 
