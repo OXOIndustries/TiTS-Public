@@ -141,7 +141,11 @@ function deglow():void
 	this.userInterface.deglow()
 }	
 function updatePCStats():void {
-	this.userInterface.rightSidebar.nameText.text = pc.short;
+	if (pc.short != "uncreated")
+		this.userInterface.rightSidebar.nameText.text = pc.short;
+	else
+		this.userInterface.rightSidebar.nameText.text = "";
+
 	updateStatBar(this.userInterface.playerShields,pc.shields(),pc.shieldsMax());
 
 	updateStatBar(this.userInterface.playerHP,pc.HP(),pc.HPMax());
