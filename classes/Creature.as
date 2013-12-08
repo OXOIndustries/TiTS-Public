@@ -2490,6 +2490,32 @@
 			if(vaginas.length == 0) return 0;
 			return vaginas[arg].capacity() * elasticity;
 		}
+		public function smallestVaginalCapacity():Number {
+			return vaginalCapacity(smallestVaginaIndex());
+		}
+		public function biggestVaginalCapacity():Number {
+			return vaginalCapacity(biggestVaginaIndex());
+		}
+		public function biggestVaginaIndex():int {
+			if(vaginas.length == 0) return 0;
+			var counter:Number = vaginas.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(vaginalCapacity(index) < vaginalCapacity(counter)) index = counter;
+			}
+			return index;
+		}
+		public function smallestVaginaIndex():int {
+			if(vaginas.length == 0) return 0;
+			var counter:Number = vaginas.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(vaginalCapacity(index) < vaginalCapacity(counter)) index = counter;
+			}
+			return index;
+		}
 		//Find the biggest cock that fits inside a given value
 		public function cuntThatFits(fits:Number = 0):Number {
 			if(vaginas.length <= 0) return -1;
@@ -5998,7 +6024,7 @@
 			else if(temp <= 11) noun += "mammaries";
 			else if(temp <= 12) noun += "melons";
 			else noun += "mounds";
-			if(descripted) descript += ", ";
+			if(descripted) descript += " ";
 			return descript + noun;
 		}
 		public function biggestBreastDescript():String {
