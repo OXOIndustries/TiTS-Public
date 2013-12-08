@@ -31,7 +31,7 @@
 	//Build the bottom drawer
 	public class GUI extends MovieClip
 	{
-		//leftSideBar.sceneTitle.filters = [glow];
+		//this.leftSideBar.sceneTitle.filters = [glow];
 
 		var textBuffer:Array;
 		//Used for temp buffer stuff
@@ -144,10 +144,10 @@
 			this.minutes = 0;
 
 
-			buttonDrawer = new BottomButtonDrawer;
+			this.buttonDrawer = new BottomButtonDrawer;
 			this.titsClassPtr.addChild(buttonDrawer);
-			buttonDrawer.x = 0;
-			buttonDrawer.y = 800;
+			this.buttonDrawer.x = 0;
+			this.buttonDrawer.y = 800;
 
 			//Build the buttons
 			buttons = new Array();
@@ -156,10 +156,10 @@
 			initializeButtons();
 
 			//Build left sidebar
-			leftSideBar = new LeftBar;
-			leftSideBar.x = 0;
-			leftSideBar.y = 0;
-			this.titsClassPtr.addChild(leftSideBar);
+			this.leftSideBar = new LeftBar;
+			this.leftSideBar.x = 0;
+			this.leftSideBar.y = 0;
+			this.titsClassPtr.addChild(this.leftSideBar);
 			//Fading out Perks and Level Up Buttons
 
 			fadeOut = new ColorTransform();
@@ -172,8 +172,8 @@
 			titsBlue.color = 0x333E52;
 			titsWhite.color = 0xFFFFFF;
 
-			leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
-			leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
+			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
+			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
 
 
 			monsterHP = new StatBarBig();
@@ -418,7 +418,7 @@
 			*/
 
 			//4. MAIN MENU STUFF
-			mainMenuButtons = new Array();
+			this.mainMenuButtons = new Array();
 			titleDisplay = new titsLogo();
 			warningBackground = new warningBG();
 			creditText = new TextField();
@@ -759,16 +759,16 @@
 			buttons[slot].buttonMode = true;
 		}
 		public function addMainMenuButton(slot:int,cap:String = "",func = undefined,arg = undefined):void {
-			if(slot <= mainMenuButtons.length) {
-				mainMenuButtons[slot].alpha = 1;
-				mainMenuButtons[slot].caption.text = cap;
-				mainMenuButtons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				mainMenuButtons[slot].func = func;
+			if(slot <= this.mainMenuButtons.length) {
+				this.mainMenuButtons[slot].alpha = 1;
+				this.mainMenuButtons[slot].caption.text = cap;
+				this.mainMenuButtons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
+				this.mainMenuButtons[slot].func = func;
 			
-				mainMenuButtons[slot].arg = arg;
+				this.mainMenuButtons[slot].arg = arg;
 			
-				mainMenuButtons[slot].buttonMode = true;
-				mainMenuButtons[slot].visible = true;
+				this.mainMenuButtons[slot].buttonMode = true;
+				this.mainMenuButtons[slot].visible = true;
 			}	
 			menuPageChecker();
 		}
@@ -783,7 +783,7 @@
 			}
 			else {
 				textBuffer[textBuffer.length] = mainTextField.htmlText;
-				authorBuffer[authorBuffer.length] = leftSideBar.sceneBy.htmlText;
+				authorBuffer[authorBuffer.length] = this.leftSideBar.sceneBy.htmlText;
 			}
 			if(textBuffer.length > 4) {
 				textBuffer.splice(0,1);
@@ -801,11 +801,11 @@
 			trace("TextPage: " + textPage);
 			if(textPage == 4) {
 				mainTextField.htmlText = tempText;
-				leftSideBar.sceneBy.htmlText = tempAuthor;
+				this.leftSideBar.sceneBy.htmlText = tempAuthor;
 			}
 			else {
 				mainTextField.htmlText = textBuffer[textPage];
-				leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
+				this.leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
 			}
 			updateScroll(e);
 			titsClassPtr.bufferButtonUpdater();
@@ -813,7 +813,7 @@
 		public function backBuffer(e:MouseEvent):void {
 			if(textPage == 4) {
 				tempText = mainTextField.htmlText;
-				tempAuthor = leftSideBar.sceneBy.text;
+				tempAuthor = this.leftSideBar.sceneBy.text;
 			}
 			if(textPage > 0) {
 				textPage--;
@@ -823,7 +823,7 @@
 			updateScroll(e);
 			trace("TextPage: " + textPage);
 			mainTextField.htmlText = textBuffer[textPage];
-			leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
+			this.leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
 			updateScroll(e);
 			titsClassPtr.bufferButtonUpdater();
 		}
@@ -907,54 +907,54 @@
 
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.mainMenuButton.alpha = 1;
+				this.leftSideBar.mainMenuButton.alpha = 1;
 				//Engage buttonmode.
-				leftSideBar.mainMenuButton.buttonMode = true;
+				this.leftSideBar.mainMenuButton.buttonMode = true;
 			}
 		}
 		public function mainMenuButtonOff():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.mainMenuButton.alpha = .3;
+				this.leftSideBar.mainMenuButton.alpha = .3;
 				//Engage buttonmode.
-				leftSideBar.mainMenuButton.buttonMode = false;
-				leftSideBar.mainMenuButton.filters = [];
+				this.leftSideBar.mainMenuButton.buttonMode = false;
+				this.leftSideBar.mainMenuButton.filters = [];
 			}
 		}
 		public function appearanceOn():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.appearanceButton.alpha = 1;
+				this.leftSideBar.appearanceButton.alpha = 1;
 				//Engage buttonmode.
-				leftSideBar.appearanceButton.buttonMode = true;
+				this.leftSideBar.appearanceButton.buttonMode = true;
 			}
 		}
 		public function appearanceOff():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.appearanceButton.alpha = .3;
+				this.leftSideBar.appearanceButton.alpha = .3;
 				//Engage buttonmode.
-				leftSideBar.appearanceButton.buttonMode = false;
-				leftSideBar.appearanceButton.filters = [];
+				this.leftSideBar.appearanceButton.buttonMode = false;
+				this.leftSideBar.appearanceButton.filters = [];
 			}
 		}
 		public function dataOn():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.dataButton.alpha = 1;
+				this.leftSideBar.dataButton.alpha = 1;
 				//Engage buttonmode.
-				leftSideBar.dataButton.buttonMode = true;
+				this.leftSideBar.dataButton.buttonMode = true;
 			}
 		}
 		public function dataOff():void {
-			if(leftSideBar.currentFrame >= 11) {
+			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
-				leftSideBar.dataButton.alpha = .3;
+				this.leftSideBar.dataButton.alpha = .3;
 				//Engage buttonmode.
-				leftSideBar.dataButton.buttonMode = false;
-				leftSideBar.dataButton.filters = [];
+				this.leftSideBar.dataButton.buttonMode = false;
+				this.leftSideBar.dataButton.filters = [];
 			}
 		}
 
@@ -1005,7 +1005,7 @@
 
 
 		public function hideData():void {
-			leftSideBar.dataButton.filters = [];
+			this.leftSideBar.dataButton.filters = [];
 		}
 
 		public function hideAppearance():void {
@@ -1027,13 +1027,13 @@
 			websiteDisplay.visible = false;
 			
 			//Turn off main menu buttons
-			for(var x:int = 0; x < mainMenuButtons.length ;x++) {
-				mainMenuButtons[x].func = undefined;
-				mainMenuButtons[x].alpha = .3;
-				mainMenuButtons[x].caption.text = "";
-				while(mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				mainMenuButtons[x].buttonMode = false;
-				mainMenuButtons[x].visible = false;
+			for(var x:int = 0; x < this.mainMenuButtons.length ;x++) {
+				this.mainMenuButtons[x].func = undefined;
+				this.mainMenuButtons[x].alpha = .3;
+				this.mainMenuButtons[x].caption.text = "";
+				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
+				this.mainMenuButtons[x].buttonMode = false;
+				this.mainMenuButtons[x].visible = false;
 			}
 			
 			//Turn buttons back on
@@ -1063,7 +1063,7 @@
 			pageNext.visible = true;
 			pagePrev.visible = true;
 			menuButtonsOn();
-			leftSideBar.appearanceButton.filters = [];
+			this.leftSideBar.appearanceButton.filters = [];
 			titsClassPtr.bufferButtonUpdater();
 		}
 
@@ -1085,13 +1085,13 @@
 			websiteDisplay.visible = false;
 			
 			//Turn off main menu buttons
-			for(var x:int = 0; x < mainMenuButtons.length ;x++) {
-				mainMenuButtons[x].func = undefined;
-				mainMenuButtons[x].alpha = .3;
-				mainMenuButtons[x].caption.text = "";
-				while(mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				mainMenuButtons[x].buttonMode = false;
-				mainMenuButtons[x].visible = false;
+			for(var x:int = 0; x < this.mainMenuButtons.length ;x++) {
+				this.mainMenuButtons[x].func = undefined;
+				this.mainMenuButtons[x].alpha = .3;
+				this.mainMenuButtons[x].caption.text = "";
+				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
+				this.mainMenuButtons[x].buttonMode = false;
+				this.mainMenuButtons[x].visible = false;
 			}
 			
 			//Turn buttons back on
@@ -1114,7 +1114,7 @@
 			pageNext.visible = true;
 			pagePrev.visible = true;
 			menuButtonsOn();
-			leftSideBar.mainMenuButton.filters = [];
+			this.leftSideBar.mainMenuButton.filters = [];
 			titsClassPtr.bufferButtonUpdater();
 		}
 
@@ -1126,8 +1126,8 @@
 			var ex:int = 210;
 			var why:int = 518;
 			for(x = 0; x < 6; x++) {
-				if(x <= 2) mainMenuButtons[x] = new blueMainButton;
-				else mainMenuButtons[x] = new blueMainButtonBig;
+				if(x <= 2) this.mainMenuButtons[x] = new blueMainButton;
+				else this.mainMenuButtons[x] = new blueMainButtonBig;
 				//Adjust for new rows
 				if(x == 3) {
 					ex -= 474;
@@ -1135,79 +1135,79 @@
 				}
 				//Add on from previous button value.
 				ex += 158;
-				this.titsClassPtr.addChild(mainMenuButtons[x]);
+				this.titsClassPtr.addChild(this.mainMenuButtons[x]);
 				
-				mainMenuButtons[x].caption.htmlText = String(x);
+				this.mainMenuButtons[x].caption.htmlText = String(x);
 				
-				mainMenuButtons[x].x = ex;
+				this.mainMenuButtons[x].x = ex;
 				
-				mainMenuButtons[x].y = why;
+				this.mainMenuButtons[x].y = why;
 				
-				mainMenuButtons[x].mouseChildren = false;
-				mainMenuButtons[x].visible = false;
+				this.mainMenuButtons[x].mouseChildren = false;
+				this.mainMenuButtons[x].visible = false;
 			}
 		}
 
 
 		public function leftBarClear():void {
-			leftSideBar.sceneByTag.visible = false;
-			leftSideBar.sceneBy.visible = false;
-			leftSideBar.sceneTitle.visible = false;
-			leftSideBar.planet.visible = false;
-			leftSideBar.system.visible = false;
-			leftSideBar.time.visible = false;
-			leftSideBar.days.visible = false;
-			leftSideBar.quicksaveButton.visible = false;
-			leftSideBar.dataButton.visible = false;
-			leftSideBar.statsButton.visible = false;
-			leftSideBar.perksButton.visible = false;
-			leftSideBar.levelUpButton.visible = false;
+			this.leftSideBar.sceneByTag.visible = false;
+			this.leftSideBar.sceneBy.visible = false;
+			this.leftSideBar.sceneTitle.visible = false;
+			this.leftSideBar.planet.visible = false;
+			this.leftSideBar.system.visible = false;
+			this.leftSideBar.time.visible = false;
+			this.leftSideBar.days.visible = false;
+			this.leftSideBar.quicksaveButton.visible = false;
+			this.leftSideBar.dataButton.visible = false;
+			this.leftSideBar.statsButton.visible = false;
+			this.leftSideBar.perksButton.visible = false;
+			this.leftSideBar.levelUpButton.visible = false;
 		}
 		public function hidePCStats():void {
-			playerShields.visible = false;
-			playerHP.visible = false;
-			playerLust.visible = false;
-			playerEnergy.visible = false;
-			playerLevel.visible = false;
-			playerXP.visible = false;
-			playerCredits.visible = false;
-			playerPhysique.visible = false;
-			playerReflexes.visible = false;
-			playerAim.visible = false;
-			playerIntelligence.visible = false;
-			playerWillpower.visible = false;
-			playerLibido.visible = false;
+			this.playerShields.visible = false;
+			this.playerHP.visible = false;
+			this.playerLust.visible = false;
+			this.playerEnergy.visible = false;
+			this.playerLevel.visible = false;
+			this.playerXP.visible = false;
+			this.playerCredits.visible = false;
+			this.playerPhysique.visible = false;
+			this.playerReflexes.visible = false;
+			this.playerAim.visible = false;
+			this.playerIntelligence.visible = false;
+			this.playerWillpower.visible = false;
+			this.playerLibido.visible = false;
 		}
 		public function showPCStats():void {
-			playerShields.visible = true;
-			playerHP.visible = true;
-			playerLust.visible = true;
-			playerEnergy.visible = true;
-			playerLevel.visible = true;
-			playerXP.visible = true;
-			playerCredits.visible = true;
-			playerPhysique.visible = true;
-			playerReflexes.visible = true;
-			playerAim.visible = true;
-			playerIntelligence.visible = true;
-			playerWillpower.visible = true;
-			playerLibido.visible = true;
+			this.playerShields.visible = true;
+			this.playerHP.visible = true;
+			this.playerLust.visible = true;
+			this.playerEnergy.visible = true;
+			this.playerLevel.visible = true;
+			this.playerXP.visible = true;
+			this.playerCredits.visible = true;
+			this.playerPhysique.visible = true;
+			this.playerReflexes.visible = true;
+			this.playerAim.visible = true;
+			this.playerIntelligence.visible = true;
+			this.playerWillpower.visible = true;
+			this.playerLibido.visible = true;
 		}
 		public function showNPCStats():void {
-			monsterHP.visible = true;
-			monsterLust.visible = true;
-			monsterEnergy.visible = true;
-			monsterLevel.visible = true;
-			monsterRace.visible = true;
-			monsterSex.visible = true;
+			this.monsterHP.visible = true;
+			this.monsterLust.visible = true;
+			this.monsterEnergy.visible = true;
+			this.monsterLevel.visible = true;
+			this.monsterRace.visible = true;
+			this.monsterSex.visible = true;
 		}
 		public function hideNPCStats():void {
-			monsterHP.visible = false;
-			monsterLust.visible = false;
-			monsterEnergy.visible = false;
-			monsterLevel.visible = false;
-			monsterRace.visible = false;
-			monsterSex.visible = false;
+			this.monsterHP.visible = false;
+			this.monsterLust.visible = false;
+			this.monsterEnergy.visible = false;
+			this.monsterLevel.visible = false;
+			this.monsterRace.visible = false;
+			this.monsterSex.visible = false;
 		}
 		public function deglow():void 
 		{
@@ -1231,20 +1231,20 @@
 		}	
 
 		function showBust(arg:int):void {
-			//leftSideBar.sceneTitle.filters = [glow];
-			if(arg == 0) leftSideBar.npcBusts.visible = false;
+			//this.leftSideBar.sceneTitle.filters = [glow];
+			if(arg == 0) this.leftSideBar.npcBusts.visible = false;
 			else {
-				leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short;
-				leftSideBar.npcBusts.visible = true;
+				this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short;
+				this.leftSideBar.npcBusts.visible = true;
 				if(arg == GLOBAL.RIVAL)
 				{
 					if(this.titsClassPtr.characters[arg].short == "Jill") 
-						leftSideBar.npcBusts.gotoAndStop(100);
+						this.leftSideBar.npcBusts.gotoAndStop(100);
 					else 
-						leftSideBar.npcBusts.gotoAndStop(arg);
+						this.leftSideBar.npcBusts.gotoAndStop(arg);
 				}
 				else 
-					leftSideBar.npcBusts.gotoAndStop(arg);
+					this.leftSideBar.npcBusts.gotoAndStop(arg);
 				
 			}
 		}
