@@ -393,7 +393,7 @@ function multiCockFap():void {
 	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength/pc.tallness >= 1/6) 
 		choices[choices.length] = 1;
 	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;
-	if(pc.cocks[x].cLength/pc.tallness >= 1/6 && (pc.hasCockFlag(GLOBAL.PREHENSILE,x) || pc.cocks[x].cLength/pc.tallness <= 1/3)) 
+	if(pc.canAutoFellate(x)) 
 		choices[choices.length] = 3;
 	if(pc.biggestTitSize() >= 5) choices[choices.length] = 4;
 	if(choices.length == 0) choices[choices.length] = 0;

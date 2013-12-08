@@ -2931,9 +2931,9 @@
 			}
 			return false
 		}
-		public function canAutoFellate():Boolean {
+		public function canAutoFellate(arg:int = 0):Boolean {
 			if(!hasCock()) return false;
-			return (longestCockLength() * (150-thickness)/100 >= tallness * .2 && genitalLocation() <= 1);
+			return (cocks[arg].cLength >= 1/6 && (pc.hasCockFlag(GLOBAL.PREHENSILE,x) || pc.cocks[x].cLength/pc.tallness <= 1/3) && genitalLocation() <= 1);
 		}
 		public function canSelfSuck():Boolean {
 			return canAutoFellate();
