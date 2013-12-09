@@ -229,35 +229,7 @@
 			//mainMenu();
 		}
 		
-		// Passthrough to the interface class
-		// TODO: Dunno what Fen/Fake wants to do about this, adding passthroughs to the document class
-		// is kind of a shitty workaround to namespacing bullshit, but it works so w/e
-		public function clearMenu():void
-		{
-			trace("This is a placeholder method. Please try to avoid using it.");
-			this.userInterface.clearMenu();
-		}
 		
-		public function showBust(val:int):void
-		{
-			trace("This is a placeholder method. Please try to avoid using it.");
-			this.userInterface.showBust(val);
-		}
-		
-		public function addButton(slot:int, cap:String = "", func = undefined, arg = undefined):void
-		{
-			trace("This is a placeholder method. Please try to avoid using it.");
-			this.userInterface.addButton(slot, cap, func, arg);
-		}
-
-		public function horsecock():void 
-		{
-			clearOutput();
-			output("You reach down into the trashcan, unclasp the collar and slip it on.  You tighten it till it fits snugly against your skin, but isn't otherwise uncomfortable.  With a satisfying <b>click</b>, the clasp snaps shut, so you know there's no going back.  Urta's mouth drops as she watches you do this, completely at a loss for words.  Her cock, on the other hand, hardens, knowing just what to do.\n\nYou sink to your knees and then onto your hands in front of her, brazenly displaying your submission to the vixen goddess before you.  She leans back slightly, stunned by this action.  It takes her a minute to recover and pick her jaw up off the floor.  You dutifully wait, silently, until Urta issues a command.  She seems to sense this and clears her throat, clearly embarrassed and nervous. <i>\"Oh, um, good girl,\"</i> she murmurs, patting your head.  You rub your face into her palm, which brings a smile to Urta's face.\n\n<i>\"Well, since the girl at the store said this was a dog collar... you're going to be an obedient little puppy, aren't you pet?\"</i> Urta asks.  You bark an affirmative response. <i>\"And that makes me your Owner, doesn't it?\"</i>  You bark again.  Urta's smile widens, and the dick between her legs twitches happily.  Your foxy lover stands up and gives you a once-over, her stocking-clad legs walking circles around you.  You remain stock still until you feel one soft, furry paw press up against your covered groin.\n\n<i>\"You're a good little doggy, right?\"</i> Urta leans down and whispers in your ear from behind.  You nod and bark happily again.  <i>\"You don't look like a good doggy to me,\"</i> she murmurs, leaning back up and pressing that paw into your groin once more, slightly more insistent.  You find yourself growing wetter at the touch, but you can't help but wonder about her words.  What else is there to being a good dog?\n\n<i>\"Your clothes, pet,\"</i> your Owner says, catching your puzzled look.  <i>\"Good doggies don't wear anything but their collars.  Oh, of course!</i>\"  You start to stand and take off your comfortable clothes, but Urta places a hand on your shoulder.  <i>\"Stay on all fours, pet,\"</i> she warns, and you suddenly realize she's holding a rolled up copy of the Tel'Adre Times in her other hand.  You gulp, slightly scared but even more turned on at how she's taking charge.\n\n\You struggle out of your comfortable armor.  It takes a good minute of work, but then you sit on your hands and knees, bare naked except for the collar, in front of Urta.  You feel so vulnerable like this, like you're baring your soul to someone, but somehow it's OK because it's Urta, someone who started as a friend, bared her own soul to you, and became your lover.");
-			this.userInterface.leftSideBar.sceneBy.text = "Third Games";
-		}
-
-
 		public function setupInputEventHandlers():void
 		{
 			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
