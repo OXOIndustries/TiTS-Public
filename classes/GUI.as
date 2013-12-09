@@ -532,52 +532,53 @@
 				buttons[temp].y = why;
 				buttons[temp].mouseChildren = false;
 				//Add hotkey tags as appropriate.
-				switch(temp) {
+				switch(temp) 
+				{
 					case 0:
-						buttons[temp].hotkey.text = "SPACEPORT ELEVATOR";
-						break;
+							buttons[temp].hotkey.text = "1";
+							break;
 					case 1:
-						buttons[temp].hotkey.text = "CUSTOMS OFFICE";
-						break;
+							buttons[temp].hotkey.text = "2";
+							break;
 					case 2:
-						buttons[temp].hotkey.text = "ESBETH'S NORTH PATH";
-						break;
+							buttons[temp].hotkey.text = "3";
+							break;
 					case 3:
-						buttons[temp].hotkey.text = "NORTHWEST ESBETH";
-						break;
+							buttons[temp].hotkey.text = "4";
+							break;
 					case 4:
-						buttons[temp].hotkey.text = "WEST ESBETH 1";
-						break;
+							buttons[temp].hotkey.text = "5";
+							break;
 					case 5:
-						buttons[temp].hotkey.text = "Q";
-						break;
+							buttons[temp].hotkey.text = "Q";
+							break;
 					case 6:
-						buttons[temp].hotkey.text = "W";
-						break;
+							buttons[temp].hotkey.text = "W";
+							break;
 					case 7:
-						buttons[temp].hotkey.text = "E";
-						break;
+							buttons[temp].hotkey.text = "E";
+							break;
 					case 8:
-						buttons[temp].hotkey.text = "R";
-						break;
+							buttons[temp].hotkey.text = "R";
+							break;
 					case 9:
-						buttons[temp].hotkey.text = "T";
-						break;
+							buttons[temp].hotkey.text = "T";
+							break;
 					case 10:
-						buttons[temp].hotkey.text = "A";
-						break;
+							buttons[temp].hotkey.text = "A";
+							break;
 					case 11:
-						buttons[temp].hotkey.text = "S";
-						break;
+							buttons[temp].hotkey.text = "S";
+							break;
 					case 12:
-						buttons[temp].hotkey.text = "D";
-						break;
+							buttons[temp].hotkey.text = "D";
+							break;
 					case 13:
-						buttons[temp].hotkey.text = "F";
-						break;
+							buttons[temp].hotkey.text = "F";
+							break;
 					case 14:
-						buttons[temp].hotkey.text = "G";
-						break;
+							buttons[temp].hotkey.text = "G";
+							break;
 				}
 				temp++;
 			}
@@ -850,11 +851,12 @@
 		public function removeInput():void {
 			this.titsClassPtr.removeChild(textInput);
 			menuButtonsOn();
-			buttons[0].hotkey.text = "SPACEPORT ELEVATOR";
-			buttons[1].hotkey.text = "CUSTOMS OFFICE";
-			buttons[2].hotkey.text = "ESBETH'S NORTH PATH";
-			buttons[3].hotkey.text = "NORTHWEST ESBETH";
-			buttons[4].hotkey.text = "WEST ESBETH 1";
+
+			buttons[0].hotkey.text = "1";
+			buttons[1].hotkey.text = "2";
+			buttons[2].hotkey.text = "3";
+			buttons[3].hotkey.text = "4";
+			buttons[4].hotkey.text = "5";
 			buttons[5].hotkey.text = "Q";
 			buttons[6].hotkey.text = "W";
 			buttons[7].hotkey.text = "E";
@@ -1125,25 +1127,24 @@
 		{
 			trace("Initializing main menu")
 			//Initialize main menu buttons
-			var ex:int = 210;
-			var why:int = 518;
+			var currButtonX:int = 210;
+			var currButtonY:int = 518;
 			for(x = 0; x < 6; x++) {
 				if(x <= 2) this.mainMenuButtons[x] = new blueMainButton;
 				else this.mainMenuButtons[x] = new blueMainButtonBig;
 				//Adjust for new rows
 				if(x == 3) {
-					ex -= 474;
-					why += 50;
+					currButtonX -= 474;
+					currButtonY += 50;
 				}
 				//Add on from previous button value.
-				ex += 158;
+				currButtonX += 158;
 				this.titsClassPtr.addChild(this.mainMenuButtons[x]);
-				
 				this.mainMenuButtons[x].caption.htmlText = String(x);
 				
-				this.mainMenuButtons[x].x = ex;
+				this.mainMenuButtons[x].x = currButtonX;
 				
-				this.mainMenuButtons[x].y = why;
+				this.mainMenuButtons[x].y = currButtonY;
 				
 				this.mainMenuButtons[x].mouseChildren = false;
 				this.mainMenuButtons[x].visible = false;
