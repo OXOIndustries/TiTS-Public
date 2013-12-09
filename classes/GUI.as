@@ -259,12 +259,7 @@
 			this.playerShields.bar.width = 30;
 			this.playerShields.values.text = "SOUTH ESBETH 3";
 			this.playerShields.background.x = -150;
-			this.playerHP.x = 1010;
-			this.playerHP.y = 65;
-			this.playerLust.x = 1010;
-			this.playerLust.y = 106;
-			this.playerEnergy.x = 1010;
-			this.playerEnergy.y = 147;
+
 			this.playerHP.background.x = -150;
 			this.playerHP.bar.width = 30;
 			this.playerHP.values.text = "SOUTH ESBETH 3";
