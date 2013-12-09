@@ -25,12 +25,16 @@ function combatMainMenu():void
 		//new PG for start of victory text, overrides normal menus.
 		output("\n");
 		//Route to victory menus and GTFO.		
+		//userInterface.clearMenu();
+		//userInterface.addButton(0,"Victory",victoryRouting);
 		victoryRouting();
 		return;
 	}
 	else if(pc.HP() <= 0 || pc.lust() >= 100) {
 		//YOU LOSE! GOOD DAY SIR!
 		output("\n");
+		//userInterface.clearMenu();
+		//userInterface.addButton(0,"Defeat",defeatRouting);
 		defeatRouting();
 		return;
 	}
@@ -400,7 +404,6 @@ function displayMonsterStatus(targetFoe):void
 		}
 		else if(foes.length > 1 || foes[0].plural) output("<b>" + targetFoe.capitalA + targetFoe.short + " have turned you on too much to keep fighting. You give in....</b>\n");
 		else output("<b>" + targetFoe.capitalA + targetFoe.short + " has turned you on too much to keep fighting. You give in....</b>\n");
-		return;
 	}
 	else {
 		output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
@@ -417,13 +420,13 @@ function displayMonsterStatus(targetFoe):void
 
 function showMonsterArousalFlavor(targetFoe):void 
 {
-	if(targetFoe.lust < 50) { 
+	if(targetFoe.lust() < 50) { 
 		return; 
 	}
 	else if(targetFoe.plural) {
-		if(targetFoe.lust < 60) output(targetFoe.capitalA + possessive(targetFoe.short) + " skins remain flushed with the beginnings of arousal.");
-		else if(targetFoe.lust < 70) output(targetFoe.capitalA + possessive(targetFoe.short) + " eyes constantly dart over your most sexual parts, betraying their lust.");
-		else if(targetFoe.lust < 85) {
+		if(targetFoe.lust() < 60) output(targetFoe.capitalA + possessive(targetFoe.short) + " skins remain flushed with the beginnings of arousal.");
+		else if(targetFoe.lust() < 70) output(targetFoe.capitalA + possessive(targetFoe.short) + " eyes constantly dart over your most sexual parts, betraying their lust.");
+		else if(targetFoe.lust() < 85) {
 			if(targetFoe.hasCock()) output(targetFoe.capitalA + targetFoe.short + " are having trouble moving due to the rigid protrusions in their groins.");
 			if(targetFoe.hasVagina()) output(targetFoe.capitalA + targetFoe.short + " are obviously turned on; you can smell their arousal in the air.");
 		}
@@ -433,9 +436,9 @@ function showMonsterArousalFlavor(targetFoe):void
 		}
 	}
 	else {
-		if(targetFoe.lust < 60) output(targetFoe.capitalA + possessive(targetFoe.short) + " " + targetFoe.skin() + " remains flushed with the beginnings of arousal.");
-		else if(targetFoe.lust < 70) output(targetFoe.capitalA + possessive(targetFoe.short) + " eyes constantly dart over your most sexual parts, betraying " + targetFoe.mfn("his","her","its") + " lust.");
-		else if(targetFoe.lust < 85) {
+		if(targetFoe.lust() < 60) output(targetFoe.capitalA + possessive(targetFoe.short) + " " + targetFoe.skin() + " remains flushed with the beginnings of arousal.");
+		else if(targetFoe.lust() < 70) output(targetFoe.capitalA + possessive(targetFoe.short) + " eyes constantly dart over your most sexual parts, betraying " + targetFoe.mfn("his","her","its") + " lust.");
+		else if(targetFoe.lust() < 85) {
 			if(targetFoe.hasCock()) output(targetFoe.capitalA + targetFoe.short + " is having trouble moving due to the rigid protrusion in " + targetFoe.mfn("his","her","its") + " groin.");
 			if(targetFoe.hasVagina()) output(targetFoe.capitalA + targetFoe.short + " is obviously turned on, you can smell " + targetFoe.mfn("his","her","its") + " arousal in the air.");
 		}
@@ -461,6 +464,9 @@ function enemyAI(aggressor:Creature):void
 		case "two zil":
 			zilpackAI();
 			break;
+		case "zil male":
+			zilMaleAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -476,6 +482,9 @@ function victoryRouting():void
 	else if(foes[0].short == "two zil") {
 		defeatZilPair();
 	}
+	else if(foes[0].short == "zil male") {
+		winVsZil();
+	}
 	else genericVictory();
 }
 
@@ -485,15 +494,18 @@ function defeatRouting():void
 	else if(foes[0].short == "two zil") {
 		loseToZilPair();
 	}
+	else if(foes[0].short == "zil male") {
+		zilLossRouter();
+	}
 	else {
+		output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
+		processTime(90);
 		genericLoss();
 	}
 }
 
 function genericLoss():void {
-	output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
 	pc.removeStatusEffect("Round");
-	processTime(90);
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
@@ -541,8 +553,8 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	for(x = 0; x < foes.length; x++) {
 		addToList(foes[x].a + foes[x].short);
 	}
-	output(formatList() + "!" + XPBuffer + " XP gained.");
-	XPBuffer
+	output(formatList() + "! " + XPBuffer + " XP gained.");
+	pc.XP += XPBuffer;
 	//Monies!
 	if(creditBuffer > 0) {
 		if(foes.length > 1 || foes[0].plural) output(" They had ");
@@ -587,6 +599,16 @@ function startCombat(encounter:String):void
 			this.userInterface.showBust(GLOBAL.ZILPACK);
 			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = clone(zilpack);
+			break;
+		case "zil male":
+			this.userInterface.showBust(GLOBAL.ZIL);
+			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
+			foes[0] = clone(zil);
+			foes[0].tallness = 60 + rand(7);
+			foes[0].cocks[0].cLength = 4 + rand(5);
+			foes[0].long = "The male zil you're fighting would stand roughly " + foes[0].displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(foes[0].longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
+			if(rand(2) == 0) foes[0].long += ", though some areas are striped in bright yellow";
+			foes[0].long += ".";
 			break;
 		default:
 			foes[0] = new Creature();
