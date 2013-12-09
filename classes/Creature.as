@@ -385,6 +385,7 @@
 					buffer = eachCockHead();
 					break;
 				case "tailCock":
+				case "cockTail":
 					buffer = tailCockDescript();
 					break;
 				case "nipple":				
@@ -494,6 +495,8 @@
 					break;
 				case "tailVagina":
 				case "tailCunt":
+				case "cuntTail":
+				case "tailgina":
 					buffer = tailVaginaDescript();
 					break;
 				case "milkDescript":
@@ -836,6 +839,12 @@
 		//return total fertility
 		public function totalFertility():Number {
 			return (bonusFertility() + fertility);
+		}
+		public function displayTallness():String {
+			var buffer:String = "";
+			buffer = Math.floor(tallness / 12) + "'";
+			if(Math.round(tallness % 12) != 0) buffer += Math.round(tallness % 12) + "\"";
+			return buffer;
 		}
 		public function lipRating():Number {
 			var rating:int = 0;

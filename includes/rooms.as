@@ -328,6 +328,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 1"].northExit = "FERNGROWTH PATH 2";
 	rooms["FERNGROWTH PATH 1"].westExit = "JUNGLE EDGE";
 	rooms["FERNGROWTH PATH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 1"].runOnEnter = jungleEncounterChances;
 
 	//22. A Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 2"] = new RoomClass(this);
@@ -337,6 +338,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 2"].system = "SYSTEM: ARA ARA";
 	rooms["FERNGROWTH PATH 2"].southExit = "FERNGROWTH PATH 1";
 	rooms["FERNGROWTH PATH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 2"].runOnEnter = jungleEncounterChances;
 
 	/*
 	23. A Bend in the Fern-Shrouded Path
@@ -391,8 +393,19 @@ function initializeRooms():void
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+}
 
 
-
+function jungleEncounterChances():Boolean {
+	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
+	else flags["JUNGLE_STEP"]++;
+	if(flags["JUNGLE_STEP"] >= 6 || debug) {
+		if(rand(4) == 0) {
+			flags["JUNGLE_STEP"] = 0;
+			maleZilEncounter();
+			return true;
+		}
+	}
+	return false;
 }
 

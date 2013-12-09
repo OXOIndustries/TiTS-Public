@@ -733,11 +733,15 @@
 		characters[GLOBAL.ZIL] = clone(characters[GLOBAL.ZILPACK]);
 		zil = characters[GLOBAL.ZIL];
 		zil.plural = false;
-		zil.short = "zil";
+		zil.short = "zil male";
+		zil.customDodge = "The zil zips out of the way with a swift contortion of his agile frame.";
+		zil.customBlock = "The zil's chitinous armor deflects your attack.";
 		zil.removeCock(0,1);
 		zil.HPMod = 0;
 		zil.XP = 20;
 		zil.HPRaw = zil.HPMax();
+		zil.ass.bonusCapacity += 15;
+		zil.removePerk("Multiple Attacks");
 		trace("ZIL SHORT: " + zil.short + " characters[ZIL]: " + characters[GLOBAL.ZIL].short);
 	}
 	

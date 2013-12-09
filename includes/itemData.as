@@ -169,7 +169,7 @@ private function initializeItems():void
 	//Longass shit, not sure what used for yet.
 	items["5"].description = "a rock";
 	//Displayed on tooltips during mouseovers
-	items["5"].tooltip = "You can pretty much find a rock anywhere, and they hurt more than fists, sooooo.";
+	items["5"].tooltip = "You can pretty much find a rock anywhere, and they hurt more than fists, sooooo....";
 	items["5"].attackVerb = "smack";
 	//Information
 	items["5"].basePrice = 0;
