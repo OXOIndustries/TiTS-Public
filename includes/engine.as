@@ -174,9 +174,11 @@ function timeText():String {
 }
 function updateNPCStats():void {
 	if(foes.length >= 1) {
-		updateStatBar(this.userInterface.monsterHP,foes[0].HP(),foes[0].HPMax());
-		updateStatBar(this.userInterface.monsterLust,foes[0].lust(),foes[0].lustMax());
-		updateStatBar(this.userInterface.monsterEnergy,foes[0].energy(),foes[0].energyMax());
+		updateStatBar(this.userInterface.monsterShield, foes[0].shields(),  foes[0].shieldsMax());
+		updateStatBar(this.userInterface.monsterHP,     foes[0].HP(),       foes[0].HPMax());
+		updateStatBar(this.userInterface.monsterLust,   foes[0].lust(),     foes[0].lustMax());
+		updateStatBar(this.userInterface.monsterEnergy, foes[0].energy(),   foes[0].energyMax());
+		
 		this.userInterface.monsterLevel.values.text = String(foes[0].level);
 		this.userInterface.monsterRace.values.text = "Galotian";
 		if(foes[0].hasCock()) {

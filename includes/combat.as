@@ -151,18 +151,18 @@ function attackRouter(destinationFunc):void
 	this.userInterface.addButton(button,"Back",combatMainMenu);
 }
 
-
+// Really?
 function enemyAttack(attacker:Creature):void 
 {
-	attack(attacker,pc);
+	attack(attacker, pc);
 }
 function playerAttack(target:Creature):void 
 {
-	attack(pc,target);
+	attack(pc, target);
 }
 function playerRangedAttack(target:Creature):void 
 {
-	rangedAttack(pc,target);
+	rangedAttack(pc, target);
 }
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {

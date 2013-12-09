@@ -43,6 +43,7 @@
 		var outputBuffer2:String;
 		var authorBuffer:Array;
 		var textPage:int;
+		
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
@@ -63,10 +64,11 @@
 		var buttonData:Array;
 		var buttonPage:int;
 		public var leftSideBar:LeftBar;
-		var fadeOut:*;
-		var titsPurple:*;
-		var titsBlue:*;
-		var titsWhite:*;
+		
+		private var fadeOut:*;
+		private var titsPurple:*;
+		private var titsBlue:*;
+		private var titsWhite:*;
 		
 		var buttonPagePrev:leftButton;
 		var buttonPageNext:rightButton;
@@ -74,6 +76,7 @@
 		var pageNext:rightButton;
 		private var rightSidebar:RightBar;
 
+		var monsterShield:StatBarBig;
 		var monsterHP:StatBarBig;
 		var monsterLust:StatBarBig;
 		var monsterEnergy:StatBarBig;
@@ -113,6 +116,8 @@
 		var titleFormat:TextFormat;
 		public var myGlow:GlowFilter;
 
+		private var pcStatSidebarItems:Array;
+		private var npcStatSidebarItems:Array;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -155,12 +160,6 @@
 			this.buttonPage = 1;
 			this.initializeButtons();
 
-			//Build left sidebar
-			this.leftSideBar = new LeftBar;
-			this.leftSideBar.x = 0;
-			this.leftSideBar.y = 0;
-			this.titsClassPtr.addChild(this.leftSideBar);
-			//Fading out Perks and Level Up Buttons
 
 			this.fadeOut = new ColorTransform();
 			this.titsPurple = new ColorTransform();
@@ -172,184 +171,46 @@
 			this.titsBlue.color = 0x333E52;
 			this.titsWhite.color = 0xFFFFFF;
 
-			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
-			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
 
 
-			this.monsterHP = new StatBarBig();
-			this.titsClassPtr.addChild(this.monsterHP);
-			this.monsterHP.x = 10;
-			this.monsterHP.y = 237;
-			this.monsterHP.background.x = -150;
-			this.monsterHP.bar.width = 30;
-			this.monsterHP.values.text = "SOUTH ESBETH 3";
-			this.monsterHP.visible = false;
-
-			this.monsterLust = new StatBarBig();
-			this.titsClassPtr.addChild(this.monsterLust);
-			this.monsterLust.x = 10;
-			this.monsterLust.y = 278;
-			this.monsterLust.masks.labels.text = "LUST";
-			this.monsterLust.values.text = "25";
-			this.monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
-			this.monsterLust.bar.width = (25 / 100) * 180;
-			this.monsterLust.highBad = true;
-			this.monsterLust.visible = false;
-
-			this.monsterEnergy = new StatBarBig();
-			this.titsClassPtr.addChild(this.monsterEnergy);
-			this.monsterEnergy.x = 10;
-			this.monsterEnergy.y = 319;
-			this.monsterEnergy.masks.labels.text = "ENERGY";
-			this.monsterEnergy.values.text = "HOTEL ROOM"
-;
-			this.monsterEnergy.visible = false;
 
 
-			this.monsterLevel = new StatBarSmall();
-			this.titsClassPtr.addChild(this.monsterLevel);
-			this.monsterLevel.x = 10;
-			this.monsterLevel.y = 363;
-			this.setupStatBar(this.monsterLevel,"LEVEL",5);
-			this.monsterLevel.visible = false;
+			trace("Calling statBar constructors");
+			// Set up the various side-bars
+			this.setupRightSidebar()
+			this.setupLeftSidebar()
+			// then hide them until we want them.
+			this.leftBarClear();
+			this.hidePCStats();
 
-
-			this.monsterRace = new StatBarSmall();
-			this.titsClassPtr.addChild(this.monsterRace);
-			this.monsterRace.x = 10;
-			this.monsterRace.y = 392;
-			this.setupStatBar(this.monsterRace,"RACE","Galotian");
-			this.monsterRace.visible = false;
-
-
-			this.monsterSex = new StatBarSmall();
-			this.titsClassPtr.addChild(this.monsterSex);
-			this.monsterSex.x = 10;
-			this.monsterSex.y = 421;
-			this.setupStatBar(this.monsterSex,"SEX","Unknown");
-			this.monsterSex.visible = false;
-
-
-			leftBarClear();
 
 			//Build the right sidebar
-			this.rightSidebar = new RightBar;
-			this.titsClassPtr.addChild(this.rightSidebar);
-			this.rightSidebar.nameText.text = "Penis";
-			this.rightSidebar.x = 1000;
-			this.rightSidebar.y = 0;
-			trace("Calling statBar constructors");
-			this.playerHP = new StatBarBig();
-			this.playerLust = new StatBarBig();
-			this.playerEnergy = new StatBarBig();
-			this.playerShields = new StatBarBig();
-			this.titsClassPtr.addChild(playerShields);
-			this.titsClassPtr.addChild(playerHP);
-			this.titsClassPtr.addChild(playerLust);
-			this.titsClassPtr.addChild(playerEnergy);
-			this.playerShields.x = 1010;
-			this.playerShields.y = 65;
-			this.playerHP.x = 1010;
-			this.playerHP.y = 106;
-			this.playerLust.x = 1010;
-			this.playerLust.y = 147;
-			this.playerEnergy.x = 1010;
-			this.playerEnergy.y = 188;
-			this.playerShields.masks.labels.text = "SHIELDS";
-			this.playerShields.bar.width = 30;
-			this.playerShields.values.text = "SOUTH ESBETH 3";
-			this.playerShields.background.x = -150;
 
-			this.playerHP.background.x = -150;
-			this.playerHP.bar.width = 30;
-			this.playerHP.values.text = "SOUTH ESBETH 3";
-			this.playerLust.masks.labels.text = "LUST";
-			this.playerLust.values.text = "25";
-			this.playerLust.background.x = -1 * (1 - 25 / 100) * 180;
-			this.playerLust.bar.width = (25 / 100) * 180;
-			this.playerLust.highBad = true;
-			this.playerEnergy.masks.labels.text = "ENERGY";
-			this.playerEnergy.values.text = "HOTEL ROOM"
-;
-			this.buttonPagePrev = new leftButton;
-			this.titsClassPtr.addChild(this.buttonPagePrev);
-			this.buttonPagePrev.x = 1000;
-			this.buttonPagePrev.y = 750;
-			this.buttonPagePrev.alpha = .3;
 			this.buttonPageNext = new rightButton;
-			this.titsClassPtr.addChild(this.buttonPageNext);
+			this.buttonPageNext.alpha = .3;
 			this.buttonPageNext.x = 1100;
 			this.buttonPageNext.y = 750;
-			this.buttonPageNext.alpha = .3;
-			this.pagePrev = new leftButton;
-			this.titsClassPtr.addChild(this.pagePrev);
-			this.pagePrev.x = 010;
-			this.pagePrev.y = 750;
-			this.pagePrev.alpha = .3;
+
+			this.buttonPagePrev = new leftButton;
+			this.buttonPagePrev.alpha = .3;
+			this.buttonPagePrev.x = 1000;
+			this.buttonPagePrev.y = 750;
+
 			this.pageNext = new rightButton;
-			this.titsClassPtr.addChild(this.pageNext);
+			this.pageNext.alpha = .3;
 			this.pageNext.x = 110;
 			this.pageNext.y = 750;
-			this.pageNext.alpha = .3;
-			this.playerLevel = new StatBarSmall();
-			this.playerXP = new StatBarSmall();
-			this.playerCredits = new StatBarSmall();
-			this.playerLevel.x = 1010;
-			this.playerLevel.y = 456;
-			this.playerLevel.masks.labels.text = "LEVEL";
-			this.playerLevel.bar.visible = false;
-			this.playerLevel.background.x = -180;
-			this.playerLevel.values.text = "WEST ESBETH 1";
-			this.playerLevel.noBar = true;
-			this.playerXP.x = 1010;
-			this.playerXP.y = 485;
-			this.playerXP.masks.labels.text = "XP";
-			this.playerXP.bar.width = (50 / 500) * 180;
-			this.playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
-			this.playerXP.values.text = "50 / 1000";
-			this.playerCredits.x = 1010;
-			this.playerCredits.y = 514;
-			this.playerCredits.noBar = true;
-			this.playerCredits.masks.labels.text = "CREDITS";
-			this.playerCredits.bar.visible = false;
-			this.playerCredits.background.x =  -180;
-			this.playerCredits.values.text = "Over 9000";
-			this.titsClassPtr.addChild(this.playerLevel);
-			this.titsClassPtr.addChild(this.playerXP);
-			this.titsClassPtr.addChild(this.playerCredits);
-			this.playerPhysique = new StatBarSmall();
-			this.playerReflexes = new StatBarSmall();
-			this.playerAim = new StatBarSmall();
-			this.playerIntelligence = new StatBarSmall();
-			this.playerWillpower = new StatBarSmall();
-			this.playerLibido = new StatBarSmall();
-			this.titsClassPtr.addChild(this.playerPhysique);
-			this.titsClassPtr.addChild(this.playerReflexes);
-			this.titsClassPtr.addChild(this.playerAim);
-			this.titsClassPtr.addChild(this.playerIntelligence);
-			this.titsClassPtr.addChild(this.playerWillpower);
-			this.titsClassPtr.addChild(this.playerLibido);
-			this.playerPhysique.x = 1010;
-			this.playerPhysique.y = 255;
-			this.playerReflexes.x = 1010;
-			this.playerReflexes.y = 284;
-			this.playerAim.x = 1010;
-			this.playerAim.y = 313;
-			this.playerIntelligence.x = 1010;
-			this.playerIntelligence.y = 342;
-			this.playerWillpower.x = 1010;
-			this.playerWillpower.y = 371;
-			this.playerLibido.x = 1010;
-			this.playerLibido.y = 400;
 
-			this.setupStatBar(this.playerPhysique,"PHYSIQUE",50,100);
-			this.setupStatBar(this.playerReflexes,"REFLEXES",30,100);
-			this.setupStatBar(this.playerAim,"AIM",30,100);
-			this.setupStatBar(this.playerIntelligence,"INTELLIGENCE",90,100);
-			this.setupStatBar(this.playerWillpower,"WILLPOWER",5,100);
-			this.setupStatBar(this.playerLibido,"LIBIDO",97,100);
+			this.pagePrev = new leftButton;
+			this.pagePrev.alpha = .3;
+			this.pagePrev.x = 010;
+			this.pagePrev.y = 750;
 
-			this.hidePCStats();
+			this.titsClassPtr.addChild(this.buttonPageNext);
+			this.titsClassPtr.addChild(this.buttonPagePrev);
+			this.titsClassPtr.addChild(this.pageNext);
+			this.titsClassPtr.addChild(this.pagePrev);
+
 
 
 			//Set up the main text field
@@ -496,6 +357,243 @@
 			initializeMainMenu();
 			//mainMenu();
 		}
+		private function setupRightSidebar():void
+		{
+
+			trace("Setting up right side-bar");
+
+			this.rightSidebar = new RightBar;
+			this.rightSidebar.nameText.text = "Penis";
+			this.rightSidebar.x = 1000;
+			this.rightSidebar.y = 0;
+			this.titsClassPtr.addChild(this.rightSidebar);
+
+			// Large stat bars (Combat Stats) --------------------------------------------------
+
+			this.playerShields = new StatBarBig();
+			this.playerShields.background.x = -150;
+			this.playerShields.bar.width = 30;
+			this.playerShields.masks.labels.text = "SHIELDS";
+			this.playerShields.values.text = "1";
+			this.playerShields.x = 1010;
+			this.playerShields.y = 65;
+			this.titsClassPtr.addChild(this.playerShields);
+
+			this.playerHP = new StatBarBig();
+			this.playerHP.background.x = -150;
+			this.playerHP.bar.width = 30;
+			this.playerHP.values.text = "0";
+			this.playerHP.x = 1010;
+			this.playerHP.y = 106;
+			this.titsClassPtr.addChild(this.playerHP);
+
+			this.playerLust = new StatBarBig();
+			this.playerLust.background.x = -1 * (1 - 25 / 100) * 180;  // Aren't all these bars the same width?
+			this.playerLust.bar.width = (25 / 100) * 180;
+			this.playerLust.highBad = true;
+			this.playerLust.masks.labels.text = "LUST";
+			this.playerLust.values.text = "25";
+			this.playerLust.x = 1010;
+			this.playerLust.y = 147;
+			this.titsClassPtr.addChild(this.playerLust);
+
+			this.playerEnergy = new StatBarBig();
+			this.playerEnergy.masks.labels.text = "ENERGY";
+			this.playerEnergy.values.text = "1";
+			this.playerEnergy.x = 1010;
+			this.playerEnergy.y = 188;
+			this.titsClassPtr.addChild(this.playerEnergy);
+
+			// Small stat bars (Core Stats) --------------------------------------------------
+
+			this.playerPhysique = new StatBarSmall();
+			this.playerPhysique.x = 1010;
+			this.playerPhysique.y = 255;
+			this.titsClassPtr.addChild(this.playerPhysique);
+
+			this.playerReflexes = new StatBarSmall();
+			this.playerReflexes.x = 1010;
+			this.playerReflexes.y = 284;
+			this.titsClassPtr.addChild(this.playerReflexes);
+
+			this.playerAim = new StatBarSmall();
+			this.playerAim.x = 1010;
+			this.playerAim.y = 313;
+			this.titsClassPtr.addChild(this.playerAim);
+
+			this.playerIntelligence = new StatBarSmall();
+			this.playerIntelligence.x = 1010;
+			this.playerIntelligence.y = 342;
+			this.titsClassPtr.addChild(this.playerIntelligence);
+
+			this.playerWillpower = new StatBarSmall();
+			this.playerWillpower.x = 1010;
+			this.playerWillpower.y = 371;
+			this.titsClassPtr.addChild(this.playerWillpower);
+
+			this.playerLibido = new StatBarSmall();
+			this.playerLibido.x = 1010;
+			this.playerLibido.y = 400;
+			this.titsClassPtr.addChild(this.playerLibido);
+
+
+			this.setupStatBar(this.playerPhysique,"PHYSIQUE",50,100);
+			this.setupStatBar(this.playerReflexes,"REFLEXES",30,100);
+			this.setupStatBar(this.playerAim,"AIM",30,100);
+			this.setupStatBar(this.playerIntelligence,"INTELLIGENCE",90,100);
+			this.setupStatBar(this.playerWillpower,"WILLPOWER",5,100);
+			this.setupStatBar(this.playerLibido,"LIBIDO",97,100);
+
+			// Small stat bars (Advancement) --------------------------------------------------
+
+			this.playerLevel = new StatBarSmall();
+			this.playerLevel.background.x = -180;
+			this.playerLevel.bar.visible = false;
+			this.playerLevel.masks.labels.text = "LEVEL";
+			this.playerLevel.noBar = true;
+			this.playerLevel.values.text = "1";
+			this.playerLevel.x = 1010;
+			this.playerLevel.y = 456;
+			this.titsClassPtr.addChild(this.playerLevel);
+
+			this.playerXP = new StatBarSmall();
+			this.playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
+			this.playerXP.bar.width = (50 / 500) * 180;
+			this.playerXP.masks.labels.text = "XP";
+			this.playerXP.values.text = "50 / 1000";
+			this.playerXP.x = 1010;
+			this.playerXP.y = 485;
+			this.titsClassPtr.addChild(this.playerXP);
+
+			this.playerCredits = new StatBarSmall();
+			this.playerCredits.background.x =  -180;
+			this.playerCredits.bar.visible = false;
+			this.playerCredits.masks.labels.text = "CREDITS";
+			this.playerCredits.noBar = true;
+			this.playerCredits.values.text = "Over 9000";
+			this.playerCredits.x = 1010;
+			this.playerCredits.y = 514;
+			this.titsClassPtr.addChild(this.playerCredits);
+
+			// finally, shove all the pc stats items in the relevant list
+			// so we can iterate over it when enabling and disabling them.
+			this.pcStatSidebarItems = [this.playerShields,
+										this.playerHP,
+										this.playerLust,
+										this.playerEnergy,
+										this.playerPhysique,
+										this.playerReflexes,
+										this.playerAim,
+										this.playerIntelligence,
+										this.playerWillpower,
+										this.playerLibido,
+										this.playerLevel,
+										this.playerXP,
+										this.playerCredits];
+
+		}
+
+
+		private function setupLeftSidebar():void
+		{	
+			var curYIndex:Number = 237;		// Initial starting Y offset is 237
+			var y_large_step:Number = 41;
+			var y_small_step:Number = 29;
+			var y_group_step:Number = 44;
+			//Build left sidebar
+			this.leftSideBar = new LeftBar;
+			this.leftSideBar.x = 0;
+			this.leftSideBar.y = 0;
+			this.titsClassPtr.addChild(this.leftSideBar);
+			//Fading out Perks and Level Up Buttons
+
+			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
+			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
+
+			// Large stat bars (Combat Stats) --------------------------------------------------
+			this.monsterShield = new StatBarBig();
+			this.monsterShield.background.x = -150;
+			this.monsterShield.bar.width = 30;
+			this.monsterShield.masks.labels.text = "SHIELDS";
+			this.monsterShield.values.text = "1";
+			this.monsterShield.visible = false;
+			this.monsterShield.x = 10;
+			this.monsterShield.y = curYIndex;
+			this.titsClassPtr.addChild(this.monsterShield);
+
+			curYIndex += y_large_step;
+
+			this.monsterHP = new StatBarBig();
+			this.monsterHP.background.x = -150;
+			this.monsterHP.bar.width = 30;
+			this.monsterHP.masks.labels.text = "HP";
+			this.monsterHP.values.text = "1";
+			this.monsterHP.visible = false;
+			this.monsterHP.x = 10;
+			this.monsterHP.y = curYIndex;
+			this.titsClassPtr.addChild(this.monsterHP);
+
+			curYIndex += y_large_step;
+
+			this.monsterLust = new StatBarBig();
+			this.monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
+			this.monsterLust.bar.width = (25 / 100) * 180;
+			this.monsterLust.highBad = true;
+			this.monsterLust.masks.labels.text = "LUST";
+			this.monsterLust.values.text = "25";
+			this.monsterLust.visible = false;
+			this.monsterLust.x = 10;
+			this.monsterLust.y = curYIndex;
+			this.titsClassPtr.addChild(this.monsterLust);
+
+			curYIndex += y_large_step;
+
+			this.monsterEnergy = new StatBarBig();
+			this.monsterEnergy.masks.labels.text = "ENERGY";
+			this.monsterEnergy.values.text = "25";
+			this.monsterEnergy.visible = false;
+			this.monsterEnergy.x = 10;
+			this.monsterEnergy.y = curYIndex;
+			this.titsClassPtr.addChild(this.monsterEnergy);
+
+			curYIndex += y_group_step;
+
+			// Small stat bars (General Info (race, level, gender)) --------------------------------------------------
+			this.monsterLevel = new StatBarSmall();
+			this.monsterLevel.visible = false;
+			this.monsterLevel.x = 10;
+			this.monsterLevel.y = curYIndex;
+			this.setupStatBar(this.monsterLevel,"LEVEL",5);
+			this.titsClassPtr.addChild(this.monsterLevel);
+
+			curYIndex += y_small_step;
+
+			this.monsterRace = new StatBarSmall();
+			this.monsterRace.visible = false;
+			this.monsterRace.x = 10;
+			this.monsterRace.y = curYIndex;
+			this.setupStatBar(this.monsterRace,"RACE","Galotian");
+			this.titsClassPtr.addChild(this.monsterRace);
+
+			curYIndex += y_small_step;
+
+			this.monsterSex = new StatBarSmall();
+			this.monsterSex.visible = false;
+			this.monsterSex.x = 10;
+			this.monsterSex.y = curYIndex;
+			this.setupStatBar(this.monsterSex,"SEX","Unknown");
+			this.titsClassPtr.addChild(this.monsterSex);
+
+			this.npcStatSidebarItems = [this.monsterShield,
+								this.monsterHP, 
+								this.monsterLust, 
+								this.monsterEnergy, 
+								this.monsterLevel, 
+								this.monsterRace, 
+								this.monsterSex];
+
+		}
+
 
 		//Build the main 15 buttons!
 		public function initializeButtons():void 
@@ -1152,7 +1250,8 @@
 		}
 
 
-		public function leftBarClear():void {
+		public function leftBarClear():void 
+		{
 			this.leftSideBar.sceneByTag.visible = false;
 			this.leftSideBar.sceneBy.visible = false;
 			this.leftSideBar.sceneTitle.visible = false;
@@ -1166,74 +1265,56 @@
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 		}
-		public function hidePCStats():void {
-			this.playerShields.visible = false;
-			this.playerHP.visible = false;
-			this.playerLust.visible = false;
-			this.playerEnergy.visible = false;
-			this.playerLevel.visible = false;
-			this.playerXP.visible = false;
-			this.playerCredits.visible = false;
-			this.playerPhysique.visible = false;
-			this.playerReflexes.visible = false;
-			this.playerAim.visible = false;
-			this.playerIntelligence.visible = false;
-			this.playerWillpower.visible = false;
-			this.playerLibido.visible = false;
+		public function hidePCStats():void 
+		{
+			trace("Hide PC Stats");
+			for each (var barItem in this.pcStatSidebarItems) 
+			{
+				barItem.visible = false;
+			}
 		}
-		public function showPCStats():void {
-			this.playerShields.visible = true;
-			this.playerHP.visible = true;
-			this.playerLust.visible = true;
-			this.playerEnergy.visible = true;
-			this.playerLevel.visible = true;
-			this.playerXP.visible = true;
-			this.playerCredits.visible = true;
-			this.playerPhysique.visible = true;
-			this.playerReflexes.visible = true;
-			this.playerAim.visible = true;
-			this.playerIntelligence.visible = true;
-			this.playerWillpower.visible = true;
-			this.playerLibido.visible = true;
+		public function showPCStats():void 
+		{
+			trace("Show PC Stats");
+			for each (var barItem in this.pcStatSidebarItems) 
+			{
+				barItem.visible = true;
+			}
 		}
-		public function showNPCStats():void {
-			this.monsterHP.visible = true;
-			this.monsterLust.visible = true;
-			this.monsterEnergy.visible = true;
-			this.monsterLevel.visible = true;
-			this.monsterRace.visible = true;
-			this.monsterSex.visible = true;
+		public function showNPCStats():void 
+		{
+			trace("Show NPC Stats");
+			for each (var barItem in this.npcStatSidebarItems) 
+			{
+				barItem.visible = true;
+			}
 		}
-		public function hideNPCStats():void {
-			this.monsterHP.visible = false;
-			this.monsterLust.visible = false;
-			this.monsterEnergy.visible = false;
-			this.monsterLevel.visible = false;
-			this.monsterRace.visible = false;
-			this.monsterSex.visible = false;
+		public function hideNPCStats():void 
+		{
+			trace("Hide NPC Stats");
+			for each (var barItem in this.npcStatSidebarItems) 
+			{
+				barItem.visible = false;
+			}
 		}
 		public function deglow():void 
 		{
-			trace("playerShields = ", playerShields);
-			this.playerShields.clearGlo();
-			this.playerHP.clearGlo();
-			this.playerLust.clearGlo();
-			this.playerEnergy.clearGlo();
-			this.playerXP.clearGlo();
-			this.playerLevel.clearGlo();
-			this.playerCredits.clearGlo();
-			this.playerPhysique.clearGlo();
-			this.playerReflexes.clearGlo();
-			this.playerAim.clearGlo();
-			this.playerIntelligence.clearGlo();
-			this.playerWillpower.clearGlo();
-			this.playerLibido.clearGlo();
-			this.monsterHP.clearGlo();
-			this.monsterLust.clearGlo();
-			this.monsterEnergy.clearGlo();
+			trace("Clearing Glow");
+			// This didn't originally call clearGlo on the small NPC Items
+			// (level, sex, race), but it's easer to just let it do so. 
+			// I don't *think* it'll break anything.
+			for each (var barItem in this.pcStatSidebarItems) 
+			{
+				barItem.clearGlo();
+			}
+			for each (var barItem in this.npcStatSidebarItems) 
+			{
+				barItem.clearGlo();
+			}
 		}	
 
-		function showBust(arg:int):void {
+		function showBust(arg:int):void 
+		{
 			//this.leftSideBar.sceneTitle.filters = [glow];
 			if(arg == 0) this.leftSideBar.npcBusts.visible = false;
 			else {
