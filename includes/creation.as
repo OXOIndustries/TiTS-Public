@@ -38,10 +38,12 @@ function startCharacterCreation():void {
 	this.userInterface.addButton(0,"Human",chooseStartingRace);
 	this.userInterface.addButton(1,"Ausar",chooseStartingRace,"ausar");
 	this.userInterface.addButton(2,"Kaithrit",chooseStartingRace,"kaithrit");
-	if(debug) addButton(3,"Multicock",chooseStartingRace,"multicock");
+	if(debug) 
+		this.userInterface.addButton(3,"Multicock",chooseStartingRace,"multicock");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 	//I added this!  ~Pervineer
-	if(debug) addButton(5,"Load test.txt", loadTestFile);
+	if(debug) 
+		this.userInterface.addButton(5,"Load test.txt", loadTestFile);
 }
 //Pervineer here.. in your stuff, messing up your codez
 var myLoader:URLLoader  =  new URLLoader(new URLRequest("test.txt"));
@@ -987,7 +989,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 		rival.buttRating += 2;
 	}
 	clearOutput();
-	showBust(GLOBAL.RIVAL);
+	this.userInterface.showBust(GLOBAL.RIVAL);
 	setLocation("MEETING\n" + rival.short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
 	output(rival.mf("He","She") + "’s " + rival.mf("male","female") + ", surely. Just as you make that conclusion, " + rival.mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + rival.mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
 	output("\n\nLuckily, the figure resolves into someone more familiar: " + rival.short + " Steele, obviously on station for the same reason as you. " + rival.short + " is your cousin, though in this case, familiarity breeds no affection. " + rival.mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
@@ -1010,7 +1012,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 //Wake to Find Rival Left in the Night
 function ohShitGameStarts():void {
 	clearOutput();
-	showBust(GLOBAL.RIVAL);
+	this.userInterface.showBust(GLOBAL.RIVAL);
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
 	setLocation("","TAVROS STATION","SYSTEM: KALAS");
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + rival.mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");

@@ -217,9 +217,9 @@
 			// set up the user interface
 
 			this.userInterface.clearMenu();
-			this.userInterface.addButton(0,"Horsecock",horsecock);
+			//this.userInterface.addButton(0,"Horsecock",horsecock);
 			this.userInterface.addButton(14,"CLEAR!",clearOutput);
-			this.userInterface.addButton(16,"2Horse4Me",horsecock);
+			//this.userInterface.addButton(16,"2Horse4Me",horsecock);
 
 			setupInputEventHandlers()
 

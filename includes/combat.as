@@ -42,7 +42,7 @@ function combatMainMenu():void
 	if (!pc.hasStatusEffect("Stunned"))
 	{
 		//Combat menu
-		clearMenu();
+		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(5,"Tease",tease);
@@ -489,8 +489,8 @@ function defeatRouting():void
 		output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
 		pc.removeStatusEffect("Round");
 		processTime(90);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		this.userInterface.clearMenu();
+		this.userInterface.addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -502,8 +502,8 @@ function genericVictory():void
 function combatOver():void 
 {
 	pc.removeStatusEffect("Round");
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -547,7 +547,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		if(creditBuffer > 1) output("s");
 		output(" loaded on an anonymous credit chit that you appropriate.");
 	}
-	clearMenu();
+	this.userInterface.clearMenu();
 	//Fill wallet and GTFO
 	if(lootList.length > 0) {
 		output(" You also find ");
@@ -564,7 +564,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	//Just leave if no items.
 	else {
-		addButton(0,"Next",mainGameMenu);
+		this.userInterface.addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -580,7 +580,7 @@ function startCombat(encounter:String):void
 			foes[0] = clone(characters[GLOBAL.CELISE]);
 			break;
 		case "zilpack":
-			showBust(GLOBAL.ZILPACK);
+			this.userInterface.showBust(GLOBAL.ZILPACK);
 			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = clone(zilpack);
 			break;
