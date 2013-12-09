@@ -240,7 +240,6 @@ function winVsZil():void {
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
 	userInterface.clearMenu();
-	trace("COCK SIZE: " + pc.cockVolume(0) + " ZILBUTT: " + foes[0].analCapacity());
 	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) userInterface.addButton(0,"Buttfuck",buttfuckDefeatedZil);
 	else userInterface.addDisabledButton(0,"Buttfuck");
 	//*Ride His Cock

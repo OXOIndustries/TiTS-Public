@@ -43,6 +43,7 @@ function combatMainMenu():void
 		celiseMenu();
 		return;
 	}
+	updateCombatStatuses();
 	if (!pc.hasStatusEffect("Stunned"))
 	{
 		//Combat menu
@@ -55,6 +56,12 @@ function combatMainMenu():void
 	{
 		output("\n<b>You're still stunned!</b>");
 		this.userInterface.addButton(0,"Recover",stunRecover);
+	}
+}
+function updateCombatStatuses():void {
+	if(pc.hasStatusEffect("Blind")) {
+		pc.addStatusValue("Blind",1,-1);
+		if(pc.statusEffectv1("Blind") <= 0) pc.removeStatusEffect("Blind");
 	}
 }
 function stunRecover():void 
@@ -128,7 +135,12 @@ function allFoesDefeated():Boolean
 
 function combatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10) return true;
+	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && !target.hasStatusEffect("Blind") && !pc.hasStatusEffect("Stunned")) return true;
+	return false;
+}
+function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
+{
+	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && !target.hasStatusEffect("Blind") && !pc.hasStatusEffect("Stunned")) return true;
 	return false;
 }
 
@@ -192,6 +204,11 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
 		}
 		else output(target.customDodge);
+	}
+	//Extra miss for blind
+	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
+		if(attacker == pc) output("Your blind strike fails to connect.");
+		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackVerb + " goes wide!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
 	else if(special == 1 && rand(100) <= 45 && !target.hasStatusEffect("Stunned")) {
@@ -269,12 +286,18 @@ function rangedAttack(attacker:Creature, target:Creature):void
 		}
 	}
 	//Attack missed!
-	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10) {
+	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
+	if(rangedCombatMiss(attacker,target)) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
 		}
 		else output(target.customDodge)
+	}
+	//Extra miss for blind
+	else if(attacker.hasStatusEffect("Blind") && rand(10) > 0) {
+		if(attacker == pc) output("None of your blind-fired shots manage to connect.");
+		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Celise autoblocks
 	else if(target.short == "Celise") {
@@ -406,8 +429,13 @@ function displayMonsterStatus(targetFoe):void
 		else output("<b>" + targetFoe.capitalA + targetFoe.short + " has turned you on too much to keep fighting. You give in....</b>\n");
 	}
 	else {
-		output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
-		showMonsterArousalFlavor(targetFoe);
+		if(!pc.hasStatusEffect("Blind")) {
+			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
+			showMonsterArousalFlavor(targetFoe);
+		}
+		else {
+			output("<b>You're too blind to see your foe!</i>\n");
+		}
 	}
 	//Celise intro specials.
 	if(targetFoe.short == "Celise") {
@@ -506,12 +534,14 @@ function defeatRouting():void
 
 function genericLoss():void {
 	pc.removeStatusEffect("Round");
+	pc.clearCombatStatuses();
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 function genericVictory():void 
 {
+	pc.clearCombatStatuses();
 	getCombatPrizes();
 }
 

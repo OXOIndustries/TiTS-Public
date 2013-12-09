@@ -53,6 +53,7 @@
 		include "../includes/appearance.as";
 		include "../includes/rooms.as";
 		include "../includes/zilMale.as";
+		include "../includes/zilFemale.as";
 	
 		//include "../includes/zilMale.as";
 		

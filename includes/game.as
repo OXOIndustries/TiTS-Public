@@ -191,6 +191,11 @@ function statusTick():void {
 				{
 					pc.physiqueMod -= pc.statusEffects[x].value2;
 				}
+				if(pc.statusEffects[x].storageName == "Zil Sting")
+				{
+					pc.reflexesMod += pc.statusEffects[x].value1;
+					pc.libidoMod -= pc.statusEffects[x].value1;
+				}
 				//KILL ZE STATUS
 				pc.statusEffects.splice(x,1);
 			}

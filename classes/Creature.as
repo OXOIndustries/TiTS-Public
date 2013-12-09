@@ -1584,7 +1584,7 @@
 		//Create a keyItem
 		public function createKeyItem(keyName:String, value1:Number, value2:Number, value3:Number, value4:Number, description:String = ""):void {
 			var newKeyItem = new StorageClass();
-			newKeyItem.keyName = keyName;
+			newKeyItem.storageName = keyName;
 			newKeyItem.value1 = value1;
 			newKeyItem.value2 = value2;
 			newKeyItem.value3 = value3;
@@ -1601,6 +1601,11 @@
 		//statuses
 		public function removeStatuses():void {
 			removeStorage(statusEffects);
+		}
+		public function clearCombatStatuses():void {
+			for(var x:int = 0; x < statusEffects.length; x++) {
+				if(statusEffects[x].combatOnly) removeStatusEffect(statusEffects[x].storageName);
+			}
 		}
 		//perk
 		public function removePerk(perkName:String):void {
