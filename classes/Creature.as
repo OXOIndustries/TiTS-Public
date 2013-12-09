@@ -1509,7 +1509,12 @@
 				}
 			}
 		}
-		public function isPregnant():Boolean {
+		//Is a specific womb preggers
+		public function isPregnant(arg:int = 0):Boolean {
+			return false;
+		}
+		//Does the PC have any cunt pregnancy?
+		public function hasPregnancy():Boolean {
 			return false;
 		}
 		public function canOvipositSpider():Boolean {

@@ -486,12 +486,16 @@ function defeatRouting():void
 		loseToZilPair();
 	}
 	else {
-		output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
-		pc.removeStatusEffect("Round");
-		processTime(90);
-		this.userInterface.clearMenu();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		genericLoss();
 	}
+}
+
+function genericLoss():void {
+	output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
+	pc.removeStatusEffect("Round");
+	processTime(90);
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 function genericVictory():void 
