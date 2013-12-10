@@ -26,7 +26,8 @@
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
 
-	import classes.GUI
+	import classes.GUI;
+	import classes.Mapper;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -211,13 +212,23 @@
 			
 			include "../includes/weaponVariables.as";
 
+
+			// Major class variable setup: ------------------------------------------------------------
 			setupCharacters();
 			initializeRooms();
 			initializeItems();
 
 
-			// set up the user interface
 
+			// dick about with mapper: ------------------------------------------------------------
+			var mapper:Mapper = new Mapper(this.rooms)
+			var map:*;
+			map = mapper.generateMap("NORTH ESBETH 2")
+			mapper.printMap(map)
+
+
+
+			// set up the user interface: ------------------------------------------------------------
 			this.userInterface.clearMenu();
 			//this.userInterface.addButton(0,"Horsecock",horsecock);
 			this.userInterface.addButton(14,"CLEAR!",clearOutput);
@@ -225,7 +236,6 @@
 
 			setupInputEventHandlers()
 
-			//this.userInterface.initializeMainMenu();
 			
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();

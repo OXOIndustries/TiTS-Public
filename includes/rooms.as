@@ -6,6 +6,9 @@ function initializeRooms():void
 	// clear out the rooms object, and re-initialize it.
 	this.rooms = new Object();
 
+	//
+	// WRT Map generation: "In" is +1 in the z axis, and out is -1
+	// N, S, E, W are the expected cardinal directions
 
 	//99. Ship Interior
 	rooms["SHIP INTERIOR"] = new RoomClass(this);
