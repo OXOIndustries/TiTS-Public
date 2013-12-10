@@ -71,6 +71,7 @@
 		var zil:Creature;
 		var penny:Creature;
 		var burt:Creature;
+		var zilFemale:Creature;
 
 		// These are all floating around in the TiTS namespace. Really
 		// they should be stored in an item Object() or something
@@ -202,6 +203,7 @@
 			zil = characters[GLOBAL.ZIL];
 			penny = characters[GLOBAL.PENNY];
 			burt = characters[GLOBAL.BURT];
+			zilFemale = characters[GLOBAL.ZILFEMALE];
 
 			flags = new Dictionary();
 			initializeFlags();

@@ -1037,4 +1037,152 @@
 		burt.milkRate = 0;
 		burt.ass.wetness = 0;
 	}
+	if (!justUpdate || (justUpdate && characters[GLOBAL.ZILFEMALE].short == "uncreated"))
+	{
+		characters[GLOBAL.ZILFEMALE] = new Creature();
+		zilFemale = characters[GLOBAL.ZILFEMALE];
+		zilFemale.short = "zilFemale";
+		zilFemale.originalRace = "human";
+		zilFemale.a = "";
+		zilFemale.capitalA = "";
+		zilFemale.long = "";
+		zilFemale.customDodge = "";
+		zilFemale.customBlock = "";
+		zilFemale.plural = false;
+		zilFemale.lustVuln = 1;
+		zilFemale.meleeWeapon.attackVerb = "punch";
+		zilFemale.meleeWeapon.longName = "fist";
+		zilFemale.armor.longName = "comfortable clothes";
+		zilFemale.armor.defense = 50;
+		zilFemale.physiqueRaw = 3;
+		zilFemale.reflexesRaw = 3;
+		zilFemale.aimRaw = 3;
+		zilFemale.intelligenceRaw = 3;
+		zilFemale.willpowerRaw = 3;
+		zilFemale.libidoRaw = 30;
+		zilFemale.HPMod = 20;
+		zilFemale.shieldsRaw = 0;
+		zilFemale.HPRaw = zilFemale.HPMax();
+		zilFemale.energyRaw = 100;
+		zilFemale.lustRaw = 25;
+		zilFemale.resistances = new Array(1,1,1,1,1,1,1,1);
+		zilFemale.XP = 50;
+		zilFemale.level = 1;
+		zilFemale.credits = 1000;
+		
+		zilFemale.inventory[0] = clone(items[0]);
+		zilFemale.inventory[1] = clone(items[1]);
+		zilFemale.inventory[2] = clone(items[2]);
+		zilFemale.typesBought[zilFemale.typesBought.length] = GLOBAL.ALL;
+		zilFemale.sellMarkup = 1.3;
+		zilFemale.buyMarkdown = .25;
+		zilFemale.keeperSell = "boop";
+		zilFemale.keeperBuy = "bop";
+		zilFemale.keeperGreeting = "BLOOP.";
+		
+		zilFemale.femininity = 20;
+		zilFemale.eyeType = 0;
+		zilFemale.eyeColor = "brown";
+		zilFemale.tallness = 78;
+		zilFemale.thickness = 20;
+		zilFemale.tone = 70;
+		zilFemale.hairColor = "brown";
+		zilFemale.scaleColor = pc.scaleColor;
+		zilFemale.furColor = pc.furColor;
+		zilFemale.hairLength = 12;
+		zilFemale.hairType = 0;
+		zilFemale.beardLength = 0;
+		zilFemale.beardStyle = 0;
+		zilFemale.skinType = GLOBAL.SKIN;
+		zilFemale.skinTone = pc.skinTone;
+		zilFemale.skinFlags = new Array();
+		zilFemale.faceType = 0;
+		zilFemale.faceFlags = new Array();
+		zilFemale.tongueType = 0;
+		zilFemale.lipMod = 0;
+		zilFemale.earType = 0;
+		zilFemale.antennae = 0;
+		zilFemale.antennaeType = 0;
+		zilFemale.horns = 0;
+		zilFemale.hornType = 0;
+		zilFemale.armType = 0;
+		zilFemale.gills = false;
+		zilFemale.wingType = 0;
+		zilFemale.legType = GLOBAL.HUMAN;
+		zilFemale.legCount = 2;
+		zilFemale.legFlags = new Array(GLOBAL.PLANTIGRADE);
+		//0 - Waist
+		//1 - Middle of a long tail. Defaults to waist on bipeds.
+		//2 - Between last legs or at end of long tail.
+		//3 - On underside of a tail, used for driders and the like, maybe?
+		zilFemale.genitalSpot = 0;
+		zilFemale.tailType = 0;
+		zilFemale.tailCount = 0;
+		zilFemale.tailFlags = new Array();
+		//Used to set cunt or dick type for cunt/dick tails!
+		zilFemale.tailGenitalArg = 0;
+		//tailGenital:
+		//0 - none.
+		//1 - cock
+		//2 - vagina
+		zilFemale.tailGenital = 0;
+		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+		zilFemale.tailVenom = 0;
+		//Tail recharge determines how fast venom/webs comes back per hour.
+		zilFemale.tailRecharge = 5;
+		//hipRating
+		//0 - boyish
+		//2 - slender
+		//4 - average
+		//6 - noticable/ample
+		//10 - curvy//flaring
+		//15 - child-bearing/fertile
+		//20 - inhumanly wide
+		zilFemale.hipRating = 4;
+		//buttRating
+		//0 - buttless
+		//2 - tight
+		//4 - average
+		//6 - noticable
+		//8 - large
+		//10 - jiggly
+		//13 - expansive
+		//16 - huge
+		//20 - inconceivably large/big/huge etc
+		zilFemale.buttRating = 4;
+		//No dicks here!
+		zilFemale.cocks = new Array();
+		zilFemale.createCock();
+		zilFemale.cocks[0].cLength = 18;
+		zilFemale.cocks[0].cThickness = 2.75;
+		//balls
+		zilFemale.balls = 2;
+		zilFemale.cumMultiplier = 10;
+		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+		zilFemale.cumQuality = 1;
+		zilFemale.cumType = GLOBAL.CUM;
+		zilFemale.ballSize = 4.5;
+		zilFemale.ballFullness = 10;
+		//How many "normal" orgams worth of jizz your balls can hold.
+		zilFemale.ballEfficiency = 30;
+		//Scales from 0 (never produce more) to infinity.
+		zilFemale.refractoryRate = 5;
+		zilFemale.minutesSinceCum = 1650;
+		zilFemale.timesCum = 899;
+		
+		//Goo is hyper friendly!
+		zilFemale.elasticity = 1;
+		//Fertility is a % out of 100. 
+		zilFemale.fertility = 5;
+		zilFemale.clitLength = .5;
+		zilFemale.pregnancyMultiplier = 1;
+		
+		zilFemale.breastRows[0].breastRating = 0;
+		zilFemale.nippleColor = "brown";
+		zilFemale.milkMultiplier = 0;
+		zilFemale.milkType = GLOBAL.MILK;
+		//The rate at which you produce milk. Scales from 0 to INFINITY.
+		zilFemale.milkRate = 0;
+		zilFemale.ass.wetness = 0;
+	}
 }

@@ -157,6 +157,7 @@
 		public static const ZIL:int                                    = 6;
 		public static const PENNY:int                                  = 7;
 		public static const BURT:int                                   = 8;
+		public static const ZILFEMALE:int 							   = 9;
 
 		/*PLOT FLAGS
 		RECRUITED_CELISE
@@ -168,7 +169,5 @@
 		"GEOFF_FUCKED_DUDES_TWICE"
 		*/
 
-
-		
 	}
 }
