@@ -3,6 +3,11 @@
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
+	if(flags["LAST_FAP"] != undefined) {
+		texts[texts.length] = "Repeat";
+		funcs[funcs.length] = flags["LAST_FAP"];
+		args[args.length] = undefined;
+	}
 	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
 		texts[texts.length] = "Porn&Celise";
 		funcs[funcs.length] = tailCockCeliseFaps;
@@ -23,6 +28,19 @@
 		funcs[funcs.length] = multiCockFap;
 		args[args.length] = undefined;
 	}
+	//*Tailingus
+	if(pc.hasCuntTail()) {
+		if(pc.hasCock() && !pc.isTaur()) {
+			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
+				texts[texts.length] = "TailFuck";
+				funcs[funcs.length] = cuntTailFapScene;
+				args[args.length] = undefined;
+			}
+		}
+		texts[texts.length] = "Tailingus";
+		funcs[funcs.length] = tailingusFapReqsCuntTail;
+		args[args.length] = undefined;
+	}
 	for(var x:int = 0; x < texts.length; x++) {
 		if(x <= 13) {
 			this.userInterface.addButton(x,texts[x],funcs[x],args[x]);
@@ -38,6 +56,7 @@
 //{Accessed from Masturbate menu whilst shipboard}
 function tailCockCeliseFaps():void {
 	clearOutput();
+	flags["LAST_FAP"] = tailCockCeliseFaps;
 	author("Savin");
 	output("God damn you're horny.");
 	output("\n\nYou breathe a lusty sigh as the heat of arousal courses through your body, demanding release. You ");
@@ -68,6 +87,7 @@ function tailCockCeliseFaps():void {
 //Vaginal Fap
 function vaginalFap():void {
 	clearOutput();
+	flags["LAST_FAP"] = vaginalFap;
 	output("You ");
 	clearList();
 	if(pc.isNude()) output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being nude.");
@@ -162,6 +182,7 @@ function vaginalFap():void {
 //Single Dick Fap
 function singleDickFap():void {
 	clearOutput();
+	flags["LAST_FAP"] = singleDickFap;
 	clearList();
 	if(pc.isNude() || (pc.armor.shortName == "" && pc.lowerUndergarment.shortName == "")) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
 	else {
@@ -301,6 +322,7 @@ function singleDickFap():void {
 
 function multiCockFap():void {
 	clearOutput();
+	flags["LAST_FAP"] = multiCockFap;
 	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
 	if(!pc.isNude()) {
 		output("strip out of your ");
@@ -546,3 +568,101 @@ function multiCockFap():void {
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
+
+//*Tailingus
+function tailingusFapReqsCuntTail():void {
+	clearOutput();
+	flags["LAST_FAP"] = tailingusFapReqsCuntTail;
+	output("Figuring that you may as well blow off some steam while you have time, you shuck out of your gear and arrange it in a nearby pile, careful with your possessions even though you’re planning on getting some lewd self-satisfaction in. Your [pc.tail] curls ");
+	if(pc.isTaur()) output("up your back and shoulder to place itself against your [pc.chest]");
+	else output("around your [pc.legs] and [pc.hips] to place itself against your [pc.belly] when you seat yourself");
+	output(", nuzzling gently at your [pc.skinFurScales] as if to entice you to grab it. Pulses of pleasant, soothing warmth emanate from the appendage. The euphoria is almost addictive; perhaps you should hang onto this tail.");
+	output("\n\nThe end of your [pc.tailCunt] dilates slightly and its clit engorges nicely into a visible nub. Your heart beats faster as barely-controlled sexual excitement wells up inside you, bringing a blush to your [pc.skin] as you admire the way your undulating opening leaks clear lubricants all over you. The trail of slime it leaves on your [pc.chest]");
+	if(pc.biggestTitSize() >= 1) {
+		output(", snaking through your bosom");
+		if(pc.bRows() > 1) output("s");
+		output(",");
+	}
+	output(" is just so... strange and erotic that you can’t help but giggle in anticipation, licking your lips and grabbing hold of your [pc.tail] with both hands to steady it.");
+	
+	output("\n\nYour slit wobbles unsteadily on its pillar of flesh, and you work your muscles to angle it more perfectly towards your other lips, the ones barely concealing your mischievous tongue. Guiding it a little closer, you breathe in its scent, admiring the almost sweet tang that your [pc.tailCunt] gives off. Unable and unwilling to restrain yourself, you dive into the picture-perfect pussy in front of you, letting the lubed-up clit bounce off your nose and mark your face with own fragrant juices.");
+	
+	output("\n\nA shudder of involuntary pleasure works through your body, and you begin to cunnilingate yourself even more eagerly, attacking your pussy with your tongue. Your lick with eager, unrestrained strokes, plunging deeply before circling around the outer lips. Sometimes, you break up the tempo by suckling the clit into your mouth and whimpering in bliss; the vibrations make the wondrous feelings that much more intense. A gush of girlish goo splatters into your mouth, and you drink it without complaint. You swoon and lick your labia as clean as you can, but your [pc.tailCunt] just keeps leaking, dripping all over your [pc.chest].");
+	
+	output("\n\nOne of your hands begins to caress the length of your [pc.tail], stroking the [pc.skin] like some kind of pretend phallus, but it feels good all the same. The pressure squeezes the internal walls together, sliding fold against fold and nerves and nerves. You jerk your tailcunt compulsively while you eat it out, soaking yourself as the desire for more and more pleasure overwhelms you. Soon you’re grunting like an animal in heat, pumping so fast your hand is a blur and cramming as much of your [pc.face] into your [pc.tailCunt] as you can.");
+	
+	output("\n\nThe orgasm is almost a surprise when it comes. Your eyes roll back halfway, buried under your drooping eyelids. Your hand strokes down powerfully, gripping the wriggling, spasmatic appendage it begins to gush waves of lady-spunk across your face and tongue. You swallow a few gulps before you lose control and it pulls back, gushing girl-goo across your [pc.chest], [pc.belly], and crotch.");
+	if(pc.hasCock()) {
+		output(" [pc.EachCock] spurts semen fitfully as it’s doused with cunt juice, getting off in pure sympathy. The stuff drizzles all over your [pc.legs], turning you into quite the mess.");
+	}
+	if(pc.hasVagina()) output(" At the same time, [pc.eachVagina] clenches and cums as well, hungrily fluttering and squeezing, aching for penetration.");
+	
+	output("\n\nYou flop down onto your back and pull the [pc.tailCunt] back onto your face, licking the last of your libertine secretions from the well-served orifice. You bet it will feel even better to feed it cum.... Where did that thought come from?");
+	output("\n\nCleaning up as best you’re able, you get geared back up and ready to move, though you can’t seem to get the smell of pussy off your breath.");
+	processTime(10+rand(15));
+	pc.orgasm();
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+//*Cunt tail fap replacement B
+//Not 4 Hoarses.
+function cuntTailFapScene():void {
+	clearOutput();
+	flags["LAST_FAP"] = cuntTailFapScene;
+	var x:int = pc.cockThatFits(9999);
+	if(x < 0) x = pc.smallestCockIndex();
+	var y:int = -1;
+	if(pc.cockTotal() > 1) {
+		for(var z:int = 0; z < pc.cockTotal(); z++) {
+			if(z != x) y = z;
+		}
+	}
+	output("You figure that now is a good time to give into your erotic urges and shuck your gear, assembling it into a neat pile beside you. Your [pc.tail] slithers up over your shoulder almost of its own volition, clearly thirsting for a fresh dose of cum, and you intend to give it exactly what it deserves. Thickening nicely, [pc.eachCock] engorges to a hard and ready state. You idly fondle your tentacle-like tail, slipping a finger into its moist opening to test its readiness. It’s soaking wet, of course, and ready to fuck.");
+	
+	if(pc.cockTotal() > 1) output("\n\nSelecting [pc.oneCock]");
+	else output("Grabbing your [pc.cock]");
+	output(", you idly fondle yourself");
+	if(pc.balls > 0) output(", playing your fingers across your [pc.balls] whenever you have a spare moment");
+	output(", slowly enjoying the sensitivity of your skin. It pulses with ardor and thickens slightly, growing ever more tumescent thanks to your skilled fondles. You sigh and relax, leaning back while you pump a dollop of pre out from your " + pc.cockDescript(x) + ". It trickles down only to be caught by your fingers and turned into slippery lube. You stroke faster and faster, barely noticing as your [pc.tailCunt] moves downward, spattering its natural secretions across your lower body.");
+	output("\n\nYour [pc.tail] slows as it nears your " + pc.cockDescript(x) + ". Slippery soft wetness envelops your " + pc.cockHead(x) + " a quarter of an inch at a time as it engulfs your boner, slurping down the drops of pre-cum you start leaking in response. Your tool is immersed in soft, slippery coils of flesh as the outside of your tail ripples and squirms around in ways that make you dizzy with lust.");
+	
+	//{One other dick}
+	if(pc.cockTotal() == 2 && y != -1) 
+	{
+		output("\n\nLuckily, you have an extra " + pc.cockDescript(y) + " to handle while your tail works to coax your orgasm free");
+		if(pc.balls > 0) output(" from your [pc.balls]");
+		output(". The pleasure from your prehensile pussy increases  in response to that thought, and you settle into stroking your spare dick, jacking yourself off with strokes that are perfectly timed to the slurping tempo next door. It’s soon dripping out as much pre-cum as your snatch-snared mast, and you smear the clear juice over yourself, masturbating with long, hot, wet strokes. You bite your lip and try to endure the pleasure, but it feels sooo good.");
+	}
+	//{Two+ other dicks}
+	else if(y >= 0) {
+		output("\n\nLuckily, you’ve got enough extra dicks to go around. You grab ");
+		if(pc.cockTotal() > 3) output("two");
+		else output("both other");
+		output(" dongs to work while your tail tries to coax your orgasm free");
+		if(pc.balls > 0) output(" from your [pc.balls]");
+		output(", figuring you can climax harder and feed your tail the cum it craves sooner. In response, a wave of euphoria rolls up your vaginal appendage and tickles at your consciousness, rewarding you for your aid. The pleasure of your lewdly pumping tail grows stronger with each lurid squelch from your sexual congress. Pre-cum oozes out of your " + num2Text(pc.cockTotal() - 1) + " leaky cum-slits, slicking your palms as you stroke yourself, bubbling around your fingers with each subsequent pump.");
+	}
+	output("\n\nYour [pc.tailCunt] clamps down at your [pc.sheath " + x + "], and the rippling motions its squeezing innards make as they roll up intensify, coming faster and stronger before. The nub of your clit rubs against your pubic region when your beast-like tail wiggles around your " + pc.cockDescript(x) + " violently. It suctions harder and harder, pumping your prick up with fresh blood. Your [pc.legs] are twitching wildly from the pleasure, and you struggle to hold yourself still as a wave of excitement rises up in your middle.");
+	if(pc.balls > 1) output(" Twitching against you, your [pc.balls] bounce in their [pc.sack] as they ready a deluge of liquid love.");
+	else if(pc.balls == 1) output(" Twitching against you, your [pc.balls] bounces in its [pc.sack] as it readies a deluge of liquid love.");
+	
+	output("\n\nPleasure slams into your skull with canon-like force, launched from your tail, straight up your spine, and into your brain where it shatters into a concussive explosion of ecstasy. Your abdominals clench with your orgasm and move your creamy payload towards its eventual terminus, causing warm pressure to build and then release. A huge rope of [pc.cum] launches from you, and at the same time you get the feel the wonderful, blissful experience of having your tail stuffed with a juicy, delicious payload. Each ejaculation causes it to suck harder and faster, dragging your orgasm on longer");
+	if(pc.cockTotal() > 1) {
+		output(", while your other dick");
+		if(pc.cockTotal() > 2) output("s launch their contributions");
+		else output(" launches its contribution");
+		output(" into the air. The [pc.cumColor] globules hang at the zenith of their parabolic arc for a perfect, blissful moment before they fall down in sexy splatters");
+	}
+	output(".");
+	if(pc.cumQ() >= 500) output(" Your prehensile protuberance bloats from your large deposits, eventually giving up on milking you and pulling off to lamely drool [pc.cum] from its gaped orifice on the ground.");
+	if(pc.cumQ() >= 1000) output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
+	if(pc.cumQ() >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
+	if(pc.cumQ() >= 1000) output(".");
+	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
+	
+	pc.orgasm();
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+
