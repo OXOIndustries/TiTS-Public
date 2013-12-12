@@ -44,7 +44,7 @@ function combatMainMenu():void
 		return;
 	}
 	updateCombatStatuses();
-	if (!pc.hasStatusEffect("Stunned"))
+	if (!pc.hasStatusEffect("Stunned") && !pc.hasStatusEffect("Paralyzed"))
 	{
 		//Combat menu
 		this.userInterface.clearMenu();
@@ -63,18 +63,33 @@ function updateCombatStatuses():void {
 		pc.addStatusValue("Blind",1,-1);
 		if(pc.statusEffectv1("Blind") <= 0) pc.removeStatusEffect("Blind");
 	}
+	if(pc.hasStatusEffect("Paralyzed")) {
+		pc.addStatusValue("Blind",1,-1);
+		if(pc.statusEffectv1("Blind") <= 0) {
+			pc.removeStatusEffect("Blind");
+			output("<b>The paralytic venom wears off, and you are able to move once more.</b>\n");
+		}
+		else output("<b>You're paralyzed and unable to move!</b>\n");
+	}
 }
 function stunRecover():void 
 {
-	clearOutput();
-	pc.addStatusValue("Stunned",1,-1);
-	if (pc.statusEffectv1("Stunned") <= 0)
-	{
-		pc.removeStatusEffect("Stunned");
-		output("You manage to recover your wits and adopt a fighting stance!");
+	if(pc.hasStatusEffect("Stunned")) {
+		clearOutput();
+		pc.addStatusValue("Stunned",1,-1);
+		if (pc.statusEffectv1("Stunned") <= 0)
+		{
+			pc.removeStatusEffect("Stunned");
+			output("You manage to recover your wits and adopt a fighting stance!");
+		}
+		else
+			output("You're still too stunned to act!");
 	}
-	else
-		output("You're still too stunned to act!");
+	if(pc.hasStatusEffect("Paralyzed")) {
+		clearOutput();
+		if(pc.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!");
+		else output("You try to move, but just can't manage it!");
+	}
 	processCombat();
 }
 function celiseMenu():void 
@@ -113,11 +128,6 @@ function processCombat():void
 		enemyAI(foes[combatStage-1]);
 		return;
 	}
-	//If we are 1 past enemies, update statuses.
-	if(combatStage == foes.length+1) {
-		statusAffectUpdates();
-		return;
-	}
 	combatStage = 0;
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",combatMainMenu);
@@ -135,12 +145,20 @@ function allFoesDefeated():Boolean
 
 function combatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && !target.hasStatusEffect("Blind") && !pc.hasStatusEffect("Stunned")) return true;
+	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && 
+		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed")) 
+	{
+		return true;
+	}
 	return false;
 }
 function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && !target.hasStatusEffect("Blind") && !pc.hasStatusEffect("Stunned")) return true;
+	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && 
+		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed")) 
+	{
+		return true;
+	}
 	return false;
 }
 
@@ -476,10 +494,6 @@ function showMonsterArousalFlavor(targetFoe):void
 		}
 	}
 	output("\n");
-}
-function statusAffectUpdates():void 
-{
-	processCombat();
 }
 
 function enemyAI(aggressor:Creature):void 

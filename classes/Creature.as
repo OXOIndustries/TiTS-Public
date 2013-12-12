@@ -600,6 +600,12 @@
 		public function isNude():Boolean {
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 		}
+		public function isCrotchGarbed():Boolean {
+			return (armor.shortName == "" && lowerUndergarment.shortName == "");
+		}
+		public function isGroinCovered():Boolean {
+			return isCrotchGarbed();
+		}
 		//STATS!
 		//Personalities!
 		public function isNice():Boolean {
@@ -2906,12 +2912,15 @@
 			if(cocks.length > 1) return true;
 			return false;
 		}
-		public function hasCuntTail():Boolean {
-			return hasTailCunt();
-		}
 		public function hasTailCock():Boolean {
 			if(hasTailFlag(GLOBAL.TAILCOCK) && tailCount > 0) return true;
 			return false;
+		}
+		public function hasCockTail():Boolean {
+			return hasTailCock();
+		}
+		public function hasCuntTail():Boolean {
+			return hasTailCunt();
 		}
 		public function hasTailCunt():Boolean {
 			if(tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;

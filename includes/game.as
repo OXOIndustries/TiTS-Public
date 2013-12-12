@@ -220,6 +220,11 @@ function processTime(arg:int):void {
 	else if(pc.hasPerk("Ice Cold")) productionFactor /= 2;
 	//Actually apply lust.
 	pc.lust(arg * productionFactor);
+	
+	//Top off shields
+	pc.shieldsRaw = pc.shieldsMax();
+	
+	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!

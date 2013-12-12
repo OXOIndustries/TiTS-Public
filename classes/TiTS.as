@@ -55,6 +55,7 @@
 		include "../includes/rooms.as";
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
+		include "../includes/cuntSnakes.as";
 	
 		//include "../includes/zilMale.as";
 		
