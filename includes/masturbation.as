@@ -3,6 +3,9 @@
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
+	texts[texts.length] = "Random";
+	funcs[funcs.length] = randomFapSelect;
+	args[args.length] = undefined;
 	if(flags["LAST_FAP"] != undefined) {
 		texts[texts.length] = "Repeat";
 		funcs[funcs.length] = flags["LAST_FAP"];
@@ -49,6 +52,52 @@
 			this.userInterface.addButton((x+1),texts[x],funcs[x],args[x]);
 	}
 	this.userInterface.addButton(14,"Back",mainGameMenu);
+}
+
+//THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
+//BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
+// -Heavy
+function randomFapSelect():void {
+	userInterface.clearMenu();
+	var texts:Array = new Array();
+	var funcs:Array = new Array();
+	var args:Array = new Array();
+	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
+		texts[texts.length] = "Porn&Celise";
+		funcs[funcs.length] = tailCockCeliseFaps;
+		args[args.length] = undefined;
+	}
+	if(pc.hasVagina()) {
+		texts[texts.length] = "Vaginal";
+		funcs[funcs.length] = vaginalFap;
+		args[args.length] = undefined;
+	}
+	if(pc.hasCock()) {
+		texts[texts.length] = "Penis";
+		funcs[funcs.length] = singleDickFap;
+		args[args.length] = undefined;
+	}
+	if(pc.cockTotal() >= 2) {
+		texts[texts.length] = "Penises";
+		funcs[funcs.length] = multiCockFap;
+		args[args.length] = undefined;
+	}
+	//*Tailingus
+	if(pc.hasCuntTail()) {
+		if(pc.hasCock() && !pc.isTaur()) {
+			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
+				texts[texts.length] = "TailFuck";
+				funcs[funcs.length] = cuntTailFapScene;
+				args[args.length] = undefined;
+			}
+		}
+		texts[texts.length] = "Tailingus";
+		funcs[funcs.length] = tailingusFapReqsCuntTail;
+		args[args.length] = undefined;
+	}
+	var x:int = rand(funcs.length);
+	if(args[x] == undefined) funcs[x]();
+	else funcs[x](args[x]);
 }
 
 //Tailcock Fapping w/ Celise
