@@ -372,7 +372,7 @@
 		{
 
 			this.rightSidebar = new RightBar;
-			this.rightSidebar.nameText.text = "Penis";
+			this.rightSidebar.nameText.text = "";
 			this.rightSidebar.x = 1000;
 			this.rightSidebar.y = 0;
 			this.titsClassPtr.addChild(this.rightSidebar);
@@ -1324,6 +1324,11 @@
 			{
 				barItem.visible = true;
 			}
+			
+			// Show the label header deal
+			this.leftSideBar.topHeaderLabel.text = "ENCOUNTER STATUS";
+			this.leftSideBar.topHeaderLabel.visible = true;
+			this.leftSideBar.topHeaderUnderline.visible = true;
 		}
 		public function hideNPCStats():void 
 		{
@@ -1332,6 +1337,10 @@
 			{
 				barItem.visible = false;
 			}
+			
+			// Hide the label header deal
+			this.leftSideBar.topHeaderLabel.visible = false;
+			this.leftSideBar.topHeaderUnderline.visible = false;
 		}
 		public function deglow():void 
 		{
