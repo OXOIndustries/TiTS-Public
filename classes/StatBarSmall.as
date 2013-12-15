@@ -13,10 +13,9 @@
 		//constructor
 		public function StatBarSmall()
 		{
-			
-			trace("Setting up StatBarSmall");
 			this.addEventListener(Event.ENTER_FRAME, update);
 		}
+		
 		//data
 		//butt wetness
 		private var min:Number = 0;
@@ -32,9 +31,11 @@
 		public var clearGlow:Boolean = false;
 		public var highBad:Boolean = false;
 		public var noBar:Boolean = false;
+		
 		public function setMax(arg:Number):void {
 			max = arg;
 		}
+		
 		public function setGoal(arg:Number):void {
 			goal = arg;
 			if(clearGlow) {
@@ -45,6 +46,7 @@
 			glowFrames = 35;
 			rate = Math.abs(current - goal) / glowFrames;
 		}
+		
 		public function getGoal():Number {
 			return goal;
 		}

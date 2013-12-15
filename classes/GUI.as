@@ -23,6 +23,8 @@
 	import flash.ui.Mouse;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
+	import fl.transitions.Tween;
+	import fl.transitions.easing.Regular;
 
 
 	import classes.StatBarSmall;
@@ -180,7 +182,9 @@
 			this.setupRightSidebar()
 			this.setupLeftSidebar()
 			// then hide them until we want them.
-			this.leftBarClear();
+			this.initLeftBar();
+			
+			//this.leftBarClear();
 			this.hidePCStats();
 
 
@@ -357,16 +361,22 @@
 			initializeMainMenu();
 			//mainMenu();
 		}
+		
+		private function tweenRight(e:Event):void
+		{
+			this.rightSidebar.removeEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
+			var tween:Tween = new Tween(this.rightSidebar, "x", Regular.easeOut, (this.rightSidebar.x + this.rightSidebar.width), this.rightSidebar.x, 25, false);
+		}
+		
 		private function setupRightSidebar():void
 		{
-
-			trace("Setting up right side-bar");
 
 			this.rightSidebar = new RightBar;
 			this.rightSidebar.nameText.text = "Penis";
 			this.rightSidebar.x = 1000;
 			this.rightSidebar.y = 0;
 			this.titsClassPtr.addChild(this.rightSidebar);
+			this.rightSidebar.addEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
 
 			// Large stat bars (Combat Stats) --------------------------------------------------
 
@@ -493,6 +503,11 @@
 
 		}
 
+		private function tweenLeft(e:Event):void
+		{
+			this.leftSideBar.removeEventListener(Event.FRAME_CONSTRUCTED, tweenLeft);
+			var tween:Tween = new Tween(this.leftSideBar, "x", Regular.easeOut, (this.leftSideBar.x - this.leftSideBar.width), this.leftSideBar.x, 25, false);
+		}
 
 		private function setupLeftSidebar():void
 		{	
@@ -505,6 +520,8 @@
 			this.leftSideBar.x = 0;
 			this.leftSideBar.y = 0;
 			this.titsClassPtr.addChild(this.leftSideBar);
+			this.leftSideBar.addEventListener(Event.FRAME_CONSTRUCTED, tweenLeft);
+			
 			//Fading out Perks and Level Up Buttons
 
 			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
@@ -592,6 +609,23 @@
 								this.monsterRace, 
 								this.monsterSex];
 
+		}
+		
+		private function initLeftBar():void
+		{
+			this.leftSideBar.time.text = "--:--";
+			this.leftSideBar.days.text = "-----";
+			this.leftSideBar.quicksaveButton.visible = false;
+			this.leftSideBar.statsButton.visible = false;
+			this.leftSideBar.perksButton.visible = false;
+			this.leftSideBar.levelUpButton.visible = false;
+			this.leftSideBar.sceneByTag.visible = false;
+			this.leftSideBar.sceneBy.visible = false;
+			this.leftSideBar.appearanceButton.visible = false;
+			this.leftSideBar.npcBusts.visible = false;
+			this.leftSideBar.sceneTitle.text = "WELCOME\nTO TITS";
+			this.leftSideBar.planet.text = "AN EROTIC FLASH GAME";
+			this.leftSideBar.system.text = "BY FENOXO";
 		}
 
 
