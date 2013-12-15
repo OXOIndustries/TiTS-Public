@@ -626,6 +626,8 @@
 			this.leftSideBar.sceneTitle.text = "WELCOME\nTO TITS";
 			this.leftSideBar.planet.text = "AN EROTIC FLASH GAME";
 			this.leftSideBar.system.text = "BY FENOXO";
+			this.leftSideBar.topHeaderLabel.visible = false;
+			this.leftSideBar.topHeaderUnderline.visible = false;
 		}
 
 
