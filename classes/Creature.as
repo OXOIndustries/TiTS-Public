@@ -2931,8 +2931,8 @@
 		}
 		public function tailCuntCapacity():Number {
 			if(!hasTailCunt()) return 0;
-			if(vaginalCapacity(0) > 30) return vaginalCapacity(0);
-			else return 30;
+			if(vaginalCapacity(0) > 100) return vaginalCapacity(0);
+			else return 100;
 		}
 		public function hasTail():Boolean {
 			if(tailType != GLOBAL.HUMAN) return true;

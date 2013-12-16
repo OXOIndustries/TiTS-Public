@@ -21,6 +21,14 @@ function maleZilEncounter():void {
 	userInterface.addButton(0,"Next",startCombat,"zil male");
 }
 
+function initializeZil():void {
+	foes[0] = clone(zil);
+	foes[0].tallness = 60 + rand(7);
+	foes[0].cocks[0].cLength = 4 + rand(5);
+	foes[0].long = "The male zil you're fighting would stand roughly " + foes[0].displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(foes[0].longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
+	if(rand(2) == 0) foes[0].long += ", though some areas are striped in bright yellow";
+	foes[0].long += ".";
+}
 /*
 Combat Description:
 	The male zil you're fighting would stand roughly {height} tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a {length}-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace{, though some areas are striped in bright yellow{; he even has yellow irises}/even his shoulders}.
@@ -1034,6 +1042,7 @@ function getTailPussyFuckedByZil():void {
 	output("\n\nThe zil eventually finishes pumping his honey-flavored goo into your tail and slumps weakly onto his back. His heavy breathing is audible, and you can tell he's trying to recover quickly. It doesn't help, then, that your tail is still connected to his genitals, slowly sliding up and down his length to coax a last few droplets him. You relax and wonder if you can encourage him to go again. His surprisingly soft hands grab your hungry pussy and yank it away before you can make up your mind. Stumbling drunkenly, the well-milked zil makes his way towards the concealing forest, nearly tripping over his feet a half-dozen times. From where you lie, you note a definite reduction in the size of his smooth pouch.");
 	output("\n\n<i>\"Good boy,\"</i> you think as you let your eyes flutter closed and relax in post-coital bliss.");
 	//[Next]
+	feedCuntSnake();
 	userInterface.clearMenu();
 	processTime(40+rand(20));
 	pc.orgasm();
