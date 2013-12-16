@@ -25,6 +25,7 @@
 	import flash.utils.Dictionary;
 	import fl.transitions.Tween;
 	import fl.transitions.easing.Regular;
+	import classes.UIComponents.MiniMap;
 
 
 	import classes.StatBarSmall;
@@ -120,6 +121,8 @@
 
 		private var pcStatSidebarItems:Array;
 		private var npcStatSidebarItems:Array;
+		
+		private var miniMap:MiniMap;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -500,7 +503,6 @@
 										this.playerLevel,
 										this.playerXP,
 										this.playerCredits];
-
 		}
 
 		private function tweenLeft(e:Event):void
@@ -608,7 +610,27 @@
 								this.monsterLevel, 
 								this.monsterRace, 
 								this.monsterSex];
-
+								
+								
+			// Jam a minimap element into it!
+			this.miniMap = new MiniMap();
+			this.miniMap.targetY = 232; // The "HeaderUnderline" bar (element under "Encounter Status") is around y=231
+			this.miniMap.targetHeight = 341; // The time header text underline ("Galactic Standard purple bar") is around y=573
+			
+			// Set some padding so we end up looking like the location header background deal
+			this.miniMap.paddingLeft = 0;
+			this.miniMap.paddingRight = 11;
+			this.miniMap.paddingTop = 5;
+			this.miniMap.paddingBottom = 31; // 31 pixels between the bottom planet purple box thing and the header underline we're using as an anchor
+			this.miniMap.visible = false;
+			this.leftSideBar.addChild(this.miniMap);
+		}
+		
+		public function debugmm():void
+		{
+			hideNPCStats();
+			showMinimap();
+			this.miniMap.debug();
 		}
 		
 		private function initLeftBar():void
@@ -628,6 +650,10 @@
 			this.leftSideBar.system.text = "BY FENOXO";
 			this.leftSideBar.topHeaderLabel.visible = false;
 			this.leftSideBar.topHeaderUnderline.visible = false;
+			
+			// You really are a fucking shit AS3
+			// TODO: Modify FLA to account for stupid text kerning bullshit of the textfield header
+			this.leftSideBar.topHeaderLabel.width += 40;
 		}
 
 
@@ -1003,7 +1029,6 @@
 			buttons[14].hotkey.text = "G";
 		}
 
-
 		//Used to adjust position of scroll bar!
 		public function updateScroll(e:MouseEvent):void {
 			var target = mainTextField;
@@ -1042,7 +1067,6 @@
 			titsClassPtr.scrollChecker();
 		}
 
-
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void {
 			if(this.leftSideBar.currentFrame >= 11) {
@@ -1052,6 +1076,7 @@
 				this.leftSideBar.mainMenuButton.buttonMode = true;
 			}
 		}
+		
 		public function mainMenuButtonOff():void {
 			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
@@ -1061,6 +1086,7 @@
 				this.leftSideBar.mainMenuButton.filters = [];
 			}
 		}
+		
 		public function appearanceOn():void {
 			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
@@ -1069,6 +1095,7 @@
 				this.leftSideBar.appearanceButton.buttonMode = true;
 			}
 		}
+		
 		public function appearanceOff():void {
 			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
@@ -1078,6 +1105,7 @@
 				this.leftSideBar.appearanceButton.filters = [];
 			}
 		}
+		
 		public function dataOn():void {
 			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
@@ -1086,6 +1114,7 @@
 				this.leftSideBar.dataButton.buttonMode = true;
 			}
 		}
+		
 		public function dataOff():void {
 			if(this.leftSideBar.currentFrame >= 11) {
 				//Set transparency to zero to show it's active.
@@ -1205,7 +1234,6 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-
 		public function hideMainMenu():void {
 			//Hide scrollbar & main text!
 			upScrollButton.visible = true;
@@ -1284,8 +1312,7 @@
 				this.mainMenuButtons[x].visible = false;
 			}
 		}
-
-
+		
 		public function leftBarClear():void 
 		{
 			this.leftSideBar.sceneByTag.visible = false;
@@ -1301,6 +1328,7 @@
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 		}
+		
 		public function hidePCStats():void 
 		{
 			trace("Hide PC Stats");
@@ -1309,6 +1337,7 @@
 				barItem.visible = false;
 			}
 		}
+		
 		public function showPCStats():void 
 		{
 			trace("Show PC Stats");
@@ -1317,6 +1346,20 @@
 				barItem.visible = true;
 			}
 		}
+		
+		public function showHeader(message:String):void
+		{
+			this.leftSideBar.topHeaderLabel.text = message;
+			this.leftSideBar.topHeaderLabel.visible	= true;
+			this.leftSideBar.topHeaderUnderline.visible = true;
+		}
+		
+		public function hideHeader():void
+		{
+			this.leftSideBar.topHeaderLabel.visible	= false;
+			this.leftSideBar.topHeaderUnderline.visible = false;
+		}
+		
 		public function showNPCStats():void 
 		{
 			trace("Show NPC Stats");
@@ -1326,10 +1369,16 @@
 			}
 			
 			// Show the label header deal
-			this.leftSideBar.topHeaderLabel.text = "ENCOUNTER STATUS";
-			this.leftSideBar.topHeaderLabel.visible = true;
-			this.leftSideBar.topHeaderUnderline.visible = true;
+			showHeader("ENCOUNTER STATUS");			
 		}
+		
+		public function showMinimap():void
+		{
+			trace("Show Minimap");
+			this.miniMap.visible = true;
+			showHeader("LOCATION MAP");
+		}
+		
 		public function hideNPCStats():void 
 		{
 			trace("Hide NPC Stats");
@@ -1337,11 +1386,14 @@
 			{
 				barItem.visible = false;
 			}
-			
-			// Hide the label header deal
-			this.leftSideBar.topHeaderLabel.visible = false;
-			this.leftSideBar.topHeaderUnderline.visible = false;
 		}
+		
+		public function hideMinimap():void
+		{
+			trace("Hide Minimap");
+			this.miniMap.visible = false;
+		}
+		
 		public function deglow():void 
 		{
 			trace("Clearing Glow");
