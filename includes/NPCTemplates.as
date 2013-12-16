@@ -1185,4 +1185,141 @@
 		zilFemale.milkRate = 0;
 		zilFemale.ass.wetness = 0;
 	}
+	if (!justUpdate || (justUpdate && characters[GLOBAL.CSNAKE].short == "uncreated"))
+	{
+		characters[GLOBAL.CSNAKE] = new Creature();
+		cuntsnake = characters[GLOBAL.CSNAKE];
+		cuntsnake.short = "cunt snake";
+		cuntsnake.originalRace = "cunt snake";
+		cuntsnake.a = "a ";
+		cuntsnake.capitalA = "A ";
+		cuntsnake.tallness = 24 + rand(36);
+		cuntsnake.scaleColor = "green";
+		cuntsnake.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(cuntsnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
+		cuntsnake.customDodge = "The cunt snake sways aside at the last second!";
+		cuntsnake.customBlock = "Your attack deflects off the cunt snake's " + cuntsnake.scaleColor + " scales!";
+		cuntsnake.plural = false;
+		cuntsnake.lustVuln = 1;
+		cuntsnake.meleeWeapon.attackVerb = "bite";
+		cuntsnake.meleeWeapon.longName = "fangs";
+		cuntsnake.armor.longName = "glittering scales";
+		cuntsnake.armor.defense = 0;
+		cuntsnake.physiqueRaw = 1;
+		cuntsnake.reflexesRaw = 5;
+		cuntsnake.aimRaw = 4;
+		cuntsnake.intelligenceRaw = 1;
+		cuntsnake.willpowerRaw = 1;
+		cuntsnake.libidoRaw = 50;
+		cuntsnake.shieldsRaw = 0;
+		cuntsnake.energyRaw = 100;
+		cuntsnake.lustRaw = 15;
+		cuntsnake.resistances = new Array(1,1,1,1,1,1,1,1);
+		cuntsnake.XP = 50;
+		cuntsnake.level = 1;
+		cuntsnake.credits = 0;
+		cuntsnake.HPMod = 0;
+		cuntsnake.HPRaw = cuntsnake.HPMax();
+		
+		cuntsnake.femininity = 50;
+		cuntsnake.eyeType = 0;
+		cuntsnake.eyeColor = "red";
+		cuntsnake.thickness = 1;
+		cuntsnake.tone = 80;
+		cuntsnake.hairColor = "red";
+		cuntsnake.furColor = "tawny";
+		cuntsnake.hairLength = 0;
+		cuntsnake.hairType = 0;
+		cuntsnake.beardLength = 0;
+		cuntsnake.beardStyle = 0;
+		cuntsnake.skinType = GLOBAL.SCALES;
+		cuntsnake.skinTone = "pink";
+		cuntsnake.skinFlags = new Array();
+		cuntsnake.faceType = GLOBAL.CUNTSNAKE;
+		cuntsnake.faceFlags = new Array();
+		cuntsnake.tongueType = GLOBAL.CUNTSNAKE;
+		cuntsnake.lipMod = 1;
+		cuntsnake.earType = GLOBAL.CUNTSNAKE;
+		cuntsnake.antennae = 0;
+		cuntsnake.antennaeType = 0;
+		cuntsnake.horns = 0;
+		cuntsnake.hornType = 0;
+		cuntsnake.armType = 0;
+		cuntsnake.gills = false;
+		cuntsnake.wingType = 0;
+		cuntsnake.legType = GLOBAL.CUNTSNAKE;
+		cuntsnake.legCount = 1;
+		cuntsnake.legFlags = new Array(GLOBAL.TENDRIL);
+		//0 - Waist
+		//1 - Middle of a long tail. Defaults to waist on bipeds.
+		//2 - Between last legs or at end of long tail.
+		//3 - On underside of a tail, used for driders and the like, maybe?
+		cuntsnake.genitalSpot = 0;
+		cuntsnake.tailType = GLOBAL.CUNTSNAKE;
+		cuntsnake.tailCount = 1;
+		cuntsnake.tailFlags = new Array(GLOBAL.SCALED,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.PREHENSILE);
+		//Used to set cunt or dick type for cunt/dick tails!
+		cuntsnake.tailGenitalArg = 0;
+		//tailGenital:
+		//0 - none.
+		//1 - cock
+		//2 - vagina
+		cuntsnake.tailGenital = 0;
+		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+		cuntsnake.tailVenom = 0;
+		//Tail recharge determines how fast venom/webs comes back per hour.
+		cuntsnake.tailRecharge = 5;
+		//hipRating
+		//0 - boyish
+		//2 - slender
+		//4 - average
+		//6 - noticable/ample
+		//10 - curvy//flaring
+		//15 - child-bearing/fertile
+		//20 - inhumanly wide
+		cuntsnake.hipRating = 0;
+		//buttRating
+		//0 - buttless
+		//2 - tight
+		//4 - average
+		//6 - noticable
+		//8 - large
+		//10 - jiggly
+		//13 - expansive
+		//16 - huge
+		//20 - inconceivably large/big/huge etc
+		cuntsnake.buttRating = 0;
+		//No dicks here!
+		cuntsnake.cocks = new Array();
+		//balls
+		cuntsnake.balls = 0;
+		cuntsnake.cumMultiplier = 1.5;
+		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+		cuntsnake.cumQuality = 1;
+		cuntsnake.cumType = GLOBAL.CUM;
+		cuntsnake.ballSize = 2;
+		cuntsnake.ballFullness = 100;
+		//How many "normal" orgams worth of jizz your balls can hold.
+		cuntsnake.ballEfficiency = 4;
+		//Scales from 0 (never produce more) to infinity.
+		cuntsnake.refractoryRate = 9999;
+		cuntsnake.minutesSinceCum = 9000;
+		cuntsnake.timesCum = 122;
+		cuntsnake.cockVirgin = true;
+		cuntsnake.vaginalVirgin = false;
+		cuntsnake.analVirgin = true;
+		//Goo is hyper friendly!
+		cuntsnake.elasticity = 3;
+		//Fertility is a % out of 100. 
+		cuntsnake.fertility = 1;
+		cuntsnake.clitLength = .5;
+		cuntsnake.pregnancyMultiplier = 1;
+		
+		cuntsnake.breastRows[0].breastRating = 0;
+		cuntsnake.nippleColor = "green";
+		cuntsnake.milkMultiplier = 0;
+		cuntsnake.milkType = GLOBAL.MILK;
+		//The rate at which you produce milk. Scales from 0 to INFINITY.
+		cuntsnake.milkRate = 1;
+		cuntsnake.ass.wetness = 0;
+	}
 }

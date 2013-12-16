@@ -792,7 +792,7 @@
 			return Math.round(total * 10)/10;
 		}
 		public function getShieldResistance(type:int):Number {
-			var total:Number = shield.bonusResistances[type];
+			var total:Number = 1 - shield.bonusResistances[type];
 			return Math.round(total * 10)/10;
 		}
 		public function hasSkinFlag(arg):Boolean {
@@ -819,6 +819,9 @@
 		}
 		public function addTailFlag(arg):void {
 			if(!hasTailFlag(arg)) tailFlags[tailFlags.length] = arg;
+		}
+		public function clearTailFlags():void {
+			tailFlags = new Array();
 		}
 		public function hasLegFlag(arg):Boolean {
 			for(var temp:int = 0; temp < legFlags.length; temp++) {

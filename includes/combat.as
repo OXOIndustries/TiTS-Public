@@ -52,9 +52,9 @@ function combatMainMenu():void
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(5,"Tease",tease);
 	}
-	else
+	else 
 	{
-		output("\n<b>You're still stunned!</b>");
+		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
 		this.userInterface.addButton(0,"Recover",stunRecover);
 	}
 }
@@ -64,9 +64,9 @@ function updateCombatStatuses():void {
 		if(pc.statusEffectv1("Blind") <= 0) pc.removeStatusEffect("Blind");
 	}
 	if(pc.hasStatusEffect("Paralyzed")) {
-		pc.addStatusValue("Blind",1,-1);
-		if(pc.statusEffectv1("Blind") <= 0) {
-			pc.removeStatusEffect("Blind");
+		pc.addStatusValue("Paralyzed",1,-1);
+		if(pc.statusEffectv1("Paralyzed") <= 0) {
+			pc.removeStatusEffect("Paralyzed");
 			output("<b>The paralytic venom wears off, and you are able to move once more.</b>\n");
 		}
 		else output("<b>You're paralyzed and unable to move!</b>\n");
@@ -80,15 +80,15 @@ function stunRecover():void
 		if (pc.statusEffectv1("Stunned") <= 0)
 		{
 			pc.removeStatusEffect("Stunned");
-			output("You manage to recover your wits and adopt a fighting stance!");
+			output("You manage to recover your wits and adopt a fighting stance!\n");
 		}
 		else
-			output("You're still too stunned to act!");
+			output("You're still too stunned to act!\n");
 	}
 	if(pc.hasStatusEffect("Paralyzed")) {
 		clearOutput();
-		if(pc.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!");
-		else output("You try to move, but just can't manage it!");
+		if(pc.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!\n");
+		else output("You try to move, but just can't manage it!\n");
 	}
 	processCombat();
 }
@@ -249,28 +249,29 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
 			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
 			if(attacker == pc) {
-				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage + "</b>)");
+				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
+				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
 			}
 			else {
-				if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
+				if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 			}
-			damage -= sDamage;
 		}
 		if(damage >= 1) {
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
 			if(attacker == pc) {
-				if(sDamage > 0) output(" Your " + attacker.meleeWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" Your " + attacker.meleeWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");			
 			}
 			else {
-				if(sDamage > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");	
 			}
 		}
@@ -329,28 +330,29 @@ function rangedAttack(attacker:Creature, target:Creature):void
 		var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.rangedWeapon.damageType);
+			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
 			if(attacker == pc) {
-				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage + "</b>)");
+				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
+				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
 			}
 			else {
-				if(target.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
+				if(target.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
+				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 			}
-			damage -= sDamage;
 		}
 		if(damage >= 1) {
 			damage = HPDamage(target,damage,attacker.rangedWeapon.damageType);
 			if(attacker == pc) {
-				if(sDamage > 0) output(" Your " + attacker.rangedWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");			
 			}
 			else {
-				if(sDamage > 0) output(" The hit carries on through to hit you! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" The hit carries on through to hit you! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");	
 			}
 		}
@@ -363,6 +365,30 @@ function rangedAttack(attacker:Creature, target:Creature):void
 	}
 	output("\n");
 	processCombat();
+}
+
+function genericDamageApply(damage:int,attacker:Creature, target:Creature):void {
+	//Randomize +/- 15%
+	var randomizer = (rand(31)+ 85)/100;
+	var sDamage:Array = new Array();
+	//Apply damage reductions
+	if (target.shieldsRaw > 0) {
+		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+		//Set damage to leftoverDamage from shieldDamage
+		damage = sDamage[1];
+		if (target.shieldsRaw > 0) 
+			output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+		else 
+			output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+	}
+	if(damage >= 1) 
+	{
+		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+		if (sDamage[0] > 0) 
+			output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
+		else 
+			output(" (<b>" + damage + "</b>)");
+	}
 }
 
 
@@ -389,14 +415,16 @@ function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC
 	return damage;
 }
 
-function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number 
+function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Array 
 {
+	trace("INITIAL DAMAGE: " + damage);
+	var initialDamage:Number = damage;
 	//Reduce damage by shield defense value
 	damage -= victim.shieldDefense();
 	
 	//Apply type reductions!
 	//Kinetic does 40% damage to shields
-	if(damageType == GLOBAL.KINETIC) damage *= 4;
+	if(damageType == GLOBAL.KINETIC) damage *= .4;
 	//Slashing does 55% damage to shields
 	else if(damageType == GLOBAL.SLASHING) damage *= .55;
 	//Piercing does 75% damage to shields
@@ -404,19 +432,22 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	
 	//Apply victim resistances vs damage
 	damage *= victim.getShieldResistance(damageType);
-	
+	trace("SHIELD REZ: " + victim.getShieldResistance(damageType));
+	trace("DAMAGE UPDATE: " + damage);
 	damage = Math.round(damage);
-	
+	var leftoverDamage:int = 0;
 	//Damage cannot exceed shield amount.
 	if(damage > victim.shieldsRaw) {
 		damage = victim.shieldsRaw;
+		leftoverDamage = initialDamage - damage;
 	}
 	//If we're this far, damage can't be less than one. You did get hit, after all.
 	if(damage < 1) damage = 1;
 	//Apply the damage
 	victim.shieldsRaw -= damage;
-	//Pass back how much was done.
-	return damage;
+	//Pass back how much was done and how much is leftover.
+	trace("FINAL DAMAGE UPDATE: " + damage);
+	return [damage,leftoverDamage];
 }
 
 function tease():void 
@@ -498,6 +529,7 @@ function showMonsterArousalFlavor(targetFoe):void
 
 function enemyAI(aggressor:Creature):void 
 {	
+	trace("AI CALL");
 	//Foe specific AIs
 	switch(foes[0].short) {
 		case "Celise":
@@ -508,6 +540,9 @@ function enemyAI(aggressor:Creature):void
 			break;
 		case "zil male":
 			zilMaleAI();
+			break;
+		case "cunt snake":
+			cuntSnakeAI();
 			break;
 		default:
 			enemyAttack(aggressor);
@@ -527,6 +562,9 @@ function victoryRouting():void
 	else if(foes[0].short == "zil male") {
 		winVsZil();
 	}
+	else if(foes[0].short == "cunt snake") {
+		defeatACuntSnake();
+	}
 	else genericVictory();
 }
 
@@ -539,8 +577,11 @@ function defeatRouting():void
 	else if(foes[0].short == "zil male") {
 		zilLossRouter();
 	}
+	else if(foes[0].short == "cunt snake") {
+		loseToCuntSnake();
+	}
 	else {
-		output("You lost!  You rouse yourself after an hour and a half quite bloodied.");
+		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
 		processTime(90);
 		genericLoss();
 	}
@@ -630,6 +671,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 
 function startCombat(encounter:String):void 
 {
+	combatStage = 0;
 	showNPCStats();
 	pc.removeStatusEffect("Round");
 	foes = new Array();
@@ -653,6 +695,21 @@ function startCombat(encounter:String):void
 			foes[0].long = "The male zil you're fighting would stand roughly " + foes[0].displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(foes[0].longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
 			if(rand(2) == 0) foes[0].long += ", though some areas are striped in bright yellow";
 			foes[0].long += ".";
+			break;
+		case "cunt snake":
+			this.userInterface.showBust(GLOBAL.CSNAKE);
+			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
+			foes[0] = clone(cuntsnake);
+			foes[0].tallness = 24 + rand(36);
+			foes[0].scaleColor = "green";
+			foes[0].long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(cuntsnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
+			foes[0].customDodge = "The cunt snake sways aside at the last second!";
+			foes[0].customBlock = "Your attack deflects off the cunt snake's " + cuntsnake.scaleColor + " scales!";
+			foes[0].tailGenitalArg = GLOBAL.HUMAN;
+			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.EQUINE;
+			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.CANINE;
+			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.GOOEY;
+			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.SIREN;
 			break;
 		default:
 			foes[0] = new Creature();

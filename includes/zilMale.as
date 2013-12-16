@@ -129,20 +129,21 @@ function zilFlyingSpinKickSingle():void {
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if (target.shieldsRaw > 0) {
 			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
 			if (target.shieldsRaw > 0) 
-				output(" Your shield crackles but holds. (<b>" + sDamage + "</b>)");
+				output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
-			damage -= sDamage;
+				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) 
 		{
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (sDamage > 0) 
+			if (sDamage[0] > 0) 
 				output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damage + "</b>)");
 			else 
 				output(" (<b>" + damage + "</b>)");	
@@ -154,30 +155,6 @@ function zilFlyingSpinKickSingle():void {
 		}
 	}
 	processCombat();
-}
-
-function genericDamageApply(damage:int,attacker:Creature, target:Creature):void {
-	var sDamage:int = 0;
-	//Randomize +/- 15%
-	var randomizer = (rand(31)+ 85)/100;
-	var sDamage:int = 0;
-	//Apply damage reductions
-	if (target.shieldsRaw > 0) {
-		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-		if (target.shieldsRaw > 0) 
-			output(" Your shield crackles but holds. (<b>" + sDamage + "</b>)");
-		else 
-			output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
-		damage -= sDamage;
-	}
-	if(damage >= 1) 
-	{
-		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-		if (sDamage > 0) 
-			output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
-		else 
-			output(" (<b>" + damage + "</b>)");
-	}
 }
 	
 //Zip-Drop:
@@ -203,9 +180,13 @@ function zilDrop():void {
 	else 
 	{
 		output(" He proves strong enough to separate you from your footing. You struggle, but the ground gets further and further away. Then, he lets you go. ");
-		if(!pc.canFly()) output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
+		if(!pc.canFly()) {
+			output("There's a moment of stomach-churning weightlessness followed by the hard crunch of you smacking into the forest floor.");
+			damage = rand(5)+5;
+			genericDamageApply(damage,foes[0],pc);		
+		}
 		else output("You flutter down safely under your own power. It's so good to be able to fly.");
-		damage = rand(5)+5;
+		
 	}
 	processCombat();
 }
@@ -1150,7 +1131,7 @@ function zilSticksItInYourBoot():void {
 	if(rand(2) == 0) output("<i>even let you be on top!</i>");
 	else output("<i>fuck you so hard you don't want to leave!</i>");
 	output("<i>\"</i>");
-	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.");
+	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.\n\n");
 	processTime(25);
 	pc.orgasm();
 	processTime(30+rand(10));

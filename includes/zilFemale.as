@@ -6,7 +6,7 @@ function femzilEncounter():void {
 	//[First Time]
 	if(flags["TIMES_MET_FEMZIL"] == undefined) {
 		flags["TIMES_MET_FEMZIL"] = 1;
-		output("As you move through the brush, you push aside a thick clump of overgrown branches only to reveal a wide clearing, maybe fifty feet across, with a fallen tree trunk right at its center. Sitting atop it you see a shapely female clad from head to foot in well-polished black chitin, reclining with one leg crossed over the other, only just hiding her bare crotch from sight. A belt rests on her flared hips, holding dozens of small vials and tiny darts, each hilted by exotic looking fetishes and woven braids.");
+		output("\n\nAs you move through the brush, you push aside a thick clump of overgrown branches only to reveal a wide clearing, maybe fifty feet across, with a fallen tree trunk right at its center. Sitting atop it you see a shapely female clad from head to foot in well-polished black chitin, reclining with one leg crossed over the other, only just hiding her bare crotch from sight. A belt rests on her flared hips, holding dozens of small vials and tiny darts, each hilted by exotic looking fetishes and woven braids.");
 		//If PC has encounter a zil male before:
 		if(flags["ENCOUNTERED_ZIL"] != undefined) output("\n\nYour codex beeps out a warning about the zil, but it doesn't take an anthropologist to figure out you've found one of their females. You start to ready a weapon as the girl turns toward you, but seeing you, she quickly puts up her hands in an disarming gesture of peace. <i>\"Hey there, no need for violence!\"</i>");
 		//Else if PC has not encountered a zil bro before:
@@ -90,14 +90,15 @@ function zilFemaleDartThrow():void {
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		if(pc.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			sDamage[0] = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
 			if (target.shieldsRaw > 0) 
-				output(" The dart spangs uselessly off your shields! (<b>" + sDamage + "</b>)");
+				output(" The dart spangs uselessly off your shields! (<b>" + sDamage[0] + "</b>)");
 			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
-			damage -= sDamage;
+				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) 
 		{

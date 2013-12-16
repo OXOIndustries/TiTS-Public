@@ -432,20 +432,19 @@ function zilFlyingSpinKick():void {
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if (target.shieldsRaw > 0) {
 			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
 			if (target.shieldsRaw > 0) 
-				output(" Your shield crackles but holds. (<b>" + sDamage + "</b>)");
+				output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 			else 
-				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage + "</b>)");
-			damage -= sDamage;
+				output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) 
 		{
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if (sDamage > 0) 
+			if (sDamage[0] > 0) 
 				output(" The armored bootheel connects with your cheek hard enough to turn your head and leave you seeing stars. (<b>" + damage + "</b>)");
 			else 
 				output(" (<b>" + damage + "</b>)");	

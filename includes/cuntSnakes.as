@@ -1,4 +1,6 @@
-﻿/*Cunt Snake Codex
+﻿import classes.Creature;
+
+/*Cunt Snake Codex
 Name: Cunt Snakes, Parasite Pussies, Cock Constrictors, etc
 Sexes: Asexual, though often referred to with feminine pronouns for obvious reasons.
 Height: One to six inches.
@@ -36,7 +38,7 @@ function encounterCuntSnakeOnJungleLand():void {
 	if(flags["MET_CUNT_SNAKE"] == undefined)
 	{
 		flags["MET_CUNT_SNAKE"] = 1;
-		output("Motion in a patch of nearby brushes draws your attention just in time to witness the appearance of a rather strange-looking snake!  Its head lacks eyes, though a pair of rounded bumps do mark where eyes would be; they're obviously some similar kind of sensory organ. The body behind it does not taper as a terran snake's body would, but instead maintains a uniform thickness all the way to the end of its body. The creature's dark-green scales camouflage it well, but not well enough, and clear slime dribbles behind it in a trail, like a slug’s.");
+		output("\n\nMotion in a patch of nearby brushes draws your attention just in time to witness the appearance of a rather strange-looking snake!  Its head lacks eyes, though a pair of rounded bumps do mark where eyes would be; they're obviously some similar kind of sensory organ. The body behind it does not taper as a terran snake's body would, but instead maintains a uniform thickness all the way to the end of its body. The creature's dark-green scales camouflage it well, but not well enough, and clear slime dribbles behind it in a trail, like a slug’s.");
 		output("\n\nYour codex makes a warning tone to get your attention and declares, \"<i>A cunt snake has been detected. This species is noted for having potent paralyzing or aphrodisiac venom and parasitic tendencies. Avoid if possible, and seek treatment at the nearest medical establishment should one infest you.</i>\"");
 		output("\n\nAs it moves, you note that it does have a feminine looking orifice on the end of its body. You're stuck fighting some");
 		if(!silly) output(" kind of vagina snake");
@@ -44,7 +46,7 @@ function encounterCuntSnakeOnJungleLand():void {
 		output(".");
 	}
 	//[Repeat]
-	else output("A cunt snake slithers out in front of you, mouth open and fangs dripping with venom. It rises up slightly and prepares to fight!");
+	else output("\n\nA cunt snake slithers out in front of you, mouth open and fangs dripping with venom. It rises up slightly and prepares to fight!");
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Next",startCombat,"cunt snake");
 }
@@ -56,6 +58,27 @@ function encounterCuntSnakeOnJungleLand():void {
 //	Block Text: Your attack deflects off the cunt snake's {color} scales!
 //	AI: Use paralyzing venom every four rounds (after previous bite has worn off!), uses trip often if target is not paralyzed. Also bites aphrodisiac venom.
 	//THIS MONSTER IS IMMUNE TO LUST ATTACKS!
+
+function cuntSnakeAI():void {
+	trace("SNAKE AI");
+	if(pc.statusEffectv1("Round") % 5 == 0) {
+		trace("VENOM");
+		paralyzingVenom();
+	}
+	else if(rand(3) == 0) {
+		aphrodisiacBite();
+		trace("APHRO BITE");
+	}
+	else if(rand(2) == 0) {
+		NPCTripAttackGo(foes[0],pc);
+		trace("TRIP HOO");
+	}
+	else {
+		slapAttackFromCuntSnake(foes[0],pc);
+		trace("SLAP ATTACK");
+	}
+}
+
 
 //*Paralyzing Venom
 //Used every fifth turn
@@ -135,17 +158,18 @@ function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 		var damage:int = 5;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
 			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			if(target.shieldsRaw > 0) output(", shield cushioning your impact. (<b>" + sDamage + "</b>)");
-			else output(", shattering your energy shield. (<b>" + sDamage + "</b>)");
-			damage -= sDamage;
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
+			if(target.shieldsRaw > 0) output(", shield cushioning your impact. (<b>" + sDamage[0] + "</b>)");
+			else output(", shattering your energy shield. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) {
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if(sDamage > 0) output(" Your backside fares little better. (<b>" + damage + "</b>)");
+			if(sDamage[0] > 0) output(" Your backside fares little better. (<b>" + damage + "</b>)");
 			else output(". (<b>" + damage + "</b>)");	
 		}
 		//If cock!
@@ -178,22 +202,24 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 	//{hit} 
 	else
 	{
-		output("It twists to slap at your [pc.face]");
+		output(" It twists to slap at your [pc.face]");
 		//Damage bonuses:
 		var damage:int = 5;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
-		var sDamage:int = 0;
+		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
 			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			if(target.shieldsRaw > 0) output(", bouncing off your shield with loud 'snap'! (<b>" + sDamage + "</b>)");
-			else output(", breaching your shield. (<b>" + sDamage + "</b>)");
-			damage -= sDamage;
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
+			if(target.shieldsRaw > 0) output(", bouncing off your shield with loud 'snap'! (<b>" + sDamage[0] + "</b>)");
+			else output(", breaching your shield. (<b>" + sDamage[0] + "</b>)");
+			
 		}
-		if(damage >= 1) {
+		if(damage >= 1 ) {
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
-			if(sDamage > 0) output(" You're sent reeling from the impact while it flops onto the ground. (<b>" + damage + "</b>)");
+			if(sDamage[0] > 0) output(" You're sent reeling from the impact while it flops onto the ground. (<b>" + damage + "</b>)");
 			else output(", sending you reeling from the impact while it flaps onto the ground. (<b>" + damage + "</b>)");	
 			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
 			{
@@ -205,11 +231,40 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 	processCombat();
 }
 
+
+
 //*Lose to Jungle Cunt Snake
 //	Dicked folks get sucked.
 //	One in three chance of being "tailed" for dicked folks.
 //	One in five chance of being tailed for ladies.
-//9999
+
+function loseToCuntSnake():void {
+	if(pc.hasCock()) getSuckedOffByACuntSnakeAfterLosing();
+	else loseToCuntSnakeAndDontGetSucked();
+}
+
+function cuntSnakeLossEpilogueTailChances():void {
+	if(!pc.hasCuntTail())
+	{
+		if(pc.hasCock())
+		{
+			if(rand(3) == 0)
+			{
+				userInterface.clearMenu();
+				userInterface.addButton(0,"Next",getACuntTail);
+				return;
+			}
+		}
+		else if(rand(5) == 0)
+		{
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Next",getACuntTail);
+			return;
+		}
+	}
+	output("\n\n");
+	genericLoss();
+}
 
 //*Get Sucked Off By Snake Loss
 function getSuckedOffByACuntSnakeAfterLosing():void {
@@ -244,9 +299,12 @@ function getSuckedOffByACuntSnakeAfterLosing():void {
 	output("\n\nSquirming, you try to scoot your hips away from that end of the snake. Those mouthy daggers don't need to get TOO close to your cock; you're far more interested in the juicy wetness at the snake's other end. Thankfully, the snake seems to share your sentiment. It slithers its fore half off the side of your [pc.hip] and onto the ground, its smooth belly scales dragging slowly across your middle and [pc.oneCock] until you feel seeping moisture drizzling down your length.");
 	var x:int = pc.cockThatFits(80);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("\n\nThe warm, hungry cunt is just an inch or two away from being properly positioned. If only it were an inch lower, it would be firmly embedded on the tip of your " + pc.cockDescript(x) + ". The snake shifts to adjust itself, placing its " + foes[0].vaginaDescript() + "'s entrance against your " + pc.cockHead(x) + ". Thick secretions drip over your lusty pole in sufficient quantity to varnish your shaft in the quim cream, leaving it glistening, oiled, and ready for love. Your muscles clench and pulse in eager anticipation, causing your meat to flex and rise rhythmically against its inhuman partner. The extra friction causes a bead of pre-cum to spill out onto the waiting folds.");
-	output("\n\nResponding the unspoken signal you've given, the sinuous, pussy-tipped tail arches, dragging its front half partway up your body before abruptly straightening. Gloriously soft folds, each a sopping wet petal of pure pleasure, part around your " + pc.cockDescript(x) + " one after another, devouring {a sizable amount of your/your entire} length. The size and shape is clearly visible through back half of the alien reptile's body, outlined in glittering scales that deform to accommodate as much of you as possible.");
-	output("\n\nYou struggle to stifle a moan of pleasure, but it comes out all the same. Your body is boiling over with lust; the only cure is to stay plunged into the quenching moisture of the snake's " + foes[0].vaginaDescript() + ". Your hands clench so hard that you fear you'll draw your own blood, your [pc.hips] lifting up off the ground of their own volition in response to your violently clenching muscles. The tight tube stays firmly locked on your erection throughout, only shifting an inch or two as you begin to buck the empty air.");
+	output("\n\nThe warm, hungry cunt is just an inch or two away from being properly positioned. If only it were an inch lower, it would be firmly embedded on the tip of your " + pc.cockDescript(x) + ". The snake shifts to adjust itself, placing its " + foes[0].tailVaginaDescript() + "'s entrance against your " + pc.cockHead(x) + ". Thick secretions drip over your lusty pole in sufficient quantity to varnish your shaft in the quim cream, leaving it glistening, oiled, and ready for love. Your muscles clench and pulse in eager anticipation, causing your meat to flex and rise rhythmically against its inhuman partner. The extra friction causes a bead of pre-cum to spill out onto the waiting folds.");
+	output("\n\nResponding the unspoken signal you've given, the sinuous, pussy-tipped tail arches, dragging its front half partway up your body before abruptly straightening. Gloriously soft folds, each a sopping wet petal of pure pleasure, part around your " + pc.cockDescript(x) + " one after another, devouring ");
+	if(pc.cockVolume(x) > 80) output("a sizable amount of your");
+	else output("your entire");
+	output(" length. The size and shape is clearly visible through back half of the alien reptile's body, outlined in glittering scales that deform to accommodate as much of you as possible.");
+	output("\n\nYou struggle to stifle a moan of pleasure, but it comes out all the same. Your body is boiling over with lust; the only cure is to stay plunged into the quenching moisture of the snake's " + foes[0].tailVaginaDescript() + ". Your hands clench so hard that you fear you'll draw your own blood, your [pc.hips] lifting up off the ground of their own volition in response to your violently clenching muscles. The tight tube stays firmly locked on your erection throughout, only shifting an inch or two as you begin to buck the empty air.");
 	output("\n\nThe movements are enough to make you whimper anew, gnawing on your lower lip as you try to hold onto your sanity. ");//(NO NEW PG)
 	//NOT HOARSE
 	if(!pc.isTaur()) {
@@ -276,7 +334,7 @@ function getSuckedOffByACuntSnakeAfterLosing():void {
 	processTime(10+rand(5));
 	pc.orgasm();
 	processTime(45+rand(35));
-	//9999
+	cuntSnakeLossEpilogueTailChances();
 }
 
 //*No Dicks To Suck
@@ -394,7 +452,7 @@ function loseToCuntSnakeAndDontGetSucked():void {
 		processTime(15+rand(5));
 		pc.orgasm();
 	}
-	//9999
+	cuntSnakeLossEpilogueTailChances();
 }
 
 //*Get a Cunt Tail
@@ -410,9 +468,14 @@ function getACuntTail():void {
 	if(pc.skinType == GLOBAL.SCALES) output("\n\nThe scales already match your own, so in a way, it's as if this thing was perfectly made to join with you.");
 	else output("\n\nThe scales flake off at your touch, exposing fresh  that matches your [pc.skinFurScales] exactly.");
 	output(" The thing’s moisture - no, your moisture now - drips from the end as you handle it. You cannot resist lifting the " + foes[0].vaginaDescript() + " in front of you to examine. Touching the parasite visibly excites the entrance, and slipping a finger in it feels even better. You flex muscles you didn't even know you had and impale your digit, sucking and wringing it dry with your fresh tail-cunt before you summon the strength of will to pull it away.");
-	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>");
-	
-	//9999
+	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>\n\n");
+	pc.clearTailFlags();
+	pc.tailType = GLOBAL.CUNTSNAKE;
+	if(pc.tailCount < 1) pc.tailCount = 1;
+	pc.addTailFlag(GLOBAL.PREHENSILE);
+	pc.addTailFlag(GLOBAL.LONG);
+	pc.addTailFlag(GLOBAL.THICK);
+	genericLoss();
 }
 
 //*Defeat Jungle Cunt Snake
@@ -424,29 +487,29 @@ function defeatACuntSnake():void {
 		if(pc.cockThatFits(80) >= 0) output("You could grab it and fuck it, though.");
 		else output("You're too big to fuck this thing, unfortunately.");
 		userInterface.clearMenu();
-		userInterface.addButton(0,"Fuck It",9999);
-		userInterface.addButton(1,"Kill It",9999);
-		userInterface.addButton(14,"Leave",9999);
+		userInterface.addButton(0,"Fuck It",fuckACuntSnake);
+		userInterface.addButton(1,"Kill It",killACuntSnake);
+		userInterface.addButton(14,"Leave",leaveIt);
 	}
 	else {
 		userInterface.clearMenu();
-		userInterface.addButton(1,"Kill It",9999);
-		userInterface.addButton(14,"Leave",9999);
+		userInterface.addButton(1,"Kill It",killACuntSnake);
+		userInterface.addButton(14,"Leave",leaveIt);
 	}
 }
 
 //*Let It Go
 function leaveIt():void {
 	clearOutput();
-	output("The perverse reptile slithers into the brush, hopefully never to be seen again.");
-	//9999
+	output("The perverse reptile slithers into the brush, hopefully never to be seen again.\n\n");
+	genericVictory();
 }
 
 //*Kill It
 function killACuntSnake():void {
 	clearOutput();
-	output("You finish off creature off quickly and kick the body away.");
-	//9999
+	output("You finish off creature off quickly and kick the body away.\n\n");
+	genericVictory();
 }
 
 //*Use it as masturbation aid
@@ -457,13 +520,13 @@ function fuckACuntSnake():void {
 	output("You grab hold of the serpent before it can get away, keeping one hand just behind its head and the other securely clamped near the juicy entrance you plan to use. It's quite hard to whip out [pc.oneCock] and keep hold of the squirming alien, but somehow, you manage to keep everything wrangled and the fangs well away from your flesh. The presence of your burgeoning, rapidly-filling tumescence seems to calm the snake, so much so that it relaxes in your grip. It's the perfect picture of docility.");
 	var x:int = pc.cockThatFits(80);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("\n\nYou heft so that the fanged maw is aimed away from you, the pussy presented nicely towards your " + pc.cockHead(x) + ". The fleshy folds squeeze together, forcing out a drizzle of fresh lubricants to bathe your erection. You shudder slightly from the warm, slick moisture that has prepared your " + pc.cockDescript(x) + " and begin to rub the snake's " + foes[0].vaginaDescript() + " across yourself, testing the waters to ensure a good, snug fit.");
-	output("\n\nPushing the serpent's " + foes[0].vaginaDescript() + " against you, you revel in the silken tightness of its alien love tunnel, lewdly thrusting your hips to fully sample its lascivious delights. As soon its lips seal against your [pc.sheath " + x + "], dribbling their slobbery secretions over your ");
+	output("\n\nYou heft so that the fanged maw is aimed away from you, the pussy presented nicely towards your " + pc.cockHead(x) + ". The fleshy folds squeeze together, forcing out a drizzle of fresh lubricants to bathe your erection. You shudder slightly from the warm, slick moisture that has prepared your " + pc.cockDescript(x) + " and begin to rub the snake's " + foes[0].tailVaginaDescript() + " across yourself, testing the waters to ensure a good, snug fit.");
+	output("\n\nPushing the serpent's " + foes[0].tailVaginaDescript() + " against you, you revel in the silken tightness of its alien love tunnel, lewdly thrusting your hips to fully sample its lascivious delights. As soon its lips seal against your [pc.sheath " + x + "], dribbling their slobbery secretions over your ");
 	if(pc.balls > 0) output("[pc.balls] and ");
 	output("groin, the smooth interior begins to pulsate, trembling and squeezing in contractions that titillate every inch of your " + pc.cockDescript(x) + " with the constant pleasure of near-frictionless, shifting flesh. You recline against a nearby tree for support. Your [pc.legs] are wobbling dangerously, robbed of strength by the pleasure assailing your motor functions, so having the rough bark there to help hold you up is a godsend.");
 	output("\n\nYou shudder as the ripples of concurrent motion slide along your length over and over again, dragging you towards an inexorable orgasm at breakneck pace. Your grip on the snake slackens, and it uses the leverage to slide out of your grip, aided by the smooth texture of its scales. It takes little more than split second for the beast to snap the rest of its body up and around your [pc.sheath " + x + "], constricting around your base. The squeezing pressure of its serpentine length isn't quite strong enough to be painful, but it powerful enough to trap an excess of blood in your erection, making you swell bigger and harder, pulsating with powerful amounts of lust inside your fleshy, organic cocoon.");
 	
-	output("\n\nThe snake begins to move its " + foes[0].vaginaDescript() + " back and forth, in addition to the concentric rings of sucking pleasure that are tugging so pleasantly on your vulnerable dickskin. The addition of of a quick, constant back-and-forth motion on top of everything else is too much for you.");
+	output("\n\nThe snake begins to move its " + foes[0].tailVaginaDescript() + " back and forth, in addition to the concentric rings of sucking pleasure that are tugging so pleasantly on your vulnerable dickskin. The addition of of a quick, constant back-and-forth motion on top of everything else is too much for you.");
 	if(pc.cockTotal() > 1) {
 		output("  Your other boner");
 		if(pc.cockTotal() == 2) output(" pulsates");
@@ -493,10 +556,11 @@ function fuckACuntSnake():void {
 	output("\n\n[pc.OneCock] is soaked in pussy juice but not a drop of cum, and you tuck your female-scented package ");
 	if(pc.armor.shortName != "") output("back into your [pc.armor] with a rueful smile.");
 	else if(pc.lowerUndergarment.shortName != "") output("back into your [pc.lowerUndergarment] with a rueful smile.");
-	else output("away with a rueful smile.");
+	else output("away with a rueful smile.\n\n");
 	
 	processTime(15+rand(15));
 	pc.orgasm();
+	genericVictory();
 }
 
 //*Scenes and Effects for PCs with Cunt Tails

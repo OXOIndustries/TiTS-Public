@@ -158,6 +158,7 @@
 		public static const PENNY:int                                  = 7;
 		public static const BURT:int                                   = 8;
 		public static const ZILFEMALE:int 							   = 9;
+		public static const CSNAKE:int								   = 10;
 
 		/*PLOT FLAGS
 		RECRUITED_CELISE

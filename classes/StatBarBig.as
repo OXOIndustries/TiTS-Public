@@ -60,7 +60,9 @@
 				if(glowFrames > 0) {
 					if(glowFrames > 0) glowFrames--;
 					glow.alpha = (glowFrames / 24);
-					if(glowFrames == 0) trace("Clearing Glo: " + glowFrames + " on " + masks.labels.text + ".  Rough Alpha: " + glowFrames/48 + " Real Alpha: " + glow.alpha);
+					if(glowFrames == 0) {
+						//trace("Clearing Glo: " + glowFrames + " on " + masks.labels.text + ".  Rough Alpha: " + glowFrames/48 + " Real Alpha: " + glow.alpha);
+					}
 					values.filters = [glow];
 				}
 			}

@@ -403,9 +403,13 @@ function jungleEncounterChances():Boolean {
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
 	if(flags["JUNGLE_STEP"] >= 6 || debug) {
+		flags["JUNGLE_STEP"] = 0;
 		if(rand(4) == 0) {
-			flags["JUNGLE_STEP"] = 0;
 			maleZilEncounter();
+			return true;
+		}
+		else {
+			encounterCuntSnakeOnJungleLand();
 			return true;
 		}
 	}
