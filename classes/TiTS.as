@@ -229,7 +229,7 @@
 			var mapper:Mapper = new Mapper(this.rooms)
 			var map:*;
 			map = mapper.generateMap("NORTH ESBETH 2")
-			mapper.printMap(map)
+			//mapper.printMap(map)
 
 
 
@@ -436,6 +436,8 @@
 					else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
 					else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
 					break;
+				case 80:
+					this.userInterface.debugmm();
 				default:
 					trace("Key pressed! Keycode: " + evt.keyCode);
 					break;

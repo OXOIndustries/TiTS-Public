@@ -59,7 +59,7 @@
 		}
 
 
-		private const mapDebug:Boolean = true;
+		private const mapDebug:Boolean = false;
 
 		// I'm passing x, y, z around as ints, rather then a nice array or something, so they are passed by value
 		// that means I can recurse without getting bogged down in issues related to the fact that arrays are pass

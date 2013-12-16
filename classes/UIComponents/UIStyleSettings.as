@@ -1,4 +1,4 @@
-package UIComponents 
+package classes.UIComponents 
 {
 	import flash.text.StyleSheet;
 	import flash.text.TextFormat;
@@ -42,11 +42,13 @@ package UIComponents
 			public static var gPaneBackgroundColour:uint = 0x1C1C1C;
 		}*/
 		
+		// TITS VALUES
+		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, etc
+		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);
+		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
+		
+		// RANDOM VALUES I STOLE FROM BAD SHIT I WROTE IN THE PAST etc
 		public static var gDebugPaneBackgroundColour:uint 	= 0xFF0000;
-		public static var gPaneBackgroundColour:uint		= 0x1C1C1C;
-		public static var gBackgroundColour:uint 			= 0x1C1C1C;
-		public static var gForegroundColour:uint 			= 0x4E4E51;
-		public static var gHighlightColour:uint  			= 0xB57E2B;
 		public static var gMainTextColour:uint   			= 0xFFFFFF;
 		public static var gUIBarTextColour:uint  			= 0xFFFFFF;
 		public static var gStatusBarTextColour:uint 		= 0xFFFFFF;
