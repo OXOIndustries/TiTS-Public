@@ -1,15 +1,24 @@
-﻿function dataRouter(d:MouseEvent = undefined):void {
-	if(this.userInterface.leftSideBar.dataButton.alpha < 1 && d != this.userInterface.tempEvent) return;
-	else if(this.userInterface.leftSideBar.dataButton.filters.length > 0) {
+﻿function dataRouter(d:MouseEvent = undefined):void 
+{
+	if(this.userInterface.leftSideBar.dataButton.alpha < 1 && d != this.userInterface.tempEvent) 
+	{
+		return;
+	}
+	else if(this.userInterface.leftSideBar.dataButton.filters.length > 0) //....... is this checking if the button is enabled? Wut?
+	{
 		this.userInterface.dataOff();
 		this.userInterface.leftSideBar.dataButton.filters = [];
 		this.userInterface.hideMenus();
 		if(pc.short == "uncreated") 
 			mainMenu();
 	}
-	else {
+	else 
+	{
 		this.userInterface.hideMenus();
-		if(this.userInterface.leftSideBar.currentFrame >= 11) this.userInterface.leftSideBar.dataButton.filters = [this.userInterface.myGlow];
+		//if(this.userInterface.leftSideBar.currentFrame >= 11) 
+		//{
+		this.userInterface.leftSideBar.dataButton.filters = [this.userInterface.myGlow];
+		//}
 		dataMenu();
 	}
 }
@@ -25,7 +34,7 @@ function dataMenu():void {
 	this.userInterface.addGhostButton(0,"Load",loadGameMenu);
 	if(saveHere) 
 		this.userInterface.addGhostButton(1,"Save",saveGameMenu);
-	this.userInterface.addGhostButton(14,"Back",dataRouter,this.userInterface.tempEvent);
+	this.userInterface.addGhostButton(14,"Back", dataRouter, this.userInterface.tempEvent);
 }
 
 function saveGameMenu():void {
@@ -49,9 +58,10 @@ function loadGameMenu():void {
 	this.userInterface.clearGhostMenu();
 	var y:String = "";
 	var z:int = 0;
-	for(var x:int = 1; x <= 14; x++) {
-		trace("Looping: " + x);
-		y = loadSaveDisplay("TiTS_"+x,String(x));
+	for(var x:int = 1; x <= 14; x++) 
+	{
+		//trace("Looping: " + x);
+		y = loadSaveDisplay("TiTS_"+x, String(x));
 		output2(y);
 		if	(y != (x-z) + ": <b>EMPTY</b>\n\n") 
 		{
@@ -220,7 +230,8 @@ function loadGame(slot:String):void {
 	this.userInterface.addGhostButton(14,"Back",dataMenu);
 }
 
-function postLoadToZeGame():void {
+function postLoadToZeGame():void 
+{
 	this.userInterface.dataOff();
 	this.userInterface.leftSideBar.dataButton.filters = [];
 	this.userInterface.hideMenus();
