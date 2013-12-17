@@ -136,7 +136,7 @@ package classes.UIComponents
 			// Build a graphical element to use as a "background" for the map
 			_mapBackground = new Sprite();
 			_mapBackground.name = "mapbackground";
-			_mapBackground.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+			_mapBackground.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
 			_mapBackground.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
 			_mapBackground.graphics.endFill();
 			this.addChild(_mapBackground);
@@ -144,6 +144,8 @@ package classes.UIComponents
 			// We're seperating the container used for the background from the container used for most child elements so that we can hide parts of children without fucking with the background
 			_childContainer = new Sprite();
 			_childContainer.name = "mapchildren";
+			_childContainer.x = this.width / 2;
+			_childContainer.y = this.height / 2;
 			this.addChild(_childContainer);
 			
 			// Create the mask for the child container
@@ -152,13 +154,23 @@ package classes.UIComponents
 			_childMask.graphics.beginFill(0xFFFFFF);
 			_childMask.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
 			_childMask.graphics.endFill();
-			//this.addChild(_childMask);
+			this.addChild(_childMask);
 			
 			// Apply the mask
-			//_childContainer.mask = _childMask;
+			_childContainer.mask = _childMask;
 			
 			// Now if we add things to childContainer that fall outside of the bounds of our background, they'll be partially/completely hidden
 			// Done it seperately so I can later support having a padding/margin around the edge of the background easily - shrink the mask, gain a border.
+			
+			// Adding a test-point for the exact centre of the container
+			//var mPoint = new Sprite();
+			//mPoint.name = "point";
+			//mPoint.graphics.beginFill(0x00FF00, 1);
+			//mPoint.graphics.drawRect( -3, -3, 6, 6);
+			//mPoint.graphics.endFill();
+			//mPoint.x = this.width / 2;
+			//mPoint.y = this.height / 2;
+			//this.addChild(mPoint);
 		}
 		
 		/**
@@ -166,8 +178,6 @@ package classes.UIComponents
 		 */
 		private function BuildChildren():void
 		{
-			
-			
 			// Determine the type of child scaling we want to use			
 			
 			// Don't adapt the children to the size of the container -- our other settings are considered gospel
@@ -192,34 +202,51 @@ package classes.UIComponents
 		 */
 		private function BuildChildrenNoScale():void
 		{
-			var childXPos:int = -5;
+			var startXPos:int = 0;
+			var startYPos:int = 0;
 			
+			// Figure out our centre position
+			// Remove the size of half of our child elements + associated spacing
+			startXPos -= (childSizeX * (childNumX / 2));
+			startXPos -= (childSpacing * ((childNumX - 1 )/ 2));
+			startYPos -= (childSizeY * (childNumY / 2));
+			startYPos -= (childSpacing * ((childNumY - 1)/ 2));
+			
+			// Init the primary container
 			_childElements = new Vector.<Vector.<Sprite>>(childNumX);
+
+			var childXPos:int = startXPos;
 			
+			// For all rows...
 			for (var numX:int = 0; numX < childNumX; numX++)
 			{
+				var childYPos:int = startYPos;
+				
+				// ... init the secondary container
 				_childElements[numX] = new Vector.<Sprite>(childNumY);
 				
-				var childYPos:int = -5;
-				
+				// For all columns...
 				for (var numY:int = 0; numY < childNumY; numY++)
 				{
+					// ... Build the sprite
 					var childSprite = new Sprite();
 					childSprite.name = String(numX) + "." + String(numY);
 					childSprite.graphics.beginFill(UIStyleSettings.gDebugPaneBackgroundColour, 1);
-					childSprite.graphics.drawRect(0, 0, childSizeX, childSizeY);
+					childSprite.graphics.drawRoundRect(0, 0, childSizeX, childSizeY, 5);
 					childSprite.graphics.endFill();
 					
 					_childElements[numX][numY] = childSprite;
 					_childContainer.addChild(childSprite)
 					
-					childSprite.x = childXPos + childSpacing + (numX * childSizeX);
-					childSprite.y = childYPos + childSpacing + (numY * childSizeY);
-					childXPos = 0;
-					childYPos = 0;
+					childSprite.x = childXPos;
+					childSprite.y = childYPos;
+					
+					childYPos += (childSizeY + childSpacing);
 					
 					trace("Built child " + childSprite.name);
 				}
+				
+				childXPos += (childSizeX + childSpacing);
 			}
 		}
 		

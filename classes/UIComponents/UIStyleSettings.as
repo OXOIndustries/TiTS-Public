@@ -43,7 +43,7 @@ package classes.UIComponents
 		}*/
 		
 		// TITS VALUES
-		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, etc
+		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		

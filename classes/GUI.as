@@ -616,6 +616,11 @@
 			this.miniMap = new MiniMap();
 			this.miniMap.targetY = 232; // The "HeaderUnderline" bar (element under "Encounter Status") is around y=231
 			this.miniMap.targetHeight = 341; // The time header text underline ("Galactic Standard purple bar") is around y=573
+			this.miniMap.childSizeX = 35;
+			this.miniMap.childSizeY = 35;
+			this.miniMap.childSpacing = 15;
+			this.miniMap.childNumY = 7;
+			this.miniMap.childNumX = 5;
 			
 			// Set some padding so we end up looking like the location header background deal
 			this.miniMap.paddingLeft = 0;
