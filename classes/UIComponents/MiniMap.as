@@ -66,13 +66,17 @@ package classes.UIComponents
 		
 		// What I wouldn't give for C# style get/set declaration right now...
 		
+		// Easier access to child elements to avoid constant calls to this.getChildByName() etc
+		private var _mapBackground:Sprite;
+		private var _childContainer:Sprite;
+		private var _childMask:Sprite;
+		
 		/**
 		 * Contructor
 		 * Configure the object to listen for its addition to the display list, so we can query parent container info.
 		 */
 		public function MiniMap() 
 		{
-			trace("MiniMap constructed!");
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -82,7 +86,6 @@ package classes.UIComponents
 		 */
 		private function init(e:Event):void
 		{
-			trace("MiniMap attached to " + this.parent.name);
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			// Figure out what the parents settings our, if targets haven't been set -- this should let the container map itself
@@ -93,9 +96,8 @@ package classes.UIComponents
 			if (this.targetWidth == 0) this.targetWidth = this.parent.width;
 			
 			this.BuildContainer();
-			this.BuildMask();
 			
-			trace("Building at (x,y):(" + this.x + "," + this.y + ")");
+			trace("MiniMap constructed!");
 		}
 		
 		/**
@@ -114,21 +116,31 @@ package classes.UIComponents
 			this.y = _targetY + this.paddingTop;
 			
 			// Build a graphical element to use as a "background" for the map
-			var mapBackground:Sprite = new Sprite();
-			mapBackground.name = "mapbackground";
-			mapBackground.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			mapBackground.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
-			mapBackground.graphics.endFill();
-			this.addChild(mapBackground);
-		}
-		
-		/**
-		 * Build a mask that we're going to use to hide elements added to this DisplayObject if and when they fall outside of the
-		 * bounds we desired them within.
-		 */
-		private function BuildMask():void
-		{
+			_mapBackground = new Sprite();
+			_mapBackground.name = "mapbackground";
+			_mapBackground.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+			_mapBackground.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
+			_mapBackground.graphics.endFill();
+			this.addChild(_mapBackground);
 			
+			// We're seperating the container used for the background from the container used for most child elements so that we can hide parts of children without fucking with the background
+			_childContainer = new Sprite();
+			_childContainer.name = "mapchildren";
+			this.addChild(_childContainer);
+			
+			// Create the mask for the child container
+			_childMask = new Sprite();
+			_childMask.name = "mapchildrenmask";
+			_childMask.graphics.beginFill(0xFFFFFF);
+			_childMask.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
+			_childMask.graphics.endFill();
+			this.addChild(_childMask);
+			
+			// Apply the mask
+			_childContainer.mask = _childMask;
+			
+			// Now if we add things to childContainer that fall outside of the bounds of our background, they'll be partially/completely hidden
+			// Done it seperately so I can later support having a padding/margin around the edge of the background easily - shrink the mask, gain a border.
 		}
 		
 		public function debug():void
