@@ -10,7 +10,7 @@ package classes.UIComponents
 	 * ...
 	 * @author Gedan
 	 */
-	public class MiniMap extends MovieClip
+	public class MiniMap extends Sprite
 	{
 		public static const DISPLAY_MODE_SMALL = 0;
 		public static const DISPLAY_MODE_LARGE = 1;
