@@ -572,11 +572,8 @@
 		public function mainMenu():void 
 		{
 			trace("Main Menu called!");
-			if(this.userInterface.leftSideBar.currentFrame >= 11) 
-			{
-				trace("HideMenus")
-				this.userInterface.hideMenus();
-			}
+			trace("HideMenus")
+			this.userInterface.hideMenus();
 			
 			//Hide all current buttons
 			this.userInterface.hideNormalDisplayShit();
@@ -589,8 +586,7 @@
 			this.userInterface.warningBackground.visible = true;
 			this.userInterface.websiteDisplay.visible = true;
 			//if(leftSideBar.mainMenuButton.alpha == 1) 
-			if(this.userInterface.leftSideBar.currentFrame >= 11) 
-				this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
+			this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
 			
 			//Texts
 			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";

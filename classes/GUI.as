@@ -615,19 +615,24 @@
 		{
 			this.leftSideBar.time.text = "--:--";
 			this.leftSideBar.days.text = "-----";
+			this.leftSideBar.appearanceButton.visible = true;
+			this.leftSideBar.appearanceButton.alpha = .3;
 			this.leftSideBar.quicksaveButton.visible = false;
+			this.leftSideBar.dataButton.visible = true;
+			this.leftSideBar.dataButton.alpha = .3;
+			this.leftSideBar.mainMenuButton.visible = true;
+			this.leftSideBar.mainMenuButton.alpha = .3;
 			this.leftSideBar.statsButton.visible = false;
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 			this.leftSideBar.sceneByTag.visible = false;
 			this.leftSideBar.sceneBy.visible = false;
-			this.leftSideBar.appearanceButton.visible = false;
-			this.leftSideBar.npcBusts.visible = false;
 			this.leftSideBar.sceneTitle.text = "WELCOME\nTO TITS";
 			this.leftSideBar.planet.text = "AN EROTIC FLASH GAME";
 			this.leftSideBar.system.text = "BY FENOXO";
 			this.leftSideBar.topHeaderLabel.visible = false;
 			this.leftSideBar.topHeaderUnderline.visible = false;
+			this.leftSideBar.npcBusts.visible = false;
 		}
 
 
@@ -1045,55 +1050,43 @@
 
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.mainMenuButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.mainMenuButton.buttonMode = true;
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.mainMenuButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.mainMenuButton.buttonMode = true;
 		}
 		public function mainMenuButtonOff():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.mainMenuButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.mainMenuButton.buttonMode = false;
-				this.leftSideBar.mainMenuButton.filters = [];
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.mainMenuButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.mainMenuButton.buttonMode = false;
+			this.leftSideBar.mainMenuButton.filters = [];
 		}
 		public function appearanceOn():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.appearanceButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.appearanceButton.buttonMode = true;
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.appearanceButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.appearanceButton.buttonMode = true;
 		}
 		public function appearanceOff():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.appearanceButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.appearanceButton.buttonMode = false;
-				this.leftSideBar.appearanceButton.filters = [];
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.appearanceButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.appearanceButton.buttonMode = false;
+			this.leftSideBar.appearanceButton.filters = [];
 		}
 		public function dataOn():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.dataButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.dataButton.buttonMode = true;
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.dataButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.dataButton.buttonMode = true;
 		}
 		public function dataOff():void {
-			if(this.leftSideBar.currentFrame >= 11) {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.dataButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.dataButton.buttonMode = false;
-				this.leftSideBar.dataButton.filters = [];
-			}
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.dataButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.dataButton.buttonMode = false;
+			this.leftSideBar.dataButton.filters = [];
 		}
 
 		public function hideNormalDisplayShit():void {

@@ -15,10 +15,7 @@
 	else 
 	{
 		this.userInterface.hideMenus();
-		//if(this.userInterface.leftSideBar.currentFrame >= 11) 
-		//{
 		this.userInterface.leftSideBar.dataButton.filters = [this.userInterface.myGlow];
-		//}
 		dataMenu();
 	}
 }
