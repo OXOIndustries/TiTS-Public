@@ -10,6 +10,16 @@ package classes.UIComponents
 	 */
 	public class MiniMap extends MovieClip
 	{
+		public static const DISPLAY_MODE_SMALL = 0;
+		public static const DISPLAY_MODE_LARGE = 1;
+		public static const DISPLAY_MODE_HYBRID = 2;
+		private static const MAX_DISPLAY_MODES = 2;
+		
+		public static const SCALE_MODE_FIXED = 0;
+		public static const SCALE_MODE_NUMBER = 1;
+		public static const SCALE_MODE_SIZE = 2;
+		private static const MAX_SCALE_MODES = 2;
+		
 		// Display & Child object settings
 		private var _childSizeX:int 	= 20; 	// Size in pixels of Map Tiles
 		private var _childSizeY:int 	= 20;	// Size in pixels of Map Tiles
@@ -22,6 +32,8 @@ package classes.UIComponents
 		private var _paddingRight:int 	= 0;
 		private var _paddingBottom:int  = 0;
 		private var _margin:int 		= 3;	// Margin to maintain around the inner edge of the container and it's children
+		private var _displayMode:int	= 0;	// Provisional method of setting up different display settings for the map
+		private var _scaleMode:int		= 0;	// Scaling to use for child map elements
 		
 		// Positioning & Sizing settings
 		private var _targetHeight:int   = 0;
@@ -41,6 +53,8 @@ package classes.UIComponents
 		public function get paddingBottom():int	{ return _paddingBottom;}
 		public function get paddingTop():int	{ return _paddingTop;	}
 		public function get margin():int 		{ return _margin; 		}
+		public function get displayMode():int	{ return _displayMode;	}
+		public function get scaleMode():int		{ return _scaleMode;	}
 		
 		public function get targetHeight():int	{ return _targetHeight; }
 		public function get targetWidth():int 	{ return _targetWidth;  }
@@ -58,6 +72,8 @@ package classes.UIComponents
 		public function set paddingTop(value:int):void		{ _paddingTop = value;		}
 		public function set paddingBottom(value:int):void	{ _paddingBottom = value; 	}
 		public function set margin(value:int):void 			{ _margin = value; 			}
+		public function set displayMode(value:int):void		{ _displayMode = value;		} // TODO: Add checking to the incoming value
+		public function set scaleMode(value:int):void		{ _scaleMode = value;		} // TODO: Add checking to the incoming value
 		
 		public function set targetHeight(value:int):void	{ _targetHeight = value;	}
 		public function set targetWidth(value:int):void		{ _targetWidth = value;		}
@@ -70,6 +86,7 @@ package classes.UIComponents
 		private var _mapBackground:Sprite;
 		private var _childContainer:Sprite;
 		private var _childMask:Sprite;
+		private var _childElements:Vector.<Vector.<Sprite>>;
 		
 		/**
 		 * Contructor
@@ -96,6 +113,7 @@ package classes.UIComponents
 			if (this.targetWidth == 0) this.targetWidth = this.parent.width;
 			
 			this.BuildContainer();
+			this.BuildChildren();
 			
 			trace("MiniMap constructed!");
 		}
@@ -134,15 +152,90 @@ package classes.UIComponents
 			_childMask.graphics.beginFill(0xFFFFFF);
 			_childMask.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
 			_childMask.graphics.endFill();
-			this.addChild(_childMask);
+			//this.addChild(_childMask);
 			
 			// Apply the mask
-			_childContainer.mask = _childMask;
+			//_childContainer.mask = _childMask;
 			
 			// Now if we add things to childContainer that fall outside of the bounds of our background, they'll be partially/completely hidden
 			// Done it seperately so I can later support having a padding/margin around the edge of the background easily - shrink the mask, gain a border.
 		}
 		
+		/**
+		 * Build the child elements we're going to use for map display
+		 */
+		private function BuildChildren():void
+		{
+			
+			
+			// Determine the type of child scaling we want to use			
+			
+			// Don't adapt the children to the size of the container -- our other settings are considered gospel
+			if (this.scaleMode == MiniMap.SCALE_MODE_FIXED)
+			{
+				this.BuildChildrenNoScale();
+			}
+			// Adapt the number of children we're going to build to fill the available area, but don't change their size
+			else if (this.scaleMode == MiniMap.SCALE_MODE_NUMBER)
+			{
+				this.BuildChildrenScaleNumber();
+			}
+			// Adapt the size of the children we're going to build to fill the available area, but don't change the number
+			else if (this.scaleMode == MiniMap.SCALE_MODE_SIZE)
+			{
+				this.BuildChildrenScaleSize();
+			}
+		}
+		
+		/**
+		 * Build the child elements exactly how the object has been configured
+		 */
+		private function BuildChildrenNoScale():void
+		{
+			var childXPos:int = -5;
+			
+			_childElements = new Vector.<Vector.<Sprite>>(childNumX);
+			
+			for (var numX:int = 0; numX < childNumX; numX++)
+			{
+				_childElements[numX] = new Vector.<Sprite>(childNumY);
+				
+				var childYPos:int = -5;
+				
+				for (var numY:int = 0; numY < childNumY; numY++)
+				{
+					var childSprite = new Sprite();
+					childSprite.name = String(numX) + "." + String(numY);
+					childSprite.graphics.beginFill(UIStyleSettings.gDebugPaneBackgroundColour, 1);
+					childSprite.graphics.drawRect(0, 0, childSizeX, childSizeY);
+					childSprite.graphics.endFill();
+					
+					_childElements[numX][numY] = childSprite;
+					_childContainer.addChild(childSprite)
+					
+					childSprite.x = childXPos + childSpacing + (numX * childSizeX);
+					childSprite.y = childYPos + childSpacing + (numY * childSizeY);
+					childXPos = 0;
+					childYPos = 0;
+					
+					trace("Built child " + childSprite.name);
+				}
+			}
+		}
+		
+		private function BuildChildrenScaleNumber():void
+		{
+			
+		}
+		
+		private function BuildChildrenScaleSize():void
+		{
+			
+		}
+		
+		/**
+		 * Spam some debug output and force-set the map to be visible
+		 */
 		public function debug():void
 		{
 			this.visible = true;
