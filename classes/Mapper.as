@@ -9,14 +9,14 @@
 
 		// Yeah, I'm using bit-mapping into an int to store values
 		// because I can.
-		private const room_present_mask:int       = 1<<0;
-		private const x_pos_exit_mask:int         = 1<<1;
-		private const x_neg_exit_mask:int         = 1<<2;
-		private const y_pos_exit_mask:int         = 1<<3;
-		private const y_neg_exit_mask:int         = 1<<4;
-		private const z_pos_exit_mask:int         = 1<<5;
-		private const z_neg_exit_mask:int         = 1<<6;
-		private const current_locaton_mask:int    = 1<<7;
+		public static const room_present_mask:int       = 1<<0;
+		public static const x_pos_exit_mask:int         = 1<<1;
+		public static const x_neg_exit_mask:int         = 1<<2;
+		public static const y_pos_exit_mask:int         = 1<<3;
+		public static const y_neg_exit_mask:int         = 1<<4;
+		public static const z_pos_exit_mask:int         = 1<<5;
+		public static const z_neg_exit_mask:int         = 1<<6;
+		public static const current_locaton_mask:int    = 1<<7;
 
 
 		private var roomsObj:Object;

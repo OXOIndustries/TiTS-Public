@@ -620,7 +620,7 @@
 			this.miniMap.childSizeY = 35;
 			this.miniMap.childSpacing = 15;
 			this.miniMap.childNumY = 7;
-			this.miniMap.childNumX = 5;
+			this.miniMap.childNumX = 7;
 			
 			// Set some padding so we end up looking like the location header background deal
 			this.miniMap.paddingLeft = 0;
@@ -1155,7 +1155,7 @@
 
 		public function menuButtonsOn():void 
 		{
-			trace("this.stagePtr = ", this.stagePtr);
+			//trace("this.stagePtr = ", this.stagePtr);
 			if(!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") {
 				appearanceOn();
 			}
@@ -1289,7 +1289,6 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-
 		public function initializeMainMenu():void 
 		{
 			trace("Initializing main menu")
@@ -1401,7 +1400,7 @@
 		
 		public function deglow():void 
 		{
-			trace("Clearing Glow");
+			//trace("Clearing Glow");
 			// This didn't originally call clearGlo on the small NPC Items
 			// (level, sex, race), but it's easer to just let it do so. 
 			// I don't *think* it'll break anything.
@@ -1448,6 +1447,12 @@
 				arg.background.x = -180;
 			}
 			if(value != undefined) arg.values.text = String(value);
+		}
+		
+		// Set the current map data
+		public function setMapData(data:*):void
+		{
+			this.miniMap.setMapData(data);
 		}
 
 	}

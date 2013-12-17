@@ -59,8 +59,6 @@
 	
 		//include "../includes/zilMale.as";
 		
-		
-
 		var characters:Array;
 		var foes:Array;
 			
@@ -130,6 +128,9 @@
 
 		var flags:Dictionary;
 
+		// LE MAP
+		var mapper:Mapper;
+		
 		var combatStage;
 		public function TiTS()
 		{
@@ -222,16 +223,9 @@
 			setupCharacters();
 			initializeRooms();
 			initializeItems();
-
-
-
+			
 			// dick about with mapper: ------------------------------------------------------------
-			var mapper:Mapper = new Mapper(this.rooms)
-			var map:*;
-			map = mapper.generateMap("NORTH ESBETH 2")
-			//mapper.printMap(map)
-
-
+			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
 			this.userInterface.clearMenu();

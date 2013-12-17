@@ -3,6 +3,8 @@ package classes.UIComponents
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import classes.Mapper;
+	import flash.geom.ColorTransform;
 	
 	/**
 	 * ...
@@ -88,12 +90,22 @@ package classes.UIComponents
 		private var _childMask:Sprite;
 		private var _childElements:Vector.<Vector.<Sprite>>;
 		
+		// Some useful shared objects for later usage
+		private var _pcLocTransform:ColorTransform;
+		private var _genLocTransform:ColorTransform;
+		
 		/**
 		 * Contructor
 		 * Configure the object to listen for its addition to the display list, so we can query parent container info.
 		 */
 		public function MiniMap() 
 		{
+			_pcLocTransform = new ColorTransform();
+			_pcLocTransform.color = UIStyleSettings.gHighlightColour;
+			
+			_genLocTransform = new ColorTransform();
+			_genLocTransform.color = UIStyleSettings.gForegroundColour;
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -231,7 +243,7 @@ package classes.UIComponents
 					// ... Build the sprite
 					var childSprite = new Sprite();
 					childSprite.name = String(numX) + "." + String(numY);
-					childSprite.graphics.beginFill(UIStyleSettings.gDebugPaneBackgroundColour, 1);
+					childSprite.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
 					childSprite.graphics.drawRoundRect(0, 0, childSizeX, childSizeY, 5);
 					childSprite.graphics.endFill();
 					
@@ -243,7 +255,7 @@ package classes.UIComponents
 					
 					childYPos += (childSizeY + childSpacing);
 					
-					trace("Built child " + childSprite.name);
+					//trace("Built child " + childSprite.name);
 				}
 				
 				childXPos += (childSizeX + childSpacing);
@@ -270,6 +282,44 @@ package classes.UIComponents
 			trace("Dimensions (x,y):(" + this.width + "," + this.height + ")");
 			trace("Target Dimensions (x,y):(" + this.targetWidth + "," + this.targetHeight + ")");
 			trace("Parent Dimensions (x,y):(" + this.parent.width + "," + this.parent.height + ")");
+		}
+		
+		public function setMapData(map:Vector.<Vector.<Vector.<int>>>):void
+		{
+			trace("Mapdata Get!");
+			
+			// Right now this is tied to the hardcoded map size from Mapper.
+			// Once I get this working, I would like to refactor Mapper to return data based on defined map size
+			// Also I want to get the room names or indices as well; touching two classes to add map features seems overkill
+			// considering the underlying Rooms obj will have the data we need to query anyway~ the mapper should just act as a window into the rooms
+			// obj for us in a way
+			
+			// Player is always currently on z=3 of the map
+			var zPos:int = 3;
+			
+			for (var xPos:int = 0; xPos < 7; xPos++)
+			{
+				for (var yPos:int = 0; yPos < 7; yPos++)
+				{
+					var roomFlags:int = map[xPos][yPos][zPos];
+					var tarSprite:Sprite = _childElements[xPos][6 - yPos];
+					
+					if (roomFlags & Mapper.room_present_mask)
+					{
+						tarSprite.visible = true;
+						tarSprite.transform.colorTransform = _genLocTransform;
+					}
+					else
+					{
+						tarSprite.visible = false;
+					}
+					
+					if (roomFlags & Mapper.current_locaton_mask)
+					{
+						tarSprite.transform.colorTransform = _pcLocTransform;
+					}
+				}
+			}
 		}
 		
 	}
