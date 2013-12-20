@@ -7,6 +7,8 @@
 		// object. If that fails, we just fall back to returning 0
 		public var conditionalOptions:Object =
 		{
+
+			// TODO: FIX
 				"strength"			: function(thisPtr:*):* {return  thisPtr.player.str;},
 				"toughness"			: function(thisPtr:*):* {return  thisPtr.player.tou;},
 				"speed"				: function(thisPtr:*):* {return  thisPtr.player.spe;},

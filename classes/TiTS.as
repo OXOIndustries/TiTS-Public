@@ -1,6 +1,8 @@
 ﻿package classes
 {
 
+	import classes.TiTS_Settings;
+
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -25,6 +27,8 @@
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
+
+	import classes.Parser.Main.Parser;
 
 	import classes.GUI;
 	import classes.Mapper;
@@ -116,7 +120,7 @@
 		var testString:String;
 		var testInt:int;
 		//Pervineer here!
-		var parser:ScriptParser;
+		var parser:classes.Parser.Main.Parser;
 
 		var userInterface:GUI;
 
@@ -189,7 +193,7 @@
 			shipLocation = "SHIP HANGAR";
 
 			//Pervineer here!
-			parser = new ScriptParser(this);
+			parser = new Parser(this, TiTS_Settings);
 
 
 

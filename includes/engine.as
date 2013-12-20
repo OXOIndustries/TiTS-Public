@@ -29,7 +29,7 @@ import classes.StatBarBig;
 //Alright, Pervineer here.  Lets get this show on the road.
 //Let me hook in your nice little parser here!
 function outputParser(script:String, section:String=""):void {
-	output(parser.ParseScriptSection(script, section));
+	output(parser.recursiveParser(script, true));
 }
 
 
@@ -42,7 +42,7 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 
 //1: TEXT FUNCTIONS
 function output(words:String):void {
-	this.userInterface.outputBuffer += parser.ParseScriptSection(words,"");
+	this.userInterface.outputBuffer += parser.recursiveParser(words, true);
 	this.userInterface.mainTextField.htmlText = this.userInterface.outputBuffer;
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
@@ -69,7 +69,7 @@ function clearOutput2():void {
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 function output2(words:String):void {
-	this.userInterface.outputBuffer2 += parser.ParseScriptSection(words,"");
+	this.userInterface.outputBuffer2 += parser.recursiveParser(words, true);
 	this.userInterface.mainTextField2.htmlText = this.userInterface.outputBuffer2;
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
