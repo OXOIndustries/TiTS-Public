@@ -5,8 +5,7 @@
 	}
 	else {
 		this.userInterface.hideMenus();
-		if(this.userInterface.leftSideBar.currentFrame >= 11) 
-			this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
+		this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
 		appearance(pc);
 		this.userInterface.showingPCAppearance = true;
 		this.userInterface.clearGhostMenu();
