@@ -11,6 +11,7 @@
 
 		public var cockLookups:Object = // For subject: "cock"
 		{
+			/*
 			"all"		: function(thisPtr:*):*{ return thisPtr.multiCockDescriptLight(); },
 			"each"		: function(thisPtr:*):*{ return thisPtr.sMultiCockDesc(); },
 			"one"		: function(thisPtr:*):*{ return thisPtr.oMultiCockDesc(); },
@@ -19,16 +20,19 @@
 			"smallest"	: function(thisPtr:*):*{ return thisPtr.cockDescript(thisPtr.player.smallestCockIndex()); },
 			"longest"	: function(thisPtr:*):*{ return thisPtr.cockDescript(thisPtr.player.longestCock()); },
 			"shortest"	: function(thisPtr:*):*{ return thisPtr.cockDescript(thisPtr.player.shortestCockIndex()); }
+			*/
 		}
 
 
 		public var cockHeadLookups:Object = // For subject: "cockHead"
 		{
+			/*
 			"biggest"	: function(thisPtr:*):*{ return thisPtr.cockHead(thisPtr.player.biggestCockIndex()); },
 			"largest"	: function(thisPtr:*):*{ return thisPtr.cockHead(thisPtr.player.biggestCockIndex()); },
 			"smallest"	: function(thisPtr:*):*{ return thisPtr.cockHead(thisPtr.player.smallestCockIndex()); },
 			"longest"	: function(thisPtr:*):*{ return thisPtr.cockHead(thisPtr.player.longestCock()); },			// the *head* of a cock has a length? Wut?
 			"shortest"	: function(thisPtr:*):*{ return thisPtr.cockHead(thisPtr.player.shortestCockIndex()); }
+			*/
 		}
 
 
@@ -41,66 +45,68 @@
 		// if attribute cannot be case to a number, the parser looks for "object" in twoWordTagsLookup.
 		public var twoWordNumericTagsLookup:Object =
 		{
-				"cockfit":
-					function(thisPtr:*, aspect:*):*
+			/*
+			"cockfit":
+				function(thisPtr:*, aspect:*):*
+				{
+					if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
+					else
 					{
-						if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
-						else
-						{
-							if(thisPtr.player.cockThatFits(aspect) >= 0) return thisPtr.cockDescript(thisPtr.player.cockThatFits(aspect));
-							else return thisPtr.cockDescript(thisPtr.player.smallestCockIndex());
-						}
-					},
-				"cockfit2":
-					function(thisPtr:*, aspect:*):*
-					{
-						if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
-						else {
-							if(thisPtr.player.cockThatFits2(aspect) >= 0) return thisPtr.cockDescript(thisPtr.player.cockThatFits2(aspect));
-							else return thisPtr.cockDescript(thisPtr.player.smallestCockIndex());
-						}
-					},
-				"cockheadfit":
-					function(thisPtr:*, aspect:*):*
-					{
-						if (!thisPtr.player.hasCock())
-						{
-							return "<b>(Attempt to parse cockhead when none present.)</b>";
-						}
-						else {
-							if(thisPtr.player.cockThatFits(aspect) >= 0) return thisPtr.cockHead(thisPtr.player.cockThatFits(aspect));
-							else return thisPtr.cockHead(thisPtr.player.smallestCockIndex());
-						}
-					},
-				"cockheadfit2":
-					function(thisPtr:*, aspect:*):*
-					{
-						if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cockhead when none present.)</b>";
-						else {
-							if(thisPtr.player.cockThatFits2(aspect) >= 0) return thisPtr.cockHead(thisPtr.player.cockThatFits2(aspect));
-							else return thisPtr.cockHead(thisPtr.player.smallestCockIndex());
-						}
-					},
-				"cock":
-					function(thisPtr:*, aspect:*):*
-					{
-						if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
-						else
-						{
-							if(aspect-1 >= 0 && aspect-1 < thisPtr.player.cockTotal()) return thisPtr.cockDescript(aspect - 1);
-							else return "<b>(Attempt To Parse CockDescript for Invalid Cock)</b>";
-						}
-					},
-				"cockhead":
-					function(thisPtr:*, aspect:*):*
-					{
-						if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cockHead when none present.)</b>";
-						else
-						{
-							if(aspect-1 >= 0 && aspect-1 < thisPtr.player.cockTotal()) return thisPtr.cockHead(aspect - 1);
-							else return "<b>(Attempt To Parse CockHeadDescript for Invalid Cock)</b>";
-						}
+						if(thisPtr.player.cockThatFits(aspect) >= 0) return thisPtr.cockDescript(thisPtr.player.cockThatFits(aspect));
+						else return thisPtr.cockDescript(thisPtr.player.smallestCockIndex());
 					}
+				},
+			"cockfit2":
+				function(thisPtr:*, aspect:*):*
+				{
+					if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
+					else {
+						if(thisPtr.player.cockThatFits2(aspect) >= 0) return thisPtr.cockDescript(thisPtr.player.cockThatFits2(aspect));
+						else return thisPtr.cockDescript(thisPtr.player.smallestCockIndex());
+					}
+				},
+			"cockheadfit":
+				function(thisPtr:*, aspect:*):*
+				{
+					if (!thisPtr.player.hasCock())
+					{
+						return "<b>(Attempt to parse cockhead when none present.)</b>";
+					}
+					else {
+						if(thisPtr.player.cockThatFits(aspect) >= 0) return thisPtr.cockHead(thisPtr.player.cockThatFits(aspect));
+						else return thisPtr.cockHead(thisPtr.player.smallestCockIndex());
+					}
+				},
+			"cockheadfit2":
+				function(thisPtr:*, aspect:*):*
+				{
+					if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cockhead when none present.)</b>";
+					else {
+						if(thisPtr.player.cockThatFits2(aspect) >= 0) return thisPtr.cockHead(thisPtr.player.cockThatFits2(aspect));
+						else return thisPtr.cockHead(thisPtr.player.smallestCockIndex());
+					}
+				},
+			"cock":
+				function(thisPtr:*, aspect:*):*
+				{
+					if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cock when none present.)</b>";
+					else
+					{
+						if(aspect-1 >= 0 && aspect-1 < thisPtr.player.cockTotal()) return thisPtr.cockDescript(aspect - 1);
+						else return "<b>(Attempt To Parse CockDescript for Invalid Cock)</b>";
+					}
+				},
+			"cockhead":
+				function(thisPtr:*, aspect:*):*
+				{
+					if(!thisPtr.player.hasCock()) return "<b>(Attempt to parse cockHead when none present.)</b>";
+					else
+					{
+						if(aspect-1 >= 0 && aspect-1 < thisPtr.player.cockTotal()) return thisPtr.cockHead(aspect - 1);
+						else return "<b>(Attempt To Parse CockHeadDescript for Invalid Cock)</b>";
+					}
+				}
+			*/
 
 		}
 
@@ -111,6 +117,7 @@
 		// "attribute" twoWordTagsLookup["object"]["attribute"]
 		public var twoWordTagsLookup:Object =
 		{
+			/*
 			// NPCs:
 			"rubi"		: rubiLookups,
 			"arian"		: arianLookups,
@@ -119,4 +126,5 @@
 
 			"cock"		: cockLookups,
 			"cockhead"	: cockHeadLookups
+			*/
 		}

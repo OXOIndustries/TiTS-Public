@@ -12,7 +12,7 @@
 				// no need to duplicate them.
 
 				// Note: all key strings MUST be ENTIRELY lowercase.
-
+				/*
 				"agility"					: function(thisPtr:*):* { return "[Agility]"; },
 				"armor"						: function(thisPtr:*):* { return thisPtr.player.armorName;},
 				"armorname"					: function(thisPtr:*):* { return thisPtr.player.armorName;},
@@ -62,5 +62,6 @@
 				"vagorass"					: function(thisPtr:*):* { return(thisPtr.player.hasVagina() ? thisPtr.vaginaDescript() : thisPtr.assholeDescript()); },
 				"weapon"					: function(thisPtr:*):* { return thisPtr.player.weaponName;},
 				"weaponname"				: function(thisPtr:*):* { return thisPtr.player.weaponName;}
+				*/
 
 		}

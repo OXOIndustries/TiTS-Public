@@ -192,7 +192,6 @@
 			currentLocation = "SHIP HANGAR";
 			shipLocation = "SHIP HANGAR";
 
-			//Pervineer here!
 			parser = new Parser(this, TiTS_Settings);
 
 

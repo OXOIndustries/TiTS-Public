@@ -11,25 +11,10 @@ import classes.StatBarBig;
 //3. UTILITY FUNCTIONS
 //4. MOVEMENTS
 
-//================================
-//0. PARSER
-//Pervineer here... I am messing up all your shit!
 
-//THESE THREE LINES IMPORT A FILE
-//[Embed(source="scripts/test1.txt", mimeType="application/octet-stream")]
-//const test1 : Class;
-//var test1String = (new test1()).toString();
-//How to parse:
-//outputParser(test1String, "");
-
-//Pervineer here!  More fuckery!
-//function scriptExample():void {
-//	outputParser(test1String, "test3");
-//}
-//Alright, Pervineer here.  Lets get this show on the road.
-//Let me hook in your nice little parser here!
-function outputParser(script:String, section:String=""):void {
-	output(parser.recursiveParser(script, true));
+function doParse(script:String, markdown=false):String 
+{
+	return parser.recursiveParser(script, markdown);
 }
 
 
@@ -42,7 +27,7 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 
 //1: TEXT FUNCTIONS
 function output(words:String):void {
-	this.userInterface.outputBuffer += parser.recursiveParser(words, true);
+	this.userInterface.outputBuffer += doParse(words);
 	this.userInterface.mainTextField.htmlText = this.userInterface.outputBuffer;
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
@@ -69,7 +54,7 @@ function clearOutput2():void {
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 function output2(words:String):void {
-	this.userInterface.outputBuffer2 += parser.recursiveParser(words, true);
+	this.userInterface.outputBuffer2 += doParse(words);
 	this.userInterface.mainTextField2.htmlText = this.userInterface.outputBuffer2;
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }

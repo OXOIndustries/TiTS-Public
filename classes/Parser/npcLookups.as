@@ -11,6 +11,8 @@
 		// (Is it bad that half my development time so far has been researching non-gendered nouns? ~~~~Fake-Name)
 
 
+		/*
+
 		public var arianLookups:Object = // For subject: "arian"
 		{
 			"man"		: function(thisPtr:*):* {return thisPtr.arianMF("man","woman")},
@@ -51,3 +53,5 @@
 		// rubiMF("boy","girl")
 		// rubiMF("demon","demoness")
 		// rubiMF("gentleman","lady")
+		*/
+		
