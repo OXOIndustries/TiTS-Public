@@ -51,6 +51,42 @@ function encounterCuntSnakeOnJungleLand():void {
 	userInterface.addButton(0,"Next",startCombat,"cunt snake");
 }
 
+function initializeCSnake():void {
+	foes[0] = clone(cuntsnake);
+	foes[0].tallness = 24 + rand(36);
+	foes[0].scaleColor = "green";
+	foes[0].long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(cuntsnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
+	
+	if(rand(5) == 0) {
+		foes[0].tailGenitalArg = GLOBAL.HUMAN;
+		foes[0].long += "<b>slippery, terran-like cunt</b>";
+	}
+	else if(rand(4) == 0) {
+		foes[0].tailGenitalArg = GLOBAL.EQUINE;
+		foes[0].long += "<b>puffy, horse-like gash</b>";
+	}
+	else if(rand(3) == 0) {
+		foes[0].tailGenitalArg = GLOBAL.CANINE;
+		foes[0].long += "<b>slippery, dog-like slit</b>";
+	}
+	else if(rand(2) == 0) {
+		foes[0].tailGenitalArg = GLOBAL.GOOEY;
+		foes[0].long += "<b>slippery slime creature's cunt</b>";
+	}
+	else {
+		foes[0].tailGenitalArg = GLOBAL.SIREN;
+		foes[0].long += "<b>cilia-filled tunnel</b>";
+	}	
+	foes[0].long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
+	foes[0].customDodge = "The cunt snake sways aside at the last second!";
+	foes[0].customBlock = "Your attack deflects off the cunt snake's " + cuntsnake.scaleColor + " scales!";
+	foes[0].tailGenitalArg = GLOBAL.HUMAN;
+	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.EQUINE;
+	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.CANINE;
+	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.GOOEY;
+	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.SIREN;
+}
+
 //*Combat Description
 //The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around {two/three/four} feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.
 //*Combat Techniques
@@ -60,22 +96,26 @@ function encounterCuntSnakeOnJungleLand():void {
 	//THIS MONSTER IS IMMUNE TO LUST ATTACKS!
 
 function cuntSnakeAI():void {
-	trace("SNAKE AI");
+	//Dicks get extra venoms
+	if(pc.hasCock() && rand(3) == 0) {
+		if(rand(4) == 0) paralyzingVenom();
+		else aphrodisiacBite();
+		return;		
+	}
 	if(pc.statusEffectv1("Round") % 5 == 0) {
-		trace("VENOM");
 		paralyzingVenom();
 	}
-	else if(rand(3) == 0) {
+	else if(rand(4) == 0) {
 		aphrodisiacBite();
-		trace("APHRO BITE");
+	}
+	else if(rand(3) == 0) {
+		NPCTripAttackGo(foes[0],pc);
 	}
 	else if(rand(2) == 0) {
-		NPCTripAttackGo(foes[0],pc);
-		trace("TRIP HOO");
+		slapAttackFromCuntSnake(foes[0],pc);
 	}
 	else {
-		slapAttackFromCuntSnake(foes[0],pc);
-		trace("SLAP ATTACK");
+		attack(foes[0], pc);
 	}
 }
 
@@ -126,7 +166,7 @@ function aphrodisiacBite():void {
 	//{hit}
 	else {
 		output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
-		pc.lust(10);
+		pc.lust(10+rand(5));
 		if(pc.lust() >= 100) {
 			output("\n\nYou moan and lie back, ");
 			if(pc.armor.shortName != "") output("digging into your [pc.armor]");
@@ -161,14 +201,14 @@ function NPCTripAttackGo(attacker:Creature,target:Creature):void {
 		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			sDamage = shieldDamage(target,damage,GLOBAL.KINETIC);
 			//Set damage to leftoverDamage from shieldDamage
 			damage = sDamage[1];
 			if(target.shieldsRaw > 0) output(", shield cushioning your impact. (<b>" + sDamage[0] + "</b>)");
 			else output(", shattering your energy shield. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) {
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+			damage = HPDamage(target,damage,GLOBAL.KINETIC);
 			if(sDamage[0] > 0) output(" Your backside fares little better. (<b>" + damage + "</b>)");
 			else output(". (<b>" + damage + "</b>)");	
 		}
@@ -210,7 +250,7 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			sDamage = shieldDamage(target,damage,GLOBAL.KINETIC);
 			//Set damage to leftoverDamage from shieldDamage
 			damage = sDamage[1];
 			if(target.shieldsRaw > 0) output(", bouncing off your shield with loud 'snap'! (<b>" + sDamage[0] + "</b>)");
@@ -218,7 +258,7 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 			
 		}
 		if(damage >= 1 ) {
-			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+			damage = HPDamage(target,damage,GLOBAL.KINETIC);
 			if(sDamage[0] > 0) output(" You're sent reeling from the impact while it flops onto the ground. (<b>" + damage + "</b>)");
 			else output(", sending you reeling from the impact while it flaps onto the ground. (<b>" + damage + "</b>)");	
 			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
@@ -467,7 +507,7 @@ function getACuntTail():void {
 	output("\n\nAt the same time, the pain is slowly fading - the agony has been replaced by the tingly throb of knitting flesh and connecting nerve tissue. You wince and poke at it, feeling the pressure from both sides as the irritation diminishes. It seems to have joined with your body, and there's not even a seam you can grab hold of to pry it apart! You grab the thing a bit further down and tug, but it hurts even more, like tugging directly on your spine. The vertebrae inside the thing seem connected directly to your own at this point.");
 	if(pc.skinType == GLOBAL.SCALES) output("\n\nThe scales already match your own, so in a way, it's as if this thing was perfectly made to join with you.");
 	else output("\n\nThe scales flake off at your touch, exposing fresh  that matches your [pc.skinFurScales] exactly.");
-	output(" The thing’s moisture - no, your moisture now - drips from the end as you handle it. You cannot resist lifting the " + foes[0].vaginaDescript() + " in front of you to examine. Touching the parasite visibly excites the entrance, and slipping a finger in it feels even better. You flex muscles you didn't even know you had and impale your digit, sucking and wringing it dry with your fresh tail-cunt before you summon the strength of will to pull it away.");
+	output(" The thing’s moisture - no, your moisture now - drips from the end as you handle it. You cannot resist lifting the " + foes[0].tailVaginaDescript() + " in front of you to examine. Touching the parasite visibly excites the entrance, and slipping a finger in it feels even better. You flex muscles you didn't even know you had and impale your digit, sucking and wringing it dry with your fresh tail-cunt before you summon the strength of will to pull it away.");
 	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>\n\n");
 	pc.clearTailFlags();
 	pc.tailType = GLOBAL.CUNTSNAKE;
@@ -566,7 +606,6 @@ function fuckACuntSnake():void {
 //*Scenes and Effects for PCs with Cunt Tails
 //The cunt tail requires semen weekly. After a week, if the PC defeats a foe with a cunt tail scene or faps, it automatically trigger an appropriate cunt tail scene. Congratulations!
 //The tail also has a chance of producing offspring the next day after being fed.
-//9999
 	
 //*Cunt tail birthing
 function giveBirthThroughCuntTail():void {
@@ -577,11 +616,11 @@ function giveBirthThroughCuntTail():void {
 	if(pc.hasNippleCocks()) output(", lewdly pulling on your suddenly-exposed nippledicks");
 	else if(pc.isLactating()) output(", tugging out streams of [pc.milk]");
 	else if(pc.hasFuckableNipples()) output(", fingering your juicy nippletwats");
-	output(". You jerk your [pc.hips] spasmodically and whimper as girlish lube erupts from your [tailCunt] to collect in a glistening puddle. The egg slides again, and you gasp, grunting in excitement, no longer concerned about the situation. You’re too turned on to worry about it by this point; the pleasure is all-consuming.");
+	output(". You jerk your [pc.hips] spasmodically and whimper as girlish lube erupts from your [pc.tailCunt] to collect in a glistening puddle. The egg slides again, and you gasp, grunting in excitement, no longer concerned about the situation. You’re too turned on to worry about it by this point; the pleasure is all-consuming.");
 	
-	output("\n\nGushes of ladycum erupt from you to each abrupt movement within, and you shake every time the egg slips a little further; the pace of the movements is accelerating to the point where the pauses are next to nonexistent. It’s nearly to the end now, where your [tail] is most sensitive. The wonderful little orb stretches and caresses your folds with accidental expertise, forcefully bringing you closer and closer to a birth-induced climax.");
+	output("\n\nGushes of ladycum erupt from you to each abrupt movement within, and you shake every time the egg slips a little further; the pace of the movements is accelerating to the point where the pauses are next to nonexistent. It’s nearly to the end now, where your [pc.tail] is most sensitive. The wonderful little orb stretches and caresses your folds with accidental expertise, forcefully bringing you closer and closer to a birth-induced climax.");
 	output("\n\nYou shudder as an explosive push ripples through your [pc.tailCunt] and the smooth, white surface of an egg splits your labia wide, glistening with your juices as your muscles strain to eject it, your clit incredibly hard and proud just above. Climax fills your tail, and juicy secretions flood behind the egg, pressurizing the interior to a degree that the whole thing appears to bloat. You whimper and grab hold of it with both hands, gently kneading and caressing the end to help squeeze out the egg. The white obstruction stretches your hole wider and wider.");
-	output("\n\nThen, with a wet pop, it rolls out of your suddenly deflating tail, covered with a torrent of thick, musky liquid, making it glisten in the light. The ensuing orgasm causes you flop around nervelessly in the gigantic puddle you’ve made. [Girlcum] is splattered everywhere while your eyes close and you give yourself over to this unearthly pleasure, silently thanking the cunt snake that gave you this tail for allowing you to feel such perfect ecstasy. You thrust your [pc.hips] lewdly throughout as your body gives into old instincts");
+	output("\n\nThen, with a wet pop, it rolls out of your suddenly deflating tail, covered with a torrent of thick, musky liquid, making it glisten in the light. The ensuing orgasm causes you flop around nervelessly in the gigantic puddle you’ve made. [pc.girlCum] is splattered everywhere while your eyes close and you give yourself over to this unearthly pleasure, silently thanking the cunt snake that gave you this tail for allowing you to feel such perfect ecstasy. You thrust your [pc.hips] lewdly throughout as your body gives into old instincts");
 	if(pc.cockTotal() > 1) output(", spewing a load of [pc.cum] from [pc.eachCock] in your passion.");
 	else if(pc.hasVagina()) {
 		output(", juicing your [pc.legs] with the outflow from ");
@@ -593,11 +632,11 @@ function giveBirthThroughCuntTail():void {
 	output("\n\nWaves of juice roll out of your [pc.tailCunt] throughout the experience, even after your orgasm winds down and you nervelessly sink down next to your egg, curling your arms around it in motherly affection. That felt so good... surely you have to share this pleasure, don’t you?");
 	//{If in ship}
 	if(currentLocation == "SHIP INTERIOR") {
-		output("Do you leave it outside the ship to fend for itself (and likely acquire a host) or send it off to the on-station daycare that Dad left you?");
+		output("\n\nDo you leave it outside the ship to fend for itself (and likely acquire a host) or send it off to the on-station daycare that Dad left you?");
 	}
 	//{Else}
 	else {
-		output("Do you conceal it so that it can hatch and potentially force itself on a host of its own, or do you take it back and send to the station your father got you, where it will be cared for but probably remain unattached?");
+		output("\n\nDo you conceal it so that it can hatch and potentially force itself on a host of its own, or do you take it back and send to the station your father got you, where it will be cared for but probably remain unattached?");
 	}
 	processTime(10+rand(5));
 	pc.orgasm();
@@ -611,12 +650,26 @@ function giveBirthThroughCuntTail():void {
 function hideYoEggYo():void {
 	clearOutput();
 	output("You find a good spot to hide the egg and leave it there, smiling when you realize that someone else is going to wind up with a juicy, delightful pussy attached to them, compelling them to feed it cum until they wind up feeling what you did... and then the whole cycle can start anew.");
-	//9999
+	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] == undefined) flags["CUNT_SNAKES_HELPED_TO_INFEST"] = 1;
+	else flags["CUNT_SNAKES_HELPED_TO_INFEST"]++;
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
 }
 //*Take It
 function takeYoEggYo():void {
 	clearOutput();
 	output("You take the egg and secure it on your person. You’ll send it off first thing, so that it will properly cared for and want for nothing - hopefully, to include a host.");
-	//9999
+	if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] == undefined) flags["CUNT_SNAKE_EGGS_FAXED_HOME"] = 1;
+	else flags["CUNT_SNAKE_EGGS_FAXED_HOME"]++;
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
+function feedCuntSnake():void {
+	if(flags["TIMES_FED_CUNT_SNAKE"] == undefined) flags["TIMES_FED_CUNT_SNAKE"] = 1;
+	else flags["TIMES_FED_CUNT_SNAKE"]++;
+	
+	flags["DAYS_SINCE_FED_CUNT_TAIL"] = 0;
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == undefined) flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
+	if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 0 && rand(5) == 0) flags["CUNT_TAIL_PREGNANT_TIMER"] = 20+rand(9);
+}

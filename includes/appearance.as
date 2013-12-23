@@ -5,8 +5,7 @@
 	}
 	else {
 		this.userInterface.hideMenus();
-		if(this.userInterface.leftSideBar.currentFrame >= 11) 
-			this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
+		this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
 		appearance(pc);
 		this.userInterface.showingPCAppearance = true;
 		this.userInterface.clearGhostMenu();
@@ -323,31 +322,31 @@ function appearance(target:Creature):void {
 		}
 		//TAILS
 		if(target.tailType == GLOBAL.EQUINE) output2("  A long " + target.furColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
-		if(target.tailType == GLOBAL.CANINE) output2("  A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
-		if(target.tailType == GLOBAL.DEMONIC) output2("  A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
-		if(target.tailType == GLOBAL.BOVINE) output2("  A long cowtail with a puffy tip swishes back and forth as if swatting at flies.");
-		if(target.tailType == GLOBAL.DRIDER || target.tailType == GLOBAL.ARACHNID) {
+		else if(target.tailType == GLOBAL.CANINE) output2("  A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
+		else if(target.tailType == GLOBAL.DEMONIC) output2("  A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
+		else if(target.tailType == GLOBAL.BOVINE) output2("  A long cowtail with a puffy tip swishes back and forth as if swatting at flies.");
+		else if(target.tailType == GLOBAL.DRIDER || target.tailType == GLOBAL.ARACHNID) {
 			output2("  A large, spherical spider-abdomen has grown out from your backside, covered in shiny black chitin.  Though it's heavy and bobs with every motion, it doesn't seem to slow you down.");
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2("  Your bulging arachnid posterior feels fairly full of webbing.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2("  Your arachnid rear bulges and feels very full of webbing.");
 			if(target.tailVenom == 100) output2("  Your swollen spider-butt is distended with the sheer amount of webbing it's holding.");
 		}
-		if(target.tailType == GLOBAL.BEE) {
+		else if(target.tailType == GLOBAL.BEE) {
 			output2("  A large insectile bee-abdomen dangles from just above your backside, bobbing with its own weight as you shift.  It is covered in hard chitin with black and yellow stripes, and tipped with a dagger-like stinger.");
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2("  A single drop of poison hangs from your exposed stinger.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2("  Poisonous bee venom coats your stinger completely.");
 			if(target.tailVenom == 100) output2("  Venom drips from your poisoned stinger regularly.");
 		}
-		if(target.tailType == GLOBAL.SHARK || target.tailType == GLOBAL.SIREN) {
+		else if(target.tailType == GLOBAL.SHARK || target.tailType == GLOBAL.SIREN) {
 			output2("  A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
 		}
-		if(target.tailType == GLOBAL.FELINE) {
+		else if(target.tailType == GLOBAL.FELINE) {
 			output2("  A soft " + target.hairColor + " cat-tail sprouts just above your " + target.buttDescript() + ", curling and twisting with every step to maintain perfect balance.");
 		}
-		if(target.tailType == GLOBAL.LIZAN) {
+		else if(target.tailType == GLOBAL.LIZAN) {
 			output2("  A tapered tail hangs down from just above your " + target.buttDescript() + ".  It sways back and forth, assisting you with keeping your balance.");
 		}
-		if(target.tailType == GLOBAL.LAPINE) output2("  A short, soft bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
+		else if(target.tailType == GLOBAL.LAPINE) output2("  A short, soft bunny tail sprouts just above your " + target.buttDescript() + ", twitching constantly whenever you don't think about it.");
 		else if(target.tailType == GLOBAL.AVIAN) output2("  A tail of feathers fans out from just above your " + target.buttDescript() + ", twitching instinctively to help guide you if you were to take flight.");
 		else if(target.tailType == GLOBAL.KANGAROO) {
 			output2("  A conical, ");
@@ -362,6 +361,7 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.DRACONIC) output2("  A thin, scaly, prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip.  Its tip menaces with spikes of bone, meant to deliver painful blows.");		
 		else if(target.tailType == GLOBAL.KUITAN) output2("  A black-and-" + target.hairColor + "-ringed kui-tan tail waves behind you.");
 		else if(target.tailType == GLOBAL.MOUSE) output2("  A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
+		else if(target.tailType == GLOBAL.CUNTSNAKE) output2("  A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
 		//legType SPECIAL
 		if(target.legType == GLOBAL.HUMAN) output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
 		else if(target.legType == GLOBAL.EQUINE) output2("  Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");

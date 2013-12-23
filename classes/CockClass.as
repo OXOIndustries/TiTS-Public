@@ -54,7 +54,7 @@
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
 			var temp:Number = volume();
-			if(GLOBAL.LUBRICATED) temp *= .75;
+			if(hasFlag(GLOBAL.LUBRICATED)) temp *= .75;
 			if(hasFlag(GLOBAL.STICKY)) temp *= 1.25;
 			return Math.round(temp * 100) / 100;
 		}

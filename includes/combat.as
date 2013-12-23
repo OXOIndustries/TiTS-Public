@@ -124,7 +124,6 @@ function processCombat():void
 	//If enemies still remain, do their AI routine.
 	if(combatStage-1 < foes.length) {
 		output("\n");
-		trace("CELISE TURN");
 		enemyAI(foes[combatStage-1]);
 		return;
 	}
@@ -159,6 +158,7 @@ function rangedCombatMiss(attacker:Creature, target:Creature):Boolean
 	{
 		return true;
 	}
+	if(target.hasPerk("Ranged Immune")) return true;
 	return false;
 }
 
@@ -282,8 +282,8 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		attack(attacker,target);
 		return;
 	}
-	if(noProcess) output("\n");
-	else processCombat();
+	output("\n");
+	if(!noProcess) processCombat();
 }
 
 function rangedAttack(attacker:Creature, target:Creature):void 
@@ -417,7 +417,6 @@ function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC
 
 function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Array 
 {
-	trace("INITIAL DAMAGE: " + damage);
 	var initialDamage:Number = damage;
 	//Reduce damage by shield defense value
 	damage -= victim.shieldDefense();
@@ -432,8 +431,6 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	
 	//Apply victim resistances vs damage
 	damage *= victim.getShieldResistance(damageType);
-	trace("SHIELD REZ: " + victim.getShieldResistance(damageType));
-	trace("DAMAGE UPDATE: " + damage);
 	damage = Math.round(damage);
 	var leftoverDamage:int = 0;
 	//Damage cannot exceed shield amount.
@@ -446,7 +443,6 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	//Apply the damage
 	victim.shieldsRaw -= damage;
 	//Pass back how much was done and how much is leftover.
-	trace("FINAL DAMAGE UPDATE: " + damage);
 	return [damage,leftoverDamage];
 }
 
@@ -693,27 +689,12 @@ function startCombat(encounter:String):void
 		case "zil male":
 			this.userInterface.showBust(GLOBAL.ZIL);
 			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = clone(zil);
-			foes[0].tallness = 60 + rand(7);
-			foes[0].cocks[0].cLength = 4 + rand(5);
-			foes[0].long = "The male zil you're fighting would stand roughly " + foes[0].displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(foes[0].longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
-			if(rand(2) == 0) foes[0].long += ", though some areas are striped in bright yellow";
-			foes[0].long += ".";
+			initializeZil();
 			break;
 		case "cunt snake":
 			this.userInterface.showBust(GLOBAL.CSNAKE);
 			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = clone(cuntsnake);
-			foes[0].tallness = 24 + rand(36);
-			foes[0].scaleColor = "green";
-			foes[0].long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(cuntsnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
-			foes[0].customDodge = "The cunt snake sways aside at the last second!";
-			foes[0].customBlock = "Your attack deflects off the cunt snake's " + cuntsnake.scaleColor + " scales!";
-			foes[0].tailGenitalArg = GLOBAL.HUMAN;
-			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.EQUINE;
-			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.CANINE;
-			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.GOOEY;
-			if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.SIREN;
+			initializeCSnake();
 			break;
 		default:
 			foes[0] = new Creature();

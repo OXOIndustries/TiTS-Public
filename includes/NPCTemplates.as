@@ -1201,6 +1201,9 @@
 		cuntsnake.plural = false;
 		cuntsnake.lustVuln = 1;
 		cuntsnake.meleeWeapon.attackVerb = "bite";
+		cuntsnake.meleeWeapon.damageType = GLOBAL.PIERCING;
+		cuntsnake.meleeWeapon.attack = 2;
+		cuntsnake.meleeWeapon.damage = 4;
 		cuntsnake.meleeWeapon.longName = "fangs";
 		cuntsnake.armor.longName = "glittering scales";
 		cuntsnake.armor.defense = 0;
@@ -1217,7 +1220,7 @@
 		cuntsnake.XP = 50;
 		cuntsnake.level = 1;
 		cuntsnake.credits = 0;
-		cuntsnake.HPMod = 0;
+		cuntsnake.HPMod = -5;
 		cuntsnake.HPRaw = cuntsnake.HPMax();
 		
 		cuntsnake.femininity = 50;
@@ -1321,5 +1324,6 @@
 		//The rate at which you produce milk. Scales from 0 to INFINITY.
 		cuntsnake.milkRate = 1;
 		cuntsnake.ass.wetness = 0;
+		cuntsnake.createPerk("Ranged Immune",0,0,0,0);
 	}
 }

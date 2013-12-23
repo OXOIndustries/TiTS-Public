@@ -16,6 +16,7 @@
 		this.eventQueue[this.eventQueue.length-1]();
 		//Strip out the most recent:
 		this.eventQueue.splice(this.eventQueue.length-1,1);
+		return;
 	}
 	//Set up all appropriate flags
 	saveHere = true;
@@ -60,6 +61,7 @@
 		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
 	if(currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+	//else userInterface.addButton(1,"Appearance",appearance,pc);
 	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
 }
 
@@ -285,10 +287,23 @@ function processTime(arg:int):void {
 				if(pc.ass.looseness <= 4) eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
 				else eventBuffer += "\n\n<b>Your " + pc.assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
+			//Cunt snake pregnancy stuff
+			if(flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
+				flags["CUNT_TAIL_PREGNANT_TIMER"]--;
+				if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 1) {
+					flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;
+					eventQueue[eventQueue.length] = giveBirthThroughCuntTail;
+				}
+			}
 			//Days ticks here!
 			if(this.userInterface.hours >= 24) {
 				this.userInterface.days++;
 				this.userInterface.hours = 0;
+				//Cunt snake tomfoolery
+				if(pc.hasCuntTail()) {
+					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;
+					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
+				}
 			}
 		}
 		arg--;

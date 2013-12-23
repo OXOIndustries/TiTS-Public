@@ -25,7 +25,9 @@
 		public var flags:Array;
 		
 		//Equipped properties
+		//Bonus tohit
 		public var attack:Number;
+		//Bonus damage
 		public var damage:Number;
 		public var damageType:int;
 		public var defense:Number;

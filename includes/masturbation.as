@@ -38,6 +38,13 @@
 				texts[texts.length] = "TailFuck";
 				funcs[funcs.length] = cuntTailFapScene;
 				args[args.length] = undefined;
+				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) {
+					clearOutput();
+					output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
+					userInterface.clearMenu();
+					userInterface.addButton(0,"Next",cuntTailFapScene);
+					return;
+				}
 			}
 		}
 		texts[texts.length] = "Tailingus";
@@ -658,7 +665,7 @@ function tailingusFapReqsCuntTail():void {
 function cuntTailFapScene():void {
 	clearOutput();
 	flags["LAST_FAP"] = cuntTailFapScene;
-	var x:int = pc.cockThatFits(9999);
+	var x:int = pc.cockThatFits(pc.tailCuntCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = -1;
 	if(pc.cockTotal() > 1) {
@@ -708,7 +715,7 @@ function cuntTailFapScene():void {
 	if(pc.cumQ() >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
 	if(pc.cumQ() >= 1000) output(".");
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
-	
+	feedCuntSnake();
 	pc.orgasm();
 	processTime(20+rand(10));
 	userInterface.clearMenu();
