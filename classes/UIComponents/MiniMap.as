@@ -351,49 +351,27 @@ package classes.UIComponents
 			if (!(sourceRoom & Mapper.room_present_mask)) return -1;
 			if (!(targetRoom & Mapper.room_present_mask)) return -1;
 			
-			if (sourceRoom & posMask)
-			{
-				trace("Source links.")
-			}
-			else
-			{
-				trace("Source does not link");
-			}
-			
-			if (targetRoom & negMask)
-			{
-				trace("Target links.");
-			}
-			else
-			{
-				trace("Target does not link");
-			}
-			
 			// Passageway
 			if ((sourceRoom & posMask) && (targetRoom & negMask))
 			{
-				trace("Passage!");
 				return LINK_PASSAGE;
 			}
 			
 			// One way, source > target
 			if ((sourceRoom & posMask) && !(targetRoom & negMask))
 			{
-				trace("Oneway, Source to Target");
 				return LINK_TARGET2NEIGHBOUR;
 			}
 			
 			// One way, source < target
 			if (!(sourceRoom & posMask) && (targetRoom & negMask))
 			{
-				trace("Oneway, Target to Source");
 				return LINK_NEIGHBOUR2TARGET;
 			}
 			
 			// Should be a redundant check...
 			if (!(sourceRoom & posMask) && !(targetRoom & negMask))
 			{
-				trace("No connection");
 				return -1;
 			}
 			
@@ -402,8 +380,6 @@ package classes.UIComponents
 		
 		public function setMapData(map:Vector.<Vector.<Vector.<int>>>):void
 		{
-			trace("Mapdata Get!");
-			
 			// Right now this is tied to the hardcoded map size from Mapper.
 			// Once I get this working, I would like to refactor Mapper to return data based on defined map size
 			// Also I want to get the room names or indices as well; touching two classes to add map features seems overkill
