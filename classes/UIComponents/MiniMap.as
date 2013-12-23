@@ -283,36 +283,42 @@ package classes.UIComponents
 			// Build the associated Links container (linkages between rooms) -- These are going to be offset from the primary room display...
 			// The links are kept seperate from the main room display objects for math simplicity; positioning them within the same parent as the room makes
 			// it messier to calculate the proper centre positions and such (its still possible, its not even hard really), but it'll be the subject of later refactoring. Make it work, then make it nice to look at.
-			_childLinksX = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
-			_childLinksY = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
 			
-			// I could probably have bullshitted this off the main creation loop up ^ but it woulda been impossible for anybody but me to make sense of it tbh
+			// X links should be a 6x7 grid
+			_childLinksX = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
+			
 			for (var numX:int = 0; numX < (childNumX - 1); numX++)
-			{				
-				_childLinksX[numX] = new Vector.<MinimapLink>(childNumY - 1);
+			{
+				_childLinksX[numX] = new Vector.<MinimapLink>(childNumY);
+				
+				for (var numY:int = 0; numY < childNumY; numY++)
+				{
+					var linkObjX = new MinimapLink(false);
+					_childContainer.addChild(linkObjX);
+					
+					linkObjX.x = _childElements[numX][numY].x + (childSizeX + (childSpacing / 2));
+					linkObjX.y = _childElements[numX][numY].y + (childSizeY / 2);
+					
+					_childLinksX[numX][numY] = linkObjX;
+				}
+			}
+			
+			// Y links should be a 7x6 grid
+			_childLinksY = new Vector.<Vector.<MinimapLink>>(childNumX);
+			
+			for (var numX:int = 0; numX < childNumX; numX++)
+			{
 				_childLinksY[numX] = new Vector.<MinimapLink>(childNumY - 1);
 				
 				for (var numY:int = 0; numY < (childNumY - 1); numY++)
 				{
-					// linkObjX are links along the X plane (horizontal)
-					var linkObjX = new MinimapLink(false);
-					
-					// linkObjY are links along the Y plane (vertical)
 					var linkObjY = new MinimapLink(true);
-					
-					_childLinksX[numX][numY] = linkObjX;
-					_childLinksY[numX][numY] = linkObjY;
-					_childContainer.addChild(linkObjX);
 					_childContainer.addChild(linkObjY);
 					
-					var roomXPos:int = _childElements[numX][numY].x;
-					var roomYPos:int = _childElements[numX][numY].y;
+					linkObjY.x = _childElements[numX][numY].x + (childSizeX / 2);
+					linkObjY.y = _childElements[numX][numY].y + (childSizeY + (childSpacing / 2));
 					
-					linkObjX.x = roomXPos + (childSizeX + (childSpacing / 2));
-					linkObjX.y = roomYPos + (childSizeY / 2);
-					
-					linkObjY.x = roomXPos + (childSizeX / 2);
-					linkObjY.y = roomYPos + (childSizeY + (childSpacing / 2));
+					_childLinksY[numX][numY] = linkObjY;
 				}
 			}
 		}
@@ -406,18 +412,28 @@ package classes.UIComponents
 			
 			// Player is always currently on z=3 of the map
 			var zPos:int = 3;
+			var xPos:int = 0;
+			var yPos:int = 0;
 			
 			// Room Linkages
-			for (var xPos:int = 0; xPos < 6; xPos++)
+			for (xPos = 0; xPos < 6; xPos++)
 			{
-				for (var yPos:int = 0; yPos < 6; yPos++)
+				for (yPos = 0; yPos < 7; yPos++)
 				{
 					var roomFlags:int = map[xPos][yPos][zPos];
 					var roomEast:int = map[xPos + 1][yPos][zPos];
-					var roomSouth:int = map[xPos][yPos + 1][zPos];
 					
 					// East room
-					_childLinksX[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
+					_childLinksX[xPos][6 - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
+				}
+			}
+			
+			for (xPos = 0; xPos < 7; xPos++)
+			{
+				for (yPos = 0; yPos < 6; yPos++)
+				{
+					var roomFlags:int = map[xPos][yPos][zPos];
+					var roomSouth:int = map[xPos][yPos + 1][zPos];
 					
 					// South room
 					_childLinksY[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
@@ -425,9 +441,9 @@ package classes.UIComponents
 			}
 			
 			// Primary room visibility
-			for (var xPos:int = 0; xPos < 7; xPos++)
+			for (xPos = 0; xPos < 7; xPos++)
 			{
-				for (var yPos:int = 0; yPos < 7; yPos++)
+				for (yPos = 0; yPos < 7; yPos++)
 				{
 					var roomFlags:int = map[xPos][yPos][zPos];					
 					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];

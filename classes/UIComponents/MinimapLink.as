@@ -43,8 +43,18 @@ package classes.UIComponents
 				
 				this.addChild(_linkIcons[i]);
 				_linkIcons[i].visible = false;
-				_linkIcons[i].x -= _linkIcons[i].width / 2;
+				
+				if (_rotated == true && MiniMap.LINK_ROTATE[i] == true)
+				{
+					_linkIcons[i].x += _linkIcons[i].width / 2;
+				}
+				else
+				{
+					_linkIcons[i].x -= _linkIcons[i].width / 2;
+				}
+				
 				_linkIcons[i].y -= _linkIcons[i].height / 2;
+				
 			}
 		}
 		
