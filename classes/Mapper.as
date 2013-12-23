@@ -4,8 +4,8 @@
 	{
 
 		// 
-		private const mapSz:int                   = 7;
 		private const roomPrintWidth:int          = 3;
+		private var this._mapSz:int;
 
 		// Yeah, I'm using bit-mapping into an int to store values
 		// because I can.
@@ -21,31 +21,32 @@
 
 		private var roomsObj:Object;
 
-		public function Mapper(roomsObj:Object)
+		public function Mapper(roomsObj:Object, mapSz:Number = 7)
 		{
 			// I'm assuming we'll only ever have one rooms object. 
 			// eh, can always simple change roomsObj.
 			this.roomsObj = roomsObj;
+			this.this._mapSz = mapSz
 		}
 
 		private function allocateMapArray():Vector.<Vector.<Vector.<int>>>
 		{
 			
 
-			var arr:Vector.<Vector.<Vector.<int>>> = new Vector.<Vector.<Vector.<int>>>(mapSz);
+			var arr:Vector.<Vector.<Vector.<int>>> = new Vector.<Vector.<Vector.<int>>>(this._mapSz);
 				
 			var x:int;
 			var y:int;
 			var z:int;
 			
-			for (x = 0; x < mapSz; x += 1)
+			for (x = 0; x < this._mapSz; x += 1)
 			{
-				arr[x] = new Vector.<Vector.<int>>(mapSz)
-				for (y = 0; y < mapSz; y += 1)
+				arr[x] = new Vector.<Vector.<int>>(this._mapSz)
+				for (y = 0; y < this._mapSz; y += 1)
 				{
 
-					arr[x][y] = new Vector.<int>(mapSz)
-					for (z = 0; z < mapSz; z += 1)
+					arr[x][y] = new Vector.<int>(this._mapSz)
+					for (z = 0; z < this._mapSz; z += 1)
 					{
 						arr[x][y][z] = 0;
 					}
@@ -68,7 +69,7 @@
 		private function processRoom(targetRoom:String, map:Vector.<Vector.<Vector.<int>>>, x:int, y:int, z:int)
 		{
 			// clamp to map size
-			if ((x < 0 || x >= mapSz) || (y < 0 || y >= mapSz) || (z < 0 || z >= mapSz))
+			if ((x < 0 || x >= this._mapSz) || (y < 0 || y >= this._mapSz) || (z < 0 || z >= this._mapSz))
 			{
 				if (this.mapDebug) trace("Exceeding map bounds. Clamping")
 				return;
@@ -139,9 +140,9 @@
 			var z:int;
 
 			// Setup the coordinates of the initial room to be the middle of the map
-			x = (mapSz / 2)
-			y = (mapSz / 2)
-			z = (mapSz / 2)
+			x = (this._mapSz / 2)
+			y = (this._mapSz / 2)
+			z = (this._mapSz / 2)
 			if (this.mapDebug) trace("startup X, Y, Z = ", x, y, z)
 
 
@@ -177,19 +178,19 @@
 			var output:String = "";
 			var line:int;
 
-			for (z = mapSz-1; z >= 0; z -= 1)
+			for (z = this._mapSz-1; z >= 0; z -= 1)
 			{
 				output = "|";
-				for (var line:int = 0; line < mapSz*(roomPrintWidth + 2); line += 1)
+				for (var line:int = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
 					output += "-";
 				output += "|";
 				trace(output)
-				for (y = mapSz-1; y >= 0; y -= 1)
+				for (y = this._mapSz-1; y >= 0; y -= 1)
 				{
 				
 
 					output = "|";
-					for (x = 0; x < mapSz; x += 1)
+					for (x = 0; x < this._mapSz; x += 1)
 					{
 						if (map[x][y][z])
 						{
@@ -208,7 +209,7 @@
 
 
 					output = "|";
-					for (x = 0; x < mapSz; x += 1)
+					for (x = 0; x < this._mapSz; x += 1)
 					{
 						if (map[x][y][z])
 						{
@@ -236,7 +237,7 @@
 
 
 					output = "|";
-					for (x = 0; x < mapSz; x += 1)
+					for (x = 0; x < this._mapSz; x += 1)
 					{
 						if (map[x][y][z])
 						{
@@ -259,7 +260,7 @@
 
 				}
 				output = "|";
-				for (var line:int = 0; line < mapSz*(roomPrintWidth + 2); line += 1)
+				for (var line:int = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
 					output += "-";
 				output += "|";
 				trace(output)
