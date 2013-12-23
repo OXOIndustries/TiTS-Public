@@ -247,8 +247,11 @@ function postLoadToZeGame():void
 	this.userInterface.dataOff();
 	this.userInterface.leftSideBar.dataButton.filters = [];
 	this.userInterface.hideMenus();
-	this.userInterface.setMapData(mapper.generateMap(currentLocation));
-	this.userInterface.showMinimap();
+	if (currentLocation != "")
+	{
+		this.userInterface.setMapData(mapper.generateMap(currentLocation));
+		this.userInterface.showMinimap();
+	}
 	mainGameMenu();
 }
 
