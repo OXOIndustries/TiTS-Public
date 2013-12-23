@@ -49,6 +49,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
+	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 
 	//"MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
@@ -112,6 +113,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";
 	rooms["SHIP HANGAR"].outText = "Down";
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SHIP HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 
 	//1 - Spaceport Elevator
 	rooms["SPACEPORT ELEVATOR"] = new RoomClass(this);
@@ -134,6 +136,7 @@ function initializeRooms():void
 	rooms["CUSTOMS OFFICE"].southExit = "ESBETH'S NORTH PATH";
 	rooms["CUSTOMS OFFICE"].runOnEnter = meetingFlahne;
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.NPC);
 
 	//3. Esbeth’s Northern Path
 	rooms["ESBETH'S NORTH PATH"] = new RoomClass(this);
@@ -291,6 +294,7 @@ function initializeRooms():void
 	rooms["BURT'S MAIN HALL"].northExit = "BURT'S BACK END";
 	rooms["BURT'S MAIN HALL"].runOnEnter = burtsBarFunc;
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.INDOOR);
+	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.BAR);
 
 	//"18". Burt’s Badass Whatever Part. II
 	rooms["BURT'S BACK END"] = new RoomClass(this);
@@ -386,6 +390,7 @@ function initializeRooms():void
 	rooms["SCRAPYARD MAINTENANCE"].system = "SYSTEM: ARA ARA";
 	rooms["SCRAPYARD MAINTENANCE"].northExit = "SOUTH ESBETH 1";
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.INDOOR);
+	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.COMMERCE);
 
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
@@ -396,6 +401,35 @@ function initializeRooms():void
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
+	
+	// And this is why I want to kinda write a debugging area for game features :P
+	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
+	
+/*	rooms["DEBUG1"] = new RoomClass(this);
+	rooms["DEBUG1"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG1"].description = "";
+	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
+	rooms["DEBUG1"].southExit = "DEBUG2";
+	rooms["DEBUG1"].westExit = "DEBUG3";
+	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["DEBUG2"] = new RoomClass(this);
+	rooms["DEBUG2"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG2"].description = "";
+	rooms["DEBUG2"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG2"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG2"].eastExit = "WEST ESBETH 2";
+	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["DEBUG3"] = new RoomClass(this);
+	rooms["DEBUG3"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG3"].description = "";
+	rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);*/
 }
 
 

@@ -549,6 +549,7 @@ function enemyAI(aggressor:Creature):void
 function victoryRouting():void 
 {
 	hideNPCStats();
+	showMinimap();
 	if(foes[0].short == "Celise") {
 		defeatCelise();
 	}
@@ -566,6 +567,8 @@ function victoryRouting():void
 
 function defeatRouting():void 
 {
+	hideNPCStats();
+	showMinimap();
 	if(foes[0].short == "BONERS") {}
 	else if(foes[0].short == "two zil") {
 		loseToZilPair();
@@ -668,6 +671,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 function startCombat(encounter:String):void 
 {
 	combatStage = 0;
+	hideMinimap();
 	showNPCStats();
 	pc.removeStatusEffect("Round");
 	foes = new Array();

@@ -9,15 +9,23 @@
 
 		// Yeah, I'm using bit-mapping into an int to store values
 		// because I can.
-		private const room_present_mask:int       = 1<<0;
-		private const x_pos_exit_mask:int         = 1<<1;
-		private const x_neg_exit_mask:int         = 1<<2;
-		private const y_pos_exit_mask:int         = 1<<3;
-		private const y_neg_exit_mask:int         = 1<<4;
-		private const z_pos_exit_mask:int         = 1<<5;
-		private const z_neg_exit_mask:int         = 1<<6;
-		private const current_locaton_mask:int    = 1<<7;
-
+		public static const room_present_mask:int       = 1<<0;
+		public static const x_pos_exit_mask:int         = 1<<1;
+		public static const x_neg_exit_mask:int         = 1<<2;
+		public static const y_pos_exit_mask:int         = 1<<3;
+		public static const y_neg_exit_mask:int         = 1<<4;
+		public static const z_pos_exit_mask:int         = 1<<5;
+		public static const z_neg_exit_mask:int         = 1<<6;
+		public static const current_locaton_mask:int    = 1<<7;
+		public static const room_bar_mask:int			= 1<<8;
+		public static const room_commerce_mask:int		= 1<<9;
+		public static const room_medical_mask:int		= 1<<10;
+		public static const room_npc_mask:int			= 1<<11;
+		public static const room_objective_mask:int		= 1<<12;
+		public static const room_quest_mask:int			= 1<<13;
+		public static const room_ship_mask:int			= 1<<14;
+		public static const room_outdoor_mask:int		= 1<<15; // I don't want to lean on assuming INDOOR = !OUTDOOR because we might end up with other variations etc.
+		public static const room_indoor_mask:int		= 1<<16;
 
 		private var roomsObj:Object;
 
@@ -60,7 +68,7 @@
 		}
 
 
-		private const mapDebug:Boolean = true;
+		private const mapDebug:Boolean = false;
 
 		// I'm passing x, y, z around as ints, rather then a nice array or something, so they are passed by value
 		// that means I can recurse without getting bogged down in issues related to the fact that arrays are pass
@@ -129,8 +137,50 @@
 				if (this.mapDebug) trace("Have exit - outExit. In room ",targetRoom, " Exit target = ", roomsObj[targetRoom].outExit);
 				processRoom(roomsObj[targetRoom].outExit, map, x, y, z-1)
 			}
+			
+			// Inside/Outside flags applied to the rooms
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.INDOOR))
+			{
+				map[x][y][z] |= room_indoor_mask;
+			}
+			else if (roomsObj[targetRoom].hasFlag(GLOBAL.OUTDOOR))
+			{
+				map[x][y][z] |= room_outdoor_mask;
+			}
+			
+			// Special flags applied to the rooms
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.COMMERCE))
+			{
+				map[x][y][z] |= room_commerce_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.BAR))
+			{
+				map[x][y][z] |= room_bar_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.NPC))
+			{
+				map[x][y][z] |= room_npc_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.MEDICAL))
+			{
+				map[x][y][z] |= room_medical_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.SHIPHANGAR))
+			{
+				map[x][y][z] |= room_ship_mask;
+			}
+			
+			// This pair will need more complex handling, but we'll deal with it when there are actual quests and state like that to query properly.
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.QUEST))
+			{
+				map[x][y][z] |= room_quest_mask;
+			}
+			if (roomsObj[targetRoom].hasFlag(GLOBAL.OBJECTIVE))
+			{
+				map[x][y][z] |= room_objective_mask;
+			}
+			
 			if (this.mapDebug) trace("Finished room ", targetRoom)
-
 		}
 
 		private function processRoomsIntoMap(startRoom:String, map:Vector.<Vector.<Vector.<int>>>)

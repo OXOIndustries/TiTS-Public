@@ -9,8 +9,8 @@
 		return;
 	}
 	//Queued events can fire off too!
-	trace("EventQueue = ", eventQueue);
-	trace("this.eventQueue = ", this.eventQueue);
+	//trace("EventQueue = ", eventQueue);
+	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
 		this.eventQueue[this.eventQueue.length-1]();
@@ -158,6 +158,11 @@ function flyTo(arg:String):void {
 function move(arg:String):void {
 	processTime(rooms[currentLocation].moveMinutes);
 	currentLocation = arg;
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	
+	//trace("Printing map for " + currentLocation);
+	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	mainGameMenu();
 }

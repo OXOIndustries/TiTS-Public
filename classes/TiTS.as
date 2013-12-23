@@ -63,8 +63,6 @@
 	
 		//include "../includes/zilMale.as";
 		
-		
-
 		public var characters:Array;
 		public var foes:Array;
 			
@@ -135,6 +133,10 @@
 		public var flags:Dictionary;
 
 		public var combatStage;
+
+		// LE MAP
+		var mapper:Mapper;
+
 		public function TiTS()
 		{
 
@@ -225,16 +227,9 @@
 			setupCharacters();
 			initializeRooms();
 			initializeItems();
-
-
-
+			
 			// dick about with mapper: ------------------------------------------------------------
-			var mapper:Mapper = new Mapper(this.rooms)
-			var map:*;
-			map = mapper.generateMap("NORTH ESBETH 2")
-			mapper.printMap(map)
-
-
+			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
 			this.userInterface.clearMenu();
@@ -439,6 +434,8 @@
 					else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
 					else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
 					break;
+				case 80:
+					this.userInterface.debugmm();
 				default:
 					trace("Key pressed! Keycode: " + evt.keyCode);
 					break;
@@ -575,8 +572,8 @@
 		public function mainMenu():void 
 		{
 			trace("Main Menu called!");
-			trace("HideMenus")
-			this.userInterface.hideMenus();
+				trace("HideMenus")
+				this.userInterface.hideMenus();
 			
 			//Hide all current buttons
 			this.userInterface.hideNormalDisplayShit();
@@ -589,7 +586,7 @@
 			this.userInterface.warningBackground.visible = true;
 			this.userInterface.websiteDisplay.visible = true;
 			//if(leftSideBar.mainMenuButton.alpha == 1) 
-			this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
+				this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
 			
 			//Texts
 			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";

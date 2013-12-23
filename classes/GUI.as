@@ -25,6 +25,7 @@
 	import flash.utils.Dictionary;
 	import fl.transitions.Tween;
 	import fl.transitions.easing.Regular;
+	import classes.UIComponents.MiniMap;
 
 
 	import classes.StatBarSmall;
@@ -120,6 +121,8 @@
 
 		private var pcStatSidebarItems:Array;
 		private var npcStatSidebarItems:Array;
+		
+		private var miniMap:MiniMap;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -500,7 +503,6 @@
 										this.playerLevel,
 										this.playerXP,
 										this.playerCredits];
-
 		}
 
 		private function tweenLeft(e:Event):void
@@ -608,7 +610,32 @@
 								this.monsterLevel, 
 								this.monsterRace, 
 								this.monsterSex];
-
+								
+								
+			// Jam a minimap element into it!
+			this.miniMap = new MiniMap();
+			this.miniMap.targetY = 232; // The "HeaderUnderline" bar (element under "Encounter Status") is around y=231
+			this.miniMap.targetHeight = 341; // The time header text underline ("Galactic Standard purple bar") is around y=573
+			this.miniMap.childSizeX = 35;
+			this.miniMap.childSizeY = 35;
+			this.miniMap.childSpacing = 15;
+			this.miniMap.childNumY = 7;
+			this.miniMap.childNumX = 7;
+			
+			// Set some padding so we end up looking like the location header background deal
+			this.miniMap.paddingLeft = 0;
+			this.miniMap.paddingRight = 11;
+			this.miniMap.paddingTop = 5;
+			this.miniMap.paddingBottom = 31; // 31 pixels between the bottom planet purple box thing and the header underline we're using as an anchor
+			this.miniMap.visible = false;
+			this.leftSideBar.addChild(this.miniMap);
+		}
+		
+		public function debugmm():void
+		{
+			hideNPCStats();
+			showMinimap();
+			this.miniMap.debug();
 		}
 		
 		private function initLeftBar():void
@@ -633,6 +660,10 @@
 			this.leftSideBar.topHeaderLabel.visible = false;
 			this.leftSideBar.topHeaderUnderline.visible = false;
 			this.leftSideBar.npcBusts.visible = false;
+			
+			// You really are a fucking shit AS3
+			// TODO: Modify FLA to account for stupid text kerning bullshit of the textfield header
+			this.leftSideBar.topHeaderLabel.width += 40;
 		}
 
 
@@ -1008,7 +1039,6 @@
 			buttons[14].hotkey.text = "G";
 		}
 
-
 		//Used to adjust position of scroll bar!
 		public function updateScroll(e:MouseEvent):void {
 			var target = mainTextField;
@@ -1047,47 +1077,51 @@
 			titsClassPtr.scrollChecker();
 		}
 
-
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.mainMenuButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.mainMenuButton.buttonMode = true;
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.mainMenuButton.alpha = 1;
+				//Engage buttonmode.
+				this.leftSideBar.mainMenuButton.buttonMode = true;
+			}
+		
 		public function mainMenuButtonOff():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.mainMenuButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.mainMenuButton.buttonMode = false;
-			this.leftSideBar.mainMenuButton.filters = [];
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.mainMenuButton.alpha = .3;
+				//Engage buttonmode.
+				this.leftSideBar.mainMenuButton.buttonMode = false;
+				this.leftSideBar.mainMenuButton.filters = [];
+			}
+		
 		public function appearanceOn():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.appearanceButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.appearanceButton.buttonMode = true;
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.appearanceButton.alpha = 1;
+				//Engage buttonmode.
+				this.leftSideBar.appearanceButton.buttonMode = true;
+			}
+		
 		public function appearanceOff():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.appearanceButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.appearanceButton.buttonMode = false;
-			this.leftSideBar.appearanceButton.filters = [];
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.appearanceButton.alpha = .3;
+				//Engage buttonmode.
+				this.leftSideBar.appearanceButton.buttonMode = false;
+				this.leftSideBar.appearanceButton.filters = [];
+			}
+		
 		public function dataOn():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.dataButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.dataButton.buttonMode = true;
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.dataButton.alpha = 1;
+				//Engage buttonmode.
+				this.leftSideBar.dataButton.buttonMode = true;
+			}
+		
 		public function dataOff():void {
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.dataButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.dataButton.buttonMode = false;
-			this.leftSideBar.dataButton.filters = [];
-		}
+				//Set transparency to zero to show it's active.
+				this.leftSideBar.dataButton.alpha = .3;
+				//Engage buttonmode.
+				this.leftSideBar.dataButton.buttonMode = false;
+				this.leftSideBar.dataButton.filters = [];
+			}
 
 		public function hideNormalDisplayShit():void {
 			//Hide all current buttons
@@ -1114,7 +1148,7 @@
 
 		public function menuButtonsOn():void 
 		{
-			trace("this.stagePtr = ", this.stagePtr);
+			//trace("this.stagePtr = ", this.stagePtr);
 			if(!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") {
 				appearanceOn();
 			}
@@ -1198,7 +1232,6 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-
 		public function hideMainMenu():void {
 			//Hide scrollbar & main text!
 			upScrollButton.visible = true;
@@ -1249,7 +1282,6 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-
 		public function initializeMainMenu():void 
 		{
 			trace("Initializing main menu")
@@ -1277,8 +1309,7 @@
 				this.mainMenuButtons[x].visible = false;
 			}
 		}
-
-
+		
 		public function leftBarClear():void 
 		{
 			this.leftSideBar.sceneByTag.visible = false;
@@ -1294,6 +1325,7 @@
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 		}
+		
 		public function hidePCStats():void 
 		{
 			trace("Hide PC Stats");
@@ -1302,6 +1334,7 @@
 				barItem.visible = false;
 			}
 		}
+		
 		public function showPCStats():void 
 		{
 			trace("Show PC Stats");
@@ -1310,6 +1343,20 @@
 				barItem.visible = true;
 			}
 		}
+		
+		public function showHeader(message:String):void
+		{
+			this.leftSideBar.topHeaderLabel.text = message;
+			this.leftSideBar.topHeaderLabel.visible	= true;
+			this.leftSideBar.topHeaderUnderline.visible = true;
+		}
+		
+		public function hideHeader():void
+		{
+			this.leftSideBar.topHeaderLabel.visible	= false;
+			this.leftSideBar.topHeaderUnderline.visible = false;
+		}
+		
 		public function showNPCStats():void 
 		{
 			trace("Show NPC Stats");
@@ -1319,10 +1366,16 @@
 			}
 			
 			// Show the label header deal
-			this.leftSideBar.topHeaderLabel.text = "ENCOUNTER STATUS";
-			this.leftSideBar.topHeaderLabel.visible = true;
-			this.leftSideBar.topHeaderUnderline.visible = true;
+			showHeader("ENCOUNTER STATUS");			
 		}
+		
+		public function showMinimap():void
+		{
+			trace("Show Minimap");
+			this.miniMap.visible = true;
+			showHeader("LOCATION MAP");
+		}
+		
 		public function hideNPCStats():void 
 		{
 			trace("Hide NPC Stats");
@@ -1330,14 +1383,17 @@
 			{
 				barItem.visible = false;
 			}
-			
-			// Hide the label header deal
-			this.leftSideBar.topHeaderLabel.visible = false;
-			this.leftSideBar.topHeaderUnderline.visible = false;
 		}
+		
+		public function hideMinimap():void
+		{
+			trace("Hide Minimap");
+			this.miniMap.visible = false;
+		}
+		
 		public function deglow():void 
 		{
-			trace("Clearing Glow");
+			//trace("Clearing Glow");
 			// This didn't originally call clearGlo on the small NPC Items
 			// (level, sex, race), but it's easer to just let it do so. 
 			// I don't *think* it'll break anything.
@@ -1384,6 +1440,12 @@
 				arg.background.x = -180;
 			}
 			if(value != undefined) arg.values.text = String(value);
+		}
+		
+		// Set the current map data
+		public function setMapData(data:*):void
+		{
+			this.miniMap.setMapData(data);
 		}
 
 	}

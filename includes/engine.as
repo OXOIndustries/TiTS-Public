@@ -121,6 +121,12 @@ function showNPCStats():void {
 function hideNPCStats():void {
 	this.userInterface.hideNPCStats()
 }
+function showMinimap():void {
+	this.userInterface.showMinimap();
+}
+function hideMinimap():void {
+	this.userInterface.hideMinimap();
+}
 function deglow():void 
 {
 	this.userInterface.deglow()
