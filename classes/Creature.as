@@ -832,6 +832,13 @@
 			}
 			return false;
 		}
+		public function hasLeg():Boolean {
+			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
+			return false;
+		}
+		public function hasLegs():Boolean {
+			return (hasLeg() && legCount > 1);
+		}
 		public function hasTongueFlag(arg):Boolean {
 			var temp:int = 0;
 			while(temp < tongueFlags.length) {

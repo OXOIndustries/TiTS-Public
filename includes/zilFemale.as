@@ -1005,123 +1005,311 @@ function forceyFaceSittingFromFemzil():void {
 	pc.lust(-5);
 	//9999
 }
-/*
-Win Menu
--Fen
-//{HP}
-	The zil girl collapses in the face of your superior prowess, face down, ass up, and panting heavily as she tries to recover from the hits she's taken. While her bulbous, stinger-tipped tail obscures her rear entrance and scented honeypot from view, you know they're still there.
-	Her faint voice rouses you a second later when she faintly mumbles, <i>\"You win, off-worlder. By custom, I am yours to {seed/use}.\"</i>
-//Lust
-	Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you've stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>\"I yield to you. {You're more like... like us than you let on, traveller./Mmm... you may claim me now, zil.\"</i>}
-//Raise lust to 33 if below and continue:
-	She's practically begging for it at this point.
-//DISPLAY SEX OPTIONS
 
-Force Her To Lick YOUR Honeypot (DONE -F) (edited)
-Sitting down next to the zil, you lean back{ and remove your [pc.gear]/ and casually toss aside the few belongings you bothered to carry on your semi-nude body}. She casts her gaze {curiously/eagerly} in your direction to try and see what you're doing - or what you plan to do to her. Not wanting to keep her waiting, you lean back, spreading your legs a bit further to expose your [pc.vaginas], and tap at your increasingly puffy entrance.
-<i>\"Here,\"</i> you command with authority. <i>\"Lick. You can understand that, can't you?\"</i> You press your palm down against your mons to feel the hard bud{s} of your clit{s} as {it swells/they swell} up eagerly, firm and sensitive. Pulling back, you expose your puffy entrance{s} to the rapt, attentive creature. <i>\"Lick.\"</i>
-With a demure nod, the glossy, armored beauty crawls over to you with surprising meekness. It's almost like her former sauciness has been switched off. She squirms {in between your [pc.legs]/over to straddle your [pc.leg]}, her large breasts swaying delightfully beneath her with every movement. You reach out to grab one, roughly pinching a dusky nipple between your fingertips. A trickle of honey emerges at your touch, and the sweet, sticky fluid coats your fingers. The zil moans huskily, her other breast leaking alongside. You release her with a smirk and press your fingers to her sable lips.
-Tentatively extending her tongue, the fey creature surprises you by opening up the tip of her long muscle to expose its hollow interior, slick with alien saliva. She presses on, enveloping your paired fingers in a cocoon of spit, slipping back and forth in a way that's cruelly reminiscent of actual sex. She finishes, and her tongue retracts to leave you completely and utterly clean, if a little wet. The oral organ slips back into her mouth like a snake into a hidden burrow. Her eyes twinkle with a sultry glow as she allows the tip to squeeze back out, and she cocks her head to the side questioning, flicking her eyes meaningfully between your crotch and your face as if asking for permission.
-You don't let her or her tongue wonder. Grabbing her back the back of her head, you firmly yet gently force her face down to your [pc.vagina " + x + "], feeling her hot, panting breath wash across your labia as she nears. {[pc.EachCock] flop{s} across the top of her head as she settles in{ with your [pc.balls] on her forehead. }She purses her spit-shined ebony lips just in time to plant them upon your nethers in a wet kiss. Her mouth feels so wonderfully warm and wet against you, and her lips... those gorgeously full lips... they form such a perfect seal over you as they slide against your sensitive labia. It feels even better once she sucks a little bit, easing more blood into your already engorged sex and causing your {[pc.clit]/[pc.clits]} to swell to full size.{ {It nigh-instantaneously fills/They nigh-instantaneously fill} your lover's surprised mouth with a thick helping of {multiple }girl-rod{s}{and curl down to fill her groaning throat}.}
-//Big Clits
-The surprised alien noisily breaks away, accompanied by sudden coughs as she tries to breathe once more. Before you can grow angry at her, she recovers and extends her tongue once more, letting the hollow opening come to rest upon the tip of your [pc.clit], sensuously circling it to keep you in agonizingly intense pleasure. You throw your head back and moan out loud, the zil's transgressions instantly forgiven in the face of her unique, clit-polishing talent. The longer she keeps it there, the further down it slips, and the more of your female rod you get to feel enveloped in near-frictionless muscle. Her mouth returns to your pussy while her tongue continues to tangle with your super-sized clit. The dual sensations are almost unfathomably pleasant.
-//Not big clits
-The cunt-frenching alien noisily breaks the seal with an abrupt change in her approach. Her lips purse, and her tongue slips out, folded in a 'u' shape. The bottom of her slick organ dips right into your [pc.vagina " + x + "], while the tip arches over to find {your [pc.clit]/a [pc.clit]}. It closes around your tremendously sensitive organ and begins to suck, and the portion of her muscle buried inside lurches, starting to rise and fall along with the pulsing rhythm of suction she exposes your bud to. You throw your head back and moan out loud, the zil's transgressions completely forgotten under the care of her talented tongue and lips as they resume kissing.
-//Merge
-Grabbing the wanton creature once more, you encouragingly guide the motions of her head, grinding yourself off on her sable slit-kissers. Her face is quickly getting a coat of [pc.girlCumColor]; it's most noticable on her plush lips, which appear almost swollen under their many layers of liquid pleasure. Her affections don't slow or relent either. She seems genuinely interested in giving you the most absolutely pleasurable bout of cunnilingus you've ever received. It's obviously not her first time being forced to serve in such a manner.
-Noisy slurps and smooches fill the air along with the scent of alien pheromones and musky pussy-scent as she worships your [pc.vagina " + x + "], tending to your [pc.clit] with equal desire. She already has your [pc.legs] quivering and your [pc.hips] giving little jerky twitches, making you instinctively hump against her face as she works. Your body is alight with pleasure, radiating outward from your [pc.clit] as it is fully engulfed and pumped oh-so-pleasantly.{ The busy cunt-slobberer finds another pleasure-organ to touch, and when she does, you screech like a banshee, mashing your [pc.vagina " + x + "] against her hard enough to feel her nose digging into your [pc.skinFurScales]./ The busy cunt-slobberer kicks up the tempo, at the same time sliding her tongue almost fully off you, and then she's pumping it up and down, tongue-fucking you while you start to screech in ecstasy.}
-	{Your juices spray from [pc.eachVagina] in torrential geysers, soaking the zil's face in [pc.girlCum] with so much that spatters of drops are starting to glaze her chest. She gulps and swallows as much as she can, but that's only a tiny fragment of the orgasmic deluge you release, your pussy spasming and squirting until your body goes numb and slack./Your juices drip directly into the zil's hungry mouth, giving her a good strong taste of your [pc.girlCum] as your desire plateaus into bliss. She gulps and swallows it all, and she even makes a show of holding her mouth open as you fill it. Her tongue keeps you more than busy enough until your spasming muscles go numb and slack.} A happy smile spreads across your face as you come down. You still find the strength to drag her face up and down your slit, painting her with one last layer of your scent.
-<i>\"Not bad,\"</i> you remark as you push her into a sitting position. {<i>\"You're totally worth the fight, babe.\"</i>/<i>\"I wish I could get you to do this without having to deal with the trouble of fighting....\"</i>/<i>\"Next time I trust you'll have the sense to skip the fight and just start licking immediately.\"</i>}
+//Win Menu
+//-Fen
+function defeatHostileZil():void {
+	//{HP}
+	if(foes[0].HP() <= 0) {
+		output("The zil girl collapses in the face of your superior prowess, face down, ass up, and panting heavily as she tries to recover from the hits she's taken. While her bulbous, stinger-tipped tail obscures her rear entrance and scented honeypot from view, you know they're still there.");
+		output("\n\nHer faint voice rouses you a second later when she faintly mumbles, <i>\"You win, off-worlder. By custom, I am yours to " + pc.mf("seed","use") + ".\"</i>");
+	}
+	//Lust
+	else {
+		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you've stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>\"I yield to you. </i>");
+		if(pc.race() == "zil") output("<i>You're more like... like us than you let on, traveller.</i>");
+		else output("<i>Mmm... you may claim me now, zil.</i>");
+		output("<i>\"</i>");
+		//Raise lust to 33 if below and continue:
+		if(pc.lust() < 33) pc.lust(33-pc.lust());
+		output("\n\nShe's practically begging for it at this point.");
+	}
+	//DISPLAY SEX OPTIONS
+	//9999
+}
 
-
-
-Dose and Masturbate Her With Her Own Sex Drugs (open to all) - done Z
+//Force Her To Lick YOUR Honeypot (DONE -F) (edited)
+function forceFemzilToLickYourHoneypot():void {
+	clearOutput();
+	var x:int = rand(pc.totalVaginas());
+	output("Sitting down next to the zil, you lean back");
+	if(!pc.isNude()) output(" and remove your [pc.gear]");
+	else output(" and casually toss aside the few belongings you bothered to carry on your semi-nude body");
+	output(". She casts her gaze ");
+	if(foes[0].HP() <= 0) output("curiously");
+	else output("eagerly");
+	output(" in your direction to try and see what you're doing - or what you plan to do to her. Not wanting to keep her waiting, you lean back, spreading your legs a bit further to expose your [pc.vaginas], and tap at your increasingly puffy entrance.");
+	output("\n\n<i>\"Here,\"</i>  you command with authority. <i>\"Lick. You can understand that, can't you?\"</i>  You press your palm down against your mons to feel the hard bud");
+	if(pc.totalVaginas()/pc.totalClits() > 1) output("s");
+	output(" of your clit");
+	if(pc.totalVaginas()/pc.totalClits() > 1) output("s as they swell ");
+	else output(" as it swells ");
+	output("up eagerly, firm and sensitive. Pulling back, you expose your puffy entrance");
+	if(pc.totalVaginas()) output("s");
+	output(" to the rapt, attentive creature. <i>\"Lick.\"</i>");
+	
+	output("\n\nWith a demure nod, the glossy, armored beauty crawls over to you with surprising meekness. It's almost like her former sauciness has been switched off. She squirms ");
+	if(pc.legCount > 0) output("in between your [pc.legs]");
+	else output("over to straddle your [pc.leg]");
+	output(", her large breasts swaying delightfully beneath her with every movement. You reach out to grab one, roughly pinching a dusky nipple between your fingertips. A trickle of honey emerges at your touch, and the sweet, sticky fluid coats your fingers. The zil moans huskily, her other breast leaking alongside. You release her with a smirk and press your fingers to her sable lips.");
+	output("\n\nTentatively extending her tongue, the fey creature surprises you by opening up the tip of her long muscle to expose its hollow interior, slick with alien saliva. She presses on, enveloping your paired fingers in a cocoon of spit, slipping back and forth in a way that's cruelly reminiscent of actual sex. She finishes, and her tongue retracts to leave you completely and utterly clean, if a little wet. The oral organ slips back into her mouth like a snake into a hidden burrow. Her eyes twinkle with a sultry glow as she allows the tip to squeeze back out, and she cocks her head to the side questioning, flicking her eyes meaningfully between your crotch and your face as if asking for permission.");
+	
+	output("\n\nYou don't let her or her tongue wonder. Grabbing her back the back of her head, you firmly yet gently force her face down to your [pc.vagina " + x + "], feeling her hot, panting breath wash across your labia as she nears. ");
+	if(pc.hasCock()) 
+	{
+		output("[pc.EachCock] flops across the top of her head as she settles in");
+		if(pc.balls > 0) output(" with your [pc.balls] on her forehead. ");
+	}
+	output("She purses her spit-shined ebony lips just in time to plant them upon your nethers in a wet kiss. Her mouth feels so wonderfully warm and wet against you, and her lips... those gorgeously full lips... they form such a perfect seal over you as they slide against your sensitive labia. It feels even better once she sucks a little bit, easing more blood into your already engorged sex and causing your ");
+	if(pc.totalClits() == 1) output("[pc.clit]");
+	else output("[pc.clits]");
+	output(" to swell to full size.");
+	if(pc.clitLength > 3.5) {
+		if(pc.totalClits() == 1) output(" It nigh-instantaneously fills");
+		else output(" One nigh-instantaneously fills");
+		output(" your lover's surprised mouth with a thick helping of ");
+		output("girl-rod");
+		if(pc.clitLength > 6) {
+			output(" and curls down to fill her groaning throat");
+		}
+		output(".");
+	}
+	//Big Clits
+	if(pc.clitLength > 3.5) {
+		output("\n\nThe surprised alien noisily breaks away, accompanied by sudden coughs as she tries to breathe once more. Before you can grow angry at her, she recovers and extends her tongue once more, letting the hollow opening come to rest upon the tip of your [pc.clit], sensuously circling it to keep you in agonizingly intense pleasure. You throw your head back and moan out loud, the zil's transgressions instantly forgiven in the face of her unique, clit-polishing talent. The longer she keeps it there, the further down it slips, and the more of your female rod you get to feel enveloped in near-frictionless muscle. Her mouth returns to your pussy while her tongue continues to tangle with your super-sized clit. The dual sensations are almost unfathomably pleasant.");
+	}
+	//Not big clits
+	else {
+		output("\n\nThe cunt-frenching alien noisily breaks the seal with an abrupt change in her approach. Her lips purse, and her tongue slips out, folded in a 'u' shape. The bottom of her slick organ dips right into your [pc.vagina " + x + "], while the tip arches over to find ");
+		if(pc.totalClits() == 1) output("your [pc.clit]");
+		else output("a [pc.clit]");
+		output(". It closes around your tremendously sensitive organ and begins to suck, and the portion of her muscle buried inside lurches, starting to rise and fall along with the pulsing rhythm of suction she exposes your bud to. You throw your head back and moan out loud, the zil's transgressions completely forgotten under the care of her talented tongue and lips as they resume kissing.");
+	}
+	//Merge
+	output("\n\nGrabbing the wanton creature once more, you encouragingly guide the motions of her head, grinding yourself off on her sable slit-kissers. Her face is quickly getting a coat of [pc.girlCumColor]; it's most noticable on her plush lips, which appear almost swollen under their many layers of liquid pleasure. Her affections don't slow or relent either. She seems genuinely interested in giving you the most absolutely pleasurable bout of cunnilingus you've ever received. It's obviously not her first time being forced to serve in such a manner.");
+	output("\n\nNoisy slurps and smooches fill the air along with the scent of alien pheromones and musky pussy-scent as she worships your [pc.vagina " + x + "], tending to your [pc.clit] with equal desire. She already has your [pc.legs] quivering and your [pc.hips] giving little jerky twitches, making you instinctively hump against her face as she works. Your body is alight with pleasure, radiating outward from your [pc.clit] as it is fully engulfed and pumped oh-so-pleasantly.");
+	if(pc.totalClits() > 1) output(" The busy cunt-slobberer finds another pleasure-organ to touch, and when she does, you screech like a banshee, mashing your [pc.vagina " + x + "] against her hard enough to feel her nose digging into your [pc.skinFurScales].");
+	else output(" The busy cunt-slobberer kicks up the tempo, at the same time sliding her tongue almost fully off you, and then she's pumping it up and down, tongue-fucking you while you start to screech in ecstasy.");
+	if(pc.isSquirter()) output("\n\nYour juices spray from [pc.eachVagina] in torrential geysers, soaking the zil's face in [pc.girlCum] with so much that spatters of drops are starting to glaze her chest. She gulps and swallows as much as she can, but that's only a tiny fragment of the orgasmic deluge you release, your pussy spasming and squirting until your body goes numb and slack.");
+	else output("\n\nYour juices drip directly into the zil's hungry mouth, giving her a good strong taste of your [pc.girlCum] as your desire plateaus into bliss. She gulps and swallows it all, and she even makes a show of holding her mouth open as you fill it. Her tongue keeps you more than busy enough until your spasming muscles go numb and slack.");
+	output(" A happy smile spreads across your face as you come down. You still find the strength to drag her face up and down your slit, painting her with one last layer of your scent.");
+	output("\n\n<i>\"Not bad,\"</i>  you remark as you push her into a sitting position. ");
+	if(pc.isNice()) output("<i>\"You're totally worth the fight, babe.\"</i>");
+	else if(pc.isMischievous()) output("<i>\"I wish I could get you to do this without having to deal with the trouble of fighting....\"</i>");
+	else output("<i>\"Next time I trust you'll have the sense to skip the fight and just start licking immediately.\"</i>");
+	
+	processTime(20+rand(10));
+	pc.orgasm();
+	//9999
+}
+	
+//Dose and Masturbate Her With Her Own Sex Drugs (open to all) - done Z
 //requires having fought a hostile female zil once already
 //kind of evil
-Kneeling beside the zil, you roughly turn her over onto her backside. She looks at you with questioning eyes, but {(HP) makes no move to resist./(lust)her fingers continue to work her desperate cunt.} Less interested in fucking her than in fucking with her, you unfasten her belt and slip it free from her hips. With a kiss on her mons and two fingers of your own inside her, you absently work the humming zil’s pussy to keep her distracted while you browse her toys.
+function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
+	clearOutput();
+	output("Kneeling beside the zil, you roughly turn her over onto her backside. She looks at you with questioning eyes, but ");
+	if(foes[0].HP() <= 0) output("makes no move to resist.");
+	else output("her fingers continue to work her desperate cunt.");
+	output(" Less interested in fucking her than in fucking with her, you unfasten her belt and slip it free from her hips. With a kiss on her mons and two fingers of your own inside her, you absently work the humming zil’s pussy to keep her distracted while you browse her toys.");
+	
+	output("\n\nOne of the red-painted darts comes free from its clasp, and you experimentally prick yourself with it to confirm your guess. A shallow blush of arousal blooms in you, and you know that this dart is coated in aphrodisiac. The zil smiles at your experimentation and reaches out to take the dart from you, but you hold it away. Renewing your assault on her pussy, you lower the dart to just above her labia.");
+	
+	output("\n\n<i>“Best to hold still,”</i>  you tease, caressing her once with the tip as you work your fingers. The zil tenses up with worry, trying to remain stone-like as you do your best to move her world. Curling a finger, you find a firm spot inside her and rub it; the zil gasps and jerks her hips fitfully, then moans as she realizes what she’s done. The dart sticks from her labia, and the latter begins to color as the aphrodisiac takes effect.");
+	
+	output("\n\n<i>“Oops.”</i>  With a laugh, you pull it free and hold it over her pussy again. <i>“Do better.”</i>");
+	
+	output("\n\nMaliciously, you finger the zil’s sweet spot again; her whole body quivers as she tries to fight the effects of your touch and the dart. A little reprieve is all it takes to break down her walls; you pause in your fingering and let her recover a moment, then quickly rub the spot once more and the zil, without thinking, thrusts her hips as if fucking your fingers, poking herself twice. Taking the dart away, you cast it aside and grin at the flushed woman. <i>“You’re terrible at this game.”</i>");
 
-One of the red-painted darts comes free from its clasp, and you experimentally prick yourself with it to confirm your guess. A shallow blush of arousal blooms in you, and you know that this dart is coated in aphrodisiac. The zil smiles at your experimentation and reaches out to take the dart from you, but you hold it away. Renewing your assault on her pussy, you lower the dart to just above her labia.
+	output("\n\nOnce again, you peruse the contents of her belt, this time turning up a little pouch of reddish, chalky mixture similar to what you found painted on the dart. Presumably this is what she uses to rub on another layer of the drugs once the dart’s coating has been used up. Opening the pouch all the way, you greedily lap up the paste with your [tongue]. Before your body can absorb too much of it, you bow your head to the zil’s cunt and push the clitoris free from its hood. Smothering the exposed button with your mouth, you paint over and over it with broad strokes, raising passionate cries from the drugged woman. Her pussy spasms in orgasm and her thighs clasp around your head, but you continue to transfer from your tongue to her without stopping, even as she fills your mouth with wet, honey-flavored girlcum. By the time the tingling in your tongue finally ends, the zil has already climaxed twice more and is looking down at you in a daze, both hands pinching her nipples and sticky with honey.");
+	
+	output("\n\nOne last foray into her belongings, and you withdraw the largest vial you can find, examining its contents as the zil looks on in exhausted apprehension. The powder half-filling it is the same as the kind you found covering the aphrodisiac darts and in the refill pouch. Smiling, you uncork it and hold it under the wasp-woman’s drooling vagina. <i>“You had better be careful this time,”</i>  you admonish, sliding it home. <i>“If this vial fills up with your juices, all this dust will spill out into your pussy.”</i>");
 
-“Best to hold still,” you tease, caressing her once with the tip as you work your fingers. The zil tenses up with worry, trying to remain stone-like as you do your best to move her world. Curling a finger, you find a firm spot inside her and rub it; the zil gasps and jerks her hips fitfully, then moans as she realizes what she’s done. The dart sticks from her labia, and the latter begins to color as the aphrodisiac takes effect.
+	output("\n\nThe zil shivers as you slip the mouth of the vial in, still squeezing her breasts and helpless before your chemical romance. When you pull it back, a centimeter of fluid already sits atop the dust in the vial, slowly mingling. Deciding that won’t do, you re-angle the vial and agitate as you push it in, trying to mix and stimulate at the same time. The woman’s legs lock as she orgasms again, and a squirt of girlcum hits the wet dust mixture. Shaking the vial inside the zil’s entrance, you milk her climax for all the fluid she has left, collecting another three centimeters and bringing the vial almost to the brim. It’s not boding well for her...");
+	
+	output("\n\nSlowly sliding the vial out to the rhythm of the zil’s moan, you thrust again, sloshing some of the pussy-and-dust mixture into her. She starts and brings her knees together as the warm, viscous fluid enters, and squeezes her breasts in a vise-like grip. The color of her pussy deepens again somehow as the newest dose of drug takes its hold, and the zil sits bolt upright, looking dead into your face with dilated eyes empty of reason. One sticky hand closes on yours and begins to take over the pace, ramming the vial through her inflamed labia as if to break it. Pulling away, you can see that its contents have mixed completely, a red syrup of cum that gets more diluted with each stroke. The zil orgasms again, tensing up for a minute, then resumes masturbating furiously; after the next climax a pink froth forms around the edges of the glass as she alternately strokes and squirts, coming ever more rapidly as more of the drug ends up inside her.");
+	
+	output("\n\nExperimentally, you take hold of the bottom of the vial and pull it away from the zil’s pussy; her arm continues to jerk as she tries to outmuscle you, and it’s only with a bit of effort you can get it all the way out. Her entrance is open wide, gasping to be filled, and the zil looks at you with absent eyes, not comprehending why the penetration has stopped. Her other hand pulls free of her breast with halting movements, ");
+	if(pc.hasCock()) output("reaching toward your erection as she slides her crotch forward to receive it.");
+	else output("joining the other on the vial in a renewed attempt to overpower you and get something inside her once more.");
+	output(" You push the glass back into her, and she gratefully smiles at you and begins fucking herself again, the thoughts of mere seconds ago forgotten.");
+	
+	output("\n\nPainfully aroused and wondering if you’ve condemned the woman to live the rest of her life in mindless servitude to her newly-insatiable cunt, you turn away and leave.");
+	//zeikfried’d
+	author("Zeikfried");
+	//get 100 lust
+	pc.lust(100);
+	//maybe become evil
+	pc.personality++;
+	if(pc.personality <= 33) pc.personality++;
+	if(pc.personality > 100) pc.personality = 100;
+	//maybe find her again later for enslavings
+	processTime(20+rand(10));
+	//9999
+}
 
-“Oops.” With a laugh, you pull it free and hold it over her pussy again. “Do better.”
-
-Maliciously, you finger the zil’s sweet spot again; her whole body quivers as she tries to fight the effects of your touch and the dart. A little reprieve is all it takes to break down her walls; you pause in your fingering and let her recover a moment, then quickly rub the spot once more and the zil, without thinking, thrusts her hips as if fucking your fingers, poking herself twice. Taking the dart away, you cast it aside and grin at the flushed woman. “You’re terrible at this game.”
-
-Once again, you peruse the contents of her belt, this time turning up a little pouch of reddish, chalky mixture similar to what you found painted on the dart. Presumably this is what she uses to rub on another layer of the drugs once the dart’s coating has been used up. Opening the pouch all the way, you greedily lap up the paste with your [tongue]. Before your body can absorb too much of it, you bow your head to the zil’s cunt and push the clitoris free from its hood. Smothering the exposed button with your mouth, you paint over and over it with broad strokes, raising passionate cries from the drugged woman. Her pussy spasms in orgasm and her thighs clasp around your head, but you continue to transfer from your tongue to her without stopping, even as she fills your mouth with wet, honey-flavored girlcum. By the time the tingling in your tongue finally ends, the zil has already climaxed twice more and is looking down at you in a daze, both hands pinching her nipples and sticky with honey.
-
-One last foray into her belongings, and you withdraw the largest vial you can find, examining its contents as the zil looks on in exhausted apprehension. The powder half-filling it is the same as the kind you found covering the aphrodisiac darts and in the refill pouch. Smiling, you uncork it and hold it under the wasp-woman’s drooling vagina. “You had better be careful this time,” you admonish, sliding it home. “If this vial fills up with your juices, all this dust will spill out into your pussy.”
-
-The zil shivers as you slip the mouth of the vial in, still squeezing her breasts and helpless before your chemical romance. When you pull it back, a centimeter of fluid already sits atop the dust in the vial, slowly mingling. Deciding that won’t do, you re-angle the vial and agitate as you push it in, trying to mix and stimulate at the same time. The woman’s legs lock as she orgasms again, and a squirt of girlcum hits the wet dust mixture. Shaking the vial inside the zil’s entrance, you milk her climax for all the fluid she has left, collecting another three centimeters and bringing the vial almost to the brim. It’s not boding well for her...
-
-Slowly sliding the vial out to the rhythm of the zil’s moan, you thrust again, sloshing some of the pussy-and-dust mixture into her. She starts and brings her knees together as the warm, viscous fluid enters, and squeezes her breasts in a vise-like grip. The color of her pussy deepens again somehow as the newest dose of drug takes its hold, and the zil sits bolt upright, looking dead into your face with dilated eyes empty of reason. One sticky hand closes on yours and begins to take over the pace, ramming the vial through her inflamed labia as if to break it. Pulling away, you can see that its contents have mixed completely, a red syrup of cum that gets more diluted with each stroke. The zil orgasms again, tensing up for a minute, then resumes masturbating furiously; after the next climax a pink froth forms around the edges of the glass as she alternately strokes and squirts, coming ever more rapidly as more of the drug ends up inside her.
-
-Experimentally, you take hold of the bottom of the vial and pull it away from the zil’s pussy; her arm continues to jerk as she tries to outmuscle you, and it’s only with a bit of effort you can get it all the way out. Her entrance is open wide, gasping to be filled, and the zil looks at you with absent eyes, not comprehending why the penetration has stopped. Her other hand pulls free of her breast with halting movements, {(men)reaching toward your erection as she slides her crotch forward to receive it./(non-men)joining the other on the vial in a renewed attempt to overpower you and get something inside her once more.} You push the glass back into her, and she gratefully smiles at you and begins fucking herself again, the thoughts of mere seconds ago forgotten.
-
-Painfully aroused and wondering if you’ve condemned the woman to live the rest of her life in mindless servitude to her newly-insatiable cunt, you turn away and leave.
-//zeikfried’d
-//get 100 lust
-//maybe become evil
-//maybe find her again later for enslavings
-
-Numb Her Pussy (req. some form of dick or giant clit that will fit) - done Z
+//Numb Her Pussy (req. some form of dick or giant clit that will fit) - done Z
 //kind of evil
-The presumptuousness of this woman stops you in your tracks. The fact that she still assumes she’s entitled to sex after {being {beaten/humiliated} for asking/assaulting you} incenses you, but your body thrums with pheromone-induced lust all the same and she smiles knowingly. At a loss to satisfy both your desires to fuck and to punish her, your eyes wander her prone form until they alight on her belt of toxins and darts.
+function numbPussyFuck():void {
+	clearOutput();
+	output("The presumptuousness of this woman stops you in your tracks. The fact that she still assumes she’s entitled to sex after being ");
+	if(foes[0].HP() <= 0) output("beaten");
+	else output("humiliated");
+	output(" by you incenses you, but your body thrums with pheromone-induced lust all the same and she smiles knowingly. At a loss to satisfy both your desires to fuck and to punish her, your eyes wander her prone form until they alight on her belt of toxins and darts.");
+	
+	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
+	if(x < 0 || pc.cockTotal() == 0) x = -1;
+	
+	output("\n\nBurying your intent in mock-affection, you lean down and trace your fingers along her hips, causing the woman to shake her rear enticingly. Reaching underneath and locating the fastenings of her belt, you unlatch it and pull it away from her. She looks over her shoulder curiously as you inspect the contents and pull away a dart. Exposing yourself and holding it over your groin");
+	output(" for your prospective victim, you watch the reaction on her face. At the sight of the first dart, she grimaces and shakes her head, and you set it aside. The next dart is answered with another vigorous shake and a limp-wristed pantomime, and, guessing that it contains paralytic toxins,  you quietly put it down as well. The third dart you find causes your unsuspecting lover to nod her head and smile, placing her hand over yours, and you warily allow her to guide the dart to the base of your ");
+	if(x >= 0) output("[pc.cock " + x + "]");
+	else output("[pc.clit]");
+	output(" and sink it in. A flood of arousal washes through the area; your ");
+	if(x >= 0) output("dick stands on end, more proud and erect that you can remember seeing it recently");
+	else output("clit swells to incredible size, resembling a large ruddy-colored dildo more than any feminine button");
+	output(".");
+	
+	output("\n\nExcited by your arousal, the wasp-girl returns to her prone position, raising her ass in the air and lifting her chitin-covered abdomen to expose her needy pussy. An expectant hum fills the air as she anticipates being filled by you, and you place a hand on her hip again as if to steady her for entry. Rubbing her ass to reassure her, you quietly reach over and pick up the paralyzing dart. Before the zil can form a suspicion, you guide it under her pussy and jab upwards, burying the tainted needle into her labia. She jerks half-upright with an alarmed cry, and you quickly grab her between shoulder and neck and jab the dart in, first above one breast and then the other, aiming as close to the armpits as you can get without hitting her chitinous covering. With a pained moan, the zil slackens and her clawing, struggling hands drop numbly to her side.");
+	
+	output("\n\n<i>“What are you doing, off-worlder?!”</i>  she demands weakly, looking over her shoulder.");
+	
+	output("\n\nPushing her face into the dirt, your mouth spreads in a twisted grin. <i>“</i>");
+	if(foes[0].HP() <= 0) {
+		if(x >= 0) output("<i>Seeding</i>");
+		else output("<i>Using</i>");
+		output("<i> you, as is your custom.</i>");
+	}
+	else if(pc.race() != "zil") output("<i>Suppose I’m just like you after all.</i>");
+	else output("<i>Isn’t this the zil way?</i>");
+	output("<i>”</i>");
 
-Burying your intent in mock-affection, you lean down and trace your fingers along her hips, causing the woman to shake her rear enticingly. Reaching underneath and locating the fastenings of her belt, you unlatch it and pull it away from her. She looks over her shoulder curiously as you inspect the contents and pull away a dart. Exposing yourself and holding it over your {groin/tailcock/nipple} for your prospective victim, you watch the reaction on her face. At the sight of the first dart, she grimaces and shakes her head, and you set it aside. The next dart is answered with another vigorous shake and a limp-wristed pantomime, and, guessing that it contains paralytic toxins,  you quietly put it down as well. The third dart you find causes your unsuspecting lover to nod her head and smile, placing her hand over yours, and you warily allow her to guide the dart to the base of your {[cock]/[tailcock]/[nipplecock]/[clit]} and sink it in. A flood of arousal washes through the area; your {dick stands on end, more proud and erect that you can remember seeing it recently/tailcock slides completely free, drooling ready lubrication down the underside/nipples bloom into phalluses, the one at the injection site painfully hard and ready to fuck/clit swells to incredible size, resembling a large ruddy-colored dildo more than any feminine button}.
+	output("\n\n<i>“That’s... no...”</i>  she trails off, robbed of her voice by the toxin. Her jaw hangs half open and a trail of saliva runs into the soil, though her still-alert eyes follow you as you ");
+	if(pc.legCount > 2) {
+		output("rise from your kneel and mount her, shoving your ");
+		if(x >= 0) output("[pc.cock " + x + "]");
+		else output("[pc.clit]");
+		output(" into her while she quivers under you");
+	}
+	else {
+		output("slide your ");
+		if(x >= 0) output("[pc.cock " + x + "]");
+		else output("[pc.clit]");
+		//[tailcock]} into her
+	}
+	//lift her leg and slide her onto your nipple-cock
+	output(". Her hips shake lazily, perhaps trying to afford her some control of the fuck, but the zil is completely your plaything as you begin to thrust in her. When she realizes she’s completely unable to get any response from her leaden cunt, a low, frustrated, moan rolls out of her throat.");
 
-Excited by your arousal, the wasp-girl returns to her prone position, raising her ass in the air and lifting her chitin-covered abdomen to expose her needy pussy. An expectant hum fills the air as she anticipates being filled by you, and you place a hand on her hip again as if to steady her for entry. Rubbing her ass to reassure her, you quietly reach over and pick up the paralyzing dart. Before the zil can form a suspicion, you guide it under her pussy and jab upwards, burying the tainted needle into her labia. She jerks half-upright with an alarmed cry, and you quickly grab her between shoulder and neck and jab the dart in, first above one breast and then the other, aiming as close to the armpits as you can get without hitting her chitinous covering. With a pained moan, the zil slackens and her clawing, struggling hands drop numbly to her side.
+	output("\n\nThough it gives her no pleasure, bereft of muscle and nerve, the warm mouth of her vagina drools and sucks loosely at you, and the chemical assistance from the aphrodisiac makes it easy to finish. ");
+	if(x >= 0) {
+		if(pc.balls > 0) 
+		{
+			output("Your [pc.balls] tighten");
+			if(pc.balls == 1) output("s");
+		}
+		else output("Your stomach churns");
+		output(" and you twitch, blasting your load into the helpless zil. ");
+		//(small skeet)
+		if(pc.cumQ() <= 250) output("Spending your ardor quickly, you pull out and let the last squirt go across her thigh. Your batch drips from the slumping zil, unable as she is to tighten up and hold it inside.");
+		//(large skeet)
+		else if(pc.cumQ() < 1000) output("You pump and pump, filling her with stroke upon stroke of semen, until her pussy is full and it begins to flow back around your shaft.");
+		//(mega skeet)
+		else {
+			output("Unwilling to pull out, you press her tight against your base ");
+			if(pc.legCount > 2 && pc.hasLegs()) output("using your forelegs ");
+			output("and squeeze her thighs shut as far as you can, continuing to fire ropes into her cunt. Her belly stretches its semi-rigid chitin covering taut and then keeps growing, allowing you to see the armored plates spread apart, revealing her taut skin below. The zil’s toneless wail grows ever louder as you top off the immense batch of sperm and drop her onto the ground, to roll over onto her sides and twitch her hands weakly at her swollen, flooded womb.");
+		}
+	}
+	//(if clit)
+	else output("Your swollen clitoris spasms, sending electric sensation through your pussy, and you come, drooling lubricant all over the zil’s own slick opening. Her toneless wail goes quiet as her body stops vibrating from your thrusts, and she manages to slide off as you twitch and shake out the fits of your climax.");
+	
+	output("\n\nRecovering quickly, you smile at the angry-eyed zil woman, only to be rewarded with an open-mouthed grimace. It doesn’t strain your deduction to guess that she’s pissed at not getting off the way she wanted. Considering for a moment, you pick up the spent darts and jab <i>both</i> into the zil’s mons, and her voice raises once more in anguish as she realizes what you’ve done.");
+	
+	output("\n\nHaving condemned the arrogant woman to several more hours of both terrible arousal and the complete inability to relieve it, you recollect your things and make your way.");
+	//zeikfried’d
+	author("Zeikfried");
+	//maybe become evil
+	pc.personality++;
+	if(pc.personality > 100) pc.personality = 100;
+	processTime(15+rand(10));
+	pc.orgasm();
+	//9999
+}
 
-“What are you doing, off-worlder?!” she demands weakly, looking over her shoulder.
-
-Pushing her face into the dirt, your mouth spreads in a twisted grin. “{(HP win){Seeding/Using} you, as is your custom./(Lust win){Suppose I’m just like you after all./Isn’t this the zil way?}}”
-
-“That’s... no...” she trails off, robbed of her voice by the toxin. Her jaw hangs half open and a trail of saliva runs into the soil, though her still-alert eyes follow you as you {(quads)rise from your kneel and mount her, shoving your {[cock]/[clit]} into her while she quivers under you/slide your {[cock]/[clit]/[tailcock]} into her/lift her leg and slide her onto your nipple-cock}. Her hips shake lazily, perhaps trying to afford her some control of the fuck, but the zil is completely your plaything as you begin to thrust in her. When she realizes she’s completely unable to get any response from her leaden cunt, a low, frustrated, moan rolls out of her throat.
-
-Though it gives her no pleasure, bereft of muscle and nerve, the warm mouth of her vagina drools and sucks loosely at you, and the chemical assistance from the aphrodisiac makes it easy to finish. {(if cocks){Your balls tighten/Your stomach churns} and you twitch, blasting your load into the helpless zil. {(small skeet)Spending your ardor quickly, you pull out and let the last squirt go across her thigh. Your batch drips from the slumping zil, unable as she is to tighten up and hold it inside./(large skeet)You pump and pump, filling her with stroke upon stroke of semen, until her pussy is full and it begins to flow back around your shaft. {(mega skeet)Unwilling to pull out, you press her tight against your base {(horse)using your forelegs }and squeeze her thighs shut as far as you can, continuing to fire ropes into her cunt. Her belly stretches its semi-rigid chitin covering taut and then keeps growing, filling the air with a symphony of tiny cracking noises as it fractures her exoskeleton from inside out. The zil’s toneless wail grows ever louder as you top off the immense batch of sperm and drop her onto the ground, to roll over onto her sides and twitch her hands weakly at her swollen, cracked womb.}}/(if clit)Your swollen clitoris spasms, sending electric sensation through your pussy, and you come, drooling lubricant all over the zil’s own slick opening. Her toneless wail goes quiet as her body stops vibrating from your thrusts, and she manages to slide off as you twitch and shake out the fits of your climax.}
-
-Recovering quickly, you smile at the angry-eyed zil woman, only to be rewarded with an open-mouthed grimace. It doesn’t strain your deduction to guess that she’s pissed at not getting off the way she wanted. Considering for a moment, you pick up the spent darts and jab <i>both</i> into the zil’s mons, and her voice raises once more in anguish as she realizes what you’ve done.
-
-Having condemned the arrogant woman to several more hours of both terrible arousal and the complete inability to relieve it, you recollect your things and make your way.
-//zeikfried’d
-//maybe become evil
-
-Smother Her In Dick [DONE](edited)
--Fen idea
+//Smother Her In Dick [DONE](edited)
+//-Fen idea
 //Everyone wanted me to write this first, so here goes.
-	{You slip out of your [pc.armor] as quickly as possible, lest your [pc.cockBiggest] tear it off for you, or worse, get stuck inside.}
-{You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.}
-{You wriggle to drop the pieces of gear you carry on your {mostly }nude body. You've got to admit, you're secretly glad you've been going around so unencumbered by things like clothes or armor.}
-//No new PG
-Between this girl's pheromones and the sight of her presenting herself so readily, there was no way any kind of clothing could contain such a giant once it roused from slumber, and it is definitely awakening right now, lurching up inches higher with every pounding beat of your heart. It passes the halfway point, momentarily jutting out from your crotch at a 90 degree angle before your building lust carries it higher, seeming to fill it with molten hot need. Each twitch upward solidifies your desire to absolutely bury this wasp-bitch in cock. You wrap a hand around your twat-splitting member, stroking it languidly as it assumes its full, rigid size, and it twitches hard at the zil woman's open-mouthed disbelief.
-<i>\"Is that... is that real?\"</i>  she breathes, hesitantly extending a honey-glazed digit towards it, a web of amber ropes still connecting her fingers to her twat. She crawls closer, an awkward, shuffling gait made worse by the way her oversized tail sways behind her. Her hot breath falls on your sensitive tool. <i>\"None of the males have anything like this....\"</i> The strands of honeyed girl-cum connecting her pussy to her palm finally come apart under the weight of her fresh, leaking moisture. <i>\"I-it's magnificent.\"</i>
-Taking a swaggering step forward, you let your [pc.cockBiggest] come to rest in the cradle of her slick fingers, pushing it just hard enough that she has to support some of the extensive weight. The flesh, even hard, is still spongy enough that she sinks partway into it as she tries to handle you, not even capable of grabbing half its circumference. Giggling in delight, the defeated wasp-girl rises onto her knees so that her other arm can help, rubbing slippery-smooth chitin-coverings up in down in fascinated, hypnotic strokes. She shivers, and you see a thick strand of honeycum hanging from her between her legs, growing thicker and heavier by the second.
-You advance further, bearing the weight of your giant erection forward forcefully enough to tumble her over onto her back, legs splayed around her downward-curving, stinger-capped abdomen with you {coiled above/flowing around/standing astride} her supine form. You change position to press your [pc.cockBiggest] even more firmly against her, hard enough to push her arms back, dropping your penis right on top of her. The zil woman's body feels wonderful against you, even the way her cushy breasts press their nectar-leaking nipples against the underside. Just above her face, your [pc.cockHeadBiggest] swells up, drooling a trickle of pre-cum in excitement.
-A pleased-sounding gasp emanates from underneath you. <i>\"Leaking already? Then what if I do this!\"</i> She wraps her arms around your girthy tool, just below the [pc.cockHeadBiggest], and her chitinous legs near the [pc.sheathBiggest], the insectile plating sliding across you like oiled silk as she settles in, squeezing a bit tighter. In the process, she winds up pressing the whole of her breasts, torso, and waspy hips against your dick's bottom.
-You groan appreciatively and, shuddering powerfully, grab her by her {crossed ankles/shaft-split ankes}. Head flaring, you draw back, popping your sensitive tip through her arms and gliding through her thighs, drooling a layer of pre across her body as you go. Before the phallus-obsessed alien can react, you thrust forward, jamming your dick back through her arms, fucking the whole of her body with that long, powerful stroke. Her nipples gush rivers of honey from the friction, turning her body into a sticky mess of sex-juice and sweets, one you are all to happy to slide across, fucking it with firm, strong movements.
-You're treated to brief glimpses of the slick slut's visage in between your firm pushes. Every time, her face has a bit more more of lubricant painted across it, though her own honey is rapidly turning your sex-slime into a scintillating glaze. Her black lips part in an excited coo, and a tongue, long and flexible, slips out to flick across your leaking urethra, slurping down some of your pre-ejaculate whenever you hilt her and cleaning her face when you aren't - not that it does much good. Your piston-like motions smear a fresh coat over her every single time.
-She looks like she desperately wants to say something, but she's so busy with her tongue that it just never comes out. The way her eyes seem to unfocus with each slurp of cum doesn't exactly paint a picture of a person ready for conversation anyway. You hold on harder and pump through her legs even faster, grunting each time, sometimes even snarling at the sublime pleasure of using this girl's entire body as a masturbation sleeve. The zil moans and babbles something too muffled to understand, maybe <i>\"more,\"</i>  and you oblige her with even more dominant, aggressive strokes.
-Dragging her a little over the ground with each lewd hump, you struggle not to blow your load all over her face. It's so hard, as wet and hot and gorgeous as she is, smothered in your pre and completely devoted to serving your cock. Whatever she wanted before, she's forgotten it now. Her eyes flick up to your face, imploring you to cum all over her and give her the jizz-bath she deserves, before they unfocus once more, rolling partway back as she coos in pleasure, grinding her sodden box along your rapidly expanding urethral bulge. 
-Oh fuck, here it comes! You push forward and down as hard as you possibly can, butting your tip right up against the sodden slut's exquisitely blissed-out face just in time to to {roar/cry out} in passion. Your [pc.cockHeadBiggest] swells even bigger, and a droplet of [pc.cumColor] ecstasy appears on your slit, hanging there for an agonizingly exciting split-second. Then, you're launching a huge, thick rope of [pc.cum] across the alien's cheek, splattering above her eye, glazing her forehead, and oozing down the middle of her face to coat her sable libs in a [pc.cumColor] shine. She squeezes her legs tighter, locking you in place, but her body is anything but still. Her arms have separated to separately stroke and caress your length, squeezing its twitching bulk to make the next ejaculation even bigger than the first. Below, her hips are undulating in broken, arrhythmic shudders as gushing honey splatters your tool.
-//Cum less than 10ml
-Unfortunately, that's all you've got. Your [pc.cockBiggest] lurches, twists, and writhes, flexing as if it were launching gigantic ropes of jizm, but your {empty balls/empty ball/spent body} just can't manage to create another drop. The movements succeed in smearing your already shot load all over her face, not adding anything new but succeeding in making quite the mess anyway.
-<i>\"Mmm, just a taste to get me going?\</i>"  the alien coos as she collects it into her mouth. <i>\"Next time, give me more!\"</i>
-//Cum is less than 50
-The next shot is just as big as the first, and this time, either your aim has improved on your partner is trying to swallow it all. You don't feel an ounce of resistance as your [pc.cum] spews forth, washing straight into the zil's noisily gulping mouth. Her eyelids close as your rope trails off into droplets, satisfied with the sample she's swallowed, yet her tongue unspools, revealing a hollow nature as it seals itself around your twitching cumslit just in time to catch the last few pulses of distilled delight in its tubular embrace, passing it directly to her belly.
-<i>\"Mmm, not too bad, off-worlder,\"</i>  the alien coos as she wipes a trickle of [pc.cumColor] from the edge of her mouth. <i>\"Though from how big you are I was expecting to get drenched!\"</i>  She licks her lips. <i>\"I bet you probably just used it all on someone else already, huh?\"</i> There's a mischievous glint twinkling in her eye.
-//Cum is less than 500
-The next shot feels like its twice as big as the first, and this time, either your aim has improved or the dick-hungry whore is guiding you straight to the prize: her sucking, glazed mouth. You bathe her tongue in the slippery morass of your release, flooding her oral cavity to such a degree that her cheeks bulge and runnels of [pc.cumColor] leak from the corners of her mouth. Her throat noisily attempts to gulp down the heavy load, but you fill it as fast as she can swallow, not stopping until she's taken three large swallows.
-The wasp-like woman grabs your [pc.cockHeadBiggest] in both hands to steady it, unspooling her tongue to your quivering cumslit while gasping for air. A light, ticklish pressure seals around your organ's tiny slit, revealing the zil's tongue to be hollow just in time for your next release. You blast [pc.cum] straight into the tubular proboscis before she's completely ready, stretching the hollow, organic pipe to twice its original diameter as you completely fill it, pouring your need into her in a direct path to her stomach. A noisy gurgle comes from her belly, but she manages to take it all with a pleasure-dazed smile.
-<i>\"Mmm, nice and filling, big " + pc.mf("boy","girl") + "...\"</i>  she sighs as she separates from your dick, letting the last few drops spatter across her face. <i>\"No one has ever pinned me under their dick like that before. It was almost worth losing to you!\"</i>
-//Cum is more than 500
-The first shot was little more than a warm up. Your next is deluge of titanic proportions - an avalanche of [pc.cum] that bursts from your [pc.cockBiggest] like water from a firehose, instantly drenching the exotic beauty's hair and face in a thick layer of organic paint. Rivulets of it run down her skin, chitinous armor, and fluffy borders between. Her mouth gapes open in surprise and is instantly filled, stuffed with your delectable organic cargo to such an extent that her cheeks bulge and her lower lip becomes the edge of a spermy waterfall. Trying to swallow it all, she closes her now-[pc.cumColor] lips and does her best to work it all down, gulping noisily while your blast fades to a trickle.
-The zil tips her head back and opens her mouth, showing you that she's devoured it all just in time for the next ejaculation to tag her right between the eyes, splattering in sticky strands in another face-coating layer. Some puddles in the hollow of her neck, a tiny lake of liquid love growing ever deeper on your lover's surprised body. Her supine shape trembles through another orgasm of her own as she grinds against your meat, getting off one being smothered in cock and painted with its immense outflow. The geyser of wet warmth erupts against your underside, feeling like having the loveliest, warmest honey painted across your sensitive surface. You shudder as the next pulse readies itself.
-There's no warning, and certainly no way the alien can prepare herself. She's too busy lying there, writhing in the mud, cumming her brains out to the feeling of being completely owned by your [pc.cockBiggest], marked and stained with the proof of your superior virility. She mewls as another layer of [pc.cum] covers her, running her hands through it to gather it. With hands full, she presses your [pc.cumColor] relief down to the fluttering hole betwixt her thighs, stuffing it inside like precious gems into an empty vault. She shovels as much as she can in while you rain it down upon her, not stopping until there's a frothy mess oozing out of her hole and the bulk of her body is smeared with it.
-//Huge cum addendum
-That's just the start of it, you shoot and shoot and shoot until the ground beneath your prize is a fragrant, sexual mud. Your [pc.cum] is rolling off her in slow-flowing waterfalls before puddling on the mix, leaving the zil-girl in a {small puddle/body-sized puddle/puddle deep enough for her to sink half-way into/puddle deep enough to hide everything but her face and the tops of her breasts/puddle deep enough to nearly drown her}.{ You keep going, eventually creating a small river of juices that drains through the jungle, flowing off towards who-knows where.}
-{Mark new PG}
-//Else
-The succussive shots take their toll, each one smaller than the one proceeding it but still easily capable of giving the zil-girl a thorough [pc.cumNoun]-treatment. {No new pg}
-Sputtering, swallowing, and moaning, the pretty little thing does her best to come down from her climactic bliss, rolling her hips languidly beneath your slow-shrinking staff as she clears her mouth and nose. Her voice is dazed and muted when she speaks, barely audible at first but growing in intensity with every word. <i>\"That was wonderful. I've never... never had a male take me so. You are, without a doubt, the most wonderfully virile creature I've ever met. Perhaps I'll have a queen from this.\"</i>  She wipes the cum from her eyes. <i>\"Maybe I'll even manage to to beat you next time. I could do so much to this cock if I had you at my mercy...\"</i>
-//Omni-end
-You reluctantly separate yourself from your prize and prepare yourself to resume your journeys. She just lays there a while, breathing heavy with her eyes drifting closed toward a much-needed nap.*/
+function smotherDatBeeSlutInDickYo():void {
+	clearOutput();
+	if(pc.armor.shortName != "" && pc.lowerUndergarment.shortName != "") output("You slip out of your [pc.armor] just in time to see your [pc.lowerUndergarment] tenting dangerously around your [pc.cockBiggest]. It takes a few moments of struggling to get the rest of your clothing off, but when you feel yourself flop free, a shudder of relief travels up your spine.");	
+	else if(pc.armor.shortName != "") output("You slip out of your [pc.armor] as quickly as possible, lest your [pc.cockBiggest] tear it off for you, or worse, get stuck inside.");
+	
+	else {
+		output("You wriggle to drop the pieces of gear you carry on your ");
+		if(pc.upperUndergarment.shortName != "") output("mostly ");
+		output("nude body. You've got to admit, you're secretly glad you've been going around so unencumbered by things like clothes or armor.");
+	}
+	//No new PG
+	output(" Between this girl's pheromones and the sight of her presenting herself so readily, there was no way any kind of clothing could contain such a giant once it roused from slumber, and it is definitely awakening right now, lurching up inches higher with every pounding beat of your heart. It passes the halfway point, momentarily jutting out from your crotch at a 90 degree angle before your building lust carries it higher, seeming to fill it with molten hot need. Each twitch upward solidifies your desire to absolutely bury this wasp-bitch in cock. You wrap a hand around your twat-splitting member, stroking it languidly as it assumes its full, rigid size, and it twitches hard at the zil woman's open-mouthed disbelief.");
+	output("\n\n<i>\"Is that... is that real?\"</i>  she breathes, hesitantly extending a honey-glazed digit towards it, a web of amber ropes still connecting her fingers to her twat. She crawls closer, an awkward, shuffling gait made worse by the way her oversized tail sways behind her. Her hot breath falls on your sensitive tool. <i>\"None of the males have anything like this....\"</i>  The strands of honeyed girl-cum connecting her pussy to her palm finally come apart under the weight of her fresh, leaking moisture. <i>\"I-it's magnificent.\"</i>");
+	output("\n\nTaking a swaggering step forward, you let your [pc.cockBiggest] come to rest in the cradle of her slick fingers, pushing it just hard enough that she has to support some of the extensive weight. The flesh, even hard, is still spongy enough that she sinks partway into it as she tries to handle you, not even capable of grabbing half its circumference. Giggling in delight, the defeated wasp-girl rises onto her knees so that her other arm can help, rubbing slippery-smooth chitin-coverings up in down in fascinated, hypnotic strokes. She shivers, and you see a thick strand of honeycum hanging from her between her legs, growing thicker and heavier by the second.");
+	output("\n\nYou advance further, bearing the weight of your giant erection forward forcefully enough to tumble her over onto her back, legs splayed around her downward-curving, stinger-capped abdomen with you ");
+	if(pc.isNaga()) output("coiled above");
+	else if(pc.hasLegFlag(GLOBAL.AMORPHOUS)) output("flowing around");
+	else output("standing astride");
+	output(" her supine form. You change position to press your [pc.cockBiggest] even more firmly against her, hard enough to push her arms back, dropping your penis right on top of her. The zil woman's body feels wonderful against you, even the way her cushy breasts press their nectar-leaking nipples against the underside. Just above her face, your [pc.cockHeadBiggest] swells up, drooling a trickle of pre-cum in excitement.");
+	output("\n\nA pleased-sounding gasp emanates from underneath you. <i>\"Leaking already? Then what if I do this!\"</i>  She wraps her arms around your girthy tool, just below the [pc.cockHeadBiggest], and her chitinous legs near the [pc.sheathBiggest], the insectile plating sliding across you like oiled silk as she settles in, squeezing a bit tighter. In the process, she winds up pressing the whole of her breasts, torso, and waspy hips against your dick's bottom.");
+	output("\n\nYou groan appreciatively and, shuddering powerfully, grab her by her ");
+	if(pc.cocks[pc.biggestCockIndex()].cThickness <= 18) output("crossed ankles");
+	else output("shaft-split ankes");
+	output(". Head flaring, you draw back, popping your sensitive tip through her arms and gliding through her thighs, drooling a layer of pre across her body as you go. Before the phallus-obsessed alien can react, you thrust forward, jamming your dick back through her arms, fucking the whole of her body with that long, powerful stroke. Her nipples gush rivers of honey from the friction, turning her body into a sticky mess of sex-juice and sweets, one you are all to happy to slide across, fucking it with firm, strong movements.");
+	
+	output("\n\nYou're treated to brief glimpses of the slick slut's visage in between your firm pushes. Every time, her face has a bit more more of lubricant painted across it, though her own honey is rapidly turning your sex-slime into a scintillating glaze. Her black lips part in an excited coo, and a tongue, long and flexible, slips out to flick across your leaking urethra, slurping down some of your pre-ejaculate whenever you hilt her and cleaning her face when you aren't - not that it does much good. Your piston-like motions smear a fresh coat over her every single time.");
+	output("\n\nShe looks like she desperately wants to say something, but she's so busy with her tongue that it just never comes out. The way her eyes seem to unfocus with each slurp of cum doesn't exactly paint a picture of a person ready for conversation anyway. You hold on harder and pump through her legs even faster, grunting each time, sometimes even snarling at the sublime pleasure of using this girl's entire body as a masturbation sleeve. The zil moans and babbles something too muffled to understand, maybe <i>\"more,\"</i>  and you oblige her with even more dominant, aggressive strokes.");
+	output("\n\nDragging her a little over the ground with each lewd hump, you struggle not to blow your load all over her face. It's so hard, as wet and hot and gorgeous as she is, smothered in your pre and completely devoted to serving your cock. Whatever she wanted before, she's forgotten it now. Her eyes flick up to your face, imploring you to cum all over her and give her the jizz-bath she deserves, before they unfocus once more, rolling partway back as she coos in pleasure, grinding her sodden box along your rapidly expanding urethral bulge.");
+	output("\n\nOh fuck, here it comes! You push forward and down as hard as you possibly can, butting your tip right up against the sodden slut's exquisitely blissed-out face just in time to to " + pc.mf("roar","cry out") + " in passion. Your [pc.cockHeadBiggest] swells even bigger, and a droplet of [pc.cumColor] ecstasy appears on your slit, hanging there for an agonizingly exciting split-second. Then, you're launching a huge, thick rope of [pc.cum] across the alien's cheek, splattering above her eye, glazing her forehead, and oozing down the middle of her face to coat her sable libs in a [pc.cumColor] shine. She squeezes her legs tighter, locking you in place, but her body is anything but still. Her arms have separated to separately stroke and caress your length, squeezing its twitching bulk to make the next ejaculation even bigger than the first. Below, her hips are undulating in broken, arrhythmic shudders as gushing honey splatters your tool.");
+	//Cum less than 10ml
+	if(pc.cumQ() < 10) {
+		output("\n\nUnfortunately, that's all you've got. Your [pc.cockBiggest] lurches, twists, and writhes, flexing as if it were launching gigantic ropes of jizm, but your ");
+		if(pc.balls > 1) output("empty balls");
+		else if(pc.balls == 1) output("empty ball");
+		else output("spent body");
+		output(" just can't manage to create another drop. The movements succeed in smearing your already shot load all over her face, not adding anything new but succeeding in making quite the mess anyway.");
+		output("\n\n<i>\"Mmm, just a taste to get me going?\</i>\"  the alien coos as she collects it into her mouth. <i>\"Next time, give me more!\"</i>");
+	}
+	//Cum is less than 50
+	else if(pc.cumQ() <= 50) {
+		output("\n\nThe next shot is just as big as the first, and this time, either your aim has improved on your partner is trying to swallow it all. You don't feel an ounce of resistance as your [pc.cum] spews forth, washing straight into the zil's noisily gulping mouth. Her eyelids close as your rope trails off into droplets, satisfied with the sample she's swallowed, yet her tongue unspools, revealing a hollow nature as it seals itself around your twitching cumslit just in time to catch the last few pulses of distilled delight in its tubular embrace, passing it directly to her belly.");
+		output("\n\n<i>\"Mmm, not too bad, off-worlder,\"</i>  the alien coos as she wipes a trickle of [pc.cumColor] from the edge of her mouth. <i>\"Though from how big you are I was expecting to get drenched!\"</i>  She licks her lips. <i>\"I bet you probably just used it all on someone else already, huh?\"</i>  There's a mischievous glint twinkling in her eye.");
+	}
+	//Cum is less than 500
+	else if(pc.cumQ() <= 500) {
+		output("\n\nThe next shot feels like its twice as big as the first, and this time, either your aim has improved or the dick-hungry whore is guiding you straight to the prize: her sucking, glazed mouth. You bathe her tongue in the slippery morass of your release, flooding her oral cavity to such a degree that her cheeks bulge and runnels of [pc.cumColor] leak from the corners of her mouth. Her throat noisily attempts to gulp down the heavy load, but you fill it as fast as she can swallow, not stopping until she's taken three large swallows.");
+		output("\n\nThe wasp-like woman grabs your [pc.cockHeadBiggest] in both hands to steady it, unspooling her tongue to your quivering cumslit while gasping for air. A light, ticklish pressure seals around your organ's tiny slit, revealing the zil's tongue to be hollow just in time for your next release. You blast [pc.cum] straight into the tubular proboscis before she's completely ready, stretching the hollow, organic pipe to twice its original diameter as you completely fill it, pouring your need into her in a direct path to her stomach. A noisy gurgle comes from her belly, but she manages to take it all with a pleasure-dazed smile.");
+		output("\n\n<i>\"Mmm, nice and filling, big " + pc.mf("boy","girl") + "...\"</i>  she sighs as she separates from your dick, letting the last few drops spatter across her face. <i>\"No one has ever pinned me under their dick like that before. It was almost worth losing to you!\"</i>");
+	}
+	//Cum is more than 500
+	else {
+		output("\n\nThe first shot was little more than a warm up. Your next is deluge of titanic proportions - an avalanche of [pc.cum] that bursts from your [pc.cockBiggest] like water from a firehose, instantly drenching the exotic beauty's hair and face in a thick layer of organic paint. Rivulets of it run down her skin, chitinous armor, and fluffy borders between. Her mouth gapes open in surprise and is instantly filled, stuffed with your delectable organic cargo to such an extent that her cheeks bulge and her lower lip becomes the edge of a spermy waterfall. Trying to swallow it all, she closes her now-[pc.cumColor] lips and does her best to work it all down, gulping noisily while your blast fades to a trickle.");
+		output("\n\nThe zil tips her head back and opens her mouth, showing you that she's devoured it all just in time for the next ejaculation to tag her right between the eyes, splattering in sticky strands in another face-coating layer. Some puddles in the hollow of her neck, a tiny lake of liquid love growing ever deeper on your lover's surprised body. Her supine shape trembles through another orgasm of her own as she grinds against your meat, getting off one being smothered in cock and painted with its immense outflow. The geyser of wet warmth erupts against your underside, feeling like having the loveliest, warmest honey painted across your sensitive surface. You shudder as the next pulse readies itself.");
+		output("\n\nThere's no warning, and certainly no way the alien can prepare herself. She's too busy lying there, writhing in the mud, cumming her brains out to the feeling of being completely owned by your [pc.cockBiggest], marked and stained with the proof of your superior virility. She mewls as another layer of [pc.cum] covers her, running her hands through it to gather it. With hands full, she presses your [pc.cumColor] relief down to the fluttering hole betwixt her thighs, stuffing it inside like precious gems into an empty vault. She shovels as much as she can in while you rain it down upon her, not stopping until there's a frothy mess oozing out of her hole and the bulk of her body is smeared with it.");
+		//Huge cum addendum
+		if(pc.cumQ() >= 1500) {
+			output("\n\nThat's just the start of it, you shoot and shoot and shoot until the ground beneath your prize is a fragrant, sexual mud. Your [pc.cum] is rolling off her in slow-flowing waterfalls before puddling on the mix, leaving the zil-girl in a ");
+			if(pc.cumQ() <= 5000) output("small puddle");
+			else if(pc.cumQ() <= 10000) output("body-sized puddle");
+			else if(pc.cumQ() <= 20000) output("puddle deep enough for her to sink half-way into");
+			else if(pc.cumQ() <= 30000) output("puddle deep enough to hide everything but her face and the tops of her breasts");
+			else output("puddle deep enough to nearly drown her");
+			output(".");
+			if(pc.cumQ() >= 50000) output(" You keep going, eventually creating a small river of juices that drains through the jungle, flowing off towards who-knows where.");
+		}
+		//Else
+		else output("\n\nThe succussive shots take their toll, each one smaller than the one proceeding it but still easily capable of giving the zil-girl a thorough [pc.cumNoun]-treatment.");
+		output(" Sputtering, swallowing, and moaning, the pretty little thing does her best to come down from her climactic bliss, rolling her hips languidly beneath your slow-shrinking staff as she clears her mouth and nose. Her voice is dazed and muted when she speaks, barely audible at first but growing in intensity with every word. <i>\"That was wonderful. I've never... never had a male take me so. You are, without a doubt, the most wonderfully virile creature I've ever met. Perhaps I'll have a queen from this.\"</i>  She wipes the cum from her eyes. <i>\"Maybe I'll even manage to to beat you next time. I could do so much to this cock if I had you at my mercy...\"</i>");
+	}
+	//Omni-end
+	output("\n\nYou reluctantly separate yourself from your prize and prepare yourself to resume your journeys. She just lays there a while, breathing heavy with her eyes drifting closed toward a much-needed nap.");
+	processTime(20+rand(10));
+	pc.orgasm();
+	//9999
+}
