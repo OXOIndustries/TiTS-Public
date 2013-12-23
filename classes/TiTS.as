@@ -65,76 +65,76 @@
 		
 		
 
-		var characters:Array;
-		var foes:Array;
+		public var characters:Array;
+		public var foes:Array;
 			
-		var pc:Creature;
-		var celise:Creature;
-		var rival:Creature;
-		var geoff:Creature;
-		var flahne:Creature;
-		var zilpack:Creature;
-		var zil:Creature;
-		var penny:Creature;
-		var burt:Creature;
-		var zilFemale:Creature;
-		var cuntsnake:Creature;
+		public var pc:Creature;
+		public var celise:Creature;
+		public var rival:Creature;
+		public var geoff:Creature;
+		public var flahne:Creature;
+		public var zilpack:Creature;
+		public var zil:Creature;
+		public var penny:Creature;
+		public var burt:Creature;
+		public var zilFemale:Creature;
+		public var cuntsnake:Creature;
 
 		// These are all floating around in the TiTS namespace. Really
 		// they should be stored in an item Object() or something
 		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
 		// with some of their parameters overridden procedurally
-		var holdOutPistol:ItemSlotClass
-		var eagleClassHandgun:ItemSlotClass
-		var scopedPistol:ItemSlotClass
-		var laserPistol:ItemSlotClass
-		var knife:ItemSlotClass
-		var dressClothes:ItemSlotClass
-		var spacePanties:ItemSlotClass
-		var spaceBriefs:ItemSlotClass
-		var spaceBra:ItemSlotClass
-		var undershirt:ItemSlotClass
+		public var holdOutPistol:ItemSlotClass
+		public var eagleClassHandgun:ItemSlotClass
+		public var scopedPistol:ItemSlotClass
+		public var laserPistol:ItemSlotClass
+		public var knife:ItemSlotClass
+		public var dressClothes:ItemSlotClass
+		public var spacePanties:ItemSlotClass
+		public var spaceBriefs:ItemSlotClass
+		public var spaceBra:ItemSlotClass
+		public var undershirt:ItemSlotClass
 
-		var eventBuffer:String;
-		var eventQueue:Array;
+		public var eventBuffer:String;
+		public var eventQueue:Array;
 
-		var version:String;
+		public var version:String;
 
-		var rooms:Object;
+		public var rooms:Object;
 
-		var temp:int;
-		var items:Object;
+		public var temp:int;
+		public var items:Object;
 		//Toggles
-		var silly:Boolean;
-		var easy:Boolean;
-		var debug:Boolean;
+		public var silly:Boolean;
+		public var easy:Boolean;
+		public var debug:Boolean;
 
 
 		//Lazy man state checking
-		var saveHere:Boolean;
-		var currentLocation:String;
-		var shipLocation:String;
+		public var saveHere:Boolean;
+		public var currentLocation:String;
+		public var shipLocation:String;
 
 		//PERVINEER HERE!
-		var testBool:Boolean;
-		var testString:String;
-		var testInt:int;
+		public var testBool:Boolean;
+		public var testString:String;
+		public var testInt:int;
 		//Pervineer here!
-		var parser:classes.Parser.Main.Parser;
+		public var parser:classes.Parser.Main.Parser;
 
-		var userInterface:GUI;
+		public var userInterface:GUI;
 
-		var shopkeep:Creature;
-		var itemScreen:*;
-		var lootScreen:*;
-		var lootList:Array;
-		var useItemFunction;
-		var itemUser:Creature;
-		var itemTarget:Creature;
+		public var shopkeep:Creature;
+		public var itemScreen:*;
+		public var lootScreen:*;
+		public var lootList:Array;
+		public var useItemFunction;
+		public var itemUser:Creature;
+		public var itemTarget:Creature;
 
-		var flags:Dictionary;
+		public var flags:Dictionary;
 
-		var combatStage;
+		public var combatStage;
 		public function TiTS()
 		{
 

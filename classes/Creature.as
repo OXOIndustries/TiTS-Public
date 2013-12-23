@@ -281,7 +281,9 @@
 		}
 
 
-		public function getDescription(arg:String,arg2) {
+		public function getDescription(arg:String, arg2:*):String
+		{
+			trace("Legacy! Please access object members directly!")
 			var firstLetter:String = arg.substr(0,1);
 			firstLetter = firstLetter.toLowerCase();
 			var restOfString:String = arg.substr(1,arg.length);
@@ -548,7 +550,8 @@
 					buffer = bellyDescript();
 					break;
 				default:
-					buffer = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					// error production is now done up-stream in the parser
+					return null; // "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 					break;
 			}
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);

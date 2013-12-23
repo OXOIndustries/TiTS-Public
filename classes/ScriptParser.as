@@ -3,7 +3,7 @@
 	
 	import flash.utils.Dictionary;
 	
-	public class ScriptParser {
+	public class ScriptParserNOPE {
 		//static var FSVars:Dictionary = new Dictionary();
 		var sections:Dictionary;
 		var masterText:String;
@@ -18,7 +18,7 @@
 		var rawText:String;
 		var creator:Object;
 		
-		public function ScriptParser(creatorObj:Object) {
+		public function ScriptParserNOPE(creatorObj:Object) {
 			//trace("Script Test");
 			creator = creatorObj;
 			//trace(ParseScript(testscript1));
