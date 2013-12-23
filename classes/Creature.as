@@ -2153,6 +2153,29 @@
 			if(effective) return (cocks[cockNum].effectiveVolume());
 			else return (cocks[cockNum].volume());
 		}
+		public function cockTailVolume(effective:Boolean = true):Number {
+			return tailCockVolume(effective);
+		}
+		public function tailCockVolume(effective:Boolean = true):Number {
+			//Abstract size as a cylinder + half sphere for the tip.
+			var cylinder:Number = 3.142 * 1.5/2 * 1.5/2 * (8 - 1.5);
+			var tip:Number = (4/3 * 3.142 * 1.5/2 * 1.5/2 * 1.5/2)/2;
+			//If blunt, tip is converted to cylinder as well.
+			if(tailGenitalArg == GLOBAL.EQUINE) tip = (3.142 * 1.5/2 * 1.5/2 * 1.5);
+			//If flared, tip is multiplied by 1.3.
+			if(tailGenitalArg == GLOBAL.EQUINE) tip = tip * 1.3;
+			//If tapered, reduce total by a factor of 75%
+			if(tailGenitalArg == GLOBAL.CANINE) {
+				tip = tip * .75;
+				cylinder = cylinder * .75;
+			}
+			var temp:Number = Math.round((tip + cylinder) * 100) / 100;
+			if(effective) {
+				//if(GLOBAL.LUBRICATED) temp *= .75;
+				//if(hasFlag(GLOBAL.STICKY)) temp *= 1.25;
+			}
+			return Math.round(temp * 100) / 100;
+		}
 		public function biggestCockLength():Number {
 			if(cocks.length == 0) return 0;
 			return cocks[biggestCockIndex()].cLength;
@@ -2603,6 +2626,15 @@
 			}
 			return false;
 		}
+		public function hasFlatNipples():Boolean {
+			var counter:Number = breastRows.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(breastRows[counter].nippleType == GLOBAL.FLAT) return true;
+			}
+			return false;
+		}
 		public function hasBreasts():Boolean {
 			if(breastRows.length > 0) {
 				if(biggestTitSize() >= 1) return true;
@@ -2928,6 +2960,9 @@
 		public function hasTailCunt():Boolean {
 			if(tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;
 			return false;
+		}
+		public function tailVaginaCapacity():Number {
+			return tailCuntCapacity();
 		}
 		public function tailCuntCapacity():Number {
 			if(!hasTailCunt()) return 0;
