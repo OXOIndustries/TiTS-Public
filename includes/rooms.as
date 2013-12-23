@@ -402,6 +402,34 @@ function initializeRooms():void
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
+	
+	// And this is why I want to kinda write a debugging area for game features :P
+	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
+	
+/*	rooms["DEBUG1"] = new RoomClass(this);
+	rooms["DEBUG1"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG1"].description = "";
+	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
+	rooms["DEBUG1"].southExit = "DEBUG2";
+	rooms["DEBUG1"].westExit = "DEBUG3";
+	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["DEBUG2"] = new RoomClass(this);
+	rooms["DEBUG2"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG2"].description = "";
+	rooms["DEBUG2"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG2"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG2"].eastExit = "WEST ESBETH 2";
+	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
+	
+	rooms["DEBUG3"] = new RoomClass(this);
+	rooms["DEBUG3"].roomName = "BLACK HOLE OF DEBUG";
+	rooms["DEBUG3"].description = "";
+	rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
+	rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
+	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);*/
 }
 
 

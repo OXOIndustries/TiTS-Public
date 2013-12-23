@@ -38,7 +38,7 @@ package classes.UIComponents
 				
 				if (_rotated == true && MiniMap.LINK_ROTATE[i] == true)
 				{
-					_linkIcons[i].rotation = 90;
+					_linkIcons[i].rotation = -90;
 				}
 				
 				this.addChild(_linkIcons[i]);
@@ -46,15 +46,14 @@ package classes.UIComponents
 				
 				if (_rotated == true && MiniMap.LINK_ROTATE[i] == true)
 				{
-					_linkIcons[i].x += _linkIcons[i].width / 2;
+					_linkIcons[i].x -= _linkIcons[i].width / 2;
+					_linkIcons[i].y += _linkIcons[i].height / 2;	
 				}
 				else
 				{
 					_linkIcons[i].x -= _linkIcons[i].width / 2;
+					_linkIcons[i].y -= _linkIcons[i].height / 2;
 				}
-				
-				_linkIcons[i].y -= _linkIcons[i].height / 2;
-				
 			}
 		}
 		
