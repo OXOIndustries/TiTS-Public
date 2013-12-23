@@ -1,5 +1,6 @@
 package classes.UIComponents 
 {
+	import flash.display.ColorCorrectionSupport;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -33,8 +34,22 @@ package classes.UIComponents
 		public static const ICON_BAR = 8;
 		public static const ICONS_MAX = 9;
 		
-		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically...
+		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically... but the code I found to do it looks a) awful b) is russian... maybe later? maybe.
+		// Basically, this is the list of linkage class names for the icons symbols in the FLA's library, which we're going to use to build icons in the correct order -- you might notice that they're in the same order as the integer flags up ^ there... the integer flags are used as array indexes to find the proper classname.
 		public static const ICON_NAMES:Array = new Array("map_ship", "map_quest", "map_objective", "map_npc", "map_medical", "map_down", "map_up", "map_commerce", "map_bar");
+		
+		
+		/* Each room only deals with the links it has to neighbours in the East + South direction (Right + Down)
+		 * Ergo, we need to work out which directionality a one way link is; target to neighbour or vice versa, hence the 2 flags for directionality.
+		 */
+		public static const LINK_PASSAGE = 0; // 2 way connection
+		public static const LINK_TARGET2NEIGHBOUR = 1; // 1 Way connection from current room to other
+		public static const LINK_NEIGHBOUR2TARGET = 2; // 1 Way connection from other to current room
+		public static const LINK_LOCKED = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
+		public static const LINKS_MAX = 4;
+		
+		public static const LINK_NAMES:Array = new Array("map_passage", "map_oneway", "map_oneway_invert", "map_lock");
+		public static const LINK_ROTATE:Array = new Array(true, true, true, false);
 		
 		// Display & Child object settings
 		private var _childSizeX:int 	= 20; 	// Size in pixels of Map Tiles
@@ -103,10 +118,13 @@ package classes.UIComponents
 		private var _childContainer:Sprite;
 		private var _childMask:Sprite;
 		private var _childElements:Vector.<Vector.<MinimapRoom>>;
+		private var _childLinksX:Vector.<Vector.<MinimapLink>>;
+		private var _childLinksY:Vector.<Vector.<MinimapLink>>;
 		
 		// Some useful shared objects for later usage
 		private var _pcLocTransform:ColorTransform;
 		private var _genLocTransform:ColorTransform;
+		private var _debugLocTransform:ColorTransform;
 		
 		/**
 		 * Contructor
@@ -119,6 +137,9 @@ package classes.UIComponents
 			
 			_genLocTransform = new ColorTransform();
 			_genLocTransform.color = UIStyleSettings.gForegroundColour;
+			
+			_debugLocTransform = new ColorTransform();
+			_debugLocTransform.color = UIStyleSettings.gDebugPaneBackgroundColour;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -187,16 +208,6 @@ package classes.UIComponents
 			
 			// Now if we add things to childContainer that fall outside of the bounds of our background, they'll be partially/completely hidden
 			// Done it seperately so I can later support having a padding/margin around the edge of the background easily - shrink the mask, gain a border.
-			
-			// Adding a test-point for the exact centre of the container
-			//var mPoint = new Sprite();
-			//mPoint.name = "point";
-			//mPoint.graphics.beginFill(0x00FF00, 1);
-			//mPoint.graphics.drawRect( -3, -3, 6, 6);
-			//mPoint.graphics.endFill();
-			//mPoint.x = this.width / 2;
-			//mPoint.y = this.height / 2;
-			//this.addChild(mPoint);
 		}
 		
 		/**
@@ -268,16 +279,52 @@ package classes.UIComponents
 				}
 				childXPos += (childSizeX + childSpacing);
 			}
+			
+			// Build the associated Links container (linkages between rooms) -- These are going to be offset from the primary room display...
+			// The links are kept seperate from the main room display objects for math simplicity; positioning them within the same parent as the room makes
+			// it messier to calculate the proper centre positions and such (its still possible, its not even hard really), but it'll be the subject of later refactoring. Make it work, then make it nice to look at.
+			_childLinksX = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
+			_childLinksY = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
+			
+			// I could probably have bullshitted this off the main creation loop up ^ but it woulda been impossible for anybody but me to make sense of it tbh
+			for (var numX:int = 0; numX < (childNumX - 1); numX++)
+			{				
+				_childLinksX[numX] = new Vector.<MinimapLink>(childNumY - 1);
+				_childLinksY[numX] = new Vector.<MinimapLink>(childNumY - 1);
+				
+				for (var numY:int = 0; numY < (childNumY - 1); numY++)
+				{
+					// linkObjX are links along the X plane (horizontal)
+					var linkObjX = new MinimapLink(false);
+					
+					// linkObjY are links along the Y plane (vertical)
+					var linkObjY = new MinimapLink(true);
+					
+					_childLinksX[numX][numY] = linkObjX;
+					_childLinksY[numX][numY] = linkObjY;
+					_childContainer.addChild(linkObjX);
+					_childContainer.addChild(linkObjY);
+					
+					var roomXPos:int = _childElements[numX][numY].x;
+					var roomYPos:int = _childElements[numX][numY].y;
+					
+					linkObjX.x = roomXPos + (childSizeX + (childSpacing / 2));
+					linkObjX.y = roomYPos + (childSizeY / 2);
+					
+					linkObjY.x = roomXPos + (childSizeX / 2);
+					linkObjY.y = roomYPos + (childSizeY + (childSpacing / 2));
+				}
+			}
 		}
 		
 		private function BuildChildrenScaleNumber():void
 		{
-			
+			throw new Error("Not yet implemented");
 		}
 		
 		private function BuildChildrenScaleSize():void
 		{
-			
+			throw new Error("Not yet implemented");
 		}
 		
 		/**
@@ -290,6 +337,61 @@ package classes.UIComponents
 			trace("Dimensions (x,y):(" + this.width + "," + this.height + ")");
 			trace("Target Dimensions (x,y):(" + this.targetWidth + "," + this.targetHeight + ")");
 			trace("Parent Dimensions (x,y):(" + this.parent.width + "," + this.parent.height + ")");
+		}
+		
+		private function roomConnection(sourceRoom:int, targetRoom:int, posMask:int, negMask:int):int
+		{
+			// Early return -- source or target doesn't exist, fuck all to do (hide)
+			if (!(sourceRoom & Mapper.room_present_mask)) return -1;
+			if (!(targetRoom & Mapper.room_present_mask)) return -1;
+			
+			if (sourceRoom & posMask)
+			{
+				trace("Source links.")
+			}
+			else
+			{
+				trace("Source does not link");
+			}
+			
+			if (targetRoom & negMask)
+			{
+				trace("Target links.");
+			}
+			else
+			{
+				trace("Target does not link");
+			}
+			
+			// Passageway
+			if ((sourceRoom & posMask) && (targetRoom & negMask))
+			{
+				trace("Passage!");
+				return LINK_PASSAGE;
+			}
+			
+			// One way, source > target
+			if ((sourceRoom & posMask) && !(targetRoom & negMask))
+			{
+				trace("Oneway, Source to Target");
+				return LINK_TARGET2NEIGHBOUR;
+			}
+			
+			// One way, source < target
+			if (!(sourceRoom & posMask) && (targetRoom & negMask))
+			{
+				trace("Oneway, Target to Source");
+				return LINK_NEIGHBOUR2TARGET;
+			}
+			
+			// Should be a redundant check...
+			if (!(sourceRoom & posMask) && !(targetRoom & negMask))
+			{
+				trace("No connection");
+				return -1;
+			}
+			
+			throw new Error("Couldn't determine room linkage!");
 		}
 		
 		public function setMapData(map:Vector.<Vector.<Vector.<int>>>):void
@@ -305,6 +407,24 @@ package classes.UIComponents
 			// Player is always currently on z=3 of the map
 			var zPos:int = 3;
 			
+			// Room Linkages
+			for (var xPos:int = 0; xPos < 6; xPos++)
+			{
+				for (var yPos:int = 0; yPos < 6; yPos++)
+				{
+					var roomFlags:int = map[xPos][yPos][zPos];
+					var roomEast:int = map[xPos + 1][yPos][zPos];
+					var roomSouth:int = map[xPos][yPos + 1][zPos];
+					
+					// East room
+					_childLinksX[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
+					
+					// South room
+					_childLinksY[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
+				}
+			}
+			
+			// Primary room visibility
 			for (var xPos:int = 0; xPos < 7; xPos++)
 			{
 				for (var yPos:int = 0; yPos < 7; yPos++)
@@ -316,7 +436,7 @@ package classes.UIComponents
 					if (roomFlags & Mapper.room_present_mask)
 					{
 						tarSprite.visible = true;
-						tarSprite.setColour(_genLocTransform)
+						tarSprite.setColour(_genLocTransform);
 					}
 					else
 					{
@@ -372,10 +492,6 @@ package classes.UIComponents
 						tarSprite.setIcon(-1);
 					}
 					
-					
-					// Work out the connection stuff between two rooms
-					// Each room checks +x and -y in the map to work out connections
-					// Dunno if it would be faster/clearer to generate a "connection map" or to do it this way...
 				}
 			}
 		}

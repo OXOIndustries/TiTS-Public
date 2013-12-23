@@ -21,6 +21,8 @@ package classes.UIComponents
 		
 		public function MinimapRoom(sizeX:int, sizeY:int) 
 		{
+			// Size information is used to figure out the "parent rooms" size without having to do bullshit like:
+			// this.parent.getChildByName(somename).width etc, fuck that noise
 			_sizeX = sizeX;
 			_sizeY = sizeY;
 			_currIconId = -1;
@@ -37,7 +39,7 @@ package classes.UIComponents
 		private function Build():void
 		{
 			_roomIcon = new Sprite();
-			_roomIcon.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
+			_roomIcon.graphics.beginFill(/*UIStyleSettings.gForegroundColour*/ UIStyleSettings.gDebugPaneBackgroundColour, 1);
 			_roomIcon.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, 5);
 			_roomIcon.graphics.endFill();
 			this.addChild(_roomIcon);
@@ -50,9 +52,15 @@ package classes.UIComponents
 				_icons[i] = new classType();
 				_icons[i].name = String(MiniMap.ICON_NAMES[i]);
 				this.addChild(_icons[i]);
+				_icons[i].visible = false;
+			}
+			
+			// Redo the loop so we can get proper positioning values -- once all the objects are added, we'll have the proper max width/height to work with
+			// I think this might be a little bugged atm -- TODO
+			for (var i:int = 0; i < MiniMap.ICON_NAMES.length; i++)
+			{
 				_icons[i].x = (this.width - _icons[i].width) / 2;
 				_icons[i].y = (this.height - _icons[i].height) / 2;
-				_icons[i].visible = false;
 			}
 		}
 		
