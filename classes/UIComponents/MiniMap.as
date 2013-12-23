@@ -22,6 +22,20 @@ package classes.UIComponents
 		public static const SCALE_MODE_SIZE = 2;
 		private static const MAX_SCALE_MODES = 2;
 		
+		public static const ICON_SHIP = 0;
+		public static const ICON_QUEST = 1;
+		public static const ICON_OBJECTIVE = 2;
+		public static const ICON_NPC = 3;
+		public static const ICON_MEDICAL = 4;
+		public static const ICON_DOWN = 5;
+		public static const ICON_UP = 6;
+		public static const ICON_COMMERCE = 7;
+		public static const ICON_BAR = 8;
+		public static const ICONS_MAX = 9;
+		
+		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically...
+		public static const ICON_NAMES:Array = new Array("map_ship", "map_quest", "map_objective", "map_npc", "map_medical", "map_down", "map_up", "map_commerce", "map_bar");
+		
 		// Display & Child object settings
 		private var _childSizeX:int 	= 20; 	// Size in pixels of Map Tiles
 		private var _childSizeY:int 	= 20;	// Size in pixels of Map Tiles
@@ -88,7 +102,7 @@ package classes.UIComponents
 		private var _mapBackground:Sprite;
 		private var _childContainer:Sprite;
 		private var _childMask:Sprite;
-		private var _childElements:Vector.<Vector.<Sprite>>;
+		private var _childElements:Vector.<Vector.<MinimapRoom>>;
 		
 		// Some useful shared objects for later usage
 		private var _pcLocTransform:ColorTransform;
@@ -225,7 +239,7 @@ package classes.UIComponents
 			startYPos -= (childSpacing * ((childNumY - 1)/ 2));
 			
 			// Init the primary container
-			_childElements = new Vector.<Vector.<Sprite>>(childNumX);
+			_childElements = new Vector.<Vector.<MinimapRoom>>(childNumX);
 
 			var childXPos:int = startXPos;
 			
@@ -235,17 +249,14 @@ package classes.UIComponents
 				var childYPos:int = startYPos;
 				
 				// ... init the secondary container
-				_childElements[numX] = new Vector.<Sprite>(childNumY);
+				_childElements[numX] = new Vector.<MinimapRoom>(childNumY);
 				
 				// For all columns...
 				for (var numY:int = 0; numY < childNumY; numY++)
 				{
 					// ... Build the sprite
-					var childSprite = new Sprite();
+					var childSprite = new MinimapRoom(childSizeX, childSizeY);
 					childSprite.name = String(numX) + "." + String(numY);
-					childSprite.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
-					childSprite.graphics.drawRoundRect(0, 0, childSizeX, childSizeY, 5);
-					childSprite.graphics.endFill();
 					
 					_childElements[numX][numY] = childSprite;
 					_childContainer.addChild(childSprite)
@@ -254,10 +265,7 @@ package classes.UIComponents
 					childSprite.y = childYPos;
 					
 					childYPos += (childSizeY + childSpacing);
-					
-					//trace("Built child " + childSprite.name);
 				}
-				
 				childXPos += (childSizeX + childSpacing);
 			}
 		}
@@ -301,23 +309,73 @@ package classes.UIComponents
 			{
 				for (var yPos:int = 0; yPos < 7; yPos++)
 				{
-					var roomFlags:int = map[xPos][yPos][zPos];
-					var tarSprite:Sprite = _childElements[xPos][6 - yPos];
+					var roomFlags:int = map[xPos][yPos][zPos];					
+					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
 					
+					// Room visibility
 					if (roomFlags & Mapper.room_present_mask)
 					{
 						tarSprite.visible = true;
-						tarSprite.transform.colorTransform = _genLocTransform;
+						tarSprite.setColour(_genLocTransform)
 					}
 					else
 					{
 						tarSprite.visible = false;
 					}
 					
+					// Players current location
 					if (roomFlags & Mapper.current_locaton_mask)
 					{
-						tarSprite.transform.colorTransform = _pcLocTransform;
+						tarSprite.setColour(_pcLocTransform);
 					}
+					
+					// Specialised Map Icons
+					// For now, this is going to work basically off priority; we'll search all flags until we get one of them and ignore the remainder. I COULD possibly make it so we can display multiple icons per room, but the code will be... eeesh.
+					if (roomFlags & Mapper.z_pos_exit_mask)
+					{
+						tarSprite.setIcon(ICON_UP);
+					}
+					else if (roomFlags & Mapper.z_neg_exit_mask)
+					{
+						tarSprite.setIcon(ICON_DOWN);
+					}
+					else if (roomFlags & Mapper.room_ship_mask)
+					{
+						tarSprite.setIcon(ICON_SHIP);
+					}
+					else if (roomFlags & Mapper.room_npc_mask)
+					{
+						tarSprite.setIcon(ICON_NPC);
+					}
+					else if (roomFlags & Mapper.room_medical_mask)
+					{
+						tarSprite.setIcon(ICON_MEDICAL);
+					}
+					else if (roomFlags & Mapper.room_commerce_mask)
+					{
+						tarSprite.setIcon(ICON_COMMERCE);
+					}
+					else if (roomFlags & Mapper.room_bar_mask)
+					{
+						tarSprite.setIcon(ICON_BAR);
+					}
+					else if (roomFlags & Mapper.room_objective_mask)
+					{
+						tarSprite.setIcon(ICON_OBJECTIVE);
+					}
+					else if (roomFlags & Mapper.room_quest_mask)
+					{
+						tarSprite.setIcon(ICON_QUEST);
+					}
+					else
+					{
+						tarSprite.setIcon(-1);
+					}
+					
+					
+					// Work out the connection stuff between two rooms
+					// Each room checks +x and -y in the map to work out connections
+					// Dunno if it would be faster/clearer to generate a "connection map" or to do it this way...
 				}
 			}
 		}

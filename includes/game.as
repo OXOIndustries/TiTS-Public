@@ -161,8 +161,8 @@ function move(arg:String):void {
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
 	
-	trace("Printing map for " + currentLocation);
-	mapper.printMap(map);
+	//trace("Printing map for " + currentLocation);
+	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	mainGameMenu();
 }

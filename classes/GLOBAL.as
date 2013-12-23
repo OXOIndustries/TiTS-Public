@@ -124,7 +124,13 @@
 		public static const INDOOR:int                                 = 0;
 		public static const OUTDOOR:int                                = 1;
 		public static const BED:int                                    = 2;
-
+		public static const COMMERCE:int							   = 3;
+		public static const BAR:int									   = 4;
+		public static const NPC:int									   = 5;
+		public static const MEDICAL:int								   = 6;
+		public static const SHIPHANGAR:int							   = 7;
+		public static const QUEST:int								   = 8;
+		public static const OBJECTIVE:int						       = 9;
 
 
 		//PLOT FLAGS

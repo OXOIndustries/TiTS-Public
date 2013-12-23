@@ -133,10 +133,10 @@
 		public var flags:Dictionary;
 
 		public var combatStage;
+
 		// LE MAP
 		var mapper:Mapper;
-		
-		var combatStage;
+
 		public function TiTS()
 		{
 

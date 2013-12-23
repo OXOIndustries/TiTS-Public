@@ -49,6 +49,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
+	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 
 	//"MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
@@ -112,6 +113,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";
 	rooms["SHIP HANGAR"].outText = "Down";
 	rooms["SHIP HANGAR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SHIP HANGAR"].addFlag(GLOBAL.SHIPHANGAR);
 
 	//1 - Spaceport Elevator
 	rooms["SPACEPORT ELEVATOR"] = new RoomClass(this);
@@ -134,6 +136,7 @@ function initializeRooms():void
 	rooms["CUSTOMS OFFICE"].southExit = "ESBETH'S NORTH PATH";
 	rooms["CUSTOMS OFFICE"].runOnEnter = meetingFlahne;
 	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["CUSTOMS OFFICE"].addFlag(GLOBAL.NPC);
 
 	//3. Esbeth’s Northern Path
 	rooms["ESBETH'S NORTH PATH"] = new RoomClass(this);
@@ -291,6 +294,7 @@ function initializeRooms():void
 	rooms["BURT'S MAIN HALL"].northExit = "BURT'S BACK END";
 	rooms["BURT'S MAIN HALL"].runOnEnter = burtsBarFunc;
 	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.INDOOR);
+	rooms["BURT'S MAIN HALL"].addFlag(GLOBAL.BAR);
 
 	//"18". Burt’s Badass Whatever Part. II
 	rooms["BURT'S BACK END"] = new RoomClass(this);
@@ -386,6 +390,7 @@ function initializeRooms():void
 	rooms["SCRAPYARD MAINTENANCE"].system = "SYSTEM: ARA ARA";
 	rooms["SCRAPYARD MAINTENANCE"].northExit = "SOUTH ESBETH 1";
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.INDOOR);
+	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.COMMERCE);
 
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
@@ -396,6 +401,7 @@ function initializeRooms():void
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
 }
 
 
