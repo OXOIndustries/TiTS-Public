@@ -1,0 +1,6 @@
+[submodule "classes/Parser/Main"]
+	path = classes/Parser/Main
+	url = https://github.com/herp-a-derp/PornGameParser
+[submodule "showdown"]
+	path = showdown
+	url = git@github.com:herp-a-derp/Showdown.as.git

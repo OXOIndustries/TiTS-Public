@@ -20,38 +20,48 @@
 	}
 }
 
-function dataMenu():void {
+function dataMenu():void 
+{
+	var outStr:String = ""
 	//if(pc.hasStatusEffect("In Creation") || pc.short == "uncreated") saveHere = false;
 	clearOutput2();
-	output2("You can ");
-	if(saveHere) output2("<b>save</b> or ");
-	output2("<b>load</b> your data here.");
-	if(!saveHere) output2("\n\n<b>You must be at a safe place to save your game.</b>");
+	outStr += "You can ";
+	if(saveHere) outStr += "<b>save</b> or ";
+	outStr += "<b>load</b> your data here.";
+	if(!saveHere) outStr += "\n\n<b>You must be at a safe place to save your game.</b>";
 	this.userInterface.clearGhostMenu();
 	this.userInterface.addGhostButton(0,"Load",loadGameMenu);
+
+	output2(outStr);
+
 	if(saveHere) 
 		this.userInterface.addGhostButton(1,"Save",saveGameMenu);
 	this.userInterface.addGhostButton(14,"Back", dataRouter, this.userInterface.tempEvent);
 }
 
-function saveGameMenu():void {
+function saveGameMenu():void 
+{
 	clearOutput2();
-	output2("<b>Which slot would you like to save in?</b>\n");
+	var outStr:String = ""
+	outStr += "<b>Which slot would you like to save in?</b>\n";
 	this.userInterface.clearGhostMenu();
 	var z:int = 0;
 	for(var x:int = 1; x <= 14; x++) {
-		output2(loadSaveDisplay("TiTS_"+x,String(x)));
+		outStr += loadSaveDisplay("TiTS_"+x,String(x));
 		this.userInterface.addGhostButton((x-1-z),"Slot " + (x-z),saveGame,"TiTS_" + (x-z));
 		if(x == 15) {
 			z = 1;
 		}
 	}
+	output2(outStr);
 	this.userInterface.addGhostButton(14,"Back",dataMenu);
 }
 
-function loadGameMenu():void {
+function loadGameMenu():void 
+{
 	clearOutput2();
-	output2("<b>Which slot would you like to load?</b>\n");
+	var outStr:String = ""
+	outStr += "<b>Which slot would you like to load?</b>\n";
 	this.userInterface.clearGhostMenu();
 	var y:String = "";
 	var z:int = 0;
@@ -59,7 +69,7 @@ function loadGameMenu():void {
 	{
 		//trace("Looping: " + x);
 		y = loadSaveDisplay("TiTS_"+x, String(x));
-		output2(y);
+		outStr += y;
 		if	(y != (x-z) + ": <b>EMPTY</b>\n\n") 
 		{
 			this.userInterface.addGhostButton(x-1-z,"Slot " + (x-z),loadGame,"TiTS_" + (x-z));
@@ -68,10 +78,12 @@ function loadGameMenu():void {
 			}
 		}
 	}
+	output2(outStr);
 	this.userInterface.addGhostButton(14,"Back",dataMenu);
 }
 
-function loadSaveDisplay(slot:String, slotName:String):String {
+function loadSaveDisplay(slot:String, slotName:String):String 
+{
 	var holding:String = "";
 	//Initialize the save file
 	var saveFile = SharedObject.getLocal(slot,"/");;
@@ -85,7 +97,7 @@ function loadSaveDisplay(slot:String, slotName:String):String {
 		holding += ": <b>";
 		holding += saveFile.data.short;
 		holding += "</b> - <i>" + saveFile.data.notes + "</i>\n";
-		holding += "<b>Days:</b> " + saveFile.data.days + "  <b>Gender:</b> ";
+		holding += "	<b>Days:</b> " + saveFile.data.days + "  <b>Gender:</b> ";
 		holding += saveFile.data.characters[0].mfn("M","F","A");
 		holding += "  <b>Location:</b> " + saveFile.data.location;
 		holding += "\n";
@@ -94,7 +106,8 @@ function loadSaveDisplay(slot:String, slotName:String):String {
 	return slotName + ": <b>EMPTY</b>\n\n";
 }
 /*
-function copyDicks(donor:Creature,recipient:Creature):void {
+function copyDicks(donor:Creature,recipient:Creature):void 
+{
 	for(var x:int = 0; x < donor.cocks.length; x++) {
 		recipient.cocks[0] = new CockClass();
 		recipient.cocks[0] = clone(recipient
@@ -112,7 +125,8 @@ function cloneDict(original:Dictionary):Dictionary
 	return cloned;
 }
 
-function saveGame(slot:String):void {
+function saveGame(slot:String):void 
+{
 	//Initialize the save file
 	var saveFile;
 	saveFile = SharedObject.getLocal(slot,"/");
@@ -162,7 +176,8 @@ function saveGame(slot:String):void {
 	this.userInterface.clearGhostMenu();
 	this.userInterface.addGhostButton(14,"Back",dataMenu);
 }
-function loadGame(slot:String):void {
+function loadGame(slot:String):void 
+{
 	clearOutput2();
 	//Initialize the save file
 	var saveFile;
@@ -238,7 +253,8 @@ function postLoadToZeGame():void
 
 
 // This is SO MUCH the wrong approach to setting up this sort of thing I can't even express myself properly.
-function setupCharacters():void {
+function setupCharacters():void 
+{
 	for(var count:int = 0; count < 100; count++) {
 		characters[count] = new Creature();
 		//trace("Character #" + count + " initialized.");
@@ -260,7 +276,9 @@ function initializeFlags():void
 	*/
 }
 
-function setCheatPointers():void {
+// arrrrrgh whryyyyy
+function setCheatPointers():void 
+{
 	pc = characters[0];
 	celise = characters[GLOBAL.CELISE];
 	rival = characters[GLOBAL.RIVAL];
