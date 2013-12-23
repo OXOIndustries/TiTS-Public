@@ -123,6 +123,7 @@
 		private var npcStatSidebarItems:Array;
 		
 		private var miniMap:MiniMap;
+		private var displayMinimap:Boolean;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -1371,8 +1372,7 @@
 		
 		public function showMinimap():void
 		{
-			trace("Show Minimap");
-			this.miniMap.visible = true;
+			displayMinimap = true;
 			showHeader("LOCATION MAP");
 		}
 		
@@ -1387,7 +1387,7 @@
 		
 		public function hideMinimap():void
 		{
-			trace("Hide Minimap");
+			displayMinimap = false;
 			this.miniMap.visible = false;
 		}
 		
@@ -1445,6 +1445,7 @@
 		// Set the current map data
 		public function setMapData(data:*):void
 		{
+			this.miniMap.visible = true;
 			this.miniMap.setMapData(data);
 		}
 

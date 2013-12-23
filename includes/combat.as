@@ -549,7 +549,10 @@ function enemyAI(aggressor:Creature):void
 function victoryRouting():void 
 {
 	hideNPCStats();
-	showMinimap();
+	if (currentLocation != "")
+	{
+		showMinimap();
+	}
 	if(foes[0].short == "Celise") {
 		defeatCelise();
 	}
