@@ -5,7 +5,7 @@
 
 		// 
 		private const roomPrintWidth:int          = 3;
-		private var this._mapSz:int;
+		private var _mapSz:int;
 
 		// Yeah, I'm using bit-mapping into an int to store values
 		// because I can.
@@ -26,7 +26,7 @@
 			// I'm assuming we'll only ever have one rooms object. 
 			// eh, can always simple change roomsObj.
 			this.roomsObj = roomsObj;
-			this.this._mapSz = mapSz
+			this._mapSz = mapSz
 		}
 
 		private function allocateMapArray():Vector.<Vector.<Vector.<int>>>
