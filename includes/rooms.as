@@ -436,9 +436,13 @@ function initializeRooms():void
 function jungleEncounterChances():Boolean {
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
-	if(flags["JUNGLE_STEP"] >= 6 || debug) {
+	if(flags["JUNGLE_STEP"] >= 6) {
 		flags["JUNGLE_STEP"] = 0;
-		if(rand(4) == 0) {
+		if(debug) {
+			femzilEncounter();
+			return true;
+		}
+		else if(rand(4) == 0) {
 			maleZilEncounter();
 			return true;
 		}

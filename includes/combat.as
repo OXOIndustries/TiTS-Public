@@ -200,6 +200,7 @@ function playerRangedAttack(target:Creature):void
 }
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
+	if(foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
 	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
 	if (attacker.hasPerk("Multiple Attacks")) {
@@ -537,6 +538,9 @@ function enemyAI(aggressor:Creature):void
 		case "zil male":
 			zilMaleAI();
 			break;
+		case "female zil":
+			zilGirlAI();
+			break;
 		case "cunt snake":
 			cuntSnakeAI();
 			break;
@@ -559,6 +563,9 @@ function victoryRouting():void
 	else if(foes[0].short == "two zil") {
 		defeatZilPair();
 	}
+	else if(foes[0].short == "female zil") {
+		defeatHostileZil();
+	}
 	else if(foes[0].short == "zil male") {
 		winVsZil();
 	}
@@ -578,6 +585,9 @@ function defeatRouting():void
 	}
 	else if(foes[0].short == "zil male") {
 		zilLossRouter();
+	}
+	else if(foes[0].short == "female zil") {
+		girlZilLossRouter();
 	}
 	else if(foes[0].short == "cunt snake") {
 		loseToCuntSnake();
@@ -693,6 +703,11 @@ function startCombat(encounter:String):void
 			this.userInterface.showBust(GLOBAL.ZIL);
 			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeZil();
+			break;
+		case "female zil":
+			userInterface.showBust(GLOBAL.ZILFEMALE);
+			setLocation("FIGHT:\nFEMALE ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
+			foes[0] = clone(zilFemale);
 			break;
 		case "cunt snake":
 			this.userInterface.showBust(GLOBAL.CSNAKE);

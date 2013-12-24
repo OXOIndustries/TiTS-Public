@@ -717,6 +717,44 @@
 		public function libidoMax():Number {
 			return 100;
 		}
+		public function slowStatGain(stat:String, arg:Number = 0):Number {
+			var statCurrent:Number = 0;
+			var change:Number = 0;
+			if(stat == "physique") statCurrent = physique();
+			else if(stat == "reflexes") statCurrent = reflexes();
+			else if(stat == "aim") statCurrent = aim();
+			else if(stat == "intelligence") statCurrent = intelligence();
+			else if(stat == "willpower") statCurrent = willpower();
+			else if(stat == "libido") statCurrent = libido();
+			else {
+				trace("ERROR: slowStatGain called with stat argument of " + stat + ". This isn't a real stat!");
+				return 0;
+			}
+			while(arg > 0) {
+				arg--;
+				if(statCurrent + change < 30) change++;
+				else if(statCurrent + change < 40) change += .9;
+				else if(statCurrent + change < 50) change += .8;
+				else if(statCurrent + change < 60) change += .7;
+				else if(statCurrent + change < 65) change += .6;
+				else if(statCurrent + change < 70) change += .5;
+				else if(statCurrent + change < 75) change += .4;
+				else if(statCurrent + change < 80) change += .3;
+				else if(statCurrent + change < 85) change += .25;
+				else if(statCurrent + change < 90) change += .2;
+				else if(statCurrent + change < 95) change += .15;
+			}
+			if(stat == "physique") return physique(change);
+			else if(stat == "reflexes") return reflexes(change);
+			else if(stat == "aim") return aim(change);
+			else if(stat == "intelligence") return intelligence(change);
+			else if(stat == "willpower") return willpower(change);
+			else if(stat == "libido") return libido(change);
+			else {
+				trace("ERROR: slowStatGain got to the end with a stat that should've called the earlier error. Looks like the function has been changed, added to, or bugged. Make sure top stat list matches bottom!");
+				return 0;
+			}
+		}
 		//Item bonus stats!
 		public function attack(melee:Boolean = true):Number {
 			var temp:int = 0;

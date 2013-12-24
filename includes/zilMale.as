@@ -1,6 +1,7 @@
 ﻿//Male Zil Encounter
 
 function maleZilEncounter():void {
+	userInterface.showBust(GLOBAL.ZIL);
 	//[First Time]
 	if(flags["ENCOUNTERED_ZIL"] == undefined)
 	{

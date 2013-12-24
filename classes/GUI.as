@@ -1412,7 +1412,7 @@
 			//this.leftSideBar.sceneTitle.filters = [glow];
 			if(arg == 0) this.leftSideBar.npcBusts.visible = false;
 			else {
-				this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short;
+				this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short.toUpperCase()
 				this.leftSideBar.npcBusts.visible = true;
 				if(arg == GLOBAL.RIVAL)
 				{
