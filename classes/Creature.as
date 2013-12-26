@@ -290,7 +290,7 @@
 			var desc:String = firstLetter + restOfString;
 			//var desc = arg;
 			var buffer:String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
-			if(arg2 == "") arg2 = 0;
+			if(!arg2) arg2 = 0;
 			switch (desc) {
 				case "gear":
 					buffer = gearDescript();
@@ -6175,6 +6175,8 @@
 		public function cockHead(cockNum:Number = 0):String {
 			var temp:int;
 			var type:int;
+			if (cocks.length == 0)
+				return "ERROR. CockHead lookup with no cocks!";
 			if(cockNum < 0) type = GLOBAL.HUMAN;
 			else type = cocks[cockNum].cType;
 			if(cockNum > cocks.length-1) return "ERROR";

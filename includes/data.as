@@ -260,6 +260,7 @@ function postLoadToZeGame():void
 // This is SO MUCH the wrong approach to setting up this sort of thing I can't even express myself properly.
 function setupCharacters():void 
 {
+	trace("ARGHHHHHHH WWWHHHHYYYYYYYYYY");
 	for(var count:int = 0; count < 100; count++) {
 		characters[count] = new Creature();
 		//trace("Character #" + count + " initialized.");

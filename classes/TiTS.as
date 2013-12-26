@@ -60,6 +60,8 @@
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
 		include "../includes/cuntSnakes.as";
+
+		include "../includes/debug.as";
 	
 		//include "../includes/zilMale.as";
 		
@@ -197,23 +199,6 @@
 			parser = new Parser(this, TiTS_Settings);
 
 
-
-			//Lazy man shortcuts! Need reset after reinitialization of data.
-			//pc = characters[0];
-
-			// CHRIST WHY?
-			pc = characters[0];
-			celise = characters[GLOBAL.CELISE];
-			rival = characters[GLOBAL.RIVAL];
-			geoff = characters[GLOBAL.GEOFF];
-			flahne = characters[GLOBAL.CELISE];
-			zilpack = characters[GLOBAL.ZILPACK];
-			zil = characters[GLOBAL.ZIL];
-			penny = characters[GLOBAL.PENNY];
-			burt = characters[GLOBAL.BURT];
-			zilFemale = characters[GLOBAL.ZILFEMALE];
-			cuntsnake = characters[GLOBAL.CSNAKE];
-
 			flags = new Dictionary();
 			initializeFlags();
 
@@ -233,11 +218,29 @@
 
 			// set up the user interface: ------------------------------------------------------------
 			this.userInterface.clearMenu();
+			
 			//this.userInterface.addButton(0,"Horsecock",horsecock);
 			this.userInterface.addButton(14,"CLEAR!",clearOutput);
 			//this.userInterface.addButton(16,"2Horse4Me",horsecock);
 
 			setupInputEventHandlers()
+
+
+			//Lazy man shortcuts! Need reset after reinitialization of data.
+			//pc = characters[0];
+
+			// CHRIST WHY?
+			pc = characters[0];
+			celise = characters[GLOBAL.CELISE];
+			rival = characters[GLOBAL.RIVAL];
+			geoff = characters[GLOBAL.GEOFF];
+			flahne = characters[GLOBAL.CELISE];
+			zilpack = characters[GLOBAL.ZILPACK];
+			zil = characters[GLOBAL.ZIL];
+			penny = characters[GLOBAL.PENNY];
+			burt = characters[GLOBAL.BURT];
+			zilFemale = characters[GLOBAL.ZILFEMALE];
+			cuntsnake = characters[GLOBAL.CSNAKE];
 
 			
 			this.addFrameScript( 0, mainMenu );
@@ -598,6 +601,8 @@
 			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
 			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
 			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
+
+			this.userInterface.addButton(10,"Debug",debugPane);
 		}
 
 

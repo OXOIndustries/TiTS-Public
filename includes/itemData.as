@@ -1,6 +1,7 @@
 ﻿
 private function initializeItems():void
 {
+	// TODO: Convert indexes to sane strings from digit-strings
 	trace("Move this shit to a dictionary or object for proper storage");
 	items = new Object();
 
