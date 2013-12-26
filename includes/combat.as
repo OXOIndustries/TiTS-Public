@@ -13,7 +13,7 @@ function combatMainMenu():void
 	if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
 	else pc.addStatusValue("Round",1,1);
 	//Show what you're up against.
-	if(foes[0] == celise) this.userInterface.showBust(GLOBAL.CELISE);
+	if(foes[0] == celise) this.userInterface.showBust("CELISE");
 
 	for(var x:int = 0; x < foes.length; x++) {
 		if(x > 0) output("\n\n");
@@ -690,27 +690,27 @@ function startCombat(encounter:String):void
 	foes = new Array();
 	switch(encounter) {
 		case "celise":
-			this.userInterface.showBust(GLOBAL.CELISE);
+			this.userInterface.showBust("CELISE");
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = clone(characters[GLOBAL.CELISE]);
+			foes[0] = clone(characters["CELISE"]);
 			break;
 		case "zilpack":
-			this.userInterface.showBust(GLOBAL.ZILPACK);
+			this.userInterface.showBust("ZILPACK");
 			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = clone(zilpack);
 			break;
 		case "zil male":
-			this.userInterface.showBust(GLOBAL.ZIL);
+			this.userInterface.showBust("ZIL");
 			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeZil();
 			break;
 		case "female zil":
-			userInterface.showBust(GLOBAL.ZILFEMALE);
+			userInterface.showBust("ZILFEMALE");
 			setLocation("FIGHT:\nFEMALE ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = clone(zilFemale);
 			break;
 		case "cunt snake":
-			this.userInterface.showBust(GLOBAL.CSNAKE);
+			this.userInterface.showBust("CSNAKE");
 			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeCSnake();
 			break;

@@ -33,7 +33,7 @@ Reproduction: Since the snakes have only a single sex, they do not reproduce in 
 //The ones on the first jungle planet, [NOTHING HERE, FOLKS].
 //*Encounter a Cunt Snake
 function encounterCuntSnakeOnJungleLand():void {
-	userInterface.showBust(GLOBAL.CSNAKE);
+	userInterface.showBust("CSNAKE");
 	//[First Time]
 	if(flags["MET_CUNT_SNAKE"] == undefined)
 	{

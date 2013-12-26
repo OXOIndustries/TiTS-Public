@@ -8,9 +8,9 @@
 }
 function startCharacterCreation():void {
 	this.userInterface.hideMainMenu();
-	characters[0] = new Creature();
+	characters["PC"] = new Creature();
 	initializeNPCs();
-	pc = characters[0];
+	pc = characters["PC"];
 	pc.level = 1;
 	pc.shield = clone(items["12"]);
 	pc.shieldsRaw = pc.shieldsMax();
@@ -769,7 +769,7 @@ function tutorialIntro4():void {
 //The Introduction of Celise (Goo Girl)
 function openDoorToTutorialCombat():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.CELISE);
+	this.userInterface.showBust("CELISE");
 	setLocation("YOUR\nINHERITANCE","TAVROS STATION","SYSTEM: KALAS");
 	output("You step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
@@ -815,7 +815,7 @@ function celiseAI():void {
 function defeatCelise():void {
 	pc.removeStatusEffect("Round");
 	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-	this.userInterface.showBust(GLOBAL.CELISE);
+	this.userInterface.showBust("CELISE");
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -839,7 +839,7 @@ function ignoreCelise():void {
 function takeCelise():void {
 	pc.removeStatusEffect("Round");  // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.CELISE);
+	this.userInterface.showBust("CELISE");
 	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
@@ -911,7 +911,7 @@ function takeCelise():void {
 //Take Celise on As A Crew Member
 function takeCeliseAsACrewMember():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.CELISE);
+	this.userInterface.showBust("CELISE");
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
@@ -957,53 +957,53 @@ function getFoodAndDrink():void {
 //Rival Spills the Beans
 function rivalSpillsTheBeans(sex:int = 0) {
 	if(sex == 1) {
-		rival.short = "Jack";
-		rival.cockVirgin = false;
-		rival.vaginalVirgin = true;
-		rival.analVirgin = false;
-		rival.createCock();
-		rival.cocks[0].cLength = 12;
-		rival.cocks[0].cLength = 1.5;
-		rival.balls = 2;
-		rival.ballSize = 2;
-		rival.femininity = 25;
-		rival.hipRating -= 2;
-		rival.buttRating -= 2;
+		characters["RIVAL"].short = "Jack";
+		characters["RIVAL"].cockVirgin = false;
+		characters["RIVAL"].vaginalVirgin = true;
+		characters["RIVAL"].analVirgin = false;
+		characters["RIVAL"].createCock();
+		characters["RIVAL"].cocks[0].cLength = 12;
+		characters["RIVAL"].cocks[0].cLength = 1.5;
+		characters["RIVAL"].balls = 2;
+		characters["RIVAL"].ballSize = 2;
+		characters["RIVAL"].femininity = 25;
+		characters["RIVAL"].hipRating -= 2;
+		characters["RIVAL"].buttRating -= 2;
 		
 	}
 	else {
-		rival.short = "Jill";
-		rival.cockVirgin = true;
-		rival.vaginalVirgin = false;
-		rival.analVirgin = true;
-		rival.vaginas = new Array();
-		rival.createVagina();
-		rival.vaginas[0].hymen = true;
-		rival.vaginas[0].clits = 1;
-		rival.vaginas[0].wetness = 1;
-		rival.vaginas[0].looseness = 1;
-		rival.vaginas[0].bonusCapacity = 0;
-		rival.breastRows[0].breastRating = 4;
-		rival.femininity = 75;
-		rival.hipRating += 2;
-		rival.buttRating += 2;
+		characters["RIVAL"].short = "Jill";
+		characters["RIVAL"].cockVirgin = true;
+		characters["RIVAL"].vaginalVirgin = false;
+		characters["RIVAL"].analVirgin = true;
+		characters["RIVAL"].vaginas = new Array();
+		characters["RIVAL"].createVagina();
+		characters["RIVAL"].vaginas[0].hymen = true;
+		characters["RIVAL"].vaginas[0].clits = 1;
+		characters["RIVAL"].vaginas[0].wetness = 1;
+		characters["RIVAL"].vaginas[0].looseness = 1;
+		characters["RIVAL"].vaginas[0].bonusCapacity = 0;
+		characters["RIVAL"].breastRows[0].breastRating = 4;
+		characters["RIVAL"].femininity = 75;
+		characters["RIVAL"].hipRating += 2;
+		characters["RIVAL"].buttRating += 2;
 	}
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.RIVAL);
-	setLocation("MEETING\n" + rival.short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
-	output(rival.mf("He","She") + "’s " + rival.mf("male","female") + ", surely. Just as you make that conclusion, " + rival.mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + rival.mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
-	output("\n\nLuckily, the figure resolves into someone more familiar: " + rival.short + " Steele, obviously on station for the same reason as you. " + rival.short + " is your cousin, though in this case, familiarity breeds no affection. " + rival.mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
-	output("\n\n" + rival.short + " pulls you from your thoughts with a snide greeding, <i>“Greetings, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + rival.mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");
-	output("\n\n<i>“Hail, " + rival.short + ",”</i> ");
+	this.userInterface.showBust("RIVAL");
+	setLocation("MEETING\n" + characters["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
+	output(characters["RIVAL"].mf("He","She") + "’s " + characters["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + characters["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + characters["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
+	output("\n\nLuckily, the figure resolves into someone more familiar: " + characters["RIVAL"].short + " Steele, obviously on station for the same reason as you. " + characters["RIVAL"].short + " is your cousin, though in this case, familiarity breeds no affection. " + characters["RIVAL"].mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
+	output("\n\n" + characters["RIVAL"].short + " pulls you from your thoughts with a snide greeding, <i>“Greetings, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + characters["RIVAL"].mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");
+	output("\n\n<i>“Hail, " + characters["RIVAL"].short + ",”</i> ");
 	if(pc.isNice()) output("you say with as much friendliness as you can muster");
 	else if(pc.isMischievous()) output("you say with less humor than you usually bring to a conversation");
 	else output("you say with spite in your voice");
 	output(", <i>“What brings you to my table?”</i>");
-	output("\n\n" + rival.short + " smirks and takes a swig of " + rival.mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + rival.mf("He","She") + "  laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + rival.short + " produces a simple touch tablet from " + rival.mf("his","her") + " pocket and a tiny, chit-sized disk.");
-	output("\n\n<i>“This is a pretty standard handheld computer, but this,”</i> " + rival.mf("he","she") + " says holding the miniature device aloft, <i>“is a sophisticated tracking and eavesdropping device - just like the one in your pocket.”</i>");
+	output("\n\n" + characters["RIVAL"].short + " smirks and takes a swig of " + characters["RIVAL"].mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + characters["RIVAL"].mf("He","She") + "  laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + characters["RIVAL"].short + " produces a simple touch tablet from " + characters["RIVAL"].mf("his","her") + " pocket and a tiny, chit-sized disk.");
+	output("\n\n<i>“This is a pretty standard handheld computer, but this,”</i> " + characters["RIVAL"].mf("he","she") + " says holding the miniature device aloft, <i>“is a sophisticated tracking and eavesdropping device - just like the one in your pocket.”</i>");
 	output("\n\nNo.... You reach into your pocket and turn it out, catching an identical device when it falls into your hand. You immediately drop it on the floor and crush it under" + pc.foot() + ", but that merely earns a derisive snort from your unfriendly dinner companion.");
-	output("\n\n<i>“The data was already transmitted. I know everything, " + pc.short + ". Best of all, I’m part of the family, so your father’s precious gene-locked probes will handily divulge their secrets to me.</i> " + rival.short + " gives an ingratiating smile. <i>“My ship is already good to go, but I think I’d rather depart on a good night’s rest. Besides, why should I need to rush when your clunker is in pieces all over your hanger? Good luck, cuz”</i>");
-	output("\n\n" + rival.short + " swaggers off with " + rival.mf("his","her") + " drink and " + rival.mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
+	output("\n\n<i>“The data was already transmitted. I know everything, " + pc.short + ". Best of all, I’m part of the family, so your father’s precious gene-locked probes will handily divulge their secrets to me.</i> " + characters["RIVAL"].short + " gives an ingratiating smile. <i>“My ship is already good to go, but I think I’d rather depart on a good night’s rest. Besides, why should I need to rush when your clunker is in pieces all over your hanger? Good luck, cuz”</i>");
+	output("\n\n" + characters["RIVAL"].short + " swaggers off with " + characters["RIVAL"].mf("his","her") + " drink and " + characters["RIVAL"].mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
 	output("\n\nYou burp as fatigue sets in and make off to secure quarters for the evening. Tomorrow is going to be a big day, and you intend to hit the galactic rim hard.");
 	output("\n\nTomorrow, you join the Planet Rush.");
 	this.userInterface.clearMenu();
@@ -1012,10 +1012,10 @@ function rivalSpillsTheBeans(sex:int = 0) {
 //Wake to Find Rival Left in the Night
 function ohShitGameStarts():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.RIVAL);
+	this.userInterface.showBust("RIVAL");
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
 	setLocation("","TAVROS STATION","SYSTEM: KALAS");
-	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + rival.mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
+	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + characters["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely prattles.");
 	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
 	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");

@@ -22,7 +22,7 @@ function flahneDickOut():Boolean {
 
 //Meeting Her:
 function meetingFlahne():void {
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) trace("NO DICK OUT");
 	else if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) trace("DICK OUT");
@@ -76,7 +76,7 @@ function meetingFlahne():void {
 //Talk to Flahne
 function talkToFlahne():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("Flahne ");
 	if(flags["FLAHNE_SEXED"] > 0) {
 		output("seems a little saddened that you aren’t interested in debauchery at the moment, but she closes one of her buttons");
@@ -97,7 +97,7 @@ function talkToFlahne():void {
 //Her Race
 function talkToFlahneAboutHerRace():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	flags["TALKED_ABOUT_FLAHNES_RACE"] = 1;
 	output("Flahne perks up at that. She’s obviously pleased at the chance to talk about her people and launches straight into a little lecture. <i>“Well, it’s understandable that you’d be curious. As I said earlier, I’m a rahn. A lot of people call us gel-girls for, well... obvious reasons.”</i>  She pokes at her chest, sinking her finger a few inches into the fluffy boob without issue. When she pulls away, the divot slowly springs back into shape. <i>“Most of us don’t mind. I mean, I used to call humans ‘spinelings’ when I was young and sheltered. Boy, did that ever cause me trouble!”</i>  Flahne pops her sucker back in her mouth for a moment and takes a few long licks on it. <i>“Anyway, I know better now. As a matter of fact, I can recite the proper names of most galactic races from memory.”</i>  She beams at that.");
 	output("\n\nThe curvy secretary pulls the half-dissolved remains of her lollipop out and tosses it aside, unwrapping a fresh one as she gets back on track, <i>“We got discovered in the last planet rush. We were barely tribal back then I’m told, simple predators hunting the smaller beasts of our world.”</i>  Flahne makes a mock, scary face at you and growls, a sound that reminds you more of a bubbling brook than a fierce predator.");
@@ -139,7 +139,7 @@ function talkToFlahneAboutHerRace():void {
 //Ovipositor Out
 function pushDatOvipositorOut():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 1;
 	output("Flahne sighs rather comfortably after noticing that the room is empty and flips back her skirt to show you the big, chubby girl-boner she’s grown. <i>“Our ovipositors are my favorite part about us. I even grew mine to be extra big, so there’d be more to stroke. I guess all the sweets I eat have made it so that my cum and lubricants are as sweet as candy. That’s another good reason for making it big right there.”</i>  Flahne traces a finger across the top of it, sighing and shuddering from the pleasure with such enthusiasm that ripples run from her thick thighs all the way to her enormous tits. A dollop of whitish cream forms atop the wobbling prick’s peak, and she scoops it up on her finger, swallowing it before you can react. She smooths her skirt back into place a moment later, accompanied by a full-body orange blush.");
 	output("\n\n<i>“Not much more to tell, really. We grow up quick, so if I were to " + pc.rawmf("have you father some children","have you bear my children") + ", they’d be able to care for themselves in short order.”</i>  Flahne says with one last smile, <i>“I’m glad you take interest in me for more than just the sex. It's refreshing.”</i>");
@@ -151,7 +151,7 @@ function pushDatOvipositorOut():void {
 //Ovipositor In
 function ovipositorInFlahne():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 0;
 	output("Flahne nervously admits, <i>“Okay... I promise I won’t let it out around you. I wouldn’t want to make you uncomfortable about me, and most rahn can’t even bring them out unless they have eggs ready to lay. I’m still 100% girl!”</i>");
 	output("\n\nThe amber gel-woman jiggles her breasts to help change the topic. <i>“Let’s see, what else.... Oh, we grow up pretty quick, comparatively, so if you ever wanted kids, we aren’t much work to raise.”</i>  Flahne smiles happily. <i>“It’s nice to have someone get to know you instead of expecting you to immediately get naked, ya know?”</i>");
@@ -164,7 +164,7 @@ function ovipositorInFlahne():void {
 //Her Subrace
 function flahnesSubRace():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You mention that you’d like to know more about her subspecies in particular.");
 	output("\n\nFlahne lights up with delight as you broach that topic. <i>“Well, you know about the rahn, so I guess I could explain a bit about what it means to be a loo’rahn.”</i>  She smiles up at you and peels back one of the sleeves on her button-down shirt, exposing the honeyed flesh beneath. <i>“As you can see, I’m semi-transparent, like all rahn, but I’m yellowish in color. Rahn almost always produce the same color offspring, unless it is a pairing of two different colored rahn. Our colorization forms in response to our characteristics, with each color having different advantages.”</i>");
 	output("\n\nRolling her sleeve back down, Flahne continues, <i>“Loo’rahn tend to be less durable than the other types, but we make up for it in other ways. Our tongues are longer and more nimble. We can be even softer than our sisters, who are already far more plush than a human girl could ever be.”</i>  She gingerly pushes her hand into the heaving curve of her breast, slowly depressing it until she’s swallowed up to the wrist in boobflesh. <i>“An upside of this is that we can reshape our bodilies more easily than other rahn in order to assume new shapes or forms. It still takes a good while, but it can have its advantages.”</i>");
@@ -181,7 +181,7 @@ function flahnesSubRace():void {
 //Her Ovipositor
 function flahnesOvipositor():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You mention her ovipositor, ");
 	if(!flahneDickOut()) output("<b>currently hidden.</b>");
 	else output("<b>currently dangling free whenever the mood strikes her.</b>");
@@ -202,7 +202,7 @@ function flahnesOvipositor():void {
 //Keep Ovipositor In
 function keepDatOvipositorIn():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You ask Flahne if she’d mind keeping it in.");
 	output("\n\n<i>“Awww, what made you change your mind about it? It’s fun and tasty!”</i>  she protests.");
 	output("\n\nYou explain to her that if you fuck her, you’d like to do it without a sixteen inch tallywhacker prodding at your orifices, gesticulating none too subtly with your arms for emphasis.");
@@ -217,7 +217,7 @@ function keepDatOvipositorIn():void {
 //Don’t Watch Ovi Go Away
 function dontWatchOvipositorGoAway():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You inform Flahne that you have no desire to watch and step out of the room before she tends to it.");
 	output("\n\nFlahne harrumphs, rising from her desk and flouncing around to lock the other doors. She closes one behind you and settles back in at her desk, the wheels on her chair creaking noisily as she slides back. Lurid slurps combine with muffled ‘mmmm’s with such eagerness that you can put together a decent mental picture of just what’s going on in there, even if you don’t want to. A full ten minutes pass like this until an ecstatic, muffled moan interrupts the tempo. That drags on for almost a full minute, and then... silence.");
 	output("\n\n<i>“Come iiiiiin,”</i>  a satisfied-sounding Flahne calls. You walk back in and find her back behind her desk, snappily dressed with a fresh skirt and a smile. <i>“Let me know if you ever change your mind, cutie, and I’ll share some of my candy with you. She pops a sucker into her mouth with a sassy smile.");
@@ -231,7 +231,7 @@ function dontWatchOvipositorGoAway():void {
 //Watch Ovi Go Away
 function watchFlahne():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You smile and let Flahne know that you wouldn’t mind watching her suck one last load out of her ovipositor.");
 	output("\n\nShe winks and coos, <i>“I thought so,”</i>  as she fishes the big floppy shaft out of her skirt, turning the rumpled fabric back up against her torso, her strings of milky-white pre connecting the leaky tip to stained cloth. Flahne looks up at you with a nervous smile and asks, <i>“Are you sure? I’m gonna miss being able to play with this.”</i>");
 	output("\n\nSighing wistfully, you answer that you would prefer she keep it in around you for the foreseeable future.");
@@ -256,7 +256,7 @@ function watchFlahne():void {
 function popOviOut():void {
 	clearOutput();
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 1;
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You mention that you wouldn’t care if Flahne wanted to have her ovipositor out around you.");
 	output("\n\n<i>“Really?”</i>  the soft-as-sin secretary breathes, <i>“You mean it?”</i>");
 	output("\n\nYou nod, a little amused at her eagerness.");
@@ -273,7 +273,7 @@ function popOviOut():void {
 //About Ovipositor
 function aboutDatOvipositorOut():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You tell her that you actually wanted to hear about her ovipositor - how does it work?");
 	output("\n\nFlahne smiles cheekily and asks, <i>“A little curious, " + pc.mf("Mister","Miss") + " Steele?”</i>  She winks. ");
 	if(!flahneDickOut()) output("<i>“I can pull it out for you sometime, if you ever want to inspect it.”</i>");
@@ -296,7 +296,7 @@ function aboutDatOvipositorOut():void {
 //The Locals
 function theLocals():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("You ask her if she could tell you a little bit more about the locals.");
 	output("\n\nFlahne brushes a strand of floppy, gelatinous hair to the side and says, <i>“First off, there are the zil. They’re pretty much the only form of intelligent life out there worth talking to in my opinion. Unfortunately, they’re pretty tribal and in their culture, when they meet someone from another tribe out in the jungle, it’s traditional for them to fight for dominance and fuck. Male or female, they don’t really care. To them it isn’t really that bad of a thing, just a way to decide who’s on top. From what I’ve heard they both usually walk away smiling. The loser almost always gives up before they get hurt too bad.”</i>");
 	output("\n\n<i>“Why is that?”</i>  you ask curiously.");
@@ -390,7 +390,7 @@ function flahneSexMenu(display:Boolean = true):void {
 function bendFlahneOver():void {
 	clearOutput();
 	author("Savin");
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	var x:int = pc.cockThatFits(flahne.vaginalCapacity());
 	output("You slip your arms around the bubbly, affectionate rahn, letting your hands play across her gel-like skin, squeezing and caressing her many curves. Flahne coos as your fingers worship at the temple of her curvaceous body, groping a big handful of her ass under her skirt, drifting under her clothes, across her tremendous ass and thick thighs.");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output(" Her ovipositor leaps to attention, nearly striking you.");
@@ -490,7 +490,7 @@ function bendFlahneOver():void {
 function rahnSuppository():void {
 	clearOutput();
 	author("Savin");
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	
 	output("Pulling Flahne close, your hands dig in deep to her malleable amber flesh, cupping and kneading her big ass cheeks. As if on cue, the object of your desires peeks through your bodies: Flahne's huge, girthy ovipositor tents her skirt, pressing into your [pc.skin]. With a low, sensual growl, you grab the phallic member and giving it a languid stroke. <i>\"Oooh, careful sweet thing,\"</i>  the squishy secretary giggles, <i>\"you don't wanna start something you can't finish with my big... sensitive... oh-so-stretchy ovi-cock.\"</i>");
 	
@@ -699,7 +699,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 //Crawl under Flahne’s desk and service her while she deals with other folks.
 function flahneDeskMunchies():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
 	output("\n\n<i>“Getting a good look?”</i>  she teases. The buxom gel pushes her chest even farther, ");
 	if(!pc.isLactating()) {
@@ -954,7 +954,7 @@ function playAndSpray():void {
 //requires ovipositor OK’d, ovipositor out
 function fuckAndSuckWithFlahne():void {
 	clearOutput();
-	this.userInterface.showBust(GLOBAL.FLAHNE);
+	this.userInterface.showBust("FLAHNE");
 	author("Gardeford");
 	output("<i>“I know something fun,”</i>  you tease, sliding a finger down Flahne’s straining cleavage. <i>“But you should probably lock the doors unless you don’t mind more people joining in.”</i>");
 	

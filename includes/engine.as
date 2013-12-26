@@ -205,7 +205,7 @@ function rand(max:Number):Number
 {
 	return int(Math.random()*max);
 }
-function clone(source:Object):* {
+public function clone(source:Object):* {
 	var copier:ByteArray = new ByteArray();
 	copier.writeObject(source);
 	copier.position = 0;

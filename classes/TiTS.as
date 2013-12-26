@@ -27,6 +27,7 @@
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
+	import classes.Characters.*;
 
 	import classes.Parser.Main.Parser;
 
@@ -65,7 +66,7 @@
 	
 		//include "../includes/zilMale.as";
 		
-		public var characters:Array;
+		public var characters:Object;
 		public var foes:Array;
 			
 		public var pc:Creature;
@@ -166,8 +167,23 @@
 			registerClassAlias("roomClass",RoomClass);
 			registerClassAlias("StorageClass",StorageClass);
 
+			// NPCs!
 
-			characters = new Array();
+			registerClassAlias("Celise", Celise);
+			registerClassAlias("Flahne", Flahne);
+			registerClassAlias("Penny", Penny);
+			registerClassAlias("ZilFemale", ZilFemale);
+			registerClassAlias("ZilPack", ZilPack);
+			registerClassAlias("Burt", Burt);
+			registerClassAlias("CuntSnake", CuntSnake);
+			registerClassAlias("Geoff", Geoff);
+			registerClassAlias("Rival", Rival);
+			registerClassAlias("ZilMale", ZilMale);
+
+
+
+
+			characters = new Object();
 			foes = new Array();
 			
 			//What inventory screen is up?
@@ -209,9 +225,9 @@
 
 
 			// Major class variable setup: ------------------------------------------------------------
-			setupCharacters();
 			initializeRooms();
 			initializeItems();
+
 			
 			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)
@@ -229,19 +245,11 @@
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = characters[0];
 
-			// CHRIST WHY?
-			pc = characters[0];
-			celise = characters[GLOBAL.CELISE];
-			rival = characters[GLOBAL.RIVAL];
-			geoff = characters[GLOBAL.GEOFF];
-			flahne = characters[GLOBAL.CELISE];
-			zilpack = characters[GLOBAL.ZILPACK];
-			zil = characters[GLOBAL.ZIL];
-			penny = characters[GLOBAL.PENNY];
-			burt = characters[GLOBAL.BURT];
-			zilFemale = characters[GLOBAL.ZILFEMALE];
-			cuntsnake = characters[GLOBAL.CSNAKE];
+			this.characters["PC"] = new Creature()
+			this.pc = characters["PC"];
 
+
+			trace("Setting up the PC")
 			
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
@@ -275,7 +283,7 @@
 		
 		public function buttonClick(evt:MouseEvent):void {
 			if(!inCombat()) 
-				this.userInterface.showBust(0);
+				this.userInterface.showBust("hide");
 			if(evt.currentTarget.func == undefined) {
 				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
 				return;
@@ -453,7 +461,7 @@
 				return;
 			}
 			if(!inCombat()) 
-				this.userInterface.showBust(0);
+				this.userInterface.showBust("hide");
 			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
 			else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
 			updatePCStats();

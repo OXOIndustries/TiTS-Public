@@ -1407,24 +1407,38 @@
 			}
 		}	
 
-		function showBust(arg:int):void 
+
+		function showBust(arg:String):void 
 		{
 			//this.leftSideBar.sceneTitle.filters = [glow];
-			if(arg == 0) this.leftSideBar.npcBusts.visible = false;
-			else {
-				this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short.toUpperCase()
-				this.leftSideBar.npcBusts.visible = true;
-				if(arg == GLOBAL.RIVAL)
-				{
-					if(this.titsClassPtr.characters[arg].short == "Jill") 
-						this.leftSideBar.npcBusts.gotoAndStop(100);
-					else 
-						this.leftSideBar.npcBusts.gotoAndStop(arg);
-				}
-				else 
-					this.leftSideBar.npcBusts.gotoAndStop(arg);
-				
+			if(arg == "none") 
+			{
+				this.leftSideBar.npcBusts.visible = false;
+				return;
 			}
+
+			var bustIndex:int = 0;
+			if (GLOBAL.bustLookup[arg] == undefined)
+			{
+				trace("Attempted to display invalid bust!")
+				trace("Hiding bust display!")
+				this.leftSideBar.npcBusts.visible = false;
+				return;
+			}
+			bustIndex = GLOBAL.bustLookup[arg];
+
+			this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short.toUpperCase()
+			this.leftSideBar.npcBusts.visible = true;
+			if(arg == "RIVAL")
+			{
+				if(this.titsClassPtr.characters[arg].short == "Jill") 
+					this.leftSideBar.npcBusts.gotoAndStop(100);
+				else 
+					this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
+			}
+			else 
+				this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
+			
 		}
 
 		//2. DISPLAY STUFF

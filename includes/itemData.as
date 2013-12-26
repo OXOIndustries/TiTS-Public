@@ -5,6 +5,8 @@ private function initializeItems():void
 	trace("Move this shit to a dictionary or object for proper storage");
 	items = new Object();
 
+	GLOBAL.ITEMS = items;
+
 	//Hold-out Pistol:
 	//0
 	items["0"] = new ItemSlotClass();

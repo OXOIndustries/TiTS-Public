@@ -5,6 +5,8 @@
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
+
+	import flash.utils.ByteArray;
 	
 	import classes.GLOBAL;
 	
@@ -1068,14 +1070,14 @@
 			var output:String = "";
 			var temp;
 			//33% of the time, add an adjective.
-			if(forceAdjective || rand(3) == 0) {
+			if(forceAdjective || this.rand(3) == 0) {
 				if(hasSkinFlag(GLOBAL.SMOOTH)) output += "smooth";
 				else if(hasSkinFlag(GLOBAL.THICK)) output += "thick";
 				else if(hasSkinFlag(GLOBAL.STICKY)) output += "sticky";
 				else if(hasSkinFlag(GLOBAL.FLUFFY) && !skin && skinType == 1) output += "fluffy";
 			}
 			//25% of time, describe skin tone.
-			if(forceTone || rand(4) == 0) {
+			if(forceTone || this.rand(4) == 0) {
 				if(output != "") output += ", ";
 				if(skinType == GLOBAL.FUR && !skin) output += furColor;
 				else if(skinType == GLOBAL.SCALES && !skin) output += scaleColor;
@@ -1085,18 +1087,18 @@
 			if(output != "") output += " ";
 			//Set skin words.
 			if(skinType == 0 || skin) {
-				temp = rand(10);
+				temp = this.rand(10);
 				if(temp <= 8) output += "skin";
 				else output += "dermis";
 			}
 			else if(skinType == 1) {
-				temp = rand(10);
+				temp = this.rand(10);
 				if(temp <= 7) output += "fur";
 				else if(temp <= 8) output += "pelt";
 				else output += "coat";
 			}
 			else if(skinType == 2) {
-				temp = rand(10);
+				temp = this.rand(10);
 				if(temp <= 7) output += "scales";
 				else if(temp <= 8) output += "plates";
 				else output += "lamina";
@@ -1113,7 +1115,7 @@
 		public function face(forceAdjectives:Boolean = false):String {
 			var output:String = "";
 			//1 in 4 chance unless forcing adjectives
-			if(rand(4) == 0 || forceAdjectives) {
+			if(this.rand(4) == 0 || forceAdjectives) {
 				if(faceType == GLOBAL.FELINE) output += "feline";
 				if(faceType == GLOBAL.EQUINE) output += "long";
 				if(faceType == GLOBAL.BOVINE) output += "bovine";
@@ -1124,8 +1126,8 @@
 			if(output != "") output += " ";
 			
 			//Add Noun
-			if(hasFaceFlag(GLOBAL.MUZZLED) && rand(2) == 0) output += "muzzle";
-			else if(rand(2) == 0 && hasFaceFlag(GLOBAL.MUZZLED) && (faceType == GLOBAL.LIZAN || faceType == GLOBAL.DRACONIC)) 
+			if(hasFaceFlag(GLOBAL.MUZZLED) && this.rand(2) == 0) output += "muzzle";
+			else if(this.rand(2) == 0 && hasFaceFlag(GLOBAL.MUZZLED) && (faceType == GLOBAL.LIZAN || faceType == GLOBAL.DRACONIC)) 
 				output += "snout";
 			else output += "face";
 			
@@ -1156,7 +1158,7 @@
 			//EDGE CASSES
 			if(legType == GLOBAL.SNAKE) return "coils";
 			else if(legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
-				select = rand(5);
+				select = this.rand(5);
 				return "mounds of goo";
 			}
 			return leg(forceType,forceAdjective) + "s";
@@ -1171,7 +1173,7 @@
 			var adjectived:Boolean = false;
 			//SPECIAL CASES.
 			if(legType == GLOBAL.SNAKE) {
-				select = rand(10);
+				select = this.rand(10);
 				if(select <= 3) return "snake tail";
 				else if(select <= 5) return "flexible tail";
 				else if(select <= 7) return "coiled bottom half";
@@ -1187,8 +1189,8 @@
 			}	
 			//NORMAL CASES.
 			//Type 1/4 of the time.
-			if(rand(4) == 0 || forceType) {
-				select = rand(10);
+			if(this.rand(4) == 0 || forceType) {
+				select = this.rand(10);
 				if(legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
 					if(select <= 3) output += "equine";
 					else if(select <= 6) output += "horse-like";
@@ -1286,8 +1288,8 @@
 				}
 			}
 			//ADJECTIVE!
-			if (rand(3) == 0 || forceAdjective) {
-				if(legCount > 2 && rand(2) == 0) {
+			if (this.rand(3) == 0 || forceAdjective) {
+				if(legCount > 2 && this.rand(2) == 0) {
 					output += "numerous";
 				}
 				else if(hasLegFlag(GLOBAL.DIGITIGRADE)) {
@@ -1300,7 +1302,7 @@
 					output += "scaled";
 				}
 				else if(hasLegFlag(GLOBAL.FURRED)) {
-					select = rand(10);
+					select = this.rand(10);
 					if(select <= 3) output += "furry";
 					else if(select <= 6) output += "fuzzy";
 					else output += "fur-covered";
@@ -1318,8 +1320,8 @@
 			var output:String = "";
 			var select:int;
 			//Type! 1/5 times
-			if(rand(5) == 0) {
-				select = rand(10);
+			if(this.rand(5) == 0) {
+				select = this.rand(10);
 				if(legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
 					if(select <= 4) output += "equine";
 					else output += "horse-like";
@@ -1412,12 +1414,12 @@
 				}
 			}
 			//ADJECTIVE!
-			if (rand(3) == 0 || forceAdjective) {
+			if (this.rand(3) == 0 || forceAdjective) {
 				if(hasLegFlag(GLOBAL.SCALED)) {
 					output += "scaled";
 				}
 				else if(hasLegFlag(GLOBAL.FURRED)) {
-					select = rand(10);
+					select = this.rand(10);
 					if(select <= 3) output += "furry";
 					else if(select <= 6) output += "fuzzy";
 					else output += "fur-covered";
@@ -1435,9 +1437,9 @@
 			//Noun
 			if(output != "") output += " ";
 			if(hasLegFlag(GLOBAL.HOOVES)) output += "hooves";
-			else if(hasLegFlag(GLOBAL.PAWS) && rand(2) == 0) output += "paws";
+			else if(hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paws";
 			else if(hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "cilia";
-			else if(hasLegFlag(GLOBAL.HEELS) && rand(2) == 0) output += "high-heels";
+			else if(hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heels";
 			else output += "feet";
 			return output;
 		}
@@ -1448,9 +1450,9 @@
 			//Noun
 			if(output != "") output += " ";
 			if(hasLegFlag(GLOBAL.HOOVES)) output += "hoof";
-			else if(hasLegFlag(GLOBAL.PAWS) && rand(2) == 0) output += "paw";
+			else if(hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paw";
 			else if(hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "undercarriage";
-			else if(hasLegFlag(GLOBAL.HEELS) && rand(2) == 0) output += "high-heel";
+			else if(hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heel";
 			else output += "foot";
 			return output;
 		}
@@ -1459,9 +1461,9 @@
 			var output:String = "";
 			//Noun
 			if(hasLegFlag(GLOBAL.HOOVES)) output += "hoof-tips";
-			else if(hasLegFlag(GLOBAL.PAWS) && rand(2) == 0) output += "fuzzy toes";
+			else if(hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "fuzzy toes";
 			else if(hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "cilia";
-			else if(hasLegFlag(GLOBAL.HEELS) && rand(2) == 0) output += "toes";
+			else if(hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "toes";
 			else output += "toes";
 			return output;
 		}
@@ -2575,7 +2577,7 @@
 			if(index3 == -1) index3 = 0;
 			return index3;
 		}
-		private function rand(max:Number):Number
+		protected function rand(max:Number):Number
 		{
 			return int(Math.random()*max);
 		}
@@ -3070,7 +3072,7 @@
 					choices[choices.length] = x;
 			}
 			if(choices.length == 0) return 0;
-			else return choices[rand(choices.length)];
+			else return choices[this.rand(choices.length)];
 		}
 		//Change cock type
 		public function shiftCock(slot:int = 0,type:int = -1):void 
@@ -3246,12 +3248,12 @@
 		}
 		public function sackDescript(forceAdjectives:Boolean = false, adjectives:Boolean = true):String {
 			var desc:String = "";			
-			if((adjectives && rand(3) == 0) || forceAdjectives) {
+			if((adjectives && this.rand(3) == 0) || forceAdjectives) {
 				if(ballFullness <= 0) desc += "painfully empty ";
 				if(ballFullness <= 20) desc += "empty ";
 				else if(ballFullness >= 80) desc += "mostly full ";
 				else if(ballFullness >= 100) {
-					var temp:int = rand(5);
+					var temp:int = this.rand(5);
 					if(temp == 0) desc += "full ";
 					else if(temp == 1) desc += "sloshing ";
 					else if(temp == 2) desc += "stuffed ";
@@ -3260,7 +3262,7 @@
 				}
 			}
 			if(balls == 0) return "prostate";
-			temp = rand(2);
+			temp = this.rand(2);
 			if(temp == 0) desc += "scrotum";
 			if(temp == 1) desc += "sack";
 			return desc;
@@ -3302,35 +3304,35 @@
 			var descripted:int = 0;
 			var rando:Number = 0;
 			var desc:String = "";
-			if(hasStatusEffect("Uniball") < 0 && (rand(4) == 0 || forceCount) && !forceSingular) {
+			if(hasStatusEffect("Uniball") < 0 && (this.rand(4) == 0 || forceCount) && !forceSingular) {
 				if(balls == 1) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) desc += "single ";
 					if(rando == 1) desc += "solitary ";
 					if(rando == 2) desc += "lone ";
 					if(rando == 3) desc += "individual ";
 				}
 				if(balls == 2) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc += "pair of ";
 					if(rando == 1) desc += "two ";
 					if(rando == 2) desc += "two ";
 				}
 				if(balls == 3) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc += "three ";
 					if(rando == 1) desc += "triple ";
 					if(rando == 2) desc += "trio of ";
 				}
 				if(balls == 4) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc += "quartette of ";
 					if(rando == 1) desc += "four ";
 					if(rando == 2) desc += "four ";
 				}
 			}
 			//size!
-			if(ballSize > 1 && (rand(3) <= 1 || forceSize)) {
+			if(ballSize > 1 && (this.rand(3) <= 1 || forceSize)) {
 				if(descripted > 0) desc += ", ";
 				if(ballSize > 1 && ballSize < 2) desc += "large";
 				if(ballSize >= 2 && ballSize < 3) desc += "baseball-sized";
@@ -3345,9 +3347,9 @@
 				if(ballSize > 1) descripted++;
 			}
 			//Uniball
-			if(hasStatusEffect("Uniball") >= 0 && rand(3) == 0) {
+			if(hasStatusEffect("Uniball") >= 0 && this.rand(3) == 0) {
 				if(descripted > 0) desc += ", ";
-				rando == rand(4);
+				rando == this.rand(4);
 				if(rando == 0) desc += "tightly-compressed";
 				else if(rando == 1) desc += "snug";
 				else if(rando == 2) desc += "cute";
@@ -3356,26 +3358,26 @@
 				descripted++;
 			}
 			//Descriptive
-			if(ballFullness >= 100 && rand(3) == 0 && !forceSize) {
+			if(ballFullness >= 100 && this.rand(3) == 0 && !forceSize) {
 				if(descripted > 0) desc += ", ";
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc += "overflowing";
 				else if(rando == 1) desc += "swollen";
 				else desc += "practically sloshing";
 				descripted++;
 			}
-			else if(ballFullness >= 80 && rand(3) == 0 && !forceSize) {
+			else if(ballFullness >= 80 && this.rand(3) == 0 && !forceSize) {
 				if(descripted > 0) desc += ", ";
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc += "full";
 				else if(rando == 1) desc += "heavy";
 				else desc += "cum-engorged";
 				descripted++;
 			}
 			//lusty
-			else if(lust() > 90 && !descripted && rand(2) == 0 && !forceSize) {
+			else if(lust() > 90 && !descripted && this.rand(2) == 0 && !forceSize) {
 				if(descripted > 0) desc += ", ";
-				rando = rand(6);
+				rando = this.rand(6);
 				if(rando == 0) desc += "eager";
 				else if(rando == 1) desc += "trembling";
 				else if(rando == 2) desc += "needy";
@@ -3386,9 +3388,9 @@
 				descripted++;
 			}
 			if(descripted) desc += " ";
-			rando = rand(9);
+			rando = this.rand(9);
 			if(rando < 4) {
-				if(balls == 4 && rand(2) == 0) desc += "quad";
+				if(balls == 4 && this.rand(2) == 0) desc += "quad";
 				else desc += "ball";
 			}
 			if(rando >= 4 && rando < 6) desc += "testicle";
@@ -3406,59 +3408,59 @@
 			var rando:Number = 0;
 			var descripted:Number = 0;
 			//66% wetness description
-			if(rand(3) <= 1 && ass.wetness >= 2) {
+			if(this.rand(3) <= 1 && ass.wetness >= 2) {
 				if(ass.wetness == 2) {
-					if(rand(2) == 0) desc += "moist";
+					if(this.rand(2) == 0) desc += "moist";
 					else desc += "lubricated";
 				}					
 				else if(ass.wetness == 3) {
-					if(rand(2) == 0) desc += "slimy";
+					if(this.rand(2) == 0) desc += "slimy";
 					else desc += "slick";
 				}
 				else if(ass.wetness == 4) {
-					if(rand(2) == 0) desc += "lube-drooling";
+					if(this.rand(2) == 0) desc += "lube-drooling";
 					else desc += "soaked";
 				}
 				else if(ass.wetness == 5) {
-					if(rand(2) == 0) desc += "slime-drooling";
+					if(this.rand(2) == 0) desc += "slime-drooling";
 					else desc += "immaculately lubricated";
 				}
 				descripted++;
 			}
 			//25% tightness desc
-			if(rand(4) == 0 || (ass.looseness <= 1 && rand(4) <= 2)) {
+			if(this.rand(4) == 0 || (ass.looseness <= 1 && this.rand(4) <= 2)) {
 				if(descripted > 0) desc += ", ";
 				if(analVirgin && ass.hymen) {
-					if(rand(3) == 0) desc += "virgin";
-					else if(rand(2) == 0) desc += "unspoiled";
+					if(this.rand(3) == 0) desc += "virgin";
+					else if(this.rand(2) == 0) desc += "unspoiled";
 					else desc += "unclaimed";
 				}
 				else if(ass.looseness == 1) {
-					if(rand(2) == 0) desc += "tight";
+					if(this.rand(2) == 0) desc += "tight";
 					else desc += "narrow";
 				}
 				else if(ass.looseness == 2) {
-					if(rand(2) == 0) desc += "pliant";
+					if(this.rand(2) == 0) desc += "pliant";
 					else desc += "supple";
 				}
 				else if(ass.looseness == 3) {
-					if(rand(2) == 0) desc += "loose";
+					if(this.rand(2) == 0) desc += "loose";
 					else desc += "welcoming";
 				}
 				else if(ass.looseness == 4) {
-					if(rand(2) == 0) desc += "stretched";
+					if(this.rand(2) == 0) desc += "stretched";
 					else desc += "broad";
 				}
 				else if(ass.looseness == 5) {
-					if(rand(3) == 0) desc += "gaping";
-					else if(rand(2) == 0) desc += "wide-open";
+					if(this.rand(3) == 0) desc += "gaping";
+					else if(this.rand(2) == 0) desc += "wide-open";
 					else desc += "expansive";
 				}
 				descripted++;
 			}
 			if(descripted > 0) desc += " ";
 			//Butt descriptor
-			rando = rand(18);
+			rando = this.rand(18);
 			if(rando <= 2) desc += "ass";
 			else if(rando <= 5) desc += "anus";
 			else if(rando <= 7) desc += "pucker";
@@ -3479,67 +3481,67 @@
 			if(hipRating <= 1)
 			{
 				if(thickness > 70) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc = "tiny ";
 					else if(rando == 1) desc = "narrow ";
 					else if(rando == 2) desc = "boyish ";
 				}
 				//Normal
 				else if(thickness >= 30) {
-					if(rand(2) == 0) desc = "boyish ";
+					if(this.rand(2) == 0) desc = "boyish ";
 					else desc = "tiny ";
 				}
 				//Uberthin
 				else {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc = "tiny ";
 					else if(rando == 1) desc = "narrow ";
 					else if(rando == 2) desc = "boyish ";
 				}
 			}
 			else if(hipRating < 4) {
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc = "slender ";
 				if(rando == 1) desc = "narrow ";
 				if(rando == 2) desc = "thin ";
 				if(thickness < 30) {
-					if(rand(2) == 0) desc = "slightly-flared ";
+					if(this.rand(2) == 0) desc = "slightly-flared ";
 					else desc = "curved ";
 				}
 			}
 			else if(hipRating < 6) {
-				rando = rand(2);
+				rando = this.rand(2);
 				if(rando == 1) desc = "well-formed ";
 				if(rando == 2) desc = "pleasant ";
 				if(thickness < 30) {
-					if(rand(2) == 0) desc = "flared ";
+					if(this.rand(2) == 0) desc = "flared ";
 					else desc = "curvy ";
 				}
 			}
 			else if(hipRating < 10) {
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc = "ample ";
 				if(rando == 1) desc = "noticeable ";
 				if(rando == 2) desc = "girly ";		
 				if(thickness < 30) {
-					if(rand(2) == 0) desc = "flared ";
+					if(this.rand(2) == 0) desc = "flared ";
 					else desc = "waspish ";
 				}
 			}
 			else if(hipRating < 15) {
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc = "flared ";
 				if(rando == 1) desc = "curvy ";
 				if(rando == 2) desc = "wide ";		
 				if(thickness < 30) {
-					if(rand(2) == 0) desc = "flared ";
+					if(this.rand(2) == 0) desc = "flared ";
 					else desc = "waspish ";
 				}
 			}
 			else if(hipRating < 20) {
-				rando = rand(3);
+				rando = this.rand(3);
 				if(thickness < 40) {
-					if(rand(2) == 0) desc = "flared, ";
+					if(this.rand(2) == 0) desc = "flared, ";
 					else desc = "waspish, ";
 				}
 				if(rando == 0) desc += "fertile ";
@@ -3548,19 +3550,19 @@
 			}
 			else if(hipRating >= 20) {
 				if(thickness < 40) {
-					if(rand(2) == 0) desc = "flaring, ";
+					if(this.rand(2) == 0) desc = "flaring, ";
 					else desc = "incredibly waspish, ";
 				}
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) desc += "broodmother-sized ";
 				if(rando == 1) desc += "cow-like ";
 				if(rando == 2) desc += "inhumanly-wide ";
 			}
 			//Taurs
-			if(isTaur() && rand(3) == 0) desc += "flank";
+			if(isTaur() && this.rand(3) == 0) desc += "flank";
 			//Non taurs or taurs who didn't roll flanks
 			else {
-				rando = rand(2);
+				rando = this.rand(2);
 				if(rando == 0) desc += "hip";
 				if(rando == 1) desc += "thigh";
 			}
@@ -3577,17 +3579,17 @@
 			{
 				if(tone >= 60) desc += "incredibly tight, perky ";
 				else {
-					if(rand(2) == 0) desc = "tiny";
-					else if(rand(2) == 0) desc = "very small";
+					if(this.rand(2) == 0) desc = "tiny";
+					else if(this.rand(2) == 0) desc = "very small";
 					else desc = "dainty";
 					//Soft PC's buns!
-					if(tone <= 30 && rand(3) == 0) desc += " yet soft";
+					if(tone <= 30 && this.rand(3) == 0) desc += " yet soft";
 					desc += " ";
 				}
 			}
 			else if(buttRating < 4) {
 				if(tone >= 65) {
-					rando = rand(6);
+					rando = this.rand(6);
 					if(rando == 0) desc = "perky, muscular ";
 					else if(rando == 1) desc = "tight, toned ";
 					else if(rando == 2) desc = "firm ";
@@ -3597,7 +3599,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) desc = "tight ";
 					if(rando == 1) desc = "firm ";
 					if(rando == 2) desc = "compact ";
@@ -3605,7 +3607,7 @@
 				}
 				//FLABBAH
 				else  {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando == 0) desc = "small, heart-shaped ";
 					else if(rando == 1) desc = "soft, compact ";
 					else if(rando == 2) desc = "soft, heart-shaped ";
@@ -3618,7 +3620,7 @@
 			else if(buttRating < 6) {
 				//TOIGHT LIKE A TIGER
 				if(tone >= 65) {
-					rando = rand(6);
+					rando = this.rand(6);
 					if(rando == 0) desc = "nicely muscled ";
 					else if(rando == 1) desc = "nice, toned ";
 					else if(rando == 2) desc = "muscly ";
@@ -3628,13 +3630,13 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) desc = "nice ";
 					if(rando == 1) desc = "fair ";	
 				}
 				//FLABBAH
 				else  {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) desc = "nice, cushiony ";
 					else if(rando == 1) desc = "soft ";
 					else if(rando == 2) desc = "nicely-rounded, heart-shaped ";
@@ -3645,7 +3647,7 @@
 			else if(buttRating < 8) {
 				//TOIGHT LIKE A TIGER
 				if(tone >= 65) {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando == 0) desc = "full, toned ";
 					else if(rando == 1) return "muscly handful of ass";
 					else if(rando == 2) desc = "shapely, toned ";
@@ -3656,7 +3658,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) return "handful of ass";
 					if(rando == 1) desc = "full ";
 					if(rando == 2) desc = "shapely ";
@@ -3664,7 +3666,7 @@
 				}
 				//FLABBAH
 				else  {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) desc = "somewhat jiggly ";
 					else if(rando == 1) desc = "soft, hand-filling ";
 					else if(rando == 2) desc = "cushiony, full ";
@@ -3678,7 +3680,7 @@
 			else if(buttRating < 10) {
 				//TOIGHT LIKE A TIGER
 				if(tone >= 65) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) desc = "large, muscular ";
 					else if(rando == 1) desc = "substantial, toned ";
 					else if(rando == 2) desc = "big-but-tight ";
@@ -3690,14 +3692,14 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) desc = "squeezable ";
 					if(rando == 1) desc = "large ";
 					if(rando == 2) desc = "substantial ";
 				}
 				//FLABBAH
 				else  {
-					rando = rand(9);
+					rando = this.rand(9);
 					if(rando == 0) desc = "large, bouncy ";
 					else if(rando == 1) desc = "soft, eye-catching ";
 					else if(rando == 2) desc = "big, slappable ";
@@ -3712,7 +3714,7 @@
 			else if(buttRating < 13) {
 				//TOIGHT LIKE A TIGER
 				if(tone >= 65) {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando == 0) desc = "thick, muscular ";
 					else if(rando == 1) desc = "big, burly ";
 					else if(rando == 2) desc = "heavy, powerful ";
@@ -3723,7 +3725,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) desc = "jiggling ";
 					if(rando == 1) desc = "spacious ";
 					if(rando == 2) desc = "heavy ";				
@@ -3731,7 +3733,7 @@
 				}
 				//FLABBAH
 				else  {
-					rando = rand(9);
+					rando = this.rand(9);
 					if(rando == 0) desc = "super-soft, jiggling ";
 					else if(rando == 1) desc = "spacious, cushy ";
 					else if(rando == 2) desc = "plush, cloth-straining ";
@@ -3747,7 +3749,7 @@
 			else if(buttRating < 16) {
 				//TOIGHT LIKE A TIGER
 				if(tone >= 65) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) desc = "expansive, muscled ";
 					else if(rando == 1) desc = "voluminous, rippling ";
 					else if(rando == 2) desc = "generous, powerful ";
@@ -3759,7 +3761,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) desc = "expansive ";
 					if(rando == 1) desc = "generous ";
 					if(rando == 2) desc = "voluminous ";
@@ -3767,7 +3769,7 @@
 				}
 				//FLABBAH
 				else {
-					rando = rand(11);
+					rando = this.rand(11);
 					if(rando == 0) desc = "pillow-like ";
 					else if(rando == 1) desc = "generous, cushiony ";
 					else if(rando == 2) desc = "wide, plush ";
@@ -3783,7 +3785,7 @@
 			}
 			else if(buttRating < 20) {
 				if(tone >= 65) {
-					rando = rand(6);
+					rando = this.rand(6);
 					if(rando == 0) desc = "huge, toned ";
 					else if(rando == 1) desc = "vast, muscular ";
 					else if(rando == 2) desc = "vast, well-built ";
@@ -3793,7 +3795,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) desc = "huge ";
 					if(rando == 1) desc = "vast ";
 					if(rando == 2) desc = "giant ";
@@ -3802,7 +3804,7 @@
 				}
 				//FLABBAH
 				else {
-					rando = rand(11);
+					rando = this.rand(11);
 					if(rando == 0) desc = "vast, cushiony ";
 					else if(rando == 1) desc = "huge, plump ";
 					else if(rando == 2) desc = "expansive, jiggling ";
@@ -3818,7 +3820,7 @@
 			}
 			else {
 				if(tone >= 65) {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando == 0) desc = "ginormous, muscle-bound ";
 					else if(rando == 1) desc = "colossal yet toned ";
 					else if(rando == 2) desc = "strong, tremdously large ";
@@ -3829,7 +3831,7 @@
 				}
 				//Nondescript
 				else if(tone >= 30) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) desc = "ginormous ";
 					if(rando == 1) desc = "colossal ";
 					if(rando == 2) desc = "tremendous ";
@@ -3837,7 +3839,7 @@
 				}
 				//FLABBAH
 				else {
-					rando = rand(13);
+					rando = this.rand(13);
 					if(rando == 0) desc = "ginormous, jiggly ";
 					else if(rando == 1) desc = "plush, ginormous ";
 					else if(rando == 2) desc = "seam-destroying ";
@@ -3853,7 +3855,7 @@
 					else if(rando == 12) desc = "tremendous ";
 				}
 			}
-			rando = rand(21);
+			rando = this.rand(21);
 			if(rando <= 4) desc += "butt";
 			else if(rando <= 9) desc += "ass";
 			else if(rando <= 11) desc += "backside";
@@ -3883,10 +3885,10 @@
 			var description:String = "";
 			var rando:Number = 0;
 			//Size descriptors 25% chance
-			if(rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED) {
+			if(this.rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED) {
 				//TINAHHHH
 				if(breastRows[rowNum].nippleLength < .25) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) description += "tiny";
 					if(rando == 1) description += "itty-bitty";
 					if(rando == 2) description += "teeny-tiny";
@@ -3894,7 +3896,7 @@
 				}
 				//Prominant
 				else if(breastRows[rowNum].nippleLength < 1) {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) description += "prominent";
 					if(rando == 1) description += "pencil eraser-sized";
 					if(rando == 2) description += "eye-catching";
@@ -3903,7 +3905,7 @@
 				}
 				//Big 'uns
 				else if(breastRows[rowNum].nippleLength < 2) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) description += "forwards-jutting";
 					if(rando == 1) description += "over-sized";
 					if(rando == 2) description += "fleshy";
@@ -3911,7 +3913,7 @@
 				}
 				//'Uge
 				else if(breastRows[rowNum].nippleLength < 3.2) {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) description += "elongated";
 					if(rando == 1) description += "massive";
 					if(rando == 2) description += "awkward";
@@ -3920,7 +3922,7 @@
 				}
 				//Massive
 				else {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) description += "bulky";
 					if(rando == 1) description += "ponderous";
 					if(rando == 2) description += "thumb-sized";
@@ -3930,19 +3932,19 @@
 				descripted++;
 			}
 			//Milkiness/Arousal/Wetness Descriptors 33% of the time
-			if(rand(3) == 0 && descripted < 2) {
+			if(this.rand(3) == 0 && descripted < 2) {
 				//Fuckable chance first!
 				if(breastRows[rowNum].nippleType == GLOBAL.FUCKABLE) {
 					if(descripted > 0) description += ", ";
 					//Fuckable and lactating?
 					if(isLactating()) {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando <= 3) description += "lactating";
 						else description += "lactation-slicked";
 					}
 					//Just fuckable
 					else {
-						rando = rand(9);
+						rando = this.rand(9);
 						if(rando == 0) description += "wet";
 						if(rando == 1) description += "mutated";
 						if(rando == 2) description += "slimy";
@@ -3959,13 +3961,13 @@
 				else if(breastRows[rowNum].nippleType == GLOBAL.LIPPLES) {
 					if(descripted > 0) description += ", ";
 					if(isLactating()) {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando <= 3) description += "drooling";
 						else description += "lactation-slicked";
 					}
 					//Just fuckable
 					else {
-						rando = rand(4);
+						rando = this.rand(4);
 						if(rando == 0) description += "puffy";
 						if(rando == 1) description += "pouty";
 						if(rando == 2) description += "parted";
@@ -3976,7 +3978,7 @@
 				//Dicknipples
 				else if(breastRows[rowNum].nippleType == GLOBAL.DICK) {
 					if(descripted > 0) description += ", ";
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) description += "cock-concealing";
 					else if(rando == 1) description += "dick-hiding";
 					else if(rando == 2) description += "shaft-shrouding";
@@ -3985,7 +3987,7 @@
 				//Flat
 				else if(breastRows[rowNum].nippleType == GLOBAL.FLAT) {
 					if(descripted > 0) description += ", ";
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) description += "tipless";
 					else if(rando == 1) description += "flat";
 					else if(rando == 2) description += "puffy";
@@ -4003,20 +4005,20 @@
 					if(descripted > 0) description += ", ";
 					//Light lactation
 					if(milkRate < 1) {
-						rando = rand(2);
+						rando = this.rand(2);
 						if(rando == 0) description += "moistened";
 						if(rando == 1) description += "slightly lactating";
 					}
 					//Moderate lactation
 					else if(milkRate <= 2) {
-						rando = rand(3);
+						rando = this.rand(3);
 						if(rando == 0) description += "lactating";
 						if(rando == 1) description += "milky";
 						if(rando == 2) description += "milk-seeping";
 					}
 					//Heavy lactation
 					else {
-						rando = rand(4);
+						rando = this.rand(4);
 						if(rando == 0) description += "dripping";
 						if(rando == 1) description += "dribbling";
 						if(rando == 2) description += "milk-leaking";
@@ -4026,10 +4028,10 @@
 				}
 			}
 			//Possible arousal descriptors
-			else if(rand(3) == 0 && descripted < 2 && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED && breastRows[rowNum].nippleType != GLOBAL.LIPPLES && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE) {
+			else if(this.rand(3) == 0 && descripted < 2 && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED && breastRows[rowNum].nippleType != GLOBAL.LIPPLES && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE) {
 				if(lust() > 50 && lust() < 75) {
 					if(descripted > 0) description += ", ";
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) description += "erect";
 					if(rando == 1) description += "perky";
 					if(rando == 2) description += "erect";
@@ -4039,7 +4041,7 @@
 				}
 				if(lust() >= 75) {
 					if(descripted > 0) description += ", ";
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) description += "throbbing";
 					if(rando == 1) description += "trembling";
 					if(rando == 2) description += "needy";
@@ -4047,7 +4049,7 @@
 					descripted++;
 				}
 			}
-			if(descripted && rand(2) == 0 && nipplesPierced > 0 && rowNum == 0) {
+			if(descripted && this.rand(2) == 0 && nipplesPierced > 0 && rowNum == 0) {
 				if(descripted > 0) description += ", ";
 				if(nipplesPierced == 5) description += "chained ";
 				else description += "pierced ";
@@ -4055,20 +4057,20 @@
 			}
 			if(!descripted && skinType == 3) {
 				if(descripted > 0) description += ", ";
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) description += "slime-slick ";
 				if(rando == 1) description += "goopy ";
 				if(rando == 2) description += "slippery ";
 			}
 			/*if(!descripted && hasStatusEffect("Black Nipples") >= 0) {
-				rando = rand(3);
+				rando = this.rand(3);
 				if(rando == 0) description += "black ";
 				else if(rando == 1) description += "ebony ";
 				else description += "sable ";
 			}*/
 			//Nounsssssssss*BOOM*
 			if(breastRows[rowNum].nippleType == GLOBAL.FUCKABLE) {
-				rando = rand(5);
+				rando = this.rand(5);
 				if(descripted > 0) description += ", ";
 				if(rando == 0) description += "penetrable nipple";
 				else if(rando == 1) description += "fuckable nip";
@@ -4077,7 +4079,7 @@
 				else if(rando == 4) description += "stretchy nipple-cunt";
 			}
 			else if(breastRows[rowNum].nippleType == GLOBAL.LIPPLES) {
-				rando = rand(5);
+				rando = this.rand(5);
 				if(descripted > 0) {
 					if(rando > 2) description += ", ";
 					else description += " ";
@@ -4089,7 +4091,7 @@
 			}
 			//Normals
 			else {
-				rando = rand(5);
+				rando = this.rand(5);
 				if(descripted > 0) description += " ";
 				if(rando <= 1) description += "nipple";
 				if(rando == 2) {
@@ -4111,46 +4113,46 @@
 			//Bald folks get one-off quick description
 			if(hairLength == 0) 
 			{
-				if(rand(2) == 0) descript += "shaved ";
+				if(this.rand(2) == 0) descript += "shaved ";
 				else descript += "bald ";
 				descript += "head";
 				return descript;
 			}
 			//50% odds of adjectives
-			if(forceLength || rand(2) == 0) {
+			if(forceLength || this.rand(2) == 0) {
 				if(hairLength < 1) {
-					if(rand(2) == 0) descript += "close-cropped";
+					if(this.rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
 				}
 				else if(hairLength < 3) descript += "short";
 				else if(hairLength < 6) descript += "shaggy";
 				else if(hairLength < 10) descript += "moderately long";
 				else if(hairLength < 16) {
-					if(rand(2) == 0) descript += "long";
+					if(this.rand(2) == 0) descript += "long";
 					else descript += "shoulder-length";
 				}
 				else if(hairLength < 26) {
-					if(rand(2) == 0) descript += "very long";
+					if(this.rand(2) == 0) descript += "very long";
 					else descript += "long flowing locks";
 				}
 				else if(hairLength < 40) descript += "ass-length";
 				else if(hairLength < tallness) descript += "obscenely long";
 				else {
-					if(rand(2) == 0) descript += "floor-length";
+					if(this.rand(2) == 0) descript += "floor-length";
 					else descript += "floor-dragging";
 				}
 				descripted++;
 			}
 			// COLORS
-			if(forceColor || rand(2) == 0) {
+			if(forceColor || this.rand(2) == 0) {
 				if(descripted > 0) descript += ", ";
 				descript += hairColor;
 				descripted++;
 			}
 			//Mane special stuff.
-			if(skinType == 1 && hairLength > 3 && rand(2) == 0) {
+			if(skinType == 1 && hairLength > 3 && this.rand(2) == 0) {
 				//Oddball shit
-				if(rand(2) == 0 && descripted < 2) {
+				if(this.rand(2) == 0 && descripted < 2) {
 					if(hairType == 2) {
 						if(descripted > 0) descript += ", ";
 						descript += "transparent";
@@ -4165,7 +4167,7 @@
 			//Not manes
 			else {
 				//Oddball shit
-				if(rand(2) == 0 && descripted < 2) {
+				if(this.rand(2) == 0 && descripted < 2) {
 					if(hairType == 2) {
 						if(descripted > 0) descript += ", ";
 						descript += "transparent";
@@ -4178,8 +4180,8 @@
 					}
 				}
 				if(descripted > 0) descript += " ";
-				if(hairType == 4 && rand(2) == 0) descript += "tentacle-hair";
-				else if(hairType == 1 && rand(2) == 0) descript += "plumage";
+				if(hairType == 4 && this.rand(2) == 0) descript += "tentacle-hair";
+				else if(hairType == 1 && this.rand(2) == 0) descript += "plumage";
 				else descript += "hair";
 			}
 			return descript;
@@ -4190,45 +4192,45 @@
 			//Bald folks get one-off quick description
 			if(hairLength == 0) 
 			{
-				if(rand(2) == 0) descript += "shaved ";
+				if(this.rand(2) == 0) descript += "shaved ";
 				else descript += "bald ";
 				descript += "head";
 				return descript;
 			}
 			//50% odds of adjectives
-			if(forceLength || rand(2) == 0) {
+			if(forceLength || this.rand(2) == 0) {
 				if(hairLength < 1) {
-					if(rand(2) == 0) descript += "close-cropped";
+					if(this.rand(2) == 0) descript += "close-cropped";
 					else descript += "trim";
 				}
 				else if(hairLength < 3) descript += "short";
 				else if(hairLength < 6) descript += "shaggy";
 				else if(hairLength < 10) descript += "moderately long";
 				else if(hairLength < 16) {
-					if(rand(2) == 0) descript += "long";
+					if(this.rand(2) == 0) descript += "long";
 					else descript += "shoulder-length";
 				}
 				else if(hairLength < 26) {
-					if(rand(2) == 0) descript += "very long";
+					if(this.rand(2) == 0) descript += "very long";
 					else descript += "long flowing locks";
 				}
 				else if(hairLength < 40) descript += "ass-length";
 				else if(hairLength < tallness) descript += "obscenely long";
 				else {
-					if(rand(2) == 0) descript += "floor-length";
+					if(this.rand(2) == 0) descript += "floor-length";
 					else descript += "floor-dragging";
 				}
 				descripted++;
 			}
 			// COLORS
-			if(forceColor || rand(2) == 0) {
+			if(forceColor || this.rand(2) == 0) {
 				if(descripted > 0) descript += ", ";
 				descript += hairColor;
 				descripted++;
 			}
 			//Not manes
 			//Oddball shit
-			if(rand(2) == 0 && descripted < 2) {
+			if(this.rand(2) == 0 && descripted < 2) {
 				if(hairType == 2) {
 					if(descripted > 0) descript += ", ";
 					descript += "transparent";
@@ -4256,10 +4258,10 @@
 		}
 		public function clitDescript(pussy:Number = 0):String {
 			var descript:String = "";
-			var randt:Number = rand(10);
+			var randt:Number = this.rand(10);
 			var descripted:Number = 0;
 			//Length Adjective - 50% chance
-			if(rand(3) == 0) {
+			if(this.rand(3) == 0) {
 				//small clits!
 				if(clitLength <= .4) {
 					if(randt < 3) descript += "tiny";
@@ -4300,26 +4302,26 @@
 				}
 			}
 			//Descriptive descriptions - 50% chance of being called
-			if(rand(3) == 0 && descripted < 2) {
+			if(this.rand(3) == 0 && descripted < 2) {
 				//Elizabeth descriptors
-				if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.VULPINE) && rand(3) <= 1) {
+				if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.VULPINE) && this.rand(3) <= 1) {
 					if(descripted > 0) descript += ", ";
 					descript += "foxy ";
 					descripted++;
 				}
 				//Horny descriptors - 75% chance
-				else if(lust() > 70 && rand(4) < 3 && !descripted) {
+				else if(lust() > 70 && this.rand(4) < 3 && !descripted) {
 					if(descripted > 0) descript += ", ";
-					randt = rand(3);
+					randt = this.rand(3);
 					if(randt == 0) descript += "throbbing";
 					if(randt == 1) descript += "pulsating";
 					if(randt == 2) descript += "hard";
 					descripted++;
 				}
 				//High libido - always use if no other descript
-				else if(libido() > 50 && rand(3) < 2 && !descripted) {
+				else if(libido() > 50 && this.rand(3) < 2 && !descripted) {
 					if(descripted > 0) descript += ", ";
-					randt = rand(4);
+					randt = this.rand(4);
 					if(randt == 0) descript += "insatiable";
 					if(randt == 1) descript += "greedy";
 					if(randt == 2) descript += "demanding";
@@ -4328,7 +4330,7 @@
 				}
 			}
 			if(hasVagina()) {
-				if(vaginas[0].clitPierced > 0 && descripted < 2 && rand(3) < 2) {
+				if(vaginas[0].clitPierced > 0 && descripted < 2 && this.rand(3) < 2) {
 					if(descripted > 0) descript += ", ";
 					descript += "pierced";
 					descripted++;
@@ -4338,10 +4340,10 @@
 			//Clit nouns
 			if(descripted > 0) descript += " ";
 			//HYPHENING SHIT ONTO DOSE NOUNS, YO!
-			if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.CANINE) && rand(2) == 0) descript += "bitch-";
+			if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.CANINE) && this.rand(2) == 0) descript += "bitch-";
 			//Horse descriptors - 50%
-			else if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.EQUINE) && rand(3) <= 0) descript += "mare-";
-			randt = rand(10);
+			else if(skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.EQUINE) && this.rand(3) <= 0) descript += "mare-";
+			randt = this.rand(10);
 			if(randt == 0) descript += "clit";
 			else if(randt == 1) descript += "clitty";
 			else if(randt == 2) descript += "button";
@@ -4366,8 +4368,8 @@
 			var temp:int = 0;
 						
 			//low chance of size descriptor
-			if(((adjectives && rand(100) <= 25) || forceAdjectives)) {
-				temp = rand(10);
+			if(((adjectives && this.rand(100) <= 25) || forceAdjectives)) {
+				temp = this.rand(10);
 				if(temp <= 3) vag += "tight";
 				else if(temp <= 5) vag += "clingy";
 				else if(temp <= 7) vag += "supple";
@@ -4375,9 +4377,9 @@
 				descripted++;
 			}
 			//wetness descript - 30% display rate
-			if(descripted < 2 && ((adjectives && rand(100) > 70) || forceAdjectives)) {
+			if(descripted < 2 && ((adjectives && this.rand(100) > 70) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
-				temp = rand(17);
+				temp = this.rand(17);
 				if(temp <= 3) vag+="wet";
 				else if(temp <= 5) vag+="sultry";
 				else if(temp <= 8) vag+="sweltering";
@@ -4387,16 +4389,16 @@
 				descripted++;
 			}
 			//Elasticity references!
-			if(descripted < 2 && elasticity >= 1.5 && ((adjectives && rand(3) == 0) || forceAdjectives)) {
+			if(descripted < 2 && elasticity >= 1.5 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
 				if(elasticity >= 5) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 3) vag += "super-stretchy";
 					else if(temp <= 7) vag += "incredibly elastic";
 					else vag += "powerfully pliable";
 				}
 				else {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 1) vag += "stretchy";
 					else if(temp <= 3) vag += "elastic";
 					else if(temp <= 5) vag += "pliable";
@@ -4405,14 +4407,14 @@
 				}
 				descripted++;
 			}
-			if(descripted < 2 && skinType == 3 && ((adjectives && rand(3) == 0) || forceAdjectives)) {
+			if(descripted < 2 && skinType == 3 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
-				if(rand(2) == 0) vag += "gooey";
+				if(this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
 				descripted++;
 			}
 			//50% of time, simple cunt.
-			if(rand(2) == 0) {
+			if(this.rand(2) == 0) {
 				if(descripted > 0) vag += " ";
 				vag += vaginaNoun(tailGenitalArg,true);
 			}
@@ -4428,7 +4430,7 @@
 			var temp:int = 0;
 			if(type == GLOBAL.EQUINE) {
 				if(!simple) {
-					temp = rand(16);
+					temp = this.rand(16);
 					if(temp <= 1) vag += "equine gash";
 					else if(temp <= 3) vag+="black-lipped vagina";
 					else if(temp <= 5) vag += "animalistic cunny";
@@ -4439,7 +4441,7 @@
 					else vag += "musky mare-cunt";
 				}
 				else {
-					temp = rand(18);
+					temp = this.rand(18);
 					if(temp <= 1) vag+="horse-pussy";
 					else if(temp <= 3) vag+="mare-cunt";
 					else if(temp <= 5) vag+="fuck-hole";
@@ -4454,7 +4456,7 @@
 			//Maybe doge?
 			else if(type == GLOBAL.CANINE) {
 				if(!simple) {
-					temp = rand(16);
+					temp = this.rand(16);
 					if(temp <= 1) vag += "canine gash";
 					else if(temp <= 3) vag+="small-lipped vagina";
 					else if(temp <= 5) vag += "animalistic cunny";
@@ -4465,7 +4467,7 @@
 					else vag += "fragrant dog-cunt";
 				}
 				else {
-					temp = rand(18);
+					temp = this.rand(18);
 					if(temp <= 1) vag+="dog-pussy";
 					else if(temp <= 3) vag+="bitch-cunt";
 					else if(temp <= 5) vag+="fuck-hole";
@@ -4479,7 +4481,7 @@
 			//Slimgina?
 			else if(type == GLOBAL.GOOEY) {
 				if(!simple) {
-					temp = rand(17);
+					temp = this.rand(17);
 					if(temp <= 1) vag+="slimey vagina";
 					else if(temp <= 3) vag+="gooey pussy";
 					else if(temp <= 5) vag+="slimy cunt";
@@ -4490,7 +4492,7 @@
 					else if(temp <= 15) vag += "slimey snatch";
 				}
 				else {
-					temp = rand(17);
+					temp = this.rand(17);
 					if(temp <= 1) vag+="slime-gina";
 					else if(temp <= 3) vag+="goo-pussy";
 					else if(temp <= 5) vag+="slime-cunt";
@@ -4503,7 +4505,7 @@
 			}
 			else if(type == GLOBAL.SIREN || type == GLOBAL.ANEMONE) {
 				if(!simple) {
-					temp = rand(16);
+					temp = this.rand(16);
 					if(temp <= 1) vag += "wriggling gash";
 					else if(temp <= 3) vag+="stinger-ringed vagina";
 					else if(temp <= 5) vag += "cilia-filled cunny";
@@ -4514,7 +4516,7 @@
 					else vag += "wiggly cunt";
 				}
 				else {
-					temp = rand(18);
+					temp = this.rand(18);
 					if(temp <= 1) vag+="siren-pussy";
 					else if(temp <= 3) vag+="siren-snatch";
 					else if(temp <= 5) vag+="fuck-hole";
@@ -4528,12 +4530,12 @@
 			}
 			else {
 				if(!simple) {
-					temp = rand(5);
+					temp = this.rand(5);
 					if(temp <= 1) vag += "human ";
 					else if(temp <= 3) vag += "terran ";
 					else vag += "pink ";
 				}
-				temp = rand(16);
+				temp = this.rand(16);
 				if(temp <= 2) vag+="vagina";
 				else if(temp <= 5) vag+="pussy";
 				else if(temp <= 8) vag+="cunt";
@@ -4564,10 +4566,10 @@
 			if(vaginalVirgin) bonus += 20
 			
 			//low chance of size descriptor
-			if(((adjectives && rand(100) <= 25 + bonus) || forceAdjectives)) {
+			if(((adjectives && this.rand(100) <= 25 + bonus) || forceAdjectives)) {
 				//Virgin overpowers other shit half the time.
-				if(vaginalVirgin && rand(2) == 0) {
-					temp = rand(11);
+				if(vaginalVirgin && this.rand(2) == 0) {
+					temp = this.rand(11);
 					if(temp <= 3) vag+="virgin";
 					else if(temp <= 5) vag+="virginal";
 					else if(temp <= 7) vag+="unclaimed";
@@ -4575,7 +4577,7 @@
 					else vag+="pure";
 				}
 				else if(vaginas[vaginaNum].looseness <= 1) {
-					temp = rand(11);
+					temp = this.rand(11);
 					if(temp <= 4) vag +="tight";
 					else if(temp <= 5) vag +="vice-like";
 					else if(temp <= 6) vag +="constricting";
@@ -4583,19 +4585,19 @@
 					else vag +="narrow";
 				}
 				else if(vaginas[vaginaNum].looseness <= 2) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 5) vag+="average";
 					else vag+="supple";
 				}
 				else if(vaginas[vaginaNum].looseness <= 3) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 4) vag+="loose";
 					else if(temp <= 6) vag+="slightly-stretched";
 					else if(temp <= 8) vag+="loosened";
 					else vag+="lax";
 				}
 				else if(vaginas[vaginaNum].looseness <= 4) {
-					temp = rand(11);
+					temp = this.rand(11);
 					if(temp <= 3) vag+="slightly-gaped";
 					else if(temp <= 5) vag+="well-loosened";
 					else if(temp <= 7) vag+="open";
@@ -4604,7 +4606,7 @@
 					else vag+="parted";
 				}
 				else {
-					temp = rand(11);
+					temp = this.rand(11);
 					if(temp <= 4) vag+="gaped";
 					else if(temp <= 8) vag += "cavernous";
 					else if(temp <= 9) vag+="wide-open";
@@ -4613,42 +4615,42 @@
 				descripted++;
 			}
 			//wetness descript - 30% display rate
-			if(descripted < 2 && ((adjectives && rand(100) > 70) || forceAdjectives)) {
+			if(descripted < 2 && ((adjectives && this.rand(100) > 70) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
 				if(vaginas[vaginaNum].wetness == 0) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 4) vag+="dry";
 					else if(temp <= 7) vag+="unlubricated";
 					else vag+="moistureless";
 				}
 				else if(vaginas[vaginaNum].wetness <= 1) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 4) vag+="moist";
 					else if(temp <= 7) vag+="sticky";
 					else vag+="dewy";
 				}
 				else if(vaginas[vaginaNum].wetness == 2) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 3) vag+="wet";
 					else if(temp <= 5) vag+="sultry";
 					else if(temp <= 8) vag+="sweltering";
 					else vag+="slippery";
 				}
 				else if(vaginas[vaginaNum].wetness == 3) {
-					temp = rand(12);
+					temp = this.rand(12);
 					if(temp <= 3) vag+="slick";
 					else if(temp <= 6) vag+="drenched";
 					else if(temp <= 9) vag+="sopping";
 					else vag+="soaked";
 				}
 				else if(vaginas[vaginaNum].wetness == 4) {
-					temp = rand(9);
+					temp = this.rand(9);
 					if(temp <= 2) vag+="drooling";
 					else if(temp <= 5) vag+="dripping";
 					else vag+="lube-leaking";
 				}
 				else if(vaginas[vaginaNum].wetness == 5) {
-					temp = rand(12);
+					temp = this.rand(12);
 					if(temp <= 2) vag+="slavering";
 					else if(temp <= 5) vag+="slobbering";
 					else if(temp <= 8) vag+="puddling";
@@ -4657,16 +4659,16 @@
 				descripted++;
 			}
 			//Elasticity references!
-			if(descripted < 2 && elasticity >= 1.5 && ((adjectives && rand(3) == 0) || forceAdjectives)) {
+			if(descripted < 2 && elasticity >= 1.5 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
 				if(elasticity >= 5) {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 3) vag += "super-stretchy";
 					else if(temp <= 7) vag += "incredibly elastic";
 					else vag += "powerfully pliable";
 				}
 				else {
-					temp = rand(10);
+					temp = this.rand(10);
 					if(temp <= 1) vag += "stretchy";
 					else if(temp <= 3) vag += "elastic";
 					else if(temp <= 5) vag += "pliable";
@@ -4675,14 +4677,14 @@
 				}
 				descripted++;
 			}
-			if(descripted < 2 && skinType == 3 && ((adjectives && rand(3) == 0) || forceAdjectives)) {
+			if(descripted < 2 && skinType == 3 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if(descripted > 0) vag += ", ";
-				if(rand(2) == 0) vag += "gooey";
+				if(this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
 				descripted++;
 			}
 			/*CoC's black cunts. Might still use!
-			if(vaginaType() == 5 && rand(2) == 0) {
+			if(vaginaType() == 5 && this.rand(2) == 0) {
 				if(descripted) vag += ", ";
 				rand = Math.floor(Math.random() * 8);
 				if(rand == 0) vag += "black";
@@ -4696,7 +4698,7 @@
 				descripted = true;
 			}*/
 			//50% of time, simple cunt.
-			if(rand(2) == 0) {
+			if(this.rand(2) == 0) {
 				if(descripted > 0) vag += " ";
 				vag += vaginaNoun(tailGenitalArg,true);
 			}
@@ -4724,7 +4726,7 @@
 		//Allvagina descript
 		public function vaginasDescript():String {
 			if(vaginas.length == 1) return vaginaDescript();
-			if(vaginas.length > 1) return pluralize(vaginaDescript(rand(vaginas.length)));
+			if(vaginas.length > 1) return pluralize(vaginaDescript(this.rand(vaginas.length)));
 			return "ERROR: vagina<b>s</b>Descript called with no vaginas.";
 		}
 		public function multiCockDescript():String {
@@ -4741,7 +4743,7 @@
 			else if(cocks.length <= 2) {
 				//For cocks that are the same
 				if(hasSamecType()) {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) descript += "pair of ";
 					if(rando == 1) descript += "two, ";
 					if(rando == 2) descript += "brace of ";	
@@ -4750,7 +4752,7 @@
 				}
 				//Nonidentical
 				else {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "pair of ";
 					if(rando == 1) descript += "two, ";
 					if(rando == 2) descript += "brace of ";
@@ -4759,7 +4761,7 @@
 			else if(cocks.length <= 3) {
 				//For samecocks
 				if(hasSamecType()) {
-					rando = rand(5);
+					rando = this.rand(5);
 					if(rando == 0) descript += "three, ";
 					if(rando == 1) descript += "group of ";
 					if(rando == 2) descript += "menage a trois of ";
@@ -4767,7 +4769,7 @@
 					if(rando == 4) descript += "triumvirate of ";
 				}
 				else {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript += "three, ";
 					if(rando == 1) descript += "group of ";
 				}
@@ -4775,7 +4777,7 @@
 			//Large numbers of cocks!
 			else
 			{
-				rando = rand(4);
+				rando = this.rand(4);
 				if(rando == 0) descript += "bundle of ";
 				if(rando == 1) descript += "obscene group of ";
 				if(rando == 2) descript += "cluster of ";
@@ -4784,7 +4786,7 @@
 			//Append Nounse
 			if(hasSamecType()) descript += cockAdjective() + ", " + pluralize(cockNoun(cocks[0].cType,false,false));
 			else {
-				rando = rand(4);
+				rando = this.rand(4);
 				if(rando == 0) descript += cockAdjective() + ", mutated cocks";
 				if(rando == 1) descript += cockAdjective() + ", mutated dicks";
 				if(rando == 2) descript += cockAdjective() + ", mixed cocks";
@@ -4866,16 +4868,16 @@
 			var noun:String = "";
 			var rando:Number = 0;
 			//If a taildick, convert to human so we can mention its a tailcock 50% of the time!
-			if(tail && rand(2) == 0) {
+			if(tail && this.rand(2) == 0) {
 				type = GLOBAL.HUMAN;
 			}
 			if(type == GLOBAL.HUMAN) {
 				if(!simple) {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando <= 3) descript += "human ";
 					else descript += "terran ";
 				}
-				rando = rand(10) + 1;
+				rando = this.rand(10) + 1;
 				if(tail) noun += "tail-";
 				if(rando <=4) noun += "cock";
 				else if(rando <= 6) noun += "prick";
@@ -4884,7 +4886,7 @@
 			}
 			else if(type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
 				if(!simple) {
-					rando = rand(11);
+					rando = this.rand(11);
 					if(rando <= 0 && type == GLOBAL.CANINE) descript+="canine ";
 					else if(rando <= 0) descript+="vulpine ";
 					else if(rando <= 1) descript+="pointed ";
@@ -4896,7 +4898,7 @@
 					else if(rando <= 7) descript+="knotted ";
 				}
 				if(type == GLOBAL.CANINE) {
-					rando = rand(11);
+					rando = this.rand(11);
 					if(rando == 0) noun+="doggie-dong";
 					else if(rando == 1) noun+="shaft";
 					else if(rando == 2) noun+="prick";
@@ -4910,7 +4912,7 @@
 					else if(rando == 10) noun+="dog-cock";
 				}
 				else {
-					rando =rand(11);
+					rando =this.rand(11);
 					if(rando == 0) noun+="dong";
 					else if(rando == 1) noun+="shaft";
 					else if(rando == 2) noun+="prick";
@@ -4926,7 +4928,7 @@
 			}
 			else if(type == GLOBAL.EQUINE) {
 				if(!simple) {
-					rando = rand(7);
+					rando = this.rand(7);
 					if(rando == 0) descript += "flared ";
 					else if(rando == 1) descript += "equine ";
 					else if(rando == 2) descript += "bestial ";
@@ -4935,7 +4937,7 @@
 					else if(rando == 5) descript += "blunted ";
 					else if(rando == 6) descript += "sheath-girded ";
 				}
-				rando = rand(10);
+				rando = this.rand(10);
 				if(rando <= 0) noun+="horse-cock";
 				else if(rando <= 1) noun+="prick";
 				else if(rando <= 2) noun+="horse-shaft";
@@ -4949,7 +4951,7 @@
 			}
 			else if(type == GLOBAL.DEMONIC) {
 				if(!simple) {
-					rando = rand(9);
+					rando = this.rand(9);
 					if(rando == 0) descript += "nub-covered ";
 					else if(rando == 1) descript += "nubby ";
 					else if(rando == 2) descript += "perverse ";
@@ -4960,7 +4962,7 @@
 					else if(rando == 7) descript += "unholy ";
 					else if(rando == 8) descript += "blighted ";
 				}
-				rando=rand(11);
+				rando=this.rand(11);
 				if(rando <= 0 && descript != "demonic") noun+="demon-dick";
 				else if(rando <= 1) noun+="shaft";
 				else if(rando <= 2) noun+="cock";
@@ -4975,7 +4977,7 @@
 			}
 			else if(type == GLOBAL.TENTACLE) {
 				if(!simple) {
-					rando = rand(9);
+					rando = this.rand(9);
 					if(rando == 0) descript += "twisting ";
 					else if(rando == 1) descript += "wriggling ";
 					else if(rando == 2) descript += "sinuous ";
@@ -4986,7 +4988,7 @@
 					else if(rando == 7) descript += "slithering ";
 					else if(rando == 8) descript += "vine-like ";
 				}
-				rando=rand(11);
+				rando=this.rand(11);
 				if(rando <= 0) noun+="tentacle-prick";
 				else if(rando <= 1) noun+="plant-shaft";
 				else if(rando <= 2) noun+="tentacle-cock";
@@ -5004,7 +5006,7 @@
 			}
 			else if(type == GLOBAL.FELINE) {
 				if(!simple) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) descript += "feline ";
 					else if(rando == 1) descript += "spine-covered ";
 					else if(rando == 2) descript += "spined ";
@@ -5014,7 +5016,7 @@
 					else if(rando == 6) descript += "nubby ";
 					else if(rando == 7) descript += "slithering ";
 				}
-				rando=rand(11);
+				rando=this.rand(11);
 				if(rando == 0) noun+="dick";
 				else if(rando <= 1) noun+="cat-cock";
 				else if(rando <= 2) noun+="kitty-cock";
@@ -5029,7 +5031,7 @@
 			}
 			else if(type == GLOBAL.NAGA || type == GLOBAL.SNAKE) {
 				if(!simple) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) descript += "reptilian ";
 					else if(rando == 1) descript += "purple ";
 					else if(rando == 2) descript += "inhuman ";
@@ -5039,7 +5041,7 @@
 					else if(rando == 6) descript += "bulbous ";
 					else if(rando == 7) descript += "bulging ";
 				}
-				rando=rand(11);
+				rando=this.rand(11);
 				if(rando == 0) noun+="dick";
 				else if(rando == 1) noun+="cock";
 				else if(rando == 2) noun+="snake-cock";
@@ -5054,7 +5056,7 @@
 			}
 			else if(type == GLOBAL.ANEMONE) {
 				if(!simple) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) descript += "tentacle-ringed ";
 					else if(rando == 1) descript += "blue ";
 					else if(rando == 2) descript += "stinger-laden ";
@@ -5064,7 +5066,7 @@
 					else if(rando == 6) descript += "tentacle-ringed ";
 					else if(rando == 7) descript += "squirming ";
 				}
-				rando = rand(11);
+				rando = this.rand(11);
 				if(rando == 0) noun+="anemone-dick";
 				if(rando == 1) noun+="cock";
 				if(rando == 2) noun+="member";
@@ -5079,7 +5081,7 @@
 			}
 			else if(type == GLOBAL.KANGAROO) {
 				if(!simple) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) descript += "kangaroo-like ";
 					else if(rando == 1) descript += "pointed ";
 					else if(rando == 2) descript += "marsupial ";
@@ -5089,7 +5091,7 @@
 					else if(rando == 6) descript += "tentacle-ringed ";
 					else if(rando == 7) descript += "squirming ";
 				}
-				rando = rand(11);
+				rando = this.rand(11);
 				if(rando == 0) noun+="dick";
 				else if(rando <= 1) noun+="cock";
 				else if(rando <= 2) noun+="member";
@@ -5104,7 +5106,7 @@
 			}
 			else if(type == GLOBAL.DRACONIC) {
 				if(!simple) {
-					rando = rand(8);
+					rando = this.rand(8);
 					if(rando == 0) descript += "dragon-like ";
 					else if(rando == 1) descript += "segmented ";
 					else if(rando == 2) descript += "pointed ";
@@ -5114,7 +5116,7 @@
 					else if(rando == 6) descript += "tapered ";
 					else if(rando == 7) descript += "scaly ";
 				}
-				rando = rand(11);
+				rando = this.rand(11);
 				if(rando <= 0) noun+="dick";
 				else if(rando <= 1) noun+="shaft";
 				else if(rando <= 2) noun+="prick";
@@ -5129,7 +5131,7 @@
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {
-				rando = rand(12);
+				rando = this.rand(12);
 				if(rando == 0) descript+="coerl cock";
 				if(rando == 1) descript+="tentacle-tipped phallus";
 				if(rando == 2) descript+="starfish-tipped shaft";
@@ -5160,11 +5162,11 @@
 				multi = true;
 			}
 			//Pierced - 1/5 chance
-			if(!multi && rand(5) == 0 && cocks[cockNum].pierced > 0) {
+			if(!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
 				descript += "pierced";
 			}
-			else if(!multi && rand(5) == 0 && cocks[cockNum].sock != "") {
-				rando = rand(6);
+			else if(!multi && this.rand(5) == 0 && cocks[cockNum].sock != "") {
+				rando = this.rand(6);
 				if(rando == 0) descript += "sock-sheathed";
 				else if(rando == 1) descript += "garment-wrapped";
 				else if(rando == 2) descript += "smartly dressed";
@@ -5173,16 +5175,16 @@
 				else descript += "covered";
 			}
 			//Goo - 1/4 chance
-			else if(skinType == 3 && rand(4) == 0) {
-				rando = rand(3);
+			else if(skinType == 3 && this.rand(4) == 0) {
+				rando = this.rand(3);
 				if(rando == 0) descript += "goopey";
 				else if(rando == 1) descript += "gooey";
 				else descript += "slimy";
 			}
 			//Length 1/3 chance
-			else if(rand(3) == 0) {
+			else if(this.rand(3) == 0) {
 				if(cocks[cockNum].cLength < 3) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript = "little";
 					else if(rando == 1) descript = "toy-sized";
 					else if(rando == 2) descript = "mini";
@@ -5190,17 +5192,17 @@
 					else descript = "tiny";
 				}
 				else if(cocks[cockNum].cLength < 5) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "short";
 					else descript = "small";
 				}
 				else if(cocks[cockNum].cLength < 7) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "fair-sized";
 					else descript = "nice";
 				}
 				else if(cocks[cockNum].cLength < 11) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) {
 						if(cocks[cockNum].cType == GLOBAL.EQUINE) descript = "pony-sized";
 						else descript = "long";
@@ -5212,7 +5214,7 @@
 					else descript = "sizable";
 				}
 				else if(cocks[cockNum].cLength < 14) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "huge";
 					else if(rando == 1) {
 						if(cocks[cockNum].cType == GLOBAL.CANINE) descript = "mastiff-like";
@@ -5221,20 +5223,20 @@
 					else descript = "foot-long";
 				}
 				else if(cocks[cockNum].cLength < 18) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "massive";
 					else if(rando == 1) descript = "knee-length";
 					else descript = "forearm-length";
 				}
 				else if(cocks[cockNum].cLength < 30) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "enormous";
 					else if(rando == 1) descript = "giant";
 					else descript = "arm-length";
 				}
 				else if(cocks[cockNum].cLength < 50) {
-					rando = rand(7);
-					if(cocks[cockNum].cType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(7);
+					if(cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "towering";
 						else if(rando == 1) descript = "freakish";
@@ -5246,8 +5248,8 @@
 					}
 				}
 				else if(cocks[cockNum].cLength < 100) {
-					rando = rand(8);
-					if(cocks[cockNum].cType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(8);
+					if(cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "person-sized";
 						else if(rando == 1) descript = "ridiculously massive";
@@ -5260,8 +5262,8 @@
 					}
 				}
 				else {
-					rando = rand(6);
-					if(cocks[cockNum].cType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(6);
+					if(cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "car-sized";
 						else if(rando == 1) descript = "vehicle-sized";
@@ -5273,24 +5275,24 @@
 				}
 			}
 			//Hornyness 1/2
-			else if(lust() > 75 && rand(2) == 0) {
+			else if(lust() > 75 && this.rand(2) == 0) {
 				//Uber horny like a baws!
 				if(lust() > 90) {
 					//Weak as shit cum
 					if(cumQ() < 50){
-						if(rand(2) == 0) descript += "throbbing";
+						if(this.rand(2) == 0) descript += "throbbing";
 						else descript += "pulsating";
 					}
 					//lots of cum? drippy.
 					else if(cumQ() < 200) {
-						rando = rand(3);
+						rando = this.rand(3);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else descript += "leaking";
 					}
 					//Tons of cum
 					else {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "very drippy";
 						else if(rando == 1) descript += "pre-gushing";
 						else if(rando == 2) descript += "cum-bubbling";
@@ -5301,7 +5303,7 @@
 				//A little less lusty, but still lusty.
 				else if(lust() > 75) {
 					if(cumQ() < 50) {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5310,7 +5312,7 @@
 					}
 					//A little drippy
 					else if(cumQ() < 200) {
-						rando = rand(10);
+						rando = this.rand(10);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5321,7 +5323,7 @@
 					}
 					//uber drippy
 					else {
-						rando = rand(4);
+						rando = this.rand(4);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else if(rando == 2) descript += "fluid-leaking";
@@ -5332,39 +5334,39 @@
 			//Girth - fallback
 			else {
 				if(cocks[cockNum].cThickness <= .99) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "thin";
 					else if(rando == 1) descript += "slender";
 					else descript += "narrow";
 				}
 				else if(cocks[cockNum].cThickness <= 1.2) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ordinary";
 					else if(rando == 1) descript += "fleshy";
 					else descript += "substantial";
 				}
 				else if(cocks[cockNum].cThickness <= 1.6) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ample";
 					else if(rando == 1) descript += "meaty";
 					else descript += "generously-proportioned";
 				}
 				else if(cocks[cockNum].cThickness <= 2) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "broad";
 					else if(rando == 1) descript += "girthy";
 					else if(rando == 2) descript += "expansive";
 					else descript += "thick";
 				}
 				else if(cocks[cockNum].cThickness <= 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "fat";
 					else if(rando == 1) descript += "wide";
 					else if(rando == 2) descript += "voluminous";
 					else descript += "distended";
 				}
 				else if(cocks[cockNum].cThickness > 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "inhumanly distended";
 					else if(rando == 1) descript += "bloated";
 					else if(rando == 2) descript += "mammoth";
@@ -5379,16 +5381,16 @@
 			var rando:Number = 0;
 			var multi:Boolean = false;
 			//Goo - 1/4 chance
-			if(skinType == 3 && rand(4) == 0) {
-				rando = rand(3);
+			if(skinType == 3 && this.rand(4) == 0) {
+				rando = this.rand(3);
 				if(rando == 0) descript += "goopey";
 				else if(rando == 1) descript += "gooey";
 				else descript += "slimy";
 			}
 			//Length 1/3 chance
-			else if(rand(3) == 0) {
+			else if(this.rand(3) == 0) {
 				if(l < 3) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript = "little";
 					else if(rando == 1) descript = "toy-sized";
 					else if(rando == 2) descript = "mini";
@@ -5396,17 +5398,17 @@
 					else descript = "tiny";
 				}
 				else if(l < 5) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "short";
 					else descript = "small";
 				}
 				else if(l < 7) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "fair-sized";
 					else descript = "nice";
 				}
 				else if(l < 11) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) {
 						if(type == GLOBAL.EQUINE) descript = "pony-sized";
 						else descript = "long";
@@ -5418,7 +5420,7 @@
 					else descript = "sizable";
 				}
 				else if(l < 14) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "huge";
 					else if(rando == 1) {
 						if(type == GLOBAL.CANINE) descript = "mastiff-like";
@@ -5427,20 +5429,20 @@
 					else descript = "foot-long";
 				}
 				else if(l < 18) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "massive";
 					else if(rando == 1) descript = "knee-length";
 					else descript = "forearm-length";
 				}
 				else if(l < 30) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "enormous";
 					else if(rando == 1) descript = "giant";
 					else descript = "arm-length";
 				}
 				else if(l < 50) {
-					rando = rand(7);
-					if(type == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(7);
+					if(type == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "towering";
 						else if(rando == 1) descript = "freakish";
@@ -5452,8 +5454,8 @@
 					}
 				}
 				else if(l < 100) {
-					rando = rand(8);
-					if(type == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(8);
+					if(type == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "person-sized";
 						else if(rando == 1) descript = "ridiculously massive";
@@ -5466,8 +5468,8 @@
 					}
 				}
 				else {
-					rando = rand(6);
-					if(type == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(6);
+					if(type == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "car-sized";
 						else if(rando == 1) descript = "vehicle-sized";
@@ -5479,24 +5481,24 @@
 				}
 			}
 			//Hornyness 1/2
-			else if(lust() > 75 && rand(2) == 0) {
+			else if(lust() > 75 && this.rand(2) == 0) {
 				//Uber horny like a baws!
 				if(lust() > 90) {
 					//Weak as shit cum
 					if(cumQ() < 50){
-						if(rand(2) == 0) descript += "throbbing";
+						if(this.rand(2) == 0) descript += "throbbing";
 						else descript += "pulsating";
 					}
 					//lots of cum? drippy.
 					else if(cumQ() < 200) {
-						rando = rand(3);
+						rando = this.rand(3);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else descript += "leaking";
 					}
 					//Tons of cum
 					else {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "very drippy";
 						else if(rando == 1) descript += "pre-gushing";
 						else if(rando == 2) descript += "cum-bubbling";
@@ -5507,7 +5509,7 @@
 				//A little less lusty, but still lusty.
 				else if(lust() > 75) {
 					if(cumQ() < 50) {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5516,7 +5518,7 @@
 					}
 					//A little drippy
 					else if(cumQ() < 200) {
-						rando = rand(10);
+						rando = this.rand(10);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5527,7 +5529,7 @@
 					}
 					//uber drippy
 					else {
-						rando = rand(4);
+						rando = this.rand(4);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else if(rando == 2) descript += "fluid-leaking";
@@ -5538,39 +5540,39 @@
 			//Girth - fallback
 			else {
 				if(w <= .99) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "thin";
 					else if(rando == 1) descript += "slender";
 					else descript += "narrow";
 				}
 				else if(w <= 1.2) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ordinary";
 					else if(rando == 1) descript += "fleshy";
 					else descript += "substantial";
 				}
 				else if(w <= 1.6) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ample";
 					else if(rando == 1) descript += "meaty";
 					else descript += "generously-proportioned";
 				}
 				else if(w <= 2) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "broad";
 					else if(rando == 1) descript += "girthy";
 					else if(rando == 2) descript += "expansive";
 					else descript += "thick";
 				}
 				else if(w <= 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "fat";
 					else if(rando == 1) descript += "wide";
 					else if(rando == 2) descript += "voluminous";
 					else descript += "distended";
 				}
 				else if(w > 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "inhumanly distended";
 					else if(rando == 1) descript += "bloated";
 					else if(rando == 2) descript += "mammoth";
@@ -5589,42 +5591,42 @@
 			else if(l <= 30) w = (l-10)/10 + 10/6;
 			else w = 20/10 + 10/6 + (l-30)/20;
 			//Nipple descriptions 1/4 of the time!
-			if(rand(4) == 0) {
-				if(rand(3) == 0) descript += "nipple-sheathed";
-				else if(rand(2) == 0) descript += nippleColor + "-surrounded";
+			if(this.rand(4) == 0) {
+				if(this.rand(3) == 0) descript += "nipple-sheathed";
+				else if(this.rand(2) == 0) descript += nippleColor + "-surrounded";
 				else {
 					if(plural) descript += "areola-wreathed";			
 					else descript += "areolae-wreathed";
 				}
 			}
 			//Goo - 1/4 chance
-			else if(skinType == 3 && rand(4) == 0) {
-				rando = rand(3);
+			else if(skinType == 3 && this.rand(4) == 0) {
+				rando = this.rand(3);
 				if(rando == 0) descript += "goopey";
 				else if(rando == 1) descript += "gooey";
 				else descript += "slimy";
 			}
 			//Length 1/3 chance
-			else if(rand(3) == 0) {
+			else if(this.rand(3) == 0) {
 				if(l < 3) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando <= 1) descript = "little";
 					else if(rando == 2) descript = "mini";
 					else if(rando == 3) descript = "budding";
 					else descript = "tiny";
 				}
 				else if(l < 5) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "short";
 					else descript = "small";
 				}
 				else if(l < 7) {
-					rando = rand(2);
+					rando = this.rand(2);
 					if(rando == 0) descript = "fair-sized";
 					else descript = "nice";
 				}
 				else if(l < 11) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) {
 						if(dickNippleType == GLOBAL.EQUINE) descript = "pony-sized";
 						else descript = "long";
@@ -5636,7 +5638,7 @@
 					else descript = "sizable";
 				}
 				else if(l < 14) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "huge";
 					else if(rando == 1) {
 						if(dickNippleType == GLOBAL.CANINE) descript = "mastiff-like";
@@ -5645,20 +5647,20 @@
 					else descript = "foot-long";
 				}
 				else if(l < 18) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "massive";
 					else if(rando == 1) descript = "knee-length";
 					else descript = "forearm-length";
 				}
 				else if(l < 30) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript = "enormous";
 					else if(rando == 1) descript = "giant";
 					else descript = "arm-length";
 				}
 				else if(l < 50) {
-					rando = rand(7);
-					if(dickNippleType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(7);
+					if(dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "towering";
 						else if(rando == 1) descript = "freakish";
@@ -5670,8 +5672,8 @@
 					}
 				}
 				else if(l < 100) {
-					rando = rand(8);
-					if(dickNippleType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(8);
+					if(dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "person-sized";
 						else if(rando == 1) descript = "ridiculously massive";
@@ -5684,8 +5686,8 @@
 					}
 				}
 				else {
-					rando = rand(6);
-					if(dickNippleType == 4 && rand(4) == 0) descript = "coiled ";
+					rando = this.rand(6);
+					if(dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if(rando == 0) descript = "car-sized";
 						else if(rando == 1) descript = "vehicle-sized";
@@ -5697,24 +5699,24 @@
 				}
 			}
 			//Hornyness 1/2
-			else if(lust() > 75 && rand(2) == 0) {
+			else if(lust() > 75 && this.rand(2) == 0) {
 				//Uber horny like a baws!
 				if(lust() > 90) {
 					//Weak as shit cum
 					if(cumQ() < 50){
-						if(rand(2) == 0) descript += "throbbing";
+						if(this.rand(2) == 0) descript += "throbbing";
 						else descript += "pulsating";
 					}
 					//lots of cum? drippy.
 					else if(cumQ() < 200) {
-						rando = rand(3);
+						rando = this.rand(3);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else descript += "leaking";
 					}
 					//Tons of cum
 					else {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "very drippy";
 						else if(rando == 1) descript += "pre-gushing";
 						else if(rando == 2) descript += "cum-bubbling";
@@ -5725,7 +5727,7 @@
 				//A little less lusty, but still lusty.
 				else if(lust() > 75) {
 					if(cumQ() < 50) {
-						rando = rand(5);
+						rando = this.rand(5);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5734,7 +5736,7 @@
 					}
 					//A little drippy
 					else if(cumQ() < 200) {
-						rando = rand(10);
+						rando = this.rand(10);
 						if(rando == 0) descript += "turgid";
 						else if(rando == 1) descript += "blood-engorged";
 						else if(rando == 2) descript += "rock-hard";
@@ -5745,7 +5747,7 @@
 					}
 					//uber drippy
 					else {
-						rando = rand(4);
+						rando = this.rand(4);
 						if(rando == 0) descript += "dribbling";
 						else if(rando == 1) descript += "drooling";
 						else if(rando == 2) descript += "fluid-leaking";
@@ -5756,39 +5758,39 @@
 			//Girth - fallback
 			else {
 				if(w <= .99) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "thin";
 					else if(rando == 1) descript += "slender";
 					else descript += "narrow";
 				}
 				else if(w <= 1.2) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ordinary";
 					else if(rando == 1) descript += "fleshy";
 					else descript += "substantial";
 				}
 				else if(w <= 1.6) {
-					rando = rand(3);
+					rando = this.rand(3);
 					if(rando == 0) descript += "ample";
 					else if(rando == 1) descript += "meaty";
 					else descript += "generously-proportioned";
 				}
 				else if(w <= 2) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "broad";
 					else if(rando == 1) descript += "girthy";
 					else if(rando == 2) descript += "expansive";
 					else descript += "thick";
 				}
 				else if(w <= 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "fat";
 					else if(rando == 1) descript += "wide";
 					else if(rando == 2) descript += "voluminous";
 					else descript += "distended";
 				}
 				else if(w > 3.5) {
-					rando = rand(4);
+					rando = this.rand(4);
 					if(rando == 0) descript += "inhumanly distended";
 					else if(rando == 1) descript += "bloated";
 					else if(rando == 2) descript += "mammoth";
@@ -5807,7 +5809,7 @@
 			return fluidColor(girlCumType);
 		}
 		public function fluidColor(arg:int):String {
-			var temp:int = rand(10);
+			var temp:int = this.rand(10);
 			//CUM & MILK TYPES
 			if(arg == GLOBAL.MILK || arg == GLOBAL.CUM) {
 				if(temp <= 4) return "white";
@@ -5840,7 +5842,7 @@
 			return "ERROR, INVALID FLUID TYPE.";
 		}
 		public function fluidNoun(arg:int):String {
-			var temp:int = rand(10);
+			var temp:int = this.rand(10);
 			//CUM & MILK TYPES
 			if(arg == GLOBAL.MILK) {
 				if(temp <= 4) return "milk";
@@ -5865,10 +5867,10 @@
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
 		}
 		public function milkDescript():String {
-			var temp:int = rand(10);
+			var temp:int = this.rand(10);
 			var desc:String = "";
 			var described:Boolean = false;
-			if(rand(3) == 0) {
+			if(this.rand(3) == 0) {
 				desc += fluidColor(milkType);
 				described = true;
 			}
@@ -5877,10 +5879,10 @@
 			return desc;
 		}
 		public function cumDescript():String {
-			var temp:int = rand(10);
+			var temp:int = this.rand(10);
 			var desc:String = "";
 			var described:Boolean = false;
-			if(rand(3) == 0) {
+			if(this.rand(3) == 0) {
 				desc += fluidColor(cumType);
 				described = true;
 			}
@@ -5889,10 +5891,10 @@
 			return desc;
 		}
 		public function girlCumDescript():String {
-			var temp:int = rand(10);
+			var temp:int = this.rand(10);
 			var desc:String = "";
 			var described:Boolean = false;
-			if(rand(3) == 0) {
+			if(this.rand(3) == 0) {
 				desc += fluidColor(girlCumType);
 				described = true;
 			}
@@ -5904,16 +5906,16 @@
 			var descript:String = "";
 			//Non boring descriptions!
 			//70% of the time add a descriptor
-			if(rand(10) <= 6) {
+			if(this.rand(10) <= 6) {
 				descript += nippleCockAdjective();
 				//50% of the time add supplimental cock adjective with the noun.
-				if(rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
+				if(this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
 				//Otherwise normal
 				else descript += " " + cockNoun(dickNippleType, false);
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
-				if(rand(10) <= 6) descript += cockNoun(dickNippleType, false);
+				if(this.rand(10) <= 6) descript += cockNoun(dickNippleType, false);
 				else descript += cockNoun(dickNippleType);
 			}
 			return descript;
@@ -5922,16 +5924,16 @@
 			var descript:String = "";
 			//Non boring descriptions!
 			//70% of the time add a descriptor
-			if(rand(10) <= 6 && !appearance) {
+			if(this.rand(10) <= 6 && !appearance) {
 				descript += nippleCockAdjective();
 				//50% of the time add supplimental cock adjective with the noun.
-				if(rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
+				if(this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
 				//Otherwise normal
 				else descript += " " + cockNoun(dickNippleType, false);
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
-				if(rand(10) <= 6 && !appearance) descript += cockNoun(dickNippleType, false);
+				if(this.rand(10) <= 6 && !appearance) descript += cockNoun(dickNippleType, false);
 				else descript += cockNoun(dickNippleType);
 			}
 			return pluralize(descript);
@@ -5944,23 +5946,23 @@
 			//Non boring descriptions!
 			if(cockNum != 99) {
 				//70% of the time add a descriptor
-				if(rand(10) <= 6) {
+				if(this.rand(10) <= 6) {
 					descript += cockAdjective(cockNum);
 					//50% of the time add supplimental cock adjective with the noun.
-					if(rand(2) == 0) descript += ", " + cockNoun(cocks[cockNum].cType,false);
+					if(this.rand(2) == 0) descript += ", " + cockNoun(cocks[cockNum].cType,false);
 					//Otherwise normal
 					else descript += " " + cockNoun(cocks[cockNum].cType, false);
 				}
 				//These guys get a bonus adjective 70% of the time.
 				else {
-					if(rand(10) <= 6) descript += cockNoun(cocks[cockNum].cType, false);
+					if(this.rand(10) <= 6) descript += cockNoun(cocks[cockNum].cType, false);
 					else descript += cockNoun(cocks[cockNum].cType);
 				}
 			}
 			//Boring descriptions. Mostly the same but kinda lame, actually.
 			else {
 				//70% of the time add a descriptor
-				if(rand(10) <= 6) descript += cockAdjective(-1) + " " + cockNoun(0);
+				if(this.rand(10) <= 6) descript += cockAdjective(-1) + " " + cockNoun(0);
 				else descript += cockNoun(0);
 			}
 			return descript;
@@ -5970,16 +5972,16 @@
 			//Non boring descriptions!
 		
 			//70% of the time add a descriptor
-			if(rand(10) <= 6) {
+			if(this.rand(10) <= 6) {
 				descript += statCockAdjective(8,2);
 				//50% of the time add supplimental cock adjective with the noun.
-				if(rand(2) == 0) descript += ", " + cockNoun(tailGenitalArg,false,true);
+				if(this.rand(2) == 0) descript += ", " + cockNoun(tailGenitalArg,false,true);
 				//Otherwise normal
 				else descript += " " + cockNoun(tailGenitalArg, false,true);
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
-				if(rand(10) <= 6) descript += cockNoun(tailGenitalArg, false, true);
+				if(this.rand(10) <= 6) descript += cockNoun(tailGenitalArg, false, true);
 				else descript += cockNoun(tailGenitalArg,true,true);
 			}
 			return descript;
@@ -5988,7 +5990,7 @@
 			var storage:String = "";
 			var temp:int;
 			if(breastRows.length == 0) {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "unremarkable chest muscles";
 				else if(temp == 1) return "chest";
 				else if(temp == 2) return "pectorals";
@@ -5996,21 +5998,21 @@
 				else return mf("manly","boyish") + " chest";
 			}
 			if(breastRows.length == 2) {
-				temp = rand(2);
+				temp = this.rand(2);
 				if(totalBreasts() == 4 && temp == 0) storage += "quad ";
 				else if(totalBreasts() == 4) storage += "four ";
 				else storage += "two rows of ";
 			}
 			if(breastRows.length == 3) {
-				if(rand(2) == 0) storage += "three rows of ";
+				if(this.rand(2) == 0) storage += "three rows of ";
 				else storage += "multi-layered ";
 			}
 			if(breastRows.length == 4) {
-				if(rand(2) == 0) storage += "four rows of ";
+				if(this.rand(2) == 0) storage += "four rows of ";
 				else storage += "four-tiered ";
 			}
 			if(breastRows.length == 5) {
-				if(rand(2) == 0) storage += "five rows of ";
+				if(this.rand(2) == 0) storage += "five rows of ";
 				else storage += "five-tiered ";
 			}	
 			storage += biggestBreastDescript();
@@ -6024,7 +6026,7 @@
 			//Small - A->B
 			if(val <= 2)
 			{
-				choice = rand(4);
+				choice = this.rand(4);
 				if(choice == 0) descript += "palmable";
 				else if(choice == 1) descript += "tight";
 				else if(choice == 2) descript += "perky";		
@@ -6033,7 +6035,7 @@
 			//C-D
 			else if(val <= 4)
 			{
-				choice = rand(5);
+				choice = this.rand(5);
 				if(choice == 0) descript += "nice";
 				else if(choice == 1) descript += "hand-filling";
 				else if(choice == 2) descript += "well-rounded";
@@ -6043,7 +6045,7 @@
 			//DD->big EE
 			else if(val < 11)
 			{
-				choice = rand(5);
+				choice = this.rand(5);
 				if(choice == 0) descript += "big";
 				if(choice == 1) descript += "large";
 				if(choice == 2) descript += "pillowy";
@@ -6053,7 +6055,7 @@
 			//F->big FF
 			else if(val < 15) 
 			{
-				choice = rand(4);
+				choice = this.rand(4);
 				if(choice == 0) descript += "soccerball-sized";
 				else if(choice == 1) descript += "hand-overflowing";
 				else if(choice == 2) descript += "generous";
@@ -6061,7 +6063,7 @@
 			}
 			//G -> HHH
 			else if(val < 24) {
-				choice = rand(4);
+				choice = this.rand(4);
 				if(choice == 0) descript += "basketball-sized";
 				else if(choice == 1) descript += "whorish";
 				else if(choice == 2) descript += "cushiony";
@@ -6069,7 +6071,7 @@
 			}
 			//I -> KK
 			else if(val < 35) {
-				choice = rand(4);
+				choice = this.rand(4);
 				if(choice == 0) descript += "massive motherly";
 				else if(choice == 1) descript += "luscious";
 				else if(choice == 2) descript += "smothering";
@@ -6077,7 +6079,7 @@
 			}
 			//K- > MMM+
 			else {
-				choice = rand(5);
+				choice = this.rand(5);
 				if(choice == 0) descript += "mountainous";
 				else if(choice == 1) descript += "monumental";
 				else if(choice == 2) descript += "back-breaking";
@@ -6097,27 +6099,27 @@
 			var noun:String = "";
 			var descripted:Boolean = false;
 			if(breastRows[rowNum].breastRating < 1) {
-				temp = rand(10);
+				temp = this.rand(10);
 				if(temp <= 3) return "pecs";
 				else if(temp <= 6) return "flat, almost non-existant breasts";
 				else return "pectoral muscles";
 			}				
 			//50% of the time size-descript them
-			if(rand(2) == 0) {
+			if(this.rand(2) == 0) {
 				descript += breastSize(breastRows[rowNum].breastRating);
 				descripted = true;
 			}
 			if(milkRate > 1.5) {
 				if(descripted) descript += ", ";
 				if(milkType == GLOBAL.MILK) {
-					temp = rand(4);
+					temp = this.rand(4);
 					if(temp == 0) descript += "lactating";
 					else if(temp == 1) descript += "milky";
 					else if(temp == 2) descript += "milk-filled";
 					else descript += "fluid-filled";
 				}
 				else if(milkType == GLOBAL.HONEY) {
-					temp = rand(4);
+					temp = this.rand(4);
 					if(temp == 0) descript += "honey-filled";
 					else if(temp == 1) descript += "honey-stuffed";
 					else if(temp == 2) descript += "sweet";
@@ -6125,21 +6127,21 @@
 				}
 				//Generic catch all
 				else {
-					temp = rand(2);
+					temp = this.rand(2);
 					if(temp == 0) descript += "lactating";
 					else descript += "fluid-filled";
 				}
 				descripted = true;
 			}
 			//Nouns!
-			temp = rand(14);
+			temp = this.rand(14);
 			if(temp == 0) noun += "breasts";
 			else if(temp <= 1) {
 				if(isLactating()) noun += "udders";
 				else noun += "breasts";
 			}
 			else if(temp <= 3) {
-				if(breastRows[rowNum].breastRating > 4 && rand(2) == 0) noun += "tits";
+				if(breastRows[rowNum].breastRating > 4 && this.rand(2) == 0) noun += "tits";
 				else noun += "breasts";
 			}
 			else if(temp <= 6) noun += "tits";
@@ -6181,7 +6183,7 @@
 			else type = cocks[cockNum].cType;
 			if(cockNum > cocks.length-1) return "ERROR";
 			if(type == GLOBAL.EQUINE) {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "flare";
 				else if(temp <= 1) return "blunt head";
 				else if(temp <= 2) return "equine glans";
@@ -6189,7 +6191,7 @@
 				else return "cock-head";
 			}
 			else if(type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "canine crown";
 				else if(temp <= 1) return "pointed cock-head";
 				else if(temp <= 2) return "narrow glans";
@@ -6197,7 +6199,7 @@
 				else return "cock-head";
 			}
 			else if(type == GLOBAL.DEMONIC) {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "tainted crown";
 				else if(temp <= 1) return "nubby head";
 				else if(temp <= 2) return "demonic glans";
@@ -6205,7 +6207,7 @@
 				else return "cock-head";
 			}
 			else if(type == GLOBAL.TENTACLE) {
-				temp = rand(6);
+				temp = this.rand(6);
 				if(temp == 0) return "crown";
 				else if(temp <= 1) return "tentacle-head";
 				else if(temp <= 2) return "floral glans";
@@ -6214,7 +6216,7 @@
 				else return "wide, plant-like crown";
 			}
 			else if(type == GLOBAL.NAGA || type == GLOBAL.LIZAN || type == GLOBAL.SNAKE) {
-				temp = rand(6);
+				temp = this.rand(6);
 				if(temp == 0) return "point";
 				else if(temp <= 1) return "narrow tip";
 				else if(temp <= 2) return "purple, pointed glans";
@@ -6223,7 +6225,7 @@
 				else return "reptilian crown";
 			}
 			else if(type == GLOBAL.ANEMONE || type == GLOBAL.SIREN) {
-				temp = rand(6);
+				temp = this.rand(6);
 				if(temp == 0) return "blue tip";
 				else if(temp == 1) return "tentacle-ringed glans";
 				else if(temp == 2) return "exotic cock-head";
@@ -6231,7 +6233,7 @@
 				else return "wiggling crown";
 			}
 			/*if(cocks[cockNum].cType == 10) {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "star tip";
 				else if(temp == 1) return "blooming cock-head";
 				else if(temp == 2) return "open crown";
@@ -6239,13 +6241,20 @@
 				else return "bizarre head";
 			}*/
 			else {
-				temp = rand(5);
+				temp = this.rand(5);
 				if(temp == 0) return "crown";
 				else if(temp <= 1) return "head";
 				else if(temp <= 2) return "glans";
 				else if(temp <= 3) return "tip";
 				else return "cock-head";
 			}
+		}
+
+		protected function clone(source:Object):* {
+			var copier:ByteArray = new ByteArray();
+			copier.writeObject(source);
+			copier.position = 0;
+			return(copier.readObject());
 		}
 
 	}

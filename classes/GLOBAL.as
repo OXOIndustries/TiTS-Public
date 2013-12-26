@@ -166,6 +166,22 @@
 		public static const ZILFEMALE:int 							   = 9;
 		public static const CSNAKE:int								   = 10;
 
+
+		public static const bustLookup:Object = {
+			"CELISE"     : 1,
+			"RIVAL"      : 2,
+			"GEOFF"      : 3,
+			"FLAHNE"     : 4,
+			"ZILPACK"    : 5,
+			"ZIL"        : 6,
+			"PENNY"      : 7,
+			"BURT"       : 8,
+			"ZILFEMALE"  : 9,
+			"CSNAKE"     : 10
+		};
+
+		public static var ITEMS:Object = {};
+
 		/*PLOT FLAGS
 		RECRUITED_CELISE
 		CELISE_ONBOARD
