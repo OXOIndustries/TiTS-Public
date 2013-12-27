@@ -3,10 +3,10 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	
-	public class Celise extends Creature
+	public class ChangeMe extends Creature
 	{
 		//constructor
-		public function Celise()
+		public function ChangeMe()
 		{
 			
 		}

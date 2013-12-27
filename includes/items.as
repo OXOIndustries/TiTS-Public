@@ -184,34 +184,36 @@ function inventory():void {
 	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 
+
+// Uh, all the items are either 
 function unequip(arg:String, next:Boolean = true):void {
 	if(arg == "bra") {
 		lootList[lootList.length] = clone(pc.upperUndergarment);
-		pc.upperUndergarment = clone(items["6"]);
+		pc.upperUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "underwear") {
 		lootList[lootList.length] = clone(pc.lowerUndergarment);
-		pc.lowerUndergarment = clone(items["6"]);
+		pc.lowerUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "shield") {
 		lootList[lootList.length] = clone(pc.shield);
-		pc.shield = clone(items["6"]);
+		pc.shield = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "accessory") {
 		lootList[lootList.length] = clone(pc.accessory);
-		pc.accessory = clone(items["6"]);
+		pc.accessory = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "armor") {
 		lootList[lootList.length] = clone(pc.armor);
-		pc.armor = clone(items["6"]);
+		pc.armor = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "mWeapon") {
 		lootList[lootList.length] = clone(pc.meleeWeapon);
-		pc.meleeWeapon = clone(items["5"]);
+		pc.meleeWeapon = new classes.Items.Melee.Rock();
 	}
 	else if(arg == "rWeapon") {
 		lootList[lootList.length] = clone(pc.rangedWeapon);
-		pc.rangedWeapon = clone(items["5"]);
+		pc.rangedWeapon = new classes.Items.Melee.Rock();
 	}
 	clearOutput();
 	itemCollect();

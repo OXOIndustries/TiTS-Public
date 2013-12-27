@@ -17,10 +17,6 @@
 		public var type:int;
 		public var basePrice:Number;
 		
-		// What the heck was this ever for? Disabling because it seems to never be used
-		// Re-enable if needed, but if so: WUT?
-		// public var indexNumber:int 
-		
 		//Flags
 		public var flags:Array;
 		
@@ -60,10 +56,6 @@
 			//Information
 			this.type = 0;
 			this.basePrice = 0;
-		
-			// What the heck was this ever for? Disabling because it seems to never be used
-			// Re-enable if needed, but if so: WUT?
-			// 	this.indexNumber = 0; 
 		
 			//Flags
 			this.flags = new Array();

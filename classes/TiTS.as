@@ -27,7 +27,15 @@
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
+
 	import classes.Characters.*;
+
+	// Items
+	import classes.Items.Protection.*
+	import classes.Items.Guns.*
+	import classes.Items.Melee.*
+	import classes.Items.Apparel.*
+	import classes.Items.Miscellaneous.*
 
 	import classes.Parser.Main.Parser;
 
@@ -44,7 +52,6 @@
 		include "../includes/combat.as";
 		include "../includes/celise.as";
 		include "../includes/flahne.as";
-		include "../includes/itemData.as";
 		include "../includes/items.as";
 		include "../includes/penny.as";
 		include "../includes/scrapyard.as";
@@ -229,7 +236,6 @@
 
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
-			initializeItems();
 
 			
 			// dick about with mapper: ------------------------------------------------------------

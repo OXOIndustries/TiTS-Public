@@ -1,4 +1,6 @@
-﻿function creationRouter():void {
+﻿
+
+function creationRouter():void {
 	if(chars["PC"].short != "uncreated") {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
 		this.userInterface.addMainMenuButton(0,"Yes",startCharacterCreation);
@@ -11,7 +13,7 @@ function startCharacterCreation():void {
 	chars["PC"] = new Creature();
 	initializeNPCs();
 	chars["PC"].level = 1;
-	chars["PC"].shield = clone(items["12"]);
+	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	
 	/*
@@ -651,21 +653,25 @@ function classConfirm(arg:int = 0):void {
 function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
 	if(arg == GLOBAL.SMUGGLER) {
-		pc.rangedWeapon = clone(items["0"]);
+		pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
 	}
 	if(arg == GLOBAL.MERCENARY) {
-		pc.rangedWeapon = clone(items["1"]);
+		pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
 	}
 	if(arg == GLOBAL.ENGINEER) {
-		pc.rangedWeapon = clone(items["2"]);
+		pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
 	}
-	pc.meleeWeapon = clone(items["4"]);
-	pc.armor = clone(items["7"]);
+	pc.meleeWeapon =  new classes.Items.Melee.Knife();
+	pc.armor = new classes.Items.Apparel.DressClothes();
 	pc.shieldsRaw = pc.shieldsMax();
-	if(!pc.hasVagina()) pc.lowerUndergarment = clone(items["9"]);
-	else pc.lowerUndergarment = clone(items["8"]);
-	if(pc.biggestTitSize() < 1) pc.upperUndergarment = clone(items["11"]);
-	else pc.upperUndergarment = clone(items["10"]);
+	if(!pc.hasVagina()) 
+		pc.lowerUndergarment = new classes.Items.Apparel.PlainBriefs() //   (items["9"]);
+	else 
+		pc.lowerUndergarment = new classes.Items.Apparel.PlainPanties() //   (items["8"]);
+	if(pc.biggestTitSize() < 1) 
+		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() //   (items["11"]);
+	else 
+		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() //   (items["10"]);
 	tutorialSkipOption();
 }
 
