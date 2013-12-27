@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Guns.*
 	
 	public class Geoff extends Creature
 	{
@@ -37,9 +38,9 @@
 			this.level = 1;
 			this.credits = 1000;
 			
-			//this.inventory[0] = this.clone(GLOBAL.ITEMS.items["0"]);
-			//this.inventory[1] = this.clone(GLOBAL.ITEMS.items["1"]);
-			//this.inventory[2] = this.clone(GLOBAL.ITEMS.items["2"]);
+			this.inventory[0] = new classes.Items.Guns.HoldOutPistol();
+			this.inventory[1] = new classes.Items.Guns.EagleHandgun();
+			this.inventory[2] = new classes.Items.Guns.ScopedPistol();
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .25;
