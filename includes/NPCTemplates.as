@@ -43,9 +43,9 @@
 	{
 		chars["ZILFEMALE"] = new classes.Characters.ZilFemale();
 	}
-	if (!justUpdate || (justUpdate && chars["CSNAKE"] == undefined))
+	if (!justUpdate || (justUpdate && chars["CUNTSNAKE"] == undefined))
 	{
-		chars["CSNAKE"] = new classes.Characters.CuntSnake();
+		chars["CUNTSNAKE"] = new classes.Characters.CuntSnake();
 
 	}
 

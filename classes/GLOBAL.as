@@ -177,7 +177,7 @@
 			"PENNY"      : 7,
 			"BURT"       : 8,
 			"ZILFEMALE"  : 9,
-			"CSNAKE"     : 10
+			"CUNTSNAKE"  : 10
 		};
 
 		public static var ITEMS:Object = {};

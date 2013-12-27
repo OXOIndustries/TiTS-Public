@@ -710,7 +710,7 @@ function startCombat(encounter:String):void
 			foes[0] = clone(zilFemale);
 			break;
 		case "cunt snake":
-			this.userInterface.showBust("CSNAKE");
+			this.userInterface.showBust("CUNTSNAKE");
 			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeCSnake();
 			break;
