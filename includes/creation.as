@@ -1,5 +1,5 @@
 ﻿function creationRouter():void {
-	if(pc.short != "uncreated") {
+	if(chars["PC"].short != "uncreated") {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
 		this.userInterface.addMainMenuButton(0,"Yes",startCharacterCreation);
 		this.userInterface.addMainMenuButton(1,"No",mainMenu);
@@ -8,12 +8,11 @@
 }
 function startCharacterCreation():void {
 	this.userInterface.hideMainMenu();
-	characters["PC"] = new Creature();
+	chars["PC"] = new Creature();
 	initializeNPCs();
-	pc = characters["PC"];
-	pc.level = 1;
-	pc.shield = clone(items["12"]);
-	pc.shieldsRaw = pc.shieldsMax();
+	chars["PC"].level = 1;
+	chars["PC"].shield = clone(items["12"]);
+	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
 	
 	/*
 	for (var x:int = 0; x < 10000; x++) {
@@ -25,7 +24,7 @@ function startCharacterCreation():void {
 
 	this.userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
-	pc.createStatusEffect("In Creation",0,0,0,0);
+	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
 	if(stage.contains(this.userInterface.textInput)) this.userInterface.removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
@@ -957,53 +956,53 @@ function getFoodAndDrink():void {
 //Rival Spills the Beans
 function rivalSpillsTheBeans(sex:int = 0) {
 	if(sex == 1) {
-		characters["RIVAL"].short = "Jack";
-		characters["RIVAL"].cockVirgin = false;
-		characters["RIVAL"].vaginalVirgin = true;
-		characters["RIVAL"].analVirgin = false;
-		characters["RIVAL"].createCock();
-		characters["RIVAL"].cocks[0].cLength = 12;
-		characters["RIVAL"].cocks[0].cLength = 1.5;
-		characters["RIVAL"].balls = 2;
-		characters["RIVAL"].ballSize = 2;
-		characters["RIVAL"].femininity = 25;
-		characters["RIVAL"].hipRating -= 2;
-		characters["RIVAL"].buttRating -= 2;
+		chars["RIVAL"].short = "Jack";
+		chars["RIVAL"].cockVirgin = false;
+		chars["RIVAL"].vaginalVirgin = true;
+		chars["RIVAL"].analVirgin = false;
+		chars["RIVAL"].createCock();
+		chars["RIVAL"].cocks[0].cLength = 12;
+		chars["RIVAL"].cocks[0].cLength = 1.5;
+		chars["RIVAL"].balls = 2;
+		chars["RIVAL"].ballSize = 2;
+		chars["RIVAL"].femininity = 25;
+		chars["RIVAL"].hipRating -= 2;
+		chars["RIVAL"].buttRating -= 2;
 		
 	}
 	else {
-		characters["RIVAL"].short = "Jill";
-		characters["RIVAL"].cockVirgin = true;
-		characters["RIVAL"].vaginalVirgin = false;
-		characters["RIVAL"].analVirgin = true;
-		characters["RIVAL"].vaginas = new Array();
-		characters["RIVAL"].createVagina();
-		characters["RIVAL"].vaginas[0].hymen = true;
-		characters["RIVAL"].vaginas[0].clits = 1;
-		characters["RIVAL"].vaginas[0].wetness = 1;
-		characters["RIVAL"].vaginas[0].looseness = 1;
-		characters["RIVAL"].vaginas[0].bonusCapacity = 0;
-		characters["RIVAL"].breastRows[0].breastRating = 4;
-		characters["RIVAL"].femininity = 75;
-		characters["RIVAL"].hipRating += 2;
-		characters["RIVAL"].buttRating += 2;
+		chars["RIVAL"].short = "Jill";
+		chars["RIVAL"].cockVirgin = true;
+		chars["RIVAL"].vaginalVirgin = false;
+		chars["RIVAL"].analVirgin = true;
+		chars["RIVAL"].vaginas = new Array();
+		chars["RIVAL"].createVagina();
+		chars["RIVAL"].vaginas[0].hymen = true;
+		chars["RIVAL"].vaginas[0].clits = 1;
+		chars["RIVAL"].vaginas[0].wetness = 1;
+		chars["RIVAL"].vaginas[0].looseness = 1;
+		chars["RIVAL"].vaginas[0].bonusCapacity = 0;
+		chars["RIVAL"].breastRows[0].breastRating = 4;
+		chars["RIVAL"].femininity = 75;
+		chars["RIVAL"].hipRating += 2;
+		chars["RIVAL"].buttRating += 2;
 	}
 	clearOutput();
 	this.userInterface.showBust("RIVAL");
-	setLocation("MEETING\n" + characters["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
-	output(characters["RIVAL"].mf("He","She") + "’s " + characters["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + characters["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + characters["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
-	output("\n\nLuckily, the figure resolves into someone more familiar: " + characters["RIVAL"].short + " Steele, obviously on station for the same reason as you. " + characters["RIVAL"].short + " is your cousin, though in this case, familiarity breeds no affection. " + characters["RIVAL"].mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
-	output("\n\n" + characters["RIVAL"].short + " pulls you from your thoughts with a snide greeding, <i>“Greetings, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + characters["RIVAL"].mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");
-	output("\n\n<i>“Hail, " + characters["RIVAL"].short + ",”</i> ");
+	setLocation("MEETING\n" + chars["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
+	output(chars["RIVAL"].mf("He","She") + "’s " + chars["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + chars["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + chars["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
+	output("\n\nLuckily, the figure resolves into someone more familiar: " + chars["RIVAL"].short + " Steele, obviously on station for the same reason as you. " + chars["RIVAL"].short + " is your cousin, though in this case, familiarity breeds no affection. " + chars["RIVAL"].mf("His","Her") + " father is Maximillian Steele, your Dad’s brother and all around conniving bastard. Uncle Max made his fortune by following your father and filing time-shifted, forged claims on as many of your father’s finds as he could. The worst part of it is that some of the claims actually held up in court, allowing him to make out nearly as well as Dad with a fraction of the risk.");
+	output("\n\n" + chars["RIVAL"].short + " pulls you from your thoughts with a snide greeding, <i>“Greetings, cousin.”</i> The last part is enunciated in a sneer. Perhaps " + chars["RIVAL"].mf("he","she") + " was brought up with a similar tale, demonizing your father. You wouldn’t put it past Uncle Max.");
+	output("\n\n<i>“Hail, " + chars["RIVAL"].short + ",”</i> ");
 	if(pc.isNice()) output("you say with as much friendliness as you can muster");
 	else if(pc.isMischievous()) output("you say with less humor than you usually bring to a conversation");
 	else output("you say with spite in your voice");
 	output(", <i>“What brings you to my table?”</i>");
-	output("\n\n" + characters["RIVAL"].short + " smirks and takes a swig of " + characters["RIVAL"].mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + characters["RIVAL"].mf("He","She") + "  laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + characters["RIVAL"].short + " produces a simple touch tablet from " + characters["RIVAL"].mf("his","her") + " pocket and a tiny, chit-sized disk.");
-	output("\n\n<i>“This is a pretty standard handheld computer, but this,”</i> " + characters["RIVAL"].mf("he","she") + " says holding the miniature device aloft, <i>“is a sophisticated tracking and eavesdropping device - just like the one in your pocket.”</i>");
+	output("\n\n" + chars["RIVAL"].short + " smirks and takes a swig of " + chars["RIVAL"].mf("his","her") + " drink. <i>“I just thought I’d let you know that Uncle Vic made a huge mistake. No, a gigantic one.”</i> " + chars["RIVAL"].mf("He","She") + "  laughs and continues, <i>“The best part is that neither of you even know it! Let me elucidate for you, simple cousin.”</i> " + chars["RIVAL"].short + " produces a simple touch tablet from " + chars["RIVAL"].mf("his","her") + " pocket and a tiny, chit-sized disk.");
+	output("\n\n<i>“This is a pretty standard handheld computer, but this,”</i> " + chars["RIVAL"].mf("he","she") + " says holding the miniature device aloft, <i>“is a sophisticated tracking and eavesdropping device - just like the one in your pocket.”</i>");
 	output("\n\nNo.... You reach into your pocket and turn it out, catching an identical device when it falls into your hand. You immediately drop it on the floor and crush it under" + pc.foot() + ", but that merely earns a derisive snort from your unfriendly dinner companion.");
-	output("\n\n<i>“The data was already transmitted. I know everything, " + pc.short + ". Best of all, I’m part of the family, so your father’s precious gene-locked probes will handily divulge their secrets to me.</i> " + characters["RIVAL"].short + " gives an ingratiating smile. <i>“My ship is already good to go, but I think I’d rather depart on a good night’s rest. Besides, why should I need to rush when your clunker is in pieces all over your hanger? Good luck, cuz”</i>");
-	output("\n\n" + characters["RIVAL"].short + " swaggers off with " + characters["RIVAL"].mf("his","her") + " drink and " + characters["RIVAL"].mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
+	output("\n\n<i>“The data was already transmitted. I know everything, " + pc.short + ". Best of all, I’m part of the family, so your father’s precious gene-locked probes will handily divulge their secrets to me.</i> " + chars["RIVAL"].short + " gives an ingratiating smile. <i>“My ship is already good to go, but I think I’d rather depart on a good night’s rest. Besides, why should I need to rush when your clunker is in pieces all over your hanger? Good luck, cuz”</i>");
+	output("\n\n" + chars["RIVAL"].short + " swaggers off with " + chars["RIVAL"].mf("his","her") + " drink and " + chars["RIVAL"].mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
 	output("\n\nYou burp as fatigue sets in and make off to secure quarters for the evening. Tomorrow is going to be a big day, and you intend to hit the galactic rim hard.");
 	output("\n\nTomorrow, you join the Planet Rush.");
 	this.userInterface.clearMenu();
@@ -1015,7 +1014,7 @@ function ohShitGameStarts():void {
 	this.userInterface.showBust("RIVAL");
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
 	setLocation("","TAVROS STATION","SYSTEM: KALAS");
-	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + characters["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
+	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely prattles.");
 	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
 	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");

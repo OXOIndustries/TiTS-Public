@@ -692,7 +692,7 @@ function startCombat(encounter:String):void
 		case "celise":
 			this.userInterface.showBust("CELISE");
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = clone(characters["CELISE"]);
+			foes[0] = clone(chars["CELISE"]);
 			break;
 		case "zilpack":
 			this.userInterface.showBust("ZILPACK");

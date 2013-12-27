@@ -66,9 +66,11 @@
 	
 		//include "../includes/zilMale.as";
 		
-		public var characters:Object;
+		public var chars:Object;
 		public var foes:Array;
 			
+		/*
+		FUCK THIS SHIT IT'S MAKING EVERYTHING SO MUCH HARDER TO DEBUG
 		public var pc:Creature;
 		public var celise:Creature;
 		public var rival:Creature;
@@ -80,7 +82,7 @@
 		public var burt:Creature;
 		public var zilFemale:Creature;
 		public var cuntsnake:Creature;
-
+		*/
 		// These are all floating around in the TiTS namespace. Really
 		// they should be stored in an item Object() or something
 		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
@@ -166,6 +168,7 @@
 			registerClassAlias("ItemSlotClass",ItemSlotClass);
 			registerClassAlias("roomClass",RoomClass);
 			registerClassAlias("StorageClass",StorageClass);
+			registerClassAlias("Dictionary",Dictionary);
 
 			// NPCs!
 
@@ -183,7 +186,7 @@
 
 
 
-			characters = new Object();
+			chars = new Object();
 			foes = new Array();
 			
 			//What inventory screen is up?
@@ -243,10 +246,9 @@
 
 
 			//Lazy man shortcuts! Need reset after reinitialization of data.
-			//pc = characters[0];
+			//pc = chars[0];
 
-			this.characters["PC"] = new Creature()
-			this.pc = characters["PC"];
+			this.chars["PC"] = new Creature()
 
 
 			trace("Setting up the PC")
@@ -657,6 +659,78 @@
 				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
 			}
 		}
+
+
+
+		public function get pc():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PC\"]`");
+			return chars["PC"];
+		}
+
+		public function get celise():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CELISE\"]`");
+			return chars["CELISE"];
+		}
+
+		public function get rival():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"RIVAL\"]`");
+			return chars["RIVAL"];
+		}
+
+		public function get geoff():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"GEOFF\"]`");
+			return chars["GEOFF"];
+		}
+
+		public function get flahne():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"FLAHNE\"]`");
+			return chars["FLAHNE"];
+		}
+
+		public function get zilpack():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILPACK\"]`");
+			return chars["ZILPACK"];
+		}
+
+		public function get zil():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZIL\"]`");
+			return chars["ZIL"];
+		}
+
+		public function get penny():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PENNY\"]`");
+			return chars["PENNY"];
+		}
+
+		public function get burt():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"BURT\"]`");
+			return chars["BURT"];
+		}
+
+		public function get zilFemale():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILFEMALE\"]`");
+			return chars["ZILFEMALE"];
+		}
+
+		public function get cuntsnake():*
+		{
+			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CUNTSNAKE\"]`");
+			return chars["CUNTSNAKE"];
+		}
+
+		
+		
+		
 
 
 

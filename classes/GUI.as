@@ -1427,11 +1427,11 @@
 			}
 			bustIndex = GLOBAL.bustLookup[arg];
 
-			this.leftSideBar.sceneTitle.text = this.titsClassPtr.characters[arg].short.toUpperCase()
+			this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
 			this.leftSideBar.npcBusts.visible = true;
 			if(arg == "RIVAL")
 			{
-				if(this.titsClassPtr.characters[arg].short == "Jill") 
+				if(this.titsClassPtr.chars[arg].short == "Jill") 
 					this.leftSideBar.npcBusts.gotoAndStop(100);
 				else 
 					this.leftSideBar.npcBusts.gotoAndStop(bustIndex);

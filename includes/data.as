@@ -98,7 +98,7 @@ function loadSaveDisplay(slot:String, slotName:String):String
 		holding += saveFile.data.short;
 		holding += "</b> - <i>" + saveFile.data.notes + "</i>\n";
 		holding += "	<b>Days:</b> " + saveFile.data.days + "  <b>Gender:</b> ";
-		holding += saveFile.data.characters["PC"].mfn("M","F","A");
+		holding += saveFile.data.chars["PC"].mfn("M","F","A");
 		holding += "  <b>Location:</b> " + saveFile.data.location;
 		holding += "\n";
 		return holding;
@@ -133,19 +133,19 @@ function saveGame(slot:String):void
 	//Set a single variable that tells us if this save exists
 	saveFile.data.exists = true;
 	
-	saveFile.data.characters = new Object();
-	saveFile.data.short = characters["PC"].short;
+	saveFile.data.chars = new Object();
+	saveFile.data.short = chars["PC"].short;
 	
 	
 	saveFile.data.foes = new Array();
 	
-	saveFile.data.characters = clone(characters); // Why iterate when it can do it for you!
-	saveFile.data.foes = clone(foes);
+	saveFile.data.chars = clone(this.chars); // Why iterate when it can do it for you!
+	saveFile.data.foes = clone(this.foes);
 	
 	/*
-	for(var x:int = 0; x < characters.length; x++) {
-		if(characters[x].short != "uncreated") {
-			saveFile.data.characters[x] = clone(characters[x]);
+	for(var x:int = 0; x < chars.length; x++) {
+		if(chars[x].short != "uncreated") {
+			saveFile.data.chars[x] = clone(chars[x]);
 		}
 	}
 	saveFile.data.foes = new Array();
@@ -195,34 +195,17 @@ function loadGame(slot:String):void
 		
 
 		// you don't need to clear this if it's overwritten again in a bit, you know.
-		characters = new Object();
+		this.chars = new Object();
 		this.initializeNPCs();
-		
-		/*
-		//Load it up!
-		for(var x:int = 0; x < saveFile.data.characters.length; x++) {
-			if(saveFile.data.characters[x].short != "uncreated") {
-				characters[x] = clone(saveFile.data.characters[x]);
-			}
-		}
-		*/
-		foes = new Array();
+		this.foes = new Array();
 
-		characters = clone(saveFile.data.characters); // Why iterate when it can do it for you!
-		foes = clone(saveFile.data.foes);
-		/*
-		for(x = 0; x < foes.length; x++) {
-			foes[x] = clone(saveFile.data.foes[x]);
-		}
-		*/
-		//Load flags
-		flags = cloneDict(saveFile.data.flags);
+		this.chars = clone(saveFile.data.chars); // Why iterate when it can do it for you!
+		this.foes = clone(saveFile.data.foes);
 		
-		/*
-		for (x = 0; x < 10000; x++) {
-			flags[x] = saveFile.data.flags[x];
-		}
-		*/
+		//Load flags
+		this.flags = new Dictionary()
+		this.flags = cloneDict(saveFile.data.flags);
+		
 		
 		//Load misc shit
 		this.userInterface.days = saveFile.data.days;
@@ -238,8 +221,6 @@ function loadGame(slot:String):void
 		//Update NPCs that didn't used to exist
 		this.initializeNPCs(true);				
 		
-		//Set pointers back where they belong!
-		this.setCheatPointers();
 		
 		//Update display and such!
 		this.hideNPCStats();
@@ -279,14 +260,4 @@ function initializeFlags():void
 		flags[x] = undefined;
 	}
 	*/
-}
-
-// arrrrrgh whryyyyy
-function setCheatPointers():void 
-{
-	pc = characters["PC"];
-	celise = characters["CELISE"];
-	rival = characters["RIVAL"];
-	geoff = characters["GEOFF"];
-	flahne = characters["FLAHNE"];
 }

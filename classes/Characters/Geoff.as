@@ -55,16 +55,16 @@
 			this.tone = 70;
 			this.hairColor = "brown";
 			this.scaleColor = "FIXME";
-			//this.scaleColor = titsPtr.characters["PC"].scaleColor;
+			//this.scaleColor = titsPtr.chars["PC"].scaleColor;
 			this.furColor = "FIXME";
-			//this.furColor = titsPtr.characters["PC"].furColor;
+			//this.furColor = titsPtr.chars["PC"].furColor;
 			this.hairLength = 12;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN;
 			this.skinTone = "FIXME";
-			//this.skinTone = titsPtr.characters["PC"].skinTone;
+			//this.skinTone = titsPtr.chars["PC"].skinTone;
 			this.skinFlags = new Array();
 			this.faceType = 0;
 			this.faceFlags = new Array();
@@ -132,7 +132,7 @@
 			this.cumQuality = 1;
 			this.cumType = GLOBAL.CUM;
 			this.ballSize = 3;
-			//this.ballSize = titsPtr.characters["PC"].ballSize;
+			//this.ballSize = titsPtr.chars["PC"].ballSize;
 			this.ballFullness = 10;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 10;
