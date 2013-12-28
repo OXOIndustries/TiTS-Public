@@ -432,6 +432,7 @@ function zilFlyingSpinKick():void {
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
 		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if (target.shieldsRaw > 0) {

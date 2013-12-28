@@ -203,6 +203,13 @@ function statusTick():void {
 					pc.reflexesMod += pc.statusEffects[x].value1;
 					pc.libidoMod -= pc.statusEffects[x].value1;
 				}
+				if (pc.statusEffects[x].storageName == "Naleen Venom")
+				{
+					pc.strengthMod += pc.statusEffects[x].value1;
+					pc.aimMod += pc.statusEffects[x].value1;
+					pc.willpowerMod += pc.statusEffects[x].value1;
+					pc.reflexesMod += pc.statusEffects[x].value1;
+				}
 				//KILL ZE STATUS
 				pc.statusEffects.splice(x,1);
 			}

@@ -4,9 +4,12 @@
 function femzilEncounter(forceFriendly:Boolean = false):void {
 	pc.lust(4);
 	userInterface.showBust(GLOBAL.ZILFEMALE);
+	var hostile:int = rand(4);
+	if(forceFriendly) hostile = 0;
 	//[First Time]
 	if(flags["TIMES_MET_FEMZIL"] == undefined) {
 		flags["TIMES_MET_FEMZIL"] = 1;
+		author("Savin");
 		output("\n\nAs you move through the brush, you push aside a thick clump of overgrown branches only to reveal a wide clearing, maybe fifty feet across, with a fallen tree trunk right at its center. Sitting atop it you see a shapely female clad from head to foot in well-polished black chitin, reclining with one leg crossed over the other, only just hiding her bare crotch from sight. A belt rests on her flared hips, holding dozens of small vials and tiny darts, each hilted by exotic looking fetishes and woven braids.");
 		//If PC has encounter a zil male before:
 		if(flags["ENCOUNTERED_ZIL"] != undefined) output("\n\nYour codex beeps out a warning about the zil, but it doesn't take an anthropologist to figure out you've found one of their females. You start to ready a weapon as the girl turns toward you, but seeing you, she quickly puts up her hands in an disarming gesture of peace. <i>\"Hey there, no need for violence!\"</i>");
@@ -27,7 +30,8 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 		else userInterface.addDisabledButton(1,"Sex");
 	}
 	//[Repeat] (If PC didn't fight her last time)
-	else if(flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
+	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
+		author("Savin");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. Your eyes and nose lead you to a familiar feminine form reclining on a log, legs spread wide to let loose the potent scent. The girl looks up as you approach. <i>\"Well, hello. What brings you to my favorite hangout? Interested in a bit of fun?\"</i>");
 		
 		output("\n\nThe casual tone of her words belies her perverted intentions; as she speaks, her fingers slide between her thighs and the atmosphere thickens with her sweet pheromones. You feel a strong compulsion to agree to whatever she wants.");
@@ -49,7 +53,8 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 		
 	}
 	//[Repeat] (If PC fought her last time) && not a hostile zil
-	else if(flags["FOUGHT_FEMZIL_LAST_TIME"] != undefined && (rand(4) == 0 || forceFriendly)){
+	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] != undefined){
+		author("Savin");
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, grabbing one of the darts from her belt to defend herself. <i>\"H-hey there, stranger, no need to get violent. Just back off, okay?\"</i>");
 		userInterface.clearMenu();
 		//[Fight her]
@@ -59,6 +64,7 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 	}
 	//HOSTILE ZIL!
 	else {
+		author("Zeikfried");
 		output("\n\nAs you wander the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. Your eyes and nose lead you to a familiar feminine form reclining on a log, legs spread wide to let loose the potent scent. The girl looks up as you approach with a knowing smile. <i>\"Hello, lover. I’m in the mood for some excitement, and you’re right on time.\"</i>  She does not look like she will take no for an answer.");
 		output("\n\nHer pussy fairly glistens, lending truth to her words. The atmosphere thickens with pheromones and tension as she stares you down, tracing the outline of her vulva. You feel a strong compulsion to agree to whatever she wants.");
 		userInterface.clearMenu();
@@ -75,6 +81,7 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 //Leave (Must pass an Easy Int check, penalized by high Libido, to break away from zil Pheromones)
 function tryToLeaveFemzil():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("You back away from the sweet-smelling zil, even though your body yearns powerfully for her touch.");
 	//if Fought before:
@@ -90,6 +97,7 @@ function tryToLeaveFemzil():void {
 
 function submitToFriendlyZil():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	flags["FOUGHT_FEMZIL_LAST_TIME"] = undefined;
 	output("With a goofy grin, you agree to the zil’s proposal. She smiles back and beckons you closer, deeper into the laden air. How will you take the welcoming alien woman?");
@@ -99,6 +107,7 @@ function submitToFriendlyZil():void {
 function fightDatFriendlyFemzil():void {
 	flags["FOUGHT_FEMZIL_LAST_TIME"] = 1;
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("You shake off the potent draw of the zil girl's pheromones and level a weapon at her, ready to fight.");
 	output("\n\n<i>\"Woah! Back up, </i>");
@@ -113,6 +122,7 @@ function fightDatFriendlyFemzil():void {
 //[Fight Her]
 function fightHostileZil():void {
 	clearOutput();
+	author("Zeikfried");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("Though your body betrays you by moving a step closer to the wasp woman, you hold onto your wits enough to ready your defenses. Not a moment too soon, either, as the zil’s hand slides from her wet pussy to her belt and flings a pouch right at you. You react quickly enough to swat it aside, but any mask of friendliness the zil had is thrown away as well  - she clearly intends to take what she wants!");
 	userInterface.clearMenu();
@@ -122,6 +132,7 @@ function fightHostileZil():void {
 //[Leave]
 function leaveHostileZil():void {
 	clearOutput();
+	author("Zeikfried");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("Shaking your head both to free it of pheromones and give the zil your answer, you turn away. Behind you, you hear a slight rustle from the vexed wasp woman, followed by the sound of a cloth flap opening.");
 	//new paragraph, split for reflex check -- failure adds lust
@@ -141,7 +152,7 @@ function leaveHostileZil():void {
 			else output("a bit of exposed flesh");
 			output(", and your muscles loosen while your groin heats up with increased blood flow. Head suddenly swimming, you can only marshal your thoughts as the zil walks closer, grinning smugly. As she reaches over to caress your body, your body finally responds and you slap her hand away.");
 			
-			output("\n\nHumming in irritation, she takes a step back as you ready your [pc.meleeWeapon].");
+			output("\n\nHumming in irritation, she takes a step back as you ready your " + pc.meleeWeapon.longName + ".");
 			userInterface.clearMenu();
 			userInterface.addButton(0,"Next",startCombat,"female zil");
 		}
@@ -199,6 +210,7 @@ function zilGirlAI():void {
 
 //Dart Throw:
 function zilFemaleDartThrow():void {
+	author("Savin");
 	//Light physical + light poison damage/ DOT
 	output("Pursing her black lips in anger, the zil girl leans back and lets fly with a red-tipped dart, sending it right at you!");
 	//{standard dodge/miss messages}
@@ -214,9 +226,10 @@ function zilFemaleDartThrow():void {
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
 		var sDamage:Array = new Array();
 		if(pc.shieldsRaw > 0) {
-			sDamage[0] = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
 			//Set damage to leftoverDamage from shieldDamage
 			damage = sDamage[1];
 			if (target.shieldsRaw > 0) 
@@ -239,11 +252,13 @@ function zilFemaleDartThrow():void {
 
 //Pheromone Fan:
 function pheromoneFanFromZilFemale():void {
+	author("Savin");
 	output("Suddenly, the zil girl drops her combat stance, and dips her fingers right into her honeypot, masturbating furiously. You wonder what the hell she's doing, but suddenly your senses are assaulted by a potent cloud of her sex pheromones!");
 	//{Moderate toughness check pass}
 	if(pc.physique() + rand(20) + 1 > 20) {
 		output("\nYou hold your breath as long as you can, waving the lusty cloud away from you. Before long, the zil girl tires out, nearly cumming before she stumbles back with chest heaving. There's a thick scent of sex in the air by the time you breathe again...");
 		foes[0].lust(5);
+		pc.lust(5);
 	}
 	else {
 		output("\nEventually, you can hold your breath no longer, and you're forced to inhale the potent cloud deep into your lungs. Your heart hammers in your chest faster and faster while your [pc.skin] flushes and your lips unconsciously purse.");
@@ -261,6 +276,7 @@ function pheromoneFanFromZilFemale():void {
 //LustBang:
 //Lust grenade; chance to blind for 1d3 turns
 function lustBangOut():void {
+	author("Savin");
 	output("The zil girl dances away from you, just out of reach before grabbing one of the vials off her belt and throwing it at the ground just in front of you!");
 	
 	//If Speed is higher and passes check:
@@ -289,14 +305,16 @@ function lustBangOut():void {
 //Dart Barrage:
 //3x standard attacks with heightened miss chance. Doesn't miss if PC is blinded. Always follows up a LustBang, even if it failed to blind.
 function flurryOfFemBlows():void {
+	author("Savin");
 	output("The zil launches a barrage of darts in your direction!\n");
-	attack(foes[0],pc,true,1);
-	attack(foes[0],pc,true,1);
-	attack(foes[0],pc,false,1);
+	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,true,1);
+	rangedAttack(foes[0],pc,false,1);
 }
 
 //Stinger:
 function zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKiddingSheStingsYou():void {
+	author("Savin");
 	//Counter-melee / last resort. Light physical,medium lust, slows victim
 	output("Leaping at you, the zil girl spins around and dives ass-first toward you, her deadly stinger on full display!");
 	//{standard dodge/miss messages}
@@ -309,19 +327,20 @@ function zilChickSticksHerStingerInYourButtOrCloacaIfYouHaveOneOfThoseNoJustKidd
 		if(pc.armor.shortName != "") output(pc.armor.longName + " and [pc.skin]");
 		else output("[pc.skin]");
 		output(", pumping a thick load of some kind of chemical into you.  You feel hot and flustered in seconds, blushing hard as your loins burn. Your whole body feels like it's in a haze....");
-		pc.lust(10);
+		pc.lust(15);
 		if(pc.hasStatusEffect("Zil Sting")) {
-			pc.addStatusValue("Zil Sting",1,2);
+			pc.addStatusValue("Zil Sting",1,4);
 		}
-		else pc.createStatusEffect("Zil Sting",2,0,0,0,false,"Poison","Zil Toxin: Reduces speed and increases libido.",false,55+rand(10));
-		pc.reflexesMod -= 2;
-		pc.libidoMod += 2;
+		else pc.createStatusEffect("Zil Sting",4,0,0,0,false,"Poison","Zil Toxin: Reduces speed and increases libido.",false,55+rand(10));
+		pc.reflexesMod -= 4;
+		pc.libidoMod += 4;
 	}
 	processCombat();
 }
 		
 //Harden:
 function zilFemHarden():void {
+	author("Savin");
 	//Buffs kinetic defenses?
 	output("Closing her onyx eyes, the zil flexes, and you hear quiet, barely audible cracks filling the busy, woodland air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 	foes[0].resistances[GLOBAL.KINETIC] *= .8;
@@ -333,6 +352,7 @@ function zilFemHarden():void {
 //Get Honey
 function getHoney():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("You ask the zil girl if she wouldn't mind giving you a vial of her sweet honey for the road. She gives you a lusty smile and pulls an empty glass container from her belt. <i>\"Sure, stranger... but you'll have to work for it,\"</i> she laughs, pushing aside the chitin plating on her chest to reveal the two full swells of her bosom. You shift around behind her, slipping your [pc.legs] about her waist as your fingers play across her chitin-covered sides and slide across the smooth, hard surface of her natural arm. Her breath catches as you brush across the bare flesh of her bust and the curve of her prominent, honey-filled nipples.");
 	
@@ -360,6 +380,7 @@ function getHoney():void {
 //Nah
 function noSexForMeThen():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("<i>\"Aww. Well, alright then, take care. Thanks for the fun!\"</i>  she laughs, slipping out of your arms to curl up on the forest floor, asleep before you leave.");
 	output("\n\n<i>Talented fingers indeed!</i> you think as you move on.");
@@ -405,13 +426,14 @@ function zilConsensualSexMenu():void {
 // zillette goes for a buttsex ride while PC suckles some honey from her tits.
 function suckleFuckZilFemaleYouSuckleFucker():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	if(!pc.isNude()) output("Pulling your [pc.gear] off");
 	else output("Dropping what little gear you carry");
 	output(", you plant yourself on the log beside the welcoming zil girl and stroke your wang, beckoning her onto your lap. She gives you a lascivious grin and does as you bid, moving on all fours; she wraps her arms around your neck and her legs around your waist, grinding her cunt along the shaft of your hardening cock. You gasp as the warm, sticky honey of her loins rubs off onto your bare manhood, leaving a slimy trail as she rocks her hips along your length. Instantly, you're assaulted with the powerful, potent scent of her pheromones, wafting up from her juicy sex. Your skin blushes hotly, tingling at her every touch as the wasp-like girl's hands run through your hair, down across your back, pulling herself close to you. You run your fingers through her soft, hair-like spines, leaning her head back just enough for you to kiss along the nape of her neck. To her delight, your other hand slips down and grabs her chitiny ass, squeezing the flexible plates of her posterior, and she lets out a stifled cry as one of your fingers ventures down into the cleft of her backside, teasing along her sensitive black hole.");
 	var x:int = pc.cockThatFits(zilFemale.vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
-	output("\n\nBefore you plunge in, though, your hand slips along her hips to the meeting of your [pc.cock " + x + "] and her juicy honeypot. You plunge in, making the zil girl throw her head back in pleasure as your fingers delve her depths, swirling through her sweet honey-like juices. <i>\"Oooh, dirty " + pc.("boy","girl") + ". Yeah, get me lubed up with my own honey. Just like that,\"</i>  she moans, guiding your hand from her sodden box back to her eager ass. Now slathered in slick amber, you press a finger hard against her dark star and grin wide as it slides inexorably inwards, her tight little ass unable to push back against your honeyslick digit. Her mouth curls out in a silent ring of pleasure as your finger slides in to the last knuckle, utterly buried in her ass. Another slips in to join the first before you start to move them, and by the time they're out to the tips your lover is wracked by short gasps of insatiable pleasure, trembling from sexual anticipation.");
+	output("\n\nBefore you plunge in, though, your hand slips along her hips to the meeting of your [pc.cock " + x + "] and her juicy honeypot. You plunge in, making the zil girl throw her head back in pleasure as your fingers delve her depths, swirling through her sweet honey-like juices. <i>\"Oooh, dirty " + pc.mf("boy","girl") + ". Yeah, get me lubed up with my own honey. Just like that,\"</i>  she moans, guiding your hand from her sodden box back to her eager ass. Now slathered in slick amber, you press a finger hard against her dark star and grin wide as it slides inexorably inwards, her tight little ass unable to push back against your honeyslick digit. Her mouth curls out in a silent ring of pleasure as your finger slides in to the last knuckle, utterly buried in her ass. Another slips in to join the first before you start to move them, and by the time they're out to the tips your lover is wracked by short gasps of insatiable pleasure, trembling from sexual anticipation.");
 	
 	output("\n\nHer hips grind harder, humping on your fingers buried up her butt and dragging her slick cunny across the shaft of your [pc.cock " + x + "], slathering you up with her sticky juices and sending shivers of pleasure all throughout your body. With a mischievous grin, the zil girl takes your honey-covered wang in her smooth, chitin-clad fingers and starts to pump. Her alien fingers feel like cool marble on your manhood, gently stroking her honey into every nook and crevice of your cock, slathering it with a nice, even coating of her cunt-juices until it shines in the sunlight. Her thumb moves up to your [pc.cockHead " + x + "], spreading an extra layer of honey around your brim to ease the initial penetration. While she does so, you shift your hips, leaning back for the zil girl as she picks herself up and aligns her tight little pucker with your [pc.cock " + x + "]. She comes to a complete stop just as your head kisses her black hole, stopping to savor the feeling of your cock pressing into her honey-filled behind. You join her, reveling in the unmatched tightness squeezing down on your tip, slowly rocking your hips into her as she begins to slide down, inch by inch taking your prick. You lock your hands into the full cheeks of her ass, guiding her down with tender, agonizing slowness until she bottoms out, cheeks resting on your [pc.legs].");
 	
@@ -434,7 +456,7 @@ function suckleFuckZilFemaleYouSuckleFucker():void {
 	//else if Snarky, 
 	else if(pc.isMischievous()) output("\n\n<i>\"Thanks for the cock cleaning, sweetheart,\"</i>  you say, ruffling her spiky hair");
 	else output("\n\nYou cup the wasp girl cheek and give her a quick kiss before grabbing your gear");
-	output(". <i>\"See you around, stranger,\"</i> she calls after you as you leave before rolls over in the puddle of sex you've left for a quick nap.");
+	output(".\n\n<i>\"See you around, stranger,\"</i> she calls after you as you leave before rolls over in the puddle of sex you've left for a quick nap.");
 	processTime(20+rand(10));
 	pc.orgasm();
 	userInterface.clearMenu();
@@ -444,6 +466,7 @@ function suckleFuckZilFemaleYouSuckleFucker():void {
 //Missionary
 function missionaryWithAZilGirl():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("With the wasp girl's legs nice and spread for you, it isn't long before you smell the wafting cloud of her sexual scent. Immediately, [pc.eachCock] stiffens");
 	if(pc.armor.shortName != "" || pc.lowerUndergarment.shortName != "") {
@@ -484,6 +507,7 @@ function missionaryWithAZilGirl():void {
 //Footjob
 function footjobFromFemzil():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("You toss your [pc.gear] aside, letting your [pc.cocks] hang free between your [pc.legs]; the wasp girl's eyes are drawn instantly to the hardening member, and licking her lips, she asks, <i>\"So how do you want me to say hi to your friend there, stranger? Wanna ram it into my honey cunt, or maybe give my ass a reaming...?\"</i>");
 	
@@ -529,6 +553,7 @@ function footjobFromFemzil():void {
 //Not Likely
 function dontLickABitchClean():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	//if Asshole:
 	if(pc.isAss()) output("You bat her filthy foot away");
@@ -544,6 +569,7 @@ function dontLickABitchClean():void {
 //(+Lust)
 function lickABitchCleanYouBitch():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	pc.lust(20);
 	output("With the zil's toes so close, you can fully smell the potent aroma of sex spread across her black chitin, and the irresistible lure of her desire wafting from her honeypot as she fingers herself, letting her pheromones waft down to you. Beset by a mire of scents, your spent prick twitches back to life, but the zil pointedly draws back your attention to her black, shimmering digits. Her big toe flicks across your lips, leaving the dual tastes of her sweet honey and your own creamy seed; your tongue reacts to the taste, darting out the lap across her smooth, hard skin, tasting deeply of yourself mixed into the coating of her own juices you spread before.");
@@ -568,6 +594,7 @@ function lickABitchCleanYouBitch():void {
 //No Can Do
 function noThanksZilLadyImSpent():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("You shake your head, saying you're too bushed to go again. <i>\"Aww,\"</i> the zil girl groans, crossing her legs again. <i>\"But hey, you've got a hell of a tongue on you, stranger. You're welcome to put it to use on me any time,\"</i> she adds with a wink. Chuckling, you finish dressing and head out, leaving her to quietly masturbate behind you.");
 	userInterface.clearMenu();
@@ -577,6 +604,7 @@ function noThanksZilLadyImSpent():void {
 //Sixty Nine (Female)
 function sixtyNineZil():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	var x:int = rand(pc.totalVaginas());
 	output("You lick your lips as the wasp-like girl swirls her fingers around her dark slit, letting a potent, mind-numbingly sweet aroma pour over you; in a matter of moments, your mind is a haze of sex pheromones, urging you to throw yourself into the zil's arms, to revel in the pleasures of her flesh. Your hands work almost of their own accord, freeing you from the constraints of your [pc.gear]; your [pc.legs] carry you toward her as the last of your clothing falls aside, allowing the alien's black eyes to gaze upon your bare [pc.vaginas].");
@@ -625,6 +653,7 @@ function sixtyNineZil():void {
 //Trib & Suck
 function tribAndSuckZil():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	var x:int = rand(pc.totalVaginas());
 	output("As you stare at the zil girl's bare body, buxom and inviting, she gives you a lascivious grin and pushes aside the chitin plate over her chest, letting her fingers roam inside to pinch and squeeze a pert nipple until a clear amber trickle pours down. <i>\"Come on over for a taste, stranger. I promise I don't bite </i>too<i> hard.\"</i>  she says, nipping her lower lip as she thrusts out her chest. You feel a rush of heat under your skin, your breath quickening as you drink in her luscious scent and curvaceous body. With a come hither look, the zil slips down onto her back, cupping her perky, honey-laden teats for you, each beading with sweet nectar as you approach, tossing aside your [pc.gear] to bare your own ");
@@ -669,6 +698,7 @@ function tribAndSuckZil():void {
 
 function zilFemaleTribbingEpilogue():void {
 	clearOutput();
+	author("Savin");
 	userInterface.showBust(GLOBAL.ZILFEMALE);
 	output("<b>Two hours later...</b>");
 	output("\n\n<i>\"N-no more!\"</i>  the alien woman cries, fingers digging into your shoulders as her cunt explodes in a burst of feminine slime, smearing her juices all over your sore, aching thighs. Your own quim returns the favor, nearly sucking in her engorged bud like a miniature cock as your cum for the tenth... twentieth... the last time, you hope.");
@@ -711,7 +741,6 @@ function girlZilLossRouter():void {
 //Ladies Get Forced to Suckle and Then Cunnilingate While Repeatedly Stung (DONE) (-F)(edited)
 //Yowch! -Fen idear
 function forceCunnilstingus():void {
-	clearOutput();
 	//HP Losssssssssssssssssssssssssssssssuckmydick
 	if(pc.HP() <= 0) {
 		output("With your strength falling as rapidly as the leaves that occasionally drop from the canopy above, you give in. There's no way you can continue to resist the nubile alien. She has you right where she wants you: on the ground and unable to stop her from inflicting some perverse mating ritual upon you. You look up at her with fire in your eyes. Perhaps you can bite off something sensitive when she makes her move?");
@@ -737,9 +766,9 @@ function forceCunnilstingus():void {
 		output(".");
 		output("\n\n<i>\"Oh, an off-worlder that knows custom! Perfect.\"</i>  the zil says with a happy trill. <i>\"I don't understand why you star-walkers seem so blind to the needs of life. When you meet someone from a different tribe, you have a contest of strength or willpower. The winner may use the loser to sate her baser needs and breed, if desired. The loser is to be a subservient vessel for copulation until the winner is sated. How else would one remain strong and bear strong childen?\"</i>");
 		output("\n\nYou shrug, not interested in her diatribe, only in leering at her sweet-smelling, dewy lips.");
-		output("\n\nShe catches your look and laughs. <i>\"Oh, I like my mates to be a little more eager than that, licentious ");
-		if(pc.tallness <= 55) output("little ");
-		output(pc.mf("ladyboy","girl") + ".\"</i> She kneels down over your [pc.legs], her heavy abdomen brushing across your [pc.thigh], its stinger sliding angrily across your [pc.skinFurScales]. Her rigid, armored fingertips grab you by each side of your head");
+		output("\n\nShe catches your look and laughs. <i>\"Oh, I like my mates to be a little more eager than that, licentious </i>");
+		if(pc.tallness <= 55) output("<i>little </i>");
+		output("<i>" + pc.mf("ladyboy","girl") + ".\"</i>  She kneels down over your [pc.legs], her heavy abdomen brushing across your [pc.thigh], its stinger sliding angrily across your [pc.skinFurScales]. Her rigid, armored fingertips grab you by each side of your head");
 		if(pc.hasHair()) output(", running through your [pc.hair],");
 		output(" and she leans in, pressing her onyx lips against yours in a slow kiss. The sensuous embrace drags on for what feels like forever. You try to reach for her breasts, her pussy, and even your own, but she deflects your arms when you do, forcing you to pay attention to nothing but the feel of your [pc.lips] against hers.");
 		output("\n\nShe breaks away, holding you down as her backside flexes. The stinger catches on your [pc.skin] with a painful prick. Driven down by her powerful abdomen, it firmly embeds itself into your [pc.thigh], not stopping until the rounded edge of her carapace has collided with your flesh. It immediately starts pumping you full of something... something warm... no, hot. Fuck, she's making your [pc.vaginas] fucking drip! It's like her stinger is just oozing liquid-hot lust straight into your veins, and every part of your body that it spreads to just feels so moist, pliant, and touchable. You could probably get off on having your sides tickled right now. You glance at her with an expression that's one part confused and two parts horny slut, wondering just what she's doing to you.");
@@ -826,7 +855,6 @@ function forceCunnilstingus():void {
 //Dudes Get Rode and Stang in the Taint repeatedly!? Maybe. [DONE] (-F) [edited]
 //Requires dick that'll fit!
 function dudesGetStangRoad():void {
-	clearOutput();
 	//Set x to appropriate wang
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1059,7 +1087,6 @@ function dudesGetStangRoad():void {
 //Forcey Face Sitting [DONE][edited]
 //-Fen
 function forceyFaceSittingFromFemzil():void {
-	clearOutput();
 	//{HEALTH POWAHHHHHHH LAWS}
 	if(pc.HP() < 0) {
 		output("Prone on the ground, your body aching in pain, you look up at the victorious zil female as she advances towards you. A confident smile twists her sable lips.");
@@ -1184,17 +1211,17 @@ function defeatHostileZil():void {
 		output(" You could also do that AND fuck her with your clit.");
 		userInterface.addButton(2,"MeanClitFuck",numbPussyFuck,false);
 	}		
-	else userInterface.addDisabledButton(4,"MeanClitFuck");
+	else userInterface.addDisabledButton(2,"MeanClitFuck");
 	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
 		output(" You could punish her with her toxins and fuck her with your dick too.");
-		userInterface.addButton(3,"MeanCockFuck",numbPussyFuck);
+		userInterface.addButton(3,"MeanCockFuk",numbPussyFuck);
 	}
-	else userInterface.addDisabledButton(3,"MeanCockFuck");
+	else userInterface.addDisabledButton(3,"MeanCockFuk");
 	if(pc.biggestCockLength() >= 36) {
 		output(" Then again, there's always the option of smothering her in your giant, hyper-sized dick and letting her get a feel for a REAL cock.");
-		userInterface.addButton(4,"HyperSmother",smotherDatBeeSlutInDickYo);
+		userInterface.addButton(4,"HyperSmothr",smotherDatBeeSlutInDickYo);
 	}
-	else userInterface.addDisabledButton(4,"HyperSmother");
+	else userInterface.addDisabledButton(4,"HyperSmothr");
 	output("\n\n");
 	userInterface.addButton(14,"Leave",genericVictory);
 }
@@ -1292,7 +1319,7 @@ function DoseAZilWithSexDrugsEvillyMustacheTwirling():void {
 	
 	output("\n\nMaliciously, you finger the zil’s sweet spot again; her whole body quivers as she tries to fight the effects of your touch and the dart. A little reprieve is all it takes to break down her walls; you pause in your fingering and let her recover a moment, then quickly rub the spot once more and the zil, without thinking, thrusts her hips as if fucking your fingers, poking herself twice. Taking the dart away, you cast it aside and grin at the flushed woman. <i>“You’re terrible at this game.”</i>");
 
-	output("\n\nOnce again, you peruse the contents of her belt, this time turning up a little pouch of reddish, chalky mixture similar to what you found painted on the dart. Presumably this is what she uses to rub on another layer of the drugs once the dart’s coating has been used up. Opening the pouch all the way, you greedily lap up the paste with your [tongue]. Before your body can absorb too much of it, you bow your head to the zil’s cunt and push the clitoris free from its hood. Smothering the exposed button with your mouth, you paint over and over it with broad strokes, raising passionate cries from the drugged woman. Her pussy spasms in orgasm and her thighs clasp around your head, but you continue to transfer from your tongue to her without stopping, even as she fills your mouth with wet, honey-flavored girlcum. By the time the tingling in your tongue finally ends, the zil has already climaxed twice more and is looking down at you in a daze, both hands pinching her nipples and sticky with honey.");
+	output("\n\nOnce again, you peruse the contents of her belt, this time turning up a little pouch of reddish, chalky mixture similar to what you found painted on the dart. Presumably this is what she uses to rub on another layer of the drugs once the dart’s coating has been used up. Opening the pouch all the way, you greedily lap up the paste with your [pc.tongue]. Before your body can absorb too much of it, you bow your head to the zil’s cunt and push the clitoris free from its hood. Smothering the exposed button with your mouth, you paint over and over it with broad strokes, raising passionate cries from the drugged woman. Her pussy spasms in orgasm and her thighs clasp around your head, but you continue to transfer from your tongue to her without stopping, even as she fills your mouth with wet, honey-flavored girlcum. By the time the tingling in your tongue finally ends, the zil has already climaxed twice more and is looking down at you in a daze, both hands pinching her nipples and sticky with honey.");
 	
 	output("\n\nOne last foray into her belongings, and you withdraw the largest vial you can find, examining its contents as the zil looks on in exhausted apprehension. The powder half-filling it is the same as the kind you found covering the aphrodisiac darts and in the refill pouch. Smiling, you uncork it and hold it under the wasp-woman’s drooling vagina. <i>“You had better be careful this time,”</i>  you admonish, sliding it home. <i>“If this vial fills up with your juices, all this dust will spill out into your pussy.”</i>");
 
