@@ -61,7 +61,10 @@ function combatMainMenu():void
 function updateCombatStatuses():void {
 	if(pc.hasStatusEffect("Blind")) {
 		pc.addStatusValue("Blind",1,-1);
-		if(pc.statusEffectv1("Blind") <= 0) pc.removeStatusEffect("Blind");
+		if(pc.statusEffectv1("Blind") <= 0) {
+			pc.removeStatusEffect("Blind");
+			output("<b>You can see again!</b>\n");
+		}
 	}
 	if(pc.hasStatusEffect("Paralyzed")) {
 		pc.addStatusValue("Paralyzed",1,-1);
@@ -145,16 +148,17 @@ function allFoesDefeated():Boolean
 function combatMiss(attacker:Creature, target:Creature):Boolean 
 {
 	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && 
-		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed")) 
+		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed") && !target.hasStatusEffect("Naleen Coiled")) 
 	{
 		return true;
 	}
+	if(target.hasPerk("Melee Immune")) return true;
 	return false;
 }
 function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
 {
 	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && 
-		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed")) 
+		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed") && !target.hasStatusEffect("Naleen Coiled")) 
 	{
 		return true;
 	}
@@ -250,6 +254,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
 		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
@@ -287,7 +292,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 	if(!noProcess) processCombat();
 }
 
-function rangedAttack(attacker:Creature, target:Creature):void 
+function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void 
 {
 	trace("Ranged shot...");
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc) clearOutput();
@@ -319,6 +324,14 @@ function rangedAttack(attacker:Creature, target:Creature):void
 		if(attacker == pc) output("None of your blind-fired shots manage to connect.");
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
+	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
+	else if(special == 1 && rand(100) <= 45 && !target.hasStatusEffect("Stunned")) {
+		if(target.customDodge == "") {
+			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
+		}
+		else output(target.customDodge);
+	}
 	//Celise autoblocks
 	else if(target.short == "Celise") {
 		output("Celise takes the hit, wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred after.");
@@ -331,6 +344,7 @@ function rangedAttack(attacker:Creature, target:Creature):void
 		var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
 		var sDamage:Array = new Array();
 		//Apply damage reductions
 		if(target.shieldsRaw > 0) {
@@ -365,12 +379,13 @@ function rangedAttack(attacker:Creature, target:Creature):void
 		return;
 	}
 	output("\n");
-	processCombat();
+	if(!noProcess) processCombat();
 }
 
 function genericDamageApply(damage:int,attacker:Creature, target:Creature):void {
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
+	damage *= randomizer;
 	var sDamage:Array = new Array();
 	//Apply damage reductions
 	if (target.shieldsRaw > 0) {
@@ -475,12 +490,12 @@ function displayMonsterStatus(targetFoe):void
 		else output("<b>" + targetFoe.capitalA + targetFoe.short + " has turned you on too much to keep fighting. You give in....</b>\n");
 	}
 	else {
-		if(!pc.hasStatusEffect("Blind")) {
+		if(pc.statusEffectv1("Blind") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
 			showMonsterArousalFlavor(targetFoe);
 		}
 		else {
-			output("<b>You're too blind to see your foe!</i>\n");
+			output("<b>You're too blind to see your foe!</b>\n");
 		}
 	}
 	//Celise intro specials.

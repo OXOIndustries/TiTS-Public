@@ -14,76 +14,66 @@
 
 			this.short = "female zil";
 			this.originalRace = "human";
-			this.a = "";
-			this.capitalA = "";
+		this.a = "the ";
+		this.capitalA = "The ";
 			this.long = "The female zil you're fighting stands just shy of 5'6, and is covered from head to toes in shiny black chitin. A downy fuzz falls from her head down to her shoulders, resembling curly blonde hair. She's got dozens of sharp darts on her belt, noticeably discolored with chemicals, and a number of glass vials at hand full of who-knows what. Worse, she's got a full bee-like abdomen behind her with a deadly-looking stinger. She moves with a liquid, feline grace, assuming a combat stance that leaves her crotch pointed at you to fill their air with lusty pheromones as her perky tits jut out at you, bobbing from side to side enticingly.";
 			this.customDodge = "The zil girl tumbles out of the way with a swift contortion.";
 			this.customBlock = "The zil's chitinous armor deflects your attack.";
 			this.plural = false;
 			this.lustVuln = 1;
 			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fist";
-			this.armor.longName = "comfortable clothes";
-			this.armor.defense = 50;
-			this.physiqueRaw = 3;
-			this.reflexesRaw = 3;
-			this.aimRaw = 3;
-			this.intelligenceRaw = 3;
-			this.willpowerRaw = 3;
-			this.libidoRaw = 30;
-			this.HPMod = 20;
+		this.meleeWeapon.longName = "fists";
+		this.rangedWeapon.attack = 1;
+		this.rangedWeapon.longName = "dart";
+		this.rangedWeapon.attackVerb = "dart";
+		this.armor.longName = "chitinous plating";
+		this.armor.defense = 2;
+		this.physiqueRaw = 2;
+		this.reflexesRaw = 2;
+		this.aimRaw = 1;
+		this.intelligenceRaw = 1;
+		this.willpowerRaw = 1;
+		this.libidoRaw = 40;
 			this.shieldsRaw = 0;
-			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
-			this.lustRaw = 25;
+		this.lustRaw = 45;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XP = 50;
+		this.XP = 20;
 			this.level = 1;
-			this.credits = 1000;
+		this.credits = 0;
+		this.HPMod = 0;
+		this.HPRaw = this.HPMax();
 			
 
-			this.inventory[0] = new classes.Items.Guns.HoldOutPistol();
-			this.inventory[1] = new classes.Items.Guns.EagleHandgun();
-			this.inventory[2] = new classes.Items.Guns.ScopedPistol();
-			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
-			this.sellMarkup = 1.3;
-			this.buyMarkdown = .25;
-			this.keeperSell = "boop";
-			this.keeperBuy = "bop";
-			this.keeperGreeting = "BLOOP.";
-			
-			this.femininity = 20;
-			this.eyeType = 0;
-			this.eyeColor = "brown";
-			this.tallness = 78;
-			this.thickness = 20;
-			this.tone = 70;
-			this.hairColor = "brown";
-			this.scaleColor = "FIXME";
-			//this.scaleColor = titsPtr.chars["PC"].scaleColor;
-			this.furColor = "FIXME";
-			//this.furColor = titsPtr.chars["PC"].furColor;
-			this.hairLength = 12;
-			this.hairType = 0;
+		this.femininity = 85;
+		this.eyeType = GLOBAL.BEE;
+		this.eyeColor = "black";
+		this.tallness = 66;
+		this.thickness = 45;
+		this.tone = 40;
+		this.hairColor = "black";
+		this.scaleColor = this.scaleColor;
+		this.furColor = "yellow";
+		this.hairLength = 22;
+		this.hairType = GLOBAL.BEE;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
-			this.skinTone = "FIXME";
-			//this.skinTone = titsPtr.chars["PC"].skinTone;
+		this.skinType = GLOBAL.CHITIN;
+		this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = 0;
+		this.faceType = GLOBAL.BEE;
 			this.faceFlags = new Array();
-			this.tongueType = 0;
+		this.tongueType = GLOBAL.BEE;
 			this.lipMod = 0;
 			this.earType = 0;
-			this.antennae = 0;
-			this.antennaeType = 0;
+		this.antennae = 2;
+		this.antennaeType = GLOBAL.BEE;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = 0;
+		this.armType = GLOBAL.BEE;
 			this.gills = false;
-			this.wingType = 0;
-			this.legType = GLOBAL.HUMAN;
+		this.wingType = GLOBAL.BEE;
+		this.legType = GLOBAL.BEE;
 			this.legCount = 2;
 			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
 			//0 - Waist
@@ -91,8 +81,8 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = 0;
-			this.tailCount = 0;
+		this.tailType = GLOBAL.BEE;
+		this.tailCount = 1;
 			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
@@ -113,7 +103,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRating = 4;
+		this.hipRating = 6;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -124,26 +114,28 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRating = 4;
+		this.buttRating = 6;
 			//No dicks here!
 			this.cocks = new Array();
-			this.createCock();
-			this.cocks[0].cLength = 18;
-			this.cocks[0].cThickness = 2.75;
+		this.createVagina();
+		this.girlCumType = GLOBAL.HONEY;
+		this.vaginalVirgin = false;
+		this.vaginas[0].looseness = 2;
+		this.vaginas[0].wetness = 4;
 			//balls
-			this.balls = 2;
-			this.cumMultiplier = 10;
+		this.balls = 0;
+		this.cumMultiplier = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQuality = 1;
-			this.cumType = GLOBAL.CUM;
-			this.ballSize = 4.5;
-			this.ballFullness = 10;
+		this.cumType = GLOBAL.HONEY;
+		this.ballSize = 0;
+		this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 30;
+		this.ballEfficiency = 10;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 5;
-			this.minutesSinceCum = 1650;
-			this.timesCum = 899;
+		this.refractoryRate = 6;
+		this.minutesSinceCum = 3650;
+		this.timesCum = 321;
 			
 			//Goo is hyper friendly!
 			this.elasticity = 1;
@@ -153,12 +145,13 @@
 			this.pregnancyMultiplier = 1;
 			
 			this.breastRows[0].breastRating = 0;
-			this.nippleColor = "brown";
+		this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+		this.milkType = GLOBAL.HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
+		this.ass.bonusCapacity += 15;
 
 		}
 	}

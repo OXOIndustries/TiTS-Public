@@ -481,7 +481,7 @@
 					break;
 				case "vagOrAss":
 				case "pussyOrAsshole":
-					buffer = vagOrAss();
+					buffer = vagOrAss(arg2);
 					break;
 				case "clitDescript":
 				case "clit":
@@ -632,7 +632,9 @@
 			return 10 + level * 25 + HPMod;
 		}
 		public function maxHP():Number {
-			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			//trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
+			//trace("Because I get fucking dyslexic about function names and coding shit faster = more content for the masses.");
+			// There is a new invention. It's called Ctrl+F?
 			return HPMax();
 		}
 		public function maxOutHP():void {
@@ -4356,8 +4358,8 @@
 			else if(randt == 9) descript += "button";
 			return descript;
 		}
-		public function vagOrAss():String {
-			if(hasVagina()) return vaginaDescript(0);
+		public function vagOrAss(arg:int = 0):String {
+			if(hasVagina()) return vaginaDescript(arg);
 			else return assholeDescript();
 		}
 		//Vaginas + Descript
