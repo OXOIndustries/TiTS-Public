@@ -557,7 +557,7 @@
 					break;
 			}
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
-			trace("BUFFER OUT: " + buffer);
+			// trace("BUFFER OUT: " + buffer);
 			return buffer;
 		}
 		public function Num2Text(number:int):String {
@@ -4858,10 +4858,14 @@
 			if(cockTotal() > 1) output = pluralize(output);
 			return output;
 		}
-		public function simpleCockNoun(arg:Number):String {
+		public function simpleCockNoun(arg:Number):String 
+		{
+			if(cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for simpleCockNoun()</b>";
 			return cockNoun(cocks[arg].cType,true);
 		}
-		public function cockNounComplex(arg:Number):String {
+		public function cockNounComplex(arg:Number):String 
+		{
+			if(cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cockNounComplex()</b>";
 			return cockNoun(cocks[arg].cType,false);
 		}
 		//Cock nouns with a single, toggleable adjective. Used all over the place, yo.

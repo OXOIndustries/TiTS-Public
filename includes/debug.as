@@ -128,6 +128,7 @@ public function debugPane():void
 	//this.output(images.showImage("monster-ceraph"));
 
 	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Load test.txt", loadTestFile);
 	//this.userInterface.addButton(0, "Event Tester", eventTestingPane);
 	//this.userInterface.addButton(1, "Test Input", eventTester);
 	this.userInterface.addButton(5, "Parser Tests", doThatTestingThang);
@@ -135,6 +136,17 @@ public function debugPane():void
 	//this.userInterface.addButton(3, "ChaosMonkey", monkeyStartConfirm)
 	this.userInterface.addButton(9, "Back", debugPaneExit);
 }
+
+
+//Pervineer here.. in your stuff, messing up your codez
+var myLoader:URLLoader  =  new URLLoader(new URLRequest("test.txt"));
+//myLoader.addEventListener(Event.COMPLETE,  loadComplete);
+
+function loadTestFile():void {
+	clearOutput();
+	this.output(myLoader.data, true);
+}
+
 /*
 public function toggleHaltSettings():void
 {
@@ -332,7 +344,7 @@ public function doThatTestingThang():void
 **FancyQuotes!**
 
 Convert '  
-'herp a derp'
+It's a herm!
 
 convert "  
 "derp a herp"

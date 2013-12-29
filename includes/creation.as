@@ -42,17 +42,6 @@ function startCharacterCreation():void {
 	if(debug) 
 		this.userInterface.addButton(3,"Multicock",chooseStartingRace,"multicock");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
-	//I added this!  ~Pervineer
-	if(debug) 
-		this.userInterface.addButton(5,"Load test.txt", loadTestFile);
-}
-//Pervineer here.. in your stuff, messing up your codez
-var myLoader:URLLoader  =  new URLLoader(new URLRequest("test.txt"));
-//myLoader.addEventListener(Event.COMPLETE,  loadComplete);
-
-function loadTestFile():void {
-	clearOutput();
-	output(myLoader.data);
 }
 
 function chooseStartingRace(race:String = "human"):void {
