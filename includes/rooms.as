@@ -439,6 +439,10 @@ function jungleEncounterChances():Boolean {
 	if(flags["JUNGLE_STEP"] >= 6) {
 		flags["JUNGLE_STEP"] = 0;
 		if(debug) {
+			encounterNaleen();
+			return true;
+		}
+		if(rand(3) == 0) {
 			femzilEncounter();
 			return true;
 		}

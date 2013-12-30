@@ -729,6 +729,11 @@ function startCombat(encounter:String):void
 			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeCSnake();
 			break;
+		case "naleen":
+			this.userInterface.showBust("NALEEN");
+			setLocation("FIGHT:\nNALEEN","PLANET: MHEN'GA","SYSTEM: ARA ARA");
+			foes[0] = clone(chars["NALEEN"]);
+			break;
 		default:
 			foes[0] = new Creature();
 			break;
