@@ -1626,10 +1626,15 @@ function pennySexMenu(outputT:Boolean = true):void {
 		}
 	}
 	this.userInterface.clearMenu();
+	
+	// I don't THINK these scene is supposed to /require/ the player have a cock; it never once uses any logic or parse tags for the players cock, nor refer to it within the scene text OR the "exit" texts...
+	if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+	else this.userInterface.addDisabledButton(0, "Onahole Her");
+	
 	if (pc.hasCock())
 	{
-		if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-		else this.userInterface.addDisabledButton(0,"Onahole Her");
+		//if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+		//else this.userInterface.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
 		trace("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
 		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.userInterface.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);

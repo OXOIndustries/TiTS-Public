@@ -28,6 +28,10 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 //1: TEXT FUNCTIONS
 function output(words:String, markdown = false):void {
 	this.userInterface.outputBuffer += doParse(words, markdown);
+	
+	// Don't ask. Just accept it. Let the bullshit flow through you. Be one with the bullshit.
+	// (The span tags are applying our text formatting style)
+	// (The p tag "fixes" the sticky formatting problem. #
 	this.userInterface.mainTextField.htmlText = "<span class='words'><p>" + this.userInterface.outputBuffer + "</p></span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
