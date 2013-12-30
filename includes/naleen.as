@@ -1,4 +1,6 @@
-﻿//UNLESS OTHERWISE NOTED, ALL SCENES BY SAVINOXO
+﻿import classes.Creature;
+
+//UNLESS OTHERWISE NOTED, ALL SCENES BY SAVINOXO
 //Female Naleen Encounter
 //(Note: If we could have some kinda Deepwoods area, that'd be great. Failing that, uh, just make these guys encounterable a good ways off from Esbeth. They're people-shy, unlike Zil.)
 
@@ -38,12 +40,10 @@ function encounterNaleen():void {
 
 //Naleen: Combat
 //Combat Description
-You're fighting a Naleen: a towering, serpentine predator from the waist down, supporting a beautiful and quite busty humanoid torso that bares a more than passing resemblance to a feline, with brilliant orange and black tiger stripes and perky feline ears. Her long, fiery hair is braided down her back, ending in a green  leaf-woven bow just above her wide hips and full ass. Despite a body that screams raw sexuality, the naleen's claws are razor sharp and pointed at you as she slithers around the battle ground, ready to pounce with feline grace and reptilian power. 
+//
 
 //Combat Techniques:
 //Savin's note: Naleen should have very high dodge chances, but low Lust resistance. I figure the Zil's lusty aura might be their primary defense versus them, and PCs can take advantage of their sexual nature -- but trying to stand and fight is considerably harder. Teasespam GO!
-	//Miss Text: The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability. 
-	//Block Text: The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace. 
 	//AI: Uses Double Attack most turns; the lower PC HP is, though, the more likely she is to use her Bite attack (say, half inverse chance -- at 50% HP, she has a 25% chance of biting). 
 
 //Double Attack
@@ -101,7 +101,7 @@ function naleenStruggle():void {
 		pc.removeStatusEffect("Naleen Coiled");
 	}
 	else if(pc.reflexes() + rand(20) + 1 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
-		output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom. When your [pc.feet] touch down once more
+		output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
 		pc.removeStatusEffect("Naleen Coiled");
 	}
 	//Fail to escape: 
@@ -119,6 +119,7 @@ function naleenStruggle():void {
 //Low chance of use; increases with foe HP drop or if foe is constricted. 
 //REQ'S NO SHIELDS!
 function biteAttack():void {
+	var attacker:Creature = foes[0];
 	output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost seen the glint of venom on her fangs!");
 	
 	//{standard dodge/miss messages}
@@ -193,7 +194,7 @@ function naleenFucksBoysScene():void {
 		output(".");
 	}
 	//{If PC has a small dick (less than 6)
-	if(pc.cocks[x].cLength < 6) output("\n\n<i>\"Hmm?\"</i>  the naleen purrs, cocking her head askance, <i>\"is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do..."}
+	if(pc.cocks[x].cLength < 6) output("\n\n<i>\"Hmm?\"</i>  the naleen purrs, cocking her head askance, <i>\"is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...");
 
 	//(If PC's got a BIGGUS DICKUS (more than 15):
 	else if(pc.cocks[x].cLength > 15) output("\n\n<i>\"Oh myyyy,\"</i>  the naleen purrs as your cock grows and grows in her hand, engorging to its inhuman length. <i>\"My, my, you did pack quite a surprise for me, my pet. Such a nice change of pace from these awful, tiny zil boys everywhere.\"</i>  you groan as the naleen hugs you crushingly tight, burying you in titflesh.\n\n<i>\"Oh, I do so hope you last, pet. I want to get the most out of this!\"</i>");
@@ -332,7 +333,7 @@ function naleenTitFuck():void {
 	
 	output("\n\nYou lean back, letting the kitty's big breasts caress your tender cockflesh. She squeezes them together as tightly as she can, steadily starting to stroking you faster, though never too fast. With her velveteen fur, it's all about the gentle, constant envelopment of your [pc.cockBiggest], brushing from your base to the [head], never letting your tip escape her grasp for a moment. The pleasure is almost mind-numbing her eager breast-strokes encouraging you to lay back and forget your troubles, to just let the alien cat-naga tit-fuck you to orgasm again and again. Idly, your hands drift onto hers, fingers clasping around her slender digits. The naleen looks at you with surprise, but in the blink of an eye has her lusty countenance back again, and slips her hands out, letting you squeeze her tits for yourself, giving you control.");
 	
-	output("\n\n<i>\"How's that, pet?\"</i>  she asks, reclining against her coiled tail, hands resting your [hips]. <i>\"Just be gentle... they may be big, but they're soooo sensitive.\"</i>");
+	output("\n\n<i>\"How's that, pet?\"</i>  she asks, reclining against her coiled tail, hands resting your [pc.hips]. <i>\"Just be gentle... they may be big, but they're soooo sensitive.\"</i>");
 	
 	output("\n\nWell, that's practically an invitation. You shift your grasp to the tops of her huge mounds, letting her perky little teats rest in your palms as her boobflesh flows out around you, much too much to hold at once. You squeeze and knead them, and the kitty purrs in response, eyes closing in quiet pleasure. Another rough squeeze has her back arching, practically dragging your hard rod through her heaving bosom. Her breath turns ragged as you increase your attentions, and when you pinch one of her nipples, rolling the stiff point between your thumb and forefigner, she answers with a tiny yelp of pleasure, turning her gaze away from your as her cheeks flush red.");
 	
@@ -344,7 +345,7 @@ function naleenTitFuck():void {
 	
 	output("\n\nAll the while, your [pc.cockBiggest] ceaselessly assaults her cleavage, pounding her tits until the first sticky smears of pre wet her fur. Panting hard, practically quivering in her afterglow, the naleen is putty in your hands, listlessly allowing your to mash her tits around your rod and fuck her harder. You settle into a steady, intense rhythm at the limp naleen's expense, basking in the sensation of feeling cum welling up your throbbing fur-sheathed vein.");
 	
-	output("\n\nA weak voice below you murmurs, <i>\"Your hands…. mmm, so strong.\"</i>  You look into the naleen's slitted, feline eyes, seeing the renewed lust in them, watching her slender forked tongue flick across her lips as she rights herself, leaning up on her elbows. Your cock twitches mightily, discharging a thick stream of pre that dribbles back down the valley of her tits.");
+	output("\n\nA weak voice below you murmurs, <i>\"Your hands.... mmm, so strong.\"</i>  You look into the naleen's slitted, feline eyes, seeing the renewed lust in them, watching her slender forked tongue flick across her lips as she rights herself, leaning up on her elbows. Your cock twitches mightily, discharging a thick stream of pre that dribbles back down the valley of her tits.");
 	
 	output("\n\n<i>\"You really like my tits, hmm pet?\"</i>  she asks, wrapping her hands around the pair of huge orbs, so large and yeilding that they spill out around her fingers. <i>\"Then why not give me a big, creamy load right between them? Something to remember you by until we meet again...\"</i>");
 	
@@ -360,125 +361,363 @@ function naleenTitFuck():void {
 	genericVictory();
 }
 
-Breastfeed
+//Breastfeed
 // Needs Breastmilky-PC
+//Actual milk too. Lactating latex won't cut it.
+function feedDatNaleenSumMilk():void {
+	clearOutput();
+	output("Contemplating what to do with your hard-won prize, you take a step toward the naleen -- only to feel the heavy slosh of your motherly milk in your hefty teats. God, so full... You cup your [pc.chest], momentarily ignoring the beaten huntress to jiggle and squeeze your tits, feeling your full tits churn with an over-fullness of milk. You feel a powerful need for a good old fashioned milking, but there's nothing but a poor lusty kitty to use. Oh, whatever will you do? You turn your gaze back to the naleen, still cupping your breasts, and with a sashay to your step, approach her.");
+	//If Nice/Snarky PC:
+	if(!pc.isAss()) output("\n\n<i>\"Kitty want some milk?\"</i>  you ask, ");
+	else output("<i>\"Open up, slut,\"</i> you command, ");
+	output("tossing your kit aside to bare your needy teats, a tiny, pearly bead already forming atop your swollen nipples. The huntress' long tongue flicks out, tasting the air, and her eyes widen. <i>\"Ahhhh, what a treat you've brought me,\"</i>  she purrs, leaning back on her elbows, caressing her own huge bosom as you move overtop her, straddling her serpentine waist.");
+	output("\n\nYou sit down astride her wide hips, resting back on her hefty naga body as her kitty-half slithers up into your open arms, forked tongue licking her lips with gleeful anticipation as her downy-soft fingers play across your bare flesh, holding herself tight against you, breasts pressing into one another. She plants a kiss on your lips, breathing huskily, <i>\"Thank you for the treat, offworlder. I'll make this so very pleasurable for you...\"</i>  Considering you're the one with the milk, she damned well better.");
+	
+	output("\n\nA pair of lithe arms, surprisingly strong, wrap around your neck. The huntress cradles herself as your own arms slip around her slender frame, guiding her down your milk-laden chest. She goes slowly, her long tongue flicking out to taste your bare [pc.skin], sending shivers down your spine. One of her hands slips down with her and slips beneath your breast, cupping the hefty orb with just enough squeeze to draw forth a bead of milk. Seeing how freely you give of your motherly bounty, her tongue reaches slowly  out, almost tentatively, just barely close enough as the lone little drop falls from your [pc.nipple]. She catches it, tongue darting back with its prize; a smile forms on her lips as she tastes of you, and she purrs so sweetly you can't help but slip a hand through her long orange hair, gently guiding her to your breast.");
+	output("\n\nHer lips open wide, locking perfectly around your teat, with just the barest hint of suckling that you barely feel it. She squeezes your breast again, even gentler this time, letting her mouth urge out the first steady stream from you. Your back arches as she suckles, fingers digging through her soft hair as your teat beads and finally pours, flowing freely into the hungry kitten's maw. Her eyes lock with yours, half-sparkling with glee as she swallows, and she purrs softly, a low thrumming running through your leaky teat that makes you gasp in pleasure.");
+	output("\n\nIn return, your own hands snake downwards to where kitty meets serpent. You grab her wide waist, fingers squeezing the big, round cheeks of her fleshy ass, pulling her so close against you that you wince as fangs graze your tender flesh. The naleen looks up apologetically, but you answer with a sharp swat on that ass that makes her gasp and gag, milk pouring out onto her own huge bust, staining the white strike of fur on her belly. She gives a little whine, and after that you content yourself with playing with her big booty, squeezing and kneading the yielding ass-flesh. But you can't content yourself with that for long.");
+	output("\n\nFor a few minutes, you revel in the soft, slaking pleasure of breastfeeding, feeling the milk drain from your tit, gasping and moaning as the naleen's snake-like tongue plays across your sensitive teat, teasing you with every breath until you can barely take it. When the pleasure's almost too much, you pull her head back, letting the last drops fall onto her own chest. She mewls hungrily, and soon you have her moved over to the other tit; but when she's almost settled in again, purring happily as she sucks you dry, you have a surprise for her.");
+	
+	output("\n\nYour hands again move to her hips, holding them for a minute longer before spreading her cheeks wide. The naleen gasps, but you move quickly, fingers darting through the tiny gap in her thighs to the slick slit of her sex. She stifles a gasp, moaning into her mouthful of titty as your fingers slip easily into her warm embrace, thumb teasing across her tight-clenched little ass as two others pierce her womanhood, delving so deep the naleen can't help but cry out, spilling her mouthful of cream all over your chest and hers. <i>\"Naughty kitty. Clean that up,\"</i>  you chide, mock-scolding her as your thumb pushes in, making her whine and howl until you shut her up with a face-full of milky tit, still half-full. Spreading both her holes and with your milk being suckled again, you both moan as pleasure, primal and undeniable, overtakes you.");
+	//If PC has a cock:
+	if(pc.hasCock())
+	{
+		output("\n\nBut she won't let you off that easily. Shifting ever so slightly, her hand plays across your thighs, teasing your tender skin. You look down, just in time to see her white-clad fingers locking around [pc.oneCock]. You hadn't even realized how hard you were... She gives you a little wink, emerald eyes full of mischief as she starts to tenderly caress your cock, gently stroking it with fur so soft you could swear it was heaven. You move your hand in response, buried deep inside her. For every stroke, you thrust your fingers in, spearing her cunt and ass harder and faster as she picks up her pace, quickly building to a furious handjob. You grunt in sexual need, straining not to cum too quickly at the naleen's hand. She doesn't make it easy for you, though: she keeps up the unyielding pressure for what seems like eternity before finally, with a sly grin offset by her stuffed gob, she slips her waist forward, grinding her finger-filled cunt up against your drooling pecker. Your breath comes sharply as the radiant heat of her eager sex rubs off on you, her cunny's slick lube letting her hand work ever faster. You try to distract her by pushing her down on your breast, but the sudden shift of her body has just the wrong effect: with a gasp, you feel your [pc.cockSmallest] bend a moment before it suddenly finds itself rushing into a tight, warm, wet enclosure, hugging it tightly as your fingers clench inside her.");
+	}
+	
+	output("\n\nMoaning and purring, the naleen moves on your fingers, hips rocking, nearly baring you to the ground as she drinks and drinks, a seemingly endless hunger for your milk and sex overtaking her. You hook an arm around her, holding the passionate kitty as she grinds and humps on your hand {and cock}, pushing you deeper into her slavering holes as her tongue goes wild on your [pc.nipple], lapping at the constant flow of your sweet milk, urging you on into a torrent that bulges her cheeks, too fast for her to swallow it all. Soon, she's wholly overflowing with your bounty, humping away with utter abandon. Her eyes roll closed, utterly absorbed in the furious fuck.");
+	
+	//If cock:
+	output("\n\n");
+	if(pc.hasCock())
+	{
+		output("You groan, muscles spasming as the naleen rides your cock, bouncing on your [pc.cockSmallest] with muscles writhing and squeezing, trapping your rod in a slick sheath of sex. Your fingers work her from behind, moving just out of sync with your prick to keep the pressure on her, pounding into her holes twice as hard with her every bucking motion. ");
+	}
+	output("The Naleen's tail coils around you, squeezing you tight as she moves, hips bucking as her face presses hard into your breast, sucking out every drop she can get - and nearly driving you mad with pleasure. Her tongue moves wildly, soft lips kissing, teeth scoring across your [pc.nipple]; you can't take much more of this. You throw your head back, pulling the huntress close as you feel your orgasm coming");
+	if(pc.hasCock()) output(", cock throbbing inside her, spilling the first trails of [pc.cumColor] into her sodden box");
+	output(". The naleen herself isn't much better off, her high voice whining as her quim drenches your fingers in orgasmic fluids, clamping and squeezing and milking ");
+	if(!pc.hasCock()) output("them ");
+	else output("your [pc.cockSmallest]");
+	output(". The way she purrs and moans around your tit, though... the vibrations are what push you over, your titflesh quaking into a massive boogasm that wracks your body from the [pc.chest] out");
+	if(pc.hasCock()) 
+	{
+		output(", quickly shooting down through your veins like a wildfire of pleasure until your [pc.cocks] ");
+		if(pc.cockTotal() > 1) output("blow their pent-up loads, one spasming out a huge, thick swath of seed into her waiting hole.");
+		else output("blows its pent-up load, spasming out a huge thick swath of seed into her waiting hole.");
+	}
+	output("\n\nWith a gasp, the naleen falls onto her back, milk dripping from the corners of her mouth as she flops down, sodden tits jiggling obscenely. ");
+	if(pc.hasCock()) output("Your [pc.cockSmallest] pops free of her vice-like cunt as she does so, leaving a nice creamy smear on her thigh as you withdraw. ");
+	output("With a contented sigh, the huntress wipes her lips and idly rubs her cum-stained quim, regarding you with wide eyes. <i>\"That was a magnificent treat, pet,\"</i> she purrs, smiling. <i>\"Among my people, it's a great honor to suckle from a mother's teats. A sign of unparalleled trust and love. Thank you, little pet.\"</i>");
+	
+	output("\n\nYou don't know what to say to that, if only for a moment. A moment she takes to plant a quick kiss on your cheek and slithers off, leaving you to your own devices.");
+	processTime(40+rand(10));
+	pc.orgasm();
+	
+	//9999
+}
 
-Contemplating what to do with your hard-won prize, you take a step toward the naleen -- only to feel the heavy slosh of your motherly milk in your hefty teats. God, so full… You cup your [breasts], momentarily ignoring the beaten huntress to jiggle and squeeze your tits, feeling your full tits churn with an over-fullness of milk. You feel a powerful need for a good old fashioned milking, but there's nothing but a poor lusty kitty to use. Oh, whatever will you do? You turn your gaze back to the naleen, still cupping your breasts, and with a sashay to your step, approach her. 
-{If Nice/Snarky PC: "Kitty want some milk?" you ask," // else if Nasty: "Open up, slut" you command,"} tossing your kit aside to bare your needy teats, a tiny, pearly bead already forming atop your swollen nipples. The huntress's long tongue flicks out, tasting the air, and her eyes widen. "Ahhhh, what a treat you've brought me," she purrs, leaning back on her elbows, caressing her own huge bosom as you move overtop her, straddling her serpentine waist. 
-	You sit down astride her wide hips, resting back on her hefty naga body as her kitty-half slithers up into your open arms, forked tongue licking her lips with gleeful anticipation as her downy-soft fingers play across your bare flesh, holding herself tight against you, breasts pressing into one another. She plants a kiss on your lips, breathing huskily, "Thank you for the treat, offworlder. I'll make this so very pleasurable for you…" Considering you're the one with the milk, she damned well better. 
-	A pair of lithe arms, surprisingly strong, wrap around your neck. The huntress cradles herself as your own arms slip around her slender frame, guiding her down your milk-laden chest. She goes slowly, her long tongue flicking out to taste your bare [skin], sending shivers down your spine. One of her hands slips down with her and slips beneath your [breast], cupping the hefty orb with just enough squeeze to draw forth a bead of milk. Seeing how freely you give of your motherly bounty, her tongue reaches slowly  out, almost tentatively, just barely close enough as the lone little drop falls from your [nipple]. She catches it, tongue darting back with its prize; a smile forms on her lips as she tastes of you, and she purrs so sweetly you can't help but slip a hand through her long orange hair, gently guiding her to your [breast]. 
-	Her lips open wide, locking perfectly around your teat, with just the barest hint of suckling that you barely feel it. She squeezes your breast again, even gentler this time, letting her mouth urge out the first steady stream from you. Your back arches as she suckles, fingers digging through her soft hair as your teat beads and finally pours, flowing freely into the hungry kitten's maw. Her eyes lock with yours, half-sparkling with glee as she swallows, and she purrs softly, a low thrumming running through your [breast] that makes you gasp in pleasure. 
-	In return, your own hands snake downwards to where kitty meets serpent. You grab her wide waist, fingers squeezing the big, round cheeks of her fleshy ass, pulling her so close against you that you wince as fangs graze your tender flesh. The naleen looks up apologetically, but you answer with a sharp swat on that ass that makes her gasp and gag, milk pouring out onto her own huge bust, staining the white strike of fur on her belly. She gives a little whine, and after that you content yourself with playing with her big booty, squeezing and kneading the yielding ass-flesh. But you can't content yourself with that for long.
-	For a few minutes, you revel in the soft, slaking pleasure of breastfeeding, feeling the milk drain from your tit, gasping and moaning as the naleen's snake-like tongue plays across your sensitive teat, teasing you with every breath until you can barely take it. When the pleasure's almost too much, you pull her head back, letting the last drops fall onto her own chest. She mewls hungrily, and soon you have her moved over to the other [breast]; but when she's almost settled in again, purring happily as she sucks you dry, you have a surprise for her. 
-	Your hands again move to her hips, holding them for a minute longer before spreading her cheeks wide. The naleen gasps, but you move quickly, fingers darting through the tiny gap in her thighs to the slick slit of her sex. She stifles a gasp, moaning into her mouthful of titty as your fingers slip easily into her warm embrace, thumb teasing across her tight-clenched little ass as two others pierce her womanhood, delving so deep the naleen can't help but cry out, spilling her mouthful of cream all over your chest and hers. "Naughty kitty. Clean that up," you chide, mock-scolding her as your thumb pushes in, making her whine and howl until you shut her up with a face-full of milky tit, still half-full. Spreading both her holes and with your milk being suckled again, you both moan as pleasure, primal and undeniable, overtakes you. 
-	{If PC has a cock: "But she won't let you off that easily. Shifting ever so slightly, her hand plays across your thighs, teasing your tender skin. You look down, just in time to see her white-clad fingers locking around your [cock]. You hadn't even realized how hard you were… She gives you a little wink, emerald eyes full of mischief as she starts to tenderly caress your cock, gently stroking it with fur so soft you could swear it was heaven. You move your hand in response, buried deep inside her. For every stroke, you thrust your fingers in, spearing her cunt and ass harder and faster as she picks up her pace, quickly building to a furious handjob. You grunt in sexual need, straining not to cum too quickly at the naleen's hand. She doesn't make it easy for you, though: she keeps up the unyielding pressure for what seems like eternity before finally, with a sly grin offset by her stuffed gob, she slips her waist forward, grinding her finger-filled cunt up against your drooling pecker. Your breath comes sharply as the radiant heat of her eager sex rubs off on you, her cunny's slick lube letting her hand work ever faster. You try to distract her by pushing her down on your breast, but the sudden shift of her body has just the wrong effect: with a gasp, you feel your [cock] bend a moment before it suddenly finds itself rushing into a tight, warm, wet enclosure, hugging it tightly as your fingers clench inside her."}
-	Moaning and purring, the naleen moves on your fingers, hips rocking, nearly baring you to the ground as she drinks and drinks, a seemingly endless hunger for your milk and sex overtaking her. You hook an arm around her, holding the passionate kitty as she grinds and humps on your hand {and cock}, pushing you deeper into her slavering holes as her tongue goes wild on your [nipple], lapping at the constant flow of your sweet milk, urging you on into a torrent that bulges her cheeks, too fast for her to swallow it all. Soon, she's wholly overflowing with your bounty, humping away with utter abandon. Her eyes roll closed, utterly absorbed in the furious 
-	{If cock: "You groan, muscles spasming as the naleen rides your cock, bouncing on your [cock] with muscles writhing and squeezing, trapping your rod in a slick sheath of sex. Your fingers work her from behind, moving just out of sync with your prick to keep the pressure on her, pounding into her holes twice as hard with her every bucking motion."} The Naleen's tail coils around you, squeezing you tight as she moves, hips bucking as her face presses hard into your [breast], sucking out every drop she can get -- and nearly driving you mad with pleasure. Her tongue moves wildly, soft lips kissing, teeth scoring across your [nipple]; you can't take much more of this. You throw your head back, pulling the huntress close as you feel your orgasm coming{, cock throbbing inside her, spilling the first trails of [cumColor] into her sodden box}. The naleen herself isn't much better off, her high voice whining as her quim drenches your fingers in orgasmic fluids, clamping and squeezing and milking {them / your [cock]}. The way she purrs and moans around your tit, though… the vibrations are what push you over, your titflesh quaking into a massive boogasm that wracks your body from the [breasts] out{, quickly shooting down through your veins like a wildfire of pleasure until your [cock] blows its pent-up load, spasming out a huge thick swath of seed into her waiting hole."}
-	With a gasp, the naleen falls onto her back, milk dripping from the corners of her mouth as she flops down, sodden tits jiggling obscenely. {Your [cock] pops free of her vice-like cunt as she does so, leaving a nice creamy smear on her thigh as you withdraw.} With a contented sigh, the huntress wipes her lips and idly rubs her cum-stained quim, regarding you with wide eyes. "That was a magnificent treat, pet," she purrs, smiling. "Among my people, it's a great honor to suckle from a mother's teats. A sign of unparalleled trust and love. Thank you, little pet."
+//Bend Her Over (+DP)
+//{For PCs with 1+ dicks}
+function bendNaleenOver():void {
+	clearOutput();
+	output("You move to straddle the prone kitty-naga, tearing your gear off and brandishing your [pc.cocks], letting your half-hard member");
+	if(pc.cockTotal() > 1) output("s");
+	output(" dangle over her wide-eyed face. She stares up at your ");
+	if(pc.cockTotal() > 3) output("many ");
+	output("length");
+	if(pc.cockTotal() > 1) output("s");
+	output(", lips curling into a lusty smile as her tongue flicks out, its slender tip barely caressing the crown of your [pc.cock " + x + "] - just enough to send a shudder of pleasure up your spine, her slightest touch electric on your most sensitive skin. <i>\"Brought me a present, did you, pet? Oh, I'll take good care of </i>");
+	if(pc.cockTotal() == 1) output("<i>this</i>");
+	else output("<i>these</i>");
+	output("<i>; just lie back and relax.\"</i>");
+	
+	output("\n\nOh, no she doesn't. You grab the naleen by her flared waist, rolling her serpentine body over; she instinctively hikes her ass up, rounded cheeks swaying temptingly above her writhing coils. Cheek in the dirt, the naleen looks up at you expectantly, reaching back to cup your ");
+	if(pc.balls > 0) output("swaying sack ");
+	else output("...[pc.butt] ");
+	output("and urge you on, utterly shameless in her defeat and lust. You give her a swat on the backside, inadvertently pushing her deeper into the mire of the forest. She cries out, left resting on her tremendous bust as you shift to straddle her elongated form, lining your [pc.cocks] up with her lush backside.");
+	
+	//If PC has 2+ cocks (Holy shit Savin has variation!)
+	if(pc.cockTotal() > 1 && y >= 0) {
+		output("\n\n<i>\"A pair of pretty pricks for me, pet?\"</i>  the naleen giggles, shifting back to rub her ass against the undersides of your two pulsing, eager members. <i>\"You do know how to spoil me, don't you? So rare to see a </i>real<i> male out here....\"</i>");
+		
+		output("\n\nYou grunt approvingly as your [pc.cock " + x + "] slips between her pliant cheeks, squeezed between hot, taut assflesh as the other flops over the mound of her backside, drooling eager pre onto her arched, furry back. She purrs sexily, a soft moan escaping her lips as your cock rubs across the gash of her sex and the tight ring of her ass. <i>\"One for breeding and one for feeling,\"</i> she giggles, reaching back to grab your second prick, stroking your shaft in time to the movement of her hips, making sure both your manhoods get their fair share of pleasure.");
+		output("\n\n<i>\"To tell you the truth, I've always wondered how it is supposed to be with our males: is it two in the pussy, to make sure it's nice and packed full of babies, or one in each hole to make sure we feel every bit of pleasure. Or maybe it's supposed to be one for two different girls? You'd like that, wouldn't you pet - if I went and found one of my sisters to join us? Naleen are always best in groups, you know... maybe if you're a good " + pc.mf("boy","girl") + " I'll take you along some time. With these beauties,\"</i>  she giggles, tugging your pricks, <i>\"you'd fit right in.\"</i>");
+		
+		//If PC is snarky: 
+		if(pc.isMischievous()) output("\n\n<i>\"Speaking of fitting,\"</i>  ");
+		else if(pc.isNice()) output("\n\n<i>\"Maybe I'll take you up on that some time. But for now...\"</i>  ");
+		else output("\n\n<i>\"Enough with the talking,\"</i>  ");
+		output(" you say, giving her ass a rough squeeze - hard enough to spatter a little bit of fem-slime out onto your cock, getting you nice and lubed for what's to come.");
+	}
+	//If PC is monocock:
+	else {
+		output("\n\nBefore you can slip your cock into her, the naleen shifts her own backside up, grabbing your [pc.cock " + x + "] between the tight clefts of her ass. You draw a hissing breath - damn she's tight! - but a moment later and she's purring happily, rocking her booty along the shaft of your schlong, rubbing her slick pussy juices all along your length. She gasps and moans as your [pc.cock " + x + "] slides through her cheeks, rubbing along the puckered star of her ass and the lowest folds of her wet, drooling cunt.");
+		
+		output("\n\n<i>\"Do you do this to all the pretty girls you meet out here, pet: beat them down and push them into the dirt to tease them relentlessly? Or are you going to actually </i>fuck<i> me?\"</i>");
+		
+		output("\n\n<i>\"You started it,\"</i>  you snap, giving her ass a rough squeeze - hard enough to spatter a little bit of fem-slime out onto your cock, getting you nice and lubed for what's to come.");
+	}
+	
+	//{Combine:}
+	output("\n\nThe way your naleen slut's purring and whining, she's practically begging for it. You line the crown");
+	if(y >= 0) output("s");
+	output(" of your cock");
+	if(y >= 0) output("s");
+	output(" up with the kitty-naga's slavering cunt");
+	if(y >= 0) output(" and winking asshole, so relaxed and ready you're sure you could slip in as easily as a well-fucked pussy");
+	output(". Her back arches in a rush of pleasure as the tip of your [pc.cock " + x + "] brushes her slick folds, making her gasp as your [pc.cockHead " + x + "] every so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, parting her slick folds");
+	if(y >= 0) output(" as your [pc.cock " + y + "] presses up against her tight rump, straining for a brief moment before the naleen screams as you're in, pushing through her tight rectal channel");
+	output(". Her walls squirm and squeeze around your cock");
+	if(y >= 0) output("s");
+	output(", pushing back hard against you to make your work for every inch. But she's so wet, it barely slows your onslaught. ");
+	if(y >= 0) output("Her ass gives a bit more of a fight, but the steady push of your hips keeps it going - and your lover's not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind. ");
+	output("She's loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core.");
+	
+	output("\n\nYou wrap your hand through her fiery hair, pulling the slut's head back to stop her before you cum too soon. She gives a sharp cry, but returns your harsh rebuke by grinding her hips back against you, nearly swallowing your cock");
+	if(y >= 0) output("s");
+	output(" up until ");
+	if(y >= 0) output("they're");
+	else output("it's");
+	output(" so deep inside her that ");
+	var totalStuff:int = pc.cockVolume(x);
+	if(y >= 0) totalStuff += pc.cockVolume(y);
+	if(totalStuff > foes[0].vaginaCapacity()) output("her stomach bulges obscenely");
+	else output("your groin presses deep into her cushiony tush");
+	output(". As speared on your cock");
+	if(y >= 0) output("s");
+	output(" as she's going to get, the naleen purrs happily, content to let you take back the initiative. You give her a rough slap on the backside to chastise her, but only end up making her squeeze and clamp around your buried member");
+	if(y >= 0) output("s");
+	output(", her slick pussy");
+	if(y >= 0) output(" and tight little ass");
+	output(" wringing your manhood so tightly you're tempted to just let go and cum on the spot.");
+	
+	output("\n\nHolding it in takes every bit of your willpower, but the approving grin from the kitty-slut beneath you makes it all worthwhile. <i>\"Mmm, now </i>there<i>'s a good ");
+	if(y >= 0) output("pair of cocks");
+	else output("cock");
+	output(". Such control, pet... I can't remember the last male that didn't just give it all up to my... ministrations,\"</i>  she giggles, slowly relaxing her muscles enough that you can move again, letting you slide your prick");
+	if(y >= 0) output("s");
+	output(" out to the crown");
+	if(y >= 0) output("s");
+	output(" - only to plunge back in again, right to the hilt! She cries, back arching as you slam into her backside. The naleen's long, powerful tail thrashes between your [pc.legs], coiling and spasming as her body takes your cock");
+	if(y >= 0) output("s");
+	output(" again and again, stretching her hole");
+	if(y >= 0) output("s");
+	output(" until her pussy's drooling slime into the dirt between hammering thrusts. Her fingers dig into the sodden ground, biting her lip to keep from screaming - too often, anyway - as you fuck her faster and harder for every one of her cute moans and pleasured cries. The white-furred crests of her ass jiggle lewdly as your crotch slaps into it, each thrust sending big full bubble butt bouncing.");
+	
+	output("\n\n<i>\"Yes! Yeeeessss!\"</i>  the naleen cries, finally losing all control as you slam your cock");
+	if(y >= 0) output("s");
+	output(" deep into her, ");
+	
+	if(totalStuff <= foes[0].vaginaCapacity()) output("crotch slamming into her jiggling ass");
+	else {
+		output("massive erection");
+		if(y >= 0) output("s");
+		output(" distending her until her stomach bulges larger than even her tremendous bust");
+	}
+	output(". Her ecstatic voice warps into a scream of feral pleasure as you fuck her, higher and higher as she loses herself to orgasm. Her cunt's soaked channel squeezes and slides along your rock-hard length, spasming wildly as her fem-cum splatters across her coiled tail, a steady stream of alien spunk leaking from her well-fucked womanhood as you slow your furious pace, letting her ride her orgasm out. ");
+	if(y >= 0) output("Her ass is no slouch, either: as her cunt milks your [pc.cock " + y + "], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass. ");
+	output("No reason to hold back anymore: you grab her hips and slam in one last time, making her scream as her muscles do the rest: squeezing down so tight around your ");
+	if(y >= 0) output("dual cocks");
+	else output("cock");
+	output(" that you can't help but cum with her.");
+	
+	output("\n\nYour [pc.cock " + x + "] erupts inside her, a thick stream of [pc.cum] flooding into her spasming cunt to greet the lips of her winking womb");
+	if(y >= 0) output(", followed a moment later by your [pc.cock " + y + "] which blows a thick, creamy load deep in her abused asshole, smearing her rectal walls [pc.cumColor]");
+	output(". You continue to thrust into the squealing kitty-naga as you cum, pushing your spunk as far into her as you can - and she's happy to take every drop. Settling down after cumming, the naleen begins to wiggle her ass for you, pushing back against you to take every last inch of your throbbing, cum-filled cock");
+	if(y >= 0) output("s");
+	output(".");
+	
+	output("\n\nWith one final, spunk-leaking twitch, you feel your orgasm subsiding. With a heavy, contented sigh, you pull out of the kitty-naga, leaving her ");
+	if(y >= 0) output("ass and ");
+	output("pussy gaping after your rough fucking, cum drooling obscenely from her battered sex. <i>\"Mmm, that was marvelous. Perhaps I ought to let you win more often, hmm?\"</i>  she teases, winking over her shoulder at you and giving her booty a little wiggle. You give her a sharp swat on the behind as you stagger to your [pc.feet], collecting your gear. By the time you're ready to go, the naleen is snoozing peacefully, coiled up in a rare sunny spot, still dripping [pc.cumColor].");
+	processTime(30+rand(5));
+	pc.orgasm();
+	
+	//9999
+}
+//Tail-pegging
+//Requires at least a cunt or dick.
+function obligatorySavinTailPegging():void {
+	clearOutput();
+	output("Oh, she'll make it up to you alright. You loom over the fallen kitty-naga, licking your lips as you visually feast on her buxom, serpentine body: eyes following the soft, wide curves of her wide hips, along her flat, taut belly and its thin diamond of white fur in a sea of orange, up to the great swells of her oh-so-soft breasts, each heaving with her quickened breath, clearly aroused by your lustful stares. One of her slender hands slips down her supple form to the conjoinment of her humanoid and naga halves, fingertips teasing the shimmering slit of her sex, two slipping in with such smooth, silky ease that you feel yourself drawn in, sitting down to the naleen's level and straddling her broad flanks, your ");
+	if(pc.hasVagina()) output("[pc.vaginas]");
+	if(pc.hasCock() && pc.hasVagina()) output(" and ");
+	if(pc.hasCock()) output("[pc.cocks]");
+	output(" sinfully close to her sodden slit, so close that you can feel the wet heat welling up from the depths of her silken pussy.");
+	
+	output("\n\nIt's oh so hard to draw your attention from the naleen's inviting little cunt, letting your hands come to rest on her gropable hips, fingers ever so slightly caressing the swell of her big bubble butt. Your touch sends shivers through the horny huntress, nearly toppling you off her as her tremendous tail swishes beneath you, its man-sized girth powerful enough to send some of your discarded gear flying. Niiiice. You reach back, grabbing the very tip of her writhing tail; she freezes like a deer in the headlights, breath catching as your fingers brush the slender end of her lengthy body. <i>\"W-what are you going to do with that, hmm?\"</i>  she finally manages to stammer out as you gently caress the smooth, warm scales of her hind end. With a sly grin, you guide the tip of her tail back, coiling it around itself, bringing it ever closer home. With every tug and slip of your hand, the naleen gasps and coos, biting her lip and blushing a bright crimson by the tip her wriggling point slips along the sheer curve of your ...[pc.butt].");
+	
+	output("\n\n<i>\"Gentle, pet,\"</i>  the naleen hisses as you squeeze her tail, grinding your ...[pc.butt] against its leathery underside. You give her a playful pinch on one of her wide pink teats, jiggling the massive tit until she whines with pleasure, tail thrashing powerfully in your grasp. Oh, this is going to be good. You release her reddened nipple, and with a few finally shakes, the tip of her tail calms down, though still shivering in anticipation in your hand.");
+	
+	output("\n\n<i>\"You're a brute,\"</i>  she whines, cupping her breasts protectively, shielding them from your machination. So sensitive! You bypass her defenses entirely, leaning down over the prostrated kitty-naga and kissing her full on the lips, taking her wholly off-guard. She freezes again, but only for an instant this time; she recovers with a vengeance, letting her slender tongue probe past your [pc.lips], playing across your own, letting you gently brush her hands off her bust to let you cup them, squeezing the big soft orbs more gently this time, teasing her puffy teats and sensitive undersides. Her own hands slip back, grabbing your ...[pc.butt] and sinking her fingers in, playfully spreading and squeezing your cheeks. You let loose a little moan, breaking the kiss to nuzzle into her neck, cheek brushing her soft-furred shoulders as your own hand returns to working her tip, stroking it like a cock as you inch it further and further up her supple frame.");
+	
+	output("\n\nAs long and flexible as she is, it's only a matter of time before the tender tip of her tail is coiled up to her chest. You give her a gentle nibble on the inside of her neck, making the huntress gasp and arch her back, distracted and defenseless as you slip her tail up between your bodies, trapping between the valley of her breasts and your own [pc.chest] pressing down on her bust. ");
+	if(pc.biggestTitSize() > 2) output("The naleen coos as her tail is caught up in a double tit-fuck,wriggling rhytmically between your tits, even flicking up to brush your [pc.nipples] as you start to move, dragging your own full breasts up along the length of her scaly end. <i>\"Oooh, you really know how to treat a girl, don't you? Mmmm don't stop,\"</i>  she murmurs, cupping her own breasts to work alongside you, jerking her sensitive tail off like the great big kitty-cock you're soon going to use it as.");
+	else output("Pressing down on the naleen's bust, you grab the two tremendous orbs of kitty-flesh, so sinfully soft that your fingers practically disappear into the yielding flesh of her buxom chest. She purrs happily, leaning back as you at once massage her needy chest and tit-fuck her leathery tail, jerking it off like the big kitty-cock you're soon going to use it as.");
+	output(" She shows no sign of resistance to you anymore, happily allowing you to worship her tail, eager to surrender her own breasts for the purpose. But if she thinks she's just getting a tit-job, she's got another thing coming...");
+	
+	output("\n\nYou gently shift your [pc.chest] up, pulling with it a few more inches of naleen-tail until the very writhing tip is practically flopping onto the huntress's nose. She gives a little gasp as it brushes her button nose, but when you lean in and give it a long, languid lick from tip to teat, she's eager to join you. You suck the tip into your mouth, letting your tongue play across her most sensitive little nub as the naleens long, forked tongue caresses her underside, lapping at the leather like candy. Her breath quickens visibly as the two of you worship her leathery appendage, chest heaving as her breasts ceaselessly massage her length, pushed further and further apart as her tail rapidly expands, growing from but an inch thick in your eager mouth to almost a foot across between her tits. And every inch seems as whorishly sensitive as the first, responding to your every touch and caress with a wiggle and a little gasp of pleasure from your lover. You let a hand slide down again, gently stroking the writhing mass of her lower half as you search out the conjoinment of kitty and snake; you feel the heat and wetness long before the slit itself, and your fingers as soon slathered in the naleen's excitement, her dripping pussy winking and spasming as your hand draws nearer, so eager and needy, desperate for a cock or a fist to fill it.");
+	
+	
+	output("\n\nYou circle a single finger around the lips of her quivering quim, making the sultry vixen gasp with delight, crying, <i>\"Yeeees, right there! Give it to me, make me yours!\"</i>  You let her tail-cock pop out of your mouth, trading the spit-slick tip for her kissable lips as your whole body shifts, your ");
+	if(pc.hasVagina() && !pc.hasCock()) 
+	{
+		output("own puss");
+		if(pc.totalVaginas() == 1) output("y");
+		else output("ies");
+		output(" gliding across the naleen's, [pc.clits] brushing her own engorged bud.");
+	}
+	else if(pc.hasCock()) {
+		output("[pc.cocks] slide");
+		if(pc.cockTotal() == 1) output("s");
+		output(" across her taut body, gliding through the slick field of her spilt excitement until the crown brushes her netherlips. Penetrating her is effortless, her slutty slit easily parting to accept your cock, taking inch after inch as you slide yourself home inside her.");
+	}
+	else output("featureless groin rubbing her pussy, gliding across her with almost unnatural ease thanks to the lake of fem-slime coating her groin.");
+	output(" She gives a pitifully desperate whimper as your prick  Her back arches under you as she cries her pleasure, filled with such primal lust that you fear she'll cum on the spot! Your sexes meet, crotches grinding with a steady passion, keeping the kitten on the edge of her orgasm as you take hold of her wet tail-tip, guiding it back around your entwined bodies toward your own pleasure.");
+	
+	output("\n\nShe catches on, grinning up at you as her hands slip around your [pc.hips] again, planting themselves on your ...[pc.butt] and spreading your wide. <i>\"Allow me,\"</i>  she whispers, voice husky. You answer her with another kiss, lasting but a second before she slides down your cheek and neck, nibbling the sensitive flesh there to take your mind off your behind as her tail slithers up - but a rough smack on the ass brings you right back, gasping with pain and pleasure as the dirty little naleen gives you another spank, giggling as your ass clenches.");
+	
+	output("\n\nYou wiggle your heiny, and gaps again as she gives you a playful swat, setting the flesh on your ...[pc.butt] to jiggling obscenely. Another slap and you've had all you can take - she's stronger than she looks, and that's saying something! But she seems to know it, and much more gently lets her moistened tip caress your sore cheek, coiling around it before slipping into your crack. Your breath catches as her warm, wet tail-prick glides over your ass");
+	if(pc.hasCock()) output(", [pc.oneCock] trembling in her warm embrace; she squeezes down around your engorged length, purring sweetly as she takes more of your shaft, muscles caressing every inch of your fuckpole with a practiced skill that soon has you wanting to spurt your load - but you can't, not yet");
+	else if(pc.hasVagina()) output(", and even your pussy quivers overtop hers. She grins, letting one of her hands twist down to your nethers, and you sigh with blessed relief as a pair of her fingers slip in, finally answering your cunt's call for something to fill it, to squeeze and milk. You buck your hips on her inserted digits, riding them like a little cock, letting your pussy grind over her wrist, pushing it back against her own needy box");
+	output(". The moment of penetration looms, but before she pushes in, the naleen gently cups your cheek, kissing you again before guiding your head down to the now-vacant valley of her cleavage, letting you rest your head between her breasts as her tail lines up with your eager behind.");
+	
+	output("\n\n<i>\"Just relax, my loving little pet,\"</i>  the huntress coos, stroking your hair as her tip pushes forward, finally pressing against the ring of your [pc.asshole]. You gasp and cry, biting your lip hard as she steadily applies pressure to your helpless sphincter. All there is to do is relax yourself as best you can and take the thick slab of scaled tail that you so desperately wanted. And the moment it's inside you, everything pays off in spades. Back arched and ass gaping, you scream and cum as her thick tail rams mercilessly past your limp defenses, spreading you wide. Your ass quivers and spasms with wild abandon around her probing member");
+	if(pc.hasCock()) output(", and your cock joins a moment later, busting a load right into the sex-kitten's eager pussy as she milks your prostate. She gives a little cry as your seed flows into her, spattering her slick walls with sticky [pc.cumColor] spunk");
+	else if(pc.hasVagina()) output(", just as your pussy does around her hilted fingers, squeezing and clamping with lustful release, riding her hand as you cum and cum");
+	output(". She gives a sharp squeal of delight as your ass milks her tail-tip and your ");
+	if(!pc.hasCock() && pc.hasVagina()) output("pussy");
+	else if(!pc.hasCock()) output("groin grinds along her own needy box");
+	else output("cock fills her again and again");
+	output(". You hump desperately along her lithe form, pounding your ");
+	if(!pc.hasCock()) output("ass along her length");
+	else output("[cock] deeper and deeper");
+	output(" until she's cumming with you, head thrown back and screaming her orgasm. Desperately, you grab the kitty's cheek and kiss her, fingers brushing through her fiery tresses as you silence her. She tries to reciprocate, but it's as if she's lost to the pleasure, spasming in your arms.");
+	
+	output("\n\nYou know time passes, but for you, it has little meaning as the naleen mercilessly writhes and thrashes in your ass, ramming more and more tail deep inside you even as your orgasm passes, replaced by mind-numbing anal pleasure. She groans and moans, holding you tight as your stomach distends, organs pushed and cramped to take the massive insertion cramming up your bum. When it's finally over, all you can do is sigh with utter, complete contentment, hand holding your bulging belly as the half-senseless naleen slowly pulls herself from you.");
+	output("\n\nYou don't know how many times you've cum");
+	if(pc.hasVagina()) output(", but the sea of fem-cum");
+	if(pc.hasCock() && pc.hasVagina()) output(" and leaking spunk pouring from the naleen's cunt to pool");
+	else if(pc.hasCock()) output(", but the sea of leaking spunk pouring from the naleen's cunt to pool");
+	output(" around you would seem to say quite a few times indeed");
+	output(". With a wet, body-shaking POP, the huntress's tail slithers out of you completely, and senseless, you roll off her into the soft dirt. You barely notice as the kitty-naga coils herself up around you, picking your head back up to rest on her breast, surrounded by warm, comforting snake-scale and soft fur. You feel long, slender fingers stroking your ");
+	if(pc.hasHair()) output("[pc.hair]");
+	else output("head");
+	output(", another hand gently ");
+	if(pc.hasCock()) output("warpping around your half-hard cock, using your own cum as lube to continue stroking you off");
+	else if(pc.hasVagina()) output("masturbating your still-hot cunt, fingers gingerly probing the depths of your womanhood");
+	else output("caressing the bare [pc.skin] of your groin");
+	output(", letting you drift off to sleep in her arms.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	processTime(30+rand(40));
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(4) == 0) pc.orgasm();
+	if(rand(5) == 0) pc.orgasm();
+	if(rand(6) == 0) pc.orgasm();
+	if(rand(7) == 0) pc.orgasm();
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",tailpeggingNaleenPartII);
+}
 
-You don't know what to say to that, if only for a moment. A moment she takes to plant a quick kiss on your cheek and slither off, leaving you to your own devices. 
+function tailpeggingNaleenPartII():void {
+	clearOutput();
+	output("Your eyes flitter open, squinting in the darkness of the forest floor. You're acutely aware of the bed of snake surrounding you, gently shifting with the rise and fall of her steady, strong breath. You roll half-over on your pillow of boob-flesh, but find your huntress lover quite thoroughly asleep, eyes closed and mouth agape, snoring peacefully. You smile wanly, leaning over to kiss her before struggling to your [pc.feet], searching for your discarded gear. As you get ready to leave, you turn back just in time to see one of her brilliant green eyes quickly closing as she pretends to stay asleep, letting you go in peace.");
+	processTime(60+rand(40));
+	//9999
+}
 
-Bend Her Over (+DP)
-{For PCs with 1+ dicks}
+//Naleen Night-time Cuddles
+//Requires the PC to have fought the naleen at least five times. Chance to encounter when the PC is in the forest in the late afternoon -> night time. Chance = Fatigue / 2?
+//Proc at 11 PM in the jungle!
+function naleenNightCuddles():void {
+	clearOutput();
+	output("The forest seems to be growing thicker and thicker with every step, taking you deep into the heart of the jungle far, far away from Esbeth. The trees are overgrown, thick with vines and moss, their branches so intertwined you can hardly see the sun. Looking cautiously around, you make your way through the dense underbrush, slowly hacking through the ever-present foliage on your way across the endless sea of trees.");
+	output("\n\nSlowly, though, you begin to feel as if you're being watched. You draw your [pc.meleeWeapon.longName] and scan your surroundings, looking for the source of your unease. The jungle seems quiet, too silent and still. Your keen eyes search as you slowly turn, eyeing every angle until finally you catch a glimpse of movement! You ready your weapon and shout for who or whatever it is to show itself - and soon it does. You hear a rustle AHEAD of you for once, and ready your [pc.meleeWeapon.longName] as the brush parts to reveal the familiar form of the naleen huntress who's stalked you since first meeting. This time, though, she raises her hands in a sign of peace as she slithers toward you, a slight smile on her lips.");
+	
+	output("\n\n<i>\"Easy, my pet, I mean no harm. It is very late out, now... why have you not returned to your village, hmm?\"</i>  she queries, gently pushing your [pc.meleeWeapon.longName] down as she teases, <i>\"Were you out looking for me, pet? Tsk, you only had to call!\"</i>");
+	
+	output("\n\nYou lower your [pc.meleeWeapon.longName] as the naleen circles you, hips swaying seductively with her every serpentine motion. She slips behind you, big bare jugs pressing into your back as she whispers, <i>\"It's dangerous to go alone at night in these woods, my pet. You should know better... but at least it's me who found you first, and not some fuck-mad zil, no?\"</i>  The huntress chuckles to herself, breath hot on your cheek as her slender, powerful arms wrap around your waist and under your [pc.chest]. Considering how frequently the two of you have battled, you feel oddly at ease in the lusty kitten's embrace, and let yourself relax in her arms, head resting back into the soft, inviting pillow of her chest. She doesn't seem to mind at all.");
+	output("\n\n<i>\"Pretty, silly pet,\"</i> the naleen coos, stroking your hair. <i>\"Whatever would I do if you were to be captured by some filthy zil-slut, or dragged away to be filled with a trapper-plant's pollen forever after, hmm? I suppose I'll have to watch over you tonight, won't I, pet? At least to keep the cold away - it gets so awfully chilly here at night.\"</i>");
+	processTime(3);
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Yes",yesSnuggleWifZatNaleen);
+	userInterface.addButton(1,"No",noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo);
+}
+//No, thanks
+function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
+	clearOutput();
+	output("You gently push the naleen girl off. <i>\"I'll have to pass this time, beautiful,\"</i>  you say, putting a bit of distance between the two of you.");
+	
+	output("\n\nShe makes as if to respond, but merely slumps her shoulders and gives a little pout. <i>\"Have it your way, pet. Perhaps you'll think different when you've wandered alone in the cold, wet wilderness for a while more.\"</i>");
+	processTime(1);
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+	
+//Awesome!
+function yesSnuggleWifZatNaleen():void {
+	clearOutput();
+	output("<i>\"I guess you'll have to,\"</i>  you grin, reaching back around to cup a handful of the naleen's bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your [pc.armor.longArmor] and gear, tossing it aside, submerging you in the pleasant warmth of the naleen's sexy body. You hadn't even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: <i>\"I told you, pet, it gets so very cold here. But we'll keep each other warm tonight, won't we?\"</i>");
+	
+	output("\n\nYou nod enthusiastically, stopping only to gasp as you feel a slender spear of warmth wrapping around one of your [pc.legs]. You manage to slip your arms around the naleen's waist, holding her tight against you before her coils utterly enwrap you, binding you in a blanket of soothingly warm, soft scales. <i>\"Better?\"</i>  the huntress teases, pinching one of your rigid teats between her coils.");
+	
+	output("\n\n<i>\"Much,\"</i>  you say, leaning up to kiss her. She returns it with a playful smile, pushing your head down into her bosom, stroking your ");
+	if(pc.hasHair()) output("[pc.hair]");
+	else output("head");
+	output(" with surprising affection as you nestle into your lover's embrace.");
+	
+	//if PC has a cock: 
+	if(pc.hasCock()) {
+		output("\n\n<i>\"Oh! But we cannot have this getting cold, can we?\"</i>  the huntress grins, slipping an arm down into the bed of coils around the pair of you. You wince as her fingers graze your [pc.cocks], wrapping around your soft length");
+		if(pc.cockTotal() > 1) output("s");
+		output(". She rocks her wrist, jacking you off a few short times until you're half-erect, blood rushing to your suddenly stimulated schlong{s} as she guides ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" toward her waiting womanhood. Your mind fizzles blank with sudden and overwhelming pleasure as your [pc.balls] sinks into the hot, sultry depths of the naleen's welcoming pussy.");
+		
+		output("\n\n<i>\"Better?\"</i> she teases, clenching her muscles around your prick");
+		if(pc.cockTotal() > 1) output("s");
+		output(", massaging ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("them");
+		output(" oh so sweetly inside herself.");
+		
+		output("\n\n<i>\"Much,\"</i> you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You've never felt warmer.");
+		pc.orgasm();
+		pc.orgasm();
+		if(rand(3) == 0) pc.orgasm();
+		if(rand(3) == 0) pc.orgasm();
+	}
+	processTime(420+rand(60));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",finishNaleenSnuggles);
+}
 
-You move to straddle the prone kitty-naga, tearing your gear off and brandishing your [multicock], letting your half-hard member{s} dangle over her wide-eyed face. She stares up at your {many} length{s}, lips curling into a lusty smile as her tongue flicks out, its slender tip barely caressing the crown of your [cock] -- just enough to send a shudder of pleasure up your spine, her slightest touch electric on your most sensitive skin. "Brought me a present, did you, pet? Oh, I'll take good care of these; just lie back and relax."
-
-Oh, no she doesn't. You grab the naleen by her flared waist, rolling her serpentine body over; she instinctively hikes her ass up, rounded cheeks swaying temptingly above her writhing coils. Cheek in the dirt, the naleen looks up at you expectantly, reaching back to cup your {swaying sack // [butt]} and urge you on, utterly shameless in her defeat and lust. You give her a swat on the backside, inadvertently pushing her deeper into the mire of the forest. She cries out, left resting on her tremendous bust as you shift to straddle her elongated form, lining your [multicock] up with her lush backside.
-
-{If PC has 2+ cocks (Holy shit Savin has variation!)
-"A pair of pretty pricks for me, pet?" the naleen giggles, shifting back to rub her ass against the undersides of your two pulsing, eager members. "You do know how to spoil me, don't you? So rare to see a </i>real<i> male out here.…"
-
-You grunt approvingly as your [cock] slips between her pliant cheeks, squeezed between hot, taut assflesh as the other flops over the mound of her backside, drooling eager pre onto her arched, furry back. She purrs sexily, a soft moan escaping her lips as your cock rubs across the gash of her sex and the tight ring of her ass. "One for breeding and one for feeling," she giggles, reaching back to grab your second prick, stroking your shaft in time to the movement of her hips, making sure both your manhoods get their fair share of pleasure. 
-
-"To tell you the truth, I've always wondered how it is supposed to be with our males: is it two in the pussy, to make sure it's nice and packed full of babies, or one in each hole to make sure we feel every bit of pleasure. Or maybe it's supposed to be one for two different girls? You'd like that, wouldn't you pet -- if I went and found one of my sisters to join us? Naleen are always best in groups, you know… maybe if you're a good {boy/girl} I'll take you along some time. With these beauties," she giggles, tugging your pricks, "you'd fit right in."
-
-{If PC is snarky: "Speaking of fitting," // if Nice: "Maybe I'll take you up on that some time. But for now…" // if Nasty: "Enough with the talking,"} you say, giving her ass a rough squeeze -- hard enough to spatter a little bit of fem-slime out onto your cock, getting you nice and lubed for what's to come. 
-/Double-cock variant}
-
-{If PC is monocock:
-Before you can slip your cock into her, the naleen shifts her own backside up, grabbing your [cock] between the tight clefts of her ass. You draw a hissing breath -- damn she's tight! -- but a moment later and she's purring happily, rocking her booty along the shaft of your schlong, rubbing her slick pussy juices all along your length. She gasps and moans as your [cock] slides through her cheeks, rubbing along the puckered star of her ass and the lowest folds of her wet, drooling cunt. 
-
-"Do you do this to all the pretty girls you meet out here, pet: beat them down and push them into the dirt to tease them relentlessly? Or are you going to actually </i>fuck<i> me?"
-
-"You started it," you snap, giving her ass a rough squeeze -- hard enough to spatter a little bit of fem-slime out onto your cock, getting you nice and lubed for what's to come. 
-/Singlecock Variant}
-
-{Combine:}
-The way your naleen slut's purring and whining, she's practically begging for it. You line the crown{s} of your cock{s} up with the kitty-naga's slavering cunt{ and winking asshole, so relaxed and ready you're sure you could slip in as easily as a well-fucked pussy}. Her back arches in a rush of pleasure as the tip of your [cock] brushes her slick folds, making her gasp as your [head] every so slightly parts her womanly veil, letting her juices run free to practically slather your schlong. Grabbing her big hips for support, you slide forward, parting her slick folds{ as your [cock 2] presses up against her tight rump, straining for a brief moment before the naleen screams as you're in, pushing through her tight rectal channel}. Her walls squirm and squeeze around your cock{s}, pushing back hard against you to make your work for every inch. But she's so wet, it barely slows your onslaught. {Her ass gives a bit more of a fight, but the steady push of your hips keeps it going -- and your lover's not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind.} She's loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core. 
-
-You wrap your hand through her fiery hair, pulling the slut's head back to stop her before you cum too soon. She gives a sharp cry, but returns your harsh rebuke by grinding her hips back against you, nearly swallowing your cock{s} up until {it's /they're} so deep inside her that {her stomach bulges obscenely // your groin presses deep into her cushiony tush}. As speared on your cock{s} as she's going to get, the naleen purrs happily, content to let you take back the initiative. You give her a rough slap on the backside to chastise her, but only end up making her squeeze and clamp around your buried member{s}, her slick pussy{ and tight little ass} wringing your manhood so tightly you're tempted to just let go and cum on the spot.
-
-Holding it in takes every bit of your willpower, but the approving grin from the kitty-slut beneath you makes it all worthwhile. "Mmm, now </i>there<i>'s a good {pair of} cock{s}. Such control, pet… I can't remember the last male that didn't just give it all up to my… ministrations," she giggles, slowly relaxing her muscles enough that you can move again, letting you slide your prick{s} out to the crown{s} -- only to plunge back in again, right to the hilt! She cries, back arching as you slam into her backside. The naleen's long, powerful tail thrashes between your [pc.legs], coiling and spasming as her body takes your cock{s} again and again, stretching her hole{s} until her pussy's drooling slime into the dirt between hammering thrusts. Her fingers dig into the sodden ground, biting her lip to keep from screaming -- too often, anyway -- as you fuck her faster and harder for every one of her cute moans and pleasured cries. The white-furred crests of her ass jiggles lewdly as your crotch slaps into it, each thrust sending big full bubble butt bouncing. 
-
-"Yes! Yeeeessss!" the naleen cries, finally losing all control as you slam your {twoCocks?} deep into her, {crotch slamming into her jiggling ass // massive erection{s} distending her until her stomach bulges larger than even her tremendous bust}. Her ecstatic voice warps into a scream of feral pleasure as you fuck her, higher and higher as she loses herself to orgasm. Her cunt's soaked channel squeezes and slides along your rock-hard length, spasming wildly as her fem-cum splatters across her coiled tail, a steady stream of alien spunk leaking from her well-fucked womanhood as you slow your furious pace, letting her ride her orgasm out. {Her ass is no slouch, either: as her cunt milks your [cock], your other meaty prick is subjected to an endless wringing courtesy of her tight-clenched muscles, squeezing and pushing at the veiny intruder piercing her tender ass.} No reason to hold back anymore: you grab her hips and slam in one last time, making her scream as her muscles do the rest: squeezing down so tight around your {dual} cock{s} that you can't help but cum with her. 
-
-Your [cock] erupts inside her, a thick stream of [cumColor] spooge flooding into her spasming cunt to greet the lips of her winking womb{, followed a moment later by your [cock2] which blows a thick, creamy load deep in her abused asshole, smearing her rectal walls [cumColor]}. You continue to thrust into the squealing kitty-naga as you cum, pushing your spunk as far into her as you can -- and she's happy to take every drop. Settling down after cumming, the naleen begins to wiggle her ass for you, pushing back against you to take every last inch of your throbbing, cum-filled cock{s}. 
-
-With one final, spunk-leaking twitch, you feel your orgasm subsiding. With a heavy, contented sigh, you pull out of the kitty-naga, leaving her {ass and} pussy gaping after your rough fucking, cum drooling obscenely from her battered sex. "Mmm, that was marvelous. Perhaps I ought to let you win more often, hmm?" she teases, winking over her shoulder at you and giving her booty a little wiggle. You give her a sharp swat on the behind as you stagger to your [feet], collecting your gear. By the time you're ready to go, the naleen is snoozing peacefully, coiled up in a rare sunny spot, still dripping [cumColor].
-
-Tail-pegging
-Oh, she'll make it up to you alright. You loom over the fallen kitty-naga, licking your lips as you visually feast on her buxom, serpentine body: eyes following the soft, wide curves of her wide hips, along her flat, taut belly and its thin diamond of white fur in a sea of orange, up to the great swells of her oh-so-soft breasts, each heaving with her quickened breath, clearly aroused by your lustful stares. One of her slender hands slips down her supple form to the conjoinment of her humanoid and naga halves, fingertips teasing the shimmering slit of her sex, two slipping in with such smooth, silky ease that you feel yourself drawn in, sitting down to the naleen's level and straddling her broad flanks, your {[cunt] /and/ [cock]} sinfully close to her sodden slit, so close that you can feel the wet heat welling up from the depths of her silken pussy.
-
-It's oh so hard to draw your attention from the naleen's inviting little cunt, letting your hands come to rest on her gropable hips, fingers ever so slightly caressing the swell of her big bubble butt. Your touch sends shivers through the horny huntress, nearly toppling you off her as her tremendous tail swishes beneath you, its man-sized girth powerful enough to send some of your discarded gear flying. Niiiice. You reach back, grabbing the very tip of her writhing tail; she freezes like a deer in the headlights, breath catching as your fingers brush the slender end of her lengthy body. "W-what are you going to do with that, hmm?" she finally manages to stammer out as you gently caress the smooth, warm scales of her hind end. With a sly grin, you guide the tip of her tail back, coiling it around itself, bringing it ever closer home. With every tug and slip of your hand, the naleen gasps and coos, biting her lip and blushing a bright crimson by the tip her wriggling point slips along the sheer curve of your [butt]. 
-
-"Gentle, pet," the naleen hisses as you squeeze her tail, grinding your [butt] against its leathery underside. You give her a playful pinch on one of her wide pink teats, jiggling the massive tit until she whines with pleasure, tail thrashing powerfully in your grasp. Oh, this is going to be good. You release her reddened nipple, and with a few finally shakes, the tip of her tail calms down, though still shivering in anticipation in your hand. 
-
-"You're a brute," she whines, cupping her breasts protectively, shielding them from your machination. So sensitive! You bypass her defenses entirely, leaning down over the prostrated kitty-naga and kissing her full on the lips, taking her wholly off-guard. She freezes again, but only for an instant this time; she recovers with a vengeance, letting her slender tongue probe past your [lips], playing across your own, letting you gently brush her hands off her bust to let you cup them, squeezing the big soft orbs more gently this time, teasing her puffy teats and sensitive undersides. Her own hands slip back, grabbing your [butt] and sinking her fingers in, playfully spreading and squeezing your cheeks. You let loose a little moan, breaking the kiss to nuzzle into her neck, cheek brushing her soft-furred shoulders as your own hand returns to working her tip, stroking it like a cock as you inch it further and further up her supple frame. 
-
-As long and flexible as she is, it's only a matter of time before the tender tip of her tail is coiled up to her chest. You give her a gentle nibble on the inside of her neck, making the huntress gasp and arch her back, distracted and defenseless as you slip her tail up between your bodies, trapping between the valley of her breasts and your own [chest] pressing down on her bust. {If PC has tits: "The naleen coos as her tail is caught up in a double tit-fuck,wriggling rhytmically between your tits, even flicking up to brush your [nipples] as you start to move, dragging your own full breasts up along the length of her scaly end. "Oooh, you really know how to treat a girl, don't you? Mmmm don't stop," she murmurs, cupping her own breasts to work alongside you, jerking her sensitive tail off like the great big kitty-cock you're soon going to use it as." // if PC has a flat-B-cup chest: "Pressing down on the naleen's bust, you grab the two tremendous orbs of kitty-flesh, so sinfully soft that your fingers practically disappear into the yielding flesh of her buxom chest. She purrs happily, leaning back as you at once massage her needy chest and tit-fuck her leathery tail, jerking it off like the big kitty-cock you're soon going to use it as."} She shows no sign of resistance to you anymore, happily allowing you to worship her tail, eager to surrender her own breasts for the purpose. But if she thinks she's just getting a tit-job, she's got another thing coming…
-
-You gently shift your [chest] up, pulling with it a few more inches of naleen-tail until the very writhing tip is practically flopping onto the huntress's nose. She gives a little gasp as it brushes her button nose, but when you lean in and give it a long, languid lick from tip to teat, she's eager to join you. You suck the tip into your mouth, letting your tongue play across her most sensitive little nub as the naleens long, forked tongue caresses her underside, lapping at the leather like candy. Her breath quickens visibly as the two of you worship her leathery appendage, chest heaving as her breasts ceaselessly massage her length, pushed further and further apart as her tail rapidly expands, growing from but an inch thick in your eager mouth to almost a foot across between her tits. And every inch seems as whorishly sensitive as the first, responding to your every touch and caress with a wiggle and a little gasp of pleasure from your lover. You let a hand slide down again, gently stroking the writhing mass of her lower half as you search out the conjoinment of kitty and snake; you feel the heat and wetness long before the slit itself, and your fingers as soon slathered in the naleen's excitement, her dripping pussy winking and spasming as your hand draws nearer, so eager and needy, desperate for a cock or a fist to fill it. 
-
-You circle a single finger around the lips of her quivering quim, making the sultry vixen gasp with delight, crying, "Yeeees, right there! Give it to me, make me yours!" You let her tail-cock pop out of your mouth, trading the spit-slick tip for her kissable lips as your whole body shifts, your {own pussy gliding across the naleen's, [clit] brushing her own engorged bud. // [cock] slides across her taut body, gliding through the slick field of her spilt excitement until the crown brushes her netherlips. Penetrating her is effortless, her slutty slit easily parting to accept your cock, taking inch after inch as you slide yourself home inside her. // featureless groin rubbing her pussy, gliding across her with almost unnatural ease thanks to the lake of fem-slime coating her groin.} She gives a pitifully desperate whimper as your prick  Her back arches under you as she cries her pleasure, filled with such primal lust that you fear she'll cum on the spot! Your sexes meet, crotches grinding with a steady passion, keeping the kitten on the edge of her orgasm as you take hold of her wet tail-tip, guiding it back around your entwined bodies toward your own pleasure. 
-
-She catches on, grinning up at you as her hands slip around your [hips] again, planting themselves on your [butt] and spreading your wide. "Allow me," she whispers, voice husky. You answer her with another kiss, lasting but a second before she slides down your cheek and neck, nibbling the sensitive flesh there to take your mind off your behind as her tail slithers up -- but a rough smack on the ass brings you right back, gasping with pain and pleasure as the dirty little naleen gives you another spank, giggling as your ass clenches. You wiggle your heiny, and gaps again as she gives you a playful swat, setting the flesh on your [butt] to jiggling obscenely. Another slap and you've had all you can take -- she's stronger than she looks, and that's saying something! But she seems to know it, and much more gently lets her moistened tip caress your sore cheek, coiling around it before slipping into your crack. Your breath catches as her warm, wet tail-prick glides over your ass{, and even your pussy quivers overtop hers. She grins, letting one of her hands twist down to your nethers, and you sigh with blessed relief as a pair of her fingers slip in, finally answering your cunt's call for something to fill it, to squeeze and milk. You buck your hips on her inserted digits, riding them like a little cock, letting your pussy grind over her wrist, pushing it back against her own needy box // , your [cock] trembling in her warm embrace; she squeezes down around your engorged length, purring sweetly as she takes more of your shaft, muscles caressing every inch of your fuckpole with a practiced skill that soon has you wanting to spurt your load -- but you can't, not yet}. The moment of penetration looms, but before she pushes in, the naleen gently cups your cheek, kissing you again before guiding your head down to the now-vacant valley of her cleavage, letting you rest your head between her breasts as her tail lines up with your eager behind. 
-
-"Just relax, my loving little pet," the huntress coos, stroking your hair as her tip pushes forward, finally pressing against the ring of your [asshole]. You gasp and cry, biting your lip hard as she steadily applies pressure to your helpless sphincter. All there is to do is relax yourself as best you can and take the thick slab of scaled tail that you so desperately wanted. And the moment it's inside you, everything pays off in spades. Back arched and ass gaping, you scream and cum as her thick tail rams mercilessly past your limp defenses, spreading you wide. Your ass quivers and spasms with wild abandon around her probing member{, and your cock joins a moment later, busting a load right into the sex-kitten's eager pussy as she milks your prostate. She gives a little cry as your seed flows into her, spattering her slick walls with sticky [cumColor] spunk  // , just as your pussy does around her hilted fingers, squeezing and clamping with lustful release, riding her hand as you cum and cum}. She gives a sharp squeal of delight as your ass milks her tail-tip and your {pussy/groin grinds along her own needy box // cock fills her again and again}. You hump desperately along her lithe form, pounding your {ass along her length // [cock] deeper and deeper} until she's cumming with you, head thrown back and screaming her orgasm. Desperately, you grab the kitty's cheek and kiss her, fingers brushing through her fiery tresses as you silence her. She tries to reciprocate, but it's as if she's lost to the pleasure, cucking and spasming in your arms. 
-
-You know time passes, but for you, it has little meaning as the naleen mercilessly writhes and thrashes in your ass, ramming more and more tail deep inside you even as your orgasm passes, replaced by mind-numbing anal pleasure. She groans and moans, holding you tight as your stomach distends, organs pushed and cramped to take the massive insertion cramming up your bum. When it's finally over, all you can do is sigh with utter, complete contentment, hand holding your bulging belly as the half-senseless naleen slowly pulls herself from you. You don't know how many times you've cum{, but the sea of fem-cum [and leaking spunk pouring from the naleen's cunt to pool] around you would seem to say quite a few times indeed}. With a wet, body-shaking POP, the huntress's tail slithers out of you completely, and senseless, you roll off her into the soft dirt. You barely notice as the kitty-naga coils herself up around you, picking your head back up to rest on her breast, surrounded by warm, comforting snake-scale and soft fur. You feel long, slender fingers stroking your [hair], another hand gently {masturbating your still-hot [cunt], fingers gingerly probing the depths of your womanhood // warpping around your half-hard [cock], using your own cum as lube to continue stroking you off // caressing the bare [skin] of your groin}, letting you drift off to sleep in her arms. 
-
-[NEXT]
-
-Your eyes flitter open, squinting in the darkness of the forest floor. You're acutely aware of the bed of snake surrounding you, gently shifting with the rise and fall of her steady, strong breath. You roll half-over on your pillow of boob-flesh, but find your huntress lover quite thoroughly asleep, eyes closed and mouth agape, snoring peacefully. You smile wanly, leaning over to kiss her before struggling to your [feet], searching for your discarded gear. As you get ready to leave, you turn back just in time to see one of her brilliant green eyes quickly closing as she pretends to stay asleep, letting you go in peace. 
-
-
-Naleen Night-time Cuddles
-{Requires the PC to have fought the naleen at least five times. Chance to encounter when the PC is in the forest in the late afternoon -> night time. Chance = Fatigue / 2?}
-
-	The forest seems to be growing thicker and thicker with every step, taking you deep into the heart of the jungle far, far away from Esbeth. The trees are overgrown, thick with vines and moss, their branches so intertwined you can hardly see the sun. Looking cautiously around, you make your way through the dense underbrush, slowly hacking through the ever-present foliage on your way across the endless sea of trees.
-	Slowly, though, you begin to feel as if you're being watched. You draw your [weapon] and scan your surroundings, looking for the source of your unease. The jungle seems quiet, too silent and still. Your keen eyes search as you slowly turn, eyeing every angle until finally you catch a glimpse of movement! You ready your weapon and shout for who or whatever it is to show itself -- and soon it does. You hear a rustle AHEAD of you for once, and ready your [weapon] as the brush parts to reveal the familiar form of the naleen huntress who's stalked you since first meeting. This time, though, she raises her hands in a sign of peace as she slithers toward you, a slight smile on her lips. 
-	"Easy, my pet, I mean no harm. It is very late out, now… why have you not returned to your village, hmm?" she queries, gently pushing your [weapon] down as she teases, "Were you out looking for me, pet? Tsk, you only had to call!"
-	You {holster / sheath / lower} your [weapon] as the naleen circles you, hips swaying seductively with her every serpentine motion. She slips behind you, big bare jugs pressing into your back as she whispers, "It's dangerous to go alone at night in these woods, my pet. You should know better… but at least it's me who found you first, and not some fuck-mad zil, no?" The huntress chuckles to herself, breath hot on your cheek as her slender, powerful arms wrap around your waist and under your [chest]. Considering how frequently the two of you have battled, you feel oddly at ease in the lusty kitten's embrace, and let yourself relax in her arms, head resting back into the soft, inviting pillow of her chest. She doesn't seem to mind at all.
-	"Pretty, silly pet," the naleen coos, stroking your hair. "Whatever would I do if you were to be captured by some filthy zil-slut, or dragged away to be filled with a trapper-plant's pollen forever after, hmm? I suppose I'll have to watch over you tonight, won't I, pet? At least to keep the cold away -- it gets so awfully chilly here at night." 
-
-No, thanks
-You gently push the naleen girl off. "I'll have to pass this time, beautiful," you say, putting a bit of distance between the two of you. 
-
-She makes as if to respond, but merely slumps her shoulders and gives a little pout. "Have it your way, pet. Perhaps you'll think different when you've wandered alone in the cold, wet wilderness for a while more."
-
-Awesome!
-	"I guess you'll have to," you grin, reaching back around to cup a handful of the naleen's bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your [armor] and gear, tossing it aside, submerging you in the pleasant warmth of the naleen's sexy body. You hadn't even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: "I told you, pet, it gets so very cold here. But we'll keep each other warm tonight, won't we?"
-
-You nod enthusiastically, stopping only to gasp as you feel a slender spear of warmth wrapping around one of your [pc.legs]. You manage to slip your arms around the naleen's waist, holding her tight against you before her coils utterly enwrap you, binding you in a blanket of soothingly warm, soft scales. "Better?" the huntress teases, pinching one of your rigid teats between her coils.
-
-"Much," you say, leaning up to kiss her. She returns it with a playful smile, pushing your head down into her bosom, stroking your [hair] with surprising affection as you nestle into your lover's embrace. 
-
-{if PC has a cock: "Oh! But we cannot have this getting cold, can we?" the huntress grins, slipping an arm down into the bed of coils around the pair of you. You wince as her fingers graze your [multicock], wrapping around your soft length{s}. She rocks her wrist, jacking you off a few short times until you're half-erect, blood rushing to your suddenly stimulated schlong{s} as she guides {it /them} toward her waiting womanhood. Your mind fizzles blank with sudden and overwhelming pleasure as your [multicock] sinks into the hot, sultry depths of the naleen's welcoming pussy.
-
-"Better?" she teases, clenching her muscles around your prick{s}, massaging {it / them} oh so sweetly inside herself. 
-
-"Much," you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You've never felt warmer."}
-
-[NEXT]
-You awaken to the familiar smell of fresh-cooked fish, wafting pleasantly through the air. You slowly open your eyes, stretching and yawning as you sit up. 
-
-"Up so soon, pet?" the naleen giggles, drawing your eyes to the small cookfire in the center of your clearing, surrounded by small stones and overshadowed by a great, well-cooked fish about the size of your forearm. "I thought you might cat-nap a while longer. Good morning," she says with a smile, slithering over to embrace you. 
-
-"Morning," you say, rubbing the sleep from your eyes. "What's cooking?"
-
-"Ginder fish! My favorite," she answers, pulling the skewer from the crackling cookfire and handing it to you. You hesitate to try actually eating the alien food, but the wide-eyed, expectant look on the naleen's face practically implores you to at least taste it. After a moment, you give in and take an experimental bite: the flavorful fish practically melts in your mouth, turning into a thick, rich cream in your mouth with a single chew. 
-
-
-
-
-
+//[NEXT]
+function finishNaleenSnuggles():void {
+	clearOutput();
+	output("You awaken to the familiar smell of fresh-cooked fish, wafting pleasantly through the air. You slowly open your eyes, stretching and yawning as you sit up.");
+	
+	output("\n\n<i>\"Up so soon, pet?\"</i>  the naleen giggles, drawing your eyes to the small cookfire in the center of your clearing, surrounded by small stones and overshadowed by a great, well-cooked fish about the size of your forearm. <i>\"I thought you might cat-nap a while longer. Good morning,\"</i>  she says with a smile, slithering over to embrace you.");
+	
+	output("\n\n<i>\"Morning,\"</i>  you say, rubbing the sleep from your eyes. <i>\"What's cooking?\"</i>");
+	
+	output("\n\n<i>\"Ginder fish! My favorite,\"</i>  she answers, pulling the skewer from the crackling cookfire and handing it to you. You hesitate to try actually eating the alien food, but the wide-eyed, expectant look on the naleen's face practically implores you to at least taste it. After a moment, you give in and take an experimental bite: the flavorful fish practically melts in your mouth, turning into a thick, rich cream in your mouth with a single chew.");
+	//Mean/Snarky/Nice: 
+	if(pc.isAss()) output("\n\n<i>\"Could be worse, I guess,\"</i>");
+	else if(pc.isMischievous()) output("\n\n<i>\"I've had worse,\"</i>");
+	else output("\n\n<i>\"Delicious\"</i>");
+	output(" you say approvingly, ripping off another bite.");
+	
+	output("\n\nThe naleen gives a gleeful, girlish squeal of delight, obviously happy that you're enjoying her cooking. She joins you, claws handily slicing up the ginder fish into strips for her to slurp down. She's certainly got an appetite, too: the naleen girl chews through the lion's share of the oversized fish before long, though you hardly end up starving, either. With a contented belch, you toss a tiny bone aside and pat your belly, snickering as the naleen licks some fish-grease from her furry fingertips. She grins bashfully, slithering around the embers of her fire to coil up beside you, head resting on your shoulder.");
+	
+	output("\n\n<i>\"Will you be leaving soon, pet?\"</i>  she asks after a long moment.");
+	output("\n\nYou nod.\n\n<i>\"Mmm. If you must, love. But I won't be so gentle during the day, you know... unless I can convince you to stay? Any huntress would kill for a strong, " + pc.mf("handsome","beautiful") + " mate like you.\"</i>");
+	
+	output("\n\nSadly, no. You have a fortune to chase. The naleen sighs, picking herself up and slithering away before you can answer. She stops at the edge of the little clearing, though, just long enough to blow you a kiss before vanishing into the brush.");
+	processTime(30+rand(5));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}

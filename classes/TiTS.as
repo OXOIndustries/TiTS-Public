@@ -68,28 +68,13 @@
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
 		include "../includes/cuntSnakes.as";
+		include "../includes/naleen.as";
 
 		include "../includes/debug.as";
-	
-		//include "../includes/zilMale.as";
-		
+			
 		public var chars:Object;
 		public var foes:Array;
-			
-		/*
-		FUCK THIS SHIT IT'S MAKING EVERYTHING SO MUCH HARDER TO DEBUG
-		public var pc:Creature;
-		public var celise:Creature;
-		public var rival:Creature;
-		public var geoff:Creature;
-		public var flahne:Creature;
-		public var zilpack:Creature;
-		public var zil:Creature;
-		public var penny:Creature;
-		public var burt:Creature;
-		public var zilFemale:Creature;
-		public var cuntsnake:Creature;
-		*/
+
 		// These are all floating around in the TiTS namespace. Really
 		// they should be stored in an item Object() or something
 		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
@@ -189,6 +174,7 @@
 			registerClassAlias("Geoff", Geoff);
 			registerClassAlias("Rival", Rival);
 			registerClassAlias("ZilMale", ZilMale);
+			registerClassAlias("Naleen",Naleen);
 
 
 
@@ -244,9 +230,7 @@
 			// set up the user interface: ------------------------------------------------------------
 			this.userInterface.clearMenu();
 			
-			//this.userInterface.addButton(0,"Horsecock",horsecock);
 			this.userInterface.addButton(14,"CLEAR!",clearOutput);
-			//this.userInterface.addButton(16,"2Horse4Me",horsecock);
 
 			setupInputEventHandlers()
 

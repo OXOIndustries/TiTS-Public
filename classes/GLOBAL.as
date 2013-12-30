@@ -165,6 +165,7 @@
 		public static const BURT:int                                   = 8;
 		public static const ZILFEMALE:int 							   = 9;
 		public static const CSNAKE:int								   = 10;
+		public static const NALEEN:int								   = 11;
 
 
 		public static const bustLookup:Object = {
@@ -177,7 +178,8 @@
 			"PENNY"      : 7,
 			"BURT"       : 8,
 			"ZILFEMALE"  : 9,
-			"CUNTSNAKE"  : 10
+			"CUNTSNAKE"  : 10,
+			"NALEEN"	 : 11
 		};
 
 		public static var ITEMS:Object = {};
