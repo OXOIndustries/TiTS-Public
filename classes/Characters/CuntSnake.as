@@ -5,10 +5,13 @@
 	
 	public class CuntSnake extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function CuntSnake()
-		{
-
+		{			
+			this.version = latestVersion;
+			
 			this.short = "cunt snake";
 			this.originalRace = "cunt snake";
 			this.a = "a ";

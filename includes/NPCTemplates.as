@@ -52,6 +52,19 @@
 		chars["NALEEN"] = new classes.Characters.Naleen();
 	}
 
+	// Check all characters have version information set
+	for (var prop in chars)
+	{
+		if (chars[prop].version == 0)
+		{
+			throw new Error("Character class '" + prop + "' has no version information set!");
+		}
+		else
+		{
+			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
+		}
+	}
+	
 	this.foes[0] = new Creature();
 
 }

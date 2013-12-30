@@ -5,9 +5,12 @@
 	
 	public class Naleen extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Naleen()
 		{
+			this.version = latestVersion;
 
 			this.short = "naleen";
 			this.originalRace = "naleen";

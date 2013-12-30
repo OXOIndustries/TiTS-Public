@@ -5,10 +5,12 @@
 	
 	public class Celise extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Celise()
 		{
-
+			this.version = latestVersion;
 			this.short = "Celise";
 			this.originalRace = "galotian";
 			this.a = "";

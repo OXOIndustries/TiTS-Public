@@ -99,7 +99,7 @@ function loadSaveDisplay(slot:String, slotName:String):String
 		holding += "</b> - <i>" + saveFile.data.notes + "</i>\n";
 		holding += "	<b>Days:</b> " + saveFile.data.days + "  <b>Gender:</b> ";
 		holding += saveFile.data.chars["PC"].mfn("M","F","A");
-		holding += "  <b>Location:</b> " + saveFile.data.location;
+		holding += "  <b>Location:</b> " + StringUtil.toTitleCase(saveFile.data.location);
 		holding += "\n";
 		return holding;
 	}
@@ -132,6 +132,7 @@ function saveGame(slot:String):void
 	saveFile = SharedObject.getLocal(slot,"/");
 	//Set a single variable that tells us if this save exists
 	saveFile.data.exists = true;
+	saveFile.data.version = 1; // Placeholder so that, even if I don't get the "new" save system done, we can still have an "easy" baseline for version detection
 	
 	saveFile.data.chars = new Object();
 	saveFile.data.short = chars["PC"].short;

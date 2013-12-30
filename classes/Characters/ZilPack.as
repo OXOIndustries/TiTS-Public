@@ -5,9 +5,13 @@
 	
 	public class ZilPack extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function ZilPack()
 		{
+			this.version = latestVersion;
+			
 			this.short = "two zil";
 			this.originalRace = "zil";
 			this.a = "the ";

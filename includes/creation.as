@@ -1,4 +1,5 @@
-﻿
+﻿import classes.Characters.PlayerCharacter;
+
 
 function creationRouter():void {
 	if(chars["PC"].short != "uncreated") {
@@ -10,7 +11,7 @@ function creationRouter():void {
 }
 function startCharacterCreation():void {
 	this.userInterface.hideMainMenu();
-	chars["PC"] = new Creature();
+	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();

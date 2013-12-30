@@ -12,6 +12,10 @@
 	
 	public class Creature
 	{
+		private var _version:int = 0;
+		public function get version():int { return _version; }
+		public function set version(value:int):void { _version = value; }
+		
 		//Constructor
 		public function Creature()
 		{

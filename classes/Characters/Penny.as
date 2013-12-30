@@ -5,10 +5,13 @@
 	
 	public class Penny extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Penny()
 		{
-
+			this.version = latestVersion;
+			
 			this.short = "Penny";
 			this.originalRace = "human";
 			this.a = "";

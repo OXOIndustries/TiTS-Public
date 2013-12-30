@@ -153,6 +153,7 @@
 			import classes.ShipClass;
 
 			registerClassAlias("Creature", Creature);
+			registerClassAlias("PlayerCharacter", PlayerCharacter);
 			registerClassAlias("ItemSlotClass", ItemSlotClass);
 			registerClassAlias("shipClass", ShipClass);
 			registerClassAlias("CockClass", CockClass);
@@ -255,7 +256,7 @@
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = chars[0];
 
-			this.chars["PC"] = new Creature()
+			this.chars["PC"] = new PlayerCharacter();
 
 
 			trace("Setting up the PC")
