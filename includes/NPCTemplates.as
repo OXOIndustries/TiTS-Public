@@ -46,7 +46,10 @@
 	if (!justUpdate || (justUpdate && chars["CUNTSNAKE"] == undefined))
 	{
 		chars["CUNTSNAKE"] = new classes.Characters.CuntSnake();
-
+	}
+	if (!justUpdate || (justUpdate && chars["NALEEN"] == undefined))
+	{
+		chars["NALEEN"] = new classes.Characters.Naleen();
 	}
 
 	this.foes[0] = new Creature();
