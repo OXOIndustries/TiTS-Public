@@ -15,6 +15,7 @@
 	import flash.net.URLRequest;
 	import flash.text.AntiAliasType;
 	import flash.text.Font;
+	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
@@ -49,8 +50,7 @@
 		
 		public var days:int;
 		public var hours:int;
-		public var minutes:int;
-
+		public var minutes:int;		
 	
 		//Lazy man state checking
 		var showingPCAppearance:Boolean;
@@ -226,6 +226,7 @@
 			this.format1.size = 18;
 			this.format1.color = 0xFFFFFF;
 			this.format1.tabStops = [35];
+			//this.format1.kerning = true;
 			mainFont = new Font3;
 			format1.font = mainFont.fontName;
 			this.mainTextField = new TextField();
@@ -868,20 +869,49 @@
 			menuPageChecker();
 		}
 
+		// This block of utter bullshit successfully embeds the entire font family, with correct weightings, with the correct font engine. We don't give a shit about the variables; the font will be available under the family name of "Lato".
+			
+		[Embed(source = "../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoTTF:String;
+		
+		[Embed(source = "../assets/Lato-Italic.ttf", fontStyle="italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoItalicTTF:String;
+		
+		[Embed(source = "../assets/Lato-Bold.ttf", fontWeight = "bold", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype",
+		embedAsCFF = false)]
+		public static const LatoBoldTTF:String;
+		
+		[Embed(source = "../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoBoldItalicTFF:String;
+			
+		public var mainTextStylesheet:StyleSheet = new StyleSheet();
+		
 		public function prepTextField(arg:TextField):void 
 		{
+			// Using this stylesheet, we can apply the _family_ of font faces to format the textfield.
+			// That means <b> and <i> text will /actually use/ the lato font faces; they actually weren't using the right glyphs before!
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:18, color:"#FFFFFF" };
+			
+			// This is where everything comes a little unstuck. I don't THINK you can apply a global style to everything.
+			// The current bullshit method wraps a class'd <span> around all output. This does, however, come at a price, possibly; I think I know what causes the sticky formatting. If an incomplete <b> or <i> tag is ever parsed by the htmlText property of the text field, the formatting will get "stuck" and I'm trying to work out a good way of catching it when it happens, or "clearing" the sticky format.
+
+			//ss.setStyle("*", defaultCSSTag);
+			//ss.setStyle("body", defaultCSSTag);
+			mainTextStylesheet.setStyle(".words", defaultCSSTag);
+			
 			arg.border = false;
 			arg.text = "Placeholder";
 			arg.background = false;
 			arg.multiline = true;
 			arg.wordWrap = true;
 			arg.border = false;
+			arg.embedFonts = true; // Forces the field to use embedded fonts
+			arg.antiAliasType = AntiAliasType.ADVANCED; // PRETTY NICENESS
 			arg.x = 211;
 			arg.y = 5;
 			arg.height = 630;
 			arg.width = 760;
-			arg.setTextFormat(format1);
-			arg.defaultTextFormat = format1;
+			arg.styleSheet = mainTextStylesheet;
 			this.titsClassPtr.addChild(arg);
 			arg.visible = false;
 		}
