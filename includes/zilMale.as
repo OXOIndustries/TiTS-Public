@@ -298,6 +298,8 @@ function buttfuckDefeatedZil():void {
 		else output(" You push your thumb back into him and make him drip his syrupy boy-milk all over, turning the area between his thighs into a sloppy, sticky morass.");
 		output(" The zil's wings flutter futilely as you finish gathering your lube and bottom out against his butt, grabbing his hips as you ready yourself to properly fuck him.");
 	}
+	cockChange();
+	
 	//{Merge back together}
 	output("\n\nDropping down to rest himself with his shoulder upon the ground, the zil looks back at you as you use him, reaching under himself with one hand to ");
 	if(pc.cockTotal() > 1) output("rub your dicks together");
