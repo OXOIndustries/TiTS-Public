@@ -28,7 +28,7 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 //1: TEXT FUNCTIONS
 function output(words:String, markdown = false):void {
 	this.userInterface.outputBuffer += doParse(words, markdown);
-	this.userInterface.mainTextField.htmlText = this.userInterface.outputBuffer;
+	this.userInterface.mainTextField.htmlText = "<span class='words'><p>" + this.userInterface.outputBuffer + "</p></span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
@@ -55,7 +55,7 @@ function clearOutput2():void {
 }
 function output2(words:String):void {
 	this.userInterface.outputBuffer2 += doParse(words);
-	this.userInterface.mainTextField2.htmlText = this.userInterface.outputBuffer2;
+	this.userInterface.mainTextField2.htmlText = "<span class='words'>" + this.userInterface.outputBuffer2 + "</span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
