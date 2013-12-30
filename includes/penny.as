@@ -1646,7 +1646,6 @@ function pennySexMenu(outputT:Boolean = true):void {
 	}
 	else 
 	{
-		this.userInterface.addDisabledButton(0,"Onahole Her");
 		this.userInterface.addDisabledButton(1,"OverDeskFuck");
 		this.userInterface.addDisabledButton(2,"Frottage");
 		this.userInterface.addDisabledButton(3,"Pawjob");
