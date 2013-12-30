@@ -44,18 +44,26 @@ function combatMainMenu():void
 		return;
 	}
 	updateCombatStatuses();
-	if (!pc.hasStatusEffect("Stunned") && !pc.hasStatusEffect("Paralyzed"))
+	
+	//Stunned Menu
+	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
+	{
+		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
+		this.userInterface.addButton(0,"Recover",stunRecover);
+	}
+	//Bound Menu
+	if (pc.hasStatusEffect("Naleen Coiled"))
+	{
+		output("\n<b>You are wrapped up in coils!</b>");
+		userInterface.addButton(0,"Struggle",naleenStruggle);
+	}
+	else 
 	{
 		//Combat menu
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(5,"Tease",tease);
-	}
-	else 
-	{
-		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
-		this.userInterface.addButton(0,"Recover",stunRecover);
 	}
 }
 function updateCombatStatuses():void {

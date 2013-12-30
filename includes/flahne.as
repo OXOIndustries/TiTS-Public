@@ -439,6 +439,7 @@ function bendFlahneOver():void {
 	output(" With your fingers tightly locked into her sensitive, membranous skin, Flahne wiggles happily in your grasp, fucking you with her big, soft ass as you work to pleasure her with your dexterous hands.");
 	
 	output("\n\nYou barely notice when a shake of Flahne's ass drags your " + pc.cockDescript(x) + " into her warm, wet hole, but the same can’t be said of Flahne, who gasps as you slip into her. Her voice relaxes into a low, lusty moan when the next thrust of your hips pushes you deep into her amber depths. <i>\"Don't hold back, sweet thing... give me a nice cuntful of your cum,\"</i>  she moans, thrusting her hips back against you expectantly. A hard swat to her big bubble butt puts an end to that; you're not letting her get what she wants so easily. She's gonna have to work for this treat!");
+	cockChange();
 	
 	output("\n\nStill, seeing her ass jiggling and swaying after that smack and feeling the tight embrace of her creamy cunt clamping down on your cock gives you an idea. Another whack sets her whole ass to shaking and elicits a shrill yelp from the thick gel girl. Her slit’s like a wet vice around your " + pc.cockDescript(x) + ", almost sucking you in as you hammer her juicy cunt. Your hands grip her tits, squeezing and pulling the dark caps of her massive bust, enjoying the sway of her chest with every thrust of your hips into her big, plush bottom. Kneading her boobs pulls another cry from Flahne's lips, this time a shrill moan of unbridled pleasure. She pushes back against your " + pc.cockDescript(x) + ", jiggling all over as you twist and flick her teats.");
 	
@@ -973,6 +974,7 @@ function fuckAndSuckWithFlahne():void {
 	var x:int = pc.cockThatFits(flahne.vaginalCapacity());
 	if(x < 0) x = 0;
 	output("\n\nYou lean back and line your " + pc.cockDescript(x) + " up with the entrance to her depths. The head pushes apart her labia and rubs at the hole. <i>“" + pc.mf("Miss","Mister") + " -ahh- Steele, stop teasing and stick it in already,”</i> the gel girl whimpers, spreading her legs wider. You grin at her and sink both of your hands into her plush assflesh, pulling yourself into her. Her pussy yields as you sink into it; the slick juices lining her walls make it easy to push as far as you want. As you sink deeper, you begin to rock your hips, sliding in and out of the tightening hole. Flahne begins to moan, increasing in volume as you continue. Her ovipositor is now leaking a steady stream of pre, causing her hands to slide faster and faster as time passes.");
+	cockChange();
 	
 	output("\n\nAfter a few more thrusts it seems her hands alone aren’t enough, and Flahne slips the tip of her ovipositor into her mouth to catch the sweet liquids before they escape. Her amber rod muffles her moans, but you can feel the vibrations of her voice travelling through her jiggling body. Whenever her mouth slides up to wring out the candy-flavored precum her pussy tightens in unison. The juices from her gash drip, wasted, onto the desk and permeate the air with her sweet smelling fragrance.");
 	

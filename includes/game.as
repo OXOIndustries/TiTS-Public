@@ -198,7 +198,7 @@ function statusTick():void {
 				}
 				if (pc.statusEffects[x].storageName == "Naleen Venom")
 				{
-					pc.strengthMod += pc.statusEffects[x].value1;
+					pc.physiqueMod += pc.statusEffects[x].value1;
 					pc.aimMod += pc.statusEffects[x].value1;
 					pc.willpowerMod += pc.statusEffects[x].value1;
 					pc.reflexesMod += pc.statusEffects[x].value1;

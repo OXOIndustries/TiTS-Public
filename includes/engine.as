@@ -222,6 +222,17 @@ function cuntChange(arg:int,volume:Number,display:Boolean = true, spacingsF:Bool
 function buttChange(volume:Number,display:Boolean = true, spacingsF:Boolean = true,spacingsB:Boolean = false):Boolean {
 	return holeChange(pc,-1,volume,display,spacingsF,spacingsB);
 }
+function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):void {
+	if (chars["PC"].cockVirgin && chars["PC"].hasCock())
+	{
+		chars["PC"].cockVirgin = false;
+		if(spacingsF) output(" ");
+		output("<b>You have succumbed to your desires and lost your </b>");
+		if(chars["PC"].hasVagina()) output("<b>masculine </b>");
+		output("<b>virginity.</b>");
+		if(spacingsB) output(" ");
+	}
+}
 
 function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean {
 	var stretched:Boolean = false;
