@@ -475,6 +475,7 @@
 			this.playerXP.bar.width = (50 / 500) * 180;
 			this.playerXP.masks.labels.text = "XP";
 			this.playerXP.values.text = "50 / 1000";
+			this.playerXP.noBar = true;
 			this.playerXP.x = 1010;
 			this.playerXP.y = 485;
 			this.titsClassPtr.addChild(this.playerXP);
@@ -583,6 +584,7 @@
 			this.monsterLevel.visible = false;
 			this.monsterLevel.x = 10;
 			this.monsterLevel.y = curYIndex;
+			this.monsterLevel.noBar = true;
 			this.setupStatBar(this.monsterLevel,"LEVEL",5);
 			this.titsClassPtr.addChild(this.monsterLevel);
 
@@ -592,6 +594,7 @@
 			this.monsterRace.visible = false;
 			this.monsterRace.x = 10;
 			this.monsterRace.y = curYIndex;
+			this.monsterRace.noBar = true;
 			this.setupStatBar(this.monsterRace,"RACE","Galotian");
 			this.titsClassPtr.addChild(this.monsterRace);
 
@@ -601,6 +604,7 @@
 			this.monsterSex.visible = false;
 			this.monsterSex.x = 10;
 			this.monsterSex.y = curYIndex;
+			this.monsterSex.noBar = true;
 			this.setupStatBar(this.monsterSex,"SEX","Unknown");
 			this.titsClassPtr.addChild(this.monsterSex);
 
