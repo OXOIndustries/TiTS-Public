@@ -890,13 +890,11 @@
 		{
 			// Using this stylesheet, we can apply the _family_ of font faces to format the textfield.
 			// That means <b> and <i> text will /actually use/ the lato font faces; they actually weren't using the right glyphs before!
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:18, color:"#FFFFFF" };
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:18, color:"#FFFFFF", marginRight:5 };
 			
 			// This is where everything comes a little unstuck. I don't THINK you can apply a global style to everything.
 			// The current bullshit method wraps a class'd <span> around all output. This does, however, come at a price, possibly; I think I know what causes the sticky formatting. If an incomplete <b> or <i> tag is ever parsed by the htmlText property of the text field, the formatting will get "stuck" and I'm trying to work out a good way of catching it when it happens, or "clearing" the sticky format.
 
-			//ss.setStyle("*", defaultCSSTag);
-			//ss.setStyle("body", defaultCSSTag);
 			mainTextStylesheet.setStyle(".words", defaultCSSTag);
 			
 			arg.border = false;
