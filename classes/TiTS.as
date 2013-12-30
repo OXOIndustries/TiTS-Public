@@ -176,6 +176,22 @@
 			registerClassAlias("ZilMale", ZilMale);
 			registerClassAlias("Naleen",Naleen);
 
+			// Items!
+
+
+			registerClassAlias("DressClothes", DressClothes);
+			registerClassAlias("PlainBra", PlainBra);
+			registerClassAlias("PlainBriefs", PlainBriefs);
+			registerClassAlias("PlainPanties", PlainPanties);
+			registerClassAlias("PlainUndershirt", PlainUndershirt);
+			registerClassAlias("EagleHandgun", EagleHandgun);
+			registerClassAlias("HoldOutPistol", HoldOutPistol);
+			registerClassAlias("LaserPistol", LaserPistol);
+			registerClassAlias("ScopedPistol", ScopedPistol);
+			registerClassAlias("Knife", Knife);
+			registerClassAlias("Rock", Rock);
+			registerClassAlias("Empty", Empty);
+			registerClassAlias("BasicShield", BasicShield);
 
 
 

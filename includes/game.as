@@ -63,12 +63,7 @@
 	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
 }
 
-function inventoryScreen():void {
-	clearOutput();
-	output("This is a placeholder, yo.");
-	this.userInterface.clearMenu();
-	this.userInterface.addButton(14,"Back",mainGameMenu);
-}
+
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
