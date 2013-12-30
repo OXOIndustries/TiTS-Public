@@ -475,7 +475,6 @@
 			this.playerXP.bar.width = (50 / 500) * 180;
 			this.playerXP.masks.labels.text = "XP";
 			this.playerXP.values.text = "50 / 1000";
-			this.playerXP.noBar = true;
 			this.playerXP.x = 1010;
 			this.playerXP.y = 485;
 			this.titsClassPtr.addChild(this.playerXP);

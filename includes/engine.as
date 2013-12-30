@@ -148,7 +148,12 @@ function updatePCStats():void {
 	updateStatBar(this.userInterface.playerAim,pc.aim(),pc.aimMax());
 	updateStatBar(this.userInterface.playerIntelligence,pc.intelligence(),pc.intelligenceMax());
 	updateStatBar(this.userInterface.playerWillpower,pc.willpower(),pc.willpowerMax());
-	updateStatBar(this.userInterface.playerLibido,pc.libido(),pc.libidoMax());
+	updateStatBar(this.userInterface.playerLibido, pc.libido(), pc.libidoMax());
+	
+	this.userInterface.playerLevel.values.text = pc.level;
+	updateStatBar(this.userInterface.playerXP, pc.XP, 500);
+	this.userInterface.playerCredits.values.text = pc.credits;
+	
 	this.userInterface.leftSideBar.time.text = timeText();
 	this.userInterface.leftSideBar.days.text = String(this.userInterface.days);
 	this.userInterface.leftSideBar.sceneBy.visible = true;
@@ -171,7 +176,7 @@ function updateNPCStats():void {
 		updateStatBar(this.userInterface.monsterEnergy, foes[0].energy(),   foes[0].energyMax());
 		
 		this.userInterface.monsterLevel.values.text = String(foes[0].level);
-		this.userInterface.monsterRace.values.text = "Galotian";
+		this.userInterface.monsterRace.values.text = foes[0].originalRace; // This needs resolving, I guess the Creature.Race() method needs to be implemented.
 		if(foes[0].hasCock()) {
 			if(foes[0].hasVagina())	
 				this.userInterface.monsterSex.values.text = "Hermaphrodite";
