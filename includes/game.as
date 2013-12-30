@@ -34,7 +34,6 @@
 	this.userInterface.addButton(2,"Inventory",inventory);
 	//Other standard buttons
 
-	this.userInterface.addButton(2,"Inventory",inventoryScreen);
 	if(this.chars["PC"].lust() < 33) 
 		this.userInterface.addDisabledButton(3,"Masturbate");
 	else 
@@ -61,7 +60,6 @@
 		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
 	if(currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
-	//else userInterface.addButton(1,"Appearance",appearance,pc);
 	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
 }
 

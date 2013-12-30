@@ -559,6 +559,9 @@ function enemyAI(aggressor:Creature):void
 		case "cunt snake":
 			cuntSnakeAI();
 			break;
+		case "naleen":
+			naleenAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -587,6 +590,9 @@ function victoryRouting():void
 	else if(foes[0].short == "cunt snake") {
 		defeatACuntSnake();
 	}
+	else if(foes[0].short == "naleen") {
+		beatDatCatNaga();
+	}
 	else genericVictory();
 }
 
@@ -606,6 +612,9 @@ function defeatRouting():void
 	}
 	else if(foes[0].short == "cunt snake") {
 		loseToCuntSnake();
+	}
+	else if(foes[0].short == "naleen") {
+		pcLosesToNaleenLiekABitch();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");

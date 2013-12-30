@@ -717,12 +717,5 @@
 			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CUNTSNAKE\"]`");
 			return chars["CUNTSNAKE"];
 		}
-
-		
-		
-		
-
-
-
 	}
 }
