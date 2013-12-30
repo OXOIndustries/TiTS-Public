@@ -176,7 +176,7 @@ function updateNPCStats():void {
 		updateStatBar(this.userInterface.monsterEnergy, foes[0].energy(),   foes[0].energyMax());
 		
 		this.userInterface.monsterLevel.values.text = String(foes[0].level);
-		this.userInterface.monsterRace.values.text = foes[0].originalRace; // This needs resolving, I guess the Creature.Race() method needs to be implemented.
+		this.userInterface.monsterRace.values.text = StringUtil.toTitleCase(foes[0].originalRace);
 		if(foes[0].hasCock()) {
 			if(foes[0].hasVagina())	
 				this.userInterface.monsterSex.values.text = "Hermaphrodite";
