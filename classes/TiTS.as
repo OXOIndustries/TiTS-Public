@@ -137,7 +137,8 @@
 
 		public function TiTS()
 		{
-
+			kGAMECLASS = this;
+			
 			trace("TiTS Constructor")
 
 			version = "0.01c";
