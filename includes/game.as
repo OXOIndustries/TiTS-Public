@@ -113,8 +113,9 @@ function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	this.userInterface.addButton(9,"Fly",flyMenu);
 	if(currentLocation == "SHIP INTERIOR") {
-		if(crew(true) > 0) 
+		if(crew(true) > 0) {
 			this.userInterface.addButton(8,"Crew",crew);
+		}
 	}
 	return false;
 }

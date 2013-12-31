@@ -453,6 +453,11 @@ function jungleEncounterChances():Boolean {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
+		if(debug) {
+			encounterRegularTentaclePitcherYouGay();
+			return true;
+		}
+		
 		//Build possible encounters
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
@@ -480,7 +485,7 @@ function jungleMiddleEncounters():Boolean {
 			choices[choices.length] = naleenNightCuddles;
 		else choices[choices.length] = encounterNaleen;
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
-		//9999 ADD VENUS PITCHERS
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event
 		choices[rand(choices.length)]();
