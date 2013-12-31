@@ -41,6 +41,7 @@
 
 	import classes.GUI;
 	import classes.Mapper;
+	import classes.StringUtil;
 
 	//Build the bottom drawer
 	public class TiTS extends MovieClip
@@ -69,6 +70,7 @@
 		include "../includes/zilFemale.as";
 		include "../includes/cuntSnakes.as";
 		include "../includes/naleen.as";
+		include "../includes/venusPitchers.as";
 
 		include "../includes/debug.as";
 			
@@ -152,6 +154,7 @@
 			import classes.ShipClass;
 
 			registerClassAlias("Creature", Creature);
+			registerClassAlias("PlayerCharacter", PlayerCharacter);
 			registerClassAlias("ItemSlotClass", ItemSlotClass);
 			registerClassAlias("shipClass", ShipClass);
 			registerClassAlias("CockClass", CockClass);
@@ -175,6 +178,7 @@
 			registerClassAlias("Rival", Rival);
 			registerClassAlias("ZilMale", ZilMale);
 			registerClassAlias("Naleen",Naleen);
+			registerClassAlias("VenusPitcher",VenusPitcher);
 
 			// Items!
 
@@ -254,7 +258,7 @@
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = chars[0];
 
-			this.chars["PC"] = new Creature()
+			this.chars["PC"] = new PlayerCharacter();
 
 
 			trace("Setting up the PC")
@@ -670,67 +674,68 @@
 
 		public function get pc():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PC\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PC\"]`");
+			// The PC trace is way too spammy; I think the point is mostly across, but I'd like to be able to turbotest things without getting slowed down by trace output
 			return chars["PC"];
 		}
 
 		public function get celise():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CELISE\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CELISE\"]`");
 			return chars["CELISE"];
 		}
 
 		public function get rival():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"RIVAL\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"RIVAL\"]`");
 			return chars["RIVAL"];
 		}
 
 		public function get geoff():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"GEOFF\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"GEOFF\"]`");
 			return chars["GEOFF"];
 		}
 
 		public function get flahne():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"FLAHNE\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"FLAHNE\"]`");
 			return chars["FLAHNE"];
 		}
 
 		public function get zilpack():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILPACK\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILPACK\"]`");
 			return chars["ZILPACK"];
 		}
 
 		public function get zil():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZIL\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZIL\"]`");
 			return chars["ZIL"];
 		}
 
 		public function get penny():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PENNY\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"PENNY\"]`");
 			return chars["PENNY"];
 		}
 
 		public function get burt():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"BURT\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"BURT\"]`");
 			return chars["BURT"];
 		}
 
 		public function get zilFemale():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILFEMALE\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"ZILFEMALE\"]`");
 			return chars["ZILFEMALE"];
 		}
 
 		public function get cuntsnake():*
 		{
-			trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CUNTSNAKE\"]`");
+			//trace("Please stop using this access mechanism. Instead, refer to the PC as `this.chars[\"CUNTSNAKE\"]`");
 			return chars["CUNTSNAKE"];
 		}
 	}

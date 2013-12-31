@@ -6,9 +6,13 @@
 	
 	public class Geoff extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Geoff()
 		{
+			this.version = latestVersion;
+			
 			this.short = "Geoff";
 			this.originalRace = "human";
 			this.a = "";

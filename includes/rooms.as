@@ -433,28 +433,82 @@ function initializeRooms():void
 }
 
 
+/*
+Fern, Lichens, and Ironwoods:
+Man/FemZil, Cuntsnake
+
+Dense Orange, Dark, Narrow Path
+Naleen, Cuntsnake, Venus Pitchers
+
+Deep Jungle Biome:
+Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
+*/
 function jungleEncounterChances():Boolean {
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
-	if(flags["JUNGLE_STEP"] >= 6) {
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["JUNGLE_STEP"] >= 6 && rand(4) == 0) {
+		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
-		if(debug) {
-			encounterNaleen();
-			return true;
-		}
-		if(rand(3) == 0) {
-			femzilEncounter();
-			return true;
-		}
-		else if(rand(4) == 0) {
-			maleZilEncounter();
-			return true;
-		}
-		else {
-			encounterCuntSnakeOnJungleLand();
-			return true;
-		}
+		
+		//Build possible encounters
+		choices[choices.length] = femzilEncounter;
+		choices[choices.length] = maleZilEncounter;
+		choices[choices.length] = encounterCuntSnakeOnJungleLand;
+		
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
 	}
 	return false;
 }
 
+function jungleMiddleEncounters():Boolean {
+	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
+	else flags["JUNGLE_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["JUNGLE_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["JUNGLE_STEP"] = 0;
+		
+		//Build possible encounters
+		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+			choices[choices.length] = naleenNightCuddles;
+		else choices[choices.length] = encounterNaleen;
+		choices[choices.length] = encounterCuntSnakeOnJungleLand;
+		//9999 ADD VENUS PITCHERS
+		
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+function jungleDeepEncounters():Boolean {
+	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
+	else flags["JUNGLE_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["JUNGLE_STEP"] >= 5 && rand(2) == 0) {
+		//Reset step counter
+		flags["JUNGLE_STEP"] = 0;
+		
+		//Build possible encounters
+		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+			choices[choices.length] = naleenNightCuddles;
+		else choices[choices.length] = encounterNaleen;
+		choices[choices.length] = femzilEncounter;
+		choices[choices.length] = maleZilEncounter;
+		//9999 ADD VENUS PITCHERS
+		
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}

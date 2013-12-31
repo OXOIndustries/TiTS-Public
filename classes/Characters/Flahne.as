@@ -5,9 +5,13 @@
 	
 	public class Flahne extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Flahne()
 		{
+			this.version = latestVersion;
+			
 			this.short = "Flahne";
 			this.originalRace = "loo'rahn";
 			this.a = "";

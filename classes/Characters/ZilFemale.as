@@ -6,11 +6,13 @@
 	
 	public class ZilFemale extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function ZilFemale()
 		//public function ZilFemale(titsPtr:*)
 		{
-
+			this.version = latestVersion;
 
 			this.short = "female zil";
 			this.originalRace = "human";

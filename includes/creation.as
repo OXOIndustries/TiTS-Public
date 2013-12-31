@@ -1,4 +1,5 @@
-﻿
+﻿import classes.Characters.PlayerCharacter;
+
 
 function creationRouter():void {
 	if(chars["PC"].short != "uncreated") {
@@ -10,7 +11,7 @@ function creationRouter():void {
 }
 function startCharacterCreation():void {
 	this.userInterface.hideMainMenu();
-	chars["PC"] = new Creature();
+	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
@@ -519,7 +520,7 @@ function chooseAPhysicalAffinity():void {
 	clearOutput();
 	setLocation("CHOOSING AN\nAFFINITY","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Grrrreat,”</i> the doctor muses as he checks your selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
-	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n<b>Physique</b> is a measurement of a character's strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one's own psionics, should a person of human descent somehow gain mind powers.\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
+	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n\n<b>Physique</b> is a measurement of a character's strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one's own psionics, should a person of human descent somehow gain mind powers.\n\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Intelligence",applyAffinity,"intelligence");
 	this.userInterface.addButton(1,"Physique",applyAffinity,"physique");

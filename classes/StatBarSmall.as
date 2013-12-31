@@ -56,6 +56,13 @@
 			glowFrames = 24;
 		}
 		function update(e:Event):void {
+			
+			if (noBar)
+			{
+				this.removeEventListener(Event.ENTER_FRAME, update);
+				return;
+			}
+			
 			//REMOVE GLOW
 			if(clearGlow) {
 				if(glow.alpha == 0) {

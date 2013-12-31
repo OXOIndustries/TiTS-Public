@@ -6,10 +6,12 @@
 
 	public class Burt extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Burt()
 		{
-
+			this.version = latestVersion;
 
 			this.short = "Burt";
 			this.originalRace = "human";

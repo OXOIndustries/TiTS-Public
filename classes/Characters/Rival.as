@@ -5,9 +5,13 @@
 
 	public class Rival extends Creature
 	{
+		public static const latestVersion:int = 1;
+		
 		//constructor
 		public function Rival()
 		{
+			this.version = latestVersion;
+			
 			this.short = "Jack/Jill";
 			this.originalRace = "human";
 			this.a = "";

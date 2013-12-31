@@ -793,6 +793,7 @@ function firstTimePennyShowerSex():void {
 	output("\n\n<i>“Mine,”</i>  the vixen growls, suddenly slamming herself down to your " + pc.sheathDescript(x) + " with a powerful thrust. Her innards squeeze down around your " + pc.cockDescript(x));
 	if(y >= 0) output(" and " + pc.cockDescript(y));
 	output(", binding you in the fennec’s sex. Legs wrap around your [pc.butt], and Penny suddenly kisses you. Her tongue slithers into your mouth, prying your lips apart so that it can caress your own. You find yourself kissing back; you’re far too turned on not too. Your hips buck against her, slamming her into the wall in your eagerness to truly fuck her, but she’s already fully impaled. There’s no further penetration to be gained by such an act, and unless she unwraps her legs, she’s going to stay that way. Her claw-like fingernails dig into your back hard enough to draw lines of blood, the pain actually pulling you from your rutting stupor.");
+	cockChange();
 	
 	output("\n\nPenny growls, <i>“Be still, my lucky, " + pc.mf("handsome","sexy") + ", prey.”</i>  She does not merely command you, however. Her hips lift with her words, and she begins to slide herself up and down your pole. Your newly inflicted wounds ache, but she tenderly begins to wash them, using the water that’s pouring over you both to care for the damage she’s done. From her position, Penny can fuck you quite well. Her heavenly slit stretches wonderfully with each fuck");
 	if(y >= 0) output(", her ass tighter and differently textured but equally pleasant");
@@ -1625,10 +1626,15 @@ function pennySexMenu(outputT:Boolean = true):void {
 		}
 	}
 	this.userInterface.clearMenu();
+	
+	// I don't THINK these scene is supposed to /require/ the player have a cock; it never once uses any logic or parse tags for the players cock, nor refer to it within the scene text OR the "exit" texts...
+	if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+	else this.userInterface.addDisabledButton(0, "Onahole Her");
+	
 	if (pc.hasCock())
 	{
-		if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-		else this.userInterface.addDisabledButton(0,"Onahole Her");
+		//if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+		//else this.userInterface.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
 		trace("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
 		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.userInterface.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);
@@ -1640,7 +1646,6 @@ function pennySexMenu(outputT:Boolean = true):void {
 	}
 	else 
 	{
-		this.userInterface.addDisabledButton(0,"Onahole Her");
 		this.userInterface.addDisabledButton(1,"OverDeskFuck");
 		this.userInterface.addDisabledButton(2,"Frottage");
 		this.userInterface.addDisabledButton(3,"Pawjob");
@@ -1845,6 +1850,7 @@ function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 	else flags["PENNY_TIMES_ANAL_SEXED"]++;
 	output("Leaning up to plant a quick kiss on her prominent red bud, you press two fingers down with a gentle but unyielding force against Penny's tightly-clenched sphincter. With a gasp and a pop, the tips slide in, vanishing through the clenching hole into the dark, smooth, and sinfully tight confines of her anal passage. Her whole body seems to react to the moment of penetration: her back arches, legs writhing around you. Penny's fingers dig into the desk, teeth gritting as your first knuckle passes through her sphincter, pushing through the madly contracting muscle and into the dark depths of her hole. The second knuckle passes a long moment later, and Penny's practically crying with pleasure and pressure, squirming and straining against the desk as you gently move back out and in again, smearing her feminine lube liberally on her warm walls, getting her nice and wet and loose for you.");
 	output("\n\nWith a few final, furious thrusts, you pull your fingers from the fox's butt, letting her catch her breath from the relentless finger-fucking. You stand, bracing your hands on her shaking knees as your stiff, [pc.cock " + x + "] comes to rest against her thigh, both your cock and her tender flesh practically quivering in sexual anticipation. You stroke your member, guiding the mighty shaft to Penny's slick ass, letting the [pc.cockHead " + x + "] gently press against the clenched hole. The foxy beauty stops you, though, just a moment before penetration: Penny grabs your hands in hers, guiding them to her hips and lacing her fingers through yours, holding you tight as you finally push in.");
+	cockChange();
 	
 	output("\n\nThe entrance is pure bliss. Penny's ass is a silken vice around your [pc.cock " + x + "], a perfect glove to fit your probing member, glistening with feminine lubricant to ease the entry past her quivering muscles, contracting and squeezing in mindless quasi-rhythm. Your head rolls back, a pleasured sigh escaping your lips as you revel in the milking vice churning around your prick. Your hips sink in, slowly spearing your [pc.cock " + x + "] deeper into Penny, making the poor police girl moan and scream, arching her back and squeezing her breasts, trying desperately to take your length in her tight hole. Finally, after long moments of pressure and exertion, you feel your [pc.cock " + x + "] ");
 	if(pc.cockVolume(x) < penny.analCapacity()) output("bottom out inside her, your groin pressing against her tight cheeks");
@@ -2225,6 +2231,7 @@ function pennyOverTheDeskRoughFuck():void {
 	output(" You’ve never seen her this wet");
 	if (flags["PENNY_TIMES_OVER_DESK_FUCKED"] > 1) output(", at least not since the last time you bent her over like this");
 	output(".");
+	cockChange();
 	
 	output("\n\nPenny starts moaning again, and in a surprising show of coherence, she blubbers, <i>“Ohhhh, fuck me, [pc.name]! Fuck me raw! Use my juicy, dripping prey-cunt as your personal cock-sheath!”</i>  She whimpers at that last exclamation and lets her legs wrap around you, exerting gentle pressure whenever you slide too far out. She wants you inside her.... No, she wants you deep inside her, buried to the hilt and spewing a hot, thick load directly into her orgasmically contracting twat.");
 	if(!pc.hasCock()) output(" It’s a shame the poor, blissed fox is going to have to settle for your toy.");
@@ -2528,7 +2535,10 @@ function gardeFordWritesPennySmex():void {
 	else output("prepare your fingers to penetrate her.");
 	
 	output("\n\nPenny moans weakly, her eyes rolling back in her head as she’s overwhelmed by pleasure. ");
-	if(pc.hasCock()) output(" You line up your [pc.cock] and slide it between the fox-girl’s thighs. The top of your throbbing member parts the lips of her pussy and rubs against her vulva and clit as you slowly rock your hips back and forth. The busty fennec’s thighs tighten and form a ring of pleasure around your [pc.cock]. With every repetition of your thrusting it becomes easier to increase the pace.");
+	if(pc.hasCock()) {
+		output(" You line up your [pc.cock] and slide it between the fox-girl’s thighs. The top of your throbbing member parts the lips of her pussy and rubs against her vulva and clit as you slowly rock your hips back and forth. The busty fennec’s thighs tighten and form a ring of pleasure around your [pc.cock]. With every repetition of your thrusting it becomes easier to increase the pace.");
+		cockChange();
+	}
 	//female:
 	else if(pc.hasVagina()) output(" You slide a leg between the fox-girl’s own and begin grinding [pc.oneVagina] against her upper thigh. Your own leg grinds against her smooth cleft as you thrust against it. The busty fennec’s thighs tighten around your leg, but it does little to slow your femcum-slicked efforts.");
 	else output(" You plunge your fingers into the fox-girl’s waiting cunt, using two for easier penetration. Penny’s tail begins wagging faster at this, but hits your arm at the halfway point and stops for a moment before repeating the process. You slip your other hand under her body and play with her clit, starting her moans anew.");

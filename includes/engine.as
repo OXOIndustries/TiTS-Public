@@ -28,7 +28,11 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 //1: TEXT FUNCTIONS
 function output(words:String, markdown = false):void {
 	this.userInterface.outputBuffer += doParse(words, markdown);
-	this.userInterface.mainTextField.htmlText = this.userInterface.outputBuffer;
+	
+	// Don't ask. Just accept it. Let the bullshit flow through you. Be one with the bullshit.
+	// (The span tags are applying our text formatting style)
+	// (The p tag "fixes" the sticky formatting problem. #
+	this.userInterface.mainTextField.htmlText = "<span class='words'><p>" + this.userInterface.outputBuffer + "</p></span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
@@ -55,7 +59,7 @@ function clearOutput2():void {
 }
 function output2(words:String):void {
 	this.userInterface.outputBuffer2 += doParse(words);
-	this.userInterface.mainTextField2.htmlText = this.userInterface.outputBuffer2;
+	this.userInterface.mainTextField2.htmlText = "<span class='words'>" + this.userInterface.outputBuffer2 + "</span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
@@ -148,7 +152,12 @@ function updatePCStats():void {
 	updateStatBar(this.userInterface.playerAim,pc.aim(),pc.aimMax());
 	updateStatBar(this.userInterface.playerIntelligence,pc.intelligence(),pc.intelligenceMax());
 	updateStatBar(this.userInterface.playerWillpower,pc.willpower(),pc.willpowerMax());
-	updateStatBar(this.userInterface.playerLibido,pc.libido(),pc.libidoMax());
+	updateStatBar(this.userInterface.playerLibido, pc.libido(), pc.libidoMax());
+	
+	this.userInterface.playerLevel.values.text = pc.level;
+	updateStatBar(this.userInterface.playerXP, pc.XP, 500);
+	this.userInterface.playerCredits.values.text = pc.credits;
+	
 	this.userInterface.leftSideBar.time.text = timeText();
 	this.userInterface.leftSideBar.days.text = String(this.userInterface.days);
 	this.userInterface.leftSideBar.sceneBy.visible = true;
@@ -171,7 +180,7 @@ function updateNPCStats():void {
 		updateStatBar(this.userInterface.monsterEnergy, foes[0].energy(),   foes[0].energyMax());
 		
 		this.userInterface.monsterLevel.values.text = String(foes[0].level);
-		this.userInterface.monsterRace.values.text = "Galotian";
+		this.userInterface.monsterRace.values.text = StringUtil.toTitleCase(foes[0].originalRace);
 		if(foes[0].hasCock()) {
 			if(foes[0].hasVagina())	
 				this.userInterface.monsterSex.values.text = "Hermaphrodite";
@@ -216,6 +225,17 @@ function cuntChange(arg:int,volume:Number,display:Boolean = true, spacingsF:Bool
 }
 function buttChange(volume:Number,display:Boolean = true, spacingsF:Boolean = true,spacingsB:Boolean = false):Boolean {
 	return holeChange(pc,-1,volume,display,spacingsF,spacingsB);
+}
+function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):void {
+	if (chars["PC"].cockVirgin && chars["PC"].hasCock())
+	{
+		chars["PC"].cockVirgin = false;
+		if(spacingsF) output(" ");
+		output("<b>You have succumbed to your desires and lost your </b>");
+		if(chars["PC"].hasVagina()) output("<b>masculine </b>");
+		output("<b>virginity.</b>");
+		if(spacingsB) output(" ");
+	}
 }
 
 function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean {
