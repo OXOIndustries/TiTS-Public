@@ -131,12 +131,12 @@ package classes.DataManager
 			var dataFile:SharedObject = SharedObject.getLocal(slotString, "/");
 			
 			// Various early-outs
-			if (dataFile.data.exists != true)
+			if (dataFile.data.minVersion == undefined)
 			{
 				return (String(slotNumber) + ": <b>EMPTY</b>\n\n");
 			}
 			
-			if (dataFile.data.minVersion != undefined || saveFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
+			if (saveFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <b>INCOMPATIBLE</b>\n\n");
 			}
@@ -154,29 +154,70 @@ package classes.DataManager
 			return returnString;
 		}
 		
+		/**
+		 * Grab data from around the game and stuff it into a shared object for serialization
+		 * @param	slotNumber
+		 */
 		private function saveGameData(slotNumber:int):void
 		{
+			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			
+			// Versioning Information
+			dataFile.data.version = DataManager.LATEST_SAVE_VERSION;
+			dataFile.data.minVersion = DataManager.MINIMUM_SAVE_VERSION;
+			
+			// Base/Primary information
+			
+			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
+			dataFile.data.saveName = kGAMECLASS.chars["PC"].short;
+			dataFile.data.saveLocation = StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
+			dataFile.data.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
+
+			// Game state
+			dataFile.data.playerLocation = kGAMECLASS.currentLocation;
+			dataFile.data.shipLocation = kGAMECLASS.shipLocation;
+			dataFile.data.daysPassed = kGAMECLASS.userInterface.days;
+			dataFile.data.currentHours = kGAMECLASS.userInterface.hours;
+			dataFile.data.currentMinutes = kGAMECLASS.userInterface.minutes;
+			
+			// Game data
+			dataFile.data.characters = new Object();
+			for (var prop in kGAMECLASS.chars)
+			{
+				dataFile.data.characters[prop] = kGAMECLASS.chars[prop].getSaveObject();
+			}
+			
+			
+			// Game options
+			dataFile.data.sillyMode = kGAMECLASS.silly;
+			dataFile.data.easyMode = kGAMECLASS.easyMode;
+			dataFile.data.debugMode = kGAMECLASS.debug;
 			
 		}
 		
 		private function loadGameData(slotNumber:int):void
 		{
+			kGAMECLASS.clearOutput2();
+			
+			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			
+			var dataObject:Object = new Object();
 			
 		}
 		
-		// This is going to be slow as fuck; refactor to pass an already loaded object?
-		private function slotEmpty(slotNumber):Boolean
+		/**
+		 * "Resume" game post load
+		 */
+		private function executeGame():void
 		{
-			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
-			if (dataFile.data.exists != true) return false;
-			return true;
+			
 		}
 		
 		private function slotCompatible(slotNumber:int):Boolean
 		{
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
 			if (dataFile.data.minVersion != undefined) return false;
-			if (dataFile.data.minVersion > DataManager.MINIMUM_SAVE_VERSION) return false;
+			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION) return false;
 			return true;
 		}
 	}
