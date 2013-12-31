@@ -47,34 +47,34 @@
 			
 
 			this.femininity = 95;
-			this.eyeType = GLOBAL.BEE;
-			this.eyeColor = "black";
-			this.tallness = 66;
-			this.thickness = 45;
-			this.tone = 40;
-			this.hairColor = "black";
+			this.eyeType = GLOBAL.VENUSPITCHER;
+			this.eyeColor = "green";
+			this.tallness = 65;
+			this.thickness = 35;
+			this.tone = 20;
+			this.hairColor = "green";
 			this.scaleColor = this.scaleColor;
 			this.furColor = "yellow";
-			this.hairLength = 22;
-			this.hairType = GLOBAL.BEE;
+			this.hairLength = 24;
+			this.hairType = GLOBAL.VENUSPITCHER;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-		this.skinType = GLOBAL.CHITIN;
-		this.skinTone = "black";
+			this.skinType = GLOBAL.SKIN;
+			this.skinTone = "pale green";
 			this.skinFlags = new Array();
-		this.faceType = GLOBAL.BEE;
+			this.faceType = GLOBAL.HUMAN;
 			this.faceFlags = new Array();
-		this.tongueType = GLOBAL.BEE;
-			this.lipMod = 0;
+			this.tongueType = GLOBAL.VENUSPITCHER;
+			this.lipMod = 3;
 			this.earType = 0;
-		this.antennae = 2;
-		this.antennaeType = GLOBAL.BEE;
+			this.antennae = 0;
+			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
-		this.armType = GLOBAL.BEE;
+			this.armType = 0;
 			this.gills = false;
-		this.wingType = GLOBAL.BEE;
-		this.legType = GLOBAL.BEE;
+			this.wingType = 0;
+			this.legType = GLOBAL.VENUSPITCHER;
 			this.legCount = 2;
 			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
 			//0 - Waist
@@ -82,8 +82,8 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-		this.tailType = GLOBAL.BEE;
-		this.tailCount = 1;
+			this.tailType = 0;
+			this.tailCount = 0;
 			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
@@ -104,7 +104,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-		this.hipRating = 6;
+			this.hipRating = 11;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -115,45 +115,46 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-		this.buttRating = 6;
+			this.buttRating = 10;
 			//No dicks here!
 			this.cocks = new Array();
-		this.createVagina();
-		this.girlCumType = GLOBAL.HONEY;
-		this.vaginalVirgin = false;
-		this.vaginas[0].looseness = 2;
-		this.vaginas[0].wetness = 4;
+			this.createCock(10,2.5);
+			this.cocks[0].cType = GLOBAL.VENUSPITCHER;
+			this.createVagina();
+			this.girlCumType = GLOBAL.GIRLCUM;
+			this.vaginalVirgin = false;
+			this.vaginas[0].looseness = 2;
+			this.vaginas[0].wetness = 4;
 			//balls
-		this.balls = 0;
-		this.cumMultiplier = 6;
+			this.balls = 0;
+			this.cumMultiplier = 10;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQuality = 1;
-		this.cumType = GLOBAL.HONEY;
-		this.ballSize = 0;
-		this.ballFullness = 1;
+			this.cumType = GLOBAL.CUMSAP;
+			this.ballSize = 0;
+			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
-		this.ballEfficiency = 10;
+			this.ballEfficiency = 50;
 			//Scales from 0 (never produce more) to infinity.
-		this.refractoryRate = 6;
-		this.minutesSinceCum = 3650;
-		this.timesCum = 321;
+			this.refractoryRate = 200;
+			this.minutesSinceCum = 3650;
+			this.timesCum = 20;
 			
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			this.fertility = 5;
+			this.fertility = 25;
 			this.clitLength = .5;
 			this.pregnancyMultiplier = 1;
 			
-			this.breastRows[0].breastRating = 0;
-		this.nippleColor = "black";
+			this.breastRows[0].breastRating = 10;
+			this.nippleColor = "dark green";
 			this.milkMultiplier = 0;
-		this.milkType = GLOBAL.HONEY;
+			this.milkType = GLOBAL.MILKSAP;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
-		this.ass.bonusCapacity += 15;
-
+			this.ass.bonusCapacity += 15;
 		}
 	}
 }

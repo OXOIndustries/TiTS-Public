@@ -5883,6 +5883,11 @@
 				else if(temp <= 7) return "clear";
 				else return "semi-transparent";
 			}
+			else if(arg == GLOBAL.CUMSAP) {
+				if(temp <= 4) return "off white";
+				else if(temp <= 7) return "pearl-marbled amber";
+				else return "ivory-amber";
+			}
 			return "ERROR, INVALID FLUID TYPE.";
 		}
 		public function fluidNoun(arg:int):String {
@@ -5894,7 +5899,6 @@
 			}
 			else if(arg == GLOBAL.CUM) {
 				return "cum";
-				
 			}
 			else if(arg == GLOBAL.HONEY) {
 				return "honey";
@@ -5907,6 +5911,11 @@
 			}
 			else if(arg == GLOBAL.GIRLCUM) {
 				return "girl-cum";
+			}
+			else if(arg == GLOBAL.MILKSAP) {
+				if(rand(4) <= 1) return "cum-sap";
+				else if(rand(2) == 0) return "botanical spunk";
+				else return "floral jism";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
 		}

@@ -102,6 +102,7 @@
 		public static const OIL:int                                    = 3;
 		public static const MILKSAP:int                                = 4;
 		public static const GIRLCUM:int                                = 5;
+		public static const CUMSAP:int								   = 6;
 
 		//DAMAGE TYPES
 		//Guns and blunt weapons

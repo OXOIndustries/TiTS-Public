@@ -460,6 +460,7 @@ function jungleEncounterChances():Boolean {
 		
 		//Run the event
 		choices[rand(choices.length)]();
+		return true;
 	}
 	return false;
 }
@@ -483,6 +484,7 @@ function jungleMiddleEncounters():Boolean {
 		
 		//Run the event
 		choices[rand(choices.length)]();
+		return true;
 	}
 	return false;
 }
@@ -506,6 +508,7 @@ function jungleDeepEncounters():Boolean {
 		
 		//Run the event
 		choices[rand(choices.length)]();
+		return true;
 	}
 	return false;
 }
