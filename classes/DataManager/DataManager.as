@@ -12,8 +12,11 @@ package classes.DataManager
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION = 2;
-		private static const MINIMUM_SAVE_VERSION = 1;
+		private static const LATEST_SAVE_VERSION:int = 2;
+		private static const MINIMUM_SAVE_VERSION:int = 1;
+		
+		private static var _autoSaveEnabled:Boolean = false;
+		private static var _lastManualDataSlot:int = -1;
 		
 		public function DataManager() 
 		{
@@ -160,25 +163,28 @@ package classes.DataManager
 		 */
 		private function saveGameData(slotNumber:int):void
 		{
+			// Save the "last active slot" for autosave purposes within the DataManager properties
+			_lastManualDataSlot = slotNumber;
+			
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
 			
 			// Versioning Information
-			dataFile.data.version = DataManager.LATEST_SAVE_VERSION;
-			dataFile.data.minVersion = DataManager.MINIMUM_SAVE_VERSION;
+			dataFile.data.version 		= DataManager.LATEST_SAVE_VERSION;
+			dataFile.data.minVersion 	= DataManager.MINIMUM_SAVE_VERSION;
 			
 			// Base/Primary information
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
-			dataFile.data.saveName = kGAMECLASS.chars["PC"].short;
-			dataFile.data.saveLocation = StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
-			dataFile.data.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
+			dataFile.data.saveName 		= kGAMECLASS.chars["PC"].short;
+			dataFile.data.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
+			dataFile.data.saveNotes 	= kGAMECLASS.userInterface.currentPCNotes;
 
 			// Game state
-			dataFile.data.playerLocation = kGAMECLASS.currentLocation;
-			dataFile.data.shipLocation = kGAMECLASS.shipLocation;
-			dataFile.data.daysPassed = kGAMECLASS.userInterface.days;
-			dataFile.data.currentHours = kGAMECLASS.userInterface.hours;
-			dataFile.data.currentMinutes = kGAMECLASS.userInterface.minutes;
+			dataFile.data.playerLocation 	= kGAMECLASS.currentLocation;
+			dataFile.data.shipLocation 		= kGAMECLASS.shipLocation;
+			dataFile.data.daysPassed 		= kGAMECLASS.userInterface.days;
+			dataFile.data.currentHours 		= kGAMECLASS.userInterface.hours;
+			dataFile.data.currentMinutes 	= kGAMECLASS.userInterface.minutes;
 			
 			// Game data
 			dataFile.data.characters = new Object();
@@ -187,12 +193,63 @@ package classes.DataManager
 				dataFile.data.characters[prop] = kGAMECLASS.chars[prop].getSaveObject();
 			}
 			
+			dataFile.data.flags = new Object();
+			for (var prop in kGAMECLASS.flags)
+			{
+				dataFile.data.flags[prop] = kGAMECLASS.flags[prop];
+			}
 			
 			// Game options
-			dataFile.data.sillyMode = kGAMECLASS.silly;
-			dataFile.data.easyMode = kGAMECLASS.easyMode;
-			dataFile.data.debugMode = kGAMECLASS.debug;
+			dataFile.data.sillyMode 	= kGAMECLASS.silly;
+			dataFile.data.easyMode 		= kGAMECLASS.easyMode;
+			dataFile.data.debugMode 	= kGAMECLASS.debug;
 			
+			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
+			if (this.verifyBlob(dataFile.data))
+			{
+				// Verification successful, do things
+				dataFile.flush();
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			}
+			else
+			{
+				// Verification failed, ERROR ERROR ABORT
+				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		/**
+		 * Verify that ALL of the properties we expect to be present on a save data element, for this version of a save, are present and sane
+		 * @param	data Data blob to verify
+		 * @return	Boolean true/false of verification
+		 */
+		private function verifyBlob(data:Object):Boolean
+		{
+			// The idea is to check for many, basic properties on the data file to make sure we have EVERYTHING defined as a final-verify step before actually saving or loading a file
+			// During save, we're going to operate under the assumption that our complex-type save method (ie creature.getSaveObject() has done its own verification)
+			// We COULD pass the blob back and run another verify, but this is a quick, cheap-ish way 
+			if (data.version == undefined) return false;	
+			if (data.minVersion == undefined) return false;
+			if (data.saveName == undefined) return false;
+			if (data.saveLocation == undefined) return false;
+			if (data.playerLocation == undefined) return false;
+			if (data.shipLocation == undefined) return false;
+			if (data.daysPassed == undefined) return false;
+			if (data.currentHours == undefined) return false;
+			if (data.currentMinutes == undefined) return false;
+			if (data.characters == undefined) return false;
+			if (data.flags == undefined) return false;
+			if (data.sillyMode == undefined) return false;
+			if (data.easyMode == undefined) return false;
+			if (data.debugMode == undefined) return false;
+			return true;
 		}
 		
 		private function loadGameData(slotNumber:int):void
@@ -211,6 +268,17 @@ package classes.DataManager
 		private function executeGame():void
 		{
 			
+		}
+		
+		private function doAutoSave():void
+		{
+			if (_autoSaveEnabled)
+			{
+				if (_lastManualDataSlot != -1)
+				{
+					this.saveGameData(_lastManualDataSlot);
+				}
+			}
 		}
 		
 		private function slotCompatible(slotNumber:int):Boolean
