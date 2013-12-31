@@ -1,5 +1,6 @@
 package classes.DataManager 
 {
+	import flash.net.SharedObject;
 	
 	/**
 	 * Declares the save-upgrading interface that all save upgraders must provide
@@ -7,7 +8,8 @@ package classes.DataManager
 	 */
 	public interface ISaveVersionUpgrader 
 	{
-		public function upgrade(data:Object):Object;
+		public static function upgrade(data:SharedObject):SharedObject;
+		public static function verify(data:SharedObject):SharedObject;
 	}
 	
 }

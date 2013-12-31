@@ -4,6 +4,7 @@ package classes.DataManager
 	import flash.events.MouseEvent;
 	import flash.net.SharedObject;
 	import classes.StringUtil;
+	import flash.utils.getDefinitionByName;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -20,7 +21,8 @@ package classes.DataManager
 		
 		public function DataManager() 
 		{
-			
+			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later
+			var sv1:SaveVersionUpgrader1;
 		}
 		
 		/**
@@ -225,8 +227,63 @@ package classes.DataManager
 			}
 		}
 		
+		private function loadGameData(slotNumber:int):void
+		{
+			kGAMECLASS.clearOutput2();
+			
+			// Save the "last active slot" for autosave purposes within the DataManager properties
+			_lastManualDataSlot = slotNumber;
+			
+			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			var dataObject:Object = new Object();
+			var dataErrors:Boolean = false;
+			
+			// Check we can get version information out of the file
+			if (dataFile.data.version == undefined)
+			{
+				this.printDataError("version");
+				dataErrors = true;
+			}
+			
+			if (dataFile.data.minVersion == undefined)
+			{
+				this.printDataError("minVersion");
+				dataErrors = true;
+			}
+			
+			// Check that the minVersion isn't above our latest version
+			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
+			{
+				outputText("This save file requires a minimum save format version of " + DataManager.LATEST_SAVE_VERSION + " for correct support. Please use a newer version of the game!\n\n");
+				dataErrors = true;
+			}
+			
+			// If we're good so far, check if we need to upgrade the data
+			if (!dataErrors)
+			{
+				if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
+				{
+					dataObject = dataFile.data;
+					
+					// Loop over each version to grab the correct implementations for upgrading
+					while (dataObject.version < DataManager.LATEST_SAVE_VERSION)
+					{
+						dataObject = (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataObject.version) as Class)["upgrade"](dataObject);
+					}
+				}
+			}
+			
+		}
+		
+		private function printDataError(property:String):void
+		{
+			outputText("Data property " + property + " was expected, but unset. This save is possibly corrupt!\n\n");
+			return;
+		}
+		
 		/**
-		 * Verify that ALL of the properties we expect to be present on a save data element, for this version of a save, are present and sane
+		 * Verify that ALL of the properties we expect to be present on a save data element, for this version of a save, are present and sane.
+		 * This works during both save AND load for the "simple" data. Probably extend it into complex types later
 		 * @param	data Data blob to verify
 		 * @return	Boolean true/false of verification
 		 */
@@ -250,16 +307,6 @@ package classes.DataManager
 			if (data.easyMode == undefined) return false;
 			if (data.debugMode == undefined) return false;
 			return true;
-		}
-		
-		private function loadGameData(slotNumber:int):void
-		{
-			kGAMECLASS.clearOutput2();
-			
-			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
-			
-			var dataObject:Object = new Object();
-			
 		}
 		
 		/**
