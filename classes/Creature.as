@@ -1484,6 +1484,9 @@
 		public function bellyDescript():String {
 			return "belly";
 		}
+		public function totalBellyRating():Number {
+			return 0;
+		}
 		public function alphabetize(array,newKeyItem):void {
 			//used to denote that the array has already had its new spot pushed on.
 			var arrayed:Boolean = false;
@@ -1590,6 +1593,9 @@
 		//Does the PC have any cunt pregnancy?
 		public function hasPregnancy():Boolean {
 			return false;
+		}
+		public function totalPregnancies():Number {
+			return 0;
 		}
 		public function canOvipositSpider():Boolean {
 			if(eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
@@ -2148,15 +2154,31 @@
 			}
 			return index;
 		}
-		public function canTitFuck():Boolean {
-			var counter:Number = breastRows.length;
-			var index:Number = 0;
-			while(counter > 0) {
-				counter--;
-				if(breastRows[index].breasts < breastRows[counter].breasts && breastRows[counter].breastRating > 3) index = counter;
+		public function canTitFuck(big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) return true;
 			}
-			if(breastRows[index].breasts >= 2 && breastRows[index].breastRating > 3) return true;
 			return false;
+		}
+		public function canTriboobTitFuck(big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 2) return true;
+			}
+			return false;
+		}
+		//Arg is "how many rows minimum". "big" is if target dick requires big ol jubblies.
+		public function canMultiRowTitFuck(arg:Number = 2, big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			var eligibleRows:int = 0;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) eligibleRows++;
+			}
+			return (eligibleRows >= arg);
 		}
 		public function mostBreastsPerRow():Number {
 			var counter:Number = breastRows.length;
@@ -2166,6 +2188,18 @@
 				if(breastRows[index].breasts < breastRows[counter].breasts) index = counter;
 			}
 			return breastRows[index].breasts;
+		}
+		//No arg = average, otherwise ask by row.
+		public function breastsPerRow(arg:int = -1):Number {
+			if(arg >= 0 && arg < bRows()) {
+				return breastRows[arg].breasts;
+			}
+			//Average!
+			var av:Number = 0;
+			for(var x:int = 0; x < bRows(); x++) {
+				av += breastRows[x].breasts;
+			}
+			return Math.round((av /= bRows()) * 10)/10;
 		}
 		public function averageNipplesPerBreast():Number {
 			var counter:Number = breastRows.length;

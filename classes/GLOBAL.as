@@ -72,12 +72,13 @@
 		public static const DRAGONFLY:int                              = 31;
 		public static const MLP:int                                    = 32;
 		public static const CUNTSNAKE:int                              = 33;
+		public static const VENUSPITCHER:int						   = 34;
 		//Used for custom legs, otherwise demonic!
-		public static const SUCCUBUS:int                               = 33;
+		public static const SUCCUBUS:int                               = 35;
 		//Special wing types!
-		public static const SMALLBEE:int                               = 28;
-		public static const SMALLDEMONIC:int                           = 29;
-		public static const SMALLDRACONIC:int                          = 30;
+		public static const SMALLBEE:int                               = 36;
+		public static const SMALLDEMONIC:int                           = 37;
+		public static const SMALLDRACONIC:int                          = 38;
 
 		//SKINTYPES
 		public static const SKIN:int                                   = 0;
@@ -166,6 +167,7 @@
 		public static const ZILFEMALE:int 							   = 9;
 		public static const CSNAKE:int								   = 10;
 		public static const NALEEN:int								   = 11;
+		public static const VPITCHER:int						   = 12;
 
 
 		public static const bustLookup:Object = {
@@ -179,7 +181,8 @@
 			"BURT"       : 8,
 			"ZILFEMALE"  : 9,
 			"CUNTSNAKE"  : 10,
-			"NALEEN"	 : 11
+			"NALEEN"	 : 11,
+			"VENUSPITCHER":12
 		};
 
 		public static var ITEMS:Object = {};
