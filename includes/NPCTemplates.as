@@ -51,6 +51,10 @@
 	{
 		chars["NALEEN"] = new classes.Characters.Naleen();
 	}
+	if (!justUpdate || (justUpdate && chars["VENUSPITCHER"] == undefined))
+	{
+		chars["VENUSPITCHER"] = new classes.Characters.VenusPitcher();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

@@ -3,6 +3,7 @@
 //Venus Pitchers Codex
 function venusPitcherCodexEntry():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("<b>Name:</b> Venus Pitchers\n");
 	output("<b>Sexes:</b> Hermaphrodite\n");
 	output("<b>Height:</b> Three to fifteen feet above the ground, depending on age.\n");
@@ -27,6 +28,7 @@ function venusPitcherCodexEntry():void {
 
 //Meet Regular Venus Pitcher
 function encounterRegularTentaclePitcherYouGay():void {
+	userInterface.showBust("VENUSPITCHER");
 	//*First Time
 	if(flags["TIMES_MET_VENUS_PITCHER"] == undefined)
 	{
@@ -35,7 +37,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 		output("\n\nYou suddenly sneeze, which draws a high-pitched giggle from the nymph-like woman, the breathy exclamations of good humor jostling her curvy tits almost mesmerizingly. She beams a friendly smile and says, \"<i>These jungles are stuffy, I know. I've been stuck here for like a whole day! My foot's stuck in some sap.</i>\"  She leans and shudders a bit for emphasis, her breasts swaying beneath her outstretched torso like sexy pendulums. Her plump lower lip is drawn into her mouth, gently gnawed on as she struggles. \"<i>A little help?</i>\"");
 		output("\n\nSneezing a few more times, you're about to come to a decision when the Codex beeps and chimes, \"<i>Venus pitcher detected. Classified as a moderate danger, avoid prolonged contact with their spores if you have any respiratory illnesses. Approaching will result in restraint and the harvesting of sexual fluids.</i>\"");
 		output("\n\nThe woman's face goes sour at that, and she yells, \"<i>Shut up, whoever you are!</i>\"  She realizes you're staring at her a moment later and covers her mouth, meekly blushing. \"<i>Sorry. Uhm, that guy was wrong, the venus plant is on the other side of that tree, and I really need help!</i>\"");
-		if(pc.inte / 2 + rand(20) + 1 > 20) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
+		if(pc.intelligence() / 2 + rand(20) + 1 > 20) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
 		else output("\n\nDo you help her?");
 		//[Help Her][Don't]
 		userInterface.clearMenu();
@@ -55,7 +57,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 		//Plus lust!
 		pc.lust(rand(5) + 1);
 		userInterface.clearMenu();
-		userInterface.addButton(0,"Approach",venusRepeatFallIn,true);
+		userInterface.addButton(0,"Approach",venusRepeatFallIn);
 		userInterface.addButton(1,"Don't",venusRepeatRefuse);
 
 	}
@@ -63,6 +65,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 
 function venusRepeatRefuse():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You shake your head and say, <i>\"Nope.\"</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
 	userInterface.clearMenu();
@@ -72,6 +75,7 @@ function venusRepeatRefuse():void {
 //*Approach and Fall In
 function venusRepeatFallIn():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You decide that there isn’t too much harm in approaching a venus pitcher again. They are quite effective at satisfying your... baser urges. As you close in, the beauteous nymph encourages, “<i>A little closer... I don’t bite.</i>”  You smile perhaps a little too broadly and close the remaining distance, falling right through the carefully concealed hole in front of her and into the dank, musty pit below.");
 	output("\n\nYou’re caught mid-fall by an array of tentacles. They softly cushion your landing, snaring and circling around each of your limbs. Spores tickle at your nose as you catch your breath in this underground pit, finding that remaining calm as the light dims and vanishes is easier than you would have expected, either because of your previous experience or the calming effects of the venus pitcher’s drug-like spores. The curvy dryad hangs upside down in front of you, growing more and more illuminated by verdant, bioluminescent illumination that springs forth from the chamber’s emerald walls.");
 	output("\n\n“<i>Nice place, don’t ya think?</i>”  she quips.");
@@ -87,6 +91,7 @@ function venusRepeatFallIn():void {
 //*Repeat Pistil (Cunt)
 function repeatPistilScene():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("Two tentacles rise up in front of her: one with a flat, flaring tip and the other capped with an open, sucking orifice that vaguely reminds you of a woman’s vagina. The pretty plant-woman catches them in her armpits and palms along their slippery length while similar endowments wrap your [pc.belly] and [pc.fullChest] in tight coils. She kisses her held vines and glances back between them with a lewd look on her alluring visage.");
 	output("\n\n“<i>Now, which of you two will feel the best rammed down " + pc.mfn("his","her","its") + " throat?</i>”  the pale-green nymph asks. “<i>Today... I think that you’ll be my special girl...</i>”  She nuzzles against her chosen tentacle affectionately. The other droops disconsolately.");
 	output("\n\n“<i>In you go!</i>” the venus pitcher cheers as she thrusts her arm out, allowing the tentacle to slide along her arm like a pet snake. It writhes up slowly, rising in front of your face and leaking clear drool all over your [pc.chest]. Slowly shutting down your higher though processes, the spores make it easy to enjoy the comforting warmth of your imprisonment. Your mouth drops open as you behold the glittering interior of her pistil, dark green and pulsating needily, capped with a bright green, clit-like bud. You giggle at the lewd appearance of the plant as it nears and rubs across your [pc.face].");
@@ -102,6 +107,7 @@ function repeatPistilScene():void {
 //*Repeat Stamen (Dick)
 function repeatStamenScene():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("Two tentacles rise up in front of her: one with a flat, flaring tip and the other capped with an open, sucking orifice that vaguely reminds you of a woman’s vagina. The pretty plant-woman catches them in her armpits and palms along their slippery length while similar endowments wrap your [pc.belly] and [pc.fullChest] in tight coils. She kisses her held vines and glances back between them with a lewd look on her alluring visage.");
 	output("\n\n“<i>Now, which of you two will feel the best rammed down " + pc.mfn("his","her","its") + " throat?</i>” the pale-green nymph asks. “<i>Today... I think that you’ll be my special boy...</i>”  She nuzzles against her chosen tentacle affectionately. The other droops disconsolately.");
 	
@@ -118,6 +124,7 @@ function repeatStamenScene():void {
 //*Don't Help Her
 function dontHelpVenusPitcher():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	//{Nice} 
 	if(pc.isNice()) 
 	{
@@ -145,6 +152,7 @@ function dontHelpVenusPitcher():void {
 //[Nope]
 function noVenusPitcherPlz():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You decline again. The venus pitcher woman petulantly blows a frond of her hair up and folds her arms, no longer bothering to attempt to seduce you.\n\nYou regard your other surroundings, and when you look back, she's gone, almost as if by magic.");
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Next",mainGameMenu);
@@ -153,6 +161,7 @@ function noVenusPitcherPlz():void {
 //*First time entering a pitcher plant!
 function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	//{If tricked}
 	if(tricked)
 	{
@@ -171,7 +180,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	output("\n\nSoft, spongy flesh hits your back as you come to rest in the bottom of the hole. It’s uneven and bundled together in what feels like huge ropes, dozens of them squirming and sliding along your back following the impact. You roll aside instinctively, trying to escape whatever you landed on, but that just earns you a face full of tentacles, slippery, wiggling tentacles. They flex and arch away from the bottom of this tiny cave, flopping you back onto another bed of moist vines where you can see the light from above slowly dimming, blocked by a busty silhouette that eventually plugs the gap entirely, shrouding you in darkness.");
 	output("\n\nThe air is thick with whatever was making you sneeze – the spores, you think – but at this point, they're just making the tip of your nose itch. That's a far lesser concern than the fact that you're in a pitch black hole surrounded by tentacles strong enough to toss you around like a child's toy. One rubs your cheek, smearing your [pc.skinFurScales] with something warm and wet that's leaking from a semi-rigid, flared tip. Another ");
 	if(!pc.isNude()) {
-		if(pc.lowerUndergarments.shortName != "") output("slithers up inside your [pc.lowerUndergarments.longName]");
+		if(pc.lowerUndergarment.shortName != "") output("slithers up inside your [pc.lowerUndergarment.longName]");
 		else if(pc.armor.shortName != "") output("slithers up inside your [pc.armor.longName]");
 		else output("slithers up inside your [pc.upperUndergarments.longName]");
 	}
@@ -230,7 +239,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	output("\n\nThe salacious plant-slut wiggles seductively as she stretches her arms high above her head, towards the “floor”. She grabs you by the crotch ");
 	if(pc.isTaur()) output("of your hindquarters ");
 	output("and gently lets her fingers splay over your inner thighs. She breathily pants in a half whisper, \"<i>I'm going to enjoy this, but since this is your first time, would you rather taste one of my stamen or pistil?</i>\"");
-	if(pc.inte/2 + rand(20) + 1 > 15) output("  Based on what you remember of biology, the stamen probably corresponds to the cock-like ones.");
+	if(pc.intelligence()/2 + rand(20) + 1 > 15) output("  Based on what you remember of biology, the stamen probably corresponds to the cock-like ones.");
 	//[Stamen] [Pistil]
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Stamen",requestStamenFirstTime);
@@ -240,6 +249,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 //[Stamen]
 function requestStamenFirstTime():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You answer, \"<i>I wouldn't mind one of the stamen, I guess.</i>\"  The situation is too unreal to really add anything else.");
 	output("\n\n\"<i>Oh, a " + pc.mf("guy","girl") + " after my own heart!</i>\"");
 	output("\n\nThe wide tentacle that's been slobbering sweet plant-pre all over your [pc.belly] and [pc.chest] wiggles happily, thrusting upward in a spasm of motion so fast that it turns your cheek when it wetly smacks against it. The prehensile cock redirects itself after the failed penetration and angles back towards your face. You watch its green surface as it closes in, textured with tiny, almost invisible bumps. The tip flexes as it approaches your oral entrance, flaring so wide that you question your ability to let it inside. It pushes on your face, and you have no choice but to open wide.");
@@ -253,6 +263,7 @@ function requestStamenFirstTime():void {
 //[Pistil]
 function requestPistilFirstTime():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("\"<i>I guess I'll try the pistil!</i>\" you answer. There's not much you can do but pick one and deal with it at this point, and with your head muddled as it is, you don't really see anything wrong with having to choose one.");
 	output("\n\n\"<i>Really? I'm partial to watching my partners gulp down my stamen's stuff while I milk them, but a promise is a promise!</i>\"");
 	output("\n\nSomething wet slithers over your shoulder, pressing against your cheek as it goes. Its slippery wetness drips from your jawline in lewd little ropes while the source moves closer, eventually rounding on you and hovering a few inches from your [pc.face]. The outside of it forms a perfect circle, while the inside is a deep green in coloration, seeming softer and somehow even more wet than the outside. A trickle of clear drool drips from the underside of the cunt-like tentacle continually, and the inner membrane pulsates to some unseen beat, looking every bit the hungry orifice.");
@@ -267,11 +278,13 @@ function requestPistilFirstTime():void {
 //*Tentacle Jam
 //{no new PG}
 function tentacleJamTime(stamen:Boolean = true):void {
+	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("The other tentacles are not idle during this time, and they casually caress and explore your body, coating you with their secretions until you shine in the dim, pulsing lights. They nudge your [pc.asshole] and [pc.nipples] carefully, even switching to hollow tendrils on the latter in order to fully test them.");
 	//{Nippledicks}
 	if(pc.hasDickNipples()) output("\n\nYour nipples strain as soon as they're presented with those empty cavities, the pebbly texture of their outer coverings parting to reveal your " + num2Text(pc.totalNippleCocks()) + " concealed dick-nipples, the shiny glandes slipping forth in a rush to greet the supple, undulating tentacle interiors with eager tumescence. The sides of the green vines bulge out in dick-deformed outlines. Meanwhile, the entrances seal down around the edges of your areolae with a short slurping sound, causing your nipple-cocks to swell larger inside their vacuum-sealed chambers, just in time to experience the hellishly pleasurable sensation of dozens of folds and hundreds of wriggling cilia playing along your lengths, sucking, sliding, and squeezing hard enough to make you dribble milky pre already.");
 	//{Nipplecunts}
-	else if(pc.hasNippleCunts()) output("\n\nYour nipples drip lubrication sympathetically against the exploratory tentacle-cunts, causing the semi-feminine members to withdraw from your sight and leave you hanging there. A moment later, a pair of flared plant-phalluses appear in their place, leaking sappy pre-cum as they nuzzle against your pliant, barely concealed nipple-holes. Luckily, these are some of the smallest of such tentacles in the chamber, so when they press on your chest-pussies, your pleasantly wet nipple-cunts give easily, swallowing the flared dongs up and into their mammary affections. The chlorophyll-laced cocks quickly reach the bottom of your chest channels and pull back, setting themselves up for a steady rhythm that makes your [pc.fullChest] wobble and shake while you hang suspended and twitching, watching the green lengths undulate in front of your eyes as they work you over.");
+	else if(pc.hasFuckableNipples()) output("\n\nYour nipples drip lubrication sympathetically against the exploratory tentacle-cunts, causing the semi-feminine members to withdraw from your sight and leave you hanging there. A moment later, a pair of flared plant-phalluses appear in their place, leaking sappy pre-cum as they nuzzle against your pliant, barely concealed nipple-holes. Luckily, these are some of the smallest of such tentacles in the chamber, so when they press on your chest-pussies, your pleasantly wet nipple-cunts give easily, swallowing the flared dongs up and into their mammary affections. The chlorophyll-laced cocks quickly reach the bottom of your chest channels and pull back, setting themselves up for a steady rhythm that makes your [pc.fullChest] wobble and shake while you hang suspended and twitching, watching the green lengths undulate in front of your eyes as they work you over.");
 	//{Regular Nipples}
 	else if(!pc.hasFlatNipples())
 	{
@@ -308,8 +321,8 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	
 	//{Single cock}
 	if(pc.totalCocks() == 1) {
-		output("\n\nYour [pc.cock] has been ignored these few moments, but the presence of something warm hugging your [pc.cockHead] lets you know that your genital loneliness has come to an end. The emerald girl grins lecherously as glossy, silken gates part around your girth, sliding down your length in a sensuous caress that would make a pornstar weep for joy. Cords of muscle move inside the slippery vice, squeezing the parts of you already inside as it slowly devours you. Before long, your [hips] are rocking to and fro as if to hurry along the cunt-tentacle's affections, desperate to have it snug on your [sheath] and milking you dry.");
-		if(pc.balls > 0) output(" Smaller vines encircle your [sack], rubbing your [balls] with their tips while they try to coax a nice, juicy load out of you.");
+		output("\n\nYour [pc.cock] has been ignored these few moments, but the presence of something warm hugging your [pc.cockHead] lets you know that your genital loneliness has come to an end. The emerald girl grins lecherously as glossy, silken gates part around your girth, sliding down your length in a sensuous caress that would make a pornstar weep for joy. Cords of muscle move inside the slippery vice, squeezing the parts of you already inside as it slowly devours you. Before long, your [pc.hips] are rocking to and fro as if to hurry along the cunt-tentacle's affections, desperate to have it snug on your [pc.sheath] and milking you dry.");
+		if(pc.balls > 0) output(" Smaller vines encircle your [pc.sack], rubbing your [pc.balls] with their tips while they try to coax a nice, juicy load out of you.");
 	}
 	//{MultiCock}
 	else if(pc.totalCocks() > 1)
@@ -319,7 +332,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		else if(pc.cockTotal() == 3) output("thrice");
 		else output("many times");
 		output(" over, the effect is almost maddening. You piston your [pc.hips] wildly towards the undulating love-snakes, desperate to feed as much of yourself into their embrace as possible. Your frenzied motions have little effect on how your cocks are devoured however, and you're forced to endure the torturously pleasant slide into slick, wet heaven.");
-		if(pc.balls > 0) output(" Smaller vines encircle your [sack], rubbing your [balls] with their tips while they try to coax a nice, juicy load out of you.");
+		if(pc.balls > 0) output(" Smaller vines encircle your [pc.sack], rubbing your [pc.balls] with their tips while they try to coax a nice, juicy load out of you.");
 	}
 	//{Take dickginities!}
 	if(pc.hasCock()) cockChange();
@@ -331,7 +344,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	{
 		output("\n\nA sinuous slithering can be felt along your [pc.leg], curling slowly around your limb as it winds its way higher, inexorably closing the distance between itself and your [pc.vagina]. You sigh and slump down, but the tentacles holding your arms and [pc.legs] don't let you any closer to the crawling promise of penetration. Thankfully, it continues its dogged ascent up your body, sliding along the exterior of your vulva and [pc.clits] a few times as it slowly parts your labia with the curvature of its shaft. It slides back down whilst still pushing against you, angling the cockhead to begin prying you the rest of the way open, pushing insistently as it bathes your lips in lubricants.");
 		output("\n\nYour squeal of pleasure and pain at being forced wide is muffled by the tendril in your mouth. The cock-tentacle impales you. It plows you wide open. Your passage is pulled wide by the large, flared cock as it pushes in all the way to your cervix, bubbling its hot fluids against the slight barrier as it adjusts to your tightness. You instinctively try to move your [pc.legs], though whether to wrap around an imaginary lover or curl up away from the discomfort, you aren't sure. One thing you are sure of is that you're full. The tendril starts to move, and you whimper as it scrapes along your walls, firing off every nerve in your cunt as it pulls out, only to thrust back in, just starting to properly fuck you.");
-		cuntChange(0,chars["VENUS_PITCHER"].cockVolume(0));
+		cuntChange(0,chars["VENUSPITCHER"].cockVolume(0));
 	}
 	//{MultiVaguyna}
 	else if(pc.totalVaginas() > 1) {
@@ -339,7 +352,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		output("\n\nYour squeal of pleasure and pain at being forced wide open in more than one place at once is muffled by the tendril in your mouth. The cock-tentacles impale you, plowing you wide open. They stretch your passages wide open around their large, flared cocks, pushing them all the way to your cervixes, bubbling their hot fluids against the slight barrier as they adjust to your tightness. You instinctively try to move your [pc.legs], though whether to wrap around your imagination partners or curl away in discomfort, you aren't sure. One thing you're sure of is that you are incontrovertibly full. The tendrils start to move, and you whimper as they scrape along your walls, firing off every nerve ending in your cunts as they pull out, only to thrust back in, just starting to properly fuck you.");
 		//[cunt stretchin' checks]
 		for(var b:int = 0; b < pc.totalVaginas(); b++) {
-			cuntChange(b,chars["VENUS_PITCHER"].cockVolume(0));
+			cuntChange(b,chars["VENUSPITCHER"].cockVolume(0));
 		}
 	}
 	//{Cunt Tail}
@@ -347,14 +360,14 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	//{butthole}
 	output("\n\nYou are so awash in pleasure by this point that it's hard to fully cogitate the situation you've found yourself in, but you do become aware of another feeling in your hindquarters - pressure on your [pc.asshole]. One of the vine-cocks has taken it upon itself to explore your unmolested behind, rubbing and squishing noisily amongst your cheeks, smearing its hot juices across your [pc.butt] as it tries to pry apart your tender, still-sealed entrance. Your body is being touched and rubbed all over, caressed in every crevice and erogenous zone; you can't muster the focus to shut it out.");
 	output("\n\nThe blunted tip slips one side of itself into your vulnerable behind, starting to stretch you open, dribbling its slippery pre-spooge over your stretching pucker. It pushes more and more of itself forward until the rest of its flare compresses and pops inside, practically slurping deeper into your anus once it gets past the meager barrier that was your sphincter. You whimper as it snakes through your rectum, gushing juices everywhere until it decides to settle in and start rocking back and forth, pumping your [pc.asshole] incessantly.");
-	buttChange(chars["VENUS_PITCHER"].cockVolume(0));
+	buttChange(chars["VENUSPITCHER"].cockVolume(0));
 	
 	// 	{Start of cumming!} 
 	output("\n\nLess than a foot away, the curvy plant-girl is twisting and writhing in excitement, her cheeks flushing purple in excitement while she cries out and tugs on her nipples, every movement accentuated by her busty body. Plump emerald lips part into an excited 'O', and her eyes roll back, whimpering as orgasm claims her. Half the tentacles distend with rounded bulges that race towards your body while the other half actually narrow, compressed by the increased suction.");
 	//{Tentadick - cum in your mouth}
 	if(stamen) {
 		output("\n\nThe tentacle dong stuffed into your throat is the first to receive the heady payload. Pressure mounts against your lips when the sperm-packed bulge impacts your face, too large to fit inside in one huge squirt. Instead, the cock-slime slides through a constant, never-ending rope of jism, pumping straight down the back of your throat with such force that you can barely manage to swallow it, tasting the salty-sweet aftertaste of it on the back of your tongue. Eventually the bulge passes, and you get a chance to breathe. Then, another arrives, and you gulp anew, groaning around your burgeoning");
-		if(pc.bellyRating() > 9999) output(", pregnancy enlarged");
+		if(pc.totalBellyRating() > 9999) output(", pregnancy enlarged");
 		output(" belly.");
 	}
 	//{Tentacunt - cum in mouth}
@@ -366,7 +379,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	//{Nippledicks cum}
 	if(pc.hasDickNipples()) output("\n\nYour [pc.nipples] thicken in their sucking prisons and blast hot [pc.milk] deep into them. Tugging hungrily, the tentacle cunts slurp it down as fast as you can squirt it, squeezing your dick-teats from base to the tip to squeeze out every drop. You didn't need the help, and arch your back, spewing your hot nipple-load out over and over again. Your breasts soon grow sore, but you keep cumming for her until your [pc.nipples] are over-sensitive and trembling, weakly dribbling [pc.milkColor] for the plants to snack on.");
 	//{Nipplecunts cum}
-	else if(pc.hasNippleCunts()) output("\n\nYour [pc.nipples] are yanked further open than before by the big bulges of cum that slide into them, dilating their tentacular containers with the sheer size of their heady load. Warm plant-goo explodes inside you, frothing around your entrances as the hedonistic dick-tendrils pound you, pumping potent batches of sperm into your [pc.chest] with such insatiable desire that the bulk of it is squeezed back out, running down the bottom of your chest and glazing the tentacles molesting the lower portions of your body. Your [pc.nipples] are spasming throughout this, releasing so much of their own secretions that it actually discolors the venus pitcher's load as it drips out to be absorbed by the plant.");
+	else if(pc.hasFuckableNipples()) output("\n\nYour [pc.nipples] are yanked further open than before by the big bulges of cum that slide into them, dilating their tentacular containers with the sheer size of their heady load. Warm plant-goo explodes inside you, frothing around your entrances as the hedonistic dick-tendrils pound you, pumping potent batches of sperm into your [pc.chest] with such insatiable desire that the bulk of it is squeezed back out, running down the bottom of your chest and glazing the tentacles molesting the lower portions of your body. Your [pc.nipples] are spasming throughout this, releasing so much of their own secretions that it actually discolors the venus pitcher's load as it drips out to be absorbed by the plant.");
 	//{Tentacles cum on your nipples while {optional: milking}}
 	else {
 		output("\n\nYour [pc.nipples] are suddenly covered with explosions of girl-cum, and a moment later, they're sucked dry, the tentacle-cunts heaving as they slurp down every drop of moisture.");
@@ -434,6 +447,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 
 function tentacleJamAftermath():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You waken alone in the jungle with no sign of the venus pitcher that had her way with you.");
 	if(!pc.isLactating()) output(" Your breasts are no longer swollen or lactating at least, thank god.");
 	else output(" Your breasts seem a bit more full of [pc.milk] than before.");
@@ -490,16 +504,16 @@ A tentacle almost as big as your torso appears in front of you, swaying slowly b
 “<i>This is going to feel so good for us, pet,</i>” the upside down woman’s voice assures you. Her body sways forward, planting her breasts back around your [pc.face], and she begins to run her fingers {through your [pc.hair]/over your head} comforting. “<i>Close your eyes and savor the sensations. This is what it feels like to feed a venus pitcher.</i>”
 Without another word, you’re treated to the feeling of having your “ + multiCockDescript() + “ enveloped in a wave of heated suction, noisily slurped into the grasping, squeezing maw of the gigantic tentacle. The slippery folds slide over you, delivering agonizing waves of pleasure so intense that your eyes roll back - even though you have them closed, as instructed. [EachCock] thickens perceptively under the pleasurable deluge, and you become aware of the tickling of hundreds of cilia on different parts of your maleness{es}, each licking like a tiny, miniature tongue, lewdly caressing your [skin] with a hunger that borders on obscene. The end of the tentacle constricts powerfully at your [sheath], matched elsewhere along your length by other rings of muscle. They work back and forth and try to get you off with all due haste.
 A gentle finger slides along the nape of your neck, and your seductress coos, “<i>Don’t hold back for me, lover. The most pleasurable thing you can give a venus pitcher, like me, is a big, fast, orgasm.</i>” She rubs her palm between your shoulders and coos, “<i>Go ahead and cum.</i>”
-The inhuman pleasure forced over your “ + multiCockDescriptLight() + “ would have you cumming in moments anyway, but that whispered, hypnotic command wraps around your mind as tightly as the tube wrapped around your penis{es}. You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick{s} suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.
+The inhuman pleasure forced over your “ + multiCockDescriptLight() + “ would have you cumming in moments anyway, but that whispered, hypnotic command wraps around your mind as tightly as the tube wrapped around your penis{es}. You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [pc.balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick{s} suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.
 {Low Cum}
 All too soon, you’re spent, slumping back into the floral harness and the breasts before you with a lewd sigh.
 	“<i>Wait, that’s it?</i>” the busty babe asks incredulously. “<i>That can’t... that won’t do!</i>”
 	A distressed thought surfaces in your addled mind: didn’t you do what she told you? You worriedly try to pull away, but a soothing hand tilts your chin, turning you up and to the side until a nipple is in your lips. “<i>Drink.</i>”
-		You do, swallowing deep draughts of a largely tasteless fluid. It does seem somewhat savory, but you really can’t place the flavor. As you swallow, you feel the telltale engorgement of lust down below and a pinch {in your [sack] as your [balls] {grow denser/plump slightly}/in your groin, just behind your “ + multiCockDescriptLight() + “. The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.
+		You do, swallowing deep draughts of a largely tasteless fluid. It does seem somewhat savory, but you really can’t place the flavor. As you swallow, you feel the telltale engorgement of lust down below and a pinch {in your [pc.sack] as your [pc.balls] {grow denser/plump slightly}/in your groin, just behind your “ + multiCockDescriptLight() + “. The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.
 	Eventually, you lose consciousness, but the [cumColor] flow keeps going, feeding the plant woman’s insatiable thist...
 	{Good boost to cum quantity and skip to end}
 	{Medium Cum}
-		With the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvellous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of {increased denseness in your [sack]/tightness in your body}. Your eyes roll back in your head as you feed the wonderful woman, pouring an almost unending tide of lust straight into her clutching hole.
+		With the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvellous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of {increased denseness in your [pc.sack]/tightness in your body}. Your eyes roll back in your head as you feed the wonderful woman, pouring an almost unending tide of lust straight into her clutching hole.
 		After an indeterminate amount of time, the ecstasy does come to end, leaving you exhausted and panting.
 		“<i>You’re going to remember how good this feels,</i>” the venus pitcher says, “<i>and feel drawn to me whenever you have time to come into the woods...</i>” You nod dreamily and pass out.
 		//Small cum volume boost.
@@ -585,14 +599,14 @@ One big, fat tentacle rises up and front of you, waving back and forth, snake-li
 The hollow vine disappears a moment later, but a second later, your view is replaced by a heaving bosom. The soft, all-encompassing press of the venus pitcher’s breasts around your face is as comforting as it is arousing.
 Her voice ripples across your consciousness, permeating itself into every fold of your malleable mind as she says, “<i>Atta [boy/girl/pet]. Sink into trance as my hypnotic breasts envelop your poor, defenseless brain.</i>” A hand traces gentle circles on the back of your neck. “<i>The tongues you feel licking you, fellating you for your obedience, they’re getting faster and stronger as you slip deeper and deeper into my mesmerizing embrace. Grow more and more aroused as my tentacle closes in on your unique little tail. Let your lust double, then triple. Each passing second your dick{s get/gets} harder and harder, aching for climax.</i>”
 You shudder as your [pc.tailCock] trembles in unashamed, unadultered need, drooling pre-cum all over itself in its eagerness. Warm, moist air, like hot breath, washes across the [tailCockHead], making you tremble with delicious, agonizing need, and you groan from the pleasure of lusting so heavily that your whole body feels on edge. Your secretions are soaking the underside of the rest of your [pc.tail], yet you don’t care. It feels good to lie here and get hornier and hornier, all without her even touching your genitals directly, just delightfully submitting to her every whim until you’re so hot and bothered that you explode.
-Suddenly, constrictive heat envelops your entire body. It feels like your entire body, anyway. The tendril must have encircled itself around your [pc.tailCock], then squeezed itself down into a sensuous snare. What few thoughts are still lingering your sublimated mind are blasted away by the onslaught of pleasure, replaced with the raw, animal instinct of a horny male. Your tail tries to force itself deeper into that warm, wet opening, sliding inches of itself inside. It travels so far into the tentacle-cunt that your whole [pc.tail] starts to get a massage from the pulsations of the smooth muscle surrounding you. You whimper into the venus pitcher’s tits and let your [hips] writhe uncontrollably as you’re milked all the way to orgasm, too happy, horny, and hypnotized to do anything but let your orgasm be forced out of you.
+Suddenly, constrictive heat envelops your entire body. It feels like your entire body, anyway. The tendril must have encircled itself around your [pc.tailCock], then squeezed itself down into a sensuous snare. What few thoughts are still lingering your sublimated mind are blasted away by the onslaught of pleasure, replaced with the raw, animal instinct of a horny male. Your tail tries to force itself deeper into that warm, wet opening, sliding inches of itself inside. It travels so far into the tentacle-cunt that your whole [pc.tail] starts to get a massage from the pulsations of the smooth muscle surrounding you. You whimper into the venus pitcher’s tits and let your [pc.hips] writhe uncontrollably as you’re milked all the way to orgasm, too happy, horny, and hypnotized to do anything but let your orgasm be forced out of you.
 “<i>You’re going to cum for me soon, right? There’s no point in holding back, because I love it when [boys/girls/pets] cum inside me more than anything else. So go on, orgasm. Squirt for me. Feel that cum roiling inside of you as it begins to travel towards your cock{s}, spurting on command,</i>” commands a voice so laden with eroticism that it sends splinters of need down your spine.
 Orgasm hits you with the force of a hammer, crossing your eyes a split-second before they roll back. Your tongue lolls out as [cum] starts to slide down your [pc.tail]. You grunt into the heavenly tits that have so snared your mind and pump heavy dollop after heavy dollop of [cumColor] pleasure directly into the hungry tentacle. Your floral lover wraps her hands around her breasts and your head, compressing all three together to more effectively smother you with titflesh. The soft, squishy boobs send fresh pulses of pleasure through your [pc.tailCock], and you squirt faster and harder until you can cum no more.{ The feelings of blissful release are echoed by [eachCock], though the flow of [cum] is noticeably less than that erupting from your tail.}
 {small cumq}
 You sigh in satisfaction, but the way the venus pitcher pulls your head back and frowns at you indicates she is far from delighted at the situation. “<i>That’s it? Just a few drops?</i>”
 You nod.
 “<i>Well then, my little hypno-monkey, I’ll have to fix that,</i>” she quips as her frown twists into a wry grin. She hefts a teat towards your lips and commands, “<i>Suckle.</i>”
-After being so thoroughly mesmerized by the tasty teat, she doesn’t have to command you twice. You latch on and suckle down her tangy, delicious milk in big gulps, grinning stupidly around her tit as it stokes a sexual warmth in your core. The sensuous need stiffens your [pc.tailCock] with fresh engorgement in its messy, cum-slimed prison a swallow at a time, but that isn’t it. The pleasure and need keep rising continually, swelling {something inside you/your [sack]} with fresh [cum]. Within the span of minute, you’re cumming for her all over again, squirting comparatively huge flows of jism as you drain her tits dry.
+After being so thoroughly mesmerized by the tasty teat, she doesn’t have to command you twice. You latch on and suckle down her tangy, delicious milk in big gulps, grinning stupidly around her tit as it stokes a sexual warmth in your core. The sensuous need stiffens your [pc.tailCock] with fresh engorgement in its messy, cum-slimed prison a swallow at a time, but that isn’t it. The pleasure and need keep rising continually, swelling {something inside you/your [pc.sack]} with fresh [cum]. Within the span of minute, you’re cumming for her all over again, squirting comparatively huge flows of jism as you drain her tits dry.
 After a time, the pleasure grows so great that you begin to lose your grip on awareness. A voice chases after you into the blackness, sliding straight into your brain and layering on blissful obedience.
 {other}
 The whole process takes a surprisingly long time. When it’s over, you’re sighing in satisfaction, a sound echoed by your hypnotic mistress. She pets your head and coos, “<i>That’s my good [boy/girl/pet]. Why don’t you close your eyes and shut off your mind for a while. It’ll feel so good to just sleep. I promise to make you feel this good the entire time.</i>”
@@ -601,7 +615,7 @@ You’re helpless to do anything but obey, so you close your eyes and shut down,
 	A large, flared phallus appears before you, wiggling from side to side to the same hypnotic tempo the pitcher’s boobs trace through your sluggish mind. It’s greenish in hue and leaking a steady stream of what can only be its alien pre-cum. The tip is a bizarre, iridescent mix of emerald and violet, while the stalk is a lighter viridian. Both are glossy with moisture that shines in the pulsating, organic green light shed by the walls. That flared tip blooms a little wider, and the urethra bulges a bit forward, just enough to be clearly defined.
 	Your tail weeps lubricants hungrily, feeling invisible tongues of suggestion sliding around its interior, gathering up your drippings and smearing them across every fold and alien nerve cluster, weakening your muscles through pleasure. The slit at the end visibly weeps waves of lusty girl lube onto the tentacles all around you, though most of them seem content to wait right now. This venus pitcher is clearly intent on one specific part of your body.
 	“<i>Look at this dick, [boy/girl/pet]. It’s perfect. See the way it throbs for you, the way it aches for you. Watch the cum just DROOL out the end in anticipation of plundering your exotic little tailpussy. You surely realize that’s a parasite right? A creature that takes from you and gives nothing back. Well, nothing except pleasure. Perhaps that’s enough for you, slut. You just love thinking with your big, cock-hungry pussy. You’re just on the prowl for something to stuff you full of cum. Then, in between slutty little whore-fucks, you can squat and cum your brains out whenever it’s time to lay your eggs. That’s what you really want, isn’t it? You want me to feed your whorish cum-thirst,</i>” she growls with the barest undercurrent of distaste.
-	You shudder and nod, your tail already snaking around your [hips] to try and get at the delicious, cum-spewing morsel in front of you. Its motion is arrested halfway there by a bigger, stronger tentacle. The large vine wraps it up in an imprisoning helix, completely immobilizing your rogue appendage. Whimpering needily, you try your hardest to obey, so that you’ll feel those phantom tongues licking you harder and faster. At the same time, your [tailCunt] appears determined to devour that fat dick, straining against its bonds futilely.
+	You shudder and nod, your tail already snaking around your [pc.hips] to try and get at the delicious, cum-spewing morsel in front of you. Its motion is arrested halfway there by a bigger, stronger tentacle. The large vine wraps it up in an imprisoning helix, completely immobilizing your rogue appendage. Whimpering needily, you try your hardest to obey, so that you’ll feel those phantom tongues licking you harder and faster. At the same time, your [tailCunt] appears determined to devour that fat dick, straining against its bonds futilely.
 	The venus pitcher holds her breasts up and towards you, which is a bit odd, upside down as she is, gyrating them in slow, pendulous circles to lure you deeper. Your vocalizations taper off into blissful silence as you watch, momentarily distracted from the molten lust pouring through your veins.
 	Glossy jade lips split into a smile, and your mesmerizing mistress purrs, “<i>Good [boy/girl/pet]. You’ve proven reliable enough to get that fat cock you want so badly, and you do want it badly, don’t you?</i>” The purplish-green shaft wobbles up between the two of you, pressed between the plant woman’s proud knockers where it can slip and slide freely. You swallow nervously, hungrily even, and nod. Your desire for dick eventually draws your eyes to her phallic tentacle, though her tantalizing tits never vacate your mind’s eye, keeping you docile, obedient, and aroused.
 	“<i>Bon appetit.</i>”

@@ -9,11 +9,11 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function VenusFemale()
+		public function VenusPitcher()
 		{
 			this.version = latestVersion;
 
-			this.short = "venus pitcher";
+			this.short = "venus\npitcher";
 			this.originalRace = "venus pitcher";
 			this.a = "the ";
 			this.capitalA = "The ";
