@@ -25,7 +25,7 @@
 				
 		//Information
 		public var moveMinutes:Number = 5;
-		public var flags:Array = new Array();
+		public var roomFlags:Array = new Array();
 		
 		public var choices:Array = new Array();
 		
@@ -41,17 +41,17 @@
 		
 		//Functions
 		public function hasFlag(arg):Boolean {
-			for(var x:int = 0; x <= flags.length; x++) {
-				if(flags[x] == arg) return true;
+			for(var x:int = 0; x <= roomFlags.length; x++) {
+				if(roomFlags[x] == arg) return true;
 			}
 			return false;
 		}
 		public function addFlag(arg):void {
-			flags[flags.length] = arg;
+			roomFlags[roomFlags.length] = arg;
 		}
 		public function removeFlag(arg):void {
-			for(var x:int = 0; x <= flags.length; x++) {
-				flags.splice(x,1);
+			for(var x:int = 0; x <= roomFlags.length; x++) {
+				roomFlags.splice(x,1);
 			}
 		}
 		public function addChoice(text:String, func, arg = undefined):void {

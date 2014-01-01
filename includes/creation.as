@@ -16,12 +16,6 @@ function startCharacterCreation():void {
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
-	
-	/*
-	for (var x:int = 0; x < 10000; x++) {
-		flags[x] = undefined;
-	}
-	*/
 
 	flags = new Dictionary();
 

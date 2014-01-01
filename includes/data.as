@@ -143,26 +143,8 @@ function saveGame(slot:String):void
 	saveFile.data.chars = clone(this.chars); // Why iterate when it can do it for you!
 	saveFile.data.foes = clone(this.foes);
 	
-	/*
-	for(var x:int = 0; x < chars.length; x++) {
-		if(chars[x].short != "uncreated") {
-			saveFile.data.chars[x] = clone(chars[x]);
-		}
-	}
-	saveFile.data.foes = new Array();
-	for(x = 0; x < foes.length; x++) {
-		saveFile.data.foes[x] = clone(foes[x]);
-	}
-	*/
-	
 	//Save flags
-	saveFile.data.flags = cloneDict(flags);
-
-	/*
-	for (x = 0; x < 10000; x++) {
-		saveFile.data.flags[x] = flags[x];
-	}
-	*/
+	saveFile.data.flags = cloneDict(this.flags);
 
 	//Save crap
 	saveFile.data.silly = silly;
@@ -256,9 +238,4 @@ function postLoadToZeGame():void
 function initializeFlags():void 
 {
 	flags = new Dictionary();
-	/*
-	for (var x:int = 0; x < 10000; x++) {
-		flags[x] = undefined;
-	}
-	*/
-}
+

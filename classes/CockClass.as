@@ -21,7 +21,7 @@
 		public var flaccidMultiplier:Number = .25;
 		public var virgin:Boolean = true;
 		//Used for flags.
-		private var flags:Array = new Array();
+		private var cockFlags:Array = new Array();
 		
 		
 		//Old CoC Piercing Info that I will fire into a star, most likely.
@@ -61,20 +61,20 @@
 		//FLAG CHECKIN!
 		public function hasFlag(arg = undefined):Boolean {
 			if(arg == undefined) {
-				if(flags.length > 0) return true;
+				if(cockFlags.length > 0) return true;
 				else return false;
 			}
-			for(var x:int = 0; x < flags.length;x++) {
-				if(arg == flags[x]) return true;
+			for(var x:int = 0; x < cockFlags.length;x++) {
+				if(arg == cockFlags[x]) return true;
 			}
 			return false;
 		}
 		public function addFlag(arg):void {
-			if(!hasFlag(arg)) flags[flags.length] = arg;
+			if(!hasFlag(arg)) cockFlags[cockFlags.length] = arg;
 			else trace("Attempted to add flag " + arg + " to cock of type " + cType + ".");
 		}
 		public function clearFlags():void {
-			flags = new Array();
+			cockFlags = new Array();
 		}
 		//LEGACY CoC-GROWTH FUNCTIONS
 		public function growCock(increase:Number):Number {
