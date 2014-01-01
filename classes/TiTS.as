@@ -179,6 +179,7 @@
 			registerClassAlias("ZilMale", ZilMale);
 			registerClassAlias("Naleen",Naleen);
 			registerClassAlias("VenusPitcher",VenusPitcher);
+			registerClassAlias("ElderVenusPitcher",ElderVenusPitcher);
 
 			// Items!
 

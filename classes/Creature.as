@@ -6235,6 +6235,18 @@
 			if(cockNum < 0) type = GLOBAL.HUMAN;
 			else type = cocks[cockNum].cType;
 			if(cockNum > cocks.length-1) return "ERROR";
+			
+			return cockHeadGetName(type);
+		}
+		public function tailCockHead():String {
+			if(!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
+			return cockHeadGetName(tailGenitalArg);
+		}
+		public function cockHeadGetName(type:int = 0):String {
+			var temp:int;
+			var type:int;
+			if (cocks.length == 0)
+				return "ERROR. CockHead lookup with no cocks!";
 			if(type == GLOBAL.EQUINE) {
 				temp = this.rand(5);
 				if(temp == 0) return "flare";

@@ -459,231 +459,607 @@ function tentacleJamAftermath():void {
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 	
-/*
-*Elder Pitcher Plant Encounter
-*First Time
- “<i>Excuse me,</i>” greets a melodious voice, pulling you towards it on invisible, auditory strings. You find the source of the beautifully enunciated words almost immediately - a tall woman with surprisingly pert E-cup breasts hanging bare in the breeze. Her hips flare wide enough for you to unconsciously think of them as “breeding hips.” Sniffling uncomfortably, you realize that you’ve found another venus pitcher!
-	Seeing your adopted stance, she soothingly pleads, “<i>Oh my, you look so tense.</i>” Her hands rise up to cup the bottoms of her perky tits, rubbing her thumbs in slow circles around her nipples. “<i>I can help you relax, you know.</i>\"
-	You sneeze and shake your head, catching yourself before you wind up watching and listening without thinking.
-	“<i>There’s no need to be so reluctant, [handsome/cutey],</i>” the plant-woman purrs as her hips slide back and forth hypnotically, matching the tempo set by her slowly circling fingertips. “<i>Besides, there’s no harm in watching, right? You know I can’t fuck you senseless unless you come to me, so you’re safe. You have total control here.</i>” Her nipples are a deep, dark green that contrasts wonderfully with the rest of her, easy to focus on and difficult to not have your eyes drawn to whenever you look away. The way her fingers circle the dusky buds doesn’t make it any easier to avoid gazing upon them.
-	Olive green hips wiggle back and forth just fast enough to make the hypnotic beauty’s tits tremble as she gropes them. Her long, leaf-like tresses sometimes sway in front of her nipples, but you know when they’ll peek out the other side. Like clockwork they emerge, glistening as if oiled, just like the rest of her. The venus pitcher’s fingers are still circling her nubs. Her hips are still rolling back and forth, undaunted by a sudden sneeze from you. There really doesn’t seem to be any harm in this at all.
-	Viridian lips purse in a friendly smile to say, “<i>See? There’s no danger here. You’re welcome to watch me dance for as long as you want.</i>” The leafy seductress leans low so you can see the engorged profile of her nipples, flicking their tips in the middle of each slow circle that her thumbs make around them. “<i>Stay a while. You can let yourself just fixate on my nipples and enjoy the way I’m making you so hot and horny without any worry at all.</i>”
-	{Will based check with bonus for psionics}
-	{Pass}
-	You COULD sit there and watch her, but you have a feeling that there were other things you came out here to do. Do you look away or continue to watch?
-	[Watch] [Look Away] - watch as per fail.
-	[Look Away] You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?
-	//To room desc, no venus proc.
-	Of course! This is making you feel pretty hot, and you wouldn’t mind staying to see just what all this fine-ass piece of flora can do with the humanoid portion of her body. Like she said, you’re safe over here, so she’s harmless. You’ll watch her and her nipples more – at least until you get tired of it.
-	Back and forth, her fingers slide across her moist, pebbly protrusions, dulling your wits with melon lust. You sneeze again, barely noticing aside from when the action causes you to momentarily lose sight of her emerald peaks, but her hips catch your eyes with their slow back and forth waggle, dragging you right back to watching those proud, puckered nipples.
-	“<i>They’re hard to look away from aren’t they?</i>”
-	You nod, still watching.
-	“<i>That’s understandable. My nipples are quite mesmerizing,</i>” she explains, lifting her chest towards your face for emphasis.
-	Yeah they - wait, what?
-	The seductive plantress begins to guide her breasts in small circles, clapping the hefty orbs together into a mountain of cleavage at the innermost part of the rotation. She says, \"<i>It’s true. The longer you watch my nipples, the harder you {get/make them}, and the harder you {get/make them}, the harder it becomes to look away. And you’ve {gotten/made them} very hard, haven’t you? So achingly, soul-wrenchingly hard that a feather’s touch brings on an avalanche of pleasure.</i>\"
-	{You’re so damned hard! [EachCock] is throbbing powerfully, unrepentant in its lust, already beginning to bead a drop of lusty pre atop its crown./They look so damned hard! The way she shudders as her fingers make the circuit leaves you no doubt that she’s loving it.} You feel like you should try to avert your gaze or something, but the thought never really gains any traction in your mind. Her nipples are beautiful, sexy and hard to look away from. There’s no downside to watching them, so why struggle not to? Even blinking is getting kind of hard; they’re THAT hard to look away from.
-	Seeing the water beading at the corners of your eyes, the grinning babe prattles on, “<i>Since you’ve been looking at my nipples for so long and the way my fingers trace around their perimeter is so memorable, you can actually still see them even when you close your eyes or when a leaf obstructs your view. Blinking is easy because in your mind you’re still watching my nipple, still fixated on the way it shines and beckons to you, entrancing you so deeply that you looking away seems profoundly and deeply wrong.</i>\"
-	You close your eyes and bask in the relief, still watching her digits caressing her areolae in your mind’s eye until you’re gazing upon them in the real world again. The sneeze that rocks your head back doesn’t even phase you - just like when you blinked, you watch her nipples in your mind until you’re able to zero in on them once more. They’re so entrancing that you could just watch them all day. Maybe you will.
-“<i>Good [boy/girl/pet],</i>” the owner of the hypnotic bust moans, “<i>Every circle my thumbs take around these beautiful, suckable nipples is reminding you of why you started watching me in the first place. They’re so alluring and inviting, and the way you’re focusing on them makes it difficult to think of anything beyond the world of these mesmeric knockers. Really, it’s not just the nipples anymore, the boobs have you, too, trapped in their spirals as I gently squeeze and move them, smushing them together for you to ogle until your brain shuts down completely. It feels good to let yourself go, to focus on how hot {and hard/and wet/and lusty} I can make you feel.</i>”
-	Standing there open-mouthed, you watch, drooling a little and not stifling your sneezes in the slightest. Even without her instructions, you didn’t seem to be at one hundred percent here, but at least now you can let it go and just... stare, letting yourself unashamedly leer at this alien babe’s knockers as she caresses and shakes them for you. It’s euphoric in an arousing way. One of your hands begins to grope your own body. You can’t muster the thoughts to stop it, either.
-	The verdant maiden purrs, “<i>You don’t need to touch yourself. You know you could walk up to me, and I would make you feel so good.</i>”
-	You mumble something that sounds like, “<i>Can’t fuck everything I meet.</i>”
-	In a voice so throaty and lustful that it makes your [pc.legs] shudder, the venus pitcher woman answers, “<i>You can make an exception for me and my sisters. We don’t want to do anything bad to you{, we just want to make you feel good for as long as possible and help you cum out all that pent-up, nasty tension whenever it rises up inside you/, we just want to to make you feel very good while we milk you and fuck through as many orgasms as possible}. What isn’t to love? Honestly, I’d be surprised if you weren’t already rationalizing a reason to crawl into my arms and let me and my perfect tits take you to a paradise beyond imagining, {one that will make your dick{s} melt/one that will make your puss{y/ies} melt}.</i>”
-	You shudder and groan with pent up, lusty frustration. She’s right, of course. Her breasts are so wonderfully, kissably soft, and she doesn’t want to hurt you, just make you cum out all the tension you’ve built up from watching her.
-	“<i>That’s it. Come closer, my good [boy/girl/pet],</i>\" the big-breasted plant-woman says encouragingly, “<I>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.\"</i>
-	Whimpering slightly, you take one staggering {step/movement} forward after another, shedding your gear as you go. She won’t hurt you. Her words are like tongues of honey sliding all over your mind and body, guiding you closer, drawing you nearer with each passing second. It feels so good to let her control your mind, to steer you into erotic indulgence of her every enunciation. Verdant breasts grow larger in your view, and you find their effect on you intensified the closer you get and the more of the stuffy air around her that you breathe in.
-	Your [foot] catches on the edge of a hole and you stumble, about to fall head over [heels] into a pit, but the venus pitcher catches you in her jiggly bosom, holding you aloft with surprising strength while your face presses into her heavenly, mind-softening mammaries.
-	“<i>I’d never let you fall in there and get hurt. <b>My sisters and I know what’s best for you.</b> Just relax, and <b>let me think for you</b>,</i>” the floral woman promises. Your body slumps nervelessly in her arms, inundated with lust and hypnotized obedience.
-Shifting slowly, gravity seems to spin around you, tugging on your body in different ways while your face remains steadfastly planted in the plant-boobs. The motion ceases once you feel suspended upside down. A tiny, mental voice whispers that you should be alarmed at this, but you know that you’re safe with the venus pitcher and in complete control. You’re simply enjoying the show and how good her words can make you feel, particularly when you obey them without questioning their meaning.
-The sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.
-\"<i>Now, you just lie back there, and I’m going to make you cum so very, very well,</i>\" the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have [his] first sexual experience.
-//Choose appropriate genitalia to abuse!
-//Next
-{Dicks}
-A tentacle almost as big as your torso appears in front of you, swaying slowly back and forth before you. Its end is an open, sucking hole, adorned with perhaps a dozen purplish bulbs around the entrance that pulse merrily. Inside is a sea of wriggling, writhing flesh: sensuous purple-green folds, wiggling cilia, and tight rings of muscle to squeeze and caress. The juice dripping from it smells sweet, almost honeyed, and it oozes out all over your crotch, soaking your “ + multiCockDescriptLight() + “ {and [vagina] }with slippery wetness as it bobs above.
-“<i>This is going to feel so good for us, pet,</i>” the upside down woman’s voice assures you. Her body sways forward, planting her breasts back around your [pc.face], and she begins to run her fingers {through your [pc.hair]/over your head} comforting. “<i>Close your eyes and savor the sensations. This is what it feels like to feed a venus pitcher.</i>”
-Without another word, you’re treated to the feeling of having your “ + multiCockDescript() + “ enveloped in a wave of heated suction, noisily slurped into the grasping, squeezing maw of the gigantic tentacle. The slippery folds slide over you, delivering agonizing waves of pleasure so intense that your eyes roll back - even though you have them closed, as instructed. [EachCock] thickens perceptively under the pleasurable deluge, and you become aware of the tickling of hundreds of cilia on different parts of your maleness{es}, each licking like a tiny, miniature tongue, lewdly caressing your [skin] with a hunger that borders on obscene. The end of the tentacle constricts powerfully at your [sheath], matched elsewhere along your length by other rings of muscle. They work back and forth and try to get you off with all due haste.
-A gentle finger slides along the nape of your neck, and your seductress coos, “<i>Don’t hold back for me, lover. The most pleasurable thing you can give a venus pitcher, like me, is a big, fast, orgasm.</i>” She rubs her palm between your shoulders and coos, “<i>Go ahead and cum.</i>”
-The inhuman pleasure forced over your “ + multiCockDescriptLight() + “ would have you cumming in moments anyway, but that whispered, hypnotic command wraps around your mind as tightly as the tube wrapped around your penis{es}. You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [pc.balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick{s} suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.
-{Low Cum}
-All too soon, you’re spent, slumping back into the floral harness and the breasts before you with a lewd sigh.
-	“<i>Wait, that’s it?</i>” the busty babe asks incredulously. “<i>That can’t... that won’t do!</i>”
-	A distressed thought surfaces in your addled mind: didn’t you do what she told you? You worriedly try to pull away, but a soothing hand tilts your chin, turning you up and to the side until a nipple is in your lips. “<i>Drink.</i>”
-		You do, swallowing deep draughts of a largely tasteless fluid. It does seem somewhat savory, but you really can’t place the flavor. As you swallow, you feel the telltale engorgement of lust down below and a pinch {in your [pc.sack] as your [pc.balls] {grow denser/plump slightly}/in your groin, just behind your “ + multiCockDescriptLight() + “. The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.
-	Eventually, you lose consciousness, but the [cumColor] flow keeps going, feeding the plant woman’s insatiable thist...
-	{Good boost to cum quantity and skip to end}
-	{Medium Cum}
-		With the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvellous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of {increased denseness in your [pc.sack]/tightness in your body}. Your eyes roll back in your head as you feed the wonderful woman, pouring an almost unending tide of lust straight into her clutching hole.
-		After an indeterminate amount of time, the ecstasy does come to end, leaving you exhausted and panting.
-		“<i>You’re going to remember how good this feels,</i>” the venus pitcher says, “<i>and feel drawn to me whenever you have time to come into the woods...</i>” You nod dreamily and pass out.
-		//Small cum volume boost.
-	{High Cum+}
-		There seems to be no stopping the tide of [cum] spraying from your “ + multiCockDescriptLight() + “. There’s so much that the pleasure-tube massaging your cock{s} bloats from the amount pouring into it, expanding to almost double its size in places down its length. The tip remains stubbornly sealed around your [base]. Here and there, beads of [cumColor] escape around it, but the bulk is pumping straight into the venus pitcher’s ravenous stalk, disappearing into the wall of the bulb in explosive waves of gooey, wondrous pleasure.
-		You can hear the suspended woman groaning in delight while her body devours nearly every single drop. “<i>Oh... wow, you’re so good at this, pet!</i>” Her hands begin to tug on her nipples, and she whimpers a barely controlled command, “<i>Don’t you ever forget me! This feels so good that you’ll want to come back to me every day!</i>”
-		Grunting your assent, you shudder and spend the rest of your virility, embedding the memory in your psyche, knowing that you do want to return to her whenever you’ve got more to give.</i>”{  There’s so much [cum] that some rather phallic tentacles begin firing your fluid back into the bottom of the pod, keeping it in a lewd reserve as her own storage capabilities are overwhelmed by your immense virility.  The ensuing pool {is little more than a puddle, but it’s one you’re proud to have made./is about a foot deep. A feeling of pride wells up in your breast./gets deep enough that it’s touching you, a tiny lake of food for the feminine flora.}
-		Only after you’re leaking tiny droplets does the pleasure end, leaving you exhausted and satisfied.
-		“<i>This is what comes of obeying a venus pitcher. You’re surely addicted to this, aren’t you?</i>”
-		You giggle and nod, a little light-headed as you nod off into her breasts.
-	{Vagina!}
-	A tentacle as big as your torso appears in front of you, waving back and forth and leaking a stream of clear-looking juice from a tiny opening on its flared tip. Its surface is a deep emerald in color, sparkling in the dim, inner luminescence of the pod. It angles down to press upon your juicy mons, the tip sliding back and forth across your swollen sex{es}, slipping {from lip to lip/over your lips} repeatedly and flaring wider in response. It withdraws and leaves your labia soaked and eager. Unfortunately, its blunted head is so massive that there’s no way it could it actually fit inside you, much as you want it to. You’re left to whine and writhe every time it tries again, caressing your vulvae with lewd but unsatisfied attentions.
-	“<i>Don’t worry about its size, pet. I know one size doesn’t fit all, and I’ve got the perfect fit, just for you,</i>” the venus pitcher giggles as she smears her gigantic tool across [eachVagina] again, catching your [clits] repeatedly. Another tentacle slithers up alongside it, rubbing across its bigger brother’s length and eventually supplanting it at the entrance of {a/your} “ + vaginaDescript(x) + “, already slick with the lewd plant’s secretions.
-	The upside down woman sways forward to place her soft bosom around your head, nestling your [pc.face] firmly between the supple mammaries. She coos, “<i>Close your eyes and enjoy it. Really revel in just how good it feels to obey my voice, and let your sense of propriety just melt away.</i>” Immediately, your eyelids feel heavy, like lead weights hang suspended from them, and they drift down until you can see nothing. Your senses focus instead on nuzzling into her chest and enjoying how deliciously slick your sex{es have/ has} become.
-	A rigid, blunt tip slowly spreads your folds, sliding between {your/a set of} labia with deliberate, firm force, dilating your entrance with its swollen head and compressing slightly to fit. This makes the friction inside your channel that much more powerful; every fold, nook, and cranny of your cunt receives its fair share of cock to squeeze against. Gushing as it goes deeper, the tendril worms more deeply inside of you, plundering your “ + vaginaDescript(x) + “ with a greedy lunge. The warm pre that seems from it tingles nicely as it lubricates the passage of this elephantine-feeling member, so copious that some of it drips from your opened entrance in long strands.
-	//Vag change.
-	Glorious pleasure explodes from your loins as the tentacle yanks back and thrusts forward, punctuated by moments of emptiness that only serve to enhance your enjoyment. You moan sensuously into the plant matron’s tits, shuddering and shaking so forcefully that you make her boobs bounce around your head. She grunts at one particularly forceful thrust, obviously enjoying herself, even though the verdant phallus doesn’t connect to her “body” anywhere that you can see. Faster and faster, her pistoning plant cock plunges in again and, pistoning with enough force that the violent, liquid sound of its passage fills the chamber.
-	A gentle voice explains, “<i>Oh, my deeply hypnotized pet, you’re loving it aren’t you? The feeling of being filled with pitcher plant sperm is assuredly superior to that which any male can offer. Your pretty pussy craves the cum. It yearns for it. Feeling it flooding into your pussy{ and womb} is going to make you cum so hard your brain will dribble out of your twat.</i>” A fingertip subtly traces along the nap of your neck. “<i>I hope you’re ready, because I can feel a giant load of it building up.{ A shame you’re pregnant already, but you’ll come back for more after your pussy gets hooked on being stuffed by my stamen./ The feel of it swelling your belly with my seeds is going to be so addictive, matched only by the motherly bliss of laying my seeds in fertile soil.}</i>”
-	The tentacle buried in your “ + vaginaDescript(x) + “ bottoms out while the larger, massive tentacle mashes itself against your pubic mound{, allowing your “ + clitDescript(x) + “ to slide up its convulsing urethra}. Both stalks flex, thickening slightly, and rounded bulges begin to gather at their bases, launching through the tubular plant-cocks one after another. {Inside you, the flat, flared tip matches perfectly to your cervix, the urethra just barely pushing past the rest of the tip in order to nestle firmly into it. Cum pours out of it in a wave, and as the warm flora-jizz pumps into you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss./Inside you, the flat, flared tip butts up against your sealed cervix, the urethra desperately trying to match to a nonexistent opening. Cum pours out of it in a wave, and as the warm flora-jizz backwashes out of you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss.} Your tunnel squeezes down around the shaft, trying to milk it for more with its unashamed, lusty spasms.
-	Girl-spunk {trickles/leaks/gushes} out around the tendril as it pumps you full, distorting your entrance with the size of the jizz-bulges traveling into you.{  Your belly slow bulges with the spewing seed, rounding out into a slightly-pregnant dome while your mind reels with fantasies about birthing smooth seeds that will someday blossom into equally entrancing creatures./  A waterfall of musky jism rolls out of your “ + vaginaDescript(x) + “ seemingly without end. You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.} The bigger tentacle fires cum out like a cannon, {splattering it directly off your “ + clitDescript(x) + “./forced off your cum-soaked clit as it dumps a deluge of spooge over your most sensitive organ.}
-	Your eyes roll back as the orgasm drags on and on, [eachVagina] writhing in ecstasy{, even though some are empty}. A comforting voice instructs, “<i>Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.</i>”
-	Your eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.
-	{Dicknipples}
-	Num2Text(NIPPLE TOTAL) “ + iridescent tentacles rise up in front you. They’re each about as thick as your arms. Dripping, circular openings appear on the top of them, slowly dilating as they open. Ropes of lubricant drip from the pulsing, toothless maws and hang down, swaying back and forth under the purple-lined holes. Around the entrances of the tendrils, a number of engorged bulbs are visible, almost clit-like in look and design. They close in on your chest, and their purplish-tinged interiors constrict and relax rhythmically, lined with any number of cilia, folded flesh, and muscular rings.
-	Your [dickNipples] swell, distending the surface of your [pc.nipples] before exposing themselves, their surfaces swelling with fresh tumescence, pulsing visibly as they jut from your chest.
-“<i>Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,</i>” the seductive plant-girl wonders aloud. “<i>You just relax and hang out while I milk these puppies-</i>” she tugs on your [dickNipples] eagerly, “<i>-so well that they pop out whenever you think about me.</i>”
-Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [nippleDicks] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.
-That sensation becomes far more palpable a moment later, only it’s happening on every single surface of your dicknipples, surrounding them in a warm, wet surface that tugs and squeezes them relentlessly. Those warm sheaths engulf the entirety of your pricks, and blinded by breasts as you are, your sense of touch is magnified, making the pleasure so exquisite that you begin to leak pre already. Hundreds of cilia stroke and caress you like a swarm of tiny tongues. The nubs at the ends press against your [pc.chest] and close up, sealing up just in time for them to begin sucking slightly, pulsing slow vacuum-powered tugs on your shafts. Circles of pressure constrict around your lengths at various points and begin to drag inward, new ones forming at the bottom of your [nippleDicks] whenever they slide past the tips, milking you unendingly.
-“<i>Oh, those are quite nice,</i>” the seductive plant purrs seductively. “<i>Far more fun than a zil with a single ‘stinger’. They are a bit sweeter, of course.</i>” Her attention focuses back on you, and she trails a finger up the nape of your neck, hypnotically stating, “<i>You’re going to cum for me soon, pet. Nobody can resist my tentacles for long, and you don’t even want to resist. <b>You want to cum for them.</b></i>”
-You groan as the pleasure seems to intensify, your [dickNipples] getting so hot from all the squeezing and sucking they’re being exposed to.
-Her comforting voice continues, “<i>I know, it just feels so good that that yummy cum is just backing up in your [pc.chest], isn’t it? You FEEL it, so hot, so warm, and just aching to spray out. Just relax, and it’ll come out on its own in a few seconds.</i>” She strokes at the back of your head. “<i>Getting closer now aren’t you?</i>”
-You nod into her tits, arching your back as far as the iron-strong restraints of her massive tentacles will allow.
-“<i>So... very... close....</i>” the enchanting floral woman says, “<i>You’re a few seconds away.... Let me count them down for you.</i>”
-“<i>Five...</i>”
-Her tentacles undulate wildly as they begin to piston up and down your [dickNipples], fucking them with fast, lewd strokes.
-“<i>Four...</i>”
-The suction doubles in intensity, making your tools throb and ache with pent-up need, spewing trails of pre-cum deep into their lascivious, sucking prisons.
-“<i>Three...</i>”
-A hand caresses your spine, fingers softly playing along your [pc.skinFurScales].
-“<i>Two...</i>”
-You feel like your [nippleDicks] are about to explode, twitching wildly and arching inside their velvety soft prisons.
-“<i>One...</i>”
-A tsunami of pressure builds inside your [pc.chest], and your body arches so hard that you feel like you’re going to snap your spine in half. You grunt and pant into the boobs, twitching wildly, and you feel the impending pleasure about to fire out of you with the force of a {Fenoxo’s cum }cannon.</i>”
-“<i>Cum for me,</i>” she exhales.
-Orgasm slides over and out of you like an avalanche. Your [nippleDicks] twitch, swelling up inside their sheaths, and they spray your [cum] out with such force that it almost hurts. The relief is pulpable, and you groan languidly as your [pc.chest] sprays more and more sloppy [cumNoun] into the tentacle-cunts. The milking, muscular contractions intensify, and your voluminous output is quickly whisked away, leaving you smiling.
-{Small cum amount}
-All too soon, your ecstasy winds down to nothing.
-“<i>Spent already? Let’s fix that,</i>” the hypnotic beauty comments, pulling you out of her mountainous cleavage and depositing your lips on a leaky nipple.
-“<i>Drink.</i>” 
-You obey, feeling a tingle of erotic thrill from that allow, but when the first taste reaches your belly, your lust awakens anew, building to mind-blanking climax in seconds. Your dicks surge back out of their sheaths and to full hardness. Then, you find yourself cumming from the drink alone, spurting fresh ropes of [cum] for your mistress.
-“<i>Atta [boy/girl/pet],</i>” she giggles, “<i>Just drink and cum until you can’t anymore. This is the pleasure of a venus pitcher, and you’re going to embed this bliss in every fiber of your being.</i>”
-You grunt and moan an affirmation from around her teat, but you’re unable to will yourself to stop.
-Consciousness slowly ebbs from the assault of ecstasy, your last thoughts centered around how you’ll come back here again and again, feeding your lust to the venus pitchers in exchange for the mind-blanking pleasures. Her whispers chase you all the way into sleep, seeding your mind with obedience.
-//Big cum boost!
-{Medium Cum Amount}
-Again and again, you bloat the organic tubes with [cum], never pausing in your ejaculatory madness. The bliss of submitting to your hypnotic mistress seems to make your climax even more potent than normal, but the tentacles pulling on your prick-teats are happy to consume it all, their length distorted with bulbs of [cumColor] delight.
-“<i>Mmmm, a productive sample,</i>” the hypnotic beauty comments while trying to stifle her own mounts of pleasure. “<i>Keep cumming for me, pet. You’re doing so good. This feels so good that there’s no way anything else is going to compare. Just coming near a venus pitcher is going to remind you of this, and you’ll do it again and again, whenever you feel like you’ve got cum to feed.</i>”
-You nod and whimper, still cumming as you slowly lose consciousness from the prolonged climax, your last thoughts dwelling on just how good it feels and how you can’t wait to do this again. Her whispers chase you all the way into sleep, seeding your mind with obedience.
-{High Cum Amount}
-Soon, the amount of [cum] you’re producing grows so great that the tentacles begin to puff wide, stretched beyond their natural capacity by the volume of your effluence. They stubbornly stay clamped on your [dickNipples]. The pressure is painfully tight. You whimper, but your [cum] doesn’t slow down. The command to climax is too irresistible to deny, and you squirt so much goo down those straining tendrils that some of the other tentacles in the pod begin to weep your leftover [cum] into a pool in the bottom, rapidly rising.
-The busty beauty moans, “<i>Sooo good,</i>” as she shakes through her cock-milk induced climax. “<i>Keep cumming, don’t ever stop! Revel in it, pet, and engrave this memory into your mind! You love it here, and you love me, don’t you?</i>”
-You nod, believing her words as soon as she speaks them, though consciousness is beginning to fade under this orgasmic onslaught of hypnotic command. “<i>Just keep cumming and focusing on how badly you want to do this again...</i>”
-You moan your assent and close your eyes, drifting off to the sound of her voice rearranging your subconscious.
-	{Milky Nipples}
-	Num2Text(NIPPLE TOTAL) “ + tentacles appear before you, waving back and forth hypnotically, matching the tempo of the floral mistress’s hands on her bosom that entrances you even now. Their tips are smooth and featureless at first. Then, the emerald-green skin peels back, exposing the tentacle’s true nature - that of a hollow tube with clear, nearly-transparent walls. The sides of the newly-revealed, organic milker - for that is what it reminds you of - bulge out slightly, perhaps to hold some milk. The way they seem to zero in on your nipples confirms your suspicions.
-	A slow, sultry voice tickles your ears, “<i>A can sense a bounty in your bosom, [boy/girl/pet]. I do hope it isn’t as sickeningly sweet as the zil’s. For now, relax and focus on producing [pc.milk] for me. Let the pleasure wash over your nipples just as my voice does your mind.</i>”
-	The milkers move forward and push against your chest, their surface tingling soft and warm on the [skin] of your [pc.chest] as they seal in place, tugging slightly from the increasing pressure. You groan in excitement, as you obey, focusing on producing milk for your hypnotic mistress to squeeze.
-	Pale green skin closes in on you as the eager plant-woman takes you into her arms, wrapping them around the back of your head and pushing your [pc.face] as deeply into her bosom is possible. You sniffle a little, perhaps from her spores, and let yourself enjoy being cradled in her cleavage while her fingers gently stroke the back of your head{, running through your [pc.hair]}. At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normally. [pc.milk] beads at the tips and slowly begins to drip down.
-	“<i>Let it out...</i>” your favorite venus pitcher instructs. Her hand reaches around to squeeze the underside of one tit, causing you to express a thin flow. You moan at the erotic release as imaginary tongues wrap around each [nipple] and begin to suck, and {the rest of your lactic nozzles release/your other lactic nozzle releases}. Dozens of tiny tendrils emerge from within the larger, hollow tube and reach for your gushing [pc.chest], matching the tongues licking at your mind with the physical caresses of slippery tentacles. More and more [pc.milk] expresses in response. You moan quite loudly into the plant’s soft boobs.
-	Giggling in response, the wonderful woman shifts your head to suckle one of her tits, saying, “<i>You can never be milked enough, so why don’t you take a drink and let me help you be a little more productive for your favorite venus pitcher?</i>” She gently pries you from your breasty heaven and shifts you to put your lips on her own nipple, already beading with a thick, white fluid. The taste is vastly different from milk, a little sweeter and with an undercurrent of tang. That isn’t to say that it’s unpleasant - quite another thing entirely. From the moment it hits your tongue, you find yourself suckling like a hungry babe, slurping as hard as you can in order to get more of the delicious treat into your belly.
-	“<i>That’s a good pet, drink alllll your medicine.</i>”
-	You wanted to already, so her words dig deep into your subconscious, ensuring that you’ll drink every drop of \"medicine\" she’s willing to offer. After each successive swallow, burgeoning heat blooms in your [pc.nipples] and [pc.chest], causing both to engorge a little bit more. Your bust swells more and more with each passing moment, and the flow of milk becomes an unstoppable torrent. You whimper around the heavenly bud until it dries up and gentle hands separate it from your mouth, guiding you on to an equally delightful and yet-untapped source of your new favorite drink.
-	Through the transparency of their walls, the milkers' reservoirs slowly fill with your [pc.milk]. You also become aware of a slight variation in the suction applied to your [pc.nipples]; it pulsates in a rhythm, diminishing and then increasing in a way that your breasts respond quite strongly to. Blobs of liquid weight slide deeper down the tentacles, accompanied by a satisfied “mmmm” from nearby, and a sense of pride wells up inside in your chest (along with an uptick in the feeling of tongues on your teats{ and genitalia}).
-	“<i>That’s all the medicine, little cow. I don’t have any more for you.</i>”
-	The voice makes you aware that you’ve spent some time suckling an empty nipple. It’s grown almost purplish from how actively you were attempting to draw from it. Surely it has gotten supremely sensitive. Gentle hands pull you back between the boobs while a voice explains, “<i>That’s all you needed, my little cow pet. Now focus on doing your part and feeding me lots of yummy milk. We both know my medicine has made milking immensely pleasurable for you, so why don’t you just sag into my breasts and cum yourself silly?</i>”
-	True to her words, you realize you’ve become exceedingly horny, and you find yourself on the edge of orgasm from the act of lactating alone. You know that breast stimulation alone shouldn’t get most races off very easily, but it’s like there’s a switch flipped on inside you. You’re on the cusp of an explosive nipplegasm.
-“<i>Cum.</i>”
-Just like that, you’re cumming, spraying so much milk that the tubes are barely able to keep up with it. It’s vastly different from any other kind of orgasm{, and your crotch doesn’t even get in on the act. Then again, it doesn’t need to - milking feels so great}. You babble unintelligibly as you feed the milkers as much [pc.milk] as they can handle, shuddering wildly in your organic, tit-locked cocoon.
-You aren’t sure how long the titgasm goes on for, but when it ends, you’re panting and as horny as ever - hungry for more. Fortunately you’re still squirting steady flows, and another big, mind-shattering cum isn’t far off. Your eyes roll back as it approaches, and you begin to scream out your bliss into the venus pitcher’s tits while you gush oh so well for her.
-Giggling dopily as you come down, you backslide into oblivion, cooing out soft little “moos” when prompted by your mistress’s commands. Her words continue to shape you as you sleep, conditioning you to obey and feed her whenever possible, like a good little cow.
-{Tailcock}
-One big, fat tentacle rises up and front of you, waving back and forth, snake-like. The mottled green-hued surface shines dully in the bioluminescent light the walls of this strange place exude. Blooming like an exotic flower, the tip of the tendril peels back and opens, revealing a moist, purple-hued interior. That same interior exudes a constant flow of slowly-dripping lubricant, viscous and dangling in long ropes that sway back and forth before dropping. Unbidden and unasked for, you become very aware of {[eachCock] and }your [pc.tailCock], fellated by invisible tongues and leaking long strings of pre-cum in anticipation.
-The hollow vine disappears a moment later, but a second later, your view is replaced by a heaving bosom. The soft, all-encompassing press of the venus pitcher’s breasts around your face is as comforting as it is arousing.
-Her voice ripples across your consciousness, permeating itself into every fold of your malleable mind as she says, “<i>Atta [boy/girl/pet]. Sink into trance as my hypnotic breasts envelop your poor, defenseless brain.</i>” A hand traces gentle circles on the back of your neck. “<i>The tongues you feel licking you, fellating you for your obedience, they’re getting faster and stronger as you slip deeper and deeper into my mesmerizing embrace. Grow more and more aroused as my tentacle closes in on your unique little tail. Let your lust double, then triple. Each passing second your dick{s get/gets} harder and harder, aching for climax.</i>”
-You shudder as your [pc.tailCock] trembles in unashamed, unadultered need, drooling pre-cum all over itself in its eagerness. Warm, moist air, like hot breath, washes across the [tailCockHead], making you tremble with delicious, agonizing need, and you groan from the pleasure of lusting so heavily that your whole body feels on edge. Your secretions are soaking the underside of the rest of your [pc.tail], yet you don’t care. It feels good to lie here and get hornier and hornier, all without her even touching your genitals directly, just delightfully submitting to her every whim until you’re so hot and bothered that you explode.
-Suddenly, constrictive heat envelops your entire body. It feels like your entire body, anyway. The tendril must have encircled itself around your [pc.tailCock], then squeezed itself down into a sensuous snare. What few thoughts are still lingering your sublimated mind are blasted away by the onslaught of pleasure, replaced with the raw, animal instinct of a horny male. Your tail tries to force itself deeper into that warm, wet opening, sliding inches of itself inside. It travels so far into the tentacle-cunt that your whole [pc.tail] starts to get a massage from the pulsations of the smooth muscle surrounding you. You whimper into the venus pitcher’s tits and let your [pc.hips] writhe uncontrollably as you’re milked all the way to orgasm, too happy, horny, and hypnotized to do anything but let your orgasm be forced out of you.
-“<i>You’re going to cum for me soon, right? There’s no point in holding back, because I love it when [boys/girls/pets] cum inside me more than anything else. So go on, orgasm. Squirt for me. Feel that cum roiling inside of you as it begins to travel towards your cock{s}, spurting on command,</i>” commands a voice so laden with eroticism that it sends splinters of need down your spine.
-Orgasm hits you with the force of a hammer, crossing your eyes a split-second before they roll back. Your tongue lolls out as [cum] starts to slide down your [pc.tail]. You grunt into the heavenly tits that have so snared your mind and pump heavy dollop after heavy dollop of [cumColor] pleasure directly into the hungry tentacle. Your floral lover wraps her hands around her breasts and your head, compressing all three together to more effectively smother you with titflesh. The soft, squishy boobs send fresh pulses of pleasure through your [pc.tailCock], and you squirt faster and harder until you can cum no more.{ The feelings of blissful release are echoed by [eachCock], though the flow of [cum] is noticeably less than that erupting from your tail.}
-{small cumq}
-You sigh in satisfaction, but the way the venus pitcher pulls your head back and frowns at you indicates she is far from delighted at the situation. “<i>That’s it? Just a few drops?</i>”
-You nod.
-“<i>Well then, my little hypno-monkey, I’ll have to fix that,</i>” she quips as her frown twists into a wry grin. She hefts a teat towards your lips and commands, “<i>Suckle.</i>”
-After being so thoroughly mesmerized by the tasty teat, she doesn’t have to command you twice. You latch on and suckle down her tangy, delicious milk in big gulps, grinning stupidly around her tit as it stokes a sexual warmth in your core. The sensuous need stiffens your [pc.tailCock] with fresh engorgement in its messy, cum-slimed prison a swallow at a time, but that isn’t it. The pleasure and need keep rising continually, swelling {something inside you/your [pc.sack]} with fresh [cum]. Within the span of minute, you’re cumming for her all over again, squirting comparatively huge flows of jism as you drain her tits dry.
-After a time, the pleasure grows so great that you begin to lose your grip on awareness. A voice chases after you into the blackness, sliding straight into your brain and layering on blissful obedience.
-{other}
-The whole process takes a surprisingly long time. When it’s over, you’re sighing in satisfaction, a sound echoed by your hypnotic mistress. She pets your head and coos, “<i>That’s my good [boy/girl/pet]. Why don’t you close your eyes and shut off your mind for a while. It’ll feel so good to just sleep. I promise to make you feel this good the entire time.</i>”
-You’re helpless to do anything but obey, so you close your eyes and shut down, letting her milk you dry again while she programs new thoughts into your exposed, vulnerable subconscious.
-	{Tailcunt}
-	A large, flared phallus appears before you, wiggling from side to side to the same hypnotic tempo the pitcher’s boobs trace through your sluggish mind. It’s greenish in hue and leaking a steady stream of what can only be its alien pre-cum. The tip is a bizarre, iridescent mix of emerald and violet, while the stalk is a lighter viridian. Both are glossy with moisture that shines in the pulsating, organic green light shed by the walls. That flared tip blooms a little wider, and the urethra bulges a bit forward, just enough to be clearly defined.
-	Your tail weeps lubricants hungrily, feeling invisible tongues of suggestion sliding around its interior, gathering up your drippings and smearing them across every fold and alien nerve cluster, weakening your muscles through pleasure. The slit at the end visibly weeps waves of lusty girl lube onto the tentacles all around you, though most of them seem content to wait right now. This venus pitcher is clearly intent on one specific part of your body.
-	“<i>Look at this dick, [boy/girl/pet]. It’s perfect. See the way it throbs for you, the way it aches for you. Watch the cum just DROOL out the end in anticipation of plundering your exotic little tailpussy. You surely realize that’s a parasite right? A creature that takes from you and gives nothing back. Well, nothing except pleasure. Perhaps that’s enough for you, slut. You just love thinking with your big, cock-hungry pussy. You’re just on the prowl for something to stuff you full of cum. Then, in between slutty little whore-fucks, you can squat and cum your brains out whenever it’s time to lay your eggs. That’s what you really want, isn’t it? You want me to feed your whorish cum-thirst,</i>” she growls with the barest undercurrent of distaste.
-	You shudder and nod, your tail already snaking around your [pc.hips] to try and get at the delicious, cum-spewing morsel in front of you. Its motion is arrested halfway there by a bigger, stronger tentacle. The large vine wraps it up in an imprisoning helix, completely immobilizing your rogue appendage. Whimpering needily, you try your hardest to obey, so that you’ll feel those phantom tongues licking you harder and faster. At the same time, your [tailCunt] appears determined to devour that fat dick, straining against its bonds futilely.
-	The venus pitcher holds her breasts up and towards you, which is a bit odd, upside down as she is, gyrating them in slow, pendulous circles to lure you deeper. Your vocalizations taper off into blissful silence as you watch, momentarily distracted from the molten lust pouring through your veins.
-	Glossy jade lips split into a smile, and your mesmerizing mistress purrs, “<i>Good [boy/girl/pet]. You’ve proven reliable enough to get that fat cock you want so badly, and you do want it badly, don’t you?</i>” The purplish-green shaft wobbles up between the two of you, pressed between the plant woman’s proud knockers where it can slip and slide freely. You swallow nervously, hungrily even, and nod. Your desire for dick eventually draws your eyes to her phallic tentacle, though her tantalizing tits never vacate your mind’s eye, keeping you docile, obedient, and aroused.
-	“<i>Bon appetit.</i>”
-	Unwinding with lightning-fast speed, the restraining tendril releases your [tailCunt] and vanishes into the slippery mass below. Your snake-like appendage lurches forward dangerously fast, slamming its gushing gash directly into the blunted member in an attempt to take it in all once. The attempt fails, only managing to splatter the combined sex-juices over you and the verdant woman’s forms. Your [pc.tail] lashes out again with a bit more control, and this time it actually manages to part your hungry gash, spreading it over the wide and gently curving tip of your chosen toy.
-	Pre-cum squirts down your tunnel almost immediately, matched by an outflow of your own copious lubrication. The two heady, sensual discharges mix and mingle where the sexual organs join, a line that blurs more and more with each passing second. Your cunt tail is slowly spreading to encompass the flare; nearly a third of it has slipped inside your moist orifice already. Lurching forward, the turgid tendril thrusts with enough force to instantly stretch your [tailCunt] to capacity, its head bending slightly as it squishes and scrapes through your torrid tunnel, lewdly caressing every fold with wet, hot fuck.
-	Suddenly, breasts wrap around your [pc.face], smothering you in mammary molestations, squeezing you tightly into the venus pitcher’s hypnotic cleavage. You sag into her arms, whimpering needily as your pussy plows itself on her tentacle, fucking with wild, insatiable cum-thirst.
-	A tittering voice reaches through your prison to caress your ears. “<i>This is what you wanted, and you love it, don’t you? Don’t respond, pet, just hang there and cum yourself silly. You’ve got a special, fun little body. All you have to do is orgasm. Cum on my tentacle. Squirt out all that delicious fluid until you’re dry. I’ll even let you feel me filling you so full that you bloat from all the spunk.</i>” A finger traces circles on the back of your neck as she continues. “<i>And you’ll love every moment of it, so much that your nice, wet tail-pussy is going to drool at the tiniest thought of me. You’ll remember this feeling at night and dream of returning to feed and be seeded.</i>”
-	You shudder as her words seep unfiltered into your mind and cum, writhing in your restraints with spastic tremors of climactic need.  Sticky, slippery sperm fires into your tailpussy, making it clench, squeezing down on the plant-cock to milk every drop of seed deep inside itself. At first, the pleasure is immense, and you greedily devour every drop. As time passes, however, you start to become full, your tail bloated and fat with stored cum. The pleasure is no less exquisite, but the coordinated muscles slowly lose cohesion and start to spasm wildly on the spooge-slinging shaft, leaking huge, gushing globules of white everywhere.
-	The ecstasy never seems to dull. Every fiber of your body focuses down on the rhythmic internal deposits filling you, stuffing you with salty pleasure beyond what a mere human cunt is capable of experiencing. Your back arches uncontrollably as you strain against the restraint. Your lips part, and you begin to babble incoherent words of love and affection, slobbering all over mistress’s tits as she plows you past your limit, slamming you past the point of cogent reasoning.
-	Seeing this, the venus pitcher begins to whisper suggestions into your ear while you come, conditioning you to equate her and her race with such excitement, and perhaps, programming you to find her again someday.
+
+//*Elder Pitcher Plant Encounter
+function elderVenusPitcherEncounter():void {
+	//*First Time
+	if(flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
+		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;
+		output("\n\n“<i>Excuse me,</i>”  greets a melodious voice, pulling you towards it on invisible, auditory strings. You find the source of the beautifully enunciated words almost immediately - a tall woman with surprisingly pert E-cup breasts hanging bare in the breeze. Her hips flare wide enough for you to unconsciously think of them as “breeding hips.”  Sniffling uncomfortably, you realize that you’ve found another venus pitcher!");
+		output("\n\nSeeing your adopted stance, she soothingly pleads, “<i>Oh my, you look so tense.</i>”  Her hands rise up to cup the bottoms of her perky tits, rubbing her thumbs in slow circles around her nipples. “<i>I can help you relax, you know.</i>\"");
+		output("\n\nYou sneeze and shake your head, catching yourself before you wind up watching and listening without thinking.");
+		output("\n\n“<i>There’s no need to be so reluctant, " + pc.mf("handsome","cutey") + ",</i>”  the plant-woman purrs as her hips slide back and forth hypnotically, matching the tempo set by her slowly circling fingertips. “<i>Besides, there’s no harm in watching, right? You know I can’t fuck you senseless unless you come to me, so you’re safe. You have total control here.</i>”  Her nipples are a deep, dark green that contrasts wonderfully with the rest of her, easy to focus on and difficult to not have your eyes drawn to whenever you look away. The way her fingers circle the dusky buds doesn’t make it any easier to avoid gazing upon them.");
+		output("\n\nOlive green hips wiggle back and forth just fast enough to make the hypnotic beauty’s tits tremble as she gropes them. Her long, leaf-like tresses sometimes sway in front of her nipples, but you know when they’ll peek out the other side. Like clockwork they emerge, glistening as if oiled, just like the rest of her. The venus pitcher’s fingers are still circling her nubs. Her hips are still rolling back and forth, undaunted by a sudden sneeze from you. There really doesn’t seem to be any harm in this at all.");
+		output("\n\nViridian lips purse in a friendly smile to say, “<i>See? There’s no danger here. You’re welcome to watch me dance for as long as you want.</i>”  The leafy seductress leans low so you can see the engorged profile of her nipples, flicking their tips in the middle of each slow circle that her thumbs make around them. “<i>Stay a while. You can let yourself just fixate on my nipples and enjoy the way I’m making you so hot and horny without any worry at all.</i>”");
+		//{Will based check with bonus for psionics}
+		if(pc.willpower() - pc.libido()/3 + rand(20) + 1 > 9) 
+		{
+			output("\n\nYou COULD sit there and watch her, but you have a feeling that there were other things you came out here to do. Do you look away or continue to watch?");
+			//[Watch] [Look Away] - watch as per fail.
+			//9999
+		}
+	}
+	//*Repeat
+	else {
+		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"]++;		
+		if(rand(3) == 0) output("\n\nA lilting voice rises up to call, “<i>Hail, traveller! Tell me, could you spare a drink for a thirsty matron? I appear to have misplaced mine.</i>”");
+		//(2)
+		else if(rand(2) == 0) output("\n\nA gentle drawl hooks your [pc.ears]. “<i>Well hello there, cutey. Wanna come over here and sit for a spell? I’m plum tuckered out!</i>”");
+		//(3)
+		else output("\n\n“<i>Hello! Are you busy? I could use someone to talk to,</i>”  a methodically lilting voice inquires.");
+		
+		output("\n\nYou turn to regard the source of the noise with an easy, unguarded motion. The mouth-wateringly tempting vision your roving gaze discovers is beyond what you expected: a curvy woman barely covered in a deep green chemise. Her hair is long and lustrous, emerald tresses that shine in the few rays of light to penetrate this area. You lean in for a closer look and realize that her garments and “hair” are actually comprised of leaves and vines, though woven in ways that create quite an alluring look. The stuffy jungle surroundings do little to dim her beauty, though you realize almost immediately that she must be a venus pitcher.");
+		
+		output("\n\n“<i>Awww, you know what I am, don’t you?</i>”  she pouts in a voice quite different from the one she greeted you with.");
+		output("\n\nYou smirk a little and answer ");
+		if(pc.isNice()) output("that you do.");
+		else if(pc.isMischievous()) output("that you might.");
+		else output("that you do. What kind of idiot falls for a trap that obvious?");
+		output("\n\nThe venus pitcher runs her hands across her big, bouncy breasts - easily the size of F-cups on a human girl - and asks, “<i>Well, I am quite lonely. Perhaps you’d stick around and let me put on a show for you?</i>”");
+		
+		output("\n\nOh this again. You already ran into a venus pitcher that tried this song and dance on you, and ");
+		//[HASNT BEEN HYPNOED EVER]
+		if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined)
+		{
+			output("it didn’t work then. The idea does remain rather appealing to you. Do you stay for the show?");
+			//[Yes/No]
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Stay",agreeToStayForRepeatVenusLovings);
+			userInterface.addButton(1,"No",noRepeatElderVenusPitcher);
+		}
+		//[BEEN HYPNOTIZED]
+		else {
+			output("it worked so very, very well. Every erogenous zone on your body begins to tingle and engorge at the memory of your submission. It was damn hot! ");
+			var bonus:Number = flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]/2;
+			if(bonus > 30) bonus = 30;
+			if(pc.willpower() - pc.libido()/3 + rand(20) + 1 > 9 + bonus) {
+				output("Do you stay and watch the show again, knowing what will happen?");
+				//[yes][no]
+				userInterface.clearMenu();
+				userInterface.addButton(0,"Yes",yesRepeatElderVenusPitcher);
+				userInterface.addButton(1,"No",noRepeatElderVenusPitcher);
+			}
+			else {
+				output("You briefly consider leaving, but the pleasant memories keep you firmly rooted in place.");
+				userInterface.clearMenu();
+				userInterface.addButton(0,"Next",agreeToStayForRepeatVenusLovings);
+			}
+		}
+	}
+}
+
+
+//[No]
+function noRepeatElderVenusPitcher():void {
+	clearOutput();
+	output("You turn away before she snare you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+//[Yes]
+function yesRepeatElderVenusPitcher():void {
+	clearOutput();
+	output("You shrug and decide to let the show play out this time, locking your eyes on her tits as she playfully jiggles and bounces them for you. Her hips sway from side to side, and puffs of particulate briefly cloud the air behind her, drawing your eyes to her flaring waistline. You flick your eyes back up to her tits with her deep, dark nipples.");
+	output("\n\n“<i>Ah, see something you like then, traveller? Go on and watch then, I’ve been told that my shape is particularly pleasing to look upon. Genitalia have a way of swelling up in my presence, no?</i>”");
 	
-{NEXT}
-{Epilogues}
-//Some energy damage!
-	You wake up more than a little sore, all alone. The venus pitcher is gone as far as you can tell. If she’s hiding in her pod, the entrance is closed and concealed under the jungle brush and detritus with such skill that you doubt you could find it again.
-{First Time}
-	You head is swimming with thoughts and memories of the venus pitcher woman, from her enticing mammaries to the way she made you cum your way into unconsciousness. There’s just something unmistakably sexy about a woman who snares your mind so effectively that you’ll willingly let her milk you through orgasm after orgasm. A quiet thrill runs through you when you wonder if all venus pitchers are like this one, and if not, if you can find this one again when she’s ready for another meal...
-	{Second}
-	Whoah, that sexy, chlorophyl-laden slut did a number on you! You can still make out every detail of her tits in your mind, softly swaying back and forth... their beauty slowly entrancing you.... Shaking out of your stupor, you smile ruefully and rub the sore, sensitive parts of your body, shuddering at the aftershocks that assault you even now. The realization that you fell into a venus pitcher’s trap again has your heart starting to beat faster, and you idly wonder if volunteering to join them would be so bad.
-	{Third}
-	Wow! That felt sooo good. Your whole body is sore and tired, but in a really, REALLY good way. The aches are just like little reminders of how good the venus pitcher made you feel, and how badly your body wants to recover so it can do it again. You know that you really shouldn’t crave them so, but it’s not like they’re hurting you, right?
-	{4-5}
-	Mmmm, you lie there for a moment, trying to recall every detail of the exquisite pleasure you just endured. She worked you over so good, and her nipples, they must be psionic focuses or something. Whenever you look at them, you just kind of float away and give her whatever she wants, which surely isn’t good, right? Though it does feel good... so good.
-	{6+}
-	Ahhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to put up any taken resistance any longer.
-*Repeat
-(1) A lilting voice rises up to call, “<i>Hail, traveller! Tell me, could you spare a drink for a thirsty matron? I appear to have misplaced mine.</i>”
-(2) A gentle drawl hooks your [ears]. “<i>Well hello there, cutey. Wanna come over here and sit for a spell? I’m plum tuckered out!</i>”
-(3) “<i>Hello! Are you busy? I could use someone to talk to,</i>” a methodically lilting voice inquires.
-You turn to regard the source of the noise with an easy, unguarded motion. The mouth-wateringly tempting vision your roving gaze discovers is beyond what you expected: a curvy woman barely covered in a deep green chemise. Her hair is long and lustrous, emerald tresses that shine in the few rays of light to penetrate this area. You lean in for a closer look and realize that her garments and “hair” are actually comprised of leaves and vines, though woven in ways that create quite an alluring look. The stuffy jungle surroundings do little to dim her beauty, though you realize almost immediately that she must be a venus pitcher.
-“<i>Awww, you know what I am, don’t you?</i>” she pouts in a voice quite different from the one she greeted you with.
-You smirk a little and answer {that you do./that you might/that you do. What kind of idiot falls for a trap that obvious?}
-The venus pitcher runs her hands across her big, bouncy breasts - easily the size of F-cups on a human girl - and asks, “<i>Well, I am quite lonely. Perhaps you’d stick around and let me put on a show for you?</i>”
-Oh this again. You already ran into a venus pitcher that tried this song and dance on you, and {FORK}
-[HASNT BEEN HYPNOED EVER] it didn’t work then. The idea does remain rather appealing to you. Do you stay for the show?}
-[Yes/No]
-	[No]
-	You turn away before she snare you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.
-	[Yes]
-	You shrug and decide to let the show play out this time, locking your eyes on her tits as she playfully jiggles and bounces them for you. Her hips sway from side to side, and puffs of particulate briefly cloud the air behind her, drawing your eyes to her flaring waistline. You flick your eyes back up to her tits with her deep, dark nipples.
-	“<i>Ah, see something you like then, traveller? Go on and watch then, I’ve been told that my shape is particularly pleasing to look upon. Genitalia have a way of swelling up in my presense, no?</i>”
-[BEEN HYPNOTIZED]
-it worked so very, very well. Every erogenous zone on your body begins to tingle and engorge at the memory of your submission. It was damn hot! {Do you stay and watch the show again, knowing what will happen?/You briefly consider leaving, but the pleasant memories keep you firmly rooted in place.
-{Agree to stay} You smile at her and eagerly inform her that you’d love another show.
-{No} go to above no for unhypno’ed
-“<i>Ahhh, now you’re a person of fine taste, I can tell,</i>” the venus pitcher announces. Her hands begin to playfully jiggle her tits for you, making them bounce and sway in familiar-looking circles. Her hips sway from side to side with the motions, and puffs of particulate briefly erupt from something behind her, barely distracting your eyes from her deep, dark nipples. It’s hard not to look at them, honestly; they’re like magnets for your eyes.
-“<i>You like them, no? Go ahead and watch then. I can see how you’re getting hornier and hornier just from being around me.</i>”
-[MERGE]
-	A sneeze erupts from your nose out of nowhere, but by now, you’re used to sneezing in the presence of these beauteous ladies. Something about their spores just tickles your nose, but at the same time, they do make it quite easy to sit there and stare, watching supple, female form twist and writhe for nothing more than your amusement. Arousal builds within you, unchecked by restraint as her words come true, giving you another reason to watch her fingertips mesmerizingly slide across her breasts.
-	Seeing the way you *follow her fingers, the pale-skinned dancer begins to use her palm to rotate them at you, even tweaking the hard tips of her nipples as they harden before your very eyes. Tiny puffs erupt from behind her again, and she purrs, “<i>Yes, they are quite entrancing, and they’re getting so hard for you. Surely you can tell, since your eyes have already centered on them. I’m told that after watching for a few moments, they become quite difficult to look away from.</i>”
-	{You smirk and enjoy the show, there’s no way you’ll miss a moment of this./You know that all too well, though you have no idea why you’d ever want to stop watching this show. If you did, you wouldn’t get to feel her relax you into a pliant puddle of lust that she can play with.} Her fingers tweak the tops of her nipples happily when you fail to avert your eyes, an obvious treat designed to give the viewer pleasure.
-	“<i>Well, you didn’t look away, so that confirms it. My nipples <b>are</b> powerful and hypnotic, and you’re caught in their power, unable to look away, growing more and more aroused. Even now, they’re drawing you deeper into the power, so effectively trapping your eyes that the rest of the world seems to disappear around them; except for my voice, that is. My voice is tied to them, just as importantly as the slowly rotating swells of my tits, fluttering in your ears and relaxing you. Take a deep breath.</i>”
-	You inhale, deeply, and feel more relaxed with every passing second, suddenly aware that her power over you seems to be strengthening. Her nipples... they’re the source of her power! You try to yank your view aside, but all you wind up doing is realizing how wonderfully pebbly her areolae look, how sinfully succulent her breasts are, and how deeply they’ve rooted themselves into your consciousness. Each breath you take reminds you of the time you were in a dusty old attack, only less irritating and more relaxing, compounded by the way your verdant mistress sways her body.
-	The venus pitcher smirks, though her expression remains beyond the parts of your view that you’re aware of. “<i>Don’t try and fight it. When you fight, my nipples get harder, and when they get harder, their power grows more compelling.</i>” She tweaks a nipple and tugs, causing it to stand out a bit more proudly. “<i>Uh oh, there’s no way you’ll escape now. They’re so puffy and potent, and you’ve been watching them soooo long.... You can probably see them on the inside of your eyelids whenever you blink, still moving, still hypnotizing you.</i>”
-	You force a blink to test her theory, and again, the words ring true. Those juicy, bouncy plant-breasts are still there, still bouncing... still compelling you to watch. You whimper at the realization that you can’t break free.
-	“<i>I told you, and honestly, you should have known better than to stay around me this long. I’ve been filling the air with my spores, and those same spores are what have been making you feel so blissfully pliant and suggestible, so easily hypnotized. My tits have you trapped in their power, and every breath you breathe is deepening their control over you. Control that is slowly, inexorably doing away with all your worries and resistance,</i>” the pitcher woman proudly declares.
-	Oh it's true! You’re finding it harder and harder to wonder why you were even considering resisting. You’re growing quite comfortable and relaxed, just watching and breathing deeply, her nipples keeping you horny, even when you blink.
-	Those pendulous, hypnotic jugs slap together as they’re moved more forcefully, more aggressively. Their owner coos, “<i>And as you grow more relaxed and more aroused, it stops being just worries that are vanishing. Your thoughts are being smoothed away by my control, dissipating as you come to the realization that since I control you this effectively, I can tell you what to think. And right now, I’m telling you to empty your mind of everything but my voice and my control.</i>”
-	Quiet settles over your mind like a warm, foggy blanket, tucking each and every errant musing into a hidden corner where it cannot trouble your consciousness any longer.
-	“<i>It feels so good to sink that deeply into my power, so blissfully and relaxing. Let yourself float further and further into my control. Let your mind drift even as your most erogenous places become tender and achingly sensitive. Let your hands explore those places now as you focus on the wonderful feeling of allowing me to control you, allowing me to fill your mind with and body with such pleasure.</i>”
-	Your mind drifts across a sea of hypnotic breasts while your hands plunge unhindered onto your most erogenous places, groping and squeezing passionately. You let out a completely unrestrained moan. No sense of propriety or inhibition regulates your vocalizations; they’re loud and almost... proud. The pleasure is welling up warm and hot within you, spurring you to continue your automolestation.
-	The sensuously stacked slut coos, “<i>Come closer.... Come closer so that my breasts and nipples can ensnare you further. There’s nothing to worry about here, nothing except the chance of you missing out on a wonderful time. And as ensorceled as you are, there’s no chance of that. Come here and sink deeper for my breasts, pet. Let them smother your mind in ecstasy.</i>”
-	Her breasts get bigger and bigger in your fixated view, bouncing and jiggling in their hypnotizing circles as you breathe in more and more of her relaxing spores. Your mind is empty and relaxed. Your hands are busy groping your body. You are, in a word, helpless, subject to this busty flora’s whims. Her soothing whispers draw you in like a moth to a flame, irresistibly tugging on you with half-thought, unformed need that makes your [pc.legs] slowly advance. The power she radiates seems more intense the closer you get to her mammoth tits, so strong now that the tiny whispers that lick at the back of your mind are winking out one by one, disappearing into blissful obedience.
-	Stumbling, you snag on the edge of an unseen, unnoticed hole and begin to fall. Hypnotized as you are, you don’t even windmill your arms. You just watch the juicy, mesmerizing tits get closer, lacking the foresight to realize that your fall could take them out of sight forever....
-	Slap! Your face plants into the mind-melting cleavage while arms catch you. The venus pitcher is supporting all of your weight on her lithe frame somehow, and you’re too blissed out to wonder why. You nuzzle her soft teats happily as your groping takes on a new urgency.
-	“<i>Oh, you’re lucky you have me here to take care of you, pet. You might have gotten hurt! Just let me take care of you - I’ll even do all the thinking for your poor, sluggish brain. Every word you obey feels like a tongue licking at your genitals. Feel them, pet. Feel the tongues,</i>” the floral woman instructs. Oh wow, you feel them - do you ever! Hot, wet organs slipping and sliding on your skin. “<i>This close, you’re so firmly in my power that my words can slide right into that malleable little organ, teaching you the proper way to think. Nod for me, now.</i>”
-	You nod.
-	“<i>Good [boy/girl/pet]. Now, let’s go deal with that mounting lust, shall we?</i>” You sag into her grip as your ardor becomes more and more potent on command, threatening to overwhelm you. Up becomes down and down becomes up as you’re spun about and placed in a dark cave, your face still smothered in juicy green jugs. This should be alarming you, but it isn’t. All you can think about is how good it feels to give in to her and how powerful her breasts are. You do as you’re told and let her take care of you, her words nestling deep into you.
-	Slippery wet flesh coils up from below to encircle each of your limbs in vice-tight grips. As you’re bound and suspended in the air, face still tit deep in boob, you become aware that the things suspending you are tentacles - slippery, squirming tentacles. Their moisture soaks your [skin] so thickly that it drips from your fingertips and runs down your [pc.belly]. Their touch is skillful and erotic, tantalizing your overly aroused mind with the way that they touch and slide like sexual organs, touching every nook and cranny of your form.
-	“<i>You’re so ready to be properly touched... to have your lust fed into a bonfire of need and then milked from you with slow, deliberate orgasms. Just lie back and obey my instructions. Obey them so wholly that they stop becoming powerful instructions and turn into compulsive thoughts of your own,</i>” the potent voice purrs as you’re stretched and suspended upside down, completely naked. Your arousal is totally exposed to her, though this is a blessing, since you’re awaiting the pleasure you’ve become conditioned to expect. The tongues you’ve been feeling have brought you to a precipice, and the feeling of pure, distilled excitement threatens to explode out of you already{, even though you’ve been here before}.
-//To Tentacle Jam
+	repeatVenusPitcherHypnoGo();
+}
+
+//{Agree to stay}
+function agreeToStayForRepeatVenusLovings():void {
+	clearOutput();
+	output("You smile at her and eagerly inform her that you’d love another show.");
+	output("\n\n“<i>Ahhh, now you’re a person of fine taste, I can tell,</i>” the venus pitcher announces. Her hands begin to playfully jiggle her tits for you, making them bounce and sway in familiar-looking circles. Her hips sway from side to side with the motions, and puffs of particulate briefly erupt from something behind her, barely distracting your eyes from her deep, dark nipples. It’s hard not to look at them, honestly; they’re like magnets for your eyes.");
+	output("\n\n“<i>You like them, no? Go ahead and watch then. I can see how you’re getting hornier and hornier just from being around me.</i>”");
+	repeatVenusPitcherHypnoGo();
+}
+
+//[MERGE]
+function repeatVenusPitcherHypnoGo():void {
+	clearOutput();
+	output("\n\nA sneeze erupts from your nose out of nowhere, but by now, you’re used to sneezing in the presence of these beauteous ladies. Something about their spores just tickles your nose, but at the same time, they do make it quite easy to sit there and stare, watching supple, female form twist and writhe for nothing more than your amusement. Arousal builds within you, unchecked by restraint as her words come true, giving you another reason to watch her fingertips mesmerizingly slide across her breasts.");
+	output("\n\nSeeing the way you follow her fingers, the pale-skinned dancer begins to use her palm to rotate them at you, even tweaking the hard tips of her nipples as they harden before your very eyes. Tiny puffs erupt from behind her again, and she purrs, “<i>Yes, they are quite entrancing, and they’re getting so hard for you. Surely you can tell, since your eyes have already centered on them. I’m told that after watching for a few moments, they become quite difficult to look away from.</i>”");
+	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined) output("\n\nYou smirk and enjoy the show, there’s no way you’ll miss a moment of this.");
+	else output("\n\nYou know that all too well, though you have no idea why you’d ever want to stop watching this show. If you did, you wouldn’t get to feel her relax you into a pliant puddle of lust that she can play with.");
+	output("\n\nHer fingers tweak the tops of her nipples happily when you fail to avert your eyes, an obvious treat designed to give the viewer pleasure.");
+	output("\n\n“<i>Well, you didn’t look away, so that confirms it. My nipples <b>are</b> powerful and hypnotic, and you’re caught in their power, unable to look away, growing more and more aroused. Even now, they’re drawing you deeper into the power, so effectively trapping your eyes that the rest of the world seems to disappear around them; except for my voice, that is. My voice is tied to them, just as importantly as the slowly rotating swells of my tits, fluttering in your ears and relaxing you. Take a deep breath.</i>”");
+	
+	output("\n\nYou inhale, deeply, and feel more relaxed with every passing second, suddenly aware that her power over you seems to be strengthening. Her nipples... they’re the source of her power! You try to yank your view aside, but all you wind up doing is realizing how wonderfully pebbly her areolae look, how sinfully succulent her breasts are, and how deeply they’ve rooted themselves into your consciousness. Each breath you take reminds you of the time you were in a dusty old attack, only less irritating and more relaxing, compounded by the way your verdant mistress sways her body.");
+	
+	output("\n\nThe venus pitcher smirks, though her expression remains beyond the parts of your view that you’re aware of. “<i>Don’t try and fight it. When you fight, my nipples get harder, and when they get harder, their power grows more compelling.</i>”  She tweaks a nipple and tugs, causing it to stand out a bit more proudly. “<i>Uh oh, there’s no way you’ll escape now. They’re so puffy and potent, and you’ve been watching them soooo long.... You can probably see them on the inside of your eyelids whenever you blink, still moving, still hypnotizing you.</i>”");
+	
+	output("\n\nYou force a blink to test her theory, and again, the words ring true. Those juicy, bouncy plant-breasts are still there, still bouncing... still compelling you to watch. You whimper at the realization that you can’t break free.");
+	
+	output("\n\n“<i>I told you, and honestly, you should have known better than to stay around me this long. I’ve been filling the air with my spores, and those same spores are what have been making you feel so blissfully pliant and suggestible, so easily hypnotized. My tits have you trapped in their power, and every breath you breathe is deepening their control over you. Control that is slowly, inexorably doing away with all your worries and resistance,</i>”  the pitcher woman proudly declares.");
+	
+	output("\n\nOh it's true! You’re finding it harder and harder to wonder why you were even considering resisting. You’re growing quite comfortable and relaxed, just watching and breathing deeply, her nipples keeping you horny, even when you blink.");
+	
+	output("\n\nThose pendulous, hypnotic jugs slap together as they’re moved more forcefully, more aggressively. Their owner coos, “<i>And as you grow more relaxed and more aroused, it stops being just worries that are vanishing. Your thoughts are being smoothed away by my control, dissipating as you come to the realization that since I control you this effectively, I can tell you what to think. And right now, I’m telling you to empty your mind of everything but my voice and my control.</i>”");
+	
+	output("\n\nQuiet settles over your mind like a warm, foggy blanket, tucking each and every errant musing into a hidden corner where it cannot trouble your consciousness any longer.");
+	
+	output("\n\n“<i>It feels so good to sink that deeply into my power, so blissfully and relaxing. Let yourself float further and further into my control. Let your mind drift even as your most erogenous places become tender and achingly sensitive. Let your hands explore those places now as you focus on the wonderful feeling of allowing me to control you, allowing me to fill your mind with and body with such pleasure.</i>”");
+	
+	output("\n\nYour mind drifts across a sea of hypnotic breasts while your hands plunge unhindered onto your most erogenous places, groping and squeezing passionately. You let out a completely unrestrained moan. No sense of propriety or inhibition regulates your vocalizations; they’re loud and almost... proud. The pleasure is welling up warm and hot within you, spurring you to continue your automolestation.");
+	
+	output("\n\nThe sensuously stacked slut coos, “<i>Come closer.... Come closer so that my breasts and nipples can ensnare you further. There’s nothing to worry about here, nothing except the chance of you missing out on a wonderful time. And as ensorceled as you are, there’s no chance of that. Come here and sink deeper for my breasts, pet. Let them smother your mind in ecstasy.</i>”");
+	
+	output("\n\nHer breasts get bigger and bigger in your fixated view, bouncing and jiggling in their hypnotizing circles as you breathe in more and more of her relaxing spores. Your mind is empty and relaxed. Your hands are busy groping your body. You are, in a word, helpless, subject to this busty flora’s whims. Her soothing whispers draw you in like a moth to a flame, irresistibly tugging on you with half-thought, unformed need that makes your [pc.legs] slowly advance. The power she radiates seems more intense the closer you get to her mammoth tits, so strong now that the tiny whispers that lick at the back of your mind are winking out one by one, disappearing into blissful obedience.");
+	
+	output("\n\nStumbling, you snag on the edge of an unseen, unnoticed hole and begin to fall. Hypnotized as you are, you don’t even windmill your arms. You just watch the juicy, mesmerizing tits get closer, lacking the foresight to realize that your fall could take them out of sight forever....");
+	
+	output("\n\nSlap! Your face plants into the mind-melting cleavage while arms catch you. The venus pitcher is supporting all of your weight on her lithe frame somehow, and you’re too blissed out to wonder why. You nuzzle her soft teats happily as your groping takes on a new urgency.");
+	
+	output("\n\n“<i>Oh, you’re lucky you have me here to take care of you, pet. You might have gotten hurt! Just let me take care of you - I’ll even do all the thinking for your poor, sluggish brain. Every word you obey feels like a tongue licking at your genitals. Feel them, pet. Feel the tongues,</i>”  the floral woman instructs. Oh wow, you feel them - do you ever! Hot, wet organs slipping and sliding on your skin. “<i>This close, you’re so firmly in my power that my words can slide right into that malleable little organ, teaching you the proper way to think. Nod for me, now.</i>”");
+	
+	output("\n\nYou nod.");
+	
+	output("\n\n“<i>Good " + pc.mfn("boy","girl","pet") + ". Now, let’s go deal with that mounting lust, shall we?</i>”  You sag into her grip as your ardor becomes more and more potent on command, threatening to overwhelm you. Up becomes down and down becomes up as you’re spun about and placed in a dark cave, your face still smothered in juicy green jugs. This should be alarming you, but it isn’t. All you can think about is how good it feels to give in to her and how powerful her breasts are. You do as you’re told and let her take care of you, her words nestling deep into you.");
+	
+	output("\n\nSlippery wet flesh coils up from below to encircle each of your limbs in vice-tight grips. As you’re bound and suspended in the air, face still tit deep in boob, you become aware that the things suspending you are tentacles - slippery, squirming tentacles. Their moisture soaks your [pc.skin] so thickly that it drips from your fingertips and runs down your [pc.belly]. Their touch is skillful and erotic, tantalizing your overly aroused mind with the way that they touch and slide like sexual organs, touching every nook and cranny of your form.");
+	
+	output("\n\n“<i>You’re so ready to be properly touched... to have your lust fed into a bonfire of need and then milked from you with slow, deliberate orgasms. Just lie back and obey my instructions. Obey them so wholly that they stop becoming powerful instructions and turn into compulsive thoughts of your own,</i>”  the potent voice purrs as you’re stretched and suspended upside down, completely naked. Your arousal is totally exposed to her, though this is a blessing, since you’re awaiting the pleasure you’ve become conditioned to expect. The tongues you’ve been feeling have brought you to a precipice, and the feeling of pure, distilled excitement threatens to explode out of you already");
+	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output(", even though you’ve been here before");
+	output(".");
+	//To Appropriate Venus pitcher milking!
+	//9999
+}
+
+//[Look Away]
+function lookAwayFromElderVenusPitcher():void {
+	clearOutput();
+	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
+	//To room desc, no venus proc.
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+
+function watchElderVenusPitcher():void {
+	clearOutput();
+	output("Of course! This is making you feel pretty hot, and you wouldn’t mind staying to see just what all this fine-ass piece of flora can do with the humanoid portion of her body. Like she said, you’re safe over here, so she’s harmless. You’ll watch her and her nipples more – at least until you get tired of it.");
+	output("\n\nBack and forth, her fingers slide across her moist, pebbly protrusions, dulling your wits with melon lust. You sneeze again, barely noticing aside from when the action causes you to momentarily lose sight of her emerald peaks, but her hips catch your eyes with their slow back and forth waggle, dragging you right back to watching those proud, puckered nipples.");
+	output("\n\n“<i>They’re hard to look away from aren’t they?</i>”");
+	output("\n\nYou nod, still watching.");
+	output("\n\n“<i>That’s understandable. My nipples are quite mesmerizing,</i>”  she explains, lifting her chest towards your face for emphasis.");
+	
+	output("\n\nYeah they - wait, what?");
+	
+	output("\n\nThe seductive plantress begins to guide her breasts in small circles, clapping the hefty orbs together into a mountain of cleavage at the innermost part of the rotation. She says, \"<i>It’s true. The longer you watch my nipples, the harder you </i>");
+	if(pc.hasCock()) output("<i>get</i>");
+	else output("<i>make them</i>");
+	output("<i>, and the harder you </i>");
+	if(pc.hasCock()) output("<i>get</i>");
+	else output("<i>make them</i>");
+	output("<i>, the harder it becomes to look away. And you’ve ");
+	if(pc.hasCock()) output("<i>gotten</i>");
+	else output("<i>made them</i>");
+	output("<i> very hard, haven’t you? So achingly, soul-wrenchingly hard that a feather’s touch brings on an avalanche of pleasure.</i>\"");
+	if(pc.hasCock()) output("\n\nYou’re so damned hard! [pc.EachCock] is throbbing powerfully, unrepentant in its lust, already beginning to bead a drop of lusty pre atop its crown.");
+	else output("\n\nThey look so damned hard! The way she shudders as her fingers make the circuit leaves you no doubt that she’s loving it.");
+	output(" You feel like you should try to avert your gaze or something, but the thought never really gains any traction in your mind. Her nipples are beautiful, sexy and hard to look away from. There’s no downside to watching them, so why struggle not to? Even blinking is getting kind of hard; they’re THAT hard to look away from.");
+	output("\n\nSeeing the water beading at the corners of your eyes, the grinning babe prattles on, “<i>Since you’ve been looking at my nipples for so long and the way my fingers trace around their perimeter is so memorable, you can actually still see them even when you close your eyes or when a leaf obstructs your view. Blinking is easy because in your mind you’re still watching my nipple, still fixated on the way it shines and beckons to you, entrancing you so deeply that you looking away seems profoundly and deeply wrong.</i>\"");
+	
+	output("\n\nYou close your eyes and bask in the relief, still watching her digits caressing her areolae in your mind’s eye until you’re gazing upon them in the real world again. The sneeze that rocks your head back doesn’t even phase you - just like when you blinked, you watch her nipples in your mind until you’re able to zero in on them once more. They’re so entrancing that you could just watch them all day. Maybe you will.");
+	output("\n\n“<i>Good " + pc.mf("boy","girl","pet") + ",</i>”  the owner of the hypnotic bust moans, “<i>Every circle my thumbs take around these beautiful, suckable nipples is reminding you of why you started watching me in the first place. They’re so alluring and inviting, and the way you’re focusing on them makes it difficult to think of anything beyond the world of these mesmeric knockers. Really, it’s not just the nipples anymore, the boobs have you, too, trapped in their spirals as I gently squeeze and move them, smushing them together for you to ogle until your brain shuts down completely. It feels good to let yourself go, to focus on how hot </i>");
+	if(pc.hasCock()) output("<i>and hard</i>");
+	else if(pc.hasVagina()) output("<i>and wet</i>");
+	else output("<i>and lusty</i>");
+	output("<i> I can make you feel.</i>”");
+	
+	output("\n\nStanding there open-mouthed, you watch, drooling a little and not stifling your sneezes in the slightest. Even without her instructions, you didn’t seem to be at one hundred percent here, but at least now you can let it go and just... stare, letting yourself unashamedly leer at this alien babe’s knockers as she caresses and shakes them for you. It’s euphoric in an arousing way. One of your hands begins to grope your own body. You can’t muster the thoughts to stop it, either.");
+	output("\n\nThe verdant maiden purrs, “<i>You don’t need to touch yourself. You know you could walk up to me, and I would make you feel so good.</i>”");
+	output("\n\nYou mumble something that sounds like, “<i>Can’t fuck everything I meet.</i>”");
+	
+	output("\n\nIn a voice so throaty and lustful that it makes your [pc.legs] shudder, the venus pitcher woman answers, “<i>You can make an exception for me and my sisters. We don’t want to do anything bad to you</i>");
+	if(rand(3) == 0) output("<i>; we just want to make you feel good for as long as possible and help you cum out all that pent-up, nasty tension whenever it rises up inside you</i>");
+	else output("<i>; we just want to to make you feel very good while we milk you and fuck through as many orgasms as possible</i>");
+	output("<i>. What isn’t to love? Honestly, I’d be surprised if you weren’t already rationalizing a reason to crawl into my arms and let me and my perfect tits take you to a paradise beyond imagining, </i>");
+	if(pc.hasCock()) output("<i>one that will make your [pc.cocks] melt</i>");
+	else output("<i>one that will make your [pc.vaginas] melt</i>");
+	output("<i>.</i>”");
+	
+	output("\n\nYou shudder and groan with pent up, lusty frustration. She’s right, of course. Her breasts are so wonderfully, kissably soft, and she doesn’t want to hurt you, just make you cum out all the tension you’ve built up from watching her.");
+	
+	output("\n\n“<i>That’s it. Come closer, my good " + pc.mf("boy","girl","pet") + ",</i>\"  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.\"</i>");
+	
+	output("\n\nWhimpering slightly, you take one staggering ");
+	if(pc.hasLegFlag(GLOBAL.DIGITIGRADE) || pc.hasLegFlag(GLOBAL.PLANTIGRADE)) output("step");
+	else output("movement");
+	output(" forward after another, shedding your gear as you go. She won’t hurt you. Her words are like tongues of honey sliding all over your mind and body, guiding you closer, drawing you nearer with each passing second. It feels so good to let her control your mind, to steer you into erotic indulgence of her every enunciation. Verdant breasts grow larger in your view, and you find their effect on you intensified the closer you get and the more of the stuffy air around her that you breathe in.");
+	
+	output("\n\nYour [pc.foot] catches on the edge of a hole and you stumble, about to fall head over [pc.heels] into a pit, but the venus pitcher catches you in her jiggly bosom, holding you aloft with surprising strength while your face presses into her heavenly, mind-softening mammaries.");
+	
+	output("\n\n“<i>I’d never let you fall in there and get hurt. <b>My sisters and I know what’s best for you.</b> Just relax, and <b>let me think for you</b>,</i>”  the floral woman promises. Your body slumps nervelessly in her arms, inundated with lust and hypnotized obedience.");
+	
+	output("\n\nShifting slowly, gravity seems to spin around you, tugging on your body in different ways while your face remains steadfastly planted in the plant-boobs. The motion ceases once you feel suspended upside down. A tiny, mental voice whispers that you should be alarmed at this, but you know that you’re safe with the venus pitcher and in complete control. You’re simply enjoying the show and how good her words can make you feel, particularly when you obey them without questioning their meaning.");
+	
+	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
+	
+	output("\n\n\"<i>Now, you just lie back there, and I’m going to make you cum so very, very well,</i>\"  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
+	//Choose appropriate genitalia to abuse!
+	//Next
+	//9999
+}
+
+//{Dicks}
+function elderVenusPitchersDickplay():void {
+	clearOutput();
+	output("A tentacle almost as big as your torso appears in front of you, swaying slowly back and forth before you. Its end is an open, sucking hole, adorned with perhaps a dozen purplish bulbs around the entrance that pulse merrily. Inside is a sea of wriggling, writhing flesh: sensuous purple-green folds, wiggling cilia, and tight rings of muscle to squeeze and caress. The juice dripping from it smells sweet, almost honeyed, and it oozes out all over your crotch, soaking your [pc.cocks]");
+	if(pc.hasVagina()) output(" and [pc.vaginas]");
+	output(" with slippery wetness as it bobs above.");
+	
+	output("\n\n“<i>This is going to feel so good for us, pet,</i>”  the upside down woman’s voice assures you. Her body sways forward, planting her breasts back around your [pc.face], and she begins to run her fingers ");
+	if(pc.hasHair()) output("through your [pc.hair]");
+	else output("over your head");
+	output(" comforting. “<i>Close your eyes and savor the sensations. This is what it feels like to feed a venus pitcher.</i>”");
+	
+	output("\n\nWithout another word, you’re treated to the feeling of having your [pc.cocks] enveloped in a wave of heated suction, noisily slurped into the grasping, squeezing maw of the gigantic tentacle. The slippery folds slide over you, delivering agonizing waves of pleasure so intense that your eyes roll back - even though you have them closed, as instructed. [pc.EachCock] thickens perceptively under the pleasurable deluge, and you become aware of the tickling of hundreds of cilia on different parts of your maleness");
+	if(pc.cockTotal() > 1) output("es");
+	output(", each licking like a tiny, miniature tongue, lewdly caressing your [pc.skin] with a hunger that borders on obscene. The end of the tentacle constricts powerfully at your [sheath], matched elsewhere along your length by other rings of muscle. They work back and forth and try to get you off with all due haste.");
+	cockChange();
+	
+	output("\n\nA gentle finger slides along the nape of your neck, and your seductress coos, “<i>Don’t hold back for me, lover. The most pleasurable thing you can give a venus pitcher, like me, is a big, fast, orgasm.</i>”  She rubs her palm between your shoulders and coos, “<i>Go ahead and cum.</i>”");
+
+	output("\n\nThe inhuman pleasure forced over your [pc.cocks] would have you cumming in moments anyway, but that whispered, hypnotic command wraps around your mind as tightly as the tube wrapped around your penis");
+	if(pc.cockTotal() > 1) output("es");
+	output(". You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [pc.balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick{s} suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.");
+	
+	//{Low Cum}
+	if(pc.cumQ() <= 50) {
+		output("\n\nAll too soon, you’re spent, slumping back into the floral harness and the breasts before you with a lewd sigh.");
+		output("\n\n“<i>Wait, that’s it?</i>”  the busty babe asks incredulously. “<i>That can’t... that won’t do!</i>”");
+		output("\n\nA distressed thought surfaces in your addled mind: didn’t you do what she told you? You worriedly try to pull away, but a soothing hand tilts your chin, turning you up and to the side until a nipple is in your lips. “<i>Drink.</i>”");
+		output("\n\nYou do, swallowing deep draughts of a largely tasteless fluid. It does seem somewhat savory, but you really can’t place the flavor. As you swallow, you feel the telltale engorgement of lust down below and a pinch ");
+		if(pc.balls > 0) {
+			output("in your [pc.sack] as your [pc.balls] ");
+			if(pc.ballSize < 5) {
+				if(pc.balls == 1) output("plumps slightly");
+				else output("plump slightly");
+			}
+			else {
+				if(pc.balls == 1) output("grows denser");
+				else output("grow denser");
+			}
+		}
+		output("in your groin, just behind your [pc.cocks]");
+		output(". The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [pc.cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.");
+		output("\n\nEventually, you lose consciousness, but the [cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
+		//{Good boost to cum quantity and skip to end}
+		pc.cumEfficiency += 2;
+		pc.cumMultiplier += 2;
+		if(pc.cumEfficiency/pc.cumMultiplier < 3) pc.cumEfficiency += 2;
+		pc.slowStatGain("libido",2);
+	}
+	//{Medium Cum}
+	else if(pc.cumQ() <= 1000) {
+		output("\n\nWith the unrivaled ecstasy you’re being exposed to, your body never seems to stop cumming. Normally, you fire out a pretty large amount of [pc.cum], but today you’re launching huge ropes with wild abandon, flooding the inside of the venus pitcher’s marvellous tentacle with the stuff. It manages to drink it all somehow, though the large bulges distort its shape as they wind back into the “wall” of this chamber. There’s a pinch on your arm - not enough to really rouse your attention but you are aware of it. A moment later, the heat of your orgasm intensifies, and there’s a sense of ");
+		if(pc.balls > 0) output("increased denseness in your [pc.sack]");
+		else output("tightness in your body");
+		output(". Your eyes roll back in your head as you feed the wonderful woman, pouring an almost unending tide of lust straight into her clutching hole.");
+		output("\n\nAfter an indeterminate amount of time, the ecstasy does come to end, leaving you exhausted and panting.");
+		output("\n\n“<i>You’re going to remember how good this feels,</i>” the venus pitcher says, “<i>and feel drawn to me whenever you have time to come into the woods...</i>” You nod dreamily and pass out.");
+		//Small cum volume boost.
+		pc.cumEfficiency += .5;
+		pc.cumMultiplier += .5;
+		if(pc.cumEfficiency/pc.cumMultiplier < 3) pc.cumEfficiency += 1.5;
+		pc.slowStatGain("libido",1);
+	}
+	//{High Cum+}
+	else {
+		output("\n\nThere seems to be no stopping the tide of [pc.cum] spraying from your [pc.cocks]. There’s so much that the pleasure-tube massaging your cock{s} bloats from the amount pouring into it, expanding to almost double its size in places down its length. The tip remains stubbornly sealed around your [pc.sheath]. Here and there, beads of [pc.cumColor] escape around it, but the bulk is pumping straight into the venus pitcher’s ravenous stalk, disappearing into the wall of the bulb in explosive waves of gooey, wondrous pleasure.");
+		output("\n\nYou can hear the suspended woman groaning in delight while her body devours nearly every single drop. “<i>Oh... wow, you’re so good at this, pet!</i>” Her hands begin to tug on her nipples, and she whimpers a barely controlled command, “<i>Don’t you ever forget me! This feels so good that you’ll want to come back to me every day!</i>”");
+		output("\n\nGrunting your assent, you shudder and spend the rest of your virility, embedding the memory in your psyche, knowing that you do want to return to her whenever you’ve got more to give.</i>”");
+		if(pc.cumQ() >= 4000) 
+		{
+			output(" There’s so much [pc.cum] that some rather phallic tentacles begin firing your fluid back into the bottom of the pod, keeping it in a lewd reserve as her own storage capabilities are overwhelmed by your immense virility.  The ensuing pool ");
+			if(pc.cumQ() <= 8000) output("is little more than a puddle, but it’s one you’re proud to have made.");
+			else if(pc.cumQ() <= 12000) output("is about a foot deep. A feeling of pride wells up in your breast.");
+			else output("gets deep enough that it’s touching you, a tiny lake of food for the feminine flora.");
+		}
+		output("\n\nOnly after you’re leaking tiny droplets does the pleasure end, leaving you exhausted and satisfied.");
+		output("\n\n“<i>This is what comes of obeying a venus pitcher. You’re surely addicted to this, aren’t you?</i>”");
+		output("\n\nYou giggle and nod, a little light-headed as you nod off into her breasts.");
+	}
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	//9999
+}
+
+//{Vagina!}
+function elderVenusPitchersPlayWithCooches():void {
+	clearOutput();
+	//9999 define X!
+	output("A tentacle as big as your torso appears in front of you, waving back and forth and leaking a stream of clear-looking juice from a tiny opening on its flared tip. Its surface is a deep emerald in color, sparkling in the dim, inner luminescence of the pod. It angles down to press upon your juicy mons, the tip sliding back and forth across your swollen sex");
+	if(pc.totalVaginas() > 1) output("es");
+	output(", slipping ");
+	if(pc.totalVaginas() > 1) output("from lip to lip");
+	else output("over your lips");
+	output(" repeatedly and flaring wider in response. It withdraws and leaves your labia soaked and eager. Unfortunately, its blunted head is so massive that there’s no way it could it actually fit inside you, much as you want it to. You’re left to whine and writhe every time it tries again, caressing your vulvae with lewd but unsatisfied attentions.");
+	
+	output("\n\n“<i>Don’t worry about its size, pet. I know one size doesn’t fit all, and I’ve got the perfect fit, just for you,</i>” the venus pitcher giggles as she smears her gigantic tool across [pc.eachVagina] again, catching your [pc.clits] repeatedly. Another tentacle slithers up alongside it, rubbing across its bigger brother’s length and eventually supplanting it at the entrance of ");
+	if(pc.totalVaginas() > 1) output("a");
+	else output("your");
+	output(" [pc.vagina " + x + "], already slick with the lewd plant’s secretions.");
+	
+	output("\n\nThe upside down woman sways forward to place her soft bosom around your head, nestling your [pc.face] firmly between the supple mammaries. She coos, “<i>Close your eyes and enjoy it. Really revel in just how good it feels to obey my voice, and let your sense of propriety just melt away.</i>”  Immediately, your eyelids feel heavy, like lead weights hang suspended from them, and they drift down until you can see nothing. Your senses focus instead on nuzzling into her chest and enjoying how deliciously slick your sex");
+	if(pc.totalVaginas() > 1) output("es have");
+	else output(" has");
+	output(" become.");
+	
+	output("\n\nA rigid, blunt tip slowly spreads your folds, sliding between ");
+	if(pc.totalVaginas()) output("your ");
+	else output("a set of ");
+	output(" labia with deliberate, firm force, dilating your entrance with its swollen head and compressing slightly to fit. This makes the friction inside your channel that much more powerful; every fold, nook, and cranny of your cunt receives its fair share of cock to squeeze against. Gushing as it goes deeper, the tendril worms more deeply inside of you, plundering your [pc.vagina " + x + "] with a greedy lunge. The warm pre that seems from it tingles nicely as it lubricates the passage of this elephantine-feeling member, so copious that some of it drips from your opened entrance in long strands.");
+	
+	//Vag change.
+	cuntChange(x,chars["ELDERVENUSPITCHER"].cockVolume(0));
+	output("\n\nGlorious pleasure explodes from your loins as the tentacle yanks back and thrusts forward, punctuated by moments of emptiness that only serve to enhance your enjoyment. You moan sensuously into the plant matron’s tits, shuddering and shaking so forcefully that you make her boobs bounce around your head. She grunts at one particularly forceful thrust, obviously enjoying herself, even though the verdant phallus doesn’t connect to her “body” anywhere that you can see. Faster and faster, her pistoning plant cock plunges in again and, pistoning with enough force that the violent, liquid sound of its passage fills the chamber.");
+	
+	output("\n\nA gentle voice explains, “<i>Oh, my deeply hypnotized pet, you’re loving it aren’t you? The feeling of being filled with pitcher plant sperm is assuredly superior to that which any male can offer. Your pretty pussy craves the cum. It yearns for it. Feeling it flooding into your pussy");
+	if(!pc.isPregnant(x)) output(" and womb");
+	output(" is going to make you cum so hard your brain will dribble out of your twat.</i>” A fingertip subtly traces along the nap of your neck. “<i>I hope you’re ready, because I can feel a giant load of it building up.</i>");
+	if(pc.isPregnant(x)) output("<i> A shame you’re pregnant already, but you’ll come back for more after your pussy gets hooked on being stuffed by my stamen.</i>");
+	else output("<i> The feel of it swelling your belly with my seeds is going to be so addictive, matched only by the motherly bliss of laying my seeds in fertile soil.</i>");
+	output("<i></i>”");
+	output("\n\nThe tentacle buried in your [pc.vagina " + x + "] bottoms out while the larger, massive tentacle mashes itself against your pubic mound");
+	if(pc.clitLength >= 3) output(", allowing your [pc.clit] to slide up its convulsing urethra");
+	output(". Both stalks flex, thickening slightly, and rounded bulges begin to gather at their bases, launching through the tubular plant-cocks one after another. ");
+	if(!pc.isPregnant(x)) output("Inside you, the flat, flared tip matches perfectly to your cervix, the urethra just barely pushing past the rest of the tip in order to nestle firmly into it. Cum pours out of it in a wave, and as the warm flora-jizz pumps into you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss.");
+	else output("Inside you, the flat, flared tip butts up against your sealed cervix, the urethra desperately trying to match to a nonexistent opening. Cum pours out of it in a wave, and as the warm flora-jizz backwashes out of you, your [pc.legs] begin to buck and quake with orgasmic, mind-melting bliss.");
+	output(" Your tunnel squeezes down around the shaft, trying to milk it for more with its unashamed, lusty spasms.");
+	
+	output("\n\nGirl-spunk ");
+	if(pc.wetness(x) <= 2) output("trickles");
+	else if(!pc.isSquirter(x)) output("leaks");
+	else output("gushes");
+	output(" out around the tendril as it pumps you full, distorting your entrance with the size of the jizz-bulges traveling into you.");
+	if(!pc.isPregnant(x)) output(" Your belly slow bulges with the spewing seed, rounding out into a slightly-pregnant dome while your mind reels with fantasies about birthing smooth seeds that will someday blossom into equally entrancing creatures.");
+	output(" A waterfall of musky jism rolls out of your [pc.vagina " + x + "] seemingly without end. You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.");
+	output(" The bigger tentacle fires cum out like a cannon, ");
+	if(pc.clitLength < 3) output("splattering it directly off your [pc.clit].");
+	else output("forced off your cum-soaked clit as it dumps a deluge of spooge over your most sensitive organ.");
+	
+	output("\n\nYour eyes roll back as the orgasm drags on and on, [pc.eachVagina] writhing in ecstasy");
+	if(pc.vaginaTotal() >= 1) output(", even though some are empty");
+	output(". A comforting voice instructs, “<i>Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.</i>”");
+	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	//9999
+}
+
+
+//{Dicknipples}
+function elderVenusPitcherDickNipplePlay():void {
+	clearOutput();
+	output(upperCase(num2Text(pc.totalNipples())) + " iridescent tentacles rise up in front you. They’re each about as thick as your arms. Dripping, circular openings appear on the top of them, slowly dilating as they open. Ropes of lubricant drip from the pulsing, toothless maws and hang down, swaying back and forth under the purple-lined holes. Around the entrances of the tendrils, a number of engorged bulbs are visible, almost clit-like in look and design. They close in on your chest, and their purplish-tinged interiors constrict and relax rhythmically, lined with any number of cilia, folded flesh, and muscular rings.");
+	output("\n\nYour [pc.dickNipples] swell, distending the surface of your [pc.nipples] before exposing themselves, their surfaces swelling with fresh tumescence, pulsing visibly as they jut from your chest.");
+	
+	output("\n\n“<i>Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,</i>”  the seductive plant-girl wonders aloud. “<i>You just relax and hang out while I milk these puppies-</i>”  she tugs on your [dickNipples] eagerly, “<i>-so well that they pop out whenever you think about me.</i>”");
+	
+	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nippleDicks] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
+	
+	output("\n\nThat sensation becomes far more palpable a moment later, only it’s happening on every single surface of your dicknipples, surrounding them in a warm, wet surface that tugs and squeezes them relentlessly. Those warm sheaths engulf the entirety of your pricks, and blinded by breasts as you are, your sense of touch is magnified, making the pleasure so exquisite that you begin to leak pre already. Hundreds of cilia stroke and caress you like a swarm of tiny tongues. The nubs at the ends press against your [pc.chest] and close up, sealing up just in time for them to begin sucking slightly, pulsing slow vacuum-powered tugs on your shafts. Circles of pressure constrict around your lengths at various points and begin to drag inward, new ones forming at the bottom of your [pc.dickNipples] whenever they slide past the tips, milking you unendingly.");
+	
+	output("\n\n“<i>Oh, those are quite nice,</i>” the seductive plant purrs seductively. “<i>Far more fun than a zil with a single ‘stinger’. They are a bit sweeter, of course.</i>” Her attention focuses back on you, and she trails a finger up the nape of your neck, hypnotically stating, “<i>You’re going to cum for me soon, pet. Nobody can resist my tentacles for long, and you don’t even want to resist. <b>You want to cum for them.</b></i>”");
+	
+	output("\n\nYou groan as the pleasure seems to intensify, your [pc.dickNipples] getting so hot from all the squeezing and sucking they’re being exposed to.");
+	
+	output("\n\nHer comforting voice continues, “<i>I know, it just feels so good that that yummy cum is just backing up in your [pc.chest], isn’t it? You FEEL it, so hot, so warm, and just aching to spray out. Just relax, and it’ll come out on its own in a few seconds.</i>” She strokes at the back of your head. “<i>Getting closer now aren’t you?</i>”");
+	
+	output("\n\nYou nod into her tits, arching your back as far as the iron-strong restraints of her massive tentacles will allow.");
+	
+	output("\n\n“<i>So... very... close....</i>”  the enchanting floral woman says, “<i>You’re a few seconds away.... Let me count them down for you.</i>”");
+	
+	output("\n\n“<i>Five...</i>”");
+	output("\n\nHer tentacles undulate wildly as they begin to piston up and down your [pc.dickNipples], fucking them with fast, lewd strokes.");
+	output("\n\n“<i>Four...</i>”");
+	
+	output("\n\nThe suction doubles in intensity, making your tools throb and ache with pent-up need, spewing trails of pre-cum deep into their lascivious, sucking prisons.");
+	
+	output("\n\n“<i>Three...</i>”");
+	
+	output("\n\nA hand caresses your spine, fingers softly playing along your [pc.skinFurScales].");
+	
+	output("\n\n“<i>Two...</i>”");
+	
+	output("\n\nYou feel like your [pc.nippleDicks] are about to explode, twitching wildly and arching inside their velvety soft prisons.");
+	
+	output("\n\n“<i>One...</i>”");
+	
+	output("\n\nA tsunami of pressure builds inside your [pc.chest], and your body arches so hard that you feel like you’re going to snap your spine in half. You grunt and pant into the boobs, twitching wildly, and you feel the impending pleasure about to fire out of you with the force of a cannon.</i>”");
+	
+	output("\n\n“<i>Cum for me,</i>” she exhales.");
+	
+	output("\n\nOrgasm slides over and out of you like an avalanche. Your [pc.dickNipples] twitch, swelling up inside their sheaths, and they spray your [pc.cum] out with such force that it almost hurts. The relief is pulpable, and you groan languidly as your [pc.chest] sprays more and more sloppy [pc.cumNoun] into the tentacle-cunts. The milking, muscular contractions intensify, and your voluminous output is quickly whisked away, leaving you smiling.");
+	
+	//{Small cum amount}
+	if(pc.cumQ() <= 100) {
+		output("\n\nAll too soon, your ecstasy winds down to nothing.");
+		output("\n\n“<i>Spent already? Let’s fix that,</i>” the hypnotic beauty comments, pulling you out of her mountainous cleavage and depositing your lips on a leaky nipple.");
+		output("\n\n“<i>Drink.</i>”");
+		output("\n\nYou obey, feeling a tingle of erotic thrill from that allow, but when the first taste reaches your belly, your lust awakens anew, building to mind-blanking climax in seconds. Your dicks surge back out of their sheaths and to full hardness. Then, you find yourself cumming from the drink alone, spurting fresh ropes of [pc.cum] for your mistress.");
+		
+		output("\n\n“<i>Atta " + pc.mfn("boy","girl","pet") + ",</i>” she giggles, “<i>Just drink and cum until you can’t anymore. This is the pleasure of a venus pitcher, and you’re going to embed this bliss in every fiber of your being.</i>”");
+		
+		output("\n\nYou grunt and moan an affirmation from around her teat, but you’re unable to will yourself to stop.");
+		output("\n\nConsciousness slowly ebbs from the assault of ecstasy, your last thoughts centered around how you’ll come back here again and again, feeding your lust to the venus pitchers in exchange for the mind-blanking pleasures. Her whispers chase you all the way into sleep, seeding your mind with obedience.");
+		//Big cum boost!
+		//9999
+	}
+	//{Medium Cum Amount}
+	else if(pc.cumQ() <= 1000) {
+		output("\n\nAgain and again, you bloat the organic tubes with [pc.cum], never pausing in your ejaculatory madness. The bliss of submitting to your hypnotic mistress seems to make your climax even more potent than normal, but the tentacles pulling on your prick-teats are happy to consume it all, their length distorted with bulbs of [pc.cumColor] delight.");
+		output("\n\n“<i>Mmmm, a productive sample,</i>”  the hypnotic beauty comments while trying to stifle her own mounts of pleasure. “<i>Keep cumming for me, pet. You’re doing so good. This feels so good that there’s no way anything else is going to compare. Just coming near a venus pitcher is going to remind you of this, and you’ll do it again and again, whenever you feel like you’ve got cum to feed.</i>”");
+		output("\n\nYou nod and whimper, still cumming as you slowly lose consciousness from the prolonged climax, your last thoughts dwelling on just how good it feels and how you can’t wait to do this again. Her whispers chase you all the way into sleep, seeding your mind with obedience.");
+	}
+	//{High Cum Amount}
+	else {
+		output("\n\nSoon, the amount of [pc.cum] you’re producing grows so great that the tentacles begin to puff wide, stretched beyond their natural capacity by the volume of your effluence. They stubbornly stay clamped on your [pc.dickNipples]. The pressure is painfully tight. You whimper, but your [pc.cum] doesn’t slow down. The command to climax is too irresistible to deny, and you squirt so much goo down those straining tendrils that some of the other tentacles in the pod begin to weep your leftover [pc.cum] into a pool in the bottom, rapidly rising.");
+		output("\n\nThe busty beauty moans, “<i>Sooo good,</i>”  as she shakes through her cock-milk induced climax. “<i>Keep cumming, don’t ever stop! Revel in it, pet, and engrave this memory into your mind! You love it here, and you love me, don’t you?</i>”");
+		output("\n\nYou nod, believing her words as soon as she speaks them, though consciousness is beginning to fade under this orgasmic onslaught of hypnotic command. “<i>Just keep cumming and focusing on how badly you want to do this again...</i>”");
+		output("\n\nYou moan your assent and close your eyes, drifting off to the sound of her voice rearranging your subconscious.");
+	}
+	//9999
+}
+
+//{Milky Nipples}
+function milkyElderPitcherPlantPlay():void {
+	clearOutput();
+	output(upperCase(num2Text(pc.totalNipples())) + " tentacles appear before you, waving back and forth hypnotically, matching the tempo of the floral mistress’s hands on her bosom that entrances you even now. Their tips are smooth and featureless at first. Then, the emerald-green skin peels back, exposing the tentacle’s true nature - that of a hollow tube with clear, nearly-transparent walls. The sides of the newly-revealed, organic milker - for that is what it reminds you of - bulge out slightly, perhaps to hold some milk. The way they seem to zero in on your nipples confirms your suspicions.");
+	output("\n\nA slow, sultry voice tickles your ears, “<i>A can sense a bounty in your bosom, " + pc.mfn("boy","girl","pet") + ". I do hope it isn’t as sickeningly sweet as the zil’s. For now, relax and focus on producing [pc.milk] for me. Let the pleasure wash over your nipples just as my voice does your mind.</i>”");
+	
+	output("\n\nThe milkers move forward and push against your chest, their surface tingling soft and warm on the [pc.skin] of your [pc.chest] as they seal in place, tugging slightly from the increasing pressure. You groan in excitement, as you obey, focusing on producing milk for your hypnotic mistress to squeeze.");
+	
+	output("\n\nPale green skin closes in on you as the eager plant-woman takes you into her arms, wrapping them around the back of your head and pushing your [pc.face] as deeply into her bosom is possible. You sniffle a little, perhaps from her spores, and let yourself enjoy being cradled in her cleavage while her fingers gently stroke the back of your head{, running through your [pc.hair]}. At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normally. [pc.Milk] beads at the tips and slowly begins to drip down.");
+	
+	output("\n\n“<i>Let it out...</i>”  your favorite venus pitcher instructs. Her hand reaches around to squeeze the underside of one tit, causing you to express a thin flow. You moan at the erotic release as imaginary tongues wrap around each [pc.nipple] and begin to suck, and ");
+	if(pc.totalNipples() > 2) output("the rest of your lactic nozzles release");
+	else output("your other lactic nozzle releases");
+	output(". Dozens of tiny tendrils emerge from within the larger, hollow tube and reach for your gushing [pc.chest], matching the tongues licking at your mind with the physical caresses of slippery tentacles. More and more [pc.milk] expresses in response. You moan quite loudly into the plant’s soft boobs.");
+	
+	output("\n\nGiggling in response, the wonderful woman shifts your head to suckle one of her tits, saying, “<i>You can never be milked enough, so why don’t you take a drink and let me help you be a little more productive for your favorite venus pitcher?</i>”  She gently pries you from your breasty heaven and shifts you to put your lips on her own nipple, already beading with a thick, white fluid. The taste is vastly different from milk, a little sweeter and with an undercurrent of tang. That isn’t to say that it’s unpleasant - quite another thing entirely. From the moment it hits your tongue, you find yourself suckling like a hungry babe, slurping as hard as you can in order to get more of the delicious treat into your belly.");
+	
+	output("\n\n“<i>That’s a good pet, drink alllll your medicine.</i>”");
+	
+	output("\n\nYou wanted to already, so her words dig deep into your subconscious, ensuring that you’ll drink every drop of \"medicine\" she’s willing to offer. After each successive swallow, burgeoning heat blooms in your [pc.nipples] and [pc.chest], causing both to engorge a little bit more. Your bust swells more and more with each passing moment, and the flow of milk becomes an unstoppable torrent. You whimper around the heavenly bud until it dries up and gentle hands separate it from your mouth, guiding you on to an equally delightful and yet-untapped source of your new favorite drink.");
+	output("\n\nThrough the transparency of their walls, the milkers' reservoirs slowly fill with your [pc.milk]. You also become aware of a slight variation in the suction applied to your [pc.nipples]; it pulsates in a rhythm, diminishing and then increasing in a way that your breasts respond quite strongly to. Blobs of liquid weight slide deeper down the tentacles, accompanied by a satisfied “mmmm” from nearby, and a sense of pride wells up inside in your chest (along with an uptick in the feeling of tongues on your teats");
+	if(pc.hasCock() || pc.hasVagina()) output(" and genitalia");
+	output(".");
+	
+	output("\n\n“<i>That’s all the medicine, little cow. I don’t have any more for you.</i>”");
+	
+	output("\n\nThe voice makes you aware that you’ve spent some time suckling an empty nipple. It’s grown almost purplish from how actively you were attempting to draw from it. Surely it has gotten supremely sensitive. Gentle hands pull you back between the boobs while a voice explains, “<i>That’s all you needed, my little cow pet. Now focus on doing your part and feeding me lots of yummy milk. We both know my medicine has made milking immensely pleasurable for you, so why don’t you just sag into my breasts and cum yourself silly?</i>”");
+	
+	output("\n\nTrue to her words, you realize you’ve become exceedingly horny, and you find yourself on the edge of orgasm from the act of lactating alone. You know that breast stimulation alone shouldn’t get most races off very easily, but it’s like there’s a switch flipped on inside you. You’re on the cusp of an explosive nipplegasm.");
+	
+	output("\n\n“<i>Cum.</i>”");
+	
+	output("\n\nJust like that, you’re cumming, spraying so much milk that the tubes are barely able to keep up with it. It’s vastly different from any other kind of orgasm");
+	if(pc.hasCock() || pc.hasVagina()) output(", and your crotch doesn’t even get in on the act. Then again, it doesn’t need to - milking feels so great");
+	output(". You babble unintelligibly as you feed the milkers as much [pc.milk] as they can handle, shuddering wildly in your organic, tit-locked cocoon.");
+	
+	output("\n\nYou aren’t sure how long the titgasm goes on for, but when it ends, you’re panting and as horny as ever - hungry for more. Fortunately you’re still squirting steady flows, and another big, mind-shattering cum isn’t far off. Your eyes roll back as it approaches, and you begin to scream out your bliss into the venus pitcher’s tits while you gush oh so well for her.");
+	
+	output("\n\nGiggling dopily as you come down, you backslide into oblivion, cooing out soft little “moos” when prompted by your mistress’s commands. Her words continue to shape you as you sleep, conditioning you to obey and feed her whenever possible, like a good little cow.");
+	//9999
+}
+
+//{Tailcock}
+function elderPitcherPlantTailCockPlay():void {
+	clearOutput();
+	output("One big, fat tentacle rises up and front of you, waving back and forth, snake-like. The mottled green-hued surface shines dully in the bioluminescent light the walls of this strange place exude. Blooming like an exotic flower, the tip of the tendril peels back and opens, revealing a moist, purple-hued interior. That same interior exudes a constant flow of slowly-dripping lubricant, viscous and dangling in long ropes that sway back and forth before dropping. Unbidden and unasked for, you become very aware of ");
+	if(pc.hasCock()) output("[pc.eachCock] and ");
+	output("your [pc.tailCock], fellated by invisible tongues and leaking long strings of pre-cum in anticipation.");
+	
+	output("\n\nThe hollow vine disappears a moment later, but a second later, your view is replaced by a heaving bosom. The soft, all-encompassing press of the venus pitcher’s breasts around your face is as comforting as it is arousing.");
+	
+	output("\n\nHer voice ripples across your consciousness, permeating itself into every fold of your malleable mind as she says, “<i>Atta " + pc.mfn("boy","girl","pet") + ". Sink into trance as my hypnotic breasts envelop your poor, defenseless brain.</i>”  A hand traces gentle circles on the back of your neck. “<i>The tongues you feel licking you, fellating you for your obedience, they’re getting faster and stronger as you slip deeper and deeper into my mesmerizing embrace. Grow more and more aroused as my tentacle closes in on your unique little tail. Let your lust double, then triple. Each passing second your dick");
+	if(pc.hasCock() || pc.tailCount > 1) output("s get");
+	else output("gets");
+	output(" harder and harder, aching for climax.</i>”");
+	
+	output("\n\nYou shudder as your [pc.tailCock] trembles in unashamed, unadultered need, drooling pre-cum all over itself in its eagerness. Warm, moist air, like hot breath, washes across the [pc.tailCockHead], making you tremble with delicious, agonizing need, and you groan from the pleasure of lusting so heavily that your whole body feels on edge. Your secretions are soaking the underside of the rest of your [pc.tail], yet you don’t care. It feels good to lie here and get hornier and hornier, all without her even touching your genitals directly, just delightfully submitting to her every whim until you’re so hot and bothered that you explode.");
+	
+	output("\n\nSuddenly, constrictive heat envelops your entire body. It feels like your entire body, anyway. The tendril must have encircled itself around your [pc.tailCock], then squeezed itself down into a sensuous snare. What few thoughts are still lingering your sublimated mind are blasted away by the onslaught of pleasure, replaced with the raw, animal instinct of a horny male. Your tail tries to force itself deeper into that warm, wet opening, sliding inches of itself inside. It travels so far into the tentacle-cunt that your whole [pc.tail] starts to get a massage from the pulsations of the smooth muscle surrounding you. You whimper into the venus pitcher’s tits and let your [pc.hips] writhe uncontrollably as you’re milked all the way to orgasm, too happy, horny, and hypnotized to do anything but let your orgasm be forced out of you.");
+	
+	output("\n\n“<i>You’re going to cum for me soon, right? There’s no point in holding back, because I love it when " + pc.mfn("boys","girls","pets") + " cum inside me more than anything else. So go on, orgasm. Squirt for me. Feel that cum roiling inside of you as it begins to travel towards your cock</i>");
+	if(pc.hasCock() || pc.tailCount > 1) output("<i>s</i>");
+	output("<i>, spurting on command,</i>”  commands a voice so laden with eroticism that it sends splinters of need down your spine.");
+	
+	output("\n\nOrgasm hits you with the force of a hammer, crossing your eyes a split-second before they roll back. Your tongue lolls out as [pc.cum] starts to slide down your [pc.tail]. You grunt into the heavenly tits that have so snared your mind and pump heavy dollop after heavy dollop of [pc.cumColor] pleasure directly into the hungry tentacle. Your floral lover wraps her hands around her breasts and your head, compressing all three together to more effectively smother you with titflesh. The soft, squishy boobs send fresh pulses of pleasure through your [pc.tailCock], and you squirt faster and harder until you can cum no more.");
+	if(pc.hasCock()) output(" The feelings of blissful release are echoed by [pc.eachCock], though the flow of [pc.cum] is noticeably less than that erupting from your tail.");
+	
+	//{small cumq}
+	if(pc.cumQ() <= 50) {
+		output("\n\nYou sigh in satisfaction, but the way the venus pitcher pulls your head back and frowns at you indicates she is far from delighted at the situation. “<i>That’s it? Just a few drops?</i>”");
+		output("\n\nYou nod.");
+		output("\n\n“<i>Well then, my little hypno-monkey, I’ll have to fix that,</i>”  she quips as her frown twists into a wry grin. She hefts a teat towards your lips and commands, “<i>Suckle.</i>”");
+		output("\n\nAfter being so thoroughly mesmerized by the tasty teat, she doesn’t have to command you twice. You latch on and suckle down her tangy, delicious milk in big gulps, grinning stupidly around her tit as it stokes a sexual warmth in your core. The sensuous need stiffens your [pc.tailCock] with fresh engorgement in its messy, cum-slimed prison a swallow at a time, but that isn’t it. The pleasure and need keep rising continually, swelling ");
+		if(pc.balls == 0) output("something inside you");
+		else output("your [pc.sack]");
+		output(" with fresh [pc.cum]. Within the span of minute, you’re cumming for her all over again, squirting comparatively huge flows of jism as you drain her tits dry.");
+		
+		output("\n\nAfter a time, the pleasure grows so great that you begin to lose your grip on awareness. A voice chases after you into the blackness, sliding straight into your brain and layering on blissful obedience.");
+		//9999 boost production!
+	}
+	//{other}
+	else {
+		output("\n\nThe whole process takes a surprisingly long time. When it’s over, you’re sighing in satisfaction, a sound echoed by your hypnotic mistress. She pets your head and coos, “<i>That’s my good " + pc.mfn("boy","girl","pet") + ". Why don’t you close your eyes and shut off your mind for a while. It’ll feel so good to just sleep. I promise to make you feel this good the entire time.</i>”");
+		output("\n\nYou’re helpless to do anything but obey, so you close your eyes and shut down, letting her milk you dry again while she programs new thoughts into your exposed, vulnerable subconscious.");
+	}
+	//9999
+}
+	
+//{Tailcunt}
+function elderVenusPitcherPlaysWithTailcunts():void {
+	clearOutput();
+	output("A large, flared phallus appears before you, wiggling from side to side to the same hypnotic tempo the pitcher’s boobs trace through your sluggish mind. It’s greenish in hue and leaking a steady stream of what can only be its alien pre-cum. The tip is a bizarre, iridescent mix of emerald and violet, while the stalk is a lighter viridian. Both are glossy with moisture that shines in the pulsating, organic green light shed by the walls. That flared tip blooms a little wider, and the urethra bulges a bit forward, just enough to be clearly defined.");
+	output("\n\nYour tail weeps lubricants hungrily, feeling invisible tongues of suggestion sliding around its interior, gathering up your drippings and smearing them across every fold and alien nerve cluster, weakening your muscles through pleasure. The slit at the end visibly weeps waves of lusty girl lube onto the tentacles all around you, though most of them seem content to wait right now. This venus pitcher is clearly intent on one specific part of your body.");
+	output("\n\n“<i>Look at this dick, " + pc.mfn("boy","girl","pet") + ". It’s perfect. See the way it throbs for you, the way it aches for you. Watch the cum just DROOL out the end in anticipation of plundering your exotic little tailpussy. You surely realize that’s a parasite right? A creature that takes from you and gives nothing back. Well, nothing except pleasure. Perhaps that’s enough for you, slut. You just love thinking with your big, cock-hungry pussy. You’re just on the prowl for something to stuff you full of cum. Then, in between slutty little whore-fucks, you can squat and cum your brains out whenever it’s time to lay your eggs. That’s what you really want, isn’t it? You want me to feed your whorish cum-thirst,</i>” she growls with the barest undercurrent of distaste.");
+	
+	output("\n\nYou shudder and nod, your tail already snaking around your [pc.hips] to try and get at the delicious, cum-spewing morsel in front of you. Its motion is arrested halfway there by a bigger, stronger tentacle. The large vine wraps it up in an imprisoning helix, completely immobilizing your rogue appendage. Whimpering needily, you try your hardest to obey, so that you’ll feel those phantom tongues licking you harder and faster. At the same time, your [pc.tailCunt] appears determined to devour that fat dick, straining against its bonds futilely.");
+	
+	output("\n\nThe venus pitcher holds her breasts up and towards you, which is a bit odd, upside down as she is, gyrating them in slow, pendulous circles to lure you deeper. Your vocalizations taper off into blissful silence as you watch, momentarily distracted from the molten lust pouring through your veins.");
+	
+	output("\n\nGlossy jade lips split into a smile, and your mesmerizing mistress purrs, “<i>Good " + pc.mfn("boy","girl","pet") + ". You’ve proven reliable enough to get that fat cock you want so badly, and you do want it badly, don’t you?</i>”  The purplish-green shaft wobbles up between the two of you, pressed between the plant woman’s proud knockers where it can slip and slide freely. You swallow nervously, hungrily even, and nod. Your desire for dick eventually draws your eyes to her phallic tentacle, though her tantalizing tits never vacate your mind’s eye, keeping you docile, obedient, and aroused.");
+	
+	output("\n\n“<i>Bon appetit.</i>”");
+	
+	output("\n\nUnwinding with lightning-fast speed, the restraining tendril releases your [pc.tailCunt] and vanishes into the slippery mass below. Your snake-like appendage lurches forward dangerously fast, slamming its gushing gash directly into the blunted member in an attempt to take it in all once. The attempt fails, only managing to splatter the combined sex-juices over you and the verdant woman’s forms. Your [pc.tail] lashes out again with a bit more control, and this time it actually manages to part your hungry gash, spreading it over the wide and gently curving tip of your chosen toy.");
+	
+	output("\n\nPre-cum squirts down your tunnel almost immediately, matched by an outflow of your own copious lubrication. The two heady, sensual discharges mix and mingle where the sexual organs join, a line that blurs more and more with each passing second. Your cunt tail is slowly spreading to encompass the flare; nearly a third of it has slipped inside your moist orifice already. Lurching forward, the turgid tendril thrusts with enough force to instantly stretch your [pc.tailCunt] to capacity, its head bending slightly as it squishes and scrapes through your torrid tunnel, lewdly caressing every fold with wet, hot fuck.");
+	
+	output("\n\nSuddenly, breasts wrap around your [pc.face], smothering you in mammary molestations, squeezing you tightly into the venus pitcher’s hypnotic cleavage. You sag into her arms, whimpering needily as your pussy plows itself on her tentacle, fucking with wild, insatiable cum-thirst.");
+	
+	output("\n\nA tittering voice reaches through your prison to caress your ears. “<i>This is what you wanted, and you love it, don’t you? Don’t respond, pet, just hang there and cum yourself silly. You’ve got a special, fun little body. All you have to do is orgasm. Cum on my tentacle. Squirt out all that delicious fluid until you’re dry. I’ll even let you feel me filling you so full that you bloat from all the spunk.</i>”  A finger traces circles on the back of your neck as she continues. “<i>And you’ll love every moment of it, so much that your nice, wet tail-pussy is going to drool at the tiniest thought of me. You’ll remember this feeling at night and dream of returning to feed and be seeded.</i>”");
+	
+	output("\n\nYou shudder as her words seep unfiltered into your mind and cum, writhing in your restraints with spastic tremors of climactic need.  Sticky, slippery sperm fires into your tailpussy, making it clench, squeezing down on the plant-cock to milk every drop of seed deep inside itself. At first, the pleasure is immense, and you greedily devour every drop. As time passes, however, you start to become full, your tail bloated and fat with stored cum. The pleasure is no less exquisite, but the coordinated muscles slowly lose cohesion and start to spasm wildly on the spooge-slinging shaft, leaking huge, gushing globules of white everywhere.");
+	
+	output("\n\nThe ecstasy never seems to dull. Every fiber of your body focuses down on the rhythmic internal deposits filling you, stuffing you with salty pleasure beyond what a mere human cunt is capable of experiencing. Your back arches uncontrollably as you strain against the restraint. Your lips part, and you begin to babble incoherent words of love and affection, slobbering all over mistress’s tits as she plows you past your limit, slamming you past the point of cogent reasoning.");
+	
+	output("\n\nSeeing this, the venus pitcher begins to whisper suggestions into your ear while you come, conditioning you to equate her and her race with such excitement, and perhaps, programming you to find her again someday.");
+	
+	//{NEXT}
+	//9999
+}
+
+//{Epilogues}
+function elderVenusPitcherEpilogue():void {
+	clearOutput();
+	//Some energy damage!
+	pc.energy(-45);
+	output("You wake up more than a little sore, all alone. The venus pitcher is gone as far as you can tell. If she’s hiding in her pod, the entrance is closed and concealed under the jungle brush and detritus with such skill that you doubt you could find it again.");
+	//{First Time}
+	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined) {
+		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] = 1;
+		output("\n\nYou head is swimming with thoughts and memories of the venus pitcher woman, from her enticing mammaries to the way she made you cum your way into unconsciousness. There’s just something unmistakably sexy about a woman who snares your mind so effectively that you’ll willingly let her milk you through orgasm after orgasm. A quiet thrill runs through you when you wonder if all venus pitchers are like this one, and if not, if you can find this one again when she’s ready for another meal....");
+	}
+	//{Second}
+	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == 1) {
+		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+		output("\n\nWhoah, that sexy, chlorophyl-laden slut did a number on you! You can still make out every detail of her tits in your mind, softly swaying back and forth... their beauty slowly entrancing you.... Shaking out of your stupor, you smile ruefully and rub the sore, sensitive parts of your body, shuddering at the aftershocks that assault you even now. The realization that you fell into a venus pitcher’s trap again has your heart starting to beat faster, and you idly wonder if volunteering to join them would be so bad.");
+	}
+	//{Third}
+	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == 2) {
+		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+		output("\n\nWow! That felt sooo good. Your whole body is sore and tired, but in a really, REALLY good way. The aches are just like little reminders of how good the venus pitcher made you feel, and how badly your body wants to recover so it can do it again. You know that you really shouldn’t crave them so, but it’s not like they’re hurting you, right?");
+	}
+	//{4-5}
+	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] <= 4) {
+		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+		output("\n\nMmmm, you lie there for a moment, trying to recall every detail of the exquisite pleasure you just endured. She worked you over so good, and her nipples, they must be psionic focuses or something. Whenever you look at them, you just kind of float away and give her whatever she wants, which surely isn’t good, right? Though it does feel good... so good.");
+	}
+	//{6+}
+	else {
+		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
+		output("Ahhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to put up any taken resistance any longer.");
+	}
+	//9999
+}
+
+
