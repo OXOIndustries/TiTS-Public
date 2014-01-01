@@ -1,4 +1,4 @@
-﻿function mainGameMenu():void {
+﻿public function mainGameMenu():void {
 	//Display shit that happened during time passage.
 	if(eventBuffer != "") {
 		clearOutput();

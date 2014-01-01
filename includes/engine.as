@@ -51,13 +51,13 @@ function clearOutput():void {
 	this.userInterface.deglow();
 }
 //Used for main menu & data settings
-function clearOutput2():void {
+public function clearOutput2():void {
 	this.userInterface.mainTextField.visible = false;
 	this.userInterface.mainTextField2.visible = true;
 	this.userInterface.outputBuffer2 = "\n";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
-function output2(words:String):void {
+public function output2(words:String):void {
 	this.userInterface.outputBuffer2 += doParse(words);
 	this.userInterface.mainTextField2.htmlText = "<span class='words'>" + this.userInterface.outputBuffer2 + "</span>";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
@@ -135,7 +135,7 @@ function deglow():void
 {
 	this.userInterface.deglow()
 }	
-function updatePCStats():void {
+public function updatePCStats():void {
 	if (pc.short != "uncreated")
 		this.userInterface.setGuiPlayerNameText(pc.short);
 	else

@@ -41,7 +41,7 @@
 		//Used for temp buffer stuff
 		var tempText:String;
 		var tempAuthor:String;
-		var currentPCNotes:String;
+		public var currentPCNotes:String;
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;

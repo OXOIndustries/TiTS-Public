@@ -86,7 +86,9 @@ public function debugPaneExit():void
 
 	this.userInterface.clearMenu();
 	if (this.pc.short != "uncreated")
-		this.postLoadToZeGame();
+	{
+		dataManager.executeGame();
+	}
 	else
 		this.mainMenu();
 }

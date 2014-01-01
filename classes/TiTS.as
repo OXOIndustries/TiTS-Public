@@ -39,6 +39,7 @@
 
 	import classes.Parser.Main.Parser;
 
+	import classes.DataManager.DataManager;
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
@@ -118,6 +119,7 @@
 		//Pervineer here!
 		public var parser:classes.Parser.Main.Parser;
 
+		public var dataManager:DataManager;
 		public var userInterface:GUI;
 
 		public var shopkeep:Creature;
@@ -133,11 +135,12 @@
 		public var combatStage;
 
 		// LE MAP
-		var mapper:Mapper;
+		public var mapper:Mapper;
 
 		public function TiTS()
 		{
 			kGAMECLASS = this;
+			dataManager = new DataManager();
 			
 			trace("TiTS Constructor")
 
@@ -231,7 +234,6 @@
 
 
 			flags = new Dictionary();
-			initializeFlags();
 
 
 			this.userInterface = new GUI(this, stage)
@@ -278,7 +280,7 @@
 			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
 			this.userInterface.leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
 			this.userInterface.leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
-			this.userInterface.leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataRouter);
+			this.userInterface.leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataManager.dataRouter);
 
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
@@ -615,7 +617,7 @@
 			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
 			
 			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
-			this.userInterface.addMainMenuButton(1,"Data",dataRouter);
+			this.userInterface.addMainMenuButton(1,"Data",dataManager.dataRouter);
 			this.userInterface.addMainMenuButton(2,"Credits",credits);
 			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
 			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
