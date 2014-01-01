@@ -645,11 +645,17 @@
 			HPRaw = HPMax();
 		}
 		//ENERGY
-		public function energy():Number {
+		public function energy(arg:Number = 0):Number {
+			energyRaw += arg;
+			if(energyRaw > energyMax()) energyRaw = energyMax();
+			else if(energyRaw < energyMin()) energyRaw = energyMin();
 			return energyRaw;
 		}
 		public function energyMax():Number {
 			return energyMod + 100;
+		}
+		public function energyMin():Number {
+			return 0;
 		}
 		public function maxOutEnergy():void {
 			energyRaw = energyMax();
@@ -2981,8 +2987,10 @@
 				minutes--;
 			}
 		}
-		public function isSquirter():Boolean {
-			if(vaginas[0].wetness >= 4) return true;
+		public function isSquirter(arg:int = 0):Boolean {
+			if(!hasVagina()) return false;
+			if(arg < 0 || arg >= totalVaginas()) return false;
+			if(vaginas[arg].wetness >= 4) return true;
 			return false;
 		}
 		public function totalClits():Number {

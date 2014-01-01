@@ -454,7 +454,7 @@ function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		if(debug) {
-			encounterRegularTentaclePitcherYouGay();
+			elderVenusPitcherEncounter();
 			return true;
 		}
 		
@@ -509,7 +509,8 @@ function jungleDeepEncounters():Boolean {
 		else choices[choices.length] = encounterNaleen;
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
-		//9999 ADD VENUS PITCHERS
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		choices[choices.length] = elderVenusPitcherEncounter;
 		
 		//Run the event
 		choices[rand(choices.length)]();

@@ -462,6 +462,7 @@ function tentacleJamAftermath():void {
 
 //*Elder Pitcher Plant Encounter
 function elderVenusPitcherEncounter():void {
+	userInterface.showBust("VENUSPITCHER");
 	//*First Time
 	if(flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;
@@ -476,7 +477,13 @@ function elderVenusPitcherEncounter():void {
 		{
 			output("\n\nYou COULD sit there and watch her, but you have a feeling that there were other things you came out here to do. Do you look away or continue to watch?");
 			//[Watch] [Look Away] - watch as per fail.
-			//9999
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Watch",watchElderVenusPitcher);
+			userInterface.addButton(1,"Look Away",lookAwayFromElderVenusPitcher);
+		}
+		else {
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Next",watchElderVenusPitcher);
 		}
 	}
 	//*Repeat
@@ -532,6 +539,7 @@ function elderVenusPitcherEncounter():void {
 //[No]
 function noRepeatElderVenusPitcher():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You turn away before she snare you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Next",mainGameMenu);
@@ -539,6 +547,7 @@ function noRepeatElderVenusPitcher():void {
 //[Yes]
 function yesRepeatElderVenusPitcher():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You shrug and decide to let the show play out this time, locking your eyes on her tits as she playfully jiggles and bounces them for you. Her hips sway from side to side, and puffs of particulate briefly cloud the air behind her, drawing your eyes to her flaring waistline. You flick your eyes back up to her tits with her deep, dark nipples.");
 	output("\n\n“<i>Ah, see something you like then, traveller? Go on and watch then, I’ve been told that my shape is particularly pleasing to look upon. Genitalia have a way of swelling up in my presence, no?</i>”");
 	
@@ -548,6 +557,7 @@ function yesRepeatElderVenusPitcher():void {
 //{Agree to stay}
 function agreeToStayForRepeatVenusLovings():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You smile at her and eagerly inform her that you’d love another show.");
 	output("\n\n“<i>Ahhh, now you’re a person of fine taste, I can tell,</i>” the venus pitcher announces. Her hands begin to playfully jiggle her tits for you, making them bounce and sway in familiar-looking circles. Her hips sway from side to side with the motions, and puffs of particulate briefly erupt from something behind her, barely distracting your eyes from her deep, dark nipples. It’s hard not to look at them, honestly; they’re like magnets for your eyes.");
 	output("\n\n“<i>You like them, no? Go ahead and watch then. I can see how you’re getting hornier and hornier just from being around me.</i>”");
@@ -556,7 +566,7 @@ function agreeToStayForRepeatVenusLovings():void {
 
 //[MERGE]
 function repeatVenusPitcherHypnoGo():void {
-	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("\n\nA sneeze erupts from your nose out of nowhere, but by now, you’re used to sneezing in the presence of these beauteous ladies. Something about their spores just tickles your nose, but at the same time, they do make it quite easy to sit there and stare, watching supple, female form twist and writhe for nothing more than your amusement. Arousal builds within you, unchecked by restraint as her words come true, giving you another reason to watch her fingertips mesmerizingly slide across her breasts.");
 	output("\n\nSeeing the way you follow her fingers, the pale-skinned dancer begins to use her palm to rotate them at you, even tweaking the hard tips of her nipples as they harden before your very eyes. Tiny puffs erupt from behind her again, and she purrs, “<i>Yes, they are quite entrancing, and they’re getting so hard for you. Surely you can tell, since your eyes have already centered on them. I’m told that after watching for a few moments, they become quite difficult to look away from.</i>”");
 	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined) output("\n\nYou smirk and enjoy the show, there’s no way you’ll miss a moment of this.");
@@ -602,12 +612,14 @@ function repeatVenusPitcherHypnoGo():void {
 	if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] != undefined) output(", even though you’ve been here before");
 	output(".");
 	//To Appropriate Venus pitcher milking!
-	//9999
+	processTime(5+rand(5));
+	elderVenusFuckSelect();
 }
 
 //[Look Away]
 function lookAwayFromElderVenusPitcher():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
 	//To room desc, no venus proc.
 	userInterface.clearMenu();
@@ -630,7 +642,7 @@ function watchElderVenusPitcher():void {
 	output("<i>, and the harder you </i>");
 	if(pc.hasCock()) output("<i>get</i>");
 	else output("<i>make them</i>");
-	output("<i>, the harder it becomes to look away. And you’ve ");
+	output("<i>, the harder it becomes to look away. And you’ve </i>");
 	if(pc.hasCock()) output("<i>gotten</i>");
 	else output("<i>made them</i>");
 	output("<i> very hard, haven’t you? So achingly, soul-wrenchingly hard that a feather’s touch brings on an avalanche of pleasure.</i>\"");
@@ -640,7 +652,7 @@ function watchElderVenusPitcher():void {
 	output("\n\nSeeing the water beading at the corners of your eyes, the grinning babe prattles on, “<i>Since you’ve been looking at my nipples for so long and the way my fingers trace around their perimeter is so memorable, you can actually still see them even when you close your eyes or when a leaf obstructs your view. Blinking is easy because in your mind you’re still watching my nipple, still fixated on the way it shines and beckons to you, entrancing you so deeply that you looking away seems profoundly and deeply wrong.</i>\"");
 	
 	output("\n\nYou close your eyes and bask in the relief, still watching her digits caressing her areolae in your mind’s eye until you’re gazing upon them in the real world again. The sneeze that rocks your head back doesn’t even phase you - just like when you blinked, you watch her nipples in your mind until you’re able to zero in on them once more. They’re so entrancing that you could just watch them all day. Maybe you will.");
-	output("\n\n“<i>Good " + pc.mf("boy","girl","pet") + ",</i>”  the owner of the hypnotic bust moans, “<i>Every circle my thumbs take around these beautiful, suckable nipples is reminding you of why you started watching me in the first place. They’re so alluring and inviting, and the way you’re focusing on them makes it difficult to think of anything beyond the world of these mesmeric knockers. Really, it’s not just the nipples anymore, the boobs have you, too, trapped in their spirals as I gently squeeze and move them, smushing them together for you to ogle until your brain shuts down completely. It feels good to let yourself go, to focus on how hot </i>");
+	output("\n\n“<i>Good " + pc.mfn("boy","girl","pet") + ",</i>”  the owner of the hypnotic bust moans, “<i>Every circle my thumbs take around these beautiful, suckable nipples is reminding you of why you started watching me in the first place. They’re so alluring and inviting, and the way you’re focusing on them makes it difficult to think of anything beyond the world of these mesmeric knockers. Really, it’s not just the nipples anymore, the boobs have you, too, trapped in their spirals as I gently squeeze and move them, smushing them together for you to ogle until your brain shuts down completely. It feels good to let yourself go, to focus on how hot </i>");
 	if(pc.hasCock()) output("<i>and hard</i>");
 	else if(pc.hasVagina()) output("<i>and wet</i>");
 	else output("<i>and lusty</i>");
@@ -660,7 +672,7 @@ function watchElderVenusPitcher():void {
 	
 	output("\n\nYou shudder and groan with pent up, lusty frustration. She’s right, of course. Her breasts are so wonderfully, kissably soft, and she doesn’t want to hurt you, just make you cum out all the tension you’ve built up from watching her.");
 	
-	output("\n\n“<i>That’s it. Come closer, my good " + pc.mf("boy","girl","pet") + ",</i>\"  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.\"</i>");
+	output("\n\n“<i>That’s it. Come closer, my good " + pc.mfn("boy","girl","pet") + ",</i>\"  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.\"</i>");
 	
 	output("\n\nWhimpering slightly, you take one staggering ");
 	if(pc.hasLegFlag(GLOBAL.DIGITIGRADE) || pc.hasLegFlag(GLOBAL.PLANTIGRADE)) output("step");
@@ -676,14 +688,28 @@ function watchElderVenusPitcher():void {
 	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
 	
 	output("\n\n\"<i>Now, you just lie back there, and I’m going to make you cum so very, very well,</i>\"  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
+	processTime(5+rand(5));
 	//Choose appropriate genitalia to abuse!
 	//Next
-	//9999
+	elderVenusFuckSelect();
+}
+
+function elderVenusFuckSelect():void {
+	var choices:Array = new Array();
+	if(pc.hasCock()) choices[choices.length] = elderVenusPitchersDickplay;
+	if(pc.hasVagina()) choices[choices.length] = elderVenusPitchersPlayWithCooches;
+	if(pc.hasDickNipples()) choices[choices.length] = elderVenusPitcherDickNipplePlay;
+	if(pc.isLactating() && !pc.hasDickNipples()) choices[choices.length] = milkyElderPitcherPlantPlay;
+	if(pc.hasTailCock()) choices[choices.length] = elderPitcherPlantTailCockPlay;
+	if(pc.hasTailCunt()) choices[choices.length] = elderVenusPitcherPlaysWithTailcunts;
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",choices[rand(choices.length)]);
 }
 
 //{Dicks}
 function elderVenusPitchersDickplay():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("A tentacle almost as big as your torso appears in front of you, swaying slowly back and forth before you. Its end is an open, sucking hole, adorned with perhaps a dozen purplish bulbs around the entrance that pulse merrily. Inside is a sea of wriggling, writhing flesh: sensuous purple-green folds, wiggling cilia, and tight rings of muscle to squeeze and caress. The juice dripping from it smells sweet, almost honeyed, and it oozes out all over your crotch, soaking your [pc.cocks]");
 	if(pc.hasVagina()) output(" and [pc.vaginas]");
 	output(" with slippery wetness as it bobs above.");
@@ -695,7 +721,7 @@ function elderVenusPitchersDickplay():void {
 	
 	output("\n\nWithout another word, you’re treated to the feeling of having your [pc.cocks] enveloped in a wave of heated suction, noisily slurped into the grasping, squeezing maw of the gigantic tentacle. The slippery folds slide over you, delivering agonizing waves of pleasure so intense that your eyes roll back - even though you have them closed, as instructed. [pc.EachCock] thickens perceptively under the pleasurable deluge, and you become aware of the tickling of hundreds of cilia on different parts of your maleness");
 	if(pc.cockTotal() > 1) output("es");
-	output(", each licking like a tiny, miniature tongue, lewdly caressing your [pc.skin] with a hunger that borders on obscene. The end of the tentacle constricts powerfully at your [sheath], matched elsewhere along your length by other rings of muscle. They work back and forth and try to get you off with all due haste.");
+	output(", each licking like a tiny, miniature tongue, lewdly caressing your [pc.skin] with a hunger that borders on obscene. The end of the tentacle constricts powerfully at your [pc.sheath], matched elsewhere along your length by other rings of muscle. They work back and forth and try to get you off with all due haste.");
 	cockChange();
 	
 	output("\n\nA gentle finger slides along the nape of your neck, and your seductress coos, “<i>Don’t hold back for me, lover. The most pleasurable thing you can give a venus pitcher, like me, is a big, fast, orgasm.</i>”  She rubs her palm between your shoulders and coos, “<i>Go ahead and cum.</i>”");
@@ -723,11 +749,11 @@ function elderVenusPitchersDickplay():void {
 		}
 		output("in your groin, just behind your [pc.cocks]");
 		output(". The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [pc.cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.");
-		output("\n\nEventually, you lose consciousness, but the [cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
+		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
 		//{Good boost to cum quantity and skip to end}
-		pc.cumEfficiency += 2;
+		pc.ballEfficiency += 2;
 		pc.cumMultiplier += 2;
-		if(pc.cumEfficiency/pc.cumMultiplier < 3) pc.cumEfficiency += 2;
+		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
 		pc.slowStatGain("libido",2);
 	}
 	//{Medium Cum}
@@ -739,9 +765,9 @@ function elderVenusPitchersDickplay():void {
 		output("\n\nAfter an indeterminate amount of time, the ecstasy does come to end, leaving you exhausted and panting.");
 		output("\n\n“<i>You’re going to remember how good this feels,</i>” the venus pitcher says, “<i>and feel drawn to me whenever you have time to come into the woods...</i>” You nod dreamily and pass out.");
 		//Small cum volume boost.
-		pc.cumEfficiency += .5;
+		pc.ballEfficiency += .5;
 		pc.cumMultiplier += .5;
-		if(pc.cumEfficiency/pc.cumMultiplier < 3) pc.cumEfficiency += 1.5;
+		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 1.5;
 		pc.slowStatGain("libido",1);
 	}
 	//{High Cum+}
@@ -762,15 +788,18 @@ function elderVenusPitchersDickplay():void {
 	}
 	pc.orgasm();
 	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	//9999
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
 //{Vagina!}
 function elderVenusPitchersPlayWithCooches():void {
 	clearOutput();
-	//9999 define X!
+	userInterface.showBust("VENUSPITCHER");
+	//define X!
+	var x:int = pc.cuntThatFits(chars["ELDERVENUSPITCHER"].cockVolume(0));
+	if(x < 0) x = rand(pc.totalVaginas());
 	output("A tentacle as big as your torso appears in front of you, waving back and forth and leaking a stream of clear-looking juice from a tiny opening on its flared tip. Its surface is a deep emerald in color, sparkling in the dim, inner luminescence of the pod. It angles down to press upon your juicy mons, the tip sliding back and forth across your swollen sex");
 	if(pc.totalVaginas() > 1) output("es");
 	output(", slipping ");
@@ -826,16 +855,16 @@ function elderVenusPitchersPlayWithCooches():void {
 	output(". A comforting voice instructs, “<i>Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.</i>”");
 	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
 	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
-	//9999
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
 
 //{Dicknipples}
 function elderVenusPitcherDickNipplePlay():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output(upperCase(num2Text(pc.totalNipples())) + " iridescent tentacles rise up in front you. They’re each about as thick as your arms. Dripping, circular openings appear on the top of them, slowly dilating as they open. Ropes of lubricant drip from the pulsing, toothless maws and hang down, swaying back and forth under the purple-lined holes. Around the entrances of the tendrils, a number of engorged bulbs are visible, almost clit-like in look and design. They close in on your chest, and their purplish-tinged interiors constrict and relax rhythmically, lined with any number of cilia, folded flesh, and muscular rings.");
 	output("\n\nYour [pc.dickNipples] swell, distending the surface of your [pc.nipples] before exposing themselves, their surfaces swelling with fresh tumescence, pulsing visibly as they jut from your chest.");
 	
@@ -889,7 +918,10 @@ function elderVenusPitcherDickNipplePlay():void {
 		output("\n\nYou grunt and moan an affirmation from around her teat, but you’re unable to will yourself to stop.");
 		output("\n\nConsciousness slowly ebbs from the assault of ecstasy, your last thoughts centered around how you’ll come back here again and again, feeding your lust to the venus pitchers in exchange for the mind-blanking pleasures. Her whispers chase you all the way into sleep, seeding your mind with obedience.");
 		//Big cum boost!
-		//9999
+		pc.ballEfficiency += 2;
+		pc.cumMultiplier += 2;
+		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
+		pc.slowStatGain("libido",2);
 	}
 	//{Medium Cum Amount}
 	else if(pc.cumQ() <= 1000) {
@@ -904,18 +936,24 @@ function elderVenusPitcherDickNipplePlay():void {
 		output("\n\nYou nod, believing her words as soon as she speaks them, though consciousness is beginning to fade under this orgasmic onslaught of hypnotic command. “<i>Just keep cumming and focusing on how badly you want to do this again...</i>”");
 		output("\n\nYou moan your assent and close your eyes, drifting off to the sound of her voice rearranging your subconscious.");
 	}
-	//9999
+	pc.orgasm();
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
 //{Milky Nipples}
 function milkyElderPitcherPlantPlay():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output(upperCase(num2Text(pc.totalNipples())) + " tentacles appear before you, waving back and forth hypnotically, matching the tempo of the floral mistress’s hands on her bosom that entrances you even now. Their tips are smooth and featureless at first. Then, the emerald-green skin peels back, exposing the tentacle’s true nature - that of a hollow tube with clear, nearly-transparent walls. The sides of the newly-revealed, organic milker - for that is what it reminds you of - bulge out slightly, perhaps to hold some milk. The way they seem to zero in on your nipples confirms your suspicions.");
 	output("\n\nA slow, sultry voice tickles your ears, “<i>A can sense a bounty in your bosom, " + pc.mfn("boy","girl","pet") + ". I do hope it isn’t as sickeningly sweet as the zil’s. For now, relax and focus on producing [pc.milk] for me. Let the pleasure wash over your nipples just as my voice does your mind.</i>”");
 	
 	output("\n\nThe milkers move forward and push against your chest, their surface tingling soft and warm on the [pc.skin] of your [pc.chest] as they seal in place, tugging slightly from the increasing pressure. You groan in excitement, as you obey, focusing on producing milk for your hypnotic mistress to squeeze.");
 	
-	output("\n\nPale green skin closes in on you as the eager plant-woman takes you into her arms, wrapping them around the back of your head and pushing your [pc.face] as deeply into her bosom is possible. You sniffle a little, perhaps from her spores, and let yourself enjoy being cradled in her cleavage while her fingers gently stroke the back of your head{, running through your [pc.hair]}. At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normally. [pc.Milk] beads at the tips and slowly begins to drip down.");
+	output("\n\nPale green skin closes in on you as the eager plant-woman takes you into her arms, wrapping them around the back of your head and pushing your [pc.face] as deeply into her bosom is possible. You sniffle a little, perhaps from her spores, and let yourself enjoy being cradled in her cleavage while her fingers gently stroke the back of your head");
+	if(pc.hasHair()) output(", running through your [pc.hair]");
+	output(". At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normally. [pc.Milk] beads at the tips and slowly begins to drip down.");
 	
 	output("\n\n“<i>Let it out...</i>”  your favorite venus pitcher instructs. Her hand reaches around to squeeze the underside of one tit, causing you to express a thin flow. You moan at the erotic release as imaginary tongues wrap around each [pc.nipple] and begin to suck, and ");
 	if(pc.totalNipples() > 2) output("the rest of your lactic nozzles release");
@@ -946,12 +984,18 @@ function milkyElderPitcherPlantPlay():void {
 	output("\n\nYou aren’t sure how long the titgasm goes on for, but when it ends, you’re panting and as horny as ever - hungry for more. Fortunately you’re still squirting steady flows, and another big, mind-shattering cum isn’t far off. Your eyes roll back as it approaches, and you begin to scream out your bliss into the venus pitcher’s tits while you gush oh so well for her.");
 	
 	output("\n\nGiggling dopily as you come down, you backslide into oblivion, cooing out soft little “moos” when prompted by your mistress’s commands. Her words continue to shape you as you sleep, conditioning you to obey and feed her whenever possible, like a good little cow.");
-	//9999
+	//Boost lactational bits!
+	pc.slowStatGain("libido",2);
+	pc.orgasm();
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
 //{Tailcock}
 function elderPitcherPlantTailCockPlay():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("One big, fat tentacle rises up and front of you, waving back and forth, snake-like. The mottled green-hued surface shines dully in the bioluminescent light the walls of this strange place exude. Blooming like an exotic flower, the tip of the tendril peels back and opens, revealing a moist, purple-hued interior. That same interior exudes a constant flow of slowly-dripping lubricant, viscous and dangling in long ropes that sway back and forth before dropping. Unbidden and unasked for, you become very aware of ");
 	if(pc.hasCock()) output("[pc.eachCock] and ");
 	output("your [pc.tailCock], fellated by invisible tongues and leaking long strings of pre-cum in anticipation.");
@@ -985,19 +1029,26 @@ function elderPitcherPlantTailCockPlay():void {
 		output(" with fresh [pc.cum]. Within the span of minute, you’re cumming for her all over again, squirting comparatively huge flows of jism as you drain her tits dry.");
 		
 		output("\n\nAfter a time, the pleasure grows so great that you begin to lose your grip on awareness. A voice chases after you into the blackness, sliding straight into your brain and layering on blissful obedience.");
-		//9999 boost production!
+		pc.ballEfficiency += 2;
+		pc.cumMultiplier += 2;
+		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
+		pc.slowStatGain("libido",2);
 	}
 	//{other}
 	else {
 		output("\n\nThe whole process takes a surprisingly long time. When it’s over, you’re sighing in satisfaction, a sound echoed by your hypnotic mistress. She pets your head and coos, “<i>That’s my good " + pc.mfn("boy","girl","pet") + ". Why don’t you close your eyes and shut off your mind for a while. It’ll feel so good to just sleep. I promise to make you feel this good the entire time.</i>”");
 		output("\n\nYou’re helpless to do anything but obey, so you close your eyes and shut down, letting her milk you dry again while she programs new thoughts into your exposed, vulnerable subconscious.");
 	}
-	//9999
+	pc.orgasm();
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 	
 //{Tailcunt}
 function elderVenusPitcherPlaysWithTailcunts():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("A large, flared phallus appears before you, wiggling from side to side to the same hypnotic tempo the pitcher’s boobs trace through your sluggish mind. It’s greenish in hue and leaking a steady stream of what can only be its alien pre-cum. The tip is a bizarre, iridescent mix of emerald and violet, while the stalk is a lighter viridian. Both are glossy with moisture that shines in the pulsating, organic green light shed by the walls. That flared tip blooms a little wider, and the urethra bulges a bit forward, just enough to be clearly defined.");
 	output("\n\nYour tail weeps lubricants hungrily, feeling invisible tongues of suggestion sliding around its interior, gathering up your drippings and smearing them across every fold and alien nerve cluster, weakening your muscles through pleasure. The slit at the end visibly weeps waves of lusty girl lube onto the tentacles all around you, though most of them seem content to wait right now. This venus pitcher is clearly intent on one specific part of your body.");
 	output("\n\n“<i>Look at this dick, " + pc.mfn("boy","girl","pet") + ". It’s perfect. See the way it throbs for you, the way it aches for you. Watch the cum just DROOL out the end in anticipation of plundering your exotic little tailpussy. You surely realize that’s a parasite right? A creature that takes from you and gives nothing back. Well, nothing except pleasure. Perhaps that’s enough for you, slut. You just love thinking with your big, cock-hungry pussy. You’re just on the prowl for something to stuff you full of cum. Then, in between slutty little whore-fucks, you can squat and cum your brains out whenever it’s time to lay your eggs. That’s what you really want, isn’t it? You want me to feed your whorish cum-thirst,</i>” she growls with the barest undercurrent of distaste.");
@@ -1025,7 +1076,10 @@ function elderVenusPitcherPlaysWithTailcunts():void {
 	output("\n\nSeeing this, the venus pitcher begins to whisper suggestions into your ear while you come, conditioning you to equate her and her race with such excitement, and perhaps, programming you to find her again someday.");
 	
 	//{NEXT}
-	//9999
+	pc.orgasm();
+	processTime(20+rand(10));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
 //{Epilogues}
@@ -1059,7 +1113,15 @@ function elderVenusPitcherEpilogue():void {
 		flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"]++;
 		output("Ahhh, that scratched the itch. These girls know just how to work all the tension out of you and make you feel so relaxed after. You groan at the memory of being restrained inside her pod, relentlessly milked and instructed, and you shiver in anticipation. You’re pretty sure you’re addicted to being hypnotized and milked by them at this point, not that you mind. They feel too good to put up any taken resistance any longer.");
 	}
-	//9999
+	processTime(120+rand(20));
+	pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	processTime(20+rand(20));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 
