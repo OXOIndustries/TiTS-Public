@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function Penny()
+		public function Penny(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 			
@@ -152,6 +152,10 @@
 			this.milkRate = 1;
 			this.ass.wetness = 0;
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

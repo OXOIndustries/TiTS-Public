@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function Flahne()
+		public function Flahne(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 			
@@ -157,6 +157,11 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 3;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

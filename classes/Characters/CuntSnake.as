@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function CuntSnake()
+		public function CuntSnake(dataObject:Object = null)
 		{			
 			this.version = latestVersion;
 			
@@ -149,6 +149,10 @@
 			this.ass.wetness = 0;
 			this.createPerk("Ranged Immune",0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

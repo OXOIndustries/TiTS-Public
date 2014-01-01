@@ -24,8 +24,11 @@
 		
 		private var _debug:Boolean = true;
 		
+		private var _sharedObjects:Array;
+		
 		public function DataManager() 
 		{
+			_sharedObjects = new Array();
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
 			var sv1:SaveVersionUpgrader1;
@@ -57,6 +60,19 @@
 				kGAMECLASS.userInterface.hideMenus();
 				kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [kGAMECLASS.userInterface.myGlow];
 				this.showDataMenu();
+			}
+		}
+		
+		private function getSO(slotNumber:int):SharedObject
+		{
+			if (slotNumber in _sharedObjects)
+			{
+				return _sharedObjects[slotNumber];
+			}
+			else
+			{
+				_sharedObjects[slotNumber] = SharedObject.getLocal("TiTs_" + slotNumber, "/");
+				return _sharedObjects[slotNumber];
 			}
 		}
 		
@@ -143,7 +159,7 @@
 			var slotString:String = "TiTs_" + String(slotNumber);
 			var returnString:String = "";
 			
-			var dataFile:SharedObject = SharedObject.getLocal(slotString, "/");
+			var dataFile:SharedObject = this.getSO(slotNumber);
 			
 			// Various early-outs
 			if (dataFile.data.version == undefined)
@@ -162,7 +178,7 @@
 			returnString += slotNumber;
 			returnString += ": <b>" + dataFile.data.short + "</b>";
 			returnString += " - <i>" + dataFile.data.notes + "</i>\n";
-			returnString += "\t<b>Days:</b> " + dataFile.data.days;
+			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
 			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			returnString += "\n";
@@ -178,7 +194,7 @@
 			// Save the "last active slot" for autosave purposes within the DataManager properties
 			_lastManualDataSlot = slotNumber;
 			
-			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			var dataFile:SharedObject = this.getSO(slotNumber);
 			
 			// Call helper method(s) to do the actual saving of datas
 			this.saveBaseData(dataFile.data);
@@ -197,6 +213,14 @@
 			{
 				// Verification failed, ERROR ERROR ABORT
 				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
+				
+				for (var prop in dataFile)
+				{
+					brokenFile[prop] = dataFile[prop];
+				}
+				
+				brokenFile.flush();
+				
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
 				kGAMECLASS.userInterface.clearGhostMenu();
@@ -259,7 +283,7 @@
 			// Save the "last active slot" for autosave purposes within the DataManager properties
 			_lastManualDataSlot = slotNumber;
 			
-			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			var dataFile:SharedObject = this.getSO(slotNumber);
 			var dataObject:Object = new Object();
 			var dataErrors:Boolean = false;
 			
@@ -286,10 +310,10 @@
 			// If we're good so far, check if we need to upgrade the data
 			if (!dataErrors)
 			{
+				dataObject = dataFile.data;
+				
 				if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
 				{
-					dataObject = dataFile.data;
-					
 					// Loop over each version to grab the correct implementations for upgrading
 					while (dataObject.version < DataManager.LATEST_SAVE_VERSION)
 					{
@@ -308,7 +332,7 @@
 			// We should now have the latest version of a game save structure -- Final verify
 			if (!dataErrors)
 			{
-				dataErrors = this.verifyBlob(dataObject);
+				dataErrors = !this.verifyBlob(dataObject);
 			}
 			
 			// Now we can shuffle data into disparate game systems
@@ -355,11 +379,11 @@
 			
 			// Game data
 			kGAMECLASS.chars = new Array();
-			for (var prop in obj.chars)
+			for (var prop in obj.characters)
 			{
-				kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.chars[prop].classInstance) as Class)(obj.chars[prop]);
+				kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)(obj.characters[prop]);
 			}
-			kGAMECLASS.initializeNPCs(true);
+			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save
 			
 			kGAMECLASS.flags = new Dictionary();
 			for (var prop in obj.flags)
@@ -372,7 +396,8 @@
 			kGAMECLASS.easy = obj.easyMode;
 			kGAMECLASS.debug = obj.debugMode;
 			
-			return true;
+			// Returns the backup
+			return curGameObj;
 		}
 		
 		private function printDataErrorMessage(property:String):void
@@ -447,7 +472,7 @@
 		
 		private function slotCompatible(slotNumber:int):Boolean
 		{
-			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
+			var dataFile:SharedObject = this.getSO(slotNumber);
 			if (dataFile.data.minVersion != undefined)
 			{
 				return false;

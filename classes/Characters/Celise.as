@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function Celise()
+		public function Celise(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 			this.short = "Celise";
@@ -151,6 +151,10 @@
 			this.milkRate = 1;
 			this.ass.wetness = 5;
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

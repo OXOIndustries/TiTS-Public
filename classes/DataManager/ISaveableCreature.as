@@ -8,7 +8,7 @@ package classes.DataManager
 	public interface ISaveableCreature 
 	{
 		function getSaveObject():Object;
-		function loadSaveObject():Object;
+		function loadSaveObject(o:Object):void;
 	}
 	
 }

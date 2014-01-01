@@ -10,9 +10,14 @@ package classes.Characters
 	{
 		public static const latestVersion:int = 1;
 		
-		public function PlayerCharacter() 
+		public function PlayerCharacter(dataObject:Object = null) 
 		{
 			this.version = latestVersion;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 		
 	}

@@ -9,8 +9,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function ZilFemale()
-		//public function ZilFemale(titsPtr:*)
+		public function ZilFemale(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 
@@ -155,6 +154,10 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

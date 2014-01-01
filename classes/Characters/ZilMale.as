@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function ZilMale()
+		public function ZilMale(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 			
@@ -149,6 +149,11 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }

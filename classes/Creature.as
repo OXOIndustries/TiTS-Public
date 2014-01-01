@@ -21,11 +21,6 @@
 		public function get version():int { return _version; }
 		public function set version(value:int):void { _version = value; }
 		
-		public function getSaveObject():Object
-		{
-			throw new VersionUpgraderError("Base creatures cannot be serialized. Ensure you're actually using a descendant class of Creature, rather than Creature directly.");
-		}
-		
 		//Constructor
 		public function Creature()
 		{
@@ -86,15 +81,16 @@
 		 * Load a given saveobject.
 		 * @param	dataObject
 		 */
-		public function loadSaveObject(dataObject:Object)
+		public function loadSaveObject(dataObject:Object):void
 		{
-			var type:Class = getDefinitionByName(dataObject.classInstance);
+			var type:Class = (getDefinitionByName(dataObject.classInstance) as Class);
 			
 			if (dataObject.version < type.latestVersion)
 			{
-				while dataObject.version < type.latestVersion)
+				while (dataObject.version < type.latestVersion)
 				{
-					(this as type)["UpgradeVersion" + dataObject.version](dataObject);
+					var t:* = this as type;
+					t["UpgradeVersion" + dataObject.version](dataObject);
 				}
 			}
 			
@@ -106,7 +102,10 @@
 			// Do the loadingssss
 			for (var prop in dataObject)
 			{
-				this[prop] = dataObject[prop];
+				if (prop != "classInstance")
+				{
+					this[prop] = dataObject[prop];
+				}
 			}
 		}
 		

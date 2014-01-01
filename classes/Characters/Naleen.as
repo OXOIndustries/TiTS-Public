@@ -8,7 +8,7 @@
 		public static const latestVersion:int = 1;
 		
 		//constructor
-		public function Naleen()
+		public function Naleen(dataObject:Object = null)
 		{
 			this.version = latestVersion;
 
@@ -154,6 +154,11 @@
 			this.ass.wetness = 0;
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
 		}
 	}
 }
