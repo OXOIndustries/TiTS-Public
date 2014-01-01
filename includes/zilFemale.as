@@ -1,5 +1,11 @@
 ﻿import classes.Creature;
 
+// Flags:
+// FOUGHT_FEMZIL_LAST_TIME  : Last time you encountered the FemZil, you fought it rather then fucked it (?)
+// TIMES_MET_FEMZIL         : Times PC has encountered the femzil
+// ENCOUNTERED_ZIL          : Times PC has encountered the malezil
+// HIT_A_ZILGIRL            : TODO - FIXME
+
 //Female zil Encounter
 function femzilEncounter(forceFriendly:Boolean = false):void {
 	pc.lust(4);
