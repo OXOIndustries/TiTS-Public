@@ -1,4 +1,4 @@
-package classes.DataManager 
+﻿package classes.DataManager 
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import flash.net.SharedObject;
@@ -8,8 +8,66 @@ package classes.DataManager
 	 */
 	public class SaveVersionUpgrader1 implements ISaveVersionUpgrader 
 	{
+		private const _newVersionValue = 2;
+		
 		public function SaveVersionUpgrader1() 
 		{}
+		
+		public function runUpdater(data:Object):Boolean
+		{
+			// Renamed props
+			data.characters = data.chars;
+			delete data.chars;
+			
+			data.daysPassed = data.days;
+			delete data.days;
+			
+			data.currentHours = data.hours;
+			delete data.hours;
+			
+			data.currentMinutes = data.minutes;
+			delete data.minutes;
+			
+			data.easyMode = data.easy;
+			delete data.easy;
+			
+			data.sillyMode = data.silly;
+			delete data.silly;
+			
+			data.debugMode = data.debug;
+			delete data.debug;
+			
+			data.saveNotes = data.notes;
+			delete data.notes;
+			
+			data.playerLocation = data.locationKey;
+			delete data.locationKey;
+			
+			data.saveLocation = data.location;
+			delete data.location;
+			
+			data.saveName = data.short;
+			delete data.short;
+			
+			// Removed props
+			delete data.foes;
+			delete data.exists;
+			
+			// New props
+			data.minVersion = 2;
+			data.playerGender = "?"; // We can't easily reconstitue this, and frankly I don't even want to try. So we're just going to set *something*
+		
+			// Move flags dict to an array
+			var flags = new Array();
+			for (var k in data.flags)
+			{
+				flags[k] = data.flags[k];
+			}
+			
+			data.flags = flags;
+			
+			return true;	
+		}
 		
 		/**
 		 * Do the needful with the incoming data to transition from V1 -> V2
@@ -27,7 +85,12 @@ package classes.DataManager
 				trace("Upgrading save version 1 to version 2.");
 			}
 			
-			data.minVersion = 1;
+			if (!runUpdater(data))
+			{
+				throw new VersionUpgraderError("Upgrade failed, welp");
+			}
+			
+			data.version = 2;
 			
 			return this.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
 		}
@@ -45,7 +108,12 @@ package classes.DataManager
 				return false;
 			}
 			
-			if (data.minVersion == undefined || data.minVersion != 1)
+			if (data.minVersion == undefined)
+			{
+				trace("wat");
+			}
+			
+			if (data.minVersion == undefined || data.minVersion != 2)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");
 				return false;

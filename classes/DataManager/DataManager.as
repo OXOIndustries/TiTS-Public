@@ -8,6 +8,8 @@
 	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import flash.utils.ByteArray;
+	import flash.utils.getQualifiedClassName;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -65,15 +67,40 @@
 		
 		private function getSO(slotNumber:int):SharedObject
 		{
-			if (slotNumber in _sharedObjects)
+/*			if (slotNumber in _sharedObjects)
 			{
-				return _sharedObjects[slotNumber];
+				if (_sharedObjects[slotNumber].data.version !== undefined)
+				{
+					return _sharedObjects[slotNumber];
+				}			
 			}
-			else
+			_sharedObjects[slotNumber] = SharedObject.getLocal("TiTs_" + slotNumber, "/");
+			return _sharedObjects[slotNumber];*/
+			return SharedObject.getLocal("TiTs_" + slotNumber, "/");
+		}
+		
+		private function replaceDataWithBlob(so:SharedObject, blob:Object):void
+		{
+			so.clear();
+			
+			for (var prop in blob)
 			{
-				_sharedObjects[slotNumber] = SharedObject.getLocal("TiTs_" + slotNumber, "/");
-				return _sharedObjects[slotNumber];
+				so.data[prop] = blob[prop];
 			}
+		}
+		
+		private function getFileData(so:SharedObject):Object
+		{
+			var ret:Object = new Object();
+			
+			// I'm not too concerned about run-time clones for data-processing purposes. What I DONT want to do is clone data OUT into the shared objects.
+			// Clone will give us typed-classes dumped into data. We're trying to avoid that, and use basic containers that we can convert into our actual types later.
+			var copier:ByteArray = new ByteArray();
+			copier.writeObject(so.data);
+			copier.position = 0;
+			ret = copier.readObject();
+			
+			return ret;
 		}
 		
 		/**
@@ -167,10 +194,17 @@
 				return (String(slotNumber) + ": <b>EMPTY</b>\n\n");
 			}
 			
+			if (dataFile.data.minVersion == undefined) // Special case for v1 files, where minVersion wasn't defined
+			{
+				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
+			}
+			
 			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <b>INCOMPATIBLE</b>\n\n");
 			}
+			
+
 			
 			// Valid file to preview!
 			if (dataFile.data.notes == undefined) dataFile.data.notes = "No notes available.";
@@ -195,14 +229,16 @@
 			_lastManualDataSlot = slotNumber;
 			
 			var dataFile:SharedObject = this.getSO(slotNumber);
+			var dataBlob:Object = new Object();
 			
 			// Call helper method(s) to do the actual saving of datas
-			this.saveBaseData(dataFile.data);
+			this.saveBaseData(dataBlob);
 			
 			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
-			if (this.verifyBlob(dataFile.data))
+			if (this.verifyBlob(dataBlob))
 			{
 				// Verification successful, do things
+				this.replaceDataWithBlob(dataFile, dataBlob);
 				dataFile.flush();
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
@@ -213,12 +249,7 @@
 			{
 				// Verification failed, ERROR ERROR ABORT
 				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
-				
-				for (var prop in dataFile)
-				{
-					brokenFile[prop] = dataFile[prop];
-				}
-				
+				this.replaceDataWithBlob(brokenFile, dataBlob);
 				brokenFile.flush();
 				
 				kGAMECLASS.clearOutput2();
@@ -284,7 +315,7 @@
 			_lastManualDataSlot = slotNumber;
 			
 			var dataFile:SharedObject = this.getSO(slotNumber);
-			var dataObject:Object = new Object();
+			var dataObject:Object;
 			var dataErrors:Boolean = false;
 			
 			// Check we can get version information out of the file
@@ -294,7 +325,7 @@
 				dataErrors = true;
 			}
 			
-			if (dataFile.data.minVersion == undefined)
+			if (dataFile.data.minVersion == undefined && dataFile.data.version > 2) // Special second conditional for v1 saves
 			{
 				this.printDataErrorMessage("minVersion");
 				dataErrors = true;
@@ -310,7 +341,7 @@
 			// If we're good so far, check if we need to upgrade the data
 			if (!dataErrors)
 			{
-				dataObject = dataFile.data;
+				dataObject = this.getFileData(dataFile);
 				
 				if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
 				{
@@ -335,7 +366,7 @@
 				dataErrors = !this.verifyBlob(dataObject);
 			}
 			
-			// Now we can shuffle data into disparate game systems
+			// Now we can shuffle data into disparate game systems 
 			var saveBackup:Object = this.loadBaseData(dataObject);
 			
 			// Do some output shit
@@ -350,7 +381,11 @@
 			}
 			else
 			{
-				this.loadBaseData(saveBackup);
+				if (kGAMECLASS.chars["PC"].short != "uncreated")
+				{
+					this.loadBaseData(saveBackup);
+				}
+				
 				kGAMECLASS.output2("Error: Could not load game data.");
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
@@ -368,7 +403,10 @@
 			var curGameObj:Object = new Object();
 			
 			// Watch this magic
-			this.saveBaseData(curGameObj); // Current game state backed up! Shocking!
+			if (kGAMECLASS.chars["PC"].short != "uncreated")
+			{
+				this.saveBaseData(curGameObj); // Current game state backed up! Shocking!
+			}
 			
 			// Game state
 			kGAMECLASS.currentLocation = obj.playerLocation;
@@ -378,10 +416,27 @@
 			kGAMECLASS.userInterface.minutes = obj.currentMinutes;
 			
 			// Game data
-			kGAMECLASS.chars = new Array();
+			kGAMECLASS.chars = new Object();
+			var aRef:Object = kGAMECLASS.chars;
+			
 			for (var prop in obj.characters)
 			{
-				kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)(obj.characters[prop]);
+				try
+				{
+					if (!obj.characters[prop].hasOwnProperty("classInstance"))
+					{
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(getQualifiedClassName(obj.characters[prop])) as Class)(obj.characters[prop]);
+					}
+					else
+					{
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)(obj.characters[prop]);
+					}
+				}
+				catch (e:ReferenceError)
+				{
+					// If the classDefintion doesn't exist, we'll get a ReferenceError exception
+					trace(e.message)
+				}
 			}
 			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save
 			
@@ -423,21 +478,21 @@
 			// The idea is to check for many, basic properties on the data file to make sure we have EVERYTHING defined as a final-verify step before actually saving or loading a file
 			// During save, we're going to operate under the assumption that our complex-type save method (ie creature.getSaveObject() has done its own verification)
 			// We COULD pass the blob back and run another verify, but this is a quick, cheap-ish way 
-			if (data.version == undefined) return false;	
-			if (data.minVersion == undefined) return false;
-			if (data.saveName == undefined) return false;
-			if (data.playerGender == undefined) return false;
-			if (data.saveLocation == undefined) return false;
-			if (data.playerLocation == undefined) return false;
-			if (data.shipLocation == undefined) return false;
-			if (data.daysPassed == undefined) return false;
-			if (data.currentHours == undefined) return false;
-			if (data.currentMinutes == undefined) return false;
-			if (data.characters == undefined) return false;
-			if (data.flags == undefined) return false;
-			if (data.sillyMode == undefined) return false;
-			if (data.easyMode == undefined) return false;
-			if (data.debugMode == undefined) return false;
+			if (data.version == undefined) throw new Error("Version failed");	
+			if (data.minVersion == undefined) throw new Error("minVersion failed");
+			if (data.saveName == undefined) throw new Error("saveName failed");
+			if (data.playerGender == undefined) throw new Error("playerGender failed");
+			if (data.saveLocation == undefined) throw new Error("saveLocation failed");
+			if (data.playerLocation == undefined) throw new Error("playerLocation failed");
+			if (data.shipLocation == undefined) throw new Error("shipLocation failed");
+			if (data.daysPassed == undefined) throw new Error("daysPassed failed");
+			if (data.currentHours == undefined) throw new Error("currentHours failed");
+			if (data.currentMinutes == undefined) throw new Error("currentMinutes failed");
+			if (data.characters == undefined) throw new Error("characters failed");
+			if (data.flags == undefined) throw new Error("flags failed");
+			if (data.sillyMode == undefined) throw new Error("sillyMode failed");
+			if (data.easyMode == undefined) throw new Error("easyMode failed");
+			if (data.debugMode == undefined) throw new Error("debugMode failed");
 			return true;
 		}
 		
@@ -473,9 +528,13 @@
 		private function slotCompatible(slotNumber:int):Boolean
 		{
 			var dataFile:SharedObject = this.getSO(slotNumber);
-			if (dataFile.data.minVersion != undefined)
+			if (dataFile.data.version != undefined)
 			{
 				return false;
+			}
+			else if (dataFile.data.minVersion == undefined) // Special case for V1 saves
+			{
+				return true;
 			}
 			else if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{

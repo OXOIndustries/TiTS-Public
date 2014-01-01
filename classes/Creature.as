@@ -83,30 +83,50 @@
 		 */
 		public function loadSaveObject(dataObject:Object):void
 		{
-			var type:Class = (getDefinitionByName(dataObject.classInstance) as Class);
+			var typeT:Class;
 			
-			if (dataObject.version < type.latestVersion)
+			if (dataObject.hasOwnProperty("classInstance"))
 			{
-				while (dataObject.version < type.latestVersion)
+				typeT = (getDefinitionByName(dataObject.classInstance) as Class);
+			}
+			else
+			{
+				typeT = (getDefinitionByName(getQualifiedClassName(dataObject)) as Class);
+			}
+			
+			if (dataObject.version < typeT.latestVersion)
+			{
+				while (dataObject.version < typeT.latestVersion)
 				{
-					var t:* = this as type;
+					var t:* = this as typeT;
 					t["UpgradeVersion" + dataObject.version](dataObject);
 				}
 			}
 			
-			if (dataObject.version != type.latestVersion)
+			if (dataObject.version != typeT.latestVersion)
 			{
 				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
 			}
 			
-			// Do the loadingssss
-			for (var prop in dataObject)
+			// MORE DESCRIBE TYPE
+			var _dl:XMLList = describeType(dataObject)..variable;
+			for each (var prop:XML in _dl)
 			{
-				if (prop != "classInstance")
+				if (prop.@name != "classInstance" && this[prop.@name] !== undefined)
+				{
+					this[prop.@name] = dataObject[prop.@name]
+				}
+			}
+			
+			// Do the loadingssss
+/*			for (var prop in dataObject)
+			{
+				trace("What the fuck.");
+				if (prop != "classInstance" && this[prop] !== undefined)
 				{
 					this[prop] = dataObject[prop];
 				}
-			}
+			}*/
 		}
 		
 		//For enemies
