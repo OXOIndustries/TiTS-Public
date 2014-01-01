@@ -1,4 +1,4 @@
-package classes.DataManager 
+﻿package classes.DataManager 
 {
 	import classes.kGAMECLASS;
 	import flash.display.Shader;
@@ -17,10 +17,12 @@ package classes.DataManager
 	{
 		// Define the current version of save games.
 		private static const LATEST_SAVE_VERSION:int = 2;
-		private static const MINIMUM_SAVE_VERSION:int = 1;
+		private static const MINIMUM_SAVE_VERSION:int = 2;
 		
-		private static var _autoSaveEnabled:Boolean = false;
-		private static var _lastManualDataSlot:int = -1;
+		private var _autoSaveEnabled:Boolean = false;
+		private var _lastManualDataSlot:int = -1;
+		
+		private var _debug:Boolean = true;
 		
 		public function DataManager() 
 		{
@@ -45,12 +47,16 @@ package classes.DataManager
 				kGAMECLASS.userInterface.dataOff();
 				kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
 				kGAMECLASS.userInterface.hideMenus();
-				if (kGAMECLASS.pc.short == "uncreated") mainMenu();
+				if (kGAMECLASS.pc.short == "uncreated")
+				{
+					kGAMECLASS.mainMenu();
+				}
 			}
 			else
 			{
 				kGAMECLASS.userInterface.hideMenus();
 				kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [kGAMECLASS.userInterface.myGlow];
+				this.showDataMenu();
 			}
 		}
 		
@@ -94,7 +100,7 @@ package classes.DataManager
 			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
 			{
 				displayMessage += this.generateSavePreview(slotNum);
-				if (!this.slotEmpty(slotNum) && this.slotCompatible(slotNum))
+				if (!this.slotCompatible(slotNum) == true)
 				{
 					kGAMECLASS.userInterface.addGhostButton(slotNum - 1, "Slot " + slotNum, this.loadGameData, slotNum);
 				}
@@ -140,12 +146,12 @@ package classes.DataManager
 			var dataFile:SharedObject = SharedObject.getLocal(slotString, "/");
 			
 			// Various early-outs
-			if (dataFile.data.minVersion == undefined)
+			if (dataFile.data.version == undefined)
 			{
 				return (String(slotNumber) + ": <b>EMPTY</b>\n\n");
 			}
 			
-			if (saveFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
+			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <b>INCOMPATIBLE</b>\n\n");
 			}
@@ -158,7 +164,7 @@ package classes.DataManager
 			returnString += " - <i>" + dataFile.data.notes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.days;
 			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.location);
+			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
 			returnString += "\n";
 			return returnString;
 		}
@@ -175,7 +181,7 @@ package classes.DataManager
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
 			
 			// Call helper method(s) to do the actual saving of datas
-			this.saveBaseData(dataFile);
+			this.saveBaseData(dataFile.data);
 			
 			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
 			if (this.verifyBlob(dataFile.data))
@@ -202,44 +208,44 @@ package classes.DataManager
 		 * Method to append the "minimum" version we expect into the save file -- aka version 1
 		 * @param	obj
 		 */
-		private function saveBaseData(obj:SharedObject):void
+		private function saveBaseData(dataFile:Object):void
 		{
 			// Versioning Information
-			dataFile.data.version 		= DataManager.LATEST_SAVE_VERSION;
-			dataFile.data.minVersion 	= DataManager.MINIMUM_SAVE_VERSION;
+			dataFile.version 		= DataManager.LATEST_SAVE_VERSION;
+			dataFile.minVersion 	= DataManager.MINIMUM_SAVE_VERSION;
 			
 			// Base/Primary information
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
-			dataFile.data.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.data.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
-			dataFile.data.saveNotes 	= kGAMECLASS.userInterface.currentPCNotes;
-			dataFile.data.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
+			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
+			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
+			dataFile.saveNotes 		= kGAMECLASS.userInterface.currentPCNotes;
+			dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
 
 			// Game state
-			dataFile.data.playerLocation 	= kGAMECLASS.currentLocation;
-			dataFile.data.shipLocation 		= kGAMECLASS.shipLocation;
-			dataFile.data.daysPassed 		= kGAMECLASS.userInterface.days;
-			dataFile.data.currentHours 		= kGAMECLASS.userInterface.hours;
-			dataFile.data.currentMinutes 	= kGAMECLASS.userInterface.minutes;
+			dataFile.playerLocation 	= kGAMECLASS.currentLocation;
+			dataFile.shipLocation 		= kGAMECLASS.shipLocation;
+			dataFile.daysPassed 		= kGAMECLASS.userInterface.days;
+			dataFile.currentHours 		= kGAMECLASS.userInterface.hours;
+			dataFile.currentMinutes 	= kGAMECLASS.userInterface.minutes;
 			
 			// Game data
-			dataFile.data.characters = new Object();
+			dataFile.characters = new Object();
 			for (var prop in kGAMECLASS.chars)
 			{
-				dataFile.data.characters[prop] = kGAMECLASS.chars[prop].getSaveObject();
+				dataFile.characters[prop] = kGAMECLASS.chars[prop].getSaveObject();
 			}
 			
-			dataFile.data.flags = new Object();
+			dataFile.flags = new Object();
 			for (var prop in kGAMECLASS.flags)
 			{
-				dataFile.data.flags[prop] = kGAMECLASS.flags[prop];
+				dataFile.flags[prop] = kGAMECLASS.flags[prop];
 			}
 			
 			// Game options
-			dataFile.data.sillyMode 	= kGAMECLASS.silly;
-			dataFile.data.easyMode 		= kGAMECLASS.easyMode;
-			dataFile.data.debugMode 	= kGAMECLASS.debug;
+			dataFile.sillyMode 	= kGAMECLASS.silly;
+			dataFile.easyMode 		= kGAMECLASS.easy;
+			dataFile.debugMode 	= kGAMECLASS.debug;
 		}
 		
 		/**
@@ -273,7 +279,7 @@ package classes.DataManager
 			// Check that the minVersion isn't above our latest version
 			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{
-				outputText("This save file requires a minimum save format version of " + DataManager.LATEST_SAVE_VERSION + " for correct support. Please use a newer version of the game!\n\n");
+				kGAMECLASS.output2("This save file requires a minimum save format version of " + DataManager.LATEST_SAVE_VERSION + " for correct support. Please use a newer version of the game!\n\n");
 				dataErrors = true;
 			}
 			
@@ -289,7 +295,7 @@ package classes.DataManager
 					{
 						try
 						{
-							dataObject = (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataObject.version) as Class)["upgrade"](dataObject);
+							(new (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataObject.version) as Class) as ISaveVersionUpgrader).upgrade(dataObject);
 						}
 						catch (error:VersionUpgraderError)
 						{
@@ -306,13 +312,13 @@ package classes.DataManager
 			}
 			
 			// Now we can shuffle data into disparate game systems
-			dataErrors = this.loadBaseData(dataObject);
+			var saveBackup:Object = this.loadBaseData(dataObject);
 			
 			// Do some output shit
-			if (!datErrors)
+			if (!dataErrors)
 			{
-				kGAMECLASS.hideNPCStats();
-				kGAMECLASS.showPCStats();
+				kGAMECLASS.userInterface.hideNPCStats();
+				kGAMECLASS.userInterface.showPCStats();
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
 				kGAMECLASS.userInterface.clearGhostMenu();
@@ -320,6 +326,7 @@ package classes.DataManager
 			}
 			else
 			{
+				this.loadBaseData(saveBackup);
 				kGAMECLASS.output2("Error: Could not load game data.");
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
@@ -327,12 +334,17 @@ package classes.DataManager
 		}
 		
 		/**
-		 * Method to extract the base data from the save object and shuffle it into various game systems
+		 * Method to extract the base data from the save object and shuffle it into various game systems.
+		 * Need to add some error handling in here
 		 * @param	obj
 		 */
-		private function loadBaseData(obj:Object):Boolean
+		private function loadBaseData(obj:Object):Object
 		{
 			// Base/Primary information
+			var curGameObj:Object = new Object();
+			
+			// Watch this magic
+			this.saveBaseData(curGameObj); // Current game state backed up! Shocking!
 			
 			// Game state
 			kGAMECLASS.currentLocation = obj.playerLocation;
@@ -342,11 +354,12 @@ package classes.DataManager
 			kGAMECLASS.userInterface.minutes = obj.currentMinutes;
 			
 			// Game data
-			kGAMECLASS.initializeNPCs();
+			kGAMECLASS.chars = new Array();
 			for (var prop in obj.chars)
 			{
 				kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.chars[prop].classInstance) as Class)(obj.chars[prop]);
 			}
+			kGAMECLASS.initializeNPCs(true);
 			
 			kGAMECLASS.flags = new Dictionary();
 			for (var prop in obj.flags)
@@ -364,17 +377,16 @@ package classes.DataManager
 		
 		private function printDataErrorMessage(property:String):void
 		{
-			outputText("Data property " + property + " was expected, but unset. This save is possibly corrupt!\n\n");
+			kGAMECLASS.output2("Data property " + property + " was expected, but unset. This save is possibly corrupt!\n\n");
 			return;
 		}
 		
 		private function printThrownError(error:Error):void
 		{
-			outputText("<b>Processing failed: </b>" + error.message + "\n\n");
+			kGAMECLASS.output2("<b>Processing failed: </b>" + error.message + "\n\n");
 			return;
 		}
-		
-		
+			
 		/**
 		 * Verify that ALL of the properties we expect to be present on a save data element, for this version of a save, are present and sane.
 		 * This works during both save AND load for the "simple" data. Probably extend it into complex types later
@@ -405,11 +417,21 @@ package classes.DataManager
 		}
 		
 		/**
-		 * "Resume" game post load
+		 * "Resume" game post load. There are a handful of references to this method around the game...
 		 */
-		private function executeGame():void
+		public function executeGame():void
 		{
+			kGAMECLASS.userInterface.dataOff();
+			kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
+			kGAMECLASS.userInterface.hideMenus();
 			
+			if (kGAMECLASS.currentLocation != "")
+			{
+				kGAMECLASS.userInterface.setMapData(kGAMECLASS.mapper.generateMap(kGAMECLASS.currentLocation));
+				kGAMECLASS.userInterface.showMinimap();
+			}
+			
+			kGAMECLASS.mainGameMenu();
 		}
 		
 		private function doAutoSave():void
@@ -426,9 +448,18 @@ package classes.DataManager
 		private function slotCompatible(slotNumber:int):Boolean
 		{
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
-			if (dataFile.data.minVersion != undefined) return false;
-			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION) return false;
-			return true;
+			if (dataFile.data.minVersion != undefined)
+			{
+				return false;
+			}
+			else if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
 		}
 	}
 

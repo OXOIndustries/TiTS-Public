@@ -9,16 +9,14 @@ package classes.DataManager
 	public class SaveVersionUpgrader1 implements ISaveVersionUpgrader 
 	{
 		public function SaveVersionUpgrader1() 
-		{
-			throw new VersionUpgraderError("SaveVersionUpgrader1 should never be instantiated. Bad luck bro.");
-		}
+		{}
 		
 		/**
 		 * Do the needful with the incoming data to transition from V1 -> V2
 		 * @param	data
 		 * @return
 		 */
-		public static function upgrade(data:Object):Object
+		public function upgrade(data:Object):Boolean
 		{
 			if (data.version != 1)
 			{
@@ -31,9 +29,7 @@ package classes.DataManager
 			
 			data.minVersion = 1;
 			
-			SaveVersionUpgrader1.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
-			
-			return data;
+			return this.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
 		}
 		
 		/**
@@ -41,7 +37,7 @@ package classes.DataManager
 		 * @param	data
 		 * @return
 		 */
-		public static function verify(data:Object):Boolean
+		public function verify(data:Object):Boolean
 		{
 			if (data.version != 2)
 			{

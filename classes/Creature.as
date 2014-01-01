@@ -1,20 +1,30 @@
 ﻿package classes
 {
 	import classes.CockClass;
+	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
+	import classes.DataManager.ISaveableCreature;
+	import flash.utils.describeType;
+	import flash.utils.getQualifiedClassName;
+	import flash.utils.getDefinitionByName;
 
 	import flash.utils.ByteArray;
 	
 	import classes.GLOBAL;
 	
-	public class Creature
+	public class Creature implements ISaveableCreature
 	{
 		private var _version:int = 0;
 		public function get version():int { return _version; }
 		public function set version(value:int):void { _version = value; }
+		
+		public function getSaveObject():Object
+		{
+			throw new VersionUpgraderError("Base creatures cannot be serialized. Ensure you're actually using a descendant class of Creature, rather than Creature directly.");
+		}
 		
 		//Constructor
 		public function Creature()
@@ -33,22 +43,83 @@
 			for(var z:int = 0; z < 30; z++) {
 				inventory[z] = new ItemSlotClass();
 			}
-
 		}
-		//For cheateyness.
-		// include "consts.as"
-		//Variables
-		//AUTOSAVE
-		public var slotName:String = "VOID";
-		public var autoSave:Boolean = false;
+		
+		/**
+		 * Provide a base method of getting all properties common to ALL creatures. I think this would actually work
+		 * for child properties too...
+		 * @param	dataObject
+		 */
+		public function getSaveObject():Object
+		{
+			var dataObject:Object = new Object();
+			
+			var _d:XML = describeType(this);
+			var _dl:XMLList = _d..variable;
+			var _da:XMLList = _d..accessor;
+			
+			// Raw properties
+			for each (var prop:XML in _dl)
+			{
+				if (this[prop.@name] != null && this[prop.@name] != undefined)
+				{
+					dataObject[prop.@name] = this[prop.@name];
+				}
+			}
+			
+			// Private properties aren't in the ..variable list at all. We can however, get their accessors...
+			for each (var accs:XML in _da)
+			{
+				if (accs.@name != "prototype")
+				{
+					dataObject[accs.@name] = this[accs.@name];
+				}
+			}
+			
+			// Save the class instance string
+			dataObject.classInstance = getQualifiedClassName(this); // This should give us the child type so we can reconstitue it during loading.
+			
+			return dataObject;
+		}
+		
+		/**
+		 * Load a given saveobject.
+		 * @param	dataObject
+		 */
+		public function loadSaveObject(dataObject:Object)
+		{
+			var type:Class = getDefinitionByName(dataObject.classInstance);
+			
+			if (dataObject.version < type.latestVersion)
+			{
+				while dataObject.version < type.latestVersion)
+				{
+					(this as type)["UpgradeVersion" + dataObject.version](dataObject);
+				}
+			}
+			
+			if (dataObject.version != type.latestVersion)
+			{
+				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
+			}
+			
+			// Do the loadingssss
+			for (var prop in dataObject)
+			{
+				this[prop] = dataObject[prop];
+			}
+		}
+		
 		//For enemies
 		public var short:String = "uncreated";
 		public var originalRace:String = "human";
 		public var a:String = "a ";
 		public var long:String = "You scrawny, yo.";
 		public var capitalA:String = "A ";
+		
 		//Is a creature a 'pluralize' encounter - mob, etc. 
 		public var plural:Boolean = false;
+		
 		//Lust vulnerability
 		public var lustVuln:Number = 1;
 		

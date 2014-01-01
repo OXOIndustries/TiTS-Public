@@ -8,8 +8,8 @@ package classes.DataManager
 	 */
 	public interface ISaveVersionUpgrader 
 	{
-		public static function upgrade(data:SharedObject):SharedObject;
-		public static function verify(data:SharedObject):SharedObject;
+		function upgrade(data:Object):Boolean;
+		function verify(data:Object):Boolean;
 	}
 	
 }
