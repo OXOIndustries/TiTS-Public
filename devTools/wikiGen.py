@@ -15,6 +15,10 @@ writeToFiles = True
 def dictToList(inDict):
 	dictlist = []
 	for key, value in inDict.iteritems():
+
+		if len(value) == 1:						# Convert single-item lists to a string
+			value = value[0].rstrip().lstrip()
+
 		dictlist.append([key,value])
 	return dictlist
 
