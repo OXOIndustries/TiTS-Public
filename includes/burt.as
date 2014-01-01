@@ -2,11 +2,12 @@
 //NOTE: I really hate having to scroll through long pages in CoC, so I have broken scenes up in here with the occasional [Next] flag. If you don’t like the placement or breaks, feel free to adjust however you want.
 //
 // Flags:
-// MET_BURT                    : PC Met Burt? Defined if the PC has.
-// BURT_COLLECTABLE_SHOP       : PC Asked Burt about his shop. Defined if PC has.
-// BURT_DRINKS_BOUGHT          : Number of drinks the PC has purchased from Burt
-// BURT_MEAD_HALL_DISCUSSIONS  : Number of times PC has asked burt about his mead hall. Currently undefined -through- 3
-// BURT_ZIL_TALK               : Number of times PC has asked burt about the zil. Currently undefined -through- 3
+// MET_BURT                     : PC Met Burt? Defined if the PC has.
+// BURT_COLLECTABLE_SHOP        : PC Asked Burt about his shop. Defined if PC has.
+// BURT_DRINKS_BOUGHT           : Number of drinks the PC has purchased from Burt
+// BURT_MEAD_HALL_DISCUSSIONS   : Number of times PC has asked burt about his mead hall. Currently undefined -through- 3
+// BURT_ZIL_TALK                : Number of times PC has asked burt about the zil. Currently undefined -through- 3
+// TIMES_THREE_D_SURPRISE_SEXED : TODO - FIXME
 
 function burtsBarFunc():void {
 	if(flags["MET_BURT"] == undefined) this.userInterface.addButton(0,"Bar",burtapproach);

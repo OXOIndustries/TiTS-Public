@@ -25,6 +25,25 @@ Uses tonfas for weapons.
 Is Asian. Has Asian last name: Inoue
 */
 
+// Flags:
+// TALK_WITH_PENNY_ABOUT_FUN            : TODO - FIXME
+// TALK_WITH_PENNY_ABOUT_SPECIES        : TODO - FIXME
+// TALK_WITH_PENNY_ABOUT_YOURSELF       : TODO - FIXME
+// TALK_WITH_PENNY_ABOUT_YOUTH          : TODO - FIXME
+// TIMES_FROTTAGED_PENNY                : TODO - FIXME
+// TIMES_JACKED_PENNY_OFF_WITH_ONAHOLE  : TODO - FIXME
+// TIMES_PENNY_PAWJOBBED                : TODO - FIXME
+// HAD_PENNY_GOAL_CHAT                  : TODO - FIXME
+// SEXED_PENNY                          : TODO - FIXME
+// MET_PENNY                            : TODO - FIXME
+// PENNY_AFFECTION                      : TODO - FIXME
+// PENNY_FUTA_TALK                      : TODO - FIXME
+// PENNY_THROBB_PURCHASE_UNLOCKED       : TODO - FIXME
+// PENNY_THROBB_USES                    : TODO - FIXME
+// PENNY_TIMES_ANAL_SEXED               : TODO - FIXME
+// PENNY_TIMES_OVER_DESK_FUCKED         : TODO - FIXME
+// ZIL_PROBLEM_DEALT_WITH               : TODO - FIXME
+
 function pennyAffection(arg:int = 0):Number {
 	if(flags["PENNY_AFFECTION"] == undefined) flags["PENNY_AFFECTION"] = 0;
 	if(arg != 0) flags["PENNY_AFFECTION"] += arg;

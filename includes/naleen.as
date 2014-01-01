@@ -9,7 +9,10 @@
 //Fur Pattern: Tiger stripes along the back/sides, with a white patch on her belly/breasts. Ends in a "mane" or collar around her shoulders -- much thinner than a male naleen's would be.
 //Hair: Brilliant orange, waist-length. Possibly black highlights/strips?
 
-// TIMES_WINSEXED_NALEEN : Number of times you've beat naleen and fucked her
+// Flags:
+// TIMES_WINSEXED_NALEEN        : Number of times you've beat naleen and fucked her
+// TIMES_MET_NALEEN             : Total number of PC's encounters with Naleen.
+// TIMES_LOSS_DOMMED_BY_NALEEN  : Times the PC has been dominated by Naleed after losing in combat.
 
 function naleenSexed(won:Boolean = true):void {
 	if (won)

@@ -1,5 +1,8 @@
 ﻿//Male Zil Encounter
 
+// Flags:
+// TIMES_LOST_TO_ZIL  : TODO - FIXME
+
 function maleZilEncounter():void {
 	userInterface.showBust("ZIL");
 	//[First Time]

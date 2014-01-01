@@ -1,5 +1,11 @@
 ﻿//Venus Pitcher Plants
 
+
+// Flags:
+// TIMES_MET_VENUS_PITCHER               : Total number of times PC has encountered Venus Pitchers
+// TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER   : TODO - FIXME
+// TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED : TODO - FIXME
+
 //Venus Pitchers Codex
 function venusPitcherCodexEntry():void {
 	clearOutput();

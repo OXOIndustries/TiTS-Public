@@ -1,4 +1,11 @@
-﻿function celiseIsCrew():Boolean {
+﻿
+// Flags: 
+// CELISE_ONBOARD        : TODO - FIXME
+// RECRUITED_CELISE      : TODO - FIXME
+// TIMES_CELISE_IN_BALLS : TODO - FIXME
+// 
+
+function celiseIsCrew():Boolean {
 	return (flags["RECRUITED_CELISE"] > 0 && flags["CELISE_ONBOARD"] > 0);
 }
 function celiseIsFollower():Boolean {
