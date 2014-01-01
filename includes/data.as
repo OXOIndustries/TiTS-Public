@@ -202,7 +202,7 @@ function loadGame(slot:String):void
 		lootList = new Array();		
 		
 		//Update NPCs that didn't used to exist
-		this.initializeNPCs(true);				
+		this.initializeNPCs(true);		
 		
 		
 		//Update display and such!
