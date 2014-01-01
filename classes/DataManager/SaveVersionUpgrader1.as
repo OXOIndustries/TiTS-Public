@@ -24,8 +24,14 @@ package classes.DataManager
 			{
 				throw new VersionUpgraderError("Upgrader Version 1 recieved data version " + data.version + " during an upgrade call. Bad luck bro.");
 			}
+			else
+			{
+				trace("Upgrading save version 1 to version 2.");
+			}
 			
 			data.minVersion = 1;
+			
+			SaveVersionUpgrader1.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
 			
 			return data;
 		}

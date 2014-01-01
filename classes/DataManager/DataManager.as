@@ -1,10 +1,13 @@
 package classes.DataManager 
 {
 	import classes.kGAMECLASS;
+	import flash.display.Shader;
 	import flash.events.MouseEvent;
 	import flash.net.SharedObject;
 	import classes.StringUtil;
+	import flash.utils.Dictionary;
 	import flash.utils.getDefinitionByName;
+	import classes.DataManager.Errors.VersionUpgraderError;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -21,7 +24,8 @@ package classes.DataManager
 		
 		public function DataManager() 
 		{
-			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later
+			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
+			// For it to actually be compiled.
 			var sv1:SaveVersionUpgrader1;
 		}
 		
@@ -153,7 +157,7 @@ package classes.DataManager
 			returnString += ": <b>" + dataFile.data.short + "</b>";
 			returnString += " - <i>" + dataFile.data.notes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.days;
-			returnString += "  <b>Gender:</b> " + dataFile.data.chars["PC"].mfn("M", "F", "A"); // YEESH
+			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
 			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.location);
 			returnString += "\n";
 			return returnString;
@@ -170,6 +174,36 @@ package classes.DataManager
 			
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + String(slotNumber), "/");
 			
+			// Call helper method(s) to do the actual saving of datas
+			this.saveBaseData(dataFile);
+			
+			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
+			if (this.verifyBlob(dataFile.data))
+			{
+				// Verification successful, do things
+				dataFile.flush();
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			}
+			else
+			{
+				// Verification failed, ERROR ERROR ABORT
+				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
+				kGAMECLASS.clearOutput2();
+				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			}
+		}
+		
+		/**
+		 * Method to append the "minimum" version we expect into the save file -- aka version 1
+		 * @param	obj
+		 */
+		private function saveBaseData(obj:SharedObject):void
+		{
 			// Versioning Information
 			dataFile.data.version 		= DataManager.LATEST_SAVE_VERSION;
 			dataFile.data.minVersion 	= DataManager.MINIMUM_SAVE_VERSION;
@@ -180,6 +214,7 @@ package classes.DataManager
 			dataFile.data.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.data.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
 			dataFile.data.saveNotes 	= kGAMECLASS.userInterface.currentPCNotes;
+			dataFile.data.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
 
 			// Game state
 			dataFile.data.playerLocation 	= kGAMECLASS.currentLocation;
@@ -205,28 +240,12 @@ package classes.DataManager
 			dataFile.data.sillyMode 	= kGAMECLASS.silly;
 			dataFile.data.easyMode 		= kGAMECLASS.easyMode;
 			dataFile.data.debugMode 	= kGAMECLASS.debug;
-			
-			// VERIFY SAVE DATA BEFORE DOING FUCK ALL ELSE
-			if (this.verifyBlob(dataFile.data))
-			{
-				// Verification successful, do things
-				dataFile.flush();
-				kGAMECLASS.clearOutput2();
-				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
-				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
-			}
-			else
-			{
-				// Verification failed, ERROR ERROR ABORT
-				var brokenFile:SharedObject = SharedObject.getLocal("broken_save", "/");
-				kGAMECLASS.clearOutput2();
-				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
-				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
-			}
 		}
 		
+		/**
+		 * Load the given slot numbers save data
+		 * @param	slotNumber
+		 */
 		private function loadGameData(slotNumber:int):void
 		{
 			kGAMECLASS.clearOutput2();
@@ -241,13 +260,13 @@ package classes.DataManager
 			// Check we can get version information out of the file
 			if (dataFile.data.version == undefined)
 			{
-				this.printDataError("version");
+				this.printDataErrorMessage("version");
 				dataErrors = true;
 			}
 			
 			if (dataFile.data.minVersion == undefined)
 			{
-				this.printDataError("minVersion");
+				this.printDataErrorMessage("minVersion");
 				dataErrors = true;
 			}
 			
@@ -268,18 +287,93 @@ package classes.DataManager
 					// Loop over each version to grab the correct implementations for upgrading
 					while (dataObject.version < DataManager.LATEST_SAVE_VERSION)
 					{
-						dataObject = (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataObject.version) as Class)["upgrade"](dataObject);
+						try
+						{
+							dataObject = (getDefinitionByName("classes.DataManager.SaveVersionUpgrader" + dataObject.version) as Class)["upgrade"](dataObject);
+						}
+						catch (error:VersionUpgraderError)
+						{
+							dataErrors = true;
+						}
 					}
 				}
 			}
 			
+			// We should now have the latest version of a game save structure -- Final verify
+			if (!dataErrors)
+			{
+				dataErrors = this.verifyBlob(dataObject);
+			}
+			
+			// Now we can shuffle data into disparate game systems
+			dataErrors = this.loadBaseData(dataObject);
+			
+			// Do some output shit
+			if (!datErrors)
+			{
+				kGAMECLASS.hideNPCStats();
+				kGAMECLASS.showPCStats();
+				kGAMECLASS.updatePCStats();
+				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(0, "Next", this.executeGame);
+			}
+			else
+			{
+				kGAMECLASS.output2("Error: Could not load game data.");
+				kGAMECLASS.userInterface.clearGhostMenu();
+				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			}
 		}
 		
-		private function printDataError(property:String):void
+		/**
+		 * Method to extract the base data from the save object and shuffle it into various game systems
+		 * @param	obj
+		 */
+		private function loadBaseData(obj:Object):Boolean
+		{
+			// Base/Primary information
+			
+			// Game state
+			kGAMECLASS.currentLocation = obj.playerLocation;
+			kGAMECLASS.shipLocation = obj.shipLocation;
+			kGAMECLASS.userInterface.days = obj.daysPassed;
+			kGAMECLASS.userInterface.hours = obj.currentHours;
+			kGAMECLASS.userInterface.minutes = obj.currentMinutes;
+			
+			// Game data
+			kGAMECLASS.initializeNPCs();
+			for (var prop in obj.chars)
+			{
+				kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.chars[prop].classInstance) as Class)(obj.chars[prop]);
+			}
+			
+			kGAMECLASS.flags = new Dictionary();
+			for (var prop in obj.flags)
+			{
+				kGAMECLASS.flags[prop] = obj.flags[prop];
+			}
+			
+			// Game settings
+			kGAMECLASS.silly = obj.sillyMode;
+			kGAMECLASS.easy = obj.easyMode;
+			kGAMECLASS.debug = obj.debugMode;
+			
+			return true;
+		}
+		
+		private function printDataErrorMessage(property:String):void
 		{
 			outputText("Data property " + property + " was expected, but unset. This save is possibly corrupt!\n\n");
 			return;
 		}
+		
+		private function printThrownError(error:Error):void
+		{
+			outputText("<b>Processing failed: </b>" + error.message + "\n\n");
+			return;
+		}
+		
 		
 		/**
 		 * Verify that ALL of the properties we expect to be present on a save data element, for this version of a save, are present and sane.
@@ -295,6 +389,7 @@ package classes.DataManager
 			if (data.version == undefined) return false;	
 			if (data.minVersion == undefined) return false;
 			if (data.saveName == undefined) return false;
+			if (data.playerGender == undefined) return false;
 			if (data.saveLocation == undefined) return false;
 			if (data.playerLocation == undefined) return false;
 			if (data.shipLocation == undefined) return false;
