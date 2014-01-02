@@ -51,7 +51,7 @@ class MapEditorFrame(wx.Frame):
 		
 
 	def __set_properties(self):
-		self.SetTitle("TiTS Map Editor")
+		self.SetTitle("Map Editor")
 		self.SetBackgroundColour(wx.SystemSettings_GetColour(wx.SYS_COLOUR_BTNFACE))
 
 		self.SetSize((1000, 685))
@@ -62,13 +62,17 @@ class MapEditorFrame(wx.Frame):
 	def __controlButtonsSizer(self):
 		controlButtonsSizer = wx.BoxSizer(wx.HORIZONTAL)
 
+		descText = "Map Editor"
+		self.videoWinHeaderLabel = wx.StaticText(self, -1, descText)
+		self.videoWinHeaderLabel.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
+		controlButtonsSizer.Add(self.videoWinHeaderLabel, proportion=0, flag=wx.ALL, border=5)
+
+		controlButtonsSizer.Add([1,1], proportion=1)
+
 		self.somethingButton = wx.ToggleButton(self, -1, "DO THE THING")
-		controlButtonsSizer.Add(self.somethingButton, 0, wx.EXPAND, 0)
+		controlButtonsSizer.Add(self.somethingButton, proportion=0, flag=wx.EXPAND, border=5)
 
 
-		self.spacerPanel = wx.Panel(self, -1)
-		controlButtonsSizer.Add(self.spacerPanel, 1, wx.EXPAND, 0)
-		
 
 		return controlButtonsSizer
 	
@@ -89,9 +93,6 @@ class MapEditorFrame(wx.Frame):
 
 		self.DestroyChildren()			#Kill the Children!
 
-		descText = "TiTS Map Editor"
-		self.videoWinHeaderLabel = wx.StaticText(self, -1, descText)
-		self.videoWinHeaderLabel.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
 	
 		self.controlButtonsSizer = self.__controlButtonsSizer()
 
@@ -106,7 +107,6 @@ class MapEditorFrame(wx.Frame):
 		self.mainWindowSizer = wx.BoxSizer(wx.VERTICAL)
 		
 		
-		self.mainWindowSizer.Add(self.videoWinHeaderLabel, proportion=0, flag=wx.ALL, border=5)
 		self.mainWindowSizer.Add(self.controlButtonsSizer, proportion=0, flag=wx.EXPAND, border=0)
 		
 		self.vizPanel = vizFrame.ReadoutPanel(self, -1)

@@ -5,7 +5,7 @@ class Room():
 
 
 	def __init__(self, roomName):
-		print "Creating room = ", roomName
+		#print "Creating room = ", roomName
 		self.roomName = roomName
 
 
@@ -182,6 +182,16 @@ class MapClass():
 				tmpCoords = updateDictCoord(currentCoords, "z", +1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
 
+	def getRoomAt(self, x, y, z, p):
+		print "getting room at ", x, y, z, p
+		# This is CLUMSY. It works for fairly small values of n, though, and I don't expect to have 10K+ rooms, so.... eh?
+		wantDict = {"x": x, "y": y, "z": z, "p" : p}
+		for key, room in self.mapDict.iteritems():
+			if room.coords == wantDict:
+				print "Have room"
+				return room
+
+		raise ValueError("No room at coordinates:", wantDict)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 
 import wx
 
-
+import mapTools
 
 class GridPanel(wx.Panel):
 
@@ -15,21 +15,57 @@ class GridPanel(wx.Panel):
 
 		self.mdc = None # memory dc to draw off-screen
 
+		self.roomStep = 50
+
+		self.globalDrawOffset = [-500, 0]
+
 		self.Bind(wx.EVT_SIZE, self.onSize)
 		self.Bind(wx.EVT_ERASE_BACKGROUND, self.onErase)
 		self.Bind(wx.EVT_PAINT, self.onPaint)
 
-		self.rectDims = [15,15]
-		self.textColour = wx.Colour(0, 0, 255)
+		self.textColourWhite = wx.Colour(255, 255, 255)
+		self.textColourBlack = wx.Colour(0, 0, 0)
 
-		self.brushColour = wx.Colour(150, 150, 150)
+		self.brushColour = wx.Colour(0, 0, 150)
 		self.brush = wx.Brush(self.brushColour)
 
 		self.penColour = wx.Colour(0, 0, 0, 0)
 		self.pen = wx.Pen(self.penColour)
 		
+		print "Loading Map"
+		self.mapper = mapTools.MapClass(["../../includes/rooms.as"])
+		self.mapRoot = self.mapper.getRoomAt(0,0,0,0)
+		#print "Mapper = ", self.mapper
 		self.onSize(None)
 		#self.onTimer()
+
+		self.lastUpdatePosition = [0,0]
+
+		self.Bind(wx.EVT_LEFT_DOWN, self.OnLeftDown)
+		self.Bind(wx.EVT_LEFT_UP, self.OnLeftUp)
+		self.Bind(wx.EVT_MOTION, self.OnMotion)
+		self.Bind(wx.EVT_LEAVE_WINDOW, self.OnLeaveWindow)
+		
+		self.motionLoop = 0
+
+	def OnMotion(self, evt):
+		if not evt.Dragging() or not evt.LeftIsDown():
+			return
+		curPosition = evt.GetPosition()
+		self.globalDrawOffset = [b - a for a, b in zip([a - b for a, b in zip(self.lastUpdatePosition, curPosition)], self.globalDrawOffset)]
+		self.lastUpdatePosition = curPosition
+		self.motionLoop += 1
+		if self.motionLoop == 10:
+			self.redraw()
+			self.motionLoop = 0
+	def OnLeftDown(self, evt):
+		self.lastUpdatePosition = evt.GetPosition()
+	def OnLeftUp(self, evt):
+		self.redraw()
+	def OnLeaveWindow(self, evt):
+		pass
+		#print "On Leave Window!"
+
 
 	def onSize(self, event):
 		# re-create memory dc to fill window
@@ -50,89 +86,81 @@ class GridPanel(wx.Panel):
 		
 	def redraw(self):
 		# do the actual drawing on the memory dc here
+		#print "Redraw!"
 		dc = self.mdc
 
-		
+		#print "mapRoot", mapRoot
 		w, h = dc.GetSize()
 		dc.Clear()
-		arr = None
-		#print arr
-		#print self.rectDims
-		incW = w / self.rectDims[1]
-		incH = h / self.rectDims[0]
 		
 		dc.SetBrush(self.brush)
 		#dc.SetPen(self.pen)
-		dc.SetTextForeground(self.textColour)
+		dc.SetTextForeground(self.textColourWhite)
 
-		#Calculate offsets for each rectanagle:
-		# We need to do this so the window size does not have to be a multiple of #rectangles. This way, between sizes result in the first X rectangles (where x = dimension % number of rectangles)
-		# being 1 pixel larger.
 
-		baseW = w/self.rectDims[1]
-		baseH = h/self.rectDims[0]
-
-		wOff = w-(baseW*self.rectDims[1])
-		hOff = h-(baseH*self.rectDims[0])
-
-		wInds = []
-		hInds = []
-
-		wRectExtra = []
-		hRectExtra = []
 		
-		offset = 0
-		for x in range(self.rectDims[1]):
-			wInds.append(x*baseW+offset)
-			
-			if wOff > 0:
-				wOff -= 1
-				offset += 1
-				wRectExtra.append(1)
-			else:
-				wRectExtra.append(0)
+		rootX = (w/2)+self.globalDrawOffset[0]
+		rootY = (h/2)+self.globalDrawOffset[1]
+		#print "Drawing at ", rootX, rootY
+		self.drawnList = []
+		self.handleRoom(dc, self.mapRoot, rootX, rootY)
 
-		offset = 0
-		for y in range(self.rectDims[0]):
-			hInds.append(y*baseH+offset)
-
-			if hOff > 0:
-				hOff -= 1
-				offset += 1
-				hRectExtra.append(1)
-			else:
-				hRectExtra.append(0)
-
-
-
-
-
-
-		npExtntX , npExtntY = dc.GetTextExtent("NP")
-		npExtntX , npExtntY = npExtntX/2 , npExtntY/2
-
-		for wInd in range(self.rectDims[1]):
-			for hInd in range(self.rectDims[0]):
-				
-
-				self.brushColour.Set(5, 90, 250)
-				self.brush.SetColour(self.brushColour)
-				dc.SetBrush(self.brush)
-				
-				dc.DrawRectangle(wInds[wInd], hInds[hInd], incW+wRectExtra[wInd], incH+hRectExtra[hInd])
-				if False: #self.drawText:
-					if self.snsArPres.item[hInd, wInd] == 0:
-						dc.DrawText("NP", wInds[wInd] + (incW/2)-npExtntX, hInds[hInd] + (incH/2)-npExtntY)
-					else:
-						tempStr = "%0.2f" % self.tempsAbsAr.item[hInd, wInd]
-						strExtntX , strExtntY = dc.GetTextExtent(tempStr)
-						strExtntX , strExtntY = strExtntX/2 , strExtntY/2
-						dc.DrawText(tempStr, wInds[wInd] + (incW/2)-strExtntX, hInds[hInd] + (incH/2)-strExtntY)
-
+		
+		dc.SetTextForeground(self.textColourBlack)
+		coordNote = "Current Coords = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
+		dc.DrawText(coordNote, 7, h-20)
+		
 		#print incH, incW
 		self.Refresh()
-		
 
+	def handleRoom(self, dc, room, x, y):
+		self.drawRoom(dc, x, y, room)
+		if room.roomName in self.drawnList:
+			return
+		else:
+			self.drawnList.append(room.roomName)
+
+		if room.game_northExit:
+			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit], x, y - self.roomStep)
+		if room.game_southExit:
+			self.handleRoom(dc, self.mapper.mapDict[room.game_southExit], x, y + self.roomStep)
+		if room.game_westExit:
+			self.handleRoom(dc, self.mapper.mapDict[room.game_westExit], x - self.roomStep, y)
+		if room.game_eastExit:
+			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit], x + self.roomStep, y)
+
+	def drawRoom(self, dc, x, y, room):
+
+		roomStr = ""
+		if room.game_outExit:
+			roomStr += "-"
+		if room.game_inExit:
+			roomStr += "+"
+
+		roomSz = 30
+		hRmSz = roomSz/2
+		self.drawRectangleCenter(dc, x, y, roomSz, roomSz, roomStr)
+		
+		ptList = []
+		lineLen = ((self.roomStep - roomSz) / 2) + 1
+		if room.game_northExit:
+			ptList.append([x, y-hRmSz, x, y-hRmSz-lineLen])
+		if room.game_southExit:
+			ptList.append([x, y+hRmSz, x, y+hRmSz+lineLen])
+		if room.game_eastExit:
+			ptList.append([x+hRmSz, y, x+hRmSz+lineLen, y])
+		if room.game_westExit:
+			ptList.append([x-hRmSz, y, x-hRmSz-lineLen, y])
+		if ptList:
+			dc.DrawLineList(ptList)
+
+		
+	def drawRectangleCenter(self, dc, x, y, w, h, text=None):
+		dc.DrawRectangle(x-(w/2), y-(h/2), w, h)
+		if text != None:
+			strExtntX , strExtntY = dc.GetTextExtent(text)
+			strExtntX , strExtntY = strExtntX/2 , strExtntY/2
+			dc.DrawText(text, x-strExtntX, y-strExtntY)
 
 
 class ReadoutPanel(wx.Panel):
@@ -142,6 +170,7 @@ class ReadoutPanel(wx.Panel):
 		#print self
 		self.mapPlot = GridPanel(self)
 		
+		centerCoord = [0, 0, 0, 0]
 
 		self.__set_properties()
 		self.__do_layout()
@@ -151,14 +180,13 @@ class ReadoutPanel(wx.Panel):
 		self.filterUpdateTmr = wx.Timer(self)
 
 
-		self.Bind(wx.EVT_TIMER, self.updateGrids, self.pollUpdateTmr)
+		#self.Bind(wx.EVT_TIMER, self.updateGrids, self.pollUpdateTmr)
 		
 
 
 		#print "Starting Up..."
 		self.pollUpdateTmr.Start(100, 0)
 		self.filterUpdateTmr.Start(1000/60, 0)			# 60 Hz
-
 
 	def __set_properties(self):
 		self.mapPlot.SetMinSize((400,400))
@@ -175,6 +203,6 @@ class ReadoutPanel(wx.Panel):
 
 
 	def updateGrids(self, event): 
-
-		self.mapPlot.redraw()
+		print "Redraw?"
+		#self.mapPlot.redraw()
 
