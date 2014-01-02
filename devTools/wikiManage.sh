@@ -8,7 +8,7 @@ if [ "$STAGE" = "setup" ]; then
 	echo "Setup stage for wiki"
 
 	if [ ! -d "$DIRECTORY" ]; then
-		git clone "git@github.com:herp-a-derp/sourceTiTS.wiki" ../wiki
+		git clone "git@github.com:Fenoxo/sourceTiTS.wiki" ../wiki
 	else
 		(cd ../wiki && git pull)
 		(cd ../wiki && git reset --hard HEAD)
