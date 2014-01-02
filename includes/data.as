@@ -238,4 +238,4 @@ function postLoadToZeGame():void
 function initializeFlags():void 
 {
 	flags = new Dictionary();
-
+}
