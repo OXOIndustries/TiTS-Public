@@ -10,6 +10,8 @@
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import flash.utils.ByteArray;
 	import flash.utils.getQualifiedClassName;
+	import classes.Characters.PlayerCharacter;
+	import classes.Creature;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -286,9 +288,10 @@
 			
 			// Game data
 			dataFile.characters = new Object();
+			var gamePtr:* = kGAMECLASS;
 			for (var prop in kGAMECLASS.chars)
 			{
-				dataFile.characters[prop] = kGAMECLASS.chars[prop].getSaveObject();
+				dataFile.characters[prop] = (kGAMECLASS.chars[prop] as Creature).getSaveObject();
 			}
 			
 			dataFile.flags = new Object();
