@@ -18,7 +18,7 @@
 		public var basePrice:Number;
 		
 		//Flags
-		public var flags:Array;
+		public var itemFlags:Array;
 		
 		//Equipped properties
 		//Bonus tohit
@@ -57,8 +57,8 @@
 			this.type = 0;
 			this.basePrice = 0;
 		
-			//Flags
-			this.flags = new Array();
+			//itemFlags
+			this.itemFlags = new Array();
 		
 			//Equipped properties
 			this.attack = 0;
@@ -81,7 +81,7 @@
 			trace("This needs to be converted to an object or dict based storage mechanism!");
 			if(this.hasFlag(arg)) 
 				return;
-			this.flags[this.flags.length] = arg;
+			this.itemFlags[this.itemFlags.length] = arg;
 		}
 		public function hasFlag(arg:int):Boolean 
 		{
@@ -89,8 +89,8 @@
 			trace("Also, I'm *pretty* sure this would never work correctly. It's only checking if **any**");
 			trace("item in the flag array has the value *arg*, so unless every flag is a unique number");
 			trace("you're going to have collisions");
-			for(var x:int = 0; x < flags.length; x++) {
-				if(arg == flags[x]) 
+			for(var x:int = 0; x < itemFlags.length; x++) {
+				if(arg == itemFlags[x]) 
 					return true;
 			}
 			return false;
@@ -100,9 +100,9 @@
 			trace("This needs to be converted to an object or dict based storage mechanism!");
 			if(!this.hasFlag(arg)) 
 				return;
-			for(var x:int = 0; x < this.flags.length; x++) 
+			for(var x:int = 0; x < this.itemFlags.length; x++) 
 			{
-				if(arg == this.flags[x]) this.flags.splice(x,1);
+				if(arg == this.itemFlags[x]) this.itemFlags.splice(x,1);
 			}
 		}	
 	}

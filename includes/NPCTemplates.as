@@ -51,7 +51,15 @@
 	{
 		chars["NALEEN"] = new classes.Characters.Naleen();
 	}
-
+	if (!justUpdate || (justUpdate && chars["VENUSPITCHER"] == undefined))
+	{
+		chars["VENUSPITCHER"] = new classes.Characters.VenusPitcher();
+	}
+	if (!justUpdate || (justUpdate && chars["ELDERVENUSPITCHER"] == undefined))
+	{
+		chars["ELDERVENUSPITCHER"] = new classes.Characters.ElderVenusPitcher();
+		trace("INITIALIZED NEW VENUS PITCHER");
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

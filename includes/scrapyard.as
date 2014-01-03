@@ -1,4 +1,11 @@
-﻿function scrapyardMaintenance():void {
+﻿
+// Flags:
+// SCRAPYARD_SEEN : TODO: FIXME
+// MET_GEOFF      : TODO: FIXME
+// SEXED_GEOFF    : TODO: FIXME
+// 
+
+function scrapyardMaintenance():void {
 	author("Nonesuch");
 	if(flags["SCRAPYARD_SEEN"] == undefined) {
 		flags["SCRAPYARD_SEEN"] = 1;

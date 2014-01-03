@@ -16,12 +16,6 @@ function startCharacterCreation():void {
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
-	
-	/*
-	for (var x:int = 0; x < 10000; x++) {
-		flags[x] = undefined;
-	}
-	*/
 
 	flags = new Dictionary();
 
@@ -916,8 +910,8 @@ function takeCeliseAsACrewMember():void {
 	//{merge}
 	output("\n\nCelise jiggles jubilantly, the accumulated mass of goo below her waist churning with excitement as she applauds. She gulps in a huge breath of air, ballooning herself comically before exhaling it in a quiet <i>“Yayyyy...”</i> You glance at her curiously, and she shyly covers her mouth, whispering, <i>“Sorry.”</i>");
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
-	flags["GLOBAL.RECRUITED_CELISE"] = 1;
-	flags["GLOBAL.CELISE_ONBOARD"] = 1;
+	flags["RECRUITED_CELISE"] = 1;
+	flags["CELISE_ONBOARD"] = 1;
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",checkOutYourShip);
 }

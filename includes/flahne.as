@@ -9,6 +9,15 @@ Hair is just past shoulder length and appears to have a bun on top.
 Pointed floppy ears.
 NO BELLY BUTTON!*/
 
+// Flags:
+// FLAHNE_DESK_DISABLED      : TODO - FIXME
+// FLAHNE_LIKE_OVIPOSITOR    : TODO - FIXME
+// FLAHNE_PISSED             : TODO - FIXME
+// FLAHNE_SEXED              : TODO - FIXME
+// MET_FLAHNE                : TODO - FIXME
+// TALKED_ABOUT_FLAHNES_RACE : TODO - FIXME
+// 
+
 function flahneFuckCounter(arg:int = 0):Number {
 	if(flags["FLAHNE_SEXED"] == undefined) flags["FLAHNE_SEXED"] = 0;
 	if(arg != 0) flags["FLAHNE_SEXED"] += arg;

@@ -30,7 +30,7 @@
 		public var shrinkCounter:int = 0;
 		
 		//Used for storage of the flags from consts.as
-		public var flags:Array = new Array();
+		public var vagooFlags:Array = new Array();
 		
 		//Used during sex to determine how full it currently is.  For multi-dick sex.
 		private var fullness:Number = 0;
@@ -61,8 +61,8 @@
 		}
 		//FLAG CHECKIN!
 		function hasFlag(arg):Boolean {
-			for(var x:int = 0; x < flags.length;x++) {
-				if(arg == flags[x]) return true;
+			for(var x:int = 0; x < vagooFlags.length;x++) {
+				if(arg == vagooFlags[x]) return true;
 			}
 			return false;
 		}

@@ -21,7 +21,7 @@
 				
 		//Information
 		public var moveMinutes:Number = 5;
-		public var flags:Array = new Array();
+		public var shipFlags:Array = new Array();
 		
 		public var choices:Array = new Array();
 		
@@ -37,17 +37,17 @@
 		
 		//Functions
 		public function hasFlag(arg):Boolean {
-			for(var x:int = 0; x <= flags.length; x++) {
-				if(flags[x] == arg) return true;
+			for(var x:int = 0; x <= shipFlags.length; x++) {
+				if(shipFlags[x] == arg) return true;
 			}
 			return false;
 		}
 		public function addFlag(arg):void {
-			flags[flags.length] = arg;
+			shipFlags[shipFlags.length] = arg;
 		}
 		public function removeFlag(arg):void {
-			for(var x:int = 0; x <= flags.length; x++) {
-				flags.splice(x,1);
+			for(var x:int = 0; x <= shipFlags.length; x++) {
+				shipFlags.splice(x,1);
 			}
 		}
 		public function addChoice(text:String, func, arg = undefined):void {

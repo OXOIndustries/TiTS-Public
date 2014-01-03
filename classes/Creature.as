@@ -735,11 +735,17 @@
 			HPRaw = HPMax();
 		}
 		//ENERGY
-		public function energy():Number {
+		public function energy(arg:Number = 0):Number {
+			energyRaw += arg;
+			if(energyRaw > energyMax()) energyRaw = energyMax();
+			else if(energyRaw < energyMin()) energyRaw = energyMin();
 			return energyRaw;
 		}
 		public function energyMax():Number {
 			return energyMod + 100;
+		}
+		public function energyMin():Number {
+			return 0;
 		}
 		public function maxOutEnergy():void {
 			energyRaw = energyMax();
@@ -1574,6 +1580,9 @@
 		public function bellyDescript():String {
 			return "belly";
 		}
+		public function totalBellyRating():Number {
+			return 0;
+		}
 		public function alphabetize(array,newKeyItem):void {
 			//used to denote that the array has already had its new spot pushed on.
 			var arrayed:Boolean = false;
@@ -1680,6 +1689,9 @@
 		//Does the PC have any cunt pregnancy?
 		public function hasPregnancy():Boolean {
 			return false;
+		}
+		public function totalPregnancies():Number {
+			return 0;
 		}
 		public function canOvipositSpider():Boolean {
 			if(eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
@@ -2238,15 +2250,31 @@
 			}
 			return index;
 		}
-		public function canTitFuck():Boolean {
-			var counter:Number = breastRows.length;
-			var index:Number = 0;
-			while(counter > 0) {
-				counter--;
-				if(breastRows[index].breasts < breastRows[counter].breasts && breastRows[counter].breastRating > 3) index = counter;
+		public function canTitFuck(big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) return true;
 			}
-			if(breastRows[index].breasts >= 2 && breastRows[index].breastRating > 3) return true;
 			return false;
+		}
+		public function canTriboobTitFuck(big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 2) return true;
+			}
+			return false;
+		}
+		//Arg is "how many rows minimum". "big" is if target dick requires big ol jubblies.
+		public function canMultiRowTitFuck(arg:Number = 2, big:Boolean = false):Boolean {
+			var threshhold:int = 3;
+			if(big) threshhold = 7;
+			var eligibleRows:int = 0;
+			for(var x:int = 0; x < bRows(); x++) {
+				if(breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) eligibleRows++;
+			}
+			return (eligibleRows >= arg);
 		}
 		public function mostBreastsPerRow():Number {
 			var counter:Number = breastRows.length;
@@ -2256,6 +2284,18 @@
 				if(breastRows[index].breasts < breastRows[counter].breasts) index = counter;
 			}
 			return breastRows[index].breasts;
+		}
+		//No arg = average, otherwise ask by row.
+		public function breastsPerRow(arg:int = -1):Number {
+			if(arg >= 0 && arg < bRows()) {
+				return breastRows[arg].breasts;
+			}
+			//Average!
+			var av:Number = 0;
+			for(var x:int = 0; x < bRows(); x++) {
+				av += breastRows[x].breasts;
+			}
+			return Math.round((av /= bRows()) * 10)/10;
 		}
 		public function averageNipplesPerBreast():Number {
 			var counter:Number = breastRows.length;
@@ -3037,8 +3077,10 @@
 				minutes--;
 			}
 		}
-		public function isSquirter():Boolean {
-			if(vaginas[0].wetness >= 4) return true;
+		public function isSquirter(arg:int = 0):Boolean {
+			if(!hasVagina()) return false;
+			if(arg < 0 || arg >= totalVaginas()) return false;
+			if(vaginas[arg].wetness >= 4) return true;
 			return false;
 		}
 		public function totalClits():Number {
@@ -5939,6 +5981,11 @@
 				else if(temp <= 7) return "clear";
 				else return "semi-transparent";
 			}
+			else if(arg == GLOBAL.CUMSAP) {
+				if(temp <= 4) return "off white";
+				else if(temp <= 7) return "pearl-marbled amber";
+				else return "ivory-amber";
+			}
 			return "ERROR, INVALID FLUID TYPE.";
 		}
 		public function fluidNoun(arg:int):String {
@@ -5950,7 +5997,6 @@
 			}
 			else if(arg == GLOBAL.CUM) {
 				return "cum";
-				
 			}
 			else if(arg == GLOBAL.HONEY) {
 				return "honey";
@@ -5963,6 +6009,11 @@
 			}
 			else if(arg == GLOBAL.GIRLCUM) {
 				return "girl-cum";
+			}
+			else if(arg == GLOBAL.MILKSAP) {
+				if(rand(4) <= 1) return "cum-sap";
+				else if(rand(2) == 0) return "botanical spunk";
+				else return "floral jism";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
 		}
@@ -6282,6 +6333,18 @@
 			if(cockNum < 0) type = GLOBAL.HUMAN;
 			else type = cocks[cockNum].cType;
 			if(cockNum > cocks.length-1) return "ERROR";
+			
+			return cockHeadGetName(type);
+		}
+		public function tailCockHead():String {
+			if(!hasTailCock()) return "|||<b>ERROR:</b> No tail cock to describe |||";
+			return cockHeadGetName(tailGenitalArg);
+		}
+		public function cockHeadGetName(type:int = 0):String {
+			var temp:int;
+			var type:int;
+			if (cocks.length == 0)
+				return "ERROR. CockHead lookup with no cocks!";
 			if(type == GLOBAL.EQUINE) {
 				temp = this.rand(5);
 				if(temp == 0) return "flare";

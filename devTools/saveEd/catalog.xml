@@ -1,0 +1,1780 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<swc xmlns="http://www.adobe.com/flash/swccatalog/9">
+  <versions>
+    <swc version="1.2" />
+    <flex version="4.0.0" build="14159" minimumSupportedVersion="3.0.0" />
+  </versions>
+  <features>
+    <feature-script-deps />
+    <feature-files />
+  </features>
+  <libraries>
+    <library path="library.swf">
+      <script name="com/sibirjak/asdpc/core/managers/StageProxy" mod="1305902414226" signatureChecksum="331120139" >
+        <def id="com.sibirjak.asdpc.core.managers:StageProxy" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="flash.display:Sprite" type="e" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/IDataSourceAdapter" mod="1305902414079" signatureChecksum="4274211256" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/ArrayAdapter" mod="1305902414117" signatureChecksum="763063347" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:ArrayAdapter" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/ListViewEvent" mod="1305902414299" signatureChecksum="2143389148" >
+        <def id="com.sibirjak.asdpc.listview:ListViewEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/ListItemData" mod="1305902414277" signatureChecksum="3882664462" >
+        <def id="com.sibirjak.asdpc.listview:ListItemData" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IDisplayObject" mod="1305902413071" signatureChecksum="1761803449" >
+        <def id="com.sibirjak.asdpc.core:IDisplayObject" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/IStyleManagerClient" mod="1305902414216" signatureChecksum="1886344579" >
+        <def id="com.sibirjak.asdpc.core.managers:IStyleManagerClient" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StyleManager" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObject" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/Container" mod="1305902412874" signatureChecksum="571246464" >
+        <def id="com.sibirjak.asdpc.core:Container" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StyleManager" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StyleManager" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IStyleManagerClient" type="i" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IDisplayObjectContainer" mod="1305902413107" signatureChecksum="2407843421" >
+        <def id="com.sibirjak.asdpc.core:IDisplayObjectContainer" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObject" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/IViewPropertyManagerClient" mod="1305902414221" signatureChecksum="1372337497" >
+        <def id="com.sibirjak.asdpc.core.managers:IViewPropertyManagerClient" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:ViewPropertyManager" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IView" mod="1305902413247" signatureChecksum="3728208352" >
+        <def id="com.sibirjak.asdpc.core:IView" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObjectContainer" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IStyleManagerClient" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IViewPropertyManagerClient" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/View" mod="1305902413311" signatureChecksum="728154122" >
+        <def id="com.sibirjak.asdpc.core:View" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:ViewPropertyManager" type="e" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="org.as3commons.collections:LinkedSet" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControl" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StageProxy" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:ViewPropertyManager" type="s" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="org.as3commons.collections.framework:ISet" type="s" /> 
+        <dep id="flash.display:Stage" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Container" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/scrollbar/IScrollPane" mod="1305902414835" signatureChecksum="357461835" >
+        <def id="com.sibirjak.asdpcbeta.scrollbar:IScrollPane" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/scrollbar/ScrollPane" mod="1305902414839" signatureChecksum="1838589831" >
+        <def id="com.sibirjak.asdpcbeta.scrollbar:ScrollPane" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollEvent" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBar" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.scrollbar:ScrollPaneStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Visibility" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:IScrollBar" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.scrollbar:ScrollPaneStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+        <dep id="com.sibirjak.asdpcbeta.scrollbar:IScrollPane" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/core/ListItemRendererEvent" mod="1305902414322" signatureChecksum="3469906576" >
+        <def id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/TreeNodeRendererEvent" mod="1305902414630" signatureChecksum="2754014196" >
+        <def id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/core/TextFieldBase" mod="1305902414501" signatureChecksum="1588649333" >
+        <def id="com.sibirjak.asdpc.textfield.core:TextFieldBase" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:TextFieldBaseStyles" type="e" /> 
+        <dep id="flash.text:TextFormat" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="flash.text:TextField" type="e" /> 
+        <dep id="Number" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:TextFieldBaseStyles" type="s" /> 
+        <dep id="flash.text:TextFormat" type="s" /> 
+        <dep id="flash.text:TextField" type="s" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="_693f2a5b9432f7199129df9e9fa3e17e8beb3b8a2517a29d3ab8ead43850e076_flash_display_Sprite" mod="1324506497470" signatureChecksum="2765257405" >
+        <def id="_693f2a5b9432f7199129df9e9fa3e17e8beb3b8a2517a29d3ab8ead43850e076_flash_display_Sprite" /> 
+        <dep id="flash.system:Security" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/ITreeNode" mod="1305902414595" signatureChecksum="817761114" >
+        <def id="com.sibirjak.asdpc.treeview.core:ITreeNode" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+        <dep id="org.as3commons.collections.framework:IIterable" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/TreeNode" mod="1305902414617" signatureChecksum="4121748511" >
+        <def id="com.sibirjak.asdpc.treeview.core:TreeNode" /> 
+        <dep id="org.as3commons.collections.iterators:RecursiveFilterIterator" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataSourceAdapterFactory" type="e" /> 
+        <dep id="org.as3commons.collections.iterators:RecursiveIterator" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IMapAdapter" type="e" /> 
+        <dep id="flash.events:IEventDispatcher" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:IListDataProvider" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="org.as3commons.collections:ArrayList" type="i" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/DataProviderEventDispatcher" mod="1305902413783" signatureChecksum="2953996715" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:DataProviderEventDispatcher" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/SetAdapter" mod="1305902414151" signatureChecksum="616505234" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:SetAdapter" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:Index" type="e" /> 
+        <dep id="org.as3commons.collections.framework:ISetIterator" type="e" /> 
+        <dep id="org.as3commons.collections.framework:ICollectionFx" type="e" /> 
+        <dep id="org.as3commons.collections.fx.events:CollectionEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:Index" type="s" /> 
+        <dep id="org.as3commons.collections.fx.events:SetEvent" type="s" /> 
+        <dep id="org.as3commons.collections.framework:ISetIterator" type="s" /> 
+        <dep id="org.as3commons.collections.framework:ISet" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEventDispatcher" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/ISkin" mod="1305902413123" signatureChecksum="1741434697" >
+        <def id="com.sibirjak.asdpc.core:ISkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObject" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/Skin" mod="1305902413258" signatureChecksum="214330867" >
+        <def id="com.sibirjak.asdpc.core:Skin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:ISkin" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/skins/ScrollThumbIconSkin" mod="1305902414432" signatureChecksum="2908798611" >
+        <def id="com.sibirjak.asdpc.scrollbar.skins:ScrollThumbIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBar" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/TreeViewEvent" mod="1305902414577" signatureChecksum="3563170508" >
+        <def id="com.sibirjak.asdpc.treeview:TreeViewEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewEvent" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemIcon__bullet" mod="1305902414383" signatureChecksum="3366502157" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemIcon__bullet" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/core/ItemIndexManager" mod="1305902414313" signatureChecksum="827437513" >
+        <def id="com.sibirjak.asdpc.listview.core:ItemIndexManager" /> 
+        <dep id="org.as3commons.collections.utils:NumericComparator" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="org.as3commons.collections:SortedList" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/core/TextFieldBaseStyles" mod="1305902414507" signatureChecksum="3455953329" >
+        <def id="com.sibirjak.asdpc.textfield.core:TextFieldBaseStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/skins/BackgroundSkin" mod="1305902414265" signatureChecksum="2108628857" >
+        <def id="com.sibirjak.asdpc.core.skins:BackgroundSkin" /> 
+        <dep id="flash.display:GradientType" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="flash.geom:Matrix" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Sprite" type="e" /> 
+        <dep id="flash.display:Graphics" type="s" /> 
+        <dep id="flash.geom:Matrix" type="s" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/skins/TitleBarSkin" mod="1305902414950" signatureChecksum="1359284109" >
+        <def id="com.sibirjak.asdpcbeta.window.skins:TitleBarSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/core/WindowPosition" mod="1305902414942" signatureChecksum="1554922906" >
+        <def id="com.sibirjak.asdpcbeta.window.core:WindowPosition" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/AbstractLayout" mod="1305902414783" signatureChecksum="2883129255" >
+        <def id="com.sibirjak.asdpcbeta.layout:AbstractLayout" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:LayoutStyles" type="e" /> 
+        <dep id="org.as3commons.collections:Set" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:LayoutStyles" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="org.as3commons.collections:Set" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/VLayout" mod="1305902414804" signatureChecksum="168451448" >
+        <def id="com.sibirjak.asdpcbeta.layout:VLayout" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:VLayoutStyles" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:VLayoutStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:AbstractLayout" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/Window__windowIconSkin" mod="1305902414960" signatureChecksum="487436755" >
+        <def id="com.sibirjak.asdpcbeta.window:Window__windowIconSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/IPopUpControlPopUp" mod="1305902414212" signatureChecksum="2697476629" >
+        <def id="com.sibirjak.asdpc.core.managers:IPopUpControlPopUp" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControl" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/LayoutStyles" mod="1305902414800" signatureChecksum="2596349389" >
+        <def id="com.sibirjak.asdpcbeta.layout:LayoutStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/VLayoutStyles" mod="1305902414807" signatureChecksum="3112316249" >
+        <def id="com.sibirjak.asdpcbeta.layout:VLayoutStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:LayoutStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/asdpc_internal" mod="1305902413343" signatureChecksum="2527798065" >
+        <def id="com.sibirjak.asdpc.core:asdpc_internal" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorPickerWindowContent" mod="1323424292990" signatureChecksum="345489166" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPreview" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInput" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button.skins:ButtonSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent__webColor" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:Palette" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="org.as3commons.collections:LinkedSet" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInputEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:SwatchChart" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorUtil" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPreview" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="s" /> 
+        <dep id="org.as3commons.collections:ArrayList" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ITextInput" type="s" /> 
+        <dep id="org.as3commons.collections:LinkedSet" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInputEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:SwatchChart" type="s" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindow" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/Index" mod="1305902414112" signatureChecksum="1432340819" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:Index" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/IListDataProvider" mod="1305902414590" signatureChecksum="2925259923" >
+        <def id="com.sibirjak.asdpc.treeview.core:IListDataProvider" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/ListDataProvider" mod="1305902414605" signatureChecksum="2256998100" >
+        <def id="com.sibirjak.asdpc.treeview.core:ListDataProvider" /> 
+        <dep id="org.as3commons.collections.iterators:RecursiveFilterIterator" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="e" /> 
+        <dep id="flash.events:EventDispatcher" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNode" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeView" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNode" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:Index" type="i" /> 
+        <dep id="flash.events:IEventDispatcher" type="i" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="i" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:IListDataProvider" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/tabbar/TabBarStyles" mod="1305902414906" signatureChecksum="3373675202" >
+        <def id="com.sibirjak.asdpcbeta.tabbar:TabBarStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/StyleManager" mod="1305902414239" signatureChecksum="4130312786" >
+        <def id="com.sibirjak.asdpc.core.managers:StyleManager" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControlPopUp" type="e" /> 
+        <dep id="trace" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IStyleManagerClient" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControl" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IStyleManagerClient" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/ConnectorContainer" mod="1305902414639" signatureChecksum="921097492" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:ConnectorContainer" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer.skins:DottedConnectorSkin" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:Connector" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRenderer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:Connector" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IControl" mod="1305902413009" signatureChecksum="3894810372" >
+        <def id="com.sibirjak.asdpc.core:IControl" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/core/ITextField" mod="1305902414495" signatureChecksum="2262977364" >
+        <def id="com.sibirjak.asdpc.textfield.core:ITextField" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IControl" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/ILabel" mod="1305902414442" signatureChecksum="1738427645" >
+        <def id="com.sibirjak.asdpc.textfield:ILabel" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:ITextField" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/Label" mod="1305902414458" signatureChecksum="1167574462" >
+        <def id="com.sibirjak.asdpc.textfield:Label" /> 
+        <dep id="flash.text:TextFieldAutoSize" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:LabelEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:LabelStyles" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:LabelEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:LabelStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ILabel" type="i" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:TextFieldBase" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/tooltip/core/ToolTipLabel" mod="1305902414519" signatureChecksum="276783058" >
+        <def id="com.sibirjak.asdpc.tooltip.core:ToolTipLabel" /> 
+        <dep id="flash.text:TextFieldAutoSize" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/checkbox/skins/CheckBoxIconSkin" mod="1305902414706" signatureChecksum="2696965931" >
+        <def id="com.sibirjak.asdpcbeta.checkbox.skins:CheckBoxIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IBindableView" mod="1305902413002" signatureChecksum="987775473" >
+        <def id="com.sibirjak.asdpc.core:IBindableView" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/BindableView" mod="1305902412858" signatureChecksum="2702423205" >
+        <def id="com.sibirjak.asdpc.core:BindableView" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:BindingManager" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:BindingManager" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IBindableView" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/IPopUpControl" mod="1305902414197" signatureChecksum="251017012" >
+        <def id="com.sibirjak.asdpc.core.managers:IPopUpControl" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControlPopUp" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/SelectBox" mod="1317972827247" signatureChecksum="3791939267" >
+        <def id="com.sibirjak.asdpcbeta.selectbox:SelectBox" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataSourceAdapterFactory" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBox_openIconSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBoxStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:genericToStringFunction" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListView" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button.skins:ButtonSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRenderer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemContent" type="e" /> 
+        <dep id="flash.events:IEventDispatcher" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.tooltip:ToolTip" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.core.managers:PopUpManager" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:WindowPosition" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox.core:SelectBoxWindow" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBoxEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.skins:ScrollButtonIconSkin" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox.core:SelectBoxWindow" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBoxStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBoxEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControlPopUp" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ILabel" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:BindableView" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControl" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/IListView" mod="1305902414273" signatureChecksum="4232929761" >
+        <def id="com.sibirjak.asdpc.listview:IListView" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IControl" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:IBindableView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/ListView" mod="1305902414295" signatureChecksum="1117836596" >
+        <def id="com.sibirjak.asdpc.listview:ListView" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataSourceAdapterFactory" type="e" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ItemIndexManager" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBar" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemEvent" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRenderer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IMapAdapter" type="e" /> 
+        <dep id="flash.events:IEventDispatcher" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererPool" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Visibility" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewStyles" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:Container" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererPool" type="s" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:IScrollBar" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ItemIndexManager" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core:Container" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemEvent" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:BindableView" type="i" /> 
+        <dep id="com.sibirjak.asdpc.listview:IListView" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/DisplayObjectAdapter" mod="1308923183656" signatureChecksum="3964655104" >
+        <def id="com.sibirjak.asdpc.core:DisplayObjectAdapter" /> 
+        <dep id="com.sibirjak.asdpc.core:ISkin" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.display:Bitmap" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="e" /> 
+        <dep id="flash.geom:ColorTransform" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.geom:ColorTransform" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/skins/ScrollTrackSkin" mod="1305902414436" signatureChecksum="1505722925" >
+        <def id="com.sibirjak.asdpc.scrollbar.skins:ScrollTrackSkin" /> 
+        <dep id="flash.display:BitmapData" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:BitmapData" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/TextInputEvent" mod="1305902414478" signatureChecksum="1173710440" >
+        <def id="com.sibirjak.asdpc.textfield:TextInputEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/ListViewStyles" mod="1305902414305" signatureChecksum="3323873829" >
+        <def id="com.sibirjak.asdpc.listview:ListViewStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/IConnectorSkin" mod="1305902414662" signatureChecksum="2153333718" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:IConnectorSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:ISkin" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemIcon" mod="1305902414359" signatureChecksum="3087726207" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemIcon" /> 
+        <dep id="com.sibirjak.asdpc.core:IDataRendererSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="Function" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIconStyles" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIcon__bullet" type="e" /> 
+        <dep id="flash.display:DisplayObjectContainer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIconStyles" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DirectoryIcon__branchOpenIcon" mod="1305902414672" signatureChecksum="712690780" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__branchOpenIcon" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/LabelStyles" mod="1305902414470" signatureChecksum="1490510651" >
+        <def id="com.sibirjak.asdpc.textfield:LabelStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:TextFieldBaseStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/TextInputStyles" mod="1305902414482" signatureChecksum="2830843942" >
+        <def id="com.sibirjak.asdpc.textfield:TextInputStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield:LabelStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/skins/DisclosureButtonArrowIconSkin" mod="1305902414680" signatureChecksum="1875546000" >
+        <def id="com.sibirjak.asdpc.treeview.renderer.skins:DisclosureButtonArrowIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DisclosureButton" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/Window" mod="1305902414918" signatureChecksum="2875888323" >
+        <def id="com.sibirjak.asdpcbeta.window:Window" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.skins:MinimiseIconSkin" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:WindowPosition" type="e" /> 
+        <dep id="com.gskinner.motion.easing:Cubic" type="e" /> 
+        <dep id="com.gskinner.motion:GTween" type="e" /> 
+        <dep id="org.as3commons.collections:LinkedMap" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:TitleBar" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window__windowIconSkin" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBar" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.skins:WindowSkin" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:WindowPosition" type="s" /> 
+        <dep id="com.gskinner.motion:GTween" type="s" /> 
+        <dep id="org.as3commons.collections:LinkedMap" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:ITitleBar" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBar" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.skins:WindowSkin" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorPickerWindow" mod="1323351501224" signatureChecksum="2282073584" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindow" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.skins:WindowSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker:ColorPicker" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemIconStyles" mod="1305902414363" signatureChecksum="1191591388" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemIconStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DirectoryIconStyles" mod="1305902414647" signatureChecksum="358256223" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DirectoryIconStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIconStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/HLayout" mod="1305902414794" signatureChecksum="4292697422" >
+        <def id="com.sibirjak.asdpcbeta.layout:HLayout" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:HLayoutStyles" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:HLayoutStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:AbstractLayout" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/skins/BaseConnectorSkin" mod="1305902414676" signatureChecksum="3787894976" >
+        <def id="com.sibirjak.asdpc.treeview.renderer.skins:BaseConnectorSkin" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:Connector" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:IConnectorSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/skins/DottedConnectorSkin" mod="1305902414687" signatureChecksum="3432157701" >
+        <def id="com.sibirjak.asdpc.treeview.renderer.skins:DottedConnectorSkin" /> 
+        <dep id="flash.display:BitmapData" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:BitmapData" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer.skins:BaseConnectorSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/button/IButton" mod="1305902412824" signatureChecksum="1801574162" >
+        <def id="com.sibirjak.asdpc.button:IButton" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IControl" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:IBindableView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/tooltip/ToolTip" mod="1305902414513" signatureChecksum="3753967570" >
+        <def id="com.sibirjak.asdpc.tooltip:ToolTip" /> 
+        <dep id="com.sibirjak.asdpc.tooltip.core:ToolTipLabel" type="e" /> 
+        <dep id="com.sibirjak.asdpc.tooltip.skins:ToolTipSkin" type="e" /> 
+        <dep id="flash.display:BlendMode" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StageProxy" type="e" /> 
+        <dep id="com.gskinner.motion:GTween" type="e" /> 
+        <dep id="com.gskinner.motion.easing:Cubic" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpc.tooltip.core:ToolTipLabel" type="s" /> 
+        <dep id="com.sibirjak.asdpc.tooltip.skins:ToolTipSkin" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.gskinner.motion:GTween" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/core/managers/PopUpManager" mod="1305902414779" signatureChecksum="3633104191" >
+        <def id="com.sibirjak.asdpcbeta.core.managers:PopUpManager" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:StageProxy" type="e" /> 
+        <dep id="org.as3commons.collections:LinkedMap" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="org.as3commons.collections:LinkedMap" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/SelectBoxEvent" mod="1305902414857" signatureChecksum="3868349794" >
+        <def id="com.sibirjak.asdpcbeta.selectbox:SelectBoxEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/button/Button" mod="1308991186211" signatureChecksum="3130924041" >
+        <def id="com.sibirjak.asdpc.button:Button" /> 
+        <dep id="com.sibirjak.asdpc.button.skins:ButtonSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.tooltip:ToolTip" type="e" /> 
+        <dep id="Number" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="Array" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonStyles" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="flash.utils:Timer" type="e" /> 
+        <dep id="flash.events:TimerEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonStyles" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.utils:Timer" type="s" /> 
+        <dep id="flash.events:TimerEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ILabel" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:BindableView" type="i" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/core/Thumb" mod="1305902414422" signatureChecksum="2947538031" >
+        <def id="com.sibirjak.asdpc.scrollbar.core:Thumb" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/ColorPickerEvent" mod="1305902414718" signatureChecksum="3908396158" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker:ColorPickerEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/core/ITitleBar" mod="1305902414934" signatureChecksum="85148266" >
+        <def id="com.sibirjak.asdpcbeta.window.core:ITitleBar" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/core/ListItemRendererData" mod="1305902414318" signatureChecksum="1255233161" >
+        <def id="com.sibirjak.asdpc.listview.core:ListItemRendererData" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListView" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/TreeNodeRendererData" mod="1305902414625" signatureChecksum="2077612790" >
+        <def id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeView" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeView" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/core/IListItemRenderer" mod="1305902414309" signatureChecksum="360020597" >
+        <def id="com.sibirjak.asdpc.listview.core:IListItemRenderer" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObjectContainer" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/core/ITreeNodeRenderer" mod="1305902414600" signatureChecksum="3852613836" >
+        <def id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/skins/SliderThumbSkin" mod="1305902414895" signatureChecksum="771442143" >
+        <def id="com.sibirjak.asdpcbeta.slider.skins:SliderThumbSkin" /> 
+        <dep id="flash.display:GradientType" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="flash.geom:Matrix" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider:Slider" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.geom:Matrix" type="s" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/IScrollBar" mod="1305902414393" signatureChecksum="1600764504" >
+        <def id="com.sibirjak.asdpc.scrollbar:IScrollBar" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IControl" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:IView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/core/SelectBoxWindow" mod="1305902414865" signatureChecksum="324583764" >
+        <def id="com.sibirjak.asdpcbeta.selectbox.core:SelectBoxWindow" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListView" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.selectbox:SelectBox" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControl" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:IListView" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IPopUpControlPopUp" type="i" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/IRadioButton" mod="1305902414818" signatureChecksum="3556850641" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton:IRadioButton" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/ScrollEvent" mod="1305902414415" signatureChecksum="3410707047" >
+        <def id="com.sibirjak.asdpc.scrollbar:ScrollEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/SelectBox_openIconSkin" mod="1305902414861" signatureChecksum="1737539646" >
+        <def id="com.sibirjak.asdpcbeta.selectbox:SelectBox_openIconSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemContentStyles" mod="1305902414355" signatureChecksum="3899480742" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemContentStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/RadioGroupEvent" mod="1311669280929" signatureChecksum="3132048325" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton:RadioGroupEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorPreview" mod="1305902414741" signatureChecksum="453791364" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPreview" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/core/SliderThumb" mod="1305902414884" signatureChecksum="1948839444" >
+        <def id="com.sibirjak.asdpcbeta.slider.core:SliderThumb" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.gskinner.motion.easing:Sine" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.gskinner.motion:GTween" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="com.gskinner.motion:GTween" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/Palette" mod="1305902414759" signatureChecksum="3315949768" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:Palette" /> 
+        <dep id="org.as3commons.collections:ArrayList" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorUtil" type="e" /> 
+        <dep id="org.as3commons.collections:ArrayList" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/ColorPicker" mod="1323351177633" signatureChecksum="1905431158" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker:ColorPicker" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.core.managers:PopUpManager" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:WindowPosition" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker:ColorPicker_openIconSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorUtil" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.skins:ColorPickerIconSkin" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindow" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker:ColorPickerEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:WindowEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindow" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker:ColorPickerEvent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/HLayoutStyles" mod="1305902414797" signatureChecksum="1480010843" >
+        <def id="com.sibirjak.asdpcbeta.layout:HLayoutStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:LayoutStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/skins/SliderTrackSkin" mod="1305902414898" signatureChecksum="1424076311" >
+        <def id="com.sibirjak.asdpcbeta.slider.skins:SliderTrackSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/SwatchChart" mod="1324392476512" signatureChecksum="4194770998" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:SwatchChart" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataSourceAdapterFactory" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatchBorder" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatch" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:GridLayout" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatchBorder" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatch" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:GridLayout" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/scrollbar/ScrollPaneStyles" mod="1305902414842" signatureChecksum="2589346547" >
+        <def id="com.sibirjak.asdpcbeta.scrollbar:ScrollPaneStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/ScrollBar" mod="1305902414400" signatureChecksum="2150389712" >
+        <def id="com.sibirjak.asdpc.scrollbar:ScrollBar" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.skins:ScrollThumbIconSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Visibility" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.skins:ScrollTrackSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.skins:ScrollButtonIconSkin" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.core:Thumb" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBarStyles" type="e" /> 
+        <dep id="flash.display:Sprite" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="s" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="s" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar.core:Thumb" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBarStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:IScrollBar" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/ListItemEvent" mod="1305902414286" signatureChecksum="1266066798" >
+        <def id="com.sibirjak.asdpc.listview:ListItemEvent" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/ViewPropertyManager" mod="1305902414258" signatureChecksum="921530453" >
+        <def id="com.sibirjak.asdpc.core.managers:ViewPropertyManager" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IViewPropertyManagerClient" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:IViewPropertyManagerClient" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/XMLAdapter" mod="1305902414174" signatureChecksum="1417308425" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:XMLAdapter" /> 
+        <dep id="XML" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/skins/GlassFrame" mod="1305902414269" signatureChecksum="3889118466" >
+        <def id="com.sibirjak.asdpc.core.skins:GlassFrame" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/skins/DisclosureButtonBoxIconSkin" mod="1305902414684" signatureChecksum="1795274933" >
+        <def id="com.sibirjak.asdpc.treeview.renderer.skins:DisclosureButtonBoxIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DisclosureButton" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/WindowEvent" mod="1305902414921" signatureChecksum="3763447443" >
+        <def id="com.sibirjak.asdpcbeta.window:WindowEvent" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:WindowPosition" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/skins/ScrollButtonIconSkin" mod="1305902414426" signatureChecksum="3097752264" >
+        <def id="com.sibirjak.asdpc.scrollbar.skins:ScrollButtonIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.scrollbar:ScrollBar" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/checkbox/CheckBox" mod="1309256246177" signatureChecksum="3810029052" >
+        <def id="com.sibirjak.asdpcbeta.checkbox:CheckBox" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.checkbox.skins:CheckBoxSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.checkbox.skins:CheckBoxIconSkin" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="flash.display:Sprite" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.display:Sprite" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/RadioButton" mod="1309256317502" signatureChecksum="1853131562" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton:RadioButton" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton.skins:RadioButtonSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton.skins:RadioButtonIconSkin" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton:IRadioButton" type="i" /> 
+        <dep id="com.sibirjak.asdpcbeta.checkbox:CheckBox" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/ITreeView" mod="1305902414534" signatureChecksum="1806126015" >
+        <def id="com.sibirjak.asdpc.treeview:ITreeView" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview:IListView" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/DataProviderEvent" mod="1305902413562" signatureChecksum="3633152180" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:DataProviderEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DirectoryIcon" mod="1305902414643" signatureChecksum="3446999657" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIconStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__leafIcon" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__branchOpenIcon" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__branchClosedIcon" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIconStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIcon" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/TreeView" mod="1305902414570" signatureChecksum="2890035637" >
+        <def id="com.sibirjak.asdpc.treeview:TreeView" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ListDataProvider" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeViewStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:IListDataProvider" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRenderer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeViewEvent" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeViewStyles" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:IListDataProvider" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeViewEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="com.sibirjak.asdpc.treeview:ITreeView" type="i" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListView" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/skins/WindowSkin" mod="1305902414953" signatureChecksum="343997619" >
+        <def id="com.sibirjak.asdpcbeta.window.skins:WindowSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DisclosureButton" mod="1305902414651" signatureChecksum="2273727341" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DisclosureButton" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="Number" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer.skins:DisclosureButtonArrowIconSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="e" /> 
+        <dep id="flash.utils:setTimeout" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="flash.utils:Timer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" type="e" /> 
+        <dep id="flash.events:TimerEvent" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="flash.utils:Timer" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" type="s" /> 
+        <dep id="flash.events:TimerEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/button/skins/ButtonSkin" mod="1305902412847" signatureChecksum="1137194793" >
+        <def id="com.sibirjak.asdpc.button.skins:ButtonSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="Number" type="e" /> 
+        <dep id="Array" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/Slider" mod="1323362229402" signatureChecksum="2210068572" >
+        <def id="com.sibirjak.asdpcbeta.slider:Slider" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider.core:SliderThumb" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider:SliderStyles" type="e" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider.skins:SliderThumbSkin" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider.skins:SliderTrackSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Direction" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider:SliderEvent" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider.core:SliderThumb" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.slider:SliderStyles" type="s" /> 
+        <dep id="flash.geom:Rectangle" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="flash.geom:Point" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:BindableView" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DirectoryIcon__branchClosedIcon" mod="1305902414671" signatureChecksum="3440036501" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__branchClosedIcon" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/checkbox/skins/CheckBoxSkin" mod="1305902414710" signatureChecksum="4164980197" >
+        <def id="com.sibirjak.asdpcbeta.checkbox.skins:CheckBoxSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/core/TitleBar" mod="1305902414938" signatureChecksum="2488046737" >
+        <def id="com.sibirjak.asdpcbeta.window.core:TitleBar" /> 
+        <dep id="com.sibirjak.asdpc.button.skins:ButtonSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="flash.utils:getTimer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.skins:TitleBarSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.button:IButton" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.window:Window" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ILabel" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+        <dep id="com.sibirjak.asdpcbeta.window.core:ITitleBar" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/SliderEvent" mod="1323361817630" signatureChecksum="1321029029" >
+        <def id="com.sibirjak.asdpcbeta.slider:SliderEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorSwatch" mod="1323425485861" signatureChecksum="4150479717" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatch" /> 
+        <dep id="com.sibirjak.asdpcbeta.colorpicker.core:ColorUtil" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/ListAdapter" mod="1305902414130" signatureChecksum="1831657240" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:ListAdapter" /> 
+        <dep id="org.as3commons.collections.framework:ICollectionFx" type="e" /> 
+        <dep id="org.as3commons.collections.fx.events:CollectionEvent" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IList" type="s" /> 
+        <dep id="org.as3commons.collections.fx.events:ListEvent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEventDispatcher" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/RadioGroup" mod="1311670753590" signatureChecksum="2046561896" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton:RadioGroup" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton:IRadioButton" type="e" /> 
+        <dep id="org.as3commons.collections:Map" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:BindingManager" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton:RadioGroupEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.button:ButtonEvent" type="s" /> 
+        <dep id="flash.events:IEventDispatcher" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.radiobutton:IRadioButton" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IMap" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.managers:BindingManager" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:EventDispatcher" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/GridLayoutStyles" mod="1323353607960" signatureChecksum="3067566390" >
+        <def id="com.sibirjak.asdpcbeta.layout:GridLayoutStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:LayoutStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/WindowStyles" mod="1305902414925" signatureChecksum="2486682232" >
+        <def id="com.sibirjak.asdpcbeta.window:WindowStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/genericToStringFunction" mod="1305902414179" signatureChecksum="477773101" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:genericToStringFunction" /> 
+        <dep id="flash.utils:getQualifiedClassName" type="e" /> 
+        <dep id="Number" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="XML" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="Error" type="e" /> 
+        <dep id="String" type="s" /> 
+        <dep id="Error" type="s" /> 
+        <dep id="AS3" type="n" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/skins/SelectBoxListSkin" mod="1305902414869" signatureChecksum="2977081619" >
+        <def id="com.sibirjak.asdpcbeta.selectbox.skins:SelectBoxListSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorUtil" mod="1323354171328" signatureChecksum="1490341966" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorUtil" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/Connector" mod="1305902414634" signatureChecksum="813096677" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:Connector" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:IConnectorSkin" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:IConnectorSkin" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/skins/RadioButtonIconSkin" mod="1305902414828" signatureChecksum="130315095" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton.skins:RadioButtonIconSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemRenderer" mod="1308923054498" signatureChecksum="3144919061" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemRenderer" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer.skins:ListItemBackgroundSkin" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemContent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIcon" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="Array" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="Class" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRendererStyles" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer.skins:ListItemBackgroundSkin" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:IListItemContent" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemIcon" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRendererStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/constants/TreeNodeState" mod="1305902414586" signatureChecksum="3824500942" >
+        <def id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemRendererStyles" mod="1305902414382" signatureChecksum="2898779090" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemRendererStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/GenericAdapter" mod="1305902414126" signatureChecksum="129788890" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:GenericAdapter" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/DataSourceAdapterFactory" mod="1305902414074" signatureChecksum="3864854196" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:DataSourceAdapterFactory" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IMap" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:ArrayAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:XMLAdapter" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IList" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:ListAdapter" type="e" /> 
+        <dep id="XML" type="e" /> 
+        <dep id="org.as3commons.collections.framework:ISet" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:MapAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:GenericAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider.adapter:SetAdapter" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IDataProvider" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/TreeNodeEvent" mod="1305902414553" signatureChecksum="4269646199" >
+        <def id="com.sibirjak.asdpc.treeview:TreeNodeEvent" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview:TreeNodeData" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemEvent" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/ITextInput" mod="1305902414454" signatureChecksum="2305126822" >
+        <def id="com.sibirjak.asdpc.textfield:ITextInput" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:ITextField" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/tabbar/skins/TabItemSkin" mod="1305902414913" signatureChecksum="3051119237" >
+        <def id="com.sibirjak.asdpcbeta.tabbar.skins:TabItemSkin" /> 
+        <dep id="flash.display:GradientType" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBar" type="e" /> 
+        <dep id="flash.geom:Matrix" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabItem" type="e" /> 
+        <dep id="flash.geom:Matrix" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/skins/ListItemBackgroundSkin" mod="1305902414388" signatureChecksum="1268917350" >
+        <def id="com.sibirjak.asdpc.listview.renderer.skins:ListItemBackgroundSkin" /> 
+        <dep id="Array" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:BackgroundSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/TextInput" mod="1305902414475" signatureChecksum="1702173914" >
+        <def id="com.sibirjak.asdpc.textfield:TextInput" /> 
+        <dep id="flash.ui:Keyboard" type="e" /> 
+        <dep id="flash.events:Event" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="flash.text:TextFieldType" type="e" /> 
+        <dep id="String" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInputEvent" type="e" /> 
+        <dep id="flash.events:KeyboardEvent" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.events:FocusEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInputStyles" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.events:Event" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="flash.events:KeyboardEvent" type="s" /> 
+        <dep id="flash.events:FocusEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:TextInputStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ITextInput" type="i" /> 
+        <dep id="com.sibirjak.asdpc.textfield.core:TextFieldBase" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/constants/Visibility" mod="1305902413521" signatureChecksum="2281192178" >
+        <def id="com.sibirjak.asdpc.core.constants:Visibility" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/TreeNodeRenderer" mod="1305902414666" signatureChecksum="2243728594" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRenderer" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DisclosureButton" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRendererStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.constants:TreeNodeState" type="e" /> 
+        <dep id="flash.utils:getTimer" type="e" /> 
+        <dep id="Boolean" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:ConnectorContainer" type="e" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:DisclosureButton" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRendererStyles" type="s" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:TreeNodeRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer:ConnectorContainer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRenderer" type="i" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNodeRenderer" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/selectbox/SelectBoxStyles" mod="1317972739493" signatureChecksum="2911952375" >
+        <def id="com.sibirjak.asdpcbeta.selectbox:SelectBoxStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/layout/GridLayout" mod="1305902414786" signatureChecksum="1037855742" >
+        <def id="com.sibirjak.asdpcbeta.layout:GridLayout" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:GridLayoutStyles" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:GridLayoutStyles" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpcbeta.layout:AbstractLayout" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorPickerWindowContent__webColor" mod="1305902414723" signatureChecksum="2652035905" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorPickerWindowContent__webColor" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/managers/BindingManager" mod="1305902414183" signatureChecksum="3320574799" >
+        <def id="com.sibirjak.asdpc.core.managers:BindingManager" /> 
+        <dep id="org.as3commons.collections:LinkedSet" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="s" /> 
+        <dep id="org.as3commons.collections.framework:ISet" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IIterator" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="org.as3commons.collections:LinkedMap" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/core/ListItemRendererPool" mod="1305902414340" signatureChecksum="1606805427" >
+        <def id="com.sibirjak.asdpc.listview.core:ListItemRendererPool" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListView" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/ColorPicker_openIconSkin" mod="1305902414719" signatureChecksum="606389978" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker:ColorPicker_openIconSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/skins/ColorPickerIconSkin" mod="1305902414767" signatureChecksum="2623956571" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.skins:ColorPickerIconSkin" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/IDataRendererSkin" mod="1305902413062" signatureChecksum="359081016" >
+        <def id="com.sibirjak.asdpc.core:IDataRendererSkin" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:ISkin" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/IMapAdapter" mod="1305902414104" signatureChecksum="2408261088" >
+        <def id="com.sibirjak.asdpc.core.dataprovider:IMapAdapter" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/slider/SliderStyles" mod="1305902414880" signatureChecksum="2261006707" >
+        <def id="com.sibirjak.asdpcbeta.slider:SliderStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/constants/Direction" mod="1305902413387" signatureChecksum="1059009076" >
+        <def id="com.sibirjak.asdpc.core.constants:Direction" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/textfield/LabelEvent" mod="1305902414463" signatureChecksum="326386500" >
+        <def id="com.sibirjak.asdpc.textfield:LabelEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/colorpicker/core/ColorSwatchBorder" mod="1305902414750" signatureChecksum="254299165" >
+        <def id="com.sibirjak.asdpcbeta.colorpicker.core:ColorSwatchBorder" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.display:Sprite" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/window/skins/MinimiseIconSkin" mod="1305902414946" signatureChecksum="3998508244" >
+        <def id="com.sibirjak.asdpcbeta.window.skins:MinimiseIconSkin" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/button/ButtonEvent" mod="1305902412794" signatureChecksum="2962977954" >
+        <def id="com.sibirjak.asdpc.button:ButtonEvent" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="flash.events:Event" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/DirectoryIcon__leafIcon" mod="1305902414670" signatureChecksum="1383318222" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:DirectoryIcon__leafIcon" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="mx.core:BitmapAsset" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/tabbar/TabBar" mod="1305902414902" signatureChecksum="3818970653" >
+        <def id="com.sibirjak.asdpcbeta.tabbar:TabBar" /> 
+        <dep id="flash.events:MouseEvent" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBarStyles" type="e" /> 
+        <dep id="Math" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabItem" type="e" /> 
+        <dep id="flash.utils:Dictionary" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar.skins:TabItemSkin" type="e" /> 
+        <dep id="flash.events:MouseEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBarStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabItem" type="s" /> 
+        <dep id="flash.utils:Dictionary" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:BindableView" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/dataprovider/adapter/MapAdapter" mod="1305902414134" signatureChecksum="1091714577" >
+        <def id="com.sibirjak.asdpc.core.dataprovider.adapter:MapAdapter" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:Index" type="e" /> 
+        <dep id="org.as3commons.collections.framework:ICollectionFx" type="e" /> 
+        <dep id="org.as3commons.collections.fx.events:CollectionEvent" type="e" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:Index" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IMap" type="s" /> 
+        <dep id="org.as3commons.collections.framework:IMapIterator" type="s" /> 
+        <dep id="org.as3commons.collections.fx.events:MapEvent" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IMapAdapter" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:IDataSourceAdapter" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:DataProviderEventDispatcher" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/IListItemContent" mod="1305902414345" signatureChecksum="777615130" >
+        <def id="com.sibirjak.asdpc.listview.renderer:IListItemContent" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:IDisplayObjectContainer" type="i" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/listview/renderer/ListItemContent" mod="1305902414351" signatureChecksum="3758718856" >
+        <def id="com.sibirjak.asdpc.listview.renderer:ListItemContent" /> 
+        <dep id="com.sibirjak.asdpc.tooltip:ToolTip" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.dataprovider:genericToStringFunction" type="e" /> 
+        <dep id="Function" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="flash.display:DisplayObject" type="e" /> 
+        <dep id="Array" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemContentStyles" type="e" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="e" /> 
+        <dep id="flash.geom:Point" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:ILabel" type="s" /> 
+        <dep id="com.sibirjak.asdpc.core.skins:GlassFrame" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemContentStyles" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererEvent" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:ListItemRendererData" type="s" /> 
+        <dep id="com.sibirjak.asdpc.listview.core:IListItemRenderer" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:IListItemContent" type="i" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/TreeNodeRendererStyles" mod="1305902414670" signatureChecksum="658991739" >
+        <def id="com.sibirjak.asdpc.treeview.renderer:TreeNodeRendererStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview.renderer:ListItemRendererStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/tabbar/TabItem" mod="1305902414909" signatureChecksum="4109809807" >
+        <def id="com.sibirjak.asdpcbeta.tabbar:TabItem" /> 
+        <dep id="com.sibirjak.asdpc.core:DisplayObjectAdapter" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBar" type="e" /> 
+        <dep id="com.sibirjak.asdpc.core.constants:Position" type="e" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="e" /> 
+        <dep id="com.sibirjak.asdpcbeta.tabbar:TabBar" type="s" /> 
+        <dep id="flash.display:DisplayObject" type="s" /> 
+        <dep id="com.sibirjak.asdpc.textfield:Label" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:View" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/renderer/skins/SolidConnectorSkin" mod="1305902414691" signatureChecksum="1127251738" >
+        <def id="com.sibirjak.asdpc.treeview.renderer.skins:SolidConnectorSkin" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.treeview.renderer.skins:BaseConnectorSkin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/button/ButtonStyles" mod="1305902412812" signatureChecksum="3730976358" >
+        <def id="com.sibirjak.asdpc.button:ButtonStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/TreeNodeData" mod="1305902414549" signatureChecksum="50762623" >
+        <def id="com.sibirjak.asdpc.treeview:TreeNodeData" /> 
+        <dep id="com.sibirjak.asdpc.treeview.core:ITreeNode" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:asdpc_internal" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListItemData" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpcbeta/radiobutton/skins/RadioButtonSkin" mod="1305902414832" signatureChecksum="2622132753" >
+        <def id="com.sibirjak.asdpcbeta.radiobutton.skins:RadioButtonSkin" /> 
+        <dep id="com.sibirjak.asdpc.button:Button" type="e" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/tooltip/skins/ToolTipSkin" mod="1305902414525" signatureChecksum="1121379727" >
+        <def id="com.sibirjak.asdpc.tooltip.skins:ToolTipSkin" /> 
+        <dep id="flash.geom:Rectangle" type="e" /> 
+        <dep id="uint" type="e" /> 
+        <dep id="flash.display:Shape" type="e" /> 
+        <dep id="flash.display:Shape" type="s" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.core:Skin" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/core/constants/Position" mod="1305902413451" signatureChecksum="1976850437" >
+        <def id="com.sibirjak.asdpc.core.constants:Position" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/treeview/TreeViewStyles" mod="1305902414581" signatureChecksum="1203521645" >
+        <def id="com.sibirjak.asdpc.treeview:TreeViewStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="com.sibirjak.asdpc.listview:ListViewStyles" type="i" /> 
+      </script>
+      <script name="com/sibirjak/asdpc/scrollbar/ScrollBarStyles" mod="1305902414404" signatureChecksum="708851197" >
+        <def id="com.sibirjak.asdpc.scrollbar:ScrollBarStyles" /> 
+        <dep id="AS3" type="n" /> 
+        <dep id="Object" type="i" /> 
+      </script>
+      <digests>
+        <digest type="SHA-256" signed="false" value="01477fcc261f5c979fdd4754eb214641df8f0c7407b6cab96001ad358cf515b5"   />
+      </digests>
+    </library>
+  </libraries>
+  <files>
+  </files>
+</swc>

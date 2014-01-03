@@ -71,6 +71,7 @@
 		include "../includes/zilFemale.as";
 		include "../includes/cuntSnakes.as";
 		include "../includes/naleen.as";
+		include "../includes/venusPitchers.as";
 
 		include "../includes/debug.as";
 			
@@ -181,6 +182,8 @@
 			registerClassAlias("Rival", Rival);
 			registerClassAlias("ZilMale", ZilMale);
 			registerClassAlias("Naleen",Naleen);
+			registerClassAlias("VenusPitcher",VenusPitcher);
+			registerClassAlias("ElderVenusPitcher",ElderVenusPitcher);
 
 			// Items!
 

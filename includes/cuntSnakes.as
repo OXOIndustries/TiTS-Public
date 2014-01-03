@@ -28,6 +28,13 @@ The snake does not have the capacity to directly control its host, but it can pr
 Reproduction: Since the snakes have only a single sex, they do not reproduce in the typical way. Every cunt snake has a storehouse of inactive, extra DNA sequences left to it by its ancestors. It will instinctively integrate attributes from its host creature along with a selection of its own active and stored genes into each egg it produces, along with a storehouse of extra genes. The cunt snake progeny will undoubted have vaginas similar to the kind female host creatures would have, as well as other biological adaptations. Eggs are only created when the creature is gaining plenty of nutrients (blood and sperm - what?! Not mixed together!).
 */
 
+// Flags:
+// MET_CUNT_SNAKE                : TODO - FIXME
+// CUNT_SNAKES_HELPED_TO_INFEST  : TODO - FIXME
+// CUNT_SNAKE_EGGS_FAXED_HOME    : TODO - FIXME
+// CUNT_TAIL_PREGNANT_TIMER      : TODO - FIXME
+// TIMES_FED_CUNT_SNAKE          : TODO - FIXME
+// DAYS_SINCE_FED_CUNT_TAIL      : TODO - FIXME
 
 //*Jungle Snakes
 //The ones on the first jungle planet, [NOTHING HERE, FOLKS].
