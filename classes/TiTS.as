@@ -58,7 +58,6 @@
 		include "../includes/penny.as";
 		include "../includes/scrapyard.as";
 		include "../includes/creation.as";
-		include "../includes/data.as";
 		include "../includes/engine.as";
 		include "../includes/game.as";
 		include "../includes/masturbation.as";
