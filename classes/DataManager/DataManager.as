@@ -28,11 +28,8 @@
 		
 		private var _debug:Boolean = true;
 		
-		private var _sharedObjects:Array;
-		
 		public function DataManager() 
 		{
-			_sharedObjects = new Array();
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
 			var sv1:SaveVersionUpgrader1;
@@ -69,15 +66,6 @@
 		
 		private function getSO(slotNumber:int):SharedObject
 		{
-/*			if (slotNumber in _sharedObjects)
-			{
-				if (_sharedObjects[slotNumber].data.version !== undefined)
-				{
-					return _sharedObjects[slotNumber];
-				}			
-			}
-			_sharedObjects[slotNumber] = SharedObject.getLocal("TiTs_" + slotNumber, "/");
-			return _sharedObjects[slotNumber];*/
 			return SharedObject.getLocal("TiTs_" + slotNumber, "/");
 		}
 		
