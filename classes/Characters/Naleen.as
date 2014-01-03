@@ -5,13 +5,14 @@
 	
 	public class Naleen extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
 		public function Naleen(dataObject:Object = null)
 		{
-			this.version = latestVersion;
-
+			this._latestVersion = 1;
+			this._neverSerialize = true;
+			
 			this.short = "naleen";
 			this.originalRace = "naleen";
 			this.a = "the ";
@@ -158,6 +159,10 @@
 			if (dataObject != null)
 			{
 				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
 			}
 		}
 	}

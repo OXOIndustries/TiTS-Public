@@ -6,12 +6,13 @@
 	
 	public class Geoff extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
 		public function Geoff(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
 			
 			this.short = "Geoff";
 			this.originalRace = "human";
@@ -164,6 +165,10 @@
 			if (dataObject != null)
 			{
 				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
 			}
 		}
 	}

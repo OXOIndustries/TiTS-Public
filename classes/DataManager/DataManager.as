@@ -185,6 +185,7 @@
 		 */
 		private function generateSavePreview(slotNumber:int):String
 		{
+			trace("Gen preview for slot " + slotNumber);
 			var slotString:String = "TiTs_" + String(slotNumber);
 			var returnString:String = "";
 			
@@ -206,14 +207,10 @@
 				return (String(slotNumber) + ": <b>INCOMPATIBLE</b>\n\n");
 			}
 			
-
-			
 			// Valid file to preview!
-			if (dataFile.data.notes == undefined) dataFile.data.notes = "No notes available.";
-			
 			returnString += slotNumber;
-			returnString += ": <b>" + dataFile.data.short + "</b>";
-			returnString += " - <i>" + dataFile.data.notes + "</i>\n";
+			returnString += ": <b>" + dataFile.data.saveName + "</b>";
+			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
 			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
@@ -276,7 +273,10 @@
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
-			dataFile.saveNotes 		= kGAMECLASS.userInterface.currentPCNotes;
+			
+			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
+			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
+			
 			dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");
 
 			// Game state
@@ -291,7 +291,10 @@
 			var gamePtr:* = kGAMECLASS;
 			for (var prop in kGAMECLASS.chars)
 			{
-				dataFile.characters[prop] = (kGAMECLASS.chars[prop] as Creature).getSaveObject();
+				if ((kGAMECLASS.chars[prop] as Creature).neverSerialize == false)
+				{
+					dataFile.characters[prop] = (kGAMECLASS.chars[prop] as Creature).getSaveObject();
+				}
 			}
 			
 			dataFile.flags = new Object();
@@ -362,6 +365,8 @@
 					}
 				}
 			}
+			
+			var gamePtr:* = kGAMECLASS;
 			
 			// We should now have the latest version of a game save structure -- Final verify
 			if (!dataErrors)

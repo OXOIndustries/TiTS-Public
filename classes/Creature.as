@@ -15,15 +15,52 @@
 	
 	import classes.GLOBAL;
 	
+	/**
+	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
+	 * actually need to be serialized, because the raw storage types used throughout the Creature class (f.ex Cocks Array) are
+	 * not aware of their parent class. One of the next goals will be to replace the raw storage containers with some form of
+	 * interface container that can be aware of it's parent, and tie back into the serialization state.
+	 * This needs to be done ti chain the getSaveObject()/loadSaveObject() to completion anyway, but we can then also hook back
+	 * into a property on the parent container to detect changes-over-default. This would enable "deltasaves" in effect, where
+	 * the only values stored are values that differ from compile-time values for each creature.
+	 */
 	public class Creature implements ISaveableCreature
 	{
+		/**
+		 * Version describes the current version of a creature within the game source. It is saved with the rest of the creature
+		 * data.
+		 * If, during load, a version mismatch is detected, the loading code will attempt to call a series of named
+		 * methods to upgrade the incoming data.
+		 * Named methods should be provided within the "Child" creature (ie ZilPack, see classes/Creatures/Base.as) and named as such:
+		 * UpgradeVersionT where T is the previous version number. 
+		 * F.ex, moving from version 1 to version 2 will call UpgradeVersion1. 
+		 * The system will be extended in future to support general Creature versioning too (although that will be tied to the underlying 
+		 * save version number, rather than the individual creature versions.
+		 */
 		private var _version:int = 0;
 		public function get version():int { return _version; }
 		public function set version(value:int):void { _version = value; }
 		
+		/**
+		 * LatestVersion describes the version of a creature within the game runtime. If a loaded creature version differs
+		 * from the latestVersion value, it will trigger the upgrading process. See _version docs for details.
+		 * If _latestVersion is set to -1, loading of a creature is skipped; this is to facilitate easier development. Creatures
+		 * will still be saved to file, but their data will not be loaded from file.
+		 */
+		protected var _latestVersion:int = 0;
+		
+		/**
+		 * NeverSerialize is a seperate flag that can be applied on a creature-by-creature basis. Any creature with the 
+		 * NeverSerialize flag set will be omitted from the save/load process. There are probably many Creatures that will
+		 * never actually need persistent storage throughout the lifetime of the game, so storing their state in player saves
+		 * seems much overkill.
+		 */
+		protected var _neverSerialize:Boolean = false;
+		public function get neverSerialize():Boolean { return _neverSerialize; }
+		
 		//Constructor
 		public function Creature()
-		{
+		{			
 			cocks = new Array();
 			vaginas = new Array();
 			breastRows = new Array();
@@ -42,7 +79,9 @@
 		
 		/**
 		 * Provide a base method of getting all properties common to ALL creatures. I think this would actually work
-		 * for child properties too...
+		 * for child properties too... At either rate, it's a bit messy at current, but there's not much point in cleaning it up and using
+		 * hand-coded property targetting, until all of the other "Container" types are handled correctly too. Ideally, each property should be
+		 * named explicitly, and sanity checking of each should be performed.
 		 * @param	dataObject
 		 */
 		public function getSaveObject():Object
@@ -65,7 +104,7 @@
 			// Private properties aren't in the ..variable list at all. We can however, get their accessors...
 			for each (var accs:XML in _da)
 			{
-				if (accs.@name != "prototype")
+				if (accs.@name != "prototype" && accs.@name != "neverSerialize")
 				{
 					dataObject[accs.@name] = this[accs.@name];
 				}
@@ -74,80 +113,72 @@
 			// Save the class instance string
 			dataObject.classInstance = getQualifiedClassName(this); // This should give us the child type so we can reconstitue it during loading.
 			
+			// Note: Clone actually encodes the classInstance as AMF metadata, and during a SharedObject load process, it will attempt to "wrap" the data
+			// in the sharedobject with the class matching the metadata. If the Class definition differs from what it was when the file was saved, we get
+			// bags of errors and unhandled failures. This ENTIRE PROCESS is designed to avoid those kinds of issues. Rather than using the AMF metadata
+			// we can just reconstitue a new version of the class using the .classInstance property, and then shuffle data through our version upgrading process
+			// and voila; no lost data, and no unintentionally clobbered values.
+			
 			return dataObject;
 		}
 		
 		/**
-		 * Load a given saveobject.
+		 * Load a given saveobject. Once initial values have been set in the constructor, we can blow through them here with settings from a provided
+		 * Object. Any *new* properties added between the dataObject version and the current Creature version will be added by the constructor.
 		 * @param	dataObject
 		 */
 		public function loadSaveObject(dataObject:Object):void
 		{
-			var typeT:Class;
-			
-			if (dataObject.hasOwnProperty("classInstance"))
+			// Devmode easiness- set _latestVersion to 1 to avoid loading a creature from file. Makes fucking with values for balance purposes much easier.
+			if (this._latestVersion == -1)
 			{
-				typeT = (getDefinitionByName(dataObject.classInstance) as Class);
-			}
-			else
-			{
-				typeT = (getDefinitionByName(getQualifiedClassName(dataObject)) as Class);
+				return;
 			}
 			
-			if (dataObject.version < typeT.latestVersion)
+			// If the incoming data object doesn't match the latest code version, push the object through the requisite upgrade path
+			if (dataObject.version < this._latestVersion)
 			{
-				while (dataObject.version < typeT.latestVersion)
+				while (dataObject.version < this._latestVersion)
 				{
-					var t:* = this as typeT;
-					t["UpgradeVersion" + dataObject.version](dataObject);
+					this["UpgradeVersion" + dataObject.version](dataObject);
 				}
 			}
 			
-			if (dataObject.version != typeT.latestVersion)
+			// If we get through the upgrade path and the version is fucked, welp!
+			if (dataObject.version != this._latestVersion)
 			{
 				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
 			}
 			
-			// MORE DESCRIBE TYPE
-			var _dl:XMLList = describeType(dataObject)..variable;
-			for each (var prop:XML in _dl)
+			// Stuff the now upgraded properties from the object into the class properties.
+			for (var prop in dataObject)
 			{
-				if (prop.@name != "classInstance" && this[prop.@name] !== undefined)
-				{
-					this[prop.@name] = dataObject[prop.@name]
-				}
-			}
-			
-			// Do the loadingssss
-/*			for (var prop in dataObject)
-			{
-				trace("What the fuck.");
-				if (prop != "classInstance" && this[prop] !== undefined)
+				if (prop != "classInstance" && prop != "neverSerialize" && this[prop] !== undefined)
 				{
 					this[prop] = dataObject[prop];
 				}
-			}*/
+			}
 		}
 		
 		//For enemies
 		public var short:String = "uncreated";
 		public var originalRace:String = "human";
-		public var a:String = "a ";
+		public var a:String = "a ";	
 		public var long:String = "You scrawny, yo.";
 		public var capitalA:String = "A ";
 		
 		//Is a creature a 'pluralize' encounter - mob, etc. 
 		public var plural:Boolean = false;
-		
+
 		//Lust vulnerability
 		public var lustVuln:Number = 1;
 		
 		public var customDodge:String = "";
-		public var customBlock:String = ""
+		public var customBlock:String = "";
 		
 		//Clothing/Armor
 		public var meleeWeapon:ItemSlotClass = new ItemSlotClass();
-		public var rangedWeapon:ItemSlotClass = new ItemSlotClass();;
+		public var rangedWeapon:ItemSlotClass = new ItemSlotClass();
 		public var armor:ItemSlotClass = new ItemSlotClass();
 		public var upperUndergarment:ItemSlotClass = new ItemSlotClass();
 		public var lowerUndergarment:ItemSlotClass = new ItemSlotClass();

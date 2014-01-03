@@ -22,7 +22,10 @@ package  classes
 			var w:Array = value.split(" ");
 			for (var i:int = 0; i < w.length; i++)
 			{
-				w[i] = capitalize(w[i]);
+				if (i == 0 || (w[i] != "the" && w[i] != "of"))
+				{
+					w[i] = capitalize(w[i]);
+				}
 			}
 			
 			return w.join(" ");

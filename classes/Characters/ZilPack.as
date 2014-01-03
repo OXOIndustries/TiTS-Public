@@ -5,12 +5,11 @@
 	
 	public class ZilPack extends Creature
 	{
-		public static const latestVersion:int = 1;
-		
 		//constructor
 		public function ZilPack(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = true;
 			
 			this.short = "two zil";
 			this.originalRace = "zil";
@@ -154,6 +153,10 @@
 			if (dataObject != null)
 			{
 				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
 			}
 		}
 	}

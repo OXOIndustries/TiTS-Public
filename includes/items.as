@@ -1,4 +1,6 @@
-﻿function useItem(item:ItemSlotClass):void {
+﻿import classes.StringUtil;
+
+function useItem(item:ItemSlotClass):void {
 	if(item.quantity == 0) {
 		clearOutput();
 		output("Attempted to use " + item.longName + " which had zero quantity.");
@@ -128,13 +130,13 @@ function inventory():void {
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	output("<b><u>Currently Worm Equipment:</u></b>\n");
-	output("<b>Melee Weapon:</b> " + pc.meleeWeapon.description + "\n");
-	output("<b>Ranged Weapon:</b> " + pc.rangedWeapon.description + "\n");
-	output("<b>Armor:</b> " + pc.armor.description + "\n");
-	output("<b>Shield:</b> " + pc.shield.description + "\n");
-	output("<b>Accessory:</b> " + pc.accessory.description + "\n");
-	output("<b>Underwear Bottom:</b> " + pc.lowerUndergarment.description + "\n");
-	output("<b>Underwear Top:</b> " + pc.upperUndergarment.description + "\n\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toTitleCase(pc.shield.description) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	output("What item would you like to use?");
 	this.userInterface.clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {

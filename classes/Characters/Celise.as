@@ -5,12 +5,14 @@
 	
 	public class Celise extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
 		public function Celise(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
+			
 			this.short = "Celise";
 			this.originalRace = "galotian";
 			this.a = "";
@@ -154,6 +156,10 @@
 			if (dataObject != null)
 			{
 				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
 			}
 		}
 	}

@@ -144,7 +144,7 @@
 			//Used for temp buffer stuff
 			this.tempText = "";
 			this.tempAuthor = "";
-			this.currentPCNotes = undefined;
+			this.currentPCNotes = "No notes available.";
 			//Used for output()
 			this.outputBuffer = "";
 			this.outputBuffer2 = "";

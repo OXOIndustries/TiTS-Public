@@ -6,13 +6,14 @@
 
 	public class Burt extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
 		public function Burt(dataObject:Object = null)
 		{
-			this.version = latestVersion;
-
+			this._latestVersion = 1;
+			this._neverSerialize = false;
+			
 			this.short = "Burt";
 			this.originalRace = "human";
 			this.a = "";
@@ -164,6 +165,11 @@
 			{
 				super.loadSaveObject(dataObject);
 			}
+			else
+			{
+				this.version = _latestVersion;
+			}
+			
 		}
 	}
 }
