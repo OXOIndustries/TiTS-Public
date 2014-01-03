@@ -1,6 +1,7 @@
 ﻿package classes.DataManager 
 {
 	import classes.kGAMECLASS;
+	import classes.ShipClass;
 	import flash.display.Shader;
 	import flash.events.MouseEvent;
 	import flash.net.SharedObject;
@@ -132,8 +133,9 @@
 			
 			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
 			{
-				displayMessage += this.generateSavePreview(slotNum);
-				if (!this.slotCompatible(slotNum) == true)
+				var dataFile:SharedObject = this.getSO(slotNum);
+				displayMessage += this.generateSavePreview(dataFile, slotNum);
+				if (this.slotCompatible(dataFile) == true)
 				{
 					kGAMECLASS.userInterface.addGhostButton(slotNum - 1, "Slot " + slotNum, this.loadGameData, slotNum);
 				}
@@ -158,7 +160,8 @@
 			
 			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
 			{
-				displayMessage += this.generateSavePreview(slotNum);
+				var dataFile:SharedObject = this.getSO(slotNum);
+				displayMessage += this.generateSavePreview(dataFile, slotNum);
 				kGAMECLASS.userInterface.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
 			}
 			
@@ -171,13 +174,9 @@
 		 * @param	slotNumber Number to preview
 		 * @return	String describing the contents of the slot
 		 */
-		private function generateSavePreview(slotNumber:int):String
+		private function generateSavePreview(dataFile:SharedObject, slotNumber:int):String
 		{
-			trace("Gen preview for slot " + slotNumber);
-			var slotString:String = "TiTs_" + String(slotNumber);
 			var returnString:String = "";
-			
-			var dataFile:SharedObject = this.getSO(slotNumber);
 			
 			// Various early-outs
 			if (dataFile.data.version == undefined)
@@ -521,10 +520,9 @@
 			}
 		}
 		
-		private function slotCompatible(slotNumber:int):Boolean
+		private function slotCompatible(dataFile:SharedObject):Boolean
 		{
-			var dataFile:SharedObject = this.getSO(slotNumber);
-			if (dataFile.data.version != undefined)
+			if (dataFile.data.version == undefined)
 			{
 				return false;
 			}

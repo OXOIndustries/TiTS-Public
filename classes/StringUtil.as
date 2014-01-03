@@ -40,7 +40,6 @@ package  classes
 		{
 			return value.charAt(0).toUpperCase() + value.substr(1);
 		}
-		
 	}
 
 }
