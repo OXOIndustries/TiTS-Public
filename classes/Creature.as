@@ -23,6 +23,8 @@
 	 * This needs to be done ti chain the getSaveObject()/loadSaveObject() to completion anyway, but we can then also hook back
 	 * into a property on the parent container to detect changes-over-default. This would enable "deltasaves" in effect, where
 	 * the only values stored are values that differ from compile-time values for each creature.
+	 * Note to self: mx.utils has some describeType caching which may be a thing to look at. It also has some handy-dandy features
+	 * for checking class properties (isDynamic etc, mx.utils.ObjectUtil)
 	 */
 	public class Creature implements ISaveableCreature
 	{
@@ -150,12 +152,40 @@
 				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
 			}
 			
-			// Stuff the now upgraded properties from the object into the class properties.
-			for (var prop in dataObject)
+			// tldr, v1 versions of the saves, because they use embedded AMF metadata, the loaded data is no longer a Dynamic class, which means
+			// for * in thing doesn't work.
+			var _d:XML = describeType(dataObject);
+			if (_d.@isDynamic == "true")
 			{
-				if (prop != "classInstance" && prop != "neverSerialize" && this[prop] !== undefined)
+				// Dynamic objects ie v2+ saves
+				for (var prop in dataObject)
 				{
-					this[prop] = dataObject[prop];
+					if (prop != "prototype" && prop != "neverSerialize" && prop != "classInstance")
+					{
+						this[prop] = dataObject[prop];
+					}
+				}
+			}
+			else
+			{
+				// "AMF Metadata" classed objects, ie, not dynamic.
+				var _dl:XMLList = _d..variable;
+				var _da:XMLList = _d..accessor;
+				
+				for each (var prop in _dl)
+				{
+					if (this[prop.@name] != null && this[prop.@name] != undefined)
+					{
+						this[prop.@name] = dataObject[prop.@name];
+					}
+				}
+				
+				for each (var accs in _da)
+				{
+					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
+					{
+						this[accs.@name] = dataObject[accs.@name];
+					}
 				}
 			}
 		}

@@ -61,7 +61,10 @@
 			var flags = new Array();
 			for (var k in data.flags)
 			{
-				flags[k] = data.flags[k];
+				if (data.flags[k] != undefined)
+				{
+					flags[k] = data.flags[k];
+				}
 			}
 			
 			data.flags = flags;
