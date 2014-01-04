@@ -2,6 +2,7 @@
 {
 
 	import classes.RoomClass;
+	import classes.UIComponents.StatusEffectsDisplay;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -101,6 +102,8 @@
 		var playerIntelligence:StatBarSmall;
 		var playerWillpower:StatBarSmall;
 		var playerLibido:StatBarSmall;
+		
+		var playerStatusEffects:StatusEffectsDisplay;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -375,13 +378,12 @@
 		
 		private function setupRightSidebar():void
 		{
-
 			this.rightSidebar = new RightBar;
 			this.rightSidebar.nameText.text = "";
 			this.rightSidebar.x = 1000;
 			this.rightSidebar.y = 0;
 			this.titsClassPtr.addChild(this.rightSidebar);
-			this.rightSidebar.addEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
+			//this.rightSidebar.addEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
 
 			// Large stat bars (Combat Stats) --------------------------------------------------
 
@@ -489,6 +491,15 @@
 			this.playerCredits.x = 1010;
 			this.playerCredits.y = 514;
 			this.titsClassPtr.addChild(this.playerCredits);
+			
+			this.playerStatusEffects = new StatusEffectsDisplay();
+			this.playerStatusEffects.targetX = 10;
+			this.playerStatusEffects.targetY = 591;
+			this.playerStatusEffects.paddingTop = 4;
+			this.playerStatusEffects.paddingBottom = 4;
+			this.playerStatusEffects.childSizeX = 35;
+			this.playerStatusEffects.childSizeY = 35;
+			this.rightSidebar.addChild(this.playerStatusEffects);
 
 			// finally, shove all the pc stats items in the relevant list
 			// so we can iterate over it when enabling and disabling them.
@@ -504,7 +515,8 @@
 										this.playerLibido,
 										this.playerLevel,
 										this.playerXP,
-										this.playerCredits];
+										this.playerCredits,
+										this.playerStatusEffects];
 		}
 
 		private function tweenLeft(e:Event):void

@@ -57,8 +57,6 @@ package classes.UIComponents
 		public function set childSizeY(v:int):void { _childSizeY = v; }
 		public function set childSpacing(v:int):void { _childSpacing = v; }
 		
-		private var _statusBackground:Sprite;
-		private var _effectsContainer:Sprite;
 		private var _childElements:Vector.<EffectDisplay>;
 		
 		private var _benefitTransform:ColorTransform;
@@ -83,29 +81,68 @@ package classes.UIComponents
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			if (this.targetHeight == 0) this.targetHeight = this.parent.height;
-			if (this.targetWidth == 0) this.targetWidth = this.parent.width;
+			if (this.targetHeight == 0) this.targetHeight = this.parent.height - this.targetY;
+			if (this.targetWidth == 0) this.targetWidth = this.parent.width - this.targetX;
 			
 			this.BuildContainer();
+			this.BuildChildren();
 			
 			trace("StatusEffect Display Constructed!");
 		}
 		
 		private function BuildContainer()
 		{
-			var padValue:int = Math.floor(_padding / 2);
-			
 			// Position within the parent
 			this.x = _targetX + this.paddingLeft;
 			this.y = _targetY + this.paddingTop;
 			
-			// Build a background container
-			_statusBackground = new Sprite();
-			_statusBackground.name = "statusbackground";
-			_statusBackground.graphics.beginFill(UIStyleSettings.gTheColourOfDebug, 1);
-			_statusBackground.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
-			_statusBackground.graphics.endFill();
-			this.addChild(_statusBackground);
+			_childElements = new Vector.<EffectDisplay>();
+		}
+		
+		private function BuildChildren():void
+		{
+			for (var i:int = 0; i < 5; i++)
+			{
+				_childElements.push(new EffectDisplay(35, 35));
+				_childElements[_childElements.length - 1].x = i * (35 + childSpacing);
+				this.addChild(_childElements[_childElements.length - 1]);
+			}
+			
+			for (var ii:int = 0; ii < 5; ii++)
+			{
+				_childElements.push(new EffectDisplay(35, 35));
+				_childElements[_childElements.length - 1].x = ii * (35 + childSpacing);
+				_childElements[_childElements.length - 1].y = 35 + childSpacing;
+				this.addChild(_childElements[_childElements.length - 1]);
+			}
+			
+			for (var iii:int = 0; iii < 5; iii++)
+			{
+				_childElements.push(new EffectDisplay(35, 35));
+				_childElements[_childElements.length - 1].x = iii * (35 + childSpacing);
+				_childElements[_childElements.length - 1].y = (35 + childSpacing) * 2;
+				this.addChild(_childElements[_childElements.length - 1]);
+			}
+			
+			_childElements.push(new EffectDisplay(73, 25));
+			_childElements[_childElements.length - 1].y = (35 + childSpacing) * 3;
+			this.addChild(_childElements[_childElements.length - 1]);
+			
+			_childElements.push(new EffectDisplay(73, 25));
+			_childElements[_childElements.length - 1].x = 111;
+			_childElements[_childElements.length - 1].y = (35 + childSpacing) * 3;
+			this.addChild(_childElements[_childElements.length - 1]);
+		}
+		
+		public function addEffectDisplay():void
+		{
+			var childIndex:int = _childElements.length;
+
+		}
+		
+		public function clearGlo():void
+		{
+			// Stub
 		}
 		
 	}
