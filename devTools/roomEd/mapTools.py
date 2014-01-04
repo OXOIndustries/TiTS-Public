@@ -1,3 +1,6 @@
+#!/SOMETHING SOMETHING SOMETHING python
+# -*- coding: utf-8 -*- 
+
 import os.path
 import re
 
@@ -246,5 +249,17 @@ class MapClass():
 if __name__ == "__main__":
 
 	print "Roominating"
-	mapClass = MapClass(["../../includes/rooms.as"])
+
+	possiblePaths = [
+	"../../../includes/rooms.as",
+	"../../includes/rooms.as",
+	"../includes/rooms.as",
+	"./includes/rooms.as"
+	]
+	paths = []
+	for path in possiblePaths:
+		if os.path.exists(path):
+			paths.append(path)
+	print "Found roooms.as on path:", paths
+	mapClass = MapClass(paths)
 	print mapClass

@@ -1,7 +1,10 @@
+#!/SOMETHING SOMETHING SOMETHING python
+# -*- coding: utf-8 -*- 
 
 import wx
 
 import mapTools
+import os
 
 class GridPanel(wx.Panel):
 
@@ -35,7 +38,23 @@ class GridPanel(wx.Panel):
 		self.pen = wx.Pen(self.penColour)
 		
 		print "Loading Map"
-		self.mapper = mapTools.MapClass(["../../includes/rooms.as"])
+
+
+		print "Roominating"
+
+		possiblePaths = [
+		"../../../includes/rooms.as",
+		"../../includes/rooms.as",
+		"../includes/rooms.as",
+		"./includes/rooms.as"
+		]
+		paths = []
+		for path in possiblePaths:
+			if os.path.exists(path):
+				paths.append(path)
+		print "Found roooms.as on path:", paths
+
+		self.mapper = mapTools.MapClass(paths)
 		self.mapRoot = self.mapper.getRoomAt(0,0,0,0)
 		#print "Mapper = ", self.mapper
 		self.onSize(None)
