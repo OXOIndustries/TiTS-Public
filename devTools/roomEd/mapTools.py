@@ -24,9 +24,13 @@ class Room():
 		self.game_outText      = None
 		self.game_inText       = None
 
-		self.roomFlags    = []
+		self.roomFlags         = []
 
 		self.coords            = None
+
+		self.selected          = False
+
+		self.drawCoords        = None
 
 	def parseInfoString(self, inStr):
 
@@ -89,6 +93,37 @@ class Room():
 		ret += "\n	End of room object."
 		return ret
 
+	def toDict(self):
+
+
+		retDict = {
+		
+		"roomName"           : self.roomName,
+		"roomNameInGame"     : self.game_roomName,
+		"roomDescription"    : self.game_description,
+		"roomCallEntr"       : self.game_runOnEnter,
+		"planetName"         : self.game_planet,
+		"systemName"         : self.game_system,
+
+		"exitNorth"          : self.game_northExit,
+		"exitSouth"          : self.game_southExit,
+		"exitEast"           : self.game_eastExit,
+		"exitWest"           : self.game_westExit,
+		"exitIn"             : self.game_inExit,
+		"exitIn"             : self.game_inText,
+		"exitOut"            : self.game_outExit,
+		"exitOut"            : self.game_outText
+
+		}
+		flagStr = ""
+		for flag in self.roomFlags:
+			flagStr += flag
+			flagStr += "\n"
+
+		flagStr.rstrip()
+		retDict["flags"] = flagStr
+
+		return retDict
 
 	def getCode(self):
 		code = "\n	rooms[%s] = new RoomClass(this);" % self.roomName
@@ -126,7 +161,9 @@ class MapClass():
 			contents = fp.readlines()
 
 		for line in contents:
-			result = roomRe.search(line.rstrip().strip())
+			line = line.rstrip().strip()
+			line = unicode(line, "utf-8")
+			result = roomRe.search(line)
 			if result:
 				#print line
 				roomName, roomCall = result.group(1), result.group(2)
@@ -181,6 +218,18 @@ class MapClass():
 			if self.mapDict[currentRoom].game_inExit:
 				tmpCoords = updateDictCoord(currentCoords, "z", +1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
+
+	def getRoomDrawnAt(self, x, y, roomSize=50):
+
+		ret = None
+		for key, room in self.mapDict.iteritems():
+			room.selected = False
+			if room.drawCoords != None:
+				if abs(room.drawCoords[0] - x) < (roomSize / 2) and abs(room.drawCoords[1] - y) < (roomSize / 2):
+					room.selected = True
+					ret = key
+
+		return ret
 
 	def getRoomAt(self, x, y, z, p):
 		print "getting room at ", x, y, z, p

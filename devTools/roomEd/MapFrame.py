@@ -8,16 +8,18 @@ class GridPanel(wx.Panel):
 		#Number of items in the color map LUT
 		#I'm pretty sure the actual cm library only uses 256, so settings above 256 have no benefit
 		
-	def __init__(self, parent, **kwargs):
+	def __init__(self, parent, grandparent, **kwargs):
 
 		wx.Panel.__init__( self, parent, **kwargs )
 
+		self.parent = grandparent # Just needed to access self.parent.roomCtrlDict
 
 		self.mdc = None # memory dc to draw off-screen
 
 		self.roomStep = 50
 
-		self.globalDrawOffset = [-500, 0]
+		self.globalDrawOffset = [-400, -100]  # Kinda tweaked for Mhen'ga
+		self.currentSelectedRoom = None
 
 		self.Bind(wx.EVT_SIZE, self.onSize)
 		self.Bind(wx.EVT_ERASE_BACKGROUND, self.onErase)
@@ -26,8 +28,8 @@ class GridPanel(wx.Panel):
 		self.textColourWhite = wx.Colour(255, 255, 255)
 		self.textColourBlack = wx.Colour(0, 0, 0)
 
-		self.brushColour = wx.Colour(0, 0, 150)
-		self.brush = wx.Brush(self.brushColour)
+		self.roomBrush = wx.Brush(wx.Colour(0, 0, 150))
+		self.selRoomBrush = wx.Brush(wx.Colour(150, 150, 250))
 
 		self.penColour = wx.Colour(0, 0, 0, 0)
 		self.pen = wx.Pen(self.penColour)
@@ -40,6 +42,7 @@ class GridPanel(wx.Panel):
 		#self.onTimer()
 
 		self.lastUpdatePosition = [0,0]
+		self.mouseDownPosition = None
 
 		self.Bind(wx.EVT_LEFT_DOWN, self.OnLeftDown)
 		self.Bind(wx.EVT_LEFT_UP, self.OnLeftUp)
@@ -60,12 +63,23 @@ class GridPanel(wx.Panel):
 			self.motionLoop = 0
 	def OnLeftDown(self, evt):
 		self.lastUpdatePosition = evt.GetPosition()
+		self.mouseDownPosition = evt.GetPosition()
 	def OnLeftUp(self, evt):
+		if evt.GetPosition() == self.mouseDownPosition:
+			
+			self.pickRoom(self.mouseDownPosition[0], self.mouseDownPosition[1])
+		self.mouseDownPosition = None
 		self.redraw()
 	def OnLeaveWindow(self, evt):
 		pass
 		#print "On Leave Window!"
 
+	def pickRoom(self, x, y):
+		self.currentSelectedRoom = self.mapper.getRoomDrawnAt(x, y)
+		if self.currentSelectedRoom != None:
+			print "Current Room = ", self.currentSelectedRoom
+
+			self.parent.setPickedRoom(self.mapper.mapDict[self.currentSelectedRoom])
 
 	def onSize(self, event):
 		# re-create memory dc to fill window
@@ -93,7 +107,7 @@ class GridPanel(wx.Panel):
 		w, h = dc.GetSize()
 		dc.Clear()
 		
-		dc.SetBrush(self.brush)
+		dc.SetBrush(self.roomBrush)
 		#dc.SetPen(self.pen)
 		dc.SetTextForeground(self.textColourWhite)
 
@@ -109,13 +123,15 @@ class GridPanel(wx.Panel):
 		dc.SetTextForeground(self.textColourBlack)
 		coordNote = "Current Coords = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
 		dc.DrawText(coordNote, 7, h-20)
+		roomNote = "Current Room = %s" % (self.currentSelectedRoom)
+		dc.DrawText(roomNote, w-350, h-20)
 		
 		#print incH, incW
 		self.Refresh()
 
 	def handleRoom(self, dc, room, x, y):
 		self.drawRoom(dc, x, y, room)
-		if room.roomName in self.drawnList:
+		if room.roomName in self.drawnList:	# Do not redraw rooms that have already been shown
 			return
 		else:
 			self.drawnList.append(room.roomName)
@@ -130,7 +146,12 @@ class GridPanel(wx.Panel):
 			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit], x + self.roomStep, y)
 
 	def drawRoom(self, dc, x, y, room):
+		if room.selected:
+			dc.SetBrush(self.selRoomBrush)
+		else:
+			dc.SetBrush(self.roomBrush)
 
+		room.drawCoords = [x, y]
 		roomStr = ""
 		if room.game_outExit:
 			roomStr += "-"
@@ -164,11 +185,11 @@ class GridPanel(wx.Panel):
 
 
 class ReadoutPanel(wx.Panel):
-	def __init__(self, *args, **kwds):
+	def __init__(self, parent, **kwds):
 		#kwds["style"] = wx.RESIZE_BORDER|wx.TAB_TRAVERSAL|wx.CLIP_CHILDREN
-		wx.Panel.__init__(self, *args, **kwds)
+		wx.Panel.__init__(self, parent, **kwds)
 		#print self
-		self.mapPlot = GridPanel(self)
+		self.mapPlot = GridPanel(self, parent)
 		
 		centerCoord = [0, 0, 0, 0]
 
