@@ -4,6 +4,7 @@ package classes.UIComponents
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextFormatDisplay;
+	import flash.text.Font;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -57,6 +58,46 @@ package classes.UIComponents
 		public static var gMainTextColour:uint   			= 0xFFFFFF;
 		public static var gUIBarTextColour:uint  			= 0xFFFFFF;
 		public static var gStatusBarTextColour:uint 		= 0xFFFFFF;
+		
+		// Font Faces
+		private static var _gFontFace1:Font;
+		public static function get gFontFace1():Font
+		{
+			if (!UIStyleSettings._gFontFace1)
+			{
+				UIStyleSettings._gFontFace1 = new Font1;
+			}
+			return UIStyleSettings._gFontFace1;
+		}
+		
+		// Text formatters
+		private static var _gNameHeaderFormatter:TextFormat = undefined;
+		public static function get gNameHeaderFormatter():TextFormat 
+		{
+			if (UIStyleSettings._gNameHeaderFormatter == undefined)
+			{
+				UIStyleSettings._gNameHeaderFormatter = new TextFormat();
+				UIStyleSettings._gNameHeaderFormatter.size = 25;
+				UIStyleSettings._gNameHeaderFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gNameHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gNameHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+			}
+			return UIStyleSettings._gNameHeaderFormatter;
+		}
+		
+		private static var _gStatBlockHeaderFormatter:TextFormat = undefined;
+		public static function get gStatBlockHeaderFormatter():TextFormat 
+		{
+			if (UIStyleSettings._gStatBlockHeaderFormatter == undefined)
+			{
+				UIStyleSettings._gStatBlockHeaderFormatter = new TextFormat();
+				UIStyleSettings._gStatBlockHeaderFormatter.size = 14;
+				UIStyleSettings._gStatBlockHeaderFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gStatBlockHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gStatBlockHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+			}
+			return UIStyleSettings._gStatBlockHeaderFormatter;
+		}
 	}
 
 }

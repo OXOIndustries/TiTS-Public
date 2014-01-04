@@ -2,6 +2,7 @@
 {
 
 	import classes.RoomClass;
+	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.StatusEffectsDisplay;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -378,11 +379,14 @@
 		
 		private function setupRightSidebar():void
 		{
+			var rsb:RightSideBar = new RightSideBar();
+			this.titsClassPtr.addChild(rsb);
+			
 			this.rightSidebar = new RightBar;
 			this.rightSidebar.nameText.text = "";
 			this.rightSidebar.x = 1000;
 			this.rightSidebar.y = 0;
-			this.titsClassPtr.addChild(this.rightSidebar);
+			//this.titsClassPtr.addChild(this.rightSidebar);
 			//this.rightSidebar.addEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
 
 			// Large stat bars (Combat Stats) --------------------------------------------------
@@ -394,7 +398,7 @@
 			this.playerShields.values.text = "1";
 			this.playerShields.x = 1010;
 			this.playerShields.y = 65;
-			this.titsClassPtr.addChild(this.playerShields);
+			//this.titsClassPtr.addChild(this.playerShields);
 
 			this.playerHP = new StatBarBig();
 			this.playerHP.background.x = -150;
@@ -402,7 +406,7 @@
 			this.playerHP.values.text = "0";
 			this.playerHP.x = 1010;
 			this.playerHP.y = 106;
-			this.titsClassPtr.addChild(this.playerHP);
+			//this.titsClassPtr.addChild(this.playerHP);
 
 			this.playerLust = new StatBarBig();
 			this.playerLust.background.x = -1 * (1 - 25 / 100) * 180;  // Aren't all these bars the same width?
@@ -412,46 +416,46 @@
 			this.playerLust.values.text = "25";
 			this.playerLust.x = 1010;
 			this.playerLust.y = 147;
-			this.titsClassPtr.addChild(this.playerLust);
+			//this.titsClassPtr.addChild(this.playerLust);
 
 			this.playerEnergy = new StatBarBig();
 			this.playerEnergy.masks.labels.text = "ENERGY";
 			this.playerEnergy.values.text = "1";
 			this.playerEnergy.x = 1010;
 			this.playerEnergy.y = 188;
-			this.titsClassPtr.addChild(this.playerEnergy);
+			//this.titsClassPtr.addChild(this.playerEnergy);
 
 			// Small stat bars (Core Stats) --------------------------------------------------
 
 			this.playerPhysique = new StatBarSmall();
 			this.playerPhysique.x = 1010;
 			this.playerPhysique.y = 255;
-			this.titsClassPtr.addChild(this.playerPhysique);
+			//this.titsClassPtr.addChild(this.playerPhysique);
 
 			this.playerReflexes = new StatBarSmall();
 			this.playerReflexes.x = 1010;
 			this.playerReflexes.y = 284;
-			this.titsClassPtr.addChild(this.playerReflexes);
+			//this.titsClassPtr.addChild(this.playerReflexes);
 
 			this.playerAim = new StatBarSmall();
 			this.playerAim.x = 1010;
 			this.playerAim.y = 313;
-			this.titsClassPtr.addChild(this.playerAim);
+			//this.titsClassPtr.addChild(this.playerAim);
 
 			this.playerIntelligence = new StatBarSmall();
 			this.playerIntelligence.x = 1010;
 			this.playerIntelligence.y = 342;
-			this.titsClassPtr.addChild(this.playerIntelligence);
+			//this.titsClassPtr.addChild(this.playerIntelligence);
 
 			this.playerWillpower = new StatBarSmall();
 			this.playerWillpower.x = 1010;
 			this.playerWillpower.y = 371;
-			this.titsClassPtr.addChild(this.playerWillpower);
+			//this.titsClassPtr.addChild(this.playerWillpower);
 
 			this.playerLibido = new StatBarSmall();
 			this.playerLibido.x = 1010;
 			this.playerLibido.y = 400;
-			this.titsClassPtr.addChild(this.playerLibido);
+			//this.titsClassPtr.addChild(this.playerLibido);
 
 
 			this.setupStatBar(this.playerPhysique,"PHYSIQUE",50,100);
@@ -471,7 +475,7 @@
 			this.playerLevel.values.text = "1";
 			this.playerLevel.x = 1010;
 			this.playerLevel.y = 456;
-			this.titsClassPtr.addChild(this.playerLevel);
+			//this.titsClassPtr.addChild(this.playerLevel);
 
 			this.playerXP = new StatBarSmall();
 			this.playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
@@ -480,7 +484,7 @@
 			this.playerXP.values.text = "50 / 1000";
 			this.playerXP.x = 1010;
 			this.playerXP.y = 485;
-			this.titsClassPtr.addChild(this.playerXP);
+			//this.titsClassPtr.addChild(this.playerXP);
 
 			this.playerCredits = new StatBarSmall();
 			this.playerCredits.background.x =  -180;
@@ -490,7 +494,7 @@
 			this.playerCredits.values.text = "Over 9000";
 			this.playerCredits.x = 1010;
 			this.playerCredits.y = 514;
-			this.titsClassPtr.addChild(this.playerCredits);
+			//this.titsClassPtr.addChild(this.playerCredits);
 			
 			this.playerStatusEffects = new StatusEffectsDisplay();
 			this.playerStatusEffects.targetX = 10;
@@ -499,7 +503,7 @@
 			this.playerStatusEffects.paddingBottom = 4;
 			this.playerStatusEffects.childSizeX = 35;
 			this.playerStatusEffects.childSizeY = 35;
-			this.rightSidebar.addChild(this.playerStatusEffects);
+			//this.rightSidebar.addChild(this.playerStatusEffects);
 
 			// finally, shove all the pc stats items in the relevant list
 			// so we can iterate over it when enabling and disabling them.
