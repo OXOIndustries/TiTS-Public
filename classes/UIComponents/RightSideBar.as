@@ -4,6 +4,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
+	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
 	import fl.transitions.Tween;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -25,7 +26,7 @@ package classes.UIComponents
 		private var _combatStatBlock:BigStatBlock;
 		private var _coreStatBlock:CoreStatsBlock;
 		private var _advancementBlock:AdvancementBlock;
-		private var _statusEffectDisplay:StatusEffectsDisplay;
+		private var _statusEffectDisplay:StatusEffectsBlock;
 		
 		/**
 		 * Config for lazy init.
@@ -64,7 +65,7 @@ package classes.UIComponents
 			_advancementBlock.y = Math.floor(_coreStatBlock.y + (_coreStatBlock.height - 2));
 			this.addChild(_advancementBlock);
 			
-			_statusEffectDisplay = new StatusEffectsDisplay;
+			_statusEffectDisplay = new StatusEffectsBlock();
 			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height - 2));
 			this.addChild(_statusEffectDisplay);
 		}
