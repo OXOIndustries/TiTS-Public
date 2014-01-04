@@ -47,6 +47,11 @@ package classes.UIComponents
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		
+		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
+		public static var gStatusGoodColour:uint			= 0x0CD71C;
+		public static var gStatusBadColour:uint				= 0xFF0000;
+		public static var gTheColourOfDebug:uint 			= 0xFFA90A;
+		
 		// RANDOM VALUES I STOLE FROM BAD SHIT I WROTE IN THE PAST etc
 		public static var gDebugPaneBackgroundColour:uint 	= 0xFF0000;
 		public static var gMainTextColour:uint   			= 0xFFFFFF;
