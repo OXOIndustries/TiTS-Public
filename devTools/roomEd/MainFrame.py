@@ -63,13 +63,39 @@ class MapEditorFrame(wx.Frame):
 		descText = "Map Editor"
 		videoWinHeaderLabel = wx.StaticText(self, -1, descText)
 		videoWinHeaderLabel.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
-		controlButtonsSizer.Add(videoWinHeaderLabel, proportion=0, flag=wx.ALL, border=5)
+		controlButtonsSizer.Add(videoWinHeaderLabel, border=5, flag=wx.LEFT|wx.RIGHT)
+
+		controlButtonsSizer.Add([1,1], proportion=1)
+
+		self.zIndexLabel = wx.StaticText(self, -1, "Current Z Index =    ")
+		controlButtonsSizer.Add(self.zIndexLabel, border=5, flag=wx.TOP) # HAAAACH
+		controlButtonsSizer.Add([5,1])
+		zUpButton = wx.Button(self, -1, "Z Level +")
+		controlButtonsSizer.Add(zUpButton,  border=5, flag=wx.LEFT|wx.RIGHT)
+
+		zDownButton = wx.Button(self, -1, "Z Level -")
+		controlButtonsSizer.Add(zDownButton,  border=5, flag=wx.LEFT|wx.RIGHT)
+		
+		controlButtonsSizer.Add([15,1])
+
+		self.pIndexLabel = wx.StaticText(self, -1, "Current Planet Index =    ")
+		controlButtonsSizer.Add(self.pIndexLabel, border=5, flag=wx.TOP)
+		controlButtonsSizer.Add([5,1])
+		pUpButton = wx.Button(self, -1, "Planet +")
+		controlButtonsSizer.Add(pUpButton,  border=5, flag=wx.LEFT|wx.RIGHT)
+
+		pDownButton = wx.Button(self, -1, "Planet -")
+		controlButtonsSizer.Add(pDownButton,  border=5, flag=wx.LEFT|wx.RIGHT)
 
 		controlButtonsSizer.Add([1,1], proportion=1)
 
 		self.somethingButton = wx.ToggleButton(self, -1, "DO THE THING")
-		controlButtonsSizer.Add(self.somethingButton, proportion=0, flag=wx.EXPAND, border=5)
+		controlButtonsSizer.Add(self.somethingButton, border=5, flag=wx.LEFT|wx.RIGHT)
 
+		zUpButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
+		zDownButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
+		pUpButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
+		pDownButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
 		#
 		#self.ipTextCtrl.Bind(wx.EVT_TEXT_ENTER, self.evtIpEnter)
 
@@ -77,6 +103,21 @@ class MapEditorFrame(wx.Frame):
 
 		return controlButtonsSizer
 	
+	def updateLabelTexts(self):
+		self.zIndexLabel.SetLabel("Current Z Index = %d" % self.vizPanel.mapPlot.getCurrentZIndex())
+		self.pIndexLabel.SetLabel("Current Planet Index = %d" % self.vizPanel.mapPlot.getCurrentPIndex())
+
+	def __change_xp_level(self, evt):
+		buttonName = evt.EventObject.GetLabel()
+		if buttonName == "Z Level +":
+			self.vizPanel.mapPlot.increaseZIndex()
+		if buttonName == "Z Level -":
+			self.vizPanel.mapPlot.decreaseZIndex()
+		if buttonName == "Planet +":
+			self.vizPanel.mapPlot.increasePIndex()
+		if buttonName == "Planet -":
+			self.vizPanel.mapPlot.decreasePIndex()
+		self.updateLabelTexts()
 	
 	def __map_button_panel(self):
 
@@ -84,85 +125,76 @@ class MapEditorFrame(wx.Frame):
 		mapEditorPanelHeader = wx.StaticText(self, -1, "Room Properties")
 		mapEditorPanelHeader.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.NORMAL, 0, "MS Shell Dlg 2"))
 
-		mapButtonSizer.Add(mapEditorPanelHeader, proportion=0, border=5, flag=wx.EXPAND)
-		mapButtonSizer.Add([5,5], proportion=0, border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(mapEditorPanelHeader, border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add([5,5], border=5, flag=wx.EXPAND)
 
 
 
-		roomNameLabel           = wx.StaticText(self, id=-1, label="Unique Name")
-		mapButtonSizer.Add(roomNameLabel, proportion=0, border=5, flag=wx.EXPAND)
-		roomNameTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(roomNameTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
-		roomCallOnEnterLabel    = wx.StaticText(self, id=-1, label="Call on Entry")
-		mapButtonSizer.Add(roomCallOnEnterLabel, proportion=0, border=5, flag=wx.EXPAND)
-		roomCallEntrTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(roomCallEntrTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
-		roomShownNameLabel      = wx.StaticText(self, id=-1, label="Shown Name")
-		mapButtonSizer.Add(roomShownNameLabel, proportion=0, border=5, flag=wx.EXPAND)
-		roomNameInGameTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(roomNameInGameTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
-		planetEntryLabel      = wx.StaticText(self, id=-1, label="Planet")
-		mapButtonSizer.Add(planetEntryLabel, proportion=0, border=5, flag=wx.EXPAND)
-		planetNameTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(planetNameTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
-		systemEntryLabel      = wx.StaticText(self, id=-1, label="System")
-		mapButtonSizer.Add(systemEntryLabel, proportion=0, border=5, flag=wx.EXPAND)
-		systemNameTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(systemNameTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
-
+		roomNameLabel             = wx.StaticText(self, id=-1, label="Unique Name")
+		roomCallOnEnterLabel      = wx.StaticText(self, id=-1, label="Call on Entry")
+		roomShownNameLabel        = wx.StaticText(self, id=-1, label="Shown Name")
+		planetEntryLabel          = wx.StaticText(self, id=-1, label="Planet")
+		systemEntryLabel          = wx.StaticText(self, id=-1, label="System")
 		roomDescriptionLabel      = wx.StaticText(self, id=-1, label="Room description")
-		mapButtonSizer.Add(roomDescriptionLabel, proportion=0, border=5, flag=wx.EXPAND)
-		roomDescriptionTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=[300, 400])
-		mapButtonSizer.Add(roomDescriptionTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		
-		flagsLabel      = wx.StaticText(self, id=-1, label="Flags")
-		mapButtonSizer.Add(flagsLabel, proportion=0, border=5, flag=wx.EXPAND)
-		flagsTextCtrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=[300, 100])
-		mapButtonSizer.Add(flagsTextCtrl, proportion=0, border=5, flag=wx.EXPAND)
+		flagsLabel                = wx.StaticText(self, id=-1, label="Flags")
+		connectionsLabel          = wx.StaticText(self, id=-1, label="Room Connections")
+		exitNorth                 = wx.StaticText(self, id=-1, label="North")
+		exitSouth                 = wx.StaticText(self, id=-1, label="South")
+		exitEast                  = wx.StaticText(self, id=-1, label="East")
+		exitWest                  = wx.StaticText(self, id=-1, label="West")
+		exitIn                    = wx.StaticText(self, id=-1, label="In")
+		exitInLabel               = wx.StaticText(self, id=-1, label="In Label")
+		exitOut                   = wx.StaticText(self, id=-1, label="Out")
+		exitOutLabel              = wx.StaticText(self, id=-1, label="Out Label")
 
-		connectionsLabel      = wx.StaticText(self, id=-1, label="Room Connections")
-		mapButtonSizer.Add(connectionsLabel, proportion=0, border=5, flag=wx.EXPAND)
-		mapButtonSizer.Add([5,5], proportion=0, border=5, flag=wx.EXPAND)
+		roomNameTextctrl          = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		roomCallEntrTextctrl      = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		roomNameInGameTextctrl    = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		planetNameTextctrl        = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		systemNameTextctrl        = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		roomDescriptionTextctrl   = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=[300, 400])
+		flagsTextCtrl             = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER | wx.TE_MULTILINE, size=[300, 100])
+		exitNorthTextctrl         = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitSouthTextctrl         = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitEastTextctrl          = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitWestTextctrl          = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitInTextctrl            = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitInLabelTextctrl       = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitOutTextctrl           = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
+		exitOutLabelTextctrl      = wx.TextCtrl(self, id=-1, value="", style=wx.TE_PROCESS_ENTER, size=[200, -1])
 
-
-		exitNorth      = wx.StaticText(self, id=-1, label="North")
-		mapButtonSizer.Add(exitNorth, proportion=0, border=5, flag=wx.EXPAND)
-		exitNorthTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitNorthTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitSouth      = wx.StaticText(self, id=-1, label="South")
-		mapButtonSizer.Add(exitSouth, proportion=0, border=5, flag=wx.EXPAND)
-		exitSouthTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitSouthTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitEast      = wx.StaticText(self, id=-1, label="East")
-		mapButtonSizer.Add(exitEast, proportion=0, border=5, flag=wx.EXPAND)
-		exitEastTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitEastTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitWest      = wx.StaticText(self, id=-1, label="West")
-		mapButtonSizer.Add(exitWest, proportion=0, border=5, flag=wx.EXPAND)
-		exitWestTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitWestTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitIn      = wx.StaticText(self, id=-1, label="In")
-		mapButtonSizer.Add(exitIn, proportion=0, border=5, flag=wx.EXPAND)
-		exitInTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitInTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitInLabel      = wx.StaticText(self, id=-1, label="In Label")
-		mapButtonSizer.Add(exitInLabel, proportion=0, border=5, flag=wx.EXPAND)
-		exitInLabelTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitInLabelTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitOut      = wx.StaticText(self, id=-1, label="Out")
-		mapButtonSizer.Add(exitOut, proportion=0, border=5, flag=wx.EXPAND)
-		exitOutTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitOutTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-		exitOutLabel      = wx.StaticText(self, id=-1, label="Out Label")
-		mapButtonSizer.Add(exitOutLabel, proportion=0, border=5, flag=wx.EXPAND)
-		exitOutLabelTextctrl = wx.TextCtrl(self, id=-1, value="", style = wx.TE_PROCESS_ENTER, size=[200, -1])
-		mapButtonSizer.Add(exitOutLabelTextctrl, proportion=0, border=5, flag=wx.EXPAND)
-
+		mapButtonSizer.Add(roomNameLabel,            border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomNameTextctrl,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomCallOnEnterLabel,     border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomCallEntrTextctrl,     border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomShownNameLabel,       border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomNameInGameTextctrl,   border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(planetEntryLabel,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(planetNameTextctrl,       border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(systemEntryLabel,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(systemNameTextctrl,       border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomDescriptionLabel,     border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(roomDescriptionTextctrl,  border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(flagsLabel,               border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(flagsTextCtrl,            border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(connectionsLabel,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add([5,5],                    border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitNorth,                border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitNorthTextctrl,        border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitSouth,                border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitSouthTextctrl,        border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitEast,                 border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitEastTextctrl,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitWest,                 border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitWestTextctrl,         border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitIn,                   border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitInTextctrl,           border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitInLabel,              border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitInLabelTextctrl,      border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitOut,                  border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitOutTextctrl,          border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitOutLabel,             border=5, flag=wx.EXPAND)
+		mapButtonSizer.Add(exitOutLabelTextctrl,     border=5, flag=wx.EXPAND)
 
 
 		self.roomCtrlDict = {
@@ -196,7 +228,7 @@ class MapEditorFrame(wx.Frame):
 		self.vizPanel = vizFrame.ReadoutPanel(self, id=-1)
 		mapPanelSizer.Add(self.vizPanel, proportion=1, flag=wx.EXPAND, border=0)
 		mapPanelSizer.Add([5,5]) # SPACING HACK!
-		mapPanelSizer.Add(self.__map_button_panel(), proportion=0,  flag=wx.EXPAND, border = 5)
+		mapPanelSizer.Add(self.__map_button_panel(),  flag=wx.EXPAND, border = 5)
 
 
 
@@ -206,7 +238,7 @@ class MapEditorFrame(wx.Frame):
 
 		self.mainWindowSizer = wx.BoxSizer(wx.VERTICAL)
 		
-		self.mainWindowSizer.Add(self.__controlButtonsSizer(), proportion=0, flag=wx.EXPAND, border=0)
+		self.mainWindowSizer.Add(self.__controlButtonsSizer(), flag=wx.EXPAND, border=0)
 		
 		self.mainWindowSizer.Add(self.__map_panel(), proportion=1,  flag=wx.EXPAND)
 

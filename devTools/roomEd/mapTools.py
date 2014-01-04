@@ -158,7 +158,7 @@ class MapClass():
 
 	def loadRoomStructure(self, filePath):
 
-		roomRe = re.compile("rooms\[([\"\'][\w\'\" ]+[\"\'])\](.*?;)$")
+		roomRe = re.compile("^rooms\[([\"\'][\w:\'\" ]+[\"\'])\](.*?;)$")
 
 		with file(filePath, "r") as fp:
 			contents = fp.readlines()
@@ -234,14 +234,21 @@ class MapClass():
 
 		return ret
 
-	def getRoomAt(self, x, y, z, p):
-		print "getting room at ", x, y, z, p
+	def getRoomAt(self, x=None, y=None, z=None, p=None):
 		# This is CLUMSY. It works for fairly small values of n, though, and I don't expect to have 10K+ rooms, so.... eh?
-		wantDict = {"x": x, "y": y, "z": z, "p" : p}
+		wantDict = {}
+
+		# Only look for coords if we've specified them
+		if x != None: wantDict["x"] = x
+		if y != None: wantDict["y"] = y
+		if z != None: wantDict["z"] = z
+		if p != None: wantDict["p"] = p
+
 		for key, room in self.mapDict.iteritems():
-			if room.coords == wantDict:
-				print "Have room"
-				return room
+			if room.coords:
+
+				if all(item in room.coords.items() for item in wantDict.items()):
+					return room
 
 		raise ValueError("No room at coordinates:", wantDict)
 

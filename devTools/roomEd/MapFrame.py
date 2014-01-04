@@ -21,7 +21,7 @@ class GridPanel(wx.Panel):
 
 		self.roomStep = 50
 
-		self.globalDrawOffset = [-400, -100]  # Kinda tweaked for Mhen'ga
+		self.globalDrawOffset = [-400, 0]  # Kinda tweaked for Mhen'ga
 		self.currentSelectedRoom = None
 
 		self.Bind(wx.EVT_SIZE, self.onSize)
@@ -31,12 +31,15 @@ class GridPanel(wx.Panel):
 		self.textColourWhite = wx.Colour(255, 255, 255)
 		self.textColourBlack = wx.Colour(0, 0, 0)
 
-		self.roomBrush = wx.Brush(wx.Colour(0, 0, 150))
+		self.roomBrush    = wx.Brush(wx.Colour(0, 0, 150))
 		self.selRoomBrush = wx.Brush(wx.Colour(150, 150, 250))
+		self.emptyBrush   = wx.Brush(wx.Colour(240, 240, 240))
+		self.whiteBrush   = wx.Brush(wx.Colour(255, 255, 255))
 
 		self.penColour = wx.Colour(0, 0, 0, 0)
 		self.pen = wx.Pen(self.penColour)
-		
+		self.drawnRoomCoords = []
+		self.lastDrawPosition = 0
 		print "Loading Map"
 
 
@@ -53,9 +56,12 @@ class GridPanel(wx.Panel):
 			if os.path.exists(path):
 				paths.append(path)
 		print "Found roooms.as on path:", paths
+		
+		self.currentZ = 0
+		self.currentP = 0
 
 		self.mapper = mapTools.MapClass(paths)
-		self.mapRoot = self.mapper.getRoomAt(0,0,0,0)
+		self.mapRoot = self.mapper.getRoomAt(z=self.currentZ,p=self.currentP)
 		#print "Mapper = ", self.mapper
 		self.onSize(None)
 		#self.onTimer()
@@ -70,6 +76,43 @@ class GridPanel(wx.Panel):
 		
 		self.motionLoop = 0
 
+	def changeZIndex(self, newZ):
+		try:
+			self.mapRoot = self.mapper.getRoomAt(z=newZ, p=self.currentP)
+			self.currentZ = newZ
+		except:
+			print "No rooms at that Z index!"
+		self.clearRoomStates()
+		self.redraw()
+
+	def changePIndex(self, newP):
+		try:
+			self.mapRoot = self.mapper.getRoomAt(p=newP)
+			self.currentP = newP
+			self.currentZ = self.mapRoot.coords["z"]
+		except:
+			print "No rooms at that P index!"
+		self.clearRoomStates()
+		self.redraw()
+		
+	def increaseZIndex(self):
+		self.changeZIndex(self.currentZ+1)
+	def increasePIndex(self):
+		self.changePIndex(self.currentP+1)
+	def decreaseZIndex(self):
+		self.changeZIndex(self.currentZ-1)
+	def decreasePIndex(self):
+		self.changePIndex(self.currentP-1)
+	def getCurrentZIndex(self):
+		return self.currentZ
+	def getCurrentPIndex(self):
+		return self.currentP
+
+	def clearRoomStates(self):
+		for key, room in self.mapper.mapDict.iteritems():
+			room.drawCoords = None
+		self.currentSelectedRoom = None
+
 	def OnMotion(self, evt):
 		if not evt.Dragging() or not evt.LeftIsDown():
 			return
@@ -77,12 +120,18 @@ class GridPanel(wx.Panel):
 		self.globalDrawOffset = [b - a for a, b in zip([a - b for a, b in zip(self.lastUpdatePosition, curPosition)], self.globalDrawOffset)]
 		self.lastUpdatePosition = curPosition
 		self.motionLoop += 1
-		if self.motionLoop == 10:
+
+
+
+	def checkRedrawPoller(self):
+		if self.lastDrawPosition != self.lastUpdatePosition:
 			self.redraw()
-			self.motionLoop = 0
+			self.lastDrawPosition = self.lastUpdatePosition
+
 	def OnLeftDown(self, evt):
 		self.lastUpdatePosition = evt.GetPosition()
 		self.mouseDownPosition = evt.GetPosition()
+
 	def OnLeftUp(self, evt):
 		if evt.GetPosition() == self.mouseDownPosition:
 			
@@ -121,6 +170,7 @@ class GridPanel(wx.Panel):
 		# do the actual drawing on the memory dc here
 		#print "Redraw!"
 		dc = self.mdc
+		self.drawnRoomCoords = []
 
 		#print "mapRoot", mapRoot
 		w, h = dc.GetSize()
@@ -137,14 +187,23 @@ class GridPanel(wx.Panel):
 		#print "Drawing at ", rootX, rootY
 		self.drawnList = []
 		self.handleRoom(dc, self.mapRoot, rootX, rootY)
-
+		self.drawNonexistantRooms(dc)
 		
+		bkGroundBrush = dc.GetBackground()
+		dc.SetBackground(self.whiteBrush)
+		dc.SetBackgroundMode(wx.SOLID)
 		dc.SetTextForeground(self.textColourBlack)
 		coordNote = "Current Coords = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
 		dc.DrawText(coordNote, 7, h-20)
+		
+		if self.currentSelectedRoom:
+			roomNote = "Current Room Coordinates = %s" % (self.mapper.mapDict[self.currentSelectedRoom].coords)
+			dc.DrawText(roomNote, w/2-250, h-20)
+
 		roomNote = "Current Room = %s" % (self.currentSelectedRoom)
 		dc.DrawText(roomNote, w-350, h-20)
-		
+		dc.SetBackground(bkGroundBrush)
+		dc.SetBackgroundMode(wx.TRANSPARENT)
 		#print incH, incW
 		self.Refresh()
 
@@ -154,6 +213,7 @@ class GridPanel(wx.Panel):
 			return
 		else:
 			self.drawnList.append(room.roomName)
+			self.drawnRoomCoords.append([x, y])
 
 		if room.game_northExit:
 			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit], x, y - self.roomStep)
@@ -172,27 +232,66 @@ class GridPanel(wx.Panel):
 
 		room.drawCoords = [x, y]
 		roomStr = ""
-		if room.game_outExit:
-			roomStr += "-"
 		if room.game_inExit:
 			roomStr += "+"
+		if room.game_outExit:
+			roomStr += "-"
 
-		roomSz = 30
-		hRmSz = roomSz/2
-		self.drawRectangleCenter(dc, x, y, roomSz, roomSz, roomStr)
-		
-		ptList = []
-		lineLen = ((self.roomStep - roomSz) / 2) + 1
-		if room.game_northExit:
-			ptList.append([x, y-hRmSz, x, y-hRmSz-lineLen])
-		if room.game_southExit:
-			ptList.append([x, y+hRmSz, x, y+hRmSz+lineLen])
-		if room.game_eastExit:
-			ptList.append([x+hRmSz, y, x+hRmSz+lineLen, y])
-		if room.game_westExit:
-			ptList.append([x-hRmSz, y, x-hRmSz-lineLen, y])
-		if ptList:
-			dc.DrawLineList(ptList)
+		# Bounds culling! Don't draw rooms that are 
+
+		maxExtentP, maxExtentN = 40, -40
+		dcW, dcH = dc.GetSize()
+		dcW, dcH = dcW+maxExtentP, dcH-maxExtentP # give some wiggle-room
+
+		rmX, rmY = room.drawCoords
+
+		if rmX < -maxExtentN or rmX < dcW or rmY < -maxExtentN or rmY < dcH:
+
+			roomSz = 30
+			hRmSz = roomSz/2
+			
+			self.drawRectangleCenter(dc, x, y, roomSz, roomSz, roomStr)
+			
+			ptList = []
+			lineLen = ((self.roomStep - roomSz) / 2) + 1
+			if room.game_northExit:
+				ptList.append([x, y-hRmSz, x, y-hRmSz-lineLen])
+			if room.game_southExit:
+				ptList.append([x, y+hRmSz, x, y+hRmSz+lineLen])
+			if room.game_eastExit:
+				ptList.append([x+hRmSz, y, x+hRmSz+lineLen, y])
+			if room.game_westExit:
+				ptList.append([x-hRmSz, y, x-hRmSz-lineLen, y])
+			if ptList:
+				dc.DrawLineList(ptList)
+
+	def drawNonexistantRooms(self, dc):
+		dcW, dcH = dc.GetSize()
+		rmX, rmY = None, None
+		for key, room in self.mapper.mapDict.iteritems():
+			#if room.coords != None:
+			#	print "Room coords: ", room.coords, "z", self.currentZ, "p", self.currentP
+			#	print room.coords["z"] == self.currentZ, room.coords["p"] == self.currentP
+			if room.drawCoords and room.coords["z"] == self.currentZ and room.coords["p"] == self.currentP:
+				rmX, rmY = room.drawCoords
+
+				if rmX > 0 and rmX < dcW and rmY > 0 and rmY < dcH:
+					break
+
+		if rmX != None and rmY != None:
+			dc.SetBrush(self.emptyBrush)
+			xStart = rmX % self.roomStep
+			yStart = rmY % self.roomStep
+			xIter = xrange(xStart, dcW, self.roomStep)
+			yIter = xrange(yStart, dcH, self.roomStep)
+					
+			roomSz = 30
+			
+			for x in xIter:
+				for y in yIter:
+					#print [x, y], [x, y] in self.drawnList
+					if [x, y] not in self.drawnRoomCoords:
+						self.drawRectangleCenter(dc, x, y, roomSz, roomSz)
 
 		
 	def drawRectangleCenter(self, dc, x, y, w, h, text=None):
@@ -220,13 +319,13 @@ class ReadoutPanel(wx.Panel):
 		self.filterUpdateTmr = wx.Timer(self)
 
 
-		#self.Bind(wx.EVT_TIMER, self.updateGrids, self.pollUpdateTmr)
+		self.Bind(wx.EVT_TIMER, self.updateGrids, self.pollUpdateTmr)
 		
 
 
 		#print "Starting Up..."
-		self.pollUpdateTmr.Start(100, 0)
-		self.filterUpdateTmr.Start(1000/60, 0)			# 60 Hz
+		#self.pollUpdateTmr.Start(100, 0)
+		self.pollUpdateTmr.Start(1000/30, 0)			# 60 Hz
 
 	def __set_properties(self):
 		self.mapPlot.SetMinSize((400,400))
@@ -243,6 +342,6 @@ class ReadoutPanel(wx.Panel):
 
 
 	def updateGrids(self, event): 
-		print "Redraw?"
+		self.mapPlot.checkRedrawPoller()
 		#self.mapPlot.redraw()
 
