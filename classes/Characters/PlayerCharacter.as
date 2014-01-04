@@ -8,11 +8,21 @@ package classes.Characters
 	 */
 	public class PlayerCharacter extends Creature
 	{
-		public static const latestVersion:int = 1;
 		
-		public function PlayerCharacter() 
+		
+		public function PlayerCharacter(dataObject:Object = null) 
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 		
 	}

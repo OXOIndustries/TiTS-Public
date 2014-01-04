@@ -5,12 +5,13 @@
 	
 	public class Flahne extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
-		public function Flahne()
+		public function Flahne(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
 			
 			this.short = "Flahne";
 			this.originalRace = "loo'rahn";
@@ -157,6 +158,15 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 3;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

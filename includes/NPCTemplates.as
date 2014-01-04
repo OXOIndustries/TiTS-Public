@@ -1,4 +1,4 @@
-﻿function initializeNPCs(justUpdate:Boolean = false):void {
+﻿public function initializeNPCs(justUpdate:Boolean = false):void {
 	if (!justUpdate || (justUpdate && chars["CELISE"] == undefined))
 	{
 		chars["CELISE"] = new classes.Characters.Celise();

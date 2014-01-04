@@ -5,12 +5,13 @@
 	
 	public class CuntSnake extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
-		public function CuntSnake()
-		{			
-			this.version = latestVersion;
+		public function CuntSnake(dataObject:Object = null)
+		{	
+			this._latestVersion = 1;
+			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
 			this.short = "cunt snake";
 			this.originalRace = "cunt snake";
@@ -149,6 +150,14 @@
 			this.ass.wetness = 0;
 			this.createPerk("Ranged Immune",0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

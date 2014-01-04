@@ -5,12 +5,11 @@
 	
 	public class ZilPack extends Creature
 	{
-		public static const latestVersion:int = 1;
-		
 		//constructor
-		public function ZilPack()
+		public function ZilPack(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = true;
 			
 			this.short = "two zil";
 			this.originalRace = "zil";
@@ -150,6 +149,15 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

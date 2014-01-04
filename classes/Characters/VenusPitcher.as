@@ -6,12 +6,11 @@
 	
 	public class VenusPitcher extends Creature
 	{
-		public static const latestVersion:int = 1;
-		
 		//constructor
-		public function VenusPitcher()
+		public function VenusPitcher(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = true;
 
 			this.short = "venus\npitcher";
 			this.originalRace = "venus pitcher";
@@ -155,6 +154,15 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

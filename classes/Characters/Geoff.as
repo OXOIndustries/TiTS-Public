@@ -6,12 +6,13 @@
 	
 	public class Geoff extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
-		public function Geoff()
+		public function Geoff(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
 			
 			this.short = "Geoff";
 			this.originalRace = "human";
@@ -160,6 +161,15 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

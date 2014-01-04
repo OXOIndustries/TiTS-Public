@@ -5,12 +5,13 @@
 	
 	public class Penny extends Creature
 	{
-		public static const latestVersion:int = 1;
+		
 		
 		//constructor
-		public function Penny()
+		public function Penny(dataObject:Object = null)
 		{
-			this.version = latestVersion;
+			this._latestVersion = 1;
+			this._neverSerialize = false;
 			
 			this.short = "Penny";
 			this.originalRace = "human";
@@ -152,6 +153,14 @@
 			this.milkRate = 1;
 			this.ass.wetness = 0;
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

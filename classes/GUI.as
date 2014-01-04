@@ -41,7 +41,7 @@
 		//Used for temp buffer stuff
 		var tempText:String;
 		var tempAuthor:String;
-		var currentPCNotes:String;
+		public var currentPCNotes:String;
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;
@@ -144,7 +144,7 @@
 			//Used for temp buffer stuff
 			this.tempText = "";
 			this.tempAuthor = "";
-			this.currentPCNotes = undefined;
+			this.currentPCNotes = "No notes available.";
 			//Used for output()
 			this.outputBuffer = "";
 			this.outputBuffer2 = "";
