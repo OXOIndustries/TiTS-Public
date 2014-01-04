@@ -83,12 +83,29 @@ package classes.UIComponents
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			this.Build();
+			if (this.targetHeight == 0) this.targetHeight = this.parent.height;
+			if (this.targetWidth == 0) this.targetWidth = this.parent.width;
+			
+			this.BuildContainer();
+			
+			trace("StatusEffect Display Constructed!");
 		}
 		
-		private function Build()
+		private function BuildContainer()
 		{
+			var padValue:int = Math.floor(_padding / 2);
 			
+			// Position within the parent
+			this.x = _targetX + this.paddingLeft;
+			this.y = _targetY + this.paddingTop;
+			
+			// Build a background container
+			_statusBackground = new Sprite();
+			_statusBackground.name = "statusbackground";
+			_statusBackground.graphics.beginFill(UIStyleSettings.gTheColourOfDebug, 1);
+			_statusBackground.graphics.drawRect(0, 0, this.targetWidth - this.paddingRight, this.targetHeight - this.paddingBottom);
+			_statusBackground.graphics.endFill();
+			this.addChild(_statusBackground);
 		}
 		
 	}
