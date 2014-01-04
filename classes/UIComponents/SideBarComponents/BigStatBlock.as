@@ -8,7 +8,9 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.AntiAliasType;
 	
 	/**
-	 * ...
+	 * Container class for "Primary" combat stats. Should probably generalise this to do left/right alignment.
+	 * Later.
+	 * Maybe.
 	 * @author Gedan
 	 */
 	public class BigStatBlock extends Sprite
@@ -22,11 +24,20 @@ package classes.UIComponents.SideBarComponents
 		private var _lustBar:StatBarBig;
 		private var _energyBar:StatBarBig;
 		
+		public function get shieldBar():StatBarBig { return _shieldBar; }
+		public function get hpBar():StatBarBig { return _hpBar; }
+		public function get lustBar():StatBarBig { return _lustBar; }
+		public function get energyBar():StatBarBig { return _energyBar; }
+		
 		public function BigStatBlock() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		/**
+		 * Please to be doing the needful and creating the UI element.
+		 * @param	e
+		 */
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
@@ -43,6 +54,9 @@ package classes.UIComponents.SideBarComponents
 			this.BuildStatBlock();
 		}
 		
+		/**
+		 * Generate header text and an associated underline element
+		 */
 		private function BuildHeader():void
 		{
 			// Header underline
@@ -66,6 +80,13 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_combatStatsHeaderText);
 		}
 		
+		/**
+		 * Do the work for me, code.
+		 * @param	masksText
+		 * @param	valueText
+		 * @param	prevBarY
+		 * @return
+		 */
 		private function barFactory(masksText:String, valueText:String, prevBarY:int = 0):StatBarBig
 		{
 			var bar:StatBarBig = new StatBarBig();
@@ -73,10 +94,14 @@ package classes.UIComponents.SideBarComponents
 			bar.bar.width = 30;
 			bar.masks.labels.text = masksText;
 			bar.values.text = valueText;
-			bar.y = prevBarY + 3;
+			bar.y = Math.floor(prevBarY + 3);
 			_barContainer.addChild(bar);
 			return bar;
 		}
+		
+		/**
+		 * Add all of the primary combat stat bars to a child container.
+		 */
 		private function BuildStatBlock():void
 		{
 			// I am lazy. Code, do the work for me.

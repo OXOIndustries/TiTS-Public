@@ -12,37 +12,13 @@ package classes.UIComponents
 	 * so I'm setting this up now. I'm using it for custom components that I'm building, so it saves having to convert them over later.
 	 * 
 	 * Some (most) of these settings will need to be updated to match the "Tits standard"
+	 * 
+	 * If I can work out how to do ObserverPattern style databindings, I can probably rig up all of the UI classes to recolour themselves if and when
+	 * the properties here get changed; so styling the UI at runtime would just need an interface adding to change these values. Neat, huh?
 	 * @author Gedan
 	 */
 	public class UIStyleSettings 
 	{
-		
-		/**
-		 * This is a bullshit method of getting incremental colours from debug usage when laying out items. The FlashCC compiler settings need to be modified in the FLA
-		 * file for this to work when using it as the project compiler...
-		 */
-		/*CONFIG::debug {
-			private static var bkgIndex:int = 0;
-			
-			public static function get gPaneBackgroundColour():uint
-			{
-				bkgIndex++;
-				
-				if (bkgIndex == 1) return 0xFF0000;
-				if (bkgIndex == 2) return 0x00FF00;
-				if (bkgIndex == 3) return 0x0000FF;
-				if (bkgIndex == 4) return 0xFFFF00;
-				if (bkgIndex == 5) return 0xFF00FF;
-				
-				bkgIndex = 0;
-				return 0x00FFFF;
-			}
-		}
-		
-		CONFIG::release	{
-			public static var gPaneBackgroundColour:uint = 0x1C1C1C;
-		}*/
-		
 		// TITS VALUES
 		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);

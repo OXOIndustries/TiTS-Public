@@ -2,6 +2,7 @@ package classes.UIComponents
 {
 	import classes.StatBarBig;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
 	import fl.transitions.Tween;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -21,6 +22,7 @@ package classes.UIComponents
 		private var _nameTextUnderline:Sprite;
 		
 		private var _combatStatBlock:BigStatBlock;
+		private var _coreStatBlock:CoreStatsBlock;
 		
 		/**
 		 * Config for lazy init.
@@ -50,6 +52,10 @@ package classes.UIComponents
 			_combatStatBlock = new BigStatBlock();
 			_combatStatBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 3;
 			this.addChild(_combatStatBlock);
+			
+			_coreStatBlock = new CoreStatsBlock();
+			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height - 5));
+			this.addChild(_coreStatBlock);
 		}
 		
 		/**
