@@ -1,6 +1,7 @@
 package classes.UIComponents 
 {
 	import classes.StatBarBig;
+	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
 	import fl.transitions.Tween;
@@ -23,6 +24,8 @@ package classes.UIComponents
 		
 		private var _combatStatBlock:BigStatBlock;
 		private var _coreStatBlock:CoreStatsBlock;
+		private var _advancementBlock:AdvancementBlock;
+		private var _statusEffectDisplay:StatusEffectsDisplay;
 		
 		/**
 		 * Config for lazy init.
@@ -54,8 +57,16 @@ package classes.UIComponents
 			this.addChild(_combatStatBlock);
 			
 			_coreStatBlock = new CoreStatsBlock();
-			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height - 5));
+			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height - 2));
 			this.addChild(_coreStatBlock);
+			
+			_advancementBlock = new AdvancementBlock();
+			_advancementBlock.y = Math.floor(_coreStatBlock.y + (_coreStatBlock.height - 2));
+			this.addChild(_advancementBlock);
+			
+			_statusEffectDisplay = new StatusEffectsDisplay;
+			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height - 2));
+			this.addChild(_statusEffectDisplay);
 		}
 		
 		/**
