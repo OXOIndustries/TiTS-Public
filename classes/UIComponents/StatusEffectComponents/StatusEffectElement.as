@@ -14,14 +14,18 @@ package classes.UIComponents.StatusEffectComponents
 		private var _sizeX;
 		private var _sizeY;
 		
+		private var _iconClass:Class;
+		
 		private var _selectionRing:Sprite;
 		private var _statusIcon:Sprite;
 		private var _selectionMask:Sprite;
+		private var _iconElement:Sprite;
 		
-		public function StatusEffectElement(sizeX:int, sizeY:int) 
+		public function StatusEffectElement(sizeX:int, sizeY:int, iconClass:Class) 
 		{
 			_sizeX = sizeX;
 			_sizeY = sizeY;
+			_iconClass = iconClass;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
@@ -57,9 +61,14 @@ package classes.UIComponents.StatusEffectComponents
 			_statusIcon.graphics.endFill();
 			this.addChild(_statusIcon);
 			
+			_iconElement = new _iconClass();
+			this.addChild(_iconElement);
+			_iconElement.x = Math.floor(this.width - _iconElement.width) / 2;
+			_iconElement.y = Math.floor(this.height - _iconElement.height) / 2;
+			
 			_selectionMask = new Sprite();
 			_selectionMask.graphics.beginFill(0xFFFFFF, 0);
-			_selectionMask.graphics.drawRoundRect(3, 3, _sizeX - 4, _sizeY - 4, 5);
+			_selectionMask.graphics.drawRoundRect(3, 3, _sizeX - 6, _sizeY - 6, 5);
 			_selectionMask.graphics.endFill();
 			this.addChild(_selectionMask);
 			

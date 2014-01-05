@@ -4,6 +4,7 @@ package classes.UIComponents
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
+	import flash.utils.getDefinitionByName;
 	/**
 	 * ...
 	 * @author Gedan
@@ -102,16 +103,17 @@ package classes.UIComponents
 		
 		private function BuildChildren():void
 		{
+			var tempIcon:Class = getDefinitionByName("map_quest") as Class;
 			for (var i:int = 0; i < 5; i++)
 			{
-				_childElements.push(new StatusEffectElement(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
 				_childElements[_childElements.length - 1].x = i * (35 + childSpacing);
 				this.addChild(_childElements[_childElements.length - 1]);
 			}
 			
 			for (var ii:int = 0; ii < 5; ii++)
 			{
-				_childElements.push(new StatusEffectElement(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
 				_childElements[_childElements.length - 1].x = ii * (35 + childSpacing);
 				_childElements[_childElements.length - 1].y = 35 + childSpacing;
 				this.addChild(_childElements[_childElements.length - 1]);
@@ -119,7 +121,7 @@ package classes.UIComponents
 			
 			for (var iii:int = 0; iii < 5; iii++)
 			{
-				_childElements.push(new StatusEffectElement(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
 				_childElements[_childElements.length - 1].x = iii * (35 + childSpacing);
 				_childElements[_childElements.length - 1].y = (35 + childSpacing) * 2;
 				this.addChild(_childElements[_childElements.length - 1]);

@@ -39,7 +39,7 @@ package classes.UIComponents
 		private function Build():void
 		{
 			_roomIcon = new Sprite();
-			_roomIcon.graphics.beginFill(/*UIStyleSettings.gForegroundColour*/ UIStyleSettings.gDebugPaneBackgroundColour, 1);
+			_roomIcon.graphics.beginFill(UIStyleSettings.gDebugPaneBackgroundColour, 1);
 			_roomIcon.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, 5);
 			_roomIcon.graphics.endFill();
 			this.addChild(_roomIcon);
