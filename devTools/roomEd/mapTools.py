@@ -3,6 +3,46 @@
 
 import os.path
 import re
+import sys
+import pprint
+
+class DynamicArrayContainer():
+	def __init__(self):
+		self.itemDict = {}
+
+	def getSetInDict(self, inDict, keys, setValue=False):
+		key = keys[0]
+		if len(keys) == 1:
+			if setValue != False:
+				inDict[key] = setValue
+				return
+
+			else:
+				if key in inDict:
+					return inDict[key]
+				else:
+					return None
+
+		keys = keys[1:]
+		if key in inDict:
+			return self.getSetInDict(inDict[key], keys, setValue)
+		else:
+			inDict[key] = {}
+			return self.getSetInDict(inDict[key], keys, setValue)
+	def __repr__(self):
+		pp = pprint.PrettyPrinter(indent=4, width=-1)
+		
+
+		ret = "SparseDict:\n%s" % pp.pformat(self.itemDict)
+		return ret
+	def __setitem__(self, keys, value):
+		self.getSetInDict(self.itemDict, keys, setValue=value)
+	def __getitem__(self, keys):
+		if len(keys) != 3:
+			raise ValueError("Array requires [x,y,z] coordinates. Passed: %s" % keys)
+
+		return self.getSetInDict(self.itemDict, keys)
+
 
 class Room():
 
@@ -140,8 +180,9 @@ class Room():
 		return code
 
 class MapClass():
-	mapDict = {}
 	def __init__(self, roomFileList):
+		self.mapDict = {}
+		self.coordDict = DynamicArrayContainer()
 
 		for fileName in roomFileList:
 			self.loadRoomStructure(fileName)
@@ -175,6 +216,12 @@ class MapClass():
 					self.mapDict[roomName] = Room(roomName)
 				self.mapDict[roomName].parseInfoString(roomCall)
 
+	def getAdjacentRooms(self, x, y, z, p):
+		ret = []
+
+		return ret
+
+
 	def getPlanetList(self):
 		print "FIXME: Need a proper planet list extraction mechanism"
 		return ["\"SHIP HANGAR\"", "\"TAVROS HANGAR\""]
@@ -191,7 +238,11 @@ class MapClass():
 			dictTmp[coord] += change
 			return dictTmp
 
+
 		self.mapDict[currentRoom].coords = currentCoords.copy()
+		
+		x, y, z, p = currentCoords["x"], currentCoords["y"], currentCoords["z"], currentCoords["p"]
+		self.coordDict[x, y, z, p] = currentRoom
 
 		tmpCoords = currentCoords.copy()
 		if self.mapDict[currentRoom].game_outExit == "shipLocation":
@@ -255,6 +306,16 @@ class MapClass():
 
 if __name__ == "__main__":
 
+
+	print dict()
+	p = DynamicArrayContainer()
+	print p[1,2,3]
+	p[1,2,3] = 5
+	print p[1,2,3]
+
+	print p
+	#sys.exit()
+
 	print "Roominating"
 
 	possiblePaths = [
@@ -269,4 +330,5 @@ if __name__ == "__main__":
 			paths.append(path)
 	print "Found roooms.as on path:", paths
 	mapClass = MapClass(paths)
-	print mapClass
+	print mapClass.coordDict
+	#print mapClass

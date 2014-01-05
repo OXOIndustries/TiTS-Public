@@ -28,18 +28,19 @@ class GridPanel(wx.Panel):
 		self.Bind(wx.EVT_ERASE_BACKGROUND, self.onErase)
 		self.Bind(wx.EVT_PAINT, self.onPaint)
 
-		self.textColourWhite = wx.Colour(255, 255, 255)
-		self.textColourBlack = wx.Colour(0, 0, 0)
+		self.textColourWhite      = wx.Colour(255, 255, 255)
+		self.textColourBlack      = wx.Colour(0, 0, 0)
 
-		self.roomBrush    = wx.Brush(wx.Colour(0, 0, 150))
-		self.selRoomBrush = wx.Brush(wx.Colour(150, 150, 250))
-		self.emptyBrush   = wx.Brush(wx.Colour(240, 240, 240))
-		self.whiteBrush   = wx.Brush(wx.Colour(255, 255, 255))
+		self.roomBrush            = wx.Brush(wx.Colour(0, 0, 150))
+		self.selRoomBrush         = wx.Brush(wx.Colour(150, 150, 250))
+		self.emptyRoomBrush       = wx.Brush(wx.Colour(240, 240, 240))
+		self.whiteBrush           = wx.Brush(wx.Colour(255, 255, 255))
 
-		self.penColour = wx.Colour(0, 0, 0, 0)
-		self.pen = wx.Pen(self.penColour)
-		self.drawnRoomCoords = []
-		self.lastDrawPosition = 0
+		
+		self.penBlack             = wx.Pen(wx.Colour(0, 0, 0, 0))
+		self.penRed               = wx.Pen(wx.Colour(255, 0, 0, 0))
+		self.drawnRoomCoords      = []
+		self.lastDrawPosition     = 0
 		print "Loading Map"
 
 
@@ -145,7 +146,7 @@ class GridPanel(wx.Panel):
 	def pickRoom(self, x, y):
 		self.currentSelectedRoom = self.mapper.getRoomDrawnAt(x, y)
 		if self.currentSelectedRoom != None:
-			print "Current Room = ", self.currentSelectedRoom
+			print "Current Room = ", self.currentSelectedRoom, "coords = ", x, y
 
 			self.parent.setPickedRoom(self.mapper.mapDict[self.currentSelectedRoom])
 
@@ -177,16 +178,16 @@ class GridPanel(wx.Panel):
 		dc.Clear()
 		
 		dc.SetBrush(self.roomBrush)
-		#dc.SetPen(self.pen)
+		dc.SetPen(self.penBlack)
 		dc.SetTextForeground(self.textColourWhite)
 
 
 		
-		rootX = (w/2)+self.globalDrawOffset[0]
-		rootY = (h/2)+self.globalDrawOffset[1]
+		self.rootX = (w/2)+self.globalDrawOffset[0]
+		self.rootY = (h/2)+self.globalDrawOffset[1]
 		#print "Drawing at ", rootX, rootY
 		self.drawnList = []
-		self.handleRoom(dc, self.mapRoot, rootX, rootY)
+		self.handleRoom(dc, self.mapRoot, 0, 0)
 		self.drawNonexistantRooms(dc)
 		
 		bkGroundBrush = dc.GetBackground()
@@ -204,25 +205,35 @@ class GridPanel(wx.Panel):
 		dc.DrawText(roomNote, w-350, h-20)
 		dc.SetBackground(bkGroundBrush)
 		dc.SetBackgroundMode(wx.TRANSPARENT)
+		gdoX = self.rootX
+		gdoY = self.rootY
+		crossHairLines = [[gdoX+50, gdoY, gdoX-50, gdoY], 
+						[gdoX, gdoY+50, gdoX, gdoY-50],
+						[gdoX+50, gdoY+50, gdoX-50, gdoY-50], 
+						[gdoX-50, gdoY+50, gdoX+50, gdoY-50]]
+		dc.DrawLineList(crossHairLines, self.penRed)
 		#print incH, incW
 		self.Refresh()
+	def coordsToDrawCoords(self, x, y):
+		return self.rootX + (x*self.roomStep), self.rootY + (y*self.roomStep)
 
 	def handleRoom(self, dc, room, x, y):
-		self.drawRoom(dc, x, y, room)
 		if room.roomName in self.drawnList:	# Do not redraw rooms that have already been shown
 			return
 		else:
 			self.drawnList.append(room.roomName)
-			self.drawnRoomCoords.append([x, y])
+			rmX, rmY = self.coordsToDrawCoords(x, y)
+			self.drawRoom(dc, rmX, rmY, room)
+			self.drawnRoomCoords.append([rmX, rmY])
 
 		if room.game_northExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit], x, y - self.roomStep)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit], x, y - 1)
 		if room.game_southExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_southExit], x, y + self.roomStep)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_southExit], x, y + 1)
 		if room.game_westExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_westExit], x - self.roomStep, y)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_westExit], x - 1, y)
 		if room.game_eastExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit], x + self.roomStep, y)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit], x + 1, y)
 
 	def drawRoom(self, dc, x, y, room):
 		if room.selected:
@@ -237,7 +248,7 @@ class GridPanel(wx.Panel):
 		if room.game_outExit:
 			roomStr += "-"
 
-		# Bounds culling! Don't draw rooms that are 
+		# Bounds culling! Don't draw rooms that are outside the viewport
 
 		maxExtentP, maxExtentN = 40, -40
 		dcW, dcH = dc.GetSize()
@@ -265,13 +276,14 @@ class GridPanel(wx.Panel):
 			if ptList:
 				dc.DrawLineList(ptList)
 
+
 	def drawNonexistantRooms(self, dc):
 		dcW, dcH = dc.GetSize()
 		rmX, rmY = None, None
+
+		# Iterate over rooms until we find one that's on the current level, so we can determine the offset
+		# needed to make the rooms all line up
 		for key, room in self.mapper.mapDict.iteritems():
-			#if room.coords != None:
-			#	print "Room coords: ", room.coords, "z", self.currentZ, "p", self.currentP
-			#	print room.coords["z"] == self.currentZ, room.coords["p"] == self.currentP
 			if room.drawCoords and room.coords["z"] == self.currentZ and room.coords["p"] == self.currentP:
 				rmX, rmY = room.drawCoords
 
@@ -279,20 +291,25 @@ class GridPanel(wx.Panel):
 					break
 
 		if rmX != None and rmY != None:
-			dc.SetBrush(self.emptyBrush)
+			dc.SetBrush(self.emptyRoomBrush)
 			xStart = rmX % self.roomStep
 			yStart = rmY % self.roomStep
-			xIter = xrange(xStart, dcW, self.roomStep)
-			yIter = xrange(yStart, dcH, self.roomStep)
+			xIter = xrange(0, dcW/ self.roomStep)
+			yIter = xrange(0, dcH/ self.roomStep)
 					
 			roomSz = 30
 			
 			for x in xIter:
 				for y in yIter:
 					#print [x, y], [x, y] in self.drawnList
-					if [x, y] not in self.drawnRoomCoords:
-						self.drawRectangleCenter(dc, x, y, roomSz, roomSz)
-
+					#xTmp = (x * self.roomStep) + xStart
+					#yTmp = (y * self.roomStep) + yStart
+					xTmp, yTmp = self.coordsToDrawCoords(x, y)
+					
+					if True: # self.mapper.getAdjacentRooms():
+						if [xTmp, yTmp] not in self.drawnRoomCoords:
+							self.drawRectangleCenter(dc, xTmp, yTmp, roomSz, roomSz)
+				print x, y, xTmp, yTmp
 		
 	def drawRectangleCenter(self, dc, x, y, w, h, text=None):
 		dc.DrawRectangle(x-(w/2), y-(h/2), w, h)
