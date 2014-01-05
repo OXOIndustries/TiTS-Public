@@ -1648,7 +1648,7 @@
 			//used to denote that the array has already had its new spot pushed on.
 			var arrayed:Boolean = false;
 			//used to store where the array goes
-			var keyName:String = newKeyItem.storageName;
+			var keyName:String = newKeyItem.storageName.toLowerCase();
 			var keySlot:Number = 0
 			var counter:Number = 0
 			//Start the array if its the first bit
@@ -1658,13 +1658,13 @@
 				keySlot = 0;
 			}
 			//If it belongs at the end, push it on
-			if(array[array.length-1].storageName < keyName && !arrayed) {
+			if(array[array.length-1].storageName.toLowerCase() < keyName && !arrayed) {
 				array.push(newKeyItem);
 				arrayed = true;
 				keySlot = array.length-1;
 			}
 			//If it belongs in the beginning, splice it in
-			if(array[0].storageName > keyName && !arrayed) {
+			if(array[0].storageName.toLowerCase() > keyName && !arrayed) {
 				array.splice(0,0,newKeyItem);
 				arrayed = true;
 				keySlot = 0;
@@ -1675,12 +1675,12 @@
 				while(counter > 0 && !arrayed) {
 					counter--;
 					//If the current slot is later than new key
-					if(array[counter].storageName > keyName) {
+					if(array[counter].storageName.toLowerCase() > keyName) {
 						//If the earlier slot is earlier than new key && a real spot
 						if(counter-1 >= 0)
 						{
 							//If the earlier slot is earlier slot in!
-							if(array[counter-1].storageName <= keyName) {
+							if(array[counter-1].storageName.toLowerCase() <= keyName) {
 								arrayed = true;
 								array.splice(counter,0,newKeyItem);
 								keySlot = counter;
@@ -1689,7 +1689,7 @@
 						//If the item after 0 slot is later put here!
 						else {
 							//If the next slot is later we are go
-							if(array[counter].storageName <= keyName) {
+							if(array[counter].storageName.toLowerCase() <= keyName) {
 								arrayed = true;
 								array.splice(counter,0,newKeyItem);
 								keySlot = counter;
@@ -1707,7 +1707,8 @@
 			trace("Storage logged in slot " + keySlot + ": " + array[keySlot].storageName + " for " + short);
 		}
 		//Create a perk
-		public function createPerk(keyName:String, value1:Number, value2:Number, value3:Number, value4:Number, desc:String = ""):void {
+		public function createPerk(keyName:String, value1:Number, value2:Number, value3:Number, value4:Number, desc:String = ""):void 
+		{
 			var newKeyItem = new StorageClass();
 			newKeyItem.storageName = keyName;
 			newKeyItem.value1 = value1;
@@ -1794,7 +1795,14 @@
 			return fertilizedEggs;
 		}
 		//Create a status
-		public function createStatusEffect(statusName:String, value1:Number = 0, value2:Number = 0, value3:Number = 0, value4:Number = 0, hidden:Boolean = true, iconName:String = "", tooltip:String = "", combatOnly:Boolean = false, minutesLeft:Number = 0):void {
+		public function createStatusEffect(statusName:String, value1:Number = 0, value2:Number = 0, value3:Number = 0, value4:Number = 0, hidden:Boolean = true, iconName:String = "", tooltip:String = "", combatOnly:Boolean = false, minutesLeft:Number = 0):void 
+		{
+			if (this.hasStatusEffect(statusName))
+			{
+				trace("Status '" + statusName + "' already present on " + this.short);
+				return;
+			}
+			
 			var newStatusEffect = new StorageClass();
 			newStatusEffect.storageName = statusName;
 			newStatusEffect.value1 = value1;
@@ -1806,7 +1814,8 @@
 			newStatusEffect.tooltip = tooltip;
 			newStatusEffect.combatOnly = combatOnly;
 			newStatusEffect.minutesLeft = minutesLeft;
-			alphabetize(statusEffects,newStatusEffect);
+			alphabetize(statusEffects, newStatusEffect);
+			
 			trace("New status applied to " + short + ": " + statusName);
 		}
 		//Create a keyItem

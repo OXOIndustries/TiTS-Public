@@ -1,9 +1,11 @@
 package classes.UIComponents.StatusEffectComponents 
 {
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import classes.UIComponents.UIStyleSettings;
+	import flash.geom.ColorTransform;
 	
 	/**
 	 * ...
@@ -14,18 +16,19 @@ package classes.UIComponents.StatusEffectComponents
 		private var _sizeX;
 		private var _sizeY;
 		
-		private var _iconClass:Class;
+		private var _icon:DisplayObject;
 		
 		private var _selectionRing:Sprite;
 		private var _statusIcon:Sprite;
 		private var _selectionMask:Sprite;
 		private var _iconElement:Sprite;
 		
-		public function StatusEffectElement(sizeX:int, sizeY:int, iconClass:Class) 
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, icon:DisplayObject) 
 		{
 			_sizeX = sizeX;
 			_sizeY = sizeY;
-			_iconClass = iconClass;
+			_icon = icon;
+			this.name = effectName;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
@@ -55,16 +58,38 @@ package classes.UIComponents.StatusEffectComponents
 			_selectionRing.graphics.endFill();
 			this.addChild(_selectionRing);
 			
+			// The body of the icon element
 			_statusIcon = new Sprite();
 			_statusIcon.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
 			_statusIcon.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, 5);
 			_statusIcon.graphics.endFill();
 			this.addChild(_statusIcon);
 			
-			_iconElement = new _iconClass();
-			this.addChild(_iconElement);
-			_iconElement.x = Math.floor(this.width - _iconElement.width) / 2;
-			_iconElement.y = Math.floor(this.height - _iconElement.height) / 2;
+			// Add the "child" icon
+			this.addChild(_icon);
+			
+			if (_icon.width > 30 || _icon.height > 30)
+			{
+				var ratio:Number;
+				if (_icon.width >= _icon.height)
+				{
+					ratio = _icon.height / _icon.width;
+					_icon.width = 30;
+					_icon.height = Math.floor(30 * ratio);
+				}
+				else
+				{
+					ratio = _icon.width / _icon.height;
+					_icon.height = 30;
+					_icon.width = Math.floor(30 * ratio);
+				}
+			}
+			
+			_icon.x = Math.floor((this.width - _icon.width) / 2);
+			_icon.y = Math.floor((this.height - _icon.height) / 2);
+			var whtT:ColorTransform = new ColorTransform();
+			whtT.color = 0xFFFFFF;
+			_icon.transform.colorTransform = whtT;
 			
 			_selectionMask = new Sprite();
 			_selectionMask.graphics.beginFill(0xFFFFFF, 0);

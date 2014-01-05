@@ -87,11 +87,24 @@ package classes.UIComponents.SideBarComponents
 		 * @param	prevBarY
 		 * @return
 		 */
-		private function barFactory(masksText:String, valueText:String, prevBarY:int = 0):StatBarBig
+		private function barFactory(masksText:String, valueText:String, prevBarY:int = 0, inverse:Boolean = false):StatBarBig
 		{
 			var bar:StatBarBig = new StatBarBig();
-			bar.background.x = -150;
-			bar.bar.width = 30;
+			
+			if (!inverse)
+			{
+				bar.background.x = -150;
+				bar.bar.width = 30;
+			}
+			else
+			{
+				//bar.background.x = -1 * (1 - 25 / 100) * 180;
+				//bar.bar.width = (25 / 100) * 180;
+				bar.background.x = -150;
+				bar.bar.width = 30;
+				bar.highBad = true;
+			}
+			
 			bar.masks.labels.text = masksText;
 			bar.values.text = valueText;
 			bar.y = Math.floor(prevBarY + 3);
@@ -107,7 +120,7 @@ package classes.UIComponents.SideBarComponents
 			// I am lazy. Code, do the work for me.
 			_shieldBar = barFactory("SHIELDS", "1");
 			_hpBar = barFactory("HP", "0", _shieldBar.y + 40);
-			_lustBar = barFactory("LUST", "25", _hpBar.y + 40);
+			_lustBar = barFactory("LUST", "25", _hpBar.y + 40, true);
 			_energyBar = barFactory("ENERGY", "1", _lustBar.y + 40);
 		}
 		

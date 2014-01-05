@@ -1,6 +1,8 @@
 package classes.UIComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
+	import flash.display.DisplayObject;
+	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
@@ -60,10 +62,14 @@ package classes.UIComponents
 		public function set childSpacing(v:int):void { _childSpacing = v; }
 		
 		private var _childElements:Vector.<StatusEffectElement>;
+		private var _workElems:Vector.<StatusEffectElement>
 		
 		private var _benefitTransform:ColorTransform;
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
+		
+		[Embed(source = "../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
+		private static var Icon_Missing:Class;
 		
 		public function StatusEffectsDisplay() 
 		{
@@ -87,7 +93,6 @@ package classes.UIComponents
 			if (this.targetWidth == 0) this.targetWidth = this.parent.width - this.targetX;
 			
 			this.BuildContainer();
-			this.BuildChildren();
 			
 			trace("StatusEffect Display Constructed!");
 		}
@@ -99,39 +104,139 @@ package classes.UIComponents
 			this.y = _targetY + this.paddingTop;
 			
 			_childElements = new Vector.<StatusEffectElement>();
+			_workElems = new Vector.<StatusEffectElement>();
 		}
 		
-		private function BuildChildren():void
+		/**
+		 * Create a new child and push it into the storage array
+		 * @param	iconClass
+		 */
+		private function BuildNewChild(effectName:String, iconClass:String):StatusEffectElement
 		{
-			var tempIcon:Class = getDefinitionByName("map_quest") as Class;
-			for (var i:int = 0; i < 5; i++)
-			{
-				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
-				_childElements[_childElements.length - 1].x = i * (35 + childSpacing);
-				this.addChild(_childElements[_childElements.length - 1]);
-			}
-			
-			for (var ii:int = 0; ii < 5; ii++)
-			{
-				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
-				_childElements[_childElements.length - 1].x = ii * (35 + childSpacing);
-				_childElements[_childElements.length - 1].y = 35 + childSpacing;
-				this.addChild(_childElements[_childElements.length - 1]);
-			}
-			
-			for (var iii:int = 0; iii < 5; iii++)
-			{
-				_childElements.push(new StatusEffectElement(35, 35, tempIcon));
-				_childElements[_childElements.length - 1].x = iii * (35 + childSpacing);
-				_childElements[_childElements.length - 1].y = (35 + childSpacing) * 2;
-				this.addChild(_childElements[_childElements.length - 1]);
-			}
-		}
-		
-		public function addEffectDisplay():void
-		{
-			var childIndex:int = _childElements.length;
+			var iconT:Class;
 
+			// Try to get the classdef for the given icon class string
+			try
+			{
+				iconT = (getDefinitionByName(iconClass) as Class);
+			}
+			catch (e:ReferenceError) // If it doesn't exist, use the fallback/missing icon
+			{
+				iconT = Icon_Missing;
+			}
+			
+			return new StatusEffectElement(35, 35, effectName, new iconT());
+		}
+
+		/**
+		 * Apply the sort methods to the storage array; the statusEffects array in Creatures is... I think
+		 * kept alphabetically, but given the splicing and expiring that is going to happen here, using that
+		 * as reference here will be problematic. Plus, options to display the effects in a different order;
+		 * we can simply swap out which underlying sort method is applied to achieve the effect.
+		 */
+		private function SortChildren():void
+		{
+			if (_childElements.length >= 15)
+			{
+				_workElems = _workElems.concat(_childElements.splice(15, (_childElements.length - 16)));
+			}
+			
+			_childElements.sort(vectSortMethod);
+		}
+		
+		/**
+		 * Sort method applied by the vector<T>.sort() method
+		 * @param	elemA
+		 * @param	elemB
+		 * @return
+		 */
+		private function vectSortMethod(elemA:StatusEffectElement, elemB:StatusEffectElement):int
+		{
+			if (elemA.name < elemB.name)
+			{
+				return -1;
+			}
+			
+			if (elemA.name > elemB.name)
+			{
+				return 1;
+			}
+			
+			return 0;
+		}
+		
+		/**
+		 * I'm going to be a shit and just not display > 15 elements right now (3 rows of 5). They'll be shifted to some large value of X
+		 */
+		private function RepositionChildren():void
+		{
+			if (_childElements.length > 0)
+			{
+				for (var elem:int = 0; elem < _childElements.length; elem++)			
+				{
+					_childElements[elem].x = Math.floor((elem % 5) * (35 * childSpacing));
+					_childElements[elem].y = Math.floor((elem / 5) * (35 * childSpacing));
+					if (_childElements[elem].parent == null) this.addChild(_childElements[elem]);
+				}
+			}
+			
+			if (_workElems.length > 0)
+			{
+				for (var elem:int = 0; elem < _workElems.length; elem++)
+				{
+					if (_workElems[elem].parent != null) this.removeChild(_workElems[elem]);
+				}
+			}
+		}
+		
+		private function RemoveExpiredChildren():void
+		{
+			while (_workElems.length > 0)
+			{
+				this.removeChild(_workElems.pop());
+			}
+		}
+		
+		public function updateDisplay(statusEffects:Array):void
+		{
+			_workElems = _workElems.concat(_childElements.splice(0, _childElements.length - 1));
+			
+			for (var seElem:int = 0; seElem < statusEffects.length; seElem++)
+			{
+				// If this ends up being slow, I'll fix it later. It shouldn't be TOO bad considering
+				// the total number of effects we're liable to be displaying.
+				if (statusEffects[seElem].hidden != true && statusEffects[seElem].iconName.length > 0)
+				{
+					var gotMatch:Boolean = false;
+					
+					if (_workElems.length > 0)
+					{
+						for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
+						{
+							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
+							{
+								_childElements.push(_workElems.splice(vecElem, 1));
+								gotMatch = true;
+							}
+						}
+					}
+				
+					// No match? new effect
+					if (!gotMatch)
+					{
+						_childElements = _childElements.concat(this.BuildNewChild(statusEffects[seElem].name, statusEffects[seElem].iconName));
+					}
+				}
+			}
+			
+			// Remove expired -- All elements remaining in _workElems should be expired effects
+			this.RemoveExpiredChildren();
+			
+			// Sort containers -- Now we can repurpose _workElems to hold any effect > 15
+			this.SortChildren();
+			
+			// Reposition children
+			this.RepositionChildren();
 		}
 		
 		public function clearGlo():void
