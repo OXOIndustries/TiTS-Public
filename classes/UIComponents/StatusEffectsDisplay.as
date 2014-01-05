@@ -138,7 +138,7 @@ package classes.UIComponents
 		{
 			if (_childElements.length >= 15)
 			{
-				_workElems = _workElems.concat(_childElements.splice(15, (_childElements.length - 16)));
+				_workElems = _workElems.concat(_childElements.splice(15, (_childElements.length - 15)));
 			}
 			
 			_childElements.sort(vectSortMethod);
@@ -174,9 +174,11 @@ package classes.UIComponents
 			{
 				for (var elem:int = 0; elem < _childElements.length; elem++)			
 				{
-					_childElements[elem].x = Math.floor((elem % 5) * (35 * childSpacing));
-					_childElements[elem].y = Math.floor((elem / 5) * (35 * childSpacing));
+					_childElements[elem].x = Math.floor((elem % 5) * (35 + childSpacing));
+					_childElements[elem].y = Math.floor((Math.floor(elem / 5)) * (35 + childSpacing));
 					if (_childElements[elem].parent == null) this.addChild(_childElements[elem]);
+					
+					trace("Moving effect icon for '" + _childElements[elem].name + "' to (" + _childElements[elem].x + "," + _childElements[elem].y + ")");
 				}
 			}
 			
@@ -199,7 +201,8 @@ package classes.UIComponents
 		
 		public function updateDisplay(statusEffects:Array):void
 		{
-			_workElems = _workElems.concat(_childElements.splice(0, _childElements.length - 1));
+			_workElems = _workElems.concat(_childElements);
+			_childElements.splice(0, _childElements.length);
 			
 			for (var seElem:int = 0; seElem < statusEffects.length; seElem++)
 			{
@@ -215,7 +218,7 @@ package classes.UIComponents
 						{
 							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
 							{
-								_childElements.push(_workElems.splice(vecElem, 1));
+								_childElements = _childElements.concat(_workElems.splice(vecElem, 1));
 								gotMatch = true;
 							}
 						}
@@ -224,7 +227,7 @@ package classes.UIComponents
 					// No match? new effect
 					if (!gotMatch)
 					{
-						_childElements = _childElements.concat(this.BuildNewChild(statusEffects[seElem].name, statusEffects[seElem].iconName));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName.toLowerCase(), statusEffects[seElem].iconName));
 					}
 				}
 			}

@@ -30,6 +30,8 @@ package classes.UIComponents.StatusEffectComponents
 			_icon = icon;
 			this.name = effectName;
 			
+			trace("Creating icon for " + this.name);
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}

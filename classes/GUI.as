@@ -377,6 +377,7 @@
 		public function get playerLevel():StatBarSmall { return _rightSideBar.levelBar; }
 		public function get playerXP():StatBarSmall { return _rightSideBar.xpBar; }
 		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
+		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
 		
 
 
