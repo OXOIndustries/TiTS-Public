@@ -18,6 +18,8 @@ package classes.UIComponents.SideBarComponents
 		
 		private var _statusDisplay:StatusEffectsDisplay;
 		
+		public function get statusDisplay():StatusEffectsDisplay { return _statusDisplay; }
+		
 		public function StatusEffectsBlock() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -56,7 +58,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			_statusDisplay = new StatusEffectsDisplay();
 			_statusDisplay.targetX = 10;
-			_statusDisplay.targetY = 17;
+			_statusDisplay.targetY = 20;
 			_statusDisplay.paddingTop = 3;
 			_statusDisplay.paddingBottom = 3;
 			_statusDisplay.childSizeX = 35;

@@ -49,7 +49,7 @@ package classes.UIComponents.SideBarComponents
 			
 			// Position bar container, we can now just dump the things in here without giving a shit
 			_barContainer.x = 10;
-			_barContainer.y = 17;
+			_barContainer.y = 20;
 			
 			this.BuildStatBlock();
 		}
@@ -109,6 +109,14 @@ package classes.UIComponents.SideBarComponents
 			_hpBar = barFactory("HP", "0", _shieldBar.y + 40);
 			_lustBar = barFactory("LUST", "25", _hpBar.y + 40);
 			_energyBar = barFactory("ENERGY", "1", _lustBar.y + 40);
+		}
+		
+		public function removeGlows():void
+		{
+			_shieldBar.clearGlo();
+			_hpBar.clearGlo();
+			_lustBar.clearGlo();
+			_energyBar.clearGlo();
 		}
 	}
 

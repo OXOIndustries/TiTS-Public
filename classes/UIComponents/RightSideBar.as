@@ -1,6 +1,7 @@
 package classes.UIComponents 
 {
 	import classes.StatBarBig;
+	import classes.StatBarSmall;
 	import classes.UIComponents.SideBarComponents.AdvancementBlock;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
@@ -13,7 +14,10 @@ package classes.UIComponents
 	import flash.text.AntiAliasType;
 	
 	/**
-	 * Should maybe extend a base SideBar but whatevs, makes the code much neater for shared shit
+	 * Should maybe extend a base SideBar but whatevs, makes the code much neater for shared shit.
+	 * The bars are designed, primarily, to make layout easier, not do much internally with what they're displaying.
+	 * This is how I write most of my UI code and components; the components are designed to go into a container,
+	 * and will size themselves to the container; the containers go in a parent for positioning.
 	 * @author Gedan
 	 */
 	public class RightSideBar extends Sprite
@@ -28,11 +32,36 @@ package classes.UIComponents
 		private var _advancementBlock:AdvancementBlock;
 		private var _statusEffectDisplay:StatusEffectsBlock;
 		
+		// All of the individual bars are broken out here, because *this* class is where I'd likely configure
+		// bindUtils.bindProperty things back out into the game data classes. On load, the load code
+		// just sends the PC char to the UI, which passes it into RightSideBar, which configures the DataBinds
+		// And then there's no longer a need to manually update all the bars!
+		// The idea is UI gets seperated from game logic entirely. All UI cares about is values in Creatures.
+		public function get nameText():TextField { return this._nameText; }
+		
+		public function get shieldBar():StatBarBig { return _combatStatBlock.shieldBar; }
+		public function get hpBar():StatBarBig { return _combatStatBlock.hpBar; }
+		public function get lustBar():StatBarBig { return _combatStatBlock.lustBar; }
+		public function get energyBar():StatBarBig { return _combatStatBlock.energyBar; }
+		
+		public function get physiqueBar():StatBarSmall { return _coreStatBlock.physiqueBar; }
+		public function get reflexesBar():StatBarSmall { return _coreStatBlock.reflexesBar; }
+		public function get aimBar():StatBarSmall { return _coreStatBlock.aimBar; }
+		public function get intelligenceBar():StatBarSmall { return _coreStatBlock.intelligenceBar; }
+		public function get willpowerBar():StatBarSmall { return _coreStatBlock.willpowerPower; }
+		public function get libidoBar():StatBarSmall { return _coreStatBlock.willpowerPower; }
+		
+		public function get levelBar():StatBarSmall { return _advancementBlock.levelBar; }
+		public function get xpBar():StatBarSmall { return _advancementBlock.xpBar; }
+		public function get creditsBar():StatBarSmall { return _advancementBlock.creditsBar; }
+		
+		public function get statusEffects():StatusEffectsDisplay { return _statusEffectDisplay.statusDisplay; }
+		
 		/**
 		 * Config for lazy init.
 		 * @param	doTween	Set the bar to tween in from offscreen during startup
 		 */
-		public function RightSideBar(doTween:Boolean = false) 
+		public function RightSideBar(doTween:Boolean = true) 
 		{
 			_doTween = doTween;
 			
@@ -54,19 +83,19 @@ package classes.UIComponents
 			this.BuildCharacterHeader();
 			
 			_combatStatBlock = new BigStatBlock();
-			_combatStatBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 3;
+			_combatStatBlock.y = _nameTextUnderline.y + _nameTextUnderline.height + 11; // These magic numbers equalise the padding between the last element in the bar, and the next block
 			this.addChild(_combatStatBlock);
 			
 			_coreStatBlock = new CoreStatsBlock();
-			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height - 2));
+			_coreStatBlock.y = Math.floor(_combatStatBlock.y + (_combatStatBlock.height));
 			this.addChild(_coreStatBlock);
 			
 			_advancementBlock = new AdvancementBlock();
-			_advancementBlock.y = Math.floor(_coreStatBlock.y + (_coreStatBlock.height - 2));
+			_advancementBlock.y = Math.floor(_coreStatBlock.y + (_coreStatBlock.height + 4));
 			this.addChild(_advancementBlock);
 			
 			_statusEffectDisplay = new StatusEffectsBlock();
-			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height - 2));
+			_statusEffectDisplay.y = Math.floor(_advancementBlock.y + (_advancementBlock.height + 4));
 			this.addChild(_statusEffectDisplay);
 		}
 		
@@ -80,6 +109,9 @@ package classes.UIComponents
 			var tw:Tween = new Tween(this, "x", Regular.easeOut, (this.x + this.width), this.x, 25, false);
 		}
 		
+		/**
+		 * Build the bar background element
+		 */
 		private function BuildBackground():void
 		{
 			this.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
@@ -91,6 +123,9 @@ package classes.UIComponents
 			this.y = 0;
 		}
 		
+		/**
+		 * Build the character name header stuff
+		 */
 		private function BuildCharacterHeader():void
 		{
 			// Header underline
@@ -115,7 +150,34 @@ package classes.UIComponents
 			this.addChild(_nameText);
 			
 			// Inverted order from "common sense" ensures any text that cross the underline goes /over/ it
-		}		
+		}
+		
+		public function hideItems():void
+		{
+			_nameText.visible = false;
+			_nameTextUnderline.visible = false;
+			_combatStatBlock.visible = false;
+			_coreStatBlock.visible = false;
+			_advancementBlock.visible = false;
+			_statusEffectDisplay.visible = false;
+		}
+		
+		public function showItems():void
+		{
+			_nameText.visible = true;
+			_nameTextUnderline.visible = true;
+			_combatStatBlock.visible = true;
+			_coreStatBlock.visible = true;
+			_advancementBlock.visible = true;
+			_statusEffectDisplay.visible = true;
+		}
+		
+		public function removeGlows():void
+		{
+			_combatStatBlock.removeGlows();
+			_coreStatBlock.removeGlows();
+			_advancementBlock.removeGlows();
+		}
 	}
 
 }

@@ -45,7 +45,7 @@ package classes.UIComponents.SideBarComponents
 			this.BuildHeader();
 			
 			_barContainer.x = 10;
-			_barContainer.y = 17;
+			_barContainer.y = 20;
 			
 			this.BuildStatBlock();
 		}
@@ -85,7 +85,7 @@ package classes.UIComponents.SideBarComponents
 			_levelBar.masks.labels.text = "LEVEL";
 			_levelBar.noBar = true;
 			_levelBar.values.text = "1";
-			_levelBar.y = 3;
+			_levelBar.y = 4;
 			_barContainer.addChild(_levelBar);
 			
 			_xpBar = new StatBarSmall();
@@ -93,7 +93,7 @@ package classes.UIComponents.SideBarComponents
 			_xpBar.bar.width = (50 / 500) * 180;
 			_xpBar.masks.labels.text = "XP";
 			_xpBar.values.text = "50 / 1000";
-			_xpBar.y = Math.floor(_levelBar.y + 29);
+			_xpBar.y = Math.floor(_levelBar.y + 30);
 			_barContainer.addChild(_xpBar);
 			
 			_creditsBar = new StatBarSmall();
@@ -102,10 +102,16 @@ package classes.UIComponents.SideBarComponents
 			_creditsBar.masks.labels.text = "CREDITS";
 			_creditsBar.noBar = true;
 			_creditsBar.values.text = "9001";
-			_creditsBar.y = Math.floor(_xpBar.y + 29);
+			_creditsBar.y = Math.floor(_xpBar.y + 30);
 			_barContainer.addChild(_creditsBar);
 		}
 		
+		public function removeGlows():void
+		{
+			_levelBar.clearGlo();
+			_xpBar.clearGlo();
+			_creditsBar.clearGlo();
+		}
 	}
 
 }

@@ -53,7 +53,7 @@ package classes.UIComponents.SideBarComponents
 			
 			// Position the bar container, do the work for me AS3 etc
 			_barContainer.x = 10;
-			_barContainer.y = 17;
+			_barContainer.y = 20;
 			
 			this.BuildStatBlock();
 		}
@@ -89,7 +89,7 @@ package classes.UIComponents.SideBarComponents
 		private function barFactory(barText:String, value:int, max:int, prevBarY:int = 0):StatBarSmall
 		{
 			var bar = new StatBarSmall();
-			bar.y = Math.floor(prevBarY + 3);
+			bar.y = Math.floor(prevBarY + 4);
 			bar.masks.labels.text = barText;
 			bar.bar.width = (value / max) * 180;
 			bar.background.x = -1 * ( 1 - value / max) * 180;
@@ -107,6 +107,16 @@ package classes.UIComponents.SideBarComponents
 			_intelligenceBar	= barFactory("INTELLIGENCE", 90, 100, _aimBar.y + barHeight);
 			_willpowerBar 		= barFactory("WILLPOWER", 	  5, 100, _intelligenceBar.y + barHeight);
 			_libidoBar 			= barFactory("LIBIDO", 		 97, 100, _willpowerBar.y + barHeight);
+		}
+		
+		public function removeGlows():void
+		{
+			_physiqueBar.clearGlo();
+			_reflexesBar.clearGlo();
+			_aimBar.clearGlo();
+			_intelligenceBar.clearGlo();
+			_willpowerBar.clearGlo();
+			_libidoBar.clearGlo();
 		}
 	}
 

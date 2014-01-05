@@ -3,6 +3,7 @@
 
 	import classes.RoomClass;
 	import classes.UIComponents.RightSideBar;
+	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.StatusEffectsDisplay;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -79,7 +80,6 @@
 		var buttonPageNext:rightButton;
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
-		private var rightSidebar:RightBar;
 
 		var monsterShield:StatBarBig;
 		var monsterHP:StatBarBig;
@@ -88,23 +88,8 @@
 		var monsterLevel:StatBarSmall;
 		var monsterRace:StatBarSmall;
 		var monsterSex:StatBarSmall;
-		var playerShields:StatBarBig;
-		var playerHP:StatBarBig;
-		var playerLust:StatBarBig;
-		var playerEnergy:StatBarBig;
 
-
-		var playerLevel:StatBarSmall;
-		var playerXP:StatBarSmall;
-		var playerCredits:StatBarSmall;
-		var playerPhysique:StatBarSmall;
-		var playerReflexes:StatBarSmall;
-		var playerAim:StatBarSmall;
-		var playerIntelligence:StatBarSmall;
-		var playerWillpower:StatBarSmall;
-		var playerLibido:StatBarSmall;
-		
-		var playerStatusEffects:StatusEffectsDisplay;
+		private var _rightSideBar:RightSideBar;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -123,7 +108,6 @@
 		var titleFormat:TextFormat;
 		public var myGlow:GlowFilter;
 
-		private var pcStatSidebarItems:Array;
 		private var npcStatSidebarItems:Array;
 		
 		private var miniMap:MiniMap;
@@ -371,157 +355,30 @@
 			//mainMenu();
 		}
 		
-		private function tweenRight(e:Event):void
-		{
-			this.rightSidebar.removeEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
-			var tween:Tween = new Tween(this.rightSidebar, "x", Regular.easeOut, (this.rightSidebar.x + this.rightSidebar.width), this.rightSidebar.x, 25, false);
-		}
-		
 		private function setupRightSidebar():void
 		{
-			var rsb:RightSideBar = new RightSideBar();
-			this.titsClassPtr.addChild(rsb);
-			
-			this.rightSidebar = new RightBar;
-			this.rightSidebar.nameText.text = "";
-			this.rightSidebar.x = 1000;
-			this.rightSidebar.y = 0;
-			//this.titsClassPtr.addChild(this.rightSidebar);
-			//this.rightSidebar.addEventListener(Event.FRAME_CONSTRUCTED, tweenRight);
-
-			// Large stat bars (Combat Stats) --------------------------------------------------
-
-			this.playerShields = new StatBarBig();
-			this.playerShields.background.x = -150;
-			this.playerShields.bar.width = 30;
-			this.playerShields.masks.labels.text = "SHIELDS";
-			this.playerShields.values.text = "1";
-			this.playerShields.x = 1010;
-			this.playerShields.y = 65;
-			//this.titsClassPtr.addChild(this.playerShields);
-
-			this.playerHP = new StatBarBig();
-			this.playerHP.background.x = -150;
-			this.playerHP.bar.width = 30;
-			this.playerHP.values.text = "0";
-			this.playerHP.x = 1010;
-			this.playerHP.y = 106;
-			//this.titsClassPtr.addChild(this.playerHP);
-
-			this.playerLust = new StatBarBig();
-			this.playerLust.background.x = -1 * (1 - 25 / 100) * 180;  // Aren't all these bars the same width?
-			this.playerLust.bar.width = (25 / 100) * 180;
-			this.playerLust.highBad = true;
-			this.playerLust.masks.labels.text = "LUST";
-			this.playerLust.values.text = "25";
-			this.playerLust.x = 1010;
-			this.playerLust.y = 147;
-			//this.titsClassPtr.addChild(this.playerLust);
-
-			this.playerEnergy = new StatBarBig();
-			this.playerEnergy.masks.labels.text = "ENERGY";
-			this.playerEnergy.values.text = "1";
-			this.playerEnergy.x = 1010;
-			this.playerEnergy.y = 188;
-			//this.titsClassPtr.addChild(this.playerEnergy);
-
-			// Small stat bars (Core Stats) --------------------------------------------------
-
-			this.playerPhysique = new StatBarSmall();
-			this.playerPhysique.x = 1010;
-			this.playerPhysique.y = 255;
-			//this.titsClassPtr.addChild(this.playerPhysique);
-
-			this.playerReflexes = new StatBarSmall();
-			this.playerReflexes.x = 1010;
-			this.playerReflexes.y = 284;
-			//this.titsClassPtr.addChild(this.playerReflexes);
-
-			this.playerAim = new StatBarSmall();
-			this.playerAim.x = 1010;
-			this.playerAim.y = 313;
-			//this.titsClassPtr.addChild(this.playerAim);
-
-			this.playerIntelligence = new StatBarSmall();
-			this.playerIntelligence.x = 1010;
-			this.playerIntelligence.y = 342;
-			//this.titsClassPtr.addChild(this.playerIntelligence);
-
-			this.playerWillpower = new StatBarSmall();
-			this.playerWillpower.x = 1010;
-			this.playerWillpower.y = 371;
-			//this.titsClassPtr.addChild(this.playerWillpower);
-
-			this.playerLibido = new StatBarSmall();
-			this.playerLibido.x = 1010;
-			this.playerLibido.y = 400;
-			//this.titsClassPtr.addChild(this.playerLibido);
-
-
-			this.setupStatBar(this.playerPhysique,"PHYSIQUE",50,100);
-			this.setupStatBar(this.playerReflexes,"REFLEXES",30,100);
-			this.setupStatBar(this.playerAim,"AIM",30,100);
-			this.setupStatBar(this.playerIntelligence,"INTELLIGENCE",90,100);
-			this.setupStatBar(this.playerWillpower,"WILLPOWER",5,100);
-			this.setupStatBar(this.playerLibido,"LIBIDO",97,100);
-
-			// Small stat bars (Advancement) --------------------------------------------------
-
-			this.playerLevel = new StatBarSmall();
-			this.playerLevel.background.x = -180;
-			this.playerLevel.bar.visible = false;
-			this.playerLevel.masks.labels.text = "LEVEL";
-			this.playerLevel.noBar = true;
-			this.playerLevel.values.text = "1";
-			this.playerLevel.x = 1010;
-			this.playerLevel.y = 456;
-			//this.titsClassPtr.addChild(this.playerLevel);
-
-			this.playerXP = new StatBarSmall();
-			this.playerXP.background.x =  -1 * (1 - 50 / 500) * 180;
-			this.playerXP.bar.width = (50 / 500) * 180;
-			this.playerXP.masks.labels.text = "XP";
-			this.playerXP.values.text = "50 / 1000";
-			this.playerXP.x = 1010;
-			this.playerXP.y = 485;
-			//this.titsClassPtr.addChild(this.playerXP);
-
-			this.playerCredits = new StatBarSmall();
-			this.playerCredits.background.x =  -180;
-			this.playerCredits.bar.visible = false;
-			this.playerCredits.masks.labels.text = "CREDITS";
-			this.playerCredits.noBar = true;
-			this.playerCredits.values.text = "Over 9000";
-			this.playerCredits.x = 1010;
-			this.playerCredits.y = 514;
-			//this.titsClassPtr.addChild(this.playerCredits);
-			
-			this.playerStatusEffects = new StatusEffectsDisplay();
-			this.playerStatusEffects.targetX = 10;
-			this.playerStatusEffects.targetY = 591;
-			this.playerStatusEffects.paddingTop = 4;
-			this.playerStatusEffects.paddingBottom = 4;
-			this.playerStatusEffects.childSizeX = 35;
-			this.playerStatusEffects.childSizeY = 35;
-			//this.rightSidebar.addChild(this.playerStatusEffects);
-
-			// finally, shove all the pc stats items in the relevant list
-			// so we can iterate over it when enabling and disabling them.
-			this.pcStatSidebarItems = [this.playerShields,
-										this.playerHP,
-										this.playerLust,
-										this.playerEnergy,
-										this.playerPhysique,
-										this.playerReflexes,
-										this.playerAim,
-										this.playerIntelligence,
-										this.playerWillpower,
-										this.playerLibido,
-										this.playerLevel,
-										this.playerXP,
-										this.playerCredits,
-										this.playerStatusEffects];
+			this._rightSideBar = new RightSideBar();
+			this.titsClassPtr.addChild(_rightSideBar);
 		}
+		
+		// Access methods to RSB items
+		public function get playerShields():StatBarBig { return _rightSideBar.shieldBar; }
+		public function get playerHP():StatBarBig { return _rightSideBar.hpBar; }
+		public function get playerLust():StatBarBig { return _rightSideBar.lustBar; }
+		public function get playerEnergy():StatBarBig { return _rightSideBar.energyBar; }
+		
+		public function get playerPhysique():StatBarSmall { return _rightSideBar.physiqueBar; }
+		public function get playerReflexes():StatBarSmall { return _rightSideBar.reflexesBar; }
+		public function get playerAim():StatBarSmall { return _rightSideBar.aimBar; }
+		public function get playerIntelligence():StatBarSmall { return _rightSideBar.intelligenceBar; }
+		public function get playerWillpower():StatBarSmall { return _rightSideBar.willpowerBar; }
+		public function get playerLibido():StatBarSmall { return _rightSideBar.libidoBar; }
+		
+		public function get playerLevel():StatBarSmall { return _rightSideBar.levelBar; }
+		public function get playerXP():StatBarSmall { return _rightSideBar.xpBar; }
+		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
+		
+
 
 		private function tweenLeft(e:Event):void
 		{
@@ -777,11 +634,11 @@
 
 		public function getGuiPlayerNameText():String
 		{
-			return this.rightSidebar.nameText.text;
+			return this._rightSideBar.nameText.text;
 		}
 		public function setGuiPlayerNameText(inName:String):void
 		{
-			this.rightSidebar.nameText.text = inName;
+			this._rightSideBar.nameText.text = inName;
 		}
 
 		//1. BUTTON STUFF
@@ -1377,19 +1234,13 @@
 		public function hidePCStats():void 
 		{
 			trace("Hide PC Stats");
-			for each (var barItem in this.pcStatSidebarItems) 
-			{
-				barItem.visible = false;
-			}
+			this._rightSideBar.hideItems();
 		}
 		
 		public function showPCStats():void 
 		{
 			trace("Show PC Stats");
-			for each (var barItem in this.pcStatSidebarItems) 
-			{
-				barItem.visible = true;
-			}
+			this._rightSideBar.showItems();
 		}
 		
 		public function showHeader(message:String):void
@@ -1440,14 +1291,8 @@
 		
 		public function deglow():void 
 		{
-			//trace("Clearing Glow");
-			// This didn't originally call clearGlo on the small NPC Items
-			// (level, sex, race), but it's easer to just let it do so. 
-			// I don't *think* it'll break anything.
-			for each (var barItem in this.pcStatSidebarItems) 
-			{
-				barItem.clearGlo();
-			}
+			this._rightSideBar.removeGlows();
+			
 			for each (var barItem in this.npcStatSidebarItems) 
 			{
 				barItem.clearGlo();
