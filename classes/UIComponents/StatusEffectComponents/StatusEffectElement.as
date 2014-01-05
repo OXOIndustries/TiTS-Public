@@ -1,22 +1,24 @@
-package classes.UIComponents 
+package classes.UIComponents.StatusEffectComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import classes.UIComponents.UIStyleSettings;
+	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public class EffectDisplay extends Sprite
+	public class StatusEffectElement extends Sprite
 	{
-		private var _sizeX:int;
-		private var _sizeY:int;
+		private var _sizeX;
+		private var _sizeY;
 		
 		private var _selectionRing:Sprite;
 		private var _statusIcon:Sprite;
 		private var _selectionMask:Sprite;
 		
-		public function EffectDisplay(sizeX:int, sizeY:int) 
+		public function StatusEffectElement(sizeX:int, sizeY:int) 
 		{
 			_sizeX = sizeX;
 			_sizeY = sizeY;
@@ -31,7 +33,7 @@ package classes.UIComponents
 			this.Build();
 		}
 		
-		public function clickHandler(e:MouseEvent):void
+		private function clickHandler(e:MouseEvent):void
 		{
 			this.toggleSelect();
 		}
@@ -57,28 +59,16 @@ package classes.UIComponents
 			
 			_selectionMask = new Sprite();
 			_selectionMask.graphics.beginFill(0xFFFFFF, 0);
-			_selectionMask.graphics.drawRoundRect(2, 2, _sizeX - 4, _sizeY - 4, 5);
+			_selectionMask.graphics.drawRoundRect(3, 3, _sizeX - 4, _sizeY - 4, 5);
 			_selectionMask.graphics.endFill();
 			this.addChild(_selectionMask);
 			
-			//_statusIcon.mask = _selectionMask;
+			//_statusIcon.mask = _selectionMask; // Adding the mask displays the edge ring
 		}
 		
-		public function clearGlo():void
+		public function toggleSelect():void
 		{
-			// Stub
-		}
-		
-		private function toggleSelect():void
-		{
-			if (_statusIcon.mask == null)
-			{
-				_statusIcon.mask = _selectionMask;
-			}
-			else
-			{
-				_statusIcon.mask = null;
-			}
+			(_statusIcon.mask == null) ? _statusIcon.mask = _selectionMask : _statusIcon.mask = null;
 		}
 	}
 

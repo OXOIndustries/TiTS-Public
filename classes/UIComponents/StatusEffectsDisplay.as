@@ -1,5 +1,6 @@
 package classes.UIComponents 
 {
+	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
@@ -57,7 +58,7 @@ package classes.UIComponents
 		public function set childSizeY(v:int):void { _childSizeY = v; }
 		public function set childSpacing(v:int):void { _childSpacing = v; }
 		
-		private var _childElements:Vector.<EffectDisplay>;
+		private var _childElements:Vector.<StatusEffectElement>;
 		
 		private var _benefitTransform:ColorTransform;
 		private var _penaltyTransform:ColorTransform;
@@ -96,21 +97,21 @@ package classes.UIComponents
 			this.x = _targetX + this.paddingLeft;
 			this.y = _targetY + this.paddingTop;
 			
-			_childElements = new Vector.<EffectDisplay>();
+			_childElements = new Vector.<StatusEffectElement>();
 		}
 		
 		private function BuildChildren():void
 		{
 			for (var i:int = 0; i < 5; i++)
 			{
-				_childElements.push(new EffectDisplay(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35));
 				_childElements[_childElements.length - 1].x = i * (35 + childSpacing);
 				this.addChild(_childElements[_childElements.length - 1]);
 			}
 			
 			for (var ii:int = 0; ii < 5; ii++)
 			{
-				_childElements.push(new EffectDisplay(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35));
 				_childElements[_childElements.length - 1].x = ii * (35 + childSpacing);
 				_childElements[_childElements.length - 1].y = 35 + childSpacing;
 				this.addChild(_childElements[_childElements.length - 1]);
@@ -118,20 +119,11 @@ package classes.UIComponents
 			
 			for (var iii:int = 0; iii < 5; iii++)
 			{
-				_childElements.push(new EffectDisplay(35, 35));
+				_childElements.push(new StatusEffectElement(35, 35));
 				_childElements[_childElements.length - 1].x = iii * (35 + childSpacing);
 				_childElements[_childElements.length - 1].y = (35 + childSpacing) * 2;
 				this.addChild(_childElements[_childElements.length - 1]);
 			}
-			
-			_childElements.push(new EffectDisplay(73, 25));
-			_childElements[_childElements.length - 1].y = (35 + childSpacing) * 3;
-			this.addChild(_childElements[_childElements.length - 1]);
-			
-			_childElements.push(new EffectDisplay(73, 25));
-			_childElements[_childElements.length - 1].x = 111;
-			_childElements[_childElements.length - 1].y = (35 + childSpacing) * 3;
-			this.addChild(_childElements[_childElements.length - 1]);
 		}
 		
 		public function addEffectDisplay():void
