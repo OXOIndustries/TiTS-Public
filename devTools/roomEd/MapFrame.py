@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*- 
 
 import wx
-
+import itertools
 import mapTools
 import os
 
@@ -77,6 +77,11 @@ class GridPanel(wx.Panel):
 		
 		self.motionLoop = 0
 
+	#------------------------------------
+	# Overrides for converting the coordinate system
+	#------------------------------------
+
+
 	def changeZIndex(self, newZ):
 		try:
 			self.mapRoot = self.mapper.getRoomAt(z=newZ, p=self.currentP)
@@ -145,7 +150,12 @@ class GridPanel(wx.Panel):
 
 	def pickRoom(self, x, y):
 		self.currentSelectedRoom = self.mapper.getRoomDrawnAt(x, y)
+		rmX, rmY = self.globalDrawOffset
+		rmX = x - rmX
+		rmY = y - rmY
+		print "Offset X, Y", rmX/self.roomStep, rmY/self.roomStep
 		if self.currentSelectedRoom != None:
+
 			print "Current Room = ", self.currentSelectedRoom, "coords = ", x, y
 
 			self.parent.setPickedRoom(self.mapper.mapDict[self.currentSelectedRoom])
@@ -154,6 +164,7 @@ class GridPanel(wx.Panel):
 		# re-create memory dc to fill window
 		w, h = self.GetClientSize()
 		self.mdc = wx.MemoryDC(wx.EmptyBitmap(w, h))
+
 		self.redraw()
 		
 	def onErase(self, event):
@@ -187,7 +198,7 @@ class GridPanel(wx.Panel):
 		self.rootY = (h/2)+self.globalDrawOffset[1]
 		#print "Drawing at ", rootX, rootY
 		self.drawnList = []
-		self.handleRoom(dc, self.mapRoot, 0, 0)
+		self.handleRoom(dc, self.mapRoot)
 		self.drawNonexistantRooms(dc)
 		
 		bkGroundBrush = dc.GetBackground()
@@ -208,32 +219,33 @@ class GridPanel(wx.Panel):
 		gdoX = self.rootX
 		gdoY = self.rootY
 		crossHairLines = [[gdoX+50, gdoY, gdoX-50, gdoY], 
-						[gdoX, gdoY+50, gdoX, gdoY-50],
-						[gdoX+50, gdoY+50, gdoX-50, gdoY-50], 
-						[gdoX-50, gdoY+50, gdoX+50, gdoY-50]]
+						  [gdoX, gdoY+50, gdoX, gdoY-50],
+						  [gdoX+50, gdoY+50, gdoX-50, gdoY-50], 
+						  [gdoX-50, gdoY+50, gdoX+50, gdoY-50]]
 		dc.DrawLineList(crossHairLines, self.penRed)
 		#print incH, incW
 		self.Refresh()
 	def coordsToDrawCoords(self, x, y):
 		return self.rootX + (x*self.roomStep), self.rootY + (y*self.roomStep)
 
-	def handleRoom(self, dc, room, x, y):
+	def handleRoom(self, dc, room):
 		if room.roomName in self.drawnList:	# Do not redraw rooms that have already been shown
 			return
 		else:
+			x, y = room.coords["x"], room.coords["y"]
 			self.drawnList.append(room.roomName)
 			rmX, rmY = self.coordsToDrawCoords(x, y)
 			self.drawRoom(dc, rmX, rmY, room)
 			self.drawnRoomCoords.append([rmX, rmY])
 
 		if room.game_northExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit], x, y - 1)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_northExit])
 		if room.game_southExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_southExit], x, y + 1)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_southExit])
 		if room.game_westExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_westExit], x - 1, y)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_westExit])
 		if room.game_eastExit:
-			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit], x + 1, y)
+			self.handleRoom(dc, self.mapper.mapDict[room.game_eastExit])
 
 	def drawRoom(self, dc, x, y, room):
 		if room.selected:
@@ -276,40 +288,61 @@ class GridPanel(wx.Panel):
 			if ptList:
 				dc.DrawLineList(ptList)
 
+	def roomIter(self, dcSize):
+
+		dcW, dcH = dcSize
+		x, y = 50, 50
+		# Room for optimization here!
+		dcCordsX, dcCordsY = self.coordsToDrawCoords(x, y)
+		while dcCordsX > 0:
+			x -= 1
+			dcCordsX, dcCordsY = self.coordsToDrawCoords(x, y)
+		while dcCordsY > 0:
+			y -= 1
+			dcCordsX, dcCordsY = self.coordsToDrawCoords(x, y)
+
+		xMx, yMx = 0, 0
+		dcCordsX, dcCordsY = self.coordsToDrawCoords(xMx, y)
+		while dcCordsX < dcW:
+			xMx += 1
+			dcCordsX, dcCordsY = self.coordsToDrawCoords(xMx, yMx)
+		while dcCordsY < dcH:
+			yMx  += 1
+			dcCordsX, dcCordsY = self.coordsToDrawCoords(xMx, yMx)
+
+		xIter = xrange(x, xMx, 1)
+		yIter = xrange(y, yMx, 1)
+		for x, y  in itertools.product(xIter, yIter):
+			
+			yield x, y
+
+	def getRoomOnPlanetLevel(self, planetCord, levelCord):
+		for key, room in self.mapper.mapDict.iteritems():
+			if room.drawCoords and room.coords["z"] == levelCord and room.coords["p"] == planetCord:
+				return room.drawCoords
+		return None, None
 
 	def drawNonexistantRooms(self, dc):
 		dcW, dcH = dc.GetSize()
 		rmX, rmY = None, None
+		roomSz = 30
 
 		# Iterate over rooms until we find one that's on the current level, so we can determine the offset
 		# needed to make the rooms all line up
-		for key, room in self.mapper.mapDict.iteritems():
-			if room.drawCoords and room.coords["z"] == self.currentZ and room.coords["p"] == self.currentP:
-				rmX, rmY = room.drawCoords
-
-				if rmX > 0 and rmX < dcW and rmY > 0 and rmY < dcH:
-					break
+		rmX, rmY = self.getRoomOnPlanetLevel(self.currentP, self.currentZ)
 
 		if rmX != None and rmY != None:
 			dc.SetBrush(self.emptyRoomBrush)
-			xStart = rmX % self.roomStep
-			yStart = rmY % self.roomStep
-			xIter = xrange(0, dcW/ self.roomStep)
-			yIter = xrange(0, dcH/ self.roomStep)
-					
-			roomSz = 30
+			roomIter = self.roomIter(dc.GetSize())
+			for x, y in roomIter:
+				neighbors = self.mapper.getAdjacentRooms(x, y, self.currentZ, self.currentP)
+				if neighbors:
+					cX, cY = self.coordsToDrawCoords(x, y)
+					if [cX, cY] not in self.drawnRoomCoords:
+						self.drawRectangleCenter(dc, cX, cY, roomSz, roomSz)
 			
-			for x in xIter:
-				for y in yIter:
-					#print [x, y], [x, y] in self.drawnList
-					#xTmp = (x * self.roomStep) + xStart
-					#yTmp = (y * self.roomStep) + yStart
-					xTmp, yTmp = self.coordsToDrawCoords(x, y)
-					
-					if True: # self.mapper.getAdjacentRooms():
-						if [xTmp, yTmp] not in self.drawnRoomCoords:
-							self.drawRectangleCenter(dc, xTmp, yTmp, roomSz, roomSz)
-				print x, y, xTmp, yTmp
+			#print "Drew %s rooms" % drawnRooms
+				#print x, y, cX, cY
 		
 	def drawRectangleCenter(self, dc, x, y, w, h, text=None):
 		dc.DrawRectangle(x-(w/2), y-(h/2), w, h)
@@ -318,6 +351,7 @@ class GridPanel(wx.Panel):
 			strExtntX , strExtntY = strExtntX/2 , strExtntY/2
 			dc.DrawText(text, x-strExtntX, y-strExtntY)
 
+	
 
 class ReadoutPanel(wx.Panel):
 	def __init__(self, parent, **kwds):

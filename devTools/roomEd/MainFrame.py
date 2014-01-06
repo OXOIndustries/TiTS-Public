@@ -89,7 +89,7 @@ class MapEditorFrame(wx.Frame):
 
 		controlButtonsSizer.Add([1,1], proportion=1)
 
-		self.somethingButton = wx.ToggleButton(self, -1, "DO THE THING")
+		self.somethingButton = wx.Button(self, -1, "DO THE THING")
 		controlButtonsSizer.Add(self.somethingButton, border=5, flag=wx.LEFT|wx.RIGHT)
 
 		zUpButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)

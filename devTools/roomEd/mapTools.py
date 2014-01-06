@@ -38,8 +38,8 @@ class DynamicArrayContainer():
 	def __setitem__(self, keys, value):
 		self.getSetInDict(self.itemDict, keys, setValue=value)
 	def __getitem__(self, keys):
-		if len(keys) != 3:
-			raise ValueError("Array requires [x,y,z] coordinates. Passed: %s" % keys)
+		if len(keys) != 4:
+			raise ValueError("Array requires [x,y,z,p] coordinates. Passed: %s" % str(keys))
 
 		return self.getSetInDict(self.itemDict, keys)
 
@@ -218,6 +218,18 @@ class MapClass():
 
 	def getAdjacentRooms(self, x, y, z, p):
 		ret = []
+		if self.coordDict[x+1, y, z, p]:
+			ret.append(self.coordDict[x+1, y, z, p])
+		if self.coordDict[x-1, y, z, p]:
+			ret.append(self.coordDict[x-1, y, z, p])
+		if self.coordDict[x, y+1, z, p]:
+			ret.append(self.coordDict[x, y+1, z, p])
+		if self.coordDict[x, y-1, z, p]:
+			ret.append(self.coordDict[x, y-1, z, p])
+		if self.coordDict[x, y, z+1, p]:
+			ret.append(self.coordDict[x, y, z+1, p])
+		if self.coordDict[x, y, z-1, p]:
+			ret.append(self.coordDict[x, y, z-1, p])
 
 		return ret
 
@@ -255,16 +267,16 @@ class MapClass():
 		else:		# Procedural disaster
 
 			if self.mapDict[currentRoom].game_northExit:
-				tmpCoords = updateDictCoord(currentCoords, "y", +1)
+				tmpCoords = updateDictCoord(currentCoords, "y", -1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_northExit, tmpCoords)
 			if self.mapDict[currentRoom].game_westExit:
-				tmpCoords = updateDictCoord(currentCoords, "x", +1)
+				tmpCoords = updateDictCoord(currentCoords, "x", -1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_westExit, tmpCoords)
 			if self.mapDict[currentRoom].game_southExit:
-				tmpCoords = updateDictCoord(currentCoords, "y", -1)
+				tmpCoords = updateDictCoord(currentCoords, "y", +1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_southExit, tmpCoords)
 			if self.mapDict[currentRoom].game_eastExit:
-				tmpCoords = updateDictCoord(currentCoords, "x", -1)
+				tmpCoords = updateDictCoord(currentCoords, "x", +1)
 				self.crawlMapStructure(self.mapDict[currentRoom].game_eastExit, tmpCoords)
 			if self.mapDict[currentRoom].game_outExit:
 				tmpCoords = updateDictCoord(currentCoords, "z", -1)
@@ -274,15 +286,19 @@ class MapClass():
 				self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
 
 	def getRoomDrawnAt(self, x, y, roomSize=50):
+		print "Getting room drawn at", x, y
 
 		ret = None
+		pRoom = None
 		for key, room in self.mapDict.iteritems():
 			room.selected = False
 			if room.drawCoords != None:
 				if abs(room.drawCoords[0] - x) < (roomSize / 2) and abs(room.drawCoords[1] - y) < (roomSize / 2):
 					room.selected = True
+					pRoom = room
 					ret = key
 
+		print "RoomCords = ", pRoom.coords, "DrawCords = ", pRoom.drawCoords
 		return ret
 
 	def getRoomAt(self, x=None, y=None, z=None, p=None):
