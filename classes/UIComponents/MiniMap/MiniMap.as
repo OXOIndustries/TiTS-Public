@@ -1,4 +1,4 @@
-package classes.UIComponents 
+﻿package classes.UIComponents.MiniMap
 {
 	import flash.display.ColorCorrectionSupport;
 	import flash.display.MovieClip;
@@ -6,6 +6,7 @@ package classes.UIComponents
 	import flash.events.Event;
 	import classes.Mapper;
 	import flash.geom.ColorTransform;
+	import classes.UIComponents.UIStyleSettings;
 	
 	/**
 	 * ...

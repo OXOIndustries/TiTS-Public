@@ -1,4 +1,4 @@
-package classes.UIComponents 
+package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -7,6 +7,8 @@ package classes.UIComponents
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
 	import flash.utils.getDefinitionByName;
+	import classes.UIComponents.UIStyleSettings;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -68,7 +70,7 @@ package classes.UIComponents
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
 		
-		[Embed(source = "../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
+		[Embed(source = "../../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
 		private static var Icon_Missing:Class;
 		
 		public function StatusEffectsDisplay() 

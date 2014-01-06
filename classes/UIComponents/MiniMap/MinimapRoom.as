@@ -1,9 +1,10 @@
-package classes.UIComponents 
+﻿package classes.UIComponents.MiniMap
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
 	import flash.utils.getDefinitionByName;
+	import classes.UIComponents.UIStyleSettings;
 	
 	/**
 	 * ...

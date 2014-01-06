@@ -4,7 +4,6 @@
 	import classes.RoomClass;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
-	import classes.UIComponents.StatusEffectsDisplay;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -29,7 +28,7 @@
 	import flash.utils.Dictionary;
 	import fl.transitions.Tween;
 	import fl.transitions.easing.Regular;
-	import classes.UIComponents.MiniMap;
+	import classes.UIComponents.MiniMap.MiniMap;
 
 
 	import classes.StatBarSmall;
@@ -379,7 +378,6 @@
 		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
 		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
 		
-
 
 		private function tweenLeft(e:Event):void
 		{

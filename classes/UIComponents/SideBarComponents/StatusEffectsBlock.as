@@ -1,6 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
-	import classes.UIComponents.StatusEffectsDisplay;
+	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;

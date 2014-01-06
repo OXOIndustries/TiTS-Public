@@ -6,6 +6,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SideBarComponents.CoreStatsBlock;
 	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
+	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import fl.transitions.Tween;
 	import flash.display.Sprite;
 	import flash.events.Event;
