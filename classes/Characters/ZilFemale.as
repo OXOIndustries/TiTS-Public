@@ -41,7 +41,7 @@
 			this.XP = 20;
 			this.level = 1;
 			this.credits = 0;
-			this.HPMod = 0;
+			this.HPMod = -5;
 			this.HPRaw = this.HPMax();
 
 

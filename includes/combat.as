@@ -442,25 +442,33 @@ function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC
 function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Array 
 {
 	var initialDamage:Number = damage;
+	var soakedDamage:Number = 0;
+	var leftoverDamage:int = 0;
 	//Reduce damage by shield defense value
 	damage -= victim.shieldDefense();
 	
-	//Apply type reductions!
-	//Kinetic does 40% damage to shields
-	if(damageType == GLOBAL.KINETIC) damage *= .4;
-	//Slashing does 55% damage to shields
-	else if(damageType == GLOBAL.SLASHING) damage *= .55;
-	//Piercing does 75% damage to shields
-	else if(damageType == GLOBAL.PIERCING) damage *= .75;
-	
 	//Apply victim resistances vs damage
 	damage *= victim.getShieldResistance(damageType);
+
+	//Debug trace statements to help me doublecheck that all this is working right
+	//trace("INITIAL DAMAGE: " + initialDamage);
+	//trace("SHIELD DEFENSE VALUE: " + victim.shieldDefense());	
+	//trace("SHIELD DAMAGE MULTIPLIER: " + victim.getShieldResistance(damageType));
+	
 	damage = Math.round(damage);
-	var leftoverDamage:int = 0;
+	
 	//Damage cannot exceed shield amount.
 	if(damage > victim.shieldsRaw) {
 		damage = victim.shieldsRaw;
-		leftoverDamage = initialDamage - damage;
+		soakedDamage = (damage - victim.shieldDefense()) / victim.getShieldResistance(damageType);
+		leftoverDamage = initialDamage - soakedDamage;
+		//If shit rounded up, that might put leftover damage in negs.
+		//Prevent dat.
+		if(leftoverDamage < 0) leftoverDamage = 0;
+		
+		//Second half of checking shield stuff.
+		//trace("Damage soaked up by shields: " + soakedDamage);
+		//trace("New leftover damage: " + leftoverDamage);
 	}
 	//If we're this far, damage can't be less than one. You did get hit, after all.
 	if(damage < 1) damage = 1;

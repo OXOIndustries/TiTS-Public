@@ -26,8 +26,8 @@
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fists";
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 2;
-			this.physiqueRaw = 2;
+			this.armor.defense = 1;
+			this.physiqueRaw = 4;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
 			this.intelligenceRaw = 1;
