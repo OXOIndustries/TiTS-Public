@@ -146,7 +146,7 @@ package classes.UIComponents.StatusEffectComponents
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
 			
-			_bodyText.border = true;
+			_bodyText.border = false;
 			_bodyText.text = "Placeholder";
 			_bodyText.background = false;
 			_bodyText.multiline = true;

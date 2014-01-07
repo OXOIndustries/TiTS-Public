@@ -75,7 +75,10 @@ package classes.UIComponents.StatusEffectComponents
 		private var _debugTransform:ColorTransform;
 		
 		[Embed(source = "../../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
-		private static var Icon_Missing:Class;
+		private var Icon_Missing:Class;
+		
+		[Embed(source = "../../../assets/icons/statuseffects/radiosignal.svg", mimeType = "image/svg")]
+		private var Icon_RadioSignal:Class;
 		
 		public function StatusEffectsDisplay() 
 		{
@@ -132,12 +135,11 @@ package classes.UIComponents.StatusEffectComponents
 		{
 			var iconT:Class;
 
-			// Try to get the classdef for the given icon class string
-			try
+			if (this.hasOwnProperty[iconClass])
 			{
-				iconT = (getDefinitionByName(iconClass) as Class);
+				iconT = this[iconClass];
 			}
-			catch (e:ReferenceError) // If it doesn't exist, use the fallback/missing icon
+			else
 			{
 				iconT = Icon_Missing;
 			}

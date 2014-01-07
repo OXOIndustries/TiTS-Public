@@ -8,7 +8,7 @@ package classes.UIComponents.StatusEffectComponents
 	import flash.geom.ColorTransform;
 	
 	/**
-	 * ...
+	 * Core container class for the little icons in the "StatusEffect" tray
 	 * @author Gedan
 	 */
 	public class StatusEffectElement extends Sprite
