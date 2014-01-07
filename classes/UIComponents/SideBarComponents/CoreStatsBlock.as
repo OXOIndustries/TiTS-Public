@@ -118,6 +118,16 @@ package classes.UIComponents.SideBarComponents
 			_willpowerBar.clearGlo();
 			_libidoBar.clearGlo();
 		}
+		
+		public function resetItems():void
+		{
+			_physiqueBar.resetBar();
+			_reflexesBar.resetBar();
+			_aimBar.resetBar();
+			_intelligenceBar.resetBar();
+			_willpowerBar.resetBar();
+			_libidoBar.resetBar();
+		}
 	}
 
 }

@@ -1232,22 +1232,16 @@
 		
 		public function hidePCStats():void 
 		{
-			trace("Hide PC Stats");
 			this._rightSideBar.hideItems();
 		}
 		
 		public function showPCStats():void 
 		{
-			trace("Show PC Stats");
 			this._rightSideBar.showItems();
 		}
 		public function resetPCStats():void
 		{
-			trace("Reset NPC Stats");
-			for each (var barItem in this.pcStatSidebarItems) 
-			{
-				barItem.resetBar();
-			}
+			this._rightSideBar.resetItems();
 		}
 		public function showHeader(message:String):void
 		{
@@ -1264,7 +1258,6 @@
 		
 		public function showNPCStats():void 
 		{
-			trace("Show NPC Stats");
 			for each (var barItem in this.npcStatSidebarItems) 
 			{
 				barItem.visible = true;
@@ -1275,7 +1268,6 @@
 		}
 		public function resetNPCStats():void
 		{
-			trace("Reset NPC Stats");
 			for each (var barItem in this.npcStatSidebarItems) 
 			{
 				barItem.resetBar();
@@ -1289,7 +1281,6 @@
 		
 		public function hideNPCStats():void 
 		{
-			trace("Hide NPC Stats");
 			for each (var barItem in this.npcStatSidebarItems) 
 			{
 				barItem.visible = false;

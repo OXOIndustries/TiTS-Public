@@ -179,6 +179,13 @@ package classes.UIComponents
 			_coreStatBlock.removeGlows();
 			_advancementBlock.removeGlows();
 		}
+		
+		public function resetItems():void
+		{
+			_combatStatBlock.resetItems();
+			_coreStatBlock.resetItems();
+			_advancementBlock.resetItems();
+		}
 	}
 
 }

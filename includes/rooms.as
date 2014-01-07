@@ -1118,22 +1118,6 @@ function initializeRooms():void
 	//rooms["DEBUG1"].westExit = "DEBUG3";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG1"].runOnEnter = debugMenus;
-	
-/*
-	rooms["DEBUG2"] = new RoomClass(this);
-	rooms["DEBUG2"].roomName = "BLACK HOLE OF DEBUG";
-	rooms["DEBUG2"].description = "";
-	rooms["DEBUG2"].planet = "PLANET: MHEN'GA";
-	rooms["DEBUG2"].system = "SYSTEM: ARA ARA";
-	rooms["DEBUG2"].eastExit = "WEST ESBETH 2";
-	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
-	
-	//rooms["DEBUG3"] = new RoomClass(this);
-	//rooms["DEBUG3"].roomName = "BLACK HOLE OF DEBUG";
-	//rooms["DEBUG3"].description = "";
-	//rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
-	//rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
-	//rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);
 }
 
 function debugMenus():void

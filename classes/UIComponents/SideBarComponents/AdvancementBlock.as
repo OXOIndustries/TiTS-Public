@@ -112,6 +112,13 @@ package classes.UIComponents.SideBarComponents
 			_xpBar.clearGlo();
 			_creditsBar.clearGlo();
 		}
+		
+		public function resetItems():void
+		{
+			_levelBar.resetBar();
+			_xpBar.resetBar();
+			_creditsBar.resetBar();
+		}
 	}
 
 }

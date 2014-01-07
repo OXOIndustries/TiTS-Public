@@ -131,6 +131,14 @@ package classes.UIComponents.SideBarComponents
 			_lustBar.clearGlo();
 			_energyBar.clearGlo();
 		}
+		
+		public function resetItems():void
+		{
+			_shieldBar.resetBar();
+			_hpBar.resetBar();
+			_lustBar.resetBar();
+			_energyBar.resetBar();
+		}
 	}
 
 }
