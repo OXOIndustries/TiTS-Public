@@ -175,7 +175,6 @@ package classes.UIComponents.StatusEffectComponents
 			trace("Target H: " + targetHeight);
 			
 			var scaleYValue:Number = targetHeight / this._sizeY;
-			trace("ScaleY: " + scaleYValue);
 			
 			this._backgroundElement.scaleY = scaleYValue;
 		}
