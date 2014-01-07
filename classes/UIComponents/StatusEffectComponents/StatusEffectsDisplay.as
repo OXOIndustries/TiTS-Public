@@ -1,4 +1,4 @@
-﻿package classes.UIComponents.StatusEffectComponents 
+package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -30,9 +30,12 @@
 		
 		private var _margin:int = 0;
 		
-		private var _childSizeX:int = 20;
-		private var _childSizeY:int = 20;
+		private var _childSizeX:int = 35;
+		private var _childSizeY:int = 35;
 		private var _childSpacing:int = 2;
+		
+		private var _tooltipSizeX:int = 350;
+		private var _tooltipSizeY:int = 250;
 		
 		public function get targetX():int { return _targetX; }
 		public function get targetY():int { return _targetY; }
@@ -44,7 +47,6 @@
 		public function get paddingBottom():int { return _paddingBottom; }
 		public function get paddingLeft():int { return _paddingLeft; }
 		public function get margin():int { return _margin; }
-		
 		
 		public function get childSizeX():int { return _childSizeX; }
 		public function get childSizeY():int { return _childSizeY; }
@@ -65,6 +67,9 @@
 		public function set childSizeY(v:int):void { _childSizeY = v; }
 		public function set childSpacing(v:int):void { _childSpacing = v; }
 		
+		public function set tooltipSizeX(v:int):void { _tooltipSizeX = v; }
+		public function set tooltipSizeY(v:int):void { _tooltipSizeY = v; }
+		
 		private var _childElements:Vector.<StatusEffectElement>;
 		private var _workElems:Vector.<StatusEffectElement>
 		
@@ -75,6 +80,9 @@
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
 		
+		/**
+		 * Class Constructor just sets up some stuff we don't need a stage reference to do properly.
+		 */
 		public function StatusEffectsDisplay() 
 		{
 			_benefitTransform = new ColorTransform();
@@ -91,6 +99,10 @@
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		/**
+		 * Lazyinit engage.
+		 * @param	e
+		 */
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
@@ -100,10 +112,11 @@
 			
 			this.BuildContainer();
 			this.BuildTooltipElement();
-			
-			trace("StatusEffect Display Constructed!");
 		}
 		
+		/**
+		 * Build the base container for childelements. Right now, we're using self as the container (although that will change when I blow back through to setup glows.
+		 */
 		private function BuildContainer()
 		{
 			// Position within the parent
@@ -114,9 +127,12 @@
 			_workElems = new Vector.<StatusEffectElement>();
 		}
 		
+		/**
+		 * Construct a copy of the tooltip element, and prepare it for later display.
+		 */
 		private function BuildTooltipElement():void
 		{
-			_tooltipElement = new StatusTooltipElement(350, 150, 250, EmbeddedAssets.Icon_Missing);
+			_tooltipElement = new StatusTooltipElement(EmbeddedAssets.Icon_Missing, _tooltipSizeX, _tooltipSizeY);
 			_tooltipElement.x = 5000;
 			this.stage.addChild(_tooltipElement);
 			this.stage.removeChild(_tooltipElement);
@@ -139,9 +155,15 @@
 				iconT = EmbeddedAssets.Icon_Missing;
 			}
 			
-			return new StatusEffectElement(35, 35, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);
+			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);
 		}
 
+		/**
+		 * A function passed into each of the display elements to enable "easy" detection of which element is being interacted with.
+		 * This could be all managed here, but the code is much neater if each child element is in charge of its own interaction code.
+		 * I might go back through and refactor it here to cut down on the total number of eventListeners in play.
+		 * @param	activeObj
+		 */
 		private function mouseHandlerFunc(activeObj:StatusEffectElement):void
 		{
 			// If a previous element has been selected, unselect it
@@ -166,9 +188,15 @@
 			}
 		}
 		
+		/**
+		 * Code to display and position the tooltip element correctly in relation to the location of the primary status display elements.
+		 * Kind of a pain in the ass, but without this kinda positioning, the edges of the thing gets "lost" in other UI components.
+		 * Also, a handy-dandy place to refactor data lookups for status effects.
+		 * @param	activeObj
+		 */
 		private function DisplayTooltip(activeObj:StatusEffectElement):void
 		{		
-			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType);
+			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
 			_tooltipElement.x = tPt.x - (_tooltipElement.width + 45);
@@ -176,7 +204,10 @@
 			this.stage.addChild(_tooltipElement);
 		}
 		
-		private function HideTooltip():void
+		/**
+		 * Remove the tooltip from display
+		 */
+		public function HideTooltip():void
 		{
 			this.stage.removeChild(_tooltipElement);
 		}
@@ -194,16 +225,16 @@
 				_workElems = _workElems.concat(_childElements.splice(15, (_childElements.length - 15)));
 			}
 			
-			_childElements.sort(vectSortMethod);
+			_childElements.sort(vectSortMethodName);
 		}
 		
 		/**
-		 * Sort method applied by the vector<T>.sort() method
+		 * Sort method applied by the vector<T>.sort() method. Sorts elements based on name.
 		 * @param	elemA
 		 * @param	elemB
 		 * @return
 		 */
-		private function vectSortMethod(elemA:StatusEffectElement, elemB:StatusEffectElement):int
+		private function vectSortMethodName(elemA:StatusEffectElement, elemB:StatusEffectElement):int
 		{
 			if (elemA.name < elemB.name)
 			{
@@ -219,7 +250,29 @@
 		}
 		
 		/**
-		 * I'm going to be a shit and just not display > 15 elements right now (3 rows of 5). They'll be shifted to some large value of X
+		 * Sort method applied by the vector<T>.sort() method. Sorts elements based on remaining duration
+		 * @param	elemA
+		 * @param	elemB
+		 * @return
+		 */
+		private function vectSortMethodDuration(elemA:StatusEffectElement, elemB:StatusEffectElement):int
+		{
+			if (elemA.durationRemaining < elemB.durationRemaining)
+			{
+				return -1;
+			}
+			
+			if (elemA.durationRemaining > elemB.durationRemaining)
+			{
+				return 1;
+			}
+			
+			return 0;
+		}
+		
+		/**
+		 * Reposition status effect element children within the display, based on their vector index position.
+		 * Sorting the underlying vector determines where, in the container, elements should be positioned.
 		 */
 		private function RepositionChildren():void
 		{
@@ -227,11 +280,9 @@
 			{
 				for (var elem:int = 0; elem < _childElements.length; elem++)			
 				{
-					_childElements[elem].x = Math.floor((elem % 5) * (35 + childSpacing));
-					_childElements[elem].y = Math.floor((Math.floor(elem / 5)) * (35 + childSpacing));
+					_childElements[elem].x = Math.floor((elem % 5) * (_childSizeX + childSpacing));
+					_childElements[elem].y = Math.floor((Math.floor(elem / 5)) * (_childSizeY + childSpacing));
 					if (_childElements[elem].parent == null) this.addChild(_childElements[elem]);
-					
-					trace("Moving effect icon for '" + _childElements[elem].name + "' to (" + _childElements[elem].x + "," + _childElements[elem].y + ")");
 				}
 			}
 			
@@ -244,6 +295,9 @@
 			}
 		}
 		
+		/**
+		 * Remove elements from the display list that are still present in the workElement vector and discard their references.
+		 */
 		private function RemoveExpiredChildren():void
 		{
 			while (_workElems.length > 0)
@@ -252,32 +306,50 @@
 			}
 		}
 		
+		/**
+		 * Update the displayed list of status effects.
+		 * @param	statusEffects	Array of status effects to search through for displayable elements.
+		 */
 		public function updateDisplay(statusEffects:Array):void
 		{
+			// Shift current elements into a working vector and clear the primary vector
 			_workElems = _workElems.concat(_childElements);
 			_childElements.splice(0, _childElements.length);
 			
+			// Check through the incoming effects
 			for (var seElem:int = 0; seElem < statusEffects.length; seElem++)
 			{
 				// If this ends up being slow, I'll fix it later. It shouldn't be TOO bad considering
 				// the total number of effects we're liable to be displaying.
+				
+				// If an effect is a valid, displayable effect...
 				if (statusEffects[seElem].hidden != true && statusEffects[seElem].iconName.length > 0)
 				{
 					var gotMatch:Boolean = false;
 					
+					// Check if we've already got an element for it.
 					if (_workElems.length > 0)
 					{
 						for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
 						{
+							// If we do, shift the element in question back to the primary vector, and update it's duration.
 							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
 							{
+								_workElems[vecElem].durationRemaining = statusEffects[seElem].minutesLeft;
+								
+								// Force through an update of the timer if we're looking at the active tooltip element!
+								if (_workElems[vecElem] == _lastActiveElement)
+								{
+									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft);
+								}
+								
 								_childElements = _childElements.concat(_workElems.splice(vecElem, 1));
 								gotMatch = true;
 							}
 						}
 					}
 				
-					// No match? new effect
+					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
 						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
@@ -285,21 +357,22 @@
 				}
 			}
 			
-			// Remove expired -- All elements remaining in _workElems should be expired effects
+			// Remove expired -- All elements remaining in _workElems should be expired effects, so we need to clear them up
 			this.RemoveExpiredChildren();
 			
-			// Sort containers -- Now we can repurpose _workElems to hold any effect > 15
+			// Sort containers -- Now we can repurpose _workElems to hold any effect > 15, and they will automatically fall back into processsing
+			// during the next update pass.
 			this.SortChildren();
 			
-			// Reposition children
+			// Reposition children in the display container, based on their now sorted vector index position.
 			this.RepositionChildren();
 		}
 		
+		// Some of the GUI code might (still) be blindly calling clearGlo() on any child elements. This is a stub to catch it so I can fix it.
 		public function clearGlo():void
 		{
-			// Stub
+			throw new Error("clearGlo called on StatusEffectDisplay. Bad GUI code, bad!");
 		}
-		
 	}
 
 }

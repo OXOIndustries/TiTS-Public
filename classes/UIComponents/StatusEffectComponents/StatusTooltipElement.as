@@ -19,10 +19,9 @@ package classes.UIComponents.StatusEffectComponents
 		private var _sizeX:int;
 		private var _sizeY:int;
 		
-		private var _iconElementSizeX:int;
-		private var _iconElementSizeY:int;
-		
-		private var _maxSizeY:int;
+		private var _iconElementSizeX:int = 50;
+		private var _iconElementSizeY:int = 50;
+		private var _iconElementPadding:int = 6;
 		
 		private var _backgroundElement:Sprite;
 		
@@ -34,31 +33,41 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private var _bodyText:TextField;
 		
-		public function StatusTooltipElement(sizeX:int = 460, sizeY:int = 260, maxSizeY:int = 260, missingIconRef:Class = null) 
+		private var _durationText:TextField;
+		
+		/**
+		 * You know the drill
+		 * @param	sizeX	Initial X size of the tooltip. Will be maintained, only Y will be rescaled.
+		 * @param	sizeY	Initial Y size of the tooltip. Will be scaled to fit textual content.
+		 * @param	missingIconRef	Reference to the "missing icon" embedded class reference.
+		 */
+		public function StatusTooltipElement(missingIconRef:Class, sizeX:int = 460, sizeY:int = 260) 
 		{
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
-			this._maxSizeY = maxSizeY;
 			this._iconElement = new missingIconRef();
-			
-			_iconElementSizeX = 40;
-			_iconElementSizeY = _iconElementSizeX;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
+		/**
+		 * Do the needful
+		 * @param	e
+		 */
 		private function init(e:Event):void
 		{
-			trace("Constructed StatusTooltipElement");
-			
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			this.BuildDefault();
 			this.BuildIconContainer();
 			this.BuildTitleBlock();
 			this.BuildContentBlock();
+			this.BuildDurationBlock();
 		}
 		
+		/**
+		 * Build the background container.
+		 */
 		private function BuildDefault():void
 		{
 			this._backgroundElement = new Sprite();
@@ -66,9 +75,12 @@ package classes.UIComponents.StatusEffectComponents
 			_backgroundElement.graphics.drawRoundRect(0, 0, this._sizeX, this._sizeY, 5);
 			_backgroundElement.graphics.endFill();
 			this.addChild(_backgroundElement);
-			_backgroundElement.scale9Grid = new Rectangle(10, 50, this.width - 20, this.height - 70);
+			_backgroundElement.scale9Grid = new Rectangle(10, 50, this.width - 20, this.height - 70); // "Magic" numbers to sufficently pad the 9slice rect away from the anchor points of all the child elements. If they don't fall into a rescalable element of the grid, they will never be scaled at all!
 		}
 		
+		/**
+		 * Build the Icon container element.
+		 */
 		private function BuildIconContainer():void
 		{
 			_iconContainer = new Sprite();
@@ -86,21 +98,21 @@ package classes.UIComponents.StatusEffectComponents
 			_iconContainer.addChild(_iconElement);
 			
 			// Resize the icon to fit in the container element
-			if (_iconElement.width != (_iconContainer.width - 6) || _iconElement.height != (_iconContainer.height - 6))
+			if (_iconElement.width != (_iconContainer.width - _iconElementPadding) || _iconElement.height != (_iconContainer.height - _iconElementPadding))
 			{
 				// In theory, this should work off displayObject.scaleX/scaleY, but i've never had it work reliably...
 				var ratio:Number;
 				if (_iconElement.width > _iconElement.height)
 				{
 					ratio = _iconElement.height / _iconElement.width;
-					_iconElement.width = _iconContainer.width - 6;
-					_iconElement.height = Math.floor((_iconContainer.height - 6) * ratio);
+					_iconElement.width = _iconContainer.width - _iconElementPadding;
+					_iconElement.height = Math.floor((_iconContainer.height - _iconElementPadding) * ratio);
 				}
 				else
 				{
 					ratio = _iconElement.width / _iconElement.height;
-					_iconElement.height = _iconContainer.height - 6;
-					_iconElement.width = Math.floor((_iconContainer.width - 6) * ratio);
+					_iconElement.height = _iconContainer.height - _iconElementPadding;
+					_iconElement.width = Math.floor((_iconContainer.width - _iconElementPadding) * ratio);
 				}
 			}
 			
@@ -112,12 +124,15 @@ package classes.UIComponents.StatusEffectComponents
 			_iconElement.transform.colorTransform = whtT;
 		}
 		
+		/**
+		 * Build the title/header element, and the underline shit.
+		 */
 		private function BuildTitleBlock():void
 		{
 			// underline
 			_headerUnderline = new Sprite();
 			_headerUnderline.x = _iconContainer.x + _iconContainer.width + 5;
-			_headerUnderline.y = 25;
+			_headerUnderline.y = 25; // MAGIC NUMBERS ALL UP IN THIS SHIT YO
 			
 			_headerUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_headerUnderline.graphics.drawRect(0, 0, this.width - _headerUnderline.x, 3)
@@ -139,10 +154,13 @@ package classes.UIComponents.StatusEffectComponents
 			this.addChild(_headerText);
 		}
 		
+		/**
+		 * Build the "body" content element where the actual tooltip text is going to be displayed.
+		 */
 		private function BuildContentBlock():void
 		{
 			_bodyText = new TextField();
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:12, color:"#FFFFFF", marginRight:5 };
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:12, color:"#FFFFFF", marginRight:1 };
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
 			
@@ -154,7 +172,7 @@ package classes.UIComponents.StatusEffectComponents
 			_bodyText.embedFonts = true;
 			_bodyText.antiAliasType = AntiAliasType.ADVANCED;
 			_bodyText.x = _headerText.x;
-			_bodyText.y = _headerUnderline.y + 5;
+			_bodyText.y = _headerUnderline.y + 5; // Magic but not really. Padding to keep us away from the far edges of the tooltip background
 			_bodyText.width = this.width - _bodyText.x - 5;
 			_bodyText.height = this.height - _bodyText.y - 5;
 			_bodyText.styleSheet = styleSheet;
@@ -163,22 +181,52 @@ package classes.UIComponents.StatusEffectComponents
 			this.addChild(_bodyText);			
 		}
 		
+		/**
+		 * Build display elements to show the remaining active duration of the effect
+		 */
+		private function BuildDurationBlock():void
+		{
+			_durationText = new TextField();
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:10, color:"#FFFFFF", marginRight:1, textAlign:"center" };
+			var styleSheet:StyleSheet = new StyleSheet();
+			styleSheet.setStyle(".words", defaultCSSTag);
+			
+			_durationText.border = false;
+			_durationText.text = "60m\nRemaining";
+			_durationText.background = false;
+			_durationText.multiline = true;
+			_durationText.wordWrap = true;
+			_durationText.embedFonts = true;
+			_durationText.antiAliasType = AntiAliasType.ADVANCED;
+			_durationText.x = _iconContainer.x;
+			_durationText.y = _iconContainer.y + _iconContainer.height + 2;
+			_durationText.width = _iconContainer.width;
+			_durationText.styleSheet = styleSheet;
+			_durationText.mouseEnabled = false;
+			_durationText.mouseWheelEnabled = false;
+			this.addChild(_durationText);
+		}
+		
+		/**
+		 * Resize the background element and the body text element to fit the size of the content we're currently trying to display.
+		 */
 		private function Resize():void
 		{
 			// Resize the text field
 			this._bodyText.height = this._bodyText.textHeight + 5; // Because textHeight isn't high enough for it to display all its text. What.
 			
 			// Now try and abuse the 9slice grid to resize the underlying element...
-			
 			// Figure out the required ratio to expand or contract the element
 			var targetHeight:int = this._bodyText.height + this._bodyText.y + 5;
-			trace("Target H: " + targetHeight);
-			
 			var scaleYValue:Number = targetHeight / this._sizeY;
 			
 			this._backgroundElement.scaleY = scaleYValue;
 		}
 		
+		/**
+		 * Create an icon element within the iconElement. Used to change icons as well as initially setup the "placeholder" icon too.
+		 * @param	icon
+		 */
 		private function CreateIcon(icon:Class):void
 		{
 			_iconContainer.removeChild(_iconElement);
@@ -214,14 +262,67 @@ package classes.UIComponents.StatusEffectComponents
 			_iconElement.transform.colorTransform = whtT;
 		}
 		
-		public function SetData(statusName:String, tooltipText:String, icon:Class):void
+		/**
+		 * Set the display data required for the tooltip
+		 * @param	statusName
+		 * @param	tooltipText
+		 * @param	icon
+		 * @param	remainingDuration
+		 */
+		public function SetData(statusName:String, tooltipText:String, icon:Class, remainingDuration:int):void
 		{
 			this._headerText.text = statusName;
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
+			this.UpdateDurationText(remainingDuration);
 			if (!(_iconElement is icon)) CreateIcon(icon);
 			this.Resize();
 		}
 		
+		public function UpdateDurationText(remainingDuration:int):void
+		{
+			var tDuration:int;
+			var rDays:int = 0;
+			var rHours:int = 0;
+			var rMins:int = 0;
+			
+			rDays = remainingDuration / (24 * 60);
+			tDuration = remainingDuration - (rDays * 24 * 60);
+			
+			rHours = tDuration / 60;
+			tDuration = tDuration - (rHours * 60)
+			
+			if (tDuration >= 60) throw new Error("You done bad at math, girl");
+			
+			rMins = tDuration;
+			
+			// Gen the output string
+			var outStr:String = "";
+			
+			if (rDays > 0)
+			{
+				outStr += rDays + "D";
+			}
+			
+			if (rHours > 0)
+			{
+				if (rDays > 0)
+				{
+					outStr += ", ";
+				}
+				outStr += rHours + "H";
+			}
+			
+			if (rMins > 0)
+			{
+				if (rHours > 0)
+				{
+					outStr += ", ";
+				}
+				outStr += rMins + "M";
+			}
+			
+			this._durationText.htmlText = "<span class='words'><p>" + outStr + "\nremaining</p></span>";
+		}
 	}
 
 }

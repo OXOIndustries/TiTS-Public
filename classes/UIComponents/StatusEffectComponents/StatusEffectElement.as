@@ -13,13 +13,14 @@ package classes.UIComponents.StatusEffectComponents
 	 */
 	public class StatusEffectElement extends Sprite
 	{
-		private var _sizeX;
-		private var _sizeY;
+		private var _sizeX:int;
+		private var _sizeY:int;
 		
 		private var _displayName:String;
 		private var _tooltipText:String;
 		private var _durationRemaining:int;
 		
+		private var _iconPadding:int = 8;
 		private var _iconT:Class;
 		private var _icon:DisplayObject;
 		
@@ -36,10 +37,21 @@ package classes.UIComponents.StatusEffectComponents
 		public function get displayName():String { return _displayName; }
 		public function get durationRemaining():int { return _durationRemaining; }
 		
+		public function set durationRemaining(v:int):void { _durationRemaining = v; }
+		
+		/**
+		 * Given how constrained the usage of StatusEffectElements are, I can get away with doing a shitload of construction...
+		 * IN THE CONSTRUCTOR! Not really, just passing setup shit in because fuck a million property sets.
+		 * @param	sizeX
+		 * @param	sizeY
+		 * @param	effectName
+		 * @param	iconT
+		 * @param	tooltipText
+		 * @param	duration
+		 * @param	parentMouseHandler
+		 */
 		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipText:String, duration:int, parentMouseHandler:Function) 
 		{
-			trace("Creating icon for " + effectName);
-			
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
 			this._iconT = iconT;
@@ -50,20 +62,32 @@ package classes.UIComponents.StatusEffectComponents
 			this._parentMouseHandler = parentMouseHandler;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
-			this.addEventListener(MouseEvent.CLICK, clickHandler);
 		}
 		
+		/**
+		 * Commence operation lazyinit
+		 * @param	e
+		 */
 		public function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			this.addEventListener(MouseEvent.ROLL_OVER, overHandler);
+			this.addEventListener(MouseEvent.ROLL_OUT, overHandler);
 			this.Build();
 		}
 		
-		private function clickHandler(e:MouseEvent):void
+		/**
+		 * Basically, a wrapper back to the parent mouse handling func that was specified in the constructor.
+		 * @param	e
+		 */
+		private function overHandler(e:MouseEvent):void
 		{
 			this._parentMouseHandler(this);
 		}
-		
+
+		/**
+		 * Setup the displayable elements.
+		 */
 		private function Build():void
 		{
 			// Basically, two rounded rects stacked on each other. Apply a mask to the second to use the first as a border.
@@ -88,20 +112,21 @@ package classes.UIComponents.StatusEffectComponents
 			this._icon = new _iconT();
 			this.addChild(_icon);
 			
-			if (_icon.width > 30 || _icon.height > 30)
+			// TODO: The scaling code can (probably) scale things outside of the padding restrictions in extreme cases.
+			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
 				var ratio:Number;
-				if (_icon.width >= _icon.height)
+				if (_icon.width > _icon.height)
 				{
 					ratio = _icon.height / _icon.width;
-					_icon.width = 30;
-					_icon.height = Math.floor(30 * ratio);
+					_icon.width = _sizeX - _iconPadding;
+					_icon.height = Math.floor((_sizeY - _iconPadding) * ratio);
 				}
 				else
 				{
 					ratio = _icon.width / _icon.height;
-					_icon.height = 30;
-					_icon.width = Math.floor(30 * ratio);
+					_icon.height = _sizeY / _iconPadding;
+					_icon.width = Math.floor((_sizeX - _iconPadding) * ratio);
 				}
 			}
 			
@@ -111,6 +136,7 @@ package classes.UIComponents.StatusEffectComponents
 			whtT.color = 0xFFFFFF;
 			_icon.transform.colorTransform = whtT;
 			
+			// Setup the mask for the selection ring
 			_selectionMask = new Sprite();
 			_selectionMask.graphics.beginFill(0xFFFFFF, 0);
 			_selectionMask.graphics.drawRoundRect(3, 3, _sizeX - 6, _sizeY - 6, 5);

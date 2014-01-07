@@ -4,6 +4,9 @@ package classes.Resources
 	 * Basically, a static library of embedded asset references. You can target things in this class to grab
 	 * class type references and instantiate new versions of the assets; 
 	 * f.ex var thing:* = new EmbeddedAssets.Icon_Missing();
+	 * 
+	 * The include path is relative to the location of the file defining the embeds. I'm trying to keep everything
+	 * under <PROJECT_FOLDER>/assets/*, so we gots to walk back from the location of the AS source to get there.
 	 * @author Gedan
 	 */
 	public class EmbeddedAssets 
