@@ -734,6 +734,7 @@ function startCombat(encounter:String):void
 {
 	combatStage = 0;
 	hideMinimap();
+	userInterface.resetNPCStats();
 	showNPCStats();
 	pc.removeStatusEffect("Round");
 	foes = new Array();
