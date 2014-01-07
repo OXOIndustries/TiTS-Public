@@ -41,16 +41,16 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.useFunction = itemUse;
-			//The OLD way I set this up I was defining these all globally and could just point to a function. Not sure how to go about things now...
-
 		}
+		
 		//METHOD ACTING!
 		protected function rand(max:Number):Number
 		{
 			return int(Math.random()*max);
 		}
-		public function itemUse(target:Creature):Boolean {
+		
+		override public function useFunction(target:Creature):Boolean
+		{
 			var changes:int = 0;
 			var changeLimit:int = 1;
 			var x:int = 0;

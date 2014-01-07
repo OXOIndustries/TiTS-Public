@@ -34,7 +34,6 @@
 		public var evasion:Number;
 		public var fortification:Number;
 		public var bonusResistances:Array;
-		public var useFunction;
 		
 		//constructor
 		public function ItemSlotClass()
@@ -72,10 +71,10 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.useFunction = undefined;
 		
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 		}
+		
 		public function addFlag(arg:int):void 
 		{
 			trace("This needs to be converted to an object or dict based storage mechanism!");
@@ -83,6 +82,7 @@
 				return;
 			this.itemFlags[this.itemFlags.length] = arg;
 		}
+		
 		public function hasFlag(arg:int):Boolean 
 		{
 			trace("This needs to be converted to an object or dict based storage mechanism!");
@@ -95,6 +95,7 @@
 			}
 			return false;
 		}
+		
 		public function deleteFlag(arg:int):void 
 		{
 			trace("This needs to be converted to an object or dict based storage mechanism!");
@@ -104,6 +105,11 @@
 			{
 				if(arg == this.itemFlags[x]) this.itemFlags.splice(x,1);
 			}
-		}	
+		}
+		
+		public function useFunction(targetCreature:Creature):Boolean
+		{
+			throw new Error("useFunction must be overriden in a child class!");
+		}
 	}
 }
