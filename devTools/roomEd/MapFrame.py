@@ -155,12 +155,15 @@ class GridPanel(wx.Panel):
 				self.mapper.mapDict[oldRoomName	].selected = False	# Deselect the previous room if it was selected
 
 		xC, yC = self.drawCoordsToMapCoords(x, y)
-		self.currentSelectedRoomCoords = [xC, yC, self.currentZ, self.currentP]
+		self.currentSelectedRoomCoords = (xC, yC, self.currentZ, self.currentP)
 
 		#self.currentSelectedRoomCoords = self.mapper.coordDict[xC, yC, self.currentZ, self.currentP]
 		roomNameAtCoords = self.mapper.coordDict[self.currentSelectedRoomCoords]
 		if roomNameAtCoords != None:
 			self.mapper.mapDict[roomNameAtCoords].selected = True
+			self.parent.setPickedRoom(self.currentSelectedRoomCoords)
+
+		elif self.currentSelectedRoomCoords in self.nonExistDrawnList:
 			self.parent.setPickedRoom(self.currentSelectedRoomCoords)
 
 	def onSize(self, event):
@@ -218,11 +221,11 @@ class GridPanel(wx.Panel):
 		dc.SetBackground(self.whiteBrush)
 		dc.SetBackgroundMode(wx.SOLID)
 		dc.SetTextForeground(self.textColourBlack)
-		coordNote = "Current Coords = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
+		coordNote = "Current Viewport Center = X:%d, Y:%d" % (self.globalDrawOffset[0], self.globalDrawOffset[1])
 		dc.DrawText(coordNote, 7, h-20)
 		
 		if self.currentSelectedRoomCoords:
-			roomNote = "Selected Coordinates = %s" % (self.currentSelectedRoomCoords)
+			roomNote = "Selected Coordinates = %d, %d, %d, %d" % (self.currentSelectedRoomCoords)
 			dc.DrawText(roomNote, w/2-250, h-20)
 
 		roomNote = "Current Room = %s" % (self.mapper.coordDict[self.currentSelectedRoomCoords])
@@ -340,7 +343,7 @@ class GridPanel(wx.Panel):
 			
 			yield x, y
 
-	def getRoomOnPlanetLevel(self, planetCord, levelCord):
+	def getRoomOnLevelPlanet(self, levelCord, planetCord):
 		# Iterate over rooms until we find one that's on the current level, and return that room
 		for key, room in self.mapper.mapDict.iteritems():
 			if room.drawCoords and room.coords["z"] == levelCord and room.coords["p"] == planetCord:
@@ -354,7 +357,7 @@ class GridPanel(wx.Panel):
 
 		# Look up a room on the current leve, and use that so we can determine the offset
 		# needed to make the rooms all line up
-		room = self.getRoomOnPlanetLevel(self.currentP, self.currentZ)
+		room = self.getRoomOnLevelPlanet(self.currentZ, self.currentP)
 		if room:
 			rmX, rmY = room.drawCoords
 			if rmX != None and rmY != None:
@@ -364,12 +367,12 @@ class GridPanel(wx.Panel):
 					if neighbors:
 						cX, cY = self.coordsToDrawCoords(x, y)
 						if [cX, cY] not in self.drawnRoomCoords:
-							if [x, y, self.currentZ, self.currentP] == self.currentSelectedRoomCoords:
+							if (x, y, self.currentZ, self.currentP) == self.currentSelectedRoomCoords:
 								dc.SetBrush(self.selRoomBrush)
 							else:
 								dc.SetBrush(self.emptyRoomBrush)
 							self.drawRectangleCenter(dc, cX, cY, roomSz, roomSz)
-							self.nonExistDrawnList.append(self.drawCoordsToMapCoords(cX, cY))
+							self.nonExistDrawnList.append((x, y, self.currentZ, self.currentP))
 
 			#print "Drew %s rooms" % drawnRooms
 				#print x, y, cX, cY

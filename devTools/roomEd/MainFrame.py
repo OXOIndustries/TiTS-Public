@@ -4,7 +4,7 @@ import wx
 
 import sys
 import time
-
+import mapTools
 
 class RedirectText:
 	def __init__(self,aWxTextCtrl):
@@ -251,10 +251,14 @@ class MapEditorFrame(wx.Frame):
 		
 
 	def setPickedRoom(self, roomCoords):
-
+		print "setPickedRoom", roomCoords
 		roomName = self.mapper.coordDict[roomCoords]
 		if not roomName in self.mapper.mapDict:
-			return
+			for key, ctrl in self.roomCtrlDict.iteritems():
+				ctrl.SetValue("")
+
+			roomName = self.mapper.addRoomAtCoords(roomCoords)
+		
 		roomObject = self.mapper.mapDict[roomName]
 		roomDict = roomObject.toDict()
 		for key, value in roomDict.iteritems():
@@ -264,6 +268,9 @@ class MapEditorFrame(wx.Frame):
 					self.roomCtrlDict[key].SetValue(value)
 				else:
 					self.roomCtrlDict[key].SetValue("")
+
+
+
 	def quitApp(self, event): 
 		print "Exiting"
 

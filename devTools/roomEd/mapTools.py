@@ -138,6 +138,13 @@ class Room():
 		ret += "\n	End of room object."
 		return ret
 
+	def coordsFromTup(self, x, y, z, p):
+		print "Loading Coords x:%d y:%d z:%d p:%d" % (x, y, z, p)
+		self.coords = {"x" : x, "y" : y, "z" : z, "p" : p}
+
+	def coordsAsTup(self):
+		return self.coords["x"],  self.coords["y"],  self.coords["z"],  self.coords["p"]
+
 	def toDict(self):
 
 
@@ -170,6 +177,12 @@ class Room():
 
 		return retDict
 
+	def updateRromDict(self, inDict):
+		
+		print "Created", cls
+		return ret
+
+
 	def getCode(self):
 		code = "\n	rooms[%s] = new RoomClass(this);" % self.roomName
 		for key, value in self.__dict__.iteritems():
@@ -180,6 +193,70 @@ class Room():
 			for flag in self.roomFlags:
 				code += "\n	rooms[%s].addFlag(%s);" % (self.roomName, flag)
 		return code
+
+	# Convenience functions for cleaner code
+	# {this rooms} is above(otherRoom)
+	# true if {this room}[z] == otherRoom+1
+	def isAbove(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"] and   \
+		   thsRm["y"] == rm2["y"] and   \
+		   thsRm["z"] == rm2["z"]+1 and \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
+	def isBelow(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"] and   \
+		   thsRm["y"] == rm2["y"] and   \
+		   thsRm["z"] == rm2["z"]-1 and \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
+	def isToWest(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"]-1 and \
+		   thsRm["y"] == rm2["y"] and   \
+		   thsRm["z"] == rm2["z"] and   \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
+	def isToEast(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"]+1 and \
+		   thsRm["y"] == rm2["y"] and   \
+		   thsRm["z"] == rm2["z"] and   \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
+	def isToNorth(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"] and   \
+		   thsRm["y"] == rm2["y"]-1 and \
+		   thsRm["z"] == rm2["z"] and   \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
+	def isToSouth(self, inRoom):
+		thsRm = self.coords
+		rm2 = inRoom.coords
+		if thsRm["x"] == rm2["x"] and   \
+		   thsRm["y"] == rm2["y"]+1 and \
+		   thsRm["z"] == rm2["z"] and   \
+		   thsRm["p"] == rm2["p"]:
+			return True
+		return False
+
 
 class MapClass():
 	def __init__(self, roomFileList):
@@ -199,7 +276,80 @@ class MapClass():
 			ret += "\nTo Code:%s" % (value.getCode())
 		return ret
 
-	
+	def addRoomAtCoords(self, coords):
+
+
+		roomNo = 0
+		keyName = "UNCREATED_NEW_ROOM_%d" % roomNo
+		while keyName in self.mapDict:
+			roomNo += 1
+			keyName = "UNCREATED_NEW_ROOM_%d" % roomNo
+
+		print "Creating room with name", keyName, coords
+
+		self.mapDict[keyName] = Room(keyName)
+		self.mapDict[keyName].coordsFromTup(*coords)
+		self.coordDict[coords] = keyName
+
+		neighborName, neighborRoomName = self.getAdjacentRooms(*coords).popitem()
+		self.makeRoomLinks(self.mapDict[keyName], self.mapDict[neighborRoomName])
+		self.crawlMapStructure("\"SHIP INTERIOR\"")
+		return keyName
+
+	def makeRoomLinks(self, room1, room2):
+		print "adding link between room", room1.roomName, "and room", room2.roomName
+		if not self.areAdjacentRooms(room1, room2):
+			raise ValueError("Trying to link non-adjacent rooms!")
+
+		'''
+		self.game_northExit  
+		self.game_westExit   
+		self.game_southExit  
+		self.game_eastExit   
+		self.game_outExit    
+		self.game_inExit     # In is "up"
+		self.game_outText    
+		self.game_inText     
+		'''
+
+		if room1.isAbove(room2):
+			room1.game_outExit = room2.roomName
+			room2.game_inExit  = room1.roomName
+			room1.game_outText = "Out"
+			room2.game_inText  = "In"
+			print "Room isAbove"
+		if room1.isBelow(room2):
+			room1.game_inExit  = room2.roomName
+			room2.game_outExit = room1.roomName
+			room1.game_inText  = "In"
+			room2.game_outText = "Out"
+			print "Room isBelow"
+		if room1.isToWest(room2):
+			room1.game_eastExit  = room2.roomName
+			room2.game_westExit = room1.roomName
+			print "Room isToWest"
+		if room1.isToEast(room2):
+			room1.game_westExit  = room2.roomName
+			room2.game_eastExit = room1.roomName
+			print "Room isToEast"
+		if room1.isToNorth(room2):
+			room1.game_southExit  = room2.roomName
+			room2.game_northExit = room1.roomName
+			print "Room isToNorth"
+		if room1.isToSouth(room2):
+			room1.game_northExit  = room2.roomName
+			room2.game_southExit = room1.roomName
+			print "Room isToSouth"
+		pass
+
+
+	def removeRoomLinks(self, room1, room2):
+		print "Removing link between room", room1.roomName, "and room", room2.roomName
+		if not self.areAdjacentRooms(room1, room2):
+			raise ValueError("Trying to unlink non-adjacent rooms!")
+		pass
+
+
 	def loadRoomStructure(self, filePath):
 
 		roomRe = re.compile("^rooms\[([\"\'][\w:\'\" ]+[\"\'])\](.*?;)$")
@@ -220,22 +370,36 @@ class MapClass():
 				self.mapDict[roomName].parseInfoString(roomCall)
 
 	def getAdjacentRooms(self, x, y, z, p):
-		ret = []
+		ret = {}
 		if self.coordDict[x+1, y, z, p]:
-			ret.append(self.coordDict[x+1, y, z, p])
+			ret["e"] = self.coordDict[x+1, y, z, p]
 		if self.coordDict[x-1, y, z, p]:
-			ret.append(self.coordDict[x-1, y, z, p])
+			ret["w"] = self.coordDict[x-1, y, z, p]
 		if self.coordDict[x, y+1, z, p]:
-			ret.append(self.coordDict[x, y+1, z, p])
+			ret["s"] = self.coordDict[x, y+1, z, p]
 		if self.coordDict[x, y-1, z, p]:
-			ret.append(self.coordDict[x, y-1, z, p])
+			ret["n"] = self.coordDict[x, y-1, z, p]
 		if self.coordDict[x, y, z+1, p]:
-			ret.append(self.coordDict[x, y, z+1, p])
+			ret["u"] = self.coordDict[x, y, z+1, p]
 		if self.coordDict[x, y, z-1, p]:
-			ret.append(self.coordDict[x, y, z-1, p])
+			ret["d"] = self.coordDict[x, y, z-1, p]
 
 		return ret
 
+	def areAdjacentRooms(self, room1, room2):
+		
+		x1, y1, z1, p1 = room1.coordsAsTup()
+		x2, y2, z2, p2 = room2.coordsAsTup()
+		print "Comparing rooms. X:", x1, x2, "Y:", y1, y2, "Z:", z1, z2, "P:", p1, p2
+		if p1 != p2:
+			return False
+
+		distance = abs(x1-x2)
+		distance += abs(y1-y2)
+		distance += abs(z1-z2)
+		if distance == 1:
+			return True
+		return False
 
 	def getPlanetList(self):
 		print "FIXME: Need a proper planet list extraction mechanism"
