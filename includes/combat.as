@@ -679,7 +679,16 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	{
 		for(var y:int = 0; y < foes[x].inventory.length; y++) 
 		{
-			if(foes[x].inventory[y].quantity != 0) lootList[lootList.length] = clone(foes[x].inventory[y]);
+			
+			if(foes[x].inventory[y].quantity != 0) {
+				lootList[lootList.length] = clone(foes[x].inventory[y]);
+				if(foes[x].inventory[y].useFunction != undefined) {
+					trace("NOT UNDEFINED! X: " + x + " Y: " + y);
+					if(lootList[lootList.length-1].useFunction == undefined) trace("SAME LOOT LIST: UNDEFINED");
+					else trace("SAME LOOT LIST: CONDITION GREEN");
+				}
+				else trace("UNDEFINED FUNC: " + foes[x].inventory[y].longName);
+			}
 		}
 	}
 	//Exit combat as far as the game is concerned.
