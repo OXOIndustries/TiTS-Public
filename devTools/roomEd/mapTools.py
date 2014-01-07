@@ -38,6 +38,8 @@ class DynamicArrayContainer():
 	def __setitem__(self, keys, value):
 		self.getSetInDict(self.itemDict, keys, setValue=value)
 	def __getitem__(self, keys):
+		if not keys:
+			return None
 		if len(keys) != 4:
 			raise ValueError("Array requires [x,y,z,p] coordinates. Passed: %s" % str(keys))
 
@@ -197,6 +199,7 @@ class MapClass():
 			ret += "\nTo Code:%s" % (value.getCode())
 		return ret
 
+	
 	def loadRoomStructure(self, filePath):
 
 		roomRe = re.compile("^rooms\[([\"\'][\w:\'\" ]+[\"\'])\](.*?;)$")
@@ -286,7 +289,7 @@ class MapClass():
 				self.crawlMapStructure(self.mapDict[currentRoom].game_inExit, tmpCoords)
 
 	def getRoomDrawnAt(self, x, y, roomSize=50):
-		print "Getting room drawn at", x, y
+		#print "Getting room drawn at", x, y
 
 		ret = None
 		pRoom = None
@@ -298,7 +301,7 @@ class MapClass():
 					pRoom = room
 					ret = key
 
-		print "RoomCords = ", pRoom.coords, "DrawCords = ", pRoom.drawCoords
+		#print "RoomCords = ", pRoom.coords, "DrawCords = ", pRoom.drawCoords
 		return ret
 
 	def getRoomAt(self, x=None, y=None, z=None, p=None):

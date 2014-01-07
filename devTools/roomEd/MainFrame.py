@@ -68,7 +68,7 @@ class MapEditorFrame(wx.Frame):
 		controlButtonsSizer.Add([1,1], proportion=1)
 
 		self.zIndexLabel = wx.StaticText(self, -1, "Current Z Index =    ")
-		controlButtonsSizer.Add(self.zIndexLabel, border=5, flag=wx.TOP) # HAAAACH
+		controlButtonsSizer.Add(self.zIndexLabel, border=5, flag=wx.TOP) # HAAAACK
 		controlButtonsSizer.Add([5,1])
 		zUpButton = wx.Button(self, -1, "Z Level +")
 		controlButtonsSizer.Add(zUpButton,  border=5, flag=wx.LEFT|wx.RIGHT)
@@ -96,10 +96,6 @@ class MapEditorFrame(wx.Frame):
 		zDownButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
 		pUpButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
 		pDownButton.Bind(wx.EVT_BUTTON, self.__change_xp_level)
-		#
-		#self.ipTextCtrl.Bind(wx.EVT_TEXT_ENTER, self.evtIpEnter)
-
-		#self.StatusWin = wx.TextCtrl(self, -1, "", style = wx.TE_MULTILINE | wx.TE_READONLY)
 
 		return controlButtonsSizer
 	
@@ -226,6 +222,7 @@ class MapEditorFrame(wx.Frame):
 
 		mapPanelSizer = wx.BoxSizer(wx.HORIZONTAL)
 		self.vizPanel = vizFrame.ReadoutPanel(self, id=-1)
+		self.mapper = self.vizPanel.mapPlot.mapper
 		mapPanelSizer.Add(self.vizPanel, proportion=1, flag=wx.EXPAND, border=0)
 		mapPanelSizer.Add([5,5]) # SPACING HACK!
 		mapPanelSizer.Add(self.__map_button_panel(),  flag=wx.EXPAND, border = 5)
@@ -253,7 +250,12 @@ class MapEditorFrame(wx.Frame):
 		#print "Starting Up..."
 		
 
-	def setPickedRoom(self, roomObject):
+	def setPickedRoom(self, roomCoords):
+
+		roomName = self.mapper.coordDict[roomCoords]
+		if not roomName in self.mapper.mapDict:
+			return
+		roomObject = self.mapper.mapDict[roomName]
 		roomDict = roomObject.toDict()
 		for key, value in roomDict.iteritems():
 			if key in self.roomCtrlDict:
