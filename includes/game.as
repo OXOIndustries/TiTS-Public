@@ -60,7 +60,10 @@
 		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
 	if(currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
-	this.userInterface.addButton(14,"RESET NPCs",initializeNPCs);
+	this.userInterface.addButton(14, "RESET NPCs", initializeNPCs);
+	
+	// Show the minimap too!
+	this.userInterface.showMinimap();
 }
 
 

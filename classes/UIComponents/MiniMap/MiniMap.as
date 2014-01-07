@@ -73,6 +73,8 @@
 		private var _targetX:int		= 0;
 		private var _targetY:int		= 0;
 		
+		private var _hasMapRender:Boolean = false;
+		
 		// Access/Mutator shit so I can do funky observer-pattern bollocks later on
 		public function get childSizeX():int 	{ return _childSizeX; 	}
 		public function get childSizeY():int 	{ return _childSizeY; 	}
@@ -93,6 +95,8 @@
 		public function get targetX():int		{ return _targetX;		}
 		public function get targetY():int		{ return _targetY;		}
 		
+		public function get hasMapRender():Boolean { return _hasMapRender; }
+		
 		public function set childSizeX(value:int):void 		{ _childSizeX = value; 		}
 		public function set childSizeY(value:int):void 		{ _childSizeY = value; 		}
 		public function set childNumX(value:int):void 		{ _childNumX = value; 		}
@@ -111,6 +115,8 @@
 		public function set targetWidth(value:int):void		{ _targetWidth = value;		}
 		public function set targetX(value:int):void			{ _targetX = value;			}
 		public function set targetY(value:int):void			{ _targetY = value;			}
+		
+		
 		
 		// What I wouldn't give for C# style get/set declaration right now...
 		
@@ -381,6 +387,8 @@
 		
 		public function setMapData(map:Vector.<Vector.<Vector.<int>>>):void
 		{
+			this._hasMapRender = true;
+			
 			// Right now this is tied to the hardcoded map size from Mapper.
 			// Once I get this working, I would like to refactor Mapper to return data based on defined map size
 			// Also I want to get the room names or indices as well; touching two classes to add map features seems overkill

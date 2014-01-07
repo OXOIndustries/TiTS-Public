@@ -1275,6 +1275,10 @@
 		}
 		public function showMinimap():void
 		{
+			if (this.miniMap.hasMapRender == true)
+			{
+				this.miniMap.visible = true;
+			}
 			displayMinimap = true;
 			showHeader("LOCATION MAP");
 		}

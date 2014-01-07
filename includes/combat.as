@@ -587,10 +587,6 @@ function enemyAI(aggressor:Creature):void
 function victoryRouting():void 
 {
 	hideNPCStats();
-	if (currentLocation != "")
-	{
-		showMinimap();
-	}
 	if(foes[0].short == "Celise") {
 		defeatCelise();
 	}
@@ -615,7 +611,6 @@ function victoryRouting():void
 function defeatRouting():void 
 {
 	hideNPCStats();
-	showMinimap();
 	if(foes[0].short == "BONERS") {}
 	else if(foes[0].short == "two zil") {
 		loseToZilPair();
