@@ -26,7 +26,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private var _backgroundElement:Sprite;
 		
-		private var _missingIcon:DisplayObject;
+		private var _iconElement:DisplayObject;
 		private var _iconContainer:Sprite;
 		
 		private var _headerUnderline:Sprite;
@@ -39,7 +39,7 @@ package classes.UIComponents.StatusEffectComponents
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
 			this._maxSizeY = maxSizeY;
-			this._missingIcon = new missingIconRef();
+			this._iconElement = new missingIconRef();
 			
 			_iconElementSizeX = 40;
 			_iconElementSizeY = _iconElementSizeX;
@@ -83,33 +83,33 @@ package classes.UIComponents.StatusEffectComponents
 			this.addChild(_iconContainer);
 			
 			// Add a "placeholder" icon to the container
-			_iconContainer.addChild(_missingIcon);
+			_iconContainer.addChild(_iconElement);
 			
 			// Resize the icon to fit in the container element
-			if (_missingIcon.width != (_iconContainer.width - 6) || _missingIcon.height != (_iconContainer.height - 6))
+			if (_iconElement.width != (_iconContainer.width - 6) || _iconElement.height != (_iconContainer.height - 6))
 			{
 				// In theory, this should work off displayObject.scaleX/scaleY, but i've never had it work reliably...
 				var ratio:Number;
-				if (_missingIcon.width > _missingIcon.height)
+				if (_iconElement.width > _iconElement.height)
 				{
-					ratio = _missingIcon.height / _missingIcon.width;
-					_missingIcon.width = _iconContainer.width - 6;
-					_missingIcon.height = Math.floor((_iconContainer.height - 6) * ratio);
+					ratio = _iconElement.height / _iconElement.width;
+					_iconElement.width = _iconContainer.width - 6;
+					_iconElement.height = Math.floor((_iconContainer.height - 6) * ratio);
 				}
 				else
 				{
-					ratio = _missingIcon.width / _missingIcon.height;
-					_missingIcon.height = _iconContainer.height - 6;
-					_missingIcon.width = Math.floor((_iconContainer.width - 6) * ratio);
+					ratio = _iconElement.width / _iconElement.height;
+					_iconElement.height = _iconContainer.height - 6;
+					_iconElement.width = Math.floor((_iconContainer.width - 6) * ratio);
 				}
 			}
 			
 			// Position the icon in the container element
-			_missingIcon.x = Math.floor((_iconContainer.width - _missingIcon.width) / 2);
-			_missingIcon.y = Math.floor((_iconContainer.height - _missingIcon.height) / 2);
+			_iconElement.x = Math.floor((_iconContainer.width - _iconElement.width) / 2);
+			_iconElement.y = Math.floor((_iconContainer.height - _iconElement.height) / 2);
 			var whtT:ColorTransform = new ColorTransform();
 			whtT.color = 0xFFFFFF;
-			_missingIcon.transform.colorTransform = whtT;
+			_iconElement.transform.colorTransform = whtT;
 		}
 		
 		private function BuildTitleBlock():void
@@ -179,10 +179,46 @@ package classes.UIComponents.StatusEffectComponents
 			this._backgroundElement.scaleY = scaleYValue;
 		}
 		
+		private function CreateIcon(icon:Class):void
+		{
+			_iconContainer.removeChild(_iconElement);
+			_iconElement = new icon();
+			
+			// Add a "placeholder" icon to the container
+			_iconContainer.addChild(_iconElement);
+			
+			// Resize the icon to fit in the container element
+			if (_iconElement.width != (_iconContainer.width - 6) || _iconElement.height != (_iconContainer.height - 6))
+			{
+				// In theory, this should work off displayObject.scaleX/scaleY, but i've never had it work reliably...
+				var ratio:Number;
+				if (_iconElement.width > _iconElement.height)
+				{
+					ratio = _iconElement.height / _iconElement.width;
+					_iconElement.width = _iconContainer.width - 6;
+					_iconElement.height = Math.floor((_iconContainer.height - 6) * ratio);
+				}
+				else
+				{
+					ratio = _iconElement.width / _iconElement.height;
+					_iconElement.height = _iconContainer.height - 6;
+					_iconElement.width = Math.floor((_iconContainer.width - 6) * ratio);
+				}
+			}
+			
+			// Position the icon in the container element
+			_iconElement.x = Math.floor((_iconContainer.width - _iconElement.width) / 2);
+			_iconElement.y = Math.floor((_iconContainer.height - _iconElement.height) / 2);
+			var whtT:ColorTransform = new ColorTransform();
+			whtT.color = 0xFFFFFF;
+			_iconElement.transform.colorTransform = whtT;
+		}
+		
 		public function SetData(statusName:String, tooltipText:String, icon:Class):void
 		{
 			this._headerText.text = statusName;
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
+			if (!(_iconElement is icon)) CreateIcon(icon);
 			this.Resize();
 		}
 		

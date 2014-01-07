@@ -1,4 +1,4 @@
-package classes.UIComponents.StatusEffectComponents 
+﻿package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -9,6 +9,7 @@ package classes.UIComponents.StatusEffectComponents
 	import flash.geom.Point;
 	import flash.utils.getDefinitionByName;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.Resources.EmbeddedAssets;
 	
 	/**
 	 * ...
@@ -74,12 +75,6 @@ package classes.UIComponents.StatusEffectComponents
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
 		
-		[Embed(source = "../../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
-		private var Icon_Missing:Class;
-		
-		[Embed(source = "../../../assets/icons/statuseffects/radiosignal.svg", mimeType = "image/svg")]
-		private var Icon_RadioSignal:Class;
-		
 		public function StatusEffectsDisplay() 
 		{
 			_benefitTransform = new ColorTransform();
@@ -121,7 +116,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private function BuildTooltipElement():void
 		{
-			_tooltipElement = new StatusTooltipElement(350, 150, 250, Icon_Missing);
+			_tooltipElement = new StatusTooltipElement(350, 150, 250, EmbeddedAssets.Icon_Missing);
 			_tooltipElement.x = 5000;
 			this.stage.addChild(_tooltipElement);
 			this.stage.removeChild(_tooltipElement);
@@ -135,13 +130,13 @@ package classes.UIComponents.StatusEffectComponents
 		{
 			var iconT:Class;
 
-			if (this[iconClass] !== undefined)
+			if (EmbeddedAssets[iconClass] !== undefined)
 			{
-				iconT = this[iconClass];
+				iconT = EmbeddedAssets[iconClass];
 			}
 			else
 			{
-				iconT = Icon_Missing;
+				iconT = EmbeddedAssets.Icon_Missing;
 			}
 			
 			return new StatusEffectElement(35, 35, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);
