@@ -1154,7 +1154,7 @@ function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		if(debug) {
-			elderVenusPitcherEncounter();
+			maleZilEncounter();
 			return true;
 		}
 		

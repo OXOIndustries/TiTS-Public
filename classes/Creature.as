@@ -1011,6 +1011,9 @@
 			}
 			return false;
 		}
+		public function clearSkinFlags():void {
+			skinFlags = new Array();
+		}
 		public function hasFaceFlag(arg):Boolean {
 			var temp:int = 0;
 			while(temp < faceFlags.length) {
@@ -1018,6 +1021,9 @@
 				temp++;
 			}
 			return false;
+		}
+		public function clearFaceFlags():void {
+			faceFlags = new Array();
 		}
 		public function hasTailFlag(arg):Boolean {
 			for(var temp:int = 0; temp < tailFlags.length; temp++) {
@@ -1036,6 +1042,12 @@
 				if(legFlags[temp] == arg) return true;
 			}
 			return false;
+		}
+		public function addLegFlag(arg):void {
+			if(!hasLegFlag(arg)) legFlags[legFlags.length] = arg;
+		}
+		public function clearLegFlags():void {
+			legFlags = new Array();
 		}
 		public function hasLeg():Boolean {
 			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
@@ -1256,6 +1268,7 @@
 		}
 		public function skinNoun(skin:Boolean = false):String {
 			var output:String = "";
+			var temp:int = 0;
 			//Set skin words.
 			if(skinType == 0 || skin) {
 				temp = this.rand(10);
@@ -5091,12 +5104,12 @@
 		public function lowerGarment():String {
 			if(lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if(armor.shortName != "") return armor.longName;
-			else "nothing";
+			else return "nothing";
 		}
 		public function upperGarment():String {
 			if(upperUndergarment.shortName != "") return upperUndergarment.longName;
 			else if(armor.shortName != "") return armor.longName;
-			else "nothing";
+			else return "nothing";
 		}
 		//Basic multiple cock description.
 		public function cocksDescript():String {

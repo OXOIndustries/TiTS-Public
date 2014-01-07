@@ -26,7 +26,7 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 */
 
 //1: TEXT FUNCTIONS
-function output(words:String, markdown = false):void {
+public function output(words:String, markdown = false):void {
 	this.userInterface.outputBuffer += doParse(words, markdown);
 	
 	// Don't ask. Just accept it. Let the bullshit flow through you. Be one with the bullshit.
@@ -36,7 +36,7 @@ function output(words:String, markdown = false):void {
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
-function clearOutput():void {
+public function clearOutput():void {
 	this.userInterface.pushToBuffer();
 	this.userInterface.mainTextField.visible = true;
 	this.userInterface.mainTextField2.visible = false;
@@ -63,7 +63,7 @@ public function output2(words:String):void {
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
 }
 
-function num2Text(number:Number):String {
+public function num2Text(number:Number):String {
 	var returnVar:String = null;
 	var numWords = new Array("zero","one","two","three","four","five","six","seven","eight","nine","ten");
 	if (number > 10 || int(number) != number) {
@@ -74,7 +74,7 @@ function num2Text(number:Number):String {
 	}
 	return(returnVar);
 }
-function num2Text2(number:int):String {
+public function num2Text2(number:int):String {
 	var returnVar:String = null;
 	var numWords = new Array("zero","first","second","third","fourth","fifth","sixth","seventh","eighth","ninth","tenth");
 	if (number > 10) {

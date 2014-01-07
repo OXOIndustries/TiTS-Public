@@ -211,7 +211,7 @@ function statusTick():void {
 	}
 }
 
-function processTime(arg:int):void {
+public function processTime(arg:int):void {
 	var x:int = 0;
 	var tightnessChanged:Boolean = false;
 	if(this.chars["PC"].ballFullness < 100) this.chars["PC"].cumProduced(arg);
