@@ -33,6 +33,14 @@
 		public function setMax(arg:Number):void {
 			max = arg;
 		}
+		public function resetBar():void {
+			min = 0;
+			max = 100;
+			current = 0;
+			goal = 0;
+			rate = 0;
+			glowFrames = 0;
+		}
 		public function setGoal(arg:Number):void {
 			goal = arg;
 			if(clearGlow) {

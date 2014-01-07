@@ -1241,7 +1241,14 @@
 			trace("Show PC Stats");
 			this._rightSideBar.showItems();
 		}
-		
+		public function resetPCStats():void
+		{
+			trace("Reset NPC Stats");
+			for each (var barItem in this.pcStatSidebarItems) 
+			{
+				barItem.resetBar();
+			}
+		}
 		public function showHeader(message:String):void
 		{
 			this.leftSideBar.topHeaderLabel.text = message;
@@ -1266,7 +1273,14 @@
 			// Show the label header deal
 			showHeader("ENCOUNTER STATUS");			
 		}
-		
+		public function resetNPCStats():void
+		{
+			trace("Reset NPC Stats");
+			for each (var barItem in this.npcStatSidebarItems) 
+			{
+				barItem.resetBar();
+			}
+		}
 		public function showMinimap():void
 		{
 			displayMinimap = true;

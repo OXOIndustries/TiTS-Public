@@ -12,8 +12,6 @@ if [ "$STAGE" = "setup" ]; then
 	else
 		(cd ../wiki && git pull)
 		(cd ../wiki && git reset --hard HEAD)
-		(cd ../wiki && rm CoC*.swf)
-		(cd ../wiki && rm CoC*.apk)
 
 	fi
 

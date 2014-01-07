@@ -139,6 +139,7 @@ function zilFlyingSpinKickSingle():void {
 	{
 		//Damage bonuses:
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
+		trace("HEEL KICK DAMAGE: " + damage);
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;

@@ -588,6 +588,8 @@
 				case "biggestBreastDescript":
 					buffer = biggestBreastDescript();
 					break;
+				case "breasts":
+					buffer = breastDescript(arg2);
 				case "sheathDescript":
 				case "sheath":
 					buffer = sheathDescript(arg2);
@@ -1009,6 +1011,9 @@
 			}
 			return false;
 		}
+		public function clearSkinFlags():void {
+			skinFlags = new Array();
+		}
 		public function hasFaceFlag(arg):Boolean {
 			var temp:int = 0;
 			while(temp < faceFlags.length) {
@@ -1016,6 +1021,9 @@
 				temp++;
 			}
 			return false;
+		}
+		public function clearFaceFlags():void {
+			faceFlags = new Array();
 		}
 		public function hasTailFlag(arg):Boolean {
 			for(var temp:int = 0; temp < tailFlags.length; temp++) {
@@ -1034,6 +1042,12 @@
 				if(legFlags[temp] == arg) return true;
 			}
 			return false;
+		}
+		public function addLegFlag(arg):void {
+			if(!hasLegFlag(arg)) legFlags[legFlags.length] = arg;
+		}
+		public function clearLegFlags():void {
+			legFlags = new Array();
 		}
 		public function hasLeg():Boolean {
 			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
@@ -1248,6 +1262,13 @@
 			}
 			//Setup for words
 			if(output != "") output += " ";
+			//Set skin words.
+			output += skinNoun(skin);
+			return output;
+		}
+		public function skinNoun(skin:Boolean = false):String {
+			var output:String = "";
+			var temp:int = 0;
 			//Set skin words.
 			if(skinType == 0 || skin) {
 				temp = this.rand(10);
@@ -2271,6 +2292,10 @@
 				total += breastRows[counter].breasts;
 			}
 			return total;
+		}
+		public function bRating(arg:int):Number {
+			if(arg >= bRows()) return 0;
+			else return breastRows[arg].breastRating;
 		}
 		public function totalNipples():Number {
 			var counter:Number = breastRows.length;
@@ -3301,22 +3326,31 @@
 			{
 				cocks[slot].knotMultiplier = 1.25;
 				
-				cocks[0].addFlag(GLOBAL.TAPERED);
-				cocks[0].addFlag(GLOBAL.KNOTTED);
+				cocks[slot].addFlag(GLOBAL.TAPERED);
+				cocks[slot].addFlag(GLOBAL.KNOTTED);
 			}
 			if(type == GLOBAL.EQUINE) 
 			{
 				cocks[slot].knotMultiplier = 1;
-				cocks[0].addFlag(GLOBAL.BLUNT);
-				cocks[0].addFlag(GLOBAL.FLARED);
-			}			
+				cocks[slot].addFlag(GLOBAL.BLUNT);
+				cocks[slot].addFlag(GLOBAL.FLARED);
+			}
+			if(type == GLOBAL.BEE)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].addFlag(GLOBAL.SMOOTH);
+				cocks[slot].addFlag(GLOBAL.FORESKINNED);
+			}
 		}
 		//PC can fly?
 		public function canFly():Boolean {
 			//web also makes false!
 			if(hasStatusEffect("Web") >= 0) return false;
-			if(9999 == 9999) return true;
+			if(wingType == GLOBAL.BEE) return true;
 			return false;
+		}
+		public function hasWings():Boolean {
+			return (wingType > 0);
 		}
 		//check for vagoo
 		public function hasVagina(hole:int = 0):Boolean {
@@ -4315,6 +4349,12 @@
 			if(plural) description = pluralize(description);
 			return description;
 		}
+		public function tails():String {
+			return pluralize(tail());
+		}
+		public function tail():String {
+			return "tail";
+		}
 		public function hairDescript(forceLength:Boolean = false, forceColor:Boolean = false):String {
 			var descript:String = "";
 			var descripted:Number = 0;
@@ -4736,6 +4776,31 @@
 					else vag += "cunt";
 				}
 			}
+			if(type == GLOBAL.BEE) {
+				if(!simple) {
+					temp = this.rand(16);
+					if(temp <= 1) vag += "black-lipped gash";
+					else if(temp <= 3) vag+="alien vagina";
+					else if(temp <= 5) vag += "yellow-lined cunt";
+					else if(temp <= 7) vag += "honey-colored honeypot";
+					else if(temp <= 9) vag += "dusky pussy";
+					else if(temp <= 11) vag += "exotic slit";
+					else if(temp <= 13) vag += "black-lipped pussy";
+					else vag += "gold-gilt snatch";
+				}
+				else {
+					temp = this.rand(18);
+					if(temp <= 1) vag+="zil-pussy";
+					else if(temp <= 3) vag+="honey-cunt";
+					else if(temp <= 5) vag+="honey-box";
+					else if(temp <= 7) vag += "zil-twat";
+					else if(temp <= 9) vag += "pussy";
+					else if(temp <= 11) vag += "xeno-snatch";
+					else if(temp <= 13) vag += "pussy";
+					else if(temp <= 15) vag += "zil-cunt";
+					else vag += "twat";
+				}
+			}
 			else {
 				if(!simple) {
 					temp = this.rand(5);
@@ -4755,6 +4820,7 @@
 				else if(temp <= 14) vag += "honeypot";
 				else if(temp <= 15) vag += "snatch";
 			}
+
 			return vag;
 		}
 		//Vaginas + Descript
@@ -5043,6 +5109,16 @@
 			if(lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
 			if(isNude()) addToList("gear");
 			return formatList();
+		}
+		public function lowerGarment():String {
+			if(lowerUndergarment.shortName != "") return lowerUndergarment.longName;
+			else if(armor.shortName != "") return armor.longName;
+			else return "nothing";
+		}
+		public function upperGarment():String {
+			if(upperUndergarment.shortName != "") return upperUndergarment.longName;
+			else if(armor.shortName != "") return armor.longName;
+			else return "nothing";
 		}
 		//Basic multiple cock description.
 		public function cocksDescript():String {

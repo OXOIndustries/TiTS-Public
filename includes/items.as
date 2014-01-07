@@ -14,7 +14,15 @@ function useItem(item:ItemSlotClass):void {
 			equipItem(item);
 		//Else try to use a stored function!
 		else {
-			if(item.useFunction != undefined) item.useFunction();
+			//If has a special global function set
+			if(item.useFunction != undefined) {
+				//if item use returns false, set up a menu.
+				if(!item.useFunction(chars["PC"])) {
+					userInterface.clearMenu();
+					userInterface.addButton(0,"Next",useItemFunction);
+				}
+			}
+			//else: Error checking
 			else {
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");

@@ -59,7 +59,7 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
-	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
+	rooms["MERCHANT'S THOROUGHFARE"].outExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
 
 	//"LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
@@ -68,9 +68,10 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
-	rooms["LIFT: MERCHANT DECK"].outExit = "MERCHANT'S THOROUGHFARE";
+	rooms["LIFT: MERCHANT DECK"].inExit = "MERCHANT'S THOROUGHFARE";
+	rooms["LIFT: MERCHANT DECK"].outExit = "TAVROS LIFT";
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
-	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
+	// rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
 	//"TAVROS HANGAR". The Hangar
 	rooms["TAVROS HANGAR"] = new RoomClass(this);
@@ -89,9 +90,12 @@ function initializeRooms():void
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].outExit = "TAVROS HANGAR";
+	rooms["TAVROS LIFT"].inExit = "LIFT: MERCHANT DECK";
+	rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
-	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
+	// rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
 
+	/*
 	function hangarBonus():Boolean 
 	{
 		trace("this", this);
@@ -105,6 +109,8 @@ function initializeRooms():void
 		}
 		return false;
 	}
+	*/
+
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);
 	rooms["SHIP HANGAR"].roomName = "SHIP\nHANGAR";
@@ -1122,12 +1128,12 @@ function initializeRooms():void
 	rooms["DEBUG2"].eastExit = "WEST ESBETH 2";
 	rooms["DEBUG2"].addFlag(GLOBAL.INDOOR);
 	
-	rooms["DEBUG3"] = new RoomClass(this);
-	rooms["DEBUG3"].roomName = "BLACK HOLE OF DEBUG";
-	rooms["DEBUG3"].description = "";
-	rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
-	rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
-	rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);*/
+	//rooms["DEBUG3"] = new RoomClass(this);
+	//rooms["DEBUG3"].roomName = "BLACK HOLE OF DEBUG";
+	//rooms["DEBUG3"].description = "";
+	//rooms["DEBUG3"].planet = "PLANET: MHEN'GA";
+	//rooms["DEBUG3"].system = "SYSTEM: ARA ARA";
+	//rooms["DEBUG3"].addFlag(GLOBAL.INDOOR);
 }
 
 function debugMenus():void
@@ -1193,7 +1199,7 @@ function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		if(debug) {
-			elderVenusPitcherEncounter();
+			maleZilEncounter();
 			return true;
 		}
 		

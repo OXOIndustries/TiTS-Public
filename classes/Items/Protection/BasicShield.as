@@ -2,9 +2,14 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import flash.net.registerClassAlias;
 	
 	public class BasicShield extends ItemSlotClass
 	{
+		// This is a static initializer, it's run *ONCE* per class definition, the first time it is referenced ANYWHERE in the code
+		{
+			registerClassAlias("BasicShield", BasicShield);
+		}
 		//constructor
 		public function BasicShield()
 		{
@@ -33,6 +38,9 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances[GLOBAL.KINETIC] = .45;
+			this.bonusResistances[GLOBAL.SLASHING] = .35;
+			this.bonusResistances[GLOBAL.PIERCING] = .25;
 		}
 	}
 }

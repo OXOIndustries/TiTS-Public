@@ -2,13 +2,14 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.*
 	
 	public class ZilMale extends Creature
 	{
 		//constructor
 		public function ZilMale(dataObject:Object = null)
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 1.1;
 			this._neverSerialize = true;
 			
 			// Originally a clone of the zilpack
@@ -25,8 +26,8 @@
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fists";
 			this.armor.longName = "chitinous plating";
-			this.armor.defense = 2;
-			this.physiqueRaw = 2;
+			this.armor.defense = 1;
+			this.physiqueRaw = 4;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
 			this.intelligenceRaw = 1;
@@ -41,6 +42,7 @@
 			this.credits = 0;
 			this.HPMod = 0;
 			this.HPRaw = this.HPMax();
+			
 			
 			
 			this.femininity = 35;
@@ -148,6 +150,8 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15
+			
+			this.inventory[0] = new classes.Items.Miscellaneous.ZilRation();
 			
 			if (dataObject != null)
 			{

@@ -38,7 +38,8 @@
 		public static const TAILCOCK:int                               = 27;
 		public static const STINGER_BASED:int                          = 28;
 		public static const STINGER_TIPPED:int                         = 29;
-		public static const NUBBY:int                                  = 30;
+		public static const NUBBY:int  		                           = 30;
+		public static const FORESKINNED:int	    					   = 31;
 		//TYPES
 		public static const HUMAN:int                                  = 0;
 		public static const EQUINE:int                                 = 1;
