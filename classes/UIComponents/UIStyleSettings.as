@@ -74,6 +74,20 @@ package classes.UIComponents
 			}
 			return UIStyleSettings._gStatBlockHeaderFormatter;
 		}
+		
+		private static var _gTooltipHeaderFormatter:TextFormat = undefined;
+		public static function get gTooltipHeaderFormatter():TextFormat 
+		{
+			if (UIStyleSettings._gTooltipHeaderFormatter == undefined)
+			{
+				UIStyleSettings._gTooltipHeaderFormatter = new TextFormat();
+				UIStyleSettings._gTooltipHeaderFormatter.size = 18;
+				UIStyleSettings._gTooltipHeaderFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gTooltipHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gTooltipHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+			}
+			return UIStyleSettings._gTooltipHeaderFormatter;
+		}
 	}
 
 }

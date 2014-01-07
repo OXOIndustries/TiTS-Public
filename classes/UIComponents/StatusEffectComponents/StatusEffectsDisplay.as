@@ -118,7 +118,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private function BuildTooltipElement():void
 		{
-			_tooltipElement = new StatusTooltipElement(275, 150, 250, Icon_Missing);
+			_tooltipElement = new StatusTooltipElement(350, 150, 250, Icon_Missing);
 			_tooltipElement.x = 5000;
 			this.stage.addChild(_tooltipElement);
 			this.stage.removeChild(_tooltipElement);
@@ -128,7 +128,7 @@ package classes.UIComponents.StatusEffectComponents
 		 * Create a new child and push it into the storage array
 		 * @param	iconClass
 		 */
-		private function BuildNewChild(effectName:String, iconClass:String):StatusEffectElement
+		private function BuildNewChild(effectName:String, iconClass:String, tooltipText:String, durationRemaining:int):StatusEffectElement
 		{
 			var iconT:Class;
 
@@ -142,7 +142,7 @@ package classes.UIComponents.StatusEffectComponents
 				iconT = Icon_Missing;
 			}
 			
-			return new StatusEffectElement(35, 35, effectName, new iconT(), this.mouseHandlerFunc);
+			return new StatusEffectElement(35, 35, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);
 		}
 
 		private function mouseHandlerFunc(activeObj:StatusEffectElement):void
@@ -164,23 +164,14 @@ package classes.UIComponents.StatusEffectComponents
 			else
 			{
 				this._lastActiveElement = activeObj;
-				this._lastActiveElement.toggleSelect();
-				this.DisplayTooltip();
+				activeObj.toggleSelect();
+				this.DisplayTooltip(activeObj);
 			}
 		}
 		
-		private function DisplayTooltip(statusName:String = "Test Tooltip"):void
-		{
-			var ttText:String;
-			var ttIconRef:DisplayObject;
-			
-			if (statusName == "Test Tooltip")
-			{
-				ttText = "This is some testing tooltip text hardcoded into the StatusEffectDisplay class. You should never see this. Welp.";
-				ttIconRef = new Icon_Missing();
-			}
-			
-			_tooltipElement.SetData(statusName, ttText, ttIconRef);
+		private function DisplayTooltip(activeObj:StatusEffectElement):void
+		{		
+			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
 			_tooltipElement.x = tPt.x - (_tooltipElement.width + 45);
@@ -292,7 +283,7 @@ package classes.UIComponents.StatusEffectComponents
 					// No match? new effect
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName.toLowerCase(), statusEffects[seElem].iconName));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
 					}
 				}
 			}

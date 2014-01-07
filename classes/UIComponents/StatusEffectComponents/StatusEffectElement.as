@@ -16,6 +16,11 @@ package classes.UIComponents.StatusEffectComponents
 		private var _sizeX;
 		private var _sizeY;
 		
+		private var _displayName:String;
+		private var _tooltipText:String;
+		private var _durationRemaining:int;
+		
+		private var _iconT:Class;
 		private var _icon:DisplayObject;
 		
 		private var _selectionRing:Sprite;
@@ -25,16 +30,24 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private var _parentMouseHandler:Function;
 		
-		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, icon:DisplayObject, parentMouseHandler:Function) 
+		public function get iconType():Class { return _iconT; }
+		public function get effectName():String { return _displayName; }
+		public function get tooltipText():String { return _tooltipText; }
+		public function get displayName():String { return _displayName; }
+		public function get durationRemaining():int { return _durationRemaining; }
+		
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, iconT:Class, tooltipText:String, duration:int, parentMouseHandler:Function) 
 		{
 			trace("Creating icon for " + effectName);
 			
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
-			this._icon = icon;
-			this.name = effectName;
+			this._iconT = iconT;
+			this._tooltipText = tooltipText;
+			this.name = effectName.toLowerCase();
+			this._displayName = effectName;
+			this._durationRemaining = duration;
 			this._parentMouseHandler = parentMouseHandler;
-			
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
@@ -72,6 +85,7 @@ package classes.UIComponents.StatusEffectComponents
 			this.addChild(_statusIcon);
 			
 			// Add the "child" icon
+			this._icon = new _iconT();
 			this.addChild(_icon);
 			
 			if (_icon.width > 30 || _icon.height > 30)
