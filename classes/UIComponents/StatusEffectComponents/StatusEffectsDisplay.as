@@ -135,7 +135,7 @@ package classes.UIComponents.StatusEffectComponents
 		{
 			var iconT:Class;
 
-			if (this.hasOwnProperty[iconClass])
+			if (this[iconClass] !== undefined)
 			{
 				iconT = this[iconClass];
 			}
