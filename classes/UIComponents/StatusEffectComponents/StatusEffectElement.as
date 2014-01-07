@@ -23,14 +23,18 @@ package classes.UIComponents.StatusEffectComponents
 		private var _selectionMask:Sprite;
 		private var _iconElement:Sprite;
 		
-		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, icon:DisplayObject) 
+		private var _parentMouseHandler:Function;
+		
+		public function StatusEffectElement(sizeX:int, sizeY:int, effectName:String, icon:DisplayObject, parentMouseHandler:Function) 
 		{
-			_sizeX = sizeX;
-			_sizeY = sizeY;
-			_icon = icon;
-			this.name = effectName;
+			trace("Creating icon for " + effectName);
 			
-			trace("Creating icon for " + this.name);
+			this._sizeX = sizeX;
+			this._sizeY = sizeY;
+			this._icon = icon;
+			this.name = effectName;
+			this._parentMouseHandler = parentMouseHandler;
+			
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 			this.addEventListener(MouseEvent.CLICK, clickHandler);
@@ -44,7 +48,7 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private function clickHandler(e:MouseEvent):void
 		{
-			this.toggleSelect();
+			this._parentMouseHandler(this);
 		}
 		
 		private function Build():void

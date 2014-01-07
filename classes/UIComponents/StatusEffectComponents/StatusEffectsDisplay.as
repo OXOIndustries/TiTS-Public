@@ -6,6 +6,7 @@ package classes.UIComponents.StatusEffectComponents
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.ColorTransform;
+	import flash.geom.Point;
 	import flash.utils.getDefinitionByName;
 	import classes.UIComponents.UIStyleSettings;
 	
@@ -66,6 +67,9 @@ package classes.UIComponents.StatusEffectComponents
 		private var _childElements:Vector.<StatusEffectElement>;
 		private var _workElems:Vector.<StatusEffectElement>
 		
+		private var _lastActiveElement:StatusEffectElement;
+		private var _tooltipElement:StatusTooltipElement;
+		
 		private var _benefitTransform:ColorTransform;
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
@@ -84,6 +88,8 @@ package classes.UIComponents.StatusEffectComponents
 			_debugTransform = new ColorTransform();
 			_penaltyTransform.color = UIStyleSettings.gTheColourOfDebug;
 			
+			_lastActiveElement = null;
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -95,6 +101,7 @@ package classes.UIComponents.StatusEffectComponents
 			if (this.targetWidth == 0) this.targetWidth = this.parent.width - this.targetX;
 			
 			this.BuildContainer();
+			this.BuildTooltipElement();
 			
 			trace("StatusEffect Display Constructed!");
 		}
@@ -107,6 +114,14 @@ package classes.UIComponents.StatusEffectComponents
 			
 			_childElements = new Vector.<StatusEffectElement>();
 			_workElems = new Vector.<StatusEffectElement>();
+		}
+		
+		private function BuildTooltipElement():void
+		{
+			_tooltipElement = new StatusTooltipElement(275, 150, 250, Icon_Missing);
+			_tooltipElement.x = 5000;
+			this.stage.addChild(_tooltipElement);
+			this.stage.removeChild(_tooltipElement);
 		}
 		
 		/**
@@ -127,9 +142,57 @@ package classes.UIComponents.StatusEffectComponents
 				iconT = Icon_Missing;
 			}
 			
-			return new StatusEffectElement(35, 35, effectName, new iconT());
+			return new StatusEffectElement(35, 35, effectName, new iconT(), this.mouseHandlerFunc);
 		}
 
+		private function mouseHandlerFunc(activeObj:StatusEffectElement):void
+		{
+			// If a previous element has been selected, unselect it
+			if (this._lastActiveElement != null && this._lastActiveElement !== activeObj)
+			{
+				this._lastActiveElement.toggleSelect();
+			}
+			
+			// If the selected object is the same one that is currently active, unselect it
+			if (this._lastActiveElement === activeObj)
+			{
+				this._lastActiveElement.toggleSelect();
+				this.HideTooltip();
+				this._lastActiveElement = null;
+			}
+			// Otherwise, set the new object as active and display the tooltip
+			else
+			{
+				this._lastActiveElement = activeObj;
+				this._lastActiveElement.toggleSelect();
+				this.DisplayTooltip();
+			}
+		}
+		
+		private function DisplayTooltip(statusName:String = "Test Tooltip"):void
+		{
+			var ttText:String;
+			var ttIconRef:DisplayObject;
+			
+			if (statusName == "Test Tooltip")
+			{
+				ttText = "This is some testing tooltip text hardcoded into the StatusEffectDisplay class. You should never see this. Welp.";
+				ttIconRef = new Icon_Missing();
+			}
+			
+			_tooltipElement.SetData(statusName, ttText, ttIconRef);
+			
+			var tPt:Point = this.localToGlobal(new Point(0, 0));
+			_tooltipElement.x = tPt.x - (_tooltipElement.width + 45);
+			_tooltipElement.y = tPt.y - (_tooltipElement.height - 35);
+			this.stage.addChild(_tooltipElement);
+		}
+		
+		private function HideTooltip():void
+		{
+			this.stage.removeChild(_tooltipElement);
+		}
+			
 		/**
 		 * Apply the sort methods to the storage array; the statusEffects array in Creatures is... I think
 		 * kept alphabetically, but given the splicing and expiring that is going to happen here, using that
