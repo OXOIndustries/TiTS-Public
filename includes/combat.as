@@ -114,7 +114,7 @@ function celiseMenu():void
 	else if(pc.statusEffectv1("Round") == 2) 
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 	else 
-		this.userInterface.addButton(5,"Tease",tease);
+		this.userInterface.addButton(5,"Tease",attackRouter,tease);
 }
 
 function processCombat():void 
