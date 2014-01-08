@@ -49,8 +49,8 @@ package classes.UIComponents
 		public function get reflexesBar():StatBarSmall { return _coreStatBlock.reflexesBar; }
 		public function get aimBar():StatBarSmall { return _coreStatBlock.aimBar; }
 		public function get intelligenceBar():StatBarSmall { return _coreStatBlock.intelligenceBar; }
-		public function get willpowerBar():StatBarSmall { return _coreStatBlock.willpowerPower; }
-		public function get libidoBar():StatBarSmall { return _coreStatBlock.willpowerPower; }
+		public function get willpowerBar():StatBarSmall { return _coreStatBlock.willpowerBar; }
+		public function get libidoBar():StatBarSmall { return _coreStatBlock.libidoBar; }
 		
 		public function get levelBar():StatBarSmall { return _advancementBlock.levelBar; }
 		public function get xpBar():StatBarSmall { return _advancementBlock.xpBar; }

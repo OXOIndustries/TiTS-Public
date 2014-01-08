@@ -30,8 +30,8 @@ package classes.UIComponents.SideBarComponents
 		public function get reflexesBar():StatBarSmall { return _reflexesBar; }
 		public function get aimBar():StatBarSmall { return _aimBar; }
 		public function get intelligenceBar():StatBarSmall { return _intelligenceBar; }
-		public function get willpowerPower():StatBarSmall { return _willpowerBar; }
-		public function get libidoBar():StatBarSmall { return _libidoBarBar; }
+		public function get willpowerBar():StatBarSmall { return _willpowerBar; }
+		public function get libidoBar():StatBarSmall { return _libidoBar; }
 		
 		public function CoreStatsBlock() 
 		{
