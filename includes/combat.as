@@ -659,6 +659,9 @@ function getCombatPrizes(newScreen:Boolean = false):void
 {
 	if(newScreen) clearOutput();
 	
+	// Renamed from lootList so I can distinguish old vs new uses
+	var foundLootItems:Array = new Array();
+
 	//Add credits and XP
 	var XPBuffer:int = 0;
 	var creditBuffer:int = 0;
@@ -676,10 +679,10 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		{
 			
 			if(foes[x].inventory[y].quantity != 0) {
-				lootList[lootList.length] = clone(foes[x].inventory[y]);
+				foundLootItems[foundLootItems.length] = clone(foes[x].inventory[y]);
 				if(foes[x].inventory[y].useFunction != undefined) {
 					trace("NOT UNDEFINED! X: " + x + " Y: " + y);
-					if(lootList[lootList.length-1].useFunction == undefined) trace("SAME LOOT LIST: UNDEFINED");
+					if(foundLootItems[foundLootItems.length-1].useFunction == undefined) trace("SAME LOOT LIST: UNDEFINED");
 					else trace("SAME LOOT LIST: CONDITION GREEN");
 				}
 				else trace("UNDEFINED FUNC: " + foes[x].inventory[y].longName);
@@ -706,18 +709,18 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	this.userInterface.clearMenu();
 	//Fill wallet and GTFO
-	if(lootList.length > 0) {
+	if(foundLootItems.length > 0) {
 		output(" You also find ");
 		clearList();
-		for(x = 0; x < lootList.length; x++) {
-			addToList(lootList[x].description + " (x" + lootList[x].quantity + ")");
+		for(x = 0; x < foundLootItems.length; x++) {
+			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")");
 		}
 		output(formatList());
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
 		useItemFunction = mainGameMenu;
 		//Start loot
-		itemCollect();
+		itemCollect(foundLootItems);
 	}
 	//Just leave if no items.
 	else {

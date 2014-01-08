@@ -92,13 +92,16 @@ function buyItemGo(arg:ItemSlotClass):void {
 	clearOutput();
 	var price:Number = getBuyPrice(shopkeep,arg.basePrice);
 	output("You purchase " + arg.description  + " for " + num2Text(price) + " credits.\n\n");
-	lootList[lootList.length] = clone(arg);
+	
+	// Renamed from lootList so I can distinguish old vs new uses
+	var purchasedItems:Array = new Array();
+	purchasedItems[purchasedItems.length] = clone(arg);
 	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
 	lootScreen = buyItem;
 	useItemFunction = buyItem;
-	itemCollect();
+	itemCollect(purchasedItems);
 }
 
 function sellItem():void {
@@ -200,75 +203,85 @@ function inventory():void {
 }
 
 
-// Uh, all the items are either 
-function unequip(arg:String, next:Boolean = true):void {
+function unequip(arg:String, next:Boolean = true):void 
+{
+	// Renamed from lootList so I can distinguish old vs new uses
+	var unequippedItems:Array = new Array();
+
 	if(arg == "bra") {
-		lootList[lootList.length] = clone(pc.upperUndergarment);
+		unequippedItems[unequippedItems.length] = clone(pc.upperUndergarment);
 		pc.upperUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "underwear") {
-		lootList[lootList.length] = clone(pc.lowerUndergarment);
+		unequippedItems[unequippedItems.length] = clone(pc.lowerUndergarment);
 		pc.lowerUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "shield") {
-		lootList[lootList.length] = clone(pc.shield);
+		unequippedItems[unequippedItems.length] = clone(pc.shield);
 		pc.shield = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "accessory") {
-		lootList[lootList.length] = clone(pc.accessory);
+		unequippedItems[unequippedItems.length] = clone(pc.accessory);
 		pc.accessory = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "armor") {
-		lootList[lootList.length] = clone(pc.armor);
+		unequippedItems[unequippedItems.length] = clone(pc.armor);
 		pc.armor = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "mWeapon") {
-		lootList[lootList.length] = clone(pc.meleeWeapon);
+		unequippedItems[unequippedItems.length] = clone(pc.meleeWeapon);
 		pc.meleeWeapon = new classes.Items.Melee.Rock();
 	}
 	else if(arg == "rWeapon") {
-		lootList[lootList.length] = clone(pc.rangedWeapon);
+		unequippedItems[unequippedItems.length] = clone(pc.rangedWeapon);
 		pc.rangedWeapon = new classes.Items.Melee.Rock();
 	}
 	clearOutput();
-	itemCollect();
+	itemCollect(unequippedItems);
 }
 
 function equipItem(arg:ItemSlotClass):void {
 	var holding:int = arg.quantity;
 	var targetItem:ItemSlotClass;
-	var holdingItem:ItemSlotClass;
+	var removedItem:ItemSlotClass;
 
 	clearOutput();
 	output("You equip your " + arg.longName + ".");
 	//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
 	arg.quantity = 1;
-	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) {
-		holdingItem = clone(pc.armor);
+	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
+	{
+		removedItem = clone(pc.armor);
 		pc.armor = clone(arg);
 	}
-	else if(arg.type == GLOBAL.MELEE_WEAPON) {
-		holdingItem = clone(pc.meleeWeapon);
+	else if(arg.type == GLOBAL.MELEE_WEAPON) 
+	{
+		removedItem = clone(pc.meleeWeapon);
 		pc.meleeWeapon = clone(arg);
 	}
-	else if(arg.type == GLOBAL.RANGED_WEAPON) {
-		holdingItem = clone(pc.rangedWeapon);
+	else if(arg.type == GLOBAL.RANGED_WEAPON) 
+	{
+		removedItem = clone(pc.rangedWeapon);
 		pc.rangedWeapon = clone(arg);
 	}
-	else if(arg.type == GLOBAL.SHIELD) {
-		holdingItem = clone(pc.shield);
+	else if(arg.type == GLOBAL.SHIELD) 
+	{
+		removedItem = clone(pc.shield);
 		pc.shield = clone(arg);
 	}
-	else if(arg.type == GLOBAL.ACCESSORY) {
-		holdingItem = clone(pc.accessory);
+	else if(arg.type == GLOBAL.ACCESSORY) 
+	{
+		removedItem = clone(pc.accessory);
 		pc.accessory = clone(arg);
 	}
-	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) {
-		holdingItem = clone(pc.lowerUndergarment);
+	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) 
+	{
+		removedItem = clone(pc.lowerUndergarment);
 		pc.lowerUndergarment = clone(arg);
 	}
-	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) {
-		holdingItem = clone(pc.upperUndergarment);
+	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) 
+	{
+		removedItem = clone(pc.upperUndergarment);
 		pc.upperUndergarment = clone(arg);
 	}
 	else output("  <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b>  ");
@@ -278,83 +291,89 @@ function equipItem(arg:ItemSlotClass):void {
 	if(arg.quantity == 0) arg.shortName = "";
 	
 	//If item to loot after!
-	if(holdingItem.shortName != "Rock" && holdingItem.shortName != "" && holdingItem.quantity > 0) {
+	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 
+	{
 		output(" ");
-		lootList[lootList.length] = holdingItem;
-		itemCollect();
+		// Renamed from lootList so I can distinguish old vs new uses
+		var unequippedItems:Array = new Array();
+		unequippedItems[unequippedItems.length] = removedItem;
+		itemCollect(unequippedItems);
 	}
-	else {
+	else 
+	{
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",itemScreen);
 	}
 }
 
-function itemCollect(clearScreen:Boolean = false):void {
+function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
+	trace("itemCollect", newLootList);
 	if(clearScreen) clearOutput();
 	var target = pc;
-	if(lootList.length == 0) {
+	if(newLootList.length == 0) {
 		output("There was an error looting an the item that was looted didn't actually exist.");
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",lootScreen);
 	}
-	output("You acquire " + lootList[0].description + " (x" + lootList[0].quantity + ")");
-	if(lootList.length > 0) {
+	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
+	if(newLootList.length > 0) {
 		//Have room? Slap it in there!
-		if(hasRoom(pc,lootList[0])) {
+		if(hasRoom(pc,newLootList[0])) {
 			//Combine with half stacks first
 			for(var x:int; x < target.inventorySlots(); x++) 
 			{
 				//Found a matching stack
-				if(target.inventory[x].shortName == lootList[0].shortName) 
+				if(target.inventory[x].shortName == newLootList[0].shortName) 
 				{
 					//That matching stack has room?
 					if(target.inventory[x].quantity < target.inventory[x].stackSize) 
 					{
 						//Add some shit
-						while(target.inventory[x].quantity < target.inventory[x].stackSize && lootList[0].quantity > 0)
+						while(target.inventory[x].quantity < target.inventory[x].stackSize && newLootList[0].quantity > 0)
 						{
 							target.inventory[x].quantity++;
-							lootList[0].quantity--;
+							newLootList[0].quantity--;
 						}
 					}
 				}
-				if(lootList[0].quantity <= 0) break;
+				if(newLootList[0].quantity <= 0) break;
 			}
 			//Still got more to dump? Find an empty stack
-			if(lootList[0].quantity > 0)
+			if(newLootList[0].quantity > 0)
 			{
 				for(var y:int; y < target.inventorySlots(); y++) 
 				{
 					//EMPTY SLOOOT - FILL IT.
 					if(target.inventory[y].shortName == "" || target.inventory[y].quantity == 0) 
 					{
-						target.inventory[y] = clone(lootList[0]);
+						target.inventory[y] = clone(newLootList[0]);
 						break;
 					}
 				}
 			}
 			output(". The new acquisition");
-			if(lootList[0].quantity > 1) output("s stow");
+			if(newLootList[0].quantity > 1) output("s stow");
 			else output(" stows");
 			output(" away quite easily.");
-			//Clear the item off the lootlist.
-			lootList.splice(0,1);
+			//Clear the item off the newLootList.
+			newLootList.splice(0,1);
 			this.userInterface.clearMenu();
-			if(lootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
+			if(newLootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
 			else this.userInterface.addButton(0,"Next",lootScreen);
 		}
 		//No room - replacement screen!
-		else {
+		else 
+		{
 			output(". There is not room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
 			this.userInterface.clearMenu();
-			this.userInterface.addButton(0,"Replace",replaceItem);
-			this.userInterface.addButton(1,"Discard",discardItem);
-			this.userInterface.addButton(2,"Use",useLoot);
+			this.userInterface.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+			this.userInterface.addButton(1,"Discard", discardItem,       newLootList);
+			this.userInterface.addButton(2,"Use",     useLoot,           newLootList);
 		}
 	}
 }
 
-function discardItem():void {
+function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").");
 	lootList.splice(0,1);
@@ -363,38 +382,46 @@ function discardItem():void {
 	else this.userInterface.addButton(0,"Next",lootScreen);
 }
 
-function replaceItem():void {
+function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("What will you replace?");
 	this.userInterface.clearMenu();
 	for(var x:int = 0; x < pc.inventorySlots(); x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
-			this.userInterface.addButton(x,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,replaceItemGo,x);
+		{
+			var butDesc:String = pc.inventory[x].shortName + "x" + pc.inventory[x].quantity
+			this.userInterface.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
+		}
 	}
 	this.userInterface.addButton(14,"Back",itemCollect,true);
 }
 
-function useLoot():void {
+function useLoot(lootList:Array):void {
 	var loot:ItemSlotClass = clone(lootList[0]);
 	lootList.splice(0,1);
 	useItem(loot);
 	
 }
-function abandonLoot():void {
+function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",lootScreen);
 }
 
-function replaceItemGo(arg:int):void {
+function replaceItemGo(args:Array):void 
+{
+	var indice:int = args[0];
+	var lootList:Array = args[1];
 	clearOutput();
-	output("You toss out " + pc.inventory[arg].longName + "(x" + pc.inventory[arg].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
-	pc.inventory[arg] = clone(lootList[0]);
+	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
+	pc.inventory[indice] = clone(lootList[0]);
 	lootList.splice(0,1);
 	this.userInterface.clearMenu();
-	if(lootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
-	else this.userInterface.addButton(0,"Next",lootScreen);
+	if(lootList.length > 0) 
+		this.userInterface.addButton(0,"Next",itemCollect);
+	else 
+		this.userInterface.addButton(0,"Next",lootScreen);
 }
 
 function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
