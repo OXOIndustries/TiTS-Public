@@ -80,6 +80,7 @@
 		public static const SMALLBEE:int                               = 36;
 		public static const SMALLDEMONIC:int                           = 37;
 		public static const SMALLDRACONIC:int                          = 38;
+		public static const NALEEN_FACE:int 						   = 39;
 
 		//SKINTYPES
 		public static const SKIN:int                                   = 0;

@@ -704,6 +704,9 @@
 				case "legs":
 					buffer = legs();
 					break;
+				case "leg(s)":
+					buffer = legOrLegs();
+					break;
 				case "feet":
 					buffer = feet();
 					break;
@@ -1054,6 +1057,9 @@
 			}
 			return false;
 		}
+		public function addFaceFlag(arg):void {
+			if(!hasFaceFlag(arg)) faceFlags[faceFlags.length] = arg;
+		}
 		public function clearFaceFlags():void {
 			faceFlags = new Array();
 		}
@@ -1378,6 +1384,10 @@
 				return "mounds of goo";
 			}
 			return leg(forceType,forceAdjective) + "s";
+		}
+		public function legOrLegs(forceType:Boolean = false, forceAdjective:Boolean = false):String {
+			if(legCount == 1) return leg(forceType,forceAdjective);
+			else return legs(forceType,forceAdjective);
 		}
 		public function tailDescript():String {
 			return "tail";
@@ -3373,6 +3383,12 @@
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FORESKINNED);
 			}
+			if(type == GLOBAL.NAGA)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].addFlag(GLOBAL.SMOOTH);
+				cocks[slot].addFlag(GLOBAL.TAPERED);	
+			}
 		}
 		//PC can fly?
 		public function canFly():Boolean {
@@ -4415,7 +4431,7 @@
 					if(this.rand(2) == 0) descript += "very long";
 					else descript += "long flowing locks";
 				}
-				else if(hairLength < 40) descript += "ass-length";
+				else if(hairLength < tallness/2) descript += "ass-length";
 				else if(hairLength < tallness) descript += "obscenely long";
 				else {
 					if(this.rand(2) == 0) descript += "floor-length";

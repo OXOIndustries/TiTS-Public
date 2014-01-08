@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
+	import classes.Items.Miscellaneous.*
 	
 	public class ZilFemale extends Creature
 	{
@@ -152,6 +153,8 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
+			
+			this.inventory[0] = new classes.Items.Miscellaneous.ZilRation();
 
 			if (dataObject != null)
 			{

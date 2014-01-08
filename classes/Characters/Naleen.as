@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.*
 	
 	public class Naleen extends Creature
 	{
@@ -155,6 +156,8 @@
 			this.ass.wetness = 0;
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
+			
+			this.inventory[0] = new classes.Items.Miscellaneous.NaleenNip();			
 			
 			if (dataObject != null)
 			{

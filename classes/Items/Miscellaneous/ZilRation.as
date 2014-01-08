@@ -74,12 +74,12 @@
 					target.slowStatGain("libido",1+rand(2));
 					changes++;
 				}
-				if(rand(3) == 0 && changes < changeLimit && target.reflexes() < 15) {
+				if(rand(3) == 0 && changes < changeLimit && target.reflexes() < 5) {
 					kGAMECLASS.output("\n\nYou feel... twitchy - agitated. If a mosquito or similar creature tried landing on you right now, you'd probably swat it away before it got anywhere near biting you. Your reflexes feel sharpened... honed.");
 					target.slowStatGain("reflexes",.5);
 					changes++;
 				}
-				if(rand(3) == 0 && changes < changeLimit && target.physique() < 10) {
+				if(rand(3) == 0 && changes < changeLimit && target.physique() < 4) {
 					kGAMECLASS.output("\n\nThe alien food does more than make you feel full, though. It leaves you full of vim and vigor, suffused with more vitality than you're used to experience. It reminds you of the high you get from a good workout.");
 					target.slowStatGain("physique",.5);
 					changes++;
@@ -95,7 +95,7 @@
 				}
 				while(choices.length > 0) {
 					x = rand(choices.length);
-					choices[x](target,changes,changeLimit);
+					changes = choices[x](target,changes,changeLimit);
 					choices.splice(x,1);
 				}
 				//Gender Neutral TFs
