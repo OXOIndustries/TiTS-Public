@@ -35,7 +35,7 @@
 			this.libidoRaw = 60;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 25;
+			this.lustRaw = 45;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XP = 25;
 			this.level = 1;

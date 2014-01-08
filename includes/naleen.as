@@ -90,7 +90,7 @@ function naleenConstrict():void {
 	{
 		output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
 		
-		pc.createStatusEffect("Naleen Coiled",0,0,0,0,true,"","",false,0);
+		pc.createStatusEffect("Naleen Coiled",0,0,0,0,false,"","You're trapped in the naleen's coils!",true,0);
 	}
 	else
 	{

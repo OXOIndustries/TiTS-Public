@@ -1375,6 +1375,9 @@
 			if(legType == GLOBAL.GOOEY) return true;
 			return false;
 		}
+		public function isImmobilized():Boolean {
+			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
+		}
 		public function legs(forceType:Boolean = false, forceAdjective:Boolean = false):String {
 			var select:Number = 0;
 			//EDGE CASSES

@@ -1,4 +1,6 @@
-﻿//Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
+﻿import classes.Creature;
+
+//Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
 
 function inCombat():Boolean 
@@ -52,7 +54,7 @@ function combatMainMenu():void
 		this.userInterface.addButton(0,"Recover",stunRecover);
 	}
 	//Bound Menu
-	if (pc.hasStatusEffect("Naleen Coiled"))
+	else if (pc.hasStatusEffect("Naleen Coiled"))
 	{
 		output("\n<b>You are wrapped up in coils!</b>");
 		userInterface.addButton(0,"Struggle",naleenStruggle);
@@ -63,7 +65,8 @@ function combatMainMenu():void
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-		this.userInterface.addButton(5,"Tease",tease);
+		this.userInterface.addButton(5,"Tease",attackRouter,tease);
+		this.userInterface.addButton(14,"Run",runAway);
 	}
 }
 function updateCombatStatuses():void {
@@ -155,8 +158,7 @@ function allFoesDefeated():Boolean
 
 function combatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && 
-		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed") && !target.hasStatusEffect("Naleen Coiled")) 
+	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && !target.isImmobilized()) 
 	{
 		return true;
 	}
@@ -165,8 +167,7 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 }
 function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && 
-		!target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Paralyzed") && !target.hasStatusEffect("Naleen Coiled")) 
+	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && !target.isImmobilized()) 
 	{
 		return true;
 	}
@@ -242,7 +243,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		else output(attacker.capitalA + possessive(attacker.short) + " blind " + attacker.meleeWeapon.attackVerb + " goes wide!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 && rand(100) <= 45 && !target.hasStatusEffect("Stunned")) {
+	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
@@ -333,7 +334,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 && rand(100) <= 45 && !target.hasStatusEffect("Stunned")) {
+	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
@@ -478,10 +479,17 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	return [damage,leftoverDamage];
 }
 
-function tease():void 
+function tease(target:Creature):void 
 {
 	clearOutput();
-	output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.\n");
+	if(target is Celise) {
+		output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.\n");
+	}
+	else {
+		output("You do your best to look sexy, but it doesn't work THAT well because this is a total placeholder! (10)");
+		output("\n");
+		target.lust(10);
+	}
 	processCombat();
 }
 
@@ -772,4 +780,81 @@ function startCombat(encounter:String):void
 			break;
 	}
 	combatMainMenu();
+}
+
+function runAway():void {
+	clearOutput();
+	output("You attempt to flee from your opponent");
+	if(foes[0].plural || foes.length > 1) output("s");
+	output("! ")
+	//Autofail conditions first!
+	if(pc.isImmobilized()) {
+		output("You cannot run while you are immobilized!\n");
+		processCombat();
+	}
+	else if(pc.hasStatusEffect("Flee Disabled")) {
+		output("You cannot escape from this fight!\n");
+		processCombat();
+	}
+	else if(debug) {
+		output("You escape on wings of debug!\n");
+		pc.removeStatusEffect("Round");
+		pc.clearCombatStatuses();
+		this.userInterface.clearMenu();
+		this.userInterface.addButton(0,"Next",mainGameMenu);
+	}
+	else {
+		var x:int = 0;
+		//determine difficulty class based on reflexes vs reflexes comparison, easy, low, medium, hard, or very hard
+		var difficulty:int = 0;
+		//easy = succeed 75%
+		//low = succeed 50%
+		//medium = succeed 35%
+		//hard = succeed 20;
+		//very hard = succeed 10%
+
+		//Easy: PC has twice the reflexes
+		if(pc[0].reflexes() >= foes[0].reflexes() * 2) difficulty = 0;
+		//Low: PC has more than +33% more reflexes
+		else if(pc[0].reflexes() >= foes[0].reflexes() * 1.333) difficulty = 1;
+		//Medium: PC has more than -33% reflexes
+		else if(pc[0].reflexes() >= foes[0].reflexes() * .6666) difficulty = 2;
+		//Hard: PC pretty slow
+		else if(pc[0].reflexes() >= foes[0].reflexes() * .3333) difficulty = 3;
+		//Very hard: PC IS FUCKING SLOW
+		else difficulty = 4;
+
+
+		//Multiple NPCs? Raise difficulty class for each one!
+		difficulty + foes.length - 1;
+		if(difficulty > 5) difficulty = 5;
+
+		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
+
+		//Lower difficulty for flight if enemy cant!
+		if(pc.canFly() && (!foes[0].canFly() || foes[0].isImmobilized())) difficulty--;
+		//Lower difficulty for immobilized foe
+		if(foes[0].isImmobilized()) difficulty--;
+
+		//Set threshold value and check!
+		if(difficulty < 0) difficulty = 100;
+		else if(difficulty = 0) difficulty = 75;
+		else if(difficulty == 1) difficulty = 50;
+		else if(difficulty == 2) difficulty = 35;
+		else if(difficulty == 3) difficulty = 20;
+		else if(difficulty == 4) difficulty = 10;
+		else difficulty = 5;
+
+		//Success!
+		if(rand(100) + 1 <= difficulty) {
+			if(pc.canFly()) output("Your feet leave the ground as you fly away, leaving the fight behind.")
+			else output("You manage to leave the fight behind you.")
+			processTime(8);
+			pc.removeStatusEffect("Round");
+			pc.clearCombatStatuses();
+			this.userInterface.clearMenu();
+			this.userInterface.addButton(0,"Next",mainGameMenu);
+		}
+
+	}
 }

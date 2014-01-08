@@ -600,7 +600,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 1"].northExit = "IRONWOODS BEND 2";
 	rooms["DENSE ORANGE 1"].southExit = "DENSE ORANGE 2";
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DENSE ORANGE 1"].runOnEnter = jungleEncounterChances;
+	rooms["DENSE ORANGE 1"].runOnEnter = jungleMiddleEncounters;
 
 	//45. The Dense Orange
 	rooms["DENSE ORANGE 2"] = new RoomClass(this);
@@ -611,7 +611,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 2"].northExit = "DENSE ORANGE 1";
 	rooms["DENSE ORANGE 2"].southExit = "DENSE ORANGE 3";
 	rooms["DENSE ORANGE 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DENSE ORANGE 2"].runOnEnter = jungleEncounterChances;
+	rooms["DENSE ORANGE 2"].runOnEnter = jungleMiddleEncounters;
 
 	//46. The Dense Orange
 	rooms["DENSE ORANGE 3"] = new RoomClass(this);
@@ -622,7 +622,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 3"].northExit = "DENSE ORANGE 2";
 	rooms["DENSE ORANGE 3"].southExit = "DENSE ORANGE 4";
 	rooms["DENSE ORANGE 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DENSE ORANGE 3"].runOnEnter = jungleEncounterChances;
+	rooms["DENSE ORANGE 3"].runOnEnter = jungleMiddleEncounters;
 
 	//47. The Dense Orange
 	rooms["DENSE ORANGE 4"] = new RoomClass(this);
@@ -633,7 +633,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 4"].northExit = "DENSE ORANGE 3";
 	rooms["DENSE ORANGE 4"].southExit = "ORANGE INTERSECTION 1";
 	rooms["DENSE ORANGE 4"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DENSE ORANGE 4"].runOnEnter = jungleEncounterChances;
+	rooms["DENSE ORANGE 4"].runOnEnter = jungleMiddleEncounters;
 
 	//48. An Orange Intersection
 	rooms["ORANGE INTERSECTION 1"] = new RoomClass(this);
@@ -645,7 +645,7 @@ function initializeRooms():void
 	rooms["ORANGE INTERSECTION 1"].southExit = "DENSE ORANGE 5";
 	rooms["ORANGE INTERSECTION 1"].eastExit = "NARROW PATH 1";
 	rooms["ORANGE INTERSECTION 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["ORANGE INTERSECTION 1"].runOnEnter = jungleEncounterChances;
+	rooms["ORANGE INTERSECTION 1"].runOnEnter = jungleMiddleEncounters;
 
 	//49. The Dense Orange
 	rooms["DENSE ORANGE 5"] = new RoomClass(this);
@@ -656,7 +656,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 5"].northExit = "ORANGE INTERSECTION 1";
 	rooms["DENSE ORANGE 5"].southExit = "DARK ORANGE CORNER 1";
 	rooms["DENSE ORANGE 5"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DENSE ORANGE 5"].runOnEnter = jungleEncounterChances;
+	rooms["DENSE ORANGE 5"].runOnEnter = jungleMiddleEncounters;
 
 	//50. Dark Orange Corner
 	rooms["DARK ORANGE CORNER 1"] = new RoomClass(this);
@@ -667,7 +667,7 @@ function initializeRooms():void
 	rooms["DARK ORANGE CORNER 1"].northExit = "DENSE ORANGE 5";
 	rooms["DARK ORANGE CORNER 1"].westExit = "DEEP FOREST 1";
 	rooms["DARK ORANGE CORNER 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DARK ORANGE CORNER 1"].runOnEnter = jungleEncounterChances;
+	rooms["DARK ORANGE CORNER 1"].runOnEnter = jungleMiddleEncounters;
 
 	//51. Deep Forest
 	rooms["DEEP FOREST 1"] = new RoomClass(this);
@@ -678,7 +678,7 @@ function initializeRooms():void
 	rooms["DEEP FOREST 1"].eastExit = "DARK ORANGE CORNER 1";
 	rooms["DEEP FOREST 1"].westExit = "DEEP INTERSECTION 1";
 	rooms["DEEP FOREST 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DEEP FOREST 1"].runOnEnter = jungleEncounterChances;
+	rooms["DEEP FOREST 1"].runOnEnter = jungleMiddleEncounters;
 
 	//52. Deep Intersection
 	rooms["DEEP INTERSECTION 1"] = new RoomClass(this);
@@ -690,7 +690,7 @@ function initializeRooms():void
 	rooms["DEEP INTERSECTION 1"].westExit = "DEEP FOREST 2";
 	rooms["DEEP INTERSECTION 1"].southExit = "DEEP JUNGLE 1";
 	rooms["DEEP INTERSECTION 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DEEP INTERSECTION 1"].runOnEnter = jungleEncounterChances;
+	rooms["DEEP INTERSECTION 1"].runOnEnter = jungleMiddleEncounters;
 
 	//53. Deep Forest
 	rooms["DEEP FOREST 2"] = new RoomClass(this);
@@ -701,7 +701,7 @@ function initializeRooms():void
 	rooms["DEEP FOREST 2"].eastExit = "DEEP INTERSECTION 1";
 	rooms["DEEP FOREST 2"].westExit = "IRON AND DARK CORNER 1";
 	rooms["DEEP FOREST 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DEEP FOREST 2"].runOnEnter = jungleEncounterChances;
+	rooms["DEEP FOREST 2"].runOnEnter = jungleMiddleEncounters;
 
 	//54. Corner of Iron and Dark
 	rooms["IRON AND DARK CORNER 1"] = new RoomClass(this);
@@ -712,7 +712,7 @@ function initializeRooms():void
 	rooms["IRON AND DARK CORNER 1"].northExit = "LICHENS AT IRONWOODS 1";
 	rooms["IRON AND DARK CORNER 1"].eastExit = "DEEP FOREST 2";
 	rooms["IRON AND DARK CORNER 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["IRON AND DARK CORNER 1"].runOnEnter = jungleEncounterChances;
+	rooms["IRON AND DARK CORNER 1"].runOnEnter = jungleMiddleEncounters;
 
 	//55. Narrow Path
 	rooms["NARROW PATH 1"] = new RoomClass(this);
@@ -723,7 +723,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 1"].westExit = "ORANGE INTERSECTION 1";
 	rooms["NARROW PATH 1"].eastExit = "NARROW BEND 1";
 	rooms["NARROW PATH 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["NARROW PATH 1"].runOnEnter = jungleEncounterChances;
+	rooms["NARROW PATH 1"].runOnEnter = jungleMiddleEncounters;
 
 	//56. Narrow Bend
 	rooms["NARROW BEND 1"] = new RoomClass(this);
@@ -734,7 +734,7 @@ function initializeRooms():void
 	rooms["NARROW BEND 1"].westExit = "NARROW PATH 1";
 	rooms["NARROW BEND 1"].southExit = "NARROW PATH 2";
 	rooms["NARROW BEND 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["NARROW BEND 1"].runOnEnter = jungleEncounterChances;
+	rooms["NARROW BEND 1"].runOnEnter = jungleMiddleEncounters;
 
 	//57. Narrow Jungle Path
 	//DEEP JURGLE
@@ -746,7 +746,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 2"].northExit = "NARROW BEND 1";
 	rooms["NARROW PATH 2"].southExit = "NARROW PATH 3";
 	rooms["NARROW PATH 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["NARROW PATH 2"].runOnEnter = jungleEncounterChances;
+	rooms["NARROW PATH 2"].runOnEnter = jungleMiddleEncounters;
 
 	//58. Narrow Jungle Path
 	rooms["NARROW PATH 3"] = new RoomClass(this);
@@ -757,7 +757,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 3"].northExit = "NARROW PATH 2";
 	rooms["NARROW PATH 3"].southExit = "METAL POD 1";
 	rooms["NARROW PATH 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["NARROW PATH 3"].runOnEnter = jungleEncounterChances;
+	rooms["NARROW PATH 3"].runOnEnter = jungleMiddleEncounters;
 
 	//59. Dead End
 	rooms["METAL POD 1"] = new RoomClass(this);
@@ -767,7 +767,7 @@ function initializeRooms():void
 	rooms["METAL POD 1"].system = "SYSTEM: ARA ARA";
 	rooms["METAL POD 1"].northExit = "NARROW PATH 3";
 	rooms["METAL POD 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["METAL POD 1"].runOnEnter = jungleEncounterChances;
+	rooms["METAL POD 1"].runOnEnter = jungleMiddleEncounters;
 
 	//60. Deep\nJungle
 	rooms["DEEP JUNGLE 1"] = new RoomClass(this);
@@ -778,7 +778,7 @@ function initializeRooms():void
 	rooms["DEEP JUNGLE 1"].northExit = "DEEP INTERSECTION 1";
 	rooms["DEEP JUNGLE 1"].southExit = "DEEP JUNGLE 2";
 	rooms["DEEP JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DEEP JUNGLE 1"].runOnEnter = jungleEncounterChances;
+	rooms["DEEP JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//61. Deep\nJungle
 	rooms["DEEP JUNGLE 2"] = new RoomClass(this);
@@ -789,7 +789,7 @@ function initializeRooms():void
 	rooms["DEEP JUNGLE 2"].northExit = "DEEP JUNGLE 1";
 	rooms["DEEP JUNGLE 2"].westExit = "FORKED DEEP JUNGLE 1";
 	rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["DEEP JUNGLE 2"].runOnEnter = jungleEncounterChances;
+	rooms["DEEP JUNGLE 2"].runOnEnter = jungleDeepEncounters;
 
 	//62. Forked\nJungle
 	rooms["FORKED DEEP JUNGLE 1"] = new RoomClass(this);
@@ -801,7 +801,7 @@ function initializeRooms():void
 	rooms["FORKED DEEP JUNGLE 1"].southExit = "VINED JUNGLE 1";
 	rooms["FORKED DEEP JUNGLE 1"].westExit = "VINED JUNGLE 6";
 	rooms["FORKED DEEP JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["FORKED DEEP JUNGLE 1"].runOnEnter = jungleEncounterChances;
+	rooms["FORKED DEEP JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//63. Vined Jungle
 	rooms["VINED JUNGLE 1"] = new RoomClass(this);
@@ -812,7 +812,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 1"].northExit = "FORKED DEEP JUNGLE 1";
 	rooms["VINED JUNGLE 1"].southExit = "VINED JUNGLE 2";
 	rooms["VINED JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 1"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//64. Vined Jungle/Corner
 	rooms["VINED JUNGLE 2"] = new RoomClass(this);
@@ -823,7 +823,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 2"].northExit = "VINED JUNGLE 1";
 	rooms["VINED JUNGLE 2"].westExit = "VINED JUNGLE 3";
 	rooms["VINED JUNGLE 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 2"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 2"].runOnEnter = jungleDeepEncounters;
 
 	//65. Vined\nJungle
 	rooms["VINED JUNGLE 3"] = new RoomClass(this);
@@ -834,7 +834,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 3"].eastExit = "VINED JUNGLE 2";
 	rooms["VINED JUNGLE 3"].westExit = "OVERGROWN ROCK 1";
 	rooms["VINED JUNGLE 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 3"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 3"].runOnEnter = jungleDeepEncounters;
 
 	//66. Overgrown\nRock
 	rooms["OVERGROWN ROCK 1"] = new RoomClass(this);
@@ -846,7 +846,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 1"].eastExit = "VINED JUNGLE 3";
 	rooms["OVERGROWN ROCK 1"].southExit = "OVERGROWN ROCK 4";
 	rooms["OVERGROWN ROCK 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 1"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 1"].runOnEnter = jungleDeepEncounters;
 
 	//67. Overgrown\nRock
 	rooms["OVERGROWN ROCK 2"] = new RoomClass(this);
@@ -857,7 +857,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 2"].southExit = "OVERGROWN ROCK 1";
 	rooms["OVERGROWN ROCK 2"].westExit = "OVERGROWN ROCK 3";
 	rooms["OVERGROWN ROCK 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 2"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 2"].runOnEnter = jungleDeepEncounters;
 
 	//68. Overgrown\nRock
 	rooms["OVERGROWN ROCK 3"] = new RoomClass(this);
@@ -869,7 +869,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 3"].eastExit = "OVERGROWN ROCK 2";
 	rooms["OVERGROWN ROCK 3"].westExit = "OVERGROWN ROCK 12";
 	rooms["OVERGROWN ROCK 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 3"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 3"].runOnEnter = jungleDeepEncounters;
 
 	//69. Vined\nJungle
 	rooms["VINED JUNGLE 4"] = new RoomClass(this);
@@ -880,7 +880,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 4"].southExit = "OVERGROWN ROCK 3";
 	rooms["VINED JUNGLE 4"].eastExit = "VINED JUNGLE 5";
 	rooms["VINED JUNGLE 4"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 4"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 4"].runOnEnter = jungleDeepEncounters;
 
 	//70. Vined\nJungle
 	rooms["VINED JUNGLE 5"] = new RoomClass(this);
@@ -891,7 +891,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 5"].westExit = "VINED JUNGLE 4";
 	rooms["VINED JUNGLE 5"].eastExit = "VINED JUNGLE 6";
 	rooms["VINED JUNGLE 5"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 5"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 5"].runOnEnter = jungleDeepEncounters;
 
 	//71. Vined\nJungle
 	rooms["VINED JUNGLE 6"] = new RoomClass(this);
@@ -902,7 +902,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 6"].westExit = "VINED JUNGLE 5";
 	rooms["VINED JUNGLE 6"].eastExit = "FORKED DEEP JUNGLE 1";
 	rooms["VINED JUNGLE 6"].addFlag(GLOBAL.OUTDOOR);
-	rooms["VINED JUNGLE 6"].runOnEnter = jungleEncounterChances;
+	rooms["VINED JUNGLE 6"].runOnEnter = jungleDeepEncounters;
 
 	//MORE ROOM CODING!
 	//72. Overgrown\nRock
@@ -914,7 +914,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 4"].westExit = "OVERGROWN ROCK 5";
 	rooms["OVERGROWN ROCK 4"].northExit = "OVERGROWN ROCK 1";
 	rooms["OVERGROWN ROCK 4"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 4"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 4"].runOnEnter = jungleDeepEncounters;
 
 	//73. Overgrown\nRock
 	rooms["OVERGROWN ROCK 5"] = new RoomClass(this);
@@ -925,7 +925,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 5"].westExit = "OVERGROWN ROCK 6";
 	rooms["OVERGROWN ROCK 5"].eastExit = "OVERGROWN ROCK 4";
 	rooms["OVERGROWN ROCK 5"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 5"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 5"].runOnEnter = jungleDeepEncounters;
 
 	//74. Overgrown\nRock
 	rooms["OVERGROWN ROCK 6"] = new RoomClass(this);
@@ -936,7 +936,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";
 	rooms["OVERGROWN ROCK 6"].eastExit = "OVERGROWN ROCK 5";
 	rooms["OVERGROWN ROCK 6"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 6"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 6"].runOnEnter = jungleDeepEncounters;
 
 	//75. Overgrown\nRock
 	rooms["OVERGROWN ROCK 7"] = new RoomClass(this);
@@ -947,7 +947,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 7"].westExit = "OVERGROWN ROCK 8";
 	rooms["OVERGROWN ROCK 7"].eastExit = "OVERGROWN ROCK 6";
 	rooms["OVERGROWN ROCK 7"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 7"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 7"].runOnEnter = jungleDeepEncounters;
 
 	//76. Overgrown\nRock
 	rooms["OVERGROWN ROCK 8"] = new RoomClass(this);
@@ -958,7 +958,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 8"].northExit = "OVERGROWN ROCK 9";
 	rooms["OVERGROWN ROCK 8"].eastExit = "OVERGROWN ROCK 7";
 	rooms["OVERGROWN ROCK 8"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 8"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 8"].runOnEnter = jungleDeepEncounters;
 
 	//77. Overgrown\nRock
 	rooms["OVERGROWN ROCK 9"] = new RoomClass(this);
@@ -969,7 +969,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 9"].northExit = "OVERGROWN ROCK 10";
 	rooms["OVERGROWN ROCK 9"].southExit = "OVERGROWN ROCK 8";
 	rooms["OVERGROWN ROCK 9"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 9"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 9"].runOnEnter = jungleDeepEncounters;
 
 	//78. Overgrown\nRock
 	rooms["OVERGROWN ROCK 10"] = new RoomClass(this);
@@ -981,7 +981,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 10"].eastExit = "OVERGROWN ROCK 11";
 	rooms["OVERGROWN ROCK 10"].westExit = "GIANT LEAVES 1";
 	rooms["OVERGROWN ROCK 10"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 10"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 10"].runOnEnter = jungleDeepEncounters;
 
 	//79. Overgrown\nRock
 	rooms["OVERGROWN ROCK 11"] = new RoomClass(this);
@@ -993,7 +993,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 11"].eastExit = "OVERGROWN ROCK 12";
 	rooms["OVERGROWN ROCK 11"].northExit = "PURPLE FLOWERS 1";
 	rooms["OVERGROWN ROCK 11"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 11"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 11"].runOnEnter = jungleDeepEncounters;
 
 	//80. Overgrown\nRock
 	rooms["OVERGROWN ROCK 12"] = new RoomClass(this);
@@ -1004,7 +1004,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 12"].westExit = "OVERGROWN ROCK 11";
 	rooms["OVERGROWN ROCK 12"].eastExit = "OVERGROWN ROCK 3";
 	rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 12"].runOnEnter = jungleEncounterChances;
+	rooms["OVERGROWN ROCK 12"].runOnEnter = jungleDeepEncounters;
 
 	//81. Giant\nLeaves
 	rooms["GIANT LEAVES 1"] = new RoomClass(this);
@@ -1015,7 +1015,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 1"].southExit = "GIANT LEAVES 2";
 	rooms["GIANT LEAVES 1"].eastExit = "OVERGROWN ROCK 10";
 	rooms["GIANT LEAVES 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["GIANT LEAVES 1"].runOnEnter = jungleEncounterChances;
+	rooms["GIANT LEAVES 1"].runOnEnter = jungleDeepEncounters;
 
 	//82. Giant\nLeaves
 	rooms["GIANT LEAVES 2"] = new RoomClass(this);
@@ -1026,7 +1026,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 2"].northExit = "GIANT LEAVES 1";
 	rooms["GIANT LEAVES 2"].southExit = "GIANT LEAVES 3";
 	rooms["GIANT LEAVES 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["GIANT LEAVES 2"].runOnEnter = jungleEncounterChances;
+	rooms["GIANT LEAVES 2"].runOnEnter = jungleDeepEncounters;
 
 	//83. Giant\nLeaves
 	rooms["GIANT LEAVES 3"] = new RoomClass(this);
@@ -1036,7 +1036,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 3"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 3"].northExit = "GIANT LEAVES 2";
 	rooms["GIANT LEAVES 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["GIANT LEAVES 3"].runOnEnter = jungleEncounterChances;
+	rooms["GIANT LEAVES 3"].runOnEnter = jungleDeepEncounters;
 
 	//84. Purple\nFlowers
 	rooms["PURPLE FLOWERS 1"] = new RoomClass(this);
@@ -1047,7 +1047,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 1"].westExit = "PURPLE FLOWERS 2";
 	rooms["PURPLE FLOWERS 1"].southExit = "OVERGROWN ROCK 11";
 	rooms["PURPLE FLOWERS 1"].addFlag(GLOBAL.OUTDOOR);
-	rooms["PURPLE FLOWERS 1"].runOnEnter = jungleEncounterChances;
+	rooms["PURPLE FLOWERS 1"].runOnEnter = jungleDeepEncounters;
 
 	//85. Purple\nFlowers
 	rooms["PURPLE FLOWERS 2"] = new RoomClass(this);
@@ -1058,7 +1058,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 2"].westExit = "PURPLE FLOWERS 3";
 	rooms["PURPLE FLOWERS 2"].eastExit = "PURPLE FLOWERS 1";
 	rooms["PURPLE FLOWERS 2"].addFlag(GLOBAL.OUTDOOR);
-	rooms["PURPLE FLOWERS 2"].runOnEnter = jungleEncounterChances;
+	rooms["PURPLE FLOWERS 2"].runOnEnter = jungleDeepEncounters;
 
 	//86. Purple\nFlowers
 	rooms["PURPLE FLOWERS 3"] = new RoomClass(this);
@@ -1069,7 +1069,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 3"].northExit = "PURPLE FLOWERS 4";
 	rooms["PURPLE FLOWERS 3"].eastExit = "PURPLE FLOWERS 2";
 	rooms["PURPLE FLOWERS 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["PURPLE FLOWERS 3"].runOnEnter = jungleEncounterChances;
+	rooms["PURPLE FLOWERS 3"].runOnEnter = jungleDeepEncounters;
 
 	//87. Purple\nFlowers
 	rooms["PURPLE FLOWERS 4"] = new RoomClass(this);
