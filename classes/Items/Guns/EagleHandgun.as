@@ -11,8 +11,9 @@
 			registerClassAlias("EagleHandgun", EagleHandgun);
 		}
 		//constructor
-		public function EagleHandgun()
+		public function EagleHandgun(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Eagle Class Handgun:
 			//1
 			
@@ -43,6 +44,14 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

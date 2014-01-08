@@ -11,8 +11,9 @@
 			registerClassAlias("ScopedPistol", ScopedPistol);
 		}
 		//constructor
-		public function ScopedPistol()
+		public function ScopedPistol(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Scoped Pistol
 			//2
 			
@@ -43,6 +44,14 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

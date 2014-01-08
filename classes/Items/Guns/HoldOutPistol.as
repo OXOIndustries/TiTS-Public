@@ -11,9 +11,9 @@
 			registerClassAlias("HoldOutPistol", HoldOutPistol);
 		}
 		//constructor
-		public function HoldOutPistol()
+		public function HoldOutPistol(dataObject:Object = null)
 		{
-
+			this._latestVersion = 1;
 			//Hold-out Pistol:
 			//0
 			
@@ -44,6 +44,14 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

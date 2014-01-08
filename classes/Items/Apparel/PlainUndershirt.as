@@ -11,8 +11,9 @@
 			registerClassAlias("PlainUndershirt", PlainUndershirt);
 		}
 		//constructor
-		public function PlainUndershirt()
+		public function PlainUndershirt(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Undershirt
 			//11
 			
@@ -47,6 +48,15 @@
 			//11
 			
 			//this.indexNumber = 11;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

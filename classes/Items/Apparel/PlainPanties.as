@@ -11,8 +11,9 @@
 			registerClassAlias("PlainPanties", PlainPanties);
 		}
 		//constructor
-		public function PlainPanties()
+		public function PlainPanties(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Space Panties
 			//8
 			// PANTIES..... IN...... SPAAAAAAAAAAAAACCCCCCCCCEEEEEEEEEEEEEEEEEEEE
@@ -42,7 +43,16 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

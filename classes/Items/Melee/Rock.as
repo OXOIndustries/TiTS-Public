@@ -11,8 +11,10 @@
 			registerClassAlias("Rock", Rock);
 		}
 		//constructor
-		public function Rock()
+		public function Rock(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
+			
 			//A Rock
 			//5
 			
@@ -43,6 +45,14 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

@@ -11,8 +11,9 @@
 			registerClassAlias("LaserPistol", LaserPistol);
 		}
 		//constructor
-		public function LaserPistol()
+		public function LaserPistol(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Mk. III Laser Pistol :
 			//3
 			
@@ -41,7 +42,16 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

@@ -11,8 +11,10 @@
 			registerClassAlias("Empty", Empty);
 		}
 		//constructor
-		public function Empty()
+		public function Empty(dataObject:Object = null)
 		{
+			this._latestVersion = -1;
+			
 			//Nothing
 			//6
 			
@@ -41,7 +43,16 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

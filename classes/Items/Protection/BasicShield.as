@@ -11,8 +11,10 @@
 			registerClassAlias("BasicShield", BasicShield);
 		}
 		//constructor
-		public function BasicShield()
+		public function BasicShield(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
+			
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.SHIELD;
@@ -41,6 +43,15 @@
 			this.bonusResistances[GLOBAL.KINETIC] = .45;
 			this.bonusResistances[GLOBAL.SLASHING] = .35;
 			this.bonusResistances[GLOBAL.PIERCING] = .25;
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

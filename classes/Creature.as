@@ -6,7 +6,7 @@
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
-	import classes.DataManager.ISaveableCreature;
+	import classes.DataManager.ISaveable;
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
@@ -26,7 +26,7 @@
 	 * Note to self: mx.utils has some describeType caching which may be a thing to look at. It also has some handy-dandy features
 	 * for checking class properties (isDynamic etc, mx.utils.ObjectUtil)
 	 */
-	public class Creature implements ISaveableCreature
+	public class Creature implements ISaveable
 	{
 		/**
 		 * Version describes the current version of a creature within the game source. It is saved with the rest of the creature
@@ -70,12 +70,7 @@
 			perks = new Array();
 			statusEffects = new Array();
 			keyItems = new Array();
-			// FUCKING STOP PRE-ALLOCATING SHIT! You can push() something on an array ANY TIME YOU NEED!
-			// Or use dictionaries with "string" keys, and check if dict["sting"] == undefined to see if it's set!
 			inventory = new Array();
-			for(var z:int = 0; z < 30; z++) {
-				inventory[z] = new ItemSlotClass();
-			}
 		}
 		
 		/**
@@ -98,7 +93,33 @@
 			{
 				if (this[prop.@name] != null && this[prop.@name] != undefined)
 				{
-					dataObject[prop.@name] = this[prop.@name];
+					if (this[prop.@name] is ISaveable)
+					{
+						dataObject[prop.@name] = this[prop.@name].getSaveObject();
+					}
+					else if (this[prop.@name] is Array)
+					{
+						if (this[prop.@name].length > 0)
+						{
+							if (this[prop.@name][0] is ISaveable)
+							{
+								dataObject[prop.@name] = new Array();
+								
+								for (var i:int = 0; i < this[prop.@name].length; i++)
+								{
+									dataObject[prop.@name].push(this[prop.@name][i]);
+								}
+							}
+							else
+							{
+								dataObject[prop.@name] = this[prop.@name];
+							}
+						}
+					}
+					else
+					{
+						dataObject[prop.@name] = this[prop.@name];
+					}
 				}
 			}
 			
@@ -161,7 +182,38 @@
 				{
 					if (prop != "prototype" && prop != "neverSerialize" && prop != "classInstance")
 					{
-						this[prop] = dataObject[prop];
+						if (this[prop] is ISaveable)
+						{
+							var classT:Class = getDefinitionByName(dataObject[prop].classInstance) as Class;
+							this[prop] = new classT(dataObject[prop]);
+						}
+						else if (this[prop] is Array)
+						{							
+							if (dataObject[prop].length > 0)
+							{
+								this[prop] = new Array();
+								
+								if (dataObject[prop][0] is ISaveable)
+								{
+									for (var i:int = 0; i < dataObject[prop].length; i++)
+									{		
+										this[prop].push(new (getDefinitionByName(dataObject[prop][i].classInstance) as Class)(dataObject[prop][i]))
+									}
+								}
+								else
+								{
+									this[prop] = dataObject[prop];
+								}
+							}
+							else
+							{
+								this[prop] = new Array();
+							}
+						}
+						else
+						{
+							this[prop] = dataObject[prop];
+						}
 					}
 				}
 			}

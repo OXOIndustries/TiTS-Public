@@ -14,8 +14,10 @@
 			registerClassAlias("ZilRation", ZilRation);
 		}
 		//constructor
-		public function ZilRation()
+		public function ZilRation(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
+			
 			this.quantity = 1;
 			this.stackSize = 10;
 			this.type = GLOBAL.FOOD;
@@ -40,7 +42,16 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 		
 		//METHOD ACTING!

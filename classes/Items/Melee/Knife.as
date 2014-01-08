@@ -11,9 +11,10 @@
 			registerClassAlias("Knife", Knife);
 		}
 		//constructor
-		public function Knife()
+		public function Knife(dataObject:Object = null)
 		{
-
+			this._latestVersion = 1;
+			
 			//A KNIFE
 			//4
 			
@@ -44,8 +45,14 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
-
-
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }

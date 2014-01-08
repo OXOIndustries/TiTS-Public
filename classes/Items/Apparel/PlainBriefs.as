@@ -11,8 +11,9 @@
 			registerClassAlias("PlainBriefs", PlainBriefs);
 		}
 		//constructor
-		public function PlainBriefs()
+		public function PlainBriefs(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			//Plain Briefs
 			//9
 			
@@ -41,7 +42,16 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			if (dataObject != null)
+			{
+				super.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = _latestVersion;
+			}
 		}
 	}
 }
