@@ -70,7 +70,6 @@
 			perks = new Array();
 			statusEffects = new Array();
 			keyItems = new Array();
-			
 			// FUCKING STOP PRE-ALLOCATING SHIT! You can push() something on an array ANY TIME YOU NEED!
 			// Or use dictionaries with "string" keys, and check if dict["sting"] == undefined to see if it's set!
 			inventory = new Array();
@@ -471,6 +470,12 @@
 				case "originalRace":
 					buffer = originalRace;
 					break;
+				case "skinNoun":
+					buffer = skinNoun(true);
+					break;
+				case "skinFurScalesNoun":
+					buffer = skinNoun(false);
+					break;
 				case "skinFurScales":
 					buffer = skinFurScales();
 					break;
@@ -495,6 +500,12 @@
 					break;
 				case "tongue":
 					buffer = tongueDescript();
+					break;
+				case "tail":
+					buffer = tail();
+					break;
+				case "tails":
+					buffer = tails();
 					break;
 				case "base":
 				case "sheath":
@@ -4776,7 +4787,7 @@
 					else vag += "cunt";
 				}
 			}
-			if(type == GLOBAL.BEE) {
+			else if(type == GLOBAL.BEE) {
 				if(!simple) {
 					temp = this.rand(16);
 					if(temp <= 1) vag += "black-lipped gash";
@@ -4974,12 +4985,12 @@
 			//50% of time, simple cunt.
 			if(this.rand(2) == 0) {
 				if(descripted > 0) vag += " ";
-				vag += vaginaNoun(tailGenitalArg,true);
+				vag += vaginaNoun(vaginas[vaginaNum].type,true);
 			}
 			//50% of the time, complex cunt!
 			else {
 				if(descripted > 0) vag += ", ";
-				vag += vaginaNoun(tailGenitalArg);
+				vag += vaginaNoun(vaginas[vaginaNum].type);
 			}
 			return vag;
 		}
@@ -5416,6 +5427,30 @@
 				else if(rando <= 8 && descript != "dragon-like ") noun+="dragon-dick";
 				else if(rando <= 9) noun+="endowment";
 				else if(rando <= 10) noun+="shaft";
+			}
+			else if(type == GLOBAL.BEE) {
+				if(!simple) {
+					rando = this.rand(7);
+					if(rando == 0) descript += "foreskin-covered ";
+					else if(rando == 1) descript += "thick-skinned ";
+					else if(rando == 2) descript += "fleshy ";
+					else if(rando == 3) descript += "skin-shrouded ";
+					else if(rando == 4) descript += "alien ";
+					else if(rando == 5) descript += "vaguely human-like ";
+					else if(rando == 6) descript += "smooth ";
+				}
+				rando = this.rand(11);
+				if(rando == 0) noun+="zil-dick";
+				if(rando == 1) noun+="cock";
+				if(rando == 2) noun+="member";
+				if(rando == 3) noun+="shaft";
+				if(rando == 4) noun+="phallus";
+				if(rando == 5) noun+="zil-prick";
+				if(rando == 6) noun+="member";
+				if(rando == 7) noun+="zil-cock";
+				if(rando == 8) noun+="dick";
+				if(rando == 9) noun+="tool";
+				if(rando == 10) noun+="shaft";
 			}
 			/* To return if Third writes it!
 			else if(type == 10) {

@@ -30,10 +30,15 @@ function useItem(item:ItemSlotClass):void {
 				this.userInterface.addButton(0,"Next",useItemFunction);
 			}
 		}
-		item.quantity--;
-		if(item.quantity < 0) {
-			item.quantity = 0;
-			item.shortName = "";
+		if(debug && (item.type == GLOBAL.FOOD || item.type == GLOBAL.PILL)) {
+			
+		}
+		else {
+			item.quantity--;
+			if(item.quantity < 0) {
+				item.quantity = 0;
+				item.shortName = "";
+			}
 		}
 	}
 }
@@ -262,7 +267,7 @@ function equipItem(arg:ItemSlotClass):void {
 		holdingItem = clone(pc.lowerUndergarment);
 		pc.lowerUndergarment = clone(arg);
 	}
-	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) {
+	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) {
 		holdingItem = clone(pc.upperUndergarment);
 		pc.upperUndergarment = clone(arg);
 	}

@@ -209,8 +209,8 @@ function appearance(target:Creature):void {
 		if(pc.wingType != GLOBAL.HUMAN) {
 			output2(", and ");
 			//WINGS!
-			if(target.wingType == GLOBAL.SMALLBEE) output2("a pair of tiny-yet-beautiful bee-wings sprout from your back, too small to allow you to fly.");
-			if(target.wingType == GLOBAL.BEE) output2("a pair of large bee-wings sprout from your back, reflecting the light through their clear membranes beautifully.  They flap quickly, allowing you to easily hover in place or fly.");
+			if(target.wingType == GLOBAL.SMALLBEE) output2("a pair of insect-like wings sprout from your back, too small to allow you to fly. They shimmer beautifully in the light.");
+			if(target.wingType == GLOBAL.BEE) output2("a pair of large, insectile wings sprout from your back, reflecting the light through their clear membranes beautifully. They'll bear your weight if you choose to fly.");
 			if(target.wingType == GLOBAL.SMALLDEMONIC) output2("a pair of tiny bat-like demon-wings sprout from your back, flapping cutely, otherwise of little use.");
 			if(target.wingType == GLOBAL.DEMONIC) output2("a pair of large bat-like demon-wings fold behind your shoulders.  With a muscle-twitch, you can extend them, and use them to soar gracefully through the air.");
 			if(target.wingType == GLOBAL.SHARK) output2("a large shark-like fin has sprouted between your shoulder blades.  With it you have far more control over swimming underwater.");
@@ -332,10 +332,11 @@ function appearance(target:Creature):void {
 			if(target.tailVenom == 100) output2("  Your swollen spider-butt is distended with the sheer amount of webbing it's holding.");
 		}
 		else if(target.tailType == GLOBAL.BEE) {
-			output2("  A large insectile bee-abdomen dangles from just above your backside, bobbing with its own weight as you shift.  It is covered in hard chitin with black and yellow stripes, and tipped with a dagger-like stinger.");
+			output2("  A large, insectile abdomen dangles from just above your backside, bobbing with its own weight as you shift.  It is covered in hard black chitin and tipped with a needle-like stinger.");
+			/*
 			if(target.tailVenom > 50 && target.tailVenom < 80) output2("  A single drop of poison hangs from your exposed stinger.");
 			if(target.tailVenom >= 80 && target.tailVenom < 100) output2("  Poisonous bee venom coats your stinger completely.");
-			if(target.tailVenom == 100) output2("  Venom drips from your poisoned stinger regularly.");
+			if(target.tailVenom == 100) output2("  Venom drips from your poisoned stinger regularly.");*/
 		}
 		else if(target.tailType == GLOBAL.SHARK || target.tailType == GLOBAL.SIREN) {
 			output2("  A long shark-tail trails down from your backside, swaying to and fro while giving you a dangerous air.");
@@ -370,7 +371,7 @@ function appearance(target:Creature):void {
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
 		else if(target.legType == GLOBAL.DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
-		else if(target.legType == GLOBAL.BEE) output2("  Your legs are covered in a shimmering insectile carapace up to mid-thigh, looking more like a pair of 'fuck-me-boots' than exoskeleton.  A bit of downy yellow and black fur fuzzes your upper thighs, just like a bee.");
+		else if(target.legType == GLOBAL.BEE) output2("  Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
 		else if(target.legType == GLOBAL.GOOEY) output2("  In place of legs you have a shifting amorphous blob.  Thankfully it's quite easy to propel yourself around on.  The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
 		else if(target.legType == GLOBAL.FELINE) output2("  Two digitigrade legs grow downwards from your waist, ending in soft, padded cat-paws.");
 		else if(target.legType == GLOBAL.LIZAN) output2("  Two digitigrade legs grow down from your " + target.hipDescript() + ", ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
@@ -503,7 +504,7 @@ function appearance(target:Creature):void {
 				//Horsecock flavor
 				if(target.cocks[0].cType == GLOBAL.EQUINE) output2("  It's mottled black and brown in a very animalistic pattern.  The 'head' of your shaft flares proudly, just like a horse's.");
 				//dog cock flavor
-				if(target.cocks[0].cType == GLOBAL.CANINE) {
+				else if(target.cocks[0].cType == GLOBAL.CANINE) {
 					if(target.cocks[0].knotMultiplier > 1 && target.cocks[0].knotMultiplier < 1.4) output2("  A small knot of thicker flesh is near the base of your " + target.cockDescript(0) + ", ready to expand to help you lodge it inside a female.");
 					if(target.cocks[0].knotMultiplier >= 1.4 && target.cocks[0].knotMultiplier < 1.8) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(0) + ", to ensure it stays where it belongs during mating.");
 					if(target.cocks[0].knotMultiplier >= 1.8) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(0) + " looks almost too big for your cock.");
@@ -511,32 +512,35 @@ function appearance(target:Creature):void {
 					output2("  The knot is " + Math.round(target.cocks[0].cThickness * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
 				}
 				//Demon cock flavor
-				if(target.cocks[0].cType == GLOBAL.DEMONIC) {
+				else if(target.cocks[0].cType == GLOBAL.DEMONIC) {
 					output2("  The crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused.  The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins.");
 				}
 				//Tentacle cock flavor
-				if(target.cocks[0].cType == GLOBAL.TENTACLE) {
+				else if(target.cocks[0].cType == GLOBAL.TENTACLE) {
 					output2("  The entirety of its green surface is covered in perspiring beads of slick moisture.  It frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
 				}
 				//Cat cock flavor
-				if(target.cocks[0].cType == GLOBAL.FELINE) {
+				else if(target.cocks[0].cType == GLOBAL.FELINE) {
 					output2("  It ends in a single point, much like a spike, and is covered in small, fleshy barbs. The barbs are larger at the base and shrink in size as they get closer to the tip.  Each of the spines is soft and flexible, and shouldn't be painful for any of your partners.");
 				}
 				//Snake cock flavor
-				if(target.cocks[0].cType == GLOBAL.SNAKE) {
+				else if(target.cocks[0].cType == GLOBAL.SNAKE) {
 					output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
 				}
 				//Anemone cock flavor
-				if(target.cocks[0].cType == GLOBAL.ANEMONE || target.cocks[0].cType == GLOBAL.SIREN) {
+				else if(target.cocks[0].cType == GLOBAL.ANEMONE || target.cocks[0].cType == GLOBAL.SIREN) {
 					output2("  The crown is surrounded by tiny tentacles with a venomous, aphrodisiac payload.  At its base a number of similar, longer tentacles have formed, guaranteeing that pleasure will be forced upon your partners.");
 				}
 				//Kangawang flavor
-				if(target.cocks[0].cType == GLOBAL.KANGAROO) {
+				else if(target.cocks[0].cType == GLOBAL.KANGAROO) {
 					output2("  It usually lies coiled inside a sheath, but undulates gently and tapers to a point when erect, somewhat like a taproot.");
 				}
 				//Draconic Cawk Flava flav
-				if(target.cocks[0].cType == GLOBAL.DRACONIC) {
+				else if(target.cocks[0].cType == GLOBAL.DRACONIC) {
 					output2("  With its tapered tip, there are few holes you wouldn't be able to get into.  It has a strange, knot-like bulb at its base, but doesn't usually flare during arousal as a dog's knot would.");
+				}
+				else if(target.cocks[0].cType == GLOBAL.BEE) {
+					output2("  There's a lot in common between human and zil genitals, but the alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
 				}
 				//Worm flavor
 				if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");		
@@ -595,7 +599,7 @@ function appearance(target:Creature):void {
 					//Horsecock flavor
 					if(target.cocks[temp].cType == GLOBAL.EQUINE) output2("  It's mottled black and brown in a very animalistic pattern.  The 'head' of your shaft flares proudly, just like a horse's.");
 					//dog cock flavor
-					if(target.cocks[temp].cType == GLOBAL.CANINE) {
+					else if(target.cocks[temp].cType == GLOBAL.CANINE) {
 						if(target.cocks[temp].knotMultiplier > 1 && target.cocks[temp].knotMultiplier < 1.4) output2("  A small knot of thicker flesh is near the base of your " + target.cockDescript(temp) + ", ready to expand to help you lodge it inside a female.");
 						if(target.cocks[temp].knotMultiplier >= 1.4 && target.cocks[temp].knotMultiplier < 1.8) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(temp) + ", to ensure it stays where it belongs during mating.");
 						if(target.cocks[temp].knotMultiplier >= 1.8) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(temp) + " looks almost too big for your cock.");
@@ -603,32 +607,35 @@ function appearance(target:Creature):void {
 						output2("  The knot is " + Math.round(target.cocks[temp].cThickness * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
 					}
 					//Demon cock flavor
-					if(target.cocks[temp].cType == GLOBAL.DEMONIC) {
+					else if(target.cocks[temp].cType == GLOBAL.DEMONIC) {
 						output2("  The crown is ringed with a circle of rubbery protrusions that grow larger as you get more aroused.  The entire thing is shiny and covered with tiny, sensitive nodules that leave no doubt about its demonic origins.");
 					}
 					//Tentacle cock flavor
-					if(target.cocks[temp].cType == GLOBAL.TENTACLE) {
+					else if(target.cocks[temp].cType == GLOBAL.TENTACLE) {
 						output2("  The entirety of its green surface is covered in perspiring beads of slick moisture.  It frequently shifts and moves of its own volition, the slightly oversized and mushroom-like head shifting in coloration to purplish-red whenever you become aroused.");
 					}
 					//Cat cock flavor
-					if(target.cocks[temp].cType == GLOBAL.FELINE) {
+					else if(target.cocks[temp].cType == GLOBAL.FELINE) {
 						output2("  It ends in a single point, much like a spike, and is covered in small, fleshy barbs. The barbs are larger at the base and shrink in size as they get closer to the tip.  Each of the spines is soft and flexible, and shouldn't be painful for any of your partners.");
 					}
 					//Snake cock flavor
-					if(target.cocks[temp].cType == GLOBAL.SNAKE) {
+					else if(target.cocks[temp].cType == GLOBAL.SNAKE) {
 						output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
 					}
 					//Anemone cock flavor
-					if(target.cocks[temp].cType == GLOBAL.ANEMONE || target.cocks[temp].cType == GLOBAL.SIREN) {
+					else if(target.cocks[temp].cType == GLOBAL.ANEMONE || target.cocks[temp].cType == GLOBAL.SIREN) {
 						output2("  The crown is surrounded by tiny tentacles with a venomous, aphrodisiac payload.  At its base a number of similar, longer tentacles have formed, guaranteeing that pleasure will be forced upon your partners.");
 					}
 					//Kangawang flavor
-					if(target.cocks[temp].cType == GLOBAL.KANGAROO) {
+					else if(target.cocks[temp].cType == GLOBAL.KANGAROO) {
 						output2("  It usually lies coiled inside a sheath, but undulates gently and tapers to a point when erect, somewhat like a taproot.");
 					}
 					//Draconic Cawk Flava flav
-					if(target.cocks[temp].cType == GLOBAL.DRACONIC) {
+					else if(target.cocks[temp].cType == GLOBAL.DRACONIC) {
 						output2("  With its tapered tip, there are few holes you wouldn't be able to get into.  It has a strange, knot-like bulb at its base, but doesn't usually flare during arousal as a dog's knot would.");
+					}
+					else if(target.cocks[temp].cType == GLOBAL.BEE) {
+						output2("  The alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
 					}
 					//Worm flavor
 					if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(temp) + ", tasting the air like a snake's tongue.");		
@@ -647,7 +654,7 @@ function appearance(target:Creature):void {
 			else if(target.cockTotal() > 1) output2("\n\n");
 			else output2(" ");
 			if(target.hasStatusEffect("Uniball")) {
-				if(target.skinType != GLOBAL.GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding " + target.ballsDescript(true,true) + " snugly against you.");
+				if(target.skinType != GLOBAL.GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, holding your " + target.ballsDescript(true,true) + " snugly against you.");
 				else if(target.skinType == GLOBAL.GOO) output2("Your " + target.sackDescript(true,true) + " clings tightly to your groin, dripping and holding " + target.ballsDescript(true,true) + " snugly against you.");
 			}
 			else if(target.cockTotal() == 0) {
