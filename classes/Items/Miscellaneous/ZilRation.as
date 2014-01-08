@@ -107,7 +107,7 @@
 						changes++;
 					}
 					//Honeycum!
-					if(target.totalCocks(GLOBAL.BEE) > 0 && changes < changeLimit && rand(3) == 0) 
+					if(target.totalCocks(GLOBAL.BEE) > 0 && target.cumType != GLOBAL.HONEY && changes < changeLimit && rand(3) == 0) 
 					{
 						kGAMECLASS.output("\n\nThere is a sudden pinch in your ");
 						if(target.balls > 0) kGAMECLASS.output("[pc.balls]");
@@ -137,10 +137,10 @@
 						if(y > 11) y = 11;
 
 						if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
-						else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " from your length.");
+						else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
 						else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 						else kGAMECLASS.output(" Gradually, you lose about an inch.");
-						target.cocks[x].cLength += y;
+						target.cocks[x].cLength -= y;
 						if(target.cocks[x].cLength * .30 > target.cocks[x].cThickness)
 						{
 							kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
@@ -209,7 +209,7 @@
 						if(!target.hasWings()) {
 							kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 							if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
-							kGAMECLASS.output(" to take a look; <b>there's small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more zil-like.");
+							kGAMECLASS.output(" to take a look; <b>there are small, transparent wings pressed against your back</b>. They're too small to allow you to fly, but you're definitely getting more zil-like.");
 							target.wingType = GLOBAL.SMALLBEE;
 						}
 						//Grow small zil wings to full size!
@@ -251,8 +251,8 @@
 							kGAMECLASS.output(" yourself with " + kGAMECLASS.num2Text(target.vaginas[x].clits - 1) + " less clit");
 							if(target.vaginas[x].clits > 2) kGAMECLASS.output("s");
 							kGAMECLASS.output(" than before and");
-							kGAMECLASS.output(" the interior a yellow reminiscent of some zil. It seems <b>you have a zil-like pussy, now!</b>");
 						}
+						kGAMECLASS.output(" the interior a yellow reminiscent of some zil. It seems <b>you have a zil-like pussy, now!</b>");
 						target.vaginas[x].clits = 1;
 						target.vaginas[x].type = GLOBAL.BEE;
 						changes++;
@@ -297,7 +297,7 @@
 						kGAMECLASS.output(". Not that it's unwelcome. It feels quite pleasant, but you weren't really planning on dealing with having such ");
 						if(target.vaginaTotal() == 1) kGAMECLASS.output("a wet pussy");
 						else kGAMECLASS.output("wet pussies");
-						kGAMECLASS.output(". You gingerly touch your folds and shudder with excitement before drawing away. You'll need to get yourself off soon. Catching your nose, a sweet smell lingers on your fingertips. You look closer at the stained digits and realize that <b>your [pc.girlcum] has been replaced by a honey-like substitute!</b>");
+						kGAMECLASS.output(". You gingerly touch your folds and shudder with excitement before drawing away. You'll need to get yourself off soon. Catching your nose, a sweet smell lingers on your fingertips. You look closer at the stained digits and realize that <b>your [pc.girlCum] has been replaced by a honey-like substitute!</b>");
 						//Raise lust!
 						target.lust(50);
 						target.girlCumType = GLOBAL.HONEY;
@@ -358,14 +358,14 @@
 						changes++;
 					}
 					//Breasts grow to C's - top row only
-					if(target.bRating(x) < 3) {
+					if(target.bRating(0) < 3) {
 						kGAMECLASS.output("\n\nA tightness builds in your chest until you feel your upper body gaining a little weight.");
 						//Flat chest
-						if(target.bRating(x) < 1) {
+						if(target.bRating(0) < 1) {
 							kGAMECLASS.output(" Your pecs swell with a slight, feminine curve - <b>you could probably fit into A-cups now!</b>");
 						}
 						//A cups
-						else if(target.bRating(x) < 2) {
+						else if(target.bRating(0) < 2) {
 							kGAMECLASS.output(" Your A-cups slowly blossom into a burgeoning pair of B-cups");
 							if(target.bRows() > 1) {
 								kGAMECLASS.output(", though the additional ");
@@ -380,7 +380,7 @@
 							kGAMECLASS.output(" Your B-cups tingle pleasantly, giving you just enough time to get your hands up to wrap around them. Almost on cue, your breasts swell up into your hands, expanding and jiggling with each passing moment, feeling so warm and wonderful as they expand. <b>You barely suppress a moan as you grow into nicely-rounded C-cups.</b> They still tingly hotly with the pleasant aftershocks of excitement.");
 							target.lust(5);
 						}
-						target.breastRows[x].breastRating++;
+						target.breastRows[0].breastRating++;
 						changes++;
 					}
 					//Hips widen to 6

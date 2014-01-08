@@ -57,6 +57,7 @@ function chooseStartingRace(race:String = "human"):void {
 	//Menus vary based on race.
 	this.userInterface.clearMenu();
 	if(race == "human") {
+		pc.addLegFlag(GLOBAL.PLANTIGRADE);
 		output("male or female");
 		this.userInterface.addButton(0,"Male",setStartingSex,1);
 		this.userInterface.addButton(1,"Female",setStartingSex,3);

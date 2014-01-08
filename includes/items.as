@@ -30,10 +30,15 @@ function useItem(item:ItemSlotClass):void {
 				this.userInterface.addButton(0,"Next",useItemFunction);
 			}
 		}
-		item.quantity--;
-		if(item.quantity < 0) {
-			item.quantity = 0;
-			item.shortName = "";
+		if(debug && (item.type == GLOBAL.FOOD || item.type == GLOBAL.PILL)) {
+			
+		}
+		else {
+			item.quantity--;
+			if(item.quantity < 0) {
+				item.quantity = 0;
+				item.shortName = "";
+			}
 		}
 	}
 }
