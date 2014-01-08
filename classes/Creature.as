@@ -827,49 +827,70 @@
 		//Lust
 		public function lust(arg:Number = 0, set:Boolean = false):Number {
 			if(set) lustRaw = arg;
-			else if(arg != 0) lustRaw += arg;
+			else if(arg != 0) {
+				lustRaw += arg;
+				if(lustRaw > lustMax()) lustRaw = lustMax();
+			}
 			var temp:int = lustRaw + lustMod;
 			if(temp > lustMax()) return lustMax();
 			else return temp;
 		}
 		public function physique(arg:Number = 0, set:Boolean = false):Number {
 			if(set) physiqueRaw = arg;
-			else if(arg != 0) physiqueRaw += arg;
+			else if(arg != 0) {
+				physiqueRaw += arg;
+				if(physiqueRaw > physiqueMax()) physiqueRaw = physiqueMax();
+			}
 			var temp:int = physiqueRaw + physiqueMod;
 			if(temp > physiqueMax()) return physiqueMax();
 			else return temp;
 		}
 		public function reflexes(arg:Number = 0, set:Boolean = false):Number {
 			if(set) reflexesRaw = arg;
-			else if(arg != 0) reflexesRaw += arg;
+			else if(arg != 0) {
+				reflexesRaw += arg;
+				if(reflexesRaw > reflexesMax()) reflexesRaw = reflexesMax();
+			}
 			var temp:int = reflexesRaw + reflexesMod;
 			if(temp > reflexesMax()) return reflexesMax();
 			else return temp;
 		}
 		public function aim(arg:Number = 0, set:Boolean = false):Number {
 			if(set) aimRaw = arg;
-			else if(arg != 0) aimRaw += arg;
+			else if(arg != 0) {
+				aimRaw += arg;
+				if(aimRaw > aimMax()) aimRaw = aimMax();
+			}
 			var temp:int = aimRaw + aimMod;
 			if(temp > aimMax()) return aimMax();
 			else return temp;
 		}
 		public function intelligence(arg:Number = 0, set:Boolean = false):Number {
 			if(set) intelligenceRaw = arg;
-			else if(arg != 0) intelligenceRaw += arg;
+			else if(arg != 0) {
+				intelligenceRaw += arg;
+				if(intelligenceRaw > intelligenceMax()) intelligenceRaw = intelligenceMax();
+			}
 			var temp:int = intelligenceRaw + intelligenceMod;
 			if(temp > intelligenceMax()) return intelligenceMax();
 			else return temp;
 		}
 		public function willpower(arg:Number = 0, set:Boolean = false):Number {
 			if(set) willpowerRaw = arg;
-			else if(arg != 0) willpowerRaw += arg;
+			else if(arg != 0) {
+				willpowerRaw += arg;
+				if(willpowerRaw > willpowerMax()) willpowerRaw = willpowerMax();
+			}
 			var temp:int = willpowerRaw + willpowerMod;
 			if(temp > willpowerMax()) return willpowerMax();
 			else return temp;
 		}
 		public function libido(arg:Number = 0, set:Boolean = false):Number {
 			if(set) libidoRaw = arg;
-			else if(arg != 0) libidoRaw += arg;
+			else if(arg != 0) {
+				libidoRaw += arg;
+				if(libidoRaw > libidoMax()) libidoRaw = libidoMax();
+			}
 			var temp:int = libidoMod + libidoRaw;
 			if(temp > libidoMax()) return libidoMax();
 			else return temp;
