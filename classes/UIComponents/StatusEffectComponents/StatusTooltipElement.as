@@ -218,6 +218,12 @@ package classes.UIComponents.StatusEffectComponents
 			// Now try and abuse the 9slice grid to resize the underlying element...
 			// Figure out the required ratio to expand or contract the element
 			var targetHeight:int = this._bodyText.height + this._bodyText.y + 5;
+			
+			if (targetHeight < this._durationText.y + this._durationText.textHeight + 15)
+			{
+				targetHeight = this._durationText.y + this._durationText.textHeight + 15;
+			}
+			
 			var scaleYValue:Number = targetHeight / this._sizeY;
 			
 			this._backgroundElement.scaleY = scaleYValue;
