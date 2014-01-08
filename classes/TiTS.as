@@ -125,7 +125,7 @@
 		public var shopkeep:Creature;
 		public var itemScreen:*;
 		public var lootScreen:*;
-		public var lootList:Array;
+		// public var lootList:Array;
 		public var useItemFunction;
 		public var itemUser:Creature;
 		public var itemTarget:Creature;
@@ -210,7 +210,7 @@
 			shopkeep = undefined;
 			itemScreen = undefined;
 			lootScreen = undefined;
-			lootList = new Array();
+			// lootList = new Array();
 			useItemFunction = undefined;
 			itemUser = undefined;
 			itemTarget = undefined;
@@ -298,7 +298,7 @@
 		
 		public function buttonClick(evt:MouseEvent):void {
 			if(!inCombat()) 
-				this.userInterface.showBust("hide");
+				this.userInterface.showBust("none");
 			if(evt.currentTarget.func == undefined) {
 				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
 				return;
@@ -476,7 +476,7 @@
 				return;
 			}
 			if(!inCombat()) 
-				this.userInterface.showBust("hide");
+				this.userInterface.showBust("none");
 			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
 			else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
 			updatePCStats();

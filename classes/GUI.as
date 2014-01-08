@@ -1316,15 +1316,21 @@
 				this.leftSideBar.npcBusts.visible = false;
 				return;
 			}
-
-			var bustIndex:int = 0;
-			if (GLOBAL.bustLookup[arg] == undefined)
+			else if(arg == "hide") 
 			{
-				trace("Attempted to display invalid bust!")
-				trace("Hiding bust display!")
+				trace("showBust called with arg \"hide\". The correct arg is \"none\". Please fix!")
 				this.leftSideBar.npcBusts.visible = false;
 				return;
 			}
+			else if (GLOBAL.bustLookup[arg] == undefined)
+			{
+				trace("Attempted to display invalid bust! Passed arg:", arg)
+				trace("Hiding bust display anyways!")
+				this.leftSideBar.npcBusts.visible = false;
+				return;
+			}
+
+			var bustIndex:int = 0;
 			bustIndex = GLOBAL.bustLookup[arg];
 
 			this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
