@@ -267,7 +267,7 @@ function equipItem(arg:ItemSlotClass):void {
 		holdingItem = clone(pc.lowerUndergarment);
 		pc.lowerUndergarment = clone(arg);
 	}
-	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) {
+	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) {
 		holdingItem = clone(pc.upperUndergarment);
 		pc.upperUndergarment = clone(arg);
 	}
