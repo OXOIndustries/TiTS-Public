@@ -191,7 +191,54 @@
 		};
 
 		public static var ITEMS:Object = {};
-
+		
+		/**
+		 * You have a couple of ways of querying the preference values to get useful information back out; it's why I've set the LIKES/DISLIKES values like I have.
+		 * creature.sexualPreferences.getPref(SEXPREF_flag) will give you the direct set value; 2, 1, -1 or -2. Or 0 if the preference isn't set.
+		 * creature.sexualPreferences.getAveragePrefScore(SEXPREF_flag1, SEXPREF_flag2, ..., SEXPREF_flagn) will give you the *average* score of the provided flags.
+		 * creature.sexualPreferences.getTotalPrefSecore(SEXPREF_flag1 ... SEXPREF_flagn) will give you the total running score of the provided flags.
+		 * There's also getHighestPrefScore and getLowestPrefScore. They both work on multiple flags at the same time.
+		 * 
+		 * I'm seeing two possible ways to use it;
+		 * Say you tag up a tease-attack internally; give it a list of SEXPREFS that are "major parts" of the tease attack. You can then feed them into the target of the attack, and use the return as a multiplier on the lust damage delt.
+		 * You could then also individually target the flags in the tease scene to bulk out the content. If the targets got a pref for one of the core things in the attack, you can slap in some reactionary shit in there p. easy.
+		 * 
+		 * I kinda want to add a method of getting a list of what SEXPREFS a creature "satisfies" now too, based on how its stats are setup.
+		 * Get list from creature -> feed list into target, get some kinda factor that you could use to trigger special interactions or something. Rather than checking properties individually to get the ball rolling, you could check how close to "ideal" two creatures are to each other instead.
+		 */
+		
+		// Changed around how this was gonna work internally. You can be as generic or as verbose as you wanna be, just make sure every "preference" has a unique value.
+		// See Penny's creature constructor for examples of whats going on to set things.
+		
+		public static const SEXPREF_FEMININE:int = 0;
+		public static const SEXPREF_MASCULINE:int = 1;
+		public static const SEXPREF_COCK:int = 2;
+		public static const SEXPREF_TITS:int = 3;
+		public static const SEXPREF_BUTTS:int = 4;
+		public static const SEXPREF_CUNTS:int = 5;
+		public static const SEXPREF_BELLY:int = 6;
+		public static const SEXPREF_HERMS:int = 7;
+		public static const SEXPREF_SHORT:int = 8;
+		public static const SEXPREF_TALL:int = 9;
+		public static const SEXPREF_CHUBBY:int = 10;
+		public static const SEXPREF_FURRY:int = 11;
+		public static const SEXPREF_SCALEY:int = 12;
+		public static const SEXPREF_SNOUTS:int = 13; // Because Vladimir Snoutin' aka Savin would want dis!
+		public static const SEXPREF_BALLS:int = 14;
+		public static const SEXPREF_MILKY:int = 15;
+		public static const SEXPREF_NONBIPED:int = 16;
+		public static const SEXPREF_PREGGERS:int = 17;
+		public static const SEXPREF_CRAZY_FUCKIN_WEIRD_SHIT:int = 18;
+		
+		public static const MAX_SEXPREF_VALUE:int = 19; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		
+		public static const REALLY_LIKES_SEXPREF:int = 2;
+		public static const KINDA_LIKES_SEXPREF:int = 1;
+		public static const KINDA_DISLIKES_SEXPREF:int = -1;
+		public static const REALLY_DISLIKES_SEXPREF:int = -2;
+		
+		public static const SEXPREF_VALUES:Array = [REALLY_LIKES_SEXPREF, KINDA_LIKES_SEXPREF, KINDA_DISLIKES_SEXPREF, REALLY_DISLIKES_SEXPREF];
+		
 		/*PLOT FLAGS
 		RECRUITED_CELISE
 		CELISE_ONBOARD

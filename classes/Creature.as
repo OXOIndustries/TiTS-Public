@@ -76,6 +76,7 @@
 			for(var z:int = 0; z < 30; z++) {
 				inventory[z] = new ItemSlotClass();
 			}
+			sexualPreferences = new SexualPreferences();
 		}
 		
 		/**
@@ -414,6 +415,9 @@
 		
 		//Used for misc shit
 		var list:Array = new Array();
+		
+		public var sexualPreferences:SexualPreferences;
+		
 		//Functions
 		//UTILITIES
 		public function num2Text(number:Number):String {
