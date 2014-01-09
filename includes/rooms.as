@@ -936,7 +936,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";
 	rooms["OVERGROWN ROCK 6"].eastExit = "OVERGROWN ROCK 5";
 	rooms["OVERGROWN ROCK 6"].addFlag(GLOBAL.OUTDOOR);
-	rooms["OVERGROWN ROCK 6"].runOnEnter = jungleDeepEncounters;
+	rooms["OVERGROWN ROCK 6"].runOnEnter = findOxoniumOnMhenga;
 
 	//75. Overgrown\nRock
 	rooms["OVERGROWN ROCK 7"] = new RoomClass(this);
@@ -1222,6 +1222,34 @@ function jungleMiddleEncounters():Boolean {
 	}
 	return false;
 }
+function findOxoniumOnMhenga():Boolean {
+	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
+		output("\n\nThere is a vertical striation running up through the rock wall of a different mineral, something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
+	}
+	else {
+		output("\n\nThere's a deposit of Oxonium here, but you've already called in the claim to your Dad's company. They'll probably be out to mine it once the frontier settles down a little bit.");
+	}
+	//Overridden by Jungle deep encounters
+	if(jungleDeepEncounters()) return true;
+	//Option to loot it!
+	else if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
+		userInterface.addButton(0,"Scan Rock",claimMhengaOxonium);
+	}
+	return false;
+}
+function claimMhengaOxonium():void {
+	clearOutput();
+	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. There amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");
+	
+	flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] = 1;
+	if(flags["OXONIUM_FOUND"] == undefined) flags["OXONIUM_FOUND"] = 0;
+	flags["OXONIUM_FOUND"]++;
+	pc.credits += 5000;
+	processTime(6);
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+
 function jungleDeepEncounters():Boolean {
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
