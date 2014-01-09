@@ -61,6 +61,7 @@ package classes
 				delete _sexPrefs[prefFlag];
 			}
 		}
+		
 		/**
 		 * Return an average score of the preferences. Ignores any preference that wasn't found.
 		 * @param	... args List of flags to check against

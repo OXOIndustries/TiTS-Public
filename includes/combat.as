@@ -822,13 +822,13 @@ function runAway():void {
 		//very hard = succeed 10%
 
 		//Easy: PC has twice the reflexes
-		if(pc[0].reflexes() >= foes[0].reflexes() * 2) difficulty = 0;
+		if(pc.reflexes() >= foes[0].reflexes() * 2) difficulty = 0;
 		//Low: PC has more than +33% more reflexes
-		else if(pc[0].reflexes() >= foes[0].reflexes() * 1.333) difficulty = 1;
+		else if(pc.reflexes() >= foes[0].reflexes() * 1.333) difficulty = 1;
 		//Medium: PC has more than -33% reflexes
-		else if(pc[0].reflexes() >= foes[0].reflexes() * .6666) difficulty = 2;
+		else if(pc.reflexes() >= foes[0].reflexes() * .6666) difficulty = 2;
 		//Hard: PC pretty slow
-		else if(pc[0].reflexes() >= foes[0].reflexes() * .3333) difficulty = 3;
+		else if(pc.reflexes() >= foes[0].reflexes() * .3333) difficulty = 3;
 		//Very hard: PC IS FUCKING SLOW
 		else difficulty = 4;
 
@@ -861,6 +861,7 @@ function runAway():void {
 			pc.removeStatusEffect("Round");
 			pc.clearCombatStatuses();
 			foes[0].HPRaw = 0;
+			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
 			this.userInterface.clearMenu();
 			this.userInterface.addButton(0,"Next",mainGameMenu);
 		}
