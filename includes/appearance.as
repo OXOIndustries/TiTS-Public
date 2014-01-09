@@ -35,13 +35,14 @@ function appearance(target:Creature):void {
 		
 		//Face
 		output2("\n\n");
-		if(target.faceType == GLOBAL.HUMAN || target.faceType == GLOBAL.SHARK || target.faceType == GLOBAL.SIREN || target.faceType == GLOBAL.LAPINE || target.faceType == GLOBAL.NAGA) {
-			if(target.skinType == GLOBAL.SKIN || target.skinType == GLOBAL.GOO) output2("Your face is human in shape and structure, with " + target.skin(true,true) + ".");
-			if(target.skinType == GLOBAL.FUR) output2(" Under your " + target.skinFurScales(true,true) + " you have a human-shaped head with " + target.skin(true,true) + ".");
-			if(target.skinType == GLOBAL.SCALES) output2(" Your face is fairly human in shape, but is covered in " + target.skin(true,true) + ".");
+		if(target.faceType == GLOBAL.NALEEN_FACE || target.faceType == GLOBAL.HUMAN || target.faceType == GLOBAL.SHARK || target.faceType == GLOBAL.SIREN || target.faceType == GLOBAL.LAPINE || target.faceType == GLOBAL.NAGA) {
+			if(target.hasFaceFlag(GLOBAL.SMOOTH) || target.faceType == GLOBAL.NALEEN_FACE || target.skinType == GLOBAL.SKIN || target.skinType == GLOBAL.GOO) output2("Your face is human in shape and structure, with " + target.skin(true,true) + ".");
+			else if(target.skinType == GLOBAL.FUR) output2(" Under your " + target.skinFurScales(true,true) + " you have a human-shaped head with " + target.skin(true,true) + ".");
+			else if(target.skinType == GLOBAL.SCALES) output2(" Your face is fairly human in shape, but is covered in " + target.skin(true,true) + ".");
 			if(target.faceType == GLOBAL.SHARK || target.faceType == GLOBAL.SIREN) output2(" A set of razor-sharp, retractable shark-teeth fill your mouth and gives your visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
 			else if(target.faceType == GLOBAL.NAGA) output2(" A set of retractable, needle-like fangs sit in place of your canines and are ready to dispense their venom.");
+			else if(target.faceType == GLOBAL.NALEEN_FACE) output2(" A set of retractable, needle-like fangs sit in place of your canines, just like a naleen.");
 		}
 		else if(target.faceType == GLOBAL.HUMANMASKED) {
 			//appearance for skinheads
@@ -134,7 +135,9 @@ function appearance(target:Creature):void {
 		//M/F stuff!
 		output2(" It has " + target.faceDesc() + ".");
 		//Eyes
-		if(target.eyeType == GLOBAL.ARACHNID) output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead.");
+		if(target.eyeType == GLOBAL.ARACHNID) output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead. All are " + target.eyeColor + ".");
+		else if(target.eyeType == GLOBAL.FELINE || target.eyeType == GLOBAL.SNAKE) output2(" Your eyes bear a vertical slit instead of rounded pupils, surrounded by a " + target.eyeColor + " iris.");
+		else output2(" Fairly unremarkable " + target.eyeColor + " eyes allow you to take in your surroundings without trouble.");
 		//Hair
 		//if bald
 		if(pc.hairLength == 0) {
@@ -144,7 +147,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.CANINE) output2(" A pair of dog ears protrude from your skull, flopping down adorably.");
 			else if(pc.earType == GLOBAL.BOVINE) output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
 			else if(pc.earType == GLOBAL.DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
-			else if(pc.earType == GLOBAL.FELINE) output2(" A pair of cute, fuzzy cat ears have sprouted from the top of your skull.");
+			else if(pc.earType == GLOBAL.FELINE) output2(" A pair of cute, fuzzy cat-like ears have sprouted from the top of your skull.");
 			else if(pc.earType == GLOBAL.LIZAN) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears.");
 			else if(pc.earType == GLOBAL.LAPINE) output2(" A pair of floppy rabbit ears stick up from the top of your skull, flopping around as you walk.");
 			else if(pc.earType == GLOBAL.KANGAROO) output2(" A pair of long, furred kangaroo ears stick out from your skull at an angle.");
@@ -161,7 +164,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.CANINE) output2(" The " + target.hairDescript(true,true) + " on your head is overlapped by a pair of pointed dog ears.");
 			else if(pc.earType == GLOBAL.BOVINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of rounded cow ears that stick out sideways.");
 			else if(pc.earType == GLOBAL.DRIDER) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute pointed ears, bigger than your old human ones.");
-			else if(pc.earType == GLOBAL.FELINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute, fuzzy cat ears, sprouting from atop your head and pivoting towards any sudden noises.");
+			else if(pc.earType == GLOBAL.FELINE) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of cute, fuzzy feline ears, sprouting from atop your head and pivoting towards any sudden noises.");
 			else if(pc.earType == GLOBAL.LIZAN) output2(" The " + target.hairDescript(true,true) + " atop your head makes it nigh-impossible to notice the two small rounded openings that are your ears.");
 			else if(pc.earType == GLOBAL.LAPINE) output2(" A pair of floppy rabbit ears stick up out of your " + target.hairDescript(true,true) + ", bouncing around as you walk.");
 			else if(pc.earType == GLOBAL.KANGAROO) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of long, furred kangaroo ears that stick out at an angle.");
@@ -223,6 +226,7 @@ function appearance(target:Creature):void {
 		//Wing arms
 		if(target.armType == GLOBAL.AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
+		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.MLP) output2("  From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
@@ -367,7 +371,7 @@ function appearance(target:Creature):void {
 		if(target.legType == GLOBAL.HUMAN) output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
 		else if(target.legType == GLOBAL.EQUINE) output2("  Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
 		else if(target.legType == GLOBAL.CANINE) output2("  Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
-		else if(target.legType == GLOBAL.NAGA) output2("  Below your waist your flesh is fused together into a very long snake-like tail.");
+		else if(target.legType == GLOBAL.NAGA) output2("  Below your waist your flesh is fused together into a very long, snake-like tail.");
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
 		else if(target.legType == GLOBAL.DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
@@ -485,11 +489,12 @@ function appearance(target:Creature):void {
 		if(target.hasCock() || target.hasVagina()) {
 			output2("\n\n");
 			//Crotchial stuff - mention snake
-			if(target.isNaga() && (target.hasCock() || target.hasVagina())) {
-				output2("Your sex");
-				if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("es are ");
+			if(target.hasStatusEffect("Genital Slit") && target.hasCock()) {
+				output2("Your masculine endowment");
+				if((target.hasVagina() && target.hasCock()) || target.totalCocks() > 1) output2("s are ");
 				else output2(" is ");
-				output2("concealed within a cavity in your tail when not in use, though when the need arises, you can part your concealing slit and reveal your true self. ");
+				output2("concealed within a well-hidden slit when not in use, though when the need arises, you can part your concealed entrance and reveal your true self. ");
+				if(target.isTaur()) output2("You're probably one of the most modest taurs out there because of this.");
 			}
 			else if(target.isTaur() && (target.hasCock() || target.hasVagina())) output2("Your sexual equipment is no longer below your waist, but instead at the back of your equine hindquarters. ");
 			
@@ -525,7 +530,7 @@ function appearance(target:Creature):void {
 				}
 				//Snake cock flavor
 				else if(target.cocks[0].cType == GLOBAL.SNAKE) {
-					output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
+					output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 				}
 				//Anemone cock flavor
 				else if(target.cocks[0].cType == GLOBAL.ANEMONE || target.cocks[0].cType == GLOBAL.SIREN) {
@@ -620,7 +625,7 @@ function appearance(target:Creature):void {
 					}
 					//Snake cock flavor
 					else if(target.cocks[temp].cType == GLOBAL.SNAKE) {
-						output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is not smooth, and is instead patterned with multiple bulbous bumps.");
+						output2("  It's a deep, iridescent purple in color.  Unlike a human penis, the shaft is patterned with multiple bulbous bumps to stimulate potential partners, and the whole of its length is glossy and smooth.");
 					}
 					//Anemone cock flavor
 					else if(target.cocks[temp].cType == GLOBAL.ANEMONE || target.cocks[temp].cType == GLOBAL.SIREN) {
@@ -711,7 +716,7 @@ function appearance(target:Creature):void {
 				else {
 					output2("Thin streams of ");
 					output2("lubricant occasionally dribble from ");
-				}				
+				}
 			}
 			else  //WTF horny!
 			{
@@ -745,6 +750,20 @@ function appearance(target:Creature):void {
 				if(target.vaginaTotal() > 1) output2("s that are");
 				else output2("that is");
 				output2(" your " + target.vaginasDescript() + ".");
+			}
+			//Zil flavor!
+			if(target.totalVaginas(GLOBAL.ZIL) > 0) {
+				output2(" The exterior folds are a dusky black, while the inner lining of ");
+				if(target.vaginaTotal() > 1) output2("each");
+				else output2("your");
+				output2(" tunnel is a glorious golden hue.");
+			}
+			//Naleen flavor
+			if(target.totalVaginas(GLOBAL.NAGA) > 0) {
+				output2(" The exterior lips are subtle and narrow, making ");
+				if(target.vaginaTotal() > 1) output2("each");
+				else output2("your");
+				output2(" lengthy entrance a little more discrete.");
 			}
 		}
 		//Genderless lovun'

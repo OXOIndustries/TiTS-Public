@@ -72,6 +72,8 @@
 			keyItems = new Array();
 			inventory = new Array();
 		}
+			sexualPreferences = new SexualPreferences();
+		}
 		
 		/**
 		 * Provide a base method of getting all properties common to ALL creatures. I think this would actually work
@@ -466,6 +468,9 @@
 		
 		//Used for misc shit
 		var list:Array = new Array();
+		
+		public var sexualPreferences:SexualPreferences;
+		
 		//Functions
 		//UTILITIES
 		public function num2Text(number:Number):String {
@@ -755,6 +760,9 @@
 					break;
 				case "legs":
 					buffer = legs();
+					break;
+				case "leg(s)":
+					buffer = legOrLegs();
 					break;
 				case "feet":
 					buffer = feet();
@@ -1106,6 +1114,9 @@
 			}
 			return false;
 		}
+		public function addFaceFlag(arg):void {
+			if(!hasFaceFlag(arg)) faceFlags[faceFlags.length] = arg;
+		}
 		public function clearFaceFlags():void {
 			faceFlags = new Array();
 		}
@@ -1421,6 +1432,9 @@
 			if(legType == GLOBAL.GOOEY) return true;
 			return false;
 		}
+		public function isImmobilized():Boolean {
+			return (hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed") || hasStatusEffect("Naleen Coiled"));
+		}
 		public function legs(forceType:Boolean = false, forceAdjective:Boolean = false):String {
 			var select:Number = 0;
 			//EDGE CASSES
@@ -1430,6 +1444,10 @@
 				return "mounds of goo";
 			}
 			return leg(forceType,forceAdjective) + "s";
+		}
+		public function legOrLegs(forceType:Boolean = false, forceAdjective:Boolean = false):String {
+			if(legCount == 1) return leg(forceType,forceAdjective);
+			else return legs(forceType,forceAdjective);
 		}
 		public function tailDescript():String {
 			return "tail";
@@ -3425,6 +3443,12 @@
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FORESKINNED);
 			}
+			if(type == GLOBAL.NAGA)
+			{
+				cocks[slot].knotMultiplier = 1;
+				cocks[slot].addFlag(GLOBAL.SMOOTH);
+				cocks[slot].addFlag(GLOBAL.TAPERED);	
+		}
 		}
 		//PC can fly?
 		public function canFly():Boolean {
@@ -4467,7 +4491,7 @@
 					if(this.rand(2) == 0) descript += "very long";
 					else descript += "long flowing locks";
 				}
-				else if(hairLength < 40) descript += "ass-length";
+				else if(hairLength < tallness/2) descript += "ass-length";
 				else if(hairLength < tallness) descript += "obscenely long";
 				else {
 					if(this.rand(2) == 0) descript += "floor-length";
@@ -4883,6 +4907,31 @@
 					else if(temp <= 13) vag += "pussy";
 					else if(temp <= 15) vag += "zil-cunt";
 					else vag += "twat";
+				}
+			}
+			else if(type == GLOBAL.NAGA) {
+				if(!simple) {
+					temp = this.rand(16);
+					if(temp <= 1) vag += "raptilian gash";
+					else if(temp <= 3) vag+="naleen-like slit";
+					else if(temp <= 5) vag += "snake-like cunt";
+					else if(temp <= 7) vag += "semi-concealed pussy";
+					else if(temp <= 9) vag += "supple pussy";
+					else if(temp <= 11) vag += "snake-like box";
+					else if(temp <= 13) vag += "alien cunt";
+					else vag += "half-hidden twat";
+				}
+			else {
+					temp = this.rand(18);
+					if(temp <= 1) vag+="naleen-cunt";
+					else if(temp <= 3) vag+="snake-pussy";
+					else if(temp <= 5) vag+="box";
+					else if(temp <= 7) vag += "snake-twat";
+					else if(temp <= 9) vag += "pussy";
+					else if(temp <= 11) vag += "xeno-cunt";
+					else if(temp <= 13) vag += "pussy";
+					else if(temp <= 15) vag += "slit";
+					else vag += "slit";
 				}
 			}
 			else {

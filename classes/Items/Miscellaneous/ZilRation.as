@@ -85,12 +85,12 @@
 					target.slowStatGain("libido",1+rand(2));
 					changes++;
 				}
-				if(rand(3) == 0 && changes < changeLimit && target.reflexes() < 15) {
+				if(rand(3) == 0 && changes < changeLimit && target.reflexes() < 5) {
 					kGAMECLASS.output("\n\nYou feel... twitchy - agitated. If a mosquito or similar creature tried landing on you right now, you'd probably swat it away before it got anywhere near biting you. Your reflexes feel sharpened... honed.");
 					target.slowStatGain("reflexes",.5);
 					changes++;
 				}
-				if(rand(3) == 0 && changes < changeLimit && target.physique() < 10) {
+				if(rand(3) == 0 && changes < changeLimit && target.physique() < 4) {
 					kGAMECLASS.output("\n\nThe alien food does more than make you feel full, though. It leaves you full of vim and vigor, suffused with more vitality than you're used to experience. It reminds you of the high you get from a good workout.");
 					target.slowStatGain("physique",.5);
 					changes++;
@@ -106,7 +106,7 @@
 				}
 				while(choices.length > 0) {
 					x = rand(choices.length);
-					choices[x](target,changes,changeLimit);
+					changes = choices[x](target,changes,changeLimit);
 					choices.splice(x,1);
 				}
 				//Gender Neutral TFs
@@ -193,17 +193,29 @@
 				if(target.isNude()) kGAMECLASS.output(" bend over to check it out");
 				else kGAMECLASS.output(" strip out of your [pc.gear] to see what's going on");
 				kGAMECLASS.output(". Your [pc.vagina " + x+ "] is rapidly engorging");
-				if(target.vaginaTotal() == 2) kGAMECLASS.output(", even though your other vagina isn't");
-				else kGAMECLASS.output(", even though your other vaginas aren't");
-				kGAMECLASS.output(". It starts leaking lubricant as you watch the lips plump and reshape slightly, blotches of yellow and black rolling across your skin as your body adapts to the foreign foods. The shifting hues settle into a shiny, almost lightless black, leaving the exterior of your vagina dusky. You pry it open to find");
+				if(target.vaginaTotal() == 2) kGAMECLASS.output(" along with your other entrance");
+				else if(target.vaginaTotal()  > 2) kGAMECLASS.output(" along with your other entrances");
+				if(target.vaginaTotal() == 1) kGAMECLASS.output(". It starts ");
+				else kGAMECLASS.output(". They start ");
+				kGAMECLASS.output("leaking lubricant as you watch the lips plump and reshape slightly, blotches of yellow and black rolling across your skin as your body adapts to the foreign foods. The shifting hues settle into a shiny, almost lightless black, leaving the exterior of your [pc.vaginas] dusky. You pry ");
+				if(target.vaginaTotal() == 1) kGAMECLASS.output("it");
+				else kGAMECLASS.output("they");
+				kGAMECLASS.output(" open to find");
 				if(target.vaginas[x].clits > 1) {
 					kGAMECLASS.output(" yourself with " + kGAMECLASS.num2Text(target.vaginas[x].clits - 1) + " less clit");
 					if(target.vaginas[x].clits > 2) kGAMECLASS.output("s");
+					if(target.vaginaTotal() > 1) kGAMECLASS.output(" at each channel");
 					kGAMECLASS.output(" than before and");
 				}
-				kGAMECLASS.output(" the interior a yellow reminiscent of some zil. It seems <b>you have a zil-like pussy, now!</b>");
-				target.vaginas[x].clits = 1;
-				target.vaginas[x].type = GLOBAL.BEE;
+				kGAMECLASS.output(" a yellow-gold hue reminiscent of some zil. It seems ");
+				if(target.vaginaTotal() > 1) kGAMECLASS.output("<b>you have a zil-like pussy now!</b>");
+				else kGAMECLASS.output("<b>you have zil-like pussies now!</b>");
+				//Loop through and set 'em all, baby!
+				for(x = 0; x < target.totalVaginas(); x++)
+				{
+					target.vaginas[x].clits = 1;
+					target.vaginas[x].type = GLOBAL.BEE;
+				}
 				changes++;
 			}
 			//Clit shrinkage - down to one inch!!

@@ -13,6 +13,18 @@
 			this._latestVersion = 1;
 			this._neverSerialize = false;
 			
+			// COMMENCE EXMPLAR SEXPREFS SHIT!
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_CUNTS, GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HERMS, GLOBAL.REALLY_LIKES_SEXPREF);
+			
+			// Randoming 4 preferences
+			for (var i:int = 0; i < 4; i++)
+			{
+				this.sexualPreferences.setPref(rand(GLOBAL.MAX_SEXPREF_VALUE), GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
+			}
+			
+			// KASUMING DIRECT CONTROL~
+			
 			this.short = "Penny";
 			this.originalRace = "human";
 			this.a = "";
@@ -152,7 +164,7 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 0;
-
+			
 			if (dataObject != null)
 			{
 				super.loadSaveObject(dataObject);

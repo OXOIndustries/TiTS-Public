@@ -77,8 +77,7 @@ function encounterNaleen():void {
 // two light physical attacks.
 function naleenDoubleAttack():void {
 	output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
-	attack(foes[0],pc,true,1);
-	attack(foes[0],pc,false,1);
+	attack(foes[0],pc,false,0);
 	//{standard dodge/miss messages}
 	//Hit: You get your arms up just in time, yelping in pain as the kitty-snake's claws rake your [skin], making you stumble back.
 }
@@ -90,7 +89,7 @@ function naleenConstrict():void {
 	{
 		output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
 		
-		pc.createStatusEffect("Naleen Coiled",0,0,0,0,true,"","",false,0);
+		pc.createStatusEffect("Naleen Coiled",0,0,0,0,false,"","You're trapped in the naleen's coils!",true,0);
 	}
 	else
 	{
@@ -161,11 +160,11 @@ function biteAttack():void {
 		output(" until you're fast asleep.");
 		//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
 		if(!pc.hasStatusEffect("Naleen Venom")) pc.createStatusEffect("Naleen Venom",0,0,0,0,false,"","This venom reduces strength, aim, reflexes, and willpower!",false,10);
-		pc.physiqueMod -= 1;
-		pc.aimMod -= 1;
-		pc.willpowerMod -= 1;
-		pc.reflexesMod -= 1;
-		pc.addStatusValue("Naleen Venom",1,1);
+		pc.physiqueMod -= .5;
+		pc.aimMod -= .5;
+		pc.willpowerMod -= .5;
+		pc.reflexesMod -= .5;
+		pc.addStatusValue("Naleen Venom",1,.5);
 		pc.lust(10+rand(10));
 	}
 	processCombat();

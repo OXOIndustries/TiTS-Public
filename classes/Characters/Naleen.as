@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.*
 	
 	public class Naleen extends Creature
 	{
@@ -34,7 +35,7 @@
 			this.libidoRaw = 60;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 25;
+			this.lustRaw = 45;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XP = 25;
 			this.level = 1;
@@ -42,6 +43,8 @@
 			this.HPMod = 20;
 			this.HPRaw = this.HPMax();
 			
+			this.createPerk("Multiple Attacks",0,0,0,0,"");
+
 			this.femininity = 85;
 			this.eyeType = GLOBAL.FELINE;
 			this.eyeColor = "green";
@@ -155,6 +158,8 @@
 			this.ass.wetness = 0;
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
+			
+			this.inventory[0] = new classes.Items.Miscellaneous.NaleenNip();			
 			
 			if (dataObject != null)
 			{
