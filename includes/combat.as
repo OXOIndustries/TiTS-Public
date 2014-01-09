@@ -32,8 +32,9 @@ function combatMainMenu():void
 		victoryRouting();
 		return;
 	}
-	else if(pc.HP() <= 0 || pc.lust() >= 100) {
+	else if(pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen)) {
 		//YOU LOSE! GOOD DAY SIR!
+		trace("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
 		//userInterface.clearMenu();
 		//userInterface.addButton(0,"Defeat",defeatRouting);
@@ -129,7 +130,13 @@ function processCombat():void
 		this.userInterface.addButton(0,"Victory",combatMainMenu);
 		return;
 	}
-	if(pc.HP() <= 0 || pc.lust() >= 100) {
+	if (pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() <= 0 || pc.willpower() <= 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen))
+	{
+		trace("DEFEAT LOSS!");
+		trace("PHYS: " + pc.physique() + " WILLPOWAH:" + pc.willpower());
+		if(pc.hasStatusEffect("NALEEN VENOM")) trace("VENOMED");
+		if(foes[0] is Naleen) trace("FIGHTIN NALEEN");
+
 		//YOU LOSE! GOOD DAY SIR!
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Defeat",combatMainMenu);
@@ -523,7 +530,7 @@ function displayMonsterStatus(targetFoe):void
 		}
 	}
 	//Celise intro specials.
-	if(targetFoe.short == "Celise") {
+	if(targetFoe is Celise) {
 		//Round specific dad addons!
 		if(pc.statusEffectv1("Round") == 1) output("\nVictor instructs, <i>“<b>Try and strike her, " + pc.short + ". Use a melee attack.</b>”</i>\n");
 		else if(pc.statusEffectv1("Round") == 2) output("\n<i>“Some foes are more vulnerable to ranged attacks than melee attacks or vice versa. <b>Why don’t you try using your gun?</b> Don’t worry, it won’t kill her.”</i> Victor suggests.\n");
@@ -800,6 +807,7 @@ function runAway():void {
 		output("You escape on wings of debug!\n");
 		pc.removeStatusEffect("Round");
 		pc.clearCombatStatuses();
+		foes[0].HPRaw = 0;
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",mainGameMenu);
 	}
@@ -852,6 +860,7 @@ function runAway():void {
 			processTime(8);
 			pc.removeStatusEffect("Round");
 			pc.clearCombatStatuses();
+			foes[0].HPRaw = 0;
 			this.userInterface.clearMenu();
 			this.userInterface.addButton(0,"Next",mainGameMenu);
 		}

@@ -204,12 +204,18 @@
 					else kGAMECLASS.output(" A few clits vanish");
 					kGAMECLASS.output(", leaving only the one at the top.");
 				}
+				if(target.totalVaginas() == 2) kGAMECLASS.output(" Your other entrance soon follows after the first, reshaping to match.");
+				else if(target.totalVaginas() > 2) kGAMECLASS.output(" Your other entrances soon follow after the first, reshaping to match.");
 				if((target.hasCock() && target.hasStatusEffect("Genital Slit")) || target.vaginaTotal(GLOBAL.NAGA)) kGAMECLASS.output(" With more than one slit in your groin, you hope any future partners can find their target.");
 				kGAMECLASS.output("<b> You have a vagina that looks just like a naleen's");
 				if(target.skinType != GLOBAL.SCALES && target.legType != GLOBAL.NAGA) kGAMECLASS.output(", minus the scales around it");
 				kGAMECLASS.output(".</b>");
-				target.vaginas[x].type = GLOBAL.NAGA;
-				//Set to naleen cunt!
+				//Loop through and set 'em all, baby!
+				for(x = 0; x < target.totalVaginas(); x++)
+				{
+					target.vaginas[x].clits = 1;
+					target.vaginas[x].type = GLOBAL.NAGA;
+				}
 				changes++;
 			}
 			//See if any vaginas have less than 100 bonus capacity!

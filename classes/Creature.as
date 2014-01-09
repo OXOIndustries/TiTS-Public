@@ -4856,6 +4856,31 @@
 					else vag += "twat";
 				}
 			}
+			else if(type == GLOBAL.NAGA) {
+				if(!simple) {
+					temp = this.rand(16);
+					if(temp <= 1) vag += "raptilian gash";
+					else if(temp <= 3) vag+="naleen-like slit";
+					else if(temp <= 5) vag += "snake-like cunt";
+					else if(temp <= 7) vag += "semi-concealed pussy";
+					else if(temp <= 9) vag += "supple pussy";
+					else if(temp <= 11) vag += "snake-like box";
+					else if(temp <= 13) vag += "alien cunt";
+					else vag += "half-hidden twat";
+				}
+				else {
+					temp = this.rand(18);
+					if(temp <= 1) vag+="naleen-cunt";
+					else if(temp <= 3) vag+="snake-pussy";
+					else if(temp <= 5) vag+="box";
+					else if(temp <= 7) vag += "snake-twat";
+					else if(temp <= 9) vag += "pussy";
+					else if(temp <= 11) vag += "xeno-cunt";
+					else if(temp <= 13) vag += "pussy";
+					else if(temp <= 15) vag += "slit";
+					else vag += "slit";
+				}
+			}
 			else {
 				if(!simple) {
 					temp = this.rand(5);

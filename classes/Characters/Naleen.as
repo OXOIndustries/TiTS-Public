@@ -43,6 +43,8 @@
 			this.HPMod = 20;
 			this.HPRaw = this.HPMax();
 			
+			this.createPerk("Multiple Attacks",0,0,0,0,"");
+
 			this.femininity = 85;
 			this.eyeType = GLOBAL.FELINE;
 			this.eyeColor = "green";
