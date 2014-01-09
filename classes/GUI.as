@@ -1264,6 +1264,7 @@
 			}
 			
 			// Show the label header deal
+			this.hideMinimap();
 			showHeader("ENCOUNTER STATUS");			
 		}
 		public function resetNPCStats():void
@@ -1280,6 +1281,7 @@
 				this.miniMap.visible = true;
 			}
 			displayMinimap = true;
+			this.hideNPCStats();
 			showHeader("LOCATION MAP");
 		}
 		
@@ -1289,12 +1291,14 @@
 			{
 				barItem.visible = false;
 			}
+			this.hideHeader();
 		}
 		
 		public function hideMinimap():void
 		{
 			displayMinimap = false;
 			this.miniMap.visible = false;
+			this.hideHeader();
 		}
 		
 		public function deglow():void 
