@@ -151,7 +151,8 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15
 			
-			this.inventory[0] = new classes.Items.Miscellaneous.ZilRation();
+			this.inventory.push(new classes.Items.Miscellaneous.ZilRation());
+			this.inventory[0].quantity = 10;
 			
 			if (dataObject != null)
 			{

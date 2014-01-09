@@ -13,6 +13,7 @@
 		{
 			registerClassAlias("ZilRation", ZilRation);
 		}
+		
 		//constructor
 		public function ZilRation(dataObject:Object = null)
 		{

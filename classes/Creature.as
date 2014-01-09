@@ -71,7 +71,6 @@
 			statusEffects = new Array();
 			keyItems = new Array();
 			inventory = new Array();
-		}
 			sexualPreferences = new SexualPreferences();
 		}
 		
@@ -109,7 +108,7 @@
 								
 								for (var i:int = 0; i < this[prop.@name].length; i++)
 								{
-									dataObject[prop.@name].push(this[prop.@name][i]);
+									dataObject[prop.@name].push(this[prop.@name][i].getSaveObject());
 								}
 							}
 							else
@@ -195,7 +194,7 @@
 							{
 								this[prop] = new Array();
 								
-								if (dataObject[prop][0] is ISaveable)
+								if (dataObject[prop][0].hasOwnProperty("classInstance"))
 								{
 									for (var i:int = 0; i < dataObject[prop].length; i++)
 									{		

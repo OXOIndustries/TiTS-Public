@@ -19,6 +19,8 @@
 		public function get quantity():Number { return _quantity; }
 		public function set quantity(v:Number):void { _quantity = v; }
 		
+		public var hasRandomProperties:Boolean = false;
+		
 		public var stackSize:int;
 		//Used on inventory buttons
 		public var shortName:String;
@@ -139,20 +141,28 @@
 			var _dl:XMLList = _d..variable;
 			var _da:XMLList = _d..accessor;
 			
-			for each (var prop:XML in _dl)
+			if (this.hasRandomProperties == true)
 			{
-				if (this[prop.@name] != null && this[prop.@name] != undefined)
+				for each (var prop:XML in _dl)
 				{
-					dataObject[prop.@name] = this[prop.@name];
+					if (this[prop.@name] != null && this[prop.@name] != undefined)
+					{
+						dataObject[prop.@name] = this[prop.@name];
+					}
+				}
+				
+				for each (var accs:XML in _da)
+				{
+					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
+					{
+						dataObject[accs.@name] = this[accs.@name];
+					}
 				}
 			}
-			
-			for each (var accs:XML in _da)
+			else
 			{
-				if (accs.@name != "prototype" && accs.@name != "neverSerialize")
-				{
-					dataObject[accs.@name] = this[accs.@name];
-				}
+				dataObject.quantity = this.quantity;
+				dataObject.shortName = this.shortName;
 			}
 			
 			dataObject.classInstance = getQualifiedClassName(this);
@@ -164,19 +174,22 @@
 		{
 			if (this._latestVersion == -1) return;
 			
-			// Same mechanic as for creatures. If the player has a save instance of an item, their values will clobber
-			// those in the game data, so rebalancing will have to go via a version system.
-			if (dataObject.version < this._latestVersion)
+			if (this.hasRandomProperties == true)
 			{
-				while (dataObject.version < this._latestVersion)
+				// Same mechanic as for creatures. If the player has a save instance of an item, their values will clobber
+				// those in the game data, so rebalancing will have to go via a version system.
+				if (dataObject.version < this._latestVersion)
 				{
-					this["UpgradeVersion" + dataObject.version](dataObject);
+					while (dataObject.version < this._latestVersion)
+					{
+						this["UpgradeVersion" + dataObject.version](dataObject);
+					}
 				}
-			}
-			
-			if (dataObject.version != this._latestVersion)
-			{
-				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
+				
+				if (dataObject.version != this._latestVersion)
+				{
+					throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
+				}
 			}
 			
 			var _d:XML = describeType(dataObject);
