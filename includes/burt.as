@@ -10,6 +10,36 @@
 // TIMES_THREE_D_SURPRISE_SEXED : TODO - FIXME
 
 function burtsBarFunc():void {
+	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
+	
+	if(userInterface.hours >= 12) {
+		//{Hasn't bet against Syri yet}
+		if(flags["BET_AGAINST_SYRI"] == undefined) {
+			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
+			//[Games]
+		}
+		//{Has bet against Syri}
+		else {
+			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
+			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She's certainly got that lusty look in her eyes...");
+			//[!Syri]
+		}
+	}
+	//Add to Bar Description, Early Morning
+	else {
+		if(flags["FUCKED_SYRI_COUNT"] != undefined) {
+			//(First time; must have fucked Syri at least once)
+			if(flags["SEEN_SYRI_IN_THE_MORNING"] == undefined) {
+				output("\n\nYou see Syri the ausar gamer sitting in a stool at the bar, scanning a data slate as she absently pokes at a hearty looking breakfast that looks like it's been there for ages. Doesn't look like she's gaming yet, though with the place practically deserted in the wee hours, she might be up for just talking...");
+			}
+			//(Repeat)
+			else {
+				output("\n\nSyri's at her usual place, reading and munching on some nuts Bert's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
+			}
+		}
+		//[Syri]
+	}
+
 	if(flags["MET_BURT"] == undefined) this.userInterface.addButton(0,"Bar",burtapproach);
 	else this.userInterface.addButton(0,"Burt",burtapproach);
 	this.userInterface.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);

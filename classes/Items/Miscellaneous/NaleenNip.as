@@ -55,7 +55,7 @@
 			if(rand(3) == 0) changeLimit++;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn't quite compare any pepper you've ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of it the mixture. You don't really get much of a buzz; the euphoric effect must only work on ");
+				kGAMECLASS.output("Grabbing the leaves and rolling them together, you pop the half-formed ball into your mouth and start chewing. They have a relatively mild spiciness to them that doesn't quite compare any pepper you've ever tried, just enough to make your [pc.tongue] tingle a little bit. The longer you chew, the more the leaves dissolve, and the more you salivate, forcing you to swallow some of the mixture. You don't really get much of a buzz; the euphoric effect must only work on ");
 				if(target.race() == "naleen") kGAMECLASS.output("full-blooded ");
 				kGAMECLASS.output("naleen.");
 				kGAMECLASS.processTime(3);
@@ -79,7 +79,7 @@
 
 				//Generic TFs
 				//Naga tail TF - req 6' tall
-				if(target.tallness >= 72 && changes < changeLimit)
+				if(target.tallness >= 72 && changes < changeLimit && rand(3) == 0 && target.legCount != 1 && target.legType != GLOBAL.NAGA)
 				{
 					//Single leg!
 					if(target.legCount == 1) kGAMECLASS.output("\n\nYour [pc.leg] abruptly goes weak, dropping you flat on your [pc.ass], and just in time, by the looks of things. Your lower limb is twisting and writhing");
@@ -135,7 +135,9 @@
 						else target.furColor = "white";
 					}
 					//orange, black, white
-					kGAMECLASS.output(" The coat of fur thickens and spreads as you watch, moving to your shoulders while a new patch appears on your [pc.belly]. The fur there is softer than elsewhere but growing just as forcefully. Most of your body, even your [pc.butt], is soon covered with the stuff. The layer of fluff thickens and thickens until <b>your skin is hidden under the " + target.furColor + " coat.</b>");
+					kGAMECLASS.output(" The coat of fur thickens and spreads as you watch, moving to your shoulders while a new patch appears on your [pc.belly]. The fur there is softer than elsewhere but growing just as forcefully. Most of your body, even your [pc.butt], is soon covered with the stuff. The layer of fluff thickens and lengthens until <b>your skin is hidden under the " + target.furColor + " coat.</b>");
+					target.skinType = GLOBAL.FUR;
+					target.clearSkinFlags();
 					changes++;
 				}
 				//Cat ears - req naleen face
@@ -161,7 +163,7 @@
 					changes++;
 				}
 				//Naleen eyes: No prereq
-				if(rand(5) == 0) {
+				if(rand(5) == 0 && target.eyeType != GLOBAL.FELINE && changes < changeLimit) {
 					if(target.eyeColor != "green" && target.eyeColor != "blue" && target.eyeColor != "gold") {
 						if(rand(3) == 0) target.eyeColor = "green";
 						else if(rand(2) == 0) target.eyeColor = "blue";
@@ -260,7 +262,7 @@
 			//Widen hips to 12
 			if(target.hipRating < 12 && changes < changeLimit && rand(3) == 0) {
 				target.hipRating += 1 + rand(3);
-				kGAMECLASS.output("\n\nThere's a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait as widened with your [pc.hips]. You aren't sure why a race that doesn't have legs would have such wide hips anyway, but they do look nice on you.");
+				kGAMECLASS.output("\n\nThere's a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait has widened with your [pc.hips]. You aren't sure why a race that doesn't have legs would have such wide hips anyway, but they do look nice on you.");
 				changes++;
 			}
 			//Lengthen hair to ass-length!

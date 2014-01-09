@@ -59,6 +59,7 @@ function combatMainMenu():void
 	{
 		output("\n<b>You are wrapped up in coils!</b>");
 		userInterface.addButton(0,"Struggle",naleenStruggle);
+		this.userInterface.addButton(4,"Do Nothing",wait);
 	}
 	else 
 	{
@@ -66,8 +67,11 @@ function combatMainMenu():void
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+		this.userInterface.addButton(4,"Do Nothing",wait);
 		this.userInterface.addButton(5,"Tease",attackRouter,tease);
+		this.userInterface.addButton(6,"Fantasize",fantasize);
 		this.userInterface.addButton(14,"Run",runAway);
+
 	}
 }
 function updateCombatStatuses():void {
@@ -807,7 +811,7 @@ function runAway():void {
 		output("You escape on wings of debug!\n");
 		pc.removeStatusEffect("Round");
 		pc.clearCombatStatuses();
-		foes[0].HPRaw = 0;
+		this.userInterface.hideNPCStats();
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",mainGameMenu);
 	}
@@ -860,11 +864,24 @@ function runAway():void {
 			processTime(8);
 			pc.removeStatusEffect("Round");
 			pc.clearCombatStatuses();
-			foes[0].HPRaw = 0;
 			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
 			this.userInterface.clearMenu();
 			this.userInterface.addButton(0,"Next",mainGameMenu);
 		}
 
 	}
+}
+function fantasize():void {
+	clearOutput();
+	output("You decide you'd rather fantasize than fight back at this point. Why bother when your enem");
+	if(foes[0].plural || foes.length > 1) output("ies are");
+	else output("y is");
+	output(" so alluring?\n");
+	pc.lust(20+rand(20));
+	processCombat();
+}
+function wait():void {
+	clearOutput();
+	output("You choose not to act.\n");
+	processCombat();
 }
