@@ -1,11 +1,13 @@
 ﻿package classes
 {
-	public class BreastRowClass
+	import classes.DataManager.Serialization.UnversionedSaveable;
+	public class BreastRowClass extends UnversionedSaveable
 	{
 		//constructor
 		public function BreastRowClass()
 		{
 		}
+		
 		//For cheateyness.
 		// include "consts.as";
 		

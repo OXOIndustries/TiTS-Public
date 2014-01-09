@@ -1,6 +1,7 @@
 ﻿package classes
 {
-	public class StorageClass
+	import classes.DataManager.Serialization.UnversionedSaveable;
+	public class StorageClass extends UnversionedSaveable
 	{
 		//constructor
 		public function StorageClass()

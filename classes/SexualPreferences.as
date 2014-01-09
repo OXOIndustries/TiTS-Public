@@ -1,12 +1,13 @@
 package classes
 {
+	import classes.DataManager.Serialization.UnversionedSaveable;
 	import flash.net.registerClassAlias;
 	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public class SexualPreferences 
+	public class SexualPreferences extends UnversionedSaveable
 	{
 		{
 			registerClassAlias("SexualPreferences", SexualPreferences);
