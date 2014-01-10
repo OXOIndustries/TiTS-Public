@@ -1786,10 +1786,12 @@ function getAssFuckedByPenny():void {
 	//[Dickless scene intro combines back here]
 	output("\n\nBut you'll have none of that! You put a firm hand on her thigh, pushing her back down against the chair. Penny groans but doesn't resist, letting you hold her down as you slip down between her legs, tongue rolling out down across her cock's base. Slowly, you trail up and up her shaft, leaving a nice slick trail from stem to stern. Whining with pleasure, Penny tears her shirt open, bearing her nicely-rounded tits; she cups the two swollen mounds, squeezing her pink teats as you plant an affectionate kiss on her cockhead.");
 	//{If PC has C+ cup tits:
-	if(pc.biggestTitSize() >= 3) output(" The sight of the sexy fox playing with her own tits gives you an idea, though....");
+	if(pc.biggestTitSize() >= 3) {
+		output(" The sight of the sexy fox playing with her own tits gives you an idea, though....");
 	
-	//Con't: 
-	output("\n\nYou rise up on your [pc.knees] and grab your [pc.chest], cupping the two heavy orbs and squeezing them together, giving Penny the perfect view of your sizable cleavage. Giving your tits a little jiggle for her, you lean in and let them wrap around her shaft, burying Penny's cock in a bed of boobage. Slowly, you drag her [penny.cock] through the valley of your cleavage, lifting your tits up and down her girth until she's left you a nice, pearly trail between your tits, her [penny.cockHead] just poking out between the two soft orbs. You gobble it up, sucking down the first inches of her cock as your tits work her length, sending the sensitive fox girl into a whole new realm of pleasure that soon has her panting and gasping, cock bubbling pre freely.");
+		//Con't: 
+		output("\n\nYou rise up on your [pc.knees] and grab your [pc.chest], cupping the two heavy orbs and squeezing them together, giving Penny the perfect view of your sizable cleavage. Giving your tits a little jiggle for her, you lean in and let them wrap around her shaft, burying Penny's cock in a bed of boobage. Slowly, you drag her [penny.cock] through the valley of your cleavage, lifting your tits up and down her girth until she's left you a nice, pearly trail between your tits, her [penny.cockHead] just poking out between the two soft orbs. You gobble it up, sucking down the first inches of her cock as your tits work her length, sending the sensitive fox girl into a whole new realm of pleasure that soon has her panting and gasping, cock bubbling pre freely.");
+	}
 	
 	output("\n\nYou don't let up, continuing to jerk the foxy fox off until she's putty in your hands, whimpering and moaning in pleasure, alternating between stroking her tits, pulling you down on her cock, and fingering her sodden box. You let her guide your head down her shaft, parting your lips to take every inch of her throbbing erection. You easily suck up her salty, musky cock, wrapping your tongue around the pulsing shaft until your lips brush her crotch. You look up at Penny expectantly, but find her eyes closed, head rolled back in pleasure, trying hard not to cum right in your mouth.");
 	
