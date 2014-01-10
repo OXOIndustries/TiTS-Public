@@ -10,21 +10,11 @@ package classes.Characters
 	{
 		
 		
-		public function PlayerCharacter(dataObject:Object = null) 
+		public function PlayerCharacter() 
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = false;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
-		
 	}
-
 }

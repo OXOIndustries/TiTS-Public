@@ -11,25 +11,27 @@
 			registerClassAlias("LaserPistol", LaserPistol);
 		}
 		//constructor
-		public function LaserPistol(dataObject:Object = null)
+		public function LaserPistol()
 		{
 			this._latestVersion = 1;
-			//Mk. III Laser Pistol :
-			//3
-			
-			//this.indexNumber = 3;
+
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.RANGED_WEAPON;
+			
 			//Used on inventory buttons
 			this.shortName = "LaserPistol";
+			
 			//Regular name
 			this.longName = "mark III laser pistol";
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a mark III laser pistol";
+			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "The mark III laser pistol carries many refinements over previous models that make it far less likely to explode than its predecessors. It's the perfect weapon for a tech specialist to start with.";
 			this.attackVerb = "shoot";
+			
 			//Information
 			this.basePrice = 150;
 			this.attack = 2;
@@ -44,14 +46,7 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.version = _latestVersion;
 		}
 	}
 }

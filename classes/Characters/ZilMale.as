@@ -7,9 +7,10 @@
 	public class ZilMale extends Creature
 	{
 		//constructor
-		public function ZilMale(dataObject:Object = null)
+		public function ZilMale()
 		{
-			this._latestVersion = 1.1;
+			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
 			// Originally a clone of the zilpack
@@ -153,15 +154,6 @@
 			
 			this.inventory.push(new classes.Items.Miscellaneous.ZilRation());
 			this.inventory[0].quantity = 10;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

@@ -10,7 +10,7 @@
 	public class ChangeMe extends Creature
 	{
 		//constructor
-		public function ChangeMe(dataObject:Object = null)
+		public function ChangeMe()
 		{
 			/**
 			 * LatestVersion tracks the currently available version of a Creature class at compile-time. Any increment to this value
@@ -18,6 +18,7 @@
 			 * Setting this value to -1 will prevent a given creature from being loaded from file, so quick iteration of code tweaks
 			 * can be accomplished without requiring any faffing with upgrade versions, until the final values are nailed down. */
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			
 			/**
 			 * NeverSerialize prevents a creature from being saved to file entirely. This is intended for creatures that
@@ -26,16 +27,6 @@
 			
 			/** PLACE VARIABLE SETTINGS HERE **/
 			
-			/** Put all the regular bumpf to setup a Creature here, after the version and serialization settings, but before
-			 * the loading call
-			 */
-			
-			/**
-			 * Ensure this call is at the end of the constructor; we'll set all properties according to game content, and then 
-			 * begin the loading process.
-			 */
-			if (dataObject != null)	{ super.loadSaveObject(dataObject); }
-			else { this.version = _latestVersion; }
 		}
 		
 		/**

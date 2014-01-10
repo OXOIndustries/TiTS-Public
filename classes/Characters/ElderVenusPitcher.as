@@ -9,9 +9,10 @@
 		
 		
 		//constructor
-		public function ElderVenusPitcher(dataObject:Object = null)
+		public function ElderVenusPitcher()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
 			this.short = "elder venus\npitcher";
@@ -156,16 +157,6 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
-			
 		}
 	}
 }

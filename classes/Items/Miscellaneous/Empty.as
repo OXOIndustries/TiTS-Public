@@ -11,26 +11,27 @@
 			registerClassAlias("Empty", Empty);
 		}
 		//constructor
-		public function Empty(dataObject:Object = null)
+		public function Empty()
 		{
-			this._latestVersion = -1;
+			this._latestVersion = 1;
 			
-			//Nothing
-			//6
-			
-			//this.indexNumber = 6;
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.ARMOR;
+			
 			//Used on inventory buttons
 			this.shortName = "";
+			
 			//Regular name
 			this.longName = "nothing";
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "nothing";
+			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "You aren't wearing anything in this equipment slot... at all.";
 			this.attackVerb = "";
+			
 			//Information
 			this.basePrice = 0;
 			this.attack = 0;
@@ -45,14 +46,7 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.version = _latestVersion;
 		}
 	}
 }

@@ -9,9 +9,10 @@
 		
 		
 		//constructor
-		public function Naleen(dataObject:Object = null)
+		public function Naleen()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
 			this.short = "naleen";
@@ -159,16 +160,7 @@
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
 			
-			this.inventory[0] = new classes.Items.Miscellaneous.NaleenNip();			
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.inventory.push(new NaleenNip());
 		}
 	}
 }

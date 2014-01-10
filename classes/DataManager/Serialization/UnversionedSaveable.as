@@ -170,5 +170,13 @@ package classes.DataManager.Serialization
 				}
 			}
 		}
+		
+		public function makeCopy():*
+		{
+			var classT:Class = (getDefinitionByName(getQualifiedClassName(this)) as Class);
+			var cObj:* = new classT();
+			cObj.loadSaveObject(this.getSaveObject());
+			return cObj;
+		}
 	}
 }

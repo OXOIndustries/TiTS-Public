@@ -8,9 +8,10 @@
 		
 		
 		//constructor
-		public function Flahne(dataObject:Object = null)
+		public function Flahne()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Flahne";
@@ -158,15 +159,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 3;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

@@ -203,5 +203,14 @@ package classes.DataManager.Serialization
 				}
 			}
 		}
+		
+		public function makeCopy():*
+		{
+			// I'm actually wondering if "new this()" would work to return a new instance of the thisPtr's class type...
+			var classT:Class = (getDefinitionByName(getQualifiedClassName(this)) as Class);
+			var cObj:* = new classT();
+			cObj.loadSaveObject(this.getSaveObject());
+			return cObj;
+		}
 	}
 }

@@ -420,11 +420,13 @@
 				{
 					if (!obj.characters[prop].hasOwnProperty("classInstance"))
 					{
-						kGAMECLASS.chars[prop] = new (getDefinitionByName(getQualifiedClassName(obj.characters[prop])) as Class)(obj.characters[prop]);
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(getQualifiedClassName(obj.characters[prop])) as Class)();
+						kGAMECLASS.chars[prop].loadSaveObject(obj.characters[prop]);
 					}
 					else
 					{
-						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)(obj.characters[prop]);
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)();
+						kGAMECLASS.chars[prop].loadSaveObject(obj.characters[prop]);
 					}
 				}
 				catch (e:ReferenceError)

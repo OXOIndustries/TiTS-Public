@@ -9,9 +9,10 @@
 		
 		
 		//constructor
-		public function Geoff(dataObject:Object = null)
+		public function Geoff()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Geoff";
@@ -43,9 +44,9 @@
 			this.level = 1;
 			this.credits = 1000;
 			
-			this.inventory.push(new classes.Items.Guns.HoldOutPistol());
-			this.inventory.push(new classes.Items.Guns.EagleHandgun());
-			this.inventory.push(new classes.Items.Guns.ScopedPistol());
+			this.inventory.push(new HoldOutPistol());
+			this.inventory.push(new EagleHandgun());
+			this.inventory.push(new ScopedPistol());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;
@@ -162,15 +163,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

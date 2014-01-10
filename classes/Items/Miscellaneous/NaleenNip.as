@@ -13,9 +13,12 @@
 		{
 			registerClassAlias("NaleenNip", NaleenNip);
 		}
+		
 		//constructor
 		public function NaleenNip()
 		{
+			this._latestVersion = 1;
+			
 			this.quantity = 1;
 			this.stackSize = 10;
 			this.type = GLOBAL.FOOD;
@@ -40,7 +43,9 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
+			this.version = this._latestVersion;
 		}
 		
 		//METHOD ACTING!

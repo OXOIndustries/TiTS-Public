@@ -11,7 +11,7 @@
 			registerClassAlias("Knife", Knife);
 		}
 		//constructor
-		public function Knife(dataObject:Object = null)
+		public function Knife()
 		{
 			this._latestVersion = 1;
 			
@@ -22,15 +22,20 @@
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
+			
 			//Used on inventory buttons
 			this.shortName = "knife";
+			
 			//Regular name
 			this.longName = "knife";
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a knife";
+			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
 			this.attackVerb = "shoot";
+			
 			//Information
 			this.basePrice = 150;
 			this.attack = 0;
@@ -45,14 +50,7 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.version = _latestVersion;
 		}
 	}
 }

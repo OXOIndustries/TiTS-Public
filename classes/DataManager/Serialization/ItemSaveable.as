@@ -7,7 +7,8 @@ package classes.DataManager.Serialization
 	import flash.utils.describeType;
 	
 	/**
-	 * ...
+	 * ItemSaveable implements a flag to determine if a given item has randomised properties. Items with the flag set will save and load ALL of their properties to file,
+	 * whereas items without the flag set will only save enough data to correctly reconstitue character inventories (name, classInstance and quantity)
 	 * @author Gedan
 	 */
 	public class ItemSaveable implements ISaveable
@@ -17,21 +18,36 @@ package classes.DataManager.Serialization
 			
 		}
 		
+		/**
+		 * Versioning Info
+		 */
 		private var _version:int = 0;
 		public function get version():int { return _version; }
 		public function set version(v:int):void { _version = v; }
 		
 		protected var _latestVersion:int = 0;
 		
+		/**
+		 * Core values for any item. I've had to push them down the inheritence tree to here to avoid some bullshitting, but I could shift them back up...
+		 */
 		private var _quantity:Number;
 		
 		public function get quantity():Number { return _quantity; }
 		public function set quantity(v:Number):void { _quantity = v; }
 		
-		public var hasRandomProperties:Boolean = false;
 		public var shortName:String = "";
 		
-		protected var _ignoredFields:Array = ["prototype"];
+		/**
+		 * Serialization settings. If an item doesn't have random properties defined, we don't have to save/restore all the shit for it every time, so we can just ignore it.
+		 * If a previously non-random item becomes random, we don't have to do shit to unfuck saves, it'll get flipped over in code and will save with random properties from then on.
+		 */
+		public var hasRandomProperties:Boolean = false;
+
+		/**
+		 * Fields/Proprties to ignore on the class. Not fully implemented, but it should work for any class-based properties. Just add fields to ignore in an items constructor if
+		 * you really need to do it. It's more to avoid serializing some system-specific fields that don't actually exist on the objects at runtime.
+		 */
+		protected var _ignoredFields:Array = ["prototype", "hasRandomProperties", "classInstance", "neverSerialize"];
 		public function addIgnoredField(fieldName:String):void
 		{
 			_ignoredFields.push(fieldName);
@@ -97,12 +113,17 @@ package classes.DataManager.Serialization
 							dataObject[accs.@name] = this[accs.@name];
 						}
 					}
+					else
+					{
+						dataObject[accs.@name] = this[accs.@name];
+					}
 				}
 			}
 			else
 			{
 				dataObject.quantity = this.quantity;
 				dataObject.shortName = this.shortName;
+				dataObject.version = this.version;
 			}
 			
 			dataObject.classInstance = getQualifiedClassName(this);
@@ -137,7 +158,14 @@ package classes.DataManager.Serialization
 			{
 				for (var prop in dataObject)
 				{
-					if (prop != "prototype" && prop != "neverSerialize" && prop != "classInstance")
+					if (_ignoredFields.length > 0)
+					{
+						if (_ignoredFields.indexOf(prop) == -1)
+						{
+							this[prop] = dataObject[prop];
+						}
+					}
+					else
 					{
 						this[prop] = dataObject[prop];
 					}
@@ -164,6 +192,21 @@ package classes.DataManager.Serialization
 					}
 				}
 			}
+		}
+		
+		/**
+		 * Provides a method to create a deep copy of an item, using the actual serialization methods!
+		 * Returns a completely new instance of a given item Class, with properties overwritten from the
+		 * source object; ie works for both static items and items with randomised properties.
+		 * Handy way to take a copy of something from another characters inventory, ie, shops.
+		 * @return
+		 */
+		public function makeCopy():*
+		{
+			var classT:Class = (getDefinitionByName(getQualifiedClassName(this)) as Class);
+			var cObj:* = new classT();
+			cObj.loadSaveObject(this.getSaveObject());
+			return cObj;
 		}
 	}
 

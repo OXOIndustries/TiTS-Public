@@ -9,9 +9,10 @@
 		
 		
 		//constructor
-		public function Burt(dataObject:Object = null)
+		public function Burt()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Burt";
@@ -43,9 +44,11 @@
 			this.level = 1;
 			this.credits = 1000;
 			
-			this.inventory[0] = new classes.Items.Guns.HoldOutPistol();
-			this.inventory[1] = new classes.Items.Guns.EagleHandgun();
-			this.inventory[2] = new classes.Items.Guns.ScopedPistol();
+			// Use the push/[array.length] syntax to add stuff to inventories; leaves fewer rooms for mistakes, plus we could introduce something like global inventory items...
+			this.inventory.push(new HoldOutPistol());
+			this.inventory.push(new EagleHandgun());
+			this.inventory.push(new ScopedPistol());
+			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .25;
@@ -161,15 +164,7 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
-			
+			this.version = _latestVersion;
 		}
 	}
 }

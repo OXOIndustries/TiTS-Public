@@ -8,9 +8,10 @@
 	public class ZilFemale extends Creature
 	{
 		//constructor
-		public function ZilFemale(dataObject:Object = null)
+		public function ZilFemale()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
 			this.short = "female zil";
@@ -154,16 +155,7 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
 			
-			this.inventory[0] = new classes.Items.Miscellaneous.ZilRation();
-
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.inventory.push(new ZilRation());
 		}
 	}
 }

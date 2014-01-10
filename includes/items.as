@@ -106,7 +106,7 @@ function buyItemGo(arg:ItemSlotClass):void {
 	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
-	purchasedItems[purchasedItems.length] = clone(arg);
+	purchasedItems[purchasedItems.length] = arg.makeCopy();
 	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
@@ -427,11 +427,11 @@ function replaceItemGo(args:Array):void
 	var lootList:Array = args[1];
 	clearOutput();
 	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
-	pc.inventory[indice] = clone(lootList[0]);
+	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
 	this.userInterface.clearMenu();
 	if(lootList.length > 0) 
-		this.userInterface.addButton(0,"Next",itemCollect);
+		this.userInterface.addButton(0,"Next",itemCollect, lootList);
 	else 
 		this.userInterface.addButton(0,"Next",lootScreen);
 }

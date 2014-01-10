@@ -6526,14 +6526,6 @@
 				else return "cock-head";
 			}
 		}
-
-		protected function clone(source:Object):* {
-			var copier:ByteArray = new ByteArray();
-			copier.writeObject(source);
-			copier.position = 0;
-			return(copier.readObject());
-		}
-
 	}
 }
 

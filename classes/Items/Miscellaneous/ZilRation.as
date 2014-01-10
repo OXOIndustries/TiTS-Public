@@ -15,22 +15,27 @@
 		}
 		
 		//constructor
-		public function ZilRation(dataObject:Object = null)
+		public function ZilRation()
 		{
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
 			this.stackSize = 10;
 			this.type = GLOBAL.FOOD;
+			
 			//Used on inventory buttons
 			this.shortName = "ZilRation";
+			
 			//Regular name
 			this.longName = "tasty-smelling zil ration";
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a tasty-smelling zil ration";
+			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There's a good chance that something in it would make you sick if you didn't have a microsurgeon-boosted immune system. In your case, you'll probably just undergo a mutation or two.";
 			this.attackVerb = "";
+			
 			//Information
 			this.basePrice = 0;
 			this.attack = 0;
@@ -45,14 +50,7 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.version = _latestVersion;
 		}
 		
 		//METHOD ACTING!
