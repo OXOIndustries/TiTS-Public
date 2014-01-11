@@ -1,11 +1,17 @@
 ﻿package classes
 {
-	public class ItemSlotClass
+	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.DataManager.Serialization.ItemSaveable;
+	import flash.utils.describeType;
+	import flash.utils.getQualifiedClassName;
+	import flash.utils.getDefinitionByName;
+	
+	public class ItemSlotClass extends ItemSaveable
 	{
-		public var quantity:Number;
 		public var stackSize:int;
-		//Used on inventory buttons
-		public var shortName:String;
+
+		// shortName still exists, I've just moved it into ItemSaveable for... reasons.
+		
 		//Regular name
 		public var longName:String;
 		//Longass shit, not sure what used for yet.
@@ -36,8 +42,9 @@
 		public var bonusResistances:Array;
 		
 		//constructor
-		public function ItemSlotClass()
+		public function ItemSlotClass(dataObject:Object = null)
 		{
+			this._latestVersion = 1;
 			// Two-stage constructors. Storage is pre-allocated, 
 			// and the variables are merely set on instantiation.
 
@@ -72,12 +79,18 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 		
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			if (dataObject != null)
+			{
+				this.loadSaveObject(dataObject);
+			}
+			else
+			{
+				this.version = 1;
+			}
 		}
 		
 		public function addFlag(arg:int):void 
 		{
-			trace("This needs to be converted to an object or dict based storage mechanism!");
 			if(this.hasFlag(arg)) 
 				return;
 			this.itemFlags[this.itemFlags.length] = arg;
@@ -85,10 +98,6 @@
 		
 		public function hasFlag(arg:int):Boolean 
 		{
-			trace("This needs to be converted to an object or dict based storage mechanism!");
-			trace("Also, I'm *pretty* sure this would never work correctly. It's only checking if **any**");
-			trace("item in the flag array has the value *arg*, so unless every flag is a unique number");
-			trace("you're going to have collisions");
 			for(var x:int = 0; x < itemFlags.length; x++) {
 				if(arg == itemFlags[x]) 
 					return true;
@@ -98,7 +107,6 @@
 		
 		public function deleteFlag(arg:int):void 
 		{
-			trace("This needs to be converted to an object or dict based storage mechanism!");
 			if(!this.hasFlag(arg)) 
 				return;
 			for(var x:int = 0; x < this.itemFlags.length; x++) 
@@ -110,6 +118,6 @@
 		public function useFunction(targetCreature:Creature):Boolean
 		{
 			throw new Error("useFunction must be overriden in a child class!");
-		}
+		}	
 	}
 }

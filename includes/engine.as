@@ -215,12 +215,7 @@ function rand(max:Number):Number
 {
 	return int(Math.random()*max);
 }
-public function clone(source:Object):* {
-	var copier:ByteArray = new ByteArray();
-	copier.writeObject(source);
-	copier.position = 0;
-	return(copier.readObject());
-}
+
 function cuntChange(arg:int,volume:Number,display:Boolean = true, spacingsF:Boolean = true,spacingsB:Boolean = false):Boolean {
 	return holeChange(pc,arg,volume,display,spacingsF,spacingsB);
 }

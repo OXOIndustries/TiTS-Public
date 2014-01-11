@@ -1619,7 +1619,7 @@ function buyThrobbTransact():void {
 	output("<i>“Thanks, mate,</i> Penny says as she checks her cred account. <i>“Looks like everything came through okay. Maybe I’ll get my loans paid off faster I thought!”</i>");
 	
 	//Acquire 1x throbb
-	//lootList[lootList.length] = clone(throbb);
+	//lootList.push(new Throbb());
 	//-300 credits
 	pc.credits -= 300;
 }

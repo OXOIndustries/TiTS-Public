@@ -1,36 +1,40 @@
-﻿package classes.Items.Apparel
+package classes.Items.Melee 
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	
-	public class PlainUndershirt extends ItemSlotClass
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	public class GooeyPsuedopod extends ItemSlotClass
 	{
-		//constructor
-		public function PlainUndershirt()
+		
+		public function GooeyPsuedopod() 
 		{
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.UPPER_UNDERGARMENT;
+			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "Undershirt";
+			this.shortName = "psuedopod";
 			
 			//Regular name
-			this.longName = "undershirt";
+			this.longName = "gooey psuedopod";
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "an undershirt";
+			this.description = "a gooey psuedopod";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A pretty standard undershirt, this garment breathes wonderfully.";
-			this.attackVerb = "null";
+			this.tooltip = "Wacky Waving Gooey Armflailing Tubeman";
+			this.attackVerb = "slap";
 			
 			//Information
-			this.basePrice = 200;
+			this.basePrice = 150;
 			this.attack = 0;
-			this.damage = 0;
+			this.damage = 4;
 			this.damageType = GLOBAL.PIERCING;
 			this.defense = 0;
 			this.shieldDefense = 0;
@@ -40,8 +44,10 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			
+
 			this.version = _latestVersion;
 		}
+		
 	}
+
 }

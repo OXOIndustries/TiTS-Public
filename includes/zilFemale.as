@@ -195,7 +195,7 @@ function submitToFemzil():void {
 	clearOutput();
 	userInterface.showBust("ZILFEMALE");
 	output("You smile and begin to deeply inhale her powerful scent, meeting her eyes as you let the overwhelming need start to overcome you.");
-	foes[0] = clone(zilFemale);
+	foes[0] = chars["ZILFEMALE"].makeCopy();
 	girlZilLossRouter();
 }
 

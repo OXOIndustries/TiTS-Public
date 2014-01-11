@@ -8,9 +8,10 @@
 		
 		
 		//constructor
-		public function CuntSnake(dataObject:Object = null)
+		public function CuntSnake()
 		{	
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
 			this.short = "cunt snake";
@@ -24,13 +25,18 @@
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "bite";
 			this.meleeWeapon.damageType = GLOBAL.PIERCING;
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.damage = 4;
 			this.meleeWeapon.longName = "fangs";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "glittering scales";
 			this.armor.defense = 0;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 1;
 			this.reflexesRaw = 5;
 			this.aimRaw = 4;
@@ -75,7 +81,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.CUNTSNAKE;
 			this.legCount = 1;
-			this.legFlags = new Array(GLOBAL.TENDRIL);
+			this.legFlags = [GLOBAL.TENDRIL];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -83,7 +89,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.CUNTSNAKE;
 			this.tailCount = 1;
-			this.tailFlags = new Array(GLOBAL.SCALED,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.PREHENSILE);
+			this.tailFlags = [GLOBAL.SCALED, GLOBAL.LONG, GLOBAL.THICK, GLOBAL.PREHENSILE];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -149,15 +155,6 @@
 			this.milkRate = 1;
 			this.ass.wetness = 0;
 			this.createPerk("Ranged Immune",0,0,0,0);
-
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

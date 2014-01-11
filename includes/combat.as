@@ -698,7 +698,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		{
 			
 			if(foes[x].inventory[y].quantity != 0) {
-				foundLootItems[foundLootItems.length] = clone(foes[x].inventory[y]);
+				foundLootItems[foundLootItems.length] = foes[x].inventory[y]; // NOTE: Might have to come back through here and use copies; depends how shit plays out with combat + persistent characters.
 				if(foes[x].inventory[y].useFunction != undefined) {
 					trace("NOT UNDEFINED! X: " + x + " Y: " + y);
 					if(foundLootItems[foundLootItems.length-1].useFunction == undefined) trace("SAME LOOT LIST: UNDEFINED");
@@ -708,6 +708,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 			}
 		}
 	}
+	
 	//Exit combat as far as the game is concerned.
 	pc.removeStatusEffect("Round");
 	//Talk about who died and what you got.
@@ -718,6 +719,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	output(formatList() + "! " + XPBuffer + " XP gained.");
 	pc.XP += XPBuffer;
+	
 	//Monies!
 	if(creditBuffer > 0) {
 		if(foes.length > 1 || foes[0].plural) output(" They had ");
@@ -755,16 +757,25 @@ function startCombat(encounter:String):void
 	showNPCStats();
 	pc.removeStatusEffect("Round");
 	foes = new Array();
+	
+	// There's some room for improvement here; rather than constantly creating new instances/copies of combatable creatures, we could give them
+	// some kind of setup method, and use the persistent object in the chars[] object to refer to them. The setup method would reset their health
+	// and reconfigure their inventory as appropriate (allows randomised inventory for each creature, for each time you fight them; or in the case
+	// of persistent creatures, wouldn't reset their inventory, or do it under some other limitation, like it only resets every so many game days etc
+	
+	// I'm leaving it as is for now, to avoid introducing massive changes all over the place in a single merge. Although, I'm dropping clone() and
+	// using the new makeCopy() semantic.
+	
 	switch(encounter) {
 		case "celise":
 			this.userInterface.showBust("CELISE");
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = clone(chars["CELISE"]);
+			foes[0] = chars["CELISE"].makeCopy();
 			break;
 		case "zilpack":
 			this.userInterface.showBust("ZILPACK");
 			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = clone(zilpack);
+			foes[0] = chars["ZILPACK"].makeCopy();
 			break;
 		case "zil male":
 			this.userInterface.showBust("ZIL");
@@ -774,7 +785,7 @@ function startCombat(encounter:String):void
 		case "female zil":
 			userInterface.showBust("ZILFEMALE");
 			setLocation("FIGHT:\nFEMALE ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = clone(zilFemale);
+			foes[0] = chars["ZILFEMALE"].makeCopy();
 			break;
 		case "cunt snake":
 			this.userInterface.showBust("CUNTSNAKE");
@@ -784,10 +795,10 @@ function startCombat(encounter:String):void
 		case "naleen":
 			this.userInterface.showBust("NALEEN");
 			setLocation("FIGHT:\nNALEEN","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = clone(chars["NALEEN"]);
+			foes[0] = chars["NALEEN"].makeCopy();
 			break;
 		default:
-			foes[0] = new Creature();
+			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
 	}
 	combatMainMenu();

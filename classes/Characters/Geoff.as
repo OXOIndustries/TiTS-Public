@@ -2,16 +2,19 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.ComfortableClothes;
 	import classes.Items.Guns.*
+	import classes.Items.Melee.Fists;
 	
 	public class Geoff extends Creature
 	{
 		
 		
 		//constructor
-		public function Geoff(dataObject:Object = null)
+		public function Geoff()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Geoff";
@@ -23,9 +26,10 @@
 			this.customBlock = "";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fist";
-			this.armor.longName = "comfortable clothes";
+			
+			this.meleeWeapon = new Fists();
+			this.armor = new ComfortableClothes();
+			
 			this.armor.defense = 50;
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 3;
@@ -43,9 +47,10 @@
 			this.level = 1;
 			this.credits = 1000;
 			
-			this.inventory[0] = new classes.Items.Guns.HoldOutPistol();
-			this.inventory[1] = new classes.Items.Guns.EagleHandgun();
-			this.inventory[2] = new classes.Items.Guns.ScopedPistol();
+			this.inventory.push(new HoldOutPistol());
+			this.inventory.push(new EagleHandgun());
+			this.inventory.push(new ScopedPistol());
+			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;
 			this.buyMarkdown = .25;
@@ -86,7 +91,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.HUMAN;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
+			this.legFlags = [GLOBAL.PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -161,15 +166,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

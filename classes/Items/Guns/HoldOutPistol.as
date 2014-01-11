@@ -2,34 +2,31 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
-	import flash.net.registerClassAlias;
 	
 	public class HoldOutPistol extends ItemSlotClass
 	{
-		// This is a static initializer, it's run *ONCE* per class definition, the first time it is referenced ANYWHERE in the code
-		{
-			registerClassAlias("HoldOutPistol", HoldOutPistol);
-		}
 		//constructor
 		public function HoldOutPistol()
 		{
+			this._latestVersion = 1;
 
-			//Hold-out Pistol:
-			//0
-			
-			//this.indexNumber = 0;
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.RANGED_WEAPON;
+			
 			//Used on inventory buttons
 			this.shortName = "Hld.Pistol";
+			
 			//Regular name
 			this.longName = "hold-out pistol";
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a hold-out pistol";
+			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A simple black-powder pistol. It is easy to conceal but does not pack a particularly strong punch, the perfect weapon for a smuggler.";
 			this.attackVerb = "shoot";
+			
 			//Information
 			this.basePrice = 100;
 			this.attack = 0;
@@ -44,6 +41,7 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 
+			this.version = _latestVersion;
 		}
 	}
 }

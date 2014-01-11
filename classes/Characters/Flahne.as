@@ -8,9 +8,10 @@
 		
 		
 		//constructor
-		public function Flahne(dataObject:Object = null)
+		public function Flahne()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Flahne";
@@ -22,10 +23,15 @@
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "durable dermis";
 			this.armor.defense = 10;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 3;
 			this.aimRaw = 1;
@@ -57,7 +63,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.GOO;
 			this.skinTone = "yellow";
-			this.skinFlags = new Array(GLOBAL.SQUISHY,GLOBAL.LUBRICATED);
+			this.skinFlags = [GLOBAL.SQUISHY, GLOBAL.LUBRICATED];
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
@@ -72,7 +78,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.GOOEY;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
+			this.legFlags = [GLOBAL.PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -158,15 +164,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 3;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

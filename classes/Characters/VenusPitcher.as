@@ -3,13 +3,15 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
+	import classes.Items.Melee.Fists;
 	
 	public class VenusPitcher extends Creature
 	{
 		//constructor
-		public function VenusPitcher(dataObject:Object = null)
+		public function VenusPitcher()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 
 			this.short = "venus\npitcher";
@@ -21,13 +23,18 @@
 			this.customBlock = "";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fists";
+			
+			this.meleeWeapon = new Fists();
+			
 			this.rangedWeapon.attack = 1;
 			this.rangedWeapon.longName = "dart";
 			this.rangedWeapon.attackVerb = "dart";
+			this.rangedWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
@@ -75,7 +82,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.VENUSPITCHER;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
+			this.legFlags = [GLOBAL.PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -154,15 +161,6 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

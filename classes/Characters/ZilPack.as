@@ -2,13 +2,15 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Melee.Fists;
 	
 	public class ZilPack extends Creature
 	{
 		//constructor
-		public function ZilPack(dataObject:Object = null)
+		public function ZilPack()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
 			this.short = "two zil";
@@ -20,10 +22,13 @@
 			this.customBlock = "The two zil's chitinous armor deflects your attack.";
 			this.plural = true;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fists";
+			
+			this.meleeWeapon = new Fists();
+			
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
@@ -72,7 +77,7 @@
 			this.wingType = GLOBAL.BEE;
 			this.legType = GLOBAL.BEE;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
+			this.legFlags = [GLOBAL.PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -149,15 +154,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 0;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

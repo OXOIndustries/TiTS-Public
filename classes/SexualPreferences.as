@@ -1,17 +1,13 @@
 package classes
 {
-	import flash.net.registerClassAlias;
+	import classes.DataManager.Serialization.UnversionedSaveable;
 	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
-	public class SexualPreferences 
-	{
-		{
-			registerClassAlias("SexualPreferences", SexualPreferences);
-		}
-		
+	public class SexualPreferences extends UnversionedSaveable
+	{		
 		public var _sexPrefs:Object;
 		
 		public function SexualPreferences()

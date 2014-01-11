@@ -1,7 +1,8 @@
 ﻿package classes
 {
+	import classes.DataManager.Serialization.UnversionedSaveable;
 	import classes.GLOBAL;
-	public class CockClass
+	public class CockClass extends UnversionedSaveable
 	{
 		//constructor
 		public function CockClass()

@@ -1,43 +1,54 @@
-﻿import classes.StringUtil;
+﻿import classes.Characters.PlayerCharacter;
+import classes.StringUtil;
 
 function useItem(item:ItemSlotClass):void {
-	if(item.quantity == 0) {
+	if (item.quantity == 0) 
+	{
 		clearOutput();
 		output("Attempted to use " + item.longName + " which had zero quantity.");
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(14,"Back",useItemFunction);
 		return;
 	}
-	else {
+	else 
+	{
 		//Equippable items are equipped!
-		if(item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT || item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+		if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
+			|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
+		{
 			equipItem(item);
+			pc.inventory.splice(pc.inventory.indexOf(item), 1);
+		}
 		//Else try to use a stored function!
-		else {
+		else 
+		{
 			//If has a special global function set
-			if(item.useFunction != undefined) {
+			if (item.useFunction != undefined) 
+			{
 				//if item use returns false, set up a menu.
-				if(!item.useFunction(chars["PC"])) {
+				if (!item.useFunction(chars["PC"])) 
+				{
 					userInterface.clearMenu();
 					userInterface.addButton(0,"Next",useItemFunction);
 				}
 			}
 			//else: Error checking
-			else {
+			else 
+			{
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
 				this.userInterface.clearMenu();
 				this.userInterface.addButton(0,"Next",useItemFunction);
 			}
-		}
-		if(debug && (item.type == GLOBAL.FOOD || item.type == GLOBAL.PILL)) {
 			
-		}
-		else {
-			item.quantity--;
-			if(item.quantity < 0) {
-				item.quantity = 0;
-				item.shortName = "";
+			// Consume an item from the stack
+			if (!debug)
+			{
+				item.quantity--;
+				if (item.quantity <= 0)
+				{
+					pc.inventory.splice(pc.inventory.indexOf(item), 1);
+				}
 			}
 		}
 	}
@@ -95,7 +106,7 @@ function buyItemGo(arg:ItemSlotClass):void {
 	
 	// Renamed from lootList so I can distinguish old vs new uses
 	var purchasedItems:Array = new Array();
-	purchasedItems[purchasedItems.length] = clone(arg);
+	purchasedItems[purchasedItems.length] = arg.makeCopy();
 	pc.credits -= price;
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
@@ -129,7 +140,7 @@ function sellItemGo(arg:ItemSlotClass):void {
 	pc.credits += price;
 	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
-	if(arg.quantity == 0) arg.shortName = "";
+	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg, 1));
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",sellItem);
 }
@@ -209,86 +220,83 @@ function unequip(arg:String, next:Boolean = true):void
 	var unequippedItems:Array = new Array();
 
 	if(arg == "bra") {
-		unequippedItems[unequippedItems.length] = clone(pc.upperUndergarment);
+		unequippedItems[unequippedItems.length] = pc.upperUndergarment;
 		pc.upperUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "underwear") {
-		unequippedItems[unequippedItems.length] = clone(pc.lowerUndergarment);
+		unequippedItems[unequippedItems.length] = pc.lowerUndergarment;
 		pc.lowerUndergarment = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "shield") {
-		unequippedItems[unequippedItems.length] = clone(pc.shield);
+		unequippedItems[unequippedItems.length] = pc.shield;
 		pc.shield = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "accessory") {
-		unequippedItems[unequippedItems.length] = clone(pc.accessory);
+		unequippedItems[unequippedItems.length] = pc.accessory;
 		pc.accessory = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "armor") {
-		unequippedItems[unequippedItems.length] = clone(pc.armor);
+		unequippedItems[unequippedItems.length] = pc.armor;
 		pc.armor = new classes.Items.Miscellaneous.Empty();
 	}
 	else if(arg == "mWeapon") {
-		unequippedItems[unequippedItems.length] = clone(pc.meleeWeapon);
+		unequippedItems[unequippedItems.length] = pc.meleeWeapon;
 		pc.meleeWeapon = new classes.Items.Melee.Rock();
 	}
 	else if(arg == "rWeapon") {
-		unequippedItems[unequippedItems.length] = clone(pc.rangedWeapon);
+		unequippedItems[unequippedItems.length] = pc.rangedWeapon;
 		pc.rangedWeapon = new classes.Items.Melee.Rock();
 	}
 	clearOutput();
 	itemCollect(unequippedItems);
 }
 
+// atm, no equippable items have a stacksize > 1, so there is never a possibility that we'd have to split an item stack to equip an item the player holds in their inventory.
 function equipItem(arg:ItemSlotClass):void {
-	var holding:int = arg.quantity;
 	var targetItem:ItemSlotClass;
 	var removedItem:ItemSlotClass;
 
+	if (arg.stackSize > 1) throw new Error("Potential item stacking bug with " + arg.shortName + ". Item has a stacksize > 0 and the equip code cannot currently handle splitting an item stack!");
+	
 	clearOutput();
 	output("You equip your " + arg.longName + ".");
 	//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
-	arg.quantity = 1;
 	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
 	{
-		removedItem = clone(pc.armor);
-		pc.armor = clone(arg);
+		removedItem = pc.armor;
+		pc.armor = arg;
 	}
 	else if(arg.type == GLOBAL.MELEE_WEAPON) 
 	{
-		removedItem = clone(pc.meleeWeapon);
-		pc.meleeWeapon = clone(arg);
+		removedItem = pc.meleeWeapon;
+		pc.meleeWeapon = arg;
 	}
 	else if(arg.type == GLOBAL.RANGED_WEAPON) 
 	{
-		removedItem = clone(pc.rangedWeapon);
-		pc.rangedWeapon = clone(arg);
+		removedItem = pc.rangedWeapon;
+		pc.rangedWeapon = arg;
 	}
 	else if(arg.type == GLOBAL.SHIELD) 
 	{
-		removedItem = clone(pc.shield);
-		pc.shield = clone(arg);
+		removedItem = pc.shield;
+		pc.shield = arg;
 	}
 	else if(arg.type == GLOBAL.ACCESSORY) 
 	{
-		removedItem = clone(pc.accessory);
-		pc.accessory = clone(arg);
+		removedItem = pc.accessory;
+		pc.accessory = arg;
 	}
 	else if(arg.type == GLOBAL.LOWER_UNDERGARMENT) 
 	{
-		removedItem = clone(pc.lowerUndergarment);
-		pc.lowerUndergarment = clone(arg);
+		removedItem = pc.lowerUndergarment;
+		pc.lowerUndergarment = arg;
 	}
 	else if(arg.type == GLOBAL.UPPER_UNDERGARMENT) 
 	{
-		removedItem = clone(pc.upperUndergarment);
-		pc.upperUndergarment = clone(arg);
+		removedItem = pc.upperUndergarment;
+		pc.upperUndergarment = arg;
 	}
 	else output("  <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b>  ");
-	
-	//Fix itemslot quantity.
-	arg.quantity = holding - 1;
-	if(arg.quantity == 0) arg.shortName = "";
 	
 	//If item to loot after!
 	if(removedItem.shortName != "Rock" && removedItem.shortName != "" && removedItem.quantity > 0) 
@@ -309,7 +317,7 @@ function equipItem(arg:ItemSlotClass):void {
 function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 	trace("itemCollect", newLootList);
 	if(clearScreen) clearOutput();
-	var target = pc;
+	var target:PlayerCharacter = pc;
 	if(newLootList.length == 0) {
 		output("There was an error looting an the item that was looted didn't actually exist.");
 		this.userInterface.clearMenu();
@@ -318,39 +326,43 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
 	if(newLootList.length > 0) {
 		//Have room? Slap it in there!
-		if(hasRoom(pc,newLootList[0])) {
-			//Combine with half stacks first
-			for(var x:int; x < target.inventorySlots(); x++) 
+		if (hasRoom(pc, newLootList[0])) {
+			
+			// If there's no items, just throw a new item into the container
+			if (target.inventory.length == 0)
 			{
-				//Found a matching stack
-				if(target.inventory[x].shortName == newLootList[0].shortName) 
+				target.inventory.push(newLootList[0]);
+			}
+			// Drop what we can into existing slots where possible
+			else
+			{
+				//Combine with half stacks first
+				for(var x:int = 0; x < target.inventory.length; x++) 
 				{
-					//That matching stack has room?
-					if(target.inventory[x].quantity < target.inventory[x].stackSize) 
+					//Found a matching stack
+					if(target.inventory[x].shortName == newLootList[0].shortName) 
 					{
-						//Add some shit
-						while(target.inventory[x].quantity < target.inventory[x].stackSize && newLootList[0].quantity > 0)
+						//That matching stack has room?
+						if(target.inventory[x].quantity < target.inventory[x].stackSize) 
 						{
-							target.inventory[x].quantity++;
-							newLootList[0].quantity--;
+							//Add some shit
+							while(target.inventory[x].quantity < target.inventory[x].stackSize && newLootList[0].quantity > 0)
+							{
+								target.inventory[x].quantity++;
+								newLootList[0].quantity--;
+							}
 						}
 					}
+					if(newLootList[0].quantity <= 0) break;
 				}
-				if(newLootList[0].quantity <= 0) break;
-			}
-			//Still got more to dump? Find an empty stack
-			if(newLootList[0].quantity > 0)
-			{
-				for(var y:int; y < target.inventorySlots(); y++) 
+				
+				//Still got more to dump? Find an empty stack
+				if(newLootList[0].quantity > 0)
 				{
-					//EMPTY SLOOOT - FILL IT.
-					if(target.inventory[y].shortName == "" || target.inventory[y].quantity == 0) 
-					{
-						target.inventory[y] = clone(newLootList[0]);
-						break;
-					}
+					target.inventory.push(newLootList[0]);
 				}
 			}
+			
 			output(". The new acquisition");
 			if(newLootList[0].quantity > 1) output("s stow");
 			else output(" stows");
@@ -397,7 +409,7 @@ function replaceItemPicker(lootList:Array):void {
 }
 
 function useLoot(lootList:Array):void {
-	var loot:ItemSlotClass = clone(lootList[0]);
+	var loot:ItemSlotClass = lootList[0];
 	lootList.splice(0,1);
 	useItem(loot);
 	
@@ -415,17 +427,23 @@ function replaceItemGo(args:Array):void
 	var lootList:Array = args[1];
 	clearOutput();
 	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
-	pc.inventory[indice] = clone(lootList[0]);
+	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
 	this.userInterface.clearMenu();
 	if(lootList.length > 0) 
-		this.userInterface.addButton(0,"Next",itemCollect);
+		this.userInterface.addButton(0,"Next",itemCollect, lootList);
 	else 
 		this.userInterface.addButton(0,"Next",lootScreen);
 }
 
 function hasRoom(target:Creature,item:ItemSlotClass):Boolean {
 	var mergeCounter:int = 0;
+	
+	if (target.inventory.length >= 0 && target.inventory.length < target.inventorySlots())
+	{
+		return true;
+	}
+	
 	//Loop through, lookin' fer room!
 	for(var x:int; x < target.inventorySlots(); x++) 
 	{

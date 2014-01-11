@@ -2,28 +2,19 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.UGCUniform;
+	import classes.Items.Melee.Tonfas;
 	
 	public class Penny extends Creature
 	{
 		
 		
 		//constructor
-		public function Penny(dataObject:Object = null)
+		public function Penny()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = false;
-			
-			// COMMENCE EXMPLAR SEXPREFS SHIT!
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_CUNTS, GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HERMS, GLOBAL.REALLY_LIKES_SEXPREF);
-			
-			// Randoming 4 preferences
-			for (var i:int = 0; i < 4; i++)
-			{
-				this.sexualPreferences.setPref(rand(GLOBAL.MAX_SEXPREF_VALUE), GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
-			}
-			
-			// KASUMING DIRECT CONTROL~
 			
 			this.short = "Penny";
 			this.originalRace = "human";
@@ -34,10 +25,10 @@
 			this.customBlock = "uncreated";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "smack";
-			this.meleeWeapon.longName = "tonfas";
-			this.armor.longName = "U.G.C. Peacekeeper uniform";
-			this.armor.defense = 0;
+			
+			this.meleeWeapon = new Tonfas();
+			this.armor = new UGCUniform();
+			
 			this.physiqueRaw = 10;
 			this.reflexesRaw = 8;
 			this.aimRaw = 6;
@@ -84,7 +75,7 @@
 			this.wingType = 0;
 			this.legType = 0;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.DIGITIGRADE);
+			this.legFlags = [GLOBAL.DIGITIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -92,7 +83,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.VULPINE;
 			this.tailCount = 1;
-			this.tailFlags = new Array(GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.FURRED);
+			this.tailFlags = [GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -164,15 +155,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 0;
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

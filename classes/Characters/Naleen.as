@@ -9,9 +9,10 @@
 		
 		
 		//constructor
-		public function Naleen(dataObject:Object = null)
+		public function Naleen()
 		{
 			this._latestVersion = 1;
+			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
 			this.short = "naleen";
@@ -23,10 +24,15 @@
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "shimmering scales";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 4;
 			this.reflexesRaw = 11;
 			this.aimRaw = 1;
@@ -60,7 +66,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.FUR;
 			this.skinTone = "pale";
-			this.skinFlags = new Array(GLOBAL.FLUFFY);
+			this.skinFlags = [GLOBAL.FLUFFY];
 			
 			this.faceType = GLOBAL.HUMAN;
 			this.faceFlags = new Array();
@@ -76,7 +82,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.NAGA;
 			this.legCount = 1;
-			this.legFlags = new Array(GLOBAL.PREHENSILE,GLOBAL.TENDRIL,GLOBAL.SCALED);
+			this.legFlags = [GLOBAL.PREHENSILE, GLOBAL.TENDRIL, GLOBAL.SCALED];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -159,16 +165,7 @@
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
 			
-			this.inventory[0] = new classes.Items.Miscellaneous.NaleenNip();			
-			
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
+			this.inventory.push(new NaleenNip());
 		}
 	}
 }

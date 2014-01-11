@@ -1,6 +1,8 @@
 ﻿package classes
 {
-	public class VaginaClass
+	import classes.DataManager.Serialization.UnversionedSaveable;
+	
+	public class VaginaClass extends UnversionedSaveable
 	{
 		//constructor
 		public function VaginaClass(vag:Boolean = true)
@@ -8,6 +10,7 @@
 			if(!vag) clits = 0;
 			hymen = false;
 		}
+		
 		//For cheateyness.
 		//include "consts.as";
 		//data
@@ -59,6 +62,7 @@
 			//Round it off and sent it away.
 			return Math.round(capacity*100)/100;
 		}
+		
 		//FLAG CHECKIN!
 		function hasFlag(arg):Boolean {
 			for(var x:int = 0; x < vagooFlags.length;x++) {

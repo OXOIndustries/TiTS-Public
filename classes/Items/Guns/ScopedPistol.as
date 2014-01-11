@@ -2,17 +2,15 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
-	import flash.net.registerClassAlias;
 	
 	public class ScopedPistol extends ItemSlotClass
 	{
-		// This is a static initializer, it's run *ONCE* per class definition, the first time it is referenced ANYWHERE in the code
-		{
-			registerClassAlias("ScopedPistol", ScopedPistol);
-		}
+		
 		//constructor
 		public function ScopedPistol()
 		{
+			this._latestVersion = 1;
+			
 			//Scoped Pistol
 			//2
 			
@@ -42,7 +40,8 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-
+			
+			this.version = _latestVersion;
 		}
 	}
 }

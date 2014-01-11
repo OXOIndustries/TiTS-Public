@@ -21,8 +21,8 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 2;
-		private static const MINIMUM_SAVE_VERSION:int = 2;
+		private static const LATEST_SAVE_VERSION:int = 3;
+		private static const MINIMUM_SAVE_VERSION:int = 3;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -34,6 +34,7 @@
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
 			var sv1:SaveVersionUpgrader1;
+			var sv2:SaveVersionUpgrader2;
 		}
 		
 		/**
@@ -185,6 +186,11 @@
 			}
 			
 			if (dataFile.data.minVersion == undefined) // Special case for v1 files, where minVersion wasn't defined
+			{
+				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
+			}
+			
+			if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
 			}
@@ -420,11 +426,13 @@
 				{
 					if (!obj.characters[prop].hasOwnProperty("classInstance"))
 					{
-						kGAMECLASS.chars[prop] = new (getDefinitionByName(getQualifiedClassName(obj.characters[prop])) as Class)(obj.characters[prop]);
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(getQualifiedClassName(obj.characters[prop])) as Class)();
+						kGAMECLASS.chars[prop].loadSaveObject(obj.characters[prop]);
 					}
 					else
 					{
-						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)(obj.characters[prop]);
+						kGAMECLASS.chars[prop] = new (getDefinitionByName(obj.characters[prop].classInstance) as Class)();
+						kGAMECLASS.chars[prop].loadSaveObject(obj.characters[prop]);
 					}
 				}
 				catch (e:ReferenceError)

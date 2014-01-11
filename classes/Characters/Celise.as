@@ -2,15 +2,18 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.GooeyCoverings;
+	import classes.Items.Melee.GooeyPsuedopod;
 	
 	public class Celise extends Creature
 	{
 		
 		
 		//constructor
-		public function Celise(dataObject:Object = null)
+		public function Celise()
 		{
 			this._latestVersion = 1;
+			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
 			this.short = "Celise";
@@ -22,10 +25,8 @@
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "slap";
-			this.meleeWeapon.longName = "gooey psuedopod";
-			this.armor.longName = "gooey coverings";
-			this.armor.defense = 50;
+			this.meleeWeapon = new GooeyPsuedopod();
+			this.armor.longName new GooeyCoverings();
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 1;
 			this.aimRaw = 1;
@@ -57,7 +58,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.GOO;
 			this.skinTone = "green";
-			this.skinFlags = new Array(GLOBAL.SQUISHY,GLOBAL.LUBRICATED,GLOBAL.AMORPHOUS);
+			this.skinFlags = [GLOBAL.SQUISHY, GLOBAL.LUBRICATED, GLOBAL.AMORPHOUS];
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
@@ -72,7 +73,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.GOOEY;
 			this.legCount = 1;
-			this.legFlags = new Array(GLOBAL.AMORPHOUS);
+			this.legFlags = [GLOBAL.AMORPHOUS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -152,15 +153,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 5;
-
-			if (dataObject != null)
-			{
-				super.loadSaveObject(dataObject);
-			}
-			else
-			{
-				this.version = _latestVersion;
-			}
 		}
 	}
 }

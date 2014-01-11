@@ -2,11 +2,13 @@
 {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.Items.Miscellaneous.Empty;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
-	import classes.DataManager.ISaveableCreature;
+	import classes.DataManager.Serialization.ISaveable;
+	import classes.DataManager.Serialization.VersionedSaveable;
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
@@ -26,31 +28,8 @@
 	 * Note to self: mx.utils has some describeType caching which may be a thing to look at. It also has some handy-dandy features
 	 * for checking class properties (isDynamic etc, mx.utils.ObjectUtil)
 	 */
-	public class Creature implements ISaveableCreature
+	public class Creature extends VersionedSaveable
 	{
-		/**
-		 * Version describes the current version of a creature within the game source. It is saved with the rest of the creature
-		 * data.
-		 * If, during load, a version mismatch is detected, the loading code will attempt to call a series of named
-		 * methods to upgrade the incoming data.
-		 * Named methods should be provided within the "Child" creature (ie ZilPack, see classes/Creatures/Base.as) and named as such:
-		 * UpgradeVersionT where T is the previous version number. 
-		 * F.ex, moving from version 1 to version 2 will call UpgradeVersion1. 
-		 * The system will be extended in future to support general Creature versioning too (although that will be tied to the underlying 
-		 * save version number, rather than the individual creature versions.
-		 */
-		private var _version:int = 0;
-		public function get version():int { return _version; }
-		public function set version(value:int):void { _version = value; }
-		
-		/**
-		 * LatestVersion describes the version of a creature within the game runtime. If a loaded creature version differs
-		 * from the latestVersion value, it will trigger the upgrading process. See _version docs for details.
-		 * If _latestVersion is set to -1, loading of a creature is skipped; this is to facilitate easier development. Creatures
-		 * will still be saved to file, but their data will not be loaded from file.
-		 */
-		protected var _latestVersion:int = 0;
-		
 		/**
 		 * NeverSerialize is a seperate flag that can be applied on a creature-by-creature basis. Any creature with the 
 		 * NeverSerialize flag set will be omitted from the save/load process. There are probably many Creatures that will
@@ -62,7 +41,9 @@
 		
 		//Constructor
 		public function Creature()
-		{			
+		{
+			this.addIgnoredField("neverSerialize");
+			
 			cocks = new Array();
 			vaginas = new Array();
 			breastRows = new Array();
@@ -70,124 +51,8 @@
 			perks = new Array();
 			statusEffects = new Array();
 			keyItems = new Array();
-			// FUCKING STOP PRE-ALLOCATING SHIT! You can push() something on an array ANY TIME YOU NEED!
-			// Or use dictionaries with "string" keys, and check if dict["sting"] == undefined to see if it's set!
 			inventory = new Array();
-			for(var z:int = 0; z < 30; z++) {
-				inventory[z] = new ItemSlotClass();
-			}
 			sexualPreferences = new SexualPreferences();
-		}
-		
-		/**
-		 * Provide a base method of getting all properties common to ALL creatures. I think this would actually work
-		 * for child properties too... At either rate, it's a bit messy at current, but there's not much point in cleaning it up and using
-		 * hand-coded property targetting, until all of the other "Container" types are handled correctly too. Ideally, each property should be
-		 * named explicitly, and sanity checking of each should be performed.
-		 * @param	dataObject
-		 */
-		public function getSaveObject():Object
-		{
-			var dataObject:Object = new Object();
-			
-			var _d:XML = describeType(this);
-			var _dl:XMLList = _d..variable;
-			var _da:XMLList = _d..accessor;
-			
-			// Raw properties
-			for each (var prop:XML in _dl)
-			{
-				if (this[prop.@name] != null && this[prop.@name] != undefined)
-				{
-					dataObject[prop.@name] = this[prop.@name];
-				}
-			}
-			
-			// Private properties aren't in the ..variable list at all. We can however, get their accessors...
-			for each (var accs:XML in _da)
-			{
-				if (accs.@name != "prototype" && accs.@name != "neverSerialize")
-				{
-					dataObject[accs.@name] = this[accs.@name];
-				}
-			}
-			
-			// Save the class instance string
-			dataObject.classInstance = getQualifiedClassName(this); // This should give us the child type so we can reconstitue it during loading.
-			
-			// Note: Clone actually encodes the classInstance as AMF metadata, and during a SharedObject load process, it will attempt to "wrap" the data
-			// in the sharedobject with the class matching the metadata. If the Class definition differs from what it was when the file was saved, we get
-			// bags of errors and unhandled failures. This ENTIRE PROCESS is designed to avoid those kinds of issues. Rather than using the AMF metadata
-			// we can just reconstitue a new version of the class using the .classInstance property, and then shuffle data through our version upgrading process
-			// and voila; no lost data, and no unintentionally clobbered values.
-			
-			return dataObject;
-		}
-		
-		/**
-		 * Load a given saveobject. Once initial values have been set in the constructor, we can blow through them here with settings from a provided
-		 * Object. Any *new* properties added between the dataObject version and the current Creature version will be added by the constructor.
-		 * @param	dataObject
-		 */
-		public function loadSaveObject(dataObject:Object):void
-		{
-			// Devmode easiness- set _latestVersion to 1 to avoid loading a creature from file. Makes fucking with values for balance purposes much easier.
-			if (this._latestVersion == -1)
-			{
-				return;
-			}
-			
-			// If the incoming data object doesn't match the latest code version, push the object through the requisite upgrade path
-			if (dataObject.version < this._latestVersion)
-			{
-				while (dataObject.version < this._latestVersion)
-				{
-					this["UpgradeVersion" + dataObject.version](dataObject);
-				}
-			}
-			
-			// If we get through the upgrade path and the version is fucked, welp!
-			if (dataObject.version != this._latestVersion)
-			{
-				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
-			}
-			
-			// tldr, v1 versions of the saves, because they use embedded AMF metadata, the loaded data is no longer a Dynamic class, which means
-			// for * in thing doesn't work.
-			var _d:XML = describeType(dataObject);
-			if (_d.@isDynamic == "true")
-			{
-				// Dynamic objects ie v2+ saves
-				for (var prop in dataObject)
-				{
-					if (prop != "prototype" && prop != "neverSerialize" && prop != "classInstance")
-					{
-						this[prop] = dataObject[prop];
-					}
-				}
-			}
-			else
-			{
-				// "AMF Metadata" classed objects, ie, not dynamic.
-				var _dl:XMLList = _d..variable;
-				var _da:XMLList = _d..accessor;
-				
-				for each (var prop in _dl)
-				{
-					if (this[prop.@name] != null && this[prop.@name] != undefined)
-					{
-						this[prop.@name] = dataObject[prop.@name];
-					}
-				}
-				
-				for each (var accs in _da)
-				{
-					if (accs.@name != "prototype" && accs.@name != "neverSerialize")
-					{
-						this[accs.@name] = dataObject[accs.@name];
-					}
-				}
-			}
 		}
 		
 		//For enemies
@@ -207,13 +72,13 @@
 		public var customBlock:String = "";
 		
 		//Clothing/Armor
-		public var meleeWeapon:ItemSlotClass = new ItemSlotClass();
-		public var rangedWeapon:ItemSlotClass = new ItemSlotClass();
-		public var armor:ItemSlotClass = new ItemSlotClass();
-		public var upperUndergarment:ItemSlotClass = new ItemSlotClass();
-		public var lowerUndergarment:ItemSlotClass = new ItemSlotClass();
-		public var accessory:ItemSlotClass = new ItemSlotClass();
-		public var shield:ItemSlotClass = new ItemSlotClass();
+		public var meleeWeapon:ItemSlotClass = new Empty();
+		public var rangedWeapon:ItemSlotClass = new Empty();
+		public var armor:ItemSlotClass = new Empty();
+		public var upperUndergarment:ItemSlotClass = new Empty();
+		public var lowerUndergarment:ItemSlotClass = new Empty();
+		public var accessory:ItemSlotClass = new Empty();
+		public var shield:ItemSlotClass = new Empty();
 
 		public var inventory:Array = new Array();
 		
@@ -3395,7 +3260,7 @@
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.TAPERED);	
-			}
+		}
 		}
 		//PC can fly?
 		public function canFly():Boolean {
@@ -4868,7 +4733,7 @@
 					else if(temp <= 13) vag += "alien cunt";
 					else vag += "half-hidden twat";
 				}
-				else {
+			else {
 					temp = this.rand(18);
 					if(temp <= 1) vag+="naleen-cunt";
 					else if(temp <= 3) vag+="snake-pussy";
@@ -6662,14 +6527,6 @@
 				else return "cock-head";
 			}
 		}
-
-		protected function clone(source:Object):* {
-			var copier:ByteArray = new ByteArray();
-			copier.writeObject(source);
-			copier.position = 0;
-			return(copier.readObject());
-		}
-
 	}
 }
 
