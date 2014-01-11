@@ -21,7 +21,7 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 2;
+		private static const LATEST_SAVE_VERSION:int = 3;
 		private static const MINIMUM_SAVE_VERSION:int = 2;
 		
 		private var _autoSaveEnabled:Boolean = false;
@@ -34,6 +34,7 @@
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
 			var sv1:SaveVersionUpgrader1;
+			var sv2:SaveVersionUpgrader2;
 		}
 		
 		/**

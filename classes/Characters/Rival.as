@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Melee.Fists;
 
 	public class Rival extends Creature
 	{
@@ -23,10 +24,13 @@
 			this.customBlock = "";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fist";
+			
+			this.meleeWeapon = new Fists();
+			
 			this.armor.longName = "A-type personal defense suit";
 			this.armor.defense = 50;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 3;
 			this.aimRaw = 3;

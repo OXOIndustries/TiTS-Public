@@ -24,10 +24,15 @@
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "shimmering scales";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 4;
 			this.reflexesRaw = 11;
 			this.aimRaw = 1;

@@ -25,13 +25,18 @@
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "bite";
 			this.meleeWeapon.damageType = GLOBAL.PIERCING;
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.damage = 4;
 			this.meleeWeapon.longName = "fangs";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "glittering scales";
 			this.armor.defense = 0;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 1;
 			this.reflexesRaw = 5;
 			this.aimRaw = 4;

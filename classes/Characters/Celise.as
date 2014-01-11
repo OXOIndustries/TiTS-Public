@@ -2,6 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.GooeyCoverings;
+	import classes.Items.Melee.GooeyPsuedopod;
 	
 	public class Celise extends Creature
 	{
@@ -23,10 +25,8 @@
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "slap";
-			this.meleeWeapon.longName = "gooey psuedopod";
-			this.armor.longName = "gooey coverings";
-			this.armor.defense = 50;
+			this.meleeWeapon = new GooeyPsuedopod();
+			this.armor.longName new GooeyCoverings();
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 1;
 			this.aimRaw = 1;

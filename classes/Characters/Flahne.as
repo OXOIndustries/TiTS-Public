@@ -23,10 +23,15 @@
 			this.customBlock = "Your attack sinks into the goo, the wound vanishing almost instantly as her surface recloses.";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "semi-solid fist";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "durable dermis";
 			this.armor.defense = 10;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 3;
 			this.aimRaw = 1;

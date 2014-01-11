@@ -2,6 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.UGCUniform;
+	import classes.Items.Melee.Tonfas;
 	
 	public class Penny extends Creature
 	{
@@ -23,10 +25,10 @@
 			this.customBlock = "uncreated";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "smack";
-			this.meleeWeapon.longName = "tonfas";
-			this.armor.longName = "U.G.C. Peacekeeper uniform";
-			this.armor.defense = 0;
+			
+			this.meleeWeapon = new Tonfas();
+			this.armor = new UGCUniform();
+			
 			this.physiqueRaw = 10;
 			this.reflexesRaw = 8;
 			this.aimRaw = 6;

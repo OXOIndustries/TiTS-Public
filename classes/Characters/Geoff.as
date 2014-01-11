@@ -2,7 +2,9 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Apparel.ComfortableClothes;
 	import classes.Items.Guns.*
+	import classes.Items.Melee.Fists;
 	
 	public class Geoff extends Creature
 	{
@@ -24,9 +26,10 @@
 			this.customBlock = "";
 			this.plural = false;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fist";
-			this.armor.longName = "comfortable clothes";
+			
+			this.meleeWeapon = new Fists();
+			this.armor = new ComfortableClothes();
+			
 			this.armor.defense = 50;
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 3;

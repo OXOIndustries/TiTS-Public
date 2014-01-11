@@ -1,42 +1,42 @@
-﻿package classes.Items.Melee
+package classes.Items.Apparel 
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	
-	public class Knife extends ItemSlotClass
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	public class GooeyCoverings extends ItemSlotClass
 	{
-		//constructor
-		public function Knife()
+		
+		public function GooeyCoverings() 
 		{
 			this._latestVersion = 1;
 			
-			//A KNIFE
-			//4
-			
-			//this.indexNumber = 4;
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "knife";
+			this.shortName = "gooverings";
 			
 			//Regular name
-			this.longName = "knife";
+			this.longName = "gooey coverings";
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a knife";
+			this.description = "gooey coverings";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
-			this.attackVerb = "slash";
+			this.tooltip = "Shoop da goop.";
+			this.attackVerb = "";
 			
 			//Information
 			this.basePrice = 150;
 			this.attack = 0;
 			this.damage = 4;
 			this.damageType = GLOBAL.PIERCING;
-			this.defense = 0;
+			this.defense = 50;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
@@ -47,5 +47,7 @@
 
 			this.version = _latestVersion;
 		}
+		
 	}
+
 }

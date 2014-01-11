@@ -1,41 +1,41 @@
-﻿package classes.Items.Melee
+package classes.Items.Melee 
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	
-	public class Knife extends ItemSlotClass
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	public class Fists extends ItemSlotClass
 	{
-		//constructor
-		public function Knife()
+		
+		public function Fists() 
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
-			
-			//this.indexNumber = 4;
+
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "knife";
+			this.shortName = "fist";
 			
 			//Regular name
-			this.longName = "knife";
+			this.longName = "fist";
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a knife";
+			this.description = "knuckle sandwhich delivery device";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
-			this.attackVerb = "slash";
+			this.tooltip = "A fleshy set of fingers balled up into fists. Generally attached at the wrist to a pair of arms, themselves connected to a person.";
+			this.attackVerb = "punch";
 			
 			//Information
-			this.basePrice = 150;
+			this.basePrice = 0;
 			this.attack = 0;
 			this.damage = 4;
-			this.damageType = GLOBAL.PIERCING;
+			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
@@ -47,5 +47,7 @@
 
 			this.version = _latestVersion;
 		}
+		
 	}
+
 }

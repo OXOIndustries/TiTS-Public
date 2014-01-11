@@ -2,6 +2,7 @@
 {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.Items.Miscellaneous.Empty;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -71,13 +72,13 @@
 		public var customBlock:String = "";
 		
 		//Clothing/Armor
-		public var meleeWeapon:ItemSlotClass = new ItemSlotClass();
-		public var rangedWeapon:ItemSlotClass = new ItemSlotClass();
-		public var armor:ItemSlotClass = new ItemSlotClass();
-		public var upperUndergarment:ItemSlotClass = new ItemSlotClass();
-		public var lowerUndergarment:ItemSlotClass = new ItemSlotClass();
-		public var accessory:ItemSlotClass = new ItemSlotClass();
-		public var shield:ItemSlotClass = new ItemSlotClass();
+		public var meleeWeapon:ItemSlotClass = new Empty();
+		public var rangedWeapon:ItemSlotClass = new Empty();
+		public var armor:ItemSlotClass = new Empty();
+		public var upperUndergarment:ItemSlotClass = new Empty();
+		public var lowerUndergarment:ItemSlotClass = new Empty();
+		public var accessory:ItemSlotClass = new Empty();
+		public var shield:ItemSlotClass = new Empty();
 
 		public var inventory:Array = new Array();
 		

@@ -24,13 +24,20 @@
 			this.customBlock = "";
 			this.plural = false;
 			this.lustVuln = 1;
+			
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fists";
+			this.meleeWeapon.hasRandomProperties = true;
+			
 			this.rangedWeapon.attack = 1;
 			this.rangedWeapon.longName = "dart";
 			this.rangedWeapon.attackVerb = "dart";
+			this.rangedWeapon.hasRandomProperties = true;
+			
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;

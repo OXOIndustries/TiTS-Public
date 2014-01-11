@@ -1,35 +1,35 @@
-﻿package classes.Items.Melee
+package classes.Items.Melee 
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	
-	public class Knife extends ItemSlotClass
+	/**
+	 * ...
+	 * @author Gedan
+	 */
+	public class GooeyPsuedopod extends ItemSlotClass
 	{
-		//constructor
-		public function Knife()
+		
+		public function GooeyPsuedopod() 
 		{
 			this._latestVersion = 1;
 			
-			//A KNIFE
-			//4
-			
-			//this.indexNumber = 4;
 			this.quantity = 1;
 			this.stackSize = 1;
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "knife";
+			this.shortName = "psuedopod";
 			
 			//Regular name
-			this.longName = "knife";
+			this.longName = "gooey psuedopod";
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a knife";
+			this.description = "a gooey psuedopod";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
-			this.attackVerb = "slash";
+			this.tooltip = "Wacky Waving Gooey Armflailing Tubeman";
+			this.attackVerb = "slap";
 			
 			//Information
 			this.basePrice = 150;
@@ -47,5 +47,7 @@
 
 			this.version = _latestVersion;
 		}
+		
 	}
+
 }

@@ -2,6 +2,7 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Melee.Fists;
 	
 	public class ZilPack extends Creature
 	{
@@ -21,10 +22,13 @@
 			this.customBlock = "The two zil's chitinous armor deflects your attack.";
 			this.plural = true;
 			this.lustVuln = 1;
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fists";
+			
+			this.meleeWeapon = new Fists();
+			
 			this.armor.longName = "chitinous plating";
 			this.armor.defense = 2;
+			this.armor.hasRandomProperties = true;
+			
 			this.physiqueRaw = 2;
 			this.reflexesRaw = 2;
 			this.aimRaw = 1;
