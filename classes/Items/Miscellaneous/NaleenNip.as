@@ -5,14 +5,9 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
-	import flash.net.registerClassAlias;
 	
 	public class NaleenNip extends ItemSlotClass
 	{
-		// This is a static initializer, it's run *ONCE* per class definition, the first time it is referenced ANYWHERE in the code
-		{
-			registerClassAlias("NaleenNip", NaleenNip);
-		}
 		
 		//constructor
 		public function NaleenNip()

@@ -5,14 +5,9 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
-	import flash.net.registerClassAlias;
 	
 	public class ZilRation extends ItemSlotClass
 	{
-		// This is a static initializer, it's run *ONCE* per class definition, the first time it is referenced ANYWHERE in the code
-		{
-			registerClassAlias("ZilRation", ZilRation);
-		}
 		
 		//constructor
 		public function ZilRation()

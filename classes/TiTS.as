@@ -152,56 +152,8 @@
 
 			import classes.Creature;
 			import classes.ItemSlotClass;
-			import flash.net.registerClassAlias;
 			import classes.ScriptParser;
 			import classes.ShipClass;
-
-			registerClassAlias("Creature", Creature);
-			registerClassAlias("PlayerCharacter", PlayerCharacter);
-			registerClassAlias("ItemSlotClass", ItemSlotClass);
-			registerClassAlias("shipClass", ShipClass);
-			registerClassAlias("CockClass", CockClass);
-			registerClassAlias("VaginaClass", VaginaClass);
-			registerClassAlias("BreastRowClass",BreastRowClass);
-			registerClassAlias("ItemSlotClass",ItemSlotClass);
-			registerClassAlias("roomClass",RoomClass);
-			registerClassAlias("StorageClass",StorageClass);
-			registerClassAlias("Dictionary",Dictionary);
-
-			// NPCs!
-
-			registerClassAlias("Celise", Celise);
-			registerClassAlias("Flahne", Flahne);
-			registerClassAlias("Penny", Penny);
-			registerClassAlias("ZilFemale", ZilFemale);
-			registerClassAlias("ZilPack", ZilPack);
-			registerClassAlias("Burt", Burt);
-			registerClassAlias("CuntSnake", CuntSnake);
-			registerClassAlias("Geoff", Geoff);
-			registerClassAlias("Rival", Rival);
-			registerClassAlias("ZilMale", ZilMale);
-			registerClassAlias("Naleen",Naleen);
-			registerClassAlias("VenusPitcher",VenusPitcher);
-			registerClassAlias("ElderVenusPitcher",ElderVenusPitcher);
-
-			// Items!
-
-
-			registerClassAlias("DressClothes", DressClothes);
-			registerClassAlias("PlainBra", PlainBra);
-			registerClassAlias("PlainBriefs", PlainBriefs);
-			registerClassAlias("PlainPanties", PlainPanties);
-			registerClassAlias("PlainUndershirt", PlainUndershirt);
-			registerClassAlias("EagleHandgun", EagleHandgun);
-			registerClassAlias("HoldOutPistol", HoldOutPistol);
-			registerClassAlias("LaserPistol", LaserPistol);
-			registerClassAlias("ScopedPistol", ScopedPistol);
-			registerClassAlias("Knife", Knife);
-			registerClassAlias("Rock", Rock);
-			registerClassAlias("Empty", Empty);
-			registerClassAlias("BasicShield", BasicShield);
-
-
 
 			chars = new Object();
 			foes = new Array();
