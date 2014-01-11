@@ -22,7 +22,7 @@ if [ "$STAGE" = "setup" ]; then
 		(cd ../webDocs && git reset --hard HEAD)
 
 	fi
-
+	mkdir -p "../natDocsTmp"
 fi
 
 if [ "$STAGE" = "commit" ]; then
