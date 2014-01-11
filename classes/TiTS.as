@@ -1,4 +1,4 @@
-﻿package classes
+package classes
 {
 
 	import classes.TiTS_Settings;
@@ -28,6 +28,7 @@
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
 
+	import classes.InputManager;
 	import classes.Characters.*;
 
 	// Items
@@ -73,6 +74,7 @@
 		include "../includes/venusPitchers.as";
 
 		include "../includes/debug.as";
+		include "../includes/ControlBindings.as";
 			
 		public var chars:Object;
 		public var foes:Array;
@@ -105,6 +107,8 @@
 		public var silly:Boolean;
 		public var easy:Boolean;
 		public var debug:Boolean;
+		
+		public var inputManager:InputManager;
 
 
 		//Lazy man state checking
@@ -141,7 +145,9 @@
 		{
 			kGAMECLASS = this;
 			dataManager = new DataManager();
-			
+			this.inputManager = new InputManager(stage, false);
+			this.setupInputControls()
+
 			trace("TiTS Constructor")
 
 			version = "0.01c";
@@ -273,13 +279,14 @@
 		
 		public function setupInputEventHandlers():void
 		{
+			// stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
+
 			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
 			this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
 			this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
 			this.userInterface.scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
 			this.addEventListener(MouseEvent.MOUSE_UP,mouseUpHandler);
 			this.userInterface.scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
-			stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
 			this.userInterface.leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
 			this.userInterface.leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
 			this.userInterface.leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataManager.dataRouter);
@@ -340,7 +347,55 @@
 			}
 		}
 
+		public function pageUpScroll():void
+		{
+			//Scroll if text field isn't actively selected, like a BAWS.
+			
+			var keyTemp;
+			if(stage.focus == null) { 
+				trace("OUT OF FOCUS SCROLL");
+				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
+				this.userInterface.mainTextField.scrollV -= keyTemp;
+			}
+			wheelUpdater(this.userInterface.tempEvent);
+		}
+		public function pageDownScroll():void
+		{
+			var keyTemp;
+			if(stage.focus == null) { 
+				trace("OUT OF FOCUS SCROLL");
+				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
+				this.userInterface.mainTextField.scrollV += keyTemp;
+			}
+			wheelUpdater(this.userInterface.tempEvent);
+		}
+		public function homeButtonScroll():void
+		{
+			this.userInterface.mainTextField.scrollV = 1;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		public function endButtonScroll():void
+		{
+			this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		public function pageNextButtonKeyEvt():void
+		{
+			if(this.userInterface.buttonPageNext.alpha == 1) this.userInterface.pageButtons();
+		}
+		public function pagePrevButtonKeyEvt():void
+		{
+			if(this.userInterface.buttonPagePrev.alpha == 1) this.userInterface.pageButtons(false);
+		}
+		public function spacebarKeyEvt():void
+		{
+			//Space pressed
+			if(this.userInterface.buttons[0].caption.text == "Next") pressButton(0);
+			else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
+			else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
+		}
 
+		/*
 		//2. KEYBOARD STUFF
 		//Handle all key presses!
 		public function keyPress(evt:KeyboardEvent):void {
@@ -358,40 +413,27 @@
 					break;
 				//PgDn
 				case 34:
-					if(stage.focus == null) { 
-						trace("OUT OF FOCUS SCROLL");
-						keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-						this.userInterface.mainTextField.scrollV += keyTemp;
-					}
-					wheelUpdater(this.userInterface.tempEvent);
+					this.pageDownScroll()
 					break;
 				//PgUp
 				case 33:
-					//Scroll if text field isn't actively selected, like a BAWS.
-					if(stage.focus == null) { 
-						trace("OUT OF FOCUS SCROLL");
-						keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-						this.userInterface.mainTextField.scrollV -= keyTemp;
-					}
-					wheelUpdater(this.userInterface.tempEvent);
+					this.pageUpScroll()
 					break;
 				//Home
 				case 36:
-					this.userInterface.mainTextField.scrollV = 1;
-					this.userInterface.updateScroll(this.userInterface.tempEvent);
+					this.homeButtonScroll()
 					break;
 				//End
 				case 35:
-					this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
-					this.userInterface.updateScroll(this.userInterface.tempEvent);
+					this.endButtonScroll()
 					break;
 				//New page (6)
 				case 54:
-					if(this.userInterface.buttonPageNext.alpha == 1) this.userInterface.pageButtons();
+					this.pageNextButtonKeyEvt()
 					break;
 				//Back page (5)
 				case 89:
-					if(this.userInterface.buttonPagePrev.alpha == 1) this.userInterface.pageButtons(false);
+					this.pagePrevButtonKeyEvt()
 					break;
 				//1
 				case 49:
@@ -455,10 +497,7 @@
 					break;
 				//Space = Back/Next
 				case 32:
-					//Space pressed
-					if(this.userInterface.buttons[0].caption.text == "Next") pressButton(0);
-					else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
-					else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
+					this.spacebarKeyEvt()
 					break;
 				case 80:
 					this.userInterface.debugmm();
@@ -467,8 +506,21 @@
 					break;
 			}
 		}
+		*/
 
+		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
+		//Button the up arrow!
+		public function upScrollText():void {
+			this.userInterface.mainTextField.scrollV--;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
+		//Button the down arrow!
+		public function downScrollText():void {
+			this.userInterface.mainTextField.scrollV++;
+			this.userInterface.updateScroll(this.userInterface.tempEvent);
+		}
 		public function pressButton(arg:int = 0):void {
+			
 			if(arg >= this.userInterface.buttons.length || arg < 0) return;
 			if(this.userInterface.buttons[arg].func == undefined) 
 			{
@@ -503,17 +555,6 @@
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
 
-		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
-		//Button the up arrow!
-		public function upScrollText():void {
-			this.userInterface.mainTextField.scrollV--;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		//Button the down arrow!
-		public function downScrollText():void {
-			this.userInterface.mainTextField.scrollV++;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
 
 
 		public function clickScrollUp(evt:MouseEvent):void {
