@@ -73,7 +73,7 @@
 			this.wingType = 0;
 			this.legType = 0;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.DIGITIGRADE);
+			this.legFlags = [GLOBAL.DIGITIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -81,7 +81,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.VULPINE;
 			this.tailCount = 1;
-			this.tailFlags = new Array(GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.FURRED);
+			this.tailFlags = [GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:

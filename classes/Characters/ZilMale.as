@@ -76,7 +76,7 @@
 			this.wingType = GLOBAL.BEE;
 			this.legType = GLOBAL.BEE;
 			this.legCount = 2;
-			this.legFlags = new Array(GLOBAL.PLANTIGRADE);
+			this.legFlags = [GLOBAL.PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -152,8 +152,7 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15
 			
-			this.inventory.push(new classes.Items.Miscellaneous.ZilRation());
-			this.inventory[0].quantity = 10;
+			this.inventory.push(new ZilRation());
 		}
 	}
 }

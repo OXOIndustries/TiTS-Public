@@ -61,7 +61,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.FUR;
 			this.skinTone = "pale";
-			this.skinFlags = new Array(GLOBAL.FLUFFY);
+			this.skinFlags = [GLOBAL.FLUFFY];
 			
 			this.faceType = GLOBAL.HUMAN;
 			this.faceFlags = new Array();
@@ -77,7 +77,7 @@
 			this.wingType = 0;
 			this.legType = GLOBAL.NAGA;
 			this.legCount = 1;
-			this.legFlags = new Array(GLOBAL.PREHENSILE,GLOBAL.TENDRIL,GLOBAL.SCALED);
+			this.legFlags = [GLOBAL.PREHENSILE, GLOBAL.TENDRIL, GLOBAL.SCALED];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.

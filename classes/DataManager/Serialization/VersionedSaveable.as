@@ -150,7 +150,7 @@ package classes.DataManager.Serialization
 								this[prop] = new Array();
 								
 								// Whose children support this serialization method
-								if (dataObject[prop][0].hasOwnProperty("classInstance"))
+								if (!(dataObject[prop][0] is Number) && !(dataObject[prop][0] is String) && dataObject[prop][0]["classInstance"] !== undefined)
 								{
 									for (var i:int = 0; i < dataObject[prop].length; i++)
 									{	
