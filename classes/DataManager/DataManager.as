@@ -22,7 +22,7 @@
 	{
 		// Define the current version of save games.
 		private static const LATEST_SAVE_VERSION:int = 3;
-		private static const MINIMUM_SAVE_VERSION:int = 2;
+		private static const MINIMUM_SAVE_VERSION:int = 3;
 		
 		private var _autoSaveEnabled:Boolean = false;
 		private var _lastManualDataSlot:int = -1;
@@ -186,6 +186,11 @@
 			}
 			
 			if (dataFile.data.minVersion == undefined) // Special case for v1 files, where minVersion wasn't defined
+			{
+				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
+			}
+			
+			if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
 			}

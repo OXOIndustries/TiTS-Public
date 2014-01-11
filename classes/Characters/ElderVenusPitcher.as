@@ -3,6 +3,7 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Guns.*
+	import classes.Items.Melee.Fists;
 	
 	public class ElderVenusPitcher extends Creature
 	{
@@ -25,9 +26,7 @@
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon.attackVerb = "punch";
-			this.meleeWeapon.longName = "fists";
-			this.meleeWeapon.hasRandomProperties = true;
+			this.meleeWeapon = new Fists();
 			
 			this.rangedWeapon.attack = 1;
 			this.rangedWeapon.longName = "dart";
