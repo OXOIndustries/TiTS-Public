@@ -1149,7 +1149,7 @@ function stephIrsonBountHunterEpisodeOne():void {
 	else output(" dark night sky ");
 	output("to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her.");
 	
-	output("\n\n<i>\"We're here on newly-colonized Mhen'ga, a world of lush jungles and deadly predators,\"</i>  the host begins in a thick New Brisbane accent, <i>\"and we're on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you've got the naleen in a nutshell. I'll have to be so, so careful dealing with these predators, or I'm dead for sure.\"</i>");
+	output("\n\n<i>“We're here on newly-colonized Mhen'ga, a world of lush jungles and deadly predators,”</i>  the host begins in a thick New Brisbane accent, <i>“and we're on the hunt for the naleen, the apex predator on this planet. Now, imagine a great big lion right out of Africa, a strong, lightning-fast beauty of a huntress, and combine that with the stealth and venom of a deadly adder, and you've got the naleen in a nutshell. I'll have to be so, so careful dealing with these predators, or I'm dead for sure.”</i>");
 	
 	output("\n\nFor someone supposedly tracking down a lethal hunter, she seems oddly cheerful about it. She crests a hill, tumbles through a thick bush, and eventually comes to a clearing in the jungle, one of the few places where the sun actually gets through to the ground. Resting atop a large boulder in the center is ");
 	//if PC's met the naleen:
@@ -1157,43 +1157,43 @@ function stephIrsonBountHunterEpisodeOne():void {
 	else output("what looks like a giant snake coiled around the rocks at first, but as the camera draws in, is clearly half-serpent and half-catgirl, a woman with deliciously large breasts on a feline torso, long orange hair draped around her half-furred body");
 	output(".");
 	
-	output("\n\n<i>\"Holy smokes!\"</i>  Steph whispers to the camera, angling it at the slumbering predator. Insanely, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>\"Lookit this, a NALEEN! They're the deadliest predators on this planet, with tails so strong they'd crush me dead in a heartbeat. Lemme see if I can stick mah hand up 'er cloaca!\"</i>");
+	output("\n\n<i>“Holy smokes!”</i>  Steph whispers to the camera, angling it at the slumbering predator. Insanely, the host approaches, creeping along the ground almost at a crawl. Lazily, the kitty-naga opens a single emerald eye, watching her approach. <i>“Lookit this, a NALEEN! They're the deadliest predators on this planet, with tails so strong they'd crush me dead in a heartbeat. Lemme see if I can stick mah hand up 'er cloaca!”</i>");
 
 	output("\n\nIs she insane?");
 	
-	output("\n\n<i>\"W-what are you doing, strange little girl?\"</i>  the naleen hisses as Steph creeps up. The huntresses rises off the rock, her feline half looming over the show's hostess menacingly.");
+	output("\n\n<i>“W-what are you doing, strange little girl?”</i>  the naleen hisses as Steph creeps up. The huntresses rises off the rock, her feline half looming over the show's hostess menacingly.");
 	
-	output("\n\n<i>\"Uh-oh, she's noticed me! If I try to run, she'll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn't bother me if I'm dead still.\"</i>");
+	output("\n\n<i>“Uh-oh, she's noticed me! If I try to run, she'll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn't bother me if I'm dead still.”</i>");
 	
-	output("\n\n<i>\"... I can hear you,\"</i>  the busty monster sighs, cocking an eyebrow at Stepth as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
+	output("\n\n<i>“... I can hear you,”</i>  the busty monster sighs, cocking an eyebrow at Stepth as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
-	output("\n\n<i>\"Crikey! Looks like she's coming in for the kill! All I can do now is try to overpower her!\"</i>  Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
+	output("\n\n<i>“Crikey! Looks like she's coming in for the kill! All I can do now is try to overpower her!”</i>  Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	
-	output("\n\n<i>\"W-WHAT ARE YOU DOING!? GET OFF ME!\"</i>  the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail's slender tip.");
+	output("\n\n<i>“W-WHAT ARE YOU DOING!? GET OFF ME!”</i>  the naleen howls as Stepth straddles her wide hips victoriously, pinning the huntress down and grabbing her massive tail's slender tip.");
 	
-	output("\n\n<i>\"There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?\"</i>  she says, pointing the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>\"Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're tying to kill 'em or mate with 'em! Let's get a closer look!\"</i>");
+	output("\n\n<i>“There we go, got 'er by the tail! Now let's take a look at this beauty! Oh, she's the real deal: lookit these scales. She's seen some battles, too, see the dents and scars here?”</i>  she says, pointing the various cuts and old wounds on the naleen's scales, a history of battle engraved in her body. <i>“Ah, 'ere we go, see the cloaca engorging? When you hold 'em, naleen can't decide if you're tying to kill 'em or mate with 'em! Let's get a closer look!”</i>");
 	
 	output("\n\nSome of the bar's patrons ooh and aah as the camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
-	output("\n\n<i>\"D-don't touch meeeee\"</i>  the naleen cries, withing violently under Steph as the show's host practically shoves her arm into the alien's sodden box <i>\".... ooh!... ooohhhh.... mmm, yessss, stick your arm riiiiight in, little girl.\"</i>");
+	output("\n\n<i>“D-don't touch meeeee”</i>  the naleen cries, withing violently under Steph as the show's host practically shoves her arm into the alien's sodden box <i>“.... ooh!... ooohhhh.... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
 	
-	output("\n\n<i>\"There we go!\"</i>  Steph announces victoriously to the camera, <i>\"Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing as so gracefully. She's a real beauty, innit she?\"</i>");
+	output("\n\n<i>“There we go!”</i>  Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing as so gracefully. She's a real beauty, innit she?”</i>");
 	
-	output("\n\n<i>\"Mmm, you are not so bad yourself,\"</i>  the naleen coos as Steph's arm vanishes up to the elbow inside her.");
+	output("\n\n<i>“Mmm, you are not so bad yourself,”</i>  the naleen coos as Steph's arm vanishes up to the elbow inside her.");
 	
-	output("\n\n<i>\"One of the most amazing things about these predators is the way they mate. Like some snakes from ol' Earth, they congregate in huge 'mating balls,' just like a great big animal orgy that can last for hours, or even days. I'd give anything to see one of those up close and personal!\"</i>");
+	output("\n\n<i>“One of the most amazing things about these predators is the way they mate. Like some snakes from ol' Earth, they congregate in huge 'mating balls,' just like a great big animal orgy that can last for hours, or even days. I'd give anything to see one of those up close and personal!”</i>");
 	
-	output("\n\n<i>\"Is that so?\"</i>  the naleen grins, and suddenly her long tail is wrapped around Steph, encircling the hostess from shoulder to toes, leaving nothing but her head visible.");
+	output("\n\n<i>“Is that so?”</i>  the naleen grins, and suddenly her long tail is wrapped around Steph, encircling the hostess from shoulder to toes, leaving nothing but her head visible.");
 	
-	output("\n\n<i>\"Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I'll be dead in seconds if I don't think of a way out of this; she'll crush the air right from my lungs.\"</i>");
+	output("\n\n<i>“Holy smokes! Looks like I forgot the most deadly attack the naleen have: a crushing vice-like grip of the tail. I'll be dead in seconds if I don't think of a way out of this; she'll crush the air right from my lungs.”</i>");
 	
-	output("\n\n<i>\"You are very strange,\"</i> the naleen sighs, her feline half rising up to grab Steph's cheeks, turning her head aside to expose her neck.");
+	output("\n\n<i>“You are very strange,”</i> the naleen sighs, her feline half rising up to grab Steph's cheeks, turning her head aside to expose her neck.");
 	
-	output("\n\n<i>\"Uh-oh, looks like I'm a goner! This paralytic venom could spell the end if she bites me!\"</i>  For someone convinced she's about to die, Steph's awfully calm about this.");
+	output("\n\n<i>“Uh-oh, looks like I'm a goner! This paralytic venom could spell the end if she bites me!”</i>  For someone convinced she's about to die, Steph's awfully calm about this.");
 	
 	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show's host. Much of the crowd gasps as the host limply falls into the huntress's waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
 	
-	output("\n\n<i>\"Ugh, mah head!\"</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>\"Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!\"</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwines, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
+	output("\n\n<i>“Ugh, mah head!”</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwines, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
 	
@@ -1207,9 +1207,9 @@ function stephIrsonBountHunterEpisodeOne():void {
 	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph's ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last's cum as lube. Powerful thrusts send Steph's bubble butt jiggling as the kitty-naga hammers her holes, squirting the last's cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph's face as hard into her groin as she can before tumble aside, pushed down by another horny male who immediately crams his dual cocks into Steph's fem-cum slathered gob.");
 	
 	//If Friend!Syri:
-	if(9999 == 0) output("\n\nAs you're watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>\"Holy shit, Steele, watching a porno in public? Ballsy!\"</i>  Syri chuckles, hopping over the back of the couch to watch. You try to tell her it's a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>\"If you do mine, I'll do yours!\"</i>  she says with a slight giggle, a hand drifting to your crotch.");
+	if(9999 == 0) output("\n\nAs you're watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i>  Syri chuckles, hopping over the back of the couch to watch. You try to tell her it's a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I'll do yours!”</i>  she says with a slight giggle, a hand drifting to your crotch.");
 	
-	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera's eye. The show's runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into her lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl's pussy, cooing, <i>\"Was it everything you hoped it would be, dear?\"</i>");
+	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera's eye. The show's runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into her lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl's pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
 	
 	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	

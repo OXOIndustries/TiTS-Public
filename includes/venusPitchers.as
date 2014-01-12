@@ -40,9 +40,9 @@ function encounterRegularTentaclePitcherYouGay():void {
 	{
 		flags["TIMES_MET_VENUS_PITCHER"] = 1;
 		output("\n\nA gentle voice rises in greeting, drawing your attention to one side. A pale-skinned woman turns out to be the source of the fair voice. She's looking at you with an excited grin on her face while standing in a fairly disarming pose. In the darkness of the jungle, her whole body seems tinted a slightly viridian hue, except where a leafy green bra of foliage conceals her generous breasts. A large, creased leaf is pressed betwixt her thighs to conceal her womanly modesty. Most strikingly of all, her shining, shoulder-length hair reveals itself to be umbrageous fronds that shimmer in the dim light. It's almost entrancing the way it shimmers and sways whenever she shifts position, which is frequent.");
-		output("\n\nYou suddenly sneeze, which draws a high-pitched giggle from the nymph-like woman, the breathy exclamations of good humor jostling her curvy tits almost mesmerizingly. She beams a friendly smile and says, \"<i>These jungles are stuffy, I know. I've been stuck here for like a whole day! My foot's stuck in some sap.</i>\"  She leans and shudders a bit for emphasis, her breasts swaying beneath her outstretched torso like sexy pendulums. Her plump lower lip is drawn into her mouth, gently gnawed on as she struggles. \"<i>A little help?</i>\"");
-		output("\n\nSneezing a few more times, you're about to come to a decision when the Codex beeps and chimes, \"<i>Venus pitcher detected. Classified as a moderate danger, avoid prolonged contact with their spores if you have any respiratory illnesses. Approaching will result in restraint and the harvesting of sexual fluids.</i>\"");
-		output("\n\nThe woman's face goes sour at that, and she yells, \"<i>Shut up, whoever you are!</i>\"  She realizes you're staring at her a moment later and covers her mouth, meekly blushing. \"<i>Sorry. Uhm, that guy was wrong, the venus plant is on the other side of that tree, and I really need help!</i>\"");
+		output("\n\nYou suddenly sneeze, which draws a high-pitched giggle from the nymph-like woman, the breathy exclamations of good humor jostling her curvy tits almost mesmerizingly. She beams a friendly smile and says, <i>“These jungles are stuffy, I know. I've been stuck here for like a whole day! My foot's stuck in some sap.”</i>  She leans and shudders a bit for emphasis, her breasts swaying beneath her outstretched torso like sexy pendulums. Her plump lower lip is drawn into her mouth, gently gnawed on as she struggles. <i>“A little help?”</i>");
+		output("\n\nSneezing a few more times, you're about to come to a decision when the Codex beeps and chimes, <i>“Venus pitcher detected. Classified as a moderate danger, avoid prolonged contact with their spores if you have any respiratory illnesses. Approaching will result in restraint and the harvesting of sexual fluids.”</i>");
+		output("\n\nThe woman's face goes sour at that, and she yells, <i>“Shut up, whoever you are!”</i>  She realizes you're staring at her a moment later and covers her mouth, meekly blushing. <i>“Sorry. Uhm, that guy was wrong, the venus plant is on the other side of that tree, and I really need help!”</i>");
 		if(pc.intelligence() / 2 + rand(20) + 1 > 20) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
 		else output("\n\nDo you help her?");
 		//[Help Her][Don't]
@@ -72,7 +72,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 function venusRepeatRefuse():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
-	output("You shake your head and say, <i>\"Nope.\"</i>");
+	output("You shake your head and say, <i>“Nope.”</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Next",mainGameMenu);
@@ -135,20 +135,20 @@ function dontHelpVenusPitcher():void {
 	if(pc.isNice()) 
 	{
 		output("You apologize and tell her that you simply can't risk it.");
-		output("\n\nShe pouts and says, \"<i>Pleeeeeaaase? I promise, I'll make you feel so good that you won't want to leave!</i>\"");
+		output("\n\nShe pouts and says, <i>“Pleeeeeaaase? I promise, I'll make you feel so good that you won't want to leave!”</i>");
 		output("\n\nWell, that confirms it. You sneeze and wonder if you should take her up on the offer, now that she's being honest about it.");
 	}
 	//{Mischievous}
 	else if(pc.isMischievous()) 
 	{
 		output("You tell her that you'll be right over, right after you make sure the pitcher plant on the other side isn't going to be a problem.");
-		output("\n\nThe green-hued beauty throws her arms out, causing her leafy top to flop open, and chirps, \"<i>Wait, wait! I'm the venus pitcher. I'm sorry for deceiving you, okay?</i>\"  She pauses as she becomes aware of her uncovered bosom, squishing her boobs together with her forearms and leaning forward to suggest, \"<i>I could make you feel really, really good, you know. And I bet that voice would tell you that we aren't very dangerous...</i>\"");
+		output("\n\nThe green-hued beauty throws her arms out, causing her leafy top to flop open, and chirps, <i>“Wait, wait! I'm the venus pitcher. I'm sorry for deceiving you, okay?”</i>  She pauses as she becomes aware of her uncovered bosom, squishing her boobs together with her forearms and leaning forward to suggest, <i>“I could make you feel really, really good, you know. And I bet that voice would tell you that we aren't very dangerous...”</i>");
 	}
 	//{Mean}
 	else
 	{
 		output("You snort (nearly sneezing again in the process) and tell her that you aren't nearly dumb enough to fall for her poorly constructed ploy.");
-		output("\n\nThe pitcher plant woman bends low to pull a piece of bark off of a moist green opening in the ground. \"<i>Well, if you're so smart, surely you know how good feeding one of us must feel. Surely you’re aware of how tender we are through the whole process. Come on, it'll only take a few hours.</i>\"");
+		output("\n\nThe pitcher plant woman bends low to pull a piece of bark off of a moist green opening in the ground. <i>“Well, if you're so smart, surely you know how good feeding one of us must feel. Surely you’re aware of how tender we are through the whole process. Come on, it'll only take a few hours.”</i>");
 	}
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Approach",firstTimeVenusEntrance,false); //To first time milking!
@@ -172,7 +172,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	if(tricked)
 	{
 		output("You walk up to her, intent on helping her. How unlucky she was to be stuck so close to a pitcher plant girl; it's no wonder she's been stuck here so long.");
-		output("\n\n\"<i>Don't worry, I got this,</i>\" you quip reassuringly as you get close enough to admire her flawless skin tone, full lips and flaring hips. You sneeze, startling yourself from your lusty revelry; how long did you stand there staring? Shaking your head to clear it, you stumble up the rest of the way, watching her every motion until you're just close enough to reach her. Then, the ground falls out from under you, plummeting you into darkness...");
+		output("\n\n<i>“Don't worry, I got this,”</i> you quip reassuringly as you get close enough to admire her flawless skin tone, full lips and flaring hips. You sneeze, startling yourself from your lusty revelry; how long did you stand there staring? Shaking your head to clear it, you stumble up the rest of the way, watching her every motion until you're just close enough to reach her. Then, the ground falls out from under you, plummeting you into darkness...");
 	}
 	//{If voluntary}
 	else
@@ -203,14 +203,14 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	}
 	output(" The slithering restraints pull tight, spreading your nude form for what you can only assume is coming violation, languidly dragging their fluid-leaking lengths over your [pc.skinFurScales]. The worst part of it is the omnipresent darkness. The shroud of sable murk makes every touch seem a surprise, and sightlessness enhances the touches' effects on your vulnerable psyche.");
 	
-	output("\n\n\"<i>Afraid of the dark?</i>\" a familiar voice giggles as its owner's soft hand caresses your cheek. \"<i>Let me brighten up your day then, " + pc.mf("handsome","sexy") + ".</i>\"");
+	output("\n\n<i>“Afraid of the dark?”</i> a familiar voice giggles as its owner's soft hand caresses your cheek. <i>“Let me brighten up your day then, " + pc.mf("handsome","sexy") + ".”</i>");
 	
 	output("\n\nLight blooms from everywhere at once, not brightly enough to hurt your eyes but just luminescent enough to allow you to make out the details of your situation. Slithering tentacles are all around, some hollow, and some tipped with flaring, flat protrusions that dribble sappy liquids everywhere. They've grown out of the walls themselves, which happen to be the source of the pervasive, green illumination. In the center of it all hangs the venus pitcher woman, upside down and with her breasts now uncovered, leaking fine trails of sap.");
 	
 	//{Genderless}
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
-		output("\n\n\"<i>Wait, you don't even have a pussy, do you? No dick? No cunt?!</i>\"  she blurts out now that she's taken the time to examine you.");
+		output("\n\n<i>“Wait, you don't even have a pussy, do you? No dick? No cunt?!”</i>  she blurts out now that she's taken the time to examine you.");
 		output("\n\nYou lamely confirm that she is correct - you don't have a dick or a pussy anywhere on your body!");
 		output("\n\nIn a flash of light, the venus pitcher woman is gone. Your world tumbles end over end the next moment, only stopping when you slam face-first into the dirt. You groan and climb onto your [pc.feet], but the pitcher woman is gone, hidden inside her pod, and in this murk, you doubt you could find her again if you wanted to.");
 		processTime(5);
@@ -221,30 +221,30 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	output("\n\nThe sense of alarm you felt at your predicament is dwindling in the face of the rhythmic green pulses and seductive beauty before you. She giggles again and shimmies back and forth slowly, allowing her leaky teats to kiss your lips with their sweet juices for a moment before she buries you in boob. Her hands tenderly stroke ");
 	if(!pc.hasHair()) output("the back of your head");
 	else output("your [pc.hair]");
-	output(" as she coos, \"<i>Just relax and let me make you feel so good that you'll come looking for me whenever you're horny, okay?</i>\"");
+	output(" as she coos, <i>“Just relax and let me make you feel so good that you'll come looking for me whenever you're horny, okay?”</i>");
 	
 	output("\n\nYou nod onto her soft breasts, smelling her fruity, aromatic scent; how didn't you notice it before? It's a warm, comforting scent that helps your muscles relax, allowing you to sag the rest of the way into her gentle tentacles as they snake further up your limbs, ensconcing them in slick affection. One of the fat-headed tubes circles around your waist and lifts its tip upward along your belly, giving you a good look at the central hole that's slowly but constantly exuding a trickling of slick lubricant. It's kind of like... well, a cock - and the hollow ones... they're like vaginas.");
 	
-	output("\n\nYou slump back as the revelations sink in. Giggling again, the green girl asks, \"<i>Am I your first?</i>\"");
+	output("\n\nYou slump back as the revelations sink in. Giggling again, the green girl asks, <i>“Am I your first?”</i>");
 	
 	//{Total virgin!}
 	if(pc.cockVirgin && pc.vaginalVirgin)
 	{
 		output("\n\nYou'd be a little nervous about admitting your inexperience, but the words spill out of your mouth one after another without slowing. Before you know it, you've told her just how little you've done and how excited you are to get started.");
-		output("\n\n\"<i>Wow!</i>\"  she blurts, \"<i>I just meant your first venus pitcher, but that's even better.</i>\"  The viridian beauty traces her finger up from your navel to your chin before tut-tutting, \"<i>I'll make sure you remember me.</i>\"");
+		output("\n\n<i>“Wow!”</i>  she blurts, <i>“I just meant your first venus pitcher, but that's even better.”</i>  The viridian beauty traces her finger up from your navel to your chin before tut-tutting, <i>“I'll make sure you remember me.”</i>");
 	}
 	//{Not a virgin!}
 	else
 	{
-		output("\n\nYou recount your sexual experience without a hint of hesitation, which seems a little odd in hindsight. While you're trying to figure out your glibness, the chlorophyll-laden lady laughs, \"<i>I didn't mean a total virgin, who hasn't fucked before? Maybe zil, when they're super young or something. I meant, is this the first time you've been caught by one of us? Am I going to be the first to milk you?</i>\"");
+		output("\n\nYou recount your sexual experience without a hint of hesitation, which seems a little odd in hindsight. While you're trying to figure out your glibness, the chlorophyll-laden lady laughs, <i>“I didn't mean a total virgin, who hasn't fucked before? Maybe zil, when they're super young or something. I meant, is this the first time you've been caught by one of us? Am I going to be the first to milk you?”</i>");
 		output("\n\nYou nod, sheepishly.");
-		output("\n\n\"<i>Awww, that's kind of sweet. I'll be sure to make it good enough that you try to find me again!</i>\"");
+		output("\n\n<i>“Awww, that's kind of sweet. I'll be sure to make it good enough that you try to find me again!”</i>");
 	}
 	//{both}
 	output("\n\nThe graceful green beauty rises up high enough to put her lips level with yours. Her plump pucker reminds you of a ripe fruit just waiting to be plucked, but you're unable to do so in your present position. You watch as she sways closer to you, right up until her beryl kiss seals itself perfectly against your mouth. With your head swimming from the passionate press, you feel your genitalia engorging in response, making your lust as visible as a blooming flower while her lip-lock fans the flames of your desire. She's the one to break the kiss, sliding away with deliberate slowness that lets both your mouths embrace for the tenuous moment before they separate.");
 	output("\n\nThe salacious plant-slut wiggles seductively as she stretches her arms high above her head, towards the “floor”. She grabs you by the crotch ");
 	if(pc.isTaur()) output("of your hindquarters ");
-	output("and gently lets her fingers splay over your inner thighs. She breathily pants in a half whisper, \"<i>I'm going to enjoy this, but since this is your first time, would you rather taste one of my stamen or pistil?</i>\"");
+	output("and gently lets her fingers splay over your inner thighs. She breathily pants in a half whisper, <i>“I'm going to enjoy this, but since this is your first time, would you rather taste one of my stamen or pistil?”</i>");
 	if(pc.intelligence()/2 + rand(20) + 1 > 15) output("  Based on what you remember of biology, the stamen probably corresponds to the cock-like ones.");
 	//[Stamen] [Pistil]
 	userInterface.clearMenu();
@@ -256,8 +256,8 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 function requestStamenFirstTime():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
-	output("You answer, \"<i>I wouldn't mind one of the stamen, I guess.</i>\"  The situation is too unreal to really add anything else.");
-	output("\n\n\"<i>Oh, a " + pc.mf("guy","girl") + " after my own heart!</i>\"");
+	output("You answer, <i>“I wouldn't mind one of the stamen, I guess.”</i>  The situation is too unreal to really add anything else.");
+	output("\n\n<i>“Oh, a " + pc.mf("guy","girl") + " after my own heart!”</i>");
 	output("\n\nThe wide tentacle that's been slobbering sweet plant-pre all over your [pc.belly] and [pc.chest] wiggles happily, thrusting upward in a spasm of motion so fast that it turns your cheek when it wetly smacks against it. The prehensile cock redirects itself after the failed penetration and angles back towards your face. You watch its green surface as it closes in, textured with tiny, almost invisible bumps. The tip flexes as it approaches your oral entrance, flaring so wide that you question your ability to let it inside. It pushes on your face, and you have no choice but to open wide.");
 	output("\n\nUnsurprisingly, it can't fit in. It pushes hard against you, smearing you with its clear goo in its efforts to claim your mouth. You strain to open your jaw wider; having it battering fruitlessly on your face is less pleasant than the idea of letting it fuck against your tongue. The tentacle pushes harder, and the outer edge of its spongy yet hard flare begins to bend back, compressing slightly as it moves the barest millimeter past your lips. Behind the tip, the stalk of the thing is waving and contorting to thrust again and again, pushing so hard that your jaw creaks a little as it’s forced yet wider. A wet pop follows, and the thing is inside you, distending your maw with its size and dripping its sweet goo straight into your gullet.");
 	output("\n\nWhat little of the juice that you can taste is heavenly, and you soon find your body responding even more strongly than before. Your throat relaxes, dilating open, and your mouth is actually starting to get used to being stretched this wide. The fullness is pleasant in its own way. ");
@@ -270,8 +270,8 @@ function requestStamenFirstTime():void {
 function requestPistilFirstTime():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
-	output("\"<i>I guess I'll try the pistil!</i>\" you answer. There's not much you can do but pick one and deal with it at this point, and with your head muddled as it is, you don't really see anything wrong with having to choose one.");
-	output("\n\n\"<i>Really? I'm partial to watching my partners gulp down my stamen's stuff while I milk them, but a promise is a promise!</i>\"");
+	output("<i>“I guess I'll try the pistil!”</i> you answer. There's not much you can do but pick one and deal with it at this point, and with your head muddled as it is, you don't really see anything wrong with having to choose one.");
+	output("\n\n<i>“Really? I'm partial to watching my partners gulp down my stamen's stuff while I milk them, but a promise is a promise!”</i>");
 	output("\n\nSomething wet slithers over your shoulder, pressing against your cheek as it goes. Its slippery wetness drips from your jawline in lewd little ropes while the source moves closer, eventually rounding on you and hovering a few inches from your [pc.face]. The outside of it forms a perfect circle, while the inside is a deep green in coloration, seeming softer and somehow even more wet than the outside. A trickle of clear drool drips from the underside of the cunt-like tentacle continually, and the inner membrane pulsates to some unseen beat, looking every bit the hungry orifice.");
 	output("\n\nThe tubular protrusion mashes into your mouth slowly but firmly, and you find your lips opening to allow it inside. It begins to suck as soon as it enters your oral cavity, drawing your tongue inside before you know what's going on. Its juices pour out much faster now that it's found something to play with, and you find yourself swallowing down the syrupy sweet stuff while you're wiggling your tongue against the soft interior nigh continuously. There's even a sensitive bud near the entrance that makes it gush more liberally whenever you press on it. Of course, you find yourself doing that frequently, so long as you can swallow fast enough.");
 	output("\n\nThe heavenly taste soon begins to affect you in strange ways, inflaming your passion to new heights while loosening the muscles in your tongue to allow it to go even deeper. All in all, it's a remarkably pleasant experience. ");
@@ -323,7 +323,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		else output("\n\nAn unseen presence makes itself known: a spire of semi-rigid plant-flesh that drives itself through your cleavage without concern for how it jostles its siblings, slicking the valley between your boobs with its own lube, even though you were already soaked with the stuff. It surfaces between your [pc.chest], the big, green flare trembling as it drips everywhere. It pulls back, vanishing into your chesty crevasse with gusto. Your tits are bounced and jiggled by the weighty flora-cock as it uses you for its own pleasure, a fact confirmed by the lusty pants the woman in the center of it all is making while she strokes two similar vines.");
 	}
 	//{Preggo belly bonus}
-	if(pc.totalBellyRating() >= 9999) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n	\"<i>Mmm, mothers are always so nutritious. I hope you can feed all my mouths,</i>\" the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. \"<i>No harm will come to your young, but I hope you'll return to bear mine, someday.</i>\"");
+	if(pc.totalBellyRating() >= 9999) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n	<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
 	
 	//{Single cock}
 	if(pc.totalCocks() == 1) {
@@ -443,7 +443,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	}
 	//{Pass out}
 	output("\n\nAt once, the strength goes out of the restraints holding you up, and you fall into a puddle of mixed sensual fluids, sore from [pc.nipples] to [pc.butt] and covered in ropes of plant cum that still fall on you from time to time. A vague thought that you should be alarmed by the situation surfaces, but it vanishes in a flash, disappearing in a tired sneeze. Your body is pushed, stroked and prodded gently, lifted into a more comfortable position.");
-	output("\n\nA female voice coos, \"<i>Thanks for the meal. I’ll take care of your...</i>\"");
+	output("\n\nA female voice coos, <i>“Thanks for the meal. I’ll take care of your...”</i>");
 	processTime(40+rand(10));
 	pc.orgasm();
 	//[Next]
@@ -473,7 +473,7 @@ function elderVenusPitcherEncounter():void {
 	if(flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;
 		output("\n\n“<i>Excuse me,</i>”  greets a melodious voice, pulling you towards it on invisible, auditory strings. You find the source of the beautifully enunciated words almost immediately - a tall woman with surprisingly pert E-cup breasts hanging bare in the breeze. Her hips flare wide enough for you to unconsciously think of them as “breeding hips.”  Sniffling uncomfortably, you realize that you’ve found another venus pitcher!");
-		output("\n\nSeeing your adopted stance, she soothingly pleads, “<i>Oh my, you look so tense.</i>”  Her hands rise up to cup the bottoms of her perky tits, rubbing her thumbs in slow circles around her nipples. “<i>I can help you relax, you know.</i>\"");
+		output("\n\nSeeing your adopted stance, she soothingly pleads, “<i>Oh my, you look so tense.</i>”  Her hands rise up to cup the bottoms of her perky tits, rubbing her thumbs in slow circles around her nipples. “<i>I can help you relax, you know.”</i>");
 		output("\n\nYou sneeze and shake your head, catching yourself before you wind up watching and listening without thinking.");
 		output("\n\n“<i>There’s no need to be so reluctant, " + pc.mf("handsome","cutey") + ",</i>”  the plant-woman purrs as her hips slide back and forth hypnotically, matching the tempo set by her slowly circling fingertips. “<i>Besides, there’s no harm in watching, right? You know I can’t fuck you senseless unless you come to me, so you’re safe. You have total control here.</i>”  Her nipples are a deep, dark green that contrasts wonderfully with the rest of her, easy to focus on and difficult to not have your eyes drawn to whenever you look away. The way her fingers circle the dusky buds doesn’t make it any easier to avoid gazing upon them.");
 		output("\n\nOlive green hips wiggle back and forth just fast enough to make the hypnotic beauty’s tits tremble as she gropes them. Her long, leaf-like tresses sometimes sway in front of her nipples, but you know when they’ll peek out the other side. Like clockwork they emerge, glistening as if oiled, just like the rest of her. The venus pitcher’s fingers are still circling her nubs. Her hips are still rolling back and forth, undaunted by a sudden sneeze from you. There really doesn’t seem to be any harm in this at all.");
@@ -642,7 +642,7 @@ function watchElderVenusPitcher():void {
 	
 	output("\n\nYeah they - wait, what?");
 	
-	output("\n\nThe seductive plantress begins to guide her breasts in small circles, clapping the hefty orbs together into a mountain of cleavage at the innermost part of the rotation. She says, \"<i>It’s true. The longer you watch my nipples, the harder you </i>");
+	output("\n\nThe seductive plantress begins to guide her breasts in small circles, clapping the hefty orbs together into a mountain of cleavage at the innermost part of the rotation. She says, <i>“It’s true. The longer you watch my nipples, the harder you </i>");
 	if(pc.hasCock()) output("<i>get</i>");
 	else output("<i>make them</i>");
 	output("<i>, and the harder you </i>");
@@ -651,11 +651,11 @@ function watchElderVenusPitcher():void {
 	output("<i>, the harder it becomes to look away. And you’ve </i>");
 	if(pc.hasCock()) output("<i>gotten</i>");
 	else output("<i>made them</i>");
-	output("<i> very hard, haven’t you? So achingly, soul-wrenchingly hard that a feather’s touch brings on an avalanche of pleasure.</i>\"");
+	output("<i> very hard, haven’t you? So achingly, soul-wrenchingly hard that a feather’s touch brings on an avalanche of pleasure.”</i>");
 	if(pc.hasCock()) output("\n\nYou’re so damned hard! [pc.EachCock] is throbbing powerfully, unrepentant in its lust, already beginning to bead a drop of lusty pre atop its crown.");
 	else output("\n\nThey look so damned hard! The way she shudders as her fingers make the circuit leaves you no doubt that she’s loving it.");
 	output(" You feel like you should try to avert your gaze or something, but the thought never really gains any traction in your mind. Her nipples are beautiful, sexy and hard to look away from. There’s no downside to watching them, so why struggle not to? Even blinking is getting kind of hard; they’re THAT hard to look away from.");
-	output("\n\nSeeing the water beading at the corners of your eyes, the grinning babe prattles on, “<i>Since you’ve been looking at my nipples for so long and the way my fingers trace around their perimeter is so memorable, you can actually still see them even when you close your eyes or when a leaf obstructs your view. Blinking is easy because in your mind you’re still watching my nipple, still fixated on the way it shines and beckons to you, entrancing you so deeply that you looking away seems profoundly and deeply wrong.</i>\"");
+	output("\n\nSeeing the water beading at the corners of your eyes, the grinning babe prattles on, “<i>Since you’ve been looking at my nipples for so long and the way my fingers trace around their perimeter is so memorable, you can actually still see them even when you close your eyes or when a leaf obstructs your view. Blinking is easy because in your mind you’re still watching my nipple, still fixated on the way it shines and beckons to you, entrancing you so deeply that you looking away seems profoundly and deeply wrong.”</i>");
 	
 	output("\n\nYou close your eyes and bask in the relief, still watching her digits caressing her areolae in your mind’s eye until you’re gazing upon them in the real world again. The sneeze that rocks your head back doesn’t even phase you - just like when you blinked, you watch her nipples in your mind until you’re able to zero in on them once more. They’re so entrancing that you could just watch them all day. Maybe you will.");
 	output("\n\n“<i>Good " + pc.mfn("boy","girl","pet") + ",</i>”  the owner of the hypnotic bust moans, “<i>Every circle my thumbs take around these beautiful, suckable nipples is reminding you of why you started watching me in the first place. They’re so alluring and inviting, and the way you’re focusing on them makes it difficult to think of anything beyond the world of these mesmeric knockers. Really, it’s not just the nipples anymore, the boobs have you, too, trapped in their spirals as I gently squeeze and move them, smushing them together for you to ogle until your brain shuts down completely. It feels good to let yourself go, to focus on how hot </i>");
@@ -678,7 +678,7 @@ function watchElderVenusPitcher():void {
 	
 	output("\n\nYou shudder and groan with pent up, lusty frustration. She’s right, of course. Her breasts are so wonderfully, kissably soft, and she doesn’t want to hurt you, just make you cum out all the tension you’ve built up from watching her.");
 	
-	output("\n\n“<i>That’s it. Come closer, my good " + pc.mfn("boy","girl","pet") + ",</i>\"  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.\"</i>");
+	output("\n\n“<i>That’s it. Come closer, my good " + pc.mfn("boy","girl","pet") + ",”</i>  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.”</i>");
 	
 	output("\n\nWhimpering slightly, you take one staggering ");
 	if(pc.hasLegFlag(GLOBAL.DIGITIGRADE) || pc.hasLegFlag(GLOBAL.PLANTIGRADE)) output("step");
@@ -693,7 +693,7 @@ function watchElderVenusPitcher():void {
 	
 	output("\n\nThe sound of flesh squirming against flesh penetrates your chesty prison a moment before pillars of muscle surround your arms, [pc.belly], and [pc.legs]. Their skin is smooth, lubricated with some kind of slick moisture that drips in long rivulets along your body, and they clutch you tightly with the kind of intimacy that no human body could hope to match. You feel almost sullied by the way they lewdly slide across your [pc.skinFurScales] until a gentle shushing soothes your nerves, helping you to resume your fully relaxed state while you’re peeled away from the curvy sprout-girl.");
 	
-	output("\n\n\"<i>Now, you just lie back there, and I’m going to make you cum so very, very well,</i>\"  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
+	output("\n\n<i>“Now, you just lie back there, and I’m going to make you cum so very, very well,”</i>  the beautiful, mesmerizing voice instructs you as you’re stretched out and suspended upside down, naked and exposed, your aroused genitalia fully on display. Blood rings in your ears as your excitement ticks up a pace; obeying her has made you feel a multitude of tongues exploring every sensitive fold of skin and erogenous zone for some time now, and you feel as on-edge as a teenager about to have " + pc.mf("his","her") + " first sexual experience.");
 	processTime(5+rand(5));
 	//Choose appropriate genitalia to abuse!
 	//Next
