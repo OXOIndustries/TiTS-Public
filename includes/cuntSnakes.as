@@ -46,7 +46,7 @@ function encounterCuntSnakeOnJungleLand():void {
 	{
 		flags["MET_CUNT_SNAKE"] = 1;
 		output("\n\nMotion in a patch of nearby brushes draws your attention just in time to witness the appearance of a rather strange-looking snake!  Its head lacks eyes, though a pair of rounded bumps do mark where eyes would be; they're obviously some similar kind of sensory organ. The body behind it does not taper as a terran snake's body would, but instead maintains a uniform thickness all the way to the end of its body. The creature's dark-green scales camouflage it well, but not well enough, and clear slime dribbles behind it in a trail, like a slug’s.");
-		output("\n\nYour codex makes a warning tone to get your attention and declares, \"<i>A cunt snake has been detected. This species is noted for having potent paralyzing or aphrodisiac venom and parasitic tendencies. Avoid if possible, and seek treatment at the nearest medical establishment should one infest you.</i>\"");
+		output("\n\nYour codex makes a warning tone to get your attention and declares, <i>“A cunt snake has been detected. This species is noted for having potent paralyzing or aphrodisiac venom and parasitic tendencies. Avoid if possible, and seek treatment at the nearest medical establishment should one infest you.”</i>");
 		output("\n\nAs it moves, you note that it does have a feminine looking orifice on the end of its body. You're stuck fighting some");
 		if(!silly) output(" kind of vagina snake");
 		else output(" thing out of Nimin Fetish Fantasy");
