@@ -43,10 +43,10 @@
 			this.energyRaw = 100;
 			this.lustRaw = 45;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XPRaw = 25;
-			this.level = 1;
+			this.XPRaw = 40;
+			this.level = 2;
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 5;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",0,0,0,0,"");

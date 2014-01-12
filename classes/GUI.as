@@ -1229,7 +1229,16 @@
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 		}
-		
+		public function hideTime():void 
+		{
+			this.leftSideBar.time.visible = false;
+			this.leftSideBar.days.visible = false;
+		}
+		public function showTime():void 
+		{
+			this.leftSideBar.time.visible = true;
+			this.leftSideBar.days.visible = true;
+		}
 		public function hidePCStats():void 
 		{
 			this._rightSideBar.hideItems();

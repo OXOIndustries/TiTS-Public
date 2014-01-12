@@ -838,7 +838,6 @@ function runAway():void {
 		//medium = succeed 35%
 		//hard = succeed 20;
 		//very hard = succeed 10%
-
 		//Easy: PC has twice the reflexes
 		if(pc.reflexes() >= foes[0].reflexes() * 2) difficulty = 0;
 		//Low: PC has more than +33% more reflexes
@@ -852,9 +851,8 @@ function runAway():void {
 
 
 		//Multiple NPCs? Raise difficulty class for each one!
-		difficulty + foes.length - 1;
+		difficulty += foes.length - 1;
 		if(difficulty > 5) difficulty = 5;
-
 		//Raise difficulty for having awkwardly huge genitalia/boobs sometime! TODO!
 
 		//Lower difficulty for flight if enemy cant!
@@ -864,13 +862,13 @@ function runAway():void {
 
 		//Set threshold value and check!
 		if(difficulty < 0) difficulty = 100;
-		else if(difficulty = 0) difficulty = 75;
+		else if(difficulty == 0) difficulty = 75;
 		else if(difficulty == 1) difficulty = 50;
 		else if(difficulty == 2) difficulty = 35;
 		else if(difficulty == 3) difficulty = 20;
 		else if(difficulty == 4) difficulty = 10;
 		else difficulty = 5;
-
+		trace("Successful escape chance: " + difficulty + " %")
 		//Success!
 		if(rand(100) + 1 <= difficulty) {
 			if(pc.canFly()) output("Your feet leave the ground as you fly away, leaving the fight behind.")
@@ -881,6 +879,10 @@ function runAway():void {
 			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
 			this.userInterface.clearMenu();
 			this.userInterface.addButton(0,"Next",mainGameMenu);
+		}
+		else {
+			output(" It doesn't work!\n");
+			processCombat();
 		}
 
 	}
