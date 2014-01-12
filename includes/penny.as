@@ -1793,7 +1793,11 @@ function getAssFuckedByPenny():void {
 		output("\n\nYou rise up on your [pc.knees] and grab your [pc.chest], cupping the two heavy orbs and squeezing them together, giving Penny the perfect view of your sizable cleavage. Giving your tits a little jiggle for her, you lean in and let them wrap around her shaft, burying Penny's cock in a bed of boobage. Slowly, you drag her [penny.cock] through the valley of your cleavage, lifting your tits up and down her girth until she's left you a nice, pearly trail between your tits, her [penny.cockHead] just poking out between the two soft orbs. You gobble it up, sucking down the first inches of her cock as your tits work her length, sending the sensitive fox girl into a whole new realm of pleasure that soon has her panting and gasping, cock bubbling pre freely.");
 	}
 	
-	output("\n\nYou don't let up, continuing to jerk the foxy fox off until she's putty in your hands, whimpering and moaning in pleasure, alternating between stroking her tits, pulling you down on her cock, and fingering her sodden box. You let her guide your head down her shaft, parting your lips to take every inch of her throbbing erection. You easily suck up her salty, musky cock, wrapping your tongue around the pulsing shaft until your lips brush her crotch. You look up at Penny expectantly, but find her eyes closed, head rolled back in pleasure, trying hard not to cum right in your mouth.");
+	output("\n\nYou don't let up, continuing to jerk the foxy fox off until she's putty in your hands, whimpering and moaning in pleasure, alternating between stroking her tits, pulling you down on her cock, and fingering her sodden box. You let her guide your head down her shaft, parting your lips to take every inch of her throbbing erection");
+
+	if(chars["PENNY"].longestCockLength() <= 6) output(". You easily suck up her salty, musky cock, wrapping your tongue around the pulsing shaft until your [pc.lips] brush her crotch.");
+	else output(" but quickly finding yourself overwhelmed. There's just... so much of her. She's completely stuffing your mouth and there's still inches to go before you can nuzzle your [pc.lips] against her crotch.")
+	output(" You look up at Penny expectantly, but find her eyes closed, head rolled back in pleasure, trying hard not to cum right in your mouth.");
 	
 	output("\n\nWith Penny's pulsating prick nice and slathered in spit and drooling her musky pre, you deem her nice and ready for a real fucking. You slip up her svelte, vulpine body, trailing kisses and caresses up her belly to the peaks of her breasts, pushing her fingers aside to wrap your lips around one of the erect teats. You give the red bud a hard suck, pulling it back until it slips from your lips with a wet pop; Penny gasps, breath quickening as you shower her in affection. Her hands cup around your [pc.butt], lifting you into her lap, resting your head on her shoulder. She spreads your cheeks, squeezing them roughly as her [penny.cock] slips in, sliding into your [pc.butt]'s cleavage before her fingers let go, trapping her meaty shaft in your cheeks.");
 	
@@ -1804,11 +1808,11 @@ function getAssFuckedByPenny():void {
 	
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight
-	if(pc.ass.looseness <= 1 || (pc.ass.looseness <= 2 && penny.cocks[0].cLength >= 10)) output("<i>“so t-tiiiight...”</i>");
-	else if(pc.ass.looseness <= 3 || (pc.ass.looseness <= 4 && penny.cocks[0].cLength >= 17)) output("<i>“fits just like a glove...”</i>");
+	if(pc.analCapacity() <= penny.cockVolume()) output("<i>“so t-tiiiight...”</i>");
+	else if(pc.analCapacity() * .6 <= penny.cockVolume()) output("<i>“fits just like a glove...”</i>");
 	//if PC is SUPAH LOOSE:
 	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]. I wanna fill this [pc.asshole] of yours someday....”</i>");
-	buttChange(penny.cockVolume(0));
+	buttChange(penny.cockVolume(0),true,true,false);
 	
 	output("\n\nYou silence her with another kiss, pinning her back as your arms wrap around her neck, steadying yourself as your hips begin to rise. Your breath comes ragged as you rise off her cock, feeling the hollow emptiness overwhelm your hole as you nearly dismount her rod, only to be filled with inch after inch of foxy cock again. The feeling of completeness, of wholeness, is undeniable. You sit a moment, relishing the sensation, before rising again, dragging out the heavenly feeling your anal walls being spread and sphincter ravaged across bounce after bounce.");
 	

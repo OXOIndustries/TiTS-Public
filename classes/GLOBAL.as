@@ -172,6 +172,7 @@
 		public static const NALEEN:int								   = 11;
 		public static const VPITCHER:int							   = 12;
 		public static const ELDERVPITCHER:int						   = 13;
+		public static const SYRI:int 								   = 14;
 
 
 		public static const bustLookup:Object = {
@@ -187,7 +188,8 @@
 			"CUNTSNAKE"  : 10,
 			"NALEEN"	 : 11,
 			"VENUSPITCHER":12,
-			"ELDERVENUSPITCHER":13
+			"ELDERVENUSPITCHER":13,
+			"SYRI"		 :14
 		};
 
 		public static var ITEMS:Object = {};

@@ -17,12 +17,14 @@ function burtsBarFunc():void {
 		if(flags["BET_AGAINST_SYRI"] == undefined) {
 			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
 			//[Games]
+			userInterface.addButton(5,"Games",syriGamesStart);
 		}
 		//{Has bet against Syri}
 		else {
 			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
 			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She's certainly got that lusty look in her eyes...");
 			//[!Syri]
+			userInterface.addButton(5,"Syri",syriGamesStart);
 		}
 	}
 	//Add to Bar Description, Early Morning
@@ -36,8 +38,10 @@ function burtsBarFunc():void {
 			else {
 				output("\n\nSyri's at her usual place, reading and munching on some nuts Bert's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
 			}
+			//[Syri]
+			userInterface.addButton(5,"Syri",approachSyriIntheMorning);
 		}
-		//[Syri]
+
 	}
 
 	if(flags["MET_BURT"] == undefined) this.userInterface.addButton(0,"Bar",burtapproach);

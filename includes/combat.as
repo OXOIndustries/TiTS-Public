@@ -178,7 +178,7 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 }
 function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
 {
-	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/5 < 10 && !target.isImmobilized()) 
+	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/3 < 10 && !target.isImmobilized()) 
 	{
 		return true;
 	}

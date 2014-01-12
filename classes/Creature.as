@@ -5128,7 +5128,7 @@ package classes
 			}
 			else if(type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
 				if(!simple) {
-					rando = this.rand(11);
+					rando = this.rand(8);
 					if(rando <= 0 && type == GLOBAL.CANINE) descript+="canine ";
 					else if(rando <= 0) descript+="vulpine ";
 					else if(rando <= 1) descript+="pointed ";
@@ -5137,7 +5137,7 @@ package classes
 					else if(rando <= 4) descript+="animalistic ";
 					else if(rando <= 5) descript+="bright red ";
 					else if(rando <= 6) descript+="animalistic ";
-					else if(rando <= 7) descript+="knotted ";
+					else descript+="knotted ";
 				}
 				if(type == GLOBAL.CANINE) {
 					rando = this.rand(11);
@@ -5151,7 +5151,7 @@ package classes
 					else if(rando == 7) noun+="shaft";
 					else if(rando == 8) noun+="member";
 					else if(rando == 9) noun+="cock";
-					else if(rando == 10) noun+="dog-cock";
+					else noun+="dog-cock";
 				}
 				else {
 					rando =this.rand(11);
@@ -5165,7 +5165,7 @@ package classes
 					else if(rando == 7) noun+="shaft";
 					else if(rando == 8) noun+="member";
 					else if(rando == 9) noun+="cock";
-					else if(rando == 10) noun+="fox-cock";
+					else noun+="fox-cock";
 				}
 			}
 			else if(type == GLOBAL.EQUINE) {
@@ -5177,7 +5177,7 @@ package classes
 					else if(rando == 3) descript += "flat-tipped ";
 					else if(rando == 4) descript += "animalistic ";
 					else if(rando == 5) descript += "blunted ";
-					else if(rando == 6) descript += "sheath-girded ";
+					else descript += "sheath-girded ";
 				}
 				rando = this.rand(10);
 				if(rando <= 0) noun+="horse-cock";
@@ -5189,7 +5189,7 @@ package classes
 				else if(rando <= 6) noun+="beast-cock";
 				else if(rando <= 7) noun+="stallion-cock";
 				else if(rando <= 8) noun+="tool";
-				else if(rando <= 9) noun+="phallus";
+				else noun+="phallus";
 			}
 			else if(type == GLOBAL.DEMONIC) {
 				if(!simple) {
@@ -5202,7 +5202,7 @@ package classes
 					else if(rando == 5) descript += "cursed ";
 					else if(rando == 6) descript += "infernal ";
 					else if(rando == 7) descript += "unholy ";
-					else if(rando == 8) descript += "blighted ";
+					else descript += "blighted ";
 				}
 				rando=this.rand(11);
 				if(rando <= 0 && descript != "demonic") noun+="demon-dick";
@@ -5215,7 +5215,7 @@ package classes
 				else if(rando <= 7) noun+="prick";
 				else if(rando <= 8) noun+="prick";
 				else if(rando <= 9) noun+="member";
-				else if(rando <= 10) noun+="tool";
+				else noun+="tool";
 			}
 			else if(type == GLOBAL.TENTACLE) {
 				if(!simple) {
@@ -5228,7 +5228,7 @@ package classes
 					else if(rando == 5) descript += "smooth ";
 					else if(rando == 6) descript += "undulating ";
 					else if(rando == 7) descript += "slithering ";
-					else if(rando == 8) descript += "vine-like ";
+					else descript += "vine-like ";
 				}
 				rando=this.rand(11);
 				if(rando <= 0) noun+="tentacle-prick";
@@ -5244,7 +5244,7 @@ package classes
 				else if(rando <= 7) noun+="shaft";
 				else if(rando <= 8) noun+="tentacle-dick";
 				else if(rando <= 9 && descript != "vine-like ") noun+="vine-prick";				
-				else if(rando <= 10) noun+="cock";			
+				else noun+="cock";			
 			}
 			else if(type == GLOBAL.FELINE) {
 				if(!simple) {
@@ -5256,7 +5256,7 @@ package classes
 					else if(rando == 4) descript += "animalistic ";
 					else if(rando == 5) descript += "soft-barbed ";
 					else if(rando == 6) descript += "nubby ";
-					else if(rando == 7) descript += "slithering ";
+					else descript += "slithering ";
 				}
 				rando=this.rand(11);
 				if(rando == 0) noun+="dick";
@@ -5269,7 +5269,7 @@ package classes
 				else if(rando <= 7) noun+="shaft";
 				else if(rando <= 8) noun+="shaft";
 				else if(rando <= 9) noun+="dick";
-				else if(rando <= 10) noun+="kitten-prick";
+				else noun+="kitten-prick";
 			}
 			else if(type == GLOBAL.NAGA || type == GLOBAL.SNAKE) {
 				if(!simple) {
@@ -5281,7 +5281,7 @@ package classes
 					else if(rando == 4) descript += "purple ";
 					else if(rando == 5) descript += "serpentine ";
 					else if(rando == 6) descript += "bulbous ";
-					else if(rando == 7) descript += "bulging ";
+					else descript += "bulging ";
 				}
 				rando=this.rand(11);
 				if(rando == 0) noun+="dick";
@@ -5294,7 +5294,7 @@ package classes
 				else if(rando == 7) noun+="shaft";
 				else if(rando == 8) noun+="tool";
 				else if(rando == 9) noun+="snake-shaft";
-				else if(rando == 10) noun+="snake-dick";
+				else noun+="snake-dick";
 			}
 			else if(type == GLOBAL.ANEMONE) {
 				if(!simple) {
@@ -5306,7 +5306,7 @@ package classes
 					else if(rando == 4) descript += "stinger-coated ";
 					else if(rando == 5) descript += "near-transparent ";
 					else if(rando == 6) descript += "tentacle-ringed ";
-					else if(rando == 7) descript += "squirming ";
+					else descript += "squirming ";
 				}
 				rando = this.rand(11);
 				if(rando == 0) noun+="anemone-dick";
@@ -5331,7 +5331,7 @@ package classes
 					else if(rando == 4) descript += "curved ";
 					else if(rando == 5) descript += "near-transparent ";
 					else if(rando == 6) descript += "tentacle-ringed ";
-					else if(rando == 7) descript += "squirming ";
+					else descript += "squirming ";
 				}
 				rando = this.rand(11);
 				if(rando == 0) noun+="dick";
@@ -5344,7 +5344,7 @@ package classes
 				else if(rando <= 7 && descript != "kangaroo-like ") noun+="kangaroo-dick";
 				else if(rando <= 8) noun+="cock";
 				else if(rando <= 9 && descript != "kangaroo-like ") noun+="kangaroo-cock";
-				else if(rando <= 10) noun+="shaft";
+				else noun+="shaft";
 			}
 			else if(type == GLOBAL.DRACONIC) {
 				if(!simple) {
@@ -5356,7 +5356,7 @@ package classes
 					else if(rando == 4) descript += "mythic ";
 					else if(rando == 5) descript += "draconic ";
 					else if(rando == 6) descript += "tapered ";
-					else if(rando == 7) descript += "scaly ";
+					else descript += "scaly ";
 				}
 				rando = this.rand(11);
 				if(rando <= 0) noun+="dick";
@@ -5369,7 +5369,7 @@ package classes
 				else if(rando <= 7) noun+="cock";
 				else if(rando <= 8 && descript != "dragon-like ") noun+="dragon-dick";
 				else if(rando <= 9) noun+="endowment";
-				else if(rando <= 10) noun+="shaft";
+				else noun+="shaft";
 			}
 			else if(type == GLOBAL.BEE) {
 				if(!simple) {
@@ -5380,7 +5380,7 @@ package classes
 					else if(rando == 3) descript += "skin-shrouded ";
 					else if(rando == 4) descript += "alien ";
 					else if(rando == 5) descript += "vaguely human-like ";
-					else if(rando == 6) descript += "smooth ";
+					else descript += "smooth ";
 				}
 				rando = this.rand(11);
 				if(rando == 0) noun+="zil-dick";
@@ -6186,7 +6186,7 @@ package classes
 				//50% of the time add supplimental cock adjective with the noun.
 				if(this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
 				//Otherwise normal
-				else descript += " " + cockNoun(dickNippleType, false);
+				else descript += " " + cockNoun(dickNippleType, true);
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
@@ -6204,7 +6204,7 @@ package classes
 				//50% of the time add supplimental cock adjective with the noun.
 				if(this.rand(2) == 0) descript += ", " + cockNoun(dickNippleType,false);
 				//Otherwise normal
-				else descript += " " + cockNoun(dickNippleType, false);
+				else descript += " " + cockNoun(dickNippleType, true);
 			}
 			//These guys get a bonus adjective 70% of the time.
 			else {
@@ -6224,9 +6224,11 @@ package classes
 				if(this.rand(10) <= 6) {
 					descript += cockAdjective(cockNum);
 					//50% of the time add supplimental cock adjective with the noun.
-					if(this.rand(2) == 0) descript += ", " + cockNoun(cocks[cockNum].cType,false);
+					if(this.rand(2) == 0) {
+						descript += ", " + cockNoun(cocks[cockNum].cType,false);
+					}
 					//Otherwise normal
-					else descript += " " + cockNoun(cocks[cockNum].cType, false);
+					else descript += " " + cockNoun(cocks[cockNum].cType, true);
 				}
 				//These guys get a bonus adjective 70% of the time.
 				else {

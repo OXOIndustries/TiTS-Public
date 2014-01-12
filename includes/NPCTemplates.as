@@ -60,7 +60,10 @@
 	if (!justUpdate || (justUpdate && chars["ELDERVENUSPITCHER"] == undefined))
 	{
 		chars["ELDERVENUSPITCHER"] = new classes.Characters.ElderVenusPitcher();
-		trace("INITIALIZED NEW VENUS PITCHER");
+	}
+	if (!justUpdate || (justUpdate && chars["SYRI"] == undefined))
+	{
+		chars["SYRI"] = new classes.Characters.Syri();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

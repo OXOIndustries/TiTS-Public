@@ -72,6 +72,7 @@
 		include "../includes/cuntSnakes.as";
 		include "../includes/naleen.as";
 		include "../includes/venusPitchers.as";
+		include "../includes/syri.as";
 
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
