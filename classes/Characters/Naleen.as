@@ -43,7 +43,7 @@
 			this.energyRaw = 100;
 			this.lustRaw = 45;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XP = 25;
+			this.XPRaw = 25;
 			this.level = 1;
 			this.credits = 0;
 			this.HPMod = 20;

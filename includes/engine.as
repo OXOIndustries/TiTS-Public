@@ -1,4 +1,4 @@
-﻿import flash.events.MouseEvent;
+import flash.events.MouseEvent;
 import flash.ui.Mouse;
 
 import classes.StatBarSmall;
@@ -153,10 +153,11 @@ public function updatePCStats():void {
 	updateStatBar(this.userInterface.playerIntelligence,pc.intelligence(),pc.intelligenceMax());
 	updateStatBar(this.userInterface.playerWillpower,pc.willpower(),pc.willpowerMax());
 	updateStatBar(this.userInterface.playerLibido, pc.libido(), pc.libidoMax());
+	updateStatBar(this.userInterface.playerXP, pc.XP(), pc.XPMax());
+
 	
 	this.userInterface.playerStatusEffects = this.chars["PC"].statusEffects;
 	this.userInterface.playerLevel.values.text = pc.level;
-	updateStatBar(this.userInterface.playerXP, pc.XP, 500);
 	this.userInterface.playerCredits.values.text = pc.credits;
 	
 	this.userInterface.leftSideBar.time.text = timeText();

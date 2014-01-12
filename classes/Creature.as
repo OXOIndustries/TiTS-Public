@@ -1,4 +1,4 @@
-﻿package classes
+package classes
 {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -123,7 +123,7 @@
 		public var bonusResistances:Array = new Array(0,0,0,0,0,0,0,0);
 
 		//Level Stats
-		public var XP:Number = 0;
+		public var XPRaw:Number = 0;
 		public var level:Number = 1;
 		public var credits:Number = 500;
 		//Perks used to store 'queued' perk buys
@@ -304,7 +304,6 @@
 			}
 			return false;
 		}
-
 
 		public function getDescription(arg:String, arg2:*):String
 		{
@@ -661,6 +660,16 @@
 		}
 		public function isAss():Boolean {
 			return (personality > 66);
+		}
+		//XP!
+		function XP(arg:int = 0):Number {
+			XPRaw += arg;
+			if(XPRaw >= XPMax()) XPRaw = XPMax();
+			else if(XPRaw <= 0) XPRaw = 0;
+			return XPRaw;
+		}
+		function XPMax():Number {
+			return level * level * 100;
 		}
 		//HP
 		public function HP(arg:Number = 0):Number {

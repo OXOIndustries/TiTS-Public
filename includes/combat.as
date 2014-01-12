@@ -685,10 +685,12 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	var XPBuffer:int = 0;
 	var creditBuffer:int = 0;
 	for(var x:int = 0; x < foes.length; x++) {
-		XPBuffer = foes[x].XP;
+		XPBuffer = foes[x].XP();
 		creditBuffer += foes[x].credits;
 	}
-	pc.XP += XPBuffer;
+	//If new XP + old is more than max, change XP to be the difference.
+	if(XPBuffer + pc.XP() > pc.XPMax()) XPBuffer = pc.XPMax() - pc.XP();
+	pc.XP(XPBuffer);
 	pc.credits += creditBuffer;
 	
 	//Queue up items for looting
@@ -717,8 +719,9 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	for(x = 0; x < foes.length; x++) {
 		addToList(foes[x].a + foes[x].short);
 	}
-	output(formatList() + "! " + XPBuffer + " XP gained.");
-	pc.XP += XPBuffer;
+	output(formatList() + "!");
+	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.");
+	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>")
 	
 	//Monies!
 	if(creditBuffer > 0) {
