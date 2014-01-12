@@ -54,7 +54,7 @@
 			delete data.exists;
 			
 			// New props
-			data.minVersion = 2;
+			data.minVersion = this._newVersionValue;
 			data.playerGender = "?"; // We can't easily reconstitue this, and frankly I don't even want to try. So we're just going to set *something*
 		
 			// Move flags dict to an array
@@ -93,7 +93,7 @@
 				throw new VersionUpgraderError("Upgrade failed, welp");
 			}
 			
-			data.version = 2;
+			data.version = this._newVersionValue;
 			
 			return this.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
 		}
@@ -105,7 +105,7 @@
 		 */
 		public function verify(data:Object):Boolean
 		{
-			if (data.version != 2)
+			if (data.version != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("Upgrader Version 1 recieved data version " + data.version + " during a verification call. Wakka wakka.");
 				return false;
@@ -116,7 +116,7 @@
 				trace("wat");
 			}
 			
-			if (data.minVersion == undefined || data.minVersion != 2)
+			if (data.minVersion == undefined || data.minVersion != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");
 				return false;

@@ -29,8 +29,8 @@
 				trace("Upgraded!");
 			}
 			
-			data.minVersion = 3;
-			data.version = 3;
+			data.minVersion = this._newVersionValue;
+			data.version = this._newVersionValue;
 			
 			return this.verify(data);
 		}
@@ -300,12 +300,12 @@
 		
 		public function verify(data:Object):Boolean 
 		{
-			if (data.version != 3)
+			if (data.version != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("Upgrader Version 2 recieved data version " + data.version + " during a verification call. Wakka wakka.");
 			}
 			
-			if (data.minVersion != 3)
+			if (data.minVersion != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("How the fuck did this happen? Upgrade failed to set an appropriate minVersion value!");
 			}

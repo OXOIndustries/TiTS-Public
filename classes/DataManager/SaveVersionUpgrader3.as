@@ -30,7 +30,7 @@
 				trace("Upgraded!");
 			}
 			data.minVersion = 4;
-			data.version = 4;
+			data.version = this._newVersionValue;
 			
 			return this.verify(data); // Do sfa with the bool, we're gonna catch the throw exception in DataManager
 		}
@@ -48,7 +48,7 @@
 		 */
 		public function verify(data:Object):Boolean
 		{
-			if (data.version != 4)
+			if (data.version != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("Upgrader Version 3 recieved data version " + data.version + " during a verification call. Wakka wakka.");
 				return false;
@@ -59,7 +59,7 @@
 				trace("wat");
 			}
 			
-			if (data.minVersion == undefined || data.minVersion != 4)
+			if (data.minVersion == undefined || data.minVersion != this._newVersionValue)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");
 				return false;
