@@ -360,7 +360,7 @@ function flahneSexMenu(display:Boolean = true):void {
 		}
 		//Sexed and Ovipositor Out
 		else {
-			output("You tell Flahne that you’re up for a little bit of fun of she is.");
+			output("You tell Flahne that you’re up for a little bit of fun if she is.");
 			output("\n\nFlahne glances down at her tented skirt. <i>“I think you know the answer to that, [pc.name].”</i>  Backing her chair up with a seductive shimmy, the curvy secretary catches her ovipositor on the edge of the desk. She groans as she scrapes it free, then with a blush and a smile of concession, lifts the obscuring veil of the skirt high enough to proudly display both of her dripping tools.");
 			output("\n\n<i>“See something you like, cutie?”</i>  Flahne’s voice practically oozes over to you, liquid with desire to use her pent-up sex.");
 		}
@@ -512,7 +512,7 @@ function rahnSuppository():void {
 	
 	output("\n\n<i>\"Mmmm, ready for a little rahn suppository, cutie?\"</i> Flahne winks, popping her rod between your [pc.legs] to rest between your ass cheeks. You wiggle your hips, dragging her gooey prick through your crack.");
 	//If PC has a cock:
-	if(pc.hasCock()) output("\n\nYour own cock presses into Flahne's belly, and she's quick to free her mountainous tits, letting them flop free and envelop your [pc.eachCock]. You rock your hips forward, hot-dogging Flahne as you fuck her tits. She kisses you harder as you move, wrapping her long, prehensile tongue around yours and squeezing rhythmically to the beat of your thrusting into her bust. <i>\"Mmm... double the pleasure, double the fun,\"</i>  Flahne giggles, pumping her finger in your ass, <i>\"Now just keep going, and I'll get you nice and ready for your surprise inspection...\"</i>");
+	if(pc.hasCock()) output("\n\nYour own cock presses into Flahne's belly, and she's quick to free her mountainous tits, letting them flop free and envelop [pc.eachCock]. You rock your hips forward, hot-dogging Flahne as you fuck her tits. She kisses you harder as you move, wrapping her long, prehensile tongue around yours and squeezing rhythmically to the beat of your thrusting into her bust. <i>\"Mmm... double the pleasure, double the fun,\"</i>  Flahne giggles, pumping her finger in your ass, <i>\"Now just keep going, and I'll get you nice and ready for your surprise inspection...\"</i>");
 	else output("\n\nFlahne groans as your ass squeezes and wrings her prick, massaging thick dollop of fluid from her engorged alien member, smearing it into your ass like lube. She licks her lips, hands gripping your [pc.hips] to steady you as you hump her. <i>\"Mmm, you're good, [pc.name]. You must want my big gel-cock bad, huh? Having a little craving, are we?\"</i>");
 	output("\n\nYou give her a harsh kiss, grinding your ass on her cock and pumping the finger she's got buried deep in your [pc.asshole]. With her getting you nice and ready, your hole starts to relax around the intruding finger as she swirls and pumps it around your [pc.asshole]. You groan as she inches it back out of you, leaving you with a deeply empty feeling in your bowels - a feeling that's soon to be filled as she grabs her throbbing gelcock and bends it down toward your pucker. <i>\"Open wide for a tasty treat,\"</i>  Flahne giggles and jiggles, as her tip pushes up against your ass.");
 	buttChange(flahne.cockVolume(0));
