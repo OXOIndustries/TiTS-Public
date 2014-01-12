@@ -378,8 +378,8 @@ function burtXilErAte():void {
 	clearOutput();
 	author("Danaume");
 	output("Burt grins at you and says softly,<i> “Ah, a connoisseur. This stuff is the finest mead you can buy.”</i>  He turns from you and grabs a gold bottle from the top shelf behind the bar, bringing it over and drawing the cork before letting you smell the pungent and rich flavors that have gathered on the plug during the time the bottle has been on the shelf.");
-	output("\n\nBurt reaches under the counter and brings up a fluted wine glass before pulling it half full of the crystal clear golden wine, filling the usually stale and smoky air of the bar around you with the scent of wildflowers in full bloom and rich notes of honey and sex. He sets the glass down before you and says,<i> “Do enjoy, [pc.name].”</i>");
-	output("\n\nThis clearly isn’t the kind of drink you can just slam down, so you relax at the bar as you slowly roll the drink around in the glass and take the occasional sip from it, savoring every drop of the majestic alcohol. It is honestly hard to imagine why this drink isn’t far more expensive than it is, but it lets you get a taste of what it must be like to be a CEO with money to burn on lifes finest things.");
+	output("\n\nBurt reaches under the counter and brings up a fluted wine glass before pouring it half full of the crystal clear golden wine, filling the usually stale and smoky air of the bar around you with the scent of wildflowers in full bloom and rich notes of honey and sex. He sets the glass down before you and says,<i> “Do enjoy, [pc.name].”</i>");
+	output("\n\nThis clearly isn’t the kind of drink you can just slam down, so you relax at the bar as you slowly roll the drink around in the glass and take the occasional sip from it, savoring every drop of the majestic alcohol. It is honestly hard to imagine why this drink isn’t far more expensive than it is, but it lets you get a taste of what it must be like to be a CEO with money to burn on life's finest things.");
 	//[pg]
 	//+10 Physique, +1 Lust per action, for the next 5 hours; Galotian PCs become Acidic*.
 	if(pc.hasStatusEffect("X-Zil-rate")) {
@@ -528,7 +528,7 @@ function talkToBurtAboutWork():void {
 	author("Danaume");
 	output("Burt rubs his chin as he thinks about any job offers he might have heard about,<i> “Well... I don’t need anyone here at the bar, between me and Three-Dee, we pretty much have everything covered. But I heard that the head of Steele Tech recently left a ship to his kid, and you know that the child of a rich old bastard is going to be too spoiled to know how to do anything for themselves, you might see if they need a crew.”</i>");
 	output("\n\nYou frown and explain to Burt that Victor Steele was your father.");
-	output("\n\nBurt blinks and blushes a bit in embarrassment,<i> “Well damn, [pc.name], I didn’t realize you were the Steele kid. I just expected if I ever met the son of a corporate CEO, they would be a stuck up asshole who couldn’t even wipe themselves without help. I sure didn’t mean any offense. I was just trying to help.”</i>");
+	output("\n\nBurt blinks and blushes a bit in embarrassment,<i> “Well damn, [pc.name], I didn’t realize you were the Steele kid. I just expected if I ever met the " + pc.mfn("son","daughter","child") + " of a corporate CEO, they would be a stuck up asshole who couldn’t even wipe themselves without help. I sure didn’t mean any offense. I was just trying to help.”</i>");
 	processTime(5+rand(3));
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",talkToDisBurtGuey);
@@ -1175,9 +1175,9 @@ function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\nSome of the bar's patrons ooh and aah as the camera zooms in on the naleen's pussy as it visibly engorges, drooling a clear lubricant as Steph pokes a pair of fingers in, stretching the hole several inches wide.");
 	
-	output("\n\n<i>“D-don't touch meeeee”</i>  the naleen cries, withing violently under Steph as the show's host practically shoves her arm into the alien's sodden box <i>“.... ooh!... ooohhhh.... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
+	output("\n\n<i>“D-don't touch meeeee”</i>  the naleen cries, writhing violently under Steph as the show's host practically shoves her arm into the alien's sodden box. <i>“.... ooh!... ooohhhh.... mmm, yessss, stick your arm riiiiight in, little girl.”</i>");
 	
-	output("\n\n<i>“There we go!”</i>  Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing as so gracefully. She's a real beauty, innit she?”</i>");
+	output("\n\n<i>“There we go!”</i>  Steph announces victoriously to the camera, <i>“Elbow-deep in 'er cloaca. Oh, this is a dream come true! Lookit the way she moves, writhing so gracefully. She's a real beauty, innit she?”</i>");
 	
 	output("\n\n<i>“Mmm, you are not so bad yourself,”</i>  the naleen coos as Steph's arm vanishes up to the elbow inside her.");
 	
@@ -1193,7 +1193,7 @@ function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show's host. Much of the crowd gasps as the host limply falls into the huntress's waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
 	
-	output("\n\n<i>“Ugh, mah head!”</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwines, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
+	output("\n\n<i>“Ugh, mah head!”</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
 	

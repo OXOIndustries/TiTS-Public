@@ -293,7 +293,7 @@ function ohNoNoCawkNaleenLoss():void {
 		
 	output("\n\n<i>“This is so much better, is it not?”</i>  the feline beauty teases as her coils wrap around your upturned posterior. <i>“Ass up like the little whore you are, ripe and eager for a fucking. You're lucky you didn't run into a male of my race, or you'd already have a pair of big, thick rods violating your every hole. I'm so much gentler than that... though from where you're sitting, perhaps you don't believe me?”</i>");
 	
-	output("\n\nYou try to answer, but all your limp tongue can gugle out is an animalistic grunt, which soon earns you a coo of delight from the predatory woman. <i>“You like my tail, no? Don't worry, my pet, you'll soon be moaning in pleasure for me,”</i> she laughs, and suddenly your head is wrapped between her slender fingers, face shifted to be mere inches from her own. With surprising gentleness she pulls you down onto her, kissing your numb lips as her soft digits play down your body, tearing away what remains of your equipment until the tips brush along the very edge of your [pc.vagOrAss " + x + "]. Your breath catches as she circles your vulnerable hole once, twice, then presses in, a single finger vanishing up to the knuckle. The muscles of your helpless orifice are completely unable to resist, to even squeeze or contract around the probing finger, letting it slide effortlessly into you.");
+	output("\n\nYou try to answer, but all your limp tongue can gurgle out is an animalistic grunt, which soon earns you a coo of delight from the predatory woman. <i>“You like my tail, no? Don't worry, my pet, you'll soon be moaning in pleasure for me,”</i> she laughs, and suddenly your head is wrapped between her slender fingers, face shifted to be mere inches from her own. With surprising gentleness she pulls you down onto her, kissing your numb lips as her soft digits play down your body, tearing away what remains of your equipment until the tips brush along the very edge of your [pc.vagOrAss " + x + "]. Your breath catches as she circles your vulnerable hole once, twice, then presses in, a single finger vanishing up to the knuckle. The muscles of your helpless orifice are completely unable to resist, to even squeeze or contract around the probing finger, letting it slide effortlessly into you.");
 	
 	output("\n\n<i>“Perrrrrffeeeeecct, little pet,”</i>  the naleen grins, <i>“Nice and loose and soooo.... unresisting for me.”</i>");
 	
@@ -301,13 +301,15 @@ function ohNoNoCawkNaleenLoss():void {
 	if(pc.hasVagina()) output("lips of your [pc.vagina " + x + "]");
 	else output("the ring of your [pc.asshole]");
 	output(". With a groan, you feel your limp defenses giving way, letting the slim tip pierce into your helpless hole.");
-	buttChange(20,true,true,false);
+	if(!pc.hasVagina()) buttChange(20,true,true,false);
+	else cuntChange(x,20,true,true,false);
 	
 	output("\n\nThe first inch feels like her finger: long and slender, delving between the parted walls of your [pc.vagOrAss " + x + "], caressing every paralyzed muscle until your body is screaming in pleasure and pain, trying desperately to accommodate the growing pressure forcing its way into your body. While the tip was small, easy to accommodate with your relaxed, envenomed body, its size doubles again and again, stretching your hole until you're screaming incoherently, overwhelmed by the massive tail insertion. The naleen's penetration is unrelenting, inch after inch of ever-widening scales pumped into your [pc.vagOrAss " + x + "]. As you cry and moan, the huntress gently strokes your cheeks, fingers ");
 	if(pc.hasHair()) output("running through your [pc.hair]");
 	else output("rubbing across your head");
 	output(" as she violates your deepest depths, stretching you until you feel as if you'll be torn apart.");
-	buttChange(100,true,true,false);
+	if(!pc.hasVagina()) buttChange(100,true,true,false);
+	else cuntChange(x,100,true,true,false);
 	
 	output("\n\n<i>“I can almost see your stomach bulging, pet. You love having so much of me inside you, yes? I can feel your heart hammering, your body reacting to so much, so soon. But you love it, don't you? Being my little slut to be violated again and again, stretched until you cry my name to the heavens.”</i>  As she speaks, though, you can feel the massive insertion slithering back up your [pc.vagOrAss " + x + "], leaving you with a cavernous, unquenchable emptiness as the great tail slides out, leaving little more than the tip in your well-stretched hole. Breathing hard, heart pounding from the pleasure of such a tremendous stretching, your gaze locks with the naleen's brilliant orange eyes for the briefest moment... before the great serpentine tail slams back home, ramming into your ");
 	if(pc.hasVagina()) output("cunt");
@@ -640,7 +642,7 @@ function obligatorySavinTailPegging():void {
 	else output("featureless groin rubbing her pussy, gliding across her with almost unnatural ease thanks to the lake of fem-slime coating her groin.");
 	output(" Her back arches under you as she cries her pleasure, filled with such primal lust that you fear she'll cum on the spot! Your sexes meet, crotches grinding with a steady passion, keeping the kitten on the edge of her orgasm as you take hold of her wet tail-tip, guiding it back around your entwined bodies toward your own pleasure.");
 	
-	output("\n\nShe catches on, grinning up at you as her hands slip around your [pc.hips] again, planting themselves on your ...[pc.butt] and spreading your wide. <i>“Allow me,”</i>  she whispers, voice husky. You answer her with another kiss, lasting but a second before she slides down your cheek and neck, nibbling the sensitive flesh there to take your mind off your behind as her tail slithers up - but a rough smack on the ass brings you right back, gasping with pain and pleasure as the dirty little naleen gives you another spank, giggling as your ass clenches.");
+	output("\n\nShe catches on, grinning up at you as her hands slip around your [pc.hips] again, planting themselves on your [pc.butt] and spreading you wide. <i>“Allow me,”</i>  she whispers, voice husky. You answer her with another kiss, lasting but a second before she slides down your cheek and neck, nibbling the sensitive flesh there to take your mind off your behind as her tail slithers up - but a rough smack on the ass brings you right back, gasping with pain and pleasure as the dirty little naleen gives you another spank, giggling as your ass clenches.");
 	
 	output("\n\nYou wiggle your heiny, and gaps again as she gives you a playful swat, setting the flesh on your ...[pc.butt] to jiggling obscenely. Another slap and you've had all you can take - she's stronger than she looks, and that's saying something! But she seems to know it, and much more gently lets her moistened tip caress your sore cheek, coiling around it before slipping into your crack. Your breath catches as her warm, wet tail-prick glides over your ass");
 	if(pc.hasCock()) output(", [pc.oneCock] trembling in her warm embrace; she squeezes down around your engorged length, purring sweetly as she takes more of your shaft, muscles caressing every inch of your fuckpole with a practiced skill that soon has you wanting to spurt your load - but you can't, not yet");
@@ -651,7 +653,7 @@ function obligatorySavinTailPegging():void {
 	if(pc.hasCock()) output(", and your cock joins a moment later, busting a load right into the sex-kitten's eager pussy as she milks your prostate. She gives a little cry as your seed flows into her, spattering her slick walls with sticky [pc.cumColor] spunk");
 	else if(pc.hasVagina()) output(", just as your pussy does around her hilted fingers, squeezing and clamping with lustful release, riding her hand as you cum and cum");
 	output(". She gives a sharp squeal of delight as your ass milks her tail-tip and your ");
-	if(!pc.hasCock() && pc.hasVagina()) output("pussy");
+	if(!pc.hasCock() && pc.hasVagina()) output("pussy clenches");
 	else if(!pc.hasCock()) output("groin grinds along her own needy box");
 	else output("cock fills her again and again");
 	output(". You hump desperately along her lithe form, pounding your ");

@@ -156,7 +156,7 @@ function flyTo(arg:String):void {
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
-function move(arg:String):void {
+function move(arg:String, goToMainMenu:Boolean = true):void {
 	processTime(rooms[currentLocation].moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);

@@ -59,7 +59,8 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
-	rooms["MERCHANT'S THOROUGHFARE"].outExit = "LIFT: MERCHANT DECK";
+	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
+	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
 
 	//"LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
@@ -68,10 +69,10 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
-	rooms["LIFT: MERCHANT DECK"].inExit = "MERCHANT'S THOROUGHFARE";
-	rooms["LIFT: MERCHANT DECK"].outExit = "TAVROS LIFT";
+	//rooms["LIFT: MERCHANT DECK"].inExit = "MERCHANT'S THOROUGHFARE";
+	rooms["LIFT: MERCHANT DECK"].outExit = "MERCHANT'S THOROUGHFARE";
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
-	// rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
+	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
 	//"TAVROS HANGAR". The Hangar
 	rooms["TAVROS HANGAR"] = new RoomClass(this);
@@ -90,26 +91,31 @@ function initializeRooms():void
 	rooms["TAVROS LIFT"].planet = "TAVROS STATION";
 	rooms["TAVROS LIFT"].system = "SYSTEM: KALAS";
 	rooms["TAVROS LIFT"].outExit = "TAVROS HANGAR";
-	rooms["TAVROS LIFT"].inExit = "LIFT: MERCHANT DECK";
-	rooms["TAVROS LIFT"].inText = "ToMerchant";
+	//rooms["TAVROS LIFT"].inExit = "LIFT: MERCHANT DECK";
+	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
-	// rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
+	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
 
-	/*
 	function hangarBonus():Boolean 
 	{
 		trace("this", this);
 		trace("this.titsClassPtr.move,", this.titsClassPtr.move);
 		trace("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
 		if(currentLocation == "LIFT: MERCHANT DECK") {
-			this.titsClassPtr.userInterface.addButton(0,"ToHangar",this.titsClassPtr.move, "TAVROS LIFT");
+			this.titsClassPtr.userInterface.addButton(5,"ToHangar",liftMove, "TAVROS LIFT");
 		}
 		else if(currentLocation == "TAVROS LIFT") {
-			this.titsClassPtr.userInterface.addButton(0,"ToMerchant",this.titsClassPtr.move, "LIFT: MERCHANT DECK");
+			this.titsClassPtr.userInterface.addButton(5,"ToMerchant",liftMove, "LIFT: MERCHANT DECK");
 		}
 		return false;
 	}
-	*/
+	function liftMove(destination:String):void {
+		move(destination,false);
+		clearOutput();
+		output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
+		userInterface.clearMenu();
+		userInterface.addButton(0,"Next",mainGameMenu);
+	}
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);
@@ -1096,7 +1102,7 @@ function initializeRooms():void
 	//89. Penny's Office. See Penny.as for more info. - see scrapyard.as for more info!
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
 	rooms["PENNY'S OFFICE"].roomName = "U.G.C. PEACE-\nKEEPERS";
-	rooms["PENNY'S OFFICE"].description = "This interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stoud and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
+	rooms["PENNY'S OFFICE"].description = "This interior of this office is painted a cool, soothing blue, but even that can't hide the fact that nobody wants to have to spend much time here. The whole place looks stout and secure, even the doors and windows. The latter of which bear solid metal bars. A few doors occupy the far side of the room, but they're on the opposite side of a large, imposing desk. Computer equipment sits in a high pile, capped with an inactive light, the kind of which you'd expect to see on top of a hovercar or police cruiser.";
 	rooms["PENNY'S OFFICE"].runOnEnter = pennysOffice;
 	rooms["PENNY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";

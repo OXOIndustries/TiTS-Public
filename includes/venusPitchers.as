@@ -685,7 +685,7 @@ function watchElderVenusPitcher():void {
 	else output("movement");
 	output(" forward after another, shedding your gear as you go. She won’t hurt you. Her words are like tongues of honey sliding all over your mind and body, guiding you closer, drawing you nearer with each passing second. It feels so good to let her control your mind, to steer you into erotic indulgence of her every enunciation. Verdant breasts grow larger in your view, and you find their effect on you intensified the closer you get and the more of the stuffy air around her that you breathe in.");
 	
-	output("\n\nYour [pc.foot] catches on the edge of a hole and you stumble, about to fall head over [pc.heels] into a pit, but the venus pitcher catches you in her jiggly bosom, holding you aloft with surprising strength while your face presses into her heavenly, mind-softening mammaries.");
+	output("\n\nYour [pc.foot] catches on the edge of a hole and you stumble, about to fall head over heels into a pit, but the venus pitcher catches you in her jiggly bosom, holding you aloft with surprising strength while your face presses into her heavenly, mind-softening mammaries.");
 	
 	output("\n\n“<i>I’d never let you fall in there and get hurt. <b>My sisters and I know what’s best for you.</b> Just relax, and <b>let me think for you</b>,</i>”  the floral woman promises. Your body slumps nervelessly in her arms, inundated with lust and hypnotized obedience.");
 	

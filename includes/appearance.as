@@ -685,7 +685,7 @@ function appearance(target:Creature):void {
 			if(!target.hasCock() && target.isTaur()) output2("Ever since becoming a centaur, your womanly parts have shifted to lie between your rear legs, in a rather equine fashion. ");
 			//Vaginal Numbers
 			if(target.vaginaTotal() == 1) {
-				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " a " + Math.round(target.clitLength*10)/10 + "-inch clit");
+				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[0].hymen) output2(" and an intact hymen");
 				output2(".  ");
 			}

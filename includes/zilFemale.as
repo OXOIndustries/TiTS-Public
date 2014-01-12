@@ -38,10 +38,6 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 	//[Repeat] (If PC didn't fight her last time)
 	else if(hostile == 0 && flags["FOUGHT_FEMZIL_LAST_TIME"] == undefined) {
 		author("Savin");
-		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. Your eyes and nose lead you to a familiar feminine form reclining on a log, legs spread wide to let loose the potent scent. The girl looks up as you approach. <i>“Well, hello. What brings you to my favorite hangout? Interested in a bit of fun?”</i>");
-		
-		output("\n\nThe casual tone of her words belies her perverted intentions; as she speaks, her fingers slide between her thighs and the atmosphere thickens with her sweet pheromones. You feel a strong compulsion to agree to whatever she wants.");
-
 		output("\n\nAs you wander through the brush, you happen into a fairly open clearing and are quickly greeted by the overly sweet smell of a zil. You search around for the source of the scent, and your nose quickly leads you to a familiar zil girl reclining on a log, legs spread wide to let loose the potent pheromones. She jumps up as you approach, but relaxes as she recognizes you. <i>“Hey there, stranger. Back for a taste of my honey?”</i>");
 		//[Fight her]
 		//[Leave]
@@ -677,7 +673,7 @@ function tribAndSuckZil():void {
 	
 	output("\n\nSuddenly, your eyes widen as her long, smooth digit pushes right into your [pc.asshole]. You gasp silently, honey drooling from your lips as one, then two of the zil's fingers delve your backside, swirling around inside your puckered hole. <i>“Don't you dare hold back now, stranger. Cum for me,”</i>  the zil whispers, spearing you hard on her fingers as her hips buck hard into yours. Your grit your teeth, refusing to give in so easily. She'll have to work a little harder than that to get you to peak first. <i>“Is that so? Well, let's see...”</i>  the zil girl chuckles as you feel a momentary jab in your thigh.");
 	
-	output("\n\nYou cast an alarmed glance over your shoulder, just in time to see the wasp-girl's stinger retract from your [pc.leg], leaving a flushed red circle on your skin. You open your mouth to speak, but all that comes out is a low, husky moan. Your body flushes hotly, heart hammering in your chest, but all you really feel is your [pc.vagina " + x + "], slavering and twitching as pc.eachClit] swells thicker and hotter, commanding your attention. Instinct takes over, your hands diving between your [pc.legs] to tend to your fuck-box, fingers sliding into the quivering hole and going to work on their own accord. The waspy beauty beneath you giggles, licking her lips as you furiously masturbate, seeming to drink in the scent of sex and lust dripping off of you.");
+	output("\n\nYou cast an alarmed glance over your shoulder, just in time to see the wasp-girl's stinger retract from your [pc.leg], leaving a flushed red circle on your skin. You open your mouth to speak, but all that comes out is a low, husky moan. Your body flushes hotly, heart hammering in your chest, but all you really feel is your [pc.vagina " + x + "], slavering and twitching as [pc.eachClit] swells thicker and hotter, commanding your attention. Instinct takes over, your hands diving between your [pc.legs] to tend to your fuck-box, fingers sliding into the quivering hole and going to work on their own accord. The waspy beauty beneath you giggles, licking her lips as you furiously masturbate, seeming to drink in the scent of sex and lust dripping off of you.");
 	
 	output("\n\n<i>“You almost smell like one of us, stranger,”</i>  she laughs, stroking your cheek. <i>“Here, let me help you.”</i>");
 	

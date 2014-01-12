@@ -309,14 +309,14 @@ function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = tru
 				if(holePointer.looseness >= 5) output("<b>Your " + target.vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
 				else if(holePointer.looseness >= 4) output("<b>Your " + target.vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
 				else if(holePointer.looseness >= 3) output("<b>Your " + target.vaginaDescript(hole) + " is now somewhat loose.</b>");
-				else if(holePointer.looseness >= 2) output("<b>Your " + target.vaginaDescript(hole) + " is stretched a little.</b>");
+				else if(holePointer.looseness >= 2) output("<b>Your " + target.vaginaDescript(hole) + " is a little more used to insertions.</b>");
 				else output("<b>Your " + target.vaginaDescript(hole) + " is stretched out a little bit.</b>");
 			}
 			else {
 				if(holePointer.looseness >= 5) output("<b>Your " + target.assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
-				else if(holePointer.looseness >= 4) output("<b>Your " + target.assholeDescript() + " painfully stretches, the pucker now able to gape slightly.</b>");
+				else if(holePointer.looseness >= 4) output("<b>Your " + target.assholeDescript() + " painfully dilates, the pucker now able to gape slightly.</b>");
 				else if(holePointer.looseness >= 3) output("<b>Your " + target.assholeDescript() + " is now somewhat loose.</b>");
-				else if(holePointer.looseness >= 2) output("<b>Your " + target.assholeDescript() + " is stretched a little.</b>");
+				else if(holePointer.looseness >= 2) output("<b>Your " + target.assholeDescript() + " is a little more used to insertions.</b>");
 				else output("<b>Your " + target.assholeDescript() + " is stretched out a little bit.</b>");
 			}
 			if(spacingsB) output(" ");

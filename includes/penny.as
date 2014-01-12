@@ -189,7 +189,7 @@ function getSpitRoastedForPenny():void {
 	output("\n\nThe other finishes, <i>“We’ll give you the fucking you crave, teach you your place.”</i>  He strokes his cock down, and as his foreskin peels back, you can practically see the cloud of pheromones filling the air. You tremble as you breathe them in, feeling them invading your system. You practically cum on the spot as the second zil repeats the same action, revealing his shiny cockhead and dosing you with another potent blast of sweet zil perfume.");
 	
 	output("\n\nThey stalk closer and speak in unison, <i>“Fuck you senseless,”</i>  but you’re nearly beyond hearing.");
-	output("\n\nPenny intervenes at this point; her voice is muffled by the mask she’s wearing. <i>“Fuck this " + pc.mfn("guy","girl","person") + ", and we can all talk when you’ve cleared your heads, bee-brain.</i> The door clicks open, and Penny shoves you through, though really, you hardly needed any encouragement. You nearly bowl over the wonderful-smelling insects before one stops you in your tracks, clutching you tightly to his slim chest in his lithe arms. Behind you, the bars ‘Ka-CHUNK’ into place, but you don’t particularly care. It feels like you’ve been waiting an eternity to get to the zil, and now that you’re here, you wouldn’t even dream of leaving.");
+	output("\n\nPenny intervenes at this point; her voice is muffled by the mask she’s wearing. <i>“Fuck this " + pc.mfn("guy","girl","person") + ", and we can all talk when you’ve cleared your heads, bee-brains.”</i> The door clicks open, and Penny shoves you through, though really, you hardly needed any encouragement. You nearly bowl over the wonderful-smelling insects before one stops you in your tracks, clutching you tightly to his slim chest in his lithe arms. Behind you, the bars ‘Ka-CHUNK’ into place, but you don’t particularly care. It feels like you’ve been waiting an eternity to get to the zil, and now that you’re here, you wouldn’t even dream of leaving.");
 	
 	output("\n\n<i>“Thanks, foxy,”</i>  the wasp-like man coos past your ear, his exposed skin dusky and covered with a sheen of what appears to be oily sweat. It smells far better than it should, and before you realize what you’re doing, you begin nuzzling against his chest, your tongue slipping out from between your [pc.lips] and lapping experimentally at his slick, onyx skin. Rubbing your cheek submissively against his inky nipple, you lap at his skin, tasting the salty oils, taking in deep breaths through your nose as you seek out the source of his hypnotic scent. He ruffles his fingers ");
 	if(!pc.hasHair()) output("across your head");
@@ -341,7 +341,7 @@ function seriouslyFightTheZil():void {
 	//[Fight Them (Confirmed)]
 	output("The fairly buxom fox gets up, giving you a good look at her lower body. Her legs are obviously digitigrade like those of an animal, capped off by large, fluffy, fur-covered paws, uncovered by any kind of shoe. Her pants are baggy around the leg to accommodate her unique physiology, but they tighten up quite noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it wags slightly as you follow her into the holding area.");
 	
-	output("\n\nGrabbing a pair of masks, she tosses one towards you and says, <i>“I hope you’re half as determined as you sound, because otherwise I’m going to wind up schlicking to a threesome until they sate themselves.”</i>  Penny fastens her into place, then watches you as you do the same. A rueful smile graces her face as she glances back your way. <i>“Let’s do this.”</i> ");
+	output("\n\nGrabbing a pair of masks, she tosses one towards you and says, <i>“I hope you’re half as determined as you sound, because otherwise I’m going to wind up schlicking to a threesome until they sate themselves.”</i>  Penny fastens her breather into place, then watches you as you do the same. A rueful smile graces her face as she glances back your way. <i>“Let’s do this.”</i> ");
 	output("\n\nPenny leads you into the holding area, stopping at a sealed door. <i>“Heads up,”</i>  she warns before depressing the switch. The door opens with snappy, pressurized hiss, and a wave of musk rolls out. You can smell it through your breather, tickling at your nose and speeding the beat of your heart already. Penny pushes you in, following shortly behind, her tail waving mischievously behind. Two nude aliens stand on the other side of a barred enclosure, their thick, foreskin-enclosed cocks hard and dripping as they regard you.");
 	
 	output("\n\nThe fox-girl gives you an appraising look, and you nod, indicating you’re ready. She unlocks the cell door for you, guiding you in with a quick push. It slams shut behind you as soon as you’ve stumbled the whole way into the enclosure.");
@@ -1185,7 +1185,7 @@ function talkToPennyAboutYourself():void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
 	flags["TALK_WITH_PENNY_ABOUT_YOURSELF"] = 1;
-	output("<i>“So, what do you about me?”</i>  you ask");
+	output("<i>“So, what do you want to know about me?”</i>  you ask");
 	if(pc.isNice()) output(" openly");
 	else if(pc.isMischievous()) output(" with the corner of your mouth lifted partway into a smirk");
 	else output(" expectantly");

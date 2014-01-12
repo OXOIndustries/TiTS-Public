@@ -404,7 +404,7 @@ function loseToCuntSnakeAndDontGetSucked():void {
 		var choices:Array = new Array();
 		if(!pc.isTaur()) {
 			if(pc.hasVagina()) choices[choices.length] = 0;
-			choices[choices.length] = 5;
+			else choices[choices.length] = 5;
 		}
 		if(pc.hasCuntTail()) choices[choices.length] = 1;
 		if(pc.hasCockTail()) choices[choices.length] = 2;
@@ -442,7 +442,10 @@ function loseToCuntSnakeAndDontGetSucked():void {
 		}
 		//Traditional holes
 		else {
-			output("start to rub around the entrance of your [pc.vagOrAss] one with a few fingers, ");
+			output("start to rub around the entrance of your ");
+			if(select == 0) output("[pc.vagina] ");
+			else output("[pc.asshole] ");
+			output("with a few fingers, ");
 			if(pc.hasFuckableNipples()) output("fingering a");
 			else output("tweaking a");
 			output(" [pc.nipple] with the other, anything to sate the burning need within you. Your whole body aches to be touched, stroked, and penetrated.");
@@ -479,7 +482,7 @@ function loseToCuntSnakeAndDontGetSucked():void {
 				else if(pc.wetness() >= 3) output("Juices dribble over your [pc.legs] and [pc.butt] when you climax, running out in a narrow river that your fingers are helpless to slow.");
 				else output("Juices soak your fingers when you climax, the inevitable hot, wet conclusion to your passionate finger-tryst.");
 			}
-			else if(select == 5) output(" Your ring spasms around your probing fingertips, wringing them for all their word as your eyes roll back from the force of your anal climax.");
+			else if(select == 5) output(" Your ring spasms around your probing fingertips, wringing them for all their worth as your eyes roll back from the force of your anal climax.");
 			//Nipplecocks
 			if(select == 4) {
 				output("[pc.Milk] erupts in ");
@@ -498,7 +501,7 @@ function loseToCuntSnakeAndDontGetSucked():void {
 			}
 		}
 		//Omniend
-		output(" The chemically induced heat gutters and dies within you, leaving you with a self-satisfied smile and moist fingers. The snake is still there, seemingly resting, and you find yourself drifting into a sated slumber as well.");
+		output(" The chemically induced heat sputters and dies within you, leaving you with a self-satisfied smile and moist fingers. The snake is still there, seemingly resting, and you find yourself drifting into a sated slumber as well.");
 		processTime(15+rand(5));
 		pc.orgasm();
 	}
