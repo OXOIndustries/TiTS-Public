@@ -23,7 +23,7 @@
 			// We have go iterate over every character...
 			for (var k in data.characters)
 			{
-				trace("Upgrading " + k + "...");
+				trace("Upgrading to V4 " + k + "...");
 				
 				this.upgradeChar(data.characters[k]);
 				
@@ -37,6 +37,7 @@
 		
 		private function upgradeChar(char:Object):void
 		{	
+
 			char.XPRaw = char.XP;
 			delete char.XP;
 		}
@@ -58,7 +59,7 @@
 				trace("wat");
 			}
 			
-			if (data.minVersion == undefined || data.minVersion != 2)
+			if (data.minVersion == undefined || data.minVersion != 4)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");
 				return false;

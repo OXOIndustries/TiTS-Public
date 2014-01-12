@@ -354,6 +354,8 @@
 						}
 						catch (error:VersionUpgraderError)
 						{
+							trace("Error thrown in data loader!", error);
+							trace("Traceback = \n", error.getStackTrace());
 							dataErrors = true;
 						}
 					}
@@ -401,6 +403,7 @@
 		 */
 		private function loadBaseData(obj:Object):Object
 		{
+			trace("loadBaseData");
 			// Base/Primary information
 			var curGameObj:Object = new Object();
 			
