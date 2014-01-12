@@ -226,7 +226,7 @@ function initializeRooms():void
 	//10. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 3"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 3"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. The structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you a respectful nod as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of hear it doglegs north.";
+	rooms["SOUTH ESBETH 3"].description = "A gust of pollen tickles a sneeze out of your nose as you traverse the southern edge of the town of Esbeth. The structures to the north and south are simple and plain, guarded with closed, locked doors that make it obvious there’s nothing to be done inside. Townspeople give you a respectful nod as they pass but otherwise want nothing to do with you. While the road goes east and west, just east of here it doglegs north.";
 	rooms["SOUTH ESBETH 3"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 3"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 3"].westExit = "SOUTH ESBETH 2";

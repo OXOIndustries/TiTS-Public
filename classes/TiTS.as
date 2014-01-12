@@ -629,7 +629,7 @@
 			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
 			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
 
-			this.userInterface.addButton(10,"Debug",debugPane);
+			if(debug) this.userInterface.addButton(10,"Debug",debugPane);
 		}
 
 

@@ -336,7 +336,7 @@ function formatList():String {
 	if(list.length == 1) return list[0];
 	for(var x:int = 0; x < list.length; x++) {
 		stuff += list[x];
-		if(list.length == 2 && x == 1) {
+		if(list.length == 2 && x == 0) {
 			stuff += " and ";
 		}
 		else if(x < list.length-2) {

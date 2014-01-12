@@ -734,7 +734,9 @@ function elderVenusPitchersDickplay():void {
 
 	output("\n\nThe inhuman pleasure forced over your [pc.cocks] would have you cumming in moments anyway, but that whispered, hypnotic command wraps around your mind as tightly as the tube wrapped around your penis");
 	if(pc.cockTotal() > 1) output("es");
-	output(". You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [pc.balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick{s} suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.");
+	output(". You give up a bestial grunt into her bosom, muffled by her heavy breasts, and climax, your hips lunging forward with unrepentant desire, the cum bubbling up out of your [pc.balls] like lava from a volcano. There’s a moment of almost agonizing pressure, and then the tube on your dick");
+	if(pc.cockTotal() > 1) output("s");
+	output(" suctions, speeding your eruption so that you achieve that moment of bliss immediately, dumping pulse after pulse of gooey goodness deep into her tentacle.");
 	
 	//{Low Cum}
 	if(pc.cumQ() <= 50) {

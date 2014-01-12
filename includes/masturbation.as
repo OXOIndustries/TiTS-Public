@@ -150,13 +150,21 @@ function vaginalFap():void {
 	clearOutput();
 	flags["LAST_FAP"] = "Vagina";
 	output("You ");
-	clearList();
 	if(pc.isNude()) output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being nude.");
 	else {
+		clearList();
 		if(pc.armor.shortName != "") addToList("wriggle out of your [pc.armor]");
-		if(pc.lowerUndergarment.shortName != "") addToList("push your [pc.lowerUndergarment] down");
-		if(pc.upperUndergarment.shortName != "") addToList("pull your [pc.upperUndergarment] off over your head");
+		if(pc.lowerUndergarment.shortName != "") {
+			addToList("push your [pc.lowerUndergarment] down");
+			trace("LOWER ON LIST");
+		}
+		if(pc.upperUndergarment.shortName != "") {
+			addToList("pull your [pc.upperUndergarment] off over your head");
+			trace("UPPER ON LIST");
+		}
 		output(formatList());
+		trace("UP SHORT: " + pc.upperUndergarment.shortName);
+		trace("LOW SHORT: " + pc.lowerUndergarment.shortName);
 		output(".");
 	}
 	output(" Exposed to the air, your [pc.vaginas] ");
@@ -252,7 +260,7 @@ function singleDickFap():void {
 			if(pc.lowerUndergarment.shortName != "") output(" and [pc.lowerUndergarment]");
 			output(" to free [pc.eachCock], and you");
 		}
-		else output("You go ahead and pull down your [pc.lowerUnderarment] to free [pc.eachCock], and you");
+		else output("You go ahead and pull down your [pc.lowerUndergarment] to free [pc.eachCock], and you");
 	}
 	output(" idly reach down to toy with [pc.oneCock], grabbing hold and feeling it fill out in your palm, stiffening in anticipatory lust - not that you needed any more. You're plenty horny, and you begin to stroke, working yourself towards greater levels of pleasure with great vigor, pumping hard and fast on your ");
 	if(pc.cockTotal() > 1) output("chosen ");

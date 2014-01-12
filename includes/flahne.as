@@ -373,7 +373,7 @@ function flahneSexMenu(display:Boolean = true):void {
 	
 	//Fuck n’ Suck (Flahne Autofellates)
 	//requires ovipositor OK’d, ovipositor out
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur()) this.userInterface.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne);
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur() && pc.hasCock()) this.userInterface.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne);
 	else this.userInterface.addDisabledButton(0,"Locked");
 	//Desk Munchies
 	//Requires rahn race discussion has taken place
