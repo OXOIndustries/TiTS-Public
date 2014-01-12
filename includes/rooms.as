@@ -343,7 +343,7 @@ function initializeRooms():void
 	//21. A Bend in the Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 1"] = new RoomClass(this);
 	rooms["FERNGROWTH PATH 1"].roomName = "FERNGROWTH\nPATH";
-	rooms["FERNGROWTH PATH 1"].description = "Stepping carefully through the brush, you do your best to stay on the trail. The foliage is so thick that if you were to leave it, you’d be lost in time. Huge, alien ferns gird the sides of the path, and you can see that something has been cutting them back to keep the path clear. Whether other adventurers from Esbeth are responsible or some of this locals is unclear. The air is humid and hot, not oppressively so. The path winds northward, deeper into the jungle, and west, back towards the open air around Esbeth.";
+	rooms["FERNGROWTH PATH 1"].description = "Stepping carefully through the brush, you do your best to stay on the trail. The foliage is so thick that if you were to leave it, you’d be lost in no time. Huge, alien ferns gird the sides of the path, and you can see that something has been cutting them back to keep the path clear. Whether other adventurers from Esbeth are responsible or some of this locals is unclear. The air is humid and hot, not oppressively so. The path winds northward, deeper into the jungle, and west, back towards the open air around Esbeth.";
 	rooms["FERNGROWTH PATH 1"].planet = "PLANET: MHEN'GA";
 	rooms["FERNGROWTH PATH 1"].system = "SYSTEM: ARA ARA";
 	rooms["FERNGROWTH PATH 1"].northExit = "FERNGROWTH PATH 2";

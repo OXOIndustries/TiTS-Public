@@ -315,8 +315,28 @@ function chooseEyeColor() {
 
 function applyeEyeColor(eyeColor:String = "brown"):void {
 	pc.eyeColor = eyeColor;
-	chooseBreastSize();
+	chooseSkinTone();
 }
+
+function chooseSkinTone():void
+{
+	clearOutput();
+	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	output("<i>“Great. How about skin pigmentation?”</i>");
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Pale",applySkinTone,"pale");
+	this.userInterface.addButton(1,"Fair",applySkinTone,"fair");
+	this.userInterface.addButton(2,"Tanned",applySkinTone,"tanned");
+	this.userInterface.addButton(3,"Olive",applySkinTone,"olive");
+	this.userInterface.addButton(3,"Dark",applySkinTone,"dark");
+	this.userInterface.addButton(4,"Ebony",applySkinTone,"ebony");
+	this.userInterface.addButton(14,"Back",chooseEyeColor);
+}
+function applySkinTone(skinTone:String = "pale"):void {
+	pc.skinTone = skinTone;
+	chooseBreastSize();	
+}
+
 
 //Boob Size:
 function chooseBreastSize():void {
@@ -344,7 +364,7 @@ function chooseBreastSize():void {
 		this.userInterface.addButton(8,"Big E",applyBreastSize,8);
 		this.userInterface.addButton(9,"EE",applyBreastSize,9);
 	}
-	this.userInterface.addButton(14,"Back",chooseEyeColor);
+	this.userInterface.addButton(14,"Back",chooseSkinTone);
 }
 
 function applyBreastSize(size:int = 0):void {

@@ -398,8 +398,8 @@ function appearance(target:Creature):void {
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.DICK || target.breastRows[0].nippleType == GLOBAL.NORMAL) { 
 				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(temp) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " each.");
+				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
+				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
 				if(target.breastRows[0].nippleType == GLOBAL.DICK) {
 					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 				}		
