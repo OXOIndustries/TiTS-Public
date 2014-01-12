@@ -10,7 +10,7 @@
 		//constructor
 		public function Flahne()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -164,6 +164,14 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetness = 3;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+			}
 		}
 	}
 }

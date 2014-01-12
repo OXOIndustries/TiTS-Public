@@ -13,7 +13,7 @@
 		//constructor
 		public function Burt()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -168,6 +168,15 @@
 			this.ass.wetness = 0;
 			
 			this.version = _latestVersion;
+		}
+		
+		// V1->V2, readd "broken" flags
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+			}
 		}
 	}
 }

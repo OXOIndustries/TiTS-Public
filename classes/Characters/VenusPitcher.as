@@ -10,7 +10,7 @@
 		//constructor
 		public function VenusPitcher()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 
@@ -161,6 +161,14 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+			}
 		}
 	}
 }

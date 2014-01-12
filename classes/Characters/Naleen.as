@@ -11,7 +11,7 @@
 		//constructor
 		public function Naleen()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -166,6 +166,14 @@
 			this.ass.bonusCapacity = 1000;
 			
 			this.inventory.push(new NaleenNip());
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.skinFlags.length == 0)
+			{
+				dataObject.skinFlags.push(GLOBAL.FLUFFY);
+			}
 		}
 	}
 }

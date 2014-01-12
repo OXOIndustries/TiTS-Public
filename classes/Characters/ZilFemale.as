@@ -11,7 +11,7 @@
 		//constructor
 		public function ZilFemale()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -161,6 +161,14 @@
 			this.ass.bonusCapacity += 15;
 			
 			this.inventory.push(new ZilRation());
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+			}
 		}
 	}
 }

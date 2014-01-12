@@ -10,7 +10,7 @@
 		//constructor
 		public function CuntSnake()
 		{	
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
@@ -155,6 +155,14 @@
 			this.milkRate = 1;
 			this.ass.wetness = 0;
 			this.createPerk("Ranged Immune",0,0,0,0);
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.TENDRIL);
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package classes.DataManager.Serialization 
+﻿package classes.DataManager.Serialization 
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.DataManager.Serialization.ISaveable;
@@ -116,6 +116,7 @@ package classes.DataManager.Serialization
 				while (dataObject.version < this._latestVersion)
 				{
 					this["UpgradeVersion" + dataObject.version](dataObject);
+					dataObject.version++;
 				}
 			}
 			
