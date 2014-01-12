@@ -140,7 +140,7 @@ function sellItemGo(arg:ItemSlotClass):void {
 	pc.credits += price;
 	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
-	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg, 1));
+	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",sellItem);
 }
