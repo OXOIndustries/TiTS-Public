@@ -181,8 +181,6 @@
 			return function():void { inThis.pagePrevButtonKeyEvt(); };
 		}(this));
 		
-
-		
 	inputManager.AddBindableControl(
 		"Debug Menu",
 		"Open the debug menu (?)",
@@ -190,6 +188,28 @@
 			return function():void { inThis.userInterface.debugmm(); };
 		}(this));
 		
+	import classes.Cheats;
+	
+	inputManager.AddBindableControl(
+		"Give ZilRations",
+		"Give the player a bunch of zil rations",
+		function():void {
+			Cheats.GiveZilRations();
+		},
+		true);
+		
+	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
+	
+	inputManager.AddBindableControl(
+		"RAGETIME",
+		"RAGETIME",
+		function ():void 
+		{
+			Cheats.HeliaStahp();
+		},
+		true);
+		
+	inputManager.BindCheatSequence("RAGETIME", 68, 69, 76, 73, 67, 73, 79, 85, 83, 82, 65, 71, 69);
 
 
 	// Insert the default bindings

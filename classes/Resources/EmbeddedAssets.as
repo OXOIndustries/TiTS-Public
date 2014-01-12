@@ -16,6 +16,9 @@ package classes.Resources
 		
 		[Embed(source = "../../assets/icons/statuseffects/radiosignal.svg", mimeType = "image/svg")]
 		public static var Icon_RadioSignal:Class;
+		
+		[Embed(source = "../../assets/images/stowaway_helia_r.png", mimeType = "image/png")]
+		public static var Image_Helia:Class;
 	}
 
 }

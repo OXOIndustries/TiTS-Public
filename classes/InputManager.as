@@ -108,11 +108,22 @@
 		{
 			if (isCheat)
 			{
-				_cheatControlMethods.push(new BoundControlMethod(func, name, desc, _availableCheatControlMethods++));
+				_cheatControlMethods.push(new CheatControlMethod(func, name, _availableCheatControlMethods++));
 			}
 			else
 			{
 				_controlMethods[name] = new BoundControlMethod(func, name, desc, _availableControlMethods++);
+			}
+		}
+		
+		public function BindCheatSequence(name:String, ... keyCodes):void
+		{
+			for (var i:int = 0; i < _cheatControlMethods.length; i++)
+			{
+				if (_cheatControlMethods[i].shortName == name)
+				{
+					_cheatControlMethods[i].SetKeyChain(keyCodes);
+				}
 			}
 		}
 		
@@ -220,7 +231,7 @@
 			
 			for (var i:int = 0; i < _cheatControlMethods.length; i++)
 			{
-				_cheatControlMethods[i].ExecFunc(keyCode);
+				_cheatControlMethods[i].InputKey(keyCode);
 			}
 		}
 		
