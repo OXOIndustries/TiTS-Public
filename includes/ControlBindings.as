@@ -187,7 +187,7 @@
 		"Debug Menu",
 		"Open the debug menu (?)",
 		function(inThis:*):Function {
-			return function():void { this.userInterface.debugmm(); };
+			return function():void { inThis.userInterface.debugmm(); };
 		}(this));
 		
 

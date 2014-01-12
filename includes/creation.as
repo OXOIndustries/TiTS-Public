@@ -23,7 +23,7 @@ function startCharacterCreation():void {
 	//Tag as in creation.
 	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
 	clearOutput();
-	if(stage.contains(this.userInterface.textInput)) this.userInterface.removeInput();
+	if(stage.contains(this.userInterface.textInput)) this.removeInput();
 	setLocation("THE\nPAST","PLANET: TERRA","SYSTEM: SOL");
 	output("Victor Steele is one of the richest men in the galaxy. His fortune was gained through years of adventuring during the Thirteenth Great Planet Rush, almost two hundred years ago. Trillions of credits and a massive corporation grew up around him. To this day, Steele Industrial Technologies and Production, or Steele Tech, is one of the most respected names in its field. Unfortunately, the many mutations Victor underwent during his journeys wreaked havoc on his genome. Anti-agathic treatments have been decreasing in effectiveness as of late, and his doctors tell him that after two full centuries of life, he has a measly two decades left. This news is unwelcome, but he’s lived a rich, full life - fuller than most. With twenty years ahead of him, the suddenly old industrialite is looking toward finding a successor... or creating one.");
 	output("\n\nThat’s the solution. Victor can sire an heir or heiress to carry on his legacy and to ensure that the Steele name is honored throughout all of history. Perhaps he’ll even manage to raise them wisely enough to avoid the pitfalls he made as a youth. The next Planet Rush is a scant nineteen years ahead, so the timing is perfect. The United Galactic Confederacy has already sent out hundreds of warp gates, staggered so that they’ll all go online at the same time. These rushes are performed every century or two, expanding the reach of civilization light years into the stars, resulting in a galactic free-for-all. The concordant economic boom will be the perfect opportunity for Victor’s offspring to rise to greatness. They could become richer and more powerful than he ever was, and perhaps a better person as well.");
@@ -99,7 +99,7 @@ function chooseStartingRace(race:String = "human"):void {
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	output(", and what should the unborn child be named?");
-	this.userInterface.displayInput();
+	this.displayInput();
 	this.userInterface.textInput.text = "";
 	this.userInterface.textInput.maxChars = 12;
 }
@@ -193,7 +193,8 @@ function chooseHeight():void {
 	output("<i> child, then? Very well. How tall should " + pc.mf("he","she") + " grow up to be? Please, give it in Imperial inches.”</i></i>");
 	output("\n\nVictor raises an eyebrow and quips, <i>“Seriously? Inches? What is this, the 20th century?”</i></i>");
 	output("\n\n<i>“Victor, I’ve known you for eighty years. We both know you’re a sucker for the classics. Don’t pretend you don’t use that archaic system just to screw with your acquaintances.”</i> The doctor smiles and continues, <i>“Now, the height?”</i></i>\n\n<b>Please give your height in inches.</b> For reference, six feet tall is 72 inches.");
-	this.userInterface.displayInput();
+
+	this.displayInput();
 	//[Height Box]
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",applyHeight);
@@ -219,7 +220,7 @@ function applyHeight():void {
 	}
 	if(fail) {
 		this.userInterface.textInput.text = "";
-		this.userInterface.displayInput();
+		this.displayInput();
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Next",applyHeight);
 		this.userInterface.addButton(14,"Back",startCharacterCreation);
@@ -227,7 +228,7 @@ function applyHeight():void {
 	}
 	pc.tallness = Number(this.userInterface.textInput.text);
 	if(stage.contains(this.userInterface.textInput)) 
-		this.userInterface.removeInput();
+		this.removeInput();
 	chooseThickness();
 }
 
@@ -251,7 +252,7 @@ function applyThickness(arg:Number):void {
 	var fail:Boolean = false;
 	pc.thickness = arg;
 	if(stage.contains(this.userInterface.textInput)) 
-		this.userInterface.removeInput();
+		this.removeInput();
 	chooseHairColor();
 }
 //Hair Color:

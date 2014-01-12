@@ -60,11 +60,15 @@
 		// A new UI element that we can embed buttons into to facilitate key rebinding
 		// private var _bindingPane:BindingPane;
 		
-		// A flag to determine if we're listening for keyCodes to execute, or keyCodes to bind a method against
-		private var _bindingMode:Boolean;
-		private var _bindingFunc:String;
-		private var _bindingSlot:Boolean;
+		// A flag to determine if we're listening for keyCodes to execute, or waiting for user text input
+		private var _ignoreKeyPresses:Boolean;
 		
+		public function ignoreInputKeys(flag:Boolean = false):void
+		{
+			trace("Setting key event listener event ignore flag to", flag)
+			this._ignoreKeyPresses = flag;
+		}
+
 		/**
 		 * Init the InputManager. Attach the keyboard event listener to the stage and prepare the subobjects for usage.
 		 * @param	stage	Reference to core stage on which to add display objects
@@ -72,7 +76,7 @@
 		 */
 		public function InputManager(stage:Stage, debug:Boolean = true)
 		{
-			_bindingMode = false;
+			_ignoreKeyPresses = false;
 			_debug = debug;
 			
 			_stage = stage;
@@ -86,54 +90,6 @@
 			// _mainTextScollBar = (_stage.getChildByName("mainView") as MovieClip).scrollBar as UIScrollBar;
 			
 			// _bindingPane = new BindingPane(this, _mainText.x, _mainText.y, _mainText.width, _mainText.height, _mainTextScollBar.width);
-		}
-		
-		/**
-		 * Mode toggle - keyboard events recieved by the input manager will be used to associated the incoming keycode
-		 * with a new bound control method, removing the keycode from *other* bindings and updating data as appropriate.
-		 * Displays a message indicating the player should do the needful.
-		 * @param	funcName	BoundControlMethod name that they key is going to be associated with. Set by a button
-		 * 						callback function generated in BindingPane
-		 * @param	isPrimary	Specifies if the incoming bind will replace/set the primary or secondary bind for a control.
-		 */
-		public function ListenForNewBind(funcName:String, isPrimary:Boolean = true):void
-		{
-			if (_debug)
-			{
-				var slot:String = "";
-				
-				if (isPrimary)
-				{
-					slot = "Primary";
-				}
-				else
-				{
-					slot = "Secondary";
-				}
-				
-				trace("Listening for a new " + slot + " bind for " + funcName);
-			}
-			
-			_bindingMode = true;
-			_bindingFunc = funcName;
-			_bindingSlot = isPrimary;
-			
-			// _mainText.htmlText = "<b>Hit the key that you want to bind " + funcName + " to!</b>";
-			
-			// hide some buttons that will fuck shit up
-			// _mainView.hideCurrentBottomButtons();
-			
-			HideBindingPane();
-		}
-		
-		/**
-		 * Mode toggle - return to normal keyboard event listening mechanics. Shows the binding display again.
-		 */
-		public function StopListenForNewBind():void
-		{
-			_bindingMode = false;
-			// _mainView.showCurrentBottomButtons();
-			DisplayBindingPane();
 		}
 		
 		/**
@@ -241,17 +197,12 @@
 			
 			
 			// If we're not in binding mode, listen for key inputs to act on
-			if (_bindingMode == false)
+			if (_ignoreKeyPresses == false)
 			{
 				// Made it this far, process the key and call the relevant (if any) function
 				this.ExecuteKeyCode(e.keyCode);
 			}
-			// Otherwise, we're listening for a new keycode from the player
-			else
-			{
-				BindKeyToControl(e.keyCode, _bindingFunc, _bindingSlot);
-				StopListenForNewBind();
-			}
+			// Otherwise, we're listening in a mode where we just want to ignore keypresses (we're likely waiting for text entry or sommat)
 		}
 		
 		/**
@@ -271,31 +222,6 @@
 			{
 				_cheatControlMethods[i].ExecFunc(keyCode);
 			}
-		}
-		
-		/**
-		 * Hide the mainText object and scrollbar, ensure the binding ScrollPane is up to date with the latest
-		 * data and then show the binding scrollpane.
-		 */
-		public function DisplayBindingPane():void
-		{
-			//_mainText.visible = false;
-			//_mainTextScollBar.visible = false;
-			//
-			//_bindingPane.functions = this.GetAvailableFunctions();
-			//_bindingPane.ListBindingOptions();
-			//
-			//_stage.addChild(_bindingPane);
-		}
-		
-		/**
-		 * Hide the binding ScrollPane, and re-display the mainText object + Scrollbar.
-		 */
-		public function HideBindingPane():void
-		{
-			// _mainText.visible = true;
-			// _mainTextScollBar.visible = true;
-			// _stage.removeChild(_bindingPane);
 		}
 		
 		/**

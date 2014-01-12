@@ -1,4 +1,4 @@
-package classes
+﻿package classes
 {
 
 	import classes.TiTS_Settings;
@@ -347,6 +347,17 @@ package classes
 			else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
 		}
 
+		// Proxy through and tweak the input manager along the way
+		public function displayInput():void
+		{
+			this.inputManager.ignoreInputKeys(true);
+			this.userInterface.displayInput();
+		}
+		public function removeInput():void
+		{
+			this.inputManager.ignoreInputKeys(false);
+			this.userInterface.removeInput();
+		}
 		/*
 		//2. KEYBOARD STUFF
 		//Handle all key presses!
