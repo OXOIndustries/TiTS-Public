@@ -58,7 +58,7 @@
 				trace("wat");
 			}
 			
-			if (data.minVersion == undefined || data.minVersion != 2)
+			if (data.minVersion == undefined || data.minVersion != 4)
 			{
 				throw new VersionUpgraderError("MinVersion invalid!");
 				return false;

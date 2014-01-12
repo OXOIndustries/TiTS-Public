@@ -743,10 +743,12 @@ function yesSnuggleWifZatNaleen():void {
 	if(pc.hasCock()) {
 		output("\n\n<i>“Oh! But we cannot have this getting cold, can we?”</i>  the huntress grins, slipping an arm down into the bed of coils around the pair of you. You wince as her fingers graze your [pc.cocks], wrapping around your soft length");
 		if(pc.cockTotal() > 1) output("s");
-		output(". She rocks her wrist, jacking you off a few short times until you're half-erect, blood rushing to your suddenly stimulated schlong{s} as she guides ");
+		output(". She rocks her wrist, jacking you off a few short times until you're half-erect, blood rushing to your suddenly stimulated schlong");
+		if(pc.cockTotal() > 1) output("s");
+		output(" as she guides ");
 		if(pc.cockTotal() == 1) output("it");
 		else output("them");
-		output(" toward her waiting womanhood. Your mind fizzles blank with sudden and overwhelming pleasure as your [pc.balls] sinks into the hot, sultry depths of the naleen's welcoming pussy.");
+		output(" toward her waiting womanhood. Your mind fizzles blank with sudden and overwhelming pleasure as [pc.oneCock] sinks into the hot, sultry depths of the naleen's welcoming pussy.");
 		
 		output("\n\n<i>“Better?”</i> she teases, clenching her muscles around your prick");
 		if(pc.cockTotal() > 1) output("s");
