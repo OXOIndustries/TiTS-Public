@@ -94,6 +94,9 @@ function rest():void {
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax() * .2));
 	}
+	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) {
+		this.chars["PC"].energy(Math.round(this.chars["PC"].energyMax() * .2));
+	}
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
 	output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
@@ -105,6 +108,7 @@ function sleep():void {
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
 	}
+	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
 	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
 	output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");

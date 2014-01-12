@@ -371,7 +371,7 @@ function appearance(target:Creature):void {
 		if(target.legType == GLOBAL.HUMAN) output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
 		else if(target.legType == GLOBAL.EQUINE) output2("  Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
 		else if(target.legType == GLOBAL.CANINE) output2("  Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
-		else if(target.legType == GLOBAL.NAGA) output2("  Below your waist, your flesh is fused together into a very long, snake-like tail.");
+		else if(target.legType == GLOBAL.NAGA) output2("  Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
 		//Horse body is placed higher for readability purposes
 		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
 		else if(target.legType == GLOBAL.DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
