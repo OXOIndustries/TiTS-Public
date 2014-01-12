@@ -720,8 +720,8 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		addToList(foes[x].a + foes[x].short);
 	}
 	output(formatList() + "!");
-	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.");
-	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>")
+	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.\n");
+	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n")
 	
 	//Monies!
 	if(creditBuffer > 0) {
@@ -729,15 +729,15 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		else output(foes[0].mfn(" He"," She", " It") + " had ");
 		output(num2Text(creditBuffer) + " credit");
 		if(creditBuffer > 1) output("s");
-		output(" loaded on an anonymous credit chit that you appropriate.");
+		output(" loaded on an anonymous credit chit that you appropriate.\n");
 	}
 	this.userInterface.clearMenu();
 	//Fill wallet and GTFO
 	if(foundLootItems.length > 0) {
-		output(" You also find ");
+		output("You also find ");
 		clearList();
 		for(x = 0; x < foundLootItems.length; x++) {
-			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")");
+			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")\n\n");
 		}
 		output(formatList());
 		itemScreen = mainGameMenu;

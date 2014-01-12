@@ -366,7 +366,7 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 			output(". The new acquisition");
 			if(newLootList[0].quantity > 1) output("s stow");
 			else output(" stows");
-			output(" away quite easily.");
+			output(" away quite easily.\n");
 			//Clear the item off the newLootList.
 			newLootList.splice(0,1);
 			this.userInterface.clearMenu();
