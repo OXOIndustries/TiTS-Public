@@ -1,6 +1,7 @@
-package classes.DataManager 
+﻿package classes.DataManager 
 {
 	import classes.DataManager.Errors.VersionUpgraderError;
+	import classes.SexualPreferences;
 	/**
 	 * ...
 	 * @author Gedan
@@ -117,7 +118,7 @@ package classes.DataManager
 					char.statusEffects[sRow].classInstance = "classes::StorageClass";
 				}
 			}
-			
+			char.sexualPreferences = new Object();
 			char.sexualPreferences.classInstance = "classes::SexualPreferences";
 		}
 		
