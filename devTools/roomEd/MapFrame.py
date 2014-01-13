@@ -5,6 +5,7 @@ import wx
 import itertools
 import mapTools
 import os
+import time
 
 class GridPanel(wx.Panel):
 
@@ -78,6 +79,7 @@ class GridPanel(wx.Panel):
 		
 		self.motionLoop = 0
 
+		self.lastClicked = [0, None]
 
 	def changeZIndex(self, newZ):
 
@@ -164,8 +166,13 @@ class GridPanel(wx.Panel):
 			self.parent.setPickedRoom(self.currentSelectedRoomCoords)
 
 		elif self.currentSelectedRoomCoords in self.nonExistDrawnList:
-			self.parent.setPickedRoom(self.currentSelectedRoomCoords)
-
+			lastClickTime, lastClickRoom = self.lastClicked
+			if time.time()-lastClickTime < 1 and lastClickRoom == self.currentSelectedRoomCoords:
+				self.parent.setPickedRoom(self.currentSelectedRoomCoords)
+			else:
+				print "Click, ", time.time()-lastClickTime < 0.45, lastClickRoom == self.currentSelectedRoomCoords
+			self.lastClicked = [time.time(), self.currentSelectedRoomCoords]
+		
 	def onSize(self, event):
 		# re-create memory dc to fill window
 		w, h = self.GetClientSize()

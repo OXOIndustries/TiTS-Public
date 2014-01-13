@@ -353,6 +353,7 @@ class MapClass():
 	def loadRoomStructure(self, filePath):
 
 		roomRe = re.compile("^rooms\[([\"\'][\w:\'\" ]+[\"\'])\](.*?;)$")
+		roomWutRe = re.compile("^rooms\[([\"\'][\w:\'\" ]+[\"\'])\](.*?;?)$")
 
 		with file(filePath, "r") as fp:
 			contents = fp.readlines()
@@ -368,6 +369,11 @@ class MapClass():
 				if roomName not in self.mapDict:
 					self.mapDict[roomName] = Room(roomName)
 				self.mapDict[roomName].parseInfoString(roomCall)
+			else:
+				if line:
+				
+					if roomWutRe.search(line):
+						print "Line without trailing semicolon! Line:", line.encode("utf-8")
 
 	def getAdjacentRooms(self, x, y, z, p):
 		ret = {}
