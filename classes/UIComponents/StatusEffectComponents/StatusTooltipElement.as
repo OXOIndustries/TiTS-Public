@@ -9,6 +9,7 @@ package classes.UIComponents.StatusEffectComponents
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -238,31 +239,33 @@ package classes.UIComponents.StatusEffectComponents
 			_iconContainer.removeChild(_iconElement);
 			_iconElement = new icon();
 			
-			// Add a "placeholder" icon to the container
-			_iconContainer.addChild(_iconElement);
-			
 			// Resize the icon to fit in the container element
-			if (_iconElement.width != (_iconContainer.width - 6) || _iconElement.height != (_iconContainer.height - 6))
+			var iconPadding:int = 6;
+			
+			if (_iconElement.width != (_iconContainer.width - iconPadding) || _iconElement.height != (_iconContainer.height - iconPadding))
 			{
 				// In theory, this should work off displayObject.scaleX/scaleY, but i've never had it work reliably...
 				var ratio:Number;
 				if (_iconElement.width > _iconElement.height)
 				{
 					ratio = _iconElement.height / _iconElement.width;
-					_iconElement.width = _iconContainer.width - 6;
-					_iconElement.height = Math.floor((_iconContainer.height - 6) * ratio);
+					_iconElement.width = _iconContainer.width - iconPadding;
+					_iconElement.height = Math.floor((_iconContainer.height - iconPadding) * ratio);
 				}
 				else
 				{
 					ratio = _iconElement.width / _iconElement.height;
-					_iconElement.height = _iconContainer.height - 6;
-					_iconElement.width = Math.floor((_iconContainer.width - 6) * ratio);
+					_iconElement.height = _iconContainer.height - iconPadding;
+					_iconElement.width = Math.floor((_iconContainer.width - iconPadding) * ratio);
 				}
 			}
 			
 			// Position the icon in the container element
 			_iconElement.x = Math.floor((_iconContainer.width - _iconElement.width) / 2);
 			_iconElement.y = Math.floor((_iconContainer.height - _iconElement.height) / 2);
+			
+			_iconContainer.addChild(_iconElement);
+			
 			var whtT:ColorTransform = new ColorTransform();
 			whtT.color = 0xFFFFFF;
 			_iconElement.transform.colorTransform = whtT;
