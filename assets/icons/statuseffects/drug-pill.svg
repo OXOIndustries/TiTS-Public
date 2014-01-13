@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 17.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="64px"
+   height="64px"
+   viewBox="0 0 64 64"
+   enable-background="new 0 0 64 64"
+   xml:space="preserve"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="drug-pill.svg"><metadata
+   id="metadata3330"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs3328" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1920"
+   inkscape:window-height="1027"
+   id="namedview3326"
+   showgrid="false"
+   inkscape:zoom="118"
+   inkscape:cx="7.7074329"
+   inkscape:cy="63.720806"
+   inkscape:window-x="-5"
+   inkscape:window-y="-5"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1" />
+<path
+   d="M 3.244,3.3003734 C 1.083,5.4583734 0,8.2903738 0,11.121375 c 0,2.831 1.082,5.663 3.244,7.818 l 11.177,11.18 0,0 11.177,11.177 c 4.314,4.32 11.32,4.32 15.639,-0.003 4.317,-4.314 4.317,-11.32 0,-15.636 l -8.794,-8.797 L 18.886,3.3033734 C 14.564,-1.0156268 7.558,-1.0156268 3.244,3.3003734 z m 13.259,2.381 11.177,11.1800016 -10.881,10.881 -11.177,-11.18 c -1.453,-1.45 -2.256,-3.383 -2.256,-5.435 0,-2.0550011 0.803,-3.9910016 2.256,-5.4430016 2.997,-3 7.883,-3 10.881,-0.003 z"
+   id="path3324"
+   inkscape:connector-curvature="0"
+   style="fill:#040305" />
+</svg>

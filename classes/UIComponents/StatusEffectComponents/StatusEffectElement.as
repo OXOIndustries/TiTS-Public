@@ -113,22 +113,33 @@ package classes.UIComponents.StatusEffectComponents
 			this.addChild(_icon);
 			
 			// TODO: The scaling code can (probably) scale things outside of the padding restrictions in extreme cases.
-			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
+			trace("Resizing " + this.name);
+			trace("Original Icon Dimensions: (" + _icon.width + "," + _icon.height + ")");
+			trace("Target Element Size: (" + String(_sizeX - _iconPadding) + "," + String(_sizeY - _iconPadding) + ")");
+			
+			if (_icon.width > (_sizeX - _iconPadding) || _icon.height > (_sizeY - _iconPadding))
 			{
 				var ratio:Number;
 				if (_icon.width > _icon.height)
 				{
+					trace("Scaling based on width");
 					ratio = _icon.height / _icon.width;
 					_icon.width = _sizeX - _iconPadding;
 					_icon.height = Math.floor((_sizeY - _iconPadding) * ratio);
 				}
 				else
 				{
+					trace("Scaling based on height");
 					ratio = _icon.width / _icon.height;
-					_icon.height = _sizeY / _iconPadding;
+					_icon.height = _sizeY - _iconPadding;
 					_icon.width = Math.floor((_sizeX - _iconPadding) * ratio);
 				}
+				trace("Using ratio " + ratio);
 			}
+			
+			trace("Resized to: (" + _icon.width + "," + _icon.height + ")");
+			
+			trace("");
 			
 			_icon.x = Math.floor((this.width - _icon.width) / 2);
 			_icon.y = Math.floor((this.height - _icon.height) / 2);
