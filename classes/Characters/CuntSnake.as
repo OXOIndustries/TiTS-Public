@@ -24,7 +24,7 @@
 			this.customDodge = "The cunt snake sways aside at the last second!";
 			this.customBlock = "Your attack deflects off the cunt snake's " + this.scaleColor + " scales!";
 			this.plural = false;
-			this.lustVuln = 1;
+			this.lustVuln = 0;
 			
 			this.meleeWeapon.attackVerb = "bite";
 			this.meleeWeapon.damageType = GLOBAL.PIERCING;

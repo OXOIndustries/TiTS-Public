@@ -117,7 +117,7 @@ function fightDatFriendlyFemzil():void {
 	else if(pc.tallness >= 72) output("<i>big </i>");
 	output("<i> " + pc.mfn("boy","girl","uh... dude") + "!”</i>  she cries, jumping back and readying her darts. It's a fight!");
 	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",startCombat,"female zil");
+	userInterface.addButton(0,"Next",startCombat,"consensual femzil");
 }
 
 

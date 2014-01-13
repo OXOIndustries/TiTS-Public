@@ -241,10 +241,10 @@
 		
 		public static const MAX_SEXPREF_VALUE:int = 26; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
-		public static const REALLY_LIKES_SEXPREF:int = 1.75;
-		public static const KINDA_LIKES_SEXPREF:int = 1.4;
-		public static const KINDA_DISLIKES_SEXPREF:int = .6;
-		public static const REALLY_DISLIKES_SEXPREF:int = .25;
+		public static const REALLY_LIKES_SEXPREF:Number = 2;
+		public static const KINDA_LIKES_SEXPREF:Number = 1.3333;
+		public static const KINDA_DISLIKES_SEXPREF:Number = .75;
+		public static const REALLY_DISLIKES_SEXPREF:Number = .5;
 		
 		public static const SEXPREF_VALUES:Array = [REALLY_LIKES_SEXPREF, KINDA_LIKES_SEXPREF, KINDA_DISLIKES_SEXPREF, REALLY_DISLIKES_SEXPREF];
 		

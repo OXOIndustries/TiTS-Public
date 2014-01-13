@@ -20,7 +20,7 @@ package classes
 		 * @param	prefFlag
 		 * @param	pref
 		 */
-		public function setPref(prefFlag:int, pref:int):void
+		public function setPref(prefFlag:int, pref:Number):void
 		{
 			if (_sexPrefs[prefFlag] == undefined)
 			{
@@ -33,7 +33,7 @@ package classes
 		 * @param	prefFlag
 		 * @return
 		 */
-		public function getPref(prefFlag:int):int
+		public function getPref(prefFlag:int):Number
 		{
 			if (_sexPrefs[prefFlag] != undefined)
 			{
@@ -85,9 +85,9 @@ package classes
 		 * @param	... args
 		 * @return
 		 */
-		public function getTotalPrefScore(... args):int
+		public function getTotalPrefScore(... args):Number
 		{
-			var likeFactor:int = 0;
+			var likeFactor:Number = 0;
 			
 			for (var flagNum:int = 0; flagNum < args.length; flagNum++)
 			{
@@ -105,9 +105,9 @@ package classes
 		 * @param	... args
 		 * @return
 		 */
-		public function getHighestPrefScore(... args):int
+		public function getHighestPrefScore(... args):Number
 		{
-			var highestPref:int = 0;
+			var highestPref:Number = 0;
 			
 			for (var flagNum:int = 0; flagNum < args.length; flagNum++)
 			{
@@ -128,9 +128,9 @@ package classes
 		 * @param	... args
 		 * @return
 		 */
-		public function getLowestPrefScore(... args):int
+		public function getLowestPrefScore(... args):Number
 		{
-			var lowestPref:int = 0;
+			var lowestPref:Number = 0;
 			
 			for (var flagNum:int = 0; flagNum < args.length; flagNum++)
 			{

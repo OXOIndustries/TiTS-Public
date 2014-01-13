@@ -645,10 +645,16 @@ package classes
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 		}
 		public function isCrotchGarbed():Boolean {
-			return (armor.shortName == "" && lowerUndergarment.shortName == "");
+			return (armor.shortName != "" || lowerUndergarment.shortName != "");
 		}
 		public function isGroinCovered():Boolean {
 			return isCrotchGarbed();
+		}
+		public function isChestCovered():Boolean {
+			return (armor.shortName != "" || upperUndergarment.shortName != "");
+		}
+		public function isChestGarbed():Boolean {
+			return isChestCovered();
 		}
 		//STATS!
 		//Personalities!
@@ -5098,6 +5104,18 @@ package classes
 		}
 		public function upperGarment():String {
 			if(upperUndergarment.shortName != "") return upperUndergarment.longName;
+			else if(armor.shortName != "") return armor.longName;
+			else return "nothing";
+		}
+		public function upperGarments():String {
+			if(upperUndergarment.shortName != "" && armor.shortName != "") return armor.longName + " and " + upperUndergarment.longName;
+			else if(upperUndergarment.shortName != "") return upperUndergarment.longName;
+			else if(armor.shortName != "") return armor.longName;
+			else return "nothing";
+		}
+		public function lowerGarments():String {
+			if(lowerUndergarment.shortName != "" && armor.shortName != "") return armor.longName + " and " + lowerUndergarment.longName;
+			else if(lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if(armor.shortName != "") return armor.longName;
 			else return "nothing";
 		}

@@ -69,9 +69,9 @@ function combatMainMenu():void
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(4,"Do Nothing",wait);
 		this.userInterface.addButton(5,"Tease",attackRouter,teaseMenu);
-		this.userInterface.addButton(6,"Fantasize",fantasize);
+		this.userInterface.addButton(6,"Sense",attackRouter,sense);
+		this.userInterface.addButton(9,"Fantasize",fantasize);
 		this.userInterface.addButton(14,"Run",runAway);
-
 	}
 }
 function updateCombatStatuses():void {
@@ -500,10 +500,25 @@ function teaseMenu(target:Creature):void
 	else {
 		clearOutput();
 		output("Which tease will you use?");
+		if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;	
+		if(flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;	
+		if(flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;	
+		if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
+		var teases:Array = [flags["TIMES_BUTT_TEASED"],flags["TIMES_CHEST_TEASED"],flags["TIMES_CROTCH_TEASED"],flags["TIMES_HIPS_TEASED"]];
+		for(var i:int = 0; i < teases.length; i++) 
+		{ 
+			if(teases[i] > 100) teases[i] = 100;
+		}
+		output("\nAss tease skill: " + teases[0] + "/100");
+		output("\nChest tease skill: " + teases[1] + "/100");
+		output("\nCrotch tease skill: " + teases[2] + "/100");
+		output("\nHips tease skill: " + teases[3] + "/100");
+		output("\n\nYour ability at a tease can increase both its success rate and total damage.")
 		userInterface.clearMenu();
 		userInterface.addButton(0,"Ass",teaseButt,target);
 		userInterface.addButton(1,"Chest",teaseChest,target);
-		userInterface.addButton(2,"Crotch",teaseCrotch,target);
+		if(pc.hasCock() || pc.hasVagina()) userInterface.addButton(2,"Crotch",teaseCrotch,target);
+		else userInterface.addDisabledButton(2,"Crotch");
 		userInterface.addButton(3,"Hips",teaseHips,target);
 		userInterface.addButton(14,"Back",combatMainMenu);
 	}
@@ -791,21 +806,33 @@ function startCombat(encounter:String):void
 			this.userInterface.showBust("CELISE");
 			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
 			foes[0] = chars["CELISE"].makeCopy();
+			randomLikesDislikes(foes[0],3+rand(3));
 			break;
 		case "zilpack":
 			this.userInterface.showBust("ZILPACK");
 			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = chars["ZILPACK"].makeCopy();
+			randomLikesDislikes(foes[0],3+rand(3));
 			break;
 		case "zil male":
 			this.userInterface.showBust("ZIL");
 			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			initializeZil();
+			randomLikesDislikes(foes[0],3+rand(3));
 			break;
+		case "consensual femzil":
 		case "female zil":
 			userInterface.showBust("ZILFEMALE");
 			setLocation("FIGHT:\nFEMALE ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = chars["ZILFEMALE"].makeCopy();
+			if (encounter == "consensual femzil")
+			{
+				setFemzilPrefs(foes[0]);
+			}
+			else 
+			{
+				randomLikesDislikes(foes[0],3+rand(3));
+			}
 			break;
 		case "cunt snake":
 			this.userInterface.showBust("CUNTSNAKE");
@@ -816,6 +843,7 @@ function startCombat(encounter:String):void
 			this.userInterface.showBust("NALEEN");
 			setLocation("FIGHT:\nNALEEN","PLANET: MHEN'GA","SYSTEM: ARA ARA");
 			foes[0] = chars["NALEEN"].makeCopy();
+			setNaleenPrefs(foes[0]);
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -927,7 +955,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	var teaseCount:Number = 0;
 	var randomizer = (rand(31)+ 85)/100;
 	var likeAdjustments:Array = new Array();
-	var average:Number = 0;
+	var totalFactor:Number = 1;
 	var x:int = 0;
 	if(part == "chest")
 	{
@@ -948,7 +976,7 @@ function tease(target:Creature, part:String = "chest"):void {
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
 		
 		clearOutput();
-		output("You shake your [pc.fullChest] at " + target.short + ".");
+		chestTeaseText();
 	}
 	else if(part == "hips")
 	{
@@ -965,7 +993,7 @@ function tease(target:Creature, part:String = "chest"):void {
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 
 		clearOutput();
-		output("You sway your [pc.hips] sensually at " + target.short + ".");
+		hipsTeaseText();
 	}
 	else if(part == "butt")
 	{
@@ -987,7 +1015,7 @@ function tease(target:Creature, part:String = "chest"):void {
 		if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
 		clearOutput();
-		output("You shake your [pc.butt] at " + target.short + ".");
+		buttTeaseText();
 	}
 	else if(part == "crotch")
 	{
@@ -1018,15 +1046,33 @@ function tease(target:Creature, part:String = "chest"):void {
 		if(pc.hasVagina() && pc.driestVaginalWetness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS) > 0) 
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS);
 		clearOutput();
-		output("You shake your crotch at " + target.short + ".");
+		crotchTeaseText(target);
 	}
+	//Figure out multiplier
+	if(likeAdjustments.length >= 1) {
+		for(x = 0; x < likeAdjustments.length; x++) {
+			//Apply dat multiplier!
+			totalFactor *= likeAdjustments[x];
+		}
+	}
+	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
+
 	//Does the enemy resist?
-	if(target.willpower()/2 + rand(20) + 1 > pc.level * 3 * average + 13 + teaseCount/10)
+	if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustVuln == 0)
 	{
-		output(" " + target.capitalA + target.short + " ");
-		if(target.plural) output("don't");
-		else output("doesn't");
-		output(" seem to care to care for your eroticly-charged display.\n");
+		if(target.lustVuln == 0) 
+		{
+			output("\n<b>" + target.capitalA + target.short + " ");
+			if(target.plural) output("don't");
+			else output("doesn't");
+			output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
+		}
+		else {
+			output("\n" + target.capitalA + target.short + " ");
+			if(target.plural) output("resist");
+			else output("resists");
+			output(" your erotically charged display... this time. (0)\n");
+		}
 	}
 	//Success!
 	else {
@@ -1036,24 +1082,323 @@ function tease(target:Creature, part:String = "chest"):void {
 		//Apply randomization
 		damage *= randomizer;
 		//Apply like adjustments
-		if(likeAdjustments.length >= 1) {
-			for(x = 0; x < likeAdjustments.length; x++) {
-				average += likeAdjustments[x];
-			}
-			//Average dat shit.
-			average /= likeAdjustments.length;
-		}
-		else average = 1;
-		damage *= average;
-
-		output(" This message will be something cool about how turned on you're making your enemy.");
-		trace("damage 3: " + damage);
+		damage *= totalFactor;
 		damage *= target.lustVuln;
-		if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - damage;
+		if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 		damage = Math.ceil(damage);
+		if(damage <= 5) {
+
+		}
+
+		output("\n");
+		output(teaseReactions(damage,target));
 		target.lust(damage);
-		trace("damage 4: " + damage);
 		output(" ("+ damage + ")\n");
 	}
 	processCombat();
+}
+
+function teaseReactions(damage:Number,target:Creature):String {
+	var buffer:String = "";
+	if (target.plural) {
+		if (damage == 0) buffer = target.capitalA + target.short + " seem unimpressed.";
+		else if (damage < 4) buffer = target.capitalA + target.short + " look intrigued by what they see.";
+		else if (damage < 10) buffer = target.capitalA + target.short + " definitely seem to be enjoying the show.";
+		else if (damage < 15) buffer = target.capitalA + target.short + " openly stroke themselves as they watch you.";
+		else if (damage < 20) buffer = target.capitalA + target.short + " flush hotly with desire, their eyes filled with longing.";
+		else buffer = target.capitalA + target.short + " lick their lips in anticipation, their hands idly stroking their bodies.";
+	}
+	else {
+		if (damage == 0) buffer = target.capitalA + target.short + " seems unimpressed.";
+		else if (damage < 4) buffer = target.capitalA + target.short + " looks a little intrigued by what " + target.mf("he","she") + " sees.";
+		else if (damage < 10) buffer = target.capitalA + target.short + " definitely seems to be enjoying the show.";
+		else if (damage < 15) buffer = target.capitalA + target.short + " openly touches " + target.mfn("him","her","it") + "self as " + target.mfn("he","she","it") + " watches you.";
+		else if (damage < 20) buffer = target.capitalA + target.short + " flushes hotly with desire, " + target.mfn("his","her","its") + " eyes filled with longing.";
+		else buffer = target.capitalA + target.short + " licks " + target.mfn("his","her","its") + " lips in anticipation, " + target.mfn("his","her","its") + " hands idly stroking " + target.mfn("his","her","its") + " own body.";
+	}
+	return buffer;
+}
+
+function crotchTeaseText(target:Creature):void {
+	var choices:Array = new Array();
+	if(pc.hasCock()) {
+		if(pc.isTaur() && pc.horseCocks() > 0) choices[choices.length] = 4;
+		else 
+		{
+			if(pc.armor.shortName == "" && pc.lowerUndergarment.shortName != "") choices[choices.length] = 2;
+			choices[choices.length] = 1;
+		}		
+	}
+	if(pc.hasVagina()) {
+		if(pc.isTaur()) choices[choices.length] = 5;
+		else choices[choices.length] = 3;
+	}
+
+	var select:int = choices[rand(choices.length)];
+	//1 - dick!
+	if(select == 1) {
+		if(pc.isCrotchGarbed()) output("You open your " + pc.lowerGarments() + " just enough to let ");
+		else output("You shift position while ");
+		output("your [pc.cocks]");
+		if(pc.balls > 0) output(" and [pc.balls]");
+		output(" dangle");
+		if(pc.cockTotal() + pc.balls == 1) output("s");
+		output(" free. ");
+		if(pc.lust() >= 66) output("A shiny rope of pre-cum dangles from your cock, showing that your reproductive system is every bit as ready to pleasure as the rest of you.");
+		else output("Your motions are just enough to make your equipment sway back and forth before your target's eyes.")
+	}
+	//2 - covered dick!
+	else if(select == 2) {
+		output("You lean back and pump your hips at your target in an incredibly vulgar display. The bulging, barely-contained outline of your package presses hard into your [pc.lowerUndergarment]. This feels so crude, but at the same time, you know it'll likely be effective.");
+		output(" You go on like that, humping the air for your target's benefit, trying to entice them with your nearly-exposed meat.");
+	}	
+	//3 - cunt!
+	else if(select == 3) {
+		if(pc.isCrotchGarbed()) output("You coyly open your " + pc.lowerGarments());
+		else output("You coyloy gesture to your groin");
+		if(pc.hasPerk("Ditz Speech")) output(" and giggle, <i>\"Is this, like, what you wanted to see?\"</i>  ");
+		else {
+			output(" and purr, <i>\"Does the thought of a hot, ");
+			if(pc.hasCock() && pc.hasVagina()) output("futanari ");
+			else output("sexy ");
+			output("body turn you on?\"</i>  ");
+		}
+		if(target.plural) output(possessive(target.capitalA + target.short) + " gazes are riveted on your groin as you run your fingers up and down your folds seductively.");
+		else output(possessive(target.capitalA + target.short)  + "'s gaze is riveted on your groin as you run your fingers up and down your folds seductively.");
+		if(pc.clitLength > 3) output("  You smile as [pc.eachClit] swells out from the folds and stands proudly, begging to be touched.");
+		else output("  You smile and pull apart your lower-lips to expose your [pc.clits], giving the perfect view.");
+		if(pc.cockTotal() > 0) output("  Meanwhile, [pc.eachCock] bobs back and forth with your gyrating hips, adding to the display.");
+	}
+	//4 Horsecock centaur tease
+	else if(select == 4) {
+		output("You let out a bestial whinny and stomp your hooves at your enemy.  They prepare for an attack, but instead you kick your front hooves off the ground, revealing the hefty horsecock hanging beneath your belly.  You let it flop around, quickly getting rigid and to its full erect length.  You buck your hips as if you were fucking a mare in heat, letting your opponent know just what's in store for them if they surrender to pleasure...");
+	}
+	//5 Cunt grind tease
+	else if(select == 5) {
+		output("You gallop toward your unsuspecting enemy, dodging their defenses and knocking them to the ground.  Before they can recover, you slam your massive centaur ass down upon them, stopping just short of using crushing force to pin them underneath you.  In this position, your opponent's face is buried right in your girthy horsecunt.  You grind your cunt into your target's face for a moment before standing.  When you do, you're gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
+	}
+}
+
+function buttTeaseText():void {
+	if(pc.analCapacity() >= 450 && rand(3) == 0) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+	else {
+		output("You turn away");
+		if(pc.isCrotchGarbed()) output(", slide down your clothing,");
+		output(" and bounce your [pc.butt] up and down hypnotically");
+		//Big butts = extra text + higher success
+		if(pc.buttRating >= 10) {
+			output(", making it jiggle delightfully.  Your target even gets a few glimpses of the [pc.asshole] between your cheeks.");
+		}
+		//Small butts = less damage, still high success
+		else {
+			output(", letting your target get a good look at your [pc.asshole]");
+			if(pc.hasVagina()) output(" and a glimpse of your [pc.vaginas]");
+			output(".");
+		}
+	}
+}
+
+function chestTeaseText():void {
+	if(pc.biggestTitSize() < 1) {
+		if(pc.isChestGarbed()) output("You peel open your " + pc.upperGarments() + " to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
+		else output("Naked as you are, there's nothing you need to do to expose your [pc.chest] and [pc.nipples], and it running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
+	}
+	//Titties!
+	else {
+		//HYPER TIIIIITS
+		if(pc.biggestTitSize() >= 15) {
+			if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your " + pc.upperGarments() + " and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
+			else output("Your [pc.fullChest] is already completely uncovered, but that doesn't stop you from bringing your hands up to the more-than-ample cleavage and enhancing it by pressing down from each side. Your fingers sink deeply into your busty bosom as you look up at your chosen target, then, with a smile, you gentle shake them, making your titanic mammaries wobble oh-so-enticingly.")
+			if(pc.biggestTitSize() >= 25) output(" There's just so much breastflesh there; it feels good to use it.");
+		}
+		//Big TiTS!
+		else if(pc.biggestTitSize() >= 4) {
+			if(pc.isChestGarbed()) output("You peel away your " + pc.upperGarments() + " with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
+			else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
+		}
+		//Petite ones!
+		else {
+			if(pc.isChestGarbed()) output("You remove your " + pc.upperGarments() + " with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
+			else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + foes[0].mfn("him","her","it") + ".");
+		}
+	}
+}
+
+function hipsTeaseText():void {
+	//Small hips!
+	if(pc.hipRating < 4) {
+		output("Putting a hand on your [pc.hips], you stretch, sliding your palms up and down them for emphasis, really showing off how narrow they are.");
+	}
+	//Big hips!
+	else if(pc.hipRating >= 10) {
+		output("With a sinuous undulation, you rock your [pc.hips] out to the right side, then the left. You gracefully strut around, swaying to a rhythm only you can hear and doing your best to keep curviness on full display throughout.");
+	}
+	//Generic hips!
+	else {
+		output("Watching your target, you place a hand upon your [pc.hips] and sway them in the other direction then back again like a pendulum. You let the hypnotic undulations go on as you dare and smile triumphantly as you stop.");
+	}
+}
+
+function sense(target:Creature):void {
+	clearOutput();
+	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
+	var buffer:String = "";
+	for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
+		buffer = senseDesc(i);
+		//If has a preference set, talk about it!
+		if(target.sexualPreferences.getPref(i) != 0) {
+			//If succeeds at sense check!
+			if(pc.intelligence()/2 + pc.libido()/20 + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
+			{
+				if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_LIKES_SEXPREF)
+				{
+					output(buffer + ": Really likes!");
+				}
+				else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_LIKES_SEXPREF)
+				{
+					output(buffer + ": Kinda likes!");
+				}
+				else if(target.sexualPreferences.getPref(i) == GLOBAL.KINDA_DISLIKES_SEXPREF)
+				{
+					output(buffer + ": Dislikes!");
+				}
+				else if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_DISLIKES_SEXPREF)
+				{
+					output(buffer + ": Dislikes a lot!");
+				}
+				else 
+				{
+					output(buffer + ": ERROR");
+				}
+			}
+			//if fails!
+			else 
+			{
+				output(buffer + ": You aren't sure.")
+			}
+			output("\n");
+		}
+	}
+	processCombat();
+}
+
+function senseDesc(value:int = 0):String {
+	switch (value) {
+		case GLOBAL.SEXPREF_FEMININE:
+			return "Feminine faces";
+		case GLOBAL.SEXPREF_MASCULINE:
+			return "Masculine faces";
+		case GLOBAL.SEXPREF_HERMAPHRODITE:
+			return "Hermaphrodites";
+		case GLOBAL.SEXPREF_BIG_BUTTS:
+			return "Big butts";
+		case GLOBAL.SEXPREF_SMALL_BUTTS:
+			return "Small butts";
+		case GLOBAL.SEXPREF_BIG_BREASTS:
+			return "Big breasts";
+		case GLOBAL.SEXPREF_SMALL_BREASTS:
+			return "Small breasts";
+		case GLOBAL.SEXPREF_WIDE_HIPS:
+			return "Wide hips";
+		case GLOBAL.SEXPREF_NARROW_HIPS:
+			return "Narrow hips";
+		case GLOBAL.SEXPREF_COCKS:
+			return "Penises";
+		case GLOBAL.SEXPREF_PUSSIES:
+			return "Vaginas";
+		case GLOBAL.SEXPREF_BALLS:
+			return "Balls";
+		case GLOBAL.SEXPREF_BIG_MALEBITS:
+			return "Big masculine endowments";
+		case GLOBAL.SEXPREF_SMALL_MALEBITS:
+			return "Petite masculine endowments";
+		case GLOBAL.SEXPREF_MULTIPLES:
+			return "Multiple sex organs or breasts";
+		case GLOBAL.SEXPREF_HYPER:
+			return "Hypersized attributes";
+		case GLOBAL.SEXPREF_GAPE:
+			return "Gaped orifices";
+		case GLOBAL.SEXPREF_VAGINAL_WETNESS:
+			return "Wet vaginas";
+		case GLOBAL.SEXPREF_VAGINAL_DRYNESS:
+			return "Less lubricated vaginas";
+		case GLOBAL.SEXPREF_TAILS:
+			return "Tails";
+		case GLOBAL.SEXPREF_TAILGENITALS:
+			return "Tail genitalia";
+		case GLOBAL.SEXPREF_LACTATION:
+			return "Lactation";
+		case GLOBAL.SEXPREF_NIPPLECUNTS:
+			return "Nipplecunts";
+		case GLOBAL.SEXPREF_EXOTIC_BODYSHAPE:
+			return "Exotic bodyshapes likes nagas and taurs";
+		case GLOBAL.SEXPREF_BALDNESS:
+			return "Baldness";
+		case GLOBAL.SEXPREF_LONG_HAIR:
+			return "Long hair";
+		case GLOBAL.MAX_SEXPREF_VALUE:
+			return "This Shouldn't Happen, YO";
+	}
+	return "THIS IS A MASSIVE ERROR IF IT HAPPENS";
+}
+
+function setFemzilPrefs(target:Creature):void {
+	//Zil Girl Likes
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.REALLY_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,GLOBAL.REALLY_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,GLOBAL.REALLY_LIKES_SEXPREF);
+	
+	//Zil Girl Dislikes:
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,GLOBAL.KINDA_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,GLOBAL.KINDA_DISLIKES_SEXPREF);
+}
+
+function setNaleenPrefs(target:Creature):void {
+	//Naleen Likes:
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.REALLY_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,GLOBAL.REALLY_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,GLOBAL.REALLY_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,GLOBAL.KINDA_LIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,GLOBAL.KINDA_LIKES_SEXPREF);
+	//Naleen Dislikes
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,GLOBAL.KINDA_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,GLOBAL.REALLY_DISLIKES_SEXPREF);
+	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,GLOBAL.KINDA_DISLIKES_SEXPREF);
+}
+
+
+function randomLikesDislikes(target:Creature,count:int = 4):void {
+	//Usually assign a gender appearance pref!
+	//DUDELOVE/HATE!
+	if(rand(3) == 0) target.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
+	//CHICKLOVE/HATE
+	else if(rand(2) == 0)
+	{
+		target.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
+	}
+
+	//Used to hold our randomly assigned sexpref thinger!
+	var temp:int = rand(GLOBAL.MAX_SEXPREF_VALUE);
+	//Loop through till we hit the sexpref count!
+	for (var i:int = 0; i < count; i++)
+	{
+		//Keep generating random shit until we get a non-dupe!
+		while(target.sexualPreferences.getPref(temp) != 0) {
+			temp = rand(GLOBAL.MAX_SEXPREF_VALUE);
+		}
+		target.sexualPreferences.setPref(temp, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
+	}
 }
