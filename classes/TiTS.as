@@ -67,6 +67,7 @@
 		include "../includes/burt.as";
 		include "../includes/appearance.as";
 		include "../includes/rooms.as";
+		include "../includes/roomFunctions.as";
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
 		include "../includes/cuntSnakes.as";
