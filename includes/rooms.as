@@ -416,7 +416,7 @@ function initializeRooms():void
 	rooms["LICHENS AT IRONWOODS 1"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AT IRONWOODS 1"].westExit = "LICHENS 1";
 	rooms["LICHENS AT IRONWOODS 1"].northExit = "LICHENS AND IRONWOODS 1";
-	rooms["LICHENS AT IRONWOODS 1"].southExit = "IRON AND DARK CORNER 1"
+	rooms["LICHENS AT IRONWOODS 1"].southExit = "IRON AND DARK CORNER 1";
 	rooms["LICHENS AT IRONWOODS 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["LICHENS AT IRONWOODS 1"].runOnEnter = jungleEncounterChances;
 
@@ -459,7 +459,7 @@ function initializeRooms():void
 	rooms["LICHENS AT IRONWOODS 2"].description = "While the path you now tread is fairly devoid of undergrowth due to some aggressive, alien lichens, there is no shortage of tree life to bar your way. A copse of gray trunks so thick that a child would be challenged to squeeze between them stands defiantly among the lichens to the southwest, even if there's a path that circumnavigates their northern edge to your west. To the east, huge trees at least thirty feet around dot the landscape, covered in what appears to be rusty red bark. If you touch it, the red comes away like old rust, revealing a gleaming, metallic tree-trunk below.";
 	rooms["LICHENS AT IRONWOODS 2"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AT IRONWOODS 2"].system = "SYSTEM: ARA ARA";
-	rooms["LICHENS AT IRONWOODS 2"].northExit = "IRONWOODS 1"
+	rooms["LICHENS AT IRONWOODS 2"].northExit = "IRONWOODS 1";
 	rooms["LICHENS AT IRONWOODS 2"].westExit = "LICHENS 2";
 	rooms["LICHENS AT IRONWOODS 2"].southExit = "LICHENS AND IRONWOODS 3";
 	rooms["LICHENS AT IRONWOODS 2"].addFlag(GLOBAL.OUTDOOR);
