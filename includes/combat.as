@@ -68,7 +68,7 @@ function combatMainMenu():void
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(4,"Do Nothing",wait);
-		this.userInterface.addButton(5,"Tease",attackRouter,tease);
+		this.userInterface.addButton(5,"Tease",attackRouter,teaseMenu);
 		this.userInterface.addButton(6,"Fantasize",fantasize);
 		this.userInterface.addButton(14,"Run",runAway);
 
@@ -490,18 +490,35 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	return [damage,leftoverDamage];
 }
 
-function tease(target:Creature):void 
+function teaseMenu(target:Creature):void 
 {
-	clearOutput();
 	if(target is Celise) {
+		clearOutput();
 		output("You put a hand on your hips and lewdly expose your groin, wiggling to and fro in front of the captivated goo-girl.\n");
+		processCombat();
 	}
 	else {
-		output("You do your best to look sexy, but it doesn't work THAT well because this is a total placeholder! (10)");
-		output("\n");
-		target.lust(10);
+		clearOutput();
+		output("Which tease will you use?");
+		userInterface.clearMenu();
+		userInterface.addButton(0,"Ass",teaseButt,target);
+		userInterface.addButton(1,"Chest",teaseChest,target);
+		userInterface.addButton(2,"Crotch",teaseCrotch,target);
+		userInterface.addButton(3,"Hips",teaseHips,target);
+		userInterface.addButton(14,"Back",combatMainMenu);
 	}
-	processCombat();
+}
+function teaseChest(target:Creature):void {
+	tease(target,"chest");
+}
+function teaseHips(target:Creature):void {
+	tease(target,"hips");
+}
+function teaseButt(target:Creature):void {
+	tease(target,"butt");
+}
+function teaseCrotch(target:Creature):void {
+	tease(target,"crotch");
 }
 
 //Name, long descript, lust descript, and '"
@@ -899,5 +916,144 @@ function fantasize():void {
 function wait():void {
 	clearOutput();
 	output("You choose not to act.\n");
+	processCombat();
+}
+
+
+//creature.sexualPreferences.getPref(SEXPREF_flag) will give you the direct set value; 2, 1, -1 or -2. Or 0 if the preference isn't set.
+//creature.sexualPreferences.getAveragePrefScore(SEXPREF_flag1, SEXPREF_flag2, ..., SEXPREF_flagn) will give you the *average* score of the provided flags.
+function tease(target:Creature, part:String = "chest"):void {
+	var damage:Number = 0;
+	var teaseCount:Number = 0;
+	var randomizer = (rand(31)+ 85)/100;
+	var likeAdjustments:Array = new Array();
+	var average:Number = 0;
+	var x:int = 0;
+	if(part == "chest")
+	{
+		//Get tease count updated
+		if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
+		teaseCount = flags["TIMES_CHEST_TEASED"]++;
+		if(teaseCount > 100) teaseCount = 100;
+		
+		if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
+		if(pc.biggestTitSize() < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BREASTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BREASTS);
+		if((pc.bRows() > 1 || pc.totalBreasts() / pc.bRows() > 2) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
+		if(pc.biggestTitSize() >= 25 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+		if(pc.hasFuckableNipples() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
+		
+		clearOutput();
+		output("You shake your [pc.fullChest] at " + target.short + ".");
+	}
+	else if(part == "hips")
+	{
+		//Get tease count updated
+		if(flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
+		teaseCount = flags["TIMES_HIPS_TEASED"]++;
+		if(teaseCount > 100) teaseCount = 100;
+		
+		if(pc.hipRating >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS);
+		if(pc.hipRating < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS);
+		if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
+
+		clearOutput();
+		output("You sway your [pc.hips] sensually at " + target.short + ".");
+	}
+	else if(part == "butt")
+	{
+		//Get tease count updated
+		if(flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
+		teaseCount = flags["TIMES_BUTT_TEASED"]++;
+		if(teaseCount > 100) teaseCount = 100;
+		
+		if(pc.buttRating >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS);
+		if(pc.buttRating < 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BUTTS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_BUTTS);
+		if(pc.ass.looseness >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE);
+		if(pc.tailCount > 0 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILS);
+		if(pc.tailCount > 0 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILS);
+		if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
+		clearOutput();
+		output("You shake your [pc.butt] at " + target.short + ".");
+	}
+	else if(part == "crotch")
+	{
+		//Get tease count updated
+		if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
+		teaseCount = flags["TIMES_CROTCH_TEASED"]++;
+		if(teaseCount > 100) teaseCount = 100;
+		
+		if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
+		if(pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_PUSSIES) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_PUSSIES);
+		if(pc.balls > 0 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALLS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALLS);
+		if(pc.hasCock() && pc.longestCockLength() >= 12 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_MALEBITS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_MALEBITS);
+		if(pc.hasCock() && pc.shortestCockLength() < 7 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SMALL_MALEBITS);
+		if((pc.cockTotal() > 1 || pc.vaginaTotal() > 1) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MULTIPLES);
+		if((pc.hasCock() || pc.longestCockLength() >= 18) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+		if(pc.hasVagina() && pc.gapestVaginaLooseness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_GAPE);
+
+		if(pc.hasVagina() && pc.wettestVaginalWetness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_WETNESS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_WETNESS);
+		if(pc.hasVagina() && pc.driestVaginalWetness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS) > 0) 
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS);
+		clearOutput();
+		output("You shake your crotch at " + target.short + ".");
+	}
+	//Does the enemy resist?
+	if(target.willpower()/2 + rand(20) + 1 > pc.level * 3 * average + 13 + teaseCount/10)
+	{
+		output(" " + target.capitalA + target.short + " ");
+		if(target.plural) output("don't");
+		else output("doesn't");
+		output(" seem to care to care for your eroticly-charged display.\n");
+	}
+	//Success!
+	else {
+		//Calc base damage
+		damage += 10 * (teaseCount/100 + 1);
+		//Any perks or shit go below here.
+		//Apply randomization
+		damage *= randomizer;
+		//Apply like adjustments
+		if(likeAdjustments.length >= 1) {
+			for(x = 0; x < likeAdjustments.length; x++) {
+				average += likeAdjustments[x];
+			}
+			//Average dat shit.
+			average /= likeAdjustments.length;
+		}
+		else average = 1;
+		damage *= average;
+
+		output(" This message will be something cool about how turned on you're making your enemy.");
+		trace("damage 3: " + damage);
+		damage *= target.lustVuln;
+		if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - damage;
+		damage = Math.ceil(damage);
+		target.lust(damage);
+		trace("damage 4: " + damage);
+		output(" ("+ damage + ")\n");
+	}
 	processCombat();
 }

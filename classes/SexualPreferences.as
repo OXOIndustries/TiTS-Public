@@ -76,7 +76,7 @@ package classes
 					foundPrefs++;
 				}
 			}
-			
+			if(foundPrefs == 0) return 0;
 			return likeFactor / foundPrefs;
 		}
 		

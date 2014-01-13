@@ -2751,6 +2751,33 @@ package classes
 		public function biggestVaginalCapacity():Number {
 			return vaginalCapacity(biggestVaginaIndex());
 		}
+		public function gapestVaginaLooseness():Number {
+			var counter:Number = vaginas.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(vaginas[index].looseness < vaginas[counter].looseness) index = counter;
+			}
+			return vaginas[counter];
+		}
+		public function wettestVaginalWetness():Number {
+			var counter:Number = vaginas.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(vaginas[index].wetness < vaginas[counter].wetness) index = counter;
+			}
+			return vaginas[counter];
+		}
+		public function driestVaginalWetness():Number {
+			var counter:Number = vaginas.length;
+			var index:Number = 0;
+			while(counter > 0) {
+				counter--;
+				if(vaginas[index].wetness > vaginas[counter].wetness) index = counter;
+			}
+			return vaginas[counter];
+		}
 		public function biggestVaginaIndex():int {
 			if(vaginas.length == 0) return 0;
 			var counter:Number = vaginas.length;

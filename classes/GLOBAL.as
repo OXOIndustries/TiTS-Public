@@ -214,30 +214,37 @@
 		
 		public static const SEXPREF_FEMININE:int = 0;
 		public static const SEXPREF_MASCULINE:int = 1;
-		public static const SEXPREF_COCK:int = 2;
-		public static const SEXPREF_TITS:int = 3;
-		public static const SEXPREF_BUTTS:int = 4;
-		public static const SEXPREF_CUNTS:int = 5;
-		public static const SEXPREF_BELLY:int = 6;
-		public static const SEXPREF_HERMS:int = 7;
-		public static const SEXPREF_SHORT:int = 8;
-		public static const SEXPREF_TALL:int = 9;
-		public static const SEXPREF_CHUBBY:int = 10;
-		public static const SEXPREF_FURRY:int = 11;
-		public static const SEXPREF_SCALEY:int = 12;
-		public static const SEXPREF_SNOUTS:int = 13; // Because Vladimir Snoutin' aka Savin would want dis!
-		public static const SEXPREF_BALLS:int = 14;
-		public static const SEXPREF_MILKY:int = 15;
-		public static const SEXPREF_NONBIPED:int = 16;
-		public static const SEXPREF_PREGGERS:int = 17;
-		public static const SEXPREF_CRAZY_FUCKIN_WEIRD_SHIT:int = 18;
+		public static const SEXPREF_HERMAPHRODITE:int = 2;
+		public static const SEXPREF_BIG_BUTTS:int = 3;
+		public static const SEXPREF_SMALL_BUTTS:int = 4;
+		public static const SEXPREF_BIG_BREASTS:int = 5;
+		public static const SEXPREF_SMALL_BREASTS:int = 6;
+		public static const SEXPREF_WIDE_HIPS:int = 7;
+		public static const SEXPREF_NARROW_HIPS:int = 8;
+		public static const SEXPREF_COCKS:int = 9;
+		public static const SEXPREF_PUSSIES:int = 10;
+		public static const SEXPREF_BALLS:int = 11;
+		public static const SEXPREF_BIG_MALEBITS:int = 12;
+		public static const SEXPREF_SMALL_MALEBITS:int = 13; // Because Vladimir Snoutin' aka Savin would want dis!
+		public static const SEXPREF_MULTIPLES:int = 14;
+		public static const SEXPREF_HYPER:int = 15;
+		public static const SEXPREF_GAPE:int = 16;
+		public static const SEXPREF_VAGINAL_WETNESS:int = 17;
+		public static const SEXPREF_VAGINAL_DRYNESS:int = 18;
+		public static const SEXPREF_TAILS:int = 19;
+		public static const SEXPREF_TAILGENITALS:int = 20;
+		public static const SEXPREF_LACTATION:int = 21;
+		public static const SEXPREF_NIPPLECUNTS:int = 22;
+		public static const SEXPREF_EXOTIC_BODYSHAPE:int = 23;
+		public static const SEXPREF_BALDNESS:int = 24;
+		public static const SEXPREF_LONG_HAIR:int = 25;
 		
-		public static const MAX_SEXPREF_VALUE:int = 19; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const MAX_SEXPREF_VALUE:int = 26; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
-		public static const REALLY_LIKES_SEXPREF:int = 2;
-		public static const KINDA_LIKES_SEXPREF:int = 1;
-		public static const KINDA_DISLIKES_SEXPREF:int = -1;
-		public static const REALLY_DISLIKES_SEXPREF:int = -2;
+		public static const REALLY_LIKES_SEXPREF:int = 1.75;
+		public static const KINDA_LIKES_SEXPREF:int = 1.4;
+		public static const KINDA_DISLIKES_SEXPREF:int = .6;
+		public static const REALLY_DISLIKES_SEXPREF:int = .25;
 		
 		public static const SEXPREF_VALUES:Array = [REALLY_LIKES_SEXPREF, KINDA_LIKES_SEXPREF, KINDA_DISLIKES_SEXPREF, REALLY_DISLIKES_SEXPREF];
 		
