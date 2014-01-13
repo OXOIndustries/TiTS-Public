@@ -89,7 +89,7 @@ function naleenConstrict():void {
 	{
 		output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
 		
-		pc.createStatusEffect("Naleen Coiled",0,0,0,0,false,"","You're trapped in the naleen's coils!",true,0);
+		pc.createStatusEffect("Naleen Coiled",0,0,0,0,false,"Constrict","You're trapped in the naleen's coils!",true,0);
 	}
 	else
 	{
@@ -159,7 +159,7 @@ function biteAttack():void {
 		else output("fuck your ass with her big tail");
 		output(" until you're fast asleep.");
 		//Effect: Moderate Speed/Dex/Whatever drain. If reduced to 0, auto lose (as if by lust).
-		if(!pc.hasStatusEffect("Naleen Venom")) pc.createStatusEffect("Naleen Venom",0,0,0,0,false,"","This venom reduces strength, aim, reflexes, and willpower!",false,10);
+		if(!pc.hasStatusEffect("Naleen Venom")) pc.createStatusEffect("Naleen Venom",0,0,0,0,false,"Poison","This venom reduces strength, aim, reflexes, and willpower! If you take in too much of it while fighting a naleen, you'll lose!",false,10);
 		pc.physiqueMod -= .5;
 		pc.aimMod -= .5;
 		pc.willpowerMod -= .5;

@@ -255,7 +255,7 @@ function BurtShopCollectables():void {
 }
 
 function burtPurchase(arg:int = 0) {
-	if(pc.inventory[arg].shortName != "BLUH") burtRefusesYourItemYouHobo(arg);
+	if(pc.inventory[arg].shortName != "ZilRation" && pc.inventory[arg].shortName != "ZilHoney") burtRefusesYourItemYouHobo(arg);
 	else burtMakesAPurchase(arg);
 }
 
@@ -263,8 +263,15 @@ function burtPurchase(arg:int = 0) {
 function burtMakesAPurchase(arg:int = 0):void {
 	clearOutput();
 	author("Danaume");
-	var credits:int = 9999;
-	output("Burt takes a moment to look the " + pc.inventory[arg].description + " over, making sure that it is what you say it is, finally giving a nod as he tucks it behind the bar out of sight and hands over " + num2Text(credits) + ".<i> “There you go, pleasure doing business with you, [pc.name].”</i>");
+	var credits:int = 50;
+	if(pc.inventory[arg].shortName == "ZilRation") credits = 50;
+	else credits = 100;
+	pc.inventory[arg].quantity--;
+	pc.credits += credits;
+	
+	output("Burt takes a moment to look the " + pc.inventory[arg].description + " over, making sure that it is what you say it is, finally giving a nod as he tucks it behind the bar out of sight and sends over " + num2Text(credits) + " credits.<i> “There you go, pleasure doing business with you, [pc.name].”</i>");
+	//EAT ZE STACK!
+	if(pc.inventory[arg].quantity <= 0) pc.inventory.splice(arg,1);
 	//[pg]
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",BurtShopCollectables);

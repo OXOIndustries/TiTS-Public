@@ -1,4 +1,4 @@
-package classes
+﻿package classes
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
 	
@@ -15,6 +15,10 @@ package classes
 			_sexPrefs = new Object();
 		}
 		
+		public function clearPrefs():void {
+			_sexPrefs = new Object();
+		}
+
 		/**
 		 * Set the "like factor" for a preference
 		 * @param	prefFlag

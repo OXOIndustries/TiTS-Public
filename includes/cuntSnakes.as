@@ -150,7 +150,7 @@ function paralyzingVenom():void {
 			else
 			{
 				output(" <b>After a second, you realize you've been paralyzed by the creature's bite!</b>");
-				pc.createStatusEffect("Paralyzed",2,0,0,0);
+				pc.createStatusEffect("Paralyzed",2,0,0,0,false,"Paralyze","You are paralyzed and cannot move until the venom wears off!");
 			}
 		}
 		//{resist/make save}
@@ -273,7 +273,7 @@ function slapAttackFromCuntSnake(attacker:Creature,target:Creature):void {
 			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
 			{
 				output("<b> The hit was hard enough to stun you!</b>");
-				pc.createStatusEffect("Stunned",1,0,0,0);
+				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true);
 			}
 		}
 	}

@@ -471,7 +471,7 @@ function zilFlyingSpinKick():void {
 			if (!pc.hasStatusEffect("Stunned"))
 			{
 				output("<b> It's concussive enough to leave you stunned.</b>");
-				pc.createStatusEffect("Stunned",1,0,0,0);
+				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true);
 			}
 		}
 	}
@@ -1808,7 +1808,7 @@ function getAssFuckedByPenny():void {
 	
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight
-	if(pc.analCapacity() <= penny.cockVolume()) output("<i>“so t-tiiiight...”</i>");
+	if(pc.analCapacity() * 1.25 <= penny.cockVolume()) output("<i>“so t-tiiiight...”</i>");
 	else if(pc.analCapacity() * .6 <= penny.cockVolume()) output("<i>“fits just like a glove...”</i>");
 	//if PC is SUPAH LOOSE:
 	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]. I wanna fill this [pc.asshole] of yours someday....”</i>");
