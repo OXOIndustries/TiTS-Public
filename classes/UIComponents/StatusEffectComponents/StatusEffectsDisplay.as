@@ -1,4 +1,4 @@
-﻿package classes.UIComponents.StatusEffectComponents 
+package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -349,7 +349,7 @@
 						for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
 						{
 							// If we do, shift the element in question back to the primary vector, and update it's duration.
-							if (_workElems[vecElem].name.toLowerCase() == statusEffects[seElem].storageName.toLowerCase())
+							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
 							{
 								_workElems[vecElem].durationRemaining = statusEffects[seElem].minutesLeft;
 								
@@ -368,7 +368,7 @@
 					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName.toLowerCase(), statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
 					}
 				}
 			}

@@ -50,7 +50,7 @@ function debugMenus():void
 	userInterface.addButton(4, "Effects 1", function():void {
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Does Not Exist", 0, 0, 0, 0, false, "Icon_DoesNotExist", "Missing Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Blind", 0, 0, 0, 0, false, "Icon_Blind", "Blind Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("BlidAlt", 0, 0, 0, 0, false, "Icon_BlindAlt", "BlindAlt Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("BlindAlt", 0, 0, 0, 0, false, "Icon_BlindAlt", "BlindAlt Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Charmed", 0, 0, 0, 0, false, "Icon_Charmed", "Charmed Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Confused", 0, 0, 0, 0, false, "Icon_Confused", "Confused Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Constricted", 0, 0, 0, 0, false, "Icon_Constricted", "Constricted Icon", false, rand(240));
