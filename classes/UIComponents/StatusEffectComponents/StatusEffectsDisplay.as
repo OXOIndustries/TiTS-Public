@@ -1,4 +1,4 @@
-package classes.UIComponents.StatusEffectComponents 
+﻿package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -270,6 +270,18 @@ package classes.UIComponents.StatusEffectComponents
 			return 0;
 		}
 		
+		private function vectFilterMethod(elem:StatusEffectElement, index:int, vector:Vector.<StatusEffectElement>):Boolean
+		{
+			if (_childElements.indexOf(elem) == -1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
 		/**
 		 * Reposition status effect element children within the display, based on their vector index position.
 		 * Sorting the underlying vector determines where, in the container, elements should be positioned.
@@ -302,7 +314,11 @@ package classes.UIComponents.StatusEffectComponents
 		{
 			while (_workElems.length > 0)
 			{
-				this.removeChild(_workElems.pop());
+				var childElem:StatusEffectElement = _workElems.pop();
+				if (childElem.parent != null)
+				{
+					this.removeChild(childElem);
+				}
 			}
 		}
 		
@@ -333,7 +349,7 @@ package classes.UIComponents.StatusEffectComponents
 						for (var vecElem:int = 0; vecElem < _workElems.length; vecElem++)
 						{
 							// If we do, shift the element in question back to the primary vector, and update it's duration.
-							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
+							if (_workElems[vecElem].name.toLowerCase() == statusEffects[seElem].storageName.toLowerCase())
 							{
 								_workElems[vecElem].durationRemaining = statusEffects[seElem].minutesLeft;
 								
@@ -343,7 +359,7 @@ package classes.UIComponents.StatusEffectComponents
 									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft);
 								}
 								
-								_childElements = _childElements.concat(_workElems.splice(vecElem, 1));
+								_childElements.push(_workElems[vecElem]);
 								gotMatch = true;
 							}
 						}
@@ -352,10 +368,13 @@ package classes.UIComponents.StatusEffectComponents
 					// No match? It must be a new effect, so we need to create the displayable element
 					if (!gotMatch)
 					{
-						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName, statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
+						_childElements.push(this.BuildNewChild(statusEffects[seElem].storageName.toLowerCase(), statusEffects[seElem].iconName, statusEffects[seElem].tooltip, statusEffects[seElem].minutesLeft));
 					}
 				}
 			}
+			
+			// Remove instances of display elements from _workElems that are present in _childElements
+			_workElems = _workElems.filter(this.vectFilterMethod, this);
 			
 			// Remove expired -- All elements remaining in _workElems should be expired effects, so we need to clear them up
 			this.RemoveExpiredChildren();

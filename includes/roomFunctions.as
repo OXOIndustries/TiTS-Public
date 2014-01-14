@@ -48,34 +48,34 @@ function debugMenus():void
 		chars["PC"].energy(5);
 	} );
 	userInterface.addButton(4, "Effects 1", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Does Not Exist", 0, 0, 0, 0, false, "Icon_DoesNotExist", "Missing Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Blind", 0, 0, 0, 0, false, "Icon_Blind", "Blind Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("BlidAlt", 0, 0, 0, 0, false, "Icon_BlindAlt", "BlindAlt Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Charmed", 0, 0, 0, 0, false, "Icon_Charmed", "Charmed Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Confused", 0, 0, 0, 0, false, "Icon_Confused", "Confused Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Constricted", 0, 0, 0, 0, false, "Icon_Constricted", "Constricted Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Crying", 0, 0, 0, 0, false, "Icon_Crying", "Crying Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DefDown", 0, 0, 0, 0, false, "Icon_DefDown", "DefDown Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DefUp", 0, 0, 0, 0, false, "Icon_DefUp", "DefUp Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DizzyDrunk", 0, 0, 0, 0, false, "Icon_DizzyDrunk", "DizzyDrunk Icon", false, 60);
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Does Not Exist", 0, 0, 0, 0, false, "Icon_DoesNotExist", "Missing Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Blind", 0, 0, 0, 0, false, "Icon_Blind", "Blind Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("BlidAlt", 0, 0, 0, 0, false, "Icon_BlindAlt", "BlindAlt Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Charmed", 0, 0, 0, 0, false, "Icon_Charmed", "Charmed Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Confused", 0, 0, 0, 0, false, "Icon_Confused", "Confused Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Constricted", 0, 0, 0, 0, false, "Icon_Constricted", "Constricted Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Crying", 0, 0, 0, 0, false, "Icon_Crying", "Crying Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("DefDown", 0, 0, 0, 0, false, "Icon_DefDown", "DefDown Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("DefUp", 0, 0, 0, 0, false, "Icon_DefUp", "DefUp Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("DizzyDrunk", 0, 0, 0, 0, false, "Icon_DizzyDrunk", "DizzyDrunk Icon", false, rand(240));
 	} );
 	userInterface.addButton(9, "Effects 2", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugPill", 0, 0, 0, 0, false, "Icon_DrugPill", "DrugPill Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugVial", 0, 0, 0, 0, false, "Icon_DrugVial", "DrugVial Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Haste", 0, 0, 0, 0, false, "Icon_Haste", "Haste Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("LustDown", 0, 0, 0, 0, false, "Icon_LustDown", "LustDown Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("LustUp", 0, 0, 0, 0, false, "Icon_LustUp", "LustUp Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Mindcontrolled", 0, 0, 0, 0, false, "Icon_MindcontrolledMindbroke", "Mindcontrolled Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("OffDown", 0, 0, 0, 0, false, "Icon_OffDown", "OffDown Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("OffUp", 0, 0, 0, 0, false, "Icon_OffUp", "OffUp Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Paralysis", 0, 0, 0, 0, false, "Icon_Paralysis", "Paralysis Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Poison", 0, 0, 0, 0, false, "Icon_Poison", "Poison Icon", false, 60);
+		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugPill", 0, 0, 0, 0, false, "Icon_DrugPill", "DrugPill Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugVial", 0, 0, 0, 0, false, "Icon_DrugVial", "DrugVial Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Haste", 0, 0, 0, 0, false, "Icon_Haste", "Haste Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("LustDown", 0, 0, 0, 0, false, "Icon_LustDown", "LustDown Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("LustUp", 0, 0, 0, 0, false, "Icon_LustUp", "LustUp Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Mindcontrolled", 0, 0, 0, 0, false, "Icon_MindcontrolledMindbroke", "Mindcontrolled Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("OffDown", 0, 0, 0, 0, false, "Icon_OffDown", "OffDown Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("OffUp", 0, 0, 0, 0, false, "Icon_OffUp", "OffUp Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Paralysis", 0, 0, 0, 0, false, "Icon_Paralysis", "Paralysis Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Poison", 0, 0, 0, 0, false, "Icon_Poison", "Poison Icon", false, rand(240));
 	} );
 	userInterface.addButton(13, "Effects 3", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, 60);
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, 60);
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
 	} );
 }
 

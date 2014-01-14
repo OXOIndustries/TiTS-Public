@@ -211,9 +211,15 @@ function statusTick():void {
 					pc.willpowerMod += pc.statusEffects[x].value1;
 					pc.reflexesMod += pc.statusEffects[x].value1;
 				}
-				//KILL ZE STATUS
-				this.chars["PC"].statusEffects.splice(x,1);
 			}
+		}
+	}
+	
+	for (var ii:int = this.chars["PC"].statusEffects.length - 1; ii >= 0; ii--)
+	{
+		if (this.chars["PC"].statusEffects[ii].minutesLeft <= 0)
+		{
+			this.chars["PC"].statusEffects.splice(ii, 1);
 		}
 	}
 }
