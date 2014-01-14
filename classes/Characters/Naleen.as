@@ -23,7 +23,7 @@
 			this.customDodge = "The naleen slides out of the way of your attack, serpentine body stretching and contorting in ways far beyond human ability.";
 			this.customBlock = "The naleen girl catches your attack on her sharp claws, parrying the strike with feline grace.";
 			this.plural = false;
-			this.lustVuln = 1;
+			this.lustVuln = 1.2;
 			
 			this.meleeWeapon.attackVerb = "claw";
 			this.meleeWeapon.longName = "claws";

@@ -38,12 +38,29 @@ function startCharacterCreation():void {
 	this.userInterface.hidePCStats();
 	this.userInterface.hideNPCStats();
 	this.userInterface.clearMenu();
-	this.userInterface.addButton(0,"Human",chooseStartingRace);
-	this.userInterface.addButton(1,"Ausar",chooseStartingRace,"ausar");
-	this.userInterface.addButton(2,"Kaithrit",chooseStartingRace,"kaithrit");
+	this.userInterface.addButton(0,"Human",confirmRaceChoice);
+	this.userInterface.addButton(1,"Ausar",confirmRaceChoice,"ausar");
+	this.userInterface.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit");
 	if(debug) 
 		this.userInterface.addButton(3,"Multicock",chooseStartingRace,"multicock");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
+}
+
+function confirmRaceChoice(race:String = "human"):void {
+	clearOutput();
+	if(race == "human") {
+		output("A purely human heritage would give Victor's child the body one would expect - two legs, two arms, two eyes, a head of hair, etc.... There's really not much more to say about such a choice.");
+	}
+	else if(race == "ausar") {
+		output("As a half-ausar, Victor's child would start with dog-like ears, a canine tail, a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child's mother.");
+	}
+	else if(race == "kaithrit") {
+		output("The kaihtrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
+	}
+	output("\n\nIs this the race Victor chooses?")
+	this.userInterface.clearMenu();
+	this.userInterface.addButton(0,"Yes",chooseStartingRace,race);
+	this.userInterface.addButton(1,"No",startCharacterCreation);
 }
 
 function chooseStartingRace(race:String = "human"):void {

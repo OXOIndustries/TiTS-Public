@@ -297,7 +297,7 @@ function lustBangOut():void {
 		pc.lust(5);
 		if(pc.willpower() + rand(20) + 1 < 20 && !pc.hasStatusEffect("Blind")) {
 			output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision's collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, you're <b>blinded</b>!");
-			pc.createStatusEffect("Blind",rand(3)+1,0,0,0,true,"","",true,0);
+			pc.createStatusEffect("Blind",rand(3)+1,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
 		}
 	}
 	processCombat();
@@ -367,14 +367,25 @@ function getHoney():void {
 	if(pc.hasCock()) output("<i>give your cock a little attention</i>");
 	output("<i> before you go.”</i>");
 	
-	output("\n\n<b>No honey item active yet, I'm afraid.</b>");
 	processTime(10+rand(5));
-	
+	eventQueue[eventQueue.length] = getSomeHoney;
 	//[Nah]
 	//{Sex Options]
 	userInterface.clearMenu();
 	zilConsensualSexMenu();
 	userInterface.addButton(14,"Nah",noSexForMeThen);
+}
+
+function getSomeHoney():void {
+	clearOutput();
+	output("That vial of honey is still here.\n\n");
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new ZilHoney();
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
 }
 
 //Nah

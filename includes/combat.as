@@ -833,6 +833,7 @@ function startCombat(encounter:String):void
 			{
 				randomLikesDislikes(foes[0],3+rand(3));
 			}
+			if(rand(3) == 0) foes[0].inventory[0] = new ZilHoney();
 			break;
 		case "cunt snake":
 			this.userInterface.showBust("CUNTSNAKE");
@@ -1343,6 +1344,8 @@ function senseDesc(value:int = 0):String {
 }
 
 function setFemzilPrefs(target:Creature):void {
+	//Clear sexprefs!
+	target.sexualPreferences.clearPrefs();
 	//Zil Girl Likes
 	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.KINDA_LIKES_SEXPREF);
 	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.KINDA_LIKES_SEXPREF);
@@ -1360,6 +1363,8 @@ function setFemzilPrefs(target:Creature):void {
 }
 
 function setNaleenPrefs(target:Creature):void {
+	//Clear sexprefs!
+	target.sexualPreferences.clearPrefs();
 	//Naleen Likes:
 	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.REALLY_LIKES_SEXPREF);
 	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,GLOBAL.KINDA_LIKES_SEXPREF);
@@ -1381,6 +1386,8 @@ function setNaleenPrefs(target:Creature):void {
 
 
 function randomLikesDislikes(target:Creature,count:int = 4):void {
+	//Clear sexprefs!
+	target.sexualPreferences.clearPrefs();
 	//Usually assign a gender appearance pref!
 	//DUDELOVE/HATE!
 	if(rand(3) == 0) target.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
