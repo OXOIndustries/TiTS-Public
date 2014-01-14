@@ -6583,6 +6583,25 @@ package classes
 				else return "cock-head";
 			}
 		}
+		
+		/**
+		 * Effectively an interface to define the default sexual preferences for a given creature.
+		 * Ensure that the function is overridden before calling this (or the error can be replaced with a "default" set
+		 * of possible sexprefs for ALL creatures.
+		 */
+		public function setDefaultSexualPreferences():void
+		{
+			throw new Error("Sexual preferences must be configured on a per-creature basis before this function should be called! Override the function signature in the child creature class.");
+		}
+		
+		/**
+		 * Effectively an interface to define a method to "reset" a creature for combat; reset its health, energy or whatever,
+		 * and set whatever other game-system stuff we need for combat to be "ready"
+		 */
+		public function prepForCombat():void
+		{
+			throw new Error("Each creature must define its own method to prepare for combat!");
+		}
 	}
 }
 

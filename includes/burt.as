@@ -325,7 +325,7 @@ function crabbstBlueRibbonPurchase():void {
 		else output("\n\nYou're about as drunk on Crabbst as you're going to get.");
 	}
 	else {
-		pc.createStatusEffect("Crabbst",0,1,0,0,false,"Crabbst","Makes you stronger but at what cost?",false,180);
+		pc.createStatusEffect("Crabbst",0,1,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
 		pc.physiqueMod++;
 		pc.reflexesMod--;
 		pc.aimMod--;
@@ -366,7 +366,7 @@ function buyMeadFromBurt():void {
 		else output("\n\nYou're about as drunk on Mead as you're going to get.");
 	}
 	else {
-		pc.createStatusEffect("Mead",0,1,0,0,false,"Mead","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
+		pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
 		pc.physiqueMod++;
 		pc.reflexesMod-= .5;
 		pc.aimMod-= .5;
@@ -402,7 +402,7 @@ function burtXilErAte():void {
 		else output("\n\nYou're about as drunk on X-Zil-rate as you're going to get.");
 	}
 	else {
-		pc.createStatusEffect("X-Zil-rate",0,1,0,0,false,"X-Zil-rate","This top-shelf booze makes you feel strong... and horny.",false,180);
+		pc.createStatusEffect("X-Zil-rate",0,1,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
 		pc.physiqueMod+=5;
 		pc.lust(5);
 	}
@@ -445,7 +445,7 @@ function askBurtAboutHimself():void {
 			}
 		}
 		else {
-			pc.createStatusEffect("Mead",0,1,0,0,false,"Mead","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
+			pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn't good for you, but you do feel a little stronger and more confident.",false,180);
 			pc.physiqueMod++;
 			pc.reflexesMod-= .5;
 			pc.aimMod-= .5;

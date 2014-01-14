@@ -3,6 +3,8 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Melee.Fists;
+	import classes.kGAMECLASS;
+	import classes.rand;
 	
 	public class ZilPack extends Creature
 	{
@@ -162,6 +164,17 @@
 			{
 				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
 			}
+		}
+		
+		override public function prepForCombat():void
+		{
+			var combatZilPack:ZilPack = this.makeCopy();
+			
+			kGAMECLASS.userInterface.showBust("ZILPACK");
+			kGAMECLASS.setLocation("FIGHT:\nTWO ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			combatZilPack.sexualPreferences.setRandomPrefs(3 + rand(3));
+			
+			kGAMECLASS.foes.push(combatZilPack);
 		}
 	}
 }

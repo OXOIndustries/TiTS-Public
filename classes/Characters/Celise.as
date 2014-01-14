@@ -4,6 +4,8 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.GooeyCoverings;
 	import classes.Items.Melee.GooeyPsuedopod;
+	import classes.kGAMECLASS;
+	import classes.rand;
 	
 	public class Celise extends Creature
 	{
@@ -160,6 +162,17 @@
 			{
 				dataObject.legFlags.push(GLOBAL.AMORPHOUS);
 			}
+		}
+		
+		override public function prepForCombat():void
+		{
+			var combatCelise:Celise = this.makeCopy();
+			
+			kGAMECLASS.userInterface.showBust("CELISE");
+			kGAMECLASS.setLocation("FIGHT:\nCELISE", "TAVROS STATION", "SYSTEM: KALAS");
+			combatCelise.sexualPreferences.setRandomPrefs(3 + rand(3));
+			
+			kGAMECLASS.foes.push(combatCelise);
 		}
 	}
 }

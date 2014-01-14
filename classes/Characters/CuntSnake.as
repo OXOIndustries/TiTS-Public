@@ -2,6 +2,8 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
+	import classes.rand;
 	
 	public class CuntSnake extends Creature
 	{
@@ -163,6 +165,57 @@
 			{
 				dataObject.legFlags.push(GLOBAL.TENDRIL);
 			}
+		}
+		
+		override public function prepForCombat():void
+		{
+			var combatCSnake:CuntSnake = this.makeCopy();
+
+			kGAMECLASS.userInterface.showBust("CUNTSNAKE");
+			kGAMECLASS.setLocation("FIGHT:\nCUNT SNAKE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			
+			combatCSnake.tallness = 24 + rand(36);
+			combatCSnake.scaleColor = "green";
+			combatCSnake.long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + combatCSnake.num2Text(Math.round(combatCSnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
+			
+			if(rand(5) == 0) 
+			{
+				combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
+				combatCSnake.long += "<b>slippery, terran-like cunt</b>";
+			}
+			else if(rand(4) == 0) 
+			{
+				combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
+				combatCSnake.long += "<b>puffy, horse-like gash</b>";
+			}
+			else if(rand(3) == 0) 
+			{
+				combatCSnake.tailGenitalArg = GLOBAL.CANINE;
+				combatCSnake.long += "<b>slippery, dog-like slit</b>";
+			}
+			else if(rand(2) == 0) 
+			{
+				combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
+				combatCSnake.long += "<b>slippery slime creature's cunt</b>";
+			}
+			else 
+			{
+				combatCSnake.tailGenitalArg = GLOBAL.SIREN;
+				combatCSnake.long += "<b>cilia-filled tunnel</b>";
+			}	
+
+			combatCSnake.long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
+			combatCSnake.customDodge = "The cunt snake sways aside at the last second!";
+			combatCSnake.customBlock = "Your attack deflects off the cunt snake's " + combatCSnake.scaleColor + " scales!";
+
+			// What's all this shit for? Is i supposed to still be here after all the rand^ calls? It was in the initCSnake function so...
+			combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
+			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
+			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.CANINE;
+			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
+			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.SIREN;
+
+			kGAMECLASS.foes.push(combatCSnake);
 		}
 	}
 }

@@ -289,6 +289,12 @@ package classes.UIComponents.StatusEffectComponents
 		
 		public function UpdateDurationText(remainingDuration:int):void
 		{
+			if (remainingDuration == 0)
+			{
+				this._durationText.htmlText = "";
+				return;
+			}
+			
 			var tDuration:int;
 			var rDays:int = 0;
 			var rHours:int = 0;

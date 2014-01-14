@@ -241,6 +241,39 @@
 		
 		public static const MAX_SEXPREF_VALUE:int = 26; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
+		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
+		// The two will have to forever be in the same order though, but I can probably rig up some better system.
+		public static const SEXPREF_DESCRIPTORS:Array = 
+		[
+			"Feminine faces",
+			"Masculine faces",
+			"Hermaphrodites",
+			"Big butts",
+			"Small butts",
+			"Big breasts",
+			"Small breasts",
+			"Wide hips",
+			"Narrow hips",
+			"Penises",
+			"Vaginas",
+			"Balls",
+			"Big masculine endowments",
+			"Petite masculine endowments",
+			"Multiple sex organs or breasts",
+			"Hypersized attributes",
+			"Gaped orifices",
+			"Wet vaginas",
+			"Less lubricated vaginas",
+			"Tails",
+			"Tail genitalia",
+			"Lactation",
+			"Nipplecunts",
+			"Exotic bodyshapes like nagas and taurs",
+			"Baldness",
+			"Long hair",
+			"ERROR ERROR ABORT ABORT"
+		];
+		
 		public static const REALLY_LIKES_SEXPREF:Number = 2;
 		public static const KINDA_LIKES_SEXPREF:Number = 1.3333;
 		public static const KINDA_DISLIKES_SEXPREF:Number = .75;

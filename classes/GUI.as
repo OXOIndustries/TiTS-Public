@@ -1321,7 +1321,7 @@
 		}	
 
 
-		function showBust(arg:String):void 
+		public function showBust(arg:String):void 
 		{
 			//this.leftSideBar.sceneTitle.filters = [glow];
 			if(arg == "none") 

@@ -1,6 +1,8 @@
 ﻿package classes
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
+	import classes.GLOBAL;
+	import classes.rand;
 	
 	/**
 	 * ...
@@ -15,7 +17,11 @@
 			_sexPrefs = new Object();
 		}
 		
-		public function clearPrefs():void {
+		/**
+		 * Clear any current set sexual preferences
+		 */
+		public function clearPrefs():void 
+		{
 			_sexPrefs = new Object();
 		}
 
@@ -30,6 +36,58 @@
 			{
 				_sexPrefs[prefFlag] = pref;
 			}
+		}
+		
+		/**
+		 * Configure a random set of sexual preferences, according to the parameter count
+		 * @param	count
+		 */
+		public function setRandomPrefs(count:int):void
+		{
+			// Ensure the prefs are clear before randomising
+			this.clearPrefs();
+			
+			// Add additonal factors for masculine/feminine sexprefs
+			if (rand(3) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_MASCULINE, this.getRandomLikeFactor());
+			}
+			else if (rand(2) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_FEMININE, this.getRandomLikeFactor());
+			}
+			
+			// Init an initial "like" to add
+			var randSexpref:int = this.getRandomSexpref();
+			
+			for (var likeNum:int = 0; likeNum < count; likeNum++)
+			{
+				while (this.getPref(randSexpref) != 0)
+				{
+					randSexpref = getRandomSexpref();
+				}
+				
+				this.setPref(randSexpref, this.getRandomLikeFactor());
+			}
+		}
+		
+		/**
+		 * Return a random valid likefactor value
+		 * @return
+		 */
+		public function getRandomLikeFactor():Number
+		{
+			var lFactor:Number = GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))];
+			return lFactor;
+		}
+		
+		/**
+		 * Return a valid sexpref index
+		 * @return
+		 */
+		public function getRandomSexpref():int
+		{
+			return rand(GLOBAL.MAX_SEXPREF_VALUE);
 		}
 		
 		/**

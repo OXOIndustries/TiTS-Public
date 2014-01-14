@@ -86,6 +86,14 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/unknown.svg", mimeType = "image/svg")]
 		public static var Icon_Unknown:Class;
 		
+		// Alias some of the Icons to "friendly" properties; basically, lets us reinterpret/configure
+		// which icons to use in some cases
+		public static var Paralyze:Class = EmbeddedAssets.Icon_Paralysis;
+		public static var Stun:Class = EmbeddedAssets.Icon_MindcontrolledMindbroke;
+		public static var Constrict:Class = EmbeddedAssets.Icon_Constricted;
+		public static var Poison:Class = EmbeddedAssets.Icon_Poison;
+		public static var Blind:Class = EmbeddedAssets.Icon_BlindAlt;
+		
 		[Embed(source = "../../assets/images/stowaway_helia_r.png", mimeType = "image/png")]
 		public static var Image_Helia:Class;
 	}

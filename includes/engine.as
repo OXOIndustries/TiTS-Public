@@ -205,7 +205,7 @@ function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 		}
 	}
 }
-function setLocation(title:String,planet:String = "Error Planet",system:String = "Error System"):void {
+public function setLocation(title:String,planet:String = "Error Planet",system:String = "Error System"):void {
 	this.userInterface.leftSideBar.sceneTitle.text = title;
 	this.userInterface.leftSideBar.planet.text = planet;
 	this.userInterface.leftSideBar.system.text = system;

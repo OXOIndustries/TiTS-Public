@@ -25,14 +25,6 @@ function maleZilEncounter():void {
 	userInterface.addButton(0,"Next",startCombat,"zil male");
 }
 
-function initializeZil():void {
-	foes[0] = chars["ZIL"].makeCopy();
-	foes[0].tallness = 60 + rand(7);
-	foes[0].cocks[0].cLength = 4 + rand(5);
-	foes[0].long = "The male zil you're fighting would stand roughly " + foes[0].displayTallness() + " tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a " + num2Text(foes[0].longestCockLength()) + "-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace";
-	if(rand(2) == 0) foes[0].long += ", though some areas are striped in bright yellow";
-	foes[0].long += ".";
-}
 /*
 Combat Description:
 	The male zil you're fighting would stand roughly {height} tall were he to touch the ground, but instead, he's supporting himself on rapidly fluttering wings, keeping his genitals at just the right height to waft his sweet musk in your direction. His only ‘armament’ is a {length}-inch penis with a tight, hairless sack underneath; he bears no weapon in his hand and no stinger. The zil's body is almost entirely covered on ebony carapace{, though some areas are striped in bright yellow{; he even has yellow irises}/even his shoulders}.

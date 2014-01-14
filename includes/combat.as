@@ -793,59 +793,43 @@ function startCombat(encounter:String):void
 	pc.removeStatusEffect("Round");
 	foes = new Array();
 	
-	// There's some room for improvement here; rather than constantly creating new instances/copies of combatable creatures, we could give them
-	// some kind of setup method, and use the persistent object in the chars[] object to refer to them. The setup method would reset their health
-	// and reconfigure their inventory as appropriate (allows randomised inventory for each creature, for each time you fight them; or in the case
-	// of persistent creatures, wouldn't reset their inventory, or do it under some other limitation, like it only resets every so many game days etc
+	// Refucktored somewhat, it's a little clearer than it was earlier. Any special stuff that has to
+	// happen prior to combat has been shifted into a method inside the specific creature classes.
 	
-	// I'm leaving it as is for now, to avoid introducing massive changes all over the place in a single merge. Although, I'm dropping clone() and
-	// using the new makeCopy() semantic.
+	// This is kind of a midpoint along the road to properly supporting multi-enemy fights, and combat
+	// with persistent or semi-persistent characters. It's also cleaned up a lot of code sitting in
+	// global namespace where it doesn't really belong.
 	
-	switch(encounter) {
+	switch(encounter) 
+	{
 		case "celise":
-			this.userInterface.showBust("CELISE");
-			setLocation("FIGHT:\nCELISE","TAVROS STATION","SYSTEM: KALAS");
-			foes[0] = chars["CELISE"].makeCopy();
-			randomLikesDislikes(foes[0],3+rand(3));
+			chars["CELISE"].prepForCombat();
 			break;
+			
 		case "zilpack":
-			this.userInterface.showBust("ZILPACK");
-			setLocation("FIGHT:\nTWO ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = chars["ZILPACK"].makeCopy();
-			randomLikesDislikes(foes[0],3+rand(3));
+			chars["ZILPACK"].prepForCombat();
 			break;
+			
 		case "zil male":
-			this.userInterface.showBust("ZIL");
-			setLocation("FIGHT:\nZIL MALE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			initializeZil();
-			randomLikesDislikes(foes[0],3+rand(3));
+			chars["ZIL"].prepForCombat();
 			break;
+			
 		case "consensual femzil":
 		case "female zil":
-			userInterface.showBust("ZILFEMALE");
-			setLocation("FIGHT:\nFEMALE ZIL","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = chars["ZILFEMALE"].makeCopy();
-			if (encounter == "consensual femzil")
-			{
-				setFemzilPrefs(foes[0]);
-			}
-			else 
-			{
-				randomLikesDislikes(foes[0],3+rand(3));
-			}
-			if(rand(3) == 0) foes[0].inventory[0] = new ZilHoney();
+			chars["ZILFEMALE"].prepForCombat();
+			
+			if (encounter == "consensual femzil") foes[0].setDefaultSexualPreferences(); // This call has to happen after prep, otherwise we'll wipe it out with random prefs.
+
 			break;
+			
 		case "cunt snake":
-			this.userInterface.showBust("CUNTSNAKE");
-			setLocation("FIGHT:\nCUNT SNAKE","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			initializeCSnake();
+			chars["CUNTSNAKE"].prepForCombat();
 			break;
+			
 		case "naleen":
-			this.userInterface.showBust("NALEEN");
-			setLocation("FIGHT:\nNALEEN","PLANET: MHEN'GA","SYSTEM: ARA ARA");
-			foes[0] = chars["NALEEN"].makeCopy();
-			setNaleenPrefs(foes[0]);
+			chars["NALEEN"].prepForCombat();
 			break;
+			
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
@@ -1245,7 +1229,7 @@ function sense(target:Creature):void {
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
 	var buffer:String = "";
 	for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
-		buffer = senseDesc(i);
+		buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
 		//If has a preference set, talk about it!
 		if(target.sexualPreferences.getPref(i) != 0) {
 			//If succeeds at sense check!
@@ -1281,131 +1265,4 @@ function sense(target:Creature):void {
 		}
 	}
 	processCombat();
-}
-
-function senseDesc(value:int = 0):String {
-	switch (value) {
-		case GLOBAL.SEXPREF_FEMININE:
-			return "Feminine faces";
-		case GLOBAL.SEXPREF_MASCULINE:
-			return "Masculine faces";
-		case GLOBAL.SEXPREF_HERMAPHRODITE:
-			return "Hermaphrodites";
-		case GLOBAL.SEXPREF_BIG_BUTTS:
-			return "Big butts";
-		case GLOBAL.SEXPREF_SMALL_BUTTS:
-			return "Small butts";
-		case GLOBAL.SEXPREF_BIG_BREASTS:
-			return "Big breasts";
-		case GLOBAL.SEXPREF_SMALL_BREASTS:
-			return "Small breasts";
-		case GLOBAL.SEXPREF_WIDE_HIPS:
-			return "Wide hips";
-		case GLOBAL.SEXPREF_NARROW_HIPS:
-			return "Narrow hips";
-		case GLOBAL.SEXPREF_COCKS:
-			return "Penises";
-		case GLOBAL.SEXPREF_PUSSIES:
-			return "Vaginas";
-		case GLOBAL.SEXPREF_BALLS:
-			return "Balls";
-		case GLOBAL.SEXPREF_BIG_MALEBITS:
-			return "Big masculine endowments";
-		case GLOBAL.SEXPREF_SMALL_MALEBITS:
-			return "Petite masculine endowments";
-		case GLOBAL.SEXPREF_MULTIPLES:
-			return "Multiple sex organs or breasts";
-		case GLOBAL.SEXPREF_HYPER:
-			return "Hypersized attributes";
-		case GLOBAL.SEXPREF_GAPE:
-			return "Gaped orifices";
-		case GLOBAL.SEXPREF_VAGINAL_WETNESS:
-			return "Wet vaginas";
-		case GLOBAL.SEXPREF_VAGINAL_DRYNESS:
-			return "Less lubricated vaginas";
-		case GLOBAL.SEXPREF_TAILS:
-			return "Tails";
-		case GLOBAL.SEXPREF_TAILGENITALS:
-			return "Tail genitalia";
-		case GLOBAL.SEXPREF_LACTATION:
-			return "Lactation";
-		case GLOBAL.SEXPREF_NIPPLECUNTS:
-			return "Nipplecunts";
-		case GLOBAL.SEXPREF_EXOTIC_BODYSHAPE:
-			return "Exotic bodyshapes likes nagas and taurs";
-		case GLOBAL.SEXPREF_BALDNESS:
-			return "Baldness";
-		case GLOBAL.SEXPREF_LONG_HAIR:
-			return "Long hair";
-		case GLOBAL.MAX_SEXPREF_VALUE:
-			return "This Shouldn't Happen, YO";
-	}
-	return "THIS IS A MASSIVE ERROR IF IT HAPPENS";
-}
-
-function setFemzilPrefs(target:Creature):void {
-	//Clear sexprefs!
-	target.sexualPreferences.clearPrefs();
-	//Zil Girl Likes
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.REALLY_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,GLOBAL.REALLY_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,GLOBAL.REALLY_LIKES_SEXPREF);
-	
-	//Zil Girl Dislikes:
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,GLOBAL.KINDA_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,GLOBAL.KINDA_DISLIKES_SEXPREF);
-}
-
-function setNaleenPrefs(target:Creature):void {
-	//Clear sexprefs!
-	target.sexualPreferences.clearPrefs();
-	//Naleen Likes:
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,GLOBAL.REALLY_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,GLOBAL.REALLY_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,GLOBAL.REALLY_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,GLOBAL.KINDA_LIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,GLOBAL.KINDA_LIKES_SEXPREF);
-	//Naleen Dislikes
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,GLOBAL.KINDA_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,GLOBAL.REALLY_DISLIKES_SEXPREF);
-	target.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,GLOBAL.KINDA_DISLIKES_SEXPREF);
-}
-
-
-function randomLikesDislikes(target:Creature,count:int = 4):void {
-	//Clear sexprefs!
-	target.sexualPreferences.clearPrefs();
-	//Usually assign a gender appearance pref!
-	//DUDELOVE/HATE!
-	if(rand(3) == 0) target.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
-	//CHICKLOVE/HATE
-	else if(rand(2) == 0)
-	{
-		target.sexualPreferences.setPref(GLOBAL.SEXPREF_MASCULINE, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
-	}
-
-	//Used to hold our randomly assigned sexpref thinger!
-	var temp:int = rand(GLOBAL.MAX_SEXPREF_VALUE);
-	//Loop through till we hit the sexpref count!
-	for (var i:int = 0; i < count; i++)
-	{
-		//Keep generating random shit until we get a non-dupe!
-		while(target.sexualPreferences.getPref(temp) != 0) {
-			temp = rand(GLOBAL.MAX_SEXPREF_VALUE);
-		}
-		target.sexualPreferences.setPref(temp, GLOBAL.SEXPREF_VALUES[(rand(GLOBAL.SEXPREF_VALUES.length))]);
-	}
 }

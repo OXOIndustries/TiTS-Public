@@ -58,42 +58,6 @@ function encounterCuntSnakeOnJungleLand():void {
 	userInterface.addButton(0,"Next",startCombat,"cunt snake");
 }
 
-function initializeCSnake():void {
-	foes[0] = chars["CUNTSNAKE"].makeCopy();
-	foes[0].tallness = 24 + rand(36);
-	foes[0].scaleColor = "green";
-	foes[0].long = "The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around " + num2Text(Math.round(cuntsnake.tallness/12)) + " feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A ";
-	
-	if(rand(5) == 0) {
-		foes[0].tailGenitalArg = GLOBAL.HUMAN;
-		foes[0].long += "<b>slippery, terran-like cunt</b>";
-	}
-	else if(rand(4) == 0) {
-		foes[0].tailGenitalArg = GLOBAL.EQUINE;
-		foes[0].long += "<b>puffy, horse-like gash</b>";
-	}
-	else if(rand(3) == 0) {
-		foes[0].tailGenitalArg = GLOBAL.CANINE;
-		foes[0].long += "<b>slippery, dog-like slit</b>";
-	}
-	else if(rand(2) == 0) {
-		foes[0].tailGenitalArg = GLOBAL.GOOEY;
-		foes[0].long += "<b>slippery slime creature's cunt</b>";
-	}
-	else {
-		foes[0].tailGenitalArg = GLOBAL.SIREN;
-		foes[0].long += "<b>cilia-filled tunnel</b>";
-	}	
-	foes[0].long += " is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.";
-	foes[0].customDodge = "The cunt snake sways aside at the last second!";
-	foes[0].customBlock = "Your attack deflects off the cunt snake's " + cuntsnake.scaleColor + " scales!";
-	foes[0].tailGenitalArg = GLOBAL.HUMAN;
-	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.EQUINE;
-	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.CANINE;
-	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.GOOEY;
-	if(rand(3) == 0) foes[0].tailGenitalArg = GLOBAL.SIREN;
-}
-
 //*Combat Description
 //The green-hued cunt snake blends in well with vegetation. It has no visible eyes, though there are two sensory bulbs atop its head. The reptilian alien is somewhere around {two/three/four} feet in length and moves with such sinuous, unpredictable grace that it would be difficult to hit from long range, but the fangs seem to suggest you keep your distance. A moist, drooling pussy is visible at the end of its body. It often shifts to point it towards you so that you can see just how sopping wet the hole is.
 //*Combat Techniques
