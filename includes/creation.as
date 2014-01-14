@@ -706,6 +706,7 @@ function setClass(arg:int = 0):void {
 	else 
 		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() //   (items["10"]);
 	tutorialSkipOption();
+	pc.maxOutHP();
 }
 
 //Tutorial Skip Option
