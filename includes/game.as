@@ -236,7 +236,7 @@ public function processTime(arg:int):void {
 	var x:int = 0;
 	var tightnessChanged:Boolean = false;
 	if(this.chars["PC"].ballFullness < 100) this.chars["PC"].cumProduced(arg);
-	var productionFactor:Number = 100/(1920 * ((this.chars["PC"].libido() * 3 + 100)/100));
+	var productionFactor:Number = 100/(1920) * ((this.chars["PC"].libido() * 3 + 100)/100);
 	
 	//Double time
 	if(this.chars["PC"].hasPerk("Extra Ardor")) productionFactor *= 2;

@@ -241,6 +241,7 @@
 			public var cumType:Number = GLOBAL.CUM;
 			public var ballSize:Number = 1;
 			public var ballFullness:Number = 100;
+			//Number of cumshots a day the PC can hold
 			public var ballEfficiency:Number = 3;
 			//Scales from 0 (never produce more) to infinity.
 			public var refractoryRate:Number = 1;
@@ -3459,7 +3460,50 @@
 			var rando:Number = 0;
 			//Determine race type:
 			var race:String = "human";
+			if(ausarScore() >= 2 && race == "human") race = "half-ausar";
+			if(kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
+			if(zilScore() >= 4) race = "zil";
+			if(naleenScore() >= 5 && isNaga()) race = "naleen";
+			else if(isNaga()) race = "naga";
 			return race;
+		}
+		public function ausarScore():int {
+			var counter:int = 0;
+			if(earType == GLOBAL.CANINE) counter++;
+			if(tailType == GLOBAL.CANINE && hasTailFlag(GLOBAL.LONG) && hasTailFlag(GLOBAL.FLUFFY) && hasTailFlag(GLOBAL.FURRED)) counter++;
+			if(faceType == GLOBAL.HUMAN && counter > 0) counter++;
+			if(armType == GLOBAL.CANINE) counter++;
+			return counter;
+		}
+		public function kaithritScore():int {
+			var counter:int = 0;
+			if(earType == GLOBAL.FELINE) counter++;
+			if(tailType == GLOBAL.FELINE && tailCount == 2) counter++;
+			return counter;
+		}
+		public function zilScore():int {
+			var counter:int = 0;
+			if(cockTotal(GLOBAL.BEE) > 0) counter++;
+			if(hasVagina(GLOBAL.BEE)) counter++;
+			if(armType == GLOBAL.BEE) counter++;
+			if(legType == GLOBAL.BEE && legCount == 2) counter++;
+			if(wingType == GLOBAL.SMALLBEE || wingType == GLOBAL.BEE) counter++;
+			if(tailType == GLOBAL.BEE && tailCount > 0) counter++;
+			if(faceType == GLOBAL.HUMAN && counter > 0) counter++;
+			return counter;
+		}
+		public function naleenScore():int {
+			var counter:int = 0;
+			if(isNaga()) counter+=2;
+			if(faceType == GLOBAL.NALEEN_FACE) counter++;
+			if(armType == GLOBAL.FELINE) counter++;
+			if(earType == GLOBAL.FELINE) counter++;
+			if(hasStatusEffect("Genital Slit")) counter++;
+			if(hasVagina(GLOBAL.NAGA)) counter++;
+			if(cockTotal(GLOBAL.NAGA) > 0) counter++;
+			if(skinType == GLOBAL.FUR && counter > 0) counter++;
+			if(armType == GLOBAL.FELINE && counter > 0) counter++;
+			return counter;
 		}
 		public function sackDescript(forceAdjectives:Boolean = false, adjectives:Boolean = true):String {
 			var desc:String = "";			
