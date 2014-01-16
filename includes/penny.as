@@ -1609,20 +1609,60 @@ function buySomeThrobbFrompenny():void {
 	this.userInterface.clearMenu();
 	if(pc.credits >= 300) this.userInterface.addButton(0,"Buy It",buyThrobbTransact);
 	else this.userInterface.addDisabledButton(0,"Buy It");
+	if(pc.credits >= 600) this.userInterface.addButton(1,"Buy 2",buyThrobbTransact,2);
+	else this.userInterface.addDisabledButton(1,"Buy 2");
+	if(pc.credits >= 900) this.userInterface.addButton(2,"Buy 3",buyThrobbTransact,3);
+	else this.userInterface.addDisabledButton(2,"Buy 3");
+	if(pc.credits >= 1200) this.userInterface.addButton(3,"Buy 4",buyThrobbTransact,4);
+	else this.userInterface.addDisabledButton(3,"Buy 4");
+	if(pc.credits >= 1500) this.userInterface.addButton(4,"Buy 5",buyThrobbTransact,5);
+	else this.userInterface.addDisabledButton(4,"Buy 5");
+	if(pc.credits >= 1800) this.userInterface.addButton(5,"Buy 6",buyThrobbTransact,6);
+	else this.userInterface.addDisabledButton(5,"Buy 6");
+	if(pc.credits >= 2100) this.userInterface.addButton(6,"Buy 7",buyThrobbTransact,7);
+	else this.userInterface.addDisabledButton(6,"Buy 7");
+	if(pc.credits >= 2400) this.userInterface.addButton(7,"Buy 8",buyThrobbTransact,8);
+	else this.userInterface.addDisabledButton(7,"Buy 8");
+	if(pc.credits >= 2700) this.userInterface.addButton(8,"Buy 9",buyThrobbTransact,9);
+	else this.userInterface.addDisabledButton(8,"Buy 9");
+	if(pc.credits >= 3000) this.userInterface.addButton(9,"Buy 10",buyThrobbTransact,10);
+	else this.userInterface.addDisabledButton(9,"Buy 10");
+
 	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
 }
 //[Buy] [Back]
 //Transact It
-function buyThrobbTransact():void {
+function buyThrobbTransact(amount:int = 1):void {
 	clearOutput();
 	this.userInterface.showBust("PENNY");
-	output("<i>“Thanks, mate,</i> Penny says as she checks her cred account. <i>“Looks like everything came through okay. Maybe I’ll get my loans paid off faster I thought!”</i>");
+	output("<i>“Thanks, mate,”</i> Penny says as she checks her cred account. <i>“Looks like everything came through okay. Maybe I’ll get my loans paid off faster I thought!”</i>");
 	
 	//Acquire 1x throbb
 	//lootList.push(new Throbb());
+	flags["THROBB_QUANTITY_STORAGE_CHEAT"] = amount;
+	eventQueue[eventQueue.length] = lootThrobb;
 	//-300 credits
 	pc.credits -= 300;
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",talkToGirfriendPenny);
 }
+
+function lootThrobb():void {
+	clearOutput();
+	output("You have some Throbb you bought from Penny.\n\n");
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new Throbb();
+	//Set quantity!
+	foundLootItems[foundLootItems.length-1].quantity = flags["THROBB_QUANTITY_STORAGE_CHEAT"];
+	//Clear quantity
+	flags["THROBB_QUANTITY_STORAGE_CHEAT"] = undefined;
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
+
 
 //Penny Sex Menu
 function pennySexMenu(outputT:Boolean = true):void {

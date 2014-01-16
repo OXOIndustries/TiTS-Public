@@ -52,13 +52,17 @@ function combatMainMenu():void
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
 		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
-		this.userInterface.addButton(0,"Recover",stunRecover);
+		this.userInterface.addButton(0,"Recover",stunRecover,pc);
 	}
 	//Bound Menu
 	else if (pc.hasStatusEffect("Naleen Coiled"))
 	{
 		output("\n<b>You are wrapped up in coils!</b>");
 		userInterface.addButton(0,"Struggle",naleenStruggle);
+		if(pc.hasStatusEffect("Static Burst Known")) {
+			if(pc.energy() >= 50) this.userInterface.addButton(3,"StaticBurst",staticBurst);
+			else this.userInterface.addDisabledButton(3,"StaticBurst");
+		}
 		this.userInterface.addButton(4,"Do Nothing",wait);
 	}
 	else 
@@ -67,14 +71,57 @@ function combatMainMenu():void
 		this.userInterface.clearMenu();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-		this.userInterface.addButton(4,"Do Nothing",wait);
+		this.userInterface.addButton(4,"Specials",specialsMenu);
 		this.userInterface.addButton(5,"Tease",attackRouter,teaseMenu);
 		this.userInterface.addButton(6,"Sense",attackRouter,sense);
 		this.userInterface.addButton(9,"Fantasize",fantasize);
 		this.userInterface.addButton(14,"Run",runAway);
 	}
 }
+
+function specialsMenu():void {
+	userInterface.clearMenu();
+	userInterface.addButton(14,"Back",combatMainMenu);
+	userInterface.addButton(13,"Wait",wait);
+	if(pc.characterClass == GLOBAL.ENGINEER) {
+		if(pc.energy() >= 25) userInterface.addButton(0,"P.Shock",attackRouter,paralyzingShock);
+		else userInterface.addDisabledButton(0,"P.Shock");
+		if(pc.hasStatusEffect("Volley Known")) 
+		{
+			if(pc.energy() >= 20) userInterface.addButton(1,"Volley",attackRouter,volley);
+			else userInterface.addDisabledButton(1,"Volley");
+		}
+		if(pc.hasStatusEffect("Overcharge Known"))
+		{
+			if(pc.energy() >= 20) userInterface.addButton(1,"Overcharge",attackRouter,overcharge);
+			else userInterface.addDisabledButton(1,"Overcharge");
+		}
+		if(pc.hasStatusEffect("Deflector Regeneration Known"))
+		{
+			if(pc.energy() >= 20) userInterface.addButton(2,"D. Regen.",deflectorRegeneration,pc);
+			else userInterface.addDisabledButton(2,"D. Regen.");
+		}
+		if(pc.hasStatusEffect("Power Surge Known"))
+		{
+			if(pc.energy() >= 33) userInterface.addButton(2,"P. Surge",powerSurge,pc);
+			else userInterface.addDisabledButton(2,"P. Surge");
+		}
+		if(pc.hasKeyItem("Thermal Disruptor"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor);
+			else userInterface.addDisabledButton(3,"T. Disrupt.");
+		}
+		if(pc.hasKeyItem("Gravidic Disruptor"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor);
+			else userInterface.addDisabledButton(3,"G. Disrupt.");
+		}
+	}
+}
+
 function updateCombatStatuses():void {
+	var temp:Number = 0;
+	//PC STATUSES!
 	if(pc.hasStatusEffect("Blind")) {
 		pc.addStatusValue("Blind",1,-1);
 		if(pc.statusEffectv1("Blind") <= 0) {
@@ -90,23 +137,65 @@ function updateCombatStatuses():void {
 		}
 		else output("<b>You're paralyzed and unable to move!</b>\n");
 	}
-}
-function stunRecover():void 
-{
-	if(pc.hasStatusEffect("Stunned")) {
-		clearOutput();
-		pc.addStatusValue("Stunned",1,-1);
-		if (pc.statusEffectv1("Stunned") <= 0)
+	if(pc.hasStatusEffect("Deflector Regeneration"))
+	{
+		pc.addStatusValue("Deflector Regeneration",1,-1);
+		temp = pc.statusEffectv2("Deflector Regeneration");
+		if(temp + pc.shields() > pc.shieldsMax()) temp = pc.shieldsMax() - pc.shields();
+		if(temp > 0) 
 		{
-			pc.removeStatusEffect("Stunned");
-			output("You manage to recover your wits and adopt a fighting stance!\n");
+			output("<b>Your recover " + temp + " points of shielding.\n");
+			pc.shields(temp);
+		}
+		if(pc.statusEffectv1("Deflector Regeneration") <= 0)
+		{
+			output("<b>Your shields are no longer regenerating!</b>\n");
+			pc.removeStatusEffect("Deflector Regeneration");
+		}
+	}
+	//ENEMY STATUSES!
+	for(var x:int = 0; x < foes.length; x++)
+	{
+		if(foes[x].hasStatusEffect("Blind"))
+		{
+			foes[x].addStatusValue("Blind",1,-1);
+			if(foes[x].statusEffectv1("Blind") <= 0)
+			{
+				foes[x].removeStatusEffect("Blind");
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are no longer blinded!</b>\n");
+				else output("<b>" + foes[x].capitalA + foes[x].short + " is no longer blinded!</b>\n");
+			}
+			else 
+			{
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are blinded.</b>\n");
+				else output("<b>" + foes[x].capitalA + foes[x].short + " is blinded.</b>\n");
+			}
+			trace("BLIND UPDATE: " + foes[x].short + " PLURAL STATUS: " + foes[x].plural);
+		}
+	}
+}
+function stunRecover(target:Creature):void 
+{
+	if(target.hasStatusEffect("Stunned")) {
+		if(target == pc) clearOutput();
+		target.addStatusValue("Stunned",1,-1);
+		if (target.statusEffectv1("Stunned") <= 0)
+		{
+			target.removeStatusEffect("Stunned");
+			if(target == pc) output("You manage to recover your wits and adopt a fighting stance!\n");
+			else if(!target.plural) output(target.capitalA + target.short + " manages to recover " + target.mfn("his","her","its") + " wits and adopt a fighting stance!");
+			else output(target.capitalA + target.short + " manage to recover their wits and adopt a fighting stance!");
 		}
 		else
-			output("You're still too stunned to act!\n");
+		{
+			if(target == pc) output("You're still too stunned to act!\n");
+			else if(!target.plural) output(target.capitalA + target.short + " is still too stunned to act!");
+			else output(target.capitalA + target.short + " are still too stunned to act!");
+		}
 	}
-	if(pc.hasStatusEffect("Paralyzed")) {
-		clearOutput();
-		if(pc.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!\n");
+	if(target.hasStatusEffect("Paralyzed")) {
+		if(target == pc) clearOutput();
+		if(target.statusEffectv1("Paralyzed") <= 1) output("The venom seems to be weakening, but you can't move yet!\n");
 		else output("You try to move, but just can't manage it!\n");
 	}
 	processCombat();
@@ -149,12 +238,50 @@ function processCombat():void
 	//If enemies still remain, do their AI routine.
 	if(combatStage-1 < foes.length) {
 		output("\n");
-		enemyAI(foes[combatStage-1]);
+		if(foes[combatStage-1].hasStatusEffect("Stunned")) stunRecover(foes[combatStage-1]);
+		else enemyAI(foes[combatStage-1]);
 		return;
+	}
+	if(pc.hasPerk("Attack Drone")) trace("HAS DRONE. COMBAT STAGE: " + combatStage + " FOES.LENGTH: " + foes.length);
+	if(flags["DRONE_TARGET"] != undefined) trace("DRONE_TARGET: " + flags["DRONE_TARGET"]);
+	else trace("DRONE_TARGET: UNDEFINED");
+	//DRONE TIME - only attacks targets if they've been marked!
+	if(combatStage == foes.length+1 && pc.hasPerk("Attack Drone") && flags["DRONE_TARGET"] != undefined)
+	{
+		if(pc.shields() > 0) {
+			output("\n\n");
+			//Clear drone down if got shields healed.
+			if(pc.hasStatusEffect("Drone Down")) {
+				output("Your drone shudders to life, lifting back into the air and circling your target helpfully. ");
+				pc.removeStatusEffect("Drone Down");
+			}
+			droneAttack(foes[flags["DRONE_TARGET"]]);
+			return;
+		}
+		//No shields and drone not down yet? Give notification!
+		else if(!pc.hasStatusEffect("Drone Down")) {
+			output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
+			pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
+		}
 	}
 	combatStage = 0;
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",combatMainMenu);
+}
+
+function staticBurst():void {
+	clearOutput();
+	pc.energy(-50);
+	output("You release a discharge of electricity, momentarily weakening your ");
+	if(foes[0].plural) output("foes'");
+	else output("foe's");
+	output(" grip on you!");
+	if(pc.hasStatusEffect("Naleen Coiled")) {
+		pc.removeStatusEffect();
+		output("\nThe naleen's tail spasms as you easily slip out of its coils.");
+	}
+	output("\n");
+	processCombat();
 }
 
 function allFoesDefeated():Boolean 
@@ -224,6 +351,15 @@ function playerRangedAttack(target:Creature):void
 }
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
+	//Set drone target
+	if(attacker == pc && pc.hasPerk("Attack Drone"))
+	{
+		//Figure out where in the foes array the target is and set drone target to the index.
+		//Clunky as all fuck but it works.
+		for(var i:int = 0; i < foes.length; i++) {
+			if(foes[i] == target) flags["DRONE_TARGET"] = i;
+		}
+	}
 	if(foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
 	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
 	//Run with multiple attacks!
@@ -312,12 +448,23 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 	if(!noProcess) processCombat();
 }
 
+//Special 1: Flurry attack - high miss chance.
+//Special 2: Flurry attack with no new screen display.
 function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void 
 {
 	trace("Ranged shot...");
-	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc) clearOutput();
+	//Set drone target
+	if(attacker == pc && pc.hasPerk("Attack Drone"))
+	{
+		//Figure out where in the foes array the target is and set drone target to the index.
+		//Clunky as all fuck but it works.
+		for(var i:int = 0; i < foes.length; i++) {
+			if(foes[i] == target) flags["DRONE_TARGET"] = i;
+		}
+	}
+	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
 	//Run with multiple attacks!
-	if (attacker.hasPerk("Multiple Shots")) {
+	if (attacker.hasPerk("Multiple Shots") && special != 1 && special != 2) {
 		//Start up
 		if (!attacker.hasStatusEffect("Multiple Shots")) 
 		{
@@ -345,7 +492,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 && rand(100) <= 45 && !target.isImmobilized()) {
+	else if(special == 1 || special == 2 && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
@@ -402,26 +549,53 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	if(!noProcess) processCombat();
 }
 
-function genericDamageApply(damage:int,attacker:Creature, target:Creature):void {
+function droneAttack(target:Creature):void {
+	output("Your drone repeatedly zaps " + target.a + target.short + ".");
+	genericDamageApply(1+pc.level + rand(2 + pc.level/2),pc,target,GLOBAL.ELECTRIC);
+	processCombat();
+}
+
+function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
 	damage *= randomizer;
 	var sDamage:Array = new Array();
 	//Apply damage reductions
-	if (target.shieldsRaw > 0) {
-		sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+	if (target.shieldsRaw > 0) 
+	{
+		//use melee weapon 
+		if(damTypeOverride == -1) sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+		else sDamage = shieldDamage(target,damage,damTypeOverride);
 		//Set damage to leftoverDamage from shieldDamage
 		damage = sDamage[1];
-		if (target.shieldsRaw > 0) 
-			output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+		if (target.shieldsRaw > 0)
+		{
+			if(target == pc) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+			else 
+			{
+				if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>");
+				else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>");
+			}
+		}
 		else 
-			output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+		{
+			if(target == pc) output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+			else 
+			{
+				if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + sDamage[0] + "</b>");
+				else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + sDamage[0] + "</b>");
+			}
+		}
 	}
 	if(damage >= 1) 
 	{
-		damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+		if(damTypeOverride == -1) damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
+		else damage = HPDamage(target,damage,damTypeOverride);
 		if (sDamage[0] > 0) 
-			output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
+		{
+			if(target == pc) output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
+			else output(" The attack continues on to connect with " + foes.a + foes.short + "! (<b>" + damage + "</b>");
+		}
 		else 
 			output(" (<b>" + damage + "</b>)");
 	}
@@ -609,8 +783,21 @@ function showMonsterArousalFlavor(targetFoe):void
 function enemyAI(aggressor:Creature):void 
 {	
 	trace("AI CALL");
+	//Paralyze stops turns! AHHHH!
+	if(aggressor.hasStatusEffect("Paralyzed")) {
+		if(aggressor.plural) output("<b>" + aggressor.capitalA + aggressor.short + " are still paralyzed.</b>");
+		else output("<b>" + aggressor.capitalA + aggressor.short + " is still paralyzed.</b>");
+		aggressor.addStatusValue("Paralyzed",1,-1);
+		if(aggressor.statusEffectv1("Paralyzed") <= 0) {
+			if(aggressor.plural) output(" They shake it off!");
+			else output(" " + aggressor.mfn("He","She","It") + " shakes it off!");
+			aggressor.removeStatusEffect("Paralyzed");
+		}
+		processCombat();
+		return;
+	}
 	//Foe specific AIs
-	switch(foes[0].short) {
+	switch(aggressor.short) {
 		case "Celise":
 			celiseAI();
 			break;
@@ -753,7 +940,8 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	output(formatList() + "!");
 	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.\n");
-	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n")
+	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n");
+	if(pc.level == 1) output("<b>Find a bed to sleep on in order to level up (like on your ship).</b>\n");
 	
 	//Monies!
 	if(creditBuffer > 0) {
@@ -786,6 +974,8 @@ function getCombatPrizes(newScreen:Boolean = false):void
 
 function startCombat(encounter:String):void 
 {
+	//Reset drone target before a fight!
+	flags["DRONE_TARGET"] = undefined;
 	combatStage = 0;
 	hideMinimap();
 	userInterface.resetNPCStats();
@@ -1264,5 +1454,134 @@ function sense(target:Creature):void {
 			output("\n");
 		}
 	}
+	processCombat();
+}
+
+function paralyzingShock(target:Creature):void {
+	clearOutput();
+	if(target.hasStatusEffect("Paralyzed")) {
+		if(target.plural) output(target.capitalA + target.short + " are already paralyzed!");
+		else output(target.capitalA + target.short + " is already paralyzed!");
+		userInterface.clearMenu();
+		userInterface.addButton(0,"Next",combatMainMenu);
+		return;
+	}
+	//Attempt it!
+	output(" You launch a paralyzing shock at " + target.a + target.short + "!");
+	pc.energy(-25);
+	//Success!
+	if(pc.intelligence()/2 + rand(20) + 1 >= target.physique()/2 + 10) {
+		output("\nThe effect is immediate! " + target.capitalA + target.short);
+		if(target.plural) output(" shudder and stop, temporarily paralyzed.");
+		else output(" shudders and stops, temporarily paralyzed.");
+		target.createStatusEffect("Paralyzed",2+rand(2),0,0,0);
+	}
+	else {
+		output(" It doesn't manage to paralyze your target!");
+	}
+	output("\n");
+	processCombat();
+}
+
+function volley(target:Creature):void {
+	pc.energy(-20);
+	//Do normal attacks
+	rangedAttack(pc,target,true);
+	//Do the bonus flurry shot!
+	rangedAttack(pc,target,true,2);
+	//Chance of bliiiiiiiind
+	if(pc.aim()/2 + rand(20) + 1 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind")) {
+		if(target.plural) output("<b>" + target.capitalA + target.short + " are blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
+		else output("<b>" + target.capitalA + target.short + " is blinded by your " + possessive(pc.rangedWeapon.longName) + " flashes.</b>\n");
+		target.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+	}
+	processCombat();
+}
+
+function overcharge(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	//Set drone target
+	if(pc.hasPerk("Attack Drone"))
+	{
+		//Figure out where in the foes array the target is and set drone target to the index.
+		//Clunky as all fuck but it works.
+		for(var i:int = 0; i < foes.length; i++) {
+			if(foes[i] == target) flags["DRONE_TARGET"] = i;
+		}
+	}
+	//Attack missed!
+	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
+	if(rangedCombatMiss(pc,target)) {
+		if(target.customDodge == "") {
+			output("You <b>overcharge your weapon</b> and " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
+			//else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " overcharged " + attacker.rangedWeapon.attackVerb + ".");
+		}
+		else output(target.customDodge)
+	}
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) {
+		output("Your blind, <b>overcharged</b> shot missed.");
+		//else output(attacker.capitalA + possessive(attacker.short) + " blinded, <b>overcharged</b> shot fails to connect!");
+	}
+	//Attack connected!
+	else {
+		output("You <b>overcharge</b> your " + pc.rangedWeapon.longName + " and land a hit on " + target.a + target.short + "!");
+		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
+		//Damage bonuses:
+		var damage:int = pc.rangedWeapon.damage + pc.aim()/2;
+		//OVER CHAAAAAARGE
+		damage *= 1.5;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,pc,target,target.rangedWeapon.damageType);
+	}
+	output("\n");
+	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+		if(target.plural) output("<b>" + target.capitalA + target.short + " are stunned.</b>\n");
+		else output("<b>" + target.capitalA + target.short + " is stunned.</b>\n");
+		target.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+	}
+	processCombat();
+}
+
+function gravidicDisruptor(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("Raising the disruptor, you unleash a targetted gravidic disruption on " + target.a + target.short + "! ");
+	var damage:Number = Math.round(10 + pc.intelligence()/2 + rand(10));
+	genericDamageApply(damage,pc,target,GLOBAL.GRAVITIC);
+	output("\n");
+	processCombat();
+}
+function thermalDisruptor(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("Raising the disruptor, you unleash a wave of burning fire on " + target.a + target.short + "! ");
+	var damage:Number = Math.round(25 + pc.intelligence()/2 + rand(10));
+	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	output("\n");
+	processCombat();
+}
+
+function powerSurge(target:Creature):void {
+	clearOutput();
+	output("You channel a surge of power into your shield generator, instantly restoring a portion of their lost energy.");
+	var amount:int = 8+pc.intelligence()/3 + rand(6);
+	if(amount + pc.shields() > pc.shieldsMax()) amount = pc.shieldsMax() - pc.shields();
+	pc.shields(amount);
+	pc.energy(-33);
+	output(" (" + amount + ")\n");
+	processCombat();
+}
+
+function deflectorRegeneration(target:Creature):void {
+	clearOutput();
+	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
+	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0);
 	processCombat();
 }

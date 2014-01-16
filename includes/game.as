@@ -105,9 +105,14 @@ function rest():void {
 }
 function sleep():void {
 	clearOutput();
+	if(pc.XPRaw >= pc.XPMax() && pc.level <= 5 && pc.characterClass == GLOBAL.ENGINEER) {
+		levelUp();
+		return;
+	}
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
 	}
+
 	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
 	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
@@ -151,7 +156,7 @@ function flyTo(arg:String):void {
 		output("You fly to Tavros");
 	}
 	output(" and step out of your ship.");
-	processTime(30270 + rand(10));
+	processTime(600 + rand(30));
 	this.userInterface.clearMenu();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
@@ -169,6 +174,7 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 }
 
 function statusTick():void {
+	var shitToCut:Array = new Array();
 	for(var x:int = 0; x < this.chars["PC"].statusEffects.length; x++) 
 	{
 		//If times, count dat shit down.
@@ -211,16 +217,18 @@ function statusTick():void {
 					pc.willpowerMod += pc.statusEffects[x].value1;
 					pc.reflexesMod += pc.statusEffects[x].value1;
 				}
+				//Mark out the ones that need cut!
+				shitToCut[shitToCut.length] = x;
 			}
+			
 		}
 	}
-	
-	for (var ii:int = this.chars["PC"].statusEffects.length - 1; ii >= 0; ii--)
+	//Cut the statuses that expired and need cut.
+	while(shitToCut.length > 0)
 	{
-		if (this.chars["PC"].statusEffects[ii].minutesLeft <= 0)
-		{
-			this.chars["PC"].statusEffects.splice(ii, 1);
-		}
+		trace("REMOVING " + chars["PC"].statusEffects.storageName);
+		this.chars["PC"].statusEffects.splice(shitToCut[shitToCut.length-1],1);
+		shitToCut.splice(shitToCut.length-1,1);
 	}
 }
 
@@ -228,7 +236,7 @@ public function processTime(arg:int):void {
 	var x:int = 0;
 	var tightnessChanged:Boolean = false;
 	if(this.chars["PC"].ballFullness < 100) this.chars["PC"].cumProduced(arg);
-	var productionFactor:Number = 100/(1920 * ((this.chars["PC"].libido() * 3 + 100)/100));
+	var productionFactor:Number = 100/(1920) * ((this.chars["PC"].libido() * 3 + 100)/100);
 	
 	//Double time
 	if(this.chars["PC"].hasPerk("Extra Ardor")) productionFactor *= 2;

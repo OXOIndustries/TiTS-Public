@@ -505,7 +505,7 @@ function appearance(target:Creature):void {
 					if(Math.floor(10*target.cocks[0].cThickness)/10 == 1) output2(int(10*target.cocks[0].cThickness)/10 + " inch thick.");
 					else output2(Math.round(10*target.cocks[0].cThickness)/10 + " inches across.");
 				}
-				else output (num2Text(Math.round(10*target.cocks[0].cThickness)/10) + " inches across.");
+				else output2(num2Text(Math.round(10*target.cocks[0].cThickness)/10) + " inches across.");
 				//Horsecock flavor
 				if(target.cocks[0].cType == GLOBAL.EQUINE) output2("  It's mottled black and brown in a very animalistic pattern.  The 'head' of your shaft flares proudly, just like a horse's.");
 				//dog cock flavor

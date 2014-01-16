@@ -129,8 +129,15 @@ function jungleMiddleEncounters():Boolean {
 		
 		//Build possible encounters
 		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+		{
 			choices[choices.length] = naleenNightCuddles;
-		else choices[choices.length] = encounterNaleen;
+			choices[choices.length] = naleenNightCuddles;
+		}
+		else {
+			choices[choices.length] = encounterNaleen;
+			choices[choices.length] = encounterNaleen;
+		}
+		choices[choices.length] = encounterCuntSnakeOnJungleLand;
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
@@ -180,8 +187,15 @@ function jungleDeepEncounters():Boolean {
 		
 		//Build possible encounters
 		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+		{
 			choices[choices.length] = naleenNightCuddles;
-		else choices[choices.length] = encounterNaleen;
+			choices[choices.length] = naleenNightCuddles;
+		}
+		else {
+			choices[choices.length] = encounterNaleen;
+			choices[choices.length] = encounterNaleen;
+			choices[choices.length] = encounterNaleen;
+		}
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;

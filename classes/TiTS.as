@@ -74,7 +74,8 @@
 		include "../includes/naleen.as";
 		include "../includes/venusPitchers.as";
 		include "../includes/syri.as";
-
+		
+		include "../includes/levelUp.as";
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
 			
@@ -152,7 +153,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.01c";
+			version = "0.02";
 
 			//temporary nonsense variables.
 			temp = 0;

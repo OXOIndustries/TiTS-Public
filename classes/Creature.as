@@ -1,4 +1,4 @@
-package classes
+﻿package classes
 {
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -241,6 +241,7 @@ package classes
 			public var cumType:Number = GLOBAL.CUM;
 			public var ballSize:Number = 1;
 			public var ballFullness:Number = 100;
+			//Number of cumshots a day the PC can hold
 			public var ballEfficiency:Number = 3;
 			//Scales from 0 (never produce more) to infinity.
 			public var refractoryRate:Number = 1;
@@ -684,12 +685,14 @@ package classes
 			return HPRaw;
 		}
 		public function HPMax():Number {
-			return 10 + level * 25 + HPMod;
+			var hitPoints:Number = 15 + (level-1) * 15 + HPMod;
+			if(characterClass == GLOBAL.MERCENARY)
+				hitPoints += level * 5;
+			if(characterClass == GLOBAL.ENGINEER)
+				hitPoints -= level * 5;
+			return hitPoints;
 		}
 		public function maxHP():Number {
-			//trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
-			//trace("Because I get fucking dyslexic about function names and coding shit faster = more content for the masses.");
-			// There is a new invention. It's called Ctrl+F?
 			return HPMax();
 		}
 		public function maxOutHP():void {
@@ -861,6 +864,7 @@ package classes
 			temp += meleeWeapon.defense;
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
+			if(hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			return temp;
 		}
 		public function shieldDefense():Number {
@@ -870,10 +874,11 @@ package classes
 			temp += armor.shieldDefense + upperUndergarment.shieldDefense + lowerUndergarment.shieldDefense + accessory.shieldDefense + shield.shieldDefense;
 			return temp;
 		}
-		public function shields():Number {
-			return shieldsRaw;
+		public function shields(arg:Number = 0):Number {
+			shieldsRaw += arg;
 			if(shieldsRaw > shieldsMax()) 
 				shieldsRaw = shieldsMax();
+			if(shieldsRaw < 0) shieldsRaw = 0;
 			return shieldsRaw;
 		}
 		public function shieldsMax():Number {
@@ -881,6 +886,9 @@ package classes
 			temp += meleeWeapon.shields;
 			temp += rangedWeapon.shields;
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
+			if(hasPerk("Shield Tweaks")) temp += level * 2;
+			if(hasPerk("Shield Booster")) temp += level * 4;
+			if(hasPerk("Attack Drone")) temp += level;
 			return temp;
 		}
 		public function sexiness():Number {
@@ -919,7 +927,11 @@ package classes
 			return Math.round(total * 10)/10;
 		}
 		public function getShieldResistance(type:int):Number {
-			var total:Number = 1 - shield.bonusResistances[type];
+			var total:Number = 1;
+			var resist:Number = shield.bonusResistances[type];
+			//Dampeners perk reduces vulnerabilities!
+			if(resist < 0 && hasPerk("Enhanced Dampeners")) resist /= 2;
+			total -= resist;
 			return Math.round(total * 10)/10;
 		}
 		public function hasSkinFlag(arg):Boolean {
@@ -1776,7 +1788,7 @@ package classes
 			newKeyItem.value2 = value2;
 			newKeyItem.value3 = value3;
 			newKeyItem.value4 = value4;
-			newKeyItem.description = description;
+			newKeyItem.tooltip = description;
 			alphabetize(keyItems,newKeyItem);
 			trace("New key item applied to " + short + ": " + keyName);
 		}
@@ -3448,7 +3460,50 @@ package classes
 			var rando:Number = 0;
 			//Determine race type:
 			var race:String = "human";
+			if(ausarScore() >= 2 && race == "human") race = "half-ausar";
+			if(kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
+			if(zilScore() >= 4) race = "zil";
+			if(naleenScore() >= 5 && isNaga()) race = "naleen";
+			else if(isNaga()) race = "naga";
 			return race;
+		}
+		public function ausarScore():int {
+			var counter:int = 0;
+			if(earType == GLOBAL.CANINE) counter++;
+			if(tailType == GLOBAL.CANINE && hasTailFlag(GLOBAL.LONG) && hasTailFlag(GLOBAL.FLUFFY) && hasTailFlag(GLOBAL.FURRED)) counter++;
+			if(faceType == GLOBAL.HUMAN && counter > 0) counter++;
+			if(armType == GLOBAL.CANINE) counter++;
+			return counter;
+		}
+		public function kaithritScore():int {
+			var counter:int = 0;
+			if(earType == GLOBAL.FELINE) counter++;
+			if(tailType == GLOBAL.FELINE && tailCount == 2) counter++;
+			return counter;
+		}
+		public function zilScore():int {
+			var counter:int = 0;
+			if(cockTotal(GLOBAL.BEE) > 0) counter++;
+			if(hasVagina(GLOBAL.BEE)) counter++;
+			if(armType == GLOBAL.BEE) counter++;
+			if(legType == GLOBAL.BEE && legCount == 2) counter++;
+			if(wingType == GLOBAL.SMALLBEE || wingType == GLOBAL.BEE) counter++;
+			if(tailType == GLOBAL.BEE && tailCount > 0) counter++;
+			if(faceType == GLOBAL.HUMAN && counter > 0) counter++;
+			return counter;
+		}
+		public function naleenScore():int {
+			var counter:int = 0;
+			if(isNaga()) counter+=2;
+			if(faceType == GLOBAL.NALEEN_FACE) counter++;
+			if(armType == GLOBAL.FELINE) counter++;
+			if(earType == GLOBAL.FELINE) counter++;
+			if(hasStatusEffect("Genital Slit")) counter++;
+			if(hasVagina(GLOBAL.NAGA)) counter++;
+			if(cockTotal(GLOBAL.NAGA) > 0) counter++;
+			if(skinType == GLOBAL.FUR && counter > 0) counter++;
+			if(armType == GLOBAL.FELINE && counter > 0) counter++;
+			return counter;
 		}
 		public function sackDescript(forceAdjectives:Boolean = false, adjectives:Boolean = true):String {
 			var desc:String = "";			
