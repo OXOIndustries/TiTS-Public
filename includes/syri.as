@@ -464,7 +464,10 @@ function approachSyriIntheMorning():void {
 	*/
 	userInterface.clearMenu();
 	userInterface.addButton(0,"Talk",talkToSyriRouter);
-	if(flags["SYRI_TALK"] != undefined) userInterface.addButton(1,"Sex",syriSexMenu);
+	if(flags["SYRI_TALKS"] != undefined) {
+		if(pc.lust() >= 33) userInterface.addButton(1,"Sex",syriSexMenu);
+		else userInterface.addDisabledButton(1,"Sex");
+	}
 	userInterface.addButton(2,"Appearance",syriAppearance);
 	userInterface.addButton(14,"Leave",leaveMorningSyri);
 }
