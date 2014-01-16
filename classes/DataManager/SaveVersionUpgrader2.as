@@ -113,7 +113,7 @@
 			// Status'
 			if (char.statusEffects.length > 0)
 			{
-				for (var sRow:int = 0; sRow < char.statusEffects.length; sRow)
+				for (var sRow:int = 0; sRow < char.statusEffects.length; sRow++)
 				{
 					char.statusEffects[sRow].classInstance = "classes::StorageClass";
 				}
