@@ -60,10 +60,10 @@
 					kGAMECLASS.userInterface.clearMenu();
 					for(var x:int = 0; x < target.cockTotal(); x++)
 					{
-						kGAMECLASS.output("\n" + x + ": [pc.cock " + x + "]");
-						kGAMECLASS.userInterface.addButton(x,kGAMECLASS.num2Text(x),throbbPCEffects,x);
-						return true;
+						kGAMECLASS.output("\n" + (x+1) + ": [pc.cock " + x + "]");
+						kGAMECLASS.userInterface.addButton(x,kGAMECLASS.num2Text(x+1),throbbPCEffects,x);
 					}
+					return true;
 				}
 				else throbbPCEffects();
 

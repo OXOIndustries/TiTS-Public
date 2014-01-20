@@ -733,6 +733,8 @@ function displayMonsterStatus(targetFoe):void
 	else {
 		if(pc.statusEffectv1("Blind") <= 1) {
 			output("<b>You're fighting " + targetFoe.a + targetFoe.short  + ".</b>\n" + targetFoe.long + "\n");
+			if(targetFoe is Naleen) author("Savin");
+			if(targetFoe is ZilFemale) author("Savin");
 			showMonsterArousalFlavor(targetFoe);
 		}
 		else {

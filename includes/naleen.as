@@ -76,6 +76,7 @@ function encounterNaleen():void {
 //Double Attack
 // two light physical attacks.
 function naleenDoubleAttack():void {
+	author("Savin");
 	output("The naleen surges forward, lunging at you and swinging her razor-sharp claws right at your throat!\n");
 	attack(foes[0],pc,false,0);
 	//{standard dodge/miss messages}
@@ -85,6 +86,7 @@ function naleenDoubleAttack():void {
 //Constrict
 //Grapple, must struggle to escape. Damage over time if fail.
 function naleenConstrict():void {
+	author("Savin");
 	if(!pc.hasStatusEffect("Naleen Coiled"))
 	{
 		output("The naleen lunges at you, but you nimbly dodge the attack. However, before you can blink, you feel leather and fur coursing across your body as the serpentine feline coils around you, squeezing tight!");
@@ -122,6 +124,7 @@ function naleenConstrict():void {
 
 function naleenStruggle():void {
 	clearOutput();
+	author("Savin");
 	if(pc.physique() + rand(20) + 1 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
 		output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
 		pc.removeStatusEffect("Naleen Coiled");
@@ -145,6 +148,7 @@ function naleenStruggle():void {
 //Low chance of use; increases with foe HP drop or if foe is constricted. 
 //REQ'S NO SHIELDS!
 function biteAttack():void {
+	author("Savin");
 	var attacker:Creature = foes[0];
 	output("The naleen girl lunges at you with a predatory grin, jaw opening wide as she closes. You can almost seen the glint of venom on her fangs!");
 	
