@@ -1848,8 +1848,8 @@ function getAssFuckedByPenny():void {
 	
 	output("\n\n<i>“So good...”</i>  Penny whimpers, ");
 	//if PC is tight
-	if(pc.analCapacity() * 1.25 <= penny.cockVolume()) output("<i>“so t-tiiiight...”</i>");
-	else if(pc.analCapacity() * .6 <= penny.cockVolume()) output("<i>“fits just like a glove...”</i>");
+	if(pc.analCapacity() * 1.25 <= penny.cockVolume(0)) output("<i>“so t-tiiiight...”</i>");
+	else if(pc.analCapacity() * .6 <= penny.cockVolume(0)) output("<i>“fits just like a glove...”</i>");
 	//if PC is SUPAH LOOSE:
 	else output("<i>“m-maybe I ought to grow this beast out a little, [pc.name]. I wanna fill this [pc.asshole] of yours someday....”</i>");
 	buttChange(penny.cockVolume(0),true,true,false);

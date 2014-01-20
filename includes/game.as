@@ -124,6 +124,13 @@ function sleep():void {
 function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	this.userInterface.addButton(9,"Fly",flyMenu);
+
+	if(shipLocation == "TAVROS HANGAR") {
+		setLocation("SHIP\nINTERIOR","TAVROS STATION","SYSTEM: KALAS");
+	}
+	else if(shipLocation == "SHIP HANGAR") {
+		setLocation("SHIP\nINTERIOR","MHEN'GA","SYSTEM: ARA ARA");
+	}
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.userInterface.addButton(8,"Crew",crew);
