@@ -1708,7 +1708,8 @@ function pennySexMenu(outputT:Boolean = true):void {
 		this.userInterface.addDisabledButton(1,"OverDeskFuck");
 		this.userInterface.addDisabledButton(2,"Frottage");
 		this.userInterface.addDisabledButton(3,"Pawjob");
-		this.userInterface.addDisabledButton(4,"FaceFuckHer");
+		//this.userInterface.addDisabledButton(4,"FaceFuckHer");
+		this.userInterface.addButton(4,"Catch Anal",getAssFuckedByPenny);
 	}
 	this.userInterface.addButton(5,"EatHerOut",gardeFordWritesPennySmex);
 	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
