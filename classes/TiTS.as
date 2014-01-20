@@ -629,10 +629,39 @@
 			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
 			this.userInterface.addMainMenuButton(1,"Data",dataManager.dataRouter);
 			this.userInterface.addMainMenuButton(2,"Credits",credits);
+			
+			//Ez Moad!
 			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
-			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
-			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
+			if(easy) {
+				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
+			}
+			else {
+				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"	
+			}
 
+			//Fix debug menu button in case game was loaded or some shit!
+			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
+			if(debug) {
+				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
+			}
+			else {
+				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
+			}
+
+			//Silly mode
+			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
+			if(silly) {
+				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
+				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
+			}
+			else {
+				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
+				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
+			}
 			if(debug) this.userInterface.addButton(10,"Debug",debugPane);
 		}
 
