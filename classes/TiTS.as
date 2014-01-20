@@ -63,7 +63,6 @@
 		include "../includes/game.as";
 		include "../includes/masturbation.as";
 		include "../includes/NPCTemplates.as";
-		include "../includes/input.as";
 		include "../includes/burt.as";
 		include "../includes/appearance.as";
 		include "../includes/rooms.as";
@@ -265,6 +264,7 @@
 				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
 				return;
 			}
+			saveHere = false;
 			trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
 			else evt.currentTarget.func(evt.currentTarget.arg);
@@ -493,6 +493,7 @@
 				trace("Undefined button pressed! Something went wrong!");
 				return;
 			}
+			saveHere = false;
 			if(!inCombat()) 
 				this.userInterface.showBust("none");
 			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
