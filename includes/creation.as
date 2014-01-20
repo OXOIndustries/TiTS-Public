@@ -55,7 +55,7 @@ function confirmRaceChoice(race:String = "human"):void {
 		output("As a half-ausar, Victor's child would start with dog-like ears, a canine tail, a red, knotted penis if male. The ausar are known for their close bond with humanity and would be a likely pick for the child's mother.");
 	}
 	else if(race == "kaithrit") {
-		output("The kaihtrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
+		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
 	}
 	output("\n\nIs this the race Victor chooses?")
 	this.userInterface.clearMenu();
@@ -322,7 +322,7 @@ function chooseEyeColor() {
 		this.userInterface.addButton(5,"Yellow",applyeEyeColor,"yellow");
 		this.userInterface.addButton(6,"Orange",applyeEyeColor,"orange");
 		this.userInterface.addButton(7,"Violet",applyeEyeColor,"violet");
-		this.userInterface.addButton(8,"Gold",applyeEyeColor,"copper");
+		this.userInterface.addButton(8,"Copper",applyeEyeColor,"copper");
 	}
 	if(pc.originalRace == "half-ausar") {
 		this.userInterface.addButton(4,"Gold",applyeEyeColor,"gold");
@@ -783,7 +783,7 @@ function tutorialIntro4():void {
 	output("\n\nYou glance down at the Codex and the vial in your hand. What did the old coot plan for you?");
 	output("\n\n<i>“I know you’ve probably been too busy to keep up on the news, with the work I’ve pushed you into, but the fourteenth planet rush ought to be starting about now.”</i> A note appears over the recording, indicating the planet rush started almost two months ago, though most gates have only started going online in the past few weeks. <i>“I have to make sure you’ve grown into a " + pc.mf("man","woman") + " worthy of running the business, " + pc.short + ", so I’m putting you through what I went through, after a fashion. If you want to take over the company, you’re going on the planet rush!”</i>");
 	output("\n\nHuh. Well, you suppose the careers he pushed you towards make a bit more sense in light of that. Your father made his fortune during the thirteenth planet rush, and he obviously intends for you to prove your mettle in the same way.");
-	output("\n\n<i>“Maki should have given you the Codex and immune boosters by now. I’m sure the V.I. inside it has already explained what it can do to you, but to summarize: it’s going to be your best friend. You can use it to stake claims on untapped minerals and resources that the boys back home will run through the legal system. We’ll deliver you a stipend on each usable discovery.”</i>");
+	output("\n\n<i>“Maki should have given you the Codex and immune boosters by now. I’m sure the V.I. inside it has already explained what it can do for you, but to summarize: it’s going to be your best friend. You can use it to stake claims on untapped minerals and resources that the boys back home will run through the legal system. We’ll deliver you a stipend on each usable discovery.”</i>");
 	output("\n\nVictor coughs repeatedly, holding a rag up in front of himself that darkens with what you assume to be flecks of blood in the monochromatic recording. You’d think he could have sprung for a color hologram. His coughs clear up and he continues, <i>“Sorry, health isn’t what it used to be.”</i> He laughs after that, realizing that for you, he’s dead. <i>“Anyhow, the immune boosters. Those micro-scale bots will reproduce in your body and safeguard it from some of the worst the universe can throw at you. They aren’t perfect, and more benign infections might slip through, but they’ll keep you from catching rot lung from a Trinerian. A word of caution: they’ll help you digest things that would normally be impossible for a human, but they’ll splice you to do it. You eat the wrong native foods, and you’ll wind up looking like a native. You might even start to feel like one, mentally. I’m told it’s like forced, convergent evolution.”</i>");
 	output("\n\nYou turn the microsurgeon immune boosters over in your hand, debating whether to use them.");
 	output("\n\n<i>“This recording is set up to repeat until you do it, " + pc.mf("son",pc.short) + ".”</i>");
@@ -834,7 +834,7 @@ function celiseAI():void {
 	//Round 2:
 	else if(pc.statusEffectv1("Round") == 2) {
 		output("The goo-girl appears impervious to everything you can throw at her! Just how did Dad expect you to handle something like this?");
-		output("\n\nCelese leans down to put her palms flat on the ground, her breasts squishing out around the sides of her arms, actually merging partway into her elbows as she begins to crawl toward you, wiggling her suddenly visible rump and hips at you, now revealed by her altered posture. <i>“I’m gonna suck all the yummiest juices out of you!”</i> Her lips plump bigger after the declaration, almost forcefully reminding you how good they would ");
+		output("\n\nCelise leans down to put her palms flat on the ground, her breasts squishing out around the sides of her arms, actually merging partway into her elbows as she begins to crawl toward you, wiggling her suddenly visible rump and hips at you, now revealed by her altered posture. <i>“I’m gonna suck all the yummiest juices out of you!”</i> Her lips plump bigger after the declaration, almost forcefully reminding you how good they would ");
 		if(pc.hasCock()) output("feel around " + pc.oneCock());
 		else if(pc.hasVagina()) output("feel on " + pc.oneVagina());
 		output(".");
