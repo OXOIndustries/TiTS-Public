@@ -1232,44 +1232,49 @@ function tease(target:Creature, part:String = "chest"):void {
 	}
 	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
 
-	//Does the enemy resist?
-	if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustVuln == 0)
+	//Celise ignores ALL THIS SHIT!
+	if(!(target is Celise)) 
 	{
-		if(target.lustVuln == 0) 
+		//Does the enemy resist?
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustVuln == 0)
 		{
-			output("\n<b>" + target.capitalA + target.short + " ");
-			if(target.plural) output("don't");
-			else output("doesn't");
-			output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
+			if(target.lustVuln == 0) 
+			{
+				output("\n<b>" + target.capitalA + target.short + " ");
+				if(target.plural) output("don't");
+				else output("doesn't");
+				output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
+			}
+			else {
+				output("\n" + target.capitalA + target.short + " ");
+				if(target.plural) output("resist");
+				else output("resists");
+				output(" your erotically charged display... this time. (0)\n");
+			}
 		}
+		//Success!
 		else {
-			output("\n" + target.capitalA + target.short + " ");
-			if(target.plural) output("resist");
-			else output("resists");
-			output(" your erotically charged display... this time. (0)\n");
+			//Calc base damage
+			damage += 10 * (teaseCount/100 + 1);
+			//Any perks or shit go below here.
+			//Apply randomization
+			damage *= randomizer;
+			//Apply like adjustments
+			damage *= totalFactor;
+			damage *= target.lustVuln;
+			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
+			damage = Math.ceil(damage);
+			if(damage <= 5) {
+
+			}
+
+			output("\n");
+			output(teaseReactions(damage,target));
+			target.lust(damage);
+			output(" ("+ damage + ")\n");
 		}
 	}
-	//Success!
-	else {
-		//Calc base damage
-		damage += 10 * (teaseCount/100 + 1);
-		//Any perks or shit go below here.
-		//Apply randomization
-		damage *= randomizer;
-		//Apply like adjustments
-		damage *= totalFactor;
-		damage *= target.lustVuln;
-		if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-		damage = Math.ceil(damage);
-		if(damage <= 5) {
-
-		}
-
-		output("\n");
-		output(teaseReactions(damage,target));
-		target.lust(damage);
-		output(" ("+ damage + ")\n");
-	}
+	else output("\n");
 	processCombat();
 }
 
