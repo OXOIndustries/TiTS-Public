@@ -50,7 +50,7 @@
 			this.XPRaw = 20;
 			this.level = 1;
 			this.credits = 0;
-			this.HPMod = -5;
+			this.HPMod = 4;
 			this.HPRaw = this.HPMax();
 
 

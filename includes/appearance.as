@@ -399,10 +399,10 @@ function appearance(target:Creature):void {
 			//Normal nips
 			if(target.breastRows[0].nippleType == GLOBAL.DICK || target.breastRows[0].nippleType == GLOBAL.NORMAL) { 
 				//One nipple
-				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
-				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
+				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
+				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
 				if(target.breastRows[0].nippleType == GLOBAL.DICK) {
-					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
+					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 				}		
 			}
 			//Inverted type
@@ -444,17 +444,17 @@ function appearance(target:Creature):void {
 				if(target.breastRows[temp].nippleType == GLOBAL.DICK || target.breastRows[temp].nippleType == GLOBAL.NORMAL) { 
 					//One nipple
 					if(target.nipplesPerBreast == 1) {
-						output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
+						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
 						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
 						else output2("each.");
 					}
 					else {
-						output2(num2Text(target.nipplesPerBreast) + " " + int(target.breastRows[0].nippleLength*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
+						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
 						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
 						else output2("each.");
 					}
 					if(target.breastRows[0].nippleType == GLOBAL.DICK) {
-						output2(" You can make " + num2Text(Math.round(target.breastRows[0].nippleLength * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
+						output2(" You can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 					}		
 				}
 				//Inverted type
@@ -484,8 +484,6 @@ function appearance(target:Creature):void {
 			}
 			//Done with tits.  Move on.
 		}
-		
-		
 		//CROTCH STUFF!
 		if(target.hasCock() || target.hasVagina()) {
 			output2("\n\n");
@@ -502,11 +500,11 @@ function appearance(target:Creature):void {
 			//SINGLE DICKS!
 			if(target.cockTotal() == 1) {
 				output2("Your " + pc.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength)/10 + " inches long and ");
-				if(Math.floor(10*target.cocks[0].cThickness)/10 < 2) {
-					if(Math.floor(10*target.cocks[0].cThickness)/10 == 1) output2(int(10*target.cocks[0].cThickness)/10 + " inch thick.");
-					else output2(Math.round(10*target.cocks[0].cThickness)/10 + " inches across.");
+				if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
+					if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
+					else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
 				}
-				else output2(num2Text(Math.round(10*target.cocks[0].cThickness)/10) + " inches across.");
+				else output2(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");
 				//Horsecock flavor
 				if(target.cocks[0].cType == GLOBAL.EQUINE) output2("  It's mottled black and brown in a very animalistic pattern.  The 'head' of your shaft flares proudly, just like a horse's.");
 				//dog cock flavor
@@ -515,7 +513,7 @@ function appearance(target:Creature):void {
 					if(target.cocks[0].knotMultiplier >= 1.4 && target.cocks[0].knotMultiplier < 1.8) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(0) + ", to ensure it stays where it belongs during mating.");
 					if(target.cocks[0].knotMultiplier >= 1.8) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(0) + " looks almost too big for your cock.");
 					//List thickness
-					output2("  The knot is " + Math.round(target.cocks[0].cThickness * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
+					output2("  The knot is " + Math.round(target.cocks[0].thickness() * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
 				}
 				//Demon cock flavor
 				else if(target.cocks[0].cType == GLOBAL.DEMONIC) {
@@ -568,27 +566,27 @@ function appearance(target:Creature):void {
 						output2(target.cockDescript(temp));
 						output2(" is ");
 						output2(int(10*target.cocks[temp].cLength)/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].cThickness * 10)/10) + " inches wide.");
+						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
 						else {
-							if(target.cocks[temp].cThickness == 1) output2("one inch wide.");
-							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches wide.");
+							if(target.cocks[temp].thickness() == 1) output2("one inch wide.");
+							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches wide.");
 						}
 					}
 					if(rando == 1) {
 						output2("\nYour ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].cThickness * 10)/10) + " inches thick.");
+						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
-							if(target.cocks[temp].cThickness == 1) output2("one inch thick.");
-							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches thick.");
+							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
+							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
 						}
 					}
 					if(rando == 2) {
 						output2("\nThis ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].cThickness * 10)/10) + " inches thick.");
+						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
-							if(target.cocks[temp].cThickness == 1) output2("one inch thick.");
+							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
 							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches thick.");
 						}
 					}
@@ -596,7 +594,7 @@ function appearance(target:Creature):void {
 						if(temp > 0) output2("\nYour next ");
 						else output2("\nYour first ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].cThickness * 10)/10) + " inches in diameter.");
+						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
 						else {
 							if(Math.round(target.cocks[temp].cThickness*10)/10 == 1) output2("one inch in diameter.");
 							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches in diameter.");
@@ -610,7 +608,7 @@ function appearance(target:Creature):void {
 						if(target.cocks[temp].knotMultiplier >= 1.4 && target.cocks[temp].knotMultiplier < 1.8) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(temp) + ", to ensure it stays where it belongs during mating.");
 						if(target.cocks[temp].knotMultiplier >= 1.8) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(temp) + " looks almost too big for your cock.");
 						//List thickness
-						output2("  The knot is " + Math.round(target.cocks[temp].cThickness * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
+						output2("  The knot is " + Math.round(target.cocks[temp].thickness() * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
 					}
 					//Demon cock flavor
 					else if(target.cocks[temp].cType == GLOBAL.DEMONIC) {

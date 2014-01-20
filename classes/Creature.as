@@ -259,6 +259,8 @@
 		public var breastRows:Array;
 			public var nippleColor:String = "pink";
 			public var nipplesPerBreast:int = 1;
+			public var nippleLengthRatio:int = 1;
+			public var nippleWidthRatio:int = 1;
 			public var dickNippleMultiplier:int = 3;
 			public var dickNippleType:int = 0;
 			public var milkMultiplier:Number = 0;
@@ -2486,7 +2488,7 @@
 			var index:Number = 0;
 			while(counter > 0) {
 				counter--;
-				if(cocks[index].cThickness < cocks[counter].cThickness) index = counter;
+				if(cocks[index].thickness() < cocks[counter].thickness()) index = counter;
 			}
 			return index;
 		}
@@ -2499,15 +2501,15 @@
 			}
 			return counter;
 		}
-		public function thickestcThickness():Number {
+		public function thickestCockThickness():Number {
 			if(cocks.length == 0) return 0;
 			var counter:Number = cocks.length;
 			var index:Number = 0;
 			while(counter > 0) {
 				counter--;
-				if(cocks[index].cThickness < cocks[counter].cThickness) index = counter;
+				if(cocks[index].thickness() < cocks[counter].thickness()) index = counter;
 			}
-			return cocks[index].cThickness;
+			return cocks[index].thickness();
 		}
 		public function thinnestCockIndex():Number {
 			if(cocks.length == 0) return 0;
@@ -2515,7 +2517,7 @@
 			var index:Number = 0;
 			while(counter > 0) {
 				counter--;
-				if(cocks[index].cThickness > cocks[counter].cThickness) index = counter;
+				if(cocks[index].thickness() > cocks[counter].thickness()) index = counter;
 			}
 			return index;
 		}
@@ -3392,7 +3394,7 @@
 			if(cocks.length >= 10) return false;
 			var newCock = new CockClass();
 			cocks.push(newCock);
-			cocks[cocks.length-1].cThickness = cthickness;
+			cocks[cocks.length-1].cThicknessRatio = cthickness;
 			cocks[cocks.length-1].cLength = clength;
 			return true;
 		}
@@ -4146,7 +4148,7 @@
 			//Size descriptors 25% chance
 			if(this.rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED) {
 				//TINAHHHH
-				if(breastRows[rowNum].nippleLength < .25) {
+				if(nippleLength(rowNum) < .25) {
 					rando = this.rand(3);
 					if(rando == 0) description += "tiny";
 					if(rando == 1) description += "itty-bitty";
@@ -4154,7 +4156,7 @@
 					if(rando == 3) description += "dainty";
 				}
 				//Prominant
-				else if(breastRows[rowNum].nippleLength < 1) {
+				else if(nippleLength(rowNum) < 1) {
 					rando = this.rand(5);
 					if(rando == 0) description += "prominent";
 					if(rando == 1) description += "pencil eraser-sized";
@@ -4163,7 +4165,7 @@
 					if(rando == 4) description += "striking";
 				}
 				//Big 'uns
-				else if(breastRows[rowNum].nippleLength < 2) {
+				else if(nippleLength(rowNum) < 2) {
 					rando = this.rand(4);
 					if(rando == 0) description += "forwards-jutting";
 					if(rando == 1) description += "over-sized";
@@ -4171,7 +4173,7 @@
 					if(rando == 3) description += "large protruding";
 				}
 				//'Uge
-				else if(breastRows[rowNum].nippleLength < 3.2) {
+				else if(nippleLength(rowNum) < 3.2) {
 					rando = this.rand(5);
 					if(rando == 0) description += "elongated";
 					if(rando == 1) description += "massive";
@@ -4354,11 +4356,11 @@
 				if(descripted > 0) description += " ";
 				if(rando <= 1) description += "nipple";
 				if(rando == 2) {
-					if(isLactating() && breastRows[rowNum].nippleLength >= 1) description += "teat";
+					if(isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
 				if(rando == 3) {
-					if(isLactating() && breastRows[rowNum].nippleLength >= 1) description += "teat";
+					if(isLactating() && nippleLength(rowNum) >= 1) description += "teat";
 					else description += "nipple";
 				}
 				if(rando == 4) description += "bud";
@@ -5699,39 +5701,39 @@
 			}
 			//Girth - fallback
 			else {
-				if(cocks[cockNum].cThickness <= .99) {
+				if(cocks[cockNum].thickness() <= .99) {
 					rando = this.rand(3);
 					if(rando == 0) descript += "thin";
 					else if(rando == 1) descript += "slender";
 					else descript += "narrow";
 				}
-				else if(cocks[cockNum].cThickness <= 1.2) {
+				else if(cocks[cockNum].thickness() <= 1.2) {
 					rando = this.rand(3);
 					if(rando == 0) descript += "ordinary";
 					else if(rando == 1) descript += "fleshy";
 					else descript += "substantial";
 				}
-				else if(cocks[cockNum].cThickness <= 1.6) {
+				else if(cocks[cockNum].thickness() <= 1.6) {
 					rando = this.rand(3);
 					if(rando == 0) descript += "ample";
 					else if(rando == 1) descript += "meaty";
 					else descript += "generously-proportioned";
 				}
-				else if(cocks[cockNum].cThickness <= 2) {
+				else if(cocks[cockNum].thickness() <= 2) {
 					rando = this.rand(4);
 					if(rando == 0) descript += "broad";
 					else if(rando == 1) descript += "girthy";
 					else if(rando == 2) descript += "expansive";
 					else descript += "thick";
 				}
-				else if(cocks[cockNum].cThickness <= 3.5) {
+				else if(cocks[cockNum].thickness() <= 3.5) {
 					rando = this.rand(4);
 					if(rando == 0) descript += "fat";
 					else if(rando == 1) descript += "wide";
 					else if(rando == 2) descript += "voluminous";
 					else descript += "distended";
 				}
-				else if(cocks[cockNum].cThickness > 3.5) {
+				else if(cocks[cockNum].thickness() > 3.5) {
 					rando = this.rand(4);
 					if(rando == 0) descript += "inhumanly distended";
 					else if(rando == 1) descript += "bloated";
@@ -5947,11 +5949,16 @@
 			}
 			return descript;
 		}
+		public function nippleLength(row:int = 0):Number {
+			if(row >= bRows()) return 0;
+			else if(row < 0) return 0;
+			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating)/10)
+		}
 		//New cock adjectives.  The old one sucked dicks
 		public function nippleCockAdjective(plural:Boolean = false) {
 			var descript:String = "";
 			var rando:Number = 0;
-			var l:Number = breastRows[0].nippleLength * dickNippleMultiplier;
+			var l:Number = nippleLength(0) * dickNippleMultiplier;
 			var w:Number;
 			if(l <= 10) w = l / 6;
 			else if(l <= 30) w = (l-10)/10 + 10/6;

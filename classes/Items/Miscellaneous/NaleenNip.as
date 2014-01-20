@@ -293,7 +293,7 @@
 				kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It's then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
 				target.createCock();
 				target.cocks[1].cLength = target.cocks[0].cLength;
-				target.cocks[1].cThickness = target.cocks[0].cThickness;
+				target.cocks[1].cThicknessRatio = target.cocks[0].cThicknessRatio;
 				target.cocks[1].knotMultiplier = target.cocks[0].knotMultiplier;
 				target.shiftCock(1,GLOBAL.NAGA);
 				target.lust(5);
@@ -383,10 +383,7 @@
 					kGAMECLASS.output(" It stops as soon as it starts, but a few moments later, your penis shudders once more, looking a little bigger than before. The odd, expanding sensation returns one last time, making you big enough to be a full inch bigger when hard. Perhaps being more like a planet's apex predator isn't such a bad idea.");
 				}
 				target.cocks[x].cLength += 1;
-				if(target.cocks[x].cThickness < target.cocks[x].cLength * .18) {
-					kGAMECLASS.output(" You're thicker too....");
-					target.cocks[x].cThickness = target.cocks[x].cLength * .18;
-				}
+				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}
 			//10" to 16" growth - slitted naleen cocks only
@@ -394,10 +391,7 @@
 				var x:int = target.shortestCockIndex();
 				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can't help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn't emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
 				target.cocks[x].cLength += 1 + rand(3);
-				if(target.cocks[x].cThickness < target.cocks[x].cLength * .18) {
-					kGAMECLASS.output(" You're thicker too....");
-					target.cocks[x].cThickness = target.cocks[x].cLength * .18;
-				}
+				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}
 			//Reduce breasts to flat if uncunted.

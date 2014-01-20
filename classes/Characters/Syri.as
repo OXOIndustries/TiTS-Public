@@ -121,7 +121,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cThickness = 1.5;
+			this.cocks[0].cThicknessRatio = 1.5;
 			this.cocks[0].cLength = 8;
 			this.cocks[0].addFlag(GLOBAL.TAPERED);
 			this.cocks[0].addFlag(GLOBAL.KNOTTED);

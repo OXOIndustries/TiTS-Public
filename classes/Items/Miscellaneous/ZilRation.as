@@ -443,12 +443,7 @@
 				else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 				else kGAMECLASS.output(" Gradually, you lose about an inch.");
 				target.cocks[x].cLength -= y;
-				if(target.cocks[x].cLength * .30 > target.cocks[x].cThickness)
-				{
-					kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
-					target.cocks[x].cThickness = target.cocks[x].cLength * .30 > target.cocks[x].cThickness;
-				}
-				else kGAMECLASS.output(" Amazingly, your thickness remains unchanged, leaving you proportionally girthier than ever before.");
+				kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
 				changes++;
 			}
 			//Girth booster!
@@ -471,7 +466,7 @@
 				else if(target.cockTotal() == 2) kGAMECLASS.output("out from next to its less excited brother");
 				else kGAMECLASS.output("out from next to its less excited brethren");
 				kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you're holding a full-sized rager, but it doesn't stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
-				target.cocks[x].cThickness += .25;
+				target.cocks[x].cThicknessRatio += .1;
 				changes++;
 			}
 			//Ball shrinkage

@@ -417,11 +417,7 @@ function chooseYourJunkSize():void {
 
 function applyJunkSize(arg:int = 0):void {
 	pc.cocks[0].cLength = arg;
-	if(arg <= 4) pc.cocks[0].cThickness = .75;
-	if(arg <= 5) pc.cocks[0].cThickness = .85;
-	if(arg <= 6) pc.cocks[0].cThickness = 1;
-	if(arg <= 7) pc.cocks[0].cThickness = 1.1;
-	if(arg <= 8) pc.cocks[0].cThickness = 1.25;
+	pc.cocks[0].cThicknessRatio = 1;
 	if (pc.originalRace ==  "half-kaithrit") {
 		pc.createStatusEffect("Uniball",0,0,0,0);
 		pc.ballSize = .75;
@@ -534,8 +530,7 @@ function applySexualGift(arg:String = "none"):void {
 		pc.createPerk("Hung",0,0,0,0,"Increases the size of your penis and how fast it grows.");
 		if(pc.hasCock()) {
 			pc.cocks[0].cLength += 1+rand(3);
-			if(pc.cocks[0].cThickness < 1) pc.cocks[0].cThickness = 1;
-			if(pc.cocks[0].cLength >= 7 && pc.cocks[0].cThickness <= 1) pc.cocks[0].cThickness += (rand(3) + 3)/10;
+			if(pc.cocks[0].cThicknessRatio < 1.1) pc.cocks[0].cThicknessRatio = 1.1;
 		}
 	}
 	else if(arg == "mini") {

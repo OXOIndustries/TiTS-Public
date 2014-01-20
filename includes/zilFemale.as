@@ -1480,7 +1480,7 @@ function smotherDatBeeSlutInDickYo():void {
 	output(" her supine form. You change position to press your [pc.cockBiggest] even more firmly against her, hard enough to push her arms back, dropping your penis right on top of her. The zil woman's body feels wonderful against you, even the way her cushy breasts press their nectar-leaking nipples against the underside. Just above her face, your [pc.cockHeadBiggest] swells up, drooling a trickle of pre-cum in excitement.");
 	output("\n\nA pleased-sounding gasp emanates from underneath you. <i>“Leaking already? Then what if I do this!”</i>  She wraps her arms around your girthy tool, just below the [pc.cockHeadBiggest], and her chitinous legs near the [pc.sheathBiggest], the insectile plating sliding across you like oiled silk as she settles in, squeezing a bit tighter. In the process, she winds up pressing the whole of her breasts, torso, and waspy hips against your dick's bottom.");
 	output("\n\nYou groan appreciatively and, shuddering powerfully, grab her by her ");
-	if(pc.cocks[pc.biggestCockIndex()].cThickness <= 18) output("crossed ankles");
+	if(pc.cocks[pc.biggestCockIndex()].thickness() <= 18) output("crossed ankles");
 	else output("shaft-split ankes");
 	output(". Head flaring, you draw back, popping your sensitive tip through her arms and gliding through her thighs, drooling a layer of pre across her body as you go. Before the phallus-obsessed alien can react, you thrust forward, jamming your dick back through her arms, fucking the whole of her body with that long, powerful stroke. Her nipples gush rivers of honey from the friction, turning her body into a sticky mess of sex-juice and sweets, one you are all to happy to slide across, fucking it with firm, strong movements.");
 	

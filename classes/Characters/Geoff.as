@@ -135,7 +135,7 @@
 			this.cocks = new Array();
 			this.createCock();
 			this.cocks[0].cLength = 6;
-			this.cocks[0].cThickness = 1.75;
+			this.cocks[0].cThicknessRatio = 1.4;
 			//balls
 			this.balls = 2;
 			this.cumMultiplier = 3;

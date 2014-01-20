@@ -1530,7 +1530,7 @@ function pennyToBigPenny():void {
 	penny.cumMultiplier += 2;
 	penny.ballEfficiency += 3;
 	penny.cocks[0].cLength = 11.5;
-	penny.cocks[0].cThickness = 2.5;
+	penny.cocks[0].cThicknessRatio = 1.1;
 	if(penny.cocks[0].knotMultiplier < 1.5) penny.cocks[0].knotMultiplier = 1.5;
 	penny.orgasm();
 	flags["PENNY_THROBB_USES"] = 2;
@@ -1573,7 +1573,7 @@ function pennyBecomesHYPERPENNY():void {
 	output("\n\nYou chuckle and point out that she’s got quite a bit of cleaning to do before she can even do that.");
 	output("\n\n<i>“You’re right...”</i>  Penny drawls with a lazy stroke of her sperm-soaked phallus. <i>“I’ll get this cleaned right up, and then I can take care of myself in the shower!”</i>  Her cock pulsates powerfully along with that last statement, giving you a clear picture of exactly what she plans to do in the shower.");
 	penny.cocks[0].cLength = 18;
-	penny.cocks[0].cThickness = 3.5;
+	penny.cocks[0].cThicknessRatio = 1.2;
 	if(penny.cocks[0].knotMultiplier < 2) penny.cocks[0].knotMultiplier = 2;
 	penny.cumMultiplier += 5;
 	penny.ballEfficiency += 3;

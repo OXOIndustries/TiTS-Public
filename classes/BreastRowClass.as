@@ -13,8 +13,6 @@
 		
 		//VARS AHOOOYYY
 		public var breasts:Number = 2;
-		public var nippleLength:Number = .25;
-		public var nippleWidth:Number = .75;
 		
 		public var nippleType:Number = 0;
 		public var breastRating:Number = 0;

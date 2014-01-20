@@ -156,9 +156,6 @@
 					temp = Math.round(10 + rand(30))/10;
 					pc.cocks[arg].cLength += temp;
 				}
-				//Adjust thickness temporarily.
-				if(pc.cocks[arg].cLength / 6 > pc.cocks[arg].cThickness) pc.cocks[arg].cThickness = pc.cocks[arg].cLength/6;
-				trace("NEW THICKNESS: " + pc.cocks[arg].cThickness);
 				changes++;
 			}
 			//Grow balls from nothing!
