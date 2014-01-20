@@ -201,7 +201,7 @@ function confirmLevelPointAllocation():void
 			pc.createPerk("Armor Tweaks",0,0,0,0,"Armor defense is increased by 20%!");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Power Surge -</b> this ability allows you to restore a moderate amount of shielding by spending 33 energy.");
-			output("\n<b>* Deflector Regeneration -</b> this ability allows you to restore a moderate amount of shielding over for turns in exchange for 20 energy.");
+			output("\n<b>* Deflector Regeneration -</b> this ability allows you to restore a moderate amount of shielding over four turns in exchange for 20 energy.");
 			userInterface.clearMenu();
 			userInterface.addButton(0,"P. Surge",engineerPerk,"Power Surge");
 			userInterface.addButton(1,"D. Regen.",engineerPerk,"Deflector Regeneration");
