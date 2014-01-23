@@ -28,7 +28,7 @@
 			this.attackVerb = "shoot";
 			
 			//Information
-			this.basePrice = 150;
+			this.basePrice = 1050;
 			this.attack = 2;
 			this.damage = 4;
 			this.damageType = GLOBAL.LASER;

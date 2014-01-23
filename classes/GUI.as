@@ -802,6 +802,10 @@
 			buttonData[slot].caption.text = cap;
 			menuPageChecker();
 		}
+		public function hasButton(slot:int):Boolean {
+			if(buttons[slot].alpha > 0) return true;
+			return false;
+		}
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{

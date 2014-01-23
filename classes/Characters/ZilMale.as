@@ -156,8 +156,9 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15
-			
 			this.inventory.push(new ZilRation());
+
+			this.createStatusEffect("Disarm Immune");
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void

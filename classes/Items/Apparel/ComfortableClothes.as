@@ -33,7 +33,7 @@ package classes.Items.Apparel
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 200;
+			this.basePrice = 90;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;

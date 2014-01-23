@@ -4,6 +4,8 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.ComfortableClothes;
 	import classes.Items.Guns.*
+	import classes.Items.Melee.*
+	import classes.Items.Apparel.*
 	import classes.Items.Melee.Fists;
 	
 	public class Geoff extends Creature
@@ -13,7 +15,7 @@
 		//constructor
 		public function Geoff()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -47,9 +49,16 @@
 			this.level = 1;
 			this.credits = 1000;
 			
+			this.inventory.push(new Knife());
 			this.inventory.push(new HoldOutPistol());
 			this.inventory.push(new EagleHandgun());
 			this.inventory.push(new ScopedPistol());
+			this.inventory.push(new ComfortableClothes());
+			this.inventory.push(new PlainUndershirt());
+			this.inventory.push(new PlainBra());
+			this.inventory.push(new PlainPanties());
+			this.inventory.push(new PlainBriefs());
+
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;

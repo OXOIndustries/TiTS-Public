@@ -156,7 +156,9 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 0;
+			
 			this.createPerk("Ranged Immune",0,0,0,0);
+			this.createStatusEffect("Disarm Immune");
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void

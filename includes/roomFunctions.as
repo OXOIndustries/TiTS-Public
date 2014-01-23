@@ -179,6 +179,28 @@ function jungleDeepEncounters():Boolean {
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
 	
+	//in this room and da chick awake.
+	if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
+		elderVenusPitcherEncounter();
+		flags["JUNGLE_STEP"] = 0;
+		flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
+		return true;
+	}
+	//in this room and da chick awake.
+	if(currentLocation == "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] == undefined) {
+		elderVenusPitcherEncounter();
+		flags["JUNGLE_STEP"] = 0;
+		flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
+		return true;
+	}
+	//in this room and da chick awake.
+	if(currentLocation == "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] == undefined) {
+		elderVenusPitcherEncounter();
+		flags["JUNGLE_STEP"] = 0;
+		flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
+		return true;
+	}
+
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if(flags["JUNGLE_STEP"] >= 5 && rand(2) == 0) {
@@ -199,7 +221,6 @@ function jungleDeepEncounters():Boolean {
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
-		choices[choices.length] = elderVenusPitcherEncounter;
 		
 		//Run the event
 		choices[rand(choices.length)]();

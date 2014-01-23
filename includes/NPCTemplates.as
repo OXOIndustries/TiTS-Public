@@ -17,6 +17,20 @@
 		chars["GEOFF"] = new classes.Characters.Geoff();
 	
 	}
+	//GEOFF UPGRADE HAX
+	if(chars["GEOFF"].version == 2) {
+		chars["GEOFF"].inventory = new Array();
+		chars["GEOFF"].inventory.push(new classes.Items.Melee.Knife());
+		chars["GEOFF"].inventory.push(new classes.Items.Guns.HoldOutPistol());
+		chars["GEOFF"].inventory.push(new classes.Items.Guns.EagleHandgun());
+		chars["GEOFF"].inventory.push(new classes.Items.Guns.ScopedPistol());
+		chars["GEOFF"].inventory.push(new classes.Items.Apparel.ComfortableClothes());
+		chars["GEOFF"].inventory.push(new classes.Items.Apparel.PlainUndershirt());
+		chars["GEOFF"].inventory.push(new classes.Items.Apparel.PlainBra());
+		chars["GEOFF"].inventory.push(new classes.Items.Apparel.PlainPanties());
+		chars["GEOFF"].inventory.push(new classes.Items.Apparel.PlainBriefs());
+		chars["GEOFF"].version = 3;
+	}
 	if (!justUpdate || (justUpdate && chars["FLAHNE"] == undefined))
 	{
 		chars["FLAHNE"] = new classes.Characters.Flahne();

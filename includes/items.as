@@ -166,10 +166,60 @@ function inventory():void {
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
 	output("What item would you like to use?");
 	this.userInterface.clearMenu();
-	for(var x:int = 0; x < pc.inventory.length; x++) {
-		if(pc.inventory[x].quantity > 0) {
-			if(x <= 13) this.userInterface.addButton(x,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
-			if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
+	var adjustment:int = 0;
+	for(var x:int = 0; x < pc.inventory.length || x < 14; x++) {
+		//5 = bra
+		if(x+adjustment == 5) {
+			if(pc.upperUndergarment.shortName != "") {
+				this.userInterface.addButton(x+adjustment,"UndertopOff",unequip,"bra");
+			}
+			else this.userInterface.addDisabledButton(x+adjustment,"UndertopOff");
+			adjustment++;
+		}
+		//6 = shield
+		if(x+adjustment == 6)
+		{
+			if(pc.shield.shortName != "") this.userInterface.addButton(x+adjustment,"Shield Off",unequip,"shield");
+			else this.userInterface.addDisabledButton(x+adjustment,"Shield Off");
+			adjustment++;
+		}
+		//7 = panties
+		if(x+adjustment == 7)
+		{
+			if(pc.lowerUndergarment.shortName != "") this.userInterface.addButton(x+adjustment,"UnderwearOff",unequip,"underwear");
+			else this.userInterface.addDisabledButton(x+adjustment,"UnderwearOff");
+			adjustment++;
+		}
+		//10 = melee
+		if(x+adjustment == 10) {
+			if(pc.meleeWeapon.shortName != "Rock") this.userInterface.addButton(x+adjustment,"Melee Off",unequip,"mWeapon");
+			else this.userInterface.addDisabledButton(x+adjustment,"Melee Off");
+			adjustment++;
+		}
+		//11 = armor
+		if(x+adjustment == 11) {
+			if(pc.armor.shortName != "") this.userInterface.addButton(x+adjustment,"Armor Off",unequip,"armor");
+			else this.userInterface.addDisabledButton(x+adjustment,"Armor Off");
+			adjustment++;
+		}
+		//12 = ranged
+		if(x+adjustment == 12) {
+			if(pc.rangedWeapon.shortName != "Rock") this.userInterface.addButton(x+adjustment,"Ranged Off",unequip,"rWeapon");
+			else this.userInterface.addDisabledButton(x+adjustment,"Ranged Off");
+			adjustment++;
+		}
+		//13 = accessory!
+		if(x+adjustment == 13) {
+			if(pc.accessory.shortName != "") this.userInterface.addButton(x+adjustment,"Acc. Off",unequip,"accessory");
+			else this.userInterface.addDisabledButton(x+adjustment,"Acc. Off");
+			adjustment++;
+		}
+		//normal inventory
+		if(x < pc.inventory.length) {
+			if(pc.inventory[x].quantity > 0) {
+				this.userInterface.addButton(x+adjustment,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
+			}
 		}
 	}
 	var button:int = -1;
@@ -180,34 +230,13 @@ function inventory():void {
 	}
 	button++;
 	
-	if(pc.meleeWeapon.shortName != "Rock") {
-		this.userInterface.addButton(button,"Melee Off",unequip,"mWeapon");
-		button++;
-	}
-	if(pc.rangedWeapon.shortName != "Rock") {
-		this.userInterface.addButton(button,"Ranged Off",unequip,"rWeapon");
-		button++;
-	}
-	if(pc.armor.shortName != "") {
-		this.userInterface.addButton(button,"Armor Off",unequip,"armor");
-		button++;
-	}
-	if(pc.shield.shortName != "") {
-		this.userInterface.addButton(button,"Shield Off",unequip,"shield");
-		button++;
-	}
-	if(pc.accessory.shortName != "") {
-		this.userInterface.addButton(button,"Acc. Off",unequip,"accessory");
-		button++;
-	}
-	if(pc.lowerUndergarment.shortName != "") {
-		this.userInterface.addButton(button,"UnderwearOff",unequip,"underwear");
-		button++;
-	}
-	if(pc.upperUndergarment.shortName != "") {
-		this.userInterface.addButton(button,"UndertopOff",unequip,"bra");
-		button++;
-	}
+	
+	
+	
+	
+	
+	
+	
 	//Set user and target.
 	itemUser = pc;
 	this.userInterface.addButton(14,"Back",mainGameMenu);

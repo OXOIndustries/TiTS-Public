@@ -50,8 +50,6 @@
 			this.credits = 0;
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
-			
-			this.createPerk("Multiple Attacks",0,0,0,0,"");
 
 			this.femininity = 85;
 			this.eyeType = GLOBAL.FELINE;
@@ -167,6 +165,9 @@
 			this.ass.looseness = 3;
 			this.ass.bonusCapacity = 1000;
 			
+			this.createPerk("Multiple Attacks",0,0,0,0,"");
+			this.createStatusEffect("Disarm Immune");
+
 			this.inventory.push(new NaleenNip());
 		}
 		

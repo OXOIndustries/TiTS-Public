@@ -125,16 +125,22 @@ function naleenConstrict():void {
 function naleenStruggle():void {
 	clearOutput();
 	author("Savin");
-	if(pc.physique() + rand(20) + 1 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
-		output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
-		pc.removeStatusEffect("Naleen Coiled");
+	if(pc.hasPerk("Escape Artist"))
+	{
+		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
+			output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+			pc.removeStatusEffect("Naleen Coiled");
+		}
 	}
-	else if(pc.reflexes() + rand(20) + 1 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
-		output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
-		pc.removeStatusEffect("Naleen Coiled");
+	else 
+	{
+		if(pc.physique() + rand(20) + 1 + pc.statusEffectv1("Naleen Coiled") * 5 > 24) {
+			output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+			pc.removeStatusEffect("Naleen Coiled");
+		}
 	}
 	//Fail to escape: 
-	else
+	if(pc.hasStatusEffect("Naleen Coiled"))
 	{
 		output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. She grins down at you with a feral look in her eyes...");
 		pc.addStatusValue("Naleen Coiled",1,1);

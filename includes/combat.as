@@ -117,6 +117,42 @@ function specialsMenu():void {
 			else userInterface.addDisabledButton(3,"G. Disrupt.");
 		}
 	}
+	else if(pc.characterClass == GLOBAL.SMUGGLER)
+	{
+		if(silly)
+		{
+			if(pc.energy() >= 10) userInterface.addButton(0,"P.Sand",attackRouter,flashGrenade);
+			else userInterface.addDisabledButton(0,"P.Sand");
+		}
+		else
+		{
+			if(pc.energy() >= 10) userInterface.addButton(0,"F.Grenade",attackRouter,flashGrenade);
+			else userInterface.addDisabledButton(0,"F.Grenade");	
+		}
+		if(pc.hasStatusEffect("Low Blow Known"))
+		{
+			if(pc.energy() >= 15) userInterface.addButton(1,"Low Blow",attackRouter,lowBlow);
+			else userInterface.addDisabledButton(1,"Low Blow");	
+		}
+		if(pc.hasStatusEffect("Disarming Shot Known")) {
+			if(pc.energy() >= 20) userInterface.addButton(2,"Disarm Shot",attackRouter,disarmingShot);
+			else userInterface.addDisabledButton(2,"Disarm Shot");	
+		}
+		if(pc.hasStatusEffect("Stealth Field Generator Known")) {
+			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) userInterface.addButton(2,"Stealth Field",stealthFieldActivation);
+			else userInterface.addDisabledButton(2,"Stealth Field");	
+		}
+		if(pc.hasStatusEffect("Grenade Known"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(3,"Grenade",attackRouter,grenade);
+			else userInterface.addDisabledButton(3,"Grenade");	
+		}
+		if(pc.hasStatusEffect("Gas Grenade Known"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(3,"Gas Grenade",attackRouter,gasGrenade);
+			else userInterface.addDisabledButton(3,"Gas Grenade");	
+		}
+	}
 }
 
 function updateCombatStatuses():void {
@@ -128,6 +164,10 @@ function updateCombatStatuses():void {
 			pc.removeStatusEffect("Blind");
 			output("<b>You can see again!</b>\n");
 		}
+		else if(pc.hasPerk("Sharp Eyes") && pc.statusEffectv1("Blind") <= 1) {
+			pc.removeStatusEffect("Blind");
+			output("<b>You can see again!</b>\n");	
+		}
 	}
 	if(pc.hasStatusEffect("Paralyzed")) {
 		pc.addStatusValue("Paralyzed",1,-1);
@@ -136,6 +176,18 @@ function updateCombatStatuses():void {
 			output("<b>The paralytic venom wears off, and you are able to move once more.</b>\n");
 		}
 		else output("<b>You're paralyzed and unable to move!</b>\n");
+	}
+	if(pc.hasStatusEffect("Stealth Field Generator"))
+	{
+		pc.addStatusValue("Stealth Field Generator",1,-1);
+		if(pc.statusEffectv1("Stealth Field Generator") <= 0)
+		{
+			output("<b>Your stealth field generator collapses.</b>\n");
+			pc.removeStatusEffect("Stealth Field Generator");
+		}
+		else {
+			output("<b>You are practically invisible thanks to your stealth field generator.</b>");
+		}
 	}
 	if(pc.hasStatusEffect("Deflector Regeneration"))
 	{
@@ -165,12 +217,32 @@ function updateCombatStatuses():void {
 				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are no longer blinded!</b>\n");
 				else output("<b>" + foes[x].capitalA + foes[x].short + " is no longer blinded!</b>\n");
 			}
+			else if(foes[x].hasPerk("Sharp Eyes") && foes[x].statusEffectv1("Blind") <= 1) 
+			{
+				foes[x].removeStatusEffect("Blind");
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are no longer blinded!</b>\n");
+				else output("<b>" + foes[x].capitalA + foes[x].short + " is no longer blinded!</b>\n");
+			}
 			else 
 			{
 				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are blinded.</b>\n");
 				else output("<b>" + foes[x].capitalA + foes[x].short + " is blinded.</b>\n");
 			}
-			trace("BLIND UPDATE: " + foes[x].short + " PLURAL STATUS: " + foes[x].plural);
+		}
+		if(foes[x].hasStatusEffect("Disarmed"))
+		{
+			foes[x].addStatusValue("Disarmed",1,-1);
+			if(foes[x].statusEffectv1("Disarmed") <= 0)
+			{
+				foes[x].removeStatusEffect("Disarmed");
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are no longer disarmed!</b>\n");
+				else output("<b>" + foes[x].capitalA + foes[x].short + " is no longer disarmed!</b>\n");
+			}
+			else 
+			{
+				if(foes[x].plural) output("<b>" + foes[x].capitalA + foes[x].short + " are disarmed.</b>\n");
+				else output("<b>" + foes[x].capitalA + foes[x].short + " is disarmed.</b>\n");
+			}
 		}
 	}
 }
@@ -300,16 +372,30 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 	{
 		return true;
 	}
+	//Evasion chances
+	if(target.evasion() >= rand(100) + 1) {
+		trace("EVASION WORKED!: " + target.evasion());
+		return true;
+	}
+	//10% miss chance for lucky breaks!
+	if(target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
 	if(target.hasPerk("Melee Immune")) return true;
 	return false;
 }
 function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
 {
+	//Immune!
+	if(target.hasPerk("Ranged Immune")) return true;
+	//Standard miss chance
 	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/3 < 10 && !target.isImmobilized()) 
 	{
 		return true;
 	}
-	if(target.hasPerk("Ranged Immune")) return true;
+	//Evasion chances
+	if(target.evasion() >= rand(100) + 1) return true;
+	//10% miss chance for lucky breaks!
+	if(target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
+	
 	return false;
 }
 
@@ -376,8 +462,13 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 			attacker.addStatusValue("Multiple Attacks",1,-1);
 		}
 	}
+	//Attack prevented by disarm
+	if(attacker.hasStatusEffect("Disarmed")) {
+		if(attacker == pc) output("You try to attack until you remember you got disarmed!");
+		else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his","her","its") + " missing weapon.");
+	}
 	//Attack missed!
-	if(combatMiss(attacker,target)) {
+	else if(combatMiss(attacker,target)) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.meleeWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.meleeWeapon.attackVerb + ".");
@@ -408,6 +499,12 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
 		//Damage bonuses:
 		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
+		//Bonus damage for "sneak attack perk!"
+		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) {
+			output("\n<b>Sneak attack!</b>");
+			damage += attacker.level * 2;
+			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
+		}
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
@@ -444,7 +541,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		attack(attacker,target);
 		return;
 	}
-	output("\n");
+	if(attacker == chars["PC"]) output("\n");
 	if(!noProcess) processCombat();
 }
 
@@ -464,7 +561,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	}
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
 	//Run with multiple attacks!
-	if (attacker.hasPerk("Multiple Shots") && special != 1 && special != 2) {
+	if ((attacker.hasPerk("Multiple Shots") || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
 		//Start up
 		if (!attacker.hasStatusEffect("Multiple Shots")) 
 		{
@@ -477,9 +574,14 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			attacker.addStatusValue("Multiple Shots",1,-1);
 		}
 	}
+	//Attack prevented by disarm
+	if(attacker.hasStatusEffect("Disarmed")) {
+		if(attacker == pc) output("You try to attack until you remember you got disarmed!");
+		else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his","her","its") + " missing weapon.");
+	}
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
-	if(rangedCombatMiss(attacker,target)) {
+	else if(rangedCombatMiss(attacker,target)) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
@@ -509,6 +611,12 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
 		var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
+		//Bonus damage for "sneak attack perk!"
+		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
+			output("\n<b>Aimed shot!</b>");
+			damage += attacker.level * 2;
+			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
+		}
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
@@ -1543,7 +1651,7 @@ function overcharge(target:Creature):void {
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
-		genericDamageApply(damage,pc,target,target.rangedWeapon.damageType);
+		genericDamageApply(damage,pc,target,pc.rangedWeapon.damageType);
 	}
 	output("\n");
 	if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
@@ -1588,7 +1696,124 @@ function powerSurge(target:Creature):void {
 
 function deflectorRegeneration(target:Creature):void {
 	clearOutput();
+	pc.energy(-20);
 	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
 	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0);
+	processCombat();
+}
+
+function flashGrenade(target:Creature):void {
+	pc.energy(-10);
+	clearOutput();
+	if(silly) output("With a cry of <i>\"Pocket sand!\"</i> you produce a handful of sand and throw it at " + target.a + target.short + ".");
+	else output("You produce one of your rechargible flash grenades and huck it int he direction of " + target.a + target.short + ".");
+	//Chance of bliiiiiiiind
+	if(pc.aim()/2 + rand(20) + 6 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind")) {
+		if(target.plural) output("\n<b>" + target.capitalA + target.short + " are blinded by </b>");
+		else output("\n<b>" + target.capitalA + target.short + " is blinded by </b>");
+		target.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		if(!silly) output("<b>the luminous flashes.</b>\n");
+		else output("<b>the coarse granules.</b>\n");
+	}
+	else output("\n" + target.capitalA + target.short + " manages to keep away from the blinding projectile.\n")
+	processCombat();
+}
+
+function lowBlow(target:Creature):void {
+	clearOutput();
+
+	pc.energy(-15);
+	//Set drone target
+	if(pc.hasPerk("Attack Drone"))
+	{
+		//Figure out where in the foes array the target is and set drone target to the index.
+		//Clunky as all fuck but it works.
+		for(var i:int = 0; i < foes.length; i++) {
+			if(foes[i] == target) flags["DRONE_TARGET"] = i;
+		}
+	}
+	output("You swing low, aiming for a sensitive spot.\n");
+	//Attack missed!
+	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
+	if(combatMiss(pc,target)) {
+		if(target.customDodge == "") output("You miss!");
+		else output(target.customDodge)
+	}
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(2) > 0) {
+		output("Your blind strike fails to connect.");
+	}
+	//Attack connected!
+	else {
+		output("You connect with your target!");
+		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
+		//Damage bonuses:
+		var damage:int = pc.meleeWeapon.damage + pc.physique()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,pc,target);
+		if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+			if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+			target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+		}
+		else {
+			output("\nIt doesn't look like you accomplished much more than hitting your target.");
+		}
+	}
+	output("\n");
+	processCombat();
+}
+
+function stealthFieldActivation():void {
+	clearOutput();
+	pc.energy(-20);
+	output("You activate your stealth field generator, fading into nigh-invisibility.\n");
+	pc.createStatusEffect("Stealth Field Generator",2,0,0,0);
+	processCombat();
+}
+
+function disarmingShot(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	if(target.hasStatusEffect("Disarm Immune")) output("You try to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>\n");
+	else if(target.hasStatusEffect("Disarmed")) output("You try to disarm " + target.a + target.short + " but can't. <b>You already did!</b>\n");
+	else if(combatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
+	else {
+		output("You land a crack shot on " + possessive(target.a + target.short) + ", disarming them.\n");
+		target.createStatusEffect("Disarmed",4,0,0,0);
+	}
+	processCombat();
+}
+
+function grenade(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("Tossing an explosive in the general direction of your target, you unleash an explosive blast of heat on " + target.a + target.short + "! ");
+	var damage:Number = Math.round(40 + rand(10));
+	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	output("\n");
+	processCombat();
+}
+
+function gasGrenade(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
+	
+	var damage:Number = 12 + rand(10);
+
+	//Any perks or shit go below here.
+	damage *= target.lustVuln;
+	if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
+	damage = Math.ceil(damage);
+	output("\n");
+	output(teaseReactions(damage,target));
+	target.lust(damage);
+	output(" ("+ damage + ")\n");
 	processCombat();
 }

@@ -217,7 +217,92 @@ function confirmLevelPointAllocation():void
 			userInterface.addButton(1,"T. Disrupt.",engineerPerk,"Thermal Disruptor");
 		}
 	}
+	if(pc.characterClass == GLOBAL.SMUGGLER) {
+		if(pc.level == 2) {
+			output("<b>You have gained the 'Lucky Breaks' perk, granting you an extra 10% evasion chance.</b>");
+			pc.createPerk("Lucky Breaks",0,0,0,0,"You have an additional 10% chance to avoid incoming attacks.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Shoot First -</b> When shooting in the first round of combat, get an additional attack.");
+			output("\n<b>* Low Blow -</b> A melee strike with a high chance of stunning your opponent.");
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Shoot First",smugglerPerk,"Shoot First");
+			userInterface.addButton(1,"Low Blow",smugglerPerk,"Low Blow");
+		}
+		if(pc.level == 3) {
+			output("<b>You have gained the 'Escape Artist' perk, allowing you to use reflexes instead of physique to escape from grapples and granting a slight bonus.</b>");
+			pc.createPerk("Escape Artist",0,0,0,0,"Use reflexes to escape grapples with a slight bonus.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Sneak Attack -</b> this ability increases melee damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
+			output("\n<b>* Aimed Shot -</b> this ability increases melee damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Sneak Attack",smugglerPerk,"Sneak Attack");
+			userInterface.addButton(1,"Aimed Shot",smugglerPerk,"Aimed Shot");
+		}
+		if(pc.level == 4) {
+			output("<b>You have gained the 'Agility' perk, increasing evasion granted from items by 20% or 2%, whichever is higher.</b>");
+			pc.createPerk("Agility",0,0,0,0,"Evasion gained from items increased by 20% or a flat 2% dodge chance, whichever is better!");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Stealth Field Generator -</b> this ability gives you a massive boost to evasion for two turns.");
+			output("\n<b>* Disarming Shot -</b> this ability prevents your target from using a weapon for four turns.");
+			userInterface.clearMenu();
+			userInterface.addButton(0,"S.F.Generator",smugglerPerk,"Stealth Field Generator");
+			userInterface.addButton(1,"Disarming S.",smugglerPerk,"Disarming Shot");
+		}
+		if(pc.level == 5) {
+			output("<b>You have unlocked the 'Sharp Eyes' ability, allowing you to recover from blindness one turn sooner.</b>");
+			pc.createPerk("Sharp Eyes",0,0,0,0,"You recover from blindness one turn sooner.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Gas Grenade -</b> this ability constructs a new key item that can be used to deal lust damage to your foes!");
+			output("\n<b>* Grenade -</b> this ability constructs a new key item that can be used to deal thermal damage to your foes!");
+			userInterface.clearMenu();
+			userInterface.addButton(0,"Gas Grenade",smugglerPerk,"Gas Grenade");
+			userInterface.addButton(1,"Grenade",smugglerPerk,"Grenade");
+		}
+	}
 	else sleep();
+}
+
+function smugglerPerk(arg:String):void {
+	clearOutput();
+	switch(arg) 
+	{
+		case "Low Blow":
+			pc.createStatusEffect("Low Blow Known");
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Shoot First":
+			pc.createPerk("Shoot First",0,0,0,0,"When making ranged attacks in the first round of combat, gain a bonus attack.")
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Sneak Attack":
+			pc.createPerk("Sneak Attack",0,0,0,0,"When making melee attacks against stunned or blinded enemies, deal extra damage.")
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Aimed Shot":
+			pc.createPerk("Aimed Shot",0,0,0,0,"When making ranged attacks against stunned or blinded enemies, deal extra damage.")
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Stealth Field Generator":
+			pc.createStatusEffect("Stealth Field Generator Known");
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Disarming Shot":
+			pc.createStatusEffect("Disarming Shot Known");
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Gas Grenade":
+			pc.createStatusEffect("Gas Grenade Known");
+			output("'" + arg + "' ability gained");
+			break;
+		case "Grenade":
+			pc.createStatusEffect("Grenade Known");
+			output("'" + arg + "' ability gained");
+			break;
+		default:
+			output("Yo an error happened.");
+	}
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",sleep);
 }
 
 function engineerPerk(arg:String):void {

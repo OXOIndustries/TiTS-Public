@@ -105,7 +105,7 @@ function rest():void {
 }
 function sleep():void {
 	clearOutput();
-	if(pc.XPRaw >= pc.XPMax() && pc.level <= 5 && pc.characterClass == GLOBAL.ENGINEER) {
+	if(pc.XPRaw >= pc.XPMax() && pc.level <= 5 && pc.characterClass != GLOBAL.MERCENARY) {
 		levelUp();
 		return;
 	}
@@ -333,6 +333,10 @@ public function processTime(arg:int):void {
 					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;
 					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
 				}
+				//Reset 'dem venus pitcher hoz
+				flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
+				flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
+				flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 			}
 		}
 		arg--;

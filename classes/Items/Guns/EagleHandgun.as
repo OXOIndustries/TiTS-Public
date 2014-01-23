@@ -28,7 +28,7 @@
 			this.attackVerb = "shoot";
 			
 			//Information
-			this.basePrice = 120;
+			this.basePrice = 420;
 			this.attack = 0;
 			this.damage = 7;
 			this.damageType = GLOBAL.KINETIC;

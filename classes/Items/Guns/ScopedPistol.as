@@ -28,7 +28,7 @@
 			this.tooltip = "This pistol is equiped with a rather impressive scope of your own manufacture. It's quite accurate but low caliber.";
 			this.attackVerb = "shoot";
 			//Information
-			this.basePrice = 150;
+			this.basePrice = 350;
 			this.attack = 2;
 			this.damage = 4;
 			this.damageType = GLOBAL.KINETIC;

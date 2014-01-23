@@ -688,6 +688,7 @@ function setClass(arg:int = 0):void {
 	}
 	if(arg == GLOBAL.ENGINEER) {
 		pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
+		pc.shield = new classes.Items.Protection.DecentShield();
 	}
 	pc.meleeWeapon =  new classes.Items.Melee.Knife();
 	pc.armor = new classes.Items.Apparel.DressClothes();

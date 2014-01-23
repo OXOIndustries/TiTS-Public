@@ -279,7 +279,7 @@ function initializeRooms():void
 	//17. Burt’s Badass Whatever
 	rooms["BURT'S MAIN HALL"] = new RoomClass(this);
 	rooms["BURT'S MAIN HALL"].roomName = "BURT'S BADASS\nMEAD HALL";
-	rooms["BURT'S MAIN HALL"].description = "This description is a placeholder. What? Don't look at me like that.";
+	rooms["BURT'S MAIN HALL"].description = "A cloud of smoky inhalants hangs around the rafters of this high-ceilinged chamber to lend this place an air of mystery. The obnoxious music playing from an illuminated audio system in the corner along with the noisy beeps of a gaming system dispel that notion immediately. A huge bar lines the western wall, shining dully in the artificial lighting. It's obviously the most well-maintained and cared for object in the entire establishment. A doorway to the south leads back out onto the streets of Mhen'ga.";
 	rooms["BURT'S MAIN HALL"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S MAIN HALL"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S MAIN HALL"].southExit = "NORTH ESBETH 2";
@@ -291,7 +291,7 @@ function initializeRooms():void
 	//"18". Burt’s Badass Whatever Part. II
 	rooms["BURT'S BACK END"] = new RoomClass(this);
 	rooms["BURT'S BACK END"].roomName = "THE BACK\nOF BURT'S";
-	rooms["BURT'S BACK END"].description = "This description is a placeholder. What? Don't look at me like that. It makes me all tingly, Onii-chan!";
+	rooms["BURT'S BACK END"].description = "This secluded area of the bar is mostly empty. The few people bothering to hang out back here don't seem to have any interest in communicating, leaving you with only the darkness for company. Empty tables abound, but the better-lit hall to the south looks infinitely more companionable.";
 	rooms["BURT'S BACK END"].planet = "PLANET: MHEN'GA";
 	rooms["BURT'S BACK END"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S BACK END"].southExit = "BURT'S MAIN HALL";

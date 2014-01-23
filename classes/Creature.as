@@ -912,6 +912,12 @@
 			temp += meleeWeapon.evasion;
 			temp += rangedWeapon.evasion;
 			temp += armor.evasion + upperUndergarment.evasion + lowerUndergarment.evasion + accessory.evasion + shield.evasion;
+			if(hasPerk("Agility")) {
+				if(temp *= .2 < 2) temp += 2;
+				else temp = Math.round(temp * 1.2);
+			}
+			if(hasStatusEffect("Stealth Field Generator")) temp += 80;
+			if(temp > 90) temp = 90;
 			return temp;
 		}
 		public function fortification():Number {
