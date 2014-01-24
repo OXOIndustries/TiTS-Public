@@ -248,6 +248,12 @@ function winVsZil():void {
 	//*Tailcock Peg Him
 	if(pc.hasTailCock()) userInterface.addButton(4,"Tail Peg",tailCockPegTheZil);
 	else userInterface.addDisabledButton(4,"Tail Peg");
+
+	//Femzil prompt
+	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
+		userInterface.addButton(9,"Capture",useTheCaptureHarness);
+		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
+	}
 	userInterface.addButton(14,"Leave",genericVictory);
 }
 

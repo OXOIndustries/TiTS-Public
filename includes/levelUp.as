@@ -217,7 +217,7 @@ function confirmLevelPointAllocation():void
 			userInterface.addButton(1,"T. Disrupt.",engineerPerk,"Thermal Disruptor");
 		}
 	}
-	if(pc.characterClass == GLOBAL.SMUGGLER) {
+	else if(pc.characterClass == GLOBAL.SMUGGLER) {
 		if(pc.level == 2) {
 			output("<b>You have gained the 'Lucky Breaks' perk, granting you an extra 10% evasion chance.</b>");
 			pc.createPerk("Lucky Breaks",0,0,0,0,"You have an additional 10% chance to avoid incoming attacks.");

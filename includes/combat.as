@@ -1050,8 +1050,10 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	output(formatList() + "!");
 	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.\n");
-	else output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n");
-	if(pc.level == 1) output("<b>Find a bed to sleep on in order to level up (like on your ship).</b>\n");
+	else {
+		output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n");
+		if(pc.level == 1) output("<b>Find a bed to sleep on in order to level up (like on your ship).</b>\n");
+	}
 	
 	//Monies!
 	if(creditBuffer > 0) {

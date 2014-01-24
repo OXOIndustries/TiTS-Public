@@ -73,6 +73,7 @@
 		include "../includes/naleen.as";
 		include "../includes/venusPitchers.as";
 		include "../includes/syri.as";
+		include "../includes/julianSHaswell.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

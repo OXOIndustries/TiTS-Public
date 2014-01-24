@@ -200,6 +200,7 @@ function initializeRooms():void
 	rooms["SOUTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
+	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 
 	//10. Esbeth’s Southern Path
@@ -1088,6 +1089,28 @@ function initializeRooms():void
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
+
+	//90. Kelly's Office - dat secretary
+	rooms["KELLY'S OFFICE"] = new RoomClass(this);
+	rooms["KELLY'S OFFICE"].roomName = "XENOGEN\nOFFICE";
+	rooms["KELLY'S OFFICE"].description = "There will be a double-dicked secretary here eventually, for those of you who like that sort of thing.";
+	rooms["KELLY'S OFFICE"].planet = "PLANET: MHEN'GA";
+	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
+	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
+	rooms["KELLY'S OFFICE"].southExit = "SOUTH ESBETH 2";
+	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
+
+	//91. Julian's Office
+	rooms["JULIAN'S OFFICE"] = new RoomClass(this);
+	rooms["JULIAN'S OFFICE"].roomName = "SCIENTIST'S\nOFFICE";
+	rooms["JULIAN'S OFFICE"].description = "The pure white, self-illuminating walls, floor, and ceiling provide a perfectly uniform distribution of luminance, lending the whole space a dream-like, heavenly quality. More strange than the lighting is the desk that curves through the northern half of this chamber. It's carved of one solid piece of translucent material that reflects the light into dazzling patterns of hypnotizing shine. The doorway to the east is the same featureless alabaster. It doesn't even have a doorknob, instead relying on proximity scanners and motorized retractors to slide it out of the way and into the wall. This place feels nothing like the rest of Esbeth.";
+	rooms["JULIAN'S OFFICE"].runOnEnter = juliansOffice;
+	rooms["JULIAN'S OFFICE"].planet = "PLANET: MHEN'GA";
+	rooms["JULIAN'S OFFICE"].system = "SYSTEM: ARA ARA";
+	rooms["JULIAN'S OFFICE"].eastExit = "KELLY'S OFFICE";
+	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 	
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";

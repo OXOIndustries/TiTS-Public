@@ -508,7 +508,7 @@ function talkToBurtAboutDeseZilGueys():void {
 	if(flags["BURT_ZIL_TALK"] == undefined || flags["BURT_ZIL_TALK"] == 3)
 	{
 		flags["BURT_ZIL_TALK"] = 1;
-		output("Burt grins,<i> “Ah, the Zil, one of my favorite subjects. They are a lot like Terran honey bees, but don’t let that mix you up. They aren’t a hive mind, and any of them are able to have kids. They are more of a tribal kind of people, gathering in small bands and working the jungles they live in for their natural bounties. They are good people, and usually pretty peaceful. They follow that whole ‘make love, not war’ idea, and even if you piss them off, they are more likely to fuck you then kill you. Don’t underestimate them though. They aren’t complete primitives, and they have some nasty surprises.”</i>");
+		output("Burt grins,<i> “Ah, the Zil, one of my favorite subjects. They are a lot like Terran honey bees, but don’t let that mix you up. They aren’t a hive mind, and any of them are able to have kids. They are more of a tribal kind of people, gathering in small bands and working the jungles they live in for their natural bounties. They are good people, and usually pretty peaceful. They follow that whole ‘make love, not war’ idea, and even if you piss them off, they are more likely to fuck you than kill you. Don’t underestimate them though. They aren’t complete primitives, and they have some nasty surprises.”</i>");
 	}
 	//Scene 2
 	else if(flags["BURT_ZIL_TALK"] == 1)

@@ -1241,6 +1241,12 @@ function defeatHostileZil():void {
 		userInterface.addButton(4,"HyperSmothr",smotherDatBeeSlutInDickYo);
 	}
 	else userInterface.addDisabledButton(4,"HyperSmothr");
+
+	//Femzil prompt
+	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] == undefined) {
+		userInterface.addButton(9,"Capture",useTheCaptureHarness);
+		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
+	}
 	output("\n\n");
 	userInterface.addButton(14,"Leave",genericVictory);
 }
