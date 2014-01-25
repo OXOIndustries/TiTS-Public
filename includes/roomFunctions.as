@@ -16,14 +16,14 @@ function liftMove(destination:String):void {
 	move(destination,false);
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
 
 function debugMenus():void
 {
-	userInterface.clearMenu();
+	clearMenuProxy();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	userInterface.addButton(0, "Hit self", function():void { 
 		chars["PC"].HP(-1); 
@@ -171,7 +171,7 @@ function claimMhengaOxonium():void {
 	flags["OXONIUM_FOUND"]++;
 	pc.credits += 5000;
 	processTime(6);
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 

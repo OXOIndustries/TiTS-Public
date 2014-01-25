@@ -117,12 +117,9 @@
 		//Lazy man state checking
 		public var currentLocation:String;
 		public var shipLocation:String;
+		public var inSceneBlockSaving:Boolean;
 
-		//PERVINEER HERE!
-		public var testBool:Boolean;
-		public var testString:String;
-		public var testInt:int;
-		//Pervineer here!
+
 		public var parser:classes.Parser.Main.Parser;
 
 		public var dataManager:DataManager;
@@ -175,6 +172,8 @@
 			itemUser = undefined;
 			itemTarget = undefined;
 
+			this.inSceneBlockSaving = false;
+
 
 			eventQueue = new Array();
 
@@ -210,7 +209,7 @@
 			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
-			this.userInterface.clearMenu();
+			this.clearMenuProxy();
 			
 			this.userInterface.addButton(14,"CLEAR!",clearOutput);
 
@@ -229,6 +228,12 @@
 			//mainMenu();
 		}
 		
+		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
+		public function clearMenuProxy(saveDisable=true):void
+		{
+			this.inSceneBlockSaving = saveDisable;
+			this.userInterface.clearMenu();
+		}
 		
 		public function setupInputEventHandlers():void
 		{

@@ -84,7 +84,7 @@ INITIATING MONKEY
 public function debugPaneExit():void
 {
 
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if (this.pc.short != "uncreated")
 	{
 		dataManager.executeGame();
@@ -129,7 +129,7 @@ public function debugPane():void
 	
 	//this.output(images.showImage("monster-ceraph"));
 
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Load test.txt", loadTestFile);
 	//this.userInterface.addButton(0, "Event Tester", eventTestingPane);
 	//this.userInterface.addButton(1, "Test Input", eventTester);
@@ -355,7 +355,7 @@ convert "
 
 
 	
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(4, "Back", debugPane)
 
 }

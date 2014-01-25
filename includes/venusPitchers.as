@@ -46,7 +46,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 		if(pc.intelligence() / 2 + rand(20) + 1 > 20) output("\n\nYeah... she's lying.\n\nDo you 'help' her?");
 		else output("\n\nDo you help her?");
 		//[Help Her][Don't]
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Help Her",firstTimeVenusEntrance,true);
 		userInterface.addButton(1,"Don't",dontHelpVenusPitcher);
 	}
@@ -62,7 +62,7 @@ function encounterRegularTentaclePitcherYouGay():void {
 		}
 		//Plus lust!
 		pc.lust(rand(5) + 1);
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Approach",venusRepeatFallIn);
 		userInterface.addButton(1,"Don't",venusRepeatRefuse);
 
@@ -74,7 +74,7 @@ function venusRepeatRefuse():void {
 	userInterface.showBust("VENUSPITCHER");
 	output("You shake your head and say, <i>“Nope.”</i>");
 	output("\n\nThe plant, seeing the firmness of your stare, pouts but doesn't move, immobile as she is. You look around for any other trouble, and when you glance back, she's gone, vanished into the ground below.");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -106,7 +106,7 @@ function repeatPistilScene():void {
 	output("\n\nSoon your pollen in the air and the delightful, druggy sap you’re swallowing combine to leave you happy and horny, gleefully tonguing the tentacle cunt while you await further pleasure.  You look at the busty plant-woman and all but hump her with your eyes, begging her to fuck you with nothing but the power of your drugged gaze alone.");
 	pc.lust(33+rand(20));
 	//To tentacle jam
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",tentacleJamTime,false);
 }
 	
@@ -123,7 +123,7 @@ function repeatStamenScene():void {
 	output("\n\nYou gurgle happily and keep swallowing. The drink is setting your body aflame with desire while simultaneously denying you the control to do anything about it. Honestly, the forced fellatio is kind of comforting. It’s a simple rhythm - pump, gulp, and swallow - repeated over and over and again while you become more and more aroused.");
 	//To tentacle jam
 	pc.lust(33+rand(20));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",tentacleJamTime,true);
 }
 
@@ -150,7 +150,7 @@ function dontHelpVenusPitcher():void {
 		output("You snort (nearly sneezing again in the process) and tell her that you aren't nearly dumb enough to fall for her poorly constructed ploy.");
 		output("\n\nThe pitcher plant woman bends low to pull a piece of bark off of a moist green opening in the ground. <i>“Well, if you're so smart, surely you know how good feeding one of us must feel. Surely you’re aware of how tender we are through the whole process. Come on, it'll only take a few hours.”</i>");
 	}
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Approach",firstTimeVenusEntrance,false); //To first time milking!
 	userInterface.addButton(1,"Nope",noVenusPitcherPlz);
 }
@@ -160,7 +160,7 @@ function noVenusPitcherPlz():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	output("You decline again. The venus pitcher woman petulantly blows a frond of her hair up and folds her arms, no longer bothering to attempt to seduce you.\n\nYou regard your other surroundings, and when you look back, she's gone, almost as if by magic.");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -215,7 +215,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 		output("\n\nIn a flash of light, the venus pitcher woman is gone. Your world tumbles end over end the next moment, only stopping when you slam face-first into the dirt. You groan and climb onto your [pc.feet], but the pitcher woman is gone, hidden inside her pod, and in this murk, you doubt you could find her again if you wanted to.");
 		processTime(5);
 		//{end genderless shut out!}
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Next",mainGameMenu);
 	}
 	output("\n\nThe sense of alarm you felt at your predicament is dwindling in the face of the rhythmic green pulses and seductive beauty before you. She giggles again and shimmies back and forth slowly, allowing her leaky teats to kiss your lips with their sweet juices for a moment before she buries you in boob. Her hands tenderly stroke ");
@@ -253,7 +253,7 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	output("and gently lets her fingers splay over your inner thighs. She breathily pants in a half whisper, <i>“I'm going to enjoy this, but since this is your first time, would you rather taste one of my stamen or pistil?”</i>");
 	if(pc.intelligence()/2 + rand(20) + 1 > 15) output("  Based on what you remember of biology, the stamen probably corresponds to the cock-like ones.");
 	//[Stamen] [Pistil]
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Stamen",requestStamenFirstTime);
 	userInterface.addButton(1,"Pistil",requestPistilFirstTime);
 }
@@ -269,7 +269,7 @@ function requestStamenFirstTime():void {
 	output("\n\nWhat little of the juice that you can taste is heavenly, and you soon find your body responding even more strongly than before. Your throat relaxes, dilating open, and your mouth is actually starting to get used to being stretched this wide. The fullness is pleasant in its own way. ");
 	//{merge to start of tentacle jam!}
 	pc.lust(33+rand(20));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",tentacleJamTime,true);
 }
 //[Pistil]
@@ -283,7 +283,7 @@ function requestPistilFirstTime():void {
 	output("\n\nThe heavenly taste soon begins to affect you in strange ways, inflaming your passion to new heights while loosening the muscles in your tongue to allow it to go even deeper. All in all, it's a remarkably pleasant experience. ");
 	//{merge to start of tentacle jam!}
 	pc.lust(33+rand(20));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",tentacleJamTime,false);
 }
 	
@@ -453,7 +453,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	processTime(40+rand(10));
 	pc.orgasm();
 	//[Next]
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",tentacleJamAftermath);
 }
 
@@ -467,7 +467,7 @@ function tentacleJamAftermath():void {
 	output(" Your [pc.gear] is laying in a slimy puddle on the ground next to you.");
 	pc.orgasm();
 	processTime(200+rand(60));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 	
@@ -489,12 +489,12 @@ function elderVenusPitcherEncounter():void {
 		{
 			output("\n\nYou COULD sit there and watch her, but you have a feeling that there were other things you came out here to do. Do you look away or continue to watch?");
 			//[Watch] [Look Away] - watch as per fail.
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Watch",watchElderVenusPitcher);
 			userInterface.addButton(1,"Look Away",lookAwayFromElderVenusPitcher);
 		}
 		else {
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Next",watchElderVenusPitcher);
 		}
 	}
@@ -522,7 +522,7 @@ function elderVenusPitcherEncounter():void {
 		{
 			output("it didn’t work then. The idea does remain rather appealing to you. Do you stay for the show?");
 			//[Yes/No]
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Stay",agreeToStayForRepeatVenusLovings);
 			userInterface.addButton(1,"No",noRepeatElderVenusPitcher);
 		}
@@ -534,13 +534,13 @@ function elderVenusPitcherEncounter():void {
 			if(pc.willpower() - pc.libido()/3 + rand(20) + 1 > 9 + bonus) {
 				output("Do you stay and watch the show again, knowing what will happen?");
 				//[yes][no]
-				userInterface.clearMenu();
+				clearMenuProxy();
 				userInterface.addButton(0,"Yes",yesRepeatElderVenusPitcher);
 				userInterface.addButton(1,"No",noRepeatElderVenusPitcher);
 			}
 			else {
 				output("You briefly consider leaving, but the pleasant memories keep you firmly rooted in place.");
-				userInterface.clearMenu();
+				clearMenuProxy();
 				userInterface.addButton(0,"Next",agreeToStayForRepeatVenusLovings);
 			}
 		}
@@ -553,7 +553,7 @@ function noRepeatElderVenusPitcher():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	output("You turn away before she snare you with her looks, stepping a few extra feet away for good measure. There’s a muffled thump, and when you glance back, you realize she’s disappeared into the ground, unlikely to be seen again.");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 //[Yes]
@@ -634,7 +634,7 @@ function lookAwayFromElderVenusPitcher():void {
 	userInterface.showBust("VENUSPITCHER");
 	output("You turn away, much to the indignity of the leafy succubus behind you. After a few pleading statements fail to entice your attention, she curses loudly then goes silent. There is a rather final sounding “sklultch” from behind you. Perhaps she went back into her pod?");
 	//To room desc, no venus proc.
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -714,7 +714,7 @@ function elderVenusFuckSelect():void {
 	if(pc.isLactating() && !pc.hasDickNipples()) choices[choices.length] = milkyElderPitcherPlantPlay;
 	if(pc.hasTailCock()) choices[choices.length] = elderPitcherPlantTailCockPlay;
 	if(pc.hasTailCunt()) choices[choices.length] = elderVenusPitcherPlaysWithTailcunts;
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",choices[rand(choices.length)]);
 }
 
@@ -803,7 +803,7 @@ function elderVenusPitchersDickplay():void {
 	pc.orgasm();
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
@@ -871,7 +871,7 @@ function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
@@ -953,7 +953,7 @@ function elderVenusPitcherDickNipplePlay():void {
 	}
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
@@ -1003,7 +1003,7 @@ function milkyElderPitcherPlantPlay():void {
 	pc.slowStatGain("libido",2);
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
@@ -1056,7 +1056,7 @@ function elderPitcherPlantTailCockPlay():void {
 	}
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 	
@@ -1093,7 +1093,7 @@ function elderVenusPitcherPlaysWithTailcunts():void {
 	//{NEXT}
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",elderVenusPitcherEpilogue);
 }
 
@@ -1135,7 +1135,7 @@ function elderVenusPitcherEpilogue():void {
 	if(rand(3) == 0) pc.orgasm();
 	if(rand(3) == 0) pc.orgasm();
 	processTime(20+rand(20));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 

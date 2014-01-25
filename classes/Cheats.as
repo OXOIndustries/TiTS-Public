@@ -38,7 +38,7 @@ package classes
 			tImg.name = "ragetime";
 			
 			kGAMECLASS.clearOutput();
-			kGAMECLASS.userInterface.clearMenu();
+			kGAMECLASS.clearMenuProxy();
 			
 			kGAMECLASS.userInterface.mainTextField.visible = false;
 			

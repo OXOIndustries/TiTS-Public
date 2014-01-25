@@ -25,7 +25,7 @@ function levelUpScreen():void {
 		//Display current level changes
 		levelingStatChangeDisplay();
 
-		userInterface.clearMenu();
+		clearMenuProxy();
 		//Buttons for raising!
 		if(pc.physique() + flags["LEVELING_PHYSIQUE_BONUS"] < pc.physiqueMax()) userInterface.addButton(0,"Physique+",levelPhysique);
 		else userInterface.addDisabledButton(0,"Physique+");
@@ -42,7 +42,7 @@ function levelUpScreen():void {
 		output("\n\nYou have spent all your bonus points.");
 		//Display current level changes
 		levelingStatChangeDisplay();
-		userInterface.clearMenu();
+		clearMenuProxy();
 	}
 	//Buttons to lower!
 	if(flags["LEVELING_PHYSIQUE_BONUS"] > 0) userInterface.addButton(5,"Physique-",levelPhysique,true);
@@ -182,7 +182,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Attack Drone -</b> this ability gives you an attack drone that will automatically fire on your enemies every turn as long as your shields are up. THe drone will also supplant your shields with its own, raising your shields by one point per level.");
 			output("\n<b>* Shield Booster -</b> this ability further increases your shielding by an additional four points per level.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Atk.Drone",engineerPerk,"Attack Drone");
 			userInterface.addButton(1,"Shield B.",engineerPerk,"Shield Booster");
 		}
@@ -192,7 +192,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Overcharge -</b> this ability allows you to make a single ranged attack at 150% normal damage. It even has a chance of stunning your target if its shields are down! Requires an energy weapon.");
 			output("\n<b>* Volley -</b> this ability allows you to make an extra ranged attack with lowered accuracy but a chance of causing blindness regardless. Requires an energy weapon.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Overcharge",engineerPerk,"Overcharge");
 			userInterface.addButton(1,"Volley",engineerPerk,"Volley");
 		}
@@ -202,7 +202,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Power Surge -</b> this ability allows you to restore a moderate amount of shielding by spending 33 energy.");
 			output("\n<b>* Deflector Regeneration -</b> this ability allows you to restore a moderate amount of shielding over four turns in exchange for 20 energy.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"P. Surge",engineerPerk,"Power Surge");
 			userInterface.addButton(1,"D. Regen.",engineerPerk,"Deflector Regeneration");
 		}
@@ -212,7 +212,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Gravidic Disruptor -</b> this ability constructs a new key item that can be used to deal gravidic damage to your foes. There shouldn't be anything out there that's resistant to gravidic damage!");
 			output("\n<b>* Thermal Disruptor -</b> this ability constructs a new key item that can be used to deal thermal damage to your foes. Against enemies who aren't resistant to it, it will hit harder than a Gravidic Disruptor.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"G. Disrupt.",engineerPerk,"Gravidic Disruptor");
 			userInterface.addButton(1,"T. Disrupt.",engineerPerk,"Thermal Disruptor");
 		}
@@ -224,7 +224,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Shoot First -</b> When shooting in the first round of combat, get an additional attack.");
 			output("\n<b>* Low Blow -</b> A melee strike with a high chance of stunning your opponent.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Shoot First",smugglerPerk,"Shoot First");
 			userInterface.addButton(1,"Low Blow",smugglerPerk,"Low Blow");
 		}
@@ -234,7 +234,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Sneak Attack -</b> this ability increases melee damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
 			output("\n<b>* Aimed Shot -</b> this ability increases ranged damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Sneak Attack",smugglerPerk,"Sneak Attack");
 			userInterface.addButton(1,"Aimed Shot",smugglerPerk,"Aimed Shot");
 		}
@@ -244,7 +244,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Stealth Field Generator -</b> this ability gives you a massive boost to evasion for two turns.");
 			output("\n<b>* Disarming Shot -</b> this ability prevents your target from using a weapon for four turns.");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"S.F.Generator",smugglerPerk,"Stealth Field Generator");
 			userInterface.addButton(1,"Disarming S.",smugglerPerk,"Disarming Shot");
 		}
@@ -254,7 +254,7 @@ function confirmLevelPointAllocation():void
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Gas Grenade -</b> this ability constructs a new key item that can be used to deal lust damage to your foes!");
 			output("\n<b>* Grenade -</b> this ability constructs a new key item that can be used to deal thermal damage to your foes!");
-			userInterface.clearMenu();
+			clearMenuProxy();
 			userInterface.addButton(0,"Gas Grenade",smugglerPerk,"Gas Grenade");
 			userInterface.addButton(1,"Grenade",smugglerPerk,"Grenade");
 		}
@@ -301,7 +301,7 @@ function smugglerPerk(arg:String):void {
 		default:
 			output("Yo an error happened.");
 	}
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",sleep);
 }
 
@@ -345,7 +345,7 @@ function engineerPerk(arg:String):void {
 		pc.createKeyItem("Thermal Disruptor",0,0,0,0);
 		output("'" + arg + "' ability gained!");
 	}
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",sleep);
 }
 

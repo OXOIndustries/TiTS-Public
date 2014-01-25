@@ -41,6 +41,7 @@
 
 		public var canSaveInRoom:Boolean = true;
 		
+
 		//Functions
 		public function hasFlag(arg):Boolean {
 			for(var x:int = 0; x <= roomFlags.length; x++) {

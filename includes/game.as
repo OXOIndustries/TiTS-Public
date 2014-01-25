@@ -1,8 +1,13 @@
 ﻿
 public function get canSaveAtCurrentLocation():Boolean
 {
+
 	if(inCombat()) 
 		return false;
+
+	if (this.inSceneBlockSaving)
+		return false;
+
 	return this.rooms[this.currentLocation].canSaveInRoom
 }
 
@@ -12,7 +17,7 @@ public function mainGameMenu():void {
 		clearOutput();
 		output("<b>" + possessive(this.chars["PC"].short) + " log:</b>" + eventBuffer);
 		eventBuffer = "";
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Next",mainGameMenu);
 		return;
 	}
@@ -34,7 +39,8 @@ public function mainGameMenu():void {
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
-	this.userInterface.clearMenu();
+	this.clearMenuProxy(false);
+	this.inSceneBlockSaving = false
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
@@ -67,6 +73,8 @@ public function mainGameMenu():void {
 		this.userInterface.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
 	if(this.currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+
+
 	this.userInterface.addButton(14, "RESET NPCs", initializeNPCs);
 	
 	// Show the minimap too!
@@ -77,7 +85,7 @@ public function mainGameMenu():void {
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 	}
 	var crewMessages:String = "";
 	var count:int = 0;
@@ -107,7 +115,7 @@ function rest():void {
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
 	output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 function sleep():void {
@@ -124,7 +132,7 @@ function sleep():void {
 	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
 	output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -149,7 +157,7 @@ function shipMenu():Boolean {
 function flyMenu():void {
 	clearOutput();
 	output("Where do you want to go?");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if(shipLocation != "TAVROS HANGAR") 
 		this.userInterface.addButton(0,"Tavros",flyTo,"Tavros");
 	if(shipLocation != "SHIP HANGAR") 
@@ -171,7 +179,7 @@ function flyTo(arg:String):void {
 	}
 	output(" and step out of your ship.");
 	processTime(600 + rand(30));
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 

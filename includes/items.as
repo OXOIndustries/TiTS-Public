@@ -6,7 +6,7 @@ function useItem(item:ItemSlotClass):void {
 	{
 		clearOutput();
 		output("Attempted to use " + item.longName + " which had zero quantity.");
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(14,"Back",useItemFunction);
 		return;
 	}
@@ -28,7 +28,7 @@ function useItem(item:ItemSlotClass):void {
 				//if item use returns false, set up a menu.
 				if (!item.useFunction(chars["PC"])) 
 				{
-					userInterface.clearMenu();
+					clearMenuProxy();
 					userInterface.addButton(0,"Next",useItemFunction);
 				}
 			}
@@ -37,7 +37,7 @@ function useItem(item:ItemSlotClass):void {
 			{
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
-				this.userInterface.clearMenu();
+				this.clearMenuProxy();
 				this.userInterface.addButton(0,"Next",useItemFunction);
 			}
 			
@@ -63,7 +63,7 @@ function shop(keeper:Creature):void {
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
 	//Menuuuu!
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Buy Item",buyItem);
 	if(keeper.typesBought.length > 0) 
 		this.userInterface.addButton(1,"Sell Item",sellItem);
@@ -74,7 +74,7 @@ function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
 	var temp:Number = 0;
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
 		trace("GOING THROUGH SHOPKEEP INVENTORY.");
 		//If slot has something in it.
@@ -118,7 +118,7 @@ function buyItemGo(arg:ItemSlotClass):void {
 function sellItem():void {
 	clearOutput();
 	output(shopkeep.keeperSell);
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
 		if(pc.inventory[x].quantity > 0) {
@@ -141,7 +141,7 @@ function sellItemGo(arg:ItemSlotClass):void {
 	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
 	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",sellItem);
 }
 
@@ -176,7 +176,7 @@ function inventory():void {
 	}
 	else output("None\n\n");
 	output("What item would you like to use?");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	var adjustment:int = 0;
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
 		//5 = bra
@@ -349,7 +349,7 @@ function equipItem(arg:ItemSlotClass):void {
 	}
 	else 
 	{
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Next",itemScreen);
 	}
 }
@@ -360,7 +360,7 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 	var target:PlayerCharacter = pc;
 	if(newLootList.length == 0) {
 		output("There was an error looting an the item that was looted didn't actually exist.");
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Next",lootScreen);
 	}
 	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
@@ -409,7 +409,7 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 			output(" away quite easily.\n");
 			//Clear the item off the newLootList.
 			newLootList.splice(0,1);
-			this.userInterface.clearMenu();
+			this.clearMenuProxy();
 			if(newLootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
 			else this.userInterface.addButton(0,"Next",lootScreen);
 		}
@@ -417,7 +417,7 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 		else 
 		{
 			output(". There is not room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
-			this.userInterface.clearMenu();
+			this.clearMenuProxy();
 			this.userInterface.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 			this.userInterface.addButton(1,"Discard", discardItem,       newLootList);
 			this.userInterface.addButton(2,"Use",     useLoot,           newLootList);
@@ -429,7 +429,7 @@ function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").");
 	lootList.splice(0,1);
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if(lootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
 	else this.userInterface.addButton(0,"Next",lootScreen);
 }
@@ -437,7 +437,7 @@ function discardItem(lootList:Array):void {
 function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("What will you replace?");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	for(var x:int = 0; x < pc.inventorySlots(); x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
@@ -457,7 +457,7 @@ function useLoot(lootList:Array):void {
 function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",lootScreen);
 }
 
@@ -469,7 +469,7 @@ function replaceItemGo(args:Array):void
 	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if(lootList.length > 0) 
 		this.userInterface.addButton(0,"Next",itemCollect, lootList);
 	else 

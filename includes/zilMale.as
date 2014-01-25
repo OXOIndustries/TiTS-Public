@@ -21,7 +21,7 @@ function maleZilEncounter():void {
 		output("\n\nA faint buzz is the only warning you get before a male zil flutters out of the sky in front of you, crotch plate retracted and dick waving at head-height, just a few feet away. He winks and says, <i>“Hey, I brought a snack,”</i> while pulling his foreskin back just far enough to see an ebony tip peek through. <i>“You hungry?”</i>");
 		output("\n\n<b>It's a fight!</b>");
 	}
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",startCombat,"zil male");
 }
 
@@ -227,7 +227,7 @@ function winVsZil():void {
 	}
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
-	userInterface.clearMenu();
+	clearMenuProxy();
 	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) userInterface.addButton(0,"Buttfuck",buttfuckDefeatedZil);
 	else userInterface.addDisabledButton(0,"Buttfuck");
 	//*Ride His Cock
@@ -638,7 +638,7 @@ function alkahestsForeskinOralPlay():void {
 	//{PLAYER ORGASMY STUFF HERE} (This area will be filled out in my final draft. For now this is mostly placeholder text, please let me know your opinions)
 	//(Menu to pick which organ to come with)
 	output("\n\nHow do you cum?");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	if(pc.hasCock()) userInterface.addButton(0,"Dick",foreskinWorshipCumWithDick);
 	if(pc.cockTotal() > 1) userInterface.addButton(0,"Dicks",foreskinWorshipCumWithDick);
 	if(!pc.hasCock()) userInterface.addDisabledButton(0,"Dick");
@@ -1050,7 +1050,7 @@ function getTailPussyFuckedByZil():void {
 	output("\n\n<i>“Good boy,”</i> you think as you let your eyes flutter closed and relax in post-coital bliss.");
 	//[Next]
 	feedCuntSnake();
-	userInterface.clearMenu();
+	clearMenuProxy();
 	processTime(40+rand(20));
 	pc.orgasm();
 	userInterface.addButton(0,"Next",tailPussyFuckZilEpilogue);
@@ -1060,7 +1060,7 @@ function tailPussyFuckZilEpilogue():void {
 	output("An hour later, you wake from your sexual slumber, feeling a little bit worse for the wear.");
 	if(pc.hasCock() || pc.hasVagina()) output(" Fragrant, musky mud clings to you all over. You fairly reek of your own sexual effluence - gross. Luckily, a babbling brook can be heard a short distance away, and you spend the better portion of another hour cleaning up.");
 	processTime(30+rand(15));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	genericLoss();
 }
 //*Apparently Dudes Can't Peg Other Dudes:

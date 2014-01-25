@@ -48,7 +48,7 @@ function approachJulianRouter():void {
 	{
 		clearOutput();
 		output("Dr Haswell mutters, <i>\"The zil aren't going to capture themselves. I have no business with you until you do.\"</i>");
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Next",mainGameMenu);
 	}
 	//Generic "BLUH"
@@ -56,7 +56,7 @@ function approachJulianRouter():void {
 	{
 		clearOutput();
 		output("Dr. Haswell doesn't even look up at you. <i>\"I have no business with you at present, [pc.name].\"</i>\n\nIt looks like there's nothing to be done with him right now.");
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Next",mainGameMenu);
 	}
 
@@ -104,7 +104,7 @@ function introductionToJulian():void {
 	output("  The scientist looks at you as if your decision has already been made for you. Will you take the device and go capture a zil for him or refuse?");
 	processTime(3);
 	//choices!
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Accept",acceptZilCapMission);
 	userInterface.addButton(1,"Decline",declinedZilCaptureMission);
 }
@@ -115,7 +115,7 @@ function julianFirstOfferRepeat():void {
 	output("Julian smiles when he realizes you want his attention once more. \"<i>Come back for the job after all then? That doesn't surprise me, there's a fortune to be made on the backs of unwashed savages like the zil.</i>\"  His vertically slit eyes narrow in your direction. \"<i>Just like before, take the capture box and use it on one you've subdued. One thousand credits, easy as that, unless you still have some sort of hangup?</i>\"  His gaze twinkles with cold, unshared mirth.");
 	processTime(1);
 	//Yes no go to default first time.
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Accept",acceptZilCapMission);
 	userInterface.addButton(1,"Decline",declinedZilCaptureMission);
 }
@@ -130,7 +130,7 @@ function acceptZilCapMission():void {
 	output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
 	pc.createKeyItem("Capture Harness",0,0,0,0);
 	processTime(1);
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -148,7 +148,7 @@ function declinedZilCaptureMission():void {
 	//Merge
 	output("\n\n\"<i>A pity,</i>\"  Julian retorts. \"<i>Science will have to march on, I suppose. Do come back if you change your mind.\"</i>  He seats himself and returns to work without another word.");
 	processTime(1);
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -181,7 +181,7 @@ function zilBaggedApproach():void {
 	pc.lust(8+rand(4));
 	processTime(5);
 	flags["FIRST_CAPTURED_ZIL_REPORTED_ON"] = 1;
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Accept",acceptRepeatZilMission);
 	userInterface.addButton(1,"Decline",declineDrHaswellsRepeatMission);
 }
@@ -189,7 +189,7 @@ function zilBaggedApproach():void {
 function repeatSecondHarnessOffer():void {
 	clearOutput();
 	output("Julian offhandedly gestures at the capture harness. <i>\"The harness is there if you want some work. The choice is yours.\"</i>");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Accept",acceptRepeatZilMission);
 	userInterface.addButton(1,"Decline",declineDrHaswellsRepeatMission);
 }
@@ -201,7 +201,7 @@ function declineDrHaswellsRepeatMission():void {
 	clearOutput();
 	output("You decline the offer for now.");
 	output("\n\nJulian seems nonplussed by your admission but does not press you. He seats himself and resumes his work, having gotten enough from you already.");
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -214,7 +214,7 @@ function acceptRepeatZilMission():void {
 	output("\n\n(<b>Gained Key Item: Capture Harness</b> - You can use this to capture a defeated zil for Dr. Haswell.)");
 	pc.createKeyItem("Capture Harness",0,0,0,0);
 	processTime(1);
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -232,7 +232,7 @@ function finalZilCaptureTurnInEpilogue():void {
 	//Room for future fuckbuddy expansion or stuff to play with captives if someone wants to write it.
 	flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] = 1;
 	processTime(3);
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 

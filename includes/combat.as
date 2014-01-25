@@ -27,7 +27,7 @@ function combatMainMenu():void
 		//new PG for start of victory text, overrides normal menus.
 		output("\n");
 		//Route to victory menus and GTFO.		
-		//userInterface.clearMenu();
+		//clearMenuProxy();
 		//userInterface.addButton(0,"Victory",victoryRouting);
 		victoryRouting();
 		return;
@@ -36,7 +36,7 @@ function combatMainMenu():void
 		//YOU LOSE! GOOD DAY SIR!
 		trace("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
-		//userInterface.clearMenu();
+		//clearMenuProxy();
 		//userInterface.addButton(0,"Defeat",defeatRouting);
 		defeatRouting();
 		return;
@@ -68,7 +68,7 @@ function combatMainMenu():void
 	else 
 	{
 		//Combat menu
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 		this.userInterface.addButton(4,"Specials",specialsMenu);
@@ -80,7 +80,7 @@ function combatMainMenu():void
 }
 
 function specialsMenu():void {
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(14,"Back",combatMainMenu);
 	userInterface.addButton(13,"Wait",wait);
 	if(pc.characterClass == GLOBAL.ENGINEER) {
@@ -274,7 +274,7 @@ function stunRecover(target:Creature):void
 }
 function celiseMenu():void 
 {
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if(pc.statusEffectv1("Round") == 1) 
 		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
 	else if(pc.statusEffectv1("Round") == 2) 
@@ -291,7 +291,7 @@ function processCombat():void
 	//Victory check first, because PC's are OP.
 	if(allFoesDefeated()) {
 		//Go back to main menu for victory announcement.
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Victory",combatMainMenu);
 		return;
 	}
@@ -303,7 +303,7 @@ function processCombat():void
 		if(foes[0] is Naleen) trace("FIGHTIN NALEEN");
 
 		//YOU LOSE! GOOD DAY SIR!
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Defeat",combatMainMenu);
 		return;
 	}
@@ -337,7 +337,7 @@ function processCombat():void
 		}
 	}
 	combatStage = 0;
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",combatMainMenu);
 }
 
@@ -412,7 +412,7 @@ function attackRouter(destinationFunc):void
 		destinationFunc(foes[0]);
 		return;
 	}
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	while(counter < foes.length) {
 		this.userInterface.addButton(button,foes[0].short,destinationFunc,foes[counter]);
 		counter++;
@@ -796,7 +796,7 @@ function teaseMenu(target:Creature):void
 		output("\nCrotch tease skill: " + teases[2] + "/100");
 		output("\nHips tease skill: " + teases[3] + "/100");
 		output("\n\nYour ability at a tease can increase both its success rate and total damage.")
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Ass",teaseButt,target);
 		userInterface.addButton(1,"Chest",teaseChest,target);
 		if(pc.hasCock() || pc.hasVagina()) userInterface.addButton(2,"Crotch",teaseCrotch,target);
@@ -985,7 +985,7 @@ function defeatRouting():void
 function genericLoss():void {
 	pc.removeStatusEffect("Round");
 	pc.clearCombatStatuses();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -998,7 +998,7 @@ function genericVictory():void
 function combatOver():void 
 {
 	pc.removeStatusEffect("Round");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -1063,7 +1063,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		if(creditBuffer > 1) output("s");
 		output(" loaded on an anonymous credit chit that you appropriate.\n");
 	}
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	//Fill wallet and GTFO
 	if(foundLootItems.length > 0) {
 		output("You also find ");
@@ -1158,7 +1158,7 @@ function runAway():void {
 		pc.removeStatusEffect("Round");
 		pc.clearCombatStatuses();
 		this.userInterface.hideNPCStats();
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Next",mainGameMenu);
 	}
 	else {
@@ -1209,7 +1209,7 @@ function runAway():void {
 			pc.removeStatusEffect("Round");
 			pc.clearCombatStatuses();
 			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
-			this.userInterface.clearMenu();
+			this.clearMenuProxy();
 			this.userInterface.addButton(0,"Next",mainGameMenu);
 		}
 		else {
@@ -1579,7 +1579,7 @@ function paralyzingShock(target:Creature):void {
 	if(target.hasStatusEffect("Paralyzed")) {
 		if(target.plural) output(target.capitalA + target.short + " are already paralyzed!");
 		else output(target.capitalA + target.short + " is already paralyzed!");
-		userInterface.clearMenu();
+		clearMenuProxy();
 		userInterface.addButton(0,"Next",combatMainMenu);
 		return;
 	}

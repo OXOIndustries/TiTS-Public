@@ -4,7 +4,7 @@ public var fapsArray:Object = { "Random":randomFapSelect, "Porn&Celise":tailCock
 								"Tailingus":tailingusFapReqsCuntTail };
 
 function masturbateMenu():void {
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
@@ -46,7 +46,7 @@ function masturbateMenu():void {
 				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) {
 					clearOutput();
 					output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
-					userInterface.clearMenu();
+					clearMenuProxy();
 					userInterface.addButton(0,"Next",cuntTailFapScene);
 					return;
 				}
@@ -70,7 +70,7 @@ function masturbateMenu():void {
 //BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
 // -Heavy
 function randomFapSelect():void {
-	userInterface.clearMenu();
+	clearMenuProxy();
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
@@ -141,7 +141,7 @@ function tailCockCeliseFaps():void {
 	processTime(45 + rand(5));
 	pc.orgasm();
 	celise.orgasm();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -243,7 +243,7 @@ function vaginalFap():void {
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -385,7 +385,7 @@ function singleDickFap():void {
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -634,7 +634,7 @@ function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 
@@ -670,7 +670,7 @@ function tailingusFapReqsCuntTail():void {
 	output("\n\nCleaning up as best you’re able, you get geared back up and ready to move, though you can’t seem to get the smell of pussy off your breath.");
 	processTime(10+rand(15));
 	pc.orgasm();
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 //*Cunt tail fap replacement B
@@ -731,7 +731,7 @@ function cuntTailFapScene():void {
 	feedCuntSnake();
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
+	clearMenuProxy();
 	userInterface.addButton(0,"Next",mainGameMenu);
 }
 

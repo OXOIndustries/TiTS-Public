@@ -37,7 +37,7 @@ function startCharacterCreation():void {
 	this.userInterface.resetPCStats();
 	this.userInterface.hidePCStats();
 	this.userInterface.hideNPCStats();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Human",confirmRaceChoice);
 	this.userInterface.addButton(1,"Ausar",confirmRaceChoice,"ausar");
 	this.userInterface.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit");
@@ -58,7 +58,7 @@ function confirmRaceChoice(race:String = "human"):void {
 		output("The kaithrit are a cat-like race with two prehensile, feline tails. They are known for their feminine appearances and exotic colorations, so any child of Victor and kaithrit would have more possible hair colors, a prettier face than normal, and two tails. Also, if the child is a male, it'll have a soft-spined, cat-like penis.");
 	}
 	output("\n\nIs this the race Victor chooses?")
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Yes",chooseStartingRace,race);
 	this.userInterface.addButton(1,"No",startCharacterCreation);
 }
@@ -75,7 +75,7 @@ function chooseStartingRace(race:String = "human"):void {
 	if(race == "human") pc.originalRace = race;
 	else pc.originalRace = "half-" + race;
 	//Menus vary based on race.
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	if(race == "human") {
 		pc.addLegFlag(GLOBAL.PLANTIGRADE);
 		output("male or female");
@@ -216,7 +216,7 @@ function chooseHeight():void {
 
 	this.displayInput();
 	//[Height Box]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",applyHeight);
 	this.userInterface.addButton(14,"Back",startCharacterCreation);
 }
@@ -241,7 +241,7 @@ function applyHeight():void {
 	if(fail) {
 		this.userInterface.textInput.text = "";
 		this.displayInput();
-		this.userInterface.clearMenu();
+		this.clearMenuProxy();
 		this.userInterface.addButton(0,"Next",applyHeight);
 		this.userInterface.addButton(14,"Back",startCharacterCreation);
 		return;
@@ -258,7 +258,7 @@ function chooseThickness():void {
 	output("Marking his pad, he chuckles and clears his throat. The doctor asks, <i>“How thickset should " + pc.mf("he","she") + " be? Please note that I’m not referring to weight so much as the broadness of their overall frame - hips and shoulders, you know.”</i>");
 	
 	//[Height Box]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Very Thin",applyThickness,20);
 	this.userInterface.addButton(1,"Thin",applyThickness,30);
 	this.userInterface.addButton(2,"Lithe",applyThickness,40);
@@ -281,7 +281,7 @@ function chooseHairColor():void {
 	setLocation("SELECTING HAIR\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great,”</i> he says absently, entering the information with his stylus. <i>“I thought of asking for " + pc.mf("his","her") + " adult weight in pounds, but knowing you, you would have taken me seriously. Obviously, your kitchen staff will be the ones who control that.”</i> He clears his throat, sombering slightly. <i>“How about hair color? We could do black, like yours was, or any of the other natural colors pretty easily.”</i>");
 	//[CoC-like choices with bonus options for certain half-races].
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Black",applyHairColor,"black");
 	this.userInterface.addButton(1,"Brown",applyHairColor,"brown");
 	this.userInterface.addButton(2,"Dirty Blond",applyHairColor,"dirty blond");
@@ -312,7 +312,7 @@ function chooseEyeColor() {
 	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“I thought you’d choose " + pc.hairColor + ", boss. How about eye color? Got anything in mind?”</i> The doctor glances up from his tablet and awaits Victor’s response.");
 	//[Normal Eye colors + bonus half race ones]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Blue",applyeEyeColor,"blue");
 	this.userInterface.addButton(1,"Green",applyeEyeColor,"green");
 	this.userInterface.addButton(2,"Hazel",applyeEyeColor,"hazel");
@@ -340,7 +340,7 @@ function chooseSkinTone():void
 	clearOutput();
 	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great. How about skin pigmentation?”</i>");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Pale",applySkinTone,"pale");
 	this.userInterface.addButton(1,"Fair",applySkinTone,"fair");
 	this.userInterface.addButton(2,"Tanned",applySkinTone,"tanned");
@@ -366,7 +366,7 @@ function chooseBreastSize():void {
 		output("\n\nVictor folds his arms and raises an eyebrow.");
 		output("\n\nThe doctor rubs the bridge of his nose in exasperation. <i>“We both know you’re a sexual deviant. How do I know you don’t want your kid to grow up into the universe’s hottest tranz? Just pick flat if you don’t want them.”</i>");
 	}
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Flat",applyBreastSize,0);
 	this.userInterface.addButton(1,"A",applyBreastSize,1);
 	this.userInterface.addButton(2,"B",applyBreastSize,2);
@@ -404,7 +404,7 @@ function chooseYourJunkSize():void {
 	if(pc.originalRace != "half-kaithrit") output("eight ");
 	else output("six ");
 	output("inches. How long do you want it?”</i> He rolls his eyes. <i>“You’re gonna make your kid a stallion here, aren’t you? Why do I even ask?”</i>");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"4\"",applyJunkSize,4);
 	this.userInterface.addButton(1,"5\"",applyJunkSize,5);
 	this.userInterface.addButton(2,"6\"",applyJunkSize,6);
@@ -432,7 +432,7 @@ function chooseYourVagina():void {
 	clearOutput();
 	setLocation("SELECTING\nVAGINAL OPTIONS","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Alright, I can specialize the vagina for capacity, extra lubrication, both, or neither. If we do both, the effects won’t be as pronounced as focusing on a single choice. I know that’s probably not the first thing you want to think about as a dad, but if the kid is gonna be taking after you, it’d be wise to tweak up at least one of those.”</i> The doctor looks at Victor expectantly.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Capacity",upgradeCapacity);
 	this.userInterface.addButton(1,"Lubrication",upgradeLubricants);
 	this.userInterface.addButton(2,"Both",fullyUpgradeCunt);
@@ -468,7 +468,7 @@ function chooseSexualGift():void {
 	output("\n\nVictor sighs as the doctor drones on, knowing that these could be important but a little tired of the total volume of the information.");
 	output("\n\n<i>“‘Bulgy’ would cause in increase in the size of any testes as well as increased receptiveness to gonad enhancement. ‘Extra Ardor’ will cause an increase in sex drive after maturity. I bet your parents gave you that, huh? ‘Ice Cold’ would be the opposite, reducing natural sex drive. It doesn’t have any effect on aphrodisiacs or receptiveness to touch, however.”</i> The doctor touches his fingers as if counting and purses his lips, <i>“Huh, I guess that’s all of them. What’ll it be?”</i>");
 	//Make sure there is a none option.
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	pc.removePerk("Virile");
 	pc.removePerk("Potent");
 	pc.removePerk("Elasticity");
@@ -559,7 +559,7 @@ function chooseAPhysicalAffinity():void {
 	setLocation("CHOOSING AN\nAFFINITY","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Grrrreat,”</i> the doctor muses as he checks your selection. <i>“Just one more thing: I can slip in affinity for a certain attribute. These are all pretty self explanatory, so I won’t have to bore you overmuch. Suffice to say, your " + pc.mf("son","daughter") + " will be able to increase the chosen attribute more easily. We can do physique, reflexes, aim, intelligence, or willpower. Personally, I recommend intelligence.”</i>");
 	output("\n\nThese ability scores are capped at five to start, though certain things like current level, starting race, cybernetic enhancements, and specific mutations can increase the maximum.\n\n<b>Physique</b> is a measurement of a character's strength and endurance. Its primary usage to land melee strikes and increase the damage of said strikes.\n\n<b>Reflexes</b> are a measurement of piloting aptitude, but they also come in handy when having to avoid a surprise attack or trap.\n\n<b>Aim</b> is a representation of how well one can aim both hand-held and ship-board ranged weaponry.\n\n<b>Intelligence</b> increases the effectiveness of technology-based attacks, primarily those used by tech specialists. It is also useful any time one has to deal with sophisticated machinery.\n\n<b>Willpower</b> is used to counter sexual urges and addictions, resist psionics, and strengthen one's own psionics, should a person of human descent somehow gain mind powers.\n\n<b>Libido</b>, while not an option the doc is giving, deals with how fast lust increases over time and susceptible to incidental lusts and perversions one is. It is not capped by level and scales from 1 to 100.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Intelligence",applyAffinity,"intelligence");
 	this.userInterface.addButton(1,"Physique",applyAffinity,"physique");
 	this.userInterface.addButton(2,"Reflexes",applyAffinity,"reflexes");
@@ -591,7 +591,7 @@ function chooseHowPCIsRaised():void {
 	output("<b>Some time later...</b>");
 	output("\n" + pc.short + " was born without complications, but now Victor is faced with a new quandary. Just how is he going to raise his potential successor? If he pampers " + pc.mf("him","her") + ", " + pc.mf("he","she") + "’ll have a head start on life, but will likely be lacking in willpower. If Victor pushes " + pc.mf("him","her") + " into athletics, " + pc.mf("he","she") + "’ll likely develop " + pc.mf("his","her") + " physical skills over " + pc.mf("his","her") + " mental ones. Of course, the father could push his progeny towards being a bit of a bookworm, as knowledge is power, but " + pc.mf("he","she") + "’d wind up physically weaker. An austere upbringing would result in higher willpower but a little less of a financial, helping hand. The alternative to those options would be a balanced upbringing that favors nothing in particular.");
 	//[Pampered][Athletic][Bookworm][Austere][Balanced]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Pampered",applyUpbringing,0);
 	this.userInterface.addButton(1,"Athletic",applyUpbringing,1);
 	this.userInterface.addButton(2,"Bookworm",applyUpbringing,2);
@@ -640,7 +640,7 @@ function chooseAlignment():void {
 	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
 	output("<b>You are " + pc.short + "</b> now, but the question remains, what kind of person will you be?");
 	output("\n\n(This choice will affect how your character reacts to the challenges and situations " + pc.mf("he","she") + " finds " + pc.mf("him","her") + "self in. Ultimate choice will still remain with you, the player, but the way [pc.name] goes through those choices may vary with personality.)");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Kind",alignConfirm,17);
 	this.userInterface.addButton(1,"Mischievous",alignConfirm,50);
 	this.userInterface.addButton(2,"Hard",alignConfirm,85);
@@ -660,7 +660,7 @@ function chooseClass():void {
 	updatePCStats();
 	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
 	output("You're all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Smuggler",classConfirm,GLOBAL.SMUGGLER);
 	this.userInterface.addButton(1,"Mercenary",classConfirm,GLOBAL.MERCENARY);
 	this.userInterface.addButton(2,"TechSpecialist",classConfirm,GLOBAL.ENGINEER);
@@ -673,7 +673,7 @@ function classConfirm(arg:int = 0):void {
 	else if(arg == GLOBAL.MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
 	else if(arg == GLOBAL.ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
 	output("\n\nIs this the career you’d like to pursue?");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Yes",setClass,arg);
 	this.userInterface.addButton(1,"No",chooseClass);
 }
@@ -711,7 +711,7 @@ function tutorialSkipOption():void {
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
 	output("\n\n(Skip option is not yet implemented.)");
 	//[Tutorial] [Skip]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",tutorialIntro);
 }
 
@@ -725,7 +725,7 @@ function tutorialIntro():void {
 	output("\n\nYou shake your head to chase away the unwelcome thoughts and focus on packing. The trip is boring, leaving you with nothing to think about except life without your father and the uncertain future ahead. Hopefully the old man was lucky enough to go out in a dignified way.");
 	output("\n\nYour transport pulls up to Station where the service is being held. Adjusting your finest clothes, you walk through the airlock and up some old-fashioned steps towards the theater Dad's money bought him, trying to keep your eyes clear as you breeze past a surprisingly low amount of paparazzi. They must have gotten decent security this time.");
 	output("\n\nYou push open the doors and step inside...");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",tutorialIntro2);
 }
 
@@ -737,7 +737,7 @@ function tutorialIntro2():void {
 	output("\n\nYou’re on your way over to your father’s real friends, people you’ve actually seen around his mansion growing up, when his lawyer intercepts you and pulls you aside.");
 	output("\n\n<i>“Come, we must talk...”</i>");
 	//[Next]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",tutorialIntro3);
 }
 
@@ -767,7 +767,7 @@ function tutorialIntro3():void {
 	output("\n\nThe lawyer steeples his fingers and says, <i>“Microsurgeon immune boosters. Top of the line. Your dad will tell you more.”</i> He gestures towards a second door set into the wall beside you. <i>“Go on through.”</i>");
 	output("\n\nYou take the injector and open the door, unsure just how much weirder this can get...");
 	//[Next]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",tutorialIntro4);
 }
 
@@ -798,7 +798,7 @@ function tutorialIntro4():void {
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you'll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
 	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Open Door",openDoorToTutorialCombat);
 }
 //The Introduction of Celise (Goo Girl)
@@ -811,7 +811,7 @@ function openDoorToTutorialCombat():void {
 	output("\n\nWith her bust jiggling and wobbling in such a titanic manner that you feel it might separate from her chest, the gelatinous gal runs her hands over and through the new, bulgy boobs, giggling as your eyes follow her motions. She chirps, <i>“Hiya! You look like you taste pretty good! I think I’ll drain you dry...”</i>");
 	output("\n\nShe lurches forward, and for a second, you fear you’ll be engulfed before you can react. A blue flash interrupts her pell-mell undulations, and your Dad’s face appears between you, suspended in the air. He explains, <i>“Celise here is a fairly simple girl with simple needs. Unfortunately, she doesn’t respect anyone until she feels they’ve earned it. You’re going to have to fight her if you want to get the keys to your new ship.”</i>");
 	output("\n\nDamnit, Dad!\n\n<b>It’s a fight!</b>");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",startCombat,"celise");
 }
 
@@ -857,7 +857,7 @@ function defeatCelise():void {
 	output("\n\n<i>“If you give Celise what she wants now, you’ll probably earn her loyalty. That choice is up to you; I can’t make it for you. Galotians are a fiercely loyal people once they choose to follow someone, and though she has few marketable skills, it might be good to have a companion out there in the void. Whatever you choose, I’m sure you’ll do me proud.”</i> Victor smiles dryly. <i>“After all, I bet my legacy on it.”</i>");
 	output("\n\nThe recording winks off.");
 	output("\n\nWhat do you do with Celise? Ignore her, or feed her and take her on your crew?");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Ignore Her",ignoreCelise);
 	this.userInterface.addButton(1,"Feed Celise",takeCelise);
 }
@@ -867,7 +867,7 @@ function ignoreCelise():void {
 	setLocation("KEYS","TAVROS STATION","SYSTEM: KALAS");
 	output("You ignore the hand and pull free, grabbing the keys as you step out to inspect your ship.");
 	//[Next]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",checkOutYourShip);
 }
 //Feed Celise [Male]
@@ -938,7 +938,7 @@ function takeCelise():void {
 	}
 	//Orgasm, edit stats
 	pc.orgasm();
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Take Her",takeCeliseAsACrewMember);
 	this.userInterface.addButton(1,"Don't",ignoreCelise);
 }
@@ -958,7 +958,7 @@ function takeCeliseAsACrewMember():void {
 	output("\n\nWhatever, it’s time to get this show on the road! You grab the digikey off the shelf and step through the door.");
 	flags["RECRUITED_CELISE"] = 1;
 	flags["CELISE_ONBOARD"] = 1;
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",checkOutYourShip);
 }
 
@@ -973,7 +973,7 @@ function checkOutYourShip():void {
 	output("\n\nA clearly marked exit portal dilates as you approach, and you step out into the station’s main thoroughfare. It’s surprisingly quiet and devoid of the shops you’d expect to see. The only place with any grub looks to be an “Anon’s Bar”</i>, though it boasts mention of rooms for rent as well.");
 	output("\n\nYou head on in...");
 	//[Next]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",getFoodAndDrink);
 }
 //Go Get Food and a Drink
@@ -985,7 +985,7 @@ function getFoodAndDrink():void {
 	output("\n\nAfter a moment, you decide to order a whiskey. Regardless of your personal feelings, Dad asked you to knock one back for him. You may as well humor the dead codger, even if he did make acquiring your inheritance a trial and a half. At that point, your belly rumbles, and you realize that you haven’t had anything to eat since this morning.");
 	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn’t wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchens. With the lighting as dim as it is, it’s difficult to make out much about the individual. It looks human, but its shape eludes you as you sit down. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
 	//[Male] [Female]
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Male",rivalSpillsTheBeans,1);
 	this.userInterface.addButton(1,"Female",rivalSpillsTheBeans,3);	
 }
@@ -1041,7 +1041,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 	output("\n\n" + chars["RIVAL"].short + " swaggers off with " + chars["RIVAL"].mf("his","her") + " drink and " + chars["RIVAL"].mf("his","her") + " spy machines, leaving you to brood on your thoughts while your order arrives. It tastes bitter in your mouth after such a betrayal, but you swear to yourself that the punk won’t take over Dad’s company. Even the outrageous bustiness of your server won’t cheer you up at this point, nor will the surprisingly delicious wings.");
 	output("\n\nYou burp as fatigue sets in and make off to secure quarters for the evening. Tomorrow is going to be a big day, and you intend to hit the galactic rim hard.");
 	output("\n\nTomorrow, you join the Planet Rush.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",ohShitGameStarts);
 }
 //Wake to Find Rival Left in the Night
@@ -1059,7 +1059,7 @@ function ohShitGameStarts():void {
 	this.userInterface.days = 1;
 	this.userInterface.showTime();
 	//[Next] - to station screens!
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.currentLocation = "TAVROS HANGAR";
 	this.shipLocation = "TAVROS HANGAR";
 
@@ -1073,7 +1073,7 @@ function demoOver():void {
 	clearOutput();
 	setLocation("DEMO\nCOMPLETE","THANKS FOR PLAYING","AND SUPPORTING ME.");
 	output("This concludes the full TiTS introductory sequence.  Keep your eyes peeled for supporter-only releases and the eventual public pre-releases as I get more done.");
-	this.userInterface.clearMenu();
+	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Appearance",appearanceTest);
 }
 
