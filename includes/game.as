@@ -1,4 +1,12 @@
-﻿public function mainGameMenu():void {
+﻿
+public function get canSaveAtCurrentLocation():Boolean
+{
+	if(inCombat()) 
+		return false;
+	return this.rooms[this.currentLocation].canSaveInRoom
+}
+
+public function mainGameMenu():void {
 	//Display shit that happened during time passage.
 	if(eventBuffer != "") {
 		clearOutput();
@@ -19,11 +27,10 @@
 		return;
 	}
 	//Set up all appropriate flags
-	saveHere = true;
 	//Display the room description
 	clearOutput();
-	output(rooms[currentLocation].description);
-	setLocation(rooms[currentLocation].roomName,rooms[currentLocation].planet,rooms[currentLocation].system);
+	output(this.rooms[this.currentLocation].description);
+	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
@@ -38,27 +45,27 @@
 		this.userInterface.addDisabledButton(3,"Masturbate");
 	else 
 		this.userInterface.addButton(3,"Masturbate",masturbateMenu);
-	if(!rooms[currentLocation].hasFlag(GLOBAL.BED)) 
+	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
 		this.userInterface.addButton(4,"Rest",rest);
 	else 
 		this.userInterface.addButton(4,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
-	if(rooms[currentLocation].runOnEnter != undefined) {
-		if(rooms[currentLocation].runOnEnter()) return;
+	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
+		if(this.rooms[this.currentLocation].runOnEnter()) return;
 	}
-	if(rooms[currentLocation].northExit) 
-		this.userInterface.addButton(6,"North",move,rooms[currentLocation].northExit);
-	if(rooms[currentLocation].eastExit) 
-		this.userInterface.addButton(12,"East",move,rooms[currentLocation].eastExit);
-	if(rooms[currentLocation].southExit) 
-		this.userInterface.addButton(11,"South",move,rooms[currentLocation].southExit);
-	if(rooms[currentLocation].westExit) 
-		this.userInterface.addButton(10,"West",move,rooms[currentLocation].westExit);
-	if(rooms[currentLocation].inExit) 
-		this.userInterface.addButton(5,rooms[currentLocation].inText,move,rooms[currentLocation].inExit);
-	if(rooms[currentLocation].outExit) 
-		this.userInterface.addButton(7,rooms[currentLocation].outText,move,rooms[currentLocation].outExit);
-	if(currentLocation == shipLocation) 
+	if(this.rooms[this.currentLocation].northExit) 
+		this.userInterface.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
+	if(this.rooms[this.currentLocation].eastExit) 
+		this.userInterface.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
+	if(this.rooms[this.currentLocation].southExit) 
+		this.userInterface.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
+	if(this.rooms[this.currentLocation].westExit) 
+		this.userInterface.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
+	if(this.rooms[this.currentLocation].inExit) 
+		this.userInterface.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
+	if(this.rooms[this.currentLocation].outExit) 
+		this.userInterface.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
+	if(this.currentLocation == shipLocation) 
 		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 	this.userInterface.addButton(14, "RESET NPCs", initializeNPCs);
 	

@@ -38,6 +38,8 @@
 		public var inText:String = "In";
 		public var outExit:String = "";
 		public var outText:String = "Out";
+
+		public var canSaveInRoom:Boolean = true;
 		
 		//Functions
 		public function hasFlag(arg):Boolean {

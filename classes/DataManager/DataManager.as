@@ -108,16 +108,16 @@
 			kGAMECLASS.clearOutput2();
 			displayMessage += "You can ";
 			
-			if (kGAMECLASS.saveHere) displayMessage += "<b>save</b> or ";
+			if (kGAMECLASS.canSaveAtCurrentLocation) displayMessage += "<b>save</b> or ";
 			displayMessage += "<b>load</b> your data here.";
 			
-			if (!kGAMECLASS.saveHere) displayMessage += "\n\nYou must be at a safe place to save your game.</b>";
+			if (!kGAMECLASS.canSaveAtCurrentLocation) displayMessage += "\n\nYou must be at a safe place to save your game.</b>";
 			
 			kGAMECLASS.output2(displayMessage);
 			
 			kGAMECLASS.userInterface.clearGhostMenu();
 			kGAMECLASS.userInterface.addGhostButton(0, "Load", this.loadGameMenu);
-			if (kGAMECLASS.saveHere) kGAMECLASS.userInterface.addGhostButton(1, "Save", this.saveGameMenu);
+			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.userInterface.addGhostButton(1, "Save", this.saveGameMenu);
 			
 			kGAMECLASS.userInterface.addGhostButton(14, "Back", dataRouter, kGAMECLASS.userInterface.tempEvent);
 		}

@@ -32,7 +32,7 @@
 		public function Mapper(roomsObj:Object, mapSz:Number = 7)
 		{
 			// I'm assuming we'll only ever have one rooms object. 
-			// eh, can always simple change roomsObj.
+			// eh, can always simply change roomsObj.
 			this.roomsObj = roomsObj;
 			this._mapSz = mapSz
 		}
@@ -41,7 +41,7 @@
 		{
 			
 
-			var arr:Vector.<Vector.<Vector.<int>>> = new Vector.<Vector.<Vector.<int>>>(this._mapSz);
+			var arr:Vector.<Vector.<Vector.<int>>> = new Vector.<Vector.<Vector.<int>>>(this._mapSz);		// Messy giant array is GO
 				
 			var x:int;
 			var y:int;

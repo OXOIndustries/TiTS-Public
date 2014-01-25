@@ -115,7 +115,6 @@
 
 
 		//Lazy man state checking
-		public var saveHere:Boolean;
 		public var currentLocation:String;
 		public var shipLocation:String;
 
@@ -189,7 +188,6 @@
 
 
 			//Lazy man state checking
-			saveHere = false;
 			currentLocation = "SHIP HANGAR";
 			shipLocation = "SHIP HANGAR";
 
@@ -265,7 +263,6 @@
 				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
 				return;
 			}
-			saveHere = false;
 			trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
 			else evt.currentTarget.func(evt.currentTarget.arg);
@@ -494,7 +491,6 @@
 				trace("Undefined button pressed! Something went wrong!");
 				return;
 			}
-			saveHere = false;
 			if(!inCombat()) 
 				this.userInterface.showBust("none");
 			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
