@@ -233,7 +233,7 @@ function confirmLevelPointAllocation():void
 			pc.createPerk("Escape Artist",0,0,0,0,"Use reflexes to escape grapples with a slight bonus.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
 			output("\n<b>* Sneak Attack -</b> this ability increases melee damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
-			output("\n<b>* Aimed Shot -</b> this ability increases melee damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
+			output("\n<b>* Aimed Shot -</b> this ability increases ranged damage done against stunned or blinded targets greatly. Additional negative statuses may further increase the damage.");
 			userInterface.clearMenu();
 			userInterface.addButton(0,"Sneak Attack",smugglerPerk,"Sneak Attack");
 			userInterface.addButton(1,"Aimed Shot",smugglerPerk,"Aimed Shot");

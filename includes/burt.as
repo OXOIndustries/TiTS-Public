@@ -36,7 +36,7 @@ function burtsBarFunc():void {
 			}
 			//(Repeat)
 			else {
-				output("\n\nSyri's at her usual place, reading and munching on some nuts Bert's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
+				output("\n\nSyri's at her usual place, reading and munching on some nuts Burt's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
 			}
 			//[Syri]
 			userInterface.addButton(5,"Syri",approachSyriIntheMorning);
@@ -402,7 +402,7 @@ function burtXilErAte():void {
 		else output("\n\nYou're about as drunk on X-Zil-rate as you're going to get.");
 	}
 	else {
-		pc.createStatusEffect("X-Zil-rate",0,1,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
+		pc.createStatusEffect("X-Zil-rate",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf booze makes you feel strong... and horny.",false,180);
 		pc.physiqueMod+=5;
 		pc.lust(5);
 	}

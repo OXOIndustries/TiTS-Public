@@ -254,8 +254,8 @@ function victoryFuckSyrisBunghole():void {
 	output("\n\n<i>“Next time... it's </i>your<i> ass, [pc.name],”</i>  she growls, pulling your cock out - which only serves to unleash a flood of your pent-up seed that spills down between her cheeks and along the cleft of her swinging sack.");
 
 	//If PC = Hard:
-	if(pc.isAss()) output("\n\n<i>“You grab your gear and stumble off, smirking, as Syri slinks away to the bathroom to clean up, leaking your cum behind her as she goes.”</i>");
-	else output("\n\n<i>“You give Syri an appreciative slap on the ass, making the sun-kissed skin of her taut bum jiggle, cum drooling obscenely from her violated hole as her muscles clench. You help the ausar-girl to her feet, legs shaking after your rectal reaming, and help her get to the bathroom to clean up before you collect your gear and stumble off.”</i>");
+	if(pc.isAss()) output("\n\nYou grab your gear and stumble off, smirking, as Syri slinks away to the bathroom to clean up, leaking your cum behind her as she goes.");
+	else output("\n\nYou give Syri an appreciative slap on the ass, making the sun-kissed skin of her taut bum jiggle, cum drooling obscenely from her violated hole as her muscles clench. You help the ausar-girl to her feet, legs shaking after your rectal reaming, and help her get to the bathroom to clean up before you collect your gear and stumble off.");
 	processTime(30+rand(15));
 	pc.orgasm();
 	chars["SYRI"].orgasm();
@@ -569,7 +569,7 @@ function talkToSyriNumber2():void {
 
 	output("\n\n<i>“And I was stupid enough to sign up to test the prototype. Long story short, my commanding officer, Lieutenant Commander Valden and I go through the gate. I pop out the other side with a cock, and Valden vanishes with my cunt. Now I'm on medical leave until Valden pops out of some dimensional asshole and I get my dangly bits sorted out. Fuck me for volunteering, right?”</i>");
 
-	output("\n\nOuch. So why not get a new one?");
+	output("\n\n<i>\"Ouch. So why not get a new one?\"</i>");
 
 	output("\n\n<i>“New vag? Meh. I kinda dig the D, to be honest. Peeing standing up is great, and it's not like I ever wanted to be a mother anyway. Plus, not doing the whole heat thing every year is, uh, a plus. That could just be Valden talking, though. There's like a... 22 percent?... chance he's in here with me somewhere.”</i>  she laughs, rapping a knuckle on her head.");
 
@@ -702,7 +702,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 
 			output("\n\n<i>“Ooh, I thought you'd never ask, " + pc.mf("handsome","beautiful") + ",”</i>  Syri says with a wink and a grin, gathering up her scattered belongings. <i>“My place is kind of a wreck, so... let's head back to that ship of yours. You still owe me a tour of your ship after all, Captain...”</i>");
 
-			output("\n\nSyri hooks her arm through yours, drawing close to you as you lead the way from Bert's bar to the docks. Soon you're walking in the shadow of your docked ship, heading up toward the elevator. Flahne, the rahn secretary, gives you a little wave - and a knowing wink - as you pass, and then you're in the elevator. The doors have barely closed before the lusty ausar grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves inrhythmic undulations, grinding her crotch against yours");
+			output("\n\nSyri hooks her arm through yours, drawing close to you as you lead the way from Burt's bar to the docks. Soon you're walking in the shadow of your docked ship, heading up toward the elevator. Flahne, the rahn secretary, gives you a little wave - and a knowing wink - as you pass, and then you're in the elevator. The doors have barely closed before the lusty ausar grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
 			if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
 			else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what's to come."); 
 

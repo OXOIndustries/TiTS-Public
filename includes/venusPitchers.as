@@ -233,12 +233,18 @@ function firstTimeVenusEntrance(tricked:Boolean = false):void {
 		output("\n\nYou'd be a little nervous about admitting your inexperience, but the words spill out of your mouth one after another without slowing. Before you know it, you've told her just how little you've done and how excited you are to get started.");
 		output("\n\n<i>“Wow!”</i>  she blurts, <i>“I just meant your first venus pitcher, but that's even better.”</i>  The viridian beauty traces her finger up from your navel to your chin before tut-tutting, <i>“I'll make sure you remember me.”</i>");
 	}
-	//{Not a virgin!}
-	else
+	//{Not a virgin but new to flowers
+	else if(flags["TIMES_CAUGHT_BY_ELDER_VENUS_PITCHER"] == undefined)
 	{
 		output("\n\nYou recount your sexual experience without a hint of hesitation, which seems a little odd in hindsight. While you're trying to figure out your glibness, the chlorophyll-laden lady laughs, <i>“I didn't mean a total virgin, who hasn't fucked before? Maybe zil, when they're super young or something. I meant, is this the first time you've been caught by one of us? Am I going to be the first to milk you?”</i>");
 		output("\n\nYou nod, sheepishly.");
 		output("\n\n<i>“Awww, that's kind of sweet. I'll be sure to make it good enough that you try to find me again!”</i>");
+	}
+	//Been had be elder ones already
+	else {
+		output("\n\nYou recount your sexual experience without a hint of hesitation, which seems a little odd in hindsight. While you're trying to figure out your glibness, the chlorophyll-laden lady laughs, <i>“You fell for one of my older sisters? Well, it is nice to have someone broken in. I bet you're already craving the pleasure of my embrace, aren't you?”</i>");
+		output("\n\nYou nod, sheepishly.");
+		output("\n\n<i>“Awww, that's almost sweet. I'll be sure to make it good enough that you try to find me again!”</i>");
 	}
 	//{both}
 	output("\n\nThe graceful green beauty rises up high enough to put her lips level with yours. Her plump pucker reminds you of a ripe fruit just waiting to be plucked, but you're unable to do so in your present position. You watch as she sways closer to you, right up until her beryl kiss seals itself perfectly against your mouth. With your head swimming from the passionate press, you feel your genitalia engorging in response, making your lust as visible as a blooming flower while her lip-lock fans the flames of your desire. She's the one to break the kiss, sliding away with deliberate slowness that lets both your mouths embrace for the tenuous moment before they separate.");
@@ -853,7 +859,8 @@ function elderVenusPitchersPlayWithCooches():void {
 	else output("gushes");
 	output(" out around the tendril as it pumps you full, distorting your entrance with the size of the jizz-bulges traveling into you.");
 	if(!pc.isPregnant(x)) output(" Your belly slow bulges with the spewing seed, rounding out into a slightly-pregnant dome while your mind reels with fantasies about birthing smooth seeds that will someday blossom into equally entrancing creatures.");
-	output(" A waterfall of musky jism rolls out of your [pc.vagina " + x + "] seemingly without end. You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.");
+	output(" A waterfall of musky jism rolls out of your [pc.vagina " + x + "] seemingly without end.");
+	if(!pc.isPregnant(x)) output(" You actually find yourself wishing you weren’t pregnant, so that you can feel it filling you, stuffing your womb with new life.");
 	output(" The bigger tentacle fires cum out like a cannon, ");
 	if(pc.clitLength < 3) output("splattering it directly off your [pc.clit].");
 	else output("forced off your cum-soaked clit as it dumps a deluge of spooge over your most sensitive organ.");

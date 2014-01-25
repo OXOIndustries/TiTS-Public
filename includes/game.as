@@ -211,6 +211,7 @@ function statusTick():void {
 				if(this.chars["PC"].statusEffects[x].storageName == "X-Zil-rate")
 				{
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
+					trace("X-Zil-rate Expired: " + this.chars["PC"].statusEffects[x].value2);
 				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Zil Sting")
 				{

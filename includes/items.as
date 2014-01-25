@@ -154,9 +154,10 @@ function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 
 function inventory():void {
 	clearOutput();
+	var x:int = 0;
 	itemScreen = inventory;
 	useItemFunction = inventory;
-	output("<b><u>Currently Worm Equipment:</u></b>\n");
+	output("<b><u>Currently Worn Equipment:</u></b>\n");
 	output("<b>Melee Weapon:</b> " + StringUtil.toTitleCase(pc.meleeWeapon.description) + "\n");
 	output("<b>Ranged Weapon:</b> " + StringUtil.toTitleCase(pc.rangedWeapon.description) + "\n");
 	output("<b>Armor:</b> " + StringUtil.toTitleCase(pc.armor.description) + "\n");
@@ -164,10 +165,20 @@ function inventory():void {
 	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
+	output("<b><u>Key Items:</u></b>:\n");
+	if(pc.keyItems.length > 0) 
+	{
+		for(x = 0; x < pc.keyItems.length; x++) 
+		{
+			output(pc.keyItems[x].storageName + "\n");
+		}
+		output("\n");
+	}
+	else output("None\n\n");
 	output("What item would you like to use?");
 	this.userInterface.clearMenu();
 	var adjustment:int = 0;
-	for(var x:int = 0; x < pc.inventory.length || x < 14; x++) {
+	for(x = 0; x < pc.inventory.length || x < 14; x++) {
 		//5 = bra
 		if(x+adjustment == 5) {
 			if(pc.upperUndergarment.shortName != "") {
