@@ -2496,7 +2496,7 @@
 			var counter:Number = cocks.length;
 			while(counter > 0) {
 				counter--;
-				thick += cocks[counter].cThickness;
+				thick += cocks[counter].thickness();
 			}
 			return thick;
 		}

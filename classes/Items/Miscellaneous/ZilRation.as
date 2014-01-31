@@ -453,7 +453,7 @@
 			//Make a list of all the girth needing
 			while(x < target.cockTotal())
 			{
-				if(target.cocks[x].cLength * .25 < target.cocks[x].cThickness) choices[choices.length] = x;
+				if(target.cocks[x].cThicknessRatio < 1.5) choices[choices.length] = x;
 				x++;
 			}
 			//Pick a random dick out of the list
