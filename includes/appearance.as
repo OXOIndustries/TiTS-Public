@@ -747,7 +747,7 @@ function appearance(target:Creature):void {
 			else {
 				output2("the massive hole");
 				if(target.vaginaTotal() > 1) output2("s that are");
-				else output2("that is");
+				else output2(" that is");
 				output2(" your " + target.vaginasDescript() + ".");
 			}
 			//Zil flavor!

@@ -1248,7 +1248,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	{
 		//Get tease count updated
 		if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
-		teaseCount = flags["TIMES_CHEST_TEASED"]++;
+		teaseCount = flags["TIMES_CHEST_TEASED"];
 		if(teaseCount > 100) teaseCount = 100;
 		
 		if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
@@ -1269,7 +1269,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	{
 		//Get tease count updated
 		if(flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
-		teaseCount = flags["TIMES_HIPS_TEASED"]++;
+		teaseCount = flags["TIMES_HIPS_TEASED"];
 		if(teaseCount > 100) teaseCount = 100;
 		
 		if(pc.hipRating >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS) > 0)
@@ -1286,7 +1286,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	{
 		//Get tease count updated
 		if(flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
-		teaseCount = flags["TIMES_BUTT_TEASED"]++;
+		teaseCount = flags["TIMES_BUTT_TEASED"];
 		if(teaseCount > 100) teaseCount = 100;
 		
 		if(pc.buttRating >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS) > 0)
@@ -1308,7 +1308,7 @@ function tease(target:Creature, part:String = "chest"):void {
 	{
 		//Get tease count updated
 		if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
-		teaseCount = flags["TIMES_CROTCH_TEASED"]++;
+		teaseCount = flags["TIMES_CROTCH_TEASED"];
 		if(teaseCount > 100) teaseCount = 100;
 		
 		if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
@@ -1362,6 +1362,8 @@ function tease(target:Creature, part:String = "chest"):void {
 				if(target.plural) output("resist");
 				else output("resists");
 				output(" your erotically charged display... this time. (0)\n");
+
+				teaseSkillUp(part);
 			}
 		}
 		//Success!
@@ -1384,10 +1386,18 @@ function tease(target:Creature, part:String = "chest"):void {
 			output(teaseReactions(damage,target));
 			target.lust(damage);
 			output(" ("+ damage + ")\n");
+			teaseSkillUp(part);
 		}
 	}
 	else output("\n");
 	processCombat();
+}
+
+function teaseSkillUp(part:String):void {
+	if(part == "crotch") flags["TIMES_CROTCH_TEASED"]++;
+	else if(part == "butt") flags["TIMES_BUTT_TEASED"]++;
+	else if(part == "hips") flags["TIMES_HIPS_TEASED"]++;
+	else if(part == "chest") flags["TIMES_CHEST_TEASED"]++;
 }
 
 function teaseReactions(damage:Number,target:Creature):String {

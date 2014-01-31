@@ -82,9 +82,9 @@
 				if(target.tallness >= 72 && changes < changeLimit && rand(3) == 0 && target.legCount != 1 && target.legType != GLOBAL.NAGA)
 				{
 					//Single leg!
-					if(target.legCount == 1) kGAMECLASS.output("\n\nYour [pc.leg] abruptly goes weak, dropping you flat on your [pc.ass], and just in time, by the looks of things. Your lower limb is twisting and writhing");
+					if(target.legCount == 1) kGAMECLASS.output("\n\nYour [pc.leg] abruptly goes weak, dropping you flat on your [pc.butt], and just in time, by the looks of things. Your lower limb is twisting and writhing");
 					//Multileg!
-					else kGAMECLASS.output("\n\nYour [pc.legs] abruptly go weak, dropping you flat on your [pc.ass], and just in time by the looks of things. Your lower limbs have knotted together into one fused mass of writhing flesh");
+					else kGAMECLASS.output("\n\nYour [pc.legs] abruptly go weak, dropping you flat on your [pc.butt], and just in time by the looks of things. Your lower limbs have knotted together into one fused mass of writhing flesh");
 					//Both:
 					kGAMECLASS.output(", though all you feel is a slightly achy throb and the occasional twinge of a new bone forming. Over time, the singular extremity becomes longer and longer, tapered down to a pointed tip. It tingles when tiny, iridescent plates emerge to cover it. <b>You're growing a tail that's just like a naleen's!</b> The growing scales even ");
 					if(target.hasHair()) kGAMECLASS.output("match your [pc.hair]");

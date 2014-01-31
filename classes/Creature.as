@@ -357,6 +357,12 @@
 				case "hair":
 					buffer = hairDescript();
 					break;
+				case "ears":
+					buffer = earsDescript();
+					break;
+				case "ear":
+					buffer = earDescript();
+					break;
 				case "hairsDescript":
 					buffer = hairDescript();
 					break;
@@ -1040,6 +1046,12 @@
 		}
 		public function lipDescript():String {
 			return "lip";
+		}
+		public function earDescript():Stirng {
+			return "ear";
+		}
+		public function earsDescript():String {
+			return plural(earDescript());
 		}
 		public function tongueDescript():String {
 			return "tongue";
