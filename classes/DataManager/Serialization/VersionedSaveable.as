@@ -29,6 +29,16 @@
 			_ignoredFields.push(fieldName);
 		}
 		
+		private function isBasicType(obj:*):Boolean
+		{
+			if (obj is int) return true;
+			if (obj is Number) return true;
+			if (obj is String) return true;
+			if (obj is Boolean) return true;
+			if (obj is uint) return true;
+			return false;
+		}
+		
 		// Serialization shit
 		public function getSaveObject():Object
 		{
@@ -60,19 +70,34 @@
 									dataObject[prop.@name].push(this[prop.@name][i].getSaveObject());
 								}
 							}
+							else if (isBasicType(this[prop.@name][0]))
+							{
+								dataObject[prop.@name] = new Array();
+								
+								for (var i:int = 0; i < this[prop.@name].length; i++)
+								{
+									dataObject[prop.@name].push(this[prop.@name][i]);
+								}
+							}
 							else
 							{
 								dataObject[prop.@name] = this[prop.@name];
+								trace("Potential serialization issue with property: " + prop.@name);
 							}
 						}
 						else
 						{
-							dataObject[prop.@name] = this[prop.@name];
+							dataObject[prop.@name] = new Array();
 						}
+					}
+					else if (isBasicType(this[prop.@name]))
+					{
+						dataObject[prop.@name] = this[prop.@name];
 					}
 					else
 					{
 						dataObject[prop.@name] = this[prop.@name];
+						trace("Potential serialization issue with property: " + prop.@name);
 					}
 				}
 			}
