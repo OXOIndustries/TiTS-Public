@@ -1047,11 +1047,11 @@
 		public function lipDescript():String {
 			return "lip";
 		}
-		public function earDescript():Stirng {
+		public function earDescript():String {
 			return "ear";
 		}
 		public function earsDescript():String {
-			return plural(earDescript());
+			return pluralize(earDescript());
 		}
 		public function tongueDescript():String {
 			return "tongue";
