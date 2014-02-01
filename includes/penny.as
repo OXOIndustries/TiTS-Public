@@ -1639,10 +1639,14 @@ function buyThrobbTransact(amount:int = 1):void {
 	
 	//Acquire 1x throbb
 	//lootList.push(new Throbb());
-	flags["THROBB_QUANTITY_STORAGE_CHEAT"] = amount;
-	eventQueue[eventQueue.length] = lootThrobb;
+	if(flags["THROBB_QUANTITY_STORAGE_CHEAT"] == undefined) {
+		flags["THROBB_QUANTITY_STORAGE_CHEAT"] = amount;
+		eventQueue[eventQueue.length] = lootThrobb;
+	}
+	else flags["THROBB_QUANTITY_STORAGE_CHEAT"] += amount;
+	
 	//-300 credits
-	pc.credits -= 300;
+	pc.credits -= amount*300;
 	clearMenuProxy();
 	userInterface.addButton(0,"Next",talkToGirfriendPenny);
 }
@@ -1654,8 +1658,16 @@ function lootThrobb():void {
 	foundLootItems[foundLootItems.length] = new Throbb();
 	//Set quantity!
 	foundLootItems[foundLootItems.length-1].quantity = flags["THROBB_QUANTITY_STORAGE_CHEAT"];
+	if(foundLootItems[foundLootItems.length-1].quantity > foundLootItems[foundLootItems.length-1].stackSize)
+		foundLootItems[foundLootItems.length-1].quantity = foundLootItems[foundLootItems.length-1].stackSize;
+	//More to loot? Queue up another loot batch.
+	if(flags["THROBB_QUANTITY_STORAGE_CHEAT"] > foundLootItems[foundLootItems.length-1].quantity)
+	{
+		flags["THROBB_QUANTITY_STORAGE_CHEAT"] -= foundLootItems[foundLootItems.length-1].quantity;
+		eventQueue[eventQueue.length] = lootThrobb;
+	}
 	//Clear quantity
-	flags["THROBB_QUANTITY_STORAGE_CHEAT"] = undefined;
+	else flags["THROBB_QUANTITY_STORAGE_CHEAT"] = undefined;
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
