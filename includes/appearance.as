@@ -587,17 +587,17 @@ function appearance(target:Creature):void {
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
 							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
-							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches thick.");
+							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches thick.");
 						}
 					}
 					if(rando == 3) {
 						if(temp > 0) output2("\nYour next ");
 						else output2("\nYour first ");
 						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
-						if(Math.floor(target.cocks[temp].cThickness) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
+						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
 						else {
-							if(Math.round(target.cocks[temp].cThickness*10)/10 == 1) output2("one inch in diameter.");
-							else output2(Math.round(target.cocks[temp].cThickness*10)/10 + " inches in diameter.");
+							if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) output2("one inch in diameter.");
+							else output2(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
 						}
 					}
 					//Horsecock flavor

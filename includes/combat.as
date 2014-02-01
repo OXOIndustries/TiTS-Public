@@ -10,16 +10,20 @@ function inCombat():Boolean
 
 function combatMainMenu():void 
 {
-	clearOutput();
-	//Track round, expires on combat exit.
-	if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
-	else pc.addStatusValue("Round",1,1);
-	//Show what you're up against.
-	if(foes[0] == celise) this.userInterface.showBust("CELISE");
-
-	for(var x:int = 0; x < foes.length; x++) {
-		if(x > 0) output("\n\n");
-		displayMonsterStatus(foes[x]);
+	if(flags["COMBAT MENU SEEN"] == undefined)
+	{
+		clearOutput();
+		//Track round, expires on combat exit.
+		if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
+		else pc.addStatusValue("Round",1,1);
+		
+		//Show what you're up against.
+		if(foes[0] == celise) this.userInterface.showBust("CELISE");
+		for(var x:int = 0; x < foes.length; x++) 
+		{
+			if(x > 0) output("\n\n");
+			displayMonsterStatus(foes[x]);
+		}
 	}
 	//Check to see if combat should be over or not.
 	//Victory check first, because PC's are OP.
@@ -46,8 +50,10 @@ function combatMainMenu():void
 		celiseMenu();
 		return;
 	}
-	updateCombatStatuses();
-	
+	if(flags["COMBAT MENU SEEN"] == undefined)
+	{
+		updateCombatStatuses();
+	}
 	//Stunned Menu
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
@@ -77,6 +83,7 @@ function combatMainMenu():void
 		this.userInterface.addButton(9,"Fantasize",fantasize);
 		this.userInterface.addButton(14,"Run",runAway);
 	}
+	flags["COMBAT MENU SEEN"] = 1;
 }
 
 function specialsMenu():void {
@@ -285,6 +292,7 @@ function celiseMenu():void
 
 function processCombat():void 
 {
+	flags["COMBAT MENU SEEN"] = undefined;
 	combatStage++;
 	trace("COMBAT STAGE:" + combatStage);
 	//Check to see if combat should be over or not.

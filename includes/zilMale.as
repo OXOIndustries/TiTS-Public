@@ -365,7 +365,7 @@ function buttfuckDefeatedZil():void {
 	//{Mischievious}
 	else if(pc.isMischievous()) 
 	{
-		output("\n\nYou pull away, chuckling when your fall collapses into the puddled cum, soaking himself with it. Oddly, his scent doesn't seem to be addling your wits anymore, and you're able to enjoy the sight of your submissive foe in the dirt properly. The zil doesn't seem to mind much, so you leave him there while you get ");
+		output("\n\nYou pull away, chuckling when your foe collapses into the puddled cum, soaking himself with it. Oddly, his scent doesn't seem to be addling your wits anymore, and you're able to enjoy the sight of your submissive foe in the dirt properly. The zil doesn't seem to mind much, so you leave him there while you get ");
 		if(!pc.isNice()) output("dressed");
 		else output("what little gear you wear back together");
 		output(". By the time you're dressed, he's lost in masturbation, and you give his balls a playful tweak to remember you by as you leave.\n\n");

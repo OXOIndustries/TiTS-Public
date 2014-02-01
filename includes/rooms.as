@@ -77,7 +77,7 @@ function initializeRooms():void
 	//"TAVROS HANGAR". The Hangar
 	rooms["TAVROS HANGAR"] = new RoomClass(this);
 	rooms["TAVROS HANGAR"].roomName = "THE\nHANGAR";
-	rooms["TAVROS HANGAR"].description = "A sprawling, brightly lit hanger greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hanger like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.";
+	rooms["TAVROS HANGAR"].description = "A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.";
 	rooms["TAVROS HANGAR"].planet = "TAVROS STATION";
 	rooms["TAVROS HANGAR"].system = "SYSTEM: KALAS";
 	rooms["TAVROS HANGAR"].inExit = "TAVROS LIFT";
@@ -916,7 +916,7 @@ function initializeRooms():void
 	//74. Overgrown\nRock
 	rooms["OVERGROWN ROCK 6"] = new RoomClass(this);
 	rooms["OVERGROWN ROCK 6"].roomName = "GIGANTIC\nROCK";
-	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably must past them if it wasn't for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you'd be lost in no time. It'd be better to follow the open space along the sides of this rock to the east and west.";
+	rooms["OVERGROWN ROCK 6"].description = "The humidity is almost overpowering here. It makes the ground damp, it makes the rock shine, and it makes your [pc.skinFurScales] uncomfortably clammy. Leaves the size of small cars hang off the side of a trunk as big around as a small room. You could probably push past them if it wasn't for the thorny bushes and toothed flowers underneath. Even if you cut into the deep jungle that way, you'd be lost in no time. It'd be better to follow the open space along the sides of this rock to the east and west.";
 	rooms["OVERGROWN ROCK 6"].planet = "PLANET: MHEN'GA";
 	rooms["OVERGROWN ROCK 6"].system = "SYSTEM: ARA ARA";
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";

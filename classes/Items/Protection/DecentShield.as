@@ -18,7 +18,8 @@
 			//Used in inventodecentttons
 			this.shortName = "Decent S.";
 			
-			//Regular namdecentthis.longName = "decent JoyCo shield generator";
+			//Regular name
+			this.longName = "decent JoyCo shield generator";
 			
 			//Longass shit, not sure what used for yet.
 			this.description = "a decent JoyCo shield generator";
