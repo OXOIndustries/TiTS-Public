@@ -992,7 +992,9 @@ function defeatRouting():void
 
 function genericLoss():void {
 	pc.removeStatusEffect("Round");
+	trace("GENERIC LOSS");
 	pc.clearCombatStatuses();
+	trace("LOSS DONE");
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
@@ -1609,7 +1611,7 @@ function paralyzingShock(target:Creature):void {
 		output("\nThe effect is immediate! " + target.capitalA + target.short);
 		if(target.plural) output(" shudder and stop, temporarily paralyzed.");
 		else output(" shudders and stops, temporarily paralyzed.");
-		target.createStatusEffect("Paralyzed",2+rand(2),0,0,0);
+		target.createStatusEffect("Paralyzed",2+rand(2),0,0,0,false,"Paralyze","Cannot move!",true,0);
 	}
 	else {
 		output(" It doesn't manage to paralyze your target!");
@@ -1718,7 +1720,7 @@ function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
-	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0);
+	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"Regeneration","You are recovering some of your shields every round",true,0);
 	processCombat();
 }
 
@@ -1791,7 +1793,7 @@ function stealthFieldActivation():void {
 	clearOutput();
 	pc.energy(-20);
 	output("You activate your stealth field generator, fading into nigh-invisibility.\n");
-	pc.createStatusEffect("Stealth Field Generator",2,0,0,0);
+	pc.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
 	processCombat();
 }
 
@@ -1803,7 +1805,7 @@ function disarmingShot(target:Creature):void {
 	else if(combatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
 	else {
 		output("You land a crack shot on " + possessive(target.a + target.short) + ", disarming them.\n");
-		target.createStatusEffect("Disarmed",4,0,0,0);
+		target.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
 }

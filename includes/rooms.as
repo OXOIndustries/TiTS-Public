@@ -49,6 +49,7 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].system = "SYSTEM: KALAS";
 	rooms["ANON'S BAR AND BOARD"].northExit = "ANON'S BOARD HALL";
 	rooms["ANON'S BAR AND BOARD"].westExit = "MERCHANT'S THOROUGHFARE";
+	rooms["ANON'S BAR AND BOARD"].runOnEnter = anonsBarWaitressAddendum;
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 

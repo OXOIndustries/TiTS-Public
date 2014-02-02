@@ -1771,7 +1771,10 @@
 		}
 		public function clearCombatStatuses(): void {
 			for (var x: int = 0; x < statusEffects.length; x++) {
-				if (statusEffects[x].combatOnly) removeStatusEffect(statusEffects[x].storageName);
+				if (statusEffects[x].combatOnly) 
+				{
+					statusEffects.splice(x,1);
+				}
 			}
 		}
 		//perk

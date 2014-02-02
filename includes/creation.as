@@ -469,17 +469,65 @@ function chooseSexualGift():void {
 	output("\n\n<i>“‘Bulgy’ would cause in increase in the size of any testes as well as increased receptiveness to gonad enhancement. ‘Extra Ardor’ will cause an increase in sex drive after maturity. I bet your parents gave you that, huh? ‘Ice Cold’ would be the opposite, reducing natural sex drive. It doesn’t have any effect on aphrodisiacs or receptiveness to touch, however.”</i> The doctor touches his fingers as if counting and purses his lips, <i>“Huh, I guess that’s all of them. What’ll it be?”</i>");
 	//Make sure there is a none option.
 	this.clearMenuProxy();
-	pc.removePerk("Virile");
-	pc.removePerk("Potent");
-	pc.removePerk("Elasticity");
-	pc.removePerk("Fertility");
-	pc.removePerk("Milky");
-	pc.removePerk("Incubator");
-	pc.removePerk("Hung");
-	pc.removePerk("Mini");
-	pc.removePerk("Bulgy");
-	pc.removePerk("Extra Ardor");
-	pc.removePerk("Ice Cold");
+	if(pc.hasPerk("Virile"))
+	{
+		pc.cumQuality -= 1.5;
+		pc.removePerk("Virile");
+	}
+	if(pc.hasperk("Potent"))
+	{
+		pc.cumMultiplier -= 1;
+		pc.refractoryRate -= 1;
+		pc.removePerk("Potent");
+	}
+	if(pc.hasPerk("Elasticity"))
+	{
+		pc.elasticity -= .5;
+		pc.removePerk("Elasticity");
+	}
+	if(pc.hasPerk("Fertility"))
+	{
+		pc.fertility -= 15;
+		pc.removePerk("Fertility");
+	}
+	if(pc.hasPerk("Milky"))
+	{
+		pc.removePerk("Milky");
+	}
+	if(pc.hasPerk("Incubator"))
+	{
+		pc.pregnancyMultiplier -= .5;
+		pc.removePerk("Incubator");
+	}
+	if(pc.hasPerk("Hung"))
+	{
+		if(pc.hasCock()) {
+			pc.cocks[0].cLength -= 1+rand(3);
+			pc.cocks[0].cThicknessRatio = 1.0;
+		}
+		pc.removePerk("Hung");
+	}
+	if(pc.hasPerk("Mini"))
+	{
+		if(pc.hasCock()) {
+			pc.cocks[0].cLength += 1;
+		}
+		pc.removePerk("Mini");
+	}
+	if(pc.hasPerk("Bulgy"))
+	{
+		pc.ballSize -= 1;
+		pc.ballEfficiency -= 1;
+		pc.removePerk("Bulgy");
+	}
+	if(pc.hasPerk("Extra Ardor"))
+	{
+		pc.removePerk("Extra Ardor");
+	}
+	if(pc.hasPerk("Ice Cold"))
+	{
+		pc.removePerk("Ice Cold");
+	}
 	this.userInterface.addButton(0,"Virile",applySexualGift,"virile");
 	this.userInterface.addButton(1,"Potent",applySexualGift,"potent");
 	this.userInterface.addButton(2,"Elasticity",applySexualGift,"elasticity");

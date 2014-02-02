@@ -59,6 +59,9 @@ public function mainGameMenu():void {
 	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
 		if(this.rooms[this.currentLocation].runOnEnter()) return;
 	}
+	//Turn off encounters since you're already here. Moving clears this.
+	flags["ENCOUNTERS_DISABLED"] = 1;
+
 	if(this.rooms[this.currentLocation].northExit) 
 		this.userInterface.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
 	if(this.rooms[this.currentLocation].eastExit) 
@@ -105,6 +108,9 @@ function crew(counter:Boolean = false):Number {
 	return count;
 }
 function rest():void {
+	//Turn encounters back on.
+	flags["ENCOUNTERS_DISABLED"] = undefined;
+
 	clearOutput();
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax() * .2));
@@ -119,6 +125,9 @@ function rest():void {
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
 function sleep():void {
+	//Turn encounters back on.
+	flags["ENCOUNTERS_DISABLED"] = undefined;
+
 	clearOutput();
 	if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
 		levelUp();
@@ -184,6 +193,8 @@ function flyTo(arg:String):void {
 }
 
 function move(arg:String, goToMainMenu:Boolean = true):void {
+	//Reset the thing that disabled encounters
+	flags["ENCOUNTERS_DISABLED"] = undefined;
 	processTime(rooms[currentLocation].moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
@@ -350,9 +361,9 @@ public function processTime(arg:int):void {
 					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
 				}
 				//Reset 'dem venus pitcher hoz
-				flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
-				flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-				flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 			}
 		}
 		arg--;

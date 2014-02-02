@@ -156,7 +156,7 @@ function zilFlyingSpinKickSingle():void {
 			if (!pc.hasStatusEffect("Stunned"))
 			{
 				output("<b> It's concussive enough to leave you stunned.</b>");
-				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true);
+				pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
 			}
 		}
 	}
