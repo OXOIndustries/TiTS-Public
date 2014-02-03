@@ -114,13 +114,13 @@ package classes.UIComponents
 		
 		public function eventHandler(e:Event):void
 		{
-			if (this.stage != null)
-			{
-				this.HideTooltip();
-			}
-			else
+			if (e.type == "rollOver")
 			{
 				this.DisplayForObject((e.target as DisplayObject));
+			}
+			else if (e.type == "rollOut" && this.stage != null)
+			{
+				this.HideTooltip();
 			}
 		}
 		

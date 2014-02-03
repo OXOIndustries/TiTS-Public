@@ -2,6 +2,7 @@
 {
 
 	import classes.TiTS_Settings;
+	import flash.display.DisplayObject;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -273,6 +274,7 @@
 			if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
 			else evt.currentTarget.func(evt.currentTarget.arg);
 			updatePCStats();
+			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
 
 		public function bufferButtonUpdater():void {

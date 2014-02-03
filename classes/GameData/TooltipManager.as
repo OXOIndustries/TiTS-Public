@@ -2,6 +2,17 @@ package classes.GameData
 {
 	/**
 	 * Data interface class, offering a singular interface to figure out where to grab tooltip data.
+	 * 
+	 * Button display text (the "caption" text) is compared against internal lists as a key, and any matching data is returned.
+	 * If no data is found, a default ("" string) blank string is returned.
+	 * 
+	 * Add data throughout the codebase at runtime using addTooltip() and addFullName() calls.
+	 * Keys are unique; setting the data for a given button caption again will overwrite whatever else is stored here. If this becomes
+	 * 	an issue, I have some ideas for how to internally refactor this to make it work (but calls to addButton() would have extra arguments)
+	 * 
+	 * We COULD store references to different items here, or use deeper lookup databases, so we can take a shortName from any given object, and
+	 * find *a* reference to an item to return the associated data. Given that object references can change a lot, this will get very messy to handle,
+	 * hence why I'm thinking this is a reasonable solution.
 	 * @author Gedan
 	 */
 	public class TooltipManager 
@@ -20,19 +31,29 @@ package classes.GameData
 			// I'm considering complicating this somewhat, and keeping multiple versions of the DB, and returning different
 			// tooltip strings based on Gamestate or somesuch, to avoid some of the tooltip issues that CoC has seen of late.
 			
+			// In an IDEAL world, all tooltips should be present in these inital lists, and there should be no calls to the individual
+			// add methods throughout the code base. In practice though, if this becomes an issue (or we want to refactor to something
+			// else) we can pretty much just run some lookup tools on the source, extract all the add calls, and build some external
+			// representation of the data. It should be pretty trivial to load this kinda shit from an XML file, which arguably would be
+			// much nicer, and it plays well with the idea of having some kind of global content/game editor, something the map editor
+			// could eventually grow in to.
+			
+			// TOOLTIPDB is the actual tooltip text body
 			TooltipManager.TOOLTIPDB =
 			{
-				"Rest" : "Rest up lazy butt",
-				"Masturbate" : "Get you some fap on, yo",
-				"Inventory" : "Gotcha items right here",
-				"North" : "Gotta go fast!",
-				"East" : "Gotta go left!",
-				"South" : "Gotta go places!",
-				"West" : "Exit, stage west!",
-				"RESET NPCs" : "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!",
-				"Back" : "Because Back buttons really, REALLY need a tooltip."
+				"Rest" 			: "Rest up lazy butt",
+				"Masturbate" 	: "Get you some fap on, yo",
+				"Inventory" 	: "Gotcha items right here",
+				"North" 		: "Gotta go fast!",
+				"East" 			: "Gotta go left!",
+				"South" 		: "Gotta go places!",
+				"West" 			: "Exit, stage west!",
+				"RESET NPCs" 	: "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!",
+				"Back" 			: "Because Back buttons really, REALLY need a tooltip."
 			};
 			
+			// FULLNAMEDB is a conversion from button text to some more complete name representation
+			// f.ex E.Handgun -> Eagle Handgun
 			TooltipManager.FULLNAMEDB =
 			{
 				"Plchldr" : "Placeholder"
@@ -42,6 +63,11 @@ package classes.GameData
 		private static var TOOLTIPDB:Object;
 		private static var FULLNAMEDB:Object;
 		
+		/**
+		 * Add a tooltip text body to the database.
+		 * @param	key			Button caption text/"key"
+		 * @param	tooltip		TextBody
+		 */
 		public static function addTooltip(key:String, tooltip:String):void
 		{			
 			if (key in TooltipManager.TOOLTIPDB)
@@ -52,6 +78,11 @@ package classes.GameData
 			TooltipManager.TOOLTIPDB[key] = tooltip;
 		}
 		
+		/**
+		 * Add a full name lookup to the database.
+		 * @param	key			Button caption text/"key"
+		 * @param	name		FullName
+		 */
 		public static function addFullName(key:String, name:String):void
 		{
 			if (key in TooltipManager.FULLNAMEDB)
@@ -62,6 +93,11 @@ package classes.GameData
 			TooltipManager.FULLNAMEDB[key] = name;
 		}
 		
+		/**
+		 * Return a tooltip text body for a given key
+		 * @param	key			Button caption text/"key"
+		 * @return				Tooltip body text, "" if not found
+		 */
 		public static function getTooltip(key:String):String
 		{
 			key = key.split(" x")[0];
@@ -76,6 +112,11 @@ package classes.GameData
 			}
 		}
 		
+		/**
+		 * Return a full name representation for a given key
+		 * @param	key			Button caption text/"key"
+		 * @return				Full name representation, "key" if not found
+		 */
 		public static function getFullName(key:String):String
 		{
 			key = key.split(" x")[0];
@@ -90,12 +131,20 @@ package classes.GameData
 			}
 		}
 		
+		/**
+		 * Remove a key from all databases.
+		 * @param	key		Key to remove.
+		 */
 		public static function removeKey(key:String):void
 		{
 			TooltipManager.removeFullName(key);
 			TooltipManager.removeTooltip(key);
 		}
 		
+		/**
+		 * Remove a full name representation from the database.
+		 * @param	key		Key to remove.
+		 */
 		public static function removeFullName(key:String):void
 		{
 			if (key in TooltipManager.FULLNAMEDB)
@@ -104,6 +153,10 @@ package classes.GameData
 			}
 		}
 		
+		/**
+		 * Remove a tooltip body text from the database.
+		 * @param	key		Key to remove.
+		 */
 		public static function removeTooltip(key:String):void
 		{
 			if (key in TooltipManager.TOOLTIPDB)
