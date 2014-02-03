@@ -36,7 +36,7 @@ package classes.GameData
 		private static var TOOLTIPDB:Object;
 		
 		public static function addTooltip(key:String, tooltip:String):void
-		{
+		{			
 			if (key in TooltipManager.TOOLTIPDB)
 			{
 				trace("Tooltip Database already contains data for the key [" + key +"]");
@@ -47,6 +47,8 @@ package classes.GameData
 		
 		public static function getTooltip(key:String):String
 		{
+			key = key.split(" x")[0];
+						
 			if (key in TooltipManager.TOOLTIPDB)
 			{
 				return TooltipManager.TOOLTIPDB[key];

@@ -2,6 +2,7 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
 	
 	public class EagleHandgun extends ItemSlotClass
 	{
@@ -25,6 +26,9 @@
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A large barreled fifty caliber handgun. This particular pistol packs a wallop for such a compact weapon. It's the perfect weapon for a mercenary on the go.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "shoot";
 			
 			//Information

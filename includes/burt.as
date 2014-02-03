@@ -244,8 +244,8 @@ function BurtShopCollectables():void {
 	this.clearMenuProxy();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		if(pc.inventory[x].quantity > 0) {
-			if(x >= 14) this.userInterface.addButton(x+1,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,burtPurchase,x);
-			else this.userInterface.addButton(x,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,burtPurchase,x);
+			if(x >= 14) this.userInterface.addButton(x+1,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
+			else this.userInterface.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
 		}
 	}
 	//[Inv1]		[Inv2]		[Inv3]		[Inv4]		[Inv5]

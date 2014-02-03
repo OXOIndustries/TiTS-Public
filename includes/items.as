@@ -86,13 +86,13 @@ function buyItem():void {
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
-				if(x <= 13) this.userInterface.addButton(x,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
-				if(x > 13) this.userInterface.addButton(x+1,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+				if(x <= 13) this.userInterface.addButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+				if(x > 13) this.userInterface.addButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
-				if(x <= 13) this.userInterface.addDisabledButton(x,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity);
-				if(x > 13) this.userInterface.addDisabledButton(x+1,shopkeep.inventory[x].shortName + "x" + shopkeep.inventory[x].quantity);
+				if(x <= 13) this.userInterface.addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x > 13) this.userInterface.addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 			}
 		}
 	}
@@ -126,7 +126,7 @@ function sellItem():void {
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
-				if(x <= 13) this.userInterface.addButton(x,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,sellItemGo,pc.inventory[x]);
+				if(x <= 13) this.userInterface.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,sellItemGo,pc.inventory[x]);
 				if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,sellItemGo,pc.inventory[x]);
 			}
 		}
@@ -228,7 +228,7 @@ function inventory():void {
 		//normal inventory
 		if(x < pc.inventory.length) {
 			if(pc.inventory[x].quantity > 0) {
-				this.userInterface.addButton(x+adjustment,pc.inventory[x].shortName + "x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				this.userInterface.addButton(x+adjustment,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
 				if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
 			}
 		}
@@ -441,7 +441,7 @@ function replaceItemPicker(lootList:Array):void {
 	for(var x:int = 0; x < pc.inventorySlots(); x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
-			var butDesc:String = pc.inventory[x].shortName + "x" + pc.inventory[x].quantity
+			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
 			this.userInterface.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
