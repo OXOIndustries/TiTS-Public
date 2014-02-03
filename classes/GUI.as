@@ -2,14 +2,17 @@
 {
 
 	import classes.RoomClass;
+	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.FileReference;
 	import flash.net.SharedObject;
@@ -29,6 +32,7 @@
 	import fl.transitions.Tween;
 	import fl.transitions.easing.Regular;
 	import classes.UIComponents.MiniMap.MiniMap;
+	import classes.GameData.TooltipManager;
 
 
 	import classes.StatBarSmall;
@@ -68,6 +72,8 @@
 		var buttons:Array;
 		var buttonData:Array;
 		var buttonPage:int;
+		var buttonTooltip:ButtonTooltips;
+		
 		public var leftSideBar:LeftBar;
 		
 		private var fadeOut:*;
@@ -148,6 +154,11 @@
 			this.buttonDrawer.y = 800;
 
 			//Build the buttons
+			buttonTooltip = new ButtonTooltips();
+			buttonTooltip.x = 5000;
+			titsClassPtr.addChild(buttonTooltip);
+			titsClassPtr.removeChild(buttonTooltip);
+			
 			this.buttons = new Array();
 			this.buttonData = new Array();
 			this.buttonPage = 1;
@@ -543,7 +554,45 @@
 			this.leftSideBar.topHeaderLabel.width += 40;
 		}
 
-
+		private function buttonTooltipHandler(e:Event):void
+		{
+			if (this.buttonTooltip.stage != null)
+			{
+				this.HideTooltip();
+			}
+			else
+			{
+				this.DisplayTooltip((e.target as DisplayObject));
+			}
+		}
+		
+		private function HideTooltip():void
+		{
+			titsClassPtr.stage.removeChild(this.buttonTooltip);
+		}
+		
+		private function DisplayTooltip(displayObj:DisplayObject):void
+		{
+			var btn:*;
+			
+			if (displayObj is blueButton) btn = (displayObj as blueButton);
+			else if (displayObj is purpleButton) btn = (displayObj as purpleButton);
+			else throw new Error("Button shits fucked yo");
+			
+			var tt:String = TooltipManager.getTooltip(btn.caption.text);
+			
+			if (tt.length > 0)
+			{
+				this.buttonTooltip.SetData(btn.caption.text, tt);
+				
+				titsClassPtr.stage.addChild(this.buttonTooltip);
+				
+				var tPt:Point = displayObj.localToGlobal(new Point(0, 0));
+				this.buttonTooltip.x = tPt.x;
+				this.buttonTooltip.y = tPt.y - (this.buttonTooltip.height + 35);
+			}
+		}
+		
 		//Build the main 15 buttons!
 		public function initializeButtons():void 
 		{
@@ -574,6 +623,10 @@
 					buttons[temp] = new blueButton;
 				}
 				this.titsClassPtr.addChild(buttons[temp]);
+				
+				buttons[temp].addEventListener(MouseEvent.ROLL_OVER, buttonTooltipHandler);
+				buttons[temp].addEventListener(MouseEvent.ROLL_OUT, buttonTooltipHandler);
+				
 				buttons[temp].caption.htmlText = texts + String(Math.round(Math.random()*10));
 				buttons[temp].x = ex;
 				buttons[temp].y = why;
