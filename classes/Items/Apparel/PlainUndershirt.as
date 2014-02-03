@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class PlainUndershirt extends ItemSlotClass
 	{
@@ -20,11 +22,16 @@
 			//Regular name
 			this.longName = "undershirt";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "an undershirt";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A pretty standard undershirt, this garment breathes wonderfully.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "null";
 			
 			//Information

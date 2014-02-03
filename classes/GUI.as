@@ -553,46 +553,6 @@
 			// TODO: Modify FLA to account for stupid text kerning bullshit of the textfield header
 			this.leftSideBar.topHeaderLabel.width += 40;
 		}
-
-		private function buttonTooltipHandler(e:Event):void
-		{
-			if (this.buttonTooltip.stage != null)
-			{
-				this.HideTooltip();
-			}
-			else
-			{
-				this.DisplayTooltip((e.target as DisplayObject));
-			}
-		}
-		
-		private function HideTooltip():void
-		{
-			titsClassPtr.stage.removeChild(this.buttonTooltip);
-		}
-		
-		private function DisplayTooltip(displayObj:DisplayObject):void
-		{
-			var btn:*;
-			
-			if (displayObj is blueButton) btn = (displayObj as blueButton);
-			else if (displayObj is purpleButton) btn = (displayObj as purpleButton);
-			else throw new Error("Button shits fucked yo");
-			
-			var tt:String = TooltipManager.getTooltip(btn.caption.text);
-			var fn:String = TooltipManager.getFullName(btn.caption.text);
-			
-			if (tt.length > 0)
-			{
-				this.buttonTooltip.SetData(fn, tt);
-				
-				titsClassPtr.stage.addChild(this.buttonTooltip);
-				
-				var tPt:Point = displayObj.localToGlobal(new Point(0, 0));
-				this.buttonTooltip.x = tPt.x;
-				this.buttonTooltip.y = tPt.y - (this.buttonTooltip.height + 35);
-			}
-		}
 		
 		//Build the main 15 buttons!
 		public function initializeButtons():void 
@@ -625,8 +585,8 @@
 				}
 				this.titsClassPtr.addChild(buttons[temp]);
 				
-				buttons[temp].addEventListener(MouseEvent.ROLL_OVER, buttonTooltipHandler);
-				buttons[temp].addEventListener(MouseEvent.ROLL_OUT, buttonTooltipHandler);
+				buttons[temp].addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
+				buttons[temp].addEventListener(MouseEvent.ROLL_OUT, this.buttonTooltip.eventHandler);
 				
 				buttons[temp].caption.htmlText = texts + String(Math.round(Math.random()*10));
 				buttons[temp].x = ex;

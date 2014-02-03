@@ -29,7 +29,8 @@ package classes.GameData
 				"East" : "Gotta go left!",
 				"South" : "Gotta go places!",
 				"West" : "Exit, stage west!",
-				"RESET NPCs" : "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!"
+				"RESET NPCs" : "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!",
+				"Back" : "Because Back buttons really, REALLY need a tooltip."
 			};
 			
 			TooltipManager.FULLNAMEDB =
@@ -86,6 +87,28 @@ package classes.GameData
 			else
 			{
 				return key;
+			}
+		}
+		
+		public static function removeKey(key:String):void
+		{
+			TooltipManager.removeFullName(key);
+			TooltipManager.removeTooltip(key);
+		}
+		
+		public static function removeFullName(key:String):void
+		{
+			if (key in TooltipManager.FULLNAMEDB)
+			{
+				delete TooltipManager.FULLNAMEDB[key];
+			}
+		}
+		
+		public static function removeTooltip(key:String):void
+		{
+			if (key in TooltipManager.TOOLTIPDB)
+			{
+				delete TooltipManager.TOOLTIPDB[key];
 			}
 		}
 		

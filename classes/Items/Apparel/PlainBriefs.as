@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class PlainBriefs extends ItemSlotClass
 	{
@@ -20,11 +22,16 @@
 			//Regular name
 			this.longName = "plain briefs";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a set of plain briefs";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "These plain white briefs are made from ultralastic (patent pending), a material that allows them to stretch over almost everything. They are otherwise unremarkable and comfy.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "null";
 			
 			//Information

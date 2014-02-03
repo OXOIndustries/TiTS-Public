@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class ScopedPistol extends ItemSlotClass
 	{
@@ -22,10 +24,16 @@
 			this.shortName = "S.Pistol";
 			//Regular name
 			this.longName = "scoped pistol";
+			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a scoped pistol";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This pistol is equiped with a rather impressive scope of your own manufacture. It's quite accurate but low caliber.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "shoot";
 			//Information
 			this.basePrice = 350;

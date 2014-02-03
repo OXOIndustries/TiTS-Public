@@ -1,11 +1,15 @@
 package classes.UIComponents 
 {
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.geom.Rectangle;
 	import flash.text.StyleSheet;
 	import flash.text.TextField;
 	import flash.events.Event;
 	import flash.text.AntiAliasType;
+	import flash.geom.Point;
+	import classes.GameData.TooltipManager;
 	
 	/**
 	 * ...
@@ -13,6 +17,8 @@ package classes.UIComponents
 	 */
 	public class ButtonTooltips extends Sprite
 	{
+		private var _stage:Stage;
+		
 		private var _sizeX:int;
 		private var _sizeY:int;
 		
@@ -23,8 +29,9 @@ package classes.UIComponents
 		
 		private var _bodyText:TextField;
 		
-		public function ButtonTooltips(sizeX:int = 150, sizeY:int = 260) 
+		public function ButtonTooltips(sizeX:int = 310, sizeY:int = 150) 
 		{
+			// 310 == button width * 2 + padding
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
 			
@@ -34,6 +41,8 @@ package classes.UIComponents
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			
+			this._stage = this.stage;
 			
 			this.BuildDefault();
 			this.BuildTitleBlock();
@@ -103,8 +112,74 @@ package classes.UIComponents
 			this.addChild(_bodyText);
 		}
 		
+		public function eventHandler(e:Event):void
+		{
+			if (this.stage != null)
+			{
+				this.HideTooltip();
+			}
+			else
+			{
+				this.DisplayForObject((e.target as DisplayObject));
+			}
+		}
+		
+		private function HideTooltip():void
+		{
+			this.stage.removeChild(this);
+		}
+		
+		public function DisplayForObject(displayObj:DisplayObject):void
+		{
+			var btn:*;
+			
+			if (displayObj is blueButton) btn = (displayObj as blueButton);
+			else if (displayObj is purpleButton) btn = (displayObj as purpleButton);
+			else throw new Error("Button shits fucked yo");
+			
+			var tt:String = TooltipManager.getTooltip(btn.caption.text);
+			var fn:String = TooltipManager.getFullName(btn.caption.text);
+			
+			if (tt.length > 0)
+			{
+				this.SetData(fn, tt);
+				
+				_stage.addChild(this);
+			}
+			
+			this.Reposition(displayObj);
+			
+			trace("Button Tooltip XY: (" + this.x + "," + this.y + ")");
+			trace("Button Tooltip WH: (" + this.width + "," + this.height + ")");
+		}
+		
+		private function Reposition(displayObj:DisplayObject):void
+		{
+			var tPt:Point = displayObj.localToGlobal(new Point(0, 0));
+			
+			tPt.x = Math.floor(tPt.x + (displayObj.width / 2));
+			tPt.x = Math.floor(tPt.x - (this.width / 2));
+			
+			if (tPt.x < 212) tPt.x = 210;
+			else if (tPt.x > 991 - this.width) tPt.x = 991 - this.width;
+			
+			tPt.y = 634 - this.height;
+			
+			this.x = tPt.x;
+			this.y = tPt.y;
+		}
+		
+		private function SetData(tooltipName:String, tooltipText:String):void
+		{
+			tooltipName = tooltipName.split(" x")[0];
+			this._headerText.text = tooltipName;
+			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
+			this.Resize();
+		}
+		
 		private function Resize():void
 		{
+			// Height
 			this._bodyText.height = this._bodyText.textHeight + 5;
 			
 			var targetHeight:int = this._bodyText.height + this._bodyText.y + 5;
@@ -112,14 +187,6 @@ package classes.UIComponents
 			var scaleYValue:Number = targetHeight / this._sizeY;
 			
 			this._backgroundElement.scaleY = scaleYValue;
-		}
-		
-		public function SetData(tooltipName:String, tooltipText:String):void
-		{
-			tooltipName = tooltipName.split(" x")[0];
-			this._headerText.text = tooltipName;
-			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
-			this.Resize();
 		}
 	}
 
