@@ -5,6 +5,8 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class ZilRation extends ItemSlotClass
 	{
@@ -24,11 +26,16 @@
 			//Regular name
 			this.longName = "tasty-smelling zil ration";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a tasty-smelling zil ration";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "These are dried rations appear to be made from local fruits and plant nectars. There's a good chance that something in it would make you sick if you didn't have a microsurgeon-boosted immune system. In your case, you'll probably just undergo a mutation or two.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "";
 			
 			//Information

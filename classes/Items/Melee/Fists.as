@@ -2,6 +2,8 @@ package classes.Items.Melee
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -24,11 +26,16 @@ package classes.Items.Melee
 			//Regular name
 			this.longName = "fist";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
-			this.description = "knuckle sandwhich delivery device";
+			this.description = "knuckle sandwich delivery device";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fleshy set of fingers balled up into fists. Generally attached at the wrist to a pair of arms, themselves connected to a person.";
+			this.tooltip = "A fleshy set of fingers balled up into fists. Generally attached at the wrist to a pair of arms, themselves connected to a person of some description.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "punch";
 			
 			//Information

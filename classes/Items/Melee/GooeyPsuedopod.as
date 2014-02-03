@@ -2,6 +2,8 @@ package classes.Items.Melee
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -24,11 +26,16 @@ package classes.Items.Melee
 			//Regular name
 			this.longName = "gooey psuedopod";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a gooey psuedopod";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Wacky Waving Gooey Armflailing Tubeman";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "slap";
 			
 			//Information

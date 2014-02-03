@@ -2,6 +2,8 @@ package classes.Items.Apparel
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -24,11 +26,16 @@ package classes.Items.Apparel
 			//Regular name
 			this.longName = "gooey coverings";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "gooey coverings";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Shoop da goop.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "";
 			
 			//Information

@@ -5,6 +5,8 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class NaleenNip extends ItemSlotClass
 	{
@@ -21,10 +23,16 @@
 			this.shortName = "NaleenNip";
 			//Regular name
 			this.longName = "pouch of naleen nip";
+			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a pouch of naleen nip";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "his small pouch has a few dried leaves inside. The codex indicates that they're locally referred to on Mhen'ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You're fairly certain the foreign plant matter <b>will</b> transform you if you check on them.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "";
 			//Information
 			this.basePrice = 0;

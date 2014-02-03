@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class Rock extends ItemSlotClass
 	{
@@ -20,11 +22,16 @@
 			//Regular name
 			this.longName = "rock";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a rock";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "You can pretty much find a rock anywhere, and they hurt more than fists, sooooo....";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "smack";
 			
 			//Information

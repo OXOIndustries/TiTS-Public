@@ -2,6 +2,8 @@ package classes.Items.Apparel
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -22,9 +24,13 @@ package classes.Items.Apparel
 			
 			this.longName = "U.G.C. Peacekeeper uniform";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			this.description = "a standard issue U.G.C. Peacekeeper uniform";
 			
-			this.tooltip = "PLACEHOLDER This is a standard issue U.G.C. Peacekeeper uniform, assigned to relevent members of the U.G.C peacekeeper corps.";
+			this.tooltip = "This is a standard issue U.G.C. Peacekeeper uniform, assigned to relevent members of the U.G.C peacekeeper corps.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			

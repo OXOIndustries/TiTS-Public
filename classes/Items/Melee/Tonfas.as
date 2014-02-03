@@ -2,6 +2,8 @@ package classes.Items.Melee
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	/**
 	 * ...
@@ -21,9 +23,13 @@ package classes.Items.Melee
 			this.shortName = "tonfas";
 			this.longName = "tonfas";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			this.attackVerb = "smack";
 						
-			this.tooltip = "PLACEHOLDER Penny's Tonfas";
+			this.tooltip = "Penny's Tonfas";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 150;
 			this.attack = 0;

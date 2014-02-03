@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class DressClothes extends ItemSlotClass
 	{
@@ -20,11 +22,16 @@
 			//Regular name
 			this.longName = "dress clothes";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a set of dress clothes";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This is a fairly standard set of dress clothes, the sort of thing you would wear to a funeral or dinner engagement.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "null";
 			
 			//Information

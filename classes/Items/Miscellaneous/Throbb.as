@@ -5,6 +5,8 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class Throbb extends ItemSlotClass
 	{
@@ -24,11 +26,16 @@
 			//Regular name
 			this.longName = "vial of Throbb";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a vial of Throbb";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This vial of transparent cyan fluid seems so innocuous considering its supposed deleterious effects: overwhelming libido increase, massive male genital growth, and a titanic boost to production of semen (along with requisite swelling of semen-producing organs). In order to use it, females are to inject it just above the pubic mound. Males are supposed to inject directly into their preferred organ.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "";
 			
 			//Information

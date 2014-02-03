@@ -5,6 +5,8 @@
 	import classes.Creature;
 	import classes.kGAMECLASS;	
 	import classes.Characters.PlayerCharacter;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class ZilHoney extends ItemSlotClass
 	{
@@ -24,11 +26,16 @@
 			//Regular name
 			this.longName = "vial of female zil honey";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a vial of female zil honey";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This vial is filled with the honey created by a female zil's orgasm. It smells ludicrously sweet and delicious. A cursory examination indicates that shouldn't cause any kinds of mutation.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "";
 			
 			//Information
