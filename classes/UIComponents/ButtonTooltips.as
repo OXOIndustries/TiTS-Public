@@ -116,6 +116,7 @@ package classes.UIComponents
 		
 		public function SetData(tooltipName:String, tooltipText:String):void
 		{
+			tooltipName = tooltipName.split(" x")[0];
 			this._headerText.text = tooltipName;
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
 			this.Resize();

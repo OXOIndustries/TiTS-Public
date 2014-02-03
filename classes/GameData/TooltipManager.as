@@ -31,9 +31,15 @@ package classes.GameData
 				"West" : "Exit, stage west!",
 				"RESET NPCs" : "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!"
 			};
+			
+			TooltipManager.FULLNAMEDB =
+			{
+				"Plchldr" : "Placeholder"
+			}
 		}
 		
 		private static var TOOLTIPDB:Object;
+		private static var FULLNAMEDB:Object;
 		
 		public static function addTooltip(key:String, tooltip:String):void
 		{			
@@ -43,6 +49,16 @@ package classes.GameData
 			}
 			
 			TooltipManager.TOOLTIPDB[key] = tooltip;
+		}
+		
+		public static function addFullName(key:String, name:String):void
+		{
+			if (key in TooltipManager.FULLNAMEDB)
+			{
+				trace("Name Database already contains data for the key [" + key +"]");
+			}
+			
+			TooltipManager.FULLNAMEDB[key] = name;
 		}
 		
 		public static function getTooltip(key:String):String
@@ -56,6 +72,20 @@ package classes.GameData
 			else
 			{
 				return "";
+			}
+		}
+		
+		public static function getFullName(key:String):String
+		{
+			key = key.split(" x")[0];
+			
+			if (key in TooltipManager.FULLNAMEDB)
+			{
+				return TooltipManager.FULLNAMEDB[key];
+			}
+			else
+			{
+				return key;
 			}
 		}
 		

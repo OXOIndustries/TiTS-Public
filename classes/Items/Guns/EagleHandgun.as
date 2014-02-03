@@ -3,6 +3,7 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class EagleHandgun extends ItemSlotClass
 	{
@@ -20,6 +21,8 @@
 			
 			//Regular name
 			this.longName = "eagle handgun";
+			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
 			this.description = "an eagle handgun";

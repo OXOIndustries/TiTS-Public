@@ -580,10 +580,11 @@
 			else throw new Error("Button shits fucked yo");
 			
 			var tt:String = TooltipManager.getTooltip(btn.caption.text);
+			var fn:String = TooltipManager.getFullName(btn.caption.text);
 			
 			if (tt.length > 0)
 			{
-				this.buttonTooltip.SetData(btn.caption.text, tt);
+				this.buttonTooltip.SetData(fn, tt);
 				
 				titsClassPtr.stage.addChild(this.buttonTooltip);
 				
