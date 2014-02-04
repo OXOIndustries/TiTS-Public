@@ -76,7 +76,6 @@ package classes.UIComponents
 		 */
 		private function init(e:Event):void
 		{
-			trace("beep");
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			if (_doTween) this.addEventListener(Event.FRAME_CONSTRUCTED, tween);
 			

@@ -1,5 +1,6 @@
 package classes.UIComponents 
 {
+	import flash.filters.GlowFilter;
 	import flash.text.StyleSheet;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
@@ -36,14 +37,24 @@ package classes.UIComponents
 		public static var gStatusBarTextColour:uint 		= 0xFFFFFF;
 		
 		// Font Faces
-		private static var _gFontFace1:Font;
-		public static function get gFontFace1():Font
+		private static var _gLatoBold:Font;
+		public static function get gLatoBold():Font
 		{
-			if (!UIStyleSettings._gFontFace1)
+			if (!UIStyleSettings._gLatoBold)
 			{
-				UIStyleSettings._gFontFace1 = new Font1;
+				UIStyleSettings._gLatoBold = new Font1;
 			}
-			return UIStyleSettings._gFontFace1;
+			return UIStyleSettings._gLatoBold;
+		}
+		
+		private static var _gUniversUltraCondensed:Font;
+		public static function get gUniversUltraCondensed():Font
+		{
+			if (!UIStyleSettings._gUniversUltraCondensed)
+			{
+				UIStyleSettings._gUniversUltraCondensed = new Font2;
+			}
+			return UIStyleSettings._gUniversUltraCondensed;
 		}
 		
 		// Text formatters
@@ -56,7 +67,7 @@ package classes.UIComponents
 				UIStyleSettings._gNameHeaderFormatter.size = 25;
 				UIStyleSettings._gNameHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gNameHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gNameHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+				UIStyleSettings._gNameHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
 			}
 			return UIStyleSettings._gNameHeaderFormatter;
 		}
@@ -70,7 +81,7 @@ package classes.UIComponents
 				UIStyleSettings._gStatBlockHeaderFormatter.size = 14;
 				UIStyleSettings._gStatBlockHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gStatBlockHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gStatBlockHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+				UIStyleSettings._gStatBlockHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
 			}
 			return UIStyleSettings._gStatBlockHeaderFormatter;
 		}
@@ -84,9 +95,50 @@ package classes.UIComponents
 				UIStyleSettings._gTooltipHeaderFormatter.size = 18;
 				UIStyleSettings._gTooltipHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gTooltipHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gTooltipHeaderFormatter.font = UIStyleSettings.gFontFace1.fontName;
+				UIStyleSettings._gTooltipHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
 			}
 			return UIStyleSettings._gTooltipHeaderFormatter;
+		}
+		
+		private static var _gLocationBlockRoomFormatter:TextFormat = undefined;
+		public static function get gLocationBlockRoomFormatter():TextFormat 
+		{
+			if (UIStyleSettings._gLocationBlockRoomFormatter == undefined)
+			{
+				UIStyleSettings._gLocationBlockRoomFormatter = new TextFormat();
+				UIStyleSettings._gLocationBlockRoomFormatter.size = 37;
+				UIStyleSettings._gLocationBlockRoomFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gLocationBlockRoomFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gLocationBlockRoomFormatter.leading = -4;
+				UIStyleSettings._gLocationBlockRoomFormatter.font = UIStyleSettings.gUniversUltraCondensed
+			}
+			return UIStyleSettings._gLocationBlockRoomFormatter;
+		}
+		
+		private static var _gLocationBlockPlanetSystemFormatter:TextFormat = undefined;
+		public static function get gLocationBlockPlanetSystemFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLocationBlockPlanetSystemFormatter == undefined)
+			{
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter = new TextFormat();
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.size = 21;
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.leading = 8;
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.font = UIStyleSettings.gUniversUltraCondensed;
+			}
+			return UIStyleSettings._gLocationBlockPlanetSystemFormatter;
+		}
+		
+		// Glows
+		private static var _gRoomLocationTextGlow:GlowFilter = undefined;
+		public static function get gRoomLocationTextGlow():GlowFilter
+		{
+			if (UIStyleSettings._gRoomLocationTextGlow == undefined)
+			{
+				UIStyleSettings._gRoomLocationTextGlow = new GlowFilter(UIStyleSettings.gBackgroundColour, 1, 4, 4, 5, 1, false, false);
+			}
+			return UIStyleSettings._gRoomLocationTextGlow;
 		}
 	}
 
