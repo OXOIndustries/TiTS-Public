@@ -129,6 +129,71 @@ package classes.UIComponents
 			return UIStyleSettings._gLocationBlockPlanetSystemFormatter;
 		}
 		
+		private static var _gGeneralInfoLabelFormatter:TextFormat = undefined;
+		public static function get gGeneralInfoLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gGeneralInfoLabelFormatter == undefined)
+			{
+				UIStyleSettings._gGeneralInfoLabelFormatter = new TextFormat();
+				UIStyleSettings._gGeneralInfoLabelFormatter.size = 30;
+				UIStyleSettings._gGeneralInfoLabelFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gGeneralInfoLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gGeneralInfoLabelFormatter.leading = -4;
+				UIStyleSettings._gGeneralInfoLabelFormatter.font = "Univers UltraCondensed";
+				UIStyleSettings._gGeneralInfoLabelFormatter.kerning = true;
+			}
+			return UIStyleSettings._gGeneralInfoLabelFormatter;
+		}
+		
+		private static var _gGeneralInfoValueFormatter:TextFormat = undefined;
+		public static function get gGeneralInfoValueFormatter():TextFormat
+		{
+			if (UIStyleSettings._gGeneralInfoValueFormatter == undefined)
+			{
+				UIStyleSettings._gGeneralInfoValueFormatter = new TextFormat();
+				UIStyleSettings._gGeneralInfoValueFormatter.size = 21;
+				UIStyleSettings._gGeneralInfoValueFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gGeneralInfoValueFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gGeneralInfoValueFormatter.leading = 11;
+				UIStyleSettings._gGeneralInfoValueFormatter.font = "Lato";
+				UIStyleSettings._gGeneralInfoValueFormatter.bold = true;
+				UIStyleSettings._gGeneralInfoValueFormatter.kerning = true;
+			}
+			return UIStyleSettings._gGeneralInfoValueFormatter;
+		}
+		
+		private static var _gSceneByLabelFormatter:TextFormat = undefined;
+		public static function get gSceneByLabelFormatter():TextFormat 
+		{
+			if (UIStyleSettings._gSceneByLabelFormatter == undefined)
+			{
+				UIStyleSettings._gSceneByLabelFormatter = new TextFormat();
+				UIStyleSettings._gSceneByLabelFormatter.size = 20;
+				UIStyleSettings._gSceneByLabelFormatter.color = 0x999999;
+				UIStyleSettings._gSceneByLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSceneByLabelFormatter.leading = 15;
+				UIStyleSettings._gSceneByLabelFormatter.kerning = true;
+				UIStyleSettings._gSceneByLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gSceneByLabelFormatter;
+		}
+		
+		private static var _gSceneByValueFormatter:TextFormat = undefined;
+		public static function get gSceneByValueFormatter():TextFormat
+		{
+			if (UIStyleSettings._gSceneByValueFormatter == undefined)
+			{
+				UIStyleSettings._gSceneByValueFormatter = new TextFormat();
+				UIStyleSettings._gSceneByValueFormatter.size = 20;
+				UIStyleSettings._gSceneByValueFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gSceneByValueFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gSceneByValueFormatter.leading = 15;
+				UIStyleSettings._gSceneByValueFormatter.kerning = true;
+				UIStyleSettings._gSceneByValueFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gSceneByValueFormatter;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter = undefined;
 		public static function get gRoomLocationTextGlow():GlowFilter

@@ -9,6 +9,8 @@ package classes.UIComponents
 	import flash.text.TextField;
 	import classes.UIComponents.SideBarComponents.EnemyEncounterBlock;
 	import classes.UIComponents.SideBarComponents.MiniMapBlock;
+	import classes.UIComponents.SideBarComponents.GeneralInfoBlock;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -22,6 +24,7 @@ package classes.UIComponents
 		private var _locationHeader:LocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
 		private var _miniMapBlock:MiniMapBlock;
+		private var _genInfoBlock:GeneralInfoBlock;
 		
 		public function get roomText():TextField { return _locationHeader.roomText; }
 		public function get planetText():TextField { return _locationHeader.planetText; }
@@ -59,6 +62,11 @@ package classes.UIComponents
 			this.addChild(_miniMapBlock);
 			_miniMapBlock.y = _locationHeader.y + _locationHeader.height + 8;
 			this.ShowMiniMap();
+			
+			// Time/day display shit
+			_genInfoBlock = new GeneralInfoBlock();
+			this.addChild(_genInfoBlock);
+			_genInfoBlock.y = _miniMapBlock.y + _miniMapBlock.height - 4;
 			
 			// Placeholder shit to stop the compiler crying
 			dataButton = new dataB;
