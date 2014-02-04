@@ -15,6 +15,9 @@ package classes.UIComponents.SideBarComponents
 	 */
 	public class BigStatBlock extends Sprite
 	{
+		private var _headerText:String;
+		private var _leftAlign:Boolean;
+		
 		private var _combatStatsHeaderText:TextField;
 		private var _combatStatsHeaderUnderline:Sprite;
 		private var _barContainer:Sprite;
@@ -29,8 +32,11 @@ package classes.UIComponents.SideBarComponents
 		public function get lustBar():StatBarBig { return _lustBar; }
 		public function get energyBar():StatBarBig { return _energyBar; }
 		
-		public function BigStatBlock() 
+		public function BigStatBlock(leftAlign:Boolean = false, headerText:String = "COMBAT STATS") 
 		{
+			_headerText = headerText;
+			_leftAlign = leftAlign;
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -48,7 +54,7 @@ package classes.UIComponents.SideBarComponents
 			this.BuildHeader();
 			
 			// Position bar container, we can now just dump the things in here without giving a shit
-			_barContainer.x = 10;
+			(_leftAlign) ? _barContainer.x = 10 : _barContainer.x = 0;
 			_barContainer.y = 20;
 			
 			this.BuildStatBlock();
@@ -61,7 +67,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			// Header underline
 			_combatStatsHeaderUnderline = new Sprite();
-			_combatStatsHeaderUnderline.x = 10;
+			(_leftAlign) ? _combatStatsHeaderUnderline.x = 10 : _combatStatsHeaderUnderline.x = 0;
 			_combatStatsHeaderUnderline.y = 17;
 			_combatStatsHeaderUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_combatStatsHeaderUnderline.graphics.drawRect(0, 0, 190, 1);

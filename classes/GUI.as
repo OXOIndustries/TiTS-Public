@@ -1443,6 +1443,7 @@
 		{
 			this.miniMap.visible = true;
 			this.miniMap.setMapData(data);
+			this._leftSideBar.miniMap.setMapData(data);
 		}
 
 	}
