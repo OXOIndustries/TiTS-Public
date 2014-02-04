@@ -199,17 +199,6 @@
 		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
-	
-	inputManager.AddBindableControl(
-		"RAGETIME",
-		"RAGETIME",
-		function ():void 
-		{
-			Cheats.HeliaStahp();
-		},
-		true);
-		
-	inputManager.BindCheatSequence("RAGETIME", 68, 69, 76, 73, 67, 73, 79, 85, 83, 82, 65, 71, 69);
 
 
 	// Insert the default bindings

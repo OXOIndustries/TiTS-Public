@@ -1,7 +1,7 @@
 package classes 
 {
 	import classes.Items.Miscellaneous.ZilRation;
-	import classes.Resources.EmbeddedAssets;
+	import classes.Resources.StatusIcons;
 	
 	/**
 	 * ...
@@ -30,37 +30,6 @@ package classes
 			loot.quantity = 5;
 			lootArray.push(loot);
 			kGAMECLASS.itemCollect(lootArray);
-		}
-		
-		public static function HeliaStahp():void
-		{
-			var tImg:* = new EmbeddedAssets.Image_Helia();
-			tImg.name = "ragetime";
-			
-			kGAMECLASS.clearOutput();
-			kGAMECLASS.clearMenuProxy();
-			
-			kGAMECLASS.userInterface.mainTextField.visible = false;
-			
-			kGAMECLASS.stage.addChild(tImg);
-			tImg.x = kGAMECLASS.userInterface.mainTextField.x;
-			
-			kGAMECLASS.userInterface.addButton(0, "PLZSTAHP", Cheats.OkStahp);
-		}
-		
-		public static function OkStahp():void
-		{
-			kGAMECLASS.stage.removeChild(kGAMECLASS.stage.getChildByName("ragetime"));
-			kGAMECLASS.userInterface.mainTextField.visible = true;
-			
-			if (kGAMECLASS.chars["PC"].short == "uncreated")
-			{
-				kGAMECLASS.mainMenu();
-			}
-			else
-			{
-				kGAMECLASS.mainGameMenu();
-			}
 		}
 	}
 }
