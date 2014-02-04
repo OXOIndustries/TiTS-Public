@@ -164,6 +164,7 @@ public function updatePCStats():void {
 	this.userInterface.leftSideBar.days.text = String(this.userInterface.days);
 	this.userInterface.leftSideBar.sceneBy.visible = true;
 	this.userInterface.leftSideBar.sceneByTag.visible = true;
+	
 	updateNPCStats();
 }
 function timeText():String {

@@ -268,7 +268,7 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planet.text + ", " + kGAMECLASS.userInterface.leftSideBar.system.text);
+			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planetText.text + ", " + kGAMECLASS.userInterface.leftSideBar.systemText.text);
 			
 			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
 			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;

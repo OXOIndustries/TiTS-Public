@@ -37,25 +37,21 @@ package classes.UIComponents
 		public static var gStatusBarTextColour:uint 		= 0xFFFFFF;
 		
 		// Font Faces
-		private static var _gLatoBold:Font;
-		public static function get gLatoBold():Font
-		{
-			if (!UIStyleSettings._gLatoBold)
-			{
-				UIStyleSettings._gLatoBold = new Font1;
-			}
-			return UIStyleSettings._gLatoBold;
-		}
+		[Embed(source = "../../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoTTF:String;
 		
-		private static var _gUniversUltraCondensed:Font;
-		public static function get gUniversUltraCondensed():Font
-		{
-			if (!UIStyleSettings._gUniversUltraCondensed)
-			{
-				UIStyleSettings._gUniversUltraCondensed = new Font2;
-			}
-			return UIStyleSettings._gUniversUltraCondensed;
-		}
+		[Embed(source = "../../assets/Lato-Italic.ttf", fontStyle="italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoItalicTTF:String;
+		
+		[Embed(source = "../../assets/Lato-Bold.ttf", fontWeight = "bold", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype",
+		embedAsCFF = false)]
+		public static const LatoBoldTTF:String;
+		
+		[Embed(source = "../../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const LatoBoldItalicTFF:String;
+		
+		[Embed(source = "../../assets/Univers 59 Ultra Condensed.ttf", fontName = "Univers UltraCondensed", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
+		public static const UniverseUltraCondensedTFF:String;
 		
 		// Text formatters
 		private static var _gNameHeaderFormatter:TextFormat = undefined;
@@ -67,7 +63,8 @@ package classes.UIComponents
 				UIStyleSettings._gNameHeaderFormatter.size = 25;
 				UIStyleSettings._gNameHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gNameHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gNameHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
+				UIStyleSettings._gNameHeaderFormatter.font = "Lato";
+				UIStyleSettings._gNameHeaderFormatter.bold = true;
 			}
 			return UIStyleSettings._gNameHeaderFormatter;
 		}
@@ -81,7 +78,8 @@ package classes.UIComponents
 				UIStyleSettings._gStatBlockHeaderFormatter.size = 14;
 				UIStyleSettings._gStatBlockHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gStatBlockHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gStatBlockHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
+				UIStyleSettings._gStatBlockHeaderFormatter.font = "Lato";
+				UIStyleSettings._gStatBlockHeaderFormatter.bold = true;
 			}
 			return UIStyleSettings._gStatBlockHeaderFormatter;
 		}
@@ -95,7 +93,8 @@ package classes.UIComponents
 				UIStyleSettings._gTooltipHeaderFormatter.size = 18;
 				UIStyleSettings._gTooltipHeaderFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gTooltipHeaderFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gTooltipHeaderFormatter.font = UIStyleSettings.gLatoBold.fontName;
+				UIStyleSettings._gTooltipHeaderFormatter.font = "Lato";
+				UIStyleSettings._gTooltipHeaderFormatter.bold = true;
 			}
 			return UIStyleSettings._gTooltipHeaderFormatter;
 		}
@@ -110,7 +109,7 @@ package classes.UIComponents
 				UIStyleSettings._gLocationBlockRoomFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gLocationBlockRoomFormatter.align = TextFormatAlign.RIGHT;
 				UIStyleSettings._gLocationBlockRoomFormatter.leading = -4;
-				UIStyleSettings._gLocationBlockRoomFormatter.font = UIStyleSettings.gUniversUltraCondensed
+				UIStyleSettings._gLocationBlockRoomFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gLocationBlockRoomFormatter;
 		}
@@ -125,7 +124,7 @@ package classes.UIComponents
 				UIStyleSettings._gLocationBlockPlanetSystemFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gLocationBlockPlanetSystemFormatter.align = TextFormatAlign.RIGHT;
 				UIStyleSettings._gLocationBlockPlanetSystemFormatter.leading = 8;
-				UIStyleSettings._gLocationBlockPlanetSystemFormatter.font = UIStyleSettings.gUniversUltraCondensed;
+				UIStyleSettings._gLocationBlockPlanetSystemFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gLocationBlockPlanetSystemFormatter;
 		}

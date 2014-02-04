@@ -3,6 +3,7 @@
 
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
+	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import flash.display.DisplayObject;
@@ -61,7 +62,6 @@
 		//Lazy man state checking
 		var showingPCAppearance:Boolean;
 
-
 		//temporary nonsense variables.
 		public var tempEvent:MouseEvent;
 		var temp:int;
@@ -74,7 +74,7 @@
 		var buttonPage:int;
 		var buttonTooltip:ButtonTooltips;
 		
-		public var leftSideBar:LeftBar;
+		//public var leftSideBar:LeftBar;
 		
 		private var fadeOut:*;
 		private var titsPurple:*;
@@ -95,6 +95,8 @@
 		var monsterSex:StatBarSmall;
 
 		private var _rightSideBar:RightSideBar;
+		private var _leftSideBar:LeftSideBar;
+		public var leftSideBar:LeftBar;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -147,7 +149,6 @@
 			this.hours = 0;
 			this.minutes = 0;
 
-
 			this.buttonDrawer = new BottomButtonDrawer;
 			this.titsClassPtr.addChild(buttonDrawer);
 			this.buttonDrawer.x = 0;
@@ -164,7 +165,6 @@
 			this.buttonPage = 1;
 			this.initializeButtons();
 
-
 			this.fadeOut = new ColorTransform();
 			this.titsPurple = new ColorTransform();
 			this.titsBlue = new ColorTransform();
@@ -175,23 +175,18 @@
 			this.titsBlue.color = 0x333E52;
 			this.titsWhite.color = 0xFFFFFF;
 
-
-
-
-
-			trace("Calling statBar constructors");
 			// Set up the various side-bars
-			this.setupRightSidebar()
-			this.setupLeftSidebar()
+			this.setupRightSidebar();
+			this.setupLeftSidebar();
+			this.setupLeftSidebarNew();
+			
 			// then hide them until we want them.
 			this.initLeftBar();
 			
 			//this.leftBarClear();
 			this.hidePCStats();
 
-
-			//Build the right sidebar
-
+			// Setup the button page controls in the button tray
 			this.buttonPageNext = new rightButton;
 			this.buttonPageNext.alpha = .3;
 			this.buttonPageNext.x = 1100;
@@ -217,23 +212,20 @@
 			this.titsClassPtr.addChild(this.pageNext);
 			this.titsClassPtr.addChild(this.pagePrev);
 
-
-
 			//Set up the main text field
 			this.format1 = new TextFormat();
 			this.format1.size = 18;
 			this.format1.color = 0xFFFFFF;
 			this.format1.tabStops = [35];
-			//this.format1.kerning = true;
-			mainFont = new Font3;
-			format1.font = mainFont.fontName;
+			format1.font = "Lato";
+			
 			this.mainTextField = new TextField();
 			this.prepTextField(this.mainTextField);
 			this.mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
+			
 			//Set up backup text field
 			this.mainTextField2 = new TextField();
 			this.prepTextField(this.mainTextField2);
-
 
 			//Set up standard input box!
 			this.textInput = new TextField();
@@ -246,7 +238,6 @@
 			this.textInput.type = TextFieldType.INPUT;
 			this.textInput.setTextFormat(format1);
 			this.textInput.defaultTextFormat = format1;
-
 
 			//SCROLLBAR!
 			upScrollButton = new arrow();
@@ -305,6 +296,7 @@
 			creditText.y = 305;
 			creditText.height = 77;
 			creditText.width = 780;
+			
 			//Website Text
 			websiteDisplay.border = false;
 			websiteDisplay.htmlText = "http://www.trialsInTaintedSpace.com";
@@ -316,6 +308,7 @@
 			websiteDisplay.y = 475;
 			websiteDisplay.height = 25;
 			websiteDisplay.width = 780;
+			
 			//Warning Text
 			warningText.border = false;
 
@@ -327,11 +320,12 @@
 			warningText.y = 390;
 			warningText.height = 75;
 			warningText.width = 655;
+			
 			//Set the formats
 			titleFormat.size = 18;
 			titleFormat.color = 0xFFFFFF;
 			titleFormat.tabStops = [35];
-			titleFormat.font = mainFont.fontName;
+			titleFormat.font = "Lato";
 			titleFormat.align = TextFormatAlign.CENTER;
 
 			creditText.setTextFormat(titleFormat);
@@ -371,6 +365,12 @@
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
+		private function setupLeftSidebarNew():void
+		{
+			this._leftSideBar = new LeftSideBar();
+			this.titsClassPtr.addChild(_leftSideBar);
+		}
+		
 		// Access methods to RSB items
 		public function get playerShields():StatBarBig { return _rightSideBar.shieldBar; }
 		public function get playerHP():StatBarBig { return _rightSideBar.hpBar; }
@@ -389,27 +389,23 @@
 		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
 		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
 		
-
-		private function tweenLeft(e:Event):void
-		{
-			this.leftSideBar.removeEventListener(Event.FRAME_CONSTRUCTED, tweenLeft);
-			var tween:Tween = new Tween(this.leftSideBar, "x", Regular.easeOut, (this.leftSideBar.x - this.leftSideBar.width), this.leftSideBar.x, 25, false);
-		}
-
+		// Access methods to LSB items
+		//public function get leftSideBar():LeftSideBar { return _leftSideBar; }
+		//public function get dataButton():dataB { return _leftSideBar.dataButton; }
+		
 		private function setupLeftSidebar():void
 		{	
 			var curYIndex:Number = 237;		// Initial starting Y offset is 237
 			var y_large_step:Number = 41;
 			var y_small_step:Number = 29;
 			var y_group_step:Number = 44;
-			//Build left sidebar
+			// Build left sidebar
 			this.leftSideBar = new LeftBar;
-			this.leftSideBar.x = 0;
+			this.leftSideBar.x = 1000;
 			this.leftSideBar.y = 0;
 			this.titsClassPtr.addChild(this.leftSideBar);
-			this.leftSideBar.addEventListener(Event.FRAME_CONSTRUCTED, tweenLeft);
 			
-			//Fading out Perks and Level Up Buttons
+			// Fading out Perks and Level Up Buttons
 
 			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
 			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
@@ -421,7 +417,7 @@
 			this.monsterShield.masks.labels.text = "SHIELDS";
 			this.monsterShield.values.text = "1";
 			this.monsterShield.visible = false;
-			this.monsterShield.x = 10;
+			this.monsterShield.x = 1010;
 			this.monsterShield.y = curYIndex;
 			this.titsClassPtr.addChild(this.monsterShield);
 
@@ -433,7 +429,7 @@
 			this.monsterHP.masks.labels.text = "HP";
 			this.monsterHP.values.text = "1";
 			this.monsterHP.visible = false;
-			this.monsterHP.x = 10;
+			this.monsterHP.x = 1010;
 			this.monsterHP.y = curYIndex;
 			this.titsClassPtr.addChild(this.monsterHP);
 
@@ -446,7 +442,7 @@
 			this.monsterLust.masks.labels.text = "LUST";
 			this.monsterLust.values.text = "25";
 			this.monsterLust.visible = false;
-			this.monsterLust.x = 10;
+			this.monsterLust.x = 1010;
 			this.monsterLust.y = curYIndex;
 			this.titsClassPtr.addChild(this.monsterLust);
 
@@ -456,7 +452,7 @@
 			this.monsterEnergy.masks.labels.text = "ENERGY";
 			this.monsterEnergy.values.text = "25";
 			this.monsterEnergy.visible = false;
-			this.monsterEnergy.x = 10;
+			this.monsterEnergy.x = 1010;
 			this.monsterEnergy.y = curYIndex;
 			this.titsClassPtr.addChild(this.monsterEnergy);
 
@@ -465,7 +461,7 @@
 			// Small stat bars (General Info (race, level, gender)) --------------------------------------------------
 			this.monsterLevel = new StatBarSmall();
 			this.monsterLevel.visible = false;
-			this.monsterLevel.x = 10;
+			this.monsterLevel.x = 1010;
 			this.monsterLevel.y = curYIndex;
 			this.monsterLevel.noBar = true;
 			this.setupStatBar(this.monsterLevel,"LEVEL",5);
@@ -475,7 +471,7 @@
 
 			this.monsterRace = new StatBarSmall();
 			this.monsterRace.visible = false;
-			this.monsterRace.x = 10;
+			this.monsterRace.x = 1010;
 			this.monsterRace.y = curYIndex;
 			this.monsterRace.noBar = true;
 			this.setupStatBar(this.monsterRace,"RACE","Galotian");
@@ -485,7 +481,7 @@
 
 			this.monsterSex = new StatBarSmall();
 			this.monsterSex.visible = false;
-			this.monsterSex.x = 10;
+			this.monsterSex.x = 1010;
 			this.monsterSex.y = curYIndex;
 			this.monsterSex.noBar = true;
 			this.setupStatBar(this.monsterSex,"SEX","Unknown");
@@ -502,6 +498,7 @@
 								
 			// Jam a minimap element into it!
 			this.miniMap = new MiniMap();
+			this.miniMap.x = 1000;
 			this.miniMap.targetY = 232; // The "HeaderUnderline" bar (element under "Encounter Status") is around y=231
 			this.miniMap.targetHeight = 341; // The time header text underline ("Galactic Standard purple bar") is around y=573
 			this.miniMap.childSizeX = 35;
@@ -517,13 +514,6 @@
 			this.miniMap.paddingBottom = 31; // 31 pixels between the bottom planet purple box thing and the header underline we're using as an anchor
 			this.miniMap.visible = false;
 			this.leftSideBar.addChild(this.miniMap);
-		}
-		
-		public function debugmm():void
-		{
-			hideNPCStats();
-			showMinimap();
-			this.miniMap.debug();
 		}
 		
 		private function initLeftBar():void
@@ -677,6 +667,7 @@
 		{
 			return this._rightSideBar.nameText.text;
 		}
+		
 		public function setGuiPlayerNameText(inName:String):void
 		{
 			this._rightSideBar.nameText.text = inName;
@@ -699,6 +690,7 @@
 			}
 			menuPageChecker();
 		}
+		
 		//Used for ghost menus in main menu and options.
 		public function clearGhostMenu():void {
 			for(var x:int = 0; x < buttons.length ;x++) {
@@ -715,6 +707,7 @@
 		public function forwardPageButtons(e:MouseEvent):void {
 			pageButtons();
 		}
+		
 		public function backPageButtons(e:MouseEvent):void {
 			pageButtons(false);
 		}
@@ -782,21 +775,6 @@
 			//Check back/next buttons
 			menuPageChecker();
 		}
-
-		// This block of utter bullshit successfully embeds the entire font family, with correct weightings, with the correct font engine. We don't give a shit about the variables; the font will be available under the family name of "Lato".
-			
-		[Embed(source = "../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
-		public static const LatoTTF:String;
-		
-		[Embed(source = "../assets/Lato-Italic.ttf", fontStyle="italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
-		public static const LatoItalicTTF:String;
-		
-		[Embed(source = "../assets/Lato-Bold.ttf", fontWeight = "bold", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype",
-		embedAsCFF = false)]
-		public static const LatoBoldTTF:String;
-		
-		[Embed(source = "../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
-		public static const LatoBoldItalicTFF:String;
 			
 		public var mainTextStylesheet:StyleSheet = new StyleSheet();
 		
@@ -844,10 +822,12 @@
 			buttonData[slot].caption.text = cap;
 			menuPageChecker();
 		}
+		
 		public function hasButton(slot:int):Boolean {
 			if(buttons[slot].alpha > 0) return true;
 			return false;
 		}
+		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{
@@ -857,6 +837,7 @@
 			if(buttonData[x].caption.text == "" && x == 0) x = -1;
 			return x;
 		}
+		
 		public function addDisabledButton(slot:int,cap:String = ""):void {
 			if(slot <= 14) {
 				buttons[slot].alpha = .3;
@@ -871,8 +852,10 @@
 			buttonData[slot].caption.text = cap;
 			menuPageChecker();
 		}
+		
 		//Ghost button - used for menu buttons that overlay the normal buttons. 
-		public function addGhostButton(slot:int,cap:String = "",func = undefined,arg = undefined):void {
+		public function addGhostButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
+		{
 			if(slot > 14) return;
 			buttons[slot].alpha = 1;
 			buttons[slot].caption.text = cap;
@@ -881,7 +864,9 @@
 			buttons[slot].arg = arg;
 			buttons[slot].buttonMode = true;
 		}
-		public function addMainMenuButton(slot:int,cap:String = "",func = undefined,arg = undefined):void {
+		
+		public function addMainMenuButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
+		{
 			if(slot <= this.mainMenuButtons.length) {
 				this.mainMenuButtons[slot].alpha = 1;
 				this.mainMenuButtons[slot].caption.text = cap;
@@ -897,7 +882,8 @@
 		}
 
 
-		public function pushToBuffer():void {
+		public function pushToBuffer():void 
+		{
 			if(tempText != "") {
 				textBuffer[textBuffer.length] = tempText;
 				authorBuffer[authorBuffer.length] = tempAuthor;
@@ -914,7 +900,8 @@
 			}
 		}
 
-		public function forwardBuffer(e:MouseEvent):void {
+		public function forwardBuffer(e:MouseEvent):void 
+		{
 			if(textPage < 4) {
 				textPage++;
 			}
@@ -933,7 +920,9 @@
 			updateScroll(e);
 			titsClassPtr.bufferButtonUpdater();
 		}
-		public function backBuffer(e:MouseEvent):void {
+		
+		public function backBuffer(e:MouseEvent):void 
+		{
 			if(textPage == 4) {
 				tempText = mainTextField.htmlText;
 				tempAuthor = this.leftSideBar.sceneBy.text;
@@ -951,7 +940,8 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-		public function displayInput():void {
+		public function displayInput():void 
+		{
 			if(!this.stagePtr.contains(textInput)) this.titsClassPtr.addChild(textInput);
 			textInput.text = "";
 			textInput.visible = true;
@@ -968,7 +958,9 @@
 			textInput.text = "";
 			textInput.maxChars = 0;
 		}
-		public function removeInput():void {
+		
+		public function removeInput():void 
+		{
 			this.titsClassPtr.removeChild(textInput);
 			menuButtonsOn();
 
@@ -990,7 +982,8 @@
 		}
 
 		//Used to adjust position of scroll bar!
-		public function updateScroll(e:MouseEvent):void {
+		public function updateScroll(e:MouseEvent):void 
+		{
 			var target = mainTextField;
 			if(!target.visible) target = mainTextField2;
 			//Set the size of the bar!
@@ -1028,52 +1021,59 @@
 		}
 
 		//4. MIAN MENU STUFF
-		public function mainMenuButtonOn():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.mainMenuButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.mainMenuButton.buttonMode = true;
-			}
+		public function mainMenuButtonOn():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.mainMenuButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.mainMenuButton.buttonMode = true;
+		}
 		
-		public function mainMenuButtonOff():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.mainMenuButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.mainMenuButton.buttonMode = false;
-				this.leftSideBar.mainMenuButton.filters = [];
-			}
+		public function mainMenuButtonOff():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.mainMenuButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.mainMenuButton.buttonMode = false;
+			this.leftSideBar.mainMenuButton.filters = [];
+		}
 		
-		public function appearanceOn():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.appearanceButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.appearanceButton.buttonMode = true;
-			}
+		public function appearanceOn():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.appearanceButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.appearanceButton.buttonMode = true;
+		}
 		
-		public function appearanceOff():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.appearanceButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.appearanceButton.buttonMode = false;
-				this.leftSideBar.appearanceButton.filters = [];
-			}
+		public function appearanceOff():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.appearanceButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.appearanceButton.buttonMode = false;
+			this.leftSideBar.appearanceButton.filters = [];
+		}
 		
-		public function dataOn():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.dataButton.alpha = 1;
-				//Engage buttonmode.
-				this.leftSideBar.dataButton.buttonMode = true;
-			}
+		public function dataOn():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.dataButton.alpha = 1;
+			//Engage buttonmode.
+			this.leftSideBar.dataButton.buttonMode = true;
+		}
 		
-		public function dataOff():void {
-				//Set transparency to zero to show it's active.
-				this.leftSideBar.dataButton.alpha = .3;
-				//Engage buttonmode.
-				this.leftSideBar.dataButton.buttonMode = false;
-				this.leftSideBar.dataButton.filters = [];
-			}
+		public function dataOff():void 
+		{
+			//Set transparency to zero to show it's active.
+			this.leftSideBar.dataButton.alpha = .3;
+			//Engage buttonmode.
+			this.leftSideBar.dataButton.buttonMode = false;
+			this.leftSideBar.dataButton.filters = [];
+		}
 
-		public function hideNormalDisplayShit():void {
+		public function hideNormalDisplayShit():void 
+		{
 			//Hide all current buttons
 			for(var x:int = 0; x < buttons.length ;x++) {
 				buttons[x].func = undefined;
@@ -1099,33 +1099,41 @@
 		public function menuButtonsOn():void 
 		{
 			//trace("this.stagePtr = ", this.stagePtr);
-			if(!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") {
+			if (!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") 
+			{
 				appearanceOn();
 			}
-			if(!this.stagePtr.contains(this.textInput)) {
+			if (!this.stagePtr.contains(this.textInput)) 
+			{
 				mainMenuButtonOn();
 				this.dataOn();
 			}
 		}
-		public function menuButtonsOff():void {
+		
+		public function menuButtonsOff():void 
+		{
 			appearanceOff();
 			this.dataOff();
 			mainMenuButtonOff();
 		}
-		public function hideMenus():void {
+		
+		public function hideMenus():void 
+		{
 			hideMainMenu();
 			hideAppearance();
 			hideData();
 		}
 
-
-		public function hideData():void {
+		public function hideData():void 
+		{
 			this.leftSideBar.dataButton.filters = [];
 		}
 
-		public function hideAppearance():void {
+		public function hideAppearance():void 
+		{
 			//Not showing appearance anymore!
 			showingPCAppearance = false;
+			
 			//Hide scrollbar & main text!
 			upScrollButton.visible = true;
 			downScrollButton.visible = true;
@@ -1142,7 +1150,8 @@
 			websiteDisplay.visible = false;
 			
 			//Turn off main menu buttons
-			for(var x:int = 0; x < this.mainMenuButtons.length ;x++) {
+			for (var x:int = 0; x < this.mainMenuButtons.length ; x++) 
+			{
 				this.mainMenuButtons[x].func = undefined;
 				this.mainMenuButtons[x].alpha = .3;
 				this.mainMenuButtons[x].caption.text = "";
@@ -1182,7 +1191,8 @@
 			titsClassPtr.bufferButtonUpdater();
 		}
 
-		public function hideMainMenu():void {
+		public function hideMainMenu():void 
+		{
 			//Hide scrollbar & main text!
 			upScrollButton.visible = true;
 			downScrollButton.visible = true;
@@ -1275,16 +1285,19 @@
 			this.leftSideBar.perksButton.visible = false;
 			this.leftSideBar.levelUpButton.visible = false;
 		}
+		
 		public function hideTime():void 
 		{
 			this.leftSideBar.time.visible = false;
 			this.leftSideBar.days.visible = false;
 		}
+		
 		public function showTime():void 
 		{
 			this.leftSideBar.time.visible = true;
 			this.leftSideBar.days.visible = true;
 		}
+		
 		public function hidePCStats():void 
 		{
 			this._rightSideBar.hideItems();
@@ -1294,10 +1307,12 @@
 		{
 			this._rightSideBar.showItems();
 		}
+		
 		public function resetPCStats():void
 		{
 			this._rightSideBar.resetItems();
 		}
+		
 		public function showHeader(message:String):void
 		{
 			this.leftSideBar.topHeaderLabel.text = message;
@@ -1322,6 +1337,7 @@
 			this.hideMinimap();
 			showHeader("ENCOUNTER STATUS");			
 		}
+		
 		public function resetNPCStats():void
 		{
 			for each (var barItem in this.npcStatSidebarItems) 
@@ -1329,6 +1345,7 @@
 				barItem.resetBar();
 			}
 		}
+		
 		public function showMinimap():void
 		{
 			if (this.miniMap.hasMapRender == true)
@@ -1365,7 +1382,6 @@
 				barItem.clearGlo();
 			}
 		}	
-
 
 		public function showBust(arg:String):void 
 		{
@@ -1408,7 +1424,8 @@
 
 		//2. DISPLAY STUFF
 		//EXAMPLE: setupStatBar(monsterSex,"SEX","Genderless");
-		function setupStatBar(arg:MovieClip,title:String = "",value = undefined, max = undefined):void {
+		function setupStatBar(arg:MovieClip, title:String = "", value = undefined, max = undefined):void 
+		{
 			if(title != "" && title is String) arg.masks.labels.text = title;
 			if(max is Number && value is Number) {
 				arg.bar.width = (value / max) * 180;
