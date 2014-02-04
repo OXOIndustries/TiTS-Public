@@ -9,7 +9,7 @@ package classes.UIComponents.StatusEffectComponents
 	import flash.geom.Point;
 	import flash.utils.getDefinitionByName;
 	import classes.UIComponents.UIStyleSettings;
-	import classes.Resources.EmbeddedAssets;
+	import classes.Resources.StatusIcons;
 	
 	/**
 	 * ...
@@ -132,7 +132,7 @@ package classes.UIComponents.StatusEffectComponents
 		 */
 		private function BuildTooltipElement():void
 		{
-			_tooltipElement = new StatusTooltipElement(EmbeddedAssets.Icon_Missing, _tooltipSizeX, _tooltipSizeY);
+			_tooltipElement = new StatusTooltipElement(StatusIcons.Icon_Missing, _tooltipSizeX, _tooltipSizeY);
 			_tooltipElement.x = 5000;
 			this.stage.addChild(_tooltipElement);
 			this.stage.removeChild(_tooltipElement);
@@ -146,13 +146,13 @@ package classes.UIComponents.StatusEffectComponents
 		{
 			var iconT:Class;
 
-			if (EmbeddedAssets[iconClass] !== undefined)
+			if (StatusIcons[iconClass] !== undefined)
 			{
-				iconT = EmbeddedAssets[iconClass];
+				iconT = StatusIcons[iconClass];
 			}
 			else
 			{
-				iconT = EmbeddedAssets.Icon_Missing;
+				iconT = StatusIcons.Icon_Missing;
 			}
 			
 			return new StatusEffectElement(_childSizeX, _childSizeY, effectName, iconT, tooltipText, durationRemaining, this.mouseHandlerFunc);

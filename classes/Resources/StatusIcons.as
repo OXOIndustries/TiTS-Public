@@ -9,7 +9,7 @@ package classes.Resources
 	 * under <PROJECT_FOLDER>/assets/*, so we gots to walk back from the location of the AS source to get there.
 	 * @author Gedan
 	 */
-	public class EmbeddedAssets 
+	public class StatusIcons 
 	{
 		[Embed(source = "../../assets/icons/statuseffects/unknown.svg", mimeType = "image/svg")]
 		public static var Icon_Missing:Class;
@@ -88,14 +88,11 @@ package classes.Resources
 		
 		// Alias some of the Icons to "friendly" properties; basically, lets us reinterpret/configure
 		// which icons to use in some cases
-		public static var Paralyze:Class = EmbeddedAssets.Icon_Paralysis;
-		public static var Stun:Class = EmbeddedAssets.Icon_MindcontrolledMindbroke;
-		public static var Constrict:Class = EmbeddedAssets.Icon_Constricted;
-		public static var Poison:Class = EmbeddedAssets.Icon_Poison;
-		public static var Blind:Class = EmbeddedAssets.Icon_BlindAlt;
-		
-		[Embed(source = "../../assets/images/stowaway_helia_r.png", mimeType = "image/png")]
-		public static var Image_Helia:Class;
+		public static var Paralyze:Class = StatusIcons.Icon_Paralysis;
+		public static var Stun:Class = StatusIcons.Icon_MindcontrolledMindbroke;
+		public static var Constrict:Class = StatusIcons.Icon_Constricted;
+		public static var Poison:Class = StatusIcons.Icon_Poison;
+		public static var Blind:Class = StatusIcons.Icon_BlindAlt;
 	}
 
 }
