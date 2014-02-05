@@ -10,6 +10,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.EnemyEncounterBlock;
 	import classes.UIComponents.SideBarComponents.MiniMapBlock;
 	import classes.UIComponents.SideBarComponents.GeneralInfoBlock;
+	import classes.UIComponents.SideBarComponents.SideBarButtonBlock;
 	
 	/**
 	 * ...
@@ -25,6 +26,7 @@ package classes.UIComponents
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
 		private var _miniMapBlock:MiniMapBlock;
 		private var _genInfoBlock:GeneralInfoBlock;
+		private var _menuButtonBlock:SideBarButtonBlock;
 		
 		public function get roomText():TextField { return _locationHeader.roomText; }
 		public function get planetText():TextField { return _locationHeader.planetText; }
@@ -67,6 +69,9 @@ package classes.UIComponents
 			_genInfoBlock = new GeneralInfoBlock();
 			this.addChild(_genInfoBlock);
 			_genInfoBlock.y = _miniMapBlock.y + _miniMapBlock.height - 4;
+			
+			// Menu button block
+			_menuButtonBlock = new SideBarButtonBlock(true);
 			
 			// Placeholder shit to stop the compiler crying
 			dataButton = new dataB;
