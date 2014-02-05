@@ -33,6 +33,29 @@ Repeating occurence
 4a. 	Sex Scenes
 */
 
+
+
+function anonsBarWaitressAddendum():void {
+	if(flags["SEEN_SELLESY"] == undefined)
+	{
+		flags["SEEN_SELLESY"] = 1;
+		output("\n\nAs you enter the Bar, leaving the check-in kiosk behind, a wall of heady aromas assault your senses. The clouds of thick, scented incense make it difficult to see around the room clearly from the hanging clouds that partially obscure several tables. Strong alcoholic scents mix with the smoke, and your eyes cringe slightly as they adjust. Peering into the dimly lit Bar Cum Reception area, at least four of the three-legged waitresses are tending to the patrons with seats.");
+		output("\n\nEach waitress dresses more suggestively than the next. One with pale blue skin wears a ‘schoolgirl’ costume which barely covers her nipples, the trio bulging from the fabric. Another of her kind whose skin has a deep green hue wears a skintight sheer shirt and little else, and by contrast the other waitress looks fully clothed.");
+
+		output("\n\nAs you approach a seat at the bar, you notice that the seat resembles a little coloured plastic pad. However, the seat apparently senses your intention and rearranges itself into a shape more suitable for a human occupant. You notice that the other patrons also have similar chairs to occupy, or in the case of one particularly tentacled individual, more of a bathtub.");
+
+		output("\n\nBefore you can truly contemplate the nature of this adaptive seating, one of the waitresses notices you. Turning, your eyes roam across her impressive figure. Her legs are thick, powerful, yet sleek, and undeniably full... however, more prominently in your mind – not to mention your view – are her three massive tits.");
+		output("\n\nYou could wave her over if you wanted.");
+	}
+	else {
+		output("\n\nThe three breasted waitress");
+		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
+		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
+	}
+	userInterface.addButton(0,"Waitress",anonsBarWaitressApproach);
+}
+
+
 function anonsBarWaitressApproach():void {
 	clearOutput();
 	author("Mr. Writer");

@@ -474,7 +474,7 @@ function chooseSexualGift():void {
 		pc.cumQuality -= 1.5;
 		pc.removePerk("Virile");
 	}
-	if(pc.hasperk("Potent"))
+	if(pc.hasPerk("Potent"))
 	{
 		pc.cumMultiplier -= 1;
 		pc.refractoryRate -= 1;

@@ -43,17 +43,16 @@ function leaveCelisesMenu():void {
 }
 
 function celiseFeedingRouter():void {
-	if(pc.hasCock()) {
-		if(!pc.hasVagina()) dudesFeedCelise();
-		else {
-			clearOutput();
-			output("Would you like to feed her using your male or female genitalia?");
-			this.clearMenuProxy();
-			this.userInterface.addButton(0,"Male",dudesFeedCelise);
-			this.userInterface.addButton(1,"Female",feedCeliseBySavin);
-		}
-	}
-	else if(pc.hasVagina()) feedCeliseBySavin();
+	userInterface.clearMenu();
+	if(pc.hasCock()) userInterface.addButton(0,"Male Feeding",dudesFeedCelise);
+	else userInterface.addDisabledButton(0,"Male Feeding");
+	if(pc.hasVagina()) userInterface.addButton(1,"FemaleFeed",feedCeliseBySavin);
+	else userInterface.addDisabledButton(1,"FemaleFeed");
+	//Requirements: PC C-cup or above, lactates, and has junk of some kind
+	if(pc.biggestTitSize() >= 3 && pc.isLactating() && (pc.hasCock() || pc.hasVagina())) 
+		userInterface.addButton(2,"Breastfeed",celiseSleezeLactation);
+	else userInterface.addDisabledButton(2,"Breastfeed");
+	userInterface.addButton(14,"Back",celiseFollowerInteractions);
 }
 
 //Feed Celise (M)
@@ -508,3 +507,475 @@ Huh. You always wondered how the ship stayed so damn clean.
 As you're lounging in your cabin, still recovering from your sexual bliss, you notice a strange... slurping sound coming from your door. You look down from the uberkitty video on your Codex's screen to see a green goop pouring in through your lock and congeals into a vaguely Celise-shaped blob. Apparently oblivious to your presence, the perky little goo-girl rolls around on your cum-splattered floor, happily absorbing the spunk smeared across the deck. You watch with amused quiet as the galotian mops up after you, humming merrily to herself as she gobbles up your seed, turning a paler shade of green and leaving your floor spotless.
 
 Good on her, keeping the ship nice and sparkly.*/
+
+//Celise Sleaze
+//Requirements: PC C-cup or above, lactates, and has junk of some kind
+function celiseSleezeLactation():void {
+	clearOutput();
+	userInterface.showBust("CELISE");
+	author("Nonesuch");
+	//First time
+	if(flags["LACTATION_FED_CELISE"] == undefined)
+	{
+		flags["LACTATION_FED_CELISE"] = 1;
+		output("You grin and shake your head to Celise ostentatiously filling out her chest as you approach, like some kind of obscene, gooey peacock. All her unsubtle action does is remind you of the weight of your own full boobs - how your [pc.chest] very often feels the way Celise looks when she sees you coming, engorging inexorably with [pc.milk] until they are plump with tight, warm pressure, your [pc.nipples] lavish and almost achingly sensitive, begging to be touched and sucked....");
+
+		output("\n\nYou touch one of your [pc.nipples] absently and manage to refocus on your goo girl pet. Or more specifically on her soft, plump lips. The creature seems to have evolved specifically to lick, nurse, and imbibe - just looking at her mouth makes you want to stuff it with something, to fill her orifices completely until her eyes roll back in their sockets through sheer glut.");
+		if(pc.intelligence() > 60) output(" It must be some form of subliminal suggestion, speaking to you wordlessly through the shape of her mouth and the wetness of her form. The galotians have spent millennia enticing other creatures to part with their fluids after all, and however dumb Celise might come across as she clearly has an encyclopaedia of tricks she instinctively reaches for when she sees a big, fleshy milk float like you coming. Recognizing the urge as an outside animal will pressing on you doesn’t make it feel any less real, though.");
+		output("\n\nAlthough it’s always difficult to read her facade of a human face, the way her mass quivers and roils, reforming her smooth hips over and over again, suggests she finds your long stare at her disquieting. She giggles nervously, fingering a tendril of hair. “<i>Is everything alright, [pc.name]?</i>”");
+		output("\n\nYou smile. Holding her gaze ");
+		if(!pc.isChestGarbed()) output("you slide your [pc.upperGarment] down, slowly releasing your [pc.chest] into the warm, dry air.");
+		else output("you run your hands across the top of your [pc.chest] enticingly, slowly teasing your [pc.nipples] in the warm, dry air.");
+		output(" Celise’s eyes move downwards and all worry evaporates from her face, replaced by a familiar all-encompassing look of hunger.");
+
+		output("\n\n“<i>Ooh. Would it be alright if I - would you mind if I put my mouth on those? They look like something I’d like to, mmm, get to know.</i>”");
+
+		output("\n\nYou say, with as much coyness as you can muster, that you’re not really sure. At the same time, you slowly sink to the floor, lowering yourself down until you are sitting comfortably. You allow your bare breasts to bounce, their heavy liquid weight making you sigh as they ripple, the smallest drop of [pc.milk] oozing from one of your engorged nipples. Like a filing drawn to a magnet, Celise puddles towards you");
+		if(!pc.isTaur() && !pc.isDrider()) output(" and you don’t offer any resistance as she climbs onto your lap");
+		output(". Her wet, warm bulk presses on your stomach as she manages to tear her eyes off your boobs, raises her head level to yours and adopts the most pathetic, hurt-eyed, lower lip-straining puppy-dog expression you have ever seen. “<i>Please?</i>”");
+
+		output("\n\nLaughing, you tell her that she’s said the magic word. With a delighted giggle, the goo girl immediately sinks downwards, the beautiful warm softness of her mouth engulfing one of your nipples with uninhibited greed.");
+	}
+	//Repeat:
+	else {
+		output("\n\nWithout a word you sit yourself down and ");
+		if(pc.armor.shortName != "") output("shake off the top half of your [pc.armor]");
+		else if(pc.isChestGarbed()) output("shake off your [pc.upperGarment]");
+		else output("shake");
+		output(", grinning at Celise as once again you let your movements accentuate the heaving and gentle quaking of your plump, full [pc.chest]. The goo girl is on you before you’ve even properly settled yourself, her wet bulk rolling over your belly as she slides up your front and engulfs one of your bared breasts, drooling small trails of warm slime, accepting your silent invitation with an eager and happy hum. You smile and curl your fingers into her hair, sighing as she begins her suck and spreads radiant pleasure through your laden breasts.");
+	}
+	//[merge]
+	output("\n\nAfter a few moments of furious kneading, during which time you think she might suck your boob right off, Celise calms down enough to set about her task with a bit more prudence. She looks up at you mischievously as she begins to kiss and nibble around the edges of your areola, pushing into your pliable flesh with her mouth, catching pinches of skin with her teeth before soothing them with her lips. Her physiology is so soft and wet that even when she bites at you like this you only feel a delightful pressure, like someone squeezing you gently with a moist pair of fingertips. The teasing treatment is making your nipple ");
+	if(pc.hasFuckableNipples()) output("moisten");
+	else output("harden");
+	output(", becoming more and more sensitive, deepening the ever-present urge to nurse which thrums through you. You gasp as, with a knowing purr, Celise slathers her tongue upwards right across its peak, making warmth rush to the tips of your breasts and down to your groin. It’s time to take charge here. You coil your fingers into Celise’s gooey hair firmly and push your nipple right into her soft, teasing, hungry mouth.");
+
+	//Dipples:
+	if(pc.hasDickNipples())
+	{
+		output("\n\nYour [pc.dickNipples] are almost painfully hard by now, hard enough to slide slowly out from their pliable boob housing to reveal their true nature. Celise coos with delight and sets about the one you’ve pushed her face into with a vengeance, drawing it even further out with expert pulls of her lips, rolling her tongue along the sensitive underside as her own pseudo-boobs squish into your stomach, enticing you to bead and then drool precum into her hungry mouth. It’s obvious she’s very much at home sucking dick, wherever she might find it. Smirking, you keep hold of her head and push her into your boob, sliding right to the back of her throat, drawing your oozing nipple cock away before pushing in deep again, working her face against you into a nice rhythm, sighing blissfully and closing your eyes as the delicious drain on your straining breast deepens. The mouth at your teat is both impossibly soft and assiduously vigorous - it’s like you’re feeding and fucking at the same time. You gasp and open your eyes as you feel something equally smooth and wet creep up your second breast and encapsulate your other nipple. Celise grins up at you, still sucking away at your erect nipple with her mouth as she strokes its twin with her gooey hand, kneading it expertly until it is tenting, the contents of your full boob rising unstoppably to a point. You moan as you gush [pc.milk] into her translucent hand, which absorbs your rich fluid just as eagerly as her mouth.");
+	}
+	//Cupples:
+	else if(pc.hasFuckableNipples())
+	{
+		output("\n\nYour [pc.nipples] are leaking precipitously by now, dribbling a needy mixture of [pc.milk] and lubrication down your front.");
+		if(pc.milkType == GLOBAL.HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You pull her firmly back into your softness, impatient now she has tapped your liquid wealth. In response she slides her hot tongue into your slit, drawing out long strokes of honey with expert laps of her mouth muscle yet continuing to suckle and squeeze on your areola.");
+		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural mixture crosses her lips. “<i>Strange...</i>” she sighs, “<i>and a little slimy... kind of like cum!” With the association locked in her mind, Celise dives in again, plunging her tongue into your nipple-slit and swirling it around the insides, stimulating the entrance in her best impression of a sex toy.]
+		//[Otherwise: 
+		else output(" Celise drinks up the stream you’ve presented to her with vocal delight, humming into your flesh as she laps up your fluids before inserting her hot tongue into your slit, absorbing milk with expert rolls of her mouth muscle, yet continuing to suckle and squeeze on your areola.");
+		output(" When you’re aroused like this you cannot help but simply drool liquid from your breasts - your cunt nipples have no valve function, and nothing stops your [pc.milk] from gushing out once someone is kneading at you in the way Celise is. It feels orgiastic to have someone eat your sensitive nipple out like this - it’s just a shame that you’re losing so much sensation from its twin. The moment that thought hazily forms, you gasp and open your eyes as you feel something equally smooth and wet creep up your second breast, following the trail of fluid up until it encapsulates your other nipple. You look down to find Celise grinning up at you, still suckling away at your breast with her mouth as she pushes into its twin with her gooey fingers, kneading your second nipple expertly until it is dribbling. The contents of your full boob rise unstoppably to a point and you moan as a sudden torrent of [pc.milk] gushes into her translucent hand, which absorbs your rich fluid just as eagerly as her mouth.");
+	}
+	//Normal nipples:
+	else {
+		output("\n\nYour [pc.nipples] are almost painfully hard by now and it takes only a few seconds for the one Celise has seized upon to open and begin to dribble [pc.milk] into hot, wet, roiling, licking pressure.");
+		if(pc.milkType == GLOBAL.HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You push her firmly back into your flesh, impatient now she has tapped your liquid wealth.");
+		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural bounty crosses her lips. “<i>Bitter... but not bad,</i>” she sighs, settling back into her task and coaxing your strange fluid from you once again.]
+		//Otherwise: 
+		else output(" The goo girl hums with delight as she begins to suckle, drawing it out with expert pulls of her lips, rolling her tongue along the underside as her own pseudo-boobs squish into your stomach.");
+		output(" Sighing blissfully and closing your eyes, you lose yourself in the delicious drain on your breast. The mouth at your teat is both impossibly soft and assiduously vigorous. Something equally smooth and wet creeps up your second breast and encapsulates your other nipple, and you gasp and open your eyes. Celise grins up at you, still suckling away at your breast with her mouth as she pushes into its twin with her gooey hand, kneading your second nipple expertly until it is tenting, the contents of your full boob rising unstoppably to a point. You moan as you gush [pc.milk] into her translucent hand, which absorbs your rich fluid just as eagerly as her mouth.");
+	}
+	//[merge]
+	//[2> Boobs:
+	if(pc.totalBreasts() > 2) 
+	{
+		output("\n\nObscured below heaving slime, you feel Celise form other suction pods, feel them slide across your chest until they fasten onto your other nipples, each more ");
+		if(pc.hasFuckableNipples()) output("wet");
+		else output("hard");
+		output(" and desperate to release their [pc.milkColor] load than the last. You moan and writhe, but the goo girl is insistent and insatiable, locked into her need to feed now - within a few moments she is fastened securely to all of your teats, sucking at every sensitive, beading nipple until it is jetting into her, pushing you towards a plateau of sensation no human was meant to experience.");
+	}
+	//[merge]
+	output("\n\nCelise’s wet bulk squishes into you, undulating over your [pc.belly], gently sticking to spots on your stomach intermittently as she grips your breasts in a velvety, never-ending moment of suction. As well as her own breasts, her stomach is beginning to push into your own as the [pc.milk] she is gorging herself on makes a pouch of it. You feel goo ");
+	if(pc.isTaur()) output("creeping all the way along your lower body, brushing wetly across your barrel-like belly to finally push");
+	else output("pushing");
+	output(" between your [pc.thighs] as she adheres herself to you more and more tightly. You look down, expecting to find her mischievous eyes gazing back, looking for a reaction, but instead find them peacefully closed. She is curled into your breast, all attention on your sensitive, life-giving nipples, every part of her relaxed apart from her plump, hungrily-working mouth. The [pc.milk] you can see sloshing and sluicing through her form has evidently had a powerful calming effect on her, shutting down everything in her world apart from the base, overriding need to feed, and like the simple goo she is, she now instinctively reaches for every wet, warm crevice she can sense. Grinning, you spread your thighs wider and pull her even further, your sigh merging with her pleased, dozy moan.");
+
+	//PC has both:
+	if(pc.hasCock() && pc.hasVagina())
+	{
+		output("\n\nIt doesn’t take her long to find and envelope your semi-erect [pc.cockBiggest] in warm kneading gel, and as her flesh wraps around it she flows further into your delta, sliding and oozing over your");
+		if(pc.balls > 0) output("[pc.balls] and ");
+		output("[pc.clits] as she reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel whilst a mound of slime coils around your cock until you are dribbling excitement and urgent with desire. The goo is insatiable - ");
+		//High cum:
+		if(pc.wetness() >= 3) output("though you are as ever tapping femcum eagerly, ");
+		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on your clit and your tunnel to force you to form more and more, all the while she continues to lick and suckle on your [pc.nipples].");
+	}
+	//PC has cock:
+	else if(pc.hasCock())
+	{
+		output("\n\nIt doesn’t take her long to find and envelope your semi-erect [pc.cockBiggest] in warm, kneading gel. You move your [pc.hips] with measured motion, letting Celise do most of the work. Her flood of slime coils your cock up and down, working it until it is bulging and you are urgent and straining with desire as she continues to lick and suckle on your [pc.nipples].");
+		cockChange();
+	}
+	//PC has vagina: 
+	else if(pc.hasVagina())
+	{
+		output("\n\nThe warm, kneading gel flows deep into your delta, sliding and oozing over your [pc.clits] as it reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel until you are dribbling excitement, urgent with desire. You move your [pc.hips] with measured motion, letting Celise do most of the work. The goo is insatiable - ");
+		if(pc.wetness() >= 3) output("though you are as ever tapping femcum eagerly, ");
+		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on your [pc.clits] and your tunnel to force more and more from you all the while she continues to lick and suckle on your [pc.nipples].");
+		cuntChange(rand(pc.totalVaginas()),5,true,true,false);
+	}
+	//[merge]
+	output("\n\nThe effect of the slime’s stimulation is to push your body into a heat of production, and you begin to pant; blood rushes to your skin as your [pc.nipples] open wide and release their deepest, thickest [pc.milkNoun] into Celise’s tight, sucking maws. She makes a sound of complete contentment as your own higher cognition shuts down; you can only think of pumping more and more of your body’s bounty into your goo pet. The heat reaches a high as she ");
+	if(pc.hasVagina()) output("packs [pc.oneVagina] as full as she can");
+	if(pc.hasVagina() && pc.hasCock()) output(" and ");
+	if(pc.hasCock()) output("clenches down on [pc.oneCock], sending ribs of wet tightness up and down");
+	output("; you groan as you cum, ");
+	if(pc.isSquirter || pc.hasCock()) output("jetting");
+	else output("guttering");
+	output(" yet more fluid into the insatiable, warm slime.");
+	if(pc.hasDickNipples()) output(" Your dick nipples tense and ejaculate again at the same time, spouting [pc.milk] in uncontrolled gouts into her mouths, and you throw your head back, squealing with joy as you are clenched in a multiple-point orgasm.");
+	else if(pc.hasFuckableNipples()) output(" Your cunt nipples quiver and orgasm at the same time, spurting [pc.milk] in uncontrolled gouts into her mouths, and you throw your head back, squealing with joy as you are clenched in a multiple-point orgasm.");
+	output(" Celise quivers herself as she cums to the thick fluid squirting into her, plumping her wide and full with her " + pc.mf("master's","mistress'") + " rich liquid love, and the two of you writhe and thrust into each other for a long, mindless moment of pure, wet joy.");
+	pc.orgasm();
+
+	//Low lactation:
+	if(pc.lactationQ() <= 5000) output("\n\nWhen you are finally spent and come back to yourself, you hazily realise there is still a mouth at your breast, still attempting to tease out more. You look down at Celise, still attached - you are completely empty and feel like you’ve poured several gallons of your [pc.milk] into her, and yet she still wants more? Gently you prise her from your over-sensitive, aching [pc.nipples]. She makes a small noise of disappointment as you do, even though you can see the large amount of fluid she has imbibed from you sloshing heavily within her body. It’s not enough to change her green color but enough to fill her boobs and butt out, giving her an exaggerated bimbo form, enough to keep her going for days. You shake your head sternly at the galotian’s greed and she has the civility to blush turquoise and simper.");
+	//High lactation:
+	else {
+		output("\n\nYou keep going and going, spurting more and more [pc.milk] into the goo girl, your body thrust upwards into an orgy of expression - not that a minute goes by usually when you aren’t thinking about how heavy your body is with the [pc.milk] that strains and tightens your [pc.chest], how full and needy they make you feel. It’s so goddamn good to relieve all of that pressure, to unload the deepest, creamiest [pc.milk] into multiple hungry mouths.");
+		if(pc.bRows() > 1) output(" Your lower breasts in particular, every bit as engorged as your top row but so often sorely neglected, sing with delight as Celise’s suction pods pump their warm wetness away.");
+		output(" You close your eyes as you continue to jet your warmth into the sucking slime, riding the goo stuffed ");
+		if(pc.hasVagina() && pc.hasCock()) output("into and onto");
+		else if(pc.hasCock()) output("onto");
+		else output("into");
+		output(" you, feeling yourself build towards a new peak - when you hear a wet, abject moan. You look down in surprise to see Celise slowly break off from your still-dribbling boob, her eyes rolling and mouth open, utterly stupefied. Her gooey body bulges at the seams with the amount of fluid you’ve stuffed into her, so much so that - and this makes you laugh in delight - her native green color has been obliterated, replaced by the rich [pc.milkColor] color of your [pc.milk]. And yet, you’ve still got more to give.");
+
+
+		//fork, no new pg
+		//(high empathy)
+		if(pc.isNice() || pc.isMischievous())
+		{
+			output("\n\nYou feel a pang of sympathy for the overfed alien... but your aching breasts won’t allow you to leave her work undone. Taking your [pc.nipples] in your own hands, you ");
+			if(pc.hasFuckableNipples()) output("slide two fingers into them");
+			else output("jerk and pull on them");
+			output(". Though Celise’s artisanal caresses are replaced with the workman-like efforts of your own pleasured stupor, it’s enough to tug another climax from you; your [pc.nipples] spurt [pc.milk] onto the prone woman");
+			output("as ");
+			if(pc.hasVagina())
+			{
+				output("your pussy twitches and ");
+				if(pc.isSquirter()) output("squirts");
+				else output("dribbles");
+				output(" a new, fitful orgasm into the slowly-expanding puddle at Celise’s base");
+			}
+			if(pc.hasVagina() && pc.hasCock()) output(" and ");
+			if(pc.hasCock())
+			{
+				output("your [pc.cocks] deliver another, weaker");
+				if(pc.cumQ() <= 600) output(", but still massive");
+				output(" load of semen that coats her body and seeps through her jellified skin");
+			}
+			output(".");
+			pc.orgasm();
+			output("\n\nCelise groans as your fluids slowly work their way through her membrane, a victim of her own body’s gluttonous design, and she slides her hand to her own crotch, frigging herself as vigorously as her torpid arm can manage. Her pussy quivers and clenches, and a stream of gooey girlcum runs from it, ejecting excess fluid. She rubs and teases until she’s fired off several more orgasms of her own, jetting multiple streams of slippery greenish lube a good few feet away, safe from the risk of being reabsorbed. Satisfied with the effects, she leans back and lets her shape relax into a vaguely feminine puddle with a low, burbling sigh.");
+		}
+		//(low empathy)
+		else {
+			output("\n\nShe should finish what she started, shouldn’t she? Smirking, you push her face and body back onto your oozing [pc.nipples], her meek, mumbled protest smothered by your soft flesh and then by the continuing streams of fluid, their all-conquering sweet warmth drowning her out.");
+
+			output("\n\nYou watch in awe and rekindled arousal at her body as you force feed her. She tries to store the excess fluid on her butt and bust, they swell as you watch, filling out until she is sporting the kind of huge, smothering, quivering curves that would prevent her from moving were she human - but it’s not enough. Her belly expands into a pregnant bulge, tautening before she screams around your [pc.nipple], the obscene [pc.milkColor] goo girl you’ve created writhing her slimy form against you; she spurts fluid from her vagina as you push her over her limit, forced into an explosive orgasm to get rid of the excess [pc.milk] you’ve gorged her with. It’s so massive she simply parts around your fingers, sliding away to pool onto the floor in front of you, reduced to a quivering girl swamp, formed almost entirely from your own juices. You smile triumphantly as you stand over her, gently ");
+			if(pc.hasVagina()) output("frigging");
+			else output("stroking");
+			output(" yourself.");
+			pc.orgasm();
+		}
+		output("\n\nAs you watch, she manages to slowly gather herself, her weary eyes widening as she reforms an arm and sees that her green color has not returned. Not only that, but stuffed to the brim with your bounty, she has no choice but to take on the most lewd proportions possible, and she groans as she bends, straightens her back and reforms her round, jiggling backside. She’ll probably be stuck like that, with her thick thighs, heaving breasts and bouncing bubble butt for some time, all the while unable to taste anything but your [pc.milk]");
+		if(pc.hasCock()) output(" and musky [pc.cumNoun]");
+		output(". Absolutely delicious. You sigh in deep satisfaction while you propel yourself to your final peak, dribbling the very last of your [pc.milk] onto her[ as you are clenched by orgasm once again, spattering her with yet more of your ");
+		if(pc.hasCock()) output("[pc.cum]");
+		else if(pc.hasVagina()) output("[pc.girlCum]");
+		output(". She moans softly at the obscene rain, a treat she would have normally revelled in now just a reminder of how you have completely overwhelmed her.");
+		pc.orgasm();
+	}
+	//[merge]
+	output("\n\nAfter Celise has composed herself a bit she looks at you, frowning as if something were bothering her. Whatever she’s thinking slowly gathers pace; she opens her mouth and... burps richly. Her blush turns into an embarrassed titter when you laugh, shaking your head at your stuffed goo pet.");
+
+	output("\n\n“<i>You taste sooooo good, [pc.name],</i>”  she sighs. “<i>");
+	if(pc.milkType == GLOBAL.HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
+	output("You’ll never stop leaking nice stuff from your top soft, will you? Because I just want to keep drinking that forever, and ever, and...</i>”  She pauses, and looks down at her bulging bimbo body. “<i>...well, maybe not </i>right<i> now, but you’ll come back with more, right?</i>”  You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
+	if(pc.lactationQ() <= 5000) output("green");
+	else output("[pc.milkColor], heavily-inflated");
+	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
+	//(If possible, have Celise retain the colour on her description screen for a day or two if it changed)
+	if(pc.lactationQ() > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She'll be back to her old self in no time.");
+	//reset lust, add lust
+	processTime(30+rand(10));
+	pc.lust(5+rand(5));
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+
+
+
+/*Celise full body hugging bounty board scene
+By: The Dark Master
+
+Plan
+Scene
+Intro
+Don’t let her in
+Let her in
+Don’t be naked
+Be naked
+Don’t let her drain you
+Let her drain you
+(old text that will not be used) Celise is hungry
+(old text that will not be used) Break free
+
+
+Plan
+If the player ever chooses no, the scene ends fairly shortly afterwards with a quick summary of how the rest of the night passes.
+Celise comes to your room and asks you if you’ll let her be your bed. (player choice)
+Celise happily hops in and forms up into a blob on the floor with her breasts squished up to one side to be your pillow. Celise asks the player to undress. (player choice)
+Lights are turned out
+Celise wraps her body around the PC, hugging and caressing their whole body, the player notes she is a natural with massages.
+Celise is not very hungry:
+Celise suggests that while the two of you are together, that maybe you should let her do a gentle milking before you fall asleep? (player choice)
+Celise gently milks all parts of your body she can.
+Alternatively, Celise is hungry:
+Celise tells you that since you haven’t feed her much lately, she’s going to have to use this opportunity to get what she needs. The player can choose to try and struggle against this. (player choice)
+(maybe an alternative version where she is more forceful with her milking, otherwise same as above)
+
+Scene
+//requires that the PC not be sexless, and be humanoid in shape*/
+
+//Intro
+function celiseOffersToBeYourBedSenpai():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	output("Just before you turn in, your door chimes, followed by the voice of Celise calling out to you. “<i>Hey there, I was wondering if maybe you wanted a little company tonight? Maybe a nice soft goo bed that will hug you and rub you all night?</i>” There is a pleading note in there. Do you let her in?");
+	//Player chooses yes/no
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Yes",letCeliseInForBed);
+	userInterface.addButton(1,"No",dontLetCeliseInForBed);
+}
+
+//Don’t let her in
+function dontLetCeliseInForBed():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	if(pc.isNice())
+	{
+		output("You apologize to her, saying tonight’s just not a good night for you. Maybe some other time?");
+	}
+	else if (pc.isMischievous()) {
+		output("You tell her that that’s okay, you don’t need a goo bed tonight.");
+	}
+	else { //you’re mean
+		output("You tell her to get lost, you don’t have time for her tonight.");
+	}
+	output("\n\n“<i>Okay...</i>”  you hear her say sadly as she shuffles away from your room. You try not to let it bother you and continue getting ready for bed as before.");
+	//end scene, normal rest messages after this
+	sleep(false);
+}
+
+//Let her in
+function letCeliseInForBed():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	output("You open the door to invite the green goopy girl into your room. She screams, “<i>Yay!</i>”  and happily bobs her way past.");
+	output("\n\nThe Galotian circles around the room for a few moments before settling down near the center and reshaping her body. She reaches her arms down and firmly grabs the bottoms of her pornstar breasts, then heaves them up while simultaneously leaning her body back further and further. The secret to her technique eludes you until you notice how her lower body is stretching forward at the same time, giving the illusion that she is leaning back.");
+	output("\n\nFinally she’s stretched out into a long oval pad of emerald goo, big enough that you could easily lie down on it. Satisfied, she drops her enormous assets onto the unusual bed and pats them proudly. “<i>Come on! Try out the best pillows in the universe!</i>”  she proclaims, her upbeat mood still in full force.");
+	
+	//{if PC is not nude}
+	if(!pc.isNude())
+	{
+		output("\n\nHowever, when you make a move towards her she suddenly cries out, “<i>Wait! You should totally be naked before you try me out. It will be lots better, trust me!</i>”");
+		output("\n\nWell, are you going to sleep in her naked?");
+		//player chooses yes/no, if the PC is nude, automatically go to be naked
+		userInterface.clearMenu();
+		userInterface.addButton(0,"Yes",sleepWithCeliseNaked);
+		userInterface.addButton(1,"No",sleepWithCeliseNotNaked);
+	}
+	else
+	{
+		userInterface.clearMenu();
+		userInterface.addButton(0,"Next",sleepWithCeliseNaked,false);
+	}
+}
+
+//Don’t be naked
+function sleepWithCeliseNotNaked():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	output("You tell her that you’re fine the way you are; you’d rather sleep in her clothed.");
+	output("\n\nThe ditzy green girl pouts for a bit before grudgingly agreeing. “<i>Fine, but next time you gotta try it naked!</i>”");
+	output("\n\nYou lower yourself onto the green bed of ooze, and lean back onto the Galotian’s massive mock mammaries. The owner of these mounds giggles as your head settles into the valley created by them");
+	if(pc.horns > 0) output(", and your horns slip inside her breasts");
+	output(". While a little wobbly, Celise’s body is incredibly comfortable to rest on; it’s essentially the ultimate water bed. You switch off the lights, and in no time at all, are drifting off into a pleasant rest atop a living pool of goo.");
+	//scene ends
+	sleep(false);
+}
+
+//Be naked
+function sleepWithCeliseNaked(disrobe:Boolean = true):void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	//{if PC is not nude} 
+	if(disrobe) output("You remove your clothing at Celise’s suggestion, prompting happy applause from the green woman. It sounds rather like two wet towels slapping together. Once completely nude, you’re once again invited to lay down on the bed of ooze and rest your head between her appropriately sized pillowcase cup breasts.\n\n");
+	output("Her gel is warm to the touch, and is quite pleasant on your skin. You let out a contented sigh as your head sinks partially into her bust and she puts her hands onto your chest, hugging you to her breast. You switch off the lights in your room and close your eyes, completely relaxed on the thick goopy body of the Galotian.");
+	output("\n\nBefore you’re actually able to fall asleep, you feel the mat of goo suddenly run up your legs and around your body, enveloping it in mere moments. Fear of being trapped is quickly banished from your mind as Celise’s goo begins caressing and vibrating on your skin. Long veins rub across your back and shoulders, working out the pains and knots from your muscles after a long day. Damn, this girl is a natural with massages!");
+	output("\n\nCelise continues to work the tension from you for the next half hour or so. Just when you feel like every ");
+	if(pc.isGoo()) output("bit of goo");
+	else output("muscle");
+	output(" in your body is relaxed enough to melt, she giggles suspiciously, and you feel her gel push against the entrance to your ass.");
+	if(pc.hasVagina()) 
+	{
+		output(" Another protrusion rubs itself against the lips of your [pc.vagina]");
+		//[if (more than one vagina)]
+		if(pc.totalVaginas() > 1) output(", with more joining it at your other lower lips not long after");
+		output(".");
+	}
+	//[if (cock = yes)]
+	if(pc.hasCock())
+	{
+		output(" Simultaneously, Celise’s goo tightens into a tube about your [pc.cock], teasing you to full hardness.");
+	}
+	output(" \"<i>You know, [pc.name], I was just thinking that while we’re here, you should totally let me milk and play with your entire body for the whole night....</i>” At this, her goo also rubs against and pinches your [pc.nipples].");
+
+	output("\n\nShe’ll do it if you give her half the chance, but at the same time, she seems pretty relaxed right now so it will probably be a very gentle feeding session. Will you let her?");
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Yes",getDrainedSexyTimes);
+	userInterface.addButton(1,"No",dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep);
+}
+
+//Don’t let her drain you
+function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i>  Celise pouts, before trying once again to her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
+	//scene ends
+	sleep(false);
+}
+
+//Let her drain you
+//sexy times
+function getDrainedSexyTimes():void {
+	clearOutput();
+	author("TheDarkMaster");
+	userInterface.showBust("CELISE");
+	output("Joyful laughter reverberates through Celise’s body as a column of goo pushes through your [pc.asshole]. She gently strokes the exposed part of your face and neck. “<i>That’s so wonderful of you; I’ll be sure to milk you lots tonight.</i>”  Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
+	buttChange(5,true,true,false);
+	//asshole
+	output("\n\nThe tip of the column of gel embedded deep inside your backside swells up, growing bigger and bigger until there is a large ball of goo on the end of it. She tests this gel sphere against your backside’s ring with a tug, ");
+	if(pc.ass.looseness >= 5) output("and proves a bit disappointed when it slips out of your gaping rear. She promptly puts it back and increases the size a bit more to make sure it stays in there.");
+	else output("and is quite pleased when it proves to be stuck in there.");
+	output(" The great green globule begins an endless pumping motion deep inside your bowels, a piston that lasts the whole night.");
+
+	//breasts (1)
+	if (pc.biggestTitSize() >= 1)
+	{
+		output("\n\nThe goo around your [pc.chest] tightens up, cupping and feeling up your endowments. They move in circles, rubbing and teasing the tit-flesh. You can’t help but move along with the firm caresses, rocking back and forth inside the sloppy prison of slime. Celise catches on fast, and moves your body for you in time with her groping.");
+		//[no paragraph end]
+		if (!pc.isLactating())
+		{
+			if (pc.hasFuckableNipples()) //number of nipples doesn’t matter for this
+			{
+				output(" You give a small gasp as a pair of tendrils slip their way inside your [pc.nipples] and busy themselves by wiggling around inside the faux-vaginas. After a moment’s thought, you decide that it would be better to describe them as tiny tongues, given that it feels like a mouth is also sucking on the outside of your sensitive nubs of penetrable flesh.");
+			} 
+			//regular nipples
+			else 
+			{ 
+				output(" There is a small, sharp bit of pain when a sucker appears inside the bed of gel just above your [pc.nipples] and pinches them. The pain quickly subsides and is replaced by a pleasant glow as the sensation switches to a gentle tugging on the sensitive nubs of flesh.");
+			}
+		}
+		//they are lactating
+		else 
+		{
+			output(" Almost immediately, Celise detects that your [pc.nipples] are giving her something that she wants, and she begins suckling. A mouths blooms into existence above each nipple to drain all of the fluids that they can from your [pc.fullChest]. Even when the source runs dry");
+			if(pc.lactationQ() >= 5000) output("much later");
+			output(", the mouths continue to suck in a loving manner.");
+		}
+	} 
+	//your breasts are too small, or are non-existent. You get nipple play instead.
+	else 
+	{
+		output("\n\nThe goo that was flicking at your [pc.nipples] a few moments ago tightens up a bit, and pinches you rather hard. Your reaction sends a shudder through your encasement, and Celise lets up on the stimulation. She is simply content to tweak, flick, and tease the nubs of somewhat sensitive flesh on your chest.");
+		//Oh boy, this will be weird
+		if (pc.isLactating())
+		{
+			output(" Of course, when you start lactating, that all changes. Back come the rather sharp pinches for a few minutes, trying to get all the milk out of your [pc.chest] she can get. When you protest her poor treatment, she does fortunately let up and switch to a more relaxed pace.");
+		}
+	}
+	//tail cock
+	if (pc.hasTailCock())
+	{
+		//n is the first tail that the PC has that is a tailcock
+		output("\n\nGiven all the stimulation your body has received, your unusual endowment is quite easy to find and your [pc.tail] is led down between your legs. The whole tail is surrounded in a thick sleeve of gel that promptly rocks forward and backwards down its full length. A small tendril of goo forms across the tip of your [pc.tailCock] and rubs its urethra, trying to draw out as much as possible with each orgasm you experience throughout the night.");
+	}
+	//tail vagina
+	else if (pc.hasTailCunt())
+	{
+		//n is the first tail that the PC has that is a tail vagina
+		output("\n\nWhen your [pc.tail] reveals its special treasure thanks to the situation you’re in, Celise immediately catches on and pulls said appendage up along your back so she has easier access to it. What feels like a thick cock of ooze forms at the entrance to your [pc.tailgina] and begins to thrust into it. This sends the breasts of goo on either side of your head bouncing slightly with the motion. Of course, rather than cumming into your tail mounted womanhood, this one sucks on your interior, draining all that it can out of you.");
+	}
+	//cock
+	if (pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
+	{
+		output("\n\nThe tube surrounding your [pc.cockBiggest] begins to ripple pleasantly, turning into a ringed interior of firm, but flexible jelly.");
+		//(if multiple cocks):
+		if(pc.cockTotal() > 1) 
+		{
+			output(" In moments, ");
+			if(pc.totalCocks() == 2) output("both");
+			else output("each");
+			output(" of your dicks are encased.");
+		}
+		output(" You groan and thrust your groin up to get a taste of those wonderfully shaped cock-sleeves, but her body moves along with you. “<i>No need to move, silly; I’ll take care of that for you...</i>”  Celise whispers, and pulls you back down into her.");
+
+		output("\n\nIt turns out that a mind-melting manhood massage is what she had in mind. A pleasant vibration spreads through the gel around your [pc.cocks], bringing with it a glow of pleasure that spreads around your body. Afterwards, a slow inexorable pull begins to work on your engulfed erect equipment, tugging on you with that marvelously ringed pipe of slime. Without warning it reverses course, and pushes down on you, rubbing you in the other direction in an ecstasy-inducing manner. There is no acceleration in her stimulation, just steady repetition of the cycle of pushing and pulling on your member again and again, slowly building you up to release.");
+	
+		//if (PC has balls)
+		if(pc.balls > 0)
+		{
+			output("\n\nWhenever you reach your peak, and begin letting out another load into the ravenous gel girl, a tight case forms around your [pc.balls], which rub and squeeze them to coax out all the cum you have to offer her. Even after your release has subsided, you continue to be gently squeezed and fondled pleasantly for at least a few minutes before the ball cage relaxes and lets your [pc.balls] flop free once more.");
+		}
+		else output("\n\nWhen you're finally brought to your first peak, the ravenous gel girl quickly changes the means of her assault from a gentle treatment to a vigorous pumping. She roughly coaxes everything she can out of your climaxing member through her rippling prison. Finally when you're spent, her calm serene treatment starts anew, carefully bringing you back to full hardness and continuing her massage.");
+
+		output("\n\nThroughout the night she draws out a multitude of orgasms with long build-ups and sudden releases that ooze out of you and are quickly absorbed by the hungry mass of goo surrounding your body. While she never lets you go soft, she paces you so that the period between each orgasm is at least thirty minutes, so you never feel uncomfortable from the continuous stimulation.");
+		cockChange();
+	}
+	//vagina
+	else if(pc.hasVagina())
+	{
+		//if (PC has at least one vagina)
+		output("\n\nThe protrusion rubbing against your [pc.vagina] pushes more and more firmly before finally passing inside you. The small invader splits into a multitude of filaments wriggling around inside your womanhood, eager to tease your insides.");
+		output(" Simultaneously, two of the tendrils grasp at the [pc.clit] above your invaded entrance to heighten your pleasure to the best of their ability. You’re certain that every drop of lubrication you release is being eagerly absorbed by the greedy green gelatinous girl.");
+		//(if multi vagina):
+		if(pc.totalVaginas() > 1)
+		{
+			output("\n\nYour [pc.vagina] is not the only womanhood you possess on your crotch, so of course Celise fills every hole she can in the same way. ");
+		}
+		else output("\n\n");
+		output("The twisting, flipping, and vibrating cilia move deeper and deeper, while becoming more and more numerous until you’ve been jam-packed with the things all the way up to the entrance");
+		if(pc.vaginaTotal() > 1) output("s of your wombs");
+		else output(" of your womb");
+		output(". Only then do they stop and are content rubbing every surface they can find inside you. The intense stimulation only becomes greater when you crest a hill of pleasure and ride it down. Your discharge sends the wormy appendages into overdrive to collect and entice as much of it from your body as possible. When you reach the bottom of the hill, you’re allowed to relax, and the gentle buzz of gooey pleasure begins anew.");
+		for(var v:int = 0; v < pc.totalVaginas(); v++)
+			cuntChange(v,5,true,true,false);
+	}
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+	if(rand(3) == 0) pc.orgasm();
+
+	sleep(false);
+	pc.orgasm();
+
+	/*(old text that will not be used) Celise is hungry
+	Suddenly, a chill runs down your spine when you feel Celise’s grip on your asscheeks tighten. “<i>You know, [pc.name], you haven’t been doing a very good job of feeding me...” she says to you rather nonchalantly as one of her protrusions pushes up against the entrance to your anus.  [if (vagina = yes)] Another protrusion rubs itself against the lips of your [vagina] [if (more than one vagina)] , with another joining it at your other lower lips not long after[/] . [/] [if (cock = yes)] Simultaneously, Celise’s goo tightens into a tube about your [cock], teasing you to full hardness.[/] “You really can’t blame me for milking your whole body now that I’ve got you inside me.” She continues the matter-of-fact tone, as she prepares to violate your entrapped form.
+	
+	You can probably still break free of her grip and kick her out of your room for trying this, but at the same time, she’s been pretty relaxed about the whole thing, so it will likely be a pretty gentle feeding too. Will you let her drain you all night?*/
+	//(old text that will not be used) Break free
+	//Your suspicions at how weak Celise’s grip is on your resting form are proven true quite quickly. It’s a simple matter to force yourself out of her “bed” and to escape her attempts to catch you again. She tries to apologize for what she did, begging you to let her feed, but you’ll have none of it. In another minute, you’ve removed the green girl from the room, and have settled into a proper bed for some shut eye.
+	//end scene, normal rest messages after this
+}

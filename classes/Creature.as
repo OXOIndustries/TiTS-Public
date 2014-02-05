@@ -442,10 +442,12 @@
 					break;
 				case "nippleCockDescript":
 				case "nippleCock":
+				case "dickNipple":
 					buffer = nippleCockDescript();
 					break;
 				case "nippleCocksDescript":
 				case "nippleCocks":
+				case "dickNipples":
 					buffer = pluralize(nippleCockDescript());
 					break;
 				case "eachCock":

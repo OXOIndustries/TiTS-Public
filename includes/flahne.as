@@ -365,6 +365,7 @@ function flahneSexMenu(display:Boolean = true):void {
 			output("\n\n<i>“See something you like, cutie?”</i>  Flahne’s voice practically oozes over to you, liquid with desire to use her pent-up sex.");
 		}
 	}
+	userInterface.showBust("FLAHNE");
 	//if quadruped, all branches output:
 	if(pc.isTaur()) output("\n\nYour body length, while impressive, sadly limits your options in this tiny office. You’ll be able to do her over the desk, but that’s about it.");
 	processTime(1);
@@ -391,6 +392,21 @@ function flahneSexMenu(display:Boolean = true):void {
 	//Bend her Over (Dickwielders; Savin wrote dis)
 	if(pc.hasCock() && pc.cockThatFits(flahne.vaginalCapacity()) >= 0) this.userInterface.addButton(4,"Bend Her Over",bendFlahneOver);
 	else this.userInterface.addDisabledButton(4,"Locked");
+
+	//Gardeford's Exhibitionism Scenes
+	if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] == 1 && flags["FLAHNE_DESK_DISABLED"] == undefined)
+	{
+		if(pc.cockThatFits(chars["FLAHNE"].vaginalCapacity()) >= 0 && pc.hasCock()) 
+			userInterface.addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism);
+		else userInterface.addDisabledButton(5,"Locked");
+		if(pc.hasVagina()) 
+			userInterface.addButton(6,"(F)Exhibition",flahneExhibitionHugsGirls);
+		else userInterface.addDisabledButton(6,"Locked");
+	}
+	else {
+		userInterface.addDisabledButton(5,"Locked");
+		userInterface.addDisabledButton(6,"Locked");
+	}
 	this.userInterface.addButton(14,"Back",mainGameMenu);
 }
 
@@ -820,6 +836,9 @@ function eatFlahneOutUnderDesk():void {
 	
 	output("\n\nBuzzing a little from all the sugar you just swallowed, you enthusiastically agree.");
 	
+	//Unlock Gardeford's Exhibitionism Fucks
+	flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] = 1;
+
 	//+lust, big MP gain
 	pc.lust(5+rand(5));
 	//Pass 20 minutes + 10 if she licks you clean.
@@ -863,6 +882,9 @@ function flahneGetsSuckedAndSwallowed():void {
 	output("\n\nMaybe...");
 	//+lust, big MP gain
 	
+	//Unlock Gardeford's Exhibitionism Fucks
+	flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] = 1;
+
 	//Pass 20 minutes.
 	processTime(20+rand(3));
 	this.clearMenuProxy();
@@ -1022,4 +1044,153 @@ function fuckAndSuckWithFlahne():void {
 	processTime(30+rand(10));
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
+}
+
+
+//Female: hugz
+function flahneExhibitionHugsGirls():void {
+	clearOutput();
+	author("Gardeford");
+	userInterface.showBust("FLAHNE");
+	output("You revel in the feeling of the gel girl embracing you and ");
+	if(pc.isNaga()) output("slither");
+	else if(pc.isGoo()) output("ooze");
+	else output("stand");
+	if(!pc.isTaur()) output(" from your chair");
+	else output(" move from your place");
+	output(" to return her affections. Giving her a sly look, you ");
+	//if first time:
+	if(flags["HUGGED_FLAHNE"] == undefined) {
+		output("mention that she didn’t seem particularly upset when someone walked in on the two of you having sex. You run a finger along the bottom of her gooey hair and ask if she has a bit of an exhibitionist streak.");
+	}
+	//after times:
+	else {
+		output("ask if she’s up for more exhibition, since the last time went so well after all.");
+	}
+	output(" You walk to the door and undo the locks before sauntering seductively to Flahne’s desk-chair");
+	if(!pc.isNude()) output(", dropping your clothing as you go");
+	output(". When you reach the chair you swivel to face her and crook your finger to beckon her over. The luscious gel-girl glances nervously at the door for a moment before walking slowly to stand before you.");
+
+	output("\n\n<i>“Don’t worry about the door for now. Just sit here with me and I’ll make you forget it,”</i>  you say, giving Flahne your best bedroom eyes. The nervousness begins to fade as she hooks her legs through the chair’s arms to sit on your lap. Her goldenrod flesh is warm against your [pc.skinFurScales], and as you undo her top her breasts press against your [pc.chest] like soft pillows. You slip your hand between her parted legs and dip two fingers into her pliant gelpussy, ");
+	if(!flahneDickOut()) output("using your thumb to rub her budding clit.");
+	else output("rubbing your thumb against the base of her ovipositor.");
+	output(" Flahne moans loudly, but covers her mouth and looks over her shoulder at the door, her Lack of nerve still apparent.");
+
+	output("\n\nUsing your other hand, you turn the gel-girl’s face back to you and give her a big kiss. Her saliva tastes as sweet as the candy she eats, and her worries seem to melt as her tongue swirls around with yours. Flahne wraps her arms around your shoulders and presses herself tightly against your body, her G-cups mashing against your [pc.chest]. The horny secretary moans into your mouth as your fingers rub the inner walls of her vagina. You guide one of her hands down to your [pc.oneVagina]");
+	if(pc.hasCock()) output(", sliding it against your hardening [pc.cockNounSimple] as you do so");
+	output(". Her fingers feel cool as they enter you, eliciting a small gasp followed by a sigh of pleasure.");
+
+	output("\n\nYou lift one of Flahne’s wonderful golden pillows to your mouth, revelling in their softness. The feeling of pure bliss as your fingers sink into the honey colored gel is heavenly. Giving the gel-girl a seductive look, you take one of her coppery nipples and roll it around your tongue. She returns your gaze and coos quietly as her nipple is pulled around by the suction of your lips. You make a satisfied hum and press your face into her chest, breathing in her fruity scent as your tongue plays around with her teat. Flahne pulls her hand up from your sex");
+	if(pc.hasCock()) output(" - sliding it along your throbbing member as it goes -");
+	output(" and licks her fingers with an exaggerated hum of pleasure before returning the hand to your pleasure hole.");
+
+	output("\n\nPulling your face back from the gel-girl’s cushiony breast, you slideyour mouth toward her cleavage, and kiss the center of her chest. She shivers and sighs with approval, but you change direction, making light kisses up her neck and ");
+	if(!pc.isAss()) output("playfully nibbling");
+	else output("biting");
+	output(" her lower lip. The leather of the chair beneath you is slick with your combined juices, and Flahne begins to slide back and forth on your hips as her pelvis gyrates around your fingers. A steady stream of her liquid sugar dribbles down your hand to drip from your wrist, and you mimic her earlier action ,licking the sweet juices from your fingers before returning them to her nethers.");
+	if(!flahneDickOut()) output(" As you lower your hand you slide your palm along her twitching ovipositor, a steady trickle of candied pre-cum making it extra slippery. You circle a finger teasingly around her cumslit before continuing downward.");
+
+	output("\n\nThe pleasure of Flahne’s fingers is beginning to get to your head, but not so much so that you can’t hear the dull tap of heels clicking outside. The pleasure drunk secretary doesn’t seem to notice, and you bite your lip to stifle a ");
+	if(pc.isAss()) output("slightly sadistic");
+	else output("playful");
+	output(" giggle. You move your face close to the gel-girl’s elongated ear, ");
+	if(!pc.isAss()) output("biting");
+	else output("nipping");
+	output(" the tip with your lips and licking down its length untill your mouth is close enough to whisper. <i>“There’s someone at the door,”</i>  you tell her just as the handle jiggles across the room. Flahne’s head swivels to look at the door, and a hundred different things seem to catch in her throat as her pussy tightens around your fingers. You slide them out momentarily, moving your hand round to her backside and pulling her soft body in tight against your [pc.skinFurScales]. You squeeze one of her plush asscheeks before slipping your fingers into her cunt from behind, picking up the pace from before as you kiss the side of her neck. The office door opens to reveal a short, thin woman of moderate attractiveness, and she drops a clipboard as a look of shock covers her features. Her face blushes beet red as she stoops to pick up the clipboard and leaves as quickly as she can, stuttering apologies as she shuts the door.");
+
+	output("\n\nAs soon as the door is closed Flahne lets out a long moan, and her pussy tightens like a vice around your fingers. Her body shudders as she cums, liquid dripping off the already soaked chair. Her fingers ");
+	//if low capacity:
+	if(pc.vaginalCapacity() < 20) output("try to ");
+	output("splay out inside you, and you let your own orgasm rock your body as you scream into the gel-girl’s shoulder.");
+	if(flahneDickOut()) {
+		output(" Flahne’s ovipositor plasters the underside of your [pc.chest], giving you a creamy sugar coating that drips down your belly.");
+	}
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cum] bursts from [pc.cockBiggest] with a wave of pleasure, blasting the underside of Flahne’s breasts like a firehose and spattering down her stomach.");
+		if(pc.cockTotal() > 2) output(" Your unused cocks spurt their loads");
+		else if(pc.cockTotal() == 2) output(" Your unused cock spurts its load");
+		if(pc.cockTotal() > 1) output(" against her hips and arms, giving her a coating of [pc.cumColor] nutrition.");
+	}
+	output(" After the feelings have mostly passed you help the now-slick secretary up from the chair. For a moment her legs are too weak, and she slumps down to her knees, rubbing against you and kissing your body with her soft lips");
+	if(flahneDickOut()) output(", licking her sugary cream from your body as she goes");
+	output(". When she can stand, she helps you up and gives you a long kiss followed by an embarrassed look.");
+
+	if(flags["HUGGED_FLAHNE"] == undefined) output("<i>“M-maybe I do have just a little exhibition streak,”</i> ");
+	else output("<i>“C-come back again soon,”</i> ");
+	output(" she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that urns her face butterscotch before she goes to get a few towels and a change of clothes. The towels handle most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
+	flags["HUGGED_FLAHNE"] = 1;
+	flahneFuckCounter(1);
+	processTime(15+rand(15));
+	pc.orgasm();
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
+}
+
+//Male: If I fits, you sits
+function flahneIfMalesFitTheySitExhibitionism():void {
+	clearOutput();
+	author("Gardeford");
+	userInterface.showBust("FLAHNE");
+	var x:int = pc.cockThatFits(chars["FLAHNE"].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	output("You revel in the feeling of the gel girl embracing you and stand from your chair to return her affections. Giving her a sly look, you ");
+	if(flags["HUGGED_FLAHNE"] == undefined) output("mention that she didn’t seem particularly upset when someone walked in on the two of you having sex. You run a finger up her neck all the way to her chin and playfully ask if she has a bit of an exhibitionist streak.");
+	else output("ask if she’s up for more exhibition, since the last time went so well after all.");
+	output(" You walk to the door and undo the locks before striding proudly to Flahne’s desk chair");
+	if(!pc.isNude()) output(", dropping your clothing as you go");
+	output(". When you reach the chair you swivel to face her and beckon her with one hand. The luscious gel-secretary glances nervously at the door for a moment before walking slowly to stand before you.");
+
+	output("\n\nYou lean back in the chair and give Flahne a coy smile. <i>“You worry too much. Come, sit, and we’ll forget all about the door,”</i>  You say as you reach out and slowly pull down the gel-girl’s skirt, ");
+	if(!flahneDickOut()) output("planting a kiss on her pelvis");
+	else output("kissing the underside of her hardening ovipositor");
+	output(" as she steps out. Worries of being caught seem to be forgotten as you turn the flavescent beauty around. You cup her amber assflesh in both hands and squeeze lightly as you lower her into position above [pc.oneCock]. Flahne exhales softly as you rub your [pc.cockHead " + x + "] against her moist opening, biting her lower lip when you pull her slowly down until you can’t go any further.");
+	if(pc.cockTotal() > 2) output(" Your unused cocks harden as they are sandwiched beneath the gel-girl’s sizeable tush.");
+	else if(pc.cockTotal() == 2) output(" Your unused cock hardens as it is sandwiched beneath the gel-girl's sizeable tush.");
+
+	output("\n\nHer silken insides feel wonderful around your [pc.cock " + x + "], and you slide your hands sensually up her body, revelling in the feeling of her squishy flesh. When your hands reach her breasts, you squeeze the wonderful globes, letting your hands sink into the succulent tit-flesh as you kiss the nape of the gel-secretary’s neck. Flahne’s moans grow louder as you massage the sides of her gooey G-cups, rolling her coppery nipples between two fingers before tugging them softly. You move one of your hands up to the gel-girl’s mouth, slipping a few fingers inside and letting her tongue wet them. You draw your digits out and trace them down the middle of her chest until it lies between her legs.");
+
+	output("\n\nAs you lower your hand you start to rock your hips back and forth, not yet thrusting but rubbing your [pc.cock" + x + "] around inside Flahne’s sopping box. Your saliva-wetted fingers ");
+	if(!flahneDickOut()) output("rub against her rigid clit");
+	else output("lubricate her rigid gel-pole");
+	output(" with sexual fervor. The curvy secretary begins to grind her own hips in circles to quicken the rubbing, and your moans join hers. You turn her head around and give the gel-girl a deep kiss that is returned in kind, her long tongue wrapping around yours. When you break the kiss, you drag her tongue out of her mouth for a moment, sucking her sugary saliva off of it as you let it slide from your mouth with a small popping noise. One of her hands squeezes your arm as you ");
+	if(!flahneDickOut()) output("put more effort into playing with her clit");
+	else output("work harder at jerking her slick love banana");
+	output(".");
+
+	output("\n\nThe feeling of Flahne’s insides is beginning to get to you, but not so much so that can’t hear the soft thudding of footsteps outside the door. The busty secretary appears to be too drunk with pleasure to notice the noise, and you grin ");
+	if(pc.isAss()) output("wickedly");
+	else output("playfully");
+	output(" behind her back. You move your face close to her elongated ear, making small mock bites and kisses down its length till you are mere inches from her face, breath caressing her cheek. <i>“There’s someone at the door,”</i>  you whisper quietly just as the handle jiggles on the other side of the room. Flahne gasps and focuses on the door; and a hundred different excuses seem to catch in her throat as her pussy tightens around your throbbing member, and her hand clutches harder to your arm. You heed none of her attempted warnings as you pick up speed ");
+	if(!flahneDickOut()) output("rubbing her clit, twisting it lightly");
+	else output("sliding your hand up and down her golden ovi-cock, stopping at the tip and swirling your palm around it");
+	output(" while you kiss the side of her neck. The office door opens and a short stocky alien in a black business suit shuffles in. The man takes one look at the scene beyond and backs out of the room, spewing flustered apologies as he shuts the door behind him.");
+
+	output("\n\nAs soon as the door shuts, Flahne lets out a moan that sputters out as she comes, her whole body shuddering as her pussy tightens around your [pc.cock " + x + "]. You cum along with her, your [pc.cock " + x + "] splattering her insides with [pc.cumColor] spooge as you hug her tight to your body");
+	if(pc.biggestTitSize() >= 1) output(", your [pc.chest] pressing into her back");
+	output(".");
+	if(pc.cockTotal() > 1)
+	{
+		if(pc.cockTotal() > 2) output(" Each of your unused cocks");
+		else output(" Your unused cock");
+		output(" joins in the fun, painting her thighs, the back of her knees, and a little of the floor around you with jizz.");
+	}
+	if(pc.hasVagina())
+	{
+		output(" Your unused [pc.vaginas] orgasm");
+		if(pc.vaginaTotal() == 1) output("s");
+		output(" as well, further drowning the poor desk chair with fluids.");
+	}
+	if(flahneDickOut()) output(" Flahne’s ovipositor spurts against your hand like a fire hydrant. You move back down to squeeze it as ropes of sugary cream spurt onto the desk. The flow finally dies down to a small trickle as her rod softens.");
+	output(" After you stop filling her loins you help the golden secretary to a standing position, holding her aloft ‘til her legs can support her. After she can stand on her own she gives you a long kiss and an embarrassed look.");
+
+	if(flags["HUGGED_FLAHNE"] == undefined) output("\n\n<i>“M-maybe I do have just a little exhibition streak,”</i>");
+	else output("\n\n<i>“C-come back again soon,”</i>");
+	output("  she says with a small smile. You giggle and give her a quick kiss. Her smile widens and a blush blooms that turns her face butterscotch before she goes to get a few towels and a change of clothes. The towels clean up most of the assorted fluids, and she assures you as you leave that she can get the rest with a mop.");
+	flags["HUGGED_FLAHNE"] = 1;
+	flahneFuckCounter(1);
+	processTime(15+rand(15));
+	pc.orgasm();
+	userInterface.clearMenu();
+	userInterface.addButton(0,"Next",mainGameMenu);
 }

@@ -124,23 +124,30 @@ function rest():void {
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
-function sleep():void {
+function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
-	clearOutput();
-	if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
-		levelUp();
-		return;
+	var minutes:int = 420 + rand(80) + 1
+	if(outputs) 
+	{
+		clearOutput();
+		if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
+			levelUp();
+			return;
+		}
+		//CELISE NIGHT TIME BEDTIMEZ
+		if(celiseIsCrew())
+		{
+			celiseOffersToBeYourBedSenpai();
+			return;
+		}
+		output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
 	}
-
 	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
-	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
-	output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
