@@ -996,7 +996,7 @@ function catchAnalFromAlex():void {
 		output(".");
 	}
 	//if medium asshole:
-	else if(pc.ass.loosenss < 4) 
+	else if(pc.ass.looseness < 4) 
 	{
 		output("\n\nYou relax, readying yourself for the coming fuck, and thanks to Alex’s copious juices he’s able to slide in with one swift motion, hilting himself inside of you with his balls slapping against your ");
 		if(pc.hasVagina()) output("[pc.vaginas]");
