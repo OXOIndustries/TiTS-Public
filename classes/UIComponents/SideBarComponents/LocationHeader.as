@@ -126,6 +126,9 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_systemText);
 		}
 		
+		// Actually, using this, I can do some simple asset/sprite stacking to enable
+		// multiple busts to be displayed, layered on top of each other (similar to ZilPack),
+		// without having to have unique assets for each one; or, say, we have random groups of things!
 		public function showBust(name:String):void
 		{
 			var bustT:Class;
