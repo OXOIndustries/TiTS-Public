@@ -1225,9 +1225,8 @@
 		// Set the current map data
 		public function setMapData(data:*):void
 		{
-			this.miniMap.visible = true;
-			this.miniMap.setMapData(data);
 			this._leftSideBar.miniMap.setMapData(data);
+			_leftSideBar.ShowMiniMap();
 		}
 
 	}

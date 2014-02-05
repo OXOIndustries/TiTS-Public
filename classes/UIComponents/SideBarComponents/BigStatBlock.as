@@ -54,7 +54,7 @@ package classes.UIComponents.SideBarComponents
 			this.BuildHeader();
 			
 			// Position bar container, we can now just dump the things in here without giving a shit
-			(_leftAlign) ? _barContainer.x = 10 : _barContainer.x = 0;
+			_barContainer.x = 10;
 			_barContainer.y = 20;
 			
 			this.BuildStatBlock();
@@ -67,7 +67,7 @@ package classes.UIComponents.SideBarComponents
 		{
 			// Header underline
 			_combatStatsHeaderUnderline = new Sprite();
-			(_leftAlign) ? _combatStatsHeaderUnderline.x = 10 : _combatStatsHeaderUnderline.x = 0;
+			(_leftAlign) ? _combatStatsHeaderUnderline.x = 0 : _combatStatsHeaderUnderline.x = 10;
 			_combatStatsHeaderUnderline.y = 17;
 			_combatStatsHeaderUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_combatStatsHeaderUnderline.graphics.drawRect(0, 0, 190, 1);

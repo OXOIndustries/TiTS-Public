@@ -129,10 +129,16 @@ package classes.UIComponents.SideBarComponents
 		public function showBust(name:String):void
 		{
 			var bustT:Class;
+			var tName:String = "Bust_" + name;
 			
-			if (NPCBustImages[name] !== undefined)
+			if (NPCBustImages[tName] !== undefined)
 			{
-				bustT = NPCBustImages[name];
+				if (_npcBusts.numChildren > 0)
+				{
+					_npcBusts.removeChildAt(0);
+				}
+				
+				bustT = NPCBustImages[tName];
 				var bustObj = new bustT();
 				_npcBusts.addChild(bustObj);
 				_npcBusts.visible = true;

@@ -17,10 +17,12 @@ package classes.UIComponents
 		private var _rounding:int;
 		private var _iconClass:Class
 		private var _glowLayer:Boolean;
-		private var _icon:Sprite;
 		private var _iconPadding:int;
 		private var _posX:int;
 		private var _posY:int;
+		
+		private var _icon:Sprite;
+		private var _background:Sprite;
 		
 		public function get posX():int { return _posX; }
 		public function get posY():int { return _posY; }
@@ -51,9 +53,11 @@ package classes.UIComponents
 			this.x = _posX;
 			this.y = _posY;
 			
-			this.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
-			this.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, _rounding, _rounding);
-			this.graphics.endFill();
+			_background = new Sprite();
+			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
+			_background.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, _rounding, _rounding);
+			_background.graphics.endFill();
+			this.addChild(_background);
 		}
 		
 		private function BuildIcon():void
@@ -121,7 +125,7 @@ package classes.UIComponents
 		{
 			this.DeGlow();
 			this._icon.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
-			this.alpha = 0.3;
+			this._background.alpha = 0.3;
 		}
 		
 		/**
@@ -130,7 +134,7 @@ package classes.UIComponents
 		public function Activate():void
 		{
 			this._icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
-			this.alpha = 1;
+			this._background.alpha = 1;
 		}
 		
 		/**

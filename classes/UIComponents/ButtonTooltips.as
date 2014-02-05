@@ -148,9 +148,6 @@ package classes.UIComponents
 			}
 			
 			this.Reposition(displayObj);
-			
-			trace("Button Tooltip XY: (" + this.x + "," + this.y + ")");
-			trace("Button Tooltip WH: (" + this.width + "," + this.height + ")");
 		}
 		
 		private function Reposition(displayObj:DisplayObject):void

@@ -108,7 +108,7 @@ package classes.UIComponents.SideBarComponents
 			
 			_timeText = new TextField();
 			_timeText.x = 132;
-			_timeText.y = _headerUnderline.y - 1;
+			_timeText.y = _headerUnderline.y + 2;
 			_timeText.width = 60;
 			_timeText.defaultTextFormat = UIStyleSettings.gGeneralInfoValueFormatter;
 			_timeText.embedFonts = true;
@@ -136,7 +136,7 @@ package classes.UIComponents.SideBarComponents
 			
 			_daysText = new TextField();
 			_daysText.x = 121;
-			_daysText.y = _timeText.y + _timeText.height - 4;
+			_daysText.y = _timeText.y + _timeText.height - 7;
 			_daysText.width = 71;
 			_daysText.defaultTextFormat = UIStyleSettings.gGeneralInfoValueFormatter;
 			_daysText.embedFonts = true;
