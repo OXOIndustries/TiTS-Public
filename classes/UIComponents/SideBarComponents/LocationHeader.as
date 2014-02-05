@@ -142,6 +142,41 @@ package classes.UIComponents.SideBarComponents
 				_npcBusts.visible = false;
 				trace("Possible malformed bust image name: " + name);
 			}
+			
+			//this.leftSideBar.sceneTitle.filters = [glow];
+			//if(arg == "none") 
+			//{
+				//this.leftSideBar.npcBusts.visible = false;
+				//return;
+			//}
+			//else if(arg == "hide") 
+			//{
+				//trace("showBust called with arg \"hide\". The correct arg is \"none\". Please fix!")
+				//this.leftSideBar.npcBusts.visible = false;
+				//return;
+			//}
+			//else if (GLOBAL.bustLookup[arg] == undefined)
+			//{
+				//trace("Attempted to display invalid bust! Passed arg:", arg)
+				//trace("Hiding bust display anyways!")
+				//this.leftSideBar.npcBusts.visible = false;
+				//return;
+			//}
+//
+			//var bustIndex:int = 0;
+			//bustIndex = GLOBAL.bustLookup[arg];
+//
+			//this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
+			//this.leftSideBar.npcBusts.visible = true;
+			//if(arg == "RIVAL")
+			//{
+				//if(this.titsClassPtr.chars[arg].short == "Jill") 
+					//this.leftSideBar.npcBusts.gotoAndStop(100);
+				//else 
+					//this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
+			//}
+			//else 
+				//this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
 		}
 		
 		public function hideBust():void

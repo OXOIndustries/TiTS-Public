@@ -84,6 +84,9 @@ package classes.UIComponents
 			_icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 		}
 		
+		/**
+		 * Add a glow element around the button graphic, and move the button to a higher layer
+		 */
 		public function Glow():void
 		{
 			if (this.parent.name != "glowLayer")
@@ -96,6 +99,9 @@ package classes.UIComponents
 			}
 		}
 		
+		/**
+		 * Remove a glow element around the button graphic, and move the button to a lower layer
+		 */
 		public function DeGlow():void
 		{
 			if (this.parent.name != "buttonLayer")
@@ -108,6 +114,9 @@ package classes.UIComponents
 			}
 		}
 		
+		/**
+		 * Change the buttons display settings to a disabled state, also removing any active glows.
+		 */
 		public function Deactivate():void
 		{
 			this.DeGlow();
@@ -115,22 +124,34 @@ package classes.UIComponents
 			this.alpha = 0.3;
 		}
 		
+		/**
+		 * Change the buttons display sets to an enabled state.
+		 */
 		public function Activate():void
 		{
 			this._icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 			this.alpha = 1;
 		}
 		
+		/**
+		 * Alias of Glow
+		 */
 		public function Highlight():void
 		{
-			
+			this.Glow();
 		}
 		
+		/**
+		 * Alias of DeGlow
+		 */
 		public function DeHighlight():void
 		{
-			
+			this.DeGlow();
 		}
 		
+		/**
+		 * Figure out if the button is currently "active" ie has a glow
+		 */
 		public function get isHighlighted():Boolean
 		{
 			if (this.filters.length > 0)
@@ -140,6 +161,9 @@ package classes.UIComponents
 			return false;
 		}
 		
+		/**
+		 * Figure out if the button is currently an activatable target
+		 */
 		public function get isActive():Boolean
 		{
 			if (this.alpha < 1)

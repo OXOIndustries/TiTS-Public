@@ -408,6 +408,8 @@
 		public function set time(v:String):void { _leftSideBar.timeText.text = v; }
 		public function get days():String { return _leftSideBar.daysText.text; }
 		public function set days(v:String):void { _leftSideBar.daysText.text = v; }
+		public function get sceneBy():String { return _leftSideBar.sceneBy.text; }
+		public function set sceneBy(v:String):void { _leftSideBar.sceneBy.text = v; }
 		
 		public function get dataButton():SquareButton { return _leftSideBar.dataButton; }
 		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
@@ -779,7 +781,7 @@
 			}
 			else {
 				textBuffer[textBuffer.length] = mainTextField.htmlText;
-				authorBuffer[authorBuffer.length] = this.leftSideBar.sceneBy.htmlText;
+				authorBuffer[authorBuffer.length] = author;
 			}
 			if(textBuffer.length > 4) {
 				textBuffer.splice(0,1);
@@ -798,11 +800,11 @@
 			trace("TextPage: " + textPage);
 			if(textPage == 4) {
 				mainTextField.htmlText = tempText;
-				this.leftSideBar.sceneBy.htmlText = tempAuthor;
+				sceneBy = tempAuthor;
 			}
 			else {
 				mainTextField.htmlText = textBuffer[textPage];
-				this.leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
+				sceneBy = authorBuffer[textPage];
 			}
 			updateScroll(e);
 			titsClassPtr.bufferButtonUpdater();
@@ -812,7 +814,7 @@
 		{
 			if(textPage == 4) {
 				tempText = mainTextField.htmlText;
-				tempAuthor = this.leftSideBar.sceneBy.text;
+				tempAuthor = sceneBy
 			}
 			if(textPage > 0) {
 				textPage--;
@@ -822,7 +824,7 @@
 			updateScroll(e);
 			trace("TextPage: " + textPage);
 			mainTextField.htmlText = textBuffer[textPage];
-			this.leftSideBar.sceneBy.htmlText = authorBuffer[textPage];
+			sceneBy = authorBuffer[textPage];
 			updateScroll(e);
 			titsClassPtr.bufferButtonUpdater();
 		}
@@ -910,44 +912,27 @@
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void 
 		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.mainMenuButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.mainMenuButton.buttonMode = true;
+			_leftSideBar.menuButton.Activate();
 		}
 		
 		public function mainMenuButtonOff():void 
 		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.mainMenuButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.mainMenuButton.buttonMode = false;
-			this.leftSideBar.mainMenuButton.filters = [];
+			_leftSideBar.menuButton.Deactivate();
 		}
 		
 		public function appearanceOn():void 
 		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.appearanceButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.appearanceButton.buttonMode = true;
+			_leftSideBar.appearanceButton.Activate();
 		}
 		
 		public function appearanceOff():void 
 		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.appearanceButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.appearanceButton.buttonMode = false;
-			this.leftSideBar.appearanceButton.filters = [];
+			_leftSideBar.appearanceButton.Deactivate();
 		}
 		
 		public function dataOn():void 
 		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.dataButton.alpha = 1;
-			//Engage buttonmode.
-			this.leftSideBar.dataButton.buttonMode = true;
+			_leftSideBar.dataButton.Activate();
 		}
 
 		public function hideNormalDisplayShit():void 
@@ -991,7 +976,6 @@
 		public function menuButtonsOff():void 
 		{
 			appearanceOff();
-			this.dataOff();
 			mainMenuButtonOff();
 		}
 		
@@ -1004,7 +988,7 @@
 
 		public function hideData():void 
 		{
-			this.leftSideBar.dataButton.filters = [];
+			_leftSideBar.dataButton.DeGlow();
 		}
 
 		public function hideAppearance():void 
@@ -1065,7 +1049,7 @@
 			pageNext.visible = true;
 			pagePrev.visible = true;
 			menuButtonsOn();
-			this.leftSideBar.appearanceButton.filters = [];
+			_leftSideBar.appearanceButton.DeGlow();
 			titsClassPtr.bufferButtonUpdater();
 		}
 
@@ -1116,13 +1100,12 @@
 			pageNext.visible = true;
 			pagePrev.visible = true;
 			menuButtonsOn();
-			this.leftSideBar.mainMenuButton.filters = [];
+			_leftSideBar.menuButton.DeGlow();
 			titsClassPtr.bufferButtonUpdater();
 		}
 
 		public function initializeMainMenu():void 
 		{
-			trace("Initializing main menu")
 			//Initialize main menu buttons
 			var currButtonX:int = 210;
 			var currButtonY:int = 518;
@@ -1220,41 +1203,7 @@
 
 		public function showBust(arg:String):void 
 		{
-			//this.leftSideBar.sceneTitle.filters = [glow];
-			if(arg == "none") 
-			{
-				this.leftSideBar.npcBusts.visible = false;
-				return;
-			}
-			else if(arg == "hide") 
-			{
-				trace("showBust called with arg \"hide\". The correct arg is \"none\". Please fix!")
-				this.leftSideBar.npcBusts.visible = false;
-				return;
-			}
-			else if (GLOBAL.bustLookup[arg] == undefined)
-			{
-				trace("Attempted to display invalid bust! Passed arg:", arg)
-				trace("Hiding bust display anyways!")
-				this.leftSideBar.npcBusts.visible = false;
-				return;
-			}
-
-			var bustIndex:int = 0;
-			bustIndex = GLOBAL.bustLookup[arg];
-
-			this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
-			this.leftSideBar.npcBusts.visible = true;
-			if(arg == "RIVAL")
-			{
-				if(this.titsClassPtr.chars[arg].short == "Jill") 
-					this.leftSideBar.npcBusts.gotoAndStop(100);
-				else 
-					this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
-			}
-			else 
-				this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
-			
+			_leftSideBar.locationBlock.showBust(arg);			
 		}
 
 		//2. DISPLAY STUFF

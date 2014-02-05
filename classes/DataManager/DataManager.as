@@ -47,26 +47,26 @@
 		 */
 		public function dataRouter(d:MouseEvent = undefined):void
 		{
-			//if (kGAMECLASS.userInterface.dataButton.alpha < 1 && d != kGAMECLASS.userInterface.tempEvent)
-			//{
-				//return;
-			//}
-			//else if (kGAMECLASS.userInterface.leftSideBar.dataButton.filters.length > 0)
-			//{
-				//kGAMECLASS.userInterface.dataOff();
-				//kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
-				//kGAMECLASS.userInterface.hideMenus();
-				//if (kGAMECLASS.pc.short == "uncreated")
-				//{
-					//kGAMECLASS.mainMenu();
-				//}
-			//}
-			//else
-			//{
-				//kGAMECLASS.userInterface.hideMenus();
-				//kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [kGAMECLASS.userInterface.myGlow];
-				//this.showDataMenu();
-			//}
+			if (!kGAMECLASS.userInterface.dataButton.isActive && d != kGAMECLASS.userInterface.tempEvent)
+			{
+				return;
+			}
+			else if (kGAMECLASS.userInterface.dataButton.isHighlighted)
+			{
+				kGAMECLASS.userInterface.dataButton.Deactivate();
+				kGAMECLASS.userInterface.hideMenus();
+				
+				if (kGAMECLASS.pc.short == "uncreated");
+				{
+					kGAMECLASS.mainMenu();
+				}
+			}
+			else
+			{
+				kGAMECLASS.userInterface.hideMenus();
+				kGAMECLASS.userInterface.dataButton.Glow();
+				this.showDataMenu();
+			}
 		}
 		
 		private function getSO(slotNumber:int):SharedObject
