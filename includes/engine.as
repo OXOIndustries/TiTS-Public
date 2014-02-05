@@ -43,7 +43,7 @@ public function clearOutput():void {
 	this.userInterface.mainTextField.htmlText = "\n";
 	this.userInterface.outputBuffer = "\n";
 	this.userInterface.updateScroll(this.userInterface.tempEvent);
-	this.userInterface.leftSideBar.sceneBy.text = "Probably Fenoxo";
+	userInterface.author("Probably Fenoxo");
 	this.userInterface.textPage = 4;
 	bufferButtonUpdater();
 	//Menu buttons update!
@@ -85,10 +85,10 @@ public function num2Text2(number:int):String {
 	}
 	return(returnVar);
 }
-function author(arg:String):void {
-	this.userInterface.leftSideBar.sceneBy.visible = true;
-	this.userInterface.leftSideBar.sceneByTag.visible = true;
-	this.userInterface.leftSideBar.sceneBy.text = arg;
+
+function author(arg:String):void 
+{
+	userInterface.author(arg);
 }
 
 
@@ -160,21 +160,32 @@ public function updatePCStats():void {
 	this.userInterface.playerLevel.values.text = pc.level;
 	this.userInterface.playerCredits.values.text = pc.credits;
 	
-	this.userInterface.leftSideBar.time.text = timeText();
-	this.userInterface.leftSideBar.days.text = String(this.userInterface.days);
-	this.userInterface.leftSideBar.sceneBy.visible = true;
-	this.userInterface.leftSideBar.sceneByTag.visible = true;
+	this.userInterface.time = timeText();
+	this.userInterface.days = String(days);
+	this.userInterface.showSceneTag();
 	
 	updateNPCStats();
 }
-function timeText():String {
+function timeText():String 
+{
 	var buffer:String = ""
-	if(this.userInterface.hours < 10) buffer += "0";
-	buffer += this.userInterface.hours + ":";
-	if(this.userInterface.minutes < 10) buffer += "0";
-	buffer += this.userInterface.minutes;
+	
+	if (hours < 10)
+	{
+		buffer += "0";
+	}
+	
+	buffer += hours + ":";
+	
+	if (minutes < 10) 
+	{
+		buffer += "0";
+	}
+	
+	buffer += minutes;
 	return buffer;
 }
+
 function updateNPCStats():void {
 	if(foes.length >= 1) {
 		updateStatBar(this.userInterface.monsterShield, foes[0].shields(),  foes[0].shieldsMax());
@@ -206,10 +217,10 @@ function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
 		}
 	}
 }
-public function setLocation(title:String,planet:String = "Error Planet",system:String = "Error System"):void {
-	this.userInterface.leftSideBar.sceneTitle.text = title;
-	this.userInterface.leftSideBar.planet.text = planet;
-	this.userInterface.leftSideBar.system.text = system;
+
+public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void 
+{
+	userInterface.setLocation(title, planet, system);
 }
 
 //3. UTILITY FUNCTIONS

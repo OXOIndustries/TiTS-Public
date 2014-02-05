@@ -1,6 +1,7 @@
 package classes.UIComponents 
 {
 	import flash.filters.GlowFilter;
+	import flash.geom.ColorTransform;
 	import flash.text.StyleSheet;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
@@ -22,7 +23,7 @@ package classes.UIComponents
 	{
 		// TITS VALUES
 		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
-		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);
+		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar) -- this was also used for some fade-out colour transforms throughout various parts of the UI code
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		// public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
 		
@@ -214,6 +215,29 @@ package classes.UIComponents
 				UIStyleSettings._gButtonGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 10, 10, 5, 1, false, false);
 			}
 			return UIStyleSettings._gButtonGlow;
+		}
+		
+		// Colour Transforms
+		private static var _gFadeOutColourTransform:ColorTransform = undefined;
+		public static function get gFadeOutColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gFadeOutColourTransform == undefined)
+			{
+				UIStyleSettings._gFadeOutColourTransform = new ColorTransform();
+				UIStyleSettings._gFadeOutColourTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gFadeOutColourTransform;
+		}
+		
+		private static var _gWhiteColourTransform:ColorTransform = undefined;
+		public static function get gWhiteColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gWhiteColourTransform == undefined)
+			{
+				UIStyleSettings._gWhiteColourTransform = new ColorTransform();
+				UIStyleSettings._gWhiteColourTransform.color = 0xFFFFFF;
+			}
+			return UIStyleSettings._gWhiteColourTransform;
 		}
 	}
 

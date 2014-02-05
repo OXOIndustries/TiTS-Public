@@ -41,22 +41,26 @@ package classes.GameData
 			// TOOLTIPDB is the actual tooltip text body
 			TooltipManager.TOOLTIPDB =
 			{
-				"Rest" 			: "Rest up lazy butt",
-				"Masturbate" 	: "Get you some fap on, yo",
-				"Inventory" 	: "Gotcha items right here",
-				"North" 		: "Gotta go fast!",
-				"East" 			: "Gotta go left!",
-				"South" 		: "Gotta go places!",
-				"West" 			: "Exit, stage west!",
-				"RESET NPCs" 	: "This is some exceedingly long, pointless tooltip text attached to a button caption that shouldn't forever be in the code base, so I can put all sorts of shit here in an effort to test my horrible display list code, and not have to remember to remove it!",
-				"Back" 			: "Because Back buttons really, REALLY need a tooltip."
+				"menuButton" : "Display the main game menu.",
+				"dataButton" : "Display the save and load game menu.",
+				"quickSaveButton" : "Quicksave the game to the last used saved slot.",
+				"statsButton" : "Show your characters stats.",
+				"perksButton" : "Show your characters acquired perks.",
+				"levelUpButton" : "Level up your character.",
+				"appearanceButton" : "Display your characters detailed appearance information."
 			};
 			
 			// FULLNAMEDB is a conversion from button text to some more complete name representation
 			// f.ex E.Handgun -> Eagle Handgun
 			TooltipManager.FULLNAMEDB =
 			{
-				"Plchldr" : "Placeholder"
+				"menuButton" : "Main Menu",
+				"dataButton" : "Save/Load",
+				"quickSaveButton" : "Quick Save",
+				"statsButton" : "Character Stats",
+				"perksButton" : "Character Perks",
+				"levelUpButton" : "Character Level Up",
+				"appearanceButton" : "Character Appearance"
 			}
 		}
 		

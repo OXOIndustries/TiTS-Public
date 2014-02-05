@@ -291,16 +291,16 @@ public function processTime(arg:int):void {
 	while(arg > 0) {
 		//Check for shit that happens.
 		//Actually move time!
-		this.userInterface.minutes++;
+		this.minutes++;
 
 		//Status Effect Updates
 		statusTick();
 		
 		
 		//Tick hours!
-		if(this.userInterface.minutes >= 60) {
-			this.userInterface.minutes = 0;
-			this.userInterface.hours++;
+		if(this.minutes >= 60) {
+			this.minutes = 0;
+			this.hours++;
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
@@ -352,9 +352,9 @@ public function processTime(arg:int):void {
 				}
 			}
 			//Days ticks here!
-			if(this.userInterface.hours >= 24) {
-				this.userInterface.days++;
-				this.userInterface.hours = 0;
+			if(this.hours >= 24) {
+				this.days++;
+				this.hours = 0;
 				//Cunt snake tomfoolery
 				if(this.chars["PC"].hasCuntTail()) {
 					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;

@@ -6,6 +6,7 @@
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import classes.UIComponents.SquareButton;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -34,7 +35,7 @@
 	import fl.transitions.easing.Regular;
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.GameData.TooltipManager;
-
+	import classes.UIComponents.UIStyleSettings;
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
@@ -54,11 +55,7 @@
 		var outputBuffer2:String;
 		var authorBuffer:Array;
 		var textPage:int;
-		
-		public var days:int;
-		public var hours:int;
-		public var minutes:int;		
-	
+
 		//Lazy man state checking
 		var showingPCAppearance:Boolean;
 
@@ -74,9 +71,6 @@
 		var buttonPage:int;
 		var buttonTooltip:ButtonTooltips;
 		
-		//public var leftSideBar:LeftBar;
-		
-		private var fadeOut:*;
 		private var titsPurple:*;
 		private var titsBlue:*;
 		private var titsWhite:*;
@@ -86,17 +80,8 @@
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
 
-		var monsterShield:StatBarBig;
-		var monsterHP:StatBarBig;
-		var monsterLust:StatBarBig;
-		var monsterEnergy:StatBarBig;
-		var monsterLevel:StatBarSmall;
-		var monsterRace:StatBarSmall;
-		var monsterSex:StatBarSmall;
-
 		private var _rightSideBar:RightSideBar;
 		private var _leftSideBar:LeftSideBar;
-		public var leftSideBar:LeftBar;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -140,14 +125,12 @@
 			this.tempText = "";
 			this.tempAuthor = "";
 			this.currentPCNotes = "No notes available.";
+			
 			//Used for output()
 			this.outputBuffer = "";
 			this.outputBuffer2 = "";
 			this.authorBuffer = new Array("","","","");
 			this.textPage = 4;
-			this.days = 0;
-			this.hours = 0;
-			this.minutes = 0;
 
 			this.buttonDrawer = new BottomButtonDrawer;
 			this.titsClassPtr.addChild(buttonDrawer);
@@ -164,13 +147,11 @@
 			this.buttonData = new Array();
 			this.buttonPage = 1;
 			this.initializeButtons();
-
-			this.fadeOut = new ColorTransform();
+			
 			this.titsPurple = new ColorTransform();
 			this.titsBlue = new ColorTransform();
 			this.titsWhite = new ColorTransform();
 
-			this.fadeOut.color = 0x333E52;
 			this.titsPurple.color = 0x84449B;
 			this.titsBlue.color = 0x333E52;
 			this.titsWhite.color = 0xFFFFFF;
@@ -178,10 +159,6 @@
 			// Set up the various side-bars
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
-			this.setupLeftSidebarNew();
-			
-			// then hide them until we want them.
-			this.initLeftBar();
 			
 			//this.leftBarClear();
 			this.hidePCStats();
@@ -255,21 +232,16 @@
 			scrollBG.x = mainTextField.x + mainTextField.width;
 			scrollBG.y = mainTextField.y + upScrollButton.height;
 			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
-			scrollBG.transform.colorTransform = fadeOut;
+			scrollBG.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
 			this.titsClassPtr.addChild(scrollBG);
 			this.titsClassPtr.addChild(scrollBar);
 			this.titsClassPtr.addChild(upScrollButton);
 			this.titsClassPtr.addChild(downScrollButton);
+			
 			//Since downscroll starts clickable...
 			downScrollButton.buttonMode = true;
 
 			clearMenu();
-			/*
-			clearMenu();
-			addButton(0,"Horsecock",horsecock);
-			addButton(14,"CLEAR!",clearOutput);
-			addButton(16,"2Horse4Me",horsecock);
-			*/
 
 			//4. MAIN MENU STUFF
 			this.mainMenuButtons = new Array();
@@ -353,10 +325,7 @@
 			websiteDisplay.visible = false;
 			warningBackground.visible = false;
 
-			//setupInputEventHandlers();
-
 			initializeMainMenu();
-			//mainMenu();
 		}
 		
 		private function setupRightSidebar():void
@@ -365,11 +334,40 @@
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
-		private function setupLeftSidebarNew():void
+		private function setupLeftSidebar():void
 		{
 			this._leftSideBar = new LeftSideBar();
 			this.titsClassPtr.addChild(_leftSideBar);
+			
+			this._leftSideBar.generalInfoBlock.HideScene();
+			
+			this._leftSideBar.menuButton.Deactivate();
+			this._leftSideBar.dataButton.Deactivate();
+			this._leftSideBar.quickSaveButton.Deactivate();
+			
+			this._leftSideBar.statsButton.Deactivate();
+			this._leftSideBar.perksButton.Deactivate();
+			this._leftSideBar.levelUpButton.Deactivate();
+			
+			this._leftSideBar.appearanceButton.Deactivate();
+			
+			this.ConfigureListeners();
 		}
+		
+		private function ConfigureListeners():void
+		{
+			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, titsClassPtr.mainMenuToggle);
+			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
+			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+		}
+		
+		// Once this is all working, a lot of this should be refactored so that code external to GUI
+		// doesn't directly access properties of UI elements.
+		// f.ex rather than getting the players shield bar, then setting a value, engine code will
+		// instead directly set a property on GUI for playerShields, which will then chain up through
+		// whatever pile of objects it needs to, in order to actively display that value.
+		// Once all code uses that kind of UI value setting, we can work on inverting the process, and
+		// use data binding from UI element -> engine variable
 		
 		// Access methods to RSB items
 		public function get playerShields():StatBarBig { return _rightSideBar.shieldBar; }
@@ -389,159 +387,48 @@
 		public function get playerCredits():StatBarSmall { return _rightSideBar.creditsBar; }
 		public function set playerStatusEffects(statusEffects:Array):void { _rightSideBar.statusEffects.updateDisplay(statusEffects); }
 		
-		// Access methods to LSB items
-		//public function get leftSideBar():LeftSideBar { return _leftSideBar; }
-		//public function get dataButton():dataB { return _leftSideBar.dataButton; }
+		// Access to LSB items
+		public function get roomText():String { return _leftSideBar.locationBlock.roomText.text; }
+		public function get planetText():String { return _leftSideBar.locationBlock.planetText.text; }
+		public function get systemText():String { return _leftSideBar.locationBlock.systemText.text; }
 		
-		private function setupLeftSidebar():void
-		{	
-			var curYIndex:Number = 237;		// Initial starting Y offset is 237
-			var y_large_step:Number = 41;
-			var y_small_step:Number = 29;
-			var y_group_step:Number = 44;
-			// Build left sidebar
-			this.leftSideBar = new LeftBar;
-			this.leftSideBar.x = 1000;
-			this.leftSideBar.y = 0;
-			this.titsClassPtr.addChild(this.leftSideBar);
-			
-			// Fading out Perks and Level Up Buttons
-
-			this.leftSideBar.levelUpButton.plusses.transform.colorTransform = fadeOut;
-			this.leftSideBar.perksButton.star.transform.colorTransform = fadeOut;
-
-			// Large stat bars (Combat Stats) --------------------------------------------------
-			this.monsterShield = new StatBarBig();
-			this.monsterShield.background.x = -150;
-			this.monsterShield.bar.width = 30;
-			this.monsterShield.masks.labels.text = "SHIELDS";
-			this.monsterShield.values.text = "1";
-			this.monsterShield.visible = false;
-			this.monsterShield.x = 1010;
-			this.monsterShield.y = curYIndex;
-			this.titsClassPtr.addChild(this.monsterShield);
-
-			curYIndex += y_large_step;
-
-			this.monsterHP = new StatBarBig();
-			this.monsterHP.background.x = -150;
-			this.monsterHP.bar.width = 30;
-			this.monsterHP.masks.labels.text = "HP";
-			this.monsterHP.values.text = "1";
-			this.monsterHP.visible = false;
-			this.monsterHP.x = 1010;
-			this.monsterHP.y = curYIndex;
-			this.titsClassPtr.addChild(this.monsterHP);
-
-			curYIndex += y_large_step;
-
-			this.monsterLust = new StatBarBig();
-			this.monsterLust.background.x = -1 * (1 - 25 / 100) * 180;
-			this.monsterLust.bar.width = (25 / 100) * 180;
-			this.monsterLust.highBad = true;
-			this.monsterLust.masks.labels.text = "LUST";
-			this.monsterLust.values.text = "25";
-			this.monsterLust.visible = false;
-			this.monsterLust.x = 1010;
-			this.monsterLust.y = curYIndex;
-			this.titsClassPtr.addChild(this.monsterLust);
-
-			curYIndex += y_large_step;
-
-			this.monsterEnergy = new StatBarBig();
-			this.monsterEnergy.masks.labels.text = "ENERGY";
-			this.monsterEnergy.values.text = "25";
-			this.monsterEnergy.visible = false;
-			this.monsterEnergy.x = 1010;
-			this.monsterEnergy.y = curYIndex;
-			this.titsClassPtr.addChild(this.monsterEnergy);
-
-			curYIndex += y_group_step;
-
-			// Small stat bars (General Info (race, level, gender)) --------------------------------------------------
-			this.monsterLevel = new StatBarSmall();
-			this.monsterLevel.visible = false;
-			this.monsterLevel.x = 1010;
-			this.monsterLevel.y = curYIndex;
-			this.monsterLevel.noBar = true;
-			this.setupStatBar(this.monsterLevel,"LEVEL",5);
-			this.titsClassPtr.addChild(this.monsterLevel);
-
-			curYIndex += y_small_step;
-
-			this.monsterRace = new StatBarSmall();
-			this.monsterRace.visible = false;
-			this.monsterRace.x = 1010;
-			this.monsterRace.y = curYIndex;
-			this.monsterRace.noBar = true;
-			this.setupStatBar(this.monsterRace,"RACE","Galotian");
-			this.titsClassPtr.addChild(this.monsterRace);
-
-			curYIndex += y_small_step;
-
-			this.monsterSex = new StatBarSmall();
-			this.monsterSex.visible = false;
-			this.monsterSex.x = 1010;
-			this.monsterSex.y = curYIndex;
-			this.monsterSex.noBar = true;
-			this.setupStatBar(this.monsterSex,"SEX","Unknown");
-			this.titsClassPtr.addChild(this.monsterSex);
-
-			this.npcStatSidebarItems = [this.monsterShield,
-								this.monsterHP, 
-								this.monsterLust, 
-								this.monsterEnergy, 
-								this.monsterLevel, 
-								this.monsterRace, 
-								this.monsterSex];
-								
-								
-			// Jam a minimap element into it!
-			this.miniMap = new MiniMap();
-			this.miniMap.x = 1000;
-			this.miniMap.targetY = 232; // The "HeaderUnderline" bar (element under "Encounter Status") is around y=231
-			this.miniMap.targetHeight = 341; // The time header text underline ("Galactic Standard purple bar") is around y=573
-			this.miniMap.childSizeX = 35;
-			this.miniMap.childSizeY = 35;
-			this.miniMap.childSpacing = 15;
-			this.miniMap.childNumY = 7;
-			this.miniMap.childNumX = 7;
-			
-			// Set some padding so we end up looking like the location header background deal
-			this.miniMap.paddingLeft = 0;
-			this.miniMap.paddingRight = 11;
-			this.miniMap.paddingTop = 5;
-			this.miniMap.paddingBottom = 31; // 31 pixels between the bottom planet purple box thing and the header underline we're using as an anchor
-			this.miniMap.visible = false;
-			this.leftSideBar.addChild(this.miniMap);
+		public function set roomText(v:String):void { _leftSideBar.locationBlock.roomText.text = v; }
+		public function set planetText(v:String):void { _leftSideBar.locationBlock.planetText.text = v; }
+		public function set systemText(v:String):void { _leftSideBar.locationBlock.systemText.text = v; }
+		
+		public function get monsterShield():StatBarBig { return _leftSideBar.encounterShield; }
+		public function get monsterHP():StatBarBig { return _leftSideBar.encounterHp; }
+		public function get monsterLust():StatBarBig { return _leftSideBar.encounterLust; }
+		public function get monsterEnergy():StatBarBig { return _leftSideBar.encounterEnergy; }
+		public function get monsterLevel():StatBarSmall { return _leftSideBar.encounterLevel; }
+		public function get monsterRace():StatBarSmall { return _leftSideBar.encounterRace; }
+		public function get monsterSex():StatBarSmall { return _leftSideBar.encounterSex; }
+		
+		public function get time():String { return _leftSideBar.timeText.text; }
+		public function set time(v:String):void { _leftSideBar.timeText.text = v; }
+		public function get days():String { return _leftSideBar.daysText.text; }
+		public function set days(v:String):void { _leftSideBar.daysText.text = v; }
+		
+		public function get dataButton():SquareButton { return _leftSideBar.dataButton; }
+		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
+		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
+		
+		// Useful functions I've pulled out of the rest of the code base
+		public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void
+		{
+			roomText = title;
+			planetText = planet;
+			system = system;
 		}
 		
-		private function initLeftBar():void
+		public function author(name:String):void
 		{
-			this.leftSideBar.time.text = "--:--";
-			this.leftSideBar.days.text = "-----";
-			this.leftSideBar.appearanceButton.visible = true;
-			this.leftSideBar.appearanceButton.alpha = .3;
-			this.leftSideBar.quicksaveButton.visible = false;
-			this.leftSideBar.dataButton.visible = true;
-			this.leftSideBar.dataButton.alpha = .3;
-			this.leftSideBar.mainMenuButton.visible = true;
-			this.leftSideBar.mainMenuButton.alpha = .3;
-			this.leftSideBar.statsButton.visible = false;
-			this.leftSideBar.perksButton.visible = false;
-			this.leftSideBar.levelUpButton.visible = false;
-			this.leftSideBar.sceneByTag.visible = false;
-			this.leftSideBar.sceneBy.visible = false;
-			this.leftSideBar.sceneTitle.text = "WELCOME\nTO TITS";
-			this.leftSideBar.planet.text = "AN EROTIC FLASH GAME";
-			this.leftSideBar.system.text = "BY FENOXO";
-			this.leftSideBar.topHeaderLabel.visible = false;
-			this.leftSideBar.topHeaderUnderline.visible = false;
-			this.leftSideBar.npcBusts.visible = false;
-			
-			// You really are a fucking shit AS3
-			// TODO: Modify FLA to account for stupid text kerning bullshit of the textfield header
-			this.leftSideBar.topHeaderLabel.width += 40;
+			_leftSideBar.generalInfoBlock.sceneAuthor = name;
+		}
+		
+		public function showSceneTag():void
+		{
+			_leftSideBar.generalInfoBlock.ShowScene();
 		}
 		
 		//Build the main 15 buttons!
@@ -1062,15 +949,6 @@
 			//Engage buttonmode.
 			this.leftSideBar.dataButton.buttonMode = true;
 		}
-		
-		public function dataOff():void 
-		{
-			//Set transparency to zero to show it's active.
-			this.leftSideBar.dataButton.alpha = .3;
-			//Engage buttonmode.
-			this.leftSideBar.dataButton.buttonMode = false;
-			this.leftSideBar.dataButton.filters = [];
-		}
 
 		public function hideNormalDisplayShit():void 
 		{
@@ -1272,30 +1150,26 @@
 		
 		public function leftBarClear():void 
 		{
-			this.leftSideBar.sceneByTag.visible = false;
-			this.leftSideBar.sceneBy.visible = false;
-			this.leftSideBar.sceneTitle.visible = false;
-			this.leftSideBar.planet.visible = false;
-			this.leftSideBar.system.visible = false;
-			this.leftSideBar.time.visible = false;
-			this.leftSideBar.days.visible = false;
-			this.leftSideBar.quicksaveButton.visible = false;
-			this.leftSideBar.dataButton.visible = false;
-			this.leftSideBar.statsButton.visible = false;
-			this.leftSideBar.perksButton.visible = false;
-			this.leftSideBar.levelUpButton.visible = false;
+			_leftSideBar.generalInfoBlock.HideScene();
+			_leftSideBar.roomText.visible = false;
+			_leftSideBar.planetText.visible = false;
+			_leftSideBar.systemText.visible = false;
+			_leftSideBar.generalInfoBlock.HideTime();
+			_leftSideBar.quickSaveButton.visible = false;
+			_leftSideBar.dataButton.visible = false;
+			_leftSideBar.statsButton.visible = false;
+			_leftSideBar.perksButton.visible = false;
+			_leftSideBar.levelUpButton.visible = false;
 		}
 		
 		public function hideTime():void 
 		{
-			this.leftSideBar.time.visible = false;
-			this.leftSideBar.days.visible = false;
+			_leftSideBar.generalInfoBlock.HideTime();
 		}
 		
 		public function showTime():void 
 		{
-			this.leftSideBar.time.visible = true;
-			this.leftSideBar.days.visible = true;
+			_leftSideBar.generalInfoBlock.ShowTime();
 		}
 		
 		public function hidePCStats():void 
@@ -1313,74 +1187,35 @@
 			this._rightSideBar.resetItems();
 		}
 		
-		public function showHeader(message:String):void
-		{
-			this.leftSideBar.topHeaderLabel.text = message;
-			this.leftSideBar.topHeaderLabel.visible	= true;
-			this.leftSideBar.topHeaderUnderline.visible = true;
-		}
-		
-		public function hideHeader():void
-		{
-			this.leftSideBar.topHeaderLabel.visible	= false;
-			this.leftSideBar.topHeaderUnderline.visible = false;
-		}
-		
 		public function showNPCStats():void 
 		{
-			for each (var barItem in this.npcStatSidebarItems) 
-			{
-				barItem.visible = true;
-			}
-			
-			// Show the label header deal
-			this.hideMinimap();
-			showHeader("ENCOUNTER STATUS");			
+			_leftSideBar.ShowStats();
 		}
 		
 		public function resetNPCStats():void
 		{
-			for each (var barItem in this.npcStatSidebarItems) 
-			{
-				barItem.resetBar();
-			}
+			_leftSideBar.encounterBlock.resetItems();
 		}
 		
 		public function showMinimap():void
 		{
-			if (this.miniMap.hasMapRender == true)
-			{
-				this.miniMap.visible = true;
-			}
-			displayMinimap = true;
-			this.hideNPCStats();
-			showHeader("LOCATION MAP");
+			_leftSideBar.ShowMiniMap();
 		}
 		
 		public function hideNPCStats():void 
 		{
-			for each (var barItem in this.npcStatSidebarItems) 
-			{
-				barItem.visible = false;
-			}
-			this.hideHeader();
+			_leftSideBar.HideStats();
 		}
 		
 		public function hideMinimap():void
 		{
-			displayMinimap = false;
-			this.miniMap.visible = false;
-			this.hideHeader();
+			_leftSideBar.HideMiniMap();
 		}
 		
 		public function deglow():void 
 		{
-			this._rightSideBar.removeGlows();
-			
-			for each (var barItem in this.npcStatSidebarItems) 
-			{
-				barItem.clearGlo();
-			}
+			_rightSideBar.removeGlows();
+			_leftSideBar.encounterBlock.removeGlows();
 		}	
 
 		public function showBust(arg:String):void 

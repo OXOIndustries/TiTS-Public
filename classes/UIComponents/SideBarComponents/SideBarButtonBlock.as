@@ -28,6 +28,14 @@ package classes.UIComponents.SideBarComponents
 		public function get buttonLayer():Sprite { return _buttonLayer; }
 		public function get glowLayer():Sprite { return _glowLayer; }
 		
+		public function get menuButton():SquareButton { return _menuButton; }
+		public function get dataButton():SquareButton { return _dataButton; }
+		public function get quickSaveButton():SquareButton { return _quickSaveButton; }
+		public function get statsButton():SquareButton { return _statsButton; }
+		public function get perksButton():SquareButton { return _perksButton; }
+		public function get levelUpButton():SquareButton { return _levelUpButton; }
+		public function get appearanceButton():SquareButton { return _appearanceButton; }
+		
 		public function SideBarButtonBlock(glowBehind:Boolean = false) 
 		{
 			_glowBehind = glowBehind;
@@ -40,8 +48,6 @@ package classes.UIComponents.SideBarComponents
 			
 			this.BuildLayers();
 			this.BuildButtons();
-			
-			_quickSaveButton.Glow();
 		}
 		
 		private function BuildLayers():void
@@ -69,14 +75,17 @@ package classes.UIComponents.SideBarComponents
 			
 			// Top row
 			_menuButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_MainMenu, padding);
+			_menuButton.name = "menuButton";
 			_buttonLayer.addChild(_menuButton);
 			xPos = _menuButton.x + _menuButton.width + spacing;
 			
 			_dataButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Data, padding);
+			_dataButton.name = "dataButton";
 			_buttonLayer.addChild(_dataButton);
 			xPos = _dataButton.x + _dataButton.width + spacing;
 			
 			_quickSaveButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_QuickSave, padding);
+			_quickSaveButton.name = "quickSaveButton";
 			_buttonLayer.addChild(_quickSaveButton);
 
 			// Bottom row
@@ -84,22 +93,36 @@ package classes.UIComponents.SideBarComponents
 			yPos = _menuButton.y + _menuButton.height + spacing;
 			
 			_statsButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Stats, padding);
+			_statsButton.name = "statsButton";
 			_buttonLayer.addChild(_statsButton);
 			xPos = _statsButton.x + _statsButton.width + spacing;
 			
 			_perksButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_Perks, padding);
+			_perksButton.name = "perksButton";
 			_buttonLayer.addChild(_perksButton);
 			xPos = _perksButton.x + _perksButton.width + spacing;
 			
 			_levelUpButton = new SquareButton(width, height, xPos, yPos, rounding, ButtonIcons.Icon_LevelUp, padding);
+			_levelUpButton.name = "levelUpButton";
 			_buttonLayer.addChild(_levelUpButton);
 			
 			// Big bastard apperance button
 			xPos = _quickSaveButton.x + _quickSaveButton.width + 2;
 			_appearanceButton = new SquareButton(72, 70, xPos, 0, rounding, ButtonIcons.Icon_Appearance, padding * 2);
+			_appearanceButton.name = "appearanceButton";
 			_buttonLayer.addChild(_appearanceButton);
 		}
 		
+		public function RemoveGlows():void
+		{
+			_menuButton.DeGlow();
+			_dataButton.DeGlow();
+			_quickSaveButton.DeGlow();
+			_statsButton.DeGlow();
+			_perksButton.DeGlow();
+			_levelUpButton.DeGlow();
+			_appearanceButton.DeGlow();
+		}
 	}
 
 }

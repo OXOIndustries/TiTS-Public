@@ -27,6 +27,34 @@ package classes.UIComponents.SideBarComponents
 		public function get time():TextField { return _timeText; }
 		public function get days():TextField { return _daysText; }
 		public function get sceneBy():TextField { return _sceneText; }
+		public function get sceneByLabel():TextField { return _sceneLabel; }
+		
+		public function set sceneAuthor(v:String):void { _sceneText.text = v; this.ShowScene(); }
+		public function get sceneAuthor():String { return _sceneText.text; }
+		
+		public function HideScene():void
+		{
+			_sceneLabel.visible = false;
+			_sceneText.visible = false;
+		}
+		
+		public function ShowScene():void
+		{
+			_sceneLabel.visible = true;
+			_sceneText.visible = true;
+		}
+		
+		public function HideTime():void
+		{
+			_timeText.visible = false;
+			_daysText.visible = false;
+		}
+		
+		public function ShowTime():void
+		{
+			_timeText.visible = true;
+			_daysText.visible = true;
+		}
 		
 		public function GeneralInfoBlock() 
 		{

@@ -130,7 +130,7 @@ function jungleMiddleEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+		if((hours < 3 || hours > 20) && totalNaleenSexCount() >= 5)
 		{
 			choices[choices.length] = naleenNightCuddles;
 			choices[choices.length] = naleenNightCuddles;
@@ -211,7 +211,7 @@ function jungleDeepEncounters():Boolean {
 		flags["JUNGLE_STEP"] = 0;
 		
 		//Build possible encounters
-		if((userInterface.hours < 3 || userInterface.hours > 20) && totalNaleenSexCount() >= 5)
+		if((hours < 3 || hours > 20) && totalNaleenSexCount() >= 5)
 		{
 			choices[choices.length] = naleenNightCuddles;
 			choices[choices.length] = naleenNightCuddles;

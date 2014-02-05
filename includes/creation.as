@@ -16,9 +16,9 @@ function startCharacterCreation():void {
 	chars["PC"].level = 1;
 	chars["PC"].shield = new classes.Items.Protection.BasicShield();
 	chars["PC"].shieldsRaw = chars["PC"].shieldsMax();
-	this.userInterface.hours = 0;
-	this.userInterface.minutes = 0;
-	this.userInterface.days = 0;
+	hours = 0;
+	minutes = 0;
+	days = 0;
 	this.userInterface.hideTime();
 	flags = new Dictionary();
 
@@ -1102,9 +1102,9 @@ function ohShitGameStarts():void {
 	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
 	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");
 	output("\n\n(<b>Ship Acquired: Casstech Z14</b>)");
-	this.userInterface.minutes = 2;
-	this.userInterface.hours = 6;
-	this.userInterface.days = 1;
+	minutes = 2;
+	hours = 6;
+	days = 1;
 	this.userInterface.showTime();
 	//[Next] - to station screens!
 	this.clearMenuProxy();

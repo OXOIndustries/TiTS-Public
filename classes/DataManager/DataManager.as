@@ -47,26 +47,26 @@
 		 */
 		public function dataRouter(d:MouseEvent = undefined):void
 		{
-			if (kGAMECLASS.userInterface.leftSideBar.dataButton.alpha < 1 && d != kGAMECLASS.userInterface.tempEvent)
-			{
-				return;
-			}
-			else if (kGAMECLASS.userInterface.leftSideBar.dataButton.filters.length > 0)
-			{
-				kGAMECLASS.userInterface.dataOff();
-				kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
-				kGAMECLASS.userInterface.hideMenus();
-				if (kGAMECLASS.pc.short == "uncreated")
-				{
-					kGAMECLASS.mainMenu();
-				}
-			}
-			else
-			{
-				kGAMECLASS.userInterface.hideMenus();
-				kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [kGAMECLASS.userInterface.myGlow];
-				this.showDataMenu();
-			}
+			//if (kGAMECLASS.userInterface.dataButton.alpha < 1 && d != kGAMECLASS.userInterface.tempEvent)
+			//{
+				//return;
+			//}
+			//else if (kGAMECLASS.userInterface.leftSideBar.dataButton.filters.length > 0)
+			//{
+				//kGAMECLASS.userInterface.dataOff();
+				//kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
+				//kGAMECLASS.userInterface.hideMenus();
+				//if (kGAMECLASS.pc.short == "uncreated")
+				//{
+					//kGAMECLASS.mainMenu();
+				//}
+			//}
+			//else
+			//{
+				//kGAMECLASS.userInterface.hideMenus();
+				//kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [kGAMECLASS.userInterface.myGlow];
+				//this.showDataMenu();
+			//}
 		}
 		
 		private function getSO(slotNumber:int):SharedObject
@@ -268,7 +268,7 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.leftSideBar.planetText.text + ", " + kGAMECLASS.userInterface.leftSideBar.systemText.text);
+			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
 			
 			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
 			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
@@ -278,9 +278,9 @@
 			// Game state
 			dataFile.playerLocation 	= kGAMECLASS.currentLocation;
 			dataFile.shipLocation 		= kGAMECLASS.shipLocation;
-			dataFile.daysPassed 		= kGAMECLASS.userInterface.days;
-			dataFile.currentHours 		= kGAMECLASS.userInterface.hours;
-			dataFile.currentMinutes 	= kGAMECLASS.userInterface.minutes;
+			dataFile.daysPassed 		= kGAMECLASS.days;
+			dataFile.currentHours 		= kGAMECLASS.hours;
+			dataFile.currentMinutes 	= kGAMECLASS.minutes;
 			
 			// Game data
 			dataFile.characters = new Object();
@@ -418,9 +418,9 @@
 			// Game state
 			kGAMECLASS.currentLocation = obj.playerLocation;
 			kGAMECLASS.shipLocation = obj.shipLocation;
-			kGAMECLASS.userInterface.days = obj.daysPassed;
-			kGAMECLASS.userInterface.hours = obj.currentHours;
-			kGAMECLASS.userInterface.minutes = obj.currentMinutes;
+			kGAMECLASS.days = obj.daysPassed;
+			kGAMECLASS.hours = obj.currentHours;
+			kGAMECLASS.minutes = obj.currentMinutes;
 			
 			// Game data
 			kGAMECLASS.chars = new Object();
@@ -510,8 +510,7 @@
 		 */
 		public function executeGame():void
 		{
-			kGAMECLASS.userInterface.dataOff();
-			kGAMECLASS.userInterface.leftSideBar.dataButton.filters = [];
+			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.hideMenus();
 			
 			if (kGAMECLASS.currentLocation != "")

@@ -84,6 +84,11 @@
 		public var chars:Object;
 		public var foes:Array;
 
+		// This needs to ideally be moved somewhere else, I'm just stopping the GUI code from being used to store game-data models
+		public var days:int;
+		public var hours:int;
+		public var minutes:int;
+		
 		// These are all floating around in the TiTS namespace. Really
 		// they should be stored in an item Object() or something
 		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
@@ -121,7 +126,6 @@
 		public var shipLocation:String;
 		public var inSceneBlockSaving:Boolean;
 
-
 		public var parser:classes.Parser.Main.Parser;
 
 		public var dataManager:DataManager;
@@ -147,7 +151,11 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			this.inputManager = new InputManager(stage, false);
-			this.setupInputControls()
+			this.setupInputControls();
+			
+			hours = 0;
+			minutes = 0;
+			days = 0;
 
 			trace("TiTS Constructor")
 
@@ -239,27 +247,32 @@
 		
 		public function setupInputEventHandlers():void
 		{
-			// stage.addEventListener(KeyboardEvent.KEY_DOWN,keyPress);
-
 			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
 			this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
 			this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
 			this.userInterface.scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
 			this.addEventListener(MouseEvent.MOUSE_UP,mouseUpHandler);
 			this.userInterface.scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
-			this.userInterface.leftSideBar.mainMenuButton.addEventListener(MouseEvent.CLICK,mainMenuToggle);
-			this.userInterface.leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK,pcAppearance);
-			this.userInterface.leftSideBar.dataButton.addEventListener(MouseEvent.CLICK,dataManager.dataRouter);
 
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
 
 
-		public function mainMenuToggle(e:MouseEvent):void {
-			if(this.userInterface.leftSideBar.mainMenuButton.alpha < 1) return;
-			if(this.userInterface.titleDisplay.visible) 
-				this.userInterface.hideMenus();
-			else mainMenu();
+		public function mainMenuToggle(e:MouseEvent):void 
+		{
+			if (!userInterface.mainMenuButton.isActive)
+			{
+				return;
+			}
+			
+			if (userInterface.titleDisplay.visible)
+			{
+				userInterface.hideMenus();
+			}
+			else 
+			{
+				mainMenu();
+			}
 		}
 
 		
@@ -610,9 +623,7 @@
 
 		public function mainMenu():void 
 		{
-			trace("Main Menu called!");
-				trace("HideMenus")
-				this.userInterface.hideMenus();
+			this.userInterface.hideMenus();
 			
 			//Hide all current buttons
 			this.userInterface.hideNormalDisplayShit();
@@ -624,8 +635,7 @@
 			this.userInterface.titleDisplay.visible = true;
 			this.userInterface.warningBackground.visible = true;
 			this.userInterface.websiteDisplay.visible = true;
-			//if(leftSideBar.mainMenuButton.alpha == 1) 
-				this.userInterface.leftSideBar.mainMenuButton.filters = [this.userInterface.myGlow];
+			this.userInterface.mainMenuButton.Glow();
 			
 			//Texts
 			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";

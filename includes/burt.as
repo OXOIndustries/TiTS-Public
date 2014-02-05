@@ -12,7 +12,7 @@
 function burtsBarFunc():void {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
 	
-	if(userInterface.hours >= 12) {
+	if(hours >= 12) {
 		//{Hasn't bet against Syri yet}
 		if(flags["BET_AGAINST_SYRI"] == undefined) {
 			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
@@ -1154,9 +1154,9 @@ function stephIrsonBountHunterEpisodeOne():void {
 	//[Watch Viewscreen]
 	clearOutput();
 	output("You flop down in a comfy couch near the front of the bar, looking up at a huge Super-HD Viewscreen mounted on the wall. As you sit down, the last commercial break is just coming to an end, telling you to buy Naughty Wyvern brand fibrecondoms before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a ");
-	if(this.userInterface.hours < 11) output("bright sunrise ");
-	else if(this.userInterface.hours < 17) output(" mellow afternoon sun ");
-	else if(this.userInterface.hours <= 21) output(" dim evening sun ");
+	if(hours < 11) output("bright sunrise ");
+	else if(hours < 17) output(" mellow afternoon sun ");
+	else if(hours <= 21) output(" dim evening sun ");
 	else output(" dark night sky ");
 	output("to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her.");
 	

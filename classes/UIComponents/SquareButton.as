@@ -25,14 +25,6 @@ package classes.UIComponents
 		public function get posX():int { return _posX; }
 		public function get posY():int { return _posY; }
 		
-		public function set posX(v:int):void { _posX = v; this.Move(); }
-		public function set posY(v:int):void { _posY = v; this.Move(); }
-		
-		private function Move():void
-		{
-			throw new Error("SquareButton.Move() Not implemented yet.");
-		}
-		
 		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3) 
 		{
 			_sizeX = sizeX;
@@ -88,10 +80,8 @@ package classes.UIComponents
 			
 			_icon.x = Math.floor((this.width - _icon.width) / 2);
 			_icon.y = Math.floor((this.height - _icon.height) / 2);
-			
-			var wht:ColorTransform = new ColorTransform();
-			wht.color = 0xFFFFFF;
-			_icon.transform.colorTransform = wht;
+
+			_icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 		}
 		
 		public function Glow():void
@@ -116,6 +106,47 @@ package classes.UIComponents
 				this.parent.removeChild(this);
 				buttonLayer.addChild(this);
 			}
+		}
+		
+		public function Deactivate():void
+		{
+			this.DeGlow();
+			this._icon.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
+			this.alpha = 0.3;
+		}
+		
+		public function Activate():void
+		{
+			this._icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
+			this.alpha = 1;
+		}
+		
+		public function Highlight():void
+		{
+			
+		}
+		
+		public function DeHighlight():void
+		{
+			
+		}
+		
+		public function get isHighlighted():Boolean
+		{
+			if (this.filters.length > 0)
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		public function get isActive():Boolean
+		{
+			if (this.alpha < 1)
+			{
+				return false;
+			}
+			return true;
 		}
 	}
 

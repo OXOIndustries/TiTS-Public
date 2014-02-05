@@ -1,17 +1,24 @@
-﻿function pcAppearance(e:MouseEvent):void {
-	if(this.userInterface.leftSideBar.appearanceButton.alpha < 1) return;
-	else if(this.userInterface.showingPCAppearance) {
-		this.userInterface.hideMenus();
+﻿function pcAppearance(e:MouseEvent):void 
+{
+	if (!userInterface.appearanceButton.isActive)
+	{
+		return;
 	}
-	else {
-		this.userInterface.hideMenus();
-		this.userInterface.leftSideBar.appearanceButton.filters = [this.userInterface.myGlow];
+	else if (userInterface.showingPCAppearance)
+	{
+		userInterface.hideMenus();
+	}
+	else
+	{
+		userInterface.hideMenus();
+		userInterface.appearanceButton.Glow();
 		appearance(pc);
-		this.userInterface.showingPCAppearance = true;
-		this.userInterface.clearGhostMenu();
-		this.userInterface.addGhostButton(0,"Back",pcAppearance,e);
+		userInterface.showingPCAppearance = true;
+		userInterface.clearGhostMenu();
+		userInterface.addGhostButton(0, "Back", pcAppearance, e);
 	}
 }
+
 function appearance(target:Creature):void {
 	clearOutput2();
 	var rando:int = 0;
