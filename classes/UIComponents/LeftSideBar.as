@@ -20,8 +20,6 @@ package classes.UIComponents
 	{
 		private var _doTween:Boolean;
 		
-		public var dataButton:dataB;
-		
 		private var _locationHeader:LocationHeader;
 		private var _enemyEncounterBlock:EnemyEncounterBlock;
 		private var _miniMapBlock:MiniMapBlock;
@@ -71,10 +69,11 @@ package classes.UIComponents
 			_genInfoBlock.y = _miniMapBlock.y + _miniMapBlock.height - 4;
 			
 			// Menu button block
-			_menuButtonBlock = new SideBarButtonBlock(true);
+			_menuButtonBlock = new SideBarButtonBlock();
+			this.addChild(_menuButtonBlock);
+			_menuButtonBlock.y = _genInfoBlock.y + _genInfoBlock.height - 13;
+			_menuButtonBlock.x = 10;
 			
-			// Placeholder shit to stop the compiler crying
-			dataButton = new dataB;
 		}
 		
 		private function tween(e:Event):void

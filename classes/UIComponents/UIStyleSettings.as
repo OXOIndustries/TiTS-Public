@@ -24,6 +24,7 @@ package classes.UIComponents
 		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar);
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
+		// public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
 		public static var gStatusGoodColour:uint			= 0x0CD71C;
@@ -203,6 +204,16 @@ package classes.UIComponents
 				UIStyleSettings._gRoomLocationTextGlow = new GlowFilter(UIStyleSettings.gBackgroundColour, 1, 4, 4, 5, 1, false, false);
 			}
 			return UIStyleSettings._gRoomLocationTextGlow;
+		}
+		
+		private static var _gButtonGlow:GlowFilter = undefined;
+		public static function get gButtonGlow():GlowFilter
+		{
+			if (UIStyleSettings._gButtonGlow == undefined)
+			{
+				UIStyleSettings._gButtonGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 10, 10, 5, 1, false, false);
+			}
+			return UIStyleSettings._gButtonGlow;
 		}
 	}
 

@@ -1,4 +1,4 @@
-package Resources 
+package classes.Resources 
 {
 	/**
 	 * ...

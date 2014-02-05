@@ -4,6 +4,7 @@ package classes.UIComponents
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.geom.ColorTransform;
+	import flash.display.BlendMode;
 	
 	/**
 	 * ...
@@ -32,14 +33,15 @@ package classes.UIComponents
 			throw new Error("SquareButton.Move() Not implemented yet.");
 		}
 		
-		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3, glowLayer:Boolean = false) 
+		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3) 
 		{
 			_sizeX = sizeX;
 			_sizeY = sizeY;
+			_posX = posX;
+			_posY = posY;
 			_rounding = rounding;
 			_iconClass = iconClass;
 			_iconPadding = iconPadding;
-			_glowLayer = glowLayer;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -50,8 +52,6 @@ package classes.UIComponents
 			
 			this.Build();
 			this.BuildIcon();
-			
-			if (_glowLayer) this.BuildGlow();
 		}
 		
 		private function Build():void
@@ -69,7 +69,7 @@ package classes.UIComponents
 			_icon = new _iconClass();
 			this.addChild(_icon);
 			
-			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != + (_sizeY - _iconPadding))
+			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
 				var ratio:Number;
 				if (_icon.width > _icon.height)
@@ -94,9 +94,28 @@ package classes.UIComponents
 			_icon.transform.colorTransform = wht;
 		}
 		
-		private function BuildGlow():void
+		public function Glow():void
 		{
+			if (this.parent.name != "glowLayer")
+			{
+				this.filters = [UIStyleSettings.gButtonGlow];
 			
+				var glowLayer:Sprite = this.parent.parent.getChildByName("glowLayer") as Sprite;
+				this.parent.removeChild(this);
+				glowLayer.addChild(this);
+			}
+		}
+		
+		public function DeGlow():void
+		{
+			if (this.parent.name != "buttonLayer")
+			{
+				this.filters = [];
+				
+				var buttonLayer:Sprite = this.parent.parent.getChildByName("buttonLayer") as Sprite;
+				this.parent.removeChild(this);
+				buttonLayer.addChild(this);
+			}
 		}
 	}
 
