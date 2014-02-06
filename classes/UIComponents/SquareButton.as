@@ -170,7 +170,7 @@ package classes.UIComponents
 		 */
 		public function get isActive():Boolean
 		{
-			if (this.alpha < 1)
+			if (this._background.alpha < 1)
 			{
 				return false;
 			}

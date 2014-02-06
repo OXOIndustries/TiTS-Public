@@ -1,5 +1,6 @@
 package classes.UIComponents 
 {
+	import classes.Characters.Burt;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -131,23 +132,52 @@ package classes.UIComponents
 		
 		public function DisplayForObject(displayObj:DisplayObject):void
 		{
-			var btn:*;
-			
-			if (displayObj is blueButton) btn = (displayObj as blueButton);
-			else if (displayObj is purpleButton) btn = (displayObj as purpleButton);
+			if (displayObj is blueButton) DisplayForBlueButton((displayObj as blueButton));
+			else if (displayObj is purpleButton) DisplayForPurpleButton((displayObj as purpleButton));
+			else if (displayObj is SquareButton) DisplayForSquareButton((displayObj as SquareButton));
 			else throw new Error("Button shits fucked yo");
-			
-			var tt:String = TooltipManager.getTooltip(btn.caption.text);
-			var fn:String = TooltipManager.getFullName(btn.caption.text);
+		}
+		
+		private function DisplayForBlueButton(displayObj:blueButton):void
+		{
+			var tt:String = TooltipManager.getTooltip(displayObj.caption.text);
+			var fn:String = TooltipManager.getFullName(displayObj.caption.text);
 			
 			if (tt.length > 0)
 			{
 				this.SetData(fn, tt);
-				
 				_stage.addChild(this);
+				this.Reposition(displayObj);
 			}
+		}
+		
+		private function DisplayForPurpleButton(displayObj:purpleButton):void
+		{
+			var tt:String = TooltipManager.getTooltip(displayObj.caption.text);
+			var fn:String = TooltipManager.getFullName(displayObj.caption.text);
 			
-			this.Reposition(displayObj);
+			if (tt.length > 0)
+			{
+				this.SetData(fn, tt);
+				_stage.addChild(this);
+				this.Reposition(displayObj);
+			}
+		}
+		
+		private function DisplayForSquareButton(displayObj:SquareButton):void
+		{
+			if (displayObj.isActive)
+			{
+				var tt:String = TooltipManager.getTooltip(displayObj.name);
+				var fn:String = TooltipManager.getFullName(displayObj.name);
+				
+				if (tt.length > 0)
+				{
+					this.SetData(fn, tt);
+					_stage.addChild(this);
+					this.Reposition(displayObj);
+				}
+			}
 		}
 		
 		private function Reposition(displayObj:DisplayObject):void

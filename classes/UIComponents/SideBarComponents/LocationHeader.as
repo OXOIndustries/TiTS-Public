@@ -129,6 +129,18 @@ package classes.UIComponents.SideBarComponents
 		// Actually, using this, I can do some simple asset/sprite stacking to enable
 		// multiple busts to be displayed, layered on top of each other (similar to ZilPack),
 		// without having to have unique assets for each one; or, say, we have random groups of things!
+		
+		/**
+		 * Pass in the name of the character bust to display.
+		 * Presently, this is using the "old" system of a capitalised string index to find a bust;
+		 * it should probably be refactored to instead use the shortName variable(s) of the busts chosen
+		 * for display.
+		 * Any index NOT found will hide the bust, ergo "hide", "none" "somebustthatdoesntexist" will
+		 * all hide the bust display.
+		 * 
+		 * Currently, the RIVAL images won't be displayed. I'll fix it when I've rigged everything else up.
+		 * @param	name
+		 */
 		public function showBust(name:String):void
 		{
 			var bustT:Class;
@@ -152,29 +164,6 @@ package classes.UIComponents.SideBarComponents
 				trace("Possible malformed bust image name: " + name);
 			}
 			
-			//this.leftSideBar.sceneTitle.filters = [glow];
-			//if(arg == "none") 
-			//{
-				//this.leftSideBar.npcBusts.visible = false;
-				//return;
-			//}
-			//else if(arg == "hide") 
-			//{
-				//trace("showBust called with arg \"hide\". The correct arg is \"none\". Please fix!")
-				//this.leftSideBar.npcBusts.visible = false;
-				//return;
-			//}
-			//else if (GLOBAL.bustLookup[arg] == undefined)
-			//{
-				//trace("Attempted to display invalid bust! Passed arg:", arg)
-				//trace("Hiding bust display anyways!")
-				//this.leftSideBar.npcBusts.visible = false;
-				//return;
-			//}
-//
-			//var bustIndex:int = 0;
-			//bustIndex = GLOBAL.bustLookup[arg];
-//
 			//this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
 			//this.leftSideBar.npcBusts.visible = true;
 			//if(arg == "RIVAL")

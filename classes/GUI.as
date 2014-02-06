@@ -43,13 +43,13 @@
 	//Build the bottom drawer
 	public class GUI extends MovieClip
 	{
-		//this.leftSideBar.sceneTitle.filters = [glow];
-
 		var textBuffer:Array;
+		
 		//Used for temp buffer stuff
 		var tempText:String;
 		var tempAuthor:String;
 		public var currentPCNotes:String;
+		
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;
@@ -110,8 +110,6 @@
 
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
 		{
-			trace("GUI Constructor")
-
 			// Pointer to the TiTS class
 			// this is THE MOST HORRIBLE WORK-AROUND EVEN THEORETICALLY POSSIBLE.
 			this.titsClassPtr = titsClassPtrArg;
@@ -120,7 +118,8 @@
 			//Lazy man state checking
 			this.showingPCAppearance = false;
 
-			this.textBuffer = new Array("","","","");
+			this.textBuffer = new Array("", "", "", "");
+			
 			//Used for temp buffer stuff
 			this.tempText = "";
 			this.tempAuthor = "";
@@ -352,6 +351,7 @@
 			this._leftSideBar.appearanceButton.Deactivate();
 			
 			this.ConfigureListeners();
+			this.ConfigureTooltips();
 		}
 		
 		private function ConfigureListeners():void
@@ -359,6 +359,19 @@
 			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, titsClassPtr.mainMenuToggle);
 			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+		}
+		
+		private function ConfigureTooltips():void 
+		{
+			AttachTooltipListeners(_leftSideBar.menuButton);
+			AttachTooltipListeners(_leftSideBar.dataButton);
+			AttachTooltipListeners(_leftSideBar.appearanceButton);
+		}
+		
+		private function AttachTooltipListeners(displayObj:DisplayObject):void
+		{
+			displayObj.addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
+			displayObj.addEventListener(MouseEvent.ROLL_OUT, this.buttonTooltip.eventHandler);
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
