@@ -143,7 +143,7 @@
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
 			//Goo is hyper friendly!
-			this.elasticity = 1.3;
+			this.elasticity = 1.5;
 			//Fertility is a % out of 100. 
 			this.fertility = 5;
 			this.clitLength = .5;

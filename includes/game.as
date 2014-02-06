@@ -12,6 +12,7 @@ public function get canSaveAtCurrentLocation():Boolean
 }
 
 public function mainGameMenu():void {
+	flags["COMBAT MENU SEEN"] = undefined;
 	//Display shit that happened during time passage.
 	if(eventBuffer != "") {
 		clearOutput();
@@ -368,9 +369,9 @@ public function processTime(arg:int):void {
 					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
 				}
 				//Reset 'dem venus pitcher hoz
-				if(flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 			}
 		}
 		arg--;

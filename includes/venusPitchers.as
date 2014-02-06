@@ -640,6 +640,7 @@ function lookAwayFromElderVenusPitcher():void {
 
 function watchElderVenusPitcher():void {
 	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
 	output("Of course! This is making you feel pretty hot, and you wouldn’t mind staying to see just what all this fine-ass piece of flora can do with the humanoid portion of her body. Like she said, you’re safe over here, so she’s harmless. You’ll watch her and her nipples more – at least until you get tired of it.");
 	output("\n\nBack and forth, her fingers slide across her moist, pebbly protrusions, dulling your wits with melon lust. You sneeze again, barely noticing aside from when the action causes you to momentarily lose sight of her emerald peaks, but her hips catch your eyes with their slow back and forth waggle, dragging you right back to watching those proud, puckered nipples.");
 	output("\n\n“<i>They’re hard to look away from aren’t they?</i>”");
