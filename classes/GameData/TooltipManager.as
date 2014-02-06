@@ -48,7 +48,11 @@ package classes.GameData
 				"perksButton" : "Show your characters acquired perks.",
 				"levelUpButton" : "Level up your character.",
 				"appearanceButton" : "Display your characters detailed appearance information.",
-				"Rest" : "Placeholder tooltip for testing."
+				"Rest" : "Placeholder tooltip for testing.",
+				"buttonPageNext" : "View the next page of buttons.",
+				"buttonPagePrev" : "View the previous page of buttons.",
+				"bufferPageNext" : "View the next page of scene text.",
+				"bufferPagePrev" : "View the previous page of scene text."
 			};
 			
 			// FULLNAMEDB is a conversion from button text to some more complete name representation
@@ -61,7 +65,11 @@ package classes.GameData
 				"statsButton" : "Character Stats",
 				"perksButton" : "Character Perks",
 				"levelUpButton" : "Character Level Up",
-				"appearanceButton" : "Character Appearance"
+				"appearanceButton" : "Character Appearance",
+				"bufferPageNext" : "Next Page",
+				"bufferPagePrev" : "Previous Page",
+				"buttonPageNext" : "Next Button Page",
+				"buttonPagePrev" : "Previous Button Page"
 			}
 		}
 		

@@ -130,12 +130,31 @@ package classes.UIComponents
 			this.stage.removeChild(this);
 		}
 		
+		// This is a hacky method that will go away when I rebuild the button tray (and the associated button classes)
 		public function DisplayForObject(displayObj:DisplayObject):void
 		{
-			if (displayObj is blueButton) DisplayForBlueButton((displayObj as blueButton));
-			else if (displayObj is purpleButton) DisplayForPurpleButton((displayObj as purpleButton));
-			else if (displayObj is SquareButton) DisplayForSquareButton((displayObj as SquareButton));
-			else throw new Error("Button shits fucked yo");
+			if (displayObj is blueButton) 			DisplayForBlueButton((displayObj as blueButton));
+			else if (displayObj is purpleButton) 	DisplayForPurpleButton((displayObj as purpleButton));
+			else if (displayObj is SquareButton) 	DisplayForSquareButton((displayObj as SquareButton));
+			else if (displayObj is rightButton) 	DisplayForNamedObject(displayObj);
+			else if (displayObj is leftButton) 		DisplayForNamedObject(displayObj);
+			else throw new Error("Unknown Display Object Type attempted to display a tooltip.");
+		}
+		
+		private function DisplayForNamedObject(displayObj:DisplayObject):void
+		{
+			if (displayObj.alpha > 0.3)
+			{
+				var tt:String = TooltipManager.getTooltip(displayObj.name);
+				var fn:String = TooltipManager.getFullName(displayObj.name);
+				
+				if (tt.length > 0)
+				{
+					this.SetData(fn, tt);
+					_stage.addChild(this);
+					this.Reposition(displayObj);
+				}
+			}
 		}
 		
 		private function DisplayForBlueButton(displayObj:blueButton):void

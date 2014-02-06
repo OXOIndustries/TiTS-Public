@@ -158,35 +158,42 @@
 			// Set up the various side-bars
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
+			this.ConfigureLeftBarTooltips();
 			
-			//this.leftBarClear();
 			this.hidePCStats();
 
 			// Setup the button page controls in the button tray
 			this.buttonPageNext = new rightButton;
+			this.buttonPageNext.name = "buttonPageNext";
 			this.buttonPageNext.alpha = .3;
 			this.buttonPageNext.x = 1100;
 			this.buttonPageNext.y = 750;
+			this.titsClassPtr.addChild(this.buttonPageNext);
+			AttachTooltipListeners(this.buttonPageNext);
 
 			this.buttonPagePrev = new leftButton;
+			this.buttonPageNext.name = "buttonPagePrev";
 			this.buttonPagePrev.alpha = .3;
 			this.buttonPagePrev.x = 1000;
 			this.buttonPagePrev.y = 750;
+			this.titsClassPtr.addChild(this.buttonPagePrev);
+			AttachTooltipListeners(this.buttonPagePrev);
 
 			this.pageNext = new rightButton;
+			this.pageNext.name = "bufferPageNext";
 			this.pageNext.alpha = .3;
 			this.pageNext.x = 110;
 			this.pageNext.y = 750;
+			this.titsClassPtr.addChild(this.pageNext);
+			AttachTooltipListeners(this.pageNext);
 
 			this.pagePrev = new leftButton;
+			this.pagePrev.name = "bufferPagePrev";
 			this.pagePrev.alpha = .3;
 			this.pagePrev.x = 010;
 			this.pagePrev.y = 750;
-
-			this.titsClassPtr.addChild(this.buttonPageNext);
-			this.titsClassPtr.addChild(this.buttonPagePrev);
-			this.titsClassPtr.addChild(this.pageNext);
 			this.titsClassPtr.addChild(this.pagePrev);
+			AttachTooltipListeners(this.pagePrev);
 
 			//Set up the main text field
 			this.format1 = new TextFormat();
@@ -350,18 +357,20 @@
 			
 			this._leftSideBar.appearanceButton.Deactivate();
 			
-			this.ConfigureListeners();
-			this.ConfigureTooltips();
+			this.ConfigureLeftBarListeners();
 		}
 		
-		private function ConfigureListeners():void
+		/**
+		 * Add the standard button listeners for the left hand menu
+		 */
+		private function ConfigureLeftBarListeners():void
 		{
 			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, titsClassPtr.mainMenuToggle);
 			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 		}
 		
-		private function ConfigureTooltips():void 
+		private function ConfigureLeftBarTooltips():void 
 		{
 			AttachTooltipListeners(_leftSideBar.menuButton);
 			AttachTooltipListeners(_leftSideBar.dataButton);
@@ -545,6 +554,8 @@
 			}
 		}
 		
+		// This is more hacky shit that should go away when I rebuild the button tray. As it stands, the tooltips won't update for menu/page buttons
+		// that get disabled via interaction (afaik)
 		public function updateTooltip(displayObj:DisplayObject):void
 		{
 			if (this.buttonTooltip.stage != null)
@@ -783,7 +794,6 @@
 			menuPageChecker();
 		}
 
-
 		public function pushToBuffer():void 
 		{
 			if(tempText != "") {
@@ -794,7 +804,7 @@
 			}
 			else {
 				textBuffer[textBuffer.length] = mainTextField.htmlText;
-				authorBuffer[authorBuffer.length] = author;
+				authorBuffer[authorBuffer.length] = sceneBy;
 			}
 			if(textBuffer.length > 4) {
 				textBuffer.splice(0,1);
@@ -827,7 +837,7 @@
 		{
 			if(textPage == 4) {
 				tempText = mainTextField.htmlText;
-				tempAuthor = sceneBy
+				tempAuthor = sceneBy;
 			}
 			if(textPage > 0) {
 				textPage--;
