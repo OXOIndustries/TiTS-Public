@@ -76,6 +76,7 @@
 		include "../includes/julianSHaswell.as";
 		include "../includes/sellesy.as";
 		include "../includes/alex.as";
+		include "../includes/naleen_male.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

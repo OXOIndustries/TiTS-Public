@@ -142,7 +142,8 @@ function naleenStruggle():void {
 	//Fail to escape: 
 	if(pc.hasStatusEffect("Naleen Coiled"))
 	{
-		output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. She grins down at you with a feral look in her eyes...");
+		if(foes[0] is Naleen) output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. She grins down at you with a feral look in her eyes....");
+		else output("You groan in pain, struggling madly to escape the brutal confines of the naleen's coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
 		pc.addStatusValue("Naleen Coiled",1,1);
 	}
 	output("\n");

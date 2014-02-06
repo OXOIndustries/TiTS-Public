@@ -79,6 +79,10 @@
 	{
 		chars["SYRI"] = new classes.Characters.Syri();
 	}
+	if (!justUpdate || (justUpdate && chars["NALEEN_MALE"] == undefined))
+	{
+		chars["NALEEN_MALE"] = new classes.Characters.NaleenMale();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

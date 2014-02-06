@@ -52,7 +52,7 @@
 			//12x2 = 33.51
 			//20x3 = 127.24
 			//Base starting capacity is 10.
-			var capacity:Number = 10;
+			var capacity:Number = 15;
 			//Add bonuses!
 			capacity += bonusCapacity;
 			//Factor in looseness!

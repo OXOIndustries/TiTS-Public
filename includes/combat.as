@@ -36,7 +36,7 @@ function combatMainMenu():void
 		victoryRouting();
 		return;
 	}
-	else if(pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen)) {
+	else if(pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && (foes[0] is Naleen || foes[0] is NaleenMale))) {
 		//YOU LOSE! GOOD DAY SIR!
 		trace("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
@@ -934,6 +934,9 @@ function enemyAI(aggressor:Creature):void
 		case "naleen":
 			naleenAI();
 			break;
+		case "naleen male":
+			naleenMaleAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -961,6 +964,10 @@ function victoryRouting():void
 	else if(foes[0].short == "naleen") {
 		beatDatCatNaga();
 	}
+	else if(foes[0].short == "naleen male")
+	{
+		defeatAMaleNaleen();
+	}
 	else genericVictory();
 }
 
@@ -982,6 +989,10 @@ function defeatRouting():void
 	}
 	else if(foes[0].short == "naleen") {
 		pcLosesToNaleenLiekABitch();
+	}
+	else if(foes[0].short == "naleen male")
+	{
+		loseToDudeleenRouter();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1117,31 +1128,26 @@ function startCombat(encounter:String):void
 		case "celise":
 			chars["CELISE"].prepForCombat();
 			break;
-			
 		case "zilpack":
 			chars["ZILPACK"].prepForCombat();
 			break;
-			
 		case "zil male":
 			chars["ZIL"].prepForCombat();
 			break;
-			
 		case "consensual femzil":
 		case "female zil":
-			chars["ZILFEMALE"].prepForCombat();
-			
+			chars["ZILFEMALE"].prepForCombat();			
 			if (encounter == "consensual femzil") foes[0].setDefaultSexualPreferences(); // This call has to happen after prep, otherwise we'll wipe it out with random prefs.
-
 			break;
-			
 		case "cunt snake":
 			chars["CUNTSNAKE"].prepForCombat();
 			break;
-			
+		case "naleen male":
+			chars["NALEEN_MALE"].prepForCombat();
+			break;
 		case "naleen":
 			chars["NALEEN"].prepForCombat();
 			break;
-			
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;

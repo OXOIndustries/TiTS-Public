@@ -220,6 +220,9 @@ function jungleDeepEncounters():Boolean {
 			choices[choices.length] = encounterNaleen;
 			choices[choices.length] = encounterNaleen;
 			choices[choices.length] = encounterNaleen;
+			choices[choices.length] = naleenMaleEncounter;
+			choices[choices.length] = naleenMaleEncounter;
+			choices[choices.length] = naleenMaleEncounter;
 		}
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;

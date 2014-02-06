@@ -582,7 +582,7 @@ function catchVaginalFromAlex():void {
 		else if(pc.cockTotal() > 1) output(", your [pc.cocks] sandwiched between you and getting pre everywhere");
 		else if(pc.totalVaginas() > 1)
 		{
-			if(pc.totalVagina() == 2) output(", though your unused snatch still feels");
+			if(pc.totalVaginas() == 2) output(", though your unused snatch still feels");
 			else output(", though your unused snatches still feel");
 			output(" disappointingly empty");
 		}
