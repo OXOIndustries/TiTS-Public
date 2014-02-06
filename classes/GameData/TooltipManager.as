@@ -47,7 +47,8 @@ package classes.GameData
 				"statsButton" : "Show your characters stats.",
 				"perksButton" : "Show your characters acquired perks.",
 				"levelUpButton" : "Level up your character.",
-				"appearanceButton" : "Display your characters detailed appearance information."
+				"appearanceButton" : "Display your characters detailed appearance information.",
+				"Rest" : "Placeholder tooltip for testing."
 			};
 			
 			// FULLNAMEDB is a conversion from button text to some more complete name representation

@@ -190,7 +190,7 @@ package classes.UIComponents
 			if (tPt.x < 212) tPt.x = 210;
 			else if (tPt.x > 991 - this.width) tPt.x = 991 - this.width;
 			
-			tPt.y = 634 - this.height;
+			tPt.y = 635 - this.height;
 			
 			this.x = tPt.x;
 			this.y = tPt.y;

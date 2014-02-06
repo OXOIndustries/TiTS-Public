@@ -61,7 +61,7 @@ package classes.UIComponents
 		public function get generalInfoBlock():GeneralInfoBlock { return _genInfoBlock; }
 		public function get menuButtonBlock():SideBarButtonBlock { return _menuButtonBlock; }
 		
-		public function LeftSideBar(doTween:Boolean = false) 
+		public function LeftSideBar(doTween:Boolean = true) 
 		{
 			_doTween = doTween;
 			
@@ -107,7 +107,7 @@ package classes.UIComponents
 		private function tween(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, tween);
-			var tw:Tween = new Tween(this, "x", Regular.easeOut, this.x, this.x + this.width, 25, false); // Might have to fudge this to get the appearance to look round, ie construct off stage.
+			var tw:Tween = new Tween(this, "x", Regular.easeOut, this.x - this.width, this.x, 25, false); // Might have to fudge this to get the appearance to look round, ie construct off stage.
 		}
 		
 		private function BuildBackground():void
