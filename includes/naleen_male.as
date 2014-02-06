@@ -61,10 +61,6 @@ Baldness: Dislikes!
 Long hair: Kinda likes!
 */
 
-
-
-
-
 function naleenMaleAI():void {
 	if(pc.hasStatusEffect("Naleen Coiled"))
 	{
