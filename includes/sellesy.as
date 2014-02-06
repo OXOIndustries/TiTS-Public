@@ -33,6 +33,29 @@ Repeating occurence
 4a. 	Sex Scenes
 */
 
+
+
+function anonsBarWaitressAddendum():void {
+	if(flags["SEEN_SELLESY"] == undefined)
+	{
+		flags["SEEN_SELLESY"] = 1;
+		output("\n\nAs you enter the Bar, leaving the check-in kiosk behind, a wall of heady aromas assault your senses. The clouds of thick, scented incense make it difficult to see around the room clearly from the hanging clouds that partially obscure several tables. Strong alcoholic scents mix with the smoke, and your eyes cringe slightly as they adjust. Peering into the dimly lit Bar Cum Reception area, at least four of the three-legged waitresses are tending to the patrons with seats.");
+		output("\n\nEach waitress dresses more suggestively than the next. One with pale blue skin wears a ‘schoolgirl’ costume which barely covers her nipples, the trio bulging from the fabric. Another of her kind whose skin has a deep green hue wears a skintight sheer shirt and little else, and by contrast the other waitress looks fully clothed.");
+
+		output("\n\nAs you approach a seat at the bar, you notice that the seat resembles a little coloured plastic pad. However, the seat apparently senses your intention and rearranges itself into a shape more suitable for a human occupant. You notice that the other patrons also have similar chairs to occupy, or in the case of one particularly tentacled individual, more of a bathtub.");
+
+		output("\n\nBefore you can truly contemplate the nature of this adaptive seating, one of the waitresses notices you. Turning, your eyes roam across her impressive figure. Her legs are thick, powerful, yet sleek, and undeniably full... however, more prominently in your mind – not to mention your view – are her three massive tits.");
+		output("\n\nYou could wave her over if you wanted.");
+	}
+	else {
+		output("\n\nThe three breasted waitress");
+		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
+		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
+	}
+	userInterface.addButton(0,"Waitress",anonsBarWaitressApproach);
+}
+
+
 function anonsBarWaitressApproach():void {
 	clearOutput();
 	author("Mr. Writer");
@@ -94,7 +117,7 @@ function firstDrinkFromSellesy(first:Boolean = true):void {
 	output("\n\nYour suffocation on her her immense bosom subsides quickly and your lungs refill. Her long, thick nipple causes rather embarrassing wet sucking and slurping noises as it gently slips in and out of your lips. Her hands, her fingers, play magic across your shoulders, along your neck, even along your ears. She looks to be quite enjoying herself too, judging from the way her crotch gyrates its way gently against yours in rhythm with your suckling, and the gentle mouth fondling her hardened nipple. Even the soft, grained feeling of her elongated nipple against your lips is eliciting almost unknown pleasures from within you, and inevitably, you slip back into that delightfully relaxing daze of before.");
 
 	output("\n\nYou are now happily suckling away at her massive tit, echoing the actions of the patrons scattered throughout the bar. You manage to look through lidded eyes at the closest patron to you, lying back on a bed-like chair, as her waitress lowers one massive breast over her face, and sighs in relief as her free hands roam the helpless girl's body, much to the girl's obvious delight. As you watch, she curls into an almost infantile pose, before a swell of Sellesy's breast looms in and blocks your view.");
-	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. \"<i>How's that sweetie? Taste good?</i>\"  she asks rather girlishly, apparently already certain of the answer, \"<i>I get lots of compliments on my drink mixing. I always make something something my customers swear they could just drink forever...</i>\"  she utters softly, shuddering slightly from the unbidden gentle nibbling of her nipple.");
+	output("\n\nLooking up you see her staring down at you, all three eyes positively alight with glee. \"<i>How's that sweetie? Taste good?</i>\"  she asks rather girlishly, apparently already certain of the answer, \"<i>I get lots of compliments on my drink mixing. I always make something my customers swear they could just drink forever...</i>\"  she utters softly, shuddering slightly from the unbidden gentle nibbling of her nipple.");
 
 	processTime(5+rand(5));
 	//[The following scenes are effective no matter character type, size/stature. It is assumed Sellesy and the chair adjust for any difference in height, or in the case of being awkwardly largely endowed, she just straddles their cock with a wider berth between her legs.]

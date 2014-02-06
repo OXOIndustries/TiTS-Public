@@ -476,7 +476,7 @@ function talkToBurtAboutMeadHall():void {
 	//Scene1
 	if(flags["BURT_MEAD_HALL_DISCUSSIONS"] == undefined || flags["BURT_MEAD_HALL_DISCUSSIONS"] == 3) {
 		flags["BURT_MEAD_HALL_DISCUSSIONS"] = 1;
-		output("Burt chuckles and tucks his bar rag into a pocket on his apron,<i> “You want to know about Burt’s Badass Mead Hall, huh? Can’t say that I blame ya. Sadly, there isn’t a lot to say about it. I won it in a card game, and the previous owner didn’t really give a lick about it. Had Three-Dee running it, and she’s glitchy as hell.”</i>  He shakes his head,<i> Frankly, I’m surprised I can even keep the place going.”</i>");
+		output("Burt chuckles and tucks his bar rag into a pocket on his apron,<i> “You want to know about Burt’s Badass Mead Hall, huh? Can’t say that I blame ya. Sadly, there isn’t a lot to say about it. I won it in a card game, and the previous owner didn’t really give a lick about it. Had Three-Dee running it, and she’s glitchy as hell.”</i>  He shakes his head, <i>\"Frankly, I’m surprised I can even keep the place going.”</i>");
 		output("\n\nYou inquire about who Three-Dee is.");
 		output("\n\nBurt grins,<i> “Three-Dee is a virtual bartender made by Kiha Corp. Stands for Digital Drink Dispenser. Basically she’s a series of robotic limbs worked into the underside of the bar, and a cheap holoprojector with a VI just smart enough to make drinks to order and take credits. But when I got here, she had been hacked so many times that she is pretty unpredictable now. I try to only use her when I need a break.”</i>");
 	}
@@ -1224,7 +1224,7 @@ function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	
-	output("\n\nThis show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.");
+	output("\n\n<i>\"This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.\"</i>");
 	processTime(35);
 	if(9999 == 0) pc.orgasm();
 	else pc.lust(33);

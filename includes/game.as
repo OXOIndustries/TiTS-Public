@@ -12,6 +12,7 @@ public function get canSaveAtCurrentLocation():Boolean
 }
 
 public function mainGameMenu():void {
+	flags["COMBAT MENU SEEN"] = undefined;
 	//Display shit that happened during time passage.
 	if(eventBuffer != "") {
 		clearOutput();
@@ -124,23 +125,30 @@ function rest():void {
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
-function sleep():void {
+function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-
-	clearOutput();
-	if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
-		levelUp();
-		return;
+	var minutes:int = 420 + rand(80) + 1
+	if(outputs) 
+	{
+		clearOutput();
+		if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
+			levelUp();
+			return;
+		}
+		//CELISE NIGHT TIME BEDTIMEZ
+		if(celiseIsCrew())
+		{
+			celiseOffersToBeYourBedSenpai();
+			return;
+		}
+		output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
 	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
 	}
-
 	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
-	var minutes:int = 420 + rand(80) + 1
 	processTime(minutes);
-	output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	this.clearMenuProxy();
 	this.userInterface.addButton(0,"Next",mainGameMenu);
 }
@@ -361,9 +369,9 @@ public function processTime(arg:int):void {
 					else flags["DAYS_SINCE_FED_CUNT_TAIL"]++;
 				}
 				//Reset 'dem venus pitcher hoz
-				if(flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
-				if(flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
+				if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
 			}
 		}
 		arg--;

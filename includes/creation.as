@@ -944,7 +944,9 @@ function takeCelise():void {
 		output("\n\nYou’re too turned on to slow your pace, and you fuck faster and harder, the hot, wet slaps echoing in the metal-encased room as you do your damnedest to bring yourself off in the liquefying goo-girl. The texture inside grows sloppier and wetter, but her swirling caresses move faster and more forcefully, battering your dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" with soaking-wet pleasure. You groan as feel a tongue slide across your belly. Celise has pressed her face into you and is licking everything she can get to while you pump her tit.");
-		output("\n\nIn a violent lunge, Celise stretches up to your shoulders, wrapping her arms around your shoulders to suspend herself there. Your hands and dick{s} slide through her body down into the sopping, lube-leaking flower perched atop the goo mound, and her squeezing ripples grow more powerful. The goo-girl whimpers, <i>“Please, cum in me. I need it sooo bad!”</i> before mashing her lips against your own, the ball-like support beneath her rolling back and forth to slap wetly against you.");
+		output("\n\nIn a violent lunge, Celise stretches up to your shoulders, wrapping her arms around your shoulders to suspend herself there. Your hands and dick");
+		if(pc.cockTotal() > 1) output("s");
+		output(" slide through her body down into the sopping, lube-leaking flower perched atop the goo mound, and her squeezing ripples grow more powerful. The goo-girl whimpers, <i>“Please, cum in me. I need it sooo bad!”</i> before mashing her lips against your own, the ball-like support beneath her rolling back and forth to slap wetly against you.");
 		output("\n\nVacuum-like suction pulls on your dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" as she twists and twirls all around you, and you realize you can hold back no longer. Her tongue is sweet on yours, swirling around your mouth as you throw your head back and cum, pumping a thick batch of protein straight into her dick-suckling snatch. The quivering slit tugs harder on your boner");

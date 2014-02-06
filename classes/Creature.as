@@ -335,6 +335,18 @@
 				case "upperUndergarment":
 					buffer = upperUndergarment.longName;
 					break;
+				case "upperGarment":
+					buffer = upperGarment();
+					break;
+				case "upperGarments":
+					buffer = upperGarments();
+					break;
+				case "lowerGarments":
+					buffer = lowerGarments();
+					break;
+				case "lowerGarment":
+					buffer = lowerGarment();
+					break;
 				case "originalRace":
 					buffer = originalRace;
 					break;
@@ -442,10 +454,12 @@
 					break;
 				case "nippleCockDescript":
 				case "nippleCock":
+				case "dickNipple":
 					buffer = nippleCockDescript();
 					break;
 				case "nippleCocksDescript":
 				case "nippleCocks":
+				case "dickNipples":
 					buffer = pluralize(nippleCockDescript());
 					break;
 				case "eachCock":
@@ -3306,15 +3320,19 @@
 			var weighting: Number = femininity;
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
+				trace("boobs confirmed");
 				if (biggestTitSize() * 2 > 50) weighting += 50;
 				else weighting += biggestTitSize() * 2;
 			}
 			//Flat chest + 20 masculine
-			else if (biggestTitSize() == 0) weighting -= 20;
+			else if (biggestTitSize() == 0) {
+				trace("no boobs confirmed");
+				weighting -= 20;
+			}
 			//Hips give small boost
-			if (hipRating >= 6) weighting += hipRating * 2;
+			if (hipRating >= 6) weighting += hipRating * 1.5;
 			else weighting -= (6 - hipRating) * 3;
-			if (hairLength > 8) weighting += (hairLength - 5) * 2;
+			if (hairLength > 8) weighting += (hairLength - 7) * 2;
 			else weighting -= (8 - hairLength) * 3;
 			if (tone > 70) weighting -= 10;
 			if (tone < 30) weighting += 10;
