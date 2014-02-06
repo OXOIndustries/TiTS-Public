@@ -80,12 +80,22 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_npcBusts);
 			
 			_npcBusts.x = _roomBlock.x + 5;
-			_npcBusts.y = _roomBlock.y + _roomBlock.height; // We're going to "grow" the npcBusts height upward, rather than down like usual
+			_npcBusts.y = _roomBlock.y + _roomBlock.height + 9; // We're going to "grow" the npcBusts height upward, rather than down like usual
+			
+			// Bust mask
+			var bustMask:Sprite = new Sprite();
+			bustMask.graphics.beginFill(0xFFFFFF, 1);
+			bustMask.graphics.drawRect(0, 0, 189, 150);
+			bustMask.graphics.endFill();
+			bustMask.x = _roomBlock.x;
+			bustMask.y = _roomBlock.y;
+			this.addChild(bustMask);
+			_npcBusts.mask = bustMask;
 			
 			// Text Elements
 			_roomText = new TextField();
 			_roomText.x = _roomBlock.x + 5;
-			_roomText.y = _roomBlock.y + 60;
+			_roomText.y = _roomBlock.y + 70; // Was 60, should probably do something different though, an anchor to roomBlock.y, set height to same and textAlign from bottom?
 			_roomText.width = 179;
 			_roomText.height = 90;
 			_roomText.defaultTextFormat = UIStyleSettings.gLocationBlockRoomFormatter;
@@ -241,7 +251,7 @@ package classes.UIComponents.SideBarComponents
 			removeCurrentBusts();
 			
 			// Calculate the initial offset and step values -- working from the zilpack image, each lower layer is x+17,y-5 from the layer above
-			var xStep:int = 17.50;
+			var xStep:int = 17.5;
 			var yStep:int = -2.55;
 			
 			var tarX:int = xStep * (available.length - 1);
@@ -265,7 +275,8 @@ package classes.UIComponents.SideBarComponents
 		{
 			if (_npcBusts.numChildren > 0)
 			{
-				for (var i:int = 0; i < _npcBusts.numChildren; i++)
+				var totalBusts:int = _npcBusts.numChildren;
+				for (var i:int = 0; i < totalBusts; i++)
 				{
 					_npcBusts.removeChildAt(0);
 				}
