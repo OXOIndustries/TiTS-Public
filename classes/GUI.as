@@ -335,7 +335,7 @@
 		
 		private function setupLeftSidebar():void
 		{
-			this._leftSideBar = new LeftSideBar();
+			this._leftSideBar = new LeftSideBar(false);
 			this.titsClassPtr.addChild(_leftSideBar);
 			
 			this._leftSideBar.generalInfoBlock.HideScene();
@@ -1214,9 +1214,14 @@
 			_leftSideBar.encounterBlock.removeGlows();
 		}	
 
-		public function showBust(arg:String):void 
+		public function showBust(... args):void 
 		{
-			_leftSideBar.locationBlock.showBust(arg);			
+			_leftSideBar.locationBlock.showBust(args);			
+		}
+		
+		public function hideBust():void
+		{
+			_leftSideBar.locationBlock.hideBust();
 		}
 
 		//2. DISPLAY STUFF

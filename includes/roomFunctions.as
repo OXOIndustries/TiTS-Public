@@ -34,18 +34,18 @@ function debugMenus():void
 		chars["PC"].shieldsRaw += 5;
 	} );
 	
-	userInterface.addButton(2, "SPACEPRONS", function():void {
-		chars["PC"].lust(5);
+	userInterface.addButton(2, "Show Flahne", function():void {
+		userInterface.showBust("FLAHNE");
 	} );
-	userInterface.addButton(7, "Fapfapfap", function():void {
-		chars["PC"].lust(0, true);
+	userInterface.addButton(7, "Show ZilPack", function():void {
+		userInterface.showBust("ZIL", "ZIL");
 	} );
 	
-	userInterface.addButton(3, "Sleepy", function():void {
-		chars["PC"].energy( -5);
+	userInterface.addButton(3, "Show Zil", function():void {
+		userInterface.showBust("ZIL");
 	} );
-	userInterface.addButton(8, "POWER UP", function():void {
-		chars["PC"].energy(5);
+	userInterface.addButton(8, "Clear Zil", function():void {
+		userInterface.hideBust();
 	} );
 	userInterface.addButton(4, "Effects 1", function():void {
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Does Not Exist", 0, 0, 0, 0, false, "Icon_DoesNotExist", "Missing Icon", false, rand(240));

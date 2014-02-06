@@ -1,5 +1,6 @@
 package classes.UIComponents.SideBarComponents 
 {
+	import classes.VaginaClass;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -139,42 +140,135 @@ package classes.UIComponents.SideBarComponents
 		 * all hide the bust display.
 		 * 
 		 * Currently, the RIVAL images won't be displayed. I'll fix it when I've rigged everything else up.
-		 * @param	name
+		 * @param	args 	Multiple string args targetting bust image classes
 		 */
-		public function showBust(name:String):void
+		public function showBust(busts:Array):void
+		{
+			if (busts.length == 1)
+			{
+				showSingleBust(busts[0]);
+			}
+			else
+			{
+				showMultipleBusts(busts);
+			}
+		}
+		
+		private function showSingleBust(name:String):void
 		{
 			var bustT:Class;
 			var tName:String = "Bust_" + name;
 			
 			if (NPCBustImages[tName] !== undefined)
 			{
-				if (_npcBusts.numChildren > 0)
+				bustT = NPCBustImages[tName];
+				
+				// If there is an existing bust
+				if (_npcBusts.numChildren == 1)
 				{
-					_npcBusts.removeChildAt(0);
+					// If its the same bust we've already got, just make sure its visible
+					if (_npcBusts.getChildAt(0) is bustT)
+					{
+						_npcBusts.visible = true;
+						return;
+					}
+					// Otherwise, clear busts
+					else
+					{
+						removeCurrentBusts();
+					}
+				}
+				// If theres multiple busts present, clear them out
+				else if (_npcBusts.numChildren > 1)
+				{
+					removeCurrentBusts();
 				}
 				
-				bustT = NPCBustImages[tName];
+				// Display the new bust
 				var bustObj = new bustT();
 				_npcBusts.addChild(bustObj);
 				_npcBusts.visible = true;
 			}
 			else
 			{
-				_npcBusts.visible = false;
-				trace("Possible malformed bust image name: " + name);
+				hideBust();
+			}
+		}
+		
+		private function showMultipleBusts(args:Array):void
+		{
+			// Build a list of available busts from the incoming args
+			var available:Array = new Array();
+			
+			for (var i:int = 0; i < args.length; i++)
+			{
+				if (NPCBustImages["Bust_" + args[i]] !== undefined)
+				{
+					available.push(NPCBustImages["Bust_" + args[i]]);
+				}
 			}
 			
-			//this.leftSideBar.sceneTitle.text = this.titsClassPtr.chars[arg].short.toUpperCase()
-			//this.leftSideBar.npcBusts.visible = true;
-			//if(arg == "RIVAL")
-			//{
-				//if(this.titsClassPtr.chars[arg].short == "Jill") 
-					//this.leftSideBar.npcBusts.gotoAndStop(100);
-				//else 
-					//this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
-			//}
-			//else 
-				//this.leftSideBar.npcBusts.gotoAndStop(bustIndex);
+			// We're going to add the images in reverse order, so to check if the busts currently present are the same,
+			// The list should be reversed
+			available.reverse();
+			var listMatch:Boolean = true;
+			
+			if (_npcBusts.numChildren == available.length)
+			{
+				for (var o:int = 0; o < available.length; o++)
+				{
+					if (!(_npcBusts.getChildAt(o) is available[o]))
+					{
+						listMatch = false;
+						return;
+					}
+				}
+			}
+			else
+			{
+				listMatch = false;
+			}
+			
+			// If listMatch is true, the current objects are a match for the target list, so make sure its visible and return
+			if (listMatch == true)
+			{
+				_npcBusts.visible = true;
+				return;
+			}
+			
+			// Otherwise, we need to clear out the existing and add new
+			removeCurrentBusts();
+			
+			// Calculate the initial offset and step values -- working from the zilpack image, each lower layer is x+17,y-5 from the layer above
+			var xStep:int = 17.50;
+			var yStep:int = -2.55;
+			
+			var tarX:int = xStep * (available.length - 1);
+			var tarY:int = yStep * (available.length - 1);
+			
+			for (var b:int = 0; b < available.length; b++)
+			{
+				var bustObj:* = new available[b]();
+				bustObj.x = tarX;
+				bustObj.y = tarY;
+				
+				tarX -= xStep;
+				tarY -= yStep;
+				
+				_npcBusts.addChild(bustObj);
+			}
+			_npcBusts.visible = true;
+		}
+		
+		private function removeCurrentBusts():void
+		{
+			if (_npcBusts.numChildren > 0)
+			{
+				for (var i:int = 0; i < _npcBusts.numChildren; i++)
+				{
+					_npcBusts.removeChildAt(0);
+				}
+			}
 		}
 		
 		public function hideBust():void
