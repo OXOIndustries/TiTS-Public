@@ -21,7 +21,7 @@ function naleenMaleEncounter():void
 	{
 		output("\n\nAs you walk through the jungles, you do your best to keep alert, scanning for the danger that could come from any angle.  You are certain that you sense movement close to your [pc.feet]. You react as quickly as you can, falling into your combat stance and looking around, trying to establish just what it was that you sensed.");
 		output("\n\nAs you do so, something long and sinuous slaps out at you, forcing you to dodge it. You quickly shift back into position as a figure slides out of the undergrowth, revealing itself");
-		if(userInterface.hours < 17) output("in the light.");
+		if(hours < 17) output("in the light.");
 		else output("in the starlight.");
 
 		output("\n\nA form not unlike a gargantuan serpent coils before you, readying itself to strike. You realize that this is no mere snake you’re facing, though. Where the head would be instead rises a masculine torso covered in jet black fur, like a panther’s. He has the face of a human man, but covered in short feline fur, and instead of human ears, feline ones jut from atop his skull. They are currently lying flat, complementing the threatening scowl he’s giving you. His messy hair is long enough to reach his shoulders, held out of the way of his golden eyes by a green headband of woven leaves.");

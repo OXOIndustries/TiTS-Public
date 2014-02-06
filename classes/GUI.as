@@ -342,7 +342,7 @@
 		
 		private function setupLeftSidebar():void
 		{
-			this._leftSideBar = new LeftSideBar(false);
+			this._leftSideBar = new LeftSideBar();
 			this.titsClassPtr.addChild(_leftSideBar);
 			
 			this._leftSideBar.generalInfoBlock.HideScene();
