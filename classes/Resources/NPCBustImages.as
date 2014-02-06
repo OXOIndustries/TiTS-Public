@@ -47,8 +47,5 @@ package classes.Resources
 		
 		[Embed(source = "../../assets/images/npcs/zilMale.png", mimeType = "image/png")]
 		public static var Bust_ZIL:Class;
-		
-		[Embed(source = "../../assets/images/npcs/zilPack.png", mimeType = "image/png")]
-		public static var Bust_ZILPACK:Class;
 	}
 }

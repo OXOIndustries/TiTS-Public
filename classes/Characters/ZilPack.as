@@ -170,7 +170,7 @@
 		{
 			var combatZilPack:ZilPack = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("ZILPACK");
+			kGAMECLASS.userInterface.showBust("ZIL", "ZIL");
 			kGAMECLASS.setLocation("FIGHT:\nTWO ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			combatZilPack.sexualPreferences.setRandomPrefs(3 + rand(3));
 			

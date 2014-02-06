@@ -34,8 +34,8 @@ function debugMenus():void
 		chars["PC"].shieldsRaw += 5;
 	} );
 	
-	userInterface.addButton(2, "Show Flahne", function():void {
-		userInterface.showBust("FLAHNE");
+	userInterface.addButton(2, "Crazy Shit", function():void {
+		userInterface.showBust("ZILFEMALE", "ZIL", "NALEEN");
 	} );
 	userInterface.addButton(7, "Show ZilPack", function():void {
 		userInterface.showBust("ZIL", "ZIL");

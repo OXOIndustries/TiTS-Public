@@ -307,7 +307,7 @@
 		}
 
 		public function getDescription(arg: String, arg2: * ): String {
-			trace("Legacy! Please access object members directly!")
+			//trace("Legacy! Please access object members directly!")
 			var firstLetter: String = arg.substr(0, 1);
 			firstLetter = firstLetter.toLowerCase();
 			var restOfString: String = arg.substr(1, arg.length);
@@ -915,7 +915,7 @@
 			temp += rangedWeapon.evasion;
 			temp += armor.evasion + upperUndergarment.evasion + lowerUndergarment.evasion + accessory.evasion + shield.evasion;
 			if (hasPerk("Agility")) {
-				if (temp *= .2 < 2) temp += 2;
+				if ((temp *= .2) < 2) temp += 2;
 				else temp = Math.round(temp * 1.2);
 			}
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;

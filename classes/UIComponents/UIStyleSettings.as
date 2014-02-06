@@ -21,6 +21,23 @@ package classes.UIComponents
 	 */
 	public class UIStyleSettings 
 	{
+		// Static init backing storage for stuff
+		{
+			UIStyleSettings._gNameHeaderFormatter = null;
+			UIStyleSettings._gStatBlockHeaderFormatter = null;
+			UIStyleSettings._gTooltipHeaderFormatter = null;
+			UIStyleSettings._gLocationBlockRoomFormatter = null;
+			UIStyleSettings._gLocationBlockPlanetSystemFormatter = null;
+			UIStyleSettings._gGeneralInfoLabelFormatter = null;
+			UIStyleSettings._gGeneralInfoValueFormatter = null;
+			UIStyleSettings._gSceneByLabelFormatter = null;
+			UIStyleSettings._gSceneByValueFormatter = null;
+			UIStyleSettings._gRoomLocationTextGlow = null;
+			UIStyleSettings._gButtonGlow = null;
+			UIStyleSettings._gFadeOutColourTransform = null;
+			UIStyleSettings._gWhiteColourTransform = null;
+		}
+		
 		// TITS VALUES
 		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar) -- this was also used for some fade-out colour transforms throughout various parts of the UI code
@@ -56,10 +73,10 @@ package classes.UIComponents
 		public static const UniverseUltraCondensedTFF:String;
 		
 		// Text formatters
-		private static var _gNameHeaderFormatter:TextFormat = undefined;
+		private static var _gNameHeaderFormatter:TextFormat;
 		public static function get gNameHeaderFormatter():TextFormat 
 		{
-			if (UIStyleSettings._gNameHeaderFormatter == undefined)
+			if (UIStyleSettings._gNameHeaderFormatter == null)
 			{
 				UIStyleSettings._gNameHeaderFormatter = new TextFormat();
 				UIStyleSettings._gNameHeaderFormatter.size = 25;
@@ -71,10 +88,10 @@ package classes.UIComponents
 			return UIStyleSettings._gNameHeaderFormatter;
 		}
 		
-		private static var _gStatBlockHeaderFormatter:TextFormat = undefined;
+		private static var _gStatBlockHeaderFormatter:TextFormat;
 		public static function get gStatBlockHeaderFormatter():TextFormat 
 		{
-			if (UIStyleSettings._gStatBlockHeaderFormatter == undefined)
+			if (UIStyleSettings._gStatBlockHeaderFormatter == null)
 			{
 				UIStyleSettings._gStatBlockHeaderFormatter = new TextFormat();
 				UIStyleSettings._gStatBlockHeaderFormatter.size = 14;
@@ -86,10 +103,10 @@ package classes.UIComponents
 			return UIStyleSettings._gStatBlockHeaderFormatter;
 		}
 		
-		private static var _gTooltipHeaderFormatter:TextFormat = undefined;
+		private static var _gTooltipHeaderFormatter:TextFormat;
 		public static function get gTooltipHeaderFormatter():TextFormat 
 		{
-			if (UIStyleSettings._gTooltipHeaderFormatter == undefined)
+			if (UIStyleSettings._gTooltipHeaderFormatter == null)
 			{
 				UIStyleSettings._gTooltipHeaderFormatter = new TextFormat();
 				UIStyleSettings._gTooltipHeaderFormatter.size = 18;
@@ -101,10 +118,10 @@ package classes.UIComponents
 			return UIStyleSettings._gTooltipHeaderFormatter;
 		}
 		
-		private static var _gLocationBlockRoomFormatter:TextFormat = undefined;
+		private static var _gLocationBlockRoomFormatter:TextFormat;
 		public static function get gLocationBlockRoomFormatter():TextFormat 
 		{
-			if (UIStyleSettings._gLocationBlockRoomFormatter == undefined)
+			if (UIStyleSettings._gLocationBlockRoomFormatter == null)
 			{
 				UIStyleSettings._gLocationBlockRoomFormatter = new TextFormat();
 				UIStyleSettings._gLocationBlockRoomFormatter.size = 37;
@@ -116,10 +133,10 @@ package classes.UIComponents
 			return UIStyleSettings._gLocationBlockRoomFormatter;
 		}
 		
-		private static var _gLocationBlockPlanetSystemFormatter:TextFormat = undefined;
+		private static var _gLocationBlockPlanetSystemFormatter:TextFormat;
 		public static function get gLocationBlockPlanetSystemFormatter():TextFormat
 		{
-			if (UIStyleSettings._gLocationBlockPlanetSystemFormatter == undefined)
+			if (UIStyleSettings._gLocationBlockPlanetSystemFormatter == null)
 			{
 				UIStyleSettings._gLocationBlockPlanetSystemFormatter = new TextFormat();
 				UIStyleSettings._gLocationBlockPlanetSystemFormatter.size = 21;
@@ -131,10 +148,10 @@ package classes.UIComponents
 			return UIStyleSettings._gLocationBlockPlanetSystemFormatter;
 		}
 		
-		private static var _gGeneralInfoLabelFormatter:TextFormat = undefined;
+		private static var _gGeneralInfoLabelFormatter:TextFormat;
 		public static function get gGeneralInfoLabelFormatter():TextFormat
 		{
-			if (UIStyleSettings._gGeneralInfoLabelFormatter == undefined)
+			if (UIStyleSettings._gGeneralInfoLabelFormatter == null)
 			{
 				UIStyleSettings._gGeneralInfoLabelFormatter = new TextFormat();
 				UIStyleSettings._gGeneralInfoLabelFormatter.size = 30;
@@ -147,10 +164,10 @@ package classes.UIComponents
 			return UIStyleSettings._gGeneralInfoLabelFormatter;
 		}
 		
-		private static var _gGeneralInfoValueFormatter:TextFormat = undefined;
+		private static var _gGeneralInfoValueFormatter:TextFormat;
 		public static function get gGeneralInfoValueFormatter():TextFormat
 		{
-			if (UIStyleSettings._gGeneralInfoValueFormatter == undefined)
+			if (UIStyleSettings._gGeneralInfoValueFormatter == null)
 			{
 				UIStyleSettings._gGeneralInfoValueFormatter = new TextFormat();
 				UIStyleSettings._gGeneralInfoValueFormatter.size = 21;
@@ -164,10 +181,10 @@ package classes.UIComponents
 			return UIStyleSettings._gGeneralInfoValueFormatter;
 		}
 		
-		private static var _gSceneByLabelFormatter:TextFormat = undefined;
+		private static var _gSceneByLabelFormatter:TextFormat;
 		public static function get gSceneByLabelFormatter():TextFormat 
 		{
-			if (UIStyleSettings._gSceneByLabelFormatter == undefined)
+			if (UIStyleSettings._gSceneByLabelFormatter == null)
 			{
 				UIStyleSettings._gSceneByLabelFormatter = new TextFormat();
 				UIStyleSettings._gSceneByLabelFormatter.size = 20;
@@ -180,10 +197,10 @@ package classes.UIComponents
 			return UIStyleSettings._gSceneByLabelFormatter;
 		}
 		
-		private static var _gSceneByValueFormatter:TextFormat = undefined;
+		private static var _gSceneByValueFormatter:TextFormat;
 		public static function get gSceneByValueFormatter():TextFormat
 		{
-			if (UIStyleSettings._gSceneByValueFormatter == undefined)
+			if (UIStyleSettings._gSceneByValueFormatter == null)
 			{
 				UIStyleSettings._gSceneByValueFormatter = new TextFormat();
 				UIStyleSettings._gSceneByValueFormatter.size = 20;
@@ -197,20 +214,20 @@ package classes.UIComponents
 		}
 		
 		// Glows
-		private static var _gRoomLocationTextGlow:GlowFilter = undefined;
+		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
 		{
-			if (UIStyleSettings._gRoomLocationTextGlow == undefined)
+			if (UIStyleSettings._gRoomLocationTextGlow == null)
 			{
 				UIStyleSettings._gRoomLocationTextGlow = new GlowFilter(UIStyleSettings.gBackgroundColour, 1, 4, 4, 5, 1, false, false);
 			}
 			return UIStyleSettings._gRoomLocationTextGlow;
 		}
 		
-		private static var _gButtonGlow:GlowFilter = undefined;
+		private static var _gButtonGlow:GlowFilter;
 		public static function get gButtonGlow():GlowFilter
 		{
-			if (UIStyleSettings._gButtonGlow == undefined)
+			if (UIStyleSettings._gButtonGlow == null)
 			{
 				UIStyleSettings._gButtonGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 10, 10, 5, 1, false, false);
 			}
@@ -218,10 +235,10 @@ package classes.UIComponents
 		}
 		
 		// Colour Transforms
-		private static var _gFadeOutColourTransform:ColorTransform = undefined;
+		private static var _gFadeOutColourTransform:ColorTransform;
 		public static function get gFadeOutColourTransform():ColorTransform
 		{
-			if (UIStyleSettings._gFadeOutColourTransform == undefined)
+			if (UIStyleSettings._gFadeOutColourTransform == null)
 			{
 				UIStyleSettings._gFadeOutColourTransform = new ColorTransform();
 				UIStyleSettings._gFadeOutColourTransform.color = UIStyleSettings.gForegroundColour;
@@ -229,10 +246,10 @@ package classes.UIComponents
 			return UIStyleSettings._gFadeOutColourTransform;
 		}
 		
-		private static var _gWhiteColourTransform:ColorTransform = undefined;
+		private static var _gWhiteColourTransform:ColorTransform;
 		public static function get gWhiteColourTransform():ColorTransform
 		{
-			if (UIStyleSettings._gWhiteColourTransform == undefined)
+			if (UIStyleSettings._gWhiteColourTransform == null)
 			{
 				UIStyleSettings._gWhiteColourTransform = new ColorTransform();
 				UIStyleSettings._gWhiteColourTransform.color = 0xFFFFFF;

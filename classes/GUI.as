@@ -433,7 +433,7 @@
 		{
 			roomText = title;
 			planetText = planet;
-			system = system;
+			systemText = system;
 		}
 		
 		public function author(name:String):void
@@ -1216,11 +1216,19 @@
 
 		public function showBust(... args):void 
 		{
+			var argS:String = "";
+			for (var i:int = 0; i < args.length; i++)
+			{
+				if (i > 0) argS += ", ";
+				argS += args[i];
+			}
+			trace("showBust called with args: [" + argS + "]");
 			_leftSideBar.locationBlock.showBust(args);			
 		}
 		
 		public function hideBust():void
 		{
+			trace("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
 		}
 

@@ -80,7 +80,7 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_npcBusts);
 			
 			_npcBusts.x = _roomBlock.x + 5;
-			_npcBusts.y = _roomBlock.y;
+			_npcBusts.y = _roomBlock.y + _roomBlock.height; // We're going to "grow" the npcBusts height upward, rather than down like usual
 			
 			// Text Elements
 			_roomText = new TextField();
@@ -186,6 +186,7 @@ package classes.UIComponents.SideBarComponents
 				
 				// Display the new bust
 				var bustObj = new bustT();
+				bustObj.y = -(bustObj.height);
 				_npcBusts.addChild(bustObj);
 				_npcBusts.visible = true;
 			}
@@ -250,7 +251,7 @@ package classes.UIComponents.SideBarComponents
 			{
 				var bustObj:* = new available[b]();
 				bustObj.x = tarX;
-				bustObj.y = tarY;
+				bustObj.y = tarY - bustObj.height;
 				
 				tarX -= xStep;
 				tarY -= yStep;

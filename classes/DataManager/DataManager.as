@@ -56,7 +56,7 @@
 				kGAMECLASS.userInterface.dataButton.Deactivate();
 				kGAMECLASS.userInterface.hideMenus();
 				
-				if (kGAMECLASS.pc.short == "uncreated");
+				if (kGAMECLASS.pc.short == "uncreated")
 				{
 					kGAMECLASS.mainMenu();
 				}
@@ -270,7 +270,7 @@
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
 			dataFile.saveLocation 	= StringUtil.toTitleCase(kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText);
 			
-			if (kGAMECLASS.userInterface.currentPCNotes == undefined || kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
+			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "") dataFile.saveNotes = "No notes available.";
 			else dataFile.saveNotes = kGAMECLASS.userInterface.currentPCNotes;
 			
 			dataFile.playerGender 	= kGAMECLASS.chars["PC"].mfn("M", "F", "A");

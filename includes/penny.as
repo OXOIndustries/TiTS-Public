@@ -177,7 +177,7 @@ function flirtySlutPCsTellPennyFlirts():void {
 //[Yes] (Go Get Spit-Roasted for Penny)
 function getSpitRoastedForPenny():void {
 	clearOutput();
-	this.userInterface.showBust("ZILPACK");
+	this.userInterface.showBust("ZIL", "ZIL");
 	output("<i>“Alright, I hope you weren’t attached to your virginity,”</i>  Penny remarks dryly as she steps out from behind the desk, giving you a good look at her lower body. Her legs are digitigrade, meaning they bend twice, like some earth animals’. Those limbs end with fluffy, sandy, fur-covered paws, unhindered by any kind of footwear. Her pants are baggy around the calves and bottoms to accommodate her unique physiology but tighten up noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it sways enticingly as you follow her into the holding area.");
 	output("\n\nPenny grabs a breathing apparatus off the wall. The device looks like a clear faceplate with a cluster of tubes attached to a number of filters that dangle low. A single black band loops around the back of the head, and a foam and rubber seal is there to fit it to just about any humanoid face. The fox-girl fits it over her muzzle, then opens the door. The musk that rolls out from the cells hits you with all the subtlety of a hammer. You cast a baleful look in Penny’s direction for not offering you any protection, but you’ve already breathed in a deep lungful of the sweet yet musky aroma. Slowly, the musk becomes less noticeable to you, while the sweet notes remain. You can feel your heartbeat in your ears and your ");
 	if(pc.hasCock() || pc.hasVagina()) output("genitals engorge with heat, puffy and sensitive");
@@ -290,7 +290,7 @@ function getSpitRoastedForPenny():void {
 //[Next]
 function getFucked4PennyEpilogue():void {
 	clearOutput();
-	this.userInterface.showBust("ZILPACK");
+	this.userInterface.showBust("ZIL", "ZIL");
 	output("You wake to the sound of flesh impacting flesh, the hard clap of it ringing out through the confined prison. Your jaw and [pc.vagOrAss] are both incredibly sore and dripping, though there is a palpable, satisfying tingle coming from both orifices to make it more bearable. Looking over, you see Penny entangled with one of the zil, legs splayed as she grapples with him, slapping him across the face repeatedly.");
 	output("\n\n<i>“You jackasses! You damn near fucked [pc.name] to death! Look at " + pc.mf("him","her") + ", not a single spot that isn’t sticky!</i>  Penny slaps the zil again. <i>“What do you have to say for yourself?”</i> ");
 	output("\n\nThe zil, looking confused and hurt, answers, <i>“Is custom when meeting other tribes. Sex establishes dominance and who is to be obeyed. Even though you’re aliens, we assumed you worked the same. We thought if we could dominate you, you would acknowledge us and leave.”</i>  He slumps, looking defeated.");
@@ -337,7 +337,7 @@ function fightDemZil():void {
 
 function seriouslyFightTheZil():void {
 	clearOutput();
-	this.userInterface.showBust("ZILPACK");
+	this.userInterface.showBust("ZIL", "ZIL");
 	//[Fight Them (Confirmed)]
 	output("The fairly buxom fox gets up, giving you a good look at her lower body. Her legs are obviously digitigrade like those of an animal, capped off by large, fluffy, fur-covered paws, uncovered by any kind of shoe. Her pants are baggy around the leg to accommodate her unique physiology, but they tighten up quite noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it wags slightly as you follow her into the holding area.");
 	
