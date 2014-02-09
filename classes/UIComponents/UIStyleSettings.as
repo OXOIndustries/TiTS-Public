@@ -32,6 +32,8 @@ package classes.UIComponents
 			UIStyleSettings._gGeneralInfoValueFormatter = null;
 			UIStyleSettings._gSceneByLabelFormatter = null;
 			UIStyleSettings._gSceneByValueFormatter = null;
+			UIStyleSettings._gButtonBodyLabelFormatter = null;
+			UIStyleSettings._gButtonBindLabelFormatter = null;
 			UIStyleSettings._gRoomLocationTextGlow = null;
 			UIStyleSettings._gButtonGlow = null;
 			UIStyleSettings._gFadeOutColourTransform = null;
@@ -54,6 +56,9 @@ package classes.UIComponents
 		public static var gMainTextColour:uint   			= 0xFFFFFF;
 		public static var gUIBarTextColour:uint  			= 0xFFFFFF;
 		public static var gStatusBarTextColour:uint 		= 0xFFFFFF;
+		
+		// Specialist font/tweaked colours for certain UI elements
+		public static var gBlueBindColour:uint				= 0x6699FF;
 		
 		// Font Faces
 		[Embed(source = "../../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
@@ -211,6 +216,39 @@ package classes.UIComponents
 				UIStyleSettings._gSceneByValueFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gSceneByValueFormatter;
+		}
+		
+		private static var _gButtonBodyLabelFormatter:TextFormat;
+		public static function get gButtonBodyLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gButtonBodyLabelFormatter == null)
+			{
+				UIStyleSettings._gButtonBodyLabelFormatter = new TextFormat();
+				UIStyleSettings._gButtonBodyLabelFormatter.size = 21;
+				UIStyleSettings._gButtonBodyLabelFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gButtonBodyLabelFormatter.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gButtonBodyLabelFormatter.leading = 11;
+				UIStyleSettings._gButtonBodyLabelFormatter.kerning = true;
+				UIStyleSettings._gButtonBodyLabelFormatter.bold = true;
+				UIStyleSettings._gButtonBodyLabelFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gButtonBodyLabelFormatter;
+		}
+		
+		private static var _gButtonBindLabelFormatter:TextFormat;
+		public static function get gButtonBindLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gButtonBindLabelFormatter == null)
+			{
+				UIStyleSettings._gButtonBindLabelFormatter = new TextFormat();
+				UIStyleSettings._gButtonBindLabelFormatter.size = 14;
+				UIStyleSettings._gButtonBindLabelFormatter.color = UIStyleSettings.gBlueBindColour;
+				UIStyleSettings._gButtonBindLabelFormatter.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gButtonBindLabelFormatter.leading = 37;
+				UIStyleSettings._gButtonBindLabelFormatter.kerning = true;
+				UIStyleSettings._gButtonBindLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gButtonBindLabelFormatter;
 		}
 		
 		// Glows
