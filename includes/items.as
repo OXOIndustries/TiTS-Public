@@ -233,20 +233,6 @@ function inventory():void {
 			}
 		}
 	}
-	var button:int = -1;
-	for(x = 0; x < 30; x++) {
-		if(this.userInterface.buttonData[x].caption.text != "") {
-			button = x;
-		}
-	}
-	button++;
-	
-	
-	
-	
-	
-	
-	
 	
 	//Set user and target.
 	itemUser = pc;

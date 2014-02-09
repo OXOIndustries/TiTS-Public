@@ -276,7 +276,6 @@
 				mainMenu();
 			}
 		}
-
 		
 		public function buttonClick(evt:MouseEvent):void {
 			if(!inCombat()) 
@@ -355,20 +354,9 @@
 			this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
-		public function pageNextButtonKeyEvt():void
-		{
-			if(this.userInterface.buttonPageNext.alpha == 1) this.userInterface.pageButtons();
-		}
-		public function pagePrevButtonKeyEvt():void
-		{
-			if(this.userInterface.buttonPagePrev.alpha == 1) this.userInterface.pageButtons(false);
-		}
 		public function spacebarKeyEvt():void
 		{
-			//Space pressed
-			if(this.userInterface.buttons[0].caption.text == "Next") pressButton(0);
-			else if(this.userInterface.buttons[14].caption.text == "Back") pressButton(14);
-			else if(this.userInterface.buttons[14].caption.text == "Leave") pressButton(14);
+			this.userInterface.SpacebarEvent();
 		}
 
 		// Proxy through and tweak the input manager along the way
@@ -382,118 +370,6 @@
 			this.inputManager.ignoreInputKeys(false);
 			this.userInterface.removeInput();
 		}
-		/*
-		//2. KEYBOARD STUFF
-		//Handle all key presses!
-		public function keyPress(evt:KeyboardEvent):void {
-			if(stage.contains(this.userInterface.textInput)) 
-				return;
-			var keyTemp;
-			switch (evt.keyCode) {
-				//Up
-				case 38:
-					upScrollText();
-					break;
-				//Down
-				case 40:
-					downScrollText();
-					break;
-				//PgDn
-				case 34:
-					this.pageDownScroll()
-					break;
-				//PgUp
-				case 33:
-					this.pageUpScroll()
-					break;
-				//Home
-				case 36:
-					this.homeButtonScroll()
-					break;
-				//End
-				case 35:
-					this.endButtonScroll()
-					break;
-				//New page (6)
-				case 54:
-					this.pageNextButtonKeyEvt()
-					break;
-				//Back page (5)
-				case 89:
-					this.pagePrevButtonKeyEvt()
-					break;
-				//1
-				case 49:
-					pressButton(0);
-					break;
-				//2
-				case 50:
-					pressButton(1);
-					break;
-				//3
-				case 51:
-					pressButton(2);
-					break;
-				//4
-				case 52:
-					pressButton(3);
-					break;
-				//5
-				case 53:
-					pressButton(4);
-					break;
-				//q
-				case 81:
-					pressButton(5);
-					break;
-				//w
-				case 87:
-					pressButton(6);
-					break;
-				//e
-				case 69:
-					pressButton(7);
-					break;
-				//r
-				case 82:
-					pressButton(8);
-					break;
-				//t
-				case 84:
-					pressButton(9);
-					break;
-				//a
-				case 65:
-					pressButton(10);
-					break;
-				//s
-				case 83:
-					pressButton(11);
-					break;
-				//d
-				case 68:
-					pressButton(12);
-					break;
-				//f
-				case 70:
-					pressButton(13);
-					break;
-				//g
-				case 71:
-					pressButton(14);
-					break;
-				//Space = Back/Next
-				case 32:
-					this.spacebarKeyEvt()
-					break;
-				case 80:
-					this.userInterface.debugmm();
-				default:
-					trace("Key pressed! Keycode: " + evt.keyCode);
-					break;
-			}
-		}
-		*/
 
 		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
 		//Button the up arrow!
@@ -506,19 +382,13 @@
 			this.userInterface.mainTextField.scrollV++;
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
-		public function pressButton(arg:int = 0):void {
-			
-			if(arg >= this.userInterface.buttons.length || arg < 0) return;
-			if(this.userInterface.buttons[arg].func == undefined) 
+		public function pressButton(arg:int = 0):void 
+		{
+			if (this.userInterface.PressButton(arg))
 			{
-				trace("Undefined button pressed! Something went wrong!");
-				return;
+				if (!inCombat()) this.userInterface.showBust("none");
+				updatePCStats();
 			}
-			if(!inCombat()) 
-				this.userInterface.showBust("none");
-			if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
-			else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
-			updatePCStats();
 		}
 
 		//3. SCROLL WHEEL STUFF

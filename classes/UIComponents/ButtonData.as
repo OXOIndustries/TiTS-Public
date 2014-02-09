@@ -1,4 +1,4 @@
-package UIComponents 
+package classes.UIComponents 
 {
 	/**
 	 * ...
@@ -40,11 +40,26 @@ package UIComponents
 		
 		public function ButtonData() 
 		{
-			_tooltipBody = "";
-			_tooltipHeader = "";
-			_function = null;
-			_argument = null;
-			_labelText = "";
+			this.clearData();
+		}
+		
+		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
+		{
+			this.labelText = cap;
+			this.func = func;
+			this.arg = arg;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+		}
+		
+		public function clearData():void
+		{
+			this.labelText = "";
+			this.tooltipBody = "";
+			this.tooltipHeader = "";
+			this.func = null;
+			this.arg = null;
+			this.labelText = "";
 		}
 		
 	}

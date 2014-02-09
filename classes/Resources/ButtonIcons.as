@@ -26,6 +26,18 @@ package classes.Resources
 		
 		[Embed(source = "../../assets/icons/buttons/stats.svg", mimeType = "image/svg")]
 		public static var Icon_Stats:Class;
+		
+		[Embed(source = "../../assets/icons/buttons/buttonPagePrev.svg", mimeType = "image/svg")]
+		public static var Icon_ButtonsPrev:Class;
+		
+		[Embed(source = "../../assets/icons/buttons/buttonPageNext.svg", mimeType = "image/svg")]
+		public static var Icon_ButtonsNext:Class;
+		
+		[Embed(source = "../../assets/icons/buttons/textPagePrev.svg", mimeType = "image/svg")]
+		public static var Icon_TextPrev:Class;
+		
+		[Embed(source = "../../assets/icons/buttons/textPageNext.svg", mimeType = "image/svg")]
+		public static var Icon_TextNext:Class;
 	}
 
 }

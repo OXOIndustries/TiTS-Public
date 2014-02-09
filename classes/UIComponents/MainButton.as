@@ -174,6 +174,20 @@ package classes.UIComponents
 			_buttonBindLabel.visible = !_buttonBindLabel.visible;
 		}
 		
+		public function showBindRing():void
+		{
+			_buttonBindRing.visible = true;
+			_buttonBindInner.visible = true;
+			_buttonBindLabel.visible = true;
+		}
+		
+		public function hideBindRing():void
+		{
+			_buttonBindRing.visible = false;
+			_buttonBindInner.visible = false;
+			_buttonBindLabel.visible = false;
+		}
+		
 		/**
 		 * Set the underlying colour of the button
 		 */
@@ -184,6 +198,39 @@ package classes.UIComponents
 			
 			_buttonBody.transform.colorTransform = clrTrans;
 			_buttonBindRing.transform.colorTransform = clrTrans;
+		}
+		
+		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
+		{
+			this.buttonText = cap;
+			this.func = func;
+			this.arg = arg;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+			
+			this.alpha = 1.0;
+			this.buttonMode = true;
+		}
+		
+		public function setDisabledData(cap:String = "", ttHeader:String = "", ttBody:String = ""):void
+		{
+			this.clearData();
+			this.buttonText = cap;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+		}
+		
+		public function clearData():void
+		{
+			this.buttonText = "";
+			this.func = undefined;
+			this.arg = undefined;
+			this.tooltipBody = "";
+			this.tooltipHeader = "";
+			
+			// Activity settings n shit
+			this.alpha = 0.3;
+			this.buttonMode = false;
 		}
 	}
 

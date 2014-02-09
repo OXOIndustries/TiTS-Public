@@ -126,6 +126,7 @@ package classes.UIComponents
 			this.DeGlow();
 			this._icon.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
 			this._background.alpha = 0.3;
+			this.buttonMode = false;
 		}
 		
 		/**
@@ -135,6 +136,7 @@ package classes.UIComponents
 		{
 			this._icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 			this._background.alpha = 1;
+			this.buttonMode = true;
 		}
 		
 		/**

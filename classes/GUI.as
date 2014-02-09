@@ -3,6 +3,7 @@
 
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
+	import classes.UIComponents.ButtonTray;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
@@ -65,23 +66,12 @@
 
 		var textInput:TextField;
 		
-		var buttonDrawer:BottomButtonDrawer;
-		var buttons:Array;
-		var buttonData:Array;
-		var buttonPage:int;
-		var buttonTooltip:ButtonTooltips;
-		
 		private var titsPurple:*;
 		private var titsBlue:*;
 		private var titsWhite:*;
 		
-		var buttonPagePrev:leftButton;
-		var buttonPageNext:rightButton;
 		var pagePrev:leftButton;
 		var pageNext:rightButton;
-
-		private var _rightSideBar:RightSideBar;
-		private var _leftSideBar:LeftSideBar;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -107,13 +97,24 @@
 
 		var titsClassPtr:*;
 		var stagePtr:*;
-
+		
+		// REFACTORED SHIT BELOW THIS LINE YO
+		private var _rightSideBar:RightSideBar;
+		private var _leftSideBar:LeftSideBar;
+		private var _buttonTray:ButtonTray;
+		
+		private var buttonTooltip:ButtonTooltips;
+		
+		private var buttonHandler:Function;
+		
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
 		{
 			// Pointer to the TiTS class
 			// this is THE MOST HORRIBLE WORK-AROUND EVEN THEORETICALLY POSSIBLE.
 			this.titsClassPtr = titsClassPtrArg;
 			this.stagePtr = stagePtrArg;
+			
+			buttonHandler = titsClassPtr.buttonClick;
 
 			//Lazy man state checking
 			this.showingPCAppearance = false;
@@ -131,21 +132,9 @@
 			this.authorBuffer = new Array("","","","");
 			this.textPage = 4;
 
-			this.buttonDrawer = new BottomButtonDrawer;
-			this.titsClassPtr.addChild(buttonDrawer);
-			this.buttonDrawer.x = 0;
-			this.buttonDrawer.y = 800;
-
 			//Build the buttons
-			buttonTooltip = new ButtonTooltips();
-			buttonTooltip.x = 5000;
-			titsClassPtr.addChild(buttonTooltip);
-			titsClassPtr.removeChild(buttonTooltip);
-			
-			this.buttons = new Array();
-			this.buttonData = new Array();
-			this.buttonPage = 1;
-			this.initializeButtons();
+			this.ConfigureTooltip();
+			this.ConfigureButtons();
 			
 			this.titsPurple = new ColorTransform();
 			this.titsBlue = new ColorTransform();
@@ -161,39 +150,6 @@
 			this.ConfigureLeftBarTooltips();
 			
 			this.hidePCStats();
-
-			// Setup the button page controls in the button tray
-			this.buttonPageNext = new rightButton;
-			this.buttonPageNext.name = "buttonPageNext";
-			this.buttonPageNext.alpha = .3;
-			this.buttonPageNext.x = 1100;
-			this.buttonPageNext.y = 750;
-			this.titsClassPtr.addChild(this.buttonPageNext);
-			AttachTooltipListeners(this.buttonPageNext);
-
-			this.buttonPagePrev = new leftButton;
-			this.buttonPageNext.name = "buttonPagePrev";
-			this.buttonPagePrev.alpha = .3;
-			this.buttonPagePrev.x = 1000;
-			this.buttonPagePrev.y = 750;
-			this.titsClassPtr.addChild(this.buttonPagePrev);
-			AttachTooltipListeners(this.buttonPagePrev);
-
-			this.pageNext = new rightButton;
-			this.pageNext.name = "bufferPageNext";
-			this.pageNext.alpha = .3;
-			this.pageNext.x = 110;
-			this.pageNext.y = 750;
-			this.titsClassPtr.addChild(this.pageNext);
-			AttachTooltipListeners(this.pageNext);
-
-			this.pagePrev = new leftButton;
-			this.pagePrev.name = "bufferPagePrev";
-			this.pagePrev.alpha = .3;
-			this.pagePrev.x = 010;
-			this.pagePrev.y = 750;
-			this.titsClassPtr.addChild(this.pagePrev);
-			AttachTooltipListeners(this.pagePrev);
 
 			//Set up the main text field
 			this.format1 = new TextFormat();
@@ -360,6 +316,22 @@
 			this.ConfigureLeftBarListeners();
 		}
 		
+		private function ConfigureTooltip():void 
+		{
+			this.buttonTooltip = new ButtonTooltips();
+			buttonTooltip.x = 5000;
+			titsClassPtr.addChild(buttonTooltip);
+			titsClassPtr.removeChild(buttonTooltip);
+		}
+		
+		private function ConfigureButtons():void
+		{
+			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick);
+			this.titsClassPtr.addChild(_buttonTray);
+			this._buttonTray.x = 0;
+			this._buttonTray.y = 800;
+		}
+		
 		/**
 		 * Add the standard button listeners for the left hand menu
 		 */
@@ -455,95 +427,34 @@
 			_leftSideBar.generalInfoBlock.ShowScene();
 		}
 		
-		//Build the main 15 buttons!
-		public function initializeButtons():void 
+		// Useful methods to paste over some issues throughout the codebase whilst mid-refactor
+		
+		// Find any applicable button that the spacebar key handler could target, and activate it
+		public function SpacebarEvent():void
 		{
-			trace("Initializing buttons")
-			var temp = 0;
-			//X and Y values for our buttons.
-			var ex:int = 52;
-			var why:int = 650;
-			var texts:String = "Random#: ";
-			while (temp < 60) {
-				buttonData[temp] = new purpleButton;
-				temp++;
-			}
-			temp = 0;
-			while (temp < 15) {
-				//Adjust for new rows
-				if(temp % 5 == 0 && temp > 0) {
-					ex -= 790;
-					why += 50;
-				}
-				//Add on from previous button value.
-				ex += 158;
-				
-				if (temp == 6 || temp == 10 || temp == 11 || temp == 12) {
-					buttons[temp] = new purpleButton;
-				}
-				else {
-					buttons[temp] = new blueButton;
-				}
-				this.titsClassPtr.addChild(buttons[temp]);
-				
-				buttons[temp].addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
-				buttons[temp].addEventListener(MouseEvent.ROLL_OUT, this.buttonTooltip.eventHandler);
-				
-				buttons[temp].caption.htmlText = texts + String(Math.round(Math.random()*10));
-				buttons[temp].x = ex;
-				buttons[temp].y = why;
-				buttons[temp].mouseChildren = false;
-				//Add hotkey tags as appropriate.
-				switch(temp) 
-				{
-					case 0:
-							buttons[temp].hotkey.text = "1";
-							break;
-					case 1:
-							buttons[temp].hotkey.text = "2";
-							break;
-					case 2:
-							buttons[temp].hotkey.text = "3";
-							break;
-					case 3:
-							buttons[temp].hotkey.text = "4";
-							break;
-					case 4:
-							buttons[temp].hotkey.text = "5";
-							break;
-					case 5:
-							buttons[temp].hotkey.text = "Q";
-							break;
-					case 6:
-							buttons[temp].hotkey.text = "W";
-							break;
-					case 7:
-							buttons[temp].hotkey.text = "E";
-							break;
-					case 8:
-							buttons[temp].hotkey.text = "R";
-							break;
-					case 9:
-							buttons[temp].hotkey.text = "T";
-							break;
-					case 10:
-							buttons[temp].hotkey.text = "A";
-							break;
-					case 11:
-							buttons[temp].hotkey.text = "S";
-							break;
-					case 12:
-							buttons[temp].hotkey.text = "D";
-							break;
-					case 13:
-							buttons[temp].hotkey.text = "F";
-							break;
-					case 14:
-							buttons[temp].hotkey.text = "G";
-							break;
-				}
-				temp++;
-			}
+			throw new Error("SpacebarEvent Not Implemented Yet");
+			
+			// Check buttonIdx's 0 & 14 for the text "Next", "Back" and "Leave", activate if present
+		}
+		
+		public function PressButton(arg:int):Boolean
+		{
+			throw new Error("PressButton Not Implemented Yet");
+			
+			// Attempt to trigger the button activator for button index "arg"
+			
+			//if(arg >= this.userInterface.buttons.length || arg < 0) return;
+			//if(this.userInterface.buttons[arg].func == undefined) 
+			//{
+				//trace("Undefined button pressed! Something went wrong!");
+				//return;
+			//}
+			//if(!inCombat()) 
+				//this.userInterface.showBust("none");
+			//if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
+			//else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
+			//updatePCStats();
+			
 		}
 
 		public function hideTooltip():void
@@ -587,108 +498,17 @@
 		}
 
 		//1. BUTTON STUFF
-		public function clearMenu():void {
-			for(var x:int = 0; x < buttons.length ;x++) {
-				buttons[x].func = undefined;
-				buttons[x].arg = undefined;
-				buttons[x].alpha = .3;
-				buttons[x].caption.text = "";
-				buttons[x].buttonMode = false;
-				while(buttons[x].hasEventListener(MouseEvent.CLICK)) buttons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-			}
-			for(x = 0; x < buttonData.length; x++) {
-				buttonData[x].func = undefined;
-				buttonData[x].arg = undefined;
-				buttonData[x].caption.text = "";
-			}
-			menuPageChecker();
+		public function clearMenu():void 
+		{
+			_buttonTray.clearButtons();
 		}
 		
 		//Used for ghost menus in main menu and options.
-		public function clearGhostMenu():void {
-			for(var x:int = 0; x < buttons.length ;x++) {
-				buttons[x].func = undefined;
-				buttons[x].arg = undefined;
-				buttons[x].alpha = .3;
-				buttons[x].caption.text = "";
-				buttons[x].buttonMode = false;
-				while(buttons[x].hasEventListener(MouseEvent.CLICK)) buttons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-			}
-			//menuPageChecker();
+		public function clearGhostMenu():void 
+		{
+			_buttonTray.clearGhostButtons();
 		}
 
-		public function forwardPageButtons(e:MouseEvent):void {
-			pageButtons();
-		}
-		
-		public function backPageButtons(e:MouseEvent):void {
-			pageButtons(false);
-		}
-
-		public function menuPageChecker():void {
-			var lastButton:int = 0;
-			for(var x:int = 0; x < buttonData.length; x++) {
-				if(buttonData[x].caption.text != "") {
-					lastButton = x;
-				}
-			}
-			//If you can go right still.
-			if((lastButton + 1)/15 > buttonPage) {
-				if(buttonPageNext.alpha != 1) {
-					buttonPageNext.addEventListener(MouseEvent.CLICK,forwardPageButtons);
-					buttonPageNext.alpha = 1;
-					buttonPageNext.buttonMode = true;
-				}
-			}
-			//If you can't go right but the button aint turned off.
-			else if(buttonPageNext.alpha != .3) {
-				buttonPageNext.removeEventListener(MouseEvent.CLICK,forwardPageButtons);
-				buttonPageNext.alpha = .3;
-				buttonPageNext.buttonMode = false;
-			}
-			//Left hooo!
-			if(buttonPage != 1) {
-				if(buttonPagePrev.alpha != 1) {
-					buttonPagePrev.addEventListener(MouseEvent.CLICK,backPageButtons);
-					buttonPagePrev.alpha = 1;
-					buttonPagePrev.buttonMode = true;
-				}
-			}
-			//If you can't go right but the button aint turned off.
-			else if(buttonPagePrev.alpha != .3) {
-				buttonPagePrev.removeEventListener(MouseEvent.CLICK,backPageButtons);
-				buttonPagePrev.alpha = .3;
-				buttonPagePrev.buttonMode = false;
-			}
-		}
-
-		public function pageButtons(forward:Boolean = true):void {
-			if(forward) buttonPage++;
-			else buttonPage--;
-			if(buttonPage < 1) buttonPage = 1;
-			else if(buttonPage > 4) buttonPage = 4;
-			var diff:int = (buttonPage-1) * 15;
-			for(var x:int = 0; x < buttons.length ;x++) {
-				buttons[x].func = buttonData[x+diff].func;
-				//Inactive button gets put transparent and listeners removed.
-				if(buttonData[x+diff].caption.text == "" || buttonData[x+diff].func == undefined) {
-					buttons[x].alpha = .3;
-					buttons[x].caption.text = buttonData[x+diff].caption.text;
-					while(buttons[x].hasEventListener(MouseEvent.CLICK)) buttons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-					buttons[x].buttonMode = false;
-				}
-				else {
-					buttons[x].arg = buttonData[x+diff].arg;
-					buttons[x].alpha = 1;
-					buttons[x].buttonMode = true;
-					buttons[x].caption.text = buttonData[x+diff].caption.text;
-					buttons[x].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				}
-			}
-			//Check back/next buttons
-			menuPageChecker();
-		}
-			
 		public var mainTextStylesheet:StyleSheet = new StyleSheet();
 		
 		public function prepTextField(arg:TextField):void 
@@ -719,63 +539,31 @@
 			arg.visible = false;
 		}
 
-		public function addButton(slot:int,cap:String = "",func = undefined,arg = undefined):void {
-			if(slot <= 14) {
-				buttons[slot].alpha = 1;
-				buttons[slot].caption.text = cap;
-				buttons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				buttons[slot].func = func;
-			
-				buttons[slot].arg = arg;
-			
-				buttons[slot].buttonMode = true;
-			}	
-			buttonData[slot].func = func;
-			buttonData[slot].arg = arg;
-			buttonData[slot].caption.text = cap;
-			menuPageChecker();
+		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void 
+		{
+			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
-		public function hasButton(slot:int):Boolean {
-			if(buttons[slot].alpha > 0) return true;
-			return false;
-		}
+		//public function hasButton(slot:int):Boolean {
+			//if(buttons[slot].alpha > 0) return true;
+			//return false;
+		//}
 		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{
-			for(var x:int = buttonData.length; x >= 0; x--) {
-				if(buttonData[x].caption.text != "") break;
-			}
-			if(buttonData[x].caption.text == "" && x == 0) x = -1;
-			return x;
+			return _buttonTray.lastButton();
 		}
 		
-		public function addDisabledButton(slot:int,cap:String = ""):void {
-			if(slot <= 14) {
-				buttons[slot].alpha = .3;
-				buttons[slot].caption.text = cap;
-				//buttons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				buttons[slot].func = undefined;
-				buttons[slot].arg = undefined;
-				buttons[slot].buttonMode = false;
-			}	
-			buttonData[slot].func = undefined;
-			buttonData[slot].arg = undefined;
-			buttonData[slot].caption.text = cap;
-			menuPageChecker();
+		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = "", ttBody:String = ""):void 
+		{
+			_buttonTray.addDisabledButton(slot, cap, ttHeader, ttBody);
 		}
 		
 		//Ghost button - used for menu buttons that overlay the normal buttons. 
-		public function addGhostButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
+		public function addGhostButton(slot:int, cap:String = "", func = undefined, arg = undefined, ttHeader:String = "", ttBody:String = ""):void 
 		{
-			if(slot > 14) return;
-			buttons[slot].alpha = 1;
-			buttons[slot].caption.text = cap;
-			buttons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-			buttons[slot].func = func;
-			buttons[slot].arg = arg;
-			buttons[slot].buttonMode = true;
+			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
 		public function addMainMenuButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
@@ -863,9 +651,9 @@
 			textInput.visible = true;
 			menuButtonsOff();
 			appearanceOff();
-			for (var x:int = 0; x < 15; x++) {
-				buttons[x].hotkey.text = "-";
-			}
+			
+			_buttonTray.hideKeyBinds();
+			
 			this.stagePtr.focus = textInput;
 			textInput.text = "";
 			textInput.maxChars = 0;
@@ -876,21 +664,7 @@
 			this.titsClassPtr.removeChild(textInput);
 			menuButtonsOn();
 
-			buttons[0].hotkey.text = "1";
-			buttons[1].hotkey.text = "2";
-			buttons[2].hotkey.text = "3";
-			buttons[3].hotkey.text = "4";
-			buttons[4].hotkey.text = "5";
-			buttons[5].hotkey.text = "Q";
-			buttons[6].hotkey.text = "W";
-			buttons[7].hotkey.text = "E";
-			buttons[8].hotkey.text = "R";
-			buttons[9].hotkey.text = "T";
-			buttons[10].hotkey.text = "A";
-			buttons[11].hotkey.text = "S";
-			buttons[12].hotkey.text = "D";
-			buttons[13].hotkey.text = "F";
-			buttons[14].hotkey.text = "G";
+			_buttonTray.showKeyBinds();
 		}
 
 		//Used to adjust position of scroll bar!
@@ -961,13 +735,8 @@
 		public function hideNormalDisplayShit():void 
 		{
 			//Hide all current buttons
-			for(var x:int = 0; x < buttons.length ;x++) {
-				buttons[x].func = undefined;
-				buttons[x].alpha = .3;
-				buttons[x].caption.text = "";
-				while(buttons[x].hasEventListener(MouseEvent.CLICK)) buttons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				buttons[x].buttonMode = false;
-			}
+			_buttonTray.clearGhostButtons();
+			
 			//Hide scrollbar & main text!
 			upScrollButton.visible = false;
 			downScrollButton.visible = false;
@@ -976,10 +745,10 @@
 			mainTextField.visible = false;
 			mainTextField2.visible = false;
 			//Page buttons invisible!
-			buttonPageNext.visible = false;
-			buttonPagePrev.visible = false;
-			pageNext.visible = false;
-			pagePrev.visible = false;
+			_buttonTray.buttonPageNext.Deactivate();
+			_buttonTray.buttonPagePrev.Deactivate();
+			_buttonTray.textPageNext.Deactivate();
+			_buttonTray.textPagePrev.Deactivate();
 		}
 
 		public function menuButtonsOn():void 
@@ -1046,31 +815,10 @@
 			}
 			
 			//Turn buttons back on
-			var diff:int = (buttonPage-1) * 15;
-			for(x = 0; x < buttons.length ;x++) {
-				buttons[x].func = buttonData[x+diff].func;
-				//Inactive button gets put transparent and listeners removed.
-				if(buttonData[x+diff].func != undefined) {
-					buttons[x].arg = buttonData[x+diff].arg;
-					buttons[x].alpha = 1;
-					buttons[x].buttonMode = true;
-					buttons[x].caption.text = buttonData[x+diff].caption.text;
-					buttons[x].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				}
-				else {
-					buttons[x].arg = undefined;
-					buttons[x].alpha = .3;
-					buttons[x].buttonMode = false;
-					buttons[x].caption.text = "";
-					buttons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				}
-			}
-			//Page buttons visible and updated!
-			buttonPageNext.visible = true;
-			buttonPagePrev.visible = true;
-			menuPageChecker();
-			pageNext.visible = true;
-			pagePrev.visible = true;
+			_buttonTray.resetButtons();
+			_buttonTray.textPageNext.Activate();
+			_buttonTray.textPagePrev.Activate();
+			
 			menuButtonsOn();
 			_leftSideBar.appearanceButton.DeGlow();
 			titsClassPtr.bufferButtonUpdater();
@@ -1103,25 +851,11 @@
 				this.mainMenuButtons[x].visible = false;
 			}
 			
-			//Turn buttons back on
-			var diff:int = (buttonPage-1) * 15;
-			for(x = 0; x < buttons.length ;x++) {
-				buttons[x].func = buttonData[x+diff].func;
-				//Inactive button gets put transparent and listeners removed.
-				if(buttonData[x+diff].func != undefined) {
-					buttons[x].arg = buttonData[x+diff].arg;
-					buttons[x].alpha = 1;
-					buttons[x].buttonMode = true;
-					buttons[x].caption.text = buttonData[x+diff].caption.text;
-					buttons[x].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				}
-			}
+			_buttonTray.resetButtons();
+			
 			//Page buttons visible and updated!
-			buttonPageNext.visible = true;
-			buttonPagePrev.visible = true;
-			menuPageChecker();
-			pageNext.visible = true;
-			pagePrev.visible = true;
+			_buttonTray.textPageNext.visible = true;
+			_buttonTray.textPagePrev.visible = true;
 			menuButtonsOn();
 			_leftSideBar.menuButton.DeGlow();
 			titsClassPtr.bufferButtonUpdater();
