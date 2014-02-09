@@ -14,6 +14,8 @@ package classes.UIComponents
 		private var _buttons:Vector.<MainButton>;
 		private var _buttonData:Vector.<ButtonData>;
 		
+		private var _defaultHotkeys:Array = ["1", "2", "3", "4", "5", "Q", "W", "E", "R", "T", "A", "S", "D", "F", "G"];
+		
 		public function ButtonTray() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -61,6 +63,7 @@ package classes.UIComponents
 				_buttons.push(newBtn);
 				
 				newBtn.buttonText = "Button " + String(btn);
+				newBtn.hotkeyText = _defaultHotkeys[btn];
 			}
 		}
 	}
