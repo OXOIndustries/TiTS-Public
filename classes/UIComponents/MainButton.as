@@ -90,6 +90,8 @@ package classes.UIComponents
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
+			this.mouseChildren = false;
+			
 			this.BuildBody();
 		}
 		
@@ -142,6 +144,20 @@ package classes.UIComponents
 			_buttonBindLabel.wordWrap = false;
 			_buttonBindLabel.text = "?";
 			this.addChild(_buttonBindLabel);
+		}
+		
+		/**
+		 * We're going to turn this objects width/height properties into passthroughs to the actual
+		 * graphics object we *care* about for the purposes of UI element layout.
+		 */
+		override public function get width():Number
+		{
+			return _buttonBody.width;
+		}
+		
+		override public function get height():Number
+		{
+			return _buttonBody.height;
 		}
 		
 		/**
