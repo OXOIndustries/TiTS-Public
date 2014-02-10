@@ -5,6 +5,7 @@
 	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.ButtonTray;
 	import classes.UIComponents.LeftSideBar;
+	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
 	import classes.UIComponents.SquareButton;
@@ -337,6 +338,11 @@
 			{
 				this.AttachTooltipListeners(btnArray[i]);
 			}
+			
+			this.AttachTooltipListeners(_buttonTray.buttonPageNext);
+			this.AttachTooltipListeners(_buttonTray.buttonPagePrev);
+			this.AttachTooltipListeners(_buttonTray.textPageNext);
+			this.AttachTooltipListeners(_buttonTray.textPagePrev);
 		}
 		
 		/**
@@ -436,33 +442,50 @@
 		
 		// Useful methods to paste over some issues throughout the codebase whilst mid-refactor
 		
-		// Find any applicable button that the spacebar key handler could target, and activate it
+		/**
+		 * Find any applicable button that a SpaceBar key event could target, and activate it if possible
+		 */
 		public function SpacebarEvent():void
 		{
-			throw new Error("SpacebarEvent Not Implemented Yet");
+			var btnArray:Array = _buttonTray.buttons;
 			
-			// Check buttonIdx's 0 & 14 for the text "Next", "Back" and "Leave", activate if present
+			if (btnArray[0].buttonText == "Next" || btnArray[0].buttonText == "Leave" || btnArray[0].buttonText == "Back") PressButton(0);
+			else if (btnArray[14].buttonText == "Next" || btnArray[14].buttonText == "Leave" || btnArray[14].buttonText == "Back") PressButton(14);
 		}
 		
+		/**
+		 * Activate the target buttons stored function, and it's argument (if applicable)
+		 * @param	arg		Button index to activate
+		 * @return			Successfully activated the button.
+		 */
 		public function PressButton(arg:int):Boolean
 		{
-			throw new Error("PressButton Not Implemented Yet");
+			if (arg < 0 || arg > 14) return false;
 			
 			// Attempt to trigger the button activator for button index "arg"
+			var btnArray:Array = _buttonTray.buttons;
+			var tarButton:MainButton = btnArray[arg];
 			
-			//if(arg >= this.userInterface.buttons.length || arg < 0) return;
-			//if(this.userInterface.buttons[arg].func == undefined) 
-			//{
-				//trace("Undefined button pressed! Something went wrong!");
-				//return;
-			//}
-			//if(!inCombat()) 
-				//this.userInterface.showBust("none");
-			//if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
-			//else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
-			//updatePCStats();
+			if (tarButton.func == undefined) return false;
+		
+			if (!titsClassPtr.inCombat()) showBust("none");
+			
+			if (tarButton.arg == undefined) 
+			{
+				tarButton.func();
+			}
+			else
+			{
+				tarButton.func(tarButton.arg);
+			}
+			
+			titsClassPtr.updatePCStats();
+			return true;
 		}
 
+		/**
+		 * Hide the current tooltip display.
+		 */
 		public function hideTooltip():void
 		{
 			if (this.buttonTooltip.stage != null)
@@ -608,11 +631,6 @@
 		{
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
-		
-		//public function hasButton(slot:int):Boolean {
-			//if(buttons[slot].alpha > 0) return true;
-			//return false;
-		//}
 		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
