@@ -13,9 +13,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="64px"
-   height="64px"
-   viewBox="0 0 64 64"
+   width="50.553001"
+   height="54.109001"
+   viewBox="0 0 50.553001 54.109001"
    enable-background="new 0 0 64 64"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
@@ -38,17 +38,21 @@
    showgrid="false"
    inkscape:zoom="1.84375"
    inkscape:cx="-45.417774"
-   inkscape:cy="9.1322064"
-   inkscape:window-x="0"
-   inkscape:window-y="0"
+   inkscape:cy="-0.7147936"
+   inkscape:window-x="2310"
+   inkscape:window-y="418"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
 <g
    id="g3246"
-   transform="translate(-4.537,-6.3)">
+   transform="translate(-4.537,-6.344)">
 	<polygon
    clip-rule="evenodd"
-   points="29.96,47.416 25.892,43.07 17.248,52.046 8.604,43.326 4.537,47.416 17.248,60.453 23.971,53.558 23.971,53.558 26.796,50.661 "
+   points="8.604,43.326 4.537,47.416 17.248,60.453 23.971,53.558 23.971,53.558 26.796,50.661 29.96,47.416 25.892,43.07 17.248,52.046 "
    id="polygon3248"
    style="fill-rule:evenodd" />
 	<path
@@ -65,7 +69,7 @@
    style="fill-rule:evenodd" />
 	<polygon
    clip-rule="evenodd"
-   points="17.248,41.296 8.605,32.576 4.537,36.666 17.248,49.703 26.224,40.498 26.224,40.498 29.96,36.666 25.892,32.32 21.06,37.338 21.06,37.338 "
+   points="17.248,49.703 26.224,40.498 26.224,40.498 29.96,36.666 25.892,32.32 21.06,37.338 21.06,37.338 17.248,41.296 8.605,32.576 4.537,36.666 "
    id="polygon3254"
    style="fill-rule:evenodd" />
 </g>

@@ -13,9 +13,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="64px"
-   height="64px"
-   viewBox="0 0 64 64"
+   width="48.584"
+   height="49.334"
+   viewBox="0 0 48.584 49.334"
    enable-background="new 0 0 64 64"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
@@ -38,14 +38,18 @@
    showgrid="false"
    inkscape:zoom="59"
    inkscape:cx="29.54857"
-   inkscape:cy="62.285625"
-   inkscape:window-x="0"
-   inkscape:window-y="0"
+   inkscape:cy="47.652625"
+   inkscape:window-x="2131"
+   inkscape:window-y="382"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
 <g
    id="g3759"
-   transform="translate(-7.708,-7.3)">
+   transform="translate(-7.708,-7.333)">
 	<path
    stroke-miterlimit="10"
    d="m 13.208,9.333 c 0,0 3.5,7.584 3.5,14.334 0,6.75 -7,10 -7,17.25 0,7.25 3.5,13.75 3.5,13.75"

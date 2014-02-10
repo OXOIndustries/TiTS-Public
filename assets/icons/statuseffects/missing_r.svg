@@ -12,9 +12,9 @@
    x="0px"
    y="0px"
    inkscape:version="0.48.4 r9939"
-   width="100%"
-   height="100%"
-   sodipodi:docname="missing.svg">
+   width="75.288528"
+   height="104.284"
+   sodipodi:docname="missing_r.svg">
   <metadata
      id="metadata3050">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -42,16 +42,20 @@
      inkscape:window-height="1137"
      id="namedview3046"
      showgrid="false"
-     inkscape:zoom="5.0743655"
-     inkscape:cx="94.036271"
-     inkscape:cy="991.2278"
+     inkscape:zoom="0.89702957"
+     inkscape:cx="33.361737"
+     inkscape:cy="-80.549149"
      inkscape:window-x="1676"
      inkscape:window-y="-4"
      inkscape:window-maximized="1"
-     inkscape:current-layer="Capa_1" />
+     inkscape:current-layer="Capa_1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <g
      id="g3040"
-     transform="translate(-70.35647,-20.875719)">
+     transform="translate(-70.35647,-20.859)">
     <path
        d="M 116.639,99.07 H 97.086 c -0.868,0 -1.629,0.328 -2.281,0.979 -0.652,0.652 -0.978,1.412 -0.978,2.281 v 19.554 c 0,0.869 0.327,1.63 0.978,2.281 0.652,0.651 1.412,0.978 2.281,0.978 h 19.553 c 0.869,0 1.631,-0.326 2.281,-0.978 0.653,-0.651 0.979,-1.412 0.979,-2.281 V 102.33 c 0,-0.869 -0.325,-1.629 -0.979,-2.281 -0.65,-0.653 -1.412,-0.979 -2.281,-0.979 z"
        id="path3042"

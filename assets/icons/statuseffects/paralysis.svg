@@ -13,9 +13,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="64px"
-   height="64px"
-   viewBox="0 0 64 64"
+   width="49.610001"
+   height="56.717999"
+   viewBox="0 0 49.610001 56.717999"
    enable-background="new 0 0 64 64"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
@@ -38,27 +38,31 @@
    showgrid="false"
    inkscape:zoom="14.75"
    inkscape:cx="19.373322"
-   inkscape:cy="58.198992"
-   inkscape:window-x="0"
-   inkscape:window-y="0"
+   inkscape:cy="51.057992"
+   inkscape:window-x="2408"
+   inkscape:window-y="439"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
 <polygon
    clip-rule="evenodd"
-   points="32.003,3.641 29.275,20.585 43.49,36.236 27.121,60.359 32.577,38.69 20.516,24.605 "
+   points="27.121,60.359 32.577,38.69 20.516,24.605 32.003,3.641 29.275,20.585 43.49,36.236 "
    id="polygon3622"
-   transform="translate(-6.543,-3.5)"
+   transform="translate(-6.543,-3.641)"
    style="fill-rule:evenodd" />
 <polygon
    clip-rule="evenodd"
-   points="54.895,36.232 51.126,43.279 56.153,50.179 43.265,55.556 49.095,49.904 44.255,42.562 "
+   points="43.265,55.556 49.095,49.904 44.255,42.562 54.895,36.232 51.126,43.279 56.153,50.179 "
    id="polygon3624"
-   transform="translate(-6.543,-3.5)"
+   transform="translate(-6.543,-3.641)"
    style="fill-rule:evenodd" />
 <polygon
    clip-rule="evenodd"
-   points="15.251,34.375 6.543,45.757 17.029,48.21 20.457,56.251 21.871,43.9 13.482,41.938 "
+   points="20.457,56.251 21.871,43.9 13.482,41.938 15.251,34.375 6.543,45.757 17.029,48.21 "
    id="polygon3626"
-   transform="translate(-6.543,-3.5)"
+   transform="translate(-6.543,-3.641)"
    style="fill-rule:evenodd" />
 </svg>

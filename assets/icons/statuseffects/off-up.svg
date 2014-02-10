@@ -13,9 +13,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="64px"
-   height="64px"
-   viewBox="0 0 64 64"
+   width="55.774017"
+   height="56.905998"
+   viewBox="0 0 55.774017 56.905998"
    enable-background="new 0 0 64 64"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
@@ -38,14 +38,18 @@
    showgrid="false"
    inkscape:zoom="83.4386"
    inkscape:cx="2.5857864"
-   inkscape:cy="63.976261"
-   inkscape:window-x="0"
-   inkscape:window-y="0"
+   inkscape:cy="56.929261"
+   inkscape:window-x="2303"
+   inkscape:window-y="427"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
 <g
    id="g3590"
-   transform="translate(-4.113,-3.5)">
+   transform="translate(-4.113,-3.547)">
 	<path
    d="m 52.986,28.651 0.143,0.428 C 53.107,28.93 53.058,28.787 52.986,28.651 z"
    id="path3592"
@@ -63,13 +67,13 @@
 </g>
 <path
    clip-rule="evenodd"
-   d="M 21.779,56.697 25.847,52.607 13.135,39.57 0.424,52.607 l 4.068,4.346 8.644,-8.975 8.643,8.719 z"
+   d="M 21.779,56.65 25.847,52.56 13.135,39.523 0.424,52.56 l 4.068,4.346 8.644,-8.975 8.643,8.719 z"
    id="path3598"
    inkscape:connector-curvature="0"
    style="fill-rule:evenodd" />
 <path
    clip-rule="evenodd"
-   d="M 21.779,45.947 25.847,41.857 13.135,28.82 0.424,41.857 l 4.068,4.346 8.644,-8.975 8.643,8.719 z"
+   d="M 21.779,45.9 25.847,41.81 13.135,28.773 0.424,41.81 l 4.068,4.346 8.644,-8.975 8.643,8.719 z"
    id="path3600"
    inkscape:connector-curvature="0"
    style="fill-rule:evenodd" />

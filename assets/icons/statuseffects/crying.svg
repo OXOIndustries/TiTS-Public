@@ -13,9 +13,9 @@
    id="Layer_1"
    x="0px"
    y="0px"
-   width="64px"
-   height="64px"
-   viewBox="0 0 64 64"
+   width="44.014"
+   height="50.897999"
+   viewBox="0 0 44.014 50.897999"
    enable-background="new 0 0 64 64"
    xml:space="preserve"
    inkscape:version="0.48.4 r9939"
@@ -33,19 +33,23 @@
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
    inkscape:window-width="1920"
-   inkscape:window-height="1027"
+   inkscape:window-height="1137"
    id="namedview3222"
    showgrid="false"
    inkscape:zoom="29.5"
    inkscape:cx="23.699716"
-   inkscape:cy="53.340558"
-   inkscape:window-x="-5"
-   inkscape:window-y="-5"
+   inkscape:cy="40.240558"
+   inkscape:window-x="1676"
+   inkscape:window-y="-4"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
 <g
    id="g3216"
-   transform="translate(-9.993,-6.549)">
+   transform="translate(-9.993,-6.551)">
 	<path
    d="m 32.802,33.229 c -0.334,-0.569 -1.273,-0.569 -1.605,0 -0.722,1.258 -7.064,12.385 -7.064,16.353 0,4.339 3.528,7.867 7.867,7.867 4.34,0 7.867,-3.528 7.866,-7.867 10e-4,-3.968 -6.34,-15.095 -7.064,-16.353 z M 32,53.747 c -0.512,0 -0.926,-0.414 -0.926,-0.926 0,-0.512 0.415,-0.925 0.926,-0.925 1.275,0 2.312,-1.033 2.312,-2.306 0,-0.512 0.414,-0.926 0.926,-0.926 0.514,0 0.928,0.414 0.928,0.926 0.001,2.293 -1.869,4.157 -4.166,4.157 z"
    id="path3218"
