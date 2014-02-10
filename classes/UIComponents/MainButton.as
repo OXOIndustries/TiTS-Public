@@ -77,7 +77,7 @@ package classes.UIComponents
 			this.tooltipBody = "";
 			
 			if (buttonColorType == BLUE_BUTTON) _baseColour = UIStyleSettings.gForegroundColour;
-			if (buttonColorType == PURPLE_BUTTON) _baseColour = UIStyleSettings.gHighlightColour;
+			if (buttonColorType == PURPLE_BUTTON) _baseColour = UIStyleSettings.gMovementButtonColour;
 			
 			_buttonBindSetting = "-";
 			
@@ -193,6 +193,9 @@ package classes.UIComponents
 			
 			this.alpha = 1;
 			this.buttonMode = true;
+			
+			this.mouseChildren = false;
+			this.mouseEnabled = true;
 		}
 		
 		public function setDisabledData(cap:String = "", ttHeader:String = "", ttBody:String = ""):void
@@ -201,6 +204,10 @@ package classes.UIComponents
 			this.buttonText = cap;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
+			
+			this.buttonMode = false;
+			this.mouseChildren = false;
+			this.mouseEnabled = false;
 		}
 		
 		public function clearData():void
@@ -214,6 +221,9 @@ package classes.UIComponents
 			// Activity settings n shit
 			this.alpha = 0.3;
 			this.buttonMode = false;
+			
+			this.mouseEnabled = false;
+			this.mouseChildren = false;
 		}
 	}
 

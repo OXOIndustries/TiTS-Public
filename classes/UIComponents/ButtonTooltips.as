@@ -138,6 +138,7 @@ package classes.UIComponents
 			else if (displayObj is SquareButton) 	DisplayForSquareButton((displayObj as SquareButton));
 			else if (displayObj is rightButton) 	DisplayForNamedObject(displayObj);
 			else if (displayObj is leftButton) 		DisplayForNamedObject(displayObj);
+			else if (displayObj is MainButton)		DisplayForMainButton((displayObj as MainButton));
 			else throw new Error("Unknown Display Object Type attempted to display a tooltip.");
 		}
 		
@@ -175,6 +176,28 @@ package classes.UIComponents
 			var tt:String = TooltipManager.getTooltip(displayObj.caption.text);
 			var fn:String = TooltipManager.getFullName(displayObj.caption.text);
 			
+			if (tt.length > 0)
+			{
+				this.SetData(fn, tt);
+				_stage.addChild(this);
+				this.Reposition(displayObj);
+			}
+		}
+		
+		private function DisplayForMainButton(displayObj:MainButton):void
+		{
+			var tt:String = "";
+			var fn:String = "";
+			
+			// Grab overrides
+			if (displayObj.tooltipHeader.length > 0) fn = displayObj.tooltipHeader;
+			if (displayObj.tooltipBody.length > 0) tt = displayObj.tooltipBody;
+			
+			// If no overrides, check db
+			if (fn.length == 0) fn = TooltipManager.getFullName(displayObj.buttonText);
+			if (tt.length == 0) tt = TooltipManager.getTooltip(displayObj.buttonText);
+			
+			// If we've got data, display
 			if (tt.length > 0)
 			{
 				this.SetData(fn, tt);

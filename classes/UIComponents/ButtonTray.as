@@ -18,6 +18,16 @@ package classes.UIComponents
 		private var _backgroundElem:Sprite;
 		private var _buttons:Vector.<MainButton>;
 		
+		public function get buttons():Array
+		{
+			var btnArray:Array = new Array();
+			for (var i:int = 0; i < _buttons.length; i++)
+			{
+				btnArray.push(_buttons[i]);
+			}
+			return btnArray;
+		}
+		
 		// Considering shifting this out to the core GUI class, and using some databinding to pull the buttons into a sliced
 		// view of the vector for control purposes or something.
 		private var _buttonData:Vector.<ButtonData>;
@@ -117,6 +127,8 @@ package classes.UIComponents
 				
 				newBtn.buttonText = "Button " + String(btn);
 				newBtn.hotkeyText = _defaultHotkeys[btn];
+				
+				newBtn.addEventListener(MouseEvent.CLICK, _buttonHandlerFunc);
 			}
 			
 			for (var btnD:int = 0; btnD < 60; btnD++)
@@ -159,6 +171,9 @@ package classes.UIComponents
 			// Attach listeners for input
 			_buttonPageNext.addEventListener(MouseEvent.CLICK, ButtonPageClickHandler);
 			_buttonPagePrev.addEventListener(MouseEvent.CLICK, ButtonPageClickHandler);
+			
+			_textPageNext.addEventListener(MouseEvent.CLICK, _bufferHandlerFunc);
+			_textPagePrev.addEventListener(MouseEvent.CLICK, _bufferHandlerFunc);
 		}
 		
 		/**

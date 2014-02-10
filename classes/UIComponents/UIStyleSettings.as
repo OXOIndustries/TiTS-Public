@@ -40,12 +40,14 @@ package classes.UIComponents
 			UIStyleSettings._gWhiteColourTransform = null;
 			UIStyleSettings._gBackgroundColourTransform = null;
 			UIStyleSettings._gForegroundColourTransform = null;
+			UIStyleSettings._gMovementButtonColourTransform = null;
 		}
 		
 		// TITS VALUES
 		public static var gBackgroundColour:uint 			= 0x3D5174; // Stage colour, also used for menu button backgrounds
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar) -- this was also used for some fade-out colour transforms throughout various parts of the UI code
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
+		public static var gMovementButtonColour:uint		= 0x84449B;
 		// public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
@@ -317,6 +319,17 @@ package classes.UIComponents
 				UIStyleSettings._gForegroundColourTransform.color = UIStyleSettings.gForegroundColour;
 			}
 			return UIStyleSettings._gForegroundColourTransform;
+		}
+		
+		private static var _gMovementButtonColourTransform:ColorTransform;
+		public static function get gMovementButtonColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMovementButtonColourTransform == null)
+			{
+				UIStyleSettings._gMovementButtonColourTransform = new ColorTransform();
+				UIStyleSettings._gMovementButtonColourTransform.color = UIStyleSettings.gMovementButtonColour;
+			}
+			return UIStyleSettings._gMovementButtonColourTransform;
 		}
 	}
 

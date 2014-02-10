@@ -2,6 +2,7 @@
 {
 
 	import classes.TiTS_Settings;
+	import classes.UIComponents.MainButton;
 	import flash.display.DisplayObject;
 
 	import flash.display.MovieClip;
@@ -259,7 +260,6 @@
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
 
-
 		public function mainMenuToggle(e:MouseEvent):void 
 		{
 			if (!userInterface.mainMenuButton.isActive)
@@ -277,17 +277,33 @@
 			}
 		}
 		
-		public function buttonClick(evt:MouseEvent):void {
-			if(!inCombat()) 
+		public function buttonClick(evt:MouseEvent):void 
+		{
+			if (!inCombat()) 
+			{
 				this.userInterface.showBust("none");
-			if(evt.currentTarget.func == undefined) {
-				trace("ERROR: Active button click on " + evt.currentTarget.caption.text + " with no associated public function!");
-				return;
 			}
-			trace("Button " + evt.currentTarget.caption.text + " clicked.");
-			if(evt.currentTarget.arg == undefined) evt.currentTarget.func();
-			else evt.currentTarget.func(evt.currentTarget.arg);
+			
+			if (evt.currentTarget is MainButton)
+			{
+				trace("Button " + (evt.currentTarget as MainButton).buttonText + " clicked");
+			}
+			else
+			{
+				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			}
+			
+			if (evt.currentTarget.arg == undefined)
+			{
+				evt.currentTarget.func();
+			}
+			else
+			{
+				evt.currentTarget.func(evt.currentTarget.arg);
+			}
+			
 			updatePCStats();
+			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
 

@@ -39,11 +39,11 @@ function debugMenus():void
 	} );
 	userInterface.addButton(7, "Show ZilPack", function():void {
 		userInterface.showBust("ZIL", "ZIL");
-	} );
+	}, undefined, "Test Temporary Tooltip", "This is a temporary tooltip, provided as part of the addButton() call that will only exist this once, and not enter the DB" );
 	
-	userInterface.addButton(3, "Show Zil", function():void {
+	userInterface.addButton(3, "Rest", function():void {
 		userInterface.showBust("ZIL");
-	} );
+	}, undefined, "Test Override Tooltip", "This is an override tooltip, provided as part of the addButton() call, intended to override any potential settings for the button name that may be present in the Tooltip Database." );
 	userInterface.addButton(8, "Clear Zil", function():void {
 		userInterface.hideBust();
 	} );

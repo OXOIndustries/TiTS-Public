@@ -330,6 +330,13 @@
 			this.titsClassPtr.addChild(_buttonTray);
 			this._buttonTray.x = 0;
 			this._buttonTray.y = 800;
+			
+			var btnArray:Array = _buttonTray.buttons;
+			
+			for (var i:int = 0; i < btnArray.length; i++)
+			{
+				this.AttachTooltipListeners(btnArray[i]);
+			}
 		}
 		
 		/**
