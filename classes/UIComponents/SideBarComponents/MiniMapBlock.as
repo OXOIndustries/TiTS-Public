@@ -67,6 +67,8 @@ package classes.UIComponents.SideBarComponents
 			_headerText.embedFonts = true;
 			_headerText.antiAliasType = AntiAliasType.ADVANCED;
 			_headerText.text = "LOCATION MAP";
+			_headerText.mouseEnabled = false;
+			_headerText.mouseWheelEnabled = false;
 			this.addChild(_headerText);
 		}
 	}

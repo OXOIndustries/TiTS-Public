@@ -105,7 +105,7 @@ package classes.UIComponents
 					color = MainButton.BLUE_BUTTON;
 				}
 				
-				var newBtn:MainButton = new MainButton(color, true);
+				var newBtn:MainButton = new MainButton(color);
 				
 				this.addChild(newBtn);
 				_buttons.push(newBtn);
@@ -272,7 +272,7 @@ package classes.UIComponents
 		{
 			for (var i:int = 0; i < _buttons.length; i++)
 			{
-				_buttons[i].hideBindRing();
+				_buttons[i].hideBinding();
 			}
 		}
 		
@@ -280,7 +280,7 @@ package classes.UIComponents
 		{
 			for (var i:int = 0; i < _buttons.length; i++)
 			{
-				_buttons[i].showBindRing();
+				_buttons[i].showBinding();
 			}
 		}
 		

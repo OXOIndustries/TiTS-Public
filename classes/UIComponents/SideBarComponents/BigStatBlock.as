@@ -82,7 +82,9 @@ package classes.UIComponents.SideBarComponents
 			_combatStatsHeaderText.defaultTextFormat = UIStyleSettings.gStatBlockHeaderFormatter;
 			_combatStatsHeaderText.embedFonts = true;
 			_combatStatsHeaderText.antiAliasType = AntiAliasType.ADVANCED;
-			_combatStatsHeaderText.text = "COMBAT STATS";
+			_combatStatsHeaderText.text = _headerText;
+			_combatStatsHeaderText.mouseEnabled = false;
+			_combatStatsHeaderText.mouseWheelEnabled = false
 			this.addChild(_combatStatsHeaderText);
 		}
 		

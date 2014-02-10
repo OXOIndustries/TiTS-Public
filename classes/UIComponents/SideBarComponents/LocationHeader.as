@@ -104,6 +104,8 @@ package classes.UIComponents.SideBarComponents
 			_roomText.text = "WELCOME\nTO TITS";
 			_roomText.multiline = true;
 			_roomText.wordWrap = false;
+			_roomText.mouseEnabled = false;
+			_roomText.mouseWheelEnabled = false;
 			_roomText.filters = [UIStyleSettings.gRoomLocationTextGlow];
 			
 			this.addChild(_roomText);
@@ -119,6 +121,8 @@ package classes.UIComponents.SideBarComponents
 			_planetText.text = "AN EROTIC FLASH GAME";
 			_planetText.multiline = false;
 			_planetText.wordWrap = false;
+			_planetText.mouseEnabled = false;
+			_planetText.mouseWheelEnabled = false;
 			
 			this.addChild(_planetText);
 			
@@ -133,6 +137,8 @@ package classes.UIComponents.SideBarComponents
 			_systemText.text = "BY FENOXO";
 			_systemText.multiline = false;
 			_systemText.wordWrap = false;
+			_systemText.mouseEnabled = false;
+			_systemText.mouseWheelEnabled = false;
 			
 			this.addChild(_systemText);
 		}

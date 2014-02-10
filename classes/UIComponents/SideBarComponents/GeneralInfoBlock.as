@@ -87,6 +87,8 @@ package classes.UIComponents.SideBarComponents
 			_headerText.embedFonts = true;
 			_headerText.antiAliasType = AntiAliasType.ADVANCED;
 			_headerText.text = "GALACTIC STANDARD";
+			_headerText.mouseEnabled = false;
+			_headerText.mouseWheelEnabled = false;
 			this.addChild(_headerText);
 		}
 		
@@ -103,6 +105,8 @@ package classes.UIComponents.SideBarComponents
 			_timeLabel.multiline = false;
 			_timeLabel.wordWrap = false;
 			_timeLabel.text = "TERRAN TIME";
+			_timeLabel.mouseEnabled = false;
+			_timeLabel.mouseWheelEnabled = false;
 			this.addChild(_timeLabel);
 			_timeLabel.height = _timeLabel.textHeight + 3;
 			
@@ -117,6 +121,8 @@ package classes.UIComponents.SideBarComponents
 			_timeText.wordWrap = false;
 			_timeText.text = "--:--";
 			_timeText.background = false;
+			_timeText.mouseEnabled = false;
+			_timeText.mouseWheelEnabled = false;
 			this.addChild(_timeText);
 			_timeText.height = _timeText.textHeight - 2;
 			
@@ -131,6 +137,8 @@ package classes.UIComponents.SideBarComponents
 			_daysLabel.multiline = false;
 			_daysLabel.wordWrap = false;
 			_daysLabel.text = "SOLAR DAYS";
+			_daysLabel.mouseEnabled = false;
+			_daysLabel.mouseWheelEnabled = false;
 			this.addChild(_daysLabel);
 			_daysLabel.height = _daysLabel.textHeight + 3;
 			
@@ -145,6 +153,8 @@ package classes.UIComponents.SideBarComponents
 			_daysText.wordWrap = false;
 			_daysText.text = "-----";
 			_daysText.background = false;
+			_daysText.mouseEnabled = false;
+			_daysText.mouseWheelEnabled = false;
 			this.addChild(_daysText);
 			_daysText.height = _daysLabel.textHeight + 1;
 			
@@ -159,6 +169,8 @@ package classes.UIComponents.SideBarComponents
 			_sceneLabel.multiline = false;
 			_sceneLabel.wordWrap = false;
 			_sceneLabel.text = "SCENE BY:";
+			_sceneLabel.mouseEnabled = false;
+			_sceneLabel.mouseWheelEnabled = false;
 			this.addChild(_sceneLabel);
 			_sceneLabel.height = _sceneLabel.textHeight + 3;
 			
@@ -173,6 +185,8 @@ package classes.UIComponents.SideBarComponents
 			_sceneText.wordWrap = false;
 			_sceneText.text = "Fenoxo Fenfen";
 			_sceneText.background = false;
+			_sceneText.mouseEnabled = false;
+			_sceneText.mouseWheelEnabled = false;
 			this.addChild(_sceneText);
 			_sceneText.height = _sceneText.textHeight + 1;
 		}

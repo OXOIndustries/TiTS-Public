@@ -5,6 +5,7 @@ package classes.UIComponents
 	import flash.geom.ColorTransform;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
+	import classes.Resources.ButtonIcons;
 	
 	/**
 	 * ...
@@ -53,12 +54,11 @@ package classes.UIComponents
 		/**
 		 * Button binding display
 		 */
-		private var _buttonBindRing:Sprite;
-		private var _buttonBindInner:Sprite;
 		private var _buttonBindLabel:TextField;
+		private var _buttonBindSetting:String;
 		
 		public function get hotkeyText():String { return _buttonBindLabel.text; }
-		public function set hotkeyText(v:String):void { _buttonBindLabel.text = v; }
+		public function set hotkeyText(v:String):void { _buttonBindLabel.text = v; _buttonBindSetting = v; }
 		
 		/**
 		 * Default colour settings
@@ -71,17 +71,15 @@ package classes.UIComponents
 		/**
 		 * Default display settings
 		 */
-		private var _displayBindRing:Boolean;
-		
-		public function MainButton(buttonColorType:int = MainButton.BLUE_BUTTON, displayBindRing:Boolean = false) 
+		public function MainButton(buttonColorType:int = MainButton.BLUE_BUTTON) 
 		{
 			this.tooltipHeader = "";
 			this.tooltipBody = "";
 			
 			if (buttonColorType == BLUE_BUTTON) _baseColour = UIStyleSettings.gForegroundColour;
-			if (buttonColorType == PURPLE_BUTTON) _baseColour = UIStyleSettings.gHighlightColour; 
+			if (buttonColorType == PURPLE_BUTTON) _baseColour = UIStyleSettings.gHighlightColour;
 			
-			_displayBindRing = displayBindRing;
+			_buttonBindSetting = "-";
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -90,33 +88,20 @@ package classes.UIComponents
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			this.mouseChildren = false;
-			
 			this.BuildBody();
 		}
 		
 		private function BuildBody():void
 		{
 			// Graphics elements
-			_buttonBody = new Sprite();
-			_buttonBody.graphics.beginFill(_baseColour, 1);
-			_buttonBody.graphics.drawRoundRect(0, 0, 150, 40, 15, 15);
-			_buttonBody.graphics.endFill();
+			_buttonBody = new ButtonIcons.MainButton();
+			
+			var clrTrans:ColorTransform = new ColorTransform();
+			clrTrans.color = _baseColour;
+			
+			_buttonBody.transform.colorTransform = clrTrans;
+			
 			this.addChild(_buttonBody);
-			
-			_buttonBindRing = new Sprite();
-			_buttonBindRing.graphics.beginFill(_baseColour, 1);
-			_buttonBindRing.graphics.drawCircle(146, 36, 10);
-			_buttonBindRing.graphics.endFill();
-			this.addChild(_buttonBindRing);
-			_buttonBindRing.visible = (_displayBindRing) ? true : false;
-			
-			_buttonBindInner = new Sprite();
-			_buttonBindInner.graphics.beginFill(_baseColour, 1);
-			_buttonBindInner.graphics.drawCircle(146, 36, 7);
-			_buttonBindInner.graphics.endFill();
-			this.addChild(_buttonBindInner);
-			_buttonBindInner.visible = (_displayBindRing) ? true : false;
 			
 			// Text elements
 			_buttonBodyLabel = new TextField();
@@ -130,37 +115,30 @@ package classes.UIComponents
 			_buttonBodyLabel.multiline = false;
 			_buttonBodyLabel.wordWrap = false;
 			_buttonBodyLabel.text = "A Button";
+			_buttonBodyLabel.mouseEnabled = false;
+			_buttonBodyLabel.mouseWheelEnabled = false;
 			this.addChild(_buttonBodyLabel);
 			
 			_buttonBindLabel = new TextField();
-			_buttonBindLabel.x = 138;
-			_buttonBindLabel.y = 27;
-			_buttonBindLabel.width = 12;
+			_buttonBindLabel.x = 137;
+			_buttonBindLabel.y = 27.2;
+			_buttonBindLabel.width = 14;
 			_buttonBindLabel.height = 20;
 			_buttonBindLabel.defaultTextFormat = UIStyleSettings.gButtonBindLabelFormatter;
 			_buttonBindLabel.embedFonts = true;
 			_buttonBindLabel.antiAliasType = AntiAliasType.ADVANCED;
 			_buttonBindLabel.multiline = false;
 			_buttonBindLabel.wordWrap = false;
-			_buttonBindLabel.text = "?";
+			_buttonBindLabel.text = "-";
+			_buttonBindLabel.mouseEnabled = false;
+			_buttonBindLabel.mouseWheelEnabled = false;
 			this.addChild(_buttonBindLabel);
-			_buttonBindLabel.visible = (_displayBindRing) ? true : false;
 		}
 		
 		/**
 		 * We're going to turn this objects width/height properties into passthroughs to the actual
 		 * graphics object we *care* about for the purposes of UI element layout.
 		 */
-		override public function get width():Number
-		{
-			return _buttonBody.width;
-		}
-		
-		override public function get height():Number
-		{
-			return _buttonBody.height;
-		}
-		
 		override public function get alpha():Number
 		{
 			return _buttonBody.alpha;
@@ -170,8 +148,6 @@ package classes.UIComponents
 		{
 			_buttonBody.alpha = a;
 			_buttonBodyLabel.alpha = a;
-			_buttonBindRing.alpha = a;
-			_buttonBindInner.alpha = a;
 			_buttonBindLabel.alpha = a;
 		}
 		
@@ -184,23 +160,24 @@ package classes.UIComponents
 		 */
 		public function toggleBindRing():void
 		{
-			_buttonBindRing.visible = !_buttonBindRing.visible;
-			_buttonBindInner.visible = !_buttonBindInner.visible;
-			_buttonBindLabel.visible = !_buttonBindLabel.visible;
+			if (_buttonBindLabel.text == "-")
+			{
+				showBinding();
+			}
+			else
+			{
+				hideBinding();
+			}
 		}
 		
-		public function showBindRing():void
+		public function showBinding():void
 		{
-			_buttonBindRing.visible = true;
-			_buttonBindInner.visible = true;
-			_buttonBindLabel.visible = true;
+			_buttonBindLabel.text = _buttonBindSetting;
 		}
 		
-		public function hideBindRing():void
+		public function hideBinding():void
 		{
-			_buttonBindRing.visible = false;
-			_buttonBindInner.visible = false;
-			_buttonBindLabel.visible = false;
+			_buttonBindLabel.text = "-";
 		}
 		
 		/**

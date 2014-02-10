@@ -6,6 +6,10 @@ package classes.Resources
 	 */
 	public class ButtonIcons 
 	{
+		// Not really an icon -- this is the vector path of the main button body
+		[Embed(source = "../../assets/icons/buttons/mainButton.svg", mimeType = "image/svg")]
+		public static var MainButton:Class;
+		
 		[Embed(source = "../../assets/icons/buttons/appearance.svg", mimeType = "image/svg")]
 		public static var Icon_Appearance:Class;
 		
