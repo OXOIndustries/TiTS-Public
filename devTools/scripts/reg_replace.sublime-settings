@@ -1,0 +1,105 @@
+////////////////////////////////
+// Regex with scope qualifiers//
+////////////////////////////////
+// Required parameters:
+//     find:    Regex description of what you would like to target.
+//
+// Optional parameters:
+//     replace:      description of what you would like to replace target with.
+//                   Variables are okay for non-literal searches and are done by escaping
+//                   the selection number \\1 etc.  Default value is "\\0".
+//     literal:      Boolean setting to define whether the find and replace is literal or not.
+//                   Default is false.
+//     greedy:       Boolean setting to define whether search is greedy or not. Default is true.
+//     case:         Boolean defining case sensitivity.  True equals sensitive. Defualt is true.
+//     dotall:       Boolean defining whether to use dotall flag in regex (include \n etc. when using dot).
+//                   Default is False
+//     scope_filter: an array of scope qualifiers for the match.
+//                       - Any instance of scope qualifies match: scope.name
+//                       - Entire match of scope qualifies match: !scope.name
+//                       - Any instance of scope disqualifies match: -scope.name
+//                       - Entire match of scope disqualifies match: -!scope.name
+
+//////////////////////////////////////////////////////////////
+// Scope search with regex qualifier (also find and replace)//
+//////////////////////////////////////////////////////////////
+// Required parameters:
+//     scope:    scope you would like to target
+//
+// Optional parameters:
+//     find:            regex description that is to be applied to the scope
+//                      to qualify.  Also can be used to find and replace
+//                      within the found scope.  Default is None.
+//     replace:         description of what you would like to replace within the scope.
+//                      Default value is "\\0".
+//     literal:         Boolean setting to define whether the find and replace is literal or not.
+//                      Default is false.
+//     greedy_replace:  Boolean setting to define whether regex search is greedy or not. Default is true.
+//     greedy_scope:    Boolean setting to define whether scope search is greedy or not. Default is true.
+//     case:            Boolean setting to define whether regex search is case sensitive. Default is true.
+//     dotall:          Boolean defining whether to use dotall flag in regex (include \n etc. when using dot).
+//                      Default is False
+//     multi_pass_regex:Boolean setting to define whether there will be multiple sweeps on the scope region
+//                      region to find and replace all instances of the regex, when regex cannot be formatted
+//                      to find all instances in a greedy fashion.  Default is false.
+{
+    "replacements": {
+        // Example replacements
+        "fix_fancyquotes_open": {
+            "find": "“",
+            "replace": "“<i>",
+            "greedy": true,
+            "case": false
+        },
+        "fix_fancyquotes_close": {
+            "find": "”",
+            "replace": "</i>”",
+            "greedy": true,
+            "case": false
+        }
+    },
+
+    // If on_save is true, RegReplace will search through the file patterns listed below right before a file is saved,
+    // if the file name matches a file pattern, the sequence will be applied before the file is saved.
+    // RegReplace will apply all sequences that apply to a given file in the order they appear below.
+    "on_save": false,
+
+    // Highlight visual settings
+    "on_save_highlight_scope": "invalid",
+    "on_save_highlight_style": "outline",
+
+    // on_save replacements
+    "on_save_sequences": [
+        // An example on_save event that removes dangling commas from json files
+        // - file_regex: an array of regex strings that must match the file for the sequence to be applied
+        // - case: regex case sensitivity (true|false) false is default (this setting is optional)
+        // - file_pattern: an array of file patterns that must match for the sequence to be applied
+        // - sequence: an array of replacement definitions to be applied on saving the file
+        // - multi_pass: perform multiple passes on file to catch all regex instances
+        // - action: (mark|fold|unfold) instead of replace.  Only one action can be used
+        {
+            "file_regex": [".*\\.sublime-(settings|commands|menu|keymap|mousemap|theme|build|project|completions|commands)"],
+            "file_pattern": ["*.json"],
+            "sequence": ["remove_json_dangling_commas"]
+        },
+        // An example on_save_sequence that targets all files and trims trailing spaces
+        // - file_pattern: an array of file patterns that must match for the sequence to be applied
+        // - sequence: an array of replacement definitions to be applied on saving the file
+        {"file_pattern": ["*"], "sequence": ["remove_trailing_spaces"]}
+    ],
+
+    // Show replace results in panel
+    "results_in_panel": false,
+
+    // Maximum sweep threshold for multi-pass
+    "multi_pass_max_sweeps": 100,
+
+    // Color? (scope)
+    "find_highlight_color": "invalid",
+
+    // Highlight style? (outline|solid|underline)
+    "find_highlight_style": "outline",
+
+    // Search under selection(s) if and only if exists
+    "selection_only": true
+}

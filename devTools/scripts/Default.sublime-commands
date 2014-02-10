@@ -1,0 +1,7 @@
+[
+	{ 
+		"caption": "Fix Fancyquotes: Remove and replace fancyquotes with less fancy equivilents",
+		"command": "reg_replace",
+		"args": { "replacements": ["fix_fancyquotes_open", "fix_fancyquotes_close", "fix_fancyquotes_apos"]}
+	}
+]

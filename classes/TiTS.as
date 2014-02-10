@@ -306,6 +306,21 @@
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
+		
+		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		{
+			this.userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
+		}
+		
+		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		{
+			this.userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+		}
+		
+		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
+		{
+			this.userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
+		}
 
 		public function pageUpScroll():void
 		{
@@ -319,6 +334,7 @@
 			}
 			wheelUpdater(this.userInterface.tempEvent);
 		}
+		
 		public function pageDownScroll():void
 		{
 			var keyTemp;
@@ -329,16 +345,19 @@
 			}
 			wheelUpdater(this.userInterface.tempEvent);
 		}
+		
 		public function homeButtonScroll():void
 		{
 			this.userInterface.mainTextField.scrollV = 1;
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
+		
 		public function endButtonScroll():void
 		{
 			this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
+		
 		public function spacebarKeyEvt():void
 		{
 			this.userInterface.SpacebarEvent();
@@ -350,6 +369,7 @@
 			this.inputManager.ignoreInputKeys(true);
 			this.userInterface.displayInput();
 		}
+		
 		public function removeInput():void
 		{
 			this.inputManager.ignoreInputKeys(false);
@@ -367,6 +387,7 @@
 			this.userInterface.mainTextField.scrollV++;
 			this.userInterface.updateScroll(this.userInterface.tempEvent);
 		}
+		
 		public function pressButton(arg:int = 0):void 
 		{
 			if (this.userInterface.PressButton(arg))
@@ -392,6 +413,7 @@
 		public function wheelUpdater(evt:MouseEvent):void {
 			this.addEventListener(Event.ENTER_FRAME,wheelUpdater2);
 		}
+		
 		public function wheelUpdater2(evt:Event):void {
 			this.removeEventListener(Event.ENTER_FRAME,wheelUpdater2);
 			this.userInterface.updateScroll(this.userInterface.tempEvent);

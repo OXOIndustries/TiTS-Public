@@ -186,16 +186,12 @@ package classes.UIComponents
 		
 		private function DisplayForMainButton(displayObj:MainButton):void
 		{
-			var tt:String = "";
-			var fn:String = "";
-			
-			// Grab overrides
-			if (displayObj.tooltipHeader.length > 0) fn = displayObj.tooltipHeader;
-			if (displayObj.tooltipBody.length > 0) tt = displayObj.tooltipBody;
+			var tt:String = displayObj.tooltipBody;
+			var fn:String = displayObj.tooltipHeader;
 			
 			// If no overrides, check db
-			if (fn.length == 0) fn = TooltipManager.getFullName(displayObj.buttonText);
-			if (tt.length == 0) tt = TooltipManager.getTooltip(displayObj.buttonText);
+			if (fn == null) fn = TooltipManager.getFullName(displayObj.buttonText);
+			if (tt == null) tt = TooltipManager.getTooltip(displayObj.buttonText);
 			
 			// If we've got data, display
 			if (tt.length > 0)

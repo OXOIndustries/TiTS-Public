@@ -301,7 +301,7 @@ package classes.UIComponents
 			}
 		}
 		
-		public function addButton(slot:int, caption:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
+		public function addButton(slot:int, caption:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			if (slot <= 14)
 			{
@@ -312,7 +312,7 @@ package classes.UIComponents
 			CheckPages();
 		}
 		
-		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = "", ttBody:String = ""):void
+		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			if (slot <= 14)
 			{
@@ -323,7 +323,7 @@ package classes.UIComponents
 			CheckPages();
 		}
 		
-		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
+		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			if (slot > 14) return;
 			

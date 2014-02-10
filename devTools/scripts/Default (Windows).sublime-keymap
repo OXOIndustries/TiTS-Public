@@ -1,0 +1,4 @@
+[
+{ "keys": ["ctrl+shift+."], "command": "run_macro_file", "args": {"file": "Packages/Macros/outTextWrap.sublime-macro"} },
+{ "keys": ["ctrl+shift+,"], "command": "run_macro_file", "args": {"file": "Packages/Macros/quoteFix.sublime-macro"} }
+]

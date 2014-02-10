@@ -1,0 +1,29 @@
+[
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "bol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"extend": true,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"replacements":
+			[
+				"fix_fancyquotes_open",
+				"fix_fancyquotes_close"
+			]
+		},
+		"command": "reg_replace"
+	}
+]

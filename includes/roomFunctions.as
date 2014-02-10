@@ -25,58 +25,40 @@ function debugMenus():void
 {
 	clearMenuProxy();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
-	userInterface.addButton(0, "Hit self", function():void { 
-		chars["PC"].HP(-1); 
-		chars["PC"].shieldsRaw -= 1; 
-	} );
-	userInterface.addButton(5, "Unhit self", function():void {
-		chars["PC"].HP(5);
-		chars["PC"].shieldsRaw += 5;
-	} );
+
+	addButton(0, "Rest", function():void { 
+		output("\n\nFuck if I know.");
+	});
 	
-	userInterface.addButton(2, "Crazy Shit", function():void {
-		userInterface.showBust("ZILFEMALE", "ZIL", "NALEEN");
-	} );
-	userInterface.addButton(7, "Show ZilPack", function():void {
-		userInterface.showBust("ZIL", "ZIL");
-	}, undefined, "Test Temporary Tooltip", "This is a temporary tooltip, provided as part of the addButton() call that will only exist this once, and not enter the DB" );
-	
-	userInterface.addButton(3, "Rest", function():void {
-		userInterface.showBust("ZIL");
-	}, undefined, "Test Override Tooltip", "This is an override tooltip, provided as part of the addButton() call, intended to override any potential settings for the button name that may be present in the Tooltip Database." );
-	userInterface.addButton(8, "Clear Zil", function():void {
-		userInterface.hideBust();
-	} );
-	userInterface.addButton(4, "Effects 1", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Does Not Exist", 0, 0, 0, 0, false, "Icon_DoesNotExist", "Missing Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Blind", 0, 0, 0, 0, false, "Icon_Blind", "Blind Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("BlindAlt", 0, 0, 0, 0, false, "Icon_BlindAlt", "BlindAlt Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Charmed", 0, 0, 0, 0, false, "Icon_Charmed", "Charmed Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Confused", 0, 0, 0, 0, false, "Icon_Confused", "Confused Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Constricted", 0, 0, 0, 0, false, "Icon_Constricted", "Constricted Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Crying", 0, 0, 0, 0, false, "Icon_Crying", "Crying Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DefDown", 0, 0, 0, 0, false, "Icon_DefDown", "DefDown Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DefUp", 0, 0, 0, 0, false, "Icon_DefUp", "DefUp Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DizzyDrunk", 0, 0, 0, 0, false, "Icon_DizzyDrunk", "DizzyDrunk Icon", false, rand(240));
-	} );
-	userInterface.addButton(9, "Effects 2", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugPill", 0, 0, 0, 0, false, "Icon_DrugPill", "DrugPill Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("DrugVial", 0, 0, 0, 0, false, "Icon_DrugVial", "DrugVial Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Haste", 0, 0, 0, 0, false, "Icon_Haste", "Haste Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("LustDown", 0, 0, 0, 0, false, "Icon_LustDown", "LustDown Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("LustUp", 0, 0, 0, 0, false, "Icon_LustUp", "LustUp Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Mindcontrolled", 0, 0, 0, 0, false, "Icon_MindcontrolledMindbroke", "Mindcontrolled Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("OffDown", 0, 0, 0, 0, false, "Icon_OffDown", "OffDown Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("OffUp", 0, 0, 0, 0, false, "Icon_OffUp", "OffUp Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Paralysis", 0, 0, 0, 0, false, "Icon_Paralysis", "Paralysis Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Poison", 0, 0, 0, 0, false, "Icon_Poison", "Poison Icon", false, rand(240));
-	} );
-	userInterface.addButton(13, "Effects 3", function():void {
+	userInterface.addButton(1, "Rest", function():void {
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
 		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
-	} );
+	},
+	undefined,
+	"",
+	"");
+	
+	userInterface.addButton(2, "Rest", function():void {
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
+	},
+	undefined,
+	"Overruled!",
+	"This tooltip has been temporarily overruled.");
+	
+	userInterface.addButton(3, "Beep", function():void {
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
+		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
+	},
+	undefined,
+	"Boop",
+	"Beepboop? Boopity beepy!");
 }
 
 

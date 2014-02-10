@@ -183,7 +183,7 @@ package classes.UIComponents
 		/**
 		 * Set the underlying colour of the button
 		 */
-		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
+		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			this.buttonText = cap;
 			this.func = func;
@@ -198,7 +198,7 @@ package classes.UIComponents
 			this.mouseEnabled = true;
 		}
 		
-		public function setDisabledData(cap:String = "", ttHeader:String = "", ttBody:String = ""):void
+		public function setDisabledData(cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			this.clearData();
 			this.buttonText = cap;

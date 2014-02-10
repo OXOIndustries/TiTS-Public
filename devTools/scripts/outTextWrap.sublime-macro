@@ -1,0 +1,33 @@
+[
+
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "bol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "outputText(\""
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "\\n\\n\");"
+		},
+		"command": "insert"
+	}
+]
