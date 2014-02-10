@@ -11,7 +11,7 @@
 	{
 		"args":
 		{
-			"characters": "output(\""
+			"characters": "output(\"\\n\\n"
 		},
 		"command": "insert"
 	},
@@ -26,7 +26,7 @@
 	{
 		"args":
 		{
-			"characters": "\\n\\n\");"
+			"characters": "\");"
 		},
 		"command": "insert"
 	}
