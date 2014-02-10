@@ -66,7 +66,7 @@ package classes.UIComponents.SideBarComponents
 			var width:int = 34;
 			var rounding:int = 5;
 			var spacing:int = 2;
-			var padding:int = 12;
+			var padding:int = 10;
 			
 			var xPos:int = 0;
 			var yPos:int = 0;

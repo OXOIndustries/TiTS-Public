@@ -82,14 +82,12 @@ package classes.UIComponents
 		
 		private function BuildIcon():void
 		{
-			_icon = new Sprite()
+			_icon = new _iconClass();
 			this.addChild(_icon);
-			
-			_icon.addChild(new _iconClass());
 			
 			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
-				if (_sizeX >= _sizeY)
+				if (_sizeX >= _sizeY) // Tall or Square
 				{
 					var ratio:Number;
 					if (_icon.width > (_sizeX - _iconPadding))
@@ -104,7 +102,7 @@ package classes.UIComponents
 					_icon.scaleX = ratio;
 					_icon.scaleY = ratio;
 				}
-				else if (_sizeY > _sizeX)
+				else if (_sizeY > _sizeX) // Wide
 				{
 					var ratio:Number;
 					if (_icon.height > (_sizeY - _iconPadding))
@@ -115,7 +113,6 @@ package classes.UIComponents
 					{
 						ratio = (_sizeY - _iconPadding) / _icon.height;
 					}
-					var ratio:Number = 
 					_icon.scaleX = ratio;
 					_icon.scaleY = ratio;
 				}
