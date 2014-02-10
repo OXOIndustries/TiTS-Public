@@ -1,11 +1,13 @@
 package classes.UIComponents 
 {
 	import classes.GUI;
+	import fl.motion.Color;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.events.MouseEvent;
 	import classes.Resources.ButtonIcons;
+	import flash.geom.ColorTransform;
 	
 	/**
 	 * ...
@@ -129,8 +131,8 @@ package classes.UIComponents
 		private function BuildPageButtons():void
 		{
 			// Button page controls
-			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 5, false, false);
-			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 5, false, false);
+			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 30, false, false, false);
+			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 30, false, false, false);
 			
 			_buttonPageNext.name = "buttonPageNext";
 			_buttonPagePrev.name = "buttonPagePrev";
@@ -142,8 +144,8 @@ package classes.UIComponents
 			_buttonPagePrev.Deactivate();
 			
 			// Text output page controls
-			_textPageNext = new SquareButton(90, 40, 110, -50, 15, ButtonIcons.Icon_TextNext, 5, false, false);
-			_textPagePrev = new SquareButton(90, 40,  10, -50, 15, ButtonIcons.Icon_TextPrev, 5, false, false);
+			_textPageNext = new SquareButton(90, 40, 110, -50, 15, ButtonIcons.Icon_TextNext, 20, false, false, false);
+			_textPagePrev = new SquareButton(90, 40,  10, -50, 15, ButtonIcons.Icon_TextPrev, 20, false, false, false);
 			
 			_textPageNext.name = "bufferPageNext";
 			_textPagePrev.name = "bufferPagePrev";
@@ -151,8 +153,8 @@ package classes.UIComponents
 			this.addChild(_textPageNext);
 			this.addChild(_textPagePrev);
 			
-			_buttonPageNext.Deactivate();
-			_buttonPagePrev.Deactivate();
+			_textPageNext.Deactivate();
+			_textPagePrev.Deactivate();
 			
 			// Attach listeners for input
 			_buttonPageNext.addEventListener(MouseEvent.CLICK, ButtonPageClickHandler);

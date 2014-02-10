@@ -38,6 +38,8 @@ package classes.UIComponents
 			UIStyleSettings._gButtonGlow = null;
 			UIStyleSettings._gFadeOutColourTransform = null;
 			UIStyleSettings._gWhiteColourTransform = null;
+			UIStyleSettings._gBackgroundColourTransform = null;
+			UIStyleSettings._gForegroundColourTransform = null;
 		}
 		
 		// TITS VALUES
@@ -293,6 +295,28 @@ package classes.UIComponents
 				UIStyleSettings._gWhiteColourTransform.color = 0xFFFFFF;
 			}
 			return UIStyleSettings._gWhiteColourTransform;
+		}
+		
+		private static var _gBackgroundColourTransform:ColorTransform;
+		public static function get gBackgroundColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gBackgroundColourTransform == null)
+			{
+				UIStyleSettings._gBackgroundColourTransform = new ColorTransform();
+				UIStyleSettings._gBackgroundColourTransform.color = UIStyleSettings.gBackgroundColour;
+			}
+			return UIStyleSettings._gBackgroundColourTransform;
+		}
+		
+		private static var _gForegroundColourTransform:ColorTransform;
+		public static function get gForegroundColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gForegroundColourTransform == null)
+			{
+				UIStyleSettings._gForegroundColourTransform = new ColorTransform();
+				UIStyleSettings._gForegroundColourTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gForegroundColourTransform;
 		}
 	}
 

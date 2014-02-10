@@ -4,6 +4,7 @@ package classes.UIComponents
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.geom.ColorTransform;
+	import flash.geom.Transform;
 	
 	/**
 	 * ...
@@ -24,13 +25,17 @@ package classes.UIComponents
 		private var _background:Sprite;
 		
 		private var _bkgColour:Boolean;
+		private var _whtIcon:Boolean;
 		
 		public function get posX():int { return _posX; }
 		public function get posY():int { return _posY; }
 		
-		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3, hasGlow:Boolean = true, bkgColor:Boolean = true) 
+		// A lot of these args are going to eventually be refactored into post-construction properties,
+		// I'm just focusing on making the shit work atm
+		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3, hasGlow:Boolean = true, bkgColor:Boolean = true, whiteIcon:Boolean = true) 
 		{
 			_bkgColour = bkgColor;
+			_whtIcon = whiteIcon;
 			_sizeX = sizeX;
 			_sizeY = sizeY;
 			_posX = posX;
@@ -77,30 +82,47 @@ package classes.UIComponents
 		
 		private function BuildIcon():void
 		{
-			_icon = new _iconClass();
+			_icon = new Sprite()
 			this.addChild(_icon);
+			
+			_icon.addChild(new _iconClass());
 			
 			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
-				var ratio:Number;
-				if (_icon.width > _icon.height)
+				if (_sizeX >= _sizeY)
 				{
-					ratio = _icon.height / _icon.width;
-					_icon.width = _sizeX - _iconPadding;
-					_icon.height = Math.floor((_sizeY - _iconPadding) * ratio);
+					var ratio:Number;
+					if (_icon.width > (_sizeX - _iconPadding))
+					{
+						ratio = _icon.width / (_sizeX - _iconPadding);
+					}
+					else
+					{
+						ratio = (_sizeX - _iconPadding) / _icon.width;
+					}
+					
+					_icon.scaleX = ratio;
+					_icon.scaleY = ratio;
 				}
-				else
+				else if (_sizeY > _sizeX)
 				{
-					ratio = _icon.width / _icon.height;
-					_icon.height = _sizeY - _iconPadding;
-					_icon.width = Math.floor((_sizeX - _iconPadding) * ratio);
+					var ratio:Number;
+					if (_icon.height > (_sizeY - _iconPadding))
+					{
+						ratio = _icon.height / (_sizeY - _iconPadding);
+					}
+					else
+					{
+						ratio = (_sizeY - _iconPadding) / _icon.height;
+					}
+					var ratio:Number = 
+					_icon.scaleX = ratio;
+					_icon.scaleY = ratio;
 				}
 			}
 			
 			_icon.x = Math.floor((this.width - _icon.width) / 2);
 			_icon.y = Math.floor((this.height - _icon.height) / 2);
-
-			_icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 		}
 		
 		/**
@@ -139,7 +161,8 @@ package classes.UIComponents
 		public function Deactivate():void
 		{
 			this.DeGlow();
-			this._icon.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
+			
+			_icon.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
 			this._background.alpha = 0.3;
 			this.buttonMode = false;
 		}
@@ -149,7 +172,21 @@ package classes.UIComponents
 		 */
 		public function Activate():void
 		{
-			this._icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
+			if (_whtIcon == true )
+			{
+				_icon.transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
+			}
+			else
+			{
+				if (_bkgColour == true)
+				{
+					_icon.transform.colorTransform = UIStyleSettings.gForegroundColourTransform;
+				}
+				else
+				{
+					_icon.transform.colorTransform = UIStyleSettings.gBackgroundColourTransform;
+				}
+			}
 			this._background.alpha = 1;
 			this.buttonMode = true;
 		}
@@ -192,7 +229,6 @@ package classes.UIComponents
 				return false;
 			}
 			return true;
-		}
+		}	
 	}
-
 }
