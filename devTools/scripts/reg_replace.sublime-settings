@@ -44,16 +44,15 @@
 //                      to find all instances in a greedy fashion.  Default is false.
 {
     "replacements": {
-        // Example replacements
         "fix_fancyquotes_open": {
             "find": "“",
-            "replace": "“<i>",
+            "replace": "<i>“",
             "greedy": true,
             "case": false
         },
         "fix_fancyquotes_close": {
             "find": "”",
-            "replace": "</i>”",
+            "replace": "”</i>",
             "greedy": true,
             "case": false
         }
