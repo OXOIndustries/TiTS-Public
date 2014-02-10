@@ -4,7 +4,6 @@ package classes.UIComponents
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.geom.ColorTransform;
-	import flash.display.BlendMode;
 	
 	/**
 	 * ...
@@ -24,11 +23,14 @@ package classes.UIComponents
 		private var _icon:Sprite;
 		private var _background:Sprite;
 		
+		private var _bkgColour:Boolean;
+		
 		public function get posX():int { return _posX; }
 		public function get posY():int { return _posY; }
 		
-		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3) 
+		public function SquareButton(sizeX:int, sizeY:int, posX:int, posY:int, rounding:int, iconClass:Class, iconPadding:int = 3, hasGlow:Boolean = true, bkgColor:Boolean = true) 
 		{
+			_bkgColour = bkgColor;
 			_sizeX = sizeX;
 			_sizeY = sizeY;
 			_posX = posX;
@@ -36,6 +38,7 @@ package classes.UIComponents
 			_rounding = rounding;
 			_iconClass = iconClass;
 			_iconPadding = iconPadding;
+			_glowLayer = hasGlow;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -54,7 +57,19 @@ package classes.UIComponents
 			this.y = _posY;
 			
 			_background = new Sprite();
-			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
+			
+			var col:uint;
+			
+			if (_bkgColour)
+			{
+				col = UIStyleSettings.gBackgroundColour;
+			}
+			else
+			{
+				col = UIStyleSettings.gForegroundColour;
+			}
+			
+			_background.graphics.beginFill(col, 1);
 			_background.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, _rounding, _rounding);
 			_background.graphics.endFill();
 			this.addChild(_background);
@@ -93,7 +108,7 @@ package classes.UIComponents
 		 */
 		public function Glow():void
 		{
-			if (this.parent.name != "glowLayer")
+			if (this.parent.name != "glowLayer" && _glowLayer == true)
 			{
 				this.filters = [UIStyleSettings.gButtonGlow];
 			
@@ -108,7 +123,7 @@ package classes.UIComponents
 		 */
 		public function DeGlow():void
 		{
-			if (this.parent.name != "buttonLayer")
+			if (this.parent.name != "buttonLayer" && _glowLayer == true)
 			{
 				this.filters = [];
 				

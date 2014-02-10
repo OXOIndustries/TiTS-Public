@@ -291,37 +291,6 @@
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
 
-		public function bufferButtonUpdater():void {
-			//If you can go right still.
-			if(this.userInterface.textPage < 4) {
-				if(this.userInterface.pageNext.alpha != 1) {
-					this.userInterface.pageNext.addEventListener(MouseEvent.CLICK,this.userInterface.forwardBuffer);
-					this.userInterface.pageNext.alpha = 1;
-					this.userInterface.pageNext.buttonMode = true;
-				}
-			}
-			//If you can't go right but the button aint turned off.
-			else if(this.userInterface.pageNext.alpha != .3) {
-				this.userInterface.pageNext.removeEventListener(MouseEvent.CLICK,this.userInterface.forwardBuffer);
-				this.userInterface.pageNext.alpha = .3;
-				this.userInterface.pageNext.buttonMode = false;
-			}
-			//Left hooo!
-			if(this.userInterface.textPage > 0) {
-				if(this.userInterface.pagePrev.alpha != 1) {
-					this.userInterface.pagePrev.addEventListener(MouseEvent.CLICK,this.userInterface.backBuffer);
-					this.userInterface.pagePrev.alpha = 1;
-					this.userInterface.pagePrev.buttonMode = true;
-				}
-			}
-			//If you can't go right but the button aint turned off.
-			else if(this.userInterface.pagePrev.alpha != .3) {
-				this.userInterface.pagePrev.removeEventListener(MouseEvent.CLICK,this.userInterface.backBuffer);
-				this.userInterface.pagePrev.alpha = .3;
-				this.userInterface.pagePrev.buttonMode = false;
-			}
-		}
-
 		public function pageUpScroll():void
 		{
 			//Scroll if text field isn't actively selected, like a BAWS.

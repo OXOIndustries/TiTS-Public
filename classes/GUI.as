@@ -326,7 +326,7 @@
 		
 		private function ConfigureButtons():void
 		{
-			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick);
+			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick, bufferButtonHandler);
 			this.titsClassPtr.addChild(_buttonTray);
 			this._buttonTray.x = 0;
 			this._buttonTray.y = 800;
@@ -454,7 +454,6 @@
 			//if(this.userInterface.buttons[arg].arg == undefined) this.userInterface.buttons[arg].func();
 			//else this.userInterface.buttons[arg].func(this.userInterface.buttons[arg].arg);
 			//updatePCStats();
-			
 		}
 
 		public function hideTooltip():void
@@ -485,6 +484,65 @@
 					this.hideTooltip();
 				}
 			}
+		}
+		
+		/**
+		 * Updates the display state of the buffer page buttons.
+		 */
+		public function bufferButtonUpdater():void 
+		{
+			if (textPage < 4)
+			{
+				_buttonTray.textPageNext.Activate();
+			}
+			else
+			{
+				_buttonTray.textPageNext.Deactivate();
+			}
+
+			if (textPage > 0)
+			{
+				_buttonTray.textPagePrev.Activate();
+			}
+			else
+			{
+				_buttonTray.textPagePrev.Deactivate();
+			}
+		}
+		
+		public function output()
+		{
+			mainTextField.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+			updateScroll(null);
+		}
+		
+		public function clearOutput():void
+		{
+			pushToBuffer();
+			mainTextField.visible = true;
+			mainTextField2.visible = false;
+			mainTextField.htmlText = "\n";
+			outputBuffer = "\n";
+			updateScroll(null);
+			author("Probably Fenoxo");
+			textPage = 4;
+			bufferButtonUpdater();
+			menuButtonsOn();
+			deglow();
+		}
+		
+		public function output2():void
+		{
+			mainTextField2.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
+			updateScroll(null);
+		}
+		
+		public function clearOutput2():void
+		{
+			mainTextField.visible = false;
+			mainTextField2.visible = true;
+			outputBuffer2 = "\n";
+			updateScroll(null);
 		}
 		
 		public function getGuiPlayerNameText():String
@@ -578,8 +636,10 @@
 			
 				this.mainMenuButtons[slot].buttonMode = true;
 				this.mainMenuButtons[slot].visible = true;
-			}	
-			menuPageChecker();
+			}
+			
+			// I don't think this call was actually required here...
+			//menuPageChecker();
 		}
 
 		public function pushToBuffer():void 
@@ -600,44 +660,44 @@
 			}
 		}
 
-		public function forwardBuffer(e:MouseEvent):void 
+		private function bufferButtonHandler(e:MouseEvent):void
 		{
-			if(textPage < 4) {
+			var forward:Boolean = ((e.currentTarget as SquareButton).name == "bufferPageNext") ? true : false;
+			var pageTurn:Boolean = false;
+			
+			if (forward && textPage < 4)
+			{
 				textPage++;
+				pageTurn = true;
 			}
-			else return;
-			mainTextField.text = "";
-			updateScroll(e);
-			trace("TextPage: " + textPage);
-			if(textPage == 4) {
-				mainTextField.htmlText = tempText;
-				sceneBy = tempAuthor;
-			}
-			else {
-				mainTextField.htmlText = textBuffer[textPage];
-				sceneBy = authorBuffer[textPage];
-			}
-			updateScroll(e);
-			titsClassPtr.bufferButtonUpdater();
-		}
-		
-		public function backBuffer(e:MouseEvent):void 
-		{
-			if(textPage == 4) {
-				tempText = mainTextField.htmlText;
-				tempAuthor = sceneBy;
-			}
-			if(textPage > 0) {
+			else if (!forward && textPage > 1)
+			{
 				textPage--;
+				pageTurn = true;
+				
+				if (textPage == 4)
+				{
+					tempText = mainTextField.htmlText;
+					tempAuthor = sceneBy;
+				}
 			}
-			else return;
-			mainTextField.text = "";
-			updateScroll(e);
-			trace("TextPage: " + textPage);
-			mainTextField.htmlText = textBuffer[textPage];
-			sceneBy = authorBuffer[textPage];
-			updateScroll(e);
-			titsClassPtr.bufferButtonUpdater();
+			
+			if (pageTurn)
+			{
+				mainTextField.text = "";
+				if (textPage == 4)
+				{
+					mainTextField.htmlText = tempText;
+					sceneBy = tempAuthor;
+				}
+				else
+				{
+					mainTextField.htmlText = textBuffer[textPage];
+					sceneBy = authorBuffer[textPage];
+				}
+				updateScroll(e);
+				bufferButtonUpdater();
+			}
 		}
 
 		public function displayInput():void 
@@ -821,7 +881,7 @@
 			
 			menuButtonsOn();
 			_leftSideBar.appearanceButton.DeGlow();
-			titsClassPtr.bufferButtonUpdater();
+			bufferButtonUpdater();
 		}
 
 		public function hideMainMenu():void 
@@ -858,7 +918,7 @@
 			_buttonTray.textPagePrev.visible = true;
 			menuButtonsOn();
 			_leftSideBar.menuButton.DeGlow();
-			titsClassPtr.bufferButtonUpdater();
+			bufferButtonUpdater();
 		}
 
 		public function initializeMainMenu():void 

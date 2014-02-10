@@ -4,7 +4,6 @@ package classes.UIComponents.SideBarComponents
 	import flash.events.Event;
 	import classes.UIComponents.SquareButton;
 	import classes.Resources.ButtonIcons;
-	import flash.display.BlendMode;
 	
 	/**
 	 * ...
@@ -57,7 +56,6 @@ package classes.UIComponents.SideBarComponents
 			_buttonLayer.name = "buttonLayer";
 			
 			_glowLayer = new Sprite();
-			_glowLayer.blendMode = BlendMode.LAYER;
 			(_glowBehind) ? this.addChildAt(_glowLayer, 0) : this.addChild(_glowLayer);
 			_glowLayer.name = "glowLayer";
 		}

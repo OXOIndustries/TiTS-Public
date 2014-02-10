@@ -100,7 +100,7 @@ package classes.UIComponents
 			// Graphics elements
 			_buttonBody = new Sprite();
 			_buttonBody.graphics.beginFill(_baseColour, 1);
-			_buttonBody.graphics.drawRoundRect(0, 0, 150, 38, 15, 15);
+			_buttonBody.graphics.drawRoundRect(0, 0, 150, 40, 15, 15);
 			_buttonBody.graphics.endFill();
 			this.addChild(_buttonBody);
 			
@@ -144,6 +144,7 @@ package classes.UIComponents
 			_buttonBindLabel.wordWrap = false;
 			_buttonBindLabel.text = "?";
 			this.addChild(_buttonBindLabel);
+			_buttonBindLabel.visible = (_displayBindRing) ? true : false;
 		}
 		
 		/**
@@ -158,6 +159,20 @@ package classes.UIComponents
 		override public function get height():Number
 		{
 			return _buttonBody.height;
+		}
+		
+		override public function get alpha():Number
+		{
+			return _buttonBody.alpha;
+		}
+		
+		override public function set alpha(a:Number):void
+		{
+			_buttonBody.alpha = a;
+			_buttonBodyLabel.alpha = a;
+			_buttonBindRing.alpha = a;
+			_buttonBindInner.alpha = a;
+			_buttonBindLabel.alpha = a;
 		}
 		
 		/**
@@ -191,15 +206,6 @@ package classes.UIComponents
 		/**
 		 * Set the underlying colour of the button
 		 */
-		public function setElementColours(colour:uint):void
-		{
-			var clrTrans:ColorTransform = new ColorTransform();
-			clrTrans.color = colour;
-			
-			_buttonBody.transform.colorTransform = clrTrans;
-			_buttonBindRing.transform.colorTransform = clrTrans;
-		}
-		
 		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = "", ttBody:String = ""):void
 		{
 			this.buttonText = cap;
@@ -208,7 +214,7 @@ package classes.UIComponents
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
 			
-			this.alpha = 1.0;
+			this.alpha = 1;
 			this.buttonMode = true;
 		}
 		

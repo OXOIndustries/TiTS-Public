@@ -40,10 +40,12 @@ package classes.UIComponents
 		private var _defaultHotkeys:Array = ["1", "2", "3", "4", "5", "Q", "W", "E", "R", "T", "A", "S", "D", "F", "G"];
 		
 		private var _buttonHandlerFunc:Function;
+		private var _bufferHandlerFunc:Function;
 		
-		public function ButtonTray(buttonHandlerFunc:Function) 
+		public function ButtonTray(buttonHandlerFunc:Function, bufferHandlerFunc:Function) 
 		{
 			_buttonHandlerFunc = buttonHandlerFunc;
+			_bufferHandlerFunc = bufferHandlerFunc;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -56,7 +58,7 @@ package classes.UIComponents
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
-			_buttonPage = 0;
+			_buttonPage = 1;
 			
 			this.BuildBody();
 			this.BuildButtons();
@@ -69,12 +71,12 @@ package classes.UIComponents
 		private function BuildBody():void
 		{
 			_backgroundElem = new Sprite();
-			//_backgroundElem.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
-			_backgroundElem.graphics.beginFill(0xFF0000, 1);
+			_backgroundElem.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
 			_backgroundElem.graphics.drawRect(0, 0, 200, -60);
 			_backgroundElem.graphics.drawRect(200, 0, 800, -160);
 			_backgroundElem.graphics.drawRect(1000, 0, 200, -60);
 			_backgroundElem.graphics.endFill();
+			this.addChild(_backgroundElem);
 		}
 		
 		/**
@@ -82,25 +84,34 @@ package classes.UIComponents
 		 */
 		private function BuildButtons():void
 		{
-			_buttons = new Vector.<MainButton>(15);
+			_buttons = new Vector.<MainButton>();
 			_buttonData = new Vector.<ButtonData>();
 		
 			var btnX:int = 210;
-			var btnY:int = -150;
+			var btnY:int = -149;
 			
-			var vPad:int = 10;
-			var hPad:int = 10;
+			var vPad:int = 8;
+			var hPad:int = 9.5;
 			
 			for (var btn:int = 0; btn < 15; btn++)
 			{
-				var color:uint = (btn == 6 || btn == 10 || btn == 11 || btn == 12) ? UIStyleSettings.gForegroundColour : UIStyleSettings.gHighlightColour;
-				var newBtn:MainButton = new MainButton(color, false);
+				var color:int;
+				if (btn == 6 || btn == 10 || btn == 11 || btn == 12) 
+				{
+					color = MainButton.PURPLE_BUTTON;
+				}
+				else
+				{
+					color = MainButton.BLUE_BUTTON;
+				}
 				
-				newBtn.x = (btnX + (newBtn.width + hPad ) * (btn % 5));
-				newBtn.y = (btnY + (newBtn.height + vPad) * (btn / 5));
+				var newBtn:MainButton = new MainButton(color, true);
 				
 				this.addChild(newBtn);
 				_buttons.push(newBtn);
+				
+				newBtn.x = (btnX + ((150 + vPad) * int(btn % 5)));
+				newBtn.y = Math.round(btnY + ((40 + hPad) * int(btn / 5)));
 				
 				newBtn.buttonText = "Button " + String(btn);
 				newBtn.hotkeyText = _defaultHotkeys[btn];
@@ -118,21 +129,27 @@ package classes.UIComponents
 		private function BuildPageButtons():void
 		{
 			// Button page controls
-			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 5);
-			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 5);
+			_buttonPageNext = new SquareButton(90, 40, 1100, -50, 15, ButtonIcons.Icon_ButtonsNext, 5, false, false);
+			_buttonPagePrev = new SquareButton(90, 40, 1000, -50, 15, ButtonIcons.Icon_ButtonsPrev, 5, false, false);
 			
 			_buttonPageNext.name = "buttonPageNext";
 			_buttonPagePrev.name = "buttonPagePrev";
+			
+			this.addChild(_buttonPageNext);
+			this.addChild(_buttonPagePrev);
 			
 			_buttonPageNext.Deactivate();
 			_buttonPagePrev.Deactivate();
 			
 			// Text output page controls
-			_textPageNext = new SquareButton(90, 40, 110, -50, 15, ButtonIcons.Icon_TextNext, 5);
-			_textPagePrev = new SquareButton(90, 40,  10, -50, 15, ButtonIcons.Icon_TextPrev, 5);
+			_textPageNext = new SquareButton(90, 40, 110, -50, 15, ButtonIcons.Icon_TextNext, 5, false, false);
+			_textPagePrev = new SquareButton(90, 40,  10, -50, 15, ButtonIcons.Icon_TextPrev, 5, false, false);
 			
 			_textPageNext.name = "bufferPageNext";
 			_textPagePrev.name = "bufferPagePrev";
+			
+			this.addChild(_textPageNext);
+			this.addChild(_textPagePrev);
 			
 			_buttonPageNext.Deactivate();
 			_buttonPagePrev.Deactivate();
@@ -171,7 +188,7 @@ package classes.UIComponents
 		{
 			var lastButtonIndex:int = 0;
 			
-			for (var i:int = _buttonData.length - 1; i >= 0; i++)
+			for (var i:int = (_buttonData.length - 1); i >= 0; i--)
 			{
 				if (_buttonData[i].labelText != "")
 				{

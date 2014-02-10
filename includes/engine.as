@@ -26,41 +26,26 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 */
 
 //1: TEXT FUNCTIONS
-public function output(words:String, markdown = false):void {
+public function output(words:String, markdown = false):void 
+{
 	this.userInterface.outputBuffer += doParse(words, markdown);
-	
-	// Don't ask. Just accept it. Let the bullshit flow through you. Be one with the bullshit.
-	// (The span tags are applying our text formatting style)
-	// (The p tag "fixes" the sticky formatting problem.)
-	this.userInterface.mainTextField.htmlText = "<span class='words'><p>" + this.userInterface.outputBuffer + "</p></span>";
-	this.userInterface.updateScroll(this.userInterface.tempEvent);
+	this.userInterface.output();
 }
 
-public function clearOutput():void {
-	this.userInterface.pushToBuffer();
-	this.userInterface.mainTextField.visible = true;
-	this.userInterface.mainTextField2.visible = false;
-	this.userInterface.mainTextField.htmlText = "\n";
-	this.userInterface.outputBuffer = "\n";
-	this.userInterface.updateScroll(this.userInterface.tempEvent);
-	userInterface.author("Probably Fenoxo");
-	this.userInterface.textPage = 4;
-	bufferButtonUpdater();
-	//Menu buttons update!
-	this.userInterface.menuButtonsOn();
-	this.userInterface.deglow();
+public function clearOutput():void 
+{
+	this.userInterface.clearOutput();
 }
-//Used for main menu & data settings
-public function clearOutput2():void {
-	this.userInterface.mainTextField.visible = false;
-	this.userInterface.mainTextField2.visible = true;
-	this.userInterface.outputBuffer2 = "\n";
-	this.userInterface.updateScroll(this.userInterface.tempEvent);
+
+public function output2(words:String, markdown = false):void
+{
+	this.userInterface.outputBuffer2 += doParse(words, markdown);
+	this.userInterface.output2();
 }
-public function output2(words:String):void {
-	this.userInterface.outputBuffer2 += doParse(words);
-	this.userInterface.mainTextField2.htmlText = "<span class='words'>" + this.userInterface.outputBuffer2 + "</span>";
-	this.userInterface.updateScroll(this.userInterface.tempEvent);
+
+public function clearOutput2():void
+{
+	this.userInterface.clearOutput2();
 }
 
 public function num2Text(number:Number):String {
