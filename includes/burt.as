@@ -17,14 +17,14 @@ function burtsBarFunc():void {
 		if(flags["BET_AGAINST_SYRI"] == undefined) {
 			output("\n\nToward the corner of the Mead Hall, you note that a pair of holoscreens have been set up on one of the walls. A small crowd of dock workers and other spacers have gathered around it, apparently taking bets. Might be worth a look, who knows?");
 			//[Games]
-			userInterface.addButton(5,"Games",syriGamesStart);
+			addButton(5,"Games",syriGamesStart);
 		}
 		//{Has bet against Syri}
 		else {
 			output("\n\nThe cocksure ausar girl, Syri, is standing across from the game screens, deep into a match as she nurses a stiff Terran beer. Seeing you standing around, she waves you over, clearly looking for a rematch. ");
 			if(flags["FUCKED_SYRI_COUNT"] != undefined) output("She's certainly got that lusty look in her eyes...");
 			//[!Syri]
-			userInterface.addButton(5,"Syri",syriGamesStart);
+			addButton(5,"Syri",syriGamesStart);
 		}
 	}
 	//Add to Bar Description, Early Morning
@@ -39,14 +39,14 @@ function burtsBarFunc():void {
 				output("\n\nSyri's at her usual place, reading and munching on some nuts Burt's left for her. Seeing you looking her way, she flashes you a grin and indicates the empty seat beside her.");
 			}
 			//[Syri]
-			userInterface.addButton(5,"Syri",approachSyriIntheMorning);
+			addButton(5,"Syri",approachSyriIntheMorning);
 		}
 
 	}
 
-	if(flags["MET_BURT"] == undefined) this.userInterface.addButton(0,"Bar",burtapproach);
-	else this.userInterface.addButton(0,"Burt",burtapproach);
-	this.userInterface.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
+	if(flags["MET_BURT"] == undefined) this.addButton(0,"Bar",burtapproach);
+	else this.addButton(0,"Burt",burtapproach);
+	this.addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne);
 }
 
 function burtapproach():void {
@@ -84,14 +84,14 @@ function burtBarMenu():void {
 	//[Drink]		[Talk]		[Sex]*		[Shop]**	[Leave]
 	//* Only appears as an option if the PC has a Lust higher than 20.
 	//** Appears as [Collectables?] until the PC first visits the shop menu.
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Drink",burtDrinkMenu);
-	this.userInterface.addButton(1,"Talk",talkToDisBurtGuey);
-	if(pc.lust() >= 33) this.userInterface.addButton(2,"Sex",burtSex);
-	else this.userInterface.addDisabledButton(2,"Sex");
-	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.userInterface.addButton(3,"Collectables?",BurtShopCollectables);
-	else this.userInterface.addButton(3,"Shop",BurtShopCollectables);
-	this.userInterface.addButton(14,"Leave",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Drink",burtDrinkMenu);
+	this.addButton(1,"Talk",talkToDisBurtGuey);
+	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex);
+	else this.addDisabledButton(2,"Sex");
+	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables);
+	else this.addButton(3,"Shop",BurtShopCollectables);
+	this.addButton(14,"Leave",mainGameMenu);
 }
 
 //Drink
@@ -102,15 +102,15 @@ function burtDrinkMenu():void {
 	
 	output("\n\nCrabbst Blue Ribbon - 1 Credit\nMead - 10 Credits\nX-Zil-rate - 50 Credits");
 	
-	this.clearMenuProxy();
-	if(pc.credits >= 1) this.userInterface.addButton(0,"Crabbst",crabbstBlueRibbonPurchase);
-	else this.userInterface.addDisabledButton(0,"Crabbst");
-	if(pc.credits >= 10) this.userInterface.addButton(1,"Mead",buyMeadFromBurt);
-	else this.userInterface.addDisabledButton(1,"Mead");
-	if(pc.credits >= 50) this.userInterface.addButton(2,"X-Zil-rate",burtXilErAte);
-	else this.userInterface.addDisabledButton(2,"X-Zil-rate");
+	this.clearMenu();
+	if(pc.credits >= 1) this.addButton(0,"Crabbst",crabbstBlueRibbonPurchase);
+	else this.addDisabledButton(0,"Crabbst");
+	if(pc.credits >= 10) this.addButton(1,"Mead",buyMeadFromBurt);
+	else this.addDisabledButton(1,"Mead");
+	if(pc.credits >= 50) this.addButton(2,"X-Zil-rate",burtXilErAte);
+	else this.addDisabledButton(2,"X-Zil-rate");
 	//[Crabbst Blue Ribbon]		[Mead]		[X-Zil-rate]		[Back]
-	this.userInterface.addButton(14,"Back",burtapproach);
+	this.addButton(14,"Back",burtapproach);
 }
 
 //Talk
@@ -120,12 +120,12 @@ function talkToDisBurtGuey():void {
 	output("Burt smirks,<i> “The best thing about owning a bar, is that everyone wants to dump their worries on me when they come to get hammered. I’ve heard about every piece of bad luck and tragedy on the frontier. What do you want to talk about?”</i>");
 	//[pg]
 	//[Him]		[Mead Hall]		[Zil]		[Work]		[Back]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Him",askBurtAboutHimself);
-	this.userInterface.addButton(1,"Mead Hall",talkToBurtAboutMeadHall);
-	this.userInterface.addButton(2,"Zil",talkToBurtAboutDeseZilGueys);
-	this.userInterface.addButton(3,"Work",talkToBurtAboutWork);
-	this.userInterface.addButton(14,"Back",burtapproach);
+	this.clearMenu();
+	this.addButton(0,"Him",askBurtAboutHimself);
+	this.addButton(1,"Mead Hall",talkToBurtAboutMeadHall);
+	this.addButton(2,"Zil",talkToBurtAboutDeseZilGueys);
+	this.addButton(3,"Work",talkToBurtAboutWork);
+	this.addButton(14,"Back",burtapproach);
 }
 
 //Sex
@@ -139,8 +139,8 @@ function burtSex():void {
 		output("\n\nBurt smirks at the hologram and says,<i> “Watch the bar for me, Three-Dee, I’m taking a break to... uh... clean the back room.”</i>");
 		output("\n\nThe hologram, Three-Dee, gives a digitized giggle and says,<i> “Yes Master.”</i>");
 		output("\n\nBurt takes off his apron and hangs it behind the bar, before stepping over to the panel that serves as the gate to separate the front of the bar from the back of the bar. He lifts it and motions you back, guiding you into the back room.");
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",burtFirstTimeSexPartI);
+		this.clearMenu();
+		this.addButton(0,"Next",burtFirstTimeSexPartI);
 	}
 	//Repeat
 	else {
@@ -171,10 +171,10 @@ function burtFirstTimeSexPartI():void {
 	output("\n\nWhat you see next is a bit of a surprise, he has the expected hairy scrotum, holding a pair of hen’s egg sized testicles, but in place of the fleshy tan cock one would expect, you are instead greeted by a mass of interlocking chromed metal. As he pushes his pants all the way off and stands up, you are able to see that he has had his cock replaced by a cybernetic shaft, molded in the shape of an equine tool, with a thick medial ring and a flare at the tip. More than the shape, though, it is big enough to belong to a horse as well, being almost as long and thick as the man’s forearm and fist.");
 	output("\n\nHe notices your focus on the inorganic member and chuckles softly,<i> “Uh... yah, be careful around Galotians, if they are yellow and bubbly, that means that they are acidic. I didn’t know that, and well, my medical didn’t cover organic replacement. This baby is second hand, but reliable as they come... pardon the pun. This okay with you, [pc.name]?”</i>");
 	//[pg]
-	this.clearMenuProxy();
+	this.clearMenu();
 	//[Yes]		[No, Sorry]
-	this.userInterface.addButton(0,"Yes",yesIWantYerCrazyHoarseWeinerBurt);
-	this.userInterface.addButton(1,"No, Sorry",noRoboHorseWeinersHere);
+	this.addButton(0,"Yes",yesIWantYerCrazyHoarseWeinerBurt);
+	this.addButton(1,"No, Sorry",noRoboHorseWeinersHere);
 }
 
 //Yes
@@ -190,20 +190,20 @@ function yesIWantYerCrazyHoarseWeinerBurt():void {
 }
 
 function burtSexMenu():void {
-	this.clearMenuProxy();
+	this.clearMenu();
 	//[Give a BJ]	[Get Oral]		[Anal]		[Vaginal]*	[Back]
-	this.userInterface.addButton(0,"Give BJ",giveBurtABJ);
-	if(pc.hasVagina() || pc.hasCock()) this.userInterface.addButton(1,"ReceiveOral",getOralFromBurt);
-	else this.userInterface.addDisabledButton(1,"ReceiveOral");
-	this.userInterface.addButton(2,"Anal",burtsWeinerInYourButt);
-	if(pc.hasVagina()) this.userInterface.addButton(3,"Vagina",burtSticksItInThePCsVajayjay);
-	else this.userInterface.addDisabledButton(3,"Vagina");
+	this.addButton(0,"Give BJ",giveBurtABJ);
+	if(pc.hasVagina() || pc.hasCock()) this.addButton(1,"ReceiveOral",getOralFromBurt);
+	else this.addDisabledButton(1,"ReceiveOral");
+	this.addButton(2,"Anal",burtsWeinerInYourButt);
+	if(pc.hasVagina()) this.addButton(3,"Vagina",burtSticksItInThePCsVajayjay);
+	else this.addDisabledButton(3,"Vagina");
 	//[Handjob]	[Rimjob]		[Titfuck]**	[Tailfuck]*
-	this.userInterface.addButton(4,"Handjob",giveBurtAHandyYouSlooooooooooot);
-	this.userInterface.addButton(5,"Rimjob",lickBurtsAssholeYouFilthyButtlicker);
-	if(pc.biggestTitSize() >= 7) this.userInterface.addButton(6,"Titfuck",titFuckBurtBecauseYoureAFilthyFatChestedHo);
-	if(pc.hasCuntTail()) this.userInterface.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot);
-	this.userInterface.addButton(14,"Back",burtapproach);
+	this.addButton(4,"Handjob",giveBurtAHandyYouSlooooooooooot);
+	this.addButton(5,"Rimjob",lickBurtsAssholeYouFilthyButtlicker);
+	if(pc.biggestTitSize() >= 7) this.addButton(6,"Titfuck",titFuckBurtBecauseYoureAFilthyFatChestedHo);
+	if(pc.hasCuntTail()) this.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot);
+	this.addButton(14,"Back",burtapproach);
 	//* Requires requisite part, vagina or tailpussy.
 	//** Requires C cup or bigger
 }
@@ -217,8 +217,8 @@ function noRoboHorseWeinersHere():void {
 	//[pg]
 	//[Next] (Move to just outside the Mead Hall.) 
 	currentLocation = "NORTH ESBETH 2";
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Shop
@@ -241,17 +241,17 @@ function BurtShopCollectables():void {
 		output("Burt’s eyes light up as you mention his offer to buy Zil items from you.<i> “Hey, [pc.name], I’m still interested, if you have the stuff. But don’t go trying to pawn off any regular old honey or some old chunk of shredded plastic. I know what’s really theirs. I’m an expert.”</i> He clearly meant his warning in good humor and faith.<i> “So, you got anything for me?”</i> He gives you a hopeful grin.");
 		//[pg]
 	}
-	this.clearMenuProxy();
+	this.clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		if(pc.inventory[x].quantity > 0) {
-			if(x >= 14) this.userInterface.addButton(x+1,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
-			else this.userInterface.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
+			if(x >= 14) this.addButton(x+1,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
+			else this.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
 		}
 	}
 	//[Inv1]		[Inv2]		[Inv3]		[Inv4]		[Inv5]
 	//Zil purchase menu!
 	//[Back]
-	this.userInterface.addButton(14,"Back",burtapproach);
+	this.addButton(14,"Back",burtapproach);
 }
 
 function burtPurchase(arg:int = 0) {
@@ -273,8 +273,8 @@ function burtMakesAPurchase(arg:int = 0):void {
 	//EAT ZE STACK!
 	if(pc.inventory[arg].quantity <= 0) pc.inventory.splice(arg,1);
 	//[pg]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",BurtShopCollectables);
+	this.clearMenu();
+	this.addButton(0,"Next",BurtShopCollectables);
 }
 
 //Refuse
@@ -283,8 +283,8 @@ function burtRefusesYourItemYouHobo(arg:int = 0):void {
 	author("Danaume");
 	output("Burt glances at the " + pc.inventory[arg].description + " and sighs,<i> “Look, [pc.name], I don’t know if you are just confused or not, but this isn’t even remotely related to the Zil. I can’t buy this. Take this over to the Junk Hut if you want to get rid of it, I’m just not interested in buying it.”</i>");
 	//[Next]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",BurtShopCollectables);
+	this.clearMenu();
+	this.addButton(0,"Next",BurtShopCollectables);
 }
 
 //Leave
@@ -294,8 +294,8 @@ function leaveBurt():void {
 	output("You nod to Burt and turn, taking your attentions from the bartender to the rest of the Mead Hall. You can hear Burt behind you say,<i> “Take care, and come back to me if you get thirsty. And don’t forget, if you come across any Zil gear, think of me.”</i>  He then starts humming some random holovid show tune as he returns to cleaning.");
 	//[pg]
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Drinks--------------------------------------------------------------------------------------------------------------------
@@ -337,8 +337,8 @@ function crabbstBlueRibbonPurchase():void {
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.credits--;
 	processTime(8);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",burtDrinkMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",burtDrinkMenu);
 }
 	
 //Mead
@@ -378,8 +378,8 @@ function buyMeadFromBurt():void {
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.credits-= 10;
 	processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",burtDrinkMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",burtDrinkMenu);
 }
 
 //X-Zil-rate
@@ -410,8 +410,8 @@ function burtXilErAte():void {
 	else flags["BURT_DRINKS_BOUGHT"]++;
 	pc.credits-= 50;
 	processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",burtDrinkMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",burtDrinkMenu);
 }
 
 //Him
@@ -463,8 +463,8 @@ function askBurtAboutHimself():void {
 		//[pg]
 	}
 	processTime(9+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToDisBurtGuey);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToDisBurtGuey);
 }
 
 //Mead Hall
@@ -494,8 +494,8 @@ function talkToBurtAboutMeadHall():void {
 		output("\n\nBurt watches Honey prance about for a moment, an almost fatherly look on his face as he watches her, before he looks back to you,<i> “If you do catch her show, don’t be an ass about it. No one ends up stuck out in this jungle because their life was perfect in the core.”</i>");
 	}
 	processTime(4+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToDisBurtGuey);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToDisBurtGuey);
 }
 
 //Zil
@@ -527,8 +527,8 @@ function talkToBurtAboutDeseZilGueys():void {
 		output("Burt frowns as he tries to think of anything else to tell you about the Zil,<i> “I don’t know what more I could tell you that isn’t in a standard Codex, though if you plan on hunting or fighting them, I guess the best thing to have with you is something that is cold. They like things hot, and weapons that freeze things tend to hit them hard.”</i>");
 	}
 	processTime(4+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToDisBurtGuey);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToDisBurtGuey);
 }
 
 //Work
@@ -541,8 +541,8 @@ function talkToBurtAboutWork():void {
 	output("\n\nYou frown and explain to Burt that Victor Steele was your father.");
 	output("\n\nBurt blinks and blushes a bit in embarrassment,<i> “Well damn, [pc.name], I didn’t realize you were the Steele kid. I just expected if I ever met the " + pc.mfn("son","daughter","child") + " of a corporate CEO, they would be a stuck up asshole who couldn’t even wipe themselves without help. I sure didn’t mean any offense. I was just trying to help.”</i>");
 	processTime(5+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToDisBurtGuey);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToDisBurtGuey);
 }
 
 //Sex-----------------------------------------------------------------------------------------------------------------------
@@ -556,8 +556,8 @@ function giveBurtABJ():void {
 	//[Next]
 	processTime(10+rand(3));
 	pc.lust(3);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",giveBurtABJPartII);
+	this.clearMenu();
+	this.addButton(0,"Next",giveBurtABJPartII);
 }
 
 function giveBurtABJPartII():void {
@@ -573,8 +573,8 @@ function giveBurtABJPartII():void {
 	//[Next] (-1 Will, +5 Lust, Random Sex Exit)
 	pc.lust(5);
 	processTime(10+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Get a Oral
@@ -753,8 +753,8 @@ function getOralFromBurt():void {
 	}
 	processTime(20+rand(5));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Anal
@@ -827,8 +827,8 @@ function burtsWeinerInYourButt():void {
 	//[Next] (-All Lust, Random Sex Exit)
 	processTime(25+rand(10));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Vaginal
@@ -925,8 +925,8 @@ function burtSticksItInThePCsVajayjay():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Handjob
@@ -944,8 +944,8 @@ function giveBurtAHandyYouSlooooooooooot():void {
 	output("\n\nTaking the encouragement for what it is, you begin to slided your hands up and down his length, able to forget that it is metal and plastic with how naturally it shifts and moves as though made of flesh and blood. You can feel the rise of the medial ring in the center of his cock, like a speedbump for your hands as you work to jerk him off, and each time your grip passes over it he lets out the most adorable groan. Brushing your hands over his flare makes him shiver and arch his hips out towards you, almost thrusting against your grip.");
 	//[pg]
 	pc.lust(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",burtHandyPartDeux);
+	this.clearMenu();
+	this.addButton(0,"Next",burtHandyPartDeux);
 }
 
 function burtHandyPartDeux():void {
@@ -965,8 +965,8 @@ function burtHandyPartDeux():void {
 	//[pg]
 	processTime(15);
 	pc.lust(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Rimjob
@@ -998,8 +998,8 @@ function lickBurtsAssholeYouFilthyButtlicker():void {
 	//[Next] (-1 Will, +5 Lust, Random Sex Exit)
 	processTime(20+rand(6));
 	pc.lust(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Titfuck
@@ -1030,8 +1030,8 @@ function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	//[Next] (+5 Lust, Random Sex Exit)
 	processTime(10+rand(4));
 	pc.lust(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 //Tailfuck - Req's cunttail
@@ -1046,8 +1046,8 @@ function tailFuckBurtBecauseWhyNot():void {
 	output("\n\nYour tail slowly draws free of his still twitching and erect shaft, feeling the afterglow settling in your belly, only to have Burt ruin it by chuckling out,<i> “Now that’s what I call getting some tail.”</i>  Like you haven’t heard that one before....");
 	processTime(14+rand(8));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",randomBurtSexExit);
+	this.clearMenu();
+	this.addButton(0,"Next",randomBurtSexExit);
 }
 
 
@@ -1065,8 +1065,8 @@ function randomBurtSexExit():void {
 		output("\n\nYou spend the next hour just laying in each other’s arms, and afterwards, Burt helps clean you off and help you put your equipment back on, giving you a slap on your [pc.butt], sending you out into the bar again and leaving him to clean up the back room before returning to his post.");
 		//[Next] (Return to Mead Hall main room)
 		processTime(1);
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 	}
 	//Honey
 	else if(choice == 1)
@@ -1075,8 +1075,8 @@ function randomBurtSexExit():void {
 		output("\n\nBefore you can clean up, the waitress, Honey, pokes her head back into the backroom, saying,<i> “Hey Boss, we’re running low on... oh my...”</i>  she blushes deeply as she sees you and Burt, naked and clearly just finished with a carnal act. The blonde swallows nervously and stammers out,<i> “...I’ll just... um... come back later.”</i>  she then bolts from the back room, slamming the door behind her.");
 		output("\n\nYou laugh softly and let Burt go talk with Honey as you slip your gear back on and leave for the main room of the Mead Hall.");
 		processTime(1);
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 	}
 	//Barfight
 	else if(choice == 2) {
@@ -1086,8 +1086,8 @@ function randomBurtSexExit():void {
 		output("\n\nYou didn’t know that Burt’s cock could do that... man, it’s a good thing he didn’t do that when he was fucking you.");
 		output("\n\nYou stand and pull your gear back on, and slip out of the back room, past the still naked and lecturing Burt. Fortunately, the stunned patrons of the bar are a little too distracted to notice your walk of shame.");
 		processTime(2);
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 	}
 	//Three-Dee Rape
 	else {
@@ -1098,8 +1098,8 @@ function randomBurtSexExit():void {
 		output("\n\n<b>It looks like it’s a fight!</b>");
 		//[Next]
 		processTime(1);
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",threeDSurprise);
+		this.clearMenu();
+		this.addButton(0,"Next",threeDSurprise);
 	}
 }
 
@@ -1146,8 +1146,8 @@ function threeDSurprise():void {
 	else flags["TIMES_THREE_D_SURPRISE_SEXED"]++;
 	pc.orgasm();
 	processTime(5+rand(5));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function stephIrsonBountHunterEpisodeOne():void {
@@ -1228,6 +1228,6 @@ function stephIrsonBountHunterEpisodeOne():void {
 	processTime(35);
 	if(9999 == 0) pc.orgasm();
 	else pc.lust(33);
-	this.clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

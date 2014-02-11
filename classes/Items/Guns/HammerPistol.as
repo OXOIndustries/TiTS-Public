@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class HammerPistol extends ItemSlotClass
 	{
@@ -20,12 +22,16 @@
 			//Regular name
 			this.longName = "hammer pistol";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a hammer pistol";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Nick-named 'the hammer' by the backwater law enforcement agencies that rely on it. This handgun is as reliable as they come. It utilized a standard point and shoot interface, though the trigger is a little sensitive.";
 			this.attackVerb = "shoot";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
 			this.basePrice = 2000;

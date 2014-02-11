@@ -11,10 +11,10 @@ function hangarBonus():Boolean
 	// trace("this.titsClassPtr.move,", this.titsClassPtr.move);
 	// trace("this.titsClassPtr.userInterface", this.titsClassPtr.userInterface);
 	if(currentLocation == "LIFT: MERCHANT DECK") {
-		userInterface.addButton(5,"ToHangar",liftMove, "TAVROS LIFT");
+		addButton(5,"ToHangar",liftMove, "TAVROS LIFT");
 	}
 	else if(currentLocation == "TAVROS LIFT") {
-		userInterface.addButton(5,"ToMerchant",liftMove, "LIFT: MERCHANT DECK");
+		addButton(5,"ToMerchant",liftMove, "LIFT: MERCHANT DECK");
 	}
 	return false;
 }
@@ -22,14 +22,14 @@ function liftMove(destination:String):void {
 	move(destination,false);
 	clearOutput();
 	output("Your stomach drops as the lift kicks into gear. The gentle, steady thrum of powerful machinery fills the metallic tube as you are brought to your destination, slowly decelerating when you arrive.");
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 
 function debugMenus():void
 {
-	clearMenuProxy();
+	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 
 	addItemButton(0, new LaserPistol(), function():void {
@@ -134,7 +134,7 @@ function findOxoniumOnMhenga():Boolean {
 	if(jungleDeepEncounters()) return true;
 	//Option to loot it!
 	else if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
-		userInterface.addButton(0,"Scan Rock",claimMhengaOxonium);
+		addButton(0,"Scan Rock",claimMhengaOxonium);
 	}
 	return false;
 }
@@ -147,8 +147,8 @@ function claimMhengaOxonium():void {
 	flags["OXONIUM_FOUND"]++;
 	pc.credits += 5000;
 	processTime(6);
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 function jungleDeepEncounters():Boolean {

@@ -63,7 +63,7 @@ package classes.UIComponents
 		{ 
 			_buttonName = v;
 			
-			if (itemQuantity != 0 && v.length > 0)
+			if (itemQuantity > 1 && v.length > 0)
 			{
 				buttonHtmlText = v + " x" + itemQuantity;
 			}
@@ -78,7 +78,7 @@ package classes.UIComponents
 		{ 
 			_itemQuantity = v; 
 		
-			if (buttonName.length > 0 && v != 0)
+			if (buttonName.length > 0 && v > 1)
 			{
 				buttonHtmlText = buttonName + " x" + v;
 			}

@@ -32,7 +32,7 @@ function combatMainMenu():void
 		output("\n");
 		//Route to victory menus and GTFO.		
 		//clearMenuProxy();
-		//userInterface.addButton(0,"Victory",victoryRouting);
+		//addButton(0,"Victory",victoryRouting);
 		victoryRouting();
 		return;
 	}
@@ -41,7 +41,7 @@ function combatMainMenu():void
 		trace("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
 		//clearMenuProxy();
-		//userInterface.addButton(0,"Defeat",defeatRouting);
+		//addButton(0,"Defeat",defeatRouting);
 		defeatRouting();
 		return;
 	}
@@ -58,143 +58,143 @@ function combatMainMenu():void
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
 		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
-		this.userInterface.addButton(0,"Recover",stunRecover,pc);
+		this.addButton(0,"Recover",stunRecover,pc);
 	}
 	//Bound Menu
 	else if (pc.hasStatusEffect("Naleen Coiled"))
 	{
 		output("\n<b>You are wrapped up in coils!</b>");
-		userInterface.addButton(0,"Struggle",naleenStruggle);
+		addButton(0,"Struggle",naleenStruggle);
 		if(pc.hasStatusEffect("Static Burst Known")) {
-			if(pc.energy() >= 50) this.userInterface.addButton(3,"StaticBurst",staticBurst);
-			else this.userInterface.addDisabledButton(3,"StaticBurst");
+			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
+			else this.addDisabledButton(3,"StaticBurst");
 		}
-		this.userInterface.addButton(4,"Do Nothing",wait);
+		this.addButton(4,"Do Nothing",wait);
 	}
 	else 
 	{
 		//Combat menu
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
-		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-		this.userInterface.addButton(4,"Specials",specialsMenu);
-		this.userInterface.addButton(5,"Tease",attackRouter,teaseMenu);
-		this.userInterface.addButton(6,"Sense",attackRouter,sense);
-		this.userInterface.addButton(9,"Fantasize",fantasize);
-		this.userInterface.addButton(14,"Run",runAway);
+		this.clearMenu();
+		this.addButton(0,"Attack",attackRouter,playerAttack);
+		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+		this.addButton(4,"Specials",specialsMenu);
+		this.addButton(5,"Tease",attackRouter,teaseMenu);
+		this.addButton(6,"Sense",attackRouter,sense);
+		this.addButton(9,"Fantasize",fantasize);
+		this.addButton(14,"Run",runAway);
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
 
 function specialsMenu():void {
-	clearMenuProxy();
-	userInterface.addButton(14,"Back",combatMainMenu);
-	userInterface.addButton(13,"Wait",wait);
+	clearMenu();
+	addButton(14,"Back",combatMainMenu);
+	addButton(13,"Wait",wait);
 	if(pc.characterClass == GLOBAL.MERCENARY)
 	{
-		if(pc.energy() >= 25) userInterface.addButton(0,"Headbutt",attackRouter,headbutt);
-		else userInterface.addDisabledButton(0,"Headbutt");
+		if(pc.energy() >= 25) addButton(0,"Headbutt",attackRouter,headbutt);
+		else addDisabledButton(0,"Headbutt");
 		if(pc.hasStatusEffect("Rapid Fire Known"))
 		{
-			if(pc.energy() >= 20) userInterface.addButton(1,"Rapid Fire",attackRouter,rapidFire);
-			else userInterface.addDisabledButton(1,"Rapid Fire");
+			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire);
+			else addDisabledButton(1,"Rapid Fire");
 		}
 		if(pc.hasStatusEffect("Power Strike Known"))
 		{
-			if(pc.energy() >= 20) userInterface.addButton(1,"Power Strike",attackRouter,powerStrike);
-			else userInterface.addDisabledButton(1,"Power Strike");
+			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike);
+			else addDisabledButton(1,"Power Strike");
 		}
 		var offset:int = 0;
 		if(pc.hasStatusEffect("Take Cover Known")) 
 		{
 			offset++;
-			if(pc.energy() >= 20) userInterface.addButton(2,"Take Cover",takeCover);
-			else userInterface.addDisabledButton(2,"Take Cover");
+			if(pc.energy() >= 20) addButton(2,"Take Cover",takeCover);
+			else addDisabledButton(2,"Take Cover");
 		}
 		if(pc.hasStatusEffect("Carpet Grenades Known"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(2+offset,"Carpet Grenades",carpetGrenades);
-			else userInterface.addDisabledButton(2+offset,"Carpet Grenades");
+			if(pc.energy() >= 25) addButton(2+offset,"Carpet Grenades",carpetGrenades);
+			else addDisabledButton(2+offset,"Carpet Grenades");
 		}
 		if(pc.hasStatusEffect("Det. Charge Known"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(2+offset,"Det. Charge",attackRouter,detCharge);
-			else userInterface.addDisabledButton(2+offset,"Det. Charge");
+			if(pc.energy() >= 25) addButton(2+offset,"Det. Charge",attackRouter,detCharge);
+			else addDisabledButton(2+offset,"Det. Charge");
 		}
 		if(pc.level >= 5)
 		{
-			if(!pc.hasStatusEffect("Used Second Wind")) userInterface.addButton(3,"Second Wind",secondWind);
-			else userInterface.addDisabledButton(3,"Second Wind");
+			if(!pc.hasStatusEffect("Used Second Wind")) addButton(3,"Second Wind",secondWind);
+			else addDisabledButton(3,"Second Wind");
 		}
 	}
 	else if(pc.characterClass == GLOBAL.ENGINEER) {
-		if(pc.energy() >= 25) userInterface.addButton(0,"P.Shock",attackRouter,paralyzingShock);
-		else userInterface.addDisabledButton(0,"P.Shock");
+		if(pc.energy() >= 25) addButton(0,"P.Shock",attackRouter,paralyzingShock);
+		else addDisabledButton(0,"P.Shock");
 		if(pc.hasStatusEffect("Volley Known")) 
 		{
-			if(pc.energy() >= 20) userInterface.addButton(1,"Volley",attackRouter,volley);
-			else userInterface.addDisabledButton(1,"Volley");
+			if(pc.energy() >= 20) addButton(1,"Volley",attackRouter,volley);
+			else addDisabledButton(1,"Volley");
 		}
 		if(pc.hasStatusEffect("Overcharge Known"))
 		{
-			if(pc.energy() >= 20) userInterface.addButton(1,"Overcharge",attackRouter,overcharge);
-			else userInterface.addDisabledButton(1,"Overcharge");
+			if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge);
+			else addDisabledButton(1,"Overcharge");
 		}
 		if(pc.hasStatusEffect("Deflector Regeneration Known"))
 		{
-			if(pc.energy() >= 20) userInterface.addButton(2,"D. Regen.",deflectorRegeneration,pc);
-			else userInterface.addDisabledButton(2,"D. Regen.");
+			if(pc.energy() >= 20) addButton(2,"D. Regen.",deflectorRegeneration,pc);
+			else addDisabledButton(2,"D. Regen.");
 		}
 		if(pc.hasStatusEffect("Power Surge Known"))
 		{
-			if(pc.energy() >= 33) userInterface.addButton(2,"P. Surge",powerSurge,pc);
-			else userInterface.addDisabledButton(2,"P. Surge");
+			if(pc.energy() >= 33) addButton(2,"P. Surge",powerSurge,pc);
+			else addDisabledButton(2,"P. Surge");
 		}
 		if(pc.hasKeyItem("Thermal Disruptor"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor);
-			else userInterface.addDisabledButton(3,"T. Disrupt.");
+			if(pc.energy() >= 25) addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor);
+			else addDisabledButton(3,"T. Disrupt.");
 		}
 		if(pc.hasKeyItem("Gravidic Disruptor"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor);
-			else userInterface.addDisabledButton(3,"G. Disrupt.");
+			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor);
+			else addDisabledButton(3,"G. Disrupt.");
 		}
 	}
 	else if(pc.characterClass == GLOBAL.SMUGGLER)
 	{
 		if(silly)
 		{
-			if(pc.energy() >= 10) userInterface.addButton(0,"P.Sand",attackRouter,flashGrenade);
-			else userInterface.addDisabledButton(0,"P.Sand");
+			if(pc.energy() >= 10) addButton(0,"P.Sand",attackRouter,flashGrenade);
+			else addDisabledButton(0,"P.Sand");
 		}
 		else
 		{
-			if(pc.energy() >= 10) userInterface.addButton(0,"F.Grenade",attackRouter,flashGrenade);
-			else userInterface.addDisabledButton(0,"F.Grenade");	
+			if(pc.energy() >= 10) addButton(0,"F.Grenade",attackRouter,flashGrenade);
+			else addDisabledButton(0,"F.Grenade");	
 		}
 		if(pc.hasStatusEffect("Low Blow Known"))
 		{
-			if(pc.energy() >= 15) userInterface.addButton(1,"Low Blow",attackRouter,lowBlow);
-			else userInterface.addDisabledButton(1,"Low Blow");	
+			if(pc.energy() >= 15) addButton(1,"Low Blow",attackRouter,lowBlow);
+			else addDisabledButton(1,"Low Blow");	
 		}
 		if(pc.hasStatusEffect("Disarming Shot Known")) {
-			if(pc.energy() >= 20) userInterface.addButton(2,"Disarm Shot",attackRouter,disarmingShot);
-			else userInterface.addDisabledButton(2,"Disarm Shot");	
+			if(pc.energy() >= 20) addButton(2,"Disarm Shot",attackRouter,disarmingShot);
+			else addDisabledButton(2,"Disarm Shot");	
 		}
 		if(pc.hasStatusEffect("Stealth Field Generator Known")) {
-			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) userInterface.addButton(2,"Stealth Field",stealthFieldActivation);
-			else userInterface.addDisabledButton(2,"Stealth Field");	
+			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(2,"Stealth Field",stealthFieldActivation);
+			else addDisabledButton(2,"Stealth Field");	
 		}
 		if(pc.hasStatusEffect("Grenade Known"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(3,"Grenade",attackRouter,grenade);
-			else userInterface.addDisabledButton(3,"Grenade");	
+			if(pc.energy() >= 25) addButton(3,"Grenade",attackRouter,grenade);
+			else addDisabledButton(3,"Grenade");	
 		}
 		if(pc.hasStatusEffect("Gas Grenade Known"))
 		{
-			if(pc.energy() >= 25) userInterface.addButton(3,"Gas Grenade",attackRouter,gasGrenade);
-			else userInterface.addDisabledButton(3,"Gas Grenade");	
+			if(pc.energy() >= 25) addButton(3,"Gas Grenade",attackRouter,gasGrenade);
+			else addDisabledButton(3,"Gas Grenade");	
 		}
 	}
 }
@@ -333,13 +333,13 @@ function stunRecover(target:Creature):void
 }
 function celiseMenu():void 
 {
-	this.clearMenuProxy();
+	this.clearMenu();
 	if(pc.statusEffectv1("Round") == 1) 
-		this.userInterface.addButton(0,"Attack",attackRouter,playerAttack);
+		this.addButton(0,"Attack",attackRouter,playerAttack);
 	else if(pc.statusEffectv1("Round") == 2) 
-		this.userInterface.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
+		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
 	else 
-		this.userInterface.addButton(5,"Tease",attackRouter,tease);
+		this.addButton(5,"Tease",attackRouter,tease);
 }
 
 function processCombat():void 
@@ -351,8 +351,8 @@ function processCombat():void
 	//Victory check first, because PC's are OP.
 	if(allFoesDefeated()) {
 		//Go back to main menu for victory announcement.
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Victory",combatMainMenu);
+		this.clearMenu();
+		this.addButton(0,"Victory",combatMainMenu);
 		return;
 	}
 	if (pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() <= 0 || pc.willpower() <= 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen))
@@ -363,8 +363,8 @@ function processCombat():void
 		if(foes[0] is Naleen) trace("FIGHTIN NALEEN");
 
 		//YOU LOSE! GOOD DAY SIR!
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Defeat",combatMainMenu);
+		this.clearMenu();
+		this.addButton(0,"Defeat",combatMainMenu);
 		return;
 	}
 	//If enemies still remain, do their AI routine.
@@ -397,8 +397,8 @@ function processCombat():void
 		}
 	}
 	combatStage = 0;
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",combatMainMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",combatMainMenu);
 }
 
 function staticBurst():void {
@@ -474,14 +474,14 @@ function attackRouter(destinationFunc):void
 		destinationFunc(foes[0]);
 		return;
 	}
-	this.clearMenuProxy();
+	this.clearMenu();
 	while(counter < foes.length) {
-		this.userInterface.addButton(button,foes[0].short,destinationFunc,foes[counter]);
+		this.addButton(button,foes[0].short,destinationFunc,foes[counter]);
 		counter++;
 		button++;
 	}
 	if(button < 14) button = 14;
-	this.userInterface.addButton(button,"Back",combatMainMenu);
+	this.addButton(button,"Back",combatMainMenu);
 }
 
 // Really?
@@ -877,13 +877,13 @@ function teaseMenu(target:Creature):void
 		output("\nCrotch tease skill: " + teases[2] + "/100");
 		output("\nHips tease skill: " + teases[3] + "/100");
 		output("\n\nYour ability at a tease can increase both its success rate and total damage.")
-		clearMenuProxy();
-		userInterface.addButton(0,"Ass",teaseButt,target);
-		userInterface.addButton(1,"Chest",teaseChest,target);
-		if(pc.hasCock() || pc.hasVagina()) userInterface.addButton(2,"Crotch",teaseCrotch,target);
-		else userInterface.addDisabledButton(2,"Crotch");
-		userInterface.addButton(3,"Hips",teaseHips,target);
-		userInterface.addButton(14,"Back",combatMainMenu);
+		clearMenu();
+		addButton(0,"Ass",teaseButt,target);
+		addButton(1,"Chest",teaseChest,target);
+		if(pc.hasCock() || pc.hasVagina()) addButton(2,"Crotch",teaseCrotch,target);
+		else addDisabledButton(2,"Crotch");
+		addButton(3,"Hips",teaseHips,target);
+		addButton(14,"Back",combatMainMenu);
 	}
 }
 function teaseChest(target:Creature):void {
@@ -1079,8 +1079,8 @@ function genericLoss():void {
 	trace("GENERIC LOSS");
 	pc.clearCombatStatuses();
 	trace("LOSS DONE");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function genericVictory():void 
@@ -1092,8 +1092,8 @@ function genericVictory():void
 function combatOver():void 
 {
 	pc.removeStatusEffect("Round");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -1157,7 +1157,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		if(creditBuffer > 1) output("s");
 		output(" loaded on an anonymous credit chit that you appropriate.\n");
 	}
-	this.clearMenuProxy();
+	this.clearMenu();
 	//Fill wallet and GTFO
 	if(foundLootItems.length > 0) {
 		output("You also find ");
@@ -1174,7 +1174,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 	//Just leave if no items.
 	else {
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -1247,8 +1247,8 @@ function runAway():void {
 		pc.removeStatusEffect("Round");
 		pc.clearCombatStatuses();
 		this.userInterface.hideNPCStats();
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 	}
 	else {
 		var x:int = 0;
@@ -1298,8 +1298,8 @@ function runAway():void {
 			pc.removeStatusEffect("Round");
 			pc.clearCombatStatuses();
 			this.userInterface.hideNPCStats(); // Putting it here is kinda weird, but seeing the enemy HP value drop to 0 also seems a bit weird too
-			this.clearMenuProxy();
-			this.userInterface.addButton(0,"Next",mainGameMenu);
+			this.clearMenu();
+			this.addButton(0,"Next",mainGameMenu);
 		}
 		else {
 			output(" It doesn't work!\n");
@@ -1678,8 +1678,8 @@ function paralyzingShock(target:Creature):void {
 	if(target.hasStatusEffect("Paralyzed")) {
 		if(target.plural) output(target.capitalA + target.short + " are already paralyzed!");
 		else output(target.capitalA + target.short + " is already paralyzed!");
-		clearMenuProxy();
-		userInterface.addButton(0,"Next",combatMainMenu);
+		clearMenu();
+		addButton(0,"Next",combatMainMenu);
 		return;
 	}
 	//Attempt it!

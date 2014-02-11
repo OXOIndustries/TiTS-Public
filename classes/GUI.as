@@ -449,8 +449,8 @@
 		{
 			var btnArray:Array = _buttonTray.buttons;
 			
-			if (btnArray[0].buttonText == "Next" || btnArray[0].buttonText == "Leave" || btnArray[0].buttonText == "Back") PressButton(0);
-			else if (btnArray[14].buttonText == "Next" || btnArray[14].buttonText == "Leave" || btnArray[14].buttonText == "Back") PressButton(14);
+			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") PressButton(0);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") PressButton(14);
 		}
 		
 		/**

@@ -21,8 +21,8 @@ function maleZilEncounter():void {
 		output("\n\nA faint buzz is the only warning you get before a male zil flutters out of the sky in front of you, crotch plate retracted and dick waving at head-height, just a few feet away. He winks and says, <i>“Hey, I brought a snack,”</i> while pulling his foreskin back just far enough to see an ebony tip peek through. <i>“You hungry?”</i>");
 		output("\n\n<b>It's a fight!</b>");
 	}
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",startCombat,"zil male");
+	clearMenu();
+	addButton(0,"Next",startCombat,"zil male");
 }
 
 /*
@@ -227,34 +227,34 @@ function winVsZil():void {
 	}
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
-	clearMenuProxy();
-	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) userInterface.addButton(0,"Buttfuck",buttfuckDefeatedZil);
-	else userInterface.addDisabledButton(0,"Buttfuck");
+	clearMenu();
+	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(0,"Buttfuck",buttfuckDefeatedZil);
+	else addDisabledButton(0,"Buttfuck");
 	//*Ride His Cock
 	//To cumfinity, and beyond! REQS CUNT
-	if(pc.hasVagina()) userInterface.addButton(1,"Ride Him",rideDatZilCawk);
-	else userInterface.addDisabledButton(1,"Ride Him");
+	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk);
+	else addDisabledButton(1,"Ride Him");
 	//*Footjob scene - Req's humanlike feetsies
 	//(By Miesha)
-	if(pc.legType == GLOBAL.HUMAN) userInterface.addButton(2,"GiveFootjob",giveTheZilAFootjob);
-	else userInterface.addDisabledButton(2,"GiveFootjob");
+	if(pc.legType == GLOBAL.HUMAN) addButton(2,"GiveFootjob",giveTheZilAFootjob);
+	else addDisabledButton(2,"GiveFootjob");
 	
 	//*Foreskin Oral Play
 	//(By Alkahest) (If this needs to be edited, I will do so. Lemme know your opinion plz)
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
-	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) userInterface.addButton(3,"Oral Play",alkahestsForeskinOralPlay);
-	else userInterface.addDisabledButton(3,"Oral Play");
+	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay);
+	else addDisabledButton(3,"Oral Play");
 	//*Tailcock Peg Him
-	if(pc.hasTailCock()) userInterface.addButton(4,"Tail Peg",tailCockPegTheZil);
-	else userInterface.addDisabledButton(4,"Tail Peg");
+	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);
+	else addDisabledButton(4,"Tail Peg");
 
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
-		userInterface.addButton(9,"Capture",useTheCaptureHarness);
+		addButton(9,"Capture",useTheCaptureHarness);
 		output("\n\n<b>Doctor Julian Haswell wanted you to use a capture harness on a zil. Now would be the perfect time.</b>");
 	}
-	userInterface.addButton(14,"Leave",genericVictory);
+	addButton(14,"Leave",genericVictory);
 }
 
 //*Butt Fuck Him
@@ -638,14 +638,14 @@ function alkahestsForeskinOralPlay():void {
 	//{PLAYER ORGASMY STUFF HERE} (This area will be filled out in my final draft. For now this is mostly placeholder text, please let me know your opinions)
 	//(Menu to pick which organ to come with)
 	output("\n\nHow do you cum?");
-	clearMenuProxy();
-	if(pc.hasCock()) userInterface.addButton(0,"Dick",foreskinWorshipCumWithDick);
-	if(pc.cockTotal() > 1) userInterface.addButton(0,"Dicks",foreskinWorshipCumWithDick);
-	if(!pc.hasCock()) userInterface.addDisabledButton(0,"Dick");
-	if(pc.hasVagina()) userInterface.addButton(1,"Pussy",foreskinWorshipWithPussyCum);
-	else userInterface.addDisabledButton(1,"Pussy");
-	if(pc.hasDickNipples()) userInterface.addButton(2,"DickNipples",foreskinWorshipWithNippleCocks);
-	else userInterface.addDisabledButton(2,"DickNipples");
+	clearMenu();
+	if(pc.hasCock()) addButton(0,"Dick",foreskinWorshipCumWithDick);
+	if(pc.cockTotal() > 1) addButton(0,"Dicks",foreskinWorshipCumWithDick);
+	if(!pc.hasCock()) addDisabledButton(0,"Dick");
+	if(pc.hasVagina()) addButton(1,"Pussy",foreskinWorshipWithPussyCum);
+	else addDisabledButton(1,"Pussy");
+	if(pc.hasDickNipples()) addButton(2,"DickNipples",foreskinWorshipWithNippleCocks);
+	else addDisabledButton(2,"DickNipples");
 }
 
 //{IF DICK}
@@ -1050,17 +1050,17 @@ function getTailPussyFuckedByZil():void {
 	output("\n\n<i>“Good boy,”</i> you think as you let your eyes flutter closed and relax in post-coital bliss.");
 	//[Next]
 	feedCuntSnake();
-	clearMenuProxy();
+	clearMenu();
 	processTime(40+rand(20));
 	pc.orgasm();
-	userInterface.addButton(0,"Next",tailPussyFuckZilEpilogue);
+	addButton(0,"Next",tailPussyFuckZilEpilogue);
 }
 function tailPussyFuckZilEpilogue():void {
 	clearOutput();
 	output("An hour later, you wake from your sexual slumber, feeling a little bit worse for the wear.");
 	if(pc.hasCock() || pc.hasVagina()) output(" Fragrant, musky mud clings to you all over. You fairly reek of your own sexual effluence - gross. Luckily, a babbling brook can be heard a short distance away, and you spend the better portion of another hour cleaning up.");
 	processTime(30+rand(15));
-	clearMenuProxy();
+	clearMenu();
 	genericLoss();
 }
 //*Apparently Dudes Can't Peg Other Dudes:

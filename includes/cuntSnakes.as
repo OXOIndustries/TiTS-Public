@@ -54,8 +54,8 @@ function encounterCuntSnakeOnJungleLand():void {
 	}
 	//[Repeat]
 	else output("\n\nA cunt snake slithers out in front of you, mouth open and fangs dripping with venom. It rises up slightly and prepares to fight!");
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",startCombat,"cunt snake");
+	clearMenu();
+	addButton(0,"Next",startCombat,"cunt snake");
 }
 
 //*Combat Description
@@ -263,15 +263,15 @@ function cuntSnakeLossEpilogueTailChances():void {
 		{
 			if(rand(3) == 0)
 			{
-				clearMenuProxy();
-				userInterface.addButton(0,"Next",getACuntTail);
+				clearMenu();
+				addButton(0,"Next",getACuntTail);
 				return;
 			}
 		}
 		else if(rand(5) == 0)
 		{
-			clearMenuProxy();
-			userInterface.addButton(0,"Next",getACuntTail);
+			clearMenu();
+			addButton(0,"Next",getACuntTail);
 			return;
 		}
 	}
@@ -503,15 +503,15 @@ function defeatACuntSnake():void {
 		output(" The sight of that juicy snatch crawling away has you contemplating a course of action that would be unthinkable were you less aroused. ");
 		if(pc.cockThatFits(80) >= 0) output("You could grab it and fuck it, though.");
 		else output("You're too big to fuck this thing, unfortunately.");
-		clearMenuProxy();
-		userInterface.addButton(0,"Fuck It",fuckACuntSnake);
-		userInterface.addButton(1,"Kill It",killACuntSnake);
-		userInterface.addButton(14,"Leave",leaveIt);
+		clearMenu();
+		addButton(0,"Fuck It",fuckACuntSnake);
+		addButton(1,"Kill It",killACuntSnake);
+		addButton(14,"Leave",leaveIt);
 	}
 	else {
-		clearMenuProxy();
-		userInterface.addButton(1,"Kill It",killACuntSnake);
-		userInterface.addButton(14,"Leave",leaveIt);
+		clearMenu();
+		addButton(1,"Kill It",killACuntSnake);
+		addButton(14,"Leave",leaveIt);
 	}
 }
 
@@ -620,9 +620,9 @@ function giveBirthThroughCuntTail():void {
 	processTime(10+rand(5));
 	pc.orgasm();
 	//[Hide it] [Take it]
-	clearMenuProxy();
-	userInterface.addButton(0,"Hide It",hideYoEggYo);
-	userInterface.addButton(1,"Take It",takeYoEggYo);
+	clearMenu();
+	addButton(0,"Hide It",hideYoEggYo);
+	addButton(1,"Take It",takeYoEggYo);
 }
 
 //*Hide It
@@ -631,8 +631,8 @@ function hideYoEggYo():void {
 	output("You find a good spot to hide the egg and leave it there, smiling when you realize that someone else is going to wind up with a juicy, delightful pussy attached to them, compelling them to feed it cum until they wind up feeling what you did... and then the whole cycle can start anew.");
 	if(flags["CUNT_SNAKES_HELPED_TO_INFEST"] == undefined) flags["CUNT_SNAKES_HELPED_TO_INFEST"] = 1;
 	else flags["CUNT_SNAKES_HELPED_TO_INFEST"]++;
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 //*Take It
 function takeYoEggYo():void {
@@ -640,8 +640,8 @@ function takeYoEggYo():void {
 	output("You take the egg and secure it on your person. You’ll send it off first thing, so that it will properly cared for and want for nothing - hopefully, to include a host.");
 	if(flags["CUNT_SNAKE_EGGS_FAXED_HOME"] == undefined) flags["CUNT_SNAKE_EGGS_FAXED_HOME"] = 1;
 	else flags["CUNT_SNAKE_EGGS_FAXED_HOME"]++;
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 function feedCuntSnake():void {

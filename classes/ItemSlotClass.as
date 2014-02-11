@@ -224,23 +224,23 @@
 			// Any stat with a difference, or A value
 			if (statDiff != 0 || newItemStat != 0)
 			{
-				resultString += displayAs + ": " + newItemStat + " ";
+				resultString += displayAs + ": <b>" + newItemStat + "</b> ";
 				
 				// Figure out formatting shit
 				if (statDiff < 0)
 				{
-					resultString += "<span class='bad'>(";
+					resultString += "<span class='bad'><b>(";
 				}
 				else if (statDiff > 0)
 				{
-					resultString += "<span class='good'>(+";
+					resultString += "<span class='good'><b>(+";
 				}
 				else if (statDiff == 0)
 				{
-					resultString += "<span class='words'>(";
+					resultString += "<span class='words'><b>(";
 				}
 				
-				resultString += statDiff + ")</span>";
+				resultString += statDiff + ")</b></span>";
 			}
 			
 			return resultString;

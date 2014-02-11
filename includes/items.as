@@ -6,8 +6,8 @@ function useItem(item:ItemSlotClass):void {
 	{
 		clearOutput();
 		output("Attempted to use " + item.longName + " which had zero quantity.");
-		this.clearMenuProxy();
-		this.userInterface.addButton(14,"Back",useItemFunction);
+		this.clearMenu();
+		this.addButton(14,"Back",useItemFunction);
 		return;
 	}
 	else 
@@ -28,8 +28,8 @@ function useItem(item:ItemSlotClass):void {
 				//if item use returns false, set up a menu.
 				if (!item.useFunction(chars["PC"])) 
 				{
-					clearMenuProxy();
-					userInterface.addButton(0,"Next",useItemFunction);
+					clearMenu();
+					addButton(0,"Next",useItemFunction);
 				}
 			}
 			//else: Error checking
@@ -37,8 +37,8 @@ function useItem(item:ItemSlotClass):void {
 			{
 				clearOutput();
 				output("Error: Attempted to use item but item had no associated function. Tell Fenoxo he is a dirty hobo.");
-				this.clearMenuProxy();
-				this.userInterface.addButton(0,"Next",useItemFunction);
+				this.clearMenu();
+				this.addButton(0,"Next",useItemFunction);
 			}
 			
 			// Consume an item from the stack
@@ -63,18 +63,18 @@ function shop(keeper:Creature):void {
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;
 	//Menuuuu!
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Buy Item",buyItem);
+	this.clearMenu();
+	this.addButton(0,"Buy Item",buyItem);
 	if(keeper.typesBought.length > 0) 
-		this.userInterface.addButton(1,"Sell Item",sellItem);
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+		this.addButton(1,"Sell Item",sellItem);
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 function buyItem():void {
 	clearOutput();
 	output(shopkeep.keeperBuy);
 	var temp:Number = 0;
-	this.clearMenuProxy();
+	this.clearMenu();
 	for(var x:int = 0; x < shopkeep.inventory.length; x++) {
 		trace("GOING THROUGH SHOPKEEP INVENTORY.");
 		//If slot has something in it.
@@ -86,17 +86,17 @@ function buyItem():void {
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
-				if(x <= 13) this.userInterface.addButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
-				if(x > 13) this.userInterface.addButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+				if(x <= 13) this.addButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+				if(x > 13) this.addButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
-				if(x <= 13) this.userInterface.addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
-				if(x > 13) this.userInterface.addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x <= 13) this.addDisabledButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
+				if(x > 13) this.addDisabledButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity);
 			}
 		}
 	}
-	this.userInterface.addButton(14,"Back",shop,shopkeep);
+	this.addButton(14,"Back",shop,shopkeep);
 }
 
 function buyItemGo(arg:ItemSlotClass):void {
@@ -118,7 +118,7 @@ function buyItemGo(arg:ItemSlotClass):void {
 function sellItem():void {
 	clearOutput();
 	output(shopkeep.keeperSell);
-	this.clearMenuProxy();
+	this.clearMenu();
 	for(var x:int = 0; x < pc.inventory.length; x++) {
 		//If slot has something in it.
 		if(pc.inventory[x].quantity > 0) {
@@ -126,12 +126,12 @@ function sellItem():void {
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
-				if(x <= 13) this.userInterface.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,sellItemGo,pc.inventory[x]);
-				if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,sellItemGo,pc.inventory[x]);
+				if(x <= 13) this.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,sellItemGo,pc.inventory[x]);
+				if(x > 13) this.addButton(x+1,pc.inventory[x].shortName,sellItemGo,pc.inventory[x]);
 			}
 		}
 	}
-	this.userInterface.addButton(14,"Back",shop,shopkeep);
+	this.addButton(14,"Back",shop,shopkeep);
 }
 
 function sellItemGo(arg:ItemSlotClass):void {
@@ -141,8 +141,8 @@ function sellItemGo(arg:ItemSlotClass):void {
 	output("You sell " + arg.description  + " for " + num2Text(price) + " credits.");
 	arg.quantity--;
 	if (arg.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(arg), 1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",sellItem);
+	this.clearMenu();
+	this.addButton(0,"Next",sellItem);
 }
 
 function getSellPrice(keeper:Creature,basePrice:Number):Number {
@@ -176,67 +176,67 @@ function inventory():void {
 	}
 	else output("None\n\n");
 	output("What item would you like to use?");
-	this.clearMenuProxy();
+	this.clearMenu();
 	var adjustment:int = 0;
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
 		//5 = bra
 		if(x+adjustment == 5) {
 			if(pc.upperUndergarment.shortName != "") {
-				this.userInterface.addButton(x+adjustment,"UndertopOff",unequip,"bra");
+				this.addButton(x+adjustment,"UndertopOff",unequip,"bra");
 			}
-			else this.userInterface.addDisabledButton(x+adjustment,"UndertopOff");
+			else this.addDisabledButton(x+adjustment,"UndertopOff");
 			adjustment++;
 		}
 		//6 = shield
 		if(x+adjustment == 6)
 		{
-			if(pc.shield.shortName != "") this.userInterface.addButton(x+adjustment,"Shield Off",unequip,"shield");
-			else this.userInterface.addDisabledButton(x+adjustment,"Shield Off");
+			if(pc.shield.shortName != "") this.addButton(x+adjustment,"Shield Off",unequip,"shield");
+			else this.addDisabledButton(x+adjustment,"Shield Off");
 			adjustment++;
 		}
 		//7 = panties
 		if(x+adjustment == 7)
 		{
-			if(pc.lowerUndergarment.shortName != "") this.userInterface.addButton(x+adjustment,"UnderwearOff",unequip,"underwear");
-			else this.userInterface.addDisabledButton(x+adjustment,"UnderwearOff");
+			if(pc.lowerUndergarment.shortName != "") this.addButton(x+adjustment,"UnderwearOff",unequip,"underwear");
+			else this.addDisabledButton(x+adjustment,"UnderwearOff");
 			adjustment++;
 		}
 		//10 = melee
 		if(x+adjustment == 10) {
-			if(pc.meleeWeapon.shortName != "Rock") this.userInterface.addButton(x+adjustment,"Melee Off",unequip,"mWeapon");
-			else this.userInterface.addDisabledButton(x+adjustment,"Melee Off");
+			if(pc.meleeWeapon.shortName != "Rock") this.addButton(x+adjustment,"Melee Off",unequip,"mWeapon");
+			else this.addDisabledButton(x+adjustment,"Melee Off");
 			adjustment++;
 		}
 		//11 = armor
 		if(x+adjustment == 11) {
-			if(pc.armor.shortName != "") this.userInterface.addButton(x+adjustment,"Armor Off",unequip,"armor");
-			else this.userInterface.addDisabledButton(x+adjustment,"Armor Off");
+			if(pc.armor.shortName != "") this.addButton(x+adjustment,"Armor Off",unequip,"armor");
+			else this.addDisabledButton(x+adjustment,"Armor Off");
 			adjustment++;
 		}
 		//12 = ranged
 		if(x+adjustment == 12) {
-			if(pc.rangedWeapon.shortName != "Rock") this.userInterface.addButton(x+adjustment,"Ranged Off",unequip,"rWeapon");
-			else this.userInterface.addDisabledButton(x+adjustment,"Ranged Off");
+			if(pc.rangedWeapon.shortName != "Rock") this.addButton(x+adjustment,"Ranged Off",unequip,"rWeapon");
+			else this.addDisabledButton(x+adjustment,"Ranged Off");
 			adjustment++;
 		}
 		//13 = accessory!
 		if(x+adjustment == 13) {
-			if(pc.accessory.shortName != "") this.userInterface.addButton(x+adjustment,"Acc. Off",unequip,"accessory");
-			else this.userInterface.addDisabledButton(x+adjustment,"Acc. Off");
+			if(pc.accessory.shortName != "") this.addButton(x+adjustment,"Acc. Off",unequip,"accessory");
+			else this.addDisabledButton(x+adjustment,"Acc. Off");
 			adjustment++;
 		}
 		//normal inventory
 		if(x < pc.inventory.length) {
 			if(pc.inventory[x].quantity > 0) {
-				this.userInterface.addButton(x+adjustment,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
-				if(x > 13) this.userInterface.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
+				this.addButton(x+adjustment,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				if(x > 13) this.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
 			}
 		}
 	}
 	
 	//Set user and target.
 	itemUser = pc;
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 
@@ -335,8 +335,8 @@ function equipItem(arg:ItemSlotClass):void {
 	}
 	else 
 	{
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",itemScreen);
+		this.clearMenu();
+		this.addButton(0,"Next",itemScreen);
 	}
 }
 
@@ -346,8 +346,8 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 	var target:PlayerCharacter = pc;
 	if(newLootList.length == 0) {
 		output("There was an error looting an the item that was looted didn't actually exist.");
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",lootScreen);
+		this.clearMenu();
+		this.addButton(0,"Next",lootScreen);
 	}
 	output("You acquire " + newLootList[0].description + " (x" + newLootList[0].quantity + ")");
 	if(newLootList.length > 0) {
@@ -395,18 +395,18 @@ function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 			output(" away quite easily.\n");
 			//Clear the item off the newLootList.
 			newLootList.splice(0,1);
-			this.clearMenuProxy();
-			if(newLootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
-			else this.userInterface.addButton(0,"Next",lootScreen);
+			this.clearMenu();
+			if(newLootList.length > 0) this.addButton(0,"Next",itemCollect);
+			else this.addButton(0,"Next",lootScreen);
 		}
 		//No room - replacement screen!
 		else 
 		{
 			output(". There is not room in your inventory for your new acquisition. Do you discard the item or replace a filled item slot?");
-			this.clearMenuProxy();
-			this.userInterface.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
-			this.userInterface.addButton(1,"Discard", discardItem,       newLootList);
-			this.userInterface.addButton(2,"Use",     useLoot,           newLootList);
+			this.clearMenu();
+			this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
+			this.addButton(1,"Discard", discardItem,       newLootList);
+			this.addButton(2,"Use",     useLoot,           newLootList);
 		}
 	}
 }
@@ -415,23 +415,23 @@ function discardItem(lootList:Array):void {
 	clearOutput();
 	output("You discard " + lootList[0].longName + " (x" + lootList[0].quantity + ").");
 	lootList.splice(0,1);
-	this.clearMenuProxy();
-	if(lootList.length > 0) this.userInterface.addButton(0,"Next",itemCollect);
-	else this.userInterface.addButton(0,"Next",lootScreen);
+	this.clearMenu();
+	if(lootList.length > 0) this.addButton(0,"Next",itemCollect);
+	else this.addButton(0,"Next",lootScreen);
 }
 
 function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("What will you replace?");
-	this.clearMenuProxy();
+	this.clearMenu();
 	for(var x:int = 0; x < pc.inventorySlots(); x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
-			this.userInterface.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
+			this.addButton(x,butDesc,replaceItemGo,[x, lootList]);  // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 	}
-	this.userInterface.addButton(14,"Back",itemCollect,true);
+	this.addButton(14,"Back",itemCollect,true);
 }
 
 function useLoot(lootList:Array):void {
@@ -443,8 +443,8 @@ function useLoot(lootList:Array):void {
 function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");
 	lootList.splice(0,1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",lootScreen);
+	this.clearMenu();
+	this.addButton(0,"Next",lootScreen);
 }
 
 function replaceItemGo(args:Array):void 
@@ -455,11 +455,11 @@ function replaceItemGo(args:Array):void
 	output("You toss out " + pc.inventory[indice].longName + "(x" + pc.inventory[indice].quantity + ") to make room for " + lootList[0].longName + "(x" + lootList[0].quantity + ").");
 	pc.inventory[indice] = lootList[0];
 	lootList.splice(0,1);
-	this.clearMenuProxy();
+	this.clearMenu();
 	if(lootList.length > 0) 
-		this.userInterface.addButton(0,"Next",itemCollect, lootList);
+		this.addButton(0,"Next",itemCollect, lootList);
 	else 
-		this.userInterface.addButton(0,"Next",lootScreen);
+		this.addButton(0,"Next",lootScreen);
 }
 
 function hasRoom(target:Creature,item:ItemSlotClass):Boolean {

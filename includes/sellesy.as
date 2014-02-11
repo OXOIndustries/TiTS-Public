@@ -52,7 +52,7 @@ function anonsBarWaitressAddendum():void {
 		if(flags["MET_SELLESY"] != undefined) output(", Sellesy,");
 		output(" is here again, though she hasn't yet caught sight of you. You could flag her down if you wanted.");
 	}
-	userInterface.addButton(0,"Waitress",anonsBarWaitressApproach);
+	addButton(0,"Waitress",anonsBarWaitressApproach);
 }
 
 
@@ -70,9 +70,9 @@ function anonsBarWaitressApproach():void {
 
 		output("\n\n<i>\"Go ahead and stare all you want sweetie, but can I get you anything to drink while you do?</i>\"  she asks with a knowing grin that shakes you from your stupor. \"<i>My name is Sellesy, and I'll be taking care of you all night...</i>\" she continues, adding a sultry tone to the end, which you could easily have missed, hard as it is to look up from the incredible bust sitting directly in the center of your vision. \"<i>We have quite a few delicious drinks 'on tap' tonight!</i>\"  she notes, seemingly not minding your fascination, and giggles away to herself, amused by her own joke.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
-		userInterface.clearMenu();
-		userInterface.addButton(0,"OrderDrink",firstDrinkFromSellesy);
-		userInterface.addButton(14,"Leave",mainGameMenu);
+		clearMenu();
+		addButton(0,"OrderDrink",firstDrinkFromSellesy);
+		addButton(14,"Leave",mainGameMenu);
 	}
 	//************************
 	//1B. “Returning to the Bar”
@@ -82,9 +82,9 @@ function anonsBarWaitressApproach():void {
 		output("\n\nAs you take a seat, she saunters over on her now familiar lithe, toned legs. She places a hand very suggestively on your shoulder, toying with your neck with one finger as she greets you.");
 		output("\n\n“<i>Welcome back baby. I knew you couldn’t stay away for long. Are you feeling THIRSTY? Or were you hoping to skip straight to the ‘deposit’ this time?</i>”  she asks with a knowing grin.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
-		userInterface.clearMenu();
-		userInterface.addButton(0,"OrderDrink",firstDrinkFromSellesy,false);
-		userInterface.addButton(14,"Leave",mainGameMenu);
+		clearMenu();
+		addButton(0,"OrderDrink",firstDrinkFromSellesy,false);
+		addButton(14,"Leave",mainGameMenu);
 	}
 	
 }
@@ -121,16 +121,16 @@ function firstDrinkFromSellesy(first:Boolean = true):void {
 
 	processTime(5+rand(5));
 	//[The following scenes are effective no matter character type, size/stature. It is assumed Sellesy and the chair adjust for any difference in height, or in the case of being awkwardly largely endowed, she just straddles their cock with a wider berth between her legs.]
-	userInterface.clearMenu();
-	if(pc.hasCock()) userInterface.addButton(0,"Next",firstTimeWithSellesyForCocks);
-	else if(pc.hasVagina()) userInterface.addButton(0,"Next",firstTimeWithSellesyForVagoos);
+	clearMenu();
+	if(pc.hasCock()) addButton(0,"Next",firstTimeWithSellesyForCocks);
+	else if(pc.hasVagina()) addButton(0,"Next",firstTimeWithSellesyForVagoos);
 	else genderlessEpilogueForSellesy();
 }
 
 function genderlessEpilogueForSellesy():void {
 	output("\n\nSellesy openly presses against your groin and then frowns, obviously disappointed with what she finds there. Before you have a moment to react, she spins away with a murmured \"thank you.\"");
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[FOR MALES/HERMS] [See parentheses for editions which must be made based on character]
@@ -151,8 +151,8 @@ function firstTimeWithSellesyForCocks():void {
 	output("\n\nShe cries out breathlessly, throwing her arms around your back and holding you close as her entire body seizes up and you feel your own climax shiver through your trapped body. As her pussy clenches and drips hungrily against your cock in the throes of orgasmic bliss, you can only imagine what it would be like to be inside her.");
 	processTime(5+rand(5));
 	pc.orgasm();
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",sellesyPostDrinkEpilogue);
+	clearMenu();
+	addButton(0,"Next",sellesyPostDrinkEpilogue);
 }
 //[FOR FEMALES]
 function firstTimeWithSellesyForVagoos():void {
@@ -162,8 +162,8 @@ function firstTimeWithSellesyForVagoos():void {
 	output("\n\nShe cries out breathlessly, throwing her arms around your back and squeezes you close as her entire body seizes up, and you feel your own climax shiver through your trapped body, her pussy clenching hungrily against yours. With your scant clothing separating the two, it feels wonderfully erotic.");
 	processTime(5+rand(5));
 	pc.orgasm();
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",sellesyPostDrinkEpilogue);
+	clearMenu();
+	addButton(0,"Next",sellesyPostDrinkEpilogue);
 }
 
 //**************************
@@ -190,14 +190,14 @@ function sellesyPostDrinkEpilogue():void {
 		output("\n\nThe thought of nursing from her again makes your stomach groan with hunger. It’s impossible, though, for you to ignore how your time with her has left you feeling (exactly how long you’ve been here rather unknown to you, the lack of any natural light or clocks an eerie reminder of your isolation in this establishment). You feel extremely warm and oh so relaxed in her arms, feeling overall refreshed and yet... content.");
 		output("\n\nWould it really be so bad to stay here with her a while longer?");
 		//[Options: Leave, go upstairs to her "private room"]
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Stay With",stayWithSellesy);
-		userInterface.addButton(14,"Leave",mainGameMenu);
+		clearMenu();
+		addButton(0,"Stay With",stayWithSellesy);
+		addButton(14,"Leave",mainGameMenu);
 	}
 	else {
 		output("\n\nThe thought of nursing from her again makes your overfull stomach roll, and you politely decline, sending the well-drained waitress on her way with a smile.");
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Next",mainGameMenu);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -210,17 +210,17 @@ function stayWithSellesy():void {
 
 	//[Options: Titjob (males/herms), Blowjob (males/herms), Vaginal (male/herms), Scissoring with clitentacle penetration (herms/females), 69 (males/herms/females)
 	//[TITJOB - For Males/Herms any size cock]
-	userInterface.clearMenu();
+	clearMenu();
 	if(pc.hasCock())
 	{
-		userInterface.addButton(0,"Titjob",titJobFromSellesy);
+		addButton(0,"Titjob",titJobFromSellesy);
 		//[TRIPLE FOOTJOB - For Males/Herms with BIG dicks, too big for her maximum of 24" length, 3"wide.] 
-		if(pc.biggestCockLength() >= 24) userInterface.addButton(1,"Footjob",tripleFootjob);
-		else userInterface.addDisabledButton(1,"Tri-Footjob");
+		if(pc.biggestCockLength() >= 24) addButton(1,"Footjob",tripleFootjob);
+		else addDisabledButton(1,"Tri-Footjob");
 	}
 	else {
-		userInterface.addDisabledButton(0,"Titjob");
-		userInterface.addDisabledButton(1,"Tri-Footjob");
+		addDisabledButton(0,"Titjob");
+		addDisabledButton(1,"Tri-Footjob");
 	}
 }
 
@@ -272,8 +272,8 @@ function titJobFromSellesy():void {
 	processTime(20+rand(40));
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //
@@ -310,6 +310,6 @@ function tripleFootjob():void {
 	processTime(20+rand(40));
 	pc.orgasm();
 	processTime(20+rand(10));
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

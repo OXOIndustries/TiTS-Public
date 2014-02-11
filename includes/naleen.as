@@ -61,8 +61,8 @@ function encounterNaleen():void {
 		output(". <i>“Feisty little pet, hmm?”</i>  she grins, claws glistening. <i>“Why don't you just come get a hug, hmm? No need to fight; I know you want it...”</i>");
 		if(silly) output("\n\nYour Codex beeps an alert that general consensus is that while Naleen give the best hugs, they may or may not prove deadly.");
 	}
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",startCombat,"naleen");
+	clearMenu();
+	addButton(0,"Next",startCombat,"naleen");
 }
 
 //Naleen: Combat
@@ -212,12 +212,12 @@ function pcLosesToNaleenLiekABitch():void {
 	
 	output("\n\nThe naleen breaks the kiss, leaning back and running her long, forked tongue over her fangs. <i>“Now that's much better, isn't it? Nice and warm and safe in my coils, pet... oh, we're going to have so much fun!”</i>");
 	
-	clearMenuProxy();
+	clearMenu();
 	//CHOOSE A VARIANT!
 	//Dick Version -- Naleen's personal fuckstick
-	if(pc.hasCock()) userInterface.addButton(0,"Next",naleenFucksBoysScene);
+	if(pc.hasCock()) addButton(0,"Next",naleenFucksBoysScene);
 	//No Dick Version: Revenge of the Tail-pegging
-	else userInterface.addButton(0,"Next",ohNoNoCawkNaleenLoss);
+	else addButton(0,"Next",ohNoNoCawkNaleenLoss);
 }
 
 //Dick Version -- Naleen's personal fuckstick
@@ -356,21 +356,21 @@ function beatDatCatNaga():void {
 	//{if by Lust:}
 	else output("A master of carnal desire such as you is more than a match for such a lusty huntress. Panting heavily, the alien kitty-naga collapses to the ground, her desire clearly visible through the slick, parted folds of her sex. True to form, though, she shakily rights herself, resting on an elbow with her great big tits on enticing display as one hand dives toward her sex, starting to finger the wanton hole. <i>“You're so.... so sensual, so beautiful. I am at your mercy, off-worlder. My body is yours to command, and I do so hope you can forgive my attack... I have soooo many ways to make it up to you.”</i>\n\n");
 	
-	clearMenuProxy();
+	clearMenu();
 	if(pc.hasCock()) {
-		userInterface.addButton(0,"Titfuck",naleenTitFuck)
-		if(pc.cockThatFits(chars["NALEEN"].vaginalCapacity()) >= 0) userInterface.addButton(1,"FuckHer",bendNaleenOver);
-		else userInterface.addDisabledButton(1,"Fuck Her");
+		addButton(0,"Titfuck",naleenTitFuck)
+		if(pc.cockThatFits(chars["NALEEN"].vaginalCapacity()) >= 0) addButton(1,"FuckHer",bendNaleenOver);
+		else addDisabledButton(1,"Fuck Her");
 	}
 	else {
-		userInterface.addDisabledButton(0,"Titfuck");
-		userInterface.addDisabledButton(1,"Fuck Her");
+		addDisabledButton(0,"Titfuck");
+		addDisabledButton(1,"Fuck Her");
 	}
-	if(pc.hasVagina() || pc.hasCock()) userInterface.addButton(2,"GetTailPeg",obligatorySavinTailPegging);
-	else userInterface.addDisabledButton(2,"GetTailPeg");
-	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.MILK) userInterface.addButton(3,"Breastfeed",feedDatNaleenSumMilk);
-	else userInterface.addDisabledButton(3,"Breastfeed");
-	userInterface.addButton(14,"Leave",genericVictory);
+	if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
+	else addDisabledButton(2,"GetTailPeg");
+	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
+	else addDisabledButton(3,"Breastfeed");
+	addButton(14,"Leave",genericVictory);
 }
 /*
 Sex Options:
@@ -697,8 +697,8 @@ function obligatorySavinTailPegging():void {
 	if(rand(6) == 0) pc.orgasm();
 	if(rand(7) == 0) pc.orgasm();
 	naleenSexed();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",tailpeggingNaleenPartII);
+	clearMenu();
+	addButton(0,"Next",tailpeggingNaleenPartII);
 }
 
 function tailpeggingNaleenPartII():void {
@@ -722,9 +722,9 @@ function naleenNightCuddles():void {
 	output("\n\nYou lower your [pc.meleeWeapon] as the naleen circles you, hips swaying seductively with her every serpentine motion. She slips behind you, big bare jugs pressing into your back as she whispers, <i>“It's dangerous to go alone at night in these woods, my pet. You should know better... but at least it's me who found you first, and not some fuck-mad zil, no?”</i>  The huntress chuckles to herself, breath hot on your cheek as her slender, powerful arms wrap around your waist and under your [pc.chest]. Considering how frequently the two of you have battled, you feel oddly at ease in the lusty kitten's embrace, and let yourself relax in her arms, head resting back into the soft, inviting pillow of her chest. She doesn't seem to mind at all.");
 	output("\n\n<i>“Pretty, silly pet,”</i> the naleen coos, stroking your hair. <i>“Whatever would I do if you were to be captured by some filthy zil-slut, or dragged away to be filled with a trapper-plant's pollen forever after, hmm? I suppose I'll have to watch over you tonight, won't I, pet? At least to keep the cold away - it gets so awfully chilly here at night.”</i>");
 	processTime(3);
-	clearMenuProxy();
-	userInterface.addButton(0,"Yes",yesSnuggleWifZatNaleen);
-	userInterface.addButton(1,"No",noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo);
+	clearMenu();
+	addButton(0,"Yes",yesSnuggleWifZatNaleen);
+	addButton(1,"No",noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo);
 }
 //No, thanks
 function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
@@ -734,8 +734,8 @@ function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
 	
 	output("\n\nShe makes as if to respond, but merely slumps her shoulders and gives a little pout. <i>“Have it your way, pet. Perhaps you'll think different when you've wandered alone in the cold, wet wilderness for a while more.”</i>");
 	processTime(1);
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 	
 //Awesome!
@@ -777,8 +777,8 @@ function yesSnuggleWifZatNaleen():void {
 		if(rand(3) == 0) pc.orgasm();
 	}
 	processTime(420+rand(60));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",finishNaleenSnuggles);
+	clearMenu();
+	addButton(0,"Next",finishNaleenSnuggles);
 }
 
 //[NEXT]
@@ -805,6 +805,6 @@ function finishNaleenSnuggles():void {
 	
 	output("\n\nSadly, no. You have a fortune to chase. The naleen sighs, picking herself up and slithering away before you can answer. She stops at the edge of the little clearing, though, just long enough to blow you a kiss before vanishing into the brush.");
 	processTime(30+rand(5));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

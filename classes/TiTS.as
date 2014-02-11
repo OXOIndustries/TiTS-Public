@@ -223,9 +223,9 @@
 			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
-			this.clearMenuProxy();
+			this.clearMenu();
 			
-			this.userInterface.addButton(14,"CLEAR!",clearOutput);
+			this.addButton(14,"CLEAR!",clearOutput);
 
 			setupInputEventHandlers()
 
@@ -243,7 +243,9 @@
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
-		public function clearMenuProxy(saveDisable=true):void
+		// Or alternatively, shim this shit so we don't have to differentiate between
+		// TiTs engine calls and UI calls. This shit is getting ridiculous.		
+		public function clearMenu(saveDisable:Boolean = true):void 
 		{
 			this.inSceneBlockSaving = saveDisable;
 			this.userInterface.clearMenu();
@@ -310,17 +312,17 @@
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
-			this.userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
+			userInterface..addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
-			this.userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+			userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
 		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
-			this.userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
+			userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
 		}
 		
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -601,7 +603,7 @@
 				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
 				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
 			}
-			if(debug) this.userInterface.addButton(10,"Debug",debugPane);
+			if(debug) this.addButton(10,"Debug",debugPane);
 		}
 
 
@@ -610,7 +612,7 @@
 			clearOutput2();
 			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
 			this.userInterface.clearGhostMenu();
-			this.userInterface.addGhostButton(0,"Back to Menu",mainMenu);
+			this.addGhostButton(0,"Back to Menu",mainMenu);
 		}
 		public function toggleSilly():void {
 			if(silly) {

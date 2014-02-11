@@ -1,3 +1,7 @@
+import classes.Items.Guns.HammerPistol;
+import classes.Items.Guns.LaserPistol;
+import classes.Items.Guns.MagnumPistol;
+import classes.Items.Guns.TheShocker;
 //Outside?
 function outsideCarlsShop():void {
 	//output("\n\nThere sits a small, humble building that is relatively unassuming given the larger works around the colony. Its fairly squat in appearance with a pair of industrialized steam stacks poking out from the roof, giving off the odd puff of heat to prove that some form of industry is going inside. Given the gaudy, faux-neon sign upfront with the vague image of a pistol, you can only assume it’s a gunsmith’s - something reaffirmed by the name of the shop that barely fits within the sign: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>.");
@@ -18,7 +22,7 @@ function carlsShopDescription():void {
 		output("You enter the pre-fabricated building once again, finding that nothing has really changed. Briefly you’re pleasantly distracted by the refreshingly cool air conditioned atmosphere in contrast to the more muggy air outside, let alone the constant burning smell niggling at your senses. The array of aisles are stocked just as much as last time, though just like every other time you don’t really need anything in the convenience section, either.");
 		output("\n\nMilling past the goods absently you make your way to the back counter, where the old coot sits as always. Carl is pretty quick to glance up from his reader to give you a smile.");
 	}
-	userInterface.addButton(0,"Carl",insideCarlsShop);
+	addButton(0,"Carl",insideCarlsShop);
 }
 
 
@@ -46,21 +50,22 @@ function insideCarlsShop():void {
 	//* Chat
 	//* Shop
 	//* Leave (Just exits back into the street)
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Chat",carlTalkMenu);
-	userInterface.addButton(1,"Shop",crazyCarlShop);
-	userInterface.addButton(2,"Sell",sellToCarl);
+	clearMenu();
+	addButton(0,"Chat",carlTalkMenu);
+	addButton(1,"Shop",crazyCarlShop);
+	addButton(2,"Sell",sellToCarl);
+	addButton(14, "Leave", mainGameMenu);
 }
 //Chat
 function carlTalkMenu():void
 {
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Him",chatWithCrazyCarlAboutHim);
-	userInterface.addButton(1,"His Store",aboutCrazyCarlsStore);
-	if(flags["CRAZY_CARL_DAD_TALK_UNLOCKED"] == 1) userInterface.addButton(2,"Your Dad",aboutThePCsDad);
-	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == 1 && flags["ROBOT_QUEST_COMPLETE"] != 2) userInterface.addButton(3,"The Robot",aboutTheRobotFromCrazyCarl);
-	userInterface.addButton(4,"Flirt",flirtWithCarl);
-	userInterface.addButton(14,"Back",insideCarlsShop);
+	clearMenu();
+	addButton(0,"Him",chatWithCrazyCarlAboutHim);
+	addButton(1,"His Store",aboutCrazyCarlsStore);
+	if(flags["CRAZY_CARL_DAD_TALK_UNLOCKED"] == 1) addButton(2,"Your Dad",aboutThePCsDad);
+	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == 1 && flags["ROBOT_QUEST_COMPLETE"] != 2) addButton(3,"The Robot",aboutTheRobotFromCrazyCarl);
+	addButton(4,"Flirt",flirtWithCarl);
+	addButton(14,"Back",insideCarlsShop);
 
 }
 //About him
@@ -141,8 +146,8 @@ function aboutTheRobotFromCrazyCarl():void {
 		output("\n\n<i>“Now, if you do it I’ll be able to work on the toys again. Might just have something for you, then.”</i>");
 		output("\n\nOff to the jungle with you!");
 		processTime(4);
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Next",mainGameMenu);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 	//During
 	else if(flags["ROBOT_QUEST_COMPLETE"] == undefined)
@@ -210,12 +215,12 @@ function crazyCarlShop():void {
 	output("\n\nLuckily, he appears to be clairvoyant; \"<i>Haven’t had the demand to make much more, gettin’ bit too up in age to just make ‘em. ‘Fraid as it stands I don’t quite got anythin’ on me to do requests, either. Whacha see is what ya can get, nothin’ more. Sorry ‘bout that.</i>\"");
 	output("\n\nCurious.");
 	processTime(1);
-	userInterface.clearMenu();
-	userInterface.addButton(0,"HammerPistol",hammerPistolBuyTalk);
-	userInterface.addButton(1,"MagnumPistol",magnumPistolBuyTalk);
-	userInterface.addButton(2,"LaserPistol",lasPistolBuyTalk);
-	userInterface.addButton(3,"The Shocker",shockerBuyTalk);
-	userInterface.addButton(14,"Back",insideCarlsShop);
+	clearMenu();
+	addItemButton(0, new HammerPistol(), hammerPistolBuyTalk);
+	addItemButton(1, new MagnumPistol(), magnumPistolBuyTalk);
+	addItemButton(2, new LaserPistol(), lasPistolBuyTalk);
+	addItemButton(3, new TheShocker(), shockerBuyTalk);
+	addButton(14,"Back",insideCarlsShop);
 }
 
 //[Hammer Pistol]
@@ -229,10 +234,10 @@ function hammerPistolBuyTalk():void {
 	output("\n\nDamage Rating: 9");
 	output("\nDamage Type: Kinetic");
 	//[Buy] [Back]
-	userInterface.clearMenu();
-	if(pc.credits >= 2000) userInterface.addButton(0,"Buy",buyFromCarl,"hammer pistol");
-	else userInterface.addDisabledButton(0,"Buy");
-	userInterface.addButton(14,"Back",crazyCarlShop);
+	clearMenu();
+	if(pc.credits >= 2000) addButton(0,"Buy",buyFromCarl,"hammer pistol");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
 }
 
 //[Magnum Pistol]
@@ -245,11 +250,11 @@ function magnumPistolBuyTalk():void {
 	output("\n\nAccuracy Bonus: -2");
 	output("\nDamage Rating: 12");
 	output("\nDamage Type: Kinetic");
-	userInterface.clearMenu();
+	clearMenu();
 	//[Buy] [Back]
-	if(pc.credits >= 2000) userInterface.addButton(0,"Buy",buyFromCarl,"magnum pistol");
-	else userInterface.addDisabledButton(0,"Buy");
-	userInterface.addButton(14,"Back",crazyCarlShop);
+	if(pc.credits >= 2000) addButton(0,"Buy",buyFromCarl,"magnum pistol");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
 }
 
 //[Las branded affordable Laser Pistol]
@@ -262,11 +267,11 @@ function lasPistolBuyTalk():void {
 	output("\n\nAccuracy Bonus: 2")
 	output("\nDamage Rating: 4");
 	output("\nDamage Type: Laser");
-	userInterface.clearMenu();
+	clearMenu();
 	//[Buy] [Back]
-	if(pc.credits >= 1050) userInterface.addButton(0,"Buy",buyFromCarl,"laser pistol");
-	else userInterface.addDisabledButton(0,"Buy");
-	userInterface.addButton(14,"Back",crazyCarlShop);
+	if(pc.credits >= 1050) addButton(0,"Buy",buyFromCarl,"laser pistol");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
 }
 
 //[Las branded affordable Laser Pistol]
@@ -278,11 +283,11 @@ function shockerBuyTalk():void {
 	output("\nDamage Rating: 8");
 	output("\nDamage Type: Electricity");
 	//yo yo, info up in here.*
-	userInterface.clearMenu();
+	clearMenu();
 	//[Buy] [Back]
-	if(pc.credits >= 2300) userInterface.addButton(0,"Buy",buyFromCarl,"shock pistol");
-	else userInterface.addDisabledButton(0,"Buy");
-	userInterface.addButton(14,"Back",crazyCarlShop);
+	if(pc.credits >= 2300) addButton(0,"Buy",buyFromCarl,"shock pistol");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
 }
 
 function buyFromCarl(arg:String = "ERROR"):void {
@@ -310,8 +315,8 @@ function buyFromCarl(arg:String = "ERROR"):void {
 	clearOutput();
 	output("You purchase a " + arg + " for " + cost + ".");
 	pc.credits -= cost;
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",crazyCarlShop);
+	clearMenu();
+	addButton(0,"Next",crazyCarlShop);
 }
 
 function lootShockPistol():void {
@@ -375,8 +380,8 @@ function zkRifleCarlTalk():void {
 	//*Information here, anyway. Unlocks about robot. Can’t buy, obv.*
 	flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] = 1;
 	//[Back]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",carlTalkMenu);
+	clearMenu();
+	addButton(0,"Next",carlTalkMenu);
 }
 
 //[Sell?]
@@ -388,8 +393,8 @@ function sellToCarl():void {
 	output("\n\n\"<i>Careful ‘bout the guy, though. Bit weird n’ wiry</i>\"");
 	processTime(1);
 	//[Back] 
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",insideCarlsShop);
+	clearMenu();
+	addButton(0,"Next",insideCarlsShop);
 }
 
 //Questin’

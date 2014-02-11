@@ -38,17 +38,17 @@ function syriGamesStart():void {
 		output("\n\n<i>“Oh, what's this? Fresh meat for the grinder?”</i>  she laughs, eyeing you. <i>“What do you say, stranger, care to test your skill? One on one matches, three kills to win. Maybe for a little wager...”</i>");
 	}
 	//[Bet 10] [Bet 50] [Bet 100] [Not today] [Bet yourself]
-	clearMenuProxy();
-	userInterface.addButton(0,"Bet 10",betSyriCredits,10);
-	userInterface.addButton(1,"Bet 50",betSyriCredits,50);
-	userInterface.addButton(2,"Bet 100",betSyriCredits,100);
+	clearMenu();
+	addButton(0,"Bet 10",betSyriCredits,10);
+	addButton(1,"Bet 50",betSyriCredits,50);
+	addButton(2,"Bet 100",betSyriCredits,100);
 	if(flags["TIMES_WON_AGAINST_SYRI"] == undefined) flags["TIMES_WON_AGAINST_SYRI"] = 0;
 	if(flags["TIMES_LOST_TO_SYRI"] == undefined) flags["TIMES_LOST_TO_SYRI"] = 0;
-	if(flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"] >= 3) userInterface.addButton(3,"BetYourself",betYourselfAgainstSyri);
+	if(flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"] >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);
 	
-	else userInterface.addDisabledButton(3,"BetYourself");
+	else addDisabledButton(3,"BetYourself");
 	trace("SHIT ADDED UP: " + flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"]);
-	userInterface.addButton(14,"Back",notTodayDogslut);
+	addButton(14,"Back",notTodayDogslut);
 }
 
 //Not Today
@@ -59,8 +59,8 @@ function notTodayDogslut():void {
 	output("You shake your head and take a step back. The ausar sighs and sips her beer, <i>“Well, if you ever change your mind, you know where the action is.”</i>");
 
 	//[Back to tavern menu]
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[Bet X]
@@ -78,8 +78,8 @@ function betSyriCredits(amount:int = 0):void {
 		output("\n\n<i>“The name's Syri. Best shot in this dump - at least as far as video games go, anyway. Well come on then, step on up at grab a rig. Let's see what you're made out of...”</i>");
 
 		output("\n\n<i>“[pc.name],”</i> you answer, picking up a bracer and visor.");
-		clearMenuProxy();
-		userInterface.addButton(0,"Next",syriGameRouting);
+		clearMenu();
+		addButton(0,"Next",syriGameRouting);
 	}
 	//{PC must succeed two high-difficulty ranged weapon attacks out of three to win.}
 	else syriGameRouting();
@@ -97,8 +97,8 @@ function betYourselfAgainstSyri():void {
 	if(flags["BET_AGAINST_SYRI"] == undefined) {
 		output("\n\n<i>“Woah there, cow" + pc.mf("boy","girl") + ". Let's not get ahead of ourselves here. Maybe once you've proved what you've got, then we can see about... upping the ante. What do you say?”</i>");
 		// [Return to normal bet menu]}
-		clearMenuProxy();
-		userInterface.addButton(0,"Next",syriGamesStart);
+		clearMenu();
+		addButton(0,"Next",syriGamesStart);
 		return;
 	}
 
@@ -111,23 +111,23 @@ function betYourselfAgainstSyri():void {
 		if(pc.hasCock()) output(" or pound my little pucker all you want, whichever suits your fancy. I don't judge.");
 		output(" So what'll it be, [pc.name]? Ready to put your ass on the line for a chance at mine?”</i>");
 		//[Sure {Go to Bet X text}] [Not today]
-		clearMenuProxy();
-		userInterface.addButton(0,"Sure",syriGameRouting);
-		userInterface.addButton(1,"Nope",notTodayDogslut);
+		clearMenu();
+		addButton(0,"Sure",syriGameRouting);
+		addButton(1,"Nope",notTodayDogslut);
 	}
 	//If PC has won and fucked Syri more than not:
 	else if(flags["TIMES_WON_AGAINST_SYRI"] >= flags["TIMES_LOST_TO_SYRI"]) {
 		output("\n\nSyri licks her lips and slips down beside you, a furry hand running across your hip. <i>“I can't say I'm not looking forward to a chance to stick my cock in this fine slice of meat... though I gotta admit, losing to you isn't so bad either. Let's see what you've got!”</i>");
 		//[Go to Bet X text]
-		clearMenuProxy();
-		userInterface.addButton(0,"Next",syriGameRouting);
+		clearMenu();
+		addButton(0,"Next",syriGameRouting);
 	}
 	//If PC has lost more than not:
 	else {
 		output("\n\nSyri licks her lips and slips down beside you, a furry hand running across your hip. <i>“You just keep coming back, don'tcha? It's like you just crave a nice ass full of my cock. Well, don't worry, I've got just the thing you need, my little bitch. You want to try your chances? Then let's see what you've got. But I've got a nice, thick load of cum built up just with your asshole's name on it.”</i>");
 		//[Go to Bet X text]
-		clearMenuProxy();
-		userInterface.addButton(0,"Next",syriGameRouting);
+		clearMenu();
+		addButton(0,"Next",syriGameRouting);
 	}
 }
 
@@ -191,9 +191,9 @@ function pcBeatsSyriWhenSexBet():void {
 
 	output("\n\nSyri's breath catches as you cup one of her full mounds, twisting the pert red nipple between your fingers as you contemplate what to do with the defeated ausar.");
 	//SEX MENU!
-	clearMenuProxy();
-	if(pc.hasCock()) userInterface.addButton(0,"FuckHerButt",victoryFuckSyrisBunghole);
-	userInterface.addButton(1,"RideHerDick",rideSyrisCockYouWinner);
+	clearMenu();
+	if(pc.hasCock()) addButton(0,"FuckHerButt",victoryFuckSyrisBunghole);
+	addButton(1,"RideHerDick",rideSyrisCockYouWinner);
 }
 
 //Fuck Her Butt
@@ -261,8 +261,8 @@ function victoryFuckSyrisBunghole():void {
 	chars["SYRI"].orgasm();
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Ride Her Cock
@@ -317,8 +317,8 @@ function rideSyrisCockYouWinner():void {
 	pc.orgasm();
 	chars["SYRI"].orgasm();
 	chars["SYRI"].orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu)
+	clearMenu();
+	addButton(0,"Next",mainGameMenu)
 }
 
 //PC Wins the Shoot, Betting for Creds
@@ -335,8 +335,8 @@ function winForCredits():void {
 	output("\n\n<i>“Not bad, [pc.name],”</i>  she says, offering you a hand. <i>“But watch your ass: I'll fuck up your shit next time around.”</i>");
 	pc.credits += flags["SYRI_BETTING_STORAGE"];
 	processTime(10+rand(5));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //PC Loses the Shoot, Betting for Creds
@@ -355,8 +355,8 @@ function pcLosesToSyriCredBetting():void {
 	output("\n\nYou sigh and tap a button on your codex, transferring the credits to the triumphant ausar. She shoots you a wink and saunters off for a drink, leaving you to contemplate your strategy for next time.");
 	pc.credits -= flags["SYRI_BETTING_STORAGE"];
 	processTime(20+rand(5));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //PC Loses the Shoot, Betting for Sex
@@ -430,8 +430,8 @@ function pcLosesToSyriBettingHisAss():void {
 	chars["SYRI"].orgasm();
 	processTime(30+rand(15));
 	pc.orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -462,14 +462,14 @@ function approachSyriIntheMorning():void {
 	[Appearance]
 	[Leave]
 	*/
-	clearMenuProxy();
-	userInterface.addButton(0,"Talk",talkToSyriRouter);
+	clearMenu();
+	addButton(0,"Talk",talkToSyriRouter);
 	if(flags["SYRI_TALKS"] != undefined) {
-		if(pc.lust() >= 33) userInterface.addButton(1,"Sex",syriSexMenu);
-		else userInterface.addDisabledButton(1,"Sex");
+		if(pc.lust() >= 33) addButton(1,"Sex",syriSexMenu);
+		else addDisabledButton(1,"Sex");
 	}
-	userInterface.addButton(2,"Appearance",syriAppearance);
-	userInterface.addButton(14,"Leave",leaveMorningSyri);
+	addButton(2,"Appearance",syriAppearance);
+	addButton(14,"Leave",leaveMorningSyri);
 }
 
 //[Leave]
@@ -480,8 +480,8 @@ function leaveMorningSyri():void {
 	output("You sit and chat with Syri for a few minutes, little more than gossip and idle banter. Eventually, though, you decide to hit the road. She stands as you do, slipping close enough to feel her breasts pressing against your [pc.chest]. <i>“See you around, Steele. Stop by for a game this afternoon, will ya? I get bored without someone of... skill...”</i>");
 	output("\n\nShe gives you a wink and a quick pat on the ass before sending you on your way.");
 	processTime(5+rand(3));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 function talkToSyriRouter():void {
@@ -519,9 +519,9 @@ function syriTalkOne():void {
 
 	output("\n\nLooks like Syri wants to spend more time with you. You could shoot her down, of course - not everyone's into having a horny wolf-girl with a dick hanging around. Then again, she's a good lay and pretty good with a holo-controller. Could be fun to hang out with.");
 	processTime(2);
-	clearMenuProxy();
-	userInterface.addButton(1,"Shoot Down",shootSyriDown);
-	userInterface.addButton(0,"Sure",sureBeFuckFriendsWithSyri);
+	clearMenu();
+	addButton(1,"Shoot Down",shootSyriDown);
+	addButton(0,"Sure",sureBeFuckFriendsWithSyri);
 }
 
 //Shoot her Down
@@ -536,8 +536,8 @@ function shootSyriDown():void {
 	output("\n\nShe sighs and turns back to her book, leaving you to walk away in silence.");
 	//{Syri can be approached again at the bar in the AM, re-triggering the conversation until the PC decides having her around is just peachy keen}
 	flags["SYRI_TALKS"] = undefined;
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Sure, why not?
@@ -550,8 +550,8 @@ function sureBeFuckFriendsWithSyri():void {
 
 	output("\n\nYou nod, telling her you may do just that.");
 	//{Return to Syri's root menu}
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",approachSyriIntheMorning);
+	clearMenu();
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 2
@@ -576,8 +576,8 @@ function talkToSyriNumber2():void {
 	output("\n\n<i>“Only thing I really regret is the discharge. I coulda had my own ship in a couple years. Captain Syri Dorna, </i>A.F.S. Somethingorother<i>,”</i>  she chuckles, taking another drink. <i>“Anyway, that's pretty much the whole story. At least as much as I can say without violating an NDA. And probably getting shot by some navy spook in a dark alley.”</i>");
 
 	processTime(5+rand(5));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",approachSyriIntheMorning);
+	clearMenu();
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 3
@@ -597,12 +597,12 @@ function syriTalkThree():void {
 
 	output("\n\n<i>“But back to reading... so, what're you into these days, Steele? Any good reads lately?”</i>");
 	processTime(4);
-	clearMenuProxy();
-	userInterface.addButton(0,"Scifi",tellSyriYouReadScifi);
-	userInterface.addButton(1,"Fantasy",tellSyriYouReadFantasy);
-	userInterface.addButton(2,"Romance",tellSyriYouReadRomance);
-	userInterface.addButton(3,"Mystery",tellSyriYouReadMystery);
-	userInterface.addButton(4,"Books?",tellSyriYoureIlliterate);
+	clearMenu();
+	addButton(0,"Scifi",tellSyriYouReadScifi);
+	addButton(1,"Fantasy",tellSyriYouReadFantasy);
+	addButton(2,"Romance",tellSyriYouReadRomance);
+	addButton(3,"Mystery",tellSyriYouReadMystery);
+	addButton(4,"Books?",tellSyriYoureIlliterate);
 }
 
 //Sci-Fi
@@ -654,8 +654,8 @@ function syriBookTalkEpilogue():void {
 	output("\n\nWith dozens of good books exchanged, you feel practically enlightened and ready to expand your mind when you get the chance to crack open a good book.");
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",approachSyriIntheMorning);
+	clearMenu();
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 4
@@ -685,8 +685,8 @@ function talkToSyriNumber4():void {
 
 	output("\n\nYou remember hearing about that back in school. A big joint operation between a bunch of Confederate armies that smashed a rogue planet's entire civilization to bits. It was big news at the time, and got a lot of people angry. From the far-away look the ausar's adopted, it doesn't look like she's in the mood to talk about it. Maybe later.");
 	processTime(6);
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",approachSyriIntheMorning);
+	clearMenu();
+	addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //[Sex] 
@@ -724,34 +724,34 @@ function syriSexMenu(outputs:Boolean = true):void {
 		}
 	}
 	//Sex Options @ Ship:
-	clearMenuProxy();
+	clearMenu();
 	//For Cockmeisters:
 	if(pc.hasCock()) {
 		if(pc.cockThatFits(chars["SYRI"].analCapacity()) >= 0) {
-			userInterface.addButton(0,"Cowgirl",syriReverseCowgirlConsensualization);
-			userInterface.addButton(1,"Missionary",missionaryWithTheDogDickedSlutSyri);
+			addButton(0,"Cowgirl",syriReverseCowgirlConsensualization);
+			addButton(1,"Missionary",missionaryWithTheDogDickedSlutSyri);
 		}
 		else {
 			if(outputs) output("\n\nYou're too big to fuck her with it.");
-			userInterface.addDisabledButton(0,"Cowgirl");
-			userInterface.addDisabledButton(1,"Missionary");	
+			addDisabledButton(0,"Cowgirl");
+			addDisabledButton(1,"Missionary");	
 		}
 	}
 	else {
-		userInterface.addDisabledButton(0,"Cowgirl");
-		userInterface.addDisabledButton(1,"Missionary");	
+		addDisabledButton(0,"Cowgirl");
+		addDisabledButton(1,"Missionary");	
 	}
 	//For Cuntlets:
 	if(pc.hasVagina()) {
-		userInterface.addButton(2,"Vaginal",getVagFukkedBySyri);
+		addButton(2,"Vaginal",getVagFukkedBySyri);
 	}
-	else userInterface.addDisabledButton(2,"Vaginal");
+	else addDisabledButton(2,"Vaginal");
 
 	//For All
 	//Catch Anal
 	//Blow Her
-	userInterface.addButton(3,"Blow Her",blowSyriYouFukkinSlut);
-	userInterface.addButton(4,"Catch Anal",catchAnalFromSyriIfYouDontUseACondom);
+	addButton(3,"Blow Her",blowSyriYouFukkinSlut);
+	addButton(4,"Catch Anal",catchAnalFromSyriIfYouDontUseACondom);
 }
 
 //Reverse Cowgirl
@@ -810,8 +810,8 @@ function syriReverseCowgirlConsensualization():void {
 
 	processTime(40+rand(10));
 	pc.orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",syriSexOutro);
+	clearMenu();
+	addButton(0,"Next",syriSexOutro);
 }
 
 //Missionary
@@ -865,8 +865,8 @@ function missionaryWithTheDogDickedSlutSyri():void {
 	processTime(40+rand(15));
 	pc.orgasm();
 	chars["SYRI"].orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",syriSexOutro);
+	clearMenu();
+	addButton(0,"Next",syriSexOutro);
 }
 
 //Get Vag Fucked
@@ -925,8 +925,8 @@ function getVagFukkedBySyri():void {
 	processTime(40+rand(15));
 	pc.orgasm();
 	chars["SYRI"].orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",syriSexOutro);
+	clearMenu();
+	addButton(0,"Next",syriSexOutro);
 }
 
 //Catch Anal
@@ -998,8 +998,8 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 	processTime(40+rand(15));
 	pc.orgasm();
 	chars["SYRI"].orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",syriSexOutro);
+	clearMenu();
+	addButton(0,"Next",syriSexOutro);
 }
 
 //Blow Her
@@ -1045,8 +1045,8 @@ function blowSyriYouFukkinSlut():void {
 	output("\n\nYou smile and snuggle up, feeling like you've earned yourself a post-coitus cuddle as Syri's load gurgles in your gut.");
 	chars["SYRI"].orgasm();
 	pc.lust(33);
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",syriSexOutro);
+	clearMenu();
+	addButton(0,"Next",syriSexOutro);
 }
 
 //Shipboard Sex Outro: Syri hits the Road
@@ -1064,11 +1064,11 @@ function syriSexOutro():void {
 	else output("your [pc.butt]");
 	output(". <i>“Mind if I, uh, freshen up before I head out?”</i>");
 
-	clearMenuProxy();
+	clearMenu();
 
-	userInterface.addButton(1,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
-	if(pc.libido() >= 40 || pc.lust() >= 33) userInterface.addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
-	else userInterface.addDisabledButton(2,"Don't Go");
+	addButton(1,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
+	if(pc.libido() >= 40 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
+	else addDisabledButton(2,"Don't Go");
 }
 
 //Don't Go
@@ -1085,7 +1085,7 @@ function dontGoAwayYouKnotCunt():void {
 	if(pc.isMischievous()) output(" <i>“Takes one to know one!”</i>");
 	//[Sex options, sans Blow Her]
 	syriSexMenu(false);
-	userInterface.addButton(14,"Nevermind",sureUseMyShowerAndClogTheDrainWithDogHair);
+	addButton(14,"Nevermind",sureUseMyShowerAndClogTheDrainWithDogHair);
 }
 
 //Me Too
@@ -1110,8 +1110,8 @@ function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 	}
 	processTime(15+rand(10));
 	//{Return PC to bar}
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Appearance
@@ -1123,6 +1123,6 @@ function syriAppearance():void {
 	output("\n\nSyri has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that's perfect to tug and squeeze.");
 
 	output("\n\nA thick eight-inch knotty dog-cock rests between Syri's legs where her cunt ought to be, hanging over a pair of cum-filled testicles, surrounded by a nicely trimmed bush of downy pubes. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",approachSyriIntheMorning);
+	clearMenu();
+	addButton(0,"Next",approachSyriIntheMorning);
 }

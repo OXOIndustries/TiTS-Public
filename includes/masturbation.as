@@ -4,7 +4,7 @@ public var fapsArray:Object = { "Random":randomFapSelect, "Porn&Celise":tailCock
 								"Tailingus":tailingusFapReqsCuntTail };
 
 function masturbateMenu():void {
-	this.clearMenuProxy();
+	this.clearMenu();
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
@@ -46,8 +46,8 @@ function masturbateMenu():void {
 				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) {
 					clearOutput();
 					output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
-					clearMenuProxy();
-					userInterface.addButton(0,"Next",cuntTailFapScene);
+					clearMenu();
+					addButton(0,"Next",cuntTailFapScene);
 					return;
 				}
 			}
@@ -58,19 +58,19 @@ function masturbateMenu():void {
 	}
 	for(var x:int = 0; x < texts.length; x++) {
 		if(x <= 13) {
-			this.userInterface.addButton(x,texts[x],funcs[x],args[x]);
+			this.addButton(x,texts[x],funcs[x],args[x]);
 		}
 		else 
-			this.userInterface.addButton((x+1),texts[x],funcs[x],args[x]);
+			this.addButton((x+1),texts[x],funcs[x],args[x]);
 	}
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 //THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
 //BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
 // -Heavy
 function randomFapSelect():void {
-	clearMenuProxy();
+	clearMenu();
 	var texts:Array = new Array();
 	var funcs:Array = new Array();
 	var args:Array = new Array();
@@ -141,8 +141,8 @@ function tailCockCeliseFaps():void {
 	processTime(45 + rand(5));
 	pc.orgasm();
 	celise.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Vaginal Fap
@@ -243,8 +243,8 @@ function vaginalFap():void {
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -385,8 +385,8 @@ function singleDickFap():void {
 	output(", straighten yourself up a little, and prepare to resume your journeys.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function multiCockFap():void {
@@ -634,8 +634,8 @@ function multiCockFap():void {
 	else output("\n\nYou get your gear back on without bothering to clean up. You're just going to find something to fuck anyway.");
 	processTime(45 + rand(5));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //*Tailingus
@@ -670,8 +670,8 @@ function tailingusFapReqsCuntTail():void {
 	output("\n\nCleaning up as best you’re able, you get geared back up and ready to move, though you can’t seem to get the smell of pussy off your breath.");
 	processTime(10+rand(15));
 	pc.orgasm();
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 //*Cunt tail fap replacement B
 //Not 4 Hoarses.
@@ -731,7 +731,7 @@ function cuntTailFapScene():void {
 	feedCuntSnake();
 	pc.orgasm();
 	processTime(20+rand(10));
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 

@@ -74,11 +74,11 @@ function meetingFlahne():void {
 		output("\n\nFlahne’s honey-colored skin blushes orange at your approach, though a big smile spreads across her plump lips. She gives a little shiver and sighs with slow relief as an oblong distention lifts her skirt higher and higher. Flahne coos, <i>“Guess who’s happy to see you?”</i>  She unbuttons part of her top while licking a lollipop rather lewdly. <i>“So, wanna have some more fun?”</i>  Pouting, she offers a little less excitedly, <i>“Or did you just want to talk?”</i>");
 		output("\n\nWhat did you want with Flahne?");
 	}
-	this.userInterface.addButton(0,"Talk",talkToFlahne);
-	if(pc.lust() >= 33) this.userInterface.addButton(1,"Sex Options",flahneSexMenu);
+	this.addButton(0,"Talk",talkToFlahne);
+	if(pc.lust() >= 33) this.addButton(1,"Sex Options",flahneSexMenu);
 	else {
 		output("  You aren't aroused enough for sex with her right now.");
-		this.userInterface.addDisabledButton(1,"Sex Options");
+		this.addDisabledButton(1,"Sex Options");
 	}
 }
 
@@ -95,12 +95,12 @@ function talkToFlahne():void {
 	else output("seems genuinely excited to talk to you again");
 	output(". <i>“So, what did you want to talk about, " + pc.mf("Mister","Miss") + " Steele? God, I love that name. It sounds so... firm.”</i>  She blushes and continues, <i>“Sorry, maybe I ought to stick to calling you cutie, since you are.... What did you want to talk about?”</i>");
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Her Race",talkToFlahneAboutHerRace);
-	if(flags["TALKED_ABOUT_FLAHNES_RACE"] == 1) this.userInterface.addButton(1,"Her Subrace",flahnesSubRace);
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) this.userInterface.addButton(2,"Ovipositor",flahnesOvipositor);
-	this.userInterface.addButton(3,"The Locals",theLocals);
-	this.userInterface.addButton(14,"Back",mainGameMenu);	
+	this.clearMenu();
+	this.addButton(0,"Her Race",talkToFlahneAboutHerRace);
+	if(flags["TALKED_ABOUT_FLAHNES_RACE"] == 1) this.addButton(1,"Her Subrace",flahnesSubRace);
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] != undefined) this.addButton(2,"Ovipositor",flahnesOvipositor);
+	this.addButton(3,"The Locals",theLocals);
+	this.addButton(14,"Back",mainGameMenu);	
 }
 	
 //Her Race
@@ -134,15 +134,15 @@ function talkToFlahneAboutHerRace():void {
 			output("\n\n<i>“It doesn’t hurt at all! Our outer membranes are very strong but very elastic, allowing us such delightfully stretchiness. We can even slowly reshape our bodies into the shape we wish to have.”</i>  The rahn smiles and rushes through the rest, <i>“Most of us only really have them come out when we’ve got fertilized eggs we want to lay in someone, but we can usually control it. Personally, I really like mine and learned how to make it come out even when I’m not ready to lay.”</i>  She looks at you meaningfully and follows up, <i>“I can also make it stay in all the time too.  It’s just that once it slips out, I can’t really get it to go away without...”</i>  She makes an up-and-down stroking motion with her hand.");
 			output("\n\n<i>“Would me letting it out bother you?”</i>");
 			processTime(10);
-			this.clearMenuProxy();
-			this.userInterface.addButton(0,"Let It Out",pushDatOvipositorOut);
-			this.userInterface.addButton(1,"Keep It In",ovipositorInFlahne);
+			this.clearMenu();
+			this.addButton(0,"Let It Out",pushDatOvipositorOut);
+			this.addButton(1,"Keep It In",ovipositorInFlahne);
 			return;
 		}
 	}
 	processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 //[Let it Out] [Keep In] Redirects to followups for Ovipositor discussion.
 //Ovipositor Out
@@ -153,8 +153,8 @@ function pushDatOvipositorOut():void {
 	output("Flahne sighs rather comfortably after noticing that the room is empty and flips back her skirt to show you the big, chubby girl-boner she’s grown. <i>“Our ovipositors are my favorite part about us. I even grew mine to be extra big, so there’d be more to stroke. I guess all the sweets I eat have made it so that my cum and lubricants are as sweet as candy. That’s another good reason for making it big right there.”</i>  Flahne traces a finger across the top of it, sighing and shuddering from the pleasure with such enthusiasm that ripples run from her thick thighs all the way to her enormous tits. A dollop of whitish cream forms atop the wobbling prick’s peak, and she scoops it up on her finger, swallowing it before you can react. She smooths her skirt back into place a moment later, accompanied by a full-body orange blush.");
 	output("\n\n<i>“Not much more to tell, really. We grow up quick, so if I were to " + pc.rawmf("have you father some children","have you bear my children") + ", they’d be able to care for themselves in short order.”</i>  Flahne says with one last smile, <i>“I’m glad you take interest in me for more than just the sex. It's refreshing.”</i>");
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 
 //Ovipositor In
@@ -166,8 +166,8 @@ function ovipositorInFlahne():void {
 	output("\n\nThe amber gel-woman jiggles her breasts to help change the topic. <i>“Let’s see, what else.... Oh, we grow up pretty quick, comparatively, so if you ever wanted kids, we aren’t much work to raise.”</i>  Flahne smiles happily. <i>“It’s nice to have someone get to know you instead of expecting you to immediately get naked, ya know?”</i>");
 	//Unlocks ovipositor talk and subrace talk
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 
 //Her Subrace
@@ -183,8 +183,8 @@ function flahnesSubRace():void {
 	output("\n\n<i>“I guess that’s it,”</i>  she says at last, <i>“but I’d be happy to talk about my people as much as you like.”</i>");
 	//Pass 10 minutes.
 	processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 
 //Her Ovipositor
@@ -201,11 +201,11 @@ function flahnesOvipositor():void {
 	output(".");
 	processTime(1);
 	//[About It] [Keep It In/Let It Out]
-	this.clearMenuProxy();
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) this.userInterface.addButton(1,"Put It Away",keepDatOvipositorIn);
-	else this.userInterface.addButton(1,"Let It Out",popOviOut);
-	this.userInterface.addButton(0,"About It",aboutDatOvipositorOut);
-	this.userInterface.addButton(14,"Back",talkToFlahne);
+	this.clearMenu();
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) this.addButton(1,"Put It Away",keepDatOvipositorIn);
+	else this.addButton(1,"Let It Out",popOviOut);
+	this.addButton(0,"About It",aboutDatOvipositorOut);
+	this.addButton(14,"Back",talkToFlahne);
 }
 
 //Keep Ovipositor In
@@ -218,9 +218,9 @@ function keepDatOvipositorIn():void {
 	output("\n\nThe honey-hued gel-girl sighs and says, <i>“Okay, fine. Just let me get rid of it. Do you want to watch?”</i>");
 	flags["FLAHNE_LIKE_OVIPOSITOR"] = 0;
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(1,"No",dontWatchOvipositorGoAway);
-	this.userInterface.addButton(0,"Yes",watchFlahne);
+	this.clearMenu();
+	this.addButton(1,"No",dontWatchOvipositorGoAway);
+	this.addButton(0,"Yes",watchFlahne);
 }
 //[Watch/Don’t]
 //Don’t Watch Ovi Go Away
@@ -234,8 +234,8 @@ function dontWatchOvipositorGoAway():void {
 	//pass 10 minutes.
 	processTime(10);
 	//Display talk menu
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 //Watch Ovi Go Away
 function watchFlahne():void {
@@ -257,8 +257,8 @@ function watchFlahne():void {
 	//Pass 10 minutes.
 	processTime(10);
 	//Out to room.
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Pop Ovi Out
@@ -298,8 +298,8 @@ function aboutDatOvipositorOut():void {
 	output("\n\n<i>“Annnnnnd, that’s it! Nothing else to say about it unless you want to inspect it personally, which you already declined,”</i>  Flahne says. <i>“So, anything else you want me to do with it?”</i>");
 	//Pass 5 minutes, go back to Flahne ovipositor menu
 	processTime(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",flahnesOvipositor);
+	this.clearMenu();
+	this.addButton(0,"Next",flahnesOvipositor);
 }
 
 //The Locals
@@ -338,8 +338,8 @@ function theLocals():void {
 	output("\n\nThe gluttonous gel doesn’t seem that sure of the last point. <i>“Not much else to say about it, really. Anything else I can help you with, " + pc.mf("Mister","Miss") + " Steele?”</i>");
 	//10 minutes, back to talk menu
 	processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",talkToFlahne);
+	this.clearMenu();
+	this.addButton(0,"Next",talkToFlahne);
 }
 
 //Sex Menu
@@ -370,44 +370,44 @@ function flahneSexMenu(display:Boolean = true):void {
 	if(pc.isTaur()) output("\n\nYour body length, while impressive, sadly limits your options in this tiny office. You’ll be able to do her over the desk, but that’s about it.");
 	processTime(1);
 	//goto choices
-	this.clearMenuProxy();
+	this.clearMenu();
 	
 	//Fuck n’ Suck (Flahne Autofellates)
 	//requires ovipositor OK’d, ovipositor out
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur() && pc.hasCock()) this.userInterface.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne);
-	else this.userInterface.addDisabledButton(0,"Locked");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur() && pc.hasCock()) this.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne);
+	else this.addDisabledButton(0,"Locked");
 	//Desk Munchies
 	//Requires rahn race discussion has taken place
-	if(flags["TALKED_ABOUT_FLAHNES_RACE"] > 0 && flags["FLAHNE_DESK_DISABLED"] != 1 && !pc.isTaur()) this.userInterface.addButton(1,"Under Desk",flahneDeskMunchies);
-	else this.userInterface.addDisabledButton(1,"Locked");
+	if(flags["TALKED_ABOUT_FLAHNES_RACE"] > 0 && flags["FLAHNE_DESK_DISABLED"] != 1 && !pc.isTaur()) this.addButton(1,"Under Desk",flahneDeskMunchies);
+	else this.addDisabledButton(1,"Locked");
 	//Get Box Munched
 	//You suggest that Flahne could take a few licks and see just how long it would take to get to your center... Turns out its 3 bites.
-	if(pc.hasVagina() && !pc.isTaur()) this.userInterface.addButton(2,"GetEatenOut",flahneMunchesBoxesMetalBawkses);
-	else this.userInterface.addDisabledButton(2,"Locked");
+	if(pc.hasVagina() && !pc.isTaur()) this.addButton(2,"GetEatenOut",flahneMunchesBoxesMetalBawkses);
+	else this.addDisabledButton(2,"Locked");
 	
 	//Rahn Suppository (All Sexes, or lack thereof; needs Ovi; Savin's Fault)
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur()) this.userInterface.addButton(3,"Get Stuffed",rahnSuppository);
-	else this.userInterface.addDisabledButton(3,"Locked");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur()) this.addButton(3,"Get Stuffed",rahnSuppository);
+	else this.addDisabledButton(3,"Locked");
 	
 	//Bend her Over (Dickwielders; Savin wrote dis)
-	if(pc.hasCock() && pc.cockThatFits(flahne.vaginalCapacity()) >= 0) this.userInterface.addButton(4,"Bend Her Over",bendFlahneOver);
-	else this.userInterface.addDisabledButton(4,"Locked");
+	if(pc.hasCock() && pc.cockThatFits(flahne.vaginalCapacity()) >= 0) this.addButton(4,"Bend Her Over",bendFlahneOver);
+	else this.addDisabledButton(4,"Locked");
 
 	//Gardeford's Exhibitionism Scenes
 	if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] == 1 && flags["FLAHNE_DESK_DISABLED"] == undefined)
 	{
 		if(pc.cockThatFits(chars["FLAHNE"].vaginalCapacity()) >= 0 && pc.hasCock()) 
-			userInterface.addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism);
-		else userInterface.addDisabledButton(5,"Locked");
+			addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism);
+		else addDisabledButton(5,"Locked");
 		if(pc.hasVagina()) 
-			userInterface.addButton(6,"(F)Exhibition",flahneExhibitionHugsGirls);
-		else userInterface.addDisabledButton(6,"Locked");
+			addButton(6,"(F)Exhibition",flahneExhibitionHugsGirls);
+		else addDisabledButton(6,"Locked");
 	}
 	else {
-		userInterface.addDisabledButton(5,"Locked");
-		userInterface.addDisabledButton(6,"Locked");
+		addDisabledButton(5,"Locked");
+		addDisabledButton(6,"Locked");
 	}
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 //Bend her Over (Dickwielders; Savin wrote dis)
@@ -505,8 +505,8 @@ function bendFlahneOver():void {
 		output("\n\n<i>“Bye cutie!”</i>  Flahne calls after you. <i>“I hope you’ll come in here again!”</i>  You can almost hear the snicker in her voice at the double entendre.");
 	}
 	flahneFuckCounter(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Rahn Suppository (All Sexes, or lack thereof; needs Ovi; Savin's Fault)
@@ -568,8 +568,8 @@ function rahnSuppository():void {
 	processTime(20 + rand(5));
 	pc.orgasm();
 	flahneFuckCounter(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Get Box Munched
@@ -715,9 +715,9 @@ function flahneMunchesBoxesMetalBawkses():void {
 	pc.orgasm();
 	//Small lust boost.
 	pc.lust(5);
-	this.clearMenuProxy();
+	this.clearMenu();
 	flahneFuckCounter(1);
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Desk Munchies
@@ -754,16 +754,16 @@ function flahneDeskMunchies():void {
 		output(".");
 	}
 	flahneFuckCounter(1);
-	this.clearMenuProxy();
-	if(!flahneDickOut()) this.userInterface.addButton(0,"Next",eatFlahneOutUnderDesk);
+	this.clearMenu();
+	if(!flahneDickOut()) this.addButton(0,"Next",eatFlahneOutUnderDesk);
 	//[Eat Out] [Suck&Swallow] [Play&Spray(only for semi-bastards)]
 	else {
 		//Eat Out
-		this.userInterface.addButton(0,"Eat Out",eatFlahneOutUnderDesk);
+		this.addButton(0,"Eat Out",eatFlahneOutUnderDesk);
 		//Suck off
-		this.userInterface.addButton(1,"Suck Off",flahneGetsSuckedAndSwallowed);
+		this.addButton(1,"Suck Off",flahneGetsSuckedAndSwallowed);
 		//Play&Spray
-		if(pc.isAss()) this.userInterface.addButton(0,"PlayNSpray",playAndSpray);
+		if(pc.isAss()) this.addButton(0,"PlayNSpray",playAndSpray);
 	}
 }
 
@@ -844,8 +844,8 @@ function eatFlahneOutUnderDesk():void {
 	//Pass 20 minutes + 10 if she licks you clean.
 	processTime(20);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) processTime(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu)
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu)
 }
 
 //Suck&Swallow
@@ -887,8 +887,8 @@ function flahneGetsSuckedAndSwallowed():void {
 
 	//Pass 20 minutes.
 	processTime(20+rand(3));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Play&Spray
@@ -976,8 +976,8 @@ function playAndSpray():void {
 	flags["FLAHNE_PISSED"] = 100;
 	flags["FLAHNE_DESK_DISABLED"] = 1;
 	currentLocation = "ESBETH'S NORTH PATH";
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Fuck n’ Suck (Flahne Autofellates)
@@ -1042,8 +1042,8 @@ function fuckAndSuckWithFlahne():void {
 	flahneFuckCounter(1);
 	pc.orgasm();
 	processTime(30+rand(10));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -1123,8 +1123,8 @@ function flahneExhibitionHugsGirls():void {
 	flahneFuckCounter(1);
 	processTime(15+rand(15));
 	pc.orgasm();
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Male: If I fits, you sits
@@ -1191,6 +1191,6 @@ function flahneIfMalesFitTheySitExhibitionism():void {
 	flahneFuckCounter(1);
 	processTime(15+rand(15));
 	pc.orgasm();
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

@@ -38,8 +38,8 @@ function naleenMaleEncounter():void
 		output("\n\nYou ready yourself for combat!");
 		flags["TIMES_MET_MALE_NALEEN"]++;
 	}
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",startCombat,"naleen male");
+	clearMenu();
+	addButton(0,"Next",startCombat,"naleen male");
 }
 
 /*
@@ -208,17 +208,17 @@ function defeatAMaleNaleen():void {
 		output("\n\nYou watch his erections and his furious hands with a pang of pleasure; teasing a naleen into submission is quite a feat for most people, after all. Hmm... he’s not exactly hard on the eyes; maybe you could help him get off?");
 	}
 	// menu here!
-	userInterface.clearMenu();
+	clearMenu();
 	//Ride Him
 	//Requires PC has at least one vagina and not taur
-	if(pc.hasVagina() && pc.lust() >= 33 && !pc.isTaur()) userInterface.addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah);
-	else userInterface.addDisabledButton(0,"Ride Him");
+	if(pc.hasVagina() && pc.lust() >= 33 && !pc.isTaur()) addButton(0,"Ride Him",rideDudeleensWithAPussaaaaah);
+	else addDisabledButton(0,"Ride Him");
 	//Get Blown
 	//Requires PC has at least one penis
-	if(pc.hasCock() && pc.lust() >= 33) userInterface.addButton(1,"Get Blown",getBlownByDudeleen);
-	else userInterface.addDisabledButton(1,"Get Blown");
+	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get Blown",getBlownByDudeleen);
+	else addDisabledButton(1,"Get Blown");
 
-	userInterface.addButton(14,"Leave",leaveDefeatedDudeleen);
+	addButton(14,"Leave",leaveDefeatedDudeleen);
 }
 
 function leaveDefeatedDudeleen():void {
@@ -420,9 +420,9 @@ function rideDudeleensWithAPussaaaaah():void {
 	else output("\n\nYou look at the lazy cat-snake. Off to nap already. You ponder if you should even bother releasing him at this point.");
 	processTime(20+rand(25));
 	pc.orgasm();
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Release",releaseNaleenAfterLadyWins);
-	userInterface.addButton(14,"Leave",leaveTheDudeNaleenAfterLadyWins);
+	clearMenu();
+	addButton(0,"Release",releaseNaleenAfterLadyWins);
+	addButton(14,"Leave",leaveTheDudeNaleenAfterLadyWins);
 	//[Release][Leave]
 }
 
@@ -501,27 +501,27 @@ function getBlownByDudeleen():void {
 			output(" <b>While pondering the choice, the hunger grows to an overwhelming degree. You cannot resist. You HAVE to feed your tail");
 			if(pc.tailCount > 1) output("s");
 			output(".</b>")
-			userInterface.clearMenu();
-			userInterface.addButton(3,"Cunt Tail",cuntailOnDudeleen);
-			userInterface.addDisabledButton(0,"Ignore");
-			userInterface.addDisabledButton(1,"Handjob");
-			userInterface.addDisabledButton(2,"Take Anal");		
+			clearMenu();
+			addButton(3,"Cunt Tail",cuntailOnDudeleen);
+			addDisabledButton(0,"Ignore");
+			addDisabledButton(1,"Handjob");
+			addDisabledButton(2,"Take Anal");		
 		}
 		else
 		{
-			userInterface.clearMenu();
-			userInterface.addButton(0,"Ignore",ignoreDasNaga);
-			userInterface.addButton(1,"Handjob",handjobThatDudeleen);
-			userInterface.addButton(2,"Take Anal",getTakenInTheAssByDudeleen);
-			userInterface.addButton(3,"Cunt Tail",cuntailOnDudeleen);
+			clearMenu();
+			addButton(0,"Ignore",ignoreDasNaga);
+			addButton(1,"Handjob",handjobThatDudeleen);
+			addButton(2,"Take Anal",getTakenInTheAssByDudeleen);
+			addButton(3,"Cunt Tail",cuntailOnDudeleen);
 		}
 	}
 	else {
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Ignore",ignoreDasNaga);
-		userInterface.addButton(1,"Handjob",handjobThatDudeleen);
-		userInterface.addButton(2,"Take Anal",getTakenInTheAssByDudeleen);
-		userInterface.addDisabledButton(3,"Cunt Tail");
+		clearMenu();
+		addButton(0,"Ignore",ignoreDasNaga);
+		addButton(1,"Handjob",handjobThatDudeleen);
+		addButton(2,"Take Anal",getTakenInTheAssByDudeleen);
+		addDisabledButton(3,"Cunt Tail");
 	}
 }
 
@@ -588,8 +588,8 @@ function ignoreDasNaga():void {
 	//Hard:
 	else {
 		//[LetGo][Refuse]
-		userInterface.addButton(0,"Let Go",letThatNaleenBoyPussyGo);
-		userInterface.addButton(1,"Refuse",refuseToLetTheNaleenGo);
+		addButton(0,"Let Go",letThatNaleenBoyPussyGo);
+		addButton(1,"Refuse",refuseToLetTheNaleenGo);
 	}
 }
 
@@ -1055,17 +1055,17 @@ function reverseFuckNaleenCuntTailGo():void {
 		output(" <b>While pondering the choice, the hunger grows to an overwhelming degree. You cannot resist. You HAVE to feed your tail");
 		if(pc.tailCount > 1) output("s");
 		output(".</b>")
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Feed",feedYourCuntTailWithDudeleen);
-		userInterface.addDisabledButton(1,"Resist");
+		clearMenu();
+		addButton(0,"Feed",feedYourCuntTailWithDudeleen);
+		addDisabledButton(1,"Resist");
 	}
 	else 
 	{
 		//[Feed] [Resist]
 		//If the cunt-tails haven’t been fed in a while, PC picks GiveIn without a choice.
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Feed",feedYourCuntTailWithDudeleen);
-		userInterface.addButton(1,"Resist",resistLossRape);
+		clearMenu();
+		addButton(0,"Feed",feedYourCuntTailWithDudeleen);
+		addButton(1,"Resist",resistLossRape);
 	}
 }
 

@@ -18,8 +18,8 @@ public function mainGameMenu():void {
 		clearOutput();
 		output("<b>" + possessive(this.chars["PC"].short) + " log:</b>" + eventBuffer);
 		eventBuffer = "";
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	//Queued events can fire off too!
@@ -40,22 +40,22 @@ public function mainGameMenu():void {
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
-	this.clearMenuProxy(false);
+	this.clearMenu(false);
 	this.inSceneBlockSaving = false
 	//Inventory shit
 	itemScreen = mainGameMenu;
 	lootScreen = inventory;
-	this.userInterface.addButton(2,"Inventory",inventory);
+	this.addButton(2,"Inventory",inventory);
 	//Other standard buttons
 
 	if(this.chars["PC"].lust() < 33) 
-		this.userInterface.addDisabledButton(3,"Masturbate");
+		this.addDisabledButton(3,"Masturbate");
 	else 
-		this.userInterface.addButton(3,"Masturbate",masturbateMenu);
+		this.addButton(3,"Masturbate",masturbateMenu);
 	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
-		this.userInterface.addButton(4,"Rest",rest);
+		this.addButton(4,"Rest",rest);
 	else 
-		this.userInterface.addButton(4,"Sleep",sleep);
+		this.addButton(4,"Sleep",sleep);
 	//Display movement shits - after clear menu for extra options!
 	if(this.rooms[this.currentLocation].runOnEnter != undefined) {
 		if(this.rooms[this.currentLocation].runOnEnter()) return;
@@ -64,22 +64,22 @@ public function mainGameMenu():void {
 	flags["ENCOUNTERS_DISABLED"] = 1;
 
 	if(this.rooms[this.currentLocation].northExit) 
-		this.userInterface.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
+		this.addButton(6,"North",move,this.rooms[this.currentLocation].northExit);
 	if(this.rooms[this.currentLocation].eastExit) 
-		this.userInterface.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
+		this.addButton(12,"East",move,this.rooms[this.currentLocation].eastExit);
 	if(this.rooms[this.currentLocation].southExit) 
-		this.userInterface.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
+		this.addButton(11,"South",move,this.rooms[this.currentLocation].southExit);
 	if(this.rooms[this.currentLocation].westExit) 
-		this.userInterface.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
+		this.addButton(10,"West",move,this.rooms[this.currentLocation].westExit);
 	if(this.rooms[this.currentLocation].inExit) 
-		this.userInterface.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
+		this.addButton(5,this.rooms[this.currentLocation].inText,move,this.rooms[this.currentLocation].inExit);
 	if(this.rooms[this.currentLocation].outExit) 
-		this.userInterface.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
+		this.addButton(7,this.rooms[this.currentLocation].outText,move,this.rooms[this.currentLocation].outExit);
 	if(this.currentLocation == shipLocation) 
-		this.userInterface.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
+		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
 
-	this.userInterface.addButton(14, "RESET NPCs", initializeNPCs);
+	this.addButton(14, "RESET NPCs", initializeNPCs);
 	
 	// Show the minimap too!
 	this.userInterface.showMinimap();
@@ -89,14 +89,14 @@ public function mainGameMenu():void {
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
-		this.clearMenuProxy();
+		this.clearMenu();
 	}
 	var crewMessages:String = "";
 	var count:int = 0;
 	if(celiseIsCrew()) {
 		count++;
 		if(!counter) {
-			this.userInterface.addButton(count - 1,"Celise",celiseFollowerInteractions);
+			this.addButton(count - 1,"Celise",celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
@@ -104,7 +104,7 @@ function crew(counter:Boolean = false):Number {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
 		}
-		this.userInterface.addButton(14,"Back",mainGameMenu);
+		this.addButton(14,"Back",mainGameMenu);
 	}
 	return count;
 }
@@ -122,8 +122,8 @@ function rest():void {
 	var minutes:int = 230 + rand(20) + 1;
 	processTime(minutes);
 	output("You sit down and rest for around " + num2Text(Math.round(minutes/60)) + " hours.");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
@@ -149,13 +149,13 @@ function sleep(outputs:Boolean = true):void {
 	}
 	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
 	processTime(minutes);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function shipMenu():Boolean {
 	rooms["SHIP INTERIOR"].outExit = shipLocation;
-	this.userInterface.addButton(9,"Fly",flyMenu);
+	this.addButton(9,"Fly",flyMenu);
 
 	if(shipLocation == "TAVROS HANGAR") {
 		setLocation("SHIP\nINTERIOR","TAVROS STATION","SYSTEM: KALAS");
@@ -165,7 +165,7 @@ function shipMenu():Boolean {
 	}
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
-			this.userInterface.addButton(8,"Crew",crew);
+			this.addButton(8,"Crew",crew);
 		}
 	}
 	return false;
@@ -174,12 +174,12 @@ function shipMenu():Boolean {
 function flyMenu():void {
 	clearOutput();
 	output("Where do you want to go?");
-	this.clearMenuProxy();
+	this.clearMenu();
 	if(shipLocation != "TAVROS HANGAR") 
-		this.userInterface.addButton(0,"Tavros",flyTo,"Tavros");
+		this.addButton(0,"Tavros",flyTo,"Tavros");
 	if(shipLocation != "SHIP HANGAR") 
-		this.userInterface.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+		this.addButton(1,"Mhen'ga",flyTo,"Mhen'ga");
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 function flyTo(arg:String):void {
@@ -196,8 +196,8 @@ function flyTo(arg:String):void {
 	}
 	output(" and step out of your ship.");
 	processTime(600 + rand(30));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function move(arg:String, goToMainMenu:Boolean = true):void {

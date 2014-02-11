@@ -64,11 +64,11 @@
 				if(target.cockTotal() > 1) 
 				{
 					kGAMECLASS.output("You have more than one penis. Which one will you inject with Throbb?");
-					kGAMECLASS.clearMenuProxy();
+					kGAMECLASS.clearMenu();
 					for(var x:int = 0; x < target.cockTotal(); x++)
 					{
 						kGAMECLASS.output("\n" + (x+1) + ": [pc.cock " + x + "]");
-						kGAMECLASS.userInterface.addButton(x,kGAMECLASS.num2Text(x+1),throbbPCEffects,x);
+						kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),throbbPCEffects,x);
 					}
 					return true;
 				}
@@ -228,8 +228,8 @@
 			}
 			//Wear off
 			kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>");
-			kGAMECLASS.clearMenuProxy();
-			kGAMECLASS.userInterface.addButton(0,"Next",kGAMECLASS.useItemFunction);
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
 		}
 		protected function rand(max:Number):Number
 		{

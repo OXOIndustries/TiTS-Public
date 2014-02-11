@@ -116,10 +116,10 @@
 			kGAMECLASS.output2(displayMessage);
 			
 			kGAMECLASS.userInterface.clearGhostMenu();
-			kGAMECLASS.userInterface.addGhostButton(0, "Load", this.loadGameMenu);
-			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.userInterface.addGhostButton(1, "Save", this.saveGameMenu);
+			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu);
+			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu);
 			
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", dataRouter, kGAMECLASS.userInterface.tempEvent);
+			kGAMECLASS.addGhostButton(14, "Back", dataRouter, kGAMECLASS.userInterface.tempEvent);
 		}
 		
 
@@ -141,12 +141,12 @@
 				displayMessage += this.generateSavePreview(dataFile, slotNum);
 				if (this.slotCompatible(dataFile) == true)
 				{
-					kGAMECLASS.userInterface.addGhostButton(slotNum - 1, "Slot " + slotNum, this.loadGameData, slotNum);
+					kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.loadGameData, slotNum);
 				}
 			}
 			
 			kGAMECLASS.output2(displayMessage);
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			
 		}
 		
@@ -166,11 +166,11 @@
 			{
 				var dataFile:SharedObject = this.getSO(slotNum);
 				displayMessage += this.generateSavePreview(dataFile, slotNum);
-				kGAMECLASS.userInterface.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
+				kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.saveGameData, slotNum);
 			}
 			
 			kGAMECLASS.output2(displayMessage);
-			kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 		}
 		
 		/**
@@ -238,7 +238,7 @@
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
 				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 			else
 			{
@@ -250,7 +250,7 @@
 				kGAMECLASS.clearOutput2();
 				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
 				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
 		
@@ -383,7 +383,7 @@
 				kGAMECLASS.updatePCStats();
 				kGAMECLASS.output2("Game loaded from 'TiTs_" + slotNumber + "'!");
 				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(0, "Next", this.executeGame);
+				kGAMECLASS.addGhostButton(0, "Next", this.executeGame);
 			}
 			else
 			{
@@ -394,7 +394,7 @@
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
 				kGAMECLASS.userInterface.clearGhostMenu();
-				kGAMECLASS.userInterface.addGhostButton(14, "Back", this.showDataMenu);
+				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			}
 		}
 		

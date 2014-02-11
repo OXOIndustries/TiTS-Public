@@ -83,12 +83,12 @@ function pennyRoomDesc():void {
 		else {
 			output("\n\nPenny is sitting behind her desk like normal. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 		}
-		this.userInterface.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
+		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}
 	//Friendly penny
 	else if(flags["SEXED_PENNY"] == undefined) {
 		output("\n\nPenny is seated behind her desk and typing away at a cheap terminal. She seems pleased to see you here, flicking a warm smile your way before turning back to her work.");
-		this.userInterface.addButton(0,"Approach",approachFriendPenny);
+		this.addButton(0,"Approach",approachFriendPenny);
 	}
 	//Girlfriend penny
 	else {
@@ -98,7 +98,7 @@ function pennyRoomDesc():void {
 		//FUTA!
 		//Appearance Blurb: 
 		else output("\n\nPenny is hard at work as ever, though once you enter, she flashes a knowing smile and a brazen leer in your direction. Her nipples are so hard that they’ve popped out and become visible through her bra and wrappings, though given that she’s packing sex organs for two, you suppose it makes sense. The fennec tries her best to keep working in spite of her rampant hormones.");
-		this.userInterface.addButton(0,"Approach",approachGirlfriendPenny);
+		this.addButton(0,"Approach",approachGirlfriendPenny);
 	}
 }
 
@@ -112,11 +112,11 @@ function askPennyIfSheNeedsHelp():void {
 	output("\n\nYou could offer to beat the lust out of them yourself, or let them sate themselves on your body. You could also just suggest she get an intercom. Or you could always leave and worry about it later. What do you do?");
 	processTime(2+rand(3));
 	//[Fuck Zil] [FightThem] [Get an Intercom]
-	this.clearMenuProxy();
-	this.userInterface.addButton(2,"Get Intercom",getAnIntercom);
-	this.userInterface.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
-	this.userInterface.addButton(1,"Fight Them",fightDemZil);
-	this.userInterface.addButton(14,"Leave",mainGameMenu);
+	this.clearMenu();
+	this.addButton(2,"Get Intercom",getAnIntercom);
+	this.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
+	this.addButton(1,"Fight Them",fightDemZil);
+	this.addButton(14,"Leave",mainGameMenu);
 }
 
 //[Get an Intercom]
@@ -126,9 +126,9 @@ function getAnIntercom():void {
 	output("You suggest she toss an intercom into the cell and save herself a lot of time and effort.");
 	output("\n\nPenny sighs. <i>“Don’t you think I thought of that? The primitives don’t even know what to do with them. The first ’com got smashed on the wall. When I tried giving them a baby monitor, they just kept trying to get me to come fuck them, and they promised they’d tell me everything I needed to know...”</i>  She shakes her head. <i>“No, I need to solve this in a way that doesn’t end with me on my back.”</i> ");
 	//Same menu
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
-	this.userInterface.addButton(1,"Fight Them",fightDemZil);
+	this.clearMenu();
+	this.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
+	this.addButton(1,"Fight Them",fightDemZil);
 }
 
 //[Fuck Them]
@@ -142,10 +142,10 @@ function fuckTheZilForPennyBecauseYouAreADumbStupidSlut():void {
 	
 	output("\n\nPenny perks up at your words. <i>“You know, that just might work, but aren’t you worried about, you know, picking up some kind of disease?”</i> ");
 	//[Explain] [FlirtItOff] [Nevermind(Back)]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Explain",explainWhyYoureAHugeSlut);
-	this.userInterface.addButton(1,"FlirtItOff",flirtySlutPCsTellPennyFlirts);
-	this.userInterface.addButton(4,"Nevermind",askPennyIfSheNeedsHelp);
+	this.clearMenu();
+	this.addButton(0,"Explain",explainWhyYoureAHugeSlut);
+	this.addButton(1,"FlirtItOff",flirtySlutPCsTellPennyFlirts);
+	this.addButton(4,"Nevermind",askPennyIfSheNeedsHelp);
 }
 
 //[Explain]
@@ -155,9 +155,9 @@ function explainWhyYoureAHugeSlut():void {
 	output("You explain to Penny that you’re in possession of a supplemented immune system that should eradicate all known pathogens. No bug in the universe can stand up to your microsurgeons; at most, the worst you would have to deal with would be some subtle mutations. And that’s only if you don’t get yourself checked up.");
 	output("\n\nPenny idly licks her fingers to clean them the rest of the way and pauses as you finish. She raises an eyebrow, remarking, <i>“Is that so? I suppose I shouldn’t be surprised.”</i>  She rolls her eyes and quotes the old Xenogen Biotech slogan, <i>“The wonders of biotechnology never cease!”</i>  She stands up and sighs, grabbing a pair of tonfas off the desk. With a look at the expression on your face, she smiles and assures you that they’re just there for personal protection.");
 	//[Yes] [Nope-goes back to last choice.]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Yes",getSpitRoastedForPenny);
-	this.userInterface.addButton(1,"Nope",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
+	this.clearMenu();
+	this.addButton(0,"Yes",getSpitRoastedForPenny);
+	this.addButton(1,"Nope",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
 }
 
 //[Flirt Off]
@@ -169,9 +169,9 @@ function flirtySlutPCsTellPennyFlirts():void {
 	//Adds to affection
 	pennyAffection(3);
 	//[Yes] [Nope-goes back to last choice.]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Yes",getSpitRoastedForPenny);
-	this.userInterface.addButton(1,"Nope",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
+	this.clearMenu();
+	this.addButton(0,"Yes",getSpitRoastedForPenny);
+	this.addButton(1,"Nope",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);
 }
 
 //[Yes] (Go Get Spit-Roasted for Penny)
@@ -283,8 +283,8 @@ function getSpitRoastedForPenny():void {
 	//Pass 2 hours.
 	processTime(120+rand(20));
 	flags["ZIL_PROBLEM_DEALT_WITH"] = 1;
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",getFucked4PennyEpilogue);
+	this.clearMenu();
+	this.addButton(0,"Next",getFucked4PennyEpilogue);
 }
 
 //[Next]
@@ -298,8 +298,8 @@ function getFucked4PennyEpilogue():void {
 	output("\n\nBoth zil nod.");
 	output("\n\n<i>“Good. I’m going to lead you out of here on leashes in a minute. You be sure to and tell your people that we’ll kill anyone that comes into town trying to force customs on us again. Make sure that message spreads through all your villages. I don’t care if you have to fuck or get fucked by every one of them to do it,”</i>  Penny declares while separating herself from the beaten zil. She grabs her pants and throws them on in a huff, closely followed by her wraps, bra, and vest.");
 	output("\n\nYou stagger up after the fox-girl, groggily grabbing your things, all of them covered in sexual fluids. She smirks and points you to a shower while she finds some restraints.");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",postSexShower);
+	this.clearMenu();
+	this.addButton(0,"Next",postSexShower);
 }
 
 //[Next]
@@ -312,8 +312,8 @@ function postSexShower():void {
 	//Boost libido and stick PC in empty jail room.
 	pc.libido(1);
 	processTime(50);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //[Fight Them]
@@ -330,9 +330,9 @@ function fightDemZil():void {
 	output("\n\n<i>“Last chance to pussy out,”</i>  the fennec growls, <i>“What are you gonna do?”</i> ");
 	//[Pussy Out] Goes back
 	//Fight them
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Pussy Out",askPennyIfSheNeedsHelp);
-	this.userInterface.addButton(1,"Fight Them",seriouslyFightTheZil);
+	this.clearMenu();
+	this.addButton(0,"Pussy Out",askPennyIfSheNeedsHelp);
+	this.addButton(1,"Fight Them",seriouslyFightTheZil);
 }
 
 function seriouslyFightTheZil():void {
@@ -346,9 +346,9 @@ function seriouslyFightTheZil():void {
 	
 	output("\n\nThe fox-girl gives you an appraising look, and you nod, indicating you’re ready. She unlocks the cell door for you, guiding you in with a quick push. It slams shut behind you as soon as you’ve stumbled the whole way into the enclosure.");
 	output("\n\n<i>“Good luck,”</i>  Penny’s muffled voice encourages. She’s seating herself on a bench across the room. The wrappings around her chest have already begun to tent. Even through all that cloth, it’s easy to tell the aliens’ arousing aroma is having an effect on her, just as it is on you. You turn to regard the two bug-men, who are even now advancing on you with confident swaggers. Your gaze flicks down to behold their dripping genitalia, and you idly find yourself wondering what they would look like cumming helplessly beneath you. Right... you came here to defeat them.");
-	this.clearMenuProxy();
+	this.clearMenu();
 	//Start combat
-	this.userInterface.addButton(0,"Next",startCombat,"zilpack");
+	this.addButton(0,"Next",startCombat,"zilpack");
 }
 
 //	AI: Utilizes lust attacks unless damaged. Then has physical probability of 2 * missing HP (50% HP = 100% physical attacks). Flurry of blows or facehump if PC is stunned. 50% chance of using harden when below 75% HP.
@@ -551,8 +551,8 @@ function loseToZilPair():void {
 	
 	output("\n\n<i>“YES! Yesyesyes!”</i>  Penny screams as she, too, climaxes, turned on far beyond her normal sexual limits by the potent musk of the Zil climax that fills the room like a haze, dominating her with sexual need that she can barely strive to fulfil. As the two Zil boys push your off their cocks, thoroughly used and now discarded until next they need release, you roll over in time to see Penny's cunt gush around her fingers, soaking the floor in her release.");
 	pc.lust(100);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",loseToZilpackPartTwoLoseHarder);
+	this.clearMenu();
+	this.addButton(0,"Next",loseToZilpackPartTwoLoseHarder);
 }
 
 function loseToZilpackPartTwoLoseHarder():void {
@@ -583,8 +583,8 @@ function loseToZilpackPartTwoLoseHarder():void {
 	output("\n\nA moment passes. You gag as the dusky Zil brother fills your mouth with a heady load of sweet cum. Then, glumly, they nod. They're sexual predators, but not stupid... and they're awfully sexy. Dominant beasts of sensual prey - you shake your head and spit out the cum, trying to focus.");
 	output("\n\nPenny continues more confidently, <i>“Good. If you want to be left alone, then don't come into town trying to fuck everyone. I'm going to release you, but you WILL listen to me: be sure to and tell your people that we’ll kill anyone that comes into town trying to force ‘customs’ on us again. I don't give a damn about your sick take on dominance; we do NOT exist to be fucked by your people. Do you fuckheads understand that? We will </i>kill<i> the next one that tries to rape an offworlder. Make sure that message spreads through all your villages. I don’t care if you have to fuck or get fucked by every one of them to do it,”</i>  Penny declares while pulling her mask back on and hastily twining her wraps back around her torso, covering them them partway with her vest a minute later. <i>“Gotta keep the girls in place,”</i>  she mutters as her hard nipples press plainly through the fabric.");
 	output("\n\nPenny smirks and points you to a shower while she finds some restraints. <i>“Get cleaned up, I’ll take care of the hooligans.”</i>  You are a bit worked up from the fight. A shower would be nice.");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",finishLosingToZilYouLoser);
+	this.clearMenu();
+	this.addButton(0,"Next",finishLosingToZilYouLoser);
 }
 
 //[Next]
@@ -629,8 +629,8 @@ function defeatZilPair():void {
 	output("\n\nPenny smirks and points you to a shower while she finds some restraints. <i>“Get cleaned up, I’ll take care of the hooligans.”</i>  You are a bit worked up from the fight. A shower would be nice.");
 	//[Next]
 	pc.lust(10);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",beatPennysZilPartII);
+	this.clearMenu();
+	this.addButton(0,"Next",beatPennysZilPartII);
 }
 function beatPennysZilPartII():void {
 	clearOutput();
@@ -657,14 +657,14 @@ function approachFriendPenny(outputT:Boolean = true):void {
 		clearOutput();
 		output("Penny turns back up at you, greeting, <i>“’Sup, crazy? Need a hand for anything? I still owe you, you know.”</i>  Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
 	}
-	this.clearMenuProxy();
-	this.userInterface.addButton(14,"Back",mainGameMenu);
-	this.userInterface.addButton(0,"Talk:Yourself",talkToPennyAboutYourself);
-	this.userInterface.addButton(1,"Talk:Youth",pennysYouth);
-	this.userInterface.addButton(2,"Talk:Fun",whatDoesPennyDoForFun);
-	this.userInterface.addButton(3,"Talk:Species",talkToPennyAboutSpecies);
-	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) this.userInterface.addButton(4,"Sex",pennySexFirstTime);
-	else this.userInterface.addDisabledButton(4,"Sex");
+	this.clearMenu();
+	this.addButton(14,"Back",mainGameMenu);
+	this.addButton(0,"Talk:Yourself",talkToPennyAboutYourself);
+	this.addButton(1,"Talk:Youth",pennysYouth);
+	this.addButton(2,"Talk:Fun",whatDoesPennyDoForFun);
+	this.addButton(3,"Talk:Species",talkToPennyAboutSpecies);
+	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) this.addButton(4,"Sex",pennySexFirstTime);
+	else this.addDisabledButton(4,"Sex");
 }
 
 //[Sex]
@@ -736,12 +736,12 @@ function pennySexFirstTime():void {
 		output("\n\nThe fox-morph grabs your [pc.butt] in her hands, squeezing your cheeks momentarily, distracting you from the loss of heat against your front. Once she lets go, you discover that Penny has circled around you. She’s at a doorway now, her butt wiggling in your direction with her tail upraised as she fiddles with the portal’s control panel. You come after her, but the door chooses that moment to open, allowing Penny to slip away. The last thing you see is the flash of a tail vanishing into the darkness. Well, you may as well follow and finish....");
 		//[Next]
 		processTime(10);
-		this.clearMenuProxy();
+		this.clearMenu();
 		if(pc.hasCock()) {
-			if(pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.userInterface.addButton(0,"Next",firstTimePennyShowerSex);
-			else this.userInterface.addButton(0,"Next",stickAHugeDickInPennysWorld);
+			if(pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(0,"Next",firstTimePennyShowerSex);
+			else this.addButton(0,"Next",stickAHugeDickInPennysWorld);
 		}
-		else this.userInterface.addButton(0,"Next",femaleFirstTimePennyLesboz);
+		else this.addButton(0,"Next",femaleFirstTimePennyLesboz);
 		flags["SEXED_PENNY"] = 1;
 	}
 }
@@ -886,8 +886,8 @@ function firstTimePennyShowerSex():void {
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
 	processTime(75+rand(25));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 //Female First Time Shower Sex
 function femaleFirstTimePennyLesboz():void {
@@ -1018,8 +1018,8 @@ function femaleFirstTimePennyLesboz():void {
 	output("mate. We’ll have to do something like this again, and soon.”</i>  She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind too much when I get all riled up and get a little predatory on you.”</i>  Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	processTime(55+rand(25));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Huge Dick First Time Sex
@@ -1120,8 +1120,8 @@ function stickAHugeDickInPennysWorld():void {
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
 	processTime(45+rand(25));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -1145,8 +1145,8 @@ function talkToPennyAboutSpecies():void {
 	
 	//Pass 30m
 	processTime(30);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //[Do For Fun?]
@@ -1161,8 +1161,8 @@ function whatDoesPennyDoForFun():void {
 	output("\n\n<i>“It couldn’t hurt,”</i>  you offer.");
 	output("\n\n<i>“I know, but who would we play against? The zil? I need to wait for this planet to get more than a dozen permanent, civilized residents before I try anything like that,”</i>  Penny declares. <i>“Other than that, fitness is my real hobby. Being a girl, I’ve got to keep in good shape to take down some of the more burly customers I get. I can run laps around just about everyone I’ve met. The extra animal vitality I’m packing might be helping a little bit with that.”</i>  She winks. <i>“That isn’t all, but if you want the whole scoop, you’ll just have to keep coming around and getting me talking until I’m comfortable telling you about my... racier hobbies.”</i>");
 	processTime(25);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Her Youth
@@ -1176,8 +1176,8 @@ function pennysYouth():void {
 	output("\n\nYou ask her if she ran off to join up after that.");
 	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i>  Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //[PC Name]
@@ -1204,8 +1204,8 @@ function talkToPennyAboutYourself():void {
 	
 	output("\n\nEars standing straight up, Penny bristles, <i>“No, I think I’ve said it all. Now, unless you have something else to discuss, I do have work to do, you know.”</i> You shrug, letting the conversation end, but before you can go anywhere, Penny looks back up at you again. <i>“Come back soon, okay crazy?”</i>");
 	processTime(20);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 	
 //Girlfriend Greetings
@@ -1236,11 +1236,11 @@ function approachGirlfriendPenny():void {
 		else output("  There’s the quiet sound of a zipper opening from beneath the desk. <i>“Did you want to play with the toy you talked me into getting? I must admit, I’m rather taken by the little guy.”</i>");
 	}
 	processTime(1);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Talk",talkToGirfriendPenny);
-	if(pc.lust() >= 33) this.userInterface.addButton(1,"Sex",pennySexMenu);
-	else this.userInterface.addDisabledButton(1,"Sex");
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Talk",talkToGirfriendPenny);
+	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
+	else this.addDisabledButton(1,"Sex");
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 //Talk to Girlfriend Penny
@@ -1258,14 +1258,14 @@ function talkToGirfriendPenny():void {
 	}
 	output(". <i>“I’m pretty much an open book for you at this point, my mate.”</i>  Penny’s tail wiggles up alongside her like a snake-charmer’s viper. <i>“Though you could always touch my fluffy tail instead of talking.”</i>  She smirks and waves it back and forth as she awaits your response.");
 	//[Her ‘Species’] [Happy?] [Goals] [TouchFluffyTail]
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Her ‘Species’",askGFPennyAboutSpecies);
-	this.userInterface.addButton(1,"Happy",isGFPennyHappy);
-	this.userInterface.addButton(2,"Goals",goalsForGFPenny);
-	this.userInterface.addButton(3,"TouchFluffTail",touchFluffyTail);
-	if(flags["HAD_PENNY_GOAL_CHAT"] == 1) this.userInterface.addButton(4,"Futanari",pennyFutanariTalk);
-	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) this.userInterface.addButton(5,"Buy Throbb",buySomeThrobbFrompenny);
-	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+	this.clearMenu();
+	this.addButton(0,"Her ‘Species’",askGFPennyAboutSpecies);
+	this.addButton(1,"Happy",isGFPennyHappy);
+	this.addButton(2,"Goals",goalsForGFPenny);
+	this.addButton(3,"TouchFluffTail",touchFluffyTail);
+	if(flags["HAD_PENNY_GOAL_CHAT"] == 1) this.addButton(4,"Futanari",pennyFutanariTalk);
+	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) this.addButton(5,"Buy Throbb",buySomeThrobbFrompenny);
+	this.addButton(14,"Back",approachGirlfriendPenny);
 }
 
 //[Touch Fluffy Tail]
@@ -1325,9 +1325,9 @@ function askGFPennyAboutSpecies():void {
 	if(!penny.hasCock()) output("<i>I may not always be horny, but it’s worth getting a little riled up to have a clear head later,</i>");
 	else output("<i>You know how I feel about fucking: the more the better. And thanks to you, I have the best tool to do it with,</i>");
 	output("<i>”</i>  Penny offers as she turns back to her job.");
-	this.clearMenuProxy();
+	this.clearMenu();
 	processTime(25);
-	this.userInterface.addButton(0,"Next",approachGirlfriendPenny);
+	this.addButton(0,"Next",approachGirlfriendPenny);
 }
 
 //[Happy?]
@@ -1342,8 +1342,8 @@ function isGFPennyHappy():void {
 	output("\n\nThere’s really nothing to do but nod at that.");
 	output("\n\n<i>“Good. People like you and me, we make a difference, even if we have to slog through shit sometimes to do it,”</i>  Penny quips. <i>“Now, I have to do some checks on the calibrations of the turrets, but holler at me if you need anything else.”</i>");
 	processTime(25);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",approachGirlfriendPenny);
+	this.clearMenu();
+	this.addButton(0,"Next",approachGirlfriendPenny);
 }
 
 //[Goals]
@@ -1364,9 +1364,9 @@ function goalsForGFPenny():void {
 	
 	output("\n\n<i>“Oh!”</i>  Penny adds, <i>“There was one other thing I’ve been thinking about.”</i>  She wrings her hands. “It’s a little weird, but I’ve been entertaining the idea of growing myself a cock. Maybe we should talk about that later, though.”</i>  Her eyes flick back to her monitor. <i>“I probably need to get back to work. Give me a yell if you need anything else, [pc.name].”</i>");
 	processTime(25);
-	this.clearMenuProxy();
+	this.clearMenu();
 	flags["HAD_PENNY_GOAL_CHAT"] = 1;
-	this.userInterface.addButton(0,"Next",approachGirlfriendPenny);
+	this.addButton(0,"Next",approachGirlfriendPenny);
 }
 
 //[WhatSheLookedLikeB4]
@@ -1382,8 +1382,8 @@ function whatSheLookedLikeBFour():void {
 	output("\n\nNone.");
 	output("\n\n<i>“Good, now let me get this requisition typed up.”</i>  She winks at you. <i>“Just holler up when you need something.”</i>");
 	processTime(25);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",approachGirlfriendPenny);
+	this.clearMenu();
+	this.addButton(0,"Next",approachGirlfriendPenny);
 }
 
 //[Futanari] - Option to have her go futa!
@@ -1407,9 +1407,9 @@ function pennyFutanariTalk():void {
 		
 		output("\n\nScratching at her mohawk, the policewoman asks, <i>“If I say... had a big cache sitting around, waiting to give me a huge dick, do you think I could handle it? Would you be okay with me getting a penis? I don’t think I can really judge myself here.”</i>  She sighs. <i>“Being a herm would really open things up to me sexually, but am I getting self-destructive here? Would you like me better as a girl?”</i>");
 		//[Stay Girl] [Get A Dick]
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Stay Girl",stayAGirlYouBitch);
-		this.userInterface.addButton(1,"Get A Dick",pennySproutsAWeiner);
+		this.clearMenu();
+		this.addButton(0,"Stay Girl",stayAGirlYouBitch);
+		this.addButton(1,"Get A Dick",pennySproutsAWeiner);
 	}
 	//Repeat Futanari Talk
 	else
@@ -1420,9 +1420,9 @@ function pennyFutanariTalk():void {
 			output("<i>“Oh, you want to talk about me growing a dick again?”</i>  Penny asks. <i>“You know, if I dose myself with Throbb I’m going to wind up horny and dripping more often than normal. My self control will probably slip a little too. However, I’ll be able to fuck you like freight train, and oh god I bet the orgasms will feel great.”</i>");
 			output("\n\nFrom the sounds of it, Penny’s panties are already more than a little moist at the idea. Do you tell her to take some Throbb?");
 			//[Stay Girl] [Get A Dick]
-			this.clearMenuProxy();
-			this.userInterface.addButton(0,"Stay Girl",stayAGirlYouBitch);
-			this.userInterface.addButton(1,"Get A Dick",pennySproutsAWeiner);
+			this.clearMenu();
+			this.addButton(0,"Stay Girl",stayAGirlYouBitch);
+			this.addButton(1,"Get A Dick",pennySproutsAWeiner);
 			
 		}
 		//Already futa
@@ -1432,18 +1432,18 @@ function pennyFutanariTalk():void {
 			{
 				output("<i>“So you like my dick as much as me, right?”</i>  a hopeful Penny asks. <i>“You don’t mind if I take another dose of Throbb, do you? I just want to get a little bit bigger - you know, like a foot long. That way I’d have a cock big enough to get into porn if the police gig ever falls through.”</i>  Her tentpole swells a little at that admission.");
 				output("\n\nShe’s as horny as an animal in heat, but she hasn’t had any trouble keeping herself under control thus far. Do you suggest she take it again?");
-				this.clearMenuProxy();
-				this.userInterface.addButton(0,"Give Throbb",pennyToBigPenny);
-				this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+				this.clearMenu();
+				this.addButton(0,"Give Throbb",pennyToBigPenny);
+				this.addButton(14,"Back",approachGirlfriendPenny);
 			}
 			//Footlong Penny
 			else if(penny.longestCockLength() < 17)
 			{
 				output("<i>“Ohgod, you want me to get bigger, don’t you?”</i>  Penny asks with a full-body shudder. She wraps one hand around her [penny.cock] and begins to languidly stroke it, barely caring that the door is unlocked. Her male endowment is big enough to be visible over the edge of her desk. <i>“Nnnngh, it’ll feel so good! I... uh... don’t know how I’ll fit in my pants. Fuck, my sheath will probably bulge through even when I’m not horny.”</i>  The lust-drunk vixen giggles as she bends double to slurp a drop of pre-cum off her [penny.cockHead]. <i>“Yeaaaah, lets give me a real monster!”</i>");
 				output("\n\nTo say that Penny is enthused by the prospect of a bigger member and a heightened libido would be an understatement. She’s jubilant at the prospect and nearly beyond reason with lust from at the prospect of taking more. With her self-control obviously slipping, do you give her the okay to take another dose?");
-				this.clearMenuProxy();
-				this.userInterface.addButton(0,"Give Throbb",pennyBecomesHYPERPENNY);
-				this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+				this.clearMenu();
+				this.addButton(0,"Give Throbb",pennyBecomesHYPERPENNY);
+				this.addButton(14,"Back",approachGirlfriendPenny);
 			}
 			//Hyper Penny
 			else {
@@ -1453,8 +1453,8 @@ function pennyFutanariTalk():void {
 				output(". Her womanly folds are almost entirely forgotten as she babbles, <i>“I think I want more, [pc.name].... I mean, I remember not wanting to turn myself into a hyper-dicked freak, but now... I kind of want to see how big it can get. Each time it feels better!”</i>  She slurps at her tip as you consider the situation. <i>“Umph! So good! Come on, give me a monster cock! I promise I won’t split you in half with it!”</i>");
 				output("\n\nPenny will surely lose it if you give her the go ahead to take any more. Her already lustful nature seems to be stoked to a high degree already, and giving her more Throbb would certainly lead to her losing her post. No, she can’t have any more now, and you tell her as much.");
 				output("\n\nAmazingly, she actually wilts a little at that. Her masturbation stops as the fennec dreamily says, <i>“Okay, okay, I guess. I’m getting a little out of hand, aren’t I?”</i>  You nod. <i>“Good, cause it seems to be keeping you around. I’m going to fuck you so hard as soon as I get caught up on work!”</i>  She turns back towards what she was doing while trying to pack her monster dick into her pants. It doesn’t work all that well.");
-				this.clearMenuProxy();
-				this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+				this.clearMenu();
+				this.addButton(14,"Back",approachGirlfriendPenny);
 			}
 		}
 	}
@@ -1467,8 +1467,8 @@ function growADickPenny():void {
 	output("<i>“You’ll be fine,”</i>  you suggest, letting a hint of a lascivious smile creep onto your [pc.face]. <i>“I’m sure a girl like you can handle a little bit of extra arousal from time to time, and if it ever gets too much, well, I’m right here.”</i>");
 	output("\n\nPenny gives you a doubtful look, but she reaches into her desk all the same, coming out with a vial full of cyan fluid so transparent you can barely identify the color. She twists it between her fingers, looking meaningfully at it as she works up her courage. <i>“This stuff is going to give me a dick, likely forever. My genome is so hacked up by the fennec splicing that most transformation won’t even take anymore - part of the downsides of going as cheap as I did on it. So if I grow this dick, it’ll be hard as hell to get rid of, and maybe the only thing about me we can transform. Are you sure you want me to be your foxy little futanari girlfriend?”</i>");
 	//[Grow It] [Nevermind] - back to talk menu.
-	this.userInterface.addButton(0,"Grow It",pennySproutsAWeiner);
-	this.userInterface.addButton(1,"Nevermind",stayAGirlYouBitch);
+	this.addButton(0,"Grow It",pennySproutsAWeiner);
+	this.addButton(1,"Nevermind",stayAGirlYouBitch);
 }
 //Penny Grows Her Dick NOW!
 function pennySproutsAWeiner():void {
@@ -1490,7 +1490,7 @@ function pennySproutsAWeiner():void {
 	output("\n\nPenny purrs, <i>“Oh, it wants to go again!”</i>");
 	output("\n\nThe fox-girl’s libido has definitely jumped up a notch - she’s probably always going to be lusting after you now. Hell, the way she’s eyeing you up, you wouldn’t be surprised if she leapt across the desk right now. She shows some restraint, luckily, and instead slides her bottoms back up. Though, she does leave the fly undone so that her new addition can breathe. <i>“Maybe later though, little guy. I’ve got work to do.”</i>  Her smile turns your way. <i>“Thanks again, mate. I’m gonna get things cleaned up and work, but come back as soon as you have time for a little prison fun, okay?”</i>");
 	if(silly) output("\n\nYou’ll have to be careful not to drop the soap around her from now on.");
-	this.clearMenuProxy();
+	this.clearMenu();
 	processTime(20);
 	penny.createCock();
 	penny.shiftCock(0,GLOBAL.VULPINE);
@@ -1500,7 +1500,7 @@ function pennySproutsAWeiner():void {
 	penny.orgasm();
 	flags["PENNY_THROBB_USES"] = 1;
 	flags["PENNY_THROBB_PURCHASE_UNLOCKED"] = 1;
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Penny Turns To Big Penny
@@ -1534,8 +1534,8 @@ function pennyToBigPenny():void {
 	if(penny.cocks[0].knotMultiplier < 1.5) penny.cocks[0].knotMultiplier = 1.5;
 	penny.orgasm();
 	flags["PENNY_THROBB_USES"] = 2;
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Penny Goes Hyper Penny
@@ -1578,9 +1578,9 @@ function pennyBecomesHYPERPENNY():void {
 	penny.cumMultiplier += 5;
 	penny.ballEfficiency += 3;
 	penny.orgasm();
-	this.clearMenuProxy();
+	this.clearMenu();
 	flags["PENNY_THROBB_USES"] = 3;
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.addButton(0,"Next",mainGameMenu);
 }
 //Stay Girl
 function stayAGirlYouBitch():void {
@@ -1590,8 +1590,8 @@ function stayAGirlYouBitch():void {
 	output("\n\nGrowling, Penny says, <i>“Rrrr, I think you’re right, but fuck, it’d be fun to try.”</i>  She looks meaningfully down at one of her desk drawers and continues. <i>“Well, maybe you’ll change your mind later on. I’ll just hold on to the Throbb for now, unless maybe you want to buy some of it to help me recoup the cost.”</i>  Her ears perk up a bit. <i>“Just ask me later, I can probably give you the hookup for something like 300 creds a pop. Remember, don’t overdo it with this stuff unless you want to wind up a mindless fuckbeast or an immobilized, orgasm-addicted dick-stroker.”</i>");
 	output("\n\nThe fox-girl giggles, <i>“If you do decide to do that, let me know! I want to watch.”</i>  She swivels her chair back. <i>“Right now, I have work to do. You know the drill.”</i>");
 	flags["PENNY_THROBB_PURCHASE_UNLOCKED"] = 1;
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 	
 //Buy Throbb - Unlocked by futa talk, rejected or accepted
@@ -1606,29 +1606,29 @@ function buySomeThrobbFrompenny():void {
 	if(pc.credits < 300) output(", but inform her that <b>you cannot afford a dose of Throbb</b>");
 	else output(" and wonder if you’re sure that you want to spend 300 credits for a back-alley dick-enlargement formula");
 	output(".");
-	this.clearMenuProxy();
-	if(pc.credits >= 300) this.userInterface.addButton(0,"Buy It",buyThrobbTransact);
-	else this.userInterface.addDisabledButton(0,"Buy It");
-	if(pc.credits >= 600) this.userInterface.addButton(1,"Buy 2",buyThrobbTransact,2);
-	else this.userInterface.addDisabledButton(1,"Buy 2");
-	if(pc.credits >= 900) this.userInterface.addButton(2,"Buy 3",buyThrobbTransact,3);
-	else this.userInterface.addDisabledButton(2,"Buy 3");
-	if(pc.credits >= 1200) this.userInterface.addButton(3,"Buy 4",buyThrobbTransact,4);
-	else this.userInterface.addDisabledButton(3,"Buy 4");
-	if(pc.credits >= 1500) this.userInterface.addButton(4,"Buy 5",buyThrobbTransact,5);
-	else this.userInterface.addDisabledButton(4,"Buy 5");
-	if(pc.credits >= 1800) this.userInterface.addButton(5,"Buy 6",buyThrobbTransact,6);
-	else this.userInterface.addDisabledButton(5,"Buy 6");
-	if(pc.credits >= 2100) this.userInterface.addButton(6,"Buy 7",buyThrobbTransact,7);
-	else this.userInterface.addDisabledButton(6,"Buy 7");
-	if(pc.credits >= 2400) this.userInterface.addButton(7,"Buy 8",buyThrobbTransact,8);
-	else this.userInterface.addDisabledButton(7,"Buy 8");
-	if(pc.credits >= 2700) this.userInterface.addButton(8,"Buy 9",buyThrobbTransact,9);
-	else this.userInterface.addDisabledButton(8,"Buy 9");
-	if(pc.credits >= 3000) this.userInterface.addButton(9,"Buy 10",buyThrobbTransact,10);
-	else this.userInterface.addDisabledButton(9,"Buy 10");
+	this.clearMenu();
+	if(pc.credits >= 300) this.addButton(0,"Buy It",buyThrobbTransact);
+	else this.addDisabledButton(0,"Buy It");
+	if(pc.credits >= 600) this.addButton(1,"Buy 2",buyThrobbTransact,2);
+	else this.addDisabledButton(1,"Buy 2");
+	if(pc.credits >= 900) this.addButton(2,"Buy 3",buyThrobbTransact,3);
+	else this.addDisabledButton(2,"Buy 3");
+	if(pc.credits >= 1200) this.addButton(3,"Buy 4",buyThrobbTransact,4);
+	else this.addDisabledButton(3,"Buy 4");
+	if(pc.credits >= 1500) this.addButton(4,"Buy 5",buyThrobbTransact,5);
+	else this.addDisabledButton(4,"Buy 5");
+	if(pc.credits >= 1800) this.addButton(5,"Buy 6",buyThrobbTransact,6);
+	else this.addDisabledButton(5,"Buy 6");
+	if(pc.credits >= 2100) this.addButton(6,"Buy 7",buyThrobbTransact,7);
+	else this.addDisabledButton(6,"Buy 7");
+	if(pc.credits >= 2400) this.addButton(7,"Buy 8",buyThrobbTransact,8);
+	else this.addDisabledButton(7,"Buy 8");
+	if(pc.credits >= 2700) this.addButton(8,"Buy 9",buyThrobbTransact,9);
+	else this.addDisabledButton(8,"Buy 9");
+	if(pc.credits >= 3000) this.addButton(9,"Buy 10",buyThrobbTransact,10);
+	else this.addDisabledButton(9,"Buy 10");
 
-	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+	this.addButton(14,"Back",approachGirlfriendPenny);
 }
 //[Buy] [Back]
 //Transact It
@@ -1647,8 +1647,8 @@ function buyThrobbTransact(amount:int = 1):void {
 	
 	//-300 credits
 	pc.credits -= amount*300;
-	clearMenuProxy();
-	userInterface.addButton(0,"Next",talkToGirfriendPenny);
+	clearMenu();
+	addButton(0,"Next",talkToGirfriendPenny);
 }
 
 function lootThrobb():void {
@@ -1696,36 +1696,36 @@ function pennySexMenu(outputT:Boolean = true):void {
 			output("Penny is up and out of her chair almost as soon as you mention the idea of sex. Her fly is undone, leaving her [penny.cock] to point up at you, almost accusingly. She touches it experimentally and shivers from the rush of pleasure that courses out of it in response. <i>“I think so, [pc.name].”</i>  Rubbing it a little faster, the fennec enthusiastically offers, <i>“Does my mate have any preference for how I take " + pc.mf("him","her") + "?”</i>");
 		}
 	}
-	this.clearMenuProxy();
+	this.clearMenu();
 	
 	// I don't THINK these scene is supposed to /require/ the player have a cock; it never once uses any logic or parse tags for the players cock, nor refer to it within the scene text OR the "exit" texts...
-	if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-	else this.userInterface.addDisabledButton(0, "Onahole Her");
+	if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+	else this.addDisabledButton(0, "Onahole Her");
 	
 	if (pc.hasCock())
 	{
-		//if(penny.hasCock()) this.userInterface.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-		//else this.userInterface.addDisabledButton(0,"Onahole Her");
+		//if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
+		//else this.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
 		trace("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
-		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.userInterface.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);
-		else this.userInterface.addDisabledButton(1,"OverDeskFuck");
-		if(penny.hasCock()) this.userInterface.addButton(2,"Frottage",pennyFrottage);
-		else this.userInterface.addDisabledButton(2,"Frottage");
-		this.userInterface.addButton(3,"Pawjob",penniliciousPawjob);
-		this.userInterface.addButton(4,"FaceFuckHer",faceFuckPenny);
+		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);
+		else this.addDisabledButton(1,"OverDeskFuck");
+		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage);
+		else this.addDisabledButton(2,"Frottage");
+		this.addButton(3,"Pawjob",penniliciousPawjob);
+		this.addButton(4,"FaceFuckHer",faceFuckPenny);
 	}
 	else 
 	{
-		this.userInterface.addDisabledButton(1,"OverDeskFuck");
-		this.userInterface.addDisabledButton(2,"Frottage");
-		this.userInterface.addDisabledButton(3,"Pawjob");
-		//this.userInterface.addDisabledButton(4,"FaceFuckHer");
-		if(penny.hasCock()) this.userInterface.addButton(4,"Catch Anal",getAssFuckedByPenny);
+		this.addDisabledButton(1,"OverDeskFuck");
+		this.addDisabledButton(2,"Frottage");
+		this.addDisabledButton(3,"Pawjob");
+		//this.addDisabledButton(4,"FaceFuckHer");
+		if(penny.hasCock()) this.addButton(4,"Catch Anal",getAssFuckedByPenny);
 	}
-	this.userInterface.addButton(5,"EatHerOut",gardeFordWritesPennySmex);
-	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
-	this.userInterface.addButton(14,"Back",approachGirlfriendPenny);
+	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex);
+	this.addButton(14,"Back",approachGirlfriendPenny);
+	this.addButton(14,"Back",approachGirlfriendPenny);
 	
 }
 
@@ -1802,10 +1802,10 @@ function faceFuckPenny():void {
 	processTime(30+rand(15));
 	pc.orgasm();
 	//[Fuck her butt] [Get ass fucked] [Nah, girl]
-	this.clearMenuProxy();
-	if(pc.hasCock()) this.userInterface.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh);
-	if(penny.hasCock()) this.userInterface.addButton(1,"GetButtFucked",getAssFuckedByPenny);
-	this.userInterface.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll);
+	this.clearMenu();
+	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh);
+	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny);
+	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll);
 }
 
 //Nah,girl
@@ -1814,8 +1814,8 @@ function nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
 	this.userInterface.showBust("PENNY");
 	author("Savin");
 	output("Way too exhausted after the furious face-fucking you just gave Penny, you sadly must decline. The pretty fox girl seems to deflate in your arms, but still gives you a hug and tells you to come back soon. <i>“After all, I owe you a good fucking for this!”</i>");
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Get ass fucked (Penny gotta have the D, yo)
@@ -1911,8 +1911,8 @@ function getAssFuckedByPenny():void {
 	output("\n\nYou give the lusty fox a quick pat on the rear and saunter off, walking a bit stiffly as your anus recovers from the pounding it just took.");
 	pc.orgasm();
 	processTime(32);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Fuck Her Butt (From Facefuck scene)
@@ -1957,8 +1957,8 @@ function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 	output("\n\n<i>“That was amazing, my mate,”</i> she purrs, patting her well-fucked ass. <i>“Let's do it again... and soon.”</i>");
 	pc.orgasm();
 	processTime(27);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Pennilicious Pawjob
@@ -2013,11 +2013,11 @@ function penniliciousPawjob():void {
 	output("<i> while I do this, or we going to forget this foot business and just get naughty?”</i>  Penny asks.");
 	//[Lick Out] [Suck Off] [GetGroundOn] [Frot]
 	//The first two go to the same scene with variations. The second two are unique.
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Lick Out",lickOutSomePennyDawg);
-	if(penny.hasCock()) this.userInterface.addButton(1,"Suck Off",suckOffPennyDawgYoMahDiggity);
-	this.userInterface.addButton(2,"GetGroundOn",getGroundOnByPenny);
-	if(penny.hasCock()) this.userInterface.addButton(3,"Frot",pennyFrottage);
+	this.clearMenu();
+	this.addButton(0,"Lick Out",lickOutSomePennyDawg);
+	if(penny.hasCock()) this.addButton(1,"Suck Off",suckOffPennyDawgYoMahDiggity);
+	this.addButton(2,"GetGroundOn",getGroundOnByPenny);
+	if(penny.hasCock()) this.addButton(3,"Frot",pennyFrottage);
 }
 
 //Lick Out
@@ -2076,8 +2076,8 @@ function suckAndLickAtPennyYouDildo(dick:Boolean = true):void {
 	output("leaving [pc.cumColor] footprints in her wake. You grab your gear and see your way back out to her office now that you’ve gotten a handle on your baser urges.");
 	processTime(34);
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //GetGroundOn
@@ -2130,8 +2130,8 @@ function getGroundOnByPenny():void {
 	//Reset lust, pass 50 minutes.
 	processTime(50);
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Frottage
@@ -2216,8 +2216,8 @@ function pennyFrottage():void {
 	output("\n\nYour bodies continue to slide against one another throughout, not stopping until the free-flowing spunk has slowed to a dripping trickle. Penny’s cock and yours are both soaked with mixed up spooge, saliva, and pre, all mixed together into a frothing, bubbling mess. Neither of you seems to care; the fox flops down onto you once her pleasure is totally spent, sliding over your spunky [pc.skinFurScales]. You wrap your arms against her and grind your slick form against hers, luxuriating in the pleasure before everyday worries can return to haunt you. Cleanliness can come later...");
 	processTime(35);
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",postPennyFrottage);
+	this.clearMenu();
+	this.addButton(0,"Next",postPennyFrottage);
 }
 
 function postPennyFrottage():void {
@@ -2231,8 +2231,8 @@ function postPennyFrottage():void {
 	//Reset lust
 	//Pass 50 minutes.
 	processTime(15);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Rough Over The Desk Fuck (AKA Penny Is The Prey DOHOHOH) - UNWRITTEN
@@ -2387,8 +2387,8 @@ function pennyOverTheDeskRoughFuck():void {
 	//Pass two hours.
 	processTime(110+rand(20));
 	pc.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Jack Penny off with an Onahole
@@ -2509,13 +2509,13 @@ function jackinPennyOffWithAnOnahole():void {
 	penny.orgasm();
 	//+10 lust
 	pc.lust(10);
-	this.clearMenuProxy();
+	this.clearMenu();
 	
 	
 	//[Throw It Away] [Bite It] [Feed2Her]
-	this.userInterface.addButton(0,"Throw Away",throwPennysCumAway);
-	this.userInterface.addButton(1,"Bite It",bitePennysCondom);
-	this.userInterface.addButton(2,"Feed2Her",feedPennysCondomToHer);
+	this.addButton(0,"Throw Away",throwPennysCumAway);
+	this.addButton(1,"Bite It",bitePennysCondom);
+	this.addButton(2,"Feed2Her",feedPennysCondomToHer);
 }
 
 //Throw It Away
@@ -2529,8 +2529,8 @@ function throwPennysCumAway():void {
 	//Pass 35 minutes.
 	processTime(5);
 	penny.lust(70);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 //Bite It
 function bitePennysCondom():void {
@@ -2547,8 +2547,8 @@ function bitePennysCondom():void {
 	output("\n\nShe’s cleaning up the wet spot on the floor when you prepare to leave, but you see another condom has been laid out on her desk.");
 	//Pass 35 minutes.
 	processTime(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 //FeedIt2Her
 function feedPennysCondomToHer():void {
@@ -2565,8 +2565,8 @@ function feedPennysCondomToHer():void {
 	output("\n\nShe goes on to thank you for the fun but admits she needs to get to work. <i>“Just give me a yell if you need anything. Knowing this thing, I’ll be good to go in a minute.”</i>");
 	//Pass 35 minutes.
 	processTime(5);
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 function gardeFordWritesPennySmex():void {
@@ -2675,6 +2675,6 @@ function gardeFordWritesPennySmex():void {
 	processTime(44+rand(6));
 	if(pc.hasCock() || pc.hasVagina()) pc.orgasm();
 	penny.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }

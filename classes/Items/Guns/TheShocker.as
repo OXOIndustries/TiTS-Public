@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class TheShocker extends ItemSlotClass
 	{
@@ -20,12 +22,17 @@
 			//Regular name
 			this.longName = "shock pistol";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a shock pistol colloquially called 'The Shocker'";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This gun fires a directed lance of electrical energy, frying shields and flesh with equal ease. It's limited capacitors prevent it from doing too much damage, but it still packs quite the wallop.";
 			this.attackVerb = "shock";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
 			this.basePrice = 2300;

@@ -22,8 +22,8 @@ function scrapyardMaintenance():void {
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}
 	shopkeep = geoff;
-	this.userInterface.addButton(0,"Buy",buyFromGeoff);
-	this.userInterface.addButton(1,"Sell",sellToArtie);
+	this.addButton(0,"Buy",buyFromGeoff);
+	this.addButton(1,"Sell",sellToArtie);
 }
 
 function sellToArtie():void {
@@ -37,23 +37,23 @@ function buyFromGeoff():void {
 	else output("Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name]. Looking to buy something?”</i>");
 	geoff.keeperBuy = "What would you like to buy?\n";
 	flags["MET_GEOFF"] = 1;
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Buy",buyItem);
-	this.userInterface.addButton(1,"Talk",talkToGeoff);
+	this.clearMenu();
+	this.addButton(0,"Buy",buyItem);
+	this.addButton(1,"Talk",talkToGeoff);
 	if(flags["SEXED_GEOFF"] == 1) {
 		if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga()) {
-			this.userInterface.addDisabledButton(3,"Sex");
+			this.addDisabledButton(3,"Sex");
 			output("\n\nGeoff doesn't seem interested in sex with the way you look right now...");
 		}
 		else {
-			if(pc.lust() >= 33) this.userInterface.addButton(3,"Sex",GeoffRepeatFuck);
+			if(pc.lust() >= 33) this.addButton(3,"Sex",GeoffRepeatFuck);
 			else {
-				this.userInterface.addDisabledButton(3,"Sex");
+				this.addDisabledButton(3,"Sex");
 				output("\n\nYou aren't aroused enough for sex.");
 			}
 		}
 	}
-	this.userInterface.addButton(14,"Back",mainGameMenu);
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 //Talk
@@ -66,21 +66,21 @@ function talkToGeoff():void {
 		output("\n\nYou ask if he regrets taking the job.");
 		output("\n\n<i>“Oh no, don’t get me wrong, I’m not complaining! I’m not earning as fast as I’d hoped, but it’s great out here. It’s nice to be in a place where the sun’s not coming through a blanket of smog, the people you meet in this job you wouldn’t believe, and the natives here are friendly. Uh. Real friendly.”</i>  His eyes glaze slightly, and you have to cough to make him focus back on you. <i>“And Uncle Artie might be... Uncle Artie... but he’s got me doing what I like doing. I love working with my hands, it’s what got me into engineering in the first place. Taking a broken thing apart, working out how it functions and putting it back together so it works, there’s nothing more satisfying than that.”</i>  He does sound genuinely impassioned when he says that, gripping the air with his strong but smooth hands as he talks.");
 		processTime(3);
-		this.clearMenuProxy();
-		if(pc.lust() >= 33) this.userInterface.addButton(0,"Flirt",flirtWithGeoff);
+		this.clearMenu();
+		if(pc.lust() >= 33) this.addButton(0,"Flirt",flirtWithGeoff);
 		else {
 			output("\n\nIf you were more turned on, you could flirt with him.");
-			this.userInterface.addDisabledButton(0,"Flirt");
+			this.addDisabledButton(0,"Flirt");
 		}
-		this.userInterface.addButton(14,"Back",buyFromGeoff);
+		this.addButton(14,"Back",buyFromGeoff);
 	}
 	else {
 		//Talk:
 		output("You say you’d just like to shoot the breeze with him. Shrugging amiably, the young mechanic points you to a shipping crate similar to the one his uncle is currently perched upon.");
 		output("\n\nYou spend a pleasant half an hour sat in the back of the scrap hut chatting with Geoff as he continues dismantling pieces of machinery. He’s heard of your father, and is eager to hear any story you can possibly tell him about Steele, hero of the frontier. In return he tells you his own experiences in Esbeth. He says both the proprietor of the Mead Hall and Officer Penny are quite nice once you get to know them, although you get the distinct impression he’s rather intimidated by them both. After you’re done kicking your heels back you let him get back to it and head out of the scrapyard’s clutter.");
 		processTime(30+rand(4));		
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",mainGameMenu);
+		this.clearMenu();
+		this.addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -93,8 +93,8 @@ function flirtWithGeoff():void {
 	if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga() || (!pc.hasCock() && !pc.hasVagina())) {
 		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
 		output("\n\nYou decide you’re better off not explaining what you actually meant.");
-		this.clearMenuProxy();
-		this.userInterface.addButton(0,"Next",buyFromGeoff);
+		this.clearMenu();
+		this.addButton(0,"Next",buyFromGeoff);
 		return;
 	}
 	flags["SEXED_GEOFF"] = 1;
@@ -168,8 +168,8 @@ function flirtWithGeoff():void {
 		pc.orgasm();
 	}
 	processTime(15+rand(10));
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 
 //Sex: 
@@ -272,7 +272,7 @@ function GeoffRepeatFuck():void {
 	processTime(45+rand(10));
 	pc.orgasm();
 	geoff.orgasm();
-	this.clearMenuProxy();
-	this.userInterface.addButton(0,"Next",mainGameMenu);
+	this.clearMenu();
+	this.addButton(0,"Next",mainGameMenu);
 }
 

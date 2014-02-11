@@ -15,7 +15,7 @@
 		appearance(pc);
 		userInterface.showingPCAppearance = true;
 		userInterface.clearGhostMenu();
-		userInterface.addGhostButton(0, "Back", pcAppearance, e);
+		addGhostButton(0, "Back", pcAppearance, e);
 	}
 }
 

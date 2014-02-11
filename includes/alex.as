@@ -37,7 +37,7 @@ function alexManHermIntro():void {
 	}
 	//Do you approach?
 	//[Yes] [No]
-	userInterface.addButton(1,"Androgyne",approachAlex);
+	addButton(1,"Androgyne",approachAlex);
 }
 
 function approachAlex():void {
@@ -59,10 +59,10 @@ function approachAlexTheFirstTime():void {
 	output("\n\n<i>“Hey,”</i>  he says, because that’s definitely a male voice, though even up close it’s still pretty hard to tell just by looking at him. <i>“Like what you see? Or are you just here for the conversation?”</i>  The prettyboy winks, still grinning broadly and not at all subtly eyeing your assets in turn.");
 	processTime(1);
 	//[Flirt] [What are you?] [Bail]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Flirt",flirtWithAlex);
-	userInterface.addButton(1,"WhatAreYou?",askAlexWhatHeIs);
-	userInterface.addButton(2,"Bail",bailOnAlex);
+	clearMenu();
+	addButton(0,"Flirt",flirtWithAlex);
+	addButton(1,"WhatAreYou?",askAlexWhatHeIs);
+	addButton(2,"Bail",bailOnAlex);
 }
 
 //[Flirt]
@@ -89,14 +89,14 @@ function flirtWithAlex():void {
 		output("  A thought seems to strike him after he says this, however, and he crouches momentarily to try to get a good look at your undercarriage. <i>“Though, uh. To be honest I’m not sure I’m exactly equipped to handle you. Sorry, but you might wanna look elsewhere.”</i>  He has the graces to look apologetic about it, at least. You get the feeling you’re not getting much of anything out of this guy.");
 		
 		//(kick back to bar menu)
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Next",mainGameMenu);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	//[Yes] [No]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Yes",alexSexMenu);
-	userInterface.addButton(1,"No",noToAlyxSex);
+	clearMenu();
+	addButton(0,"Yes",alexSexMenu);
+	addButton(1,"No",noToAlyxSex);
 }
 //[Yes]
 //(GO TO SEX)
@@ -112,8 +112,8 @@ function noToAlyxSex():void {
 
 	output("\n\n<i>“Suit yourself,”</i>  he says, seeming to take your rejection in stride. <i>“I’ll be around if you change your mind, though.”</i>");
 	//(Add “Androgyne” button when standing around the bar and go to repeat intro)
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[What are you?]
@@ -131,15 +131,15 @@ function askAlexWhatHeIs():void {
 	{
 		output("\n\nA thought seems to strike him after he says this, and he crouches momentarily to try to get a good look at your undercarriage. <i>“Though, uh. To be honest I’m not sure I’m exactly equipped to handle you. Sorry, but you might wanna look elsewhere.”</i>  He has the graces to look apologetic about it, at least. You get the feeling you’re not getting much of anything out of this guy.");
 		//(kick back to bar menu)
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Next",mainGameMenu);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	output("\n\nWhat do you say?");
 	//[Yes] [More]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"More Please",alexSexMenu);
-	userInterface.addButton(1,"That'sEnough",thatsEnoughAlex);
+	clearMenu();
+	addButton(0,"More Please",alexSexMenu);
+	addButton(1,"That'sEnough",thatsEnoughAlex);
 }
 //[More]
 //(GO TO SEX)
@@ -150,8 +150,8 @@ function thatsEnoughAlex():void {
 	author("RadicalBroseph");
 	output("Yeah, that’s about all the information you were after. The prettyboy looks more than a little bit disappointed, but his seemingly ever-present grin is back on again quickly enough.");
 	output("\n\n<i>“Suit yourself,”</i> he says, shrugging. <i>“I’ll be around if you ever change your mind, though.”</i>");
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //[Bail]
@@ -160,8 +160,8 @@ function bailOnAlex():void {
 	author("RadicalBroseph");
 	output("Come to think of it, this guy isn’t really your type. You make some pleasant small talk for a little while before making your excuses and going back to your business.");
 	//(Add “Androgyne” button when standing around the bar and go to repeat intro)
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 
@@ -176,15 +176,15 @@ function repeatApproachAlex():void {
 	{
 		output("  A thought seems to strike him after he says this, and he crouches momentarily to try to get a good look at your undercarriage. <i>“Though, uh. To be honest I’m not sure I’m exactly equipped to handle you. Sorry, but you might wanna look elsewhere.”</i>  He has the graces to look apologetic about it, at least. You get the feeling you’re not getting much of anything out of this guy.");
 		//(kick back to bar menu)
-		userInterface.clearMenu();
-		userInterface.addButton(0,"Next",mainGameMenu);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 		return;
 	}
 	//[Flirt] [What are you?] [Bail Again]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Flirt",alexSexMenu);
-	if(flags["ASKED_ALEX_WHAT_HE_IS"] == undefined) userInterface.addButton(1,"WhatAreYou?",askAlexWhatHeIs);
-	userInterface.addButton(14,"Leave",bailOnAlexAgain);
+	clearMenu();
+	addButton(0,"Flirt",alexSexMenu);
+	if(flags["ASKED_ALEX_WHAT_HE_IS"] == undefined) addButton(1,"WhatAreYou?",askAlexWhatHeIs);
+	addButton(14,"Leave",bailOnAlexAgain);
 }
 
 //[Bail Again]
@@ -197,8 +197,8 @@ function bailOnAlexAgain():void {
 	output(". He looks pretty disappointed, but shrugs it off easily enough.");
 
 	output("\n\n<i>“Suit yourself,”</i>  he says, shrugging. <i>“I’ll be around if you ever change your mind, though.”</i>");
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //REPEAT INTRO (You tapped that (or bailed at the last minute))
@@ -210,9 +210,9 @@ function approachAlexAfterHavingSexOrAlmostHavingSex():void {
 	output("\n\n<i>“Hey, [pc.name],”</i>  he says, grinning broadly at you. <i>“Taking a break from your busy life to visit little old me? You shouldn’t have.”</i>  He laughs, maybe a little more enthusiastically than is called for, and the two of you share some idle conversation.");
 	output("\n\n<i>“So,”</i>  he asks, once the ice is sufficiently broken. <i>“You up for another round, or did you just come here to talk?”</i>");
 	//[Sex] [Talk]
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Sex",alexSexMenu);
-	userInterface.addButton(1,"Talk",talkToAlex);
+	clearMenu();
+	addButton(0,"Sex",alexSexMenu);
+	addButton(1,"Talk",talkToAlex);
 }
 
 //[Sex]
@@ -229,8 +229,8 @@ function talkToAlex():void {
 	if(silly) output("fully-clothed, pants-on platonic friends ");
 	output("time together, chatting about your various adventures before you realize you need to get going and say your goodbyes.");
 	processTime(10+rand(3));
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //SEX (FUCKING FINALLY)
@@ -333,36 +333,36 @@ function alexSexMenu(display:Boolean = true):void {
 	//Frottage isn’t written yet because I’m a lazy asshole.
 	//Catch Anal is fun for everyone.
 	
-	userInterface.clearMenu();
+	clearMenu();
 	//[Pitch Vaginal]
 	//(Available to all dickhavers)
 	if(pc.lust() >= 33)
 	{
 		if(pc.hasCock())
 		{
-			userInterface.addButton(0,"Pitch Vaginal",pitchIntoAlexsBoyPussy);
-			userInterface.addButton(2,"Frottage",frottageWithAlex);
+			addButton(0,"Pitch Vaginal",pitchIntoAlexsBoyPussy);
+			addButton(2,"Frottage",frottageWithAlex);
 		}
 		else {
-			userInterface.addDisabledButton(0,"Pitch Vaginal");
-			userInterface.addDisabledButton(2,"Frottage");
+			addDisabledButton(0,"Pitch Vaginal");
+			addDisabledButton(2,"Frottage");
 		}
 		if(pc.hasVagina())
 		{
 			//[Catch Vaginal]
 			//(Shoutout to all the cunthavers)
-			userInterface.addButton(1,"Catch Vaginal",catchVaginalFromAlex);
+			addButton(1,"Catch Vaginal",catchVaginalFromAlex);
 		}
-		else userInterface.addDisabledButton(1,"Catch Vaginal");
-		userInterface.addButton(3,"Catch Anal",catchAnalFromAlex);
+		else addDisabledButton(1,"Catch Vaginal");
+		addButton(3,"Catch Anal",catchAnalFromAlex);
 	}
 	else {
-		userInterface.addDisabledButton(0,"Pitch Vaginal");
-		userInterface.addDisabledButton(1,"Catch Vaginal");
-		userInterface.addDisabledButton(2,"Frottage");
-		userInterface.addDisabledButton(3,"Catch Anal");
+		addDisabledButton(0,"Pitch Vaginal");
+		addDisabledButton(1,"Catch Vaginal");
+		addDisabledButton(2,"Frottage");
+		addDisabledButton(3,"Catch Anal");
 	}
-	userInterface.addButton(14,"Leave",bailOutOnAlex);
+	addButton(14,"Leave",bailOutOnAlex);
 	//Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 	//That’s a good fucking question. This kind of game makes all sense of scale kind of fly out the window for me a bit so I’m not really sure. Call small dicks anything five inches or shorter unless they’re super thick, medium anything from six inches to a foot long, and big anything bigger than that. HUGE is probably something equivalent to being triple- or quadruple-fisted or something? I’d give you numbers but I don’t remember the cockarea equations offhand ever since we stopped assuming dicks were box-shaped, and also don’t want to have to do extensive dick math.
 
@@ -502,8 +502,8 @@ function pitchIntoAlexsBoyPussy():void {
 	flags["FUCKED_ALEX"]++;
  	processTime(30+rand(15));
  	pc.orgasm();
- 	userInterface.clearMenu();
- 	userInterface.addButton(0,"Next",mainGameMenu);
+ 	clearMenu();
+ 	addButton(0,"Next",mainGameMenu);
  }
 
 //[Catch Vaginal]
@@ -652,8 +652,8 @@ function catchVaginalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
- 	userInterface.clearMenu();
- 	userInterface.addButton(0,"Next",mainGameMenu);
+ 	clearMenu();
+ 	addButton(0,"Next",mainGameMenu);
 }
 
 //[Frottage]
@@ -955,8 +955,8 @@ function frottageWithAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
- 	userInterface.clearMenu();
- 	userInterface.addButton(0,"Next",mainGameMenu);
+ 	clearMenu();
+ 	addButton(0,"Next",mainGameMenu);
 }
 
 //[Catch Anal]
@@ -1099,8 +1099,8 @@ function catchAnalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
- 	userInterface.clearMenu();
- 	userInterface.addButton(0,"Next",mainGameMenu);
+ 	clearMenu();
+ 	addButton(0,"Next",mainGameMenu);
 }
 //[Bail Once More]
 function bailOutOnAlex():void {
@@ -1115,6 +1115,6 @@ function bailOutOnAlex():void {
 	output(", get dressed, and head back to the bar.");
 	if(flags["FUCKED_ALEX"] == undefined) flags["LAST_MINUTE_ALEX_BACK_OUT"] = 1;
 	processTime(2);
-	userInterface.clearMenu();
-	userInterface.addButton(0,"Next",mainGameMenu);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
