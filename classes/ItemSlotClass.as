@@ -133,14 +133,14 @@
 			// "this." is the *new* item, "item." is the *old* item that "this." will replace
 			
 			compareString = mergeString(compareString, this.statDiff("attack", 			"Attack", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
-			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
 			
@@ -150,8 +150,7 @@
 			{
 				if (this.damageType != oldItem.damageType)
 				{
-					compareString = mergeString(compareString, "<span class='good'>[Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType]  + "]</span>");
-					compareString = mergeString(compareString, "<span class='bad'>[Damage Type: " + GLOBAL.DamageTypeStrings[oldItem.damageType] + "]</span>");
+					compareString = mergeString(compareString, "Damage Type: <span class='good'>" + GLOBAL.DamageTypeStrings[this.damageType]  + "</span>  <span class='bad'>" + GLOBAL.DamageTypeStrings[oldItem.damageType] + "</span>");
 				}
 			}
 			
@@ -183,7 +182,7 @@
 			if (withString == null || withString.length == 0) return to;
 			
 			// This is so we can sort formatting spacing and shit I guess
-			if (to.length > 0) to += "\t";
+			if (to.length > 0) to += "\n";
 			
 			to += withString;
 			return to;
@@ -230,7 +229,7 @@
 			// Build the actual string content
 			if (statDiff != 0)
 			{
-				resultString += "[" + displayAs + ": " + Math.abs(statDiff) + "]";
+				resultString += displayAs + ": " + statDiff;
 			}
 			
 			if (closeFormatting)
@@ -270,13 +269,13 @@
 						resistDiffString += "<span class='good'>";
 					}
 					
-					resistDiffString += "(" + GLOBAL.DamageTypeShortStrings[resistIndex] + ":" + Math.abs(diffVal) + ")</span>  ";
+					resistDiffString += "(" + GLOBAL.DamageTypeShortStrings[resistIndex] + ":" + diffVal + ")</span>  ";
 				}
 			}
 			
 			if (foundResistDiff)
 			{
-				resistDifferences += "[Bonus Resistances: " + resistDiffString + "]";
+				resistDifferences += "Bonus Resistances: " + resistDiffString;
 			}
 			
 			return resistDiffString;

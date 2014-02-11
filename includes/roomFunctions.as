@@ -1,7 +1,9 @@
-﻿import classes.Items.Guns.EagleHandgun;
+﻿import classes.Items.Apparel.UGCUniform;
+import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
+import classes.Items.Protection.DecentShield;
 
 function hangarBonus():Boolean 
 {
@@ -54,6 +56,10 @@ function debugMenus():void
 	undefined,
 	"Override Title",
 	"Override Body");
+	
+	addItemButton(4, new DecentShield(), function():void {
+		output("\n\nShield Button Get");
+	});
 }
 
 

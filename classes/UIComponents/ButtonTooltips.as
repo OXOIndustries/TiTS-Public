@@ -299,15 +299,17 @@ package classes.UIComponents
 				
 				if (this._bodySplitter.parent == null)
 				{
-					this.addChild(_bodySplitter);
-					_bodySplitter.y = _bodyText.y + _bodyText.height;
+					this.addChild(_bodySplitter);	
 				}
+				
+				_bodySplitter.y = _bodyText.y + _bodyText.height;
 				
 				if (this._comparisonText.parent == null)
 				{
 					this.addChild(_comparisonText);
-					_comparisonText.y = _bodySplitter.y + 5;
 				}
+				
+				_comparisonText.y = _bodySplitter.y + 5;
 			}
 			else
 			{
