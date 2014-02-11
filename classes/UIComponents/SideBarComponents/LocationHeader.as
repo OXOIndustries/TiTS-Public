@@ -196,8 +196,8 @@ package classes.UIComponents.SideBarComponents
 				
 				// Display the new bust
 				var bustObj = new bustT();
-				bustObj.y = -(bustObj.height);
 				_npcBusts.addChild(bustObj);
+				bustObj.y = -(bustObj.height);
 				_npcBusts.visible = true;
 			}
 			else
