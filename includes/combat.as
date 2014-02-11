@@ -90,7 +90,44 @@ function specialsMenu():void {
 	clearMenuProxy();
 	userInterface.addButton(14,"Back",combatMainMenu);
 	userInterface.addButton(13,"Wait",wait);
-	if(pc.characterClass == GLOBAL.ENGINEER) {
+	if(pc.characterClass == GLOBAL.MERCENARY)
+	{
+		if(pc.energy() >= 25) userInterface.addButton(0,"Headbutt",attackRouter,headbutt);
+		else userInterface.addDisabledButton(0,"Headbutt");
+		if(pc.hasStatusEffect("Rapid Fire Known"))
+		{
+			if(pc.energy() >= 20) userInterface.addButton(1,"Rapid Fire",attackRouter,rapidFire);
+			else userInterface.addDisabledButton(1,"Rapid Fire");
+		}
+		if(pc.hasStatusEffect("Power Strike Known"))
+		{
+			if(pc.energy() >= 20) userInterface.addButton(1,"Power Strike",attackRouter,powerStrike);
+			else userInterface.addDisabledButton(1,"Power Strike");
+		}
+		var offset:int = 0;
+		if(pc.hasStatusEffect("Take Cover Known")) 
+		{
+			offset++;
+			if(pc.energy() >= 20) userInterface.addButton(2,"Take Cover",takeCover);
+			else userInterface.addDisabledButton(2,"Take Cover");
+		}
+		if(pc.hasStatusEffect("Carpet Grenades Known"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(2+offset,"Carpet Grenades",carpetGrenades);
+			else userInterface.addDisabledButton(2+offset,"Carpet Grenades");
+		}
+		if(pc.hasStatusEffect("Det. Charge Known"))
+		{
+			if(pc.energy() >= 25) userInterface.addButton(2+offset,"Det. Charge",attackRouter,detCharge);
+			else userInterface.addDisabledButton(2+offset,"Det. Charge");
+		}
+		if(pc.level >= 5)
+		{
+			if(!pc.hasStatusEffect("Used Second Wind")) userInterface.addButton(3,"Second Wind",secondWind);
+			else userInterface.addDisabledButton(3,"Second Wind");
+		}
+	}
+	else if(pc.characterClass == GLOBAL.ENGINEER) {
 		if(pc.energy() >= 25) userInterface.addButton(0,"P.Shock",attackRouter,paralyzingShock);
 		else userInterface.addDisabledButton(0,"P.Shock");
 		if(pc.hasStatusEffect("Volley Known")) 
@@ -165,6 +202,21 @@ function specialsMenu():void {
 function updateCombatStatuses():void {
 	var temp:Number = 0;
 	//PC STATUSES!
+	if(pc.hasStatusEffect("Taking Cover")) pc.removeStatusEffect("Taking Cover");
+	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
+	if(pc.hasPerk("Juggernaught"))
+	{
+		if(pc.hasStatusEffect("Stunned") && rand(4) == 0)
+		{
+			output("<b>You shake off your stun! You're unstoppable!</b>\n");
+			pc.removeStatusEffect("Stunned");
+		}
+		if(pc.hasStatusEffect("Paralyzed") && rand(4) == 0)
+		{
+			output("<b>You shake off the paralysis! You're unstoppable!</b>\n");
+			pc.removeStatusEffect("Paralyzed");
+		}
+	}
 	if(pc.hasStatusEffect("Blind")) {
 		pc.addStatusValue("Blind",1,-1);
 		if(pc.statusEffectv1("Blind") <= 0) {
@@ -401,6 +453,8 @@ function rangedCombatMiss(attacker:Creature, target:Creature):Boolean
 	}
 	//Evasion chances
 	if(target.evasion() >= rand(100) + 1) return true;
+	//Take cover chance
+	if(target.hasStatusEffect("Taking Cover") && rand(100) + 1 < 90) return true;
 	//10% miss chance for lucky breaks!
 	if(target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
 	
@@ -455,7 +509,12 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		}
 	}
 	if(foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
-	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) clearOutput();
+	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) {
+		clearOutput();
+		if(attacker.hasPerk("Riposte")) attacker.createStatusEffect("Riposting",0,0,0,0,true,"","",true,0);
+		//Bloodthirsty restores energy on hits. Only works on one hit if multiple attacks.
+		if(pc.hasPerk("Bloodthirsty")) pc.energy(2+rand(3));
+	}
 	//Run with multiple attacks!
 	if (attacker.hasPerk("Multiple Attacks")) {
 		//Start up
@@ -644,7 +703,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			}
 		}
 		if(damage >= 1) {
-			damage = HPDamage(target,damage,attacker.rangedWeapon.damageType);
+			damage = HPDamage(target,damage,attacker.rangedWeapon.damageType,"ranged");
 			if(attacker == pc) {
 				if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");			
@@ -718,10 +777,17 @@ function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTyp
 }
 
 
-function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Number 
+function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC,special:String = ""):Number 
 {
+	var temp:Number = 0;
 	//Reduce damage by defense value
-	damage -= victim.defense();
+	temp = victim.defense();
+	if(special == "ranged" && pc.hasPerk("Armor Piercing"))
+	{
+		if(temp > 0) temp -= (pc.level+rand(3));
+		if(temp < 0) temp = 0;
+	}
+	damage -= temp;
 	
 	//Apply type reductions!
 	damage *= victim.getResistance(damageType);
@@ -741,13 +807,20 @@ function HPDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC
 	return damage;
 }
 
-function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC):Array 
+function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KINETIC, special:String = ""):Array 
 {
 	var initialDamage:Number = damage;
 	var soakedDamage:Number = 0;
 	var leftoverDamage:int = 0;
+	var shieldDefense:Number = 0;
 	//Reduce damage by shield defense value
-	damage -= victim.shieldDefense();
+	shieldDefense -= victim.shieldDefense();
+	if(special == "ranged" && pc.hasPerk("Armor Piercing"))
+	{
+		if(shieldDefense > 0) shieldDefense -= (pc.level+rand(3));
+		if(shieldDefense < 0) shieldDefense = 0;
+	}
+	damage -= shieldDefense;
 	
 	//Apply victim resistances vs damage
 	damage *= victim.getShieldResistance(damageType);
@@ -762,7 +835,7 @@ function shieldDamage(victim:Creature,damage:Number = 0, damageType = GLOBAL.KIN
 	//Damage cannot exceed shield amount.
 	if(damage > victim.shieldsRaw) {
 		damage = victim.shieldsRaw;
-		soakedDamage = (damage - victim.shieldDefense()) / victim.getShieldResistance(damageType);
+		soakedDamage = (damage - shieldDefense) / victim.getShieldResistance(damageType);
 		leftoverDamage = initialDamage - soakedDamage;
 		//If shit rounded up, that might put leftover damage in negs.
 		//Prevent dat.
@@ -1747,6 +1820,43 @@ function flashGrenade(target:Creature):void {
 	processCombat();
 }
 
+
+function headbutt(target:Creature):void {
+	clearOutput();
+	pc.energy(-25);
+	output("You lean back before whipping your head forward in a sudden headbutt.\n");
+	if(combatMiss(pc,target)) {
+		if(target.customDodge == "") output("You miss!");
+		else output(target.customDodge);
+	}
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(2) > 0) {
+		output("Your blind strike fails to connect.");
+	}
+	//Attack connected!
+	else {
+		output("You connect with your target!");
+		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
+		//Damage bonuses:
+		var damage:int = pc.physique()/2 + pc.level;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,pc,target);
+		if(pc.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+			if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+			target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+		}
+		else {
+			output("\nIt doesn't look to have stunned your foe!");
+		}
+	}
+	output("\n");
+	processCombat();
+}
+
 function lowBlow(target:Creature):void {
 	clearOutput();
 
@@ -1843,5 +1953,104 @@ function gasGrenade(target:Creature):void
 	output(teaseReactions(damage,target));
 	target.lust(damage);
 	output(" ("+ damage + ")\n");
+	processCombat();
+}
+
+function secondWind():void
+{
+	clearOutput();
+	pc.energy(Math.round(pc.energyMax()/2));
+	pc.HP(Math.round(pc.HPMax()/2));
+	pc.createStatusEffect("Used Second Wind",0,0,0,0,true,"","",true,0);
+	output("You draw on your innermost reserves of strength, taking a second wind!\n");
+	processCombat();
+}
+
+function rapidFire(target:Creature):void {
+	pc.energy(-20);
+	//Do normal attacks
+	rangedAttack(pc,target,true);
+	//Do the bonus flurry shots!
+	rangedAttack(pc,target,true,2);
+	rangedAttack(pc,target,true,2);
+	processCombat();
+}
+
+function powerStrike(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	//Set drone target
+	if(pc.hasPerk("Attack Drone"))
+	{
+		//Figure out where in the foes array the target is and set drone target to the index.
+		//Clunky as all fuck but it works.
+		for(var i:int = 0; i < foes.length; i++) {
+			if(foes[i] == target) flags["DRONE_TARGET"] = i;
+		}
+	}
+	//Attack missed!
+	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
+	if(combatMiss(pc,target)) {
+		if(target.customDodge == "") {
+			output("You <b>draw back your weapon</b> and " + pc.meleeWeapon.attackVerb + " at " + target.a + target.short + ", but just can't connect.");
+			//else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " overcharged " + attacker.rangedWeapon.attackVerb + ".");
+		}
+		else output(target.customDodge)
+	}
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) {
+		output("Your blind, <b>power strike</b> missed.");
+		//else output(attacker.capitalA + possessive(attacker.short) + " blinded, <b>overcharged</b> shot fails to connect!");
+	}
+	//Attack connected!
+	else {
+		output("You <b>draw back</b> your " + pc.meleeWeapon.longName + " and land a hit on " + target.a + target.short + "!");
+		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
+		//Damage bonuses:
+		var damage:int = pc.meleeWeapon.damage + pc.physique()/2;
+		//OVER CHAAAAAARGE
+		damage *= 2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,pc,target,pc.meleeWeapon.damageType);
+	}
+	output("\n");
+	processCombat();
+}
+
+function takeCover():void {
+	clearOutput();
+	pc.energy(-20);
+	output("You seek cover against ranged attacks.\n");
+	pc.createStatusEffect("Taking Cover",0,0,0,0,true,"","",true);
+	processCombat();
+}
+
+function carpetGrenades():void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("You sling an array of microgrenades at everything in the area! ");
+	var damage:Number = Math.round(30 + rand(10));
+	for(var x:int = 0; x < foes.length; x++)
+	{
+		damage = Math.round(30 + rand(10));
+		//Double damage against plural enemies
+		if(foes[x].plural) genericDamageApply(damage*2,pc,foes[x],GLOBAL.THERMAL);
+		else genericDamageApply(damage,pc,foes[x],GLOBAL.THERMAL);
+	}
+	output("\n");
+	processCombat();
+}
+function detCharge(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	output("You toss a bundle of explosives in the direction of " + target.a + target.short + "! ");
+	var damage:Number = Math.round(50 + rand(10));
+	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
+	output("\n");
 	processCombat();
 }

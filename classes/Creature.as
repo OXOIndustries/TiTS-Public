@@ -932,6 +932,10 @@
 				if ((temp *= .2) < 2) temp += 2;
 				else temp = Math.round(temp * 1.2);
 			}
+			if (hasStatusEffect("Riposting"))
+			{
+				temp += 15;
+			}
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
 			if (temp > 90) temp = 90;
 			return temp;
@@ -948,6 +952,11 @@
 			total += bonusResistances[type];
 			total += armor.bonusResistances[type];
 			total += accessory.bonusResistances[type];
+			if(hasPerk("Tough") && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
+			{
+				total -= .1;
+			}
+			if(total < 0) total = 0;
 			return Math.round(total * 10) / 10;
 		}
 		public function getShieldResistance(type: int): Number {
