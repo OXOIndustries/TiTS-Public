@@ -92,8 +92,13 @@ package classes.UIComponents
 		{
 			this._bodyText = new TextField();
 			var defaultCSSTag = { fontFamily:"Lato", fontSize:12, color:"#FFFFFF", maginRight:1 };
+			var goodStat = { fontFamily:"Lato", fontSize:12, color:"#00FF00", marginRight:1 };
+			var badStat = { fontFamily: "Lato", fontSize:12, color:"#FF0000", marginRight:1 };
+			
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
+			styleSheet.setStyle(".good", goodStat);
+			styleSheet.setStyle(".bad", badStat);
 			
 			_bodyText.border = false;
 			_bodyText.text = "Placeholder Tooltip Body";

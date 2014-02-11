@@ -118,6 +118,166 @@
 		public function useFunction(targetCreature:Creature):Boolean
 		{
 			throw new Error("useFunction must be overriden in a child class!");
-		}	
+		}
+		
+		/**
+		 * Compare this item's stats against another item object.
+		 * @param	item	Item to compare against
+		 * @return			Resultant HTML formatted string of the diff
+		 */
+		public function compareTo(oldItem:ItemSlotClass):String
+		{
+			var compareString:String = "";
+			var statString:String = "";
+			
+			// "this." is the *new* item, "item." is the *old* item that "this." will replace
+			
+			mergeString(compareString, this.statDiff("attack", 			"Attack", 			this, oldItem));
+			mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
+			mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
+			mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
+			mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
+			mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
+			mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
+			mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
+			mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
+			
+			// Damage Type & Bonus Resistances will be a pain in the cunt
+			
+			// Default DamageType value is 0. GLOBAL.KINETIC is ALSO 0. Fuck.
+			// I guess as a workaround we can just check what the _types_ of the items involved are, and only shit out the damageType if we're looking at weapons?
+			if (this.type == GLOBAL.MELEE_WEAPON || this.type == GLOBAL.RANGED_WEAPON)
+			{
+				if (this.damageType != oldItem.damageType)
+				{
+					mergeString(compareString, "<span class='good'>[Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType]  + "]</span>");
+					mergeString(compareString, "<span class='bad'>[Damage Type: " + GLOBAL.DamageTypeStrings[oldItem.damageType] + "]</span>");
+				}
+			}
+			
+			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
+			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
+			{
+				if (compareString.length > 0) compareString += "\n";
+				compareString += resistancesDiff(this, oldItem);
+			}
+			
+			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
+			
+			// For custom items, we need to figure out exactly what kinds of things we could mod into a weapon, and how best to display them, and how that system is going to work. 
+			// I've got some ideas that ima forumpoast about so we can figure out exactly what direction we wanna go with that. 
+			// It'll be better than just saying "OH HEY CUSTOMISABLE ITEMS" and having no idea what that entails at least.
+			
+			return compareString;
+		}
+		
+		/**
+		 * Merge a string into a larger string, including tab characters when appropriate
+		 * @param	to				String to merge into
+		 * @param	withString		String to merge in
+		 * @return					Merged string of to + withString
+		 */
+		private function mergeString(to:String, withString:String):String
+		{
+			if (withString == null || withString.length == 0) return to;
+			
+			// This is so we can sort formatting spacing and shit I guess
+			if (to.length > 0) to += "\t";
+			
+			return (to + withString);
+		}
+		
+		/**
+		 * Figure out the difference between an item stat property and generate formatted HTML to display the difference.
+		 * @param	propertyName		Class property name present in itemSlotClass to compare
+		 * @param	displayAs			Displayable name for the property, if a diff is found
+		 * @param	newItem				The "replacement" item
+		 * @param	oldItem				The item the "replacement" would displace
+		 * @return						Formatted HTML string
+		 */
+		private function statDiff(propertyName:String, displayAs:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var resultString:String = "";
+			var closeFormatting:Boolean = false;
+			
+			// Grab the actual stat values out of the item objects.
+			var newItemStat:* = newItem[propertyName];
+			var oldItemStat:* = oldItem[propertyName];
+			var statDiff:Number = 0;
+			
+			// Ensure the properties are some form of numerical type -- I think its safe to assume
+			// that both newItem and oldItem will have the same type, because the vars in the class
+			// def are typed -- ie there would have been errors elsewhere if they don't match.
+			if (newItemStat is Number || newItemStat is int)
+			{
+				statDiff = newItemStat - oldItemStat;
+			}
+			
+			// Figure out formatting shit
+			if (statDiff < 0)
+			{
+				resultString += "<span class='bad'>";
+				closeFormatting = true;
+			}
+			else if (statDiff > 0)
+			{
+				resultString += "<span class='good'>";
+				closeFormatting = true;
+			}
+			
+			// Build the actual string content
+			if (statDiff != 0)
+			{
+				resultString += "[" + displayAs + ": " + Math.abs(statDiff) + "]";
+			}
+			
+			if (closeFormatting)
+			{
+				resultString += "</span>";
+			}
+			
+			return resultString;
+		}
+		
+		/**
+		 * Figure out the differences, if any, between the bonusResistance arrays between two items and generate formatted HTML to display the difference.
+		 * @param	newItem		The "replacement" item
+		 * @param	oldItem		The item the replacement would displace
+		 * @return				Formatted HTML string
+		 */
+		private function resistancesDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		{
+			var resistDifferences:String = "";
+			var resistDiffString:String = "";
+			var foundResistDiff:Boolean = false;
+			
+			for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
+			{
+				if (newItem.bonusResistances[resistIndex] != 0 && (newItem.bonusResistances[resistIndex] != oldItem.bonusResistances[resistIndex]))
+				{
+					foundResistDiff = true;
+					
+					var diffVal:Number = newItem.bonusResistances[resistIndex] - oldItem.bonusResistances[resistIndex];
+					
+					if (diffVal < 0)
+					{
+						resistDiffString += "<span class='bad'>"
+					}
+					else
+					{
+						resistDiffString += "<span class='good'>";
+					}
+					
+					resistDiffString += "(" + GLOBAL.DamageTypeShortStrings[resistIndex] + ":" + Math.abs(diffVal) + ")</span>  ";
+				}
+			}
+			
+			if (foundResistDiff)
+			{
+				resistDifferences += "[Bonus Resistances: " + resistDiffString + "]";
+			}
+			
+			return resistDiffString;
+		}
 	}
 }

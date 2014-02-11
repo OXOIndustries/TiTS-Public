@@ -8,7 +8,7 @@
 		public static const ENGINEER:int                               = 2;
 
 		//Body Part Flags - used for any body part that supports the new flags system.
-			//NOTE: Not all flags work with all body parts, for obvious reasons
+		//NOTE: Not all flags work with all body parts, for obvious reasons
 		public static const LONG:int                                   = 1;
 		public static const PREHENSILE:int                             = 2;
 		public static const LUBRICATED:int                             = 3;
@@ -40,6 +40,7 @@
 		public static const STINGER_TIPPED:int                         = 29;
 		public static const NUBBY:int  		                           = 30;
 		public static const FORESKINNED:int	    					   = 31;
+		
 		//TYPES
 		public static const HUMAN:int                                  = 0;
 		public static const EQUINE:int                                 = 1;
@@ -74,8 +75,10 @@
 		public static const MLP:int                                    = 32;
 		public static const CUNTSNAKE:int                              = 33;
 		public static const VENUSPITCHER:int						   = 34;
+		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
+		
 		//Special wing types!
 		public static const SMALLBEE:int                               = 36;
 		public static const SMALLDEMONIC:int                           = 37;
@@ -123,6 +126,32 @@
 		public static const ELECTRIC:int                               = 6;
 		//THERMAL
 		public static const THERMAL:int                                = 7;
+		
+		public static const MAX_DAMAGE_TYPES:int						= 8; // damageType bookend, probably gonna roll its usage into things like array generation and shit.
+		
+		public static const DamageTypeStrings = 
+		[
+			"Kinetic",
+			"Slashing",
+			"Piercing",
+			"Laser",
+			"Plasma",
+			"Gravitic",
+			"Electrical",
+			"Thermal",
+		];
+		
+		public static const DamageTypeShortStrings = 
+		[
+			"Kntc",
+			"Slsh",
+			"Prcn",
+			"Lasr",
+			"Plsm",
+			"Grvt",
+			"Elec",
+			"Thrm",
+		];
 
 		//ROOM FLAGS
 		public static const INDOOR:int                                 = 0;
@@ -174,25 +203,6 @@
 		public static const ELDERVPITCHER:int						   = 13;
 		public static const SYRI:int 								   = 14;
 		public static const NALEEN_MALE:int  						   = 15;
-
-
-		public static const bustLookup:Object = {
-			"CELISE"     : 1,
-			"RIVAL"      : 2,
-			"GEOFF"      : 3,
-			"FLAHNE"     : 4,
-			"ZILPACK"    : 5,
-			"ZIL"        : 6,
-			"PENNY"      : 7,
-			"BURT"       : 8,
-			"ZILFEMALE"  : 9,
-			"CUNTSNAKE"  : 10,
-			"NALEEN"	 : 11,
-			"VENUSPITCHER":12,
-			"ELDERVENUSPITCHER":13,
-			"SYRI"		 :14,
-			"NALEEN_MALE":15
-		};
 
 		public static var ITEMS:Object = {};
 		
