@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class DecentShield extends ItemSlotClass
 	{
@@ -17,9 +19,11 @@
 			
 			//Used in inventodecentttons
 			this.shortName = "Decent S.";
-			
+		
 			//Regular name
 			this.longName = "decent JoyCo shield generator";
+		
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
 			this.description = "a decent JoyCo shield generator";
@@ -27,6 +31,8 @@
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A moderately priced JoyCo shield generator that's generally only available for order over the extranet.";
 			this.attackVerb = "null";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
 			this.basePrice = 150;

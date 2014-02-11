@@ -496,19 +496,33 @@
 		public function updateTooltip(displayObj:DisplayObject):void
 		{
 			if (this.buttonTooltip.stage != null)
-			{
-				var btn:*;
-				
-				if (displayObj is blueButton) btn = (displayObj as blueButton);
-				else if (displayObj is purpleButton) btn = (displayObj as purpleButton);
-				
-				if (btn.caption.text.length > 0)
+			{				
+				if (displayObj is blueButton || displayObj is purpleButton)
 				{
-					this.buttonTooltip.DisplayForObject(displayObj);
+					var btn:*;
+					
+					if (displayObj is blueButton) btn = (displayObj as blueButton);
+					else btn = (displayObj as purpleButton);
+					
+					if (btn.caption.text.length > 0)
+					{
+						this.buttonTooltip.DisplayForObject(displayObj);
+					}
+					else
+					{
+						this.hideTooltip();
+					}
 				}
-				else
+				else if (displayObj is MainButton)
 				{
-					this.hideTooltip();
+					if ((displayObj as MainButton).buttonName.length > 0)
+					{
+						this.buttonTooltip.DisplayForObject(displayObj);
+					}
+					else
+					{
+						this.hideTooltip();
+					}
 				}
 			}
 		}

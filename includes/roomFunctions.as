@@ -34,30 +34,21 @@ function debugMenus():void
 
 	addItemButton(0, new LaserPistol(), function():void {
 		output("\n\nLaser Pistol button get.");
-	},
-	undefined);
+	});
 	
 	addItemButton(1, new ScopedPistol(), function():void {
 		output("\n\nScoped pistol button get.");
-	},
-	undefined,
-	"Override Title");
+	});
 	
 	addItemButton(2, new HoldOutPistol(), function():void {
 		output("\n\nHold out pistol button get");
-	},
-	undefined,
-	null,
-	"Override Body");
+	});
 	
 	addItemButton(3, new EagleHandgun(), function():void {
 		output("\n\nEagle Handgun button get.");
-	},
-	undefined,
-	"Override Title",
-	"Override Body");
+	});
 	
-	addItemButton(4, new DecentShield(), function():void {
+	addItemButton(5, new DecentShield(), function():void {
 		output("\n\nShield Button Get");
 	});
 }

@@ -148,17 +148,24 @@
 			// I guess as a workaround we can just check what the _types_ of the items involved are, and only shit out the damageType if we're looking at weapons?
 			if (this.type == GLOBAL.MELEE_WEAPON || this.type == GLOBAL.RANGED_WEAPON)
 			{
-				if (this.damageType != oldItem.damageType)
-				{
-					compareString = mergeString(compareString, "Damage Type: <span class='good'>" + GLOBAL.DamageTypeStrings[this.damageType]  + "</span>  <span class='bad'>" + GLOBAL.DamageTypeStrings[oldItem.damageType] + "</span>");
-				}
+				if (compareString.length > 0) compareString += "\n";
+				
+				var dType:String = "Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType];
+				
+				//if (this.damageType != oldItem.damageType)
+				//{
+					//dType += " (" + GLOBAL.DamageTypeStrings[oldItem.damageType] + ")"
+				//}
+				
+				compareString = mergeString(compareString, dType);
 			}
 			
 			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
 			if (this.type == GLOBAL.ARMOR || this.type == GLOBAL.SHIELD || this.type == GLOBAL.ACCESSORY || this.type == GLOBAL.LOWER_UNDERGARMENT || this.type == GLOBAL.UPPER_UNDERGARMENT)
 			{
-				if (compareString.length > 0) compareString += "\n";
-				compareString += resistancesDiff(this, oldItem);
+				var resistString:String = resistancesDiff(this, oldItem);
+				
+				if (compareString.length > 0 && resistString.length > 0) compareString += "\n" + resistString;
 			}
 			
 			// Considering we don't even have any item flags atm, I'm going to ignore it for the time being.
@@ -214,27 +221,26 @@
 				statDiff = newItemStat - oldItemStat;
 			}
 			
-			// Figure out formatting shit
-			if (statDiff < 0)
+			// Any stat with a difference, or A value
+			if (statDiff != 0 || newItemStat != 0)
 			{
-				resultString += "<span class='bad'>";
-				closeFormatting = true;
-			}
-			else if (statDiff > 0)
-			{
-				resultString += "<span class='good'>";
-				closeFormatting = true;
-			}
-			
-			// Build the actual string content
-			if (statDiff != 0)
-			{
-				resultString += displayAs + ": " + statDiff;
-			}
-			
-			if (closeFormatting)
-			{
-				resultString += "</span>";
+				resultString += displayAs + ": " + newItemStat + " ";
+				
+				// Figure out formatting shit
+				if (statDiff < 0)
+				{
+					resultString += "<span class='bad'>(";
+				}
+				else if (statDiff > 0)
+				{
+					resultString += "<span class='good'>(+";
+				}
+				else if (statDiff == 0)
+				{
+					resultString += "<span class='words'>(";
+				}
+				
+				resultString += statDiff + ")</span>";
 			}
 			
 			return resultString;
