@@ -155,11 +155,12 @@ function initializeRooms():void
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
 	rooms["WEST ESBETH 1"].roomName = "WEST\nESBETH";
-	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends forther to the north and continues straight on to the south. The buildings are all closed and locked here, for now.";
+	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends forther to the north and continues straight on to the south. The buildings are all closed and locked here, for now.\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front purpose: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.";
 	rooms["WEST ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["WEST ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
 	rooms["WEST ESBETH 1"].northExit = "NORTHWEST ESBETH";
+	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 
 	//6. Esbeth’s Western Path
@@ -1113,6 +1114,17 @@ function initializeRooms():void
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 	
+	//92. Crazy Carls
+	rooms["CRAZY CARLS"] = new RoomClass(this);
+	rooms["CRAZY CARLS"].roomName = "CRAZY\nCARL'S";
+	rooms["CRAZY CARLS"].description = "";
+	rooms["CRAZY CARLS"].runOnEnter = carlsShopDescription;
+	rooms["CRAZY CARLS"].planet = "PLANET: MHEN'GA";
+	rooms["CRAZY CARLS"].system = "SYSTEM: ARA ARA";
+	rooms["CRAZY CARLS"].westExit = "WEST ESBETH 1";
+	rooms["CRAZY CARLS"].addFlag(GLOBAL.INDOOR);
+	rooms["CRAZY CARLS"].addFlag(GLOBAL.NPC);
+
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
 	

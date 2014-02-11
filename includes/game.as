@@ -132,7 +132,7 @@ function sleep(outputs:Boolean = true):void {
 	if(outputs) 
 	{
 		clearOutput();
-		if(pc.XPRaw >= pc.XPMax() && pc.level < 5 && pc.characterClass != GLOBAL.MERCENARY) {
+		if(pc.XPRaw >= pc.XPMax() && pc.level < 5) {
 			levelUp();
 			return;
 		}

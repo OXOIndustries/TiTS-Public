@@ -175,7 +175,56 @@ function confirmLevelPointAllocation():void
 	pc.intelligence(flags["LEVELING_INTELLIGENCE_BONUS"]);
 	pc.willpower(flags["LEVELING_WILLPOWER_BONUS"]);
 	resetLevelBonuses(false);
-	if(pc.characterClass == GLOBAL.ENGINEER) {
+
+	/*
+	(4A) (20 Energy) Take Cover: Become nearly invulnerable to ranged attacks for three turns.
+	(4B) (20) Riposte: Increase your evasion on any round in which you melee attack.
+	(5A) Carpet Grenades: A group of scattering mini-grenades that harm everything on the battlefield. Extra damage against multiple foes.
+	(5B) DetCharge: A single high-damage thermal attack against one foe.*/
+	if(pc.characterClass == GLOBAL.MERCENARY)
+	{
+		if(pc.level == 2) {
+			output("<b>You have gained the 'Critical Blows' perk, granting you a 10% chance of doing double damage on normal melee and ranged attacks.</b>");
+			pc.createPerk("Critical Blows",0,0,0,0,"Your strikes and shots have a 10% chance of doing double damage.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Bloodthirsty -</b> Melee attacks will restore a few points of energy.");
+			output("\n<b>* Armor Piercing -</b> Ranged attacks will ignore the first few points of enemy defense.");
+			clearMenuProxy();
+			userInterface.addButton(0,"Bloodthirsty",mercenaryPerk,"Bloodthirsty");
+			userInterface.addButton(1,"ArmrPiercing",mercenaryPerk,"Armor Piercing");
+		}
+		if(pc.level == 3) {
+			output("<b>You have gained the 'Tough' perk, reducing vulnerability to piercing, slashing, and kinetic damage by 10%.</b>");
+			pc.createPerk("Tough",0,0,0,0,"Vulnerability to piercing, slashing, and kinetic damage taken reduced by 10%.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Power Strike -</b> this ability allows you to make a single melee attack at 200% damage.");
+			output("\n<b>* Rapid Fire -</b> this ability allows you to make an ranged attack with two extra, low-accuracy shots.");
+			clearMenuProxy();
+			userInterface.addButton(0,"Power Strike",mercenaryPerk,"Power Strike");
+			userInterface.addButton(1,"Rapid Fire",mercenaryPerk,"Rapid Fire");
+		}
+		if(pc.level == 4) {
+			output("<b>You have gained the 'Armor Tweaks' perk, granting you a 20% bonus to the defense provided by your armor.</b>");
+			pc.createPerk("Juggernaut",0,0,0,0,"You have a 25% chance to overcome any paralysis or stun every round.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Riposte -</b> this ability increases your evasion on any round you melee attack.");
+			output("\n<b>* Take Cover -</b> this ability allows you to avoid nearly all incoming ranged attacks for three turns.");
+			clearMenuProxy();
+			userInterface.addButton(0,"Riposte",mercenaryPerk,"Riposte");
+			userInterface.addButton(1,"Take Cover",mercenaryPerk,"Take Cover");
+		}
+		if(pc.level == 5) {
+			output("<b>You have unlocked the 'Second Wind' ability, allowing you to recover half your HP and Energy once per combat.</b>");
+			//pc.createPerk("Second Wind",0,0,0,0,"You can gain back half your max HP and energy once per combat.");
+			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
+			output("\n<b>* Carpet Grenades -</b> this ability allows you to toss out a handful of micro-grenades, damaging everything in a large area. Deals extra damage to 'plural' type foes and hits all enemies.");
+			output("\n<b>* Det. Charge -</b> this ability allows you to lob a detonation charge at a single enemy for very high thermal damage.");
+			clearMenuProxy();
+			userInterface.addButton(0,"C. Grenades",mercenaryPerk,"Carpet Grenades");
+			userInterface.addButton(1,"Det. Charge",mercenaryPerk,"Det. Charge");
+		}
+	}
+	else if(pc.characterClass == GLOBAL.ENGINEER) {
 		if(pc.level == 2) {
 			output("<b>You have gained the 'Shield Tweaks' perk, granting you 2 points of bonus shielding per level!</b>");
 			pc.createPerk("Shield Tweaks",0,0,0,0,"Your shield generator grants an additional 2 points of shielding per level.");
@@ -262,6 +311,49 @@ function confirmLevelPointAllocation():void
 	else sleep();
 }
 
+function mercenaryPerk(arg:String):void {
+	clearOutput();
+	switch(arg)
+	{
+		case "Armor Piercing":
+			pc.createPerk("Armor Piercing",0,0,0,0,"Your shots ignore the first few points of enemy armor.");
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Bloodthirsty":
+			pc.createPerk("Bloodthirsty",0,0,0,0,"You regain a small amount of energy from your melee attacks.");
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Power Strike":
+			pc.createStatusEffect("Power Strike Known");
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Rapid Fire":
+			pc.createStatusEffect("Rapid Fire Known");
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Riposte":
+			pc.createPerk("Riposte",0,0,0,0,"Your melee attacks grant you bonus evasion for the rest of the round.");
+			output("'" + arg + "' perk gained!");
+			break;
+		case "Take Cover":
+			pc.createStatusEffect("Take Cover Known",0,0,0,0);
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Carpet Grenades":
+			pc.createStatusEffect("Carpet Grenades Known",0,0,0,0);
+			output("'" + arg + "' ability gained!");
+			break;
+		case "Det. Charge":
+			pc.createStatusEffect("Det. Charge Known",0,0,0,0);
+			output("'" + arg + "' ability gained!");
+			break;
+		default:
+			output("\n\n<b>MASSIVE ERROR. INVALID LEVEL UP GAIN: " + arg + "</b>");
+			break;
+	}
+	clearMenuProxy();
+	userInterface.addButton(0,"Next",sleep);
+}
 function smugglerPerk(arg:String):void {
 	clearOutput();
 	switch(arg) 
