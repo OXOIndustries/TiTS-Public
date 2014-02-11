@@ -286,7 +286,7 @@
 			
 			if (evt.currentTarget is MainButton)
 			{
-				trace("Button " + (evt.currentTarget as MainButton).buttonText + " clicked");
+				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
 			}
 			else
 			{
@@ -322,9 +322,8 @@
 			this.userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
 		}
 		
-		public function addItemButton(slot:int, item:ItemSlotClass):void
+		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
-			var buttonName:String = item.shortName;
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
 			
@@ -364,6 +363,7 @@
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
+			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
 		}
 
 		public function pageUpScroll():void

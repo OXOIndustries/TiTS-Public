@@ -132,15 +132,15 @@
 			
 			// "this." is the *new* item, "item." is the *old* item that "this." will replace
 			
-			mergeString(compareString, this.statDiff("attack", 			"Attack", 			this, oldItem));
-			mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
-			mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
-			mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
-			mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
-			mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
-			mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
-			mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
-			mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("attack", 			"Attack", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("damage", 			"Damage", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("defense", 		"Defense", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("critBonus", 		"Crit Bonus", 		this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("evasion", 		"Evasion", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("fortification", 	"Fortification", 	this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
 			
@@ -150,8 +150,8 @@
 			{
 				if (this.damageType != oldItem.damageType)
 				{
-					mergeString(compareString, "<span class='good'>[Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType]  + "]</span>");
-					mergeString(compareString, "<span class='bad'>[Damage Type: " + GLOBAL.DamageTypeStrings[oldItem.damageType] + "]</span>");
+					compareString = mergeString(compareString, "<span class='good'>[Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType]  + "]</span>");
+					compareString = mergeString(compareString, "<span class='bad'>[Damage Type: " + GLOBAL.DamageTypeStrings[oldItem.damageType] + "]</span>");
 				}
 			}
 			
@@ -168,6 +168,7 @@
 			// I've got some ideas that ima forumpoast about so we can figure out exactly what direction we wanna go with that. 
 			// It'll be better than just saying "OH HEY CUSTOMISABLE ITEMS" and having no idea what that entails at least.
 			
+			if (compareString.length > 0) compareString = "<span class='words'><p>" + compareString + "</p></span>";
 			return compareString;
 		}
 		
@@ -184,7 +185,8 @@
 			// This is so we can sort formatting spacing and shit I guess
 			if (to.length > 0) to += "\t";
 			
-			return (to + withString);
+			to += withString;
+			return to;
 		}
 		
 		/**

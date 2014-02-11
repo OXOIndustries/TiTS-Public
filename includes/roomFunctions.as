@@ -1,4 +1,8 @@
-﻿
+﻿import classes.Items.Guns.EagleHandgun;
+import classes.Items.Guns.HoldOutPistol;
+import classes.Items.Guns.LaserPistol;
+import classes.Items.Guns.ScopedPistol;
+
 function hangarBonus():Boolean 
 {
 	trace("this", this);
@@ -26,39 +30,30 @@ function debugMenus():void
 	clearMenuProxy();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 
-	addButton(0, "Rest", function():void { 
-		output("\n\nFuck if I know.");
-	});
+	addItemButton(0, new LaserPistol(), function():void {
+		output("\n\nLaser Pistol button get.");
+	},
+	undefined);
 	
-	userInterface.addButton(1, "Rest", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
+	addItemButton(1, new ScopedPistol(), function():void {
+		output("\n\nScoped pistol button get.");
 	},
 	undefined,
-	"",
-	"");
+	"Override Title");
 	
-	userInterface.addButton(2, "Rest", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
+	addItemButton(2, new HoldOutPistol(), function():void {
+		output("\n\nHold out pistol button get");
 	},
 	undefined,
-	"Overruled!",
-	"This tooltip has been temporarily overruled.");
+	null,
+	"Override Body");
 	
-	userInterface.addButton(3, "Beep", function():void {
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Silence", 0, 0, 0, 0, false, "Icon_Silence", "Silence Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Slow", 0, 0, 0, 0, false, "Icon_Slow", "Slow Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Smelly", 0, 0, 0, 0, false, "Icon_Smelly", "Smelly Icon", false, rand(240));
-		(chars["PC"] as PlayerCharacter).createStatusEffect("Unknown", 0, 0, 0, 0, false, "Icon_Unknown", "Unknown Icon", false, rand(240));
+	addItemButton(3, new EagleHandgun(), function():void {
+		output("\n\nEagle Handgun button get.");
 	},
 	undefined,
-	"Boop",
-	"Beepboop? Boopity beepy!");
+	"Override Title",
+	"Override Body");
 }
 
 

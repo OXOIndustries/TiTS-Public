@@ -125,7 +125,7 @@ package classes.UIComponents
 				newBtn.x = (btnX + ((150 + vPad) * int(btn % 5)));
 				newBtn.y = Math.round(btnY + ((40 + hPad) * int(btn / 5)));
 				
-				newBtn.buttonText = "Button " + String(btn);
+				newBtn.buttonName = "Button " + String(btn);
 				newBtn.hotkeyText = _defaultHotkeys[btn];
 				
 				newBtn.addEventListener(MouseEvent.CLICK, _buttonHandlerFunc);
@@ -207,7 +207,7 @@ package classes.UIComponents
 			
 			for (var i:int = (_buttonData.length - 1); i >= 0; i--)
 			{
-				if (_buttonData[i].labelText != "")
+				if (_buttonData[i].buttonName != "")
 				{
 					lastButtonIndex = i;
 					i = -1;
@@ -245,7 +245,15 @@ package classes.UIComponents
 				if (_buttonData[i + initialIndex].func != undefined)
 				{
 					var bd:ButtonData = _buttonData[i + initialIndex];
-					_buttons[i].setData(bd.labelText, bd.func, bd.arg, bd.tooltipHeader, bd.tooltipBody);
+					
+					if (bd.itemQuantity != 0 || (bd.tooltipComparison != null && bd.tooltipComparison.length > 0))
+					{
+						_buttons[i].setItemData(bd.buttonName, bd.itemQuantity, bd.func, bd.arg, bd.tooltipHeader, bd.tooltipBody, bd.tooltipComparison);
+					}
+					else
+					{
+						_buttons[i].setData(bd.buttonName, bd.func, bd.arg, bd.tooltipHeader, bd.tooltipBody);
+					}
 				}
 				else
 				{
@@ -312,6 +320,18 @@ package classes.UIComponents
 			CheckPages();
 		}
 		
+		public function addItemButton(slot:int, name:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttComparison:String = null)
+		{
+			if (slot <= 14)
+			{
+				_buttons[slot].setItemData(name, quantity, func, arg, ttHeader, ttBody, ttComparison);
+			}
+			
+			_buttonData[slot].setData(name, func, arg, ttHeader, ttBody);
+			_buttonData[slot].itemQuantity = quantity;
+			_buttonData[slot].tooltipComparison = ttComparison;
+		}
+		
 		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			if (slot <= 14)
@@ -334,10 +354,10 @@ package classes.UIComponents
 		{
 			for (var i:int = _buttonData.length - 1; i >= 0; i++)
 			{
-				if (_buttonData[i].labelText != "") break;
+				if (_buttonData[i].buttonName != "") break;
 			}
 			
-			if (_buttonData[i].labelText == "" && i == 0) i = -1;
+			if (_buttonData[i].buttonName == "" && i == 0) i = -1;
 			return i;
 		}
 	}

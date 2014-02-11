@@ -629,6 +629,11 @@
 			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null)
+		{
+			_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+		}
+		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{
@@ -826,6 +831,7 @@
 			scrollBG.visible = false;
 			mainTextField.visible = false;
 			mainTextField2.visible = false;
+			
 			//Page buttons invisible!
 			_buttonTray.buttonPageNext.Deactivate();
 			_buttonTray.buttonPagePrev.Deactivate();

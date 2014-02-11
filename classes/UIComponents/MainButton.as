@@ -18,12 +18,16 @@ package classes.UIComponents
 		 */
 		private var _tooltipHeader:String;
 		private var _tooltipBody:String;
+		private var _tooltipComparison:String;
 		
 		public function get tooltipHeader():String { return _tooltipHeader; }
 		public function set tooltipHeader(v:String):void { _tooltipHeader = v; }
 		
 		public function get tooltipBody():String { return _tooltipBody; }
 		public function set tooltipBody(v:String):void { _tooltipBody = v; }
+		
+		public function get tooltipComparison():String { return _tooltipComparison; }
+		public function set tooltipComparison(v:String):void { _tooltipComparison = v; }
 		
 		/**
 		 * Button Activator data storage.
@@ -42,14 +46,43 @@ package classes.UIComponents
 		 */
 		private var _buttonBody:Sprite;
 		private var _buttonBodyLabel:TextField;
+		private var _buttonName:String;
+		private var _itemQuantity:int;
 		
 		/**
 		 * Button textual display
 		 */
-		public function get buttonText():String { return _buttonBodyLabel.text; }
-		public function set buttonText(v:String):void { _buttonBodyLabel.text = v; }
-		public function get buttonHtmlText():String { return _buttonBodyLabel.htmlText; }
-		public function set buttonHtmlText(v:String):void { _buttonBodyLabel.htmlText = v; }
+		protected function get buttonText():String { return _buttonBodyLabel.text; }
+		protected function set buttonText(v:String):void { _buttonBodyLabel.text = v; }
+		
+		protected function get buttonHtmlText():String { return _buttonBodyLabel.htmlText; }
+		protected function set buttonHtmlText(v:String):void { _buttonBodyLabel.htmlText = v; }
+		
+		public function get buttonName():String { return _buttonName; }
+		public function set buttonName(v:String):void
+		{ 
+			_buttonName = v;
+			
+			if (itemQuantity != 0)
+			{
+				buttonHtmlText = v + " x" + itemQuantity;
+			}
+			else
+			{
+				buttonHtmlText = v;
+			}
+		}
+		
+		public function get itemQuantity():int { return _itemQuantity; }
+		public function set itemQuantity(v:int):void 
+		{ 
+			_itemQuantity = v; 
+		
+			if (buttonName.length > 0 && v != 0)
+			{
+				buttonHtmlText = buttonName + " x" + v;
+			}
+		}
 		
 		/**
 		 * Button binding display
@@ -75,6 +108,8 @@ package classes.UIComponents
 		{
 			this.tooltipHeader = "";
 			this.tooltipBody = "";
+			this._tooltipComparison = "";
+			this._itemQuantity = 0;
 			
 			if (buttonColorType == BLUE_BUTTON) _baseColour = UIStyleSettings.gForegroundColour;
 			if (buttonColorType == PURPLE_BUTTON) _baseColour = UIStyleSettings.gMovementButtonColour;
@@ -185,15 +220,33 @@ package classes.UIComponents
 		 */
 		public function setData(cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
-			this.buttonText = cap;
+			this.buttonName = cap;
 			this.func = func;
 			this.arg = arg;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
 			
+			this.itemQuantity = 0;
+			this.tooltipComparison = "";
+			
 			this.alpha = 1;
 			this.buttonMode = true;
+			this.mouseChildren = false;
+			this.mouseEnabled = true;
+		}
+		
+		public function setItemData(cap:String = "", quantity:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttComparison:String = null):void
+		{
+			this.buttonName = cap;
+			this.itemQuantity = quantity;
+			this.func = func;
+			this.arg = arg;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+			this.tooltipComparison = ttComparison;
 			
+			this.alpha = 1;
+			this.buttonMode = true;
 			this.mouseChildren = false;
 			this.mouseEnabled = true;
 		}
@@ -201,22 +254,20 @@ package classes.UIComponents
 		public function setDisabledData(cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			this.clearData();
-			this.buttonText = cap;
+			this.buttonName = cap;
 			this.tooltipHeader = ttHeader;
 			this.tooltipBody = ttBody;
-			
-			this.buttonMode = false;
-			this.mouseChildren = false;
-			this.mouseEnabled = false;
 		}
 		
 		public function clearData():void
 		{
-			this.buttonText = "";
+			this.buttonName = "";
 			this.func = undefined;
 			this.arg = undefined;
 			this.tooltipBody = "";
 			this.tooltipHeader = "";
+			this.tooltipComparison = "";
+			this.itemQuantity = 0;
 			
 			// Activity settings n shit
 			this.alpha = 0.3;

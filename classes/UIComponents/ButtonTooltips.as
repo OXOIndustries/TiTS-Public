@@ -30,6 +30,9 @@ package classes.UIComponents
 		
 		private var _bodyText:TextField;
 		
+		private var _bodySplitter:Sprite;
+		private var _comparisonText:TextField;
+		
 		public function ButtonTooltips(sizeX:int = 310, sizeY:int = 150) 
 		{
 			// 310 == button width * 2 + padding
@@ -48,6 +51,7 @@ package classes.UIComponents
 			this.BuildDefault();
 			this.BuildTitleBlock();
 			this.BuildContentBlock();
+			this.BuildComparisonBlock();
 		}
 		
 		private function BuildDefault():void
@@ -116,6 +120,46 @@ package classes.UIComponents
 			_bodyText.mouseWheelEnabled = false;
 			
 			this.addChild(_bodyText);
+		}
+		
+		private function BuildComparisonBlock():void
+		{
+			this._bodySplitter = new Sprite();
+			_bodySplitter.x = 5;
+			_bodySplitter.y = _bodyText.y + _bodyText.height + 5;
+			_bodySplitter.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+			_bodySplitter.graphics.drawRect(0, 0, this.width - _bodySplitter.x, 3);
+			_bodySplitter.graphics.endFill();
+			
+			this.addChild(_headerUnderline);
+			
+			this._comparisonText = new TextField();
+			
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:12, color:"#FFFFFF", maginRight:1 };
+			var goodStat = { fontFamily:"Lato", fontSize:12, color:"#00FF00", marginRight:1 };
+			var badStat = { fontFamily: "Lato", fontSize:12, color:"#FF0000", marginRight:1 };
+			
+			var styleSheet:StyleSheet = new StyleSheet();
+			styleSheet.setStyle(".words", defaultCSSTag);
+			styleSheet.setStyle(".good", goodStat);
+			styleSheet.setStyle(".bad", badStat);
+			
+			_comparisonText.border = false;
+			_comparisonText.text = "Placeholder Tooltip Comparison Text";
+			_comparisonText.background = false;
+			_comparisonText.multiline = true;
+			_comparisonText.wordWrap = true;
+			_comparisonText.embedFonts = true;
+			_comparisonText.antiAliasType = AntiAliasType.ADVANCED;
+			_comparisonText.x = _bodySplitter.x;
+			_comparisonText.y = _bodySplitter.y + 5;
+			_comparisonText.width = this.width - _comparisonText.x - 5;
+			_comparisonText.height = 25;
+			_comparisonText.styleSheet = styleSheet;
+			_comparisonText.mouseEnabled = false;
+			_comparisonText.mouseWheelEnabled = false;
+			
+			this.addChild(_comparisonText);
 		}
 		
 		public function eventHandler(e:Event):void
@@ -195,13 +239,13 @@ package classes.UIComponents
 			var fn:String = displayObj.tooltipHeader;
 			
 			// If no overrides, check db
-			if (fn == null) fn = TooltipManager.getFullName(displayObj.buttonText);
-			if (tt == null) tt = TooltipManager.getTooltip(displayObj.buttonText);
+			if (fn == null) fn = TooltipManager.getFullName(displayObj.buttonName);
+			if (tt == null) tt = TooltipManager.getTooltip(displayObj.buttonName);
 			
 			// If we've got data, display
 			if (tt.length > 0)
 			{
-				this.SetData(fn, tt);
+				this.SetData(fn, tt, displayObj.tooltipComparison);
 				_stage.addChild(this);
 				this.Reposition(displayObj);
 			}
@@ -239,20 +283,63 @@ package classes.UIComponents
 			this.y = tPt.y;
 		}
 		
-		private function SetData(tooltipName:String, tooltipText:String):void
+		private function SetData(tooltipName:String, tooltipText:String, tooltipComparison:String = null):void
 		{
 			tooltipName = tooltipName.split(" x")[0];
 			this._headerText.text = tooltipName;
+			
 			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
+			this._bodyText.height = this._bodyText.textHeight + 5;
+			
+			// Remove/Add the child objects for comparison tooltips as appropriate.
+			if (tooltipComparison != null && tooltipComparison.length > 0)
+			{
+				this._comparisonText.htmlText = tooltipComparison;
+				this._comparisonText.height = this._comparisonText.textHeight + 5;
+				
+				if (this._bodySplitter.parent == null)
+				{
+					this.addChild(_bodySplitter);
+					_bodySplitter.y = _bodyText.y + _bodyText.height;
+				}
+				
+				if (this._comparisonText.parent == null)
+				{
+					this.addChild(_comparisonText);
+					_comparisonText.y = _bodySplitter.y + 5;
+				}
+			}
+			else
+			{
+				if (this._bodySplitter.parent != null)
+				{
+					this.removeChild(_bodySplitter);
+				}
+				
+				if (this._comparisonText.parent != null)
+				{
+					this.removeChild(_comparisonText);
+				}
+			}
+			
 			this.Resize();
 		}
 		
 		private function Resize():void
 		{
-			// Height
-			this._bodyText.height = this._bodyText.textHeight + 5;
+			var targetHeight:int;
 			
-			var targetHeight:int = this._bodyText.height + this._bodyText.y + 5;
+			if (_comparisonText.parent == null)
+			{
+				
+				targetHeight = this._bodyText.height + this._bodyText.y + 5;
+			}
+			else
+			{
+				this._bodyText.height = this._bodyText.textHeight + 5;
+				
+				targetHeight = this._comparisonText.height + this._comparisonText.y + 5;
+			}
 			
 			var scaleYValue:Number = targetHeight / this._sizeY;
 			
