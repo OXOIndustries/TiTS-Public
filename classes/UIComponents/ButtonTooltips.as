@@ -189,22 +189,6 @@ package classes.UIComponents
 			else throw new Error("Unknown Display Object Type attempted to display a tooltip.");
 		}
 		
-		private function DisplayForNamedObject(displayObj:DisplayObject):void
-		{
-			if (displayObj.alpha > 0.3)
-			{
-				var tt:String = TooltipManager.getTooltip(displayObj.name);
-				var fn:String = TooltipManager.getFullName(displayObj.name);
-				
-				if (tt.length > 0)
-				{
-					this.SetData(fn, tt);
-					_stage.addChild(this);
-					this.Reposition(displayObj);
-				}
-			}
-		}
-		
 		private function DisplayForMainButton(displayObj:MainButton):void
 		{
 			var tt:String = displayObj.tooltipBody;
@@ -221,6 +205,10 @@ package classes.UIComponents
 				_stage.addChild(this);
 				this.Reposition(displayObj);
 			}
+			else if (this.parent != null)
+			{
+				this.parent.removeChild(this);
+			}
 		}
 		
 		private function DisplayForSquareButton(displayObj:SquareButton):void
@@ -235,6 +223,10 @@ package classes.UIComponents
 					this.SetData(fn, tt);
 					_stage.addChild(this);
 					this.Reposition(displayObj);
+				}
+				else if (this.parent != null)
+				{
+					this.parent.removeChild(this);
 				}
 			}
 		}

@@ -498,18 +498,15 @@
 		 */
 		public function updateTooltip(displayObj:DisplayObject):void
 		{
-			if (this.buttonTooltip.stage != null)
-			{				
-				if (displayObj is MainButton)
+			if (displayObj is MainButton)
+			{
+				if ((displayObj as MainButton).buttonName.length > 0)
 				{
-					if ((displayObj as MainButton).buttonName.length > 0)
-					{
-						this.buttonTooltip.DisplayForObject(displayObj);
-					}
-					else
-					{
-						this.hideTooltip();
-					}
+					this.buttonTooltip.DisplayForObject(displayObj);
+				}
+				else
+				{
+					this.hideTooltip();
 				}
 			}
 		}

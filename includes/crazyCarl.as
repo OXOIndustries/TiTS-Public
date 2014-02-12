@@ -231,6 +231,9 @@ function hammerPistolBuyTalk():void {
 	processTime(1);
 
 	//*Codex-like information here. Plus price.*
+	// This DOES work, but the formatting doesn't look too nice in the main text area. I could fiddle with the CSS for that TextField to make it look better...
+	//output("\n\n" + new HammerPistol().compareTo(pc.rangedWeapon));
+	
 	output("\n\nDamage Rating: 9");
 	output("\nDamage Type: Kinetic");
 	//[Buy] [Back]

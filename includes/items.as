@@ -86,8 +86,8 @@ function buyItem():void {
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
-				if(x <= 13) this.addButton(x,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
-				if(x > 13) this.addButton(x+1,shopkeep.inventory[x].shortName + " x" + shopkeep.inventory[x].quantity,buyItemGo,shopkeep.inventory[x]);
+				if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
+				if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");

@@ -1,4 +1,5 @@
-﻿import classes.Items.Apparel.UGCUniform;
+﻿import classes.Characters.PlayerCharacter;
+import classes.Items.Apparel.UGCUniform;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
@@ -36,16 +37,9 @@ function debugMenus():void
 		output("\n\nLaser Pistol button get.");
 	});
 	
-	addItemButton(15, new ScopedPistol(), function():void {
-		output("\n\nScoped pistol button get.");
-	});
-	
-	addItemButton(30, new HoldOutPistol(), function():void {
-		output("\n\nHold out pistol button get");
-	});
-	
-	addItemButton(45, new EagleHandgun(), function():void {
-		output("\n\nEagle Handgun button get.");
+	addButton(1, "Pay up", function():void {
+		(chars["PC"] as PlayerCharacter).credits += 10000;
+		output("\n\nPay up yo!");
 	});
 }
 
