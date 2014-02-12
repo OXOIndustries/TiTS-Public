@@ -96,7 +96,17 @@
 		public var willpowerRaw: Number = 3;
 		public var libidoRaw: Number = 3;
 		public var physiqueMod: Number = 0;
-		public var reflexesMod: Number = 0;
+		private var _reflexesMod: Number = 0;
+		
+		public function get reflexesMod():Number
+		{
+			return _reflexesMod;
+		}
+		public function set reflexesMod(v:Number):void
+		{
+			_reflexesMod = v;
+		}
+		
 		public var aimMod: Number = 0;
 		public var intelligenceMod: Number = 0;
 		public var willpowerMod: Number = 0;
@@ -107,7 +117,25 @@
 		public var personality: int = 50;
 
 		//Combat Stats
-		public var HPRaw: int = 0;
+		// I think some of my UI work has highlighted some areas where stats are doing things that aren't intended, or otherwise possibly broken.
+		// The safest way I can think of fixing these issues, is to clamp the potential possible values given to the raw vars.
+		
+		// HP should probably never go BELOW 0, as it has implications on rest mechanics.
+		private var _HPRaw: int = 0;
+		
+		public function get HPRaw():int { return _HPRaw; }
+		public function set HPRaw(v:int):void
+		{
+			if (v < 0)
+			{
+				_HPRaw = 0;
+			}
+			else
+			{
+				_HPRaw = v;
+			}
+		}
+		
 		public var HPMod: int = 0;
 		public var shieldsRaw: int = 0;
 		public var lustRaw: Number = 0;
