@@ -36,24 +36,17 @@ function debugMenus():void
 		output("\n\nLaser Pistol button get.");
 	});
 	
-	addItemButton(1, new ScopedPistol(), function():void {
+	addItemButton(15, new ScopedPistol(), function():void {
 		output("\n\nScoped pistol button get.");
 	});
 	
-	addItemButton(2, new HoldOutPistol(), function():void {
+	addItemButton(30, new HoldOutPistol(), function():void {
 		output("\n\nHold out pistol button get");
 	});
 	
-	addItemButton(3, new EagleHandgun(), function():void {
+	addItemButton(45, new EagleHandgun(), function():void {
 		output("\n\nEagle Handgun button get.");
 	});
-	
-	addItemButton(5, new DecentShield(), function():void {
-		output("\n\nShield Button Get");
-	});
-	
-	removeButton(0);
-	removeButton(1);
 }
 
 

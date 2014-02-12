@@ -182,6 +182,7 @@ package classes.UIComponents
 		 */
 		private function ButtonPageClickHandler(e:Event):void
 		{
+			if (!(e.currentTarget as SquareButton).isActive) return;
 			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext") ? true : false;
 			
 			if (forward)
