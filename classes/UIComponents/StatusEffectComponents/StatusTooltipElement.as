@@ -133,7 +133,7 @@ package classes.UIComponents.StatusEffectComponents
 			// underline
 			_headerUnderline = new Sprite();
 			_headerUnderline.x = _iconContainer.x + _iconContainer.width + 5;
-			_headerUnderline.y = 25; // MAGIC NUMBERS ALL UP IN THIS SHIT YO
+			_headerUnderline.y = 28; // MAGIC NUMBERS ALL UP IN THIS SHIT YO
 			
 			_headerUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_headerUnderline.graphics.drawRect(0, 0, this.width - _headerUnderline.x, 3)
@@ -161,7 +161,7 @@ package classes.UIComponents.StatusEffectComponents
 		private function BuildContentBlock():void
 		{
 			_bodyText = new TextField();
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:12, color:"#FFFFFF", marginRight:1 };
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", marginRight:1 };
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
 			
