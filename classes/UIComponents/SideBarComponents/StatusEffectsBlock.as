@@ -51,6 +51,8 @@ package classes.UIComponents.SideBarComponents
 			_statusHeaderText.embedFonts = true;
 			_statusHeaderText.antiAliasType = AntiAliasType.ADVANCED;
 			_statusHeaderText.text = "YOUR STATUS";
+			_statusHeaderText.mouseEnabled = false;
+			_statusHeaderText.mouseWheelEnabled = false;
 			this.addChild(_statusHeaderText);
 		}
 		

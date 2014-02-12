@@ -83,6 +83,8 @@ package classes.UIComponents.SideBarComponents
 			_coreStatsHeaderText.embedFonts = true;
 			_coreStatsHeaderText.antiAliasType = AntiAliasType.ADVANCED;
 			_coreStatsHeaderText.text = "CORE STATS";
+			_coreStatsHeaderText.mouseEnabled = false;
+			_coreStatsHeaderText.mouseWheelEnabled = false;
 			this.addChild(_coreStatsHeaderText);
 		}
 		

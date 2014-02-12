@@ -71,6 +71,8 @@ package classes.UIComponents.SideBarComponents
 			_advancementHeaderText.embedFonts = true;
 			_advancementHeaderText.antiAliasType = AntiAliasType.ADVANCED;
 			_advancementHeaderText.text = "ADVANCEMENT";
+			_advancementHeaderText.mouseEnabled = false;
+			_advancementHeaderText.mouseWheelEnabled = false;
 			this.addChild(_advancementHeaderText);
 		}
 		

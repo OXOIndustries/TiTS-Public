@@ -146,7 +146,9 @@ package classes.UIComponents
 			_nameText.defaultTextFormat = UIStyleSettings.gNameHeaderFormatter;
 			_nameText.embedFonts = true;
 			_nameText.antiAliasType = AntiAliasType.ADVANCED;
-			_nameText.text = "GEDAN";
+			_nameText.text = "uncreated";
+			_nameText.mouseEnabled = false;
+			_nameText.mouseWheelEnabled = false;
 			this.addChild(_nameText);
 			
 			// Inverted order from "common sense" ensures any text that cross the underline goes /over/ it
