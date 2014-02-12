@@ -368,6 +368,11 @@
 			// if we have any null arguments at this point rather than throwing an error and shit.
 			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
 		}
+		
+		public function removeButton(slot:int):void
+		{
+			userInterface.addDisabledButton(slot);
+		}
 
 		public function pageUpScroll():void
 		{

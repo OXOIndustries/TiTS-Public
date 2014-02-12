@@ -51,6 +51,9 @@ function debugMenus():void
 	addItemButton(5, new DecentShield(), function():void {
 		output("\n\nShield Button Get");
 	});
+	
+	removeButton(0);
+	removeButton(1);
 }
 
 
