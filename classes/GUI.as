@@ -362,6 +362,10 @@
 			AttachTooltipListeners(_leftSideBar.appearanceButton);
 		}
 		
+		/**
+		 * Helper method to attach the required tooltip listeners for tooltips to work to any applicable displayObject
+		 * @param	displayObj
+		 */
 		private function AttachTooltipListeners(displayObj:DisplayObject):void
 		{
 			displayObj.addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
@@ -491,8 +495,10 @@
 			}
 		}
 		
-		// This is more hacky shit that should go away when I rebuild the button tray. As it stands, the tooltips won't update for menu/page buttons
-		// that get disabled via interaction (afaik)
+		/**
+		 * Need to refactor dis shit
+		 * @param	displayObj
+		 */
 		public function updateTooltip(displayObj:DisplayObject):void
 		{
 			if (this.buttonTooltip.stage != null)
@@ -713,14 +719,14 @@
 			}
 			else if (!forward && textPage > 1)
 			{
-				textPage--;
-				pageTurn = true;
-				
 				if (textPage == 4)
 				{
 					tempText = mainTextField.htmlText;
 					tempAuthor = sceneBy;
 				}
+				
+				textPage--;
+				pageTurn = true;
 			}
 			
 			if (pageTurn)
