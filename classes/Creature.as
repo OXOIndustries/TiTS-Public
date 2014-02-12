@@ -39,6 +39,8 @@
 			return _neverSerialize;
 		}
 
+		private static const STAT_CLAMP_VALUE:Number = 0;
+		
 		//Constructor
 		public function Creature() {
 			this.addIgnoredField("neverSerialize");
@@ -89,24 +91,134 @@
 		public var keeperSell: String = "What would you like to sell?";
 
 		//Primary stats
-		public var physiqueRaw: Number = 3;
-		public var reflexesRaw: Number = 3;
-		public var aimRaw: Number = 3;
-		public var intelligenceRaw: Number = 3;
-		public var willpowerRaw: Number = 3;
-		public var libidoRaw: Number = 3;
+		private var _physiqueRaw: Number = 3;
+		public function get physiqueRaw():Number
+		{
+			return _physiqueRaw;
+		}
+		public function set physiqueRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_physiqueRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > physiqueMax())
+			{
+				_physiqueRaw = physiqueMax();
+			}
+			else
+			{
+				_physiqueRaw = v;
+			}
+		}
+
+		private var _reflexesRaw: Number = 3;
+		public function get reflexesRaw():Number
+		{
+			return _reflexesRaw;
+		}
+		public function set reflexesRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_reflexesRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > reflexesMax())
+			{
+				_reflexesRaw = reflexesMax();
+			}
+			else
+			{
+				_reflexesRaw = v;
+			}
+		}
+
+		private var _aimRaw: Number = 3;
+		public function get aimRaw():Number
+		{
+			return _aimRaw;
+		}
+		public function set aimRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_aimRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > aimMax())
+			{
+				_aimRaw = aimMax();
+			}
+			else
+			{
+				_aimRaw = v;
+			}
+		}
+
+		private var _intelligenceRaw: Number = 3;
+		public function get intelligenceRaw():Number
+		{
+			return _intelligenceRaw;
+		}
+		public function set intelligenceRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_intelligenceRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > intelligenceMax())
+			{
+				_intelligenceRaw = intelligenceMax();
+			}
+			else
+			{
+				_intelligenceRaw = v;
+			}
+		}
+
+		private var _willpowerRaw: Number = 3;
+		public function get willpowerRaw():Number
+		{
+			return _willpowerRaw;
+		}
+		public function set willpowerRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_willpowerRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > willpowerMax())
+			{
+				_willpowerRaw = willpowerMax();
+			}
+			else
+			{
+				_willpowerRaw = v;
+			}
+		}
+
+		private var _libidoRaw: Number = 3;
+		public function get libidoRaw():Number
+		{
+			return _libidoRaw;
+		}
+		public function set libidoRaw(v:Number):void
+		{
+			if (v < Creature.STAT_CLAMP_VALUE)
+			{
+				_libidoRaw = Creature.STAT_CLAMP_VALUE;
+			}
+			else if (v > libidoMax())
+			{
+				_libidoRaw = libidoMax();
+			}
+			else
+			{
+				_libidoRaw = v;
+			}
+		}
+		
 		public var physiqueMod: Number = 0;
-		private var _reflexesMod: Number = 0;
-		
-		public function get reflexesMod():Number
-		{
-			return _reflexesMod;
-		}
-		public function set reflexesMod(v:Number):void
-		{
-			_reflexesMod = v;
-		}
-		
+		public var reflexesMod: Number = 0;		
 		public var aimMod: Number = 0;
 		public var intelligenceMod: Number = 0;
 		public var willpowerMod: Number = 0;
@@ -137,6 +249,7 @@
 		}
 		
 		public var HPMod: int = 0;
+
 		public var shieldsRaw: int = 0;
 		public var lustRaw: Number = 0;
 		public var lustMod: Number = 0;
@@ -761,76 +874,222 @@
 			energyRaw = energyMax();
 		}
 		//Lust
-		public function lust(arg: Number = 0, set: Boolean = false): Number {
-			if (set) lustRaw = arg;
-			else if (arg != 0) {
+		public function lust(arg:Number = 0, apply:Boolean = false): Number 
+		{
+			if (apply) 
+			{
+				lustRaw = arg;
+			}
+			else if (arg != 0) 
+			{
 				lustRaw += arg;
-				if (lustRaw > lustMax()) lustRaw = lustMax();
+				if (lustRaw > lustMax()) 
+				{
+					lustRaw = lustMax();
+				}
 			}
-			var temp: int = lustRaw + lustMod;
-			if (temp > lustMax()) return lustMax();
-			else return temp;
+			
+			var currLust:int = lustRaw + lustMod;
+
+			if (currLust > lustMax()) 
+			{
+				return lustMax();
+			}
+			else if (currLust < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else 
+			{
+				return currLust;
+			}
 		}
-		public function physique(arg: Number = 0, set: Boolean = false): Number {
-			if (set) physiqueRaw = arg;
-			else if (arg != 0) {
+		
+		public function physique(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			if (apply) 
+			{
+				physiqueRaw = arg;
+			}
+			else if (arg != 0) 
+			{
 				physiqueRaw += arg;
-				if (physiqueRaw > physiqueMax()) physiqueRaw = physiqueMax();
+				if (physiqueRaw > physiqueMax()) 
+				{
+					physiqueRaw = physiqueMax();
+				}
 			}
-			var temp: int = physiqueRaw + physiqueMod;
-			if (temp > physiqueMax()) return physiqueMax();
-			else return temp;
+
+			var currPhys:int = physiqueRaw + physiqueMod;
+
+			if (currPhys > physiqueMax()) 
+			{
+				return physiqueMax();
+			}
+			else if (currPhys < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currPhys;
+			}
 		}
-		public function reflexes(arg: Number = 0, set: Boolean = false): Number {
-			if (set) reflexesRaw = arg;
-			else if (arg != 0) {
+		
+		public function reflexes(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply) 
+			{
+				reflexesRaw = arg;
+			}
+			else if (arg != 0) 
+			{
 				reflexesRaw += arg;
-				if (reflexesRaw > reflexesMax()) reflexesRaw = reflexesMax();
+				if (reflexesRaw > reflexesMax())
+				{
+					reflexesRaw = reflexesMax();
+				}
 			}
-			var temp: int = reflexesRaw + reflexesMod;
-			if (temp > reflexesMax()) return reflexesMax();
-			else return temp;
+
+			var currReflexes:int = reflexesRaw + reflexesMod;
+
+			if (currReflexes > reflexesMax())
+			{
+				return reflexesMax();
+			}
+			else if (currReflexes < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currReflexes;
+			}
 		}
-		public function aim(arg: Number = 0, set: Boolean = false): Number {
-			if (set) aimRaw = arg;
-			else if (arg != 0) {
+
+		public function aim(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			if (apply)
+			{
+				aimRaw = arg;
+			}
+			else if (arg != 0)
+			{
 				aimRaw += arg;
-				if (aimRaw > aimMax()) aimRaw = aimMax();
+				if (aimRaw > aimMax())
+				{
+					aimRaw = aimMax();
+				}
 			}
-			var temp: int = aimRaw + aimMod;
-			if (temp > aimMax()) return aimMax();
-			else return temp;
+			
+			var currAim:int = aimRaw + aimMod;
+			
+			if (currAim > aimMax())
+			{
+				return aimMax();
+			}
+			else if (currAim < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currAim;
+			}
 		}
-		public function intelligence(arg: Number = 0, set: Boolean = false): Number {
-			if (set) intelligenceRaw = arg;
-			else if (arg != 0) {
+
+		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			if (apply)
+			{
+				intelligenceRaw = arg;
+			}
+			else if (arg != 0)
+			{
 				intelligenceRaw += arg;
-				if (intelligenceRaw > intelligenceMax()) intelligenceRaw = intelligenceMax();
+				if (intelligenceRaw > intelligenceMax())
+				{
+					intelligenceRaw = intelligenceMax();
+				}
 			}
-			var temp: int = intelligenceRaw + intelligenceMod;
-			if (temp > intelligenceMax()) return intelligenceMax();
-			else return temp;
+
+			var currInt:int = intelligenceRaw + intelligenceMod;
+
+			if (currInt > intelligenceMax())
+			{
+				return intelligenceMax();
+			}
+			else if (currInt < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currInt;
+			}
 		}
-		public function willpower(arg: Number = 0, set: Boolean = false): Number {
-			if (set) willpowerRaw = arg;
-			else if (arg != 0) {
+
+		public function willpower(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			if (apply)
+			{
+				willpowerRaw = arg;
+			}
+			else if (arg != 0)
+			{
 				willpowerRaw += arg;
-				if (willpowerRaw > willpowerMax()) willpowerRaw = willpowerMax();
+				if (willpowerRaw > willpowerMax())
+				{
+					willpowerRaw = willpowerMax();
+				}
 			}
-			var temp: int = willpowerRaw + willpowerMod;
-			if (temp > willpowerMax()) return willpowerMax();
-			else return temp;
+			var currWill:int = willpowerRaw + willpowerMod;
+
+			if (currWill > willpowerMax())
+			{
+				return willpowerMax();
+			}
+			else if (currWill < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currWill;
+			}
 		}
-		public function libido(arg: Number = 0, set: Boolean = false): Number {
-			if (set) libidoRaw = arg;
-			else if (arg != 0) {
+
+		public function libido(arg:Number = 0, apply:Boolean = false):Number 
+		{
+			if (apply)
+			{
+				libidoRaw = arg;
+			}
+			else if (arg != 0)
+			{
 				libidoRaw += arg;
-				if (libidoRaw > libidoMax()) libidoRaw = libidoMax();
+				if (libidoRaw > libidoMax())
+				{
+					libidoRaw = libidoMax();
+				}
 			}
-			var temp: int = libidoMod + libidoRaw;
-			if (temp > libidoMax()) return libidoMax();
-			else return temp;
+			
+			var currLib:int = libidoMod + libidoRaw;
+
+			if (currLib > libidoMax())
+			{
+				return libidoMax();
+			}
+			else if (currLib < Creature.STAT_CLAMP_VALUE)
+			{
+				return Creature.STAT_CLAMP_VALUE;
+			}
+			else
+			{
+				return currLib;
+			}
 		}
+
 		public function lustMax(): Number {
 			return 100;
 		}
