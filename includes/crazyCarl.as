@@ -50,6 +50,7 @@ function insideCarlsShop():void {
 	userInterface.addButton(0,"Chat",carlTalkMenu);
 	userInterface.addButton(1,"Shop",crazyCarlShop);
 	userInterface.addButton(2,"Sell",sellToCarl);
+	userInterface.addButton(14,"Leave",mainGameMenu);
 }
 //Chat
 function carlTalkMenu():void
