@@ -57,12 +57,5 @@
 				roomFlags.splice(x,1);
 			}
 		}
-		public function addChoice(text:String, func, arg = undefined):void {
-			trace("addChoice() called. This shit might be depreciated/not called. Throwing in a trace so we know (for sure) I guess");
-			choices[choices.length] = new blueButton();
-			choices[choices.length].func = func;
-			choices[choices.length].arg = arg;
-			choices[choices.length].tooltip = text
-		}
 	}
 }

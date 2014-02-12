@@ -70,9 +70,6 @@
 		private var titsPurple:*;
 		private var titsBlue:*;
 		private var titsWhite:*;
-		
-		var pagePrev:leftButton;
-		var pageNext:rightButton;
 
 		var format1:TextFormat;
 		var mainFont:Font3;
@@ -503,23 +500,7 @@
 		{
 			if (this.buttonTooltip.stage != null)
 			{				
-				if (displayObj is blueButton || displayObj is purpleButton)
-				{
-					var btn:*;
-					
-					if (displayObj is blueButton) btn = (displayObj as blueButton);
-					else btn = (displayObj as purpleButton);
-					
-					if (btn.caption.text.length > 0)
-					{
-						this.buttonTooltip.DisplayForObject(displayObj);
-					}
-					else
-					{
-						this.hideTooltip();
-					}
-				}
-				else if (displayObj is MainButton)
+				if (displayObj is MainButton)
 				{
 					if ((displayObj as MainButton).buttonName.length > 0)
 					{

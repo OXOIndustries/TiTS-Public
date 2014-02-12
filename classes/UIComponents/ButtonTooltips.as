@@ -184,11 +184,7 @@ package classes.UIComponents
 		// This is a hacky method that will go away when I rebuild the button tray (and the associated button classes)
 		public function DisplayForObject(displayObj:DisplayObject):void
 		{
-			if (displayObj is blueButton) 			DisplayForBlueButton((displayObj as blueButton));
-			else if (displayObj is purpleButton) 	DisplayForPurpleButton((displayObj as purpleButton));
-			else if (displayObj is SquareButton) 	DisplayForSquareButton((displayObj as SquareButton));
-			else if (displayObj is rightButton) 	DisplayForNamedObject(displayObj);
-			else if (displayObj is leftButton) 		DisplayForNamedObject(displayObj);
+			if (displayObj is SquareButton) 		DisplayForSquareButton((displayObj as SquareButton));
 			else if (displayObj is MainButton)		DisplayForMainButton((displayObj as MainButton));
 			else throw new Error("Unknown Display Object Type attempted to display a tooltip.");
 		}
@@ -206,32 +202,6 @@ package classes.UIComponents
 					_stage.addChild(this);
 					this.Reposition(displayObj);
 				}
-			}
-		}
-		
-		private function DisplayForBlueButton(displayObj:blueButton):void
-		{
-			var tt:String = TooltipManager.getTooltip(displayObj.caption.text);
-			var fn:String = TooltipManager.getFullName(displayObj.caption.text);
-			
-			if (tt.length > 0)
-			{
-				this.SetData(fn, tt);
-				_stage.addChild(this);
-				this.Reposition(displayObj);
-			}
-		}
-		
-		private function DisplayForPurpleButton(displayObj:purpleButton):void
-		{
-			var tt:String = TooltipManager.getTooltip(displayObj.caption.text);
-			var fn:String = TooltipManager.getFullName(displayObj.caption.text);
-			
-			if (tt.length > 0)
-			{
-				this.SetData(fn, tt);
-				_stage.addChild(this);
-				this.Reposition(displayObj);
 			}
 		}
 		
