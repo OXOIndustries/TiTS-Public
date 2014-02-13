@@ -22,9 +22,12 @@ package classes.UIComponents.ContentModuleComponents
 		public function get buttonName():String { return _displayText; }
 		public function set buttonName(v:String):void { _displayText = v; _text.text = v; }
 		
+		private var _toggledOn:Boolean;
+		
 		public function MainMenuButton(sizeModeBig:Boolean = false) 
 		{
 			_sizeMode = sizeModeBig;
+			_toggledOn = false;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -67,28 +70,38 @@ package classes.UIComponents.ContentModuleComponents
 			this.addChild(_text);
 		}
 		
-		public function IsActive():Boolean
+		public function IsOn():void
 		{
-			throw new Error("Not implemented.");
+			return _toggledOn;
 		}
 		
-		public function Activate():void 
+		public function ToggleState():void
 		{
-			throw new Error("Not implemented.");
-		}
-		
-		public function Deactivate():void
-		{
-			throw new Error("Not implemented.");
+			var newStr:String = this.buttonName.split("\n")[0];
+			
+			if (this.IsOn())
+			{
+				newStr += "\nOff";
+				this.buttonName = newStr;
+				DeHighlight();
+			}
+			else
+			{
+				newStr += "\nOn";
+				this.buttonName = newStr;
+				Highlight();
+			}
 		}
 		
 		public function Highlight():void
 		{
+			_toggledOn = true;
 			_background.transform.colorTransform = UIStyleSettings.gMovementButtonColourTransform;
 		}
 		
 		public function DeHighlight():void
 		{
+			_toggledOn = false;
 			_background.transform.colorTransform = UIStyleSettings.gForegroundColourTransform;
 		}
 	}

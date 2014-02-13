@@ -7,6 +7,7 @@ package classes.UIComponents
 	import flash.text.TextFormatAlign;
 	import flash.text.TextFormatDisplay;
 	import flash.text.Font;
+	import flash.text.StyleSheet;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -43,6 +44,8 @@ package classes.UIComponents
 			UIStyleSettings._gMovementButtonColourTransform = null;
 			UIStyleSettings._gMainMenuTextFormatter = null;
 			UIStyleSettings._gPurpleGlow = null;
+			UIStyleSettings._gTextInputFormat = null;
+			UIStyleSettings._gMainTextCSSStyleSheet = null;
 		}
 		
 		// TITS VALUES
@@ -274,6 +277,22 @@ package classes.UIComponents
 			return UIStyleSettings._gMainMenuTextFormatter;
 		}
 		
+		private static var _gTextInputFormatter:TextFormat;
+		public static function get gTextInputFormatter():TextFormat
+		{
+			if (UIStyleSettings._gTextInputFormatter == null)
+			{
+				UIStyleSettings._gTextInputFormatter = new TextFormat();
+				UIStyleSettings._gTextInputFormatter.size = 18;
+				UIStyleSettings._gTextInputFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gTextInputFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gTextInputFormatter.kerning = true;
+				UIStyleSettings._gTextInputFormatter.leading = 11;
+				UIStyleSettings._gTextInputFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gTextInputFormatter;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -359,6 +378,50 @@ package classes.UIComponents
 				UIStyleSettings._gMovementButtonColourTransform.color = UIStyleSettings.gMovementButtonColour;
 			}
 			return UIStyleSettings._gMovementButtonColourTransform;
+		}
+		
+		// CSS Style Sheet to apply to "large" text blocks
+		private static var _gMainTextCSSStyleSheet:StyleSheet;
+		public static function get gMainTextCSSStyleSheet():StyleSheet
+		{
+			if (UIStyleSettings._gMainTextCSSStyleSheet == null)
+			{
+				UIStyleSettings._gMainTextCSSStyleSheet = new StyleSheet();
+				
+				var defaultFormat = { 
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FFFFFF",
+					marginRight: 5
+				};
+				
+				var good = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#00CCFF", 
+					marginRight: 5 
+				};
+				
+				var bad = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#CC3300", 
+					marginRight: 5 
+				};
+				
+				var indifferent = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#FFFFFF", 
+					marginRight: 5 
+				};
+				
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".good", good);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".bad", bad);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".nothing", indifferent);
+			}
+			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}
 	}
 

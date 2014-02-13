@@ -7,6 +7,10 @@ package classes.UIComponents
 	 */
 	public class ContentModule extends Sprite
 	{
+		protected var _moduleName:String;
+		
+		public function get moduleName():String { return _moduleName; }
+		
 		// Determine which other parts of the UI a given content module operates with.
 		private var _leftBarEnabled:Boolean;
 		private var _rightBarEnabled:Boolean;

@@ -1,11 +1,13 @@
 package classes.UIComponents.ContentModules 
 {
+	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
 	import UIComponents.ContentModule;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import classes.UIComponents.ContentModule;
 	
 	/**
 	 * ...
@@ -21,9 +23,21 @@ package classes.UIComponents.ContentModules
 		private static var Warning_BG:Class;
 		
 		// Display elements
-		private var _mainMenuButtons:Array;
-		private var _titsLogo:Sprite;
+		private var _mainMenuButtons:Vector.<MainMenuButton>;
 		
+		public function get mainMenuButtons():Array
+		{
+			var btnArray:Array = new Array();
+			
+			for (var i:int = 0; i < _mainMenuButtons.length; i++)
+			{
+				btnArray.push(_mainMenuButtons[i]);
+			}
+			
+			return btnArray;
+		}
+		
+		private var _titsLogo:Sprite;
 		private var _warningBackground:Sprite;
 		private var _warningText:TextField;
 		
@@ -36,6 +50,9 @@ package classes.UIComponents.ContentModules
 			leftBarEnabled = true;
 			rightBarEnabled = true;
 			fullButtonTrayEnabled = true;
+			_moduleName = "MainMenu";
+			
+			_mainMenuButtons = new Vector.<MainMenuButton>();
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -80,6 +97,7 @@ package classes.UIComponents.ContentModules
 			_creditText.y = 305;
 			_creditText.height = 77;
 			_creditText.width = 780;
+			_creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.root.version + "</b>";
 			
 			
 			// Fuck with this to test hyperlink shit
@@ -119,8 +137,32 @@ package classes.UIComponents.ContentModules
 			_warningText.y = 10;
 			_warningText.height = 75;
 			_warningText.width = 655;
+			_warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
 		}
 		
+		private function BuildButtons():void
+		{
+			var posX:int = 10;
+			var posY:int = 518;
+			
+			for (var btnIdx:int = 0; btnIdx < 6; btnIdx++)
+			{
+				var newBtn:MainMenuButton = new MainMenuButton((btnIdx <= 2) ? false : true); 
+				
+				if (btnIdx == 3)
+				{
+					posX -= 474;
+					posY += 50;
+				}
+				
+				posX += 158;
+				
+				this.addChild(newBtn);
+				
+				newBtn.x = posX;
+				newBtn.y = posY;
+				newBtn.mouseChildren = false;
+			}
+		}
 	}
-
 }

@@ -4,6 +4,10 @@
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.ButtonTray;
+	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
+	import classes.UIComponents.ContentModules.GameTextModule;
+	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
@@ -64,34 +68,13 @@
 		//temporary nonsense variables.
 		public var tempEvent:MouseEvent;
 		var temp:int;
-
-		var textInput:TextField;
 		
 		private var titsPurple:*;
 		private var titsBlue:*;
 		private var titsWhite:*;
-
-		var format1:TextFormat;
-		var mainFont:Font3;
-		var mainTextField:TextField;
-		var mainTextField2:TextField;
-		var upScrollButton:arrow;
-		var downScrollButton:arrow;
-		var scrollBar:Bar;
-		var scrollBG:Bar;
-		var mainMenuButtons:Array;
-		var titleDisplay:titsLogo;
-		var warningBackground:warningBG;
-		var creditText:TextField;
-		var warningText:TextField;
-		var websiteDisplay:TextField;
-		var titleFormat:TextFormat;
-		public var myGlow:GlowFilter;
-
-		private var npcStatSidebarItems:Array;
 		
-		private var miniMap:MiniMap;
-		private var displayMinimap:Boolean;
+		//private var miniMap:MiniMap;
+		//private var displayMinimap:Boolean;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -104,6 +87,10 @@
 		private var buttonTooltip:ButtonTooltips;
 		
 		private var buttonHandler:Function;
+		
+		private var _currentModule:ContentModule;
+		
+		private var _availableModules:Object;
 		
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
 		{
@@ -143,18 +130,15 @@
 			this.titsWhite.color = 0xFFFFFF;
 
 			// Set up the various side-bars
+			this.ConfigureMainMenu();
+			this.ConfigurePrimaryOutput();
+			this.ConfigureSecondaryOutput();
+			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
 			this.ConfigureLeftBarTooltips();
 			
 			this.hidePCStats();
-
-			//Set up the main text field
-			this.format1 = new TextFormat();
-			this.format1.size = 18;
-			this.format1.color = 0xFFFFFF;
-			this.format1.tabStops = [35];
-			format1.font = "Lato";
 			
 			this.mainTextField = new TextField();
 			this.prepTextField(this.mainTextField);
@@ -163,137 +147,25 @@
 			//Set up backup text field
 			this.mainTextField2 = new TextField();
 			this.prepTextField(this.mainTextField2);
-
-			//Set up standard input box!
-			this.textInput = new TextField();
-			this.textInput.width = 250;
-			this.textInput.height = 25;
-			this.textInput.backgroundColor = 0xFFFFFF;
-			this.textInput.border = true;
-			this.textInput.borderColor = 0xFFFFFF;
-
-			this.textInput.type = TextFieldType.INPUT;
-			this.textInput.setTextFormat(format1);
-			this.textInput.defaultTextFormat = format1;
-
-			//SCROLLBAR!
-			upScrollButton = new arrow();
-			upScrollButton.x = mainTextField.x + mainTextField.width;
-			upScrollButton.y = mainTextField.y
-			downScrollButton = new arrow();
-			downScrollButton.x = mainTextField.x + mainTextField.width + downScrollButton.width;
-			downScrollButton.y = mainTextField.y + mainTextField.height;
-			downScrollButton.rotation = 180;
-			scrollBar = new Bar();
-			scrollBar.x = mainTextField.x + mainTextField.width;
-			scrollBar.y = mainTextField.y + upScrollButton.height;
-			scrollBar.height = 50;
-			scrollBG = new Bar();
-			scrollBG.x = mainTextField.x + mainTextField.width;
-			scrollBG.y = mainTextField.y + upScrollButton.height;
-			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
-			scrollBG.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
-			this.titsClassPtr.addChild(scrollBG);
-			this.titsClassPtr.addChild(scrollBar);
-			this.titsClassPtr.addChild(upScrollButton);
-			this.titsClassPtr.addChild(downScrollButton);
 			
 			//Since downscroll starts clickable...
 			downScrollButton.buttonMode = true;
 
 			clearMenu();
-
-			//4. MAIN MENU STUFF
-			this.mainMenuButtons = new Array();
-			titleDisplay = new titsLogo();
-			warningBackground = new warningBG();
-			creditText = new TextField();
-			warningText = new TextField();
-			websiteDisplay = new TextField();
-			titleFormat = new TextFormat();
-			myGlow = new GlowFilter();
-			myGlow.color = 0x84449B;
-			myGlow.alpha = 1;
-			myGlow.blurX = 10;
-			myGlow.blurY = 10;
-			myGlow.strength = 5;
-
-			//Credit Text
-			creditText.border = false;
-			creditText.background = false;
-			creditText.multiline = true;
-			creditText.wordWrap = true;
-			creditText.border = false;
-			creditText.x = 210;
-			creditText.y = 305;
-			creditText.height = 77;
-			creditText.width = 780;
-			
-			//Website Text
-			websiteDisplay.border = false;
-			websiteDisplay.htmlText = "http://www.trialsInTaintedSpace.com";
-			websiteDisplay.background = false;
-			websiteDisplay.multiline = true;
-			websiteDisplay.wordWrap = true;
-			websiteDisplay.border = false;
-			websiteDisplay.x = 210;
-			websiteDisplay.y = 475;
-			websiteDisplay.height = 25;
-			websiteDisplay.width = 780;
-			
-			//Warning Text
-			warningText.border = false;
-
-			warningText.background = false;
-			warningText.multiline = true;
-			warningText.wordWrap = true;
-			warningText.border = false;
-			warningText.x = 305;
-			warningText.y = 390;
-			warningText.height = 75;
-			warningText.width = 655;
-			
-			//Set the formats
-			titleFormat.size = 18;
-			titleFormat.color = 0xFFFFFF;
-			titleFormat.tabStops = [35];
-			titleFormat.font = "Lato";
-			titleFormat.align = TextFormatAlign.CENTER;
-
-			creditText.setTextFormat(titleFormat);
-			creditText.defaultTextFormat = titleFormat;
-			warningText.setTextFormat(titleFormat);
-			warningText.defaultTextFormat = titleFormat;
-			websiteDisplay.setTextFormat(titleFormat);
-			websiteDisplay.defaultTextFormat = titleFormat;
-
-			titleDisplay.x = 368;
-			titleDisplay.y = 142;
-
-			//Add warning display
-			warningBackground.x = 210;
-			warningBackground.y = 380;
-			this.titsClassPtr.addChild(titleDisplay);
-			this.titsClassPtr.addChild(warningBackground);
-			this.titsClassPtr.addChild(creditText);
-			this.titsClassPtr.addChild(warningText);
-			this.titsClassPtr.addChild(websiteDisplay);
-			websiteDisplay.visible = false;
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			websiteDisplay.visible = false;
-			warningBackground.visible = false;
-
-			initializeMainMenu();
 		}
 		
+		/**
+		 * Configure the right side bar and add it to the stage
+		 */
 		private function setupRightSidebar():void
 		{
 			this._rightSideBar = new RightSideBar();
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
+		/**
+		 * Configure the left side bar and add it to the stage
+		 */
 		private function setupLeftSidebar():void
 		{
 			this._leftSideBar = new LeftSideBar();
@@ -314,6 +186,9 @@
 			this.ConfigureLeftBarListeners();
 		}
 		
+		/**
+		 * Configure the tooltip element and prepare it for use.
+		 */
 		private function ConfigureTooltip():void 
 		{
 			this.buttonTooltip = new ButtonTooltips();
@@ -322,6 +197,9 @@
 			titsClassPtr.removeChild(buttonTooltip);
 		}
 		
+		/**
+		 * Configure the listeners required for button operation within the button tray.
+		 */
 		private function ConfigureButtons():void
 		{
 			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick, bufferButtonHandler);
@@ -352,6 +230,9 @@
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 		}
 		
+		/**
+		 * Configure the buttons present on the left side bar for tooltips.
+		 */
 		private function ConfigureLeftBarTooltips():void 
 		{
 			AttachTooltipListeners(_leftSideBar.menuButton);
@@ -367,6 +248,177 @@
 		{
 			displayObj.addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
 			displayObj.addEventListener(MouseEvent.ROLL_OUT, this.buttonTooltip.eventHandler);
+		}
+		
+		/**
+		 * Placeholder method that needs refactoring. Binds the correct listeners to the buttons in the main menu
+		 */
+		private function ConfigureMainMenu():void
+		{
+			var mainMenu:MainMenuModule = new MainMenuModule();
+			_availableModules[mainMenu.moduleName] = mainMenu;
+			
+			mainMenu.x = 200;
+			mainMenu.y = 0;
+			
+			titsClassPtr.addChild(mainMenu);
+			
+			// Setup the Menu buttons
+			var buttons:Array = mainMenu.mainMenuButtons;
+			
+			(buttons[0] as MainMenuButton).buttonName = "New Game";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			
+			(buttons[1] as MainMenuButton).buttonName = "Data";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			
+			(buttons[2] as MainMenuButton).buttonName = "Credits";
+			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
+			
+			(buttons[3] as MainMenuButton).buttonName = "Easy Mode:\nOff";
+			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleEasyHandler);
+			
+			(buttons[4] as MainMenuButton).buttonName = "Debug Mode:\nOff";
+			(buttons[4] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleDebugHandler);
+			
+			(buttons[5] as MainMenuButton).buttonName = "Silly Mode:\nOff";
+			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleSillyHandler);
+		}
+		
+		private function toggleEasyHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.easy == true)
+			{
+				titsClassPtr.easy = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Easy Mode:\nOff";
+			}
+			else
+			{
+				titsClassPtr.easy = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Easy Mode:\nOn";
+			}
+		}
+		
+		private function toggleDebugHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.debug == true)
+			{
+				titsClassPtr.debug = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Debug Mode:\nOff"
+			}
+			else
+			{
+				titsClassPtr.debug = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Debug Mode:\nOn";
+			}
+		}
+		
+		private function toggleSillyHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.silly == true)
+			{
+				titsClassPtr.silly = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Silly Mode:\nOff";
+			}
+			else
+			{
+				titsClassPtr.silly = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Silly Mode:\nOn";
+			}
+		}
+		
+		/**
+		 * This is placeholder shit that I'll need to update when we build a Credits content module.
+		 * @param	e
+		 */
+		private function creditsHandler(e:Event):void
+		{
+			//this.userInterface.hideMenus();
+			//clearOutput2();
+			//output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
+			//this.userInterface.clearGhostMenu();
+			//this.addGhostButton(0,"Back to Menu",mainMenu);
+			
+			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
+		}
+		
+		private function ConfigurePrimaryOutput():void
+		{
+			var pGameText:GameTextModule = new GameTextModule();
+			_availableModules[pGameText.moduleName] = pGameText;
+			
+			pGameText.x = 200;
+			pGameText.y = 0;
+			
+			this.addChild(pGameText);
+			pGameText.visible = false;
+		}
+		
+		private function ConfigureSecondaryOutput():void
+		{
+			var pGameText:GameTextModule = new GameTextModule(false);
+			_availableModules[pGameText.moduleName] = pGameText;
+			
+			pGameText.x = 200;
+			pGameText.y = 0;
+			
+			this.addChild(pGameText);
+			pGameText.visible = false;
+		}
+		
+		/**
+		 * Attempt to display a target module
+		 * @param	module
+		 */
+		public function showModule(module:String):void
+		{
+			if (module in _availableModules)
+			{
+				_currentModule.visible = false;
+				_availableModules[module].visible = true;
+				_currentModule = _availableModules[module];
+				this.clearGhostMenu();
+				this.page
+			}
+			else
+			{
+				throw new Error("Couldn't find module \"" + module + "\"");
+			}
+		}
+		
+		/**
+		 * Preconfigure calls to showModule() for ease of use.
+		 * I think the displayed state of the menu buttons (Easy/Debug/Silly) can possibly contradict the game settings
+		 * as the flags/bools can be loaded from saves...
+		 */
+		public function showMainMenu():void
+		{
+			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
+			
+			if (buttons[3].IsOn() != titsClassPtr.easy) buttons[3].ToggleState();
+			if (buttons[4].IsOn() != titsClassPtr.debug) buttons[4].ToggleState();
+			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
+			
+			this.mainMenuButton.Glow();
+			this.showModule("MainMenu");
+			
+			this.clearGhostMenu();
+			
+			_buttonTray.buttonPageNext.Deactivate();
+			_buttonTray.buttonPagePrev.Deactivate();
+			_buttonTray.textPageNext.Deactivate();
+			_buttonTray.textPagePrev.Deactivate();
+			
+			if (titsClassPtr.debug) this.addGhostButton(10, "Debug", titsClassPtr.debugPane);
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
@@ -648,24 +700,6 @@
 		{
 			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
-		
-		public function addMainMenuButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
-		{
-			if(slot <= this.mainMenuButtons.length) {
-				this.mainMenuButtons[slot].alpha = 1;
-				this.mainMenuButtons[slot].caption.text = cap;
-				this.mainMenuButtons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[slot].func = func;
-			
-				this.mainMenuButtons[slot].arg = arg;
-			
-				this.mainMenuButtons[slot].buttonMode = true;
-				this.mainMenuButtons[slot].visible = true;
-			}
-			
-			// I don't think this call was actually required here...
-			//menuPageChecker();
-		}
 
 		public function pushToBuffer():void 
 		{
@@ -817,26 +851,6 @@
 			_leftSideBar.dataButton.Activate();
 		}
 
-		public function hideNormalDisplayShit():void 
-		{
-			//Hide all current buttons
-			_buttonTray.clearGhostButtons();
-			
-			//Hide scrollbar & main text!
-			upScrollButton.visible = false;
-			downScrollButton.visible = false;
-			scrollBar.visible = false;
-			scrollBG.visible = false;
-			mainTextField.visible = false;
-			mainTextField2.visible = false;
-			
-			//Page buttons invisible!
-			_buttonTray.buttonPageNext.Deactivate();
-			_buttonTray.buttonPagePrev.Deactivate();
-			_buttonTray.textPageNext.Deactivate();
-			_buttonTray.textPagePrev.Deactivate();
-		}
-
 		public function menuButtonsOn():void 
 		{
 			//trace("this.stagePtr = ", this.stagePtr);
@@ -857,121 +871,9 @@
 			mainMenuButtonOff();
 		}
 		
-		public function hideMenus():void 
-		{
-			hideMainMenu();
-			hideAppearance();
-			hideData();
-		}
-
 		public function hideData():void 
 		{
 			_leftSideBar.dataButton.DeGlow();
-		}
-
-		public function hideAppearance():void 
-		{
-			//Not showing appearance anymore!
-			showingPCAppearance = false;
-			
-			//Hide scrollbar & main text!
-			upScrollButton.visible = true;
-			downScrollButton.visible = true;
-			scrollBar.visible = true;
-			scrollBG.visible = true;
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			
-			//Show menu shits
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			warningBackground.visible = false;
-			websiteDisplay.visible = false;
-			
-			//Turn off main menu buttons
-			for (var x:int = 0; x < this.mainMenuButtons.length ; x++) 
-			{
-				this.mainMenuButtons[x].func = undefined;
-				this.mainMenuButtons[x].alpha = .3;
-				this.mainMenuButtons[x].caption.text = "";
-				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[x].buttonMode = false;
-				this.mainMenuButtons[x].visible = false;
-			}
-			
-			//Turn buttons back on
-			_buttonTray.resetButtons();
-			_buttonTray.textPageNext.Activate();
-			_buttonTray.textPagePrev.Activate();
-			
-			menuButtonsOn();
-			_leftSideBar.appearanceButton.DeGlow();
-			bufferButtonUpdater();
-		}
-
-		public function hideMainMenu():void 
-		{
-			//Hide scrollbar & main text!
-			upScrollButton.visible = true;
-			downScrollButton.visible = true;
-			scrollBar.visible = true;
-			scrollBG.visible = true;
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			
-			//Show menu shits
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			warningBackground.visible = false;
-			websiteDisplay.visible = false;
-			
-			//Turn off main menu buttons
-			for(var x:int = 0; x < this.mainMenuButtons.length ;x++) {
-				this.mainMenuButtons[x].func = undefined;
-				this.mainMenuButtons[x].alpha = .3;
-				this.mainMenuButtons[x].caption.text = "";
-				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[x].buttonMode = false;
-				this.mainMenuButtons[x].visible = false;
-			}
-			
-			_buttonTray.resetButtons();
-			
-			//Page buttons visible and updated!
-			_buttonTray.textPageNext.visible = true;
-			_buttonTray.textPagePrev.visible = true;
-			menuButtonsOn();
-			_leftSideBar.menuButton.DeGlow();
-			bufferButtonUpdater();
-		}
-
-		public function initializeMainMenu():void 
-		{
-			//Initialize main menu buttons
-			var currButtonX:int = 210;
-			var currButtonY:int = 518;
-			for(x = 0; x < 6; x++) {
-				if(x <= 2) this.mainMenuButtons[x] = new blueMainButton;
-				else this.mainMenuButtons[x] = new blueMainButtonBig;
-				//Adjust for new rows
-				if(x == 3) {
-					currButtonX -= 474;
-					currButtonY += 50;
-				}
-				//Add on from previous button value.
-				currButtonX += 158;
-				this.titsClassPtr.addChild(this.mainMenuButtons[x]);
-				this.mainMenuButtons[x].caption.htmlText = String(x);
-				
-				this.mainMenuButtons[x].x = currButtonX;
-				
-				this.mainMenuButtons[x].y = currButtonY;
-				
-				this.mainMenuButtons[x].mouseChildren = false;
-				this.mainMenuButtons[x].visible = false;
-			}
 		}
 		
 		public function leftBarClear():void 
