@@ -312,7 +312,7 @@
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
-			userInterface..addButton(slot, cap, func, arg, ttHeader, ttBody);
+			userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void

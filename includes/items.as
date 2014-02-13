@@ -227,9 +227,13 @@ function inventory():void {
 		}
 		//normal inventory
 		if(x < pc.inventory.length) {
-			if(pc.inventory[x].quantity > 0) {
-				this.addButton(x+adjustment,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
-				if(x > 13) this.addButton(x+1,pc.inventory[x].shortName,useItem,pc.inventory[x]);
+			if (pc.inventory[x].quantity > 0) {
+				
+				var tarSlot:int = x + adjustment;
+				if (tarSlot >= 14) tarSlot++;
+
+				this.addButton(tarSlot,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				
 			}
 		}
 	}
