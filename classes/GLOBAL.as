@@ -203,6 +203,7 @@
 		public static const ELDERVPITCHER:int						   = 13;
 		public static const SYRI:int 								   = 14;
 		public static const NALEEN_MALE:int  						   = 15;
+		public static const MACHINA:int 							   = 16;
 
 		public static var ITEMS:Object = {};
 		

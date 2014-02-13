@@ -378,3 +378,7 @@ public function processTime(arg:int):void {
 	}
 	updatePCStats();
 }
+function badEnd():void {
+	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
+	clearMenu();
+}

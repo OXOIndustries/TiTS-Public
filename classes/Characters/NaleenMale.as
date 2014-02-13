@@ -34,10 +34,10 @@
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "shimmering scales";
-			this.armor.defense = 2;
+			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 7;
+			this.physiqueRaw = 9;
 			this.reflexesRaw = 11;
 			this.aimRaw = 1;
 			this.intelligenceRaw = 4;

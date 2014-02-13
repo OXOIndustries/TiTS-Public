@@ -709,7 +709,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 				else output(" (<b>" + damage + "</b>)");			
 			}
 			else {
-				if(sDamage[0] > 0) output(" The hit carries on through to hit you! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");	
 			}
 		}
@@ -1010,6 +1010,9 @@ function enemyAI(aggressor:Creature):void
 		case "naleen male":
 			naleenMaleAI();
 			break;
+		case "machina":
+			machinaAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1041,6 +1044,10 @@ function victoryRouting():void
 	{
 		defeatAMaleNaleen();
 	}
+	else if(foes[0].short == "machina")
+	{
+		pushButtanOnMagicTedsFireRobot();
+	}
 	else genericVictory();
 }
 
@@ -1066,6 +1073,10 @@ function defeatRouting():void
 	else if(foes[0].short == "naleen male")
 	{
 		loseToDudeleenRouter();
+	}
+	else if(foes[0].short == "machina")
+	{
+		ohShitLoseToRobot();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1220,6 +1231,9 @@ function startCombat(encounter:String):void
 			break;
 		case "naleen":
 			chars["NALEEN"].prepForCombat();
+			break;
+		case "machina":
+			chars["MACHINA"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -1633,6 +1647,7 @@ function hipsTeaseText():void {
 function sense(target:Creature):void {
 	clearOutput();
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
+	if(target.lustVuln == 0) output("You don't think sexuality can win this fight!\n");
 	var buffer:String = "";
 	for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
 		buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];

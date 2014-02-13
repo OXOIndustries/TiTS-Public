@@ -1,25 +1,25 @@
-import classes.Items.Guns.HammerPistol;
+﻿import classes.Items.Guns.HammerPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.MagnumPistol;
 import classes.Items.Guns.TheShocker;
 //Outside?
 function outsideCarlsShop():void {
 	//output("\n\nThere sits a small, humble building that is relatively unassuming given the larger works around the colony. Its fairly squat in appearance with a pair of industrialized steam stacks poking out from the roof, giving off the odd puff of heat to prove that some form of industry is going inside. Given the gaudy, faux-neon sign upfront with the vague image of a pistol, you can only assume it’s a gunsmith’s - something reaffirmed by the name of the shop that barely fits within the sign: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>.");
-	output("\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front purpose: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.");
+	output("\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front declares: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.");
 }
 function carlsShopDescription():void {
 	if(flags["MET_CARL"] == undefined)
 	{
 		output("You enter the store through the automatic sliding door, immediately shivering involuntarily at the feeling of the cool, comfortable air from inside washing over you in comparison to the warmer, muggier jungle outside. Not wanting to waste the controlled atmosphere you quickly hop inside as the commercial door slides shut behind you.");
-		output("\n\nWhile it takes a moment for your eyes to adjust to the change in lighting, you are a little surprised at what you see. This wasn’t exactly just a gunsmith or even just a weapons shop; it was a some sort of convenience store, too! It has an inviting, commercial atmosphere with pale white tiling and bright lighting while the plain walls of the establishment were adorned with various model weapons, rifles especially, above the shelves. The store’s floor space was dominated by rows of simple shelves crammed full of goods. With a cursory glance you gleam store was stocked to be a survival or hunting focused convenience store as a secondary given the array of things like simplistic foods, basic and archaic supplies like compasses, local maps, and so forth as well as more advanced supplies, such as full environmental suits, recharging equipment and replacement parts for instruments such as common scanners and the likes. The sort of items that you might need to get by out on the frontier, especially for explorers and adventurers like yourself.");
-		output("\n\nAfter a short review of doing an inventory in your head as you aimlessly meander down the aisles you come to the realization that you don’t really need anything. None of your supplies are poorly stocked and your trusty codex made up for most of the tools, so the ‘convenience’ of the store was lost unless you wanted to pick up a snack. On the flipside, however, this area of the store is just a secondary portion for its real advertized purpose.");
-		output("\n\nDisengaging from the thick stacks of various knick-knacks you move to the back of the store where the cashier counter is manned by the owner of the store: ‘Crazy’ Carl. Or at least you can assume, given the simple jerkin with his name tag attached to it. The man rests laid back in his comfortable-looking office chair, hands in his lap with a book reader tucked away off to the side while he gave you his full attention like the polite business man he seemed to be. You’re not entirely sure how long he had been waiting at attention for you, but you don’t pay it any mind.");
-		output("\n\nCarl was old. With the advances in medical science you can hardly venture a guess at his age, but you could still tell he was <i>old</i>. A well-bald human male with little tufts of white hair ringing his shiny dome and thicker tufts appearing on his chin in the form of a well-kempt beard. His skin was fairly clean outside of a few natural blemishes on his cheeks, the product of a modern age; no liver spots, discolorations or anything of the sort. Beyond all that he actually looks pretty fit, too, with thick arms and a stocky sort of appearance, especially with his slight lack of stature. Altogether he looks to be the pinnacle of health, even if he is a old coot. He’s all smiles as you approached the counter, bright blue eyes glittering. Evidently he’s the jovial sort.");
-		output("\n\nWhat’s behind him practically set your mental image of him in stone: not mere desks and paperwork like you’d expect from office space, but instead raw works of industry. Large machines, certainly bigger than you, sprawl across the narrow space behind him. It’s set up so there is only space to settle in one spot, though that’s likely intentional, keeping it all accessible from that one position. Cramped, but efficient.");
+		output("\n\nWhile it takes a moment for your eyes to adjust to the change in lighting, you are a little surprised at what you see. This isn’t exactly just a gunsmith or even just a weapons shop; it is a some sort of convenience store, too! It has an inviting, commercial atmosphere with pale white tiling and bright lighting while the plain walls of the establishment are adorned with various model weapons, rifles especially, above the shelves. The store’s floor space is dominated by rows of simple shelves crammed full of goods. With a cursory glance, you glean that the store is stocked to be a survival or hunting-focused convenience store as a secondary given the array of things like simplistic foods, basic and archaic supplies like compasses, local maps, and so forth as well as more advanced supplies such as full environmental suits, recharging equipment and replacement parts for instruments such as common scanners and the likes. The sort of items that you might need to get by out on the frontier, tialored for explorers and adventurers like yourself.");
+		output("\n\nAfter a short review of doing an inventory in your head as you aimlessly meander down the aisles, you come to the realization that you don’t really need anything. None of your supplies are poorly stocked and your trusty codex makes up for most of the tools, so the ‘convenience’ of the store is lost unless you want to pick up a snack. On the flipside, however, this area of the store is just a secondary portion for its real advertized purpose.");
+		output("\n\nDisengaging from the thick stacks of various knick-knacks you move to the back of the store where the cashier counter is manned by the owner of the store: ‘Crazy’ Carl. Or at least you can assume, given the simple jerkin with his name tag attached to it. The man rests laid back in his comfortable-looking office chair, hands in his lap with a book reader tucked away off to the side while he gives you his full attention like the polite business man he seems to be. You’re not entirely sure how long he has been waiting at attention for you, but you don’t pay it any mind.");
+		output("\n\nCarl is old. With the advances in medical science you can hardly venture a guess at his age, but you can still tell he is <i>old</i>. A fully bald human male with little tufts of white hair ringing his shiny dome and thicker tufts appearing on his chin in the form of a well-kempt beard. His skin is fairly clean outside of a few natural blemishes on his cheeks, the product of a modern age; no liver spots, discolorations or anything of the sort. Beyond all that he actually looks pretty fit, too, with thick arms and a stocky sort of appearance, especially with his slight lack of stature. Altogether he looks to be the pinnacle of health, even if he is an old coot. He’s all smiles as you approached the counter, bright blue eyes glittering. Evidently he’s the jovial sort.");
+		output("\n\nWhat’s behind him practically sets your mental image of him in stone: not mere desks and paperwork like you’d expect from an office space, but instead raw works of industry. Large machines, certainly bigger than you, sprawl across the narrow space behind him. It’s set up so there is only room to settle in one spot, though that’s likely intentional, keeping it all accessible from that one position. Cramped, but efficient.");
 	}
 	else
 	{
-		output("You enter the pre-fabricated building once again, finding that nothing has really changed. Briefly you’re pleasantly distracted by the refreshingly cool air conditioned atmosphere in contrast to the more muggy air outside, let alone the constant burning smell niggling at your senses. The array of aisles are stocked just as much as last time, though just like every other time you don’t really need anything in the convenience section, either.");
+		output("You enter the pre-fabricated building once again, finding that nothing has really changed. You’re pleasantly distracted by the cool, air-conditioned atmosphere in contrast to the more muggy air outside. It would be more pleasant if it wasn't for the constant burning smell niggling at your senses. The array of aisles are stocked with just as much as last time, though just like every other time you don’t really need anything in the convenience section.");
 		output("\n\nMilling past the goods absently you make your way to the back counter, where the old coot sits as always. Carl is pretty quick to glance up from his reader to give you a smile.");
 	}
 	addButton(0,"Carl",insideCarlsShop);
@@ -79,18 +79,19 @@ function chatWithCrazyCarlAboutHim():void
 	output("\n\nYou get a solid scoff out of him when you glance behind yourself into the simplistic stock, pointedly.");
 
 	output("\n\n\"<i>Ha! Ya think this is my main place of business? Nah, I’m retired! Technically, anyway. This is more of a hobby then a real bit of work now. Only gonna be out here for a bit. Got a bit stir crazy and hey, lil cuz’ got married. Might as well step in and mind the store for a bit so she can have a lively time, eh? I’ll head back home when she’s done and see to a bit of civilization n’ life in the mean time. Everyone wins!</i>\"  There is a short little pause before he bashfully murmurs, \"<i>Well. Such as it is, anyway.</i>\"");
-	output("\n\nThere is a chuckle from you response. Still, you find yourself a bit curious; how’d he make his fortune? This sort of work pays pretty well, sure, but it’s not exactly constant.");
+	output("\n\nThere is a chuckle from you in response. Still, you find yourself a bit curious; how’d he make his fortune? This sort of work pays pretty well, sure, but it’s not exactly constant.");
 	output("\n\n\"<i>Ah... kicked off way back when, prolly why you haven’t heard of me. Might not of born yet even, sprout! Way back when I was just a pretty proficient, prolific craftsman. All sorts of shooters, just not a lot of clients n’ fame to go ‘round. Then comes around a future-legend, buys up a massive load of my stock over the course of a few months and sets me off as a result. Tinkered with his stuff when he needed it, too, but mostly just was a shop keep. Said who he got his prized guns from and my popularity shot up, heh. Had a place everywhere, pretty big deal. Started to die down ‘gain, though, and I got old enough to start wantin’ to liquidate and sell off my assets to retire. Now it’s just a few stores run by my family that’s in the business usin’ the name to get them by.</i>\"  His expression reeks of nostalgia as his mind wanders, shaking his head with a fat grin. \"<i>Ah, Victor Steele. Good lad, him, wonder how he’s doing...</i>\"");
 	processTime(3);
 	//*Unlocks about dad*
 	flags["CRAZY_CARL_DAD_TALK_UNLOCKED"] = 1;
 	carlTalkMenu();
+	removeButton(0);
 }
 
 //About store
 function aboutCrazyCarlsStore():void {
 	clearOutput();
-	output("One of the more catching questions you have is one of the first ones you had; <i>Crazy Carl’s Crude Cylinder Collection Cache</i>?");
+	output("One of the more catching questions you have is one of the first ones you had: <i>'Crazy Carl’s Crude Cylinder Collection Cache'</i>?");
 	output("\n\nCarl immediately responds with a loud, jovial guffaw. \"<i>Ha! I’ll say, yeah! Quite the eye catcher, ain’t it? Sticks in yer head. The original when I was younger and a bit of a sprout was just ‘Carl’s Gunshow’, ya can think of how well that turned over.</i>\"");
 	output("\n\nEh. That could work.");
 	output("\n\n\"<i>Nawh, now this place... lil’ neice, not eight years old, was listening in when I was talking about the place. Told me she thought it was dumb, ought to name it somethin’ else. Gave her a few days to think of one’, just to keep her busy. Slams down that number and - ho boy! Didn’t even know they taught those words just yet, surprising lil’ tyke. Had a good laugh with it, stuck with my word and slapped it on. Good idea in the long run, got quite a bit more returning folks over it. Strangely, alliteration keeps better than a childish joke.</i>\"");
@@ -101,17 +102,19 @@ function aboutCrazyCarlsStore():void {
 	output("\n\nSimple enough.");
 	processTime(1);
 	carlTalkMenu();
+	removeButton(1);
 }
 
 //About Dad
 function aboutThePCsDad():void {
 	//*Available after About Carl*
 	clearOutput();
-	output("You’re admittedly a little incredulous about one ‘small’ detail. Leaning forward you make a show of awe, \"<i>You knew Victor Steele?</i>\"  Not the greatest acting, but it was passable.");
-	output("\n\n\"<i>Oh yeah, before he got famous even.</i>\"  The old man leans back in his chair, causing it to creak in complaint as the thick smile on his face grows farther. It looks like he’s reminiscing about matters, though his silent reprieve didn’t last. \"<i>Bit of a weirdo back then, though. Wry thing, ran around willy nilly and got into everyone’s business. Got arrested for wanderin’ to folks houses a few times, even. Anyway. Once the lad got going he actually kept comin’ back to my place. Said he liked the name. Only one that ‘stood out’. Decided to buy one of everythin’ for ‘collection’s sake’ until he actually did. Of course, back then my stock was a lot bigger than what you see out here. Heh... he always said where he got ‘em, too. Good business.</i>\"");
+	output("You’re admittedly a little incredulous about one ‘small’ detail. Leaning forward, you make a show of awe.  \"<i>You knew Victor Steele?</i>\"  Not the greatest acting, but it was passable.");
+	output("\n\n\"<i>Oh yeah, before he got famous even.</i>\"  The old man leans back in his chair, causing it to creak in complaint as the thick smile on his face grows wider. It looks like he’s reminiscing about matters, though his silent reprieve doesn’t last. \"<i>Bit of a weirdo back then, though. Wry thing, ran around willy-nilly and got into everyone’s business. Got arrested for wanderin’ to folks houses a few times, even. Anyway. Once the lad got going he actually kept comin’ back to my place. Said he liked the name. Only one that ‘stood out’. Decided to buy one of everythin’ for ‘collection’s sake’, then he actually did. Of course, back then my stock was a lot bigger than what you see out here. Heh... he always said where he got ‘em, too. Good business.</i>\"");
 	output("\n\nCertainly sounds like dad.");
 	processTime(1);
 	carlTalkMenu();
+	removeButton(2);
 }
 
 //About that robot
@@ -131,7 +134,7 @@ function aboutTheRobotFromCrazyCarl():void {
 
 		//Kind, mischevious:
 		if(!pc.isAss()) output("\n\nYou hold your hands up and try to reassure the old man; you’re not the hottest shit this side of the galaxy, but you can manage.");
-		else output("\n\nYou scoff defensively, reassuring the old coot that nothing on this planet could slow you down, let alone a out of control bot.");
+		else output("\n\nYou scoff defensively, reassuring the old coot that nothing on this planet could slow you down, let alone an out-of-control bot.");
 
 		output("\n\n\"<i>Well, at least you’re a bit more ");
 		if(!pc.isAss()) output("humble");
@@ -152,16 +155,17 @@ function aboutTheRobotFromCrazyCarl():void {
 	//During
 	else if(flags["ROBOT_QUEST_COMPLETE"] == undefined)
 	{
-		output("\n\n\"<i>Eh? Got any news on the bot?</i>\"");
+		output("\"<i>Eh? Got any news on the bot?</i>\"");
 		output("\n\nYou shake your head. Nothing thus far, sadly.");
 		output("\n\n\"<i>Ah, well. I ain’t expecting much. Keep snoopin’ about if you run around in the ferns. I’ll have something for ya if you do, but I can’t give you anythin’ for trying. Don’t get stung by the locals, though.</i>\"");
 		processTime(1);
 		carlTalkMenu();
+		removeButton(3);
 	}
 	//Completion
 	else
 	{
-		output("\n\n\"<i>Ah, yes!</i>\"  Carl brightens the moment you bring the subject up, rolling his creaking chair back to tug something out from underneath the counter - the machina! Pretty beat up, mostly courtesy of you, but intact. If currently limp and inert, anyway. \"<i>Ya got it back in good shape! Workin’ shape, anyway. Just need for the manufacture to toss me with the diagnostic information and it’ll be floatin’ ‘round being a bother yet again. Ya did good, sprout! Gotta say I’m even a bit surprised.</i>\"");
+		output("\"<i>Ah, yes!</i>\"  Carl brightens the moment you bring the subject up, rolling his creaking chair back to tug something out from underneath the counter - the machina! Pretty beat up, mostly courtesy of you, but intact. If currently limp and inert, anyway. \"<i>Ya got it back in good shape! Workin’ shape, anyway. Just need for the manufacture to toss me with the diagnostic information and it’ll be floatin’ ‘round being a bother yet again. Ya did good, sprout! Gotta say I’m even a bit surprised.</i>\"");
 		output("\n\nTempering your welling pride you");
 		if(!pc.isAss()) output(" bashfully hold back your bravado");
 		else output("smirk");
@@ -170,7 +174,9 @@ function aboutTheRobotFromCrazyCarl():void {
 		output("\n\n\"<i>Nawh, I’m good. But you deserve something for it. While the bot ain’t workin’ right, I can still make do with its tools, so I finished up that rifle you were spyin’ earlier.</i>\"  Carl reaches down and leaves the rag-doll of a robot back down under the desk, coming up with the stylishly purple weapon you pointed out not that long ago! He holds it out towards you so you can appraise it as he speaks, the gleam of light giving it an attractive shine. \"<i>The ZK rifle! Slug magazines and a rail thrower. Real beauty, this thing. Did some modifications to it here and there. Actions smoothed out and tapered down. See the input panel by the trigger? Fixed the wiring and gave it new lining, buttons are subtle to prevent anything catching on them and the spring needs direct force. The input for the bayonet was removed - never made - and instead more coolant coils were added around the barrel, all smoothed out to keep it balanced. Swapped out the old sight for a corrective pop out one - a reflexive. Still can land shots at range with it. Did as much as I could with the barrel, but the ZK’s inherent design flaw is that the mass rails warp with each shot. Inset in the barrel was dug in more, but short of absolutely redesigning the firearm as a whole there isn’t anything you can do for that.</i>\"");
 
 		// SKIP DIS: *If non-mercenary: You nod dizzily, having difficulty parsing the wealth of information as he throws at you. Slowly you catch up with the rambling and are able to piece it together; he took a pretty good gun and made it a even more reliable gun.*
-		output("\n\nFollowing along without missing a beat you nod firmly in understanding. The ZK series was already known for being a solid go-to carbine and this fixes up some of the flaws. A less egregious action that won’t catch on anything, reinforcement prevents the vulnerable wiring from being affected by environmental circumstances or attacks and the poor accuracy has been approved by adding more coolant, making the rails take longer to heat up and warp. The weapon is still marked for short ranges, but you’re confident that you would have a much more dependable weapon.");
+		output("\n\nFollowing along without missing a beat, you nod firmly in understanding. The ZK series was already known for being a solid go-to carbine and this fixes up some of the flaws. A less egregious action that won’t catch on anything, reinforcement prevents the vulnerable wiring from being affected by environmental circumstances or attacks and the poor accuracy has been improved by adding more coolant, making the rails take longer to heat up and warp. The weapon is still marked for short ranges, ");
+		if(pc.rangedWeapon.damage < 13) output("but you’re confident that you would have a much more dependable weapon.");
+		else output("of course.");
 		output("\n\n\"<i>And it’s yours. As a reward.</i>”");
 
 		output("\n\nQuite the expensive reward!");
@@ -188,11 +194,13 @@ function aboutTheRobotFromCrazyCarl():void {
 
 		output("\n\n\"<i>Oh, good. Wouldn’t want this to get miss cousin in trouble with the sheriff, now. Here ya are.</i>\"");
 
-		output("\n\nYou barely hide your eagerness as you reach forward, taking the mean piece of rifle in your hand. This is your gun. There are many like it, but this one is now mine.");
+		output("\n\nYou barely hide your eagerness as you reach forward, taking the mean piece of rifle in your hand. This is your gun. There are many like it, but this one is now yours.");
 		//*Rifle get! Removes quest from chat menu.*
 		flags["ROBOT_QUEST_COMPLETE"] = 2;
 		processTime(4+rand(3));
-		//9999
+		eventQueue[eventQueue.length] = lootZKRifle;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
 	}
 }
 
@@ -202,10 +210,11 @@ function flirtWithCarl():void {
 	output("Time for a little fun.");
 	output("\n\nCasually you lean forward against the countertop, pressing your pelvis into it firmly. You jut your torso forward, shoving your [pc.chest] into the air confidentiality as you further loom over the counter. Already you’re practically across it and in Carl’s face - his somewhat amused, though unimpressed face. Er.");
 	output("\n\n\"<i>Heh, look at you.</i>\"  He quips, that mirthful tone still in his voice. \"<i>Glad to know I still got it, but... " + pc.mf("I'm afraid the hubby wouldn't really approve.","I’m afraid you’re just not my type.") + " I’m a business man, anyway; work and pleasure are separate. So... scoot off my counter, sprout.</i>\"");
-	output("\n\nThat backfired pretty badly, but at least Carl rejected you good stride and amusement instead of being offended.");
+	output("\n\nThat backfired pretty badly, but at least Carl rejected you in good stride and amusement instead of being offended.");
 	processTime(1);
 	//*Remove Flirt from options*
 	carlTalkMenu();
+	removeButton(4);
 }
 
 //Shop
@@ -220,7 +229,9 @@ function crazyCarlShop():void {
 	addItemButton(1, new MagnumPistol(), magnumPistolBuyTalk);
 	addItemButton(2, new LaserPistol(), lasPistolBuyTalk);
 	addItemButton(3, new TheShocker(), shockerBuyTalk);
-	addButton(14,"Back",insideCarlsShop);
+	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addItemButton(4, new ZKRifle(), zkRifleCarlTalk);
+	else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(4, "ZK Rifle");
+	addButton(14,"Back",insideCarlsShop); 
 }
 
 //[Hammer Pistol]
@@ -346,6 +357,7 @@ function lootLaserPistol():void {
 	//Start loot
 	itemCollect(foundLootItems);
 }
+
 function lootMagnumPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
@@ -371,6 +383,18 @@ function lootHammerPistol():void {
 	itemCollect(foundLootItems);
 }
 
+function lootZKRifle():void {
+	clearOutput();
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new ZKRifle();
+	//Set quantity!
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
 //[ZK Rifle]
 function zkRifleCarlTalk():void {
 	clearOutput();
@@ -401,122 +425,193 @@ function sellToCarl():void {
 }
 
 //Questin’
-//Overview
-/*
+/*Overview
+
 The forge machina is a mini-boss for that point of the game, designed to give the player a hard time and prepare themselves with level-appropriate gear, items and so forth ahead of time for a rather juicy reward. The fight is triggered after you talk to Carl and get it off him, then go galavanting around the wilderness - it’s a random encounter, mixed in with whatever else. 
 
 If the PC loses the fight, it’s a game over. But a soft-game over, as it just kicks the PC out to into the area they were in at full-health again for a second chance. I don’t want to fuck over a player who didn’t expect a hard boss, nor fuck them over by being weird about losing a fight and denying them the quest reward. 
 
-Being a robot, an industrial robot at that, it is not susceptible to lust attacks. Not sure what its weakness/etc would be, though. Standard robot template? *Wavey arms*
+Being a robot, an industrial robot at that, it is not susceptible to lust attacks. Not sure what its weakness/etc would be, though. Standard robot template? *Wavey arms*/
 
-Intro
+//Intro
+function carlsEncounterStart():Boolean {
+	if(flags["ROBOT_QUEST_COMPLETE"] == undefined)
+	{
+		clearOutput();
+		output("You crunch your way through the brush, swatting irritability at the odd fern that decides to accost you - which is most of them. As much as you’d like to avoid it, the thick, choking ferns rattle with every step you make rather noisily. The jungle life isn’t exactly quiet either, what with the shrill cries of the birds and bees. And the local avian and bee-inspired population, too. Despite all the noise, however, you can still make out something distinctly unnatural whispering from a bit away, like thick fans of some bit of industrial machinery. Like, say, something that hovers.");
+		output("\n\nYou glance down to your codex, curiously. The scanner doesn’t appear to be detecting anything, though whether it’s because whatever is making the noise doesn’t register as a threat or its simply out of the diminutive range you’re not sure. Figures. Probably just a survey probe drone....");
+		output("\n\nThe task of finding Carl’s wayward robot suddenly springs to mind. That’s probably it! You thrust your way through the greens once again, yanking at any leaves that come your way for propulsion as you chase after that whispering sound. Soon enough it gets louder and louder, until....");
+		output("\n\nYou poke your head out from a bush and find yourself looking into a clearing in the jungle floor. While there are plenty of low hanging plants still, the sky is mercifully visibly up above and the space is relatively clear of trees and other obstructions, at least any tall ones. A perfect arena to fight the prey that’s hovering in the middle!");
+		output("\n\nThe machina isn’t exactly large as far as industrial robots go, about the size of an average human torso - just like Carl said. The machine looks to be comprised of two steel-grey colored parts; a circular core, shaped in a way very similar to a tire made of uncompromising metal while the top is a sometimes-translucent dome, with an insignificant gap in between the two pieces. Small, flickering lights shines through the faux-glass, identifying its various visible sensors and the likes. Below, attached to the undercarriage is the main concern, though; a dozen spindly little robotic arms all holding onto various tools and gadgets. You recognize one of them as a welder, while there are a few grasping hands among them. Everything else is a bit of a toss-up, though.");
+		output("\n\nYou look away from the machine after a moment, surveying the ‘arena’ as you realize something smells off. The smell of death fills your nostrils for one grisly moment as you realize just what that corrupted machine has been doing to the local wildlife. As a point of order, it lifts up the corpse of a small local marsupial from the cloak of leaves in its grasping hand, tugging out its messy bones before chirping.");
+		output("\n\n<i>“Insufficient material.”</i>");
+		output("\n\nThat’s... rather macabre!");
+		if(silly) output(" The worst kind of fell mood!");
 
-You crunch your way through the brush, swatting irritability at the odd fern that decides to accost you - which is most of them. As much as you’d like to avoid it the thick, choking ferns rattle with every step you make rather noisily. The jungle life isn’t exactly quiet either, what with the shrill cries of the birds and bees. And the local avian and bee-inspired population, too. Despite all the noise, however, you can still make out something distinctly unnaturally whispering from a bit away, those thick fans of some bit of industrial machinery. Like, say, something that hovers.
+		output("\n\nYou know full well this is Carl’s machina, gone off the deep end with whatever programming corruption it received. You’ll have to defeat this thing before it hurts someone - or someone else maybe, you can’t see the mess under the sometimes bloodied plants.");
+		output("\n\n<b>This will be a hard fight</b> just looking at the tools its carrying and it’s thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>");
+		output("\n\nThe machina hasn’t noticed you yet, though. You could engage it or fight another day.");
+		//[Fight] [Back off]
+		clearMenu();
+		addButton(0,"Fight",startCombat,"machina");
+		addButton(1,"Back Off",move,"GIANT LEAVES 2");
+		return true;
+	}
+	else {
+		return jungleDeepEncounters();
+	}
+}
 
-You glance down to your codex, curiously. The scanner doesn’t appear to be detecting anything, though whether it’s because whatever is making the noise doesn’t register as a threat or its simply out of the diminutive range you’re not sure. Figures. Probably just a survey probe drone...
-
-The task of finding Carl’s wayward robot suddenly springs to mind. That’s probably it! You thrust your way through the greens once again, yanking at any leaves that come your way for propulsion as you chase after that whispering sound. Soon enough it gets louder and louder, until...
-
-You poke your head out from a (safe, unthroned) bush when the sound gets particularly noisy and find yourself looking into a clearing in the jungle floor. While there are plenty of low hanging plants still, the sky is mercifully actually visibly up above and the space is relatively clear of trees and other obstructions, at least any tall ones. A perfect arena. Like to fight the prey that’s hovering in the middle!
-
-The machina isn’t exactly large as far as industrial robots go, about the size of your torso - just like Carl said. The machine looks to be comprised of two steel-grey colored parts; a circular core, shaped in a way very becoming of a *Random: tire/tyre* made of uncompromising metal while the top was a sometimes-translucent dome, with a insignificant gap in between the two pieces. Small, flickering lights shined through the faux-glass, identifying its various visible sensors and the likes. Below, attached to the undercarriage was the main concern, though, a dozen of spindly little robotic arms all holding onto various tools and gadgets. You recognize one of them was a welder, for instance, while there were a few grasping hands among them. Everything else is a bit of a toss-up, though.
-
-You look away from the machine after a moment, surveying the ‘arena’ as you realize something smells off. The smell of death fills your nostrils for one grizzly moment as you realize just what that corrupted machine has been doing to the local wildlife. As a point of order, it lifts up the corpse of a small local marsupial from the cloak of leaves in its grasping hand, tugging out its messy bones before chirping.
-
-“Insufficient material.”
-
-That’s... rather macabre! *Silly-and-referencing mode: The worst kind of fell mood!*
-
-You know full well this is Carl’s machina, gone off the deep end with whatever programming corruption it received. You’ll have to defeat this thing before it hurts someone - or someone else maybe, you can’t see the mess under the sometimes bloodied plants.
-
-<b>This will be a hard fight</b> just looking at the tools its carrying and it’s thick, industrial nature. Given the scene, <b>you’re not sure you’d make it out if you lose.</b>
-
-The machina hasn’t noticed you yet, though. You could engage it or fight another day.
-
-[Fight] [Back off]
-
-FIGHTAN’
-The Forge Machina
-Description
-
-The robot hovers in the air, spindly arms twitching and flicking in the air at every moment. It’s steel-grey dome has lost it’s shine from both combat and the fatigue of the jungle, though it still looks fully operational and, at the moment, lethal. Each of its many tools are pointed at you, threateningly. You’re in for it now!
+//FIGHTAN’
+/*The Forge Machina
 
 Mechanics
-Miss Text: The machina lazily lists to the side unexpectedly causing your attack to go wayward!
-Block Text: *Melee: The machina’s grasping tongs reach up and catch your *weapon* with ease, pushing it harmlessly off to the side and sending to sprawling over.* *Ranged: The machina’s thick plates cause the imprecise shot to glance off into the wilderness! *Sily modo: Was that a squawk? Whoops.**
 AI: No lust attacks, immune to lust. Uses normal attacks, spinner at a 30-40% chance and the weld-gun n repair at a 30% chance after it goes under 50%. Suicide is only at under 10%~ and is a surefire thing. The encounter ends if it fails. (And ends normally by HP, otherwise.)
-
-Normal
-The machine jerks towards you, zig-zagging unexpectedly as it closes in - one of the grasping appendages reaches out to club at you!
-
-Spinner
-You hear a loud whir from the corrupt machine before it jerks forwards, coming at you as the main body starts to rotate. Not too soon after it is spinning at a blur of a pace, appendages sprawled outwards and in range of you! Watch out!
-*Up to twelve normal damage attacks.*
-
-Weld-gun
-One of the machine’s appendages raises upwards and flattens out in the span of half a second, molten-red flames bursting out and flying across the arena at you! The intense heat only lasts for a moment, however, as the modified welder immediately over heats and forces the flame to stop.
-
-Repair!
-*On the turn before*
-As it attacks the spare appendages race up its form and begins to mend the damage to its structure! You’ll have to jostle it before it completes!
-*That turn, PC does good damage*
-Your attack causes the machine to bounce severely, the tool-appendages breaking away from the machine and falling back downwards. You prevented it from repairing!
-
-*That turn, if PC does poor damage.*
-
-You were unable to shake the robot up enough to interrupt it, so now you can only watch as the holes of damage and scarred metal are mended before your very eyes, showing just how vain your progress was.
-
-Suicide bullshit
-Rattled and damaged, even smoking somewhere, the machina wobbled closer to the earth. You relax a bit, thinking that this might be the robot’s final ‘death throes’. You’re quick to go back on the alert as the machine reaches into the brush with a grasping appendage, pulling out... a weapon?! You are not sure what sort it is, too dirty and masked by plants and <i>other</i> things, but you don’t have a lot of time to figure out. The thick firearm explodes out in short order, sending a massive pellet your way!
-
-*PC survives by HP, dodging, whatever.*
-
-Seeing its failure, the machine goes to do it again - this time, though, the weapon explodes in a <i>different</i> way; you manage to duck as sharpnel goes flying over your head from the faulty firearm, though it’s the machina that takes the brunt of the blast. As you raise back up you hear a pathetic sounding whir, it petering out to nothing in short order. You’re left with a crumpled heap of a machine on the jungle floor.
-
-*PC doesn’t.*
-
-Seeing its success the machine tosses away the firearm in short order, though as you fall backwards in pain you’re really in the mindset to care.
-
-
-Victory!
-SHIT YEAH I PRESS THAT BUTTON
-looks kinda like a jelly fish
-
-You loom over the fallen, inert machine as it lays there sprawled across a particularly large, low-hanging fern. After you give it a few kicks to make sure, you are confident that the robot has been knocked out from the damage. You feel a swell of pride kick up in your chest at the victory, though that immediately starts to falter under the realization you still need to lug this thing back. Ugh.
-
-You lean over the machine, brushing off the limp appendage-arms to either side. Looks a awful lot like a jellyfish, come to think of it. You recall Carl saying there was a factory-reset button somewhere in the undercarriage, so reach your hand into the mess and grope about. The outlet for its coolant, a few wires here and there. A button, a vent for what you can only assume is-- Wait, a button. You press in on the small, out of the way thing firmly.
-
-Immediately the robot chirps and you yank your hand away, preparing to go back to fighting. However, instead of aggression the machine lazily hovers itself upright, spins in place once and then continues upwards. You can only watch as it rises up past the trees and floats to off to the side - towards town, you realize. Looks like it’s going to what it considers home after you reset it.
-
-...
-
-Well that works.
-
-<b>Best speak with Carl when you get back.</b>
-
-Defeat, bad end...
-
-Pain.
-
-You are wracked by waves and waves of pain, your vision becoming a hazy blur as your body falls against the thick ferns and other plants below. You can feel the remains of people who tried and failed much like you did against you, knowing full well that you’ll be among them soon. As the machine loomed closer, tools giving an ominous whir that sings out the erratic melody of your doom you close your eyes, resigned.
-
-This is how the handpicked heir of Steele goes out. Not in a blaze of glory, not from sexual fatigue, not from old age after fucking over the life of your test tube baby. No, from a fucking gun smith’s attendant robot.
-
-...
-
-...
-
-[Next]
-
-But we don’t want to see that.
-
-This is how it <b>really</b> happened.
-
-*Bonus content: On ‘game over’ repeat:
-
-C’mon, you’re killing me here. Let’s try this again;
-
-This is how it <b>really</b> happened.*
-
-*Cuts back to the area, full health. Not in the fight again.*
 */
+
+function machinaAI():void {
+	if(foes[0].HP() <= foes[0].HPMax() * .1) suicideBullshit();
+	//Repaaaaaiiiiiiir
+	else if(foes[0].hasStatusEffect("Repair Queued") || (foes[0].HP() < foes[0].HPMax()/2 && rand(10) <= 2))
+	{
+		botRepairGo();	
+	}
+	else if(foes[0].HP() < foes[0].HPMax()/2 && rand(10) <= 2) weldGunAttack();
+	else if(rand(3) == 0) theSpinner();
+	else machinaAttackNormal();	
+}
+
+//Normal
+function machinaAttackNormal():void {
+	output("The machine jerks towards you, zig-zagging unexpectedly as it closes in - one of the grasping appendages reaches out to club at you!\n");
+	foes[0].physique(5);
+	attack(foes[0],pc,false,0);
+	foes[0].physique(-5);
+}
+
+//Spinner
+function theSpinner():void {
+	output("You hear a loud whir from the corrupt machine before it jerks forwards, coming at you as the main body starts to rotate. Not too soon after it is spinning at a blur of a pace, appendages sprawled outwards and in range of you! Watch out!\n");
+	//*Up to seven normal damage attacks.*
+	foes[0].meleeWeapon.damage -= 3;
+	attack(foes[0],pc,true,1);
+	output("\n");
+	attack(foes[0],pc,true,1);
+	output("\n");
+	attack(foes[0],pc,true,1);
+	output("\n");
+	attack(foes[0],pc,true,1);
+	output("\n");
+	if(rand(2) == 0) {
+		attack(foes[0],pc,true,1);
+		output("\n");
+	}
+	if(rand(3) == 0) 
+	{
+		attack(foes[0],pc,true,1);
+		output("\n");
+	}
+	attack(foes[0],pc,false,1);
+	foes[0].meleeWeapon.damage += 3;
+}
+
+//Weld-gun
+function weldGunAttack():void {
+	output("One of the machine’s appendages raises upwards and flattens out in the span of half a second, and molten-red flames burst out and fly across the arena at you! The intense heat only lasts for a moment, however, as the modified welder immediately overheats.");
+	var damage:int = 10+rand(5);
+	genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	processCombat();
+}
+
+//Repair!
+function botRepairGo():void {
+	//*On the turn before*
+	if(!foes[0].hasStatusEffect("Repair Queued"))
+	{
+		output("As it attacks, the spare appendages race up its form and begin to mend the damage to its structure! You’ll have to jostle it if you want to stop it before it completes!");
+		foes[0].createStatusEffect("Repair Queued",foes[0].HP(),0,0,0,true,"","",true,0);
+	}
+	//*That turn, PC does good damage*
+	else if(foes[0].statusEffect("Repair Queued") > foes[0].HP() + 10)
+	{
+		output("Your attack causes the machine to bounce severely, and the tool-appendages fall away from the chassis. You prevented it from repairing!");
+		foes[0].removeStatusEffect("Repair Queued");
+	}
+	//*That turn, if PC does poor damage.*
+	else
+	{
+		output("You were unable to shake the robot up enough to interrupt it, so now you can only watch as the holes of damage and scarred metal are mended before your very eyes, showing just how vain your progress was.");
+		foes[0].HP(Math.round(foes[0].HPMax()/3));
+		foes[0].removeStatusEffect("Repair Queued");
+	}
+	processCombat();
+}
+
+//Suicide bullshit
+function suicideBullshit():void {
+	output("Rattled and damaged, even smoking somewhere, the machina wobbles closer to the earth. You relax a bit, thinking that this might be the robot’s final ‘death throes’. You’re quick to go back on the alert as the machine reaches into the brush with a grasping appendage, pulling out... a weapon?! You are not sure what sort it is, too dirty and masked by plants, but you don’t have a lot of time to figure out. The thick firearm explodes out in short order, sending a massive pellet your way\n\n!");
+
+	//insert miss chances, damage, etc
+	if(rangedCombatMiss(foes[0],pc)) {
+		output("You dodge out of the way!");
+	}
+	//Blind chances!
+	//Extra miss for blind
+	else if(foes[0].hasStatusEffect("Blind") && rand(10) > 0) {
+		output(foes[0].capitalA + possessive(foes[0].short) + " blinded shots fail to connect!");
+	}
+	//Shit, got hit.
+	else
+	{
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " massive gun!");
+		//Damage bonuses:
+		var damage:int = 15 + foes[0].aim()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		//Apply damage reductions
+		if(pc.shieldsRaw > 0) {
+			sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
+			//Set damage to leftoverDamage from shieldDamage
+			damage = sDamage[1];
+			if(pc.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
+			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+		}
+		if(damage >= 1) {
+			damage = HPDamage(pc,damage,foes[0].rangedWeapon.damageType,"ranged");
+			if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
+			else output(" (<b>" + damage + "</b>)");	
+		}
+	}
+	//*PC survives by HP, dodging, whatever.*
+	if(pc.HP() >= 1 && pc.lust() <= 99) {
+		output("\n\nSeeing its failure, the machine prepares to fire again - this time, though, the weapon explodes in a <i>different</i> way; you manage to duck as shrapnel goes flying over your head from the faulty firearm, and it’s the machina that takes the brunt of the blast. As you raise back up you hear a pathetic sounding whir, petering out to nothing in short order. You’re left with a crumpled heap of a machine on the jungle floor.");
+		foes[0].HP(-1000);
+	}
+	//*PC doesn’t.*
+	else output("\n\nSeeing its success the machine tosses away the firearm in short order, though as you fall backwards in pain you’re not really in the mindset to care.");
+	processCombat();
+}
+
+//Victory!
+//SHIT YEAH I PRESS THAT BUTTON
+//looks kinda like a jelly fish
+function pushButtanOnMagicTedsFireRobot():void {
+	output("You loom over the fallen, inert machine as it lays there sprawled across a particularly large, low-hanging fern. After you give it a few kicks to make sure, you are confident that the robot has been knocked out from the damage. You feel a swell of pride kick up in your chest at the victory, though that immediately starts to falter under the realization you still need to lug this thing back. Ugh.");
+	output("\n\nYou lean over the machine, brushing off the limp appendage-arms to either side. It looks an awful lot like a jellyfish, come to think of it. You recall Carl saying there was a factory-reset button somewhere in the undercarriage, so reach your hand into the mess and grope about. The outlet for its coolant, a few wires here and there. A button, a vent for what you can only assume is-- Wait, a button. You press in on the small, out-of-the-way thing firmly.");
+	output("\n\nImmediately the robot chirps and you yank your hand away, preparing to go back to fighting. However, instead of aggression the machine lazily hovers itself upright, spins in place once and then continues upwards. You can only watch as it rises up past the trees and floats to off to the side - towards town, you realize. Looks like it’s going to what it considers home after you reset it.");
+	output("\n\n<b>Best speak with Carl when you get back.</b>\n\n");
+	flags["ROBOT_QUEST_COMPLETE"] = 1;
+	genericVictory();
+}
+
+//Defeat, bad end...
+function ohShitLoseToRobot():void {
+	if(pc.lust() > 99) output("Though you sink to your knees in need, that all changes when the robot fires a huge metal slug at you.\n\n");
+	output("Pain.");
+
+	output("\n\nYou are wracked by waves and waves of pain, your vision becoming a hazy blur as your body falls against the thick ferns and other plants below. You can feel the damp ground all around you, knowing it'll be the last thing you'll get to feel - besides pain. As the machine looms closer, tools whirring ominously, you close your eyes, resigned.");
+	output("\n\nThis is how the handpicked heir of Steele goes out. Not in a blaze of glory, not from sexual fatigue, not from old age after fucking over the life of your test tube baby. No, from a fucking gun smith’s attendant robot.");
+	badEnd();
+}

@@ -155,7 +155,7 @@ function initializeRooms():void
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
 	rooms["WEST ESBETH 1"].roomName = "WEST\nESBETH";
-	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends forther to the north and continues straight on to the south. The buildings are all closed and locked here, for now.\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front purpose: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.";
+	rooms["WEST ESBETH 1"].description = "The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends forther to the north and continues straight on to the south. The western building is closed and locked, for now.\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front purpose: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.";
 	rooms["WEST ESBETH 1"].planet = "PLANET: MHEN'GA";
 	rooms["WEST ESBETH 1"].system = "SYSTEM: ARA ARA";
 	rooms["WEST ESBETH 1"].southExit = "WEST ESBETH 2";
@@ -1019,12 +1019,13 @@ function initializeRooms():void
 	//83. Giant\nLeaves
 	rooms["GIANT LEAVES 3"] = new RoomClass(this);
 	rooms["GIANT LEAVES 3"].roomName = "GIANT\nLEAVES";
-	rooms["GIANT LEAVES 3"].description = "There's nothing but leaves in every direction except north. Every other way is just a wall of torso-sized, shimmering fronds. They're even above you, glistening dully with collected moisture. It looks like a dead end, for now. You can either hang around here or go back through the dense plants to the north. <b> Fen might put a unique encounter or one-time item here later on.</b>";
+	rooms["GIANT LEAVES 3"].description = "There's nothing but leaves in every direction except north. Every other way is just a wall of torso-sized, shimmering fronds. They're even above you, glistening dully with collected moisture. It looks like a dead end, for now. You can either hang around here or go back through the dense plants to the north.";
 	rooms["GIANT LEAVES 3"].planet = "PLANET: MHEN'GA";
 	rooms["GIANT LEAVES 3"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 3"].northExit = "GIANT LEAVES 2";
 	rooms["GIANT LEAVES 3"].addFlag(GLOBAL.OUTDOOR);
-	rooms["GIANT LEAVES 3"].runOnEnter = jungleDeepEncounters;
+	rooms["GIANT LEAVES 3"].runOnEnter = carlsEncounterStart;
+
 
 	//84. Purple\nFlowers
 	rooms["PURPLE FLOWERS 1"] = new RoomClass(this);

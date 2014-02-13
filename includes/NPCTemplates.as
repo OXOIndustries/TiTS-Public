@@ -83,6 +83,10 @@
 	{
 		chars["NALEEN_MALE"] = new classes.Characters.NaleenMale();
 	}
+	if (!justUpdate || (justUpdate && chars["MACHINA"] == undefined))
+	{
+		chars["MACHINA"] = new classes.Characters.CarlsRobot();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
