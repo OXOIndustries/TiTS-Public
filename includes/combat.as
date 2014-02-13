@@ -1184,8 +1184,6 @@ function startCombat(encounter:String):void
 	flags["DRONE_TARGET"] = undefined;
 	combatStage = 0;
 	hideMinimap();
-	userInterface.resetNPCStats();
-	showNPCStats();
 	pc.removeStatusEffect("Round");
 	foes = new Array();
 	
@@ -1226,6 +1224,9 @@ function startCombat(encounter:String):void
 			break;
 	}
 	combatMainMenu();
+	userInterface.resetNPCStats();
+	showNPCStats();
+	updateNPCStats();
 }
 
 function runAway():void {
