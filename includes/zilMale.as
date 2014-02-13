@@ -114,7 +114,9 @@ function zilHoneyDrip():void {
 function flurryOfBlows():void {
 	output("The zil launches a flurry of blows in your direction!\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,false,1);
 }
 //Flying Spinkick:
@@ -182,7 +184,7 @@ function zilDrop():void {
 		output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");
 		//{low damage}
 		damage = rand(4)+1;
-		genericDamageApply(damage,foes[0],pc);		
+		genericDamageApply(damage,foes[0],pc);
 	}
 	else 
 	{

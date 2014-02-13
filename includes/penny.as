@@ -428,10 +428,15 @@ function zilHoneyDripPlural():void {
 function flurryOfBlowsPlural():void {
 	output("Together, the zil launch a flurry of blows in your direction!\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,true,1);
+	output("\n");
 	attack(foes[0],pc,false,1);
 }
 
