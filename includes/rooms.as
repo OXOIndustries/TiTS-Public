@@ -1124,7 +1124,7 @@ function initializeRooms():void
 	rooms["CRAZY CARLS"].system = "SYSTEM: ARA ARA";
 	rooms["CRAZY CARLS"].westExit = "WEST ESBETH 1";
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.INDOOR);
-	rooms["CRAZY CARLS"].addFlag(GLOBAL.NPC);
+	rooms["CRAZY CARLS"].addFlag(GLOBAL.COMMERCE);
 
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";

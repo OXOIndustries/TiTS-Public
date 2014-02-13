@@ -532,7 +532,7 @@ function botRepairGo():void {
 		foes[0].createStatusEffect("Repair Queued",foes[0].HP(),0,0,0,true,"","",true,0);
 	}
 	//*That turn, PC does good damage*
-	else if(foes[0].statusEffect("Repair Queued") > foes[0].HP() + 10)
+	else if(foes[0].statusEffectv1("Repair Queued") > foes[0].HP() + 5)
 	{
 		output("Your attack causes the machine to bounce severely, and the tool-appendages fall away from the chassis. You prevented it from repairing!");
 		foes[0].removeStatusEffect("Repair Queued");
@@ -549,7 +549,7 @@ function botRepairGo():void {
 
 //Suicide bullshit
 function suicideBullshit():void {
-	output("Rattled and damaged, even smoking somewhere, the machina wobbles closer to the earth. You relax a bit, thinking that this might be the robot’s final ‘death throes’. You’re quick to go back on the alert as the machine reaches into the brush with a grasping appendage, pulling out... a weapon?! You are not sure what sort it is, too dirty and masked by plants, but you don’t have a lot of time to figure out. The thick firearm explodes out in short order, sending a massive pellet your way\n\n!");
+	output("Rattled and damaged, even smoking somewhere, the machina wobbles closer to the earth. You relax a bit, thinking that this might be the robot’s final ‘death throes’. You’re quick to go back on the alert as the machine reaches into the brush with a grasping appendage, pulling out... a weapon?! You are not sure what sort it is, too dirty and masked by plants, but you don’t have a lot of time to figure out. The thick firearm explodes out in short order, sending a massive pellet your way!\n\n");
 
 	//insert miss chances, damage, etc
 	if(rangedCombatMiss(foes[0],pc)) {

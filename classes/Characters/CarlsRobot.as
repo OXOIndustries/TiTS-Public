@@ -43,7 +43,7 @@
 			this.intelligenceRaw = 10;
 			this.willpowerRaw = 1;
 			this.libidoRaw = 0;
-			this.shieldsRaw = 10;
+			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
