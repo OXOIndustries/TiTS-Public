@@ -41,6 +41,8 @@ package classes.UIComponents
 			UIStyleSettings._gBackgroundColourTransform = null;
 			UIStyleSettings._gForegroundColourTransform = null;
 			UIStyleSettings._gMovementButtonColourTransform = null;
+			UIStyleSettings._gMainMenuTextFormatter = null;
+			UIStyleSettings._gPurpleGlow = null;
 		}
 		
 		// TITS VALUES
@@ -48,7 +50,7 @@ package classes.UIComponents
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar) -- this was also used for some fade-out colour transforms throughout various parts of the UI code
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		public static var gMovementButtonColour:uint		= 0x84449B;
-		// public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
+		public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
 		public static var gStatusGoodColour:uint			= 0x0CD71C;
@@ -255,6 +257,23 @@ package classes.UIComponents
 			return UIStyleSettings._gButtonBindLabelFormatter;
 		}
 		
+		private static var _gMainMenuTextFormatter:TextFormat;
+		public static function get gMainMenuTextFormatter():TextFormat
+		{
+			if (UIStyleSettings._gMainMenuTextFormatter == null)
+			{
+				UIStyleSettings._gMainMenuTextFormatter = new TextFormat();
+				UIStyleSettings._gMainMenuTextFormatter.size = 18;
+				UIStyleSettings._gMainMenuTextFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gMainMenuTextFormatter.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gMainMenuTextFormatter.leading = 11;
+				UIStyleSettings._gMainMenuTextFormatter.kerning = true;
+				UIStyleSettings._gMainMenuTextFormatter.tabStops = [35];
+				UIStyleSettings._gMainMenuTextFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gMainMenuTextFormatter;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -274,6 +293,16 @@ package classes.UIComponents
 				UIStyleSettings._gButtonGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 10, 10, 5, 1, false, false);
 			}
 			return UIStyleSettings._gButtonGlow;
+		}
+		
+		private static var _gPurpleGlow:GlowFilter;
+		public static function get gPurpleGlow():GlowFilter
+		{
+			if (UIStyleSettings._gPurpleGlow == null)
+			{
+				UIStyleSettings._gPurpleGlow = new GlowFilter(UIStyleSettings.gPurpleGlowColour, 1, 10, 10, 5, 1, false, false);
+			}
+			return UIStyleSettings._gPurpleGlow;
 		}
 		
 		// Colour Transforms
