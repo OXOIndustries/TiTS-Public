@@ -695,7 +695,7 @@
 				textPage++;
 				pageTurn = true;
 			}
-			else if (!forward && textPage > 1)
+			else if (!forward && textPage > 0)
 			{
 				if (textPage == 4)
 				{
