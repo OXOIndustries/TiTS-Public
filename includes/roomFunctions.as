@@ -6,6 +6,7 @@ import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
+import classes.Items.Apparel.TSTArmor;
 
 function hangarBonus():Boolean 
 {
@@ -39,6 +40,19 @@ function debugMenus():void
 		
 		var foundLootItems:Array = new Array();
 		foundLootItems.push(new DBGShield());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(1, new TSTArmor(), function():void {
+		output("\n\nTest armor get.");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new TSTArmor());
 		
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
