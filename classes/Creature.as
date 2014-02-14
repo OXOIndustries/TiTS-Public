@@ -715,6 +715,9 @@
 				case "cumNoun":
 					buffer = fluidNoun(cumType);
 					break;
+				case "girlCumNoun":
+					buffer = fluidNoun(girlCumType);
+					break;
 				case "cumColor":
 					buffer = cumColor();
 					break;

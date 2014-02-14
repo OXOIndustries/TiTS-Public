@@ -248,6 +248,8 @@
 		
 		/**
 		 * Figure out the differences, if any, between the bonusResistance arrays between two items and generate formatted HTML to display the difference.
+		 * TODO: Resistances are inverse -- the values are used as damage multipliers, ie, lower is strictly better.
+		 * TODO: Convert the displayed values into percentages?
 		 * @param	newItem		The "replacement" item
 		 * @param	oldItem		The item the replacement would displace
 		 * @return				Formatted HTML string
@@ -255,36 +257,79 @@
 		private function resistancesDiff(newItem:ItemSlotClass, oldItem:ItemSlotClass):String
 		{
 			var resistDifferences:String = "";
-			var resistDiffString:String = "";
+			var resistancesDiffString:String = "";
 			var foundResistDiff:Boolean = false;
 			
+			// Only display if either old or new item doesn't have a full set of default resistances
 			for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
 			{
-				if (newItem.bonusResistances[resistIndex] != 0 && (newItem.bonusResistances[resistIndex] != oldItem.bonusResistances[resistIndex]))
+				if (newItem.bonusResistances[resistIndex] != 0 || oldItem.bonusResistances[resistIndex] != 0)
 				{
 					foundResistDiff = true;
-					
-					var diffVal:Number = newItem.bonusResistances[resistIndex] - oldItem.bonusResistances[resistIndex];
-					
-					if (diffVal < 0)
-					{
-						resistDiffString += "<span class='bad'>"
-					}
-					else
-					{
-						resistDiffString += "<span class='good'>";
-					}
-					
-					resistDiffString += "(" + GLOBAL.DamageTypeShortStrings[resistIndex] + ":" + diffVal + ")</span>  ";
 				}
 			}
 			
+			// Ok, now we dump the bonus resist header into the thing and pump out the list of resistances
 			if (foundResistDiff)
 			{
-				resistDifferences += "Bonus Resistances: " + resistDiffString;
+				resistancesDiffString += "\nBonus Resistances: \n";
+				resistancesDiffString += "<textformat tabstops='64,96,150,209,246'>";
+				//resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
+				
+				for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
+				{
+					// Print the new items resistance value as a %
+					resistancesDiffString += GLOBAL.DamageTypeStrings[resistIndex] + "\t ";
+					trace("Resist cals for " + GLOBAL.DamageTypeStrings[resistIndex] + ":");
+					
+					resistancesDiffString += convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "%\t ";
+					trace("New Array Val [" + newItem.bonusResistances[resistIndex] +"] New As Resistance [" + convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "]");
+					trace("Old Array Val [" + oldItem.bonusResistances[resistIndex] +"] Old As Resistance [" + convertNumToResistancePercentage(oldItem.bonusResistances[resistIndex]) + "]");
+					
+					// Display the comparison value
+					var newRes:Number = newItem.bonusResistances[resistIndex];
+					var oldRes:Number = oldItem.bonusResistances[resistIndex];
+					
+					if (newRes > oldRes)
+					{
+						// Good
+						resistancesDiffString += "<span class='good'><b>(+";
+						resistancesDiffString += convertNumToResistancePercentage(newRes - oldRes);
+					}
+					else if (newRes < oldRes)
+					{
+						// Bad
+						resistancesDiffString += "<span class='bad'><b>(-";
+						resistancesDiffString += convertNumToResistancePercentage(oldRes - newRes);
+					}
+					else
+					{
+						// No diff
+						resistancesDiffString += "<span class='words'><b>(0";
+					}
+					
+					resistancesDiffString += "%)</b></span> ";
+					
+					if (resistIndex % 2 == 1 && (resistIndex + 1 != newItem.bonusResistances.length))
+					{
+						resistancesDiffString += "\n";
+					}
+					else
+					{
+						resistancesDiffString += "\t"
+					}
+				}
+				
+				resistancesDiffString += "</textformat>";
 			}
 			
-			return resistDiffString;
+			return resistancesDiffString;
+		}
+		
+		private function convertNumToResistancePercentage(val:Number):String
+		{
+			var resistString:String = String(Math.round(val * 100));
+			return resistString;
 		}
 	}
 }
