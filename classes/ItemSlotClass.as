@@ -263,7 +263,7 @@
 			// Only display if either old or new item doesn't have a full set of default resistances
 			for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
 			{
-				if (newItem.bonusResistances[resistIndex] != 1 && oldItem.bonusResistances[resistIndex] != 1)
+				if (newItem.bonusResistances[resistIndex] != 0 || oldItem.bonusResistances[resistIndex] != 0)
 				{
 					foundResistDiff = true;
 				}

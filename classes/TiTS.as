@@ -359,10 +359,12 @@
 				compareItem = (chars["PC"] as Creature).accessory;
 			}
 			
-			if (compareItem != null)
+			if (compareItem == null)
 			{
-				comparisonString = item.compareTo(compareItem);
+				compareItem = new NoItem();
 			}
+			
+			comparisonString = item.compareTo(compareItem);
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.

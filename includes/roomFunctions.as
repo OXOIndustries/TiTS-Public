@@ -4,6 +4,8 @@ import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
+import classes.Items.Guns.ZKRifle;
+import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
@@ -53,6 +55,32 @@ function debugMenus():void
 		
 		var foundLootItems:Array = new Array();
 		foundLootItems.push(new TSTArmor());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(2, new PHAccess(), function():void {
+		output("\n\nPlaceholder accessory get.");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new PHAccess());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(3, new ZKRifle(), function():void {
+		output("\n\nAnd I thought my test items were OP!");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new ZKRifle());
 		
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
