@@ -24,8 +24,7 @@ package classes.UIComponents.ContentModules
 		public function get text():String { return _mainText.text; }
 		public function set text(v:String):void { _mainText.text = v; }
 		
-		public function get inputText():String { return _textInput.text; }
-		public function set inputText(v:String):void { _textInput.text = v; }
+		public function get textInput():TextField { return _textInput; }
 		
 		public function get mainTextField():TextField { return _mainText; }
 		
@@ -59,7 +58,7 @@ package classes.UIComponents.ContentModules
 		private var _scrollBar:Bar;
 		private var _scrollBg:Bar;
 		
-		public function GameTextModule(isPrimary:Boolean) 
+		public function GameTextModule(isPrimary:Boolean = true) 
 		{
 			leftBarEnabled = true;
 			rightBarEnabled = true;
@@ -105,6 +104,8 @@ package classes.UIComponents.ContentModules
 			_textInput.antiAliasType = AntiAliasType.ADVANCED;
 			_textInput.TextFieldType.INPUT;
 			_textInput.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
+			_textInput.x = _mainText.x + 2;
+			_textInput.y = _mainText.y + 8 + _mainText.textHeight;
 			this.addChild(_textInput);
 		}
 		
@@ -328,42 +329,48 @@ package classes.UIComponents.ContentModules
 		}
 		
 		//Used to adjust position of scroll bar!
-		public function updateScroll(e:MouseEvent):void 
+		public function updateScroll(e:MouseEvent = null):void 
 		{
-			var target = mainTextField;
-			if(!target.visible) target = mainTextField2;
+			var target = _mainText;
+			
 			//Set the size of the bar!
 			//Number of lines on screen
+			
 			var pageSize:int = target.bottomScrollV - target.scrollV + 1;
-				//trace("Bottom Scroll V: " + target.bottomScrollV);
-				//trace("Page Size: " + pageSize);
-			//Fix pagesize for super tiny
 			if(pageSize <= 0) pageSize = 1;
+			
 			//Number of pages
 			var pages:Number = target.numLines / pageSize;
-				//trace("Pages: " + pages);
-			scrollBar.height = pageSize / target.numLines * (target.height - upScrollButton.height - downScrollButton.height);
-			if(scrollBar.height < scrollBG.height) scrollBar.buttonMode = true;
-			else scrollBar.buttonMode = false;
+			
+			_scrollBar.height = pageSize / target.numLines * (target.height - _upScrollButton.height - _downScrollButton.height);
+			
+			if (_scrollBar.height < _scrollBG.height)
+			{
+				_scrollBar.buttonMode = true;
+			}
+			else 
+			{
+				_scrollBar.buttonMode = false;
+			}
 			
 			//Set the position of the bar
 			//the size of the scroll field
-			var field:Number = target.height - upScrollButton.height - scrollBar.height - downScrollButton.height;
-				//trace("Field: " + field);
+			var field:Number = target.height - _upScrollButton.height - _scrollBar.height - _downScrollButton.height;
+				
 			var progress:Number = 0;
 			var min = target.scrollV;
 			var max = target.maxScrollV;
-				//trace("Min: " + min);
+				
 			//Don't divide by zero - cheese it to work.
 			if(max == 1) {
 				max = 2;
 				min = 2;
 			}
 			progress = (min-1) / (max-1);
-				//trace("Progress: " + progress);
-				//trace("Progress x Field: " + progress * field);
-			scrollBar.y = target.y + progress * field + upScrollButton.height;
-			titsClassPtr.scrollChecker();
+				
+			_scrollBar.y = target.y + progress * field + _upScrollButton.height;
+			
+			scrollChecker();
 		}
 	}
 

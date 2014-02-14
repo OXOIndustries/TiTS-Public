@@ -4,13 +4,16 @@
 function creationRouter():void {
 	if(chars["PC"].short != "uncreated") {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
-		this.userInterface.addMainMenuButton(0,"Yes",startCharacterCreation);
-		this.userInterface.addMainMenuButton(1,"No",mainMenu);
+		this.userInterface.confirmNewCharacter();
 	}
-	else startCharacterCreation();
+	else 
+	{
+		startCharacterCreation();
+	}
 }
-function startCharacterCreation():void {
-	this.userInterface.hideMainMenu();
+
+function startCharacterCreation():void 
+{
 	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();
 	chars["PC"].level = 1;

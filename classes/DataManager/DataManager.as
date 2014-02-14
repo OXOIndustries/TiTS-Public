@@ -47,7 +47,7 @@
 		 */
 		public function dataRouter(d:MouseEvent = undefined):void
 		{
-			if (!kGAMECLASS.userInterface.dataButton.isActive && d != kGAMECLASS.userInterface.tempEvent)
+			if (!kGAMECLASS.userInterface.dataButton.isActive)
 			{
 				return;
 			}
@@ -58,7 +58,7 @@
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
-					kGAMECLASS.mainMenu();
+					kGAMECLASS.userInterface.showMainMenu();
 				}
 			}
 			else
@@ -119,7 +119,7 @@
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu);
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu);
 			
-			kGAMECLASS.addGhostButton(14, "Back", dataRouter, kGAMECLASS.userInterface.tempEvent);
+			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
 		}
 		
 

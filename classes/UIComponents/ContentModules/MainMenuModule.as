@@ -40,10 +40,12 @@ package classes.UIComponents.ContentModules
 		private var _titsLogo:Sprite;
 		private var _warningBackground:Sprite;
 		private var _warningText:TextField;
-		
 		private var _creditText:TextField;
-		
 		private var _websiteText:TextField;
+		
+		public function get warningText():TextField { return _warningText; }
+		public function get creditText():TextField { return _creditText; }
+		public function get websiteText():TextField { return _websiteText; }
 		
 		public function MainMenuModule() 
 		{

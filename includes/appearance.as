@@ -6,11 +6,11 @@
 	}
 	else if (userInterface.showingPCAppearance)
 	{
-		userInterface.hideMenus();
+		userInterface.showPrimaryOutput();
 	}
 	else
 	{
-		userInterface.hideMenus();
+		userInterface.showSecondaryOutput();
 		userInterface.appearanceButton.Glow();
 		appearance(pc);
 		userInterface.showingPCAppearance = true;

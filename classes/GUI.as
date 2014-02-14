@@ -65,7 +65,6 @@
 		var showingPCAppearance:Boolean;
 
 		//temporary nonsense variables.
-		public var tempEvent:MouseEvent;
 		var temp:int;
 		
 		private var titsPurple:*;
@@ -138,17 +137,6 @@
 			this.ConfigureLeftBarTooltips();
 			
 			this.hidePCStats();
-			
-			this.mainTextField = new TextField();
-			this.prepTextField(this.mainTextField);
-			this.mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
-			
-			//Set up backup text field
-			this.mainTextField2 = new TextField();
-			this.prepTextField(this.mainTextField2);
-			
-			//Since downscroll starts clickable...
-			downScrollButton.buttonMode = true;
 
 			clearMenu();
 		}
@@ -277,13 +265,9 @@
 			titsClassPtr.addChild(mainMenu);
 			
 			// Setup the Menu buttons
-			var buttons:Array = mainMenu.mainMenuButtons;
+			resetMenuButtons();
 			
-			(buttons[0] as MainMenuButton).buttonName = "New Game";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
-			
-			(buttons[1] as MainMenuButton).buttonName = "Data";
-			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
 			(buttons[2] as MainMenuButton).buttonName = "Credits";
 			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
@@ -296,6 +280,32 @@
 			
 			(buttons[5] as MainMenuButton).buttonName = "Silly Mode:\nOff";
 			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleSillyHandler);
+		}
+		
+		public function confirmNewCharacter():void
+		{
+			var buttons:Array = mainMenuModule.mainMenuButtons;
+			
+			(buttons[0] as MainMenuButton).buttonName = "Yes";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			
+			(buttons[1] as MainMenuButton).buttonName = "No";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
+			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.dataManager);
+		}
+		
+		public function resetMenuButtons():void
+		{
+			var buttons:Array = mainMenuModule.mainMenuButtons;
+			
+			(buttons[0] as MainMenuButton).buttonName = "New Game";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			
+			(buttons[1] as MainMenuButton).buttonName = "Data";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
 		}
 		
 		private function toggleEasyHandler(e:Event):void
@@ -402,6 +412,7 @@
 		{
 			if (module in _availableModules)
 			{
+				this.deglow();
 				_currentModule.visible = false;
 				_availableModules[module].visible = true;
 				_currentModule = _availableModules[module];
@@ -420,6 +431,8 @@
 		 */
 		public function showMainMenu():void
 		{
+			this.showModule("MainMenu");
+			
 			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
 			
 			if (buttons[3].IsOn() != titsClassPtr.easy) buttons[3].ToggleState();
@@ -427,7 +440,8 @@
 			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
 			
 			this.mainMenuButton.Glow();
-			this.showModule("MainMenu");
+			this.resetMenuButtons();
+			
 			
 			this.clearGhostMenu();
 			
@@ -435,10 +449,9 @@
 			_buttonTray.buttonPagePrev.Deactivate();
 			_buttonTray.textPageNext.Deactivate();
 			_buttonTray.textPagePrev.Deactivate();
-			
-			if (titsClassPtr.debug) this.addGhostButton(10, "Debug", titsClassPtr.debugPane);
 		}
 		
+		// Interaction bullshit for the main menu
 		public function showPrimaryOutput():void
 		{
 			this.showTargetOutput("PrimaryOutput");
@@ -507,6 +520,17 @@
 		public function get dataButton():SquareButton { return _leftSideBar.dataButton; }
 		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
+		
+		// Direct module access because LAZY
+		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }
+		public function get primaryOutputModule():GameTextModule { return (_availableModules["PrimaryOutput"] as GameTextModule); }
+		public function get secondaryOutputModule():GameTextModule { return (_availableModules["SecondaryOutput"] as GameTextModule); }
+		
+		// Text input bullshittery
+		public function get textInput():TextField { return (_availableModules["PrimaryOutput"] as GameTextModule).textInput; }
+		
+		// Menu text bullshittery
+		public function get warningText():TextField { return (_availableModules["MainMenu"] as MainMenuModule).warningText; }
 		
 		// Useful functions I've pulled out of the rest of the code base
 		public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void
@@ -636,7 +660,7 @@
 				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
 			}
 			
-			updateScroll(null);
+			this.primaryOutputModule.updateScroll();
 		}
 		
 		public function clearOutput():void
@@ -647,7 +671,7 @@
 			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer = "\n";
 			
-			updateScroll(null);
+			this.primaryOutputModule.updateScroll();
 			author("Probably Fenoxo");
 			textPage = 4;
 			
@@ -660,18 +684,21 @@
 		{
 			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
 			{
-				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
 			}
-			mainTextField2.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-			updateScroll(null);
+			else
+			{
+				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
+			}
+			
+			this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function clearOutput2():void
 		{
-			mainTextField.visible = false;
-			mainTextField2.visible = true;
+			showSecondaryOutput();
 			outputBuffer2 = "\n";
-			updateScroll(null);
+			this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function getGuiPlayerNameText():String
@@ -732,7 +759,7 @@
 				tempAuthor = "";
 			}
 			else {
-				textBuffer[textBuffer.length] = mainTextField.htmlText;
+				textBuffer[textBuffer.length] = this.primaryOutputModule.htmlText;
 				authorBuffer[authorBuffer.length] = sceneBy;
 			}
 			if(textBuffer.length > 4) {
@@ -755,7 +782,7 @@
 			{
 				if (textPage == 4)
 				{
-					tempText = mainTextField.htmlText;
+					tempText = this.primaryOutputModule.htmlText;
 					tempAuthor = sceneBy;
 				}
 				
@@ -765,31 +792,25 @@
 			
 			if (pageTurn)
 			{
-				mainTextField.text = "";
 				if (textPage == 4)
 				{
-					mainTextField.htmlText = tempText;
+					this.primaryOutputModule.htmlText = tempText;
 					sceneBy = tempAuthor;
 				}
 				else
 				{
-					mainTextField.htmlText = textBuffer[textPage];
+					this.primaryOutputModule.htmlText = textBuffer[textPage];
 					sceneBy = authorBuffer[textPage];
 				}
-				updateScroll(e);
+				this.primaryOutputModule.updateScroll();
 				bufferButtonUpdater();
 			}
 		}
 
 		public function displayInput():void 
 		{
-			if(!this.stagePtr.contains(textInput)) this.titsClassPtr.addChild(textInput);
-			textInput.text = "";
-			textInput.visible = true;
-			textInput.width = 160;
-			textInput.x = mainTextField.x + 2;
-			textInput.y = mainTextField.y + 8 + mainTextField.textHeight;
-			textInput.visible = true;
+			this.primaryOutputModule.showInput();
+			
 			menuButtonsOff();
 			appearanceOff();
 			
@@ -802,7 +823,8 @@
 		
 		public function removeInput():void 
 		{
-			this.titsClassPtr.removeChild(textInput);
+			this.primaryOutputModule.hideInput();
+			
 			menuButtonsOn();
 
 			_buttonTray.showKeyBinds();

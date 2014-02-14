@@ -181,24 +181,21 @@
 			shopkeep = undefined;
 			itemScreen = undefined;
 			lootScreen = undefined;
+			
 			// lootList = new Array();
 			useItemFunction = undefined;
 			itemUser = undefined;
 			itemTarget = undefined;
 
 			this.inSceneBlockSaving = false;
-
-
+			
 			eventQueue = new Array();
-
 			eventBuffer = "";
-
-
+			
 			//Toggles
 			silly = false;
 			easy = false;
 			debug = false;
-
 
 			//Lazy man state checking
 			currentLocation = "SHIP HANGAR";
@@ -206,40 +203,33 @@
 
 			parser = new Parser(this, TiTS_Settings);
 
-
 			flags = new Dictionary();
-
 
 			this.userInterface = new GUI(this, stage)
 			
 			include "../includes/weaponVariables.as";
 
-
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
-
 			
 			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
 			this.clearMenu();
-			
-			this.addButton(14,"CLEAR!",clearOutput);
-
-			setupInputEventHandlers()
-
 
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = chars[0];
 
 			this.chars["PC"] = new PlayerCharacter();
-
-
-			trace("Setting up the PC")
 			
-			this.addFrameScript( 0, mainMenu );
-			//mainMenu();
+			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+		}
+		
+		private function finishInit(e:Event):void
+		{
+			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			this.userInterface.showMainMenu();
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
@@ -337,8 +327,7 @@
 			
 			comparisonString = item.compareTo(compareItem);
 			
-			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
-			// if we have any null arguments at this point rather than throwing an error and shit.
+			// Do GUI stuff with the compareItem string
 			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
 		}
 		
@@ -373,114 +362,6 @@
 				updatePCStats();
 			}
 		}
-
-		public function mainMenu():void 
-		{
-			this.userInterface.hideMenus();
-			
-			//Hide all current buttons
-			this.userInterface.hideNormalDisplayShit();
-			
-			//Show menu shits
-			trace("Making everything visible:")
-			this.userInterface.creditText.visible = true;
-			this.userInterface.warningText.visible = true;
-			this.userInterface.titleDisplay.visible = true;
-			this.userInterface.warningBackground.visible = true;
-			this.userInterface.websiteDisplay.visible = true;
-			this.userInterface.mainMenuButton.Glow();
-			
-			//Texts
-			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
-			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
-			
-			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
-			this.userInterface.addMainMenuButton(1,"Data",dataManager.dataRouter);
-			this.userInterface.addMainMenuButton(2,"Credits",credits);
-			
-			//Ez Moad!
-			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
-			if(easy) {
-				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"	
-			}
-
-			//Fix debug menu button in case game was loaded or some shit!
-			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
-			if(debug) {
-				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
-			}
-
-			//Silly mode
-			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
-			if(silly) {
-				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
-			}
-			if(debug) this.addButton(10,"Debug",debugPane);
-		}
-		
-		public function credits():void {
-			this.userInterface.hideMenus();
-			clearOutput2();
-			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
-			this.userInterface.clearGhostMenu();
-			this.addGhostButton(0,"Back to Menu",mainMenu);
-		}
-		
-		public function toggleSilly():void {
-			if(silly) {
-				silly = false;
-				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
-			}
-			else {
-				silly = true;
-				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
-			}
-		}
-		
-		public function toggleDebug():void {
-			if(debug) {
-				debug = false;
-				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
-			}
-			else {
-				debug = true;
-				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
-			}
-		}
-		
-		public function toggleEasy():void {
-			if(easy) {
-				easy = false;
-				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"
-			}
-			else {
-				easy = true;
-				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
-			}
-		}
-
-
 
 		public function get pc():*
 		{
