@@ -273,7 +273,8 @@
 			if (foundResistDiff)
 			{
 				resistancesDiffString += "\nBonus Resistances: \n";
-				resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
+				resistancesDiffString += "<textformat tabstops='64,96,150,209,246'>";
+				//resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
 				
 				for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
 				{
@@ -281,35 +282,35 @@
 					resistancesDiffString += GLOBAL.DamageTypeStrings[resistIndex] + "\t ";
 					trace("Resist cals for " + GLOBAL.DamageTypeStrings[resistIndex] + ":");
 					
-					resistancesDiffString += convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "\t ";
+					resistancesDiffString += convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "%\t ";
 					trace("New Array Val [" + newItem.bonusResistances[resistIndex] +"] New As Resistance [" + convertNumToResistancePercentage(newItem.bonusResistances[resistIndex]) + "]");
 					trace("Old Array Val [" + oldItem.bonusResistances[resistIndex] +"] Old As Resistance [" + convertNumToResistancePercentage(oldItem.bonusResistances[resistIndex]) + "]");
 					
 					// Display the comparison value
-					var newRes:Number = convertNumToResistance(newItem.bonusResistances[resistIndex]);
-					var oldRes:Number = convertNumToResistance(oldItem.bonusResistances[resistIndex]);
+					var newRes:Number = newItem.bonusResistances[resistIndex];
+					var oldRes:Number = oldItem.bonusResistances[resistIndex];
 					
 					if (newRes > oldRes)
 					{
 						// Good
 						resistancesDiffString += "<span class='good'><b>(+";
-						resistancesDiffString += Math.floor((newRes - oldRes) * 100) + "%";
+						resistancesDiffString += convertNumToResistancePercentage(newRes - oldRes);
 					}
 					else if (newRes < oldRes)
 					{
 						// Bad
-						resistancesDiffString += "<span class='bad'><b>(";
-						resistancesDiffString += Math.floor((oldRes - newRes) * 100) + "%";
+						resistancesDiffString += "<span class='bad'><b>(-";
+						resistancesDiffString += convertNumToResistancePercentage(oldRes - newRes);
 					}
 					else
 					{
 						// No diff
-						resistancesDiffString += "<span class='words'><b>(0%";
+						resistancesDiffString += "<span class='words'><b>(0";
 					}
 					
-					resistancesDiffString += ")</b></span> ";
+					resistancesDiffString += "%)</b></span> ";
 					
-					if (resistIndex % 2 == 1)
+					if (resistIndex % 2 == 1 && (resistIndex + 1 != newItem.bonusResistances.length))
 					{
 						resistancesDiffString += "\n";
 					}
@@ -327,16 +328,8 @@
 		
 		private function convertNumToResistancePercentage(val:Number):String
 		{
-			var resistVal:Number = 1 - val; // Vals > 1 will give us a negative, ie "take more damage" value?
-			var resistString:String = Math.floor(Math.abs(resistVal) * 100) + "%";
-			
-			if (resistVal < 0) resistString = "-" + resistString;
+			var resistString:String = String(Math.round(val * 100));
 			return resistString;
-		}
-		
-		private function convertNumToResistance(val:Number):Number
-		{
-			return 1 - val;
 		}
 	}
 }

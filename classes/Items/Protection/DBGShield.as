@@ -48,15 +48,15 @@ package classes.Items.Protection
 			this.fortification = 0;
 			
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-			this.bonusResistances[GLOBAL.KINETIC] = 1.1;
-			this.bonusResistances[GLOBAL.SLASHING] = 1.1;
-			this.bonusResistances[GLOBAL.PIERCING] = 1.1;
+			this.bonusResistances[GLOBAL.KINETIC] = 0.35;
+			this.bonusResistances[GLOBAL.SLASHING] = 0.25;
+			this.bonusResistances[GLOBAL.PIERCING] = 0.15;
 			
-			this.bonusResistances[GLOBAL.LASER] = 0.5;
-			this.bonusResistances[GLOBAL.PLASMA] = 0.4;
-			this.bonusResistances[GLOBAL.GRAVITIC] = 0.6;
-			this.bonusResistances[GLOBAL.ELECTRIC] = 0.9;
-			this.bonusResistances[GLOBAL.THERMAL] = 0.75;
+			this.bonusResistances[GLOBAL.LASER] = 0.1;
+			this.bonusResistances[GLOBAL.PLASMA] = 0.2;
+			this.bonusResistances[GLOBAL.GRAVITIC] = 0.3;
+			this.bonusResistances[GLOBAL.ELECTRIC] = 0.4;
+			this.bonusResistances[GLOBAL.THERMAL] = 0.6;
 			
 			this.version = _latestVersion;
 		}
