@@ -4,6 +4,7 @@ import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
+import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 
 function hangarBonus():Boolean 
@@ -33,13 +34,17 @@ function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 
-	addItemButton(0, new LaserPistol(), function():void {
-		output("\n\nLaser Pistol button get.");
-	});
-	
-	addButton(1, "Pay up", function():void {
-		(chars["PC"] as PlayerCharacter).credits += 10000;
-		output("\n\nPay up yo!");
+	addItemButton(0, new DBGShield(), function():void {
+		output("\n\nDebug shield get.");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new DBGShield());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
 	});
 }
 

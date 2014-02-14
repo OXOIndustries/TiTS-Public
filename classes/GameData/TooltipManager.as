@@ -48,11 +48,17 @@ package classes.GameData
 				"perksButton" : "Show your characters acquired perks.",
 				"levelUpButton" : "Level up your character.",
 				"appearanceButton" : "Display your characters detailed appearance information.",
-				"Rest" : "Placeholder tooltip for testing.",
 				"buttonPageNext" : "View the next page of buttons.",
 				"buttonPagePrev" : "View the previous page of buttons.",
 				"bufferPageNext" : "View the next page of scene text.",
-				"bufferPagePrev" : "View the previous page of scene text."
+				"bufferPagePrev" : "View the previous page of scene text.",
+				"UndertopOff" : "Unequip your current upper undergarments.",
+				"Shield Off" : "Unqeuip your current shielding device.",
+				"UnderwearOff" : "Unequip your current lower undergarments.",
+				"Melee Off" : "Unequip your current melee weapon.",
+				"Armor Off" : "Unqeuip your current armor.",
+				"Ranged Off" : "Unquip your current ranged weapon.",
+				"Acc. Off" : "Unquip your current accessory item."
 			};
 			
 			// FULLNAMEDB is a conversion from button text to some more complete name representation
@@ -69,7 +75,14 @@ package classes.GameData
 				"bufferPageNext" : "Next Page",
 				"bufferPagePrev" : "Previous Page",
 				"buttonPageNext" : "Next Button Page",
-				"buttonPagePrev" : "Previous Button Page"
+				"buttonPagePrev" : "Previous Button Page",
+				"UndertopOff" : "Remove Upper Undergarment",
+				"ShieldOff" : "Remove Sield",
+				"UnderwearOff" : "Remove Lower Undergarment",
+				"Melee Off" : "Remove Melee Weapon",
+				"Armor Off" : "Remove Armor",
+				"Ranged Off" : "Remove Ranged Weapon",
+				"Acc. Off" : "Remove Accessory"
 			}
 		}
 		

@@ -135,10 +135,10 @@ package classes.UIComponents
 			
 			this._comparisonText = new TextField();
 			
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", maginRight:1 };
-			var goodStat = { fontFamily:"Lato", fontSize:14, color:"#00CCFF", marginRight:1 };
-			var badStat = { fontFamily: "Lato", fontSize:14, color:"#CC3300", marginRight:1 };
-			var noDiffStat = { fontFamily: "Lato", fontSize:14, color:"#FFFFFF", marginRight:1 };
+			var defaultCSSTag = { fontFamily:"Lato", fontSize:14, color:"#FFFFFF", maginRight:0 };
+			var goodStat = { fontFamily:"Lato", fontSize:14, color:"#00CCFF", marginRight:0 };
+			var badStat = { fontFamily: "Lato", fontSize:14, color:"#CC3300", marginRight:0 };
+			var noDiffStat = { fontFamily: "Lato", fontSize:14, color:"#FFFFFF", marginRight:0 };
 			
 			var styleSheet:StyleSheet = new StyleSheet();
 			styleSheet.setStyle(".words", defaultCSSTag);
@@ -150,7 +150,7 @@ package classes.UIComponents
 			_comparisonText.text = "Placeholder Tooltip Comparison Text";
 			_comparisonText.background = false;
 			_comparisonText.multiline = true;
-			_comparisonText.wordWrap = true;
+			_comparisonText.wordWrap = false;
 			_comparisonText.embedFonts = true;
 			_comparisonText.antiAliasType = AntiAliasType.ADVANCED;
 			_comparisonText.x = _bodySplitter.x;
