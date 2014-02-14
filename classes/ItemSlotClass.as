@@ -328,7 +328,9 @@
 		private function convertNumToResistancePercentage(val:Number):String
 		{
 			var resistVal:Number = 1 - val; // Vals > 1 will give us a negative, ie "take more damage" value?
-			var resistString:String = Math.floor(resistVal * 100) + "%";
+			var resistString:String = Math.floor(Math.abs(resistVal) * 100) + "%";
+			
+			if (resistVal < 0) resistString = "-" + resistString;
 			return resistString;
 		}
 		
