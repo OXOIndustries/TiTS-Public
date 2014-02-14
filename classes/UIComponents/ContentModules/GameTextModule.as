@@ -6,6 +6,8 @@ package classes.UIComponents.ContentModules
 	import flash.text.AntiAliasType;
 	import flash.text.TextFieldType;
 	import classes.UIComponents.UIStyleSettings;
+	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -25,6 +27,8 @@ package classes.UIComponents.ContentModules
 		public function get inputText():String { return _textInput.text; }
 		public function set inputText(v:String):void { _textInput.text = v; }
 		
+		public function get mainTextField():TextField { return _mainText; }
+		
 		public function showInput():void
 		{
 			_textInput.visible = true;
@@ -35,6 +39,18 @@ package classes.UIComponents.ContentModules
 		{
 			_textInput.visible = false;
 			this.stage.focus = null;
+		}
+		
+		public function inputEnabled():void
+		{
+			if (_textInput.visible == true)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 		// Scrollbar elems
@@ -59,6 +75,8 @@ package classes.UIComponents.ContentModules
 			
 			this.Build();
 			this.BuildScrollbar();
+			
+			this.ConfigureListeners();
 		}
 		
 		private function Build():void
@@ -115,6 +133,237 @@ package classes.UIComponents.ContentModules
 			_downScrollButton.x = _mainText.x + _mainText.width + _downScrollButton.width;
 			_downScrollButton.y = _mainText.y + _mainText.height;
 			this.addChild(_downScrollButton);
+		}
+		
+		private function ConfigureListeners():void
+		{
+			_upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN, clickScrollUp);
+			_downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN, clickScrollDown);
+			
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, wheelUpdater);
+			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			
+			_scrollBar.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			_scrollBg.addEventListener(MouseEvent.CLOCK, scrollPage);
+			
+			updateScroll();
+		}
+		
+		// I've found a couple of bugs with the scoll handling in fens "old" scrollbar code. I'm going to mangle it
+		// into working for now, with a view to replacing it -- probably with a skinned version of the proper adobe
+		// scrollbar.
+		// Incidently, this should also let us have seperate scrollbars for output vs output2
+		
+		public function pageUpScroll():void
+		{
+			//Scroll if text field isn't actively selected, like a BAWS.
+			var keyTemp;
+			if (stage.focus == null) 
+			{ 
+				keyTemp = _mainText.bottomScrollV - _mainText.scrollV + 1;
+				_mainText.scrollV -= keyTemp;
+			}
+			wheelUpdater();
+		}
+		
+		public function pageDownScroll():void
+		{
+			var keyTemp;
+			if (stage.focus == null) 
+			{ 
+				keyTemp = _mainText.bottomScrollV - _mainText.scrollV + 1;
+				_mainText.scrollV += keyTemp;
+			}
+			wheelUpdater();
+		}
+		
+		public function homeButtonScroll():void
+		{
+			_mainText.scrollV = 1;
+			updateScroll();
+		}
+		
+		public function endButtonScroll():void
+		{
+			_mainText.scrollV = _mainText.maxScrollV;
+			updateScroll();
+		}
+		
+		public function upScrollText():void 
+		{
+			_mainText.scrollV--;
+			updateScroll();
+		}
+
+		public function downScrollText():void 
+		{
+			_mainText.scrollV++;
+			updateScroll();
+		}
+		
+		public function scrollPage(evt:MouseEvent = null):void 
+		{
+			if (evt.stageY > _scrollBar.y) 
+			{
+				_mainText.scrollV += _mainText.bottomScrollV - _mainText.scrollV;
+			}
+			else 
+			{
+				_mainText.scrollV -= _mainText.bottomScrollV - _mainText.scrollV;
+			}
+			
+			updateScroll();
+		}
+
+		//Puts a listener on the next frame that removes itself and updates to fix the laggy bar updates
+		// This should remove itself right? I dunno how this is added, gotta find it
+		public function wheelUpdater(evt:MouseEvent = null):void 
+		{
+			this.addEventListener(Event.ENTER_FRAME, wheelUpdater2);
+		}
+		
+		public function wheelUpdater2(evt:Event = null):void 
+		{
+			this.removeEventListener(Event.ENTER_FRAME, wheelUpdater2);
+			updateScroll();
+		}
+		
+		public function clickScrollUp(evt:MouseEvent = null):void 
+		{
+			_upScrollButton.addEventListener(Event.ENTER_FRAME, continueScrollUp);
+			stage.addEventListener(MouseEvent.MOUSE_UP, clearScrollUp);
+		}
+		
+		public function clickScrollDown(evt:MouseEvent):void 
+		{
+			_downScrollButton.addEventListener(Event.ENTER_FRAME, continueScrollDown);
+			stage.addEventListener(MouseEvent.MOUSE_UP, clearScrollDown);
+		}
+		
+		public function continueScrollUp(evt:Event = null):void 
+		{
+			_mainText.scrollV--;
+			updateScroll();
+		}
+		
+		public function continueScrollDown(evt:Event = null):void 
+		{
+			_mainText.scrollV++;
+			updateScroll();
+		}
+		
+		public function clearScrollDown(evt:MouseEvent = null):void 
+		{
+			_downScrollButton.removeEventListener(Event.ENTER_FRAME, continueScrollDown);
+			stage.removeEventListener(MouseEvent.MOUSE_UP, clearScrollDown);
+		}
+		
+		public function clearScrollUp(evt:MouseEvent = null):void 
+		{
+			_upScrollButton.removeEventListener(Event.ENTER_FRAME, continueScrollUp);
+			stage.removeEventListener(MouseEvent.MOUSE_UP, clearScrollUp);
+		}
+		
+		//Turn dragging on and off!
+		public function mouseDownHandler(evt:MouseEvent = null):void
+		{
+			var myRectangle:Rectangle = new Rectangle(_scrollBG.x, _scrollBG.y, 0, _scrollBG.height - _scrollBar.height);
+			_scrollBar.startDrag(false, myRectangle);
+			
+			if (!_scrollBar.hasEventListener(Event.ENTER_FRAME))
+			{
+				_scrollBar.addEventListener(Event.ENTER_FRAME, scrollerUpdater);
+			}
+		}
+		
+		public function mouseUpHandler(evt:MouseEvent = null):void
+		{
+			_scrollBar.stopDrag();
+			_scrollBar.removeEventListener(Event.ENTER_FRAME, scrollerUpdater);
+		}
+
+		//Used to set position of bar while being dragged!
+		public function scrollerUpdater(evt:Event = null):void 
+		{
+			var progress:Number = (_scrollBar.y - _scrollBG.y) / (_scrollBG.height - _scrollBar.height - 1);
+			
+			var min = _mainText.scrollV;
+			var max = _mainText.maxScrollV;
+			_mainText.scrollV = progress * _mainText.maxScrollV;
+			
+			scrollChecker();
+		}
+		
+		//Turn up/down buttons on and off
+		public function scrollChecker():void 
+		{
+			var target = _mainText;
+			
+			//Turn off scroll button as appropriate.
+			if (target.scrollV >= target.maxScrollV) 
+			{
+				_downScrollButton.alpha = .50;
+				_downScrollButton.buttonMode = false;
+				_downScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN, clickScrollDown);
+			}
+			else if (this.userInterface.downScrollButton.alpha == .5) 
+			{
+				_downScrollButton.alpha = 1;
+				_downScrollButton.buttonMode = true;
+				_downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN, clickScrollDown);
+			}
+			
+			if (target.scrollV == 1) 
+			{
+				_upScrollButton.alpha = .50;
+				_upScrollButton.buttonMode = false;
+				_upScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN, clickScrollUp);
+			}
+			else if (this.userInterface.upScrollButton.alpha == .5) 
+			{
+				_upScrollButton.alpha = 1;
+				_upScrollButton.buttonMode = true;
+				_upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN, clickScrollUp);
+			}
+		}
+		
+		//Used to adjust position of scroll bar!
+		public function updateScroll(e:MouseEvent):void 
+		{
+			var target = mainTextField;
+			if(!target.visible) target = mainTextField2;
+			//Set the size of the bar!
+			//Number of lines on screen
+			var pageSize:int = target.bottomScrollV - target.scrollV + 1;
+				//trace("Bottom Scroll V: " + target.bottomScrollV);
+				//trace("Page Size: " + pageSize);
+			//Fix pagesize for super tiny
+			if(pageSize <= 0) pageSize = 1;
+			//Number of pages
+			var pages:Number = target.numLines / pageSize;
+				//trace("Pages: " + pages);
+			scrollBar.height = pageSize / target.numLines * (target.height - upScrollButton.height - downScrollButton.height);
+			if(scrollBar.height < scrollBG.height) scrollBar.buttonMode = true;
+			else scrollBar.buttonMode = false;
+			
+			//Set the position of the bar
+			//the size of the scroll field
+			var field:Number = target.height - upScrollButton.height - scrollBar.height - downScrollButton.height;
+				//trace("Field: " + field);
+			var progress:Number = 0;
+			var min = target.scrollV;
+			var max = target.maxScrollV;
+				//trace("Min: " + min);
+			//Don't divide by zero - cheese it to work.
+			if(max == 1) {
+				max = 2;
+				min = 2;
+			}
+			progress = (min-1) / (max-1);
+				//trace("Progress: " + progress);
+				//trace("Progress x Field: " + progress * field);
+			scrollBar.y = target.y + progress * field + upScrollButton.height;
+			titsClassPtr.scrollChecker();
 		}
 	}
 

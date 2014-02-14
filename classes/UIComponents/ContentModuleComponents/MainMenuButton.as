@@ -70,7 +70,7 @@ package classes.UIComponents.ContentModuleComponents
 			this.addChild(_text);
 		}
 		
-		public function IsOn():void
+		public function IsOn():Boolean
 		{
 			return _toggledOn;
 		}

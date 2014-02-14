@@ -54,7 +54,7 @@
 			else if (kGAMECLASS.userInterface.dataButton.isHighlighted)
 			{
 				kGAMECLASS.userInterface.dataButton.Deactivate();
-				kGAMECLASS.userInterface.hideMenus();
+				kGAMECLASS.userInterface.showPrimaryOutput();
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
@@ -63,7 +63,7 @@
 			}
 			else
 			{
-				kGAMECLASS.userInterface.hideMenus();
+				kGAMECLASS.userInterface.showSecondaryOutput();
 				kGAMECLASS.userInterface.dataButton.Glow();
 				this.showDataMenu();
 			}
@@ -511,7 +511,7 @@
 		public function executeGame():void
 		{
 			kGAMECLASS.userInterface.dataButton.Deactivate();
-			kGAMECLASS.userInterface.hideMenus();
+			kGAMECLASS.userInterface.showPrimaryOutput();
 			
 			if (kGAMECLASS.currentLocation != "")
 			{

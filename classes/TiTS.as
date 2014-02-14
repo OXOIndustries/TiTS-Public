@@ -251,35 +251,6 @@
 			this.userInterface.clearMenu();
 		}
 		
-		public function setupInputEventHandlers():void
-		{
-			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
-			this.userInterface.scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
-			this.addEventListener(MouseEvent.MOUSE_UP,mouseUpHandler);
-			this.userInterface.scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
-
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-		public function mainMenuToggle(e:MouseEvent):void 
-		{
-			if (!userInterface.mainMenuButton.isActive)
-			{
-				return;
-			}
-			
-			if (userInterface.titleDisplay.visible)
-			{
-				userInterface.hideMenus();
-			}
-			else 
-			{
-				mainMenu();
-			}
-		}
-		
 		public function buttonClick(evt:MouseEvent):void 
 		{
 			if (!inCombat()) 
@@ -375,42 +346,6 @@
 		{
 			userInterface.addDisabledButton(slot);
 		}
-
-		public function pageUpScroll():void
-		{
-			//Scroll if text field isn't actively selected, like a BAWS.
-			
-			var keyTemp;
-			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
-				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-				this.userInterface.mainTextField.scrollV -= keyTemp;
-			}
-			wheelUpdater(this.userInterface.tempEvent);
-		}
-		
-		public function pageDownScroll():void
-		{
-			var keyTemp;
-			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
-				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-				this.userInterface.mainTextField.scrollV += keyTemp;
-			}
-			wheelUpdater(this.userInterface.tempEvent);
-		}
-		
-		public function homeButtonScroll():void
-		{
-			this.userInterface.mainTextField.scrollV = 1;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		
-		public function endButtonScroll():void
-		{
-			this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
 		
 		public function spacebarKeyEvt():void
 		{
@@ -429,18 +364,6 @@
 			this.inputManager.ignoreInputKeys(false);
 			this.userInterface.removeInput();
 		}
-
-		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
-		//Button the up arrow!
-		public function upScrollText():void {
-			this.userInterface.mainTextField.scrollV--;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		//Button the down arrow!
-		public function downScrollText():void {
-			this.userInterface.mainTextField.scrollV++;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
 		
 		public function pressButton(arg:int = 0):void 
 		{
@@ -450,109 +373,6 @@
 				updatePCStats();
 			}
 		}
-
-		//3. SCROLL WHEEL STUFF
-		//Scroll up or down a page based on click position!
-		public function scrollPage(evt:MouseEvent):void {
-			if(evt.stageY > this.userInterface.scrollBar.y) {
-				this.userInterface.mainTextField.scrollV += this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
-			}
-			else {
-				this.userInterface.mainTextField.scrollV -= this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
-			}
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-		//Puts a listener on the next frame that removes itself and updates to fix the laggy bar updates
-		public function wheelUpdater(evt:MouseEvent):void {
-			this.addEventListener(Event.ENTER_FRAME,wheelUpdater2);
-		}
-		
-		public function wheelUpdater2(evt:Event):void {
-			this.removeEventListener(Event.ENTER_FRAME,wheelUpdater2);
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-
-
-		public function clickScrollUp(evt:MouseEvent):void {
-			this.userInterface.upScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollUp);
-			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
-		}
-		public function clickScrollDown(evt:MouseEvent):void {
-			this.userInterface.downScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollDown);
-			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
-		}
-		public function continueScrollUp(evt:Event):void {
-			this.userInterface.mainTextField.scrollV--;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		public function continueScrollDown(evt:Event):void {
-			this.userInterface.mainTextField.scrollV++;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		public function clearScrollDown(evt:MouseEvent):void {
-			this.userInterface.downScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollDown);
-			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
-		}
-		public function clearScrollUp(evt:MouseEvent):void {
-			this.userInterface.upScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollUp);
-			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
-		}
-
-		//Turn dragging on and off!
-		public function mouseDownHandler(evt:MouseEvent):void{
-			var myRectangle:Rectangle = new Rectangle(this.userInterface.scrollBG.x, this.userInterface.scrollBG.y, 0, this.userInterface.scrollBG.height - this.userInterface.scrollBar.height);
-			this.userInterface.scrollBar.startDrag(false,myRectangle);
-			if(!this.userInterface.scrollBar.hasEventListener(Event.ENTER_FRAME)) this.userInterface.scrollBar.addEventListener(Event.ENTER_FRAME,scrollerUpdater);
-		}
-		public function mouseUpHandler(evt:MouseEvent):void{
-			this.userInterface.scrollBar.stopDrag();
-			this.userInterface.scrollBar.removeEventListener(Event.ENTER_FRAME,scrollerUpdater);
-		}
-
-		//Used to set position of bar while being dragged!
-		public function scrollerUpdater(evt:Event):void {
-			var progress:Number = (this.userInterface.scrollBar.y-this.userInterface.scrollBG.y) / (this.userInterface.scrollBG.height - this.userInterface.scrollBar.height - 1);
-				//trace("FRAME UPDATE: " + progress);
-				//trace("SCROLLBARY: " + scrollBar.y + " SCROLLBGY: " + scrollBG.y);
-				//trace("SCROLLBAR: " + scrollBar.height + " SCROLLBG: " + scrollBG.height);
-			var min = this.userInterface.mainTextField.scrollV;
-			var max = this.userInterface.mainTextField.maxScrollV;
-			this.userInterface.mainTextField.scrollV = progress * this.userInterface.mainTextField.maxScrollV;
-				//trace("SCROLL V: " + this.userInterface.mainTextField.scrollV + " SHOULD BE: " + progress * this.userInterface.mainTextField.maxScrollV);
-			scrollChecker();
-		}
-
-
-
-		//Turn up/down buttons on and off
-		public function scrollChecker():void {
-			var target = this.userInterface.mainTextField;
-			if(!target.visible) target = this.userInterface.mainTextField2;
-			//Turn off scroll button as appropriate.
-			if(target.scrollV >= target.maxScrollV) {
-				this.userInterface.downScrollButton.alpha = .50;
-				this.userInterface.downScrollButton.buttonMode = false;
-				this.userInterface.downScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			}
-			else if(this.userInterface.downScrollButton.alpha == .5) {
-				this.userInterface.downScrollButton.alpha = 1;
-				this.userInterface.downScrollButton.buttonMode = true;
-				this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			}
-			if(target.scrollV == 1) {
-				this.userInterface.upScrollButton.alpha = .50;
-				this.userInterface.upScrollButton.buttonMode = false;
-				this.userInterface.upScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			}
-			else if(this.userInterface.upScrollButton.alpha == .5) {
-				this.userInterface.upScrollButton.alpha = 1;
-				this.userInterface.upScrollButton.buttonMode = true;
-				this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			}
-		}
-
 
 		public function mainMenu():void 
 		{
@@ -612,8 +432,7 @@
 			}
 			if(debug) this.addButton(10,"Debug",debugPane);
 		}
-
-
+		
 		public function credits():void {
 			this.userInterface.hideMenus();
 			clearOutput2();
@@ -621,6 +440,7 @@
 			this.userInterface.clearGhostMenu();
 			this.addGhostButton(0,"Back to Menu",mainMenu);
 		}
+		
 		public function toggleSilly():void {
 			if(silly) {
 				silly = false;
@@ -633,6 +453,7 @@
 				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
 			}
 		}
+		
 		public function toggleDebug():void {
 			if(debug) {
 				debug = false;
@@ -645,6 +466,7 @@
 				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
 			}
 		}
+		
 		public function toggleEasy():void {
 			if(easy) {
 				easy = false;

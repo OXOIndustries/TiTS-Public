@@ -44,7 +44,7 @@ package classes.UIComponents
 			UIStyleSettings._gMovementButtonColourTransform = null;
 			UIStyleSettings._gMainMenuTextFormatter = null;
 			UIStyleSettings._gPurpleGlow = null;
-			UIStyleSettings._gTextInputFormat = null;
+			UIStyleSettings._gTextInputFormatter = null;
 			UIStyleSettings._gMainTextCSSStyleSheet = null;
 		}
 		

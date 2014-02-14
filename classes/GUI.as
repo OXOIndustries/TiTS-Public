@@ -224,9 +224,23 @@
 		 */
 		private function ConfigureLeftBarListeners():void
 		{
-			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, titsClassPtr.mainMenuToggle);
+			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, mainMenuToggle);
 			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+		}
+		
+		private function mainMenuToggle():void
+		{
+			if (!mainMenuButton.isActive) return;
+			
+			if (_availableModules["MainMenu"].visible == true)
+			{
+				showPrimaryOutput();
+			}
+			else
+			{
+				showMainMenu();
+			}
 		}
 		
 		/**
@@ -392,7 +406,6 @@
 				_availableModules[module].visible = true;
 				_currentModule = _availableModules[module];
 				this.clearGhostMenu();
-				this.page
 			}
 			else
 			{
@@ -424,6 +437,21 @@
 			_buttonTray.textPagePrev.Deactivate();
 			
 			if (titsClassPtr.debug) this.addGhostButton(10, "Debug", titsClassPtr.debugPane);
+		}
+		
+		public function showPrimaryOutput():void
+		{
+			this.showTargetOutput("PrimaryOutput");
+		}
+		
+		public function showSecondaryOutput():void
+		{
+			this.showTargetOutput("SecondaryOutput");
+		}
+		
+		private function showTargetOutput(v:String):void
+		{
+			this.showModule(v);
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
@@ -614,13 +642,15 @@
 		public function clearOutput():void
 		{
 			pushToBuffer();
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			mainTextField.htmlText = "\n";
+			showPrimaryOutput();
+			
+			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer = "\n";
+			
 			updateScroll(null);
 			author("Probably Fenoxo");
 			textPage = 4;
+			
 			bufferButtonUpdater();
 			menuButtonsOn();
 			deglow();
@@ -778,45 +808,6 @@
 			_buttonTray.showKeyBinds();
 		}
 
-		//Used to adjust position of scroll bar!
-		public function updateScroll(e:MouseEvent):void 
-		{
-			var target = mainTextField;
-			if(!target.visible) target = mainTextField2;
-			//Set the size of the bar!
-			//Number of lines on screen
-			var pageSize:int = target.bottomScrollV - target.scrollV + 1;
-				//trace("Bottom Scroll V: " + target.bottomScrollV);
-				//trace("Page Size: " + pageSize);
-			//Fix pagesize for super tiny
-			if(pageSize <= 0) pageSize = 1;
-			//Number of pages
-			var pages:Number = target.numLines / pageSize;
-				//trace("Pages: " + pages);
-			scrollBar.height = pageSize / target.numLines * (target.height - upScrollButton.height - downScrollButton.height);
-			if(scrollBar.height < scrollBG.height) scrollBar.buttonMode = true;
-			else scrollBar.buttonMode = false;
-			
-			//Set the position of the bar
-			//the size of the scroll field
-			var field:Number = target.height - upScrollButton.height - scrollBar.height - downScrollButton.height;
-				//trace("Field: " + field);
-			var progress:Number = 0;
-			var min = target.scrollV;
-			var max = target.maxScrollV;
-				//trace("Min: " + min);
-			//Don't divide by zero - cheese it to work.
-			if(max == 1) {
-				max = 2;
-				min = 2;
-			}
-			progress = (min-1) / (max-1);
-				//trace("Progress: " + progress);
-				//trace("Progress x Field: " + progress * field);
-			scrollBar.y = target.y + progress * field + upScrollButton.height;
-			titsClassPtr.scrollChecker();
-		}
-
 		//4. MIAN MENU STUFF
 		public function mainMenuButtonOn():void 
 		{
@@ -850,10 +841,10 @@
 			{
 				appearanceOn();
 			}
-			if (!this.stagePtr.contains(this.textInput)) 
+			if (!(_availableModules["PrimaryOutput"] as GameTextModule).inputEnabled()) 
 			{
 				mainMenuButtonOn();
-				this.dataOn();
+				dataOn();
 			}
 		}
 		
