@@ -1,6 +1,5 @@
 ﻿package classes
 {
-
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.ButtonTray;
@@ -88,8 +87,8 @@
 		
 		private var buttonHandler:Function;
 		
+		// Module handling
 		private var _currentModule:ContentModule;
-		
 		private var _availableModules:Object;
 		
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
@@ -351,6 +350,9 @@
 			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
 		}
 		
+		/**
+		 * Setup the primary display module.
+		 */
 		private function ConfigurePrimaryOutput():void
 		{
 			var pGameText:GameTextModule = new GameTextModule();
@@ -363,6 +365,9 @@
 			pGameText.visible = false;
 		}
 		
+		/**
+		 * Setup the secondary display module.
+		 */
 		private function ConfigureSecondaryOutput():void
 		{
 			var pGameText:GameTextModule = new GameTextModule(false);
@@ -587,9 +592,22 @@
 			}
 		}
 		
+		/**
+		 * Shuffle incoming stuff into the text display field.
+		 * Once we've shored everything up and made sure there are no inadvertant calls to output being made, I'm REASONABLY happy to
+		 * throw some indirection in here, and redirect output() to codexOutput() if the codex is the active module. Maybe.
+		 */
 		public function output()
 		{
-			mainTextField.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
+			{
+				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+			}
+			else
+			{
+				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
+			}
+			
 			updateScroll(null);
 		}
 		
@@ -610,6 +628,10 @@
 		
 		public function output2():void
 		{
+			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
+			{
+				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+			}
 			mainTextField2.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
 			updateScroll(null);
 		}
@@ -642,36 +664,6 @@
 		public function clearGhostMenu():void 
 		{
 			_buttonTray.clearGhostButtons();
-		}
-
-		public var mainTextStylesheet:StyleSheet = new StyleSheet();
-		
-		public function prepTextField(arg:TextField):void 
-		{
-			// Using this stylesheet, we can apply the _family_ of font faces to format the textfield.
-			// That means <b> and <i> text will /actually use/ the lato font faces; they actually weren't using the right glyphs before!
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:18, color:"#FFFFFF", marginRight:5 };
-			
-			// This is where everything comes a little unstuck. I don't THINK you can apply a global style to everything.
-			// The current bullshit method wraps a class'd <span> around all output. This does, however, come at a price, possibly; I think I know what causes the sticky formatting. If an incomplete <b> or <i> tag is ever parsed by the htmlText property of the text field, the formatting will get "stuck" and I'm trying to work out a good way of catching it when it happens, or "clearing" the sticky format.
-
-			mainTextStylesheet.setStyle(".words", defaultCSSTag);
-			
-			arg.border = false;
-			arg.text = "Placeholder";
-			arg.background = false;
-			arg.multiline = true;
-			arg.wordWrap = true;
-			arg.border = false;
-			arg.embedFonts = true; // Forces the field to use embedded fonts
-			arg.antiAliasType = AntiAliasType.ADVANCED; // PRETTY NICENESS
-			arg.x = 211;
-			arg.y = 5;
-			arg.height = 630;
-			arg.width = 760;
-			arg.styleSheet = mainTextStylesheet;
-			this.titsClassPtr.addChild(arg);
-			arg.visible = false;
 		}
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
