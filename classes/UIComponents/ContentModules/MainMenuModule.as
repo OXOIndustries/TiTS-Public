@@ -1,10 +1,12 @@
 package classes.UIComponents.ContentModules 
 {
+	import classes.TiTS;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
-	import UIComponents.ContentModule;
+	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.ContentModule;
@@ -16,7 +18,7 @@ package classes.UIComponents.ContentModules
 	public class MainMenuModule extends ContentModule
 	{	
 		// Embed assets purely used for this module.
-		[Embed(source = "../../../assets/modules/mainmenu/tits_logo.svg", mimeType = "image/svg")]
+		[Embed(source = "../../../assets/modules/mainmenu/tits_logo2.png", mimeType = "image/png")]
 		private static var Tits_Logo:Class;
 		
 		[Embed(source = "../../../assets/modules/mainmenu/warning.svg", mimeType = "image/svg")]
@@ -37,7 +39,7 @@ package classes.UIComponents.ContentModules
 			return btnArray;
 		}
 		
-		private var _titsLogo:Sprite;
+		private var _titsLogo:DisplayObject;
 		private var _warningBackground:Sprite;
 		private var _warningText:TextField;
 		private var _creditText:TextField;
@@ -99,7 +101,7 @@ package classes.UIComponents.ContentModules
 			_creditText.y = 305;
 			_creditText.height = 77;
 			_creditText.width = 780;
-			_creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.root.version + "</b>";
+			_creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + (this.root as TiTS).version + "</b>";
 			
 			
 			// Fuck with this to test hyperlink shit
@@ -164,6 +166,8 @@ package classes.UIComponents.ContentModules
 				newBtn.x = posX;
 				newBtn.y = posY;
 				newBtn.mouseChildren = false;
+				
+				_mainMenuButtons.push(newBtn);
 			}
 		}
 	}

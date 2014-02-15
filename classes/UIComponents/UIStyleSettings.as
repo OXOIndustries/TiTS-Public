@@ -236,7 +236,7 @@ package classes.UIComponents
 				UIStyleSettings._gButtonBodyLabelFormatter.size = 21;
 				UIStyleSettings._gButtonBodyLabelFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gButtonBodyLabelFormatter.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gButtonBodyLabelFormatter.leading = 11;
+				UIStyleSettings._gButtonBodyLabelFormatter.leading = 0;
 				UIStyleSettings._gButtonBodyLabelFormatter.kerning = true;
 				UIStyleSettings._gButtonBodyLabelFormatter.bold = true;
 				UIStyleSettings._gButtonBodyLabelFormatter.font = "Lato";
@@ -269,7 +269,7 @@ package classes.UIComponents
 				UIStyleSettings._gMainMenuTextFormatter.size = 18;
 				UIStyleSettings._gMainMenuTextFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gMainMenuTextFormatter.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gMainMenuTextFormatter.leading = 11;
+				UIStyleSettings._gMainMenuTextFormatter.leading = 0;
 				UIStyleSettings._gMainMenuTextFormatter.kerning = true;
 				UIStyleSettings._gMainMenuTextFormatter.tabStops = [35];
 				UIStyleSettings._gMainMenuTextFormatter.font = "Lato";

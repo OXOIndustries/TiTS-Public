@@ -64,8 +64,8 @@
 			else
 			{
 				kGAMECLASS.userInterface.showSecondaryOutput();
-				kGAMECLASS.userInterface.dataButton.Glow();
 				this.showDataMenu();
+				kGAMECLASS.userInterface.dataButton.Glow();
 			}
 		}
 		

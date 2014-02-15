@@ -1,7 +1,8 @@
 ﻿import classes.Characters.PlayerCharacter;
+import flash.events.Event;
 
 
-function creationRouter():void {
+function creationRouter(e:Event = null):void {
 	if(chars["PC"].short != "uncreated") {
 		this.userInterface.warningText.htmlText = "<b>Are you sure you want to create a new character?</b>";
 		this.userInterface.confirmNewCharacter();

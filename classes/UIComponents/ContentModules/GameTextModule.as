@@ -8,6 +8,7 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.UIStyleSettings;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
+	import classes.Bar;
 	
 	/**
 	 * ...
@@ -40,7 +41,7 @@ package classes.UIComponents.ContentModules
 			this.stage.focus = null;
 		}
 		
-		public function inputEnabled():void
+		public function inputEnabled():Boolean
 		{
 			if (_textInput.visible == true)
 			{
@@ -70,6 +71,7 @@ package classes.UIComponents.ContentModules
 		
 		private function init(e:Event):void
 		{
+			this.visible = false;
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			this.Build();
@@ -87,7 +89,7 @@ package classes.UIComponents.ContentModules
 			_mainText.wordWrap = true;
 			_mainText.embedFonts = true;
 			_mainText.antiAliasType = AntiAliasType.ADVANCED;
-			_mainText.x = 211;
+			_mainText.x = 5;
 			_mainText.y = 5;
 			_mainText.height = 630;
 			_mainText.width = 760;
@@ -102,20 +104,30 @@ package classes.UIComponents.ContentModules
 			_textInput.borderColor = 0xFFFFFF;
 			_textInput.embedFonts = true;
 			_textInput.antiAliasType = AntiAliasType.ADVANCED;
-			_textInput.TextFieldType.INPUT;
+			_textInput.type = TextFieldType.INPUT;
 			_textInput.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
 			_textInput.x = _mainText.x + 2;
 			_textInput.y = _mainText.y + 8 + _mainText.textHeight;
 			this.addChild(_textInput);
+			_textInput.visible = false;
 		}
 		
 		private function BuildScrollbar():void
 		{
+			_upScrollButton = new arrow();
+			_upScrollButton.x = _mainText.x + _mainText.width;
+			_upScrollButton.y = _mainText.y;
+			
+			_downScrollButton = new arrow();
+			_downScrollButton.rotation = 180;
+			_downScrollButton.x = _mainText.x + _mainText.width + _downScrollButton.width;
+			_downScrollButton.y = _mainText.y + _mainText.height;
+			
 			_scrollBg = new Bar();
 			_scrollBg.x = _mainText.x + _mainText.width;
 			_scrollBg.y = _mainText.y + _upScrollButton.height;
 			_scrollBg.height = _mainText.height - _upScrollButton.height - _downScrollButton.height;
-			_scrollBg.transform.cololrTransform = UIStyleSettings.gFadeOutColourTransform;
+			_scrollBg.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
 			this.addChild(_scrollBg);
 			
 			_scrollBar = new Bar();
@@ -124,15 +136,7 @@ package classes.UIComponents.ContentModules
 			_scrollBar.height = 50;
 			this.addChild(_scrollBar);
 			
-			_upScrollButton = new arrow();
-			_upScrollButton.x = _mainText.x + _mainText.width;
-			_upScrollButton.y = _mainTextField.y;
 			this.addChild(_upScrollButton);
-			
-			_downScrollButton = new arrow();
-			_downScrollButton.rotation = 180;
-			_downScrollButton.x = _mainText.x + _mainText.width + _downScrollButton.width;
-			_downScrollButton.y = _mainText.y + _mainText.height;
 			this.addChild(_downScrollButton);
 		}
 		
@@ -145,7 +149,7 @@ package classes.UIComponents.ContentModules
 			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			
 			_scrollBar.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
-			_scrollBg.addEventListener(MouseEvent.CLOCK, scrollPage);
+			_scrollBg.addEventListener(MouseEvent.CLICK, scrollPage);
 			
 			updateScroll();
 		}
@@ -268,7 +272,7 @@ package classes.UIComponents.ContentModules
 		//Turn dragging on and off!
 		public function mouseDownHandler(evt:MouseEvent = null):void
 		{
-			var myRectangle:Rectangle = new Rectangle(_scrollBG.x, _scrollBG.y, 0, _scrollBG.height - _scrollBar.height);
+			var myRectangle:Rectangle = new Rectangle(_scrollBg.x, _scrollBg.y, 0, _scrollBg.height - _scrollBar.height);
 			_scrollBar.startDrag(false, myRectangle);
 			
 			if (!_scrollBar.hasEventListener(Event.ENTER_FRAME))
@@ -286,7 +290,7 @@ package classes.UIComponents.ContentModules
 		//Used to set position of bar while being dragged!
 		public function scrollerUpdater(evt:Event = null):void 
 		{
-			var progress:Number = (_scrollBar.y - _scrollBG.y) / (_scrollBG.height - _scrollBar.height - 1);
+			var progress:Number = (_scrollBar.y - _scrollBg.y) / (_scrollBg.height - _scrollBar.height - 1);
 			
 			var min = _mainText.scrollV;
 			var max = _mainText.maxScrollV;
@@ -307,7 +311,7 @@ package classes.UIComponents.ContentModules
 				_downScrollButton.buttonMode = false;
 				_downScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN, clickScrollDown);
 			}
-			else if (this.userInterface.downScrollButton.alpha == .5) 
+			else if (_downScrollButton.alpha == .5) 
 			{
 				_downScrollButton.alpha = 1;
 				_downScrollButton.buttonMode = true;
@@ -320,7 +324,7 @@ package classes.UIComponents.ContentModules
 				_upScrollButton.buttonMode = false;
 				_upScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN, clickScrollUp);
 			}
-			else if (this.userInterface.upScrollButton.alpha == .5) 
+			else if (_upScrollButton.alpha == .5) 
 			{
 				_upScrollButton.alpha = 1;
 				_upScrollButton.buttonMode = true;
@@ -344,7 +348,7 @@ package classes.UIComponents.ContentModules
 			
 			_scrollBar.height = pageSize / target.numLines * (target.height - _upScrollButton.height - _downScrollButton.height);
 			
-			if (_scrollBar.height < _scrollBG.height)
+			if (_scrollBar.height < _scrollBg.height)
 			{
 				_scrollBar.buttonMode = true;
 			}

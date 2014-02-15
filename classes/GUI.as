@@ -83,7 +83,6 @@
 		private var _buttonTray:ButtonTray;
 		
 		private var buttonTooltip:ButtonTooltips;
-		
 		private var buttonHandler:Function;
 		
 		// Module handling
@@ -128,6 +127,8 @@
 			this.titsWhite.color = 0xFFFFFF;
 
 			// Set up the various side-bars
+			_availableModules = new Object();
+			
 			this.ConfigureMainMenu();
 			this.ConfigurePrimaryOutput();
 			this.ConfigureSecondaryOutput();
@@ -139,6 +140,10 @@
 			this.hidePCStats();
 
 			clearMenu();
+			
+			// Set the initial state of the main buttons
+			this.mainMenuButton.Activate();
+			this.dataButton.Activate();
 		}
 		
 		/**
@@ -217,7 +222,7 @@
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 		}
 		
-		private function mainMenuToggle():void
+		private function mainMenuToggle(e:Event = null):void
 		{
 			if (!mainMenuButton.isActive) return;
 			
@@ -380,13 +385,14 @@
 		private function ConfigurePrimaryOutput():void
 		{
 			var pGameText:GameTextModule = new GameTextModule();
+			titsClassPtr.addChild(pGameText);
 			_availableModules[pGameText.moduleName] = pGameText;
 			
 			pGameText.x = 200;
 			pGameText.y = 0;
 			
-			this.addChild(pGameText);
-			pGameText.visible = false;
+			
+			//pGameText.visible = false;
 		}
 		
 		/**
@@ -400,7 +406,7 @@
 			pGameText.x = 200;
 			pGameText.y = 0;
 			
-			this.addChild(pGameText);
+			titsClassPtr.addChild(pGameText);
 			pGameText.visible = false;
 		}
 		
@@ -413,7 +419,8 @@
 			if (module in _availableModules)
 			{
 				this.deglow();
-				_currentModule.visible = false;
+				this.DeGlowButtons();
+				if (_currentModule != null) _currentModule.visible = false;
 				_availableModules[module].visible = true;
 				_currentModule = _availableModules[module];
 				this.clearGhostMenu();
@@ -440,9 +447,8 @@
 			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
 			
 			this.mainMenuButton.Glow();
+			
 			this.resetMenuButtons();
-			
-			
 			this.clearGhostMenu();
 			
 			_buttonTray.buttonPageNext.Deactivate();
@@ -990,6 +996,13 @@
 		{
 			this._leftSideBar.miniMap.setMapData(data);
 			_leftSideBar.ShowMiniMap();
+		}
+		
+		public function DeGlowButtons():void
+		{
+			this.mainMenuButton.DeGlow();
+			this.dataButton.DeGlow();
+			this.appearanceButton.DeGlow();
 		}
 
 	}

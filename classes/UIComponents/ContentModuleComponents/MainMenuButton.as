@@ -57,12 +57,12 @@ package classes.UIComponents.ContentModuleComponents
 			_text.x = 5;
 			_text.y = 4;
 			_text.width = 137;
-			_text.height = (_sizeMode) ? 55 : 30;
+			_text.height = (_sizeMode) ? 60 : 30;
 			_text.defaultTextFormat = UIStyleSettings.gButtonBodyLabelFormatter;
 			_text.embedFonts = true;
 			_text.antiAliasType = AntiAliasType.ADVANCED;
-			_text.multiline = (_sizeMode) ? true : false;
-			_text.wordWrap = (_sizeMode) ? true : false;
+			_text.multiline = true;
+			_text.wordWrap = true;
 			_text.text = "A Button";
 			_text.mouseEnabled = false;
 			_text.mouseWheelEnabled = false;
