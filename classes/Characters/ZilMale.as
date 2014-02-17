@@ -159,6 +159,8 @@
 			this.inventory.push(new ZilRation());
 
 			this.createStatusEffect("Disarm Immune");
+			
+			this._isLoading = false;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void

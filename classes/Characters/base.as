@@ -25,8 +25,13 @@
 			 * don't require any level of customization or persistence. And it's easy to turn off if and when that fact change. */
 			this._neverSerialize = false;
 			
-			/** PLACE VARIABLE SETTINGS HERE **/
+			/**
+			 * isLoading controls some of the stat clamping. if isLoading is true, value clamps will be ignored.
+			 * Set it to false once you've set all of the properties in a constructor, so you don't have to care about the order of things.
+			 */
+			this._isLoading = false;
 			
+			/** PLACE VARIABLE SETTINGS HERE **/
 		}
 		
 		/**

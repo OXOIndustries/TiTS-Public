@@ -447,9 +447,7 @@
 			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
 			
 			this.mainMenuButton.Glow();
-			
 			this.resetMenuButtons();
-			this.clearGhostMenu();
 			
 			_buttonTray.buttonPageNext.Deactivate();
 			_buttonTray.buttonPagePrev.Deactivate();
@@ -461,11 +459,13 @@
 		public function showPrimaryOutput():void
 		{
 			this.showTargetOutput("PrimaryOutput");
+			this.clearGhostMenu();
 		}
 		
 		public function showSecondaryOutput():void
 		{
 			this.showTargetOutput("SecondaryOutput");
+			this.clearGhostMenu();
 		}
 		
 		private function showTargetOutput(v:String):void

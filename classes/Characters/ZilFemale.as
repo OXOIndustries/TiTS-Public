@@ -162,6 +162,8 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
+			
+			this._isLoading = false;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
