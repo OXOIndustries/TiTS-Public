@@ -60,7 +60,7 @@
         },
         // Finds any opening fancyquotes that don't have an opening italics tag, and adds the tag
         "fix_fancyquotes_open": {
-            "find": "“(?<!<i>)",
+            "find": "“(?!<i>)",
             "replace": "“<i>",
             "greedy": true,
             "case": false
@@ -90,6 +90,12 @@
         "replace_emdash": {
             "find": "—",
             "replace": "–",
+            "greedy": true,
+            "case": false
+        },
+        "replace_ellipses": {
+            "find": "…",
+            "replace": "...",
             "greedy": true,
             "case": false
         }

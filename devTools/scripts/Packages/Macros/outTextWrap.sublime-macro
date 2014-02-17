@@ -29,5 +29,20 @@
 			"characters": "\");"
 		},
 		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "\t"
+		},
+		"command": "insert"
 	}
 ]
