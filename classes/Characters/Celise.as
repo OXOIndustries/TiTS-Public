@@ -153,6 +153,8 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 5;
+			
+			this._isLoading = false;
 		}
 		
 		// Upgrade v1 - fix missing leg flags.

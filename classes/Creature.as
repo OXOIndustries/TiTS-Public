@@ -102,7 +102,7 @@
 			{
 				_physiqueRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > physiqueMax())
+			else if (v > physiqueMax() && !_isLoading)
 			{
 				_physiqueRaw = physiqueMax();
 			}
@@ -123,7 +123,7 @@
 			{
 				_reflexesRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > reflexesMax())
+			else if (v > reflexesMax() && !_isLoading)
 			{
 				_reflexesRaw = reflexesMax();
 			}
@@ -144,7 +144,7 @@
 			{
 				_aimRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > aimMax())
+			else if (v > aimMax() && !_isLoading)
 			{
 				_aimRaw = aimMax();
 			}
@@ -165,7 +165,7 @@
 			{
 				_intelligenceRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > intelligenceMax())
+			else if (v > intelligenceMax() && !_isLoading)
 			{
 				_intelligenceRaw = intelligenceMax();
 			}
@@ -186,7 +186,7 @@
 			{
 				_willpowerRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > willpowerMax())
+			else if (v > willpowerMax() && !_isLoading)
 			{
 				_willpowerRaw = willpowerMax();
 			}
@@ -207,7 +207,7 @@
 			{
 				_libidoRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > libidoMax())
+			else if (v > libidoMax() && !_isLoading)
 			{
 				_libidoRaw = libidoMax();
 			}

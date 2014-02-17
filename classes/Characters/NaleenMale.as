@@ -169,6 +169,8 @@
 			this.createStatusEffect("Disarm Immune");
 
 			this.inventory.push(new NaleenNip());
+			
+			this._isLoading = false;
 		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
