@@ -1,0 +1,17 @@
+[
+	{
+		"caption": "TITS Fix Quotation Characters: Swaps regular qutation characters in the currect line for fancy equivilents",
+		"command": "reg_replace",
+		"args": { "replacements": ["fix_regular_quotes_open", "fix_regularquotes_close","fix_fancyapos_open","fix_fancyapos_close"]}
+	},
+	{ 
+		"caption": "TITS Fix Dialog Italics: Inserts italics tags wherever a fancyquote is present.",
+		"command": "reg_replace",
+		"args": { "replacements": ["fix_fancyquotes_open", "fix_fancyquotes_close"]}
+	},
+	{
+		"caption": "TITS Fix em dash: Replace em dashes with en dashes.",
+		"command": "reg_replace",
+		"args": { "replacements": ["replace_emdash"]}
+	}
+]

@@ -1,0 +1,8 @@
+output("\n\nThis is some test content that should be automatically fixed and formatted by a set of sublime text scripts.");
+
+output("\n\n“<i>It features a number of formatting problems,</i>” she motions towards the incorrect quotation characters, before continuing, “<i>and a lack of the special formatting characters required for proper display.</i>” Inconsistencies include ‘incorrect’ types of quotation marks – improper use of em dash – amonst other things.");
+
+// This doesn't work yet. My regex-foo is weak.
+output("\n\nIt also includes a number of [testParsertag] to ensure that any potential formatting changes will not break any present advanced formatting that [advancedTestParserTag " + someVariable + "] might require for operation.");
+
+output("\n\nThese scripts are not designed to do all of the work - yet. Over time, they will grow to fix the more common and time consuming problems to fix by hand, but they will never analyze or correct spelling, grammatical or other logical errors. This is about formatting above content.");

@@ -44,15 +44,52 @@
 //                      to find all instances in a greedy fashion.  Default is false.
 {
     "replacements": {
-        "fix_fancyquotes_open": {
-            "find": "“",
-            "replace": "<i>“",
+        // Example replacements
+        // Finds any quotes that aren't potentially a part of text-parser commands and replaces with fancy quotes
+        "fix_regular_quotes_open": {
+            "find": "(?<= )\\\"|^\\\"",
+            "replace": "“",
             "greedy": true,
             "case": false
         },
+        "fix_regular_quotes_close": {
+            "find": "\"$|\"(?<=[^ ])(?![A-z])",
+            "replace": "”",
+            "greedy": true,
+            "case": false
+        },
+        // Finds any opening fancyquotes that don't have an opening italics tag, and adds the tag
+        "fix_fancyquotes_open": {
+            "find": "“(?<!<i>)",
+            "replace": "“<i>",
+            "greedy": true,
+            "case": false
+        },
+        // Finds any closing fancyquotes that don't have a closing italics tag, and adds the close.
         "fix_fancyquotes_close": {
-            "find": "”",
-            "replace": "”</i>",
+            "find": "(?<!</i>)”",
+            "replace": "</i>”",
+            "greedy": true,
+            "case": false
+        },
+        // Finds any apostraphe "'" characters used 
+        "fix_fancyapos_open": {
+            "find": "\\s'",
+            "replace": " ‘",
+            "greedy": true,
+            "case": false
+        },
+        "fix_fancyapos_close": {
+            "find": "(?<!\\s)'",
+            "replace": "’",
+            "greedy": true,
+            "case": false
+        },
+        // Replaces emdashes with en dashes
+        // Should maybe also enforce spacing requirements around the dash...
+        "replace_emdash": {
+            "find": "—",
+            "replace": "–",
             "greedy": true,
             "case": false
         }
