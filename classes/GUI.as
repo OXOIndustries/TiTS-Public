@@ -231,7 +231,7 @@
 			
 			//Website Text
 			websiteDisplay.border = false;
-			websiteDisplay.htmlText = "http://www.trialsInTaintedSpace.com";
+			websiteDisplay.htmlText = "http://www.taintedSpace.com";
 			websiteDisplay.background = false;
 			websiteDisplay.multiline = true;
 			websiteDisplay.wordWrap = true;
