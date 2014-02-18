@@ -163,8 +163,6 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
-			
-			this._isLoading = false;
 
 		}
 		public function UpgradeVersion1(dataObject:Object):void

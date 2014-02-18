@@ -10,7 +10,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -157,8 +157,15 @@
 			this.milkRate = 0;
 			this.ass.wetness = 0;
 			this.ass.looseness = 3;
-			
-			this._isLoading = false;
 		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.physiqueRaw = 13;
+			dataObject.reflexesRaw = 10;
+			dataObject.aimRaw = 15;
+			dataObject.intelligenceRaw = 9;
+			dataObject.willpowerRaw = 4;
+		}			
 	}
 }

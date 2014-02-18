@@ -12,7 +12,7 @@
 		//constructor
 		public function Penny()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -155,8 +155,6 @@
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 0;
-			
-			this._isLoading = false;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -165,6 +163,15 @@
 			{
 				dataObject.legFlags.push(GLOBAL.DIGITIGRADE);
 			}
+		}
+		
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.physiqueRaw = 10;
+			dataObject.reflexesRaw = 8;
+			dataObject.aimRaw = 6;
+			dataObject.intelligenceRaw = 4;
+			dataObject.willpowerRaw = 3;
 		}
 	}
 }

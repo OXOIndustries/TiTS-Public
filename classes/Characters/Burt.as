@@ -168,7 +168,6 @@
 			this.ass.wetness = 0;
 			
 			this.version = _latestVersion;
-			this._isLoading = false;
 		}
 		
 		// V1->V2, readd "broken" flags
