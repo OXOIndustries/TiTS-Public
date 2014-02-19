@@ -18,18 +18,18 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
 			this.shortName = "Pandaneen";
 			//Regular name
-			this.longName = "black and white pill labelled as 'Pandaneen'";
+			this.longName = "Pandaneen Pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a black and white pill labelled as 'Pandaneen'";
+			this.description = "a black and white pill labelled as ‘Pandaneen’";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This gel capsule is half white, half black and stamped with the word \"Pandaneen.\" Marketed as a cheaper alternative to higher grade splices by Xenogen Biotech, Pandaneen is designed to slowly give the imbiber panda-like features using a variety of microsurgeons and genetic codes. It is guaranteed effective on over 95% of carbon-based life forms with a mortality rate well below one percent.";
+			this.tooltip = "This gel capsule is half white, half black and stamped with the word ‘Pandaneen’. Marketed as a cheaper alternative to higher grade splices by Xenogen Biotech, Pandaneen is designed to slowly give the imbiber panda-like features using a variety of microsurgeons and genetic codes. It is guaranteed effective on over 95% of carbon-based life forms with a mortality rate well below one percent.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

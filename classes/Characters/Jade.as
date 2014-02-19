@@ -13,7 +13,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
@@ -173,47 +173,6 @@
 			this.ass.bonusCapacity = 100;
 			
 			this.createStatusEffect("Disarm Immune");
-
-		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			if (dataObject.skinFlags.length == 0)
-			{
-				dataObject.skinFlags.push(GLOBAL.FLUFFY);
-			}
-		}
-		
-		override public function setDefaultSexualPreferences():void
-		{
-			//Naleen Likes:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BUTTS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,				GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILS,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,		GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.KINDA_LIKES_SEXPREF);
-			//Naleen Dislikes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BUTTS,		GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALDNESS,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-		}
-		
-		override public function prepForCombat():void
-		{
-			var combatNaleen:Naleen = this.makeCopy();
-			
-			kGAMECLASS.userInterface.showBust("NALEEN");
-			kGAMECLASS.setLocation("FIGHT:\nNALEEN", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatNaleen.setDefaultSexualPreferences();
-			
-			kGAMECLASS.foes.push(combatNaleen);
 		}
 	}
 }
