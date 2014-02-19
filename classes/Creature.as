@@ -3597,8 +3597,8 @@
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
 				trace("boobs confirmed");
-				if (biggestTitSize() * 2 > 50) weighting += 50;
-				else weighting += biggestTitSize() * 2;
+				if (biggestTitSize() * 3 > 50) weighting += 50;
+				else weighting += biggestTitSize() * 3;
 			}
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
@@ -3608,8 +3608,8 @@
 			//Hips give small boost
 			if (hipRating >= 6) weighting += hipRating * 1.5;
 			else weighting -= (6 - hipRating) * 3;
-			if (hairLength > 8) weighting += (hairLength - 7) * 2;
-			else weighting -= (8 - hairLength) * 3;
+			if (hairLength > 8) weighting += (hairLength - 7) * 1.5;
+			else weighting -= (8 - hairLength) * 1.5;
 			if (tone > 70) weighting -= 10;
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;
