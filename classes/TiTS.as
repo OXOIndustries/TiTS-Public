@@ -80,6 +80,7 @@
 		include "../includes/alex.as";
 		include "../includes/naleen_male.as";
 		include "../includes/crazyCarl.as";
+		include "../includes/jade.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

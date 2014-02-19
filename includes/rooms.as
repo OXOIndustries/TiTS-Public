@@ -1,4 +1,4 @@
-﻿import classes.Characters.PlayerCharacter;
+import classes.Characters.PlayerCharacter;
 
 
 function initializeRooms():void 
@@ -41,7 +41,7 @@ function initializeRooms():void
 	rooms["ANON'S BOARD HALL"].southExit = "ANON'S BAR AND BOARD";
 	rooms["ANON'S BOARD HALL"].addFlag(GLOBAL.INDOOR);
 
-	//"ANON'S BAR AND BOARD". Anon's Bar and Board
+	//102 "ANON'S BAR AND BOARD". Anon's Bar and Board
 	rooms["ANON'S BAR AND BOARD"] = new RoomClass(this);
 	rooms["ANON'S BAR AND BOARD"].roomName = "ANON'S BAR\nAND BOARD";
 	rooms["ANON'S BAR AND BOARD"].description = "Heady alcoholic scents combine with drug-laced smoke and salty food to give this place the unquestionable aroma of a seedy bar. Three-breasted waitresses balancing trays full of drinks one-handed sashay around in short skirts and sheer tops, their gait made awkward by their three legs and small feet. A rickety metal stairway rises up to the north, leading to the board portion of the this establishment. You've already roomed there once, and the accomodations were far from great. A door to the west opens out into a central thoroughfare.";
@@ -53,18 +53,19 @@ function initializeRooms():void
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.INDOOR);
 	rooms["ANON'S BAR AND BOARD"].addFlag(GLOBAL.BAR);
 
-	//"MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
+	//103 "MERCHANT'S THOROUGHFARE". Merchant's Thoroughfare
 	rooms["MERCHANT'S THOROUGHFARE"] = new RoomClass(this);
 	rooms["MERCHANT'S THOROUGHFARE"].roomName = "MERCHANT'S\nTHOROUGHFARE";
 	rooms["MERCHANT'S THOROUGHFARE"].description = "The crowds in this part of the station would normally be particularly thick, but it looks like many of the local business have been shuttered, their owners likely trying their business out on the rim, profiteering off the planet rush. For now, Anon's Bar and Board looks to be open ot the east. It's interior promises cheap but delicious foods likely to broaden the waistline, but then again, what are you to expect from bar food? The express lifts have entrances here, able to take you to any level on the station if you head <b>in</b> the door.";
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
+	rooms["MERCHANT'S THOROUGHFARE"].westExit = "FUR EFFECT";
 	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
 
-	//"LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
+	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
 	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);;
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
 	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
@@ -75,7 +76,7 @@ function initializeRooms():void
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
 
-	//"TAVROS HANGAR". The Hangar
+	//105 "TAVROS HANGAR". The Hangar
 	rooms["TAVROS HANGAR"] = new RoomClass(this);
 	rooms["TAVROS HANGAR"].roomName = "THE\nHANGAR";
 	rooms["TAVROS HANGAR"].description = "A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.";
@@ -85,7 +86,7 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].inText = "Lift";
 	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
 
-	//"TAVROS LIFT". In The Lift - The Hangar
+	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);
 	rooms["TAVROS LIFT"].roomName = "LIFT: HANGAR\nDECK";
 	rooms["TAVROS LIFT"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
@@ -96,6 +97,17 @@ function initializeRooms():void
 	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
+
+	//108 "FUR EFFECT" Fur Effect
+	rooms["FUR EFFECT"] = new RoomClass(this);
+	rooms["FUR EFFECT"].roomName = "SHOP:\nFUR EFFECT";
+	rooms["FUR EFFECT"].description = "The sign declared this store to be \"Fur Effect,\" and you can see why. Your [pc.feet] sink ankle-deep into thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.";
+	rooms["FUR EFFECT"].planet = "TAVROS STATION";
+	rooms["FUR EFFECT"].system = "SYSTEM: KALAS";
+	rooms["FUR EFFECT"].eastExit = "MERCHANT'S THOROUGHFARE";
+	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
+	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
+	rooms["FUR EFFECT"].runOnEnter = furEffectBonusFunction;
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);
@@ -683,7 +695,7 @@ function initializeRooms():void
 	//53. Deep Forest
 	rooms["DEEP FOREST 2"] = new RoomClass(this);
 	rooms["DEEP FOREST 2"].roomName = "DEEP\nFOREST";
-	rooms["DEEP FOREST 2"].description = "The shadows here move with a kind of unnerving motion, twisting this way and that as unseen breezes rustle the leaves some hundreds of feet above. You continually flick your gaze around, and in a way, you're thankful that the darkness has kept the bushes down to minimum here. There's less places for potential foes to lurk. Unless… they're above you? You jerk back, staring at the trees in alarm. Emptiness. Well, you can always follow the path east through the darkness or west towards a more illuminated bend.";
+	rooms["DEEP FOREST 2"].description = "The shadows here move with a kind of unnerving motion, twisting this way and that as unseen breezes rustle the leaves some hundreds of feet above. You continually flick your gaze around, and in a way, you're thankful that the darkness has kept the bushes down to minimum here. There's less places for potential foes to lurk. Unless... they're above you? You jerk back, staring at the trees in alarm. Emptiness. Well, you can always follow the path east through the darkness or west towards a more illuminated bend.";
 	rooms["DEEP FOREST 2"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP FOREST 2"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP FOREST 2"].eastExit = "DEEP INTERSECTION 1";
@@ -782,7 +794,7 @@ function initializeRooms():void
 	//62. Forked\nJungle
 	rooms["FORKED DEEP JUNGLE 1"] = new RoomClass(this);
 	rooms["FORKED DEEP JUNGLE 1"].roomName = "DEEP JUNGLE\nFORK";
-	rooms["FORKED DEEP JUNGLE 1"].description = "There's three distinct paths that you could follow from this point: one to east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost… strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
+	rooms["FORKED DEEP JUNGLE 1"].description = "There's three distinct paths that you could follow from this point: one to east, one to the south, and one to the west. The latter two show a distinct difference in the bordering plant-life; it's almost entirely vines covered in flowers. You can spot the odd tree-trunk here or there, but they're completely overgrown by the green tendrils. They seem almost... strangled. It would be wise not to stray too far from the openings in that direction. To the east, the trail looks a little less threatening, but it is still in the deep, dark jungle.";
 	rooms["FORKED DEEP JUNGLE 1"].planet = "PLANET: MHEN'GA";
 	rooms["FORKED DEEP JUNGLE 1"].system = "SYSTEM: ARA ARA";
 	rooms["FORKED DEEP JUNGLE 1"].eastExit = "DEEP JUNGLE 2";

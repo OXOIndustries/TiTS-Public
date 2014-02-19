@@ -1,4 +1,4 @@
-﻿// BET_AGAINST_SYRI				: 1 if PC has ever engaged in a bet with Syri
+// BET_AGAINST_SYRI				: 1 if PC has ever engaged in a bet with Syri
 // FUCKED_SYRI_COUNT			: Number of times the PC has boned or been boned by the big-boned bitch.
 // MET_SYRI						: 1 if the PC ever met her.
 // TIMES_BET_YOURSELF_AGAINST_SYRI : You get the drill.
@@ -1079,7 +1079,7 @@ function dontGoAwayYouKnotCunt():void {
 	author("Savin");
 	output("<i>“What, you think we're done?”</i>  you say, grabbing your ausar lover by the waist and pulling her into a tight embrace, feeling her bare breasts pressing hard into your [pc.chest].");
 
-	output("\n\nShe laughs gaily, grabbing a handful of your backside as you kiss her. The bulge of her cock growing again is unmistakable as you yank her pants back down, grabbing her red shaft. <i>“Well, if you insist… not like I had plans,”</i>  she grins, spinning you around and shoving you back into the bed before clambering over you, licking her lips predatorily. <i>“Lusty " + pc.mf("slut","stud") + ", aren't ya?”</i>");
+	output("\n\nShe laughs gaily, grabbing a handful of your backside as you kiss her. The bulge of her cock growing again is unmistakable as you yank her pants back down, grabbing her red shaft. <i>“Well, if you insist... not like I had plans,”</i>  she grins, spinning you around and shoving you back into the bed before clambering over you, licking her lips predatorily. <i>“Lusty " + pc.mf("slut","stud") + ", aren't ya?”</i>");
 
 	output("\n\nYou grab her, pulling her down into another kiss as you grab her ass, spreading her cheeks wide with a rough squeeze.");
 	if(pc.isMischievous()) output(" <i>“Takes one to know one!”</i>");

@@ -1116,6 +1116,7 @@
 				else if (statCurrent + change < 85) change += .25;
 				else if (statCurrent + change < 90) change += .2;
 				else if (statCurrent + change < 95) change += .15;
+				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
 			else if (stat == "reflexes") return reflexes(change);
@@ -1240,6 +1241,9 @@
 				temp++;
 			}
 			return false;
+		}
+		public function addSkinFlag(arg): void {
+			if (!hasSkinFlag(arg)) skinFlags[skinFlags.length] = arg;
 		}
 		public function clearSkinFlags(): void {
 			skinFlags = new Array();
@@ -2775,6 +2779,16 @@
 			while (counter > 0) {
 				counter--;
 				if (cocks[index].thickness() > cocks[counter].thickness()) index = counter;
+			}
+			return index;
+		}
+		public function thinnestCockRatioIndex(): Number {
+			if (cocks.length == 0) return 0;
+			var counter: Number = cocks.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (cocks[index].cThicknessRatio > cocks[counter].cThicknessRatio) index = counter;
 			}
 			return index;
 		}
