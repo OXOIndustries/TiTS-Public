@@ -211,11 +211,11 @@
 			combatCSnake.customBlock = "Your attack deflects off the cunt snake's " + combatCSnake.scaleColor + " scales!";
 
 			// What's all this shit for? Is i supposed to still be here after all the rand^ calls? It was in the initCSnake function so...
-			combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
-			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
-			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.CANINE;
-			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
-			if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.SIREN;
+			//combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.CANINE;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.SIREN;
 
 			kGAMECLASS.foes.push(combatCSnake);
 		}

@@ -147,6 +147,7 @@
 			}
 			
 			kGAMECLASS.output2(displayMessage);
+			kGAMECLASS.output2("\n");
 			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			
 		}

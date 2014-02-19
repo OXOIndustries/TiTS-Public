@@ -34,6 +34,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
+			
 			//Information
 			this.basePrice = 500;
 			this.attack = 0;
@@ -50,9 +51,11 @@
 			
 			this.version = this._latestVersion;
 		}
+		
 		protected function rand(max: Number): Number {
  			return int(Math.random() * max);
  		}
+		
 		//METHOD ACTING!
 		override public function useFunction(target:Creature):Boolean
 		{
