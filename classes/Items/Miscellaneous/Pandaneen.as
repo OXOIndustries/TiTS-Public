@@ -88,7 +88,7 @@
 					if(rand(3) == 0) kGAMECLASS.output("\n\nA wave of tightness rolls out from your shoulders and down through every muscle group in your body. In its wake, it leaves behind a physical confidence that can only mean an increase in strength and toughness.");
 					else if(rand(2) == 0) kGAMECLASS.output("\n\nYou roll your shoulders as they start to tingle, but it doesn't make the odd sensation stop. In fact, it spreads down your body like wildfire. Only after your whole body is alight with misfiring nerves does the feeling abate. You seem a bit more solid after, and a little stronger too.");
 					else kGAMECLASS.output("\n\nSlight tremors run through the arms and chest, then down your legs. Everywhere they go, you feel a little bit more physically imposing - stronger, tougher, you name it.");
-					target.slowStatGain("reflexes",.5);
+					target.slowStatGain("physique",.5);
 					if(rand(2) == 0) target.slowStatGain("physique",.5);
 					if(rand(3) == 0) target.slowStatGain("physique",1);
 					changes++;
@@ -193,7 +193,9 @@
 							//Ballsize <= 1
 							if(target.ballSize <= 1)
 							{
-								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, large ball{s}.</b>");
+								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, large ball");
+								if(target.balls > 1) kGAMECLASS.output("s");
+								kGAMECLASS.output(".</b>");
 								target.ballSize = 1;
 							}
 							//Ballsize == 2
