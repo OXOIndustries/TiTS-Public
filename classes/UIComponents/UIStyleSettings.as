@@ -250,7 +250,7 @@ package classes.UIComponents
 			if (UIStyleSettings._gButtonBindLabelFormatter == null)
 			{
 				UIStyleSettings._gButtonBindLabelFormatter = new TextFormat();
-				UIStyleSettings._gButtonBindLabelFormatter.size = 14;
+				UIStyleSettings._gButtonBindLabelFormatter.size = 15;
 				UIStyleSettings._gButtonBindLabelFormatter.color = UIStyleSettings.gBlueBindColour;
 				UIStyleSettings._gButtonBindLabelFormatter.align = TextFormatAlign.CENTER;
 				UIStyleSettings._gButtonBindLabelFormatter.leading = 37;

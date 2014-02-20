@@ -54,7 +54,7 @@
 			}
 			else if (kGAMECLASS.userInterface.dataButton.isHighlighted)
 			{
-				kGAMECLASS.userInterface.dataButton.Deactivate();
+				kGAMECLASS.userInterface.dataButton.DeGlow();
 				kGAMECLASS.userInterface.showPrimaryOutput();
 				
 				if (kGAMECLASS.pc.short == "uncreated")
