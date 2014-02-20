@@ -80,6 +80,11 @@ package classes.UIComponents.ContentModules
 			_codexTree.x = _codexText.x + _codexText.width + 21;
 			this.addChild(_codexTree);			
 		}
+		
+		public function update():void
+		{
+			_codexTree.update();
+		}
 	}
 
 }

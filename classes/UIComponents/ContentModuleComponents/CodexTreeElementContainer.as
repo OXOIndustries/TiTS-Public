@@ -3,13 +3,31 @@ package classes.UIComponents.ContentModuleComponents
 	import classes.UIComponents.ContentModuleComponents.CodexTreeHeader;
 	import fl.containers.ScrollPane;
 	import flash.events.Event;
+	import flash.text.TextField;
+	import classes.GameData.CodexManager;
+	
 	/**
-	 * OH GOD. OH GOD OH GOD OHGODOHGODOHOGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
+	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
 	 * @author Gedan
 	 */
 	public class CodexTreeElementContainer extends ScrollPane
 	{
 		private var _headers:Vector.<CodexTreeHeader>;
+		
+		private var _activeHeader:int;
+		
+		private var _currentLinks:TextField;
+		private var _currentLinkSplice:int;
+		
+		private var _previousLinks:TextField;
+		private var _previousLinkSplice:int;
 		
 		public function CodexTreeElementContainer() 
 		{
@@ -22,42 +40,31 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_headers = new Vector.<CodexTreeHeader>();
 			this.opaqueBackground = null;
+			this._activeHeader = -1;
+			this._currentLinkSplice = -1;
+			this._previousLinkSplice = -1;
 			
-			this.BuildTestHeaders();
+			this.InitLayout();
 		}
 		
-		private function BuildTestHeaders():void
+		private function InitLayout():void
 		{
-			var header:CodexTreeHeader = new CodexTreeHeader();
-			this.addChild(header);
-			header.labelText = "PEOPLE";
-			header.x = 0;
-			header.y = 5;
-			_headers.push(header);
+			var headers:Array = CodexManager.getCodexCategories();
 			
-			header = new CodexTreeHeader();
-			this.addChild(header);
-			header.labelText = "RACES";
-			header.x = 0;
-			header.y = _headers[0].y + _headers[0].height + 5;
-			_headers.push(header);
-			header.Highlight();
-			
-			header = new CodexTreeHeader();
-			this.addChild(header);
-			header.labelText = "PLACES";
-			header.x = 0;
-			header.y = _headers[1].y + _headers[1].height + 5;
-			_headers.push(header);
-			
-			header = new CodexTreeHeader();
-			this.addChild(header);
-			header.labelText = "EVENTS";
-			header.x = 0;
-			header.y = _headers[2].y + _headers[2].height + 5;
-			_headers.push(header);
+			for (var i:int = 0; i < headers.length; i++)
+			{
+				var newHeader:CodexTreeHeader = new CodexTreeHeader();
+				this.addChild(newHeader);
+				newHeader.x = 0;
+				newHeader.y = (i == 0) ? 5 : _headers[i - 1].y + _headers[i - 1].height;
+				_headers.push(newHeader);
+			}
 		}
 		
+		public function updateContent():void
+		{
+			
+		}
 	}
 
 }

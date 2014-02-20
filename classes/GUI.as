@@ -523,6 +523,9 @@
 		public function showCodex():void
 		{
 			this.showModule("CodexDisplay");
+			
+			// Trigger an update of the visual data state whenever we begin displaying the Codex
+			(_currentModule as CodexModule).update();
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI

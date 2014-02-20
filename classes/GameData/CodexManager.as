@@ -9,8 +9,15 @@ package classes.GameData
 		{
 			CodexManager.UNLOCKEDENTRIES = new Array();
 			CodexManager.VIEWEDENTRIES = new Array();
+			CodexManager.CODEXCATEGORIES = new Array();
+			
 			CodexManager.CODEXCONTENTFUNCTORS = new Object();
 			CodexManager.CODEXTREE = new Object();
+			
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_PERSON] = "PERSON";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE] = "RACE";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_EVENT] = "EVENTS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_LOCATION] = "LOCATIONS";
 			
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_PERSON] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE] 		= new Object();
@@ -20,10 +27,11 @@ package classes.GameData
 		
 		private static var UNLOCKEDENTRIES:Array;
 		private static var VIEWEDENTRIES:Array;
+		private static var CODEXCATEGORIES:Array;
 		private static var CODEXCONTENTFUNCTORS:Object;
 		private static var CODEXTREE:Object;
 		
-		public static const CODEX_TYPE_UNKNOWN:int 	= 0;
+		public static const CODEX_TYPE_CATEGORY:int 	= 0;
 		public static const CODEX_TYPE_PERSON:int 		= 1;
 		public static const CODEX_TYPE_RACE:int 		= 2;
 		public static const CODEX_TYPE_EVENT:int 		= 3;
@@ -49,12 +57,17 @@ package classes.GameData
 			}
 		}
 		
-		public function getCodexTree(codexType:int):Object
+		public static function getCodexCategories():Array
+		{
+			return CodexManager.CODEXCATEGORIES;
+		}
+		
+		public static function getCodexTree(codexType:int):Object
 		{
 			return CodexManager.CODEXTREE[codexType];
 		}
 		
-		public function getEntryFunctor(entryName:String):Function
+		public static function getEntryFunctor(entryName:String):Function
 		{
 			return CodexManager.CODEXCONTENTFUNCTORS[entryName].functor;
 		}

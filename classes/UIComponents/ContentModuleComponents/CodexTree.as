@@ -23,7 +23,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _codexHeaderIcon:Sprite;
 		
 		// Tree Elements
-		private var _treeContent:ScrollPane;
+		private var _treeContent:CodexTreeElementContainer;
 		
 		public function CodexTree() 
 		{
@@ -81,6 +81,11 @@ package classes.UIComponents.ContentModuleComponents
 			_treeContent.setStyle("skin", nullSkin);
 			_treeContent.setStyle("upSkin", nullSkin);
 			this.addChild(_treeContent);
+		}
+		
+		public function update():void
+		{
+			_treeContent.updateContent();
 		}
 		
 	}
