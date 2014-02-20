@@ -88,6 +88,13 @@ function debugMenus():void
 		
 		itemCollect(foundLootItems);
 	});
+	
+	addButton(4, "Test Text", function():void {
+		for (var i:int = 0; i < 50; i++)
+		{
+			output("\nSpam a shitload of testing text so I can fuck around with the scrollbar skin and layout shit. Line # " + String(i));
+		}
+	});
 }
 
 

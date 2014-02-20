@@ -364,6 +364,37 @@
 			}
 		}
 
+		// New passthroughs to GUI to handle scroll event controls
+		public function upScrollText():void
+		{
+			this.userInterface.upScrollText();
+		}
+		
+		public function downScrollText():void
+		{
+			this.userInterface.downScrollText();
+		}
+		
+		public function pageUpScrollText():void
+		{
+			this.userInterface.pageUpScrollText();
+		}
+		
+		public function pageDownScrollText():void
+		{
+			this.userInterface.pageDownScrollText();
+		}
+		
+		public function homeScrollText():void
+		{
+			this.userInterface.homeScrollText();
+		}
+		
+		public function endScrollText():void
+		{
+			this.userInterface.endScrollText();
+		}
+		
 		public function get pc():*
 		{
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.

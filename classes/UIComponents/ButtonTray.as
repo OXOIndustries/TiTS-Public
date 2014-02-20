@@ -298,7 +298,7 @@ package classes.UIComponents
 				_buttons[i].clearData();
 			}
 			
-			this.resetButtons();
+			//this.resetButtons();
 		}
 		
 		/**

@@ -459,7 +459,7 @@
 		public function showPrimaryOutput():void
 		{
 			this.showTargetOutput("PrimaryOutput");
-			this.clearGhostMenu();
+			_buttonTray.resetButtons();
 		}
 		
 		public function showSecondaryOutput():void
@@ -665,8 +665,6 @@
 			{
 				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
 			}
-			
-			this.primaryOutputModule.updateScroll();
 		}
 		
 		public function clearOutput():void
@@ -677,7 +675,6 @@
 			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer = "\n";
 			
-			this.primaryOutputModule.updateScroll();
 			author("Probably Fenoxo");
 			textPage = 4;
 			
@@ -697,14 +694,14 @@
 				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
 			}
 			
-			this.secondaryOutputModule.updateScroll();
+			//this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function clearOutput2():void
 		{
 			showSecondaryOutput();
 			outputBuffer2 = "\n";
-			this.secondaryOutputModule.updateScroll();
+			//this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function getGuiPlayerNameText():String
@@ -808,7 +805,7 @@
 					this.primaryOutputModule.htmlText = textBuffer[textPage];
 					sceneBy = authorBuffer[textPage];
 				}
-				this.primaryOutputModule.updateScroll();
+				//this.primaryOutputModule.updateScroll();
 				bufferButtonUpdater();
 			}
 		}
@@ -1005,5 +1002,54 @@
 			this.appearanceButton.DeGlow();
 		}
 
+		// New passthrough event/keyboard control handlers for scroll mechanics. Here, we can redirect them to the
+		// correct module to do what we need.
+		public function upScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).upScrollText();
+			}
+		}
+		
+		public function downScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).downScrollText();
+			}
+		}
+		
+		public function pageUpScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).pageUpScrollText();
+			}
+		}
+		
+		public function pageDownScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).pageDownScrollText();
+			}
+		}
+		
+		public function homeScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).homeScrollText();
+			}
+		}
+		
+		public function endScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).endScrollText();
+			}
+		}
 	}
 }
