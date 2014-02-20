@@ -308,7 +308,7 @@ package classes.UIComponents
 				UIStyleSettings._gCodexTitleHeaderFormatter.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gCodexTitleHeaderFormatter.kerning = true;
 				UIStyleSettings._gCodexTitleHeaderFormatter.leading = 0;
-				UIStyleSettings._gCodexTitleHeaderFormatter.font = "Universe UltraCondensed";
+				UIStyleSettings._gCodexTitleHeaderFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gCodexTitleHeaderFormatter;
 		}
@@ -319,7 +319,7 @@ package classes.UIComponents
 			if (UIStyleSettings._gCodexTreeHeaderFormatter == null)
 			{
 				UIStyleSettings._gCodexTreeHeaderFormatter = new TextFormat();
-				UIStyleSettings._gCodexTreeHeaderFormatter.size = 35;
+				UIStyleSettings._gCodexTreeHeaderFormatter.size = 59;
 				UIStyleSettings._gCodexTreeHeaderFormatter.color = UIStyleSettings.gForegroundColour;
 				UIStyleSettings._gCodexTreeHeaderFormatter.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gCodexTreeHeaderFormatter.kerning = true;

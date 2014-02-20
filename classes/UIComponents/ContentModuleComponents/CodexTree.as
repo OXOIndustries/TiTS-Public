@@ -48,21 +48,21 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_codexHeaderUnderline = new Sprite();
 			_codexHeaderUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_codexHeaderUnderline.graphics.drawRect(0, 0, _background.width - 5, 3);
+			_codexHeaderUnderline.graphics.drawRect(0, 0, _background.width - 10, 3);
 			_codexHeaderUnderline.graphics.endFill();
-			_codexHeaderUnderline.x = 5;
-			_codexHeaderUnderline.y = 30;
+			_codexHeaderUnderline.x = 10;
+			_codexHeaderUnderline.y = 50;
 			this.addChild(_codexHeaderUnderline);
 			
 			_codexHeaderText = new TextField();
-			_codexHeaderText.x = 5;
-			_codexHeaderText.y = 5;
+			_codexHeaderText.x = 10;
+			_codexHeaderText.y = 1;
 			_codexHeaderText.width = 300;
 			_codexHeaderText.height = 50;
 			_codexHeaderText.defaultTextFormat = UIStyleSettings.gCodexTitleHeaderFormatter;
 			_codexHeaderText.embedFonts = true;
 			_codexHeaderText.antiAliasType = AntiAliasType.ADVANCED;
-			_codexHeaderText.text = "CODEX: DB";
+			_codexHeaderText.text = "CODEX DB";
 			_codexHeaderText.mouseEnabled = false;
 			_codexHeaderText.mouseWheelEnabled = false;
 			this.addChild(_codexHeaderText);

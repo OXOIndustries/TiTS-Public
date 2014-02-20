@@ -42,9 +42,9 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_label = new TextField();
 			_label.x = 20;
-			_label.y = -5;
+			_label.y = -14;
 			_label.width = 280;
-			_label.height = 40;
+			_label.height = 60;
 			_label.defaultTextFormat = UIStyleSettings.gCodexTreeHeaderFormatter;
 			_label.embedFonts = true;
 			_label.antiAliasType = AntiAliasType.ADVANCED;
@@ -52,6 +52,16 @@ package classes.UIComponents.ContentModuleComponents
 			_label.mouseEnabled = false;
 			_label.mouseWheelEnabled = false;
 			this.addChild(_label);
+		}
+		
+		override public function get height():Number
+		{
+			return _background.height;
+		}
+		
+		override public function get width():Number
+		{
+			return _background.width;
 		}
 		
 		public function Highlight():void
