@@ -36,15 +36,15 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			_background = new Sprite();
 			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
-			_background.graphics.drawRoundRect(0, 0, 330, 40, 16);
+			_background.graphics.drawRoundRect(0, 0, 180, 25, 8);
 			_background.graphics.endFill();
 			this.addChild(_background);
 			
 			_label = new TextField();
-			_label.x = 20;
-			_label.y = -14;
-			_label.width = 280;
-			_label.height = 60;
+			_label.x = 16;
+			_label.y = -5;
+			_label.width = 140;
+			_label.height = 50;
 			_label.defaultTextFormat = UIStyleSettings.gCodexTreeHeaderFormatter;
 			_label.embedFonts = true;
 			_label.antiAliasType = AntiAliasType.ADVANCED;

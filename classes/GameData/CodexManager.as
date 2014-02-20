@@ -23,11 +23,11 @@ package classes.GameData
 		private static var CODEXCONTENTFUNCTORS:Object;
 		private static var CODEXTREE:Object;
 		
-		private static const CODEX_TYPE_UNKNOWN:int 	= 0;
-		private static const CODEX_TYPE_PERSON:int 		= 1;
-		private static const CODEX_TYPE_RACE:int 		= 2;
-		private static const CODEX_TYPE_EVENT:int 		= 3;
-		private static const CODEX_TYPE_LOCATION:int 	= 4;
+		public static const CODEX_TYPE_UNKNOWN:int 	= 0;
+		public static const CODEX_TYPE_PERSON:int 		= 1;
+		public static const CODEX_TYPE_RACE:int 		= 2;
+		public static const CODEX_TYPE_EVENT:int 		= 3;
+		public static const CODEX_TYPE_LOCATION:int 	= 4;
 		
 		public static function addCodexEntry(codexType:int, treePosition:String, entryName:String, functor:Function, startsUnlocked:Boolean = false):void
 		{

@@ -42,7 +42,7 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			_background = new Sprite();
 			_background.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
-			_background.graphics.drawRect(0, 0, 360, 740);
+			_background.graphics.drawRect(0, 0, 200, 740);
 			_background.graphics.endFill();
 			this.addChild(_background);
 			
@@ -51,18 +51,18 @@ package classes.UIComponents.ContentModuleComponents
 			_codexHeaderUnderline.graphics.drawRect(0, 0, _background.width - 10, 3);
 			_codexHeaderUnderline.graphics.endFill();
 			_codexHeaderUnderline.x = 10;
-			_codexHeaderUnderline.y = 50;
+			_codexHeaderUnderline.y = 32;
 			this.addChild(_codexHeaderUnderline);
 			
 			_codexHeaderText = new TextField();
-			_codexHeaderText.x = 10;
-			_codexHeaderText.y = 1;
-			_codexHeaderText.width = 300;
-			_codexHeaderText.height = 50;
-			_codexHeaderText.defaultTextFormat = UIStyleSettings.gCodexTitleHeaderFormatter;
+			_codexHeaderText.x = 6;
+			_codexHeaderText.y = 4;
+			_codexHeaderText.width = 190;
+			_codexHeaderText.height = 34;
+			_codexHeaderText.defaultTextFormat = UIStyleSettings.gNameHeaderFormatter;
 			_codexHeaderText.embedFonts = true;
 			_codexHeaderText.antiAliasType = AntiAliasType.ADVANCED;
-			_codexHeaderText.text = "CODEX DB";
+			_codexHeaderText.text = "Codex DB";
 			_codexHeaderText.mouseEnabled = false;
 			_codexHeaderText.mouseWheelEnabled = false;
 			this.addChild(_codexHeaderText);

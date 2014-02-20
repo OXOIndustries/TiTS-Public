@@ -745,15 +745,12 @@
 			{
 				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
 			}
-			
-			//this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function clearOutput2():void
 		{
 			showSecondaryOutput();
 			outputBuffer2 = "\n";
-			//this.secondaryOutputModule.updateScroll();
 		}
 		
 		public function outputCodex():void

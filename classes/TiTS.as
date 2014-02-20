@@ -91,6 +91,7 @@
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
+		include "../includes/CodexEntries.as";
 			
 		public var chars:Object;
 		public var foes:Array;
@@ -236,6 +237,7 @@
 		private function finishInit(e:Event):void
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			this.configureCodex();
 			this.userInterface.showMainMenu();
 		}
 		

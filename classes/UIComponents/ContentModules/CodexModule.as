@@ -20,6 +20,9 @@ package classes.UIComponents.ContentModules
 		
 		private var _codexTree:CodexTree;
 		
+		public function get htmlText():String { return _codexText.htmlText; }
+		public function set htmlText(v:String):void { _codexText.htmlText = v; }
+		
 		public function CodexModule() 
 		{
 			leftBarEnabled = true;
@@ -50,17 +53,18 @@ package classes.UIComponents.ContentModules
 			_codexText.x = 5;
 			_codexText.y = 5;
 			_codexText.height = 735;
-			_codexText.width = 626;
+			_codexText.width = 774;
 			_codexText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_codexText.name = this._moduleName + "text";
+			_codexText.htmlText = "<span class='words'><p>Syncing smutbuffer... preparing waifus... reticulating horsecocks... DONE\n\nCodex prepped for sloot data!</p></span>";
 			this.addChild(_codexText);
 			
 			_codexText.addEventListener(Event.SCROLL, updateScrollBar);
 			
 			_scrollBar = new UIScrollBar();
 			_scrollBar.direction = "vertical";
-			_scrollBar.setSize(_codexText.width, _codexText.height);
-			_scrollBar.move(_codexText.x + _codexText.width, _codexText.y);
+			_scrollBar.setSize(_codexText.width, _codexText.height + 5);
+			_scrollBar.move(_codexText.x + _codexText.width, 0);
 			this.addChild(_scrollBar);
 			_scrollBar.scrollTarget = _codexText;
 		}
@@ -73,7 +77,7 @@ package classes.UIComponents.ContentModules
 		private function BuildTree():void
 		{
 			_codexTree = new CodexTree();
-			_codexTree.x = _codexText.x + _codexText.width + 20;
+			_codexTree.x = _codexText.x + _codexText.width + 21;
 			this.addChild(_codexTree);			
 		}
 	}

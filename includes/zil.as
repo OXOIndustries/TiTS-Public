@@ -1,10 +1,10 @@
 // Zil Codex Entry AND POSSIBLY OTHER SHIT!!1
 
-CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Organic/Ara Ara", "Zil", zilCodexEntry);
-function zilCodexEntry():void
+
+public function zilCodexEntry():void
 {
 	clearOutputCodex();
-	showBust("ZIL", "ZILFEMALE"); // ohoho lookit dis shit!
+	userInterface.showBust("ZIL", "ZILFEMALE"); // ohoho lookit dis shit!
 
 	outputCodex(header("The Zil"));
 	outputCodex("\n<b>Sexes:</b> Male and female.");
@@ -34,5 +34,5 @@ function zilCodexEntry():void
 	outputCodex(blockHeader("Society"));
 	outputCodex("\nSociety: Zil society is simple and tribal. They live in small groups numbering twenty or thirty at most, hunting and gathering. A few tribes seem to have discovered simple farming, with crops of large, indigenous flowers. Most are content to harvest the plentiful plant life and prey creatures. Signs of open warfare have not been discovered, but the Zil keep no written history. The few instances of observed inter-tribal meetings have resulting in breeding nearly every time. Current theories explain this as a method of maintaining genetic diversity.");
 
-	CodexManager.viewedCodex("Zil");
+	CodexManager.viewedEntry("Zil");
 }
