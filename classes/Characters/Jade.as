@@ -2,70 +2,84 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Apparel.UGCUniform;
-	import classes.Items.Melee.Tonfas;
+	import classes.Items.Miscellaneous.*;
+	import classes.kGAMECLASS;
+	import classes.rand;
 	
-	public class Penny extends Creature
+	public class Jade extends Creature
 	{
 		
 		
 		//constructor
-		public function Penny()
+		public function Jade()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
-			this.short = "Penny";
-			this.originalRace = "human";
+			this.short = "Jade";
+			this.originalRace = "orchan";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "uncreated";
-			this.customDodge = "uncreated";
-			this.customBlock = "uncreated";
+			this.long = "PLACE HOLDER!";
+			this.customDodge = "PLACE HOLDER!";
+			this.customBlock = "PLACE HOLDER!";
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon = new Tonfas();
-			this.armor = new UGCUniform();
+			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.hasRandomProperties = true;
 			
-			this.physiqueRaw = 10;
-			this.reflexesRaw = 8;
-			this.aimRaw = 6;
-			this.intelligenceRaw = 4;
-			this.willpowerRaw = 3;
+			this.armor.longName = "soft fur";
+			this.armor.defense = 4;
+			this.armor.hasRandomProperties = true;
+			
+			this.physiqueRaw = 20;
+			this.reflexesRaw = 3;
+			this.aimRaw = 2;
+			this.intelligenceRaw = 10;
+			this.willpowerRaw = 9;
 			this.libidoRaw = 40;
-			this.shieldsRaw = 20;
+			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 85;
-			this.resistances = new Array(0,0,0,0,0,0,0,0);
+			this.lustRaw = 35;
+			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 50;
-			this.level = 1;
+			this.level = 4;
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
-			
+
+			this.inventory.push(new Pandaneen());
+			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
+			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
+			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
+			this.sellMarkup = 1.2;
+			this.buyMarkdown = .75;
+
 			this.femininity = 85;
-			this.eyeType = 0;
-			this.eyeColor = "blue";
-			this.tallness = 60;
-			this.thickness = 40;
-			this.tone = 70;
-			this.hairColor = "red";
-			this.scaleColor = "bronze";
-			this.furColor = "tawny";
-			this.hairLength = 3;
+			this.eyeType = GLOBAL.FELINE;
+			this.eyeColor = "red";
+			this.tallness = 75;
+			this.thickness = 75;
+			this.tone = 20;
+			this.hairColor = "black";
+			this.scaleColor = "green";
+			this.furColor = "white and black";
+			this.hairLength = 40;
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.FUR;
-			this.skinTone = "pink";
-			this.skinFlags = new Array();
-			this.faceType = GLOBAL.VULPINE;
+			this.skinTone = "dark";
+			this.skinFlags = [GLOBAL.FLUFFY];
+			
+			this.faceType = GLOBAL.PANDA;
 			this.faceFlags = new Array();
-			this.tongueType = 0;
-			this.lipMod = 1;
-			this.earType = GLOBAL.VULPINE;
+			this.tongueType = GLOBAL.PANDA;
+			this.lipMod = 2;
+			this.earType = GLOBAL.PANDA;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -73,17 +87,17 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = 0;
+			this.legType = GLOBAL.PANDA;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.DIGITIGRADE];
+			this.legFlags = [GLOBAL.DIGITIGRADE, GLOBAL.FURRED, GLOBAL.PAWS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.VULPINE;
+			this.tailType = GLOBAL.PANDA;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.THICK,GLOBAL.FURRED];
+			this.tailFlags = [GLOBAL.FLUFFY, GLOBAL.FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -103,7 +117,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRating = 8;
+			this.hipRating = 15;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -114,7 +128,7 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRating = 7;
+			this.buttRating = 10;
 			//No dicks here!
 			this.cocks = new Array();
 			//balls
@@ -130,7 +144,7 @@
 			//Scales from 0 (never produce more) to infinity.
 			this.refractoryRate = 9999;
 			this.minutesSinceCum = 9000;
-			this.timesCum = 785;
+			this.timesCum = 212;
 			this.cockVirgin = true;
 			this.vaginalVirgin = false;
 			this.analVirgin = false;
@@ -138,42 +152,27 @@
 			this.createVagina();
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].clits = 1;
-			this.vaginas[0].wetness = 2;
-			this.vaginas[0].looseness = 1;
-			this.vaginas[0].bonusCapacity = 0;
+			this.vaginas[0].wetness = 4;
+			this.vaginas[0].looseness = 2;
+			this.vaginas[0].bonusCapacity = 200;
 			//Goo is hyper friendly!
-			this.elasticity = 1;
+			this.elasticity = 1.5;
 			//Fertility is a % out of 100. 
-			this.fertility = 1;
+			this.fertility = 10;
 			this.clitLength = .5;
 			this.pregnancyMultiplier = 1;
 			
-			this.breastRows[0].breastRating = 6;
-			this.nippleColor = "pink";
+			this.breastRows[0].breastRating = 31;
+			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetness = 0;
+			this.ass.looseness = 1;
+			this.ass.bonusCapacity = 100;
 			
-			this._isLoading = false;
-		}
-		
-		public function UpgradeVersion1(dataObject:Object):void
-		{
-			if (dataObject.legFlags.length == 0)
-			{
-				dataObject.legFlags.push(GLOBAL.DIGITIGRADE);
-			}
-		}
-		
-		public function UpgradeVersion2(dataObject:Object):void
-		{
-			dataObject.physiqueRaw = 10;
-			dataObject.reflexesRaw = 8;
-			dataObject.aimRaw = 6;
-			dataObject.intelligenceRaw = 4;
-			dataObject.willpowerRaw = 3;
+			this.createStatusEffect("Disarm Immune");
 		}
 	}
 }

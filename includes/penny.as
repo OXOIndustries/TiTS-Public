@@ -1845,9 +1845,10 @@ function pennySexMenu(outputT:Boolean = true):void {
 	else addDisabledButton(6,"Selfsuck");
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(7,"Bukkake",bukkakePenny);
 	else addDisabledButton(7,"Bukkake");
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho);
+	else addDisabledButton(8, "Invite Flahne");
+
 	this.addButton(14,"Back",approachGirlfriendPenny);
-	this.addButton(14,"Back",approachGirlfriendPenny);
-	
 }
 
 //Face Fuck Penny
@@ -3116,6 +3117,91 @@ function bukkakePenny():void {
 	//[reduce lust to zero]
 	processTime(10+rand(10));
 	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",move,"SOUTH ESBETH 3");
+}
+
+function pennyVsFlahneWhoWillOutslutWho():void
+{
+	clearOutput();
+	author("Abe E. Seedy");
+	userInterface.showBust("PENNY", "FLAHNE");
+	var x:int = pc.biggestCockIndex(); // Fenstyle yo
+
+	output("You mention to Penny that you had a very interesting talk about her with Flahne recently. At the mention of Flahne’s name Penny’s ears prick up with almost comical enthusiasm, betraying her interest as they literally swivel slightly towards you.");
+	output("\n\n“<i>Oh?</i>” she responds with forced innocence. “<i>What did she have to say?</i>”");
+	output("\n\n“<i>She told me that she’s been trying to get you a nice cock to play with forever, and yet you’d always said no in the past.</i>” You lean in over Penny’s desk, forcing her eyes to lock with yours. “<i>I guess it just took me to push you over the edge, did it?</i>”");
+	output("\n\n“<i>Muh-uhmm!</i>” is all Penny can say, her ability to make words rapidly being pushed out of her head by your closeness.");
+	if (flags["PENNY_HIDING_CUMSLUTTERY"] != undefined || flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
+	{
+		output("“<i>“<i>I haven’t let... I haven’t let her help!</i>” she managed. “<i>I’ve wanted to; oh, [pc.name] how I’ve wanted to! But I haven’t! It’s not... it’s not for her....</i>”");
+	}
+	
+	output("\n\nYou interrupt her floundering by pressing softly on her lips, letting her know delicately but undeniably that now is not the time for her to be talking. “<i>She asked me to put in a word for her with you, did you know that? Can you guess what she wants from you?</i>”");
+	output("\n\nUnbidden and untouched, Penny’s thick shaft has already risen above her desk, reaching up to stand trembling just beneath her chin. Penny’s eyes flick downwards for a moment, going from her cock and back to you questioningly, while you respond with an encouraging nod.");
+	output("\n\n“<i>Who are we to deny her access to it, hmm?</i>” you ask teasingly. “<i>Someone wants to suck your cock, and give you a nice thick cock of her own to suck in turn. How could you possibly deny her that?</i>”");
+	output("\n\nAgain, Penny is left whimpering incoherently, unable to tear her eyes away from you, but even so still breathing heavily and filling her nostrils with the scent of her own sex. Rather than waiting for her to control herself, you simply hand her her communicator, pressing it into her palm until she finally understands what’s required.");
+	output("\n\nHurriedly pressing the buttons, Penny only just manages to get herself under control before Flahne responds. You can only barely make out Flahne’s chirpy greeting, and for her part Penny can only just stick to the bare necessities of the conversation.");
+	output("\n\n“<i>I need you!</i>” she all but barks. “<i>You nnneed to come over here right now! No questions asked!");
+	if (flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output("And just go right past the line outside. This is important!")
+	output("</i>”");
+
+	output("\n\nIt sounds like Flahne starts to ask a question in response, but Penny cuts her off quickly. “<i>No questions!</i>” she repeats urgently. “<i>Come!</i>”");
+	output("\n\nShe hangs up emphatically, fighting back a whole-body tremor as she instinctively reacts to her own accidental command. Even just at that a brief spurt of pre-cum wells up on the tip of her cock, and fixes you with a pleading expression after she looks down at it.");
+	output("\n\nYou respond with a magnanimous nod, and instantly she tilts her head down and starts sweeping her tongue slowly and blissfully against her trembling flesh, lapping eagerly at her initial burst of thick fluid. You stop her after just a few moments, lightly but emphatically pushing her head back to force her to release herself from her ministrations.");
+	output("\n\n“<i>There, there,</i>” you coo, “<i>that’s enough for now. You were a good girl inviting your friend over, but you have to make sure there’s enough left to share, don’t you?</i>”");
+	output("\n\nPenny nods weakly in response, her head hanging limply against your touch. You pass the few moments before Flahne arrives in that position – holding Penny at just the angle where the scent of herself can fill her nostrils to the exclusion of everything else, but still without letting her fall forwards and take herself as she so desperately wants.");
+	output("\n\nEventually, Flahne arrives, all but bursting through the door with her trademark enthusiasm. “<i>You rang?</i>” she calls out happily. Before she can say anything further she’s stopped in her tracks at the unexpected scene in front of her, especially as Penny turns towards her and treats her to a look of such absolute and uncontrolled need.");
+	output("\n\n“<i>I... need!</i>” Penny says simply. “<i>I need... I need cum! Please Flahne, I’m so thirsty and horny and I’m just a poor desperate cumslut and I need your help! I need you to coat me with your wonderful sweet cum!</i>”");
+	output("\n\nFlahne pauses for just a moment more, looking on with confusion. Slowly a sly grin slides across her face, and she turns towards you. “<i>You put that word in for me, did you?</i>” Turning back to Penny, she adds, “<i>Only if you promise to do the same for me");
+	if (flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] != undefined) output(" this time");
+	output(", okay?</i>”");
+
+	output("\n\nPenny, her tongue lolling from her mouth, can only nod energetically. Flahne accepts the response, and launches herself eagerly at the fennec girl, knocking her from her chair to the ground. The two of them lock lips passionately, their collective pent-up lust finally finding expression as make out enthusiastically on the floor. Still, that is only a momentary distraction for the both of them, as within moments Flahne’s ovipositor is exposed and ready, slipping free in mere seconds as Flahne shudders blissfully on top of Penny. Pulling herself back for a moment, Flahne gives Penny a sultry look and says simply, “<i>Shall we?</i>”");
+	output("\n\nPenny doesn’t need any further encouragement, and in one swift movement she hauls the gooey girl around, spinning her about the center to give herself access to her already-dripping cock, while Flahne finds herself confronted by Penny’s own eager tool. Pausing only to briefly lick her lips, Penny lunges forward to engulf Flahne’s ovipositor, her eyes rolling back in her head as she finally fills her face with cock. Flahne gives out a cute “<i>ah-ahhh!</i>” in response, her hips pushing forwards absently to press herself further inside Penny, and it’s only once Penny has taken several long inches that Flahne opens her eyes again and remembers the cock in front of her own face. In contrast to Penny, Flahne slides forward slowly; enveloping her straining shaft by degrees, like a connoisseur savoring a fine wine.");
+	output("\n\nThe two girls lie locked happily together, content to just thrust slowly and suck needfully on the cock they’re presented with. As fun as that is, after a minute or so you start to get a little bored, deciding that you could really do with a bit more of a show. Accordingly you lean down, positioning yourself right next to Penny’s ear. “<i>Good girl,</i>” you start encouragingly, enjoying the little quiver of pleasure she makes even before you scratch softly at the base of her pointed ears. “<i>But I think it’s time you moved on to the main event, don’t you?</i>”");
+	output("\n\nEven through her well-occupied mouth, Penny manages to moan in response. Her whole body shudders, and you can see her eyes rolling back in her head. Seeing how worked up she’s getting, you nod in approval, then lower your voice to a fierce whisper and continue. “<i>You </i>need<i> cum, don’t you? You need to milk her for all that she’s worth, feel her thick cum sliding down your throat and filling you up...</i>”");
+	output("\n\nParts of Penny are quietly spasming uncontrollably now, various limbs locking up and releasing as her body becomes overwhelmed by her insensate lust. Her mouth is filled with Flahne’s thick cock, but now even that isn’t enough. You press lightly against the back of her head with one hand");
+	// {hand/tentacle} Don't currently have a way to really indicate of the player has goohands/tentacools, so...
+	output(" and whisper one last thing to push her over the edge. “<i>Show Flahne just how much of an eager cum-addicted slut you really are.</i>”");
+	output("\n\nPenny’s eyes go wide, snapping open with manic, lust-fuelled intensity. With one great surge she pushes Flahne over, rolling the two of them so that Flahne is left on the bottom while Penny pins her to the floor by her wrists. Her hands are only occupied with that for a moment, however; as soon as the new position is established Penny moves them to begin frantically working over Flahne’s ovipositor, massaging it frenziedly with both hands. She even pulls her head out entirely to enable herself to get a better grip on Flahne’s trembling tool, thick strands of drool and gooey pre-cum keeping the two connected as her lips momentarily break free.");
+	output("\n\n“<i>I need your cum!</i>” Penny cries, only managing to work her tongue enough to speak due to the urgency of the message. “<i>Flahne please please I- uhhh! I can’t help it I need I need I need your cum so badly please I just- I need you to cum in me on me over me ffFUUCK I need it!</i>”");
+	output("\n\nFor her part, Flahne is still eagerly sucking on Penny’s own cock, although interrupted momentarily by her abrupt repositioning. Now in response to Penny’s delirious assault she barely manages to do much more than give out a stunned squeak, her whole body seeming to momentarily stiffen in response. Within moments she starts to quiver, her hips thrusting dreamily, and then an urgent moan emerges from her lips, and her amber cock begins spraying wildly, spurting thick doses of her sugary cum.");
+	output("\n\nPenny is caught off-guard by the sudden eruption, having still been jerking Flahne off with her hands rather than reapplying her mouth to the task. At the sight of Flahne’s unexpected orgasm Penny gives out an involuntary wail, visibly distressed at the cum going to waste. Immediately the fennec girl throws herself forward, struggling to contain Flahne’s spasming cock in her mouth and milking it for all it is worth. She manages to wrap her lips around it and form a tight enough seal, a look of absolute bliss spreading over her muzzle as she feels the flood of sweet cum flowing through her. At that Penny begins orgasming in turn, but unlike the urgent, shaking orgasm she’s pulling from Flahne, hers is a much more sedate affair. The feeling of being filled with cum is stimulus enough for her to shudder with quiet release, her own mighty shaft opening up with a stready stream of cum into the waiting mouth of her slick partner.");
+	output("\n\nYou admire the sight of Penny’s slow surge of white coloring spreading out from Flahne’s face, streaming down her neck to steadily stain her entire body. Flahne is thrashing uncontrollably, still being milked frenziedly by Penny’s eager hands, while the policewoman herself is almost still aside from her frantic hands – almost blissed-out on the sensation of being fed and allowed to indulge her new cumslut nature.");
+
+	if (pc.hasCock())
+	{
+		output("\n\nYou’re enjoying the performance yourself so much, in fact, that your [pc.cock " + x + "] soon makes its approval known, growing erect even without being touched. With a grunt you free yourself from your clothes, making sure to catch Penny’s eye");
+		if (!pc.isTaur())
+		{
+			output(" as you reach for your cock");
+			if (pc.cockTotal() > 1) output("s");
+			output(" and start masturbating");
+		}
+		output(". She releases Flahne from her grip in order to reach out towards you with one hand, although still keeping her mouth firmly locked over the other girl’s still-spasming cock. It takes little more than the touch of her clawed fingers to set you off given the scene before you, and soon");
+		if (!pc.isTaur()) output(" your own hands clench against your flesh and");
+		output(" you orgasm yourself, spraying the two girls with ropes of [pc.cum]. Penny happily moves her head from side to side to ensure a better coating against her fur, while the amount that reaches Flahne is eagerly absorbed by her hungry body, leaving [pc.cumColor] dapples against her increasingly multi-colored skin.");
+		if (!pc.isTaur() && pc.hasVagina()) output(" As one final touch, you reach down towards your thus-far neglected slit, quivering as you provoke one last shudder of orgasm, cupping your hand to trap the resulting slickness. Reaching down you paint a wet line all the way along Penny’s muzzle, forcing her to break contact with Flahne for just a moment in order to lick you, demonstrating her subservience to you above all others.");
+	}
+	else if (!pc.isTaur() && pc.hasVagina()) // I GUESS Type could be used to differentiate between a front-vag on a taur, and a hind-vag or something? I dunno, seems weird as fuck.
+	{
+		output("\n\nYou’re enjoying the performance yourself so much, in fact, that you can’t help but adding to the fun yourself, your hand sliding within your");
+		if (pc.vaginaTotal() > 1) output(" nearest");
+		output(" slit and beginning to work yourself over. You move yourself to straddle the two girls as much as possible, enjoying the sight of them beneath you as first one then the other catches your eye, looking up to see you staring down imperiously at them while you enthusiastically masturbate. With all that lead up it’s not long before you start to orgasm, your whole body shuddering as your slick wetness begins to rain freely down on top of them while they writhe blissfully beneath your attentions. As one final touch, you cup your hand for a moment to trap the last of your femcum, enjoying the feeling of it in the palm of your hand. Reaching down you paint a wet line all the way along Penny’s muzzle, forcing her to break contact with Flahne for just a moment in order to lick your hand clean, demonstrating her subservience to you above all others.");
+	}
+
+	output("\n\nFinally the performance seems to be finishing, with");
+	if (pc.hasCock() || (!pc.isTaur() && pc.hasVagina())) output(" both the girls and yourself");
+	else output(" both of the girls starting to wind down");
+	output(". Penny’s movements begin to slacken, her hands now just giving long firm pulls along Flahne’s abused ovipositor in order to wring out the very last of her sweet cum. When even that well runs dry Penny languorously switches position again, bringing her face to Flahne’s and finally stopping the other girl from sucking weakly on her cock. Wrapping Flahne’s now completely white head in her hands, Penny launches into a fierce kiss, eagerly probing the near-delirious girl with her tongue in an attempt to locate and lick clean as much of her own cum from her mouth as possible. Given Flahne’s alien biology there’s hardly any to find, the vast majority having already been completely absorbed, but mere facts like that don’t prevent Penny from trying.");
+	output("\n\nWhen Penny is finally satisfied she’s gotten as much of her spunk from Flahne she’s going to be able to get she pulls herself away and returns to her chair, leaving the still-dazed Loo’Rahn to gurgle quietly on the floor. Her old dominant nature resurfaces slightly as she looks down at the completely spent girl with pride, even going so far as to rest her feet against Flahne’s now even-larger breasts. “<i>Wow, girl,</i>” she says with audible satisfaction, “<i>we are going to have to do that more often.</i>”");
+	output("\n\nShe laughs and blows you a kiss, while beneath her Flahne struggles to collect herself. They’re both completely spent, and as fun as the process was you don’t especially fancy hanging around while they recover and clean up, so you make your excuses and head outside. Penny’s right though, you’ll have to make sure you do that again some time. Perhaps you can even get Flahne to convincingly act surprised when Penny calls her up again...");
+
+	//[IF PLAYER HAD PENIS OR NON-TAUR VAGINA OR BOTH, REDUCE LUST TO 0]
+	processTime(10+rand(10));
+	if (pc.hasCock()) pc.orgasm();
+	if (pc.hasVagina() && !pc.isTaur()) pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
 }

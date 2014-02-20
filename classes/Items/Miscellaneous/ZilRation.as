@@ -1,4 +1,4 @@
-﻿package classes.Items.Miscellaneous
+package classes.Items.Miscellaneous
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -540,7 +540,7 @@
 				kGAMECLASS.output(" that's painful enough to make you jump! It leaves behind a very, very intense soreness. ");
 				if(target.balls > 0) kGAMECLASS.output("You cradle your [pc.sack] in your hand, regarding the poor thing warily as you try to find the source of the hurt. Then, you notice it contract up against you tightly, like it does when you cum. Only, there is no blissful release here.");
 				else kGAMECLASS.output("You give yourself a thorough once-over but can't find the source of the hurt. Then, you feel your abdominal muscles clenching, like when you orgasm, but there is no accompanying pleasure.");
-				kGAMECLASS.output(" [pc.Cum] starts drizzling out of your [pc.cocks]. This strange, pleasureless release continues on much longer than a normal orgasm, and it doesn't stop until you feel… well, emptied. The last few drops are chased out by sticky strands of honey-like goo. It's clear to you that <b>your [pc.cum] has been replaced by honey.</b> The codex verifies that there are still sperm in the new fluid, so you haven't lost your ability to knock someone up.");
+				kGAMECLASS.output(" [pc.Cum] starts drizzling out of your [pc.cocks]. This strange, pleasureless release continues on much longer than a normal orgasm, and it doesn't stop until you feel... well, emptied. The last few drops are chased out by sticky strands of honey-like goo. It's clear to you that <b>your [pc.cum] has been replaced by honey.</b> The codex verifies that there are still sperm in the new fluid, so you haven't lost your ability to knock someone up.");
 				target.cumType = GLOBAL.HONEY;
 				changes++;
 			}

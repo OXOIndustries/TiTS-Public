@@ -8,8 +8,6 @@ package classes.Characters
 	 */
 	public class PlayerCharacter extends Creature
 	{
-		
-		
 		public function PlayerCharacter() 
 		{
 			this._latestVersion = 1;
@@ -17,5 +15,7 @@ package classes.Characters
 			this._neverSerialize = false;
 			this._isLoading = false;
 		}
+		
+
 	}
 }

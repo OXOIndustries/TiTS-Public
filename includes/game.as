@@ -132,7 +132,7 @@ function sleep(outputs:Boolean = true):void {
 	if(outputs) 
 	{
 		clearOutput();
-		if(pc.XPRaw >= pc.XPMax() && pc.level < 5) {
+		if((pc.XPRaw >= pc.XPMax() && pc.level < 5) || flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0) {
 			levelUp();
 			return;
 		}

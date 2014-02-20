@@ -1,4 +1,4 @@
-﻿//First Run-in
+//First Run-in
 //Office Description
 
 function juliansOffice():void {
@@ -97,7 +97,7 @@ function introductionToJulian():void {
 		output("\n\nJulian cocks an eyebrow. \"<i>You must be new to Mhen'ga. The zil are bug-like humanoids native to this world. Not overly dangerous, though they do seem rather aggressive in their sexual copulations. They're only rated as a class one threat. Any well-equipped explorer should be able to hold their own against them.</i>\" He spins the blocky capture harness around and looks back to you.");
 	}
 	//If not an asshole:
-	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. \"<i>It won't be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we'll release them into the jungle. Surely a five thousand credit reward will ease your conscience.</i>\"");
+	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. \"<i>It won't be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we'll release them into the jungle. Surely a thousand credit reward will ease your conscience.</i>\"");
 	//If an asshole
 	else output("\n\nJulian smiles at you. \"<i>Surely you can appreciate what we can be learned, regardless of the gray areas upon which we now tread, correct? There is only profit to be made here, friend, for both of us. One thousand credits worth, to be precise.</i>\"");
 	//No new line:
@@ -164,7 +164,7 @@ function zilBaggedApproach():void {
 		output("\n\nHe's suspended in the air by dozens of oily black tentacles, thrusting his hips furtively against rippling black tube again and again. His rhythm is steady with only the barest hint of quiver, though his eyes are rolled back in his head, lost in whatever ecstasy he's trapped in.");
 		output("\n\n\"<i>The males of the species have proven quite adept at providing us large quantities of genetic material. All it takes is a little modification and motivation, or the M and M's, I like to call them.</i>\"");
 		output("\n\nThe zil's nuts appear at least three times larger than when you saw him before, doubtless responsible for his current state and immense productivity.");
-		output("\n\nJulian continues talking as if nothing is out of place. \"<i>Another day or two like that and we can return our enhanced subject to the wilds. I'm sure he'll be quite popular with the ladies… and boys. I don't think it'll matter much to him with his new libido.</i>\"  He turns off the display and extends another capture harness in your direction.");
+		output("\n\nJulian continues talking as if nothing is out of place. \"<i>Another day or two like that and we can return our enhanced subject to the wilds. I'm sure he'll be quite popular with the ladies... and boys. I don't think it'll matter much to him with his new libido.</i>\"  He turns off the display and extends another capture harness in your direction.");
 		output("\n\n\"<i>Find me a female, and I'll see to it that you are suitably compensated.</i>\"");
 	}
 	//Femzil:

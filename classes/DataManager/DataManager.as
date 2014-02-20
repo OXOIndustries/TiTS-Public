@@ -21,7 +21,7 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 6;
+		private static const LATEST_SAVE_VERSION:int = 7;
 		private static const MINIMUM_SAVE_VERSION:int = 6;
 		
 		private var _autoSaveEnabled:Boolean = false;
@@ -38,6 +38,7 @@
 			var sv3:SaveVersionUpgrader3;
 			var sv4:SaveVersionUpgrader4;
 			var sv5:SaveVersionUpgrader5;
+			var sv6:SaveVersionUpgrader6;
 		}
 		
 		/**
@@ -146,6 +147,7 @@
 			}
 			
 			kGAMECLASS.output2(displayMessage);
+			kGAMECLASS.output2("\n");
 			kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
 			
 		}

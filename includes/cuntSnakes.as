@@ -331,7 +331,7 @@ function getSuckedOffByACuntSnakeAfterLosing():void {
 	//MERGE
 	output("\n\nTwo pin-pricks of pain hit your [pc.leg], and you realize the creature is biting you again. The added aphrodisiac is more than you can bear, sending you to such heights of sexual need that your internal muscles begin to spasm and flutter, gathering up a hot, thick load to feed this slurping twat. You cry out as the pressure mounts, and then, relief. You cum hard, straight into the alien's sucking slit, its surface clenching in concentric rings to draw your release towards the snake's middle. It swallows your load with aplomb");
 	if(pc.cumQ() >= 1000) output(", at first. Each pulse of [pc.cum] is so large that it distends the alien's surface with spherical bulges");
-	if(pc.cumQ() >= 2000) output(". Your lusty deposit leaks out around the edges of the " + foes[0].vaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
+	if(pc.cumQ() >= 2000) output(". Your lusty deposit leaks out around the edges of the " + foes[0].tailVaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
 	if(pc.cumQ() >= 10000) output(". Before long the excess is spraying out in a tidal wave of genetic material, though the tubular fuckhole seems content to drink as much as it can");
 	output(".");
 	if(pc.cockTotal() > 1)

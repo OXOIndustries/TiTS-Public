@@ -102,10 +102,6 @@
 			{
 				_physiqueRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > physiqueMax() && !_isLoading)
-			{
-				_physiqueRaw = physiqueMax();
-			}
 			else
 			{
 				_physiqueRaw = v;
@@ -122,10 +118,6 @@
 			if (v < Creature.STAT_CLAMP_VALUE)
 			{
 				_reflexesRaw = Creature.STAT_CLAMP_VALUE;
-			}
-			else if (v > reflexesMax() && !_isLoading)
-			{
-				_reflexesRaw = reflexesMax();
 			}
 			else
 			{
@@ -144,10 +136,6 @@
 			{
 				_aimRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > aimMax() && !_isLoading)
-			{
-				_aimRaw = aimMax();
-			}
 			else
 			{
 				_aimRaw = v;
@@ -164,10 +152,6 @@
 			if (v < Creature.STAT_CLAMP_VALUE)
 			{
 				_intelligenceRaw = Creature.STAT_CLAMP_VALUE;
-			}
-			else if (v > intelligenceMax() && !_isLoading)
-			{
-				_intelligenceRaw = intelligenceMax();
 			}
 			else
 			{
@@ -186,10 +170,6 @@
 			{
 				_willpowerRaw = Creature.STAT_CLAMP_VALUE;
 			}
-			else if (v > willpowerMax() && !_isLoading)
-			{
-				_willpowerRaw = willpowerMax();
-			}
 			else
 			{
 				_willpowerRaw = v;
@@ -206,10 +186,6 @@
 			if (v < Creature.STAT_CLAMP_VALUE)
 			{
 				_libidoRaw = Creature.STAT_CLAMP_VALUE;
-			}
-			else if (v > libidoMax() && !_isLoading)
-			{
-				_libidoRaw = libidoMax();
 			}
 			else
 			{
@@ -1140,6 +1116,7 @@
 				else if (statCurrent + change < 85) change += .25;
 				else if (statCurrent + change < 90) change += .2;
 				else if (statCurrent + change < 95) change += .15;
+				if(arg < 0) arg = 0;
 			}
 			if (stat == "physique") return physique(change);
 			else if (stat == "reflexes") return reflexes(change);
@@ -1264,6 +1241,9 @@
 				temp++;
 			}
 			return false;
+		}
+		public function addSkinFlag(arg): void {
+			if (!hasSkinFlag(arg)) skinFlags[skinFlags.length] = arg;
 		}
 		public function clearSkinFlags(): void {
 			skinFlags = new Array();
@@ -1866,6 +1846,7 @@
 			else output += "foot";
 			return output;
 		}
+		
 		public function toes(): String {
 			var select: Number = 0;
 			var output: String = "";
@@ -2801,6 +2782,16 @@
 			}
 			return index;
 		}
+		public function thinnestCockRatioIndex(): Number {
+			if (cocks.length == 0) return 0;
+			var counter: Number = cocks.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (cocks[index].cThicknessRatio > cocks[counter].cThicknessRatio) index = counter;
+			}
+			return index;
+		}
 		public function smallestCockIndex(effective: Boolean = true): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
@@ -3620,8 +3611,8 @@
 			//Tits count up to their rating for femininity
 			if (biggestTitSize() >= 1) {
 				trace("boobs confirmed");
-				if (biggestTitSize() * 2 > 50) weighting += 50;
-				else weighting += biggestTitSize() * 2;
+				if (biggestTitSize() * 3 > 50) weighting += 50;
+				else weighting += biggestTitSize() * 3;
 			}
 			//Flat chest + 20 masculine
 			else if (biggestTitSize() == 0) {
@@ -3631,8 +3622,8 @@
 			//Hips give small boost
 			if (hipRating >= 6) weighting += hipRating * 1.5;
 			else weighting -= (6 - hipRating) * 3;
-			if (hairLength > 8) weighting += (hairLength - 7) * 2;
-			else weighting -= (8 - hairLength) * 3;
+			if (hairLength > 8) weighting += (hairLength - 7) * 1.5;
+			else weighting -= (8 - hairLength) * 1.5;
 			if (tone > 70) weighting -= 10;
 			if (tone < 30) weighting += 10;
 			if (lipRating() > 1) weighting += lipRating() * 3;

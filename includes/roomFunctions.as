@@ -23,6 +23,7 @@ function hangarBonus():Boolean
 	}
 	return false;
 }
+
 function liftMove(destination:String):void {
 	move(destination,false);
 	clearOutput();
@@ -30,7 +31,6 @@ function liftMove(destination:String):void {
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-
 
 function debugMenus():void
 {
@@ -160,6 +160,7 @@ function jungleMiddleEncounters():Boolean {
 	}
 	return false;
 }
+
 function findOxoniumOnMhenga():Boolean {
 	if(flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] == undefined) {
 		output("\n\nThere is a vertical striation running up through the rock wall of a different mineral, something pitch black that seems to draw in the light. You could probably scan it with your codex and radio it in to your Dad's company for a quick prospector's fee.");
@@ -175,6 +176,7 @@ function findOxoniumOnMhenga():Boolean {
 	}
 	return false;
 }
+
 function claimMhengaOxonium():void {
 	clearOutput();
 	output("Utilizing your codex's sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. There amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you've had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you're not a great geologist, or Dad's company has orders to give you top dollar. Regardless, the profit is yours.");

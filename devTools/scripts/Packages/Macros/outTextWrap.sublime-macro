@@ -4,7 +4,7 @@
 		"args":
 		{
 			"extend": false,
-			"to": "bol"
+			"to": "hardbol"
 		},
 		"command": "move_to"
 	},
@@ -27,6 +27,21 @@
 		"args":
 		{
 			"characters": "\");"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"characters": "\t"
 		},
 		"command": "insert"
 	}

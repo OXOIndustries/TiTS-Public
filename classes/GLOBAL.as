@@ -75,6 +75,7 @@
 		public static const MLP:int                                    = 32;
 		public static const CUNTSNAKE:int                              = 33;
 		public static const VENUSPITCHER:int						   = 34;
+		public static const PANDA:int 								   = 40;
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
@@ -204,6 +205,7 @@
 		public static const SYRI:int 								   = 14;
 		public static const NALEEN_MALE:int  						   = 15;
 		public static const MACHINA:int 							   = 16;
+		public static const JADE:int 								   = 17;
 
 		public static var ITEMS:Object = {};
 		

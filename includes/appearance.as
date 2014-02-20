@@ -123,6 +123,12 @@ function appearance(target:Creature):void {
 			if(target.skinType == GLOBAL.FUR) output2(" You have a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. Your " + target.skinFurScales(true,true) + " thickens noticably on your head, looking shaggy and more than a little monstrous once laid over your visage.");
 			if(target.skinType == GLOBAL.SCALES) output2(" Your face resembles an anthropomorphic bovine's, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from your face.");
 		}
+		//Panda-face
+		if(target.faceType == GLOBAL.PANDA) {
+			if(target.skinType == GLOBAL.SKIN || target.skinType == GLOBAL.GOO) output2(" You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Despite your lack of fur elsewhere, your visage does have a short layer of " + target.furColor + " fuzz.");
+			if(target.skinType == GLOBAL.FUR) output2(" You have a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. Your " + target.skinFurScales(true,true) + " hides " + target.skin(true,true) + " underneath.");
+			if(target.skinType == GLOBAL.SCALES) output2(" Your face resembles an anthropomorphic panda's, though strangely, it is covered in shimmering scales, right up to your black nose.");
+		}
 		//Lizard-face
 		if(target.faceType == GLOBAL.LIZAN) {
 			if(target.skinType == GLOBAL.SKIN || target.skinType == GLOBAL.GOO) output2(" You have a face resembling that of a lizard, and with your toothy maw, you have quite a fearsome visage. The reptilian visage does look a little odd with just " + target.skin(true,true) + " and not a single scale.");
@@ -162,6 +168,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.DRACONIC) output2(" A pair of rounded protrusions with small holes on the sides of your skull serve as your ears. Bony fins sprout behind them.");
 			else if(pc.earType == GLOBAL.KUITAN) output2(" A pair of vaguely egg-shaped, furry raccoon ears adorns your skull.");
 			else if(pc.earType == GLOBAL.MOUSE) output2(" A pair of large, dish-shaped mouse ears tops your skull.");
+			else if(pc.earType == GLOBAL.PANDA) output2(" A pair of rounded, panda-like ears protrude from your skull, " + pc.mf("standing tall and proud","looking absolutely adorable") + ".");
 			if(pc.antennae == 2) output2(" Floppy antennae also appear on your head, bouncing and swaying in the breeze.");
 		}
 		//not bald
@@ -179,6 +186,7 @@ function appearance(target:Creature):void {
 			else if(pc.earType == GLOBAL.DRACONIC) output2(" The " + target.hairDescript(true,true) + " atop your head is parted by a pair of rounded protrusions with small holes on the sides of your head serve as your ears. Bony fins sprout behind them.");
 			else if(pc.earType == GLOBAL.KUITAN) output2(" The " + target.hairDescript(true,true) + " on your head parts around a pair of egg-shaped, furry raccoon ears.");
 			else if(pc.earType == GLOBAL.MOUSE) output2(" The " + target.hairDescript(true,true) + " atop your head is funneled between and around a pair of large, dish-shaped mouse ears that stick up prominently.");
+			else if(pc.earType == GLOBAL.PANDA) output2(" The " + target.hairDescript(true,true) + " on your head is parted by a pair of round panda ears.");
 			if(pc.antennae == 2) {
 				if(pc.earType == GLOBAL.LAPINE) output2(" Limp antennae also grow from just behind your hairline, waving and swaying in the breeze with your ears.");
 				else output2(" Floppy antennae also grow from just behind your hairline, bouncing and swaying in the breeze.");
@@ -234,6 +242,7 @@ function appearance(target:Creature):void {
 		if(target.armType == GLOBAL.AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
+		else if(target.armType == GLOBAL.PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.MLP) output2("  From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
@@ -375,6 +384,7 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.KUITAN) output2("  A black-and-" + target.hairColor + "-ringed kui-tan tail waves behind you.");
 		else if(target.tailType == GLOBAL.MOUSE) output2("  A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.CUNTSNAKE) output2("  A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+		else if(target.tailType == GLOBAL.PANDA) output2("  A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		//legType SPECIAL
 		if(target.legType == GLOBAL.HUMAN) output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
 		else if(target.legType == GLOBAL.EQUINE) output2("  Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
@@ -395,6 +405,7 @@ function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.VULPINE) output2("  Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
 		else if(target.legType == GLOBAL.DRACONIC) output2("  Two human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.KUITAN) output2("  Your legs, though covered in fur, are humanlike.  Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
+		else if(target.legType == GLOBAL.PANDA) output2("  Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
 			
 		//Chesticles.
 		output2("\n\n");

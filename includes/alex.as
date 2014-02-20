@@ -1,4 +1,4 @@
-﻿/*FIRST TIME INTRO
+/*FIRST TIME INTRO
 [No]
 [Yes]
 [Flirt]
@@ -27,7 +27,7 @@ Aside: BUT WHAT DO DICK SIZES MEAN TO ALEX?
 
 //FIRST TIME INTRO
 function alexManHermIntro():void {
-	if(flags["FUCKED_ALEX"] == undefined && flags["MET_ALEX"] == undefined) output("\n\nYour attention is drawn by a tall and very pretty… Man? Woman? A very pretty person leaning against the bar, clad in baggy pants tucked into boots and a strip of cloth wrapped tightly around their very flat chest. That combined with the close-cropped hair and slight but noticeable muscle tone makes you want to say it’s a man, but their lithe, narrow waist and flared hips imply otherwise. Before you can make a call, the person in question flashes you a brilliant smile your way and beckons you over.");
+	if(flags["FUCKED_ALEX"] == undefined && flags["MET_ALEX"] == undefined) output("\n\nYour attention is drawn by a tall and very pretty... Man? Woman? A very pretty person leaning against the bar, clad in baggy pants tucked into boots and a strip of cloth wrapped tightly around their very flat chest. That combined with the close-cropped hair and slight but noticeable muscle tone makes you want to say it’s a man, but their lithe, narrow waist and flared hips imply otherwise. Before you can make a call, the person in question flashes you a brilliant smile your way and beckons you over.");
 	else if(flags["FUCKED_ALEX"] == undefined && flags["LAST_MINUTE_ALEX_BACK_OUT"] == undefined) output("\n\nIt looks like that androgynous man from before is around again.");
 	else 
 	{

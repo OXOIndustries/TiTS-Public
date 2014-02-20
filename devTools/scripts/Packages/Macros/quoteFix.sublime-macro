@@ -20,8 +20,14 @@
 		{
 			"replacements":
 			[
+				"fix_regular_quotes_open",
+				"fix_regular_quotes_close",
 				"fix_fancyquotes_open",
-				"fix_fancyquotes_close"
+				"fix_fancyquotes_close",
+				"fix_fancyapos_open",
+				"fix_fancyapos_close",
+				"replace_emdash",
+				"replace_ellipses"
 			]
 		},
 		"command": "reg_replace"
