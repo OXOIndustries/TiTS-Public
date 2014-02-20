@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.GameData.CodexManager;
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.ButtonTray;
@@ -59,6 +60,7 @@
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;
+		var outputCodexBuffer:String
 		var authorBuffer:Array;
 		var textPage:int;
 
@@ -752,6 +754,23 @@
 			showSecondaryOutput();
 			outputBuffer2 = "\n";
 			//this.secondaryOutputModule.updateScroll();
+		}
+		
+		public function outputCodex():void
+		{
+			if (_currentModule is CodexModule)
+			{
+				(_currentModule as CodexModule).htmlText = "<span class='words'><p>" + outputCodexBuffer + "</p></span>";
+			}
+			else
+			{
+				throw new Error("OutputCodex called whilst the currently active module was not the CodexDisplay!");
+			}
+		}
+		
+		public function clearOutputCodex():void
+		{
+			outputCodexBuffer = "\n";
 		}
 		
 		public function getGuiPlayerNameText():String
