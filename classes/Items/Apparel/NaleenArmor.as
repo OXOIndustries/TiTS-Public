@@ -1,56 +1,53 @@
-﻿package classes.Items.Melee
+﻿package classes.Items.Apparel
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class Knife extends ItemSlotClass
+	public class NaleenArmor extends ItemSlotClass
 	{
 		//constructor
-		public function Knife()
+		public function NaleenArmor()
 		{
 			this._latestVersion = 1;
-			
-			//A KNIFE
-			//4
-			
-			//this.indexNumber = 4;
+
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.MELEE_WEAPON;
+			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
-			this.shortName = "Knife";
+			this.shortName = "NaleenScale";
 			
 			//Regular name
-			this.longName = "knife";
+			this.longName = "naleenscale armor";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a knife";
+			this.description = "a suit of naleenscale armor";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A fairly standard knife with a five inch blade. As good for slicing a steak as defending yourself.";
-			this.attackVerb = "slash";
+			this.tooltip = "This crude but effective looking armor is made in the style of ancient armors from days long past. Instead of using pounded metal to fashion the protective plates, the maker of this armor gathered discarded scales from Mhen'ga's native Naleen species.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
+			this.attackVerb = "null";
+			
 			//Information
-			this.basePrice = 150;
+			this.basePrice = 2200;
 			this.attack = 0;
-			this.damage = 4;
+			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;
-			this.defense = 0;
+			this.defense = 1;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
-
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			
 			this.version = _latestVersion;
 		}
 	}

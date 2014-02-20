@@ -510,6 +510,10 @@
 				case "tails":
 					buffer = tails();
 					break;
+				case "crotch":
+				case "groin":
+					buffer = crotchDescript();
+					break;
 				case "base":
 				case "sheath":
 					buffer = sheathDescript(arg2);
@@ -5347,6 +5351,16 @@
 			if (upperUndergarment.shortName != "") addToList(upperUndergarment.longName);
 			if (lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
 			if (isNude()) addToList("gear");
+			return formatList();
+		}
+		public function crotchDescript():String {
+			//Nothing to talk about? K
+			if(!hasCock() && !hasVagina()) return "bare crotch";
+			//Make da list!
+			if(hasCock()) addToList(cocksDescript());
+			if(balls > 0) addToList(ballsDescript);
+			if(hasVagina()) addToList(vaginasDescript());
+			
 			return formatList();
 		}
 		public function lowerGarment(): String {

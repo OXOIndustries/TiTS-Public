@@ -109,6 +109,7 @@
 		public static const MILKSAP:int                                = 4;
 		public static const GIRLCUM:int                                = 5;
 		public static const CUMSAP:int								   = 6;
+		public static const CHOCOLATE_MILK:int 						   = 7;
 
 		//DAMAGE TYPES
 		//Guns and blunt weapons
@@ -206,6 +207,7 @@
 		public static const NALEEN_MALE:int  						   = 15;
 		public static const MACHINA:int 							   = 16;
 		public static const JADE:int 								   = 17;
+		public static const REAHA:int 								   = 18;
 
 		public static var ITEMS:Object = {};
 		
