@@ -61,6 +61,7 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
 	rooms["MERCHANT'S THOROUGHFARE"].westExit = "FUR EFFECT";
+	rooms["MERCHANT'S THOROUGHFARE"].southExit = "BETHS BROADS";
 	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
@@ -108,6 +109,19 @@ function initializeRooms():void
 	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
 	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
 	rooms["FUR EFFECT"].runOnEnter = furEffectBonusFunction;
+
+	//109 "BETHS BROADS" Beth's Busty Broads
+	rooms["BETHS BROADS"] = new RoomClass(this);
+	rooms["BETHS BROADS"].roomName = "BETH'S\nBUSTY BROADS";
+	rooms["BETHS BROADS"].description = "You're inside Beth's Busty Broads, which seems to be doing good business for itself. Several patrons are gathered around the stage in the center of the show floor, watching a particularly well-endowed ausar girl strut her stuff on the pole. A desk has been set up near the door, where a bored-looking human woman is flipping through a data-slate, barely acknowledging your presence.";
+	rooms["BETHS BROADS"].planet = "TAVROS STATION";
+	rooms["BETHS BROADS"].system = "SYSTEM: KALAS";
+	rooms["BETHS BROADS"].northExit = "MERCHANT'S THOROUGHFARE";
+	rooms["BETHS BROADS"].addFlag(GLOBAL.INDOOR);
+	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
+	rooms["BETHS BROADS"].runOnEnter = reahaBonusFunction;
+
+	
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);
