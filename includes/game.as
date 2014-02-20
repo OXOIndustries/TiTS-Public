@@ -80,6 +80,7 @@ public function mainGameMenu():void {
 		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
 
+	this.addButton(13, "Codex", showCodex);
 	this.addButton(14, "RESET NPCs", initializeNPCs);
 	
 	// Show the minimap too!

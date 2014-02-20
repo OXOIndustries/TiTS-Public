@@ -46,6 +46,10 @@ package classes.UIComponents
 			UIStyleSettings._gPurpleGlow = null;
 			UIStyleSettings._gTextInputFormatter = null;
 			UIStyleSettings._gMainTextCSSStyleSheet = null;
+			UIStyleSettings._gCodexTreeHeaderHighlightColourTransform = null;
+			UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform = null;
+			UIStyleSettings._gCodexTreeHeaderFormatter = null;
+			UIStyleSettings._gCodexTitleHeaderFormatter = null;
 		}
 		
 		// TITS VALUES
@@ -293,6 +297,38 @@ package classes.UIComponents
 			return UIStyleSettings._gTextInputFormatter;
 		}
 		
+		private static var _gCodexTitleHeaderFormatter:TextFormat;
+		public static function get gCodexTitleHeaderFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexTitleHeaderFormatter == null)
+			{
+				UIStyleSettings._gCodexTitleHeaderFormatter = new TextFormat();
+				UIStyleSettings._gCodexTitleHeaderFormatter.size = 50;
+				UIStyleSettings._gCodexTitleHeaderFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gCodexTitleHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexTitleHeaderFormatter.kerning = true;
+				UIStyleSettings._gCodexTitleHeaderFormatter.leading = 0;
+				UIStyleSettings._gCodexTitleHeaderFormatter.font = "Universe UltraCondensed";
+			}
+			return UIStyleSettings._gCodexTitleHeaderFormatter;
+		}
+		
+		private static var _gCodexTreeHeaderFormatter:TextFormat;
+		public static function get gCodexTreeHeaderFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexTreeHeaderFormatter == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderFormatter = new TextFormat();
+				UIStyleSettings._gCodexTreeHeaderFormatter.size = 35;
+				UIStyleSettings._gCodexTreeHeaderFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gCodexTreeHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexTreeHeaderFormatter.kerning = true;
+				UIStyleSettings._gCodexTreeHeaderFormatter.leading = 0;
+				UIStyleSettings._gCodexTreeHeaderFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCodexTreeHeaderFormatter;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -378,6 +414,28 @@ package classes.UIComponents
 				UIStyleSettings._gMovementButtonColourTransform.color = UIStyleSettings.gMovementButtonColour;
 			}
 			return UIStyleSettings._gMovementButtonColourTransform;
+		}
+		
+		private static var _gCodexTreeHeaderHighlightColourTransform:ColorTransform;
+		public static function get gCodexTreeHeaderHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gCodexTreeHeaderHighlightColourTransform == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gCodexTreeHeaderHighlightColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gCodexTreeHeaderHighlightColourTransform;
+		}
+		
+		private static var _gCodexTreeHeaderDeHighlightColourTransform:ColorTransform;
+		public static function get gCodexTreeHeaderDeHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform.color = UIStyleSettings.gBackgroundColour;
+			}
+			return UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks

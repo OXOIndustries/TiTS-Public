@@ -41,6 +41,7 @@
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.GameData.TooltipManager;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.UIComponents.ContentModules.CodexModule;
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
@@ -132,6 +133,7 @@
 			this.ConfigureMainMenu();
 			this.ConfigurePrimaryOutput();
 			this.ConfigureSecondaryOutput();
+			this.ConfigureCodex();
 			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
@@ -410,6 +412,18 @@
 			pGameText.visible = false;
 		}
 		
+		private function ConfigureCodex():void
+		{
+			var pCodex:CodexModule = new CodexModule();
+			_availableModules[pCodex.moduleName] = pCodex;
+			
+			pCodex.x = 200;
+			pCodex.y = 0;
+			
+			titsClassPtr.addChild(pCodex);
+			pCodex.visible = false;
+		}
+		
 		/**
 		 * Attempt to display a target module
 		 * @param	module
@@ -418,6 +432,36 @@
 		{
 			if (module in _availableModules)
 			{
+				var tarModule:ContentModule = _availableModules[module];
+				
+				// Breaking this out because the visibility stuff will probably change to some kind of tween later
+				if (tarModule.leftBarEnabled == true)
+				{
+					_leftSideBar.visible = true;
+				}
+				else
+				{
+					_leftSideBar.visible = false;
+				}
+				
+				if (tarModule.rightBarEnabled == true)
+				{
+					_rightSideBar.visible = true;
+				}
+				else
+				{
+					_rightSideBar.visible = false;
+				}
+				
+				if (tarModule.fullButtonTrayEnabled == true)
+				{
+					_buttonTray.y = 800;
+				}
+				else
+				{
+					_buttonTray.y = 898; // TWEAK ME
+				}
+				
 				this.deglow();
 				this.DeGlowButtons();
 				if (_currentModule != null) _currentModule.visible = false;
@@ -471,6 +515,12 @@
 		private function showTargetOutput(v:String):void
 		{
 			this.showModule(v);
+		}
+		
+		// Codex trigger
+		public function showCodex():void
+		{
+			this.showModule("CodexDisplay");
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI

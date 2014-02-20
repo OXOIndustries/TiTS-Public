@@ -243,6 +243,11 @@
 			this.userInterface.clearMenu();
 		}
 		
+		public function clearGhostMenu():void
+		{
+			this.userInterface.clearGhostMenu();
+		}
+		
 		public function buttonClick(evt:MouseEvent):void 
 		{
 			if (!inCombat()) 
@@ -336,6 +341,18 @@
 		public function removeButton(slot:int):void
 		{
 			userInterface.addDisabledButton(slot);
+		}
+		
+		public function showCodex():void
+		{
+			this.userInterface.showCodex();
+			this.clearGhostMenu();
+			// TESTO BUTTONO
+			addGhostButton(0, "Database", function():void { } );
+			addGhostButton(1, "Messages", function():void { } );
+			addGhostButton(2, "Log", function():void { } );
+			addGhostButton(3, "CHEEVOS", function():void { } );
+			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 		}
 		
 		public function spacebarKeyEvt():void
