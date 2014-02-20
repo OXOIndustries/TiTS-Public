@@ -37,6 +37,8 @@ package classes.UIComponents.ContentModuleComponents
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			
 			this.Build();
+			
+			this.buttonMode = true;
 		}
 		
 		private function Build():void

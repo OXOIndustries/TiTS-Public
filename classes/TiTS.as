@@ -360,7 +360,6 @@
 		{
 			if (this.userInterface.PressButton(arg))
 			{
-				if (!inCombat()) this.userInterface.showBust("none");
 				updatePCStats();
 			}
 		}

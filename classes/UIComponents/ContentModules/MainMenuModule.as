@@ -121,7 +121,7 @@ package classes.UIComponents.ContentModules
 			_websiteText.y = 475;
 			_websiteText.width = 780;
 			_websiteText.height = 25;
-			_websiteText.text = "http://www.TrialsInTaintedSpace.com";
+			_websiteText.htmlText = "<a href='http://www.placeholderaddress.com'>www.placeholderaddress.com</a>";
 			
 			
 			// Rework the positioning so it sits inside the warning bkg elem

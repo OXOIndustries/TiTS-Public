@@ -282,8 +282,8 @@ package classes.UIComponents
 		 */
 		public function clearButtons():void
 		{
-			clearGhostButtons();
 			clearButtonData();
+			clearGhostButtons();
 			CheckPages();
 		}
 		

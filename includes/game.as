@@ -41,6 +41,7 @@ public function mainGameMenu():void {
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
 	this.clearMenu(false);
+	this.userInterface.showBust("none");
 	this.inSceneBlockSaving = false
 	//Inventory shit
 	itemScreen = mainGameMenu;
