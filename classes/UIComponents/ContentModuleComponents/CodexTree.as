@@ -76,7 +76,7 @@ package classes.UIComponents.ContentModuleComponents
 			_treeContent = new CodexTreeElementContainer();
 			_treeContent.x = 5;
 			_treeContent.y = _codexHeaderUnderline.y + _codexHeaderUnderline.height + 3;
-			_treeContent.width = _background.width - _treeContent.x - 14;
+			_treeContent.width = _background.width - _treeContent.x;
 			_treeContent.height = _background.height - _treeContent.y;
 			_treeContent.setStyle("skin", nullSkin);
 			_treeContent.setStyle("upSkin", nullSkin);

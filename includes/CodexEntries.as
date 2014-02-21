@@ -6,14 +6,49 @@ public function configureCodex():void
 {
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynA", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynB", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynC", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynD", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynE", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynF", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynG", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "SynH", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn1", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn2", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn3", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn4", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn5", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn6", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn7", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn8", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn9", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn10", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn11", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn12", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn13", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn14", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn15", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn16", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn17", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn18", testPersonEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn19", testPersonEntryB);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Event A", "Buttsunder", testEventEntryA);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Event B", "Snouts", testEventEntryB);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Snouts", testEventEntryB);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentacool", testLocationEntryA);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "This/Isnt/Simpler/Either", "Interbutts", testLocationEntryB);
+	// Complex path tree entries DO work, but until we actually NEED to organise the data
+	// (and I implement some kind of path folding), I don't think we should actually USE them more than say 1 deep (because the way addEntry works
+	// requires at least a "root" path of some sort
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Organic/Ara Ara", "Zil", zilCodexEntry);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentacool", testLocationEntryA);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "This/Isnt/Simpler/Either", "Interbutts", testLocationEntryB);
+	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Test Locations", "Tentacool", testLocationEntryA);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Test Locations", "Interbutts", testLocationEntryB);
+	
+	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Zil", zilCodexEntry);
 }
 
 public function testPersonEntryA():void

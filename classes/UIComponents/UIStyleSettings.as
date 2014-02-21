@@ -88,6 +88,8 @@ package classes.UIComponents
 		[Embed(source = "../../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const LatoBoldItalicTFF:String;
 		
+		// There IS actually a family of fonts for bold/italics etc for Univers, but I don't have it on this computer... its on my laptop... which tried
+		// its hardest to commit sepuku today... so I'll actually add the family at some point.
 		[Embed(source = "../../assets/Univers 59 Ultra Condensed.ttf", fontName = "Univers UltraCondensed", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const UniverseUltraCondensedTFF:String;
 		
@@ -492,10 +494,26 @@ package classes.UIComponents
 					marginRight: 5 
 				};
 				
+				var header = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 72,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
+				var blockHeader = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 28,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".good", good);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".bad", bad);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".nothing", indifferent);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".header", header);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".blockHeader", blockHeader);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}

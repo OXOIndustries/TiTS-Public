@@ -2,12 +2,14 @@ package classes.UIComponents.ContentModuleComponents
 {
 	import classes.UIComponents.ContentModuleComponents.CodexTreeHeader;
 	import fl.containers.ScrollPane;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import classes.GameData.CodexManager;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import flash.events.TextEvent;
 	
 	/**
 	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
@@ -22,6 +24,8 @@ package classes.UIComponents.ContentModuleComponents
 	 */
 	public class CodexTreeElementContainer extends ScrollPane
 	{
+		private var _content:MovieClip;
+		
 		private var _headers:Vector.<CodexTreeHeader>;
 		
 		private var _currentLinks:TextField;
@@ -33,7 +37,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _previousLinkSplice:int;
 		
 		public function CodexTreeElementContainer() 
-		{
+		{			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -50,7 +54,13 @@ package classes.UIComponents.ContentModuleComponents
 			this._previousHeader = null;
 			this._previousLinkSplice = -1;
 			
+			_content = new MovieClip();
+			_content.name = "controlContent";
+			this.source = _content;
+			
 			this.InitLayout();
+			
+			this.update();
 		}
 		
 		private function InitLayout():void
@@ -60,7 +70,7 @@ package classes.UIComponents.ContentModuleComponents
 			for (var i:int = 1; i < headers.length; i++)
 			{
 				var newHeader:CodexTreeHeader = new CodexTreeHeader();
-				this.addChild(newHeader);
+				_content.addChild(newHeader);
 				newHeader.addEventListener(MouseEvent.CLICK, clickHandler);
 				newHeader.name = String(i);
 				newHeader.labelText = headers[i];
@@ -80,7 +90,7 @@ package classes.UIComponents.ContentModuleComponents
 				
 				_previousHeader = _currentHeader;
 				_previousLinkSplice = _currentLinkSplice;
-				_previousHeader.DeHihglight();
+				_previousHeader.DeHighlight();
 			}
 			
 			_currentHeader = clickedHeader;
@@ -89,6 +99,8 @@ package classes.UIComponents.ContentModuleComponents
 			
 			populateText();
 			reposition();
+			
+			this.update();
 		}
 		
 		private function reposition():void
@@ -100,10 +112,10 @@ package classes.UIComponents.ContentModuleComponents
 			}
 			
 			// Position the new text in the container properly
-			_currentLinks.y = _headers[_currentLinkSplice - 1].y + _headers[_currentLinkSplice - 1].height + 5;
+			_currentLinks.y = _headers[_currentLinkSplice - 1].y + _headers[_currentLinkSplice - 1].height;// + 5;
 			
 			// And then for every header AFTER the link header, move them below it
-			var newY:Number = _currentLinks.y + _currentLinks.height + 5;
+			var newY:Number = _currentLinks.y + _currentLinks.height;// + 5;
 			
 			for (var ii:int = _currentLinkSplice; ii < _headers.length; ii++)
 			{
@@ -122,7 +134,7 @@ package classes.UIComponents.ContentModuleComponents
 			// Remove the previous old text
 			if (_previousLinks != null && _previousLinks.parent != null)
 			{
-				this.removeChild(_previousLinks);
+				_content.removeChild(_previousLinks);
 			}
 			
 			// Bump current to old
@@ -131,13 +143,13 @@ package classes.UIComponents.ContentModuleComponents
 			// Temp, throw the old one out too
 			if (_previousLinks != null && _previousLinks.parent != null)
 			{
-				this.removeChild(_previousLinks);
+				_content.removeChild(_previousLinks);
 			}
 			
 			// Build new
 			_currentLinks = linkContainer();
 			_currentLinks.htmlText = "<span class='words'><p>" + displayString + "</p></span>";
-			_currentLinks.height = _currentLinks.textHeight + 5;
+			_currentLinks.height = _currentLinks.textHeight - 5;
 		}
 		
 		private function linkContainer():TextField
@@ -148,11 +160,18 @@ package classes.UIComponents.ContentModuleComponents
 			tf.multiline = true;
 			tf.wordWrap = false;
 			tf.embedFonts = true;
-			tf.border = true;
+			tf.border = false;
 			tf.antiAliasType = AntiAliasType.ADVANCED;
-			this.addChild(tf);
+			tf.addEventListener(TextEvent.LINK, linkHandler);
+			tf.selectable = false;
+			_content.addChild(tf);
 			
 			return tf;
+		}
+		
+		private function linkHandler(e:TextEvent):void
+		{
+			CodexManager.getEntryFunctor(e.text)();
 		}
 		
 		private function buildTextTree(treeBranch:Object, level:int = 0):String
@@ -188,7 +207,7 @@ package classes.UIComponents.ContentModuleComponents
 				msg += "\t";
 			}
 			
-			msg += "<a href='" + key + "'>" + key + "</a>\n";
+			msg += "<a href='event:" + key + "'>" + key + "</a>\n";
 			return msg;
 		}
 		

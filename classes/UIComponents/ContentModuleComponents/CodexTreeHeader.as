@@ -36,7 +36,7 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			_background = new Sprite();
 			_background.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
-			_background.graphics.drawRoundRect(0, 0, 180, 25, 8);
+			_background.graphics.drawRoundRect(0, 0, 176, 25, 8);
 			_background.graphics.endFill();
 			this.addChild(_background);
 			
@@ -69,7 +69,7 @@ package classes.UIComponents.ContentModuleComponents
 			_background.transform.colorTransform = UIStyleSettings.gCodexTreeHeaderHighlightColourTransform;
 		}
 		
-		public function DeHihglight():void
+		public function DeHighlight():void
 		{
 			_background.transform.colorTransform = UIStyleSettings.gCodexTreeHeaderDeHighlightColourTransform;
 		}

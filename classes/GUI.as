@@ -57,6 +57,11 @@
 		var tempAuthor:String;
 		public var currentPCNotes:String;
 		
+		// Location caching so we can temp hide the location texts and shift them back to proper
+		private var cacheRoom:String;
+		private var cachePlanet:String;
+		private var cacheSystem:String;
+		
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;
@@ -505,6 +510,7 @@
 		public function showPrimaryOutput():void
 		{
 			this.showTargetOutput("PrimaryOutput");
+			this.restoreLocation();
 			_buttonTray.resetButtons();
 		}
 		
@@ -523,6 +529,7 @@
 		public function showCodex():void
 		{
 			this.showModule("CodexDisplay");
+			this.setLocation("", "CODEX", "DATABASE");
 			
 			// Trigger an update of the visual data state whenever we begin displaying the Codex
 			(_currentModule as CodexModule).update();
@@ -596,9 +603,30 @@
 		// Useful functions I've pulled out of the rest of the code base
 		public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void
 		{
+			cacheRoom = roomText;
+			cachePlanet = planetText;
+			cacheSystem = systemText;
+			
 			roomText = title;
 			planetText = planet;
 			systemText = system;
+		}
+		
+		public function restoreLocation():void
+		{
+			if (cacheRoom != null) roomText = cacheRoom;
+			if (cachePlanet != null) planetText = cachePlanet;
+			if (cacheSystem != null) systemText = cacheSystem;
+		}
+		
+		public function hideLocation():void
+		{
+			this._leftSideBar.hideLocation();
+		}
+		
+		public function showLocation():void
+		{
+			this._leftSideBar.showLocation();
 		}
 		
 		public function author(name:String):void

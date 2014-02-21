@@ -293,6 +293,20 @@ package classes.UIComponents.SideBarComponents
 		{
 			_npcBusts.visible = false;
 		}
+		
+		public function hideLocationText():void
+		{
+			_roomText.visible = false;
+			_planetText.visible = false;
+			_systemText.visible = false;
+		}
+		
+		public function showLocationText():void
+		{
+			_roomText.visible = true;
+			_planetText.visible = true;
+			_systemText.visible = true;
+		}
 	}
 
 }
