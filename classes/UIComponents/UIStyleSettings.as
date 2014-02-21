@@ -50,6 +50,7 @@ package classes.UIComponents
 			UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform = null;
 			UIStyleSettings._gCodexTreeHeaderFormatter = null;
 			UIStyleSettings._gCodexTitleHeaderFormatter = null;
+			UIStyleSettings._gCodexLinkFormatter = null;
 		}
 		
 		// TITS VALUES
@@ -327,6 +328,23 @@ package classes.UIComponents
 				UIStyleSettings._gCodexTreeHeaderFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gCodexTreeHeaderFormatter;
+		}
+		
+		private static var _gCodexLinkFormatter:TextFormat;
+		public static function get gCodexLinkFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexLinkFormatter == null)
+			{
+				UIStyleSettings._gCodexLinkFormatter = new TextFormat();
+				UIStyleSettings._gCodexLinkFormatter.size = 18;
+				UIStyleSettings._gCodexLinkFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gCodexLinkFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexLinkFormatter.kerning = true;
+				UIStyleSettings._gCodexLinkFormatter.leading = 0;
+				UIStyleSettings._gCodexLinkFormatter.tabStops = [15, 30, 45, 60, 75, 90];
+				UIStyleSettings._gCodexLinkFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gCodexLinkFormatter;
 		}
 		
 		// Glows

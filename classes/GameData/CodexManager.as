@@ -113,11 +113,6 @@ package classes.GameData
 				}
 				
 				base = base[path[i]];
-				
-				if (i > 0)
-				{
-					base.parent = base[path[i]];
-				}
 			}
 			
 			base[entryName] = CodexManager.CODEXCONTENTFUNCTORS[entryName];
