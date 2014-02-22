@@ -1159,7 +1159,8 @@ function flahneIfMalesFitTheySitExhibitionism():void {
 
 	output("\n\nHer silken insides feel wonderful around your [pc.cock " + x + "], and you slide your hands sensually up her body, revelling in the feeling of her squishy flesh. When your hands reach her breasts, you squeeze the wonderful globes, letting your hands sink into the succulent tit-flesh as you kiss the nape of the gel-secretary’s neck. Flahne’s moans grow louder as you massage the sides of her gooey G-cups, rolling her coppery nipples between two fingers before tugging them softly. You move one of your hands up to the gel-girl’s mouth, slipping a few fingers inside and letting her tongue wet them. You draw your digits out and trace them down the middle of her chest until it lies between her legs.");
 
-	output("\n\nAs you lower your hand you start to rock your hips back and forth, not yet thrusting but rubbing your [pc.cock" + x + "] around inside Flahne’s sopping box. Your saliva-wetted fingers ");
+	output("\n\nAs you lower your hand you start to rock your hips back and forth, not yet thrusting but rubbing your 
+		[pc.cock " + x + "] around inside Flahne’s sopping box. Your saliva-wetted fingers ");
 	if(!flahneDickOut()) output("rub against her rigid clit");
 	else output("lubricate her rigid gel-pole");
 	output(" with sexual fervor. The curvy secretary begins to grind her own hips in circles to quicken the rubbing, and your moans join hers. You turn her head around and give the gel-girl a deep kiss that is returned in kind, her long tongue wrapping around yours. When you break the kiss, you drag her tongue out of her mouth for a moment, sucking her sugary saliva off of it as you let it slide from your mouth with a small popping noise. One of her hands squeezes your arm as you ");

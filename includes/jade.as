@@ -465,11 +465,11 @@ function sitOnjadesFace():void {
 	}
 	output("\n\nThe full-figured woman lays herself back on a well-used couch, giggling nervously, before looking up at you and beckoning you over. You're out of your [pc.gear] in an instant and ");
 	if(pc.isNaga()) output("snaking up onto the edge of the couch to");
-	else if(pc.legCount != 2) output("awkwardly positioning your [butt] to");
+	else if(pc.legCount != 2) output("awkwardly positioning your [pc.butt] to");
 	else output("climbing up onto the edge of the couch to");
 	output(" align your [pc.vagina] with her onyx lips. Her pink tongue licks out, wetting her mouth in anticipation as you settle in, your ");
-	if(pc.legCount == 1) output("[pc.thigh] ");
-	else output("[pc.thighs] ");
+	if(pc.legCount == 1) output("[pc.leg] ");
+	else output("[pc.legs] ");
 	output("pressed against her head. You grab her breasts, not just out of desire but also for stability. Wetness and desire enflame your entrance");
 	if(pc.vaginaTotal() > 1) output("s");
 	output(" just before you touch down, feeling her hot breath a moment before her cold nose brushes against you.");
