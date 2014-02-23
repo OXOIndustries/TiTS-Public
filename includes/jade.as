@@ -34,7 +34,7 @@ function furEffectBonusFunction():Boolean {
 //Jade Approach
 function approachJade():void {
 	clearOutput();
-	userInterface.showBust("JADE")
+	userInterface.showBust("JADE");
 	//First Time
 	if(flags["KNOW_JADES_NAME"] == undefined)
 	{

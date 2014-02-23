@@ -50,5 +50,8 @@ package classes.Resources
 
 		[Embed(source = "../../assets/images/npcs/jade.png", mimeType = "image/png")]
 		public static var Bust_JADE:Class;
+
+		[Embed(source = "../../assets/images/npcs/alex.png", mimeType = "image/png")]
+		public static var Bust_ALEX:Class;
 	}
 }
