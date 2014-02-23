@@ -100,6 +100,15 @@ function crew(counter:Boolean = false):Number {
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 		}
 	}
+	if(reahaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			addButton(count-1,"Reaha",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
+		}
+	}
 	if(!counter) {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);

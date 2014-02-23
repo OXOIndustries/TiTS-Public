@@ -1,18 +1,26 @@
 ﻿function reahaBonusFunction():void
 {
-	author("Savin")
-	if(flags["TALK_TO_LADY_1ST"] == undefined) addButton(0,"Woman",talkToBrothelLady);
-	else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0,"Woman",talkToBrothelLadyRepeat);
+	if(flags["REAHA_IS_CREW"] == undefined) {
+		author("Savin")
+		if(flags["TALK_TO_LADY_1ST"] == undefined) addButton(0,"Woman",talkToBrothelLady);
+		else if (flags["REAHA_BOUGHT"] == undefined && flags["TALK_TO_LADY_1ST"] == 1) addButton(0,"Woman",talkToBrothelLadyRepeat);
+	}
 }
 
+function reahaIsCrew():Boolean
+{
+	if(flags["REAHA_IS_CREW"] == 1) return true;
+	return false;
+}
 
 //1. FOLLOWER STUFF
 //Reaha (Approach Shipboard)
 function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday():void {
 	clearOutput();
+	author("Savin");
 	output("You make your way down to Reaha's quarters, and find her door open. Standing shirtless, the huge-breasted cow-girl looks up from the bucket of milk she's busily filling up, her tail swishing faster as you approach.");
 
-	if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"Hey, [name]. What's up?\"</i>  Reaha says, flashing you a bright smile.");
+	if(flags["REAHA_FREE"] == 1) output("\n\n<i>\"Hey, [pc.name]. What's up?\"</i>  Reaha says, flashing you a bright smile.");
 	else output("\n\n<i>\"" + pc.mf("Master","Mistress") + "?\"</i>  she says, looking at you expectantly.");
 
 	/*[Talk]
@@ -25,12 +33,20 @@ function approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday():
 	Vagoo:
 		{Ride Strapon}
 	[Appearance]*/
-	//9999
+	clearMenu();
+	addButton(0,"Get Milk",getAGlassOfMilkFromReapersCowsona);
+	if(pc.lust() >= 33) addButton(2,"Sex",sexWithFollowerReaha);
+	else addDisabledButton(2,"Sex");
+	addButton(4,"Appearance",reahaFollowerAppearance);
+	addButton(14,"Back",crew);
+
+
 }
 
 //Get Milk
 function getAGlassOfMilkFromReapersCowsona():void {
 	clearOutput();
+	author("Savin");
 	output("Cupping one of the cow's hefty tits, you ask if she's ready for a good milking. ");
 	if(flags["REAHA_FREE"] == 1) output("<i>\"From you? Always, " + pc.mf("master","mistress") + ",\"</i>");
 	else output("<i>\"If that's what </i>you<i> want,\"</i>");
@@ -42,7 +58,7 @@ function getAGlassOfMilkFromReapersCowsona():void {
 	//If normal milk:
 	if(chars["REAHA"].milkType == GLOBAL.MILK) output("\n\n<i>\"Ah, God, yeeesss,\"</i>  Reaha moans as a flood of pure white milk pours from her puffy teat, as thick and creamy as a real cow's. Pearly drops roll down your fingers as your work her nipples, pulling and squeezing her big areola. She moans and shudders, bracing herself against the bulkhead as you roughly massage her breasts, barely able to stifle another bovine moo as her cream pours and pours like water.");
 	//Else if Chocolate Milk:
-	else if(chars["REAHA"].milkType == GLOBAL.CHOCOLATE_MILK) output("\n\n<i>\"It's so dark!\"  Reaha half-laughs as the dark stream of rich, chocolatey milk begins to pour from her breasts. She cups a hand under the cascading milk, letting it fill to overflowing before bringing her own motherly fluids to her lips. <i>\"And sweet, too!\"</i>");
+	else if(chars["REAHA"].milkType == GLOBAL.CHOCOLATE_MILK) output("\n\n<i>\"It's so dark!\"</i>  Reaha half-laughs as the dark stream of rich, chocolatey milk begins to pour from her breasts. She cups a hand under the cascading milk, letting it fill to overflowing before bringing her own motherly fluids to her lips. <i>\"And sweet, too!\"</i>");
 	//Else if Honey:
 	else if(chars["REAHA"].milkType == GLOBAL.HONEY) output("\n\n<i>\"O-oh God, it's so thick!\"</i>  Reaha groans as the viscous amber tricks in thick globs from her perky nipples, plopping in sinewy lines into the bucket. <i>\"So much thicker than milk… it almost hurts, but -- don't stop!\"</i>  she cries, grabbing your hands and squeezing them even harder to her teats, desperate to lessen her heavy load of sweet honey.");
 
@@ -60,12 +76,16 @@ function getAGlassOfMilkFromReapersCowsona():void {
 	processTime(5+rand(5));
 	pc.lust(10+rand(10));
 	//[Rough Milking] [Suckle] [Fuck Her]
-	//9999
+	clearMenu();
+	addButton(0,"Rough Milking",roughMilkingFollowerReaha);
+	addButton(1,"Suckle",suckleFollowerReahasTits);
+	addButton(2,"Fuck Her",sexWithFollowerReaha);
 }
 
 //Rough Milking
 function roughMilkingFollowerReaha():void {
 	clearOutput();
+	author("Savin");
 	output("You tighten your grip on the poor cow-slut's teats, fingers sinking into her soft, squishy boobflesh. They're practically deflating under your grip as more and more of her sweet [reaha.milk] floods out into the bucket, sloshing ever closer toward the brim as you continue to coax out her heavy load. Reaha groans as you squeeze her tighter, trying and failing to keep her voice from breaking into an ecstatic \"Moooooo!\" as she cums. Her [reaha.milk] flow practically explodes as her whole body quivers and quakes, from her big tits to her thighs as she creams herself, fem-spunk drooling lewdly from her sodden snatch as the boobgasm rocks her sultry form.");
 	output("\n\n<i>\"Gaaaah!\"</i>  she cries, her mooing finally resuming a human tone as the steady flow of [reaha.milkColor] dies down to nothing but a trickle, smearing across your fingers. <i>\"O-oh fuck me, that… that feeling makes it all worthwhile,\"</i>  she breathes, head resting");
 
@@ -77,8 +97,7 @@ function roughMilkingFollowerReaha():void {
 
 	pc.lust(10+rand(10));
 	processTime(10+rand(5));
-	//{If NotFree: Scene ends}
-	//9999
+	
 	//If Free:
 	if(flags["REAHA_FREE"] == 1) 
 	{
@@ -87,25 +106,36 @@ function roughMilkingFollowerReaha():void {
 		if(!pc.hasCock()) output("caressing your cum-slick groin");
 		else output("cupping the bulge of your half-hard erection");
 		output(".");
+		//stop, titfuck, or ride strapon
+		clearMenu();
+		addButton(0,"Stop",stopRoughMilkingReaha);
+		if(pc.hasCock()) addButton(1,"Titfuck",titjobFromSlaveCow);
+		else addDisabledButton(1,"Titfuck");
+		addButton(2,"Ride Strapon",rideFollowerReahasStrapon);
 	}
-	
-	//9999 - stop, titfuck, or ride strapon
+	//{If NotFree: Scene ends}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //Stop
 function stopRoughMilkingReaha():void {
 	clearOutput();
-	output("You gently brush Reaha's hand off your crotch, and she takes the hint in stride, merely holding your hand for a moment longer before letting go with a ginger kiss to your knuckles. <i>\"Thanks, [name]. Wanna give me a few minutes to clean up?\"</i>");
+	author("Savin");
+	output("You gently brush Reaha's hand off your crotch, and she takes the hint in stride, merely holding your hand for a moment longer before letting go with a ginger kiss to your knuckles. <i>\"Thanks, [pc.name]. Wanna give me a few minutes to clean up?\"</i>");
 	output("\n\nYou give her a nod -- and an affectionate pat on the ass -- as you collect your gear and head back to your cabin.");
-	//9999
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
-
-//FreeReaha: Titjob
-//FreeReaha: Ride Strapon
 
 //Suckle
 function suckleFollowerReahasTits():void {
 	clearOutput();
+	author("Savin");
 	output("Suddenly, you let go of the cow's big, full udders, hands moving down to her huge hips as she lets out a startled, forlorn cry. With a grunt, you flip Reaha around and push her up against the bulkhead, legs spread lewdly and tits bouncing, still pouring her [reaha.milk] down her chest. She whines, fingers diving into her slick slit as you move in close, cupping one of her huge breasts to your lips. <i>\"Be gentle,\"</i>  she breathes, but you know full well she wants anything but that.");
 	output("\n\nWith a grin, you push Reaha's hands away from her sodden box, leaving her breathing hard with her pent up lust and gasping at your slightest touch as her body begs for release. You flick your [pc.tongue] out at her big teat, lapping at the stream of [reaha.milk] flowing from her bosom, tasting of the sweet");
 	if(chars["REAHA"].milkType == GLOBAL.MILK) output(", rich milk, just like a real cows, but as thick as cream");
@@ -132,12 +162,14 @@ function suckleFollowerReahasTits():void {
 
 	pc.lust(15+rand(15));
 	processTime(25+rand(5));
-	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Sex
 function sexWithFollowerReaha():void {
 	clearOutput();
+	author("Savin");
 	output("You give the cow-slut a little push up against the nearest wall, watching as her teats harden to pinpoint peaks as you lean in close; cupping one of her huge orbs, your other hand caressing her flared hip.");
 	//If Free:
 	if(flags["REAHA_FREE"] == 1) 
@@ -152,12 +184,18 @@ function sexWithFollowerReaha():void {
 	{
 		output("\n\nReaha's cheek turns sharply aside as you grope her over-sexed body, your slightest touches making her wet enough that you can see her cunt glistening in the dim cabin lights. <i>\"J-just fuck me already,\"</i>  she groans, drawing a sharp breath as your fingers play across her prominent clit.");
 	}
-	//9999
+	clearMenu();
+	if(pc.hasCock()) addButton(0,"Titjob",titjobFromSlaveCow);
+	addButton(1,"Ride Strapon",rideFollowerReahasStrapon);
+	if(pc.hasCock() && pc.cockThatFits(chars["REAHA"].analCapacity()) >= 0) addButton(2,"Buttfuck",tieUpReahaAndFuckHerButt);
+	else addDisabledButton(2,"Buttfuck");
+	addButton(14,"Back",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 }
 
 //Titjob
 function titjobFromSlaveCow():void {
 	clearOutput();
+	author("Savin");
 	var x:int = pc.cockThatFits(400);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("Your wandering hand snakes up Reaha's supple skin, caressing the side of one of her big, leaky breasts, stopping just long enough to pinch the prominent teat, drawing forth a clear bead of [reaha.milk] and a hiss of pleasure from the cow-slut. <i>\"What do you say we put these to work?\"</i>  you grin, teasing her huge nipples as the ");
@@ -193,12 +231,14 @@ function titjobFromSlaveCow():void {
 
 	processTime(20+rand(5));
 	pc.orgasm();
-	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Ride Strapon
 function rideFollowerReahasStrapon():void {
 	clearOutput();
+	author("Savin");
 	output("You let a hand slip around Reaha's wide hips, squeezing one of her big, soft ass cheeks and whispering into one of her floppy cow-ears, <i>\"Why don't you find us something to play with?\"</i>");
 
 	output("\n\nReaha ");
@@ -226,13 +266,17 @@ function rideFollowerReahasStrapon():void {
 	else output("<i>\"I guess,\"</i>");
 	output("  you say. Now, what to do with it...");
 
+	processTime(2);
 	//[Be Submissive] [Be Dominant]
-	//9999
+	clearMenu();
+	addButton(0,"Be Submissive",beSubmissiveToReaha);
+	addButton(1,"Be Dominant",dominantReahaAss);
 }
 
 //Submissive
 function beSubmissiveToReaha():void {
 	clearOutput();
+	author("Savin");
 	output("The thought of that big, hard rod of latex thrusting deep into your bowels is enough to get your ");
 	if(pc.hasVagina()) output("[pc.vaginas] drooling with excitement");
 	if(pc.hasVagina && pc.hasCock()) output(" and your ");
@@ -287,12 +331,14 @@ function beSubmissiveToReaha():void {
 	}
 	processTime(20+rand(10));
 	pc.orgasm();
-	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Dominant
 function dominantReahaAss():void {
 	clearOutput();
+	author("Savin");
 	output("You push Reaha onto the bed, looming over the horny cow as she rolls onto her back, grabbing her milky tits protectively. You slip down to your [knees], taking one of her feet in your hands, gently massaging the ball as you work one of the leather straps around her ankle. She blushes hard as you take her big toe into you mouth, licking the ticklish underside until she's biting her lip, fingers snaking down to her quivering slit. Her other leg is like putty in your hands, easily slipped through the other strap; you pull the leather undergarment up her thick thighs, brushing her seeking hand aside as you caress the inner shaft of the double-dildo, angling it up toward the cow's cavernous cunt. Her legs wrap around your shoulders as you slip closer to her, watching her chest rise and fall, tits wobbling with every panting, expectant breath.");
 	output("\n\nYou pause just before the moment of penetration, the crown of the latex cock just spreading the lips of Reaha's pussy. Your fingers take point, tips teasing across the over-sensitive flesh of the cow's inner thighs, brushing the rose-tinted flesh near her lust-patches before letting your middle digits caress the very lip of her quivering quim, sending a shock of pleasure up the cow's body that manifests as a convulsive shudder, cunt drooling obscenely at the lightest touch. Your finger slips in easily, the lubricated passage practically sucking you into its hot embrace. Reaha gives a pitiful little gasp as you enter her, rolling your finger around in the plentiful juices flowing from her gaping pussy. Every touch to her tender walls sends a shiver of ecstasy up her spine, coating your finger in a thick deluge of feminine slime. You let another finger slide into her, and another, pushing the better part of your fist into the cow-slut's expansive slit, which stretches as easily to accommodate your grip as it would a bull-stud's massive cock.");
 	output("\n\nReaha cries out, back arching off the bed as you fist her, slathering your hand in her free-flowing juices. You pull out, just enough to grasp the shaft of your strapon cock and stroke it vigorously, pumping the rod and coating it with Reaha's lube, making sure both ends are nice and soaked before sidling the straps up to Reaha's hips, sliding the rigid rod of the latex cock into the fist-shaped hole of the cow-slut's sex. With the strapon snugly in place, you step back to admire your work: over a pool of fem-cum towers a monolith of latex cock, bobbing unsteadily as Reaha's shaky breath rocks through her lust-addled body. You give the cow a reassuring pat on the tit as you climb into bed, straddling her wide hips and angling your [pc.butt] over the tower of dildo rising from her crotch, taking the time to rock your own [pc.hips] back against it, reveling in the warm wetness of the lubed-up shaft pressing through the crack of you ass, smearing her cunny's juice across your winking hole.");
@@ -326,12 +372,14 @@ function dominantReahaAss():void {
 	output("\n\nThe orgasm leaves you both panting heavily, rolled in each other's arms in a tangle of cum-stained sheets. You barely feel the dildo slip from your guts, only feeling the intense emptiness it leaves behind as Reaha wriggles out of the strapon; when the toy pulls out of her, a floodgate of fem-slime opens, drenching her thighs in musky smile. She gives a heavy sigh, rubbing her sore teats as you let your face fall back into the valley of her cleavage, using her heavy tits as pillows as you recover from your sexual marathon.");
 	pc.orgasm();
 	processTime(20+rand(5));
-	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Tie Her Up & Fuck Her Butt
 function tieUpReahaAndFuckHerButt():void {
 	clearOutput();
+	author("Savin");
 	var x:int = pc.cockThatFits(chars["REAHA"].analCapacity());
 	x = pc.smallestCockIndex();
 	output("You can't help but lick your lips as you take in the gratuitous curves of Reaha's body: the huge, unbound breasts practically sloshing with cream; her overly wide, child-bearing hips; and the jiggling expanse of her bubble butt. Following your eyes, the cow-slut grins, hands on her big hips. <i>\"See something you like, </i>" + pc.mf("master","mistress") + "<i>?\"</i>  she says with marked cock-suredness, thrusting her prodigious chest out just enough to make the two full mounds bounce lewdly for you. You cup one of Reaha's massive tits, giving it a rough squeeze as you push her back, forcing her up against the cabin walls. She gives a sharp gasp, twisting to look away as your hand savagely kneads the thick, soft breast, causing the puffy teat at its tip to bead with [reaha.milk]. Her breath catches as she starts to lactate, [reaha.milkColor] rivulets running between your fingers. You press in closer, giving her defenseless neck a hard kiss that ends in a gentle little bite, just enough to leave her pale flesh reddened.");
@@ -364,17 +412,20 @@ function tieUpReahaAndFuckHerButt():void {
 	output("\n\nWith a sated sigh, you withdraw from the slutty, cum-drooling cow, leaving her with a nice trickle of seed pouring from her behind as she sways listlessly in her bonds, chest heaving as the last spurts dribble from her teats, staining the floor beneath the nearly-clean wall. <i>\"Aww,\"</i>  you laugh, letting her down to flop into the sea of her own [reaha.milk]. She groans weakly as you remind her to clean up after herself, leaving her with a nice pat on her well-abused rump, letting her tattoo jiggle obscenely as you grab your kit and leave.");
 	pc.orgasm();
 	processTime(20+rand(10));
-	//9999
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Appearance
 function reahaFollowerAppearance():void {
 	clearOutput();
+	author("Savin");
 	output("Reaha Hayes was certainly born a human, though she's put more than a few gene-mods in her system over the years that have given her a distinctly bovine appearance. She's not much over five foot, with tremendously wide hips, and an ass you could lose yourself in, thick enough to sink a hand into. On the right cheek of her butt, she's got a large tattoo of the Coalition Expeditionary Force's logo: the only remaining hint on her fleshy, cow-like body that she was once a warrior. Sprouting from her backside, just above her butt, is a slender tail  that swishes absently as you look at her: nearly a yard from tip to base, with a plume of red fur at the end. Her face is still fully human, save for a pair of cute little bovine horns poking out from her flowing ass-length strawberry hair. She's standing stark naked, if only because her massive and often variable bust-size denies all attempts to constrain it: her tits, swollen with [reaha.milk], are truly massive when she doesn't get them milked, though happily she's able to tend to that herself now. With her hands free, she's able to keep them small enough to let her walk around her cabin, though she's often resting them on a tabletop or folding her arms under them for support.");
 	output("\n\nReaha has a pair of huge FF-cup breasts, each with a big inch-long nipple at its tip.");
 	output("\n\nShe has a loose, wet pussy tucked between her legs, and a snug little asshole between her expansive ass cheeks, right where it belongs.");
 
-	//9999
+	clearMenu();
+	addButton(0,"Next",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 }
 
 //2. PRE-FOLLOWER STUFF
@@ -477,11 +528,11 @@ function buyYourselfACowslut():void
 	
 	output("Curious, you ask what the price on the cow-girl's contract is.");
 	output("\n\nThe mistress cocks an eyebrow at you, but dutifully flips through a few screens on her slate before making a tsking sound, nibbling on one of her big crimson lips. \"<i>Poor little Reaha here was in pretty deep, but she's been working here for a while, so she's cleared a good chunk of her debt. Let's see… hmm, the boss's got a note here, looks like she'll take five grand for the cow. Pretty good deal for what we paid for her. So what do you say, hun? She in your price range?</i>\"");
-	output("\n\n<b>Buying the contract is currently disabled due to unfinished content.</b>");
+	//output("\n\n<b>Buying the contract is currently disabled due to unfinished content.</b>");
 	
 	clearMenu();
 	addButton(1,"Nope",noCowslutsForYou);
-	if (pc.credits == -5000) addButton(0,"Sure",buyCowslutsForYou);
+	if (pc.credits >= 5000) addButton(0,"Sure",buyCowslutsForYou);
 	else addDisabledButton(0,"Sure");
 }
 
@@ -509,10 +560,10 @@ function buyCowslutsForYou():void
 	output("\n\n\"<i>Well, that's… great,</i>\" she mumbles, looking down at her slate. \"<i>Huh, what do you know, it actually went through. Well, I guess I'll go get Reaha for you. Here, just sign this, and initial here,</i>\" she says, handing you her data slate and a stylus before trudging off into the lower levels. You shrug and start reading over the debt contract. Standard stuff, mostly: you agree to feed and water your indentured servant, set reasonable means of her earning her keep and paying off her debt, and not expose her to unreasonable harm. In a footnote you see that Reaha herself has agreed to be used sexually, which probably is what landed her here in a brothel to begin with. As you scan through the document, you find a picture attached: the slut herself, massively endowed with breasts that seem to pin her to the floor under their sheer weight, hooked up to milkers as she's being pumped from behind with some kind of pink aphrodisiac. They certainly got their money's worth out of her: the milk those udders must make alone would probably be worth the cost of her contract.");
 	output("\n\nYou finish signing the contract just as the mistress returns, guiding the exceptionally busty \"servant\" in front of her. Bare-naked, Reaha's human at first glance, save for the pair of cute little cow-horns just poking through her long, strawberry hair. Her curves, though, are certainly the product of gene-mods: an ass and hips to die for, butt jiggling lewdly with every step, hips sashaying seductively as she approaches. Her breasts, though, were clearly her goal in modification: her arms are hooked under the obscenely large, perfectly shaped orbs for support, though nothing can stop them from bouncing with even the slightest motion. They're not nearly as big as your first look suggested, though; perhaps they change size if she's milked or not? Interesting.");
 	output("\n\nReaha stops about a foot in front of you, looking sharply away from you as the mistress takes back her data slate and reviews the signed contract. \"<i>Hmm, alright. Everything looks good, " + pc.mf("Mister","Miss") + " Steele. Alright, then, she's yours. And now I can finally start moving the new girls in downstairs,</i>\" she adds with a note of satisfaction, starting to gather up her belongings from the desk.");
-	output("\n\nAs the mistress works, you turn your attention to your new servant, looking her over. She continues to meekly avoid meeting your gaze, though the bare slit of her womanhood is clearly dripping with excitement. Finally, after a long moment passes, you introduce yourself. \"<i>I'm [pc.name],\" you say, \"<i>You're with me now. Understood?</i>\"");
-	output("\n\n\"<i>Yes, " + pc.mf("master","mistress") +",</i>\" Reaha says, staring pointedly at her feet. She takes a long breath, barely holding back a shudder as the mistress accidentally brushes her bare skin.");
+	output("\n\nAs the mistress works, you turn your attention to your new servant, looking her over. She continues to meekly avoid meeting your gaze, though the bare slit of her womanhood is clearly dripping with excitement. Finally, after a long moment passes, you introduce yourself. \"<i>I'm [pc.name],\"</i>  you say, \"<i>You're with me now. Understood?</i>\"");
+	output("\n\n\"<i>Yes, " + pc.mf("master","mistress") +",</i>\"  Reaha says, staring pointedly at her feet. She takes a long breath, barely holding back a shudder as the mistress accidentally brushes her bare skin.");
 	output("\n\nTurning back to you, the mistress takes out a long metal box and hands it to you. On the top is a cartoonish label of a massively endowed brevan male surrounded by fawning women of a variety of races. \"<i>Aphrodisiac patches. Less invasive, though perhaps less effective, than the direct injections we've been using to keep her quiet. Make sure to keep up with changing them or she'll likely become... agitated. The same goes for milking her, unless you like your cow-sluts nice and immobilized by their giant tits. The patches help with that, too. She gives her best milk when orgasming, we've found. Isn't that right, cow?</i>\" she asks, pinching one of Reaha's big nipples hard enough to make her whimper and wince -- and draw forth a big drop of milk, which the mistress wipes off on her tit.");
-	output("\n\nSuddenly, Reaha looks up from the floor, finally meeting your gaze. \"<i>" + pc.mf("master","mistress") +", may I speak freely?</i>\"");
+	output("\n\nSuddenly, Reaha looks up from the floor, finally meeting your gaze. \"<i>" + pc.mf("Master","Mistress") +", may I speak freely?</i>\"");
 	output("\n\nWith the fiery look in this cow-girl's eyes, you reckon she's about to explode. You could tell her to get it off her chest this once, and then it's back to being a meek little milk-whore for you; or, you could give her blanket permission to speak her mind from now on. No sense in her keeping thoughts to herself while she plays the slave, right? Right?");
 
 	pc.credits -= 5000;
@@ -528,11 +579,11 @@ function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():void
 {
 	author("Savin");
 	clearOutput();
-	clearMenu();
 
 	output("\"<i>No,</i>\" you answer, \"<i>Now come on, let's get you to the ship.</i>\"");
 	output("\n\n\"<i>I… yes, "+ pc.mf("master","mistress") +",</i>\" she sighs, looking back down again  as you lead the way to the door.");
 	output("\n\n\"<i>Good riddance,</i>\" you hear the mistress mutter behind you as you make your way out, and back toward the [pc.ship].");
+	clearMenu();
 	addButton(0, "Next", reahaWantsToKnowWhatsUp)
 }
 
@@ -542,12 +593,11 @@ function oneTimeReahaBlammy():void
 {
 	author("Savin");
 	clearOutput();
-	clearMenu();
 
 	output("Seeing Reaha clearly has something to say to the brothel mistress, you give her a nod, \"<i>Fine. This once. But don't think you're gonna mouth off on me.</i>\"");
-	output("\n\n\"<i>You got it,\" the cow-girl says, just a moment before practically hoisting her erstwhile mistress over the desk by the collar of her blouse. \"<i>Listen up you bimbo piece of shit, I am sick and </i>fucking<i> tired of being called a dumb cow or a big-titted whore. I did NOT sign up for this to be hooked up to a bunch of machines and pumped full of drugs until I could barely think, and then left to rot for days between some horny john coming in and using me. My contract said I was down to fuck, not to be whored out. And I am </i>really<i> sick of your shit-eating superior attitude, slut. You are NOT fucking better than me, and no amount of latex fetish-wear is ever gonna change that. Oh, no... you are the lowest form of life in this fucking universe; and even with all these gene mods, you're a hell of a lot less human than I am. You had better thank your dear and fluffy lord I am getting the fuck OUT of here, because the next time I got my hands free, I was coming for your smug little bitch ass. And if you call me a cow again, so help me I will come down on you like the hand of God. Do. You. Get. Me?\"");
+	output("\n\n\"<i>You got it,\"</i> the cow-girl says, just a moment before practically hoisting her erstwhile mistress over the desk by the collar of her blouse. \"<i>Listen up you bimbo piece of shit, I am sick and </i>fucking<i> tired of being called a dumb cow or a big-titted whore. I did NOT sign up for this to be hooked up to a bunch of machines and pumped full of drugs until I could barely think, and then left to rot for days between some horny john coming in and using me. My contract said I was down to fuck, not to be whored out. And I am </i>really<i> sick of your shit-eating superior attitude, slut. You are NOT fucking better than me, and no amount of latex fetish-wear is ever gonna change that. Oh, no... you are the lowest form of life in this fucking universe; and even with all these gene mods, you're a hell of a lot less human than I am. You had better thank your dear and fluffy lord I am getting the fuck OUT of here, because the next time I got my hands free, I was coming for your smug little bitch ass. And if you call me a cow again, so help me I will come down on you like the hand of God. Do. You. Get. Me?\"</i>");
 	output("\n\nWith a face etched with clear and present terror, the mistress slowly nods. Scowling with contempt, Reaha lets the woman go, and she flops to the ground as the naked cow-girl turns to you and says, \"<i>Sorry about that. Can we go?</i>\"");
-
+	clearMenu();
 	addButton(0, "Next", reahaWantsToKnowWhatsUp)
 }
 
@@ -559,22 +609,23 @@ function reahaISFREEEEEEE():void
 	clearOutput();
 	clearMenu();
 	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	flags["REAHA_FREE"] = 1;
 	pc.personality = pc.personality - 5;
 	if (pc.personality <= 0) pc.personality = 0;
 
 	output("\"<i>Sure,</i>\"  you say, \"<i>I'd rather you speak your mind from now on.</i>\"");
 	output("\n\n\"<i>You're going to regret that,</i>\"  the mistress snickers.");
-	output("\n\n\"<i>You got it,\"  the cow-girl says, just a moment before practically hoisting her erstwhile mistress over the desk by the collar of her blouse. \"<i>Listen up you bimbo piece of shit, I am sick and </i>fucking<i> tired of being called a dumb cow or a big-titted whore. I did NOT sign up for this to be hooked up to a bunch of machines and pumped full of drugs until I could barely think, and then left to rot for days between some horny john coming in and using me. My contract said I was down to fuck, not to be whored out. And I am </i>really<i> sick of your shit-eating superior attitude, slut. You are NOT fucking better than me, and no amount of latex fetish-wear is ever gonna change that. Oh, no... you are the lowest form of life in this fucking universe; and even with all these gene mods, you're a hell of a lot less human than I am. You had better thank your dear and fluffy lord I am getting the fuck OUT of here, because the next time I got my hands free, I was coming for your smug little bitch ass. And if you call me a cow again, so help me I will come down on you like the hand of God. Do. You. Get. Me?\"");
+	output("\n\n\"<i>You got it,\"</i>  the cow-girl says, just a moment before practically hoisting her erstwhile mistress over the desk by the collar of her blouse. \"<i>Listen up you bimbo piece of shit, I am sick and </i>fucking<i> tired of being called a dumb cow or a big-titted whore. I did NOT sign up for this to be hooked up to a bunch of machines and pumped full of drugs until I could barely think, and then left to rot for days between some horny john coming in and using me. My contract said I was down to fuck, not to be whored out. And I am </i>really<i> sick of your shit-eating superior attitude, slut. You are NOT fucking better than me, and no amount of latex fetish-wear is ever gonna change that. Oh, no... you are the lowest form of life in this fucking universe; and even with all these gene mods, you're a hell of a lot less human than I am. You had better thank your dear and fluffy lord I am getting the fuck OUT of here, because the next time I got my hands free, I was coming for your smug little bitch ass. And if you call me a cow again, so help me I will come down on you like the hand of God. Do. You. Get. Me?\"</i>");
 	output("\n\nWith a face etched with clear and present terror, the mistress slowly nods. Scowling with contempt, Reaha lets the woman go, and she flops to the ground as the naked cow-girl turns to you and says, \"<i>Sorry about that. Can we go?</i>\"");
 	output("\n\nWith her clearly heart-felt farewells out of the way, you take your busty cow-girl out of the brothel and back to the ship. It's a long walk, and she gets no shortage of looks and cat-calls as she walks naked down the corridors, but she refuses the offer of a jacket or robe even from passing strangers, and after a while you can clearly see the excitement dribbling down her thighs. Looks like she gets off on it. Kinky.");
 	output("\n\nAs you get back to the docks, Reaha finally breathes a short sigh and says, \"<i>So… sorry about the outburst. When I went into debt, I didn't think the 'yes, I'm okay with sex' check box meant 'please whore me out and pump me full of sex drugs till I'm a mindless fuck toy begging for the D from strangers.' Fuckin' assholes. I'm probably going to be addicted to that shit forever, now. That's great,</i>\"  she grumbles, tearing open one of the aphrodisiac pads and slapping it on her shoulder. She shudders and sighs as she walks, clearly becoming more aroused and relaxed by the second, breath ragged by the time you get to the dock.");
 	output("\n\nYou're near the airlock now, and you punch in your access code as Reaha sighs, planting her hands on her hips. \"<i>Aaaaanyway, you seem like an alright "+ pc.mf("guy","girl") +". Thanks for letting me at least speak my mind. Playing the horny slut for a couple years was pretty brutal. I guess some guys are into it, though. So yeah, umm... thanks for that,</i>\"  she says, awkwardly offering you a hand. You shake it as the airlock finishes cycling, and guide your new crew member aboard. You find an empty cabin and guide her in. Sparsely furnished as it is, the smile on Reaha's lips tells you it's a big improvement over being shackled up in a dungeon.");
 	output("\n\n\"<i>Nice. So, uh, you're not gonna tie me up or anything, right? Not that I mind a little rope play, I mean, but... let's not do the whole handcuff me to the wall for hours at a time, okay? With all these fucking patches, I gotta wank it like, all the time or I'll go crazy.</i>\"  You nod your agreement, and Reaha positively beams, \"<i>Oh man, I can FINALLY fap and milk myself! Thank god!</i>\"  she cries, practically jumping with joy.");
-	output("\n\n\"<i>Oh, speaking of milk,</i>\"  she says, cupping her big, squishy breasts, \"<i>Just shout if you want a little cream in your morning joe, or even by the glass. It tastes like normal cow milk, I promise; the human stuff's icky. Although... I spent like, a bajillion creds on these things, but... if you happen to run into something that, say, changes what milk I'd make, I'm </i>totally<i> into that. You want me squirting honey or chocolate milk or whatever, just gimme the mod. Otherwise... I'm all yours... "+ pc.mf("master","mistress") +"\"</i>, she says playfully as she stretches out on the bed.");
+	output("\n\n\"<i>Oh, speaking of milk,</i>\"  she says, cupping her big, squishy breasts, \"<i>Just shout if you want a little cream in your morning joe, or even by the glass. It tastes like normal cow milk, I promise; the human stuff's icky. Although... I spent like, a bajillion creds on these things, but... if you happen to run into something that, say, changes what milk I'd make, I'm </i>totally<i> into that. You want me squirting honey or chocolate milk or whatever, just gimme the mod. Otherwise... I'm all yours... "+ pc.mf("Master","Mistress") +",\"</i> she says playfully as she stretches out on the bed.");
 	output("\n\nYou nod, and tell her to get settled in.");
 
-	
 	processTime(60+rand(4));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -584,6 +635,8 @@ function reahaISFREEEEEEE():void
 function reahaWantsToKnowWhatsUp():void
 {
 	currentLocation = "SHIP INTERIOR";
+	var map:* = mapper.generateMap(currentLocation);
+	userInterface.setMapData(map);
 	author("Savin");
 	clearOutput();
 	clearMenu();
