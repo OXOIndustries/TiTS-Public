@@ -515,6 +515,8 @@
 		 */
 		public function executeGame():void
 		{
+			//Purge out the event buffer so people can't buy something, load, and then get it.
+			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.hideMenus();
 			

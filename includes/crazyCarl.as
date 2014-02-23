@@ -130,7 +130,7 @@ function aboutTheRobotFromCrazyCarl():void {
 		output("\n\nCan’t the local security help?");
 		output("\n\n\"<i>Overworked, underpaid and terribly staffed. Plus they’re a bit busy right now. Can’t go rummaging through the jungle lookin’ for lost goods that are probably fried, anyway. No, I’m afraid it’s a personal problem or nothing once it leaves the grounds.</i>\"");
 		output("\n\nHm. You’ll probably be going through the jungle here, actually.");
-		output("\n\n\"<i>Eh? You?</i>\"  Carl pushes himself forward, arms pressing into the countertop as he looks you over with no small amount of scrutiny. He seems rather thorough about it, too, glancing over ever cleft of your body, every pronounced bit of your [pc armor] and the nature of your weapons - you can’t help but get a little self-conscious. Even when he leans back, evidently done peering into your very soul, he doesn’t exactly look impressed. \"<i>Well, if you’re going out there I suppose I could give you a little purpose for it, but I’m not to sure I’d feel comfortable with ya runnin’ out against a bunch of tribals like the other would-bes that run through here.</i>\"");
+		output("\n\n\"<i>Eh? You?</i>\"  Carl pushes himself forward, arms pressing into the countertop as he looks you over with no small amount of scrutiny. He seems rather thorough about it, too, glancing over ever cleft of your body, every pronounced bit of your [pc.armor] and the nature of your weapons - you can’t help but get a little self-conscious. Even when he leans back, evidently done peering into your very soul, he doesn’t exactly look impressed. \"<i>Well, if you’re going out there I suppose I could give you a little purpose for it, but I’m not to sure I’d feel comfortable with ya runnin’ out against a bunch of tribals like the other would-bes that run through here.</i>\"");
 
 		//Kind, mischevious:
 		if(!pc.isAss()) output("\n\nYou hold your hands up and try to reassure the old man; you’re not the hottest shit this side of the galaxy, but you can manage.");
@@ -435,7 +435,7 @@ Being a robot, an industrial robot at that, it is not susceptible to lust attack
 
 //Intro
 function carlsEncounterStart():Boolean {
-	if(flags["ROBOT_QUEST_COMPLETE"] == undefined)
+	if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] != undefined && flags["ROBOT_QUEST_COMPLETE"] == undefined)
 	{
 		clearOutput();
 		output("You crunch your way through the brush, swatting irritability at the odd fern that decides to accost you - which is most of them. As much as you’d like to avoid it, the thick, choking ferns rattle with every step you make rather noisily. The jungle life isn’t exactly quiet either, what with the shrill cries of the birds and bees. And the local avian and bee-inspired population, too. Despite all the noise, however, you can still make out something distinctly unnatural whispering from a bit away, like thick fans of some bit of industrial machinery. Like, say, something that hovers.");
