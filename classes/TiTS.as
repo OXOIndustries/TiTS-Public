@@ -718,5 +718,10 @@
 		{
 			return chars["CUNTSNAKE"];
 		}
+		
+		public function get reaha():*
+		{
+			return chars["REAHA"];
+		}
 	}
 }
