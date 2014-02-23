@@ -73,6 +73,7 @@ function approachJade():void {
 function jadeAppearance():void 
 {
 	clearOutput();
+	userInterface.showBust("JADE");
 	output("Jade is a panda. That much is obvious, even at a short glance. Her face has a short snout with a black nose, hiding most of her old facial features from view. Perhaps the only remains of her original race, orchan, are the number of teeth inside her maw and her exotic eye-shape. Slitted horizontally, her crimson irises seem to bore right into you, even when she lowers them into a smoky glare. Her plump, sable lips are often pursed thoughtfully, gleaming like polished jet in the bright lights inside her shop. She either wears shiny gloss or takes moisturization very seriously, but neither accounts for their kissable-and-then-some size.");
 	output("\n\nA mane of long, onyx-black hair cascades past her shoulders into a line of emerald clasps that bind it into an orderly, if long, ponytail. Elsewhere, she's covered in thick coat of shimmering white fur soft enough to remind you of cyberdown pillows. A few black splotches break up her alabster coloration - one around each of her eyes, one on her right shoulder, a big one one from the underside of her left breast down to her hip, and a few small ones on her legs.");
 	if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined) output(" There might be more under her softly swaying skirt, but you'd have to talk her out of it first.");
@@ -97,6 +98,7 @@ function talkToJade(display:Boolean = true):void {
 	if(display)
 	{
 		clearOutput();
+		userInterface.showBust("JADE");
 		output("<i>\"A social call?\"</i>  Jade wonders aloud. <i>\"Well, the store is empty. I'd be happy to talk.\"</i>  She vaults atop the counter with a little bit of awkwardness, barely crossing her legs in time to stop herself from giving you an upskirt, but giving you an eyeful of quaking breasts in the process. The panda's quivering bosom is almost spellbinding, so much so that she has to cough to get your attention back to her face. <i>\"So what do you want to talk about? I'm pretty much an open book.\"</i>");
 	}
 	clearMenu();
@@ -113,6 +115,7 @@ function talkToJade(display:Boolean = true):void {
 //Her Race
 function talkToJadeAboutHerRace():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_RACE"] = 1;
 	output("<i>\"I assume you mean my original race, orchan, and not panda,\"</i>  Jade offers with an inquisitive tone.");
 	output("\n\nYou nod. She would probably talk about pandas all day if you let her.");
@@ -139,6 +142,7 @@ function talkToJadeAboutHerRace():void {
 //Why Furry?
 function talkWithJadeAboutHerFurFetish():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	flags["TALKED_WITH_JADE_ABOUT_FURRIES"] = 1;
 	output("<i>\"Why furry?</i>\" you ask.");
 	output("\n\nJade just sighs at this. <i>\"I've answered this question more times than I can count, you know?\"</i>");
@@ -161,6 +165,7 @@ function talkWithJadeAboutHerFurFetish():void {
 //Her Shop
 function askJadeAboutHerShop():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_SHOP"] = 1;
 	output("<i>\"My shop?\"</i> Jade asks. <i>\"I guess you could say that it's like my hopes and dreams rolled together into my baby.</i>\"  She smirks a little. <i>\"I wanted to share what I had discovered with everyone, and a shop seemed the best way to do it. I can support myself and meet furries all day long! Hell, I can even work with people that don't have the credits to make the transformation on their own. You'd be amazed by what solid financial planning can accomplish.\"</i>");
 	output("\n\nTicking off one finger, Jade explains, <i>\"First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn't easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That's not even mentioning all adventurers coming out of the new systems with wallets full of credit chits.\"</i>  She gestures at her shop. <i>\"I've done well enough to redecorate twice, and each time I wind up making the place cosier. I've even managed to open up a few new locations out there on the rim.</i>\"  She sighs. <i>\"I can't run all of them personally of course. I mainly stay here... this place has kind of become my home.\"</i>  She brushes a stray strand of hair out of her eyes. <i>\"Not much more to tell.\"</i>");
@@ -171,6 +176,7 @@ function askJadeAboutHerShop():void {
 //Her... Breasts
 function askJadeAboutHerBigOlTatas():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] = 1;
 	output("Well, you may as well take the bait. You ask her about her breasts.");
 	output("\n\nJade smirks, running one pawed finger up and down the length of her expansive assets, shivering slightly at the sensation. <i>\"I was hoping you'd ask.\"</i>  She squeezes one and pants, <i>\"They're my favorite part of the transformation. Whoever designed the splice made it with human expectations in mind, and humans expect, big, luxurious busts to go with a curvy figure.\"</i>  She gives a twirl and a shake, basking in your attention like a cat in the sun. <i>\"It's a shame it didn't give me proper nipples. I compensated another way, and it worked out better than I could have ever imagined....\"</i>");
@@ -196,6 +202,7 @@ function jadeSexMenu(display:Boolean = true):void {
 	if(display)
 	{
 		clearOutput();
+		userInterface.showBust("JADE");
 		//Hasn't had sex with her
 		if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined)
 		{
@@ -248,6 +255,7 @@ function jadeSexMenu(display:Boolean = true):void {
 //Omnigendered scene. PC stays closed and gropes the panda-girl to earthshaking orgasm after orgasm, leaving her with a puddle of pussy-juice and a serious tit-obsession
 function jadeGetsAGropeGasm():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	output("The two of you tumble back into a couch in the narrow back-room, hands roaming over one another's body with little shame or restraint. Your own gropes, squeezes, and caresses rarely if ever leave her sumptuous breasts. They're a feast for your fingers: soft, well-rounded, and oh-so squeezable. You have a hard time not just sitting there and rubbing them, feeling and fondling their expansive, plush... heavenly... mmmm.... Every touch makes Jade whimper and squirm. Every stroke earns a pleasured twitch.");
 	if(pc.legCount != 2) output(" The awkward positioning of your body on the bipedally-designed sofa is a dim, unthought of concern next to your focus.");
 	output("\n\nPanting madly, the plump panda-woman's own explorations of your body rapidly die off. Her eyes drift partway closed, and her plush, black lips slowly part into a wanton 'o'. You can practically see the pleasure from her tits colliding with her brain and sending her synapses into misfires of thought-obliterating ecstasy. A pleasant-sounding coo slips out of her maw as she relaxes into the chair, slowly sinking into more gradual expressions of physical excitement the longer you massage her sensitive mammaries.");
@@ -315,6 +323,7 @@ function titfuckJade():void {
 	if(flags["TITFUCKED_JADE"] == undefined) flags["TITFUCKED_JADE"] = 1;
 	else flags["TITFUCKED_JADE"]++;
 	clearOutput();
+	userInterface.showBust("JADE");
 	output("<i>\"How about a titfuck?\"</i>  you suggest");
 	if(pc.isNice()) output(" with an encouraging smile");
 	else if(pc.isMischievous()) output(" with a mirthful grin");
@@ -451,6 +460,7 @@ function titfuckJade():void {
 //Furious Face-Sitting
 function sitOnjadesFace():void {
 	clearOutput();
+	userInterface.showBust("JADE");
 	output("Smiling as wantonly as you can, you suggest that she put that snout to work in [pc.oneVagina] while you count how many orgasms your hands can wring from her breasts.");
 	//First time
 	if(flags["TIMES_SAT_ON_JADES_FACE"] == undefined)
