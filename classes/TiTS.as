@@ -446,9 +446,8 @@
 		
 		public function pressButton(arg:int = 0):void 
 		{
-			if (this.userInterface.PressButton(arg))
+			if (this.userInterface.PressButton(arg, inCombat))
 			{
-				if (!inCombat()) this.userInterface.showBust("none");
 				updatePCStats();
 			}
 		}
