@@ -85,7 +85,6 @@ public function mainGameMenu():void {
 	this.userInterface.showMinimap();
 }
 
-
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -134,6 +133,7 @@ function rest():void {
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
+
 function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
@@ -141,9 +141,17 @@ function sleep(outputs:Boolean = true):void {
 	if(outputs) 
 	{
 		clearOutput();
-		if((pc.XPRaw >= pc.XPMax() && pc.level < 5) || flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0) {
-			levelUp();
-			return;
+		if ((pc.XPRaw >= pc.XPMax() && pc.level < 5) || (flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0)) 
+		{
+			if (flags["SKIP_ALLOCATION"] == undefined)
+			{
+				levelUp();
+				return;
+			}
+			else
+			{
+				flags["SKIP_ALLOCATION"] = undefined;
+			}
 		}
 		//CELISE NIGHT TIME BEDTIMEZ
 		if(celiseIsCrew())

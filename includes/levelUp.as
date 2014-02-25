@@ -185,6 +185,11 @@ function confirmLevelPointAllocation():void
 	pc.willpower(flags["LEVELING_WILLPOWER_BONUS"]);
 	resetLevelBonuses(false);
 	
+	if (flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] > 0)
+	{
+		flags["SKIP_ALLOCATION"] = 1;
+	}
+	
 	if (flags["GAINED_LEVEL"] == undefined)
 	{
 		sleep();
