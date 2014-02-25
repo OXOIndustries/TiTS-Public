@@ -5358,7 +5358,7 @@
 			if(!hasCock() && !hasVagina()) return "bare crotch";
 			//Make da list!
 			if(hasCock()) addToList(cocksDescript());
-			if(balls > 0) addToList(ballsDescript);
+			if(balls > 0) addToList(ballsDescript());
 			if(hasVagina()) addToList(vaginasDescript());
 			
 			return formatList();

@@ -100,6 +100,7 @@
 		public static const DICK:int                                   = 3;
 		public static const FLAT:int                                   = 4;
 		public static const INVERTED:int                               = 5;
+		public static const TENTACLED:int 							   = 6;
 				
 		//CUM & MILK TYPES
 		public static const MILK:int                                   = 0;

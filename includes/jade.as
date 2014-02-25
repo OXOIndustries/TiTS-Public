@@ -1,4 +1,8 @@
-﻿/*Jade the Panda-Girl
+﻿//TOC:
+//NORMAL JADE
+//TENTACLE NIPS EXPANSION
+
+/*Jade the Panda-Girl
 Fiddly Bits
 Original Race: Orchan, a lithe, hairless species with no nipples or breasts.
 Got a pet space hamster and was amazed at how awesome fur feels. Got into furry stuff as a result of some poorly worded extranet searches.
@@ -30,6 +34,8 @@ function furEffectBonusFunction():Boolean {
 	else addButton(0,"Jade",approachJade);
 	return false;
 }
+
+//NORMAL JADE
 
 //Jade Approach
 function approachJade():void {
@@ -80,7 +86,12 @@ function jadeAppearance():void
 	else output(" You know from experience there aren't any more under her softly swaying skirt, but it wouldn't hurt to check a second time.");
 	output(" It isn't a perfect match to real pandas' coats, but over the counter transformatives aren't known for being an exact science.")
 
-	output("\n\nTo say that Jade is curvy would be an understatement. She's big all over, but mostly in the hips and chest departments. Beneath her narrow shoulders, her torso blossoms out into a little bit of chub and a whole lot of boob. Her tits - with as big and shapely as they are, tits is the only word that comes to mind - jut out large and proud, jiggling and swaying enthusiastically with every move their owner makes, always coming to rest in a way that leaves no doubt in your mind; she doesn't need a bra. Those plush, snuggly looking behemoths may bounce and quake, but they also sit up high when at rest. Interestingly, there are no nipples to top off Jade's bountiful breasts, just smooth, even fur. The panda-girl is curiously devoid of areolae as well.");
+	output("\n\nTo say that Jade is curvy would be an understatement. She's big all over, but mostly in the hips and chest departments. Beneath her narrow shoulders, her torso blossoms out into a little bit of chub and a whole lot of boob. Her tits - with as big and shapely as they are, tits is the only word that comes to mind - jut out large and proud, jiggling and swaying enthusiastically with every move their owner makes, always coming to rest in a way that leaves no doubt in your mind; she doesn't need a bra. Those plush, snuggly looking behemoths may bounce and quake, but they also sit up high when at rest.");
+	if(!chars["JADE"].hasTentacleNipples()) output(" Interestingly, there are no nipples to top off Jade's bountiful breasts, just smooth, even fur. The panda-girl is curiously devoid of areolae as well.");
+	else
+	{
+		output("\n\nLarge, round black areolae cap each of Jade's bountiful breasts, seemingly home to inverted nipples, just waiting for the right amount of stimulation to pop them out. You know from experience, however, that her nipples are far from ordinary inverted nipples; they're actually incredibly sensitive prehensile tentacles, which can reach out long enough to fuck their owner in any hole she wishes. She can control them, to an extent, but sometimes they seem to have a mind of their own.");
+	}
 
 	output("\n\nShe has just enough fat on her to give her a little belly when she slouches, but her hips put it to shame, flaring out to support her bubbly backside. What a butt it is! Her plump derriere is the kind of ass an surveying team would get lost in and never escape from. The cheeks are superbly rounded, but they jiggle with such energy that you can see it through her skirt. When she flexes her sizeable thighs, the whole thing tenses up. Though you can't see it, you're sure there's a pudgy little pucker in between her pillowy buns, right where it belongs. When Jade walks, it's with a swiveling, heavy sway that makes it difficult to look away from her hypnotic ass, and the cute little puffball of a tail just above it makes it even harder to keep your gaze to a respectable area.");
 
@@ -294,7 +305,7 @@ function jadeGetsAGropeGasm():void {
 	else
 	{
 		output("\n\nShe holds you there, snuggling with you as her climax-lagged brain slowly boots back up. <i>\"You... uhm... again?\"</i>  She suddenly kisses you. <i>\"I wasn't sure it would be as intense after the first ");
-		if(flags["GOTTEN_INTIMATE_WITH_JADE"] > 1) output("few times");
+		if(flags["GOTTEN_INTIMATE_WITH_JADE"] > 1 && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined) output("few times");
 		else output("time");
 		output(", but ugh... it's hard to think right now. Everything just feels so... so... good!\"</i>  Jade kisses you again, longer and slower this time, luxuriating in it, letting her short, thick tongue press between your lips to tangle with your own.");
 		output("\n\nA minute later, when she pulls back, you're both smiling, but she speaks first. <i>\"All right, go on and get up, [pc.name]. You made me soak the couch again, so I've got some cleaning to do.\"</i>  She slowly peels the skirt off, wrinkling her nose at how absolutely inundated with her pleasure-juices it is. <i>\"A lot of cleaning....\"</i>");
@@ -304,6 +315,19 @@ function jadeGetsAGropeGasm():void {
 		else if(pc.isMischievous()) output("\n\nYou help a while, cracking plenty wise about her orgasms and how wet they were until the whole place is clean. Then, you help her get dressed once more, being sure to cup her breast, just to get her motor going again.");
 		//Hard
 		else output("\n\nYou wave, walking out the door with a smile on your face.");
+		
+		//Gropegasm Insight
+		//Blurb to be displayed after the Gropegasm scene. Available after Gropegasmin 3 times.
+		if(flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] > 2) 
+		{
+			//Kind:
+			if(pc.isNice()) output("\n\nAs you leave the shop, you can't help but reflect on how much Jade loves your hands on her tits. It's almost a pity that she doesn't have nipples; you're sure that she'd love that. Hey, maybe you should ask her if she's done any research into mods that could give her nipples? You're sure you could help her get them, if that's the case.");
+			//Mischievous:
+			else if(pc.isMischievous()) output("\n\nAs you leave, you reflect on what a pity it is that Jade just doesn’t have nipples. With her boobs being as sensitive as they are, imagine what they'd feel like with a pair of sensitive nipples to pinch, tug and suck. You have a feeling you’d enjoy it too. Maybe you should talk to her about it sometime.");
+			//Hard:
+			else output("\n\nAs you leave, your thoughts drift back to Jade’s breasts. Damn, it’s fun groping those delicious orbs until she’s a quivering mess. If only she had nipples, you could make things at least twice as good. You’re pretty sure there must be a mod capable of nipple growth out there. Maybe Jade knows something about it herself.");
+			flags["CAN_SUGGEST_JADES_NIPPLE_TREATMENT"] = 1;
+		}
 	}
 	sexedJade();
 	processTime(20+rand(10));
@@ -508,6 +532,480 @@ function sitOnjadesFace():void {
 	processTime(30+rand(10));
 	pc.orgasm();
 	sexedJade();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//TENTACLE NIPS EXPANSION
+//How to trigger
+//Use the scene Gropegasm 3 times to trigger a scene where insight is provided to the PC. Open Nipples topic. Upon talking to her about Nipples, she will say there is a product on the market, but she doesn’t have enough money to get it for herself, so she asks the PC if they can’t pitch in and help her with get the mod. Promise to make it worth their while if they do.
+//Value to be determined by Fen.
+//Since this will ultimately lead to an unexpected mutation in Jade. A variant of the Nipples topic can be created where she explains she’s threatened to sue the company responsible for the mods and as a result she got a deal with them to sell their products. So she’d start stocking the mod.
+
+//Tenta-nips TF to be done on demand. Providing said TF is not part of the scope of this project.
+
+
+//Talk: Nipples
+//Must have received the insight.
+function talkToJadeAboutHerNipples():void {
+	clearOutput();
+	if(chars["JADE"].hasTentacleNipples())
+	{
+		//alk: Nipples (After Mod)
+		//This replaces the normal Nipples topic after she gets modded.
+		//It also enables the PC to access the tenta-nips related scenes.
+		output("<i>\"My new nipples, [pc.name]?\"</i>  the panda asks, a mischievous glint in her eyes. <i>\"What about them?\"</i>");
+		//Kind:
+		if(pc.isNice()) output("\n\nYou were wondering how they’ve been treating her. That mutation was pretty unexpected, and considering how sensitive she is, she’s bound to be having some trouble with them.");
+		//Mischievous:
+		else if(pc.isMischievous()) output("\n\nYou are concerned about how she’s adapting to them and their quirks. It’s not every lady that has such a fine pair of tentacle-nipples, after all. Plus considering how sensitive they are, she‘s bound to be having some trouble adapting, no?");
+		//Hard:
+		else output("\n\nHer mutation was pretty unexpected. You admit you’re curious as to how she’s adapting to her new tentacle-nipples, considering she’s so sensitive there.");
+
+		output("\n\n<i>\"Ah, so that's what you were wondering about. I won't deny they're a little tricky - I mean, I wasn't expecting nipples with minds of their own when I got modded - but, all in all, I'd say I'm adapting nicely,\"</i> the panda replies with a giggle. <i>\"Luckily, they didn't amp up my normal boob sensitivity, or I'd never get them to go down,\"</i>  she declares, indicating the flatness of her areolae with her fingertip.");
+
+		output("\n\nYou nod in understanding, then ask, <i>\"So? Do you like them?\"</i>");
+
+		output("\n\nShe beams hugely and nods her head. <i>\"I love them! I mean, don't get me wrong, I did call up the company to complain about the mutation. I didn't see 'may cause tentacle nipples' on the box, did you? But I certainly don't intend to go and get them removed,\"</i>  she declares cheerfully. <i>\"And before you ask, no, they don't know why I had this happen to me either. They suggest it might have been because of my earlier mods, or my species, or even a combination of the two, but they still couldn't figure it out. They're actually interested in getting some DNA samples from me, see if they can't make deliberate tenta-nipple mods,\"</i>  she notes, sounding very proud of that fact.");
+
+		output("\n\nThings seem to be turning out okay for her then. She's handling everything exceptionally well. Anyone else would’ve been pretty freaked out about the change she’s undergone. Does that mean she’s enjoying her mutation?");
+
+		output("\n\n<i>\"You bet your sweet fingers I am,\"</i>  Jade replies, grinning so wide it looks like her face is going to fall off. <i>\"They might not listen to me most of the time, but I swear it's like they know my body better than I do - it feels so damn good when they get to work!\"</i>  She closes her eyes and shudders in pleasure just thinking about it. <i>\"Mmm, yeah, if you ever want to enjoy them too, all you need to do is ask. I'll even let you prime them for me,\"</i>  she declares.");
+
+		//First Time:
+		if(flags["TALKED_WITH_JADE_ABOUT_NIPPLES_AFTER_NIPPLE_TF"] == undefined)
+		{
+			output("\n\nPrime then? You look at her in confusion.");
+			output("\n\nAt your look, she explains, <i>\"You can see how they're all flat right now? Well, they go like that whenever I'm not horny, and I can't control them well enough to make them pop out when I like. So, I need to get myself turned on first. Just keep on rubbing and touching my tits and out they pop, ready to get to work,\"</i>  she grins lecherously at the thought.");
+		}
+		else
+		{
+			//Kind:
+			if(pc.isNice()) output("\n\nSure thing. If she enjoys it that much, then you’ll make sure to tease her nipples out as much as you can.\n\n<i>\"You say the sweetest things,\"</i>  she giggles, looking very pleased at the prospect.");
+			//Mischievous:
+			else if(pc.isMischievous())
+			{
+				output("\n\nYou chuckle. Could it be that she’s developing a tentacle fetish now? Maybe she’d like it if you found a few holos on the subject? Maybe even one that has her being molested by a bunch of slimy, sticky appendages touching all over her body? Making out with her own tenta-nips?");
+				output("\n\nShe smiles, looking a little distracted at the thought, then shakes her head. <i>\"Don't make promises you can't keep, [pc.name], you big tease,\"</i>  she playfully chides you with a waving finger. <i>\"But, either way, you're always welcome to come and play with me....\"</i>");
+			}
+			//Hard:
+			else output("\n\nOf course you’ll have to prime them. You didn’t get her those nipples only for her benefit. So, you’ll just come and play with them whenever you feel like it.\n\n<i>\"And what makes you think I'll let you?\"</i>  she huffs indignantly, pouting in wounded pride. A heartbeat later, she giggles. <i>\"Oh, who am I kidding? Of course I'll let you. Come and play whenever you like - I like playing with you.\"</i>");
+		}	
+		//9999 back to talk menu
+	}
+	else
+	{
+		//First Time
+		if(flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] == undefined)
+		{
+			output("<i>\"Yes? What about them?\"</i>  she asks politely, giving you a curious look.");
+			//Kind:
+			if(pc.isNice()) 
+			{
+				output("\n\nYou explain that you were wondering what she thinks about getting nipples of her own. No pressure, you’re just curious.");
+				output("\n\n<i>\"Getting nipples of my own?\"</i> she asks slowly, then smiles. <i>\"Truth be told? As much as I love my tits and their super-sensitivity, I've always wanted to get nipples to go with them. I mean, they just don't quite look right without them... plus, if my boobs feel this good to touch now, then what will happen if I have nipples to play with too?\"</i> She lets out a luxuriant purr at the thought, actually daring to caress the spot where a nipple would be with her finger, sending a pleasure-sparked quaking jiggle through her mighty cleavage.");
+			}
+			//Mischievous:
+			else if(pc.isMischievous())
+			{
+				output("\n\nHer boobs feel great, and you love teasing and groping them. From what you can see, she loves it just as much as you do. The thing is, she’s lacking the proper equipment for you to properly tease her. Has she ever bothered to search for a mod to get a pair of buds for her mounds?");
+				output("\n\n<i>\"Mmm, yes, yes I have,\"</i>  she admits, a little sheepishly. <i>\"I do love what my boobs can do, but the idea of adding nipples is really, really tempting.\"</i>  As if to emphasise it, her fingers gently trace where a nipple would be, the touch on her super-sensitive titflesh making her shudder in pleasure.");
+			}
+			//Hard:
+			else
+			{
+				output("\n\nNo sense beating around the bush. You ask her if she knows of any mods that could cause nipple growth. If her breasts feel this good without a pair of sensitive nubs for you to pinch, you were wondering what they’d feel like if she did have them.");
+				output("\n\n<i>\"Probably wonderful,\"</i>  she admits absently, smiling wistfully as she imagines it. Her fingers brush where nipples should be and her boobs ripple deliciously at the resultant shudder of pleasure. <i>\"Oh! Uh, yes, I know of a mod that could give them to me,\"</i>  she informs you, realising you asked her another question first.");
+			}
+			output("\n\nIf she knows of something, then you’re willing to help her secure some of it.");
+			output("\n\n<i>\"Oh, but it's so expensive - I can't afford to buy a pack for myself, even with the profits this shop makes,\"</i>  Jade laments, shaking her head at the thought of it.");
+			output("\n\n<i>“How much?”</i>  you ask her.");
+			output("\n\n<i>\"It costs {Money},\"</i>  she replies. She then blinks in surprise. <i>\"Oh, [pc.name], you're not suggesting you want to...? I couldn't ask you for that!\"</i>  she protests.");
+			processTime(2);
+		}
+		//Repeatable
+		else
+		{
+			output("<i>\"No, I still don't have the funds to afford it,\"</i>  she sighs wistfully, shaking her head. <i>\"And naturally I couldn't ask you for money, so... I guess I'll just have to put it off until I’ve saved up enough credits,\"</i>  she declares, shrugging her shoulders stoically at the thought.");
+		}
+		//[GiveCredits][No]
+		//9999
+	}
+
+}
+
+//[=No=]
+function turnDownJadeNips():void {
+	clearOutput();
+	
+	if(flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] == undefined)
+	{
+		flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] = 1;
+		output("You were considering it, but right now you can’t afford to help her.");
+		output("\n\n<i>\"Seriously, [pc.name], you don't need to do that,\"</i>  she insists. <i>\"Even if you did have the money, really, I'm fine with just these - I would never ask for a hand-out of that nature.\"</i>");
+		output("\n\n<i>\"That doesn't mean I'm not grateful for the offer. Thank you, I really appreciate the gesture,\"</i>  she tells you sincerely, a smile on her face. <i>\"Well, now; is there anything else I can do for you?\"</i>");
+	}
+	else output("You still can’t afford to help her, so you don’t say anything.");
+	//9999 talk menu!
+}
+
+//[=GiveCredits=]
+function giveCredits():void {
+	clearOutput();
+	flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] = 1;
+	output("You take your codex in hand and prepare to wire her the necessary credits.");
+	output("\n\n<i>\"[pc.Name]... really, you don't need to do that; it's far too generous!\"</i>  the panda protests.");
+	//Kind:
+	if(pc.isNice()) output("\n\nNonsense. A cute panda like her should definitely have some nipples of her own. You finish typing and hit the confirmation button, sending her the credits.");
+	//Mischievous:
+	else if(pc.isMischievous()) output("\n\nIn that case all she has to do is show you how thankful she is for your donation. If it makes it any easier, she can think of that as an investment on things to come. You grin as you finish typing and hit the confirmation button, sending her the credits.");
+	//Hard:
+	else output("\n\nThis is as much for you as it is for her. You wouldn’t mind coming into the shop and having your eyes fall on a pair of luxurious boobs and perky nipples. It gives you something more to appreciate when you’re around. Plus, you’re pretty sure it’ll make things more interesting when you’re both having fun. You finish typing and hit the confirmation button, sending her the credits.");
+
+	output("\n\nShe stares at you, then shakes her head, but takes up her codex and taps at it. <i>\"Confirmation of transaction approved,\"</i>  she announces. She puts it away and then looks up to meet your eyes, grinning broadly. <i>\"I cannot thank you enough for this generosity, [pc.name] - you really didn't have to do this, but I'm so grateful that you did. I've got to go get this stuff, so let me close up a few minutes. Meet me back here in a bit, and I'll show you the change, okay?\"</i>");
+	output("\n\nYou nod and step outside.");
+	//(Fen how long it takes for her to acquire the mod is up to you. But ideally I’d like to trigger “Jade uses the mod” in the next visit to her shop.)
+	//Move to outside, pass 20m
+	//9999
+	processTime(20);
+	//9999
+}
+
+//Jade uses mod
+//Starts as soon as Jade has her mods and PC enters her shop.
+function jadeUsesNippleMod():void {
+	clearOutput();
+	output("As you enter Jade’s shop, you see the panda-girl waving you down.");
+	output("\n\n<i>\"Hello! [pc.Name], I'm so glad to see you,\"</i> she cheerily announces. <i>\"It's finally here! The mod you bought me finally got here. I've been just itching to apply it... but, since you were so nice as to pay for it in the first place, I, well, I wanted you to do the honors,\"</i> she admits, looking a little sheepish as she smilingly tells you that. <i>\"Please, won't you come out the back with me? You can watch everything there without any... interruptions,\"</i>  she suggests.");
+	output("\n\n<i>\“Sounds like a plan,\"</i>  you reply.");
+	output("\n\nOnce you’re sure no one will interrupt you, you take the box and examine it.");
+	output("\n\nThe label says: “Nipplelux.”");
+	output("\n\nContents: Two subdermal injectors and one anesthetic paste for application on sensitive flesh.");
+
+	output("\n\nIt seems pretty straight forward. You read the instructions before removing the paste and popping the little tube open. <i>\“Ready?\"</i>  you ask her.");
+
+	output("\n\nShe nods her head eagerly. <i>\"I certainly am.\"</i>");
+
+	output("\n\nFirst, you apply a small quantity of anesthetic to the center of each mound, then take one injector and press it against the paste, spreading it along the tip of the injector, as well as around Jade’s boobflesh.");
+	output("\n\nThe panda smiles blissfully at the sensations, then blinks. <i>\"Wow, that stuff really works; I'm losing feeling in my boobs.... Yep! Completely numb, now,\"</i>  she declares once you've finished.");
+
+	output("\n\nYou press the trigger and with a little hiss and a beep the injector empties its contents. Jade jumps a bit in surprise. Though the anesthetic can numb the pain, or pleasure, on her sensitive breasts, you bet she can still feel the microsurgeons being injected somehow.");
+
+	output("\n\nTaking the other injector, you repeat the process on her other mound. The instructions say it can take up to five minutes for the changes to start taking effect, so all you gotta do is wait.");
+
+	output("\n\n<i>\"Thank you so much for this, [pc.name]. Not just for buying it, I mean.... Ooh! I can feel it starting,\"</i>  she grins, arching her shoulders and lifting her breasts up so you can get a better view of the show.");
+
+	output("\n\nHer soft fur starts flaking off the peak of her orbs, an ever expanding circle of ebony flesh forming into what you presume will be her aureoles. Looking at Jade, she seems to be panting as the changes take effect. <i>\"Has the anesthetic worn off yet?\"</i>");
+
+	output("\n\n<i>\"I - ah! - I guess it has,\"</i>  she pants, fingers flexing as she fights the urge to grope herself. <i>\"I can feel it... tingling, but in a good sort of way.\"</i>");
+
+	output("\n\nIt takes a bit longer before a perky nub forms inside her aureole, completing her transformation. <b>Jade now has a pair of nipples.</b>");
+
+	//Kind:
+	if(pc.isNice()) 
+	{
+		output("\n\n<i>\“Can I touch them?\"</i>  you ask.");
+		output("\n\n<i>\"Of course, [pc.name]; I'd never say no to you,\"</i>  she says, grinning at the thought.");
+	}
+	//Mischievous:
+	else if(pc.isMischievous()) 
+	{
+		output("\n\nHovering your hands over her bosom and wiggling your fingers teasingly, you smile at her as you heft her breasts, slowly closing in on her new nipples as you do so.");
+		output("\n\nShe purrs in pleasure at your touch, rolling her shoulders as she lets you carry some of the weight of her copious titflesh. <i>\"Mmm... go right ahead, [pc.name]; I want to see what these babies can do,\"</i>  she groans.");
+	}
+	//Hard:
+	else
+	{
+		output("\n\nYou reach out and circle one of her nipples with the tip of your finger, gently pinching and tugging on it.");
+		output("\n\nA soft and sudden gasp of shocked pleasure explodes from her mouth, her eyes closing and her head tilting back as she basks in the sensations you're giving her. <i>\"Oh, yeah, that's the stuff,\"</i>  she moans dreamily, an expression of bliss plastered on her face.");
+	}
+	output("\n\nSeeing no need to hold back, you begin actively groping her breast flesh. You can’t help but chuckle when you feel her little nubs hardening under your caress. In fact, they're pretty hard, and... are they getting longer?");
+	output("\n\n<i>\"Oh... don't stop, [pc.name], please; that feels so good,\"</i>  Jade moans, head tilting backwards and sighing rapturously, her own hands reaching under her mighty cleavage to help heft her boobs upright.");
+
+	output("\n\nSomething doesn’t feel right. You remove your hands. To your surprise, Jade’s nipples seem to be growing bigger by the second, and wiggling, almost like tentacles!");
+	output("\n\nThe panda is oblivious to this unnatural turn that her modification has taken. As you watch, the black, pointed tentacles reach out and out, looping back around her breasts and starting to squeeze and caress them. Jade's eyes are screwed shut now, an expression of pure bliss on her face, panting heavily as her nipples milk her tits with freakish grace. She gasps, groans and shudders. <i>\"I... I!\"</i>  she tries to say something, but it gives way to a whorish moan, the scent of sex filling the air as, with a body-wracking shudder, she creams herself, skirt visibly staining with her climax.");
+
+	output("\n\nDespite her recent orgasm, her nipples continue their relentless assault on Jade. Maybe you should help her try to contain her new appendages? Then again, she seems to be enjoying herself...");
+
+	chars["JADE"].breastRows[0].nippleType = GLOBAL.TENTACLED;
+	processTime(10+rand(5));
+	//9999 Help her or whatevah
+}
+
+//Help Her
+function helpJadeWithHerNewNipples():void {
+	clearOutput();
+	output("You try to grab the tentacles encircling her mounds, but all that you accomplish is getting them to wrap around your wrists instead and tug your hands towards Jade’s breasts. They don’t feel too strong; you bet you could pry them off with some insistence if you wanted, but that could hurt Jade. Well, since you seem to have gotten roped in on this, might as well as make the best of the situation and help Jade get her rocks off in the process.");
+	output("\n\nFollowing the lead of the relentless tugs on your wrist, you let Jade’s tentacle-nips guide your hands to caress her breasts. More and more of her prehensile nipples wrap around your arms, the panda-girl long since reduced to a moaning pile of fuck. The only thing she can do is moan, groan, and cream herself as you continue to molest her.");
+	output("\n\nA fleshy tip strokes your [pc.lips] and you look down to see that one of Jade’s nips seem to have made their way around your arm and up to your face. Having no reason to deny it, you open your mouth and let it crawl inside. This is... quite a weird way to lick someone’s nipples, but you suppose there are weirder ways to do it.");
+	output("\n\nYou lose track of time as you watch Jade writhe under your ministrations....");
+	processTime(5);
+	pc.lust(20+rand(15));
+	clearMenu();
+	addButton(0,"Next",jadesNippleTFEpilogue,true);
+}
+//Watch
+function watchJadesNewNipplesMolestHer():void {
+	clearOutput();
+	output("Why bother when she seems to be enjoying it so much....");
+	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
+	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
+	processTime(5);
+	pc.lust(20+rand(15));
+	clearMenu();
+	addButton(0,"Next",jadesNippleTFEpilogue);
+}
+//Epilogue
+//Both options rejoin here.
+function jadesNippleTFEpilogue(helped:Boolean = false):void {
+	clearOutput();
+	output("Jade’s nipples seem to have finally calmed down. They slowly retract back into her boobs. Once they are reduced to the little nubs you originally saw, they crawl inside her breast flesh, giving her inverted nipples.");
+	output("\n\nWell, that was unexpected. You ask the panting, nearly passed-out panda if she’s alright.");
+
+	output("\n\n<i>\"Y-yeah, I'm alright,\"</i>  she pants, each heaving breath setting her mighty breasts a-quiver. <i>\"I just need to - whew! - catch my breath, get my strength back. I'll clean up and get back to work after I can walk again. Damn but that was intense! I mean, I never expected this to happen, but I'm not going to ask for a refund,\"</i>  she giggles, a dopey expression on her face.");
+
+	//If PC helped:
+	if(helped) output("\n\nShe shakes her head and gives you a sincere smile, a flirtatious light in her eyes. <i>\"By the way... I didn’t miss you helping me deal with these,\"</i>  she points at her nipples. <i>\“Thanks, and let me know if you ever want to give them another try.\"</i>");
+
+	//Kind:
+	if(pc.isKind()) {
+		output("\n\nSince you’re partially responsible for the mess, you decide to stick around and help her clean up. Plus you gotta thank her for the show too.");
+		output("\n\nOnce you’re done, you leave her with a friendly smile.");
+	}
+	//Mischievous:
+	else if(pc.isMischievous())
+	{
+		output("\n\nThat was quite a show. Very enjoyable. You decide to stick around and help Jade clean up after herself. Of course, you never miss an opportunity to tease her whenever she comes close. A little touch here and a little pinch there can really get the ball rolling again....");
+		output("\n\nOnce you’re done you leave her with a mischievous smile. She seems a bit annoyed at your antics but waves you off with a sincere smile.");
+	}
+	//Hard:
+	else
+	{
+		output("\n\nYou’d love to stay, but places to be, things to do. You bid her farewell and congratulate her on her newest acquisition, giving her breasts a parting flick as you leave.");
+	}
+	processTime(9+rand(4));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+//SuckNipples
+//No requirement.
+function suckJadesTentacleNipplesYouWeirdo():void {
+	clearOutput();
+	output("Jade grins a knowing grin at your suggestion. <i>\"Of course, [pc.name]; go ahead,\"</i>  she tells you, thrusting her ample bosom towards you and beckoning you with a crooked finger.");
+	output("\n\nYou follow after her, and as soon as the door is closed you bring your hands to her breasts. Still as sensitive as ever.");
+	output("\n\n<i>\"Mmm, you haven't lost your touch,\"</i>  Jade moans in glee, eyes closing as she savors the feeling.");
+	output("\n\nThe smooth flesh of her areolas feels sublime. You tease around the opening of her inverted nipples, circling it with the tip of your finger. Then, finally, you stick the tip of your finger inside.");
+	output("\n\nA quiet squeak of delight escapes the panda, her tongue momentarily lolling from her jaws at the feeling you penetrating her flesh in such a way.");
+	output("\n\nYou can feel the nub inside, hardening, growing. It takes only a moment before your fingers are ejected by the excited nipples. Regardless, you press your advantage. You flick your [pc.tongue] on one nub, carefully encompassing it with your mouth, gently nibbling while you pinch and tug the other perky tip.");
+	output("\n\nShe groans deep and low, her whole body quivering with delight. <i>\"T-that's the way to do it,\"</i>  she moans eagerly.");
+	output("\n\nYou continue nursing, until you feel the nipple start growing inside your mouth. Not keen on deepthroating her just yet, you immediately switch to her other mound, giving it the same treatment.");
+	output("\n\nBy the time you’re finished, Jade’s nipples are already small tentacles writhing on her jiggling bosom as she pants excitedly. Now... which one should you begin with?");
+	output("\n\nJade gasps as you cup one of her breasts. Gently you wrap your fingers around a extended nipple, smiling as it coils delicately around your hand and your wrist. You stroke the underside of Jade’s other nipple and smile when you get a similar reaction.");
+	output("\n\nBringing it closer to your [pc.face], you blow softly on her tentacle-nip. This earns you a shudder and a light moan. She’s so sensitive... teasing Jade is a lot of fun, but it’s time to take this a step further. Letting your [pc.tongue] hang loose, you give her sensitive tenta-nip a lick.");
+	output("\n\n<i>\"Oooh!\"</i>  she squeals, grinning widely as a shiver of pleasure literally ripples down her nipple, sending her tits quaking from the motion. The tentacle wriggles with momentary franticness, and then curls itself tightly up into a spiral shape, as if to protect itself from your teasing tongue.");
+	output("\n\nYou deliver feather kisses along her coiled length, chuckling as each one causes the prehensile nipple to undulate in your grasp and become a little bit looser. Tentatively, you find the shuddering tip of her prehensile nip and tease it with the tip of your tongue.");
+	output("\n\nThe panda moans gleefully, her nipple uncurling like the tentacle it is and starting to gently brush against your tongue and your lips with feather-light motions. Almost as if jealous, the other nipple worms over, coiling around your arm and pausing with its pointed tip in front of your face and undulating sinuously, expectantly even.");
+	output("\n\nGrinning, you abandon her current nipple to give her other one a similar treatment. However this time you curl your tongue around it invitingly, the prehensile appendage dancing with your muscle as you hook it and bring it closer. When it’s close enough, you suck it in, smiling as the length of her nipple begins entering your mouth of its own accord.");
+	output("\n\nA series of short, gasping moans escape Jade's mouth, her head tilting back and her eyes screwing closed as the feelings you are giving her wash over her. Her legs visibly buckle, sending her stumbling back against a desk that she clutches frantically for support, her whole body quivering. She tenses hard, her legs clenching, even the nipple-tip between your lips suddenly rock hard against your tongue. The scent of sex fills the air as something wet spatters against the floor underneath her - she just came!");
+	output("\n\n<i>\"The first of many,\"</i>  you think to yourself. Returning to the task at hand, you continue to suckle her, wrapping your [pc.tongue] around her length as it writhes inside your mouth. While you do this, your other hand gently kneads her other extended nipple, slowly massaging and pinching it.");
+	output("\n\nThe panda moans luxuriantly, her nipples writhing against you and her bosom quaking with pleasure. The nipple in your mouth squirms insistently, trying to wriggle its way deeper and deeper into your mouth so that more of it can be exposed to your tickling tongue and caressing lips. The other nipple curls gently around your shoulders, looping over the back of your neck and reaching up to brush affectionately against your cheek with the air of an attention-seeking kitten.");
+	output("\n\nSince her other nipple is feeling left out, you decide to open your mouth in invitation. Jade’s nipples are narrow enough that you can probably take two of them at once. Plus, it’ll be fun watching the panda squirm in pleasure.");
+	output("\n\nIn a characteristic display independence, the free nipple springs forward, extending further so that it remains looped around your neck, but slides forward to join its sister in diving into your mouth. Both nipples start to grow, pushing their way deeper into your mouth until they are wriggling their way down your throat.");
+	output("\n\nHer insistent intrusion triggers your gag reflex, but you easily recover and adjust yourself so both her nips can go deeper into your neck. Now that your hands are free, you decide to lay them on her breasts. You fondle and squeeze her bosom, smiling to yourself as you feel the tentacles writhe inside your mouth due to Jade’s pleasure.");
+	output("\n\nThe nipples squirm frantically inside your gullet, a rumbling cry echoing up Jade's throat as her whole body quakes in a second climax. Her bosom jiggles most pleasingly with the force of her orgasm, her legs buckling to the extent that she can't keep herself upright anymore. With a great groaning sigh of release, the panda slides slowly down onto the floor, falling flat on her cushiony great ass with a heavy thud, panting with exertion. Despite this, her nipples remain wedged in your mouth, still idly rippling and twitching.");
+
+	output("\n\nIt looks like you really pushed her over the edge this time. Regardless of their owner’s state, her tentacles seem intent on continuing to writhe in your mouth....");
+
+	//Kind:
+	if(pc.isNice()) output("\n\nYou gently maneuver your arms, careful not hurt Jade with a careless tug on her coiled tenta-nips. Jade’s probably had enough. You don’t want to knock her out cold when she has a business to run.");
+	//Mischievous:
+	else if(pc.isMischievous()) output("\n\nAs fun as that was, enough is enough. And while you could easily knock the panda out with a few more expert licks and sucks, she does have a business to run. You carefully move your arms to try and pry her clingy tentacles off you.");
+	//Hard:
+	else output("\n\nYou’ve had enough. It’s time to pry her little feelers from your mouth and end this. Maybe you’ll pleasure her again next time. With that, you maneuver yourself to start pulling her tenta-nips from your mouth.");
+
+	output("\n\nWith a bit of work, particularly on her right nipple, you manage to get them out of your mouth. Jade shudders in pleasure as you handle her nipples, but otherwise doesn’t seem troubled that you’re ending this little venture. Once you’re done, her tentacles begin slowly receding back into her swells of flesh.");
+	output("\n\nJade's face is split the biggest, dopiest grin you've ever seen. <i>\"Oh, thank you, [pc.name], that was... well, that was just incredible. I can barely feel my legs!\"</i> she pants, sounding very pleased with that. <i>\"Please, don't be a stranger, alright? And don't worry about cleaning up; I'll take care of things later... when I can stand up again, anyway,\"</i>  she giggles. She slumps back against the desk leg with a satisfied sigh, still smiling away.");
+
+	//Kind:
+	if(pc.isNice()) output("\n\nYou helped her make the mess, so it’s only fair that you help her take care of it. You stay for a while longer, not leaving until everything is taken care of and she can stand again.");
+	//Mischievous:
+	else if(pc.isMischievous()) output("\n\nYou’re not the type to have your fun and leave. You decide to help her clean up. This also gives you more time to tease and grope her whenever she comes within range. By the time you’re done, she announces she’ll need a bit more time before going back out to tend to her store. Chuckling, you bid her farewell, fully aware of what she’ll be doing by her lonesome in there.");
+	//Hard:
+	else output("\n\nYou tell her you’ll be back later, then proceed to leave the overpleasured panda-girl behind.");
+
+	chars["JADE"].orgasm();
+	chars["JADE"].orgasm();
+	processTime(25+rand(10));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+//BoobToBoob
+//PC needs to be at least C-cup, or however much you feel is fair Fen.
+function boobToBoobSexathon():void {
+	clearOutput();
+	var x = pc.cockThatFits(chars["JADE"].vaginalCapacity());
+	output("Jade's eyes visibly light up, a smile pursing her lips. <i>\"That sounds like it could be a lot of fun,\"</i>  she chortles. <i>\"All right, strip off, and let's have some fun,\"</i>  she declares happily; if the panda had a tail big enough for it, you're certain she'd be wagging it.");
+	output("\n\nYou immediately get to work on peeling off your [pc.gear]. By the time you’re done and turn to look back at Jade, she’s already stripped herself and folded her minimal clothes into a neat pile atop a nearby table.");
+	if(pc.hasCock()) output(" A stirring in your loins giving away your appreciation of her naked form.");
+
+	output("\n\nWith a seductive grin, the deliciously curvy panda girl advances towards you. Her swaying step emphasises the wide, womanly curves of her hips, and you know that from behind the view of her ass must be incredible. Each step towards you reveals tantalising flashes of her little black pussy, however, you certainly don't feel cheated as she stops in front of you. With a mischievous tilt to her eyes, the buxom morpher reaches out and gently pushes at your [pc.chest]; not hard, but enough that you get what she wants and seat yourself upon the seat.");
+
+	output("\n\n<i>\"Now that you're all ready,\"</i>  she coos, bending forward slightly so that you are staring down the vast canyon of her cleavage, <i>\"perhaps you'd be willing to lend me a hand in getting ready myself?\"</i>  As if in emphasis, her hand darts forward to ");
+	if(pc.hasCock()) output("trail teasingly across [pc.oneCock]");
+	else if(pc.hasVagina()) output("caress your netherlips");
+	else output("stroke the bare flesh between your thighs");
+	output(".");
+
+	output("\n\nSince she asked so nicely, you see no reason to refuse her. You cup her breasts, sliding your hands around their circumference as you approach the black areolas that hide her tentacle-nips. Jade gasps when you insert a digit inside each of them, teasing the prehensile appendage to come out and play. It barely takes a moment before you feel the telltale push of her emerging tentacles.");
+
+	//if PC.Cock=TooBig:
+	if(x < 0 && pc.hasCock())
+	{
+		output("\n\nJade simply grins at you as her tentacles tickle your fingertips, her own fingers trailing up and down your mammoth [pc.cockNounSimple " + x + "]. <i>\"Mmm... too bad this bad boy is too big for me, or we could have some real fun. I'll make do, but maybe you should shrink that down before you come back next time?\"</i>  she suggests, winking at you.");
+		output("\n\nNot giving you time to answer, the panda shifts in closer, pressing her pillowy boobs against your face when she slides her legs in to straddle you. As she slides down into your lap, you can feel the warm, soft fur of her thighs trailing ticklishly over your mighty " + pc.mf("man-meat","girl-cock") + " as she lowers herself. The softness of her pussy scrapes along the underside of your oversized shaft, polishing you with the the vulva that is far too dainty to fit you.");
+	}
+	//else if PC.Cock=Else:
+	else if(pc.hasCock())
+	{
+		output("\n\nAn appreciative hum escapes Jade's lips and she swishes her bountiful figure forward, momentarily blinding you with her huge boobs as she straddles your waist. You can't see it, but you can certainly feel it as her warm vulva tickles over your [pc.belly] and drops down to envelop your [pc.cock " + x + "]. Clearly no virgin, she swallows you to the hilt, groaning with pleasure as she seats herself firmly in your lap. You can feel her squeeze you a little, on instinct, but she makes no active move to ride you, instead letting your erection nestle comfortably in her warm love-canal.");
+		//Take virginity
+		cockChange();
+	}
+	//else if PC.clit=BigEnough:
+	else if(pc.hasVagina() && pc.clitLength >= 4)
+	{
+		output("\n\nShe shakes her head gently from side to side, a playful grin on her lips. <i>\"I'd personally prefer a cock... but I think this bad girl here might do the trick,\"</i>  she declares, tickling the tip of [pc.oneClit] with an index figure. Before you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist.");
+		output("\n\nYou can't see it, but you can certainly feel it as her warm vulva tickles over your [pc.belly] and drops down to envelop your [pc.clit]. Clearly no virgin, she swallows you to the hilt, groaning with pleasure as she seats herself firmly in your lap. You can feel her squeeze you a little, on instinct, but she makes no active move to ride you, instead letting your feminine erection nestle comfortably in her warm love-canal.");
+	}
+	//else if PC.pussy:
+	else if(pc.hasVagina())
+	{
+		output("\n\nA click of her tongue and she looks at you with an understanding smile. <i>\"Cock's fun to play with, but the two of us can have plenty of fun with just us girls, right?\"</i>  she declares, playfully pinching your [pc.clit]. Before you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl slides in until she's quite comfortablly seated atop you, her warm feminine treasure pressed plush and firm against your own.");
+	}
+	//genderless!
+	else
+	{
+		output("\n\nShe shakes her head with a slight look of disbelief. <i>\"It's quite a universe, isn't it? Okay, I guess this will feel good enough for you without any extra help,\"</i>  she declares.");
+		output("\n\nBefore you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl settles into your lap until she is quite comfortable seated atop you, her warm feminine treasure pressed plush and firm against your own featureless loins.");
+	}
+	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both of pairs of pressed tits like perverse pythons encircling their prey.");
+
+	output("\n\nYou join her with your own moans of pleasure. ");
+	if(pc.hasCock() || (pc.hasVagina() && pc.clitLength >= 4))
+	{
+		output(" Her pussy contracts around your ");
+		if(pc.hasCock()) output("[pc.cock " + x + "]");
+		else if(pc.hasVagina()) output("[pc.clit]");
+		output(", milking you despite noither of you bothering to buck against one another. ");
+	}
+	output("Your arms wrap around her, pressing your breasts tight to one-another. It feels great! you can only imagine how great it must be feel for Jade. You gasp at a particularly good stroke from her tenta-nips.");
+
+	output("\n\nJade’s face is so close to yours. Her hot breath washes over you as she pants and moans. Those black, puffy lips of hers too tempting a target for you to resist. Leaning forward you gently lick at her lips, asking for entrance. When she parts them for a moan, you strike, pressing your own [pc.lips] to hers and shoving your [pc.tongue] inside her all in one stroke. Not wasting any time, you invite her tongue for a dance with your own, an invitation she doesn’t refuse as the two of you moan, muffled by your kiss.");
+
+	output("\n\nThe panda's arms creep up and down your back, caressing every inch of you that they can reach as she mashes her boobs against your own, grinding her crotch against yours. You can feel her nipples expanding, rhythmically squeezing and milking your tits with their remaining length, even as the two questing tips trail across your surface, reaching inexorable towards your own [pc.nipples].");
+
+	//if lipples:
+	if(pc.hasLipples())
+	{
+		output("\n\nThe moment her tentacles find your [pc.nipples], you find their lips opening up to draw those wonderfully sensitive nubs in, giving them an impromptu blowjob. A boob-to-boob blowjob.");
+		output("\n\nBoth you and Jade gasp in unison, eyes closed shut as you bask in each other’s heat. Sweat forms and mingles on your bodies, filling the room with the steamy scent of female in heat.");
+	}
+	//if fuckable-nips:
+	else if(pc.hasFuckableNipples())
+	{
+		output("\n\nFinding the perverse holes that are your [pc.nipples], Jade's questing tentacles don't hesitate for a second, worming their way through the tiny, labial openings and sliding inside, feeding themselves into your tits like twisted, prehensile cocks.");
+		output("\n\nYou gasp, moaning into Jade’s mouth as her broad tongue forces itself inside your mouth. Stroked, breast-fucked and tongue-kissed - what a wonderful combination.");
+	}
+	//else if tenta-nips:
+	else if(pc.hasTentacleNipples())
+	{
+		output("\n\nA shudder of excitement seems to ripple through Jade's nipples as they meet your own questing, writhing tentacles. Like snakes they strike out, twining themselves around your nipples, snaring them in coils of warm black flesh and being snared in turn as your nipples respond by coiling them.");
+		output("\n\nThe two of you moan in mutual delight, filled with the wonders of sensitive nipple-flesh writhing against each other and squeezing each other.");
+	}
+	//else if dick-nipples:
+	else if(pc.hasDickNipples())
+	{
+		output("\n\nMoans escape your mouth as her tentacles tickle your hard, erect nipple-dicks, jabbing Jade in the tits with them and drooling precum over the soft, warm fur of her boobs. Jade doesn't seem to care, instead feeding you her tongue, even as her tentacles coil themselves around your titty-dicks and start to stroke up and down, a perverse handjob on each one.");
+		output("\n\nYour [pc.nipples] leak pre as they jab Jade’s boobs. And you moan, repeatedly, even as your breasts start to turn mushy from your leaking pre. The scent of sex filling the room in a most enticing aroma.");
+	}
+	else
+	{
+		output("\n\nThough your own hard nubs may be less exotic than hers, Jade wastes no time in playing with them, tickling and caressing, stroking and squeezing with her own tentacular nipples, squeezing in a way very, very few others could.");
+		output("\n\nYou voice your appreciation, partially muffled by Jade’s broad tongue. She pushes and strokes you like an expert lover. If this keeps up, you don’t know how much longer you’ll last.");
+	}
+
+	//if cock too big:
+	if(pc.hasCock() && x < 0)
+	{
+		output("\n\nThough you’re not inside her, you can feel each spasm from her black-lipped pussy, drooling Jade’s juices to lube your [pc.cock " + x + "] as she grinds into you. And you throb, pre leaking onto the floor as you border the edge of a massive orgasm.");
+	}
+	//else if cock:
+	else if(pc.hasCock()) output("\n\nEach spasm, each little contraction, her leaking juices and her milking pussy... you can feel them all. Even if you’re not moving, everything that’s going both down inside her and up there with her lipples and tenta-nips is enough to nearly push you over. Your [pc.cock " + x + "] throbs in warning. Anytime now, you’ll be shooting your [pc.cum] into the receptive panda-girl’s womb, much to your mutual pleasure.");
+	else output("\n\nYou can feel her spasming pussy against your crotch. You reckon neither of you are capable of going much longer before you both climax and reach nirvana.");
+
+	output("\n\nJade breaks your kiss and arches her back, whole body quaking mightily as climax rips through her, spattering your thighs with her feminine juices as she cums heavily in your lap. Her tentacles squeeze and wriggle madly, flailing across your breasts");
+	if(pc.hasFuckableNipples()) output(" and inside your [pc.nipples]");
+	output(" from the feeling of orgasm.");
+	output("\n\nThough she cums first, you don’t stay behind. Her climax being enough to trigger your own as you hug her tightly, crying out to join her in a symphony of joint pleasure.");
+
+	//if cock too big:
+	if(pc.hasCock() && x < 0)
+	{
+		output("\n\nJet upon jet of hot [pc.cum] fires from your [pc.cocks], painting the wall");
+		if(pc.balls > 0)
+		{
+			output(" as your [pc.balls] churn");
+			if(pc.balls == 1) output("s");
+			output(", squeezing every little bit of seed contained within.");
+		}
+		else output(" as you’re milked by the panda-girl’s thighs for every little bit of seed you can muster.");
+	}
+	//else if cock:
+	else if(pc.hasCock())
+	{
+		output("\n\nYou erupt with the force of a volcano, cumming far more than you thought yourself capable of.");
+		if(pc.balls > 0)
+		{
+			output(" Your [pc.balls] churn");
+			if(pc.balls == 1) output("s");
+			output(", the liquid load burning a path through your cumvein as");
+		}
+		else output(" You feel pressure in the back of your spine as");
+		output(" you unload all your [pc.cum] into her hungry, milking pussy.");
+	}
+	//else if pussy:
+	else if(pc.hasVagina())
+	{
+		output("\n\n[pc.EachVagina] clenches in sympathetic orgasm.");
+		if(pc.clitLength >= 4) output(" You didn’t count on her pussy squeezing your [pc.clit] so tightly, tight enough to send you reeling as you scream to the heavens in a perverted symphony that is your orgasm.");
+		output(" [pc.GirlCum] dampens the couch as the two of you contribute in equal parts to soil it with your excess fluids.");
+	}
+	//else
+	else output("\n\nYou shudder and spasm, pleasure culminating into an orgasm even though you have no holes or poles. For a moment, your mind goes blank, and when you come to you’re not sure if the screams echoing around are yours or Jade’s.");
+
+	output("\n\nThe two of you slump together, a sweaty, messy mass of fuck and pleasure, both panting, out of breath after this earth-shattering orgasm.");
+
+	output("\n\nIt is Jade who stirs first, smiling and nuzzling against your cheek. <i>\"Mmm... that was simply wonderful, [pc.name]. Best I've had in some time. Oh, don't worry about the mess, I've a little sink back here that I can use to wash up. But first, I want to rest for a while, get my strength back.... I don't suppose you'd like to stay and rest too?\"</i>  she suggests. <i>\"You make a very comfy seat,\"</i>  she chuckles.");
+
+	//Kind:
+	if(pc.isNice()) output("\n\nYeah, rest sounds good. Nodding you let yourself relax for a spell, slipping into a comfy post-sex nap.");
+	//Mischievous:
+	else if(pc.isMischievous()) output("\n\nYou’d like to play more, but Jade’s really worn your out this time. So you just nod softly as you feel your consciousness fading, aided by the warm feeling of your afterglow. Naptime....");
+	//Hard:
+	else output("\n\nYou really need to be going. But you’d be lying if you said you’re not even a bit tired. Maybe a short nap oughta help. Yes, a nap sounds good....");
+	//[Next Page]
+	processTime(15+rand(10));
+	clearMenu();
+	addButton(0,"Next",epilogueOfNippleOnNippleJadeSex);
+}
+
+function epilogueOfNippleOnNippleJadeSex():void {
+	clearOutput();
+	processTime(30+rand(10));
+	output("When you come to, you note that Jade is absent, and though the room still smells like sweat and sex, it is surprisingly clean. It looks like Jade took care of everything while you were out. You find your [pc.gear] on the nearby table and quickly put it on, stepping out of the backroom.");
+	output("\n\n<i>\"Oh, hello, [pc.name],\"</i>  Jade calls to you as you, already back behind her counter. <i>\"I hope you enjoyed yourself today. Please, come back any time,\"</i> she says, the very picture of a courteous merchant, except, of course, for the very pleased look on her face as she waves you out the door.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
