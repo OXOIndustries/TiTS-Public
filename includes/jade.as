@@ -494,7 +494,7 @@ function titfuckJade():void {
 	if(pc.isNice()) output("with a quick kiss");
 	else if(pc.isMischievous()) output("with a playful spank on her curvy rear");
 	else output("with a smirk");
-	output(". Making yourself presentable, you gather up your [armor] and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
+	output(". Making yourself presentable, you gather up your [pc.armor] and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
 	processTime(20+rand(10));
 	pc.orgasm();
 	sexedJade();
