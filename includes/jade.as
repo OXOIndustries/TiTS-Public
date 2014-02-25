@@ -20,6 +20,11 @@ Pussy is very elastic AND wet, giving her a good capacity.
 
 //Jade Addition
 function furEffectBonusFunction():Boolean {
+	if(flags["JADE_NIPPLE_TF_QUEUED"] == 1)
+	{
+		jadeUsesNippleMod();
+		return true;
+	}
 	//Don't know her name yet.
 	if(flags["KNOW_JADES_NAME"] == undefined) output("\n\nA pudgy-looking panda-girl is standing behind it, wearing nothing other than a snug green skirt and a smile. She waves reflexively, chirping, <i>\"Welcome to Fur Effect! Let me know if I can help you with anything.\"</i>");
 	//Met Jade
@@ -120,6 +125,8 @@ function talkToJade(display:Boolean = true):void {
 	else addDisabledButton(2,"Her Shop");
 	if(flags["TALKED_WITH_JADE_ABOUT_HER_SHOP"] != undefined) addButton(3,"Her Tits",askJadeAboutHerBigOlTatas);
 	else addDisabledButton(3,"Her Tits");
+	if(flags["CAN_SUGGEST_JADES_NIPPLE_TREATMENT"] == 1) addButton(4,"Nipples",talkToJadeAboutHerNipples);
+	else addDisabledButton(4,"Nipples");
 	addButton(14,"Back",approachJade);
 }
 
@@ -251,6 +258,8 @@ function jadeSexMenu(display:Boolean = true):void {
 		addButton(0,"Breast Play",jadeGetsAGropeGasm);
 		addDisabledButton(1,"Titfuck");
 		addDisabledButton(2,"RideHerFace");
+		addDisabledButton(3,"Boob2Boob");
+		addDisabledButton(4,"SuckNipples");
 	}
 	else 
 	{
@@ -259,6 +268,16 @@ function jadeSexMenu(display:Boolean = true):void {
 		else addDisabledButton(1,"Titfuck");
 		if(pc.hasVagina()) addButton(2,"RideHerFace",sitOnjadesFace);
 		else addDisabledButton(2,"RideHerFace");
+		if(chars["JADE"].hasTentacleNipples())
+		{
+			//BoobToBoob
+			//PC needs to be at least C-cup, or however much you feel is fair Fen.
+			if(pc.biggestTitSize() >= 3) addButton(3,"Boob2Boob",boobToBoobSexathon);
+			else addDisabledButton(3,"Boob2Boob");
+			//SuckNipples
+			//No requirement.
+			addButton(4,"SuckNipples",suckJadesTentacleNipplesYouWeirdo);
+		}
 	}
 }
 
@@ -318,8 +337,9 @@ function jadeGetsAGropeGasm():void {
 		
 		//Gropegasm Insight
 		//Blurb to be displayed after the Gropegasm scene. Available after Gropegasmin 3 times.
-		if(flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] > 2) 
+		if(flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] > 2 && flags["CAN_SUGGEST_JADES_NIPPLE_TREATMENT"] == undefined)
 		{
+			output("<b>");
 			//Kind:
 			if(pc.isNice()) output("\n\nAs you leave the shop, you can't help but reflect on how much Jade loves your hands on her tits. It's almost a pity that she doesn't have nipples; you're sure that she'd love that. Hey, maybe you should ask her if she's done any research into mods that could give her nipples? You're sure you could help her get them, if that's the case.");
 			//Mischievous:
@@ -327,6 +347,7 @@ function jadeGetsAGropeGasm():void {
 			//Hard:
 			else output("\n\nAs you leave, your thoughts drift back to Jade’s breasts. Damn, it’s fun groping those delicious orbs until she’s a quivering mess. If only she had nipples, you could make things at least twice as good. You’re pretty sure there must be a mod capable of nipple growth out there. Maybe Jade knows something about it herself.");
 			flags["CAN_SUGGEST_JADES_NIPPLE_TREATMENT"] = 1;
+			output("</b>");
 		}
 	}
 	sexedJade();
@@ -591,7 +612,9 @@ function talkToJadeAboutHerNipples():void {
 			//Hard:
 			else output("\n\nOf course you’ll have to prime them. You didn’t get her those nipples only for her benefit. So, you’ll just come and play with them whenever you feel like it.\n\n<i>\"And what makes you think I'll let you?\"</i>  she huffs indignantly, pouting in wounded pride. A heartbeat later, she giggles. <i>\"Oh, who am I kidding? Of course I'll let you. Come and play whenever you like - I like playing with you.\"</i>");
 		}	
-		//9999 back to talk menu
+		//back to talk menu
+		talkToJade(false);
+		removeButton(4);
 	}
 	else
 	{
@@ -620,7 +643,7 @@ function talkToJadeAboutHerNipples():void {
 			output("\n\nIf she knows of something, then you’re willing to help her secure some of it.");
 			output("\n\n<i>\"Oh, but it's so expensive - I can't afford to buy a pack for myself, even with the profits this shop makes,\"</i>  Jade laments, shaking her head at the thought of it.");
 			output("\n\n<i>“How much?”</i>  you ask her.");
-			output("\n\n<i>\"It costs {Money},\"</i>  she replies. She then blinks in surprise. <i>\"Oh, [pc.name], you're not suggesting you want to...? I couldn't ask you for that!\"</i>  she protests.");
+			output("\n\n<i>\"It costs 4500 credits,\"</i>  she replies. She then blinks in surprise. <i>\"Oh, [pc.name], you're not suggesting you want to...? I couldn't ask you for that!\"</i>  she protests.");
 			processTime(2);
 		}
 		//Repeatable
@@ -629,7 +652,10 @@ function talkToJadeAboutHerNipples():void {
 			output("<i>\"No, I still don't have the funds to afford it,\"</i>  she sighs wistfully, shaking her head. <i>\"And naturally I couldn't ask you for money, so... I guess I'll just have to put it off until I’ve saved up enough credits,\"</i>  she declares, shrugging her shoulders stoically at the thought.");
 		}
 		//[GiveCredits][No]
-		//9999
+		clearMenu();
+		addButton(1,"No",turnDownJadeNips);
+		if(pc.credits >= 4500) addButton(0,"Give Credits",giveCredits);
+		else addDisabledButton(0,"Give Credits");
 	}
 
 }
@@ -646,7 +672,8 @@ function turnDownJadeNips():void {
 		output("\n\n<i>\"That doesn't mean I'm not grateful for the offer. Thank you, I really appreciate the gesture,\"</i>  she tells you sincerely, a smile on her face. <i>\"Well, now; is there anything else I can do for you?\"</i>");
 	}
 	else output("You still can’t afford to help her, so you don’t say anything.");
-	//9999 talk menu!
+	talkToJade(false);
+	removeButton(4);
 }
 
 //[=GiveCredits=]
@@ -665,16 +692,19 @@ function giveCredits():void {
 	output("\n\nShe stares at you, then shakes her head, but takes up her codex and taps at it. <i>\"Confirmation of transaction approved,\"</i>  she announces. She puts it away and then looks up to meet your eyes, grinning broadly. <i>\"I cannot thank you enough for this generosity, [pc.name] - you really didn't have to do this, but I'm so grateful that you did. I've got to go get this stuff, so let me close up a few minutes. Meet me back here in a bit, and I'll show you the change, okay?\"</i>");
 	output("\n\nYou nod and step outside.");
 	//(Fen how long it takes for her to acquire the mod is up to you. But ideally I’d like to trigger “Jade uses the mod” in the next visit to her shop.)
+	pc.credits -= 4500;
+	processTime(15);
+	flags["JADE_NIPPLE_TF_QUEUED"] = 1;
 	//Move to outside, pass 20m
-	//9999
-	processTime(20);
-	//9999
+	clearMenu();
+	addButton(0,"Next",move,rooms["FUR EFFECT"].eastExit);
 }
 
 //Jade uses mod
 //Starts as soon as Jade has her mods and PC enters her shop.
 function jadeUsesNippleMod():void {
 	clearOutput();
+	flags["JADE_NIPPLE_TF_QUEUED"] = 2;
 	output("As you enter Jade’s shop, you see the panda-girl waving you down.");
 	output("\n\n<i>\"Hello! [pc.Name], I'm so glad to see you,\"</i> she cheerily announces. <i>\"It's finally here! The mod you bought me finally got here. I've been just itching to apply it... but, since you were so nice as to pay for it in the first place, I, well, I wanted you to do the honors,\"</i> she admits, looking a little sheepish as she smilingly tells you that. <i>\"Please, won't you come out the back with me? You can watch everything there without any... interruptions,\"</i>  she suggests.");
 	output("\n\n<i>\“Sounds like a plan,\"</i>  you reply.");
@@ -729,7 +759,9 @@ function jadeUsesNippleMod():void {
 
 	chars["JADE"].breastRows[0].nippleType = GLOBAL.TENTACLED;
 	processTime(10+rand(5));
-	//9999 Help her or whatevah
+	clearMenu();
+	addButton(0,"Help Her",helpJadeWithHerNewNipples);
+	addButton(1,"Watch Her",watchJadesNewNipplesMolestHer);
 }
 
 //Help Her
@@ -768,7 +800,7 @@ function jadesNippleTFEpilogue(helped:Boolean = false):void {
 	if(helped) output("\n\nShe shakes her head and gives you a sincere smile, a flirtatious light in her eyes. <i>\"By the way... I didn’t miss you helping me deal with these,\"</i>  she points at her nipples. <i>\“Thanks, and let me know if you ever want to give them another try.\"</i>");
 
 	//Kind:
-	if(pc.isKind()) {
+	if(pc.isNice()) {
 		output("\n\nSince you’re partially responsible for the mess, you decide to stick around and help her clean up. Plus you gotta thank her for the show too.");
 		output("\n\nOnce you’re done, you leave her with a friendly smile.");
 	}
