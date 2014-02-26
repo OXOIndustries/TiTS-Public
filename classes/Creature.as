@@ -734,6 +734,31 @@
 				case "belly":
 					buffer = bellyDescript();
 					break;
+				case "he":
+				case "she":
+				case "ey":
+					buffer = this.mfn("he", "she", "ey");
+					break;
+				case "himo":
+				case "hero":
+				case "em":
+					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
+					break;
+				case "hisa":
+				case "hera":
+				case "eir":
+					buffer = this.mfn("his", "her", "eir");
+					break;
+				case "hisp":
+				case "hersp":
+				case "eirs":
+					buffer = this.mfn("his", "hers", "eirs"); // hisp == "his possessive pronoun"
+					break;
+				case "himself":
+				case "herself":
+				case "emself":
+					buffer = this.mfn("himself", "herself", "eirself");
+					break;
 				default:
 					// error production is now done up-stream in the parser
 					return null; // "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
