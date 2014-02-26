@@ -357,6 +357,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 1"].northExit = "FERNGROWTH PATH 2";
 	rooms["FERNGROWTH PATH 1"].westExit = "JUNGLE EDGE";
 	rooms["FERNGROWTH PATH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 1"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH PATH 1"].runOnEnter = jungleEncounterChances;
 
 	//22. A Fern-Shrouded Path
@@ -368,6 +369,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 2"].southExit = "FERNGROWTH PATH 1";
 	rooms["FERNGROWTH PATH 2"].northExit = "FERNGROWTH BEND 1";
 	rooms["FERNGROWTH PATH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 2"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH PATH 2"].runOnEnter = jungleEncounterChances;
 
 	//23. Ferngrowth Bend
@@ -379,6 +381,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH BEND 1"].southExit = "FERNGROWTH PATH 2";
 	rooms["FERNGROWTH BEND 1"].eastExit = "FERNGROWTH PATH 3";
 	rooms["FERNGROWTH BEND 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH BEND 1"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH BEND 1"].runOnEnter = jungleEncounterChances;
 
 	//24.  A Fern-Shrouded Path
@@ -390,6 +393,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 3"].westExit = "FERNGROWTH BEND 1";
 	rooms["FERNGROWTH PATH 3"].eastExit = "FERNGROWTH PATH 4";
 	rooms["FERNGROWTH PATH 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 3"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH PATH 3"].runOnEnter = jungleEncounterChances;
 
 	//25. A Fern-Shrouded Path
@@ -401,6 +405,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH PATH 4"].westExit = "FERNGROWTH PATH 3";
 	rooms["FERNGROWTH PATH 4"].eastExit = "FERNS AT LICHENS 1";
 	rooms["FERNGROWTH PATH 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNGROWTH PATH 4"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH PATH 4"].runOnEnter = jungleEncounterChances;
 
 	//26. The Intersection of Ferns and Lichens
@@ -413,6 +418,7 @@ function initializeRooms():void
 	rooms["FERNS AT LICHENS 1"].southExit = "LICHENS BEND 1";
 	rooms["FERNS AT LICHENS 1"].westExit = "FERNGROWTH PATH 4";
 	rooms["FERNS AT LICHENS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FERNS AT LICHENS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNS AT LICHENS 1"].runOnEnter = jungleEncounterChances;
 
 	//27. A Bend in the Lichens
@@ -424,6 +430,7 @@ function initializeRooms():void
 	rooms["LICHENS BEND 1"].northExit = "FERNS AT LICHENS 1";
 	rooms["LICHENS BEND 1"].eastExit = "LICHENS 1";
 	rooms["LICHENS BEND 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS BEND 1"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS BEND 1"].runOnEnter = jungleEncounterChances;
 
 	//28. The Lichen-Covered Jungle
@@ -435,6 +442,7 @@ function initializeRooms():void
 	rooms["LICHENS 1"].westExit = "LICHENS BEND 1";
 	rooms["LICHENS 1"].eastExit = "LICHENS AT IRONWOODS 1";
 	rooms["LICHENS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS 1"].runOnEnter = jungleEncounterChances;
 
 	//29. The Intersection of Lichens and Giant Ironwoods
@@ -447,6 +455,7 @@ function initializeRooms():void
 	rooms["LICHENS AT IRONWOODS 1"].northExit = "LICHENS AND IRONWOODS 1";
 	rooms["LICHENS AT IRONWOODS 1"].southExit = "IRON AND DARK CORNER 1";
 	rooms["LICHENS AT IRONWOODS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS AT IRONWOODS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AT IRONWOODS 1"].runOnEnter = jungleEncounterChances;
 
 	//30.Between Lichens and Ironwoods
@@ -458,6 +467,7 @@ function initializeRooms():void
 	rooms["LICHENS AND IRONWOODS 1"].southExit = "LICHENS AT IRONWOODS 1";
 	rooms["LICHENS AND IRONWOODS 1"].northExit = "LICHENS AND IRONWOODS 2";
 	rooms["LICHENS AND IRONWOODS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS AND IRONWOODS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AND IRONWOODS 1"].runOnEnter = jungleEncounterChances;
 
 	//31. Between Lichens and Ironwoods
@@ -469,6 +479,7 @@ function initializeRooms():void
 	rooms["LICHENS AND IRONWOODS 2"].southExit = "LICHENS AND IRONWOODS 1";
 	rooms["LICHENS AND IRONWOODS 2"].northExit = "LICHENS AND IRONWOODS 3";
 	rooms["LICHENS AND IRONWOODS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS AND IRONWOODS 2"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AND IRONWOODS 2"].runOnEnter = jungleEncounterChances;
 
 	//32. Between Lichens and Ironwoods
@@ -480,6 +491,7 @@ function initializeRooms():void
 	rooms["LICHENS AND IRONWOODS 3"].southExit = "LICHENS AND IRONWOODS 2";
 	rooms["LICHENS AND IRONWOODS 3"].northExit = "LICHENS AT IRONWOODS 2";
 	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS AND IRONWOODS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AND IRONWOODS 3"].runOnEnter = jungleEncounterChances;
 
 	//33. An Intersection of Lichens and Ironwoods
@@ -492,6 +504,7 @@ function initializeRooms():void
 	rooms["LICHENS AT IRONWOODS 2"].westExit = "LICHENS 2";
 	rooms["LICHENS AT IRONWOODS 2"].southExit = "LICHENS AND IRONWOODS 3";
 	rooms["LICHENS AT IRONWOODS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS AT IRONWOODS 2"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS AT IRONWOODS 2"].runOnEnter = jungleEncounterChances;
 
 	//34. The Lichen-Covered Jungle
@@ -503,6 +516,7 @@ function initializeRooms():void
 	rooms["LICHENS 2"].eastExit = "LICHENS AT IRONWOODS 2";
 	rooms["LICHENS 2"].westExit = "LICHENS BEND 2";
 	rooms["LICHENS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS 2"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS 2"].runOnEnter = jungleEncounterChances;
 
 	//35. A Bend in the Lichens
@@ -514,6 +528,7 @@ function initializeRooms():void
 	rooms["LICHENS BEND 2"].eastExit = "LICHENS 2";
 	rooms["LICHENS BEND 2"].southExit = "LICHENS 3";
 	rooms["LICHENS BEND 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS BEND 2"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS BEND 2"].runOnEnter = jungleEncounterChances;
 
 	//36. The Lichen-Covered Jungle
@@ -525,6 +540,7 @@ function initializeRooms():void
 	rooms["LICHENS 3"].northExit = "LICHENS BEND 2";
 	rooms["LICHENS 3"].southExit = "LICHENS 4";
 	rooms["LICHENS 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS 3"].runOnEnter = jungleEncounterChances;
 
 	//37. The Lichen-Covered Jungle
@@ -536,6 +552,7 @@ function initializeRooms():void
 	rooms["LICHENS 4"].northExit = "LICHENS 3";
 	rooms["LICHENS 4"].southExit = "FERNS AT LICHENS 1";
 	rooms["LICHENS 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["LICHENS 4"].addFlag(GLOBAL.HAZARD);
 	rooms["LICHENS 4"].runOnEnter = jungleEncounterChances;
 
 	//38. The Ironwoods
@@ -547,6 +564,7 @@ function initializeRooms():void
 	rooms["IRONWOODS 1"].northExit = "IRONWOODS BEND 1";
 	rooms["IRONWOODS 1"].southExit = "LICHENS AT IRONWOODS 2";
 	rooms["IRONWOODS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRONWOODS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["IRONWOODS 1"].runOnEnter = jungleEncounterChances;
 
 	//39. Bending Through the Ironwoods
@@ -558,6 +576,7 @@ function initializeRooms():void
 	rooms["IRONWOODS BEND 1"].eastExit = "IRONWOODS 2";
 	rooms["IRONWOODS BEND 1"].southExit = "IRONWOODS 1";
 	rooms["IRONWOODS BEND 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRONWOODS BEND 1"].addFlag(GLOBAL.HAZARD);
 	rooms["IRONWOODS BEND 1"].runOnEnter = jungleEncounterChances;
 
 	//40. The Ironwoods
@@ -569,6 +588,7 @@ function initializeRooms():void
 	rooms["IRONWOODS 2"].eastExit = "BABBLING BROOK 1";
 	rooms["IRONWOODS 2"].westExit = "IRONWOODS BEND 1";
 	rooms["IRONWOODS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRONWOODS 2"].addFlag(GLOBAL.HAZARD);
 	rooms["IRONWOODS 2"].runOnEnter = jungleEncounterChances;
 
 	//41. The Babbling Brook
@@ -580,6 +600,7 @@ function initializeRooms():void
 	rooms["BABBLING BROOK 1"].eastExit = "IRONWOODS 3";
 	rooms["BABBLING BROOK 1"].westExit = "IRONWOODS 2";
 	rooms["BABBLING BROOK 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["BABBLING BROOK 1"].addFlag(GLOBAL.HAZARD);
 	rooms["BABBLING BROOK 1"].runOnEnter = jungleEncounterChances;
 
 	//42. The Ironwoods
@@ -591,6 +612,7 @@ function initializeRooms():void
 	rooms["IRONWOODS 3"].eastExit = "IRONWOODS BEND 2";
 	rooms["IRONWOODS 3"].westExit = "BABBLING BROOK 1";
 	rooms["IRONWOODS 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRONWOODS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["IRONWOODS 3"].runOnEnter = jungleEncounterChances;
 
 	//43. A Bend in the Ironwoods
@@ -602,6 +624,7 @@ function initializeRooms():void
 	rooms["IRONWOODS BEND 2"].westExit = "IRONWOODS 3";
 	rooms["IRONWOODS BEND 2"].southExit = "DENSE ORANGE 1";
 	rooms["IRONWOODS BEND 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRONWOODS BEND 2"].addFlag(GLOBAL.HAZARD);
 	rooms["IRONWOODS BEND 2"].runOnEnter = jungleEncounterChances;
 
 	//44. The Dense Orange
@@ -614,6 +637,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 1"].northExit = "IRONWOODS BEND 2";
 	rooms["DENSE ORANGE 1"].southExit = "DENSE ORANGE 2";
 	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DENSE ORANGE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 1"].runOnEnter = jungleMiddleEncounters;
 
 	//45. The Dense Orange
@@ -625,6 +649,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 2"].northExit = "DENSE ORANGE 1";
 	rooms["DENSE ORANGE 2"].southExit = "DENSE ORANGE 3";
 	rooms["DENSE ORANGE 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DENSE ORANGE 2"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 2"].runOnEnter = jungleMiddleEncounters;
 
 	//46. The Dense Orange
@@ -636,6 +661,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 3"].northExit = "DENSE ORANGE 2";
 	rooms["DENSE ORANGE 3"].southExit = "DENSE ORANGE 4";
 	rooms["DENSE ORANGE 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DENSE ORANGE 3"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 3"].runOnEnter = jungleMiddleEncounters;
 
 	//47. The Dense Orange
@@ -647,6 +673,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 4"].northExit = "DENSE ORANGE 3";
 	rooms["DENSE ORANGE 4"].southExit = "ORANGE INTERSECTION 1";
 	rooms["DENSE ORANGE 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DENSE ORANGE 4"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 4"].runOnEnter = jungleMiddleEncounters;
 
 	//48. An Orange Intersection
@@ -659,6 +686,7 @@ function initializeRooms():void
 	rooms["ORANGE INTERSECTION 1"].southExit = "DENSE ORANGE 5";
 	rooms["ORANGE INTERSECTION 1"].eastExit = "NARROW PATH 1";
 	rooms["ORANGE INTERSECTION 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["ORANGE INTERSECTION 1"].addFlag(GLOBAL.HAZARD);
 	rooms["ORANGE INTERSECTION 1"].runOnEnter = jungleMiddleEncounters;
 
 	//49. The Dense Orange
@@ -670,6 +698,7 @@ function initializeRooms():void
 	rooms["DENSE ORANGE 5"].northExit = "ORANGE INTERSECTION 1";
 	rooms["DENSE ORANGE 5"].southExit = "DARK ORANGE CORNER 1";
 	rooms["DENSE ORANGE 5"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DENSE ORANGE 5"].addFlag(GLOBAL.HAZARD);
 	rooms["DENSE ORANGE 5"].runOnEnter = jungleMiddleEncounters;
 
 	//50. Dark Orange Corner
@@ -681,6 +710,7 @@ function initializeRooms():void
 	rooms["DARK ORANGE CORNER 1"].northExit = "DENSE ORANGE 5";
 	rooms["DARK ORANGE CORNER 1"].westExit = "DEEP FOREST 1";
 	rooms["DARK ORANGE CORNER 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DARK ORANGE CORNER 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DARK ORANGE CORNER 1"].runOnEnter = jungleMiddleEncounters;
 
 	//51. Deep Forest
@@ -692,6 +722,7 @@ function initializeRooms():void
 	rooms["DEEP FOREST 1"].eastExit = "DARK ORANGE CORNER 1";
 	rooms["DEEP FOREST 1"].westExit = "DEEP INTERSECTION 1";
 	rooms["DEEP FOREST 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP FOREST 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP FOREST 1"].runOnEnter = jungleMiddleEncounters;
 
 	//52. Deep Intersection
@@ -704,6 +735,7 @@ function initializeRooms():void
 	rooms["DEEP INTERSECTION 1"].westExit = "DEEP FOREST 2";
 	rooms["DEEP INTERSECTION 1"].southExit = "DEEP JUNGLE 1";
 	rooms["DEEP INTERSECTION 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP INTERSECTION 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP INTERSECTION 1"].runOnEnter = jungleMiddleEncounters;
 
 	//53. Deep Forest
@@ -715,6 +747,7 @@ function initializeRooms():void
 	rooms["DEEP FOREST 2"].eastExit = "DEEP INTERSECTION 1";
 	rooms["DEEP FOREST 2"].westExit = "IRON AND DARK CORNER 1";
 	rooms["DEEP FOREST 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP FOREST 2"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP FOREST 2"].runOnEnter = jungleMiddleEncounters;
 
 	//54. Corner of Iron and Dark
@@ -726,6 +759,7 @@ function initializeRooms():void
 	rooms["IRON AND DARK CORNER 1"].northExit = "LICHENS AT IRONWOODS 1";
 	rooms["IRON AND DARK CORNER 1"].eastExit = "DEEP FOREST 2";
 	rooms["IRON AND DARK CORNER 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["IRON AND DARK CORNER 1"].addFlag(GLOBAL.HAZARD);
 	rooms["IRON AND DARK CORNER 1"].runOnEnter = jungleMiddleEncounters;
 
 	//55. Narrow Path
@@ -737,6 +771,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 1"].westExit = "ORANGE INTERSECTION 1";
 	rooms["NARROW PATH 1"].eastExit = "NARROW BEND 1";
 	rooms["NARROW PATH 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW PATH 1"].addFlag(GLOBAL.HAZARD);
 	rooms["NARROW PATH 1"].runOnEnter = jungleMiddleEncounters;
 
 	//56. Narrow Bend
@@ -748,6 +783,7 @@ function initializeRooms():void
 	rooms["NARROW BEND 1"].westExit = "NARROW PATH 1";
 	rooms["NARROW BEND 1"].southExit = "NARROW PATH 2";
 	rooms["NARROW BEND 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW BEND 1"].addFlag(GLOBAL.HAZARD);
 	rooms["NARROW BEND 1"].runOnEnter = jungleMiddleEncounters;
 
 	//57. Narrow Jungle Path
@@ -760,6 +796,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 2"].northExit = "NARROW BEND 1";
 	rooms["NARROW PATH 2"].southExit = "NARROW PATH 3";
 	rooms["NARROW PATH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW PATH 2"].addFlag(GLOBAL.HAZARD);
 	rooms["NARROW PATH 2"].runOnEnter = jungleMiddleEncounters;
 
 	//58. Narrow Jungle Path
@@ -771,6 +808,7 @@ function initializeRooms():void
 	rooms["NARROW PATH 3"].northExit = "NARROW PATH 2";
 	rooms["NARROW PATH 3"].southExit = "METAL POD 1";
 	rooms["NARROW PATH 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW PATH 3"].addFlag(GLOBAL.HAZARD);
 	rooms["NARROW PATH 3"].runOnEnter = jungleMiddleEncounters;
 
 	//59. Dead End
@@ -781,6 +819,7 @@ function initializeRooms():void
 	rooms["METAL POD 1"].system = "SYSTEM: ARA ARA";
 	rooms["METAL POD 1"].northExit = "NARROW PATH 3";
 	rooms["METAL POD 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["METAL POD 1"].addFlag(GLOBAL.HAZARD);
 	rooms["METAL POD 1"].runOnEnter = jungleMiddleEncounters;
 
 	//60. Deep\nJungle
@@ -792,6 +831,7 @@ function initializeRooms():void
 	rooms["DEEP JUNGLE 1"].northExit = "DEEP INTERSECTION 1";
 	rooms["DEEP JUNGLE 1"].southExit = "DEEP JUNGLE 2";
 	rooms["DEEP JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP JUNGLE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//61. Deep\nJungle
@@ -803,6 +843,7 @@ function initializeRooms():void
 	rooms["DEEP JUNGLE 2"].northExit = "DEEP JUNGLE 1";
 	rooms["DEEP JUNGLE 2"].westExit = "FORKED DEEP JUNGLE 1";
 	rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP JUNGLE 2"].runOnEnter = jungleDeepEncounters;
 
 	//62. Forked\nJungle
@@ -815,6 +856,7 @@ function initializeRooms():void
 	rooms["FORKED DEEP JUNGLE 1"].southExit = "VINED JUNGLE 1";
 	rooms["FORKED DEEP JUNGLE 1"].westExit = "VINED JUNGLE 6";
 	rooms["FORKED DEEP JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["FORKED DEEP JUNGLE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["FORKED DEEP JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//63. Vined Jungle
@@ -826,6 +868,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 1"].northExit = "FORKED DEEP JUNGLE 1";
 	rooms["VINED JUNGLE 1"].southExit = "VINED JUNGLE 2";
 	rooms["VINED JUNGLE 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 1"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 1"].runOnEnter = jungleDeepEncounters;
 
 	//64. Vined Jungle/Corner
@@ -837,6 +880,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 2"].northExit = "VINED JUNGLE 1";
 	rooms["VINED JUNGLE 2"].westExit = "VINED JUNGLE 3";
 	rooms["VINED JUNGLE 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 2"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 2"].runOnEnter = jungleDeepEncounters;
 
 	//65. Vined\nJungle
@@ -848,6 +892,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 3"].eastExit = "VINED JUNGLE 2";
 	rooms["VINED JUNGLE 3"].westExit = "OVERGROWN ROCK 1";
 	rooms["VINED JUNGLE 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 3"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 3"].runOnEnter = jungleDeepEncounters;
 
 	//66. Overgrown\nRock
@@ -860,6 +905,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 1"].eastExit = "VINED JUNGLE 3";
 	rooms["OVERGROWN ROCK 1"].southExit = "OVERGROWN ROCK 4";
 	rooms["OVERGROWN ROCK 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 1"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 1"].runOnEnter = jungleDeepEncounters;
 
 	//67. Overgrown\nRock
@@ -871,6 +917,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 2"].southExit = "OVERGROWN ROCK 1";
 	rooms["OVERGROWN ROCK 2"].westExit = "OVERGROWN ROCK 3";
 	rooms["OVERGROWN ROCK 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 2"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 2"].runOnEnter = jungleDeepEncounters;
 
 	//68. Overgrown\nRock
@@ -883,6 +930,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 3"].eastExit = "OVERGROWN ROCK 2";
 	rooms["OVERGROWN ROCK 3"].westExit = "OVERGROWN ROCK 12";
 	rooms["OVERGROWN ROCK 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 3"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 3"].runOnEnter = jungleDeepEncounters;
 
 	//69. Vined\nJungle
@@ -894,6 +942,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 4"].southExit = "OVERGROWN ROCK 3";
 	rooms["VINED JUNGLE 4"].eastExit = "VINED JUNGLE 5";
 	rooms["VINED JUNGLE 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 4"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 4"].runOnEnter = jungleDeepEncounters;
 
 	//70. Vined\nJungle
@@ -905,6 +954,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 5"].westExit = "VINED JUNGLE 4";
 	rooms["VINED JUNGLE 5"].eastExit = "VINED JUNGLE 6";
 	rooms["VINED JUNGLE 5"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 5"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 5"].runOnEnter = jungleDeepEncounters;
 
 	//71. Vined\nJungle
@@ -916,6 +966,7 @@ function initializeRooms():void
 	rooms["VINED JUNGLE 6"].westExit = "VINED JUNGLE 5";
 	rooms["VINED JUNGLE 6"].eastExit = "FORKED DEEP JUNGLE 1";
 	rooms["VINED JUNGLE 6"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VINED JUNGLE 6"].addFlag(GLOBAL.HAZARD);
 	rooms["VINED JUNGLE 6"].runOnEnter = jungleDeepEncounters;
 
 	//MORE ROOM CODING!
@@ -928,6 +979,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 4"].westExit = "OVERGROWN ROCK 5";
 	rooms["OVERGROWN ROCK 4"].northExit = "OVERGROWN ROCK 1";
 	rooms["OVERGROWN ROCK 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 4"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 4"].runOnEnter = jungleDeepEncounters;
 
 	//73. Overgrown\nRock
@@ -939,6 +991,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 5"].westExit = "OVERGROWN ROCK 6";
 	rooms["OVERGROWN ROCK 5"].eastExit = "OVERGROWN ROCK 4";
 	rooms["OVERGROWN ROCK 5"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 5"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 5"].runOnEnter = jungleDeepEncounters;
 
 	//74. Overgrown\nRock
@@ -961,6 +1014,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 7"].westExit = "OVERGROWN ROCK 8";
 	rooms["OVERGROWN ROCK 7"].eastExit = "OVERGROWN ROCK 6";
 	rooms["OVERGROWN ROCK 7"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 7"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 7"].runOnEnter = jungleDeepEncounters;
 
 	//76. Overgrown\nRock
@@ -972,6 +1026,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 8"].northExit = "OVERGROWN ROCK 9";
 	rooms["OVERGROWN ROCK 8"].eastExit = "OVERGROWN ROCK 7";
 	rooms["OVERGROWN ROCK 8"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 8"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 8"].runOnEnter = jungleDeepEncounters;
 
 	//77. Overgrown\nRock
@@ -983,6 +1038,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 9"].northExit = "OVERGROWN ROCK 10";
 	rooms["OVERGROWN ROCK 9"].southExit = "OVERGROWN ROCK 8";
 	rooms["OVERGROWN ROCK 9"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 9"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 9"].runOnEnter = jungleDeepEncounters;
 
 	//78. Overgrown\nRock
@@ -995,6 +1051,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 10"].eastExit = "OVERGROWN ROCK 11";
 	rooms["OVERGROWN ROCK 10"].westExit = "GIANT LEAVES 1";
 	rooms["OVERGROWN ROCK 10"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 10"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 10"].runOnEnter = jungleDeepEncounters;
 
 	//79. Overgrown\nRock
@@ -1007,6 +1064,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 11"].eastExit = "OVERGROWN ROCK 12";
 	rooms["OVERGROWN ROCK 11"].northExit = "PURPLE FLOWERS 1";
 	rooms["OVERGROWN ROCK 11"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 11"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 11"].runOnEnter = jungleDeepEncounters;
 
 	//80. Overgrown\nRock
@@ -1018,6 +1076,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 12"].westExit = "OVERGROWN ROCK 11";
 	rooms["OVERGROWN ROCK 12"].eastExit = "OVERGROWN ROCK 3";
 	rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 12"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 12"].runOnEnter = jungleDeepEncounters;
 
 	//81. Giant\nLeaves
@@ -1029,6 +1088,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 1"].southExit = "GIANT LEAVES 2";
 	rooms["GIANT LEAVES 1"].eastExit = "OVERGROWN ROCK 10";
 	rooms["GIANT LEAVES 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["GIANT LEAVES 1"].addFlag(GLOBAL.HAZARD);
 	rooms["GIANT LEAVES 1"].runOnEnter = jungleDeepEncounters;
 
 	//82. Giant\nLeaves
@@ -1040,6 +1100,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 2"].northExit = "GIANT LEAVES 1";
 	rooms["GIANT LEAVES 2"].southExit = "GIANT LEAVES 3";
 	rooms["GIANT LEAVES 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["GIANT LEAVES 2"].addFlag(GLOBAL.HAZARD);
 	rooms["GIANT LEAVES 2"].runOnEnter = jungleDeepEncounters;
 
 	//83. Giant\nLeaves
@@ -1050,6 +1111,7 @@ function initializeRooms():void
 	rooms["GIANT LEAVES 3"].system = "SYSTEM: ARA ARA";
 	rooms["GIANT LEAVES 3"].northExit = "GIANT LEAVES 2";
 	rooms["GIANT LEAVES 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["GIANT LEAVES 3"].addFlag(GLOBAL.HAZARD);
 	rooms["GIANT LEAVES 3"].runOnEnter = carlsEncounterStart;
 
 
@@ -1062,6 +1124,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 1"].westExit = "PURPLE FLOWERS 2";
 	rooms["PURPLE FLOWERS 1"].southExit = "OVERGROWN ROCK 11";
 	rooms["PURPLE FLOWERS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["PURPLE FLOWERS 1"].addFlag(GLOBAL.HAZARD);
 	rooms["PURPLE FLOWERS 1"].runOnEnter = jungleDeepEncounters;
 
 	//85. Purple\nFlowers
@@ -1073,6 +1136,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 2"].westExit = "PURPLE FLOWERS 3";
 	rooms["PURPLE FLOWERS 2"].eastExit = "PURPLE FLOWERS 1";
 	rooms["PURPLE FLOWERS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["PURPLE FLOWERS 2"].addFlag(GLOBAL.HAZARD);
 	rooms["PURPLE FLOWERS 2"].runOnEnter = jungleDeepEncounters;
 
 	//86. Purple\nFlowers
@@ -1084,6 +1148,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 3"].northExit = "PURPLE FLOWERS 4";
 	rooms["PURPLE FLOWERS 3"].eastExit = "PURPLE FLOWERS 2";
 	rooms["PURPLE FLOWERS 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["PURPLE FLOWERS 3"].addFlag(GLOBAL.HAZARD);
 	rooms["PURPLE FLOWERS 3"].runOnEnter = jungleDeepEncounters;
 
 	//87. Purple\nFlowers
@@ -1095,6 +1160,7 @@ function initializeRooms():void
 	rooms["PURPLE FLOWERS 4"].northExit = "JUNGLE EDGE";
 	rooms["PURPLE FLOWERS 4"].southExit = "PURPLE FLOWERS 3";
 	rooms["PURPLE FLOWERS 4"].addFlag(GLOBAL.OUTDOOR);
+	rooms["PURPLE FLOWERS 4"].addFlag(GLOBAL.HAZARD);
 	rooms["PURPLE FLOWERS 4"].runOnEnter = jungleEncounterChances;
 	
 	//88. Scrapyard Maintenance - see scrapyard.as for more info!
