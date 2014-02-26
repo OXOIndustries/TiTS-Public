@@ -75,7 +75,6 @@
 		include "../includes/roomFunctions.as";
 		include "../includes/zilMale.as";
 		include "../includes/zilFemale.as";
-		include "../includes/zil.as"; // Codex entry and shared shit I guess
 		include "../includes/cuntSnakes.as";
 		include "../includes/naleen.as";
 		include "../includes/venusPitchers.as";

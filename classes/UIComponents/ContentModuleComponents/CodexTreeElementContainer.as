@@ -207,13 +207,27 @@ package classes.UIComponents.ContentModuleComponents
 				msg += "\t";
 			}
 			
-			msg += "<a href='event:" + key + "'>" + key + "</a>\n";
+			if (CodexManager.entryUnlocked(key))
+			{
+				msg += "<a href='event:" + key + "'>" + key + "</a>\n";
+			}
+			else
+			{
+				msg += "LOCKED\n";
+			}
+			
 			return msg;
 		}
 		
 		public function updateContent():void
 		{
+			if (_currentHeader != null)
+			{
+				populateText();
+				reposition();
 			
+				this.update();
+			}
 		}
 	}
 

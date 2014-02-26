@@ -72,6 +72,25 @@ package classes.GameData
 			return CodexManager.CODEXCONTENTFUNCTORS[entryName].functor;
 		}
 		
+		// Serialisation shit...
+		public static function get unlockedEntryList():Array
+		{
+			return CodexManager.UNLOCKEDENTRIES;
+		}
+		public static function set unlockedEntryList(v:Array):void
+		{
+			CodexManager.UNLOCKEDENTRIES = v;
+		}
+		
+		public static function get viewedEntryList():Array
+		{
+			return CodexManager.VIEWEDENTRIES;
+		}
+		public static function set viewedEntryList(v:Array):void
+		{
+			CodexManager.VIEWEDENTRIES = v;
+		}
+		
 		public static function unlockEntry(entryName:String):void
 		{
 			if (CodexManager.UNLOCKEDENTRIES.indexOf(entryName) == -1)
@@ -96,6 +115,12 @@ package classes.GameData
 					CodexManager.CODEXCONTENTFUNCTORS[entryName].viewed = true;
 				}
 			}
+		}
+		
+		public static function entryUnlocked(entryName:String):Boolean
+		{
+			if (CodexManager.UNLOCKEDENTRIES.indexOf(entryName) != -1) return true;
+			return false;
 		}
 		
 		private static function PlaceInTree(codexType:int, treePosition:String, entryName:String, functor:Function):void
