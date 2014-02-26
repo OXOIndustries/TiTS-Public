@@ -181,8 +181,9 @@ function inventory():void {
 	for(x = 0; x < pc.inventory.length || x < 14; x++) {
 		//5 = bra
 		if(x+adjustment == 5) {
-			if(pc.upperUndergarment.shortName != "") {
-				this.addButton(x+adjustment,"UndertopOff",unequip,"bra");
+			if (pc.upperUndergarment.shortName != "") 
+			{
+				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bar");
 			}
 			else this.addDisabledButton(x+adjustment,"UndertopOff");
 			adjustment++;
@@ -190,38 +191,56 @@ function inventory():void {
 		//6 = shield
 		if(x+adjustment == 6)
 		{
-			if(pc.shield.shortName != "") this.addButton(x+adjustment,"Shield Off",unequip,"shield");
+			if (pc.shield.shortName != "") 
+			{
+				this.addOverrideItemButton(x + adjustment, pc.shield, "Shield Off", unequip, "shield");
+			}
 			else this.addDisabledButton(x+adjustment,"Shield Off");
 			adjustment++;
 		}
 		//7 = panties
 		if(x+adjustment == 7)
 		{
-			if(pc.lowerUndergarment.shortName != "") this.addButton(x+adjustment,"UnderwearOff",unequip,"underwear");
+			if (pc.lowerUndergarment.shortName != "")
+			{
+				this.addOverrideItemButton(x + adjustment, pc.lowerUndergarment, "UnderwearOff", unequip, "underwear");
+			}
 			else this.addDisabledButton(x+adjustment,"UnderwearOff");
 			adjustment++;
 		}
 		//10 = melee
 		if(x+adjustment == 10) {
-			if(pc.meleeWeapon.shortName != "Rock") this.addButton(x+adjustment,"Melee Off",unequip,"mWeapon");
+			if (pc.meleeWeapon.shortName != "Rock") 
+			{
+				this.addOverrideItemButton(x + adjustment, pc.meleeWeapon, "Melee Off", unequip, "mWeapon");
+			}
 			else this.addDisabledButton(x+adjustment,"Melee Off");
 			adjustment++;
 		}
 		//11 = armor
 		if(x+adjustment == 11) {
-			if(pc.armor.shortName != "") this.addButton(x+adjustment,"Armor Off",unequip,"armor");
+			if (pc.armor.shortName != "") 
+			{
+				this.addOverrideItemButton(x + adjustment, pc.armor, "Armor Off", unequip, "armor");
+			}
 			else this.addDisabledButton(x+adjustment,"Armor Off");
 			adjustment++;
 		}
 		//12 = ranged
 		if(x+adjustment == 12) {
-			if(pc.rangedWeapon.shortName != "Rock") this.addButton(x+adjustment,"Ranged Off",unequip,"rWeapon");
+			if (pc.rangedWeapon.shortName != "Rock")
+			{
+				this.addOverrideItemButton(x + adjustment, pc.rangedWeapon, "Ranged Off", unequip, "rWeapon");
+			}
 			else this.addDisabledButton(x+adjustment,"Ranged Off");
 			adjustment++;
 		}
 		//13 = accessory!
 		if(x+adjustment == 13) {
-			if(pc.accessory.shortName != "") this.addButton(x+adjustment,"Acc. Off",unequip,"accessory");
+			if (pc.accessory.shortName != "") 
+			{
+				this.addOverrideItemButton(x + adjustment, pc.accessory, "Acc. Off", unequip, "accessory");
+			}
 			else this.addDisabledButton(x+adjustment,"Acc. Off");
 			adjustment++;
 		}

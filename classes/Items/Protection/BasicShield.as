@@ -2,6 +2,8 @@
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.GameData.TooltipManager;
+	import classes.StringUtil;
 	
 	public class BasicShield extends ItemSlotClass
 	{
@@ -21,11 +23,16 @@
 			//Regular name
 			this.longName = "cheap JoyCo shield generator";
 			
+			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
+			
 			//Longass shit, not sure what used for yet.
 			this.description = "a cheap JoyCo shield generator";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A cheap, off-the-shelf shield generator that can be purchased at almost any JoyCo megastore.";
+			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+			
 			this.attackVerb = "null";
 			
 			//Information

@@ -152,12 +152,21 @@
 				
 				var dType:String = "Damage Type: " + GLOBAL.DamageTypeStrings[this.damageType];
 				
-				//if (this.damageType != oldItem.damageType)
-				//{
-					//dType += " (" + GLOBAL.DamageTypeStrings[oldItem.damageType] + ")"
-				//}
-				
 				compareString = mergeString(compareString, dType);
+			}
+			
+			// Item value -- this is going to be a bit of a shit. I can't easily figure out what "mode" a button is at this point, so this code doesn't know if we're buying or selling,
+			// so we dunno which modifiers to use to figure out the actual value of an item wrt a specific vendor.
+			// Can't lean on the shopKeep stuff, because some vendors in game atm don't use it (Crazy Carl), so we can't just track the "state" we need and pull the data later.
+			// I THINK I have a method to do this fairly cleanly, regardless -- but I think it would be better to just show the base price, and have some blurb in the scene text to list the actual
+			// prices a given NPC will sell/buy the stuff for.
+			if (this.basePrice != 0)
+			{
+				if (compareString.length > 0) compareString += "\n";
+				
+				var valueString:String = "Base Price: " + this.basePrice + " Credits";
+				
+				compareString = mergeString(compareString, valueString);
 			}
 			
 			// I think the only place that bonusResistances are used atm is on shields. Going to check shields + armor + accessory? as a catchall
