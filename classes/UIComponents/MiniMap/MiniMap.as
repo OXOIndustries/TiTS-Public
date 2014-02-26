@@ -128,26 +128,12 @@
 		private var _childLinksX:Vector.<Vector.<MinimapLink>>;
 		private var _childLinksY:Vector.<Vector.<MinimapLink>>;
 		
-		// Some useful shared objects for later usage
-		private var _pcLocTransform:ColorTransform;
-		private var _genLocTransform:ColorTransform;
-		private var _debugLocTransform:ColorTransform;
-		
 		/**
 		 * Contructor
 		 * Configure the object to listen for its addition to the display list, so we can query parent container info.
 		 */
 		public function MiniMap() 
-		{
-			_pcLocTransform = new ColorTransform();
-			_pcLocTransform.color = UIStyleSettings.gHighlightColour;
-			
-			_genLocTransform = new ColorTransform();
-			_genLocTransform.color = UIStyleSettings.gForegroundColour;
-			
-			_debugLocTransform = new ColorTransform();
-			_debugLocTransform.color = UIStyleSettings.gDebugPaneBackgroundColour;
-			
+		{			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -436,67 +422,90 @@
 					// Room visibility
 					if (roomFlags & Mapper.room_present_mask)
 					{
+						// Show the icon room if it's present
 						tarSprite.visible = true;
-						tarSprite.setColour(_genLocTransform);
+						
+						// Set the background colours -- I can expand this to more flags, but I think
+						// it should be limited to flags that don't imply an icon such as indoor and outdoor etc
+						
+						if (roomFlags & Mapper.current_locaton_mask)
+						{
+						tarSprite.setColour(UIStyleSettings.gMapPCLocationRoomColourTransform);
+						}
+						else if (roomFlags & Mapper.room_indoor_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapIndoorRoomFlagColourTransform);
+						}
+						else if (roomFlags & Mapper.room_outdoor_mask)
+						{
+							tarSprite.setColour(UIStyleSettings.gMapOutdoorRoomFlagColourTransform);
+						}
+						else // Catch-all for any room that doesn't have a flag set.
+						{
+							tarSprite.setColour(UIStyleSettings.gMapFallbackColourTransform);
+						}
+						
+						// Specialised Map Icons
+						// For now, this is going to work basically off priority; we'll search all flags until we get one of them and ignore the remainder. I COULD possibly make it so we can display multiple icons per room, but the code will be... eeesh.
+						if (roomFlags & Mapper.z_pos_exit_mask)
+						{
+							tarSprite.setIcon(ICON_UP);
+						}
+						else if (roomFlags & Mapper.z_neg_exit_mask)
+						{
+							tarSprite.setIcon(ICON_DOWN);
+						}
+						else if (roomFlags & Mapper.room_ship_mask)
+						{
+							tarSprite.setIcon(ICON_SHIP);
+						}
+						else if (roomFlags & Mapper.room_npc_mask)
+						{
+							tarSprite.setIcon(ICON_NPC);
+						}
+						else if (roomFlags & Mapper.room_medical_mask)
+						{
+							tarSprite.setIcon(ICON_MEDICAL);
+						}
+						else if (roomFlags & Mapper.room_commerce_mask)
+						{
+							tarSprite.setIcon(ICON_COMMERCE);
+						}
+						else if (roomFlags & Mapper.room_bar_mask)
+						{
+							tarSprite.setIcon(ICON_BAR);
+						}
+						else if (roomFlags & Mapper.room_objective_mask)
+						{
+							tarSprite.setIcon(ICON_OBJECTIVE);
+						}
+						else if (roomFlags & Mapper.room_quest_mask)
+						{
+							tarSprite.setIcon(ICON_QUEST);
+						}
+						else
+						{
+							tarSprite.setIcon(-1);
+						}
+						
+						// The hazard icon isn't AMAZING how it's currently set up, but it DOES work quite well. Could do with tweaks.
+						// Basically makes the "stripey" hazard-warning style deal on the rooms
+						if (roomFlags & Mapper.room_hazard_mask)
+						{
+							tarSprite.showHazard();
+						}
+						else
+						{
+							tarSprite.hideHazard();
+						}
 					}
 					else
 					{
+						// No room, hide it but leave the rest of its state as-is
 						tarSprite.visible = false;
 					}
-					
-					// Players current location
-					if (roomFlags & Mapper.current_locaton_mask)
-					{
-						tarSprite.setColour(_pcLocTransform);
-					}
-					
-					// Specialised Map Icons
-					// For now, this is going to work basically off priority; we'll search all flags until we get one of them and ignore the remainder. I COULD possibly make it so we can display multiple icons per room, but the code will be... eeesh.
-					if (roomFlags & Mapper.z_pos_exit_mask)
-					{
-						tarSprite.setIcon(ICON_UP);
-					}
-					else if (roomFlags & Mapper.z_neg_exit_mask)
-					{
-						tarSprite.setIcon(ICON_DOWN);
-					}
-					else if (roomFlags & Mapper.room_ship_mask)
-					{
-						tarSprite.setIcon(ICON_SHIP);
-					}
-					else if (roomFlags & Mapper.room_npc_mask)
-					{
-						tarSprite.setIcon(ICON_NPC);
-					}
-					else if (roomFlags & Mapper.room_medical_mask)
-					{
-						tarSprite.setIcon(ICON_MEDICAL);
-					}
-					else if (roomFlags & Mapper.room_commerce_mask)
-					{
-						tarSprite.setIcon(ICON_COMMERCE);
-					}
-					else if (roomFlags & Mapper.room_bar_mask)
-					{
-						tarSprite.setIcon(ICON_BAR);
-					}
-					else if (roomFlags & Mapper.room_objective_mask)
-					{
-						tarSprite.setIcon(ICON_OBJECTIVE);
-					}
-					else if (roomFlags & Mapper.room_quest_mask)
-					{
-						tarSprite.setIcon(ICON_QUEST);
-					}
-					else
-					{
-						tarSprite.setIcon(-1);
-					}
-					
 				}
 			}
 		}
-		
 	}
-
 }

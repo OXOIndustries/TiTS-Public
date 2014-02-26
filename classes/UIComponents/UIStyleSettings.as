@@ -22,7 +22,9 @@ package classes.UIComponents
 	 */
 	public class UIStyleSettings 
 	{
-		// Static init backing storage for stuff
+		// Static init backing storage for stuff -- basically ensures that we'll only ever have one of these objects
+		// kicking around and initialized for the whole game, to cut down on MASSIVE memory usage inflation, considering
+		// how much these things get used.
 		{
 			UIStyleSettings._gNameHeaderFormatter = null;
 			UIStyleSettings._gStatBlockHeaderFormatter = null;
@@ -51,6 +53,10 @@ package classes.UIComponents
 			UIStyleSettings._gCodexTreeHeaderFormatter = null;
 			UIStyleSettings._gCodexTitleHeaderFormatter = null;
 			UIStyleSettings._gCodexLinkFormatter = null;
+			UIStyleSettings._gMapIndoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapFallbackRoomColourTransform = null;
+			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
 		}
 		
 		// TITS VALUES
@@ -73,6 +79,13 @@ package classes.UIComponents
 		
 		// Specialist font/tweaked colours for certain UI elements
 		public static var gBlueBindColour:uint				= 0x6699FF;
+		
+		// Map room colour settings
+		// I'm going to tie a bunch of flags to colour the underlying room "block" based on these values
+		public static var gPCLocationRoomColour:uint		= 0x8D31B0;
+		public static var gFallbackRoomColour:uint			= 0x000000; // Obvious colour to highlight rooms without flags.
+		public static var gIndoorRoomFlagColour:uint 		= 0x333E52;
+		public static var gOutdoorRoomFlagColour:uint		= 0x77797A;
 		
 		// Font Faces
 		[Embed(source = "../../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
@@ -456,6 +469,50 @@ package classes.UIComponents
 				UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform.color = UIStyleSettings.gBackgroundColour;
 			}
 			return UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform;
+		}
+		
+		private static var _gMapIndoorRoomFlagColourTransform:ColorTransform;
+		public static function get gMapIndoorRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapIndoorRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapIndoorRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapIndoorRoomFlagColourTransform.color = UIStyleSettings.gIndoorRoomFlagColour;
+			}
+			return UIStyleSettings._gMapIndoorRoomFlagColourTransform;
+		}
+		
+		private static var _gMapOutdoorRoomFlagColourTransform:ColorTransform;
+		public static function get gMapOutdoorRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapOutdoorRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapOutdoorRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapOutdoorRoomFlagColourTransform.color = UIStyleSettings.gOutdoorRoomFlagColour;
+			}
+			return UIStyleSettings._gMapOutdoorRoomFlagColourTransform;
+		}
+		
+		private static var _gMapPCLocationRoomColourTransform:ColorTransform;
+		public static function get gMapPCLocationRoomColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapPCLocationRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapPCLocationRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapPCLocationRoomColourTransform.color = UIStyleSettings.gPCLocationRoomColour;
+			}
+			return UIStyleSettings._gMapPCLocationRoomColourTransform;
+		}
+		
+		private static var _gMapFallbackRoomColourTransform:ColorTransform;
+		public static function get gMapFallbackColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapFallbackRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapFallbackRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapFallbackRoomColourTransform.color = UIStyleSettings.gFallbackRoomColour;
+			}
+			return UIStyleSettings._gMapFallbackRoomColourTransform;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks

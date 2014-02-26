@@ -1003,6 +1003,7 @@ function initializeRooms():void
 	rooms["OVERGROWN ROCK 6"].westExit ="OVERGROWN ROCK 7";
 	rooms["OVERGROWN ROCK 6"].eastExit = "OVERGROWN ROCK 5";
 	rooms["OVERGROWN ROCK 6"].addFlag(GLOBAL.OUTDOOR);
+	rooms["OVERGROWN ROCK 6"].addFlag(GLOBAL.HAZARD);
 	rooms["OVERGROWN ROCK 6"].runOnEnter = findOxoniumOnMhenga;
 
 	//75. Overgrown\nRock
