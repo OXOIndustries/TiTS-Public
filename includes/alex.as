@@ -53,6 +53,7 @@ function approachAlex():void {
 //[Yes]
 function approachAlexTheFirstTime():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	flags["MET_ALEX"] = 1;
 	output("Why not? Looks like it could lead to a good time and even if not you might get to sate your curiosity at the very least. You make your way over and lean against the bar with your new companion.");
@@ -68,6 +69,7 @@ function approachAlexTheFirstTime():void {
 //[Flirt]
 function flirtWithAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("You grin back and tell him that you’re certainly not going to complain about the view. He laughs.");
 	output("\n\n<i>“Well, you’re not so bad yourself. Always had a healthy appreciation for ");
@@ -104,6 +106,7 @@ function flirtWithAlex():void {
 //[No]
 function noToAlyxSex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("This guy seems nice, if a little cocky, but you’re not really feeling it. You decline ");
 	if(pc.isNice()) output("as politely as you can manage");
@@ -119,6 +122,7 @@ function noToAlyxSex():void {
 //[What are you?]
 function askAlexWhatHeIs():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	flags["ASKED_ALEX_WHAT_HE_IS"] = 1;
 	output("For a moment the guy actually looks surprised and almost a little taken aback, but before you can say anything else he’s started laughing. <i>“Well, aren’t you straightforward?”</i>  he says, sounding more bemused than anything else. <i>“I’m guessing you mean in terms of what I’m packing, yeah?”</i>");
@@ -147,6 +151,7 @@ function askAlexWhatHeIs():void {
 //[Yes]
 function thatsEnoughAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("Yeah, that’s about all the information you were after. The prettyboy looks more than a little bit disappointed, but his seemingly ever-present grin is back on again quickly enough.");
 	output("\n\n<i>“Suit yourself,”</i> he says, shrugging. <i>“I’ll be around if you ever change your mind, though.”</i>");
@@ -157,6 +162,7 @@ function thatsEnoughAlex():void {
 //[Bail]
 function bailOnAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("Come to think of it, this guy isn’t really your type. You make some pleasant small talk for a little while before making your excuses and going back to your business.");
 	//(Add “Androgyne” button when standing around the bar and go to repeat intro)
@@ -168,6 +174,7 @@ function bailOnAlex():void {
 //REPEAT INTRO (you didn’t tap that)
 function repeatApproachAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("You make your way over to the man once again.");
 
@@ -190,6 +197,7 @@ function repeatApproachAlex():void {
 //[Bail Again]
 function bailOnAlexAgain():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("You’re still not really into this kind of genderfuck stuff, and ");
 	if(pc.isNice()) output("try to let him down gently");
@@ -204,6 +212,7 @@ function bailOnAlexAgain():void {
 //REPEAT INTRO (You tapped that (or bailed at the last minute))
 function approachAlexAfterHavingSexOrAlmostHavingSex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	//(Slip this in after the room description for the bar or however we’re handling NPCs wandering around in this game)
 	output("You decide to pay Alex a visit.");
@@ -221,6 +230,7 @@ function approachAlexAfterHavingSexOrAlmostHavingSex():void {
 //[Talk]
 function talkToAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	//(Maybe there’ll be actual content here eventually but damn it I’m writing a fuckbuddy not a husbando)
 	output("You tell Alex you’re good with just spending some fully-clothed, pants-on, platonic friends time with him.");
@@ -238,6 +248,7 @@ function alexSexMenu(display:Boolean = true):void {
 	if(display) 
 	{
 		clearOutput();
+		userInterface.showBust("ALEX");
 		author("RadicalBroseph");
 		output("You tell him you think you’re up to it if he is.");
 		output("\n\n<i>“Great,”</i>  he says, grin widening as he shoves a hand in his pocket and fishes around for a bit before pulling out a key. <i>“Head on up to my room and get yourself ready while I try to flag down the bartender so I can pay off my drink.”</i>");
@@ -374,6 +385,7 @@ function alexSexMenu(display:Boolean = true):void {
 function pitchIntoAlexsBoyPussy():void {
 	clearOutput();
 	author("RadicalBroseph");
+	userInterface.showBust("ALEX");
 	//If none of your cocks fit:
 	if(pc.cockThatFits(200) < 0)
 	{
@@ -511,6 +523,7 @@ function pitchIntoAlexsBoyPussy():void {
 function catchVaginalFromAlex():void {
 	clearOutput();
 	author("RadicalBroseph");
+	userInterface.showBust("ALEX");
 	var x:int = pc.cuntThatFits(20);
 	if(x < 0) x = rand(pc.cuntTotal());
 	output("You smile down at Alex and ");
@@ -660,6 +673,7 @@ function catchVaginalFromAlex():void {
 //(Dickhavers again (Fun variant for herms if I get to it))
 function frottageWithAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	var x:int = pc.biggestCockIndex();
 	output("Smiling ");
@@ -963,6 +977,7 @@ function frottageWithAlex():void {
 //(Fun for everyone)
 function catchAnalFromAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	//if taur or some kind of caterpillar thing:
 	if(pc.isTaur()) output("You straighten up, leaving Alex lying on the bed, then pull a graceful about-face, turning so your [pc.butt] faces him, and glance over your shoulder as you sway your [pc.hips] seductively.");
@@ -1105,6 +1120,7 @@ function catchAnalFromAlex():void {
 //[Bail Once More]
 function bailOutOnAlex():void {
 	clearOutput();
+	userInterface.showBust("ALEX");
 	author("RadicalBroseph");
 	output("Now that you’re actually here, you’re not so sure you want this anymore. You tell Alex that before he gets his hopes up too high.");
 	output("\n\n<i>“Shit, really?”</i>  he asks, looking a little insulted. <i>“Well, I’m not going to force you or anything but man, what a letdown. I’ll see you later, I guess.”</i>");

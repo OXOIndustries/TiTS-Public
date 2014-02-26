@@ -87,7 +87,6 @@ public function mainGameMenu():void {
 	this.userInterface.showMinimap();
 }
 
-
 function crew(counter:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -100,6 +99,15 @@ function crew(counter:Boolean = false):Number {
 		if(!counter) {
 			this.addButton(count - 1,"Celise",celiseFollowerInteractions);
 			crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
+		}
+	}
+	if(reahaIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			addButton(count-1,"Reaha",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
 	if(!counter) {
@@ -127,6 +135,7 @@ function rest():void {
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
+
 function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
@@ -134,9 +143,17 @@ function sleep(outputs:Boolean = true):void {
 	if(outputs) 
 	{
 		clearOutput();
-		if((pc.XPRaw >= pc.XPMax() && pc.level < 5) || flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0) {
-			levelUp();
-			return;
+		if ((pc.XPRaw >= pc.XPMax() && pc.level < 5) || (flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0)) 
+		{
+			if (flags["SKIP_ALLOCATION"] == undefined)
+			{
+				levelUp();
+				return;
+			}
+			else
+			{
+				flags["SKIP_ALLOCATION"] = undefined;
+			}
 		}
 		//CELISE NIGHT TIME BEDTIMEZ
 		if(celiseIsCrew())

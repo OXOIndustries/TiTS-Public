@@ -15,7 +15,7 @@
 		//constructor
 		public function Geoff()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -49,6 +49,8 @@
 			this.level = 1;
 			this.credits = 1000;
 			
+			this.inventory.push(new LeatherArmor());
+			this.inventory.push(new NaleenArmor());
 			this.inventory.push(new Knife());
 			this.inventory.push(new HoldOutPistol());
 			this.inventory.push(new EagleHandgun());

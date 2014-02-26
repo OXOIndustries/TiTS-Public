@@ -185,6 +185,11 @@ function confirmLevelPointAllocation():void
 	pc.willpower(flags["LEVELING_WILLPOWER_BONUS"]);
 	resetLevelBonuses(false);
 	
+	if (flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] > 0)
+	{
+		flags["SKIP_ALLOCATION"] = 1;
+	}
+	
 	if (flags["GAINED_LEVEL"] == undefined)
 	{
 		sleep();
@@ -212,7 +217,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Bloodthirsty",mercenaryPerk,"Bloodthirsty");
 			addButton(1,"ArmrPiercing",mercenaryPerk,"Armor Piercing");
 		}
-		if(pc.level == 3 && pc.hasPerk("Tough") == false) {
+		else if(pc.level == 3 && pc.hasPerk("Tough") == false) {
 			output("<b>You have gained the 'Tough' perk, reducing vulnerability to piercing, slashing, and kinetic damage by 10%.</b>");
 			pc.createPerk("Tough",0,0,0,0,"Vulnerability to piercing, slashing, and kinetic damage taken reduced by 10%.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -222,7 +227,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Power Strike",mercenaryPerk,"Power Strike");
 			addButton(1,"Rapid Fire",mercenaryPerk,"Rapid Fire");
 		}
-		if(pc.level == 4 && pc.hasPerk("Juggernaut") == false) {
+		else if(pc.level == 4 && pc.hasPerk("Juggernaut") == false) {
 			output("<b>You have gained the 'Armor Tweaks' perk, granting you a 20% bonus to the defense provided by your armor.</b>");
 			pc.createPerk("Juggernaut",0,0,0,0,"You have a 25% chance to overcome any paralysis or stun every round.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -232,7 +237,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Riposte",mercenaryPerk,"Riposte");
 			addButton(1,"Take Cover",mercenaryPerk,"Take Cover");
 		}
-		if(pc.level == 5 && pc.hasStatusEffect("Carpet Grenades") == false && pc.hasStatusEffect("Det. Charge") == false) {
+		else if(pc.level == 5 && pc.hasStatusEffect("Carpet Grenades") == false && pc.hasStatusEffect("Det. Charge") == false) {
 			output("<b>You have unlocked the 'Second Wind' ability, allowing you to recover half your HP and Energy once per combat.</b>");
 			//pc.createPerk("Second Wind",0,0,0,0,"You can gain back half your max HP and energy once per combat.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -242,6 +247,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"C. Grenades",mercenaryPerk,"Carpet Grenades");
 			addButton(1,"Det. Charge",mercenaryPerk,"Det. Charge");
 		}
+		else sleep();
 	}
 	else if(pc.characterClass == GLOBAL.ENGINEER) {
 		if(pc.level == 2 && pc.hasPerk("Shield Tweaks") == false) {
@@ -254,7 +260,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Atk.Drone",engineerPerk,"Attack Drone");
 			addButton(1,"Shield B.",engineerPerk,"Shield Booster");
 		}
-		if(pc.level == 3 && pc.hasPerk("Enhanced Dampeners") == false) {
+		else if(pc.level == 3 && pc.hasPerk("Enhanced Dampeners") == false) {
 			output("<b>You have gained the 'Enhanced Dampeners' perk, reducing any vulnerabilities your shields have to damage by 50%.</b>");
 			pc.createPerk("Enhanced Dampeners",0,0,0,0,"Shield vulnerabilities reduced by 50%.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -264,7 +270,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Overcharge",engineerPerk,"Overcharge");
 			addButton(1,"Volley",engineerPerk,"Volley");
 		}
-		if(pc.level == 4 && pc.hasPerk("Armor Tweaks") == false) {
+		else if(pc.level == 4 && pc.hasPerk("Armor Tweaks") == false) {
 			output("<b>You have gained the 'Armor Tweaks' perk, granting you a 20% bonus to the defense provided by your armor.</b>");
 			pc.createPerk("Armor Tweaks",0,0,0,0,"Armor defense is increased by 20%!");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -274,7 +280,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"P. Surge",engineerPerk,"Power Surge");
 			addButton(1,"D. Regen.",engineerPerk,"Deflector Regeneration");
 		}
-		if(pc.level == 5 && pc.hasStatusEffect("Static Burst Known") == false) {
+		else if(pc.level == 5 && pc.hasStatusEffect("Static Burst Known") == false) {
 			output("<b>You have unlocked the 'Static Burst' ability, allowing you to spend to energy to escape most grapples.</b>");
 			pc.createStatusEffect("Static Burst Known");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -284,6 +290,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"G. Disrupt.",engineerPerk,"Gravidic Disruptor");
 			addButton(1,"T. Disrupt.",engineerPerk,"Thermal Disruptor");
 		}
+		else sleep();
 	}
 	else if(pc.characterClass == GLOBAL.SMUGGLER) {
 		if(pc.level == 2 && pc.hasPerk("Lucky Breaks") == false) {
@@ -296,7 +303,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Shoot First",smugglerPerk,"Shoot First");
 			addButton(1,"Low Blow",smugglerPerk,"Low Blow");
 		}
-		if(pc.level == 3 && pc.hasPerk("Escape Artist") == false) {
+		else if(pc.level == 3 && pc.hasPerk("Escape Artist") == false) {
 			output("<b>You have gained the 'Escape Artist' perk, allowing you to use reflexes instead of physique to escape from grapples and granting a slight bonus.</b>");
 			pc.createPerk("Escape Artist",0,0,0,0,"Use reflexes to escape grapples with a slight bonus.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -306,7 +313,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Sneak Attack",smugglerPerk,"Sneak Attack");
 			addButton(1,"Aimed Shot",smugglerPerk,"Aimed Shot");
 		}
-		if(pc.level == 4 && pc.hasPerk("Agility") == false) {
+		else if(pc.level == 4 && pc.hasPerk("Agility") == false) {
 			output("<b>You have gained the 'Agility' perk, increasing evasion granted from items by 20% or 2%, whichever is higher.</b>");
 			pc.createPerk("Agility",0,0,0,0,"Evasion gained from items increased by 20% or a flat 2% dodge chance, whichever is better!");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -316,7 +323,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"S.F.Generator",smugglerPerk,"Stealth Field Generator");
 			addButton(1,"Disarming S.",smugglerPerk,"Disarming Shot");
 		}
-		if(pc.level == 5 && pc.hasPerk("Sharp Eyes") == false) {
+		else if(pc.level == 5 && pc.hasPerk("Sharp Eyes") == false) {
 			output("<b>You have unlocked the 'Sharp Eyes' ability, allowing you to recover from blindness one turn sooner.</b>");
 			pc.createPerk("Sharp Eyes",0,0,0,0,"You recover from blindness one turn sooner.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
@@ -326,6 +333,7 @@ function confirmLevelPointAllocation():void
 			addButton(0,"Gas Grenade",smugglerPerk,"Gas Grenade");
 			addButton(1,"Grenade",smugglerPerk,"Grenade");
 		}
+		else sleep();
 	}
 	else sleep();
 }

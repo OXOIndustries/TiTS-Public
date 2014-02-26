@@ -119,11 +119,6 @@ function jungleEncounterChances():Boolean {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
-		if(debug) {
-			maleZilEncounter();
-			return true;
-		}
-		
 		//Build possible encounters
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;

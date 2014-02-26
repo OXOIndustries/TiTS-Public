@@ -39,7 +39,7 @@ function approachJulianRouter():void {
 		finalZilCaptureTurnInEpilogue();
 	}
 	//Repeat second offer?
-	else if(!pc.hasKeyItem("Capture Harness")) 
+	else if(!pc.hasKeyItem("Capture Harness") && flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == undefined) 
 	{
 		repeatSecondHarnessOffer();
 	}

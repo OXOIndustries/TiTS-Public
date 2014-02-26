@@ -21,7 +21,7 @@
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "knife";
+			this.shortName = "Knife";
 			
 			//Regular name
 			this.longName = "knife";

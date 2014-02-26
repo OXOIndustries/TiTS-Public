@@ -31,6 +31,21 @@
 		chars["GEOFF"].inventory.push(new classes.Items.Apparel.PlainBriefs());
 		chars["GEOFF"].version = 3;
 	}
+	//GEOFF UPGRADE HAX
+	if(chars["GEOFF"].version == 3) {
+		chars["GEOFF"].inventory.push(new LeatherArmor());
+		chars["GEOFF"].inventory.push(new NaleenArmor());
+		chars["GEOFF"].inventory.push(new Knife());
+		chars["GEOFF"].inventory.push(new HoldOutPistol());
+		chars["GEOFF"].inventory.push(new EagleHandgun());
+		chars["GEOFF"].inventory.push(new ScopedPistol());
+		chars["GEOFF"].inventory.push(new ComfortableClothes());
+		chars["GEOFF"].inventory.push(new PlainUndershirt());
+		chars["GEOFF"].inventory.push(new PlainBra());
+		chars["GEOFF"].inventory.push(new PlainPanties());
+		chars["GEOFF"].inventory.push(new PlainBriefs());
+		chars["GEOFF"].version = 4;
+	}
 	if (!justUpdate || (justUpdate && chars["FLAHNE"] == undefined))
 	{
 		chars["FLAHNE"] = new classes.Characters.Flahne();
@@ -90,6 +105,10 @@
 	if (!justUpdate || (justUpdate && chars["JADE"] == undefined))
 	{
 		chars["JADE"] = new classes.Characters.Jade();
+	}
+	if (!justUpdate || (justUpdate && chars["REAHA"] == undefined))
+	{
+		chars["REAHA"] = new classes.Characters.Reaha();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

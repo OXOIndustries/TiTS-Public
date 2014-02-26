@@ -510,6 +510,10 @@
 				case "tails":
 					buffer = tails();
 					break;
+				case "crotch":
+				case "groin":
+					buffer = crotchDescript();
+					break;
 				case "base":
 				case "sheath":
 					buffer = sheathDescript(arg2);
@@ -3111,6 +3115,15 @@
 		public function analCapacity(): Number {
 			return ass.capacity() * elasticity;
 		}
+		public function hasTentacleNipples():Boolean {
+			var counter: Number = breastRows.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (breastRows[counter].nippleType == GLOBAL.TENTACLED) return true;
+			}
+			return false;
+		}
 		public function hasFuckableNipples(): Boolean {
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
@@ -5347,6 +5360,16 @@
 			if (upperUndergarment.shortName != "") addToList(upperUndergarment.longName);
 			if (lowerUndergarment.shortName != "") addToList(lowerUndergarment.longName);
 			if (isNude()) addToList("gear");
+			return formatList();
+		}
+		public function crotchDescript():String {
+			//Nothing to talk about? K
+			if(!hasCock() && !hasVagina()) return "bare crotch";
+			//Make da list!
+			if(hasCock()) addToList(cocksDescript());
+			if(balls > 0) addToList(ballsDescript());
+			if(hasVagina()) addToList(vaginasDescript());
+			
 			return formatList();
 		}
 		public function lowerGarment(): String {

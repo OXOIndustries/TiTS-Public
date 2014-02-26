@@ -22,7 +22,7 @@
 			//Used on inventory buttons
 			this.shortName = "Pandaneen";
 			//Regular name
-			this.longName = "Pandaneen Pill";
+			this.longName = "pandaneen pill";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
@@ -482,6 +482,7 @@
 							kGAMECLASS.output("\n\nYour [pc.tail] twitches, growing warmer even as its sensation deadens. You twist backwards in time to see it changing shape, morphing into stubby little thing covered in " + target.furColor + " fur. <b>There's a poofy little panda-tail just above your [pc.butt]!</b>");
 						}
 						target.tailType = GLOBAL.PANDA;
+						target.tailCount = 1;
 						target.clearTailFlags();
 						target.addTailFlag(GLOBAL.FLUFFY);
 						target.addTailFlag(GLOBAL.FURRED);

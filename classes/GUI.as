@@ -648,8 +648,8 @@
 		{
 			var btnArray:Array = _buttonTray.buttons;
 			
-			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") PressButton(0);
-			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") PressButton(14);
+			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") PressButton(0, kGAMECLASS.inCombat);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") PressButton(14, kGAMECLASS.inCombat);
 		}
 		
 		/**
@@ -657,7 +657,7 @@
 		 * @param	arg		Button index to activate
 		 * @return			Successfully activated the button.
 		 */
-		public function PressButton(arg:int):Boolean
+		public function PressButton(arg:int, inCombat:Boolean):Boolean
 		{
 			if (arg < 0 || arg > 14) return false;
 			
@@ -666,6 +666,8 @@
 			var tarButton:MainButton = btnArray[arg];
 			
 			if (tarButton.func == undefined) return false;
+			
+			if (inCombat) showBust("none");
 			
 			if (tarButton.arg == undefined) 
 			{

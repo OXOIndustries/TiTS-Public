@@ -780,6 +780,7 @@ function flahneDeskMunchies():void {
 //If she has a dong, surprise desk bukkake drip.
 function eatFlahneOutUnderDesk():void {
 	clearOutput();
+	this.userInterface.showBust("FLAHNE");
 	output("You pry apart Flahne’s dripping entrance while the newcomer drones on about her situation, completely oblivious to the libertine delights going on just below the desk. ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("Her ovipositor stiffens at your touches, rising higher and higher, until it stops at a 45 degree angle, smearing her sticky efflux across the hardwood surface above. When she cums, she’s probably going to soak the whole thing, and you. ");
 	output("Slowly pulling your fingers free of her glossy entrance, you smear the soaked digits across her mound, squeezing her fat vulvae together so that they form a lusty crease. Your [pc.tongue] comes out almost of its own accord, and you lick across the cunt-cleavage, tasting the sugary sweetness of Flahne’s sticky juices. Somehow, she keeps it together.");
@@ -860,6 +861,7 @@ function eatFlahneOutUnderDesk():void {
 //Suck&Swallow
 function flahneGetsSuckedAndSwallowed():void {
 	clearOutput();
+	this.userInterface.showBust("FLAHNE");
 	output("You squeeze her shaft right around the base to remind it who’s boss before taking pity on it, relaxing your grip and arching it down to be properly tended to. It wouldn’t do to have her burst all over the bottom of her desk, creating a rain of white that would completely cover you. Well, that might not be too bad, but you’re not gonna let that happen today.");
 	output("\n\nFlahne’s flexible boner is easy to wrangle up to your mouth. It even drips a few strands of white onto your lips, growing a bit fatter in your hand as you hold it. Its owner shudders slightly, sending a ripple through her luxurious thighs all the way down to her feet, shifting position so that her wet gash hangs just over the edge of the seat, it’s golden lips still expanding with lust. You rub her twat with one hand while slowly beginning to pump her cock-like ovipositor with the other, testing the gel-woman’s self-control as well as you can.");
 	output("\n\nThroughout this, she’s still carrying on a conversation with an unnamed woman, though the first stroke along her dick causes her to pause for a deep breath of air.");
@@ -903,6 +905,7 @@ function flahneGetsSuckedAndSwallowed():void {
 //Play&Spray
 function playAndSpray():void {
 	clearOutput();
+	this.userInterface.showBust("FLAHNE");
 	output("A devilish idea takes shape as you hear the door behind you slide open and high-heeled footsteps click across the floor. Taking Flahne’s dangling organ in hand, you stroke it languidly, collecting moisture from the tip and smearing it along the length. You can see her seat shift uneasily as you work the shaft in time to the visitor’s footsteps.");
 	
 	output("\n\n<i>“Welcome to the Mhen'ga Port Authority, Esbeth Station,”</i>  the slightly-stricken secretary says. <i>“Have you filled out your visitor’s paperwork yet?”</i>");
@@ -1159,7 +1162,7 @@ function flahneIfMalesFitTheySitExhibitionism():void {
 
 	output("\n\nHer silken insides feel wonderful around your [pc.cock " + x + "], and you slide your hands sensually up her body, revelling in the feeling of her squishy flesh. When your hands reach her breasts, you squeeze the wonderful globes, letting your hands sink into the succulent tit-flesh as you kiss the nape of the gel-secretary’s neck. Flahne’s moans grow louder as you massage the sides of her gooey G-cups, rolling her coppery nipples between two fingers before tugging them softly. You move one of your hands up to the gel-girl’s mouth, slipping a few fingers inside and letting her tongue wet them. You draw your digits out and trace them down the middle of her chest until it lies between her legs.");
 
-	output("\n\nAs you lower your hand you start to rock your hips back and forth, not yet thrusting but rubbing your [pc.cock" + x + "] around inside Flahne’s sopping box. Your saliva-wetted fingers ");
+	output("\n\nAs you lower your hand you start to rock your hips back and forth, not yet thrusting but rubbing your [pc.cock " + x + "] around inside Flahne’s sopping box. Your saliva-wetted fingers ");
 	if(!flahneDickOut()) output("rub against her rigid clit");
 	else output("lubricate her rigid gel-pole");
 	output(" with sexual fervor. The curvy secretary begins to grind her own hips in circles to quicken the rubbing, and your moans join hers. You turn her head around and give the gel-girl a deep kiss that is returned in kind, her long tongue wrapping around yours. When you break the kiss, you drag her tongue out of her mouth for a moment, sucking her sugary saliva off of it as you let it slide from your mouth with a small popping noise. One of her hands squeezes your arm as you ");
