@@ -49,7 +49,11 @@
 					{
 						if (this[prop.@name].length > 0)
 						{
-							if (this[prop.@name][0] is ISaveable)
+							if (this[prop.@name][0] == undefined)
+							{
+								throw Error("An array '" + prop.@name + "' in '" + getQualifiedClassName(this) + "' has been configured with a length value but has undefined properties. Check for instances of 'new Array(GLOBAL.<flag>)' and change them to '[GLOBAL.flag]'");
+							}
+							else if (this[prop.@name][0] is ISaveable)
 							{
 								dataObject[prop.@name] = new Array();
 								
@@ -141,6 +145,11 @@
 							{
 								this[prop] = new Array();
 								
+								// Check for possible misconfigurations
+								if (dataObject[prop][0] == undefined)
+								{
+									throw Error("An array '" +  prop + "' in '" + getQualifiedClassName(this) + "' has been configured with a length value but has undefined properties. Check for instances of 'new Array(GLOBAL.<flag>)' and change them to '[GLOBAL.flag]'");
+								}
 								// Whose children support this serialization method
 								if (dataObject[prop][0].hasOwnProperty("classInstance"))
 								{
