@@ -3,7 +3,6 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Melee.ShockBlade;
-	import classes.Items.Miscellaneous.*;
 	import classes.Items.Guns.HammerPistol;
 	import classes.Items.Protection.DecentShield;
 	import classes.kGAMECLASS;
@@ -17,7 +16,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
 			this.short = "Dane";
 			this.originalRace = "ausar";
@@ -53,7 +52,7 @@
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 500;
 			
-			this.credits = 0;
+			this.credits = 1200;
 			
 			this.femininity = 10;
 			this.eyeType = 0;
@@ -167,8 +166,6 @@
 			this.ass.looseness = 1;
 
 			this.inventory.push(new ShockBlade());
-			this.inventory.push(new ShockBlade());
-			this.inventory.push(new ZilRation());
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
 			this.createPerk("Multiple Shots",0,0,0,0,"");
 		}	
