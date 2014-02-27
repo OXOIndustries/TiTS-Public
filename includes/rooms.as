@@ -1127,6 +1127,7 @@ function initializeRooms():void
 	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
 	rooms["KELLY'S OFFICE"].southExit = "SOUTH ESBETH 2";
+	rooms["KELLY'S OFFICE"].runOnEnter = kellysOfficeBonusFunction;
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 

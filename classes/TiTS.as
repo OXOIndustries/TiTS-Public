@@ -84,6 +84,7 @@
 		include "../includes/jade.as";
 		include "../includes/reaha.as";
 		include "../includes/rivalEncounters.as";
+		include "../includes/kelly.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
