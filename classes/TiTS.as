@@ -83,6 +83,7 @@
 		include "../includes/crazyCarl.as";
 		include "../includes/jade.as";
 		include "../includes/reaha.as";
+		include "../includes/rivalEncounters.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
@@ -166,7 +167,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.7";
+			version = "0.02.8";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -777,6 +778,10 @@
 		public function get reaha():*
 		{
 			return chars["REAHA"];
+		}
+		public function get dane():*
+		{
+			return chars["DANE"];
 		}
 	}
 }

@@ -71,6 +71,17 @@ function combatMainMenu():void
 		}
 		this.addButton(4,"Do Nothing",wait);
 	}
+	//Grapple Menu
+	else if (pc.hasStatusEffect("Grappled"))
+	{
+		output("\n<b>You are grappled and unable to fight normally!</b>");
+		addButton(0,"Struggle",grappleStruggle);
+		if(pc.hasStatusEffect("Static Burst Known")) {
+			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
+			else this.addDisabledButton(3,"StaticBurst");
+		}
+		this.addButton(4,"Do Nothing",wait);
+	}
 	else 
 	{
 		//Combat menu
@@ -401,6 +412,32 @@ function processCombat():void
 	this.addButton(0,"Next",combatMainMenu);
 }
 
+function grappleStruggle():void {
+	clearOutput();
+	if(pc.hasPerk("Escape Artist"))
+	{
+		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
+			output("You display a remarkable amount of flexibility as you twist and writhe to freedom.");
+			pc.removeStatusEffect("Grappled");
+		}
+	}
+	else 
+	{
+		if(pc.physique() + rand(20) + 1 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
+			output("With a mighty heave, you tear your way out of the grappled and onto your [pc.feet].");
+			pc.removeStatusEffect("Grappled");
+		}
+	}
+	//Fail to escape: 
+	if(pc.hasStatusEffect("Grappled"))
+	{
+		output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
+		pc.addStatusValue("Grappled",1,1);
+	}
+	output("\n");
+	processCombat();
+}
+
 function staticBurst():void {
 	clearOutput();
 	pc.energy(-50);
@@ -411,6 +448,11 @@ function staticBurst():void {
 	if(pc.hasStatusEffect("Naleen Coiled")) {
 		pc.removeStatusEffect();
 		output("\nThe naleen's tail spasms as you easily slip out of its coils.");
+	}
+	if(pc.hasStatusEffect("Grappled"))
+	{
+		pc.removeStatusEffect("Grappled");
+		output("\nYou slip free of the grapple.");
 	}
 	output("\n");
 	processCombat();
@@ -593,7 +635,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		if(damage >= 1) {
 			damage = HPDamage(target,damage,attacker.meleeWeapon.damageType);
 			if(attacker == pc) {
-				if(sDamage[0] > 0) output(" Your " + attacker.meleeWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" Your " + attacker.meleeWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");			
 			}
 			else {
@@ -609,7 +651,9 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		return;
 	}
 	if(attacker == chars["PC"]) output("\n");
-	if(!noProcess) processCombat();
+	if(!noProcess) {
+		processCombat();
+	}
 }
 
 //Special 1: Flurry attack - high miss chance.
@@ -705,7 +749,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		if(damage >= 1) {
 			damage = HPDamage(target,damage,attacker.rangedWeapon.damageType,"ranged");
 			if(attacker == pc) {
-				if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.damageType + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
+				if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
 				else output(" (<b>" + damage + "</b>)");			
 			}
 			else {
@@ -715,12 +759,12 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		}
 	}
 	//Do multiple attacks if more are queued.
-	if(attacker.hasStatusEffect("Multiple Shots")) {
+	if(attacker.hasStatusEffect("Multiple Shots") && special == 0) {
 		output("\n");
 		rangedAttack(attacker,target);
 		return;
 	}
-	output("\n");
+	if(attacker == chars["PC"]) output("\n");
 	if(!noProcess) processCombat();
 }
 
@@ -769,7 +813,7 @@ function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTyp
 		if (sDamage[0] > 0) 
 		{
 			if(target == pc) output(" The attack continues on to connect with you! (<b>" + damage + "</b>)");
-			else output(" The attack continues on to connect with " + foes.a + foes.short + "! (<b>" + damage + "</b>");
+			else output(" The attack continues on to connect with " + foes[0].a + foes[0].short + "! (<b>" + damage + "</b>)");
 		}
 		else 
 			output(" (<b>" + damage + "</b>)");
@@ -1013,6 +1057,9 @@ function enemyAI(aggressor:Creature):void
 		case "machina":
 			machinaAI();
 			break;
+		case "Dane":
+			daneAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1048,6 +1095,10 @@ function victoryRouting():void
 	{
 		pushButtanOnMagicTedsFireRobot();
 	}
+	else if(foes[0].short == "Dane")
+	{
+		defeatDane();
+	}
 	else genericVictory();
 }
 
@@ -1077,6 +1128,10 @@ function defeatRouting():void
 	else if(foes[0].short == "machina")
 	{
 		ohShitLoseToRobot();
+	}
+	else if(foes[0].short == "Dane")
+	{
+		loseToDane();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1154,24 +1209,24 @@ function getCombatPrizes(newScreen:Boolean = false):void
 		addToList(foes[x].a + foes[x].short);
 	}
 	output(formatList() + "!");
-	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.\n");
+	if(XPBuffer > 0) output(" " + XPBuffer + " XP gained.");
 	else {
-		output(" <b>Maximum XP attained! You need to level up to continue to progress.</b>\n");
-		if(pc.level == 1) output("<b>Find a bed to sleep on in order to level up (like on your ship).</b>\n");
+		output("\n<b>Maximum XP attained! You need to level up to continue to progress.</b>");
+		if(pc.level == 1) output("\n<b>Find a bed to sleep on in order to level up (like on your ship).</b>");
 	}
 	
 	//Monies!
 	if(creditBuffer > 0) {
-		if(foes.length > 1 || foes[0].plural) output(" They had ");
-		else output(foes[0].mfn(" He"," She", " It") + " had ");
+		if(foes.length > 1 || foes[0].plural) output("\nThey had ");
+		else output(foes[0].mfn("\nHe"," She", " It") + " had ");
 		output(num2Text(creditBuffer) + " credit");
 		if(creditBuffer > 1) output("s");
-		output(" loaded on an anonymous credit chit that you appropriate.\n");
+		output(" loaded on an anonymous credit chit that you appropriate.");
 	}
 	this.clearMenu();
 	//Fill wallet and GTFO
 	if(foundLootItems.length > 0) {
-		output("You also find ");
+		output("\nYou also find ");
 		clearList();
 		for(x = 0; x < foundLootItems.length; x++) {
 			addToList(foundLootItems[x].description + " (x" + foundLootItems[x].quantity + ")\n\n");
@@ -1232,6 +1287,9 @@ function startCombat(encounter:String):void
 			break;
 		case "machina":
 			chars["MACHINA"].prepForCombat();
+			break;
+		case "Dane":
+			chars["DANE"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -1838,38 +1896,60 @@ function flashGrenade(target:Creature):void {
 
 
 function headbutt(target:Creature):void {
-	clearOutput();
-	pc.energy(-25);
-	output("You lean back before whipping your head forward in a sudden headbutt.\n");
-	if(combatMiss(pc,target)) {
-		if(target.customDodge == "") output("You miss!");
-		else output(target.customDodge);
+	properHeadbutt(pc,target);
+}
+function properHeadbutt(attacker:Creature,target:Creature):void {
+	if(attacker == pc) clearOutput();
+	attacker.energy(-25);
+	if(attacker == pc) output("You lean back before whipping your head forward in a sudden headbutt.\n");
+	else output(attacker.capitalA + attacker.short + " leans back before whipping " + attacker.mfn("his","her","its") + " head forward in a sudden headbutt.\n");
+	
+	if(combatMiss(attacker,target)) {
+		if(attacker == pc) 
+		{
+			if(target.customDodge == "") output("You miss!");
+			else output(target.customDodge);
+		}
+		else
+		{
+			output(attacker.mfn("He","She","It") + " he misses.")
+		}
 	}
 	//Extra miss for blind
-	else if(pc.hasStatusEffect("Blind") && rand(2) > 0) {
-		output("Your blind strike fails to connect.");
+	else if(attacker.hasStatusEffect("Blind") && rand(2) > 0) {
+		if(attacker == pc) output("Your blind strike fails to connect.");
+		else output(attacker.mfn("He","She","It") + " blind strike fails to connect.");
 	}
 	//Attack connected!
 	else {
-		output("You connect with your target!");
+		if(attacker == pc) output("You connect with your target!");
+		else output(attacker.mfn("He","She","It") + " connects with you.");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.physique()/2 + pc.level;
+		var damage:int = attacker.physique()/2 + attacker.level;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
 		var sDamage:Array = new Array();
-		genericDamageApply(damage,pc,target);
-		if(pc.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
-			if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
-			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+		genericDamageApply(damage,attacker,target);
+		if(attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
+			if(target == pc)
+			{
+				output("\n<b>You are stunned.</b>");
+			}
+			else
+			{
+				if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+				else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
+			}
 			target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
 		}
 		else {
-			output("\nIt doesn't look to have stunned your foe!");
+			if(attacker == pc) output("\nIt doesn't look to have stunned your foe!");
+			else output("\nIt didn't manage to stun you.");
 		}
 	}
-	output("\n");
+	if(attacker == pc) output("\n");
 	processCombat();
 }
 

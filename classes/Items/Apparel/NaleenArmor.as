@@ -39,7 +39,7 @@
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;
-			this.defense = 1;
+			this.defense = 2;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
