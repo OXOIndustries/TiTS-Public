@@ -10,6 +10,7 @@ package classes.GameData
 			CodexManager.UNLOCKEDENTRIES = new Array();
 			CodexManager.VIEWEDENTRIES = new Array();
 			CodexManager.CODEXCATEGORIES = new Array();
+			CodexManager.ALWAYSUNLOCKEDENTRIES = new Array();
 			
 			CodexManager.CODEXCONTENTFUNCTORS = new Object();
 			CodexManager.CODEXTREE = new Object();
@@ -25,6 +26,7 @@ package classes.GameData
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 	= new Object();
 		}
 		
+		private static var ALWAYSUNLOCKEDENTRIES:Array;
 		private static var UNLOCKEDENTRIES:Array;
 		private static var VIEWEDENTRIES:Array;
 		private static var CODEXCATEGORIES:Array;
@@ -54,6 +56,11 @@ package classes.GameData
 			if (startsUnlocked == true)
 			{
 				CodexManager.unlockEntry(entryName);
+				
+				if (CodexManager.ALWAYSUNLOCKEDENTRIES.indexOf(entryName) == -1)
+				{
+					CodexManager.ALWAYSUNLOCKEDENTRIES.push(entryName);
+				}
 			}
 		}
 		
@@ -120,6 +127,7 @@ package classes.GameData
 		public static function entryUnlocked(entryName:String):Boolean
 		{
 			if (CodexManager.UNLOCKEDENTRIES.indexOf(entryName) != -1) return true;
+			else if (CodexManager.ALWAYSUNLOCKEDENTRIES.indexOf(entryName) != -1) return true;
 			return false;
 		}
 		

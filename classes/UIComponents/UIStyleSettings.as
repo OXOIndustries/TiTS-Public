@@ -568,21 +568,23 @@ package classes.UIComponents
 				var lockedCodexEntry = {
 					fontFamily: "Lato",
 					fontSize: 18,
-					color: "#FF0000",
-					marginRight: 0
+					color: "#CC3300",
+					marginRight: 0,
+					fontWeight: "bold"
 				}
 				
 				var newCodexEntry = {
 					fontFamily: "Lato",
 					fontSize: 18,
-					color: "#00FF00",
-					marginRight: 0
+					color: "#00CCFF",
+					marginRight: 0,
+					fontWeight: "bold"
 				}
 				
 				var viewedCodexEntry = {
 					fontFamily: "Lato",
 					fontSize: 18,
-					color: "#0000FF",
+					color: "#FFFFFF",
 					marginRight: 0
 				}
 				
