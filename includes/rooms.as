@@ -814,13 +814,13 @@ function initializeRooms():void
 	//59. Dead End
 	rooms["METAL POD 1"] = new RoomClass(this);
 	rooms["METAL POD 1"].roomName = "METAL\nPOD";
-	rooms["METAL POD 1"].description = "Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.\n\n<b>This game is in Alpha, and the encounter with your rival isn't yet in game. Please be patient with us as we develop TiTS further!</b>";
+	rooms["METAL POD 1"].description = "Buried halfway in a small crater of its own creation sits an oblong metal pod, perhaps ten feet long and three across. The surface is still glossy after its obviously hot reentry; you can see the way it blackened the ground and the plants around it. You immediately recognize it as one of the probes your father sent out - one of the keys to his fortune.";
 	rooms["METAL POD 1"].planet = "PLANET: MHEN'GA";
 	rooms["METAL POD 1"].system = "SYSTEM: ARA ARA";
 	rooms["METAL POD 1"].northExit = "NARROW PATH 3";
 	rooms["METAL POD 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["METAL POD 1"].addFlag(GLOBAL.HAZARD);
-	rooms["METAL POD 1"].runOnEnter = jungleMiddleEncounters;
+	rooms["METAL POD 1"].runOnEnter = approachRivalOnMhenga;
 
 	//60. Deep\nJungle
 	rooms["DEEP JUNGLE 1"] = new RoomClass(this);
@@ -1194,6 +1194,7 @@ function initializeRooms():void
 	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
 	rooms["KELLY'S OFFICE"].southExit = "SOUTH ESBETH 2";
+	rooms["KELLY'S OFFICE"].runOnEnter = kellysOfficeBonusFunction;
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 

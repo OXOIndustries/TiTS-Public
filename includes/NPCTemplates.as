@@ -110,6 +110,10 @@
 	{
 		chars["REAHA"] = new classes.Characters.Reaha();
 	}
+	if (!justUpdate || (justUpdate && chars["DANE"] == undefined))
+	{
+		chars["DANE"] = new classes.Characters.Dane();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
@@ -122,7 +126,6 @@
 			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
-	
 	this.foes[0] = new Creature();
 
 }

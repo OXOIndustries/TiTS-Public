@@ -209,6 +209,7 @@
 		public static const MACHINA:int 							   = 16;
 		public static const JADE:int 								   = 17;
 		public static const REAHA:int 								   = 18;
+		public static const KELLY:int 								   = 19;
 
 		public static var ITEMS:Object = {};
 		

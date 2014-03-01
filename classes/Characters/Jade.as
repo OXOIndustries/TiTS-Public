@@ -15,7 +15,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Jade";
 			this.originalRace = "orchan";
@@ -52,6 +52,7 @@
 			this.HPRaw = this.HPMax();
 
 			this.inventory.push(new Pandaneen());
+			this.inventory.push(new PandaPro());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -175,4 +176,5 @@
 			this.createStatusEffect("Disarm Immune");
 		}
 	}
+
 }
