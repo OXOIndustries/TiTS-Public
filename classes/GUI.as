@@ -790,6 +790,8 @@
 		{
 			if (_currentModule is CodexModule)
 			{
+				// This is a little buggy atm - the same fix that stops sticky formatting from hitting output/output2 doesn't work on codex.
+				// I THINK it might be the additional span tags being used for text formatting, and moving the "fix" wrappers further down the chain might work.
 				(_currentModule as CodexModule).htmlText = "<span class='words'><p>" + outputCodexBuffer + "</p></span>";
 			}
 			else

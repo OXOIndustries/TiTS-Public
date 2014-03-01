@@ -36,14 +36,9 @@ function debugMenus():void
 {
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
-	output("\n\nTesting some Rival parse tags:");
-	output("\n\nRival Name: [rival.short] Rival Gender: " + rival.mfn("Male", "Female", "Agender"));
-	output("\n\n Testing Tags:");
-	output("\n<b>He</b> [rival.he] <b>She</b> [rival.she] <b>Ey</b> [rival.ey]");
-	output("\n<b>Him</b> [rival.himo] <b>Her</b> [rival.hero] <b>Em</b> [rival.em]");
-	output("\n<b>His</b> [rival.hisa] <b>Her</b> [rival.hera] <b>Eir</b> [rival.eir]");
-	output("\n<b>HisP</b> [rival.hisp] <b>Hers</b> [rival.hersp] <b>Eirs</b> [rival.eirs]");
-	output("\n<b>Himself</b> [rival.himself] <b>Herself</b> [rival.herself] <b>Emself</b> [rival.emself]");
+	output("\n\nTesting intentionally fucking up bold tags.");
+	output("<b>Open tag <b>Double open tag");
+	output("More text");
 	
 	
 	addItemButton(0, new DBGShield(), function():void {
