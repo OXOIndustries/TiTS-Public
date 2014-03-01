@@ -155,7 +155,7 @@ package classes.UIComponents.ContentModuleComponents
 		private function linkContainer():TextField
 		{
 			var tf:TextField = new TextField();
-			tf.defaultTextFormat = UIStyleSettings.gCodexLinkFormatter;
+			tf.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			tf.width = 170;
 			tf.multiline = true;
 			tf.wordWrap = false;
@@ -172,11 +172,12 @@ package classes.UIComponents.ContentModuleComponents
 		private function linkHandler(e:TextEvent):void
 		{
 			CodexManager.getEntryFunctor(e.text)();
+			this.updateContent();
 		}
 		
 		private function buildTextTree(treeBranch:Object, level:int = 0):String
 		{
-			var msg:String = "";
+			var msg:String = "<span class='words'><p><textformat tabstops='15,30,45,60,75,90'>";
 			
 			for (var key:String in treeBranch)
 			{
@@ -195,6 +196,7 @@ package classes.UIComponents.ContentModuleComponents
 				}
 			}
 			
+			msg += "</textformat></p></span>";
 			return msg;
 		}
 		
@@ -209,11 +211,18 @@ package classes.UIComponents.ContentModuleComponents
 			
 			if (CodexManager.entryUnlocked(key))
 			{
-				msg += "<a href='event:" + key + "'>" + key + "</a>\n";
+				if (CodexManager.entryViewed(key))
+				{
+					msg += "<span class='viewed'><a href='event:" + key + "'>" + key + "</a></span>\n";
+				}
+				else
+				{
+					msg += "<span class='new'><a href='event:" + key + "'>" + key + "</a></span>\n";
+				}
 			}
 			else
 			{
-				msg += "LOCKED\n";
+				msg += "<span class='locked'>Locked</span>\n";
 			}
 			
 			return msg;

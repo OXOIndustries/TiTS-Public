@@ -565,12 +565,36 @@ package classes.UIComponents
 					marginRight: 5
 				}
 				
+				var lockedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FF0000",
+					marginRight: 0
+				}
+				
+				var newCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00FF00",
+					marginRight: 0
+				}
+				
+				var viewedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#0000FF",
+					marginRight: 0
+				}
+				
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".good", good);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".bad", bad);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".nothing", indifferent);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".header", header);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".blockHeader", blockHeader);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".locked", lockedCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".new", newCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".viewed", viewedCodexEntry);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}

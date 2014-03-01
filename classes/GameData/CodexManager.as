@@ -123,6 +123,12 @@ package classes.GameData
 			return false;
 		}
 		
+		public static function entryViewed(entryName:String):Boolean
+		{
+			if (CodexManager.VIEWEDENTRIES.indexOf(entryName) != -1) return true;
+			return false;
+		}
+		
 		private static function PlaceInTree(codexType:int, treePosition:String, entryName:String, functor:Function):void
 		{
 			var base:Object = CodexManager.CODEXTREE[codexType];
