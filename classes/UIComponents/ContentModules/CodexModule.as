@@ -56,7 +56,7 @@ package classes.UIComponents.ContentModules
 			_codexText.width = 774;
 			_codexText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_codexText.name = this._moduleName + "text";
-			_codexText.htmlText = "<span class='words'><p>Syncing smutbuffer... preparing waifus... reticulating horsecocks... DONE\n\nCodex prepped for sloot data!</p></span>";
+			_codexText.htmlText = "<span class='words'><p>Syncing smutbuffer... preparing waifusbase... reticulating horsecocks... DONE\n\n> I am codex. Please insert sloot datas.</p></span>";
 			this.addChild(_codexText);
 			
 			_codexText.addEventListener(Event.SCROLL, updateScrollBar);
@@ -86,5 +86,4 @@ package classes.UIComponents.ContentModules
 			_codexTree.update();
 		}
 	}
-
 }
