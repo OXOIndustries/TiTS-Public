@@ -907,7 +907,10 @@ function dudesGetStangRoad():void {
 		output("Dropping down to your [pc.knees] ");
 		if(!pc.isNude()) output("you tear out of your [pc.gear],");
 		else output("you strip out of the little gear you carry,");
-		output(" propelled by mounting desire too strong to understand or consider. [pc.EachCock] trembles with aching, complete need, and you flop down on the ground, grabbing {it/one} to stroke, jacking yourself off right there while the victorious wasp-woman looms over you. Her shining onyx lips curl into a smile as she watches you, but her armored, chitinous 'boot' kicks your hand away from your needy boner.");
+		output(" propelled by mounting desire too strong to understand or consider. [pc.EachCock] trembles with aching, complete need, and you flop down on the ground, grabbing ");
+		if(pc.cockTotal() == 1) output("it");
+		else output("one");
+		output(" to stroke, jacking yourself off right there while the victorious wasp-woman looms over you. Her shining onyx lips curl into a smile as she watches you, but her armored, chitinous 'boot' kicks your hand away from your needy boner.");
 		output("\n\n<i>“You think you're horny now, do you?”</i>  she asks with an imperious sneer.");
 		output("\n\nYou nod and try to start up once more with your other hand, but she pins your wrist to the ground under her foot. You vainly twist and thrash against her as she stands over you, her fingers busily pumping away at her sodden quim, dribbling flecks of honeyed lovejuice onto your [pc.chest] and chin. There's no escaping it, though; you're so turned on that your muscles feel like quivering jelly, and she seems vastly more in control of herself than you. You slump down, [pc.hips] giving futile little twitches.");
 		output("\n\n<i>“Do you want to taste real arousal? Lust so powerful it'll make my wonderful pheromones seem like like a match next to a bonfire?”</i>  the zil beauty coos, not really expecting an answer. <i>“Do you want to feel ecstasy so potent that your cock</i>");
@@ -1060,7 +1063,7 @@ function dudesGetStangRoad():void {
 	
 	output("\n\nNodding, you brace yourself, ready to thrust against her thoroughly creampied cunt, but instead of getting the fuck you were anticipating, you get a sudden, stabbing pain right under your [pc.cocks] again. The discomfort fades even faster, immediately and totally replaced with a burning need to cum, to deposit your load directly into this vixen's well-fed vagina again and again. You were ready to fuck her to a second orgasm before, but now you're already back at the cusp again!");
 	
-	output("\n\nThe venom is doing its work, and the wasp-woman doesn't even bother to pull her stinger out this time. She just starts grinding herself in slow, circular motions above you, moaning and occasionally letting more of her too-potent venom slip directly into your lusting, aphrodisiac-possessed body. She's wet enough to make a jacuzzi jealous and so warm that the lava-creatures of surtur would feel cold in comparison. Her vocalizations of pleasure are high-pitched and melodious, and just listening to her is nearly enough to get you off once more.");
+	output("\n\nThe venom is doing its work, and the wasp-woman doesn't even bother to pull her stinger out this time. She just starts grinding herself in slow, circular motions above you, moaning and occasionally letting more of her too-potent venom slip directly into your lusting, aphrodisiac-possessed body. She's wet enough to make a jacuzzi jealous and so warm that the lava-creatures of Surtur would feel cold in comparison. Her vocalizations of pleasure are high-pitched and melodious, and just listening to her is nearly enough to get you off once more.");
 	
 	output("\n\nYour vision swims, and you close your eyes before you can become nauseous, not trusting your traitorous sight. The only sense you really need right now is touch. Your spastically throbbing cock");
 	if(pc.cockTotal() > 1) output("s are");
@@ -1210,7 +1213,7 @@ function defeatHostileZil():void {
 	//Lust
 	else {
 		output("Sighing needily, the wasp-girl’s hand dives back between her legs, digging her fingers knuckle-deep into the simmering slit in an effort to quench the excitement you've stoked within her. She moans as she realizes how futile an effort it is, dropping down onto all fours to present herself more perfectly for you. Her voice escapes in a needy pant, <i>“I yield to you. </i>");
-		if(pc.race() == "zil") output("<i>You're more like... like us than you let on, traveller.</i>");
+		if(pc.race() != "zil") output("<i>You're more like... like us than you let on, traveller.</i>");
 		else output("<i>Mmm... you may claim me now, zil.</i>");
 		output("<i>“</i>");
 		//Raise lust to 33 if below and continue:

@@ -20,7 +20,7 @@ function naleenMaleEncounter():void
 	if(flags["TIMES_MET_MALE_NALEEN"] == undefined)
 	{
 		output("\n\nAs you walk through the jungles, you do your best to keep alert, scanning for the danger that could come from any angle.  You are certain that you sense movement close to your [pc.feet]. You react as quickly as you can, falling into your combat stance and looking around, trying to establish just what it was that you sensed.");
-		output("\n\nAs you do so, something long and sinuous slaps out at you, forcing you to dodge it. You quickly shift back into position as a figure slides out of the undergrowth, revealing itself");
+		output("\n\nAs you do so, something long and sinuous slaps out at you, forcing you to dodge it. You quickly shift back into position as a figure slides out of the undergrowth, revealing itself ");
 		if(hours < 17) output("in the light.");
 		else output("in the starlight.");
 
