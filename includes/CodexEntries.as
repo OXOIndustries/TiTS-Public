@@ -4,25 +4,21 @@
 
 public function configureCodex():void
 {
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Syn", testPersonEntryB);
-	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Snouts", testEventEntryB);
-	
 	// Complex path tree entries DO work, but until we actually NEED to organise the data
 	// (and I implement some kind of path folding), I don't think we should actually USE them more than say 1 deep (because the way addEntry works
 	// requires at least a "root" path of some sort
+	// At the very least, the "tree" view down the side of the UI supports scrolling, so its not a HUGE issue and it
+	// can wait until we're at a point it needs to be fixed.
 	
+	// Other types of entries -- these are categorised under separate headings
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_PERSON, "Test People", "Arty", testPersonEntryA);
+	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_EVENT, "Test Events", "Buttsunder", testEventEntryA);
 	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Some/Complex/Path/To", "Tentacool", testLocationEntryA);
-	//CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "This/Isnt/Simpler/Either", "Interbutts", testLocationEntryB);
 	
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Test Locations", "Tentacool", testLocationEntryA);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_LOCATION, "Test Locations", "Interbutts", testLocationEntryB);
-	
-	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too
+	// This is how I'm proposing we split things up for now -- stuff things into a root category of the relevent system they belong too -- "Organic" etc might be a better long-term solution, but there'll be a lot
+	// of categories that likely won't be very full for a LONG time going down that route
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Zil", zilCodexEntry);
-	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Ausar", ausarCodexEntry, true); // Starts unlocked because cba to stuff it in all the places it should be atm
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Ausar", ausarCodexEntry, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Unknown", "Myrmedion", myrmedionCodexEntry, true);
 }
 
@@ -179,83 +175,4 @@ public function myrmedionCodexEntry():void
 	outputCodex("Myr technology is nearly analogous with early 20th century earth technology, with basic coal-powered electricity and gas-operated monorails having been recently installed in some of the larger hive cities. Highly primitive computers have just entered service before First Contact, using punch-tape processors and tubes. Despite their largely underground existence, the myr do have aircraft, though most have been re-purposed into transports and military craft due to the war (indeed, the current Joint Ausar Fleet base in Gildenmere, the Gold Myr capital, is a repurposed airfield). Just before First Contact, the war between Red and Gold Myr took an unexpectedly lethal turn due to the Gold Myr introducing poison gasses into the conflict, an incredibly effective deterrent against the unchecked Red Myr advance into their territory, followed by the Red Myr threatening the unleash a primitive atomic weapon the day before First Contact. Due to the appearance of the Ausar expedition to Myrellion, thermonuclear war has been temporarily averted, which has since given the Gold Myr the opportunity to fashion their own WMDs in response. The presence of the alien expedition is assumed to be the only preventative factor keeping the world war from escalating to a nuclear inferno. Due to the surprisingly advanced nature of the race, and their ‘honeypot’ biology (which is seen as highly promising by Xenogen), U.G.C. diplomats have arrived on the planet and are working with both hierarchies to achieve a cease fire in the seven years' war.");
 
 	CodexManager.viewedEntry("Myrmedion");
-}
-
-public function testPersonEntryA():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("Arty Rynn"));
-	outputCodex("\nSome duder who exists. Honest. No really!");
-	outputCodex("\nRight Honourable Mentlegenn and such.");
-	outputCodex("\nA Dude Who Is Cool.");
-	
-	outputCodex("\n\n");
-	
-	outputCodex("More words, words words.");
-	
-}
-
-public function testPersonEntryB():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("Syn"));
-	outputCodex("\nSome batshit insane chick that won't leave you alone. Have fun with that.");
-	outputCodex("\nPain in the cunt factor: infinity.");
-	outputCodex("\nShe looks kinda cool or some shit, whatever.");
-	
-	outputCodex("\n\n");
-	
-	outputCodex("Insert words here etc.");
-}
-
-public function testEventEntryA():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("The Great Buttsunder"));
-	outputCodex("\nYou took it in the butt. It was good. The end.");
-	
-	outputCodex("\n\n");
-	
-	outputCodex("Guess I better pad out this placeholder shit some more so I can make sure the UI doesn't fall over.");
-}
-
-public function testEventEntryB():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("Victory of the Snouts"));
-	outputCodex("\nAnd on that day, Savin's rage intensified 10 fold.");
-	
-	outputCodex("\n\n");
-	
-	outputCodex("I couldn't help myself...");
-	
-}
-
-public function testLocationEntryA():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("Planet Tentacool"));
-	outputCodex("\nCool place. Many tentacools.");
-	
-	outputCodex("\n\n");
-
-	outputCodex("TENTACOOLS. I fucking love that word. TENTA. COOLS. B)");
-}
-
-public function testLocationEntryB():void
-{
-	clearOutputCodex();
-	
-	outputCodex(header("The Interbutts"));
-	outputCodex("\nA super cool place. It's full of smut.");
-	
-	outputCodex("\n\n");
-	
-	outputCodex("THE INTERNET. ITS FOR PORN.");
-	
 }

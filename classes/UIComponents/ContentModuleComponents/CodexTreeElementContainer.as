@@ -128,7 +128,7 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			// Get the new tree we need to insert
 			var newTree:Object = CodexManager.getCodexTree(int(_currentHeader.name));
-			var displayString:String = buildTextTree(newTree);
+			var displayString:String = "<span class='words'><p><textformat tabstops='15,30,45,60,75,90'>" + buildTextTree(newTree) + "</textformat></p></span>";
 			trace(displayString);
 			
 			// Remove the previous old text
@@ -149,7 +149,7 @@ package classes.UIComponents.ContentModuleComponents
 			// Build new
 			_currentLinks = linkContainer();
 			_currentLinks.htmlText = "<span class='words'><p>" + displayString + "</p></span>";
-			_currentLinks.height = _currentLinks.textHeight - 5;
+			_currentLinks.height = _currentLinks.textHeight + 5;
 		}
 		
 		private function linkContainer():TextField
@@ -177,26 +177,44 @@ package classes.UIComponents.ContentModuleComponents
 		
 		private function buildTextTree(treeBranch:Object, level:int = 0):String
 		{
-			var msg:String = "<span class='words'><p><textformat tabstops='15,30,45,60,75,90'>";
+			var msg:String = "";
+			var hasEntries:Boolean = false;
+			
+			var children:Array = new Array();
 			
 			for (var key:String in treeBranch)
 			{
+				hasEntries = true;
+				
 				if (treeBranch[key]["functor"] != undefined)
 				{
-					msg += buildLeaf(treeBranch, key, level);
+					children.push({index:key, child:buildLeaf(treeBranch, key, level)});
 				}
 				else
 				{
-					for (var i:int = 0; i < level; i++)
-					{
-						msg += "\t";
-					}
-					msg += key + "\n";
-					msg += buildTextTree(treeBranch[key], level + 1);
+					children.push({index:key, child:(key as String) + "\n", subChildren:buildTextTree(treeBranch[key], level + 1)});
 				}
 			}
 			
-			msg += "</textformat></p></span>";
+			if (hasEntries == false)
+			{
+				msg += "None Available";
+			}
+			else
+			{
+				children.sortOn("index", Array.CASEINSENSITIVE);
+				
+				for (var i:int = 0; i < children.length; i++)
+				{
+					msg += children[i].child;
+					
+					if (children[i].subChildren != undefined)
+					{
+						msg += children[i].subChildren;
+					}
+				}
+			}
+			
 			return msg;
 		}
 		
