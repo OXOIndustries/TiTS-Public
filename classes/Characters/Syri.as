@@ -86,7 +86,7 @@
 			this.genitalSpot = 0;
 			this.tailType = GLOBAL.CANINE;
 			this.tailCount = 1;
-			this.tailFlags = new Array(GLOBAL.FLUFFY);
+			this.tailFlags = [GLOBAL.FLUFFY];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
