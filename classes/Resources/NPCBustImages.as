@@ -1,4 +1,4 @@
-package classes.Resources 
+﻿package classes.Resources 
 {
 	/**
 	 * ...
@@ -53,5 +53,8 @@ package classes.Resources
 
 		[Embed(source = "../../assets/images/npcs/alex.png", mimeType = "image/png")]
 		public static var Bust_ALEX:Class;
+
+		[Embed(source = "../../assets/images/npcs/kelly.png", mimeType = "image/png")]
+		public static var Bust_KELLY:Class;
 	}
 }

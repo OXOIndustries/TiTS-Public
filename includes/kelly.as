@@ -21,7 +21,7 @@ function kellyAppearance():void {
 	else output(" The knowledge that this is her natural aroma is both enticing and exotic. One would think the smell of honey would be sickening after so long, but you’ve come to enjoy it.");
 
 	//If AtWork:
-	if(9999 == 9999) output("\n\nShe is wearing a formal suit, as befits a representative for the Xenogen Corporation. A subtle and refined piece, it wouldn't go out of place on any businessman or woman. Seated behind her desk as she is, you cannot see her lower torso, but even the formal tone of her suit and her tie fails to completely obscure the impressive DD-cup swell of her bosom.\n\nA soft cough draws your attention back to her. <i>“" + pc.mf("Sir","Madam","Excuse me") + "? May I help you?”</i>");
+	if(9999 == 9999) output("\n\nShe is wearing a formal suit, as befits a representative for the Xenogen Corporation. A subtle and refined piece, it wouldn't go out of place on any businessman or woman. Seated behind her desk as she is, you cannot see her lower torso, but even the formal tone of her suit and her tie fails to completely obscure the impressive DD-cup swell of her bosom.\n\nA soft cough draws your attention back to her. <i>“" + pc.mfn("Sir","Madam","Excuse me") + "? May I help you?”</i>");
 	//If OffWork:
 	else {
 		output("\n\nNo longer having to worry about office image, Kelly is letting it all hang out - quite literally. Her top is straining the limits of the word \"bikini,\" little more than triangles of fabric stretched over her perky nipples and held in place by straps that crisscross over her impressive DD-cup tits. For pants, she is wearing the cut-short denim jeans you have heard of as \"Daisy Dukes,\" which seem to be just barely big enough to fit her and leave nothing to the imagination regarding her perky, full, squeezable ass. Or her gender.\n\nDespite the feminine nature of the rest of her body, the front of her shorts bulges obscenely, straining to cover a clearly monstrous masculinity, stretched so tight it gives her a blatant camel-toe. Yet, somehow, it manages to do so without bursting its zipper.");
@@ -42,7 +42,17 @@ function kellysOfficeBonusFunction():Boolean
 	if(flags["KELLY_MET"] == undefined) {
 		output("\n\nA strange figure is seated behind the receptionist counter; a bipedal female humanoid who looks... well, like an anthropomorphic rabbit. But with a vaguely bee-like fur pattern of black stripes on yellow, offset by honey-orange hair. Maybe she's one of those furry gene-modders?"); 
 		if(flags["MET_PENNY"] != undefined) output(" Like Penny?");
-		addButton(0,"Secretary",kellyOfficeApproach);
+		output(" She calls for you to approach.");
+
+		//1st Time:
+		output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\"  though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
+		output("\n\nHer fingers tap away at the keyboard and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?”</i>");
+		processTime(2);
+		//[Yes][No]
+		clearMenu();
+		addButton(0,"Yes",registerAtKellysOffice);
+		addButton(1,"No",dontRegisterInKellysOffice);
+		return true;
 	}
 	else
 	{
@@ -58,28 +68,13 @@ function kellyOfficeApproach():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
 	author("Quiet Browser & LD");
-	if(flags["KELLY_MET"] == undefined)
-	{
-		//1st Time:
-		output("You walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\"  though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
-		output("\n\nHer fingers tap away at the keyboard and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?”</i>");
-		processTime(2);
-		//[Yes][No]
-		clearMenu();
-		addButton(0,"Yes",registerAtKellysOffice);
-		addButton(1,"No",dontRegisterInKellysOffice);
-	}
-	//Else:
-	else
-	{
-		output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research labs, where the wonders of biotechnology never cease! How may I help you, ");
-		output("[pc.name]");
-		//{my friend}/{honey}
-		output("?</i>\"");
-		processTime(1);
-		//[PurchaseMods] [Talk] [Flirt] [Leave]
-		kellysOfficeMenu();
-	}
+	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research labs, where the wonders of biotechnology never cease! How may I help you, ");
+	output("[pc.name]");
+	//{my friend}/{honey}
+	output("?</i>\"");
+	processTime(1);
+	//[PurchaseMods] [Talk] [Flirt] [Leave]
+	kellysOfficeMenu();
 }	
 
 function kellysOfficeMenu():void {
