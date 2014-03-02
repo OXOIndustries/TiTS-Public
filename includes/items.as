@@ -56,8 +56,12 @@ function useItem(item:ItemSlotClass):void {
 }
 
 function shop(keeper:Creature):void {
-	if(keeper.short == "Geoff") {
+	if(keeper is Geoff) {
 		mainGameMenu();
+		return;
+	}
+	if(keeper is Jade) {
+		approachJade();
 		return;
 	}
 	clearOutput();
