@@ -408,6 +408,10 @@ function rideDudeleensWithAPussaaaaah():void {
 
 	output("\n\nThe naleen is openly purring, eyes closed as he enjoys his afterglow. Looks like he’s on the verge of taking a catnap.");
 
+	//Orgasm and time pass before endings!
+	processTime(20+rand(25));
+	pc.orgasm();
+	
 	//if Kind / Mischievous:
 	if(!pc.isAss()) {
 		output("\n\nYou roll him on his side and undo his bindings before giving him a soft pat on the head.");
@@ -418,8 +422,7 @@ function rideDudeleensWithAPussaaaaah():void {
 	}
 	//Hard
 	else output("\n\nYou look at the lazy cat-snake. Off to nap already. You ponder if you should even bother releasing him at this point.");
-	processTime(20+rand(25));
-	pc.orgasm();
+	
 	clearMenu();
 	addButton(0,"Release",releaseNaleenAfterLadyWins);
 	addButton(14,"Leave",leaveTheDudeNaleenAfterLadyWins);

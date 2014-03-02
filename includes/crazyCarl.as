@@ -453,13 +453,18 @@ function carlsEncounterStart():Boolean {
 		output("\n\nThe machina hasn’t noticed you yet, though. You could engage it or fight another day.");
 		//[Fight] [Back off]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"machina");
+		addButton(0,"Fight",fightMachina);
 		addButton(1,"Back Off",move,"GIANT LEAVES 2");
 		return true;
 	}
 	else {
 		return jungleDeepEncounters();
 	}
+}
+
+function fightMachina():void {
+	flags["JUNGLE_STEP"] = 0;
+	startCombat("machina");
 }
 
 //FIGHTAN’

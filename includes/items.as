@@ -183,7 +183,7 @@ function inventory():void {
 		if(x+adjustment == 5) {
 			if (pc.upperUndergarment.shortName != "") 
 			{
-				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bar");
+				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bra");
 			}
 			else this.addDisabledButton(x+adjustment,"UndertopOff");
 			adjustment++;

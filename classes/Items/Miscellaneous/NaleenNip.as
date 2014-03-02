@@ -35,7 +35,7 @@
 			
 			this.attackVerb = "";
 			//Information
-			this.basePrice = 0;
+			this.basePrice = 5;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.KINETIC;

@@ -101,10 +101,14 @@ function specialsMenu():void {
 	clearMenu();
 	addButton(14,"Back",combatMainMenu);
 	addButton(13,"Wait",wait);
+	var offset:int = 0;
 	if(pc.characterClass == GLOBAL.MERCENARY)
 	{
+		//EVERYONE HAS
 		if(pc.energy() >= 25) addButton(0,"Headbutt",attackRouter,headbutt);
 		else addDisabledButton(0,"Headbutt");
+		
+		//EITHER OR!
 		if(pc.hasStatusEffect("Rapid Fire Known"))
 		{
 			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire);
@@ -115,27 +119,31 @@ function specialsMenu():void {
 			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike);
 			else addDisabledButton(1,"Power Strike");
 		}
-		var offset:int = 0;
+		offset = 2;
 		if(pc.hasStatusEffect("Take Cover Known")) 
 		{
+			
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover);
+			else addDisabledButton(offset,"Take Cover");
 			offset++;
-			if(pc.energy() >= 20) addButton(2,"Take Cover",takeCover);
-			else addDisabledButton(2,"Take Cover");
 		}
 		if(pc.hasStatusEffect("Carpet Grenades Known"))
 		{
-			if(pc.energy() >= 25) addButton(2+offset,"Carpet Grenades",carpetGrenades);
-			else addDisabledButton(2+offset,"Carpet Grenades");
+			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades);
+			else addDisabledButton(offset,"Carpet Grenades");
+			offset++;
 		}
 		if(pc.hasStatusEffect("Det. Charge Known"))
 		{
-			if(pc.energy() >= 25) addButton(2+offset,"Det. Charge",attackRouter,detCharge);
-			else addDisabledButton(2+offset,"Det. Charge");
+			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge);
+			else addDisabledButton(offset,"Det. Charge");
+			offset++;
 		}
 		if(pc.level >= 5)
 		{
-			if(!pc.hasStatusEffect("Used Second Wind")) addButton(3,"Second Wind",secondWind);
-			else addDisabledButton(3,"Second Wind");
+			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind);
+			else addDisabledButton(offset,"Second Wind");
+			offset++;
 		}
 	}
 	else if(pc.characterClass == GLOBAL.ENGINEER) {

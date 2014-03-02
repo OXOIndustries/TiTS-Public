@@ -225,7 +225,9 @@ function jadeSexMenu(display:Boolean = true):void {
 		if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined)
 		{
 			output("You bring up her little foray to the 'employee room' and suggest that maybe next time she get a little help with her needs. You're a pretty helpful " + pc.mfn("guy","gal","person") + " after all.");
-			output("\n\nA knowing grin spreads across Jade's short muzzle. <i>\"Oh really? Sooo....\"</i>  She comes around the side of the counter to you, pulling you into a hug that crushes you into her cushy body{, tits wrapped around your head}. \"<i>...you think you can handle such big girls on your own?\"</i>");
+			output("\n\nA knowing grin spreads across Jade's short muzzle. <i>\"Oh really? Sooo....\"</i>  She comes around the side of the counter to you, pulling you into a hug that crushes you into her cushy body");
+			if(pc.tallness <= 60) output(", tits wrapped around your head");
+			output(". \"<i>...you think you can handle such big girls on your own?\"</i>");
 			output("\n\nYou grab her breasts and give a gentle squeeze, eliciting a moan of pussy-moistening pleasure from the panda. <i>\"Ooooohhhh... yes you can.\"</i>  Her voluptuous form shudders against you. <i>\"Come on, let's do this.\"</i>");
 			output("\n\nShe drags you to the back room, her body grinding against you the entire way.");
 		}
@@ -494,7 +496,7 @@ function titfuckJade():void {
 	if(pc.isNice()) output("with a quick kiss");
 	else if(pc.isMischievous()) output("with a playful spank on her curvy rear");
 	else output("with a smirk");
-	output(". Making yourself presentable, you gather up your [pc.armor] and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
+	output(". Making yourself presentable, you gather up your " + pc.armor.longName + " and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
 	processTime(20+rand(10));
 	pc.orgasm();
 	sexedJade();
