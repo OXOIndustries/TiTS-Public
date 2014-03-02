@@ -169,6 +169,11 @@
 			}
 		}
 		
+		// There's actually some WeirdShit™ going down here that we might have to go a different way to fix.
+		// Parser tags are looking at the "base" objects for data -- ie things in the chars[] array.
+		// We're making instance modifications to the base types, and moving them to foes[]... where the parser
+		// doesn't look to pull info from.
+		// ie, we should be modifying the base type in chars[], and then make a copy for foes[]
 		override public function prepForCombat():void
 		{
 			var combatCSnake:CuntSnake = this.makeCopy();

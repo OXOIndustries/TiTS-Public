@@ -114,6 +114,11 @@
 	{
 		chars["DANE"] = new classes.Characters.Dane();
 	}
+	if (!justUpdate || (justUpdate && chars["MIMBRANE"] == undefined))
+	{
+		chars["MIMBRANE"] = new classes.Characters.Mimbrane();
+	}
+	
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
@@ -126,6 +131,7 @@
 			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
+	
 	this.foes[0] = new Creature();
 
 }

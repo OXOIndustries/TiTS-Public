@@ -780,9 +780,15 @@
 		{
 			return chars["REAHA"];
 		}
+		
 		public function get dane():*
 		{
 			return chars["DANE"];
+		}
+		
+		public function get mimbrane():*
+		{
+			return chars["MIMBRANE"];
 		}
 	}
 }
