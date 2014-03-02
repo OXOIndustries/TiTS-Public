@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.StringUtil;
+import classes.TiTS;
 
 function useItem(item:ItemSlotClass):void {
 	if (item.quantity == 0) 
@@ -251,7 +252,7 @@ function inventory():void {
 				var tarSlot:int = x + adjustment;
 				if (tarSlot >= 14) tarSlot++;
 
-				this.addButton(tarSlot,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				(this as TiTS).addItemButton(tarSlot, pc.inventory[x], useItem, pc.inventory[x]);
 				
 			}
 		}
