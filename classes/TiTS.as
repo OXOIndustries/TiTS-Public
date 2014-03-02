@@ -168,7 +168,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.9";
+			version = "0.02.10";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -631,7 +631,7 @@
 			
 			//Texts
 			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
-			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Pervineer.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
+			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Fake-Name, UI Code by Gedan.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
 			
 			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
 			this.userInterface.addMainMenuButton(1,"Data",dataManager.dataRouter);
