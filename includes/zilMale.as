@@ -14,13 +14,17 @@ function maleZilEncounter():void {
 		output("\n\nThe slender male buzzes closer and finally speaks, <i>“You're rather " + pc.mfn("handsome","cute","attractive") + ", for an alien.”</i>");
 		output("\n\n<b>It's a fight!</b>");
 		//Make sure monster statblock has eyes set to black!
+
+		flags["ENCOUNTERED_ZIL"] = 1;
 	}
 	//[Repeat]
 	else
 	{
 		output("\n\nA faint buzz is the only warning you get before a male zil flutters out of the sky in front of you, crotch plate retracted and dick waving at head-height, just a few feet away. He winks and says, <i>“Hey, I brought a snack,”</i> while pulling his foreskin back just far enough to see an ebony tip peek through. <i>“You hungry?”</i>");
 		output("\n\n<b>It's a fight!</b>");
+		flags["ENCOUNTERED_ZIL"]++;
 	}
+	
 	clearMenu();
 	addButton(0,"Next",startCombat,"zil male");
 }

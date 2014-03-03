@@ -182,19 +182,106 @@ Attack has a 10% to misfire and cause 5 points of lust damage to the player.
 If Mimbrane has at least 10 feedings, there’s a 30% chance that a connecting attack will be boosted to a critical 50 points of lust damage to opponent. Spread of attack causes 5 lust damage to PC. Costs 10 feedings. 
 */
 
+// Going to do this through statuseffects
+// There's too many things to track sensibly using flags, and the extra storage from effects is... almost perfect for this
+// v1 == trust
+// v2 == last fed
+// v3 ==
+// v4 == "count" for hands/feet mimbranes. In some ways they are treat as a single entity, but we still need to know if both one or two are attached
+public var mimbraneEffects:Array = 
+[
+	"Mimbrane Cock",
+	"Mimbrane Pussy",
+	"Mimbrane Ass",
+	"Mimbrane Balls",
+	"Mimbrane Boobs",
+	"Mimbrane Hands",
+	"Mimbrane Feet",
+	"Mimbrane Face"
+]
+
+// Figure out the total number of attached mimbranes
+public function attachedMimbranes():int
+{
+	var total:int = 0;
+
+	if (pc.hasStatusEffect("Mimbrane Cock")) total++;
+	if (pc.hasStatusEffect("Mimbrane Pussy")) total++;
+	if (pc.hasStatusEffect("Mimbrane Ass")) total++;
+	if (pc.hasStatusEffect("Mimbrane Balls")) total++;
+	if (pc.hasStatusEffect("Mimbrane Boobs")) total++;
+	
+	if (pc.hasStatusEffect("Mimbrane Hands"))
+	{
+		total += pc.statusEffectv4("Mimbrane Hands");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Feet"))
+	{
+		total += pc.statusEffectv4("Mimbrane Feet");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Head")) total++;
+}
+
+// Find the lowest current mimbrane trust level
+public function lowestMimbraneTrust():int
+{
+	var trust:int = 5;
+
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv1(mimbraneEffects[i]) < trust) trust = pc.statusEffectv1(mimbraneEffects[i]);
+		}
+	}
+}
+
+public function highestMimbraneTrust():int
+{
+	var trust:int = -1;
+
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv1(mimbraneEffects[i]) > trust) trust = pc.statusEffectv1(mimbraneEffects[i]);
+		}
+	}
+}
+
 //Encounter & Combat
 //Encounter a Mimbrane (Jungle)
-function encounterAMimbrane():void 
-	//First Encounter 
-	
-An otherwise pleasant stroll through the woods is brought to a startling halt when something darts past your head. You glance around frantically in order to identify just what grazed your ear. Your skin begins to tingle as a mesmerizing scent fills in the trail of whatever flew by you. A few quick steps in the opposite direction seems to be your best course of action. Coincidentally, this helps you evade a followup attack by your mystery attacker.
-What appears to be a large, flowing sheet has careened into the ground where you once stood. Speechless awe is the best you can respond as you eye the strange, oily square creature below you. Most of its body can’t possibly be more than half an inch thick! Your codex snaps you back to your senses with a shark beep.
-“A Mimbrane has been detected in the immediate vicinity. This is a parasitic species that relies less on physical attacks and more on its aphrodisiac secretions along its epidermis to overpower opponents. Seek medical assistance immediately should you fall to one of these creatures.”
-There’s little time for you to consider this information further; the creature’s recovered from its embarrassing fumble. It shakes its body furiously, clearing away the dirt and dust to reveal its smooth, flawless sheen. That’s not all the shake did you realize as the same mesmerizing aroma ambushes your senses. The parasite chirps angrily at you, ready to fight!
-Repeat Encounter (PC has no Mimbranes)
-A Mimbrane swoops in from above towards you. The moistened, flat parasite flaps and steadies itself in the air, ready to engage!
-Repeat Encounter (PC has Mimbranes) 
-Another Mimbrane drops in from the sky, startling you from your casual enjoyment of nature. Its memorable odor fills the air as the thin, flat sheet flaps and hovers in the air. 
+public function encounterMimbrane():void
+{
+	userInterface.showBust("MIMBRANE");
+	if (flags["ENCOUNTERED_MIMBRANE"] == undefined)
+	{
+		flags["ENCOUNTERED_MIMBRANE"] = 1;
+		output("\n\nAn otherwise pleasant stroll through the woods is brought to a startling halt when something darts past your head. You glance around frantically in order to identify just what grazed your ear. Your skin begins to tingle as a mesmerizing scent fills in the trail of whatever flew by you. A few quick steps in the opposite direction seems to be your best course of action. Coincidentally, this helps you evade a followup attack by your mystery attacker.");
+		output("\n\nWhat appears to be a large, flowing sheet has careened into the ground where you once stood. Speechless awe is the best you can respond as you eye the strange, oily square creature below you. Most of its body can’t possibly be more than half an inch thick! Your codex snaps you back to your senses with a shark beep.");
+		output("\n\n“<i>A Mimbrane has been detected in the immediate vicinity. This is a parasitic species that relies less on physical attacks and more on its aphrodisiac secretions along its epidermis to overpower opponents. Seek medical assistance immediately should you fall to one of these creatures.</i>”");
+		output("\n\nThere’s little time for you to consider this information further; the creature’s recovered from its embarrassing fumble. It shakes its body furiously, clearing away the dirt and dust to reveal its smooth, flawless sheen. That’s not all the shake did you realize as the same mesmerizing aroma ambushes your senses. The parasite chirps angrily at you, ready to fight!");
+	}
+	else
+	// Repeat encounters
+	{
+		flags["ENCOUNTERED_MIMBRANE"]++;
+
+		// (PC has no Mimbranes)
+		if (attachedMimbranes == 0)
+		{
+			output("\n\nA Mimbrane swoops in from above towards you. The moistened, flat parasite flaps and steadies itself in the air, ready to engage!");
+		}
+		// (PC has Mimbranes) 
+		else
+		{
+			output("\n\nAnother Mimbrane drops in from the sky, startling you from your casual enjoyment of nature. Its memorable odor fills the air as the thin, flat sheet flaps and hovers in the air. ");
+		}
+	}
+
+
 SAME PARAGRAPH{if PC has one Mimbrane}Your preparatory combat stance falters a bit when an unusual sensation radiates from your nether regions. Your {[cock]/[pussy]/[ass]} suddenly starts making high-pitched chirping and squeaking noises! It seems as though the Mimbrane that already conquered you has detected its brethren. The bizarre manipulation of your body, your orifice puckering and undulating of its own volition, is strangely turning you on and making it difficult to regain your composure. 
 The muffled sounds from your {crotch/rear} reach your new opponent, causing the parasite to take pause and chirp back. You’re left a little confused as the brief conversation goes on for another few moments. The silken sheet in the air before you tenses up yet again, presumably ready to fight you. But just as you try and do the same, you’re distracted by yet another strange occurrence within your [armor].
 A damp spot on your {groin/butt} plants a seed of worry within you. Prying open your garments to investigate the issue blossoms that seed in a hurry as your senses are blasted with an overwhelmingly thick cloud of noxious ardour originating from under your protection. The scent is a more concentrated variant similar to the Mimbrane before you. Before you reel back in surprise, you do manage to catch a surprising fact: your {[cock]/[pussy]/[ass]} is sweating profusely, absolutely drenched in the clear, light pink oil wild Mimbranes use to assault their prey.
