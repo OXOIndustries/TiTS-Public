@@ -70,6 +70,12 @@ function approachJade():void {
 	}
 	processTime(2);
 	//[Buy][Sell][Talk][Appearance]
+	shopkeep = chars["JADE"];
+	chars["JADE"].keeperBuy = "Jade's console lists off the modification she has in stock along with their prices.\n";
+	//List prices and whatnot. Back should go back to Jade's main menu.
+	//Sell Menu
+	chars["JADE"].keeperSell = "Jade tilts her head to the side. <i>\"You wanna sell me splices? Well, even if they don't fit my niche, I can probably turn a profit on them, so why not.\"</i>  She looks at you inquisitively. <i>\"What do you have for me?\"</i>\n";
+	chars["JADE"].keeperGreeting = "Jade extends her arm, gesturing towards the rest of her shop. <i>\"See anything I can help you with?\"</i>";
 	clearMenu();
 	addButton(0,"Buy",buyItem);
 	addButton(1,"Sell",sellItem);
@@ -86,7 +92,7 @@ function jadeAppearance():void
 	clearOutput();
 	userInterface.showBust("JADE");
 	output("Jade is a panda. That much is obvious, even at a short glance. Her face has a short snout with a black nose, hiding most of her old facial features from view. Perhaps the only remains of her original race, orchan, are the number of teeth inside her maw and her exotic eye-shape. Slitted horizontally, her crimson irises seem to bore right into you, even when she lowers them into a smoky glare. Her plump, sable lips are often pursed thoughtfully, gleaming like polished jet in the bright lights inside her shop. She either wears shiny gloss or takes moisturization very seriously, but neither accounts for their kissable-and-then-some size.");
-	output("\n\nA mane of long, onyx-black hair cascades past her shoulders into a line of emerald clasps that bind it into an orderly, if long, ponytail. Elsewhere, she's covered in thick coat of shimmering white fur soft enough to remind you of cyberdown pillows. A few black splotches break up her alabster coloration - one around each of her eyes, one on her right shoulder, a big one one from the underside of her left breast down to her hip, and a few small ones on her legs.");
+	output("\n\nA mane of long, onyx-black hair cascades past her shoulders into a line of emerald clasps that bind it into an orderly, if long, ponytail. Elsewhere, she's covered in a thick coat of shimmering white fur soft enough to remind you of cyberdown pillows. A few black splotches break up her alabster coloration - one around each of her eyes, one on her right shoulder, a big one from the underside of her left breast down to her hip, and a few small ones on her legs.");
 	if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined) output(" There might be more under her softly swaying skirt, but you'd have to talk her out of it first.");
 	else output(" You know from experience there aren't any more under her softly swaying skirt, but it wouldn't hurt to check a second time.");
 	output(" It isn't a perfect match to real pandas' coats, but over the counter transformatives aren't known for being an exact science.")
@@ -225,7 +231,9 @@ function jadeSexMenu(display:Boolean = true):void {
 		if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined)
 		{
 			output("You bring up her little foray to the 'employee room' and suggest that maybe next time she get a little help with her needs. You're a pretty helpful " + pc.mfn("guy","gal","person") + " after all.");
-			output("\n\nA knowing grin spreads across Jade's short muzzle. <i>\"Oh really? Sooo....\"</i>  She comes around the side of the counter to you, pulling you into a hug that crushes you into her cushy body{, tits wrapped around your head}. \"<i>...you think you can handle such big girls on your own?\"</i>");
+			output("\n\nA knowing grin spreads across Jade's short muzzle. <i>\"Oh really? Sooo....\"</i>  She comes around the side of the counter to you, pulling you into a hug that crushes you into her cushy body");
+			if(pc.tallness <= 60) output(", tits wrapped around your head");
+			output(". \"<i>...you think you can handle such big girls on your own?\"</i>");
 			output("\n\nYou grab her breasts and give a gentle squeeze, eliciting a moan of pussy-moistening pleasure from the panda. <i>\"Ooooohhhh... yes you can.\"</i>  Her voluptuous form shudders against you. <i>\"Come on, let's do this.\"</i>");
 			output("\n\nShe drags you to the back room, her body grinding against you the entire way.");
 		}
@@ -494,7 +502,7 @@ function titfuckJade():void {
 	if(pc.isNice()) output("with a quick kiss");
 	else if(pc.isMischievous()) output("with a playful spank on her curvy rear");
 	else output("with a smirk");
-	output(". Making yourself presentable, you gather up your [pc.armor] and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
+	output(". Making yourself presentable, you gather up your " + pc.armor.longName + " and dress before heading out into public. Jade follows not longer after, looking radiant and smelling vaguely of your tryst.");
 	processTime(20+rand(10));
 	pc.orgasm();
 	sexedJade();

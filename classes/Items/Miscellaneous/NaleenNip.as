@@ -35,7 +35,7 @@
 			
 			this.attackVerb = "";
 			//Information
-			this.basePrice = 0;
+			this.basePrice = 5;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.KINETIC;
@@ -297,7 +297,7 @@
 			if(target.hasStatusEffect("Genital Slit") && target.cockTotal() == 1 && target.cockTotal(GLOBAL.NAGA) == 1 && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nA sudden, hot throb in your slit is the only you get before you feel the start of ");
 				if(changes > 1) kGAMECLASS.output("another ");
-				else kGAMECLASS.output("a");
+				else kGAMECLASS.output("a ");
 				kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It's then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
 				target.createCock();
 				target.cocks[1].cLength = target.cocks[0].cLength;
@@ -325,7 +325,7 @@
 				kGAMECLASS.output(", you feel a sudden shifting. [pc.oneCock] is half hard and tingling all over, but it won't come out. The feeling is pleasurable but at the same time disconcerting, like the interior of your sheath is fellating you while your length reshapes to accommodate it better. You lower yourself down to the ground before the exotic pleasure strips the strength from your [pc.legs], just in time to feel your [pc.cock " + x+ "] start spasming in ecstasy, dragging a moan from your throat as it suddenly rams its way up and out of your slit.");
 				if(target.cumQ() < 5) kGAMECLASS.output("\n\nDribbles of [pc.cum] leak from your twitching length, the only seed your body is able to eject in your spasms of pleasure.");
 				else kGAMECLASS.output("\n\nArcs of [pc.cum] fly from you twitching length out in front of you, launched in thick, wet volleys.");
-				kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], you [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving panting and regarding the source of it all.");
+				kGAMECLASS.output(" Your [pc.hips] wildly hump the air against an invisible lover as the abrupt bliss works its way through you. Hanging out of your [pc.lips], you [pc.tongue] drools down your chin in satisfaction. The surprise climax ends, leaving you panting and regarding the source of it all.");
 				kGAMECLASS.output("\n\n<b>In place of your [pc.cock " + x + "], you have a purple, snake-like length, somewhat bulbous up to its tapered tip.</b>");
 				target.orgasm();
 				target.shiftCock(x,GLOBAL.NAGA);

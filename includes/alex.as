@@ -61,7 +61,8 @@ function approachAlexTheFirstTime():void {
 	processTime(1);
 	//[Flirt] [What are you?] [Bail]
 	clearMenu();
-	addButton(0,"Flirt",flirtWithAlex);
+	if(pc.lust() >= 33) addButton(0,"Flirt",flirtWithAlex);
+	else addDisabledButton(0,"Flirt");
 	addButton(1,"WhatAreYou?",askAlexWhatHeIs);
 	addButton(2,"Bail",bailOnAlex);
 }
@@ -97,7 +98,11 @@ function flirtWithAlex():void {
 	}
 	//[Yes] [No]
 	clearMenu();
-	addButton(0,"Yes",alexSexMenu);
+	if(pc.lust() < 33) {
+		output("\n\nYou aren't really turned on enough to hook up right now.");
+		addDisabledButton(0,"Yes");
+	}
+	else addButton(0,"Yes",alexSexMenu);
 	addButton(1,"No",noToAlyxSex);
 }
 //[Yes]
@@ -189,7 +194,8 @@ function repeatApproachAlex():void {
 	}
 	//[Flirt] [What are you?] [Bail Again]
 	clearMenu();
-	addButton(0,"Flirt",alexSexMenu);
+	if(pc.lust() >= 33) addButton(0,"Flirt",alexSexMenu);
+	else addDisabledButton(0,"Flirt");
 	if(flags["ASKED_ALEX_WHAT_HE_IS"] == undefined) addButton(1,"WhatAreYou?",askAlexWhatHeIs);
 	addButton(14,"Leave",bailOnAlexAgain);
 }
@@ -837,8 +843,8 @@ function frottageWithAlex():void {
 	if(pc.isTaur()) output("Sliding off the bed, he kneels in front of you");
 	else output("Sliding back off your lap, he leans forward");
 	output(" and takes your still-hard [pc.cockBiggest] in ");
-	if(pc.cocks[x].cLength >= 12) output("both of his hands");
-	else output("his hands");
+	if(pc.cocks[x].cLength >= 12) output("both of his hands ");
+	else output("his hands ");
 	output("and starts to jerk you off. It’s obvious that he’s pretty tired, but he gets to the task with enthusiasm, ");
 
 	//If small cock:

@@ -11,8 +11,8 @@ function carlsShopDescription():void {
 	if(flags["MET_CARL"] == undefined)
 	{
 		output("You enter the store through the automatic sliding door, immediately shivering involuntarily at the feeling of the cool, comfortable air from inside washing over you in comparison to the warmer, muggier jungle outside. Not wanting to waste the controlled atmosphere you quickly hop inside as the commercial door slides shut behind you.");
-		output("\n\nWhile it takes a moment for your eyes to adjust to the change in lighting, you are a little surprised at what you see. This isn’t exactly just a gunsmith or even just a weapons shop; it is a some sort of convenience store, too! It has an inviting, commercial atmosphere with pale white tiling and bright lighting while the plain walls of the establishment are adorned with various model weapons, rifles especially, above the shelves. The store’s floor space is dominated by rows of simple shelves crammed full of goods. With a cursory glance, you glean that the store is stocked to be a survival or hunting-focused convenience store as a secondary given the array of things like simplistic foods, basic and archaic supplies like compasses, local maps, and so forth as well as more advanced supplies such as full environmental suits, recharging equipment and replacement parts for instruments such as common scanners and the likes. The sort of items that you might need to get by out on the frontier, tailored for explorers and adventurers like yourself.");
-		output("\n\nAfter a short review of doing an inventory in your head as you aimlessly meander down the aisles, you come to the realization that you don’t really need anything. None of your supplies are poorly stocked and your trusty codex makes up for most of the tools, so the ‘convenience’ of the store is lost unless you want to pick up a snack. On the flipside, however, this area of the store is just a secondary portion for its real advertized purpose.");
+		output("\n\nWhile it takes a moment for your eyes to adjust to the change in lighting, you are a little surprised at what you see. This isn’t exactly just a gunsmith or even just a weapons shop; it is some sort of convenience store, too! It has an inviting, commercial atmosphere with pale white tiling and bright lighting while the plain walls of the establishment are adorned with various model weapons, rifles especially, above the shelves. The store’s floor space is dominated by rows of simple shelves crammed full of goods. With a cursory glance, you glean that the store is stocked to be a survival or hunting-focused convenience store as a secondary given the array of things like simplistic foods, basic and archaic supplies like compasses, local maps, and so forth as well as more advanced supplies such as full environmental suits, recharging equipment and replacement parts for instruments such as common scanners and the likes. The sort of items that you might need to get by out on the frontier, tailored for explorers and adventurers like yourself.");
+		output("\n\nAfter a short review of your inventory as you aimlessly meander down the aisles, you come to the realization that you don’t really need anything. None of your supplies are poorly stocked and your trusty codex makes up for most of the tools, so the ‘convenience’ of the store is lost unless you want to pick up a snack. On the flipside, however, this area of the store is just a secondary portion for its real advertised purpose.");
 		output("\n\nDisengaging from the thick stacks of various knick-knacks you move to the back of the store where the cashier counter is manned by the owner of the store: ‘Crazy’ Carl. Or at least you can assume, given the simple jerkin with his name tag attached to it. The man rests laid back in his comfortable-looking office chair, hands in his lap with a book reader tucked away off to the side while he gives you his full attention like the polite business man he seems to be. You’re not entirely sure how long he has been waiting at attention for you, but you don’t pay it any mind.");
 		output("\n\nCarl is old. With the advances in medical science you can hardly venture a guess at his age, but you can still tell he is <i>old</i>. A fully bald human male with little tufts of white hair ringing his shiny dome and thicker tufts appearing on his chin in the form of a well-kempt beard. His skin is fairly clean outside of a few natural blemishes on his cheeks, the product of a modern age; no liver spots, discolorations or anything of the sort. Beyond all that he actually looks pretty fit, too, with thick arms and a stocky sort of appearance, especially with his slight lack of stature. Altogether he looks to be the pinnacle of health, even if he is an old coot. He’s all smiles as you approach the counter, bright blue eyes glittering. Evidently he’s the jovial sort.");
 		output("\n\nWhat’s behind him practically sets your mental image of him in stone: not mere desks and paperwork like you’d expect from an office space, but instead raw works of industry. Large machines, certainly bigger than you, sprawl across the narrow space behind him. It’s set up so there is only room to settle in one spot, though that’s likely intentional, keeping it all accessible from that one position. Cramped, but efficient.");
@@ -72,14 +72,14 @@ function carlTalkMenu():void
 function chatWithCrazyCarlAboutHim():void
 {	
 	clearOutput();
-	output("You lean gently against the counter and put on a friendly face, not-so-subtly hinting that you’d like to get to know him a little before making a purchase. Especially such an expensive, and legally gridlocked, one as a firearm!");
+	output("You lean gently against the counter and put on a friendly face, not-so-subtly hinting that you’d like to get to know him a little before making a purchase. Especially one as expensive, and legally gridlocked, as a firearm!");
 	output("\n\n\"<i>Eh? Alrigh’, I sympathize some. Lesse... well! Name’s Carl! Carl Jakovich.</i>\"");
 	output("\n\nYou are disappointed that the nominal alliteration doesn’t continue, though he does.");
 	output("\n\n\"<i>Hm. Been workin’ in this buisness since I was a brat. Mother did it and I just kinda helped. Goin’ with it in the end just made sense, ya know? Besides, I’d like to call myself pretty good at it. Made quite the little empire in my name, ya know!</i>\"");
 	output("\n\nYou get a solid scoff out of him when you glance behind yourself into the simplistic stock, pointedly.");
 
 	output("\n\n\"<i>Ha! Ya think this is my main place of business? Nah, I’m retired! Technically, anyway. This is more of a hobby then a real bit of work now. Only gonna be out here for a bit. Got a bit stir crazy and hey, lil cuz’ got married. Might as well step in and mind the store for a bit so she can have a lively time, eh? I’ll head back home when she’s done and see to a bit of civilization n’ life in the mean time. Everyone wins!</i>\"  There is a short little pause before he bashfully murmurs, \"<i>Well. Such as it is, anyway.</i>\"");
-	output("\n\nThere is a chuckle from you in response. Still, you find yourself a bit curious; how’d he make his fortune? This sort of work pays pretty well, sure, but it’s not exactly constant.");
+	output("\n\nThere is a chuckle from you in response. Still, you find yourself a bit curious; how’d he make his fortune? This sort of work pays pretty well, sure, but it’s not exactly consistent.");
 	output("\n\n\"<i>Ah... kicked off way back when, prolly why you haven’t heard of me. Might not of born yet even, sprout! Way back when I was just a pretty proficient, prolific craftsman. All sorts of shooters, just not a lot of clients n’ fame to go ‘round. Then comes around a future-legend, buys up a massive load of my stock over the course of a few months and sets me off as a result. Tinkered with his stuff when he needed it, too, but mostly just was a shop keep. Said who he got his prized guns from and my popularity shot up, heh. Had a place everywhere, pretty big deal. Started to die down ‘gain, though, and I got old enough to start wantin’ to liquidate and sell off my assets to retire. Now it’s just a few stores run by my family that’s in the business usin’ the name to get them by.</i>\"  His expression reeks of nostalgia as his mind wanders, shaking his head with a fat grin. \"<i>Ah, Victor Steele. Good lad, him, wonder how he’s doing...</i>\"");
 	processTime(3);
 	//*Unlocks about dad*
@@ -126,11 +126,11 @@ function aboutTheRobotFromCrazyCarl():void {
 	{
 		flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] = 1;
 		output("You tap the counter to get Carl’s full attention, unnecessarily, before speaking. \"<i>You mentioned something about a robot?</i>\"");
-		output("\n\n\"<i>Machina, but yeah. Things apparently been goin’ haywire around here, or at least it was a bit back. Ain’t too sure what’s the reason, but the powers that be are considerin’ it was some nefarious visitor hacking everything. Wasn’t the Zil or some astro event, anyway. Got the security systems all twitchy and set the various attendants on edge until we got someone in here to reset the lot of ‘em. No one got hurt, but I wasn’t the only one to lose something.</i>\"  The old man leans back in his seat with an audible creak, hand lazily scritchin at his long chin-whiskers. \"<i>Gotta say, the nurse-bot got pretty interesting. If a bit psychotic and clingy.</i>” He stifles a light little chuckle and you can only imagine the implications.");
+		output("\n\n\"<i>Machina, but yeah. Things apparently been goin’ haywire around here, or at least they were a bit back. Ain’t too sure what’s the reason, but the powers that be are considerin’ it was some nefarious visitor hacking everything. Wasn’t the Zil or some astro event, anyway. Got the security systems all twitchy and set the various attendants on edge until we got someone in here to reset the lot of ‘em. No one got hurt, but I wasn’t the only one to lose something.</i>\"  The old man leans back in his seat with an audible creak, hand lazily scritchin at his long chin-whiskers. \"<i>Gotta say, the nurse-bot got pretty interesting. If a bit psychotic and clingy.</i>” He stifles a light little chuckle and you can only imagine the implications.");
 		output("\n\nCan’t the local security help?");
 		output("\n\n\"<i>Overworked, underpaid and terribly staffed. Plus they’re a bit busy right now. Can’t go rummaging through the jungle lookin’ for lost goods that are probably fried, anyway. No, I’m afraid it’s a personal problem or nothing once it leaves the grounds.</i>\"");
 		output("\n\nHm. You’ll probably be going through the jungle here, actually.");
-		output("\n\n\"<i>Eh? You?</i>\"  Carl pushes himself forward, arms pressing into the countertop as he looks you over with no small amount of scrutiny. He seems rather thorough about it, too, glancing over ever cleft of your body, every pronounced bit of your [pc.armor] and the nature of your weapons - you can’t help but get a little self-conscious. Even when he leans back, evidently done peering into your very soul, he doesn’t exactly look impressed. \"<i>Well, if you’re going out there I suppose I could give you a little purpose for it, but I’m not to sure I’d feel comfortable with ya runnin’ out against a bunch of tribals like the other would-bes that run through here.</i>\"");
+		output("\n\n\"<i>Eh? You?</i>\"  Carl pushes himself forward, arms pressing into the countertop as he looks you over with no small amount of scrutiny. He seems rather thorough about it, too, glancing over every cleft of your body, every pronounced bit of your " + pc.armor.longName + " and the nature of your weapons - you can’t help but get a little self-conscious. Even when he leans back, evidently done peering into your very soul, he doesn’t exactly look impressed. \"<i>Well, if you’re going out there I suppose I could give you a little purpose for it, but I’m not too sure I’d feel comfortable with ya runnin’ out against a bunch of tribals like the other would-bes that run through here.</i>\"");
 
 		//Kind, mischevious:
 		if(!pc.isAss()) output("\n\nYou hold your hands up and try to reassure the old man; you’re not the hottest shit this side of the galaxy, but you can manage.");
@@ -257,7 +257,7 @@ function hammerPistolBuyTalk():void {
 //[Magnum Pistol]
 function magnumPistolBuyTalk():void {
 	clearOutput();
-	output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in; \"<i>Now here’s an ancient thing, no real surprise why it doesn’t move off to fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin's a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.</i>\"");
+	output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in, \"<i>Now here’s an ancient thing, no real surprise why it doesn’t move off too fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin's a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.</i>\"");
 	processTime(1);
 	//All the cool spacers use revolvers, right?
 	//*Codex-like information here.*
@@ -274,7 +274,7 @@ function magnumPistolBuyTalk():void {
 //[Las branded affordable Laser Pistol]
 function lasPistolBuyTalk():void {
 	clearOutput();
-	output("You notice that a few of the choices are actually the same weapon or at least a extremely similar one. Curious, you give it a tap and the screen flickers with a image of the pistol, taking up the entire display. \"<i>Cha, those things... Crowd favorite among the kids without much sense. Keep a bunch ‘round just to satisfy people who want something flashy, just in case, but if you ask me, you're better off with a good ol' fashioned powder-banger. Can’t be too careful ‘round on the frontier, even if you’re pretty well off.</i>\"");
+	output("You notice that a few of the choices are actually the same weapon or at least extremely similar one. Curious, you give it a tap and the screen flickers with a image of the pistol, taking up the entire display. \"<i>Cha, those things... Crowd favorite among the kids without much sense. Keep a bunch ‘round just to satisfy people who want something flashy, just in case, but if you ask me, you're better off with a good ol' fashioned powder-banger. Can’t be too careful ‘round on the frontier, even if you’re pretty well off.</i>\"");
 	output("\n\nYou nod. It’s good to keep your options open, at least, and the rest of the available weapons look to be ballistic, too. Not that slugthrowers are worse than lasers, just a little less practical.");
 	processTime(1);
 	//yo yo, info up in here.*
@@ -398,7 +398,7 @@ function lootZKRifle():void {
 //[ZK Rifle]
 function zkRifleCarlTalk():void {
 	clearOutput();
-	output("Naturally your eyes are drawn to one of the only buttons that actually look worthwhile, which stands in among the bigger, tougher looking though greyed out images. You tap the rifle, though find yourself confused when some of the more mercantile information is missing. No price?");
+	output("Naturally your eyes are drawn to one of the only buttons that actually look worthwhile, which stands in among the bigger, tougher looking though greyed out images. You tap the rifle, though you find yourself confused when some of the more mercantile information is missing. No price?");
 	output("\n\n\"<i>Ah, that ain’t supposed to be on there. We’ve got one of those laying around and it’s almost ready to go, but it needs some more tinkerin’ unless ya want it to explode. Or just not fire, more likely. I’ve love to give it to ya, but I don’t got my tools for it. Went psycho and wandered off.</i>\"");
 	output("\n\nNaturally, you respond with a curious look.");
 	output("\n\n\"<i>Assistant machina, floatin’ forge robot. Old hands ain’t quite what they were, don’t have it in me for some of the stuff. Start muckin’ with fusion or plasma fueled rail coils n’ it takes a bit more than a screwdriver and a bit of leg room. Ran off to the jungle, bastard thing. I can’t do the real workin’ for a while. Just tinker, really.</i>\"");
@@ -453,13 +453,18 @@ function carlsEncounterStart():Boolean {
 		output("\n\nThe machina hasn’t noticed you yet, though. You could engage it or fight another day.");
 		//[Fight] [Back off]
 		clearMenu();
-		addButton(0,"Fight",startCombat,"machina");
+		addButton(0,"Fight",fightMachina);
 		addButton(1,"Back Off",move,"GIANT LEAVES 2");
 		return true;
 	}
 	else {
 		return jungleDeepEncounters();
 	}
+}
+
+function fightMachina():void {
+	flags["JUNGLE_STEP"] = 0;
+	startCombat("machina");
 }
 
 //FIGHTAN’

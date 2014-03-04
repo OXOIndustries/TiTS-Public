@@ -160,7 +160,7 @@
 			// Can't lean on the shopKeep stuff, because some vendors in game atm don't use it (Crazy Carl), so we can't just track the "state" we need and pull the data later.
 			// I THINK I have a method to do this fairly cleanly, regardless -- but I think it would be better to just show the base price, and have some blurb in the scene text to list the actual
 			// prices a given NPC will sell/buy the stuff for.
-			if (this.basePrice != 0)
+			if (this.basePrice != undefined)
 			{
 				if (compareString.length > 0) compareString += "\n";
 				

@@ -1,5 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.StringUtil;
+import classes.TiTS;
 
 function useItem(item:ItemSlotClass):void {
 	if (item.quantity == 0) 
@@ -55,8 +56,12 @@ function useItem(item:ItemSlotClass):void {
 }
 
 function shop(keeper:Creature):void {
-	if(keeper.short == "Geoff") {
+	if(keeper is Geoff) {
 		mainGameMenu();
+		return;
+	}
+	if(keeper is Jade) {
+		approachJade();
 		return;
 	}
 	clearOutput();
@@ -183,7 +188,7 @@ function inventory():void {
 		if(x+adjustment == 5) {
 			if (pc.upperUndergarment.shortName != "") 
 			{
-				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bar");
+				this.addOverrideItemButton(x + adjustment, pc.upperUndergarment, "UndertopOff", unequip, "bra");
 			}
 			else this.addDisabledButton(x+adjustment,"UndertopOff");
 			adjustment++;
@@ -251,7 +256,7 @@ function inventory():void {
 				var tarSlot:int = x + adjustment;
 				if (tarSlot >= 14) tarSlot++;
 
-				this.addButton(tarSlot,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,useItem,pc.inventory[x]);
+				(this as TiTS).addItemButton(tarSlot, pc.inventory[x], useItem, pc.inventory[x]);
 				
 			}
 		}

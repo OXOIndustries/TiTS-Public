@@ -643,7 +643,7 @@ function initializeRooms():void
 	//45. The Dense Orange
 	rooms["DENSE ORANGE 2"] = new RoomClass(this);
 	rooms["DENSE ORANGE 2"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 2"].description = "The jungle on either side is flooded with orangish plants of all sizes and descriptions. There are wait-high, peach-like ferns. There are trees with tangerine vines covering their trunks. There's even tufts of round-bladed, orange grass under[pc.foot]. The way through this mess of spectacularly hued organic growth looks well traveled, though no obvious tracks reveal themselves. You can continue north and south from here.";
+	rooms["DENSE ORANGE 2"].description = "The jungle on either side is flooded with orangish plants of all sizes and descriptions. There are waist-high, peach-like ferns. There are trees with tangerine vines covering their trunks. There's even tufts of round-bladed, orange grass under[pc.foot]. The way through this mess of spectacularly hued organic growth looks well traveled, though no obvious tracks reveal themselves. You can continue north and south from here.";
 	rooms["DENSE ORANGE 2"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 2"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 2"].northExit = "DENSE ORANGE 1";
@@ -655,7 +655,7 @@ function initializeRooms():void
 	//46. The Dense Orange
 	rooms["DENSE ORANGE 3"] = new RoomClass(this);
 	rooms["DENSE ORANGE 3"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 3"].description = "Caterpillars as big as your thumb are swarming all over a crimson-trunked tree. A closer look reveals that the arboreal victim is already missing all its leaves and likely dead. The odd insects chitter noisily as they devour the bark, completely oblivious to your presence. You leave them and consider the trail before you; it snakes north-south through the vibrant jungle. The babbling of a brook or river can be heard distantly to the west, but there is no way through the brush in the direction.";
+	rooms["DENSE ORANGE 3"].description = "Caterpillars as big as your thumb are swarming all over a crimson-trunked tree. A closer look reveals that the arboreal victim is already missing all its leaves and likely dead. The odd insects chitter noisily as they devour the bark, completely oblivious to your presence. You leave them and consider the trail before you; it snakes north-south through the vibrant jungle. The babbling of a brook or river can be heard distantly to the west, but there is no way through the brush in that direction.";
 	rooms["DENSE ORANGE 3"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 3"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 3"].northExit = "DENSE ORANGE 2";
@@ -679,7 +679,7 @@ function initializeRooms():void
 	//48. An Orange Intersection
 	rooms["ORANGE INTERSECTION 1"] = new RoomClass(this);
 	rooms["ORANGE INTERSECTION 1"].roomName = "ORANGE\nINTERSECTION";
-	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life wasn't so obviously thanks to the dayglow tone of the surrounding leaves.";
+	rooms["ORANGE INTERSECTION 1"].description = "The tangerine-dyed foilage is split by the meeting of two paths here. One, a narrow, old path, travels north and south through the candy-colored growth. The other snakes off to the east. It looks much less traveled. Indeed, you might not have noticed it if the gap in the plant-life wasn't so obviously illuminated thanks to the dayglow tone of the surrounding leaves.";
 	rooms["ORANGE INTERSECTION 1"].planet = "PLANET: MHEN'GA";
 	rooms["ORANGE INTERSECTION 1"].system = "SYSTEM: ARA ARA";
 	rooms["ORANGE INTERSECTION 1"].northExit = "DENSE ORANGE 4";
@@ -692,7 +692,7 @@ function initializeRooms():void
 	//49. The Dense Orange
 	rooms["DENSE ORANGE 5"] = new RoomClass(this);
 	rooms["DENSE ORANGE 5"].roomName = "THE DENSE\nORANGE";
-	rooms["DENSE ORANGE 5"].description = "Orange plants of every shape and size grow in droves around you. Though some bear fruit of crimson or green, most types are a nearly matching shade of tangerine, perhaps to camouflage them against their peers or some other unknown purpose. Regardless, the path you're standing on leads north towards and intersection and south towards a westward bend.";
+	rooms["DENSE ORANGE 5"].description = "Orange plants of every shape and size grow in droves around you. Though some bear fruit of crimson or green, most types are a nearly matching shade of tangerine, perhaps to camouflage them against their peers or some other unknown purpose. Regardless, the path you're standing on leads north towards an intersection and south towards a westward bend.";
 	rooms["DENSE ORANGE 5"].planet = "PLANET: MHEN'GA";
 	rooms["DENSE ORANGE 5"].system = "SYSTEM: ARA ARA";
 	rooms["DENSE ORANGE 5"].northExit = "ORANGE INTERSECTION 1";
@@ -1189,7 +1189,7 @@ function initializeRooms():void
 	//90. Kelly's Office - dat secretary
 	rooms["KELLY'S OFFICE"] = new RoomClass(this);
 	rooms["KELLY'S OFFICE"].roomName = "XENOGEN\nOFFICE";
-	rooms["KELLY'S OFFICE"].description = "There will be a double-dicked secretary here eventually, for those of you who like that sort of thing.";
+	rooms["KELLY'S OFFICE"].description = "The inside of this office is decorated in the style or high class terrans, with wood grain floors and eggshell-toned walls illuminated by angled glowbulbs. A few potted plants sit around the periphery, obviously non-native. Well-conceiled vents in the ceilings feed a steady influx of purified, cooled air into this chamber to keep it comfortable. Across the room is an expansive desk equipped with everything you would expect to find on a classy secretary's desk: a terminal, old-fashioned writing utensils, holopaper, and even a small statue of a busty centaur. A monolithic white door sits framed in the western wall and a simpler one on the south, leading towards the outside.";
 	rooms["KELLY'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["KELLY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S OFFICE"].westExit = "JULIAN'S OFFICE";
@@ -1201,7 +1201,7 @@ function initializeRooms():void
 	//91. Julian's Office
 	rooms["JULIAN'S OFFICE"] = new RoomClass(this);
 	rooms["JULIAN'S OFFICE"].roomName = "SCIENTIST'S\nOFFICE";
-	rooms["JULIAN'S OFFICE"].description = "The pure white, self-illuminating walls, floor, and ceiling provide a perfectly uniform distribution of luminance, lending the whole space a dream-like, heavenly quality. More strange than the lighting is the desk that curves through the northern half of this chamber. It's carved of one solid piece of translucent material that reflects the light into dazzling patterns of hypnotizing shine. The doorway to the east is the same featureless alabaster. It doesn't even have a doorknob, instead relying on proximity scanners and motorized retractors to slide it out of the way and into the wall. This place feels nothing like the rest of Esbeth.";
+	rooms["JULIAN'S OFFICE"].description = "The pure white, self-illuminating walls, floor, and ceiling provide a perfectly uniform distribution of luminance, lending the whole space a dream-like, heavenly quality. More strange than the lighting is the desk that curves through the northern half of this chamber. It's carved from one solid piece of translucent material that reflects the light into dazzling patterns of hypnotizing shine. The doorway to the east is the same featureless alabaster. It doesn't even have a doorknob, instead relying on proximity scanners and motorized retractors to slide it out of the way and into the wall. This place feels nothing like the rest of Esbeth.";
 	rooms["JULIAN'S OFFICE"].runOnEnter = juliansOffice;
 	rooms["JULIAN'S OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["JULIAN'S OFFICE"].system = "SYSTEM: ARA ARA";

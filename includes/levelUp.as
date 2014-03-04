@@ -254,7 +254,7 @@ function confirmLevelPointAllocation():void
 			output("<b>You have gained the 'Shield Tweaks' perk, granting you 2 points of bonus shielding per level!</b>");
 			pc.createPerk("Shield Tweaks",0,0,0,0,"Your shield generator grants an additional 2 points of shielding per level.");
 			output("\n\nYou may also choose one of the following abilities. You will only get to pick one of these two options, so make a wise decision:");
-			output("\n<b>* Attack Drone -</b> this ability gives you an attack drone that will automatically fire on your enemies every turn as long as your shields are up. THe drone will also supplant your shields with its own, raising your shields by one point per level.");
+			output("\n<b>* Attack Drone -</b> this ability gives you an attack drone that will automatically fire on your enemies every turn as long as your shields are up. The drone will also supplant your shields with its own, raising your shields by one point per level.");
 			output("\n<b>* Shield Booster -</b> this ability further increases your shielding by an additional four points per level.");
 			clearMenu();
 			addButton(0,"Atk.Drone",engineerPerk,"Attack Drone");

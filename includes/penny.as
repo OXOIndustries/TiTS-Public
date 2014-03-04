@@ -263,7 +263,7 @@ function getSpitRoastedForPenny():void {
 	else output("[pc.vagina] is stuffed full of rigid zil-cock");
 	output(". As the cock in your mouth withdraws, you are hilted; yellow balls slap against your butt. They saw into you, their athletic forms building speed. The aliens use you as little more than a sentient cock-sleeve. A thrill of pleasure runs through your body, feeling like a soft sex-toy just waiting to be turned into a double cum-dump.");
 	
-	output("\n\nIf the throbbing of their dicks is any indication, the zil are clearly enjoying dominating your submissive body. You rock back and forth, greedily gulping down pre-cum, desperately working your muscles to coax ever more from them. They don’t keep you waiting much longer. As one, the break their rhythm, and both cocks are rammed into you. The throbbing ballsacks grind against your [pc.skinFurScales], and a torrent of honeyed jism erupts into your mouth, flooding your cheeks. Diffirent from the syrupy pre, the zil’s cum is creamy and thick, satisfying a deep desire you didn’t even know you had until you started to swallow. You gulp it down with a blissful smile, feeling only wanton abandon at amber trails slopping out of the corners of your mouth and down your chin. At the same time, the yellow zil explodes in your [pc.vagOrAss], hot, thick spunk flooding your insides, jet after jet of it lancing deep into your ");
+	output("\n\nIf the throbbing of their dicks is any indication, the zil are clearly enjoying dominating your submissive body. You rock back and forth, greedily gulping down pre-cum, desperately working your muscles to coax ever more from them. They don’t keep you waiting much longer. As one, they break their rhythm, and both cocks are rammed into you. The throbbing ballsacks grind against your [pc.skinFurScales], and a torrent of honeyed jism erupts into your mouth, flooding your cheeks. Diffirent from the syrupy pre, the zil’s cum is creamy and thick, satisfying a deep desire you didn’t even know you had until you started to swallow. You gulp it down with a blissful smile, feeling only wanton abandon at amber trails slopping out of the corners of your mouth and down your chin. At the same time, the yellow zil explodes in your [pc.vagOrAss], hot, thick spunk flooding your insides, jet after jet of it lancing deep into your ");
 	if(!pc.hasVagina()) output("bowels");
 	else if(!pc.isPregnant()) output("womb");
 	else output("passage");
@@ -511,7 +511,7 @@ function zilFlyingSpinKick():void {
 //Harden:
 //Buffs kinetic defenses?
 function pluralZilHarden():void {
-	output("Closing his onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
+	output("Closing their onyx eyes, the zil flex, and you hear quiet, barely audible cracks filling the air. You peer closer and realize that the zil's carapace seems shinier, and perhaps a bit more formidable... just barely thicker, somehow.");
 	foes[0].resistances[GLOBAL.KINETIC] *= .8;
 	foes[0].resistances[GLOBAL.SLASHING] *= .8;
 	foes[0].resistances[GLOBAL.PIERCING] *= .8;
@@ -2403,7 +2403,7 @@ function pennyOverTheDeskRoughFuck():void {
 	if(!pc.hasCock()) output("turned on ");
 	else output("hard ");
 	output("as you are. Particularly since ");
-	if(pc.hasCock()) output("[pc.EachCock] is twitchingly, aching erect and ready to go");
+	if(pc.hasCock()) output("[pc.eachCock] is twitchingly, aching erect and ready to go");
 	else output("[pc.oneVagina] is being pressed on quite presently by your faux phallus");
 	output(", sapping your will with potent physical need in a way that must mirror what Penny is experiencing. You battle with your baser instincts for a second until self control wins out... for now.");
 	
@@ -2501,7 +2501,7 @@ function pennyOverTheDeskRoughFuck():void {
 	output("\n\nYou spend the next minute cooling off and helping Penny out of her ruined clothes. At first, she lets you do it with a dopey smile and eyes that look half-vacant, but as time passes, more of her fucked-out personality seems to return.");
 	output("\n\n<i>“Ohhhh, god damn that was hot!”</i>  she giggles. <i>“You know, you’re a great mate, right? The absolute best.”</i>  After that uninhibited declaration, she staggers up onto her feet, slipping and sliding around the accumulated juices. <i>“Fuck! [pc.name], help me out here. We’ve got to get a mop and bucket!”</i>");
 	
-	output("\n\nYou watch the bow-legged fox’s shapely rump as she wobbles and let her words sink in. Oh right! ");
+	output("\n\nYou watch the bow-legged fox’s shapely rump as she wobbles and let her words sink in. Oh, right! ");
 	if(pc.isNice()) output("You happily help her to a supply closed where the two of you can gear up for a bit a cleaning. Two bodies make it go twice as fast!");
 	else if(pc.isMischievous()) output("You playfully escort her to a supply closet, pretending to slip a few times for a laugh. After the first two times, Penny gets tired of the joke and socks you on the shoulder, but together you clean the place up and have a surprising amount of fun doing it.");
 	else output("You begrudgingly help her to the closet and to clean up. Toying with her like that was a lot of fun, and you aren’t about to throw away the opportunity to repeat it over a little bit of cleaning.");

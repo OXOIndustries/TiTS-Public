@@ -28,7 +28,7 @@
 			this.description = "a hammer pistol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Nick-named 'the hammer' by the backwater law enforcement agencies that rely on it. This handgun is as reliable as they come. It utilized a standard point and shoot interface, though the trigger is a little sensitive.";
+			this.tooltip = "Nick-named 'the hammer' by the backwater law enforcement agencies that rely on it. This handgun is as reliable as they come. It utilizes a standard point and shoot interface, though the trigger is a little sensitive.";
 			this.attackVerb = "shoot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
