@@ -287,5 +287,5 @@ public function mimbraneCodexEntry():void
 	
 	outputCodex("\n\nContacting an anesthesiologist is the best approach to removing Mimbrane from an individual. The parasite’s need to breathe makes it susceptible to being knocked out and easily removed. There is rarely any lasting damage or scars to hosts.");
 
-	CodexManager.viewedEntry("Mimbrane";)
+	CodexManager.viewedEntry("Mimbrane");
 }
