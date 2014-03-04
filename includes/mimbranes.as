@@ -254,6 +254,11 @@ public function highestMimbraneTrust():int
 	}
 }
 
+public function mimbraneNeglected():void
+{
+	// Stub
+}
+
 //Encounter & Combat
 //Encounter a Mimbrane (Jungle)
 public function encounterMimbrane():void
@@ -330,22 +335,85 @@ public function encounterMimbrane():void
 	}
 }
 
-Combat Description
-A Mimbrane is flying around you, resembling a slick and smooth cloth at times. The parasite is incredibly thin, appearing not any thicker than a quarter of an inch tall. What it lacks in depth it makes up in diameter, though; it easily sizes up to around a couple square feet. The Mimbrane’s moist, oily skin occasionally glistens in the surrounding light, sometimes appearing slightly translucent as its stretches its lithe form.  The creature’s face is hard to make out a times, little more than two small eyeballs and a slightly protruding mouth that contrast somewhat to the rest of the beast’s uniform appearance.   
-Combat Techniques
-Fighting Notes: Mimbranes should have high evades but low HP. Mimbranes that are attached to the PC will go into their neglected states for the duration of the fight (See Unlockable Effects)
-THIS MONSTER IS IMMUNE TO LUST ATTACKS
-Miss Text: The Mimbrane’s light, agile form twists and contorts in the air, effortlessly dodging around your attack.
-Block Text: You’re shocked to see the parasite’s form adapt to your attack. It’s as if you’re attacking a bedsheet in a wind tunnel.
-AI: Uses Lust Cloud every two rounds after previous cloud effect has worn off. If PC <60 lust, uses Spit. If PC ≥ 60, will use Smother frequently. HP attacks are less frequent when PC ≥75 lust
-Skin Contact
+// Combat Moves
+
+//Combat Techniques
+//Fighting Notes: Mimbranes should have high evades but low HP. Mimbranes that are attached to the PC will go into their neglected states for the duration of the fight (See Unlockable Effects)
+//AI: Uses Lust Cloud every two rounds after previous cloud effect has worn off. If PC <60 lust, uses Spit. If PC ≥ 60, will use Smother frequently. HP attacks are less frequent when PC ≥75 lust
+function mimbraneAI():void
+{
+	if (!pc.hasStatusEffect("Mimbrane Cloud"))
+	{
+		if (mimbraneLustCloud()) return; // lustCloud function works out when to apply and returns true if it happens, otherwise continue to other attacks
+	}
+
+	// Select between lust and HP attacks
+	var hpAttackWeight:int = 3; // 33% [1 in (0-2)]
+
+	if (pc.lustMax() / pc.lust() > 0.75) hpAttackWeight += 3; // 20% [1 in (0-5)]
+
+	trace("HP Attack Weight: " + hpAttackWeight);
+
+	if (rand(hpAttackWeight) == 0)
+	{
+		// HP Attack
+		if (rand(3) == 0)
+		{
+			mimbraneTrip();
+			return;
+		}
+		else
+		{
+			mimbraneScratch();
+			return;
+		}
+	}
+	else
+	{
+		// Lust attack selection
+		if (rand(2) == 0)
+		{
+			mimbraneSkinContact();
+			return;
+		}
+		else
+		{
+			if (pc.lustMax() / pc.lust() < 0.6)
+			{
+				// Spit
+				mimbraneSpit();
+				return;
+			}
+			else
+			{
+				// Smother
+				mimbraneSmother();
+				return;
+			}
+		}
+		
+	}
+}
+
+//THIS MONSTER IS IMMUNE TO LUST ATTACKS
+
+//Skin Contact
 //Light lust attack
+function mimbraneSkinContact():void
+{
 It’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!
 {standard miss/block text} 
 {hit} You’re quick enough to avoid being hit head-on, but the parasite manages to brush up against you as it sails by. Oily perspiration smears along your [armor], forcing a healthy whiff of wanton lust down your nostrils.  
 {not defeated} You quickly brush off the residue before it can affect you more than it already has. 
-Lust Cloud
+}
+
+//Lust Cloud
 //Lust damage over time if attack connects
+function mimbraneLustCloud():Boolean
+{
+	if applied return true;
+	else return false;
+
 Your adversary grows more dense in the air for a second, appearing as if it were wringing out more passionate sweat from its flesh. In one fluid motion, it stretches back out again, a large square of flesh suspended above you surrounding the visible cloud of lust it created. The Mimbrane spins in the air, pushing the fog your way!
 {standard miss/block text}
 {hit} The parasite’s cloud of wanton desire consumes you, seeping into every pore and driving you ever further off the edge.
@@ -355,8 +423,12 @@ Your adversary grows more dense in the air for a second, appearing as if it were
 {wears off}<b>The parasite’s noxious perspiration has faded away.</b>
 {resist/make save} You’re able to stagger your way out of the parasite’s salacious smoke without taking too much more damage to your resolve.
 //moderate lust damage
-Smother
+}
+
+//Smother
 //Constricts. Heavy lust damage every turn until free.
+function mimbraneSmother():void
+{
 The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net! 
 {standard miss/block text}
 {hit} Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.
@@ -364,32 +436,95 @@ The Mimbrane is difficult to track as it circles above and around you. You lose 
 {fail to escape 2} The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.
 {defeated} The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your knees. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.
 {escape} Fingers finally dig their way into the erotic blanket suffocating you. Your head is freed with a mighty pull. You throw the beast to the ground, spitting and wiping away the remnants of its assault on your face.
-Spit
+}
+
+//Spit
 //Heavy lust attack
+function mimbraneSpit():void
+{
 What amounts to your adversary’s face bulges intensely. The Mimbrane’s mouth struggles for a bit before launching a thick, deep red payload of concentrated sexual craving right at you.
 {standard miss/block text}
-{hit} The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration. 
-Scratch
+{hit} The parasite’s discharge makes its mark, smothering you in a volatile mix of a supersaturated batch of its oily residue and dense cloud of prurient perspiration.
+}
+
+//Scratch
 //Light HP attack
+function mimbraneScratch():void
+{
 Sharp, miniature barbs form along the underside of the parasite. It glides upwards before forcing its way back down towards you.
 {standard miss/block text}
 {hit}The Mimbrane’s attack connects, and its suddenly jagged skin brushes against you, leaving a series of moderate cuts. 
-Trip
+}
+
+//Trip
 //Moderate HP attack
+function mimbraneTrip():void
+{
 The Mimbrane divebombs you again. Just as it closes in on you, the parasite contorts it body into a half circle, aiming for your [leg].
 {standard miss/block text}
 {hit}It successfully hooks onto your [leg] and pulls it out from under you, tripping you hard against the ground.
-Mimbrane Combat Attacks and Effects
-Any Mimbranes in a state that could cause a skipped turn (mutinous, aiding mutinous, or four-day hungry, ≤2 trust hand/feet) should take priority in order to avoid actions taking place prior.
-General Effect Text
-Suffering from neglected Mimbrane in-combat (choose randomly from group, appears at start of combat): 
-The hungry Mimbrane(s) on your body make(s) concentrating a little tough, slowly chipping away at your lust.
-Its difficult for you to focus as the hungry Mimbrane(s) revolt(s) against you, {its/their} oily secretions building your desire.
-Your sexual desire is only growing as your hungry Mimbrane(s) continue(s) to slather you in {its/their} sensual sweat.
-Suffering from mutinous Mimbranes in-combat (choose randomly from group, appears at start of combat)
+}
+
+//Mimbrane Combat Attacks and Effects
+//Any Mimbranes in a state that could cause a skipped turn (mutinous, aiding mutinous, or four-day hungry, ≤2 trust hand/feet) should take priority in order to avoid actions taking place prior.
+//General Effect Text
+
+//Suffering from neglected Mimbrane in-combat (choose randomly from group, appears at start of combat): 
+public function neglectedMimbranesCombatStart():void
+{
+	var select:int = rand(3);
+
+	if (select == 0)
+	{
+		output("\n\nThe hungry Mimbrane")
+		if (attachedMimbranes > 1) output("s");
+		output(" on your body make");
+		if (attachedMimbranes == 1) output("s")
+		output(" concentrating a little tough, slowly chipping away at your resolve.");
+	}
+	else if (select == 1)
+	{
+		output("\n\nIts difficult for you to focus as the hungry Mimbrane");
+		if (attachedMimbranes > 1) output("s");
+		output(" revolt");
+		if (attachedMimbranes == 1) output("s");
+		output(" against you,");
+		if (attachedMimbranes > 1) output(" their");
+		else output(" its");
+		output(" oily secretions building your desire.");
+	}
+	else if (select == 2)
+	{
+		output("\n\nYour sexual desire is only growing as your hungry Mimbrane");
+		if (attachedMimbranes > 1) output("s");
+		output(" continue");
+		if (attachedMimbranes == 1) output("s");
+		output(" to slather you in");
+		if (attachedMimbranes > 1) output(" their");
+		else output(" its")
+		output("sensual sweat.");
+	}
+}
+
+//Suffering from mutinous Mimbranes in-combat (choose randomly from group, appears at start of combat)
+public function mutinousMimbranesCombatStart():void
+{
+	var select:int == rand(3);
+
+	if (select == 0)
+	{
 The Mimbrane(s) attached to you is/are sweating profusely, doing their best to throw your will off-balance as you combat its/their brethren. 
+	}
+	else if (select == 1)
+	{
 It’s difficult to focus on your opponent as your own parasite(s) {does/do} all {it/they} can to heed your efforts. 
-Your focus is weary, struggling against the mutinous Mimbrane(s) on your body, doing {its/their} best to keep you from defeating their fellow parasite. 
+	}
+	else if (select == 2)
+	{
+Your focus is weary, struggling against the mutinous Mimbrane(s) on your body, doing {its/their} best to keep you from defeating their fellow parasite.
+	}
+}
+
 Penis Mimbranes
 Spit Attack: An unusual pressure builds in your [cock]. You undo your [armor], just in time for your Mimbrane-controlled member to fire a blast of concentrated sexual desire at the {monster}.
 Spit Attack Misfire: An unusual pressure builds in your [cock]. You rush to unleash your dragon from its cage in order to allow it to rain sexual fury on your foe. Instead, your Mimbrane-controller member is jostled as you fumble at your [armor], causing the parasite to misfire and douse you with a potent blast of lust.
