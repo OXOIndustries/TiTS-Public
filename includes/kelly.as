@@ -16,7 +16,7 @@ function kellyAppearance():void {
 	output("\n\nHer most striking feature, at first sight, is her strange coloration. Reminiscent of a bumble-bee, her entire body");
 	//At work
 	if(9999 == 9999) output(", from what you can see,");
-	output(" is covered in yellow and black stripes, expect for her holy flame tail and ears, which are slightly orange. She exudes a scent that reminds you keenly of honey, but you also detect a distinctly feminine undertone.");
+	output(" is covered in yellow and black stripes, except for her tail and ears, which are slightly orange. She exudes a scent that reminds you keenly of honey, but you also detect a distinctly feminine undertone.");
 	if(flags["KELLY_SEXED"] == undefined) output(" Perhaps a perfume of some kind?");
 	else output(" The knowledge that this is her natural aroma is both enticing and exotic. One would think the smell of honey would be sickening after so long, but you’ve come to enjoy it.");
 
@@ -181,6 +181,7 @@ function talkToKellyAboutWorkingHere():void {
 //Flirt
 function flirtWithKellyInTheOffice():void {
 	clearOutput();
+	output("<b>This scene is meant to unlock later but I'm allowing it until the rest of her content is in.\nWARNING: HERM WITH TWO BIG DICKS.</b>\n\n");
 	output("You wonder how Kelly would react if you were to flirt with her a little....");
 	output("\n\nYou lean over her table wearing a seductive expression and ask Kelly how she’s doing.");
 	output("\n\nShe looks back at you with an amused expression. <i>“I’m better now that you are here. I’ve been bored here, all by myself, for a while now.”</i>  She smiles.");

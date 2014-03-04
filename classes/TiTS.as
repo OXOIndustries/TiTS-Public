@@ -29,7 +29,10 @@
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
+	
+	// Game content managers
 	import classes.GameData.TooltipManager;
+	import classes.GameData.CodexManager;
 
 	import classes.InputManager;
 	import classes.Characters.*;
@@ -89,6 +92,7 @@
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
+		include "../includes/CodexEntries.as";
 			
 		public var chars:Object;
 		public var foes:Array;
@@ -168,7 +172,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.10";
+			version = "0.02.11";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -186,24 +190,21 @@
 			shopkeep = undefined;
 			itemScreen = undefined;
 			lootScreen = undefined;
+			
 			// lootList = new Array();
 			useItemFunction = undefined;
 			itemUser = undefined;
 			itemTarget = undefined;
 
 			this.inSceneBlockSaving = false;
-
-
+			
 			eventQueue = new Array();
-
 			eventBuffer = "";
-
-
+			
 			//Toggles
 			silly = false;
 			easy = false;
 			debug = false;
-
 
 			//Lazy man state checking
 			currentLocation = "SHIP HANGAR";
@@ -211,40 +212,34 @@
 
 			parser = new Parser(this, TiTS_Settings);
 
-
 			flags = new Dictionary();
-
 
 			this.userInterface = new GUI(this, stage)
 			
 			include "../includes/weaponVariables.as";
 
-
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
-
 			
 			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)
 
 			// set up the user interface: ------------------------------------------------------------
 			this.clearMenu();
-			
-			this.addButton(14,"CLEAR!",clearOutput);
-
-			setupInputEventHandlers()
-
 
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = chars[0];
 
 			this.chars["PC"] = new PlayerCharacter();
-
-
-			trace("Setting up the PC")
 			
-			this.addFrameScript( 0, mainMenu );
-			//mainMenu();
+			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+		}
+		
+		private function finishInit(e:Event):void
+		{
+			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			this.configureCodex();
+			this.userInterface.showMainMenu();
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
@@ -256,33 +251,9 @@
 			this.userInterface.clearMenu();
 		}
 		
-		public function setupInputEventHandlers():void
+		public function clearGhostMenu():void
 		{
-			this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			this.addEventListener(MouseEvent.MOUSE_WHEEL,wheelUpdater);
-			this.userInterface.scrollBar.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownHandler);
-			this.addEventListener(MouseEvent.MOUSE_UP,mouseUpHandler);
-			this.userInterface.scrollBG.addEventListener(MouseEvent.CLICK,scrollPage);
-
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-		public function mainMenuToggle(e:MouseEvent):void 
-		{
-			if (!userInterface.mainMenuButton.isActive)
-			{
-				return;
-			}
-			
-			if (userInterface.titleDisplay.visible)
-			{
-				userInterface.hideMenus();
-			}
-			else 
-			{
-				mainMenu();
-			}
+			this.userInterface.clearGhostMenu();
 		}
 		
 		public function buttonClick(evt:MouseEvent):void 
@@ -435,41 +406,17 @@
 		{
 			userInterface.addDisabledButton(slot);
 		}
-
-		public function pageUpScroll():void
-		{
-			//Scroll if text field isn't actively selected, like a BAWS.
-			
-			var keyTemp;
-			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
-				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-				this.userInterface.mainTextField.scrollV -= keyTemp;
-			}
-			wheelUpdater(this.userInterface.tempEvent);
-		}
 		
-		public function pageDownScroll():void
+		public function showCodex():void
 		{
-			var keyTemp;
-			if(stage.focus == null) { 
-				trace("OUT OF FOCUS SCROLL");
-				keyTemp = this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV + 1;
-				this.userInterface.mainTextField.scrollV += keyTemp;
-			}
-			wheelUpdater(this.userInterface.tempEvent);
-		}
-		
-		public function homeButtonScroll():void
-		{
-			this.userInterface.mainTextField.scrollV = 1;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		
-		public function endButtonScroll():void
-		{
-			this.userInterface.mainTextField.scrollV = this.userInterface.mainTextField.maxScrollV;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
+			this.userInterface.showCodex();
+			this.clearGhostMenu();
+			// TESTO BUTTONO
+			addGhostButton(0, "Database", function():void { } );
+			addGhostButton(1, "Messages", function():void { } );
+			addGhostButton(2, "Log", function():void { } );
+			addGhostButton(3, "CHEEVOS", function():void { } );
+			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 		}
 		
 		public function spacebarKeyEvt():void
@@ -489,18 +436,6 @@
 			this.inputManager.ignoreInputKeys(false);
 			this.userInterface.removeInput();
 		}
-
-		//CLICK/SCROLL UP/DOWN VIA UP/DOWN ARROWS
-		//Button the up arrow!
-		public function upScrollText():void {
-			this.userInterface.mainTextField.scrollV--;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		//Button the down arrow!
-		public function downScrollText():void {
-			this.userInterface.mainTextField.scrollV++;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
 		
 		public function pressButton(arg:int = 0):void 
 		{
@@ -510,215 +445,37 @@
 			}
 		}
 
-		//3. SCROLL WHEEL STUFF
-		//Scroll up or down a page based on click position!
-		public function scrollPage(evt:MouseEvent):void {
-			if(evt.stageY > this.userInterface.scrollBar.y) {
-				this.userInterface.mainTextField.scrollV += this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
-			}
-			else {
-				this.userInterface.mainTextField.scrollV -= this.userInterface.mainTextField.bottomScrollV - this.userInterface.mainTextField.scrollV;
-			}
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-		//Puts a listener on the next frame that removes itself and updates to fix the laggy bar updates
-		public function wheelUpdater(evt:MouseEvent):void {
-			this.addEventListener(Event.ENTER_FRAME,wheelUpdater2);
+		// New passthroughs to GUI to handle scroll event controls
+		public function upScrollText():void
+		{
+			this.userInterface.upScrollText();
 		}
 		
-		public function wheelUpdater2(evt:Event):void {
-			this.removeEventListener(Event.ENTER_FRAME,wheelUpdater2);
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-
-
-
-		public function clickScrollUp(evt:MouseEvent):void {
-			this.userInterface.upScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollUp);
-			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
-		}
-		public function clickScrollDown(evt:MouseEvent):void {
-			this.userInterface.downScrollButton.addEventListener(Event.ENTER_FRAME,continueScrollDown);
-			stage.addEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
-		}
-		public function continueScrollUp(evt:Event):void {
-			this.userInterface.mainTextField.scrollV--;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		public function continueScrollDown(evt:Event):void {
-			this.userInterface.mainTextField.scrollV++;
-			this.userInterface.updateScroll(this.userInterface.tempEvent);
-		}
-		public function clearScrollDown(evt:MouseEvent):void {
-			this.userInterface.downScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollDown);
-			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollDown);
-		}
-		public function clearScrollUp(evt:MouseEvent):void {
-			this.userInterface.upScrollButton.removeEventListener(Event.ENTER_FRAME,continueScrollUp);
-			stage.removeEventListener(MouseEvent.MOUSE_UP,clearScrollUp);
-		}
-
-		//Turn dragging on and off!
-		public function mouseDownHandler(evt:MouseEvent):void{
-			var myRectangle:Rectangle = new Rectangle(this.userInterface.scrollBG.x, this.userInterface.scrollBG.y, 0, this.userInterface.scrollBG.height - this.userInterface.scrollBar.height);
-			this.userInterface.scrollBar.startDrag(false,myRectangle);
-			if(!this.userInterface.scrollBar.hasEventListener(Event.ENTER_FRAME)) this.userInterface.scrollBar.addEventListener(Event.ENTER_FRAME,scrollerUpdater);
-		}
-		public function mouseUpHandler(evt:MouseEvent):void{
-			this.userInterface.scrollBar.stopDrag();
-			this.userInterface.scrollBar.removeEventListener(Event.ENTER_FRAME,scrollerUpdater);
-		}
-
-		//Used to set position of bar while being dragged!
-		public function scrollerUpdater(evt:Event):void {
-			var progress:Number = (this.userInterface.scrollBar.y-this.userInterface.scrollBG.y) / (this.userInterface.scrollBG.height - this.userInterface.scrollBar.height - 1);
-				//trace("FRAME UPDATE: " + progress);
-				//trace("SCROLLBARY: " + scrollBar.y + " SCROLLBGY: " + scrollBG.y);
-				//trace("SCROLLBAR: " + scrollBar.height + " SCROLLBG: " + scrollBG.height);
-			var min = this.userInterface.mainTextField.scrollV;
-			var max = this.userInterface.mainTextField.maxScrollV;
-			this.userInterface.mainTextField.scrollV = progress * this.userInterface.mainTextField.maxScrollV;
-				//trace("SCROLL V: " + this.userInterface.mainTextField.scrollV + " SHOULD BE: " + progress * this.userInterface.mainTextField.maxScrollV);
-			scrollChecker();
-		}
-
-
-
-		//Turn up/down buttons on and off
-		public function scrollChecker():void {
-			var target = this.userInterface.mainTextField;
-			if(!target.visible) target = this.userInterface.mainTextField2;
-			//Turn off scroll button as appropriate.
-			if(target.scrollV >= target.maxScrollV) {
-				this.userInterface.downScrollButton.alpha = .50;
-				this.userInterface.downScrollButton.buttonMode = false;
-				this.userInterface.downScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			}
-			else if(this.userInterface.downScrollButton.alpha == .5) {
-				this.userInterface.downScrollButton.alpha = 1;
-				this.userInterface.downScrollButton.buttonMode = true;
-				this.userInterface.downScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollDown);
-			}
-			if(target.scrollV == 1) {
-				this.userInterface.upScrollButton.alpha = .50;
-				this.userInterface.upScrollButton.buttonMode = false;
-				this.userInterface.upScrollButton.removeEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			}
-			else if(this.userInterface.upScrollButton.alpha == .5) {
-				this.userInterface.upScrollButton.alpha = 1;
-				this.userInterface.upScrollButton.buttonMode = true;
-				this.userInterface.upScrollButton.addEventListener(MouseEvent.MOUSE_DOWN,clickScrollUp);
-			}
-		}
-
-
-		public function mainMenu():void 
+		public function downScrollText():void
 		{
-			this.userInterface.hideMenus();
-			
-			//Hide all current buttons
-			this.userInterface.hideNormalDisplayShit();
-			
-			//Show menu shits
-			trace("Making everything visible:")
-			this.userInterface.creditText.visible = true;
-			this.userInterface.warningText.visible = true;
-			this.userInterface.titleDisplay.visible = true;
-			this.userInterface.warningBackground.visible = true;
-			this.userInterface.websiteDisplay.visible = true;
-			this.userInterface.mainMenuButton.Glow();
-			
-			//Texts
-			this.userInterface.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
-			this.userInterface.creditText.htmlText = "Created by Fenoxo, Text Parser written by Fake-Name, UI Code by Gedan.\nEdited by Zeikfried, Prisoner416, and many more.\n<b>Game Version: " + this.version + "</b>";
-			
-			this.userInterface.addMainMenuButton(0,"New Game",creationRouter);
-			this.userInterface.addMainMenuButton(1,"Data",dataManager.dataRouter);
-			this.userInterface.addMainMenuButton(2,"Credits",credits);
-			
-			//Ez Moad!
-			this.userInterface.addMainMenuButton(3,"Easy Mode:\nOff",toggleEasy);
-			if(easy) {
-				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"	
-			}
-
-			//Fix debug menu button in case game was loaded or some shit!
-			this.userInterface.addMainMenuButton(4,"Debug Mode:\nOff",toggleDebug);
-			if(debug) {
-				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
-			}
-
-			//Silly mode
-			this.userInterface.addMainMenuButton(5,"Silly Mode:\nOff",toggleSilly);
-			if(silly) {
-				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
-			}
-			else {
-				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
-			}
-			if(debug) this.addButton(10,"Debug",debugPane);
+			this.userInterface.downScrollText();
 		}
-
-
-		public function credits():void {
-			this.userInterface.hideMenus();
-			clearOutput2();
-			output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
-			this.userInterface.clearGhostMenu();
-			this.addGhostButton(0,"Back to Menu",mainMenu);
+		
+		public function pageUpScrollText():void
+		{
+			this.userInterface.pageUpScrollText();
 		}
-		public function toggleSilly():void {
-			if(silly) {
-				silly = false;
-				this.userInterface.mainMenuButtons[5].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOff"
-			}
-			else {
-				silly = true;
-				this.userInterface.mainMenuButtons[5].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[5].caption.text = "Silly Mode:\nOn"
-			}
+		
+		public function pageDownScrollText():void
+		{
+			this.userInterface.pageDownScrollText();
 		}
-		public function toggleDebug():void {
-			if(debug) {
-				debug = false;
-				this.userInterface.mainMenuButtons[4].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOff"
-			}
-			else {
-				debug = true;
-				this.userInterface.mainMenuButtons[4].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[4].caption.text = "Debug Mode:\nOn"
-			}
+		
+		public function homeScrollText():void
+		{
+			this.userInterface.homeScrollText();
 		}
-		public function toggleEasy():void {
-			if(easy) {
-				easy = false;
-				this.userInterface.mainMenuButtons[3].gotoAndStop(1);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOff"
-			}
-			else {
-				easy = true;
-				this.userInterface.mainMenuButtons[3].gotoAndStop(2);
-				this.userInterface.mainMenuButtons[3].caption.text = "Easy Mode:\nOn"
-			}
+		
+		public function endScrollText():void
+		{
+			this.userInterface.endScrollText();
 		}
-
-
-
+		
 		public function get pc():*
 		{
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.

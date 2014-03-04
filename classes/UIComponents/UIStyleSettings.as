@@ -7,6 +7,7 @@ package classes.UIComponents
 	import flash.text.TextFormatAlign;
 	import flash.text.TextFormatDisplay;
 	import flash.text.Font;
+	import flash.text.StyleSheet;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -21,7 +22,9 @@ package classes.UIComponents
 	 */
 	public class UIStyleSettings 
 	{
-		// Static init backing storage for stuff
+		// Static init backing storage for stuff -- basically ensures that we'll only ever have one of these objects
+		// kicking around and initialized for the whole game, to cut down on MASSIVE memory usage inflation, considering
+		// how much these things get used.
 		{
 			UIStyleSettings._gNameHeaderFormatter = null;
 			UIStyleSettings._gStatBlockHeaderFormatter = null;
@@ -41,6 +44,19 @@ package classes.UIComponents
 			UIStyleSettings._gBackgroundColourTransform = null;
 			UIStyleSettings._gForegroundColourTransform = null;
 			UIStyleSettings._gMovementButtonColourTransform = null;
+			UIStyleSettings._gMainMenuTextFormatter = null;
+			UIStyleSettings._gPurpleGlow = null;
+			UIStyleSettings._gTextInputFormatter = null;
+			UIStyleSettings._gMainTextCSSStyleSheet = null;
+			UIStyleSettings._gCodexTreeHeaderHighlightColourTransform = null;
+			UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform = null;
+			UIStyleSettings._gCodexTreeHeaderFormatter = null;
+			UIStyleSettings._gCodexTitleHeaderFormatter = null;
+			UIStyleSettings._gCodexLinkFormatter = null;
+			UIStyleSettings._gMapIndoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
+			UIStyleSettings._gMapFallbackRoomColourTransform = null;
+			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
 		}
 		
 		// TITS VALUES
@@ -48,7 +64,7 @@ package classes.UIComponents
 		public static var gForegroundColour:uint			= 0x333E52; // Pane colour (background of left/right bar) -- this was also used for some fade-out colour transforms throughout various parts of the UI code
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		public static var gMovementButtonColour:uint		= 0x84449B;
-		// public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
+		public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
 		public static var gStatusGoodColour:uint			= 0x0CD71C;
@@ -64,6 +80,13 @@ package classes.UIComponents
 		// Specialist font/tweaked colours for certain UI elements
 		public static var gBlueBindColour:uint				= 0x6699FF;
 		
+		// Map room colour settings
+		// I'm going to tie a bunch of flags to colour the underlying room "block" based on these values
+		public static var gPCLocationRoomColour:uint		= 0x8D31B0;
+		public static var gFallbackRoomColour:uint			= 0x000000; // Obvious colour to highlight rooms without flags.
+		public static var gIndoorRoomFlagColour:uint 		= 0x333E52;
+		public static var gOutdoorRoomFlagColour:uint		= 0x77797A;
+		
 		// Font Faces
 		[Embed(source = "../../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const LatoTTF:String;
@@ -78,6 +101,8 @@ package classes.UIComponents
 		[Embed(source = "../../assets/Lato-BoldItalic.ttf", fontWeight = "bold", fontStyle = "italic", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const LatoBoldItalicTFF:String;
 		
+		// There IS actually a family of fonts for bold/italics etc for Univers, but I don't have it on this computer... its on my laptop... which tried
+		// its hardest to commit sepuku today... so I'll actually add the family at some point.
 		[Embed(source = "../../assets/Univers 59 Ultra Condensed.ttf", fontName = "Univers UltraCondensed", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const UniverseUltraCondensedTFF:String;
 		
@@ -231,7 +256,7 @@ package classes.UIComponents
 				UIStyleSettings._gButtonBodyLabelFormatter.size = 21;
 				UIStyleSettings._gButtonBodyLabelFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gButtonBodyLabelFormatter.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gButtonBodyLabelFormatter.leading = 11;
+				UIStyleSettings._gButtonBodyLabelFormatter.leading = 0;
 				UIStyleSettings._gButtonBodyLabelFormatter.kerning = true;
 				UIStyleSettings._gButtonBodyLabelFormatter.bold = true;
 				UIStyleSettings._gButtonBodyLabelFormatter.font = "Lato";
@@ -245,7 +270,7 @@ package classes.UIComponents
 			if (UIStyleSettings._gButtonBindLabelFormatter == null)
 			{
 				UIStyleSettings._gButtonBindLabelFormatter = new TextFormat();
-				UIStyleSettings._gButtonBindLabelFormatter.size = 14;
+				UIStyleSettings._gButtonBindLabelFormatter.size = 15;
 				UIStyleSettings._gButtonBindLabelFormatter.color = UIStyleSettings.gBlueBindColour;
 				UIStyleSettings._gButtonBindLabelFormatter.align = TextFormatAlign.CENTER;
 				UIStyleSettings._gButtonBindLabelFormatter.leading = 37;
@@ -253,6 +278,88 @@ package classes.UIComponents
 				UIStyleSettings._gButtonBindLabelFormatter.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gButtonBindLabelFormatter;
+		}
+		
+		private static var _gMainMenuTextFormatter:TextFormat;
+		public static function get gMainMenuTextFormatter():TextFormat
+		{
+			if (UIStyleSettings._gMainMenuTextFormatter == null)
+			{
+				UIStyleSettings._gMainMenuTextFormatter = new TextFormat();
+				UIStyleSettings._gMainMenuTextFormatter.size = 18;
+				UIStyleSettings._gMainMenuTextFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gMainMenuTextFormatter.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gMainMenuTextFormatter.leading = 0;
+				UIStyleSettings._gMainMenuTextFormatter.kerning = true;
+				UIStyleSettings._gMainMenuTextFormatter.tabStops = [35];
+				UIStyleSettings._gMainMenuTextFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gMainMenuTextFormatter;
+		}
+		
+		private static var _gTextInputFormatter:TextFormat;
+		public static function get gTextInputFormatter():TextFormat
+		{
+			if (UIStyleSettings._gTextInputFormatter == null)
+			{
+				UIStyleSettings._gTextInputFormatter = new TextFormat();
+				UIStyleSettings._gTextInputFormatter.size = 18;
+				UIStyleSettings._gTextInputFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gTextInputFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gTextInputFormatter.kerning = true;
+				UIStyleSettings._gTextInputFormatter.leading = 11;
+				UIStyleSettings._gTextInputFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gTextInputFormatter;
+		}
+		
+		private static var _gCodexTitleHeaderFormatter:TextFormat;
+		public static function get gCodexTitleHeaderFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexTitleHeaderFormatter == null)
+			{
+				UIStyleSettings._gCodexTitleHeaderFormatter = new TextFormat();
+				UIStyleSettings._gCodexTitleHeaderFormatter.size = 50;
+				UIStyleSettings._gCodexTitleHeaderFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gCodexTitleHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexTitleHeaderFormatter.kerning = true;
+				UIStyleSettings._gCodexTitleHeaderFormatter.leading = 0;
+				UIStyleSettings._gCodexTitleHeaderFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCodexTitleHeaderFormatter;
+		}
+		
+		private static var _gCodexTreeHeaderFormatter:TextFormat;
+		public static function get gCodexTreeHeaderFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexTreeHeaderFormatter == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderFormatter = new TextFormat();
+				UIStyleSettings._gCodexTreeHeaderFormatter.size = 28;
+				UIStyleSettings._gCodexTreeHeaderFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gCodexTreeHeaderFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexTreeHeaderFormatter.kerning = true;
+				UIStyleSettings._gCodexTreeHeaderFormatter.leading = 0;
+				UIStyleSettings._gCodexTreeHeaderFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gCodexTreeHeaderFormatter;
+		}
+		
+		private static var _gCodexLinkFormatter:TextFormat;
+		public static function get gCodexLinkFormatter():TextFormat
+		{
+			if (UIStyleSettings._gCodexLinkFormatter == null)
+			{
+				UIStyleSettings._gCodexLinkFormatter = new TextFormat();
+				UIStyleSettings._gCodexLinkFormatter.size = 18;
+				UIStyleSettings._gCodexLinkFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gCodexLinkFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gCodexLinkFormatter.kerning = true;
+				UIStyleSettings._gCodexLinkFormatter.leading = 0;
+				UIStyleSettings._gCodexLinkFormatter.tabStops = [15, 30, 45, 60, 75, 90];
+				UIStyleSettings._gCodexLinkFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gCodexLinkFormatter;
 		}
 		
 		// Glows
@@ -274,6 +381,16 @@ package classes.UIComponents
 				UIStyleSettings._gButtonGlow = new GlowFilter(UIStyleSettings.gHighlightColour, 1, 10, 10, 5, 1, false, false);
 			}
 			return UIStyleSettings._gButtonGlow;
+		}
+		
+		private static var _gPurpleGlow:GlowFilter;
+		public static function get gPurpleGlow():GlowFilter
+		{
+			if (UIStyleSettings._gPurpleGlow == null)
+			{
+				UIStyleSettings._gPurpleGlow = new GlowFilter(UIStyleSettings.gPurpleGlowColour, 1, 10, 10, 5, 1, false, false);
+			}
+			return UIStyleSettings._gPurpleGlow;
 		}
 		
 		// Colour Transforms
@@ -330,6 +447,158 @@ package classes.UIComponents
 				UIStyleSettings._gMovementButtonColourTransform.color = UIStyleSettings.gMovementButtonColour;
 			}
 			return UIStyleSettings._gMovementButtonColourTransform;
+		}
+		
+		private static var _gCodexTreeHeaderHighlightColourTransform:ColorTransform;
+		public static function get gCodexTreeHeaderHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gCodexTreeHeaderHighlightColourTransform == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gCodexTreeHeaderHighlightColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gCodexTreeHeaderHighlightColourTransform;
+		}
+		
+		private static var _gCodexTreeHeaderDeHighlightColourTransform:ColorTransform;
+		public static function get gCodexTreeHeaderDeHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform == null)
+			{
+				UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform.color = UIStyleSettings.gBackgroundColour;
+			}
+			return UIStyleSettings._gCodexTreeHeaderDeHighlightColourTransform;
+		}
+		
+		private static var _gMapIndoorRoomFlagColourTransform:ColorTransform;
+		public static function get gMapIndoorRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapIndoorRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapIndoorRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapIndoorRoomFlagColourTransform.color = UIStyleSettings.gIndoorRoomFlagColour;
+			}
+			return UIStyleSettings._gMapIndoorRoomFlagColourTransform;
+		}
+		
+		private static var _gMapOutdoorRoomFlagColourTransform:ColorTransform;
+		public static function get gMapOutdoorRoomFlagColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapOutdoorRoomFlagColourTransform == null)
+			{
+				UIStyleSettings._gMapOutdoorRoomFlagColourTransform = new ColorTransform();
+				UIStyleSettings._gMapOutdoorRoomFlagColourTransform.color = UIStyleSettings.gOutdoorRoomFlagColour;
+			}
+			return UIStyleSettings._gMapOutdoorRoomFlagColourTransform;
+		}
+		
+		private static var _gMapPCLocationRoomColourTransform:ColorTransform;
+		public static function get gMapPCLocationRoomColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapPCLocationRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapPCLocationRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapPCLocationRoomColourTransform.color = UIStyleSettings.gPCLocationRoomColour;
+			}
+			return UIStyleSettings._gMapPCLocationRoomColourTransform;
+		}
+		
+		private static var _gMapFallbackRoomColourTransform:ColorTransform;
+		public static function get gMapFallbackColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gMapFallbackRoomColourTransform == null)
+			{
+				UIStyleSettings._gMapFallbackRoomColourTransform = new ColorTransform();
+				UIStyleSettings._gMapFallbackRoomColourTransform.color = UIStyleSettings.gFallbackRoomColour;
+			}
+			return UIStyleSettings._gMapFallbackRoomColourTransform;
+		}
+		
+		// CSS Style Sheet to apply to "large" text blocks
+		private static var _gMainTextCSSStyleSheet:StyleSheet;
+		public static function get gMainTextCSSStyleSheet():StyleSheet
+		{
+			if (UIStyleSettings._gMainTextCSSStyleSheet == null)
+			{
+				UIStyleSettings._gMainTextCSSStyleSheet = new StyleSheet();
+				
+				var defaultFormat = { 
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FFFFFF",
+					marginRight: 5
+				};
+				
+				var good = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#00CCFF", 
+					marginRight: 5 
+				};
+				
+				var bad = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#CC3300", 
+					marginRight: 5 
+				};
+				
+				var indifferent = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#FFFFFF", 
+					marginRight: 5 
+				};
+				
+				var header = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 72,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
+				var blockHeader = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 28,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
+				var lockedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#CC3300",
+					marginRight: 0,
+					fontWeight: "bold"
+				}
+				
+				var newCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00CCFF",
+					marginRight: 0,
+					fontWeight: "bold"
+				}
+				
+				var viewedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FFFFFF",
+					marginRight: 0
+				}
+				
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".good", good);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".bad", bad);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".nothing", indifferent);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".header", header);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".blockHeader", blockHeader);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".locked", lockedCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".new", newCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".viewed", viewedCodexEntry);
+			}
+			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}
 	}
 

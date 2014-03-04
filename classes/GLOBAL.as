@@ -168,7 +168,7 @@
 		public static const SHIPHANGAR:int							   = 7;
 		public static const QUEST:int								   = 8;
 		public static const OBJECTIVE:int						       = 9;
-
+		public static const HAZARD:int								   = 10;
 
 		//PLOT FLAGS
 		public static const RECRUITED_CELISE:int                       = 0;

@@ -143,28 +143,28 @@
 		"Page Up",
 		"Scroll up one page",
 		function(inThis:*):Function {
-			return function():void { inThis.pageUpScroll(); };
+			return function():void { inThis.pageUpScrollText(); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Page Down",
 		"Scroll up one page",
 		function(inThis:*):Function {
-			return function():void { inThis.pageDownScroll(); };
+			return function():void { inThis.pageDownScrollText(); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Scroll To Start",
 		"Go To Window Top",
 		function(inThis:*):Function {
-			return function():void { inThis.homeButtonScroll(); };
+			return function():void { inThis.homeScrollText(); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Scroll To End",
 		"Go To Window Bottom",
 		function(inThis:*):Function {
-			return function():void { inThis.endButtonScroll(); };
+			return function():void { inThis.endScrollText(); };
 		}(this));
 		
 	inputManager.AddBindableControl(

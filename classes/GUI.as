@@ -1,9 +1,13 @@
 ﻿package classes
 {
-
+	import classes.GameData.CodexManager;
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
 	import classes.UIComponents.ButtonTray;
+	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
+	import classes.UIComponents.ContentModules.GameTextModule;
+	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
@@ -38,6 +42,7 @@
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.GameData.TooltipManager;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.UIComponents.ContentModules.CodexModule;
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
@@ -52,9 +57,15 @@
 		var tempAuthor:String;
 		public var currentPCNotes:String;
 		
+		// Location caching so we can temp hide the location texts and shift them back to proper
+		private var cacheRoom:String;
+		private var cachePlanet:String;
+		private var cacheSystem:String;
+		
 		//Used for output()
 		var outputBuffer:String;
 		var outputBuffer2:String;
+		var outputCodexBuffer:String
 		var authorBuffer:Array;
 		var textPage:int;
 
@@ -62,36 +73,14 @@
 		var showingPCAppearance:Boolean;
 
 		//temporary nonsense variables.
-		public var tempEvent:MouseEvent;
 		var temp:int;
-
-		var textInput:TextField;
 		
 		private var titsPurple:*;
 		private var titsBlue:*;
 		private var titsWhite:*;
-
-		var format1:TextFormat;
-		var mainFont:Font3;
-		var mainTextField:TextField;
-		var mainTextField2:TextField;
-		var upScrollButton:arrow;
-		var downScrollButton:arrow;
-		var scrollBar:Bar;
-		var scrollBG:Bar;
-		var mainMenuButtons:Array;
-		var titleDisplay:titsLogo;
-		var warningBackground:warningBG;
-		var creditText:TextField;
-		var warningText:TextField;
-		var websiteDisplay:TextField;
-		var titleFormat:TextFormat;
-		public var myGlow:GlowFilter;
-
-		private var npcStatSidebarItems:Array;
 		
-		private var miniMap:MiniMap;
-		private var displayMinimap:Boolean;
+		//private var miniMap:MiniMap;
+		//private var displayMinimap:Boolean;
 
 		var titsClassPtr:*;
 		var stagePtr:*;
@@ -102,8 +91,11 @@
 		private var _buttonTray:ButtonTray;
 		
 		private var buttonTooltip:ButtonTooltips;
-		
 		private var buttonHandler:Function;
+		
+		// Module handling
+		private var _currentModule:ContentModule;
+		private var _availableModules:Object;
 		
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
 		{
@@ -143,157 +135,38 @@
 			this.titsWhite.color = 0xFFFFFF;
 
 			// Set up the various side-bars
+			_availableModules = new Object();
+			
+			this.ConfigureMainMenu();
+			this.ConfigurePrimaryOutput();
+			this.ConfigureSecondaryOutput();
+			this.ConfigureCodex();
+			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
 			this.ConfigureLeftBarTooltips();
 			
 			this.hidePCStats();
 
-			//Set up the main text field
-			this.format1 = new TextFormat();
-			this.format1.size = 18;
-			this.format1.color = 0xFFFFFF;
-			this.format1.tabStops = [35];
-			format1.font = "Lato";
-			
-			this.mainTextField = new TextField();
-			this.prepTextField(this.mainTextField);
-			this.mainTextField.text = "Trails in Tainted Space booting up...\nLoading horsecocks...\nSpreading vaginas...\nLubricating anuses...\nPlacing traps...\n\n...my body is ready.";
-			
-			//Set up backup text field
-			this.mainTextField2 = new TextField();
-			this.prepTextField(this.mainTextField2);
-
-			//Set up standard input box!
-			this.textInput = new TextField();
-			this.textInput.width = 250;
-			this.textInput.height = 25;
-			this.textInput.backgroundColor = 0xFFFFFF;
-			this.textInput.border = true;
-			this.textInput.borderColor = 0xFFFFFF;
-
-			this.textInput.type = TextFieldType.INPUT;
-			this.textInput.setTextFormat(format1);
-			this.textInput.defaultTextFormat = format1;
-
-			//SCROLLBAR!
-			upScrollButton = new arrow();
-			upScrollButton.x = mainTextField.x + mainTextField.width;
-			upScrollButton.y = mainTextField.y
-			downScrollButton = new arrow();
-			downScrollButton.x = mainTextField.x + mainTextField.width + downScrollButton.width;
-			downScrollButton.y = mainTextField.y + mainTextField.height;
-			downScrollButton.rotation = 180;
-			scrollBar = new Bar();
-			scrollBar.x = mainTextField.x + mainTextField.width;
-			scrollBar.y = mainTextField.y + upScrollButton.height;
-			scrollBar.height = 50;
-			scrollBG = new Bar();
-			scrollBG.x = mainTextField.x + mainTextField.width;
-			scrollBG.y = mainTextField.y + upScrollButton.height;
-			scrollBG.height = mainTextField.height - upScrollButton.height - downScrollButton.height;
-			scrollBG.transform.colorTransform = UIStyleSettings.gFadeOutColourTransform;
-			this.titsClassPtr.addChild(scrollBG);
-			this.titsClassPtr.addChild(scrollBar);
-			this.titsClassPtr.addChild(upScrollButton);
-			this.titsClassPtr.addChild(downScrollButton);
-			
-			//Since downscroll starts clickable...
-			downScrollButton.buttonMode = true;
-
 			clearMenu();
-
-			//4. MAIN MENU STUFF
-			this.mainMenuButtons = new Array();
-			titleDisplay = new titsLogo();
-			warningBackground = new warningBG();
-			creditText = new TextField();
-			warningText = new TextField();
-			websiteDisplay = new TextField();
-			titleFormat = new TextFormat();
-			myGlow = new GlowFilter();
-			myGlow.color = 0x84449B;
-			myGlow.alpha = 1;
-			myGlow.blurX = 10;
-			myGlow.blurY = 10;
-			myGlow.strength = 5;
-
-			//Credit Text
-			creditText.border = false;
-			creditText.background = false;
-			creditText.multiline = true;
-			creditText.wordWrap = true;
-			creditText.border = false;
-			creditText.x = 210;
-			creditText.y = 305;
-			creditText.height = 77;
-			creditText.width = 780;
 			
-			//Website Text
-			websiteDisplay.border = false;
-			websiteDisplay.htmlText = "http://www.PlaceholderAddress.com";
-			websiteDisplay.background = false;
-			websiteDisplay.multiline = true;
-			websiteDisplay.wordWrap = true;
-			websiteDisplay.border = false;
-			websiteDisplay.x = 210;
-			websiteDisplay.y = 475;
-			websiteDisplay.height = 25;
-			websiteDisplay.width = 780;
-			
-			//Warning Text
-			warningText.border = false;
-
-			warningText.background = false;
-			warningText.multiline = true;
-			warningText.wordWrap = true;
-			warningText.border = false;
-			warningText.x = 305;
-			warningText.y = 390;
-			warningText.height = 75;
-			warningText.width = 655;
-			
-			//Set the formats
-			titleFormat.size = 18;
-			titleFormat.color = 0xFFFFFF;
-			titleFormat.tabStops = [35];
-			titleFormat.font = "Lato";
-			titleFormat.align = TextFormatAlign.CENTER;
-
-			creditText.setTextFormat(titleFormat);
-			creditText.defaultTextFormat = titleFormat;
-			warningText.setTextFormat(titleFormat);
-			warningText.defaultTextFormat = titleFormat;
-			websiteDisplay.setTextFormat(titleFormat);
-			websiteDisplay.defaultTextFormat = titleFormat;
-
-			titleDisplay.x = 368;
-			titleDisplay.y = 142;
-
-			//Add warning display
-			warningBackground.x = 210;
-			warningBackground.y = 380;
-			this.titsClassPtr.addChild(titleDisplay);
-			this.titsClassPtr.addChild(warningBackground);
-			this.titsClassPtr.addChild(creditText);
-			this.titsClassPtr.addChild(warningText);
-			this.titsClassPtr.addChild(websiteDisplay);
-			websiteDisplay.visible = false;
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			websiteDisplay.visible = false;
-			warningBackground.visible = false;
-
-			initializeMainMenu();
+			// Set the initial state of the main buttons
+			this.mainMenuButton.Activate();
+			this.dataButton.Activate();
 		}
 		
+		/**
+		 * Configure the right side bar and add it to the stage
+		 */
 		private function setupRightSidebar():void
 		{
 			this._rightSideBar = new RightSideBar();
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
+		/**
+		 * Configure the left side bar and add it to the stage
+		 */
 		private function setupLeftSidebar():void
 		{
 			this._leftSideBar = new LeftSideBar();
@@ -314,6 +187,9 @@
 			this.ConfigureLeftBarListeners();
 		}
 		
+		/**
+		 * Configure the tooltip element and prepare it for use.
+		 */
 		private function ConfigureTooltip():void 
 		{
 			this.buttonTooltip = new ButtonTooltips();
@@ -322,6 +198,9 @@
 			titsClassPtr.removeChild(buttonTooltip);
 		}
 		
+		/**
+		 * Configure the listeners required for button operation within the button tray.
+		 */
 		private function ConfigureButtons():void
 		{
 			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick, bufferButtonHandler);
@@ -347,11 +226,28 @@
 		 */
 		private function ConfigureLeftBarListeners():void
 		{
-			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, titsClassPtr.mainMenuToggle);
+			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, mainMenuToggle);
 			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 		}
 		
+		private function mainMenuToggle(e:Event = null):void
+		{
+			if (!mainMenuButton.isActive) return;
+			
+			if (_availableModules["MainMenu"].visible == true)
+			{
+				showPrimaryOutput();
+			}
+			else
+			{
+				showMainMenu();
+			}
+		}
+		
+		/**
+		 * Configure the buttons present on the left side bar for tooltips.
+		 */
 		private function ConfigureLeftBarTooltips():void 
 		{
 			AttachTooltipListeners(_leftSideBar.menuButton);
@@ -367,6 +263,276 @@
 		{
 			displayObj.addEventListener(MouseEvent.ROLL_OVER, this.buttonTooltip.eventHandler);
 			displayObj.addEventListener(MouseEvent.ROLL_OUT, this.buttonTooltip.eventHandler);
+		}
+		
+		/**
+		 * Placeholder method that needs refactoring. Binds the correct listeners to the buttons in the main menu
+		 */
+		private function ConfigureMainMenu():void
+		{
+			var mainMenu:MainMenuModule = new MainMenuModule();
+			_availableModules[mainMenu.moduleName] = mainMenu;
+			
+			mainMenu.x = 200;
+			mainMenu.y = 0;
+			
+			titsClassPtr.addChild(mainMenu);
+			
+			// Setup the Menu buttons
+			resetMenuButtons();
+			
+			var buttons:Array = mainMenuModule.mainMenuButtons;
+			
+			(buttons[2] as MainMenuButton).buttonName = "Credits";
+			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
+			
+			(buttons[3] as MainMenuButton).buttonName = "Easy Mode:\nOff";
+			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleEasyHandler);
+			
+			(buttons[4] as MainMenuButton).buttonName = "Debug Mode:\nOff";
+			(buttons[4] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleDebugHandler);
+			
+			(buttons[5] as MainMenuButton).buttonName = "Silly Mode:\nOff";
+			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleSillyHandler);
+		}
+		
+		public function confirmNewCharacter():void
+		{
+			var buttons:Array = mainMenuModule.mainMenuButtons;
+			
+			(buttons[0] as MainMenuButton).buttonName = "Yes";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			
+			(buttons[1] as MainMenuButton).buttonName = "No";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
+			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.dataManager);
+		}
+		
+		public function resetMenuButtons():void
+		{
+			var buttons:Array = mainMenuModule.mainMenuButtons;
+			
+			(buttons[0] as MainMenuButton).buttonName = "New Game";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			
+			(buttons[1] as MainMenuButton).buttonName = "Data";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
+		}
+		
+		private function toggleEasyHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.easy == true)
+			{
+				titsClassPtr.easy = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Easy Mode:\nOff";
+			}
+			else
+			{
+				titsClassPtr.easy = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Easy Mode:\nOn";
+			}
+		}
+		
+		private function toggleDebugHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.debug == true)
+			{
+				titsClassPtr.debug = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Debug Mode:\nOff"
+			}
+			else
+			{
+				titsClassPtr.debug = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Debug Mode:\nOn";
+			}
+		}
+		
+		private function toggleSillyHandler(e:Event):void
+		{
+			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
+			if (titsClassPtr.silly == true)
+			{
+				titsClassPtr.silly = false;
+				tarButton.DeHighlight();
+				tarButton.buttonName = "Silly Mode:\nOff";
+			}
+			else
+			{
+				titsClassPtr.silly = true;
+				tarButton.Highlight();
+				tarButton.buttonName = "Silly Mode:\nOn";
+			}
+		}
+		
+		/**
+		 * This is placeholder shit that I'll need to update when we build a Credits content module.
+		 * @param	e
+		 */
+		private function creditsHandler(e:Event):void
+		{
+			//this.userInterface.hideMenus();
+			//clearOutput2();
+			//output2("\nThis is a placeholder. Keep your eye on the 'Scene by:\' box in the lower left corner of the UI for information on who wrote scenes as they appear. Thank you!");
+			//this.userInterface.clearGhostMenu();
+			//this.addGhostButton(0,"Back to Menu",mainMenu);
+			
+			trace("Placeholder method handler whilst we build a content module to contain credits details. Sorry :(");
+		}
+		
+		/**
+		 * Setup the primary display module.
+		 */
+		private function ConfigurePrimaryOutput():void
+		{
+			var pGameText:GameTextModule = new GameTextModule();
+			titsClassPtr.addChild(pGameText);
+			_availableModules[pGameText.moduleName] = pGameText;
+			
+			pGameText.x = 200;
+			pGameText.y = 0;
+			
+			
+			//pGameText.visible = false;
+		}
+		
+		/**
+		 * Setup the secondary display module.
+		 */
+		private function ConfigureSecondaryOutput():void
+		{
+			var pGameText:GameTextModule = new GameTextModule(false);
+			_availableModules[pGameText.moduleName] = pGameText;
+			
+			pGameText.x = 200;
+			pGameText.y = 0;
+			
+			titsClassPtr.addChild(pGameText);
+			pGameText.visible = false;
+		}
+		
+		private function ConfigureCodex():void
+		{
+			var pCodex:CodexModule = new CodexModule();
+			_availableModules[pCodex.moduleName] = pCodex;
+			
+			pCodex.x = 200;
+			pCodex.y = 0;
+			
+			titsClassPtr.addChild(pCodex);
+			pCodex.visible = false;
+		}
+		
+		/**
+		 * Attempt to display a target module
+		 * @param	module
+		 */
+		public function showModule(module:String):void
+		{
+			if (module in _availableModules)
+			{
+				var tarModule:ContentModule = _availableModules[module];
+				
+				// Breaking this out because the visibility stuff will probably change to some kind of tween later
+				if (tarModule.leftBarEnabled == true)
+				{
+					_leftSideBar.visible = true;
+				}
+				else
+				{
+					_leftSideBar.visible = false;
+				}
+				
+				if (tarModule.rightBarEnabled == true)
+				{
+					_rightSideBar.visible = true;
+				}
+				else
+				{
+					_rightSideBar.visible = false;
+				}
+				
+				if (tarModule.fullButtonTrayEnabled == true)
+				{
+					_buttonTray.y = 800;
+				}
+				else
+				{
+					_buttonTray.y = 898; // TWEAK ME
+				}
+				
+				this.deglow();
+				this.DeGlowButtons();
+				if (_currentModule != null) _currentModule.visible = false;
+				_availableModules[module].visible = true;
+				_currentModule = _availableModules[module];
+				this.clearGhostMenu();
+			}
+			else
+			{
+				throw new Error("Couldn't find module \"" + module + "\"");
+			}
+		}
+		
+		/**
+		 * Preconfigure calls to showModule() for ease of use.
+		 * I think the displayed state of the menu buttons (Easy/Debug/Silly) can possibly contradict the game settings
+		 * as the flags/bools can be loaded from saves...
+		 */
+		public function showMainMenu():void
+		{
+			this.showModule("MainMenu");
+			
+			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
+			
+			if (buttons[3].IsOn() != titsClassPtr.easy) buttons[3].ToggleState();
+			if (buttons[4].IsOn() != titsClassPtr.debug) buttons[4].ToggleState();
+			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
+			
+			this.mainMenuButton.Glow();
+			this.resetMenuButtons();
+			
+			_buttonTray.buttonPageNext.Deactivate();
+			_buttonTray.buttonPagePrev.Deactivate();
+			_buttonTray.textPageNext.Deactivate();
+			_buttonTray.textPagePrev.Deactivate();
+		}
+		
+		// Interaction bullshit for the main menu
+		public function showPrimaryOutput():void
+		{
+			this.showTargetOutput("PrimaryOutput");
+			this.restoreLocation();
+			_buttonTray.resetButtons();
+		}
+		
+		public function showSecondaryOutput():void
+		{
+			this.showTargetOutput("SecondaryOutput");
+			this.clearGhostMenu();
+		}
+		
+		private function showTargetOutput(v:String):void
+		{
+			this.showModule(v);
+		}
+		
+		// Codex trigger
+		public function showCodex():void
+		{
+			this.showModule("CodexDisplay");
+			this.setLocation("", "CODEX", "DATABASE");
+			
+			// Trigger an update of the visual data state whenever we begin displaying the Codex
+			(_currentModule as CodexModule).update();
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
@@ -423,12 +589,44 @@
 		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
 		
+		// Direct module access because LAZY
+		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }
+		public function get primaryOutputModule():GameTextModule { return (_availableModules["PrimaryOutput"] as GameTextModule); }
+		public function get secondaryOutputModule():GameTextModule { return (_availableModules["SecondaryOutput"] as GameTextModule); }
+		
+		// Text input bullshittery
+		public function get textInput():TextField { return (_availableModules["PrimaryOutput"] as GameTextModule).textInput; }
+		
+		// Menu text bullshittery
+		public function get warningText():TextField { return (_availableModules["MainMenu"] as MainMenuModule).warningText; }
+		
 		// Useful functions I've pulled out of the rest of the code base
 		public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void
 		{
+			cacheRoom = roomText;
+			cachePlanet = planetText;
+			cacheSystem = systemText;
+			
 			roomText = title;
 			planetText = planet;
 			systemText = system;
+		}
+		
+		public function restoreLocation():void
+		{
+			if (cacheRoom != null) roomText = cacheRoom;
+			if (cachePlanet != null) planetText = cachePlanet;
+			if (cacheSystem != null) systemText = cacheSystem;
+		}
+		
+		public function hideLocation():void
+		{
+			this._leftSideBar.hideLocation();
+		}
+		
+		public function showLocation():void
+		{
+			this._leftSideBar.showLocation();
 		}
 		
 		public function author(name:String):void
@@ -537,22 +735,34 @@
 			}
 		}
 		
+		/**
+		 * Shuffle incoming stuff into the text display field.
+		 * Once we've shored everything up and made sure there are no inadvertant calls to output being made, I'm REASONABLY happy to
+		 * throw some indirection in here, and redirect output() to codexOutput() if the codex is the active module. Maybe.
+		 */
 		public function output()
 		{
-			mainTextField.htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
-			updateScroll(null);
+			if (_currentModule is GameTextModule && _currentModule.moduleName == "PrimaryOutput")
+			{
+				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer + "</p></span>";
+			}
+			else
+			{
+				throw new Error("Output called whilst the currently active module was not the PrimaryOutput display!");
+			}
 		}
 		
 		public function clearOutput():void
 		{
 			pushToBuffer();
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			mainTextField.htmlText = "\n";
+			showPrimaryOutput();
+			
+			(_currentModule as GameTextModule).htmlText = "\n";
 			outputBuffer = "\n";
-			updateScroll(null);
+			
 			author("Probably Fenoxo");
 			textPage = 4;
+			
 			bufferButtonUpdater();
 			menuButtonsOn();
 			deglow();
@@ -560,16 +770,39 @@
 		
 		public function output2():void
 		{
-			mainTextField2.htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
-			updateScroll(null);
+			if (_currentModule is GameTextModule && _currentModule.moduleName == "SecondaryOutput")
+			{
+				(_currentModule as GameTextModule).htmlText = "<span class='words'><p>" + outputBuffer2 + "</p></span>";
+			}
+			else
+			{
+				throw new Error("Output2 called whilst the currently active module was not the SecondaryOutput display!");
+			}
 		}
 		
 		public function clearOutput2():void
 		{
-			mainTextField.visible = false;
-			mainTextField2.visible = true;
+			showSecondaryOutput();
 			outputBuffer2 = "\n";
-			updateScroll(null);
+		}
+		
+		public function outputCodex():void
+		{
+			if (_currentModule is CodexModule)
+			{
+				// This is a little buggy atm - the same fix that stops sticky formatting from hitting output/output2 doesn't work on codex.
+				// I THINK it might be the additional span tags being used for text formatting, and moving the "fix" wrappers further down the chain might work.
+				(_currentModule as CodexModule).htmlText = "<span class='words'><p>" + outputCodexBuffer + "</p></span>";
+			}
+			else
+			{
+				throw new Error("OutputCodex called whilst the currently active module was not the CodexDisplay!");
+			}
+		}
+		
+		public function clearOutputCodex():void
+		{
+			outputCodexBuffer = "\n";
 		}
 		
 		public function getGuiPlayerNameText():String
@@ -592,36 +825,6 @@
 		public function clearGhostMenu():void 
 		{
 			_buttonTray.clearGhostButtons();
-		}
-
-		public var mainTextStylesheet:StyleSheet = new StyleSheet();
-		
-		public function prepTextField(arg:TextField):void 
-		{
-			// Using this stylesheet, we can apply the _family_ of font faces to format the textfield.
-			// That means <b> and <i> text will /actually use/ the lato font faces; they actually weren't using the right glyphs before!
-			var defaultCSSTag = { fontFamily:"Lato", fontSize:18, color:"#FFFFFF", marginRight:5 };
-			
-			// This is where everything comes a little unstuck. I don't THINK you can apply a global style to everything.
-			// The current bullshit method wraps a class'd <span> around all output. This does, however, come at a price, possibly; I think I know what causes the sticky formatting. If an incomplete <b> or <i> tag is ever parsed by the htmlText property of the text field, the formatting will get "stuck" and I'm trying to work out a good way of catching it when it happens, or "clearing" the sticky format.
-
-			mainTextStylesheet.setStyle(".words", defaultCSSTag);
-			
-			arg.border = false;
-			arg.text = "Placeholder";
-			arg.background = false;
-			arg.multiline = true;
-			arg.wordWrap = true;
-			arg.border = false;
-			arg.embedFonts = true; // Forces the field to use embedded fonts
-			arg.antiAliasType = AntiAliasType.ADVANCED; // PRETTY NICENESS
-			arg.x = 211;
-			arg.y = 5;
-			arg.height = 630;
-			arg.width = 760;
-			arg.styleSheet = mainTextStylesheet;
-			this.titsClassPtr.addChild(arg);
-			arg.visible = false;
 		}
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
@@ -650,24 +853,6 @@
 		{
 			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
-		
-		public function addMainMenuButton(slot:int, cap:String = "", func = undefined, arg = undefined):void 
-		{
-			if(slot <= this.mainMenuButtons.length) {
-				this.mainMenuButtons[slot].alpha = 1;
-				this.mainMenuButtons[slot].caption.text = cap;
-				this.mainMenuButtons[slot].addEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[slot].func = func;
-			
-				this.mainMenuButtons[slot].arg = arg;
-			
-				this.mainMenuButtons[slot].buttonMode = true;
-				this.mainMenuButtons[slot].visible = true;
-			}
-			
-			// I don't think this call was actually required here...
-			//menuPageChecker();
-		}
 
 		public function pushToBuffer():void 
 		{
@@ -678,7 +863,7 @@
 				tempAuthor = "";
 			}
 			else {
-				textBuffer[textBuffer.length] = mainTextField.htmlText;
+				textBuffer[textBuffer.length] = this.primaryOutputModule.htmlText;
 				authorBuffer[authorBuffer.length] = sceneBy;
 			}
 			if(textBuffer.length > 4) {
@@ -701,7 +886,7 @@
 			{
 				if (textPage == 4)
 				{
-					tempText = mainTextField.htmlText;
+					tempText = this.primaryOutputModule.htmlText;
 					tempAuthor = sceneBy;
 				}
 				
@@ -711,31 +896,25 @@
 			
 			if (pageTurn)
 			{
-				mainTextField.text = "";
 				if (textPage == 4)
 				{
-					mainTextField.htmlText = tempText;
+					this.primaryOutputModule.htmlText = tempText;
 					sceneBy = tempAuthor;
 				}
 				else
 				{
-					mainTextField.htmlText = textBuffer[textPage];
+					this.primaryOutputModule.htmlText = textBuffer[textPage];
 					sceneBy = authorBuffer[textPage];
 				}
-				updateScroll(e);
+				//this.primaryOutputModule.updateScroll();
 				bufferButtonUpdater();
 			}
 		}
 
 		public function displayInput():void 
 		{
-			if(!this.stagePtr.contains(textInput)) this.titsClassPtr.addChild(textInput);
-			textInput.text = "";
-			textInput.visible = true;
-			textInput.width = 160;
-			textInput.x = mainTextField.x + 2;
-			textInput.y = mainTextField.y + 8 + mainTextField.textHeight;
-			textInput.visible = true;
+			this.primaryOutputModule.showInput();
+			
 			menuButtonsOff();
 			appearanceOff();
 			
@@ -748,49 +927,11 @@
 		
 		public function removeInput():void 
 		{
-			this.titsClassPtr.removeChild(textInput);
+			this.primaryOutputModule.hideInput();
+			
 			menuButtonsOn();
 
 			_buttonTray.showKeyBinds();
-		}
-
-		//Used to adjust position of scroll bar!
-		public function updateScroll(e:MouseEvent):void 
-		{
-			var target = mainTextField;
-			if(!target.visible) target = mainTextField2;
-			//Set the size of the bar!
-			//Number of lines on screen
-			var pageSize:int = target.bottomScrollV - target.scrollV + 1;
-				//trace("Bottom Scroll V: " + target.bottomScrollV);
-				//trace("Page Size: " + pageSize);
-			//Fix pagesize for super tiny
-			if(pageSize <= 0) pageSize = 1;
-			//Number of pages
-			var pages:Number = target.numLines / pageSize;
-				//trace("Pages: " + pages);
-			scrollBar.height = pageSize / target.numLines * (target.height - upScrollButton.height - downScrollButton.height);
-			if(scrollBar.height < scrollBG.height) scrollBar.buttonMode = true;
-			else scrollBar.buttonMode = false;
-			
-			//Set the position of the bar
-			//the size of the scroll field
-			var field:Number = target.height - upScrollButton.height - scrollBar.height - downScrollButton.height;
-				//trace("Field: " + field);
-			var progress:Number = 0;
-			var min = target.scrollV;
-			var max = target.maxScrollV;
-				//trace("Min: " + min);
-			//Don't divide by zero - cheese it to work.
-			if(max == 1) {
-				max = 2;
-				min = 2;
-			}
-			progress = (min-1) / (max-1);
-				//trace("Progress: " + progress);
-				//trace("Progress x Field: " + progress * field);
-			scrollBar.y = target.y + progress * field + upScrollButton.height;
-			titsClassPtr.scrollChecker();
 		}
 
 		//4. MIAN MENU STUFF
@@ -819,26 +960,6 @@
 			_leftSideBar.dataButton.Activate();
 		}
 
-		public function hideNormalDisplayShit():void 
-		{
-			//Hide all current buttons
-			_buttonTray.clearGhostButtons();
-			
-			//Hide scrollbar & main text!
-			upScrollButton.visible = false;
-			downScrollButton.visible = false;
-			scrollBar.visible = false;
-			scrollBG.visible = false;
-			mainTextField.visible = false;
-			mainTextField2.visible = false;
-			
-			//Page buttons invisible!
-			_buttonTray.buttonPageNext.Deactivate();
-			_buttonTray.buttonPagePrev.Deactivate();
-			_buttonTray.textPageNext.Deactivate();
-			_buttonTray.textPagePrev.Deactivate();
-		}
-
 		public function menuButtonsOn():void 
 		{
 			//trace("this.stagePtr = ", this.stagePtr);
@@ -846,10 +967,10 @@
 			{
 				appearanceOn();
 			}
-			if (!this.stagePtr.contains(this.textInput)) 
+			if (!(_availableModules["PrimaryOutput"] as GameTextModule).inputEnabled()) 
 			{
 				mainMenuButtonOn();
-				this.dataOn();
+				dataOn();
 			}
 		}
 		
@@ -859,121 +980,9 @@
 			mainMenuButtonOff();
 		}
 		
-		public function hideMenus():void 
-		{
-			hideMainMenu();
-			hideAppearance();
-			hideData();
-		}
-
 		public function hideData():void 
 		{
 			_leftSideBar.dataButton.DeGlow();
-		}
-
-		public function hideAppearance():void 
-		{
-			//Not showing appearance anymore!
-			showingPCAppearance = false;
-			
-			//Hide scrollbar & main text!
-			upScrollButton.visible = true;
-			downScrollButton.visible = true;
-			scrollBar.visible = true;
-			scrollBG.visible = true;
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			
-			//Show menu shits
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			warningBackground.visible = false;
-			websiteDisplay.visible = false;
-			
-			//Turn off main menu buttons
-			for (var x:int = 0; x < this.mainMenuButtons.length ; x++) 
-			{
-				this.mainMenuButtons[x].func = undefined;
-				this.mainMenuButtons[x].alpha = .3;
-				this.mainMenuButtons[x].caption.text = "";
-				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[x].buttonMode = false;
-				this.mainMenuButtons[x].visible = false;
-			}
-			
-			//Turn buttons back on
-			_buttonTray.resetButtons();
-			_buttonTray.textPageNext.Activate();
-			_buttonTray.textPagePrev.Activate();
-			
-			menuButtonsOn();
-			_leftSideBar.appearanceButton.DeGlow();
-			bufferButtonUpdater();
-		}
-
-		public function hideMainMenu():void 
-		{
-			//Hide scrollbar & main text!
-			upScrollButton.visible = true;
-			downScrollButton.visible = true;
-			scrollBar.visible = true;
-			scrollBG.visible = true;
-			mainTextField.visible = true;
-			mainTextField2.visible = false;
-			
-			//Show menu shits
-			creditText.visible = false;
-			warningText.visible = false;
-			titleDisplay.visible = false;
-			warningBackground.visible = false;
-			websiteDisplay.visible = false;
-			
-			//Turn off main menu buttons
-			for(var x:int = 0; x < this.mainMenuButtons.length ;x++) {
-				this.mainMenuButtons[x].func = undefined;
-				this.mainMenuButtons[x].alpha = .3;
-				this.mainMenuButtons[x].caption.text = "";
-				while(this.mainMenuButtons[x].hasEventListener(MouseEvent.CLICK)) this.mainMenuButtons[x].removeEventListener(MouseEvent.CLICK,titsClassPtr.buttonClick);
-				this.mainMenuButtons[x].buttonMode = false;
-				this.mainMenuButtons[x].visible = false;
-			}
-			
-			_buttonTray.resetButtons();
-			
-			//Page buttons visible and updated!
-			_buttonTray.textPageNext.visible = true;
-			_buttonTray.textPagePrev.visible = true;
-			menuButtonsOn();
-			_leftSideBar.menuButton.DeGlow();
-			bufferButtonUpdater();
-		}
-
-		public function initializeMainMenu():void 
-		{
-			//Initialize main menu buttons
-			var currButtonX:int = 210;
-			var currButtonY:int = 518;
-			for(x = 0; x < 6; x++) {
-				if(x <= 2) this.mainMenuButtons[x] = new blueMainButton;
-				else this.mainMenuButtons[x] = new blueMainButtonBig;
-				//Adjust for new rows
-				if(x == 3) {
-					currButtonX -= 474;
-					currButtonY += 50;
-				}
-				//Add on from previous button value.
-				currButtonX += 158;
-				this.titsClassPtr.addChild(this.mainMenuButtons[x]);
-				this.mainMenuButtons[x].caption.htmlText = String(x);
-				
-				this.mainMenuButtons[x].x = currButtonX;
-				
-				this.mainMenuButtons[x].y = currButtonY;
-				
-				this.mainMenuButtons[x].mouseChildren = false;
-				this.mainMenuButtons[x].visible = false;
-			}
 		}
 		
 		public function leftBarClear():void 
@@ -1086,6 +1095,62 @@
 			this._leftSideBar.miniMap.setMapData(data);
 			_leftSideBar.ShowMiniMap();
 		}
+		
+		public function DeGlowButtons():void
+		{
+			this.mainMenuButton.DeGlow();
+			this.dataButton.DeGlow();
+			this.appearanceButton.DeGlow();
+		}
 
+		// New passthrough event/keyboard control handlers for scroll mechanics. Here, we can redirect them to the
+		// correct module to do what we need.
+		public function upScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).upScrollText();
+			}
+		}
+		
+		public function downScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).downScrollText();
+			}
+		}
+		
+		public function pageUpScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).pageUpScrollText();
+			}
+		}
+		
+		public function pageDownScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).pageDownScrollText();
+			}
+		}
+		
+		public function homeScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).homeScrollText();
+			}
+		}
+		
+		public function endScrollText():void
+		{
+			if (_currentModule is GameTextModule)
+			{
+				(_currentModule as GameTextModule).endScrollText();
+			}
+		}
 	}
 }

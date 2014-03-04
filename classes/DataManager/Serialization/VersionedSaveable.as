@@ -29,6 +29,8 @@
 			_ignoredFields.push(fieldName);
 		}
 		
+		protected var _isLoading = true;
+		
 		private function isBasicType(obj:*):Boolean
 		{
 			if (obj is int) return true;
@@ -155,6 +157,9 @@
 				throw new VersionUpgraderError("Couldn't upgrade the save data for " + dataObject.classInstance);
 			}
 			
+			// Set a flag that will control a number of the methods used to load data into the class object
+			_isLoading = true;
+			
 			// tldr, v1 versions of the saves, because they use embedded AMF metadata, the loaded data is no longer a Dynamic class, which means
 			// for * in thing doesn't work.
 			var _d:XML = describeType(dataObject);
@@ -236,6 +241,9 @@
 					}
 				}
 			}
+			
+			// Reset the loading flag
+			_isLoading = false;
 		}
 		
 		public function makeCopy():*

@@ -41,6 +41,7 @@ public function mainGameMenu():void {
 		output("\n\n<b>You're still in combat, you ninny!</b>");
 	//Standard buttons:
 	this.clearMenu(false);
+	this.userInterface.showBust("none");
 	this.inSceneBlockSaving = false
 	//Inventory shit
 	itemScreen = mainGameMenu;
@@ -79,6 +80,7 @@ public function mainGameMenu():void {
 		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
 
+	this.addButton(13, "Codex", showCodex);
 	this.addButton(14, "RESET NPCs", initializeNPCs);
 	
 	// Show the minimap too!

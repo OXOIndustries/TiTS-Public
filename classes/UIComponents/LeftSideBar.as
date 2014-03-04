@@ -149,5 +149,15 @@ package classes.UIComponents
 		{
 			_miniMapBlock.visible = false;
 		}
+		
+		public function hideLocation():void
+		{
+			this._locationHeader.hideLocationText();
+		}
+		
+		public function showLocation():void
+		{
+			this._locationHeader.showLocationText();
+		}
 	}
 }

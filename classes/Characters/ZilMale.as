@@ -6,6 +6,7 @@
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.GameData.CodexManager;
 	
 	public class ZilMale extends Creature
 	{
@@ -159,6 +160,8 @@
 			this.inventory.push(new ZilRation());
 
 			this.createStatusEffect("Disarm Immune");
+			
+			this._isLoading = false;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -175,6 +178,9 @@
 			
 			kGAMECLASS.userInterface.showBust("ZIL");
 			kGAMECLASS.setLocation("FIGHT:\nZIL MALE", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			
+			CodexManager.unlockEntry("Zil");
+			
 			combatZilMale.sexualPreferences.setRandomPrefs(3 + rand(3));
 			combatZilMale.tallness = 60 + rand(7);
 			combatZilMale.cocks[0].cLength = 4 + rand(5);

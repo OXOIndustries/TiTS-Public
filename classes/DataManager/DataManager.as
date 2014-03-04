@@ -13,6 +13,7 @@
 	import flash.utils.getQualifiedClassName;
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.GameData.CodexManager;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -48,25 +49,25 @@
 		 */
 		public function dataRouter(d:MouseEvent = undefined):void
 		{
-			if (!kGAMECLASS.userInterface.dataButton.isActive && d != kGAMECLASS.userInterface.tempEvent)
+			if (!kGAMECLASS.userInterface.dataButton.isActive)
 			{
 				return;
 			}
 			else if (kGAMECLASS.userInterface.dataButton.isHighlighted)
 			{
-				kGAMECLASS.userInterface.dataButton.Deactivate();
-				kGAMECLASS.userInterface.hideMenus();
+				kGAMECLASS.userInterface.dataButton.DeGlow();
+				kGAMECLASS.userInterface.showPrimaryOutput();
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
-					kGAMECLASS.mainMenu();
+					kGAMECLASS.userInterface.showMainMenu();
 				}
 			}
 			else
 			{
-				kGAMECLASS.userInterface.hideMenus();
-				kGAMECLASS.userInterface.dataButton.Glow();
+				kGAMECLASS.userInterface.showSecondaryOutput();
 				this.showDataMenu();
+				kGAMECLASS.userInterface.dataButton.Glow();
 			}
 		}
 		
@@ -107,6 +108,8 @@
 			var displayMessage:String = "";
 			
 			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
+			
 			displayMessage += "You can ";
 			
 			if (kGAMECLASS.canSaveAtCurrentLocation) displayMessage += "<b>save</b> or ";
@@ -123,7 +126,7 @@
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu);
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu);
 			
-			kGAMECLASS.addGhostButton(14, "Back", dataRouter, kGAMECLASS.userInterface.tempEvent);
+			kGAMECLASS.addGhostButton(14, "Back", dataRouter);
 		}
 		
 
@@ -133,6 +136,7 @@
 		private function loadGameMenu():void
 		{
 			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to load?</b>\n";
@@ -161,6 +165,7 @@
 		private function saveGameMenu():void
 		{
 			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			var displayMessage:String = "";
 			displayMessage += "<b>Which slot would you like to save in?</b>\n";
@@ -241,6 +246,7 @@
 				this.replaceDataWithBlob(dataFile, dataBlob);
 				dataFile.flush();
 				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
 				kGAMECLASS.output2("Game saved to slot " + slotNumber + "!");
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
@@ -253,6 +259,7 @@
 				brokenFile.flush();
 				
 				kGAMECLASS.clearOutput2();
+				kGAMECLASS.userInterface.dataButton.Glow();
 				kGAMECLASS.output2("Save data verification failed. Please send the files 'broken_save.sol' and 'TiTs_" + slotNumber + ".sol' to Fenoxo or file a bug report!");
 				kGAMECLASS.userInterface.clearGhostMenu();
 				kGAMECLASS.addGhostButton(14, "Back", this.showDataMenu);
@@ -308,6 +315,21 @@
 			dataFile.sillyMode 	= kGAMECLASS.silly;
 			dataFile.easyMode 		= kGAMECLASS.easy;
 			dataFile.debugMode 	= kGAMECLASS.debug;
+			
+			// Codex entries
+			dataFile.unlockedCodexEntries = new Array();
+			var cEntries:Array = CodexManager.unlockedEntryList;
+			for (var i:int = 0; i < cEntries.length; i++)
+			{
+				dataFile.unlockedCodexEntries.push(cEntries[i]);
+			}
+			
+			dataFile.viewedCodexEntries = new Array();
+			var cViewed:Array = CodexManager.viewedEntryList;
+			for (var i:int = 0; i < cViewed.length; i++)
+			{
+				dataFile.viewedCodexEntries.push(cViewed[i]);
+			}
 		}
 		
 		/**
@@ -317,6 +339,7 @@
 		private function loadGameData(slotNumber:int):void
 		{
 			kGAMECLASS.clearOutput2();
+			kGAMECLASS.userInterface.dataButton.Glow();
 			
 			// Save the "last active slot" for autosave purposes within the DataManager properties
 			_lastManualDataSlot = slotNumber;
@@ -465,6 +488,40 @@
 			kGAMECLASS.easy = obj.easyMode;
 			kGAMECLASS.debug = obj.debugMode;
 			
+			// Codex entry stuff
+			// Codex entry keys are always strings stuffed in arrays, so we don't need to do anything special... yet
+			if (obj.unlockedCodexEntries != undefined && obj.unlockedCodexEntries is Array)
+			{
+				var cEntries:Array = new Array();
+				
+				for (var i:int = 0; i < obj.unlockedCodexEntries.length; i++)
+				{
+					cEntries.push(obj.unlockedCodexEntries[i]);
+				}
+				
+				CodexManager.unlockedEntryList = cEntries;
+			}
+			else
+			{
+				CodexManager.unlockedEntryList = new Array();
+			}
+			
+			if (obj.viewedCodexEntries != undefined && obj.viewedCodexEntries is Array)
+			{
+				var cViewed:Array = new Array();
+				
+				for (var i:int = 0; i < obj.viewedCodexEntries.length; i++)
+				{
+					cViewed.push(obj.viewedCodexEntries[i]);
+				}
+				
+				CodexManager.viewedEntryList = cViewed;
+			}
+			else
+			{
+				CodexManager.viewedEntryList = new Array();
+			}
+			
 			// Returns the backup
 			return curGameObj;
 		}
@@ -518,7 +575,7 @@
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.userInterface.dataButton.Deactivate();
-			kGAMECLASS.userInterface.hideMenus();
+			kGAMECLASS.userInterface.showPrimaryOutput();
 			
 			if (kGAMECLASS.currentLocation != "")
 			{

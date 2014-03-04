@@ -26,7 +26,7 @@ once that's working, I can start piecemeal moving things to functions in GUI.
 */
 
 //1: TEXT FUNCTIONS
-public function output(words:String, markdown = false):void 
+public function output(words:String, markdown:Boolean = false):void 
 {
 	this.userInterface.outputBuffer += doParse(words, markdown);
 	this.userInterface.output();
@@ -37,7 +37,7 @@ public function clearOutput():void
 	this.userInterface.clearOutput();
 }
 
-public function output2(words:String, markdown = false):void
+public function output2(words:String, markdown:Boolean = false):void
 {
 	this.userInterface.outputBuffer2 += doParse(words, markdown);
 	this.userInterface.output2();
@@ -46,6 +46,28 @@ public function output2(words:String, markdown = false):void
 public function clearOutput2():void
 {
 	this.userInterface.clearOutput2();
+}
+
+public function outputCodex(words:String, markdown:Boolean = false):void
+{
+	this.userInterface.outputCodexBuffer += doParse(words, markdown);
+	this.userInterface.outputCodex();
+}
+
+public function clearOutputCodex():void
+{
+	this.userInterface.clearOutputCodex();
+}
+
+// HTML tag formatting wrappers, because lazy as fuck
+public function header(words:String):String
+{
+	return String("<span class='header'>" + words + "</span>\n");
+}
+
+public function blockHeader(words:String):String
+{
+	return String("<span class='blockHeader'>" + words + "</span>\n");
 }
 
 public function num2Text(number:Number):String {

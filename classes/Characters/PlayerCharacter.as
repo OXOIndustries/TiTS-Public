@@ -13,6 +13,7 @@ package classes.Characters
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
+			this._isLoading = false;
 		}
 		
 

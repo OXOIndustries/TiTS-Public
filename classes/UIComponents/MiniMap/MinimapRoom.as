@@ -5,6 +5,7 @@
 	import flash.geom.ColorTransform;
 	import flash.utils.getDefinitionByName;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.Resources.MapIcons;
 	
 	/**
 	 * ...
@@ -19,6 +20,7 @@
 		private var _roomIcon:Sprite;
 		private var _icons:Array;
 		private var _currIconId:int; 
+		private var _hazardMask:Sprite;
 		
 		public function MinimapRoom(sizeX:int, sizeY:int) 
 		{
@@ -35,6 +37,10 @@
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
 			this.Build();
+			
+			_hazardMask = new MapIcons.Map_Hazard();
+			//this.mask = _hazardMask;
+			//this.addChild(_hazardMask);
 		}
 		
 		private function Build():void
@@ -89,6 +95,18 @@
 				_icons[_currIconId].visible = false;
 				
 			_currIconId = iconId;
+		}
+		
+		public function showHazard():void
+		{
+			if (_hazardMask.parent == null) this.addChild(_hazardMask);
+			this.mask = _hazardMask;
+		}
+		
+		public function hideHazard():void
+		{
+			if (_hazardMask.parent != null) this.removeChild(_hazardMask);
+			this.mask = null;
 		}
 	}
 

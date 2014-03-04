@@ -7,6 +7,7 @@
 	import classes.Items.Miscellaneous.*
 	import classes.kGAMECLASS;
 	import classes.rand;
+	import classes.GameData.CodexManager;
 	
 	public class ZilFemale extends Creature
 	{
@@ -162,6 +163,8 @@
 			this.ass.wetness = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
+			
+			this._isLoading = false;
 		}
 		
 		public function UpgradeVersion1(dataObject:Object):void
@@ -199,6 +202,9 @@
 			kGAMECLASS.userInterface.showBust("ZILFEMALE");
 			kGAMECLASS.setLocation("FIGHT:\nFEMALE ZIL", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			combatZilFemale.sexualPreferences.setRandomPrefs(3 + rand(3));
+			
+			// Codex shit
+			CodexManager.unlockEntry("Zil");
 			
 			if (rand(3) == 0)
 			{
