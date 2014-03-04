@@ -188,6 +188,7 @@ If Mimbrane has at least 10 feedings, there’s a 30% chance that a connecting a
 // v2 == last fed
 // v3 ==
 // v4 == "count" for hands/feet mimbranes. In some ways they are treat as a single entity, but we still need to know if both one or two are attached
+// This could possibly be done using int packing, allowing the use of a singular statusEffect to track everything, but it would probably be overly terse.
 public var mimbraneEffects:Array = 
 [
 	"Mimbrane Cock",
@@ -222,6 +223,8 @@ public function attachedMimbranes():int
 	}
 
 	if (pc.hasStatusEffect("Mimbrane Head")) total++;
+
+	return total;
 }
 
 // Find the lowest current mimbrane trust level
@@ -277,21 +280,56 @@ public function encounterMimbrane():void
 		// (PC has Mimbranes) 
 		else
 		{
-			output("\n\nAnother Mimbrane drops in from the sky, startling you from your casual enjoyment of nature. Its memorable odor fills the air as the thin, flat sheet flaps and hovers in the air. ");
+			output("\n\nAnother Mimbrane drops in from the sky, startling you from your casual enjoyment of nature. Its memorable odor fills the air as the thin, flat sheet flaps and hovers in the air.");
+
+			//{if PC has one Mimbrane}
+			if (attachedMimbranes == 1)
+			{
+				output(" Your preparatory combat stance falters a bit when an unusual sensation radiates from your nether regions. Your");
+				if (pc.hasStatusEffect("Mimbrane Cock")) output(" [cock]");
+				else if (pc.hasStatusEffect("Mimbrane Pussy")) output(" [pussy]");
+				else if (pc.hasStatusEffect("Mimbrane Ass")) output(" [ass]");
+				else output("\\\[MIMBRANE DETECTION FAILED\\\]")
+				output(" suddenly starts making high-pitched chirping and squeaking noises! It seems as though the Mimbrane that already conquered you has detected its brethren. The bizarre manipulation of your body, your orifice puckering and undulating of its own volition, is strangely turning you on and making it difficult to regain your composure. ");
+
+				output("\n\nThe muffled sounds from your");
+				if (pc.hasStatusEffect("Mimbrane Ass")) output(" rear");
+				else output(" crotch"); 
+				output(" reach your new opponent, causing the parasite to take pause and chirp back. You’re left a little confused as the brief conversation goes on for another few moments. The silken sheet in the air before you tenses up yet again, presumably ready to fight you. But just as you try and do the same, you’re distracted by yet another strange occurrence within your [pc.armor].");
+
+				output("\n\nA damp spot on your");
+				if (pc.hasStatusEffect("Mimbrane Ass") output(" butt");
+				else output(" groin");
+				output(" plants a seed of worry within you. Prying open your garments to investigate the issue blossoms that seed in a hurry as your senses are blasted with an overwhelmingly thick cloud of noxious ardour originating from under your protection. The scent is a more concentrated variant similar to the Mimbrane before you. Before you reel back in surprise, you do manage to catch a surprising fact: your");
+				if (pc.hasStatusEffect("Mimbrane Cock")) output(" [pc.cock]");
+				else if (pc.hasStatusEffect("Mimbrane Pussy") output(" [pc.pussy]");
+				else output(" [pc.ass]");
+				output(" is sweating profusely, absolutely drenched in the clear, light pink oil wild Mimbranes use to assault their prey.");
+
+				output("\n\nLooks like your parasitic passenger is turning traitorous in favor of coming to the aid of its comrade. Best to end this fight quick before you fall victim to its sexual urges.");
+
+				pc.lust(10);
+			}
+			//{if PC has multiple Mimbranes}
+			else
+			{
+				output("Your preparatory combat stance falters a bit when an unusual sensation radiates from around your body. The various parts of you under the watchful eyes of Mimbranes have started to go into a frenzy, all chirping and squeaking to your rather surprised opponent. The commotion feels as if your body is protesting against you, various holes and patches of skin crying out in unison.");
+
+				output("\n\nThe Mimbrane flying before joins in on the conversation. The chatter between it and your parasitic body parts only manages to put you on edge, unsure of where this unbidden allegiance will go. A moment of silence finally descends just as the wild silken sheet before you tenses back up, preparing to duel.");
+			
+				output("\n\nA secondary attempt to enter anything resembling a combat stance is thwarted as numerous damp sensations perk up along your body. A second later and your olfactory senses are brought to their knees with an overwhelmingly thick cloud of noxious ardour originating from the various Mimbranes on your body. Indeed, they’ve all begun to sweat profusely, coating you in their clear, oily secretion of pure ardour.");
+	
+				output("\n\nThe best you can manage against the surprise assault is a coughing stumble away from the unbidden sensual perspiration. Looks like your parasitic passengers are turning traitorous in favor of coming to the aid of their comrade. Best to end this fight quick before you fall victim to their sexual urges.");
+
+				pc.lust(10); // Doublecheck the mechanics on this value
+			}
 		}
+
+		clearMenu();
+		addButton(0, "Next", startCombat, "mimbrane");
 	}
+}
 
-
-SAME PARAGRAPH{if PC has one Mimbrane}Your preparatory combat stance falters a bit when an unusual sensation radiates from your nether regions. Your {[cock]/[pussy]/[ass]} suddenly starts making high-pitched chirping and squeaking noises! It seems as though the Mimbrane that already conquered you has detected its brethren. The bizarre manipulation of your body, your orifice puckering and undulating of its own volition, is strangely turning you on and making it difficult to regain your composure. 
-The muffled sounds from your {crotch/rear} reach your new opponent, causing the parasite to take pause and chirp back. You’re left a little confused as the brief conversation goes on for another few moments. The silken sheet in the air before you tenses up yet again, presumably ready to fight you. But just as you try and do the same, you’re distracted by yet another strange occurrence within your [armor].
-A damp spot on your {groin/butt} plants a seed of worry within you. Prying open your garments to investigate the issue blossoms that seed in a hurry as your senses are blasted with an overwhelmingly thick cloud of noxious ardour originating from under your protection. The scent is a more concentrated variant similar to the Mimbrane before you. Before you reel back in surprise, you do manage to catch a surprising fact: your {[cock]/[pussy]/[ass]} is sweating profusely, absolutely drenched in the clear, light pink oil wild Mimbranes use to assault their prey.
-Looks like your parasitic passenger is turning traitorous in favor of coming to the aid of its comrade. Best to end this fight quick before you fall victim to its sexual urges.
-Lust +10  
-SAME PARAGRAPH{if PC has multiple Mimbranes}Your preparatory combat stance falters a bit when an unusual sensation radiates from around your body. The various parts of you under the watchful eyes of Mimbranes have started to go into a frenzy, all chirping and squeaking to your rather surprised opponent. The commotion feels as if your body is protesting against you, various holes and patches of skin crying out in unison. 
-The Mimbrane flying before joins in on the conversation. The chatter between it and your parasitic body parts only manages to put you on edge, unsure of where this unbidden allegiance will go. A moment of silence finally descends just as the wild silken sheet before you tenses back up, preparing to duel.
-A secondary attempt to enter anything resembling a combat stance is thwarted as numerous damp sensations perk up along your body. A second later and your olfactory senses are brought to their knees with an overwhelmingly thick cloud of noxious ardour originating from the various Mimbranes on your body. Indeed, they’ve all begun to sweat profusely, coating you in their clear, oily secretion of pure ardour.
-The best you can manage against the surprise assault is a coughing stumble away from the unbidden sensual perspiration. Looks like your parasitic passengers are turning traitorous in favor of coming to the aid of their comrade. Best to end this fight quick before you fall victim to their sexual urges.
-Lust + 10
 Combat Description
 A Mimbrane is flying around you, resembling a slick and smooth cloth at times. The parasite is incredibly thin, appearing not any thicker than a quarter of an inch tall. What it lacks in depth it makes up in diameter, though; it easily sizes up to around a couple square feet. The Mimbrane’s moist, oily skin occasionally glistens in the surrounding light, sometimes appearing slightly translucent as its stretches its lithe form.  The creature’s face is hard to make out a times, little more than two small eyeballs and a slightly protruding mouth that contrast somewhat to the rest of the beast’s uniform appearance.   
 Combat Techniques
