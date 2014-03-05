@@ -143,8 +143,9 @@ If Mimbrane has at least 10 feedings, there’s a 30% chance that a connecting a
 // There's too many things to track sensibly using flags, and the extra storage from effects is... almost perfect for this
 // v1 == trust
 // v2 == last fed
-// v3 ==
-// v4 == "count" for hands/feet mimbranes. In some ways they are treat as a single entity, but we still need to know if both one or two are attached
+// v3 == feed level/counter
+// v4 == ???
+
 // This could possibly be done using int packing, allowing the use of a singular statusEffect to track everything, but it would probably be overly terse.
 public var mimbraneEffects:Array = 
 [
@@ -153,33 +154,22 @@ public var mimbraneEffects:Array =
 	"Mimbrane Ass",
 	"Mimbrane Balls",
 	"Mimbrane Boobs",
-	"Mimbrane Hands",
-	"Mimbrane Feet",
+	"Mimbrane Hand Left",
+	"Mimbrane Hand Right",
+	"Mimbrane Foot Left",
+	"Mimbrane Foot Right",
 	"Mimbrane Face"
-]
+];
 
 // Figure out the total number of attached mimbranes
 public function attachedMimbranes():int
 {
 	var total:int = 0;
 
-	if (pc.hasStatusEffect("Mimbrane Cock")) total++;
-	if (pc.hasStatusEffect("Mimbrane Pussy")) total++;
-	if (pc.hasStatusEffect("Mimbrane Ass")) total++;
-	if (pc.hasStatusEffect("Mimbrane Balls")) total++;
-	if (pc.hasStatusEffect("Mimbrane Boobs")) total++;
-	
-	if (pc.hasStatusEffect("Mimbrane Hands"))
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
 	{
-		total += pc.statusEffectv4("Mimbrane Hands");
+		if (pc.hasStatusEffect(mimbraneEffects[i])) total++;
 	}
-
-	if (pc.hasStatusEffect("Mimbrane Feet"))
-	{
-		total += pc.statusEffectv4("Mimbrane Feet");
-	}
-
-	if (pc.hasStatusEffect("Mimbrane Head")) total++;
 
 	return total;
 }
@@ -215,7 +205,7 @@ public function highestMimbraneTrust():int
 	return trust;
 }
 
-public function mimbraneNeglected():void
+public function mimbranesNeglected():void
 {
 	var numNeglected:int = 0;
 
@@ -397,7 +387,7 @@ public function mimbraneSkinContact():void
 	//{standard miss/block text} 
 	if (combatMiss(foes[0], pc))
 	{
-		output("\nYou twist out of the way of the speeding Mimbrane!")
+		output("\nYou twist out of the path of the speeding Mimbrane!")
 	}
 	//{hit}
 	else
@@ -418,9 +408,9 @@ public function mimbraneSkinContact():void
 
 //Lust Cloud
 //Lust damage over time if attack connects
-public var mimbraneCloudCooldown:int = 0;
 public function mimbraneLustCloud():Boolean
 {
+	throw new Error("FIXME");
 	mimbraneCloudCooldown = 5;
 
 	output("Your adversary grows more dense in the air for a second, appearing as if it were wringing out more passionate sweat from its flesh. In one fluid motion, it stretches back out again, a large square of flesh suspended above you surrounding the visible cloud of lust it created. The Mimbrane spins in the air, pushing the fog your way!");
@@ -653,121 +643,239 @@ public function mutinousMimbranesCombat():void
 	}
 }
 
-//Penis Mimbranes
-public function penisMimbraneSpitAttack():void
+// Spit attacks are automatic additions to any lust attack the player attempts
+public function playerMimbraneSpitAttack():void
 {
-Spit Attack: An unusual pressure builds in your [cock]. You undo your [armor], just in time for your Mimbrane-controlled member to fire a blast of concentrated sexual desire at the {monster}.
-Spit Attack Misfire: An unusual pressure builds in your [cock]. You rush to unleash your dragon from its cage in order to allow it to rain sexual fury on your foe. Instead, your Mimbrane-controller member is jostled as you fumble at your [armor], causing the parasite to misfire and douse you with a potent blast of lust.
-Critical Spit Attack: You’re about brought to your knees by a tremendous buildup of pressure in your [cock]. Unable to ignore it, you quickly undo your [armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the {monster}, hard enough to hit you with a little splash damage.
+	// Find all mimbranes that can spit
+	// Anything with 4+ trust, costs 5 feedings
+	var eligibleMimbranes:Array = new Array();
+
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv1(mimbraneEffects[i]) >= 4 && pc.statusEffectv3(mimbraneEffects[i]) >= 5)
+			{
+				eligibleMimbranes.push(mimbraneEffects[i]);
+			}
+		}
+	}
+
+	// Each eligible mimbrane has a 40% chance to fire their spit attack
+	for (var ii:int = 0; ii < eligibleMimbranes.length; ii+)
+	{
+		// 40% chance to happen
+		if (rand(5) <= 1) // 2 in 5 [(0-4)]
+		{
+			// 10% chance to misfire
+			if (rand(10) == 0) // 1 in 10 [(0-9)]
+			{
+				// Faiure effects
+				// Cost "feeds"
+				pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+
+				// Raises player lust
+				pc.lust(5);
+
+				// Failure text
+				if (eligibleMimbranes[ii] == "Mimbrane Cock")
+				{
+					// Cock misfire
+					output("An unusual pressure builds in your [pc.cock]. You rush to unleash your dragon from its cage in order to allow it to rain sexual fury on your foe. Instead, your Mimbrane-controller member is jostled as you fumble at your [pc.armor], causing the parasite to misfire and douse you with a potent blast of lust.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
+				{
+					// Vag misfire
+					output("An odd buildup in your [pc.pussy] proves to be too much for you to continue ignoring. In the fumbling of your [pc.armor] you manage to startle your snatch... or more appropriately the parasite controlling it. The Mimbrane-controlled genitalia accidentally fires its weaponized lust directly into your [pc.leg], throwing you back with its potent urges. ");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
+				{
+					// Ass misfire
+					output("Your [pc.ass] interrupts your combat with a series of shakes and squeaks, begging for your attention. You rush to undo your [pc.armor], but the enthusiastic Mimbrane acts too soon. Your rear end spins you around and fires its prepared lust-charge before you can clear the airspace, causing the attack to be wasted and splattering you with its prurient payload. The " + foes[0].short + " can only look on in speechless shock, giving you time to recover.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
+				{
+					// Balls misfire
+					output("An interruption runs through your fight, fueled by your antsy [pc.balls]. The Mimbrane seems ready to come to your aid with a batch of deep red loving. But as you futz around with your [pc.armor], your [pc.balls] jostle around enough to knock the parasite’s assistance out prematurely, pelting your [pc.legs] in amorous goo.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
+				{
+					// Boobs misfire
+					output("The fight halts, distracted by the involuntary noise and jubilance radiating from your [pc.chest]. You figure the Mimbrane is trying to get your attention in order to serve a dish of sexual surprise. You work to undo your [pc.armor] so the parasite can have its fun, but it accidentally fires the second open air hits your cleavage. Your [pc.nipples], still ensconced within your garments, waste their payload and soak you with slick red liquid desire.");
+				}
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
+				{
+					// Hands misfire
+					// PC should always be armed, so I'm cutting the armed/unarmed check (for now)
+					// {If hand is armed}It gets harder to get a solid grip on your weapon, however, and you involuntarily drop it to the ground.
+					output("Jittering and trembling from your hand worries you, but you try and ignore it in favor of focusing on the battle. It gets harder to get a solid grip on your weapon, however, and you involuntarily drop it to the ground. Determination drives you to put the sensation behind you, clasping your troubled hand into a tight fist. That’s when you feel a strange protrusion on your palm, followed by an explosive burst of red liquid lust. Turns out the Mimbrane on your hand was trying to ready a projectile for you, but never got the opening it needed to launch it.");
+				}
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+				{
+					// Feet misfire
+					output("The Mimbrane covering your [pc.foot] is squeaking and squirming suddenly. You’re too focused on your battle to see to whatever is troubling it, however, ignoring the unusual pressure building below your toes. Regret sinks in when you feel that pressure released, your foot covered in the parasite’s passionate projectile that it could no longer contain.")
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Face")
+				{
+					output("You’re surprised when you feel an odd buildup along your [pc.face], working its way towards your [pc.lips]. The Mimbrane covering your head is readying a dangerous ball of lust to server to your opponent. Unfortunately your timing isn’t precisely matched with that of the parasite’s. A sudden breath on your part clashes with the parasite’s attempt to gather its attack, causing an explosion of misty desire to take place in front of your face.");
+				}
+			}
+			else
+			{
+				// Succesful attack, calculate if critical
+				if (pc.statusEffectv3(eligibleMimbranes[ii]) >= 10 && rand(10) <= 2) // 10+ food, 3 in 10 [0-9]
+				{
+					// "Damage"
+					foes[0].lust(50); // OP?
+
+					// Backsplash (lol)
+					pc.lust(5);
+
+					// Cost
+					pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 10);
+
+					// Output text
+					if (eligibleMimbranes[ii] == "Mimbrane Cock")
+					{
+						output("You’re about brought to your knees by a tremendous buildup of pressure in your [pc.cock]. Unable to ignore it, you quickly undo your [pc.armor] to find out what’s wrong. Your Mimbrane-controlled member bursts free to fire a mighty blast of its concentrated liquid lust. The attack explodes all over the " + foes[0].short + ", hard enough to hit you with a little splash damage.")
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
+					{
+						output("A tremendous buildup in your [pc.pussy] forces you to your knees. You frantically undo your [pc.armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the " + foes[0].short + " and hitting you with a little splash damage.");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Ass")
+					{
+						output("Powerful quivers and clenching overtake your [pc.ass], forcing you into undoing your [pc.armor]. The second your bottom greets the air, the Mimbrane-controlled rear pivots you around a full 180 degrees. The parasite launches an extra-dense blast of accumulated liquid lust that explodes on contact with your opponent. It’s strong enough to hit you with splash damage.");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Balls")
+					{
+						output("You feel an unordinary buildup of pressure on your [pc.balls] that doesn’t appear to be cum-related. You undo your [pc.armor] just in time for the Mimbrane-covered sack to burst free and launch an extra-powerful volley of liquid lust directly at your opponent. The attack explodes upon contact with the " + foes[0].short + ", hitting you with a little splash damage.");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
+					{
+						output("A powerful pressure builds on your [pc.chest], proving to be too difficult for you to ignore. You succumb and undo your [pc.armor], surprised when the Mimbrane mounds burst forth. Each of your [pc.nipples] launch extra-powerful doses of liquid lust towards your opponent that explode on contact. The attack is out of control that you even manage to get splashed a little yourself.");
+					}
+					else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
+					{
+						output("Your hand suddenly clenches into a fist and trembles uncontrollably. You try and figure out what’s going on when the Mimbrane extremity pushes away from you to face your opponent. Fingers flare and the parasite’s mouth bursts open, launching a powerfully potent blast of liquid lust at your opponent. The attack explodes upon contact with the " + foes[0].short + ", hitting you with a little splash damage.");
+					}
+					else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+					{
+						output("Your toes are clenching, involuntarily trying to contain some unusual buildup of pressure. Unable to ignore it, you bring your [pc.foot] out to light, surprised when the Mimbrane extremity pushes towards your opponent! It launches a powerfully potent blast of liquid lust at your opponent. The attack explodes on contact with the " + foes[0].short + ", powerful enough to hit you with a little splash damage. ");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Face")
+					{
+						output("Your [pc.face] feels tense, as if an powerful pressure were caving it in. Just when you start to worry, the pressure builds in your [pc.lips], culminating into a powerful blast of liquid lust aimed directly for your opponent. The attack bursts upon contact, hitting you with a little splash damage.");
+					}
+				}
+				// Regular attack
+				else
+				{
+					// Damage
+					foes[0].lust(15);
+
+					// Cost
+					pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 5);
+
+					// Output text
+					if (eligibleMimbranes[ii] == "Mimbrane Cock")
+					{
+						output("An unusual pressure builds in your [pc.cock]. You undo your [pc.armor], just in time for your Mimbrane-controlled member to fire a blast of concentrated sexual desire at the " +  foes[0].short + ".");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
+					{
+						output("A bizarre pressure cloys away at your [pc.pussy], begging for you to investigate. Your hands fly back just as you undo your [armor] taken by complete surprise when your Mimbrane-possessed snatch launches a heady blast of concentrated romance at the " +  foes[0].short + ". ");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Ass")
+					{
+						output("The assault against the " +  foes[0].short + " slows as you’re distracted by quivering and squeaking escaping from your [pc.asshole]. You’re barely able to slip your [pc.armor] down before your [pc.ass] quickly swivels you 180 degrees to face your opponent. The excited Mimbrane can hardly contain itself, spreading your cheeks wide and launching a concentrated blast of oily lust from your pucker. The " +  foes[0].short + "’s bewilderment allows you time to regain your composure after the strange outburst.");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Balls")
+					{
+						output("Your [pc.balls] gains your attention, the Mimbrane chirping wildly. You undo your [pc.armor] just enough for your [pc.balls] to burst forth, showing you the parasite’s bloated mouth is primed and ready. It launches a ball of oily lust directly for the " +  foes[0].short + ".");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
+					{
+						output("You’re shocked when your [pc.chest] squeak and jiggle of their own accord. Clearly the Mimbrane fused to them has something to share with you, you figure. You open your [pc.armor], shocked when your puppies burst forth, [pc.nipples] blasting shots of concentrated desire straight at the " +  foes[0].short + ".");
+					}
+					else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
+					{
+						output("You’re taken aback when your hand begins to tremble, fingers jittering. You grab its weapon with your other hand before anything can go wrong. The Mimbrane’s face on the palm of your hand appears to be bulging, its mouth creating a large welt that only continues to grow. You only get another moment to stare at the oddity before the parasite thrusts your hand forward, launching its payload of thick, saturated lust at the " +  foes[0].short + ". ");
+					}
+					else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+					{
+						output("An unusual pressure in your [pc.foot] distracts you from the fight, and involuntary wiggling of your toes grabs your full attention. You expose the Mimbrane-controlled appendage to the air just in time for it fire a concentrated mass of pure lust from its mouth at the " +  foes[0].short + ".");
+					}
+					else if (eligibleMimbranes[ii] == "Mimbrane Face")
+					{
+						output("A surprising pressure builds over your cheeks, surging towards your [pc.lips]. The Mimbrane covering your [pc.face] forces you into spitting a large, dense ball of pure lechery right towards your opponent!");
+					}
+				}
+			}
+		}
+	}
 }
 
-public function penisMimbraneCloudAttack():void
-{
+//Penis Mimbranes
 Lust Cloud Attack: An unusually high amount of humidity gathers in your [armor], forcing you to undo it and investigate. Your Mimbrane-controlled [cock] has worked up quite the sweat, producing a thick, noxious smog of concentrated lust. The parasite quickly fans it towards the bewildered [monster].
 Lust Cloud Attack Misfire: Things are getting unusually hot and heavy in your [armor]. You peek inside, unknowingly opening a pressure cooker filled with clouds of concentrated sexual tension generated by your surprised [cock]. The Mimbrane tries desperately to rid you of its premature perspiration, but you don’t come out of it unscathed. 
-}
 
-public function penisMimbraneMutinousLustCloud():void
-{
 Mutinous Lust Cloud: Some unrelenting pressure in your [armor] is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your {cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.
-}
 
-public function penisMimbraneMutinousLustCloudTurnLoss():void
-{
 Mutinous Turn Loss: You’re unable to focus, too distracted by your Mimbrane-controlled [cock] soaking in a parasitic stew of clammy passion and sweaty lust.
-}
 
 
 //Vagina Mimbranes
-public function vaginaMimbraneSpitAttack():void
-{
-Spit Attack: A bizarre pressure cloys away at your [pussy], begging for you to investigate. Your hands fly back just as you undo your [armor] taken by complete surprise when your Mimbrane-possessed snatch launches a heady blast of concentrated romance at the {monster}. 
-Spit Attack Misfire: An odd buildup in your [pussy] proves to be too much for you to continue ignoring. In the fumbling of your [armor] you manage to startle your snatch... or more appropriately the parasite controlling it. The Mimbrane-controlled genitalia accidentally fires its weaponized lust directly into your [leg], throwing you back with its potent urges. 
-Critical Spit Attack: A tremendous buildup in your [pussy] forces you to your knees. You frantically undo your [armor], surprised when your Mimbrane gash launches a powerful volley of concentrated liquid lust at your opponent. The attack explodes on contact, drenching the {monster} and hitting you with a little splash damage.
-}
-
-public function vaginaMimbraneCloudAttack():void
-{
 Lust Cloud Attack: Your fight falls back in your mind, replaced by the worry that your sopping [pussy] may become an undiscovered swampland if you don’t air out the unusual perspiration. You’re shocked to find your Mimbrane-controlled vaginal walls exuding a deep red cloud of potent lust. The parasite quickly fans it towards the {monster} before you fall victim to its secretion.  
 Lust Cloud Attack Misfire: The clammy moisture building up around your [pussy] is reaching uncomfortable thresholds for you, driving you to try and release some of the tension. Unfortunately, your parasitic pussy wasn’t expecting you and fails to contain the attack it was preparing to aid you with. Your snatch squeeks apologetically as you frantically wave off the potent haze of sexual cravings.
-}
 
-public function vaginaMimbraneMutiniousLustCloud():void
-{
 Mutinous Lust Cloud: You find it difficult to concentrate on the {monster} as the moisture trapped in and around your [pussy] becomes too much to bear. An absentminded gesture to undo your [armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.
-}
 
-public function vaginaMimbraneMutiniousLustCloudTurnLoss():void
-{
 Mutinous Turn Loss: Your [legs] quiver and shake, a sign of uneasiness as you find it difficult to ignore your [pussy]. Your Mimbrane-possessed snatch undulates slowly, ensuring a dangerous cocktail of thick, oily sweat and potent clouds of lust meet you should you ever try and calm the frustrated parasite. 
-}
 
 //Ass Mimbranes
-public function assMimbraneSpitAttack():void
-{
-Spit Attack: The assault against the {monster} slows as you’re distracted by quivering and squeaking escaping from your [asshole]. You’re barely able to slip your [armor] down before your [ass] quickly swivels you 180 degrees to face your opponent. The excited Mimbrane can hardly contain itself, spreading your cheeks wide and launching a concentrated blast of oily lust from your pucker. The {monster}’s bewilderment allows you time to regain your composure after the strange outburst.   
-Spit Attack Misfire: Your [ass] interrupts your combat with a series of shakes and squeaks, begging for your attention. You rush to undo your [armor], but the enthusiastic Mimbrane acts too soon. Your rear end spins you around and fires its prepared lust-charge before you can clear the airspace, causing the attack to be wasted and splattering you with its prurient payload. The {monster} can only look on in speechless shock, giving you time to recover. 
-Critical Spit Attack: Powerful quivers and clenching overtake your [ass], forcing you into undoing your [armor]. The second your bottom greets the air, the Mimbrane-controlled rear pivots you around a full 180 degrees. The parasite launches an extra-dense blast of accumulated liquid lust that explodes on contact with your opponent. It’s strong enough to hit you with splash damage.
-}
-
-public function assMimbraneCloudAttack():void
-{
 Lust Cloud Attack: The sweltering, moist ambience encompassing your [ass] is slinking its way forefront in your mind. It snaps into focus when your hind quarters tremble fiercely, low-pitched squeaks escaping your [asshole]. The pressure forces you to involuntarily drop trou, allowing the Mimbrane to force you around and point its parasitic pucker directly at the {monster}. The enthusiastic creature unleashes a sweet, dense haze of pink passion directly at {him/her/it}. You quickly regain your composure, anxious to just move on.
 Lust Cloud Attack Misfire: The fight gets harder to focus on the more sweaty and steamy your [ass] gets, spurred on by its parasitic covering. It finally gets to be unbearable when the Mimbrane starts to quake and tremble with unrelenting pressure, clenching your [asshole] tight and compressing your cheeks. You go for your [armor] in an attempt to come to the parasite’s aid, but can hardly accomplish anything as it prematurely disperses its payload, smothering you in clouds of sweet, red lust. Low, apologetic squeaks can be made from your rear as you escape the haze to focus on the {monster}.
-}
 
-public function assMimbraneMutiniousLustCloud():void
-{
 Mutinous Lust Cloud: Your enthusiastic [ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [asshole]. You try and swear to the {monster} that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.
-}
 
-public function assMimbraneMutiniousLustCloudTurnLoss():void
-{
 Mutinous Turn Loss: Focus fades from your grasp as your [ass] involuntarily rubs its sweaty, sugary skin against the inside of your [armor]. The Mimbrane lewdly quivers your [asshole], slowly pumping its salacious gas in its confinements, hoping that enough will escape to only drive you further into the brink.
-}
 
 //Scrotum Mimbranes
-Spit Attack: Your [sack] gains your attention, the Mimbrane chirping wildly. You undo your [armor] just enough for your [balls] to burst forth, showing you the parasite’s bloated mouth is primed and ready. It launches a ball of oily lust directly for the {monster}.
-Spit Attack Misfire: An interruption runs through your fight, fueled by your antsy [sack]. The Mimbrane seems ready to come to your aid with a batch of deep red loving. But as you futz around with your [armor], your [balls] jostle around enough to knock the parasite’s assistance out prematurely, pelting your [legs] in amorous goo.
-Critical Spit Attack: You feel an unordinary buildup of pressure on your [balls] that doesn’t appear to be cum-related. You undo your [armor] just in time for the Mimbrane-covered sack to burst free and launch an extra-powerful volley of liquid lust directly at your opponent. The attack explodes upon contact with the {monster}, hitting you with a little splash damage.
 Lust Cloud Attack: Your buildup of sweat and steam around your [sack] starts to get to you, forcing you to try and air things out. You’re startled to see a thick red haze emanating from your parasitic sack. The Mimbrane gets to work, furiously swinging your [balls] to force its secretion towards the {monster}. 
 Lust Cloud Attack Misfire: The clammy moisture clinging to your [balls] is getting to be too much to bear, forcing you into try and vent some of it through your [armor]. You’re shocked when the slightest peek into the situation reveals the Mimbrane-controlled [sack] has been working to create a cloud of lust to aid in your combat. The attack escapes from the confines of your clothing, smothering you in its nectary wanton desire.
+
 Mutinous Lust Cloud: The rivalry against the {monster} halts as you’re distracted by rapid tensing and flailing of your [sack]. The Mimbrane is thrashing your [balls] about wildly, forcing you into your [armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.
+
 Mutinous Turn Loss: You find it difficult to continue your spat with the {monster}, unable to concentrate as your [sack] gets even sweatier and sultrier every passing second. The Mimbranes encasing your [balls] is doing its best trying to throw you off kilter.
-Breasts Mimbranes
-Spit Attack: You’re shocked when your [breasts] squeak and jiggle of their own accord. Clearly the Mimbrane fused to them has something to share with you, you figure. You open your [armor], shocked when your puppies burst forth, [nipples] blasting shots of concentrated desire straight at the {monster}.
-Spit Attack Misfire: The fight halts, distracted by the involuntary noise and jubilance radiating from your [breasts]. You figure the Mimbrane is trying to get your attention in order to serve a dish of sexual surprise. You work to undo your [armor] so the parasite can have its fun, but it accidentally fires the second open air hits your cleavage. Your [nipples], still ensconced within your garments, waste their payload and soak you with slick red liquid desire.
-Critical Spit Attack: A powerful pressure builds on your [breasts], proving to be too difficult for you to ignore. You succumb and undo your [armor], surprised when the Mimbrane mounds burst forth. Each of your [nipples] launch extra-powerful doses of liquid lust towards your opponent that explode on contact. The attack is out of control that you even manage to get splashed a little yourself.
+
+//Breasts Mimbranes
 Lust Cloud Attack: Things are getting positively balmy within your [armor]. Your [breasts] are absolutely drenched. You quickly try and relieve them with some fresh air, only to be shocked to discover a thick red cloud of potent sensuality surrounds them. The Mimbrane mammaries quickly direct the haze over towards your opponent before either of you react in any meaningful fashion.
 Lust Cloud Attack Misfire: Your [breasts] feel as if they’re broiling in a pressure cooker, drenched in moisture. You loosen your [armor] around your neck to try and let off some steam only to be greeted with angry protests from the Mimbrane-controlled breasts. That’s because only a moment later your head is surrounded by a potent cloud of lust-inducing perspiration that the parasite wasn’t finished preparing. You can only recoil, coughing wildly as you stumble out of the gas.
+
 Mutinous Lust Cloud: It gets a little hard to breathe and focus on your opponent as your [breasts] continue sweating to an unparalleled degree. The Mimbrane-controlled mammaries within your [armor] suddenly shake fiercely, slamming into one another. They wind up forcing thick red clouds of pure libido up and out of your garments, causing you to stagger back out of the dense haze.
+
 Mutinous Turn Loss: You’re unable to keep pace with the {monster}, too paralysed as your sweat-drenched {breasts} slink erotically from under your [armor]. The parasite goes further by rubbing your [nipples] against the inside of the garment, doing whatever it can to hinder you.
-Hands Mimbranes
+
 //Hand Mimbranes, while sharing stats such as feeding and perks, act as separate entities in battle. Each produce their own separate chance for any combat action to occur.
-Spit Attack: You’re taken aback when your hand begins to tremble, fingers jittering. {If hand is armed}You grab its weapon with your other hand before anything can go wrong.{end} The Mimbrane’s face on the palm of your hand appears to be bulging, its mouth creating a large welt that only continues to grow. You only get another moment to stare at the oddity before the parasite thrusts your hand forward, launching its payload of thick, saturated lust at the {monster}. 
-Spit Attack Misfire: Jittering and trembling from your hand worries you, but you try and ignore it in favor of focusing on the battle. {If hand is armed}It gets harder to get a solid grip on your weapon, however, and you involuntarily drop it to the ground.{end} Determination drives you to put the sensation behind you, clasping your troubled hand into a tight fist. That’s when you feel a strange protrusion on your palm, followed by an explosive burst of red liquid lust. Turns out the Mimbrane on your hand was trying to ready a projectile for you, but never got the opening it needed to launch it.
-Critical Spit Attack: Your hand suddenly clenches into a fist and trembles uncontrollably. You try and figure out what’s going on when the Mimbrane extremity pushes away from you to face your opponent. Fingers flare and the parasite’s mouth bursts open, launching a powerfully potent blast of liquid lust at your opponent. The attack explodes upon contact with the {monster}, hitting you with a little splash damage. 
 Lust Cloud Attack: A thick red haze forms around your sweaty hand. You distance yourself from it as far as possible. The Mimbrane-controlled appendage fans the potent cloud of carnal desire towards the {opponent} before you can fall victim to it yourself.
 Lust Cloud Attack Misfire: Your eye catches a thick red haze surrounding your sweaty hand. You involuntarily try and fan it away, but somehow manage just to cover yourself in your hand’s passionate perspiration. The Mimbrane chirps at you, probably frustrated over its premature attack being wasted.
+
 Mutinous Lust Cloud: Your Mimbrane-possessed hand continues its sweaty crusade against you by secreting a thick red amorous fog. You decide to grin and bear the parasite’s attack, unwilling to give your opponent an upper hand.
 Mutinous Turn Loss: You find yourself unable to act, too distracted by your sweaty hand. The parasite covering it moves your fingers suggestively, hinting at its desire to explore your body rather than aid you in combat. 
+
 Extra Attack: You’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. Seems as though the Mimbrane controlling it is eager to come to your aid!
 Grope: Your hand suddenly dives into your [armor], anxiously grasping for your {[cock]/[pussy]/bare nether regions} in the hopes of satisfying its craving. You yank the Mimbrane-controlled appendage back, frustrated by its horrible sense of timing.
-Feet Mimbranes
+
 //Feet Mimbranes, while sharing stats such as feeding and perks, act as separate entities in battle. Each produce their own separate chance for any combat action to occur.
-Spit Attack: An unusual pressure in your [foot] distracts you from the fight, and involuntary wiggling of your toes grabs your full attention. You expose the Mimbrane-controlled appendage to the air just in time for it fire a concentrated mass of pure lust from its mouth at the {monster}.
-Spit Attack Misfire: The Mimbrane covering your [foot] is squeaking and squirming suddenly. You’re too focused on your battle to see to whatever is troubling it, however, ignoring the unusual pressure building below your toes. Regret sinks in when you feel that pressure released, your foot covered in the parasite’s passionate projectile that it could no longer contain. 
-Critical Spit Attack: Your toes are clenching, involuntarily trying to contain some unusual buildup of pressure. Unable to ignore it, you bring your [foot] out to light, surprised when the Mimbrane extremity pushes towards your opponent! It launches a powerfully potent blast of liquid lust at your opponent. The attack explodes on contact with the {monster}, powerful enough to hit you with a little splash damage. 
 Lust Cloud Attack: Your attention slides to your [foot], stewing in uncomfortably dense perspiration. You expose your foot to the air for some relief, only to find it enshrouded in a haze of red carnal steam. The Mimbrane manages to direct it directly towards your opponent in short time.
 Lust Cloud Attack Misfire: Your [foot] makes it hard for you to concentrate on the battle, drenched in dense sweat. Anxious for some relief, you take a moment to expose it to the open air. This startles the Mimbrane causing the overactive perspiration, however. It had been building up a cloud of lascivious intentions for use against your opponent, but it instead winds up accidentally shrouding you with it in its panic instead.
 Mutinous Lust Cloud: You do your best to ignore your [foot], the appendage soaking in its Mimbrane’s thick sweat and intoxicating aroma. The parasite is working so hard against you, in fact, that it actually manages to produce enough of a haze down from your foot that you start to feel the effects of it!
 Mutinous Turn Loss: It becomes difficult for you to continue fighting against the {monster}, too distracted by your [foot] soaking in sexual sweat and being lewdly controlled by its parasitic coating.
 Bonus Evade: You’re taken by surprise as your [foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!
 Loose Footing: Your fight takes an abrupt turn when you lose your footing and tumble to the ground. Seems your [foot] was the cause, or more specifically the Mimbrane controlling it.
-Head Mimbranes
-Spit Attack: A surprising pressure builds over your cheeks, surging towards your [lips]. The Mimbrane covering your [face] forces you into spitting a large, dense ball of pure lechery right towards your opponent!
-Spit Attack Misfire: You’re surprised when you feel an odd buildup along your [face], working its way towards your [lips]. The Mimbrane covering your head is readying a dangerous ball of lust to server to your opponent. Unfortunately your timing isn’t precisely matched with that of the parasite’s. A sudden breath on your part clashes with the parasite’s attempt to gather its attack, causing an explosion of misty desire to take place in front of your face.
-Critical Spit Attack: Your [face] feels tense, as if an powerful pressure were caving it in. Just when you start to worry, the pressure builds in your [lips], culminating into a powerful blast of liquid lust aimed directly for your opponent. The attack bursts upon contact, hitting you with a little splash damage.
+
+//Head Mimbranes
 Lust Cloud Attack: Its beginning to get hard to see, your head sweating profusely from the Mimbrane encasing it. Your vision is then covered entirely by a thick cloud of red lust surrounding your head! The parasite works to keep your [face] from inhaling any of its dangerous vapors, instead manipulating it into sending the wanton fog towards your opponent.
 Lust Cloud Attack Misfire: Its bad enough that the Mimbrane encasing your head has drenched you in a rich layer of sweat, but now you’re having trouble seeing through the thick cloud of salacious intent that’s forming as a result. You involuntarily go to wipe your brow, which accidentally causes you to inhale some of the dangerous fumes. The parasite manipulates your [face] enough to avoid any further exposure to its premature attack.
 Mutinous Lust Cloud: The Mimbrane covering your head is working double time, clouding your [face] with sweat and a fog of lust. You can’t hold your breath forever and eventually wind up inhaling some of the noxious, nectary fumes. 
