@@ -64,6 +64,10 @@ function shop(keeper:Creature):void {
 		approachJade();
 		return;
 	}
+	if(keeper is Sera) {
+		approachSera();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

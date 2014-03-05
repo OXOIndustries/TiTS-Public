@@ -1,0 +1,387 @@
+﻿//Greeting
+//Store Description
+
+function seraBonusFunction():Boolean
+{
+	if(flags["MET_SERA"] == undefined)
+	{
+		approachSera();
+		return true;
+	}
+	else
+	{
+		output("\n\nSera is slouching at her countertop, looking rather bored. The mess she made when you first met her has since been cleaned up. Her bright eyes flick your way, but she doesn't say a word just yet, waiting for you to approach her.");
+		addButton(0,"Sera",approachSera);
+	}
+	return false;
+}
+
+//Actual Intro Stuff
+function approachSera():void {
+	if(flags["MET_SERA"] == undefined)
+	{
+		flags["MET_SERA"] = 1;
+		output("\n\nA ceramic trinket shaped like two fornicating imps goes flying by your shoulder to shatter above the doorframe, exploding into a storm shimmering fragments. You duck aside of the debris and come up, eyes alert and searching.");
+		output("\n\nThere's a demon in this shop! ...And she's naked? She's standing between you and the counter, one clawed hand empty while the other hurls a vase into the back wall. The motion makes her tits jiggle pendulously. A half-erect phallus swings free between the tainted female's thighs, nicely framing her visible netherlips. A complicated glowing harness encircles her form, shaping and curving her body into a classical hourglass form.");
+		output("\n\n<i>\"That fat... fucking... furry... WHORE!\"</i> she screams, spinning to regard you. Her eyes are like pools of onyx around glowing amber orbs. Somehow, she manages to look threatening as she stalks forward on six-inch heels, a spaded tail whipping back and forth behind her. Nails that seem more like two inch claws close over your shoulders as she grabs hold of you. <i>\"SHE STOLE MY SALE!\"</i>");
+		//Nice
+		if(pc.isNice()) output("\n\nYou do your best to disentangle yourself without upsetting this creature any further. The last thing you need is to be assaulted by a creature out of fantasy.");
+		//Mischievous
+		else if(pc.isMischievous()) output("\n\nYou slyly slip free of her grip, careful to avoid cutting yourself on her razor-sharp claws. The last thing you need is a brawl with a succubus. Violence is wasted on such an alluring creature.");
+		//Hard
+		else output("\n\nYou push her arms off of you without a care. If she wants to get violent, you'll drop her, but you certainly don't feel like letting her shake you while she has her tantrum.");
+		output("\n\nTurning away, the demon kicks her way past a half-dozen other broken knick-knacks to get to her counter. She slumps down on her countertop and exhales, drumming her fingers. <i>\"Look, I'm sure you don't care about any of that. Is there a mod you want? A big fat dick? Maybe some titties that the boys... or girls... will love?\"</i> The fickle woman grins. <i>\"The names Sera, and this is my shop: The Dark Chrysalis.\"</i>");
+		output("\n\nYou make a mental note not to steal any of her sales. What will you do in Sera's shop?");
+	}
+	//Repeat Approach
+	else
+	{
+		clearOutput();
+		output("She leers openly at you, but her gaze quickly sours. The demoness is looking out the door at her competitor's shop and scowling. <i>\"You better buy something.\"</i>");
+		//Not yet talked about her being PO'ed
+		if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) output("\n\nSera looks smiles knowingly. <i>\"I knew you'd be back for some splices. What'll it be? Something to make you bigger? Smaller? Give you four cocks?\"</i>");
+		//Talked about her being pissed
+		else output("\n\nShe leans over, pressing her bare breasts into the counter and extends her index finger, placing it against your throat. She gently scratches it up to the bottom of your chin. <i>\"Perhaps you just came here to get tamed in the bedroom?\"</i> Sera giggles uncharistically.");
+		output("\n\nWhat are you here for?");
+	}
+	//Menu Options
+	//[Appearance] [Mods] [Sex] [Pissed Off?]
+	seraMenu();
+}
+
+function seraMenu():void {
+	clearMenu();
+	shopkeep = chars["SERA"];
+	chars["SERA"].keeperBuy = "While you're accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there's not much for her to do while she waits on you to make a purchase.\n";
+
+	addButton(0,"Appearance",seraAppearance);
+	addButton(1,"Buy",buyItem);
+	addButton(2,"Sell",sellItem);
+	if(flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] == undefined) {
+		addButton(3,"WhySoMad?",talkToSeraAboutWhyShesPissedOff);
+		addDisabledButton(5,"Sex");
+	}
+	else
+	{
+		addButton(5,"Sex?",seraSexMenu,true);
+	}
+	addButton(14,"Back",mainGameMenu);
+}
+
+//Appearance
+function seraAppearance():void
+{
+	clearOutput();
+	output("Sera looks like a six foot one inch tall demon more than anything else. A set of ridged horn, glowing with phosphorescent luminance, curl outwards from her forehead. Additionally, her skin is a mild purple that only serves to further her unholy air. Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades wreath her visage like fine silk tapestries arranged to tastefully frame her.");
+	output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
+	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They're nicely rounded and capped with a pair of cerulean nipples that are ever so slightly pebbled in the air-conditioned station air. They're the kind of boobs that just beg to be fondled, and Sera's open display of them shows just how much she knows it.");
+	output("\n\nA foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. Sera's ass is nothing to sneeze at either; it's large, nicely rounded, and crowned with a prehensile, spaded tail. She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
+	output("\n\nStrappy thigh-highs and garters join her technological-looking corset to her shapely legs. Her feet are perched upon toe-covering, six-inch platform heels, but she walks in them as if it was the most natural thing in the world, perhaps counterbalanced by the tail you noticed earlier.");
+	output("\n\nAll in all, Sera appears to be the kind of woman who enjoys everything sexuality has to offer and pursues it aggressively.");
+	clearMenu();
+	addButton(0,"Next",approachSera);
+}
+
+//Why Is Sera Pissed Off?
+function talkToSeraAboutWhyShesPissedOff():void
+{
+	clearOutput();
+	flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] = 1;
+	output("You ask, <i>\"So what got you so pissed off at your neighbor?\"</i>");
+	output("\n\nSera rolls her eyes as if it was obvious. <i>\"Well, this short little green guy was in here looking for some male enhancement, and he's loaded, right?\"</i> She gestures towards her terminal. <i>\"Well I've got this custom mod all lined up that would be exactly what he wants. Literally perfect. It's a horse-cock so big that it's practically a cum cannon, okay? And this is a mod that's one shot guaranteed - it always delivers as advertised.\"</i> Her hand curls up and makes masturbating motions. <i>\"He'd love it, but he wants to shop around.\"</i>");
+	output("\n\nYou nod. <i>\"What happened?\"</i>");
+	output("\n\n<i>\"That panda bitch sold him some junky furrification shit!\"</i> Sera screams. <i>\"She talked him into getting some cheap horse-mod that might not even work, and it might even give him a fucking muzzle.\"</i> She gestures with her hands. <i>\"Long face and all. Those things are only a grand tops, though. Of course, he bought one and got a stallion cock on the first try. So Jade makes another couple credits, and I get robbed of a sale that could pay the rent on this place for a year.\"</i> Sera snarls and slams her fist down on the countertop. <i>\"He had the nerve to come in here, slap me in the thigh with it, call me a rip-off artist, and flutter out on those little wings of his.\"</i>");
+	output("\n\nThe bare-chest demoness sighs. <i>\"So that's what's bothering me. I missed out on a huge sale, and somewhere on station, a sap who got lucky is telling everyone that my mods are a waste of money. Odds are that he should've wound up looking like an ass from those splices.\"</i>");
+	output("\n\nYour only response is to mutter, <i>\"Damn....\"</i>");
+	output("\n\nSera smiles wryly. <i>\"Yeah. Anyway, sorry I almost brained you with a sculpture on your way in.\"</i> She looks you up and down once more. <i>\"Ehh, you would've been fine anyway. I'll have to throw a little harder if you ever torque me off.\"</i> The smile she flashes you looks more like she's baring her teeth at you. <i>\"Now, what can I do for you?\"</i>");
+	//Toggle scene off, show menu.
+	seraMenu();
+}
+
+//Sex
+function seraSexMenu(display:Boolean = false):void {
+	if(display)
+	{
+		clearOutput();
+		output("You gulp noisily, about to speak when Sera rounds the desk to press her body against you. The coolness of her armor contrasts palpably with the warmth of her exposed breasts and tumescent, girthy tool. Her hand unabashedly roams across your [pc.butt], squeezing a cheek with an easy grope, pushing you against her just a little bit more firmly.");
+		output("\n\n<i>\"You wanna fuck, meat?\"</i> Sera asks, grabbing hold of you by the ");
+		if(pc.hasCock()) output("crotch");
+		else output("other asscheek");
+		output(". <i>\"I don't mind, but if we fuck, you're on the bottom. I like to screw hard, fast, and wet. I don't have a problem riding you into the dirt, but you better be willing to bark when I say bark and spread 'em on command. Got it?\"</i>");
+	}
+	//OPTIONS
+	clearMenu();
+	if((pc.hasCock() || pc.hasCuntTail()) && pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou);
+	else addDisabledButton(0,"Fuck Me");
+	addButton(14,"Back",approachSera);
+	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
+}
+
+function letSeraFuckYou():void
+{
+	var choices:Array = new Array();
+	//Get Giant Dick Urethrally Tail-filled while eating her out
+	//You get the gist
+	if(pc.biggestCockVolume() >= 140) choices[choices.length] = getGiantDickTailfilledWhileEatingSeraOut;
+	//Get Rode and Pegged/Fucked
+	//Sera goes 100% crazy femdom on you. I forgot the pegging, sorry Savin.
+	if(pc.cockThatFits(chars["SERA"].vaginalCapacity()) >= 0) choices[choices.length] = getRodeFemdomStyleBySera;
+
+	//Tail usage!
+	if(pc.hasCuntTail()) choices[choices.length] = getTailUsedBySera;
+
+	if(choices.length > 0) choices[rand(choices.length)]();
+	else getRodeFemdomStyleBySera();
+}
+
+//Get Tail Used
+function getTailUsedBySera():void
+{
+	clearOutput();
+	output("Your tail waves around your [pc.hips], as eager for a drop of cum as a snake salivating over its prey. Rather than reacting to your parasitic hind-limb with disgust or revulsion, Sera simply smiles and extends her arm, letting the sinuously undulating length of vagina-capped flesh curl about her arm. She pets it while cooing affectionately, much as someone might do to a pet, a happy smile on her pierced face.");
+	output("\n\n<i>\"You've got a little tagalong, huh?\"</i> the demoness purrs, slipping a finger into the moist entrance at its tip. Shudders of pleasure ripple up the tubular organ and into your spine where they diffuse through your body. A half-whimper, half-sigh slips out of your lips. Muscles clamp down about the invading digit automatically, pulling it deeper with noisy, squelching suckles, every rippling twist rubbing new, sensitive nerves against her. <i>\"I never understood the prohibitions against these little girls. All they want to do is get stuffed full of cum and make you feel good for it, right?\"</i>");
+	output("\n\nYou try to summon up some kind of response to her statement, but she slides her middle finger in next to her pointer, silencing you with a gag of feminine bliss.");
+	output("\n\n<i>\"Don't bother talking, slut. I'm just here to use your body. Today, you've lucked out. I'm gonna drill this little cocksucker full until you're lying on the ground unconscious while it feasts on jizz.\"</i> Sera pauses to add a third finger. It feels too good for words. Your head is spinning, awash with pleasure. You bite your lip almost hard enough to draw blood, and when your jaw relaxes, a reedy exultation of desire is all that emerges. You grind your body against Sera, eager for more");
+	if(!pc.isNude()) output(", even though the both of you are clothed.");
+	else output(", even though she remains fully 'clothed.'");
+	output("\n\nSera laughs, haughty and throaty with her own desires. <i>\"That's the right attitude my little fuckmeat.\"</i> Her cock is firm against your [pc.leg], just hard enough to leak a strand of pre-cum onto your [pc.skin]. Withdrawing her fingers, she leaves your clenching tail-quim all alone, dribbling [pc.girlCum] everywhere as it searches for something to stuff it, something that can feed it what it needs. The purple beauty ignores your searching slit to regard her dripping wet fingers. <i>\"You got me all dirty.\"</i>");
+	output("\n\nShe thrusts the sopping digits at you mouth, smearing your musky drippings across your [pc.lips] like gloss. <i>\"Clean up your mess. I'm not feeding that slovenly little hole until you do.\"</i> Her fingers are insistent and her gaze imperious.");
+	output("\n\nYou suckle her fingers, starting with the pads of her fingertips, claw-like nipples and all, slurping the excess cuntjuice free of the authoritative shop-owner's digits with surprising eagerness. There's something about her tone... the way she casually fingers you without worry. It makes you wet, and not just lubricated, but moisture-drooling fuck-me wet - the kind of wet that won't go away until something warm and hard is thrust inside you again and again.");
+	if(!pc.hasVagina()) output(" Is this what horny girls feel like?");
+	else 
+	{
+		output(" Your [pc.vaginas] react");
+		if(pc.totalVaginas() > 1) output("s");
+		output(" similarly. You can feel it on your [pc.legs] and in the way you squish when you shift your hips.");
+	}
+	output(" The rhythmic pumping of your tongue against her fingers continues while you're thinking about all this, on autopilot, lewdly cleaning every bit of your prodigiously slippery sauce from every nook and cranny.");
+	output("\n\n<i>\"Damn, you suck like a vacuum cleaner! I almost wanna stick it in your mouth instead!\"</i> Sera teases. Her fingers slide free of your suckling maw, connected to your [pc.lips] by strands of clear saliva. Your mouth is pursed, horny and confused. Is she finally going to tend to your needy slit? The hungry tail is all over Sera, kissing her with its engorged lips, smearing lubricants across her unblemished skin. You wonder if she's going to make you lick that off her with no small amount of anticipation, but she disappoints you by grabbing hold of your roving tail and holding it up to your face.");
+	output("\n\nSera's voice commands, <i>\"Lick your pussy, pussy. I wanna see you tongue-deep in that snatch. You show me what you'd do to my cunt, and maybe I'll fill yours. That's what you need, isn't it?\"</i>");
+	output("\n\nYou nod against the flush netherlips, moaning into your [pc.tailgina], the vibrations of your voice like tiny fingers vibrating against your aching flesh.");
+	output("\n\nGrinding your tail's clit harder into your [pc.face], Sera watches. Her hips twitch a little, grinding her boner against your [pc.thigh]. She's obviously enjoying watching you almost as much as you're enjoying the friction on your parasitic pussy. Your [pc.tongue] flicks out, tracing up one side of your entrance and down the other. It skillfully circles your clit once, and then, you plunge it deeply inside yourself in an act of unrestrained auto-cunnilingus. The flavor is tangy and a little bit sweet on your taste buds.");
+	if(pc.tailCount > 1) 
+	{
+		if(pc.tailCount == 2) output(" Your other");
+		else output(" Another");
+		output(" clit-capped length winds its way around your body. Sera all too happily switches them, changing out one set of glittering, soaked folds for another.");
+	}
+	output(" Inside, your [pc.tailgina] is literally wringing your tongue as it tries to draw it deeper and more completely inside.");
+	output("\n\nSera, touching herself now, wraps her other arm around you. She doesn't really need to guide your [pc.tails] at this point. The oozing wet gash is keeping itself firmly placed against your [pc.lips] and drinking in your [pc.tongue] so hard that you'd be sorely pressed to remove it anyway. You're moaning like a whore and shaking like a leaf, every nerve raw and exposed to the rhythmic pulsations of exquisite pleasure that wrack your form. Your licks are transmitted with such force that you swear you can feel your tongue sliding over the pleasure centers of your brain, leaving you to writhe and lick all the harder.");
+	output("\n\nLicking your ear, the haughty demoness starts to gently nibble. Her vibrant, blue lips seal around it in a kiss before breaking off. Her voice purrs like the rumble of a contented cheetah, <i>\"Cum all over your face, slut.\"</i>");
+	output("\n\nYou moan, shaking, muscles convulsing as ecstasy blooms.");
+	output("\n\n<i>\"Show me you're just a wanton piece of fuckmeat, waiting to be taken.\"</i>");
+	output("\n\nJuices rush to fill your mouth while your eyes roll back. Your [pc.legs] spasm");
+	if(pc.hasVagina()) output(", soaked with juices");
+	if(pc.hasCock()) output(", your cocks unload into the open air");
+	output(", your [pc.tailgina] ripples on your [pc.tongue], milking it, and you sag deeper into Sera's grip, letting her hold you upright while what feels like gallons of [pc.girlCum] pour into your mouth. It's the kind of orgasm that would normally knock you prone and gasping, well-fucked an unlikely to do anything but cuddle your way to a well-fucked sleep.");
+	output("\n\nYou're still trembling when Sera eases you down to the floor, aware of two things at that exact moment: how good you feel and just how hungry for sperm your well-used [pc.tailgina] is. Lucky for it, the shopkeeper is still horny.");
+	output("\n\nYou feel fingers extract your [pc.tongue] from the soaked, prehensile length, the sound of its squelching departure making you shudder. Sera's got a good grip on your oozing tail, and she lifts it up without much consideration for your state. She doesn't stop until she's got it held against the underside of her pre-drizzling member, letting the outflow tease you. It's so close to feeding your hunger and yet so far away. You try to rise, but Sera's heels press down on your [pc.chest].");
+	output("\n\n<i>\"No, no. You stay on the floor, slut. I want to watch you writhe while I fuck you.\"</i> Her lip curls knowingly. <i>\"Besides, I'd rather a set of willing holes like yourself didn't get hurt from orgasming " + pc.mfn("him","her","it") + "self to the floor,\"</i> Sera explains. Despite her attempt at a reasonable tone, the heel is pressing painfully against your sternum, pinning you there. The demoness will brook no disagreement, no refusal. She'll accept nothing from you but submissive complacency. You slump back, giving it to her.");
+	output("\n\n<i>\"That's my slut,\"</i> she says while raising your tail's entrance up higher to press against her turgid cockhead. A droplet of her lust spills into your tingly slit. You're already aching for another orgasm, and at the touch of that single, lurid morsel, your [pc.tailgina] attempts to surge up and over, to completely engulf that wonderful shaft in squeezing ripples. Sera's grip is firm, however. She looks down at you, noting the way you're blushing and the way your [pc.tongue] hangs free of your [pc.lips]. <i>\"Beg me.\"</i>");
+	output("\n\nYou slowly respond, <i>\"...What?\"</i>");
+	output("\n\nSera, vigilantly rubs your clingy mons against her tips, slicking it with wetness, letting your feminine organ swirl deliciously over her ready phallus. <i>\"Beg me. Or would you rather I just tease you with the tip? It's a slow day - I could do this for hours.\"</i>");
+	output("\n\nNo no no no no! You look up past her platform heels to her shapely, leather-wrapped legs, letting your eyes focus on her pulsating member. Your tail must be eager, but you can feel so much sympathetic hunger that you're drooling. In that moment, you realise that you'd beg her to suck on it just as easily, even if it wouldn't fill the void hanging behind your [pc.butt]. You wipe the drool on your shoulder and do the only sensible thing: you beg. These aren't tentative, half-felt begs either. No, you need her to fuck your tail, and with your inhibitions shredded by the recent, wonderful orgasm, you're free to tell her how you really feel and just how much you need her to thrust her cock inside you and fill you like the slutty, hungry whore that you are.");
+	output("\n\nSera, pleased by your admission, leans against her deck and releases her grip on your tail. Free at last, the slavering, cock-hungry hole does what it was born and bred to do: it takes all twelve inches of the demoness' length inside it and begins to please. The domineering woman's knees knock together, barely able to support her under the onslaught of your cock-caressing inner folds. She's clearly done this sort of thing before, because she positioned herself with the desk as a brace just in time. Her voice rises in pitch and volume, moaning loudly.");
+	output("\n\nFor your part, it's hard to do or think anything. You're still reeling from the last climax, and your body and brain are being bombarded with so much ecstasy that it's difficult to form coherent thoughts, let alone control the spasmodic twitches that have your body jerking like a puppet with its strings cut. Instead of trying to resist, you give in and let yourself be the fucktoy Sera wants you to be. You moan whorishly and guide your numb fingers to your [pc.nipples] to enhance the pleasure and the display for the dominant woman. Giving in, unsurprisingly, feels like a constant low-level orgasm, or is that just the feelings from your tail? It's hard to care.");
+	output("\n\nSera's grip is white-knuckled on her counter, straining to keep her upright. Her hips are lurching, bucking in the air against a phantom lover's ass, making your tail shake, whiplike. The bucking doesn't dislodge your [pc.tailgina]. In fact, it makes it easier for it to do it's job. It'll slide off a little bit at the apex of each herky-jerky pump of the demon's hips, but that just puts it in position to slurp back down her length with powerful inner muscles that make your tail so talented. You can feel your tail swallowing the pre that's flowing out as easily as you can measure the pulsations of her swelling, near-orgasmic tool. She's close. Very close.");
+	output("\n\nSera's voice, wild and uncontrolled, babbles, <i>\"Fuck yes, I love you tail-cunted sluts! Fuck my cock, you cum-hungry whore! I've got a big, thick wad just waiting for you!</i>\" Her balls lift in her sack, pulling tight as they convulse. Sera's mouth falls open, interrupting her lusty tirade. She grunts, thrusting even harder - once, twice, and then a final time, hard enough to make you swoon with the feeling of it. Then, she's cumming, and you're in heaven, feeling the warm, thick goo roll out into your folds, marvelling at how good it tastes for your tail as its drawn deeper inside you.");
+	output("\n\nYour own orgasm hits you, but this one is different. It isn't just sexual pleasure; it's pure, liquid satisfaction too, the scratching of an itch you didn't even know you had until it was soothed. It's marvellous and beautiful, and you're twisting on the floor, rubbing your hands up and down your body in insensate pleasure, your tail ceaselessly working its muscles to suck every single drop of pearl pleasure from your more aggressive, domineering mate.");
+	output("\n\nEven when the flow abates, your [pc.tailgina] won't stop. It polishes Sera's member with its juices while locking her own away. Oily wetness drips from her balls, but not a single droplet of white remains to be seen. You've drained her, completely and utterly, and you feel blessedly, totally full. You catch yourself rubbing your tummy contentedly before shrugging and continuing. What's it matter? You've already acted like her needy bitch. She isn't going to have any expectations from you beyond sexual service.");
+	output("\n\nSlowly, the shuddering shopkeep pulls you off her length. The withdraw feels like it lasts forever, an eternity of inch after inch of thick cock rubbing you just right as it leaves your feminine embrace. All good things must come to an end, of course. Her head pops out, glossy and slowly shrinking. Sera can't stop the shudder that goes through her body, but she does stand up after, resuming her authoritative stance. Her hand is still clutching your dripping tail.");
+	output("\n\n<i>\"Not bad, slut.\"</i>");
+	output("\n\nYou try to stop yourself from beaming, but the praise feels... good. You smile up at her.");
+	output("\n\n<i>\"But don't let it go to your head. Don't even think you've satisfied me. You're looking a girl that took two doses of Throbb and had the strength of will to quit the stuff. You're looking at woman capable of staggered refractory periods that doesn't have to wait to go a second time.\"</i> Sera leers at you, still obviously lusty. Her own tail appears in her other hand, the spade-like head elongated, swollen and distended. It blooms, peeling open like rose petals to reveal a second, six-inch long cock inside it. <i>\"Ready for round three?\"</i> she asks.");
+	output("\n\nYour body is exhausted from the previous orgasms, but... you can't bring yourself to say no to Sera. She's radiant with confidence and alight with power, and you're... you're just a set of sloppy, fuck-soaked holes lying on the floor, ready to serve. Biting your lip, you nod.");
+	output("\n\nSera smirks. <i>\"Honestly, I shouldn't have even bothered asking. I know your type.\"</i> She pushes her exposed tailcock into your sopping wet, well-fucked entrance. It glides in without a hint of resistance, practically frictionless against your all-consuming wetness. Instinct kicks in at that point, and you feel yourself pressing down around it, contracting into the perfect pussy for the smaller member, whirling and twisting so that your drenched lips can spin while they suck.");
+	output("\n\nYour eyes close with the image of Sera's half-hard, dripping-wet cock still in your mind. You don't really need to see to be her cocksleeve, and dealing with the sensations from your overstimulated tail and your eyes at the same time was a little bothersome. This way you can focus entirely on contorting your clinging lips to better serve Sera's pleasure.");
+	output("\n\n<i>\"Damn, you're a natural,\"</i> Sera pants. <i>\"This had better not be the last time you show your ass around here, bitch. I've got needs, and I want to give the rest of your body a spin next time.\"</i> Her tail works powerfully against your own, pumping you hard and already oozing. <i>\"I wonder if you'll be able to hold all this in. You wouldn't want to waste Mistress' cum, would you?\"</i>");
+	output("\n\nYou shudder, shaking your head.");
+	output("\n\nShe puts her boot back on your chest, growling and grunting. <i>\"Good. H-here it... it's coming!\"</i> Her phallic tail jams itself in to the hilt and immediately spews out a long, thick rope. This spunk is a little different than her other cock's - thicker and a little stickier, but you crave it all the same. She pumps shot after shot of yoghurt-thick jism inside you, but your fatigued muscles just can't keep up. Rivulets of mixed cum run out around the perfect seal.");
+	output("\n\nSera makes 'tsk-tsk' noises with her mouth at the sight. <i>\"I should've known you couldn't take it all.\"</i> She puts her boot on your cheek and presses your face into the ground. <i>\"You'll need to do better if you ever want to be my personal cum-dump, [pc.name].\"</i> She lets you sit like that while the last few pulses shoot from her member, filling your cunt-like tunnel. Then, the demon-woman pulls out, leaving you thoroughly creampied. Turning away, she steps off you and moves in place behind her counter, but she isn't done with you... not yet.");
+	output("\n\n<i>\"Gross. You're filthy, [pc.name],\"</i> Sera says with a distainful glance. <i>\"You had better go clean up if you don't want every passerby to think you're a cum-craving cunt, just waiting to be filled. Unfortunately, I don't have a wash in here. You've got a tongue though, right? Just lick it up.\"</i> She's looking at you expectantly. Something about her gaze makes your quim");
+	if(pc.tailCount > 1 || pc.vaginaTotal() > 1) output("s");
+	output(" clench, and a drop of goo dangles down from your juice-soaked entrance. You catch it in your mouth before it can dirty her floor and spend the next several minutes obediently licking out every drop that your tail failed to consume.");
+	output("\n\nShe doesn't seem to have any complaints about your face being covered in pussy juice. You do your best to wipe up anyway, but you're sure you still smell vaguely of cunt. The satisfaction your [pc.tailgina] exudes makes it all worthwhile.");
+	processTime(45+rand(15));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Get Rode and Pegged/Fucked
+//Sera goes 100% crazy femdom on you. I forgot the pegging, sorry Savin.
+function getRodeFemdomStyleBySera():void {
+	clearOutput();
+
+	var x:int = pc.cockThatFits(chars["SERA"].vaginalCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	output("You nod.");
+	output("\n\n<i>\"Good, get your ass on the floor behind the counter,\"</i> Sera says, pointing to direct you.");
+	output("\n\nWhat? Your incredulity must be painted on your face, because Sera smirks right back at you. <i>\"I'm not gonna tell you again. If you want some of this,\"</i> she gestures up and down her body, <i>\"then you had better get {naked and }on the floor. Otherwise, you can go spank it somewhere else.\"</i> The purple-hued woman makes crude, jacking motions with her hand while she waits to see how you react.");
+	output("\n\nWell, if the price for getting ridden cow-girl is having to obediently stretch out on the floor, so be it.");
+	if(!pc.isNude()) output(" You strip out of your [pc.gear] without any concern and");
+	else output("You");
+	output(" walk to where she's indicated and sit down. The floor is cold on your [pc.butt]. You barely manage to suppress an involuntary shiver before forcing yourself to lay out on the frigid deckplates. You'd think she could at least spring for some carpet if she was planning to fuck potential clients on the floor.");
+	output("\n\nSera appears almost oblivious to your discomfort. She's smiling down at you, licking her lips as her heels click and clack closer to you. She laughs and admits, <i>\"");
+	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Already back in your place, meat? I suppose it isn't that hard to train that wanton dick of yours.");
+	else output("You know, I wasn't sure you'd do that right here and now. What if someone walked in? You'd be laying there shivering while I haggle over mods with them. Maybe if you were lucky, I might have given you a few rubs with my heel. Gotta keep my meat warm.\"</i> She smiles. <i>\"Let's get to your training then, shall we?");
+	output("\"</i>");
+	output("\n\nYou color shamefully at her stinging words,  and then she's standing astride you, her cock and balls dangling but not so far that you can't see her moist cleft. A single, pearl-like droplet of feminine lubricant slides down the backside of her sack, hanging there as she regards you. She looks almost regal from what you can see of her; her horns are like a curling, twisted crown, and her eyes, they glow with a powerful inner light. You lay hard and helpless before her, waiting for her to take you and do what she will with your body.");
+	output("\n\nSera's own member balloons as she looks at you. Its difficult to tell exactly what she's thinking, but by the way her mouth is crooked with amusement, you imagine it's something debased. Her cerulean nipples perk up with her dick until all three are like hard points of arousal that jut from her body, proudly displacing her rapacious libido to you. She nonchalantly squats. Your eyes stick to what you can see of her ass and thighs like glue, so eager to feel her velvet cunt on [pc.oneCock] that you don't even blink.");
+	output("\n\nJust as you're about to slip inside her simmering slit, she stops. You can feel the moist heat boiling off of her. The tangy scent of her moisture clearly reaches your nose, and you have to struggle not to thrust. You're sure that if you did, the fickle, demonic shopkeeper would simply stand up order you away. No, you grit your teeth and hold tight. She'll fuck you soon.");
+	output("\n\n<i>\"Ohhh, I like this.... I haven't even had to give you the order, and you're already obeying me,\"</i> Sera gloats. <i>\"Look at you, muscles straining, jaw clenched, and close enough that you can feel the droplets falling on your crown, but... you just... can't... move.... You know that I wouldn't fuck you if I did - that I wouldn't give your cock what it desires.\"</i> She grabs your length with her hand and angles it down, away from the silken entrance that was just an inch away. <i>\"But you can't fuck me just yet.\"</i>");
+	output("\n\nYou gasp, <i>\"Why!?\"</i>");
+	output("\n\n<i>\"Why? Because I have something you want. I have a slippery, gene-modded twat that will feel soooo good. I have the one thing that lets me flip the switch in your brain from 'well-intentioned individual' to 'obedient tool.' If I wanted to, I could probably get you to lick the dirt from my heel, provided I was willing to touch you,\"</i> Sera explains. <i>\"Lucky for you, I do want to touch you, very much so in fact.\"</i> She dabs a finger at her cleft then extends it to you, holding the glistening digit against your lips. <i>\"See? Now be a dear and clean it, my horny little pet.\"</i>");
+	output("\n\nYou open your mouth and gently take Mistress' finger into your mouth. There's no other word for at the moment - you're underneath her, doing everything she commands you to do, all for the slim hope of coming sexual gratification. You may not have anticipated her being this assertive in her lovemaking, but you've come this far. No point in turning back when you're this close to getting a good fuck. Besides, her flavor tastes rather nice on your [pc.tongue]. Maybe your arousal is coloring your perceptions, but who cares so long as you're enjoying it. You slurp at it until the only moisture left on her intruding digit is your saliva.");
+	output("\n\nSera uncharistically giggles. <i>\"That's a good pet. Perhaps I'll be able to train you into something worthwhile after all.\"</i>");
+	output("\n\nPride at the praise wars with anger at the dehumanizing disdain, but ultimately, neither wins out. Instead, it's pleasure that wins - pleasure that radiates from your [pc.cock " + x + "] as she sits down, straddling it. The knobby bump of her clit digs in, just below your [pc.cockHead " + x + "], and a surge of blood fills you until you feel beyond hard. ");
+	if(silly) output("It's so hard that the Old Spice Guy would tell you to look away. Your dick is now diamonds. ");
+	else output("It's so overfilled that it's painful in intensity. ");
+	output("Her twat is hot and wet. In your mind's eye, it's the most gorgeous, desirable slit you've ever seen, but that's clearly just denial and need mixing together into submissive pleasure.");
+	if(pc.cockTotal() > 1)
+	{
+		output(" Your other length");
+		if(pc.cockTotal() > 1) output("s feel");
+		else output(" feels");
+		output(" wonderful as well, between your [pc.belly] and her thighs, but it's nothing like the pleasure your lucky prick is getting.");
+	}
+	output("\n\n<i>\"I take it you approve then? You want me to tease your dick until it jumps when I say jump, right?\"</i> Sera asks. Her eyes glitter with mirth.");
+	output("\n\nWith your hands balled into fists, you nod. It's the only way you're going to get her to go any further.");
+	output("\n\nHer hips rock forward, dragging the sopping lips up your length before reversing direction. She's working you with rhythmic, steady strokes, her fluids dripping down the sides of your need-swollen boner. A droplet of pre-cum rolls out of your [pc.cock " + x + "], closely followed by one from Mistress' member.");
+	if(pc.cumQ() <= 250) output(" Hers is noticeably bigger than yours, and when it falls, it practically devours yours.");
+	else if(pc.cumQ() <= 500) output(" Hers is about as big as yours, and the two droplets mix evenly into a smear on your [pc.belly].");
+	else
+	{
+		output(" Hers is smaller than yours");
+		if(pc.cumQ() >= 1500) output(" by a good margin");
+		output(", and basically disappears into the giant-sized smear on your [pc.belly].");
+	}
+	output(" They're followed after by more like them as you two of you enjoy yourselves.");
+	output("\n\nYou pant happily, smiling up at Sera.");
+	output("\n\nShe slaps your cheek, hard. <i>\"Eyes down while you're getting your treat, slut. If you can't show deference, you can go stroke in the corner while you thank me for the lube.\"</i>");
+	output("\n\nYou turn your reddening cheek down and look away. <i>\"Yes.\"</i>");
+	output("\n\nShe slaps the other side. <i>\"Yes what?\"</i>");
+	output("\n\n<i>\"Yes, Mistress.\"</i> The words feel like defeat, but her gyrations come a little faster. Humiliatingly, you bite your lip and moan. It's too hot not to.");
+
+	output("\n\nSera grabs you by the neck and bends over so that her swaying, heavy tits brush against your ");
+	if(pc.biggestTitSize() >= 2) output("own");
+	else output("[pc.chest]");
+	output(". With one hand, she covers your eyes. With the other, she firms her grip on your throat. Her lips meet yours hard enough that you nearly cut the insides of yours on your teeth, and then her long snake-like tongue is twirling over your gums. Her slit slides further up, her hips shift, and suddenly, your [pc.cockHead " + x + "] isn't just warm but hot, wreathed in wet folds. She glides down you while kissing you, her grip as tight as her twat and the tongue-kiss.");
+
+	output("\n\nShe breaks away, her lips still wet with mixed spit. You feel her come down to the hilt, soaked and clinging. Another moan rises off, but it's a choked, weak little thing. Her grip on your neck is just tight enough to make it hard to talk but not enough to actually stop your breathing. Sera straightens to start fucking you, the steady rise and fall of her hips feeling like heaven to your over-focused consciousness. If she started choking you now, you probably wouldn't resist. Her pussy feels to good to interrupt.");
+	output("\n\n<i>\"You like this, don't you? ");
+	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Why do I even ask? You came back for more, like an obedient, well-trained puppy.");
+	else output("If you didn't before, you sure do now.");
+	output("\"</i> Sera moves faster, tits jiggling above you. You can only see them out of the corner of your eyes; you're dutifully keeping your gaze averted, lest you draw her ire. It leaves you with nothing to focus on but the feelings and your own submission. You pant, breathing hard, gently nodding as much as her hand will allow.");
+	output("\n\nSera's free hand moves to your [pc.chest] and grabs a [pc.nipple], twisting cruelly.");
+	if(pc.hasDickNipples()) output(" When a dick pushes out of the innocuous nipple, she just smirks and squeezes it too.");
+	else if(pc.hasLipples()) output(" When she slows enough to realize they're lips, she just flicks the lower one, making it pout.");
+	else output(" When her finger disappears into the middle of it, she just thrusts a finger inside and pinches you from the inside-out.");
+	output(" <i>\"You fucking love this, don't you, you masochistic bitch?\"</i>");
+
+	output("\n\nYou gurgle in the affirmative, your [pc.hips] jerking.");
+	output("\n\n<i>\"Good bitch,\"</i> the demoness coos, picking up the pace until she's bouncing her well-rounded ass off your crotch with reckless abandon. Her shop is filled with the wet slapping sounds of a lusty fuck, and her cock is absolutely oozing with need of its own. Neither of you is that far from release.");
+	output("\n\nYou just hope she that cums first. A premature ejaculation on your part could make for a sore come-down.");
+	output("\n\nSera howls, <i>\"That's it slut!\"</i> She slaps your face once more, grinning cruelly. <i>\"Lie there and take it!\"</i> She twists at your nipple. \"<i>How much are you willing to endure to blow in my cunt?\"</i> She moans. <i>\"Will you do anything to be my adoring fuck-slave?\"</i>");
+	output("\n\nFor a moment, you try to hold out, hoping she'll cum before you have to answer, but like before, you give in. You shout, <i>\"Anything, Mistress!\"</i>");
+	output("\n\nShe slaps you one more time and doubles her pace, screaming, <i>\"Then cum for your Mistress, bitch! Cream her twat!\"</i>");
+	if(pc.balls > 1) output(" She cracks her tail against your [pc.balls], whiplike.");
+	else output(" She cracks her tail against your taint, whiplike.");
+	output(" <i>\"Cum.\"</i>");
+
+	output("\n\nAs if you could resist. Your ");
+	if(pc.balls > 0)
+	{
+		output("[pc.balls] unload");
+		if(pc.balls == 1) output("s");
+	}
+	else output("body unloads");
+	output(" the whole of your pent-up lust in one gigantic surge of pleasure, causing your eyes to roll back as her hand pinches tighter, cutting off your airflow. Your body thrashes wildly underneath her, barely registering the heat of her cum falling across your [pc.fullChest] and [pc.face]. Through your middle, your muscles spasm, pouring every drop of your lust into her");
+	if(pc.hasKnot(x)) output(", swelling your knot inside her as large as it's ever been");
+	output(".");
+	if(pc.cumQ() <= 500)
+	if(pc.cumQ() <= 1000) output(" Her belly bulges slightly from the sheer quantity, but it only makes her cries that much more pleasure-filled.");
+	else if(pc.cumQ() <= 5000) output(" Her belly expands to a pregnant dome from the quantity of [pc.cum] you're shooting into her, but it only makes her cries that much more pleasure-filled.");
+	else output(" Her belly bloats into a gravid dome, and her eyebrows grimace from painful discomfort. It doesn't stop her cries from getting louder and more excited, however.");
+	output("\n\nShortly after you go dry, her alabaster ejaculations slow, and Sera shudders, smiling. Her voice, surprisingly tender, coos, <i>\"That's a very, very good boy.\"</i> Then, without another word, she ");
+	if(pc.hasKnot(x)) output("attempts to rise, catching on your knot. Giving you a baleful look, she sighs. It's at least five minutes before she finally manages to pop it out.");
+	else output("rises up off of you, letting the [pc.cumColor] fluid glisten on her lips.");
+	output(" You've nicely creampied Sera, and with a glance down at yourself, you realize she's done a fabulous job marking you as well. You stand up on wobbly [pc.legs], dripping wet with mixed juices.");
+	output("\n\nSera is already in the process of throwing away a small towel, all evidence of the tryst already removed. Seeing you look at her, she rolls her eyes. <i>\"Fine, you can have a towel.\"</i> She hands one to you with condescending pat on the head. <i>\"That's a good bitch.\"</i> Your [pc.cocks] twitch");
+	if(pc.cockTotal() == 1) output("es");
+	output(" in response. Luckily, she doesn't see.");
+	output("\n\nAfter you're both suitably presentable, you walk back around the corner. Sera mirthfully asks, <i>\"Is there anything I can do for you, pet?\"</i> You flush as you consider your options.");
+	processTime(35+rand(10));
+	pc.orgasm();
+	seraMenu();
+}
+
+//Get Giant Dick Urethrally Tail-filled while eating her out
+//You get the gist
+function getGiantDickTailfilledWhileEatingSeraOut():void
+{
+	clearOutput();
+	output("Sera casually strips your [pc.gear] from your body");
+	if(pc.isNude()) output(", not that you bother to wear much at all");
+	output(". Her hand traces down your [pc.belly] before pausing at your [pc.cockBiggest]. She grabs it slowly, almost hesitantly before pulling away.");
+	if(pc.cockTotal() == 2) output(" Your other penis longs for a touch as well, but is ignored.");
+	else output(" Your other penises long to be touched as well, but are ignored.");
+	output("\n\n<i>\"You're packing more than a little fuckmeat, eh fuckmeat?\"</i> she asks, smiling. <i>\"A dick this big is just about useless for screwing, if you ask me. It's basically just a fucking ornament that lets every dom in a ten mile radius know that you're compensating for being a ridiculous submissive.\"</i>");
+	output("\n\nYou dare to retort, <i>\"That's not true!\"</i>");
+	output("\n\nEyes like burning ice stare levelly at you, full of barely-concealed disbelief. <i>\"Really? So if I promised to stroke your dick if you dropped down");
+	if(pc.isBiped()) output(" on your knees");
+	output(" and started eating me out, you wouldn't do it? You'd stand up for yourself and show me what real pleasure was?\"</i> Sera laughs and points at the floor. <i>\"Down " + pc.mf("boy","girl") + ". Go on.\"</i>");
+	output("\n\nYou ball your fists and... get down, [pc.cocks] getting harder with each passing second. If you didn't, she'd just shoot you down anyway. That's how you justify it to yourself, anyway.");
+	output("\n\n<i>\"I knew it. Well, start licking, and I'll see about starting that stroking I promised. A dick that mountainous does deserve a chance to go off.\"</i> Sera hefts her weighty balls out of the way to expose a glistening, cerulean slit. <i>\"Come and get it.\"</i>");
+	output("\n\nYou do, eagerly and immediately. You bury your nose in her box and set to work, kissing and licking her outer lips to get her worked up. Your [pc.cockBiggest] swells even bigger, ready for the promised strokes, but nothing happens. Just when you're about to pull away, you feel something long looping around around your girthy tool. So much blood surges into your organ in response that you feel like you're close to bursting. The cunt-muffled moan that emerges from you pleases Sera if the way she's grabbing your head and pressing it against her entrance is any indication.");
+	output("\n\n<i>\"That's a good, bitch. Lick that cunt. Show it why a good tongue is better than a big dick any day of the week.\"</i> She nudges your pre-leaking boner with a toe. <i>\"Silly " + pc.mf("boy","girl") + ". Now, about that stroking....\"</i>");
+	output("\n\nHer tail unwinds, releasing your length. You keep licking, figuring she's going to start stroking. The truth turns out to far, far more unusual than that. Her spaded tail-tip appears on your leaking [pc.cockHeadBiggest], rubbing back and forth. You feel its smooth surface splitting apart, opening up. It exposes a veiny shaft that can't be more than a few inches long. It doesn't feel overly girthy either, but when she aligns it with your pre-pissing cock-slit, you realize that it's more than thick enough for what she intends.");
+	output("\n\nYou pull away to protest, only to have your face rammed back into the demonic cleft with a double-handed grip. The cock-tail follows her hands' example and forcefully plows your [pc.cockBiggest] wide open. Luckily, you were horny enough that you're full of pre-cum. The copious cock-juice makes the dick-on-dick penetration far less painful than you anticipated. In fact... feeling her sliding deeper feels kind of nice. Your [pc.cockBiggest] lurches approvingly.");
+	output("\n\nSera gloats, <i>\"See? With a dick this big, it might as well be a pussy. It's too huge to properly fuck anybody, so all it's good for is slobbering over a more appropriately sized dong.\"</i> She pushes her tail down until her veiny tail-prick is inside your base, then begins the long, slow slide back up. Pre-cum escapes your stuffed cumvein in huge dollops, squeezed out by the absurd penetration. You whine into Sera's pussy, shuddering. It feels good - really good.");
+	output("\n\n<i>\"You're really getting into this, meat.\"</i> She moans, interrupting herself. The demon's hips roll against you eagerly. <i>\"Fuuuuck, that's a good name for a big-dicked slut like you. Meat. It's the only thing about you worth remembering, besides maybe your tongue.\"</i> She pushes you against her by your [pc.hair]. <i>\"Harder. I wanna cum from my cunt, not from fucking that bloated pussy you call a member.\"</i> Sera's pussy gets wetter on your tongue. She's obviously getting off on the degradation. You'd be lying to yourself if her taunts weren't making your [pc.cocks] jump, either.");
+	output("\n\nThe demoness' feminine tang is all over your [pc.tongue], and you're thrusting it inside her as rapidly as your biology will allow. At the same time, you're keeping your [pc.lips] spread wide enough that her clit stays nicely sealed inside, allowing you to suckle it. Sometimes you even manage to scrape your taste buds across its sensitive surface. When you do that, Sera almost instantly fills your maw with girlcum.");
+	output("\n\nHer handling of your head is getting rougher and rougher. Pretty soon, she's mashing your [pc.face] so hard against her box that it's difficult properly please her. She's basically grinding herself off on your face. Meanwhile, her tail is pumping faster and faster. She may have acted like she didn't want to cum with it, but with the way it's fucking the inside of your cock, filling you with its own eager, pre-emptive syrup, you have to doubt it.");
+	output("\n\nSera doesn't take long start a squirting, squelching orgasm, first gushing into your mouth and then into your [pc.cockBiggest]. There's a flood of her tangy sauce bulging your cheeks and squirting out of the corners of your mouth even though you're dutifully and instinctively swallowing. The sensations radiating from your giant member are so wonderful, and you're so close to cumming, that when she explodes inside you, stretching you wider with the extra girth her passion lends, you start a climax all your own.");
+	output("\n\nThe tailcock had a huge headstart on you, though. Your cum-tube is absolutely flooded with her alabaster stuffing before your own [pc.cum] can escape your [pc.balls]. You feel it pushing deeper into you with each pump, all the way until it meets the tide of your pending release. Hot, pleasant pressure overwhelms you as your muscles work to expel a double load. After a moment of confusing back and forth, the sperm-filled wave hits your [pc.cockBiggest], pushing Sera's tiny tail-prick just in time let your uncorked [pc.cockHeadBiggest] blow.");
+	//light cum
+	if(pc.cumQ() <= 200) output("\n\nThough the cum is almost all hers, it feels as good as if you made it all yourself. It splatters everywhere, but mostly over your [pc.legs].");
+	//Medium cum
+	else if(pc.cumQ() <= 1000)
+	{
+		output("\n\nThe eruption of mixed spunk ");
+		if(pc.cumType == GLOBAL.CUM || pc.cumType == GLOBAL.MILK) output("comes as an indistinguishable mass of white. You can't tell where yours starts and hers begins, but there's a lot of it, soaking your [pc.legs] and making a puddle on the floor.");
+		else output("comes out as a swirling mix of [pc.cumColor] and white. The rainbow jism spatters across your [pc.legs], effectively painting them before starting a puddle below.");
+	}
+	//Big+ Cum
+	else
+	{
+		output("\n\nThe eruption of mixed spunk ");
+		if(pc.cumType == GLOBAL.CUM || pc.cumType == GLOBAL.MILK) output("might be an indistinguishable mass of white, but there's so much that you're sure most of it is your own.");
+		else output("materializes as a mix of [pc.cumColor], white, and every color in between, though most of it is your own.");
+		output(" The first rope alone is enough to completely drench your [pc.legs], and each successive blast of [pc.cumColor]");
+		if(pc.cumType == GLOBAL.CUM || pc.cumType == GLOBAL.MILK) output(" and white");
+		output(" fills a lake around your ankles.");
+		if(pc.cumQ() >= 5000)
+		{
+			output(" It spreads across the entirety of the floor before");
+			if(pc.cumQ() <= 10000) output(" stopping");
+			else if(pc.cumQ() <= 20000) output(" rising to ankle height");
+			else if(pc.cumQ() <= 40000) output(" rising to knee height");
+			else output(" threatening to drown you both");
+			output(".");
+		}
+	}
+	//Merge
+	output("\n\nYou slump over into the mess, still leaking trickles of whit");
+	if(pc.cumType == GLOBAL.CUM || pc.cumType == GLOBAL.MILK) output("e");
+	else output("ish-[pc.cumColor]");
+	output(", but Sera isn't quite done with you. She sticks her tail in your face and says, <i>\"Clean up your mess.\"</i> Still dazed, you obey, polishing the diminutive rod with your tongue. It's half-hard when she pops it out, but the spade closes back up around it. If you hadn't just taken it past its hilt, you'd never suspect her demonic tail concealed such a tool.");
+	output("\n\nSera walks away to clean herself. In seconds, she's looking as fresh as a daisy while you look like a cum-stained wreck. She tosses the used towel your way and mans the counter, not caring in the slightest if you reek like her spooge by the time you're done wiping.");
+	output("\n\nThe only thanks you get is a <i>\"Nice tongue-work, meat.\"</i> when you hand the soiled fabric back to her. She tosses it in a chute without a second glance and looks to the door, bored with you and awaiting her next client.");
+	if(pc.cumQ() >= 5000) output(" She's lucky there are drains in the floor sucking away all the cum!");
+	processTime(30+rand(10));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+	

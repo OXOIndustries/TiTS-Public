@@ -62,6 +62,7 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
 	rooms["MERCHANT'S THOROUGHFARE"].westExit = "FUR EFFECT";
 	rooms["MERCHANT'S THOROUGHFARE"].southExit = "BETHS BROADS";
+	rooms["MERCHANT'S THOROUGHFARE"].northExit = "DARK CHRYSALIS";
 	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
@@ -98,6 +99,17 @@ function initializeRooms():void
 	//rooms["TAVROS LIFT"].inText = "ToMerchant";
 	rooms["TAVROS LIFT"].addFlag(GLOBAL.INDOOR);
 	rooms["TAVROS LIFT"].runOnEnter = hangarBonus;
+
+	//107 The Dark Chrysalis
+	rooms["DARK CHRYSALIS"] = new RoomClass(this);
+	rooms["DARK CHRYSALIS"].roomName = "SHOP: nDARK\nCHRYSALIS";
+	rooms["DARK CHRYSALIS"].description = "The interior of this shop is difficult to make out thanks to a combination of dim lighting and a smoky haze that smells vaguely of walnuts. Looking around, you manage to locate the source of the illumination - four custom glowbulbs pumping out an unnatural-looking blue-black aura. The walls are covered in shelves with dozens of perverted-looking nicknames, many of them demonic in theme, and the lone counter in the back of the store is similarly decorated.";
+	rooms["DARK CHRYSALIS"].planet = "TAVROS STATION";
+	rooms["DARK CHRYSALIS"].system = "SYSTEM: KALAS";
+	rooms["DARK CHRYSALIS"].southExit = "MERCHANT'S THOROUGHFARE";
+	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.INDOOR);
+	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
+	rooms["DARK CHRYSALIS"].runOnEnter = seraBonusFunction;
 
 	//108 "FUR EFFECT" Fur Effect
 	rooms["FUR EFFECT"] = new RoomClass(this);

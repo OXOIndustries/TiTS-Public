@@ -114,6 +114,10 @@
 	{
 		chars["DANE"] = new classes.Characters.Dane();
 	}
+	if (!justUpdate || (justUpdate && chars["SERA"] == undefined))
+	{
+		chars["SERA"] = new classes.Characters.Sera();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
