@@ -111,7 +111,7 @@ function seraSexMenu(display:Boolean = false):void {
 	}
 	//OPTIONS
 	clearMenu();
-	if((pc.hasCock() || pc.hasCuntTail()) && pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou);
+	if(pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou);
 	else addDisabledButton(0,"Fuck Me");
 	addButton(14,"Back",approachSera);
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
@@ -130,8 +130,11 @@ function letSeraFuckYou():void
 	//Tail usage!
 	if(pc.hasCuntTail()) choices[choices.length] = getTailUsedBySera;
 
-	if(choices.length > 0) choices[rand(choices.length)]();
-	else getRodeFemdomStyleBySera();
+	//Savin's omnigender buttfux
+	choices[choices.length] = catchEverythingInYoButtBySavinForSeraDogcock;
+
+	//pick one
+	choices[rand(choices.length)]();
 }
 
 //Get Tail Used
@@ -202,6 +205,7 @@ function getTailUsedBySera():void
 	if(pc.tailCount > 1 || pc.vaginaTotal() > 1) output("s");
 	output(" clench, and a drop of goo dangles down from your juice-soaked entrance. You catch it in your mouth before it can dirty her floor and spend the next several minutes obediently licking out every drop that your tail failed to consume.");
 	output("\n\nShe doesn't seem to have any complaints about your face being covered in pussy juice. You do your best to wipe up anyway, but you're sure you still smell vaguely of cunt. The satisfaction your [pc.tailgina] exudes makes it all worthwhile.");
+	feedCuntSnake();
 	processTime(45+rand(15));
 	pc.orgasm();
 	clearMenu();
@@ -269,6 +273,7 @@ function getRodeFemdomStyleBySera():void {
 	output(". With one hand, she covers your eyes. With the other, she firms her grip on your throat. Her lips meet yours hard enough that you nearly cut the insides of yours on your teeth, and then her long snake-like tongue is twirling over your gums. Her slit slides further up, her hips shift, and suddenly, your [pc.cockHead " + x + "] isn't just warm but hot, wreathed in wet folds. She glides down you while kissing you, her grip as tight as her twat and the tongue-kiss.");
 
 	output("\n\nShe breaks away, her lips still wet with mixed spit. You feel her come down to the hilt, soaked and clinging. Another moan rises off, but it's a choked, weak little thing. Her grip on your neck is just tight enough to make it hard to talk but not enough to actually stop your breathing. Sera straightens to start fucking you, the steady rise and fall of her hips feeling like heaven to your over-focused consciousness. If she started choking you now, you probably wouldn't resist. Her pussy feels to good to interrupt.");
+	cockChange(true,false);
 	output("\n\n<i>\"You like this, don't you? ");
 	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Why do I even ask? You came back for more, like an obedient, well-trained puppy.");
 	else output("If you didn't before, you sure do now.");
@@ -311,6 +316,7 @@ function getRodeFemdomStyleBySera():void {
 	if(pc.cockTotal() == 1) output("es");
 	output(" in response. Luckily, she doesn't see.");
 	output("\n\nAfter you're both suitably presentable, you walk back around the corner. Sera mirthfully asks, <i>\"Is there anything I can do for you, pet?\"</i> You flush as you consider your options.");
+	flags["TIMES_RODE_BY_SERA"] = 1;
 	processTime(35+rand(10));
 	pc.orgasm();
 	seraMenu();
@@ -385,3 +391,142 @@ function getGiantDickTailfilledWhileEatingSeraOut():void
 	addButton(0,"Next",mainGameMenu);
 }
 	
+//(Catch) Double (TRIPLE!?) Penetration
+//Savin-sama-dono-chan
+function catchEverythingInYoButtBySavinForSeraDogcock():void {
+	clearOutput();
+	author("Savin");
+	output("You nod your assent to the demon-morphed mistress's demand, which earns you a small grin from her blue-sheened lips. <i>\"Then prove it. Bark, little ");
+	if(pc.race() == "ausar") output("bitch");
+	else output("doggy");
+	output(".\"</i>  You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
+
+	//if first-time:
+	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined)
+	{
+		output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i>  she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
+		output("\n\n<i>\"Wait,\"</i>  you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
+		output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>\"Alright, meat, I'll go easy on you this time. But next time...\"</i>");
+		//End first-time variant
+	}
+	//{Start here If PC is a cockslut OR PC is an Ausar-type:}
+	output("\n\n<i>\"Woof!\"</i>  you answer, wagging ");
+	if(pc.tailCount > 0) output("your [pc.tails]");
+	else output("your [pc.butt] like a tail");
+	output(", approaching your mistress and lowering down to your [pc.knees].");
+	output("\n\n<i>\"Now there's a good puppy,\"</i>  she teases, long fingers running ");
+	if(pc.hasHair()) output("through your hair");
+	else output("across your bald pate");
+	output(" before hooking firmly behind your head, guiding your down until you're kneeling before her, arms raised like a begging bitch. Seeing your debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, raising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>\"Does pup want a taste?\"</i>");
+	output("\n\nYour eyes roll up to gaze upon the majesty of Sera's mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let it her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your [pc.face] to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>\"C'mon, slut-puppy, open wide. Where this is going next, you're gonna be thanking me for every second I let you suck my cock beforehand.\"</i>");
+
+	output("\n\nYou gulp");
+	//if PC is a buttslut:
+	if(pc.ass.looseness >= 3)
+	{
+		output(", but your [pc.asshole] twitches in eager response to her threat, ready and willing to be filled with a nice, thick cock. Your mind fills with a haze of lust, already imagining the filling fullness of her meat spreading your asshole wide, filling you with cum until it's pouring out of you like a faucet.");
+		if(pc.hasCock()) output(" Even your [pc.cocks] can't help but spring to life at the thought, half-hard without so much as a touch");
+	}
+	output(".");
+
+	output("\n\nThe insistent heat on your cheek demands attention, however. You nuzzle against Sera's girthy manhood, rubbing ");
+	if(!pc.hasBeard()) output("your smooth cheek");
+	else output("your [pc.beard]");
+	output(" against the soft flank of her prick, earning yourself a little twitch and hop from her dick as you make your way down towards her meaty crown. You try to take it slow, easing your way toward sucking the demon-girl off, but she angles her spaded tail at her behind, giving it an impatient poke to remind you that you're on the clock, here.");
+	output("\n\nYou hasten your journey towards her demonic crown, finally coming to rest your lips against her turgid cum-shaft, parted just enough so that your tongue can snake out, caressing her slit from stem to stern, eliciting a tiny gasp from her, which she quickly twists into a moan of raw, animal sexuality. <i>\"That's more like it, bitch,\"</i>  she teases, unceremoniously sliding her hips forward between your pursed lips, filling your mouth with her thick, hot schlong. But from where you're sitting, that's all that she's getting in there: just the first few inches to fill your slavering gob. With a cruel smirk, the demoness grabs your [pc.hair] and rams you face-first down her rod, slamming all twelve inches down your gullet and into the cunt-tight confines of your throat. You gag and sputter around the sudden, violent intrusion, desperately trying to master your churning gag-reflex as your purple mistress face-fuckes you, thrusting your head down her throbbing meatpole like a living onahole.");
+
+	output("\n\nSera's utterly merciless, fucking your throat so hard you can barely breathe, and it's all you can do to try not to choke on her cock as it stretches your throat, so thick and big that you can SEE the bulge it's making in your neck as she pushes it in to the hilt, her hefty balls slapping wetly against your drool-slick chin. Her fingers cup your cheeks, nails digging into your tender [pc.skin] until it's almost painful, holding you <i>just right</i> as she sighs with pleasure, feeling your throat convulse wildly around her massive member, trying to expunge it, desperate for cock-free air. You can see stars before she finally relents, letting you slide off her cock into a wet, horny mess on the floor, your chin and her prick utterly drenched with your saliva.");
+
+	//if PC has a cock:
+	if(pc.hasCock())
+	{
+		output("\n\n<i>\"Oh, what's this?\"</i>  Sera quips, looking down at you, hands on her hips and glistening cock dangling, looming over you, still slick and shining from the abuse it levied on your throat. <i>\"Did my meat get a little hard from sucking cock?\"</i>");
+		output("\n\nYou look shamefaced between your [pc.legs], to the growing bulge of your erection ");
+		if(pc.isCrotchGarbed()) output("straining against your [pc.lowerGarment]");
+		else output("bare and plain for all to see");
+		output(". She stifles a snicker at your ");
+		if(pc.longestCockLength() <= 5.5) 
+		{
+			output("tiny, pathetic little cock");
+			if(pc.cockTotal() > 1) output("s");
+		}
+		else if(pc.longestCockLength() <= 12) output("utterly unremarkable cock, so... boring, so average for its kind");
+		else output("massive girth, barely able to get half-hard at this angle thanks to its mammoth size, utterly dwarfing her own");
+		output(". <i>\"Aww, you did. See, meat, I had you pegged the moment you walked in here: you're an utter cock-whore. I bet you slink home after this and blow ten dudes on the way. Or do you only like girly-cocks, is that it? Does seeing a big, swinging dick under a nice pair of tits turn you on? Can you even jack it to normal porn? I bet you can't. Hmm, maybe I'll be nice and show this slutty thing a little love, huh? What do you think about that?\"</i>");
+		output("\n\nYou nod enthusiastically, only to regret your decision a moment later as one of Sera's tall platform shoes clatters to the floor beside you, revealing her cloven hoof of a foot. You gulp as the bestial appendage looms over your hardening members, its rounded tip just barely grazing the top of your shaft, sending a shuddering wave of pleasure through your body. Her foot reaches up, pressing into the base of your cock before pushing down and down, pinning your [pc.cock] to the floor, heel rubbing it into the deck until its almost painful. You wince as she half-crushes, half-jacks your dick, rolling her heel across your length. Pre-cum bubbles at your tip, cock twitching under her powerful hoof as she relentlessly \"massages\" your length, letting whole minutes go by until your mind is little more than a haze of lust, hips humping back against her foot, trying desperately to cum but stymied by the pinning weight of her hoof on your shaft.");
+		output("\n\n<i>\"What, are you gonna cum just from getting your cock stepped on,\"</i>  she sneers, moving her foot faster, <i>\"Or are you still just turned on from sucking me off? If that gets you so hard, you're gonna love what comes next...\"</i>");
+		output("\n\nYou whimper as she foot-fucks your [pc.cock], harder and harder until it's agony not to cum, your prick swelling with pent-up need beneath her pumping hoof, drooling and sputtering out of your tip in a lake of wasted ejaculate. <i>\"Tsk, slutty little cock,\"</i>  Sera teases, working her hoof down to the tip, pressing it nearly flat on the desk, letting your surging cum build up for a long moment before letting go.");
+		output("\n\nWith a shriek of pleasure, you let it all go, cock erupting in a wave of seed to splatter across Sera's foot and the deck below. She grimaces as you cum onto her, but says nothing, letting you ride out your longed-for orgasm until you're nothing more than a quivering pile of lust on her deck, shuddering full-body into the powerful throes of pleasure. <i>\"And now you got me dirty. Great job, meat.\"</i>  Sera crosses her dirtied leg over the other, letting her spunk-drenched hoof hang in the air. <i>\"You better clean that up, if you want me to even THINK about being gentle with that [pc.asshole] of yours. If you were smart, and that's a big if, you might even slather me up with it. My cock's gotten a little dry without that pretty mouth of yours to keep it warm.\"</i>");
+		pc.orgasm();
+		//If PC isn't Sera's bitch yet: 
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined)
+		{
+			output("\n\nYou hesitate at the thought of slurping up your own cum, but... the prospect of her going in dry isn't exactly appealing, either");
+		}
+		else output("\n\nYou eagerly crawl onto your hands and [pc.knees] before your demonic mistress, wiggling your hips in anticipation of what she's about to do to you");
+		output(". You lean down and cup her spunk-slathered hoof, bringing it up to your tongue and licking across its sheer, hard surface. You shudder at the taste of your own cum, utterly ");
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) output("revolted");
+		else output("turned on");
+		output(" by the syrupy texture of your spunk. You spend a few long seconds slurping up every drop that you shot across her hoof, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
+		output("\n\n<i>\"Don't think I was letting you off THAT easy, meat. Drink up,\"</i>  she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress's cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
+		output("\n\n<i>\"Gooood doggy,\"</i>  she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
+		//End PC cock Variant
+	}
+	output("\n\n<i>\"Now it's time for the main course,\"</i>  he grins, grabbing you by the hair and throwing you up against the counter. You gasp as the wind's knocked out of you, doubling over the counter as the demon babe steps up behind you, flopping the shaft of her big, wet cock between the crack of your ass. You squirm as she locks her fingers into your [pc.hips], holding your ass dead steady, all but bending your over the counter as she gets ready to take her pleasure from your body. You can feel her sloppy, wet schlong trail down your craft, a hefty foot-long slab of demon meat ready to pound you into the ground. At least she gave you the chance to lube it up!");
+	output("\n\nInstinct kicks in, and you wince back as the head of her cock brushes against the tight-clenched ring of your [pc.asshole], sending a little shock through your body. You try your best to relax, letting yourself go in Sera's strong, unyielding grasp; slowly, your sphincter relaxes, just enough to admit the thick, wet head of Sera's crown. A low, desperate moan escapes your lips as your body reacts, ass spasming against the sudden, girthy intrusion but unable to push it back thanks to all the lube you've slathered it with. Sera's hands dig into your flanks, relentless in her advance. All you can do is dig your fingers into the counter and grit your teeth, trying to relax and failing utterly as Sera batters her way into your ass.");
+	buttChange(chars["SERA"].cockVolume(0),true,true,false);
+
+	//if PC is tight:
+	if(pc.ass.looseness <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do only let the special dick-girls in back here?\"</i>");
+	//if PC is moderately loose:
+	else if(pc.ass.looseness <= 4) output("\n\n<i>\"Aww yeah, now that's what I'm talkin' about. You had some Naughty Wyvern toys back here before, or are you just THAT much of a buttslut?\"</i>");
+	//if PC is MEGALOOSE: 
+	else output("\n\n<i>\"Hoooolyyyy shit, meat, what have you had back here? Beeb getting friendly with some centaurins, or are you more of a 'get twenty dicks in my ass at once' kind of " + pc.mf("guy","girl") + "? Shit, I might have to splice up again -- feelin' kind of inadequate back here!\"</i>");
+	output("\n\nYou try to respond to the demoness's teasing, but find your voice breaking into a high-pitched cry of pleasure as she slams into you, force-fucking all twelve inches of cock into your ass until her balls slapping wetly against ");
+	if(pc.balls > 0) output("your own");
+	else if(pc.hasVagina()) output("your cooch");
+	else output("your bare groin");
+	output(". You give a last gasp of startled half-pleasure before collapsing onto the counter, breathing hard as your body adjusts to to massive, full feeling of such a thick cock inside you. A moment later, you're pushed down against the cool glass, feeling the sweltering heat of the demoness's body pressing against your back, her big, soft breasts fitting nicely between your shoulders -- and acting like a headrest as she pulls your head back, making you look up at her as she looms over you, gently rocking her hips to settle her cock deep inside your ass.")
+	output("\n\n<i>\"How's it feel, slut? Like the feeling of me stretching your ass out?\"</i>");
+	output("\n\nYou try to nod, but her hand gripping your head refuses to budge, holding you still.");
+	output("\n\n<i>\"I can't hear you, slut? And neither can my cock. Let us hear you say it, and maybe I'll actually </i>fuck<i> you like you deserve.\"</i>");
+	output("\n\nYou hesitate for only a moment, only able to hold yourself back for that split second it takes her cock to twitch inside you before you cry out, <i>\"F-fuck me! Fuck me, please!\"</i>");
+	output("\n\n<i>\"Fuck you like what?\"</i>  Sera says, a hand caressing your cheek, turning your head to rest against her bountiful bosom.");
+	output("\n\n<i>\"Fuck me like a </i>whore,\" you cry, bracing yourself against the counter again as the demoness smirks and lets you go.");
+	output("\n\nHer hands return to your [pc.hips], and you feel the slow, laborious removal of her cock from your [pc.asshole], leaving you with the familiar feeling of cold emptiness as she pulls half way out of you -- only to ram back in at full force. You give a startled cry, back arching as Sera fucks you hard and fast, relentlessly pounding away at your hole like the dirty whore your are. She hooks an arm around your neck, pulling you up into a deep arch, holding your back against her heaving chest as her hips slap against your [pc.butt] again and again. You cry and moan, your [pc.hips] thrusting back to meet that glorious cock of their own volition, begging for more and more.");
+	//If PC has a cooch:
+	if(pc.hasVagina()) 
+	{
+		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.leg]. You yelp and look down, seeing Sera's tail swishing between your legs... and another cock where the spade ought to have been.");
+		output("\n\n<i>\"I know your type,\"</i>  Sera grins as the tail-cock lines up with your [pc.vagina], its length wriggling excitedly between the violent thrusts of her hips. <i>\"A slut like you couldn't be satisfied with just one cock, could you? So I brought you an extra one...\"</i>");
+		output("\n\nBetween the brutal ass-fucking you're already getting, you don't have much wiggle room to complain... even if you wanted to. And the thought of that other thick member doubling your pleasure quickly erodes any hope of resistance. Instead, you spread your [pc.legs] as best you can as the little tail-cock demands entrance to your sex. A yelp of pleasure escapes your mouth as the cock thrusts into you, spearing your [pc.vagina] right to the mouth of your womb, thrusting in without the faintest hint of a rhythm, driving you wild with its erratic thrusts between her hip-slapping ass-fucking.");
+		cuntChange(0,8,true,true,false);
+	}
+	//If PC has a tail-cock:
+	if(pc.hasCockTail())
+	{
+		output("\n\n<i>\"Oh, and you've got a little hard-on back here, don't ya?\"</i>  Sera coos, grabbing your animalistic tail, fingers wrapping around your extra cock. You wince as her fingers brush your tender, exposed flesh, gripping the tail-cock tight for a few moments before wrapping it around her hip and leading it out of sight. You groan, back arching as you feel your cock being swallowed by something tight and hot, gobbling up your wriggling tail-prick to the hilt.");
+		output("\n\n<i>\"Mmm, I'll let you in on a secret, meat: the trick to a dick-girl's heart is riiiiight there,\"</i>  she moans, slapping your ass as your cock brushes up against something bulbous inside her.");
+	}
+	output("\n\nSuddenly, you feel a flood of warm wetness inside you. You cry out in pleasure as your ass");
+	if(pc.hasVagina()) output(" and cooch");
+	output(" are bombarded with an unannounced orgasm, signaled only by the suddenly frantic pounding of Sera into your ass, her breath heavy and hot on your back. You take it like a champ, barely buckling under her vigorous thrusts as she fills you with her demonic seed");
+	if(pc.hasCockTail()) output(", and even giving it right back to her, thrusting your tail-cock into her ass until you join her in orgasm, the flood of hot cum on your prostate finally throwing you over the edge. You shoot your load deep up the demon's ass, locking you into a cycle of ass-fucking and cumming until you're both exhausted and panting and desperate for more");
+	output(". Grabbing your ass, Sera finally manages to drag herself out of you, spunk drooling from your abused hole");
+	if(pc.hasVagina()) output("s");
+	output(" onto her floor.");
+
+	output("\n\n<i>\"Fucking nice, meat,\"</i>  she growls, giving you a harsh spank as her crown finally pops free from your behind with an echoing wet squelch. A heavy sigh escapes her lips as she leans back against the counter and pulls out a cigarette.");
+	if(pc.hasCockTail()) output(" It takes her a moment longer to finally yank your tail-cock from her ass, though; and when she does, a nice little waterfall of cum drizzles down with it.");
+	output("\n\n<i>\"What're you still doing here?\"</i>  she adds a moment later, interrupting your after-glow. <i>\"Go on, get outta here before people start talking. Unless you want me to bend you over this counter again and open you up to my favorite customers? That'd draw in business.\"</i>");
+	//If PC isn't a bitch:
+	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) output("\n\nYou shudder at the thought");
+	else output("\n\nBefore you annoy the mistress, you hurriedly gather your things");
+	output(" and run off.");
+	flags["SERA_STUCK_IT_ALL_IN_BUTT"]  = 1;
+	processTime(40+rand(10));
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+

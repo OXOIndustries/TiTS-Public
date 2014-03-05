@@ -8,8 +8,6 @@
 	
 	public class Sera extends Creature
 	{
-		
-		
 		//constructor
 		public function Sera()
 		{
@@ -51,7 +49,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			//this.inventory.push(new Pandaneen());
+			this.inventory.push(new Rainbotox());
 			
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
