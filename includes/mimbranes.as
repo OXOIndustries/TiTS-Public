@@ -839,6 +839,9 @@ public function playerMimbraneCloudAttack():void
 				// Misfires!
 				applyCloudDebuff(pc);
 
+				// Also initially raises lust
+				pc.lust(2);
+
 				// Output text
 				if (eligibleMimbranes[ii] == "Mimbrane Cock")
 				{
@@ -941,63 +944,230 @@ public function mimbraneCombatInterference():Boolean
 	// Turn loss/effects from mutinious mimbranes
 	if (foes[0] is Mimbrane)
 	{
+		// 10% chance of mutiny from each attached mimbrane, ie actively working against the player. Going to chew through feed counter to do this too.
 
-	}
-	// Turn loss from neglected mimbranes
-	else
-	{
-		var numHungry:int = mimbranesNeglected();
-		if (numHungry > 0)
+		// Find all mimbranes that can spit
+		// Anything with 4+ trust, costs 5 feedings
+		var eligibleMimbranes:Array = new Array();
+
+		for (var i:int = 0; i < mimbraneEffects.length; i++)
 		{
-			// If any hungry mimbrane is active, all attached mimbranes have a 10% chance to make the player lose a turn
-			for (var i:int = 0; i < mimbraneEffects.length; i++)
+			if (pc.hasStatusEffect(mimbraneEffects[i]))
 			{
-				if (pc.hasStatusEffect(mimbraneEffects[i]))
+				if (pc.statusEffectv3(mimbraneEffects[i]) >= 3)
 				{
-					if (rand(10) == 0) // 1 in 10 (0-9)
-					{
-						// Lose a turn!
-						if (mimbraneEffects[i] == "Mimbrane Cock")
-						{
-							output("You’re unable to focus, too distracted by your Mimbrane-controlled [pc.cock] soaking in a parasitic stew of clammy passion and sweaty lust.");
-						}
-						else if (mimbraneEffects[i] == "Mimbrane Pussy")
-						{
-							output("Your [pc.legs] quiver and shake, a sign of uneasiness as you find it difficult to ignore your [pc.pussy]. Your Mimbrane-possessed snatch undulates slowly, ensuring a dangerous cocktail of thick, oily sweat and potent clouds of lust meet you should you ever try and calm the frustrated parasite.");
-						}
-						else if (mimbraneEffects[i] == "Mimbrane Ass")
-						{
-							output("Focus fades from your grasp as your [pc.ass] involuntarily rubs its sweaty, sugary skin against the inside of your [pc.armor]. The Mimbrane lewdly quivers your [pc.asshole], slowly pumping its salacious gas in its confinements, hoping that enough will escape to only drive you further into the brink.");
-						}
-						else if (mimbraneEffects[i] == "Mimbrane Balls")
-						{
-							output("You find it difficult to continue your spat with the " + foes[0].short + ", unable to concentrate as your [sack] gets even sweatier and sultrier every passing second. The Mimbranes encasing your [balls] is doing its best trying to throw you off kilter.");
-						}
-						else if (mimbraneEffects[i] == "Mimbrane Boobs")
-						{
-							output("You’re unable to keep pace with the " + foes[0].short + ", too paralysed as your sweat-drenched {breasts} slink erotically from under your [pc.armor]. The parasite goes further by rubbing your [pc.nipples] against the inside of the garment, doing whatever it can to hinder you.");
-						}
-						else if (mimbraneEffects[i].indexOf("Mimbrane Hand") != -1)
-						{
-							output("You find yourself unable to act, too distracted by your sweaty hand. The parasite covering it moves your fingers suggestively, hinting at its desire to explore your body rather than aid you in combat.");
-						}
-						else if (mimbraneEffects[i].indexOf("Mimbrane Foot") != -1)
-						{
-							output("It becomes difficult for you to continue fighting against the {monster}, too distracted by your [foot] soaking in sexual sweat and being lewdly controlled by its parasitic coating.");
-						}
-						else if (mimbraneEffects[i] == "Mimbrane Face")
-						{
-							output("You’re unable to focus on your fight. The Mimbrane around your head is only increasing its output of oily sweat and salacious fog, making it difficult to ignore.");
-						}
+					eligibleMimbranes.push(mimbraneEffects[i]);
+				}
+			}
+		}
 
-						// Break the loop
-						return true;
+		// Each eligible mimbrane has a 10% to mutiny
+		for (var ii:int = 0; ii < eligibleMimbranes.length; ii+)
+		{
+			// 10
+			if (rand(10) == 0) // 1 in 10 [(0-9)]
+			{
+				// Cost "feeds"
+				pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 3);
+
+				// Raises player lust
+				pc.lust(2);
+
+				// Apply the debuff
+				applyCloudDebuff(pc);
+
+				// Failure text
+				if (eligibleMimbranes[ii] == "Mimbrane Cock")
+				{
+					output("Some unrelenting pressure in your [armor] is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your {cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
+				{
+					//Vagina Mimbranes
+					output("You find it difficult to concentrate on the " + foes[0].short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
+				{
+					//Ass Mimbranes
+					output("Your enthusiastic [pc.ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [pc.armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [pc.asshole]. You try and swear to the " + foes[0].short + " that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
+				{
+					//Scrotum Mimbranes
+					output("The rivalry against the " + foes[0].short + " halts as you’re distracted by rapid tensing and flailing of your [pc.balls]. The Mimbrane is thrashing your [pc.balls] about wildly, forcing you into your [pc.armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
+				{
+					//Breasts Mimbranes
+					output("It gets a little hard to breathe and focus on your opponent as your [pc.breasts] continue sweating to an unparalleled degree. The Mimbrane-controlled mammaries within your [pc.armor] suddenly shake fiercely, slamming into one another. They wind up forcing thick red clouds of pure libido up and out of your garments, causing you to stagger back out of the dense haze.");
+				}
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
+				{
+					// Hand Mimbranes
+					output("Your Mimbrane-possessed hand continues its sweaty crusade against you by secreting a thick red amorous fog. You decide to grin and bear the parasite’s attack, unwilling to give your opponent an upper hand.");
+				}
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+				{
+					//Feet Mimbranes
+					output("You do your best to ignore your [pc.foot], the appendage soaking in its Mimbrane’s thick sweat and intoxicating aroma. The parasite is working so hard against you, in fact, that it actually manages to produce enough of a haze down from your foot that you start to feel the effects of it!");
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Face")
+				{
+					//Head Mimbranes
+					output("The Mimbrane covering your head is working double time, clouding your [pc.face] with sweat and a fog of lust. You can’t hold your breath forever and eventually wind up inhaling some of the noxious, nectary fumes. ");
+				}
+
+				// Break the loop so we only have a single mutiny action that skips a player combat turn
+				return true;
+			}
+		}
+	}
+	// Other sources of turn loss
+
+	// Hungry mimbranes
+	var numHungry:int = mimbranesNeglected();
+	if (numHungry > 0)
+	{
+		// If any hungry mimbrane is active, all attached mimbranes have a 10% chance to make the player lose a turn
+		for (var i:int = 0; i < mimbraneEffects.length; i++)
+		{
+			if (pc.hasStatusEffect(mimbraneEffects[i]))
+			{
+				if (rand(10) == 0) // 1 in 10 (0-9)
+				{
+					// Lose a turn!
+					if (mimbraneEffects[i] == "Mimbrane Cock")
+					{
+						output("You’re unable to focus, too distracted by your Mimbrane-controlled [pc.cock] soaking in a parasitic stew of clammy passion and sweaty lust.");
 					}
+					else if (mimbraneEffects[i] == "Mimbrane Pussy")
+					{
+						output("Your [pc.legs] quiver and shake, a sign of uneasiness as you find it difficult to ignore your [pc.pussy]. Your Mimbrane-possessed snatch undulates slowly, ensuring a dangerous cocktail of thick, oily sweat and potent clouds of lust meet you should you ever try and calm the frustrated parasite.");
+					}
+					else if (mimbraneEffects[i] == "Mimbrane Ass")
+					{
+						output("Focus fades from your grasp as your [pc.ass] involuntarily rubs its sweaty, sugary skin against the inside of your [pc.armor]. The Mimbrane lewdly quivers your [pc.asshole], slowly pumping its salacious gas in its confinements, hoping that enough will escape to only drive you further into the brink.");
+					}
+					else if (mimbraneEffects[i] == "Mimbrane Balls")
+					{
+						output("You find it difficult to continue your spat with the " + foes[0].short + ", unable to concentrate as your [sack] gets even sweatier and sultrier every passing second. The Mimbranes encasing your [balls] is doing its best trying to throw you off kilter.");
+					}
+					else if (mimbraneEffects[i] == "Mimbrane Boobs")
+					{
+						output("You’re unable to keep pace with the " + foes[0].short + ", too paralysed as your sweat-drenched {breasts} slink erotically from under your [pc.armor]. The parasite goes further by rubbing your [pc.nipples] against the inside of the garment, doing whatever it can to hinder you.");
+					}
+					else if (mimbraneEffects[i].indexOf("Mimbrane Hand") != -1)
+					{
+						output("You find yourself unable to act, too distracted by your sweaty hand. The parasite covering it moves your fingers suggestively, hinting at its desire to explore your body rather than aid you in combat.");
+					}
+					else if (mimbraneEffects[i].indexOf("Mimbrane Foot") != -1)
+					{
+						output("It becomes difficult for you to continue fighting against the {monster}, too distracted by your [foot] soaking in sexual sweat and being lewdly controlled by its parasitic coating.");
+					}
+					else if (mimbraneEffects[i] == "Mimbrane Face")
+					{
+						output("You’re unable to focus on your fight. The Mimbrane around your head is only increasing its output of oily sweat and salacious fog, making it difficult to ignore.");
+					}
+
+					// Break the loop
+					return true;
 				}
 			}
 		}
 	}
-	
+
+	// Hand mimbrane gropes
+	var handGropeChance:int = 0;
+	if (pc.hasStatusEffect("Mimbrane Hand Left"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv3("Mimbrane Hand Left") >= 4)
+		{
+			// <= 2 trust = 5% chance
+			if (pc.statusEffectv1("Mimbrane Hand Left") <= 2)
+			{
+				handGropeChance += 5;
+			}
+			else if (pc.statusEffectv1("Mimbrane Hand Left") > 2)
+			{
+				handGropeChance += 3;
+			}
+		}
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Hand Right"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv3("Mimbrane Hand Right") >= 4)
+		{
+			// <= 2 trust = 5% chance
+			if (pc.statusEffectv1("Mimbrane Hand Right") <= 2)
+			{
+				handGropeChance += 5;
+			}
+			else if (pc.statusEffectv1("Mimbrane Hand Right") > 2)
+			{
+				handGropeChance += 3;
+			}
+		}
+	}
+
+	// Roll!
+	if (handGropeChance > 0 && rand(100) <= (handGropeChance - 1)) // handGropeChance in 100 == (0-99) <= handGropeChance-1
+	{
+		output("Your hand suddenly dives into your [pc.armor], anxiously grasping for your");
+		if (pc.hasCock()) output(" [pc.cock]");
+		else if (pc.hasVagina()) output(" [pc.vagina]");
+		else output(" bare nether regions");
+		output(" in the hopes of satisfying its craving. You yank the Mimbrane-controlled appendage back, frustrated by its horrible sense of timing.");
+
+		return true;
+	}
+
+	// Stupid mimbrane feets
+	var footStumbleChance:int = 0;
+	if (pc.hasStatusEffect("Mimbrane Foot Left"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv3("Mimbrane Foot Left") >= 4)
+		{
+			// <= 2 trust = 5% chance
+			if (pc.statusEffectv1("Mimbrane Foot Left") <= 2)
+			{
+				footStumbleChance += 5;
+			}
+			else if (pc.statusEffectv1("Mimbrane Foot Left") > 2)
+			{
+				footStumbleChance += 3;
+			}
+		}
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Foot Right"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv3("Mimbrane Foot Right") >= 4)
+		{
+			// <= 2 trust = 5% chance
+			if (pc.statusEffectv1("Mimbrane Foot Right") <= 2)
+			{
+				footStumbleChance += 5;
+			}
+			else if (pc.statusEffectv1("Mimbrane Foot Right") > 2)
+			{
+				footStumbleChance += 3;
+			}
+		}
+	}
+
+	// Roll!
+	if (footStumbleChance > 0 && rand(100) <= (footStumbleChance - 1)) // footStumbleChance in 100 == (0-99) <= footStumbleChance-1
+	{
+		output("Your fight takes an abrupt turn when you lose your footing and tumble to the ground. Seems your [pc.foot] was the cause, or more specifically the Mimbrane controlling it.");
+
+		return true;
+	}
+
 	return false;
 }
 
@@ -1007,44 +1177,83 @@ public function mimbraneCombatBonusAttacks():void
 
 }
 
-public function playerMutiniousMimbranes():void
+public function mimbraneHandBonusAttack(target:Creature):void
 {
+	if (target is Mimbrane) return;
 
+	var bonusAttackChance:int = 0;
+
+	if (pc.hasStatusEffect("Mimbrane Hand Left"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv1("Mimbrane Hand Left") >= 3 && pc.statusEffectv3("Mimbrane Hand Left") < 7)
+		{
+			bonusAttackChance += 15;
+		}
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Hand Right"))
+	{
+		// > 4 days without feed
+		if (pc.statusEffectv1("Mimbrane Hand Right") >= 3 && pc.statusEffectv3("Mimbrane Hand Right") < 7)
+		{
+			bonusAttackChance += 15;
+		}
+	}
+
+	if (bonusAttackChance > 0 && rand(100) <= (bonusAttackChance - 1))
+	{
+		// Bonus attack successful
+		output("You’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. Seems as though the Mimbrane controlling it is eager to come to your aid!");
+
+		attack(pc, target);
+	}
 }
 
-//Penis Mimbranes
-Mutinous Lust Cloud: Some unrelenting pressure in your [armor] is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your {cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.
+public function mimbraneFeetBonusEvade(target:Creature):Boolean
+{
+	var dodgeBonus:int = 0;
 
-//Vagina Mimbranes
-Mutinous Lust Cloud: You find it difficult to concentrate on the {monster} as the moisture trapped in and around your [pussy] becomes too much to bear. An absentminded gesture to undo your [armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.
+	if (foes[0] is Mimbrane) return false;
+	if (target != pc) return false;
 
-//Ass Mimbranes
-Mutinous Lust Cloud: Your enthusiastic [ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [asshole]. You try and swear to the {monster} that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.
+	if (target.hasStatusEffect("Mimbrane Foot Left") && target.statusEffectv2("Mimbrane Foot Left") <= 6)
+	{
+		if (pc.statusEffectv1("Mimbrane Foot Left") == 3)
+		{
+			dodgeBonus += 5;
+		}
+		else if (pc.statusEffectv1("Mimbrane Foot Left") >= 4)
+		{
+			dodgeBonus += 10;
+		}
+	}
 
-//Scrotum Mimbranes
-Mutinous Lust Cloud: The rivalry against the {monster} halts as you’re distracted by rapid tensing and flailing of your [sack]. The Mimbrane is thrashing your [balls] about wildly, forcing you into your [armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.
+	if (target.hasStatusEffect("Mimbrane Foot Right") && target.statusEffectv2("Mimbrane Foot Right") <= 6)
+	{
+		if (target.statusEffectv1("Mimbrane Foot Right") == 3)
+		{
+			dodgeBonus += 5;
+		}
+		else if (target.statusEffectv1("Mimbrane Foot Right") >= 4)
+		{
+			dodgeBonus += 10;
+		}
+	}
 
-//Breasts Mimbranes
-Mutinous Lust Cloud: It gets a little hard to breathe and focus on your opponent as your [breasts] continue sweating to an unparalleled degree. The Mimbrane-controlled mammaries within your [armor] suddenly shake fiercely, slamming into one another. They wind up forcing thick red clouds of pure libido up and out of your garments, causing you to stagger back out of the dense haze.
+	// Rolls!
+	if (dodgeBonus > 0 && rand(100) <= (dodgeBonus - 1))
+	{
+		return true;
+	}
+}
 
-//Hand Mimbranes, while sharing stats such as feeding and perks, act as separate entities in battle. Each produce their own separate chance for any combat action to occur.
-Mutinous Lust Cloud: Your Mimbrane-possessed hand continues its sweaty crusade against you by secreting a thick red amorous fog. You decide to grin and bear the parasite’s attack, unwilling to give your opponent an upper hand.
-
-Extra Attack: You’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. Seems as though the Mimbrane controlling it is eager to come to your aid!
-Grope: Your hand suddenly dives into your [armor], anxiously grasping for your {[cock]/[pussy]/bare nether regions} in the hopes of satisfying its craving. You yank the Mimbrane-controlled appendage back, frustrated by its horrible sense of timing.
-
-//Feet Mimbranes, while sharing stats such as feeding and perks, act as separate entities in battle. Each produce their own separate chance for any combat action to occur.
-Mutinous Lust Cloud: You do your best to ignore your [foot], the appendage soaking in its Mimbrane’s thick sweat and intoxicating aroma. The parasite is working so hard against you, in fact, that it actually manages to produce enough of a haze down from your foot that you start to feel the effects of it!
-
-Bonus Evade: You’re taken by surprise as your [foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!
-Loose Footing: Your fight takes an abrupt turn when you lose your footing and tumble to the ground. Seems your [foot] was the cause, or more specifically the Mimbrane controlling it.
-
-//Head Mimbranes
-Mutinous Lust Cloud: The Mimbrane covering your head is working double time, clouding your [face] with sweat and a fog of lust. You can’t hold your breath forever and eventually wind up inhaling some of the noxious, nectary fumes. 
-
+/* Bonus tese shit t
+// Face
 Lip Tease (small): You make a suggestive kiss towards the {monster} with your less-than-lean lips.
 Lip Tease (medium): You lick your plump lips in a suggestive fashion, tantalizing the {monster} with their delicious volume.
-Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.  
+Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.
+*/
 
 //Flavor Text
 //These scenes/lines take place in between scenes much like Shouldra’s. Other than messages dictated by time (i.e. hungry Mimbrane warnings), the odds for these to occur are low to help prevent from getting repetitive and annoying. 
