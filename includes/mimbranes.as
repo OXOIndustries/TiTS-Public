@@ -301,6 +301,28 @@ public function mimbranesIncreaseDaysSinceFed():void
 			output("Your head begins to feel tingly and moist. Viscous, sweet liquid starts pouring out of your [pc.face]. <b>The hungry Mimbrane surrounding your head has started to sweat profusely.</b>");
 		});
 	}
+
+	// Show on the 8th day since feeding, if applicable
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]) && pc.statusEffectv2(mimbraneEffects[i]) == 8)
+		{
+			if (attachedMimbranes == 2)
+			{
+				eventQueue.push(function():void {
+					output("Frustrated by the ignorance to its fellow parasite’s plight, your other Mimbrane comes to its aid and begins sweating profusely. The additional onslaught of oily passionate perspiration won’t make things any easier for you.");
+				});
+				i = mimbraneEffects.length; // break the loop without returning
+			}
+			else if (attachedMimbranes > 2)
+			{
+				eventQueue.push(function():void {
+					output("Frustrated by the ignorance to their follow parasite’s plight, all your other Mimbranes decide to come to its aid and begin sweating profusely. A good deal of your body is under their oily passionate assault, escalating the sexual torment swirling around your senses!");
+				});
+				i = mimbraneEffects.length; // break the loop without returning
+			}
+		}
+	}
 }
 
 //These scenes/lines take place in between scenes much like Shouldra’s. Other than messages dictated by time (i.e. hungry Mimbrane warnings), the odds for these to occur are low to help prevent from getting repetitive and annoying.
@@ -316,6 +338,9 @@ public function mimbranesComplainAndShit():void
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[ii])
 		{
+			// There comes a point where you just don't give a shit anymore, and you just want this shit to WORK.
+			// Copypaste code, best code.
+
 			//Hungry Mimbranes
 			//Warning One
 			//Occurs on fifth day since last feeding
@@ -718,6 +743,95 @@ public function mimbranesComplainAndShit():void
 									output("The Mimbrane on your [pc.face] is upset, squeaking incessantly via your [lips] while shifting your features around uncomfortably. Things may only get worse if you don’t feed it soon.");
 						});
 					}
+				}
+			}
+			//Still Hungry
+			//Occurs when the following Mimbrane is still in a state of hunger. Chance of scene occurring during a transition is only slightly higher than sweating, breathing, and friendly lines below. 
+			else if (pc.statusEffectv2(mimbraneEffects[ii]) >= 7)
+			{
+				// Cock
+				if (mimbraneEffects[ii] == "Mimbrane Cock")
+				{
+					eventQueue.push(function() {
+						output(" You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [cock]. It occasionally glides around within your [armor], spreading its lust-inducing perspiration around your body. The hungry parasite is relentless in its teasing.");
+					});
+				}
+				// Vag
+				else if (mimbraneEffects[ii] == "Mimbrane Pussy")
+				{
+					eventQueue.push(function() {
+						output("It’s hard to focus on the task at hand when your [pussy] is sopping wet in Mimbrane sweat. Constant threats of sexual humidity poke at you, occasionally escaping the confines of your [armor] to peck at your senses. The hungry parasite refuses to give you a moment’s rest.");
+					});
+				}
+				// Butt
+				else if (mimbraneEffects[ii] == "Mimbrane Ass")
+				{
+					eventQueue.push(function() {
+						output("Your [ass] makes it nearly impossible to calmly assess a thing as the Mimbrane-soaked pair of cheeks lewdly slide and slather the inside of your armor. Endless clouds of strawberry passion enshroud your behind, occasionally escaping to stroke you with their hot, sexual intentions. Your Mimbrane-controlled [asshole] cries out for some much-desired sustenance.");
+					});
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Balls")
+				{
+					eventQueue.push(function() {
+						output("Doing anything at all becomes an exercise in frustration as your [sack] goes on suffering from Mimbrane perspiration. A constant cloud of hot, carnal desire kisses at your [balls] and slides around your groin. The hungry parasite has turned the environment within [armor] to a veritable sexual rainforest.");
+					});
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Boobs")
+				{
+					eventQueue.push(function() {
+						output("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [fullchest] in. Every square inch of your bosom – down to the tip of your [nipples] – is just sopping wet in the hungry parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [armor] to greet you, bending you over and pounding you with their sensual intentions.");
+					});
+				}
+				else if (mimbraneEffects[ii].indexOf("Mimbrane Hand") != -1)
+				{
+					if (!doneHands)
+					{
+						// Two hands
+						if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
+						{
+							eventQueue.push(function() {
+								output("You’re forced to keep your hands at a safe distance, lest you be overwrought with their noxious sexual odors. Your hungry Mimbranes have slathered your appendages in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.");
+							});
+						}
+						// Only one hand
+						else
+						{
+							eventQueue.push(function() {
+								output("You’re forced to keep your hand at a safe distance, lest you be overwrought with its noxious sexual odors. Your hungry Mimbrane has slathered your appendage in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.");
+							});
+						}
+
+						doneHands = true;
+					}
+				}
+				// Feets
+				else if (mimbraneEffects[ii].indexOf("Mimbrane Foot") != -1)
+				{
+					if (!doneFeet)
+					{
+						// Two heet
+						if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
+						{
+							eventQueue.push(function() {
+								output("Your [feet] are hot and soaked, covered in your hungry Mimbranes’ sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendages to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.");
+							});
+						}
+						// Only one foot
+						else
+						{
+							eventQueue.push(function() {
+								output("Your [foot] is hot and soaked, covered in your hungry Mimbrane’s sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendage to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.");
+							});
+						}
+
+						doneFeet = true;
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Face")
+				{
+					eventQueue.push(function() {
+						output("You’ve lost count how many times you’ve wiped sweat from your brow. There’s no escape from the hungry Mimbrane’s angry revolt as it coats your [face] and head in its seemingly limitless sexual sweat. Constantly you fan away building clouds of strawberry perspiration before they can further poison you with their wanton instincts.");
+					});
 				}
 			}
 		}
@@ -1759,24 +1873,8 @@ Lip Tease (medium): You lick your plump lips in a suggestive fashion, tantalizin
 Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.
 */
 
-//Still Hungry
-//Occurs when the following Mimbrane is still in a state of hunger. Chance of scene occurring during a transition is only slightly higher than sweating, breathing, and friendly lines below. 
-Penis Mimbrane: You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [cock]. It occasionally glides around within your [armor], spreading its lust-inducing perspiration around your body. The hungry parasite is relentless in its teasing.
-Vagina Mimbrane: It’s hard to focus on the task at hand when your [pussy] is sopping wet in Mimbrane sweat. Constant threats of sexual humidity poke at you, occasionally escaping the confines of your [armor] to peck at your senses. The hungry parasite refuses to give you a moment’s rest.
-Ass Mimbrane: Your [ass] makes it nearly impossible to calmly assess a thing as the Mimbrane-soaked pair of cheeks lewdly slide and slather the inside of your armor. Endless clouds of strawberry passion enshroud your behind, occasionally escaping to stroke you with their hot, sexual intentions. Your Mimbrane-controlled [asshole] cries out for some much-desired sustenance. 
-Scrotum Mimbrane: Doing anything at all becomes an exercise in frustration as your [sack] goes on suffering from Mimbrane perspiration. A constant cloud of hot, carnal desire kisses at your [balls] and slides around your groin. The hungry parasite has turned the environment within [armor] to a veritable sexual rainforest.
-Breasts Mimbrane: It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [fullchest] in. Every square inch of your bosom – down to the tip of your [nipples] – is just sopping wet in the hungry parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [armor] to greet you, bending you over and pounding you with their sensual intentions. 
-Hand Mimbrane: You’re forced to keep your hand at a safe distance, lest you be overwrought with its noxious sexual odors. Your hungry Mimbrane has slathered your appendage in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.  
-Hands Mimbranes: You’re forced to keep your hands at a safe distance, lest you be overwrought with their noxious sexual odors. Your hungry Mimbranes have slathered your appendages in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.
-Foot Mimbrane: Your [foot] is hot and soaked, covered in your hungry Mimbrane’s sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendage to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.
-Feet Mimbranes: Your [feet] are hot and soaked, covered in your hungry Mimbranes’ sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendages to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.
-Head Mimbrane: You’ve lost count how many times you’ve wiped sweat from your brow. There’s no escape from the hungry Mimbrane’s angry revolt as it coats your [face] and head in its seemingly limitless sexual sweat. Constantly you fan away building clouds of strawberry perspiration before they can further poison you with their wanton instincts.
-Aiding the Hungry
 
-//Occurs on eighth day since feeding
-//Alert
-One other Mimbrane: Frustrated by the ignorance to its fellow parasite’s plight, your other Mimbrane comes to its aid and begins sweating profusely. The additional onslaught of oily passionate perspiration won’t make things any easier for you.
-Two+ other Mimbanes: Frustrated by the ignorance to their follow parasite’s plight, all your other Mimbranes decide to come to its aid and begin sweating profusely. A good deal of your body is under their oily passionate assault, escalating the sexual torment swirling around your senses!
+
 
 //Reminders
 //These are occasional messages for any mutinous Mimbranes that are not hungry, but are sweating due to the neglect of another parasite’s hunger. Their chance of occurring are equal to that of the hungry Mimbrane(s). 
