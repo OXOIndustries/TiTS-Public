@@ -220,6 +220,510 @@ public function mimbranesNeglected():void
 	return numNeglected;
 }
 
+public function mimbranesIncreaseDaysSinceFed():void
+{
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			pc.setStatusValue(mimbraneEffects[i], 2, pc.statusEffectv2(mimbraneEffects[i]) + 1);
+		}
+	}
+
+	// Always show the state transitions to "hungry" for every mimbrane
+	// These will always show at the time a mimbrane transitions into the "hungry" state. Showing all of them might be overkill, but that can be handled later.
+	if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv2("Mimbrane Cock") == 7)
+	{
+		eventQueue.push(function():void { 
+			output("A sudden burst of lewd moisture surrounding your manhood takes you by surprise. <b>Your hungry Mimbrane is drenching your [pc.cock] in its sweat.</b>");
+		});
+	}
+	
+	if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv2("Mimbrane Pussy") == 7)
+	{
+		eventQueue.push(function():void {
+			output("A tidal wave of fluids overcoming your pussy about knocks you over with sexual ferocity. <b>Your hungry Mimbrane is drowning your [pc.vagina] in its sweat</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv2("Mimbrane Ass") == 7)
+	{
+		eventQueue.push(function():void {
+			output("A sudden, strawberry-scented rain cascades down your butt, almost knocking you out with its sexual nature. <b>Your hungry Mimbrane is casting your [pc.ass] through unending streams of Mimbrane sweat.</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv2("Mimbrane Balls") == 7)
+	{
+		eventQueue.push(function():void {
+			output("An abrupt carnal wave grabs you by the balls, its lewd intentions about knocking you over. <b>Your hungry Mimbrane is smothering your [pc.balls] with its sweat.</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv2("Mimbrane Boobs") == 7)
+	{
+		eventQueue.push(function():void {
+			output("Your titty flesh is suddenly overwhelmed by a downpour of strawberry-scented liquid passion. <b>Your hungry Mimbrane is dousing your [pc.fullchest] in endless amounts of its sweat.</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") == 7)
+	{
+		eventQueue.push(function():void {
+			output("An abrupt slickness overtakes your hands out of nowhere accompanied with tingling insidiousness. <b>Your hungry Mimbranes are coating your hands in their sweat.</b>");
+		});
+	}
+	else if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") == 7)
+		|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Right") == 7))
+	{
+		eventQueue.push(function():void {
+			output("An abrupt slickness overtakes your hand out of nowhere accompanied with tingling insidiousness. <b>Your hungry Mimbrane is coating your hand in its sweat.</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Left") == 7)
+	{
+		eventQueue.push(function():void {
+			output("A powerful humidity wraps around your feet like a snake, followed with a dripping sexual passion. <b>Your hungry Mimbranes have cloaked your [pc.feet] in their oily sweat.</b>");
+		});
+	}
+	else if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Left") == 7)
+		|| (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Right") == 7))
+	{
+		eventQueue.push(function():void {
+			output("A powerful humidity wraps around your foot like a snake, followed with a dripping sexual passion. <b>Your hungry Mimbrane has cloaked your [pc.foot] in its oily sweat.</b>");
+		});
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv2("Mimbrane Face") == 7)
+	{
+		eventQueue.push(function():void { 
+			output("Your head begins to feel tingly and moist. Viscous, sweet liquid starts pouring out of your [pc.face]. <b>The hungry Mimbrane surrounding your head has started to sweat profusely.</b>");
+		});
+	}
+}
+
+//These scenes/lines take place in between scenes much like Shouldra’s. Other than messages dictated by time (i.e. hungry Mimbrane warnings), the odds for these to occur are low to help prevent from getting repetitive and annoying.
+// This shit is basically called every time the time hour ticks over, so yeah it might be slow as balls 
+public function mimbranesComplainAndShit():void
+{
+	// Throw things into the eventQueue for time progression events
+	// 4 day warnings
+	var doneHands:Boolean = false;
+	var doneFeet:Boolean = false;
+
+	for (var ii:int = 0; ii < mimbraneEffects.length; ii++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[ii])
+		{
+			//Hungry Mimbranes
+			//Warning One
+			//Occurs on fifth day since last feeding
+			if (pc.statusEffectv2(mimbraneEffects[ii]) == 5)
+			{
+				// Cock
+				if (mimbraneEffects[ii] == "Mimbrane Cock")
+				{
+					// 0-2 trust
+					if (pc.statusEffectv1("Mimbrane Cock") <= 2)
+					{
+						eventQueue.push(function() {
+							output("Your [pc.cock] rustles around a little, surprising you. Somehow, you figure its yearning for some much needed action.");
+						});
+					}
+					// 3+ trust
+					else
+					{
+						eventQueue.push(function() { 
+							output("Some anxious little squeals are coming from your [pc.cock]. The Mimbrane member has gotten a little hungry.");
+						});
+					}
+				}
+				// Vag
+				else if (mimbraneEffects[ii] == "Mimbrane Pussy")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Pussy") <= 2)
+					{
+						eventQueue.push(function() {
+							output("There’s an odd craving to feed your [pc.pussy] lingering around in your headspace. You aren’t sure why.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("The Mimbrane in your [pc.lowerGarment] is getting to be a bit parched. It’s lewdly pulsating, trying to remind you.");
+						});
+					}
+				}
+				// Butt
+				else if (mimbraneEffects[ii] == "Mimbrane Ass")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Ass") <= 2)
+					{
+						eventQueue.push(function() {
+							output("A surprising little quaver of your [pc.asshole] catches you off guard. It longs for some action.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("Your [pc.ass] starts chirping at you, revealing to you a particularly famished Mimbrane is trying to get your attention.");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Balls")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Balls") <= 2)
+					{
+						eventQueue.push(function() {
+							output("Some unusual churning in your [pc.balls] gives you pause. It felt more like a low grumble..");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("Your [pc.balls] rustle around a little, seemingly rubbing against your thigh. Seems your Mimbrane is getting hungry.");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Boobs")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Boobs") <= 2)
+					{
+						eventQueue.push(function() {
+							output("The wobbling in your [pc.fullchest] stops you in your tracks. They feel... hungry.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("A little series of chirps escape from your [pc.nipples]. You’re worried for a moment, but then realize that your hungry Mimbrane is vying for your attention.");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii].indexOf("Mimbrane Hand") != -1)
+				{
+					if (!doneHands)
+					{
+						// Two hands
+						if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
+						{
+							// Both hands should following the same feeding/upgrading pattern
+							if (pc.statusEffectV1("Mimbrane Hand Left") <= 2)
+							{
+								eventQueue.push(function() {
+									output("Your hands start to feel weak. Its as if they were eager for something..");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("Both your hands chirp and squeak in unison, letting you know there are a couple of famished Mimbranes trying to get your attention.");
+					 			});
+							}
+						}
+						// Only one hand
+						else
+						{
+							var trustValue:int = -1;
+							if (pc.hasStatusEffect("Mimbrane Hand Left")) trustValue = pc.statusEffectv1("Mimbrane Hand Left");
+							else trustValue = pc.statusEffectv1("Mimbrane Hand Right");
+
+							if (trustValue <= 2)
+							{
+								eventQueue.push(function() {
+									output("Your hand trembles a little, taking you by surprise. It feels like it needs something....");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("Fingers wiggle and poke at you, alerting you to a rather anxious Mimbrane. Parasite must be getting hungry.");
+								});
+							}
+						}
+
+						doneHands = true;
+					}
+				}
+				// Feets
+				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+				{
+					if (!doneFeet)
+					{
+						// Two heet
+						if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
+						{
+							// Both feet should following the same feeding/upgrading pattern
+							if (pc.statusEffectV1("Mimbrane Foot Left") <= 2)
+							{
+								eventQueue.push(function() {
+									output("There’s an indescribable feeling of hunger coming from your [pc.feet].");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("Muffled squeaks and chirps are coming from your [pc.feet]. Your Mimbranes must be getting hungry");
+					 			});
+							}
+						}
+						// Only one foot
+						else
+						{
+							var trustValue:int = -1;
+							if (pc.hasStatusEffect("Mimbrane Foot Left")) trustValue = pc.statusEffectv1("Mimbrane Foot Left");
+							else trustValue = pc.statusEffectv1("Mimbrane Foot Right");
+
+							if (trustValue <= 2)
+							{
+								eventQueue.push(function() {
+									output("You can feel the toes of your [pc.foot] twitch involuntarily. It feels anxious for something.");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("The Mimbrane on your [pc.foot] is getting a little hungry, judging by how it impatiently wiggles your toes from time to time.");
+								});
+							}
+						}
+
+						doneFeet = true;
+					}
+				}
+				else if (eligibleMimbranes[ii] == "Mimbrane Face")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Face") <= 2)
+					{
+						eventQueue.push(function() {
+							output("A little trembling in your [pc.lips] catches you off guard. You figure someone’s getting hungry....");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("Your [pc.face] feels a little... loose? Your [pc.lips] suddenly squeeze together and squeak. Looks like the head-mounted Mimbrane’s getting a might hungry.");
+						});
+					}
+				}
+			}
+			//Warning Two
+			//Occurs on sixth day since last feeding
+			else if (pc.statusEffectv2(mimbraneEffects[ii]) == 6)
+			{
+				// Cock
+				if (mimbraneEffects[ii] == "Mimbrane Cock")
+				{
+					// 0-2 trust
+					if (pc.statusEffectv1("Mimbrane Cock") <= 2)
+					{
+						eventQueue.push(function() {
+							output("The involuntary wiggling of your [pc.cock] is getting worse. You’re worried something might happen if you don’t take care of it soon.");
+						});
+					}
+					// 3+ trust
+					else
+					{
+						eventQueue.push(function() { 
+							output("Your [pc.cock] is trying to escape from your [pc.lowerGarment], chirping at you. This hungry Mimbrane is liable to start getting upset.");
+						});
+					}
+				}
+				// Vag
+				else if (mimbraneEffects[ii] == "Mimbrane Pussy")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Pussy") <= 2)
+					{
+						eventQueue.push(function() {
+							output("The bizarre desire radiating from your [pc.pussy] is only getting worse. Something may happen if you don’t satisfy it soon.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("A fiery passion blooming in your [pc.pussy] is only escalating. Your Mimbrane is getting really hungry and may take action soon.");
+						});
+					}
+				}
+				// Butt
+				else if (mimbraneEffects[ii] == "Mimbrane Ass")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Ass") <= 2)
+					{
+						eventQueue.push(function() {
+							output("Your [pc.ass] shivers and shakes uncontrollably here and again, aching for some action. Something may happen soon if you don’t see about helping it.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("The rather frequent cries from your [pc.asshole] paired with the strange wiggling of your [pc.ass] is getting obnoxious. The hungry Mimbrane is on the verge of doing something....");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Balls")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Balls") <= 2)
+					{
+						eventQueue.push(function() {
+							output("The odd sense of thirst surrounding your [pc.balls] is only getting worse. If you don’t quench it soon, you worry something may happen.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("A deluge of squeaks and wiggling from your [pc.sack] means your Mimbrane is getting hungrier. It’s liable to take action if you don’t first.");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Boobs")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Boobs") <= 2)
+					{
+						eventQueue.push(function() {
+							output("This craving engulfing your [pc.fullchest] is only growing stronger. You fear something may happen if you ignore it any longer.");
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+							output("Your [pc.fullchest] is rubbing anxiously against your [pc.armor], soft squeaks pouring from your [nipples]. The hungry Mimbrane may do something drastic if it doesn’t see any action soon.");
+						});
+					}
+				}
+				else if (mimbraneEffects[ii].indexOf("Mimbrane Hand") != -1)
+				{
+					if (!doneHands)
+					{
+						// Two hands
+						if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
+						{
+							// Both hands should following the same feeding/upgrading pattern
+							if (pc.statusEffectV1("Mimbrane Hand Left") <= 2)
+							{
+								eventQueue.push(function() {
+									output("Your hands feel hungry, and you don’t understand it. Things may rise past this odd yearning if you don’t take care of it soon.");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("You Mimbrane mitts keep trying to dash into your [pc.armor] and get a bite to eat. You’re worried that if you don’t feed them soon, something may happen.");
+								});
+							}
+						}
+						// Only one hand
+						else
+						{
+							var trustValue:int = -1;
+							if (pc.hasStatusEffect("Mimbrane Hand Left")) trustValue = pc.statusEffectv1("Mimbrane Hand Left");
+							else trustValue = pc.statusEffectv1("Mimbrane Hand Right");
+
+							if (trustValue <= 2)
+							{
+								eventQueue.push(function() {
+									output("This urge to get your hand some action is unquestionable yet vague. Whatever it means, you’re worried things may get worse for you if you don’t figure it out soon.");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("You occasionally catch your hand sneaking away into your [pc.armor], trying to feed. The hungry Mimbrane may do something brash if you don’t feed it soon.");
+								});
+							}
+						}
+
+						doneHands = true;
+					}
+				}
+				// Feets
+				else if (mimbraneEffects[ii].indexOf("Mimbrane Foot") != -1)
+				{
+					if (!doneFeet)
+					{
+						// Two heet
+						if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
+						{
+							// Both feet should following the same feeding/upgrading pattern
+							if (pc.statusEffectV1("Mimbrane Foot Left") <= 2)
+							{
+								eventQueue.push(function() {
+									output("Nothing you do helps you ignore the craving surrounding your [feet]. The unusual urge worries you, as things may escalate if you don’t see to it soon.");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("Your [feet] cry out to you, Mimbranes anxious for some food. You’re worried something worse than wiggling toes and digging heels is in store for you if you don’t help them out.");
+					 			});
+							}
+						}
+						// Only one foot
+						else
+						{
+							var trustValue:int = -1;
+							if (pc.hasStatusEffect("Mimbrane Foot Left")) trustValue = pc.statusEffectv1("Mimbrane Foot Left");
+							else trustValue = pc.statusEffectv1("Mimbrane Foot Right");
+
+							if (trustValue <= 2)
+							{
+								eventQueue.push(function() {
+									output("The hunger you feel in your [pc.foot] is no less strange as it grows in tenacity. Something may happen if you don’t see to it soon, you fear.");
+								});
+							}
+							else
+							{
+								eventQueue.push(function() {
+									output("Your toes move like impatient fingers tapping on a surface. Your Mimbrane is getting hungry and may do something soon if you continue ignoring it.");
+								});
+							}
+						}
+
+						doneFeet = true;
+					}
+				}
+				else if (mimbraneEffects[ii] == "Mimbrane Face")
+				{
+					//0-2 Trust: 
+					if (pc.statusEffectv1("Mimbrane Face") <= 2)
+					{
+						eventQueue.push(function() {
+									output("A sexual craving surrounds your [pc.face] like a mask, and its only getting stronger. You fear things may get ugly if you don’t figure out how to quell it.");
+
+						});
+					}
+					//3-4 Trust: 
+					else
+					{
+						eventQueue.push(function() {
+									output("The Mimbrane on your [pc.face] is upset, squeaking incessantly via your [lips] while shifting your features around uncomfortably. Things may only get worse if you don’t feed it soon.");
+						});
+					}
+				}
+			}
+		}
+	}
+}
+
 //Encounter & Combat
 //Encounter a Mimbrane (Jungle)
 public function encounterMimbrane():void
@@ -1174,7 +1678,7 @@ public function mimbraneCombatInterference():Boolean
 // Additional attacks that the mimbranes can do for the player
 public function mimbraneCombatBonusAttacks():void
 {
-
+	throw new Error("Not implemented yet.");
 }
 
 public function mimbraneHandBonusAttack(target:Creature):void
@@ -1206,7 +1710,7 @@ public function mimbraneHandBonusAttack(target:Creature):void
 		// Bonus attack successful
 		output("You’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. Seems as though the Mimbrane controlling it is eager to come to your aid!");
 
-		attack(pc, target);
+		attack(pc, target, false);
 	}
 }
 
@@ -1248,94 +1752,14 @@ public function mimbraneFeetBonusEvade(target:Creature):Boolean
 	}
 }
 
-/* Bonus tese shit t
+/* Bonus tese shit that's not implemented atm due to lack of face/lip/etc teases
 // Face
 Lip Tease (small): You make a suggestive kiss towards the {monster} with your less-than-lean lips.
 Lip Tease (medium): You lick your plump lips in a suggestive fashion, tantalizing the {monster} with their delicious volume.
 Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.
 */
 
-//Flavor Text
-//These scenes/lines take place in between scenes much like Shouldra’s. Other than messages dictated by time (i.e. hungry Mimbrane warnings), the odds for these to occur are low to help prevent from getting repetitive and annoying. 
-Hungry Mimbranes
-Warning One
-//Occurs on fifth day since last feeding
-Penis Mimbrane:
-	0-2 Trust: Your [cock] rustles around a little, surprising you. Somehow, you figure its yearning for some much needed action.
-	3-4 Trust: Some anxious little squeals are coming from your [cock]. The Mimbrane member has gotten a little hungry.
-Vagina Mimbrane: 
-	0-2 Trust: There’s an odd craving to feed your [pussy] lingering around in your headspace. You aren’t sure why.
-	3-4 Trust: The Mimbrane in your {lowergarment} is getting to be a bit parched. It’s lewdly pulsating, trying to remind you.
-Ass Mimbrane: 
-	0-2 Trust: A surprising little quaver of your [asshole] catches you off guard. It longs for some action. 
-	3-4 Trust: Your [ass] starts chirping at you, revealing to you a particularly famished Mimbrane is trying to get your attention.
-Scrotum Mimbrane: 
-	0-2 Trust: Some unusual churning in your [balls] gives you pause. It felt more like a low grumble...
-	3-4 Trust: Your [balls] rustle around a little, seemingly rubbing against your thigh. Seems your Mimbrane is getting hungry.
-Breasts Mimbrane: 
-	0-2 Trust: The wobbling in your [fullchest] stops you in your tracks. They feel...hungry?
-	3-4 Trust: A little series of chirps escape from your [nipples]. You’re worried for a moment, but then realize that your hungry Mimbrane is vying for your attention.
-Hand Mimbrane: 
-	0-2 Trust: Your hand trembles a little, taking you by surprise. It feels like it needs something...
-	3-4 Trust: Fingers wiggle and poke at you, alerting you to a rather anxious Mimbrane. Parasite must be getting hungry.
-Hands Mimbranes: 
-	0-2 Trust: Your hands start to feel weak. Its as if they were eager for something...
-	3-4 Trust: Both your hands chirp and squeak in unison, letting you know there are a couple of famished Mimbranes trying to get your attention.
-Foot Mimbrane: 
-	0-2 Trust: You can feel the toes of your [foot] twitch involuntarily. It feels anxious for something.
-	3-4 Trust: The Mimbrane on your [foot] is getting a little hungry, judging by how it impatiently wiggles your toes from time to time.
-Feet Mimbranes: 
-	0-2 Trust: There’s an indescribable feeling of hunger coming from your [feet]. 
-	3-4 Trust: Muffled squeaks and chirps are coming from your [feet]. Your Mimbranes must be getting hungry.
-Head Mimbrane: 
-	0-2 Trust: A little trembling in your [lips] catches you off guard. You figure someone’s getting hungry...
-	3-4 Trust: Your [face] feels a little... loose? Your [lips] suddenly squeeze together and squeak. Looks like the head-mounted Mimbrane’s getting a might hungry.
-
-Warning Two
-//Occurs on sixth day since last feeding
-Penis Mimbrane:
-	0-2 Trust: The involuntary wiggling of your [cock] is getting worse. You’re worried something might happen if you don’t take care of it soon.
-	3-4 Trust: Your [cock] is trying to escape from your {lowergarment}, chirping at you. This hungry Mimbrane is liable to start getting upset.
-Vagina Mimbrane: 
-	0-2 Trust: The bizarre desire radiating from your [pussy] is only getting worse. Something may happen if you don’t satisfy it soon.
-	3-4 Trust: A fiery passion blooming in your [pussy] is only escalating. Your Mimbrane is getting really hungry and may take action soon.
-Ass Mimbrane: 
-	0-2 Trust: Your [ass] shivers and shakes uncontrollably here and again, aching for some action. Something may happen soon if you don’t see about helping it.
-	3-4 Trust: The rather frequent cries from your [asshole] paired with the strange wiggling of your [ass] is getting obnoxious. The hungry Mimbrane is on the verge of doing something...
-Scrotum Mimbrane:
-	0-2 Trust: The odd sense of thirst surrounding your [balls] is only getting worse. If you don’t quench it soon, you worry something may happen.
-	3-4 Trust: A deluge of squeaks and wiggling from your [sack] means your Mimbrane is getting hungrier. It’s liable to take action if you don’t first.
-Breasts Mimbrane:
-	0-2 Trust: This craving engulfing your [fullchest] is only growing stronger. You fear something may happen if you ignore it any longer.
-	3-4 Trust: Your [fullchest] is rubbing anxiously against your [armor], soft squeaks pouring from your [nipples]. The hungry Mimbrane may do something soon if it doesn’t see any action soon.
-Hand Mimbrane: 
-	0-2 Trust: This urge to get your hand some action is unquestionable yet vague. Whatever it means, you’re worried things may get worse for you if you don’t figure it out soon.
-	3-4 Trust: You occasionally catch your hand sneaking away into your [armor], trying to feed. The hungry Mimbrane may do something brash if you don’t feed it soon.
-Hands Mimbranes:
-	0-2 Trust: Your hands feel hungry, and you don’t understand it. Things may rise past this odd yearning if you don’t take care of it soon.
-	3-4 Trust: You Mimbrane mitts keep trying to dash into your [armor] and get a bite to eat. You’re worried that if you don’t feed them soon, something may happen.
-Foot Mimbrane: 
-	0-2 Trust: The hunger you feel in your [foot] is no less strange as it grows in tenacity. Something may happen if you don’t see to it soon, you fear.
-	3-4 Trust: Your toes move like impatient fingers tapping on a surface. Your Mimbrane is getting hungry and may do something soon if you continue ignoring it.
-Feet Mimbranes: 
-	0-2 Trust: Nothing you do helps you ignore the craving surrounding your [feet]. The unusual urge worries you, as things may escalate if you don’t see to it soon.
-	3-4 Trust: Your [feet] cry out to you, Mimbranes anxious for some food. You’re worried something worse than wiggling toes and digging heels is in store for you if you don’t help them out.
-Head Mimbrane: 
-	0-2 Trust: A sexual craving surrounds your [face] like a mask, and its only getting stronger. You fear things may get ugly if you don’t figure out how to quell it.
-	3-4 Trust: The Mimbrane on your [face] is upset, squeaking incessantly via your [lips] while shifting your features around uncomfortably. Things may only get worse if you don’t feed it soon.
-Turning Hungry
-//Occurs on seventh day since last feeding
-Penis Mimbrane: A sudden burst of lewd moisture surrounding your manhood takes you by surprise. <b>Your hungry Mimbrane is drenching your [cock] in its sweat.</b>
-Vagina Mimbrane: A tidal wave of fluids overcoming your pussy about knocks you over with sexual ferocity. <b>Your hungry Mimbrane is drowning your [vagina] in its sweat</b>
-Ass Mimbrane: A sudden, strawberry-scented rain cascades down your butt, almost knocking you out with its sexual nature. <b>Your hungry Mimbrane is casting your [ass] through unending streams of Mimbrane sweat.</b>
-Scrotum Mimbrane: An abrupt carnal wave grabs you by the balls, its lewd intentions about knocking you over. <b>Your hungry Mimbrane is smothering your [sack] with its sweat.</b>
-Breasts Mimbrane: Your titty flesh is suddenly overwhelmed by a downpour of strawberry-scented liquid passion. <b>Your hungry Mimbrane is dousing your [fullchest] in endless amounts of its sweat.</b>
-Hand Mimbrane: An abrupt slickness overtakes your hand out of nowhere accompanied with tingling insidiousness. <b>Your hungry Mimbrane is coating your hand in its sweat.</b>
-Hands Mimbranes: An abrupt slickness overtakes your hands out of nowhere accompanied with tingling insidiousness. <b>Your hungry Mimbranes are coating your hands in their sweat.</b>
-Foot Mimbrane: A powerful humidity wraps around your foot like a snake, followed with a dripping sexual passion. <b>Your hungry Mimbrane has cloaked your [foot] in its oily sweat.</b>
-Feet Mimbranes: A powerful humidity wraps around your feet like a snake, followed with a dripping sexual passion. <b>Your hungry Mimbranes have cloaked your [feet] in their oily sweat.</b>
-Head Mimbrane: Your head begins to feel tingly and moist. Viscous, sweet liquid starts pouring out of your [face]. <b>The hungry Mimbrane surrounding your head has started to sweat profusely.</b>
-Still Hungry
+//Still Hungry
 //Occurs when the following Mimbrane is still in a state of hunger. Chance of scene occurring during a transition is only slightly higher than sweating, breathing, and friendly lines below. 
 Penis Mimbrane: You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [cock]. It occasionally glides around within your [armor], spreading its lust-inducing perspiration around your body. The hungry parasite is relentless in its teasing.
 Vagina Mimbrane: It’s hard to focus on the task at hand when your [pussy] is sopping wet in Mimbrane sweat. Constant threats of sexual humidity poke at you, occasionally escaping the confines of your [armor] to peck at your senses. The hungry parasite refuses to give you a moment’s rest.
@@ -1348,10 +1772,12 @@ Foot Mimbrane: Your [foot] is hot and soaked, covered in your hungry Mimbrane’
 Feet Mimbranes: Your [feet] are hot and soaked, covered in your hungry Mimbranes’ sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendages to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.
 Head Mimbrane: You’ve lost count how many times you’ve wiped sweat from your brow. There’s no escape from the hungry Mimbrane’s angry revolt as it coats your [face] and head in its seemingly limitless sexual sweat. Constantly you fan away building clouds of strawberry perspiration before they can further poison you with their wanton instincts.
 Aiding the Hungry
+
 //Occurs on eighth day since feeding
 //Alert
 One other Mimbrane: Frustrated by the ignorance to its fellow parasite’s plight, your other Mimbrane comes to its aid and begins sweating profusely. The additional onslaught of oily passionate perspiration won’t make things any easier for you.
 Two+ other Mimbanes: Frustrated by the ignorance to their follow parasite’s plight, all your other Mimbranes decide to come to its aid and begin sweating profusely. A good deal of your body is under their oily passionate assault, escalating the sexual torment swirling around your senses!
+
 //Reminders
 //These are occasional messages for any mutinous Mimbranes that are not hungry, but are sweating due to the neglect of another parasite’s hunger. Their chance of occurring are equal to that of the hungry Mimbrane(s). 
 Penis Mimbrane: You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [cock]. It occasionally glides around within your [armor], spreading its lust-inducing perspiration around your body. The spiteful parasite is relentless in its teasing.

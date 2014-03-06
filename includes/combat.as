@@ -82,6 +82,11 @@ function combatMainMenu():void
 		}
 		this.addButton(4,"Do Nothing",wait);
 	}
+	// Mimbrane Smother
+	else if ()
+	{
+		throw new Error("Not yet implemented");
+	}
 	else 
 	{
 		//Combat menu
@@ -513,6 +518,13 @@ function rangedCombatMiss(attacker:Creature, target:Creature):Boolean
 
 function attackRouter(destinationFunc):void 
 {
+	// Inject the mimbrane attack shit infront of the regular attacks
+	if (mimbraneCombatInterference())
+	{
+		processCombat();
+		return;
+	}
+
 	clearOutput();
 	output("Who do you target?\n");
 	for(var x:int = 0; x < foes.length; x++) {
@@ -532,6 +544,8 @@ function attackRouter(destinationFunc):void
 	}
 	if(button < 14) button = 14;
 	this.addButton(button,"Back",combatMainMenu);
+
+	mimbraneCombatBonusAttacks();
 }
 
 // Really?
@@ -541,7 +555,9 @@ function enemyAttack(attacker:Creature):void
 }
 function playerAttack(target:Creature):void 
 {
-	attack(pc, target);
+	attack(pc, target, false);
+	mimbraneHandBonusAttack(target);
+	processCombat();
 }
 function playerRangedAttack(target:Creature):void 
 {
@@ -608,6 +624,11 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 	//Celise autoblocks
 	else if(target.short == "Celise") {
 		output(target.customBlock);
+	}
+	// Bonus evades from mimbrane feeties
+	else if (mimbraneFeetBonusEvade(target))
+	{
+		output("\n\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!");
 	}
 	//Attack connected!
 	else {

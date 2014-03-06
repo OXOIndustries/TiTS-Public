@@ -323,7 +323,6 @@ public function processTime(arg:int):void {
 		//Status Effect Updates
 		statusTick();
 		
-		
 		//Tick hours!
 		if(this.minutes >= 60) {
 			this.minutes = 0;
@@ -378,6 +377,7 @@ public function processTime(arg:int):void {
 					eventQueue[eventQueue.length] = giveBirthThroughCuntTail;
 				}
 			}
+
 			//Days ticks here!
 			if(this.hours >= 24) {
 				this.days++;
@@ -391,6 +391,9 @@ public function processTime(arg:int):void {
 				if(currentLocation != "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = undefined;
 				if(currentLocation != "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = undefined;
 				if(currentLocation != "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] != undefined) flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = undefined;
+
+				// Tick up all of the attached mimbranes days since last fed
+				mimbranesIncreaseDaysSinceFed();
 			}
 		}
 		arg--;
