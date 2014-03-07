@@ -220,6 +220,20 @@ public function mimbranesNeglected():void
 	return numNeglected;
 }
 
+public function reduceAllMimbraneTrust():void
+{
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv1(mimbraneEffects[i]) > 0)
+			{
+				pc.setStatusValue(mimbraneEffects[i], 1, pc.statusEffectv1(mimbraneEffects[i]) - 1);
+			}
+		}
+	}
+}
+
 public function mimbranesIncreaseDaysSinceFed():void
 {
 	for (var i:int = 0; i < mimbraneEffects.length; i++)
@@ -2419,32 +2433,104 @@ Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,�
 //Ass Mimbrane: Your [asshole] gapes beyond your wildest imagination, cheeks flaring wide. Seems any attempt to seal your [ass] or otherwise rid your lower disposal hole is met with resistance by your butt-hugging Mimbrane.
 
 // HOLY SHIT SCENES
-Victory over Mimbrane
-Your adversary falls from the sky, too injured to combat any further. The Mimbrane can only pant uselessly on the ground, slowly extending its four corners to try and crawl away. {The parasite did manage to work you up into a bit of a frenzy. That slick skin could make for a halfway decent tension reliever.} 
-Let it Go
-The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.
-Kill it
-You make short work of the wounded parasite, discarding it somewhere out of sight. {if PC has Mimbrane}The Mimbrane(s) on you is(are) stone silent. You have little doubt that it(they) saw your act.{end}
-//Any attached Mimbranes go down one trust level
-Use it as a masturbation aid - Cock
-You grab the fleeing parasite by one of its corners, holding it firmly with one hand as it meekly squirms and cries. The Mimbrane’s scent flows around you once you lift the creature up, smelling somewhat of strawberries and lube at first whiff. Your free hand examines its smooth, oily topside, fingers tingling upon contact. This ought to make a fine rag to relieve some of your pent-up pressure. What life is left in the parasite doesn’t seem to be enough for it present a threat anymore.
-Juggling the floundering blanket between your hands, you eventually slip off your [armor] to reveal your naked form. You grasp the Mimbrane by its sides now, its miniscule face pointing skyward. Its as if you’re grasping onto a writhing terry cloth. Drawn out, desperate squeaks and chirps tumble through the jungle, anxious to find any passing ears. The little bugger isn’t entirely certain what you’re planning to do to it.
-The Mimbrane’s struggle calms as you position the sentient sheet under your [cock], catching its attention. Though you’re certain the little guy lacks the strength to mend itself onto your cock, caution is never worth neglecting. {if cock Mimbrane already present “Would it even attempt to latch onto your already-claimed post?”} Special attention is made to ensure the slick glossy underside of the parasite never comes into contact with anything but your firm grip. Precautions in place, you’re left to tend to your pleasure pole, already erect and throbbing from just a few moments of it hanging in the thick must radiating from the Mimbrane.
-You’re bowled over by a rather intense tingling the instant dick flesh rubs against the lubricious leech. The breeze of the forest suddenly feels more intense on your {skinadjective skin}. {Feet} dig into the dirt instinctively. Obviously, direct contact with the parasite’s main line of offense is stirring up your senses something fierce. You’re undeterred in your endeavour however. May as well strap in. 
-The Mimbrane goes lax in your grasp, ready and willing to serve as your plaything. No doubt it’s hoping to get a nice consolation prize out of having the life bashed out of its flat hide. A flash of cool followed by radiating warmth seeps into your penis once you lay one end of the being’s sleek, red flesh on it. The tingling sensations seem to be intensifying as well; the odds of you backing off now have dwindled into little more than ash in your mind, singed by a power station revving to life around your manhood. 
-An endless inward gasp is all you can manage as you wrap the Mimbrane around your [cock], overwhelmed by tingling, oily rapture. It feels like a lifetime and an instant before you finish the job. {if cock > 20 inches “Your proud, tall dick pokes out triumphantly from the wriggling tortilla you’ve created around it.”}{if cock < 7 inches “The top of your tall dick cocoon caves in a little, the parasite much more than adequate for encompassing your small member.”}{else “Your throbbing dick sits comfortably within the parasitic tortilla, air teasing your [cockhead] as it blows in and out the opening.”} For a few moments, you can only breathlessly revel in the lascivious jolts and vibrations the squirming cock cover is flooding you with.
-The Mimbrane’s fulsome secretions ooze out of the bottom, soaking your base{have balls “ and trickling over your [sack]”}. Dry [skin] coming into contact with the sexy slime gets you stirring again and drags you back out of the mesmerizing haze you fell into. Your hands grasp the parasite’s underside; it isn’t nearly as soaking and slick as what’s entertaining your dick, but its certainly a little more to grasp than a buxom partner on a hot summer’s day. Your toy gets antsy under your grip, teasing your fingertips and massaging your palm while simultaneously tightening and rubbing your shaft.
-As thrilling as the intoxicating massage is, this was supposed to be a domineering act of selfish intent! You claw your way back from the pits of sensuality to reassert the situation under your control. The parasite chirps timidly as your hold strengthens. An inhale solidifies your resolve. An exhale commits you to your fate. You push the creature up your [cock].
-Your resolve is weary. Your commitment is slipping through your fingers. Merely sliding the pernicious sleeve up your length is tantamount to your crotch going on a year-long vacation through the inner reaches of some whore nebula. The sensual shock, the lustrous wanton desire seeping into your rod... You may as well have licked a frog. And then fucked its brains out. But this battle – this veritable round two – is of your own making, and you’ll be damned if you’ll succumb to something so carnal now. This jungle will bear witness to your successive success.
-You pull the Mimbrane back down. The music of the wilderness bows to the thick, gooey sounds. {if cock >= 7 inches “Your [cockhead] feels alien to you once the top of your drowned cock erupts from the top of the parasite’s embrace.”} Holding the sleeve hard against your base only exposes more of your crotch to the dangerous liquid lust. With the push and pull thoroughly explored, you finally go to work. You stroke for the heavens. You tug for the underworld. Each motion sends out a wet squish that overpowers nature’s melody. 
-The motion only picks up in pace as you continue. The war is waging between artificial and controlled ambitions. To think such pleasure lies in a mere chemical, one a creature thoughtlessly exudes. Somewhere in an unimportant corner of your mind you make a mental note to tread lightly when discovering the undiscovered. Especially when you discover by using your dick. 
-The stroking is becoming involuntary now. At some point you fell to your back, [butt] digging into the ground as more of your body gets into the act. Even your [feet] are grasping at the ground in any way they can. Time fading in and out worries you; this is no way for a warrior to battle. Your macho bravado doesn’t really relish in the fact that you’ve consigned to dealing directly with a potent parasite. This fact is only further buried under the mounting torrent of release {within your balls }on the cusp of breaking free.
-Each stroke only gets harder. Your [cock] twitches and convulses in preparation. The Mimbrane is unrelenting in its part: tickling your hands, massaging your member, releasing every last bit of moist craving directly into your [skin]. You assuredly would be releasing a cascade of pre, but there’s no distinguishing it from the vigorous slathering you and the parasite have coated your midsection in. 
-Everything goes silent, your breath caught. {if dicknipples “Your [nipples] spit [cum] everywhere around you. ”}{if vagina “An ignored [pussy] relishes its own {meager/ample/plentiful} release of feminine fluids.”}{if balls “More than a few heads would turn at the sight of your [sack] clenching its damnedest, anxious for clemency.”} A [cumColor] {burst/fountain/downpour/torrential deluge} fills the air, piercing through the hazy clouds of sexual perspiration the parasite has emitted in your anxiety. The Mimbrane summons a sudden burst of strength timed with your orgasmic relinquishing of its body, unfurling itself from around your [cock] to stretch and catch as much [cumType] nutrition as it can handle.
-Through your convulsions and the slight shock of your lust-soaked prick meeting the air again, you’re amazed by the parasite when it stretches to easily double its original surface area. The creature is essentially acting as a tarp, frantically moving around your lower half as it works to collect your [cum]. {Low CumQ “The act may be a little overzealous for what little your penis has to share, sadly. But you figure a battered creature has to make the most of any gift horse it comes across.”}{Average CumQ “Its actions are enough to contain your sizeable contribution. The parasite should have enough of your jism to last it a week or three.”}{High CumQ “The parasite is barely able to stretch large enough to catch your outrageous spasms of spunk. Your [cum] slides down the creature’s slick skin and collects in the center, creating a [cumType] pool in the middle of the parasitic blanket.”}{Too Much CumQ “There’s no lengths the parasite can stretch to that would allow it to properly contain your otherworldly discharge. The poor creature strains to move under the sheer weight of the [cumColor] volume its collected. It would happily consume all that it could not carry if it could, but its metabolism would prevent it from indulging for very long.”}
-You watch the Mimbrane {Not Too Much CumQ “waddle off with its payload. The parasite takes precious care to maintain that which it cannot eat on the spot.”}{Too Much CumQ “struggle under its immense payload. The parasite’s forced to let off some of its [cumType] load just so it can begin to drag itself along the jungle floor.”} It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.
-Reclaiming your [armor], you realize that while you have satisfied your initial craving, your [cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.
-//Lust increases two points an hour for 10 hours.  
+
+//Victory over Mimbrane
+public function victoryOverMimbrane():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+	output("Your adversary falls from the sky, too injured to combat any further. The Mimbrane can only pant uselessly on the ground, slowly extending its four corners to try and crawl away.");
+	if (pc.hasCock()) output(" The parasite did manage to work you up into a bit of a frenzy. That slick skin could make for a halfway decent tension reliever.");
+
+	clearMenu();
+	addButton(0, "Let It Go", letMimbraneGo);
+	addButton(1, "Kill It", killDatMimbrane);
+
+	if (pc.hasCock()) addButton(2, "Mimbrane Fap", useDatMimbraneLikeACondom);
+	else addDisabledButton(2, "Mimbrane Fap");
+}
+
+//Let it Go
+public function letMimbraneGo():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+	output("The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//Kill it
+public function killDatMimbrane():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+	output("You make short work of the wounded parasite, discarding it somewhere out of sight.");
+
+	if (attachedMimbranes > 0)
+	{
+		// Any attached Mimbranes go down one trust level
+		reduceAllMimbraneTrust();
+
+		output("The Mimbrane");
+		if (attachedMimbranes > 1) output("s");
+		output(" on you");
+		if (attachedMimbranes == 1) output(" is");
+		else output(" are");
+		output(" stone silent. You have little doubt that");
+		if (attachedMimbranes == 1) output(" it");
+		else output(" they");
+		output(" saw your act.");
+	}
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//Use it as a masturbation aid - Cock
+public function useDatMimbraneLikeACondom():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("You grab the fleeing parasite by one of its corners, holding it firmly with one hand as it meekly squirms and cries. The Mimbrane’s scent flows around you once you lift the creature up, smelling somewhat of strawberries and lube at first whiff. Your free hand examines its smooth, oily topside, fingers tingling upon contact. This ought to make a fine rag to relieve some of your pent-up pressure. What life is left in the parasite doesn’t seem to be enough for it present a threat anymore.");
+	output("\n\n");
+	if (pc.isChestGarbed() || pc.isCrotchGarbed()) output("Juggling the floundering blanket between your hands, you eventually slip off your [pc.armor] to reveal your naked form.");
+	output(" You grasp the Mimbrane by its sides now, its miniscule face pointing skyward. Its as if you’re grasping onto a writhing terry cloth. Drawn out, desperate squeaks and chirps tumble through the jungle, anxious to find any passing ears. The little bugger isn’t entirely certain what you’re planning to do to it.");
+	output("\n\nThe Mimbrane’s struggle calms as you position the sentient sheet under your [pc.cock], catching its attention. Though you’re certain the little guy lacks the strength to mend itself onto your cock, caution is never worth neglecting.");
+	if (pc.hasStatusEffect("Mimbrane Cock")) output(" Would it even attempt to latch onto your already-claimed shaft?"); 
+	output(" Special attention is made to ensure the slick glossy underside of the parasite never comes into contact with anything but your firm grip. Precautions in place, you’re left to tend to your pleasure pole, already erect and throbbing from just a few moments of it hanging in the thick musk radiating from the Mimbrane.");
+	output("\n\nYou’re bowled over by a rather intense tingling the instant dick flesh rubs against the lubricious leech. The breeze of the forest suddenly feels more intense on your [pc.skinfurscales]. [pc.Feet] dig into the dirt instinctively. Obviously, direct contact with the parasite’s main line of offense is stirring up your senses something fierce. You’re undeterred in your endeavour however. May as well strap in. ");
+	output("\n\nThe Mimbrane falls limp in your grasp, ready and willing to serve as your plaything. No doubt it’s hoping to get a nice consolation prize out of having the life bashed out of its flat hide. A flash of cool followed by radiating warmth seeps into your penis once you lay one end of the being’s sleek, red flesh on it. The tingling sensations seem to be intensifying as well; the odds of you backing out now have dwindled into little more than ash in your mind, singed by a power station revving to life around your manhood.");
+	output("\n\nAn endless inward gasp is all you can manage as you wrap the Mimbrane around your [pc.cock], overwhelmed by tingling, oily rapture. It feels like a lifetime and an instant before you finish the job.");
+	if (pc.biggestCockLength() > 20) output(" Your proud, tall dick pokes out triumphantly from the wriggling tortilla you’ve created around it.");
+	else if (pc.biggestCockLength() < 7) output(" The top of your makeshift dick-cocoon collapses inward a little, the parasites size far more than adequate for encompassing your small member.");
+	else output(" Your throbbing dick sits comfortably within the parasitic tortilla, air teasing your [pc.cockhead] as it blows in and out the opening.");
+	output(" For a few moments, you can only breathlessly revel in the lascivious jolts and vibrations the squirming cock cover is flooding you with.");
+	output("\n\nThe Mimbrane’s fulsome secretions ooze out of the bottom, soaking your base");
+	if (pc.balls > 0) output(" and trickling over your [pc.sack]");
+	output(". Dry [pc.skinfurscales] coming into contact with the sexy slime gets you stirring again and drags you back out of the mesmerizing haze you fell into. Your hands grasp the parasite’s underside; it isn’t nearly as soaking and slick as what’s entertaining your dick, but its certainly a little more to grasp than a buxom partner on a hot summer’s day. Your toy gets antsy under your grip, teasing your fingertips and massaging your palm while simultaneously tightening and rubbing your shaft.");
+	output("\n\nAs thrilling as the intoxicating massage is, this was supposed to be a domineering act of selfish intent! You claw your way back from the pits of sensuality to reassert yourself as the " + pc.mf("master", "mistress") + " of the situation. The parasite chirps timidly as your hold strengthens. An inhale solidifies your resolve. An exhale commits you to your fate. You push the creature up your [pc.cock].");
+	output("\n\nYour resolve is weary. Your commitment is slipping through your fingers. Merely sliding the pernicious sleeve up your length is tantamount to your crotch going on a year-long vacation through the inner reaches of some whore nebula. The sensual shock, the lustrous wanton desire seeping into your rod.... You may as well have licked a frog. And then fucked its brains out. But this battle – this veritable round two – is of your own making, and you’ll be damned if you’ll succumb to something so carnal now. This jungle will bear witness to your successive success.");
+	output("\n\nYou pull the Mimbrane back down. The music of the wilderness bows to the thick, gooey sounds.");
+	if (pc.biggestCockLength() >= 7) output(" Your [pc.cockhead] feels alien to you once the top of your drowned cock erupts from the top of the parasite’s embrace.");
+	output(" Holding the sleeve hard against your base only exposes more of your crotch to the dangerous liquid lust. With the push and pull thoroughly explored, you finally go to work. You stroke for the heavens. You tug for the underworld. Each motion sends out a wet squish that overpowers nature’s melody.");
+	output("\n\nThe motion only picks up in pace as you continue. The war is waging between artificial and controlled ambitions. To think such pleasure lies in a mere chemical, one a creature thoughtlessly exudes. Somewhere in an unimportant corner of your mind you make a mental note to tread lightly when discovering the undiscovered. Especially when you discover by using your dick. ");
+	output("\n\nThe stroking is becoming involuntary now. At some point you fell to your back, [pc.butt] digging into the ground as more of your body gets into the act. Even your [pc.toes] are grasping at the ground in any way they can. Time fading in and out worries you; this is no way for a warrior to battle. Your macho bravado doesn’t really relish in the fact that you’ve consigned to dealing directly with a potent parasite. This fact is only further buried under the mounting torrent of release");
+	if (pc.balls > 0) output(" within your balls,");
+	output(" on the cusp of breaking free.");
+	output("\n\nEach stroke only gets harder. Your [pc.cock] twitches and convulses in preparation. The Mimbrane is unrelenting in its part: tickling your hands, massaging your member, releasing every last bit of moist craving directly into your [pc.skin]. You assuredly would be releasing a cascade of pre, but there’s no distinguishing it from the vigorous slathering you and the parasite have coated your midsection in.");
+	output("\n\nEverything goes silent, your breath caught. {if dicknipples “Your [nipples] spit [cum] everywhere around you. ”}{if vagina “An ignored [pussy] relishes its own {meager/ample/plentiful} release of feminine fluids.”}{if balls “More than a few heads would turn at the sight of your [sack] clenching its damnedest, anxious for clemency.”} A [cumColor] {burst/fountain/downpour/torrential deluge} fills the air, piercing through the hazy clouds of sexual perspiration the parasite has emitted in your anxiety. The Mimbrane summons a sudden burst of strength timed with your orgasmic relinquishing of its body, unfurling itself from around your [cock] to stretch and catch as much [cumType] nutrition as it can handle.");
+	output("\n\nThrough your convulsions and the slight shock of your lust-soaked prick meeting the air again, you’re amazed by the parasite when it stretches to easily double its original surface area. The creature is essentially acting as a tarp, frantically moving around your lower half as it works to collect your [cum]. {Low CumQ “The act may be a little overzealous for what little your penis has to share, sadly. But you figure a battered creature has to make the most of any gift horse it comes across.”}{Average CumQ “Its actions are enough to contain your sizeable contribution. The parasite should have enough of your jism to last it a week or three.”}{High CumQ “The parasite is barely able to stretch large enough to catch your outrageous spasms of spunk. Your [cum] slides down the creature’s slick skin and collects in the center, creating a [cumType] pool in the middle of the parasitic blanket.”}{Too Much CumQ “There’s no lengths the parasite can stretch to that would allow it to properly contain your otherworldly discharge. The poor creature strains to move under the sheer weight of the [cumColor] volume its collected. It would happily consume all that it could not carry if it could, but its metabolism would prevent it from indulging for very long.”}");
+	output("\n\nYou watch the Mimbrane {Not Too Much CumQ “waddle off with its payload. The parasite takes precious care to maintain that which it cannot eat on the spot.”}{Too Much CumQ “struggle under its immense payload. The parasite’s forced to let off some of its [cumType] load just so it can begin to drag itself along the jungle floor.”} It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.");
+	output("\n\nReclaiming your [armor], you realize that while you have satisfied your initial craving, your [cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.");
+
+	
+//Lust increases two points an hour for 10 hours.
+}
+
+
 Defeated by Mimbrane
 Beginning Defeated Text
 The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation. Maybe if you strip off your [armor] it’ll be easier to settle down. So you do. But it doesn’t help. It’s only gotten worse. Your naked {flesh is/fur is/scales are} only more exposed.
