@@ -1112,6 +1112,8 @@ public function mimbraneSleepEvents():void
 	}
 }
 
+//Friendly Mimbranes
+//These scenes can occur during any transitions. They apply only to Mimbranes with a trust level of 3 or 4. They have a low frequency and only one can occur at any given time.
 public function friendlyMimbraneEvents():void
 {
 	var outputDone:Boolean = false;
@@ -2412,28 +2414,11 @@ Lip Tease (small): You make a suggestive kiss towards the {monster} with your le
 Lip Tease (medium): You lick your plump lips in a suggestive fashion, tantalizing the {monster} with their delicious volume.
 Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.
 */
-  
-
-//Friendly Mimbranes
-//These scenes can occur during any transitions. They apply only to Mimbranes with a trust level of 3 or 4. They have a low frequency and only one can occur at any given time.
 
 //Mimbranes can only be removed by doctor facilities and must be removed entirely rather than piecemeal. Mimbranes will block any attempts to remove their organ and in the case of feet, they will block transformation attempts away from human feet (as of this writing anyway). These scenes play to highlight that block. Scenes are included for body parts that presumably cannot be removed anyway.
-Penis Mimbrane: The Mimbrane surrounding your [cock] suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.
-Vagina Mimbrane: A powerful stretching overtakes your [vagina], your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.
-Ass Mimbrane: Your [asshole] gapes beyond your wildest imagination, cheeks flaring wide. Seems any attempt to seal your [ass] or otherwise rid your lower disposal hole is met with resistance by your butt-hugging Mimbrane.
-Scrotum Mimbrane: A powerful tug around your [balls] keeps them from disappearing into your body. The Mimbrane encapsulating your [sack] seems poised to act against any attempts to fully remove your cum factories.
-Breasts Mimbrane: Your [fullchest] pulls from your body with a tremendous force, resisting the attempt to flatten your girlish curves. The Mimbrane mounds refuse to be deflated, it seems.
-Hand Mimbrane: You can’t get rid of your hands while a Mimbrane surrounds any of them.
-Hands Mimbranes:  You can’t get rid of your hands while a Mimbrane surrounds them.
-Foot Mimbrane: 
-	Removal: Your [foot] clenches to an uncomfortable degree, refusing to be removed. The Mimbrane surrounding the extremity seems to counteract any attempts to remove its home.
-	Transformation from human: Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your [foot]. With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.
-Feet Mimbranes: 
-	Removal: Your [feet] clench to an uncomfortable degree, refusing to be removed. The Mimbranes surrounding the extremities seem to counteract any attempts to remove their home.
-	Transformation from human: Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your [feet]. With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.
-Head Mimbrane: Your Mimbrane refuses to let you get rid of your head you monster. You’ll have to find some other way to decapitate yourself.
+//Ass Mimbrane: Your [asshole] gapes beyond your wildest imagination, cheeks flaring wide. Seems any attempt to seal your [ass] or otherwise rid your lower disposal hole is met with resistance by your butt-hugging Mimbrane.
 
-Scenes
+// HOLY SHIT SCENES
 Victory over Mimbrane
 Your adversary falls from the sky, too injured to combat any further. The Mimbrane can only pant uselessly on the ground, slowly extending its four corners to try and crawl away. {The parasite did manage to work you up into a bit of a frenzy. That slick skin could make for a halfway decent tension reliever.} 
 Let it Go

@@ -410,10 +410,12 @@
 		public var faceType: Number = 0;
 		public function faceTypeUnlocked(newFaceType:Number):Boolean
 		{
+			if (this.hasStatusEffect("Mimbrane Face")) return false;
 			return true;
 		}
 		public function faceTypeLockedMessage():String
 		{
+			if (this.hasStatusEffect("Mimbrane Face")) return "The Mimbrane attached to your head compresses around your face tightly; it seems it's unwilling to allow your facial structure to change!";
 			return "";
 		}
 
@@ -520,10 +522,12 @@
 		public var armType: Number = 0;
 		public function armTypeUnlocked(newArmType:Number):Boolean
 		{
+			if (this.hasStatusEffect("Mimbrane Hand Left") || this.hasStatusEffect("Mimbrane Hand Right")) return false;
 			return true;
 		}
 		public function armTypeLockedMessage():String
 		{
+			if (this.hasStatusEffect("Mimbrane Hand Left") || this.hasStatusEffect("Mimbrane Hand Right")) return "You can’t get rid of your hands while a Mimbrane surrounds them.";
 			return "";
 		}
 		
@@ -550,20 +554,26 @@
 		public var legType: Number = 0;
 		public function legTypeUnlocked(newLegType:Number):Boolean
 		{
+			if (newLegType != GLOBAL.HUMAN && this.hasStatusEffect("Mimbrane Foot Left") || this.hasStatusEffect("Mimbrane Foot Right")) return false;
 			return true;
 		}
 		public function legTypeLockedMessage():String
 		{
+			if (newLegType != GLOBAL.HUMAN && (this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right")) || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
+			if (newLegType != GLOBAL.HUMAN && this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
 			return "";
 		}
 		
 		public var legCount: Number = 0;
 		public function legCountUnlocked(newLegCount:Number):Boolean
 		{
+			if (this.hasStatusEffect("Mimbrane Foot Left") || this.hasStatusEffect("Mimbrane Foot Right")) return false;
 			return true;
 		}
 		public function legCountLockedMessage():String
 		{
+			if ((this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right")) || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Your " + foot() + " clenches to an uncomfortable degree, refusing to be removed. The Mimbrane surrounding the extremity seems to counteract any attempts to remove its home.";
+			if (this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Your " + feet() + " clench to an uncomfortable degree, refusing to be removed. The Mimbranes surrounding the extremities seem to counteract any attempts to remove their home.";
 			return "";
 		}
 		
@@ -779,10 +789,12 @@
 		public var balls: Number = 0;
 		public function ballsUnlocked(newBalls:Number):Boolean
 		{
+			if (newBalls == 0 && this.hasStatusEffect("Mimbrane Balls")) return false;
 			return true;
 		}
 		public function ballsLockedMessage():String
 		{
+			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " +  sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
 			return "";
 		}
 		
@@ -4344,24 +4356,79 @@
 				removeCock(0, 1);
 			}
 		}
+		public function removeCocksUnlocked():Boolean 
+		{
+			if (this.hasStatusEffect("Mimbrane Cock")) return false;
+			return true;
+		}
+		public function removeCocksLockedMessage():String 
+		{
+			if (this.hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
+			return "";
+		}
+		
 		//Remove cock
 		public function removeCock(arraySpot, totalRemoved): void {
 			removeJunk(cocks, arraySpot, totalRemoved);
 		}
+		public function removeCockUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
+		{
+			if (cocks.length == 1 && this.hasStatusEffect("Mimbrane Cock")) return false;
+			return true;
+		}
+		public function removeCockLockedMessage():String
+		{
+			if (cocks.length == 1 && this.hasStatusEffect("Mimbrane Cock")) return "The Mimbrane surrounding your " + cockDescript(0) + " suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.";
+			return "";
+		}
+		
 		//Remove vaginas
 		public function removeVaginas(): void {
 			while (hasVagina()) {
 				removeVagina(0, 1);
 			}
 		}
+		public function removeVaginasUnlocked():Boolean
+		{
+			if (this.hasStatusEffect("Mimbrane Pussy")) return false;
+			return true;
+		}
+		public function removeVaginasLockedMessage():String
+		{
+			if (this.hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			return "";
+		}
+
 		//Remove vaginas
 		public function removeVagina(arraySpot: int = 0, totalRemoved: int = 1): void {
 			removeJunk(vaginas, arraySpot, totalRemoved);
 		}
+		public function removeVaginaUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
+		{
+			if (vaginas.length == 1 && this.hasStatusEffect("Mimbrane Pussy")) return false;
+			return true;
+		}
+		public function removeVaginaLockedMessage():String
+		{
+			if (vaginas.length == 1 && this.hasStatusEffect("Mimbrane Pussy")) return "A powerful stretching overtakes your " + vaginaDescript(0) + ", your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.";
+			return "";
+		}
+
 		//Remove a breast row
 		public function removeBreastRow(arraySpot, totalRemoved): void {
 			removeJunk(breastRows, arraySpot, totalRemoved);
 		}
+		public function removeBreastRowUnlocked(arraySpot:int = 0, totalRemoved:int = 1):Boolean
+		{
+			if (breastRows.length == 1 && this.hasStatusEffect("Mimbrane Boobs")) return false;
+			return true;
+		}
+		public function removeBreastRowLockedMessage():String
+		{
+			if (breastRows.length == 1 && this.hasStatusEffect("Mimbrane Boobs")) return "Your " + allChestDesc() + " pulls from your body with a tremendous force, resisting the attempt to flatten your girlish curves. The Mimbrane mounds refuse to be deflated, it seems.";
+			return "";
+		}
+
 		public function race(): String {
 			//Temp vars
 			var temp: Number = 0;
