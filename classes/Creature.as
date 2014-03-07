@@ -194,7 +194,7 @@
 		}
 		
 		public var physiqueMod: Number = 0;
-		public var reflexesMod: Number = 0;		
+		public var reflexesMod: Number = 0;
 		public var aimMod: Number = 0;
 		public var intelligenceMod: Number = 0;
 		public var willpowerMod: Number = 0;
@@ -247,59 +247,413 @@
 
 		//Appearance Variables
 		public var femininity: Number = 50;
+		public function femininityUnlocked(newFem:Number):Boolean 
+		{
+			return true;
+		}
+		public function femininityLockedMessage():String 
+		{
+			return "";
+		}
+		
 		public var eyeType: Number = 0;
+		public function eyeTypeUnlocked(newEyeType):Boolean 
+		{
+			return true;
+		}
+		public function eyeTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var eyeColor: String = "";
+		public function eyeColorUnlocked(newEyeColor:String):Boolean 
+		{
+			return true;
+		}
+		public function eyeColorLockedMessage():String 
+		{
+			return "";
+		}
+		
 		public var tallness: Number = 0;
+		public function tallnessUnlocked(newTallness:Number):Boolean
+		{
+			return true;
+		}
+		public function tallnessLockedMessage():String
+		{
+			return "";
+		}
+
 		public var thickness: Number = 0;
+		public function thicknessUnlocked(newThickness:Number):Boolean
+		{
+			return true;
+		}
+		public function thicknessLockedMessage():String
+		{
+			return "";
+		}
+
 		public var tone: Number = 0;
+		public function toneUnlocked(newTone:Number):Boolean
+		{
+			return true;
+		}
+		public function toneLockedMessage():String
+		{
+			return "";
+		}
+
 		public var hairColor: String = "no";
+		public function hairColorUnlocked(newHairColor:String):Boolean
+		{
+			return true;
+		}
+
+		public function hairColorLockedMessage():String
+		{
+			return "";
+		}
+
 		public var scaleColor: String = "blue";
+		public function scaleColorUnlocked(newScaleColor:String):Boolean
+		{
+			return true;
+		}
+		public function scaleColorLockedMessage():String
+		{
+			return "";
+		}
+
 		public var furColor: String = "brown";
+		public function furColorUnlocked(newFurColor:String):Boolean
+		{
+			return true;
+		}
+		public function furColorLockedMessage():String
+		{
+			return "";
+		}
+
 		public var hairLength: Number = 0;
+		public function hairLengthUnlocked(newHairLength:Number):Boolean
+		{
+			return true;
+		}
+		public function hairLengthLockedMessage():String
+		{
+			return "";
+		}
+
 		public var hairType: Number = 0;
+		public function hairTypeUnlocked(newhairType:Number):Boolean
+		{
+			return true;
+		}
+		public function hairTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var beardLength: Number = 0;
+		public function beardLengthUnlocked(newBeardLength:Number):Boolean
+		{
+			return true;
+		}
+		public function beardLengthLockedMessage():String
+		{
+			return "";
+		}
+
 		public var beardStyle: Number = 0;
+		public function beardStyleUnlocked(newBeardStyle:Number):Boolean
+		{
+			return true;
+		}
+		public function beardStyleLockedMessage():String
+		{
+			return "";
+		}
 
 		public var skinType: Number = 0;
+		public function skinTypeUnlocked(newSkinType:Number):Boolean
+		{
+			return true;
+		}
+		public function skinTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var skinTone: String = "albino";
+		public function skinToneUnlocked(newSkinTone:String):Boolean
+		{
+			return true;
+		}
+		public function skinToneLockedMessage():String
+		{
+			return "";
+		}
+
 		public var skinFlags: Array = new Array();
+		public function skinFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function skinFlagsLockedMessage():String
+		{
+			return "";
+		}
+
 		public var faceType: Number = 0;
+		public function faceTypeUnlocked(newFaceType:Number):Boolean
+		{
+			return true;
+		}
+		public function faceTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var faceFlags: Array = new Array();
+		public function faceFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function faceFlagsLockedMessage():String
+		{
+			return "";
+		}
+
 		public var tongueType: Number = 0;
+		public function tongueTypeUnlocked(newTongueType:Number):Boolean
+		{
+			return true;
+		}
+		public function tongueTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var tongueFlags: Array = new Array();
+		public function tongueFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function tongueFlagsLockedMessage():String
+		{
+			return "";
+		}
+
 		public var lipMod: Number = 0;
+		public function lipModUnlocked(newLipMod:Number):Boolean
+		{
+			return true;
+		}
+		public function lipModLockedMessage():String
+		{
+			return "";
+		}
+
 		public var earType: Number = 0;
+		public function earTypeUnlocked(newEarType:Number):Boolean
+		{
+			return true;
+		}
+		public function earTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var antennae: Number = 0;
+		public function antennaeUnlocked(newAntennaeNumber:Number):Boolean
+		{
+			return true;
+		}
+		public function antennaeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var antennaeType: Number = 0;
+		public function antennaeTypeUnlocked(newAntennaeType:Number):Boolean
+		{
+			return true;
+		}
+		public function antennaeTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var horns: Number = 0;
+		public function hornsUnlocked(newHornsNumber:Number):Boolean
+		{
+			return true;
+		}
+		public function hornsLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var hornType: Number = 0;
+		public function hornTypeUnlocked(newHornType:Number):Boolean
+		{
+			return true;
+		}
+		public function hornTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var hornLength: Number = 0;
+		public function hornLengthUnlocked(newHornLength:Number):Boolean
+		{
+			return true;
+		}
+		public function hornLengthLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var armType: Number = 0;
+		public function armTypeUnlocked(newArmType:Number):Boolean
+		{
+			return true;
+		}
+		public function armTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var gills: Boolean = false;
+		public function gillsUnlocked(newGills:Boolean):Boolean
+		{
+			return true;
+		}
+		public function gillsLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var wingType: Number = 0;
+		public function wingTypeUnlocked(newWingType:Number):Boolean
+		{
+			return true;
+		}
+		public function wingTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var legType: Number = 0;
+		public function legTypeUnlocked(newLegType:Number):Boolean
+		{
+			return true;
+		}
+		public function legTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var legCount: Number = 0;
+		public function legCountUnlocked(newLegCount:Number):Boolean
+		{
+			return true;
+		}
+		public function legCountLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var legFlags: Array = new Array();
+		public function legFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function legFlagsLockedMessage():String
+		{
+			return "";
+		}
+		
 		//0 - Waist
 		//1 - Middle of a long tail. Defaults to waist on bipeds.
 		//2 - Between last legs or at end of long tail.
 		//3 - On underside of a tail, used for driders and the like, maybe?
 		public var genitalSpot: Number = 0;
+		public function genitalSpotUnlocked(newGenitalSpot:Number):Boolean
+		{
+			return true;
+		}
+		public function genitalSpotLockedMessage():String
+		{
+			return "";
+		}
+		
+
 		public function genitalLocation(): Number {
 			if (genitalSpot == 1 && legCount == 2) return 0;
 			else if (genitalSpot == 3 && isDrider()) return 3;
 			else return genitalSpot;
 		}
+
 		public var tailType: Number = 0;
+		public function tailTypeUnlocked(newTailType:Number):Boolean
+		{
+			return true;
+		}
+		public function tailTypeLockedMessage():String
+		{
+			return "";
+		}
+		
+
 		public var tailCount: Number = 0;
+		public function tailCountUnlocked(newTailCount:Number):Boolean
+		{
+			return true;
+		}
+		public function tailCountLockedMessage():String
+		{
+			return "";
+		}
+
 		public var tailFlags: Array = new Array();
+		public function tailFlagsUnlocked(newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function tailFlagsLockedMessage():String
+		{
+			return "";
+		}
+		
 		//Used to set cunt or dick type for cunt/dick tails!
-		public var tailGenitalArg = 0;
+		public var tailGenitalArg:Number = 0;
+		public function tailGenitalArgUnlocked(newTailGenitalArg:Number):Boolean
+		{
+			return true;
+		}
+		public function tailGenitalArgLockedMessage():String
+		{
+			return "";
+		}
+		
 		//tailGenital:
 		//0 - none.
 		//1 - cock
 		//2 - vagina
 		public var tailGenital: int = 0;
+		public function tailGenitalUnlocked(newTailGenital:Number):Boolean
+		{
+			return true;
+		}
+		public function tailGenitalLockedMessage():String
+		{
+			return "";
+		}
+
 		//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
 		public var tailVenom: Number = 0;
 		//Tail recharge determines how fast venom/webs comes back per hour.
@@ -313,6 +667,15 @@
 		//15 - child-bearing/fertile
 		//20 - inhumanly wide
 		public var hipRating: Number = 0;
+		public function hipRatingUnlocked(newHipRating:Number):Boolean
+		{
+			return true;
+		}
+		public function hipRatingLockedMessage():String
+		{
+			return "";
+		}
+
 		//buttRating
 		//0 - buttless
 		//2 - tight
@@ -324,6 +687,15 @@
 		//16 - huge
 		//20 - inconceivably large/big/huge etc
 		public var buttRating: Number = 0;
+		public function buttRatingUnlocked(newButtRating:Number):Boolean
+		{
+			return true;
+		}
+		public function buttRatingLockedMessage():String
+		{
+			return "";
+		}
+		
 		//Key items
 		public var keyItems: Array;
 
@@ -349,14 +721,104 @@
 
 		//Sexual Stuff
 		public var cocks: Array;
+		public function cockLengthUnlocked(cockIndex:int, newCockLength:Number):Boolean
+		{
+			return true;
+		}
+		public function cockLengthLockedMessage():String
+		{
+			return "";
+		}
+
+		public function cockThicknessUnlocked(cockIndex:int, newCockThickness:Number):Boolean
+		{
+			return true;
+		}
+		public function cockThicknessLockedMessage():String
+		{
+			return "";
+		}
+
+		public function cockTypeUnlocked(cockIndex:int, newCockType:Number):Boolean
+		{
+			return true;
+		}
+		public function cockTypeLockedMessage():String
+		{
+			return "";
+		}
+
+		public function knotMultiplierUnlocked(cockIndex:int, newKnotMulti:Number):Boolean
+		{
+			return true;
+		}
+		public function knotMultiplierLockedMessage():String
+		{
+			return "";
+		}
+
+		public function flacidMultiplierUnlocked(cockIndex:int, newFlaccidMulti:Number):Boolean
+		{
+			return true;
+		}
+		public function flacidMultiplierLockedMessage():String
+		{
+			return "";
+		}
+
+		public function cockFlagsUnlocked(cockIndex:int, newFlags:*):Boolean
+		{
+			return true;
+		}
+		public function cockFlagsLockedMessage():String
+		{
+			return "";
+		}
+
 		//balls
 		public var balls: Number = 0;
+		public function ballsUnlocked(newBalls:Number):Boolean
+		{
+			return true;
+		}
+		public function ballsLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var cumMultiplier: Number = 1;
 		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 		public var cumQuality: Number = 1;
 		public var cumType: Number = GLOBAL.CUM;
+		public function cumTypeUnlocked(newCumType:Number):Boolean
+		{
+			return true;
+		}
+		public function cumTypeLockedMessage():String
+		{
+			return "";
+		}
+
 		public var ballSize: Number = 1;
+		public function ballSizeUnlocked(newBallSize:Number):Boolean
+		{
+			return true;
+		}
+		public function ballSizeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var ballFullness: Number = 100;
+		public function ballFullnessUnlocked(newBallFullness:Number):Boolean
+		{
+			return true;
+		}
+		public function ballFullnessLockedMessage():String
+		{
+			return "";
+		}
+		
 		//Number of cumshots a day the PC can hold
 		public var ballEfficiency: Number = 3;
 		//Scales from 0 (never produce more) to infinity.
@@ -365,22 +827,168 @@
 		public var timesCum: Number = 0;
 		public var cockVirgin: Boolean = true;
 		public var vaginas: Array;
+
+		public function vaginaTypeUnlocked(vagIndex:int, newVagType:int):Boolean
+		{
+			return true;
+		}
+		public function vaginaTypeLockedMessage():String
+		{
+			return "";
+		}
+
+		public function clitsUnlocked(vagIndex:int, newClitNumber:int):Boolean
+		{
+			return true;
+		}
+		public function clitsLockedMessage():String
+		{
+			return "";
+		}
+
+		public function wetnessUnlocked(vagIndex:int, newWetness:Number):Boolean
+		{
+			return true;
+		}
+		public function wetnessLockedMessage():String
+		{
+			return "";
+		}
+
+		public function loosenessUnlocked(vagIndex:int, newLooseness:Number):Boolean
+		{
+			return true;
+		}
+		public function loosenessLockedMessage():String
+		{
+			return "";
+		}
+
 		//Fertility is a % out of 100. 
 		public var fertility: Number = 10;
 		public var clitLength: Number = .5;
+		public function clitLengthUnlocked(newClitLength:Number):Boolean
+		{
+			return true;
+		}
+		public function clitLengthLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var elasticity: Number = 1;
 		public var pregnancyMultiplier: Number = 1;
 		public var girlCumType: Number = GLOBAL.GIRLCUM;
+		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
+		{
+			return true;
+		}
+		public function girlCumTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var vaginalVirgin: Boolean = true;
 		public var breastRows: Array;
+
+		public function breastsUnlocked(bRowIndex:int, newBreastCount:Number):Boolean
+		{
+			return true;
+		}
+		public function breastsLockedMessage():String
+		{
+			return "";
+		}
+
+		public function nippleTypeUnlocked(bRowIndex:int, newNippleType:Number):Boolean
+		{
+			return true;
+		}
+		public function nippleTypeLockedMessage():String
+		{
+			return "";
+		}
+
+		public function breastRatingUnlocked(bRowIndex:int, newBreastRating:Number):Boolean
+		{
+			return true;
+		}
+		public function breastRatingLockedMessage():String
+		{
+			return "";
+		}
+
 		public var nippleColor: String = "pink";
+		public function nippleColorUnlocked(newNippleColor:String):Boolean
+		{
+			return true;
+		}
+		public function nippleColorLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var nipplesPerBreast: int = 1;
+		public function nipplesPerBreastUnlocked(newNipplesPerBreast:int):Boolean
+		{
+			return true;
+		}
+		public function nipplesPerBreastLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var nippleLengthRatio: int = 1;
+		public function nippleLengthRatioUnlocked(newNippleLengthRatio:int):Boolean
+		{
+			return true;
+		}
+		public function nippleLengthRatioLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var nippleWidthRatio: int = 1;
+		public function nippleWidthRatioUnlocked(newNippleWidthRatio:int):Boolean
+		{
+			return true;
+		}
+		public function nippleWidthRatioLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var dickNippleMultiplier: int = 3;
+		public function dickNippleMultiplierUnlocked(newDickNippleMultiplier:int):Boolean
+		{
+			return true;
+		}
+		public function dickNippleMultiplierLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var dickNippleType: int = 0;
+		public function dickNippleTypeUnlocked(newDickNippleType:int):Boolean
+		{
+			return true;
+		}
+		public function dickNippleTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		public var milkMultiplier: Number = 0;
 		public var milkType: Number = 0;
+		public function milkTypeUnlocked(newMilkType:Number):Boolean
+		{
+			return true;
+		}
+		public function milkTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		//The rate at which you produce milk. Scales from 0 to INFINITY.
 		public var milkRate: Number = 1;
 		public var ass = new VaginaClass(false);
