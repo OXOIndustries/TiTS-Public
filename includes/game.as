@@ -168,6 +168,9 @@ function sleep(outputs:Boolean = true):void {
 	}
 	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
 	processTime(minutes);
+
+	mimbraneSleepEvents();
+	
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }

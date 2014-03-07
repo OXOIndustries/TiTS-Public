@@ -1112,6 +1112,271 @@ public function mimbraneSleepEvents():void
 	}
 }
 
+public function friendlyMimbraneEvents():void
+{
+	var outputDone:Boolean = false;
+
+	if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv1("Mimbrane Cock") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = []; // [] is an array literal for "blank"/empty
+				var msg:String;
+
+				msg = "A bizarre stirring in your [pc.lowerGarment] catches your attention. Your [pc.cock] is attempting to poke out into the open air, pushed along by a particularly curious Mimbrane.";
+				if (pc.isNice()) msg += " It’s a little embarrassing, but no one seems to notice. You politely ask the parasite to stow back away, to which it cheerily chirps its compliance.";
+				else if (pc.ismiscievous()) msg += " It’s actually quite amusing seeing your trouser snake soaking in the scenery. You let it bob around freely for a while before it eventually returns to its lair.";
+				else msg += " You huff angrily, grabbing the cock and shoving it back into your clothes. You don’t have the patience for such irritations.";
+
+				messageArray.push(msg);
+
+				if (pc.biggestCockLength() > 30 && pc.lust() >= 50 && pc.biggestTitSize() > 1)
+				{
+					messageArray.push("Your [pc.cock] begins to slide up within your armor, making it hard to focus. This is no normal erection that’s escaping from your [pc.lowerGarment], this is your Mimbrane’s doing. It squeezes your enormous pole comfortably between your [pc.breasts], oh-so-slowly pumping it vertically. You’re unsure if you want it to stop or not.");
+				}
+
+				if (pc.lust() < 40)
+				{
+					messageArray.push("It’s a tad hard to concentrate as your [pc.cock] takes advantage of its rather flaccid state to continuously shuffle around in your [pc.armor]. The Mimbrane seems unable to sit still today, sliding and prodding at everything in your penis’ radius.");
+				}
+
+				messageArray.push("Your Mimbrane member occasionally works its way down your [leg] like a lewd snake.");
+				messageArray.push("Your [cock] slowly rubs lewdly against your [skin] and clothes. The Mimbrane seems to be teasing your cock.");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv1("Mimbrane Pussy") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				msg = "Your actions are cut short by what vaguely sounds like some whistling coming from your crotch. It’s your [pc.pussy], actually; your Mimbrane has gone beyond its little chirps and squeaks and seems to be trying out something more musical.";
+
+				if (pc.isNice()) msg += " You believe a symphonic snatch, while interesting, may attract unwanted attention and ask the parasite to stop. It does with a particularly disappointed chirp.";
+				else if (pc.isMischievous()) msg +="You recall seeing some vid or something that featured a woman with a singing snatch. Yours barely resembles a songbird. It’ll need some training.";
+				else msg += "You squeeze your thighs together in an attempt to get the parasite to stop. Following with a quick, harsh scold, silence and stillness resumes reign over your genitalia.";
+
+				messageArray.push(msg);
+
+				if (pc.vaginalWetness() > 3)
+				{
+					messageArray.push("Your Mimbrane seems to be having fun with your [pc.pussy] and its veritable river of feminine fluids. One moment the parasite seems to be blowing bubbles, the next it’s starting and stopping the works, and the next it’s merely producing moist chirps.");
+				}
+
+				messageArray.push("Your [pc.pussy] nips at your [pc.armor], throwing you for a surprise. The Mimbrane must be feeling playful you imagine.");
+				messageArray.push("Your [legs] about melt to jello all of a sudden. Your Mimbrane is messing with your [clit], moving the little fun button around in provocative ways beneath your [armor].");
+				messageArray.push("A sudden pressure against your [pc.pussy] about knocks you over. You know there’s nothing there.... Is your Mimbrane just messing around with you?")
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv1("Mimbrane Ass") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				msg = "Your eyes go wide when a noisy sound stumbles out from your [pc.ass]. Luckily, it appears you garnered no unwanted attention. It would seem your enthusiastic Mimbrane has taken to playing practical jokes on you, using its unique control of your posterior to produce faux fart sounds.";
+				if (pc.isNice()) msg +=" You politely ask that the parasite at least not be too loud. There’s no harm in fun, but there’s certainly harm to be had from certain sources should the racket get out of hand.";
+				else if (pc.isMischievous()) msg += "Funny enough, you begin to cook up some creative outlets for the Mimbrane’s newfound antics. Why only embarrass yourself when it’s so much easier to embarrass others?";
+				else msg += "Confident no one of any importance is looking, you grab your cheeks and stop the parasite’s raspberries. You make it clear to the creature that you will have no part in its stupid circus act.";
+
+				messageArray.push(msg);
+
+				if (pc.analLooseness() > 3)
+				{
+					messageArray.push("It’s hard to go about your day when your [pc.asshole] pulsates between a gaping cavern and a tight pin hole. Your butt-bound Mimbrane seems to be enjoying your flexible lower chute.");
+				}
+
+				messageArray.push("Each step you take is exaggerated by a rather large swing of your [pc.ass]. It isn’t long before you clearly suspect the rambunctious Mimbrane of the flamboyant disregard for your gait.");
+				messageArray.push("Occasionally your [ass] rubs its cheeks together. You derive no pleasure from the motion, but its entertainingly weird. The Mimbrane just seems to enjoy manipulating your hind quarters.");
+
+				output(messageArray[rand(messageArray.length)]);
+		}
+	}
+	
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv1("Mimbrane Balls") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				msg = "You get a little shaky in the [pc.legs] when your [pc.balls] start to loosen and tensen in succession. The [pc.sack] is acting as if you were cumming. Best you figure, your Mimbrane has formed some sort of attachment to the motion. Understandable considering the state you’re in when it typically happens.";
+				if (pc.isNice()) msg += " You decide to carry on and enjoy the pseudo kegel exercise. It’s doing no harm and the parasite doesn’t seem to be pushing out any [pc.cum].";
+				else if (pc.isMischievous()) msg += " As the parasite manipulates your balls, you begin to imagine if this ability can be manipulated in the sack. Bending your orgasm to your whims could have its benefits....";
+				else msg += " You come to a dead stop, ensuring no on of any importance will care about what you’re about to do, and tell the parasite to cease the annoyance. Your balls pop back to their normal stature, accompanied with what you’re certain is the Mimbrane equivalent of a disappointed huff.";
+
+				messageArray.push(msg);
+
+				messageArray.push("Your [pc.balls] are rubbing tantalizingly against your inner thighs. Your Mimbrane must be enjoying itself.");
+				messageArray.push("A trickle of pre runs down your [pc.leg]. Is your Mimbrane screwing around with your [pc.balls], you wonder.");
+				messageArray.push("An unseen hand begins massaging your [pc.balls]. It’s troubling at first and certainly makes it harder to walk, but you find it extremely comfortable. Your Mimbrane seems to enjoy just getting to do it judging by the soft chirps it makes from time to time.");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				msg = "Your balance begins to become an obstacle as your gait resembles more of a stagger. Each step seems to be exaggerated to a rather large degree by your [pc.breasts]. They sway and bounce as if gravity were little more than a dream. Judging by the odd little wiggling of your [pc.nipples], you figure this must be the work of your Mimbrane.";
+				if (pc.isNice()) msg += " You ask the parasite to at least knock it down a few notches. The show is probably a fun one, but you would rather not get thrown off stage.";
+				else if (pc.isMischievous()) msg += " You continue on with the excessive chest swings and bounces, finding it amusing. Maybe you should try and keep track of the double takes you cause.";
+				else msg += " Maybe you should invest in some sort of titanium bra. You grasp the mounds and angrily whisper to them, demanding the parasite knock it off with your knockers.";
+
+				messageArray.push(msg);
+
+				if (pc.hasDicknipples() && pc.lust() >= 50)
+				{
+					msg = "Your [pc.nipples] suddenly project their inner dicks, creating a";
+					if (pc.breastCount() == 2) msg += " pair";
+					else if (pc.breastCount() == 3) msg += " trio";
+					else if (pc.breastCount() > 3) msg += " multitude";
+					msg += " of tents in your [pc.upperUndergarment]. For a moment you try to figure out what could happening, but when the chest-mounted cocks start to squeak and chirp, you know exactly what’s going on."
+
+					messageArray.push(msg);
+				}
+
+				messageArray.push("Every so often, your [pc.breasts] will just bounce or shake of their own accord, a clear sign your Mimbrane is just having a good time.");
+				messageArray.push("For whatever reason, your [pc.breasts] seem to be particularly perky and light no matter what size they seem to get. Perhaps your Mimbrane is responsible?");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if ((!outputDone && pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+		|| (!outputDone && !pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrand Hand Right") >= 3))
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				messageArray.push("Your Mimbrane-covered hand starts to make groping gesture at nothing in particular. You aren’t entirely sure if it wants to get at some boobs or if you’ve just been making an impression on the parasite. At least it hasn’t started doing a jerk-off motion....");
+				messageArray.push("It isn’t doing much of anything, but just the sight of your Mimbrane’s tiny eyes and mouth on your palm is distracting. The parasite looks to be content with itself from what you can tell.");
+				messageArray.push("Your fingernails lately have looked particularly pristine as of late despite your lack of high-end maintenance. Is the Mimbrane responsible for your fine manicure?");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				messageArray.push("Your Mimbrane-covered hands start to make groping gestures at nothing in particular. You aren’t entirely sure if they want to get at some boobs or if you’ve just been making an impression on the parasites. At least they haven’t started doing a jerk-off motion....");
+				messageArray.push("They aren’t doing much of anything, but just the sight of your Mimbranes’ tiny eyes and mouths on your palms is distracting. The parasites look to be content with themselves from what you can tell.");
+				messageArray.push("Your fingernails lately have looked particularly pristine as of late despite your lack of high-end maintenance. Are the Mimbranes responsible for your fine manicure?");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if ((!outputDone && pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+		|| (!outputDone && !pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrand Foot Right") >= 3))
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				messageArray.push("You’re distracted by the odd little movements your Mimbrane-controlled [pc.foot] is making. The parasite occasionally rubs your toes around, either seeming bored or enjoying interacting with its surroundings. You aren’t sure what’s worse.");
+				messageArray.push("A squeak escapes your [pc.foot] with each step you take. A noisy Mimbrane appears to be having a goofy time of itself.");
+				messageArray.push("You’ve noticed that your toe nails have looked well-manicured for a while lately through no action of your own. Could your Mimbrane be responsible?");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				messageArray.push("You’re distracted by the odd little movements your Mimbrane-controlled [pc.feet] are making. The parasites occasionally rub your toes around, either seeming bored or enjoying interacting with their surroundings. You aren’t sure what’s worse.");
+				messageArray.push("Squeaks and chirps escape your [pc.feet] with each step you take. A pair of noisy Mimbranes appear to be having a goofy time of themselves.");
+				messageArray.push("You’ve noticed that your toe nails have looked well-manicured for a while lately through no action of your own. Could your Mimbranes be responsible?");
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") >= 3)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				var messageArray:Array = [];
+				var msg:String;
+
+				messageArray.push("Your [pc.lips] make kissing motions involuntarily, puckering and wavering at nothing. Thankfully, no one that matters seems to have noticed. You imagine your Mimbrane has taken an interest in you doing it yourself, probably attaching that motion to the passion that normally overtakes you. It’s probably a good idea to later describe to the parasite how meaningless the gesture is when directed at nobody in particular.");
+				messageArray.push("While going about your business, you suddenly start feeling your [pc.hair] moving around and changing your haircut. Sadly there’s nothing nearby for you to get a look at what’s going on. Your Mimbrane must be fascinating itself with your hairdo. You ask it to at least put it back the way it found it when its done.");
+				messageArray.push("Occasionally your [pc.lips] move on their own, mimicking various expressions. You aren’t quite sure why the Mimbrane is doing it, but you just let it have its fun so long as no one is watching.");
+				
+				msg = "You’ve noticed your [pc.face] has looked particularly clean lately. Is the Mimbrane responsible?";
+				if (pc.isMischievous()) msg += " You wonder if there’s a business opportunity to be had here....";
+
+				messageArray.push(msg);
+
+				output(messageArray[rand(messageArray.length)]);
+			});
+		}
+	}
+}
+
 //Encounter & Combat
 //Encounter a Mimbrane (Jungle)
 public function encounterMimbrane():void
@@ -2151,55 +2416,7 @@ Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,�
 
 //Friendly Mimbranes
 //These scenes can occur during any transitions. They apply only to Mimbranes with a trust level of 3 or 4. They have a low frequency and only one can occur at any given time.
-Penis Mimbrane:
-A bizarre stirring in your {lowergarment} catches your attention. Your [cock] is attempting to poke out into the open air, pushed along by a particularly curious Mimbrane. {Nice: “It’s a little embarrassing, but no one seems to notice. You politely ask the parasite to stow back away, to which it cheerily chirps its compliance.”/Mischievous: “It’s actually quite amusing seeing your trouser snake soaking in the scenery. You let it bob around freely for a while before it eventually returns to its lair.”/Mean: “You huff angrily, grabbing the cock and shoving it back into your clothes. You don’t have the patience for such irritations.”}
-{if cock ≥ 30” & lust ≥ 50 & breasts > flat “Your [cock] begins to slide up within your armor, making it hard to focus. This is no normal erection that’s escaping from your {lowergarment}, this is your Mimbrane’s doing. It squeezes your enormous pole comfortably between your [breasts], oh-so-slowly pumping it vertically. You’re unsure if you want it to stop or not.”}
-{if lust < 40 “It’s a tad hard to concentrate as your [cock] takes advantage of its rather flaccid state to continuously shuffle around in your [armor]. The Mimbrane seems unable to sit still today, sliding and prodding at everything in your penis’ radius.”}
-Your Mimbrane member occasionally works its way down your [leg] like a lewd snake.
-Your [cock] slowly rubs lewdly against your [skin] and clothes. The Mimbrane seems to be teasing your cock.
-Vagina Mimbrane: 
-Your actions are cut short by what vaguely sounds like some whistling coming from your crotch. It’s your [pussy], actually; your Mimbrane has gone beyond its little chirps and squeaks and seems to be trying out something more musical. {Nice: “You believe a symphonic snatch, while interesting, may attract uninteresting attention and ask the parasite to stop. It does with a particularly disappointed chirp.”/Mischievous: “You recall seeing some vid or something that featured a woman with a singing snatch. Yours barely resembles a songbird. It’ll need some training.”/Mean: “You squeeze your thighs together in an attempt to get the parasite to stop. Following with a quick, harsh scold, silence and stillness resumes reign over your genitalia.”} 
-{if fairly vaginal wetness “Your Mimbrane seems to be having fun with your [pussy] and its veritable river of feminine fluids. One moment the parasite seems to be blowing bubbles, the next it’s starting and stopping the works, and the next it’s merely producing moist chirps.”}
-Your [pussy] nips at your [armor], throwing you for a surprise. The Mimbrane must be feeling playful you imagine.
-Your [legs] about melt to jello all of a sudden. Your Mimbrane is messing with your [clit], moving the little fun button around in provocative ways beneath your [armor].
-A sudden pressure knocking against your [pussy] about knocks you over. You know there’s nothing there... Is your Mimbrane just messing around with you?
-Ass Mimbrane: 
-Your eyes go wide when a noisy sound stumbles out from your [ass]. Luckily, it appears you garnered no unwanted attention. It would seem your enthusiastic Mimbrane has taken to playing practical jokes on you, using its unique control of your posterior to produce faux fart sounds. {Nice: “You politely ask that the parasite at least not be too loud. There’s no harm in fun, but there’s certainly harm to be had from certain sources should the racket get out of hand.”/Mischievous: “Funny enough, you begin to cook up some creative outlets for the Mimbrane’s newfound antics. Why only embarrass yourself when it’s so much easier to embarrass others? ”/Mean: “Confident no one of any importance is looking, you grab your cheeks and stop the parasite’s raspberries. You make it clear to the creature that you will have no part in its stupid circus act.”} 
-{if asshole is close to gaping or higher “It’s hard to go about your day when your [asshole] pulsates between a gaping cavern and a tight pin hole. Your butt-bound Mimbrane seems to be enjoying your flexible lower chute.”}
-Each step you take is exaggerated by a rather large swing of your [ass]. It isn’t long before you clearly suspect the rambunctious Mimbrane of the flamboyant disregard for your gait.
-Occasionally your [ass] rubs its cheeks together. You derive no pleasure from the motion, but its entertainingly weird. The Mimbrane just seems to enjoy manipulating your hind quarters.
-Scrotum Mimbrane: 
-You get a little shaky in the [legs] when your [balls] start to loosen and tensen in succession. The [sack] is acting as if you were cumming. Best you figure, your Mimbrane has formed some sort of attachment to the motion. Understandable considering the state you’re in when it typically happens. {Nice: “You decide to carry on and enjoy the pseudo kegel exercise. It’s doing no harm and the parasite doesn’t seem to be pushing out any [cum].”/Mischievous: “As the parasite manipulates your balls, you begin to imagine if this ability can be manipulated in the sack. Bending your orgasm to your whims could have its benefits...”/Mean: “You come to a dead stop, ensuring no on of any importance will care about what you’re about to do, and tell the parasite to cease the annoyance. Your balls pop back to their normal stature, accompanied with what you’re certain is the Mimbrane equivalent of a disappointed huff.”}
-Your [balls] are rubbing tantalizingly against your inner thighs. Your Mimbrane must be enjoying itself. 
-A trickle of pre runs down your [leg]. Is your Mimbrane screwing around with your [balls], you wonder.
-An unseen hand begins massaging your [balls]. It’s troubling at first and certainly makes it harder to walk, but you find it extremely comfortable. Your Mimbrane seems to enjoy just getting to do it judging by the soft chirps it makes from time to time.
-Breasts Mimbrane: 
-Your balance begins to become an obstacle as your gait resembles more of a stagger. Each step seems to be exaggerated to a rather large degree by your [breasts]. They sway and bounce as if gravity were little more than a dream. Judging by the odd little wiggling of your [nipples], you figure this must be the work of your Mimbrane. {Nice: “You ask the parasite to at least knock it down a few notches. The show is probably a fun one, but you would rather not get thrown off stage.”/Mischievous: “You continue on with the excessive chest swings and bounces, finding it amusing. Maybe you should try and keep track of the double takes you cause.”/Mean: “Maybe you should invest in some sort of titanium bra. You grasp the mounds and angrily whisper to them, demanding the parasite knock it off with your knockers.”}
-{if dicknipples & lust ≥ 50 “Your [nipples] suddenly project their inner dicks, creating a {pair/trio/multitude} of tents in your {uppergarment}. For a moment you try to figure out what could be going on. When the chest-mounted cocks start to squeak and chirp, you know exactly what’s going on.”}
-Every so often, your [breasts] will just bounce or shake of their own accord, a clear sign your Mimbrane is just having a good time.
-For whatever reason, your [breasts] seem to be particularly perky and light no matter what size they seem to get. Perhaps your Mimbrane is responsible?
-Hand Mimbrane: 
-Your Mimbrane-covered hand starts to make groping gesture at nothing in particular. You aren’t entirely sure if it wants to get at some boobs or if you’ve just been making an impression on the parasite. At least it hasn’t started doing a jerk-off motion...
-It isn’t doing much of anything, but just the sight of your Mimbrane’s tiny eyes and mouth on your palm is distracting. The parasite looks to be content with itself from what you can tell.
-Your fingernails lately have looked particularly pristine as of late despite your lack of high-end maintenance. Is the Mimbrane responsible for your fine manicure?
-Hands Mimbranes: 
-Your Mimbrane-covered hands start to make groping gestures at nothing in particular. You aren’t entirely sure if they want to get at some boobs or if you’ve just been making an impression on the parasites. At least they haven’t started doing a jerk-off motion...
-They aren’t doing much of anything, but just the sight of your Mimbranes’ tiny eyes and mouths on your palms is distracting. The parasites look to be content with themselves from what you can tell.
-Your fingernails lately have looked particularly pristine as of late despite your lack of high-end maintenance. Are the Mimbranes responsible for your fine manicure?
-Foot Mimbrane: 
-You’re distracted by the odd little movements your Mimbrane-controlled [foot] is making. The parasite occasionally rubs your toes around, either seeming bored or enjoying interacting with its surroundings. You aren’t sure what’s worse.
-A squeak escapes your [foot] with each step you take. A noisy Mimbrane appears to be having a goofy time of itself.
-You’ve noticed that your toe nails have looked well-manicured for a while lately through no action of your own. Could your Mimbrane be responsible?
-Feet Mimbranes: 
-You’re distracted by the odd little movements your Mimbrane-controlled [feet] are making. The parasites occasionally rub your toes around, either seeming bored or enjoying interacting with their surroundings. You aren’t sure what’s worse.
-Squeaks and chirps escape your [feet] with each step you take. A pair of noisy Mimbranes appear to be having a goofy time of themselves.
-You’ve noticed that your toe nails have looked well-manicured for a while lately through no action of your own. Could your Mimbranes be responsible?
-Head Mimbrane: 
-Your [lips] make kissing motions involuntarily, puckering and wavering at nothing. Thankfully, no one that matters seems to have noticed. You imagine your Mimbrane has taken an interest in you doing it yourself, probably attaching that motion to the passion that normally overtakes you. It’s probably a good idea to later describe to the parasite how opposite the effect is when you do it at nothing.
-While going about your business, you suddenly start feeling your [hair] moving around and changing your haircut. Sadly there’s nothing nearby for you to get a look at what’s going on. Your Mimbrane must be fascinating itself with your hairdo. You ask it to at least put it back the way it found it when its done.
-Occasionally your [lips] move on their own, mimicking various expressions. You aren’t quite sure why the Mimbrane is doing it, but you just let it have its fun so long as no one is watching.
-You’ve noticed your [face] has looked particularly clean lately. Is the Mimbrane responsible? {Mischeivious “You wonder if there’s a business opportunity to be had here...”} 
-Blocked Transformation/Removal
+
 //Mimbranes can only be removed by doctor facilities and must be removed entirely rather than piecemeal. Mimbranes will block any attempts to remove their organ and in the case of feet, they will block transformation attempts away from human feet (as of this writing anyway). These scenes play to highlight that block. Scenes are included for body parts that presumably cannot be removed anyway.
 Penis Mimbrane: The Mimbrane surrounding your [cock] suddenly bursts to life and squeezes your dick for all it’s worth. Seems the parasite’s efforts are keeping you from losing your cock entirely.
 Vagina Mimbrane: A powerful stretching overtakes your [vagina], your Mimbrane doing everything in its power to keep the feminine canyon from vanishing. Seems you won’t be able to get rid of your pussy so long as the parasite is in control of it.
