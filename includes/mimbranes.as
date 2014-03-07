@@ -333,6 +333,7 @@ public function mimbranesComplainAndShit():void
 	// 4 day warnings
 	var doneHands:Boolean = false;
 	var doneFeet:Boolean = false;
+	var hungryMimbrane:Boolean = false;
 
 	for (var ii:int = 0; ii < mimbraneEffects.length; ii++)
 	{
@@ -749,6 +750,8 @@ public function mimbranesComplainAndShit():void
 			//Occurs when the following Mimbrane is still in a state of hunger. Chance of scene occurring during a transition is only slightly higher than sweating, breathing, and friendly lines below. 
 			else if (pc.statusEffectv2(mimbraneEffects[ii]) >= 7)
 			{
+				hungryMimbrane = true;
+
 				// Cock
 				if (mimbraneEffects[ii] == "Mimbrane Cock")
 				{
@@ -834,6 +837,277 @@ public function mimbranesComplainAndShit():void
 					});
 				}
 			}
+		}
+	}
+
+	// If any hungry mimbrane exists, all other mimbranes have a chance to spam a message too
+	if (hungryMimbrane == true && attachedMimbranes > 1)
+	{
+		if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv2("Mimbrane Cock")< 7)
+		{
+			eventQueue.push(function():void {
+				output("You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [pc.cock]. It occasionally glides around within your [pc.armor], spreading its lust-inducing perspiration around your body. The spiteful parasite is relentless in its teasing.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv2("Mimbrane Pussy") < 7)
+		{
+			eventQueue.push(function():void {
+				output("It’s hard to focus on the task at hand when your [pc.pussy] is sopping wet in Mimbrane sweat. Constant threats of sexual humidity poke at you, occasionally escaping the confines of your [pc.armor] to peck at your senses. The sullen parasite refuses to give you a moment’s rest.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv2("Mimbrane Ass") < 7)
+		{
+			eventQueue.push(function():void {
+				output("Your [pc.ass] makes it nearly impossible to calmly assess a thing as the Mimbrane-soaked pair of cheeks lewdly slide and slather the inside of your armor. Endless clouds of strawberry passion enshroud your behind, occasionally escaping to stroke you with their hot, sexual intentions. Your Mimbrane-controlled [pc.asshole] cries out in protest to support its hungry brethren.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv2("Mimbrane Balls") < 7)
+		{
+			eventQueue.push(function():void {
+				output("Doing anything at all becomes an exercise in frustration as your [pc.balls] goes on suffering from Mimbrane perspiration. A constant cloud of hot, carnal desire kisses at your [pc.balls] and slides around your groin. The resentful parasite has turned the environment within [pc.armor] to a veritable sexual rainforest.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv2("Mimbrane Boobs") < 7)
+		{
+			eventQueue.push(function():void {
+				output("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [pc.fullchest] in. Every square inch of your bosom – down to the tip of your [pc.nipples] – is just sopping wet in the frustrated parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [pc.armor] to greet you, bending you over and pounding you with their sensual intentions.");
+			});
+		}
+
+		if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") < 7)
+			|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Right") < 7))
+		{
+			eventQueue.push(function():void {
+				output("You’re forced to keep your hand at a safe distance, lest you be overwrought with its noxious sexual odors. Your impassioned Mimbrane has slathered your appendage in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.  ");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") < 7)
+		{
+			eventQueue.push(function():void {
+				output("You’re forced to keep your hands at a safe distance, lest you be overwrought with their noxious sexual odors. Your impassioned Mimbranes have slathered your appendages in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.");
+			});
+		}
+
+		if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Left") < 7)
+			|| ( !pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Right") < 7)
+		{
+			eventQueue.push(function():void {
+				output("Your [pc.foot] is hot and soaked, covered in your indignant Mimbrane’s sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendage to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv2("Mimbrane Foot Left") < 7)
+		{
+			eventQueue.push(function():void {
+				output("Your [pc.feet] are hot and soaked, covered in your indignant Mimbranes’ sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendages to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv2("Mimbrane Face") < 7)
+		{
+			eventQueue.push(function():void {
+				output("You’ve lost count how many times you’ve wiped sweat from your brow. There’s no escape from the outraged Mimbrane’s angry revolt as it coats your [pc.face] and head in its seemingly limitless sexual sweat. Constantly you fan away building clouds of strawberry perspiration before they can further poison you with their wanton instincts.");
+			});
+		}
+	}
+
+	// If no hungry mimbranes exist, and the player has voluntarily allowed Mimbranes to sweat on them...
+	if (hungryMimbrane == false && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined)
+	{
+		if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv1("Mimbrane Cock") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("The ever-present moist spot on your [pc.lowerGarment] is the telltale sign that your [pc.cock] is absolutely soaked in oily, sexual sweat. The Mimbrane member occasionally rubs against your inner thighs or slides up your waist, tickling you with moist perversion while simultaneously arousing you with each well-lubricated stroke.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv1("Mimbrane Pussy") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("The pinkish haze around your groin about masks the constant dripping of Mimbrane sweat pouring out and around your [pc.pussy]. Your gait blends the perspiration all along your midsection, ensuring your oily perplexion doesn’t go to waste.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv1("Mimbrane Ass") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("Coated in oily Mimbrane persuasion, your [pc.ass] no longer seems to form any sort of traction against your [pc.armor]. Instead, each of your steps merely glides each cheek against the surface, tantalizing you with each whimsical caress. Occasionally small pink clouds of moist, humid, dense lust will escape out into the open, showing a fairly clear trail of where you’ve been. You suspect the parasitic [pc.asshole] is enjoying itself.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv1("Mimbrane Balls") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("It’s actually surprising how comfortable a friendly bath-of-sorts in Mimbrane lubricant can feel compared to when its done in an aggressive fashion. A curtain of oily, tingly lust drapes around your [pc.balls], causing them to effortlessly glide about in your [pc.armor]. The typically oppressive humid shroud that comes as a result of this parasitic perspiration is more pleasant to you as well. Though you still aren’t completely immune to just how much the ongoing oil massage turns you on....");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("The amusement from having your [pc.fullchest] constantly covered in oily Mimbrane seat hasn’t gotten old to you yet. Your bosom glides freely about in your [pc.upperGarment], seeming to not even understand the meaning of the word “friction.” Not only that, but occasional clouds of strawberry-scented salaciousness escape your garments and tickle your senses.");
+			});
+		}
+
+		if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+			|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") >= 3))
+		{
+			eventQueue.push(function():void {
+				output("You hadn’t counted on the expert control your hand-bound Mimbrane would impart on its oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapon in combat, while refusing to abandon your moist sheen. It’s an impressive feat.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("You hadn’t counted on the expert control your hand-bound Mimbranes would impart on their oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapons in combat, while refusing to abandon your moist sheen. It’s an impressive feat.");
+			});
+		}
+
+		if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+			|| (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") >= 3))
+		{
+			eventQueue.push(function():void {
+				output("Blissful confusion is a good description for what your [pc.foot] feels its going through. The Mimbrane-covered extremity is swimming in the parasite’s love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creature’s work.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("Blissful confusion is a good description for what your [pc.feet] feel they are going through. The Mimbrane-covered extremities are swimming in the parasites’ love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creatures’ work.");
+			});
+		}
+
+		if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") >= 3)
+		{
+			eventQueue.push(function():void {
+				output("Head Mimbrane: You continue to enjoy the passionate sheen you get from the neverending downpour of oily Mimbrane sweat running down your [pc.face]. Even your [pc.lips] glint in the sunlight, their [pc.lipColor] color mixing with the lightly pink fluid. Any worries that your head would be in a 24 hour sauna melt away by how the almost eerily refreshing perspiration makes you feel. The clouds of carnality that you shed seem to have a larger effect on your surroundings than they do you.");
+			});
+		}
+	}
+}
+
+public function mimbraneSleepEvents():void 
+{
+	//Breathing Mimbranes
+	//These scenes can only occur when the PC is waking from sleep. They apply only to Mimbranes with a trust level anywhere from 0 to 2. These have a very low frequency.
+	var outputDone:Boolean = false;
+
+	if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv1("Mimbrane Cock") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("An odd sensation on your [pc.cockhead] drags you out of the haze of sleep you were only slowly stepping out from. For a moment, you thought you caught your urethra widening on its own before returning to normal. You instead figure you just need to get moving around or something.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv1("Mimbrane Pussy") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("The experience of your [pc.vagina] opening and closing on its own bursts you out from sleep. You could have sworn you felt a faint movement of air around your orifice. However, you find nothing unusual upon inspection.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv1("Mimbrane Ass") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("A sudden, brief dilation of your [pc.asshole] forces you to bolt up out of tender slumber. You grope around to try and find anything to explain what happened, but find nothing. Must have been an odd dream or something.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv1("Mimbrane Balls") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("When an odd feeling of air moving around and possibly into your [pc.balls] hits you, sleep gets thrown out immediately. You find nothing of note upon inspection, however. You decide to ignore the potential sleep-induced hallucination.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("Your [pc.nipples] feel as if they were expanding slightly, pushing a slight bit of air within them. The faint sensation is enough to kick you from the lingering bits of sleep you were enjoying to examine them. You find nothing out of the ordinary.");
+			});
+		}
+	}
+
+	if ((!outputDone && pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") <= 2)
+		|| (!outputDone && !pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") <= 2))
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("Air seems to inexplicably move in and around the palm of your hand, shocking you out of your half-awake state. Upon inspection, however, you come across nothing strange.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("Your hands feel as if they were drawing in a little bit of air, a feeling strange enough to hurl you out into full consciousness. They both feel and look fine, however. You chalk it up to your waking mind or something.");
+			});
+		}
+	}
+
+	if ((!outputDone && pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") <= 2)
+		|| (!outputDone && !pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") <= 2))
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("Some air tickles your toes and seems to seep into your foot right below them. The feeling is strange enough that you tumble down from sleep’s embrace to find the culprit. But you leave empty-handed, unable to find anything but your [pc.foot].");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("Air brushes past your toes and into both your [feet], batting you out of the park and into consciousness. You can’t help but try and find what is going on, but there’s nothing to be found. You figure your sheets must have tickled your feet or something.");
+			});
+		}
+	}
+
+	if (!outputDone && pc.hasStatusEffect("Mimbrane Face") && pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") <= 2)
+	{
+		if (rand(100) <= 3)
+		{
+			outputDone = true;
+			eventQueue.push(function():void {
+				output("An otherwise normal morning of sleeping in runs into a complication. It seems as if air were seeping into your [lips] of all places just as you were taking a breath! However, no amount of pawing and pulling at your mouth cushions reveals a damn thing. You figure its just time to wake up.");
+			});
 		}
 	}
 }
@@ -1032,6 +1306,7 @@ public function mimbraneLustCloud():Boolean
 		output(" You’re too disoriented to get out of the veil before it can sink its fangs into you. The best you can hope for is for it to dissipate on its own.");
 	}
 
+	throw new Error("Not implemented yet.");
 	//{residual effect}<b>Your sexual desire is rising at an alarming rate.</b>
 	//moderate lust damage on PC’s turn. Lasts three turns.
 	//{wears off}<b>The parasite’s noxious perspiration has faded away.</b>
@@ -1872,47 +2147,9 @@ Lip Tease (small): You make a suggestive kiss towards the {monster} with your le
 Lip Tease (medium): You lick your plump lips in a suggestive fashion, tantalizing the {monster} with their delicious volume.
 Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,” suggestively positioning the moist face cushions.
 */
+  
 
-
-
-
-//Reminders
-//These are occasional messages for any mutinous Mimbranes that are not hungry, but are sweating due to the neglect of another parasite’s hunger. Their chance of occurring are equal to that of the hungry Mimbrane(s). 
-Penis Mimbrane: You find it difficult to concentrate on your activities as you’re constantly aroused and bothered by your Mimbrane-slickened [cock]. It occasionally glides around within your [armor], spreading its lust-inducing perspiration around your body. The spiteful parasite is relentless in its teasing.
-Vagina Mimbrane: It’s hard to focus on the task at hand when your [pussy] is sopping wet in Mimbrane sweat. Constant threats of sexual humidity poke at you, occasionally escaping the confines of your [armor] to peck at your senses. The sullen parasite refuses to give you a moment’s rest.
-Ass Mimbrane: Your [ass] makes it nearly impossible to calmly assess a thing as the Mimbrane-soaked pair of cheeks lewdly slide and slather the inside of your armor. Endless clouds of strawberry passion enshroud your behind, occasionally escaping to stroke you with their hot, sexual intentions. Your Mimbrane-controlled [asshole] cries out in protest to support its hungry brethren. 
-Scrotum Mimbrane: Doing anything at all becomes an exercise in frustration as your [sack] goes on suffering from Mimbrane perspiration. A constant cloud of hot, carnal desire kisses at your [balls] and slides around your groin. The resentful parasite has turned the environment within [armor] to a veritable sexual rainforest.
-Breasts Mimbrane: It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [fullchest] in. Every square inch of your bosom – down to the tip of your [nipples] – is just sopping wet in the frustrated parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [armor] to greet you, bending you over and pounding you with their sensual intentions. 
-Hand Mimbrane: You’re forced to keep your hand at a safe distance, lest you be overwrought with its noxious sexual odors. Your impassioned Mimbrane has slathered your appendage in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.  
-Hands Mimbranes: You’re forced to keep your hands at a safe distance, lest you be overwrought with their noxious sexual odors. Your impassioned Mimbranes have slathered your appendages in a torrential downpour of oily sweat which spreads to everything you touch. It’s hard to get much done without succumbing to the lustful anguish.
-Foot Mimbrane: Your [foot] is hot and soaked, covered in your indignant Mimbrane’s sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendage to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.
-Feet Mimbranes: Your [feet] are hot and soaked, covered in your indignant Mimbranes’ sexual fluids. The constant lust-inducing sweat is pushing out a powerful scent of strawberry lust that is unrelenting in its teasing. You’re tempted to expose the appendages to the open air just to find a reprieve, but know that you would only be unleashing a kraken of carnal might.
-Head Mimbrane: You’ve lost count how many times you’ve wiped sweat from your brow. There’s no escape from the outraged Mimbrane’s angry revolt as it coats your [face] and head in its seemingly limitless sexual sweat. Constantly you fan away building clouds of strawberry perspiration before they can further poison you with their wanton instincts.
-Sweating Mimbranes
-//These messages pertain to Mimbranes that the PC has asked to voluntarily sweat. They appear less frequently than hungry and mutinous Mimbrane messages.
-Penis Mimbrane: The ever-present moist spot on your {lowergarment} is the telltale sign that your [cock] is absolutely soaked in oily, sexual sweat. The Mimbrane member occasionally rubs against your inner thighs or slides up your waist, tickling you with moist perversion while simultaneously arousing you with each well-lubricated stroke.
-Vagina Mimbrane: The pinkish haze around your groin about masks the constant dripping of Mimbrane sweat pouring out and around your [pussy]. Your gait blends the perspiration all along your midsection, ensuring your oily perplexion doesn’t go to waste. 
-Ass Mimbrane: Coated in oily Mimbrane persuasion, your [ass] no longer seems to form any sort of traction against your [armor]. Instead, each of your steps merely glides each cheek against the surface, tantalizing you with each whimsical caress. Occasionally small pink clouds of moist, humid, dense lust will escape out into the open, showing a fairly clear trail of where you’ve been. You suspect the parasitic [asshole] is enjoying itself.
-Scrotum Mimbrane: It’s actually surprising how comfortable a friendly bath-of-sorts in Mimbrane lubricant can feel compared to when its done in an aggressive fashion. A curtain of oily, tingly lust drapes around your [balls], causing them to effortlessly glide about in your [armor]. The typically oppressive humid shroud that comes as a result of this parasitic perspiration is more pleasant to you as well. Though you still aren’t completely immune to just how much the ongoing oil massage turns you on... 
-Breasts Mimbrane: The amusement from having your [fullchest] constantly covered in oily Mimbrane seat hasn’t gotten old to you yet. Your bosom glides freely about in your {uppergarment}, seeming to not even understand the meaning of the word “friction.” Not only that, but occasional clouds of strawberry-scented salaciousness escape your garments and tickle your senses.
-Hand Mimbrane: You hadn’t counted on the expert control your hand-bound Mimbrane would impart on its oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapon in combat, while refusing to abandon your moist sheen. It’s an impressive feat.
-Hands Mimbranes: You hadn’t counted on the expert control your hand-bound Mimbranes would impart on their oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapons in combat, while refusing to abandon your moist sheen. It’s an impressive feat.
-Foot Mimbrane: Blissful confusion is a good description for what your [foot] feels its going through. The Mimbrane-covered extremity is swimming in the parasite’s love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creature’s work.
-Feet Mimbranes: Blissful confusion is a good description for what your [feet] feel they are going through. The Mimbrane-covered extremities are swimming in the parasites’ love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creatures’ work.
-Head Mimbrane: You continue to enjoy the passionate sheen you get from the neverending downpour of oily Mimbrane sweat running down your [face]. Even your [lips] glint in the sunlight, their {lipcolor} color mixing with the lightly pink fluid. Any worries that your head would be in a 24 hour sauna melt away by how the almost eerily refreshing perspiration makes you feel. The clouds of carnality that you shed seem to have a larger effect on your surroundings than they do you. 
-Breathing Mimbranes
-//These scenes can only occur when the PC is waking from sleep. They apply only to Mimbranes with a trust level anywhere from 0 to 2. These have a very low frequency.
-Penis Mimbrane: An odd sensation on your [cockhead] drags you out of the haze of sleep you were only slowly stepping out from. For a moment, you thought you caught your urethra widening on its own before returning to normal. You instead figure you just need to get moving around or something.
-Vagina Mimbrane: The experience of your [vagina] opening and closing on its own bursts you out from sleep. You could have sworn you felt a faint movement of air around your orifice. However, you find nothing unusual upon inspection.
-Ass Mimbrane: A sudden, brief dilation of your [asshole] forces you to bolt up out of tender slumber. You grope around to try and find anything to explain what happened, but find nothing. Must have been an odd dream or something.
-Scrotum Mimbrane: When an odd feeling of air moving around and possibly into your [balls] hits you, sleep gets thrown out immediately. You find nothing of note upon inspection, however. You decide to ignore the potential sleep-induced hallucination. 
-Breasts Mimbrane: Your [nipples] feel as if they were expanding slightly, pushing a slight bit of air within them. The faint sensation is enough to kick you from the lingering bits of sleep you were enjoying to examine them. You find nothing out of the ordinary. 
-Hand Mimbrane: Air seems to inexplicably move in and around the palm of your hand, shocking you out of your half-awake state. Upon inspection, however, you come across nothing strange. 
-Hands Mimbranes: Your hands feel as if they were drawing in a little bit of air, a feeling strange enough to hurl you out into full consciousness. They both feel and look fine, however. You chalk it up to your waking mind or something.
-Foot Mimbrane: Some air tickles your toes and seems to seep into your foot right below them. The feeling is strange enough that you tumble down from sleep’s embrace to find the culprit. But you leave empty-handed, unable to find anything but your [foot]. 
-Feet Mimbranes: Air brushes past your toes and into both your [feet], batting you out of the park and into consciousness. You can’t help but try and find what is going on, but there’s nothing to be found. You figure your sheets must have tickled your feet or something.
-Head Mimbrane: An otherwise normal morning of sleeping in runs into a complication. It seems as if air were seeping into your [lips] of all places just as you were taking a breath! However, no amount of pawing and pulling at your mouth cushions reveals a damn thing. You figure its just time to wake up.  
-Friendly Mimbranes
+//Friendly Mimbranes
 //These scenes can occur during any transitions. They apply only to Mimbranes with a trust level of 3 or 4. They have a low frequency and only one can occur at any given time.
 Penis Mimbrane:
 A bizarre stirring in your {lowergarment} catches your attention. Your [cock] is attempting to poke out into the open air, pushed along by a particularly curious Mimbrane. {Nice: “It’s a little embarrassing, but no one seems to notice. You politely ask the parasite to stow back away, to which it cheerily chirps its compliance.”/Mischievous: “It’s actually quite amusing seeing your trouser snake soaking in the scenery. You let it bob around freely for a while before it eventually returns to its lair.”/Mean: “You huff angrily, grabbing the cock and shoving it back into your clothes. You don’t have the patience for such irritations.”}
