@@ -141,6 +141,15 @@ public var mimbraneEffects:Array =
 	"Mimbrane Face"
 ];
 
+public var regularFeedMimbranes:Array =
+[
+	"Mimbrane Cock",
+	"Mimbrane Pussy",
+	"Mimbrane Ass",
+	"Mimbrane Boobs",
+	"Mimbrane Face",
+];
+
 public var mimbraneDebug:Boolean = true;
 
 // Figure out the total number of attached mimbranes
@@ -226,6 +235,59 @@ public function hasFeedableMimbranes():Boolean
 		}
 	}
 	return false;
+}
+
+/**
+ * "Feed" any available mimbranes that are eligible to recieve ~nutrition~
+ * target selects the "grouping" that feeding will apply to; "all" or "regular"
+ * "all" applies to all currently attached mimbranes
+ * "regular" applies to only mimbranes that fall into the bracket of "regular sexytimes activity contact"
+ */
+public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
+{
+	if (target == "all")
+	{
+		for (var i:int = 0; i < mimbraneEffects.length; i++)
+		{
+			feedAMimbrane(mimbraneEffects[i], feedValue);
+		}
+	}
+	else if (target == "regular")
+	{
+		for (var i:int = 0; i < regularFeedMimbranes.length; i++)
+		{
+			feedAMimbrane(regularFeedMimbranes[i], feedValue);
+		}
+	}
+	else if (target == "cock" || target == "dick")
+	{
+		feedAMimbrane("Mimbrane Cock", feedValue);
+	}
+	else if (target == "pussy" || target == "vagina" || target == "vag")
+	{
+		feedAMimbrane("Mimbrane Pussy", feedValue);
+	}
+	else if (target == "ass" || target == "butt" || target == "asshole" || target == "butthole")
+	{
+		feedAMimbrane("Mimbrane Ass", feedValue);
+	}
+	else if (target == "mouth" || target == "face" || target == "throat")
+	{
+		feedAMimbrane("Mimbrane Face", feedValue);
+	}
+	else
+	{
+		throw new Error("target property string was an unexpected value. Only 'all', 'regular', 'cock', 'vag', 'ass' or 'mouth' are supported.");
+	}
+}
+
+public function feedAMimbrane(effectName:String, feedValue:int = 1):void
+{
+	if (pc.hasStatusEffect(effectName) && pc.statusEffectv2(effectName) > 0)
+	{
+		pc.setStatusValue(effectName, 2, 0);
+		pc.setStatusValue(effectName, 3, pc.statusEffectv3(effectName) + feedValue);
+	}
 }
 
 public function mimbranesIncreaseDaysSinceFed():void
@@ -3335,36 +3397,222 @@ public function unlockMimbraneFacePiercingCustomisation():void
 
 //Feeding
 //Requires same lust as masturbation 
-Feed with Cock, Cum
-Feeding time’s come early to the {ship name}. Your [cock] is ready for some manual milking, dribbling a little [cumColor] pre to help things along. You talk a little to your parasite{parasites}, cluing them in to your actions working for {its/their} favor as opposed to just another extraneous act of self-pleasure. It seems to do the trick; {your body seems/parts of your body seem} to be trembling a bit in anticipation. Removing your [armor] is essentially the alert to get ready.
-If ever there were a time to dust off a handy “master masturbation” joke, now would be the time. Rare is the individual that can overcome your sexual savvy, and you’re just as proficient at getting what you want out of yourself. A deft touch and skilled stroke works out some [cumtype] gold from your well in record time. {If above average cum production “It isn’t quite up to your typical standards of production, but let no one say you aren’t conservative when necessary.”} Few would cotton to that as an accomplishment, but you aren’t choking the chicken for the pleasure today. 
-No one worth worrying about is watching you anyway.
-{Penis Mimbrane}Your [cock] has little trouble helping itself to its own creation. You can feel the inner rim of your urethra become remarkably sensitive. [CumTemp] jism is seeping right into your tip. It’s indescribable; the sensation of your [cockhead] moving of its own accord will never be something you can truly get accustomed to. The Mimbrane member gets its meager fill in just a few seconds, rejuvenation coursing down through the fiber of your rod. 
-{Hand Mimbrane}A five-fingered bandit uses its prime location to go right for the [cumColor] goodness. Indeed, the Mimbrane-controlled hand forces an open palm to your [cockhead] like a thirsty spirit to an inviting spigot on a blazing summer’s day. It’s one thing to watch the miniature mouthfuls disappear into the unseen parasite’s gullet. It’s an entirely different thing to feel it. Each gulp pulses through your extremity as if it were being cleansed. Your fingertips waver a little as the creature finishes its meal, a sign that its undeniably satiated no doubt.
-{Both Hand Mimbranes}A flurry of ten fingers work their way in towards your [cockhead], eager to sample your latest batch. For a moment you’re worried a fight could break out between ol’ Leftie and Righty, but instead the parasites intertwine your digits. Figures. You’ve never known the creatures to really compete in any fashion. Your conjoined palms hover just above and around your prick, allowing for both tiny mouths to get at the action. Each of their miniature gulps is a cleansing pulse that flies through your extremities and seemingly out your tips. Those tips gently rapping against your knuckles assures you that the sensation isn’t only in your head.
-{Pussy Mimbrane}Two helpful fingers deliver a healthy dollop of cum south to an anxious [pussy]. The Mimbrane maw can hardly contain itself, your labia feeling as though it’s tugging at you just to get closer to your descending digits. Your pussy sucks on your fingers, absorbing the [cumFlavor] treat into its feminine flesh. It’s a bizarre experience every time that you may never be able to just get completely adjusted to. The reinvigoration that pulses through your gentials more than makes up for it, though.
-{Ass Mimbrane}Your [ass] spreads its cheeks wide once you reach around to deliver the Mimbrane its treat, giving you pause. The rear-mounted parasite has always seemed overly enthusiastic – perhaps more than you’d like at times like this. Your [asshole] is loose and inviting, practically panting like a dog at dinnertime. It’s admittedly a little cute even if you’d rather never admit to it. The second your [cumColor]-colored fingers get close to your pucker, however, your buttocks spring down on them like a trap. The parasite savors its catch, absorbing every last drop right into its excited starfish. The Mimbrane releases your hand once satisfied, which you yank back with gusto. Maybe cute isn’t the word you’d use again...
-{Scrotum Mimbrane}A little [cumFlavor] savoriness runs down the length of your [cock], much to the satisfaction of your [sack]. The Mimbrane stares up the savory morsel, keen on its arrival. But it slows to a stop just short of the parasite’s hungry maw. The creature desperately manipulates your [balls], trying to coerce the liquid down the remaining homestretch. Unable to ignore its plight – the undulating and determined stretching of the creature’s mouth was actually quite alarming – you push the [cum] down into the parasite’s happy mouth. It gives you an affectionate suck before you can draw your fingers back up.
-{Breast Mimbrane}Your [fullchest] jiggle with excitement as [cum]-soaked fingers draw their way. The Mimbrane mounds seem to want to burst from your chest just to get closer to the [cumFlavor] feast. You press your hands against your [nipples], sighing at the strangely pleasant suckling against your digits. {if nipplecunts or lipples “You’re almost worried your hands will get sucked right in.”} Breastflesh massages against your grasp. The parasite has essentially turned the tables on typical breast features, groping and nursing in the reserve direction. Not that you mind so much when it still feels just as nice.
-{Foot Mimbrane}Wiggling toes alert you to your hungry [foot] or more appropriately your hungry Mimbrane. You bend your [leg] to bring the parasite closer, getting a clear view of its hungry maw hiding underneath your digits. A finger’s worth of [cum] is plenty for the meager appetite. Toes curl around you once the offerings in place. Luckily, the angle keeps the parasite from any meaningful grip. It thanks you with a happy chirp, but the pleasurable sensation sinking through your foot with each of its tiny gulps is thanks enough.
-{Both Feet Mimbranes}Your [feet] wiggle their toes anxiously. The Mimbranes are afraid you’d have forgotten them down south. Involuntary body movement isn’t easy to overlook, though. You bend both [legs] to draw the parasites in closer while dipping your fingers in [cum]. Your digits part ways to reveal both parasites’ maws, eager to down their [cumFlavor] treat. Their angles keep the creatures from grasping your fingers with their toes, but they at least try and pet you in some bizarre show of affection. The gesture isn’t lost on you, nor is their thankful chirp.
-{Head Mimbrane}Trembling along your [face] lets you know that your head-mounted Mimbrane is ready and raring to partake from your [cumFlavor] handout. Your [lips] pull against you, squeaking quietly like a kitten wanting every last ounce of its mother’s attention. It’s a blessing the parasite doesn’t have control over your entire mouth; it’d probably be lashing out with your tongue, too. You bring the [cum]-soaked tip of your finger up to your mouth. The Mimbrane puckers your lips, not wanting to suffer through your slow approach. It feels as if you were applying lipstick for a moment, but the overwhelming sensation of your cum soaking into your skin dashes that relation in short order. Instead your face feels tingly and reinvigorated. 
-With {your Mimbrane/both Mimbranes/all of your Mimbranes} satisfied, you retrieve your [armor] and go back to something a little more self-gratifying.
-Feed with Vagina, Femspunk
-You may not have a dinner bell, but comforting words seem to have the same effect on your body-mounted Mimbrane(s). The {parasite perks up/parasites perk up} at your offer, shedding the usual facsimile of normalcy to let you know {it’s/they’re} more than receptive. You can’t help but be a little entertained by the innocent squeaks and shuffling as you remove your [armor]. The prospect of rewarded attention seems to overcome much.
-Laying your hand to your [pussy] reveals shockingly sensitive skin. {if pussy Mimbrane “The Mimbrane has prepped itself to hurry along your wanton finger massage”}{else “Mimbranes seem to have the innate ability to make your tender spots all the more delicate.”} The creatures have little interest in foreplay and are more than capable of exaggerating your stimulation when they aren’t trying to hide. Your [clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices {dripping/flowing/gushing/bursting}. 
-Induced or not, it’s a little disconcerting.
-{Pussy Mimbrane}Your [pussy] needn’t work hard for its take of your offering. The Mimbrane maw undulates slowly, absorbing what it would consider a hearty portion directly back into your pussy. It’s fairly breathtaking. Were you pressed to describe the feeling, “deep breathing” may be the most adequate description. Each little intake of femspunk back into your canyon is a radiating wave of bliss, crashing into your [clit]. The parasite exaggerates the movement, making it that much more difficult to even consider overlooking the provocative experience.
-{Hand Mimbrane}The parasite ensconced over your hand helps itself while you make with the self-loving. It isn’t entirely clear who’s in control here, but either way your palm gets close enough to the goods for the Mimbrane to help itself. A charge of tingling clarity hits you with each tiny gulp, fueling your own actions further. Its only when the parasite finally fills to its meager brim do you come down from your brief sexual high.
-{Both Hand Mimbranes}Both of your hands get in on the action, the Mimbrane-covered extremities anxious to partake in your feminine delight. You’re left questioning whether its them or you that’s suddenly turned this into a two-hand job. The ordeal fades from your mind, however, once the creatures start to indulge in your sexual fluids. Invigorating crests of pleasure march right through to your fingertips with each miniature gulp the parasites take. 
-{Penis Mimbrane}Your eager [cock] can’t help but feel a tad betrayed as you milk your coosh for all its worth. The Mimbrane member is too engorged on blood, rocking through your ever-ascending sexual high, to bend down towards the {brook/stream/river/torrent} flowing below it. You don’t leave the parasitic rod waiting too long, however, dabbing your fingers in your juices and rubbing them generously onto your [cockhead]. Gentle squeaks let you know how content the Mimbrane is, and its absorption of your fluids fills your dick with streams of vibrant tidings. It’s a small wonder you don’t lose another load right there.
-{Ass Mimbrane}A stroll down your taint leads to your [ass], clearly enthusiastic to get a piece of your delightful feminine broth. The Mimbrane spreads your buttocks almost uncomfortably wide as a couple of femspunk-coated fingers wind their way close. The parasite is presenting your [asshole] much like a pet’s whimpering mouth mere inches from a treat. Once you’re within range, it traps your hand with an unusually strong grasp. You try and pull your hand from from the cheeky constraint, but are subdued by the awe-inspiring sensations radiating from your pucker. Each little suckle and absorption of the enthusiastic Mimbrane is a turbocharged sexual pulse that defies expectations. It finishes its meal in short time, releasing your hand as it chirps playfully. 
-{Scrotum Mimbrane}Your [sack] hangs above your [pussy], the Mimbrane frustrated that its placement of features renders it incapable of easily lapping at your feminine fountain. The squirming [balls] amuse and titillate you for a moment before you eventually cave in, delivering some of the coveted cargo all over its miniature, subdued face. The parasite delights in the feast, each of its tiny indulgences tickling your senses with comfortable blasts of passion.
-{Breast Mimbrane}Dripping anticipation pours from your [fullchest]. The Mimbrane mounds are anxious for a taste of your pussy treats, bouncing and chirping softly. A moist hand delivers them what they seek, unsure which of your [nipples] to go to first. It makes little difference to the parasite so long as you eventually choose one. Your breast pushes back against your tender touch, massaging your hand as it sucks up your feminine fluids. It almost becomes a grope tug-of-war, though neither of you are all that competitive about it.
-{Foot Mimbrane}If it had its way, your [foot] would very well dive into your [pussy], gorging itself on your female fountain. Too timid to try, the Mimbrane instead wiggles your toes impatiently to try and get your attention. The show works, as you bend your [leg] and bring the extremity closer to the action. Its angle keeps it from merely sucking from your puddle of femininity, but this inconvenience is quickly forgotten once you bring some liquid encouragement directly to its tiny mouth. You smear it vigorously under your toes, finding it odd for a brief moment before pulses of tingling comfort melt your regret away.
-{Both Feet Mimbranes}Your [feet] wiggle anxiously, the Mimbranes hoping you won’t overlook them. You imagine they forget how hard it is to ignore any involuntary action thrust upon you. They aren’t kept waiting long as you bend your [legs] inward, presenting their infinitesimale mouths hiding under your toes, eager for a drop of your feminine fluids. Small dabs of femspunk are more than enough for their meager appetites. Each of their little indulgences tickles you down to your core. From toe to heel, the parasites push a surprisingly dense sensation of sexual invigoration right through you.
-{Head Mimbrane}Your [face] feels as though it wants to pull off of your skull at just the thought of getting to your pussy juice. Its [lips] tremble pathetically. The Mimbrane acts as if it’d gone eons without food. You can’t help but smile at its melodrama, causing it to squeak helplessly at your apathy. The parasite purses your lips as you draw a couple fingerfuls of pussy nectar closeby, dying to get closer to the tiny oasis. Your fingers rub your face cushions, delighting the parasite to no end. The sensation of it absorbing your sexual vapors into your skin feels as if you were kissing pure desire. 
-With {your Mimbrane/both Mimbranes/all of your Mimbranes} satisfied, you retrieve your [armor] and go back to something a little more self-gratifying.
+//Feed with Cock, Cum
+public function feedMimbranesWithCock():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("Feeding time’s come early to the ship. Your [pc.cock] is ready for some manual milking, dribbling a little [pc.cumColor] pre to help things along. You talk a little to your parasite");
+	if (attachedMimbranes() > 1) output("s");
+	output(", cluing them in to your actions working for");
+	if (attachedMimbranes() == 1) output(" its");
+	else output(" their");
+	output(" favor as opposed to just another extraneous act of self-pleasure. It seems to do the trick;");
+	if (attachedMimbranes() == mimbraneEffects.length) output(" your body seems");
+	else output(" parts of your body seem");
+
+	output(" to be trembling a bit in anticipation. Removing your [pc.armor] is essentially the alert to get ready.");
+	output("\n\nIf ever there were a time to dust off a handy ‘master masturbation’ joke, now would be the time. Rare is the individual that can overcome your sexual savvy, and you’re just as proficient at getting what you want out of yourself. A deft touch and skilled stroke works out some [pc.cumtype] gold from your well in record time.");
+	if (pc.cumQ() >= 500) output(" It isn’t quite up to your typical standards of production, but let no one say you aren’t conservative when necessary.");
+	output(" Few would cotton to that as an accomplishment, but you aren’t choking the chicken for the pleasure today. ");
+
+	output("\n\nNo one worth worrying about is watching you anyway.");
+
+	// Cock Mimbrane
+	if (pc.hasStatusEffect("Mimbrane Cock"))
+	{
+		output("\n\nYour [pc.cock] has little trouble helping itself to its own creation. You can feel the inner rim of your urethra become remarkably sensitive. [pc.CumTemp] jism is seeping right into your tip. It’s indescribable; the sensation of your [pc.cockhead] moving of its own accord will never be something you can truly get accustomed to. The Mimbrane member gets its meager fill in just a few seconds, rejuvenation coursing down through the fiber of your rod. ");
+	}
+
+	// 1 hand mimbrane
+	if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right")) || pc.hasStatusEffect("Mimbrane Hand Right") && !pc.hasStatusEffect("Mimbrane Hand Left"))
+	{
+		output("\n\nA five-fingered bandit uses its prime location to go right for the [pc.cumColor] goodness. Indeed, the Mimbrane-controlled hand forces an open palm to your [pc.cockhead] like a thirsty spirit to an inviting spigot on a blazing summer’s day. It’s one thing to watch the miniature mouthfuls disappear into the unseen parasite’s gullet. It’s an entirely different thing to feel it. Each gulp pulses through your extremity as if it were being cleansed. Your fingertips waver a little as the creature finishes its meal, a sign that its undeniably satiated no doubt.");
+	}
+	// 2 hand mimbranes
+	else if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
+	{
+		output("\n\nA flurry of ten fingers work their way in towards your [pc.cockhead], eager to sample your latest batch. For a moment you’re worried a fight could break out between ol’ Leftie and Righty, but instead the parasites intertwine your digits. Figures. You’ve never known the creatures to really compete in any fashion. Your conjoined palms hover just above and around your prick, allowing for both tiny mouths to get at the action. Each of their miniature gulps is a cleansing pulse that flies through your extremities and seemingly out your tips. Those tips gently rapping against your knuckles assures you that the sensation isn’t only in your head.");
+	}
+
+	// Vagoo
+	if (pc.hasStatusEffect("Mimbrane Pussy"))
+	{
+		output("\n\nTwo helpful fingers deliver a healthy dollop of cum south to an anxious [pc.pussy]. The Mimbrane maw can hardly contain itself, your labia feeling as though it’s tugging at you just to get closer to your descending digits. Your pussy sucks on your fingers, absorbing the [pc.cumFlavor] treat into its feminine flesh. It’s a bizarre experience every time that you may never be able to just get completely adjusted to. The reinvigoration that pulses through your gentials more than makes up for it, though.");
+	}
+
+	// Mimbrane ass
+	if (pc.hasStatusEffect("Mimbrane Ass"))
+	{
+		output("\n\nYour [pc.ass] spreads its cheeks wide once you reach around to deliver the Mimbrane its treat, giving you pause. The rear-mounted parasite has always seemed overly enthusiastic – perhaps more than you’d like at times like this. Your [pc.asshole] is loose and inviting, practically panting like a dog at dinnertime. It’s admittedly a little cute even if you’d rather never admit to it. The second your [pc.cumColor]-colored fingers get close to your pucker, however, your buttocks spring down on them like a trap. The parasite savors its catch, absorbing every last drop right into its excited starfish. The Mimbrane releases your hand once satisfied, which you yank back with gusto. Maybe cute isn’t the word you’d use again....");
+	}
+
+	// Mimbrane Balls
+	if (pc.hasStatusEffect("Mimbrane Balls"))
+	{
+		output("\n\nA little [pc.cumFlavor] savoriness runs down the length of your [pc.cock], much to the satisfaction of your [pc.sack]. The Mimbrane stares up the savory morsel, keen on its arrival. But it slows to a stop just short of the parasite’s hungry maw. The creature desperately manipulates your [pc.balls], trying to coerce the liquid down the remaining homestretch. Unable to ignore its plight – the undulating and determined stretching of the creature’s mouth was actually quite alarming – you push the [pc.cum] down into the parasite’s happy mouth. It gives you an affectionate suck before you can draw your fingers back up.");
+	}
+
+	// Mimbrane boobs
+	if (pc.hasStatusEffect("Mimbrane Boobs"))
+	{
+		output("\n\nYour [pc.fullchest] jiggle with excitement as [pc.cum]-soaked fingers draw their way. The Mimbrane mounds seem to want to burst from your chest just to get closer to the [pc.cumFlavor] feast. You press your hands against your [pc.nipples], sighing at the strangely pleasant suckling against your digits."
+		if (pc.hasNipplecunts() || pc.hasLipples()) output(" You’re almost worried your hands will get sucked right in.");
+		output(" Breastflesh massages against your grasp. The parasite has essentially turned the tables on typical breast features, groping and nursing in the reserve direction. Not that you mind so much when it still feels just as nice.");
+	}
+
+	// 1 Foot Mimbrane
+	if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right")) || pc.hasStatusEffect("Mimbrane Foot Right") && !pc.hasStatusEffect("Mimbrane Foot Left"))
+	{
+		output("\n\nWiggling toes alert you to your hungry [pc.foot] or more appropriately your hungry Mimbrane. You bend your [pc.leg] to bring the parasite closer, getting a clear view of its hungry maw hiding underneath your digits. A finger’s worth of [pc.cum] is plenty for the meager appetite. Toes curl around you once the offerings in place. Luckily, the angle keeps the parasite from any meaningful grip. It thanks you with a happy chirp, but the pleasurable sensation sinking through your foot with each of its tiny gulps is thanks enough.");
+	}
+	// 2 feeties mimbranes
+	else if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
+	{
+		output("\n\nYour [pc.feet] wiggle their toes anxiously. The Mimbranes are afraid you’d have forgotten them down south. Involuntary body movement isn’t easy to overlook, though. You bend both [pc.legs] to draw the parasites in closer while dipping your fingers in [pc.cum]. Your digits part ways to reveal both parasites’ maws, eager to down their [pc.cumFlavor] treat. Their angles keep the creatures from grasping your fingers with their toes, but they at least try and pet you in some bizarre show of affection. The gesture isn’t lost on you, nor is their thankful chirp.");
+	}
+
+	// _____ _   _ ___ ____    ___ ____   __        ___   _ _____ ____  _____   ___ 
+	//|_   _| | | |_ _/ ___|  |_ _/ ___|  \ \      / / | | | ____|  _ \| ____| |_ _|
+	//  | | | |_| || |\___ \   | |\___ \   \ \ /\ / /| |_| |  _| | |_) |  _|    | | 
+	//  | | |  _  || | ___) |  | | ___) |   \ V  V / |  _  | |___|  _ <| |___   | | 
+	//  |_| |_| |_|___|____/  |___|____/     \_/\_/  |_| |_|_____|_| \_\_____| |___|
+	//                                                                              
+	// ____  _____ ____   ____ _____ _   _ ____  _____ ____    ___ _   _ _____ ___  
+	//|  _ \| ____/ ___| / ___| ____| \ | |  _ \| ____|  _ \  |_ _| \ | |_   _/ _ \ 
+	//| | | |  _| \___ \| |   |  _| |  \| | | | |  _| | | | |  | ||  \| | | || | | |
+	//| |_| | |___ ___) | |___| |___| |\  | |_| | |___| |_| |  | || |\  | | || |_| |
+	//|____/|_____|____/ \____|_____|_| \_|____/|_____|____/  |___|_| \_| |_| \___/ 
+	//                                                                              
+	// ___ _   _ ____    _    _   _ ___ _______   __
+	//|_ _| \ | / ___|  / \  | \ | |_ _|_   _\ \ / /
+	// | ||  \| \___ \ / _ \ |  \| || |  | |  \ V / 
+	// | || |\  |___) / ___ \| |\  || |  | |   | |  
+	//|___|_| \_|____/_/   \_\_| \_|___| |_|   |_|  
+	//                                              
+
+	// head mimbrane
+	if (pc.hasStatusEffect("Mimbrane Face"))
+	{
+		output("\n\nTrembling along your [pc.face] lets you know that your head-mounted Mimbrane is ready and raring to partake from your [pc.cumFlavor] handout. Your [pc.lips] pull against you, squeaking quietly like a kitten wanting every last ounce of its mother’s attention. It’s a blessing the parasite doesn’t have control over your entire mouth; it’d probably be lashing out with your tongue, too. You bring the [pc.cum]-soaked tip of your finger up to your mouth. The Mimbrane puckers your lips, not wanting to suffer through your slow approach. It feels as if you were applying lipstick for a moment, but the overwhelming sensation of your cum soaking into your skin dashes that relation in short order. Instead your face feels tingly and reinvigorated.");
+	}
+
+	output("\n\nWith");
+	if (attachedMimbranes() == 1) output(" your Mimbrane");
+	else if (attachedMimbranes() == 2) output(" both Mimbranes");
+	else output(" all of your Mimbranes");
+	output(" satisfied, you retrieve your [pc.armor] and go back to something a little more self-gratifying.");
+
+	pc.orgasm();
+	pc.orgasm();
+
+	mimbraneFeed("all", 3);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//Feed with Vagina, Femspunk
+public function feedMimbranesWithPussy():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("You may not have a dinner bell, but comforting words seem to have the same effect on your body-mounted Mimbrane");
+	if (attachedMimbranes() > 1) output("s");
+	output(". The ");
+	if (attachedMimbranes() == 1) output(" parasite perks up");
+	else output(" parasites perk up");
+	output(" at your offer, shedding the usual facsimile of normalcy to let you know");
+	if (attachedMimbranes() == 1) output(" it’s");
+	else output(" they’re");
+	output(" more than receptive. You can’t help but be a little entertained by the innocent squeaks and shuffling as you remove your [pc.armor]. The prospect of rewarded attention seems to overcome much.");
+
+	output("\n\nLaying your hand to your [pc.pussy] reveals shockingly sensitive skin.");
+	if (pc.hasStatusEffect("Mimbrane Pussy")) output(" The Mimbrane has prepped itself to hurry along your wanton finger massage");
+	else output(" Mimbranes seem to have the innate ability to make your tender spots all the more delicate.");
+	output(" The creature");
+	if (attachedMimbranes() > 1) output("s have"); 
+	else output(" has");
+	output(" little interest in foreplay and");
+	if (attachedMimbranes() > 1) output(" are");
+	else output(" is");
+	output(" more than capable of exaggerating your stimulation when they aren’t trying to hide. Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices");
+	if (pc.vaginalWetness <= 1) output(" dripping");
+	else if (pc.vaginalWetness == 2) output(" flowing");
+	else if (pc.vaginalWetness <= 3) output(" gushing");
+	else output(" bursting.");
+
+	output("\n\nInduced or not, it’s a little disconcerting.");
+
+	if (pc.hasStatusEffect("Mimbrane Pussy"))
+	{
+		output("\n\nYour [pc.pussy] needn’t work hard for its take of your offering. The Mimbrane maw undulates slowly, absorbing what it would consider a hearty portion directly back into your pussy. It’s fairly breathtaking. Were you pressed to describe the feeling, “deep breathing” may be the most adequate description. Each little intake of femspunk back into your canyon is a radiating wave of bliss, crashing into your [pc.clit]. The parasite exaggerates the movement, making it that much more difficult to even consider overlooking the provocative experience.");
+	}
+
+	if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right")) || (pc.hasStatusEffect("Mimbrane Hand Right") && !pc.hasStatusEffect("Mimbrane Hand Left")))
+	{
+		output("\n\nThe parasite ensconced over your hand helps itself while you make with the self-loving. It isn’t entirely clear who’s in control here, but either way your palm gets close enough to the goods for the Mimbrane to help itself. A charge of tingling clarity hits you with each tiny gulp, fueling your own actions further. Its only when the parasite finally fills to its meager brim do you come down from your brief sexual high.");
+	}
+	else if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
+	{
+		output("\n\nBoth of your hands get in on the action, the Mimbrane-covered extremities anxious to partake in your feminine delight. You’re left questioning whether its them or you that’s suddenly turned this into a two-hand job. The ordeal fades from your mind, however, once the creatures start to indulge in your sexual fluids. Invigorating crests of pleasure march right through to your fingertips with each miniature gulp the parasites take. ");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Cock"))
+	{
+		output("\n\nYour eager [pc.cock] can’t help but feel a tad betrayed as you milk your coosh for all its worth. The Mimbrane member is too engorged on blood, rocking through your ever-ascending sexual high, to bend down towards the");
+		if (pc.vaginalWetness <= 1) output(" brook");
+		else if (pc.vaginalWetness == 2) output(" stream");
+		else if (pc.vaginalWetness <= 3) output(" river");
+		else output(" torrent");
+		output(" flowing below it. You don’t leave the parasitic rod waiting too long, however, dabbing your fingers in your juices and rubbing them generously onto your [pc.cockhead]. Gentle squeaks let you know how content the Mimbrane is, and its absorption of your fluids fills your dick with streams of vibrant tidings. It’s a small wonder you don’t lose another load right there.");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Ass"))
+	{
+		output("\n\nA stroll down your taint leads to your [pc.ass], clearly enthusiastic to get a piece of your delightful feminine broth. The Mimbrane spreads your buttocks almost uncomfortably wide as a couple of femspunk-coated fingers wind their way close. The parasite is presenting your [pc.asshole] much like a pet’s whimpering mouth mere inches from a treat. Once you’re within range, it traps your hand with an unusually strong grasp. You try and pull your hand from from the cheeky constraint, but are subdued by the awe-inspiring sensations radiating from your pucker. Each little suckle and absorption of the enthusiastic Mimbrane is a turbocharged sexual pulse that defies expectations. It finishes its meal in short time, releasing your hand as it chirps playfully.");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Balls"))
+	{
+		output("\n\nYour [pc.sack] hangs above your [pc.pussy], the Mimbrane frustrated that its placement of features renders it incapable of easily lapping at your feminine fountain. The squirming [pc.balls] amuse and titillate you for a moment before you eventually cave in, delivering some of the coveted cargo all over its miniature, subdued face. The parasite delights in the feast, each of its tiny indulgences tickling your senses with comfortable blasts of passion.");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Boobs"))
+	{
+		output("\n\nDripping anticipation pours from your [pc.fullchest]. The Mimbrane mounds are anxious for a taste of your pussy treats, bouncing and chirping softly. A moist hand delivers them what they seek, unsure which of your [pc.nipples] to go to first. It makes little difference to the parasite so long as you eventually choose one. Your breast pushes back against your tender touch, massaging your hand as it sucks up your feminine fluids. It almost becomes a grope tug-of-war, though neither of you are all that competitive about it.");
+	}
+
+	if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right")) || (pc.hasStatusEffect("Mimbrane Foot Right") && !pc.hasStatusEffect("Mimbrane Foot Left")))
+	{
+		output("\n\nIf it had its way, your [pc.foot] would very well dive into your [pc.pussy], gorging itself on your female fountain. Too timid to try, the Mimbrane instead wiggles your toes impatiently to try and get your attention. The show works, as you bend your [pc.leg] and bring the extremity closer to the action. Its angle keeps it from merely sucking from your puddle of femininity, but this inconvenience is quickly forgotten once you bring some liquid encouragement directly to its tiny mouth. You smear it vigorously under your toes, finding it odd for a brief moment before pulses of tingling comfort melt your regret away.");
+	}
+	else if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
+	{
+		output("\n\nYour [pc.feet] wiggle anxiously, the Mimbranes hoping you won’t overlook them. You imagine they forget how hard it is to ignore any involuntary action thrust upon you. They aren’t kept waiting long as you bend your [pc.legs] inward, presenting their infinitesimale mouths hiding under your toes, eager for a drop of your feminine fluids. Small dabs of femspunk are more than enough for their meager appetites. Each of their little indulgences tickles you down to your core. From toe to heel, the parasites push a surprisingly dense sensation of sexual invigoration right through you.");
+	}
+
+	if (pc.hasStatusEffect("Mimbrane Face"))
+	{
+		output("\n\nYour [pc.face] feels as though it wants to pull off of your skull at just the thought of getting to your pussy juice. Its [pc.lips] tremble pathetically. The Mimbrane acts as if it’d gone eons without food. You can’t help but smile at its melodrama, causing it to squeak helplessly at your apathy. The parasite purses your lips as you draw a couple fingerfuls of pussy nectar closeby, dying to get closer to the tiny oasis. Your fingers rub your face cushions, delighting the parasite to no end. The sensation of it absorbing your sexual vapors into your skin feels as if you were kissing pure desire. ");
+	}
+
+	output("\n\nWith");
+	if (attachedMimbranes() == 1) output(" your Mimbrane");
+	else if (attachedMimbranes() == 2) output(" both Mimbranes");
+	else output(" all of your Mimbranes");
+	output(" satisfied, you retrieve your [pc.armor] and go back to something a little more self-gratifying.");
+
+	pc.orgasm();
+	pc.orgasm();
+
+	mimbraneFeed("all", 3);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 Reproduction
 //Once a Mimbrane has maxed out on feedings, it will no longer track days and go into a hunger state. It will still aid other hungry Mimbranes.
 //Reproduction always occurs when the PC is asleep. Unnoticed Reproduction takes place when the PC awakes, normal reproduction takes place in the middle of sleep.
