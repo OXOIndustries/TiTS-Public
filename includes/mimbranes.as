@@ -216,6 +216,18 @@ public function reduceAllMimbraneTrust():void
 	}
 }
 
+public function hasFeedableMimbranes():Boolean
+{
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv2(mimbraneEffects[i]) > 0) return true;
+		}
+	}
+	return false;
+}
+
 public function mimbranesIncreaseDaysSinceFed():void
 {
 	for (var i:int = 0; i < mimbraneEffects.length; i++)
@@ -2943,36 +2955,201 @@ public function mimbraneMenu():void
 {
 	clearOutput();
 	userInterface.showBust("MIMBRANE");
+	clearMenu();
 
 	output("You currently have " + attachedMimbranes() + " Mimbrane");
 	if (attachedMimbranes() > 1) output("s");
 	output "attached to you.");
 
 	output("\n");
+
 	for (var i:int = 0; i < mimbraneEffects.length; i++)
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			output(mimbraneStatusString(mimbraneEffects[i]));
+			output("\n" + mimbraneStatusString(mimbraneEffects[i]));
 		}
+	}
+
+	output("\n\n");
+
+	// Fap/feeding stuff
+	if (hasFeedableMimbranes())
+	{
+		if (pc.lust() < 33)
+		{
+			// Gendered, not enough lust to fap
+			if (pc.hasCock() || pc.hasVagina())
+			{
+				output("You have ");
+				if (attachedMimbranes() == 1) output(" a Mimbrane that is");
+				else output(" Mimbranes that are");
+				output(" ready to feed. However, you aren’t turned on enough to get your juices flowing!");
+			}
+			// Genderless, not enough lust to fap
+			else
+			{
+				output("You have ");
+				if (attachedMimbranes() == 1) output(" a Mimbrane that is");
+				else output(" Mimbranes that are");
+				output(" ready to feed. However, you have no means to feed them!")
+			}
+
+			addDisabledButton(0, "Feed With Cock");
+			addDisabledButton(1, "Feed With Pussy");
+		}
+		else
+		{
+			// FAPS
+			throw new Error("DO STUFF");
+			//[Feed With Cock][Feed With Pussy]
+			if (pc.hasCock()) addButton(0, "Feed With Cock", feedMimbranesWithCock);
+			else addDisabledButton(0, "Feed With Cock");
+
+			if (pc.hasVagina()) addButton(1, "Feed With Pussy", feedMimbranesWithPussy);
+			else addDisabledButton(1, "Feed WIth Pussy");
+		}
+	}
+	//If all Mimbranes are full
+	else
+	{
+		output("You try and interact with your Mimbrane");
+		if (attachedMimbranes() > 1) output("s");
+		output(", but");
+		if (attachedMimbranes() == 1) output(" it doesn’t seem");
+		else output(" they don’t seem");
+		output(" to be interested.");
+		if (attachedMimbranes() == 1) output(" It");
+		else output(" They");
+		output(" must be full.");
+
+		addDisabledButton(0, "Feed With Cock");
+		addDisabledButton(1, "Feed With Pussy");
+	}
+
+	output("\n\n");
+
+	// Ability toggles
+
+	//Unlock Sweating
+	//Unlocked when any Mimbrane hits level three trust. Occurs once, a few hours after hitting level three. Starts toggled off. Toggle disappears if no Mimbranes at level three or four exist.
+	if (highestMimbraneTrust() >= 3)
+	{
+		output("\n\n<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>");
+
+		var sweatText:String = "Toggle Sweat: ";
+		if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
+		{
+			sweatText += "On";
+			output("\nMimbrane sweating is currently <b>Disabled</b>");
+		}
+		else
+		{
+			sweatText += "Off";
+			output("\nMimbrane sweating is currently <b>Enabled</b>");
+		}
+
+		addButton(5, sweatText, toggleMimbraneSweat);
+	}
+	else
+	{
+		addDisabledButton(5, "Toggle Sweat");
+	}
+
+	// Spit attacks
+	if (highestMimbraneTrust() >= 4)
+	{
+		output("\n\n<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>");
+
+		var spitText:String = "Toggle Spit: ";
+		if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
+		{
+			spitText += "On";
+			output("\nSpit attacks are currently <b>Disabled</b>");
+		}
+		else
+		{
+			spitText += "Off";
+			output("\nSpit attacks are currently <b>Enabled</b>");
+		}
+
+		addButton(6, spitText, toggleMimbraneSpit);
+	}
+	else
+	{
+		addDisabledButton(6, "Toggle Spit");
+	}
+
+	// Face customisation
+	if (pc.hasStatusEffect("Mimbrane Face"))
+	{
+		addButton(10, "Face Hide", function():void {
+			clearOutput();
+			userInterface.showBust("MIMBRANE");
+			flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
+			output("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinAdj] tone.");
+			clearMenu();
+			addButton(0, "Back", mimbraneMenu);
+		});
+
+		addButton(11, "Face B.Marks", function():void {
+			clearOutput();
+			userInterface.showBust("MIMBRANE");
+			flags["MIMBRANE_FACE_APPEARANCE"] = 1;
+			output("You ask the Mimbrane on your [pc.face] to disguise its eye bumps to look like beauty marks.");
+			clearMenu();
+			addButton(0, "Back", mimbraneMenu);
+		});
+
+		if (pc.statusEffectv1("Mimbrane Face") >= 4)
+		{
+			output("\nIt's also offered to disguise itself as a set of lip piercings.");
+
+			addButton(11, "Face B.Marks", function():void {
+				clearOutput();
+				userInterface.showBust("MIMBRANE");
+				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
+				output("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
+				clearMenu();
+				addButton(0, "Back", mimbraneMenu);
+			});
+		}
+		else
+		{
+			addDisabledButton(12, "Face Lip Pc.Ing");
+		}
+
+		output("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
+		if (flags["MIMBRANE_FACE_APPEARANCE"] == undefined)
+		{
+			addDisabledButton(10, "Face Hide");
+			output("\nIt's currently hiding itself as much as possible.");
+			output("\nYou could ask it to disguise its eyes as beauty marks.");
+			if (pc.statusEffectv1("Mimbrane Face") >= 4) output("\nYou could also ask it to resemble a pair of lip piercings.");
+		}
+		else if (flags["MIMBRANE_FACE_APPEARANCE"] == 1)
+		{
+			addDisabledButton(11, "Face B.Marks");
+			output("\nIt's currently disguised as beauty marks above your lips.");
+			output("\nYou could ask it to hide itself as much as possible.");
+			if (pc.statusEffectv1("Mimbrane Face") >= 4) output("\nYou could also ask it to resemble a pair of lip piercings.");
+		}
+		else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2)
+		{
+			addDisabledButton(12, "Face Lip Pc.Ing");
+			output("\nIt's eyes currently resemble a pair of lip piercings.");
+			output("\nYou could ask it to hide itself as much as possible.");
+			output("\nYou could also ask it to disguise its eyes as beauty marks.");
+		}
+	}
+	else
+	{
+		addDisabledButton(10, "Face Hide");
+		addDisabledButton(11, "Face B.Marks")
+		addDisabledButton(12, "Face Lip Pc.Ing");
 	}
 }
 
-//Low lust with any feedable Mimbranes  (Masturbation lust requirement needed to feed)
-You have {a Mimbrane that is/Mimbranes that are} ready to feed. However, you aren’t turned on enough to get your juices flowing!
-//Genderless with any feedable Mimbranes  (Masturbation lust requirement needed to feed)
-You have {a Mimbrane that is/Mimbranes that are} ready to feed. However, you have no means to feed them!
-[Feed With Cock][Feed With Pussy][Toggle Sweat][Toggle Spit][Head Customization]
-//If no toggles available and all Mimbranes are full
-You try and interact with your Mimbrane{s}, but {it doesn’t seem/they don’t seem} to be interested. {It/They} must be full.
-Unlock Sweating
-//Unlocked when any Mimbrane hits level three trust. Occurs once, a few hours after hitting level three. Starts toggled off. Toggle disappears if no Mimbranes at level three or four exist.
-An odd sensation accompanied by cheerful chirping seems to be coming from your {Level 3 Mimbrane body part}. Upon investigation, you discover the parasite has made itself sweat. But this isn’t your normal perspiration, this is oily and sweet to the nose. This is the Mimbrane’s natural lust-inducing sweat!
-It seems the parasite is fond enough of you that the little thing is comfortable letting some of its sugary, slightly-red ooze coat your body. The sweat tingles to the touch, turning you on somewhat as time goes on. It doesn’t seem to be nearly as volatile to you as it did when you were under attack by the Mimbrane. Perhaps you could use this against your enemies?
-Before you can consider any further applications of your newfound slickness, the Mimbrane stops pumping its sexual syrup. It squeaks again... Looks like the parasite’s leaving it up to you whether or not you’d like to start coating your body in its sweet sweat.
-<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>
-Toggle Sweating
-//Toggle On
 //{Mimbrane body parts}, if possible, is a list of all applicable Mimbrane body parts. So, it could be
 //	...your [cock] is soaked...
 //	...your [cock] and [pussy] are soaked...
@@ -2980,34 +3157,183 @@ Toggle Sweating
 //	...your [cock], [pussy], [ass], [balls] and [breasts] are soaked...
 //If player has all possible Mimbranes, then it reads
 //	...your entire body is soaked...
-You ask your Mimbrane{s} to sweat. {It cheerfully squeaks its affirmation. /They cheerfully squeak their affirmation. } Little time passes before your {Mimbrane body parts} {is/are} soaked in oily, sensual perspiration.
-//Toggle Off
-You ask your Mimbrane{s} to stop sweating. {It cheerfully squeaks its affirmation. /They cheerfully squeak their affirmation. } Before too long, your body is completely dry and free of the sweet, heady aroma that followed you.
-Unlock Spitting
+public function unlockMimbraneSweatEvent(partName:String):void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("An odd sensation accompanied by cheerful chirping seems to be coming from your " + partName + ". Upon investigation, you discover the parasite has made itself sweat. But this isn’t your normal perspiration, this is oily and sweet to the nose. This is the Mimbrane’s natural lust-inducing sweat!");
+	output("\n\nIt seems the parasite is fond enough of you that the little thing is comfortable letting some of its sugary, slightly-red ooze coat your body. The sweat tingles to the touch, turning you on somewhat as time goes on. It doesn’t seem to be nearly as volatile to you as it did when you were under attack by the Mimbrane. Perhaps you could use this against your enemies?");
+	output("\n\nBefore you can consider any further applications of your newfound slickness, the Mimbrane stops pumping its sexual syrup. It squeaks again... Looks like the parasite’s leaving it up to you whether or not you’d like to start coating your body in its sweet sweat.");
+	output("\n\n<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function toggleMimbraneSweat():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	// Toggling on
+	if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
+	{
+		flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = 1;
+
+		output("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output("s");
+		output(" to sweat.");
+		if (attachedMimbranes() == 1) output(" It cheerfully squeaks its affirmation.");
+		else output(" They cheerfully squeak their affirmation.");
+		output(" Little time passes before your " + mimbraneBodypartString());
+		if (attachedMimbranes() == 1) output(" is");
+		else output(" are");
+		output(" soaked in oily, sensual perspiration.");
+	}
+	// Toggling off
+	else
+	{
+		flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = undefined;
+
+		output("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output("s");
+		output(" to stop sweating.");
+		if (attachedMimbranes() == 1) output(" It cheerfully squeaks its affirmation.");
+		else output(" They cheerfully squeak their affirmation.");
+		output(" Before too long, your body is completely dry and free of the sweet, heady aroma that followed you around.");
+	}
+
+	clearMenu();
+	addButton(0, "Back", mimbraneMenu);
+}
+
+public function mimbraneBodypartString():String
+{
+	var parts:Array = [];
+	var msg:String = "";
+
+	if (attachedMimbranes() == mimbraneEffects.length) return "entire body";
+
+	if (pc.hasStatusEffect("Mimbrane Cock")) parts.push("[pc.cock]");
+	if (pc.hasStatusEffect("Mimbrane Pussy")) parts.push("[pc.pussy]");
+	if (pc.hasStatusEffect("Mimbrane Ass")) parts.push("[pc.ass]");
+	if (pc.hasStatusEffect("Mimbrane Balls")) parts.push("[pc.balls]");
+	if (pc.hasStatusEffect("Mimbrane Boobs")) parts.push("[pc.fullChest]");
+
+	if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right")) parts.push("hands");
+	else if (pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right")) parts.push("hand");
+	else if (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right")) parts.push("hand");
+
+	if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right")) parts.push("[pc.feet]");
+	else if (pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right")) parts.push("[pc.foot]");
+	else if (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right")) parts.push("[pc.foot]");
+
+	if (pc.hasStatusEffect("Mimbrane Face")) parts.push("face");
+
+	msg = parts[0];
+	parts = parts.splice(0, 1);
+
+	while (parts.length > 0)
+	{
+		if (parts.length == 1)
+		{
+			msg += " and ";
+		}
+		else
+		{
+			msg += ", ";
+		}
+
+		msg += parts[0];
+		parts = parts.splice(0, 1);
+	}
+
+	if (mimbraneDebug) trace("Generated Part String: " + msg);
+	return msg;
+}
+
+//Unlock Spitting
 //Unlocked when any Mimbrane hits level four trust. Occurs once, a few hours after hitting level four. Starts toggled on. Toggle disappears if no Mimbranes at level four exist.
-An unusual pressure builds in your {Level 4 Mimbrane body part}, prompting you to check it out. The Mimbrane surprises you by suddenly dropping a large volley of something onto the ground. It’s a deep red, oily glob. Its saccharine smell is powerful, drawing you into a potent den of desire. 
- The parasite chirps loudly, emphasizing its accomplishment. It calls your attention again with a harsh squeak, acting as if it were attacking something. Its obvious now; your Mimbrane wants to help you seduce prey with its natural projectiles of moist sensuality!
-<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>
-Toggle Spitting
-//Toggle Off
-You ask your Mimbrane(s) not to interfere with your combat, preferring {it doesn’t/they don’t} interrupt you with {its/their} own dangerous blasts of desire. 
-//Toggle On
-You let your Mimbrane(s) know that you’d like if {it/they} helped you in combat. {It squeaks a happy affirmation./They squeak a happy affirmation.} 
-Unlock Head Customization
+public function unlockMimbraneSpittingEvent(partName:String):void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = 1;
+
+	output("An unusual pressure builds in your " + partName + ", prompting you to check it out. The Mimbrane surprises you by suddenly dropping a large volley of something onto the ground. It’s a deep red, oily glob. Its saccharine smell is powerful, drawing you into a potent den of desire. ");
+	output("\n\n The parasite chirps loudly, emphasizing its accomplishment. It calls your attention again with a harsh squeak, acting as if it were attacking something. Its obvious now; your Mimbrane wants to help you seduce prey with its natural projectiles of moist sensuality!");
+	output("\n\n<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function toggleMimbraneSpit():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	// Toggling on
+	if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
+	{
+		flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = 1;
+
+		output("You let your Mimbrane");
+		if (attachedMimbranes() > 1) output("s");
+		output(" know that you’d like if");
+		if (attachedMimbranes() == 1) output(" it");
+		else output(" they");
+		output(" helped you in combat.");
+		if (attachedMimbranes() == 1) output(" It squeaks a happy affirmation.");
+		else output(" They squeak a happy affirmation.");
+	}
+	//Toggling Off
+	else
+	{
+		output("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output("s");
+		output(" not to interfere with your combat, preferring");
+		if (attachedMimbranes() == 1) output(" it doesn’t");
+		else output(" they don’t");
+		output(" interrupt you with");
+		if (attachedMimbranes() == 1) output(" its");
+		output(" their");
+		output(" own dangerous blasts of desire. ");
+	}
+
+	clearMenu();
+	addButton(0, "Next", mimbraneMenu);
+}
+
+//Unlock Head Customization
 //Unlocks immediately upon getting a Head Mimbrane, as it starts at level two. Toggle disappears if Head Mimbrane goes under level two trust. Occurs a few hours after getting the head Mimbrane. Occurs once.
-The Mimbrane encasing your head has one more surprise for you, using your [lips] to get your attention. It moves the skin around its eyes to show you what it can do, but you’re unable to feel anything. You find a reflective surface, revealing to you that the Mimbrane has taken to disguising its miniscule eye bumps as a pair of beauty marks.
-<b>You’ve unlocked the ability to toggle head Mimbrane appearance Level 2 Trust or above.</b>
-//Unlock piercing option
-Your [lips] start acting of their own volition, alerting you to the Mimbrane requesting your attention. Seems it has something new to show you again. You find a reflective surface, which reveals to you that the parasite has figured out how to disguise its tiny eye bumps to appear as an upper lip piercing. You aren’t quite sure how to react, but the ability is impressive at the least.
-<b>You’ve unlocked an extra head customization for head Mimbranes.</b>
-Toggle Head Customization
-//Toggle Off
-You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [skinAdj] tone.
-//Toggle to Beauty Mark
-You ask the Mimbrane on your [face] to disguise its eye bumps to look like beauty marks.
-//Toggle to Piercing
-You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.
-Feeding
+public function unlockMimbraneFaceCustomisation():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("The Mimbrane encasing your head has one more surprise for you, using your [pc.lips] to get your attention. It moves the skin around its eyes to show you what it can do, but you’re unable to feel anything. You find a reflective surface, revealing to you that the Mimbrane has taken to disguising its miniscule eye bumps as a pair of beauty marks.");
+	output("\n\n<b>You’ve unlocked the ability to toggle face Mimbrane appearance.</b>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function unlockMimbraneFacePiercingCustomisation():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("Your [pc.lips] start acting of their own volition, alerting you to the Mimbrane requesting your attention. Seems it has something new to show you again. You find a reflective surface, which reveals to you that the parasite has figured out how to disguise its tiny eye bumps to appear as an upper lip piercing. You aren’t quite sure how to react, but the ability is impressive at the least.");
+	output("\n\n<b>You’ve unlocked an extra head customization for head Mimbranes.</b>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//Feeding
 //Requires same lust as masturbation 
 Feed with Cock, Cum
 Feeding time’s come early to the {ship name}. Your [cock] is ready for some manual milking, dribbling a little [cumColor] pre to help things along. You talk a little to your parasite{parasites}, cluing them in to your actions working for {its/their} favor as opposed to just another extraneous act of self-pleasure. It seems to do the trick; {your body seems/parts of your body seem} to be trembling a bit in anticipation. Removing your [armor] is essentially the alert to get ready.
