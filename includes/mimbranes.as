@@ -1,30 +1,10 @@
 /*
-Parasite Mechanics and Effects
-All numbers in this section may be subject to change.
-Preferred Order of Attachment
-Mimbranes will attach to the PC’s body in a specific order, ideally prioritizing nourishment, seclusion, and warmth. Parasites will only skip to the next organ when previous organs have been claimed by other Mimbranes or the PC does not have the organ. If the missing organ appears later, new Mimbranes will target it before the organ next in the list (e.g. a male PC becomes a herm by gaining a vagina, but already has parasites on their dick, ass and balls. The next Mimbrane will target the new pussy before going for breasts or hands). 
-Head Mimbranes require all attached Mimbranes to be at at least level two trust before they can be gained. They will start at level two trust.
-Breasts must be more than flat (A cup+) to be a target for Mimbranes.
-If by some happenstance, a PC has testicles and no dick, then they’re skipped as well.
-The order is as follows:
-Penis(es) > Vagina > Ass > Scrotum > Breasts > Hands > Feet > Head
+
 Removal and Body Part Change Denial
 Mimbranes can only be removed at medical centers and must be removed en masse, i.e. all or none. Any other attempts to remove the parasite will result in either pain to the PC or attacks towards anyone else that attempts to remove them. Mimbranes removed from the PC will perish.
 The parasites will not hinder any transformations – the only exception to this is for feet. Mimbranes will only attach to two human feet and will block any attempts to transform them once they have claimed them. This is strictly for the first pass at the parasite and can be expanded to include the many feet transformations in the game at a later time if requested. 
 However, Mimbranes will block attempts to remove the organ they are attached to. The only way to remove an organ that Mimbranes have attached to is to kill off all Mimbrane parasites on the PC first.
-Trust Score
-Mimbranes naturally hide from their hosts, blending in to the best of their ability and reserving their behavior such as breathing and reproduction when they believe their hosts won’t notice. Through actions by the PC and being able to successfully reproduce, each parasite will slowly begin to trust that their host isn’t out for their demise and is, in fact, working to their benefit. This is registered in game simply as the trust score. Trust is increased simply by interacting directly with the parasites and as they are able to reproduce. 
-Trust is only lost when infected body parts are neglected and go unfed and is also lost from other Mimbranes when a neglected Mimbrane is ignored for an extended period of time. More on this in the next section.
-Currently, the trust score is on a five point scale from 0 to 4. Effects that are shared by all parasites are as follows:
-0: At no trust, Mimbranes will appear to lay dormant. They will not react to the PC outside of feeding and very rarely will expose themselves in order to breathe. New parasites start at 0 trust until a parasite at 2 trust exists on the PC. This will cause any new parasites to start at 1 trust. The only way for a Mimbrane to go from 0 to 1 trust is to successfully reproduce.
-	Level Up: One reproductive cycle required to advance to 1 trust
-1: Mimbranes at 1 trust will still hide from their host naturally, but they can occasionally be spotted looking around with their eyes.
-	Level Up: One reproductive cycle and two feedings are required to advance to 2 trust 
-2: Level two trust parasites are cautiously optimistic of their host’s intentions. They will not act very much on their own, but they are incredibly receptive to attention from the PC. 
-	Level Up: One reproductive cycle and three feedings are required to advance to 3 trust
-3: Parasites at this level rarely hide from the PC. This trust level unlocks the ability for the PC to request the Mimbranes to “sweat” their natural lust-increasing oil. This is controlled over all 3+ parasites with a global toggle.
-	Level Up: Two reproductive cycles and five feedings are required to advance to 4 trust
-4: Mimbranes at maximum trust can randomly augment the PC’s lust attacks by breaking free and spitting at opponents. PCs that have enabled sweating Mimbranes may also occasionally find Mimbranes creating lust clouds that they will fan towards opponents. These attacks can be disabled with a global toggle. Parasites at this level are very active and never hide from the PC unless strangers are around.
+
 Feeding Mimbranes
 Most Mimbranes are able to feed whenever a scene revolving around their body part takes place. A scene will not take place for this, nor will it go towards increasing trust. Put simply, dick parasites are fed when the PC cums, anal when the PC is penetrated anally, vaginal when penetrated vaginally, and face when penetrated orally. 
 Mimbranes on balls, hands and feet must always be cared for separately, as they are not sharing an orifice and will hide during contact with strangers.
@@ -144,7 +124,7 @@ If Mimbrane has at least 10 feedings, there’s a 30% chance that a connecting a
 // v1 == trust
 // v2 == last fed
 // v3 == feed level/counter
-// v4 == ???
+// v4 == reproductive cycle counter
 
 // This could possibly be done using int packing, allowing the use of a singular statusEffect to track everything, but it would probably be overly terse.
 public var mimbraneEffects:Array = 
@@ -160,6 +140,8 @@ public var mimbraneEffects:Array =
 	"Mimbrane Foot Right",
 	"Mimbrane Face"
 ];
+
+public var mimbraneDebug:Boolean = true;
 
 // Figure out the total number of attached mimbranes
 public function attachedMimbranes():int
@@ -2521,159 +2503,461 @@ public function useDatMimbraneLikeACondom():void
 	if (pc.balls > 0) output(" within your balls,");
 	output(" on the cusp of breaking free.");
 	output("\n\nEach stroke only gets harder. Your [pc.cock] twitches and convulses in preparation. The Mimbrane is unrelenting in its part: tickling your hands, massaging your member, releasing every last bit of moist craving directly into your [pc.skin]. You assuredly would be releasing a cascade of pre, but there’s no distinguishing it from the vigorous slathering you and the parasite have coated your midsection in.");
-	output("\n\nEverything goes silent, your breath caught. {if dicknipples “Your [nipples] spit [cum] everywhere around you. ”}{if vagina “An ignored [pussy] relishes its own {meager/ample/plentiful} release of feminine fluids.”}{if balls “More than a few heads would turn at the sight of your [sack] clenching its damnedest, anxious for clemency.”} A [cumColor] {burst/fountain/downpour/torrential deluge} fills the air, piercing through the hazy clouds of sexual perspiration the parasite has emitted in your anxiety. The Mimbrane summons a sudden burst of strength timed with your orgasmic relinquishing of its body, unfurling itself from around your [cock] to stretch and catch as much [cumType] nutrition as it can handle.");
-	output("\n\nThrough your convulsions and the slight shock of your lust-soaked prick meeting the air again, you’re amazed by the parasite when it stretches to easily double its original surface area. The creature is essentially acting as a tarp, frantically moving around your lower half as it works to collect your [cum]. {Low CumQ “The act may be a little overzealous for what little your penis has to share, sadly. But you figure a battered creature has to make the most of any gift horse it comes across.”}{Average CumQ “Its actions are enough to contain your sizeable contribution. The parasite should have enough of your jism to last it a week or three.”}{High CumQ “The parasite is barely able to stretch large enough to catch your outrageous spasms of spunk. Your [cum] slides down the creature’s slick skin and collects in the center, creating a [cumType] pool in the middle of the parasitic blanket.”}{Too Much CumQ “There’s no lengths the parasite can stretch to that would allow it to properly contain your otherworldly discharge. The poor creature strains to move under the sheer weight of the [cumColor] volume its collected. It would happily consume all that it could not carry if it could, but its metabolism would prevent it from indulging for very long.”}");
-	output("\n\nYou watch the Mimbrane {Not Too Much CumQ “waddle off with its payload. The parasite takes precious care to maintain that which it cannot eat on the spot.”}{Too Much CumQ “struggle under its immense payload. The parasite’s forced to let off some of its [cumType] load just so it can begin to drag itself along the jungle floor.”} It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.");
-	output("\n\nReclaiming your [armor], you realize that while you have satisfied your initial craving, your [cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.");
-
+	output("\n\nEverything goes silent, your breath caught.");
+	if (pc.hasDicknipples()) output(" Your [pc.nipples] spit [pc.cum] everywhere around you.");
+	if (pc.hasVagina())
+	{
+		output(" An ignored [pc.pussy] relishes its own");
+		if (pc.vaginalWetness() <= 1) output(" meager");
+		else if (pc.vaginalWetness() <= 3) output(" ample");
+		else output(" plentiful");
+		output(" release of feminine fluids.")
+	} 
 	
-//Lust increases two points an hour for 10 hours.
+	if (pc.balls > 0) output(" More than a few heads would turn at the sight of your [pc.sack] clenching its damnedest, anxious for clemency.");
+	output(" A [pc.cumColor]");
+	if (pc.cumQ() <= 100) output(" burst");
+	else if (pc.cumQ() <= 200) output(" fountain");
+	else if (pc.cumQ() <= 400) output(" downpour");
+	else output(" torrential deluge");
+	output(" fills the air, piercing through the hazy clouds of sexual perspiration the parasite has emitted in your anxiety. The Mimbrane summons a sudden burst of strength timed with your orgasmic relinquishing of its body, unfurling itself from around your [pc.cock] to stretch and catch as much [pc.cumType] nutrition as it can handle.");
+	output("\n\nThrough your convulsions and the slight shock of your lust-soaked prick meeting the air again, you’re amazed by the parasite when it stretches to easily double its original surface area. The creature is essentially acting as a tarp, frantically moving around your lower half as it works to collect your [pc.cum].");
+	if (pc.cumQ() <= 100) output(" The act may be a little overzealous for what little your penis has to share, sadly. But you figure a battered creature has to make the most of any gift horse it comes across.");
+	else if (pc.cumQ() <= 400) output(" Its actions are enough to contain your sizeable contribution. The parasite should have enough of your jism to last it a week or three.");
+	else if (pc.cumQ() <= 600) output(" The parasite is barely able to stretch large enough to catch your outrageous spasms of spunk. Your [pc.cum] slides down the creature’s slick skin and collects in the center, creating a [pc.cumType] pool in the middle of the parasitic blanket.");
+	else output(" There’s no lengths the parasite can stretch to that would allow it to properly contain your otherworldly discharge. The poor creature strains to move under the sheer weight of the [pc.cumColor] volume its collected. It would happily consume all that it could not carry if it could, but its metabolism would prevent it from indulging for very long.");
+	output("\n\nYou watch the Mimbrane");
+	if (pc.cumQ() <= 600) output(" waddle off with its payload. The parasite takes precious care to maintain that which it cannot eat on the spot.");
+	else output(" struggle under its immense payload. The parasite’s forced to let off some of its [pc.cumType] load just so it can begin to drag itself along the jungle floor.");
+	output(" It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.");
+	output("\n\nReclaiming your [pc.armor], you realize that while you have satisfied your initial craving, your [pc.cock] still tingles and twitches. No amount of rubbing it dry of the Mimbrane’s coating seems to be helping. Best you figure, <b>your actions are probably going to stir you up for a few hours.</b> Guess you can’t always play with fire without getting burned sometimes.");
+
+	pc.orgasm();
+	pc.orgasm();
+	processTime(10+rand(10));
+
+	//Lust increases two points an hour for 10 hours.
+	throw new Error("Not implemented yet.")
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 
-Defeated by Mimbrane
-Beginning Defeated Text
-The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation. Maybe if you strip off your [armor] it’ll be easier to settle down. So you do. But it doesn’t help. It’s only gotten worse. Your naked {flesh is/fur is/scales are} only more exposed.
-[Legs] are getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caress you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and oppressive environment.
-The Mimbrane waits for the aftermath of its deluge to paralyze you further. {if player has Mimbrane: “The Mimbrane already on you is unrelenting in its emissions.”}{if player has multiple Mimbranes: “The Mimbranes already on you are unrelenting in their emissions.”} You eventually do calm down to some degree, crushed under the artificial passion and salacious smog. The sentient sheet silently revels in its victory by approaching you, scoping out its spoils. {if player has Mimbrane: “Your Mimbrane begins squeaking and chirping yet again, probably helping aim your conqueror on where on your body it could set up shop.”}{if player has multiple Mimbranes: “Your Mimbranes squeak and chirp at your conqueror. No doubt they’re helping it quickly decide where on your body it can set up shop.”}
-//follow with appropriate scene
-Get Penis Mimbrane
-Your [cock] stands like a lighthouse to the troubled Mimbrane at sea, [cockhead] a shining beacon through the thick red fog. Its slick skin sliding along your [legs] breaks up your frenzied breathing with short gasps. The smooth, flat parasite quickly glides across your body to your pecker, inspecting it like a Christmas gift. The bow on top is a perk bead of pre which the creature quickly gulps down into its tiny mouth. The sensation of the miniscule feeding on your already-overburdened dick doesn’t help your fragile state. 
-Its meager appetite satisfied, the parasite goes to work, sizing itself up to slightly overtake your [length] inches of masculinity. The Mimbrane hooks one of its four corners down around your base. The caress of its velvet underside on your delicates would send you to the edge had you not already tumbled over it. Its diminutive set of eyes and mouth fade into the parasite’s thin flesh and it quickly wraps itself around your turgid tower.
-It doesn’t take long before your member is entirely covered. Where once a proud pecker stood tall now rests an odd, moist, light red cocoon. You don’t really get a good look at it, however. You’re much too preoccupied with the throes of ecstasy, heat, and humidity that are clouding your every thought. Things are only escalating now that your cock is in direct contact with what put you here in the first place.
-Through the haze of confusion, you notice a new sensation on your penis. The Mimbrane is wiring itself to your nervous system. It doesn’t hurt - heaven only knows if you can actually feel anything currently and distinguish it as a real sensation. Your dick feels nebulous to you as the parasite does its magic, making you unsure of its shape or size in your mind’s eye. And then the sensations pass. You feel the hazy, tainted air on your crotch again. 
-That’s when you calm down long enough to get a look at your dick. It’s a [cock], same as it was before. You examine it with your hands; it feels like nothing’s changed. Your [cockhead] looks as normal to you as it did mere moments bef– no. Something is off. Two odd, tiny little bumps are just north of your opening. Poking and prodding at them reveals nothing. You motion as if to squeeze one like a pimple, but the pain is extraordinary before you can so much as pinch. The instant your fingers lift off, however, the sensation disappears. 
-Further examination reveals an extremely slight bulge running all the way around the base of your prick. Fingering at it feels as futile as peeling your own skin off. The parasite actually managed to bond itself onto your dick. Then it dawns on you: you aren’t just free of the sexual spasm from earlier. It actually feels as if you managed to knock your rocks off. But you have no memory of any sort of climax, nor do you recall even blacking out. {Low CumQ “By sheer chance, you run your hand up your side to find a rough little spot of dry [cum].”}{Average CumQ “That’s when you notice the dried [cum] around your body.”}{High CumQ “That’s when you spot evidence of your massive load on and around you. Small pools of [cum] still remain even.”}{Too Much CumQ “That’s when you start to really strain to remember as enormous pools of [cum] come into focus on and around you. How you failed to notice the plentiful [cumColor] evidence surrounding you, you’ll never know.”} Looks like the Mimbrane got to have its cake and eat it, too.
-Not wanting to re-experience the mind-melting pain of trying to remove the faux flesh from your crotch, you resign to your fate as host. One last wistful glance down at your [cock] is all you pay, still wrapping your head around the ordeal. You feel the same as you did before you even ran into the creature. And you even almost look the same, save for those two miniscule blemishes on your [cockhead]. They’re barely noticeable, but they may as well be flashing lights to you. You gather your [armor] and head off, doing your best to get your mind off your new traveling companion.
-Get Vagina Mimbrane
-Your [cunt] sits as an unexplored chasm of wonder and merriment to the Mimbrane before you. The parasite brushes up between your legs to your feminine crevice. Its moist, smooth skin gently brushing up against your [skintype] thighs definitely doesn’t help your currently precarious mental state. A meager mouth teases you as it explores your folds, eager to lap up any fluids you may already have let free in your ecstasy.
-Its paltry appetite sated, the Mimbrane goes to work smothering your groin, tiny face – or what meager options it has to constitute a face – sinking into the thin sheet. Excited gasps muscle in through your panting when your [clit] is stimulated beyond belief. The sheet covers little else beyond your snatch, uninterested in serving double duty as a sentient bikini. You can feel it shift and push its way into every part of your cooch. Every detail - every opening - is coated in parasitic paint, as it were.
-The Mimbrane splits itself to accommodate your own fissure, mimicking its every facet. In your throes of wanton desire and uncomfortable tension, you can’t even discern just how far into your box the creature goes. What do you do feel, though, is the parasite mending into your nervous system. There is no pain; only mounting confusion at the mixed messages coming from both your nerve endings and your <i>new</i> nerve endings. For a moment, you can’t picture your pussy. A nebulous region exists in its place, one where a clit is as familiar as a deity’s true intentions. 
-Then nothing. Well, you feel normal. Suddenly you’re fine, albeit laying naked on the jungle floor. Your hands rush to investigate your [pussy], eager to find something amiss. But its the same as before you ran into that blanket with a grudge. 
-No... Further examination clues you in on a new development. Two, in fact. A pair of tiny little bumps sit just above your pussy. You get no response from pressing and prodding at them. But the instant you try and squeeze one of them, a debilitating pain blasts through you, lasting only as long as your fingers are poised to squeeze the blemish. The second they’re free is the second you feel fine again. That’s when you clue in on the barely-discernable lump of flesh outlining a little ways around your vagina. You try and work your way around it, but it feels as if you were trying to pry open a wrinkle. 
-Another revelation dawns on you: not only are you free of the artificially-induced desire the parasite thrusted upon you during your fight, but you feel completely sated of any sexual passion. But you don’t recall experiencing the delightful climax that typically precludes how you feel now. Did it happen at all? It feels slightly wet between your legs, but now you aren’t even sure if that’s just your head making excuses.
-You decide it better to just gather your [armor] and move on. Whether or not you climaxed (and can remember it if you did) is secondary to worrying about your latest involuntary traveling companion. 
-Get Ass Mimbrane
-{Is genderless “The barren tract of land across your crotch doesn’t exactly thrill the parasite. The”}{Has cock Mimbrane “With your [cock] already claimed, the”}{Has vagina Mimbrane “With your [pussy] already claimed, the”}{Has cock and vagina Mimbrane “With both your [cock] and [pussy] already claimed, the”} Mimbrane sets its tiny sights on your hind quarters. One would assume the little guy wouldn’t make it much farther than your [hips] laying on your back the way you are. But assumptions with alien lifeforms are typically dangerous to make.
-Your exaggerated panting gets interrupted by surprised gasps as the slick sheet forces itself in between the ground and your [ass]. The parasite would likely have little trouble encompassing your posterior in this position, but your lust-addled mind involuntarily reacts to the wedging as a sign to flip over. You aren’t thinking straight enough to realize that pointing your bottom skyward may be to your disadvantage. 
-The Mimbrane, however, is ecstatic with its endeavour being made that much easier. The creature scrambles atop your duo of hills only to find that first it must play janitor. It slides and sweeps over your [skintone skindescription], removing any of evidence of the jungle from its new home. You feel as if someone is sensually massaging your ass with a wet silk rag. It goes on for several minutes, long enough for you to start digging your hands into the ground to deal with the unrelenting turmoil.
-Its job complete, the parasite wastes no more time in draping itself atop your [ass], sealing to its every detail. The sentient rag worms its way into your crack and within your [asshole]. It isn’t long before your butt is completely smothered, Mimbrane stretched to easily embrace your {average/hefty/expansive/titanic} trunk. Next, the creature weaves itself into your nervous system, confusing you further as your mind is unable to discern between genuine and relayed feelings. You absentmindedly try and clench your pucker, but get no response. One moment you feel tight, the next moment you feel as if your asshole was a gaping crater.
-Then you’re relaxed. The sounds of the jungle drag you back from whatever trance you were under. With your wits again on your side, your hands race to your backside, anxious to find anything amiss. All it seems you’re doing is groping your [ass], though. You even go so far as to finger your [asshole], afraid to come across something untoward. Still nothing. 
-But just as you think all is normal, your hands brush past a couple of tiny bumps sitting smack center above your rear crevice. Manhandling them a little yields no response, but a devastating pain bowls you over the instant you even attempt to squeeze them. The injury doesn’t linger, however. Continuing to brush over the lumps reveals an ever-so-slight ascension of your [skin]. The light seam runs all around outside the perimeter of your ass and up your [hips]. You think you can see it, but it’s hardly noticeable. There’s definitely no way for you to pry it, an action as easy as scraping at your own [skin]. 
-Its obvious that the Mimbrane got its prize: an ample pair of cheeks with a hole hidden in between them. You aren’t quite sure how you managed to miss the elation that typically comes with the relief of ridding yourself of sexual tension, but it isn’t a concern that lingers long. You gather your [armor] and set out, lingering between worry and curiosity as to what will come of your posterior parasite.
-Get Scrotum Mimbrane 
-Despite your suffering, you can’t help but stutter out a curse to no one, frustrated to succumb to yet another of the blanket-looking parasites. Your [cock] springs to life, moving on its own and frantically chirping to your conqueror. Seems as though the Mimbrane member has prime real estate scoped out for its new friend. You desperately want to reach out and grasp onto your puppeted meat, the parasite’s movement only furthering your sexual hysteria, but you’re oddly paralyzed by the thick, humid smog of lust that lingers from your battle. You can only cast a weary gaze on the {cocktype} shaft, still coated in the Mimbrane’s secretions and glimmering in the light.
-The victor heeds the friendly cries of your cock and crawls up your [legs] towards it. Despite the amped blood flow stiffening your dick, the raging erection is able to bend enough to greet its compatriot in some manner of face-to-face contact. The two cease any remaining pleasantries and get down to brass tacks as the new Mimbrane grasps onto your cock with a couple of its corners and stuffs its miniscule face atop your [cockhead]. Your meat obliges with a steady stream of pre which the parasite anxiously laps down.
-Your pole acting on its own coupled with the warm, slick parasite enjoying itself makes it all the worse that you can’t seem to organize any voluntary muscle movement. The most coherent urge you can fathom is just wanting to press your aggressor up against your [cock] and rub one out to satiate your pent-up urges. Sadly, it’s taking the same amount of effort just to close your mouth for a second when your panting dries it out. The stuffy, oppressive cloud of craving surrounding you is just too strong.
-Meager appetite full, the Mimbrane enjoys a few more unintelligible chirps and squeaks with your cock before it backs off. Its attention focuses squarely on your [balls]. Once you feel the parasite cup itself around them it becomes all too clear just what it and its friend had to talk about. Familiar sensations of smothering and crossed nerves flood you yet again, a sign that the parasite is merging onto your [sack]. The manhandling of your jewels as the sheet works its way around them only furthers your craving to tend to their payload.
-You re-experience the nebulous feeling that accompanies the integration of a Mimbrane into your nervous system. Unable to peer your head up at the action, your inner perception of your sack fluctuates like a boat caught atop a nervous ocean. And – just as before – you suddenly feel fine. The humidity vanishes, your lust subsides, and your [balls] look as they did before. You know better at this point, though, quickly discovering the pair of meager lumps disguising the Mimbrane’s eyes sitting front and center on your coin purse.
-What you hadn’t expected was a third, slightly larger bump sitting below and between them. Without an orifice to re-appropriate as its own, it would seem that the Mimbrane has maintained its mouth. So you assume, anyway. Neither of your parasitic pals seem all that interested in blowing their covers to you at the moment as it is. You gather your [armor] and set off, eager to explore this mystery further at a later time.
-Get Breasts Mimbrane 
-Through the uncomfortable humidity and insatiable sex drive, a tiny voice far back in your head ponders to itself. Falling victim to yet another Mimbrane makes it question whether or not you even tried to get around this. But the voice fucks off into a forgotten oblivion, hushed by your agony and desire to know just where the next contestant will wind up. After exchanging pleasantries with your appropriated body parts, the parasite glides along your body until its right atop your [fullchest]. No hint of hesitation lies in the creature.
-You’re granted a short stare from your conqueror while its body stretches to encompass {both/all} of your jiggling {hilltops/mountains/planets}. You can’t get a good read on what it’s thinking, but you’re certain that there is some train of thought going on in there. Any breakthroughs into a sentient parasite’s inner machinations vanish as quickly as the creature’s face once it sinks back into the wriggling sheet. 
-There’s a desperate inclination to at least run your hands along the glistening topside of the fiend. The thought of rubbing the oily pseudo-cloth across your torso isn’t enough to break free of the stuffy eroticism that pins you to the jungle floor. The form of your chest bumps are clearly visible now, the Mimbrane sealing its form over yours. You have a much nicer vantage point of the parasite’s handiwork now that its right in front of you. Replicas of your [nipples] form along its surface. The creature easily slides itself over every square inch of breast flesh.
-A moist pink replica of your chest is all that remains of the Mimbrane. You can’t admire it for too long before the familiar tinge of the creature weaving its way into your nervous system seeps into your mind. Again you feel the unusual, nebulous sensation of not exactly having a grasp on what form your body’s in. But through squinted eyes covered in sweat, you can make out the wobbling silhouette of your [breasts]. They’re still there. But things feel off.
-Then everything’s back to normal. Did you black out or something? The instantaneous ending of the multiple sensations and urges and feelings wracking away at you is just as jarring and out of place as it always is. From your point of view, its as if everything just happened in less time than the blink of an eye. But by now you’re certain there’s more to it.
-Your next course of action is to examine your chest to try and find where the Mimbrane is hiding its eyes. The first assumption is around one of your [nipples], but you don’t discover anything new. It takes a little bit of fondling before you find the two little lumps square center above your cleavage. Guess nature just can’t resist symmetry. You also miss the practically invisible bulge of [skin] running around the perimeter of your knockers, presumably marking where the parasite ends and you begin. As always, its easy to miss and you have no hope of prying the thing off of you.
-You gather up your [armor] and head off with the new addition to your close family.
-Get Hands Mimbranes 
-//First hand
-Your conqueror is actually a little confused. All of its prime targets have been taken! But it would seem that your parasitic attachments are doing their damnedest to keep their friend from being discouraged. The constant movement and noise around your body struggles against the haze that’s locked you into a stuffy bout of sensual passion. Trying to stay current on the Mimbrane’s actions is proving to be a difficult ordeal.
-That’s when a slick, smooth touch of your palm garners your attention. The parasite is prodding at your hand, seemingly examining it. Though you lack the coherence to whip your arm away, you’re at least able to clench your fingers. Your grip isn’t quite up to your full potential, but you do manage to snag the Mimbrane’s inquisitive corner. It doesn’t startle the creature, however, much to your disappointment. If anything, the direct contact with the parasite’s oily top side is only making your inner turmoil worse.
-No, instead the Mimbrane casually wraps the rest of its body around your weak fist. You make a weak gesture, relinquishing your grapple to try and move your fingers in some useless attempt to escape the parasite. All you manage to do is make it easier for it to work its way around your digits and onto your palm. Falling back to making another fist is your final recourse, unable to move or react intelligibly enough to effectively defend yourself.
-The gesture proves meaningless, and soon it appears you’ve found yourself a wriggling glove of sorts, grasped firmly onto your wrist. Next comes the recognizable sensation of the Mimbrane integrating into your nervous system. Though you can’t get a coherent feeling from them, you can at least still move your fingers. Soon, the moist, warm feeling of entrapment is replaced with the comparatively cool breeze of the jungle.
-You’ve gotten rather used to this process by now. The jolt of normalcy isn’t even a shock anymore. The hunt for the creature’s eyes and mouth doesn’t even take long; a triage of tiny bumps lay concealed square center on your [skincolor] palm. You rub your other thumb over them, a tad surprised to see how much durable the typically sensitive additions are. You suppose the Mimbrane has a grasp on what a hand actually is and has modified itself accordingly.
-As you reach over for your [armor], anxious to keep moving, something dawns on you. You run your thumb back over the parasitic palm again. Its actually moist. But this isn’t the remnants of your opponent. It looks like {cum/girl spunk/it came from you}. Maybe you aren’t quite through wondering just what goes on when a Mimbrane couples onto its prey...
-//Second hand
-It’s a Mimbrane soiree and everyone’s invited! You think you said that out loud, but honestly aren’t sure. You’ve fallen victim to these parasites enough times now to start speculating whether or not you’re even trying anymore. Maybe you enjoy it. Maybe it’s really hard for you to resist them when they start sweating and attacking you uncontrollably. Maybe nurturing these creatures is some sort of penance for your father’s sins. Maybe you’ve been suffering from a series of bad days that just so happen to coincide with every moment you run into a Mimbrane.
-...It’s hard being introspective when you’re hornier than a cactus and stuffier than a sauna.
-The creature brushes up against your other hand, the one free of parasitic control. You had a good feeling that was where it would wind up.
-You don’t even bother looking at it – trying to pierce through the haze that’s pinned you down to fight it off. Did your other hand just direct it or something? Who knows. The Mimbranes always seem to get riled up when they run into a new roommate. Experiencing various parts of your body acting of their own accord has become second nature to you by now.
-You can’t feel your hand anymore. The parasite must have already smothered your other hand and has moved onto that integration. Does it turn you on still? Maybe. It’s hard to say. It probably would have been faster had you just gone limp the instant the damn thing fell out of the sky at you. 
-Seems like you’ve got a bit of angry lust for no good reason. Or you’re frustrated. Or just confused. Or– oh, things are back to normal. That same normal you’ve run into {number of Mimbranes on the PC including the new hand: three/four/five/six/seven} times now. You look down at hand; three bumps are arranged on your palm same as they are on your other one.
-With your wits back with you, a heavy sigh accompanies the gathering of your [armor]. Best not to dwell on this further.
-Get Feet Mimbranes 
-//First foot
-...
-Again! You’ve succumbed again! Your body is covered in these things! Where will this Mimbrane go? Do you even care? 
-You’ve honed the retreating back to your subconscious into an art at this point. Anything to escape the repeated anguish these Mimbranes throw you under. You can barely even feel the parasites manipulating your body in all sorts of strange and unnatural ways. Its the same as always, you figure. 
-You’ve given up trying to figure out why you keep losing to what amounts to a rag in the wind. You can’t concentrate immediately after the fact, and when the parasite’s on you, you’re done caring. Are you even frustrated anymore? When something becomes so commonplace, can someone continue to act surprised?
-The commotion calms down, leaving only your labored panting to your ears. A moist, deft touch lands on your [foot], snapping you out of the odd bout of self-pity. You can’t get a good view over your struggling [fullchest], but it would appear the parasite has opted to attach itself to your foot. Oily coverings weave their way between your toes, along your arch and up your ankle. As always, little time transpires before your extremity is sealed within the creature’s undulating, form-fitting grip.
-You cease paying attention to the little thing once the familiar feeling of it weaving its way into your nervous system kicks in. The sensation of forgetting how your body part is constructed is old hat, no matter how bizarre it feels each time. It’ll be over soon anyway; may as well try and focus on something beyond the excruciating humidity and torrents of desire...
-...Usually it can be difficult to get even the vaguest semblance of a clear head when you’re thrown into a rut like this. Sure, your body still feels like it wants to penetrate and be penetrated and do anything else it can to get through these anxious times. But here, safe in your mind, you’ve gotten better at at least not <i>thinking</i> like a psychopathic pervert. Maybe the repetition of being artificially driven to want to bang something isn’t doing as well of a job as it once did?
-Any further exploration into the topic flutters away the instant things return to – you guessed it – normal. The normal always hits you like an oncoming car out of nowhere. The normal is always the anticlimax that leaves you feeling refreshed and unfulfilled. The normal is getting to be frustratingly abnormal. 
-Your idle thoughts are getting to be noxious, you fear. You instead think to grasp your [foot] in your hand, curious to hunt down the three bumps at the bottom of the cereal box. The two eye bumps are easy enough to find centered right above your middle toe – you’ve gotten good at this, sadly. But the third tiny bulge is actually hidden underneath that same toe. Another instance of symmetry, you figure; the Mimbranes just must be naturally attracted to it.
-You begin to start getting anxious over when your other foot will find its counterpart parasite, but perish the thought before it can germinate. There’s enough on your plate already with your {number of Mimbranes on the PC including the new foot: three/four/five/six/seven/eight} additional mouths to feed. You take your [armor] and go.
-//Second Foot
-You don’t even know if your body is your own anymore. Not when this happens, anyway. Everything under Mimbrane control is having a picnic greeting the latest arrival to Casa De La [Name]. Its the same as always. You know it’ll go to your free foot. Better to just put it all of your head and wait for “normal.”
-Staring up through the pink haze surrounding you is the jungle canopy. Tall trees wobble lightly in the breeze. Scant beams of {moonlight/sunlight} burst their way in through the brush. Nature is oblivious to your plight.
-The Mimbrane wraps around your [foot].
-There don’t seem to be very many other signs of wildlife around at the moment. The involuntary movement of your body paired with the unusual sounds produced by the Mimbranes must be keeping them at bay. It’s too bad; now would be the perfect time for a little birdwatching.
-The Mimbrane weaves into your nervous system.
-It’s so hot. It’s always hot when you lose to these things. But when you’re absorbing nature like this, it’s hard to ignore every facet of it, regardless of how it came about. Sure, the lust fog surrounding you weighs on you like a steaming bag of bricks, but it isn’t like the jungle is that much better typically. How many creatures must love living here, you wonder. {If met the pitcher plants “Do the venus pitchers get much catches out in the middle of nowhere like this? ”}
-You can’t feel your [foot].
-Maybe if it were winter it wouldn’t be as uncomfortable around here. Surely most of the unsavory types wouldn’t enjoy even a slight drop in temperatures. It’s doubtful that the seasons make much of a difference around here, though, you figure. That seems to be how jungles usually work, right? Maybe it was foolish to imagine otherwise.
-Things are back to normal.
-That’s it. Panting’s gone. Your desire to fuck something is back to your more sustainable levels. Jungle feels like its typical self. You don’t even bother examining your new parasite. There’s no need. You’ve already gotten used to feeding a foot, as it were. Same as the rest of your body. This is common practice for you at this point.
-You take your [armor] and go, refusing to dwell on what transpired. 
-Get Head Mimbrane 
-//Requires all attached Mimbranes be minimum level 2 trust
-It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; its easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.
-Nature seems especially interesting again today. The pink haze isn’t as thick as usual, giving you a clearer sight at the Mimbrane hovering over your face.
-Wait. What?
-Your mind is dragged back to reality. You’re fully aware again, right in the moment. The odd sensation of being watched by a multitude of eyes is upon you. But nothing is more apparent than the Mimbrane staring you right in the eyes. The parasite’s front two corners are perched on the sides of your face, letting the creature suspend the best representation it has of a face a good distances above yours. Your labored breathing pushes the parasite a little with each exhale and sucks in a little of its haze with each inhale.
-What does it intend to do? Have the number of Mimbranes gotten high enough for them to claim dominance over your body? You start to worry, but the look in the Mimbrane’s face is inquisitive. It’s as if its waiting for a response. The parasite taps on your [face] again, tracing your [lips] with one of its corners while chirping lightly at you. There’s no way in hell your microsurgeons can translate that for you...
-That’s when you recall the codex! Mimbrane naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing? 
-You think for a moment, eyes darting around your close-up champion, its face tilted to one side to only further appear as if awaiting a response. The rest of the Mimbranes on your body seem to think you’re alright... Perhaps they goaded this one into testing its luck? That would explain the tense feeling you’re getting about being watched. But rather than just go whole hog on your head, it would seem this parasite at least wants to try and get approval from you before working against its instincts.
-It makes sense to you anyway. 
-Its been awhile since you haven’t abandoned your body when its in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.
-Looks like the decision is up to you.
-[Go ahead][No!]
-[No!]
-You’re wary of letting the Mimbrane cover your head, unsure how this final measure would pan out for you. You’re at least compelled to spit out an apology with your decline. It’s weird to have some hint of conversation with what you figured was just an animal.
-The parasite scoots backwards from you, talking amongst your puppeted body parts. You think its disappointed, but there’s really no way to tell. Especially not when you’re feeling as horny and norma– 
-Normal. Normal’s burst back onto the scene. It’s a bit more of a shock this time. Your conqueror has vanished and your body is pre-savaged. You double check your head to make sure the parasite didn’t get on it. There aren’t any unusual bumps or sensations. The assumption was that the blink from rut to right was a byproduct of a Mimbrane latching onto you. Now you don’t know what to think again.
-The question simmers while you gather your [armor] and leave.
-[Go ahead!]
-Whether it’s because you’re feeling adventurous or just succumbing to the rut you thought you had become accustomed to, no one can say. But you nod your head to the anxious Mimbrane, stuttering out a labored “Sure.” The parasite exchanges a few more unintelligible squeaks with its cohorts, possibly to confirm what it’s about to do. Then it smothers your [face], forcing you to react by slamming your eyes shut. 
-Smooth, slick skin wraps all around your head. Its as if someone were wrapping a hot, wet towel around your head. Your involuntary panting strains at finding air, instead sucking wet flesh into your mouth and nose. Warm waves meld to your every contour, encasing your head completely in short time. Just as panic begins to sinks in, the fleshy cocoon splits open at your orifices, prompting a deep gasp. The Mimbrane is over your lips and fades seamlessly into your mouth. It’s hard to tell where it ends anywhere the parasite has penetrated your head. You try and open your eyes as well, but are less successful in that endeavour; your eyelids refuse to move.
-The electrifying sensation of the creature weaving its way into your nervous system is next. Your reaction would be to grasp your melon with your hands, but the extremities feel as if they’re under an immense weight. It’s no easier to move now than it ever has been any other time you lost to a Mimbrane. 
-The sensation of not feeling your head is confusing. The smothered, moist titillation is more intense than what you experienced for any other bonding to your body, and now it’s competing with signals telling your brain the comparatively cool air is breezing past your skin. Your eyelids suddenly obey, and your head settles back its normal sensation.
-Normal.
-{if cock}But you’re still panting. Still horny. Still hot, still paralyzed, still confused. This is anything but normal now! Not snapping free of this hell is the most abnormal thing ever in this process that you had once thought you had become so accustomed to. Now what?
-The light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if its taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?
-Your rock-hard [cock] knows, apparently; it’s stroking itself! The Mimbrane member is standing at full attention, skin applying pressure in vertical waves. From base to tip and back, going from tinge to more than a hand could grasp, each stroke is unique. The parasite is working your cock with pinpoint precision. There’s little preamble to be had; by now it knows your penis down to the last square nanometer. [Cum] {spurts/bursts/blasts/unnaturally explodes} forth. 
-Typically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the [cumcolor] fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re – and consequently you – finished, the majority of your jism is strewn about your midsection and torso.
-Your body goes into a sudden uproar of noisy squeaks and chirps! Your [lips] move on their own as well, reminding you of the latest addition to your merry band. Indeed, the skin around your head feels as if it were wriggling about ever so slightly, making for a rather peculiar experience. Seems everyone is amped to be fed, and your puppeted hands are happy to oblige. Smatterings of [cum] are distributed around you, smeared anywhere a Mimbrane mouth may be.
-There’s a hypothesis to be had here. Though you can’t entirely explain it, it would seem that your jolt to “normalcy” was the period in which your aggressors would feed on your liquid lust. Mimbranes naturally act in methods that preserve their secrecy on a host. When someone loses to one of the parasites, it becomes easy to simply overwhelm them in the parasite’s natural funk. A momentary lapse in consciousness doesn’t seem all that farfetched when one is already sweaty, hot and suffering from sexual yearning beyond perceivable belief.
-But the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of [cumTemp] sustinence to your eager [lips]. The [cumFlavor] flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.
-The Mimbranes satiated, they begin to calm down. Though they’re incapable of wrestling away complete control of your body from you, awe was enough to render you essentially paralyzed up until this point. You touch your fingers to your lips, finding no trace of their treat. But they do suddenly kiss your tender touch, forcing a breathless laugh out of you. Digits return to find a duo of small bumps right above your upper lip. You weren’t going to be completely satisfied until you found those eyes...
-A veil of complacency has been lifted this day. The Mimbranes certainly seem content, and you even got a peek into some of their more rare tendencies. Sure, they may be driven to feed and survive more than anything – heaven forbid anyone hear about how fast they jerked one out of you – but there seems to be some semblance of companionship in the faux skin.
-Rejuvenated, you gather your [armor] and venture forth a bit happier than you were before.
-{else if pussy}But you’re still panting. Still horny. Still hot, still paralyzed, still confused. This is anything but normal now! Not snapping free of this hell is the most abnormal thing ever in this process that you had once thought you had become so accustomed to. Now what?
-The light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if its taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?
-Your [pussy] knows, apparently; it’s going crazy! The Mimbrane folds are exciting themselves into a soaked frenzy. Even your [clit] is stimulating itself, flesh pushing and teasing the love button with exacting precision. The parasite knows itself – and by extension you – down to seemingly every last cell. A {splash/wave/torrent} of femspunk gushes out your gash.
-Typically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the feminine fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re finished, the majority of your excitement is strewn about your midsection and groin.
-Your body goes into a sudden uproar of noisy squeaks and chirps! Your [lips] move on their own as well, reminding you of the latest addition to your merry band. Indeed, the skin around your head feels as if it were wriggling about ever so slightly, making for a rather peculiar experience. Seems everyone is amped to be fed, and your puppeted hands are happy to oblige. Smatterings of pussy juice are distributed around you, smeared anywhere a Mimbrane mouth may be.
-There’s a hypothesis to be had here. Though you can’t entirely explain it, it would seem that your jolt to “normalcy” was the period in which your aggressors would feed on your liquid lust. Mimbranes naturally act in methods that preserve their secrecy on a host. When someone loses to one of the parasites, it becomes easy to simply overwhelm them in the parasite’s natural funk. A momentary lapse in consciousness doesn’t seem all that farfetched when one is already sweaty, hot and suffering from sexual yearning beyond perceivable belief.
-But the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of sustenance to your eager [lips]. The feminine flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.
-The Mimbranes satiated, they begin to calm down. Though they’re incapable of wrestling away complete control of your body from you, awe was enough to render you essentially paralyzed up until this point. You touch your fingers to your lips, finding no trace of their treat. But they do suddenly kiss your tender touch, forcing a breathless laugh out of you. Digits return to find a duo of small bumps right above your upper lip. You weren’t going to be completely satisfied until you found those eyes...
-A veil of complacency has been lifted this day. The Mimbranes certainly seem content, and you even got a peek into some of their more rare tendencies. Sure, they may be driven to feed and survive more than anything – heaven forbid anyone hear about how fast they pushed you to climax – but there seems to be some semblance of companionship in the faux skin.
-Rejuvenated, you gather your [armor] and venture forth a bit happier than you were before.
-{else}
-And that’s that. Suddenly, you’re returned to that tranquil yet jarring peace that you’ve become oh-so-accustomed to. Though something bothers you this time. For no fathomable reason, it feels as if you missed out on something. You dwell on that thought for a moment, but nothing more substantial roots. Maybe you’re imagining things.
-You put your fingers to your mouth, surprised when your [lips] suddenly kiss them! Seems the Mimbrane on your face is quite content, and isn’t anxious to hide away from you quite so soon. A breathless laugh escapes you, taken aback by the cute little show of affection. Fingers return and find a couple of little bumps just above your upper lip. You weren’t going to be leaving before you knew where those eyes were, after all.
-Rejuvenated, you gather your [armor] and venture forth a bit happier than you were before.
-No Room for Mimbrane 
-Much to the Mimbrane’s chagrin, it seems there’s simply no room for it on your body! You’re hoping it’ll leave so you can at least get out of its humid, paralyzing cloud of insidious behavior, but it seems to be talking again to your Mimbranes. You wonder what it–
-...It’s gone. So is any inkling of sexual fervor. You glance around a little, surprised by the relative peace that’s attacked you out of nowhere. you snatch up your [armor] and get on your way before the parasite decides to get creative!
-Mimbrane Menu
+//Defeated by Mimbrane
+//Beginning Defeated Text
+public function beatUpByAFuckinDishcloth():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("The air around you feels so dense, so thick. Humidity chokes you. It’s become so hard to breathe. You can’t stop panting. Deep, healing breaths elude you, leaving you to your hyperventilation. Maybe if you strip off your [pc.armor] it’ll be easier to settle down. So you do. But it doesn’t help. It’s only gotten worse. Your naked [pc.skinfurscales] only more exposed.");
+	output("\n\n[pc.Legs] are getting weak. You lie down. The dirt isn’t helping. The grass doesn’t comfort. The shade may as well not exist. Any stray breeze is powerless. Your hands hopelessly grope around your body, uselessly caress you. All you can smell is that parasite. Its sweet, musty lust overpowers your senses, surrounding you in a heavy cloud. You’re confused, stuck between an agonizing rut and oppressive environment.");
+	output("\n\nThe Mimbrane waits for the aftermath of its deluge to paralyze you further.");
+	if (attachedMimbranes() == 1) output(" The Mimbrane already on you is unrelenting in its emissions.");
+	else if (attachedMimbranes() > 1) output(" The Mimbranes already on you are unrelenting in their emissions.");
+	output(" You eventually do calm down to some degree, crushed under the artificial passion and salacious smog. The sentient sheet silently revels in its victory by approaching you, scoping out its spoils.");
+	if (attachedMimbranes() == 1) output(" Your Mimbrane begins squeaking and chirping yet again, probably helping aim your conqueror on where on your body it could set up shop.");
+	else if attachedMimbranes() > 1) output(" Your Mimbranes squeak and chirp at your conqueror. No doubt they’re helping it quickly decide where on your body it can set up shop.");
+
+	clearMenu();
+	addButton(0, "Next", attachAMimbrane);
+}
+
+/*Parasite Mechanics and Effects
+All numbers in this section may be subject to change.
+Preferred Order of Attachment
+Mimbranes will attach to the PC’s body in a specific order, ideally prioritizing nourishment, seclusion, and warmth. Parasites will only skip to the next organ when previous organs have been claimed by other Mimbranes or the PC does not have the organ. If the missing organ appears later, new Mimbranes will target it before the organ next in the list (e.g. a male PC becomes a herm by gaining a vagina, but already has parasites on their dick, ass and balls. The next Mimbrane will target the new pussy before going for breasts or hands). 
+Head Mimbranes require all attached Mimbranes to be at at least level two trust before they can be gained. They will start at level two trust.
+Breasts must be more than flat (A cup+) to be a target for Mimbranes.
+If by some happenstance, a PC has testicles and no dick, then they’re skipped as well.
+The order is as follows:
+Penis(es) > Vagina > Ass > Scrotum > Breasts > Hands > Feet > Head
+*/
+
+public function attachAMimbrane():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+
+	if (pc.hasCock() && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
+	else if (pc.hasVagina()) && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Ass")) attachAssMimbrane();
+	else if (pc.balls > 0 && !pc.hasStatusEffect("Mimbrane Balls")) attachBallsMimbrane();
+	else if (pc.biggestTitSize() >= 1 && !pc.hasStatusEffect("Mimbrane Boobs")) attachBoobMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2) attachFaceMimbrane();
+	else noRoomForDishcloths();
+
+	processTime(10+rand(10));
+}
+
+/*Trust Score
+0: New parasites start at 0 trust until a parasite at 2 trust exists on the PC. This will cause any new parasites to start at 1 trust. 
+1: Mimbranes at 1 trust will still hide from their host naturally, but they can occasionally be spotted looking around with their eyes.
+2: Level two trust parasites are cautiously optimistic of their host’s intentions. They will not act very much on their own, but they are incredibly receptive to attention from the PC.
+3: Parasites at this level rarely hide from the PC. This trust level unlocks the ability for the PC to request the Mimbranes to “sweat” their natural lust-increasing oil. This is controlled over all 3+ parasites with a global toggle.
+4: Mimbranes at maximum trust can randomly augment the PC’s lust attacks by breaking free and spitting at opponents. PCs that have enabled sweating Mimbranes may also occasionally find Mimbranes creating lust clouds that they will fan towards opponents. These attacks can be disabled with a global toggle.*/
+public function createMimbraneEffect(targetEffect:String):void
+{
+	var startingTrust:int = 0;
+	var lastFed:int = 0;
+	var startingFeedCounter:int = 0;
+
+	if (highestMimbraneTrust() >= 2) startingTrust = 1;
+
+	pc.createStatusEffect(targetEffect, startingTrust, lastFed, startingFeedCounter, 0, true, "", "", false, 0);
+
+	if (mimbraneDebug) trace("Attaching mimbrane ["+ targetEffect +"]to player. Starting Trust ["+ startingTrust +"].")
+}
+
+//Get Penis Mimbrane
+public function attachCockMimbrane():void
+{
+	output("Your [pc.cock] stands like a lighthouse to the troubled Mimbrane at sea, [pc.cockhead] a shining beacon through the thick red fog. Its slick skin sliding along your [pc.legs] breaks up your frenzied breathing with short gasps. The smooth, flat parasite quickly glides across your body to your pecker, inspecting it like a Christmas gift. The bow on top is a perk bead of pre which the creature quickly gulps down into its tiny mouth. The sensation of the miniscule feeding on your already-overburdened dick doesn’t help your fragile state.");
+	output("\n\nIts meager appetite satisfied, the parasite goes to work, sizing itself up to slightly overtake your [pc.length] inches of masculinity. The Mimbrane hooks one of its four corners down around your base. The caress of its velvet underside on your delicates would send you to the edge had you not already tumbled over it. Its diminutive set of eyes and mouth fade into the parasite’s thin flesh and it quickly wraps itself around your turgid tower.");
+	output("\n\nIt doesn’t take long before your member is entirely covered. Where once a proud pecker stood tall now rests an odd, moist, light red cocoon. You don’t really get a good look at it, however. You’re much too preoccupied with the throes of ecstasy, heat, and humidity that are clouding your every thought. Things are only escalating now that your cock is in direct contact with what put you here in the first place.");
+	output("\n\nThrough the haze of confusion, you notice a new sensation on your penis. The Mimbrane is wiring itself to your nervous system. It doesn’t hurt - heaven only knows if you can actually feel anything currently and distinguish it as a real sensation. Your dick feels nebulous to you as the parasite does its magic, making you unsure of its shape or size in your mind’s eye. And then the sensations pass. You feel the hazy, tainted air on your crotch again.");
+	output("\n\nThat’s when you calm down long enough to get a look at your dick. It’s a [pc.cock], same as it was before. You examine it with your hands; it feels like nothing’s changed. Your [pc.cockhead] looks as normal to you as it did mere moments bef– no. Something is off. Two odd, tiny little bumps are just north of your opening. Poking and prodding at them reveals nothing. You motion as if to squeeze one like a pimple, but the pain is extraordinary before you can so much as pinch. The instant your fingers lift off, however, the sensation disappears.");
+	output("\n\nFurther examination reveals an extremely slight bulge running all the way around the base of your prick. Fingering at it feels as futile as peeling your own skin off. The parasite actually managed to bond itself onto your dick. Then it dawns on you: you aren’t just free of the sexual spasm from earlier. It actually feels as if you managed to knock your rocks off. But you have no memory of any sort of climax, nor do you recall even blacking out.");
+	if (pc.cumQ() <= 100) output(" By sheer chance, you run your hand up your side to find a rough little spot of dry [pc.cum].");
+	else if (pc.cumQ() <= 400) output(" That’s when you notice the dried [pc.cum] around your body.");
+	else if (pc.cumQ() <= 600) output(" That’s when you spot evidence of your massive load on and around you. Small pools of [pc.cum] still remain even.");
+	else output(" That’s when you start to really strain to remember as enormous pools of [pc.cum] come into focus on and around you. How you failed to notice the plentiful [pc.cumColor] evidence surrounding you, you’ll never know.");
+	output(" Looks like the Mimbrane got to have its cake and eat it, too.");
+	output("\n\nNot wanting to re-experience the mind-melting pain of trying to remove the faux flesh from your crotch, you resign to your fate as host. One last wistful glance down at your [pc.cock] is all you pay, still wrapping your head around the ordeal. You feel the same as you did before you even ran into the creature. And you even almost look the same, save for those two miniscule blemishes on your [pc.cockhead]. They’re barely noticeable, but they may as well be flashing lights to you. You gather your [pc.armor] and head off, doing your best to get your mind off your new traveling companion.");
+
+	createMimbraneEffect("Mimbrane Cock");
+	pc.orgasm();
+}
+
+//Get Vagina Mimbrane
+public function attachVagMimbrane():void
+{
+	output("Your [pc.cunt] sits as an unexplored chasm of wonder and merriment to the Mimbrane before you. The parasite brushes up between your legs to your feminine crevice. Its moist, smooth skin gently brushing up against your [pc.skintype] thighs definitely doesn’t help your currently precarious mental state. A meager mouth teases you as it explores your folds, eager to lap up any fluids you may already have let free in your ecstasy.");
+	output("\n\nIts paltry appetite sated, the Mimbrane goes to work smothering your groin, tiny face – or what meager options it has to constitute a face – sinking into the thin sheet. Excited gasps muscle in through your panting when your [pc.clit] is stimulated beyond belief. The sheet covers little else beyond your snatch, uninterested in serving double duty as a sentient bikini. You can feel it shift and push its way into every part of your cooch. Every detail - every opening - is coated in parasitic paint, as it were.");
+	output("\n\nThe Mimbrane splits itself to accommodate your own fissure, mimicking its every facet. In your throes of wanton desire and uncomfortable tension, you can’t even discern just how far into your box the creature goes. What do you do feel, though, is the parasite melding with your nervous system. There is no pain; only mounting confusion at the mixed messages coming from both your nerve endings and your <i>new</i> nerve endings. For a moment, you can’t picture your pussy. A nebulous region exists in its place, one where a clit is as familiar as a deity’s true intentions.");
+	output("\n\nThen nothing. Well, you feel normal. Suddenly you’re fine, albeit laying naked on the jungle floor. Your hands rush to investigate your [pc.pussy], eager to find something amiss. But its the same as before you ran into that blanket with a grudge. ");
+	output("\n\nNo... Further examination clues you in on a new development. Two, in fact. A pair of tiny little bumps sit just above your pussy. You get no response from pressing and prodding at them. But the instant you try and squeeze one of them, a debilitating pain blasts through you, lasting only as long as your fingers are poised to squeeze the blemish. The second they’re free is the second you feel fine again. That’s when you clue in on the barely-discernable lump of flesh outlining a little ways around your vagina. You try and work your way around it, but it feels as if you were trying to pry open a wrinkle. ");
+	output("\n\nAnother revelation dawns on you: not only are you free of the artificially-induced desire the parasite thrusted upon you during your fight, but you feel completely sated of any sexual passion. But you don’t recall experiencing the delightful climax that typically precludes how you feel now. Did it happen at all? It feels slightly wet between your legs, but now you aren’t even sure if that’s just your head making excuses.");
+	output("\n\nYou decide it better to just gather your [pc.armor] and move on. Whether or not you climaxed - and can remember it if you did - is secondary to worrying about your latest involuntary traveling companion.");
+
+	createMimbraneEffect("Mimbrane Pussy");
+}
+
+//Get Ass Mimbrane
+public function attachAssMimbrane():void
+{
+	// Genderless hoes
+	if (!pc.hasCock() && !pc.hasVagina()) output("The barren tract of land across your crotch doesn’t exactly thrill the parasite. The");
+	else if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Mimbrane Pussy")) output("With your [pc.cock] already claimed, the");
+	else if (pc.hasStatusEffect("Mimbrane Pussy") && !pc.hasStatusEffect("Mimbrane Cock")) output("With your [pc.pussy] already claimed, the");
+	else if (pc.hasStatusEffect("Mimbrane Cock") && pc.hasStatusEffect("Mimbrane Pussy")) output("With both your [pc.cock] and [pc.pussy] already claimed, the");
+	output (" Mimbrane sets its tiny sights on your hind quarters. One would assume the little guy wouldn’t make it much farther than your [pc.hips] laying on your back the way you are. But assumptions with alien lifeforms are typically dangerous to make.");
+	output("\n\nYour exaggerated panting gets interrupted by surprised gasps as the slick sheet forces itself in between the ground and your [pc.ass]. The parasite would likely have little trouble encompassing your posterior in this position, but your lust-addled mind involuntarily reacts to the wedging as a sign to flip over. You aren’t thinking straight enough to realize that pointing your bottom skyward may be to your disadvantage. ");
+	output("\n\nThe Mimbrane, however, is ecstatic with its endeavour being made that much easier. The creature scrambles atop your duo of hills only to find that first it must play janitor. It slides and sweeps over your [pc.skinfurscales], removing any of evidence of the jungle from its new home. You feel as if someone is sensually massaging your ass with a wet silk rag. It goes on for several minutes, long enough for you to start digging your hands into the ground to deal with the unrelenting turmoil.");
+	output("\n\nIts job complete, the parasite wastes no more time in draping itself atop your [pc.ass], sealing to its every detail. The sentient rag worms its way into your crack and within your [pc.asshole]. It isn’t long before your butt is completely smothered, Mimbrane stretched to easily embrace your");
+
+	throw new Error("Check this shit");
+	if (pc.buttRating() <= 3) output(" average");
+	else if (pc.buttRating() <= 5) output(" hefty"); 
+	else if (pc.buttRating() <= 8) output(" expansive");
+	else output(" titanic");
+
+	output(" trunk. Next, the creature weaves itself into your nervous system, confusing you further as your mind is unable to discern between genuine and relayed feelings. You absentmindedly try and clench your pucker, but get no response. One moment you feel tight, the next moment you feel as if your asshole was a gaping crater.");
+	output("\n\nThen you’re relaxed. The sounds of the jungle drag you back from whatever trance you were under. With your wits again on your side, your hands race to your backside, anxious to find anything amiss. All it seems you’re doing is groping your [pc.ass], though. You even go so far as to finger your [pc.asshole], afraid to come across something untoward. Still nothing. ");
+	output("\n\nBut just as you think all is normal, your hands brush past a couple of tiny bumps sitting smack center above your rear crevice. Manhandling them a little yields no response, but a devastating pain bowls you over the instant you even attempt to squeeze them. The injury doesn’t linger, however. Continuing to brush over the lumps reveals an ever-so-slight ascension of your [pc.skin]. The light seam runs all around outside the perimeter of your ass and up your [pc.hips]. You think you can see it, but it’s hardly noticeable. There’s definitely no way for you to pry it, an action as easy as scraping at your own [pc.skin]. ");
+	output("\n\nIts obvious that the Mimbrane got its prize: an ample pair of cheeks with a hole hidden in between them. You aren’t quite sure how you managed to miss the elation that typically comes with the relief of ridding yourself of sexual tension, but it isn’t a concern that lingers long. You gather your [pc.armor] and set out, lingering between worry and curiosity as to what will come of your posterior parasite.");
+
+	createMimbraneEffect("Mimbrane Ass");
+}
+
+//Get Scrotum Mimbrane 
+public function attachBallsMimbrane():void
+{
+	output("Despite your suffering, you can’t help but stutter out a curse to no one, frustrated to succumb to yet another of the blanket-looking parasites. Your [pc.cock] springs to life, moving on its own and frantically chirping to your conqueror. Seems as though the Mimbrane member has prime real estate scoped out for its new friend. You desperately want to reach out and grasp onto your puppeted meat, the parasite’s movement only furthering your sexual hysteria, but you’re oddly paralyzed by the thick, humid smog of lust that lingers from your battle. You can only cast a weary gaze on the [pc.cockNounSimple] shaft, still coated in the Mimbrane’s secretions and glimmering in the light.");
+	output("\n\nThe victor heeds the friendly cries of your cock and crawls up your [pc.legs] towards it. Despite the amped blood flow stiffening your dick, the raging erection is able to bend enough to greet its compatriot in some manner of face-to-face contact. The two cease any remaining pleasantries and get down to brass tacks as the new Mimbrane grasps onto your cock with a couple of its corners and stuffs its miniscule face atop your [cockhead]. Your meat obliges with a steady stream of pre which the parasite anxiously laps down.");
+	output("\n\nYour pole acting on its own coupled with the warm, slick parasite enjoying itself makes it all the worse that you can’t seem to organize any voluntary muscle movement. The most coherent urge you can fathom is just wanting to press your aggressor up against your [pc.cock] and rub one out to satiate your pent-up urges. Sadly, it’s taking the same amount of effort just to close your mouth for a second when your panting dries it out. The stuffy, oppressive cloud of craving surrounding you is just too strong.");
+	output("\n\nMeager appetite full, the Mimbrane enjoys a few more unintelligible chirps and squeaks with your cock before it backs off. Its attention focuses squarely on your [pc.balls]. Once you feel the parasite cup itself around them it becomes all too clear just what it and its friend had to talk about. Familiar sensations of smothering and crossed nerves flood you yet again, a sign that the parasite is merging onto your [sack]. The manhandling of your jewels as the sheet works its way around them only furthers your craving to tend to their payload.");
+	output("\n\nYou re-experience the nebulous feeling that accompanies the integration of a Mimbrane into your nervous system. Unable to peer your head up at the action, your inner perception of your sack fluctuates like a boat caught atop a nervous ocean. And – just as before – you suddenly feel fine. The humidity vanishes, your lust subsides, and your [pc.balls] look as they did before. You know better at this point, though, quickly discovering the pair of meager lumps disguising the Mimbrane’s eyes sitting front and center on your coin purse.");
+	output("\n\nWhat you hadn’t expected was a third, slightly larger bump sitting below and between them. Without an orifice to re-appropriate as its own, it would seem that the Mimbrane has maintained its mouth. So you assume, anyway. Neither of your parasitic pals seem all that interested in blowing their covers to you at the moment as it is. You gather your [pc.armor] and set off, eager to explore this mystery further at a later time.");
+
+	createMimbraneEffect("Mimbrane Balls");
+}
+
+//Get Breasts Mimbrane 
+public function attachBoobMimbrane():void
+{
+	output("Through the uncomfortable humidity and insatiable sex drive, a tiny voice far back in your head ponders to itself. Falling victim to yet another Mimbrane makes it question whether or not you even tried to get around this. But the voice fucks off into a forgotten oblivion, hushed by your agony and desire to know just where the next contestant will wind up. After exchanging pleasantries with your appropriated body parts, the parasite glides along your body until its right atop your [pc.fullchest]. No hint of hesitation lies in the creature.");
+	output("\n\nYou’re granted a short stare from your conqueror while its body stretches to encompass");
+	if (pc.breastRows.length > 1 || pc.breastRows[0].breasts > 2) output(" all");
+	else output(" both");
+	output(" of your jiggling");
+	if (pc.biggestTitSize() <= 4) output(" hilltops");
+	else if (pc.biggestTitSize() <= 8) output(" mountains");
+	else output(" planets");
+	output(". You can’t get a good read on what it’s thinking, but you’re certain that there is some train of thought going on in there. Any breakthroughs into a sentient parasite’s inner machinations vanish as quickly as the creature’s face once it sinks back into the wriggling sheet. ");
+	output("\n\nThere’s a desperate inclination to at least run your hands along the glistening topside of the fiend. The thought of rubbing the oily pseudo-cloth across your torso isn’t enough to break free of the stuffy eroticism that pins you to the jungle floor. The form of your chest bumps are clearly visible now, the Mimbrane sealing its form over yours. You have a much nicer vantage point of the parasite’s handiwork now that its right in front of you. Replicas of your [pc.nipples] form along its surface. The creature easily slides itself over every square inch of breast flesh.");
+	output("\n\nA moist pink replica of your chest is all that remains of the Mimbrane. You can’t admire it for too long before the familiar tinge of the creature weaving its way into your nervous system seeps into your mind. Again you feel the unusual, nebulous sensation of not exactly having a grasp on what form your body’s in. But through squinted eyes covered in sweat, you can make out the wobbling silhouette of your [pc.chest]. They’re still there. But things feel off.");
+	output("\n\nThen everything’s back to normal. Did you black out or something? The instantaneous ending of the multiple sensations and urges and feelings wracking away at you is just as jarring and out of place as it always is. From your point of view, its as if everything just happened in less time than the blink of an eye. But by now you’re certain there’s more to it.");
+	output("\n\nYour next course of action is to examine your chest to try and find where the Mimbrane is hiding its eyes. The first assumption is around one of your [pc.nipples], but you don’t discover anything new. It takes a little bit of fondling before you find the two little lumps square center above your cleavage. Guess nature just can’t resist symmetry. You also miss the practically invisible bulge of [pc.skin] running around the perimeter of your knockers, presumably marking where the parasite ends and you begin. As always, its easy to miss and you have no hope of prying the thing off of you.");
+	output("\n\nYou gather up your [pc.armor] and head off with the new addition to your close family.");
+}
+
+//Get Hands Mimbranes
+public function attachHandMimbrane():void
+{
+	//First hand
+	if (!pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right"))
+	{
+		output("Your conqueror is actually a little confused. All of its prime targets have been taken! But it would seem that your parasitic attachments are doing their damnedest to keep their friend from being discouraged. The constant movement and noise around your body struggles against the haze that’s locked you into a stuffy bout of sensual passion. Trying to stay current on the Mimbrane’s actions is proving to be a difficult ordeal.");
+		output("\n\nThat’s when a slick, smooth touch of your palm garners your attention. The parasite is prodding at your hand, seemingly examining it. Though you lack the coherence to whip your arm away, you’re at least able to clench your fingers. Your grip isn’t quite up to your full potential, but you do manage to snag the Mimbrane’s inquisitive corner. It doesn’t startle the creature, however, much to your disappointment. If anything, the direct contact with the parasite’s oily top side is only making your inner turmoil worse.");
+		output("\n\nNo, instead the Mimbrane casually wraps the rest of its body around your weak fist. You make a weak gesture, relinquishing your grapple to try and move your fingers in some useless attempt to escape the parasite. All you manage to do is make it easier for it to work its way around your digits and onto your palm. Falling back to making another fist is your final recourse, unable to move or react intelligibly enough to effectively defend yourself.");
+		output("\n\nThe gesture proves meaningless, and soon it appears you’ve found yourself a wriggling glove of sorts, grasped firmly onto your wrist. Next comes the recognizable sensation of the Mimbrane integrating into your nervous system. Though you can’t get a coherent feeling from them, you can at least still move your fingers. Soon, the moist, warm feeling of entrapment is replaced with the comparatively cool breeze of the jungle.");
+		output("\n\nYou’ve gotten rather used to this process by now. The jolt of normalcy isn’t even a shock anymore. The hunt for the creature’s eyes and mouth doesn’t even take long; a triage of tiny bumps lay concealed square center on your [pc.skincolor] palm. You rub your other thumb over them, a tad surprised to see how much durable the typically sensitive additions are. You suppose the Mimbrane has a grasp on what a hand actually is and has modified itself accordingly.");
+		output("\n\nAs you reach over for your [pc.armor], anxious to keep moving, something dawns on you. You run your thumb back over the parasitic palm again. Its actually moist. But this isn’t the remnants of your opponent. It looks like");
+		if (pc.hasCock()) output(" cum");
+		else if (pc.hasVagina()) output(" girl spunk");
+		else output(" it came from you");
+		output(". Maybe you aren’t quite through wondering just what goes on when a Mimbrane couples onto its prey....");
+
+		createMimbraneEffect("Mimbrane Hand Left");
+	}
+	//Second hand
+	else if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right")) 
+		|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right")))
+	{
+		output("It’s a Mimbrane soiree and everyone’s invited! You think you said that out loud, but honestly aren’t sure. You’ve fallen victim to these parasites enough times now to start speculating whether or not you’re even trying anymore. Maybe you enjoy it. Maybe it’s really hard for you to resist them when they start sweating and attacking you uncontrollably. Maybe nurturing these creatures is some sort of penance for your father’s sins. Maybe you’ve been suffering from a series of bad days that just so happen to coincide with every moment you run into a Mimbrane.");
+		throw new Error("Wat. Horny Cactus. Wat");
+		output("\n\n...It’s hard being introspective when you’re hornier than a cactus and stuffier than a sauna.");
+		output("\n\nThe creature brushes up against your other hand, the one free of parasitic control. You had a good feeling that was where it would wind up.");
+		output("\n\nYou don’t even bother looking at it – trying to pierce through the haze that’s pinned you down to fight it off. Did your other hand just direct it or something? Who knows. The Mimbranes always seem to get riled up when they run into a new roommate. Experiencing various parts of your body acting of their own accord has become second nature to you by now.");
+		output("\n\nYou can’t feel your hand anymore. The parasite must have already smothered your other hand and has moved onto that integration. Does it turn you on still? Maybe. It’s hard to say. It probably would have been faster had you just gone limp the instant the damn thing fell out of the sky at you. ");
+		output("\n\nSeems like you’ve got a bit of angry lust for no good reason. Or you’re frustrated. Or just confused. Or– oh, things are back to normal. That same normal you’ve run into " + num2Text(attachedMimbranes() + 1) + " times now. You look down at hand; three bumps are arranged on your palm same as they are on your other one.");
+		output("\n\nWith your wits back with you, a heavy sigh accompanies the gathering of your [pc.armor]. Best not to dwell on this further.");
+
+		if (pc.hasStatusEffect("Mimbrane Hand Left")) createMimbraneEffect("Mimbrane Hand Right");
+		else if (pc.hasStatusEffect("Mimbrane Hand Right")) createMimbraneEffect("Mimbrane Hand Left");
+	}
+	else
+	{
+		throw new Error("Derp you dun fucked up.")
+	}
+}
+
+//Get Feet Mimbranes 
+public function attachFootMimbrane():void
+{
+	//First foot
+	if (!pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right"))
+	{
+		output("...Again! You’ve succumbed again! Your body is covered in these things! Where will this Mimbrane go? Do you even care?");
+		output("\n\nYou’ve honed the act of retreating back to your subconscious into an art at this point. Anything to escape the repeated anguish these Mimbranes throw you under. You can barely even feel the parasites manipulating your body in all sorts of strange and unnatural ways. Its the same as always, you figure.");
+		output("\n\nYou’ve given up trying to figure out why you keep losing to what amounts to a rag in the wind. You can’t concentrate immediately after the fact, and when the parasite’s on you, you’re done caring. Are you even frustrated anymore? When something becomes so commonplace, can someone continue to act surprised?");
+		output("\n\nThe commotion calms down, leaving only your labored panting to your ears. A moist, deft touch lands on your [pc.foot], snapping you out of the odd bout of self-pity. You can’t get a good view over your struggling [pc.fullchest], but it would appear the parasite has opted to attach itself to your foot. Oily coverings weave their way between your toes, along your arch and up your ankle. As always, little time transpires before your extremity is sealed within the creature’s undulating, form-fitting grip.");
+		output("\n\nYou cease paying attention to the little thing once the familiar feeling of it weaving its way into your nervous system kicks in. The sensation of forgetting how your body part is constructed is old hat, no matter how bizarre it feels each time. It’ll be over soon anyway; may as well try and focus on something beyond the excruciating humidity and torrents of desire...");
+		output("\n\n...Usually it can be difficult to get even the vaguest semblance of a clear head when you’re thrown into a rut like this. Sure, your body still feels like it wants to penetrate and be penetrated and do anything else it can to get through these anxious times. But here, safe in your mind, you’ve gotten better at at least not <i>thinking</i> like a psychopathic pervert. Maybe the repetition of being artificially driven to want to bang something isn’t doing as well of a job as it once did?");
+		output("\n\nAny further exploration into the topic flutters away the instant things return to – you guessed it – normal. The normal always hits you like an oncoming car out of nowhere. The normal is always the anticlimax that leaves you feeling refreshed and unfulfilled. The normal is getting to be frustratingly abnormal. ");
+		output("\n\nYour idle thoughts are getting to be noxious, you fear. You instead think to grasp your [pc.foot] in your hand, curious to hunt down the three bumps at the bottom of the cereal box. The two eye bumps are easy enough to find centered right above your middle toe – you’ve gotten good at this, sadly. But the third tiny bulge is actually hidden underneath that same toe. Another instance of symmetry, you figure; the Mimbranes just must be naturally attracted to it.");
+		output("\n\nYou begin to start getting anxious over when your other foot will find its counterpart parasite, but perish the thought before it can germinate. There’s enough on your plate already with your " + num2Text(attachedMimbranes() + 1) + " additional mouths to feed. You take your [pc.armor] and go.");
+
+		createMimbraneEffect("Mimbrane Foot Left");
+	}
+	//Second Foot
+	else if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right")) 
+		|| (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right")))
+	{
+		output("You don’t even know if your body is your own anymore. Not when this happens, anyway. Everything under Mimbrane control is having a picnic greeting the latest arrival to Casa De La " + pc.short + ". Its the same as always. You know it’ll go to your free foot. Better to just put it all of your head and wait for “normal.”");
+		output("\n\nStaring up through the pink haze surrounding you is the jungle canopy. Tall trees wobble lightly in the breeze. Scant beams of ");
+		if (hours <= 6 || hours >= 18) output(" moonlight");
+		else output(" sunlight");
+		output(" burst their way in through the brush. Nature is oblivious to your plight.");
+		output("\n\nThe Mimbrane wraps around your [pc.foot].");
+		output("\n\nThere don’t seem to be very many other signs of wildlife around at the moment. The involuntary movement of your body paired with the unusual sounds produced by the Mimbranes must be keeping them at bay. It’s too bad; now would be the perfect time for a little birdwatching.");
+		output("\n\nThe Mimbrane weaves into your nervous system.");
+		output("\n\nIt’s so hot. It’s always hot when you lose to these things. But when you’re absorbing nature like this, it’s hard to ignore every facet of it, regardless of how it came about. Sure, the lust fog surrounding you weighs on you like a steaming bag of bricks, but it isn’t like the jungle is that much better typically. How many creatures must love living here, you wonder.");
+		if (flags["TIMES_MET_VENUS_PITCHER"] != undefined) output(" Do the venus pitchers get much catches out in the middle of nowhere like this?");
+		output("\n\nYou can’t feel your [pc.foot].");
+		output("\n\nMaybe if it were winter it wouldn’t be as uncomfortable around here. Surely most of the unsavory types wouldn’t enjoy even a slight drop in temperatures. It’s doubtful that the seasons make much of a difference around here, though, you figure. That seems to be how jungles usually work, right? Maybe it was foolish to imagine otherwise.");
+		output("\n\nThings are back to normal.");
+		output("\n\nThat’s it. Panting’s gone. Your desire to fuck something is back to your more sustainable levels. Jungle feels like its typical self. You don’t even bother examining your new parasite. There’s no need. You’ve already gotten used to feeding a foot, as it were. Same as the rest of your body. This is common practice for you at this point.");
+		output("\n\nYou take your [pc.armor] and go, refusing to dwell on what transpired.");
+
+		if (pc.hasStatusEffect("Mimbrane Foot Left")) createMimbraneEffect("Mimbrane Foot Right");
+		else if (pc.hasStatusEffect("Mimbrane Foot Right")) createMimbraneEffect("Mimbrane Foot Left");
+	}
+	else
+	{
+		throw new Error("You done fucked up even more!");
+	}
+}
+
+//Get Head Mimbrane
+public function attachFaceMimbrane():void
+{
+	//Requires all attached Mimbranes be minimum level 2 trust
+	// Shit should already have been checked in the attachment scene router.
+	output("It’s as routine as morning wood. You’re flat on your back, panting your brains out, covered in parasitic sweat contending with your own. The sound of the Mimbranes all around your body happily conversing with one another and the new arrival is as loud as ever. You don’t pay the creatures much mind as they manipulate your paralyzed body; its easier to just wait out for “normal” to drop in when you’re blissfully ignorant of the stress. For once, not a hint of concern has penetrated your mind. Though the body may be unable to resist the attack of the parasites, your mind has learned how to deal with the dilemma.");
+	output("\n\nNature seems especially interesting again today. The pink haze isn’t as thick as usual, giving you a clearer sight at the Mimbrane hovering over your face.");
+	output("\n\nWait. What?");
+	output("\n\nYour mind is dragged back to reality. You’re fully aware again, right in the moment. The odd sensation of being watched by a multitude of eyes is upon you. But nothing is more apparent than the Mimbrane staring you right in the eyes. The parasite’s front two corners are perched on the sides of your face, letting the creature suspend the best representation it has of a face a good distances above yours. Your labored breathing pushes the parasite a little with each exhale and sucks in a little of its haze with each inhale.");
+	output("\n\nWhat does it intend to do? Have the number of Mimbranes gotten high enough for them to claim dominance over your body? You start to worry, but the look in the Mimbrane’s face is inquisitive. It’s as if its waiting for a response. The parasite taps on your [pc.face] again, tracing your [pc.lips] with one of its corners while chirping lightly at you. There’s no way in hell your microsurgeons can translate that for you...");
+	output("\n\nThat’s when you recall the codex! Mimbrane naturally avoid the face, instinctively afraid that a position anywhere near a host’s sensitive head will spell doom for them. This one seems reluctant to break that inbred habit. So then what is it doing?");
+	output("\n\nYou think for a moment, eyes darting around your close-up champion, its face tilted to one side to only further appear as if awaiting a response. The rest of the Mimbranes on your body seem to think you’re alright... Perhaps they goaded this one into testing its luck? That would explain the tense feeling you’re getting about being watched. But rather than just go whole hog on your head, it would seem this parasite at least wants to try and get approval from you before working against its instincts.");
+	output("\n\nIt makes sense to you anyway.");
+	output("\n\nIts been awhile since you haven’t abandoned your body when its in a state like this. Shuddering from the humidity and thrust-upon lust from these parasites. Getting words out proves to be difficult. Through numerous stutters, pants and restarts, you ask the parasite cautiously perched atop you if it wants on your head. The Mimbrane moves in a fashion that appears to be nodding. But it continues staring at you.");
+	output("\n\nLooks like the decision is up to you.");
+
+	//[Go ahead][No!]
+	clearMenu();
+	addButton(0, "Go ahead", acceptFaceMimbrane);
+	addButton(1, "No!", refuseFaceMimbrane);
+}
+
+public function refuseFaceMimbrane():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	//[No!]
+	output("You’re wary of letting the Mimbrane cover your head, unsure how this final measure would pan out for you. You’re at least compelled to spit out an apology with your decline. It’s weird to have some hint of conversation with what you figured was just an animal.");
+	output("\n\nThe parasite scoots backwards from you, talking amongst your puppeted body parts. You think its disappointed, but there’s really no way to tell. Especially not when you’re feeling as horny and norma– ");
+	output("\n\nNormal. Normal’s burst back onto the scene. It’s a bit more of a shock this time. Your conqueror has vanished and your body is pre-savaged. You double check your head to make sure the parasite didn’t get on it. There aren’t any unusual bumps or sensations. The assumption was that the blink from rut to right was a byproduct of a Mimbrane latching onto you. Now you don’t know what to think again.");
+	output("\n\nThe question simmers while you gather your [pc.armor] and leave.");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function acceptFaceMimbrane():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	//[Go ahead!]
+	output("Whether it’s because you’re feeling adventurous or just succumbing to the rut you thought you had become accustomed to, no one can say. But you nod your head to the anxious Mimbrane, stuttering out a labored “Sure.” The parasite exchanges a few more unintelligible squeaks with its cohorts, possibly to confirm what it’s about to do. Then it smothers your [pc.face], forcing you to react by slamming your eyes shut. ");
+	output("\n\nSmooth, slick skin wraps all around your head. Its as if someone were wrapping a hot, wet towel around your head. Your involuntary panting strains at finding air, instead sucking wet flesh into your mouth and nose. Warm waves meld to your every contour, encasing your head completely in short time. Just as panic begins to sinks in, the fleshy cocoon splits open at your orifices, prompting a deep gasp. The Mimbrane is over your lips and fades seamlessly into your mouth. It’s hard to tell where it ends anywhere the parasite has penetrated your head. You try and open your eyes as well, but are less successful in that endeavour; your eyelids refuse to move.");
+	output("\n\nThe electrifying sensation of the creature weaving its way into your nervous system is next. Your reaction would be to grasp your melon with your hands, but the extremities feel as if they’re under an immense weight. It’s no easier to move now than it ever has been any other time you lost to a Mimbrane. ");
+	output("\n\nThe sensation of not feeling your head is confusing. The smothered, moist titillation is more intense than what you experienced for any other bonding to your body, and now it’s competing with signals telling your brain the comparatively cool air is breezing past your skin. Your eyelids suddenly obey, and your head settles back its normal sensation.");
+	output("\n\nNormal.");
+
+	if (pc.hasCock())
+	{
+		output("\n\nBut you’re still panting. Still horny. Still hot, still paralyzed, still confused. This is anything but normal now! Not snapping free of this hell is the most abnormal thing ever in this process that you had once thought you had become so accustomed to. Now what?");
+		output("\n\nThe light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if its taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?");
+		output("\n\nYour rock-hard [pc.cock] knows, apparently; it’s stroking itself! The Mimbrane member is standing at full attention, skin applying pressure in vertical waves. From base to tip and back, going from tinge to more than a hand could grasp, each stroke is unique. The parasite is working your cock with pinpoint precision. There’s little preamble to be had; by now it knows your penis down to the last square nanometer. [pc.Cum]");
+
+		if (pc.cumQ() <= 100) output(" spurts");
+		else if (pc.cumQ() <= 300) output(" bursts");
+		else if (pc.cumQ() <= 600) output(" blasts");
+		else output(" unnaturally explodes");
+		output(" forth.");
+
+		output("\n\nTypically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the [pc.cumcolor] fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re – and consequently you – finished, the majority of your jism is strewn about your midsection and torso.");
+		output("\n\nYour body goes into a sudden uproar of noisy squeaks and chirps! Your [pc.lips] move on their own as well, reminding you of the latest addition to your merry band. Indeed, the skin around your head feels as if it were wriggling about ever so slightly, making for a rather peculiar experience. Seems everyone is amped to be fed, and your puppeted hands are happy to oblige. Smatterings of [pc.cum] are distributed around you, smeared anywhere a Mimbrane mouth may be.");
+		output("\n\nThere’s a hypothesis to be had here. Though you can’t entirely explain it, it would seem that your jolt to “normalcy” was the period in which your aggressors would feed on your liquid lust. Mimbranes naturally act in methods that preserve their secrecy on a host. When someone loses to one of the parasites, it becomes easy to simply overwhelm them in the parasite’s natural funk. A momentary lapse in consciousness doesn’t seem all that farfetched when one is already sweaty, hot and suffering from sexual yearning beyond perceivable belief.");
+		output("\n\nBut the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of [pc.cumTemp] sustinence to your eager [pc.lips]. The [pc.cumFlavor] flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.");
+		output("\n\nThe Mimbranes satiated, they begin to calm down. Though they’re incapable of wrestling away complete control of your body from you, awe was enough to render you essentially paralyzed up until this point. You touch your fingers to your lips, finding no trace of their treat. But they do suddenly kiss your tender touch, forcing a breathless laugh out of you. Digits return to find a duo of small bumps right above your upper lip. You weren’t going to be completely satisfied until you found those eyes...");
+		output("\n\nA veil of complacency has been lifted this day. The Mimbranes certainly seem content, and you even got a peek into some of their more rare tendencies. Sure, they may be driven to feed and survive more than anything – heaven forbid anyone hear about how fast they jerked one out of you – but there seems to be some semblance of companionship in the faux skin.");
+		output("\n\nRejuvenated, you gather your [pc.armor] and venture forth a bit happier than you were before.");
+	}
+	else if (pc.hasVagina())
+	{
+		output("\n\nBut you’re still panting. Still horny. Still hot, still paralyzed, still confused. This is anything but normal now! Not snapping free of this hell is the most abnormal thing ever in this process that you had once thought you had become so accustomed to. Now what?");
+		output("\n\nThe light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if its taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?");
+		output("\n\nYour [pc.pussy] knows, apparently; it’s going crazy! The Mimbrane folds are exciting themselves into a soaked frenzy. Even your [pc.clit] is stimulating itself, flesh pushing and teasing the love button with exacting precision. The parasite knows itself – and by extension you – down to seemingly every last cell. A");
+
+		if (pc.vaginalWetness < 2) output(" splash");
+		else if (pc.vaginalWetness <= 3) output(" wave");
+		else output(" torrent");
+		output(" of femspunk gushes out your gash.");
+
+		output("\n\nTypically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the feminine fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re finished, the majority of your excitement is strewn about your midsection and groin.");
+		output("\n\nYour body goes into a sudden uproar of noisy squeaks and chirps! Your [pc.lips] move on their own as well, reminding you of the latest addition to your merry band. Indeed, the skin around your head feels as if it were wriggling about ever so slightly, making for a rather peculiar experience. Seems everyone is amped to be fed, and your puppeted hands are happy to oblige. Smatterings of pussy juice are distributed around you, smeared anywhere a Mimbrane mouth may be.");
+		output("\n\nThere’s a hypothesis to be had here. Though you can’t entirely explain it, it would seem that your jolt to “normalcy” was the period in which your aggressors would feed on your liquid lust. Mimbranes naturally act in methods that preserve their secrecy on a host. When someone loses to one of the parasites, it becomes easy to simply overwhelm them in the parasite’s natural funk. A momentary lapse in consciousness doesn’t seem all that farfetched when one is already sweaty, hot and suffering from sexual yearning beyond perceivable belief.");
+		output("\n\nBut the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of sustenance to your eager [pc.lips]. The feminine flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.");
+		output("\n\nThe Mimbranes satiated, they begin to calm down. Though they’re incapable of wrestling away complete control of your body from you, awe was enough to render you essentially paralyzed up until this point. You touch your fingers to your lips, finding no trace of their treat. But they do suddenly kiss your tender touch, forcing a breathless laugh out of you. Digits return to find a duo of small bumps right above your upper lip. You weren’t going to be completely satisfied until you found those eyes...");
+		output("\n\nA veil of complacency has been lifted this day. The Mimbranes certainly seem content, and you even got a peek into some of their more rare tendencies. Sure, they may be driven to feed and survive more than anything – heaven forbid anyone hear about how fast they pushed you to climax – but there seems to be some semblance of companionship in the faux skin.");
+		output("\n\nRejuvenated, you gather your [pc.armor] and venture forth a bit happier than you were before.");
+	}
+	else
+	{
+		output("\n\nAnd that’s that. Suddenly, you’re returned to that tranquil yet jarring peace that you’ve become oh-so-accustomed to. Though something bothers you this time. For no fathomable reason, it feels as if you missed out on something. You dwell on that thought for a moment, but nothing more substantial roots. Maybe you’re imagining things.");
+		output("\n\nYou put your fingers to your mouth, surprised when your [pc.lips] suddenly kiss them! Seems the Mimbrane on your face is quite content, and isn’t anxious to hide away from you quite so soon. A breathless laugh escapes you, taken aback by the cute little show of affection. Fingers return and find a couple of little bumps just above your upper lip. You weren’t going to be leaving before you knew where those eyes were, after all.");
+		output("\n\nRejuvenated, you gather your [pc.armor] and venture forth a bit happier than you were before.");
+	}
+
+	createMimbraneEffect("Mimbrane Face");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//No Room for Mimbrane 
+public function noRoomForDishcloths():void
+{
+	output("Much to the Mimbrane’s chagrin, it seems there’s simply no room for it on your body! You’re hoping it’ll leave so you can at least get out of its humid, paralyzing cloud of insidious behavior, but it seems to be talking again to your Mimbranes. You wonder what it–");
+	output("\n\n...It’s gone. So is any inkling of sexual fervor. You glance around a little, surprised by the relative peace that’s attacked you out of nowhere. You snatch up your [pc.armor] and get on your way before the parasite decides to get creative!");
+}
+
+// v1 == trust
+// v2 == last fed
+// v3 == feed level/counter
+// v4 == reproductive cycle counter
+public function mimbraneStatusString(effectName:String):void
+{
+	var trustLevel:int = pc.statusEffectv1(effectName);
+	var feedLevel:int = pc.statusEffectv3(effectName);
+	var reproductionCounter:int = pc.statusEffectv4(effectName);
+	var daysSinceLastFed:int = pc.statusEffectv2(effectName);
+
+	var msg:String = "";
+	msg += "<b>" + effectName + ":</b>";
+	msg += " Level " + trustLevel + " Trust.";
+	msg += " " + String(feedLevel) + " Feedings.";
+
+	if (!mimbraneDebug)
+	{
+		if (daysSinceLastFed >= 7) msg += " Hungry."
+	}
+	else
+	{
+		msg += " " + daysSinceLastFed + " Days since last fed.";
+		msg += " " + reproductionCounter + " times reproduced.";
+	}
+
+	return msg;
+}
+
+//Mimbrane Menu
 //Accessible on the ship. Options only appear if available
-{List of Mimbranes, showing Trust Level, Number of Feedings, and Enabled Toggles}
+//{List of Mimbranes, showing Trust Level, Number of Feedings, and Enabled Toggles}
 //Example:
-You currently have {2} Mimbrane{s} attached to you.
-<b>Cock Mimbrane:</b> Level 3 Trust. 11 Feedings. Sweating.
-<b>Ass Mimbrane:</b> Level 0 Trust. 2 Feedings.
+public function mimbraneMenu():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("You currently have " + attachedMimbranes() + " Mimbrane");
+	if (attachedMimbranes() > 1) output("s");
+	output "attached to you.");
+
+	output("\n");
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			output(mimbraneStatusString(mimbraneEffects[i]));
+		}
+	}
+}
+
 //Low lust with any feedable Mimbranes  (Masturbation lust requirement needed to feed)
 You have {a Mimbrane that is/Mimbranes that are} ready to feed. However, you aren’t turned on enough to get your juices flowing!
 //Genderless with any feedable Mimbranes  (Masturbation lust requirement needed to feed)
