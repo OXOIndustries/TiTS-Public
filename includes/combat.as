@@ -83,7 +83,7 @@ function combatMainMenu():void
 		this.addButton(4,"Do Nothing",wait);
 	}
 	// Mimbrane Smother
-	else if ()
+	else if (pc.hasStatusEffect("Mimbrane Smother"))
 	{
 		throw new Error("Not yet implemented");
 	}
@@ -1089,6 +1089,9 @@ function enemyAI(aggressor:Creature):void
 		case "Dane":
 			daneAI();
 			break;
+		case "mimbrane":
+			mimbraneAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1128,6 +1131,10 @@ function victoryRouting():void
 	{
 		defeatDane();
 	}
+	else if (foes[0] is Mimbrane)
+	{
+		defeatMimbrane();
+	}
 	else genericVictory();
 }
 
@@ -1161,6 +1168,10 @@ function defeatRouting():void
 	else if(foes[0].short == "Dane")
 	{
 		loseToDane();
+	}
+	else if (foes[0] is Mimbrane)
+	{
+		beatUpByAFuckinDishcloth();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1319,6 +1330,9 @@ function startCombat(encounter:String):void
 			break;
 		case "Dane":
 			chars["DANE"].prepForCombat();
+			break;
+		case "mimbrane":
+			chars["MIMBRANE"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

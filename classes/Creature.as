@@ -559,8 +559,8 @@
 		}
 		public function legTypeLockedMessage():String
 		{
-			if (newLegType != GLOBAL.HUMAN && (this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right")) || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
-			if (newLegType != GLOBAL.HUMAN && this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
+			if (this.hasStatusEffect("Mimbrane Foot Left") && !this.hasStatusEffect("Mimbrane Foot Right") || !this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
+			if (this.hasStatusEffect("Mimbrane Foot Left") && this.hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
 			return "";
 		}
 		

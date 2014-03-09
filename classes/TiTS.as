@@ -88,6 +88,7 @@
 		include "../includes/reaha.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/kelly.as";
+		include "../includes/mimbranes.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
@@ -537,15 +538,9 @@
 		{
 			return chars["REAHA"];
 		}
-		
 		public function get dane():*
 		{
 			return chars["DANE"];
-		}
-		
-		public function get mimbrane():*
-		{
-			return chars["MIMBRANE"];
 		}
 	}
 }

@@ -40,7 +40,6 @@ function debugMenus():void
 	output("<b>Open tag <b>Double open tag");
 	output("More text");
 	
-	
 	addItemButton(0, new DBGShield(), function():void {
 		output("\n\nDebug shield get.");
 		
@@ -101,7 +100,6 @@ function debugMenus():void
 	});
 }
 
-
 /*
 Fern, Lichens, and Ironwoods:
 Man/FemZil, Cuntsnake
@@ -116,6 +114,12 @@ function jungleEncounterChances():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
 	else flags["JUNGLE_STEP"]++;
+	
+	if (debug)
+	{
+		encounterMimbrane();
+		return true;
+	}
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
