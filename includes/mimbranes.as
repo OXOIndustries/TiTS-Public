@@ -291,9 +291,88 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 }
 
 // Reproduction/stat mod tasks
+
+//Once a Mimbrane has maxed out on feedings, it will no longer track days and go into a hunger state. It will still aid other hungry Mimbranes.
+//Reproduction always occurs when the PC is asleep. Unnoticed Reproduction takes place when the PC awakes, normal reproduction takes place in the middle of sleep.
+//Only Unnoticed Reproduction scenes occur at trust level 0 and 1. At trust levels 2-4, the reproduction scenes still only have a small chance to occur instead of the Unnoticed Reproduction. The chance raises with each level, potentially at 10, 20, and 30% respectively.
+//Mimbrane resets to 0 feedings after reproduction, reseting all of its feeding-based effects on the organ. All parser activity in scenes reflects the enlarged organ.
+
+// v1 == trust
+// v2 == last fed
+// v3 == feed level/counter
+// v4 == reproductive cycle counter
 public function mimbraneReproduce(effectName:String):void
 {
+	if (!pc.hasStatusEffect(effectName)) throw new Error("A mimbrane the player doesn't have attempted to reproduce.");
 
+	var currentTrust:int = pc.statusEffectv1(effectName);
+
+	// 0->1
+	if (pc.statusEffectv1(effectName) == 0)
+	{
+		pc.setStatusValue(effectName, 1, 1);
+		pc.setStatusValue(effectName, 2, 0);
+		pc.setStatusValue(effectName, 3, 0);
+		pc.setStatusValue(effectName, 4, 0);
+	}
+	// 1-2 -- requires 2 cycles
+	else if (pc.statusEffectv1(effectName) == 1)
+	{
+		if (pc.statusEffectv4(effectName) == 0)
+		{
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, 1);
+		}
+		else
+		{
+			pc.setStatusValue(effectName, 1, 2);
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, 0);
+		}
+	}
+	// 2->3 -- requires 3 cycles
+	else if (pc.statusEffectv1(effectName) == 2)
+	{
+		if (pc.statusEffectv4(effectName) < 3)
+		{
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, pc.statusEffectv4(effectName) + 1);
+		}
+		else
+		{
+			pc.setStatusValue(effectName, 1, 3);
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, 0);
+		}
+	}
+	// 3->4 -- requires 5 cycles
+	else if (pc.statusEffectv1(effectName) == 3)
+	{
+		if (pc.statusEffectv4(effectName) < 5)
+		{
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, pc.statusEffectv4(effectName) + 1);
+		}
+		else
+		{
+			pc.setStatusValue(effectName, 1, 4);
+			pc.setStatusValue(effectName, 2, 0);
+			pc.setStatusValue(effectName, 3, 0);
+			pc.setStatusValue(effectName, 4, 0);
+		}
+	}
+	else if (pc.statusEffectv1(effectName) == 4)
+	{
+		pc.setStatusValue(effectName, 1, 4);
+		pc.setStatusValue(effectName, 2, 0);
+		pc.setStatusValue(effectName, 3, 0);
+		pc.setStatusValue(effectName, 4, pc.statusEffectv4(effectName) + 1);
+	}
 }
 
 public function mimbranesIncreaseDaysSinceFed():void
@@ -1069,6 +1148,11 @@ public function mimbranesComplainAndShit():void
 	}
 }
 
+//Reproduction
+//Once a Mimbrane has maxed out on feedings, it will no longer track days and go into a hunger state. It will still aid other hungry Mimbranes.
+//Reproduction always occurs when the PC is asleep. Unnoticed Reproduction takes place when the PC awakes, normal reproduction takes place in the middle of sleep.
+//Only Unnoticed Reproduction scenes occur at trust level 0 and 1. At trust levels 2-4, the reproduction scenes still only have a small chance to occur instead of the Unnoticed Reproduction. The chance raises with each level, potentially at 10, 20, and 30% respectively.
+//Mimbrane resets to 0 feedings after reproduction, reseting all of its feeding-based effects on the organ. All parser activity in scenes reflects the enlarged organ.
 public function mimbraneSleepEvents():void 
 {
 	var outputDone:Boolean = false;
@@ -1565,7 +1649,44 @@ public function mimbraneSleepEvents():void
 	{
 		outputDone = true;
 
-		// Head mimbranes should always be >= 2 trust
+		if (rand(100) <= 3)
+		{
+			// Head mimbranes should always be >= 2 trust
+			if (flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"] == undefined)
+			{
+				flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"] = 1;
+				eventQueue.push(mimbraneFaceReproduction);
+			}
+			else
+			{
+				eventQueue.push(function():void {
+					clearOutput();
+					userInterface.showBust("MIMBRANE");
+					flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"]++;
+
+					output("Something’s escorted you away from blissful slumber. Your ship is as silent as always, never the cheeriest of greeters. Dazed eyes peer around the room, curious to find anything out of the ordinary. They find nothing. Did you just wake up for no reason?");
+
+					clearMenu();
+					addButton(0, "Next", mimbraneFaceReproductionGo);
+				});
+			}
+		}
+		else
+		{
+			outputDone = true;
+
+			eventQueue.push(function():void {
+				clearOutput();
+				userInterface.showBust("MIMBRANE");
+
+				output("Upon stretching off the last vestiges of sleep, you notice something feels off about your [face]. It would appear that your [lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.");
+
+				clearMenu();
+				addButton(0, "Next", mainGameMenu);
+			});
+		}
+
+		mimbraneReproduce("Mimbrane Face");
 	}
 
 	//Breathing Mimbranes
@@ -1681,6 +1802,58 @@ public function mimbraneSleepEvents():void
 			});
 		}
 	}
+}
+
+public function mimbraneFaceReproduction():void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	output("“Anything you want want before I head out for the night?” Victor asks. You stare around the room blankly, trying to think if you left anything out. Nothing comes to mind, and you tell him as much. Your father gives you a slight little wave and heads out the door.");
+	output("\n\nWait! An ice cream cone would be great! You jump over the coffee table and barrel down towards the door to catch him before he’s gone. Inky blackness is all that greets you. Which way did he go? You squint and strain, but can’t make out any details. Nothing’s clear. Nothing doing but to go back inside.");
+	output("\n\nAs you close the door behind you, something starts to seem off. It’s hard to focus on anything around you. Some instinct in the back of your head tells you to look at your hand and try to count your fingers.");
+	output("\n\nYou can’t. Nothing looks wrong, but you just can’t. You have an idea of what’s going on. Next you poke your index finger against the palm of your hand, pushing hard. It pokes out the other side of your hand with ease.");
+	output("\n\nYou’re dreaming. Those lucid dreaming techniques you read on the extranet paid off! But now everything’s getting even more unstable, like you’re being sucked out! What was it they said to do... oh! Rub your hands together and try spinning in place! ");
+	output("\n\nYou’re back in your quarters now instead of the listless room of before, back to your normal self. Looks like it worked! There’s a higher sense of clarity to your surroundings now. Looking around the room, you realize you’ve started flying without even thinking about it. It is the most common dream sensation, after all. Try not to get too excited, you remind yourself. If you want to make the most of this little head vacation, you’ll have to get ensconced in some little activity.");
+	output("\n\nBut what first?");
+
+	//[Talk to subconscious] [Orgy] [Find Follower] [Find Victor] [Fly in Space]
+	clearMenu();
+	addButton(0, "Talk to Subc.", mimbraneFaceReproductionGo, true);
+	addButton(1, "Orgy", mimbraneFaceReproductionGo, true);
+	addButton(2, "Find Follower", mimbraneFaceReproductionGo, true);
+	addButton(3, "Find Victor", mimbraneFaceReproductionGo, true);
+	addButton(4, "Fly in Space", mimbraneFaceReproductionGo, true);
+}
+
+public function mimbraneFaceReproductionGo(dream:Boolean = false):void
+{
+	clearOutput();
+	userInterface.showBust("MIMBRANE");
+
+	if (dream)
+	{
+		output("You’re awake! How! Why! You did everything you’re supposed to, right? What went wrong?");
+		output("\n\n");
+	}
+
+	output("All concerns vanish from your head when your [pc.lips] suddenly tremble and constrict! Hell, your whole head feels as if it were trying to rip itself apart, and not in that cute little headache way. You can actually feel the [pc.skin] on your skull tensing and shifting ever so slightly, like an eyelid twitch pushed to an obscene level. There’s little doubt in your mind as to the reason for this uncomfortable phenomenon: Mimbrane.");
+	output("\n\nMore specifically Mimbrane reproduction. You’ve been feeling a little fat-headed lately, and it doesn’t have anything to do with your intelligence. Someone could rent your lips out as a bounce house, and your [pc.face] feels a little puffy even if it doesn’t look it. You know from your codex that the parasite prefers to wait until their host is in slumber’s embrace before attempting to multiply. Your head-mounted friend already seemed pretty cool with you from the get-go; it must not mind if you wake up to watch it make some children.");
+	output("\n\nYour instincts are to paw at your face, hands desperate to get a grip on the writhing flesh around your head. It takes a lot of willpower to merely keep still, controlling your breathing through your nose with your mouth acting as if it were in great pain. The Mimbrane’s little squeaks and chirps through your bimbo-esque lips are audible enough as it is. One feature you can’t see is the sudden dead-eye glare in the parasite’s miniscule eyes. ");
+	output("\n\nIt’s only a sign for what’s to come. A numbness shrouds your head. You can’t decide if it feels like you’re wearing a mask or went through a really lousy trip to the dentist. All that’s certain is that it’s uncomfortable. But you maintain your calm. Freaking out or getting upset won’t get you anywhere, you remind yourself. It’ll only make things worse. And making things worse is stupidly easy when you can’t feel a thing.");
+	output("\n\nThe Mimbrane goes to work underneath the [pc.skin] of your head. Now it definitely feels like you just have excess weight overy our noggin. You can make out your [pc.face] wriggling free, peeling away from its outer shell. Individual strands of hair are imbued with life and push against their thin coating. Though you’re fully aware an organism is posing as the skin to your head, you’ve never really been reminded of the fact quite like you are right now. Down to every cell is some manner of self-locomotion that you could never hope to naturally achieve.");
+	output("\n\nEverything feels heavy. Even your eyelids feel like something’s sitting on them. Your mouth especially feels pinned down by the [pc.lips] atop it. Maintaining a relaxed composure is odd at the very least. You’re used to <i>one</i> sort of facial, but not this. There’s no rhyme or reason as to what parts of your new face smoothly separates from your old one. Your scalp pulls away, cheeks follow, ears bend and flex, nose twitches, lids constrict{, muzzle shifts}… it’s a neverending stream of simply bizarre facial movements and sensations.");
+	output("\n\nThe experience culminates when air runs up along your neck and underneath your [pc.face]. It’s incredibly cool, or rather your new skin is incredibly tender. Not only that, but you hadn’t realized how wet it was. As the crease expands, you notice trickles of liquid skipping down your neck. The faint scent reveals the substance’s identity: it’s Mimbrane sweat. The oily, strawberry-scented fluid must be the key ingredient from keeping this molting from turning into a horror show.");
+	output("\n\nBefore long, your head’s new outer shell is completely loose, draped awkwardly in places. It’s actually quite interesting: you can feel where the Mimbrane stores most of its nutrition. Fleshy bits like your ears and especially your lips are obvious, and thin parts like your forehead and scalp are equally lean. The parasite moves your [skin] in a wave-like motion, attempting to push the remains of your former head-covering up and off your head. This is as good as any time to intervene, you figure, as the creature seems to be having a little trouble. It also feels really weird.");
+	output("\n\nYou calmly sit up and pull the faux head off, much to the Mimbrane’s surprise. It chirps softly, but you quiet it with a gentle reassurance. It glides off easily, revealing the moist, matted mess your head is now. The hollow shell collapses in your grasp, an odd sight to see when the rest of the mask looks exactly like your head. Well, if you ignore that this thing is dry and still sports [pc.lips] that put your now-slimmer ones to shame.");
+	output("\n\nLooking through the empty sockets where your eyes once were, you can see the inside of the skin is normal Mimbrane. That smooth, pink barely textured surface couldn’t be mistaken for much else. There’s a slight hint of macabre humor in your head handling this perfect replica of your pate. You could hang them up around your room, telling the tale of how you beheaded and flayed an evil army of " +  pc.short + "-clones that threatened you, making a clear message for any stragglers.");
+	output("\n\nSadly, your empty boasting flutters away when the bloated lips shuffle around and the dead glaze of a gaze springs to life. You had secretly hoped that this new Mimbrane would use your former head much in the same manner as you did, just so things would be extra weird. But instead it flops awkwardly out of your hands to try and scammer off your bed. Its parent chirps at it before it gets too far along, calming the oddity down before things get too out of hand.");
+	output("\n\nThe back of the fleshy mask cleanly splits, getting the Mimbrane one tiny step closer to the flat, square appearance it wants to achieve. You can only watch in awe at the thing, your split-open chubby mirror self reminding you of some popular horror vids. You hope to some deity that this thing doesn’t cross paths with another soul before it can completely cast off any semblance of your appearance. It disappears into the darkness of your ship after trading unintelligible pleasantries with your head-mounted parasite.");
+	output("\n\nYour Mimbrane calms down and apparently goes to sleep, leaving you alone once again. You run a hand your [pc.hair], finding it surprisingly dry compared to just a few moments earlier. Indeed, your entire head is closer to its normal moisture. Though it is still feeling mighty sensitive. That feeling, that notion that you are merely rubbing some manner of critter wrapped around your head only resides in your mind again. Your senses tell you everything’s normal again.");
+	output("\n\nNormal. That’s a word you’d rather forget. You go to sleep, anxious to redefine “normal” for another day.");
+
+	clearMenu();
+	addButton(0, "Next")
 }
 
 //Friendly Mimbranes
@@ -4094,138 +4267,3 @@ public function feedMimbranesWithPussy():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
-
-//Reproduction
-//Once a Mimbrane has maxed out on feedings, it will no longer track days and go into a hunger state. It will still aid other hungry Mimbranes.
-//Reproduction always occurs when the PC is asleep. Unnoticed Reproduction takes place when the PC awakes, normal reproduction takes place in the middle of sleep.
-//Only Unnoticed Reproduction scenes occur at trust level 0 and 1. At trust levels 2-4, the reproduction scenes still only have a small chance to occur instead of the Unnoticed Reproduction. The chance raises with each level, potentially at 10, 20, and 30% respectively.
-//Mimbrane resets to 0 feedings after reproduction, reseting all of its feeding-based effects on the organ. All parser activity in scenes reflects the enlarged organ.
-Penis Mimbrane
-Some totally awesome dream of yours fades away, chased away by an odd feeling. Going back to sleep is paramount until you again feel an odd straining in your [cock]. No longer concerned with pursuing your lost fantasy, you throw off your covers to figure out what is going on. The slab of meat has swollen considerably and appears to be erect, but you’re more concerned with the erratic twitching. When your cock spasms to one side, you finally notice that the Mimbrane’s eyes are wide open. The parasite appears to be under some heavy stress. Strangely, you feel fine despite knowing full well the second skin has worked all sorts of kinks into your nervous system.
-Your convulsing dick lets out a long, drawn-out squeak. It feels a little- Suddenly the life just vanishes from the Mimbrane’s eyes. The distended pecker limps to one side. For a moment you’re concerned the little bastard is doing something malicious, but then your senses kick in. The Mimbrane is reproducing! {if repeat: “The vestiges of sleep must be why you forgot.”} The reason you aren’t being traumatized or being artificially thrusted to lust’s end is due to the parasite’s natural inclination to not alert its host to its actions. This one apparently isn’t entirely too concerned whether or not you’re awake for its performance.
-A pressure besieges your pumped-up pecker suddenly. You can no longer feel the cool air of your ship on your manhood; it feels as if it were encased in concrete! Despite knowing this is a natural part of the creature’s life cycle, you’re unable to keep from worrying about your penis. A concerned grasp confirms it: you can’t feel your cock, at least not what’s in front of you. Nothing looks different - your [cock] doesn’t appear lifeless unlike the empty gaze of the parasite - but you may as well be pawing at a perfect replica of your fuckstick.
-Bubbling on your [cockhead] grabs your attention. What appears to be an odd mixture of pre-cum and the Mimbrane’s oily secretion is drooling out of your opening. As odd as this looks, it pales in comparison when you start to feel a bizarre peeling sensation around your dick. You can feel your manhood shuffling around inside the imitation in front of you, flexing and wiggling as it separates itself from the phallic shell.
-There is no pain, nor immense sexual pleasure. The best description of what you feel is like ridding yourself of a bandage or peeling off a latex glove. But your cock does feel incredibly tender and sensitive. You back away when your [cock] shuffles around again. Each shrug and shake separates your inner prick from the outer. Honestly, the whole ordeal is confusing. You feel your dick shedding its former self. You see your healthy-looking former prick dancing strangely around. 
-Shockingly cool air hitting the base of your rod alerts you to the first clearly visible change. The Mimbrane is flaying off its former self right at the seam to your natural skin. Still you feel nothing more unusual than a sticker cleanly falling off your [skin]. Your eyes are trying to alert your brain to something horrendous happening, but the message is hit with skepticism. There is no ripping or tearing. You’re still unable to really perceive where the parasite ends and your real [skin] begins. But now it looks like you were just wearing a beautifully realistic sleeve.
-Then the [cock] droops forward, and air rushes in through the opening. That’s when you realize just how slick your inner dick feels. You’re no longer shedding anything. The Mimbrane is slipping free. You can only watch in awe as your former cock just effortlessly glides off of you and flops onto the floor. Even now it still looks perfectly healthy and natural... until you gaze inside the hollow center to see the familiar texture of the underside of a natural Mimbrane.
-The inquisitive stare is interrupted by a faintly sweet fragrance. Your {cocktype} dong – back to a size you’re familiar with – is soaking wet, coated in the mixture of cum and Mimbrane sweat you saw earlier. A finger running along your masculine length reveals how tender it is to the touch, more sensitive and raw than its ever been before. The parasite must-
-The battle for your attention turns back to the replica penis on the ground, now writhing around with newfound life. The dead gaze has been replaced with a pair of clenched-shut eyes. Your former urethral opening is now working its way along the prick’s length, unfolding the cylinder to more closely resemble something closer to the Mimbrane’s more square appearance. 
-It’s an odd sight to say the least. 
-You aren’t quite sure how to feel about watching your former pride and joy cast aside its penile attributes. The newly formed parasite casts a gaze back at you, still resembling a cleanly flayed [cockhead]. Your fairly smaller cock throws its prodigy a quick little chirp.  And then it disappears into the darkness of your ship, crawling on its odd-looking four corners. Presumably it’ll finish out the rest of its transformation before sneaking its way off your vessel to continue on its life elsewhere.
-Awkward silence is your only ally now. Your own Mimbrane has decided to call it a night and your dick seems to have done the same,  relaxing and drying back to something much more normal. All you can do is ponder over the interesting occurrence, the image of your [cock] flopping and crawling away from you burned into your mind.
-Unnoticed Reproduction
-Upon waking up, you’re surprised to find that your [cock] has reduced down to your average size. It feels a little tender; perhaps the Mimbrane was able to split off its offspring while you were asleep?
-Vagina Mimbrane
-One second you’re a mighty sexual {god/goddess}, dominating the galaxy armed only with your amazing body. The next second you’re listening to the hum of your ship. Eyes dart around in pursuit of your dream slayer, but it’s a curious straining down at your [pussy] that lets you know who the culprit was. Covers are tossed to the side, dim lighting revealing your spasming snatch. The Mimbrane’s miniature eyes are open as wide as they can manage. Something is wrong, but you sure as hell aren’t feeling anything stranger than the typical oddness that follows involuntary movement of your body. 
-Strained little chirps and squeaks escape your folds as they stretch and clench. The puffed-up pussy looks to be going through some ordeal, clearly. For a brief moment you figure the parasite is up to no good, but then you remember your codex’s valuable information. The little creature is reproducing! {if repeat: “The vestiges of sleep must be why you forgot.”} The reason you aren’t being traumatized or being artificially thrusted to lust’s end is due to the parasite’s natural inclination to not alert its host to its actions. This one apparently isn’t entirely too concerned whether or not you’re awake for its performance.
-The traumatized gaze of the Mimbrane goes blank. You wave a hand past to confirm the absence of life. In the process of waving, another realization crawls up into daylight: your [pussy] is numb. It looks normal and healthy, other than perhaps an overly plump appearance, but any attempts to manhandle it only feel like you’re tapping away at a fleshy shell. Prodding at your [clit] is a fruitless effort. It’s a relief that you recalled your electronic encyclopedia, otherwise you may be freaking the fuck out! Regardless, this is still disconcerting to say the least.
-Liquid starts drooling out of your snatch suddenly, causing your wandering digits to back off. Swirls of clear and pink liquids make it look like a mixture of sexual fluids and Mimbrane sweat. You get a few moments to stare at the concoction before your snatch stirs yet again. Amongst all the contracting, straining and flexing you can make out a peeling sensation. Its as if your pussy were trapped under a rather bloated replica, struggling to free itself.
-The liquid stream starts and stops in time with the convulsions. Each time you can make out a little more feminine flesh casting off from the hollow love box atop it. Should you help? The bizarre process is a little mesmerizing as it plays out, your half-awake senses too hypnotized to try and aid in the parasite’s natural cycle. Said senses do get a little jolt once the decidedly cool air seeps under your pussy-coating. It can be difficult to make out the finer details in the dim lighting of your quarters, so the mystery of where the parasite ends and your own [skin] begins remains just that.
-Soon the unorthodox movements of your vagina stop from perfectly reflecting those of your outward flesh. The air makes it plainly obvious that your buried pussy is soaking wet, lubricating itself to cleanly rid itself of the second skin – or would this make it a third skin? The [pussy] keeps get looser, confusing you as its visual movements continue to not match up with what you can feel. It gets easier to perceive the box as a covering when more and more air sneaks in under the ever-expanding opening, kissing the underlying skin. 
-One final, forceful push is all that remains before your former vagina slips down off your body. It’s as if it never was yours to begin with. In its place is a much smaller canyon, shining in a sheen of fluids and emitting the faint, yet unmistakable scent of Mimbrane secretion. With the involuntary action subsiding, you resume the courage to examine your slimed genitalia. Its sensitive and raw to the touch, feeling as fresh as you would have expected. Clearly this is straight off the Mimbrane production line.
-Suddenly the withdrawn [pussy] between your legs shuffles and shakes, stealing away your attention. The once lifeless stare has found a new source of vigor, both eyes clenched shut as new life bursts forth in your former flesh. The gash fills and flattens, slightly working its way to resembling the more square appearance of a normal Mimbrane.
-The thrashing calms and the new parasite looks up towards you, your erstwhile vagina pulsing rather lewdly. The Mimbrane still attached to you lets out a humble little squeak, causing a little reaction out of its offspring. But before the bizarre moment can get any more touching, the new pussy parasite awkwardly clamors away on its hastily fashioned four corners. It must be seeking any form of solitude to complete its transformation back into that of a normal Mimbrane. Once it’s finished, the creature will sneak its way off your ship to start out its own life.
-Other than the odd movement and sleeker pussy, you aren’t much different now that everything’s said and done. Your Mimbrane tuckered itself out, and your tender cavern is quickly drying back to its natural moisture. Probably best to just go back to sleep...
-Unnoticed Reproduction
-Casting off the remnants of sleep, an odd realization strikes your crotch. Namely, your [pussy] is back to its normal size and qualities. Judging by the tenderness it exudes upon touch, it’s safe to assume the Mimbrane was able to shed its excess size into a new parasite.
-Ass Mimbrane
-A delightful romp through the idyllic dreamscape fades into whatever forgotten realm lost dreams subside. Something has pushed you out from slumber and into the dim silence of your idling ship. You lay motionless on your back staring at nothing in particular. For a moment you hope you’ll merely fade back unconsciousness, but a trembling shudder from your [butt] about scares you half to death. Covers fly off as you flip over; though you may be curious enough to investigate the disturbance, your half-conscious subconscious isn’t ready to completely surrender the notion of returning to sleep.
-The moment your hind quarters aren’t pressed against your bed, strained squeaks and chirps escape your [butthole]. Its clear now that the strange spasms and anal contractions are due to this restless Mimbrane. Typically, sexual urges and depravity accompany strange, uncontrolled body complications. So its at least nice to know that no one slipped you something sinister. 
-But then what is wrong with the parasite for it to suddenly send your bubble butt into a conniption? Is it hungry? Does the parasite long for your hind end to be ravaged by some uncouth cock? Its already driven your poor rear hole to a gaping moist mess. What more does it want? Then it hits you: your codex mentioned something about Mimbrane reproduction. The enthusiastic bugger has plumped your ass out so much that it must be ready to split off a new Mimbrane! 
-{if repeat: “You’ve gone through this before, you remember.”} The reason you aren’t being traumatized or being artificially thrusted to lust’s end is due to the parasite’s natural inclination to not alert its host to its actions. This one apparently isn’t entirely too concerned whether or not you’re awake for its performance. Hell, if nothing else, the Mimbrane’s only gotten more lively now that it isn’t pressed up against your bed.
-Just as your curiousity was to turn to cautious exploration, a numbing sensation overtakes your ass. A worried glare over your shoulder doesn’t alert you to anything new; all it makes out is the continued oddity of your parasitic bottom wiggling out of control. What you can’t see is the dead glaze that’s taken residence in the its little eyes. The Mimbrane’s consciousness has faded out from        its shell. 
-You run your hands around your [ass] confirming its lack of feeling. But as you run your finger close to your [asshole], it suddenly clenches shut with amazing force! Your finger is unable to find any sort of purchase from what was once a cavernous wet den. Your  only guess is that the Mimbrane would rather not have its hole penetrated in any fashion right at the moment. You’re too groggy to get upset over this and challenge the little monster.
-A peeling sensation from within your cheeks surprises you next. The parasite must be separating from its second skin. You can make out your new, smaller cheeks as they flex and pull against your [ass]. It were as if a comically large bandage were being taken off piece by piece from your supple fresh [skin]. Soon, air slinks in and kisses your bottom, letting you know that the parasite has managed to get the edges of its former flesh free. The sensation also alerts you to how moist and tender your behind is. Unbeknownst to you, your new cheeks are covered in a film of Mimbrane sweat.
-A final tingling peel right at your still-clamped asshole is all that’s left of the parasite’s work. {if natural anal looseness ≤4 “As it pops off, you feel your asshole recover from some of the forced looseness brought on to you by the parasite.”} Your Mimbrane starts thrusting your posterior to the side, trying to slide its offspring off of you. However, your curiosity has grown too large for you to sit on the sidelines any longer, and you promptly grab the lifeless ass-shaped sheet sitting atop your moistened bottom. Your Mimbrane chirps in surprise, but you let the worried critter know you’ll let its prodigy free momentarily. How many other opportunities does one have to inspect a being such as this?
-You remain laying on your front, uninterested in smearing your bedspread with the lingering coating of parasitic sweat on your bare bottom. Instead, you rest your head on its side and hold the former [butt] up with one hand. It’s an odd sight paired with the feeling in your grasp. On one side you can feel the [skin], see the unmistakable resemblance of your old bubble butt – [asshole] still forced shut. On the hollow inside, however, is the smooth, damp underside of a Mimbrane.
-During one of your awe-filled glimpses of the ass oddity, the hollow former gaze of your Mimbrane gets a new burst of life. Once the new parasite realizes its stuck in your grasp, it flails wildly, forcing you into dropping it helplessly onto the floor. It flops around like the oddest looking fish you’ve ever seen, desperately trying to push out its four corners and get closer to its natural square shape, but it’s unable to hastily rid itself of your former appearance. 
-Your Mimbrane chirps and squeaks again, which seems to bring ease to its offspring as it settles down. The [butt] stares up at you with a cautious gaze before crawling awkwardly into the shadows. 
-That image will probably linger for some time.
-As your own, slimmer Mimbrane bottom dries and calms down, you’re left to yourself and your thoughts. You at least recall from your codex that the new beastie will try and flee the instant the opportunity arrives. You just hope it doesn’t freak anyone out too much before that occurs. Your worry subsides as you slip back into the comforting embrace of sleep.
-Unnoticed Reproduction
-Your march back to consciousness is troubled by an odd feeling in your rear. Your [ass] has reverted to its usual size and qualities. It feels delicate to the touch; you suspect the Mimbrane managed to stealthily split off its offspring over the course of your slumber.
-Scrotum Mimbrane 
-The melodic hums of your ship surround you, a blissful sleep only resident in your memory. Something’s dragged you back to consciousness, but you’ll be damned if it’ll keep you here. Before you can toss and turn, however, that “something” materializes. Your [balls] are wiggling around something fierce! Covers fly to the side, fueled by your sudden anxiety that some manner of insect – or worse – has infiltrated your privates.
-All you find is the Mimbrane that has already captured your cum pouch. Its normally well-hid little bumps for eyes look to be clenched shut, straining for some reason. The parasite is trembling about, rustling your [sack] every so often in its costive spasms. What’s gotten into this thing? Is it not enough that its already jacked up your [cum] factories? You’re tempted to grab onto the possessed purse, but your frustrated weariness is brutally stabbed by calm reason and blossoming memories. {if repeat: “You really ought to try and recall times like these more often before jumping to other conclusions. ”}The codex... it had discussed Mimbrane reproduction. Typically the parasite waits until the dead of night when its host is asleep to do the deed. This one has done a poor job of remaining concealed, or more likely it doesn’t mind you getting to bear witness to the magic.
-Instead you decide it to better to spread your [legs] and give the struggling thing some room. Though the sensation of having your family jewels manipulated as such is particularly unordinary, you aren’t the least bit interested in not taking caution against them being caught or injured. Your role as spectator gets a little more interesting when the Mimbrane’s eyes burst open. There’s a strange hollowness to their gaze, however. What follows is an unsettling numbness overtaking your [balls]. Unable to keep your hands free of the action, some fingers along your [skinadj] balls confirm the lack of life.
-They look fine, just as lax and healthy-looking as they were before you hit the hay. Reproduction or not, numbness in one’s genitalia is a fairly worthwhile cause for concern. A rustling within your sack keeps you from reaching for a directory to find a doctor. The rustling is followed by the feeling of your scrotum’s [skin] peeling deep within. Its similar to having them stick to your thighs on an especially humid summer day. Your pouch’s pliability makes the Mimbrane’s task easier, as you can tell its moving with directed swiftness in its separation.
-But its still an extremely weird sensation.
-Air brushes against your new balls, alerting you that the parasite has freed an edge of its former covering. A whiff of strawberries dances with a newfound dampness, now. Exposed to the open air, it’s become evident that the Mimbrane has coated itself in sweat to aid in the separation process. The creature makes short work of the ordeal, easily manipulating your malleable man-purse. Soon, you feel the former [skin] go lax and merely slide off you.
-The former scrote-skin comes off cleanly, flattening out. It hardly resembles the [sack] it once appeared as outside of the clear appearance of [skinadj] flesh. You do spot its underside, standing out with its smooth, pink characteristics mirroring those of natural Mimbranes. 
-Only a minute or two flutters by before the rag starts to shuffle around once again. The once-dead gaze of the parasite renews with a sense of life, peering around the room from its fleshy perch. The new Mimbrane is shocked when it catches your stare, but a calm squeak from its parent settles its fears. It pushes your former flesh around in an attempt to get closer to its square shape, but its having to work double time just in to get a little less flexible and flimsy.
-Eventually the confused critter gets enough wits about it to fall off your bed and escape into the darkness of your ship. It will most likely befriend seclusion to aid in its transformation into a full-fledged Mimbrane. You recall that they typically will seek independence straight from birth; most likely this one will flee from your ship the instant the opportunity arises. 
-Your balls appear smaller now, and they’re certainly not working as hard at production as before. Your Mimbrane seems to have passed out from all the excitement. You, however, find it a little more difficult to simply go back to sleep after the odd ordeal. But not too difficult.
-Unnoticed Reproduction
-While greeting the new day, an unfamiliar feeling on your crotch worries you. Upon investigation, you find that your [balls] have returned to their normal size and features. They feel soft to the touch; most likely your Mimbrane split off its offspring.
-Breasts Mimbrane 
-Sweet dreams are made of this. Who are you to disagree? You travel the world and the hum of your ship–
-Groggy eyes stare at the uninteresting ceiling of your room. Some manner of slumber has been mercilessly slain, leaving you confused and awake. It isn’t entirely obvious why you woke up, but you aren’t all that interested in finding out. But find out you will, as your [fullchest] frightens you down to the core with a mighty shudder. The massive mounds are straining, trembling and wobbling as if possessed by some unholy demon!
-When you hear – and feel – an exerted chirp from one of your [nipples], it becomes a lot more clear what the real deal is. Your chest-mounted Mimbrane seems to be having some sort of complication, flailing and shaking your titties around as a result. You attempt to calm the parasite, but it still shakes and thrusts in your grasp. Is it up to some new form of unusual mischief? Or maybe its getting ready to multiply? {if repeat “You would have noticed sooner that this was happening again had you not been so tired.”} It has to be reproducing, you figure, it matches what your codex taught you. Typically the parasite will wait until the dead of night to split off its accumulated mass into a fresh new Mimbrane. Typically they only act when their host is asleep, but it would appear that yours doesn’t mind you getting a glimpse of the action.
-And get a glimpse you do. Laying on your back and staring at your chest, it’s mighty hard to miss the involuntary movements of your [breast]. You almost miss the strained expression on the parasite’s eyes, which soon after glaze over, devoid of life. The sight is troubling, but your attention moves elsewhere when your mighty bosom numbs over. The terror thought to be shed returns to your eyes as you paw away helplessly at your chest. Supple boobflesh appears normal and healthy – there’s still the telltale sign of [milk] drizzling from your [nipples] – but only faint sensations register deep under your [skin]. 
-Again you calm. Overreacting isn’t really healthy. The best course of action, you figure, is to sit back and wait this out. You can already feel the parasite working away to separate itself from your now-excess boobage. Its as if thousands of tiny strips of tape were being plucked from your chest. Beneath this titty shell lies some incredibly sensitive, new breast-flesh. Its particularly titillating as the Mimbrane takes extra care around your nipples, slowly separating new from old.
-Eventually the creature works it way to the edge of its covering, allowing air to race in and tickle your raw hide. You hadn’t realized before just how moist your new skin was. As the edges lift up, you can even see the escaping liquid. It’s made up of some mixture of [milk] and Mimbrane sweat from the look and smell of it. Before long, your [breasts] are but a hollow shell resting atop your sleek and slender new jubblies. 
-They stir yet again when the Mimbrane beneath them starts rustling your chest to force off the bygone boobs. It’s tempting to aid, but you’re unusually enamored by the spectacle. Hell, it’s more tempting to get a pen and paper and write a poem involving boob cocoons or something. 
-You’re still tired.
-Mimbrane labor proves successful and the now-oversized molding of your chest flops to the ground with a wet thud. Even in the dim light of your quarters you can make out the non-stop jiggling of the [breasts]. Its hard to take your eyes off of them; they’re as perky and hearty as they were when they were on you! Temptation gets its pin count over your willpower, forcing you to reach down and inspect the milkduds. The hollow tits give in a lot more than yours of course. Also surprising is the underside: its pure Mimbrane, as smooth, pink, and moist as any other.
-The odd grope comes to an end when one of your former breasts wrestles out of your hand. The old eyes of the Mimbrane have been enkindled with new life, and the Mimbrane appears to be scared to death of you. A calm set of squeaks and chirps from your nipples puts it at ease before it can run off. The parent must have let it know everything’s alright.
-For a Mimbrane, your former chest seems like a lot of mass to work with. The fresh parasite seems to be having trouble adjusting to the weight, impeding its attempts to try and even slightly resemble its usual flat, square self. The creature manages the best it can, hobbling into the shadows. There’s no way you can’t snicker quietly at the view of your boobs jiggling away from you.
-And that’s that. What’s left of your chest is drying quickly. The remaining parent seems to be sound asleep. Or just pretending, you can’t tell. Hopefully the mountains that hobbled out of your quarters will remain hidden long enough to transform into a normal Mimbrane and get lost. You figure it will. A breast-related dream will probably greet you on your way back to slumberville. 
-Unnoticed Reproduction
-As you bid farewell to your dreams, a significant loss in weight on your chest catches your attention. It would seem that your [fullchest] has returned back to its normal size and stature. Your supple mounds are a little tender to the touch, leading you to believe that your Mimbrane was able to split off its offspring while you were asleep.
-Hands Mimbranes 
-//Same scene for one or two hand Mimbranes with noted variations
-Your eyelids very slowly rise, allowing what little light there is to rush into your dilating pupils. Something’s clocked you right into consciousness. Laying still for a few minutes doesn’t do much for you, so you sit on the edge of your bed and cradle your head in your hand{s}. Maybe you just need to get up and move around a bit or something. That’s when you feel it: your fingers are twitching and trembling. You pull your hand{s} back away from your face and notice {a trail/trails} of liquid hanging from your {cheek/cheeks} to your {palm/palms}. Seems your {Mimbrane is/Mimbranes are} having some sort of complication.
-Staring at your somewhat bloated hand{s}, it’s plainly obvious that the {parasite is/parasites are} ready to multiply. At least, that’s what you hope is going on. Now would be a very poor time to find out whether or not Mimbranes can get sick. In your experience, the parasites are typically known to wait until the dead of night when a host is out like a light to split off their offspring. {This Mimbrane/These Mimbranes} must not mind too much if you catch {it/them} in the act, though. Or {it/they} just clumsily woke you up.
-Your hand{s} go numb and {becomes/become} harder to move. Little parasite eyes blank out next, creeping you out with {a dead empty stare/dead empty stares}. You’re tempted to ball up your {hand into a fist/hands into fists} just to see what would happen, but think better of it. The numbing would make it incredibly awkward. You just remain the curious observer, hopeful that things go well.
-You can feel your fingers peeling off of the now-extra flesh, [skin] pulling away in a manner you could never achieve. Each digit shuffles and moves independently, but never too much. The procedure must be on a smaller scale than you had figured. Soon, cool air skates across your wrist{s} and onto tender skin. {An edge has/Edges have} started to appear. It begins to feel as if you’re wearing {a skin-tight glove/skin-tight gloves} now.
-{This glove/These gloves} are itching to come off. Some liquid trails down your arm from underneath the faux skin. Judging by the smell and appearance, it seems to be Mimbrane sweat. As more space opens up, you realize that your {hand is/hands are} drenched in the stuff. The Mimbrane{s} must be using it as lubricant. Luckily it doesn’t seem to be very concentrated, judging by your lack of any new sexual desires.
-Out of the clear blue your {hand lurches/hands lurch} forward, drooping towards the ground. The sudden action in the dead of night is frightening, but you’re more worried about anyone catching you with a visibly limp wrist. Thankfully, you aren’t stuck like this long. The [skinadj] {mitt slides/mitts slide} off your hand{s}, landing on the floor with a moist thud. What’s left on you {is a/are some} rather slim and sensitive hand{s}, still particularly drenched in Mimbrane fluid. You peer back down to the ground, expecting to see a monster movie-style disembodied hand crawl away on fingers or something. 
-What actually happens is a tad less impressive. The back{s} of the hollow, flattened hand{s} start{s} to split open, revealing smooth, pink Mimbrane underside{s}.  The once inert visage{s} of the palm-based eyes find life once more, staring frantically around the room. The Mimbrane{s} are kept from panicking when {its/their} still-attached {parent puts it/parents put them} at ease with soft squeaks and chirps. 
-You’re still trying to process the bizarre sight of {a} split-open hand... glove... <i>thing{s}</i>. It never really fully connects for you before the {parasite hobbles/parasites hobble} away into the darkness, not even remotely resembling the typically square Mimbrane shape. The creature{s} must have sought out some seclusion before {it/they} could begin to attempt to shed the remains of your likeness.
-Only awkward silence sits with you now. Your {Mimbrane is/Mimbranes are} fast asleep and drying rapidly. Perhaps it’d be best to just go back to sleep yourself...
-Unnoticed Reproduction
-The dulcet tones of an idling spaceship hoist you from your sleep just in time for you to notice something off about your hand(s). Namely, {it has/they have} reduced back to {its/their} normal size. Judging by the slightly raw feeling in your [skin], you imagine that the Mimbrane(s) {was/were} able to split off {its/their} offspring. 
-Feet Mimbranes 
-The ceiling is very good at winning at staring contests. You are merely studying under its keen ways. Sleep has abandoned you and moving about seems fruitless. So, you stare endlessly at nothing. Something dragged you from your comfy dreams, but there’s no telling what– 
-Your {[foot]/[feet]} spasms suddenly. Toes clench and stretch. Has some nerve disorder crept within you? Has fucking the galaxy’s many offerings proven to be your undoing? Throwing your covers off rids you of these qualms. Its merely your Mimbrane{s}, judging by the strained look in {its/their} eyes. Your {[foot] has/[feet] have} been looking pretty swollen lately. It must be time to split off some offspring, you figure. Normally Mimbranes handle this when their hosts are snoozing away, but it would yours {doesn’t/don’t} mind the company.
-{It acts/They act} quickly, beginning with a sudden numbness overtaking your {foot/feet}. You imagine it would be immensely uncomfortable if you were to try and stand right now. Next, the life disappears from the {parasite’s/parasites’} eyes. {It/They} must be separating its consciousness from the now-surplus skin. It’s hard to imagine what that must be like. 
-The process continues as tiny peeling sensations blossom up all around your {foot/feet}. The {Mimbrane is/Mimbrane are} manipulating your skin on a magnitude much smaller than your joints would account for. It’s as if multitudes of tiny strips of tape were all being peeled away. 
-Air smacking against your ankle{s} lets you know the {parasite has/parasites have} worked {its way to its edge/their way to their edge}. Not only that, but you’re also made aware how wet your {foot is/feet are}. Judging from the slight sense of strawberries and the hint of a tingle, you guess it must be Mimbrane sweat. The parasite{s} must be using it as a lubricant. It only takes a few more minutes of peeling, wiggling, sliding and contracting until you seemingly have {a/a pair of} [skinadj] socks...
-Your {[foot] flicks/[feet] flick} forward involuntarily, working to slide the new Mimbrane{s} off {it/them}. It works, and the hollow, bloated {casting of your foot falls/castings of your feet fall} to the ground, Mimbrane slime oozing out the top{s}. You scoot forward to get a good look, seeing just what you’d expect: {a sock that used to resemble your foot/socks that used to resemble your feet}. Maybe {it’ll/they’ll} start walking off on its own or something.
-It’s much less satisfying – but no less strange – when the castoff skin{s} begin{s} to peel down the back and along the underside, revealing to you that the underside of a Mimbrane lies beneath what still visibly looks like your [skin]. You figured {it’d/they’d} compress rather than split, honestly. Just as {it’s/their} eyes start to show a re-found sense of life, your Mimbrane{s} chirp and squeak at {its/their} children. 
-The new {Mimbrane stares/Mimbranes stare} up  at you for a moment, wiggling {its/their} hollow toes. Then {it takes/they take} off into the darkness, escaping to some forgotten corner of your ship to complete transformation. You’re left trying to think about what just took place and hope no one falls across some bizarre amalgamation of foot and Mimbrane. {It/They} should be able to escape without garnering any attention, you figure. 
-Best to just get back to sleep than dwell on it any further.
-Unnoticed Reproduction
-Slowly crawling back to the land of the conscious, a different feeling radiates from your {[foot]/[feet]}. {It appears/They appear} to have returned to {its/their} normal size. Based on the tender feeling you get while rubbing your toes, its safe to assume that your Mimbrane(s) {was/were} able to split off {its/their} offspring. 
-Head Mimbrane 
-//Following is for first instance only
-“Anything you want want before I head out for the night?” Victor asks. You stare around the room blankly, trying to think if you left anything out. Nothing comes to mind, and you tell him as much. Your father gives you a slight little wave and heads out the door.
-Wait! An ice cream cone would be great! You jump over the coffee table and barrel down towards the door to catch him before he’s gone. Inky blackness is all that greets you. Which way did he go? You squint and strain, but can’t make out any details. Nothing’s clear. Nothing doing but to go back inside.
-As you close the door behind you, something starts to seem off. It’s hard to focus on anything around you. Some instinct in the back of your head tells you to look at your hand and try to count your fingers.
-You can’t. Nothing looks wrong, but you just can’t. You have an idea of what’s going on. Next you poke your index finger against the palm of your hand, pushing hard. It pokes out the other side of your hand with ease.
-You’re dreaming. Those lucid dreaming techniques you read on the extranet paid off! But now everything’s getting even more unstable, like you’re being sucked out! What was it they said to do...oh! Rub your hands together and try spinning in place! 
-You’re back in your quarters now instead of the listless room of before, back to your normal self. Looks like it worked! There’s a higher sense of clarity to your surroundings now. Looking around the room, you realize you’ve started flying without even thinking about it. It is the most common dream sensation, after all. Try not to get too excited, you remind yourself. If you want to make the most of this little head vacation, you’ll have to get ensconced in some little activity.
-But what first?
-[Talk to subconscious] [Orgy] [Find Follower] [Find Victor] [Fly in Space]
-//all options lead here
-No! Nooo! What happened!
-You’re awake! How! Why! You did everything you’re supposed to, right? What went wrong? 
-//Following is for second instance onward
-Something’s escorted you away from blissful slumber. Your ship is as silent as always, never the cheeriest of greeters. Dazed eyes peer around the room, curious to find anything out of the ordinary. They find nothing. Did you just wake up for no reason?
-//Converge here
-All concerns vanish from your head when your {lips} suddenly tremble and constrict! Hell, your whole head feels as if it were trying to rip itself apart, and not in that cute little headache way. You can actually feel the [skin] on your skull tensing and shifting ever so slightly, like an eyelid twitch pushed to an obscene level. There’s little doubt in your mind as to the reason for this uncomfortable phenomenon: Mimbrane.
-More specifically Mimbrane reproduction. You’ve been feeling a little fat-headed lately, and it doesn’t have anything to do with your intelligence. Someone could rent your lips out as a bounce house, and your [face] feels a little puffy even if it doesn’t look it. You know from your codex that the parasite prefers to wait until their host is in slumber’s embrace before attempting to multiply. Your head-mounted friend already seemed pretty cool with you from the get-go; it must not mind if you wake up to watch it make some children.
-Your instincts are to paw at your face, hands desperate to get a grip on the writhing flesh around your head. It takes a lot of willpower to merely keep still, controlling your breathing through your nose with your mouth acting as if it were in great pain. The Mimbrane’s little squeaks and chirps through your bimbo-esque lips are audible enough as it is. One feature you can’t see is the sudden dead-eye glare in the parasite’s miniscule eyes. 
-It’s only a sign for what’s to come. A numbness shrouds your head. You can’t decide if it feels like you’re wearing a mask or went through a really lousy trip to the dentist. All that’s certain is that it’s uncomfortable. But you maintain your calm. Freaking out or getting upset won’t get you anywhere, you remind yourself. It’ll only make things worse. And making things worse is stupidly easy when you can’t feel a thing.
-The Mimbrane goes to work underneath the [skin] of your head. Now it definitely feels like you just have excess weight overy our noggin. You can make out your [face] wriggling free, peeling away from its outer shell. Individual strands of hair are imbued with life and push against their thin coating. Though you’re fully aware an organism is posing as the skin to your head, you’ve never really been reminded of the fact quite like you are right now. Down to every cell is some manner of self-locomotion that you could never hope to naturally achieve.
-Everything feels heavy. Even your eyelids feel like something’s sitting on them. Your mouth especially feels pinned down by the [lips] atop it. Maintaining a relaxed composure is odd at the very least. You’re used to <i>one</i> sort of facial, but not this. There’s no rhyme or reason as to what parts of your new face smoothly separates from your old one. Your scalp pulls away, cheeks follow, ears bend and flex, nose twitches, lids constrict{, muzzle shifts}... it’s a neverending stream of simply bizarre facial movements and sensations.
-The experience culminates when air runs up along your neck and underneath your [face]. It’s incredibly cool, or rather your new skin is incredibly tender. Not only that, but you hadn’t realized how wet it was. As the crease expands, you notice trickles of liquid skipping down your neck. The faint scent reveals the substance’s identity: it’s Mimbrane sweat. The oily, strawberry-scented fluid must be the key ingredient from keeping this molting from turning into a horror show.
-Before long, your head’s new outer shell is completely loose, draped awkwardly in places. It’s actually quite interesting: you can feel where the Mimbrane stores most of its nutrition. Fleshy bits like your ears and especially your lips are obvious, and thin parts like your forehead and scalp are equally lean. The parasite moves your [skin] in a wave-like motion, attempting to push the remains of your former head-covering up and off your head. This is as good as any time to intervene, you figure, as the creature seems to be having a little trouble. It also feels really weird.
-You calmly sit up and pull the faux head off, much to the Mimbrane’s surprise. It chirps softly, but you quiet it with a gentle reassurance. It glides off easily, revealing the moist, matted mess your head is now. The hollow shell collapses in your grasp, an odd sight to see when the rest of the mask looks exactly like your head. Well, if you ignore that this thing is dry and still sports [lips] that put your now-slimmer ones to shame.
-Looking through the empty sockets where your eyes once were, you can see the inside of the skin is normal Mimbrane. That smooth, pink barely textured surface couldn’t be mistaken for much else. There’s a slight hint of macabre humor in your head handling this perfect replica of your pate. You could hang them up around your room, telling the tale of how you beheaded and flayed an evil army of [Name]-clones that threatened you, making a clear message for any stragglers.
-Sadly, your empty boasting flutters away when the bloated lips shuffle around and the dead glaze of a gaze springs to life. You had secretly hoped that this new Mimbrane would use your former head much in the same manner as you did, just so things would be extra weird. But instead it flops awkwardly out of your hands to try and scammer off your bed. Its parent chirps at it before it gets too far along, calming the oddity down before things get too out of hand.
-The back of the fleshy mask cleanly splits, getting the Mimbrane one tiny step closer to the flat, square appearance it wants to achieve. You can only watch in awe at the thing, your split-open chubby mirror self reminding you of some popular horror vids. You hope to some deity that this thing doesn’t cross paths with another soul before it can completely cast off any semblance of your appearance. It disappears into the darkness of your ship after trading unintelligible pleasantries with your head-mounted parasite.
-Your Mimbrane calms down and apparently goes to sleep, leaving you alone once again. You run a hand your [hair], finding it surprisingly dry compared to just a few moments earlier. Indeed, your entire head is closer to its normal moisture. Though it is still feeling mighty sensitive. That feeling, that notion that you are merely rubbing some manner of critter wrapped around your head only resides in your mind again. Your senses tell you everything’s normal again.
-Normal. That’s a word you’d rather forget. You go to sleep, anxious to redefine “normal” for another day.
-Unnoticed Reproduction
-Upon stretching off the last vestiges of sleep, you notice something feels off about your [face]. It would appear that your [lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.
