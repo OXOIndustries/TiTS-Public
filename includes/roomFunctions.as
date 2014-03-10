@@ -117,8 +117,13 @@ function jungleEncounterChances():Boolean {
 	
 	if (debug)
 	{
-		encounterMimbrane();
-		return true;
+		if (flags["JUNGLE_STEP"] == 3)
+		{
+			flags["JUNGLE_STEP"] = 0;
+			encounterMimbrane();
+			return true;
+		}
+		return false;
 	}
 	
 	var choices:Array = new Array();

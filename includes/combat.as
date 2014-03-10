@@ -288,6 +288,23 @@ function updateCombatStatuses():void {
 			pc.removeStatusEffect("Deflector Regeneration");
 		}
 	}
+	if (pc.hasStatusEffect("Mimbrane Lust Cloud"))
+	{
+		if (mimbraneDebug) trace("Player is still afflicted with Mimbrane Lust Cloud");
+		pc.addStatusValue("Mimbrane Lust Cloud", 2, -1);
+		if (pc.statusEffectv1("Mimbrane Lust Cloud") <= 0)
+		{
+			if (mimbraneDebug) trace("Removing lust cloud effect from player");
+			pc.removeStatusEffect("Mimbrane Lust Cloud");
+			output("<b>The parasite’s noxious perspiration has faded away.</b>");
+		}
+		else
+		{
+			if (mimbraneDebug) trace("Lust cloud remains.");
+			pc.lust(5 + rand(10));
+			output("The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+		}
+	}
 	//ENEMY STATUSES!
 	for(var x:int = 0; x < foes.length; x++)
 	{

@@ -1,3 +1,4 @@
+import classes.Creature;
 /*
 
 Removal and Body Part Change Denial
@@ -2304,10 +2305,10 @@ public function mimbraneSkinContact():void
 
 //Lust Cloud
 //Lust damage over time if attack connects
-public function mimbraneLustCloud():Boolean
+public function mimbraneLustCloud():void
 {
-	throw new Error("FIXME");
-	mimbraneCloudCooldown = 5;
+	if (mimbraneDebug) trace("Mimbrane is using Lust Cloud attack.");
+	(foes[0] as Creature).createStatusEffect("Mimbrane Cloud Cooldown", 5, 0, 0, 0, true, "", "", true, 0);
 
 	output("Your adversary grows more dense in the air for a second, appearing as if it were wringing out more passionate sweat from its flesh. In one fluid motion, it stretches back out again, a large square of flesh suspended above you surrounding the visible cloud of lust it created. The Mimbrane spins in the air, pushing the fog your way!");
 
@@ -2315,21 +2316,46 @@ public function mimbraneLustCloud():Boolean
 	if (combatMiss(foes[0], pc))
 	{
 		output("\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
+		if (mimbraneDebug) trace("Player dodged the lust cloud.");
 	}
 	else
 	{
 		//{hit} 
 		output("\n\nThe parasite’s cloud of wanton desire consumes you, seeping into every pore and driving you ever further off the edge.");
+		
+		// Always increase lust from the initial attack
+		// No save will also attach a lust increasing effect to the player.
+		pc.lust(10 + rand(10));
 
 		//{no save}
-		output(" You’re too disoriented to get out of the veil before it can sink its fangs into you. The best you can hope for is for it to dissipate on its own.");
+		if ((pc as Creature).reflexes() + rand(20) + 1 < 15)
+		{
+			output(" You’re too disoriented to get out of the veil before it can sink its fangs into you. The best you can hope for is for it to dissipate on its own.");
+			if (pc.hasStatusEffect("Mimbrane Lust Cloud"))
+			{
+				// v1 = stacks
+				// v2 = duration remaining
+				pc.createStatusEffect("Mimbrane Lust Cloud", 1, 3, 0, 0, false, "LustUp", "You have been exposed to the lust inducing venom of a Mimbrane.", true, 0);
+				if (mimbraneDebug) trace("Adding Lust Cloud effect to Player.");
+			}
+			else
+			{
+				pc.setStatusValue("Mimbrane Lust Cloud", 1, pc.statusEffectv1("Mimbrane Lust Cloud"));
+				pc.setStatusValue("Mimbrane Lust Cloud", 2, 3);
+				if (mimbraneDebug) trace("Increasing lust cloud stack size on Player.");
+			}
+		}
+		else
+		{
+			// {save}
+			////{resist/make save} You’re able to stagger your way out of the parasite’s salacious smoke without taking too much more damage to your resolve.
+			output(" You dart out of the venomous cloud before it has opportunity to seep into your bloodstream.");
+		}
 	}
-
-	throw new Error("Not implemented yet.");
-	//{residual effect}<b>Your sexual desire is rising at an alarming rate.</b>
+	
+	//{residual effect}
 	//moderate lust damage on PC’s turn. Lasts three turns.
-	//{wears off}<b>The parasite’s noxious perspiration has faded away.</b>
-	//{resist/make save} You’re able to stagger your way out of the parasite’s salacious smoke without taking too much more damage to your resolve.
+	
 	//moderate lust damage
 
 	processCombat();
@@ -3197,8 +3223,7 @@ public function letMimbraneGo():void
 	userInterface.showBust("MIMBRANE");
 	output("The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	genericVictory();
 }
 
 //Kill it
@@ -3224,8 +3249,7 @@ public function killDatMimbrane():void
 		output(" saw your act.");
 	}
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	genericVictory();
 }
 
 //Use it as a masturbation aid - Cock
@@ -3295,10 +3319,8 @@ public function useDatMimbraneLikeACondom():void
 	processTime(10+rand(10));
 
 	//Lust increases two points an hour for 10 hours.
-	throw new Error("Not implemented yet.")
-
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	
+	genericVictory();
 }
 
 
@@ -3353,7 +3375,10 @@ public function attachAMimbrane():void
 	else if (!pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2) attachFaceMimbrane();
 	else noRoomForDishcloths();
 
-	processTime(10+rand(10));
+	processTime(10 + rand(10));
+	pc.orgasm();
+	
+	genericLoss();
 }
 
 /*Trust Score
