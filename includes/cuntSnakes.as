@@ -644,7 +644,7 @@ function takeYoEggYo():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function feedCuntSnake():void {
+public function feedCuntSnake():void {
 	if(flags["TIMES_FED_CUNT_SNAKE"] == undefined) flags["TIMES_FED_CUNT_SNAKE"] = 1;
 	else flags["TIMES_FED_CUNT_SNAKE"]++;
 	

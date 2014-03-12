@@ -62,7 +62,7 @@ function getAGlassOfMilkFromReapersCowsona():void {
 	//Else if Honey:
 	else if(chars["REAHA"].milkType == GLOBAL.HONEY) output("\n\n<i>\"O-oh God, it's so thick!\"</i>  Reaha groans as the viscous amber tricks in thick globs from her perky nipples, plopping in sinewy lines into the bucket. <i>\"So much thicker than milk… it almost hurts, but -- don't stop!\"</i>  she cries, grabbing your hands and squeezing them even harder to her teats, desperate to lessen her heavy load of sweet honey.");
 
-	output("\n\n<i>\"This… this is what I paid sooooo much for,\"</i>  she sighs, legs quivering with pleasure. Her breathing becomes faster and faster, chest practically heaving as you milk her. Reaha bites her lip, choking back another moan as you squeeze harder and harder. With her quivering breath, her big, bovine hips push back against you, rubbing rhythmically against your [pc.crotch]. You grunt as her bare flesh presses hotly against you, slick with her own drug-addled lust, smearing feminine slime across your ");
+	output("\n\n<i>\"This... this is what I paid sooooo much for,\"</i>  she sighs, legs quivering with pleasure. Her breathing becomes faster and faster, chest practically heaving as you milk her. Reaha bites her lip, choking back another moan as you squeeze harder and harder. With her quivering breath, her big, bovine hips push back against you, rubbing rhythmically against your [pc.crotch]. You grunt as her bare flesh presses hotly against you, slick with her own drug-addled lust, smearing feminine slime across your ");
 	if(!pc.isCrotchGarbed())
 	{
 		if(pc.hasCock()) output("bare [pc.cockNounSimple]");
@@ -411,6 +411,7 @@ function tieUpReahaAndFuckHerButt():void {
 	output(".");
 	output("\n\nWith a sated sigh, you withdraw from the slutty, cum-drooling cow, leaving her with a nice trickle of seed pouring from her behind as she sways listlessly in her bonds, chest heaving as the last spurts dribble from her teats, staining the floor beneath the nearly-clean wall. <i>\"Aww,\"</i>  you laugh, letting her down to flop into the sea of her own [reaha.milk]. She groans weakly as you remind her to clean up after herself, leaving her with a nice pat on her well-abused rump, letting her tattoo jiggle obscenely as you grab your kit and leave.");
 	pc.orgasm();
+	chars["REAHA"].loadInAss(pc);
 	processTime(20+rand(10));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -475,8 +476,6 @@ function talkToBrothelLadyRepeat():void
 
 	brothelMainMenu();
 }
-
-
 
 function ReahaBrothelSexMenu():void
 {
@@ -581,7 +580,7 @@ function shutUpYouBovineSlutIDidntJustPayFiveGrandForABacktalkingBitch():void
 	clearOutput();
 
 	output("\"<i>No,</i>\" you answer, \"<i>Now come on, let's get you to the ship.</i>\"");
-	output("\n\n\"<i>I… yes, "+ pc.mf("master","mistress") +",</i>\" she sighs, looking back down again  as you lead the way to the door.");
+	output("\n\n\"<i>I... yes, "+ pc.mf("master","mistress") +",</i>\" she sighs, looking back down again  as you lead the way to the door.");
 	output("\n\n\"<i>Good riddance,</i>\" you hear the mistress mutter behind you as you make your way out, and back toward the [pc.ship].");
 	clearMenu();
 	addButton(0, "Next", reahaWantsToKnowWhatsUp)
@@ -655,10 +654,6 @@ function reahaWantsToKnowWhatsUp():void
 
 }
 	
-
-
-
-
 function fuckReahasPussyintheBrothel():void
 //Fuck Reaha's Pussy in the Brothel
 {
@@ -694,6 +689,7 @@ function fuckReahasPussyintheBrothel():void
 	pc.credits -= 100;
 	processTime(10+rand(4));
 	pc.orgasm();
+	chars["REAHA"].loadInCunt(pc);
 	//Clears menu data
 	clearMenu();
 	//Set up a button: first argument is the button index 0 to 14 for the first page.
@@ -765,15 +761,3 @@ function RideReahasStraponAtTheBrothel():void
 	addButton(0,"Next",mainGameMenu);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

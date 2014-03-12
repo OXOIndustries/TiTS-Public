@@ -239,7 +239,7 @@ function flirtWithKellyAnyway():void {
 	output("\n\nShe was waiting for that, it seems. You feel her cunt clench down around your fingers, uncaring of the fact they are not a prick, squeezing you tightly and rippling around you as if trying to milk you of the semen that your digits do not, in fact, have. You wriggle them inside of her as best you can, as much to try and find a way to slip free of the silken vice they are trapped in as to pleasure her. She visibly quakes and shudders, grapefruit-sized balls swaying back and forth, cunt spasming and opening wide enough to let you pull your fingers free.");
 	output("\n\n<i>\"C-can't hold it back,\"</i>  she moans, her whole body twitching as she fights against the inevitable. You hear her clattering around the contents of her desk as she grabs for something, before her hand thrusts itself into view, an abnormally large-sized coffee-mug in her grip.");
 	processTime(25+rand(10));
-	pc.lust(30+rand(10));
+	pc.lust(30 + rand(10));
 	//New Page//
 	clearMenu();
 	addButton(0,"Next",flirtWithKellyAnywayPartII);

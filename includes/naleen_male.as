@@ -411,6 +411,8 @@ function rideDudeleensWithAPussaaaaah():void {
 	//Orgasm and time pass before endings!
 	processTime(20+rand(25));
 	pc.orgasm();
+	pc.loadInCunt(chars["NALEEN_MALE"], x);
+	if (y != -1) pc.loadInCunt(chars["NALEEN_MALE"], y);
 	
 	//if Kind / Mischievous:
 	if(!pc.isAss()) {
@@ -737,6 +739,7 @@ function getTakenInTheAssByDudeleen():void {
 	output("\n\n");
 	processTime(30+rand(10));
 	pc.orgasm();
+	pc.loadInAss(chars["NALEEN_MALE"]);
 	genericVictory();
 }
 
@@ -780,9 +783,11 @@ function cuntailOnDudeleen():void {
 
 	output("\n\nYou groan and purr to yourself, savoring the strange cunnilinguis you are receiving, but enough is eventually enough and you pull your now-cleaner cunt away. Graciously, you roll the panting naleen onto his side and remove his bonds, setting him free before turning and heading back on your way.");
 	output("\n\n");
-	feedCuntSnake();
+	
+	pc.loadInCuntTail(chars["NALEEN_MALE"]);
 	processTime(30+rand(10));
 	pc.orgasm();
+	
 	genericVictory();
 }
 
@@ -970,6 +975,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		if(pc.hasCock()) output(", extending his tongue to lick a stray strand of [pc.cum] off your [pc.face]");
 		output(".");
 		pc.orgasm();
+		pc.loadInCunt(chars["NALEEN_MALE"]);
 	}
 	//else if two or more Vaginas:
 	else if(pc.totalVaginas() > 1)
@@ -989,6 +995,8 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\n<i>“You’re not so bad, for an intruder. It’s truly a pity I can’t just keep you... but hunting you is very fun. Not many intruders out there that make prey as fine you are,”</i>  he chuckles, slithering away.");
 		//loss message
 		pc.orgasm();
+		pc.loadInCunt(chars["NALEEN_MALE"], x);
+		pc.loadInCunt(chars["NALEEN_MALE"], y);
 	}
 	else //PC’s ass
 	{
@@ -1003,6 +1011,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output(". You gasp and moan and shudder, finally sprawling limply in his coils, a dripping, blissed-out mess.");
 		output("\n\nPanting, he taps your ass gently as he lowers you to the jungle ground. Once he’s safely deposited you, he uncoils, freeing you. <i>“That wasn’t half bad. Pity I can’t keep you.”</i>");
 		pc.orgasm();
+		pc.loadInAss(chars["NALEEN_MALE"]);
 	}
 
 	//if PC cock:
@@ -1129,8 +1138,13 @@ function feedYourCuntTailWithDudeleen():void {
 		output("\n\nWith a contented yawn, you lift yourself from your impromptu bed and stretch yourself; you feel so rested now. You realise that the naleen is stretched underneath you, completely still, though a closer look confirms he's fine, just passed out. Your need for seed feels sated, the hunger of your inhuman tails no longer clawing at the back of your mind, and you look back towards his loins as you gently slip them free of the naleen's cocks. As they slide back inside his groinal slit, you notice that there isn't a single drop of seed smeared against them or your own tail-cunts; they've absorbed every last drop. Looks like your tails milked him totally dry; you idly wonder how many orgasms he must have had before unconsciousness claimed him.");
 		output("\n\nSatisfied with how things turned out, you remove yourself from the comatose naleen's form, gather up and reapply your [pc.gear], and continue on your way.");
 	}
-	feedCuntSnake();
+	
+	// 2dix = 2loads rite
+	pc.loadInCuntTail(chars["NALEEN_MALE"]);
+	pc.loadInCuntTail(chars["NALEEN_MALE"]);
+	
 	pc.orgasm();
+	
 	output("\n\n");
 	processTime(30+rand(10));
 	genericLoss();

@@ -223,6 +223,7 @@ function celiseSucksYouDry():void {
 	}
 	pc.orgasm();
 	celise.orgasm();
+	celise.loadInMouth(pc);
 	processTime(25+rand(4));
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);

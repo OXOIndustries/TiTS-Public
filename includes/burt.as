@@ -827,6 +827,7 @@ function burtsWeinerInYourButt():void {
 	//[Next] (-All Lust, Random Sex Exit)
 	processTime(25+rand(10));
 	pc.orgasm();
+	pc.loadInAss(chars["BURT"]);
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
 }
@@ -925,6 +926,7 @@ function burtSticksItInThePCsVajayjay():void {
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.loadInCunt(chars["BURT"]);
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
 }
@@ -1046,6 +1048,7 @@ function tailFuckBurtBecauseWhyNot():void {
 	output("\n\nYour tail slowly draws free of his still twitching and erect shaft, feeling the afterglow settling in your belly, only to have Burt ruin it by chuckling out,<i> “Now that’s what I call getting some tail.”</i>  Like you haven’t heard that one before....");
 	processTime(14+rand(8));
 	pc.orgasm();
+	pc.loadInCuntTail(chars["BURT"]);
 	this.clearMenu();
 	this.addButton(0,"Next",randomBurtSexExit);
 }

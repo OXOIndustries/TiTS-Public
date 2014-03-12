@@ -110,6 +110,17 @@ function crew(counter:Boolean = false):Number {
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
+	// For want of somewhere better to put this, I'm hanging it off of the crew menu for now
+	// [MIMBRANE CODE]
+	if (attachedMimbranes() > 0)
+	{
+		count++;
+		if (!counter)
+		{
+			addButton(count - 1, "Mimbranes", mimbraneMenu);
+			crewMessages += "\n\nThe parasites attached to a variety of your appendanges seem intelligent enough for some rudimentary communication....";
+		}
+	}
 	if(!counter) {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);

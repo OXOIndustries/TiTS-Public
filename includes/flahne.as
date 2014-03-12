@@ -490,6 +490,7 @@ function bendFlahneOver():void {
 	output(". Her body is quick to engulf the offering, never letting a drop escape her slick depths.");
 	processTime(20 + rand(10));
 	pc.orgasm();
+	flahne.loadInCunt(pc);
 	output("\n\nYour hips pound into her a few last times as your " + pc.cockDescript(x) + " empties, panting and heaving as you collapse and sink into your gel-lover. She giggles playfully, reaching a hand back around to pull your prick from her hole, still twitching and dribbling - until she gets down on her knees to clean you up, lapping up every last drop. You rest your arms on her desk, examining the spilled coffee, papers, and pens strewn across her workspace. She sure made a mess....");
 	
 	output("\n\nRunning a hand across Flahne's gooey hair, you give her a gentle push off of your dick, letting it come free with a wet, squishy pop. The curvy rahn licks her lips, chest jiggling as she wipes a little stray cum from the tops of her ");
@@ -576,6 +577,7 @@ function rahnSuppository():void {
 	output(". You groan in agony at your stomach and her joke, rolling off the desk and leaking everywhere as you search around for your gear. Flahne gives you a little wave as you stagger back, even blowing you a kiss - arms squeeze her boobs enticingly, almost begging you to come back soon and fuck her.");
 	processTime(20 + rand(5));
 	pc.orgasm();
+	pc.loadInAss(flahne);
 	flahneFuckCounter(1);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -1053,6 +1055,7 @@ function fuckAndSuckWithFlahne():void {
 	}
 	flahneFuckCounter(1);
 	pc.orgasm();
+	flahne.loadInCunt(pc);
 	processTime(30+rand(10));
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);

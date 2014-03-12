@@ -1,4 +1,5 @@
 ﻿package classes {
+	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Items.Miscellaneous.Empty;
@@ -1013,6 +1014,16 @@
 		public var pregnancyIncubations: Array = new Array(0, 0, 0, 0);
 		public var pregnancyTypes: Array = new Array(0, 0, 0, 0);
 		public var pregnancyQuantity: Array = new Array(0, 0, 0, 0);
+		
+		// Sperm provider stuff
+		public var canImpregnateVagina:Boolean = false;
+		public var canImpregnateButt:Boolean = false;
+		public var canFertilizeEggs:Boolean = true;
+		public var alwaysImpregnate:Boolean = false;
+		public var impregnateType:int = 0;
+		public var basePregnancyIncubation:int = 0;
+		public var basePregnancyChance:int = 0;
+		
 		//Used for ovipositors
 		public var eggs: int = 0;
 		public var fertilizedEggs: int = 0;
@@ -1428,6 +1439,8 @@
 			minutesSinceCum = 0;
 			timesCum++;
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
+			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("cock");
+			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("vagina");
 		}
 		public function isNude(): Boolean {
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
@@ -7490,6 +7503,96 @@
 		 */
 		public function prepForCombat(): void {
 			throw new Error("Each creature must define its own method to prepare for combat!");
+		}
+		
+		/**
+		 * This methods are stubs, intended to be overriden on a character-by-character basis.
+		 * Check the PlayerCharacter class to see what I mean.
+		 */
+		
+		public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):void
+		{
+			// Only run the knockup shit if the creature actually gets saved
+			if (this.neverSerialize == false)
+			{
+				this.tryKnockUp(cumFrom, vagIndex);
+			}
+			else
+			{
+				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+			}
+		}
+		
+		public function loadInAss(cumFrom:Creature):void
+		{
+			if (this.neverSerialize == false)
+			{
+				this.tryKnockUp(cumFrom, 3);
+			}
+			else
+			{
+				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+			}
+		}
+		
+		public function loadInMouth(cumFrom:Creature):void
+		{
+			
+		}
+		
+		public function loadInNipples(cumFrom:Creature):void
+		{
+			
+		}
+		
+		public function loadInCuntTail(cumFrom:Creature):void
+		{
+			
+		}
+		
+		// Preg slot is the incubation slot we're gonna occupy, following the same rules as the array
+		// 0-2 are vagina(s), 3 is butt
+		// This isn't perfect, but it's a start.
+		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):void
+		{
+			// Contraceptives
+			if (this.hasStatusEffect("Contraceptives")) return;
+			
+			// Vagina/butt slot checking
+			if (pregSlot < 3 && !hasVagina(pregSlot) || pregSlot > 3)
+			{
+				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
+				return;
+			}
+			
+			// Check the sperm provider can actually knock up this hole
+			if (pregSlot <= 2 && cumFrom.canImpregnateVagina || pregSlot == 3 && cumFrom.canImpregnateButt)
+			{
+				// If the holes not already preggers
+				if (this.pregnancyIncubations[pregSlot] == 0)
+				{
+					// Roll the dice
+					// Creature.alwaysImpregnate is replacing the old arg fiddle. I don't *really* understand what was going 
+					// on with the arg paramemter, but it seems like it was being used to basically fuck the math into MASSIVELY 
+					// increasing the chance to be pregnant OR make it 100%.
+					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance))
+					{
+						// Knockup go!
+						this.pregnancyTypes[pregSlot] = cumFrom.impregnateType;
+						this.pregnancyIncubations[pregSlot] = cumFrom.basePregnancyIncubation;
+						trace(this.short + " Knocked up with pregnancy type: " + cumFrom.impregnateType + " for " + cumFrom.basePregnancyIncubation + " in hole#: " + pregSlot);
+					}
+				}
+			}
+			
+			// Egg fertilization
+			if (cumFrom.canFertilizeEggs)
+			{
+				if (this.hasTailFlag(GLOBAL.OVIPOSITOR) && (this.tailType == GLOBAL.ARACHNID || this.tailType == GLOBAL.DRIDER || this.tailType == GLOBAL.BEE))
+				{
+					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance)) this.fertilizeEggs();
+				}
+			}
 		}
 	}
 }

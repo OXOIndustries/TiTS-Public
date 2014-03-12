@@ -518,6 +518,7 @@ function rideDatZilCawk():void {
 	
 	processTime(21+rand(4));
 	pc.orgasm();
+	pc.loadInCunt(chars["ZIL"]);
 	genericVictory();
 }
 
@@ -845,6 +846,7 @@ function swallowDatZilCockCauseJooLost():void {
 	output("<i>“</i>");
 	output("\n\nYour master has you lick him clean before he buzzes off into the trees, leaving his sensuous taste to remember him by. You sit there, staring at nothing for perhaps thirty minutes. Then, as the effect he had on you evaporates, you realize just how fucking horny you are! You vigorously masturbate for the next two hours before finally sating yourself and passing out.\n\n");
 	//{Blah blah, combat texts.}
+	pc.loadInMouth(chars["ZIL"]);
 	genericLoss();
 }
 
@@ -961,6 +963,7 @@ function getBredByZil():void {
 	output("\n\nAbruptly, he pulls himself out, clean of everything but your spit. Just how long were you cleaning him? The zil gathers some soft ferns and makes you a soft bed from them.  You're all too happy to lie on it, even if it does lift your [pc.butt] up in the air and make sure that all his seed stays deep inside you...\n\n");
 	processTime(30+rand(15));
 	pc.orgasm();
+	pc.loadInCunt(chars["ZIL"], x);
 	genericLoss();
 }
 //*Get tailpussy fucked.
@@ -1055,10 +1058,10 @@ function getTailPussyFuckedByZil():void {
 	output("\n\nThe zil eventually finishes pumping his honey-flavored goo into your tail and slumps weakly onto his back. His heavy breathing is audible, and you can tell he's trying to recover quickly. It doesn't help, then, that your tail is still connected to his genitals, slowly sliding up and down his length to coax a last few droplets him. You relax and wonder if you can encourage him to go again. His surprisingly soft hands grab your hungry pussy and yank it away before you can make up your mind. Stumbling drunkenly, the well-milked zil makes his way towards the concealing forest, nearly tripping over his feet a half-dozen times. From where you lie, you note a definite reduction in the size of his smooth pouch.");
 	output("\n\n<i>“Good boy,”</i> you think as you let your eyes flutter closed and relax in post-coital bliss.");
 	//[Next]
-	feedCuntSnake();
 	clearMenu();
 	processTime(40+rand(20));
 	pc.orgasm();
+	pc.loadInCuntTail(chars["ZIL"]);
 	addButton(0,"Next",tailPussyFuckZilEpilogue);
 }
 function tailPussyFuckZilEpilogue():void {
@@ -1156,6 +1159,7 @@ function zilSticksItInYourBoot():void {
 	output("\n\nYou slip into an exhausted daze, losing consciousness as the insect-man takes off and floats away.\n\n");
 	processTime(25);
 	pc.orgasm();
+	pc.loadInAss(chars["ZIL"]);
 	processTime(30+rand(10));
 	genericLoss();
 }
@@ -1241,6 +1245,9 @@ function theZilPretendToBeHelia():void {
 	output("\n\nAs their climaxes conclude, the spent pair pull away, dropping you into the puddled, mixed sex-juices before turning on each other, grinding their sloppy genitalia against each other as they prepare to fuck away the rest of their insatiable lust. Your eyes flutter closed as your body asserts its need for rest, lulling you into a dreamless, sticky slumber.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
+	if (pc.hasVagina()) pc.loadInCunt(chars["ZIL"]);
+	else pc.loadInAss(chars["ZIL"]);
+	pc.loadInMouth(chars["ZILFEMALE"]);
 	processTime(59);
 	genericLoss();
 }

@@ -85,7 +85,14 @@ function combatMainMenu():void
 	// Mimbrane Smother
 	else if (pc.hasStatusEffect("Mimbrane Smother"))
 	{
-		throw new Error("Not yet implemented");
+		output("\n\n<b>You are being smothered by a Mimbrane!</b>");
+		addButton(0, "Struggle", mimbraneStruggle);
+		if (pc.hasStatusEffect("Static Burst Known"))
+		{
+			if (pc.energy() >= 50) this.addButton(3, "Static Burst", staticBurst);
+			else this.addDisabledButton(3, "Static Burst");
+		}
+		this.addButton(4, "Do Nothing", wait);
 	}
 	else 
 	{
@@ -302,7 +309,7 @@ function updateCombatStatuses():void {
 		{
 			if (mimbraneDebug) trace("Lust cloud remains.");
 			pc.lust(5 + rand(10));
-			output("The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+			output("\n<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
 		}
 	}
 	//ENEMY STATUSES!

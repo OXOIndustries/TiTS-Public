@@ -290,7 +290,7 @@ function loseToDane():void {
 	{
 		output("\n\nYour [pc.vaginas] drench");
 		if(pc.vaginaTotal() == 1) output("es");
-		output(" your hand with moisture as you impulsively fill yourself as full as possible, thumb pressed hard on [pc.clit]. Somehow, as wonderful as it feels, it can't compare to the ass-filling ecstasy of Dane's superlative length plowing your through your backdoor, You whimper all the same, overwhelmed from multiple sources.");
+		output(" your hand with moisture as you impulsively fill yourself as full as possible, thumb pressed hard on [pc.clit]. Somehow, as wonderful as it feels, it can't compare to the ass-filling ecstasy of Dane's superlative length plowing your through your backdoor. You whimper all the same, overwhelmed from multiple sources.");
 	}
 	//Cocks
 	if(pc.hasCock())
@@ -305,6 +305,7 @@ function loseToDane():void {
 	output("\n\nYou sag, limp and panting, before you feel the jetwash crashing over you. Dane struggles to pull out, wrenching knot after knot free in a gut-stretching display of strength. He tosses you to the ground none-too-gently, looking down at his cum-leaking prize. <i>\"Remember my offer. I could use a good knot-sleeve,\"</i> he says. Your eyes drift closed, though not before you see him boarding Jack's gunship.\n\n");
 	processTime(25+rand(10));
 	pc.orgasm();
+	pc.loadInAss(chars["DANE"]);
 	clearMenu();
 	addButton(0,"Next",daneFuckEpilogue);
 }

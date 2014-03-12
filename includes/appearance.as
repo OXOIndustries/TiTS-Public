@@ -1,4 +1,4 @@
-﻿function pcAppearance(e:MouseEvent):void 
+﻿function pcAppearance(e:MouseEvent = null):void 
 {
 	if (!userInterface.appearanceButton.isActive)
 	{
@@ -7,6 +7,7 @@
 	else if (userInterface.showingPCAppearance)
 	{
 		userInterface.showPrimaryOutput();
+		userInterface.showingPCAppearance = false;
 	}
 	else
 	{
@@ -15,7 +16,7 @@
 		appearance(pc);
 		userInterface.showingPCAppearance = true;
 		userInterface.clearGhostMenu();
-		addGhostButton(0, "Back", pcAppearance, e);
+		addGhostButton(14, "Back", pcAppearance);
 	}
 }
 

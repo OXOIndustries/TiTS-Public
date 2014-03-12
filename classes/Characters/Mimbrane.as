@@ -33,7 +33,7 @@ package classes.Characters
 			this.meleeWeapon.damageType = GLOBAL.PIERCING;
 			this.meleeWeapon.attack = 2;
 			this.meleeWeapon.damage = 4;
-			this.meleeWeapon.longName = "";
+			this.meleeWeapon.longName = "barbs";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "pink flesh"; // Fix

@@ -305,6 +305,8 @@ function getSpitRoastedForPenny():void {
 	if(pc.wetness() >= 3) output(" along with your own moisture");
 	output(", squirting from your well-used holes. The constant sexual onslaught sends you to orgasm after orgasm, almost one on top of the other. Your mind seems to be turning to putty under the ecstatic assault, shutting down one thought process after another as you ride pleasure unending. Dimly, you’re aware of one sloppy honey injection after another...");
 	pc.orgasm();
+	pc.loadInCunt(chars["ZIL"]);
+	pc.loadInAss(chars["ZIL"]);
 	//Cum, pregnancy chances, sensitivity reduction
 	//Pass 2 hours.
 	processTime(120+rand(20));
@@ -916,6 +918,7 @@ function firstTimePennyShowerSex():void {
 	output("<i>mate. We’ll have to do something like this again, and soon.”</i>  She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind to much when I get all riled up and get a little predatory on you.”</i>  Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
+	penny.loadInCunt(pc);
 	processTime(75+rand(25));
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -1923,6 +1926,7 @@ function faceFuckPenny():void {
 	
 	processTime(30+rand(15));
 	pc.orgasm();
+	penny.loadInMouth(pc);
 	//[Fuck her butt] [Get ass fucked] [Nah, girl]
 	this.clearMenu();
 	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh);
@@ -2032,6 +2036,7 @@ function getAssFuckedByPenny():void {
 	
 	output("\n\nYou give the lusty fox a quick pat on the rear and saunter off, walking a bit stiffly as your anus recovers from the pounding it just took.");
 	pc.orgasm();
+	pc.loadInAss(penny);
 	processTime(32);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -2078,6 +2083,7 @@ function fuckPennyButtFromFraceFuckSceneNyahhhh():void {
 	
 	output("\n\n<i>“That was amazing, my mate,”</i> she purrs, patting her well-fucked ass. <i>“Let's do it again... and soon.”</i>");
 	pc.orgasm();
+	penny.loadInAss(pc);
 	processTime(27);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -2509,6 +2515,7 @@ function pennyOverTheDeskRoughFuck():void {
 	//Pass two hours.
 	processTime(110+rand(20));
 	pc.orgasm();
+	if (pc.hasCock()) penny.loadInCunt(pc);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -2669,6 +2676,7 @@ function bitePennysCondom():void {
 	output("\n\nShe’s cleaning up the wet spot on the floor when you prepare to leave, but you see another condom has been laid out on her desk.");
 	//Pass 35 minutes.
 	processTime(5);
+	pc.loadInMouth(penny);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
@@ -2687,6 +2695,7 @@ function feedPennysCondomToHer():void {
 	output("\n\nShe goes on to thank you for the fun but admits she needs to get to work. <i>“Just give me a yell if you need anything. Knowing this thing, I’ll be good to go in a minute.”</i>");
 	//Pass 35 minutes.
 	processTime(5);
+	penny.loadInMouth(penny);
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }

@@ -258,6 +258,7 @@ function victoryFuckSyrisBunghole():void {
 	else output("\n\nYou give Syri an appreciative slap on the ass, making the sun-kissed skin of her taut bum jiggle, cum drooling obscenely from her violated hole as her muscles clench. You help the ausar-girl to her feet, legs shaking after your rectal reaming, and help her get to the bathroom to clean up before you collect your gear and stumble off.");
 	processTime(30+rand(15));
 	pc.orgasm();
+	chars["SYRI"].loadInAss(pc);
 	chars["SYRI"].orgasm();
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
@@ -315,6 +316,7 @@ function rideSyrisCockYouWinner():void {
 	if(flags["FUCKED_SYRI_COUNT"] == undefined) flags["FUCKED_SYRI_COUNT"] = 0;
 	flags["FUCKED_SYRI_COUNT"]++;
 	pc.orgasm();
+	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	chars["SYRI"].orgasm();
 	clearMenu();
@@ -430,6 +432,7 @@ function pcLosesToSyriBettingHisAss():void {
 	chars["SYRI"].orgasm();
 	processTime(30+rand(15));
 	pc.orgasm();
+	pc.loadInAss(chars["SYRI"]);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -810,6 +813,7 @@ function syriReverseCowgirlConsensualization():void {
 
 	processTime(40+rand(10));
 	pc.orgasm();
+	chars["SYRI"].loadInAss(pc);
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
 }
@@ -864,6 +868,7 @@ function missionaryWithTheDogDickedSlutSyri():void {
 	output("\n\nYou lean up and kiss her, telling the beautiful ausar that you couldn't agree more.");
 	processTime(40+rand(15));
 	pc.orgasm();
+	chars["SYRI"].loadInAss(pc);
 	chars["SYRI"].orgasm();
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
@@ -924,6 +929,7 @@ function getVagFukkedBySyri():void {
 	output("\n\n<i>“I don't deserve a " + pc.mf("boy","girl") + " like you... you're amazing, [pc.name],”</i> she says, smiling down at you with her puppy dog eyes that leave you helpless but to kiss her, pulling the alien beauty onto you as you flip off the lights, drawing the blanket over your bare bodies to wait out her knot's deflation in each other's arms.");
 	processTime(40+rand(15));
 	pc.orgasm();
+	pc.loadInCunt(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
@@ -997,6 +1003,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 
 	processTime(40+rand(15));
 	pc.orgasm();
+	pc.loadInAss(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);
@@ -1044,6 +1051,7 @@ function blowSyriYouFukkinSlut():void {
 
 	output("\n\nYou smile and snuggle up, feeling like you've earned yourself a post-coitus cuddle as Syri's load gurgles in your gut.");
 	chars["SYRI"].orgasm();
+	pc.loadInMouth(chars["SYRI"]);
 	pc.lust(33);
 	clearMenu();
 	addButton(0,"Next",syriSexOutro);

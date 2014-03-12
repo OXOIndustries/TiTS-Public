@@ -205,7 +205,7 @@ public function mimbranesNeglected():int
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			if (pc.statusEffectsv2(mimbraneEffects[i]) >= 7) numNeglected++;
+			if (pc.statusEffectv2(mimbraneEffects[i]) >= 7) numNeglected++;
 		}
 	}
 
@@ -2221,15 +2221,21 @@ function mimbraneAI():void
 	}
 	else
 	{
+		if (mimbraneDebug) trace("Mimbrane Using Lust Cloud");
 		mimbraneLustCloud();
+		return; // Tested
+	}
+	
+	// Continue the smother stuff
+	if (pc.hasStatusEffect("Mimbrane Smother"))
+	{
+		mimbraneSmother();
 		return;
 	}
 
 	// Select between lust and HP attacks
 	var hpAttackWeight:int = 3; // 33% [1 in (0-2)]
-
 	if (pc.lustMax() / pc.lust() > 0.75) hpAttackWeight += 3; // 20% [1 in (0-5)]
-
 	trace("HP Attack Weight: " + hpAttackWeight);
 
 	if (rand(hpAttackWeight) == 0)
@@ -2237,11 +2243,13 @@ function mimbraneAI():void
 		// HP Attack
 		if (rand(3) == 0)
 		{
+			if (mimbraneDebug) trace("Mimbrane Using Trip");
 			mimbraneTrip();
 			return;
 		}
 		else
 		{
+			if (mimbraneDebug) trace("Mimbrane Using Scratch");
 			mimbraneScratch();
 			return;
 		}
@@ -2251,6 +2259,7 @@ function mimbraneAI():void
 		// Lust attack selection
 		if (rand(2) == 0)
 		{
+			if (mimbraneDebug) trace("Mimbrane Using Skin Contact");
 			mimbraneSkinContact();
 			return;
 		}
@@ -2258,12 +2267,14 @@ function mimbraneAI():void
 		{
 			if (pc.lustMax() / pc.lust() < 0.6)
 			{
+				if (mimbraneDebug) trace("Mimbrane Using Spit");
 				// Spit
 				mimbraneSpit();
 				return;
 			}
 			else
 			{
+				if (mimbraneDebug) trace("Mimbrane Using Smother");
 				// Smother
 				mimbraneSmother();
 				return;
@@ -2284,7 +2295,7 @@ public function mimbraneSkinContact():void
 	//{standard miss/block text} 
 	if (combatMiss(foes[0], pc))
 	{
-		output("\nYou twist out of the path of the speeding Mimbrane!")
+		output("\n\nYou twist out of the path of the speeding Mimbrane at the last second!");
 	}
 	//{hit}
 	else
@@ -2307,15 +2318,15 @@ public function mimbraneSkinContact():void
 //Lust damage over time if attack connects
 public function mimbraneLustCloud():void
 {
-	if (mimbraneDebug) trace("Mimbrane is using Lust Cloud attack.");
 	(foes[0] as Creature).createStatusEffect("Mimbrane Cloud Cooldown", 5, 0, 0, 0, true, "", "", true, 0);
 
 	output("Your adversary grows more dense in the air for a second, appearing as if it were wringing out more passionate sweat from its flesh. In one fluid motion, it stretches back out again, a large square of flesh suspended above you surrounding the visible cloud of lust it created. The Mimbrane spins in the air, pushing the fog your way!");
 
 	//{standard miss/block text}
-	if (combatMiss(foes[0], pc))
+	//if (combatMiss(foes[0], pc))
+	if (1 == 0)
 	{
-		output("\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
+		output("\n\nAnticipating the Mimbranes attack, you’re already poised to avoid the creatures mist before it can take effect.");
 		if (mimbraneDebug) trace("Player dodged the lust cloud.");
 	}
 	else
@@ -2328,14 +2339,15 @@ public function mimbraneLustCloud():void
 		pc.lust(10 + rand(10));
 
 		//{no save}
-		if ((pc as Creature).reflexes() + rand(20) + 1 < 15)
+		//if ((pc as Creature).reflexes() + rand(20) + 1 < 15)
+		if (1 == 1)
 		{
 			output(" You’re too disoriented to get out of the veil before it can sink its fangs into you. The best you can hope for is for it to dissipate on its own.");
-			if (pc.hasStatusEffect("Mimbrane Lust Cloud"))
+			if (!pc.hasStatusEffect("Mimbrane Lust Cloud"))
 			{
 				// v1 = stacks
 				// v2 = duration remaining
-				pc.createStatusEffect("Mimbrane Lust Cloud", 1, 3, 0, 0, false, "LustUp", "You have been exposed to the lust inducing venom of a Mimbrane.", true, 0);
+				pc.createStatusEffect("Mimbrane Lust Cloud", 1, 3, 0, 0, false, "Icon_LustUp", "You have been exposed to the lust inducing venom of a Mimbrane.", true, 0);
 				if (mimbraneDebug) trace("Adding Lust Cloud effect to Player.");
 			}
 			else
@@ -2349,7 +2361,7 @@ public function mimbraneLustCloud():void
 		{
 			// {save}
 			////{resist/make save} You’re able to stagger your way out of the parasite’s salacious smoke without taking too much more damage to your resolve.
-			output(" You dart out of the venomous cloud before it has opportunity to seep into your bloodstream.");
+			output("\n\nYou dart out of the venomous cloud before it has opportunity to seep into your bloodstream.");
 		}
 	}
 	
@@ -2365,58 +2377,72 @@ public function mimbraneLustCloud():void
 //Constricts. Heavy lust damage every turn until free.
 function mimbraneSmother():void
 {
-	if (!pc.hasStatusEffect("Mimbrane Smothered"))
+	if (!pc.hasStatusEffect("Mimbrane Smother"))
 	{
 		output("The Mimbrane is difficult to track as it circles above and around you. You lose sight of the creature, but a shadow on the ground clues you in on its position: spread thin and wide above you. The parasite descends upon you like a fishing net!");
+		pc.createStatusEffect("Mimbrane Smother", 0, 0, 0, 0, false, "Constrict", "You’re face is being smothered by a Mimbrane!");
+	}
 	
-		if (combatMiss(foes[0], pc))
-		{
-			//{standard miss/block text}
-			output("FIXME");
-		}
-		else
-		{
-			//{hit} 
-			output("\n\nYour head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.");
-
-			pc.createStatusEffect("Mimbrane Smothered", 0, 0, 0, 0, false, "Constrict", "You’re face is being smothered by a Mimbrane!");
-			pc.lust(10 + pc.libido()/10);
-
-		}
-	}
-	else
-	{
-		// lust tick
-		pc.lust(10 + pc.libido()/10);
-
-		//{fail to escape 1} 
-		if (pc.statusEffectv1("Mimbrane Smothered") == 0)
-		{
-			output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
-			pc.setStatusValue("Mimbrane Smothered", 1, 1);
-		}
-		//{fail to escape 2} 
-		else if (pc.statusEffectv1("Mimbrane Smothered") == 1)
-		{
-			output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.")
-			pc.setStatusValue("Mimbrane Smothered", 1, 2);
-		}
-		//{defeated} 
-		else if (pc.statusEffectv1("Mimbrane Smothered") == 2)
-		{
-			output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your knees. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
-			pc.lust(pc.lustMax(), true);
-		}
-	}
-
+	//{hit} 
+	output("\n\nYour head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.");
+	pc.lust(10 + pc.libido()/10);
 	processCombat();
 	
 	//{escape} Fingers finally dig their way into the erotic blanket suffocating you. Your head is freed with a mighty pull. You throw the beast to the ground, spitting and wiping away the remnants of its assault on your face.
 }
 
+public function mimbraneStruggle():void
+{
+	clearOutput();
+	if (pc.hasPerk("Escape Artist"))
+	{
+		if (pc.reflexes() + rand(10) > pc.statusEffectsv1("Mimbrane Smother") * 5)
+		{
+			output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to prise it away from you.");
+			pc.removeStatusEffect("Mimbrane Smother");
+		}
+	}
+	else
+	{
+		if (pc.physique() + rand(10) > pc.statusEffectv1("Mimbrane Smother") * 5)
+		{
+			output("You manage to force your fingers under the edge of the Mimbrane smothering you, and forcefully tear it away from your face.");
+			pc.removeStatusEffect("Mimbrane Smother");
+		}
+	}
+	
+	// Failure to escape
+	if (pc.hasStatusEffect("Mimbrane Smother"))
+	{
+		// lust tick
+		pc.lust(10 + pc.libido()/10);
+
+		//{fail to escape 1} 
+		if (pc.statusEffectv1("Mimbrane Smother") == 0)
+		{
+			output("Your hands fail to find purchase on the slippery surface of your aggressor. The Mimbrane continues squeezing and sliding against your head.");
+			pc.setStatusValue("Mimbrane Smother", 1, 1);
+		}
+		//{fail to escape 2} 
+		else if (pc.statusEffectv1("Mimbrane Smother") == 1)
+		{
+			output("The Mimbrane’s advance over you puts you into a slight daze, overpowered by the artificial desire being forced upon you. You snap back to your senses and resume your struggle to free yourself.")
+			pc.setStatusValue("Mimbrane Smother", 1, 2);
+		}
+		//{defeated} 
+		else if (pc.statusEffectv1("Mimbrane Smother") == 2)
+		{
+			output("The aphrodisiacal rag around your head proves to be too much, dissolving the last of your will and dropping you to your knees. You breathe heavily, sucking in increasing amounts of the parasite’s infatuating perspiration and causing its skin to compress and inflate over your mouth. Sensing your defeat, the Mimbrane slowly unfurls from your head. Lines of oily sweat snap apart as the parasite peels off of you. It sizes up its prize, deciding how to proceed.");
+			pc.lust(pc.lustMax(), true);
+		}
+	}
+	
+	processCombat();
+}
+
 //Spit
 //Heavy lust attack
-function mimbraneSpit():void
+public function mimbraneSpit():void
 {
 	output("What amounts to your adversary’s face bulges intensely. The Mimbrane’s mouth struggles for a bit before launching a thick, deep red payload of concentrated sexual craving right at you.");
 
@@ -2439,7 +2465,7 @@ function mimbraneSpit():void
 //Light HP attack
 function mimbraneScratch():void
 {
-	output("Sharp, miniature barbs form along the underside of the parasite. It glides upwards before forcing its way back down towards you.");
+	output("Sharp, miniature barbs form along the underside of the parasite, as it glides towards you.\n\n");
 	attack(foes[0], pc, false, 0);
 	//{hit}The Mimbrane’s attack connects, and its suddenly jagged skin brushes against you, leaving a series of moderate cuts. 
 }
@@ -3221,7 +3247,7 @@ public function letMimbraneGo():void
 {
 	clearOutput();
 	userInterface.showBust("MIMBRANE");
-	output("The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.");
+	output("The battered rag disappears into the wilderness to tend to its wounds. It’ll be quite some time before it can pester a traveler again.\n\n");
 
 	genericVictory();
 }
@@ -3246,7 +3272,7 @@ public function killDatMimbrane():void
 		output(" stone silent. You have little doubt that");
 		if (attachedMimbranes() == 1) output(" it");
 		else output(" they");
-		output(" saw your act.");
+		output(" saw your act.\n\n");
 	}
 
 	genericVictory();
@@ -3390,7 +3416,7 @@ public function attachAMimbrane():void
 public function createMimbraneEffect(targetEffect:String):void
 {
 	var startingTrust:int = 0;
-	var lastFed:int = 0;
+	var lastFed:int = 1; // Start not-full so an initial feeding scene can happen the first time the player goes back to the ship
 	var startingFeedCounter:int = 0;
 
 	if (highestMimbraneTrust() >= 2) startingTrust = 1;
@@ -3447,10 +3473,9 @@ public function attachAssMimbrane():void
 	output("\n\nThe Mimbrane, however, is ecstatic with its endeavour being made that much easier. The creature scrambles atop your duo of hills only to find that first it must play janitor. It slides and sweeps over your [pc.skinfurscales], removing any of evidence of the jungle from its new home. You feel as if someone is sensually massaging your ass with a wet silk rag. It goes on for several minutes, long enough for you to start digging your hands into the ground to deal with the unrelenting turmoil.");
 	output("\n\nIts job complete, the parasite wastes no more time in draping itself atop your [pc.ass], sealing to its every detail. The sentient rag worms its way into your crack and within your [pc.asshole]. It isn’t long before your butt is completely smothered, Mimbrane stretched to easily embrace your");
 
-	throw new Error("Check this shit");
-	if (pc.buttRating() <= 3) output(" average");
-	else if (pc.buttRating() <= 5) output(" hefty"); 
-	else if (pc.buttRating() <= 8) output(" expansive");
+	if (pc.buttRating <= 4) output(" average");
+	else if (pc.buttRating <= 8) output(" hefty"); 
+	else if (pc.buttRating <= 16) output(" expansive");
 	else output(" titanic");
 
 	output(" trunk. Next, the creature weaves itself into your nervous system, confusing you further as your mind is unable to discern between genuine and relayed feelings. You absentmindedly try and clench your pucker, but get no response. One moment you feel tight, the next moment you feel as if your asshole was a gaping crater.");
@@ -3730,7 +3755,7 @@ public function mimbraneMenu():void
 
 	output("You currently have " + attachedMimbranes() + " Mimbrane");
 	if (attachedMimbranes() > 1) output("s");
-	output("attached to you.");
+	output(" attached to you.");
 
 	output("\n");
 
@@ -3766,8 +3791,8 @@ public function mimbraneMenu():void
 				output(" ready to feed. However, you have no means to feed them!")
 			}
 
-			addDisabledButton(0, "Feed With Cock");
-			addDisabledButton(1, "Feed With Pussy");
+			addDisabledButton(0, "Cock Feeding");
+			addDisabledButton(1, "Pussy Feeding");
 		}
 		else
 		{
@@ -3919,6 +3944,8 @@ public function mimbraneMenu():void
 		addDisabledButton(11, "Face B.Marks")
 		addDisabledButton(12, "Face Lip Pc.Ing");
 	}
+	
+	addButton(14, "Back", crew);
 }
 
 //{Mimbrane body parts}, if possible, is a list of all applicable Mimbrane body parts. So, it could be

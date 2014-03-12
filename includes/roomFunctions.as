@@ -117,7 +117,7 @@ function jungleEncounterChances():Boolean {
 	
 	if (debug)
 	{
-		if (flags["JUNGLE_STEP"] == 3)
+		if (flags["JUNGLE_STEP"] >= 3)
 		{
 			flags["JUNGLE_STEP"] = 0;
 			encounterMimbrane();
