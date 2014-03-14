@@ -2178,7 +2178,7 @@
 				counter--;
 				//Find it, change it, quit out
 				if (statusEffects[counter].storageName == storageName) {
-					if (!newMinutes is String) || (newMinutes < 0  && !newMinutes is Number)) {
+					if (newMinutes < 0) {
 						trace("ERROR: Change storage value with invalid value for given slot or invalid slot.");
 						return;
 					}
