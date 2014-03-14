@@ -1,4 +1,4 @@
-// This is the simplest method I can think of hooking up the codex functions into the tree structure for display
+﻿// This is the simplest method I can think of hooking up the codex functions into the tree structure for display
 // It's janky as fuck, but it does work, at it means the actual codex "body" content can be done almost exactly
 // like regular scenes are now.
 
@@ -185,7 +185,7 @@ public function mimbraneCodexEntry():void
 	userInterface.showBust("MIMBRANE");
 
 	outputCodex(header("Mimbranes"));
-	outputCodex(blockHeader("\n- (Graft, Epidel, Second Skin"));
+	outputCodex(blockHeader("\n- (Graft, Epidel, Second Skin)"));
 
 	outputCodex("<b>Sex:</b> Asexual");
 	outputCodex("\n<b>Height:</b> 0.0004 to 0.25 inches. Typically ranges between the slightest fraction of an inch when resembling a thin film to a quarter of an inch when dense and/or well fed.");
