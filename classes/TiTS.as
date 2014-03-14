@@ -88,6 +88,7 @@
 		include "../includes/reaha.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/kelly.as";
+		include "../includes/sera.as";
 		include "../includes/mimbranes.as";
 		
 		include "../includes/levelUp.as";
@@ -173,7 +174,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.11";
+			version = "0.02.12";
 
 			//temporary nonsense variables.
 			temp = 0;

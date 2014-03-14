@@ -2802,6 +2802,26 @@
 		public function setStatusValue(storageName: String, storageValueNum: int, newValue) {
 			setStorageValue(statusEffects, storageName, storageValueNum, newValue);
 		}
+		public function setStatusMinutes(storageName: String, newMinutes:int)
+		{
+			var counter: Number = statusEffects.length;
+			//Various Errors preventing action
+			if (statusEffects.length <= 0) return;
+			while (counter > 0) {
+				counter--;
+				//Find it, change it, quit out
+				if (statusEffects[counter].storageName == storageName) {
+					if (newMinutes < 0) {
+						trace("ERROR: Change storage value with invalid value for given slot or invalid slot.");
+						return;
+					}
+					statusEffects[counter].minutesLeft = newMinutes;
+					return;
+				}
+			}
+			trace("ERROR: Looking for status '" + storageName + "' to change minutes, and " + short + " does not have the status affect.");
+			return;
+		}
 		public function setKeyItemValue(storageName: String, storageValueNum: int, newValue) {
 			setStorageValue(keyItems, storageName, storageValueNum, newValue);
 		}
@@ -2809,7 +2829,7 @@
 			setStorageValue(perks, perkName, perkValueNum, newNum);
 		}
 		public function setStorageValue(array: Array, storageName: String, storageValueNum: int, newValue) {
-			var counter: Number = statusEffects.length;
+			var counter: Number = array.length;
 			//Various Errors preventing action
 			if (array.length <= 0) return;
 			while (counter > 0) {

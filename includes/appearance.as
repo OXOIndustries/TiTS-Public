@@ -420,6 +420,7 @@ function appearance(target:Creature):void {
 				//One nipple
 				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + target.nippleDescript(0) + " each.");
 				else output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(0)*10)/10 + "-inch " + plural(target.nippleDescript(0)) + " each.");
+				output2(" The areolae are " + target.nippleColor + ".");
 				if(target.breastRows[0].nippleType == GLOBAL.DICK) {
 					output2(" With a lusty thought and a bit of focus, you can make " + num2Text(Math.round(target.nippleLength(0) * target.dickNippleMultiplier * 10)/10) + "-inch " + target.nippleCocksDescript(true) + " slide out from behind your normal-looking areolae.");
 				}		
@@ -430,13 +431,14 @@ function appearance(target:Creature):void {
 				if(target.nipplesPerBreast == 1) output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(0) + " each.");
 				else output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(0)) + " each.");
 				if(target.breastRows[0].nippleType == GLOBAL.FUCKABLE) {
+					output2(" The areolae are " + target.nippleColor + ".");
 					output2(" While you may appear to have inverted nipples, your chest actually houses wet, slippery secrets. A finger or cock could easily slip inside you to give and get as much pleasure as any crotch-couched cunt.");
 				}
 				else if(target.breastRows[0].nippleType == GLOBAL.LIPPLES) {
-					output2(" The plump lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
+					output2(" The plump, " + target.nippleColor + " lips that you have in place of areolae could easily be parted to allow something stiff and hard inside your sensitive chest-based passages.");
 				}
 				else if(target.breastRows[0].nippleType == GLOBAL.FLAT) {
-					output2(" There isn't any actual nub to your nipples - just flat areolae.");
+					output2(" There isn't any actual nub to your nipples - just flat, " + pc.nippleColor + " areolae.");
 				}
 			}
 			//Lactation and breast cup final!

@@ -114,6 +114,10 @@
 	{
 		chars["DANE"] = new classes.Characters.Dane();
 	}
+	if (!justUpdate || (justUpdate && chars["SERA"] == undefined))
+	{
+		chars["SERA"] = new classes.Characters.Sera();
+	}
 	if (!justUpdate || (justUpdate && chars["MIMBRANE"] == undefined))
 	{
 		chars["MIMBRANE"] = new classes.Characters.Mimbrane();
