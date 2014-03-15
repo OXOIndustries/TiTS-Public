@@ -3868,8 +3868,8 @@ public function mimbraneStatusString(effectName:String):String
 
 	var msg:String = "";
 	msg += "<b>" + effectName + ":</b>";
-	msg += " Level " + trustLevel + " Trust.";
-	msg += " " + String(feedLevel) + " Feedings.";
+	msg += "\n\tLevel " + trustLevel + " Trust.";
+	msg += "\n\t" + String(feedLevel) + " Feedings.";
 
 	if (!mimbraneDebug)
 	{
@@ -3877,8 +3877,8 @@ public function mimbraneStatusString(effectName:String):String
 	}
 	else
 	{
-		msg += " " + daysSinceLastFed + " Days since last fed.";
-		msg += " " + reproductionCounter + " times reproduced.";
+		msg += "\n\t" + daysSinceLastFed + " Days since last fed.";
+		msg += "\n\t" + reproductionCounter + " times reproduced.";
 	}
 
 	return msg;
