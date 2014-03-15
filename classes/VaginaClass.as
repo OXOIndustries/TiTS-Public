@@ -22,9 +22,57 @@
 		//I'm going to regret this, I'm sure of it.
 		public var clits:int = 1;
 		//Vag wetness - Runs 1 = normal. Scales up infinitely or down to 0 for no lubricational value.
-		public var wetness:Number = 1;
+		public var wetnessRaw:Number = 1;
+		public var wetnessMod:Number = 0;
+		public function wetness(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				wetnessRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				wetnessRaw += arg;
+			}
+			
+			var currWet:Number = wetnessRaw + wetnessMod;
+			
+			if (currWet < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return currWet;
+			}
+		}
+		
 		//Starts at one and scales up to 5 or so.
-		public var looseness:Number = 1;
+		public var loosenessRaw:Number = 1;
+		public var loosenessMod:Number = 0;
+		public function looseness(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				loosenessRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				loosenessRaw = arg;
+			}
+			
+			var currLoose:Number = loosenessRaw + loosenessMod;
+			
+			if (currLoose < 1)
+			{
+				return 1;
+			}
+			else
+			{
+				return currLoose;
+			}
+		}
+		
 		//Looseness naturally lowers over time, but will not go below minimum looseness. You can become "ruined".
 		public var minLooseness:Number = 1;
 		//Self evident - bonus volume of dick that can be accomodated. Measured in cubic inches.
@@ -56,9 +104,9 @@
 			//Add bonuses!
 			capacity += bonusCapacity;
 			//Factor in looseness!
-			capacity *= (looseness + 1)/2;
+			capacity *= (looseness() + 1)/2;
 			//CoC-tier wetness 5 will double capacity.
-			capacity *= (wetness+4)/5;
+			capacity *= (wetness()+4)/5;
 			//Round it off and sent it away.
 			return Math.round(capacity*100)/100;
 		}

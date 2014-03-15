@@ -450,7 +450,7 @@
 			return "";
 		}
 
-		public var lipMod: Number = 0;
+		public var lipMod:Number = 0;
 		public function lipModUnlocked(newLipMod:Number):Boolean
 		{
 			return true;
@@ -601,7 +601,6 @@
 		{
 			return "";
 		}
-		
 
 		public function genitalLocation(): Number {
 			if (genitalSpot == 1 && legCount == 2) return 0;
@@ -677,7 +676,32 @@
 		//10 - curvy//flaring
 		//15 - child-bearing/fertile
 		//20 - inhumanly wide
-		public var hipRating: Number = 0;
+		public var hipRatingRaw:Number = 0;
+		public var hipRatingMod:Number = 0;
+		
+		public function hipRating(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				hipRatingRaw = arg;
+			}
+			else
+			{
+				hipRatingRaw += arg;
+			}
+			
+			var currHipRating:Number = hipRatingRaw + hipRatingMod;
+			
+			if (currHipRating < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return currHipRating;
+			}
+		}
+		
 		public function hipRatingUnlocked(newHipRating:Number):Boolean
 		{
 			return true;
@@ -697,7 +721,32 @@
 		//13 - expansive
 		//16 - huge
 		//20 - inconceivably large/big/huge etc
-		public var buttRating: Number = 0;
+		public var buttRatingRaw:Number = 0;
+		public var buttRatingMod:Number = 0;
+		
+		public function buttRating(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				buttRatingRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				buttRatingRaw += arg;
+			}
+			
+			var currButtRating:Number = buttRatingRaw + buttRatingMod;
+			
+			if (currButtRating < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return currButtRating;
+			}
+		}
+		
 		public function buttRatingUnlocked(newButtRating:Number):Boolean
 		{
 			return true;
@@ -812,7 +861,32 @@
 			return "";
 		}
 
-		public var ballSize: Number = 1;
+		public var ballSizeRaw:Number = 1;
+		public var ballSizeMod:Number = 1;
+		
+		public function ballSize(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				ballSizeRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				ballSizeRaw += arg;
+			}
+			
+			var currBallSize:Number = ballSizeRaw + ballSizeMod;
+			
+			if (currBallSize < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return currBallSize;
+			}
+		}
+		
 		public function ballSizeUnlocked(newBallSize:Number):Boolean
 		{
 			return true;
@@ -951,7 +1025,7 @@
 			return "";
 		}
 		
-		public var nippleLengthRatio: int = 1;
+		public var nippleLengthRatio:int = 1;
 		public function nippleLengthRatioUnlocked(newNippleLengthRatio:int):Boolean
 		{
 			return true;
@@ -3863,6 +3937,7 @@
 		public function isLactating(): Boolean {
 			return false;
 		}
+		
 		public function lactationSpeed(): Number {
 			//Lactation * breastSize x 10 (milkPerBreast) determines scene
 			return biggestTitSize() * 10;

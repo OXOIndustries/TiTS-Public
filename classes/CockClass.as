@@ -12,9 +12,59 @@
 		// include "consts.as"
 		//data
 		//Cock length
-		public var cLength:Number = 5;
+		public var cLengthRaw:Number = 5;
+		public var cLengthMod:Number = 0;
+		
+		public function cLength(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				cLengthRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				cLengthRaw += arg;
+			}
+			
+			var currLength:Number = cLengthRaw + cLengthMod;
+			
+			if (currLength < 0)
+			{
+				return 0;
+			}
+			else
+			{
+				return currLength;
+			}
+		}
+		
 		//Cock thickness 
-		public var cThicknessRatio:Number = 1;
+		public var cThicknessRatioRaw:Number = 1;
+		public var cThicknessRatioMod:Number = 0;
+		
+		public function cThicknessRatio(arg:Number = 0, apply:Boolean = false):Number
+		{
+			if (apply)
+			{
+				cThicknessRatioRaw = arg;
+			}
+			else if (arg != 0)
+			{
+				cThicknessRatioRaw += arg;
+			}
+			
+			var currThickness:Number = cThicknessRatioRaw + cThicknessRatioMod;
+			
+			if (currThickness < 0)
+			{
+				return 0; // This might fuck some shit up. Errr.
+			}
+			else 
+			{
+				return currThickness;
+			}
+		}
+		
 		//Types as defined in consts.as!
 		public var cType:Number = 0;
 		//Used to determine thickness of knot relative to normal thickness
@@ -34,7 +84,7 @@
 		//COCK VOLUME
 		public function volume():Number {
 			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength - thickness());
+			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength() - thickness());
 			var tip:Number = (4/3 * 3.142 * thickness()/2 * thickness()/2 * thickness()/2)/2;
 			//If blunt, tip is converted to cylinder as well.
 			if(hasFlag(GLOBAL.BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness());
@@ -52,7 +102,7 @@
 			//20x3 = 127.24
 		}
 		public function thickness():Number {
-			return cLength / 6 * cThicknessRatio;
+			return cLength() / 6 * cThicknessRatio();
 		}
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
@@ -88,16 +138,16 @@
 				while(increase > 0) {
 					temp = 1;
 					//Cut length growth for huge dicked
-					if(cLength > 10 && cType != 1) {
+					if(cLength() > 10 && cType != 1) {
 						temp /= 2;
 					}
-					if(cType == 1 && cLength > 17) temp/=2;
+					if(cType == 1 && cLength() > 17) temp/=2;
 					//Cut again for massively dicked
-					if(cType != 1 && cLength > 24) temp/=2;
-					if(cType == 1 && cLength > 40) temp/=2;
+					if(cType != 1 && cLength() > 24) temp/=2;
+					if(cType == 1 && cLength() > 40) temp/=2;
 					//Start adding up bonus cLength
 					amountGrown += temp;
-					cLength += temp;
+					cLength(temp);
 					temp = 0;
 					increase--;
 				}
@@ -109,22 +159,22 @@
 				while(increase < 0) {
 					temp = -1;
 					//Cut cLength growth for huge dicked
-					if(cLength < 5 && cType != 1) {
+					if(cLength() < 5 && cType != 1) {
 						temp /= 2;
 					}
 					//Cut cLength loss, horses lose slower
-					if(cType == 1 && cLength < 10) temp/=3;
+					if(cType == 1 && cLength() < 10) temp/=3;
 					else if(cLength < 10) temp/=2;
 					//Cut again for massively dicked
-					if(cType == 1 && cLength < 4) temp/=3;
+					if(cType == 1 && cLength() < 4) temp/=3;
 					else if(cLength < 4) temp/=2;
-					if(cType == 1 && cLength < 6) temp/=3;
-					else if(cLength < 6) temp/=2;
+					if(cType == 1 && cLength() < 6) temp/=3;
+					else if(cLength() < 6) temp/=2;
 					//MINIMUM cLength OF 1!
-					if(cLength == 1) temp = 0;
+					if(cLength() == 1) temp = 0;
 					//Start adding up bonus cLength
 					amountGrown += temp;
-					cLength += temp;
+					cLength(temp);
 					temp = 0;
 					increase++;
 				}
