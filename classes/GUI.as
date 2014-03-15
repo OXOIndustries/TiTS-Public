@@ -231,7 +231,7 @@
 			
 			//Website Text
 			websiteDisplay.border = false;
-			websiteDisplay.htmlText = "http://www.PlaceholderAddress.com";
+			websiteDisplay.htmlText = "http://www.TaintedSpace.com";
 			websiteDisplay.background = false;
 			websiteDisplay.multiline = true;
 			websiteDisplay.wordWrap = true;

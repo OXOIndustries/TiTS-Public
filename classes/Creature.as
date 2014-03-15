@@ -5222,8 +5222,9 @@
 					else vag += "narrow";
 				} else if (vaginas[vaginaNum].looseness <= 2) {
 					temp = this.rand(10);
-					if (temp <= 5) vag += "average";
-					else vag += "supple";
+					//if (temp <= 5) vag += "average";
+					//else 
+					vag += "supple";
 				} else if (vaginas[vaginaNum].looseness <= 3) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "loose";

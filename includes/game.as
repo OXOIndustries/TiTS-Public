@@ -27,9 +27,9 @@ public function mainGameMenu():void {
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		this.eventQueue[this.eventQueue.length-1]();
+		this.eventQueue[0]();
 		//Strip out the most recent:
-		this.eventQueue.splice(this.eventQueue.length-1,1);
+		this.eventQueue.splice(0,1);
 		return;
 	}
 	//Set up all appropriate flags
@@ -255,7 +255,7 @@ function statusTick():void {
 				if(this.chars["PC"].statusEffects[x].storageName == "Horse Pill")
 				{
 					var pill = new HorsePill();
-					eventQueue[eventQueue.length] = pill.pillTF;
+					eventQueue[eventQueue.length] = pill.lastPillTF;
 				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Mead") 
 				{

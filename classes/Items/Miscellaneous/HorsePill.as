@@ -90,7 +90,7 @@
 			}
 			return false;
 		}
-		public function pillTF():void
+		public function pillTF(done:Boolean = false):void
 		{
 			kGAMECLASS.clearOutput();
 			kGAMECLASS.output("<u>The horse pills have an effect....</u>\n")
@@ -100,27 +100,12 @@
 				bigHorsePillMutations(kGAMECLASS.chars["PC"]);
 			}
 			else smallHorsePillMutations(kGAMECLASS.chars["PC"]);
-			if(horsePillsDone()) kGAMECLASS.output("<b>Your body calms down. The pills must have worn off.</b>")
+			if(done) kGAMECLASS.output("<b>Your body calms down. The pills must have worn off.</b>")
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.mainGameMenu);
 		}
-		private function horsePillsDone():Boolean
-		{
-			var counter:int = 0;
-			if(!kGAMECLASS.chars["PC"].hasStatusEffect("Horse Pill"))
-			{
-				for(var x:int = 0; x < kGAMECLASS.eventQueue.length; x++)
-				{
-					if(kGAMECLASS.eventQueue[x] == pillTF) {
-						trace("BOOP!");
-						counter++;
-					}
-					else trace("BOP");
-					
-				}
-				if(counter == 1) return true;
-			}
-			return false;
+		public function lastPillTF():void {
+			pillTF(true);
 		}
 		private function smallHorsePillMutations(target:Creature):void
 		{
