@@ -505,10 +505,10 @@
 					buffer = tongueDescript();
 					break;
 				case "tail":
-					buffer = tail();
+					buffer = tailDescript();
 					break;
 				case "tails":
-					buffer = tails();
+					buffer = tailsDescript();
 					break;
 				case "crotch":
 				case "groin":
@@ -706,9 +706,6 @@
 					break;
 				case "milkColor":
 					buffer = milkColor();
-					break;
-				case "tail":
-					buffer = tailDescript();
 					break;
 				case "leg":
 					buffer = leg();
@@ -1625,6 +1622,11 @@
 		}
 		public function tailDescript(): String {
 			return "tail";
+		}
+		public function tailsDescript():String {
+			if(tailCount == 1) return tailDescript();
+			else if(tailCount > 1) return pluralize(tailDescript());
+			else return "<b>ERROR: Taildescript called with no tails present</b>";
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -3088,8 +3090,8 @@
 			var wet:int = -1;
 			for(var x:int = 0; x < vaginas.length; x++)
 			{
-				if(wet == -1) wet = vaginas[x].wetness;
-				if(vaginas[x].wetness < wet) wet = vaginas[x].wetness;
+				if(wet == -1) wet = x;
+				if(vaginas[x].wetness < vaginas[wet].wetness) wet = x;
 			}
 			if(index) return wet;
 			else return vaginas[wet].wetness;
@@ -3104,8 +3106,8 @@
 			var wet:int = -1;
 			for(var x:int = 0; x < vaginas.length; x++)
 			{
-				if(wet == -1) wet = vaginas[x].wetness;
-				if(vaginas[x].wetness < wet) wet = vaginas[x].wetness;
+				if(wet == -1) wet = x;
+				if(vaginas[x].wetness > vaginas[wet].wetness) wet = x;
 			}
 			if(index) return wet;
 			else return vaginas[wet].wetness;
@@ -3650,10 +3652,6 @@
 
 			//Add bonus flags and shit.
 			if (type == GLOBAL.EQUINE) {
-				vaginas[slot].knotMultiplier = 1.25;
-
-				vaginas[slot].addFlag(GLOBAL.TAPERED);
-				vaginas[slot].addFlag(GLOBAL.KNOTTED);
 			}
 		}
 		//Change cock type
@@ -3675,11 +3673,13 @@
 
 				cocks[slot].addFlag(GLOBAL.TAPERED);
 				cocks[slot].addFlag(GLOBAL.KNOTTED);
+				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.EQUINE) {
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.BLUNT);
 				cocks[slot].addFlag(GLOBAL.FLARED);
+				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.BEE) {
 				cocks[slot].knotMultiplier = 1;
@@ -4715,12 +4715,6 @@
 			}
 			if (plural) description = pluralize(description);
 			return description;
-		}
-		public function tails(): String {
-			return pluralize(tail());
-		}
-		public function tail(): String {
-			return "tail";
 		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";

@@ -251,6 +251,12 @@ function statusTick():void {
 					this.chars["PC"].intelligenceMod += this.chars["PC"].statusEffects[x].value2;
 					this.chars["PC"].willpowerMod += this.chars["PC"].statusEffects[x].value2;
 				}
+				//Horse pill gets bonus proc!
+				if(this.chars["PC"].statusEffects[x].storageName == "Horse Pill")
+				{
+					var pill = new HorsePill();
+					eventQueue[eventQueue.length] = pill.pillTF;
+				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Mead") 
 				{
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
@@ -321,7 +327,6 @@ public function processTime(arg:int):void {
 		//Status Effect Updates
 		statusTick();
 		
-		
 		//Tick hours!
 		if(this.minutes >= 60) {
 			this.minutes = 0;
@@ -329,6 +334,12 @@ public function processTime(arg:int):void {
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
+			}
+			//Horse pill procs!
+			if(pc.hasStatusEffect("Horse Pill"))
+			{
+				var pill = new HorsePill();
+				eventQueue[eventQueue.length] = pill.pillTF;
 			}
 			//Hours checks here!
 			//Cunt stretching stuff

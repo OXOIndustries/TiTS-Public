@@ -8,8 +8,6 @@
 	
 	public class Jade extends Creature
 	{
-		
-		
 		//constructor
 		public function Jade()
 		{

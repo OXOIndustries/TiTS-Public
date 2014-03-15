@@ -90,18 +90,42 @@
 			}
 			return false;
 		}
-		public function pillTF(target:Creature):void
+		public function pillTF():void
 		{
-			var oddsOfBigTF:int = target.statusEffectv2("Horse Pill") * 20;
+			kGAMECLASS.clearOutput();
+			kGAMECLASS.output("<u>The horse pills have an effect....</u>\n")
+			var oddsOfBigTF:int = kGAMECLASS.chars["PC"].statusEffectv2("Horse Pill") * 20;
 			if(oddsOfBigTF >= rand(100) + 1)
 			{
-				bigHorsePillMutations(target);
+				bigHorsePillMutations(kGAMECLASS.chars["PC"]);
 			}
-			else smallHorsePillMutations(target);
+			else smallHorsePillMutations(kGAMECLASS.chars["PC"]);
+			if(horsePillsDone()) kGAMECLASS.output("<b>Your body calms down. The pills must have worn off.</b>")
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",kGAMECLASS.mainGameMenu);
+		}
+		private function horsePillsDone():Boolean
+		{
+			var counter:int = 0;
+			if(!kGAMECLASS.chars["PC"].hasStatusEffect("Horse Pill"))
+			{
+				for(var x:int = 0; x < kGAMECLASS.eventQueue.length; x++)
+				{
+					if(kGAMECLASS.eventQueue[x] == pillTF) {
+						trace("BOOP!");
+						counter++;
+					}
+					else trace("BOP");
+					
+				}
+				if(counter == 1) return true;
+			}
+			return false;
 		}
 		private function smallHorsePillMutations(target:Creature):void
 		{
 			var totalTFs = target.statusEffectv2("Horse Pill");
+			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
 			var x:int = 0;
@@ -146,15 +170,30 @@
 			//#13 Mane? YES LETS FUCKING CALL IT A MANE!
 			if(!target.hasPerk("Mane"))
 				TFList[TFList.length] = 13;
+			//#14 Vag capacity! Req's horsecunt
+			if(hasAHorseCuntNeedingRoom(target))
+				TFList[TFList.length] = 14;
+			//#15 +1-4" height to a max of 6'11" for dicked and 6' for undicked.
+			if((target.hasCock() && target.tallness < 83) || target.tallness < 72)
+				TFList[TFList.length] = 15;
+			//#0 DEFAULT CATCH ALL!
+			if(TFList.length == 0) TFList[TFList.length] = 0;
 
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
-			{
-				//Pick a TF
-				select = TFList[rand(TFList.length)];
-
+			{	
+				//Pick a TF	
+				x = rand(TFList.length);	
+				select = TFList[x];
+				//Cull 'dat TF from the list.
+				TFList.splice(x,1);
+				//#0 Catch all
+				if(select == 0)
+				{
+					kGAMECLASS.output("You find yourself fantasizing about frolicking through an open field, munching on grass, and fucking. The imagery is base and simple, befitting of someone who is a few doses from becoming an animal themselves.")
+				}
 				//#1 Make dick a quarter inch longer.
-				if(select == 1)
+				else if(select == 1)
 				{
 					x = target.shortestCockIndex();
 					if(rand(3) == 0)
@@ -245,7 +284,7 @@
 					//Both
 					kGAMECLASS.output(" It takes some effort not to masturbate on the spot.");
 					x = target.lowestWetnessIndex();
-					target.vaginas[x].wetness += 0.25;
+					target.vaginas[x].wetness += 0.5;
 					target.lust(10);
 				}
 				//#5 Increase clit size towards .75 by .1
@@ -307,7 +346,7 @@
 					{
 						kGAMECLASS.output("Your mind feels… flat… placid. Like an empty field of blowing grasses. You smile and gaze into the distance for a minute, reveling in the simple pleasure of operating mostly on instinct.");
 					}
-					target.intelligence(-0.5);
+					target.intelligence(-1);
 				}
 				//#8 Increase physique by .25 to max
 				else if(select == 8)
@@ -429,8 +468,27 @@
 					kGAMECLASS.output("When you idly run your fingers through your hair, you're surprised to feel more of it than you recall. As a matter of fact, it trails all the way down to the nape of your neck in mane-like fashion. Why, you've grown a rather equine-looking mane!");
 					target.createPerk("Mane", 0,0,0,0,"Your hair grows out much like an equine's mane.");
 				}
-				//Cull 'dat TF from the list.
-				TFList.splice(select,1);
+				//#14 Vag capacity! Req's horsecunt
+				else if(select == 14)
+				{
+					var chosenVagoo:int = -1;
+					for (var x:int = 0; x < target.vaginaTotal(); x++)
+					{
+						if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15 && chosenVagoo == -1)
+							chosenVagoo = x;
+					}
+					kGAMECLASS.output("You are suddenly aware of how totally, completely empty your [pc.vagina " + chosenVagoo + "] is. You can't help but wonder how much more you could fit inside, or how much bigger of a mate you could cram into the hungry void that is your box. Maybe you could find a suitably virile stud to mount you out in a field with nothing but the wind and the sky between you.");
+					target.vaginas[chosenVagoo].bonusCapacity += 5;
+					if(target.vaginas[chosenVagoo].bonusCapacity > 15) target.vaginas[chosenVagoo].bonusCapacity = 15;
+				}
+				//#15 +1-4" height to a max of 6'11" for dicked and 6' for undicked.
+				else if(select == 15)
+				{
+					kGAMECLASS.output("You forget to duck and whack your head into something. Frowning in irritation, you have to wonder if you've gotten taller. Now that you think about it, you're pretty sure you have. It's a small but significant step up.");
+					target.tallness += 1 + rand(4);
+				}
+				//New lines!
+				kGAMECLASS.output("\n\n");
 				totalTFs--;
 			}
 		}
@@ -491,14 +549,24 @@
 			//#15 SNOUTS! THE SAVIN SPECIAL! - req's fur
 			if(target.faceType != GLOBAL.EQUINE && target.skinType == GLOBAL.FUR)
 				TFList[TFList.length] = 15;
+			//#0 DEFAULT CATCH ALL!
+			if(TFList.length == 0) TFList[TFList.length] = 0;
 
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
 			{
-				//Pick a TF
-				select = TFList[rand(TFList.length)];
+				//Pick a TF	
+				x = rand(TFList.length);
+				select = TFList[x];
+				//Cull 'dat TF from the list.
+				TFList.splice(x,1);
+				//#0 Catch all
+				if(select == 0)
+				{
+					kGAMECLASS.output("You find yourself fantasizing about frolicking through an open field, munching on grass, and fucking. The imagery is base and simple, befitting of someone who is a few doses from becoming an animal themselves.")
+				}
 				//#1 On multirow tits, shrink down to nothing but nips!
-				if(select == 1)
+				else if(select == 1)
 				{
 					kGAMECLASS.output("Every breast beneath your top row has apparently been shrinking, judging by the diminished size of your secondary bust");
 					if(target.bRows() > 2) kGAMECLASS.output("s");
@@ -610,7 +678,7 @@
 					else if(rand(3) == 0) target.furColor = "ivory";
 					else if(rand(2) == 0) target.furColor = "brown-dappled";
 					else target.furColor = "sable";
-					kGAMECLASS.output("Your fur has changed color! One minute, you're minding your own business, the next, you're noticing that most of your fur has turned " + target.furColor + ". As a matter of fact, you can see it spreading to the last few hold-outs on your forearms and nose. <b>You've got [pc.skinFurScales] now.</b>");
+					kGAMECLASS.output("Your fur has changed color! One minute, you're minding your own business, the next, you're noticing that most of your fur has turned " + target.furColor + ". As a matter of fact, you can see it spreading to the last few hold-outs on your forearms and nose. <b>You've got " + target.skinFurScales(true) + " now.</b>");
 				}
 				//#10 Grow hoarse ears
 				//Ears - requires tail
@@ -665,7 +733,7 @@
 				else if(select == 12)
 				{
 					kGAMECLASS.output("Your fingers abruptly clench, driving your fingertips into your palm. The feel firmer than normal, and when you open your hands, you discover that from the last joint of your finger on your fingers have hardened into black, almost hoof-like material. You can still feel through them. <b>You've grown hoof-nails!</b>");
-					target.armType == GLOBAL.EQUINE;
+					target.armType = GLOBAL.EQUINE;
 				}
 				//#13 Get propah hooves.
 				else if(select == 13)
@@ -674,12 +742,18 @@
 					if(target.legCount == 1)
 					{
 						kGAMECLASS.output("Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.");
+						target.legCount = 2;
 					}
 					//Quad+ legs
 					else if(target.legCount >= 3) {
 						kGAMECLASS.output("Twitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into newer, more equine shapes, and your [pc.feet] change with them, growing hard and cloven.");
-						if(target.legCount > 4) kGAMECLASS.output(" The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.");
+						if(target.legCount > 4) 
+						{
+							kGAMECLASS.output(" The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.");
+							target.legCount = 4;
+						}
 						kGAMECLASS.output(" For better or worse, you've got horse-legs now.");
+
 					}
 					//Double legs - DA CATCH ALLZ
 					else
@@ -689,6 +763,11 @@
 						else kGAMECLASS.output("remaining digitigrade but in slightly different proportion");
 						kGAMECLASS.output(". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>");
 					}
+					target.clearLegFlags();
+					target.addLegFlag(GLOBAL.DIGITIGRADE);
+					target.addLegFlag(GLOBAL.HOOVES);
+					target.legType = GLOBAL.EQUINE;
+
 				}
 				//#14 Grow Fur
 				else if(select == 14)
@@ -716,9 +795,9 @@
 					target.clearFaceFlags();
 					target.addFaceFlag(GLOBAL.LONG);
 					target.addFaceFlag(GLOBAL.MUZZLED);
-				}				
-				//Cull 'dat TF from the list.
-				TFList.splice(select,1);
+				}	
+				//New lines!
+				kGAMECLASS.output("\n\n");			
 				totalTFs--;
 			}
 		}
@@ -741,6 +820,15 @@
 			for (var x:int = 0; x < target.cockTotal(); x++)
 			{
 				if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.EQUINE) return true;
+			}
+			return false;
+		}
+		private function hasAHorseCuntNeedingRoom(target:Creature):Boolean
+		{
+			if(target.vaginaTotal() == 0) return false;
+			for (var x:int = 0; x < target.vaginaTotal(); x++)
+			{
+				if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15) return true;
 			}
 			return false;
 		}
