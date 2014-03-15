@@ -178,7 +178,7 @@
 		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			dataObject.inventory.push(new HorsePill());
+			dataObject.inventory.push(new HorsePill().getSaveObject());
 		}
 	}
 
