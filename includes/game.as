@@ -350,17 +350,17 @@ public function processTime(arg:int):void {
 			if(this.chars["PC"].hasVagina()) {
 				for(x = 0; x < this.chars["PC"].totalVaginas(); x++) {
 					//Count da stretch cooldown or reset if at minimum.
-					if(this.chars["PC"].vaginas[x].looseness > this.chars["PC"].vaginas[x].minLooseness) this.chars["PC"].vaginas[x].shrinkCounter++;
+					if(this.chars["PC"].vaginas[x].loosenessRaw > this.chars["PC"].vaginas[x].minLooseness) this.chars["PC"].vaginas[x].shrinkCounter++;
 					else this.chars["PC"].vaginas[x].shrinkCounter = 0;
 					//Reset for this cunt.
 					tightnessChanged = false;
-					if(this.chars["PC"].vaginas[x].looseness < 2) {}
-					else if(this.chars["PC"].vaginas[x].looseness <= 2 && this.chars["PC"].vaginas[x].shrinkCounter >= 200) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].looseness < 4 && this.chars["PC"].vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].looseness < 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].looseness >= 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
+					if(this.chars["PC"].vaginas[x].loosenessRaw < 2) {}
+					else if(this.chars["PC"].vaginas[x].loosenessRaw <= 2 && this.chars["PC"].vaginas[x].shrinkCounter >= 200) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[0].loosenessRaw < 4 && this.chars["PC"].vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[0].loosenessRaw < 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[0].loosenessRaw >= 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
 					if(tightnessChanged) {
-						this.chars["PC"].vaginas[x].looseness--;
+						this.chars["PC"].vaginas[x].loosenessRaw--;
 						eventBuffer += "\n\n<b>Your </b>";
 						if(this.chars["PC"].totalVaginas() > 1) eventBuffer += "<b>" + num2Text2(x+1) + "</b> ";
 						eventBuffer += "<b>" + this.chars["PC"].vaginaDescript(x) + " has recovered from its ordeals, tightening up a bit.</b>";
@@ -369,18 +369,18 @@ public function processTime(arg:int):void {
 			}
 			//Butt stretching stuff
 			//Count da stretch cooldown or reset if at minimum.
-			if(this.chars["PC"].ass.looseness > this.chars["PC"].ass.minLooseness) this.chars["PC"].ass.shrinkCounter++;
+			if(this.chars["PC"].ass.loosenessRaw > this.chars["PC"].ass.minLooseness) this.chars["PC"].ass.shrinkCounter++;
 			else this.chars["PC"].ass.shrinkCounter = 0;
 			//Reset for this cunt.
 			tightnessChanged = false;
-			if(this.chars["PC"].ass.looseness < 2) {}
-			if(this.chars["PC"].ass.looseness == 2 && this.chars["PC"].ass.shrinkCounter >= 72) tightnessChanged = true;
-			if(this.chars["PC"].ass.looseness == 3 && this.chars["PC"].ass.shrinkCounter >= 48) tightnessChanged = true;
-			if(this.chars["PC"].ass.looseness == 4 && this.chars["PC"].ass.shrinkCounter >= 24) tightnessChanged = true;
-			if(this.chars["PC"].ass.looseness == 5 && this.chars["PC"].ass.shrinkCounter >= 12) tightnessChanged = true;
+			if(this.chars["PC"].ass.loosenessRaw < 2) {}
+			if(this.chars["PC"].ass.loosenessRaw == 2 && this.chars["PC"].ass.shrinkCounter >= 72) tightnessChanged = true;
+			if(this.chars["PC"].ass.loosenessRaw == 3 && this.chars["PC"].ass.shrinkCounter >= 48) tightnessChanged = true;
+			if(this.chars["PC"].ass.loosenessRaw == 4 && this.chars["PC"].ass.shrinkCounter >= 24) tightnessChanged = true;
+			if(this.chars["PC"].ass.loosenessRaw == 5 && this.chars["PC"].ass.shrinkCounter >= 12) tightnessChanged = true;
 			if(tightnessChanged) {
-				this.chars["PC"].ass.looseness--;
-				if(this.chars["PC"].ass.looseness <= 4) eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
+				this.chars["PC"].ass.loosenessRaw--;
+				if(this.chars["PC"].ass.loosenessRaw <= 4) eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>";
 				else eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
 			//Cunt snake pregnancy stuff

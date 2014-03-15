@@ -144,7 +144,7 @@ function setStartingSex(sex:int = 1):void {
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
 		pc.balls = 2;
-		pc.ballSize = 1.5;
+		pc.ballSizeRaw = 1.5;
 		if (pc.originalRace == "half-ausar") {
 			pc.shiftCock(0,GLOBAL.CANINE);
 		}
@@ -154,48 +154,48 @@ function setStartingSex(sex:int = 1):void {
 		//MALE!
 		if(sex == 1) {
 			pc.femininity = 30;
-			pc.hipRating = 1;
-			pc.buttRating = 2;
+			pc.hipRatingRaw = 1;
+			pc.buttRatingRaw = 2;
 			pc.tone = 65;
 			pc.hairLength = 1;
 			if (pc.originalRace ==  "half-kaithrit") {
 				pc.femininity = 50;
-				pc.hipRating = 6;
+				pc.hipRatingRaw = 6;
 			}
 		}
 		//HERM!
 		else {
 			pc.femininity = 65;
-			pc.hipRating = 6;
-			pc.buttRating = 3;
+			pc.hipRatingRaw = 6;
+			pc.buttRatingRaw = 3;
 			pc.tone = 45;
-			pc.breastRows[0].breastRating = 3;
+			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 6;
 			if (pc.originalRace ==  "half-kaithrit") {
 				pc.femininity = 75;
-				pc.hipRating = 7;
-				pc.buttRating = 5;
+				pc.hipRatingRaw = 7;
+				pc.buttRatingRaw = 5;
 			}
 		}
 	}
 	if (sex >= 2) {
 		pc.createVagina();
 		if(pc.originalRace == "half-ausar") {
-			pc.vaginas[0].wetness = 2;
+			pc.vaginas[0].wetnessRaw = 2;
 			pc.vaginas[0].bonusCapacity = 10;
 			pc.elasticity = 1.25;
 		}
 		if(sex == 3) {
 			pc.femininity = 75;
-			pc.hipRating = 6;
-			pc.buttRating = 3;
+			pc.hipRatingRaw = 6;
+			pc.buttRatingRaw = 3;
 			pc.tone = 45;
-			pc.breastRows[0].breastRating = 3;
+			pc.breastRows[0].breastRatingRaw = 3;
 			pc.hairLength = 10;
 			if (pc.originalRace ==  "half-kaithrit") {
 				pc.femininity = 85;
-				pc.hipRating = 7;
-				pc.buttRating = 5;
+				pc.hipRatingRaw = 7;
+				pc.buttRatingRaw = 5;
 			}
 		}
 	}
@@ -389,7 +389,7 @@ function chooseBreastSize():void {
 }
 
 function applyBreastSize(size:int = 0):void {
-	pc.breastRows[0].breastRating = size;
+	pc.breastRows[0].breastRatingRaw = size;
 	if(pc.femininity < 50) {
 		if(pc.biggestTitSize() >= 1) pc.femininity += 10;
 		if(pc.biggestTitSize() >= 2) pc.femininity += 10;
@@ -420,11 +420,11 @@ function chooseYourJunkSize():void {
 }
 
 function applyJunkSize(arg:int = 0):void {
-	pc.cocks[0].cLength = arg;
-	pc.cocks[0].cThicknessRatio = 1;
+	pc.cocks[0].cLengthRaw = arg;
+	pc.cocks[0].cThicknessRatioRaw = 1;
 	if (pc.originalRace ==  "half-kaithrit") {
 		pc.createStatusEffect("Uniball",0,0,0,0);
-		pc.ballSize = .75;
+		pc.ballSizeRaw = .75;
 	}
 	if(pc.hasVagina()) chooseYourVagina();
 	
@@ -448,16 +448,16 @@ function chooseYourVagina():void {
 }
 
 function upgradeCapacity():void {
-	pc.vaginas[0].looseness += 1;
+	pc.vaginas[0].loosenessRaw += 1;
 	pc.vaginas[0].bonusCapacity += 20;
 	chooseSexualGift();
 }
 function upgradeLubricants():void {
-	pc.vaginas[0].wetness += 2;
+	pc.vaginas[0].wetnessRaw += 2;
 	chooseSexualGift();
 }
 function fullyUpgradeCunt():void {
-	pc.vaginas[0].wetness++;
+	pc.vaginas[0].wetnessRaw++;
 	pc.vaginas[0].bonusCapacity += 10;
 	chooseSexualGift();
 }
@@ -506,21 +506,21 @@ function chooseSexualGift():void {
 	if(pc.hasPerk("Hung"))
 	{
 		if(pc.hasCock()) {
-			pc.cocks[0].cLength -= 1+rand(3);
-			pc.cocks[0].cThicknessRatio = 1.0;
+			pc.cocks[0].cLengthRaw -= 1+rand(3);
+			pc.cocks[0].cThicknessRatioRaw = 1.0;
 		}
 		pc.removePerk("Hung");
 	}
 	if(pc.hasPerk("Mini"))
 	{
 		if(pc.hasCock()) {
-			pc.cocks[0].cLength += 1;
+			pc.cocks[0].cLengthRaw += 1;
 		}
 		pc.removePerk("Mini");
 	}
 	if(pc.hasPerk("Bulgy"))
 	{
-		pc.ballSize -= 1;
+		pc.ballSizeRaw -= 1;
 		pc.ballEfficiency -= 1;
 		pc.removePerk("Bulgy");
 	}
@@ -581,19 +581,19 @@ function applySexualGift(arg:String = "none"):void {
 	else if(arg == "hung") {
 		pc.createPerk("Hung",0,0,0,0,"Increases the size of your penis and how fast it grows.");
 		if(pc.hasCock()) {
-			pc.cocks[0].cLength += 1+rand(3);
-			if(pc.cocks[0].cThicknessRatio < 1.1) pc.cocks[0].cThicknessRatio = 1.1;
+			pc.cocks[0].cLengthRaw += 1+rand(3);
+			if(pc.cocks[0].cThicknessRatioRaw < 1.1) pc.cocks[0].cThicknessRatioRaw = 1.1;
 		}
 	}
 	else if(arg == "mini") {
 		pc.createPerk("Mini",0,0,0,0,"Decreases the size of your penis and how fast it shrinks.");
 		if(pc.hasCock()) {
-			pc.cocks[0].cLength -= 1;
+			pc.cocks[0].cLengthRaw -= 1;
 		}
 	}
 	else if(arg == "bulgy") {
 		pc.createPerk("Bulgy",0,0,0,0,"Increase the size of any gonads and the speed at which they are enhanced.");
-		pc.ballSize += 1;
+		pc.ballSizeRaw += 1;
 		pc.ballEfficiency += 1;
 	}
 	else if(arg == "extra ardor") {
@@ -1051,13 +1051,13 @@ function rivalSpillsTheBeans(sex:int = 0) {
 		chars["RIVAL"].vaginalVirgin = true;
 		chars["RIVAL"].analVirgin = false;
 		chars["RIVAL"].createCock();
-		chars["RIVAL"].cocks[0].cLength = 12;
-		chars["RIVAL"].cocks[0].cLength = 1.5;
+		chars["RIVAL"].cocks[0].cLengthRaw = 12;
+		chars["RIVAL"].cocks[0].cThicknessRatioRaw = 1.5; // Was cLength, I'm assuming this was supposed to be the thickness ratio
 		chars["RIVAL"].balls = 2;
-		chars["RIVAL"].ballSize = 2;
+		chars["RIVAL"].ballSizeRaw = 2;
 		chars["RIVAL"].femininity = 25;
-		chars["RIVAL"].hipRating -= 2;
-		chars["RIVAL"].buttRating -= 2;
+		chars["RIVAL"].hipRatingRaw -= 2;
+		chars["RIVAL"].buttRatingRaw -= 2;
 		
 	}
 	else {
@@ -1069,13 +1069,13 @@ function rivalSpillsTheBeans(sex:int = 0) {
 		chars["RIVAL"].createVagina();
 		chars["RIVAL"].vaginas[0].hymen = true;
 		chars["RIVAL"].vaginas[0].clits = 1;
-		chars["RIVAL"].vaginas[0].wetness = 1;
-		chars["RIVAL"].vaginas[0].looseness = 1;
+		chars["RIVAL"].vaginas[0].wetnessRaw = 1;
+		chars["RIVAL"].vaginas[0].loosenessRaw = 1;
 		chars["RIVAL"].vaginas[0].bonusCapacity = 0;
-		chars["RIVAL"].breastRows[0].breastRating = 4;
+		chars["RIVAL"].breastRows[0].breastRatingRaw = 4;
 		chars["RIVAL"].femininity = 75;
-		chars["RIVAL"].hipRating += 2;
-		chars["RIVAL"].buttRating += 2;
+		chars["RIVAL"].hipRatingRaw += 2;
+		chars["RIVAL"].buttRatingRaw += 2;
 	}
 	clearOutput();
 	

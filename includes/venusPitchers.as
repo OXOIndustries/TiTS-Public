@@ -294,7 +294,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		{
 			for (var a:int = 0; a < pc.bRows(); a++)
 			{
-				if(pc.breastRows[a].breastRating >= 3 && pc.breastRows[a].breasts > 2) tempTits = pc.breastRows[a].breasts;
+				if(pc.breastRows[a].breastRating() >= 3 && pc.breastRows[a].breasts > 2) tempTits = pc.breastRows[a].breasts;
 			}
 			output("\n\n" + upperCase(num2Text(tempTits - 1)) + " unseen presences make themselves known, spires of semi-rigid plant flesh that drive themselves through your excesses of cleavages with firm ardor. They cause your multiple breasts to jostle and shake slightly apart, nearly dislodging their busy brethren from your nipples in the process. You whimper as you're used like some kind of three-breasted whore, sucked and fucked, brought to the heights of pleasure whether you want it or not. The " + num2Text(tempTits - 1) + " tentacle cocks crest the top of your sea of tits and reveal themselves, pulsating hungrily and leaking ever more of their ridiculous juice everywhere. They push up until they kiss your chin with their urethras, then they dive back down into your mammaries, sliding and slipping through them in what can only be described as eager overindulgence.");
 		}
@@ -732,7 +732,7 @@ function elderVenusPitchersDickplay():void {
 		output("\n\nYou do, swallowing deep draughts of a largely tasteless fluid. It does seem somewhat savory, but you really can’t place the flavor. As you swallow, you feel the telltale engorgement of lust down below and a pinch ");
 		if(pc.balls > 0) {
 			output("in your [pc.sack] as your [pc.balls] ");
-			if(pc.ballSize < 5) {
+			if(pc.ballSize() < 5) {
 				if(pc.balls == 1) output("plumps slightly");
 				else output("plump slightly");
 			}

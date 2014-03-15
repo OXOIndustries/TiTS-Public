@@ -241,7 +241,7 @@ function titJobFromSellesy():void {
 	output(", and you panickedly wonder if just the thought of those tits around your [pc.cock " + x + "] might have caused you a little too much excitement. However, you see her with some noticeable effort pulling her tits apart, creating just enough relief to allow her cream to drip through the insane chasm that is her cleavage.");
 	output("\n\nLoosening just enough to allow the slick substance to lubricate between her tits, and drip along your cock in the process, with one last tug of her legs, you feel your [pc.cock " + x + "] slide home. Truly, there's no better way to put it, as you truly feels at home here more than anywhere else, ever before.");
 	//[If their cock is more than 24" Long]
-	if(pc.cocks[x].cLength >= 24)
+	if(pc.cocks[x].cLength() >= 24)
 	{
 		output("\n\nAs you feel your entire length slide through the soft, warm cocoon, you feel the tip of your cock poke out into an almost cool pool of liquid. You can't see past her tits anymore, barely able to see her face above them, but you know you must have bottomed out, and poked through to the other side of her impossible cleavage.");
 		output("\n\n<i>\"Oooh... something for me to play with up here!\"</i>  she remarks excitedly, and you feel a warm, wet, slippery thing begin to lick and caress across your [pc.cockHead " + x + "].");

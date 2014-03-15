@@ -252,38 +252,38 @@ function appearance(target:Creature):void {
 		if(!target.isTaur()) {
 			if(target.thickness > 70) {
 				output2("  You have " + target.hipsDescript());
-				if(target.hipRating < 6) {
+				if(target.hipRating() < 6) {
 					if(target.tone < 65) output2(" buried under a noticeable muffin-top, and");
 					else output2(" that blend into your pillar-like waist, and");
 				}
-				if(target.hipRating >= 6 && target.hipRating < 10) output2(" that blend into the rest of your thick form, and");
-				if(target.hipRating >= 10 && target.hipRating < 15) output2(" that would be much more noticeable if you weren't so wide-bodied, and");
-				if(target.hipRating >= 15 && target.hipRating < 20) output2(" that sway and emphasize your thick, curvy shape, and");
-				if(target.hipRating >= 20) output2(" that sway hypnotically on your extra-curvy frame, and");
+				if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that blend into the rest of your thick form, and");
+				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that would be much more noticeable if you weren't so wide-bodied, and");
+				if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that sway and emphasize your thick, curvy shape, and");
+				if(target.hipRating() >= 20) output2(" that sway hypnotically on your extra-curvy frame, and");
 			}
 			else if(target.thickness < 30) {
 				output2("  You have " + target.hipsDescript());
-				if(target.hipRating < 6) output2(" that match your trim, lithe body, and");
-				if(target.hipRating >= 6 && target.hipRating < 10) output2(" that sway to and fro, emphasized by your trim body, and");
-				if(target.hipRating >= 10 && target.hipRating < 15) output2(" that swell out under your trim waistline, and");
-				if(target.hipRating >= 15 && target.hipRating < 20) output2(", emphasized by your narrow waist, and");
-				if(target.hipRating >= 20) output2(" that swell disproportionately wide on your lithe frame, and");
+				if(target.hipRating() < 6) output2(" that match your trim, lithe body, and");
+				if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that sway to and fro, emphasized by your trim body, and");
+				if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that swell out under your trim waistline, and");
+				if(target.hipRating() >= 15 && target.hipRating() < 20) output2(", emphasized by your narrow waist, and");
+				if(target.hipRating() >= 20) output2(" that swell disproportionately wide on your lithe frame, and");
 			}
 			//STANDARD
 			else {
 				output2("  You have " + pc.hipsDescript());
-				if(target.hipRating < 6) output2(", and");
+				if(target.hipRating() < 6) output2(", and");
 				if(target.femininity > 50) {
-					if(target.hipRating >= 6 && target.hipRating < 10) output2(" that draw the attention of those around you, and");
-					if(target.hipRating >= 10 && target.hipRating < 15) output2(" that make you walk with a sexy, swinging gait, and");
-					if(target.hipRating >= 15 && target.hipRating < 20) output2(" that make it look like you've birthed many children, and");
-					if(target.hipRating >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
+					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that draw the attention of those around you, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that make you walk with a sexy, swinging gait, and");
+					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that make it look like you've birthed many children, and");
+					if(target.hipRating() >= 20) output2(" that make you look more like an animal waiting to be bred than any kind of human, and");
 				}
 				else {
-					if(target.hipRating >= 6 && target.hipRating < 10) output2(" that give you a graceful stride, and");
-					if(target.hipRating >= 10 && target.hipRating < 15) output2(" that add a little feminine swing to your gait, and");
-					if(target.hipRating >= 15 && target.hipRating < 20) output2(" that force you to sway and wiggle as you move, and");
-					if(target.hipRating >= 20) {
+					if(target.hipRating() >= 6 && target.hipRating() < 10) output2(" that give you a graceful stride, and");
+					if(target.hipRating() >= 10 && target.hipRating() < 15) output2(" that add a little feminine swing to your gait, and");
+					if(target.hipRating() >= 15 && target.hipRating() < 20) output2(" that force you to sway and wiggle as you move, and");
+					if(target.hipRating() >= 20) {
 						output2(" that give your ");
 						if(target.balls > 0) output2("balls plenty of room to breathe");
 						else if(target.hasCock()) output2(target.multiCockDescript() + " plenty of room to swing");
@@ -300,22 +300,22 @@ function appearance(target:Creature):void {
 			//FATBUTT
 			if(target.tone < 65) {
 				output2("  Your " + target.buttDescript());
-				if(target.buttRating < 4) output2(" is lean, from what you can see of it.");
-				if(target.buttRating >= 4 && target.buttRating < 6) output2(" looks fairly average.");
-				if(target.buttRating >= 6 && target.buttRating <10) output2(" is fairly plump and healthy.");
-				if(target.buttRating >= 10 && target.buttRating < 15) output2(" jiggles a bit as you trot around.");
-				if(target.buttRating >= 15 && target.buttRating < 20) output2(" jiggles and wobbles as you trot about.");
-				if(target.buttRating >= 20) output2(" is obscenely large, bordering freakish, even for a horse.");
+				if(target.buttRating() < 4) output2(" is lean, from what you can see of it.");
+				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" looks fairly average.");
+				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" is fairly plump and healthy.");
+				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" jiggles a bit as you trot around.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" jiggles and wobbles as you trot about.");
+				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, even for a horse.");
 			}
 			//GIRL LOOK AT DAT BOOTY
 			else {
 				output2("  Your " + target.buttDescript());
-				if(target.buttRating < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
-				if(target.buttRating >= 4 && target.buttRating < 6) output2(" matches your toned equine frame quite well.");
-				if(target.buttRating >= 6 && target.buttRating <10) output2(" gives hints of just how much muscle you could put into a kick.");
-				if(target.buttRating >= 10 && target.buttRating < 15) output2(" surges with muscle whenever you trot about.");
-				if(target.buttRating >= 15 && target.buttRating < 20) output2(" flexes its considerable mass as you move.");
-				if(target.buttRating >= 20) output2(" is stacked with layers of muscle, huge even for a horse.");
+				if(target.buttRating() < 4) output2(" is barely noticable, showing off the muscles of your haunches.");
+				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" matches your toned equine frame quite well.");
+				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" gives hints of just how much muscle you could put into a kick.");
+				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" surges with muscle whenever you trot about.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" flexes its considerable mass as you move.");
+				if(target.buttRating() >= 20) output2(" is stacked with layers of muscle, huge even for a horse.");
 			}
 		}
 		//Non-horse PCs
@@ -323,22 +323,22 @@ function appearance(target:Creature):void {
 			//TUBBY ASS
 			if(target.tone < 60) {
 				output2(" your " + target.buttDescript());
-				if(target.buttRating < 4) output2(" looks great under your gear.");
-				if(target.buttRating >= 4 && target.buttRating < 6) output2(" has the barest amount of sexy jiggle.");
-				if(target.buttRating >= 6 && target.buttRating <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating >= 10 && target.buttRating < 15) output2(" wobbles enticingly with every step.");
-				if(target.buttRating >= 15 && target.buttRating < 20) output2(" wobbles like a bowl full of jello as you walk.");
-				if(target.buttRating >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
+				if(target.buttRating() < 4) output2(" looks great under your gear.");
+				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" has the barest amount of sexy jiggle.");
+				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
+				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" wobbles enticingly with every step.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" wobbles like a bowl full of jello as you walk.");
+				if(target.buttRating() >= 20) output2(" is obscenely large, bordering freakish, and makes it difficult to run.");
 			}
 			//FITBUTT
 			else {
 				output2(" your " + target.buttDescript());
-				if(target.buttRating < 4) output2(" molds closely against your form.");
-				if(target.buttRating >= 4 && target.buttRating < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
-				if(target.buttRating >= 6 && target.buttRating <10) output2(" fills out your clothing nicely.");
-				if(target.buttRating >= 10 && target.buttRating < 15) output2(" stretches your gear, flexing it with each step.");
-				if(target.buttRating >= 15 && target.buttRating < 20) output2(" threatens to bust out from under your kit each time you clench it.");
-				if(target.buttRating >= 20) output2(" is marvelously large, but completely stacked with muscle.");
+				if(target.buttRating() < 4) output2(" molds closely against your form.");
+				if(target.buttRating() >= 4 && target.buttRating() < 6) output2(" contracts with every motion, displaying the detailed curves of its lean musculature.");
+				if(target.buttRating() >= 6 && target.buttRating() <10) output2(" fills out your clothing nicely.");
+				if(target.buttRating() >= 10 && target.buttRating() < 15) output2(" stretches your gear, flexing it with each step.");
+				if(target.buttRating() >= 15 && target.buttRating() < 20) output2(" threatens to bust out from under your kit each time you clench it.");
+				if(target.buttRating() >= 20) output2(" is marvelously large, but completely stacked with muscle.");
 			}
 		}
 		//TAILS
@@ -445,7 +445,7 @@ function appearance(target:Creature):void {
 			if(target.breastRows[0].fullness < 75) {}
 			else if(target.breastRows[0].fullness < 100) output2("  Your " + target.breastDescript(0) + " are painful and sensitive from being so stuffed with milk.  You should release the pressure soon.");
 			else output2("  <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst!</b>");
-			if(target.breastRows[0].breastRating >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
+			if(target.breastRows[0].breastRating() >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
 		}
 		//many rows
 		else {
@@ -459,19 +459,19 @@ function appearance(target:Creature):void {
 				if(temp == 2) output2(" Your third batch contains ");
 				if(temp == 3) output2(" Your fourth set cradles ");
 				if(temp == 4) output2(" Your fifth has ");
-				if(target.breastRows[temp].breastRating >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
+				if(target.breastRows[temp].breastRating() >= 1) output2(num2Text(target.breastRows[temp].breasts) + " " + target.breastDescript(temp) + ", capped with ");
 				//DESCRIBE NIPPLE NAU!
 				//Normal nips
 				if(target.breastRows[temp].nippleType == GLOBAL.DICK || target.breastRows[temp].nippleType == GLOBAL.NORMAL) { 
 					//One nipple
 					if(target.nipplesPerBreast == 1) {
 						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + target.nippleDescript(temp) + " ");
-						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
+						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 						else output2("each.");
 					}
 					else {
 						output2(num2Text(target.nipplesPerBreast) + " " + int(target.nippleLength(temp)*10)/10 + "-inch " + plural(target.nippleDescript(temp)) + " ");
-						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
+						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 						else output2("each.");
 					}
 					if(target.breastRows[0].nippleType == GLOBAL.DICK) {
@@ -483,13 +483,13 @@ function appearance(target:Creature):void {
 					//One nipple
 					if(target.nipplesPerBreast == 1) {
 						output2(num2Text(target.nipplesPerBreast) + " " + target.nippleDescript(temp) + " ");
-						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
+						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 						else output2("each.");
 					}
 					//Multi
 					else {
 						output2(num2Text(target.nipplesPerBreast) + " " + plural(target.nippleDescript(temp)) + " ");
-						if(target.breastRows[temp].breastRating < 1) output2("on each side.");
+						if(target.breastRows[temp].breastRating() < 1) output2("on each side.");
 						else output2("each.");
 					}
 					if(target.breastRows[0].nippleType == GLOBAL.FUCKABLE) {
@@ -520,7 +520,7 @@ function appearance(target:Creature):void {
 			
 			//SINGLE DICKS!
 			if(target.cockTotal() == 1) {
-				output2("Your " + pc.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength)/10 + " inches long and ");
+				output2("Your " + pc.cockDescript() + " is " + Math.floor(10*target.cocks[0].cLength())/10 + " inches long and ");
 				if(Math.floor(10*target.cocks[0].thickness())/10 < 2) {
 					if(Math.floor(10*target.cocks[0].thickness())/10 == 1) output2(int(10*target.cocks[0].thickness())/10 + " inch thick.");
 					else output2(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
@@ -586,7 +586,7 @@ function appearance(target:Creature):void {
 						else output2("\nYour next ");
 						output2(target.cockDescript(temp));
 						output2(" is ");
-						output2(int(10*target.cocks[temp].cLength)/10 + " inches long and ");
+						output2(int(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches wide.");
 						else {
 							if(target.cocks[temp].thickness() == 1) output2("one inch wide.");
@@ -595,7 +595,7 @@ function appearance(target:Creature):void {
 					}
 					if(rando == 1) {
 						output2("\nYour ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
+						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
 							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
@@ -604,7 +604,7 @@ function appearance(target:Creature):void {
 					}
 					if(rando == 2) {
 						output2("\nThis ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
+						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches thick.");
 						else {
 							if(target.cocks[temp].thickness() == 1) output2("one inch thick.");
@@ -614,7 +614,7 @@ function appearance(target:Creature):void {
 					if(rando == 3) {
 						if(temp > 0) output2("\nYour next ");
 						else output2("\nYour first ");
-						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength)/10 + " inches long and ");
+						output2(target.cockDescript(temp) + " is " + Math.round(10*target.cocks[temp].cLength())/10 + " inches long and ");
 						if(Math.floor(target.cocks[temp].thickness()) >= 2) output2(num2Text(Math.round(target.cocks[temp].thickness() * 10)/10) + " inches in diameter.");
 						else {
 							if(Math.round(target.cocks[temp].thickness()*10)/10 == 1) output2("one inch in diameter.");
@@ -694,8 +694,8 @@ function appearance(target:Creature):void {
 				if(target.skinType == GLOBAL.SCALES) output2("A scaley " + target.sackDescript(true,true) + " hugs your " + target.ballsDescript(true,true) + " tightly against your body.");
 				if(target.skinType == GLOBAL.GOO) output2("An oozing, semi-solid sack with " + target.ballsDescript(true,true) + " swings heavily beneath your " + target.multiCockDescript() + ".");
 			}
-			output2("  You estimate each of them to be about " + num2Text(Math.round(target.ballSize)) + " ");
-			if(Math.round(target.ballSize) == 1) output2("inch");
+			output2("  You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
+			if(Math.round(target.ballSize()) == 1) output2("inch");
 			else output2("inches");
 			output2(" across.");
 		}	
@@ -717,7 +717,7 @@ function appearance(target:Creature):void {
 			if(target.libido() < 50 && target.lust() < 50) //not particularly horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness >= 2 && target.vaginas[0].wetness < 4) output2("Moisture gleams in ");
+				if(target.vaginas[0].wetness() >= 2 && target.vaginas[0].wetness() < 4) output2("Moisture gleams in ");
 				else 
 				{
 					output2("Occasional beads of ");
@@ -727,8 +727,8 @@ function appearance(target:Creature):void {
 			else if(target.libido() < 80 && target.lust() < 80) //kinda horny
 			{
 				//Wetness
-				if(target.vaginas[0].wetness < 2) output2("Moisture gleams in ");
-				else if(target.vaginas[0].wetness < 4) 
+				if(target.vaginas[0].wetness() < 2) output2("Moisture gleams in ");
+				else if(target.vaginas[0].wetness() < 4) 
 				{
 					output2("Occasional beads of ");
 					output2("lubricant drip from ");
@@ -741,12 +741,12 @@ function appearance(target:Creature):void {
 			else  //WTF horny!
 			{
 				//Wetness
-				if(target.vaginas[0].wetness< 2) 
+				if(target.vaginas[0].wetness() < 2) 
 				{
 					output2("Occasional beads of ");
 					output2("lubricant drip from ");
 				}
-				else if(target.vaginas[0].wetness< 4)
+				else if(target.vaginas[0].wetness() < 4)
 				{
 					output2("Thin streams of ");
 					output2("lubricant occasionally dribble from ");
@@ -758,8 +758,8 @@ function appearance(target:Creature):void {
 				}				
 			}
 			//Different description based on vag looseness
-			if(target.vaginas[0].looseness < 2) output2("your " + target.vaginasDescript() + ".");
-			else if(target.vaginas[0].looseness < 4) {
+			if(target.vaginas[0].looseness() < 2) output2("your " + target.vaginasDescript() + ".");
+			else if(target.vaginas[0].looseness() < 4) {
 				output2("your " + target.vaginasDescript() + ", ");
 				if(target.totalVaginas() > 1) output2("its ");
 				else output2("their ");

@@ -239,10 +239,10 @@ function naleenFucksBoysScene():void {
 		output(".");
 	}
 	//{If PC has a small dick (less than 6)
-	if(pc.cocks[x].cLength < 6) output("\n\n<i>“Hmm?”</i>  the naleen purrs, cocking her head askance, <i>“is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...");
+	if(pc.cocks[x].cLength() < 6) output("\n\n<i>“Hmm?”</i>  the naleen purrs, cocking her head askance, <i>“is this all you've got for me, </i>little<i> pet? Tsk, oh well. I hear tell that it's not how much you have, but how you use it... in your condition, my pet, I do hope you can live up to it. I promise I'll reward you if you do...");
 
 	//(If PC's got a BIGGUS DICKUS (more than 15):
-	else if(pc.cocks[x].cLength > 15) output("\n\n<i>“Oh myyyy,”</i>  the naleen purrs as your cock grows and grows in her hand, engorging to its inhuman length. <i>“My, my, you did pack quite a surprise for me, my pet. Such a nice change of pace from these awful, tiny zil boys everywhere.”</i>  you groan as the naleen hugs you crushingly tight, burying you in titflesh.\n\n<i>“Oh, I do so hope you last, pet. I want to get the most out of this!”</i>");
+	else if(pc.cocks[x].cLength() > 15) output("\n\n<i>“Oh myyyy,”</i>  the naleen purrs as your cock grows and grows in her hand, engorging to its inhuman length. <i>“My, my, you did pack quite a surprise for me, my pet. Such a nice change of pace from these awful, tiny zil boys everywhere.”</i>  you groan as the naleen hugs you crushingly tight, burying you in titflesh.\n\n<i>“Oh, I do so hope you last, pet. I want to get the most out of this!”</i>");
 	
 	//If PC got a medium/normal dick:
 	else output("\n\n<i>“Ahhh, here we are,”</i>  the serpent girl purrs, giving your [pc.cock " + x + "] a little squeeze. <i>“Such a nice, perfect cock, and it's all mine. You don't mind if I borrow it, do you? I promise I'll pay you back.”</i>");
@@ -255,8 +255,8 @@ function naleenFucksBoysScene():void {
 	
 	output("\n\n<i>“What's that, love?”</i>  the naleen purrs, a hand running through your hair before pulling your face from the depths of her cleavage, letting you gaze up at her feline face once more. You moan again as her muscles squeeze down all at once, vice-like on your [pc.cock " + x + "]. The naleen giggles, cupping your cheek in both her hands. <i>“You see, I tried to tell you how nice it would be... but that's no matter now, hmm? No, no. You're all mine now, my dear little walking cock. I do so love the feel of you inside me... so perfect, is it not? Mmm, I'm just not alive without a </i>");
 	
-	if(pc.cocks[x].cLength < 6) output("<i>tender little</i>");
-	else if(pc.cocks[x].cLength > 15) output("<i>nice, perfect</i>");
+	if(pc.cocks[x].cLength() < 6) output("<i>tender little</i>");
+	else if(pc.cocks[x].cLength() > 15) output("<i>nice, perfect</i>");
 	else output("<i>big, beautiful</i>");
 	
 	output(" <i>cock inside me. And the way you're whimpering, I think you feel the same. There's so little to life without sex... how boring your off-world life must be, so constrained, so hollow. But you're in my realm now, my pet,”</i> she laughs, kissing you. You moan into her open mouth as her long, forked tongue slides past your lips.");

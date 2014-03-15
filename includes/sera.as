@@ -422,7 +422,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 
 	output("\n\nYou gulp");
 	//if PC is a buttslut:
-	if(pc.ass.looseness >= 3)
+	if(pc.ass.looseness() >= 3)
 	{
 		output(", but your [pc.asshole] twitches in eager response to her threat, ready and willing to be filled with a nice, thick cock. Your mind fills with a haze of lust, already imagining the filling fullness of her meat spreading your asshole wide, filling you with cum until it's pouring out of you like a faucet.");
 		if(pc.hasCock()) output(" Even your [pc.cocks] can't help but spring to life at the thought, half-hard without so much as a touch");
@@ -477,9 +477,9 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	buttChange(chars["SERA"].cockVolume(0),true,true,false);
 
 	//if PC is tight:
-	if(pc.ass.looseness <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do only let the special dick-girls in back here?\"</i>");
+	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do only let the special dick-girls in back here?\"</i>");
 	//if PC is moderately loose:
-	else if(pc.ass.looseness <= 4) output("\n\n<i>\"Aww yeah, now that's what I'm talkin' about. You had some Naughty Wyvern toys back here before, or are you just THAT much of a buttslut?\"</i>");
+	else if(pc.ass.looseness() <= 4) output("\n\n<i>\"Aww yeah, now that's what I'm talkin' about. You had some Naughty Wyvern toys back here before, or are you just THAT much of a buttslut?\"</i>");
 	//if PC is MEGALOOSE: 
 	else output("\n\n<i>\"Hoooolyyyy shit, meat, what have you had back here? Beeb getting friendly with some centaurins, or are you more of a 'get twenty dicks in my ass at once' kind of " + pc.mf("guy","girl") + "? Shit, I might have to splice up again -- feelin' kind of inadequate back here!\"</i>");
 	output("\n\nYou try to respond to the demoness's teasing, but find your voice breaking into a high-pitched cry of pleasure as she slams into you, force-fucking all twelve inches of cock into your ass until her balls slapping wetly against ");

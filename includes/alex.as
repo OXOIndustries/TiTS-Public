@@ -412,19 +412,19 @@ function pitchIntoAlexsBoyPussy():void {
 
 	output("\n\nGrinning, you withdraw your hand and give his ass an appreciative slap, pleased to see how well it jiggles. Alex just whimpers and wiggles his hips back and forth, trying to tempt you into taking action instead of taunting him any further. It certainly proves an effective tactic, and you find yourself with your hands gripping his wide, womanly hips as you align your [pc.cock " + x + "] with his slick folds.");
 	//If small dick:
-	if(pc.cocks[x].cLength <= 5.5) {
+	if(pc.cocks[x].cLength() <= 5.5) {
 		output("\n\nYou slide easily into his experienced cunt");
 		if(pc.balls > 0) output(", [pc.balls] slapping wetly against his throbbing clit");
 		output(". He’s loose around you but he moans nonetheless, apparently very turned on by the feeling of your [pc.cockHead " + x + "] rubbing against his well-used walls, and after a moment to adjust he’s able to clench down on your [pc.cock " + x + "] surprisingly well.");
 	}
 	//if medium dick:
-	if(pc.cocks[x].cLength <= 10) {
+	if(pc.cocks[x].cLength() <= 10) {
 		output("\n\nSlowly, wanting to draw this out as much as possible, you press your [pc.cock " + x + "] inch by inch into his cunt, enjoying every ripple and spasm as he moans and tries to buck back against you for more. You’ve got your own ideas, though, and hold his hips steady until you’re fully sheathed inside of him, [pc.cockHead " + x + "] pressed against his cervix");
 		if(pc.balls > 0) output(" and [pc.balls] slapping wetly against his throbbing clit");
 		output(".");
 	}
 	//if big or HUGE dick:
-	else if(pc.cocks[x].cLength <= 18) 
+	else if(pc.cocks[x].cLength() <= 18) 
 	{
 		output("\n\nIt takes a few tries, sliding the [pc.cockHead " + x + "] of your [pc.cock " + x + "] up and down his netherlips until the combination of your ");
 		if(pc.cumQ() >= 100) output("copious ");
@@ -448,7 +448,7 @@ function pitchIntoAlexsBoyPussy():void {
 		else output(", pressing your [pc.chest] against his back ");
 	}
 	output("while you tweak his small, perky nipples and nip at his ear. He moans, low and needy and starts to complain about you teasing him again before you pull almost all the way out and slam into him again suddenly");
-	if(pc.cocks[x].cLength <= 10) output(" with a wet slap of skin against skin as your [pc.hips] meet his, jiggling his rounded ass enticingly.");
+	if(pc.cocks[x].cLength() <= 10) output(" with a wet slap of skin against skin as your [pc.hips] meet his, jiggling his rounded ass enticingly.");
 	else output(", causing him to yelp as the head of your [pc.cock " + x + "] slams into his cervix.");
 	if(pc.hasCuntTail()) output(" Feeling a little left out, your [pc.tailgina] stirs, swishing back and forth behind you before slipping around your waist to get a piece of the action. With a practiced, almost graceful movement, it slides its moist folds over Alex’s hip before rearing back and engulfing his cock in one smooth motion. Alex gasps, knees almost giving out from under him at the dual sensation of fucking and being fucked, but you manage to hold him up by his waist.");
 
@@ -477,7 +477,7 @@ function pitchIntoAlexsBoyPussy():void {
 		output(".");
 	}
  	output("\n\nHe’s probably not the best fuck in the galaxy but he has to be up there with the way he slams back into you in time to your thrusts and clenches around you");
- 	if(pc.cocks[x].cLength <= 5.5) output(" despite your size");
+ 	if(pc.cocks[x].cLength() <= 5.5) output(" despite your size");
  	output(", almost like he’s milking your cock. You just about think you’re going to cum first until you hear him cry out, shuddering as his dick");
  	//no tailcunt:
  	if(!pc.hasTailCunt()) output(" spurts thick ropes of cum onto the sheets");
@@ -714,9 +714,9 @@ function frottageWithAlex():void {
 	}
 	//If one cock:
 	//If small:
-	else if(pc.cocks[x].cLength <= 5.5) {
+	else if(pc.cocks[x].cLength() <= 5.5) {
 		output("cocks pressed together between your [pc.belly] and his flat stomach. His member, while pretty respectable by pre-enhancement standards, is definitely on the smaller end of the scale, but even so it ");
-		if(pc.cocks[x].cLength <= 4) output("dwarfs");
+		if(pc.cocks[x].cLength() <= 4) output("dwarfs");
 		else output("is noticeably bigger than");
 		output(" yours, looming over it and pressing it back against your [pc.skin].");
 		output("\n\n<i>“It’s so cute,”</i>  Alex coos, arms still draped around your shoulders. <i>“I almost wanna put a little hat on it or something.”</i>");
@@ -727,12 +727,12 @@ function frottageWithAlex():void {
 		output(" and get back to business, placing your hands on his waist to steady him.");
 	}
 	//If medium:
-	else if(pc.cocks[x].cLength <= 10)
+	else if(pc.cocks[x].cLength() <= 10)
 	{
 		output("cocks pressed together between your [pc.belly] and his flat stomach, your [pc.cockHead " + x + "] rubbing against his smooth skin");
 		if(pc.cumQ() >= 100) output(" and drooling pre-cum all over him");
 		output(". Alex, seemingly a fan of moderation, has a smaller dick than yours");
-		if(pc.cocks[x].cLength <= 6.5) output(", though not by much,");
+		if(pc.cocks[x].cLength() <= 6.5) output(", though not by much,");
 		output(" and leans back briefly to give your [pc.cock " + x + "] one last appreciative once-over before draping his arms over your shoulders while you place your hands on his waist to steady him.");
 	}
 	//If big:
@@ -742,15 +742,13 @@ function frottageWithAlex():void {
 		if(pc.biggestTitSize() >= 3) output(" on the underside of your member combined with the warm embrace of your own [pc.chest] around the rest");
 		else output(" rubbing against the underside of your member");
 		output(" is definitely enough to compensate. Murmuring happily, he leans in and kisses the ");
-		if(pc.cocks[x].cLength >= 30) output("shaft");
+		if(pc.cocks[x].cLength() >= 30) output("shaft");
 		else output("head");
 		output(" of your cock");
 		if(pc.cumQ() >= 100) output(", smearing your pre-cum over his full lips");
 		output(" as you reach around to place your hands on his waist.");
 	}
 	
-
-
 	//if hard: 
 	if(pc.isAss()) {
 		output("\n\n<i>“Get ready,” you tell him, tightening your grip.");
@@ -767,23 +765,23 @@ function frottageWithAlex():void {
 	{
 		output("your ");
 		if(pc.cumQ() >= 150) output("copious ");
-	 	output("pre-cum ");
-	 }
-	 else output("Alex’s pre-cum ");
-	 if(pc.isLactating()) output("and the [pc.milk] steadily leaking down your chest from your [pc.nipples]");
-	 output(" coat the two of you thoroughly for smoother and smoother strokes. Seemingly overwhelmed by the sensation of ");
-	 if(pc.cockTotal() > 1) output("being surrounded by your hard, ready cocks");
-	 else if(pc.cocks[x].cLength <= 5.5) output("your [pc.cockHead " + x + "] gliding across his cock");
-	 else if(pc.cocks[x].cLength <= 10) output("your [pc.cock " + x + "] rubbing against his");
-	 else output("his little boy-clit rubbing against your titanic tool");
-	 output(", your androgynous lover moans and presses himself against you, ");
-	 if(pc.biggestCockLength() >= 25) output("leaning around your [pc.cockBiggest] to hide his face against your shoulder, effectively jerking you off with the crook of his elbow in the process");
-	 else 
-	 {
-	 	output("hiding his face against your [pc.chest]");
-	 	if(pc.biggestTitSize() >= 2) output(" and murmuring his approval into your cleavage");
-	 }
-	 output(".");
+		output("pre-cum ");
+	}
+	else output("Alex’s pre-cum ");
+	if(pc.isLactating()) output("and the [pc.milk] steadily leaking down your chest from your [pc.nipples]");
+	output(" coat the two of you thoroughly for smoother and smoother strokes. Seemingly overwhelmed by the sensation of ");
+	if(pc.cockTotal() > 1) output("being surrounded by your hard, ready cocks");
+	else if(pc.cocks[x].cLength() <= 5.5) output("your [pc.cockHead " + x + "] gliding across his cock");
+	else if(pc.cocks[x].cLength() <= 10) output("your [pc.cock " + x + "] rubbing against his");
+	else output("his little boy-clit rubbing against your titanic tool");
+	output(", your androgynous lover moans and presses himself against you, ");
+	if(pc.biggestCockLength() >= 25) output("leaning around your [pc.cockBiggest] to hide his face against your shoulder, effectively jerking you off with the crook of his elbow in the process");
+	else 
+	{
+		output("hiding his face against your [pc.chest]");
+		if(pc.biggestTitSize() >= 2) output(" and murmuring his approval into your cleavage");
+	}
+	output(".");
 
 	output("\n\n<i>“M-more,”</i>  he gasps, breath hot against your [pc.skin]. <i>“Harder, please.”</i>");
 
@@ -795,7 +793,7 @@ function frottageWithAlex():void {
 		output("your wet cock twining around his");
 	}
 	//small/med/big dick:
-	else if(pc.cocks[x].cLength <= 18) output("the wonderful friction of your cocks driving you to greater speeds");
+	else if(pc.cocks[x].cLength() <= 18) output("the wonderful friction of your cocks driving you to greater speeds");
 	//Huge donger
 	else {
 		output("essentially using ");
@@ -807,7 +805,7 @@ function frottageWithAlex():void {
 	if(pc.balls > 0 && pc.isTaur()) 
 	{
 		output("as your [pc.sack] swings heavily below you");
-		if(pc.ballSize > 6) output(", slapping against the side of the bed");
+		if(pc.ballSize() > 6) output(", slapping against the side of the bed");
 		output(" with each trust");
 	}
 	//Hermy balls taur
@@ -830,7 +828,7 @@ function frottageWithAlex():void {
 	output(". You’re just nearing the edge yourself when Alex starts to shudder and scrabble at your back.");
 
 	output("\n\n<i>“Shit, [pc.name], I’m coming.”</i>  One final buck of his hips sends him over, painting");
-	if(pc.cocks[x].cLength > 18) output(" his chest and the underside of your [pc.cock " + x + "]");
+	if(pc.cocks[x].cLength() > 18) output(" his chest and the underside of your [pc.cock " + x + "]");
 	else output(" both of your chests with sticky white strands");
 	output(". His cunt clenches in sympathetic orgasm, wetting ");
 	if(pc.isTaur()) output("his girlish thighs and the sheets below him");
@@ -844,12 +842,12 @@ function frottageWithAlex():void {
 	if(pc.isTaur()) output("Sliding off the bed, he kneels in front of you");
 	else output("Sliding back off your lap, he leans forward");
 	output(" and takes your still-hard [pc.cockBiggest] in ");
-	if(pc.cocks[x].cLength >= 12) output("both of his hands ");
+	if(pc.cocks[x].cLength() >= 12) output("both of his hands ");
 	else output("his hands ");
 	output("and starts to jerk you off. It’s obvious that he’s pretty tired, but he gets to the task with enthusiasm, ");
 
 	//If small cock:
-	if(pc.cocks[x].cLength <= 5.5) {
+	if(pc.cocks[x].cLength() <= 5.5) {
 		output("taking your whole member into his mouth in one smooth movement");
 		if(pc.cockTotal() > 1) {
 			output(" as he tends to ");
@@ -887,7 +885,7 @@ function frottageWithAlex():void {
 		output(".");
 	}
 	//If medium cock:
-	else if(pc.cocks[x].cLength <= 10)
+	else if(pc.cocks[x].cLength() <= 10)
 	{
 		output("taking a deep breath before taking your whole member into his mouth in one smooth movement, flinching a little as your [pc.cockHead " + x + "] bumps against the back of his throat but managing it nonetheless. After a pause to get himself situated he starts to bob his head, swallowing and swirling his tongue to stimulate your whole length");
 		//if multicock herm: 
@@ -914,7 +912,7 @@ function frottageWithAlex():void {
 		output(".");
 	}
 	//If big cock:
-	else if(pc.cocks[x].cLength <= 18)
+	else if(pc.cocks[x].cLength() <= 18)
 	{
 		output("wrapping both of his hands around your shaft and taking your [pc.cockHead " + x + "] into his mouth. It takes him a second to work out how to best pleasure your [pc.cockBiggest]");
 		if(pc.hasVagina() || pc.cockTotal() > 1)
@@ -996,7 +994,7 @@ function catchAnalFromAlex():void {
 	{
 		output("\n\nAlex seems a little confused by the gesture, but he stands up and grabs your waist, getting himself into position.");
 		output("\n\n<i>“Are you sure?”</i> he asks. <i>“I’ve always thought assplay was, I don’t know, less fun. There’s a reason I saved up for years to get myself a pussy of my own.");
-		if(pc.ass.looseness >= 4) output(" Looks like you’d know better than me from the looks of things, though");
+		if(pc.ass.looseness() >= 4) output(" Looks like you’d know better than me from the looks of things, though");
 		output(".”</i>  You reassure him that you can absolutely have as much fun with your ass as you can with your cunt, if not more.");
 	}
 	//If PC male or unsexed:
@@ -1004,12 +1002,12 @@ function catchAnalFromAlex():void {
 	{
 		output("\n\nAlex grins, standing up and grabbing waist to get himself into position.");
 		output("\n\n<i>“Well, alright then,”</i>  he says, reaching down between his legs to gather up a handful of the slick moisture already drenching his thighs at your lewd display. With a practiced hand, he spreads his self-made lubrication over his cock, giving it a few quick strokes before");
-		if(pc.buttRating <= 5) output(" placing his hands on your hips again");
+		if(pc.buttRating() <= 5) output(" placing his hands on your hips again");
 		else output(" spreading your cheeks apart");
 		output(" and lining himself up with your entrance.");
 	}
 	//if tight asshole:
-	if(pc.ass.looseness < 2) 
+	if(pc.ass.looseness() < 2) 
 	{
 		output("\n\nYou brace yourself, willing yourself to relax and accept the penetration. Alex’s copious juices ease the process a bit, but thanks to how tight you are it’s still slow and just on the right side of painful. After what feels like an eternity of being stretched around him he finally hilts himself, his balls coming to rest gently against your ");
 		if(pc.hasVagina()) output("[pc.vaginas]");
@@ -1018,7 +1016,7 @@ function catchAnalFromAlex():void {
 		output(".");
 	}
 	//if medium asshole:
-	else if(pc.ass.looseness < 4) 
+	else if(pc.ass.looseness() < 4) 
 	{
 		output("\n\nYou relax, readying yourself for the coming fuck, and thanks to Alex’s copious juices he’s able to slide in with one swift motion, hilting himself inside of you with his balls slapping against your ");
 		if(pc.hasVagina()) output("[pc.vaginas]");
@@ -1039,7 +1037,7 @@ function catchAnalFromAlex():void {
 	buttChange(20,true,true,false);
 
 	output("\n\n<i>“Shit,”</i> he hisses through gritted teeth, clinging to your [pc.hips] as if for dear life. <i>“You’re so ");
-	if(pc.ass.looseness < 2) output("hot and tight");
+	if(pc.ass.looseness() < 2) output("hot and tight");
 	else output("hot");
 	output(".”</i>  You look back over your shoulder at him and ask if he’s just going to stand there or if he’s going to fuck you. Grunting, he buckles down and gets to moving his hips, slowly at first, but gradually picking up speed at your encouragement. Leaning back into his every thrust, you moan encouragements to him, urging him faster and faster until his hips meet yours again and again at a feverish pace.");
 
@@ -1080,7 +1078,7 @@ function catchAnalFromAlex():void {
 	//if unsexed:
 	else {
 		output("\n\nYour [pc.asshole] clenches and unclenches with every thrust, the sensations coming from your sensitive ring being ");
-		if(pc.ass.looseness <= 2) output("stretched so much");
+		if(pc.ass.looseness() <= 2) output("stretched so much");
 		else output("fucked so well");
 		output(" almost too much to bear.");
 	}

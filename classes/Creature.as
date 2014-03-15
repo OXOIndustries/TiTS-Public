@@ -3025,7 +3025,7 @@
 			//Error catching.
 			if (ratingCheck == -1 && rowNum + 1 > breastRows.length) return "ERROR-cup";
 			//Set the breastRating to be checked or the artifical ratingCheck if not -1.
-			var check: int = breastRows[rowNum].breastRating;
+			var check: int = breastRows[rowNum].breastRating();
 			if (ratingCheck >= 0) check = ratingCheck;
 			//Get a cup size.
 			if (check < 1) return "0-cup";
@@ -3256,7 +3256,11 @@
 		}
 		public function bRating(arg: int): Number {
 			if (arg >= bRows()) return 0;
-			else return breastRows[arg].breastRating;
+			else return breastRows[arg].breastRating();
+		}
+		public function bRatingRaw(arg:int):Number {
+			if (arg >= bRows()) return 0;
+			else return breastRows[arg].breastRatingRaw;
 		}
 		public function totalNipples(): Number {
 			var counter: Number = breastRows.length;
@@ -3273,9 +3277,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[index].breastRating < breastRows[counter].breastRating) index = counter;
+				if (breastRows[index].breastRating() < breastRows[counter].breastRating()) index = counter;
 			}
-			return breastRows[index].breastRating;
+			return breastRows[index].breastRating();
 		}
 		public function smallestTitSize(): Number {
 			if (breastRows.length == 0) return -1;
@@ -3283,9 +3287,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[index].breastRating > breastRows[counter].breastRating) index = counter;
+				if (breastRows[index].breastRating() > breastRows[counter].breastRating()) index = counter;
 			}
-			return breastRows[index].breastRating;
+			return breastRows[index].breastRating();
 		}
 		public function smallestTitRow(): Number {
 			if (breastRows.length == 0) return -1;
@@ -3293,7 +3297,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[index].breastRating > breastRows[counter].breastRating) index = counter;
+				if (breastRows[index].breastRating() > breastRows[counter].breastRating()) index = counter;
 			}
 			return index;
 		}
@@ -3302,7 +3306,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[index].breastRating < breastRows[counter].breastRating) index = counter;
+				if (breastRows[index].breastRating() < breastRows[counter].breastRating()) index = counter;
 			}
 			return index;
 		}
@@ -3310,7 +3314,7 @@
 			var threshhold: int = 3;
 			if (big) threshhold = 7;
 			for (var x: int = 0; x < bRows(); x++) {
-				if (breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) return true;
+				if (breastRows[x].breastRating() >= threshhold && breastRows[x].breasts > 1) return true;
 			}
 			return false;
 		}
@@ -3318,7 +3322,7 @@
 			var threshhold: int = 3;
 			if (big) threshhold = 7;
 			for (var x: int = 0; x < bRows(); x++) {
-				if (breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 2) return true;
+				if (breastRows[x].breastRating() >= threshhold && breastRows[x].breasts > 2) return true;
 			}
 			return false;
 		}
@@ -3328,7 +3332,7 @@
 			if (big) threshhold = 7;
 			var eligibleRows: int = 0;
 			for (var x: int = 0; x < bRows(); x++) {
-				if (breastRows[x].breastRating >= threshhold && breastRows[x].breasts > 1) eligibleRows++;
+				if (breastRows[x].breastRating() >= threshhold && breastRows[x].breasts > 1) eligibleRows++;
 			}
 			return (eligibleRows >= arg);
 		}
@@ -3420,7 +3424,7 @@
 		}
 		public function biggestCockLength(): Number {
 			if (cocks.length == 0) return 0;
-			return cocks[biggestCockIndex()].cLength;
+			return cocks[biggestCockIndex()].cLength();
 		}
 		public function biggestCockVolume(effective: Boolean = true): Number {
 			if (cocks.length == 0) return 0;
@@ -3467,7 +3471,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (cocks[index].cLength < cocks[counter].cLength) index = counter;
+				if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
 			}
 			return index;
 		}
@@ -3477,9 +3481,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (cocks[index].cLength < cocks[counter].cLength) index = counter;
+				if (cocks[index].cLength() < cocks[counter].cLength()) index = counter;
 			}
-			return cocks[index].cLength;
+			return cocks[index].cLength();
 		}
 		public function longestHorsecockLength(): Number {
 			if (cocks.length == 0) return 0;
@@ -3487,9 +3491,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if ((cocks[index].cType != 1 && cocks[counter].cType == 1) || (cocks[index].cLength < cocks[counter].cLength && cocks[counter].cType == 1)) index = counter;
+				if ((cocks[index].cType != 1 && cocks[counter].cType == 1) || (cocks[index].cLength < cocks[counter].cLength() && cocks[counter].cType == 1)) index = counter;
 			}
-			return cocks[index].cLength;
+			return cocks[index].cLength();
 		}
 		public function totalcThickness(): Number {
 			var thick: Number = 0;
@@ -3514,7 +3518,7 @@
 			if (cocks.length == 0) return 0;
 			var counter: int = 0;
 			for (var x: int = 0; x < cocks.length; x++) {
-				counter += cocks[x].cLength;
+				counter += cocks[x].cLength();
 			}
 			return counter;
 		}
@@ -3544,7 +3548,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (cocks[index].cThicknessRatio > cocks[counter].cThicknessRatio) index = counter;
+				if (cocks[index].cThicknessRatio() > cocks[counter].cThicknessRatio()) index = counter;
 			}
 			return index;
 		}
@@ -3562,7 +3566,7 @@
 		}
 		public function smallestCockLength(): Number {
 			if (cocks.length == 0) return 0;
-			return cocks[smallestCockIndex()].cLength;
+			return cocks[smallestCockIndex()].cLength();
 		}
 		public function shortestCockIndex(): Number {
 			if (cocks.length == 0) return 0;
@@ -3570,7 +3574,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (cocks[index].cLength > cocks[counter].cLength) index = counter;
+				if (cocks[index].cLength() > cocks[counter].cLength()) index = counter;
 			}
 			return index;
 		}
@@ -3580,9 +3584,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (cocks[index].cLength > cocks[counter].cLength) index = counter;
+				if (cocks[index].cLength() > cocks[counter].cLength()) index = counter;
 			}
-			return cocks[index].cLength;
+			return cocks[index].cLength();
 		}
 		//Find the biggest cock that fits inside a given value
 		public function cockThatFits(fits: Number = 0, type: String = "area"): Number {
@@ -3605,7 +3609,7 @@
 						else index = counter;
 					}
 				} else if (type == "length") {
-					if (cocks[counter].cLength <= fits) {
+					if (cocks[counter].cLength() <= fits) {
 						//If one already fits
 						if (index >= 0) {
 							//See if the newcomer beats the saved small guy
@@ -3781,7 +3785,7 @@
 		public function wetness(arg: int = 0): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
-			return vaginas[arg].wetness;
+			return vaginas[arg].wetness();
 		}
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
@@ -3799,27 +3803,27 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (vaginas[index].looseness < vaginas[counter].looseness) index = counter;
+				if (vaginas[index].looseness() < vaginas[counter].looseness()) index = counter;
 			}
-			return vaginas[counter];
+			return vaginas[counter].looseness();
 		}
 		public function wettestVaginalWetness(): Number {
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (vaginas[index].wetness < vaginas[counter].wetness) index = counter;
+				if (vaginas[index].wetness() < vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter];
+			return vaginas[counter].wetness();
 		}
 		public function driestVaginalWetness(): Number {
 			var counter: Number = vaginas.length;
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (vaginas[index].wetness > vaginas[counter].wetness) index = counter;
+				if (vaginas[index].wetness() > vaginas[counter].wetness()) index = counter;
 			}
-			return vaginas[counter];
+			return vaginas[counter].wetness();
 		}
 		public function biggestVaginaIndex(): int {
 			if (vaginas.length == 0) return 0;
@@ -4101,7 +4105,7 @@
 				else if (tone > 25) desc += "a wide-set body, some soft, forgiving flesh, and a hint of muscle underneath it";
 				else {
 					desc += "a wide, cushiony body";
-					if (hasVagina() || biggestTitSize() > 3 || hipRating > 7 || buttRating > 7) desc += " and plenty of jiggle on your curves";
+					if (hasVagina() || biggestTitSize() > 3 || hipRating() > 7 || buttRating() > 7) desc += " and plenty of jiggle on your curves";
 				}
 			}
 			//Chunky monkey
@@ -4111,13 +4115,13 @@
 				else if (tone > 50) desc += "an extremely substantial frame packing a decent amount of muscle";
 				else if (tone > 25) {
 					desc += "a very wide body";
-					if (hasVagina() || biggestTitSize() > 4 || hipRating > 10 || buttRating > 10) desc += ", lots of curvy jiggles,";
+					if (hasVagina() || biggestTitSize() > 4 || hipRating() > 10 || buttRating() > 10) desc += ", lots of curvy jiggles,";
 					desc += " and hints of muscle underneath";
 				} else {
 					desc += "a thick";
-					if (hasVagina() || biggestTitSize() > 4 || hipRating > 10 || buttRating > 10) desc += ", voluptuous";
+					if (hasVagina() || biggestTitSize() > 4 || hipRating() > 10 || buttRating() > 10) desc += ", voluptuous";
 					desc += " body and plush, ";
-					if (hasVagina() || biggestTitSize() > 4 || hipRating > 10 || buttRating > 10) desc += " jiggly curves";
+					if (hasVagina() || biggestTitSize() > 4 || hipRating() > 10 || buttRating() > 10) desc += " jiggly curves";
 					else desc += " soft flesh";
 				}
 			}
@@ -4157,8 +4161,8 @@
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
-			if (balls == 0) quantity = Math.round(ballSize * 2 * 2) * ballEfficiency;
-			else quantity = Math.round(ballSize * balls * 2) * ballEfficiency;
+			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2) * ballEfficiency;
+			else quantity = Math.round(ballSize() * balls * 2) * ballEfficiency;
 			return quantity;
 		}
 		public function currentCum(): Number {
@@ -4166,7 +4170,7 @@
 		}
 		public function cumProduced(minutes: Number): void {
 			while (minutes > 0) {
-				ballFullness += refractoryRate / 60 * (ballSize + 1) / 4 * balls;
+				ballFullness += refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
 				if (ballFullness >= 100) ballFullness = 100;
 				//5.5 for 10"
 				minutes--;
@@ -4284,12 +4288,12 @@
 			if (!hasCock()) return false;
 			if (arg >= 0) {
 				if (arg >= cocks.length) return false;
-				return (cocks[arg].cLength >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, arg) || cocks[arg].cLength / tallness <= 1 / 3) && genitalLocation() <= 1);
+				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, arg) || cocks[arg].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1);
 			}
 			//Negative is code for see if any can.
 			else {
 				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength / tallness <= 1 / 3) && genitalLocation() <= 1)
+					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
 						return true;
 				}
 				return false;
@@ -4301,7 +4305,7 @@
 		public function aCockToSuck(): int {
 			var choices: Array = new Array();
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].cLength >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength / tallness <= 1 / 3) && genitalLocation() <= 1)
+				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
 					choices[choices.length] = x;
 			}
 			if (choices.length == 0) return 0;
@@ -4346,7 +4350,7 @@
 		//PC can fly?
 		public function canFly(): Boolean {
 			//web also makes false!
-			if (hasStatusEffect("Web") >= 0) return false;
+			if (hasStatusEffect("Web")) return false;
 			if (wingType == GLOBAL.BEE) return true;
 			return false;
 		}
@@ -4386,8 +4390,8 @@
 				weighting -= 20;
 			}
 			//Hips give small boost
-			if (hipRating >= 6) weighting += hipRating * 1.5;
-			else weighting -= (6 - hipRating) * 3;
+			if (hipRating() >= 6) weighting += hipRating() * 1.5;
+			else weighting -= (6 - hipRating()) * 3;
 			if (hairLength > 8) weighting += (hairLength - 7) * 1.5;
 			else weighting -= (8 - hairLength) * 1.5;
 			if (tone > 70) weighting -= 10;
@@ -4422,8 +4426,8 @@
 			if (cocks.length >= 10) return false;
 			var newCock = new CockClass();
 			cocks.push(newCock);
-			cocks[cocks.length - 1].cThicknessRatio = cthickness;
-			cocks[cocks.length - 1].cLength = clength;
+			cocks[cocks.length - 1].cThicknessRatioRaw = cthickness;
+			cocks[cocks.length - 1].cLengthRaw = clength;
 			return true;
 		}
 		//create vagoo
@@ -4674,22 +4678,22 @@
 				}
 			}
 			//size!
-			if (ballSize > 1 && (this.rand(3) <= 1 || forceSize)) {
+			if (ballSize() > 1 && (this.rand(3) <= 1 || forceSize)) {
 				if (descripted > 0) desc += ", ";
-				if (ballSize > 1 && ballSize < 2) desc += "large";
-				if (ballSize >= 2 && ballSize < 3) desc += "baseball-sized";
-				if (ballSize >= 3 && ballSize < 4) desc += "apple-sized";
-				if (ballSize >= 4 && ballSize < 5) desc += "grapefruit-sized";
-				if (ballSize >= 5 && ballSize < 7) desc += "cantaloupe-sized";
-				if (ballSize >= 7 && ballSize < 9) desc += "soccerball-sized";
-				if (ballSize >= 9 && ballSize < 12) desc += "basketball-sized";
-				if (ballSize >= 12 && ballSize < 15) desc += "watermelon-sized";
-				if (ballSize >= 15 && ballSize < 18) desc += "beachball-sized";
-				if (ballSize >= 18) desc += "hideously swollen and oversized";
-				if (ballSize > 1) descripted++;
+				if (ballSize() > 1 && ballSize() < 2) desc += "large";
+				if (ballSize() >= 2 && ballSize() < 3) desc += "baseball-sized";
+				if (ballSize() >= 3 && ballSize() < 4) desc += "apple-sized";
+				if (ballSize() >= 4 && ballSize() < 5) desc += "grapefruit-sized";
+				if (ballSize() >= 5 && ballSize() < 7) desc += "cantaloupe-sized";
+				if (ballSize() >= 7 && ballSize() < 9) desc += "soccerball-sized";
+				if (ballSize() >= 9 && ballSize() < 12) desc += "basketball-sized";
+				if (ballSize() >= 12 && ballSize() < 15) desc += "watermelon-sized";
+				if (ballSize() >= 15 && ballSize() < 18) desc += "beachball-sized";
+				if (ballSize() >= 18) desc += "hideously swollen and oversized";
+				if (ballSize() > 1) descripted++;
 			}
 			//Uniball
-			if (hasStatusEffect("Uniball") >= 0 && this.rand(3) == 0) {
+			if (hasStatusEffect("Uniball") && this.rand(3) == 0) {
 				if (descripted > 0) desc += ", ";
 				rando == this.rand(4);
 				if (rando == 0) desc += "tightly-compressed";
@@ -4749,42 +4753,42 @@
 			var rando: Number = 0;
 			var descripted: Number = 0;
 			//66% wetness description
-			if (this.rand(3) <= 1 && ass.wetness >= 2) {
-				if (ass.wetness == 2) {
+			if (this.rand(3) <= 1 && ass.wetness() >= 2) {
+				if (ass.wetness() == 2) {
 					if (this.rand(2) == 0) desc += "moist";
 					else desc += "lubricated";
-				} else if (ass.wetness == 3) {
+				} else if (ass.wetness() == 3) {
 					if (this.rand(2) == 0) desc += "slimy";
 					else desc += "slick";
-				} else if (ass.wetness == 4) {
+				} else if (ass.wetness() == 4) {
 					if (this.rand(2) == 0) desc += "lube-drooling";
 					else desc += "soaked";
-				} else if (ass.wetness == 5) {
+				} else if (ass.wetness() == 5) {
 					if (this.rand(2) == 0) desc += "slime-drooling";
 					else desc += "immaculately lubricated";
 				}
 				descripted++;
 			}
 			//25% tightness desc
-			if (this.rand(4) == 0 || (ass.looseness <= 1 && this.rand(4) <= 2)) {
+			if (this.rand(4) == 0 || (ass.looseness() <= 1 && this.rand(4) <= 2)) {
 				if (descripted > 0) desc += ", ";
 				if (analVirgin && ass.hymen) {
 					if (this.rand(3) == 0) desc += "virgin";
 					else if (this.rand(2) == 0) desc += "unspoiled";
 					else desc += "unclaimed";
-				} else if (ass.looseness == 1) {
+				} else if (ass.looseness() == 1) {
 					if (this.rand(2) == 0) desc += "tight";
 					else desc += "narrow";
-				} else if (ass.looseness == 2) {
+				} else if (ass.looseness() == 2) {
 					if (this.rand(2) == 0) desc += "pliant";
 					else desc += "supple";
-				} else if (ass.looseness == 3) {
+				} else if (ass.looseness() == 3) {
 					if (this.rand(2) == 0) desc += "loose";
 					else desc += "welcoming";
-				} else if (ass.looseness == 4) {
+				} else if (ass.looseness() == 4) {
 					if (this.rand(2) == 0) desc += "stretched";
 					else desc += "broad";
-				} else if (ass.looseness == 5) {
+				} else if (ass.looseness() == 5) {
 					if (this.rand(3) == 0) desc += "gaping";
 					else if (this.rand(2) == 0) desc += "wide-open";
 					else desc += "expansive";
@@ -4811,7 +4815,7 @@
 		public function hipDescript(plural: Boolean = false): String {
 			var desc: String = "";
 			var rando: Number = 0;
-			if (hipRating <= 1) {
+			if (hipRating() <= 1) {
 				if (thickness > 70) {
 					rando = this.rand(3);
 					if (rando == 0) desc = "tiny ";
@@ -4830,7 +4834,7 @@
 					else if (rando == 1) desc = "narrow ";
 					else if (rando == 2) desc = "boyish ";
 				}
-			} else if (hipRating < 4) {
+			} else if (hipRating() < 4) {
 				rando = this.rand(3);
 				if (rando == 0) desc = "slender ";
 				if (rando == 1) desc = "narrow ";
@@ -4839,7 +4843,7 @@
 					if (this.rand(2) == 0) desc = "slightly-flared ";
 					else desc = "curved ";
 				}
-			} else if (hipRating < 6) {
+			} else if (hipRating() < 6) {
 				rando = this.rand(2);
 				if (rando == 1) desc = "well-formed ";
 				if (rando == 2) desc = "pleasant ";
@@ -4847,7 +4851,7 @@
 					if (this.rand(2) == 0) desc = "flared ";
 					else desc = "curvy ";
 				}
-			} else if (hipRating < 10) {
+			} else if (hipRating() < 10) {
 				rando = this.rand(3);
 				if (rando == 0) desc = "ample ";
 				if (rando == 1) desc = "noticeable ";
@@ -4856,7 +4860,7 @@
 					if (this.rand(2) == 0) desc = "flared ";
 					else desc = "waspish ";
 				}
-			} else if (hipRating < 15) {
+			} else if (hipRating() < 15) {
 				rando = this.rand(3);
 				if (rando == 0) desc = "flared ";
 				if (rando == 1) desc = "curvy ";
@@ -4865,7 +4869,7 @@
 					if (this.rand(2) == 0) desc = "flared ";
 					else desc = "waspish ";
 				}
-			} else if (hipRating < 20) {
+			} else if (hipRating() < 20) {
 				rando = this.rand(3);
 				if (thickness < 40) {
 					if (this.rand(2) == 0) desc = "flared, ";
@@ -4874,7 +4878,7 @@
 				if (rando == 0) desc += "fertile ";
 				if (rando == 1) desc += "child-bearing ";
 				if (rando == 2) desc += "voluptuous ";
-			} else if (hipRating >= 20) {
+			} else if (hipRating() >= 20) {
 				if (thickness < 40) {
 					if (this.rand(2) == 0) desc = "flaring, ";
 					else desc = "incredibly waspish, ";
@@ -4901,7 +4905,7 @@
 		public function buttDescript(): String {
 			var desc: String = "";
 			var rando: Number = 0;
-			if (buttRating <= 1) {
+			if (buttRating() <= 1) {
 				if (tone >= 60) desc += "incredibly tight, perky ";
 				else {
 					if (this.rand(2) == 0) desc = "tiny";
@@ -4911,7 +4915,7 @@
 					if (tone <= 30 && this.rand(3) == 0) desc += " yet soft";
 					desc += " ";
 				}
-			} else if (buttRating < 4) {
+			} else if (buttRating() < 4) {
 				if (tone >= 65) {
 					rando = this.rand(6);
 					if (rando == 0) desc = "perky, muscular ";
@@ -4940,7 +4944,7 @@
 					else if (rando == 5) desc = "petite ";
 					else if (rando == 6) desc = "snug ";
 				}
-			} else if (buttRating < 6) {
+			} else if (buttRating() < 6) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
 					rando = this.rand(6);
@@ -4966,7 +4970,7 @@
 					else if (rando == 3) desc = "cushy ";
 					else if (rando == 4) desc = "soft, squeezable ";
 				}
-			} else if (buttRating < 8) {
+			} else if (buttRating() < 8) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
 					rando = this.rand(7);
@@ -4998,7 +5002,7 @@
 					else if (rando == 6) desc = "soft, shapely ";
 					else if (rando == 7) desc = "rounded, spongy ";
 				}
-			} else if (buttRating < 10) {
+			} else if (buttRating() < 10) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
 					rando = this.rand(8);
@@ -5031,7 +5035,7 @@
 					else if (rando == 7) desc = "plush ";
 					else if (rando == 8) desc = "pleasantly plump ";
 				}
-			} else if (buttRating < 13) {
+			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
 					rando = this.rand(7);
@@ -5065,7 +5069,7 @@
 					else if (rando == 8) desc = "spacious ";
 					else if (rando == 9) desc = "soft, plump ";
 				}
-			} else if (buttRating < 16) {
+			} else if (buttRating() < 16) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
 					rando = this.rand(8);
@@ -5101,7 +5105,7 @@
 					else if (rando == 9) desc = "voluminous ";
 					else if (rando == 10) desc = "soft, padded ";
 				}
-			} else if (buttRating < 20) {
+			} else if (buttRating() < 20) {
 				if (tone >= 65) {
 					rando = this.rand(6);
 					if (rando == 0) desc = "huge, toned ";
@@ -5177,7 +5181,7 @@
 			else if (rando <= 9) desc += "ass";
 			else if (rando <= 11) desc += "backside";
 			else if (rando == 12) {
-				if (buttRating >= 10) desc += "booty";
+				if (buttRating() >= 10) desc += "booty";
 				else desc += "derriere";
 			} else if (rando == 13) desc += "rump";
 			else if (rando == 14) desc += "bottom";
@@ -5925,24 +5929,24 @@
 					else if (temp <= 7) vag += "unclaimed";
 					else if (temp <= 9) vag += "unspoiled";
 					else vag += "pure";
-				} else if (vaginas[vaginaNum].looseness <= 1) {
+				} else if (vaginas[vaginaNum].looseness() <= 1) {
 					temp = this.rand(11);
 					if (temp <= 4) vag += "tight";
 					else if (temp <= 5) vag += "vice-like";
 					else if (temp <= 6) vag += "constricting";
 					else if (temp <= 8) vag += "unstretched";
 					else vag += "narrow";
-				} else if (vaginas[vaginaNum].looseness <= 2) {
+				} else if (vaginas[vaginaNum].looseness() <= 2) {
 					temp = this.rand(10);
 					if (temp <= 5) vag += "average";
 					else vag += "supple";
-				} else if (vaginas[vaginaNum].looseness <= 3) {
+				} else if (vaginas[vaginaNum].looseness() <= 3) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "loose";
 					else if (temp <= 6) vag += "slightly-stretched";
 					else if (temp <= 8) vag += "loosened";
 					else vag += "lax";
-				} else if (vaginas[vaginaNum].looseness <= 4) {
+				} else if (vaginas[vaginaNum].looseness() <= 4) {
 					temp = this.rand(11);
 					if (temp <= 3) vag += "slightly-gaped";
 					else if (temp <= 5) vag += "well-loosened";
@@ -5962,34 +5966,34 @@
 			//wetness descript - 30% display rate
 			if (descripted < 2 && ((adjectives && this.rand(100) > 70) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
-				if (vaginas[vaginaNum].wetness == 0) {
+				if (vaginas[vaginaNum].wetness() == 0) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "dry";
 					else if (temp <= 7) vag += "unlubricated";
 					else vag += "moistureless";
-				} else if (vaginas[vaginaNum].wetness <= 1) {
+				} else if (vaginas[vaginaNum].wetness() <= 1) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "moist";
 					else if (temp <= 7) vag += "sticky";
 					else vag += "dewy";
-				} else if (vaginas[vaginaNum].wetness == 2) {
+				} else if (vaginas[vaginaNum].wetness() == 2) {
 					temp = this.rand(10);
 					if (temp <= 3) vag += "wet";
 					else if (temp <= 5) vag += "sultry";
 					else if (temp <= 8) vag += "sweltering";
 					else vag += "slippery";
-				} else if (vaginas[vaginaNum].wetness == 3) {
+				} else if (vaginas[vaginaNum].wetness() == 3) {
 					temp = this.rand(12);
 					if (temp <= 3) vag += "slick";
 					else if (temp <= 6) vag += "drenched";
 					else if (temp <= 9) vag += "sopping";
 					else vag += "soaked";
-				} else if (vaginas[vaginaNum].wetness == 4) {
+				} else if (vaginas[vaginaNum].wetness() == 4) {
 					temp = this.rand(9);
 					if (temp <= 2) vag += "drooling";
 					else if (temp <= 5) vag += "dripping";
 					else vag += "lube-leaking";
-				} else if (vaginas[vaginaNum].wetness == 5) {
+				} else if (vaginas[vaginaNum].wetness() == 5) {
 					temp = this.rand(12);
 					if (temp <= 2) vag += "slavering";
 					else if (temp <= 5) vag += "slobbering";
@@ -6139,11 +6143,9 @@
 			return true;
 		}
 		private function clearList(): void {
-			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
 			list = new Array();
 		}
 		private function addToList(arg): void {
-			trace("THIS FUNCTION IS STUPID AS ALL FUCK. WHY ARE YOU DOING THIS!!!!!!!!!!!!!1111one!");
 			list[list.length] = arg;
 		}
 		private function formatList(): String {
@@ -6562,22 +6564,22 @@
 			}
 			//Length 1/3 chance
 			else if (this.rand(3) == 0) {
-				if (cocks[cockNum].cLength < 3) {
+				if (cocks[cockNum].cLength() < 3) {
 					rando = this.rand(4);
 					if (rando == 0) descript = "little";
 					else if (rando == 1) descript = "toy-sized";
 					else if (rando == 2) descript = "mini";
 					else if (rando == 3) descript = "budding";
 					else descript = "tiny";
-				} else if (cocks[cockNum].cLength < 5) {
+				} else if (cocks[cockNum].cLength() < 5) {
 					rando = this.rand(2);
 					if (rando == 0) descript = "short";
 					else descript = "small";
-				} else if (cocks[cockNum].cLength < 7) {
+				} else if (cocks[cockNum].cLength() < 7) {
 					rando = this.rand(2);
 					if (rando == 0) descript = "fair-sized";
 					else descript = "nice";
-				} else if (cocks[cockNum].cLength < 11) {
+				} else if (cocks[cockNum].cLength() < 11) {
 					rando = this.rand(3);
 					if (rando == 0) {
 						if (cocks[cockNum].cType == GLOBAL.EQUINE) descript = "pony-sized";
@@ -6586,24 +6588,24 @@
 						if (cocks[cockNum].cType == GLOBAL.EQUINE) descript = "colt-like";
 						else descript = "lengthy";
 					} else descript = "sizable";
-				} else if (cocks[cockNum].cLength < 14) {
+				} else if (cocks[cockNum].cLength() < 14) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "huge";
 					else if (rando == 1) {
 						if (cocks[cockNum].cType == GLOBAL.CANINE) descript = "mastiff-like";
 						else descript = "cucumber-length";
 					} else descript = "foot-long";
-				} else if (cocks[cockNum].cLength < 18) {
+				} else if (cocks[cockNum].cLength() < 18) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "massive";
 					else if (rando == 1) descript = "knee-length";
 					else descript = "forearm-length";
-				} else if (cocks[cockNum].cLength < 30) {
+				} else if (cocks[cockNum].cLength() < 30) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "enormous";
 					else if (rando == 1) descript = "giant";
 					else descript = "arm-length";
-				} else if (cocks[cockNum].cLength < 50) {
+				} else if (cocks[cockNum].cLength() < 50) {
 					rando = this.rand(7);
 					if (cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
@@ -6615,7 +6617,7 @@
 						else if (rando == 5) descript = "hyper";
 						else descript = "massive";
 					}
-				} else if (cocks[cockNum].cLength < 100) {
+				} else if (cocks[cockNum].cLength() < 100) {
 					rando = this.rand(8);
 					if (cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
 					else {
@@ -6929,7 +6931,7 @@
 		public function nippleLength(row: int = 0): Number {
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
-			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating) / 10)
+			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10)
 		}
 		//New cock adjectives.  The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false) {
@@ -7426,7 +7428,7 @@
 			var descript: String = "";
 			var noun: String = "";
 			var descripted: Boolean = false;
-			if (breastRows[rowNum].breastRating < 1) {
+			if (breastRows[rowNum].breastRating() < 1) {
 				temp = this.rand(10);
 				if (temp <= 3) return "pecs";
 				else if (temp <= 6) return "flat, almost non-existant breasts";
@@ -7434,7 +7436,7 @@
 			}
 			//50% of the time size-descript them
 			if (this.rand(2) == 0) {
-				descript += breastSize(breastRows[rowNum].breastRating);
+				descript += breastSize(breastRows[rowNum].breastRating());
 				descripted = true;
 			}
 			if (milkRate > 1.5) {
@@ -7467,17 +7469,17 @@
 				if (isLactating()) noun += "udders";
 				else noun += "breasts";
 			} else if (temp <= 3) {
-				if (breastRows[rowNum].breastRating > 4 && this.rand(2) == 0) noun += "tits";
+				if (breastRows[rowNum].breastRating() > 4 && this.rand(2) == 0) noun += "tits";
 				else noun += "breasts";
 			} else if (temp <= 6) noun += "tits";
 			else if (temp <= 7) {
 				if (!isLactating()) noun += "jugs";
 				else noun += "udders";
 			} else if (temp <= 8) {
-				if (breastRows[rowNum].breastRating > 6) noun += "love-pillows";
+				if (breastRows[rowNum].breastRating() > 6) noun += "love-pillows";
 				else noun += "boobs";
 			} else if (temp <= 9) {
-				if (breastRows[rowNum].breastRating > 6) noun += "tits";
+				if (breastRows[rowNum].breastRating() > 6) noun += "tits";
 				else noun += "breasts";
 			} else if (temp <= 11) noun += "mammaries";
 			else if (temp <= 12) noun += "melons";

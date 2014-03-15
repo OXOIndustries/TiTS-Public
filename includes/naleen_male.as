@@ -675,7 +675,7 @@ function getTakenInTheAssByDudeleen():void {
 	output("\n\nYou chastise the naleen; you told him to go slow, not to just sit on his ass doing nothing.");
 
 	output("\n\nSwallowing and furrowing his brows in concentration, he nods, and finally, he begins the slow process of spearing your bowels. Pressure is applied once more, but this time he doesn’t stop. Slowly, your sphincter conforms to the shape of his tip, allowing him entrance");
-	if(pc.ass.looseness >= 4) output(", not that there was much conforming for you to do, gaped as you are");
+	if(pc.ass.looseness() >= 4) output(", not that there was much conforming for you to do, gaped as you are");
 	output(".");
 
 	output("\n\nWith a soft sigh of pleasure you release his shaft, confident that he can continue feeding it inside of you now. You can feel his other purple prick on ");

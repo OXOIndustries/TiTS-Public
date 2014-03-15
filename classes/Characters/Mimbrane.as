@@ -118,7 +118,7 @@ package classes.Characters
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRating = 0;
+			this.hipRatingRaw = 0;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -130,7 +130,7 @@ package classes.Characters
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
 			
-			this.buttRating = 0;
+			this.buttRatingRaw = 0;
 			
 			//No dicks here!
 			this.cocks = new Array();
@@ -141,7 +141,7 @@ package classes.Characters
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQuality = 0;
 			this.cumType = 0;
-			this.ballSize = 0;
+			this.ballSizeRaw = 0;
 			this.ballFullness = 0;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 10;
@@ -158,7 +158,7 @@ package classes.Characters
 			this.clitLength = 0.5;
 			this.pregnancyMultiplier = 1;
 			
-			this.breastRows[0].breastRating = 0;
+			this.breastRows[0].breastRatingRaw = 0;
 			
 			this.nippleColor = "red";
 			this.milkMultiplier = 0;
@@ -166,7 +166,7 @@ package classes.Characters
 			
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
-			this.ass.wetness = 0;
+			this.ass.wetnessRaw = 0;
 		}
 		
 		override public function prepForCombat():void

@@ -216,7 +216,7 @@ function celiseSucksYouDry():void {
 	output("\n\nStretching languidly, you pull yourself out of her grasp and gather your things. She’s a little over-enthusiastic, but she leaves you with the most satisfying ache in your crotch after a nice suck.");
 	if(pc.cumQ() < 1000) {
 		output(" You can feel your body responding to her sexual training already if that wondrous throb is any indication.");
-		if(pc.balls > 0 && pc.ballSize < 5) pc.ballSize++;
+		if(pc.balls > 0 && pc.ballSize() < 5) pc.ballSizeRaw++;
 		if(pc.ballEfficiency < 400) pc.ballEfficiency++;
 		if(pc.cumMultiplier < 150) pc.cumMultiplier++;
 		if(pc.refractoryRate < 50) pc.refractoryRate += .5;
@@ -863,7 +863,7 @@ function getDrainedSexyTimes():void {
 	buttChange(5,true,true,false);
 	//asshole
 	output("\n\nThe tip of the column of gel embedded deep inside your backside swells up, growing bigger and bigger until there is a large ball of goo on the end of it. She tests this gel sphere against your backside’s ring with a tug, ");
-	if(pc.ass.looseness >= 5) output("and proves a bit disappointed when it slips out of your gaping rear. She promptly puts it back and increases the size a bit more to make sure it stays in there.");
+	if(pc.ass.looseness() >= 5) output("and proves a bit disappointed when it slips out of your gaping rear. She promptly puts it back and increases the size a bit more to make sure it stays in there.");
 	else output("and is quite pleased when it proves to be stuck in there.");
 	output(" The great green globule begins an endless pumping motion deep inside your bowels, a piston that lasts the whole night.");
 

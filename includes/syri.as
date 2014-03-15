@@ -388,7 +388,7 @@ function pcLosesToSyriBettingHisAss():void {
 	output("\n\n<i>“Stop moving, dammit,”</i>  she snaps, giving you a hard smack on the ass. You yelp, feeling your anxious pucker clenching");
 	if(pc.hasCock()) output(" and [pc.cocks] throbbing");
 	output(" as the alien dickgirl spits into her hand, slathering a little bit of much-needed lube onto her own cock. You feel a hand spreading your cheeks, and brace yourself for the coming reaming - only to feel a gentle caress. You look over your shoulder, seeing Syri on her knees behind you, cheek rubbing on your taut flesh. <i>“What?”</i>  she snaps, giving you a sudden swat that sends shivers up your spine and quivers through your [pc.skin]. <i>“I'm an ass girl like you wouldn't believe. Humans have the best butts in the whole wide galaxy. So soft and squishy and gropable, I could fuck 'em for days and days. And you... have a magnificient ass. Oh, I'm going to enjoy this");
-	if(pc.ass.looseness >= 4) output(", though not as much as you, if you're half the buttslut this gaping maw of a hole makes you look like");
+	if(pc.ass.looseness() >= 4) output(", though not as much as you, if you're half the buttslut this gaping maw of a hole makes you look like");
 	output(".”</i>");
 
 	output("\n\nChuckling to herself, Syri lets her long, rounded tongue drag through the cleft of your behind");
@@ -949,7 +949,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 	output("\n\n<i>“That sounds just about perfect.”</i>  You reach up and give your lover a deep, long kiss, pulling her down into your [pc.chest] as your legs lock behind her, drawing her inexorably into you. Her breathing picks up, a shallow pant by the time you can feel the boiling hot rod of dog-cock spreading your cheeks, heading for home. Squeezing Syri tight, you grit your teeth and try to relax your sphincter to ease the coming blissful agony.");
 
 	output("\n\nA slight, pleasured whimper escapes your lips as the pointy tip of Syri's cock presses against your [pc.asshole], ");
-	if(pc.ass.looseness <= 2) output("building up pressure before your tight little pucker finally yields, letting it slip past");
+	if(pc.ass.looseness() <= 2) output("building up pressure before your tight little pucker finally yields, letting it slip past");
 	else output("sliding past your relaxed, yielding muscles to slip right in");
 	output(". The both of you groan as your legs shepherd Syri's hips in, pushing her deeper and deeper in one long, slow motion until she's so deep you can practically taste her cock; her thick, throbbing knot presses tightly to your back door, but she relaxes her advance just as your body tenses, bracing for impact.");
 
@@ -962,7 +962,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 	output(" is heavenly, and you can do little else but moan your pleasure, squeezing down on her cock with all your might.");
 
 	output("\n\n<i>“Easy,”</i>  Syri whines, but you don't let up, clamping down on her until ");
-	if(pc.ass.looseness >= 4) output("even your loose, battered anus is making her work for every inch");
+	if(pc.ass.looseness() >= 4) output("even your loose, battered anus is making her work for every inch");
 	else output("she's forced to work for every inch she thrusts");
 	output(". Her movements becomes sharp and shallow, tiny, fast thrusts into your tightly-clenched hole until she's practically battering her way in. So much for gentle! You grab Syri's flared hips and guide her in, urging her deeper and deeper until you once again feel a potent pressure building up against your tight-held hole. Syri grunts with effort, hammering it into you until you're practically crying out. You manage to relax your body, forcibly loosening your [pc.asshole] so that the great orb of Syri's knot can push through, reaming your abused sphincter with a flurry of quick strokes before it can finally push into you.");
 	buttChange(chars["SYRI"].cockVolume(0),true,true,false);
@@ -981,7 +981,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 	output("\n\nYour fingers dig into the bed as Syri's tongue explores your passage, flicking quickly in and out between long, languid slurps that paint your walls with thick coats of saliva, getting you nice and warmed up for round two. She keeps going for a long minute, slathering your ass up before backing out, letting her fingers take over. As a pair of spit-slick furry fingers slip into you, Syri chuckles <i>“Don't ever say I'm not a very </i>giving<i> lover... takes a little more to cum from your ass, huh? Let's see if this does it for you.”</i>  You grit your teeth as two digits slip in, pumping in and out with quick, erratic thrusts that soon have you panting and moaning, wiggling your hips to the beat of the finger-fucking, barely noticing when a third... then a fourth join the fun in a ball practically as big as her knot.");
 
 	//if PC is already pretty loose: 
-	if(pc.ass.looseness >= 3) output("\n\nNo matter how much anal you enjoy, though, there's nothing quite like feeling Syri's fingers ball up, forming a perfect fist as she practically punches into your gaping hole. A scream of overwhelmed pleasure bursts from your lips as Syri fists you, pushing deep into your ass until she's halfway to her elbow before relenting. Her thrusts are slow and steady with such a massive insertion, spreading and stretching you with as much gentleness as she can muster. It isn't much, but you're thankful for what mercy she can show your poor asshole at this point. After this, though, taking her thick knot will be a cakewalk...");
+	if(pc.ass.looseness() >= 3) output("\n\nNo matter how much anal you enjoy, though, there's nothing quite like feeling Syri's fingers ball up, forming a perfect fist as she practically punches into your gaping hole. A scream of overwhelmed pleasure bursts from your lips as Syri fists you, pushing deep into your ass until she's halfway to her elbow before relenting. Her thrusts are slow and steady with such a massive insertion, spreading and stretching you with as much gentleness as she can muster. It isn't much, but you're thankful for what mercy she can show your poor asshole at this point. After this, though, taking her thick knot will be a cakewalk...");
 
 	output("\n\nReduced to a quivering, whimpering pile of lust and desire after Syri's thorough finger-fucking, you're desperate for the release your lover always stops just short of giving you. You watch over your shoulder as Syri grips your hips, holding you steady as her dick makes its final approach, sliding easily into you up to the big knot at its base. Even after such a stretching, it's still a moment of exquisite agony when it pushes into you; Syri's cries her pleasure as she fucks the throbbing orb past your sphincter, which you match with a high moan of ecstasy as you nearly cum from penetration alone.");
 

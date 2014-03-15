@@ -1614,7 +1614,7 @@ function pennySproutsAWeiner():void {
 	processTime(20);
 	penny.createCock();
 	penny.shiftCock(0,GLOBAL.VULPINE);
-	penny.cocks[0].cLength = 6;
+	penny.cocks[0].cLengthRaw = 6;
 	penny.cumMultiplier += 1;
 	penny.ballEfficiency += 2;
 	penny.orgasm();
@@ -1645,12 +1645,12 @@ function pennyToBigPenny():void {
 	processTime(25);
 	if(penny.balls == 0) {
 		penny.balls = 2;
-		penny.ballSize = 2;
+		penny.ballSizeRaw = 2;
 	}
 	penny.cumMultiplier += 2;
 	penny.ballEfficiency += 3;
-	penny.cocks[0].cLength = 11.5;
-	penny.cocks[0].cThicknessRatio = 1.1;
+	penny.cocks[0].cLengthRaw = 11.5;
+	penny.cocks[0].cThicknessRatioRaw = 1.1;
 	if(penny.cocks[0].knotMultiplier < 1.5) penny.cocks[0].knotMultiplier = 1.5;
 	penny.orgasm();
 	flags["PENNY_THROBB_USES"] = 2;
@@ -1672,12 +1672,12 @@ function pennyBecomesHYPERPENNY():void {
 	if(penny.balls == 0) {
 		output("\n\nThe flesh between Penny’s [penny.cock] and pink slit bulges out, the skin ballooning out slowly, coming to rest flat and empty upon her quivering folds. A second later, something squeezes out of the fox-girl and into the sack of pink skin. It’s a rounded, egg-shaped little bulge that you identify as a testicle almost immediately. A second falls into the other side, and both bounce happily in their new home as they grow, swelling up to the size of golf balls before stopping. Fine amber hairs sprout all over the pouch a moment later, blending in with the sheath above and the fur to either side. <b>Penny grew a ballsack!</b>");
 		penny.balls = 2;
-		penny.ballSize = 2.5;
+		penny.ballSizeRaw = 2.5;
 	}
 	//Balls below max size
-	if(penny.ballSize < 4) {
+	if(penny.ballSizeRaw < 4) {
 		output("\n\nThe nicely formed sack below Penny’s [penny.cock] abruptly begins to tighten as its contents swell with fresh virility, practically sloshing against each other as they fill the rapidly stretching pouch. That pouch gets larger and larger before your very eyes, and the vixen’s seed-producing organs become more perfectly spherical as they enlarge, the only flaw in their perfect, rounded shapes visible in the way their bottoms compress flat against Penny’s seat under their own weight. <b>Her balls have grown to the size of grapefruits!</b>");
-		penny.ballSize = 4;
+		penny.ballSizeRaw = 4;
 	}
 	//Resume!
 	output("\n\nChange arrives at the vixen’s prick at last, starting at the ");
@@ -1692,8 +1692,8 @@ function pennyBecomesHYPERPENNY():void {
 	output("\n\nThe white-painted fox gasps, <i>“Ohhhhhhhhhhhh,”</i>  and lets her head hang back limply over the back of her chair, cum dripping off her to splatter onto the dozens of puddles on the floor around her. The corners of her mouth are twisted into an ecstatic smile, and she is soon back to properly stroking herself once more. <i>“[pc.name], you gotta try this. It feels so good. I just came but like, I know if I just keep stroking it I won’t get very soft. I can feel it in my balls. I’ll be able to cum again real soon. I’ll be able to cum so often!”</i>  She shudders as she cups one of her engorged nuts. <i>“Damn, it sucks that I have to work!”</i>");
 	output("\n\nYou chuckle and point out that she’s got quite a bit of cleaning to do before she can even do that.");
 	output("\n\n<i>“You’re right...”</i>  Penny drawls with a lazy stroke of her sperm-soaked phallus. <i>“I’ll get this cleaned right up, and then I can take care of myself in the shower!”</i>  Her cock pulsates powerfully along with that last statement, giving you a clear picture of exactly what she plans to do in the shower.");
-	penny.cocks[0].cLength = 18;
-	penny.cocks[0].cThicknessRatio = 1.2;
+	penny.cocks[0].cLengthRaw = 18;
+	penny.cocks[0].cThicknessRatioRaw = 1.2;
 	if(penny.cocks[0].knotMultiplier < 2) penny.cocks[0].knotMultiplier = 2;
 	penny.cumMultiplier += 5;
 	penny.ballEfficiency += 3;
@@ -1883,18 +1883,18 @@ function faceFuckPenny():void {
 	output("\n\n\<i>“I love the way you look at me,”</i>  Penny sighs, voice husky with desire. <i>“Why don't you come prove that you liked the show?”</i>");
 	
 	output("\n\nShe licks her lips seductively, mouth wide open and inviting. You stip your gear off and slip around the desk as Penny adjusts her stance, getting her face at just the perfect height to accept your ");
-	if(pc.cocks[x].cLength >= 10) output("massive, ");
+	if(pc.cocks[x].cLength() >= 10) output("massive, ");
 	output("throbbing need.");
 
-	if(pc.cocks[x].cLength >= 10) output(" <i>“I don't know if I'll be able to fit all that down my throat... but I'm sure as hell gonna try,”</i>  Penny says, her voice filled with lust and want.")
+	if(pc.cocks[x].cLength() >= 10) output(" <i>“I don't know if I'll be able to fit all that down my throat... but I'm sure as hell gonna try,”</i>  Penny says, her voice filled with lust and want.")
 	output(" Her nose brushes your underside, lifting your [pc.cock " + x + "] up as her tongue darts out, lapping at your base. Your shiver at her cool touch, her inhuman nose wet on your pecker as her tongue slides across your length.");
 	
 	output("\n\n<i>“Did just a little show like that get you this turned on?”</i>  she teases, nuzzling your erection.");
 	
 	output("\n\nYou growl an affirmative, stroking the fox girl's huge ears as she wraps her lips around your [pc.cock " + x + "], sucking it in. Her tongue plays across your glans, wrapping around the [pc.cockHead " + x + "] and slathering it with warmth. Oh, that feels good. You urge her on, bucking your [pc.hips] slightly, pushing ");
-	if(pc.cocks[x].cLength <= 10) output("every inch down her throat");
+	if(pc.cocks[x].cLength() <= 10) output("every inch down her throat");
 	else output("as much of your cock as she can take past her lips until she threatens to gag");
-	if(pc.cocks[x].cLength >= 18) output(" (which isn't even half of your length)");
+	if(pc.cocks[x].cLength() >= 18) output(" (which isn't even half of your length)");
 	output(". The fennec fox-girl groans as you push in, filling her mouth with cock, letting the first drooling drop of pre slide right down her throat. Leaning back against the wall, Penny tries to say something around her mouthful of dick, which sounds like an invitation to you. Grinning down at the hapless fox, you grab the sides of her head and ram your hips in!");
 	
 	output("\n\nYou launch into a brutal face-fucking, holding the fox's head steady as you pound your prick down her throat like a battering ram. She gurgles and squirms in your iron grip, unable to resist your " + possessive(pc.cockDescript(x)) + " assult on her mouth. Eventually, she slumps back and takes it like a champ, letting her mouth hang agape as you press in, slathering up your prick in her drool until it drips from her lips in sticky strands. Her eyes roll back in her head, chest heaving as her fingers dip further and further into her honeypot, loosening her pants until they fall down to her ankles");
@@ -1902,7 +1902,7 @@ function faceFuckPenny():void {
 	output(". Masturbating with wild abandon, she moans around your spasming [pc.cockNounSimple " + x + "], gurgling as viscous streams of your salty pre slalom down her throat, her spittle turning more and more white with every thrust into her maw.");
 	
 	output("\n\nThrowing your head back and screaming in pleasure, you thrust in as hard as you can");
-	if (pc.cocks[0].cLength <= 10)
+	if (pc.cocks[0].cLength() <= 10)
 	{
 		output(" until your ");
 		if(pc.balls == 0) output("base");
@@ -1914,7 +1914,7 @@ function faceFuckPenny():void {
 	output(". Penny yelps as your [pc.cock " + x + "] invades her throat, ramming down as your prick spasms and spurts, flooding her tight throat with a deluge of your [pc.cumColor] seed. Her wet, warm tongue lashes at the underside of your twitching staff, thrashing wildly as its owner desperately copes with the rush of cum pouring into her mouth. The feeling is heavenly, throat and lips squeezing your [pc.cock " + x + "] as you try and pull out of the well and truly face-fucked fennec fox; your body responds to the sensations by squeezing out another thick spurt of cream, depositing the glistening [pc.cumColor] dollop right on the tip of her tongue as it rolls out of her mouth, trailing behind your prick's exodus with thick, slimy strands connecting her to you, tinted [pc.cumColor] by the mouthful of cum she just swallowed.");
 	
 	output("\n\nCollapsing to the floor, Penny wipes her mouth with the back of her hand, staining her thick fur with the evidence of your oral pleasure. <i>“That was... you're an absolute beast, [pc.name]. ");
-	if(pc.cocks[x].cLength >= 10) output("My jaw is going to be sore for a while, a");
+	if(pc.cocks[x].cLength() >= 10) output("My jaw is going to be sore for a while, a");
 	else output("A");
 	output("nd I can't say I don't love it.”</i>  You sigh with relief, leaning back against her desk with [pc.cock " + x + "] still twitching, the last, most viscous drops of cum pooling on your [pc.cockHead " + x + "] before dropping onto the floor between the panting fox's legs.");
 	
@@ -1991,7 +1991,7 @@ function getAssFuckedByPenny():void {
 	
 	output("\n\nWith Penny's pulsating prick nice and slathered in spit and drooling her musky pre, you deem her nice and ready for a real fucking. You slip up her svelte, vulpine body, trailing kisses and caresses up her belly to the peaks of her breasts, pushing her fingers aside to wrap your lips around one of the erect teats. You give the red bud a hard suck, pulling it back until it slips from your lips with a wet pop; Penny gasps, breath quickening as you shower her in affection. Her hands cup around your [pc.butt], lifting you into her lap, resting your head on her shoulder. She spreads your cheeks, squeezing them roughly as her [penny.cock] slips in, sliding into your [pc.butt]'s cleavage before her fingers let go, trapping her meaty shaft in your cheeks.");
 	
-	output("\n\nGrabbing the fox's lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength)) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole's entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh so sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you've given her cock already. Well, she's clearly ready and raring to go, and you can't deny the burning need growing in your loins.");
+	output("\n\nGrabbing the fox's lithe shoulders for support, you start to move your hips, gently sliding along the length of her " + num2Text(Math.round(penny.cocks[0].cLength())) + "-inch shaft. You take every inch slowly, tenderly squeezing and rubbing her thick pole's entire length until just the head is parting your cheeks before you slide back down. Penny cries out, practically trembling in your grasp as your [pc.butt] pleasures her prick, humping away until you can feel her [penny.cock] twitch violently, practically spasming as it spurts a glob of pre right on your [pc.asshole]. Warm and wet and oh so sinfully sticky, you shudder with pleasure as Penny gives you her very own lube, adding to the slick coating you've given her cock already. Well, she's clearly ready and raring to go, and you can't deny the burning need growing in your loins.");
 	
 	output("\n\nYou press your lips to hers, locking Penny in a kiss as you rear up, grabbing her cock and holding it steady. Her fingers lock around yours, holding you for a brief second before spreading your cheeks wide, letting you glide down her throbbing shaft. It parts your walls with a second of mind-numbing pressure, her head spearing past your sphincter a second later. You both moan with shared breathless pleasure as your [pc.hips] slide down, taking inch after inch of [penny.cock], feeling your stomach churn as the thick member spreads you wide. Penny's hands lock on your hips, guiding your descent until your butt's on her lap, balancing on her legs as her cock twitches and spurts inside you, filling your ass with juicy fox-pre.");
 	

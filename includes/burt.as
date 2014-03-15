@@ -769,8 +769,8 @@ function burtsWeinerInYourButt():void {
 	if(pc.isNaga()) {
 		output("\n\nBurt grins at you and puts weight against your abdomen, pushing you gently back onto the cot as he slips a hand down to tease along your [pc.legs], finding your [pc.asshole] and teasing a finger around it. He lowers his head and spits onto the puckered hole before moving to line up his cybernetic erection, the horse tipped flare pushing against your back door bluntly.");
 		//if (analCapacity = tight) 
-		if(pc.ass.looseness <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
-		else if(pc.ass.looseness <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
+		if(pc.ass.looseness() <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
+		else if(pc.ass.looseness() <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
 		else output("\n\nBurt isn’t gentle as he shoves forward into your back door, letting out a gasp of surprise as his cock just slides right into your [pc.asshole], his cybernetic horsecock less than a challenge for your well trained hole, causing Burt to chuckle out something about throwing a sausage down a hallway.");
 		output(" He takes hold of your hips and grins at you as he starts to draw back, only to thrust deep into you again, soon enough slapping his crotch to yours with every thrust. His medial ring provides delicious stimulation for you as it bumps past your [pc.asshole] again and again, and that flare plunges into your guts over and over.");
 		buttChange(burt.cockVolume(0));
@@ -792,9 +792,9 @@ function burtsWeinerInYourButt():void {
 		output("\n\nBurt smirks, motioning for you to turn around as he caresses your flanks, spreading the cheeks of your [pc.butt] to look at your [pc.asshole]. He settles up behind you and spits against that crinkled ring, before lining his blunt flared equine erection up against your back passage and giving a gentle push.");
 		
 		//[if (analCapacity = tight)
-		if(pc.ass.looseness <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
+		if(pc.ass.looseness() <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
 		//[if (analCapacity = medium)]
-		else if(pc.ass.looseness <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
+		else if(pc.ass.looseness() <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
 		//[if (analCapacity = loose)]
 		else output("\n\nBurt isn’t gentle as he shoves forward into your back door, letting out a gasp of surprise as his cock just slides right into your [pc.asshole], his cybernetic horsecock less than a challenge for your well trained hole, causing Burt to chuckle out something about throwing a sausage down a hallway.");
 		output(" He takes hold of your flanks and grins at you as he starts to draw back, only to thrust deep into you again, soon enough slapping his crotch your [pc.butt] with every thrust. His medial ring provides delicious stimulation for you as it bumps past your [pc.asshole] again and again, and that flare plunges into your guts over and over.");
@@ -805,9 +805,9 @@ function burtsWeinerInYourButt():void {
 	else {
 		output("\n\nBurt grins at you and spins you around abruptly, pushing against the small of your back to send you over one of the Mead barrels, his hand sliding down across your [pc.butt] and his fingers pushing in against your [pc.asshole], spreading your cheeks apart before spitting on the crinkled pit to help lubricate it. He then stands up and presses his cybernetic erection against your anal bud, the broad flare pressing against you bluntly.");
 		//if (analCapacity = tight) 
-		if(pc.ass.looseness <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
+		if(pc.ass.looseness() <= 2) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare making you cry out in a mix of pain and pleasure as it forces your [pc.asshole] to stretch vulgarly around him. That cybernetic horsecock drives in deep, sliding smoothly into your tight rectum until his medial ring pops into your body.");
 		//[if (analCapacity = medium)]
-		else if(pc.ass.looseness <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
+		else if(pc.ass.looseness() <= 3.5) output("\n\nBurt isn’t gentle as he drives forward into your back door, his broad flare slipping into your well trained ass and feeling just perfect as your [pc.asshole] stretches around him. That cybernetic horsecock drives in deep, slipping in until his medial ring pops into your body, fitting into your rectum like a hand in a glove.");
 		//[if (analCapacity = loose)]
 		else output("\n\nBurt isn’t gentle as he shoves forward into your back door, letting out a gasp of surprise as his cock just slides right into your [pc.asshole], his cybernetic horsecock less than a challenge for your well trained hole, causing Burt to chuckle out something about throwing a sausage down a hallway.");
 		output(" He takes hold of your hips and grins at you as he starts to draw back, only to thrust deep into you again, soon enough slapping his crotch your [pc.butt] with every thrust. His medial ring provides delicious stimulation for you as it bumps past your [pc.asshole] again and again, and that flare plunges into your guts over and over.");
@@ -844,9 +844,9 @@ function burtSticksItInThePCsVajayjay():void {
 	{
 		output("\n\nHe gently lays you on your belly on the cot, his hands stroking your [pc.hips] tenderly before he gives your [pc.butt] a teasing slap. He lifts your [pc.legs] over his shoulder and lets you coil around him as he exposes your [pc.vagina " + x + "] to his cybernetic equine manhood.");
 		//if (vagCapacity = tight)
-		if(pc.vaginas[x].looseness <= 2) output("\n\nYou grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
+		if(pc.vaginas[x].looseness() <= 2) output("\n\nYou grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
 		//[if (vagCapacity = medium)
-		else if(pc.vaginas[x].looseness <= 3.5) output("\n\nYou moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
+		else if(pc.vaginas[x].looseness() <= 3.5) output("\n\nYou moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
 		else output("\n\nYou shiver with excitement as Burt slides his equine erection effortlessly into your [pc.vagina " + x + "], hilting his tool within your well stretched hole without any difficulty.");
 		output(" He gives a gasp of pleasure and begins to thrust in and out of you, his pace starting slow and even, but slowly building until he is slamming into you with a pace that jostles your whole body, his hips threatening to bruise yours as they slam against you again and again with sharp slaps.");
 		cuntChange(x,burt.cockVolume(0),true,true,false);
@@ -876,9 +876,9 @@ function burtSticksItInThePCsVajayjay():void {
 		output(", levering his cybernetic stallionhood’s flare against the entrance to your [pc.vagina " + x + "].");
 		
 		//if (vagCapacity = tight)
-		if(pc.vaginas[x].looseness <= 2) output("\n\nYou grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
+		if(pc.vaginas[x].looseness() <= 2) output("\n\nYou grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
 		//if (vagCapacity = medium)
-		else if(pc.vaginas[x].looseness <= 3.5) output("\n\nYou moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
+		else if(pc.vaginas[x].looseness() <= 3.5) output("\n\nYou moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
 		else output("\n\nYou shiver with excitement as Burt slides his equine erection effortlessly into your [pc.vagina " + x + "], hilting his tool within your well stretched hole without any difficulty.");
 		output(" He gives a gasp of pleasure and begins to thrust in and out of you, his pace starting slow and even, but slowly building until he is slamming into you with a pace that jostles your whole body, his hips bouncing off your [pc.butt] again and again with sharp slaps.");
 		cuntChange(x,burt.cockVolume(0),true,true,false);
@@ -893,9 +893,9 @@ function burtSticksItInThePCsVajayjay():void {
 	else {
 		output("\n\nHe gently lays you back on the cot, his hands caressing your [pc.hips] as he looks your body over. He lifts your [pc.legs] up over his shoulders to give him better access to your [pc.vagina " + x + "], easing the flare of his cybernetic manhood to your entrance.");
 		//if (vagCapacity = tight)
-		if(pc.vaginas[x].looseness <= 2) output(" You grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
+		if(pc.vaginas[x].looseness() <= 2) output(" You grit your teeth as Burt starts to press his hips forward, slowly forcing your [pc.vagina " + x + "] to spread open for his broad flare, stretching you vulgarly as he slowly sinks that tool into you.");
 		//if (vagCapacity = medium)
-		else if(pc.vaginas[x].looseness <= 3.5) output(" You moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
+		else if(pc.vaginas[x].looseness() <= 3.5) output(" You moan with pleasure as Burt starts to slide his equine erection into your [pc.vagina " + x + "], stretching you just perfectly as he sinks that tool deep into you.");
 		//if (vagCapacity = loose)
 		else output(" You shiver with excitement as Burt slides his equine erection effortlessly into your [pc.vagina " + x + "], hilting his tool within your well stretched hole without any difficulty.");
 		output(" He gives a gasp of pleasure and begins to thrust in and out of you, his pace starting slow and even, but slowly building until he is slamming into you with a pace that jostles your whole body, his hips threatening to bruise yours as they slam against you again and again with sharp slaps.");

@@ -125,20 +125,20 @@
 					}
 					//Butt increases a little bit to a baseline (higher for cuntwielders)
 					//7 for dudes, 9 for gals
-					if((target.buttRating < 7 || (target.buttRating < 9 && target.hasVagina())) && rand(3) == 0 && changes < changeLimit)
+					if((target.buttRatingRaw < 7 || (target.buttRatingRaw < 9 && target.hasVagina())) && rand(3) == 0 && changes < changeLimit)
 					{
 						if(rand(2) == 0) kGAMECLASS.output("\n\nA slight change in your balance triggers a quick inspection of your body. It looks like your [pc.butt] got bigger.");
 						else kGAMECLASS.output("\n\nYou bump your [pc.butt] into something behind you. It didn't used to be that big.");
-						target.buttRating++;
+						target.buttRatingRaw++;
 						changes++;
 					}
 					//Hips increase to a reasonable baseline (higher for cuntwielders)
-					if(target.hipRating < 5 && rand(3) == 0 && changes < changeLimit)
+					if(target.hipRatingRaw < 5 && rand(3) == 0 && changes < changeLimit)
 					{
 						if(rand(2) == 0) kGAMECLASS.output("\n\nOne [pc.hip] swells out under your idle fingers while you wait. The other side got bigger as well.");
 						else kGAMECLASS.output("\n\nYour [pc.hips] feel a little odd. You immediately check them, and a rough guestimate confirms that they've broadened.");
 						changes++;
-						target.hipRating++;
+						target.hipRatingRaw++;
 					}
 
 					//Minor Sex stuff:
@@ -148,7 +148,7 @@
 						//Find smallest dick for expansion
 						x = target.shortestCockIndex();
 						//Dick grows  a quarter inch to a cap of your height in feet * 1.5 (6' tall = 9" dick)
-						if(target.cocks[x].cLength < target.tallness/12 * 1.5 && rand(3) == 0 && changes < changeLimit)
+						if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && rand(3) == 0 && changes < changeLimit)
 						{
 							//(Alt2 - req's armor or undies)
 							if(target.isCrotchGarbed() && rand(2) == 0)
@@ -173,33 +173,33 @@
 								else kGAMECLASS.output("pull open your [pc.lowerGarments]");
 								kGAMECLASS.output(" and watch an extra quarter inch of length slide out of your body. You might even be a little thicker to match. It's tough to tell with such a small change.");
 							}
-							target.cocks[x].cLength += .25;
+							target.cocks[x].cLengthRaw += .25;
 							changes++;
 							target.lust(4+rand(4));
 						}
 						//Find thinnest cock
 						x = target.thinnestCockRatioIndex();
 						//Dick gets slightly closer to very thick
-						if(target.cocks[x].cThicknessRatio < 1.7 && rand(3) == 0 && changes < changeLimit)
+						if(target.cocks[x].cThicknessRatioRaw < 1.7 && rand(3) == 0 && changes < changeLimit)
 						{
 							//version 1
 							if(rand(2) == 0) kGAMECLASS.output("\n\nSomething tickles at your crotch. You glance around and idly scratch, but it doesn't go away. A quick check reveals that you're getting a little bit thicker, that much closer to having a big, fat cock.");
 							//version 2
 							else kGAMECLASS.output("\n\nStarting slowly, your [pc.cock " + x + "] warms, slowly getting hotter and hotter. You grab hold of it, hefting its warm weight and feeling it thicken in your grip. You get a little girthier over a few moments, then it stops.");
 							changes++;
-							target.cocks[x].cThicknessRatio += 0.1;
+							target.cocks[x].cThicknessRatioRaw += 0.1;
 							target.lust(5+rand(4));
 						}
 						//Balls swell up to apple sized (rating == 3) (rarely)
-						if(target.ballSize < 3 && rand(4) == 0 && changes < changeLimit)
+						if(target.ballSizeRaw < 3 && rand(4) == 0 && changes < changeLimit)
 						{
 							//Ballsize <= 1
-							if(target.ballSize <= 1)
+							if(target.ballSizeRaw <= 1)
 							{
 								kGAMECLASS.output("\n\nA groan slips free of your [pc.lips] as something changes down below you. Whatever it is, it feels good. [pc.EachCock] is hard from the sensation alone. You squirm in place as <b>you feel your [pc.sack] stretching with new weight, swelling up to contain your new, large ball");
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(".</b>");
-								target.ballSize = 1;
+								target.ballSizeRaw = 1;
 							}
 							//Ballsize == 2
 							else
@@ -209,7 +209,7 @@
 								kGAMECLASS.output(", you gently rub your swelling sack, enjoying the sheer fullness of it. <b>Your new, apple-sized endowment");
 								if(target.balls > 1) kGAMECLASS.output("s");
 								kGAMECLASS.output(" will be sure to make your orgasms a little more productive.</b>");
-								target.ballSize = 3;
+								target.ballSizeRaw = 3;
 							}
 							changes++;
 							target.lust(7+rand(3));
@@ -221,33 +221,33 @@
 						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
 						//30 == JJ
 						//1 == A
-						if(target.thickness * .25 > target.breastRows[0].breastRating - 1 && rand(3) == 0 && changes < changeLimit)
+						if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1 && rand(3) == 0 && changes < changeLimit)
 						{
 							//Get A-cups to start
-							if(target.breastRows[0].breastRating < 1)
+							if(target.breastRows[0].breastRating() < 1)
 							{
 								kGAMECLASS.output("\n\nStarting at your [pc.nipples], an irritating sensitivity radiates out across your chest. It gets worse and worse ");
 								if(target.isChestGarbed()) kGAMECLASS.output("until you can barely stand the feeling of your [pc.upperGarment] against them");
 								else kGAMECLASS.output("until even a slight breeze of air feels like stroking fingers");
 								kGAMECLASS.output(". Then, the worrying sensation fades, replaced by a sense of unfamiliar weight. While you watch, <b>your chest swells into a set of A-cup breasts!</b>");
-								target.breastRows[0].breastRating = 1;
+								target.breastRows[0].breastRatingRaw += 1;
 							}
 							//Jump a cup size 1
 							else if(rand(2) == 0)
 							{
 								kGAMECLASS.output("\n\nYou shift position only to be startled by a heavy jiggle from your chest. Glancing down, you realize that your [pc.chest] have noticeably swollen. They fit your full figure a bit better now.");
-								target.breastRows[0].breastRating++;
+								target.breastRows[0].breastRatingRaw++;
 							}
 							//Jump a cup size 2
 							else 
 							{
 								kGAMECLASS.output("\n\nPleasant warmth rolls over your [pc.chest] like waves massage oil, tingling in all the right ways. You can't help but heft one and smile at how great they feel. Surprisingly, there's more weight in your hand than you remember. Your breasts have grown.");
 								target.lust(3+rand(2));
-								target.breastRows[0].breastRating++;
+								target.breastRows[0].breastRatingRaw++;
 							}
 							changes++;
 						}
-						if(target.hipRating < 9 && rand(3) == 0 && changes < changeLimit)
+						if(target.hipRatingRaw < 9 && rand(3) == 0 && changes < changeLimit)
 						{
 							//Hips grow a fair amount - not to obscene sizes, however
 							//1 (no pants only!)
@@ -257,7 +257,7 @@
 							//3 (whatevahs)
 							else kGAMECLASS.output("\n\nYour idle movements seem a little more awkward and ungaily than you are used to. Slowing down to inspect the way you stand, you realize that your [pc.hips] have widened and compensate accordingly.");
 							changes++;
-							target.hipRating++;
+							target.hipRatingRaw++;
 						}
 					}
 				}
@@ -270,7 +270,7 @@
 						//Dick grows one to three inches towards previously established pandacap
 						//Find smallest dick for expansion
 						x = target.shortestCockIndex();
-						if(target.cocks[x].cLength < target.tallness/12 * 1.5 && rand(2) == 0 && changes < changeLimit)
+						if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5 && rand(2) == 0 && changes < changeLimit)
 						{
 							y = 1 + rand(3);
 							//1
@@ -285,7 +285,6 @@
 								if(y == 2) kGAMECLASS.output(" and then another");
 								else if(y > 2) kGAMECLASS.output(" and keeps going");
 								kGAMECLASS.output(". It finally stops, softening slightly as its newfound bulk drags it down towards the ground.");
-								
 							}
 							//2
 							else
@@ -297,16 +296,16 @@
 								if(target.cockTotal() > 1) kGAMECLASS.output(", but it's your [pc.cock " + x + "] specifically that really catches your eye");
 								kGAMECLASS.output(". It's getting longer. You watch in fascination as you gain a full inch of length");
 								if(y > 1) kGAMECLASS.output(", and it keeps going");
-								kGAMECLASS.output(", not stopping until you're " + kGAMECLASS.num2Text(Math.round((target.cocks[x].cLength + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
+								kGAMECLASS.output(", not stopping until you're " + kGAMECLASS.num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
 							}
 							target.lust(5+rand(10));
-							target.cocks[x].cLength += y;
+							target.cocks[x].cLengthRaw += y;
 							changes++;
 						}
 						//Dick instantly hits panda thickness cap
 						//Find thinnest cock
 						x = target.thinnestCockRatioIndex();
-						if(target.cocks[x].cThicknessRatio < 1.7 && rand(3) == 0 && changes < changeLimit)
+						if(target.cocks[x].cThicknessRatioRaw < 1.7 && rand(3) == 0 && changes < changeLimit)
 						{
 							kGAMECLASS.output("\n\nYour groin is starting to feel remarkably... bloated. You check almost immediately, figuring it to be another change from the panda transformative. You're right. There's way more girthiness in your [pc.cocks] than you remember. In fact, you can see ");
 							if(target.cockTotal() == 1) kGAMECLASS.output("it");
@@ -314,7 +313,7 @@
 							kGAMECLASS.output(" swelling even now, filling to a thick, juicy broadness that would look perfectly at home on a bear.");
 							for(x = 0; x < target.cockTotal(); x++)
 							{
-								target.cocks[x].cThicknessRatio = 1.7;
+								target.cocks[x].cThicknessRatioRaw = 1.7;
 							}
 							changes++;
 							target.lust(3+rand(3));
@@ -338,9 +337,13 @@
 								kGAMECLASS.output("\n\nYou nearly tip over backwards as the weight of your chest diminishes. Your [pc.chest] are rapidly shrinking down, disappearing with such suddenness that you wonder how you ever got them in the first place. They're completely gone by the time you finish that errant thought.");
 								for(x = 0; x < target.bRows(); x++)
 								{
-									target.breastRows[x].breastRating -= y;
+									target.breastRows[x].breastRatingRaw -= y;
 									//Keep the negative tits away.
-									if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
+									if(target.breastRows[x].breastRatingRaw <= 0)
+									{
+										target.breastRows[x].breastRatingRaw = 0;
+										target.breastRows[x].brestRatingMod = 0;
+									}
 								}
 							}
 							//Big Reduction
@@ -352,9 +355,13 @@
 								//Knock a buncha size off your knockers!
 								for(x = 0; x < target.bRows(); x++)
 								{
-									target.breastRows[x].breastRating -= y;
+									target.breastRows[x].breastRatingRaw -= y;
 									//Keep the negative tits away.
-									if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
+									if(target.breastRows[x].breastRatingRaw <= 0)
+									{
+										target.breastRows[x].breastRatingRaw = 0;
+										target.breastRows[x].breastRatingMod = 0;
+									}
 								}
 							}
 							changes++;
@@ -367,7 +374,7 @@
 						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
 						//30 == JJ
 						//1 == A
-						if(target.thickness * .25 > target.breastRows[0].breastRating - 1 && rand(3) == 0 && changes < changeLimit)
+						if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1 && rand(3) == 0 && changes < changeLimit)
 						{
 							//1
 							if(rand(2) == 0) 
@@ -385,7 +392,7 @@
 							{
 								kGAMECLASS.output("\n\nYou shudder with your whole body when the splice kicks in. There's a euphoric rush that drives straight towards your chest and nearly doubles you over on the spot. Your [pc.nipples] push out, obscuring some of your [pc.belly] as they rise on a tide of quivering chest-flesh. <b>You're growing boobs - real, soft, breasts!</b> Gingerly, you give one a poke. It jiggles, swelling further. Encouraged by this, you grab hold with both hands and feverishly grope yourself, enjoying the feel of your cushy chest as it assumes its full size. <b>You've grown " + target.breastCup(0) + " melons!</b>");
 							}
-							target.breastRows[0].breastRating = Math.round(target.thickness * .25)+1;
+							target.breastRows[0].breastRatingRaw = Math.round(target.thickness * .25)+1;
 							changes++;
 						}
 						//Extra clits are removed

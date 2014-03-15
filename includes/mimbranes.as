@@ -1248,7 +1248,7 @@ public function mimbraneSleepEvents():void
 				output("\n\nYou run your hands around your [pc.ass] confirming its lack of feeling. But as you run your finger close to your [pc.asshole], it suddenly clenches shut with amazing force! Your finger is unable to find any sort of purchase from what was once a cavernous wet den. Your  only guess is that the Mimbrane would rather not have its hole penetrated in any fashion right at the moment. You’re too groggy to get upset over this and challenge the little monster.");
 				output("\n\nA peeling sensation from within your cheeks surprises you next. The parasite must be separating from its second skin. You can make out your new, smaller cheeks as they flex and pull against your [pc.ass]. It were as if a comically large bandage were being taken off piece by piece from your supple fresh [pc.skin]. Soon, air slinks in and kisses your bottom, letting you know that the parasite has managed to get the edges of its former flesh free. The sensation also alerts you to how moist and tender your behind is. Unbeknownst to you, your new cheeks are covered in a film of Mimbrane sweat.");
 				output("\n\nA final tingling peel right at your still-clamped asshole is all that’s left of the parasite’s work.");
-				if (pc.analLooseness <= 4) output(" As it pops off, you feel your asshole recover from some of the forced looseness brought on to you by the parasite.");
+				if (pc.ass.looseness() <= 4) output(" As it pops off, you feel your asshole recover from some of the forced looseness brought on to you by the parasite.");
 				output(" Your Mimbrane starts thrusting your posterior to the side, trying to slide its offspring off of you. However, your curiosity has grown too large for you to sit on the sidelines any longer, and you promptly grab the lifeless ass-shaped sheet sitting atop your moistened bottom. Your Mimbrane chirps in surprise, but you let the worried critter know you’ll let its prodigy free momentarily. How many other opportunities does one have to inspect a being such as this?");
 				output("\n\nYou remain laying on your front, uninterested in smearing your bedspread with the lingering coating of parasitic sweat on your bare bottom. Instead, you rest your head on its side and hold the former [pc.butt] up with one hand. It’s an odd sight paired with the feeling in your grasp. On one side you can feel the [pc.skin], see the unmistakable resemblance of your old bubble butt – [pc.asshole] still forced shut. On the hollow inside, however, is the smooth, damp underside of a Mimbrane.");
 				output("\n\nDuring one of your awe-filled glimpses of the ass oddity, the hollow former gaze of your Mimbrane gets a new burst of life. Once the new parasite realizes its stuck in your grasp, it flails wildly, forcing you into dropping it helplessly onto the floor. It flops around like the oddest looking fish you’ve ever seen, desperately trying to push out its four corners and get closer to its natural square shape, but it’s unable to hastily rid itself of your former appearance. ");
@@ -1916,7 +1916,7 @@ public function friendlyMimbraneEvents():void
 
 				messageArray.push(msg);
 
-				if (pc.vaginalWetness() > 3)
+				if (pc.wetness() > 3)
 				{
 					messageArray.push("Your Mimbrane seems to be having fun with your [pc.pussy] and its veritable river of feminine fluids. One moment the parasite seems to be blowing bubbles, the next it’s starting and stopping the works, and the next it’s merely producing moist chirps.");
 				}
@@ -1947,7 +1947,7 @@ public function friendlyMimbraneEvents():void
 
 				messageArray.push(msg);
 
-				if (pc.analLooseness() > 3)
+				if (pc.ass.looseness() > 3)
 				{
 					messageArray.push("It’s hard to go about your day when your [pc.asshole] pulsates between a gaping cavern and a tight pin hole. Your butt-bound Mimbrane seems to be enjoying your flexible lower chute.");
 				}
@@ -3316,8 +3316,8 @@ public function useDatMimbraneLikeACondom():void
 	if (pc.hasVagina())
 	{
 		output(" An ignored [pc.pussy] relishes its own");
-		if (pc.vaginalWetness() <= 1) output(" meager");
-		else if (pc.vaginalWetness() <= 3) output(" ample");
+		if (pc.wetness() <= 1) output(" meager");
+		else if (pc.wetness() <= 3) output(" ample");
 		else output(" plentiful");
 		output(" release of feminine fluids.")
 	} 
@@ -3473,9 +3473,9 @@ public function attachAssMimbrane():void
 	output("\n\nThe Mimbrane, however, is ecstatic with its endeavour being made that much easier. The creature scrambles atop your duo of hills only to find that first it must play janitor. It slides and sweeps over your [pc.skinfurscales], removing any of evidence of the jungle from its new home. You feel as if someone is sensually massaging your ass with a wet silk rag. It goes on for several minutes, long enough for you to start digging your hands into the ground to deal with the unrelenting turmoil.");
 	output("\n\nIts job complete, the parasite wastes no more time in draping itself atop your [pc.ass], sealing to its every detail. The sentient rag worms its way into your crack and within your [pc.asshole]. It isn’t long before your butt is completely smothered, Mimbrane stretched to easily embrace your");
 
-	if (pc.buttRating <= 4) output(" average");
-	else if (pc.buttRating <= 8) output(" hefty"); 
-	else if (pc.buttRating <= 16) output(" expansive");
+	if (pc.buttRating() <= 4) output(" average");
+	else if (pc.buttRating() <= 8) output(" hefty"); 
+	else if (pc.buttRating() <= 16) output(" expansive");
 	else output(" titanic");
 
 	output(" trunk. Next, the creature weaves itself into your nervous system, confusing you further as your mind is unable to discern between genuine and relayed feelings. You absentmindedly try and clench your pucker, but get no response. One moment you feel tight, the next moment you feel as if your asshole was a gaping crater.");
@@ -3681,8 +3681,8 @@ public function acceptFaceMimbrane():void
 		output("\n\nThe light red haze crushing you starts to dissipate. Actually...it seems to be sucking into you. More accurately, the Mimbranes are absorbing it! Your whole body feels as if its taking in a deep breath, somehow. Soon, the cloud is clear, and with it goes the boiling humidity! That’s one nuisance down. The next is your searing libido, aching for release. What would be the best way to take care of that?");
 		output("\n\nYour [pc.pussy] knows, apparently; it’s going crazy! The Mimbrane folds are exciting themselves into a soaked frenzy. Even your [pc.clit] is stimulating itself, flesh pushing and teasing the love button with exacting precision. The parasite knows itself – and by extension you – down to seemingly every last cell. A");
 
-		if (pc.vaginalWetness < 2) output(" splash");
-		else if (pc.vaginalWetness <= 3) output(" wave");
+		if (pc.wetness() < 2) output(" splash");
+		else if (pc.wetness() <= 3) output(" wave");
 		else output(" torrent");
 		output(" of femspunk gushes out your gash.");
 
@@ -4256,9 +4256,9 @@ public function feedMimbranesWithPussy():void
 	if (attachedMimbranes() > 1) output(" are");
 	else output(" is");
 	output(" more than capable of exaggerating your stimulation when they aren’t trying to hide. Your [pc.clit] may as well be a hardline to any sense of pleasure your being has ever known. Merely a few minutes is all it takes to get your juices");
-	if (pc.vaginalWetness <= 1) output(" dripping");
-	else if (pc.vaginalWetness == 2) output(" flowing");
-	else if (pc.vaginalWetness <= 3) output(" gushing");
+	if (pc.wetness() <= 1) output(" dripping");
+	else if (pc.wetness() == 2) output(" flowing");
+	else if (pc.wetness() <= 3) output(" gushing");
 	else output(" bursting.");
 
 	output("\n\nInduced or not, it’s a little disconcerting.");
@@ -4280,9 +4280,9 @@ public function feedMimbranesWithPussy():void
 	if (pc.hasStatusEffect("Mimbrane Cock"))
 	{
 		output("\n\nYour eager [pc.cock] can’t help but feel a tad betrayed as you milk your coosh for all its worth. The Mimbrane member is too engorged on blood, rocking through your ever-ascending sexual high, to bend down towards the");
-		if (pc.vaginalWetness <= 1) output(" brook");
-		else if (pc.vaginalWetness == 2) output(" stream");
-		else if (pc.vaginalWetness <= 3) output(" river");
+		if (pc.wetness() <= 1) output(" brook");
+		else if (pc.wetness() == 2) output(" stream");
+		else if (pc.wetness() <= 3) output(" river");
 		else output(" torrent");
 		output(" flowing below it. You don’t leave the parasitic rod waiting too long, however, dabbing your fingers in your juices and rubbing them generously onto your [pc.cockhead]. Gentle squeaks let you know how content the Mimbrane is, and its absorption of your fluids fills your dick with streams of vibrant tidings. It’s a small wonder you don’t lose another load right there.");
 	}

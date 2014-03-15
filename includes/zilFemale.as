@@ -540,12 +540,12 @@ function footjobFromFemzil():void {
 	output("\n\nSatisfied with your efforts, the zil girl gives you a rough push onto your back, leaving your prick standing at attention, stiff as a flag pole as your mate looms over you, a lascivious grin spreading across her insectile face. Teasingly, she touches her toe to the [pc.cockHead " + x + "] of your cock, rubbing the smooth black digit across your well lubed brim, eliciting a sharp gasp of pleasure from you. You grit your teeth as the sultry wasp girl circles your [pc.cockHead " + x + "], cooing to herself as your [pc.cock " + x + "] twitches, begging for a good fucking; desperate trickles of pre leak down from your head before you can blink, the creamy seed swirling in the amber glaze on your shaft.");
 	output("\n\nGently, the zil pushes forward, pressing your dick down onto your belly ");
 	//if big tits and cock:
-	if(pc.cocks[x].cLength >= 15 && pc.biggestTitSize() >= 1) output(", right between your tits");
+	if(pc.cocks[x].cLength() >= 15 && pc.biggestTitSize() >= 1) output(", right between your tits");
 	output(". Her heel's on you immediately, ");
 	if(pc.balls > 0) output("pressing down uncomfortably hard on your package and ");
 	output("slowly rubbing along your sensitive underside until a thick, hot lake of pre bubbles out from your cumslit, pooling ");
-	if(pc.cocks[x].cLength >= 22) output(" on your [pc.face]");
-	else if(pc.cocks[x].cLength >= 15) output(" on your [pc.chest]");
+	if(pc.cocks[x].cLength() >= 22) output(" on your [pc.face]");
+	else if(pc.cocks[x].cLength() >= 15) output(" on your [pc.chest]");
 	else output(" on your belly");
 	output(". Your entire body trembles as the smooth, sheet sole of the zil's alien foot slides down your shaft; your breath catches as she grinds her heel on your glans, smearing her toes with your flood of pre.");
 	

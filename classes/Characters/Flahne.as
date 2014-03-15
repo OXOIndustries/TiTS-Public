@@ -106,7 +106,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRating = 13;
+			this.hipRatingRaw = 13;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -117,12 +117,12 @@
 			//13 - expansive
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
-			this.buttRating = 13;
+			this.buttRatingRaw = 13;
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
-			this.cocks[0].cThicknessRatio = 1.25;
-			this.cocks[0].cLength = 16;
+			this.cocks[0].cThicknessRatioRaw = 1.25;
+			this.cocks[0].cLengthRaw = 16;
 			this.cocks[0].addFlag(GLOBAL.LUBRICATED);
 			this.cocks[0].addFlag(GLOBAL.SQUISHY);
 			this.cocks[0].addFlag(GLOBAL.SMOOTH);
@@ -132,7 +132,7 @@
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQuality = 1;
 			this.cumType = GLOBAL.CUM;
-			this.ballSize = 0;
+			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 400;
@@ -147,8 +147,8 @@
 			this.createVagina();
 			this.vaginas[0].hymen = false;
 			this.vaginas[0].clits = 1;
-			this.vaginas[0].wetness = 4;
-			this.vaginas[0].looseness = 1;
+			this.vaginas[0].wetnessRaw = 4;
+			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 100;
 			//Goo is hyper friendly!
 			this.elasticity = 3;
@@ -157,13 +157,13 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplier = 1;
 			
-			this.breastRows[0].breastRating = 15;
+			this.breastRows[0].breastRatingRaw = 15;
 			this.nippleColor = "honey";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
-			this.ass.wetness = 3;
+			this.ass.wetnessRaw = 3;
 			
 			this._isLoading = false;
 		}

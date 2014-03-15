@@ -269,7 +269,7 @@ package classes.Items.Miscellaneous
 					if(target.hasCock()) kGAMECLASS.output("female ");
 					kGAMECLASS.output("genitals, like a zil woman.</b>");
 				}
-				target.vaginas[x].wetness++;
+				target.vaginas[x].wetnessRaw++;
 				changes++;
 			}
 			//Find biggest Tit row!
@@ -277,13 +277,13 @@ package classes.Items.Miscellaneous
 			y = 0;
 			choices = new Array();
 			while (x < target.bRows()) {
-				if(target.breastRows[x].breastRating > target.breastRows[y].breastRating) {
+				if(target.breastRows[x].breastRatingRaw > target.breastRows[y].breastRatingRaw) {
 					y = x;
 				}
 				x++;
 			}
 			//Breast shrink to large EE's
-			if(target.bRating(x) >= 11 && changes < changeLimit && rand(2) == 0) {
+			if(target.bRatingRaw(x) >= 11 && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nA ripple runs through ");
 				if(target.bRows() == 1) kGAMECLASS.output("your [pc.chest]");
 				else if(x == 0) kGAMECLASS.output("your top row of breasts");
@@ -292,9 +292,9 @@ package classes.Items.Miscellaneous
 				else kGAMECLASS.output("one of your lower rows of breasts");
 				kGAMECLASS.output(". It almost throws you off balance with how generously it shakes the girls around! In its wake, the [pc.skin] covering them starts feeling tight, a little tingly even. You heft your weighty chest with concern, only to feel your [pc.breasts " + x + "] diminishing in your hands. They stabilize a while later at a " + target.breastCup(x) + ".");
 				kGAMECLASS.output(" Your [pc.nipples " + x + "] tighten up right along with your smaller breasts to keep themselves proportional to your reduced bust.");
-				y = target.bRating(x) - 11;
+				y = target.bRatingRaw(x) - 11;
 				y = Math.round((rand(y/4*10)/10 + y/4 + 1)*10)/10;
-				target.breastRows[x].breastRating -= y;
+				target.breastRows[x].breastRatingRaw -= y;
 				changes++;
 			}
 			//Breasts grow to C's - top row only
@@ -320,22 +320,22 @@ package classes.Items.Miscellaneous
 					kGAMECLASS.output(" Your B-cups tingle pleasantly, giving you just enough time to get your hands up to wrap around them. Almost on cue, your breasts swell up into your hands, expanding and jiggling with each passing moment, feeling so warm and wonderful as they expand. <b>You barely suppress a moan as you grow into nicely-rounded C-cups.</b> They still tingly hotly with the pleasant aftershocks of excitement.");
 					target.lust(5);
 				}
-				target.breastRows[0].breastRating++;
+				target.breastRows[0].breastRatingRaw++;
 				changes++;
 			}
 			//Hips widen to 6
-			if(target.hipRating < 6 && changes < changeLimit && rand(3) == 0) {
+			if(target.hipRatingRaw < 6 && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nYou adjust idly adjust your posture only to have to do it again a second later. ");
 				if(target.armor.shortName != "") kGAMECLASS.output("Your [pc.armor.longName] creaks ominously. Your [pc.hips] are getting bigger!");
 				else kGAMECLASS.output("You look down and watch, and then you spot it: your [pc.hips] are getting bigger!");
 				kGAMECLASS.output(" The change is slow enough to you almost missed it, but <b>there's definitely a little extra thickness to your waist.</b>");
-				target.hipRating++;
+				target.hipRatingRaw++;
 				changes++;
 			}
 			//Butt expands to 7
-			if(target.buttRating < 7 && changes < changeLimit && rand(3) == 0) {
+			if(target.buttRatingRaw < 7 && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nAn odd feeling runs through [pc.butt], earning a small jump of surprise at the abrupt onset of sensation. It reminds you of that pins and needles feeling you get when part of you falls asleep, only on your ass. You reach back massage the feeling away and find yourself with a little bit more cheek in your hand than before. <b>Your [pc.butt] has gotten bigger!</b>");
-				target.buttRating++;
+				target.buttRatingRaw++;
 				changes++;
 			}
 			//HONEY GIRLCUM! - Req's appropriate wetness of 2 first.
@@ -435,13 +435,13 @@ package classes.Items.Miscellaneous
 				//Make a list of all the big
 				while(x < target.cockTotal())
 				{
-					if(target.cocks[x].cLength > 8) choices[choices.length] = x;
+					if(target.cocks[x].cLengthRaw > 8) choices[choices.length] = x;
 					x++;
 				}
 				//Pick a random dick out of the list
 				x = choices[rand(choices.length)];
 				kGAMECLASS.output("\n\nA tightness in your package is the only warning your get before your [pc.cock " + x + "] starts shrinking.");
-				y = target.cocks[x].cLength - 8;
+				y = target.cocks[x].cLengthRaw - 8;
 				y = Math.round((rand(y/4*10)/10 + y/4 + 1)*10)/10;
 				if(y > 11) y = 11;
 
@@ -460,7 +460,7 @@ package classes.Items.Miscellaneous
 			//Make a list of all the girth needing
 			while(x < target.cockTotal())
 			{
-				if(target.cocks[x].cThicknessRatio < 1.5) choices[choices.length] = x;
+				if(target.cocks[x].cThicknessRatioRaw < 1.5) choices[choices.length] = x;
 				x++;
 			}
 			//Pick a random dick out of the list
@@ -473,13 +473,13 @@ package classes.Items.Miscellaneous
 				else if(target.cockTotal() == 2) kGAMECLASS.output("out from next to its less excited brother");
 				else kGAMECLASS.output("out from next to its less excited brethren");
 				kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you're holding a full-sized rager, but it doesn't stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
-				target.cocks[x].cThicknessRatio += .1;
+				target.cocks[x].cThicknessRatioRaw += .1;
 				changes++;
 			}
 			//Ball shrinkage
-			if(target.balls > 0 && target.ballSize >= 4 && changes < changeLimit && rand(2) == 0) {
+			if(target.balls > 0 && target.ballSizeRaw >= 4 && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nYour weighty sack weighs less and less on you with each passing moment. You look down to watch, treated to the sight of your [pc.balls] compressing down into a tighter, more compact package.");
-				y = target.ballSize - 3.5;
+				y = target.ballSizeRaw - 3.5;
 				y = Math.round((rand(y/4*10)/10 + y/4 + .5)*10)/10;
 				if(y > 5) y = 5;
 				if(y >= 4) kGAMECLASS.output(" You lost quite a few inches off your testicular diameter!");
@@ -487,7 +487,7 @@ package classes.Items.Miscellaneous
 				else if(y >= 1.3) kGAMECLASS.output(" You lost over an inch of testicular diameter!");
 				else if(y >= .85) kGAMECLASS.output(" You lost around an inch of testicular diameter!");
 				else kGAMECLASS.output(" You only lost a little bit of size, all things considered.");
-				target.ballSize -= y;
+				target.ballSizeRaw -= y;
 				changes++;
 			}
 

@@ -283,14 +283,14 @@ function buttfuckDefeatedZil():void {
 	output(" At the same time, his sphincter relaxes enough for you to start pushing forwards, his wings giving up weak little flutters of excitement.");
 	
 	//{Sub 7":}
-	if(pc.cocks[x].cLength <= 7) {
+	if(pc.cocks[x].cLength() <= 7) {
 		output("\n\nAlmost immediately, the wasp-boy's tight little hole lets you slide right in thanks to your saliva, perfectly tight around your " + pc.cockDescript(x) + " and reflexively squeezing down around you like a warm sleeve.");
 		if(pc.cockTotal() == 2) output("  Your other penis slides across his strip of exposed flesh, sawing through his crack with your pushes, far from neglected.");
 		else if(pc.cockTotal() > 2) output("  Your other penises slide across his exposed flesh and plated bottom, gaining what friction they can.");
 		output(" He sighs once you've bottomed out, and he slowly begins to leak, honey-like, from his bouncing boner, ribbons of the stuff dripping out of his covered cock.  Grabbing hold of his hips, you massage your fluttering, anal toy and make ready to truly plumb his depths.");
 	}
 	//{Sub 15":}
-	else if(pc.cocks[x].cLength <= 15) {
+	else if(pc.cocks[x].cLength() <= 15) {
 		output("\n\nYour " + pc.cockDescript(x) + " batters at the wasp-boy's tight little hole again and again, but it refuses to yield to your stubborn thrusts at first.  He obviously hasn't seen much action, as his butt just isn't used to stretching for a big, stiff cock like yours. You keep at it, and his anal defenses slowly fall before your amorous assault, at first just allowing your " + pc.cockHead(x) + " to slip inside and then almost gleefully accepting inch after inch of throbbing, " + pc.mf("male","herm") + " lust.");
 		if(pc.cockTotal() == 2) output(" Your other penis slides across his strip of exposed flesh, sawing through his crack with your pushes, far from neglected.");
 		else if(pc.cockTotal() > 2) output(" Your other penises slide across his exposed flesh and plated bottom, gaining what friction they can.");

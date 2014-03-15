@@ -247,29 +247,29 @@
 				changes++;
 			}
 			//Grow Breasts to DD then rarely up to F (rare version requires naleen tail and cunt)
-			if(target.breastRows[0].breastRating < 5 && rand(3) == 0 && changes < changeLimit) {
+			if(target.breastRows[0].breastRatingRaw < 5 && rand(3) == 0 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. ");
-				if(target.breastRows[0].breastRating < 1) {
+				if(target.breastRows[0].breastRating() < 1) {
 					kGAMECLASS.output("There's a small, budding breast there, and it's growing bigger! <b>You palm your swelling chest as it grows into a B-cup bosom.</b> You guess there must be some good reason why naleen are so top-heavy.");
-					target.breastRows[0].breastRating += 2;
+					target.breastRows[0].breastRatingRaw += 2;
 				}
 				else {
 					kGAMECLASS.output("There's an extra heft to your breasts as you contact them, and you realize that your fingers can sink just a little deeper into the pliant flesh than before. They feel extra weighty in your hands, jiggling a bit as you estimate their size. <b>They must have grown to ");
-					target.breastRows[0].breastRating += 2 + rand(3);
+					target.breastRows[0].breastRatingRaw += 2 + rand(3);
 					kGAMECLASS.output(target.breastCup(0) + "s.</b> Now you're looking more like a naleen!");
 				}
 				changes++;
 			}
 			//rarely grow upup to F (rare version requires naleen tail and cunt)
-			if(target.breastRows[0].breastRating < 11 && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVagina(GLOBAL.NAGA)) {
+			if(target.breastRows[0].breastRatingRaw < 11 && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVagina(GLOBAL.NAGA)) {
 				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. They're way bigger than before and still going! Maybe letting yourself change this much has made your breasts more receptive to the naleen mutations. ");
-				target.breastRows[0].breastRating += 3 + rand(3);
+				target.breastRows[0].breastRatingRaw += 3 + rand(3);
 				kGAMECLASS.output("Whatever the case, <b>you're left with two, big pillowy " + target.breastCup(0) + "s.</b>");
 				changes++;
 			}
 			//Widen hips to 12
-			if(target.hipRating < 12 && changes < changeLimit && rand(3) == 0) {
-				target.hipRating += 1 + rand(3);
+			if(target.hipRatingRaw < 12 && changes < changeLimit && rand(3) == 0) {
+				target.hipRatingRaw += 1 + rand(3);
 				kGAMECLASS.output("\n\nThere's a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait has widened with your [pc.hips]. You aren't sure why a race that doesn't have legs would have such wide hips anyway, but they do look nice on you.");
 				changes++;
 			}
@@ -300,8 +300,8 @@
 				else kGAMECLASS.output("a ");
 				kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It's then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
 				target.createCock();
-				target.cocks[1].cLength = target.cocks[0].cLength;
-				target.cocks[1].cThicknessRatio = target.cocks[0].cThicknessRatio;
+				target.cocks[1].cLengthRaw = target.cocks[0].cLengthRaw;
+				target.cocks[1].cThicknessRatioRaw = target.cocks[0].cThicknessRatioRaw;
 				target.cocks[1].knotMultiplier = target.cocks[0].knotMultiplier;
 				target.shiftCock(1,GLOBAL.NAGA);
 				target.lust(5);
@@ -390,7 +390,7 @@
 					else kGAMECLASS.output(", causing it to swell a bit as it hangs in the open air.");
 					kGAMECLASS.output(" It stops as soon as it starts, but a few moments later, your penis shudders once more, looking a little bigger than before. The odd, expanding sensation returns one last time, making you big enough to be a full inch bigger when hard. Perhaps being more like a planet's apex predator isn't such a bad idea.");
 				}
-				target.cocks[x].cLength += 1;
+				target.cocks[x].cLengthRaw += 1;
 				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}
@@ -398,7 +398,7 @@
 			else if(target.hasStatusEffect("Genital Slit") && target.shortestCockLength() < 16 && changes < changeLimit && rand(6) == 0) {
 				var x:int = target.shortestCockIndex();
 				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can't help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn't emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
-				target.cocks[x].cLength += 1 + rand(3);
+				target.cocks[x].cLengthRaw += 1 + rand(3);
 				kGAMECLASS.output(" You're thicker to match, too.");
 				changes++;
 			}
@@ -411,17 +411,17 @@
 				if(target.bRows() > 1) {
 					y = 0;
 					for(x = 0; x < target.bRows(); x++) {
-						if(target.breastRows[x].breastRating >= 1) {
+						if(target.breastRows[x].breastRatingRaw >= 1) {
 							y++;
-							if(target.breastRows[x].breastRating >= 6) target.breastRows[x].breastRating -= 2;
-							else target.breastRows[x].breastRating--;
+							if(target.breastRows[x].breastRatingRaw >= 6) target.breastRows[x].breastRatingRaw -= 2;
+							else target.breastRows[x].breastRatingRaw--;
 						}
 					}
 					if(y > 1) kGAMECLASS.output(" across every row bigger than a bee-sting");
 				}
 				else {
-					if(target.breastRows[0].breastRating >= 6) target.breastRows[0].breastRating -= 2;
-					else target.breastRows[0].breastRating--;
+					if(target.breastRows[0].breastRatingRaw >= 6) target.breastRows[0].breastRatingRaw -= 2;
+					else target.breastRows[0].breastRatingRaw--;
 				}
 				if(target.biggestTitSize() < 1) kGAMECLASS.output(", leaving you as flat as a board");
 				kGAMECLASS.output(".");

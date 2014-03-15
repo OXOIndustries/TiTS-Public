@@ -29,7 +29,7 @@
 				breastRatingRaw += arg;
 			}
 			
-			var currRating:Number = breastRatingRaw + brestRatingMod;
+			var currRating:Number = breastRatingRaw + breastRatingMod;
 			
 			if (currRating < 0)
 			{

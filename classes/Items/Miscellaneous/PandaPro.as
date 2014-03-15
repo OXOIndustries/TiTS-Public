@@ -97,7 +97,7 @@
 					//Dick grows one to three inches towards previously established pandacap
 					//Find smallest dick for expansion
 					x = target.shortestCockIndex();
-					if(target.cocks[x].cLength < target.tallness/12 * 1.5)
+					if(target.cocks[x].cLengthRaw < target.tallness/12 * 1.5)
 					{
 						y = 1 + rand(3);
 						//1
@@ -112,7 +112,6 @@
 							if(y == 2) kGAMECLASS.output(" and then another");
 							else if(y > 2) kGAMECLASS.output(" and keeps going");
 							kGAMECLASS.output(". It finally stops, softening slightly as its newfound bulk drags it down towards the ground.");
-							
 						}
 						//2
 						else
@@ -124,16 +123,16 @@
 							if(target.cockTotal() > 1) kGAMECLASS.output(", but it's your [pc.cock " + x + "] specifically that really catches your eye");
 							kGAMECLASS.output(". It's getting longer. You watch in fascination as you gain a full inch of length");
 							if(y > 1) kGAMECLASS.output(", and it keeps going");
-							kGAMECLASS.output(", not stopping until you're " + kGAMECLASS.num2Text(Math.round((target.cocks[x].cLength + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
+							kGAMECLASS.output(", not stopping until you're " + kGAMECLASS.num2Text(Math.round((target.cocks[x].cLength() + y)*10)/10) + " inches long. A pearl of pre-cum slips out of the tip once the change completes, leaving you nicely hung.");
 						}
 						target.lust(5+rand(10));
-						target.cocks[x].cLength += y;
+						target.cocks[x].cLengthRaw += y;
 						changes++;
 					}
 					//Dick instantly hits panda thickness cap
 					//Find thinnest cock
 					x = target.thinnestCockRatioIndex();
-					if(target.cocks[x].cThicknessRatio < 1.7)
+					if(target.cocks[x].cThicknessRatioRaw < 1.7)
 					{
 						kGAMECLASS.output("\n\nYour groin is starting to feel remarkably... bloated. You check almost immediately, figuring it to be another change from the panda transformative. You're right. There's way more girthiness in your [pc.cocks] than you remember. In fact, you can see ");
 						if(target.cockTotal() == 1) kGAMECLASS.output("it");
@@ -141,7 +140,7 @@
 						kGAMECLASS.output(" swelling even now, filling to a thick, juicy broadness that would look perfectly at home on a bear.");
 						for(x = 0; x < target.cockTotal(); x++)
 						{
-							target.cocks[x].cThicknessRatio = 1.7;
+							target.cocks[x].cThicknessRatioRaw = 1.7;
 						}
 						changes++;
 						target.lust(3+rand(3));
@@ -165,9 +164,13 @@
 							kGAMECLASS.output("\n\nYou nearly tip over backwards as the weight of your chest diminishes. Your [pc.chest] are rapidly shrinking down, disappearing with such suddenness that you wonder how you ever got them in the first place. They're completely gone by the time you finish that errant thought.");
 							for(x = 0; x < target.bRows(); x++)
 							{
-								target.breastRows[x].breastRating -= y;
+								target.breastRows[x].breastRatingRaw -= y;
 								//Keep the negative tits away.
-								if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
+								if(target.breastRows[x].breastRatingRaw < 0)
+								{
+									target.breastRows[x].breastRatingRaw = 0;
+									target.breastRows[x].breastRatingMod = 0;
+								}
 							}
 						}
 						//Big Reduction
@@ -179,9 +182,13 @@
 							//Knock a buncha size off your knockers!
 							for(x = 0; x < target.bRows(); x++)
 							{
-								target.breastRows[x].breastRating -= y;
+								target.breastRows[x].breastRatingRaw -= y;
 								//Keep the negative tits away.
-								if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
+								if(target.breastRows[x].breastRatingRaw < 0)
+								{
+									target.breastRows[x].breastRatingRaw = 0;
+									target.breastRows[x].breastRatingMod = 0;
+								}
 							}
 						}
 						changes++;
@@ -194,7 +201,7 @@
 					//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
 					//30 == JJ
 					//1 == A
-					if(target.thickness * .25 > target.breastRows[0].breastRating - 1)
+					if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1)
 					{
 						//1
 						if(rand(2) == 0) 
@@ -212,7 +219,7 @@
 						{
 							kGAMECLASS.output("\n\nYou shudder with your whole body when the splice kicks in. There's a euphoric rush that drives straight towards your chest and nearly doubles you over on the spot. Your [pc.nipples] push out, obscuring some of your [pc.belly] as they rise on a tide of quivering chest-flesh. <b>You're growing boobs - real, soft, breasts!</b> Gingerly, you give one a poke. It jiggles, swelling further. Encouraged by this, you grab hold with both hands and feverishly grope yourself, enjoying the feel of your cushy chest as it assumes its full size. <b>You've grown " + target.breastCup(0) + " melons!</b>");
 						}
-						target.breastRows[0].breastRating = Math.round(target.thickness * .25)+1;
+						target.breastRows[0].breastRatingRaw = Math.round(target.thickness * .25)+1;
 						changes++;
 					}
 					//Extra clits are removed

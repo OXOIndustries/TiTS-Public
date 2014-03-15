@@ -164,10 +164,10 @@
 					}
 					//Cut cLength loss, horses lose slower
 					if(cType == 1 && cLength() < 10) temp/=3;
-					else if(cLength < 10) temp/=2;
+					else if(cLength() < 10) temp/=2;
 					//Cut again for massively dicked
 					if(cType == 1 && cLength() < 4) temp/=3;
-					else if(cLength < 4) temp/=2;
+					else if(cLength() < 4) temp/=2;
 					if(cType == 1 && cLength() < 6) temp/=3;
 					else if(cLength() < 6) temp/=2;
 					//MINIMUM cLength OF 1!

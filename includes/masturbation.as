@@ -176,10 +176,10 @@ function vaginalFap():void {
 	output(" cleft, and you let out a happy, contented sigh as you start to deal with your baser needs.");
 	
 	output("\n\nThe ");
-	if(pc.vaginas[0].wetness <= 1) output("slightly damp entrance your fingers slide against");
-	else if(pc.vaginas[0].wetness <= 2) output("sticky, simmering delta your fingers slip against");
-	else if(pc.vaginas[0].wetness <= 3) output("unmistakably wet and ready slit your fingers almost slip into");
-	else if(pc.vaginas[0].wetness <= 4) output("oozing, overly-lubricated entrance that nearly sucks your fingers in");
+	if(pc.vaginas[0].wetness() <= 1) output("slightly damp entrance your fingers slide against");
+	else if(pc.vaginas[0].wetness() <= 2) output("sticky, simmering delta your fingers slip against");
+	else if(pc.vaginas[0].wetness() <= 3) output("unmistakably wet and ready slit your fingers almost slip into");
+	else if(pc.vaginas[0].wetness() <= 4) output("oozing, overly-lubricated entrance that nearly sucks your fingers in");
 	else output("the soaking-wet, crotch-drenching entrance that would be oh so easy to enter");
 	output(" quivers deliciously at your touch, the folds engorging as they fill with unspent desire, their flesh sensitive and achy.");
 	if(pc.totalClits() > 0) {
@@ -481,7 +481,7 @@ function multiCockFap():void {
 	var choices:Array = new Array();
 	//Randomly select from available!
 	var x:int = pc.longestCock();
-	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength/pc.tallness >= 1/6) 
+	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength()/pc.tallness >= 1/6) 
 		choices[choices.length] = 1;
 	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;
 	if(pc.canAutoFellate(x)) 
@@ -493,7 +493,7 @@ function multiCockFap():void {
 	if(select == 1) {
 		nippleFucked = true;
 		output("\n\nThe excitement builds inside you, but you aren't yet ready to cum. You've got wonderful little [pc.nipples] perfectly made to assist in this task, and you're ");
-		if(pc.cocks[0].cLength/pc.tallness >= 1/5) output("plenty ");
+		if(pc.cocks[0].cLength()/pc.tallness >= 1/5) output("plenty ");
 		output("long enough to pull it off.  Bending forward, you lower your [pc.fullChest] to line up ");
 		if(pc.cockTotal() > 2) output("the pulsating phalluses lucky enough to be in your hands");
 		else output("the dual phalluses");
@@ -515,10 +515,10 @@ function multiCockFap():void {
 	else if(select == 3) {
 		sucked = true;
 		output("\n\nAs you stroke, the gleaming, sensitive [pc.cockHead " + x + "] of your [pc.cock " + x + "] bounces ");
-		if(pc.cocks[x].cLength/pc.tallness < 1/2.5) output("at the bottom of your view, desperate for attention.");
+		if(pc.cocks[x].cLength()/pc.tallness < 1/2.5) output("at the bottom of your view, desperate for attention.");
 		else output("in front of your [pc.face], so hard and needy, practically begging for attention.");
 		output(" You humor it by ");
-		if(pc.cocks[x].cLength/pc.tallness >= 1/2.5) output("bending the anxious, phallic peak toward your mouth");
+		if(pc.cocks[x].cLength()/pc.tallness >= 1/2.5) output("bending the anxious, phallic peak toward your mouth");
 		else output("bending down toward the anxious, phallic peak");
 		output(", planting a gentle kiss upon it. It immediately returns the kiss with a dollop of warm, wet pre-cum, sliming your [pc.lips] in a cock-gifted shine. You playfully extend your [pc.tongue] and lick around the circumference of your crown in slow circuits of wonderfully fellatic pleasure, swallowing whatever juices your member sees fit to express its joy with.");
 	}

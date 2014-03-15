@@ -67,6 +67,10 @@
 			{
 				return 1;
 			}
+			else if (currLoose > 5) // or so :V
+			{
+				return 5;
+			}
 			else
 			{
 				return currLoose;
