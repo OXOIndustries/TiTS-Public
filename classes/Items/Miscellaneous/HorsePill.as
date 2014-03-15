@@ -18,7 +18,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 10;
-			this.type = GLOBAL.FOOD;
+			this.type = GLOBAL.PILL;
 			
 			//Used on inventory buttons
 			this.shortName = "HorsePill";

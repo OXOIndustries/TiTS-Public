@@ -70,5 +70,9 @@
 			}
 			return false;
 		}
+		public function addFlag(arg):void {
+			if(!hasFlag(arg)) vagooFlags[vagooFlags.length] = arg;
+			else trace("Attempted to add flag " + arg + " to vagina of type " + type + ".");
+		}
 	}
 }
