@@ -51,6 +51,12 @@ function appearance(target:Creature):void {
 			else if(target.faceType == GLOBAL.LAPINE) output2(" The constant twitches of your nose and the length of your incisors gives your visage a hint of bunny-like cuteness.");
 			else if(target.faceType == GLOBAL.NAGA) output2(" A set of retractable, needle-like fangs sit in place of your canines and are ready to dispense their venom.");
 			else if(target.faceType == GLOBAL.NALEEN_FACE) output2(" A set of retractable, needle-like fangs sit in place of your canines, just like a naleen.");
+			else if(target.faceType == GLOBAL.HUMAN && target.hasStatusEffect("Mimbrane Face"))
+			{
+				if (target.statusEffectv3("Mimbrane Face") >= 3 && target.statusEffectv3("Mimbrane Face") < 8) output2(" Your lips appear slightly puffy.");
+				else if (target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) output2(" Your lips look deliciously pillowy.");
+				else if (target.statusEffectv3("Mimbrane Face") >= 13) output2(" Your lips appear lusciously large and undeniably kissable.");
+			}
 		}
 		else if(target.faceType == GLOBAL.HUMANMASKED) {
 			//appearance for skinheads
@@ -244,6 +250,47 @@ function appearance(target:Creature):void {
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		else if(target.armType == GLOBAL.PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
+		else if (target.armType == GLOBAL.HUMAN && target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
+		{
+			var bothHands:Boolean = false;
+			var feedVal:int = 0;
+
+			if (target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right")) bothHands = true;
+			
+			if (!bothHands)
+			{
+				if (target.hasStatusEffect("Mimbrane Hand Left")) feedVal = target.statusEffectv3("Mimbrane Hand Left");
+				else feedVal = target.statusEffectv3("Mimbrane Hand Right");
+			}
+
+			if (feedVal >= 3)
+			{
+				if (feedVal < 8)
+				{
+					output2(" Your hand");
+					if (bothHands) output2("s");
+					output2(" appear");
+					if (!bothHands) output2("s");
+					output2(" to be slightly distended.");
+				}
+				else if (feedVal < 13)
+				{
+					output2(" Your hand");
+					if (bothHands) output2("s");
+					output2(" appear");
+					if (!bothHands) output2("s");
+					output2(" puffy and inflated.");
+				}
+				else
+				{
+					output2(" Your hand");
+					if (bothHands) output2("s");
+					output2(" appear");
+					if (!bothHands) output2("s");
+					output2(" unusually large, almost engorged.");
+				}
+			}
+		}
 		//Done with head bits. Move on to body stuff
 		//Horse legType, other legType texts appear lower
 		if(target.legType == GLOBAL.MLP) output2("  From the waist down, you have an incredibly cute and cartoonish parody of a horse's body, with all four legs ending in flat, rounded feet.");
@@ -387,7 +434,49 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.CUNTSNAKE) output2("  A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
 		else if(target.tailType == GLOBAL.PANDA) output2("  A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		//legType SPECIAL
-		if(target.legType == GLOBAL.HUMAN) output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
+		if(target.legType == GLOBAL.HUMAN)
+		{
+			output2("  Two normal human legs grow down from your waist, ending in normal human feet.");
+
+			if (target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
+			{
+				var bothFeet:Boolean = false;
+				var feedVal:int = 0;
+
+				if (target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
+				
+				if (!bothHands)
+				{
+					if (target.hasStatusEffect("Mimbrane Foot Left")) feedVal = target.statusEffectv3("Mimbrane Foot Left");
+					else feedVal = target.statusEffectv3("Mimbrane Foot Right");
+				}
+
+				if (feedVal >= 3)
+				{
+					if (feedVal < 8)
+					{
+						output2(" Your");
+						if (bothFeet) output2(" feet appear");
+						else output2(" foot appears");
+						output2(" to be slightly distended.")
+					}
+					else if (feedVal < 13)
+					{
+						output2(" Your");
+						if (bothFeet) output2(" feet appear");
+						else output2(" foot appears");
+						output2(" puffy and inflated.")
+					}
+					else
+					{
+						output2(" Your");
+						if (bothFeet) output2(" feet appear");
+						else output2(" foot appears");
+						output2(" unusually large and somewhat swollen, almost engorged.")
+					}
+				}
+			}
+		}
 		else if(target.legType == GLOBAL.EQUINE) output2("  Your legs are muscled and jointed oddly, covered in fur, and end in a pair of bestial hooves.");
 		else if(target.legType == GLOBAL.CANINE) output2("  Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
 		else if(target.legType == GLOBAL.NAGA) output2("  Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
@@ -707,7 +796,27 @@ function appearance(target:Creature):void {
 			if(target.vaginaTotal() == 1) {
 				output2("You have a " + target.vaginaDescript(0) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
 				if(target.vaginas[0].hymen) output2(" and an intact hymen");
-				output2(".  ");
+				output2(". ");
+
+				if (target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+				{
+					if (target.statusEffectv3("Mimbrane Pussy") < 8)
+					{
+						output2("Your pussy appears slightly swollen. ");
+					}
+					else if (target.statusEffectv3("Mimbrane Pussy") < 13)
+					{
+						output2("Your pussy appears noticably inflated");
+						if (pc.isCrotchGarbed()) output2(" and creates a slight bulge beneath your armor");
+						output2(". ")
+					}
+					else
+					{
+						output2("Your pussy appears delightfully plump");
+						if (pc.isCrotchGarbed()) output2(", creating an undeniable bulge in your armor");
+						output2(". ");
+					}
+				}
 			}
 			else if(target.vaginaTotal() > 1) 
 			{

@@ -255,9 +255,9 @@ public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 	}
 	else if (target == "regular")
 	{
-		for (var i:int = 0; i < regularFeedMimbranes.length; i++)
+		for (var ii:int = 0; ii < regularFeedMimbranes.length; ii++)
 		{
-			feedAMimbrane(regularFeedMimbranes[i], feedValue);
+			feedAMimbrane(regularFeedMimbranes[ii], feedValue);
 		}
 	}
 	else if (target == "cock" || target == "dick")
@@ -284,10 +284,112 @@ public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 
 public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 {
-	if (pc.hasStatusEffect(effectName) && pc.statusEffectv2(effectName) > 0)
+	if (pc.hasStatusEffect(effectName) && pc.statusEffectv2(effectName) > 0 && pc.statusEffectv3(effectName) < 15)
 	{
 		pc.setStatusValue(effectName, 2, 0);
-		pc.setStatusValue(effectName, 3, pc.statusEffectv3(effectName) + feedValue);
+		
+		var oldValue:int = pc.statusEffectv3(effectName);
+		
+		var actualFeed:int = 0;
+		if (feedValue + pc.statusEffectv3(effectName) <= 15)
+		{
+			actualFeed = feedValue;
+		}
+		else
+		{
+			actualFeed = 15 - pc.statusEffectv3(effectName);
+		}
+		
+		pc.addStatusValue(effectName, 3, actualFeed);
+		var newValue:int = pc.statusEffectv3(effectName);
+		
+		// Calc willpower change
+		pc.willpowerMod += pc.willpowerRaw * -(0.004 * actualFeed);
+		
+		// Mimbrane-specific changes
+		if (effectName == "Mimbrane Penis")
+		{
+			pc.cocks[0].cThicknessRatioMod += (0.05 * actualFeed);
+			pc.cocks[0].cLengthMod += (0.75 * actualFeed);
+		}
+		else if (effectName == "Mimbrane Pussy")
+		{
+			if (oldValue < 3 && newValue => 3)
+			{
+				if (pc.vaginas[0].loosenessRaw == 0) pc.vaginas[0].loosenessMod = 1;
+				if (pc.vaginas[0].wetnessRaw == 0) pc.vaginas[0].wetnessMod = 1;
+			}
+			if (oldValue < 6 && newValue => 6)
+			{
+				if (pc.vaginas[0].loosenessRaw <= 1) pc.vaginas[0].loosenessMod = 2;
+				if (pc.vaginas[0].wetnessRaw <= 1) pc.vaginas[0].wetnessMod = 2;
+			}
+			if (oldValue < 9 && newValue => 9)
+			{
+				if (pc.vaginas[0].loosenessRaw <= 2) pc.vaginas[0].loosenessMod = 3;
+				if (pc.vaginas[0].wetnessRaw <= 2) pc.vaginas[0].wetnessMod = 3;
+			}
+			if (oldValue < 12 && newValue => 12)
+			{
+				if (pc.vaginas[0].loosenessRaw <= 3) pc.vaginas[0].loosenessMod = 4;
+				if (pc.vaginas[0].wetnessRaw <= 3) pc.vaginas[0].wetnessMod = 4;
+			}
+			if (oldValue < 15 && newValue => 15)
+			{
+				if (pc.vaginas[0].loosenessRaw <= 4) pc.vaginas[0].loosenessMod = 5;
+				if (pc.vaginas[0].wetnessRaw <= 4) pc.vaginas[0].wetnessMod = 5;
+			}
+		}
+		else if (effectName == "Mimbrane Ass")
+		{
+			if (oldValue < 3 && newValue => 3)
+			{
+				if (pc.ass.loosenessRaw == 0) pc.ass.loosenessMod = 1;
+				if (pc.ass.wetnessRaw == 0) pc.ass.wetnessMod = 1;
+			}
+			if (oldValue < 6 && newValue => 6)
+			{
+				if (pc.ass.loosenessRaw <= 1) pc.ass.loosenessMod = 2;
+				if (pc.ass.wetnessRaw <= 1) pc.ass.wetnessMod = 2;
+			}
+			if (oldValue < 9 && newValue => 9)
+			{
+				if (pc.ass.loosenessRaw <= 2) pc.ass.loosenessMod = 3;
+				if (pc.ass.wetnessRaw <= 2) pc.ass.wetnessMod = 3;
+			}
+			if (oldValue < 12 && newValue => 12)
+			{
+				if (pc.ass.loosenessRaw <= 3) pc.ass.loosenessMod = 4;
+				if (pc.ass.wetnessRaw <= 3) pc.ass.wetnessMod = 4;
+			}
+			if (oldValue < 15 && newValue => 15)
+			{
+				if (pc.ass.loosenessRaw <= 4) pc.ass.loosenessMod = 5;
+				if (pc.ass.wetnessRaw <= 4) pc.ass.wetnessMod = 5;
+			}
+
+			if (pc.buttRating() < 10) pc.buttRatingMod += actualFeed;
+			else pc.buttRatingMod += actualFeed / 2.0;
+		}
+		else if (effectName == "Mimbrane Balls")
+		{
+			pc.cumMultiplier += (actualFeed * 0.5);
+			pc.ballSizeMod += (actualFeed * 0.25);
+		}
+		else if (effectName == "Mimbrane Boobs")
+		{
+			// TODO: Enable Lactation
+			// TODO: 4% lactMulti p/ feed.
+			if (pc.breastRows[0].breastRating() < 6) pc.breastRows[0].breastRatingMod += actualFeed;
+			else pc.breastRows[0].breastRatingMod += actualFeed / 0.33;
+
+			// Doc wanted nips to scale too - I believe bigger titties accounts for this using the nip scaling multi so w/e
+		}
+		else if (effectName == "Mimbrane Face")
+		{
+			if (oldValue < 6 && newValue >= 6) pc.lipMod + 1;
+			if (oldValue < 12 && newValue >= 12) pc.lipMod + 1;
+		}
 	}
 }
 
