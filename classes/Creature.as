@@ -2664,6 +2664,12 @@
 			}
 			return false;
 		}
+		public function hasFullSheaths():Boolean {
+			for (var x: int = 0; x < cocks.length; x++) {
+				if (!cocks[x].hasFlag(GLOBAL.SHEATHED)) return false;
+			}
+			return true;	
+		}
 		public function hasSheath(arg: int = 0): Boolean {
 			if (arg >= cocks.length) return false;
 			if (cocks[arg].hasFlag(GLOBAL.SHEATHED)) return true;
@@ -3075,6 +3081,38 @@
 			//If the player has no vaginas
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
 			return vaginas[arg].wetness;
+		}
+		public function lowestWetness(index:Boolean = false): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0) return 0;
+			var wet:int = -1;
+			for(var x:int = 0; x < vaginas.length; x++)
+			{
+				if(wet == -1) wet = vaginas[x].wetness;
+				if(vaginas[x].wetness < wet) wet = vaginas[x].wetness;
+			}
+			if(index) return wet;
+			else return vaginas[wet].wetness;
+		}
+		public function lowestWetnessIndex():Number
+		{
+			return lowestWetness(true);
+		}
+		public function highestWetness(index:Boolean = false): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0) return 0;
+			var wet:int = -1;
+			for(var x:int = 0; x < vaginas.length; x++)
+			{
+				if(wet == -1) wet = vaginas[x].wetness;
+				if(vaginas[x].wetness < wet) wet = vaginas[x].wetness;
+			}
+			if(index) return wet;
+			else return vaginas[wet].wetness;
+		}
+		public function highestWetnessIndex():Number
+		{
+			return highestWetness(true);
 		}
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
@@ -3598,6 +3636,25 @@
 			}
 			if (choices.length == 0) return 0;
 			else return choices[this.rand(choices.length)];
+		}
+		//Change cunt type!
+		public function shiftVagina(slot:int = 0, type:int = 0): void {
+			if (slot + 1 > vaginas.length) return;
+			else if (slot < 0) return;
+
+			//Set type
+			vaginas[slot].type = type;
+
+			//Clear flags
+			vaginas[slot].clearFlags();
+
+			//Add bonus flags and shit.
+			if (type == GLOBAL.EQUINE) {
+				vaginas[slot].knotMultiplier = 1.25;
+
+				vaginas[slot].addFlag(GLOBAL.TAPERED);
+				vaginas[slot].addFlag(GLOBAL.KNOTTED);
+			}
 		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
@@ -4704,7 +4761,7 @@
 				descripted++;
 			}
 			//Mane special stuff.
-			if (skinType == 1 && hairLength > 3 && this.rand(2) == 0) {
+			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
 					if (hairType == 2) {
