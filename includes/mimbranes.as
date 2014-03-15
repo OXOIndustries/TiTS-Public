@@ -288,7 +288,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 	{
 		pc.setStatusValue(effectName, 2, 0);
 		
-		var oldValue:int = pc.statusEffectv3(effectName);
+		var oldFeedValue:int = pc.statusEffectv3(effectName);
 		
 		var actualFeed:int = 0;
 		if (feedValue + pc.statusEffectv3(effectName) <= 15)
@@ -301,10 +301,14 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		
 		pc.addStatusValue(effectName, 3, actualFeed);
-		var newValue:int = pc.statusEffectv3(effectName);
+		var newFeedValue:int = pc.statusEffectv3(effectName);
 		
 		// Calc willpower change
-		pc.willpowerMod += pc.willpowerRaw * -(0.004 * actualFeed);
+		//pc.willpowerMod += pc.willpowerRaw * -(0.004 * actualFeed);
+		// Making this a flat change at certain breakpoints, becuase otherwise it's going to be a nightmare to track and undo later
+		if (oldFeedValue < 3 && newFeedValue >= 3) pc.willpowerMod -= 0.2;
+		if (oldFeedValue < 8 && newFeedValue >= 8) pc.willpowerMod -= 0.2;
+		if (oldFeedValue < 13 && newFeedValue >= 13) pc.willpowerMod -= 0.2;
 		
 		// Mimbrane-specific changes
 		if (effectName == "Mimbrane Penis")
@@ -314,27 +318,27 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		else if (effectName == "Mimbrane Pussy")
 		{
-			if (oldValue < 3 && newValue => 3)
+			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
 				if (pc.vaginas[0].loosenessRaw == 0) pc.vaginas[0].loosenessMod = 1;
 				if (pc.vaginas[0].wetnessRaw == 0) pc.vaginas[0].wetnessMod = 1;
 			}
-			if (oldValue < 6 && newValue => 6)
+			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
 				if (pc.vaginas[0].loosenessRaw <= 1) pc.vaginas[0].loosenessMod = 2;
 				if (pc.vaginas[0].wetnessRaw <= 1) pc.vaginas[0].wetnessMod = 2;
 			}
-			if (oldValue < 9 && newValue => 9)
+			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
 				if (pc.vaginas[0].loosenessRaw <= 2) pc.vaginas[0].loosenessMod = 3;
 				if (pc.vaginas[0].wetnessRaw <= 2) pc.vaginas[0].wetnessMod = 3;
 			}
-			if (oldValue < 12 && newValue => 12)
+			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
 				if (pc.vaginas[0].loosenessRaw <= 3) pc.vaginas[0].loosenessMod = 4;
 				if (pc.vaginas[0].wetnessRaw <= 3) pc.vaginas[0].wetnessMod = 4;
 			}
-			if (oldValue < 15 && newValue => 15)
+			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
 				if (pc.vaginas[0].loosenessRaw <= 4) pc.vaginas[0].loosenessMod = 5;
 				if (pc.vaginas[0].wetnessRaw <= 4) pc.vaginas[0].wetnessMod = 5;
@@ -342,34 +346,33 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		else if (effectName == "Mimbrane Ass")
 		{
-			if (oldValue < 3 && newValue => 3)
+			if (oldFeedValue < 3 && newFeedValue >= 3)
 			{
 				if (pc.ass.loosenessRaw == 0) pc.ass.loosenessMod = 1;
 				if (pc.ass.wetnessRaw == 0) pc.ass.wetnessMod = 1;
 			}
-			if (oldValue < 6 && newValue => 6)
+			if (oldFeedValue < 6 && newFeedValue >= 6)
 			{
 				if (pc.ass.loosenessRaw <= 1) pc.ass.loosenessMod = 2;
 				if (pc.ass.wetnessRaw <= 1) pc.ass.wetnessMod = 2;
 			}
-			if (oldValue < 9 && newValue => 9)
+			if (oldFeedValue < 9 && newFeedValue >= 9)
 			{
 				if (pc.ass.loosenessRaw <= 2) pc.ass.loosenessMod = 3;
 				if (pc.ass.wetnessRaw <= 2) pc.ass.wetnessMod = 3;
 			}
-			if (oldValue < 12 && newValue => 12)
+			if (oldFeedValue < 12 && newFeedValue >= 12)
 			{
 				if (pc.ass.loosenessRaw <= 3) pc.ass.loosenessMod = 4;
 				if (pc.ass.wetnessRaw <= 3) pc.ass.wetnessMod = 4;
 			}
-			if (oldValue < 15 && newValue => 15)
+			if (oldFeedValue < 15 && newFeedValue >= 15)
 			{
 				if (pc.ass.loosenessRaw <= 4) pc.ass.loosenessMod = 5;
 				if (pc.ass.wetnessRaw <= 4) pc.ass.wetnessMod = 5;
 			}
 
-			if (pc.buttRating() < 10) pc.buttRatingMod += actualFeed;
-			else pc.buttRatingMod += actualFeed / 2.0;
+			pc.buttRatingMod += actualFeed / 2.0;
 		}
 		else if (effectName == "Mimbrane Balls")
 		{
@@ -380,16 +383,50 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		{
 			// TODO: Enable Lactation
 			// TODO: 4% lactMulti p/ feed.
-			if (pc.breastRows[0].breastRating() < 6) pc.breastRows[0].breastRatingMod += actualFeed;
-			else pc.breastRows[0].breastRatingMod += actualFeed / 0.33;
+			pc.breastRows[0].breastRatingMod += actualFeed;
 
 			// Doc wanted nips to scale too - I believe bigger titties accounts for this using the nip scaling multi so w/e
 		}
 		else if (effectName == "Mimbrane Face")
 		{
-			if (oldValue < 6 && newValue >= 6) pc.lipMod + 1;
-			if (oldValue < 12 && newValue >= 12) pc.lipMod + 1;
+			if (oldFeedValue < 6 && newFeedValue >= 6) pc.lipMod + 1;
+			if (oldFeedValue < 12 && newFeedValue >= 12) pc.lipMod + 1;
 		}
+	}
+}
+
+public function resetMimbraneEffects(effectName:String):void
+{
+	pc.willpowerMod += 0.6;
+	
+	if (effectName == "Mimbrane Penis")
+	{
+		pc.cocks[0].cThicknessRatioMod -= 0.05 * 15;
+		pc.cocks[0].cLengthMod -= 0.75 * 15;
+	}
+	else if (effectName == "Mimbrane Pussy")
+	{
+		pc.vaginas[0].loosenessMod -= 5;
+		pc.vaginas[0].wetnessMod -= 5;
+	}
+	else if (effectName == "Mimbrane Ass")
+	{
+		pc.ass.loosenessMod -= 5;
+		pc.ass.wetnessMod -= 5;
+		pc.buttRatingMod -= 7.5;
+	}
+	else if (effectName == "Mimbrane Balls")
+	{
+		pc.cumMultiplier -= (15 * 0.5);
+		pc.ballSizeMod -= (15 * 0.25);
+	}
+	else if (effectName == "Mimbrane Boobs")
+	{
+		pc.breastRows[0].breastRatingMod -= 15;
+	}
+	else if (effectName == "Mimbrane Face")
+	{
+		pc.lipMod -= 2;
 	}
 }
 
@@ -476,6 +513,8 @@ public function mimbraneReproduce(effectName:String):void
 		pc.setStatusValue(effectName, 3, 0);
 		pc.setStatusValue(effectName, 4, pc.statusEffectv4(effectName) + 1);
 	}
+
+	resetMimbraneEffects(effectName);
 }
 
 public function mimbranesIncreaseDaysSinceFed():void
@@ -3491,16 +3530,16 @@ public function attachAMimbrane():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 
-	if (pc.hasCock() && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
-	else if (pc.hasVagina() && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
+	if (pc.hasCock() && pc.totalCocks() == 1 && pc.cocks[0].cType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
+	else if (pc.hasVagina() && pc.totalVaginas() == 1 && pc.vaginas[0].type == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Ass")) attachAssMimbrane();
-	else if (pc.balls > 0 && !pc.hasStatusEffect("Mimbrane Balls")) attachBallsMimbrane();
+	else if (pc.balls > 0 && pc.ballSize() > 0 && !pc.hasStatusEffect("Mimbrane Balls")) attachBallsMimbrane();
 	else if (pc.biggestTitSize() >= 1 && !pc.hasStatusEffect("Mimbrane Boobs")) attachBoobMimbrane();
-	else if (!pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
-	else if (!pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
-	else if (!pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
-	else if (!pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
-	else if (!pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2) attachFaceMimbrane();
+	else if (pc.armType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
+	else if (pc.armType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
+	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
+	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
+	else if (pc.faceType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2) attachFaceMimbrane();
 	else noRoomForDishcloths();
 
 	processTime(10 + rand(10));

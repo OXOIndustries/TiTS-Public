@@ -510,6 +510,7 @@
 		public function showPrimaryOutput():void
 		{
 			this.showTargetOutput("PrimaryOutput");
+			this.showingPCAppearance = false;
 			this.restoreLocation();
 			_buttonTray.resetButtons();
 		}

@@ -33,6 +33,7 @@ package classes.UIComponents.ContentModules
 		public function showInput():void
 		{
 			_textInput.visible = true;
+			_textInput.y = _mainText.textHeight + 18;
 			this.stage.focus = _textInput;
 		}
 		
