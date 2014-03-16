@@ -93,6 +93,7 @@ package classes.Resources
 		public static var Constrict:Class = StatusIcons.Icon_Constricted;
 		public static var Poison:Class = StatusIcons.Icon_Poison;
 		public static var Blind:Class = StatusIcons.Icon_BlindAlt;
+		public static var Pill:Class = StatusIcons.Icon_DrugPill;
 	}
 
 }
