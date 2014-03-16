@@ -492,6 +492,7 @@ function getACuntTail():void {
 	pc.addTailFlag(GLOBAL.PREHENSILE);
 	pc.addTailFlag(GLOBAL.LONG);
 	pc.addTailFlag(GLOBAL.THICK);
+	pc.tailGenitalArg = foes[0].tailGenitalArg;
 	genericLoss();
 }
 

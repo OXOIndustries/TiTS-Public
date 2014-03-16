@@ -257,7 +257,7 @@ function loseToDane():void {
 	output(", and says, <i>\"Loosen up slut. There's a lot more cock to go.\"</i> He pushes you partway off and pulls back down, matching his words with potent, cock-burying thrusts. This time, ");
 	if(pc.analCapacity() * .8 > foes[0].cockVolume(0)) output("your capacitive anus allows him inside, letting the knot pop right on in.");
 	else if(pc.analCapacity() * 1.2 > foes[0].cockVolume(0)) output("your anus stretches enough to let him inside, tingling from how taut it has been pulled.");
-	else output("your tight anus stretches painfully open, pulled far beyond its normal capacity to allow him entrance.");
+	else output("your anus stretches painfully open, pulled far beyond its normal capacity to allow him entrance.");
 	output(" Swollen, cum-filled nuts slap against you");
 	if(pc.balls > 0) output("r own");
 	output(".");

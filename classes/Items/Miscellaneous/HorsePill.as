@@ -256,7 +256,7 @@
 					//Multicunt
 					if(target.vaginaTotal() > 1)
 					{
-						kGAMECLASS.output("With the assortment of cunt you've managed to accumulated in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member… something big, hard, and… bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!");
+						kGAMECLASS.output("With the assortment of cunt you've managed to accumulate in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member… something big, hard, and… bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!");
 					}
 					//Single cunt
 					else

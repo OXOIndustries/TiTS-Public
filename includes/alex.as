@@ -77,7 +77,7 @@ function flirtWithAlex():void {
 	if(pc.biggestTitSize() < 1) output("a nice, toned chest");
 	else if(pc.biggestTitSize() <= 4) output("a healthy handful");
 	else output("an overflowing cup");
-	output(", if you know what I’m saying.”</i>  The suggestive way he caresses his own chest makes it abundantly clear what, exactly, he’s saying. <i>“And of course a " + pc.mfn("pretty face","strong jaw","pretty face with a strong jaw") + " certainly doesn’t hurt.");
+	output(", if you know what I’m saying.”</i>  The suggestive way he caresses his own chest makes it abundantly clear what, exactly, he’s saying. <i>“And of course a " + pc.mfn("strong jaw","pretty face","pretty face with a strong jaw") + " certainly doesn’t hurt.");
 	//if masculine and breasts > C cup OR feminine and breasts = flat: 
 	if(pc.mf("man","woman") == "man" && pc.biggestTitSize() >= 3 || pc.mf("","f") == "f" && pc.biggestTitSize() < 1) output(" Nice to see other people out there willing to mix and match too, so to speak.");
 	output("”</i>");
