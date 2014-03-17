@@ -99,6 +99,37 @@ function debugMenus():void
 	});
 }
 
+function bountyBoardExtra():Boolean
+{
+	output("\n\nA large bulletin board has been erected against the wall of the building to the north.");
+	var openQuests:int = 0;
+	if(flags["SEEN_JULIANS_AD"] == undefined) openQuests++;
+	if(openQuests > 0) output(" <b>There are new notices there.</b>");
+	addButton(0,"Bulletins",checkOutBountyBoard);
+	return false;
+}
+function checkOutBountyBoard():void
+{
+	clearOutput();
+	output("The bounty board is covered in simple leaflets, papers, all manner of other detritus. Most appear to be for mundane tasks like trading construction equipment, advertising repair services, or business advertisements. Still, there's at least one that stands out.");
+	output("\n\n");
+	if(flags["SEEN_JULIANS_AD"] == undefined) {
+		output("<b>New: </b>");
+		flags["SEEN_JULIANS_AD"] = 1;
+	}
+	else {
+		if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output("<b>Completed: </b>");
+		else if(flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] == 1) output("<b>Accepted: </b>");
+		else output("<b>Seen Before: </b>");
+	}
+	output(" Dr. Julian of the Xenogen Biotech labs on the south end of town is looking for 'a strapping, adventurous type' to brave the jungles in search of something he can use for his research.");
+	if(flags["SECOND_CAPTURED_ZIL_REPORTED_ON"] == 1) output(" You know from experience that it's quite lucrative.");
+	else output(" It seems like it could be quite lucrative.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+	
 
 /*
 Fern, Lichens, and Ironwoods:

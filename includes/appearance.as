@@ -146,7 +146,7 @@ function appearance(target:Creature):void {
 			output2(". It's almost rabbit-like, except for the length of your muzzle.");
 		}
 		//M/F stuff!
-		output2(" It has " + target.faceDesc() + ".");
+		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
 		if(target.eyeType == GLOBAL.ARACHNID) output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead. All are " + target.eyeColor + ".");
 		else if(target.eyeType == GLOBAL.FELINE || target.eyeType == GLOBAL.SNAKE) output2(" Your eyes bear a vertical slit instead of rounded pupils, surrounded by a " + target.eyeColor + " iris.");
@@ -384,7 +384,10 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.DRACONIC) output2(" A thin, scaly, prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip. Its tip menaces with spikes of bone, meant to deliver painful blows.");		
 		else if(target.tailType == GLOBAL.KUITAN) output2(" A black-and-" + target.hairColor + "-ringed kui-tan tail waves behind you.");
 		else if(target.tailType == GLOBAL.MOUSE) output2(" A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
-		else if(target.tailType == GLOBAL.CUNTSNAKE) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+		else if(target.tailType == GLOBAL.CUNTSNAKE) {
+			if(target.tailCount == 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+			else output2(" " + num2Text(target.tailCount) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+		}
 		else if(target.tailType == GLOBAL.PANDA) output2(" A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		//legType SPECIAL
 		if(target.legType == GLOBAL.HUMAN) output2(" Two normal human legs grow down from your waist, ending in normal human feet.");

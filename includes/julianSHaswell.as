@@ -73,7 +73,7 @@ function introductionToJulian():void {
 
 
 	//If seen it:
-	if(9999 == 0) output("\n\nYou nod, wondering what exactly the vague message meant.");
+	if(flags["SEEN_JULIANS_AD"] == 1) output("\n\nYou nod, wondering what exactly the vague message meant.");
 	//If not:
 	else 
 	{

@@ -639,6 +639,14 @@
 				case "hips":
 					buffer = hipsDescript();
 					break;
+				case "thighDescript":
+				case "thigh":
+					buffer = thighDescript();
+					break;
+				case "thighsDescript":
+				case "thighs":
+					buffer = thighsDescript();
+					break;
 				case "vaginaDescript":
 				case "vagina":
 				case "pussy":
@@ -4271,6 +4279,12 @@
 			}
 			if (plural) desc = pluralize(desc);
 			return desc;
+		}
+		public function thighDescript():String {
+			return "thigh";
+		}
+		public function thighsDescript():String {
+			return pluralize(thighDescript());
 		}
 		public function hipsDescript(): String {
 			return hipDescript(true);
