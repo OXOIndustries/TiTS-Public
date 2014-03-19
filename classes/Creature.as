@@ -5473,7 +5473,7 @@
 					if (rando == 1) descript += "two, ";
 					if (rando == 2) descript += "brace of ";
 					if (rando == 3) descript += "matching, ";
-					if (rando == 4) descript += "twin, "
+					if (rando == 4) descript += "twin, ";
 				}
 				//Nonidentical
 				else {
