@@ -8,9 +8,7 @@
 	import classes.kGAMECLASS;
 	
 	public class Dane extends Creature
-	{
-		
-		
+	{	
 		//constructor
 		public function Dane()
 		{

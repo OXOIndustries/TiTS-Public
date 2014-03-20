@@ -488,10 +488,11 @@ function getACuntTail():void {
 	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>\n\n");
 	pc.clearTailFlags();
 	pc.tailType = GLOBAL.CUNTSNAKE;
-	if(pc.tailCount < 1) pc.tailCount = 1;
+	if(pc.tailCount > 1) pc.tailCount = 1;
 	pc.addTailFlag(GLOBAL.PREHENSILE);
 	pc.addTailFlag(GLOBAL.LONG);
 	pc.addTailFlag(GLOBAL.THICK);
+	pc.tailGenitalArg = foes[0].tailGenitalArg;
 	genericLoss();
 }
 

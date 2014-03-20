@@ -178,6 +178,7 @@ function initializeRooms():void
 	rooms["ESBETH'S NORTH PATH"].northExit = "CUSTOMS OFFICE";
 	rooms["ESBETH'S NORTH PATH"].westExit = "NORTHWEST ESBETH";
 	rooms["ESBETH'S NORTH PATH"].eastExit = "NORTH ESBETH 2";
+	rooms["ESBETH'S NORTH PATH"].runOnEnter = bountyBoardExtra;
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
 
 	//4. The Northwest Corner of Esbeth
@@ -235,7 +236,7 @@ function initializeRooms():void
 	//9. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 2"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 2"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The buildings here do not seem to be of interest, and the road goes on to the east and west.";
+	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The build to the north is a monolithic looking thing labelled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
 	rooms["SOUTH ESBETH 2"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
@@ -267,10 +268,11 @@ function initializeRooms():void
 	//12. Esbeth’s Eastern Path
 	rooms["EAST ESBETH"] = new RoomClass(this);
 	rooms["EAST ESBETH"].roomName = "EAST\nESBETH";
-	rooms["EAST ESBETH"].description = "There are few people around this area of town and even fewer houses. Perhaps this is due to this place’s proximity to the town’s eastern exit. Just to the north, a path splits off to the east towards the jungle. Now and again, you can see individuals like yourself venturing out to brave the dangers and discover what treasures they can. Watchtowers guard the town’s safekeeping, and the jungle has been burnt back far enough to give the autoguns on top of them a good sight line. You suppose this town is about as safe a place as you can find in the untamed wilderness.";
+	rooms["EAST ESBETH"].description = "There are few people around this area of town and even fewer houses. Perhaps this is due to this place’s proximity to the town’s eastern exit. Just to the north, a path splits off to the east towards the jungle. Now and again, you can see individuals like yourself venturing out to brave the dangers and discover what treasures they can. Watchtowers guard the town’s safekeeping, and the jungle has been burnt back far enough to give the autoguns on top of them a good sight line. You suppose this town is about as safe a place as you can find in the untamed wilderness.\n\nThere is a small shack to the east painted pure, alabaster white. The door has a crimson cross, the universal symbol for medical aid, adhered to it. It must be what passes for a hospital on this planet.";
 	rooms["EAST ESBETH"].planet = "PLANET: MHEN'GA";
 	rooms["EAST ESBETH"].system = "SYSTEM: ARA ARA";
 	rooms["EAST ESBETH"].southExit = "SOUTHEAST ESBETH";
+	rooms["EAST ESBETH"].eastExit = "ESBETH MEDICAL OFFICE";
 	rooms["EAST ESBETH"].northExit = "EAST ESBETH ENTRANCE";
 	rooms["EAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 
@@ -1231,6 +1233,18 @@ function initializeRooms():void
 	rooms["CRAZY CARLS"].westExit = "WEST ESBETH 1";
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.INDOOR);
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.COMMERCE);
+
+	//93. Medical Office
+	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
+	rooms["ESBETH MEDICAL OFFICE"].roomName = "MEDICAL\nOFFICE";
+	rooms["ESBETH MEDICAL OFFICE"].description = "";
+	rooms["ESBETH MEDICAL OFFICE"].runOnEnter = undefined;
+	rooms["ESBETH MEDICAL OFFICE"].planet = "PLANET: MHEN'GA";
+	rooms["ESBETH MEDICAL OFFICE"].system = "SYSTEM: ARA ARA";
+	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
+	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
+
+	
 
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";

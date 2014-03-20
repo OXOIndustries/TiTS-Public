@@ -27,9 +27,9 @@ public function mainGameMenu():void {
 	//trace("this.eventQueue = ", this.eventQueue);
 	if(eventQueue.length > 0) {
 		//Do the most recent:
-		this.eventQueue[this.eventQueue.length-1]();
+		this.eventQueue[0]();
 		//Strip out the most recent:
-		this.eventQueue.splice(this.eventQueue.length-1,1);
+		this.eventQueue.splice(0,1);
 		return;
 	}
 	//Set up all appropriate flags
@@ -267,6 +267,12 @@ function statusTick():void {
 					this.chars["PC"].intelligenceMod += this.chars["PC"].statusEffects[x].value2;
 					this.chars["PC"].willpowerMod += this.chars["PC"].statusEffects[x].value2;
 				}
+				//Horse pill gets bonus proc!
+				if(this.chars["PC"].statusEffects[x].storageName == "Horse Pill")
+				{
+					var pill = new HorsePill();
+					eventQueue[eventQueue.length] = pill.lastPillTF;
+				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Mead") 
 				{
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
@@ -344,6 +350,12 @@ public function processTime(arg:int):void {
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
+			}
+			//Horse pill procs!
+			if(pc.hasStatusEffect("Horse Pill"))
+			{
+				var pill = new HorsePill();
+				eventQueue[eventQueue.length] = pill.pillTF;
 			}
 			//Hours checks here!
 			//Cunt stretching stuff

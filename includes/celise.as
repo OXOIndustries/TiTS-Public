@@ -859,7 +859,10 @@ function getDrainedSexyTimes():void {
 	clearOutput();
 	author("TheDarkMaster");
 	userInterface.showBust("CELISE");
-	output("Joyful laughter reverberates through Celise’s body as a column of goo pushes through your [pc.asshole]. She gently strokes the exposed part of your face and neck. “<i>That’s so wonderful of you; I’ll be sure to milk you lots tonight.</i>”  Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
+	output("Joyful laughter reverberates through Celise’s body as a column of goo pushes through your [pc.asshole]. She gently strokes the exposed part of your face and neck. “<i>That’s so wonderful of you; I’ll be sure to ");
+	if(pc.hasCock() || pc.isLactating()) output("milk");
+	else output("please");
+	output(" you lots tonight.</i>”  Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
 	buttChange(5,true,true,false);
 	//asshole
 	output("\n\nThe tip of the column of gel embedded deep inside your backside swells up, growing bigger and bigger until there is a large ball of goo on the end of it. She tests this gel sphere against your backside’s ring with a tug, ");

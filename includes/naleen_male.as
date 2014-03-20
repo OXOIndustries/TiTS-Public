@@ -477,7 +477,7 @@ function getBlownByDudeleen():void {
 
 	output("\n\nNodding reluctantly in understanding, he looks up. The aggressiveness he once spouted has been completely replaced by compliance. Extending his tongue once more, he tries his best to lick the underside of your [pc.cockBiggest]. Though he is earnest in his attempt, there’s only so much he can do whilst lying prone and helpless. The warm pressure of his tongue against your length is pleasant nonetheless.");
 
-	output("\n\nWith a better blowjob in mind, you set out to remedy his subpar positioning. Uou pull him upright by his muscular shoulders, settling him against a nearby tree so that he'll remain upright in spite of his restraints. Then, you straddle his chest and stroke his ears. That’s a good kitty. Now, if he wants to keep being a good boy, he needs to keep licking. You present him with your [pc.cockBiggest] once more, admiring the way his saliva has made it shine.");
+	output("\n\nWith a better blowjob in mind, you set out to remedy his subpar positioning. You pull him upright by his muscular shoulders, settling him against a nearby tree so that he'll remain upright in spite of his restraints. Then, you straddle his chest and stroke his ears. That’s a good kitty. Now, if he wants to keep being a good boy, he needs to keep licking. You present him with your [pc.cockBiggest] once more, admiring the way his saliva has made it shine.");
 
 	output("\n\nDetecting just the faintest hint of what might be a purr, you smile as he noses your throbbing shaft. He sniffs you softly, taking in your scent as he extends his tongue once more. Though his movements are slow, you notice that he seems to be more eager than before. Perhaps the erotic contact and scent of your [pc.cockBiggest] is starting to get to him?");
 
@@ -942,9 +942,8 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	output(", the bulges aligned in such a way to caress your walls and tease you, stretching and releasing as ");
 	if(y >= 0) output("they go");
 	else output("it goes");
-	output(" go further in and then pull out, ");
-	if(pc.hasCock()) output("grinding against [pc.oneCock]");
-	else output("through the cheeks of your ass");
+	output(" go further in and then pull out");
+	if(pc.hasCock()) output(", grinding against [pc.oneCock]");
 	output(", making you instinctively start to hump back against him.");
 
 	output("\n\nHe grunts and groans as his thrusts become increasingly erratic and desperate, a soft growl building in his throat as he nears his peak.");

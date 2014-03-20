@@ -153,7 +153,7 @@ function appearance(target:Creature):void {
 			output2(". It's almost rabbit-like, except for the length of your muzzle.");
 		}
 		//M/F stuff!
-		output2(" It has " + target.faceDesc() + ".");
+		output2(" Overall, your visage has " + target.faceDesc() + ".");
 		//Eyes
 		if(target.eyeType == GLOBAL.ARACHNID) output2(" In addition to your primary two eyes, you have a second, smaller pair on your forehead. All are " + target.eyeColor + ".");
 		else if(target.eyeType == GLOBAL.FELINE || target.eyeType == GLOBAL.SNAKE) output2(" Your eyes bear a vertical slit instead of rounded pupils, surrounded by a " + target.eyeColor + " iris.");
@@ -247,6 +247,7 @@ function appearance(target:Creature):void {
 		else output2(".");
 		//Wing arms
 		if(target.armType == GLOBAL.AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
+		else if(target.armType == GLOBAL.EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		else if(target.armType == GLOBAL.PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
@@ -431,7 +432,10 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.DRACONIC) output2("  A thin, scaly, prehensile reptilian tail, almost as long as you are tall, swings behind you like a living bullwhip.  Its tip menaces with spikes of bone, meant to deliver painful blows.");		
 		else if(target.tailType == GLOBAL.KUITAN) output2("  A black-and-" + target.hairColor + "-ringed kui-tan tail waves behind you.");
 		else if(target.tailType == GLOBAL.MOUSE) output2("  A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
-		else if(target.tailType == GLOBAL.CUNTSNAKE) output2("  A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+		else if(target.tailType == GLOBAL.CUNTSNAKE) {
+			if(target.tailCount == 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
+			else output2(" " + num2Text(target.tailCount) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+		}
 		else if(target.tailType == GLOBAL.PANDA) output2("  A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		//legType SPECIAL
 		if(target.legType == GLOBAL.HUMAN)

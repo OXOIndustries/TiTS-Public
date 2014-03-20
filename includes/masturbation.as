@@ -308,7 +308,7 @@ function singleDickFap():void {
 	if(pc.hasCockFlag(GLOBAL.PREHENSILE)) selector[selector.length] = GLOBAL.PREHENSILE;
 	if(pc.hasCockFlag(GLOBAL.STINGER_TIPPED)) selector[selector.length] = GLOBAL.STINGER_TIPPED;
 	if(selector.length == 0) selector[selector.length] = GLOBAL.HUMAN;
-	var temp:int = selector[rand(selector.length)];
+	temp = selector[rand(selector.length)];
 	
 	//Pointed
 	if(temp == GLOBAL.TAPERED) {

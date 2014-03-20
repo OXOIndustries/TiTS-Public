@@ -1210,10 +1210,10 @@
 					buffer = tongueDescript();
 					break;
 				case "tail":
-					buffer = tail();
+					buffer = tailDescript();
 					break;
 				case "tails":
-					buffer = tails();
+					buffer = tailsDescript();
 					break;
 				case "crotch":
 				case "groin":
@@ -1344,6 +1344,14 @@
 				case "hips":
 					buffer = hipsDescript();
 					break;
+				case "thighDescript":
+				case "thigh":
+					buffer = thighDescript();
+					break;
+				case "thighsDescript":
+				case "thighs":
+					buffer = thighsDescript();
+					break;
 				case "vaginaDescript":
 				case "vagina":
 				case "pussy":
@@ -1411,9 +1419,6 @@
 					break;
 				case "milkColor":
 					buffer = milkColor();
-					break;
-				case "tail":
-					buffer = tailDescript();
 					break;
 				case "leg":
 					buffer = leg();
@@ -2069,8 +2074,91 @@
 
 			return rating + lipMod;
 		}
-		public function lipDescript(): String {
-			return "lip";
+		public function lipsDescript(forcedAdjectives:Boolean = false): String {
+			return lipDescript(forcedAdjectives);
+		}
+		public function lipDescript(forcedAdjectives:Boolean = false): String {
+			//lipMod + some femininity divided by something to get result.
+			var lips:int = lipMod + femininity / 25;
+			var result:String = "";
+			var adjectives:int = 0;
+			//Size Adjectives
+			if(rand(3) == 0 || forcedAdjectives)
+			{
+				if(lips <= 1)
+				{
+					if(rand(3) == 0) result += "thin";
+					else if(rand(2) == 0) result += "narrow";
+					else result += "slender";
+				}
+				else if(lips <= 2)
+				{
+					if(rand(2) == 0) result += "nice";
+					else result += "supple";
+				}
+				else if(lips <= 3)
+				{
+					if(rand(3) == 0) result += "full";
+					else if(rand(2) == 0) result += "pouting";
+					else result += "plump";
+				}
+				else if(lips <= 4)
+				{
+					if(rand(3) == 0) result += "succulent";
+					else if(rand(2) == 0) result += "juicy";
+					else result += "luscious";
+				}
+				else if(lips <= 5)
+				{
+					if(rand(3) == 0) result += "voluptuous";
+					else if(rand(2) == 0) result += "bee-stung";
+					else result += "swollen";
+				}
+				else if(lips <= 6)
+				{
+					if(rand(3) == 0) result += "hypnotic";
+					else if(rand(2) == 0) result += "dazzling";
+					else result += "exquisitely large";
+				}
+				else if(lips <= 7)
+				{
+					if(rand(3) == 0) result += "hyper-engorged";
+					else if(rand(2) == 0) result += "constantly pursed";
+					else result += "bloated";
+				}
+				else if(lips <= 8)
+				{
+					if(rand(2) == 0) result += "'o' shaped";
+					else result += "permenantly puckered";
+				}
+				//Serious this is too big, bro
+				else
+				{
+					if(rand(5) == 0) result += "jacquesian";
+					else if(rand(4) == 0) result += "scylla-tier";
+					else if(rand(2) == 0) result += "impossibly large";
+					else result += "universe-distorting";
+				}
+				adjectives++;
+			}
+			//Nouns
+			if(adjectives > 0) result += " ";
+			var nouns:Array = new Array();
+			//Build up the choices!
+			nouns[nouns.length] = "lip";
+			nouns[nouns.length] = "lip";
+			nouns[nouns.length] = "lip";
+			nouns[nouns.length] = "lip";
+			//High libido sluttery
+			if(libido() >= 50) nouns[nouns.length] = "dick-sucker";
+			if(libido() >= 60) nouns[nouns.length] = "cock-sucker";
+			if(libido() >= 70 && lips >= 3) nouns[nouns.length] = "cock-pillow";
+			if(libido() >= 80 && lips >= 4) nouns[nouns.length] = "fuck-pillow";
+			if(libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
+			if(libido() >= 90 && lips >= 5) nouns[nouns.length] = "pleasure-pillow";
+			//Tack the selected choice onto result
+			result += nouns[rand(nouns.length)];
+			return result;
 		}
 		public function earDescript(): String {
 			return "ear";
@@ -2096,23 +2184,23 @@
 				faceo += "that's surely handsome";
 			}
 			//21-28
-			else if (femininity < 28) faceo = "a well-defined jawline and a fairly masculine profile";
+			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + ", and a fairly masculine profile";
 			//28+-35 
-			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline";
+			else if (femininity < 35) faceo = "a somewhat masculine, angular jawline and " + pluralize(lipDescript(true)) + "";
 			//35-45
-			else if (femininity < 45) faceo = "the barest hint of masculinity on its features";
+			else if (femininity < 45) faceo = "a pair of " + pluralize(lipDescript(true)) + " and the barest hint of masculinity in its structure";
 			//45-55
-			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female";
+			else if (femininity <= 55) faceo = "an androgynous set of features that would work on either a male or a female and " + pluralize(lipDescript(true)) + "";
 			//55+-65
-			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves";
+			else if (femininity <= 65) faceo = "a tiny touch of femininity to it, with gentle curves and " + pluralize(lipDescript(true)) + "";
 			//65+-72
-			else if (femininity <= 72) faceo = "a nice set of cheekbones and lips that have the barest hint of pout";
+			else if (femininity <= 72) faceo = "a nice set of cheekbones and " + pluralize(lipDescript(true)) + "";
 			//72+-80
-			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw the attention of males";
+			else if (femininity <= 80) faceo = "a beautiful, feminine shapeliness that's sure to draw attention and " + pluralize(lipDescript(true)) + "";
 			//81-90
-			else if (femininity <= 90) faceo = "a gorgeous profile with full lips, a button nose, and noticeable eyelashes";
+			else if (femininity <= 90) faceo = "a gorgeous profile with " + pluralize(lipDescript(true)) + ", a button nose, and noticeable eyelashes";
 			//91-100
-			else faceo = "a jaw-droppingly feminine shape with full, pouting lips, an adorable nose, and long, beautiful eyelashes";
+			else faceo = "a jaw-droppingly feminine shape with " + pluralize(lipDescript(true)) + ", an adorable nose, and long, beautiful eyelashes";
 			return faceo;
 		}
 		//Modify femininity!
@@ -2332,6 +2420,11 @@
 		}
 		public function tailDescript(): String {
 			return "tail";
+		}
+		public function tailsDescript():String {
+			if(tailCount == 1) return tailDescript();
+			else if(tailCount > 1) return pluralize(tailDescript());
+			else return "<b>ERROR: Taildescript called with no tails present</b>";
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -3375,6 +3468,12 @@
 			}
 			return false;
 		}
+		public function hasFullSheaths():Boolean {
+			for (var x: int = 0; x < cocks.length; x++) {
+				if (!cocks[x].hasFlag(GLOBAL.SHEATHED)) return false;
+			}
+			return true;	
+		}
 		public function hasSheath(arg: int = 0): Boolean {
 			if (arg >= cocks.length) return false;
 			if (cocks[arg].hasFlag(GLOBAL.SHEATHED)) return true;
@@ -3465,7 +3564,7 @@
 			if (index == index2) return 0;
 			return cockVolume(index2, effective);
 		}
-		public function longestCock(): Number {
+		public function longestCockIndex(): Number {
 			if (cocks.length == 0) return 0;
 			var counter: Number = cocks.length;
 			var index: Number = 0;
@@ -3786,6 +3885,38 @@
 			//If the player has no vaginas
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
 			return vaginas[arg].wetness();
+		}
+		public function lowestWetness(index:Boolean = false): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0) return 0;
+			var wet:int = -1;
+			for(var x:int = 0; x < vaginas.length; x++)
+			{
+				if(wet == -1) wet = x;
+				if(vaginas[x].wetness < vaginas[wet].wetness) wet = x;
+			}
+			if(index) return wet;
+			else return vaginas[wet].wetness;
+		}
+		public function lowestWetnessIndex():Number
+		{
+			return lowestWetness(true);
+		}
+		public function highestWetness(index:Boolean = false): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0) return 0;
+			var wet:int = -1;
+			for(var x:int = 0; x < vaginas.length; x++)
+			{
+				if(wet == -1) wet = x;
+				if(vaginas[x].wetness > vaginas[wet].wetness) wet = x;
+			}
+			if(index) return wet;
+			else return vaginas[wet].wetness;
+		}
+		public function highestWetnessIndex():Number
+		{
+			return highestWetness(true);
 		}
 		public function vaginalCapacity(arg: int = 0): Number {
 			//If the player has no vaginas
@@ -4264,7 +4395,7 @@
 			return (hairLength <= 0);
 		}
 		public function hasHair(): Boolean {
-			return (hairLength == 0);
+			return (hairLength > 0);
 		}
 		public function hasSockRoom(): Boolean {
 			var index: int = cockTotal();
@@ -4311,6 +4442,21 @@
 			if (choices.length == 0) return 0;
 			else return choices[this.rand(choices.length)];
 		}
+		//Change cunt type!
+		public function shiftVagina(slot:int = 0, type:int = 0): void {
+			if (slot + 1 > vaginas.length) return;
+			else if (slot < 0) return;
+
+			//Set type
+			vaginas[slot].type = type;
+
+			//Clear flags
+			vaginas[slot].clearFlags();
+
+			//Add bonus flags and shit.
+			if (type == GLOBAL.EQUINE) {
+			}
+		}
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
 			if (type == -1) // check if type was not passed, and if so, override with EQUINE
@@ -4330,11 +4476,13 @@
 
 				cocks[slot].addFlag(GLOBAL.TAPERED);
 				cocks[slot].addFlag(GLOBAL.KNOTTED);
+				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.EQUINE) {
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.BLUNT);
 				cocks[slot].addFlag(GLOBAL.FLARED);
+				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.BEE) {
 				cocks[slot].knotMultiplier = 1;
@@ -4899,6 +5047,12 @@
 			if (plural) desc = pluralize(desc);
 			return desc;
 		}
+		public function thighDescript():String {
+			return "thigh";
+		}
+		public function thighsDescript():String {
+			return pluralize(thighDescript());
+		}
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
@@ -5426,12 +5580,6 @@
 			if (plural) description = pluralize(description);
 			return description;
 		}
-		public function tails(): String {
-			return pluralize(tail());
-		}
-		public function tail(): String {
-			return "tail";
-		}
 		public function hairDescript(forceLength: Boolean = false, forceColor: Boolean = false): String {
 			var descript: String = "";
 			var descripted: Number = 0;
@@ -5471,7 +5619,7 @@
 				descripted++;
 			}
 			//Mane special stuff.
-			if (skinType == 1 && hairLength > 3 && this.rand(2) == 0) {
+			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
 					if (hairType == 2) {
@@ -5938,8 +6086,9 @@
 					else vag += "narrow";
 				} else if (vaginas[vaginaNum].looseness() <= 2) {
 					temp = this.rand(10);
-					if (temp <= 5) vag += "average";
-					else vag += "supple";
+					//if (temp <= 5) vag += "average";
+					//else 
+					vag += "supple";
 				} else if (vaginas[vaginaNum].looseness() <= 3) {
 					temp = this.rand(10);
 					if (temp <= 4) vag += "loose";
@@ -5976,24 +6125,24 @@
 					if (temp <= 4) vag += "moist";
 					else if (temp <= 7) vag += "sticky";
 					else vag += "dewy";
-				} else if (vaginas[vaginaNum].wetness() == 2) {
+				} else if (vaginas[vaginaNum].wetness() <= 2) {
 					temp = this.rand(10);
 					if (temp <= 3) vag += "wet";
 					else if (temp <= 5) vag += "sultry";
 					else if (temp <= 8) vag += "sweltering";
 					else vag += "slippery";
-				} else if (vaginas[vaginaNum].wetness() == 3) {
+				} else if (vaginas[vaginaNum].wetness() <= 3) {
 					temp = this.rand(12);
 					if (temp <= 3) vag += "slick";
 					else if (temp <= 6) vag += "drenched";
 					else if (temp <= 9) vag += "sopping";
 					else vag += "soaked";
-				} else if (vaginas[vaginaNum].wetness() == 4) {
+				} else if (vaginas[vaginaNum].wetness() <= 4) {
 					temp = this.rand(9);
 					if (temp <= 2) vag += "drooling";
 					else if (temp <= 5) vag += "dripping";
 					else vag += "lube-leaking";
-				} else if (vaginas[vaginaNum].wetness() == 5) {
+				} else if (vaginas[vaginaNum].wetness() <= 5) {
 					temp = this.rand(12);
 					if (temp <= 2) vag += "slavering";
 					else if (temp <= 5) vag += "slobbering";
@@ -6091,7 +6240,7 @@
 					if (rando == 1) descript += "two, ";
 					if (rando == 2) descript += "brace of ";
 					if (rando == 3) descript += "matching, ";
-					if (rando == 4) descript += "twin, "
+					if (rando == 4) descript += "twin, ";
 				}
 				//Nonidentical
 				else {
@@ -6543,10 +6692,14 @@
 				cockNum = biggestCockIndex();
 				multi = true;
 			}
+
+
 			//Pierced - 1/5 chance
 			if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
 				descript += "pierced";
-			} else if (!multi && this.rand(5) == 0 && cocks[cockNum].sock != "") {
+			} 
+			//Cocksocks!
+			else if (!multi && this.rand(5) == 0 && cocks[cockNum].sock != "") {
 				rando = this.rand(6);
 				if (rando == 0) descript += "sock-sheathed";
 				else if (rando == 1) descript += "garment-wrapped";

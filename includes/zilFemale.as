@@ -1268,9 +1268,9 @@ function forceFemzilToLickYourHoneypot():void {
 	else output("eagerly");
 	output(" in your direction to try and see what you're doing - or what you plan to do to her. Not wanting to keep her waiting, you lean back, spreading your legs a bit further to expose your [pc.vaginas], and tap at your increasingly puffy entrance.");
 	output("\n\n<i>“Here,”</i>  you command with authority. <i>“Lick. You can understand that, can't you?”</i>  You press your palm down against your mons to feel the hard bud");
-	if(pc.totalVaginas()/pc.totalClits() > 1) output("s");
+	if(pc.totalClits()/pc.totalVaginas() > 1) output("s");
 	output(" of your clit");
-	if(pc.totalVaginas()/pc.totalClits() > 1) output("s as they swell ");
+	if(pc.totalClits()/pc.totalVaginas() > 1) output("s as they swell ");
 	else output(" as it swells ");
 	output("up eagerly, firm and sensitive. Pulling back, you expose your puffy entrance");
 	if(pc.totalVaginas()) output("s");

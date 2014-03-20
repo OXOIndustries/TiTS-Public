@@ -1247,7 +1247,7 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	pc.credits += creditBuffer;
 	
 	//Queue up items for looting
-	for(var x:int = 0; x < foes.length; x++) 
+	for(x = 0; x < foes.length; x++) 
 	{
 		for(var y:int = 0; y < foes[x].inventory.length; y++) 
 		{

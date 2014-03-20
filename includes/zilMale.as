@@ -182,7 +182,6 @@ function zilDrop():void {
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
 	damage *= randomizer;
-	var sDamage:int = 0;
 	//{lift fail}
 	if((pc.thickness + 100) * pc.tallness >= 9900) {
 		output(" He strains for a second, but the zil just can't get your [pc.feet] up off the ground. Frustrated, he kicks off your back just before you can react.");

@@ -8,12 +8,10 @@
 	
 	public class Jade extends Creature
 	{
-		
-		
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -53,6 +51,7 @@
 
 			this.inventory.push(new Pandaneen());
 			this.inventory.push(new PandaPro());
+			this.inventory.push(new HorsePill());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -174,6 +173,10 @@
 			this.ass.bonusCapacity = 100;
 			
 			this.createStatusEffect("Disarm Immune");
+		}
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.inventory.push(new HorsePill().getSaveObject());
 		}
 	}
 
