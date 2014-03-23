@@ -178,139 +178,189 @@
 					kGAMECLASS.output("You find yourself fantasizing about frolicking through an open field, munching on grass, and fucking. The imagery is base and simple, befitting of someone who is a few doses from becoming an animal themselves.")
 				}
 				//#1 Make dick a quarter inch longer.
-				else if(select == 1)
+				else if(select == 1) 
 				{
-					x = target.shortestCockIndex();
-					if(rand(3) == 0)
+					if (target.cockLengthUnlocked(target.shortestCockIndex(), target.shortestCockLength() + 0.25))
 					{
-						kGAMECLASS.output("You adjust your package and fine [pc.oneCock] a little more ");
-						if(target.cocks[x].cLength <= 8) kGAMECLASS.output("hand-filling");
-						else if(target.cocks[x].cLength <= 15) kGAMECLASS.output("overwhelming");
-						else kGAMECLASS.output("tremendously large");
-						kGAMECLASS.output(" than before. The change is minute enough that you'd have to measure to ascertain the difference, but bigger is bigger.");
+						x = target.shortestCockIndex();
+						if(rand(3) == 0)
+						{
+							kGAMECLASS.output("You adjust your package and fine [pc.oneCock] a little more ");
+							if(target.cocks[x].cLength <= 8) kGAMECLASS.output("hand-filling");
+							else if(target.cocks[x].cLength <= 15) kGAMECLASS.output("overwhelming");
+							else kGAMECLASS.output("tremendously large");
+							kGAMECLASS.output(" than before. The change is minute enough that you'd have to measure to ascertain the difference, but bigger is bigger.");
+						}
+						//Alternate
+						else if(rand(2) == 0 && !target.isNude())
+						{
+							kGAMECLASS.output("Aware of a certain tightness in your [pc.underGarment], you shift your junk. It's ever so slightly larger.");
+							if(target.cocks[x].cLength <= 10) kGAMECLASS.output(" You'll be hung like a horse in no time.");
+							else if(target.cocks[x].cLength <= 15) kGAMECLASS.output(" You'll be a stallion in no time.");
+							else kGAMECLASS.output(" You'll be the biggest stud in the galactic pasture in no time.");
+						}
+						//Alternate 2
+						else
+						{
+							kGAMECLASS.output("You idly ponder the physics of four-legged sex, getting a little excited by the thought until your [pc.cocks] ");
+							if(target.cockTotal() == 1) kGAMECLASS.output("is");
+							else kGAMECLASS.output("are");
+							kGAMECLASS.output(" fully erect. It's only then that you discover a quarter inch of additional length");
+							if(target.cockTotal() > 1) kGAMECLASS.output(" on one of them");
+							kGAMECLASS.output(".");
+						}
+						target.cocks[x].cLength += 0.25;
 					}
-					//Alternate
-					else if(rand(2) == 0 && !target.isNude())
-					{
-						kGAMECLASS.output("Aware of a certain tightness in your [pc.underGarment], you shift your junk. It's ever so slightly larger.");
-						if(target.cocks[x].cLength <= 10) kGAMECLASS.output(" You'll be hung like a horse in no time.");
-						else if(target.cocks[x].cLength <= 15) kGAMECLASS.output(" You'll be a stallion in no time.");
-						else kGAMECLASS.output(" You'll be the biggest stud in the galactic pasture in no time.");
-					}
-					//Alternate 2
 					else
 					{
-						kGAMECLASS.output("You idly ponder the physics of four-legged sex, getting a little excited by the thought until your [pc.cocks] ");
-						if(target.cockTotal() == 1) kGAMECLASS.output("is");
-						else kGAMECLASS.output("are");
-						kGAMECLASS.output(" fully erect. It's only then that you discover a quarter inch of additional length");
-						if(target.cockTotal() > 1) kGAMECLASS.output(" on one of them");
-						kGAMECLASS.output(".");
+						kGAMECLASS.output(target.cockLengthLockedMessage());
 					}
-					target.cocks[x].cLength += 0.25;
 				}
 				//#2 Make balls one to two tenths of an inch bigger.
 				else if(select == 2)
 				{
-					//1
-					if(rand(3) == 0)
+					var newBallSize:Number = target.ballSizeRaw + 0.1 + rand(2) / 10;
+					if (target.ballSizeUnlocked(newBallSize))
 					{
-						kGAMECLASS.output("A muted warmth in your [pc.sack] grabs your attention, and the sensation of a small amount of additional weight keeps it. Your [pc.balls] ");
-						if(target.balls == 1) kGAMECLASS.output("is");
-						else kGAMECLASS.output("are");
-						kGAMECLASS.output(" are little bigger!");
+						//1
+						if(rand(3) == 0)
+						{
+							kGAMECLASS.output("A muted warmth in your [pc.sack] grabs your attention, and the sensation of a small amount of additional weight keeps it. Your [pc.balls] ");
+							if(target.balls == 1) kGAMECLASS.output("is");
+							else kGAMECLASS.output("are");
+							kGAMECLASS.output(" are little bigger!");
+						}
+						//2
+						else if(rand(2) == 0)
+						{
+							kGAMECLASS.output("You stop when your [pc.sack] brushes against a [pc.leg] in the most delightful way. It's been getting progressively more and more in the way over the past hour. You're pretty sure you've gotten a little bigger in the nut department - maybe one or two tenths of an inch of extra diameter. That pill was the real deal.");
+						}
+						//3
+						else
+						{
+							kGAMECLASS.output("You don't notice it immediately, but at the end of the hour, you do realize that your [pc.sack] is a little larger than before - the better to carry its weightier contents. You wonder how much bigger it's going to make ");
+							if(target.cockTotal() == 1) kGAMECLASS.output("it");
+							else kGAMECLASS.output("them");
+							kGAMECLASS.output(".");
+						}
+						target.ballSizeRaw = newBallSize;
 					}
-					//2
-					else if(rand(2) == 0)
-					{
-						kGAMECLASS.output("You stop when your [pc.sack] brushes against a [pc.leg] in the most delightful way. It's been getting progressively more and more in the way over the past hour. You're pretty sure you've gotten a little bigger in the nut department - maybe one or two tenths of an inch of extra diameter. That pill was the real deal.");
-					}
-					//3
 					else
 					{
-						kGAMECLASS.output("You don't notice it immediately, but at the end of the hour, you do realize that your [pc.sack] is a little larger than before - the better to carry its weightier contents. You wonder how much bigger it's going to make ");
-						if(target.cockTotal() == 1) kGAMECLASS.output("it");
-						else kGAMECLASS.output("them");
-						kGAMECLASS.output(".");
+						kGAMECLASS.output(target.ballSizeLockedMessage());
 					}
-					target.ballSizeRaw += .1 + rand(2)/10;
 				}
 				//#3 Shrink enormous balls
 				else if(select == 3)
 				{
-					kGAMECLASS.output("Walking is getting a little easier with the passage of time. In fact, you're pretty sure it's because your [pc.balls] ");
-					if(target.balls == 1) kGAMECLASS.output("is");
-					else kGAMECLASS.output("are");
-					kGAMECLASS.output(" shrinking. You aren't sure how you didn't notice earlier, but ");
-					if(target.balls == 1) kGAMECLASS.output("it has");
-					else kGAMECLASS.output("they've");
-					kGAMECLASS.output(" lost quite a bit of mass already. You suppress a whinny of disappointment at the realization that horses aren't supposed to have such ");
-					if(target.balls == 1) kGAMECLASS.output("a ");
-					kGAMECLASS.output("huge gonad");
-					if(target.balls > 1) kGAMECLASS.output("s");
-					kGAMECLASS.output(".");
+					var ballMod:Number = 1.0;
+					if (target.ballSizeRaw * 0.25 > 1.0) ballMod = 1.0;
+					
+					if (target.ballSizeUnlocked(target.ballSizeRaw - ballMod))
+					{
+						kGAMECLASS.output("Walking is getting a little easier with the passage of time. In fact, you're pretty sure it's because your [pc.balls] ");
+						if(target.balls == 1) kGAMECLASS.output("is");
+						else kGAMECLASS.output("are");
+						kGAMECLASS.output(" shrinking. You aren't sure how you didn't notice earlier, but ");
+						if(target.balls == 1) kGAMECLASS.output("it has");
+						else kGAMECLASS.output("they've");
+						kGAMECLASS.output(" lost quite a bit of mass already. You suppress a whinny of disappointment at the realization that horses aren't supposed to have such ");
+						if(target.balls == 1) kGAMECLASS.output("a ");
+						kGAMECLASS.output("huge gonad");
+						if(target.balls > 1) kGAMECLASS.output("s");
+						kGAMECLASS.output(".");
+						
+						target.ballSizeRaw -= ballMod;
+						
+						if (target.ballSizeRaw < 6) target.ballSizeRaw = 6;
+					}
+					else
+					{
+						kGAMECLASS.output(target.ballSizeLockedMessage());
+					}
 				}
 				//#4 Increase wetness by a very small amount.
 				else if(select == 4)
 				{
-					//Multicunt
-					if(target.vaginaTotal() > 1)
+					if (target.wetnessUnlocked(target.lowestWetnessIndex(), target.vaginas[target.lowestWetnessIndex].wetness + 0.5))
 					{
-						kGAMECLASS.output("With the assortment of cunt you've managed to accumulate in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member… something big, hard, and… bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!");
+						//Multicunt
+						if(target.vaginaTotal() > 1)
+						{
+							kGAMECLASS.output("With the assortment of cunt you've managed to accumulate in your crotch, you find yourself wondering how any one of them is supposed to take a suitable member... something big, hard, and... bestial. Glorious, [pc.leg]-dampening moisture is your body's answer. Are you getting wetter? You slide your palm across your slick deltas. Yes, you definitely are. How wonderful!");
+						}
+						//Single cunt
+						else
+						{
+							kGAMECLASS.output("Unbidden, you find yourself wondering about how you'd take a truly horse-sized member. Would it hurt? Would you be wet enough? The ");
+							if(target.isCrotchGarbed()) kGAMECLASS.output("dampness in your [pc.lowerGarment]");
+							else kGAMECLASS.output("slight shine of moisture on your lower lips");
+							kGAMECLASS.output(" seems to hint that you're getting closer. You can't resist testing your slickness with a finger. It's definitely getting wetter faster than normal.");
+						}
+						//Both
+						kGAMECLASS.output(" It takes some effort not to masturbate on the spot.");
+						x = target.lowestWetnessIndex();
+						target.vaginas[x].wetness += 0.5;
+						target.lust(10);
 					}
-					//Single cunt
 					else
 					{
-						kGAMECLASS.output("Unbidden, you find yourself wondering about how you'd take a truly horse-sized member. Would it hurt? Would you be wet enough? The ");
-						if(target.isCrotchGarbed()) kGAMECLASS.output("dampness in your [pc.lowerGarment]");
-						else kGAMECLASS.output("slight shine of moisture on your lower lips");
-						kGAMECLASS.output(" seems to hint that you're getting closer. You can't resist testing your slickness with a finger. It's definitely getting wetter faster than normal.");
+						kGAMECLASS.output(target.wetnessLockedMessage());
 					}
-					//Both
-					kGAMECLASS.output(" It takes some effort not to masturbate on the spot.");
-					x = target.lowestWetnessIndex();
-					target.vaginas[x].wetness += 0.5;
-					target.lust(10);
 				}
 				//#5 Increase clit size towards .75 by .1
 				else if(select == 5)
 				{
-					target.clitLength += 0.1;
-					if(target.clitLength < 0.5) target.clitLength = 0.5;
-					//Single clits!
-					if(target.totalClits() == 1)
+					if (target.clitLengthUnlocked(target.clitLength + 0.1))
 					{
-						kGAMECLASS.output("Something is rubbing down… down in your crotch - in just the right way, too. You suppress a pant of delight as you wiggle your [pc.hips], squeezing your lower lips down around a noticeably engorged buzzer. Is it… is it bigger?");
-						if(target.isCrotchGarbed()) kGAMECLASS.output(" You pull open your [pc.lowerGarments] to check.");
-						kGAMECLASS.output(" It definitely is; ");
-						
-						if(target.clitLength < 0.6) kGAMECLASS.output("it's getting so big that it would never escape notice.");
-						else kGAMECLASS.output("it's gotten so big that it's always poking out between your lips, a little knot of nerves just waiting to be touched.");
-						kGAMECLASS.output(" You're going to have to be careful how you walk if you don't want to stimulate yourself further.");
+						target.clitLength += 0.1;
+						if(target.clitLength < 0.5) target.clitLength = 0.5;
+						//Single clits!
+						if(target.totalClits() == 1)
+						{
+							kGAMECLASS.output("Something is rubbing down... down in your crotch - in just the right way, too. You suppress a pant of delight as you wiggle your [pc.hips], squeezing your lower lips down around a noticeably engorged buzzer. Is it... is it bigger?");
+							if(target.isCrotchGarbed()) kGAMECLASS.output(" You pull open your [pc.lowerGarments] to check.");
+							kGAMECLASS.output(" It definitely is; ");
+							
+							if(target.clitLength < 0.6) kGAMECLASS.output("it's getting so big that it would never escape notice.");
+							else kGAMECLASS.output("it's gotten so big that it's always poking out between your lips, a little knot of nerves just waiting to be touched.");
+							kGAMECLASS.output(" You're going to have to be careful how you walk if you don't want to stimulate yourself further.");
+						}
+						//Multiclits
+						else
+						{
+							kGAMECLASS.output("Something... no, multiple somethings are rubbing down below - in your crotch. It feels good too. You have to suppress a pant of delight at the sensations, but your [pc.hips] wiggle anyway, squeezing down around the sources of pleasure. Your [pc.clits] are totally erect and definitely bigger. ");
+							if(target.clitLength < 0.6) kGAMECLASS.output("Why, you're pretty sure they're so large that they'd be impossible to miss, like little pleasure-packed gumballs.");
+							else kGAMECLASS.output("There's no way they'll ever be hidden by your netherlips now - they stick out just far enough to make touching and stroking them as easy as breathing.");
+							kGAMECLASS.output(" You'll have to be careful walking if you don't want to wind up jilling off on the street.");
+						}
+						target.lust(10);
 					}
-					//Multiclits
 					else
 					{
-						kGAMECLASS.output("Something… no, multiple somethings are rubbing down below - in your crotch. It feels good too. You have to suppress a pant of delight at the sensations, but your [pc.hips] wiggle anyway, squeezing down around the sources of pleasure. Your [pc.clits] are totally erect and definitely bigger. ");
-						if(target.clitLength < 0.6) kGAMECLASS.output("Why, you're pretty sure they're so large that they'd be impossible to miss, like little pleasure-packed gumballs.");
-						else kGAMECLASS.output("There's no way they'll ever be hidden by your netherlips now - they stick out just far enough to make touching and stroking them as easy as breathing.");
-						kGAMECLASS.output(" You'll have to be careful walking if you don't want to wind up jilling off on the street.");
+						kGAMECLASS.output(target.clitLengthLockedMessage());
 					}
-					target.lust(10);
 				}
 				//#6 Decrease hueg boobs.
 				else if(select == 6)
 				{
-					if(target.bRows() == 1) kGAMECLASS.output("Your [pc.chest]");
-					else kGAMECLASS.output("Your [pc.fullChest]");
-					kGAMECLASS.output(" feel lighter. In fact, you're pretty sure you've lost a ");
-					if(target.biggestTitSize() > 10) kGAMECLASS.output("few cup sizes");
-					else kGAMECLASS.output("cup size");
-					kGAMECLASS.output(" from the change. You whicker without meaning to. Mares aren't really supposed to be that stacked anyway.");
-					for(x = 0; x < target.bRows(); x++)
+					if (target.breastRatingUnlocked(target.biggestTitRow(), 6))
 					{
-						if(target.breastRows[x].breastRating > 10) target.breastRows[x].breastRating -= 4 + rand(3);
-						else target.breastRows[x].breastRating -= 1;
+						if(target.bRows() == 1) kGAMECLASS.output("Your [pc.chest]");
+						else kGAMECLASS.output("Your [pc.fullChest]");
+						kGAMECLASS.output(" feel lighter. In fact, you're pretty sure you've lost a ");
+						if(target.biggestTitSize() > 10) kGAMECLASS.output("few cup sizes");
+						else kGAMECLASS.output("cup size");
+						kGAMECLASS.output(" from the change. You whicker without meaning to. Mares aren't really supposed to be that stacked anyway.");
+						for(x = 0; x < target.bRows(); x++)
+						{
+							if(target.breastRows[x].breastRating > 10) target.breastRows[x].breastRating -= 4 + rand(3);
+							else target.breastRows[x].breastRating -= 1;
+						}
+					}
+					else
+					{
+						kGAMECLASS.output(target.breastRatingLockedMessage());
 					}
 				}
 				//#7 Make a skoch dumber to a minimum of 25% of max
@@ -324,12 +374,12 @@
 					//Above 50%
 					else if(target.intelligence()/target.intelligenceMax() >= 0.5)
 					{
-						kGAMECLASS.output("Ugh, you keep tripping over your thoughts. Just when one is about finished, you wind up distracting yourself with something else, like a pang of hunger from your gut or fantasies of hot, feral sex. How are you supposed to focus when…. You shake your head, uttering a quiet neigh. Where did that come from?");
+						kGAMECLASS.output("Ugh, you keep tripping over your thoughts. Just when one is about finished, you wind up distracting yourself with something else, like a pang of hunger from your gut or fantasies of hot, feral sex. How are you supposed to focus when.... You shake your head, uttering a quiet neigh. Where did that come from?");
 					}
 					//Above 25%
 					else 
 					{
-						kGAMECLASS.output("Your mind feels… flat… placid. Like an empty field of blowing grasses. You smile and gaze into the distance for a minute, reveling in the simple pleasure of operating mostly on instinct.");
+						kGAMECLASS.output("Your mind feels... flat... placid. Like an empty field of blowing grasses. You smile and gaze into the distance for a minute, reveling in the simple pleasure of operating mostly on instinct.");
 					}
 					target.intelligence(-1);
 				}
@@ -396,55 +446,76 @@
 				//#10 Remove horns
 				else if(select == 10)
 				{
-					kGAMECLASS.output("Your horn");
-					if(target.horns > 1) kGAMECLASS.output("s audibly crack");
-					else kGAMECLASS.output(" audibly cracks");
-					kGAMECLASS.output(", falling to the ground a second later. Picking ");
-					if(target.horns == 1) kGAMECLASS.output("it");
-					else kGAMECLASS.output("them");
-					kGAMECLASS.output(" up, you feel ");
-					if(target.horns == 1) kGAMECLASS.output("it");
-					else kGAMECLASS.output("them");
-					kGAMECLASS.output(" crumble away in your hands like loose chalk. You touch the stumps on your head only to have them come away in the same fashion. <b>Unbroken [pc.skinFurScales] ");
-					if(target.skinType == GLOBAL.SCALES) kGAMECLASS.output("are");
-					else kGAMECLASS.output("is");
-					kGAMECLASS.output(" all that remains in place of your [pc.horns].</b>");
-					target.horns = 0;
-					target.hornType = GLOBAL.HUMAN;
-					target.hornLength = 0;
+					if (target.hornsUnlocked(0))
+					{
+						kGAMECLASS.output("Your horn");
+						if(target.horns > 1) kGAMECLASS.output("s audibly crack");
+						else kGAMECLASS.output(" audibly cracks");
+						kGAMECLASS.output(", falling to the ground a second later. Picking ");
+						if(target.horns == 1) kGAMECLASS.output("it");
+						else kGAMECLASS.output("them");
+						kGAMECLASS.output(" up, you feel ");
+						if(target.horns == 1) kGAMECLASS.output("it");
+						else kGAMECLASS.output("them");
+						kGAMECLASS.output(" crumble away in your hands like loose chalk. You touch the stumps on your head only to have them come away in the same fashion. <b>Unbroken [pc.skinFurScales] ");
+						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.output("are");
+						else kGAMECLASS.output("is");
+						kGAMECLASS.output(" all that remains in place of your [pc.horns].</b>");
+						target.horns = 0;
+						target.hornType = GLOBAL.HUMAN;
+						target.hornLength = 0;
+					}
+					else
+					{
+						kGAMECLASS.output(target.hornsLockedMessage());
+					}
 				}
 				//#11 Remove antennae
 				else if(select == 11)
 				{
-					kGAMECLASS.output("Your antennae drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.");
-					target.antennae = 0;
+					if (target.antennaeUnlocked(0))
+					{
+						kGAMECLASS.output("Your antennae drop to the ground. Where they once sat, there's only the curious numbness of a missing body part. You feel almost naked without them, but at the same time, it seems... right.");
+						target.antennae = 0;
+					}
+					else
+					{
+						kGAMECLASS.output(target.antennaeLockedMessage());
+					}
 				}
 				//#12 Grow hair length to 6"
 				else if(select == 12)
 				{
-					//No hair -> same result as short hair TF
-					if(!target.hasHair()) {
-						kGAMECLASS.output("Idly running a hand over your head, you discover that [pc.hair] has grown to cover your once bald pate. It's about two inches of thick hair.");
-						target.hairLength = 2;
-					}
-					//Short hair
-					else if(target.hairLength < 2)
+					if (target.hairLengthUnlocked(6))
 					{
-						kGAMECLASS.output("Idly running a hand over your head, you discover that your [pc.hair] has lengthened noticeably. It's about two inches long.");
-						target.hairLength = 2;
+						//No hair -> same result as short hair TF
+						if(!target.hasHair()) {
+							kGAMECLASS.output("Idly running a hand over your head, you discover that [pc.hair] has grown to cover your once bald pate. It's about two inches of thick hair.");
+							target.hairLength = 2;
+						}
+						//Short hair
+						else if(target.hairLength < 2)
+						{
+							kGAMECLASS.output("Idly running a hand over your head, you discover that your [pc.hair] has lengthened noticeably. It's about two inches long.");
+							target.hairLength = 2;
+						}
+						//Halfway there!
+						else if(target.hairLength < 4)
+						{
+							kGAMECLASS.output("You wind blow an unruly lock of your hair off your forehead before realizing that its grown. There's at least four inches of unkempt length there.");
+							target.hairLength = 4;
+						}
+						//Stage three!
+						else 
+						{
+							kGAMECLASS.output("Shaking your head, you're made aware of your growing hair by the feeling of it brushing across your forehead. There's definitely more of it than you recall, and a quick check with your codex's recording program reveals that you've got six inches of hair to manage now.");
+							if(!target.hasPerk("Mane")) kGAMECLASS.output(" You suppose that's as close to a mane as you're getting.");
+							target.hairLength = 6;
+						}
 					}
-					//Halfway there!
-					else if(target.hairLength < 4)
+					else
 					{
-						kGAMECLASS.output("You wind blow an unruly lock of your hair off your forehead before realizing that its grown. There's at least four inches of unkempt length there.");
-						target.hairLength = 4;
-					}
-					//Stage three!
-					else 
-					{
-						kGAMECLASS.output("Shaking your head, you're made aware of your growing hair by the feeling of it brushing across your forehead. There's definitely more of it than you recall, and a quick check with your codex's recording program reveals that you've got six inches of hair to manage now.");
-						if(!target.hasPerk("Mane")) kGAMECLASS.output(" You suppose that's as close to a mane as you're getting.");
-						target.hairLength = 6;
+						kGAMECLASS.output(target.hairLengthLockedMessage());
 					}
 				}
 				//#13 Mane? YES LETS FUCKING CALL IT A MANE!
@@ -462,6 +533,7 @@
 						if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15 && chosenVagoo == -1)
 							chosenVagoo = x;
 					}
+					
 					kGAMECLASS.output("You are suddenly aware of how totally, completely empty your [pc.vagina " + chosenVagoo + "] is. You can't help but wonder how much more you could fit inside, or how much bigger of a mate you could cram into the hungry void that is your box. Maybe you could find a suitably virile stud to mount you out in a field with nothing but the wind and the sky between you.");
 					target.vaginas[chosenVagoo].bonusCapacity += 5;
 					if(target.vaginas[chosenVagoo].bonusCapacity > 15) target.vaginas[chosenVagoo].bonusCapacity = 15;
@@ -469,14 +541,24 @@
 				//#15 +1-4" height to a max of 6'11" for dicked and 6' for undicked.
 				else if(select == 15)
 				{
-					kGAMECLASS.output("You forget to duck and whack your head into something. Frowning in irritation, you have to wonder if you've gotten taller. Now that you think about it, you're pretty sure you have. It's a small but significant step up.");
-					target.tallness += 1 + rand(4);
+					var newHeight:Number = target.tallness + 1 + rand(4);
+					
+					if (target.tallnessUnlocked(newHeight))
+					{
+						kGAMECLASS.output("You forget to duck and whack your head into something. Frowning in irritation, you have to wonder if you've gotten taller. Now that you think about it, you're pretty sure you have. It's a small but significant step up.");
+						target.tallness += 1 + rand(4);
+					}
+					else
+					{
+						kGAMECLASS.output(target.tallnessLockedMessage());
+					}
 				}
 				//New lines!
 				kGAMECLASS.output("\n\n");
 				totalTFs--;
 			}
 		}
+		
 		private function bigHorsePillMutations(target:Creature):void
 		{
 			//How many TFs? Max of 2.
@@ -502,10 +584,10 @@
 			if(hasSheathedNonHorsecocks(target))
 				TFList[TFList.length] = 4;
 			//#5 GROW SOME BALLS
-			if(target.hasCock() && target.balls == 0)
+			if(target.hasCock() && target.balls == 0 && target.ballsUnlocked(2))
 				TFList[TFList.length] = 5;
 			//#6 GROW A SECOND BALL IF ONLY ONE
-			if(target.hasCock() && target.balls == 1)
+			if(target.hasCock() && target.balls == 1 && target.ballsUnlocked(2))
 				TFList[TFList.length] = 6;
 			//#7 Horsecunt.
 			if(target.vaginaTotal(GLOBAL.EQUINE) < target.vaginaTotal())
@@ -532,7 +614,7 @@
 			if(target.skinType != GLOBAL.FUR && target.legType == GLOBAL.EQUINE)
 				TFList[TFList.length] = 14;
 			//#15 SNOUTS! THE SAVIN SPECIAL! - req's fur
-			if(target.faceType != GLOBAL.EQUINE && target.skinType == GLOBAL.FUR)
+			if(target.faceType != GLOBAL.EQUINE && target.skinType == GLOBAL.FUR && target.faceTypeUnlocked(GLOBAL.EQUINE))
 				TFList[TFList.length] = 15;
 			//#0 DEFAULT CATCH ALL!
 			if(TFList.length == 0) TFList[TFList.length] = 0;
@@ -553,38 +635,59 @@
 				//#1 On multirow tits, shrink down to nothing but nips!
 				else if(select == 1)
 				{
-					kGAMECLASS.output("Every breast beneath your top row has apparently been shrinking, judging by the diminished size of your secondary bust");
-					if(target.bRows() > 2) kGAMECLASS.output("s");
-					kGAMECLASS.output(". ");
-					if(target.breastRows[0].breastRating >= 1) kGAMECLASS.output("The " + target.breastDescript(0) + " above are as nice as they've ever been,");
-					else kGAMECLASS.output("The chest above remains unchanged,");
-					kGAMECLASS.output(" but down south, you're ");
-
+					var bRatingChange:Boolean = false;
 					for(x = 1; x < target.bRows(); x++)
 					{
-						target.breastRows[x].breastRating -= 3 + rand(3);
+						if (target.breastRatingUnlocked(x, 0))
+						{
+							target.breastRows[x].breastRating -= 3 + rand(3);
+							bRatingChange = true;
+						}
+						
 						if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
 					}
-					var biggestLowTits:int = 0;
-					//Find biggest secondary row
-					for(x = 1; x < target.bRows(); x++)
-					{
-						if(target.breastRows[x].breastRating > biggestLowTits) biggestLowTits = target.breastRows[x].breastRating;
+					
+					if (bRatingChange)
+					{					
+						kGAMECLASS.output("Every breast beneath your top row has apparently been shrinking, judging by the diminished size of your secondary bust");
+						if(target.bRows() > 2) kGAMECLASS.output("s");
+						kGAMECLASS.output(". ");
+						if(target.breastRows[0].breastRating >= 1) kGAMECLASS.output("The " + target.breastDescript(0) + " above are as nice as they've ever been,");
+						else kGAMECLASS.output("The chest above remains unchanged,");
+						kGAMECLASS.output(" but down south, you're ");
+						
+						var biggestLowTits:int = 0;
+						//Find biggest secondary row
+						for(x = 1; x < target.bRows(); x++)
+						{
+							if(target.breastRows[x].breastRating > biggestLowTits) biggestLowTits = target.breastRows[x].breastRating;
+						}
+						if(biggestLowTits < 1) kGAMECLASS.output("practically flat aside from the slight bumps of your " + target.nippleDescript(1) + ".");
+						else if(target.breastRows[0].breastRating < 1) kGAMECLASS.output("getting closer to your top side's flatness.");
+						else kGAMECLASS.output("getting increasingly closer to flatness. If this happens much more you're not going to have much more than a few extra nipples to show your multibreastedness.");
 					}
-					if(biggestLowTits < 1) kGAMECLASS.output("practically flat aside from the slight bumps of your " + target.nippleDescript(1) + ".");
-					else if(target.breastRows[0].breastRating < 1) kGAMECLASS.output("getting closer to your top side's flatness.");
-					else kGAMECLASS.output("getting increasingly closer to flatness. If this happens much more you're not going to have much more than a few extra nipples to show your multibreastedness.");
+					else
+					{
+						kGAMECLASS.output(target.breastRatingLockedMessage());
+					}
 				}
 				//#2 Combine more than two balls into regular balls
 				else if(select == 2)
 				{
-					kGAMECLASS.output("Your [pc.sack] feels feverishly warm. There's no other way to describe the pulsating warmth currently coursing through it. ");
-					if(target.isCrotchGarbed()) kGAMECLASS.output("You shuck your [pc.lowerGarments] to check it out. ");
-					else kGAMECLASS.output("You look down to check it out. ");
-					kGAMECLASS.output("Strangely, your [pc.balls] are hanging oddly. It seems like they're stuck together. A gentle squeeze confirms your suspicion. Then, before your eyes, they slowly grow together, merging into a pair of much larger nuts. They feel heavy and strange but also undeniably right. <b>You've only got two balls, but they're much bigger.</b>");
-					//Ballsize grow based on how many were merged in!
-					target.ballSizeRaw = target.balls/2 * target.ballSizeRaw;
-					target.balls = 2;
+					if (target.ballsUnlocked(2))
+					{
+						kGAMECLASS.output("Your [pc.sack] feels feverishly warm. There's no other way to describe the pulsating warmth currently coursing through it. ");
+						if(target.isCrotchGarbed()) kGAMECLASS.output("You shuck your [pc.lowerGarments] to check it out. ");
+						else kGAMECLASS.output("You look down to check it out. ");
+						kGAMECLASS.output("Strangely, your [pc.balls] are hanging oddly. It seems like they're stuck together. A gentle squeeze confirms your suspicion. Then, before your eyes, they slowly grow together, merging into a pair of much larger nuts. They feel heavy and strange but also undeniably right. <b>You've only got two balls, but they're much bigger.</b>");
+						//Ballsize grow based on how many were merged in!
+						target.ballSizeRaw = target.balls/2 * target.ballSizeRaw;
+						target.balls = 2;
+					}
+					else
+					{
+						kGAMECLASS.output(target.ballsLockedMessage());
+					}
 				}
 				//#3 Grow a sheath if none.
 				else if(select == 3)
@@ -610,13 +713,21 @@
 					{
 						if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.EQUINE && cockToBe == -1) cockToBe = x;
 					}
-					kGAMECLASS.output("A pinch of slight discomfort garners your attention, and the immediate blossoming of unnatural warmth within holds it. Building slowly, the strange yet pleasant sensation spreads through your length to your abdominal core. Then, like a butterfly emerging from its cocoon, your [pc.cock " + cockToBe + "] reveals itself, changed ");
-					//Ovir or other horsecockalikes
-					if(target.hasCockFlag(GLOBAL.BLUNT)) kGAMECLASS.output("subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.");
-					else kGAMECLASS.output("obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.");
-					kGAMECLASS.output(" More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.");
-					target.shiftCock(cockToBe,GLOBAL.EQUINE);
-					target.lust(50+rand(10));
+					
+					if (target.cockTypeUnlocked(cockToBe, GLOBAL.EQUINE))
+					{
+						kGAMECLASS.output("A pinch of slight discomfort garners your attention, and the immediate blossoming of unnatural warmth within holds it. Building slowly, the strange yet pleasant sensation spreads through your length to your abdominal core. Then, like a butterfly emerging from its cocoon, your [pc.cock " + cockToBe + "] reveals itself, changed ");
+						//Ovir or other horsecockalikes
+						if(target.hasCockFlag(GLOBAL.BLUNT)) kGAMECLASS.output("subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.");
+						else kGAMECLASS.output("obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.");
+						kGAMECLASS.output(" More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.");
+						target.shiftCock(cockToBe,GLOBAL.EQUINE);
+						target.lust(50 + rand(10));
+					}
+					else
+					{
+						kGAMECLASS.output(target.cockTypeLockedMessage());
+					}
 				}
 				//#5 GROW SOME BALLS
 				else if(select == 5)
@@ -640,134 +751,207 @@
 					{
 						if(target.vaginas[x].type != GLOBAL.EQUINE && cuntToBe == -1) cuntToBe = x;
 					}
-					kGAMECLASS.output("You stagger as your [pc.vagina " + cuntToBe + "] abruptly engorges, feeling utterly and completely swollen with blood. It feels even fuller and more plush than when you're turned on, most noticeably around the outer lips. It looks just like... well, a horse-cunt. <b>You've got a big, puffy horse-cunt</b>, perfectly sized to take a big, blunted member.");
-					target.shiftVagina(cuntToBe,GLOBAL.EQUINE);
-					target.lust(10);
+					
+					if (target.vaginaTypeUnlocked(cuntToBe, GLOBAL.EQUINE))
+					{
+						kGAMECLASS.output("You stagger as your [pc.vagina " + cuntToBe + "] abruptly engorges, feeling utterly and completely swollen with blood. It feels even fuller and more plush than when you're turned on, most noticeably around the outer lips. It looks just like... well, a horse-cunt. <b>You've got a big, puffy horse-cunt</b>, perfectly sized to take a big, blunted member.");
+						target.shiftVagina(cuntToBe,GLOBAL.EQUINE);
+						target.lust(10);
+					}
+					else
+					{
+						kGAMECLASS.output(target.vaginaTypeLockedMessage());
+					}
 				}
 				//#8 Change hair color to black, brown, chestnut, or white (rare)
 				else if(select == 8)
 				{
-					if(rand(10) == 0) target.hairColor = "white";
-					else if(rand(3) == 0) target.hairColor = "chestnut";
-					else if(rand(2) == 0) target.hairColor = "brown";
-					else target.hairColor = "black";
-					//Bald
-					if(!target.hasHair) kGAMECLASS.output("Your scalp tingles, but without any hair there, you aren't aware of what changed. Perhaps it changed your hair color, but you can't be sure until you grow some!");
-					//Short
-					else kGAMECLASS.output("Your scalp tingles meaningfully, and after scratching at it, it doesn't subside. You check yourself with your codex to make sure you aren't coming down with an aggressive new strain of lice and find <b>your hair has turned " + target.hairColor + ".</b>");
+					var newHairColour:String = "";
+					if(rand(10) == 0) newHairColour = "white";
+					else if(rand(3) == 0) newHairColour = "chestnut";
+					else if(rand(2) == 0) newHairColour = "brown";
+					else newHairColour = "black";
+					
+					if (target.hairColorUnlocked(newHairColour))
+					{
+						target.hairColor = newHairColour;
+						
+						//Bald
+						if(!target.hasHair) kGAMECLASS.output("Your scalp tingles, but without any hair there, you aren't aware of what changed. Perhaps it changed your hair color, but you can't be sure until you grow some!");
+						//Short
+						else kGAMECLASS.output("Your scalp tingles meaningfully, and after scratching at it, it doesn't subside. You check yourself with your codex to make sure you aren't coming down with an aggressive new strain of lice and find <b>your hair has turned " + target.hairColor + ".</b>");
+					}
+					else
+					{
+						kGAMECLASS.output(target.hairColorLockedMessage());
+					}
 				}
 				//#9 Change fur color to chocolate, ivory, brown-dappled, or sable.
 				else if(select == 9)
 				{
-					if(rand(4) == 0) target.furColor = "chocolate";
-					else if(rand(3) == 0) target.furColor = "ivory";
-					else if(rand(2) == 0) target.furColor = "brown-dappled";
-					else target.furColor = "sable";
-					kGAMECLASS.output("Your fur has changed color! One minute, you're minding your own business, the next, you're noticing that most of your fur has turned " + target.furColor + ". As a matter of fact, you can see it spreading to the last few hold-outs on your forearms and nose. <b>You've got " + target.skinFurScales(true) + " now.</b>");
+					var newFurColour:String = "";
+					if(rand(4) == 0) newFurColour = "chocolate";
+					else if(rand(3) == 0) newFurColour = "ivory";
+					else if(rand(2) == 0) newFurColour = "brown-dappled";
+					else newFurColour = "sable";
+					
+					if (target.furColorUnlocked(newFurColour))
+					{
+						target.furColor = newFurColour;
+						
+						kGAMECLASS.output("Your fur has changed color! One minute, you're minding your own business, the next, you're noticing that most of your fur has turned " + target.furColor + ". As a matter of fact, you can see it spreading to the last few hold-outs on your forearms and nose. <b>You've got " + target.skinFurScales(true) + " now.</b>");
+					}
+					else
+					{
+						kGAMECLASS.output(target.furColorLockedMessage());
+					}
 				}
 				//#10 Grow hoarse ears
 				//Ears - requires tail
 				else if(select == 10)
 				{
-					if (target.earType == GLOBAL.HUMAN) kGAMECLASS.output("Your ears tug painfully on your face as they begin shifting, moving upwards to the top of your head and transforming into a upright animalistic ears.");
-					else if (target.earType == GLOBAL.CANINE) kGAMECLASS.output("Your ears change shape, morphing into from their doglike shape into equine-like ears!");
-					else kGAMECLASS.output("Your ears change shape, morphing into teardrop-shaped horse ears!");
-					kGAMECLASS.output("<b> You now have horse ears.</b>");
-					target.earType = GLOBAL.EQUINE;
+					if (target.earTypeUnlocked(GLOBAL.EQUINE))
+					{
+						if (target.earType == GLOBAL.HUMAN) kGAMECLASS.output("Your ears tug painfully on your face as they begin shifting, moving upwards to the top of your head and transforming into a upright animalistic ears.");
+						else if (target.earType == GLOBAL.CANINE) kGAMECLASS.output("Your ears change shape, morphing into from their doglike shape into equine-like ears!");
+						else kGAMECLASS.output("Your ears change shape, morphing into teardrop-shaped horse ears!");
+						kGAMECLASS.output("<b> You now have horse ears.</b>");
+						target.earType = GLOBAL.EQUINE;
+					}
+					else
+					{
+						kGAMECLASS.output(target.earTypeLockedMessage());
+					}
 				}
 				//#11 Grow horse tail
 				else if(select == 11)
 				{
-					if(target.tailType == 0) kGAMECLASS.output("There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + target.hairColor + " color as your hair.");
-					//if bee/spider-butt.
-					else if (target.tailType == GLOBAL.ARACHNID || target.tailType == GLOBAL.BEE)
+					if (target.tailTypeUnlocked(GLOBAL.EQUINE) && target.tailCountUnlocked(1))
 					{
-						kGAMECLASS.output("Your [pc.tails] bunch");
-						if(target.tailCount == 1) kGAMECLASS.output("es");
-						kGAMECLASS.output(" up as ");
-						if(target.tailCount == 1) kGAMECLASS.output("it begins");
-						else kGAMECLASS.output("they begin");
-						kGAMECLASS.output(" shrinking, exoskeleton flaking off like a snake sheds its skin. ");
-						if(target.tailCount == 1) kGAMECLASS.output("It bunches");
-						else kGAMECLASS.output("They bunch");
-						kGAMECLASS.output(" up until ");
-						if(target.tailCount == 1) kGAMECLASS.output("it is");
-						else kGAMECLASS.output("they are");
-						kGAMECLASS.output(" as small as a tennis ball, then explode");
-						if(target.tailCount == 1) kGAMECLASS.output("s");
-						kGAMECLASS.output(" outwards, growing into an animalistic, vaguely-tail shaped appendage. Moments later, it explodes into filaments of pain, dividing into hundreds of strands and turning into a shiny horsetail.");
+						if(target.tailType == 0) kGAMECLASS.output("There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + target.hairColor + " color as your hair.");
+						//if bee/spider-butt.
+						else if (target.tailType == GLOBAL.ARACHNID || target.tailType == GLOBAL.BEE)
+						{
+							kGAMECLASS.output("Your [pc.tails] bunch");
+							if(target.tailCount == 1) kGAMECLASS.output("es");
+							kGAMECLASS.output(" up as ");
+							if(target.tailCount == 1) kGAMECLASS.output("it begins");
+							else kGAMECLASS.output("they begin");
+							kGAMECLASS.output(" shrinking, exoskeleton flaking off like a snake sheds its skin. ");
+							if(target.tailCount == 1) kGAMECLASS.output("It bunches");
+							else kGAMECLASS.output("They bunch");
+							kGAMECLASS.output(" up until ");
+							if(target.tailCount == 1) kGAMECLASS.output("it is");
+							else kGAMECLASS.output("they are");
+							kGAMECLASS.output(" as small as a tennis ball, then explode");
+							if(target.tailCount == 1) kGAMECLASS.output("s");
+							kGAMECLASS.output(" outwards, growing into an animalistic, vaguely-tail shaped appendage. Moments later, it explodes into filaments of pain, dividing into hundreds of strands and turning into a shiny horsetail.");
+						}
+						//if other animal tail
+						else {
+							kGAMECLASS.output("Pain lances up your " + target.assholeDescript() + " as your [pc.tails] shift");
+							if(target.tailCount == 1) kGAMECLASS.output("s");
+							kGAMECLASS.output(" and morph");
+							kGAMECLASS.output("s");
+							kGAMECLASS.output(" disgustingly. With one last wave of pain, ");
+							if(target.tailCount == 1) kGAMECLASS.output("it splits");
+							else kGAMECLASS.output("they split");
+							kGAMECLASS.output(" into hundreds of tiny filaments, transforming into a horsetail.");
+						}
+						kGAMECLASS.output(" <b>You now have a horse-tail.</b>", false);
+						target.clearTailFlags();
+						target.addTailFlag(GLOBAL.LONG);
+						target.tailCount = 1;
+						target.tailType = GLOBAL.EQUINE;
 					}
-					//if other animal tail
-					else {
-						kGAMECLASS.output("Pain lances up your " + target.assholeDescript() + " as your [pc.tails] shift");
-						if(target.tailCount == 1) kGAMECLASS.output("s");
-						kGAMECLASS.output(" and morph");
-						kGAMECLASS.output("s");
-						kGAMECLASS.output(" disgustingly. With one last wave of pain, ");
-						if(target.tailCount == 1) kGAMECLASS.output("it splits");
-						else kGAMECLASS.output("they split");
-						kGAMECLASS.output(" into hundreds of tiny filaments, transforming into a horsetail.");
+					else if (!target.tailTypeUnlocked(GLOBAL.EQUINE))
+					{
+						kGAMECLASS.output(target.tailTypeLockedMessage());
 					}
-					kGAMECLASS.output(" <b>You now have a horse-tail.</b>", false);
-					target.clearTailFlags();
-					target.addTailFlag(GLOBAL.LONG);
-					target.tailCount = 1;
-					target.tailType = GLOBAL.EQUINE;
+					else if (!target.tailCountUnlocked(1))
+					{
+						kGAMECLASS.output(target.tailCountLockedMessage());
+					}
 				}
 				//#12 Gain black hoof-nails on fingertips.
 				else if(select == 12)
 				{
-					kGAMECLASS.output("Your fingers abruptly clench, driving your fingertips into your palm. The feel firmer than normal, and when you open your hands, you discover that from the last joint of your finger on your fingers have hardened into black, almost hoof-like material. You can still feel through them. <b>You've grown hoof-nails!</b>");
-					target.armType = GLOBAL.EQUINE;
+					if (target.armTypeUnlocked(GLOBAL.EQUINE))
+					{
+						kGAMECLASS.output("Your fingers abruptly clench, driving your fingertips into your palm. The feel firmer than normal, and when you open your hands, you discover that from the last joint of your finger on your fingers have hardened into black, almost hoof-like material. You can still feel through them. <b>You've grown hoof-nails!</b>");
+						target.armType = GLOBAL.EQUINE;
+					}
+					else
+					{
+						kGAMECLASS.output(target.armTypeLockedMessage());
+					}
 				}
 				//#13 Get propah hooves.
 				else if(select == 13)
 				{
-					//Single legs
-					if(target.legCount == 1)
+					if (target.legTypeUnlocked(GLOBAL.EQUINE) && (target.legCountUnlocked(2) || target.legCountUnlocked(4)))
 					{
-						kGAMECLASS.output("Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.");
-						target.legCount = 2;
-					}
-					//Quad+ legs
-					else if(target.legCount >= 3) {
-						kGAMECLASS.output("Twitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into newer, more equine shapes, and your [pc.feet] change with them, growing hard and cloven.");
-						if(target.legCount > 4) 
+						//Single legs
+						if(target.legCount == 1 && target.legCountUnlocked(2))
 						{
-							kGAMECLASS.output(" The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.");
-							target.legCount = 4;
+							kGAMECLASS.output("Your [pc.leg] goes weak and wobbly. You manage to drop to the ground with less grace than you meant before your strength gives completely. Starting at the tip of your [pc.foot], your [pc.leg] creases before starting to separate in two! The split supports slowly change shape to take on knees and high, digitigrade ankles. At the bottoms of your new legs, hooves form.");
+							target.legCount = 2;
 						}
-						kGAMECLASS.output(" For better or worse, you've got horse-legs now.");
+						//Quad+ legs
+						else if (target.legCount >= 3 && target.legCountUnlocked(4)) 
+						{
+							kGAMECLASS.output("Twitching wildly, your [pc.legs] give out, dumping you to the floor in a heap of uncoordinated, splayed limbs. They twitch wildly as they reform, starting at your waist and spreading down. Their bones melt like butter as they flow into newer, more equine shapes, and your [pc.feet] change with them, growing hard and cloven.");
+							if(target.legCount > 4) 
+							{
+								kGAMECLASS.output(" The front four do anyway. Your body shortens up behind them, becoming more traditionally tauric in shape and size.");
+								target.legCount = 4;
+							}
+							kGAMECLASS.output(" For better or worse, you've got horse-legs now.");
 
+						}
+						//Double legs - DA CATCH ALLZ
+						else
+						{
+							kGAMECLASS.output("Your legs wobble warningly a moment before dumping you to the ground as they nervelessly twitch. Their shape gets less and less distinct as their structure morphs and shifts, ");
+							if(!target.hasLegFlag(GLOBAL.DIGITIGRADE)) kGAMECLASS.output("becoming distinctly digitigrade in nature");
+							else kGAMECLASS.output("remaining digitigrade but in slightly different proportion");
+							kGAMECLASS.output(". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>");
+						}
+						target.clearLegFlags();
+						target.addLegFlag(GLOBAL.DIGITIGRADE);
+						target.addLegFlag(GLOBAL.HOOVES);
+						target.legType = GLOBAL.EQUINE;
 					}
-					//Double legs - DA CATCH ALLZ
-					else
+					else if (!target.legCountUnlocked(2) || !target.legCountUnlocked(4))
 					{
-						kGAMECLASS.output("Your legs wobble warningly a moment before dumping you to the ground as they nervelessly twitch. Their shape gets less and less distinct as their structure morphs and shifts, ");
-						if(!target.hasLegFlag(GLOBAL.DIGITIGRADE)) kGAMECLASS.output("becoming distinctly digitigrade in nature");
-						else kGAMECLASS.output("remaining digitigrade but in slightly different proportion");
-						kGAMECLASS.output(". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>");
+						kGAMECLASS.output(target.legCountLockedMessage());
 					}
-					target.clearLegFlags();
-					target.addLegFlag(GLOBAL.DIGITIGRADE);
-					target.addLegFlag(GLOBAL.HOOVES);
-					target.legType = GLOBAL.EQUINE;
-
+					else if (!target.legTypeUnlocked(GLOBAL.EQUINE))
+					{
+						kGAMECLASS.output(target.legTypeLockedMessage());
+					}
 				}
 				//#14 Grow Fur
 				else if(select == 14)
 				{
-					target.skinType = GLOBAL.FUR;
-					if(rand(4) == 0) target.furColor = "chocolate";
-					else if(rand(3) == 0) target.furColor = "ivory";
-					else if(rand(2) == 0) target.furColor = "brown-dappled";
-					else target.furColor = "sable";
-					//Scales
-					if(target.skinType == GLOBAL.SCALES) kGAMECLASS.output("Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.");
-					//Chitin
-					else if(target.skinType == GLOBAL.CHITIN) kGAMECLASS.output("Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.");
-					//Skin or whatever!
-					else kGAMECLASS.output("Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>");
+					if (target.skinTypeUnlocked(GLOBAL.FUR)
+					{
+						target.skinType = GLOBAL.FUR;
+						if(rand(4) == 0) target.furColor = "chocolate";
+						else if(rand(3) == 0) target.furColor = "ivory";
+						else if(rand(2) == 0) target.furColor = "brown-dappled";
+						else target.furColor = "sable";
+						//Scales
+						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.output("Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.");
+						//Chitin
+						else if(target.skinType == GLOBAL.CHITIN) kGAMECLASS.output("Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.");
+						//Skin or whatever!
+						else kGAMECLASS.output("Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>");
+					}
+					else
+					{
+						kGAMECLASS.output(target.skinTypeLockedMessage());
+					}
 				}
 				//SNOUTS! THE SAVIN SPECIAL!
 				else if(select == 15)

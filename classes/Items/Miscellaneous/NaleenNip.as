@@ -113,7 +113,7 @@
 				}
 				//Increase height to 6' then rarely to 6'5"
 				if(changes < changeLimit && ((target.tallness < 72 && rand(3) == 0) || (target.tallness < 72 && rand(10) == 0))) {
-					kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn't quite right. You… are you taller? You check the codex's scanners and confirm that you've grown ");
+					kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn't quite right. You... are you taller? You check the codex's scanners and confirm that you've grown ");
 					x = 1 + rand(5);
 					if(x == 1) kGAMECLASS.output("an inch.");
 					else kGAMECLASS.output(kGAMECLASS.num2Text(x) + " inches.");
@@ -371,7 +371,7 @@
 				kGAMECLASS.output(" vanished - ");
 				if(target.cockTotal() > 1) kGAMECLASS.output("they're");
 				else kGAMECLASS.output("it's");
-				kGAMECLASS.output(" just hiding inside the warm, wet channel. Oh… it feels kind of nice, and [pc.eachCock] starts to emerge. You stop before you wind up masturbating with <b>the new, snake-like slit that holds your [pc.cocks] when unaroused.</b>");
+				kGAMECLASS.output(" just hiding inside the warm, wet channel. Oh... it feels kind of nice, and [pc.eachCock] starts to emerge. You stop before you wind up masturbating with <b>the new, snake-like slit that holds your [pc.cocks] when unaroused.</b>");
 				target.lust(5)
 				changes++;
 				target.createStatusEffect("Genital Slit",0,0,0,0);
