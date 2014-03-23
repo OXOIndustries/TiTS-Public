@@ -144,7 +144,7 @@
 				if(target.lipMod < 1) choices[choices.length] = 1;
 				else if(target.lipMod < 2) choices[choices.length] = 2;
 				//hip curviness
-				if(target.hipRating < 12)
+				if(target.hipRatingRaw < 12)
 				{
 					choices[choices.length] = 3;
 					choices[choices.length] = 3;
@@ -153,7 +153,7 @@
 					choices[choices.length] = 3;
 				}
 				//Bubble butt
-				if(target.buttRating < 9)
+				if(target.buttRatingRaw < 9)
 				{
 					choices[choices.length] = 4;
 					choices[choices.length] = 4;
@@ -193,7 +193,7 @@
 					}
 				}
 				//Shrink balls UNLESS balls have trap pouch tf.
-				if(target.balls > 0 && target.ballSize > 1 && !target.hasStatusEffect("Uniball"))
+				if(target.balls > 0 && target.ballSizeRaw > 1 && !target.hasStatusEffect("Uniball"))
 				{
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
@@ -232,13 +232,13 @@
 					if(target.isCrotchGarbed()) kGAMECLASS.output("\n\nYou can hear creaking, stretching sounds from your [pc.lowerGarments] as your waistline broadens with the new size of your [pc.hips].");
 					//Unarmored
 					else kGAMECLASS.output("\n\nYou adjust your stance a few times before you realize that your [pc.hips] are spreading and expanding, becoming a little bit more curvy.");
-					target.hipRating++;
+					target.hipRatingRaw++;
 				}
 				//and butts bubbly!
 				else if(select == 4)
 				{
 					kGAMECLASS.output("\n\nStumbling a bit, you try to compensate for an altered center of gravity without knowing why. You stabilize yourself do a quick inspection, eventually identifying the culprit as your newly-enlarged backside.");
-					target.buttRating++;
+					target.buttRatingRaw++;
 				}
 				//Decreases muscle tone
 				else if(select == 5)
@@ -303,10 +303,10 @@
 					kGAMECLASS.output(" to diminish before your very eyes, losing mass while your [pc.sack] keeps tight around ");
 					if(target.balls == 1) kGAMECLASS.output("it");
 					else kGAMECLASS.output("them");
-					target.ballSize -= 2 + rand(3);
-					if(target.ballSize > 10) target.ballSize -= 2 + rand(3);
-					if(target.ballSize > 25) target.ballSize -= 2 + rand(3);
-					if(target.ballSize > 35) target.ballSize -= 2 + rand(3);
+					target.ballSizeRaw -= 2 + rand(3);
+					if(target.ballSizeRaw > 10) target.ballSizeRaw -= 2 + rand(3);
+					if(target.ballSizeRaw > 25) target.ballSizeRaw -= 2 + rand(3);
+					if(target.ballSizeRaw > 35) target.ballSizeRaw -= 2 + rand(3);
 					kGAMECLASS.output(" like a vacuum-sealed bag. <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
 				}
 				else if(select == 9)

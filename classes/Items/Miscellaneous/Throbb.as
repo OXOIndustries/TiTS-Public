@@ -142,38 +142,57 @@
 			//GROWTH! REQUIRES DICK!
 			if(pc.hasCock() && ((pc.cockTotal() > 1 || rand(2) == 0) || (changes < changeLimit && rand(3) == 0))) {
 				//Make a smallish dick bigger!
-				if(pc.cocks[arg].cLengthRaw <= 8) {
+				if(pc.cockLengthUnlocked(arg, 9) && pc.cocks[arg].cLengthRaw <= 8) {
 					kGAMECLASS.output("\n\nYour hand strays to your [pc.cock " + arg + "] without conscious thought. On noticing it, you merely smile, admiring the shape of your swollen length, like your hand belongs there. Your arm begins to pump, dragging your hand up and down the length, pleasuring yourself before you have a chance to react, and you just slump back, jacking on your [pc.cock " + arg + "] as it feels better and better.");
 					temp = Math.round(23 + rand(30))/10;
 					pc.cocks[arg].cLengthRaw += temp;
 					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don't really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug's namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You've gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
+					changes++;
 				}
 				//Make a kinda big dick bigger!
-				else if(pc.cocks[arg].cLengthRaw <= 20)
+				else if(pc.cockLengthUnlocked(arg, 21) && pc.cocks[arg].cLengthRaw <= 20)
 				{
 					kGAMECLASS.output("\n\nYou couldn't stop yourself from grabbing onto your [pc.cock " + arg + "] if you wanted to. It's burning with need, throbbing and bouncing against you as it weakly shoots out ropes of pre-cum as thick as your normal ejaculate. You tug it, feeling lengthing in your hand, thickening to match its expanded size, and groan. Your [pc.hips] lurch into the air as you start fistfucking yourself, dick lengthening all the while. ");
 					temp = Math.round(15 + rand(30))/10;
 					pc.cocks[arg].cLengthRaw += temp;
 					kGAMECLASS.output("<b>It doesn't stop until you've gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
+					changes++;
 				}
 				//Make a hyper dick bigger!
-				else 
+				else if (pc.cockLengthUnlocked(arg, 30))
 				{
 					kGAMECLASS.output("\n\nDespite its immensity, your [pc.cock " + arg + "] has become painfully hard. You idly wonder how you have enough blood to make a dong this size this rigid before another wave of excitement washes that away. Pre-cum is practically pissing out of your slit as you start pumping your expanding length, rolling down the [pc.cockHead " + arg + "] in waves of cream that are sure to be outshone by your inevitable, massive orgasm. You're throbbing so hard, thickening with each beat of your heart. It feels so good that you can't fathom how why you haven't cum yet. It's like you're drowning in an ocean of burning, oozing lust, and the only thing exposed is the steadily growing tip of your length. <b>Your [pc.cock " + arg + "] has gotten even bigger!</b>");
 					temp = Math.round(10 + rand(30))/10;
 					pc.cocks[arg].cLengthRaw += temp;
+					changes++;
 				}
-				changes++;
+				else
+				{
+					kGAMECLASS.output(pc.cockLengthLockedMessage());
+				}
 			}
+			
 			//Grow balls from nothing!
-			if(pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
+			if(pc.ballsUnlocked(2) && pc.balls == 0 && pc.hasCock() && pc.longestCockLength() >= 10 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nJust when you're getting into the chemical arousal that's coursing through you, your gut twists, and nausea threatens to overwhelm you. Something is squeezing down on you painfully hard! You check, but there's nothing there aside from your hand massaging your embiggened phallus. Closing your eyes, you try to identify the source of your discomfort. The tightness shifts lower, sliding down and granting you relief at last. You open your eyes to see something entirely unexpected - a small scrotum with two lumps inside. <b>You have grown testicles!</b>");
 				pc.balls = 2;
 				pc.ballSizeRaw = 1;
 				changes++;
 			}
+			else if (!pc.ballsUnlocked(2))
+			{
+				kGAMECLASS.output(pc.ballsLockedMessage());
+			}
+			
 			//Make balls bigger!
-			if(pc.balls > 0 && pc.hasCock() && rand(3) == 0 && changes < changeLimit)
+			
+			// Calc new ballsize
+			var newBallSize:Number = 0.0;
+			if (pc.ballSizeRaw < 4) newBallSize = pc.ballSizeRaw + 1.5 + rand(20) / 10;
+			else if (pc.ballSizeRaw < 8) newBallSize = pc.ballSizeRaw + 0.75 + rand(10) / 10;
+			else newBallSize = pc.ballSizeRaw + 0.5 + rand(5) / 10;
+			
+			if(pc.ballSizeUnlocked(newBallSize) && pc.balls > 0 && pc.hasCock() && rand(3) == 0 && changes < changeLimit)
 			{
 				kGAMECLASS.output("\n\nA churning, swelling tightness stretches the skin of your [pc.sack] tight for a moment as the omnipresent heat travels into your [pc.balls]. ");
 				if(pc.balls == 1) kGAMECLASS.output("You can feel it");
@@ -182,12 +201,16 @@
 				if(pc.balls == 1) kGAMECLASS.output("it");
 				else kGAMECLASS.output("one");
 
-				if(pc.ballSizeRaw < 4) pc.ballSizeRaw += 1.5 + rand(20)/10;
-				else if(pc.ballSizeRaw < 8) pc.ballSizeRaw += .75 + rand(10)/10;
-				else pc.ballSizeRaw += .5 + rand(5)/10;
+				pc.ballSizeRaw = newBallSize;
+				
 				kGAMECLASS.output(" and nearly blow your load when you feel it pulsating in your hand, stretching out against you. <b>You got bigger [pc.balls]!</b>");
 				changes++;
 			}
+			else if (!pc.ballSizeUnlocked(newBallSize))
+			{
+				kGAMECLASS.output(pc.ballSizeLockedMessage(newBallSize));
+			}
+			
 			//Increase cum capacity if can hold less than 3 shots a day!
 			if(pc.cumMultiplier / 3 >= pc.ballEfficiency && pc.hasCock() && changes < changeLimit) {
 				kGAMECLASS.output("\n\nYou whimper and ooze a strand of [pc.cum] onto yourself when a strange but pleasurable sensation rolls over your [pc.balls]. It isn't necessarily growth, nor is it some kind overly erotic, orgasm-inducing surge. The feeling could best be described as a budding capacitance. <b>Somehow, you know your body can hold even more [pc.cum] in its reserves.</b>");
@@ -214,7 +237,7 @@
 				pc.refractoryRate++;
 			}
 			//Grow a penis from nothing!
-			if(!pc.hasCock() && changes < changeLimit) 
+			if(pc.createCockUnlocked() && !pc.hasCock() && changes < changeLimit) 
 			{
 				kGAMECLASS.output("\n\nA swollen lump of flesh appears ");
 				if(pc.hasVagina()) kGAMECLASS.output("right above your [pc.vaginas]");
@@ -226,6 +249,11 @@
 				kGAMECLASS.output("<b>your hand is wrapped around a five-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}
+			else if (!pc.createCockUnlocked())
+			{
+				kGAMECLASS.output(pc.createCockLockedMessage());
+			}
+			
 			//Wear off
 			kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>");
 			kGAMECLASS.clearMenu();

@@ -120,10 +120,10 @@
 			if(target.hasCock() && (target.shortestCockLength() < 12 || (target.shortestCockLength() < 19 && target.hasPerk("Hung"))))
 				TFList[TFList.length] = 1;
 			//#2 Make balls one to two tenths of an inch bigger.
-			if(target.hasCock() && target.balls > 0 && target.ballSize < 4)
+			if(target.hasCock() && target.balls > 0 && target.ballSizeRaw < 4)
 				TFList[TFList.length] = 2;
 			//#3 Shrink enormous balls
-			if(target.balls > 0 && target.ballSize >= 6)
+			if(target.balls > 0 && target.ballSizeRaw >= 6)
 				TFList[TFList.length] = 3;
 			//#4 Increase wetness by a very small amount.
 			if(target.hasVagina() && target.lowestWetness() <= 2.5)
@@ -233,7 +233,7 @@
 						else kGAMECLASS.output("them");
 						kGAMECLASS.output(".");
 					}
-					target.ballSize += .1 + rand(2)/10;
+					target.ballSizeRaw += .1 + rand(2)/10;
 				}
 				//#3 Shrink enormous balls
 				else if(select == 3)
@@ -583,7 +583,7 @@
 					else kGAMECLASS.output("You look down to check it out. ");
 					kGAMECLASS.output("Strangely, your [pc.balls] are hanging oddly. It seems like they're stuck together. A gentle squeeze confirms your suspicion. Then, before your eyes, they slowly grow together, merging into a pair of much larger nuts. They feel heavy and strange but also undeniably right. <b>You've only got two balls, but they're much bigger.</b>");
 					//Ballsize grow based on how many were merged in!
-					target.ballSize = target.balls/2 * target.ballSize;
+					target.ballSizeRaw = target.balls/2 * target.ballSizeRaw;
 					target.balls = 2;
 				}
 				//#3 Grow a sheath if none.
@@ -624,7 +624,7 @@
 					kGAMECLASS.output("Your gut churns and heaves similarly to when you've gotten sick in the past. This time, rather than resulting in a need to go to the bathroom, the discomfort merely migrates south, growing in intensity as it does. When you can take it no more, you groan as something slips within you, bringing with it immeasurable relief. The pain is reduced by perhaps half. The odd slipping sensation repeats. This time, you're left sighing in contentment. Whatever just happened, it's over now.");
 					kGAMECLASS.output("\n\nYou check up on your groin once you've caught your breath, and to your shock, you discover a pair of of nicely-rounded balls contained in a leathery sack. <b>You grew balls!</b>");
 					target.balls = 2;
-					target.ballSize = 2;
+					target.ballSizeRaw = 2;
 				}
 				//#6 GROW A SECOND BALL IF ONLY ONE
 				else if(select == 6)
