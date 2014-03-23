@@ -141,10 +141,11 @@
 				else if(y < 10 && target.femininity >= 10) kGAMECLASS.output(" <b>A check with your codex confirms your jaw is getting noticeably less square.</b>");
 				
 				//Rare lip stuff!
-				if(target.lipMod < 1) choices[choices.length] = 1;
-				else if(target.lipMod < 2) choices[choices.length] = 2;
+				if(target.lipMod < 1 && target.lipModUnlocked(2)) choices[choices.length] = 1;
+				else if (target.lipMod < 2 && target.lipModUnlocked(2)) choices[choices.length] = 2;
+				
 				//hip curviness
-				if(target.hipRatingRaw < 12)
+				if(target.hipRatingRaw < 12 && target.hipRatingUnlocked(12))
 				{
 					choices[choices.length] = 3;
 					choices[choices.length] = 3;
@@ -153,7 +154,7 @@
 					choices[choices.length] = 3;
 				}
 				//Bubble butt
-				if(target.buttRatingRaw < 9)
+				if(target.buttRatingRaw < 9 && target.buttRatingUnlocked(9))
 				{
 					choices[choices.length] = 4;
 					choices[choices.length] = 4;
@@ -162,7 +163,7 @@
 					choices[choices.length] = 4;
 				}
 				//Tone reduction to 30
-				if(target.tone > 30)
+				if(target.tone > 30 && target.toneUnlocked(30))
 				{
 					choices[choices.length] = 5;
 					choices[choices.length] = 5;
@@ -171,7 +172,7 @@
 					choices[choices.length] = 5;
 				}
 				//Hair length to ass length!
-				if(target.hairLength <= 26)
+				if(target.hairLength <= 26 && target.hairLengthUnlocked(26))
 				{
 					choices[choices.length] = 6;
 					choices[choices.length] = 6;
@@ -183,7 +184,7 @@
 				if(target.hasCock())
 				{
 					trace("LONGEST COCK: " + target.longestCockLength() + " HUNG? " + target.hasPerk("Hung"));
-					if((target.longestCockLength() > 4.5 && !target.hasPerk("Hung")) || target.longestCockLength() > 8)
+					if (target.cockLengthUnlocked(target.longestCockIndex(), 4.5) && ((target.longestCockLength() > 4.5 && !target.hasPerk("Hung")) || target.longestCockLength() > 8))
 					{
 						choices[choices.length] = 7;
 						choices[choices.length] = 7;
@@ -193,7 +194,7 @@
 					}
 				}
 				//Shrink balls UNLESS balls have trap pouch tf.
-				if(target.balls > 0 && target.ballSizeRaw > 1 && !target.hasStatusEffect("Uniball"))
+				if(target.balls > 0 && target.ballSizeRaw > 1 && target.ballSizeUnlocked(1) && !target.hasStatusEffect("Uniball"))
 				{
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
