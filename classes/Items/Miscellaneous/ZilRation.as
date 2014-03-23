@@ -112,7 +112,7 @@ package classes.Items.Miscellaneous
 				}
 				//Gender Neutral TFs
 				//Human-style face
-				if(target.skinType != GLOBAL.FUR && target.faceType != GLOBAL.HUMAN && changes < changeLimit && rand(4) == 0) {
+				if(target.faceTypeUnlocked(GLOBAL.HUMAN) && target.skinType != GLOBAL.FUR && target.faceType != GLOBAL.HUMAN && changes < changeLimit && rand(4) == 0) {
 					//Has muzzle
 					if(target.hasFaceFlag(GLOBAL.MUZZLED)) {
 						kGAMECLASS.output("\n\nYour snout compresses, your bones flowing like butter, reforming your jaw into a much more compact package. Surprisingly, it doesn't really hurt. It's more disconcerting than anything, making you dizzy as the change completes. You use the camera on your codex to check on the results and discover <b>you have a face shaped much like a human's!</b>");
@@ -123,8 +123,13 @@ package classes.Items.Miscellaneous
 					target.faceType = GLOBAL.HUMAN;
 					changes++;
 				}
+				else if (!target.faceTypeUnlocked(GLOBAL.HUMAN))
+				{
+					kGAMECLASS.output(target.skinTypeLockedMessage());
+				}
+				
 				//Legs to chitin-armored.
-				if(target.armType == GLOBAL.BEE && target.legType != GLOBAL.BEE && changes < changeLimit && rand(3) == 0) {
+				if(target.legTypeUnlocked(GLOBAL.BEE) && target.legCountUnlocked(2) && target.armType == GLOBAL.BEE && target.legType != GLOBAL.BEE && changes < changeLimit && rand(3) == 0) {
 					//First split single things into multiples!
 					if(target.legCount == 1) kGAMECLASS.output("\n\nYou fall flat on your [pc.butt] as your [pc.leg] begins to writhe, splitting apart into two lengths of rapidly shaping flesh.");
 					//First get rid of taurbodies and merge legs
@@ -146,14 +151,28 @@ package classes.Items.Miscellaneous
 					target.legCount = 2;
 					changes++;
 				}
+				else if (!target.legCountUnlocked(2))
+				{
+					kGAMECLASS.output(target.legCountLockedMessage());
+				}
+				else if (!target.legTypeUnlocked(GLOBAL.BEE))
+				{
+					kGAMECLASS.output(target.legTypeLockedMessage());
+				}
+				
 				//Arms to chitin-armored.
-				if(target.armType != GLOBAL.BEE && changes < changeLimit && rand(3) == 0) {
+				if(target.armTypeUnlocked(GLOBAL.BEE) && target.armType != GLOBAL.BEE && changes < changeLimit && rand(3) == 0) {
 					kGAMECLASS.output("\n\nStarting at your fingertips, you feel your [pc.skinFurScales] tightening, slowly shaping into a smooth, black expanse. The inky, chitinous darkness expands to cover the whole of your hand, forming joints to allow the hardening flesh to allow you movement. It doesn't stop there. Your wrists and your forearms are encased in ebony armor, followed shortly after by about half of your upper arms. The border between your [pc.skinFurScales] and the growth fluffs up with a tuft of yellowish fuzz, similar to that of a zil. <b>You have chitin-armored arms now.</b>");
 					target.armType = GLOBAL.BEE;
 					changes++;
 				}
+				else if (!target.armTypeUnlocked(GLOBAL.BEE))
+				{
+					kGAMECLASS.output(target.armTypeLockedMessage());
+				}
+				
 				//Removal of fur
-				if(target.skinType == GLOBAL.FUR && changes < changeLimit && rand(3) == 0) {
+				if(target.skinTypeUnlocked(GLOBAL.SKIN) && target.skinType == GLOBAL.FUR && changes < changeLimit && rand(3) == 0) {
 					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there's a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There's no relief from the itch until you've scrubbed every bit of hair from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
 					target.skinType == GLOBAL.SKIN;
 					target.clearSkinFlags();
@@ -162,6 +181,11 @@ package classes.Items.Miscellaneous
 					//Pass 15m
 					kGAMECLASS.processTime(15);
 				}
+				else if (!target.skinTypeUnlocked(GLOBAL.SKIN))
+				{
+					kGAMECLASS.output(target.skinTypeLockedMessage());
+				}
+				
 				if(changes == 0) {
 					kGAMECLASS.output("\n\nNothing special happened, though you do feel a bit fuller.")
 				}
@@ -220,7 +244,12 @@ package classes.Items.Miscellaneous
 				changes++;
 			}
 			//Clit shrinkage - down to one inch!!
-			if(target.clitLength > 1 && changes < changeLimit && rand(3) == 0) {
+			var newClitLength:Number = target.clitLength;
+			newClitLength -= 1;
+			newClitLength = Math.round((rand(newClitLength / 4 * 10) / 10 + newClitLength / 4 + .2) * 10) / 10;
+			newClitLength = target.clitLength - newClitLength;
+			
+			if(target.clitLength > 1 && target.clitLengthUnlocked(newClitLength) && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nTickles of tingling pleasure race up and down your [pc.clits] until ");
 				if(target.totalClits() == 1) kGAMECLASS.output("it peeks out of its hood");
 				else kGAMECLASS.output("they peek out of their hoods");
@@ -232,28 +261,30 @@ package classes.Items.Miscellaneous
 				else kGAMECLASS.output("them");
 				kGAMECLASS.output(" start shrinking, still fully engorged and sensitive but compacting down to a more reasonable size.");
 
-				y = target.clitLength - 1;
-				y = Math.round((rand(y/4*10)/10 + y/4 + .2)*10)/10;
-
 				if(y >= 3) kGAMECLASS.output(" You wind up losing a few inches of clitoral length by the time it stabilizes.");
 				else if(y >= 1.75) kGAMECLASS.output(" You wind up losing about two inches of clitoral length by the time it stabilizes.");
 				else if(y >= 1.1) kGAMECLASS.output(" You wind up losing a little over an inch by the time it stabilizes.");
 				else if(y >= .75) kGAMECLASS.output(" You wind up losing around an inch by the time it stabilizes.");
 				else kGAMECLASS.output(" You wind up losing a fraction of an inch of your overall clitoral length by the time it stabilizes.");
-				target.clitLength -= y;
+				target.clitLength = newClitLength;
 				changes++;
 			}
+			else if (!target.clitLengthUnlocked(newClitLength))
+			{
+				kGAMECLASS.output(target.clitLengthLockedMessage());
+			}
+			
 			//Wetness to ⅖ - gotta check if pc needs it somewhere
 			x = 0;
 			choices = new Array();
 			while (x < target.totalVaginas()) {
-				if(target.wetness(x) < 2) {
+				if(target.wetness(x) < 2 && target.wetnessUnlocked(x, 2)) {
 					choices[choices.length] = x;
 				}
 				x++;
 			}
 			x = choices[rand(choices.length)];
-			if(target.wetness(x) < 2 && rand(3) == 0 && changes < changeLimit) {
+			if(target.wetness(x) < 2 && target.wetnessUnlocked(x, 2) && rand(3) == 0 && changes < changeLimit) {
 				//No wetness
 				if(target.wetness(x) == 0) kGAMECLASS.output("\n\nWhile you digest the snack, you become increasingly aware of a slippery feeling down below, much different than the dry emptiness you've become accustomed to. You tentative slip a finger into [pc.oneVagina] and discover that <b>you've started naturally lubricating yourself.</b>");
 				//Less than 2 wetness
@@ -272,6 +303,11 @@ package classes.Items.Miscellaneous
 				target.vaginas[x].wetnessRaw++;
 				changes++;
 			}
+			else if (!target.wetnessUnlocked(x, 2))
+			{
+				kGAMECLASS.output(target.wetnessLockedMessage());
+			}
+			
 			//Find biggest Tit row!
 			x = 0;
 			y = 0;
@@ -283,7 +319,7 @@ package classes.Items.Miscellaneous
 				x++;
 			}
 			//Breast shrink to large EE's
-			if(target.bRatingRaw(x) >= 11 && changes < changeLimit && rand(2) == 0) {
+			if(target.bRatingRaw(x) >= 11 && target.breastRatingUnlocked(x, 11) && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nA ripple runs through ");
 				if(target.bRows() == 1) kGAMECLASS.output("your [pc.chest]");
 				else if(x == 0) kGAMECLASS.output("your top row of breasts");
@@ -297,8 +333,13 @@ package classes.Items.Miscellaneous
 				target.breastRows[x].breastRatingRaw -= y;
 				changes++;
 			}
+			else if (!target.breastRatingUnlocked(x, 11))
+			{
+				kGAMECLASS.output(target.breastRatingLockedMessage());
+			}
+			
 			//Breasts grow to C's - top row only
-			if(target.bRating(0) < 3 && changes < changeLimit && rand(2) == 0) {
+			if(target.bRating(0) < 3 && target.breastRatingUnlocked(0, target.bRating(0) + 1) && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nA tightness builds in your chest until you feel your upper body gaining a little weight.");
 				//Flat chest
 				if(target.bRating(0) < 1) {
@@ -323,8 +364,13 @@ package classes.Items.Miscellaneous
 				target.breastRows[0].breastRatingRaw++;
 				changes++;
 			}
+			else if (!target.breastRatingUnlocked(0, 3))
+			{
+				kGAMECLASS.output(target.breastRatingLockedMessage());
+			}
+			
 			//Hips widen to 6
-			if(target.hipRatingRaw < 6 && changes < changeLimit && rand(3) == 0) {
+			if(target.hipRatingRaw < 6 && target.hipRatingUnlocked(target.hipRatingRaw + 1) && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nYou adjust idly adjust your posture only to have to do it again a second later. ");
 				if(target.armor.shortName != "") kGAMECLASS.output("Your [pc.armor.longName] creaks ominously. Your [pc.hips] are getting bigger!");
 				else kGAMECLASS.output("You look down and watch, and then you spot it: your [pc.hips] are getting bigger!");
@@ -332,12 +378,22 @@ package classes.Items.Miscellaneous
 				target.hipRatingRaw++;
 				changes++;
 			}
+			else if (!target.hipRatingUnlocked(target.hipRatingRaw + 1))
+			{
+				kGAMECLASS.output(target.hipRatingLockedMessage());
+			}
+			
 			//Butt expands to 7
-			if(target.buttRatingRaw < 7 && changes < changeLimit && rand(3) == 0) {
+			if(target.buttRatingRaw < 7 && target.buttRatingUnlocked(target.buttRatingRaw + 1) && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nAn odd feeling runs through [pc.butt], earning a small jump of surprise at the abrupt onset of sensation. It reminds you of that pins and needles feeling you get when part of you falls asleep, only on your ass. You reach back massage the feeling away and find yourself with a little bit more cheek in your hand than before. <b>Your [pc.butt] has gotten bigger!</b>");
 				target.buttRatingRaw++;
 				changes++;
 			}
+			else if (!target.buttRatingUnlocked(target.buttRatingRaw + 1))
+			{
+				kGAMECLASS.output(target.buttRatingLockedMessage());
+			}
+			
 			//HONEY GIRLCUM! - Req's appropriate wetness of 2 first.
 			x = 0;
 			y = 1;
@@ -347,7 +403,7 @@ package classes.Items.Miscellaneous
 				}
 				x++;
 			}
-			if(target.girlCumType != GLOBAL.HONEY && y == 1 && changes < changeLimit && rand(3) == 0) {
+			if(target.girlCumType != GLOBAL.HONEY && target.girlCumTypeUnlocked(GLOBAL.HONEY) && y == 1 && changes < changeLimit && rand(3) == 0) {
 				kGAMECLASS.output("\n\nYou stumble as an unexpected wetness builds ");
 				if(target.legCount > 1) kGAMECLASS.output("between your [pc.legs]");
 				else kGAMECLASS.output("at the joint between your [pc.leg] and your [pc.hips]");
@@ -360,8 +416,13 @@ package classes.Items.Miscellaneous
 				target.girlCumType = GLOBAL.HONEY;
 				changes++;
 			}
+			else if (!target.girlCumTypeUnlocked(GLOBAL.HONEY))
+			{
+				kGAMECLASS.output(target.girlCumTypeLockedMessage());
+			}
+			
 			//Grow zilbutt!
-			if(target.armType == GLOBAL.BEE && target.legType == GLOBAL.BEE && target.tailType != GLOBAL.BEE && changes < changeLimit && rand(3) == 0) {
+			if(target.armType == GLOBAL.BEE && target.legType == GLOBAL.BEE && target.tailType != GLOBAL.BEE && target.tailTypeUnlocked(GLOBAL.BEE) && changes < changeLimit && rand(3) == 0) {
 				//Has tails!
 				if(target.tailType != GLOBAL.HUMAN && target.tailCount > 1) {
 					kGAMECLASS.output("\n\nYour [pc.tails] twitch, compulsively squeezing together. Beating faster, your heart hammers with sudden excitement, and you can feel it heating warmer and warmer back there. The flesh of your tails feels so hot and so strange. Nerves are firing nonsensically, leaving you confused about what's happening back there. You turn for a look in time to see them moulding together into one bloated lump, vaguely reminiscent of an insectile abdomen. The surface of it turns black and hard, like chitin, and a strange pressure is building near the very tip of it.");
@@ -381,12 +442,19 @@ package classes.Items.Miscellaneous
 				target.tailCount = 1;
 				changes++;
 			}
+			else if (!target.tailTypeUnlocked(GLOBAL.BEE))
+			{
+				kGAMECLASS.output(target.tailTypeLockedMessage());
+			}
 			return changes;
 		}
+		
 		protected function dudeZilTfs(target:Creature,changes:int,changeLimit:int):Number {
 			var x:int = 0;
 			var y:int = 0;
 			var choices:Array;
+			var blockedChoices:Array;
+			
 			//Gain zilcock!
 			if(target.cockTotal(GLOBAL.BEE) < target.cockTotal() && changes < changeLimit && rand(3) == 0) {
 				x = 0;
@@ -394,90 +462,131 @@ package classes.Items.Miscellaneous
 				//Make a list of all the non-zil dicks
 				while(x < target.cockTotal())
 				{
-					if(target.cocks[x].cType != GLOBAL.BEE) choices[choices.length] = x;
+					if (target.cocks[x].cType != GLOBAL.BEE && target.cockTypeUnlocked(x, GLOBAL.BEE)) choices[choices.length] = x;
+					if (!target.cockTypeUnlocked(x, GLOBAL.BEE)) blockedChoices.push(x);
 					x++;
 				}
+				
 				//Pick a random dick out of the list
-				x = choices[rand(choices.length)];
-				kGAMECLASS.output("\n\nYour [pc.cock " + x + "] suddenly trembles, getting hard in fitful throbs and spurts of engorgement");
-				if(target.totalCocks() > 1) 
-				{ 
-					kGAMECLASS.output(" until it stands out from ");
-					if(target.cockTotal() == 2) kGAMECLASS.output("your other flaccid dick");
-					else kGAMECLASS.output("the rest of your [pc.cocks]");
-				}
-				kGAMECLASS.output(". You look down, wide-eyed at the tumescent penis. You didn't do anything particularly arousing. Is it swelling up from an allergic reaction? Before you can posit any other theories, the changes start. ");
-				if(target.hasSheath(x)) {
-					kGAMECLASS.output(" Your sheath expands out, flowing over your length with the inevitability of a wave. You fumble to try and hold it back, but it's so sensitive that you lose your grip almost immediately.");
-					if(target.hasKnot(x)) kGAMECLASS.output(" It quickly envelops your knot. The rounded distention flattens almost as soon as its covered.");
-					kGAMECLASS.output(" Watching it happen, you realize that the skin isn't expanding so much stretching out, lengthening to give your entire penis a sensitive shroud. It's soon wrapped around your [pc.cockHead " + x + "]");
-					if(target.hasCockFlag(GLOBAL.BLUNT) || target.hasCockFlag(GLOBAL.FLARED) || target.hasCockFlag(GLOBAL.TAPERED)) kGAMECLASS.output(", rounding it out into a rather human-like shape under its new wrapping");
-					kGAMECLASS.output(".");
-				}
-				//"No Sheath:
-				else 
+				if (choices.length > 0)
 				{
-					kGAMECLASS.output(" The skin of your [pc.cock " + x + "] is thickening perceptibly.");
-					if(target.hasKnot(x)) kGAMECLASS.output(" It's definitely worst on your knot, which is shrinking away before your eyes. Soon your familiar bulge is reduced to just another part of your smoothing shaft. Higher,");
-					else kGAMECLASS.output("Up");
-					kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You're growing a long, stretchy foreskin");
-					if(target.hasCockFlag(GLOBAL.BLUNT) || target.hasCockFlag(GLOBAL.FLARED) || target.hasCockFlag(GLOBAL.TAPERED)) 
-						kGAMECLASS.output(", moulding your phallus into a more human-like shape as it develops");
-					kGAMECLASS.output("! All traces of its old appearance long gone, <b>you find yourself with a gently-wilting zil-cock</b> packed with enough foreskin to stay covered - even when hard.");
+					x = choices[rand(choices.length)];
+					kGAMECLASS.output("\n\nYour [pc.cock " + x + "] suddenly trembles, getting hard in fitful throbs and spurts of engorgement");
+					if(target.totalCocks() > 1) 
+					{ 
+						kGAMECLASS.output(" until it stands out from ");
+						if(target.cockTotal() == 2) kGAMECLASS.output("your other flaccid dick");
+						else kGAMECLASS.output("the rest of your [pc.cocks]");
+					}
+					kGAMECLASS.output(". You look down, wide-eyed at the tumescent penis. You didn't do anything particularly arousing. Is it swelling up from an allergic reaction? Before you can posit any other theories, the changes start. ");
+					if(target.hasSheath(x)) {
+						kGAMECLASS.output(" Your sheath expands out, flowing over your length with the inevitability of a wave. You fumble to try and hold it back, but it's so sensitive that you lose your grip almost immediately.");
+						if(target.hasKnot(x)) kGAMECLASS.output(" It quickly envelops your knot. The rounded distention flattens almost as soon as its covered.");
+						kGAMECLASS.output(" Watching it happen, you realize that the skin isn't expanding so much stretching out, lengthening to give your entire penis a sensitive shroud. It's soon wrapped around your [pc.cockHead " + x + "]");
+						if(target.hasCockFlag(GLOBAL.BLUNT) || target.hasCockFlag(GLOBAL.FLARED) || target.hasCockFlag(GLOBAL.TAPERED)) kGAMECLASS.output(", rounding it out into a rather human-like shape under its new wrapping");
+						kGAMECLASS.output(".");
+					}
+					//"No Sheath:
+					else 
+					{
+						kGAMECLASS.output(" The skin of your [pc.cock " + x + "] is thickening perceptibly.");
+						if(target.hasKnot(x)) kGAMECLASS.output(" It's definitely worst on your knot, which is shrinking away before your eyes. Soon your familiar bulge is reduced to just another part of your smoothing shaft. Higher,");
+						else kGAMECLASS.output("Up");
+						kGAMECLASS.output(" at the [pc.cockHead " + x+ "], the skin separates into two layers, an inner and outer layer. You're growing a long, stretchy foreskin");
+						if(target.hasCockFlag(GLOBAL.BLUNT) || target.hasCockFlag(GLOBAL.FLARED) || target.hasCockFlag(GLOBAL.TAPERED)) 
+							kGAMECLASS.output(", moulding your phallus into a more human-like shape as it develops");
+						kGAMECLASS.output("! All traces of its old appearance long gone, <b>you find yourself with a gently-wilting zil-cock</b> packed with enough foreskin to stay covered - even when hard.");
+					}
+					
+					target.shiftCock(x,GLOBAL.BEE);
+					changes++;
 				}
-				target.shiftCock(x,GLOBAL.BEE);
-				changes++;
+				else if (blockedChoices.length > 0)
+				{
+					// In case you wanna do something special with the lock message.
+					//x = blockedChoices[rand(blockedChoices.length)];
+					
+					kGAMECLASS.output(target.cockTypeLockedMessage());
+				}
 			}
 			//Dick shrinkage - shrink down to 8" max
 			if(target.longestCockLength() > 8 && changes < changeLimit && rand(2) == 0) {
 				x = 0;
 				choices = new Array();
+				var blockedChoices:Array = new Array();
+				
 				//Make a list of all the big
 				while(x < target.cockTotal())
 				{
-					if(target.cocks[x].cLengthRaw > 8) choices[choices.length] = x;
+					if (target.cocks[x].cLengthRaw > 8 && target.cockLengthUnlocked(x, 8)) choices[choices.length] = x;
+					if (!target.cockLengthUnlocked(x, 8)) blockedChoices.push(x);
 					x++;
 				}
+				
 				//Pick a random dick out of the list
-				x = choices[rand(choices.length)];
-				kGAMECLASS.output("\n\nA tightness in your package is the only warning your get before your [pc.cock " + x + "] starts shrinking.");
-				y = target.cocks[x].cLengthRaw - 8;
-				y = Math.round((rand(y/4*10)/10 + y/4 + 1)*10)/10;
-				if(y > 11) y = 11;
+				if (choices.length > 0)
+				{
+					x = choices[rand(choices.length)];
+					kGAMECLASS.output("\n\nA tightness in your package is the only warning your get before your [pc.cock " + x + "] starts shrinking.");
+					y = target.cocks[x].cLengthRaw - 8;
+					y = Math.round((rand(y/4*10)/10 + y/4 + 1)*10)/10;
+					if(y > 11) y = 11;
 
-				if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
-				else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
-				else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
-				else kGAMECLASS.output(" Gradually, you lose about an inch.");
-				target.cocks[x].cLength -= y;
-				kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
-				changes++;
+					if(y >= 9) kGAMECLASS.output(" An inch at a time, it shortens until you've lost the better part of a foot.");
+					else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
+					else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
+					else kGAMECLASS.output(" Gradually, you lose about an inch.");
+					target.cocks[x].cLength -= y;
+					kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
+					changes++;
+				}
+				else if (blockedChoices.length > 0)
+				{
+					// x = blockedChoices[rand(blockedChoices.length)];
+					kGAMECLASS.output(target.cockLengthLockedMessage());
+				}
 			}
 			//Girth booster!
 			//Search for dick that needs girthening first!
 			x = 0;
 			choices = new Array();
+			var blockedChoices:Array = new Array();
+			
 			//Make a list of all the girth needing
 			while(x < target.cockTotal())
 			{
-				if(target.cocks[x].cThicknessRatioRaw < 1.5) choices[choices.length] = x;
+				if (target.cocks[x].cThicknessRatioRaw < 1.5 && target.cockThicknessUnlocked(x, 1.5)) choices[choices.length] = x;
+				if (!target.cockThicknessUnlocked(x, 1.5)) blockedChoices.push(x);
 				x++;
 			}
 			//Pick a random dick out of the list
-			x = choices[rand(choices.length)];
-			if(choices.length == 0) x = -1;
-			//If you got a dick that needs thickening, take the chance!
-			if(x != -1 && changes < changeLimit && rand(2) == 0) {
-				kGAMECLASS.output("\n\nOhhh, something feels nice in your crotch. You reach down to find the source, grabbing your [pc.cock " + x + "] ");
-				if(target.cockTotal() == 1) kGAMECLASS.output("in your hand");
-				else if(target.cockTotal() == 2) kGAMECLASS.output("out from next to its less excited brother");
-				else kGAMECLASS.output("out from next to its less excited brethren");
-				kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you're holding a full-sized rager, but it doesn't stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
-				target.cocks[x].cThicknessRatioRaw += .1;
-				changes++;
+			if (choices.length > 0)
+			{
+				x = choices[rand(choices.length)];
+				if(choices.length == 0) x = -1;
+				//If you got a dick that needs thickening, take the chance!
+				if(x != -1 && changes < changeLimit && rand(2) == 0) {
+					kGAMECLASS.output("\n\nOhhh, something feels nice in your crotch. You reach down to find the source, grabbing your [pc.cock " + x + "] ");
+					if(target.cockTotal() == 1) kGAMECLASS.output("in your hand");
+					else if(target.cockTotal() == 2) kGAMECLASS.output("out from next to its less excited brother");
+					else kGAMECLASS.output("out from next to its less excited brethren");
+					kGAMECLASS.output(". Almost immediately, you feel it pulsate and thicken, hardening with alarming rapidity. Soon, you're holding a full-sized rager, but it doesn't stop there. The shaft continues to thicken, slowly spreading your fingers wider and wider as it gains about a quarter inch of additional girth.");
+					target.cocks[x].cThicknessRatioRaw += .1;
+					changes++;
+				}
 			}
+			else if (blockedChoices.length > 0)
+			{
+				// x = blockedChoices[rand(blockedChoices.length)];
+				kGAMECLASS.output(target.cockThicknessLockedMessage());
+			}
+			
 			//Ball shrinkage
-			if(target.balls > 0 && target.ballSizeRaw >= 4 && changes < changeLimit && rand(2) == 0) {
+			var newBallSize = target.ballSizeRaw - 3.5;
+			newBallSize = Math.round((rand(newBallSize / 4 * 10) / 10 + newBallSize / 4 + .5) * 10) / 10;
+			newBallSize = target.ballSizeRaw - newBallSize;
+			
+			if(target.balls > 0 && target.ballSizeRaw >= 4 && target.ballSizeUnlocked(newBallSize) && changes < changeLimit && rand(2) == 0) {
 				kGAMECLASS.output("\n\nYour weighty sack weighs less and less on you with each passing moment. You look down to watch, treated to the sight of your [pc.balls] compressing down into a tighter, more compact package.");
 				y = target.ballSizeRaw - 3.5;
 				y = Math.round((rand(y/4*10)/10 + y/4 + .5)*10)/10;
@@ -489,6 +598,10 @@ package classes.Items.Miscellaneous
 				else kGAMECLASS.output(" You only lost a little bit of size, all things considered.");
 				target.ballSizeRaw -= y;
 				changes++;
+			}
+			else if (!target.ballSizeUnlocked(newBallSize))
+			{
+				kGAMECLASS.output(target.ballSizeLockedMessage());
 			}
 
 			//Trappy Smoothpouch! - requires balls small enough
@@ -510,7 +623,7 @@ package classes.Items.Miscellaneous
 
 			//Grow wings once!
 			//Requires legs!
-			if(target.legType == GLOBAL.BEE && target.wingType != GLOBAL.BEE && rand(3) == 0 && changes < changeLimit) {
+			if(target.legType == GLOBAL.BEE && target.wingType != GLOBAL.BEE && target.wingTypeUnlocked(GLOBAL.BEE) && rand(3) == 0 && changes < changeLimit) {
 				if(!target.hasWings()) {
 					kGAMECLASS.output("\n\nCramps attack your shoulder blades, forcing you to arch your back and cry out. You drop and roll on the ground to try and keep it together, and before you know, the pain is gone. In its place, there's the pleasant ache of growing muscles and something sliding down your back. You crane your head over your shoulder");
 					if(target.armor.shortName != "") kGAMECLASS.output(" and pull back your [pc.armor.longName]");
@@ -531,8 +644,13 @@ package classes.Items.Miscellaneous
 				}
 				changes++;
 			}
+			else if (!target.wingTypeUnlocked(GLOBAL.BEE))
+			{
+				kGAMECLASS.output(target.wingTypeLockedMessage());
+			}
+			
 			//Honeycum!
-			if(target.totalCocks(GLOBAL.BEE) > 0 && target.cumType != GLOBAL.HONEY && changes < changeLimit && rand(4) == 0) 
+			if(target.totalCocks(GLOBAL.BEE) > 0 && target.cumType != GLOBAL.HONEY && target.cumTypeUnlocked(GLOBAL.HONEY) && changes < changeLimit && rand(4) == 0) 
 			{
 				kGAMECLASS.output("\n\nThere is a sudden pinch in your ");
 				if(target.balls > 0) kGAMECLASS.output("[pc.balls]");
@@ -544,6 +662,11 @@ package classes.Items.Miscellaneous
 				target.cumType = GLOBAL.HONEY;
 				changes++;
 			}
+			else if (!target.cumTypeUnlocked(GLOBAL.HONEY))
+			{
+				kGAMECLASS.output(target.cumTypeLockedMessage());
+			}
+			
 			return changes;
 		}
 	}
