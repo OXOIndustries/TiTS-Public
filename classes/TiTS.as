@@ -86,6 +86,7 @@
 		include "../includes/rivalEncounters.as";
 		include "../includes/kelly.as";
 		include "../includes/sera.as";
+		include "../includes/vko.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

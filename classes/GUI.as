@@ -423,6 +423,11 @@
 		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
 		
+		public function showName(name:String):void
+		{
+			roomText = name;
+		}
+
 		// Useful functions I've pulled out of the rest of the code base
 		public function setLocation(title:String, planet:String = "Error Planet", system:String = "Error System"):void
 		{

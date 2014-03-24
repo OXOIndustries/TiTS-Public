@@ -1170,8 +1170,8 @@ function initializeRooms():void
 	//93. Medical Office
 	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
 	rooms["ESBETH MEDICAL OFFICE"].roomName = "MEDICAL\nOFFICE";
-	rooms["ESBETH MEDICAL OFFICE"].description = "";
-	rooms["ESBETH MEDICAL OFFICE"].runOnEnter = undefined;
+	rooms["ESBETH MEDICAL OFFICE"].description = "The inside of the medical office is about as ramshackle and rundown as the outside of the shack. Standard manufactured alumiplate forms the walls, and the floor is made of the same bland, reflective stuff. Discarded wrappers and bits of clothing are scattered everywhere. There isn't even a trash receptacle anywhere to clean it up with. More importantly, a single bed is built into the east wall, covered in fresh fabric of some kind or another. The only piece of equipment that looks moderately well-maintained is a seemingly worn chair close to the bed.\n\nThe door to the west leads back to the streets of Esbeth.";
+	rooms["ESBETH MEDICAL OFFICE"].runOnEnter = mhengaMedicalThingerBonusFunc;
 	rooms["ESBETH MEDICAL OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH MEDICAL OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";

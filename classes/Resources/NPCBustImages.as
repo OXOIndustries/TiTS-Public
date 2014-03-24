@@ -56,5 +56,8 @@
 
 		[Embed(source = "../../assets/images/npcs/kelly.png", mimeType = "image/png")]
 		public static var Bust_KELLY:Class;
+
+		[Embed(source = "../../assets/images/npcs/v-ko.png", mimeType = "image/png")]
+		public static var Bust_VKO:Class;
 	}
 }

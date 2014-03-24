@@ -3175,6 +3175,11 @@
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
 			return vaginas[arg].wetness;
 		}
+		public function looseness(arg: int = 0): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
+			return vaginas[arg].looseness;
+		}
 		public function lowestWetness(index:Boolean = false): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0) return 0;
@@ -3666,6 +3671,10 @@
 		public function hasTailCunt(): Boolean {
 			if (tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;
 			return false;
+		}
+		//In case there's ever different types of cuntTails available, we'll need different methods.
+		public function hasCuntSnake(): Boolean {
+			return hasTailCunt();
 		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();
