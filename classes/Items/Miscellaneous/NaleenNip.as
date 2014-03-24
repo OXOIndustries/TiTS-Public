@@ -352,7 +352,7 @@
 			var choices:Array;
 			
 			//Hemipenis - Reqs slit
-			if (target.hasStatusEffect("Genital Slit") && target.cockTotal() == 1 && target.cockTotal(GLOBAL.NAGA) == 1 && changes < changeLimit && rand(3) == 0) {
+			if (target.hasStatusEffect("Genital Slit") && target.cockTotal() == 1 && target.cockTotal(GLOBAL.NAGA) == 1 && target&& changes < changeLimit && rand(3) == 0) {
 				if (target.createCockUnlocked())
 				{
 					kGAMECLASS.output("\n\nA sudden, hot throb in your slit is the only you get before you feel the start of ");

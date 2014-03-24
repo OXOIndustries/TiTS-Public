@@ -1242,9 +1242,8 @@ function initializeRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].planet = "PLANET: MHEN'GA";
 	rooms["ESBETH MEDICAL OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
+	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
-
-	
 
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";

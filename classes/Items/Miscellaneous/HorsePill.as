@@ -934,7 +934,7 @@
 				//#14 Grow Fur
 				else if(select == 14)
 				{
-					if (target.skinTypeUnlocked(GLOBAL.FUR)
+					if (target.skinTypeUnlocked(GLOBAL.FUR))
 					{
 						target.skinType = GLOBAL.FUR;
 						if(rand(4) == 0) target.furColor = "chocolate";

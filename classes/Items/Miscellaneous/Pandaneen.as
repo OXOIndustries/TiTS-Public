@@ -365,7 +365,7 @@
 							changes++;
 						}
 						//Breasts lose 3 cupsizes or half their rating - whichever is higher if no vagina is present.
-						if(!target.hasVagina() && target.biggestTitSize() >= 1 && target.breastRatingUnlocked(0, 1) rand(2) == 0 && changes < changeLimit)
+						if(!target.hasVagina() && target.biggestTitSize() >= 1 && target.breastRatingUnlocked(0, 1) && rand(2) == 0 && changes < changeLimit)
 						{
 							x = target.biggestTitSize();
 							y = 3;
@@ -404,10 +404,6 @@
 								}
 							}
 							changes++;
-						}
-						else if (!target.breastRatingUnlocked(0, 1))
-						{
-							kGAMECLASS.output(target.breastRatingLockedMessage());
 						}
 					}
 					//Cuntwielders Big TFs
