@@ -4578,6 +4578,15 @@
 			cocks[cocks.length - 1].cLengthRaw = clength;
 			return true;
 		}
+		public function createCockUnlocked(numCocks:int = 1):Boolean
+		{
+			return true;
+		}
+		public function createCockLockedMessage():String
+		{
+			return "";
+		}
+		
 		//create vagoo
 		public function createVagina(): Boolean {
 			if (vaginas.length >= 2) return false;
@@ -4585,6 +4594,15 @@
 			vaginas.push(newVagina);
 			return true;
 		}
+		public function createVaginaUnlocked(numVag:int = 1):Boolean
+		{
+			return true;
+		}
+		public function createVaginaLockedMessage():String
+		{
+			return "";
+		}
+		
 		//create a row of breasts
 		public function createBreastRow(): Boolean {
 			if (breastRows.length >= 10) return false;
@@ -4592,6 +4610,15 @@
 			breastRows.push(newBreastRow);
 			return true;
 		}
+		public function createBreastRowUnlocked(numRows:int = 1):Boolean
+		{
+			return true;
+		}
+		public function createBreastRowsLockedMessage():String
+		{
+			return "";
+		}
+		
 		public function removeJunk(array, arraySpot, totalRemoved): void {
 			//Various Errors preventing action
 			if (arraySpot < 0 || totalRemoved <= 0) {
