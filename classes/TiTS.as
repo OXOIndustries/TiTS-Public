@@ -268,7 +268,7 @@
 		{
 			whatTheFuck = new Sprite();
 			whatTheFuck.name = "wtf";
-			whatTheFuck.graphics.beginFill(0xFF0000, 1);
+			whatTheFuck.graphics.beginFill(0x333E52, 1);
 			whatTheFuck.graphics.drawRect(0, 0, 2, 2);
 			whatTheFuck.graphics.endFill();
 			
