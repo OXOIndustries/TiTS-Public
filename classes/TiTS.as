@@ -3,7 +3,9 @@
 
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
+	import fl.transitions.Tween;
 	import flash.display.DisplayObject;
+	import flash.display.Sprite;
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -30,6 +32,7 @@
 	import flash.utils.Dictionary;
 	import classes.RoomClass;
 	import classes.GameData.TooltipManager;
+	import fl.transitions.easing.None;
 
 	import classes.InputManager;
 	import classes.Characters.*;
@@ -156,6 +159,9 @@
 
 		// LE MAP
 		public var mapper:Mapper;
+		
+		public var whatTheFuck:Sprite;
+		public var whatTheFuckToggleState:Boolean;
 
 		public function TiTS()
 		{
@@ -255,6 +261,41 @@
 		{
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 			this.userInterface.toggleBarTweens();
+			buildWTF();
+		}
+		
+		private function buildWTF():void
+		{
+			whatTheFuck = new Sprite();
+			whatTheFuck.name = "wtf";
+			whatTheFuck.graphics.beginFill(0xFF0000, 1);
+			whatTheFuck.graphics.drawRect(0, 0, 2, 2);
+			whatTheFuck.graphics.endFill();
+			
+			stage.addChild(whatTheFuck);
+			whatTheFuck.x = 1199;
+			whatTheFuck.y = 799;
+		}
+		
+		public function toggleWTF():void
+		{
+			whatTheFuckToggleState != whatTheFuckToggleState;
+			
+			var start:int;
+			var end:int;
+			
+			if (whatTheFuckToggleState == false)
+			{
+				start = 1199;
+				end = 0;
+			}
+			else
+			{
+				start = 0;
+				end = 1199;
+			}
+			
+			var tw:Tween = new Tween(whatTheFuck, "x", None.easeNone, start, end, 12, false); 
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state
@@ -297,6 +338,8 @@
 		
 		public function buttonClick(evt:MouseEvent):void 
 		{
+			toggleWTF();
+			
 			if (!inCombat()) 
 			{
 				this.userInterface.showBust("none");
@@ -625,6 +668,7 @@
 
 		public function mainMenu():void 
 		{
+			toggleWTF();
 			this.userInterface.hideMenus();
 			
 			//Hide all current buttons

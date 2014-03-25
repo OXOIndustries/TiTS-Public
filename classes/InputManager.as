@@ -205,7 +205,7 @@
 		public function KeyHandler(e:KeyboardEvent):void
 		{
 			if (_debug) trace("Got key input " + e.keyCode);
-			
+			kGAMECLASS.toggleWTF();
 			
 			// If we're not in binding mode, listen for key inputs to act on
 			if (_ignoreKeyPresses == false)

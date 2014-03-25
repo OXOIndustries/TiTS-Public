@@ -290,13 +290,13 @@
 		
 		private function setupRightSidebar():void
 		{
-			this._rightSideBar = new RightSideBar(false);
+			this._rightSideBar = new RightSideBar();
 			this.titsClassPtr.addChild(_rightSideBar);
 		}
 		
 		private function setupLeftSidebar():void
 		{
-			this._leftSideBar = new LeftSideBar(false);
+			this._leftSideBar = new LeftSideBar();
 			this.titsClassPtr.addChild(_leftSideBar);
 			
 			this._leftSideBar.generalInfoBlock.HideScene();

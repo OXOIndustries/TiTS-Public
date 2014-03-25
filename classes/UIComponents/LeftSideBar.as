@@ -112,7 +112,6 @@ package classes.UIComponents
 			}
 		}
 		
-		
 		private function BuildBackground():void
 		{
 			this.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);

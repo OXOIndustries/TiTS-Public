@@ -102,8 +102,8 @@ package classes.UIComponents
 		{
 			if (_doTween)
 			{
-				this.x = stage.stageWidth;
-				var tw:Tween = new Tween(this, "x", Regular.easeOut, stage.stageWidth, stage.stageWidth - 200, 25, false);
+				this.x = 1200;
+				var tw:Tween = new Tween(this, "x", Regular.easeOut, 1200, 1000, 25, false);
 			}
 		}
 		
