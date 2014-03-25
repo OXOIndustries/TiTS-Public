@@ -286,12 +286,18 @@ function parseVKoCustomInputs():void
 		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) stressReliefGo();
 		else VKoStressReliefForLadyginas();
 	}
+	else if(toParse.indexOf("electro") >= 0 || toParse.indexOf("stim") >= 0)
+	{
+		if(stage.contains(this.userInterface.textInput)) 
+			this.removeInput();
+		vKoElectroTherapy();
+	}
 	else
 	{
 		clearOutput();
 		userInterface.showBust("VKO");
 		userInterface.showName("\nV-KO");
-		output("\n\nV-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>\"I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, 'you must ask the right question.'\"</i>");
+		output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>\"I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, 'you must ask the right question.'\"</i>");
 		this.displayInput();
 	}
 }
@@ -520,180 +526,299 @@ function VKoStressReliefForLadyginas():void
 }
 
 
-/*
-Electro Therapy
+//Electro Therapy
 //For all genders. I just hope you won’t ever let PC’s become nippleless.
-
-Her eyes light up as she processes your latest input and she says, “Before proceeding, this unit states on behalf of JoyCo Incorporated that the company shall not be held responsible for any kind of physical or mental injury during the processing of this directive. If you accept the terms and conditions, please state your consent.”
-
-[Agree][Disagree]
-
-[=Disagree=]
-
-A few lights blink out as she reboots and greets you again as if you had just arrived.
-
-(Play initial greeting.)
-
-[=Agree=]
-
-“Please, remove your clothing and lay down.”
-
-Doing as you were instructed, you carefully peel off your [pc.gear] and lay it neatly on a nearby table as you head for the adaptable chair.
-
-It whirrs as it detects your body and reshapes itself into a form that will be more comfortable for the procedure.
-
-{if legs:
-In your case, it takes the shape of a comfortable-looking operation chair, with a pair of armrests {if tail: and even a hole on the back for your [pc.tails]}. It’s just long enough for someone of your size to comfortably lay down. The insets prevent you from rolling one way or another, so there’s no risk of you escaping your position.
-}
-{else if naga:
-In your case, it takes the shape of a comfortable-looking operation chair, with a pair of armrests. It has a standard upper part where your top half can lay down comfortably and an elongated spiralling pole for you to twist your snake-like lower half around. It’s surprisingly comfy and you quickly find yourself relaxed within the chair’s insets.
-}
-{else if goo:
-In your case it looks like a tub. The interior is made of a sleek material that prevents your goo-like self from sticking. It’s very smooth and easy to move in. On one end you see something that looks like the top half of a comfortable-looking operation chair, with a pair of armrests. You set yourself down and let your lower half pool around on the small tub while you wait for V-Ko’s return.
-}
-{if taur:
-In your case, it looks less like a strange leather-covered table. From the roof, a harness of some kind drops down, perfectly adjusted for your measurements. Shrugging, you step over the table, letting your tauric lower half slide in position. Though your legs do reach the floor, you find that it’s just the right size for you to let your body slack without falling. Hesitantly, you don the harness dangling before you, attaching the straps to your torso, midriff and arms. You can’t help but feel a bit inappropriate as you hang there waiting for V-Ko’s return. 
+function vKoElectroTherapy():void
+{
+	clearOutput();
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	output("Her eyes light up as she processes your latest input and she says, <i>“Before proceeding, this unit states on behalf of JoyCo Incorporated that the company shall not be held responsible for any kind of physical or mental injury during the processing of this directive. If you accept the terms and conditions, please state your consent.”</i>");
+	//[Agree][Disagree]
+	clearMenu();
+	addButton(0,"Agree",agreeToElectroStim);
+	addButton(1,"Disagree",declineElectroStim);
 }
 
-When the shebot returns, she’s holding a white case filled with what you assume are the assorted tools she’ll be using for the job. A table emerges from the floor and she sets the case down and begins organizing the <i>toys</i> she’ll be using on you shortly.
-
-You have to admit to yourself that if you didn’t know any better, this would actually look like a medical procedure.
-
-“Please relax and stay calm, {sir},” she states as the <i>chair</i> begins emitting a whirring from underneath you once more.
-
-{if taur:
-You suddenly feel your arms pulled upwards by the harness, effectively rendering you stuck.
-}
-{else:
-A pair of cuffs form on the armrests, effectively restraining you.
-}
-{if legs:
-More cuffs form around the edge of the insets, clamping down over your [pc.legs[ and immobilizing them as well. {From behind you, you can hear your [pc.tails] being given the same treatment, feeling multiple clamps snapping shut along your {lengths} and binding you to the chair.
-}
-{elseif naga:
-At regular intervals around the pole, cuff-like struts rise out and clamp down across your length, anchoring your lower body firmly to the support pole so that you cannot remove your coils from it.
-}
-{elseif taur:
-Underneath you, small mechanical arms ending in rounded cuffs emerge from the floor near each of your feet, snapping closed around your ankles and binding you firmly in place.
+//[=Disagree=]
+function declineElectroStim():void
+{
+	clearOutput();
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	output("A few lights blink out as she reboots and greets you again as if you had just arrived.");
+	//(Play initial greeting.)
+	approachVKo(false);
 }
 
-V-Ko starts off by placing an electrode on each of your nipples, a thin wire extends to a console which you assume must be used to control the entire setup.
+//[=Agree=]
+function agreeToElectroStim():void
+{
+	clearOutput();
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	output("<i>“Please, remove your clothing and lay down.”</i>");
 
-{if cock:
-She procures [pc.cockAmount] thin, metallic rods. {It’s}{they’re} pretty small and {the}{their} tip{s} {is}{are} blunted into a round shape. On top of {each}{the} rod, {there’s a}{there are} small connector{s} whose wire V-Ko connects to the console.
+	output("\n\nDoing as you were instructed, you carefully peel off your [pc.gear] and lay it neatly on a nearby table as you head for the adaptable chair.");
 
-She approaches you and begins stroking {each of} your shaft{s} until you’re rock hard and leaking pre. Then she inserts the {first} metal rod into your urethra.
+	output("\n\nIt whirrs as it detects your body and reshapes itself into a form that will be more comfortable for the procedure.");
 
-It’s a weird feeling. Somewhat uncomfortable, but it also feels kinda good.
+	//else if naga:
+	if(pc.isNaga()) output("\n\nIn your case, it takes the shape of a comfortable-looking operation chair with a pair of armrests. It has a standard upper part where your top half can lay down comfortably and an elongated spiralling pole for you to twist your snake-like lower half around. It’s surprisingly comfy and you quickly find yourself relaxed within the chair’s insets.");
+	//else if goo:
+	else if(pc.isGoo()) output("\n\nIn your case it looks like a tub. The interior is made of a sleek material that prevents your goo-like self from sticking. It’s very smooth and easy to move in. On one end you see something that looks like the top half of a comfortable-looking operation chair, with a pair of armrests. You set yourself down and let your lower half pool around on the small tub while you wait for V-Ko’s return.");
+	//if taur:
+	else if(pc.isTaur()) output("\n\nIn your case, it looks less like a strange leather-covered table. From the roof, a harness of some kind drops down, perfectly adjusted for your measurements. Shrugging, you step over the table, letting your tauric lower half slide in position. Though your legs do reach the floor, you find that it’s just the right size for you to let your body slack without falling. Hesitantly, you don the harness dangling before you, attaching the straps to your torso, midriff and arms. You can’t help but feel a bit inappropriate as you hang there waiting for V-Ko’s return.");
+	//if legs:
+	else 
+	{
+		output("\n\nIn your case, it takes the shape of a comfortable-looking operation chair, with a pair of armrests");
+	 	//if tail: 
+	 	if(pc.tailCount > 0) output(" and even a hole on the back for your [pc.tails]");
+	 	output(". It’s just long enough for someone of your size to comfortably lay down. The insets prevent you from rolling one way or another, so there’s no risk of you escaping your position.");
+	}
+	output("\n\nWhen the shebot returns, she’s holding a white case filled with what you assume are the assorted tools she’ll be using for the job. A table emerges from the floor and she sets the case down and begins organizing the <i>toys</i> she’ll be using on you shortly.");
 
-{if more than 1 cock:
-The process is repeated for {each of} your other cock{s}.
+	output("\n\nYou have to admit to yourself that if you didn’t know any better, this would actually look like a medical procedure.");
+	output("\n\n<i>“Please relax and stay calm, " + pc.mf("sir","madam") + ",”</i> she states as the <i>chair</i> begins emitting a whirring from underneath you once more.");
+
+	//if taur:
+	if(pc.isTaur()) output(" You suddenly feel your arms pulled upwards by the harness, effectively rendering you stuck.");
+	//else
+	else output(" A pair of cuffs form on the armrests, effectively restraining you.");
+
+	//elseif naga:
+	if(pc.isNaga()) output(" At regular intervals around the pole, cuff-like struts rise out and clamp down across your length, anchoring your lower body firmly to the support pole so that you cannot remove your coils from it.");
+	//elseif taur:
+	else if(pc.isTaur()) output(" Underneath you, small mechanical arms ending in rounded cuffs emerge from the floor near each of your feet, snapping closed around your ankles and binding you firmly in place.");
+	//if legs:
+	else 
+	{
+		output(" More cuffs form around the edge of the insets, clamping down over your [pc.legs] and immobilizing them as well.");
+		if(pc.tailCount > 0)
+		{
+			output("From behind you, you can hear your [pc.tails] being given the same treatment, feeling ");
+			if(pc.tailCount == 1) output("a clamp snap shut on your length");
+			else output("multiple clamps snapping shut along your lengths");
+			output(" and binding you to the chair.");
+		}
+	}
+
+	output("\n\nV-Ko starts off by placing an electrode on each of your nipples, a thin wire extends to a console which you assume must be used to control the entire setup.");
+	//if cock:
+	if(pc.hasCock())
+	{
+		output("\n\nShe procures " + num2Text(pc.cockTotal()) + " thin, metallic rods. ");
+		if(pc.cockTotal() == 1) output("It’s");
+		else output("They’re");
+		output(" pretty small and ");
+		if(pc.cockTotal() == 1) output("the ");
+		else output("their ");
+		output(" tip");
+		if(pc.cockTotal() > 1) output("s are");
+		else output(" is");
+		output(" blunted into a round shape. On top of ");
+		if(pc.cockTotal() > 1) output("each ");
+		else output("the ");
+		output(" rod, ");
+		if(pc.cockTotal() > 1) output("there’s a");
+		else output("there are");
+		output(" small connector");
+		if(pc.cockTotal() > 1) output("s");
+		output(" whose wire V-Ko connects to the console.");
+
+		output("\n\nShe approaches you and begins stroking [pc.eachCock] until you’re rock hard and leaking pre. Then she inserts the ");
+		if(pc.cockTotal() > 1) output("first ");
+		output("metal rod into your urethra.");
+		output("\n\nIt’s a weird feeling. Somewhat uncomfortable, but it also feels kinda good.");
+
+		//if more than 1 cock:
+		if(pc.cockTotal() > 1) 
+		{
+			output("\n\nThe process is repeated for ");
+			if(pc.cockTotal() > 2) output("each of ");
+			output("your other cock");
+			if(pc.cockTotal() > 2) output("s");
+			output(".");
+		}
+	}
+	output("\n\nShe lifts what looks like an inflatable butt-plug and applies a liberal amount of lube to it, then walks towards you and does the same to [pc.asshole].");
+	output("\n\nHissing as the cold gel touches your sensitive rosebud, you force yourself to relax so she can insert the plug. It spreads you slightly as it enters you. No doubt it’ll do much more stretching once she’s actually turned it on. Anticipation courses throughout your body, heating you up as you watch her go back to the case.");
+	//if vagina:
+	if(pc.hasVagina())
+	{
+		output("\n\nNext she procures a ");
+		if(pc.vaginaTotal() == 2) output("pair of ");
+		else if(pc.vaginaTotal() > 2) output("some ");
+		output("terran-looking rubber dildo");
+		if(pc.vaginaTotal() > 1) output("es");
+		output(". And after a quick check to make sure you’re moist enough, she inserts ");
+		if(pc.vaginaTotal() == 1) output("it ");
+		else output("each of them ");
+		output("into your [pc.vaginas].");
+	}
+	//if balls:
+	if(pc.balls > 1)
+	{
+		output("\n\nShe produces " + num2Text(pc.balls) + " small, wide-mouthed suction-cups attached to slender rubber hoses. Methodically, she holds the rubber-lipped things over your [pc.balls], barely an inch or so away from the skin. A gentle vacuum effect tickles your scrotum before it allows her to 'stick' the cups in place. You can feel the suction fade out, but it kicks back in on occasion, a feather-light touch that tickles you nicely, happening unpredictably so you can never quite guard against the sensation.");
+	}
+	//if tail:
+	if(pc.tailCount > 0)
+	{
+		output("\n\nYou feel her gently pet your [pc.tails], stroking and measuring their girth.");
+		//if cocktail: 
+		if(pc.hasCockTail()) output(" It feels good, you can already feel the [pc.tailCockHeads] of your [pc.tailCocks] hardening.");
+		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailcunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
+		output(" V-Ko procures " + num2Text(pc.tailCount) + " ring");
+		if(pc.tailCount > 1) output("s");
+		output(" from her case and bring them over. She attaches ");
+		if(pc.tailCount == 1) output("it ");
+		else output("them, one by one, ");
+		output("to your [pc.tails]. Then she connects a wire to ");
+		if(pc.tailCount == 1) output("the ");
+		else output("each ");
+		output("ring.");
+	}
+	output("\n\nFinally, she finds a ring. <i>“Please open your mouth, " + pc.mf("sir","madam") + ",”</i> she requests. And you comply.");
+	output("\n\nThe ring prevents you from biting down and it’s tied up behind your head, ensuring you have no way to dispose of it.");
+	if(pc.hasFaceFlag(GLOBAL.MUZZLED)) output(" A few straps hold your [pc.face] shut to prevent any possible accidents.");
+
+	output("\n\nShortly after she inserts a small plug, made from some sort of elastic gel inside your maw. It’s long enough to almost reach your throat. A wire connects it to the console, similar to the other toys. With a small click, she finishes attaching it to the ring inside your mouth.");
+	output("\n\n<i>“Ready to begin, " + pc.mf("sir","madam") + "?”</i>");
+
+	output("\n\nYou nod, grunting your assent.");
+
+	output("\n\nA small beep confirms that V-Ko’s turned on the toys. Each of them vibrating and stimulating your as you begin panting in arousal.");
+
+	//if nipples are big enough:
+	if(pc.nippleLength(0) >= .5)
+	{
+		output(" As your nipples grow erect, you can feel the electrodes changing to accommodate them. They extrude outwards at the same time their rim grows tighter on your areolae.");
+	}
+	output(" The plug up your ass expands experimentally, vibrating gently ");
+	if(pc.hasCock()) output("and stimulating your prostate ");
+	output("as it boots up.");
+	//if pussy:
+	if(pc.hasVagina())
+	{
+		output(" The dildo");
+		if(pc.vaginaTotal() > 1) output("es");
+		output(" inside your [pc.vaginas] begin");
+		if(pc.vaginaTotal() == 1) output("s");
+		output(" slowly gyrating and writhing inside. A prelude of things to come.");
+	}
+	//if cock:
+	if(pc.hasCock())
+	{
+		output(" The metal rod inside [pc.eachCock] vibrates on a very low frequency. Low enough that you can’t cum from this and high enough that pre leaks out of you like a hose. By now you have no doubt you’ve turned the ground underneath into a small puddle.");
+	}
+	output("\n\nThe strange gel tentacle inside your maw begins moving, massaging your tongue. You begin <i>kissing</i> it back, your moans muffled by its girth.");
+
+	//if balls:
+	if(pc.balls > 1) output("\n\nThe suction cups on your balls continue their ministrations. They never apply too much or too little pressure. Always keeping you on edge. Frustration builds up inside your balls into a nice, thick load of [pc.cum], just awaiting the inevitable rise that will bring you over the edge.");
+	//if tails:
+	if(pc.tailCount > 0)
+	{
+		output("\n\nFor now the tail-ring");
+		if(pc.tailCount > 1) output("s don't");
+		else output(" doesn’t");
+		output(" seem to be doing anything, though you do feel some micro-vibrations emanating from the ring.");
+	}
+	output("\n\nSlowly, but surely, the toys become more lively. Your anal plug begins a series of contractions and expansions. ");
+	if(pc.hasCock()) output(" Each expansion stimulating your prostate and pressing fatter gobs of pre from your [pc.cocks].");
+
+	output("\n\nYour mock kisser loops around your own [pc.tongue] like a lover’s. For a machine, it’s quite proficient. It takes advantages of your muffled moans to probe deeper inside you, almost throat-fucking you. If it had the length, you have no doubt that this is exactly what it’d be doing.");
+	output("\n\nThe other <i>attachments</i> you’re hooked up to don’t seem to be doing much of anything at the moment...");
+
+	output("\n\nSure, the nipple-clamps give you the lightest shocks, sometimes, and it’s kinda pleasing. But far from anything overly-stimulating.");
+
+	if(pc.hasCock())
+	{
+		output(" The rod");
+		if(pc.cockTotal() > 1) output("s");
+		output(" inside your cumvein ");
+		if(pc.cockTotal() == 1) output("don’t");
+		else output("doesn't");
+		output(" do anything but vibrate lightly either. Once you get used to their sensation, it’s kind of pleasing, but nothing special either.");
+	}
+	//if vagina:
+	if(pc.hasVagina())
+	{
+		output(" The dildo");
+		if(pc.vaginaTotal() > 1) output("s");
+		output(" up your [pc.vaginas] ");
+		if(pc.vaginaTotal() == 1) output("doesn't");
+		else output("don’t");
+		output(" seem that special. All ");
+		if(pc.vaginaTotal() == 1) output("they ");
+		else output("it ");
+		output("can do is gyrate lightly.");
+	}
+	output("\n\nAs you get used to the pleasure being inflicted upon you, you start to get almost... bored. It’s not until you see a red flash on the corner of your eyes that you note a new prompt on the console next to V-Ko.");
+
+	output("\n\nIt reads: “Engage Hardcore Mode”");
+	output("\n\nThere’s a timer right below, almost running out.");
+
+	//first time:
+	if(flags["TIMES_ELECTROSTIMMED_BY_VKO"] == undefined)
+	{
+		flags["TIMES_ELECTROSTIMMED_BY_VKO"] = 1;
+		output("\n\nYou wonder what exactly hardcore mode is....");
+	}
+	else output("\n\nAny time now, you tell yourself. A perverse smile creeping along the edges of your stuffed mouth.");
+
+	output("\n\nThe timer ends with a soft click.");
+
+	output("\n\nYour anal plug starts to expand and contract with far greater force, rutting you with mechanical intensity, grinding itself into your very depths.");
+	if(pc.cockTotal() > 0) output(" Your prostate is massaged relentlessly by the rippling plug, forcing semen to pour from your [pc.cocks] with the sheer strength of its motions.");
+	//ifVagina:
+	if(pc.hasVagina()) 
+	{
+		output(" Not to be outdone, the vibrator");
+		if(pc.vaginaTotal() > 1) output("s");
+		output(" buried in your [pc.cunts] roar");
+		if(pc.vaginaTotal() == 1) output("s");
+		output(" into life, buzzing around madly, repeatedly flicking your [pc.clits], more by accident than design. It is only a machine - but the sensation is enthralling.");
+	}
+
+	output("\n\nThe clamps attached to your [pc.nipples] almost audibly hum as their voltage increases, sharp surges of electricity coursing over your sensitive flesh. Pleasure washes through you, your body jolting against your restraints with each spark that strokes your nerves.");
+	if(pc.tailCount > 0)
+	{
+		output(" Behind you, your [pc.tails]");
+		if(pc.tailCount == 1) output("is ");
+		else output("are ");
+		output("getting the same treatment; it doesn't truly compare to the sensations against your nipples, but, mmm, it feels so good!");
+	}
+	output("\n\nThe tentacle-like artificial tongue writhes in your mouth, plunging deeper inside of you until it is literally throat fucking you, muffling your cries of pleasure even as it strokes and plays with you. The pleasure just keeps growing and growing as the devices continue to play with you");
+	if(pc.balls > 1) output(", even the suctioning of your [pc.balls] seems to underscore everything else just perfectly");
+	output(", and you feel your resistance crumbling.... You're going to cum!");
+
+	output("\n\nYour climax hangs in the balance, you almost feel like blacking out as the pleasure consumes you, but, inevitably, you cannot hold out");
+	if(pc.hasCock())
+	{
+		output(", especially not when the rod");
+		if(pc.totalCocks() > 1) output("s");
+		output(" inserted inside your [pc.cocks] deliver");
+		if(pc.totalCocks() == 1) output("s");
+		output(" a sudden sharp shock of its own");
+	}
+	output("! Gagged by the mechanical tongue in your mouth, your back arches as your whole body clamps down in orgasm, climax washing across of you.");
+
+	output("\n\nAnd still the machines play with you, already sensitive nerves pushed to their limit as they continue to mechanically manipulate you even mid-climax, your orgasm just going on and on, growing ever more intense until you cannot take it anymore. In the midst the most literally mind-blowing climax you can ever remember having, you lose consciousness.");
+
+	output("\n\nWhen you wake, you are lying atop the mattress. You're still naked, but also clean as a whistle; it looks like V-Ko took care of you after you passed out. At the thought, a smile unthinkingly washes over your face; you're still tingling with delight at what you just experienced.");
+
+	output("\n\nUpon noticing that you’ve awakened, V-Ko immediately bows. <i>“Procedure concluded, thank you for your patronage.”</i>");
+	output("\n\nRising from the mattress, you stretch out a few kinks, grab your [pc.gear] and put it back into place, then head back out of the clinic.");
+	pc.orgasm();
+	pc.orgasm();
+	processTime(50+rand(15));
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
-}
 
-She lifts what looks like an inflatable butt-plug and applies a liberal amount of lube to it, then walks towards you and does the same to [pc.asshole].
 
-Hissing as the cold gel touches your sensitive rosebud, you force yourself to relax so she can insert the plug. It spreads you slightly as it enters you. No doubt it’ll do much more stretching once she’s actually turned it on. Anticipation courses throughout your body, heating you up as you watch her go back to the case.
-
-{if vagina:
-Next she procures a {pair of}{some} terran-looking rubber dildo{es}. And after a quick check to make sure you’re moist enough, she inserts {it}{each of them} into your [pc.vaginas].
-}
-
-{if balls:
-She produces [pc.ballNumber] small, wide-mouthed suction-cups attached to slender rubber hoses. Methodically, she holds the rubber-lipped things over your [pc.balls], barely an inch or so away from the skin. A gentle vacuum effect tickles your scrotum before it allows her to 'stick' the cups in place. You can feel the suction fade out, but it kicks back in on occasion, a feather-light touch that tickles you nicely, happening unpredictably so you can never quite guard against the sensation.
-}
-
-{if tail:
-You feel her gently pet your [pc.tails], stroking and measuring their girth. {if cocktail: It feels good, you can already feel the [pc.tailCockHead] of your [pc.tailCock] hardening.} {if tailgina: Moisture drips from your [pc.tailcunt] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.}
-
-V-Ko procures [pc.tailCount] ring{s} from her case and bring them over. She attaches {it}{them, one by one,} to your [pc.tails]. Then she connects a wire to {the}{each} ring.
-}
-
-Finally, she finds a ring. “Please open your mouth {sir},” she requests. And you comply.
-
-The ring prevents you from biting down and it’s tied up behind your head, ensuring you have no way to dispose of it. {if snout/muzzle: A few straps hold your [pc.face] shut to prevent any possible accidents.
-
-Shortly after she inserts a small plug, made from some sort of elastic gel inside your maw. It’s long enough to almost reach your throat. A wire connects it to the console, similar to the other toys. With a small click, she finishes attaching it to the ring inside your mouth.
-
-“Ready to begin, {sir}?”
-
-You nod, grunting your assent.
-
-A small beep confirms that V-Ko’s turned on the toys. Each of them vibrating and stimulating your as you begin panting in arousal.
-
-{if nipples are big enough:
-As your nipples grow erect, you can feel the electrodes changing to accommodate them. They extrude outwards at the same time their rim grows tighter on your areolae.
-}
-
-The plug up your ass expands experimentally, vibrating gently {and stimulating your prostate} as it boots up.
-
-{if pussy:
-The dildo{es} inside your [pc.vaginas] begin slowly gyrating and writhing inside. A prelude of things to come.
-}
-{if cock:
-The metal rod inside {each of} your cock{s} vibrates on a very low frequency. Low enough that you can’t cum from this and high enough that pre leaks out of you like a hose. By now you have no doubt you’ve turned the {ground} underneath into a small puddle.
-}
-
-The strange gel tentacle inside your maw begins moving, massaging your tongue. You begin <i>kissing</i> it back. Moans muffled by its girth.
-
-{if balls:
-The suction cups on your balls continue their ministrations. They never apply too much or too little pressure. Always keeping you on edge. Frustration builds up inside your balls into a nice, thick load of [pc.cumType], just awaiting the inevitable rise that will bring you over the edge.. 
-}
-
-{if tails:
-For now the tail-ring{s} doesn’t seem to be doing anything. Though you do feel some micro-vibrations emanating from the ring.
-}
-
-Slowly, but surely, the toys become more lively. Your anal plug begins a series of contractions and expansions. {Each expansion stimulating your prostate and pressing fatter gobs of pre from your shaft{s}.}
-
-Your mock kisser loops around your own [pc.tongue] like a lover’s. For a machine, it’s quite proficient. It takes advantages of your muffled moans to probe deeper inside you, almost throat-fucking you. If it had the length, you have no doubt that this is exactly what it’d be doing. 
-
-The other <i>attachments</i> you’re hooked up to don’t seem to be doing much of anything at the moment…
-
-Sure, the nipple-clamps give you the lightest shocks, sometimes, and it’s kinda pleasing. But far from anything overly-stimulating.
-
-{if cock:
-The rod{s} inside your cumvein don’t do anything but vibrate lightly either. Once you get used to their sensation it’s kind of pleasing, but nothing special either.}
-
-{if vagina:
-The dildo{s} up your cunny{ies} don’t seem that special. All they can do is gyrate lightly.
-}
-
-As you get used to the pleasure being inflicted upon you, you start to get almost… bored. It’s not until you see a red flash on the corner of your eyes that you note a new prompt on the console next to V-Ko.
-
-It reads: “Engage Hardcore Mode”
-
-There’s a timer right below, almost running out.
-
-{first time:
-You wonder what exactly hardcore mode is...
-}
-{else:
-Any time now, you tell yourself. A perverse smile creeping along the edges of your stuffed mouth.
-}
-
-The timer ends with a soft click.
-
-Your anal plug starts to expand and contract with far greater force, rutting you with mechanical intensity, grinding itself into your very depths. {Your prostate is massaged relentlessly by the rippling plug, forcing semen to pour from your [pc.cocks] with the sheer strength of its motions.}
-
-{ifVagina:
-Not to be outdone, the {vibrator} buried in your [pc.cunt] roar into life, buzzing around madly, repeatedly flicking your [pc.clit] - more by accident than design, it is only a machine - but the sensation is enthralling.
-}
-
-The clamps attached to your [pc.nipples] almost audibly hum as their voltage increases, sharp surges of electricity coursing over your sensitive flesh. Pleasure washes through you, your body jolting against your restraints with each spark that strokes your nerves. {Behind you, your [pc.tail] {is} getting the same treatment; it doesn't truly compare to the sensations against your nipples, but, mmm, it feels so good!}
-
-The tentacle-like artificial tongue writhes in your mouth, plunging deeper inside of you until it is literally throat fucking you, muffling your cries of pleasure even as it strokes and plays with you. The pleasure just keeps growing and growing as the devices continue to play with you{, even the suctioning of your [pc.balls] seems to underscore everything else just perfectly}, and you feel your resistance crumbling... you're going to cum!
-
-Your climax hangs in the balance, you almost feel like blacking out as the pleasure consumes you, but, inevitably, you cannot hold out { - especially not when the {rod} inserted inside your [pc.cock] delivers a sudden sharp shock of its own}! Gagged by the mechanical tongue in your mouth, your back arches as your whole body clamps down in orgasm, climax washing across of you.
-
-And still the machines play with you, already sensitive nerves pushed to their limit as they continue to mechanically manipulate you even mid-climax, your orgasm just going on and on, growing ever more intense until you cannot take it anymore. In the midst the most literally mind-blowing climax you can ever remember having, you lose consciousness.
-
-When you wake, you are lying atop the mattress. You're still naked, but also clean as a whistle; it looks like V-Ko took care of you after you passed out. At the thought, a smile unthinkingly washes over your face; you're still tingling with delight at what you just experienced.
-
-Upon noticing that you’ve awakened, V-Ko immediately bows. “Procedure concluded, thank you for your patronage.”
-
-Rising from the mattress, you stretch out a few kinks, grab your [pc.gear] and put it back into place, then head back out of the clinic.
-
+/*
 Breast Pump (Stress relief for milky breasts)
 //Requires players with lactating boobs.
 

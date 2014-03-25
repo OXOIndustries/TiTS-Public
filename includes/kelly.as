@@ -1,7 +1,15 @@
-﻿//Appearance
+﻿
+function showKellyName():void
+{
+	if(flags["KELLY_MET"] == undefined) userInterface.showName("BUNNY\nGIRL");
+	else userInterface.showName("\nKELLY");
+}
+
+//Appearance
 function kellyAppearance():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	output("Louise \"Kelly\" Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you, is a gene-modded laquine you met on the planet Mhen'gha in the town of Esbeth.");
 	output("\n\nStanding five feet and nine inches tall with a buxom, curvy body strongly resembling a humanoid rabbit, she stares at you through amber eyes with a confident smile. Her rabbit-like ears fall down the back of her skull from the top of her head to her shoulders in an iconic \"Floppy-eared bunny\" look. A rabbit-like tail flashes above her bum, and her bare feet extend into rabbit-like appendages, her legs jointed in an odd fashion that lets her stand on both the balls of her feet, making them digitigrade, or on the heels of her feet, making them look plantigrade, like a human's.");
@@ -37,6 +45,7 @@ function kellyAppearance():void {
 function kellysOfficeBonusFunction():Boolean
 {
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	//If Player has not met Kelly Yet:
 	if(flags["KELLY_MET"] == undefined) {
@@ -67,6 +76,7 @@ function kellysOfficeBonusFunction():Boolean
 function kellyOfficeApproach():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
@@ -80,6 +90,7 @@ function kellyOfficeApproach():void {
 function kellysOfficeMenu():void {
 	clearMenu();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	addButton(0,"Appearance",kellyAppearance);
 	addButton(1,"Talk",talkToKellyInOffice);
@@ -90,6 +101,7 @@ function kellysOfficeMenu():void {
 function dontRegisterInKellysOffice():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	output("You apologize, but you don’t feel like registering now, so you’ll be leaving.");
 	output("\n\n<i>“I understand sir, Xenogen thanks you for your visit. Please come again.”</i> she says with a polite smile and a nod, indicating the door.\n\nYou walk out.");
@@ -103,6 +115,7 @@ function dontRegisterInKellysOffice():void {
 function registerAtKellysOffice():void {
 	clearOutput();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	flags["KELLY_MET"] = 1;
 	output("Sure thing, you reply.");
@@ -122,6 +135,7 @@ function talkToKellyInOffice(display:Boolean = true):void {
 		output("\"<i>A friendly chat?</i>\"  Kelly repeats. \"<i>Well, sure, I suppose I could use a short break anyway. What do you want to talk about?</i>\"");
 	}
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	//Display options
 	//Regardless of Talk option chosen, give +5 Attraction.
@@ -138,6 +152,7 @@ function talkToKellyAboutHerself():void
 {
 	clearOutput();
 	userInterface.showBust("KELLY");
+	showKellyName();
 	author("Quiet Browser & LD");
 	output("<i>“Now, now.”</i>  She waves a finger at you. <i>“Aren’t you getting a little ahead of yourself?”</i>  She smiles disarmingly.");
 	output("\n\nYou apologise, you didn’t mean to offend her. You were just interested in getting to know her a little better.");

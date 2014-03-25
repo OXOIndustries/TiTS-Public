@@ -9,9 +9,17 @@
 // SYRI_BETTING_STORAGE			: Stores credit bet or 9001 if ass betting.
 // SYRI_TALKS 					: Stores what talk scene to display next in the sequence. Scene 1 never repeats. YAY!
 
+function showSyriName():void
+{
+	if(flags["MET_SYRI"] == undefined) userInterface.showName("AUSAR\nGIRL");
+	else userInterface.showName("\nSYRI");
+}
+
 function syriGamesStart():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
+
 	author("Savin");
 	//[Games] (Repeat)
 	if(flags["MET_SYRI"] != undefined) {
@@ -55,6 +63,7 @@ function syriGamesStart():void {
 function notTodayDogslut():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You shake your head and take a step back. The ausar sighs and sips her beer, <i>“Well, if you ever change your mind, you know where the action is.”</i>");
 
@@ -67,6 +76,7 @@ function notTodayDogslut():void {
 function betSyriCredits(amount:int = 0):void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	flags["BET_AGAINST_SYRI"] = 1;
 	flags["SYRI_BETTING_STORAGE"] = amount;
@@ -89,6 +99,7 @@ function betSyriCredits(amount:int = 0):void {
 function betYourselfAgainstSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	flags["SYRI_BETTING_STORAGE"] = 9001;
 	output("<i>“Sure, but not for credits,”</i>  you say, letting your eyes play across the shapely curves and ample bust on the alien girl. Her tail twitches, nearly knocking over a beer bottle beside her.");
@@ -182,6 +193,7 @@ function syriGameRouting():void {
 function pcBeatsSyriWhenSexBet():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Nearly an hour passes in the game. The graphics are photo-realistic, the controls tight and precise. Every movement you make is perfectly mirrored in the game. The map is huge, and your character is slow. It's a maze, and soon you realize it's less skill in battle, here, than skill at the hunt. Just finding Syri in the ruined city map that the game has you in is challenging, and every time you think you've got her, she darts away. Finally, you slay her, putting a bullet between her avatar's eyes. The audience cheers, and more and more people gather as they realize you've got skill.");
 
@@ -201,6 +213,7 @@ function pcBeatsSyriWhenSexBet():void {
 function victoryFuckSyrisBunghole():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Unable to resist the urge to spread this dog-slut's legs and fuck her like the bitch she is, you flip Syri around and push her down onto the nearest table, pinning her arms behind her back. She squirms, struggling against you as your hand plays across her wide hips, squeezing one of her full cheeks beneath her pants. It's like putty in your hand, so soft and kneadable. Her tail twitches and flickers, swatting across your face as its owner tries to pretend she doesn't enjoy you playing with her big, delicious ass. You let her carry on for a few minutes as you grope her ass, starting to grind on her, cock swelling as it rubs against the coarse fabric of her clothes, feeling the radiant warmth of the ausar's body and the hypnotic movements of her hips.");
 	output("\n\n<i>“Come on,”</i>  she growls, finally settling down a bit in your unrelenting grip. <i>“Just fucking get it over with already.”</i>");
@@ -269,6 +282,7 @@ function victoryFuckSyrisBunghole():void {
 function rideSyrisCockYouWinner():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("If her tone was half an indicator, Syri wanted to bend you over the table there and fuck your ass raw. And to be honest, you wanted her cock up your ass, too. Otherwise, why the hell would you have bet yourself? You won, and it's time to take your reward: a nice, knotty cock to spread your [pc.asshole] wide. You grab the ausar girl by the hips and push her back against the wall, cupping her breasts and drinking in her earthy musk. Syri gives a sharp gasp, but as soon as your lips wrap around one of her pert nipples, she gets the idea. Her legs hug your [pc.hips], and you feel a furry hand brushing ");
 	if(pc.hasHair()) output("through your [pc.hair] ");
@@ -325,6 +339,7 @@ function rideSyrisCockYouWinner():void {
 function winForCredits():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Nearly an hour passes in the game. The graphics are photo-realistic, the controls tight and precise. Every movement you make is perfectly mirrored in the game. The map is huge, and your character is slow. It's a maze, and soon you realize it's less skill in battle, here, than skill at the hunt. Just finding Syri in the ruined city the game has you in is challenging, and every time you think you've got her, she darts away. Finally you slay her, pulling a bullet between her avatar's eyes. The audience cheers, and more and more people gather as they realize you've got skill.");
 
@@ -343,6 +358,7 @@ function winForCredits():void {
 function pcLosesToSyriCredBetting():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Nearly an hour passes in the game. The graphics are photo-realistic, the controls tight and precise. Every movement you make is perfectly mirrored in the game. The map is huge, and your character is slow. It's a maze, and soon you realize it's less skill in battle, here, than skill at the hunt. Just finding Syri in the ruined city the game has you in is challenging, and every time you think you've got her, she darts away. Finally you slay her, pulling a bullet between her avatar's eyes. The audience cheers, and more and more people gather as they realize you've got skill.");
 
@@ -363,6 +379,7 @@ function pcLosesToSyriCredBetting():void {
 function pcLosesToSyriBettingHisAss():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Nearly an hour passes in the game. The graphics are photo-realistic, the controls tight and precise. Every movement you make is perfectly mirrored in the game. The map is huge, and your character is slow. It's a maze, and soon you realize it's less skill in battle, here, than skill at the hunt. Just finding Syri in the ruined city the game has you in is challenging, and every time you think you've got her, she darts away. Finally you slay her, pulling a bullet between her avatar's eyes. The audience cheers, and more and more people gather as they realize you've got skill.");
 
@@ -440,6 +457,7 @@ function pcLosesToSyriBettingHisAss():void {
 function approachSyriIntheMorning():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	//[Syri] (First Time)
 	if(flags["SEEN_SYRI_IN_THE_MORNING"] == undefined) {
@@ -476,6 +494,7 @@ function approachSyriIntheMorning():void {
 function leaveMorningSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You sit and chat with Syri for a few minutes, little more than gossip and idle banter. Eventually, though, you decide to hit the road. She stands as you do, slipping close enough to feel her breasts pressing against your [pc.chest]. <i>“See you around, Steele. Stop by for a game this afternoon, will ya? I get bored without someone of... skill...”</i>");
 	output("\n\nShe gives you a wink and a quick pat on the ass before sending you on your way.");
@@ -508,6 +527,7 @@ function talkToSyriRouter():void {
 function syriTalkOne():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>\Hey,”</i>  Syri says, crossing one leg over the other - just enough to hide the not-insignificant bulge in her pants. <i>“Sorry if I'm a little rough on you at game time. I get pretty into it, you know? Especially when I've got a nice piece of ass on the line.");
 	//If PC usually wins:
@@ -528,6 +548,7 @@ function syriTalkOne():void {
 function shootSyriDown():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>“Sorry,”</i> you say, withdrawing, <i>“Not interested.”</i>");
 
@@ -544,6 +565,7 @@ function shootSyriDown():void {
 function sureBeFuckFriendsWithSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>“Really? Awesome!”</i>  Syri says, jumping up and grabbing you in a big bear hug. <i>“We're gonna have a blast, you and I. Friends to the end!”</i>");
 	output("\n\n<i>“Hey, you're the captain of the a ship, right? I saw you dock a while ago. That's hot stuff. You should give me a tour sometime... </i>Captain<i> Steele. I haven't been on a spaceship in ages, and I'd love to see your... captain's quarters,”</i>  she says, giving you a wink as her hand brushes playfully across your thigh.");
@@ -558,6 +580,7 @@ function sureBeFuckFriendsWithSyri():void {
 function talkToSyriNumber2():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Talking with Syri for a few minutes, the topic eventually drifts towards her past. You can't help but ask, then, where'd the dick come from?");
 
@@ -584,6 +607,7 @@ function talkToSyriNumber2():void {
 function syriTalkThree():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>“What're you reading?\"  you ask, nodding toward Syri's data slate.");
 
@@ -609,6 +633,7 @@ function syriTalkThree():void {
 function tellSyriYouReadScifi():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You answer that most of what you've been reading is good old Science Fiction. Spaceships and time travel and wormholes galore. Syri nods attentively as you list off a few good books and authors, comparing their styles and subjects. She laughs as you relate the tropes and idiosyncrasies of the stories you've read lately, and how far-fetched or dead wrong some of the older books are.");
 	syriBookTalkEpilogue();
@@ -618,6 +643,7 @@ function tellSyriYouReadScifi():void {
 function tellSyriYouReadFantasy():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("It's swords and sorcery, elves and dwarves and dragons for you. That catches Syri's interest, and in moments you're deep into conversation, exchanging favorite authors and comparing your latest reads. When you bump into something you've both read, you're soon laughing and joking about the stories, picking out favorite characters and more heart-wrenching or laughable moments, and Syri's trying to convince you to start playing RPGs...");
 	syriBookTalkEpilogue();
@@ -626,6 +652,7 @@ function tellSyriYouReadFantasy():void {
 function tellSyriYouReadRomance():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You mention you've been reading a lot of romances, and that promptly gets you a good few teases from the ausar girl as you try to relate the deep characters and heart-warming plots you've gotten off to lately. She laughs it off, saying that romances are just porn for girls... but then adds that she might have maybe read a few in her time, and once the dam is broken, you're both soon giggling about your favorite series.");
 	syriBookTalkEpilogue();
@@ -635,6 +662,7 @@ function tellSyriYouReadRomance():void {
 function tellSyriYouReadMystery():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You tell Syri that you're all about the mystery novels: murders and gothic castles and hard-boiled detectives. She perks an ear, adding that she's seen some old detective movies, but that kind of book never got popular on her world. Soon, you're telling her all about the genre, sharing your favorite authors and the best of the best books. She grabs her slate and starts scrolling as you talk, grabbing titles at your suggestion for later perusal.");
 	syriBookTalkEpilogue();
@@ -643,6 +671,7 @@ function tellSyriYouReadMystery():void {
 function tellSyriYoureIlliterate():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You shrug and mention that you really haven't read anything at all lately. Syri makes a mock gasp of horror at the notion, and grabs her data slate. <i>“Well, we'll just have to rectify that, Captain Steele. Now, let's start you off with some new Rondell Ramus books... and maybe a little Capser van Beck. Oh, and Imono Flaest's new one - it's a bestseller already, and it just came out today. Fifty billion copies by the time I woke up.”</i>");
 	output("\n\n<i>“Here we go...”</i>  she grins, tapping her screen. A moment later you codex announces that you have mail.");
@@ -662,6 +691,7 @@ function syriBookTalkEpilogue():void {
 function talkToSyriNumber4():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Thinking back to previous conversations, you ask Syri exactly what she does for a living. She's on medical discharge, so does she get a pension or something?");
 
@@ -694,6 +724,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 	if(outputs) {
 		clearOutput();
 		userInterface.showBust("SYRI");
+		showSyriName();
 		author("Savin");
 		//(First Time Variant) 
 		if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) {
@@ -758,6 +789,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 function syriReverseCowgirlConsensualization():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	var x:int = pc.cockThatFits(chars["SYRI"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -818,6 +850,7 @@ function syriReverseCowgirlConsensualization():void {
 function missionaryWithTheDogDickedSlutSyri():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	var x:int = pc.cockThatFits(chars["SYRI"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -875,6 +908,7 @@ function getVagFukkedBySyri():void {
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Reaching between the lusty ausar's spread legs, you wrap your hands around her throbbing red knotty cock and ask her how she'd like to bury that bad boy to the hilt inside you. She grins from ear to pointed ear, <i>“Now you're speaking my language, Steele. Don't you stop.”</i>");
 
@@ -933,6 +967,7 @@ function getVagFukkedBySyri():void {
 function catchAnalFromSyriIfYouDontUseACondom():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You spread your [pc.legs] around the ausar beauty's hips, leaving your [pc.butt] perfectly vulnerably to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You're just an insatiable slut, aren't you, Steele?”</i>  Syri laughs, giving you a sharp slap on the thigh. <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>");
 
@@ -1006,6 +1041,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 function blowSyriYouFukkinSlut():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Grinning up at your hung alien lover, you ask her if she'd like some good old fashioned oral attention. Syri grins and rolls off you, cock rising skyward as you crawl downward, slipping between her spread legs to give yourself a good view of her eager member. The ausar's veiny puppy pecker is nice and stiff, swaying slightly as it stands erect for your inspection. Syri gives a little whine and shifts her legs, and her shaft waggles comedically at you, nearly brushing up against your nose; you take the opportunity to let your [pc.tongue] play out, lapping at her sensitive underside. The taste is bitter, but the sound of Syri's breath catching in her throat is exquisite, and with the look of wanton pleasure etched on her face to motivate you, you slip down toward her base, tongue probing at the red, pulsing prick down and down to its very roots, your fingers rubbing aside the downy fuzz around her stem to plant a kiss on her most sensitive flesh.");
 
@@ -1054,6 +1090,7 @@ function syriSexOutro():void {
 	processTime(120+rand(60));
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("You wake up several hours later, wrapped up in a tight, warm embrace of ausar fur and blankets. Syri's arms are still locked around you, holding you tight. You look up from the valley of her cleavage, and find her smiling down at you, blue eyes glistening in the dim cabin light.");
 
@@ -1076,6 +1113,7 @@ function syriSexOutro():void {
 function dontGoAwayYouKnotCunt():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>“What, you think we're done?”</i>  you say, grabbing your ausar lover by the waist and pulling her into a tight embrace, feeling her bare breasts pressing hard into your [pc.chest].");
 
@@ -1097,6 +1135,7 @@ function dontGoAwayYouKnotCunt():void {
 function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("<i>“Sure,”</i>  you say, pointing her toward your bathroom. She gives you a wink as she grabs her scattered clothes and vanishes, giving you a chance to get geared up");
 	if(flags["SYRI_BUTT_GAPE_ALERT"] != undefined) output(" and spend a few minutes rubbing your poor abused hole, still gaping after Syri knotted you");
@@ -1118,6 +1157,7 @@ function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 function syriAppearance():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
+	showSyriName();
 	author("Savin");
 	output("Syri Dorna is a six-foot tall ausar girl with shoulder-length raven hair and a pair of huge, perky wolf ears perched atop her head. Though she's got a distinctly human body and face, the silky fur on her arms and legs, and the swishing, bushy tail give her a distinctly feral, alien appearance. Her attire is loose and carefree: a pair of torn up jeans, tall leather boots, and a T-shirt that's a little too tight, accentuating her ample bust; more distinctive, though, is the long military coat she's wearing. Long and flowing, her jacket nearly reaches the floor, and certainly seems to have seen better days, even if its buttons are brightly polished, glistening proudly amidst tears and cuts all around them. Under her tight clothes, you can see the outlines of her taut muscles: powerful legs, a firm ass, and a hint of a six-pack. What draws your eyes, though is the distinctive bulge between her legs, hinting at the big, veiny, knotty cock lurking below.");
 	output("\n\nSyri has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that's perfect to tug and squeeze.");
