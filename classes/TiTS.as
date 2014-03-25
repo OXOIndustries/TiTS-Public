@@ -247,6 +247,14 @@
 			
 			this.addFrameScript( 0, mainMenu );
 			//mainMenu();
+			
+			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+		}
+		
+		private function finishInit(e:Event):void
+		{
+			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
+			this.userInterface.toggleBarTweens();
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state

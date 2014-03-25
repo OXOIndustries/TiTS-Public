@@ -71,7 +71,6 @@ package classes.UIComponents
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
-			if (_doTween) this.addEventListener(Event.FRAME_CONSTRUCTED, tween);
 			
 			this.BuildBackground();
 			
@@ -104,11 +103,12 @@ package classes.UIComponents
 			_menuButtonBlock.x = 10;
 		}
 		
-		private function tween(e:Event):void
+		public function tweenIn():void
 		{
-			this.removeEventListener(Event.FRAME_CONSTRUCTED, tween);
-			var tw:Tween = new Tween(this, "x", Regular.easeOut, this.x - this.width, this.x, 25, false); // Might have to fudge this to get the appearance to look round, ie construct off stage.
+			this.x = 0 - 200;
+			var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
 		}
+		
 		
 		private function BuildBackground():void
 		{

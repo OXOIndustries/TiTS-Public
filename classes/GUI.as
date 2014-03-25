@@ -314,6 +314,12 @@
 			this.ConfigureLeftBarListeners();
 		}
 		
+		public function toggleBarTweens():void
+		{
+			this._rightSideBar.tweenIn();
+			this._leftSideBar.tweenIn();
+		}
+		
 		private function ConfigureTooltip():void 
 		{
 			this.buttonTooltip = new ButtonTooltips();
