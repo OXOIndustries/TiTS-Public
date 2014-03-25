@@ -250,15 +250,8 @@
 			this.configureCodex();
 			this.userInterface.showMainMenu();
 			this.userInterface.toggleBarTweens();
-			
-			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
-		}
-		
-		private function finishInit(e:Event):void
-		{
-			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
-			this.userInterface.toggleBarTweens();
 			buildWTF();
+			this.userInterface.toggleBarTweens();
 		}
 		
 		private function buildWTF():void
