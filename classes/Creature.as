@@ -3886,6 +3886,11 @@
 			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
 			return vaginas[arg].wetness();
 		}
+		public function looseness(arg: int = 0): Number {
+			//If the player has no vaginas
+			if (vaginas.length == 0 || arg >= vaginas.length) return 0;
+			return vaginas[arg].looseness;
+		}
 		public function lowestWetness(index:Boolean = false): Number {
 			//If the player has no vaginas
 			if (vaginas.length == 0) return 0;
@@ -4378,6 +4383,10 @@
 		public function hasTailCunt(): Boolean {
 			if (tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;
 			return false;
+		}
+		//In case there's ever different types of cuntTails available, we'll need different methods.
+		public function hasCuntSnake(): Boolean {
+			return hasTailCunt();
 		}
 		public function tailVaginaCapacity(): Number {
 			return tailCuntCapacity();
@@ -5186,7 +5195,7 @@
 			} else if (buttRating() < 10) {
 				//TOIGHT LIKE A TIGER
 				if (tone >= 65) {
-					rando = this.rand(8);
+					rando = this.rand(9);
 					if (rando == 0) desc = "large, muscular ";
 					else if (rando == 1) desc = "substantial, toned ";
 					else if (rando == 2) desc = "big-but-tight ";
@@ -5195,17 +5204,19 @@
 					else if (rando == 5) desc = "big-but-fit ";
 					else if (rando == 6) desc = "powerful, squeezable ";
 					else if (rando == 7) desc = "large ";
+					else if (rando == 8) desc = "callipygean ";
 				}
 				//Nondescript
 				else if (tone >= 30) {
-					rando = this.rand(3);
-					if (rando == 0) desc = "squeezable ";
-					if (rando == 1) desc = "large ";
-					if (rando == 2) desc = "substantial ";
+					rando = this.rand(10);
+					if (rando <= 2) desc = "squeezable ";
+					else if (rando <= 6) desc = "large ";
+					else if (rando <= 8) desc = "substantial ";
+					else desc = "callipygean ";
 				}
 				//FLABBAH
 				else {
-					rando = this.rand(9);
+					rando = this.rand(10);
 					if (rando == 0) desc = "large, bouncy ";
 					else if (rando == 1) desc = "soft, eye-catching ";
 					else if (rando == 2) desc = "big, slappable ";
@@ -5215,6 +5226,7 @@
 					else if (rando == 6) desc = "cushiony ";
 					else if (rando == 7) desc = "plush ";
 					else if (rando == 8) desc = "pleasantly plump ";
+					else if (rando == 9) desc = "callipygean ";
 				}
 			} else if (buttRating() < 13) {
 				//TOIGHT LIKE A TIGER

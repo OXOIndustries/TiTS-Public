@@ -595,6 +595,11 @@
 		public function get primaryOutputModule():GameTextModule { return (_availableModules["PrimaryOutput"] as GameTextModule); }
 		public function get secondaryOutputModule():GameTextModule { return (_availableModules["SecondaryOutput"] as GameTextModule); }
 		
+		public function showName(name:String):void
+		{
+			roomText = name;
+		}
+
 		// Text input bullshittery
 		public function get textInput():TextField { return (_availableModules["PrimaryOutput"] as GameTextModule).textInput; }
 		
