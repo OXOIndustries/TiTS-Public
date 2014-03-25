@@ -8,6 +8,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.StatusEffectsBlock;
 	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	import fl.transitions.Tween;
+	import fl.transitions.TweenEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import fl.transitions.easing.Regular;
@@ -77,7 +78,6 @@ package classes.UIComponents
 		private function init(e:Event):void
 		{
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
-			if (_doTween) this.addEventListener(Event.FRAME_CONSTRUCTED, tween);
 			
 			this.BuildBackground();
 			this.BuildCharacterHeader();
@@ -99,14 +99,17 @@ package classes.UIComponents
 			this.addChild(_statusEffectDisplay);
 		}
 		
-		/**
-		 * Does the animation shit to sweep the bar in from offscreen
-		 * @param	e
-		 */
-		private function tween(e:Event):void
+		public function tweenIn():void
 		{
-			this.removeEventListener(Event.FRAME_CONSTRUCTED, tween);
-			var tw:Tween = new Tween(this, "x", Regular.easeOut, (this.x + this.width), this.x, 25, false);
+			trace("Stage Width: " + stage.stageWidth);
+			this.x = stage.stageWidth;
+			var tw:Tween = new Tween(this, "x", Regular.easeOut, stage.stageWidth, stage.stageWidth - 200, 25, false);
+			tw.addEventListener(TweenEvent.MOTION_FINISH, spamTween);
+		}
+		
+		public function spamTween(e:Event):void
+		{
+			trace(this.x);
 		}
 		
 		/**

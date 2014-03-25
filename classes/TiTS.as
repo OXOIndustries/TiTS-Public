@@ -243,6 +243,7 @@
 			this.removeEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 			this.configureCodex();
 			this.userInterface.showMainMenu();
+			this.userInterface.toggleBarTweens();
 		}
 		
 		// Proxy clearMenu calls so we can hook them for controlling save-enabled state

@@ -187,6 +187,12 @@
 			this.ConfigureLeftBarListeners();
 		}
 		
+		public function toggleBarTweens():void
+		{
+			this._rightSideBar.tweenIn();
+			this._leftSideBar.tweenIn();
+		}
+		
 		/**
 		 * Configure the tooltip element and prepare it for use.
 		 */
