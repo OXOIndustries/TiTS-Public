@@ -105,8 +105,11 @@ package classes.UIComponents
 		
 		public function tweenIn():void
 		{
-			this.x = 0 - 200;
-			var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
+			if (_doTween)
+			{
+				this.x = 0 - 200;
+				var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
+			}
 		}
 		
 		private function BuildBackground():void

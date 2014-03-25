@@ -101,10 +101,11 @@ package classes.UIComponents
 		
 		public function tweenIn():void
 		{
-			trace("Stage Width: " + stage.stageWidth);
-			this.x = stage.stageWidth;
-			var tw:Tween = new Tween(this, "x", Regular.easeOut, stage.stageWidth, stage.stageWidth - 200, 25, false);
-			tw.addEventListener(TweenEvent.MOTION_FINISH, spamTween);
+			if (_doTween)
+			{
+				this.x = 1200;
+				var tw:Tween = new Tween(this, "x", Regular.easeOut, 1200, 1000, 25, false);
+			}
 		}
 		
 		public function spamTween(e:Event):void
