@@ -54,7 +54,7 @@ function fightYerRivalOnMhenga():void {
 	}
 	output("\"</i>");
 	output("\n\n[rival.short] turns back around, sighing. <i>\"Please. No offense, cousin, but you aren't worth the drain on my plasma pistol's fuel cells.\"</i>");
-	output("\n\nYou draw your [pc.rangedWeapon.longName], resolute.");
+	output("\n\nYou draw your " + pc.rangedWeapon.longName + ", resolute.");
 	output("\n\n<i>\"If you insist.\"</i> [rival.short] snaps [rival.eir] fingers. <i>\"Dane?\"</i>");
 	output("\n\nDane? Who the fuck is Dane? Your confusion must be evident.");
 	output("\n\n[rival.short] chuckles and steps aside, revealing the form of a hulking brute behind [rival.em], in the shadows.");

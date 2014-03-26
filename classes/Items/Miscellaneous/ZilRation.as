@@ -174,7 +174,7 @@ package classes.Items.Miscellaneous
 				//Removal of fur
 				if(target.skinTypeUnlocked(GLOBAL.SKIN) && target.skinType == GLOBAL.FUR && changes < changeLimit && rand(3) == 0) {
 					kGAMECLASS.output("\n\nYou idly itch at your [pc.belly]. When you finish, there's a patch of bare [pc.skin] there, and the itch is spreading! You scratch madly, shedding [pc.skinFurScales] everywhere. There's no relief from the itch until you've scrubbed every bit of hair from a particular spot. Needless to say, it takes a solid fifteen minutes to get rid of it and leave you with ");
-					target.skinType == GLOBAL.SKIN;
+					target.skinType = GLOBAL.SKIN;
 					target.clearSkinFlags();
 					kGAMECLASS.output("[pc.skin].")
 					changes++;

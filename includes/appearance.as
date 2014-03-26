@@ -390,7 +390,7 @@ function appearance(target:Creature):void {
 			}
 		}
 		//TAILS
-		if(target.tailType == GLOBAL.EQUINE) output2("  A long " + target.furColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
+		if(target.tailType == GLOBAL.EQUINE) output2("  A long " + target.hairColor + " horsetail hangs from your " + target.buttDescript() + ", smooth and shiny.");
 		else if(target.tailType == GLOBAL.CANINE) output2("  A fuzzy " + target.furColor + " dogtail sprouts just above your " + target.buttDescript() + ", wagging to and fro whenever you are happy.");
 		else if(target.tailType == GLOBAL.DEMONIC) output2("  A narrow tail ending in a spaded tip curls down from your " + target.buttDescript() + ", wrapping around your " + target.leg() + " sensually at every opportunity.");
 		else if(target.tailType == GLOBAL.BOVINE) output2("  A long cowtail with a puffy tip swishes back and forth as if swatting at flies.");
