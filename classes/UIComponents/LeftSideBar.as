@@ -5,6 +5,7 @@ package classes.UIComponents
 	import classes.UIComponents.MiniMap.MiniMap;
 	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import fl.transitions.Tween;
+	import fl.transitions.TweenEvent;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import fl.transitions.easing.Regular;
@@ -109,7 +110,16 @@ package classes.UIComponents
 			{
 				this.x = 0 - 200;
 				var tw:Tween = new Tween(this, "x", Regular.easeOut, 0 - 200, 0, 25, false);
+				
+				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
+				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
+				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
 			}
+		}
+		
+		private function moveToFinalPosition(e:Event):void
+		{
+			this.x = 0;
 		}
 		
 		private function BuildBackground():void

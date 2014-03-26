@@ -105,12 +105,16 @@ package classes.UIComponents
 			{
 				this.x = 1200;
 				var tw:Tween = new Tween(this, "x", Regular.easeOut, 1200, 1000, 25, false);
+				
+				tw.addEventListener(TweenEvent.MOTION_FINISH, moveToFinalPosition);
+				tw.addEventListener(TweenEvent.MOTION_STOP, moveToFinalPosition);
+				tw.addEventListener(TweenEvent.MOTION_CHANGE, moveToFinalPosition);
 			}
 		}
 		
-		public function spamTween(e:Event):void
+		public function moveToFinalPosition(e:Event):void
 		{
-			trace(this.x);
+			this.x = 1000;
 		}
 		
 		/**
