@@ -342,7 +342,7 @@ function applyeEyeColor(eyeColor:String = "brown"):void {
 function chooseSkinTone():void
 {
 	clearOutput();
-	setLocation("SELECTING EYE\nPIGMENT","PLANET: TERRA","SYSTEM: SOL");
+	setLocation("SELECTING\nSKIN PIGMENT","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Great. How about skin pigmentation?”</i>");
 	this.clearMenu();
 	this.addButton(0,"Pale",applySkinTone,"pale");
@@ -434,7 +434,7 @@ function applyJunkSize(arg:int = 0):void {
 //Vaginal Capabilities
 function chooseYourVagina():void {
 	clearOutput();
-	setLocation("SELECTING\nVAGINAL OPTIONS","PLANET: TERRA","SYSTEM: SOL");
+	setLocation("SELECT VAGINAL\nTRAITS","PLANET: TERRA","SYSTEM: SOL");
 	output("<i>“Alright, I can specialize the vagina for capacity, extra lubrication, both, or neither. If we do both, the effects won’t be as pronounced as focusing on a single choice. I know that’s probably not the first thing you want to think about as a dad, but if the kid is gonna be taking after you, it’d be wise to tweak up at least one of those.”</i> The doctor looks at Victor expectantly.");
 	this.clearMenu();
 	this.addButton(0,"Capacity",upgradeCapacity);
@@ -710,7 +710,7 @@ function chooseClass():void {
 	pc.maxOutHP();
 	pc.maxOutEnergy();
 	updatePCStats();
-	setLocation("SELECT\nA NATURE","PLANET: TERRA","SYSTEM: SOL");
+	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
 	output("You're all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
 	this.clearMenu();
 	this.addButton(0,"Smuggler",classConfirm,GLOBAL.SMUGGLER);
@@ -760,6 +760,7 @@ function setClass(arg:int = 0):void {
 //Tutorial Skip Option
 function tutorialSkipOption():void {
 	clearOutput();
+	setLocation("TUTORIAL\nSKIP");
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
 	output("\n\n(Skip option is not yet implemented.)");
 	//[Tutorial] [Skip]
@@ -1105,7 +1106,6 @@ function ohShitGameStarts():void {
 	clearOutput();
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
-	setLocation("","TAVROS STATION","SYSTEM: KALAS");
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
 	output("\n\nYou hastily don your gear and scramble over to the hangar, hoping it has a replicator capable of making something approximating a decent breakfast. The techs are gone, probably sleeping after a full night’s work. The ship looks completely different all finished up. It’s been painted bright red with silvery stripes. Looking at it again, you realize that you recognize this from some of your father’s holo-pics, at least the ones he’d let you see. This is the same ship that he took out on the Thirteenth Planet Rush, almost two centuries ago.");

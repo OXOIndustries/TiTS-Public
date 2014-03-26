@@ -515,15 +515,23 @@
 		// Interaction bullshit for the main menu
 		public function showPrimaryOutput():void
 		{
-			this.showTargetOutput("PrimaryOutput");
+			if (_currentModule.moduleName != "PrimaryOutput")
+			{
+				this.showTargetOutput("PrimaryOutput");
+				this.restoreLocation();
+			}
+			
 			this.showingPCAppearance = false;
-			this.restoreLocation();
 			_buttonTray.resetButtons();
 		}
 		
 		public function showSecondaryOutput():void
 		{
-			this.showTargetOutput("SecondaryOutput");
+			if (_currentModule.moduleName != "SecondaryOutput")
+			{
+				this.showTargetOutput("SecondaryOutput");
+			}
+			
 			this.clearGhostMenu();
 		}
 		
