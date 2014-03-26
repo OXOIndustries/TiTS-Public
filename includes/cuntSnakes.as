@@ -26,6 +26,11 @@ function encounterCuntSnakeOnJungleLand():void {
 	}
 	//[Repeat]
 	else output("\n\nA cunt snake slithers out in front of you, mouth open and fangs dripping with venom. It rises up slightly and prepares to fight!");
+	
+	// If we put the unlock method call below the regular output, I can make the unlockEntry() method output something when it actually does the Unlock,
+	// if we wanna do that.
+	CodexManager.unlockEntry("Cunt Snake");
+	
 	clearMenu();
 	addButton(0,"Next",startCombat,"cunt snake");
 }

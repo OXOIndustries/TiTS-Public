@@ -61,6 +61,9 @@ function encounterNaleen():void {
 		output(". <i>“Feisty little pet, hmm?”</i>  she grins, claws glistening. <i>“Why don't you just come get a hug, hmm? No need to fight; I know you want it...”</i>");
 		if(silly) output("\n\nYour Codex beeps an alert that general consensus is that while Naleen give the best hugs, they may or may not prove deadly.");
 	}
+	
+	CodexManager.unlockEntry("Naleen");
+	
 	clearMenu();
 	addButton(0,"Next",startCombat,"naleen");
 }
@@ -722,6 +725,9 @@ function naleenNightCuddles():void {
 	output("\n\nYou lower your " + pc.meleeWeapon.longName + " as the naleen circles you, hips swaying seductively with her every serpentine motion. She slips behind you, big bare jugs pressing into your back as she whispers, <i>“It's dangerous to go alone at night in these woods, my pet. You should know better... but at least it's me who found you first, and not some fuck-mad zil, no?”</i>  The huntress chuckles to herself, breath hot on your cheek as her slender, powerful arms wrap around your waist and under your [pc.chest]. Considering how frequently the two of you have battled, you feel oddly at ease in the lusty kitten's embrace, and let yourself relax in her arms, head resting back into the soft, inviting pillow of her chest. She doesn't seem to mind at all.");
 	output("\n\n<i>“Pretty, silly pet,”</i> the naleen coos, stroking your hair. <i>“Whatever would I do if you were to be captured by some filthy zil-slut, or dragged away to be filled with a trapper-plant's pollen forever after, hmm? I suppose I'll have to watch over you tonight, won't I, pet? At least to keep the cold away - it gets so awfully chilly here at night.”</i>");
 	processTime(3);
+	
+	CodexManager.unlockEntry("Naleen");
+	
 	clearMenu();
 	addButton(0,"Yes",yesSnuggleWifZatNaleen);
 	addButton(1,"No",noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo);
