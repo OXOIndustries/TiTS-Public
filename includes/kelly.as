@@ -54,8 +54,8 @@ function kellysOfficeBonusFunction():Boolean
 		output(" She calls for you to approach.");
 
 		//1st Time:
-		output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\"  though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
-		output("\n\nHer fingers tap away at the keyboard and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?”</i>");
+		output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\"  Though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
+		output("\n\nHer fingers tap away at the keyboard, and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?”</i>");
 		processTime(2);
 		//[Yes][No]
 		clearMenu();
@@ -78,7 +78,7 @@ function kellyOfficeApproach():void {
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
-	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research labs, where the wonders of biotechnology never cease! How may I help you, ");
+	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
 	//{my friend}/{honey}
 	output("?</i>\"");
@@ -240,7 +240,7 @@ function flirtWithKellyAnyway():void {
 	output("\n\nWithout further ado, you guide her tip into your mouth and engulf it within your warm mouth. A moaning sigh escapes her, a spurt of sweet syrup entering your mouth. The taste of it assaults your senses with sweetness from her pre-cum, tinged with the salt from her skin. You caress the length in your mouth with your [pc.tongue], moving your [pc.lips] as you bob your head gently back and forth. Your hands, now freed, stroke the other shaft in rhythm so that it won't get lonely while you tend to this one.");
 	output("\n\nShe bites back any noises she may be tempted to make, but from the way she twitches and the firmness of her dick in your mouth, you know she's enjoying this. Her second cock butts insistently against your chin, as if demanding you pay attention to it too.");
 	output("\n\nHaving tasted enough of her first horsehood, you decide to switch to the other and give it the same treatment, tasting more of her sweetness as you do so.");
-	output("\n\nShe does moan at that, softly, but then stiffens - and not in a way that shows she's enjoying the feel of your tongue on her hot flesh. <i>\"[pc.name]! Ix-nay on that! Somebody's here,\"</i>  she hisses to you urgently. <i>\"Why, hello there, and welcome to Xenogen Research labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?\"</i>  she says in the same professional yet friendly tone she first used when you arrived - clearly addressing this to her new customer.");
+	output("\n\nShe does moan at that, softly, but then stiffens - and not in a way that shows she's enjoying the feel of your tongue on her hot flesh. <i>\"[pc.name]! Ix-nay on that! Somebody's here,\"</i>  she hisses to you urgently. <i>\"Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?\"</i>  she says in the same professional yet friendly tone she first used when you arrived - clearly addressing this to her new customer.");
 	output("\n\nYou consider stopping for a moment... but what would be the fun in that? Besides, you're too absorbed in your task to bother stopping now. You release her current cock and immediately engulf the other one, continuing your switcheroo blowjob.");
 	output("\n\nKelly's whole body twitches, but she somehow avoid letting out anything other than a tiny squeak when you switch over. <i>\"Y-you're here for your appointment sir - er, madam? Yes, of c-course I can he-elp you,\"</i>  she says, struggling to keep her words level and even despite your assault on her tender parts. One foot delivers a pointed kick to your ribs, not hard enough to hurt, but enough to warn you not to push her further.");
 	output("\n\nYou cough around her cock at the kick. Not too happy, you release her cocks and grab the offending foot instead. Then, With an evil smirk, you begin tickling between her toes.");

@@ -225,7 +225,7 @@ function vaginalFap():void {
 	output(" Drool from your lolling tongue drips to your [pc.chest], warm on your heaving [pc.skinFurScales] as you shudder one last, climactic time, letting the supernova-hot explosion of bliss roll up from your crotch to your brain. It bursts across your consciousness like a plasma-bolt comprised of pleasure, rolling back your eyes and turning your thoughts to nothing more than animal pleasure.");
 	
 	if(pc.hasCock()) {
-		output("\n\nYour male anatomy goes off as well, triggered by the squelching blissplosions in your [pc.vaginas]. [pc.Cum] launches out of [pc.eachCock] in thick ropes onto your [pc.belly] and [chest].");
+		output("\n\nYour male anatomy goes off as well, triggered by the squelching blissplosions in your [pc.vaginas]. [pc.Cum] launches out of [pc.eachCock] in thick ropes onto your [pc.belly] and [pc.chest].");
 		if(pc.cumQ() < 25) output(" By the time you finish, you've got a nice little puddle there.");
 		else if(pc.cumQ() <= 100) output(" By the time you finish, you've soaked yourself and have thick ribbons of [pc.cumColor] goo rolling down either side of your [pc.hips].");
 		else if(pc.cumQ() <= 300) {
@@ -360,7 +360,7 @@ function singleDickFap():void {
 		addToList("[pc.belly]");
 		if(pc.cumQ() >= 35) addToList("[pc.chest]");
 		else if(pc.cumQ() >= 65) addToList("[pc.face]");
-		output(".");
+		output(formatList() + ".");
 	}
 	else if(pc.cumQ() <= 250) output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
 	else if(pc.cumQ() <= 500) output("Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");

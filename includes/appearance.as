@@ -434,7 +434,7 @@ function appearance(target:Creature):void {
 		else if(target.tailType == GLOBAL.MOUSE) output2("  A naked, " + target.skinTone + " mouse tail pokes from your butt, dragging on the ground and twitching occasionally.");
 		else if(target.tailType == GLOBAL.CUNTSNAKE) {
 			if(target.tailCount == 1) output2(" A sinuous, almost snake-like tail waves behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, it terminates in a " + target.tailVaginaDescript() + " that always seems to crave fresh sperm.");
-			else output2(" " + num2Text(target.tailCount) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
+			else output2(" " + Num2Text(target.tailCount) + " sinuous, almost snake-like tails wave behind you, covered in " + target.skinFurScales() + " like the rest of you except at the tip. There, they terminate in " + plural(target.tailVaginaDescript()) + " that always seem to crave fresh sperm.");
 		}
 		else if(target.tailType == GLOBAL.PANDA) output2("  A short, soft panda tail sprouts just above your " + target.buttDescript() + ". It just kind of sits there, not doing much beyond being a furry little accent.");
 		//legType SPECIAL

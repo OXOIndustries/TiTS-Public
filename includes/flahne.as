@@ -502,7 +502,7 @@ function bendFlahneOver():void {
 
 	output("\n\nWhen she cums, Flahne's cunt squeezes down on you like a glove, sucking with potent force.");
 	if(flahneDickOut()) output(" Her body twitches as her ovipositor practically pops with a flood of thick, creamy rahn spooge.");
-	output(" You groan and grit your teeth, digging your fingers deep into her wide, pliant hips. You push in hard before you blow your load, getting every inch of your " + pc.cockDescript(x) + " into Flahne's beautiful, glorious hole. With another spasm of her gel-like body, your cock responds by shooting a thick glob of white cream into Flahne's womb, filling her with spurt after spurt of musky spunk");
+	output(" You groan and grit your teeth, digging your fingers deep into her wide, pliant hips. You push in hard before you blow your load, getting every inch of your " + pc.cockDescript(x) + " into Flahne's beautiful, glorious hole. With another spasm of her gel-like body, your cock responds by shooting a thick glob of [pc.cum] into Flahne's womb, filling her with spurt after spurt of musky spunk");
 	if(pc.cumQ() >= 2000) output(" until your seed begins to press against her skin, coloring her white and swelling her form");
 	if(pc.cumQ() >= 10000) output(". So much seed vanishes into the girl’s golden gap that halfway through your climax, she’s already doubled in size, splayed liberally over the desk like a spilled custard");
 	output(". Her body is quick to engulf the offering, never letting a drop escape her slick depths.");

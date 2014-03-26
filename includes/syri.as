@@ -947,7 +947,7 @@ function getVagFukkedBySyri():void {
 	output("\n\nYou take it easy for the first few minutes, steadily working further and further down her length, moaning and whimpering with pleasure as her thick cock grinds into you. Soft, furred hands play across your skin");
 
 	if(pc.biggestTitSize() >= 1) output(", cupping your [pc.chest] and squeezing the full orbs, bringing one up to Syri's mouth so that her lips can wrap around a stiff [pc.nipple]");
-	else output(", holding you tight enough that Syri can drag her tongue across your nearly flat chest, testing one of your [nipples] before latching on");
+	else output(", holding you tight enough that Syri can drag her tongue across your nearly flat chest, testing one of your [pc.nipples] before latching on");
 	output(". Her fingers drift back down as your back arches, responding to the pinch and pressure of your lover suckling from your teat");
 	if(pc.isLactating()) output(" and the flow of your [pc.milk] into her eager mouth");
 	output(". Her hands finally grope your [pc.butt], kneading your cheeks and guiding you inexorably down toward her swollen base. You grit your teeth and try to relax as you slide down her length, suppressing a little gasp as you feel your lower lips parting at its crown. Your [pc.vagina " + x + "] spreads and stretches, pushed to the extremes of its elasticity to accommodate the ausar's thick knot until with a gasp and cry, it pushes past, tying you to your lover as you sink into her lap.");

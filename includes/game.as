@@ -396,7 +396,7 @@ public function processTime(arg:int):void {
 				else eventBuffer += "\n\n<b>Your " + this.chars["PC"].assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>";
 			}
 			//Cunt snake pregnancy stuff
-			if(flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
+			if(pc.hasCuntSnake() && flags["CUNT_TAIL_PREGNANT_TIMER"] > 0) {
 				flags["CUNT_TAIL_PREGNANT_TIMER"]--;
 				if(flags["CUNT_TAIL_PREGNANT_TIMER"] == 1) {
 					flags["CUNT_TAIL_PREGNANT_TIMER"] = 0;

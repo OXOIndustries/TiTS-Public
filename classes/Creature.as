@@ -2087,19 +2087,21 @@
 			{
 				if(lips <= 1)
 				{
-					if(rand(3) == 0) result += "thin";
-					else if(rand(2) == 0) result += "narrow";
+					if(rand(3) == 0) result += "pencil-thin";
+					else if(rand(2) == 0) result += "lean";
 					else result += "slender";
 				}
 				else if(lips <= 2)
 				{
-					if(rand(2) == 0) result += "nice";
+					if(rand(3) == 0) result += "nice";
+					else if(rand(2) == 0) result += "petite";
 					else result += "supple";
 				}
 				else if(lips <= 3)
 				{
-					if(rand(3) == 0) result += "full";
-					else if(rand(2) == 0) result += "pouting";
+					if(rand(4) == 0) result += "full";
+					else if(rand(3) == 0) result += "pouting";
+					else if(rand(2) == 0) result += "shapely";
 					else result += "plump";
 				}
 				else if(lips <= 4)
@@ -2116,8 +2118,9 @@
 				}
 				else if(lips <= 6)
 				{
-					if(rand(3) == 0) result += "hypnotic";
-					else if(rand(2) == 0) result += "dazzling";
+					if(rand(4) == 0) result += "hypnotic";
+					else if(rand(3) == 0) result += "dazzling";
+					else if(rand(2) == 0) result += "fat";
 					else result += "exquisitely large";
 				}
 				else if(lips <= 7)
@@ -2128,7 +2131,8 @@
 				}
 				else if(lips <= 8)
 				{
-					if(rand(2) == 0) result += "'o' shaped";
+					if(rand(3) == 0) result += "'o' shaped";
+					else if(rand(2) == 0) result += "whorish";
 					else result += "permenantly puckered";
 				}
 				//Serious this is too big, bro
@@ -2150,12 +2154,13 @@
 			nouns[nouns.length] = "lip";
 			nouns[nouns.length] = "lip";
 			//High libido sluttery
-			if(libido() >= 50) nouns[nouns.length] = "dick-sucker";
-			if(libido() >= 60) nouns[nouns.length] = "cock-sucker";
-			if(libido() >= 70 && lips >= 3) nouns[nouns.length] = "cock-pillow";
-			if(libido() >= 80 && lips >= 4) nouns[nouns.length] = "fuck-pillow";
+			if(libido() >= 50 && lips >= 2) nouns[nouns.length] = "dick-sucker";
+			if(libido() >= 60 && lips >= 3) nouns[nouns.length] = "cock-sucker";
+			if(libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
+			if(libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
+			if(libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
 			if(libido() >= 90 && lips >= 5) nouns[nouns.length] = "oral fuck-cushion";
-			if(libido() >= 90 && lips >= 5) nouns[nouns.length] = "pleasure-pillow";
+			if(libido() >= 90 && lips >= 6) nouns[nouns.length] = "pleasure-pillow";
 			//Tack the selected choice onto result
 			result += nouns[rand(nouns.length)];
 			return result;

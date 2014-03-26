@@ -192,6 +192,8 @@ function removeCuntSnakeII():void {
 	processTime(180+rand(20));
 	pc.tailType = GLOBAL.HUMAN;
 	pc.tailCount = 0;
+	flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+	flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 	approachVKo(false);
 }
 
