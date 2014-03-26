@@ -687,7 +687,7 @@
 			
 			if (tarButton.func == undefined) return false;
 			
-			if (inCombat) showBust("none");
+			if (!inCombat) showBust("none");
 			
 			if (tarButton.arg == undefined) 
 			{
