@@ -46,6 +46,7 @@ function furEffectBonusFunction():Boolean {
 function approachJade():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	//First Time
 	if(flags["KNOW_JADES_NAME"] == undefined)
 	{
@@ -91,6 +92,7 @@ function jadeAppearance():void
 {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("Jade is a panda. That much is obvious, even at a short glance. Her face has a short snout with a black nose, hiding most of her old facial features from view. Perhaps the only remains of her original race, orchan, are the number of teeth inside her maw and her exotic eye-shape. Slitted horizontally, her crimson irises seem to bore right into you, even when she lowers them into a smoky glare. Her plump, sable lips are often pursed thoughtfully, gleaming like polished jet in the bright lights inside her shop. She either wears shiny gloss or takes moisturization very seriously, but neither accounts for their kissable-and-then-some size.");
 	output("\n\nA mane of long, onyx-black hair cascades past her shoulders into a line of emerald clasps that bind it into an orderly, if long, ponytail. Elsewhere, she's covered in a thick coat of shimmering white fur soft enough to remind you of cyberdown pillows. A few black splotches break up her alabster coloration - one around each of her eyes, one on her right shoulder, a big one from the underside of her left breast down to her hip, and a few small ones on her legs.");
 	if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined) output(" There might be more under her softly swaying skirt, but you'd have to talk her out of it first.");
@@ -121,6 +123,7 @@ function talkToJade(display:Boolean = true):void {
 	{
 		clearOutput();
 		userInterface.showBust("JADE");
+		userInterface.showName("\nJADE");
 		output("<i>\"A social call?\"</i>  Jade wonders aloud. <i>\"Well, the store is empty. I'd be happy to talk.\"</i>  She vaults atop the counter with a little bit of awkwardness, barely crossing her legs in time to stop herself from giving you an upskirt, but giving you an eyeful of quaking breasts in the process. The panda's quivering bosom is almost spellbinding, so much so that she has to cough to get your attention back to her face. <i>\"So what do you want to talk about? I'm pretty much an open book.\"</i>");
 	}
 	clearMenu();
@@ -140,6 +143,7 @@ function talkToJade(display:Boolean = true):void {
 function talkToJadeAboutHerRace():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_RACE"] = 1;
 	output("<i>\"I assume you mean my original race, orchan, and not panda,\"</i>  Jade offers with an inquisitive tone.");
 	output("\n\nYou nod. She would probably talk about pandas all day if you let her.");
@@ -167,6 +171,7 @@ function talkToJadeAboutHerRace():void {
 function talkWithJadeAboutHerFurFetish():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_FURRIES"] = 1;
 	output("<i>\"Why furry?</i>\" you ask.");
 	output("\n\nJade just sighs at this. <i>\"I've answered this question more times than I can count, you know?\"</i>");
@@ -190,6 +195,7 @@ function talkWithJadeAboutHerFurFetish():void {
 function askJadeAboutHerShop():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_SHOP"] = 1;
 	output("<i>\"My shop?\"</i> Jade asks. <i>\"I guess you could say that it's like my hopes and dreams rolled together into my baby.</i>\"  She smirks a little. <i>\"I wanted to share what I had discovered with everyone, and a shop seemed the best way to do it. I can support myself and meet furries all day long! Hell, I can even work with people that don't have the credits to make the transformation on their own. You'd be amazed by what solid financial planning can accomplish.\"</i>");
 	output("\n\nTicking off one finger, Jade explains, <i>\"First, I had to get the money for the place. I worked as an accountant another two years to save up enough to start up. It wasn't easy, but I did. Next, I needed a location. I caught a lucky break with picking my location, though. The planet rush was coming up, and Tavros was positioned perfectly to catch a ton of lucrative trades with the new planets. That's not even mentioning all adventurers coming out of the new systems with wallets full of credit chits.\"</i>  She gestures at her shop. <i>\"I've done well enough to redecorate twice, and each time I wind up making the place cosier. I've even managed to open up a few new locations out there on the rim.</i>\"  She sighs. <i>\"I can't run all of them personally of course. I mainly stay here... this place has kind of become my home.\"</i>  She brushes a stray strand of hair out of her eyes. <i>\"Not much more to tell.\"</i>");
@@ -201,6 +207,7 @@ function askJadeAboutHerShop():void {
 function askJadeAboutHerBigOlTatas():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_HER_TITS"] = 1;
 	output("Well, you may as well take the bait. You ask her about her breasts.");
 	output("\n\nJade smirks, running one pawed finger up and down the length of her expansive assets, shivering slightly at the sensation. <i>\"I was hoping you'd ask.\"</i>  She squeezes one and pants, <i>\"They're my favorite part of the transformation. Whoever designed the splice made it with human expectations in mind, and humans expect, big, luxurious busts to go with a curvy figure.\"</i>  She gives a twirl and a shake, basking in your attention like a cat in the sun. <i>\"It's a shame it didn't give me proper nipples. I compensated another way, and it worked out better than I could have ever imagined....\"</i>");
@@ -227,6 +234,7 @@ function jadeSexMenu(display:Boolean = true):void {
 	{
 		clearOutput();
 		userInterface.showBust("JADE");
+		userInterface.showName("\nJADE");
 		//Hasn't had sex with her
 		if(flags["GOTTEN_INTIMATE_WITH_JADE"] == undefined)
 		{
@@ -294,6 +302,7 @@ function jadeSexMenu(display:Boolean = true):void {
 function jadeGetsAGropeGasm():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("The two of you tumble back into a couch in the narrow back-room, hands roaming over one another's body with little shame or restraint. Your own gropes, squeezes, and caresses rarely if ever leave her sumptuous breasts. They're a feast for your fingers: soft, well-rounded, and oh-so squeezable. You have a hard time not just sitting there and rubbing them, feeling and fondling their expansive, plush... heavenly... mmmm.... Every touch makes Jade whimper and squirm. Every stroke earns a pleasured twitch.");
 	if(pc.legCount != 2) output(" The awkward positioning of your body on the bipedally-designed sofa is a dim, unthought of concern next to your focus.");
 	output("\n\nPanting madly, the plump panda-woman's own explorations of your body rapidly die off. Her eyes drift partway closed, and her plush, black lips slowly part into a wanton 'o'. You can practically see the pleasure from her tits colliding with her brain and sending her synapses into misfires of thought-obliterating ecstasy. A pleasant-sounding coo slips out of her maw as she relaxes into the chair, slowly sinking into more gradual expressions of physical excitement the longer you massage her sensitive mammaries.");
@@ -377,6 +386,7 @@ function titfuckJade():void {
 	else flags["TITFUCKED_JADE"]++;
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("<i>\"How about a titfuck?\"</i>  you suggest");
 	if(pc.isNice()) output(" with an encouraging smile");
 	else if(pc.isMischievous()) output(" with a mirthful grin");
@@ -514,6 +524,7 @@ function titfuckJade():void {
 function sitOnjadesFace():void {
 	clearOutput();
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("Smiling as wantonly as you can, you suggest that she put that snout to work in [pc.oneVagina] while you count how many orgasms your hands can wring from her breasts.");
 	//First time
 	if(flags["TIMES_SAT_ON_JADES_FACE"] == undefined)
@@ -580,6 +591,7 @@ function talkToJadeAboutHerNipples():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	if(chars["JADE"].hasTentacleNipples())
 	{
 		//alk: Nipples (After Mod)
@@ -675,6 +687,7 @@ function turnDownJadeNips():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	if(flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] == undefined)
 	{
 		flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] = 1;
@@ -692,6 +705,7 @@ function giveCredits():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["TALKED_WITH_JADE_ABOUT_TENTACLE_NIPPLES"] = 1;
 	output("You take your codex in hand and prepare to wire her the necessary credits.");
 	output("\n\n<i>\"[pc.Name]... really, you don't need to do that; it's far too generous!\"</i>  the panda protests.");
@@ -719,6 +733,7 @@ function jadeUsesNippleMod():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	flags["JADE_NIPPLE_TF_QUEUED"] = 2;
 	output("As you enter Jade’s shop, you see the panda-girl waving you down.");
 	output("\n\n<i>\"Hello! [pc.Name], I'm so glad to see you,\"</i> she cheerily announces. <i>\"It's finally here! The mod you bought me finally got here. I've been just itching to apply it... but, since you were so nice as to pay for it in the first place, I, well, I wanted you to do the honors,\"</i> she admits, looking a little sheepish as she smilingly tells you that. <i>\"Please, won't you come out the back with me? You can watch everything there without any... interruptions,\"</i>  she suggests.");
@@ -784,6 +799,7 @@ function helpJadeWithHerNewNipples():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("You try to grab the tentacles encircling her mounds, but all that you accomplish is getting them to wrap around your wrists instead and tug your hands towards Jade’s breasts. They don’t feel too strong; you bet you could pry them off with some insistence if you wanted, but that could hurt Jade. Well, since you seem to have gotten roped in on this, might as well as make the best of the situation and help Jade get her rocks off in the process.");
 	output("\n\nFollowing the lead of the relentless tugs on your wrist, you let Jade’s tentacle-nips guide your hands to caress her breasts. More and more of her prehensile nipples wrap around your arms, the panda-girl long since reduced to a moaning pile of fuck. The only thing she can do is moan, groan, and cream herself as you continue to molest her.");
 	output("\n\nA fleshy tip strokes your [pc.lips] and you look down to see that one of Jade’s nips seem to have made their way around your arm and up to your face. Having no reason to deny it, you open your mouth and let it crawl inside. This is... quite a weird way to lick someone’s nipples, but you suppose there are weirder ways to do it.");
@@ -798,6 +814,7 @@ function watchJadesNewNipplesMolestHer():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("Why bother when she seems to be enjoying it so much....");
 	output("\n\nAs Jade opens her mouth in yet another moan, her nipples uncoil from around her boobs and spring back into action, evidently not sated yet. One squirms through the air and plunges boldly into her open mouth, plugging it up and muffling her voice as it forcefeeds itself into her. The other creeps down her belly, almost invisible against the black parts of her fur, and heads for her skirt, worming its way underneath. The lewd bulge it spreads downward through the green fabric, leaving no doubt as its progress, and a muffled cry manages to escape her mouth as it penetrates her. Within seconds of it doing so, she arches her back, her whole body quaking mightily in a second, heavy orgasm, drenching her skirt once more with her female cream.");
 	output("\n\nJade seems to be stuck in nirvana.The sensitive nipples are rubbing all over her body and granting her unimaginable pleasure, reducing her to nothing more than a pile of moans, groans and cries of pleasure. The ever expanding puddle underneath her a testament to the amazing pleasure she’s been bound to. Frankly, the sight is quite hot. You feel yourself getting aroused as you watch her cum again and again....");
@@ -812,6 +829,7 @@ function jadesNippleTFEpilogue(helped:Boolean = false):void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("Jade’s nipples seem to have finally calmed down. They slowly retract back into her boobs. Once they are reduced to the little nubs you originally saw, they crawl inside her breast flesh, giving her inverted nipples.");
 	output("\n\nWell, that was unexpected. You ask the panting, nearly passed-out panda if she’s alright.");
 
@@ -848,6 +866,7 @@ function suckJadesTentacleNipplesYouWeirdo():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	output("Jade grins a knowing grin at your suggestion. <i>\"Of course, [pc.name]; go ahead,\"</i>  she tells you, thrusting her ample bosom towards you and beckoning you with a crooked finger.");
 	output("\n\nYou follow after her, and as soon as the door is closed you bring your hands to her breasts. Still as sensitive as ever.");
 	output("\n\n<i>\"Mmm, you haven't lost your touch,\"</i>  Jade moans in glee, eyes closing as she savors the feeling.");
@@ -902,6 +921,7 @@ function boobToBoobSexathon():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	var x = pc.cockThatFits(chars["JADE"].vaginalCapacity());
 	output("Jade's eyes visibly light up, a smile pursing her lips. <i>\"That sounds like it could be a lot of fun,\"</i>  she chortles. <i>\"All right, strip off, and let's have some fun,\"</i>  she declares happily; if the panda had a tail big enough for it, you're certain she'd be wagging it.");
 	output("\n\nYou immediately get to work on peeling off your [pc.gear]. By the time you’re done and turn to look back at Jade, she’s already stripped herself and folded her minimal clothes into a neat pile atop a nearby table.");
@@ -1062,6 +1082,7 @@ function epilogueOfNippleOnNippleJadeSex():void {
 	clearOutput();
 	author("Lukadoc & QBrowser");
 	userInterface.showBust("JADE");
+	userInterface.showName("\nJADE");
 	processTime(30+rand(10));
 	output("When you come to, you note that Jade is absent, and though the room still smells like sweat and sex, it is surprisingly clean. It looks like Jade took care of everything while you were out. You find your [pc.gear] on the nearby table and quickly put it on, stepping out of the backroom.");
 	output("\n\n<i>\"Oh, hello, [pc.name],\"</i>  Jade calls to you as you, already back behind her counter. <i>\"I hope you enjoyed yourself today. Please, come back any time,\"</i> she says, the very picture of a courteous merchant, except, of course, for the very pleased look on her face as she waves you out the door.");
