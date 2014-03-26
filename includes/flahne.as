@@ -215,7 +215,7 @@ function flahnesOvipositor():void {
 	if(!flahneDickOut()) output("<b>currently hidden.</b>");
 	else output("<b>currently dangling free whenever the mood strikes her.</b>");
 	
-	output("\n\n<i>“Well, what do you want to know about it,”</i>  Flahne asks ");
+	output("\n\n<i>“Well, what do you want to know about it?”</i>  Flahne asks ");
 	if(!flahneDickOut()) output("curiously");
 	else output("coyly");
 	output(".");
