@@ -36,6 +36,8 @@ package classes.UIComponents.ContentModuleComponents
 		private var _previousHeader:CodexTreeHeader;
 		private var _previousLinkSplice:int;
 		
+		private var _activeKey:String;
+		
 		public function CodexTreeElementContainer() 
 		{			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -172,6 +174,7 @@ package classes.UIComponents.ContentModuleComponents
 		private function linkHandler(e:TextEvent):void
 		{
 			CodexManager.getEntryFunctor(e.text)();
+			_activeKey = e.text;
 			this.updateContent();
 		}
 		
@@ -229,7 +232,11 @@ package classes.UIComponents.ContentModuleComponents
 			
 			if (CodexManager.entryUnlocked(key))
 			{
-				if (CodexManager.entryViewed(key))
+				if (key == _activeKey)
+				{
+					msg += "<span class='active'><a href='event:" + key + "'>" + key + "</a></span>\n";
+				}
+				else if (CodexManager.entryViewed(key))
 				{
 					msg += "<span class='viewed'><a href='event:" + key + "'>" + key + "</a></span>\n";
 				}

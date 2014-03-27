@@ -460,10 +460,10 @@
 			this.userInterface.showCodex();
 			this.clearGhostMenu();
 			// TESTO BUTTONO
-			addGhostButton(0, "Database", function():void { } );
-			addGhostButton(1, "Messages", function():void { } );
-			addGhostButton(2, "Log", function():void { } );
-			addGhostButton(3, "CHEEVOS", function():void { } );
+			//addGhostButton(0, "Database", function():void { } );
+			//addGhostButton(1, "Messages", function():void { } );
+			//addGhostButton(2, "Log", function():void { } );
+			//addGhostButton(3, "CHEEVOS", function():void { } );
 			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 		}
 		
@@ -585,9 +585,15 @@
 		{
 			return chars["REAHA"];
 		}
+		
 		public function get dane():*
 		{
 			return chars["DANE"];
+		}
+		
+		public function get mimbrane():*
+		{
+			return chars["MIMBRANE"];
 		}
 	}
 }

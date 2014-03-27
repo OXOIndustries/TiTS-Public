@@ -51,7 +51,6 @@ public function clearOutput2():void
 public function outputCodex(words:String, markdown:Boolean = false):void
 {
 	this.userInterface.outputCodexBuffer += doParse(words, markdown);
-	this.userInterface.outputCodex();
 }
 
 public function clearOutputCodex():void

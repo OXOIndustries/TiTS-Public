@@ -1,5 +1,7 @@
 package classes.GameData 
 {
+	import classes.kGAMECLASS;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -122,6 +124,12 @@ package classes.GameData
 					CodexManager.CODEXCONTENTFUNCTORS[entryName].viewed = true;
 				}
 			}
+			
+			// Hacky workaround to speed up rendering.
+			// Because of all of the formatting that may be present in the codex entries,
+			// constantly updating the output is slow as fuck, so I'm hanging a final call to dump
+			// all the text ONCE into the viewedEntry function.
+			kGAMECLASS.userInterface.outputCodex();
 		}
 		
 		public static function entryUnlocked(entryName:String):Boolean

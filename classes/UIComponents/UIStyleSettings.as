@@ -88,6 +88,8 @@ package classes.UIComponents
 		public static var gOutdoorRoomFlagColour:uint		= 0x77797A;
 		
 		// Font Faces
+		
+		// Lato "Regular"
 		[Embed(source = "../../assets/Lato-Regular.ttf", fontName = "Lato", advancedAntiAliasing = true, mimeType = "application/x-font-truetype", embedAsCFF = false)]
 		public static const LatoTTF:String;
 		
@@ -569,16 +571,14 @@ package classes.UIComponents
 					fontFamily: "Lato",
 					fontSize: 18,
 					color: "#CC3300",
-					marginRight: 0,
-					fontWeight: "bold"
+					marginRight: 0
 				}
 				
 				var newCodexEntry = {
 					fontFamily: "Lato",
 					fontSize: 18,
-					color: "#00CCFF",
-					marginRight: 0,
-					fontWeight: "bold"
+					color: "#CCBC14",
+					marginRight: 0
 				}
 				
 				var viewedCodexEntry = {
@@ -586,6 +586,14 @@ package classes.UIComponents
 					fontSize: 18,
 					color: "#FFFFFF",
 					marginRight: 0
+				}
+				
+				var activeCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00CCFF",
+					marginRight: 0,
+					fontWeight: "bold"
 				}
 				
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".words", defaultFormat);
@@ -597,6 +605,7 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".locked", lockedCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".new", newCodexEntry);
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".viewed", viewedCodexEntry);
+				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".active", activeCodexEntry);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}
