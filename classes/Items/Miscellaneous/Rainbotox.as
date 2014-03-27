@@ -69,6 +69,7 @@
 					//Build up a list of choices that aren't used yet
 
 					choices = new Array();
+					if(targets.indexOf(7) == -1) choices[choices.length] = 7;
 					if(targets.indexOf(6) == -1 && (target.isNaga() || target.skinType == GLOBAL.SCALES)) choices[choices.length] = 6;
 					if(targets.indexOf(5) == -1 && target.skinType == GLOBAL.FUR) choices[choices.length] = 5;
 					if(targets.indexOf(4) == -1) choices[choices.length] = 4;
@@ -150,6 +151,17 @@
 						{
 							kGAMECLASS.output("\n\nYour scales click, feeling almost like they're standing up on end. Then, they all begin to change color in perfect synchronization, shifting hue from one side to the other until <b>your scales are a glittering " + newColor + ".</b>")
 							target.scaleColor = newColor;
+						}
+					}
+					//lip color
+					else if(targets[targets.length-1] == 7)
+					{
+						if(target.lipColor == newColor) kGAMECLASS.output("\n\nYour [pc.lips] tingle, but they remain unchanged by Rainbotox's random effects.");
+						else
+						{
+							newColor = randomString("cerulean","glossy blue","emerald","teal","crimson","slut red","bubblegum-pink","glittering purple","violet","yellow","silver","copper","gold","amber","orange","rose","sable","peach");
+							kGAMECLASS.output("\n\nYour [pc.lips] itch. You immediately bring up your codex to check on your reflection. It's just in time to show you blotches of " + newColor + " spreading across them, forever changing their natural pigmentation.");
+							target.lipColor = newColor;
 						}
 					}
 					targets.splice(targets.length-1,1);

@@ -459,6 +459,7 @@
 		{
 			return "";
 		}
+		public var lipColor:String = "peach";
 
 		public var earType: Number = 0;
 		public function earTypeUnlocked(newEarType:Number):Boolean
@@ -2144,6 +2145,12 @@
 					else result += "universe-distorting";
 				}
 				adjectives++;
+			}
+			//Color!
+			if(rand(4) == 0 && lipColor != "peach")
+			{
+				if(adjectives > 0) result += ", ";
+				result += lipColor;
 			}
 			//Nouns
 			if(adjectives > 0) result += " ";

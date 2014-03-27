@@ -533,6 +533,7 @@ function VKoStressReliefForLadyginas():void
 function vKoElectroTherapy():void
 {
 	clearOutput();
+	author("LukaDoc & QB");
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
 	output("Her eyes light up as she processes your latest input and she says, <i>“Before proceeding, this unit states on behalf of JoyCo Incorporated that the company shall not be held responsible for any kind of physical or mental injury during the processing of this directive. If you accept the terms and conditions, please state your consent.”</i>");
@@ -546,6 +547,7 @@ function vKoElectroTherapy():void
 function declineElectroStim():void
 {
 	clearOutput();
+	author("LukaDoc & QB");
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
 	output("A few lights blink out as she reboots and greets you again as if you had just arrived.");
@@ -557,6 +559,7 @@ function declineElectroStim():void
 function agreeToElectroStim():void
 {
 	clearOutput();
+	author("LukaDoc & QB");
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
 	output("<i>“Please, remove your clothing and lay down.”</i>");
