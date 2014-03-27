@@ -458,6 +458,7 @@
 		public function showCodex():void
 		{
 			this.userInterface.showCodex();
+			this.codexHomeFunction();
 			this.clearGhostMenu();
 			// TESTO BUTTONO
 			//addGhostButton(0, "Database", function():void { } );

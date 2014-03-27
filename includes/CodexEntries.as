@@ -26,6 +26,37 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Naleen", naleenCodexEntry);
 }
 
+public function codexHomeFunction():void
+{
+	// Written in style of technical documentation because why not.
+	clearOutputCodex();
+	userInterface.showBust("NONE");
+	outputCodex("Welcome to the Steele Industries® Computerised Observational Directory of Environmental eXposure® (CODEX™), version 12b.");
+	outputCodex("\n\nThe Steele Industries® CODEX™ system has been designed to provide emergency-level informative warnings of Class 4 environmental and Class M biological hazards to a designated user of the device and will notify the user should the CODEX™ device detect such a hazard within a defined unsafe radius.");
+	outputCodex("\n\nSystem usability has been designed for rapid dissemination of information to the designated user when facing potentially life threatening situations. The following QuickStart™ documentation is always available from the CODEX™ root menu:");
+	
+	outputCodex("\n\nThe buttons displayed along the bottom edge of the CODEX™ display access the core information stores offered as part of the CODEX™ devices databases.");
+
+	outputCodex("\n\nA more detailed menu for each of the core databases is displayed to the right of the main display. Each header acts as a button to filter available records according to type.");
+
+	outputCodex("\n\nAll displayed elements are color coded for ease of use and to ensure that the CODEX™ devices designated user can locate the information they require in a timely fashion.");
+	outputCodex("\n\t<span class='new'>\\\[New Entries\\\]</span> are yellow.");
+	outputCodex("\n\t<span class='viewed'>\\\[Viewed Entries\\\]</span> are white.");
+	outputCodex("\n\t<span class='locked'>\\\[Missing Entries\\\]</span> are red.");
+	outputCodex("\n\t<span class='active'>\\\[Active Entries\\\]</span> are blue.");
+
+	outputCodex("\n\nSteele Industries® would like to thank [pc.name] for additionally equipping this CODEX™ device with the the following optional modules:");
+	outputCodex("\n\tSteele Industries® Resource Acquisition System™ (RAS™)");
+	outputCodex("\n\tSteele Industries® Automated Fringe Classifier™ (ScanNow™)");
+	outputCodex("\n\tSteele Industries® Biosign Monitor Alerting™ (MedSign™)");
+	outputCodex("\n\tSteele Industries® LIDAR Positioning System™ (L3P™)");
+
+	outputCodex("\n\nOptional module documentation has been provided and loaded into the CODEX™ documentation databases. For more information, please review the optional module documentation at your earliest convenience.");
+	outputCodex("\n\nCODEX-12b ready for user input.");
+
+	userInterface.outputCodex();
+}
+
 public function zilCodexEntry():void
 {
 	clearOutputCodex();
