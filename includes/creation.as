@@ -858,6 +858,7 @@ function tutorialIntro4():void {
 function openDoorToTutorialCombat():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	setLocation("YOUR\nINHERITANCE","TAVROS STATION","SYSTEM: KALAS");
 	output("You open the doorway and step through a little hesitantly, your hands on your " + pc.rangedWeapon.longName + " and " + pc.meleeWeapon.longName + " in case you need them. Visible light slowly increases as the systems dial up in response to your presence, illuminating an amorphous green blob that huddles in the corner. The semi-transparent, emerald mass bulges out at the base and turns to regard you. You aren’t sure how you can make such an assessment when it has no visible face or eyes, but it definitely seems to be reacting to you and you alone. Lurching violently, a bubbling mass erupts from the top of it, sparkling as it builds higher and higher, the cylindrical distention reforming into a more familiar, humanoid shape.");
 	output("\n\nDense insets reveal themselves to be eyes. Darker hued bulges resolve into shapely lips. Excess material drapes down the back of the growing creature into a mane of unkempt, wild hair. The alien makes a sound that resembles a sigh of relief as arms separate from the sides of what must be its torso, while strings of fluid hang between the newborn appendages and the rest of her, reminding you just how gooey this thing is. Finally, the front of the chest bulges out into a pair of pert breasts. At least, they seemed that way at first. More and more liquid flows from seemingly endless reservoirs inside the thing, bloating the improvised mammaries bigger, fuller, and rounder with each passing second. The goo-girl doesn’t stop them until they obscure the bulk of her torso, reminding you of some of the racier porn-stars out there on the extranet.");
@@ -904,6 +905,7 @@ function defeatCelise():void {
 	pc.removeStatusEffect("Round");
 	setLocation("VICTORY OVER\nCELISE","TAVROS STATION","SYSTEM: KALAS");
 	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("Celise groans, <i>“Come on, fuck me! Please? Don’t just... leave me like this! I need your juiiiiice!”</i> The last word comes out as a high-pitched, nearly orgasmic whine. Her masturbation gets faster and more lewd with every passing second.");
 	output("\n\nVictor’s hologram faces you and explains, <i>“If you’re seeing this, you learned how to disable Celise. Good work. The key is on the shelf next to the exit.”</i> He sighs and continues, <i>“Most things you run into won’t be nearly as easy to deal with. You’ll want to make sure to master the skills of your vocation and use them to the best of your ability. As you develop your abilities, you’ll find that many of them can be chained together to be more effective. Make sure you do that, or you’ll have a hard time beating some of the galaxy’s worst.”</i>");
 	output("\n\nYou put away your weapons and go to grab your key when a barely cohesive hand wraps around your " + pc.foot() + ". There isn’t enough force behind it to immobilize you, but it does catch your attention. Celise is looking up at you with pleading eyes that would make an Earth puppy proud.");
@@ -928,6 +930,7 @@ function takeCelise():void {
 	pc.removeStatusEffect("Round");  // Uh, this was removed in the previous function. Duplicate?
 	clearOutput();
 	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	setLocation("CELISE","TAVROS STATION","SYSTEM: KALAS");
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
@@ -1002,6 +1005,7 @@ function takeCelise():void {
 function takeCeliseAsACrewMember():void {
 	clearOutput();
 	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	//{Nice}
 	if(pc.isNice()) output("You smile broadly and admit that you’d be happier to have her along; the more the merrier, in fact!");
 	//{Mischievious}
