@@ -477,7 +477,13 @@
 				
 				this.deglow();
 				this.DeGlowButtons();
-				if (_currentModule != null) _currentModule.visible = false;
+				
+				if (_currentModule != null)
+				{
+					_currentModule.visible = false;
+					_currentModule.hiddenFromStage();
+				}
+				
 				_availableModules[module].visible = true;
 				_currentModule = _availableModules[module];
 				this.clearGhostMenu();
@@ -544,6 +550,7 @@
 		public function showCodex():void
 		{
 			this.showModule("CodexDisplay");
+			(_currentModule as CodexModule).cullHeaders();
 			this.setLocation("", "CODEX", "DATABASE");
 			
 			// Trigger an update of the visual data state whenever we begin displaying the Codex

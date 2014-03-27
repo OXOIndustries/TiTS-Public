@@ -33,5 +33,10 @@ package classes.UIComponents
 		{
 			
 		}
+		
+		public function hiddenFromStage():void
+		{
+			
+		}
 	}
 }

@@ -10,6 +10,7 @@ package classes.UIComponents.ContentModuleComponents
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
 	import flash.events.TextEvent;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * OH GOD. OH GOD OH GOD OHGODOHGODOHGOD.
@@ -37,6 +38,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _previousLinkSplice:int;
 		
 		private var _activeKey:String;
+		private var _culled:Boolean;
 		
 		public function CodexTreeElementContainer() 
 		{			
@@ -59,10 +61,44 @@ package classes.UIComponents.ContentModuleComponents
 			_content = new MovieClip();
 			_content.name = "controlContent";
 			this.source = _content;
+			_culled = false;
 			
 			this.InitLayout();
-			
 			this.update();
+		}
+		
+		public function cullHeaders():void
+		{
+			if (!_culled)
+			{
+				_culled = true;
+				var removals:Array = new Array();
+				
+				// Figure out which headers don't actually have entries so we can hide them
+				for (var i:int = 0; i < _headers.length; i++)
+				{
+					var headerTree:Object = CodexManager.getCodexTree(int(_headers[i].name));
+					
+					var hasEntries:Boolean = false;
+					for (var key:String in headerTree)
+					{
+						hasEntries = true;
+					}
+					
+					if (!hasEntries) removals.push(_headers[i]);
+				}
+				
+				if (removals.length > 0)
+				{
+					for (var ii:int = 0; ii < removals.length; ii++)
+					{
+						_content.removeChild(removals[ii]);
+						_headers.splice(_headers.indexOf(removals[ii]), 1);
+					}
+				}
+				
+				reposition();
+			}
 		}
 		
 		private function InitLayout():void
@@ -95,9 +131,20 @@ package classes.UIComponents.ContentModuleComponents
 				_previousHeader.DeHighlight();
 			}
 			
-			_currentHeader = clickedHeader;
-			_currentLinkSplice = int(clickedHeader.name);
-			_currentHeader.Highlight();
+			if (_currentHeader == e.currentTarget)
+			{
+				_currentLinkSplice = -1;
+				_currentHeader.DeHighlight();
+				_currentHeader = null;
+			}
+			else
+			{
+				_currentHeader = clickedHeader;
+				_currentLinkSplice = _headers.indexOf(clickedHeader);
+				_currentHeader.Highlight();
+				
+				
+			}
 			
 			populateText();
 			reposition();
@@ -114,24 +161,29 @@ package classes.UIComponents.ContentModuleComponents
 			}
 			
 			// Position the new text in the container properly
-			_currentLinks.y = _headers[_currentLinkSplice - 1].y + _headers[_currentLinkSplice - 1].height;// + 5;
-			
-			// And then for every header AFTER the link header, move them below it
-			var newY:Number = _currentLinks.y + _currentLinks.height;// + 5;
-			
-			for (var ii:int = _currentLinkSplice; ii < _headers.length; ii++)
+			if (_currentLinkSplice != -1)
 			{
-				_headers[ii].y = newY;
-				newY += _headers[ii].height + 5;
+				_currentLinks.y = _headers[_currentLinkSplice].y + _headers[_currentLinkSplice].height;// + 5;
+			
+				// And then for every header AFTER the link header, move them below it
+				var newY:Number = _currentLinks.y + _currentLinks.height;// + 5;
+				
+				for (var ii:int = _currentLinkSplice + 1; ii < _headers.length; ii++)
+				{
+					_headers[ii].y = newY;
+					newY += _headers[ii].height + 5;
+				}
 			}
 		}
 		
 		private function populateText():void
 		{
-			// Get the new tree we need to insert
-			var newTree:Object = CodexManager.getCodexTree(int(_currentHeader.name));
-			var displayString:String = "<span class='words'><p><textformat tabstops='15,30,45,60,75,90'>" + buildTextTree(newTree) + "</textformat></p></span>";
-			trace(displayString);
+			if (_currentHeader != null)
+			{
+				// Get the new tree we need to insert
+				var newTree:Object = CodexManager.getCodexTree(int(_currentHeader.name));
+				var displayString:String = "<span class='words'><p><textformat tabstops='15,30,45,60,75,90'>" + buildTextTree(newTree) + "</textformat></p></span>";
+			}
 			
 			// Remove the previous old text
 			if (_previousLinks != null && _previousLinks.parent != null)
@@ -149,9 +201,12 @@ package classes.UIComponents.ContentModuleComponents
 			}
 			
 			// Build new
-			_currentLinks = linkContainer();
-			_currentLinks.htmlText = "<span class='words'><p>" + displayString + "</p></span>";
-			_currentLinks.height = _currentLinks.textHeight + 5;
+			if (_currentHeader != null)
+			{
+				_currentLinks = linkContainer();
+				_currentLinks.htmlText = "<span class='words'><p>" + displayString + "</p></span>";
+				_currentLinks.height = _currentLinks.textHeight + 5;
+			}
 		}
 		
 		private function linkContainer():TextField
@@ -173,8 +228,17 @@ package classes.UIComponents.ContentModuleComponents
 		
 		private function linkHandler(e:TextEvent):void
 		{
-			CodexManager.getEntryFunctor(e.text)();
-			_activeKey = e.text;
+			if (_activeKey != e.text)
+			{
+				CodexManager.getEntryFunctor(e.text)();
+				_activeKey = e.text;
+			}
+			else
+			{
+				kGAMECLASS.codexHomeFunction();
+				_activeKey = null;
+			}
+			
 			this.updateContent();
 		}
 		
@@ -262,6 +326,11 @@ package classes.UIComponents.ContentModuleComponents
 			
 				this.update();
 			}
+		}
+		
+		public function hiddenFromStage():void
+		{
+			_activeKey = null;
 		}
 	}
 

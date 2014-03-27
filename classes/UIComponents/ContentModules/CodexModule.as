@@ -81,9 +81,19 @@ package classes.UIComponents.ContentModules
 			this.addChild(_codexTree);			
 		}
 		
+		public override function hiddenFromStage():void
+		{
+			_codexTree.hiddenFromStage();
+		}
+		
 		public function update():void
 		{
 			_codexTree.update();
+		}
+		
+		public function cullHeaders():void
+		{
+			_codexTree.cullHeaders();
 		}
 	}
 }

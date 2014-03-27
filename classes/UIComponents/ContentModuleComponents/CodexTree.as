@@ -83,9 +83,19 @@ package classes.UIComponents.ContentModuleComponents
 			this.addChild(_treeContent);
 		}
 		
+		public function hiddenFromStage():void
+		{
+			_treeContent.hiddenFromStage();
+		}
+		
 		public function update():void
 		{
 			_treeContent.updateContent();
+		}
+		
+		public function cullHeaders():void
+		{
+			_treeContent.cullHeaders();
 		}
 		
 	}
