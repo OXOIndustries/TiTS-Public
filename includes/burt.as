@@ -840,7 +840,6 @@ function burtsWeinerInYourButt():void {
 		output("\n\nThere is skill behind his movements, but he doesn’t focus on it, instead he relies on his stamina and power as he fucks you hard and fast. He is relentless, tireless, the endurance of well trained muscles and an artificial cock letting him threaten to fuck you raw. ");
 		if(pc.biggestTitSize() >= 1) {
 			output("Your [pc.fullChest] flatten");
-			if(pc.bRows() == 1) output("s");
 			output(" against the mead barrel with each thrust deep into you, pushing you forward. ");
 		}
 		output("You can feel a bulge rise in the [pc.skinFurScales] of your [pc.belly] with each hilting, as he forces your body to distort to accept his length. You let your hand brush over that pulsing bulge, feeling how deep inside you he gets with every thrust.");
