@@ -4042,7 +4042,7 @@
 			return false;
 		}
 		public function hasDickNipples(): Boolean {
-			trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
+			//trace("THIS FUNCTION IS THE REASON THEY INVENTED AIDS. WHRYYYYYYYYYY!!!!!!!!!!!!!1111one!");
 			return hasNippleCocks();
 		}
 		public function hasNippleCocks(): Boolean {

@@ -5,6 +5,7 @@
 
 function maleZilEncounter():void {
 	userInterface.showBust("ZIL");
+	userInterface.showName("FIGHT\nZIL");
 	//[First Time]
 	if(flags["ENCOUNTERED_ZIL"] == undefined)
 	{
@@ -214,6 +215,8 @@ function zilHardenSingle():void {
 	
 //*Win Scenes:
 function winVsZil():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	//{HP:} 
 	if(foes[0].HP() <= 0)
 	{
@@ -265,6 +268,8 @@ function winVsZil():void {
 //*Butt Fuck Him
 function buttfuckDefeatedZil():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	if(pc.isNice()) output("Chuckling happily, you tell the zil that you have every intention of playing with him for as long as possible.");
 	else if(pc.isMischievous()) output("Grinning mischieviously, you inform the poor zil that you're going to have quite a bit of fun with him.");
 	else output("Lording a cruel smile over your latest prey, you let him know that you're going to have quite a lot of fun with him.");
@@ -388,6 +393,8 @@ function buttfuckDefeatedZil():void {
 //To cumfinity, and beyond!
 function rideDatZilCawk():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	if(pc.isNice()) output("Smiling amiably, you tell him that you plan to take his seed in the most pleasurable way possible.");
 	else if(pc.isMischievous()) output("Smiling roguishly, you tell him that he's going to have a hard time walking when you finish.");
 	else output("Smiling cruelly, you promise that he'll be lucky to ever orgasm again once your done with him.");
@@ -526,6 +533,8 @@ function rideDatZilCawk():void {
 function giveTheZilAFootjob():void {
 	clearOutput();
 	author("Miesha");
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("You watch the Zil collapse, exhausted. A delightfully perverted idea comes to mind as you watch the boy pant. <i>“Awh, poor little thing, all tired and burned out are we?”</i>  You stroll towards him, your smile growing with every step.");
 	output("\n\nThe Zil, on the ground, tries crawling backwards but ends up hitting the foot of a tree. He looks from side to side, worried as you come to a halt right in front of him. <i>“W-what are you planning?”</i>");
 	output("\n\n<i>“Oh, don’t you be so frightened, boy. I won’t cause any permanent damage to you,”</i>  you tell him, coyly.");
@@ -558,6 +567,8 @@ function giveTheZilAFootjob():void {
 function alkahestsForeskinOralPlay():void {
 	clearOutput();	
 	author("Alkahest");
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	//this is too worshipful to be a plain win scene; if it were a loss or there were an addiction mechanic where you needed to be highly addicted to the zil before you could select it, it would make more sense -Z
 	output("You inhale deeply as the scent of his now freely-flowing honeyed pre suffuses your senses, overriding all things other than the source of that heavenly smell, your body tingling and warming as the powerful pheromones begin to go to work.");
 	//{NICE}
@@ -657,6 +668,8 @@ function alkahestsForeskinOralPlay():void {
 //{IF DICK}
 function foreskinWorshipCumWithDick():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("You look at your [pc.cocks] throbbing and swaying around in the open air and suddenly have an idea; you reach down and grab the zil’s fat dick, prompting another scream of pleasure as you man-handle his sensitive dong. Grabbing up handful after handful of his cum and pre, you smear the sweet sticky fluid all over your [pc.cocks]. Slowly but firmly you begin to stroke yourself, relishing the sticky texture of the zil’s pre acting as the perfect lube for your ministrations.");
 	var x:int = pc.aCockToSuck();
 	//{IF DICK LENGTH = SUCKABLE} (Zil cum Lollipop-Cock)
@@ -698,6 +711,8 @@ function foreskinWorshipCumWithDick():void {
 //{IF PUSSY}
 function foreskinWorshipWithPussyCum():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("Deciding on pleasing your lady parts, you plop on the ground and your hands glide over your pussy-lips, teasing your folds and stroking your clit. Feeling slightly more adventurous, you insert a number of fingers into your sopping cunt and piston in and out. With your remaining hand you tease and pinch [pc.oneVagina]. As you continue your ministrations your body becomes hotter and hotter, sexual fluids in a flood pouring out of your pussy.");
 	output("\n\nYou feel your release building and building until suddenly the dam breaks and your orgasm floods over your body, wave after wave of electric pleasure passing through you. Having robbed the strength from your [pc.legs], the force of your orgasm causes you to fall on your back, your back arched in pleasure. Your moistened passage ripples and contracts around your invading finger as you scream in pleasure at your release. After the waves of your orgasm subside, you lay in your warm afterglow for a minute before standing and stretching.");
 	didntCumOnZilForeskinPlay();
@@ -706,6 +721,8 @@ function foreskinWorshipWithPussyCum():void {
 //{IF NIPPLECOCKS}
 function foreskinWorshipWithNippleCocks():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("You tentatively reach up and grasp the [pc.nippleCocks] jutting out of your [pc.chest], you think to yourself you’ll never get one-hundred percent used to the sight or sensation of this, but at the moment you honestly don’t care. You jack your tits off with reckless abandon, your hands flying up and down the slick lengths of your freakish appendages, gasping at the sensation.");
 	
 	output("\n\nAs you leak more and more precum from your [pc.nippleCocks], you shove one into your mouth and take it as far down your throat as you possibly can. You suck the [pc.nippleCock] in your mouth as though you were trying to take it off, bobbing your head back in forth, as you jack off the remaining [pc.nippleCock] in your free hand.");
@@ -731,6 +748,8 @@ function didntCumOnZilForeskinPlay():void {
 
 function zilForeSkinPlayOutro():void {
 	//{COMBINED}
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("\n\nYou move up to your defeated foe’s gasping mouth and give him a deep, cummy kiss; his tongue quests into your mouth searching for more of his sweet nectar. You stand and stretch languidly before winking at him and sauntering away, licking your lips all the while.\n\n");
 	processTime(27+rand(10));
 	pc.orgasm();
@@ -740,6 +759,8 @@ function zilForeSkinPlayOutro():void {
 function tailCockPegTheZil():void {
 
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("You settle on a wicked idea for how to sate yourself on this rather dashing, nubile alien.  Your [pc.tail] stiffens, the skin slowly peeling back to expose your [pc.tailCock] to the humid air. The pulsating organ wobbles back and forth slightly as it fills to full tumescence. It thickens tremendously as you look at your prize. He's staring, gape-mouthed at your powerful tail, smaller boner bobbing in a weak imitation of your powerful phallus.");
 	output("\n\n<i>“Is... is... is that a cock- on your tail!?”</i> the zil whispers with a confused look on his face. His fingers idly play along the underside of his own member, barely tugging his skin back just enough for you to see his head peep out of its sheath.");
 	//{Nice}
@@ -813,6 +834,8 @@ function zilLossRouter():void {
 //Loss Scenes:
 //*Swallow.
 function swallowDatZilCockCauseJooLost():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	if(flags["TIMES_LOSS_SUCKED_ZIL_MALE"] == undefined) flags["TIMES_LOSS_SUCKED_ZIL_MALE"] = 1;
 	else flags["TIMES_LOSS_SUCKED_ZIL_MALE"]++;
 	//{HP}
@@ -851,6 +874,8 @@ function swallowDatZilCockCauseJooLost():void {
 
 //*Get Bred.
 function getBredByZil():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	if(pc.HP() <= 0) {
 		output("You take one shuddering step forward and collapse facedown in the dirt.  The zil silently buzzes over and grabs your ");
 		if(pc.isBald()) output("head");
@@ -967,6 +992,8 @@ function getBredByZil():void {
 }
 //*Get tailpussy fucked.
 function getTailPussyFuckedByZil():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	if(pc.HP() <= 0) output("Falling over from from the beating you've taken");
 	else output("Utterly immobilized by your lust for this remarkable specimen");
 	output(", you lie prone on the ground, your sinuous, prehensile tail whipping back and forth in the air, excited into a frenzy by the scent of a fresh, horny cock in the air. It waves above you like a half-hypnotized snake-charmer's viper.");
@@ -1065,6 +1092,8 @@ function getTailPussyFuckedByZil():void {
 }
 function tailPussyFuckZilEpilogue():void {
 	clearOutput();
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	output("An hour later, you wake from your sexual slumber, feeling a little bit worse for the wear.");
 	if(pc.hasCock() || pc.hasVagina()) output(" Fragrant, musky mud clings to you all over. You fairly reek of your own sexual effluence - gross. Luckily, a babbling brook can be heard a short distance away, and you spend the better portion of another hour cleaning up.");
 	processTime(30+rand(15));
@@ -1073,6 +1102,8 @@ function tailPussyFuckZilEpilogue():void {
 }
 //*Apparently Dudes Can't Peg Other Dudes:
 function zilSticksItInYourBoot():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	//(HP Loss) 
 	if(pc.HP() <= 0) {
 		output("Staying upright has become a challenge you aren't fit to overcome anymore. This zil is just too strong for you. You catch yourself on your hands to maintain some semblance of control over your situation, casting a rebellious look at your alien aggressor. He chortles, tracing carapace-clad knuckles softly over your spine, his wings fluttering softly as he circles your semi-prone form. An exposed palm falls on your [pc.butt] and squeezes one supple cheek reassuringly, almost apologetically. You try to look up at him, and in that action is your undoing. A soft, cushy weight falls across your nose, drooling a little bit of honeyed fluid onto your cheek. Its musky, sweet scent fills your nostrils, making your head spin with its potent aroma.");
@@ -1166,6 +1197,8 @@ function zilSticksItInYourBoot():void {
 //The Zil Pretend to be Helia
 //Not for pussy virgins or folks with no pussy who are buttvirgins.
 function theZilPretendToBeHelia():void {
+	userInterface.showBust("ZIL");
+	userInterface.showName("MALE\nZIL");
 	//(Lose by HP)
 	if(pc.HP() <= 0) {
 		output("You reel backward, unable to stand any longer in the face of such a determined in powerful foe. The fight has sapped your strength and battered your muscles to such a degree that you don't think you're even capable of resisting any more, and as that realization sinks in, you slump over, panting from exertion. The zil's shadow falls across your prone form. A curious, lighthearted expression has spread across his inhuman visage.");

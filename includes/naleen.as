@@ -35,6 +35,7 @@ function totalNaleenSexCount():int {
 
 function encounterNaleen():void {
 	userInterface.showBust("NALEEN");
+	userInterface.showName("FIGHT:\nNALEEN");
 	author("Savin");
 	//[First Time]
 	if (flags["TIMES_MET_NALEEN"] == undefined)
@@ -200,6 +201,8 @@ function naleenAI():void {
 //PC loses like a bitch
 function pcLosesToNaleenLiekABitch():void {
 	author("Savin");
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	output("Succumbing to the ");
 	if(pc.HP() <= 0) output("pain wracking your body");
 	else if(pc.lust() >= 100) output("lust boiling in your loins");
@@ -226,6 +229,8 @@ function pcLosesToNaleenLiekABitch():void {
 //Dick Version -- Naleen's personal fuckstick
 function naleenFucksBoysScene():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -300,6 +305,8 @@ function naleenFucksBoysScene():void {
 //No Dick Version: Revenge of the Tail-pegging
 function ohNoNoCawkNaleenLoss():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	var x:int = 0;
 	if(pc.hasVagina()) x = pc.smallestVaginaIndex();
@@ -354,6 +361,8 @@ function ohNoNoCawkNaleenLoss():void {
 //PC Defeats Kitty-Naga
 function beatDatCatNaga():void {
 	author("Savin");
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	//{if by Physical damage:}
 	if(foes[0].HP() <= 0) output("Battered and beaten, the strange alien feline-naga collapses into the dirt. She shakily tries to pick herself up, but only serves to flop down on her side, staring up at you with wide, slitted eyes. <i>“So... you were strong enough after all. So very rare on this planet. Very well, off-worlder. What will you do with me, hmm? Perhaps I can offer you something; an apology for my attack, hmm? I have soooo many ways to make it up to you,”</i> she says with a light coo, a hand resting on her big hip, with her huge bosom bared to you, so soft and inviting.");
 	//{if by Lust:}
@@ -390,6 +399,8 @@ Breastfeed (if Milky TiTS)
 //Titfuck
 function naleenTitFuck():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("Gazing down at the sprawling serpentine beauty, your eyes are drawn inexorably toward her feline half; to the pair of huge, perfectly formed breasts, covered in a soft, downy white fur and tipped with a pair of big, pink teats. Seeing when your gaze has wandered, the naleen cracks a smile and cups one of the massive orbs, taking the stiff nipple into her mouth and giving a long lick with her slender tongue.");
 	
@@ -437,6 +448,8 @@ function naleenTitFuck():void {
 //Actual milk too. Lactating latex won't cut it.
 function feedDatNaleenSumMilk():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("Contemplating what to do with your hard-won prize, you take a step toward the naleen -- only to feel the heavy slosh of your motherly milk in your hefty teats. God, so full... You cup your [pc.chest], momentarily ignoring the beaten huntress to jiggle and squeeze your tits, feeling your full tits churn with an over-fullness of milk. You feel a powerful need for a good old fashioned milking, but there's nothing but a poor lusty kitty to use. Oh, whatever will you do? You turn your gaze back to the naleen, still cupping your breasts, and with a sashay to your step, approach her.");
 	//If Nice/Snarky PC:
@@ -492,6 +505,8 @@ function feedDatNaleenSumMilk():void {
 //{For PCs with 1+ dicks}
 function bendNaleenOver():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -616,6 +631,8 @@ function bendNaleenOver():void {
 //Requires at least a cunt or dick.
 function obligatorySavinTailPegging():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	var x:int = pc
 	output("Oh, she'll make it up to you alright. You loom over the fallen kitty-naga, licking your lips as you visually feast on her buxom, serpentine body: eyes following the soft, wide curves of her wide hips, along her flat, taut belly and its thin diamond of white fur in a sea of orange, up to the great swells of her oh-so-soft breasts, each heaving with her quickened breath, clearly aroused by your lustful stares. One of her slender hands slips down her supple form to the conjoinment of her humanoid and naga halves, fingertips teasing the shimmering slit of her sex, two slipping in with such smooth, silky ease that you feel yourself drawn in, sitting down to the naleen's level and straddling her broad flanks, your ");
@@ -706,6 +723,8 @@ function obligatorySavinTailPegging():void {
 
 function tailpeggingNaleenPartII():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("Your eyes flitter open, squinting in the darkness of the forest floor. You're acutely aware of the bed of snake surrounding you, gently shifting with the rise and fall of her steady, strong breath. You roll half-over on your pillow of boob-flesh, but find your huntress lover quite thoroughly asleep, eyes closed and mouth agape, snoring peacefully. You smile wanly, leaning over to kiss her before struggling to your [pc.feet], searching for your discarded gear. As you get ready to leave, you turn back just in time to see one of her brilliant green eyes quickly closing as she pretends to stay asleep, letting you go in peace.\n\n");
 	processTime(60+rand(40));
@@ -717,6 +736,8 @@ function tailpeggingNaleenPartII():void {
 //Proc at 11 PM in the jungle!
 function naleenNightCuddles():void {
 	author("Savin");
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	output("\n\nThe forest seems to be growing thicker and thicker with every step. The trees are overgrown, thick with vines and moss, their branches so intertwined you can hardly see the sun. Looking cautiously around, you make your way through the dense underbrush, slowly moving through the ever-present foliage on your way across the endless sea of trees.");
 	output("\n\nSlowly, though, you begin to feel as if you're being watched. You draw your " + pc.meleeWeapon.longName + " and scan your surroundings, looking for the source of your unease. The jungle seems quiet, too silent and still. Your keen eyes search as you slowly turn, eyeing every angle until finally you catch a glimpse of movement! You ready your weapon and shout for who or whatever it is to show itself - and soon it does. You hear a rustle AHEAD of you for once, and ready your " + pc.meleeWeapon.longName + " as the brush parts to reveal the familiar form of the naleen huntress who's stalked you since first meeting. This time, though, she raises her hands in a sign of peace as she slithers toward you, a slight smile on her lips.");
 	
@@ -735,6 +756,8 @@ function naleenNightCuddles():void {
 //No, thanks
 function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("You gently push the naleen girl off. <i>“I'll have to pass this time, beautiful,”</i>  you say, putting a bit of distance between the two of you.");
 	
@@ -747,6 +770,8 @@ function noDontSnuggleDatCatShellClawYerEyesOutManIswearISawItOnAHolo():void {
 //Awesome!
 function yesSnuggleWifZatNaleen():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("<i>“I guess you'll have to,”</i>  you grin, reaching back around to cup a handful of the naleen's bountiful bottom. She gives a happy little gasp, wiggling her behind and slowly lowering herself to the forest floor, pulling you down with her. You let yourself be cradled down to the ground, head resting on the best pair of pillows around, nestled in the valley of soft white fur and warm, yielding flesh that seems to conform to your very shape. She giggles, shifting her tits playfully as you get comfortable atop her, helping you to pull off your [pc.armor.longArmor] and gear, tossing it aside, submerging you in the pleasant warmth of the naleen's sexy body. You hadn't even realized how cold you were, but your rock-hard nipples and shivering body soon draw the attention of the pretty kitty: <i>“I told you, pet, it gets so very cold here. But we'll keep each other warm tonight, won't we?”</i>");
 	
@@ -790,6 +815,8 @@ function yesSnuggleWifZatNaleen():void {
 //[NEXT]
 function finishNaleenSnuggles():void {
 	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
 	author("Savin");
 	output("You awaken to the familiar smell of fresh-cooked fish, wafting pleasantly through the air. You slowly open your eyes, stretching and yawning as you sit up.");
 	
