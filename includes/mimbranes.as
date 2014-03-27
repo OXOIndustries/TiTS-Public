@@ -2144,7 +2144,7 @@ public function friendlyMimbraneEvents():void
 
 				messageArray.push(msg);
 
-				if (pc.hasDicknipples() && pc.lust() >= 50)
+				if (pc.hasDickNipples() && pc.lust() >= 50)
 				{
 					msg = "Your [pc.nipples] suddenly project their inner dicks, creating a";
 					if (pc.breastCount() == 2) msg += " pair";
@@ -3453,7 +3453,7 @@ public function useDatMimbraneLikeACondom():void
 	output(" on the cusp of breaking free.");
 	output("\n\nEach stroke only gets harder. Your [pc.cock] twitches and convulses in preparation. The Mimbrane is unrelenting in its part: tickling your hands, massaging your member, releasing every last bit of moist craving directly into your [pc.skin]. You assuredly would be releasing a cascade of pre, but there’s no distinguishing it from the vigorous slathering you and the parasite have coated your midsection in.");
 	output("\n\nEverything goes silent, your breath caught.");
-	if (pc.hasDicknipples()) output(" Your [pc.nipples] spit [pc.cum] everywhere around you.");
+	if (pc.hasDickNipples()) output(" Your [pc.nipples] spit [pc.cum] everywhere around you.");
 	if (pc.hasVagina())
 	{
 		output(" An ignored [pc.pussy] relishes its own");

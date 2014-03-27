@@ -522,7 +522,8 @@ Good on her, keeping the ship nice and sparkly.*/
 //Requirements: PC C-cup or above, lactates, and has junk of some kind
 function celiseSleezeLactation():void {
 	clearOutput();
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	author("Nonesuch");
 	//First time
 	if(flags["LACTATION_FED_CELISE"] == undefined)
@@ -751,7 +752,8 @@ Scene
 function celiseOffersToBeYourBedSenpai():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("Just before you turn in, your door chimes, followed by the voice of Celise calling out to you. “<i>Hey there, I was wondering if maybe you wanted a little company tonight? Maybe a nice soft goo bed that will hug you and rub you all night?</i>” There is a pleading note in there. Do you let her in?");
 	//Player chooses yes/no
 	clearMenu();
@@ -763,7 +765,8 @@ function celiseOffersToBeYourBedSenpai():void {
 function dontLetCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	if(pc.isNice())
 	{
 		output("You apologize to her, saying tonight’s just not a good night for you. Maybe some other time?");
@@ -783,7 +786,8 @@ function dontLetCeliseInForBed():void {
 function letCeliseInForBed():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("You open the door to invite the green goopy girl into your room. She screams, “<i>Yay!</i>”  and happily bobs her way past.");
 	output("\n\nThe Galotian circles around the room for a few moments before settling down near the center and reshaping her body. She reaches her arms down and firmly grabs the bottoms of her pornstar breasts, then heaves them up while simultaneously leaning her body back further and further. The secret to her technique eludes you until you notice how her lower body is stretching forward at the same time, giving the illusion that she is leaning back.");
 	output("\n\nFinally she’s stretched out into a long oval pad of emerald goo, big enough that you could easily lie down on it. Satisfied, she drops her enormous assets onto the unusual bed and pats them proudly. “<i>Come on! Try out the best pillows in the universe!</i>”  she proclaims, her upbeat mood still in full force.");
@@ -809,7 +813,8 @@ function letCeliseInForBed():void {
 function sleepWithCeliseNotNaked():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("You tell her that you’re fine the way you are; you’d rather sleep in her clothed.");
 	output("\n\nThe ditzy green girl pouts for a bit before grudgingly agreeing. “<i>Fine, but next time you gotta try it naked!</i>”");
 	output("\n\nYou lower yourself onto the green bed of ooze, and lean back onto the Galotian’s massive mock mammaries. The owner of these mounds giggles as your head settles into the valley created by them");
@@ -823,7 +828,8 @@ function sleepWithCeliseNotNaked():void {
 function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	//{if PC is not nude} 
 	if(disrobe) output("You remove your clothing at Celise’s suggestion, prompting happy applause from the green woman. It sounds rather like two wet towels slapping together. Once completely nude, you’re once again invited to lay down on the bed of ooze and rest your head between her appropriately sized pillowcase cup breasts.\n\n");
 	output("Her gel is warm to the touch, and is quite pleasant on your skin. You let out a contented sigh as your head sinks partially into her bust and she puts her hands onto your chest, hugging you to her breast. You switch off the lights in your room and close your eyes, completely relaxed on the thick goopy body of the Galotian.");
@@ -856,7 +862,8 @@ function sleepWithCeliseNaked(disrobe:Boolean = true):void {
 function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("You clear your throat and tell the slime girl that you’ve had quite enough playing for the night, you’d rather just sleep. <i>“Aw, poo...”</i>  Celise pouts, before trying once again to her way with you. At your insistence that the two of you will be sleeping separately if she keeps this up, the horny puddle finally gives in and allows you to recline within her gooey embrace.");
 	//scene ends
 	sleep(false);
@@ -867,7 +874,8 @@ function dontLetCeliseDrainAllYourBodilyFluidsWhileYouSleep():void {
 function getDrainedSexyTimes():void {
 	clearOutput();
 	author("TheDarkMaster");
-	userInterface.showBust("CELISE");
+	this.userInterface.showBust("CELISE");
+	this.userInterface.showName("\nCELISE");
 	output("Joyful laughter reverberates through Celise’s body as a column of goo pushes through your [pc.asshole]. She gently strokes the exposed part of your face and neck. “<i>That’s so wonderful of you; I’ll be sure to ");
 	if(pc.hasCock() || pc.isLactating()) output("milk");
 	else output("please");
