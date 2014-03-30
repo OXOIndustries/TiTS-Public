@@ -1248,6 +1248,365 @@ function initializeRooms():void
 	// And this is why I want to kinda write a debugging area for game features :P
 	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
 	
+	//#1 Ship Hangar
+	rooms["201"] = new RoomClass(this);
+	rooms["201"].roomName = "SHIP\nHANGAR";
+	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a broken-down cargo-elevator. That'd be your ticket anywhere.";
+	rooms["201"].runOnEnter = firstTimeOnTarkusBonus;
+	rooms["201"].eastExit = "202";
+	rooms["201"].planet = "PLANET: TARKUS";
+	rooms["201"].system = "SYSTEM: REDACTED";
+	rooms["201"].addFlag(GLOBAL.INDOOR);
+	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
+
+	//#2 Eastern Hangar
+	rooms["202"] = new RoomClass(this);
+	rooms["202"].roomName = "EASTERN\nHANGAR";
+	rooms["202"].description = "This huge, open air hangar could easily hold whole squadrons of fighters or a dozen much larger ships. It's obvious that the craft that once called this place home have long-since departed, either scrapped or looted ages ago. In their place are ships of every shape and size, many obviously owned by planet-rushers, but there are a few cobbled-together junk-heaps standing on rusted landing struts that must belong to locals. Further to the west, you can make out the distinctive outline of your own ship. Most of the foot traffic is going north into an access tunnel; the nearby cargo elevator sits askew in its brackets, obviously nonfunctional.";
+	rooms["202"].runOnEnter = undefined;
+	rooms["202"].westExit = "201";
+	rooms["202"].northExit = "203";
+	rooms["202"].planet = "PLANET: TARKUS";
+	rooms["202"].system = "SYSTEM: REDACTED";
+	rooms["202"].addFlag(GLOBAL.INDOOR);
+
+	//#3 UPPER STAIRWELL
+	rooms["203"] = new RoomClass(this);
+	rooms["203"].roomName = "UPPER\nSTAIRWELL";
+	rooms["203"].description = "You're standing inside a wide corridor labelled as \"Starewell\" in painted script. The writing is as crude as it is misspelled. It isn't even accurate to this location; the corridor is a corkscrew-shaped ramp that twists down into the belly of the ship. There's no stairs anywhere that you can see. In spite of the terrible labeling, large numbers of the diminutive raskvel are scurrying up and down the passage, bearing all kinds of cargo. There are even some robots carrying tanks of fuel or driving small carts on their way. You can do down into the ship or south out into the hangar.";
+	rooms["203"].runOnEnter = undefined;
+	rooms["203"].southExit = "202";
+	rooms["203"].outExit = "204";
+	rooms["203"].outText = "Down";
+	rooms["203"].planet = "PLANET: TARKUS";
+	rooms["203"].system = "SYSTEM: REDACTED";
+	rooms["203"].addFlag(GLOBAL.INDOOR);
+
+	//#4 LOWER STAIRWELL
+	rooms["204"] = new RoomClass(this);
+	rooms["204"].roomName = "LOWER\nSTAIRWELL";
+	rooms["204"].description = "There's a crudely written sign hanging above a spiralling ramp. It reads, \"Stairwill.\"  You're pretty sure that whoever wrote it meant to write \"Stairwell,\" but even so, there isn't a stair to be seen. The smooth metal deckplates arc up around a central column in a huge ramp, leading to the Nova's middle decks where the hangar is located. An access corridor stretches away to the east. Faded texts indicate that it was once used for maintenance, but nowadays, it seems to be the main route between Novahome and the ship's hangar-turned-landing-pad.";
+	rooms["204"].runOnEnter = undefined;
+	rooms["204"].eastExit = "205";
+	rooms["204"].inExit = "203";
+	rooms["204"].inText = "Up";
+	rooms["204"].planet = "PLANET: TARKUS";
+	rooms["204"].system = "SYSTEM: REDACTED";
+	rooms["204"].addFlag(GLOBAL.INDOOR);
+
+	//#5 SHIP CORRIDOR
+	rooms["205"] = new RoomClass(this);
+	rooms["205"].roomName = "SHIP\nCORRIDOR";
+	rooms["205"].description = "You're in the middle of a bend in a massive, maintenance access corridor. Once, long ago, it was used by work robots to move between various sections of the ship unseen. Now, with much of the ship in disrepair, it's the main thoroughfare between Novahome's central corridor and the hangar. The raskvel streaming by you seem excited to have all the offworlders around, stopping them to jabber questions almost nonstop. You narrowly escape the same fate as you go on your way. A ramp is visible to the west, and a the corridor stretches south towards Novahome proper, glowing faintly.";
+	rooms["205"].runOnEnter = undefined;
+	rooms["205"].westExit = "204";
+	rooms["205"].southExit = "206";
+	rooms["205"].planet = "PLANET: TARKUS";
+	rooms["205"].system = "SYSTEM: REDACTED";
+	rooms["205"].addFlag(GLOBAL.INDOOR);
+	
+	//#6 GLOWING CORRIDOR
+	rooms["206"] = new RoomClass(this);
+	rooms["206"].roomName = "GLOWING\nCORRIDOR";
+	rooms["206"].description = "The power in this section of the ship is working, amazingly. Flicking incandescence bathes the ancient metal in amber-tinged light as busy little aliens trundle by, many carrying wrenches or multi-tools in one hand. North of here, the tunnel bends west. From the excited babble around you, you pick up that the hangar lies in that direction. The glowing corridor opens up into a huge east-west tunnel a little further south, the main thoroughfare of Novahome.";
+	rooms["206"].runOnEnter = undefined;
+	rooms["206"].northExit = "205";
+	rooms["206"].southExit = "207";
+	rooms["206"].planet = "PLANET: TARKUS";
+	rooms["206"].system = "SYSTEM: REDACTED";
+	rooms["206"].addFlag(GLOBAL.INDOOR);
+	
+	//#7 NOVAHOME
+	rooms["207"] = new RoomClass(this);
+	rooms["207"].roomName = "\nNOVAHOME";
+	rooms["207"].description = "Here in the central tunnel of the Nova, the ceiling is at least forty feet tall, and the walls are wide enough to handle a football field. This vessel could easily match the biggest dreadnaughts in the terran navy pound for pound, but it's obvious from its unique internal structure that it was not a ship meant for war. Whatever its original purpose, the raskvel have turned it into their home. Metallic structures have spring up on all sides, though the central part of the tunnel remains clear, leading east and west from here. A maintenance corridor to the north leads back toward the hangar.";
+	rooms["207"].runOnEnter = undefined;
+	rooms["207"].northExit = "206";
+	rooms["207"].eastExit = "208";
+	rooms["207"].westExit = "210";
+	rooms["207"].planet = "PLANET: TARKUS";
+	rooms["207"].system = "SYSTEM: REDACTED";
+	rooms["207"].addFlag(GLOBAL.INDOOR);
+	
+	//#8 NOVAHOME
+	rooms["208"] = new RoomClass(this);
+	rooms["208"].roomName = "\nNOVAHOME";
+	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it's now packed with houses and shops of all styles and sizes. On one side, there's shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
+	rooms["208"].runOnEnter = undefined;
+	rooms["208"].eastExit = "209";
+	rooms["208"].westExit = "207";
+	rooms["208"].planet = "PLANET: TARKUS";
+	rooms["208"].system = "SYSTEM: REDACTED";
+	rooms["208"].addFlag(GLOBAL.INDOOR);
+	
+	//#9 EAST NOVAHOME
+	rooms["209"] = new RoomClass(this);
+	rooms["209"].roomName = "EAST\nNOVAHOME";
+	rooms["209"].description = "The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.";
+	rooms["209"].runOnEnter = undefined;
+	rooms["209"].westExit = "208";
+	rooms["209"].planet = "PLANET: TARKUS";
+	rooms["209"].system = "SYSTEM: REDACTED";
+	rooms["209"].addFlag(GLOBAL.INDOOR);
+	
+	//#10 NOVAHOME
+	rooms["210"] = new RoomClass(this);
+	rooms["210"].roomName = "\nNOVAHOME";
+	rooms["210"].description = "You're almost smack in the middle of the tremendous passageway that runs through the center of this starship-turned-town. It would take at least fifteen minutes of walking to reach either end, and there's plenty of lateral room as well. Such a huge, central void would make this ship poorly suited for combat, but perhaps it served some other purpose back in its day. Now, it's being used as a place of residence and business, filled with raskvel of every color and variety. Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.";
+	rooms["210"].runOnEnter = undefined;
+	rooms["210"].eastExit = "207";
+	rooms["210"].westExit = "211";
+	rooms["210"].planet = "PLANET: TARKUS";
+	rooms["210"].system = "SYSTEM: REDACTED";
+	rooms["210"].addFlag(GLOBAL.INDOOR);
+	
+	//#11 NOVAHOME
+	rooms["211"] = new RoomClass(this);
+	rooms["211"].roomName = "\nNOVAHOME";
+	rooms["211"].description = "The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus' surface. Before you can get to the windswept junkyards, you'll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.";
+	rooms["211"].runOnEnter = undefined;
+	rooms["211"].eastExit = "210";
+	rooms["211"].westExit = "212";
+	rooms["211"].southExit = "215";
+	rooms["211"].planet = "PLANET: TARKUS";
+	rooms["211"].system = "SYSTEM: REDACTED";
+	rooms["211"].addFlag(GLOBAL.INDOOR);
+	
+	//#12 NOVAHOME
+	rooms["212"] = new RoomClass(this);
+	rooms["212"].roomName = "\nNOVAHOME";
+	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings.";
+	rooms["212"].runOnEnter = undefined;
+	rooms["212"].eastExit = "211";
+	rooms["212"].westExit = "213";
+	rooms["212"].planet = "PLANET: TARKUS";
+	rooms["212"].system = "SYSTEM: REDACTED";
+	rooms["212"].addFlag(GLOBAL.INDOOR);
+	
+	//#13 NOVAHOME
+	rooms["213"] = new RoomClass(this);
+	rooms["213"].roomName = "\nNOVAHOME";
+	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset.";
+	rooms["213"].runOnEnter = undefined;
+	rooms["213"].eastExit = "212";
+	rooms["213"].westExit = "214";
+	rooms["213"].planet = "PLANET: TARKUS";
+	rooms["213"].system = "SYSTEM: REDACTED";
+	rooms["213"].addFlag(GLOBAL.INDOOR);
+	
+	//#14 WEST NOVAHOME
+	rooms["214"] = new RoomClass(this);
+	rooms["214"].roomName = "WEST\nNOVAHOME";
+	rooms["214"].description = "West Novahome is the located near the fore of the ship, where the power is weak and the lighting dim. You can see that the tunnel is narrower here than to the east as well. Even the western wall is in disrepair; it's covered in years of rust despite recent attempts to repair it. Even now, raskvel mechanics are toiling away alongside a nonfunctional hatch. Maybe someday they'll actually get this junker working again. The rest of Novahome stretches away to the east.";
+	rooms["214"].runOnEnter = undefined;
+	rooms["214"].eastExit = "213";
+	rooms["214"].planet = "PLANET: TARKUS";
+	rooms["214"].system = "SYSTEM: REDACTED";
+	rooms["214"].addFlag(GLOBAL.INDOOR);
+
+	//#15 MAKESHIFT GANGPLANK
+	rooms["215"] = new RoomClass(this);
+	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
+	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You'd be more worried if it wasn't so thick and the welds didn't look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you'll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
+	rooms["215"].runOnEnter = undefined;
+	rooms["215"].northExit = "211";
+	rooms["215"].southExit = "216";
+	rooms["215"].planet = "PLANET: TARKUS";
+	rooms["215"].system = "SYSTEM: REDACTED";
+	rooms["215"].addFlag(GLOBAL.OUTDOOR);
+	
+	//#16 RUST FIELDS
+	rooms["216"] = new RoomClass(this);
+	rooms["216"].roomName = "RUST\nFIELDS";
+	rooms["216"].description = "You're standing the middle of the Tarkus' famed rust fields, so called thanks to the endless tracks of discarded, rusting machinery. Reddish flakes blow by your [pc.feet] on arid, metallic-tasting breezes, and the unmistakable tang of ancient pollution clings to your tongue with every breath. The place is a ruin of wasted potential and shattered dreams with the only visible sign of civilization rising up to the north: Novahome, a starship-turned native city.";
+	rooms["216"].runOnEnter = undefined;
+	rooms["216"].northExit = "215";
+	rooms["216"].westExit = "217";
+	//rooms["216"].eastExit = "264";
+	//rooms["216"].southExit = "239";
+	rooms["216"].planet = "PLANET: TARKUS";
+	rooms["216"].system = "SYSTEM: REDACTED";
+	rooms["216"].addFlag(GLOBAL.OUTDOOR);
+	rooms["216"].addFlag(GLOBAL.HAZARD);
+	
+	//#17 RUST FIELDS
+	rooms["217"] = new RoomClass(this);
+	rooms["217"].roomName = "RUST\nFIELDS";
+	rooms["217"].description = "Mounds of rusted machinery, ancient hulks, and plastics pile up around you into trackless dunes to the east, south, and west. Your every movement is chased by the soft crunching of metal flakes breaking under[pc.foot], and you're constantly spotting new oddities in the mess. They're all too damaged, rotten, or rusted to be useful. Here in the shadow of the Nova, it's likely the area has been picked clean of valuables.";
+	rooms["217"].runOnEnter = undefined;
+	rooms["217"].westExit = "218";
+	rooms["217"].eastExit = "216";
+	//rooms["217"].southExit = "238";
+	rooms["217"].planet = "PLANET: TARKUS";
+	rooms["217"].system = "SYSTEM: REDACTED";
+	rooms["217"].addFlag(GLOBAL.OUTDOOR);
+	rooms["217"].addFlag(GLOBAL.HAZARD);
+	
+	//#18 RUST FIELDS
+	rooms["218"] = new RoomClass(this);
+	rooms["218"].roomName = "RUST\nFIELDS";
+	rooms["218"].description = "This close to the nova, you can't help but be impressed by its sheer size and durability. Even though the hull is heavily scaled with rust, the metal appears sound underneath the crusty, red-flecked layer. This is clearly a ship that was meant to last a very, very long time, and it has. All around, small, uneven dunes of dirt, dust, and rust rise up, hiding half-buried garbage from a variety of different races. You can walk across them to the east, west, and south. The Nova blocks passage to the north.";
+	rooms["218"].runOnEnter = undefined;
+	rooms["218"].westExit = "219";
+	rooms["218"].eastExit = "217";
+	//rooms["218"].southExit = "237";
+	rooms["218"].planet = "PLANET: TARKUS";
+	rooms["218"].system = "SYSTEM: REDACTED";
+	rooms["218"].addFlag(GLOBAL.OUTDOOR);
+	rooms["218"].addFlag(GLOBAL.HAZARD);
+
+	//#19 RUST FIELDS
+	rooms["219"] = new RoomClass(this);
+	rooms["219"].roomName = "RUST\nFIELDS";
+	rooms["219"].description = "An unstable pile of rusted ships and gutted battle tanks has been built up to the southwest, perhaps stacked there by natives sorting through the junk for still-usable treasures. Regardless, the massive mound is too sheer and rusted to climb. If you tried, you'd either tip it over onto yourself or just cut yourself on erosion-sharpened metal. You can traverse around it by going west or south, or you could head east in the shadow of the Nova.";
+	rooms["219"].runOnEnter = undefined;
+	rooms["219"].westExit = "220";
+	rooms["219"].eastExit = "218";
+	//rooms["219"].southExit = "236";
+	rooms["219"].planet = "PLANET: TARKUS";
+	rooms["219"].system = "SYSTEM: REDACTED";
+	rooms["219"].addFlag(GLOBAL.OUTDOOR);
+	rooms["219"].addFlag(GLOBAL.HAZARD);
+
+	//#20 RUST CANYON
+	rooms["220"] = new RoomClass(this);
+	rooms["220"].roomName = "RUST\nCANYON";
+	rooms["220"].description = "You're standing in the shadow of two different mounds of metal. To the northeast, the Nova towers above you. To the south and west, a huge pile of busted machinery has been stacked at least thirty feet into the air. Well-trod paths have been worn through the metallic dust between the two obstacles, leading north between the monolithic wreckages. You can also travel east to get out of this narrow, ferrous valley and out into the rust fields.";
+	rooms["220"].runOnEnter = undefined;
+	rooms["220"].northExit = "221";
+	rooms["220"].eastExit = "219";
+	rooms["220"].planet = "PLANET: TARKUS";
+	rooms["220"].system = "SYSTEM: REDACTED";
+	rooms["220"].addFlag(GLOBAL.OUTDOOR);
+	rooms["220"].addFlag(GLOBAL.HAZARD);
+	
+	//#21 RUST CANYON
+	rooms["221"] = new RoomClass(this);
+	rooms["221"].roomName = "RUST\nCANYON";
+	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is thick with dust and stagnant. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
+	rooms["221"].runOnEnter = undefined;
+	rooms["221"].westExit = "222";
+	rooms["221"].southExit = "220";
+	rooms["221"].planet = "PLANET: TARKUS";
+	rooms["221"].system = "SYSTEM: REDACTED";
+	rooms["221"].addFlag(GLOBAL.OUTDOOR);
+	rooms["221"].addFlag(GLOBAL.HAZARD);
+	
+	//#22 NEXT TO\nA JUNK PILE
+	rooms["222"] = new RoomClass(this);
+	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look to closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
+	rooms["222"].runOnEnter = undefined;
+	rooms["222"].eastExit = "221";
+	rooms["222"].northExit = "223";
+	rooms["222"].westExit = "229";
+	rooms["222"].planet = "PLANET: TARKUS";
+	rooms["222"].system = "SYSTEM: REDACTED";
+	rooms["222"].addFlag(GLOBAL.OUTDOOR);
+	rooms["222"].addFlag(GLOBAL.HAZARD);
+	
+	//#23 NOVA\nPOINT
+	rooms["223"] = new RoomClass(this);
+	rooms["223"].roomName = "NOVA\nPOINT";
+	rooms["223"].description = "You're standing directly under the nose of the Nova. Around you hang stalactites of ancient, corroded metal, testaments to corrosive forces that have seen fit to grace the ship with a beard worthy of father time. In spite of that, the hull looks thick enough to remain spaceworthy. It was obviously built to withstand an obscene amount of punishment. The ground here is relatively flat. Why, there's barely even any junk sticking up out of the \"soil!\" You can amble around similar terrain to the north and west. Heading south would put you on a path alongside a mound of twisted wreckage.";
+	rooms["223"].runOnEnter = undefined;
+	rooms["223"].southExit = "222";
+	rooms["223"].westExit = "228";
+	rooms["223"].northExit = "224";
+	rooms["223"].planet = "PLANET: TARKUS";
+	rooms["223"].system = "SYSTEM: REDACTED";
+	rooms["223"].addFlag(GLOBAL.OUTDOOR);
+	rooms["223"].addFlag(GLOBAL.HAZARD);
+	
+	//#24 SHIPSIDE\nFIELD
+	rooms["224"] = new RoomClass(this);
+	rooms["224"].roomName = "SHIPSIDE\nFIELD";
+	rooms["224"].description = "The surrounding expanse of flat, dusty fields is about as desolate as it gets, but even that hasn't stopped life, at least not yet. There's a few silvery plant stalks capped with iridescent blue leaves waving gently in the polluted breezes, somehow still here in spite of all this place has gone through. Stepping gingerly, you could go south or west from here. The Nova blocks passage to the east, and gray cliffs stretch up towards a cloudless sky to the north.";
+	rooms["224"].runOnEnter = undefined;
+	rooms["224"].southExit = "223";
+	rooms["224"].westExit = "225";
+	rooms["224"].planet = "PLANET: TARKUS";
+	rooms["224"].system = "SYSTEM: REDACTED";
+	rooms["224"].addFlag(GLOBAL.OUTDOOR);
+	rooms["224"].addFlag(GLOBAL.HAZARD);
+
+	//#25 POLLUTED\nBEACH
+	rooms["225"] = new RoomClass(this);
+	rooms["225"].roomName = "POLLUTED\nBEACH";
+	rooms["225"].description = "Gurgling faintly to the west, a sea of sludge, filth, and corruption laps against a oily beach. Here, the pollution is not quite so bad, but it's still thick enough to make the flaky \"sand\" clump together around your [pc.feet]. You can go west or south if you want to experience the pollution firsthand. Otherwise, the Nova's fore is visible a few minutes to the east, dangling reddish stalactites off its chin.";
+	rooms["225"].runOnEnter = undefined;
+	rooms["225"].southExit = "228";
+	rooms["225"].westExit = "226";
+	rooms["225"].eastExit = "224";
+	rooms["225"].planet = "PLANET: TARKUS";
+	rooms["225"].system = "SYSTEM: REDACTED";
+	rooms["225"].addFlag(GLOBAL.OUTDOOR);
+	rooms["225"].addFlag(GLOBAL.HAZARD);
+	
+	//#26 OIL SEA\nBEACH
+	rooms["226"] = new RoomClass(this);
+	rooms["226"].roomName = "OIL SEA\nBEACH";
+	rooms["226"].description = "Here on the beach of the Oil Sea, you can't help but be aware of its stunning, unnatural beauty, a property lent to it by the glossy, metallic materials that comprise its slowly rolling waves. The smell is obscenely clingy. You can practically feel the tainted air sticking to the roof of your mouth, lending credence to the worrying thoughts that are assailing your mind, wondering how quickly this place is poisoning you. You can travel along the beach to the south, or you could head east away from the liquid's edge. A sheer cliff face blocks travel north, and you don't even want to think about trying to swim through the sludge to the west.";
+	rooms["226"].runOnEnter = undefined;
+	rooms["226"].southExit = "227";
+	rooms["226"].eastExit = "225";
+	rooms["226"].planet = "PLANET: TARKUS";
+	rooms["226"].system = "SYSTEM: REDACTED";
+	rooms["226"].addFlag(GLOBAL.OUTDOOR);
+	rooms["226"].addFlag(GLOBAL.HAZARD);
+	
+	//#27 OIL SEA\nBEACH
+	rooms["227"] = new RoomClass(this);
+	rooms["227"].roomName = "OIL SEA\nBEACH";
+	rooms["227"].description = "The silver-black surface of the Oil Sea rolls with slow, almost malevolent purpose just to the south and west. Some exotic material inside those murky swells must be much thicker than water; they never crest or foam like seawater does, and the frequency and amplitude of their motions seems subtly wrong to you. You can follow the beach north or east from here.";
+	rooms["227"].runOnEnter = undefined;
+	rooms["227"].northExit = "226";
+	rooms["227"].eastExit = "228";
+	rooms["227"].planet = "PLANET: TARKUS";
+	rooms["227"].system = "SYSTEM: REDACTED";
+	rooms["227"].addFlag(GLOBAL.OUTDOOR);
+	rooms["227"].addFlag(GLOBAL.HAZARD);
+
+	//#28 OIL SEA\nBEACH
+	rooms["228"] = new RoomClass(this);
+	rooms["228"].roomName = "OIL SEA\nBEACH";
+	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collection sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It's hard not to feel like this whole planet is a spectacle of pollution and rot taken heaped upon itself until it's gained its own sense of obscene beauty. Surely there's something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
+	rooms["228"].runOnEnter = undefined;
+	rooms["228"].northExit = "225";
+	rooms["228"].eastExit = "223";
+	rooms["228"].southExit = "229";
+	rooms["228"].westExit = "227";
+	rooms["228"].planet = "PLANET: TARKUS";
+	rooms["228"].system = "SYSTEM: REDACTED";
+	rooms["228"].addFlag(GLOBAL.OUTDOOR);
+	rooms["228"].addFlag(GLOBAL.HAZARD);
+
+	//#29 OIL SEA\nBEACH
+	rooms["229"] = new RoomClass(this);
+	rooms["229"].roomName = "OIL SEA\nBEACH";
+	rooms["229"].description = "You have to stop to yank your [pc.foot] out of the muck at least once in order to continue on. Like brackish swamp water, mercurial deposits of tar and filth have gathered in every depression on the crimson tinged beach. You tread carefully as you navigate the unearthly landscape, keeping a wary eye on the slow waves of pollution that lap at the rusted shores. The beach leads north and south. To the east, you can spot a trail around a twisted mountain of wrecked machinery.";
+	rooms["229"].runOnEnter = undefined;
+	rooms["229"].northExit = "228";
+	rooms["229"].eastExit = "222";
+	rooms["229"].southExit = "230";
+	rooms["229"].planet = "PLANET: TARKUS";
+	rooms["229"].system = "SYSTEM: REDACTED";
+	rooms["229"].addFlag(GLOBAL.OUTDOOR);
+	rooms["229"].addFlag(GLOBAL.HAZARD);
+	
+	//#30 OIL SEA\nBEACH
+	rooms["230"] = new RoomClass(this);
+	rooms["230"].roomName = "OIL SEA\nBEACH";
+	rooms["230"].description = "This narrow strip of beach is made all the more precarious by a looming pile of wasted hulks and gutted spaceships. Someone went through all the trouble of scrounging them for useful parts and stacking the corroded leftovers into a pile, and whoever it was didn't even have the foresight to make it a little further away from the beach. You'll be forced to squeeze between the metal and the viscous waves numerous times if you want to go north or south, the only passable directions.";
+	rooms["230"].runOnEnter = undefined;
+	rooms["230"].northExit = "229";
+	//rooms["230"].southExit = "231";
+	rooms["230"].planet = "PLANET: TARKUS";
+	rooms["230"].system = "SYSTEM: REDACTED";
+	rooms["230"].addFlag(GLOBAL.OUTDOOR);
+	rooms["230"].addFlag(GLOBAL.HAZARD);	
+	
+	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
 	rooms["DEBUG1"].roomName = "BLACK HOLE\nOF DEBUG";
 	rooms["DEBUG1"].description = "";

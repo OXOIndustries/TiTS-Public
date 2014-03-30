@@ -1312,7 +1312,7 @@ function forceFemzilToLickYourHoneypot():void {
 	output(", her large breasts swaying delightfully beneath her with every movement. You reach out to grab one, roughly pinching a dusky nipple between your fingertips. A trickle of honey emerges at your touch, and the sweet, sticky fluid coats your fingers. The zil moans huskily, her other breast leaking alongside. You release her with a smirk and press your fingers to her sable lips.");
 	output("\n\nTentatively extending her tongue, the fey creature surprises you by opening up the tip of her long muscle to expose its hollow interior, slick with alien saliva. She presses on, enveloping your paired fingers in a cocoon of spit, slipping back and forth in a way that's cruelly reminiscent of actual sex. She finishes, and her tongue retracts to leave you completely and utterly clean, if a little wet. The oral organ slips back into her mouth like a snake into a hidden burrow. Her eyes twinkle with a sultry glow as she allows the tip to squeeze back out, and she cocks her head to the side questioning, flicking her eyes meaningfully between your crotch and your face as if asking for permission.");
 	
-	output("\n\nYou don't let her or her tongue wonder. Grabbing her back the back of her head, you firmly yet gently force her face down to your [pc.vagina " + x + "], feeling her hot, panting breath wash across your labia as she nears. ");
+	output("\n\nYou don't let her or her tongue wander. Grabbing her by the back of her head, you firmly yet gently force her face down to your [pc.vagina " + x + "], feeling her hot, panting breath wash across your labia as she nears. ");
 	if(pc.hasCock()) 
 	{
 		output("[pc.EachCock] flops across the top of her head as she settles in");
