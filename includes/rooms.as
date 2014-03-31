@@ -398,7 +398,7 @@ function initializeRooms():void
 	rooms["FERNGROWTH BEND 1"].addFlag(GLOBAL.HAZARD);
 	rooms["FERNGROWTH BEND 1"].runOnEnter = jungleEncounterChances;
 
-	//24.  A Fern-Shrouded Path
+	//24. A Fern-Shrouded Path
 	rooms["FERNGROWTH PATH 3"] = new RoomClass(this);
 	rooms["FERNGROWTH PATH 3"].roomName = "FERNGROWTH\nPATH";
 	rooms["FERNGROWTH PATH 3"].description = "Hanging ominously overhead, gigantic ferns tower over the path. While this casts the area into deep shadow, it also broadens the navigable area quite nicely, allowing you to see something besides bushy green leaves for a chance. The ground on either side is a deep, rich brown, and moist with water that constantly seems to drip from the plants above. It is bare except for the ferns and a flat, round disks that you surmise are mushroom-like in nature.";
@@ -499,7 +499,7 @@ function initializeRooms():void
 	//32. Between Lichens and Ironwoods
 	rooms["LICHENS AND IRONWOODS 3"] = new RoomClass(this);
 	rooms["LICHENS AND IRONWOODS 3"].roomName = "IRONWOODS\nAND LICHENS";
-	rooms["LICHENS AND IRONWOODS 3"].description = "The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go.  Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.";
+	rooms["LICHENS AND IRONWOODS 3"].description = "The jungle here is marvelously colorful. Hues of verdant green swim between vibrant yellows and lurid reds, shining up from the interwoven lichens in a rainbow of beauteous light. Whenever you press down upon some of it, the light brightens, lighting the way as you go. Ferrous trees as big as buildings rise up to the east, and smaller gray ones to the west cluster so tightly that you cannot go in that direction.";
 	rooms["LICHENS AND IRONWOODS 3"].planet = "PLANET: MHEN'GA";
 	rooms["LICHENS AND IRONWOODS 3"].system = "SYSTEM: ARA ARA";
 	rooms["LICHENS AND IRONWOODS 3"].southExit = "LICHENS AND IRONWOODS 2";
@@ -1285,7 +1285,7 @@ function initializeRooms():void
 	//#4 LOWER STAIRWELL
 	rooms["204"] = new RoomClass(this);
 	rooms["204"].roomName = "LOWER\nSTAIRWELL";
-	rooms["204"].description = "There's a crudely written sign hanging above a spiralling ramp. It reads, \"Stairwill.\"  You're pretty sure that whoever wrote it meant to write \"Stairwell,\" but even so, there isn't a stair to be seen. The smooth metal deckplates arc up around a central column in a huge ramp, leading to the Nova's middle decks where the hangar is located. An access corridor stretches away to the east. Faded texts indicate that it was once used for maintenance, but nowadays, it seems to be the main route between Novahome and the ship's hangar-turned-landing-pad.";
+	rooms["204"].description = "There's a crudely written sign hanging above a spiralling ramp. It reads, \"Stairwill.\" You're pretty sure that whoever wrote it meant to write \"Stairwell,\" but even so, there isn't a stair to be seen. The smooth metal deckplates arc up around a central column in a huge ramp, leading to the Nova's middle decks where the hangar is located. An access corridor stretches away to the east. Faded texts indicate that it was once used for maintenance, but nowadays, it seems to be the main route between Novahome and the ship's hangar-turned-landing-pad.";
 	rooms["204"].runOnEnter = undefined;
 	rooms["204"].eastExit = "205";
 	rooms["204"].inExit = "203";
@@ -1423,7 +1423,7 @@ function initializeRooms():void
 	rooms["216"].northExit = "215";
 	rooms["216"].westExit = "217";
 	//rooms["216"].eastExit = "264";
-	//rooms["216"].southExit = "239";
+	rooms["216"].southExit = "239";
 	rooms["216"].planet = "PLANET: TARKUS";
 	rooms["216"].system = "SYSTEM: REDACTED";
 	rooms["216"].addFlag(GLOBAL.OUTDOOR);
@@ -1436,7 +1436,7 @@ function initializeRooms():void
 	rooms["217"].runOnEnter = undefined;
 	rooms["217"].westExit = "218";
 	rooms["217"].eastExit = "216";
-	//rooms["217"].southExit = "238";
+	rooms["217"].southExit = "238";
 	rooms["217"].planet = "PLANET: TARKUS";
 	rooms["217"].system = "SYSTEM: REDACTED";
 	rooms["217"].addFlag(GLOBAL.OUTDOOR);
@@ -1449,7 +1449,7 @@ function initializeRooms():void
 	rooms["218"].runOnEnter = undefined;
 	rooms["218"].westExit = "219";
 	rooms["218"].eastExit = "217";
-	//rooms["218"].southExit = "237";
+	rooms["218"].southExit = "237";
 	rooms["218"].planet = "PLANET: TARKUS";
 	rooms["218"].system = "SYSTEM: REDACTED";
 	rooms["218"].addFlag(GLOBAL.OUTDOOR);
@@ -1462,7 +1462,7 @@ function initializeRooms():void
 	rooms["219"].runOnEnter = undefined;
 	rooms["219"].westExit = "220";
 	rooms["219"].eastExit = "218";
-	//rooms["219"].southExit = "236";
+	rooms["219"].southExit = "236";
 	rooms["219"].planet = "PLANET: TARKUS";
 	rooms["219"].system = "SYSTEM: REDACTED";
 	rooms["219"].addFlag(GLOBAL.OUTDOOR);
@@ -1600,11 +1600,236 @@ function initializeRooms():void
 	rooms["230"].description = "This narrow strip of beach is made all the more precarious by a looming pile of wasted hulks and gutted spaceships. Someone went through all the trouble of scrounging them for useful parts and stacking the corroded leftovers into a pile, and whoever it was didn't even have the foresight to make it a little further away from the beach. You'll be forced to squeeze between the metal and the viscous waves numerous times if you want to go north or south, the only passable directions.";
 	rooms["230"].runOnEnter = undefined;
 	rooms["230"].northExit = "229";
-	//rooms["230"].southExit = "231";
+	rooms["230"].southExit = "231";
 	rooms["230"].planet = "PLANET: TARKUS";
 	rooms["230"].system = "SYSTEM: REDACTED";
 	rooms["230"].addFlag(GLOBAL.OUTDOOR);
-	rooms["230"].addFlag(GLOBAL.HAZARD);	
+	rooms["230"].addFlag(GLOBAL.HAZARD);
+
+	//#31 OIL SEA\nBEACH
+	rooms["231"] = new RoomClass(this);
+	rooms["231"].roomName = "OIL SEA\nBEACH";
+	rooms["231"].description = "A slurping sound announces the languid connection of a minor waterway to the beach. The sluggish water pours an irregular stream into the contaminated water, creating a chunky froth. Fat-like chunks of scum litter the sand, looking like greasy, gray-black stones, already blistering in the elements. The smell of baked crude oil saturates the air, making it hard to breathe. You pick your way carefully through the deposits, holding your breath as one crumbles with your passing, filling the air with visible fumes. The wall stacked junkers blocking off the northeast doesn't help either. You can follow the beach to the north and east.";
+	rooms["231"].runOnEnter = undefined;
+	rooms["231"].northExit = "230";
+	rooms["231"].eastExit = "232";
+	rooms["231"].planet = "PLANET: TARKUS";
+	rooms["231"].system = "SYSTEM: REDACTED";
+	rooms["231"].addFlag(GLOBAL.OUTDOOR);
+	rooms["231"].addFlag(GLOBAL.HAZARD);
+
+	//#32 OIL SEA\nBEACH
+	rooms["232"] = new RoomClass(this);
+	rooms["232"].roomName = "OIL SEA\nBEACH";
+	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the \"water\" several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the sound and west while twisting, creaking mass of forgotten wrecks has been stacked to the north and east, blocking your way.";
+	rooms["232"].runOnEnter = undefined;
+	rooms["232"].westExit = "231";
+	rooms["232"].southExit = "233";
+	rooms["232"].planet = "PLANET: TARKUS";
+	rooms["232"].system = "SYSTEM: REDACTED";
+	rooms["232"].addFlag(GLOBAL.OUTDOOR);
+	rooms["232"].addFlag(GLOBAL.HAZARD);
+	
+	//#33 OIL SEA\nBEACH
+	rooms["233"] = new RoomClass(this);
+	rooms["233"].roomName = "OIL SEA\nBEACH";
+	rooms["233"].description = "While your first and second step onto the sand here are stable enough, your third nearly pitches you forward. The sand beneath your [pc.feet] crumbles away, leaving a black, fluid-filled depression a foot deep. Fumes rising from the pool make you think of cheap, chemical batteries. You notice a black underlayer to the water here and realize that the beach is slowly dissolving. It’s safe enough for now, but from this point on, you carefully test each step before committing your weight to it. Towering over you, a picked-through collection of ancient battle tanks twists in the breeze. Someone took the time to cut out all the valuable components and pile the gutted remains together. You can follow the beach north and east.";
+	rooms["233"].runOnEnter = undefined;
+	rooms["233"].eastExit = "234";
+	rooms["233"].northExit = "232";
+	rooms["233"].planet = "PLANET: TARKUS";
+	rooms["233"].system = "SYSTEM: REDACTED";
+	rooms["233"].addFlag(GLOBAL.OUTDOOR);
+	rooms["233"].addFlag(GLOBAL.HAZARD);
+	
+	//#34 OIL SEA\nBEACH
+	rooms["234"] = new RoomClass(this);
+	rooms["234"].roomName = "OIL SEA\nBEACH";
+	rooms["234"].description = "The silence of your walk is interrupted by a chattering of high pitched tones. You glance around quickly, looking for the source of the ringing notes. You see nothing but the yellow-tinged fluid of the sea and this area's glittering sand. It is not until you begin walking that you hear the tinkling notes once more. You take a few more experimental steps forward, then look down, feeling awed and foolish at the same time. Chemical reactions here have crystallized the sand into miniscule, interlocking crystals. Each step snaps hundreds of them, resulting in the sound of scattered bells. The waterside twists away to the south and west, but you could head east into the rust fields if you wanted.";
+	rooms["234"].runOnEnter = undefined;
+	rooms["234"].eastExit = "235";
+	rooms["234"].westExit = "233";
+	rooms["234"].southExit = "245";
+	rooms["234"].planet = "PLANET: TARKUS";
+	rooms["234"].system = "SYSTEM: REDACTED";
+	rooms["234"].addFlag(GLOBAL.OUTDOOR);
+	rooms["234"].addFlag(GLOBAL.HAZARD);
+	
+	//#35 RUST\nPATH
+	rooms["235"] = new RoomClass(this);
+	rooms["235"].roomName = "RUST\nPATH";
+	rooms["235"].description = "Sandwiched between two different, tall mounds of junk, is a single, winding path. Ominous creaks of strained, failing metal slip out of the rusted ships and machinery stacked to the west with every errant gust of bone-dry breeze. Across the way, arms, legs, and treads spread akimbo, sticking out of a mass of rusted torsos, dead eyes, and forgotten power plants. Someone took the time to gather them all together, perhaps so that they could dig through the rust elsewhere. Heading north will take you between the piles. You could also travel south alongside the eerie, robotic graveyard or west beside the ancient, stripped starships.";
+	rooms["235"].runOnEnter = undefined;
+	rooms["235"].northExit = "236";
+	rooms["235"].westExit = "234";
+	rooms["235"].southExit = "244";
+	rooms["235"].planet = "PLANET: TARKUS";
+	rooms["235"].system = "SYSTEM: REDACTED";
+	rooms["235"].addFlag(GLOBAL.OUTDOOR);
+	rooms["235"].addFlag(GLOBAL.HAZARD);
+	
+	//#36 RUST\nPATH
+	rooms["236"] = new RoomClass(this);
+	rooms["236"].roomName = "RUST\nPATH";
+	rooms["236"].description = "It is hard not to feel a little claustrophobic when you're standing in the shadows of two giants. It's even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west, one pile all stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
+	rooms["236"].runOnEnter = undefined;
+	rooms["236"].northExit = "219";
+	rooms["236"].eastExit = "237";
+	rooms["236"].southExit = "235";
+	rooms["236"].planet = "PLANET: TARKUS";
+	rooms["236"].system = "SYSTEM: REDACTED";
+	rooms["236"].addFlag(GLOBAL.OUTDOOR);
+	rooms["236"].addFlag(GLOBAL.HAZARD);
+	
+	//#37 NEXT TO\nA JUNK PILE
+	//Busted-ass robots with all useful parts stripped
+	rooms["237"] = new RoomClass(this);
+	rooms["237"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["237"].description = "The massive hulk a few yards away is the mass grave of robots. Metallic arms reach up from the mound, frozen in mid-grasp, entreating the scorched sky. The shadows they cast fall on your path, striping the road ahead with skeletal shadows. As you walk past, you catch a flicker of movement. You whip your head around, glaring at the still mound of shattered bots. Your eyes are playing tricks on you - it almost looks like the arms are reaching for you as soon as your back is turned. You can head east or west and stay beside the forgotten automatons, or you could go north into the rust fields beside the Nova.";
+	rooms["237"].runOnEnter = undefined;
+	rooms["237"].northExit = "218";
+	rooms["237"].westExit = "236";
+	rooms["237"].eastExit = "238";
+	rooms["237"].planet = "PLANET: TARKUS";
+	rooms["237"].system = "SYSTEM: REDACTED";
+	rooms["237"].addFlag(GLOBAL.OUTDOOR);
+	rooms["237"].addFlag(GLOBAL.HAZARD);
+
+	//#38 NEXT TO\nA JUNK PILE
+	//Busted-ass robots with all useful parts stripped
+	rooms["238"] = new RoomClass(this);
+	rooms["238"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["238"].description = "A blast of wind carries a storm of rusted flakes off the jumble of broken robots. You shield your eyes just in time as a it throws a bucket’s worth of rust over you. You taste blood and spit repeatedly, trying to get the oxidized metal out of your mouth. The wind rocks a precarious steel skeleton atop the pile, making it lurch forward repeatedly, almost as if it were silently laughing at your misfortune. You flip a rude gesture at the inanimate robot, then, feeling a bit silly, continue on your way. The automaton pile arcs away to the south and west. You can also head north into the rust fields near the Nova or east towards a different, smaller crashed ship.";
+	rooms["238"].runOnEnter = undefined;
+	rooms["238"].northExit = "217";
+	rooms["238"].westExit = "237";
+	rooms["238"].eastExit = "239";
+	rooms["238"].southExit = "241";
+	rooms["238"].planet = "PLANET: TARKUS";
+	rooms["238"].system = "SYSTEM: REDACTED";
+	rooms["238"].addFlag(GLOBAL.OUTDOOR);
+	rooms["238"].addFlag(GLOBAL.HAZARD);
+
+	//#39 NEXT TO\nA CRASHED SHIP
+	rooms["239"] = new RoomClass(this);
+	rooms["239"].roomName = "NEXT TO A\nCRASHED SHIP";
+	rooms["239"].description = "Like a giant, orange egg, a rust-covered, ancient craft of alien design sits half-buried in Tarkus' iron-scaled surface. It seems that even alien metals are no match for the corrosive properties of this planet's atmosphere. What few hatches you can see are either sealed shut or only cracked open enough to let the elements into the interior, their hinges or mechanisms long since seized into immobility. You could circle around it to the north or south. Alternatively, you could travel west towards a pile of shattered robots.";
+	rooms["239"].runOnEnter = undefined;
+	rooms["239"].northExit = "216";
+	rooms["239"].westExit = "238";
+	rooms["239"].southExit = "240";
+	rooms["239"].planet = "PLANET: TARKUS";
+	rooms["239"].system = "SYSTEM: REDACTED";
+	rooms["239"].addFlag(GLOBAL.OUTDOOR);
+	rooms["239"].addFlag(GLOBAL.HAZARD);
+	
+	//#40 NEXT TO\nA CRASHED SHIP
+	//SW corner of crashed ship
+	rooms["240"] = new RoomClass(this);
+	rooms["240"].roomName = "NEXT TO A\nCRASHED SHIP";
+	rooms["240"].description = "Flakes of corroded metal break off the egg-shaped hull of a crashed, alien ship in the slow, dry breezes that occasionally gust by, scratching at you as they travel by. You brush a few off your shoulder as you regard the ancient machinery. It is clear that the ship has been here so long that it's never going to be spaceworthy again. Some of the hatches are hanging open, frozen by rust, while others are staunchly sealed shut, virtually welded in place by time. You can head north or east around the ship, or you could head west toward a pile of discarded robots. To the south, there's an open area of the rust fields.";
+	rooms["240"].runOnEnter = undefined;
+	rooms["240"].northExit = "239";
+	//rooms["240"].eastExit = "255";
+	rooms["240"].westExit = "241";
+	//rooms["240"].southExit = "253";
+	rooms["240"].planet = "PLANET: TARKUS";
+	rooms["240"].system = "SYSTEM: REDACTED";
+	rooms["240"].addFlag(GLOBAL.OUTDOOR);
+	rooms["240"].addFlag(GLOBAL.HAZARD);
+	
+	//#41 NEXT TO\nA JUNK PILE
+	//E side of robot pile - fukkin robosexuals
+	rooms["241"] = new RoomClass(this);
+	rooms["241"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["241"].description = "A skeletal-looking arm with titanium-composite bones covered in cake-on hydraulic fluid nearly whacks you in the head as you walk alongside a stockpile of forgotten, looted automatons. You look closer until you spot a pair of dead eyes looking back at you, and suitably unnerved, you decide it'd be best not to look too close. If you walk a little ways to the east, you could come up alongside a crusty-looking ship. You could also go north or south if you wanted to stay next to the creepy-looking junkpile.";
+	rooms["241"].runOnEnter = undefined;
+	rooms["241"].northExit = "238";
+	rooms["241"].eastExit = "240";
+	rooms["241"].southExit = "242";
+	rooms["241"].planet = "PLANET: TARKUS";
+	rooms["241"].system = "SYSTEM: REDACTED";
+	rooms["241"].addFlag(GLOBAL.OUTDOOR);
+	rooms["241"].addFlag(GLOBAL.HAZARD);
+	
+	//#42 NEXT TO\nA JUNK PILE
+	rooms["242"] = new RoomClass(this);
+	rooms["242"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["242"].description = "A load of batteries has calcified this portion of the robot pile. One of the android’s power cells, likely a cheap chemical battery of some kind, has leaked down from the top of the heap. The burst chest plate of this hulking android is a flower of torn metal, and the gout of calcification creates the impression of a mouth frozen mid-vomit. The corrosion has seared and blistered the metal of the robots below it, creating a frozen waterfall of white, corroded metal. Bars of bone-white residue pour cage-like rivulets down the cybernetic hecatomb. You give the silent cascade a sideways look as you hurry on your way.";
+	rooms["242"].runOnEnter = undefined;
+	rooms["242"].northExit = "241";
+	//rooms["242"].eastExit = "253";
+	rooms["242"].westExit = "243";
+	//rooms["242"].southExit = "251";
+	rooms["242"].planet = "PLANET: TARKUS";
+	rooms["242"].system = "SYSTEM: REDACTED";
+	rooms["242"].addFlag(GLOBAL.OUTDOOR);
+	rooms["242"].addFlag(GLOBAL.HAZARD);
+	
+	//#43 NEXT TO\nA JUNK PILE
+	rooms["243"] = new RoomClass(this);
+	rooms["243"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
+	rooms["243"].runOnEnter = undefined;
+	rooms["243"].eastExit = "242";
+	rooms["243"].westExit = "244";
+	//rooms["243"].southExit = "249";
+	rooms["243"].planet = "PLANET: TARKUS";
+	rooms["243"].system = "SYSTEM: REDACTED";
+	rooms["243"].addFlag(GLOBAL.OUTDOOR);
+	rooms["243"].addFlag(GLOBAL.HAZARD);
+	
+	//#44 NEXT TO\nA JUNK PILE
+	rooms["244"] = new RoomClass(this);
+	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
+	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are of stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
+	rooms["244"].runOnEnter = undefined;
+	rooms["244"].northExit = "235";
+	rooms["244"].eastExit = "243";
+	rooms["244"].westExit = "245";
+	//rooms["244"].southExit = "248";
+	rooms["244"].planet = "PLANET: TARKUS";
+	rooms["244"].system = "SYSTEM: REDACTED";
+	rooms["244"].addFlag(GLOBAL.OUTDOOR);
+	rooms["244"].addFlag(GLOBAL.HAZARD);
+
+	//#45 OIL SEA\nBEACH
+	rooms["245"] = new RoomClass(this);
+	rooms["245"].roomName = "OIL SEA\nBEACH";
+	rooms["245"].description = "Are those... sharks? Standing on the oxidized sand, you squint at the oily-yellow sea. Several dark, triangular “fins” cut through the surface just offshore. It takes you a few moments of squinting and holding up your thumb to realize that they’re not moving, and the space of several yards to see that they’re simply shards of metal standing upright in the sea. The irregular pulse of the tide had made them seem as if they were moving. You scold yourself for the flight of fancy. Sharks in the water! What’s next? Mistaking that twist of wire for a pair of glasses?";
+	rooms["245"].runOnEnter = undefined;
+	rooms["245"].northExit = "234";
+	rooms["245"].eastExit = "244";
+	rooms["245"].southExit = "246";
+	rooms["245"].planet = "PLANET: TARKUS";
+	rooms["245"].system = "SYSTEM: REDACTED";
+	rooms["245"].addFlag(GLOBAL.OUTDOOR);
+	rooms["245"].addFlag(GLOBAL.HAZARD);
+	
+	//#46 OIL SEA\nBEACH
+	rooms["246"] = new RoomClass(this);
+	rooms["246"].roomName = "OIL SEA\nBEACH";
+	rooms["246"].description = "An acrid cloud announces this stretch of beach before you really see it. The stuttered pulse of tidal actions slap a watery, greenish fluid against the ashy-white sand. With every half-formed push of the sea, the corrosive fluid pushes against the sand, burning away handfuls at a time, creating a noxious curtain of fumes at the sea’s edge. It smells like some ungodly blend of citrus, diesel, and urine. You nearly gag before you think to hold your breath. The beach runs north and south from here, but you can journey east into the rust fields as well.";
+	rooms["246"].runOnEnter = undefined;
+	rooms["246"].northExit = "245";
+	//rooms["246"].eastExit = "248";
+	rooms["246"].southExit = "247";
+	rooms["246"].planet = "PLANET: TARKUS";
+	rooms["246"].system = "SYSTEM: REDACTED";
+	rooms["246"].addFlag(GLOBAL.OUTDOOR);
+	rooms["246"].addFlag(GLOBAL.HAZARD);
+	
+	//#47 OIL SEA\nBEACH
+	rooms["247"] = new RoomClass(this);
+	rooms["247"].roomName = "OIL SEA\nBEACH";
+	rooms["247"].description = "You are momentarily puzzled by the sound of a church bell. Could some alien culture have actually built a place of worship on this planet? And why in whoever’s name would they put it on this beach? A step around another battered hull exposes the mystery, but does nothing to dispel the oddity. As you watch, a cylindrical section of a ship, likely a spent fuel tank, rolls down a slope of metallic sand into the sea of chemicals. Rhythmically, the idiot tide shoves it back. The thick, syrupy waves push it up the slope far enough to clang the house-sized tank against a half-buried engine core, lodged in the shore. You wonder, in passing, how long this accidental bell has peeled, summoning it’s nonexistent flock. A blade of metal the size of a small skyscraper blocks travel to the south and east, leaving north the only passable direction.";
+	rooms["247"].runOnEnter = undefined;
+	rooms["247"].northExit = "246";
+	rooms["247"].planet = "PLANET: TARKUS";
+	rooms["247"].system = "SYSTEM: REDACTED";
+	rooms["247"].addFlag(GLOBAL.OUTDOOR);
+	rooms["247"].addFlag(GLOBAL.HAZARD);
+	
 	
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);

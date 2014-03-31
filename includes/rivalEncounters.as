@@ -202,7 +202,7 @@ function daneCrossSlashAttack():void {
 	else
 	{
 		output("\nThe blades hit you while crossed in a perfect 'x'!");
-		var damage:int = pc.meleeWeapon.damage + foes[0].physique()/2;
+		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
 		//OVER CHAAAAAARGE
 		damage *= 3;
 		//Randomize +/- 15%

@@ -98,7 +98,7 @@
 			else
 			{
 				if (this.mapDebug) trace("Tried to access a room that doesn't exist!. Room name = ", targetRoom);
-				throw("How did this even happen?")
+				throw("How did this even happen? Room name = ", targetRoom);
 			}
 
 
