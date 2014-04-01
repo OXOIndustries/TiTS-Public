@@ -1,10 +1,10 @@
-/*
+﻿/*
 Raskvel Codex
 Name: Raskvel
 Genders: Male & Female
 Height: Average heights fall between 3’6” and 4’3”
 Weight: Somewhere between 40 and 60 pounds.
-Hair: None.
+Hair: None. They have feathery plumage instead, often light blue, red, or black.
 Skin: Scaled skin of tan, dark red, or blue.
 Eyes: Two vertically slit, reptilian-like eyes.
 Ears: Raskvel have two ears that rival Earth’s rabbit species for length and size. Their ears are extraordinarily floppy and typically hang down alongside or behind their head. The positioning and posturing of one’s ears is considered similar to how humans style their hair. The scales covering these ears are typically a brighter or different hue than the rest of their body scales.
@@ -40,10 +40,10 @@ function encounterHostileRaskvelFemale():void
 		flags["MET_FEMALE_RASKVEL"] = 1;
 		output("\n\nEmerging from behind a piece of wreckage, a short figure. The creature is perhaps four feet tall at most, couching a gigantic wrench on its shoulder and some kind of gun on its hip. It is dressed in a set of tattered mechanics overalls and little else, and as you look closer, you become aware of its undoubtedly feminine nature.");
 		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + foes[0].skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
-		output("\n\nBeeping, your codex alerts you that this is a female of the 'Raskvel' race, and issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate. Looking back up at the approaching creature, you ready yourself.");
+		output("\n\nBeeping, your codex alerts you that this is a female of the 'Raskvel' race, and issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. \"<i>An off-worlder, huh?</i>\"");
 		output("\n\nYou nod.");
-		output("\n\n\"<i>That's too bad. Since you're trespassing, you're going to have to pay the hundred credit fee,</i>\" the scaly little thing offers before smiling. \"<i>If you don't pay, I'll find another way to take it out of you.</i>\" She looks at " + player.rawMfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". \"<i>I'd rather just play with you, but we need the money.</i>\" She shrugs her little shoulders apologetically and awaits your response.");
+		output("\n\n\"<i>That's too bad. Since you're trespassing, you're going to have to pay the hundred credit fee,</i>\" the scaly little thing offers before smiling. \"<i>If you don't pay, I'll find another way to take it out of you.</i>\" She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". \"<i>I'd rather just play with you, but we need the money.</i>\" She shrugs her little shoulders apologetically and awaits your response.");
 		output("\n\nDo you pay the fiesty little alien, fight her, or pay her off some other way?");
 	}
 	//Second Encounter
@@ -52,13 +52,38 @@ function encounterHostileRaskvelFemale():void
 		output("\n\nAnother raskvel emerges from behind a piece of forgotten wreckage. This one seems as determined as the first one you met, proudly declaring, \"<i>Fork over your credits, off-worlder. I need 'em!</i>\" She hefts her wrench threateningly. It doesn't look like negotiation is an option.");	
 	}
 	//[FIght] [Pay] ["Pay"]
-	//9999
+	clearMenu();
+	addButton(0,"Fight",startCombat,"RaskvelFemale");
+	addButton(1,"Pay",payDatRaskCunt);
+	addButton(2,"\"Pay\"",quotePayUnquoteFemRasks);
+}
+
+function payDatRaskCunt():void
+{
+	clearOutput();
+	output("Not wanting to waste time with her, you transfer the hundred credits to a chit and toss it at her.\n\nThe little junkyard rat catches hold of your chit before making a dramatic bow. <i>\"Pleasure doing business with ya!\"</i> She vanishes into surrounding wreckage before you can reply.");
+	payRaskvel();
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 
 //Combat
-//Combat Description
-//	Dressed in a {tattered shirt and fluttering skirt/crotch-less jumpsuit}, the raskvel girl doesn't seem to have any sense of propriety. Her clothes are obviously there to keep her warm during her adventures - not to protect her modesty. Ears so long they hang down past her waist flutter around as she moves, weighted with gaudy piercings, many of them made from small gears or cogs. She wields a wrench almost as big as herself with surprising dexterity. That wrench is no ordinary wrench either, there's a cylindrical barrel down the handle and a trigger mechanism as well. It actually looks like a gun has been built into it! A much smaller looking pistol hangs from her hip.
+function raskvelChickAI():void
+{
+	if(foes[0].hasStatusEffect("Wrench Charge")) 
+	{
+		enemyWrenchAttack();
+	}
+	else
+	{
+		if(rand(4) == 0) enemyWrenchAttack();
+		else if(rand(3) == 0) enemyAphrodisiacDarts();
+		else if(rand(2) == 0) raskvelFemShotgun();
+		else raskvelGirlsTeasingCockwielders();
+	}
+}
 
 
 //Combat Attacks
@@ -66,9 +91,14 @@ function encounterHostileRaskvelFemale():void
 function enemyAphrodisiacDarts():void
 {
 	var damage:int = 0;
+	var hit:Boolean = true;
 	output(foes[0].capitalA + foes[0].short + " pulls a gun off her hip, levels it, and pulls the trigger. The only reports are a trio of near-silent hisses as three injectors fly through the air toward you.");
 	//Blocked
-	if(pc.shields() > 0) output("\nThe needles break apart uselessly on contact with your defenses.");
+	if(pc.shields() > 0) 
+	{
+		output("\nThe needles break apart uselessly on contact with your defenses.");
+		hit = false;
+	}
 	//Miss (can't be completely dodged)
 	else if(rangedCombatMiss(foes[0], pc)) 
 	{
@@ -91,25 +121,28 @@ function enemyAphrodisiacDarts():void
 		pc.lust(damage);
 	}
 	//Reactions
-	if(pc.lust() < 33) output("\nAn unwelcome heat suffuses your body as the chemicals do their work.");
-	else if(pc.lust() < 45) output("\nYour heart beats faster as you look at your foe's body. Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before.");
-	else if(pc.lust() < 55) 
+	if(hit)
 	{
-		if(pc.hasCock()) output("\n[pc.EachCock] pulsates as it fills with burgeoning tumescence. You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
-		else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-woman.");
-		else output("\nYour [pc.nipples] harden as you idly consider forcing her to lick you while suckling on her twin clits.");
+		if(pc.lust() < 33) output("\nAn unwelcome heat suffuses your body as the chemicals do their work.");
+		else if(pc.lust() < 45) output("\nYour heart beats faster as you look at your foe's body. Her outfit seems a bit more revealing, and her movements seem more sexually enticing than ever before.");
+		else if(pc.lust() < 55) 
+		{
+			if(pc.hasCock()) output("\n[pc.EachCock] pulsates as it fills with burgeoning tumescence. You find yourself wondering what it would be like to slip into her puffy, double-clitted box.");
+			else if(pc.hasVagina()) output("\n[pc.EachVagina] grows sensitive and moist as you ponder the merits of fucking this fetching little lizard-woman.");
+			else output("\nYour [pc.nipples] harden as you idly consider forcing her to lick you while suckling on her twin clits.");
+		}
+		else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + pc.rawMf("rut","heat") + " that you have have a hard time suppressing.");
+		else if(pc.lust() < 75) output("\n" + pc.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
+		else if(pc.lust() < 85) output("\nYou stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
+		else if(pc.lust() < 95) 
+		{
+			output("\nThe payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
+			if(pc.hasCock() || pc.hasVagina()) output(" Your genitals drip with need as y");
+			else output("Y");
+			output("ou idly consider throwing the fight for a quick fuck.");
+		}
+		else output("\nYou whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 	}
-	else if(pc.lust() < 65) output("\nYou groan out loud as the aphrodisiacs surges through your bloodstream, rousing you into a " + player.rawMf("rut","heat") + " that you have have a hard time suppressing.");
-	else if(pc.lust() < 75) output("\n" + player.mf("Grunting","Whimpering") + " in anticipation of what is to come, you ball your hands into fists as you try to endure the rising need as it spreads through your body. It feels like your brain is oozing down into your crotch, fixating utterly on sex. You want to fuck right now. You NEED to fuck soon.");
-	else if(pc.lust() < 85) output("\nYou stagger as the lust hits you, stirring your already aroused body to new heights of need. Your [pc.legs] tremble, and the desperate, animal need to copulate thrums through your quivering muscles, filling them with an artificial desire.");
-	else if(pc.lust() < 95) 
-	{
-		output("\nThe payload has its way with your aroused body as it rushes through your veins. It acts quickly, like other intravenious drugs, turning you on with each beat of your heart.");
-		if(pc.hasCock() || pc.hasVagina()) output(" Your genitals drip with need as y");
-		else output("Y");
-		output("ou idly consider throwing the fight for a quick fuck.");
-	}
-	else output("\nYou whimper as the drugs pour through your body and melt your resistance into a bubbling puddle of distilled fuck. Your body is hot, feverish even, and you lose the will to resist as the absolute need to tend to your state asserts itself.");
 	processCombat();
 }
 
@@ -119,24 +152,24 @@ function enemyWrenchAttack():void
 	//Charged attack!
 	if(!foes[0].hasStatusEffect("Wrench Charge"))
 	{
-		output(monster.capitalA + monster.short + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
+		output(foes[0].capitalA + foes[0].short + " hefts her wrench up over her head, readying a powerful downward stroke. If you act quickly, you can interrupt her!");
 		foes[0].createStatusEffect("Wrench Charge",foes[0].HP(),0,0,0);
 	}
 	//Already charged, lets do this!
 	else
 	{
 		//Interrupted
-		if(foes[0].statusEffectv1("Wrench Charge") > foes[0].HP()) monster.capitalA + monster.short + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
+		if(foes[0].statusEffectv1("Wrench Charge") > foes[0].HP()) output(foes[0].capitalA + foes[0].short + " staggers, dropping her heavy weapon down from its striking posture. She looks less than pleased by this development!");
 		//Miss
 		else if(combatMiss(foes[0],pc))
 		{
-			output(monster.capitalA + monster.short + " brings her weapon down in a vicious two-handed strike but fails to connect!");
+			output(foes[0].capitalA + foes[0].short + " brings her weapon down in a vicious two-handed strike but fails to connect!");
 		}
 		//Hit
 		else
 		{
-			//[monster.short][capital]
-			output(monster.capitalA + monster.short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
+			//[foes[0].short][capital]
+			output(foes[0].capitalA + foes[0].short + " slams down her wrench in a heavy blow. It connects solidly, and your head is ringing from the brutal hit.");
 			//{Stun chance}
 			if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 40)
 			{
@@ -153,7 +186,7 @@ function enemyWrenchAttack():void
 		}
 		foes[0].removeStatusEffect("Wrench Charge");
 	}
-	processCOmbat();
+	processCombat();
 }
 
 //Shotgunned
@@ -187,7 +220,7 @@ function raskvelGirlsTeasingCockwielders():void
 	//#2
 	else if(rand(3) == 0)
 	{
-		output("Pulling down her top to expose her nipples, " + monster.a + monster.short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
+		output("Pulling down her top to expose her nipples, " + foes[0].a + foes[0].short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
 		pc.lust(6+rand(7));
 	}
 	//#3
@@ -224,7 +257,49 @@ function victoryVsRaskvel():void
 	output("The extortive mechanic ");
 	if(foes[0].HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, \"<i>You win. Jerk.</i>\" Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
-	//9999
+	clearMenu();
+	if(pc.lust() >= 33)
+	{
+		output("\n\nDo you do something sexual with her?");
+		if(pc.hasCock())
+		{
+			if(pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) 
+			{
+				addButton(0,"DoggyStyle",raskVelBabeGetsDoggieStyled);
+				output(" You could do her doggy style.");
+			}
+			else 
+			{
+				addDisabledButton(0,"DoggyStyle");
+				output(" You're too big to do her doggy style.");
+			}
+			//Huge Dick Ear Jackoff?
+			if(pc.cockVolume(pc.biggestCockIndex()) > foes[0].vaginalCapacity())
+			{
+				addButton(1,"EarFap",hugeDickEarJackoff);
+				output(" You could put those big ears to work on your big dick.");
+			}
+			else
+			{
+				addDisabledButton(1,"EarFap");
+				output(" If only you had a member that was too big for her pussy, then you could use her soft ears to rub one out.");
+			}
+		}
+		else
+		{
+			output(" Without a dick, you can't really fuck her, but you've still got other options open to you.");
+			addDisabledButton(0,"DoggyStyle");
+			addDisabledButton(1,"EarFap");
+		}
+		if(pc.hasVagina())
+		{
+			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
+			addButton(2,"RideHerFace",faceRidingRaskvelLadies);
+		}
+		else output(" If you had a pussy, you could ride her face. Sadly, you don't.");
+	}
+	output("\n\n");
+	addButton(14,"Leave",genericVictory);	
 }
 
 //Doggie Style
@@ -249,7 +324,7 @@ function raskVelBabeGetsDoggieStyled():void
 	if(foes[0].HP() < 1) output("lies there in the dirt, looking back at you with a curiously, slowly brightening expression. One of her hands lifts up, tracing along her upside-down tummy towards her frontal clit.");
 	else output("shudders in anticipation, removing her fingers to give you entrance, instead focusing entirely on her frontal clit.");
 
-	output("\n\nSeeing nothing but growing, eager assent on your once-foe, you rock your hips forward to place your [pc.cock " + x + "] against her plush, lube-oozing lips. Your [pc.cockHead " + x + "] spreads those plump vulvae like a curtain of oiled silk, slipping and sliding straight on past into the raskvel's almost virginally tight canal with the inexorable pressure of a horny " + player.mf("male","herm") + ". Despite the clutching tightness of her inner walls, the small alien's pussy becomes more and more comfortable the further you slide into it. Instead of a hellishly tight vice, it moulds around your " + cockDescript(x) + " into a warm, slick glove that could have been tailor-made for you.");
+	output("\n\nSeeing nothing but growing, eager assent on your once-foe, you rock your hips forward to place your [pc.cock " + x + "] against her plush, lube-oozing lips. Your [pc.cockHead " + x + "] spreads those plump vulvae like a curtain of oiled silk, slipping and sliding straight on past into the raskvel's almost virginally tight canal with the inexorable pressure of a horny " + pc.mf("male","herm") + ". Despite the clutching tightness of her inner walls, the small alien's pussy becomes more and more comfortable the further you slide into it. Instead of a hellishly tight vice, it moulds around your " + pc.cockDescript(x) + " into a warm, slick glove that could have been tailor-made for you.");
 	//Lose cockginity!
 	cockChange(x);
 	output("\n\n\"<i>Mmmmm,</i>\" the cute little lizard-woman coos from her place on the ground. She's drooling a little down her cheek, the one that's smushed flat against the ground, and her fingers are resolutely playing across her dick-dilated entrance, mopping the dripping juices up with her palm. Sometimes she even clutches at your cock and pulls, trying to drag you further into her. The raskvel's scaly legs twitch nervelessly as you slide home, deforming her belly in the outline of your [pc.cock " + x + "].");
@@ -270,7 +345,7 @@ function raskVelBabeGetsDoggieStyled():void
 		output(" with pleasant, smooth-scaled caresses. You sigh and push forward further, nestling directly into her intercrural embrace until you start to mix your pre with her plentiful, vaginal moisture.");
 	}
 	//RESUME!
-	output("\n\nGroaning in bliss, you feel your " + player.sheath(x) + " contact her squishy-soft cunt-lips");
+	output("\n\nGroaning in bliss, you feel your [pc.sheath " + x + "] contact her squishy-soft cunt-lips");
 	if(pc.balls > 0) output(", your [pc.balls] slapping heavily against one of her stiff buzzers");
 	output(", both of you shuddering in ecstatic relief at the feeling of being fully joined. You hold her like that for a moment to enjoy the simple pleasure. She seems equally pleased, only daring to roll her hips up and down and squeeze you with affectionate, internal muscles. The hot tightness clinging so tightly to your [pc.cock " + x + "] fills you with temporary contentment that is only ebbed away by the growing desire to cum, to climax so tremendously that you fill this petite alien with your [pc.cum].");
 	output("\n\nYou pull back slowly, inching your length out with sensuous slowness, both of you shuddering from the pleasant friction along your genitalia. The randy little raskvel whimpers at the slow emptying of her channel, begging, \"<i>No... put it... put it back in. P-please!</i>\" Her eyes close and her body shudders. \"<i>I need... I need more!</i>\"");
@@ -329,12 +404,11 @@ function raskVelBabeGetsDoggieStyled():void
 		output("\n\nAs your passion wanes, your dick remains stubbornly knotted inside the small girl's passage. She's suspended on your [pc.cock " + x + "] like the breeding bitch she's become, forced to let your [pc.cum] simmer in her vulnerable womb until your knot decides to deflate, which happens roughly thirty minutes later, after the last of your orgasm trickles its way inside.");
 	}
 	//EPILOGUE FOR BOTH
-	output("\n\nShe slumps onto her side, still trembling, and smiles, rubbing her hands back and forth all over her belly while you ready yourself to resume your journeys.");
+	output("\n\nShe slumps onto her side, still trembling, and smiles, rubbing her hands back and forth all over her belly while you ready yourself to resume your journeys.\n\n");
 	processTime(30+rand(5));
 	pc.orgasm();
 	processTime(5);
-
-	//9999
+	genericVictory();
 }
 
 //Huge Dick Ear Jackoff?
@@ -356,7 +430,7 @@ function hugeDickEarJackoff():void
 	output("\n\nShifting a bit further, you slide your hips up until you're seated next to your captive fuckpet, your iron-hard mast towering so high over her that it's shadow shades her face. You gather her ears together in your hands and smile down at her, wrapping them one at a time around your cock until you have two warm sleeves positioned at different points, perfect little handholds for you to squeeze and stroke with.");
 	output("\n\nThe horny little lizard-girl is already quivering from having her ears used so, and she softly pants, \"<i>N-no... don't be so... so lewd!</i>\" The last word is more of a feminine pleasure-squeal than a word. She licks her lips and stuffs three of of her four fingers inside herself, groping her small, pert bosom with eager squeezes. Groaning, her eyelids flutter low, and she chews on her lower lip before cooing, \"<i>Go on, jack off with my ears. You've gotten me this wet already.</i>\" She pulls her hand away to show you how sopping-wet her pussy has become, and the squelching sound her emptying snatch makes as her digits departs is music to your ears. Webs of glittering girl-cum hang between her hand and her cooch for a brief moment before she pushes back inside herself, openly schlicking. \"<i>Ungh! Please, hurry up!</i>\"");
 	output("\n\nNearly snickering at her abrupt shift, you squeeze down on your two perfect cocksleeves and begin to pump, reveling in the gentle textures as they tickle along your [pc.cockBiggest], squeezing you nicely as you twitch bigger and harder inside them. Pre-cum wells out of your cumslit almost immediately, trickling down the underside of your cock to collect in the first velvety wrapping. The inside goes slick with the slippery addition, frothing around the edges as you pump up and down. Your fists work faster and faster, sometimes twisting back and forth to add another layer of sensation to the exotic masturbation.");
-	output("\n\nAt the same time, the " + foes[0].skinColor + "-skinned creature is busy losing herself in the sensations assaulting her delicate psyche. Her inner ears must be wonderfully sensitive from the way she twitches and shakes with each stroke, and by the time your pre is dripping down to the second nearly frictionless cockpump, she's cumming so hard her eyes are crossed and a six-inch purplish tongue is hanging down past her chin, twitching weakly as she keens through her bliss. She looks completely lost to lust, a sight that spurs you to stroke faster.");
+	output("\n\nAt the same time, the " + foes[0].skinTone + "-skinned creature is busy losing herself in the sensations assaulting her delicate psyche. Her inner ears must be wonderfully sensitive from the way she twitches and shakes with each stroke, and by the time your pre is dripping down to the second nearly frictionless cockpump, she's cumming so hard her eyes are crossed and a six-inch purplish tongue is hanging down past her chin, twitching weakly as she keens through her bliss. She looks completely lost to lust, a sight that spurs you to stroke faster.");
 	output("\n\nYour pre-cum is bubbling out so quickly that it's almost a steady stream, and your [pc.cockBiggest] is swelling with tremendous need. You're going to blow soon; you can feel it inside you. Not wanting to waste the heavy load, you roll over to straddle the recovering raskvel, pinning her arms to her sides (and her hands inside her). She protests for a second until the feelings radiating down her ears and into her skull overwhelm her verbal capacity, shutting down that portion of her brain with bliss so exquisite that she's reduced to a babbling, cum-hungry mess. You pump your [pc.cockBiggest] faster and faster");
 	if(pc.cockTotal() == 2) output(", completely ignoring your other penis");
 	else if(pc.cockTotal() > 2) output(", completely ignoring your other penises");
@@ -367,15 +441,15 @@ function hugeDickEarJackoff():void
 	if(pc.cumQ() >= 500) output(" You rain down enough for her to swallow mouthful after mouthful all while the pooling sexual release forms a massive puddle below her.");
 	if(pc.cumQ() >= 5000) output(" If it weren't for the porous nature of the ground below, you'd like be filling a lake by now, but instead your [pc.cum] is likely draining down into some abandoned subterranean dwelling. Or, perhaps there's a lucky raskvel living down there, somewhere, about to get the pregnancy of her dreams.");
 	output("\n\nAs your orgasm winds down, you unwrap yourself and let the raskvel's ears fall away while you slide down. Once your spurting [pc.cockHeadBiggest] is low enough, you let loose one last spurt, right into her fist-spread lips, bathing her in the seed she seemed quite anxious for earlier. The raskvel shudders at this and begins to cum once more, nearly blacking out this time.");
-	output("\n\nYou smile as [pc.eachCock] slowly starts to sag, losing tumescence as you prepare to move on. The defeated alien girl is scooping your [pc.cum] off her face and into her swollen twat as you leave.");
+	output("\n\nYou smile as [pc.eachCock] slowly starts to sag, losing tumescence as you prepare to move on. The defeated alien girl is scooping your [pc.cum] off her face and into her swollen twat as you leave.\n\n");
 	processTime(20+rand(10));
 	pc.orgasm();
-	//9999
+	genericVictory();
 }
 
 //Face Riding
 //Ride face and make stick tail up bum.
-function faceRiding():void
+function faceRidingRaskvelLadies():void
 {
 	clearOutput();
 	output("Tossing your equipment aside, you loom over the defeated raskvel, unashamedly letting your eyes play over her perky breasts, wide hips, lengthy tail, and cute, feather-topped head. ");
@@ -398,13 +472,13 @@ function faceRiding():void
 	output("\n\nThe raskvel tries to say something, but all she accomplishes is sending lovely vibrations through your femine tinderbox, stoking the flames of passion higher and higher. After a particularly pleasant, face-creaming twinge of excitement, you back off enough to let the pussy-painted girl talk.");
 	output("\n\n\"<i>Please be gentle with my ears,</i>\" she begs, \"<i>They're sensitive.</i>\"");
 	output("\n\nThese things? You idly run your thumb along the inner lining of her long, flat ears. Her body shakes, and her pussy practically blooms, turning a deeper, darker purple while the lips open to reveal an entrance. A wicked idea strikes you then. A sexually stimulated partner will lick better than a bored one, after all. You begin to rhythmically caress her inner ear, watching the fluids leak down her legs and tail. She whimpers and trembles, lost in lost, panting out cute little no's while her body says yes. Once she's practically gushing juices, you grab hold of her thick tail and bend it double, plunging straight into her sodden box. The little slut's pussy clamps down so tightly that you don't think she could pull her tail out if she wanted to.");
-	output("\n\n\"<i>No... no...<i>\" she pants.");
+	output("\n\n\"<i>No... no...</i>\" she pants.");
 	output("\n\nYou stop touching her ears and grab her tail, stopping her from thrusting it in any further. Her protests stop immediately, and instead she gives a high-pitched mewl of distress.");
 	output("\n\nThe raskvel cries, \"<i>No-no-no... don't stop!</i>\" Her cheeks flush with color. \"<i>Give me more, please. I want... need more.</i>\"");
 	output("\n\nNodding to her, you release her tail and resume your rubbing of her ears, watching the twitches of pleasure shudder through her muscles. \"<i>This is the reward for being honest,</i>\" you coo as you press [pc.oneVagina] back into her face");
 	if(pc.balls > 0) output(", letting your [pc.sack] cover the rest of her head, forcing her to breathe in your musky aroma");
 	output(". She sniffs at your sex for a moment before her tongue lashes out, whiplike, burying itself between your folds with the vigor of a soldier's spear-thrust. Your channel goes from empty steaming box to stuffed quim in no time flat, and it couldn't be happier about it.");
-	output("\n\nThe raskvel's tail begins to pump in an out of her vagina as she works. You're surprised to see it disappear past the halfway point, where it's something like six inches wide, into the petite creature. Her wide hips seem to have more uses than simple seduction, if the immense insertion is anything to go by. The faster her tail goes, the faster her tongue works, and she's soon fucking your " + player.vaginaDescript(x) + " with wanton abandon, piercing your lips one moment, slapping your [pc.clit] the next, and slathering your vulva with licks before going back inside. The joining of cleft to mouth is so wet with spit and girlcum that sticky, bubbly strands connect the two of you at all times, even when your hips shake and pull away from the pleasure.");
+	output("\n\nThe raskvel's tail begins to pump in an out of her vagina as she works. You're surprised to see it disappear past the halfway point, where it's something like six inches wide, into the petite creature. Her wide hips seem to have more uses than simple seduction, if the immense insertion is anything to go by. The faster her tail goes, the faster her tongue works, and she's soon fucking your " + pc.vaginaDescript(x) + " with wanton abandon, piercing your lips one moment, slapping your [pc.clit] the next, and slathering your vulva with licks before going back inside. The joining of cleft to mouth is so wet with spit and girlcum that sticky, bubbly strands connect the two of you at all times, even when your hips shake and pull away from the pleasure.");
 	output("\n\n\"<i>Atta girl,</i>\" you coo as you let your body do as it will. Your [pc.hips] jerk in tiny little convulsions of pleasure against the cute raskvel's face, slathering her from nose to neck in girlish goo. Meanwhile, you continue to play with her ears. You actually have one in each hand, teasing the edges, stroking the insides, and sometimes even pinching at them. Whenever you pinch, you can feel her thrust her tail inside herself hard enough to send a jolt through her whole body.");
 	output("\n\nThe air is rife with the scent of aroused femininity, so thick that every cock in a four mile radius is likely erecting in tribute. Ecstasy is rising through your trembling honeypot");
 	if(pc.totalVaginas() > 1) output("s");
@@ -434,23 +508,74 @@ function faceRiding():void
 		output(" [pc.girlCum] on her chest and shoulders, marking her with a lusty stamp of sexual approval.");
 	}
 	output(" You sag back, eventually falling off her face as your climax has its way with you. Soft coos of pleasure slip through your [pc.lips], matched by the slight alien babe beside you. Both of you just suffered mind-meltingly strong orgasms, and it takes a little while to recover.");
-	output("\n\nLuckily, you're able to master your excitement first and gather your things while the raskvel is still twitching through her aftershocks. You yank the needles out of your ass as you prepare to leave. The clever little bitch has a matching set in her own.");
+	output("\n\nLuckily, you're able to master your excitement first and gather your things while the raskvel is still twitching through her aftershocks. You yank the needles out of your ass as you prepare to leave. The clever little bitch has a matching set in her own.\n\n");
 	processTime(25+rand(5));
 	pc.orgasm();
-	//9999
+	genericVictory();
 }
 
-//Loss vs Raskvel Scenes
-//Face-Sitting Footjobs
+//"Pay"
+function quotePayUnquoteFemRasks():void
+{
+	clearOutput();
+	output("Well, you can always pay another way and hope she goes easy on your wallet....");
+	foes = new Array();
+	chars["RASKVELFEMALE"].prepForCombat();
+	trace("CHECKIN FER DICKFIT: " + pc.cockVolume(0) + " HOLEFIT: " + foes[0].vaginalCapacity() + " E SHORT: " + foes[0].short);
+	//Dick Req
+	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) raskvelGirlsSitsIfTheyFits();
+	else if(pc.hasCock()) hugeDicksGetForceWorshippedByFemRaskvel();
+	//Tail-pegging
+	//Nondix
+	if(!pc.hasCock()) getRaskVelTailPegged();
+}
 
-function raskvelGirlsSitsIfTheyFits():void
+
+//Loss vs Raskvel Scenes
+function defeatRoutingForFemRasks():void
+{
+	var choices:Array = new Array();
+	var args:Array = new Array();
+	
+	//Face-Sitting Footjobs
+	//Dick Req
+	if(pc.hasCock() && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0) {
+		choices[choices.length] = raskvelGirlsSitsIfTheyFits;
+		args[args.length] = true;
+	}
+	//Tail-pegging
+	//Nondix
+	if(!pc.hasCock())
+	{
+		choices[choices.length] = getRaskVelTailPegged;
+		args[args.length] = true;
+	}
+	//Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
+	if(pc.hasCock() && pc.biggestCockVolume() > foes[0].vaginalCapacity())
+	{
+		choices[choices.length] = hugeDicksGetForceWorshippedByFemRaskvel();
+		args[args.length] = undefined;
+	}
+	//Get Pegged while Double Penetrating Her
+	if(pc.cockTotal() > 1 && pc.cockThatFits(foes[0].vaginalCapacity()) >= 0 && pc.cockThatFits2(foes[0].vaginalCapacity()))
+	{
+		choices[choices.length] = getPeggedWhileDoublePenetrate();
+		args[args.length] = undefined;	
+	}
+	var select:int = rand(choices.length);
+	if(args[select] == undefined) choices[select]();
+	else choices[select](args[select]);
+}
+
+//Face-Sitting Footjobs
+function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
 	//{Combat Loss: Have a Dick}
-	if(9999 == 0)
+	if(combat)
 	{
-		output("\n\nYou slump to the ground, ");
+		output("You slump to the ground, ");
 		if(pc.HP() < 1) output("utterly beaten and unable to continue the fight");
 		else output("far too aroused to fight; all your mind can think about is sex, and its irresistible need to get off");
 		output(". Before you can try and move, to escape the little reptile-girl you were so sure you could handle, you feel tiny, leathery feet pressing down on you, pinning your limp body to the ground. You try to move, to pull yourself free of the domineering slut's grip. She holds you fast, though, your body too ");
@@ -466,9 +591,10 @@ function raskvelGirlsSitsIfTheyFits():void
 		output("Well, let's be honest. You don't want to fight the little scaly slut, and the way she moves those hips and flaunts her pussy... you couldn't resist that if you tried. You pull out a credit chit and toss it her way, and the tiny raskvel girl snatches it eagerly, stumbling to catch it. She looks awfully surprised when you decide to pay up, but the look of glee on her face is priceless. She must really need the cash!");
 		output("\n\nBut just as you're starting to warm up to the girl, her look of glee turns into one of lust, and she's on you in a moment, tossing her wrench aside and pushing you down onto the ground. You decide to go along with it, letting her man-handle you onto your back, pinning you down with one of her warm, leathery soles.");
 		//{Combine}
-		//9999 charge money
+		//charge money
+		payRaskvel();
 	}
-	output("\n\nThe raskvel leans down, her great big ears flopping onto your face as she pokes around at your gear, slowly stripping it off of your piece by piece. As she does so, she simply says, <i>\"They're sensitive,\"</i> but the command is clear and present. You reach up and grab the wide, rounded ends of her floppy ears, rolling the thin, svelte flesh between your fingers. Your captor barely stifles a little gasp, suddenly struggling to pull your [pc.lowerGarments] off as you tease her. <i>\"N-not so rough,\"</i> she snaps, giving you a harsh slap on the thigh. You wince, but the way her scales flush a darker " + foes[0].skinColor + " tells you you're on the right track. You work your way up from the rims, your fingertips brushing and teasing across the interior, marvelling at the softness and warmth of them. In response, her body shudders, breath quickening as the raskvel tosses the last of your kit aside. You've nearly worked your way to the bases, starting to roll the floppy ears in your hands by the time she's done, and she quickly pushes you back onto your back.");
+	output("\n\nThe raskvel leans down, her great big ears flopping onto your face as she pokes around at your gear, slowly stripping it off of your piece by piece. As she does so, she simply says, <i>\"They're sensitive,\"</i> but the command is clear and present. You reach up and grab the wide, rounded ends of her floppy ears, rolling the thin, svelte flesh between your fingers. Your captor barely stifles a little gasp, suddenly struggling to pull your [pc.lowerGarments] off as you tease her. <i>\"N-not so rough,\"</i> she snaps, giving you a harsh slap on the thigh. You wince, but the way her scales flush a darker " + foes[0].skinTone + " tells you you're on the right track. You work your way up from the rims, your fingertips brushing and teasing across the interior, marvelling at the softness and warmth of them. In response, her body shudders, breath quickening as the raskvel tosses the last of your kit aside. You've nearly worked your way to the bases, starting to roll the floppy ears in your hands by the time she's done, and she quickly pushes you back onto your back.");
 	output("\n\n<i>\"D-don't even try to make me cum that easy!\"</i> she snaps, righting herself. You get a clear glimpse at her shamelessly displayed cunt, and smile to yourself as tiny beads of lubricant dribble down, sliding down her thighs to dribble onto your exposed [pc.cockBiggest]. Your member stiffens in response, and the raskvel's quick to grab it, squeezing your prick between her tiny, but surprisingly deft, fingers. She gives the rod a few languid strokes as she looks you over, her other fingers idly circling her cunt, flicking across her two alien clits.");
 	output("\n\n<i>\"Now... what should I do with a trespasser like you?\"</i> she teases, putting a finger to her chin in a mock pose of thought. Your eyes are glued to her twat, hovering so close to your own hardening [pc.cockBiggest] that you can feel the heat blossoming from her dripping sex. She sees what you're thinking all too clearly and giggles, sticking her long purple tongue out at you. <i>\"Oh, no, you did </i>not<i> fly a bajillion lightyears all the way out to </i>my>i> planet just to stick your dick in an alien pussy, did you? Well, you're mine now, so I'm going to show you how my people play!\"</i>");
 	output("\n\nShe says that with a certain primal hunger, eyes glinting as she scoots forward, knees pressing into the pits of your arms; her cunt hovers barely an inch from your chin, so aroused from the ear-wank that she's practically pouring her lube out onto your neck. A slight shift of her hips brings it right to your face, the lower clit pressing into your lip. It's a simple thing to suck it up, planting a kiss at its swollen head and sucking gently. The raskvel's reaction is priceless, she barely stiffles a little whimper as you suckle her clit, biting her lip as her skin flushes darker. She starts to try and rebuke you, fist balling for another swat, but you cut her off with a sharper suck, your tongue darting into her puffy sex to lap at the free-flowing juices. She gives a whine of pleasure, breath catching as your [pc.tongue] probes into her sodden sex.");
@@ -483,6 +609,7 @@ function raskvelGirlsSitsIfTheyFits():void
 	else if(pc.balls > 1) output("your balls feel utterly emptied");
 	else output("her belly looks positively bulging");
 	output(".");
+	cockChange(true,false);
 	output("\n\nYou collapse, panting hard as the raskvel whore drains the cum from your cock, taking her fill of your orgasmic offering to fill her alien womb. When she's done, you're left with ");
 	if(pc.balls == 1) output("an aching ball");
 	else if(pc.balls > 1) output("aching balls");
@@ -496,24 +623,27 @@ function raskvelGirlsSitsIfTheyFits():void
 	processTime(20+rand(10));
 	pc.orgasm();
 
-	if(9999 == 0)
+	if(combat)
 	{
 		//end combat
+		output("\n\n");
+		payRaskvel();
+		genericLoss();
 	}
 	else
 	{
-		menu();
+		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
 }
 
 //Tail-pegging
-function getRaskVelTailPegged():void
+function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
 	//{Combat Loss: Don't Have a Dick}
-	if(9999 == 0)
+	if(combat)
 	{
 		output("\n\nYou fall to your [pc.kness], too ");
 		if(pc.HP() < 1) output("badly beaten ");
@@ -527,7 +657,8 @@ function getRaskVelTailPegged():void
 		clearOutput();
 		output("Well, let's be honest. You don't want to fight the little scaly slut, and the way she moves those hips and flaunts her pussy... you couldn't resist that if you tried. You pull out a credit chit and toss it her way, and the tiny raskvel girl snatches it eagerly, stumbling to catch it. She looks awfully surprised when you decide to pay up, but the look of glee on her face is priceless. She must really need the cash!");
 		output("\n\nShe recomposes herself a moment later, leaning back against her wrench planted in the ground. <i>\"Mmm, now wasn't that easy?\"</i> she teases, licking her lips, eying you, <i>\"Just for that, I guess I'll throw in something for you in return. You might now have a dick for baby-making, but I bet I can get your money's worth.\"</i>");
-		//9999 deduct credits!
+		//deduct credits!
+		payRaskvel();
 	}
 	//{Combine:}
 	output("\n\nYou follow her gaze as she hungrily takes in your body, eyes trailing from your [pc.legs] to your [pc.hips]; she makes a little twirling motion with her finger, and you slowly turn around, getting onto all ");
@@ -542,7 +673,7 @@ function getRaskVelTailPegged():void
 	output("\n\nThe little raskven spends nearly a minute winding her way around your body, caressing and teasing your [pc.skinFurScales], reaching around to squeeze a [pc.nipple]");
 	if(pc.biggestTitSize() >= 1) output(" and cup a breast");
 	output(" before finally standing before you, a pair of fingers stretching her bi-clitted cunt wide, the stretchy sex already beading with anxious lubricant, awaiting a cock that'll never come. <i>\"Alright, if you wanna get off too, you better get me started,\"</i> she commands, presenting her pussy to your face, so close that her clits practically bump your chin and nose. It doesn't take anything more than that to get you working; the scent alone wafting from her snatch, the potent aroma of sex and desire, is enough to lure your tongue out to drag from clit to clit, lapping at the sweet secretions of her womanhood. The raskvel's entire body seems to quake at that first touch, her hands grabbing your hair to steady herself as your [pc.tongue] probes ahead, lapping up a bead of feminine slime before pushing past her feminine folds. She accomodates you easily; a twat made to take cocks and lay eggs isn't able to come down hard enough to stop your delving oral organ, only gently squeeze and massage it, slathering you in lube.");
-	output("\n\nThe raskvel slut moans and groans, her " + foes[0].skinColor + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers digging through your hair. You take that as a sign of her enjoyment, licking harder, reaching deeper until she's practically cumming around your tongue, her fem-slime pouring out to poll between your hands. Just as she's on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
+	output("\n\nThe raskvel slut moans and groans, her " + foes[0].skinTone + " scales darkening as you eat her out, hips slowly starting to grind against your face, bucking and squealing as your tongue goes deeper and deeper, her fingers digging through your hair. You take that as a sign of her enjoyment, licking harder, reaching deeper until she's practically cumming around your tongue, her fem-slime pouring out to poll between your hands. Just as she's on the verge, hips quaking and cunt spasming, the raskvel pushes herself off you, breathing hard, her tiny tits heaving as her knees quake.");
 	output("\n\n<i>\"T-that's enough!\"</i> she gasps, putting a hand to her chest, as if to calm her hammering heart. <i>\"I'm not gonna cum before you. No way!\"</i>");
 	output("\n\nSo haughty all of a sudden! Well, on your hands and knees, you can't do much to stop her as the little raskvel gives you a rough shove, rolling you onto your back. You're quickly greeted with a new view of the little slut's drooling cunt as she straddles your shoulders, looking down into your eyes. You reach out to lick her again, but she grabs your tongue inbetween her fingers, tsking. Instead, she looks back over her shoulder, and you can feel something slithering across your belly, warm and soft and agile. Her tail brushes against your thigh, making you shudder instinctively. The tiny tip wraps around one of your [pc.legs], slithering down and down until you feel a sudden, sharp pressure against the tight-clenched ring of your [pc.asshole]. Your stifle a gasp as she gives just the slightest push... and your muscles can do nothing to hold her back. The raskvel giggles maniacally as you writhe beneath her; her tail slithers in inch by inch, growing from tiny tip to an inch wide, with more to go. You groan and moan and arch your back, breath coming hard as you're utterly violated by the soft by powerful alien appendage. Her sinuous tendril is unstoppable, unrelenting no matter how hard your [pc.asshole] squeezes and wrings it, the raskvel pushes onward, thrusting up your ass until your stomach's practically bulging.");
 	buttChange(100,true,true,false);
@@ -558,13 +689,15 @@ function getRaskVelTailPegged():void
 	processTime(40+rand(20));
 	pc.orgasm();
 	//Incombat
-	if(9999 == 0)
+	if(combat)
 	{
-
+		output("\n\n");
+		payRaskvel();
+		genericLoss();
 	}
 	else
 	{
-		menu();
+		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
 }
@@ -684,7 +817,9 @@ function hugeDicksGetForceWorshippedByFemRaskvel():void
 	output("\n\nThe huge spunk-bubble is twisted off just past the top of your penis, and the whole mess is pulled away. The cool feeling of evaporating sexual juices causes [pc.eachCock] to shrivel faster while recover. Unfortunately, the raskvel has time to rummage through your equipment and tie off her prize before she goes. She even waves goodbye, saying, <i>\"Thanks for the good time, love. Be a dear and come back later if you want to see how your juice took.\"</i>");
 	processTime(30+rand(10));
 	pc.orgasm();
-	//9999
+	output("\n\n");
+	payRaskvel();
+	genericLoss();
 }
 
 //Get Pegged while Double Penetrating Her
@@ -733,9 +868,9 @@ function getPeggedWhileDoublePenetrate():void
 	output("of your dicks in her passages, particularly the purple interior of her soaking-wet cunt. She doesn't allow that to come about. No, her foot, still stained with moisture and cock-scent, slams down on your chest");
 	if(pc.biggestTitSize() >= 1) output(", right between your [pc.fullChest]");
 	output(", pinning you you flat on the ground. She follows up before you can react, vaulting onto your [pc.hips] so that your [pc.cocks] are pinned behind her smooth-scaled bottom, one threading so perfectly between her cheeks that you nearly blow your load all over her lovely crack.");
-	output("\n\nSmirking and flexing her cheeks, she squeezes that [pc.cock " + y + "] with teasing compressions of her surprisingly large bottom, rolling her hips from side to side to grind her purplish pussy over your [pc.skinFurScales]. You can feel both her clits dragging along, leaving a trail of potent femslime behind them, staining you with the tiny creature's unmistakably girlish aroma. She giggles, high pitched and tittering, before admitting, <i>\"I was kind of hoping you wouldn't pay, ya know? Not with this much dick banging along here.\"</i>  She lifts herself up, letting that ass-dragging prick slip its tip against her clenching pucker. <i>\"Be sure and let me know if you're ever in the market for a wife..."</i>\"  She twists a " + pc.cockDescript(x) + " past the ass-obsessed penis so that its [pc.cockHead " + x + "] nestles in between her violet lips, nestled deep in that juicy entrance without quite going inside. She whimpers. <i>\"...or a harem girl.\"</i>");
+	output("\n\nSmirking and flexing her cheeks, she squeezes that [pc.cock " + y + "] with teasing compressions of her surprisingly large bottom, rolling her hips from side to side to grind her purplish pussy over your [pc.skinFurScales]. You can feel both her clits dragging along, leaving a trail of potent femslime behind them, staining you with the tiny creature's unmistakably girlish aroma. She giggles, high pitched and tittering, before admitting, <i>\"I was kind of hoping you wouldn't pay, ya know? Not with this much dick banging along here.\"</i>  She lifts herself up, letting that ass-dragging prick slip its tip against her clenching pucker. <i>\"Be sure and let me know if you're ever in the market for a wife...\"</i>  She twists a " + pc.cockDescript(x) + " past the ass-obsessed penis so that its [pc.cockHead " + x + "] nestles in between her violet lips, nestled deep in that juicy entrance without quite going inside. She whimpers. <i>\"...or a harem girl.\"</i>");
 	output("\n\nYour start to answer, but before you can breathe a single word, her muscular thighs give a final quiver and turn to jello. Her body, slight as it is, is entirely supported on your [pc.cocks] for an agonizing moment. Her pussy gives up almost immediately, greedily spreading around your [pc.cock " + x + "] and swallowing the first few inches, canting the hungry slut forward so that she has to catch herself on your [pc.chest]. She groans in excitement and pinches playfully at your nipples, and then her rosebud relaxes enough to accept your [pc.cock " + y + "], the tight ring dragging along your secondary length with blissful pressure. You exhale so loudly that it sounds almost like a moan and lift your own [pc.hips] to accelerate the diminutive slut's dick-descent.");
-	cockChange(true,true,false);
+	cockChange(true,false);
 	output("\n\n<i>\"Rowdy little, " + pc.mf("stud","she-stud") + ", aren't ya,\"</i> the double-stuffed raskvel cooes in between lurid moans. Her eyelashes flutter as she sinks deeper onto your paired shafts, convulsing and squeezing them with her internal muscles so tightly that you can feel yourself through her thin, inner walls. The two hard bumps that are her prominent clitties press rigidly against your lengths as she moves, both felt on your cunt-stuffing phallus and part of one against your ream-ready dick. You convulse slightly under the onslaught of sensation, faced with twice the pleasure any unmodded human would ever be able to experience and still somehow holding on. In spite of your shudders, the little dominatrix continues her journey towards your crotch, dripping wetness with such ferocity that the excess coats both your dicks.");
 	output("\n\nSmooth-scaled butt-cheeks collide with your well-glossed loins as she finishes taking both your poles ");
 	if(pc.hasKnot(x) && pc.hasKnot(y)) output("to their knots");
@@ -750,10 +885,10 @@ function getPeggedWhileDoublePenetrate():void
 	else output("kisses your [pc.belly]");
 	output(". <i>\"Luckily this girl knows exactly how to tame beasts like these.\"</i>");
 
-	output("\n\nThe petite scale-slut wraps both arms around your neck, arches her back up, and begins to thrust. Her juicy snatch glides a good four or five inches upMy sm your length, caressing you with the unusually puffy, sensitive labia that surround her passion-inflamed pussy. The clenching ring of her pucker tortures your " + cockDescript(y) + " in an entirely different, much tighter way, squeezing down so tightly that it almost pains you. She holds there and begins to undulate her hips, rocking one side up and the other down, twisting your members through her tunnels, giving them an internal massage they're unlikely to ever forget. The lewd schlicks and squishes are an irresistable, clarion call to your subconscious, a veritable siren's call to orgasm that digs at your subconscious, commanding you to flood her cunt with spunk.");
+	output("\n\nThe petite scale-slut wraps both arms around your neck, arches her back up, and begins to thrust. Her juicy snatch glides a good four or five inches upMy sm your length, caressing you with the unusually puffy, sensitive labia that surround her passion-inflamed pussy. The clenching ring of her pucker tortures your " + pc.cockDescript(y) + " in an entirely different, much tighter way, squeezing down so tightly that it almost pains you. She holds there and begins to undulate her hips, rocking one side up and the other down, twisting your members through her tunnels, giving them an internal massage they're unlikely to ever forget. The lewd schlicks and squishes are an irresistable, clarion call to your subconscious, a veritable siren's call to orgasm that digs at your subconscious, commanding you to flood her cunt with spunk.");
 	output("\n\nBefore you can give her the creaming she deserves, the gleeful little fuckdoll's eyes roll back, and a torrent of fragrant femslime erupts from her twitching box, showering your groin with more of her lewd enjoyment. She whimpers, mouth-agape, and digs her fingertips into your back. You watch in awe as a fully six-inch long tongue rolls out of her mouth, and she quickly begins to kiss you with it, sliding it up the side of your jaw before she forces it into your mouth and begins to french you with alien abandon. Abruptly, she slams her fertile thighs back against your own, pinning you down and grinding her snatch and ass as hard against you as her body will allow.");
 	output("\n\n[pc.EachCock] bloats anxiously, and you briefly struggle to control the climactic contractions of your abdominal muscles as they start you on the path to an explosive release. At the same time, the raskvel is already coming back down, locking eyes with you and intentionally contracting and squeezing her muscles to massage your members. She breathily pants, <i>\"Give it to me, give me all that cum.\"</i>  She shivers and croons in ecstasy, starting a second orgasm of her own even as your body is quaking towards its own release. <i>\"Give me your babies, off-worlder!\"</i>");
-	output("\n\nOn command, the " + cockDescript(x) + " you've got ");
+	output("\n\nOn command, the " + pc.cockDescript(x) + " you've got ");
 	if(pc.cocks[x].cLength() <= 14) output("hilted inside her");
 	else output("rammed against whatever her species has for a cervix");
 	output(" throbs and explodes, shooting lightning bolts of passion up your spine and [pc.cumColor] ");
@@ -788,5 +923,13 @@ function getPeggedWhileDoublePenetrate():void
 	pc.orgasm();
 	processTime(200+rand(50));
 	//Pass time and lose some cash!
-	//9999
+	payRaskvel();
+	output("\n\n");
+	genericLoss();
+}
+
+function payRaskvel():void
+{
+	if(pc.credits - 100 < 0) pc.credits = 0;
+	else pc.credits -= 100;
 }

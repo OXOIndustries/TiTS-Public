@@ -77,6 +77,7 @@
 		public static const VENUSPITCHER:int						   = 34;
 		public static const PANDA:int 								   = 40;
 		public static const MIMBRANE:int							   = 41;
+		public static const RASKVEL:int 							   = 42;
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;

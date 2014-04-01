@@ -1165,9 +1165,11 @@
 					buffer = upperGarments();
 					break;
 				case "lowerGarments":
+				case "underGarments":
 					buffer = lowerGarments();
 					break;
 				case "lowerGarment":
+				case "underGarment":
 					buffer = lowerGarment();
 					break;
 				case "originalRace":

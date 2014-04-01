@@ -195,7 +195,7 @@
 						//Find thinnest cock
 						x = target.thinnestCockRatioIndex();
 						//Dick gets slightly closer to very thick
-						if(target.cocks[x].cThicknessRatioRaw < 1.7 && target.cockThicknessUnlocked(x, target.cocks[x].cThicknessRationRaw + 0.1) && rand(3) == 0 && changes < changeLimit)
+						if(target.cocks[x].cThicknessRatioRaw < 1.7 && target.cockThicknessUnlocked(x, target.cocks[x].cThicknessRatioRaw + 0.1) && rand(3) == 0 && changes < changeLimit)
 						{
 							//version 1
 							if(rand(2) == 0) kGAMECLASS.output("\n\nSomething tickles at your crotch. You glance around and idly scratch, but it doesn't go away. A quick check reveals that you're getting a little bit thicker, that much closer to having a big, fat cock.");

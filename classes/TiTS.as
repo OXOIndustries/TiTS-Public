@@ -94,6 +94,7 @@
 		include "../includes/sera.as";
 		include "../includes/mimbranes.as";
 		include "../includes/vko.as";
+		include "../includes/raskvelFemaleFight.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

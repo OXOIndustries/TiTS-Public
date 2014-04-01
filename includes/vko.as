@@ -68,12 +68,18 @@ function approachVKo(showShit:Boolean = true):void {
 	}
 	//menu heaaar
 	clearMenu();
-	//addButton(0,"Supplies",);
+	addButton(0,"Supplies",vkoSupplies);
 	addButton(1,"Examination",getDiseaseProbedYo);
 	if(pc.HP() < pc.HPMax()) addButton(2,"Heal",getHealedByVKo);
 	else addDisabledButton(2,"Heal");
 	addButton(4,"CustomInput",customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss);
 	addButton(14,"Back",mainGameMenu);
+}
+
+function vkoSupplies():void
+{
+	shopkeep = chars["VKO"];
+	buyItem();
 }
 
 //Disease Examination:

@@ -118,7 +118,11 @@
 			var TFList:Array = new Array();
 			//#1 Make dick a quarter inch longer.
 			if(target.hasCock() && (target.shortestCockLength() < 12 || (target.shortestCockLength() < 19 && target.hasPerk("Hung"))))
+			{
 				TFList[TFList.length] = 1;
+				TFList[TFList.length] = 1;
+				TFList[TFList.length] = 1;
+			}
 			//#2 Make balls one to two tenths of an inch bigger.
 			if(target.hasCock() && target.balls > 0 && target.ballSizeRaw < 4)
 				TFList[TFList.length] = 2;
@@ -186,17 +190,17 @@
 						if(rand(3) == 0)
 						{
 							kGAMECLASS.output("You adjust your package and fine [pc.oneCock] a little more ");
-							if(target.cocks[x].cLength <= 8) kGAMECLASS.output("hand-filling");
-							else if(target.cocks[x].cLength <= 15) kGAMECLASS.output("overwhelming");
+							if(target.cocks[x].cLength() <= 8) kGAMECLASS.output("hand-filling");
+							else if(target.cocks[x].cLength() <= 15) kGAMECLASS.output("overwhelming");
 							else kGAMECLASS.output("tremendously large");
 							kGAMECLASS.output(" than before. The change is minute enough that you'd have to measure to ascertain the difference, but bigger is bigger.");
 						}
 						//Alternate
 						else if(rand(2) == 0 && !target.isNude())
 						{
-							kGAMECLASS.output("Aware of a certain tightness in your [pc.underGarment], you shift your junk. It's ever so slightly larger.");
-							if(target.cocks[x].cLength <= 10) kGAMECLASS.output(" You'll be hung like a horse in no time.");
-							else if(target.cocks[x].cLength <= 15) kGAMECLASS.output(" You'll be a stallion in no time.");
+							kGAMECLASS.output("Aware of a certain tightness in your [pc.underGarments], you shift your junk. It's ever so slightly larger.");
+							if(target.cocks[x].cLength() <= 10) kGAMECLASS.output(" You'll be hung like a horse in no time.");
+							else if(target.cocks[x].cLength() <= 15) kGAMECLASS.output(" You'll be a stallion in no time.");
 							else kGAMECLASS.output(" You'll be the biggest stud in the galactic pasture in no time.");
 						}
 						//Alternate 2
@@ -209,7 +213,7 @@
 							if(target.cockTotal() > 1) kGAMECLASS.output(" on one of them");
 							kGAMECLASS.output(".");
 						}
-						target.cocks[x].cLength += 0.25;
+						target.cocks[x].cLength(0.25);
 					}
 					else
 					{
@@ -354,8 +358,8 @@
 						kGAMECLASS.output(" from the change. You whicker without meaning to. Mares aren't really supposed to be that stacked anyway.");
 						for(x = 0; x < target.bRows(); x++)
 						{
-							if(target.breastRows[x].breastRating > 10) target.breastRows[x].breastRating -= 4 + rand(3);
-							else target.breastRows[x].breastRating -= 1;
+							if(target.breastRows[x].breastRating() > 10) target.breastRows[x].breastRating(-4 + -1 * rand(3));
+							else target.breastRows[x].breastRating(-1);
 						}
 					}
 					else
@@ -640,19 +644,18 @@
 					{
 						if (target.breastRatingUnlocked(x, 0))
 						{
-							target.breastRows[x].breastRating -= 3 + rand(3);
+							target.breastRows[x].breastRating(-3-rand(3));
 							bRatingChange = true;
 						}
 						
-						if(target.breastRows[x].breastRating < 0) target.breastRows[x].breastRating = 0;
+						if(target.breastRows[x].breastRating() < 0) target.breastRows[x].breastRating(0,true);;
 					}
-					
 					if (bRatingChange)
 					{					
 						kGAMECLASS.output("Every breast beneath your top row has apparently been shrinking, judging by the diminished size of your secondary bust");
 						if(target.bRows() > 2) kGAMECLASS.output("s");
 						kGAMECLASS.output(". ");
-						if(target.breastRows[0].breastRating >= 1) kGAMECLASS.output("The " + target.breastDescript(0) + " above are as nice as they've ever been,");
+						if(target.breastRows[0].breastRating() >= 1) kGAMECLASS.output("The " + target.breastDescript(0) + " above are as nice as they've ever been,");
 						else kGAMECLASS.output("The chest above remains unchanged,");
 						kGAMECLASS.output(" but down south, you're ");
 						
@@ -660,7 +663,7 @@
 						//Find biggest secondary row
 						for(x = 1; x < target.bRows(); x++)
 						{
-							if(target.breastRows[x].breastRating > biggestLowTits) biggestLowTits = target.breastRows[x].breastRating;
+							if(target.breastRows[x].breastRating() > biggestLowTits) biggestLowTits = target.breastRows[x].breastRating();
 						}
 						if(biggestLowTits < 1) kGAMECLASS.output("practically flat aside from the slight bumps of your " + target.nippleDescript(1) + ".");
 						else if(target.breastRows[0].breastRating < 1) kGAMECLASS.output("getting closer to your top side's flatness.");
@@ -722,6 +725,7 @@
 						else kGAMECLASS.output("obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.");
 						kGAMECLASS.output(" More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.");
 						target.shiftCock(cockToBe,GLOBAL.EQUINE);
+						target.cocks[cockToBe].cLength(3+rand(4));
 						target.lust(50 + rand(10));
 					}
 					else

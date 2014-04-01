@@ -295,6 +295,29 @@ function jungleDeepEncounters():Boolean {
 	return false;
 }
 
+function rustPlainsEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+				
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+
+
 function anonsBarAddendums():void {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();

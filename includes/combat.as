@@ -1116,6 +1116,9 @@ function enemyAI(aggressor:Creature):void
 		case "mimbrane":
 			mimbraneAI();
 			break;
+		case "female raskvel":
+			raskvelChickAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1159,6 +1162,10 @@ function victoryRouting():void
 	{
 		defeatMimbrane();
 	}
+	else if(foes[0] is RaskvelFemale)
+	{
+		victoryVsRaskvel();
+	}
 	else genericVictory();
 }
 
@@ -1196,6 +1203,10 @@ function defeatRouting():void
 	else if (foes[0] is Mimbrane)
 	{
 		beatUpByAFuckinDishcloth();
+	}
+	else if(foes[0] is RaskvelFemale)
+	{
+		defeatRoutingForFemRasks();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1357,6 +1368,9 @@ function startCombat(encounter:String):void
 			break;
 		case "mimbrane":
 			chars["MIMBRANE"].prepForCombat();
+			break;
+		case "RaskvelFemale":
+			chars["RASKVELFEMALE"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

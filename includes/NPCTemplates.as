@@ -63,7 +63,6 @@
 	if (!justUpdate || (justUpdate && chars["PENNY"] == undefined))
 	{
 		chars["PENNY"] = new classes.Characters.Penny();
-
 	}
 	if (!justUpdate || (justUpdate && chars["BURT"] == undefined))
 	{
@@ -122,7 +121,15 @@
 	{
 		chars["MIMBRANE"] = new classes.Characters.Mimbrane();
 	}
-	
+	if (!justUpdate || (justUpdate && chars["RASKVELFEMALE"] == undefined))
+	{
+		chars["RASKVELFEMALE"] = new classes.Characters.RaskvelFemale();
+	}
+	if (!justUpdate || (justUpdate && chars["VKO"] == undefined))
+	{
+		chars["VKO"] = new classes.Characters.VKo();
+	}
+
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

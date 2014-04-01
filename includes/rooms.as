@@ -1419,7 +1419,7 @@ function initializeRooms():void
 	rooms["216"] = new RoomClass(this);
 	rooms["216"].roomName = "RUST\nFIELDS";
 	rooms["216"].description = "You're standing the middle of the Tarkus' famed rust fields, so called thanks to the endless tracks of discarded, rusting machinery. Reddish flakes blow by your [pc.feet] on arid, metallic-tasting breezes, and the unmistakable tang of ancient pollution clings to your tongue with every breath. The place is a ruin of wasted potential and shattered dreams with the only visible sign of civilization rising up to the north: Novahome, a starship-turned native city.";
-	rooms["216"].runOnEnter = undefined;
+	rooms["216"].runOnEnter = rustPlainsEncounters;
 	rooms["216"].northExit = "215";
 	rooms["216"].westExit = "217";
 	//rooms["216"].eastExit = "264";
@@ -1433,7 +1433,7 @@ function initializeRooms():void
 	rooms["217"] = new RoomClass(this);
 	rooms["217"].roomName = "RUST\nFIELDS";
 	rooms["217"].description = "Mounds of rusted machinery, ancient hulks, and plastics pile up around you into trackless dunes to the east, south, and west. Your every movement is chased by the soft crunching of metal flakes breaking under[pc.foot], and you're constantly spotting new oddities in the mess. They're all too damaged, rotten, or rusted to be useful. Here in the shadow of the Nova, it's likely the area has been picked clean of valuables.";
-	rooms["217"].runOnEnter = undefined;
+	rooms["217"].runOnEnter = rustPlainsEncounters;
 	rooms["217"].westExit = "218";
 	rooms["217"].eastExit = "216";
 	rooms["217"].southExit = "238";
@@ -1446,7 +1446,7 @@ function initializeRooms():void
 	rooms["218"] = new RoomClass(this);
 	rooms["218"].roomName = "RUST\nFIELDS";
 	rooms["218"].description = "This close to the nova, you can't help but be impressed by its sheer size and durability. Even though the hull is heavily scaled with rust, the metal appears sound underneath the crusty, red-flecked layer. This is clearly a ship that was meant to last a very, very long time, and it has. All around, small, uneven dunes of dirt, dust, and rust rise up, hiding half-buried garbage from a variety of different races. You can walk across them to the east, west, and south. The Nova blocks passage to the north.";
-	rooms["218"].runOnEnter = undefined;
+	rooms["218"].runOnEnter = rustPlainsEncounters;
 	rooms["218"].westExit = "219";
 	rooms["218"].eastExit = "217";
 	rooms["218"].southExit = "237";
@@ -1459,7 +1459,7 @@ function initializeRooms():void
 	rooms["219"] = new RoomClass(this);
 	rooms["219"].roomName = "RUST\nFIELDS";
 	rooms["219"].description = "An unstable pile of rusted ships and gutted battle tanks has been built up to the southwest, perhaps stacked there by natives sorting through the junk for still-usable treasures. Regardless, the massive mound is too sheer and rusted to climb. If you tried, you'd either tip it over onto yourself or just cut yourself on erosion-sharpened metal. You can traverse around it by going west or south, or you could head east in the shadow of the Nova.";
-	rooms["219"].runOnEnter = undefined;
+	rooms["219"].runOnEnter = rustPlainsEncounters;
 	rooms["219"].westExit = "220";
 	rooms["219"].eastExit = "218";
 	rooms["219"].southExit = "236";
@@ -1472,7 +1472,7 @@ function initializeRooms():void
 	rooms["220"] = new RoomClass(this);
 	rooms["220"].roomName = "RUST\nCANYON";
 	rooms["220"].description = "You're standing in the shadow of two different mounds of metal. To the northeast, the Nova towers above you. To the south and west, a huge pile of busted machinery has been stacked at least thirty feet into the air. Well-trod paths have been worn through the metallic dust between the two obstacles, leading north between the monolithic wreckages. You can also travel east to get out of this narrow, ferrous valley and out into the rust fields.";
-	rooms["220"].runOnEnter = undefined;
+	rooms["220"].runOnEnter = rustPlainsEncounters;
 	rooms["220"].northExit = "221";
 	rooms["220"].eastExit = "219";
 	rooms["220"].planet = "PLANET: TARKUS";
@@ -1484,7 +1484,7 @@ function initializeRooms():void
 	rooms["221"] = new RoomClass(this);
 	rooms["221"].roomName = "RUST\nCANYON";
 	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is thick with dust and stagnant. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
-	rooms["221"].runOnEnter = undefined;
+	rooms["221"].runOnEnter = rustPlainsEncounters;
 	rooms["221"].westExit = "222";
 	rooms["221"].southExit = "220";
 	rooms["221"].planet = "PLANET: TARKUS";
@@ -1496,7 +1496,7 @@ function initializeRooms():void
 	rooms["222"] = new RoomClass(this);
 	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look to closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
-	rooms["222"].runOnEnter = undefined;
+	rooms["222"].runOnEnter = rustPlainsEncounters;
 	rooms["222"].eastExit = "221";
 	rooms["222"].northExit = "223";
 	rooms["222"].westExit = "229";
@@ -1509,7 +1509,7 @@ function initializeRooms():void
 	rooms["223"] = new RoomClass(this);
 	rooms["223"].roomName = "NOVA\nPOINT";
 	rooms["223"].description = "You're standing directly under the nose of the Nova. Around you hang stalactites of ancient, corroded metal, testaments to corrosive forces that have seen fit to grace the ship with a beard worthy of father time. In spite of that, the hull looks thick enough to remain spaceworthy. It was obviously built to withstand an obscene amount of punishment. The ground here is relatively flat. Why, there's barely even any junk sticking up out of the \"soil!\" You can amble around similar terrain to the north and west. Heading south would put you on a path alongside a mound of twisted wreckage.";
-	rooms["223"].runOnEnter = undefined;
+	rooms["223"].runOnEnter = rustPlainsEncounters;
 	rooms["223"].southExit = "222";
 	rooms["223"].westExit = "228";
 	rooms["223"].northExit = "224";
@@ -1522,7 +1522,7 @@ function initializeRooms():void
 	rooms["224"] = new RoomClass(this);
 	rooms["224"].roomName = "SHIPSIDE\nFIELD";
 	rooms["224"].description = "The surrounding expanse of flat, dusty fields is about as desolate as it gets, but even that hasn't stopped life, at least not yet. There's a few silvery plant stalks capped with iridescent blue leaves waving gently in the polluted breezes, somehow still here in spite of all this place has gone through. Stepping gingerly, you could go south or west from here. The Nova blocks passage to the east, and gray cliffs stretch up towards a cloudless sky to the north.";
-	rooms["224"].runOnEnter = undefined;
+	rooms["224"].runOnEnter = rustPlainsEncounters;
 	rooms["224"].southExit = "223";
 	rooms["224"].westExit = "225";
 	rooms["224"].planet = "PLANET: TARKUS";
@@ -1659,7 +1659,7 @@ function initializeRooms():void
 	rooms["235"] = new RoomClass(this);
 	rooms["235"].roomName = "RUST\nPATH";
 	rooms["235"].description = "Sandwiched between two different, tall mounds of junk, is a single, winding path. Ominous creaks of strained, failing metal slip out of the rusted ships and machinery stacked to the west with every errant gust of bone-dry breeze. Across the way, arms, legs, and treads spread akimbo, sticking out of a mass of rusted torsos, dead eyes, and forgotten power plants. Someone took the time to gather them all together, perhaps so that they could dig through the rust elsewhere. Heading north will take you between the piles. You could also travel south alongside the eerie, robotic graveyard or west beside the ancient, stripped starships.";
-	rooms["235"].runOnEnter = undefined;
+	rooms["235"].runOnEnter = rustPlainsEncounters;
 	rooms["235"].northExit = "236";
 	rooms["235"].westExit = "234";
 	rooms["235"].southExit = "244";
@@ -1672,7 +1672,7 @@ function initializeRooms():void
 	rooms["236"] = new RoomClass(this);
 	rooms["236"].roomName = "RUST\nPATH";
 	rooms["236"].description = "It is hard not to feel a little claustrophobic when you're standing in the shadows of two giants. It's even harder when those giants are two rusted skeletons of torn-up, corroded machinery. To the west, one pile all stripped-down tanks and the occasional ship or crane. To the east, the mound is comprised of thousands upon thousands of broken-down robots and androids, their valuable components removed, their bodies left to rot. You could follow the path south between them, north alongside the larger ship pile, or east beside those poor robots.";
-	rooms["236"].runOnEnter = undefined;
+	rooms["236"].runOnEnter = rustPlainsEncounters;
 	rooms["236"].northExit = "219";
 	rooms["236"].eastExit = "237";
 	rooms["236"].southExit = "235";
@@ -1686,7 +1686,7 @@ function initializeRooms():void
 	rooms["237"] = new RoomClass(this);
 	rooms["237"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["237"].description = "The massive hulk a few yards away is the mass grave of robots. Metallic arms reach up from the mound, frozen in mid-grasp, entreating the scorched sky. The shadows they cast fall on your path, striping the road ahead with skeletal shadows. As you walk past, you catch a flicker of movement. You whip your head around, glaring at the still mound of shattered bots. Your eyes are playing tricks on you - it almost looks like the arms are reaching for you as soon as your back is turned. You can head east or west and stay beside the forgotten automatons, or you could go north into the rust fields beside the Nova.";
-	rooms["237"].runOnEnter = undefined;
+	rooms["237"].runOnEnter = rustPlainsEncounters;
 	rooms["237"].northExit = "218";
 	rooms["237"].westExit = "236";
 	rooms["237"].eastExit = "238";
@@ -1700,7 +1700,7 @@ function initializeRooms():void
 	rooms["238"] = new RoomClass(this);
 	rooms["238"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["238"].description = "A blast of wind carries a storm of rusted flakes off the jumble of broken robots. You shield your eyes just in time as a it throws a bucket’s worth of rust over you. You taste blood and spit repeatedly, trying to get the oxidized metal out of your mouth. The wind rocks a precarious steel skeleton atop the pile, making it lurch forward repeatedly, almost as if it were silently laughing at your misfortune. You flip a rude gesture at the inanimate robot, then, feeling a bit silly, continue on your way. The automaton pile arcs away to the south and west. You can also head north into the rust fields near the Nova or east towards a different, smaller crashed ship.";
-	rooms["238"].runOnEnter = undefined;
+	rooms["238"].runOnEnter = rustPlainsEncounters;
 	rooms["238"].northExit = "217";
 	rooms["238"].westExit = "237";
 	rooms["238"].eastExit = "239";
@@ -1714,7 +1714,7 @@ function initializeRooms():void
 	rooms["239"] = new RoomClass(this);
 	rooms["239"].roomName = "NEXT TO A\nCRASHED SHIP";
 	rooms["239"].description = "Like a giant, orange egg, a rust-covered, ancient craft of alien design sits half-buried in Tarkus' iron-scaled surface. It seems that even alien metals are no match for the corrosive properties of this planet's atmosphere. What few hatches you can see are either sealed shut or only cracked open enough to let the elements into the interior, their hinges or mechanisms long since seized into immobility. You could circle around it to the north or south. Alternatively, you could travel west towards a pile of shattered robots.";
-	rooms["239"].runOnEnter = undefined;
+	rooms["239"].runOnEnter = rustPlainsEncounters;
 	rooms["239"].northExit = "216";
 	rooms["239"].westExit = "238";
 	rooms["239"].southExit = "240";
@@ -1728,7 +1728,7 @@ function initializeRooms():void
 	rooms["240"] = new RoomClass(this);
 	rooms["240"].roomName = "NEXT TO A\nCRASHED SHIP";
 	rooms["240"].description = "Flakes of corroded metal break off the egg-shaped hull of a crashed, alien ship in the slow, dry breezes that occasionally gust by, scratching at you as they travel by. You brush a few off your shoulder as you regard the ancient machinery. It is clear that the ship has been here so long that it's never going to be spaceworthy again. Some of the hatches are hanging open, frozen by rust, while others are staunchly sealed shut, virtually welded in place by time. You can head north or east around the ship, or you could head west toward a pile of discarded robots. To the south, there's an open area of the rust fields.";
-	rooms["240"].runOnEnter = undefined;
+	rooms["240"].runOnEnter = rustPlainsEncounters;
 	rooms["240"].northExit = "239";
 	//rooms["240"].eastExit = "255";
 	rooms["240"].westExit = "241";
@@ -1743,7 +1743,7 @@ function initializeRooms():void
 	rooms["241"] = new RoomClass(this);
 	rooms["241"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["241"].description = "A skeletal-looking arm with titanium-composite bones covered in cake-on hydraulic fluid nearly whacks you in the head as you walk alongside a stockpile of forgotten, looted automatons. You look closer until you spot a pair of dead eyes looking back at you, and suitably unnerved, you decide it'd be best not to look too close. If you walk a little ways to the east, you could come up alongside a crusty-looking ship. You could also go north or south if you wanted to stay next to the creepy-looking junkpile.";
-	rooms["241"].runOnEnter = undefined;
+	rooms["241"].runOnEnter = rustPlainsEncounters;
 	rooms["241"].northExit = "238";
 	rooms["241"].eastExit = "240";
 	rooms["241"].southExit = "242";
@@ -1756,7 +1756,7 @@ function initializeRooms():void
 	rooms["242"] = new RoomClass(this);
 	rooms["242"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["242"].description = "A load of batteries has calcified this portion of the robot pile. One of the android’s power cells, likely a cheap chemical battery of some kind, has leaked down from the top of the heap. The burst chest plate of this hulking android is a flower of torn metal, and the gout of calcification creates the impression of a mouth frozen mid-vomit. The corrosion has seared and blistered the metal of the robots below it, creating a frozen waterfall of white, corroded metal. Bars of bone-white residue pour cage-like rivulets down the cybernetic hecatomb. You give the silent cascade a sideways look as you hurry on your way.";
-	rooms["242"].runOnEnter = undefined;
+	rooms["242"].runOnEnter = rustPlainsEncounters;
 	rooms["242"].northExit = "241";
 	//rooms["242"].eastExit = "253";
 	rooms["242"].westExit = "243";
@@ -1770,7 +1770,7 @@ function initializeRooms():void
 	rooms["243"] = new RoomClass(this);
 	rooms["243"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
-	rooms["243"].runOnEnter = undefined;
+	rooms["243"].runOnEnter = rustPlainsEncounters;
 	rooms["243"].eastExit = "242";
 	rooms["243"].westExit = "244";
 	//rooms["243"].southExit = "249";
@@ -1783,7 +1783,7 @@ function initializeRooms():void
 	rooms["244"] = new RoomClass(this);
 	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are of stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
-	rooms["244"].runOnEnter = undefined;
+	rooms["244"].runOnEnter = rustPlainsEncounters;
 	rooms["244"].northExit = "235";
 	rooms["244"].eastExit = "243";
 	rooms["244"].westExit = "245";
