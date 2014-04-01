@@ -3068,14 +3068,14 @@
 		}
 
 		private function storageValue(array, storageName, targetValue): Number {
-			trace("Finding storage value.");
+			//trace("Finding storage value.");
 			if (array.length == 0) return 0;
 			if (!hasStorageName(array, storageName)) return 0;
 			for (var counter: int = 0; counter < array.length; counter++) {
-				trace("Loop through once");
+				//trace("Loop through once");
 				if (array[counter].storageName == storageName) break;
 			}
-			trace("Finished Loop");
+			//trace("Finished Loop");
 			if (targetValue == 1) return array[counter].value1;
 			else if (targetValue == 2) return array[counter].value2;
 			else if (targetValue == 3) return array[counter].value3;
