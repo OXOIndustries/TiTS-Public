@@ -4501,11 +4501,11 @@ public function mimbraneMenu():void
 			output(" ready to feed.");
 			
 			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addButton(0, "Feed With Cock", feedMimbranesWithCock);
-			else addDisabledButton(0, "Feed With Cock");
+			if (pc.hasCock()) addButton(0, "Cock Feed", feedMimbranesWithCock);
+			else addDisabledButton(0, "Cock Feed");
 
-			if (pc.hasVagina()) addButton(1, "Feed With Pussy", feedMimbranesWithPussy);
-			else addDisabledButton(1, "Feed WIth Pussy");
+			if (pc.hasVagina()) addButton(1, "Vag Feed", feedMimbranesWithPussy);
+			else addDisabledButton(1, "Vag Feed");
 		}
 	}
 	//If all Mimbranes are full
