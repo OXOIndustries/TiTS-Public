@@ -1090,7 +1090,7 @@
 				if (i > 0) argS += ", ";
 				argS += args[i];
 			}
-			trace("showBust called with args: [" + argS + "]");
+			//trace("showBust called with args: [" + argS + "]");
 			_leftSideBar.locationBlock.showBust(args);			
 		}
 		

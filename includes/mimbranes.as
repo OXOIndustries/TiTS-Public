@@ -557,7 +557,7 @@ public function mimbranesIncreaseDaysSinceFed():void
 
 		eventQueue.push(function():void {
 			kGAMECLASS.clearOutput();
-			output("A tidal wave of fluids overcoming your pussy about knocks you over with sexual ferocity. <b>Your hungry Mimbrane is drowning your [pc.vagina] in its sweat</b>");
+			output("A tidal wave of fluids overcoming your pussy about knocks you over with sexual ferocity. <b>Your hungry Mimbrane is drowning your [pc.vagina] in its sweat.</b>");
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 		});
@@ -1750,7 +1750,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
-				output("\n\nCasting off the remnants of sleep, an odd realization strikes your crotch. Namely, your [pc.pussy] is back to its normal size and qualities. Judging by the tenderness it exudes upon touch, it’s safe to assume the Mimbrane was able to shed its excess size into a new parasite.");
+				output("Casting off the remnants of sleep, an odd realization strikes your crotch. Namely, your [pc.pussy] is back to its normal size and qualities. Judging by the tenderness it exudes upon touch, it’s safe to assume the Mimbrane was able to shed its excess size into a new parasite.");
 				kGAMECLASS.clearMenu();
 				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
 			});
@@ -2066,7 +2066,7 @@ public function mimbraneSleepEvents():void
 		if (pc.hasStatusEffect("Mimbrane Hand Right")) mimbraneReproduce("Mimbrane Hand Right");
 	}
 
-	if ((pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv3("Mimbrane Foot Left") >= 15) || pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEFfectv3("Mimbrane Foot Right") >= 15)
+	if ((pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv3("Mimbrane Foot Left") >= 15) || pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv3("Mimbrane Foot Right") >= 15)
 	{
 		outputDone = true;
 
@@ -2486,7 +2486,7 @@ public function mimbraneFaceReproductionGo(dream:Boolean = false):void
 	output("\n\nNormal. That’s a word you’d rather forget. You go to sleep, anxious to redefine “normal” for another day.");
 
 	clearMenu();
-	addButton(0, "Next")
+	addButton(0, "Next", mainGameMenu);
 }
 
 //Friendly Mimbranes
@@ -4097,7 +4097,15 @@ public function attachAMimbrane():void
 	else if (pc.armType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
 	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
 	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
-	else if (pc.faceType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2) attachFaceMimbrane();
+	else if (pc.faceType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2)
+	{
+		// Face attachment doesn't want to run genericLoss yet.
+		// cba to refactor, lazyfix.
+		attachFaceMimbrane();
+		processTime(10 + rand(10));
+		pc.orgasm();
+		return;
+	}
 	else noRoomForDishcloths();
 
 	processTime(10 + rand(10));
@@ -4337,8 +4345,7 @@ public function refuseFaceMimbrane():void
 	output("\n\nNormal. Normal’s burst back onto the scene. It’s a bit more of a shock this time. Your conqueror has vanished and your body is pre-savaged. You double check your head to make sure the parasite didn’t get on it. There aren’t any unusual bumps or sensations. The assumption was that the blink from rut to right was a byproduct of a Mimbrane latching onto you. Now you don’t know what to think again.");
 	output("\n\nThe question simmers while you gather your [pc.armor] and leave.");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	genericLoss();
 }
 
 public function acceptFaceMimbrane():void
@@ -4401,8 +4408,7 @@ public function acceptFaceMimbrane():void
 
 	createMimbraneEffect("Mimbrane Face");
 
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	genericLoss();
 }
 
 //No Room for Mimbrane 
@@ -4489,8 +4495,8 @@ public function mimbraneMenu():void
 				output(" ready to feed. However, you have no means to feed them!")
 			}
 
-			addDisabledButton(0, "Cock Feeding");
-			addDisabledButton(1, "Pussy Feeding");
+			addDisabledButton(0, "Cock Feed");
+			addDisabledButton(1, "Vag Feed");
 		}
 		else
 		{
@@ -4521,8 +4527,8 @@ public function mimbraneMenu():void
 		else output(" They");
 		output(" must be full.");
 
-		addDisabledButton(0, "Feed With Cock");
-		addDisabledButton(1, "Feed With Pussy");
+		addDisabledButton(0, "Cock Feed");
+		addDisabledButton(1, "Vag Feed");
 	}
 
 	output("\n\n");
@@ -4949,7 +4955,7 @@ public function feedMimbranesWithPussy():void
 	output(" more than receptive. You can’t help but be a little entertained by the innocent squeaks and shuffling as you remove your [pc.armor]. The prospect of rewarded attention seems to overcome much.");
 
 	output("\n\nLaying your hand to your [pc.pussy] reveals shockingly sensitive skin.");
-	if (pc.hasStatusEffect("Mimbrane Pussy")) output(" The Mimbrane has prepped itself to hurry along your wanton finger massage");
+	if (pc.hasStatusEffect("Mimbrane Pussy")) output(" The Mimbrane has prepped itself to hurry along your wanton finger massage.");
 	else output(" Mimbranes seem to have the innate ability to make your tender spots all the more delicate.");
 	output(" The creature");
 	if (attachedMimbranes() > 1) output("s have"); 
@@ -5024,10 +5030,11 @@ public function feedMimbranesWithPussy():void
 	else output(" all of your Mimbranes");
 	output(" satisfied, you retrieve your [pc.armor] and go back to something a little more self-gratifying.");
 
-	pc.orgasm();
-	pc.orgasm();
-
 	mimbraneFeed("all", 3);
+	
+	pc.orgasm();
+	pc.orgasm();
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
