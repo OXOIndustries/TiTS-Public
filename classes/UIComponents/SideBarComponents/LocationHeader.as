@@ -24,6 +24,7 @@ package classes.UIComponents.SideBarComponents
 		private var _systemText:TextField;
 		
 		private var _npcBusts:Sprite;
+		private var _bustOrderSet:Boolean;
 		
 		public function get roomText():TextField { return _roomText; }
 		public function get planetText():TextField { return _planetText; }
@@ -166,6 +167,17 @@ package classes.UIComponents.SideBarComponents
 			}
 			else
 			{
+				// Figure out if we have "stack" variations
+				// Stack variations are differently scaled versions of the bust images to maintain scaling
+				// between certain combination of busts.
+				for (var i:int = 0; i < busts.length; i++)
+				{
+					if (NPCBustImages["Bust_" + busts[i] + "_STACK"] !== undefined)
+					{
+						busts[i] = busts[i] + "_STACK";
+					}
+				}
+					
 				showMultipleBusts(busts);
 			}
 		}
@@ -177,6 +189,8 @@ package classes.UIComponents.SideBarComponents
 			
 			if (NPCBustImages[tName] !== undefined)
 			{
+				_bustOrderSet = false;
+				
 				bustT = NPCBustImages[tName];
 				
 				// If there is an existing bust
@@ -227,23 +241,34 @@ package classes.UIComponents.SideBarComponents
 			
 			// We're going to add the images in reverse order, so to check if the busts currently present are the same,
 			// The list should be reversed
-			available.reverse();
 			var listMatch:Boolean = true;
 			
 			if (_npcBusts.numChildren == available.length)
 			{
+				var matches:int = 0;
+				
 				for (var o:int = 0; o < available.length; o++)
 				{
-					if (!(_npcBusts.getChildAt(o) is available[o]))
+					for (var ob:int = 0; ob < _npcBusts.numChildren; ob++)
 					{
-						listMatch = false;
-						return;
+						if (_npcBusts.getChildAt(ob) is available[o]) matches++;
 					}
+				}
+				
+				if (matches != _npcBusts.numChildren)
+				{
+					listMatch = false;
+					_bustOrderSet = false;
+				}
+				else
+				{
+					listMatch = true;
 				}
 			}
 			else
 			{
 				listMatch = false;
+				_bustOrderSet = false;
 			}
 			
 			// If listMatch is true, the current objects are a match for the target list, so make sure its visible and return
@@ -257,7 +282,9 @@ package classes.UIComponents.SideBarComponents
 			removeCurrentBusts();
 			
 			// Calculate the initial offset and step values -- working from the zilpack image, each lower layer is x+17,y-5 from the layer above
-			var xStep:int = 17.5;
+			//var xStep:int = 17.5;
+			available.reverse();
+			var xStep:int = 40.0;
 			var yStep:int = -2.55;
 			
 			var tarX:int = xStep * (available.length - 1);
@@ -292,6 +319,15 @@ package classes.UIComponents.SideBarComponents
 		public function hideBust():void
 		{
 			_npcBusts.visible = false;
+		}
+		
+		public function bringLastBustToTop():void
+		{
+			if (_npcBusts.numChildren > 0 && _bustOrderSet == false)
+			{
+				_npcBusts.setChildIndex(_npcBusts.getChildAt(0), _npcBusts.numChildren - 1);
+				_bustOrderSet = true;
+			}
 		}
 		
 		public function hideLocationText():void

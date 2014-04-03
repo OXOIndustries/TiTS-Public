@@ -1094,6 +1094,11 @@
 			_leftSideBar.locationBlock.showBust(args);			
 		}
 		
+		public function bringLastBustToTop():void
+		{
+			_leftSideBar.locationBlock.bringLastBustToTop();
+		}
+		
 		public function hideBust():void
 		{
 			trace("hideBust called");

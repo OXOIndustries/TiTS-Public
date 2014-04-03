@@ -92,11 +92,20 @@ function debugMenus():void
 		itemCollect(foundLootItems);
 	});
 	
-	addButton(4, "Test Text", function():void {
-		for (var i:int = 0; i < 50; i++)
-		{
-			output("\nSpam a shitload of testing text so I can fuck around with the scrollbar skin and layout shit. Line # " + String(i));
-		}
+	addButton(7, "Milodan Pair", function():void {
+		userInterface.showBust("MILODANMALE", "MILODANFEM");
+		userInterface.bringLastBustToTop();
+		output("\n\nTesting bust images yo!");
+	});
+	
+	addButton(8, "Milodan Fem", function():void {
+		userInterface.showBust("MILODANFEM");
+		output("\n\nTesting fem bust image yo!");
+	});
+	
+	addButton(9, "Milodan Male", function():void {
+		userInterface.showBust("MILODANMALE");
+		output("\n\nTesting male bust image yo!");
 	});
 }
 

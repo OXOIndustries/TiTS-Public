@@ -1833,7 +1833,7 @@ function initializeRooms():void
 	
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
-	rooms["DEBUG1"].roomName = "BLACK HOLE\nOF DEBUG";
+	rooms["DEBUG1"].roomName = "\nDEBUG ROOM";
 	rooms["DEBUG1"].description = "";
 	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";

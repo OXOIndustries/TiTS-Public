@@ -59,5 +59,14 @@
 
 		[Embed(source = "../../assets/images/npcs/v-ko.png", mimeType = "image/png")]
 		public static var Bust_VKO:Class;
+		
+		[Embed(source = "../../assets/images/npcs/milodanfem.png", mimeType = "image/png")]
+		public static var Bust_MILODANFEM:Class;
+		
+		[Embed(source = "../../assets/images/npcs/milodanfem_stack.png", mimeType = "image/png")]
+		public static var Bust_MILODANFEM_STACK:Class;
+		
+		[Embed(source = "../../assets/images/npcs/milodanmale.png", mimeType = "image/png")]
+		public static var Bust_MILODANMALE:Class;
 	}
 }
