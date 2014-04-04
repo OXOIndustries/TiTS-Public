@@ -31,6 +31,7 @@
 		public function getSaveObject():Object
 		{
 			var dataObject:Object = new Object();
+			var i:int;
 			
 			var _d:XML = describeType(this);
 			var _dl:XMLList = _d..variable;
@@ -57,7 +58,7 @@
 							{
 								dataObject[prop.@name] = new Array();
 								
-								for (var i:int = 0; i < this[prop.@name].length; i++)
+								for (i = 0; i < this[prop.@name].length; i++)
 								{
 									dataObject[prop.@name].push(this[prop.@name][i].getSaveObject());
 								}
@@ -66,7 +67,7 @@
 							{
 								dataObject[prop.@name] = new Array();
 								
-								for (var i:int = 0; i < this[prop.@name].length; i++)
+								for (i = 0; i < this[prop.@name].length; i++)
 								{
 									dataObject[prop.@name].push(this[prop.@name][i]);
 								}
@@ -124,10 +125,12 @@
 			// tldr, v1 versions of the saves, because they use embedded AMF metadata, the loaded data is no longer a Dynamic class, which means
 			// for * in thing doesn't work.
 			var _d:XML = describeType(dataObject);
+			var prop:*;
+			
 			if (_d.@isDynamic == "true")
 			{
 				// Dynamic objects ie v2+ saves
-				for (var prop in dataObject)
+				for (prop in dataObject)
 				{
 					if (prop != "prototype" && prop != "neverSerialize" && prop != "classInstance")
 					{
@@ -187,7 +190,7 @@
 				var _dl:XMLList = _d..variable;
 				var _da:XMLList = _d..accessor;
 				
-				for each (var prop in _dl)
+				for each (prop in _dl)
 				{
 					if (this[prop.@name] != null && this[prop.@name] != undefined)
 					{

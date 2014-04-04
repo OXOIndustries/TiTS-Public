@@ -46,7 +46,7 @@ package classes.Characters
 		
 		override public function loadInCuntTail(cumFrom:Creature):void
 		{
-			if (this.hasTailCunt) kGAMECLASS.feedCuntSnake();
+			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake();
 		}
 		
 		// If you wanna do unique stuff for the player, override the pregnancy method here. Swish.

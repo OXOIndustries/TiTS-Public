@@ -1,4 +1,4 @@
-package classes.UIComponents 
+﻿package classes.UIComponents 
 {
 	import classes.GUI;
 	import fl.motion.Color;
@@ -249,7 +249,7 @@ package classes.UIComponents
 				if (bd.buttonName.length > 0)
 				{
 					// Disabled buttons have no function
-					if (bd.func == undefined)
+					if (bd.func == null)
 					{
 						_buttons[i].setDisabledData(bd.buttonName, bd.tooltipHeader, bd.tooltipBody);
 					}

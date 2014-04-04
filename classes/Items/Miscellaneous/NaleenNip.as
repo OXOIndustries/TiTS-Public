@@ -318,7 +318,7 @@
 				changes++;
 			}
 			//Widen hips to 12
-			if(target.hipRatingRaw < 12 && target.hipRatingUnlocked(12) && changes < changeLimit && rand(3) == 0) {
+			if (target.hipRatingRaw < 12 && target.hipRatingUnlocked(12) && changes < changeLimit && rand(3) == 0) {
 				target.hipRatingRaw += 1 + rand(3);
 				kGAMECLASS.output("\n\nThere's a little bit of extra shake whenever you shift position. A glance down to your waist reveals that your gait has widened with your [pc.hips]. You aren't sure why a race that doesn't have legs would have such wide hips anyway, but they do look nice on you.");
 				changes++;
@@ -328,12 +328,12 @@
 				kGAMECLASS.output(target.hipRatingLockedMessage());
 			}
 			//Lengthen hair to ass-length!
-			if(target.hasHair() && target.hairLength < target.tallness/2 && target.hairLengthUnlocked(target.tallness / 2) && changes < changeLimit && rand(3) == 0)	{
-				var x:int = 1 + rand(4);
+			if (target.hasHair() && target.hairLength < target.tallness/2 && target.hairLengthUnlocked(target.tallness / 2) && changes < changeLimit && rand(3) == 0)	{
+				x = 1 + rand(4);
 				kGAMECLASS.output("\n\nYour scalp tickles a little when your [pc.hair] lengthens, gaining ");
-				if(x == 1) kGAMECLASS.output("an inch");
-				else if(x == 2) kGAMECLASS.output("two inches");
-				else if(x == 3) kGAMECLASS.output("three inches");
+				if (x == 1) kGAMECLASS.output("an inch");
+				else if (x == 2) kGAMECLASS.output("two inches");
+				else if (x == 3) kGAMECLASS.output("three inches");
 				else kGAMECLASS.output("four inches");
 				kGAMECLASS.output(" of new length. Well, that's nothing you can't get changed at a salon, at least.");
 				target.hairLength += x;
@@ -356,7 +356,7 @@
 				if (target.createCockUnlocked())
 				{
 					kGAMECLASS.output("\n\nA sudden, hot throb in your slit is the only you get before you feel the start of ");
-					if(changes > 1) kGAMECLASS.output("another ");
+					if (changes > 1) kGAMECLASS.output("another ");
 					else kGAMECLASS.output("a ");
 					kGAMECLASS.output("change. It feels like your [pc.cock] is getting thicker inside you, fattening up so nicely that you wonder just how much dick you can bear, even soft and unaroused. That question is answered by the momentary pain of something separating inside you. You can feel your dick being rubbed from above and below at the same time, both places feeling as phallic as the source of your sensation. It's then that <b>you pull open your slit to reveal a newly grown pair of naleen dicks where once there was one.</b>");
 					target.createCock();
@@ -452,7 +452,7 @@
 				target.createStatusEffect("Genital Slit",0,0,0,0);
 			}
 			//Increase dick length to 10"	
-			var x:int = target.shortestCockIndex();
+			x = target.shortestCockIndex();
 			if(target.shortestCockLength() < 10 && target.cockLengthUnlocked(target.shortestCockIndex(), 10) && changes < changeLimit && rand(3) == 0) {
 				//Slit vers
 				if(target.hasStatusEffect("Genital Slit")) {
@@ -471,7 +471,7 @@
 			}
 			//10" to 16" growth - slitted naleen cocks only
 			else if(target.hasStatusEffect("Genital Slit") && target.shortestCockLength() < 16 && target.cockLengthUnlocked(target.shortestCockIndex(), 16) && changes < changeLimit && rand(6) == 0) {
-				var x:int = target.shortestCockIndex();
+				x = target.shortestCockIndex();
 				kGAMECLASS.output("\n\nYour nicely-filled, interior cock-sheath shifts pleasantly around your [pc.cock " + x + "] as you chew, and you can't help but feel a shiver of excitement run through you at that. Your length engorges noticeably but doesn't emerge, stretching out your interior with its expanding length and width. You shudder, whining softly under your breath as the growth continues. Then, it stops, leaving you feeling a tad warm and a little sore, with a newly expanded [pc.cock " + x + "] snugly packed inside you.");
 				target.cocks[x].cLengthRaw += 1 + rand(3);
 				kGAMECLASS.output(" You're thicker to match, too.");

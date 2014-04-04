@@ -40,10 +40,8 @@
 
 		private function allocateMapArray():Vector.<Vector.<Vector.<int>>>
 		{
-			
-
 			var arr:Vector.<Vector.<Vector.<int>>> = new Vector.<Vector.<Vector.<int>>>(this._mapSz);		// Messy giant array is GO
-				
+			
 			var x:int;
 			var y:int;
 			var z:int;
@@ -67,7 +65,6 @@
 
 			return arr;
 		}
-
 
 		private const mapDebug:Boolean = false;
 
@@ -225,6 +222,7 @@
 
 			return map;
 		}
+
 		public function printMap(map:Vector.<Vector.<Vector.<int>>>):void
 		{
 			var x:int;
@@ -237,7 +235,7 @@
 			for (z = this._mapSz-1; z >= 0; z -= 1)
 			{
 				output = "|";
-				for (var line:int = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
+				for (line = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
 					output += "-";
 				output += "|";
 				trace(output)
@@ -309,14 +307,10 @@
 					}
 					output += "|";
 					trace(output)
-
-
-
-
-
+				
 				}
 				output = "|";
-				for (var line:int = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
+				for (line = 0; line < this._mapSz*(roomPrintWidth + 2); line += 1)
 					output += "-";
 				output += "|";
 				trace(output)

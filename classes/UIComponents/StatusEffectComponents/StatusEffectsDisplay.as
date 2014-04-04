@@ -1,4 +1,4 @@
-package classes.UIComponents.StatusEffectComponents 
+﻿package classes.UIComponents.StatusEffectComponents 
 {
 	import classes.UIComponents.StatusEffectComponents.StatusEffectElement;
 	import flash.display.DisplayObject;
@@ -288,9 +288,10 @@ package classes.UIComponents.StatusEffectComponents
 		 */
 		private function RepositionChildren():void
 		{
+			var elem:int;
 			if (_childElements.length > 0)
 			{
-				for (var elem:int = 0; elem < _childElements.length; elem++)			
+				for (elem = 0; elem < _childElements.length; elem++)			
 				{
 					_childElements[elem].x = Math.floor((elem % 5) * (_childSizeX + childSpacing));
 					_childElements[elem].y = Math.floor((Math.floor(elem / 5)) * (_childSizeY + childSpacing));
@@ -300,7 +301,7 @@ package classes.UIComponents.StatusEffectComponents
 			
 			if (_workElems.length > 0)
 			{
-				for (var elem:int = 0; elem < _workElems.length; elem++)
+				for (elem = 0; elem < _workElems.length; elem++)
 				{
 					if (_workElems[elem].parent != null) this.removeChild(_workElems[elem]);
 				}

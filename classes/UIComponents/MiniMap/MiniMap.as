@@ -234,6 +234,8 @@
 		{
 			var startXPos:int = 0;
 			var startYPos:int = 0;
+			var numX:int;
+			var numY:int;
 			
 			// Figure out our centre position
 			// Remove the size of half of our child elements + associated spacing
@@ -248,7 +250,7 @@
 			var childXPos:int = startXPos;
 			
 			// For all rows...
-			for (var numX:int = 0; numX < childNumX; numX++)
+			for (numX = 0; numX < childNumX; numX++)
 			{
 				var childYPos:int = startYPos;
 				
@@ -256,7 +258,7 @@
 				_childElements[numX] = new Vector.<MinimapRoom>(childNumY);
 				
 				// For all columns...
-				for (var numY:int = 0; numY < childNumY; numY++)
+				for (numY = 0; numY < childNumY; numY++)
 				{
 					// ... Build the sprite
 					var childSprite = new MinimapRoom(childSizeX, childSizeY);
@@ -280,11 +282,11 @@
 			// X links should be a 6x7 grid
 			_childLinksX = new Vector.<Vector.<MinimapLink>>(childNumX - 1);
 			
-			for (var numX:int = 0; numX < (childNumX - 1); numX++)
+			for (numX = 0; numX < (childNumX - 1); numX++)
 			{
 				_childLinksX[numX] = new Vector.<MinimapLink>(childNumY);
 				
-				for (var numY:int = 0; numY < childNumY; numY++)
+				for (numY = 0; numY < childNumY; numY++)
 				{
 					var linkObjX = new MinimapLink(false);
 					_childContainer.addChild(linkObjX);
@@ -299,11 +301,11 @@
 			// Y links should be a 7x6 grid
 			_childLinksY = new Vector.<Vector.<MinimapLink>>(childNumX);
 			
-			for (var numX:int = 0; numX < childNumX; numX++)
+			for (numX = 0; numX < childNumX; numX++)
 			{
 				_childLinksY[numX] = new Vector.<MinimapLink>(childNumY - 1);
 				
-				for (var numY:int = 0; numY < (childNumY - 1); numY++)
+				for (numY = 0; numY < (childNumY - 1); numY++)
 				{
 					var linkObjY = new MinimapLink(true);
 					_childContainer.addChild(linkObjY);
@@ -385,13 +387,14 @@
 			var zPos:int = 3;
 			var xPos:int = 0;
 			var yPos:int = 0;
+			var roomFlags:int;
 			
 			// Room Linkages
 			for (xPos = 0; xPos < 6; xPos++)
 			{
 				for (yPos = 0; yPos < 7; yPos++)
 				{
-					var roomFlags:int = map[xPos][yPos][zPos];
+					roomFlags = map[xPos][yPos][zPos];
 					var roomEast:int = map[xPos + 1][yPos][zPos];
 					
 					// East room
@@ -403,7 +406,7 @@
 			{
 				for (yPos = 0; yPos < 6; yPos++)
 				{
-					var roomFlags:int = map[xPos][yPos][zPos];
+					roomFlags = map[xPos][yPos][zPos];
 					var roomSouth:int = map[xPos][yPos + 1][zPos];
 					
 					// South room
@@ -416,7 +419,7 @@
 			{
 				for (yPos = 0; yPos < 7; yPos++)
 				{
-					var roomFlags:int = map[xPos][yPos][zPos];					
+					roomFlags = map[xPos][yPos][zPos];					
 					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
 					
 					// Room visibility

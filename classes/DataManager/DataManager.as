@@ -298,7 +298,9 @@
 			// Game data
 			dataFile.characters = new Object();
 			var gamePtr:* = kGAMECLASS;
-			for (var prop in kGAMECLASS.chars)
+			var prop:String;
+			var i:int;
+			for (prop in kGAMECLASS.chars)
 			{
 				if ((kGAMECLASS.chars[prop] as Creature).neverSerialize == false)
 				{
@@ -307,7 +309,7 @@
 			}
 			
 			dataFile.flags = new Object();
-			for (var prop in kGAMECLASS.flags)
+			for (prop in kGAMECLASS.flags)
 			{
 				dataFile.flags[prop] = kGAMECLASS.flags[prop];
 			}
@@ -320,14 +322,14 @@
 			// Codex entries
 			dataFile.unlockedCodexEntries = new Array();
 			var cEntries:Array = CodexManager.unlockedEntryList;
-			for (var i:int = 0; i < cEntries.length; i++)
+			for (i = 0; i < cEntries.length; i++)
 			{
 				dataFile.unlockedCodexEntries.push(cEntries[i]);
 			}
 			
 			dataFile.viewedCodexEntries = new Array();
 			var cViewed:Array = CodexManager.viewedEntryList;
-			for (var i:int = 0; i < cViewed.length; i++)
+			for (i = 0; i < cViewed.length; i++)
 			{
 				dataFile.viewedCodexEntries.push(cViewed[i]);
 			}
@@ -437,6 +439,8 @@
 			trace("loadBaseData");
 			// Base/Primary information
 			var curGameObj:Object = new Object();
+			var prop:String;
+			var i:int;
 			
 			// Watch this magic
 			if (kGAMECLASS.chars["PC"].short != "uncreated")
@@ -455,7 +459,7 @@
 			kGAMECLASS.chars = new Object();
 			var aRef:Object = kGAMECLASS.chars;
 			
-			for (var prop in obj.characters)
+			for (prop in obj.characters)
 			{
 				try
 				{
@@ -479,7 +483,7 @@
 			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save
 			
 			kGAMECLASS.flags = new Dictionary();
-			for (var prop in obj.flags)
+			for (prop in obj.flags)
 			{
 				kGAMECLASS.flags[prop] = obj.flags[prop];
 			}
@@ -495,7 +499,7 @@
 			{
 				var cEntries:Array = new Array();
 				
-				for (var i:int = 0; i < obj.unlockedCodexEntries.length; i++)
+				for (i = 0; i < obj.unlockedCodexEntries.length; i++)
 				{
 					cEntries.push(obj.unlockedCodexEntries[i]);
 				}
@@ -511,7 +515,7 @@
 			{
 				var cViewed:Array = new Array();
 				
-				for (var i:int = 0; i < obj.viewedCodexEntries.length; i++)
+				for (i = 0; i < obj.viewedCodexEntries.length; i++)
 				{
 					cViewed.push(obj.viewedCodexEntries[i]);
 				}

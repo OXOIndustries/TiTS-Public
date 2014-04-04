@@ -1,4 +1,4 @@
-import classes.Creature;
+﻿import classes.Creature;
 /*
 
 Removal and Body Part Change Denial
@@ -246,20 +246,21 @@ public function hasFeedableMimbranes():Boolean
  */
 public function mimbraneFeed(target:String = "regular", feedValue:int = 1):void
 {
+	var i:int;
 	if (mimbraneDebug) trace("Feeding Mimbrane Group [" + target + "] " + feedValue + " time(s).");
 
 	if (target == "all")
 	{
-		for (var i:int = 0; i < mimbraneEffects.length; i++)
+		for (i = 0; i < mimbraneEffects.length; i++)
 		{
 			feedAMimbrane(mimbraneEffects[i], feedValue);
 		}
 	}
 	else if (target == "regular")
 	{
-		for (var ii:int = 0; ii < regularFeedMimbranes.length; ii++)
+		for (i = 0; i < regularFeedMimbranes.length; i++)
 		{
-			feedAMimbrane(regularFeedMimbranes[ii], feedValue);
+			feedAMimbrane(regularFeedMimbranes[i], feedValue);
 		}
 	}
 	else if (target == "cock" || target == "dick")
@@ -527,9 +528,10 @@ public function mimbraneReproduce(effectName:String):void
 
 public function mimbranesIncreaseDaysSinceFed():void
 {
+	var i:int;
 	if (mimbraneDebug) trace("Incrementing Mimbrane days since last fed");
 
-	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	for (i = 0; i < mimbraneEffects.length; i++)
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
@@ -660,7 +662,7 @@ public function mimbranesIncreaseDaysSinceFed():void
 	}
 
 	// Show on the 8th day since feeding, if applicable
-	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	for (i = 0; i < mimbraneEffects.length; i++)
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]) && pc.statusEffectv2(mimbraneEffects[i]) == 8)
 		{
@@ -699,6 +701,7 @@ public function mimbranesComplainAndShit():void
 	var doneHands:Boolean = false;
 	var doneFeet:Boolean = false;
 	var hungryMimbrane:Boolean = false;
+	var trustValue:int;
 
 	for (var ii:int = 0; ii < mimbraneEffects.length; ii++)
 	{
@@ -872,7 +875,7 @@ public function mimbranesComplainAndShit():void
 						// Only one hand
 						else
 						{
-							var trustValue:int = -1;
+							trustValue = -1;
 							if (pc.hasStatusEffect("Mimbrane Hand Left")) trustValue = pc.statusEffectv1("Mimbrane Hand Left");
 							else trustValue = pc.statusEffectv1("Mimbrane Hand Right");
 
@@ -932,7 +935,7 @@ public function mimbranesComplainAndShit():void
 						// Only one foot
 						else
 						{
-							var trustValue:int = -1;
+							trustValue = -1;
 							if (pc.hasStatusEffect("Mimbrane Foot Left")) trustValue = pc.statusEffectv1("Mimbrane Foot Left");
 							else trustValue = pc.statusEffectv1("Mimbrane Foot Right");
 
@@ -1149,7 +1152,7 @@ public function mimbranesComplainAndShit():void
 						// Only one hand
 						else
 						{
-							var trustValue:int = -1;
+							trustValue = -1;
 							if (pc.hasStatusEffect("Mimbrane Hand Left")) trustValue = pc.statusEffectv1("Mimbrane Hand Left");
 							else trustValue = pc.statusEffectv1("Mimbrane Hand Right");
 
@@ -1209,7 +1212,7 @@ public function mimbranesComplainAndShit():void
 						// Only one foot
 						else
 						{
-							var trustValue:int = -1;
+							trustValue = -1;
 							if (pc.hasStatusEffect("Mimbrane Foot Left")) trustValue = pc.statusEffectv1("Mimbrane Foot Left");
 							else trustValue = pc.statusEffectv1("Mimbrane Foot Right");
 
@@ -1665,6 +1668,7 @@ public function mimbranesComplainAndShit():void
 public function mimbraneSleepEvents():void 
 {
 	var outputDone:Boolean = false;
+	var trustedRepro:Boolean;
 
 	// Reprorduction takes precedence over breathing events
 	if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv3("Mimbrane Cock") >= 15)
@@ -1903,7 +1907,7 @@ public function mimbraneSleepEvents():void
 		outputDone = true;
 
 		// The first hand reproduction cycle triggered will syncronize both hands from there on out
-		var trustedRepro:Boolean = false;
+		trustedRepro = false;
 		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.statusEffectv1("Mimbrane Hand Left") >= 2) trustedRepro = true;
 		if (pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") >= 2) trustedRepro = true;
 
@@ -2071,7 +2075,7 @@ public function mimbraneSleepEvents():void
 		outputDone = true;
 
 		// The first Foot reproduction cycle triggered will syncronize both feet from there on out
-		var trustedRepro:Boolean = false;
+		trustedRepro = false;
 		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.statusEffectv1("Mimbrane Foot Left") >= 2) trustedRepro = true;
 		if (pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") >= 2) trustedRepro = true;
 
@@ -3294,6 +3298,8 @@ public function mutinousMimbranesCombat():void
 // Spit attacks are automatic additions to any lust attack the player attempts
 public function playerMimbraneSpitAttack():void
 {
+	var i:int;
+	
 	// Only if enabled.
 	if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined) return;
 
@@ -3301,7 +3307,7 @@ public function playerMimbraneSpitAttack():void
 	// Anything with 4+ trust, costs 5 feedings
 	var eligibleMimbranes:Array = new Array();
 
-	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	for (i = 0; i < mimbraneEffects.length; i++)
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
@@ -3604,6 +3610,7 @@ public function cloudDebuffHandler(target:Creature):void
 // Effects that interrupt combat and cause the player to potentially "miss" a turn
 public function mimbraneCombatInterference():Boolean
 {
+	var i:int;
 	// Turn loss/effects from mutinious mimbranes
 	if (foes[0] is Mimbrane)
 	{
@@ -3613,7 +3620,7 @@ public function mimbraneCombatInterference():Boolean
 		// Anything with 4+ trust, costs 5 feedings
 		var eligibleMimbranes:Array = new Array();
 
-		for (var i:int = 0; i < mimbraneEffects.length; i++)
+		for (i = 0; i < mimbraneEffects.length; i++)
 		{
 			if (pc.hasStatusEffect(mimbraneEffects[i]))
 			{
@@ -3625,13 +3632,13 @@ public function mimbraneCombatInterference():Boolean
 		}
 
 		// Each eligible mimbrane has a 10% to mutiny
-		for (var ii:int = 0; ii < eligibleMimbranes.length; ii++)
+		for (i = 0; i < eligibleMimbranes.length; i++)
 		{
 			// 10
 			if (rand(10) == 0) // 1 in 10 [(0-9)]
 			{
 				// Cost "feeds"
-				pc.setStatusValue(eligibleMimbranes[ii], 3, pc.statusEffectv3(eligibleMimbranes[ii]) - 3);
+				pc.setStatusValue(eligibleMimbranes[i], 3, pc.statusEffectv3(eligibleMimbranes[i]) - 3);
 
 				// Raises player lust
 				pc.lust(2);
@@ -3640,41 +3647,41 @@ public function mimbraneCombatInterference():Boolean
 				applyCloudDebuff(pc);
 
 				// Failure text
-				if (eligibleMimbranes[ii] == "Mimbrane Cock")
+				if (eligibleMimbranes[i] == "Mimbrane Cock")
 				{
 					output("Some unrelenting pressure in your [armor] is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your {cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
 				}
-				else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
+				else if (eligibleMimbranes[i] == "Mimbrane Pussy")
 				{
 					//Vagina Mimbranes
 					output("You find it difficult to concentrate on the " + foes[0].short + " as the moisture trapped in and around your [pc.pussy] becomes too much to bear. An absentminded gesture to undo your [pc.armor] is all the opening your parasitic pussy needs to gas you with its concoction of licentious intentions mixed into a potent crimson fog.");
 				}
-				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
+				else if (eligibleMimbranes[i] == "Mimbrane Ass")
 				{
 					//Ass Mimbranes
 					output("Your enthusiastic [pc.ass] is doing everything in the parasite’s power to throw you off kilter, soaking the seat of your [pc.armor] in oily sweat. The Mimbrane suddenly uses its perch to its advantage, spreading your cheeks wide and letting rip a noxious, nectarous volley of cloudy lust from your [pc.asshole]. You try and swear to the " + foes[0].short + " that it isn’t what it looks like, but are cut off as you’re forced to evacuate from your current position inside the dangerous smog.");
 				}
-				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
+				else if (eligibleMimbranes[i] == "Mimbrane Balls")
 				{
 					//Scrotum Mimbranes
 					output("The rivalry against the " + foes[0].short + " halts as you’re distracted by rapid tensing and flailing of your [pc.balls]. The Mimbrane is thrashing your [pc.balls] about wildly, forcing you into your [pc.armor] to investigate. The moment you peek inside, the mutinous sack overwhelms you with a cloud of sexual desire.");
 				}
-				else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
+				else if (eligibleMimbranes[i] == "Mimbrane Boobs")
 				{
 					//Breasts Mimbranes
 					output("It gets a little hard to breathe and focus on your opponent as your [pc.breasts] continue sweating to an unparalleled degree. The Mimbrane-controlled mammaries within your [pc.armor] suddenly shake fiercely, slamming into one another. They wind up forcing thick red clouds of pure libido up and out of your garments, causing you to stagger back out of the dense haze.");
 				}
-				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
+				else if (eligibleMimbranes[i].indexOf("Mimbrane Hand") != -1)
 				{
 					// Hand Mimbranes
 					output("Your Mimbrane-possessed hand continues its sweaty crusade against you by secreting a thick red amorous fog. You decide to grin and bear the parasite’s attack, unwilling to give your opponent an upper hand.");
 				}
-				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
+				else if (eligibleMimbranes[i].indexOf("Mimbrane Foot") != -1)
 				{
 					//Feet Mimbranes
 					output("You do your best to ignore your [pc.foot], the appendage soaking in its Mimbrane’s thick sweat and intoxicating aroma. The parasite is working so hard against you, in fact, that it actually manages to produce enough of a haze down from your foot that you start to feel the effects of it!");
 				}
-				else if (eligibleMimbranes[ii] == "Mimbrane Face")
+				else if (eligibleMimbranes[i] == "Mimbrane Face")
 				{
 					//Head Mimbranes
 					output("The Mimbrane covering your head is working double time, clouding your [pc.face] with sweat and a fog of lust. You can’t hold your breath forever and eventually wind up inhaling some of the noxious, nectary fumes. ");
@@ -3692,7 +3699,7 @@ public function mimbraneCombatInterference():Boolean
 	if (numHungry > 0)
 	{
 		// If any hungry mimbrane is active, all attached mimbranes have a 10% chance to make the player lose a turn
-		for (var i:int = 0; i < mimbraneEffects.length; i++)
+		for (i = 0; i < mimbraneEffects.length; i++)
 		{
 			if (pc.hasStatusEffect(mimbraneEffects[i]))
 			{
