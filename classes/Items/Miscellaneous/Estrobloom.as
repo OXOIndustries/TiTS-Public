@@ -63,14 +63,30 @@
 			var choices:Array = new Array();
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
+				//A little flavor for the flavor, limit it to one flavor a color, so we just don't have every fruit flavor you can possibly think of in this array.
+				var flavors:Array = [["strawberry","pink"],["cherry","red"],["orange","orange"],["banana","yellow"],["apple","green"],["blueberry","blue"],["grape","purple"]];
+				var flavorIndex:int = rand(flavors.length);
+				var popFlavor:String = flavors[flavorIndex][0];
+				var popColor:String = flavors[flavorIndex][1];
+				
 				//Consume:
 				if(target.hasStatusEffect("Taken Estrobloom")) 
 				{
-					kGAMECLASS.output("You waste no time in unwrapping the popsicle and cramming it straight into your waiting gob. Your [pc.lips] seal tightly around the delicious, mutagenic treat, slurping the rapidly-melting, syrupy goo down as quickly as possible. You finish it in less than half a minute, though you spend a moment running your [pc.tongue] across your [pc.lips] to harvest every lost drop of sticky goodness from them.");
+					kGAMECLASS.output("You waste no time in unwrapping the ");
+					kGAMECLASS.output(popFlavor);
+					kGAMECLASS.output(" popsicle and cramming it straight into your waiting gob. Your [pc.lips] seal tightly around the delicious, mutagenic treat, slurping the rapidly-melting, ");
+					kGAMECLASS.output(popColor);
+					kGAMECLASS.output(" syrupy goo down as quickly as possible. You finish it in less than half a minute, though you spend a moment running your [pc.tongue] across your [pc.lips] to harvest every lost drop of sticky goodness from them.");
 				}
 				else
 				{
-					kGAMECLASS.output("You unwrap the popsicle, cringing at the excessively loud snapping of the foil-lined wrapper. Why do they make these damned things so noisy to open, anyway? Shrugging, you put the wrapper away to reveal a slender, strawberry-scented popsicle. You gingerly slip the pink-colored treat past your [pc.lips], marveling at its syrupy-sweet taste. You'd never guess this was a transformative cocktail and not a mundane popsicle by the flavor alone.\n\nThe estrobloom melts in your mouth like cotton candy, and in less than a minute, you've reduced it to a pink-stained, wooden stick.");
+					kGAMECLASS.output("You unwrap the popsicle, cringing at the excessively loud snapping of the foil-lined wrapper. Why do they make these damned things so noisy to open, anyway? Shrugging, you put the wrapper away to reveal a slender, ");
+					kGAMECLASS.output(popFlavor);
+					kGAMECLASS.output("-scented popsicle. You gingerly slip the ");
+					kGAMECLASS.output(popColor);
+					kGAMECLASS.output("-colored treat past your [pc.lips], marveling at its syrupy-sweet taste. You'd never guess this was a transformative cocktail and not a mundane popsicle by the flavor alone.\n\nThe estrobloom melts in your mouth like cotton candy, and in less than a minute, you've reduced it to a ");
+					kGAMECLASS.output(popColor);
+					kGAMECLASS.output("-stained, wooden stick.");
 					target.createStatusEffect("Taken Estrobloom",0,0,0,0,true,"","",false,0);
 				}
 				//DO ZE FEMINIZATION, SLOOTS
