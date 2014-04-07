@@ -1269,6 +1269,8 @@ function genericVictory():void
 
 function stealthCombatEnd():void
 {
+	// Mimbranes could hook here to convert from the Combat version of their Venom attack to their Non-combat version?
+	// I think this is overall too complicated though, and just ignore the whole combat/noncombat distinction.
 	pc.removeStatusEffect("Round");
 	pc.clearCombatStatuses();
 }

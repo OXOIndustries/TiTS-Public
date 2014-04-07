@@ -107,6 +107,10 @@ function debugMenus():void
 		userInterface.showBust("MILODANMALE");
 		output("\n\nTesting male bust image yo!");
 	});
+	
+	addButton(4, "Cashmoney", function():void {
+		pc.credits += 100000;
+	});
 }
 
 function bountyBoardExtra():Boolean
