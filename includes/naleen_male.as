@@ -927,7 +927,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	}
 	else //If the PC only has their ass.
 	{
-		output("\n\nWith only the one hole available to him, his topmost shaft slides home, stretching you out as the progressively larger bulges of his shaft push through your [pc.asshole] like a cross between a dildo and a string of anal beads, rubbing you in the most delicious of ways. His second cock has to settle for gliding through your [pc.asscheeks]");
+		output("\n\nWith only the one hole available to him, his topmost shaft slides home, stretching you out as the progressively larger bulges of his shaft push through your [pc.asshole] like a cross between a dildo and a string of anal beads, rubbing you in the most delicious of ways. His second cock has to settle for gliding through your [pc.butt]");
 		if(pc.tailCount > 0) output(" and eventually rubbing against the base of your tail");
 		output(", taking what pleasure it can from the friction there.");
 		buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);

@@ -318,7 +318,7 @@ function getSpitRoastedForPenny():void {
 	if(pc.wetness() >= 3) output(" along with your own moisture");
 	output(", squirting from your well-used holes. The constant sexual onslaught sends you to orgasm after orgasm, almost one on top of the other. Your mind seems to be turning to putty under the ecstatic assault, shutting down one thought process after another as you ride pleasure unending. Dimly, you’re aware of one sloppy honey injection after another...");
 	pc.orgasm();
-	pc.loadInCunt(chars["ZIL"]);
+	if(pc.hasVagina()) pc.loadInCunt(chars["ZIL"]);
 	pc.loadInAss(chars["ZIL"]);
 	//Cum, pregnancy chances, sensitivity reduction
 	//Pass 2 hours.

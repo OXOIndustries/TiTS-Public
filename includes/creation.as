@@ -1085,6 +1085,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 	clearOutput();
 	
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
+	userInterface.showName(chars["RIVAL"].short.toUpperCase());
 	
 	setLocation("MEETING\n" + chars["RIVAL"].short.toUpperCase(),"TAVROS STATION","SYSTEM: KALAS");
 	output(chars["RIVAL"].mf("He","She") + "’s " + chars["RIVAL"].mf("male","female") + ", surely. Just as you make that conclusion, " + chars["RIVAL"].mf("he","she") + " turns and spots you. You lean back and try to make yourself look as inconspicuous as a bored, leering stranger can, but it must not work out too well. The silhouette gets up and snatches " + chars["RIVAL"].mf("his","her") + " drink, walking towards you with a slow, overly confident gait that betrays its owner’s nimbleness. You ball your fists and hope that you’re not going to get in a fight on a day like today.");
@@ -1109,6 +1110,7 @@ function rivalSpillsTheBeans(sex:int = 0) {
 function ohShitGameStarts():void {
 	clearOutput();
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());
+	userInterface.showName(chars["RIVAL"].short.toUpperCase());
 	setLocation("THE\nMESSAGE","TAVROS STATION","SYSTEM: KALAS");
 	output("When you rise, the Codex beeps and says, <i>“Message received.”</i> You flip it open to read the missive, instead getting blasted with your snotty cousin’s voice as " + chars["RIVAL"].mf("he","she") + " says, <i>“Good morning sleepyhead. I just wanted to let you know that I left not long after you went to bed. My ship does have luxurious sleeping quarters for ten, after all. Ta ta!”</i>");
 	output("\n\n<i>“Message complete,”</i> the codex blithely states.");
