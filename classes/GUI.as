@@ -312,7 +312,7 @@
 			
 			(buttons[1] as MainMenuButton).buttonName = "No";
 			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
-			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.dataManager);
+			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
 		}
 		
 		public function resetMenuButtons():void

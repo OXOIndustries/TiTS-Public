@@ -13,7 +13,7 @@ function creationRouter(e:Event = null):void {
 	}
 }
 
-function startCharacterCreation():void 
+function startCharacterCreation(e:Event = null):void 
 {
 	chars["PC"] = new PlayerCharacter();
 	initializeNPCs();

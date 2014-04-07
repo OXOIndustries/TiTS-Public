@@ -11,17 +11,39 @@ public function get canSaveAtCurrentLocation():Boolean
 	return this.rooms[this.currentLocation].canSaveInRoom
 }
 
+// Wrap some newline shit to make eventBuffer more consistent
+public function addToEventBuffer(msg:String):void
+{
+	if (eventBuffer.length == 0)
+	{
+		eventBuffer += "\n" + msg;
+	}
+	else
+	{
+		eventBuffer += "\n\n" + msg;
+	}
+}
+
+public function processEventBuffer():Boolean
+{
+	if (eventBuffer.length > 0)
+	{
+		clearOutput();
+		output("<b>" + possessive(pc.short) + " log:</b>" + eventBuffer);
+		eventBuffer = "";
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return true;
+	}
+	return false;
+}
+
 public function mainGameMenu():void {
 	flags["COMBAT MENU SEEN"] = undefined;
+	
 	//Display shit that happened during time passage.
-	if(eventBuffer != "") {
-		clearOutput();
-		output("<b>" + possessive(this.chars["PC"].short) + " log:</b>" + eventBuffer);
-		eventBuffer = "";
-		this.clearMenu();
-		this.addButton(0,"Next",mainGameMenu);
-		return;
-	}
+	if (processEventBuffer()) return;
+	
 	//Queued events can fire off too!
 	//trace("EventQueue = ", eventQueue);
 	//trace("this.eventQueue = ", this.eventQueue);
