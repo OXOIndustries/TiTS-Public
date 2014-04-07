@@ -932,7 +932,10 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output(", taking what pleasure it can from the friction there.");
 		buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 	}
-	
+	trace("NALEEN COCK RATING: " + chars["NALEEN_MALE"].cockVolume(0));
+	trace("PC ButtCapacity: " + pc.analCapacity());
+	trace("PC CoochCapacity: " + pc.vaginalCapacity(0));
+
 	output("\n\nThe naleen doesn’t spare you much time to adjust, eager to get off himself, he begins thrusting at a rather brisk pace.");
 
 	output("\n\nYou moan as you feel your hole");
