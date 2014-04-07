@@ -396,7 +396,8 @@ public function processTime(arg:int):void {
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
 				var pill = new HorsePill();
-				eventQueue[eventQueue.length] = pill.pillTF;
+				//eventQueue[eventQueue.length] = pill.pillTF;
+				pill.pillTF();
 			}
 			//Hours checks here!
 			//Cunt stretching stuff
