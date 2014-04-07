@@ -679,7 +679,7 @@ function catchVaginalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
-	if(pc.hasVagina()) pc.loadInCunt(chars["ALEX"]);
+	//if(pc.hasVagina()) pc.loadInCunt(chars["ALEX"]);
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
 }
@@ -1127,7 +1127,7 @@ function catchAnalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
-	pc.loadInAss(chars["ALEX"]);
+	//pc.loadInAss(chars["ALEX"]);
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
 }
