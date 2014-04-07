@@ -2,16 +2,11 @@
 //Note: If PC has a dick encounter rate should be 75% female, 25% male, if female vice versa.
 function encounterASexBot():void
 {
-	var manbot:Boolean = false;
-	//Pure dude? 25% chance of dude
-	if(pc.hasCock() && !pc.hasVagina()) manbot = (rand(4) == 0);
-	//Dude with a cunt? 50% chance
-	else if(pc.hasCock()) manbot = (rand(2) == 0);
-	//Just a cunt? 75%!
-	else if(pc.hasVagina()) manbot = (rand(4) != 0);
-	//Neuter? 50/50
-	else manbot = (rand(2) == 0);
-	flags["MANBOT_STORAGE"] = manbot;
+	foes = new Array();
+	chars["SEXBOT"].prepForCombat();
+
+	var manbot:Boolean = (foes[0].mf("dude","lady") == "dude");
+	
 	if(!pc.hasCock() && !pc.hasVagina())
 	{
 		output("\n\nA level humming sound permeates this area of the junkyard wastes, coating the distant, harsh strains of heavy industry. The source of it becomes apparent as a pale-grey figure emerges from a grotto of wrecked spaceship parts, stepping calmly towards you. Your first thought, as you cautiously check for your weapons and codex, is that some sort of heavily robotised raskvel is approaching you. It is shaped exactly like one of the squat aliens, but everything from its heavy thighs to its long ears seems to be made from a grey, metallic fibre, plated here and there with a shiny, white latex-like plastic. Its female sex and lips look soft and rubbery, its solid eyes a backlit green, locked on you.");
@@ -47,7 +42,7 @@ function encounterASexBot():void
 		if(!manbot) output("its lips become plumper, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty shifting into being.");
 		else output("its lips remain relatively thin, its jaw becomes square and its nose straightens, a strong profile contouring into being. You are reminded of the anatomical drawings of ancient humanity you studied at school: stark, emotionless male beauty.");
 		if(!manbot) output("\n\nThroughout all of this you cannot help notice that practically the one thing that doesn’t change is the pliable-looking vertical slit between its thighs.");
-		else output("\nSmall fibre cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human-looking penis.");
+		else output("\n\nSmall fibre cables slide out of the vertical slit between its thighs, busily wrapping themselves around each other. Within moments where its female sex was there is a sturdy and convincingly human-looking penis.");
 		if(!manbot) output(" It becomes yet taller as it forms two high heels out of its soles.");
 
 		output("\n\n“<i>Configuration complete,</i>” says the now human shape in front of you smoothly.");
@@ -109,13 +104,13 @@ function encounterASexBot():void
 	}
 }
 
-function startSexBotCombat(manbot:Boolean):void
+function startSexBotCombat():void
 {
-	startCombat("SexBot");
-	userInterface.resetNPCStats();
-	if(manbot) setBotSex(true);
-	else setBotSex(false);
+	flags["DRONE_TARGET"] = undefined;
+	combatStage = 0;
+	hideMinimap();
 	combatMainMenu();
+	userInterface.resetNPCStats();
 	showNPCStats();
 	updateNPCStats();
 }
@@ -140,13 +135,14 @@ function turnDownRobotSexuals(newScreen:Boolean = false):void
 	output("\n\n“<i>Consent protocols not responding,</i>” says the sexbot, in the same tone of depthless calm. With a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grabbers appear out of its back. They sway restlessly around the eerily beautiful droid as it advances upon you. “<i>I am sorry, insert name here, but I cannot do that.</i>”");
 	
 	clearMenu();
-	addButton(0,"Next",startSexBotCombat,flags["MANBOT_STORAGE"]);
+	addButton(0,"Next",startSexBotCombat);
 }
 
 //Yes: 
 function voluntaryFuckSexBot():void
 {
 	clearOutput();
+	stealthCombatEnd();
 	output("Oh, why not. They’re a lot cleaner than the raskvel at least");
 	if(pc.hasVagina()) output(" and aren’t exactly likely to knock you up");
 	output(". You grin your assent ");
@@ -160,6 +156,7 @@ function voluntaryFuckSexBot():void
 function yesToRobotSexBotFirstTime():void
 {
 	clearOutput();
+	stealthCombatEnd();
 	if(!pc.isNude()) output("You shrug and smile back with leisured complicity, remove your [pc.gear] and loll onto the floor.");
 	else output("You shrug and smile back with leisured complicity and loll your already naked self onto the floor.");
 
@@ -168,41 +165,6 @@ function yesToRobotSexBotFirstTime():void
 	//[go to loss scenes]
 	clearMenu();
 	addButton(0,"Next",loseToSexBotRouter);
-}
-
-function setBotSex(manbot:Boolean = false):void
-{
-	//Combat Texts
-	//Notes: Sexbots should be shielded, resistant to lust, weak to melee and average against ranged. They have no sexual preferences (unless you’re planning a robot TF or some shit) so effectiveness of teases should be evenly spread. 
-
-	//Female bot:
-	if(!manbot)
-	{
-		foes[0].long = "You are fighting a sexbot. It stands 6’ tall, made taller still by the high heels it has formed around its feet. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its alluring curves: its thick thighs and high, round bum, its thin waist and firm, D-cup boobs with their defined nipples almost believably bursting through its latex; it all combines to create a vision of impossible feminine perfection. Framed by its white, plastic bob cut its synthetic face is thin, calm, blandly beautiful, the smile curling its full lips small and confident. If it had tan skin and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a lingerie advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
-		foes[0].createCock();
-		foes[0].cocks[0].cLength(9,true);
-		foes[0].hipRatingRaw = 14;
-		foes[0].buttRatingRaw = 14;
-		foes[0].hairLength = 12;
-		foes[0].femininity = 100;
-		foes[0].breastRows[0].breastRatingRaw = 6;
-		foes[0].createVagina();
-		foes[0].vaginas[0].wetness(3,true);
-		foes[0].vaginas[0].looseness(2,true);
-	}
-	else
-	{
-		foes[0].long = "You are fighting a sexbot. It stands 6’ tall. The grey fibre cable which forms the core of its adaptable body is padded with silicone and plated by a sheer white latex coating, gleaming wetly as it moves and catches the light. It serves to highlight its fit, supple body: its ropey, hard-looking hips and waist, its pert bum and the slight suggestions of ripples and plateaus of muscle underneath its latex combine to create a vision of beguiling, skilfully understated masculinity. This subtlety is rather undermined by the thick, white 8 inch penis which swings bluntly between its swimmer’s thighs; it pulses occasionally with a warm, red light. Framed by its spiky, plastic haircut its synthetic face is defined, calm, blandly beautiful, the smile curling its full lips small and confident. If its skin was tan and its eyes weren’t a backlit, flickering green it could have stepped fully formed from a deodorant advert. Entirely at odds to its calm, benign appearance, the four fibrous, flexible robo-tentacles the sexbot has sprouted out of its back circle their rubber-tipped grippers above its head, grabbing and clutching the air restlessly.";
-		foes[0].createCock();
-		foes[0].cocks[0].cLength(9,true);
-		foes[0].hipRatingRaw = 2;
-		foes[0].buttRatingRaw = 2;
-		foes[0].hairLength = 2;
-		foes[0].femininity = 0;
-		foes[0].createVagina();
-		foes[0].vaginas[0].wetness(3,true);
-		foes[0].vaginas[0].looseness(2,true);
-	}
 }
 
 function sexbotAI():void
@@ -289,7 +251,7 @@ function shieldRegeneration():void
 		output("The sexbot chatters and whirrs quietly to itself, then its eyes go dark and its limbs limp. Its background hum intensifies however, and you suspect it’s up to something");
 		if(pc.characterClass == GLOBAL.ENGINEER) output(", probably diverting all available processing power and energy into recharging its shield. You should try and hit it with everything you’ve got before it can do so");
 		output(".");
-		foes[0].createStatusEffect("Shield Recharge",0,0,0,0);
+		foes[0].createStatusEffect("Shield Recharge",1,0,0,0);
 	}
 	//Round 2:
 	else if(foes[0].statusEffectv1("Shield Recharge") == 1)
@@ -303,6 +265,7 @@ function shieldRegeneration():void
 		output("The sexbot shudders back into life, its green eyes flickering back on. You notice with a sinking heart that its kinetic shield has also snapped and fizzed back into life.");
 		foes[0].shieldsRaw = foes[0].shieldsMax();
 		output("\n\n“<i>I apologise for the momentary downtime, insert name here,</i>” the wretched robot says sweetly. “<i>And for any loss of arousal it may have caused you.</i>”");
+		foes[0].removeStatusEffect("Shield Recharge");
 	}
 	processCombat();
 }
@@ -454,7 +417,7 @@ function loseToSexBotAndHaveADick():void
 	if(pc.hasVagina()) output("s");
 	output(" on your groin withdraw as it lifts its hips upwards, perching its pliable, warm cunt at the top of your bulging [pc.cockNounSimple " + x + "]. It looks down, its green eyes growing brighter. “<i>Oh, insert name here, you are so big! I do not know if a simple VI like me will be able to handle everything you’re packing down here.</i>” The worst part is it modulates its tone, injecting enough awe and feminine excitement into its dulcet tones to make you want to believe it. Your rebellious prick certainly does - it strains with frustration to the touch of the heated synthetic, compelling you to thrust your [pc.hips] upwards and try and penetrate the sexbot’s pussy. It lifts it away easily, keeping you trapped with its tough, cable tentacles whilst it continues to tease your tip with its heat, wriggling its thighs above you, bending it gently this way and that.");
 
-	output("\n\n“<i>Please contain yourself for a moment longer, insert name here.</i>” Is there a teasing, sadistic note in its voice now? That can’t be real, can it? Would it fabricate that purposefully? You are beginning to sink into sexual dizziness, the only certainty the leaden weight of need in your loins. “<i>I will need to reconfigure again to be able to stand any chance of handling your manhood.</i>”\n\nThe sounds of unwinding rope and something like a foot sinking into an air bed reach your ears. “<i>Configuration complete. Be a good " + pc.mf("boy","girl","pet") + " and remain still whilst I perform the necessary tests...</i>” You find yourself staring back into its unblinking eyes as it sinks downwards, enveloping your [pc.cock " + x + "] in smooth warmth.");
+	output("\n\n“<i>Please contain yourself for a moment longer, insert name here.</i>” Is there a teasing, sadistic note in its voice now? That can’t be real, can it? Would it fabricate that purposefully? You are beginning to sink into sexual dizziness, the only certainty the leaden weight of need in your loins. “<i>I will need to reconfigure again to be able to stand any chance of handling your manhood.</i>”\n\nThe sounds of unwinding rope and something like a foot sinking into an air bed reach your ears. “<i>Configuration complete. Be a good " + pc.mfn("boy","girl","pet") + " and remain still whilst I perform the necessary tests...</i>” You find yourself staring back into its unblinking eyes as it sinks downwards, enveloping your [pc.cock " + x + "] in smooth warmth.");
 	cockChange(true,false);
 
 	//1 Cock: 

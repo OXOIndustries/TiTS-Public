@@ -1267,9 +1267,16 @@ function genericVictory():void
 	getCombatPrizes();
 }
 
+function stealthCombatEnd():void
+{
+	pc.removeStatusEffect("Round");
+	pc.clearCombatStatuses();
+}
+
 function combatOver():void 
 {
 	pc.removeStatusEffect("Round");
+	pc.clearCombatStatuses();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
 }
