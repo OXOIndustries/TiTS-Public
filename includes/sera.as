@@ -485,16 +485,16 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	buttChange(chars["SERA"].cockVolume(0),true,true,false);
 
 	//if PC is tight:
-	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do only let the special dick-girls in back here?\"</i>");
+	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do you only let the special dick-girls in back here?\"</i>");
 	//if PC is moderately loose:
 	else if(pc.ass.looseness() <= 4) output("\n\n<i>\"Aww yeah, now that's what I'm talkin' about. You had some Naughty Wyvern toys back here before, or are you just THAT much of a buttslut?\"</i>");
 	//if PC is MEGALOOSE: 
 	else output("\n\n<i>\"Hoooolyyyy shit, meat, what have you had back here? Beeb getting friendly with some centaurins, or are you more of a 'get twenty dicks in my ass at once' kind of " + pc.mf("guy","girl") + "? Shit, I might have to splice up again -- feelin' kind of inadequate back here!\"</i>");
-	output("\n\nYou try to respond to the demoness's teasing, but find your voice breaking into a high-pitched cry of pleasure as she slams into you, force-fucking all twelve inches of cock into your ass until her balls slapping wetly against ");
+	output("\n\nYou try to respond to the demoness's teasing, but find your voice breaking into a high-pitched cry of pleasure as she slams into you, force-fucking all twelve inches of cock into your ass until her balls are slapping wetly against ");
 	if(pc.balls > 0) output("your own");
 	else if(pc.hasVagina()) output("your cooch");
 	else output("your bare groin");
-	output(". You give a last gasp of startled half-pleasure before collapsing onto the counter, breathing hard as your body adjusts to to massive, full feeling of such a thick cock inside you. A moment later, you're pushed down against the cool glass, feeling the sweltering heat of the demoness's body pressing against your back, her big, soft breasts fitting nicely between your shoulders -- and acting like a headrest as she pulls your head back, making you look up at her as she looms over you, gently rocking her hips to settle her cock deep inside your ass.")
+	output(". You give a last gasp of startled half-pleasure before collapsing onto the counter, breathing hard as your body adjusts to the massive, full feeling of such a thick cock inside you. A moment later, you're pushed down against the cool glass, feeling the sweltering heat of the demoness's body pressing against your back, her big, soft breasts fitting nicely between your shoulders -- and acting like a headrest as she pulls your head back, making you look up at her as she looms over you, gently rocking her hips to settle her cock deep inside your ass.")
 	output("\n\n<i>\"How's it feel, slut? Like the feeling of me stretching your ass out?\"</i>");
 	output("\n\nYou try to nod, but her hand gripping your head refuses to budge, holding you still.");
 	output("\n\n<i>\"I can't hear you, slut? And neither can my cock. Let us hear you say it, and maybe I'll actually </i>fuck<i> you like you deserve.\"</i>");
