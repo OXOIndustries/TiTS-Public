@@ -8,6 +8,7 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	
 	/**
 	 * ...
@@ -19,6 +20,7 @@ package classes.UIComponents.SideBarComponents
 		private var _levelDisplay:StatBarSmall;
 		private var _raceDisplay:StatBarSmall;
 		private var _sexDisplay:StatBarSmall;
+		private var _statusEffects:StatusEffectsBlock;
 		
 		public function get shieldBar():StatBarBig { return _statBlock.shieldBar; }
 		public function get hpBar():StatBarBig { return _statBlock.hpBar; }
@@ -27,6 +29,7 @@ package classes.UIComponents.SideBarComponents
 		public function get levelBar():StatBarSmall { return _levelDisplay; }
 		public function get raceBar():StatBarSmall { return _raceDisplay; }
 		public function get sexBar():StatBarSmall { return _sexDisplay; }
+		public function get statusEffects():StatusEffectsDisplay { return _statusEffects.statusDisplay; }
 		
 		public function EnemyEncounterBlock() 
 		{
@@ -41,6 +44,12 @@ package classes.UIComponents.SideBarComponents
 			this.addChild(_statBlock);
 			
 			this.BuildInfoBars();
+			
+			_statusEffects = new StatusEffectsBlock(false);
+			_statusEffects.y = Math.floor(_sexDisplay.y + (_sexDisplay.height - 7));
+			this.addChild(_statusEffects);
+			
+			_statusEffects.displayText = "ENEMY STATUS";
 		}
 		
 		private function BuildInfoBars():void

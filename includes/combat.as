@@ -2011,7 +2011,7 @@ function flashGrenade(target:Creature):void {
 	pc.energy(-10);
 	clearOutput();
 	if(silly) output("With a cry of <i>\"Pocket sand!\"</i> you produce a handful of sand and throw it at " + target.a + target.short + ".");
-	else output("You produce one of your rechargible flash grenades and huck it int he direction of " + target.a + target.short + ".");
+	else output("You produce one of your rechargible flash grenades and huck it in the direction of " + target.a + target.short + ".");
 	//Chance of bliiiiiiiind
 	if(pc.aim()/2 + rand(20) + 6 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind")) {
 		if(target.plural) output("\n<b>" + target.capitalA + target.short + " are blinded by </b>");

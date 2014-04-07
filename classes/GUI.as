@@ -599,6 +599,7 @@
 		public function get monsterLevel():StatBarSmall { return _leftSideBar.encounterLevel; }
 		public function get monsterRace():StatBarSmall { return _leftSideBar.encounterRace; }
 		public function get monsterSex():StatBarSmall { return _leftSideBar.encounterSex; }
+		public function set monsterStatusEffects(statusEffectsArray:Array):void { _leftSideBar.encounterStatusEffects.updateDisplay(statusEffectsArray); }
 		
 		public function get time():String { return _leftSideBar.timeText.text; }
 		public function set time(v:String):void { _leftSideBar.timeText.text = v; }

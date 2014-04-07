@@ -80,10 +80,12 @@
 		private var _penaltyTransform:ColorTransform;
 		private var _debugTransform:ColorTransform;
 		
+		private var _rightAlign:Boolean;
+		
 		/**
 		 * Class Constructor just sets up some stuff we don't need a stage reference to do properly.
 		 */
-		public function StatusEffectsDisplay() 
+		public function StatusEffectsDisplay(rightAlign:Boolean = true) 
 		{
 			_benefitTransform = new ColorTransform();
 			_benefitTransform.color = UIStyleSettings.gStatusGoodColour;
@@ -95,6 +97,8 @@
 			_penaltyTransform.color = UIStyleSettings.gTheColourOfDebug;
 			
 			_lastActiveElement = null;
+			
+			_rightAlign = rightAlign;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -197,11 +201,15 @@
 		private function DisplayTooltip(activeObj:StatusEffectElement):void
 		{		
 			_tooltipElement.SetData(activeObj.displayName, activeObj.tooltipText, activeObj.iconType, activeObj.durationRemaining);
+			this.stage.addChild(_tooltipElement);
 			
 			var tPt:Point = this.localToGlobal(new Point(0, 0));
-			_tooltipElement.x = tPt.x - (_tooltipElement.width + 45);
-			_tooltipElement.y = tPt.y - (_tooltipElement.height - 35);
-			this.stage.addChild(_tooltipElement);
+			
+			// Horizontal position
+			_tooltipElement.x = (_rightAlign) ? tPt.x - (_tooltipElement.width + 35) : 215;
+			
+			// Vertical position
+			_tooltipElement.y = 635 - _tooltipElement.height;
 		}
 		
 		/**

@@ -14,6 +14,7 @@ package classes.UIComponents
 	import classes.UIComponents.SideBarComponents.MiniMapBlock;
 	import classes.UIComponents.SideBarComponents.GeneralInfoBlock;
 	import classes.UIComponents.SideBarComponents.SideBarButtonBlock;
+	import classes.UIComponents.StatusEffectComponents.StatusEffectsDisplay;
 	
 	/**
 	 * ...
@@ -42,6 +43,7 @@ package classes.UIComponents
 		public function get encounterLevel():StatBarSmall { return _enemyEncounterBlock.levelBar; }
 		public function get encounterRace():StatBarSmall { return _enemyEncounterBlock.raceBar; }
 		public function get encounterSex():StatBarSmall { return _enemyEncounterBlock.sexBar; }
+		public function get encounterStatusEffects():StatusEffectsDisplay { return _enemyEncounterBlock.statusEffects; }
 		
 		public function get timeText():TextField { return _genInfoBlock.time; }
 		public function get daysText():TextField { return _genInfoBlock.days; }
@@ -136,6 +138,7 @@ package classes.UIComponents
 		public function ShowStats():void
 		{
 			_miniMapBlock.visible = false;
+			_genInfoBlock.visible = false;
 			_enemyEncounterBlock.visible = true;
 		}
 		
@@ -149,12 +152,14 @@ package classes.UIComponents
 			{
 				_miniMapBlock.visible = false;
 			}
+			if (_genInfoBlock) _genInfoBlock.visible = true;
 			_enemyEncounterBlock.visible = false;
 		}
 		
 		public function HideStats():void
 		{
 			_enemyEncounterBlock.visible = false;
+			_genInfoBlock.visible = true;
 		}
 		
 		public function HideMiniMap():void

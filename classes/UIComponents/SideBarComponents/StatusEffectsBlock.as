@@ -18,10 +18,17 @@ package classes.UIComponents.SideBarComponents
 		
 		private var _statusDisplay:StatusEffectsDisplay;
 		
+		private var _rightAlign:Boolean;
+		
+		public function set displayText(v:String):void { _statusHeaderText.text = v; }
+		public function get displayText():String { return _statusHeaderText.text; }
+		
 		public function get statusDisplay():StatusEffectsDisplay { return _statusDisplay; }
 		
-		public function StatusEffectsBlock() 
+		public function StatusEffectsBlock(rightAlign:Boolean = true) 
 		{
+			_rightAlign = rightAlign;
+			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -36,7 +43,7 @@ package classes.UIComponents.SideBarComponents
 		private function BuildHeader():void
 		{
 			_statusHeaderUnderline = new Sprite();
-			_statusHeaderUnderline.x = 10;
+			_statusHeaderUnderline.x = (_rightAlign) ? 10 : 0;
 			_statusHeaderUnderline.y = 17;
 			_statusHeaderUnderline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
 			_statusHeaderUnderline.graphics.drawRect(0, 0, 190, 1);
@@ -58,7 +65,7 @@ package classes.UIComponents.SideBarComponents
 		
 		private function BuildDisplay():void
 		{
-			_statusDisplay = new StatusEffectsDisplay();
+			_statusDisplay = new StatusEffectsDisplay(_rightAlign);
 			_statusDisplay.targetX = 10;
 			_statusDisplay.targetY = 20;
 			_statusDisplay.paddingTop = 3;

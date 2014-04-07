@@ -36,17 +36,23 @@ package classes.UIComponents.StatusEffectComponents
 		
 		private var _durationText:TextField;
 		
+		private var _rightAlign:Boolean;
+		
+		override public function get height():Number { return _backgroundElement.height; }
+		
 		/**
 		 * You know the drill
 		 * @param	sizeX	Initial X size of the tooltip. Will be maintained, only Y will be rescaled.
 		 * @param	sizeY	Initial Y size of the tooltip. Will be scaled to fit textual content.
 		 * @param	missingIconRef	Reference to the "missing icon" embedded class reference.
 		 */
-		public function StatusTooltipElement(missingIconRef:Class, sizeX:int = 460, sizeY:int = 260) 
+		public function StatusTooltipElement(missingIconRef:Class, sizeX:int = 460, sizeY:int = 260, rightAlign:Boolean = true) 
 		{
 			this._sizeX = sizeX;
 			this._sizeY = sizeY;
 			this._iconElement = new missingIconRef();
+			
+			_rightAlign = rightAlign;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}

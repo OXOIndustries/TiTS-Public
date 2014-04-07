@@ -2098,7 +2098,6 @@ public function friendlyMimbraneEvents():void
 			outputDone = true;
 			
 			var messageArray:Array = [];
-			var msg:String;
 
 			msg = "Your eyes go wide when a noisy sound stumbles out from your [pc.ass]. Luckily, it appears you garnered no unwanted attention. It would seem your enthusiastic Mimbrane has taken to playing practical jokes on you, using its unique control of your posterior to produce faux fart sounds.";
 			if (pc.isNice()) msg +=" You politely ask that the parasite at least not be too loud. There’s no harm in fun, but there’s certainly harm to be had from certain sources should the racket get out of hand.";

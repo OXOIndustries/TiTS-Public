@@ -208,6 +208,8 @@ function updateNPCStats():void {
 		}
 		else if(foes[0].hasVagina()) this.userInterface.monsterSex.values.text = "Female";
 		else this.userInterface.monsterSex.values.text = "????";
+		
+		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
 }
 function updateStatBar(arg:MovieClip,value = undefined, max = undefined):void {
