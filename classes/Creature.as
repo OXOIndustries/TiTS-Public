@@ -4034,6 +4034,16 @@
 			}
 			return false;
 		}
+		public function hasCuntNipples(): Boolean {
+			var counter: Number = breastRows.length;
+			var index: Number = 0;
+			while (counter > 0) {
+				counter--;
+				if (breastRows[counter].nippleType == GLOBAL.FUCKABLE) index = counter;
+			}
+			if (breastRows[counter].nippleType == GLOBAL.FUCKABLE) return true;
+			return false;
+		}
 		public function hasFuckableNipples(): Boolean {
 			var counter: Number = breastRows.length;
 			var index: Number = 0;

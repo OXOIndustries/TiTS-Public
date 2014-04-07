@@ -129,6 +129,10 @@
 	{
 		chars["VKO"] = new classes.Characters.VKo();
 	}
+	if (!justUpdate || (justUpdate && chars["SEXBOT"] == undefined))
+	{
+		chars["SEXBOT"] = new classes.Characters.SexBot();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

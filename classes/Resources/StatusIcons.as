@@ -13,6 +13,9 @@ package classes.Resources
 	{
 		[Embed(source = "../../assets/icons/statuseffects/unknown.svg", mimeType = "image/svg")]
 		public static var Icon_Missing:Class;
+
+		[Embed(source = "../../assets/icons/statuseffects/blocked.svg", mimeType = "image/svg")]
+		public static var Icon_Blocked:Class;
 		
 		[Embed(source = "../../assets/icons/statuseffects/radiosignal.svg", mimeType = "image/svg")]
 		public static var Icon_RadioSignal:Class;
@@ -93,6 +96,8 @@ package classes.Resources
 		public static var Constrict:Class = StatusIcons.Icon_Constricted;
 		public static var Poison:Class = StatusIcons.Icon_Poison;
 		public static var Blind:Class = StatusIcons.Icon_BlindAlt;
+		public static var Blocked:Class = StatusIcons.Icon_Blocked;
+		public static var Charmed:Class = StatusIcons.Icon_Charmed;
 		public static var Pill:Class = StatusIcons.Icon_DrugPill;
 	}
 

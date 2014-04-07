@@ -295,6 +295,24 @@ function updateCombatStatuses():void {
 			pc.removeStatusEffect("Deflector Regeneration");
 		}
 	}
+	if (pc.hasStatusEffect("Porno Hacked Drone"))
+	{
+		if(pc.shields() > 0)
+		{
+			pc.addStatusValue("Porno Hacked Drone",1,-1);
+			if(pc.statusEffectv1("Porno Hacked Drone") <= 0)
+			{
+				output("<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.\n</b>");
+				pc.removeStatusEffect("Porno Hacked Drone");
+			}
+			else
+			{
+				//Combat blurb:
+				output("<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.\n</b>");
+				pc.lust(4);
+			}
+		}
+	}
 	if (pc.hasStatusEffect("Mimbrane Lust Cloud"))
 	{
 		if (mimbraneDebug) trace("Player is still afflicted with Mimbrane Lust Cloud");
@@ -460,15 +478,18 @@ function grappleStruggle():void {
 	}
 	else 
 	{
-		if(pc.physique() + rand(20) + 1 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled")) {
-			output("With a mighty heave, you tear your way out of the grappled and onto your [pc.feet].");
+		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled"))
+		{
+			if(foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+			else output("With a mighty heave, you tear your way out of the grappled and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
 	}
 	//Fail to escape: 
 	if(pc.hasStatusEffect("Grappled"))
 	{
-		output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
+		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
+		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
 	output("\n");
@@ -742,6 +763,11 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	if(attacker.hasStatusEffect("Disarmed")) {
 		if(attacker == pc) output("You try to attack until you remember you got disarmed!");
 		else output(attacker.capitalA + attacker.short + " scrabbles about, trying to find " + attacker.mfn("his","her","its") + " missing weapon.");
+	}
+	//Attack prevented by gunlock
+	else if(attacker.hasStatusEffect("Gunlock")) {
+		if(attacker == pc) output("Your " + attacker.rangedWeapon.longName + " is currently disabled and unable to be used.");
+		else output(attacker.capitalA + attacker.short + " fiddles fruitlessly with " + attacker.mfn("his","her","its") + " disabled weapon.");
 	}
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
@@ -1119,6 +1145,9 @@ function enemyAI(aggressor:Creature):void
 		case "female raskvel":
 			raskvelChickAI();
 			break;
+		case "sex bot":
+			sexbotAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1166,6 +1195,10 @@ function victoryRouting():void
 	{
 		victoryVsRaskvel();
 	}
+	else if(foes[0] is SexBot)
+	{
+		defeatTheSexBot();
+	}
 	else genericVictory();
 }
 
@@ -1207,6 +1240,10 @@ function defeatRouting():void
 	else if(foes[0] is RaskvelFemale)
 	{
 		defeatRoutingForFemRasks();
+	}
+	else if(foes[0] is SexBot)
+	{
+		loseToSexBotRouter();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1371,6 +1408,9 @@ function startCombat(encounter:String):void
 			break;
 		case "RaskvelFemale":
 			chars["RASKVELFEMALE"].prepForCombat();
+			break;
+		case "SexBot":
+			chars["SEXBOT"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

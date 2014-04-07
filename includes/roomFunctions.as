@@ -318,7 +318,10 @@ function rustPlainsEncounters():Boolean {
 		choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
-				
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
