@@ -4,7 +4,8 @@ function encounterASexBot():void
 {
 	foes = new Array();
 	chars["SEXBOT"].prepForCombat();
-
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	var manbot:Boolean = (foes[0].mf("dude","lady") == "dude");
 	
 	if(!pc.hasCock() && !pc.hasVagina())
@@ -118,7 +119,11 @@ function startSexBotCombat():void
 //No/lust < 30:
 function turnDownRobotSexuals(newScreen:Boolean = false):void
 {
-	if(newScreen) clearOutput();
+	if(newScreen) {
+		clearOutput();
+		author("Nonesuch");
+		userInterface.showName("\nSEXBOT");
+	}
 	else output("\n\n");
 	
 	if(flags["TURNED_DOWN_SEXBOT"] == undefined)
@@ -142,6 +147,8 @@ function turnDownRobotSexuals(newScreen:Boolean = false):void
 function voluntaryFuckSexBot():void
 {
 	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	stealthCombatEnd();
 	output("Oh, why not. They’re a lot cleaner than the raskvel at least");
 	if(pc.hasVagina()) output(" and aren’t exactly likely to knock you up");
@@ -156,6 +163,8 @@ function voluntaryFuckSexBot():void
 function yesToRobotSexBotFirstTime():void
 {
 	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	stealthCombatEnd();
 	if(!pc.isNude()) output("You shrug and smile back with leisured complicity, remove your [pc.gear] and loll onto the floor.");
 	else output("You shrug and smile back with leisured complicity and loll your already naked self onto the floor.");
@@ -212,6 +221,8 @@ function sexbotAI():void
 //(Procs if PC still has shields)
 function sexBotElectropulseAttack():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	output("“<i>Electronic shielding devices may disrupt my scanning software, impairing my ability to properly pleasure you,</i>” says the sexbot, in a tone of infinite patience. “<i>Please switch all such devices off.</i>” It points a finger at you and with a sharp crack connects it to your shield with a momentary, searing white bolt of static.");
 	var attacker:Creature = foes[0];
 	var target:Creature = pc;
@@ -243,6 +254,8 @@ function sexBotElectropulseAttack():void
 //(Procs if PC does not have shields and has fired at the sexbot)
 function disablePCGunz():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	output("“<i>Whilst this unit is fully equipped to deal with more vigorous forms of sexual congress,</i>” the sexbot drones, “<i>You are asked not to bring live weapons into our fun, insert name here. You are encouraged to continue firing your gun at me after I have switched it off if doing so arouses you.</i>” It flicks a hand at you, your " + pc.rangedWeapon.longName + " shuddering as it is hit by the VI’s attempt to electronically lock it.");
 	pc.createStatusEffect("Gunlock",0,0,0,0,false,"Blocked","Your ranged weapon has been temporarily disabled. It should resume normal function once you get away from your foe.",true,0);
 	processCombat();
@@ -252,6 +265,8 @@ function disablePCGunz():void
 //(Procs if Sexbot has lost shields)
 function shieldRegeneration():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	//Round 1:
 	if(!foes[0].hasStatusEffect("Shield Recharge"))
 	{
@@ -281,7 +296,8 @@ function shieldRegeneration():void
 //(Procs if PC has a drone)
 function getDroneHacked():void
 {
-	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	output("“<i>Empatrons are always pleased to see a friend you have brought along to share in the fun,</i>” the sexbot sighs, its flickering green gaze turning to your floating drone. “Stand by while I reconfigure it for optimum enjoyment.” Your robot buddy shudders and rolls in the air as the rogue droid attempts to take control of it.");
 	//Fail: 
 	if(rand(20) + 1 + pc.intelligence()/2 < 12)
@@ -301,6 +317,8 @@ function getDroneHacked():void
 //Standard attack
 function standardRobosexualAttack():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	output("Making a series of violent clacks and breathy sounds, the sexbot whips out its tentacles out at you, ");
 	if(pc.shields() > 0) output("beating with the relentlessness of a machine against your shield.\n");
 	else output("snapping at pressure points on your throat and groin, aiming to weaken and drain you.\n");
@@ -312,6 +330,8 @@ function standardRobosexualAttack():void
 //(Procs if PC has lost shields) 	
 function grappleWithASexbot():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	if(pc.hasStatusEffect("Grappled"))
 	{
 		output("You grit your teeth as your ");
@@ -359,6 +379,8 @@ function grappleWithASexbot():void
 //PC wins
 function defeatTheSexBot():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	output("The sexbot opens its mouth, but instead of its calm tones it instead emits a clatter of clicks, beeps and high vocalisations. Its head flicks to one side in the same motion over and over again before finally with a wheezing, defeated hum it retracts its tentacles and kneels down, hands flat on the floor.");
 	output("\n\n“<i>A serious exception occurred. Entering factory reset,</i>” it says quietly. “<i>Non-reactive safe mode in effect.</i>” It pauses. “<i>Can this unit do anything for you, insert name here?</i>”");
 	//Lust > 30:
@@ -388,6 +410,8 @@ function defeatTheSexBot():void
 //Loss Scenes
 function loseToSexBotRouter():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	//Female Bot
 	if(foes[0].mf("","FUCK") == "FUCK")
 	{
@@ -410,6 +434,8 @@ function loseToSexBotRouter():void
 //PC has dick
 function loseToSexBotAndHaveADick():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	var x:int = rand(pc.cockTotal());
 	output("From your position on the floor you watch the sexbot come closer, looming over you. Its permanently calm, neutral expression is almost completely obscured by its generous bust, firm and trembling ever so slightly to its step beneath the white sheen of its latex. However manufactured you know it to be, it is hard not to look at the full breasts, the thick thighs and the pristine sex of this creature and not feel aroused. You exhale slowly as it unceremoniously sits on you, one knee on either side of your waist, its smooth hands landing on your [pc.chest].");
 	output("\n\nThe cool, featureless austerity of its housing belies the warmth which glows through the sexbot like an overworked computer. You’d never be able to mistake its touch for flesh, but the weight of its round butt upon your groin, its rubbery, pliant sex kissing [pc.eachCock], feels exceedingly pleasant. You stare up into its unblinking green gaze as it brushes its fingers over your [pc.nipples], then close your eyes and grunt as you feel a dry, clinging grip enclose your [pc.cock " + x + "].");
@@ -511,6 +537,8 @@ function loseToSexBotAndHaveADick():void
 //PC female
 function femalePCsGetBangedByAFemBot():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	var x:int = rand(pc.totalVaginas());
 	var y:int = x + 1;
 	if(y >= pc.totalVaginas()) y = x-1;
@@ -585,6 +613,8 @@ function femalePCsGetBangedByAFemBot():void
 //PC Male
 function malebotDefeatsMalePCs():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	var x:int = rand(pc.cockTotal());
 	var y:int = x+1;
 	if(y >= pc.cockTotal()) y = x-1;
@@ -652,6 +682,8 @@ function malebotDefeatsMalePCs():void
 //PC has vagina
 function loseToManBotWhenHavingAPussy():void
 {
+	author("Nonesuch");
+	userInterface.showName("FIGHT:\nSEXBOT");
 	clearOutput();
 	var x:int = rand(pc.totalVaginas());
 	var y:int = x+1;
@@ -768,6 +800,8 @@ function loseToManBotWhenHavingAPussy():void
 function consentaclesVictoryWithDannySexBot():void
 {
 	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	var x:int = rand(pc.totalVaginas());
 	var y:int = x+1;
 	if(y >= pc.vaginaTotal()) y = x-1;
@@ -837,6 +871,8 @@ function consentaclesVictoryWithDannySexBot():void
 function blowjobVictoryFromSexbot():void
 {
 	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	output("Gripping your [pc.cockBiggest], you tell the kneeling latex-clad android in front of you that you’d like to make use of – you cast around for a moment - its fellatio sub-routine.");
 	output("\n\n“<i>Please wait one moment, insert name here.</i>” The " + foes[0].mf("male","female") + " sexbot stares blankly through your midriff as a low buzz of whirring and inflating noises emerge from its thorax. It’s hardly the most erotic prelude you’ve ever been privy to but when it finally finishes whatever it is doing, it looks up at you with its bright green eyes and opens its pulpy lips welcomingly, and you feel your urge connect, your cock engorging at the sight.");
 
@@ -892,6 +928,8 @@ function blowjobVictoryFromSexbot():void
 function dogEStyleWithSexBots():void
 {
 	clearOutput();
+	author("Nonesuch");
+	userInterface.showName("\nSEXBOT");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	output("“<i>Bend over.</i>”");
 	output("\n\n“<i>Of course, insert name here.</i>” With four precise, whirring moves, the sexbot turns around and displays its behind for you. You place your hand on it, admiring. Coolly designed and fabricated to seize the attention of human males it may have been, but that doesn’t change how effective it is. Each thick, latex-clad hip swells into a perfect, round hill, two gleaming white pears between which its neat, rubber sex nestles. Despite its austere appearance its flesh feels warm underneath your palm, the silicone beneath the smooth plastic giving ever so slightly when you squeeze.");
