@@ -579,7 +579,7 @@ function agreeToElectroStim():void
 	//else if goo:
 	else if(pc.isGoo()) output("\n\nIn your case it looks like a tub. The interior is made of a sleek material that prevents your goo-like self from sticking. It’s very smooth and easy to move in. On one end you see something that looks like the top half of a comfortable-looking operation chair, with a pair of armrests. You set yourself down and let your lower half pool around on the small tub while you wait for V-Ko’s return.");
 	//if taur:
-	else if(pc.isTaur()) output("\n\nIn your case, it looks less like a strange leather-covered table. From the roof, a harness of some kind drops down, perfectly adjusted for your measurements. Shrugging, you step over the table, letting your tauric lower half slide in position. Though your legs do reach the floor, you find that it’s just the right size for you to let your body slack without falling. Hesitantly, you don the harness dangling before you, attaching the straps to your torso, midriff and arms. You can’t help but feel a bit inappropriate as you hang there waiting for V-Ko’s return.");
+	else if(pc.isTaur()) output("\n\nIn your case, it looks more like a strange leather-covered table. From the roof, a harness of some kind drops down, perfectly adjusted for your measurements. Shrugging, you step over the table, letting your tauric lower half slide in position. Though your legs do reach the floor, you find that it’s just the right size for you to let your body slack without falling. Hesitantly, you don the harness dangling before you, attaching the straps to your torso, midriff and arms. You can’t help but feel a bit inappropriate as you hang there waiting for V-Ko’s return.");
 	//if legs:
 	else 
 	{
