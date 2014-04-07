@@ -2057,33 +2057,24 @@ public function friendlyMimbraneEvents():void
 
 			outputDone = true;
 
-			eventQueue.push(function():void {
-				kGAMECLASS.clearOutput();
-				var messageArray:Array = [];
-				var msg:String;
+			var msgArray:Array = [];
+			var msg:String = "Your actions are cut short by what vaguely sounds like some whistling coming from your crotch. It’s your [pc.pussy], actually; your Mimbrane has gone beyond its little chirps and squeaks and seems to be trying out something more musical.";
+			if (pc.isNice()) msg += " You believe a symphonic snatch, while interesting, may attract unwanted attention and ask the parasite to stop. It does with a particularly disappointed chirp.";
+			else if (pc.isMischievous()) msg += "You recall seeing some vid or something that featured a woman with a singing snatch. Yours barely resembles a songbird. It’ll need some training.";
+			else msg += "You squeeze your thighs together in an attempt to get the parasite to stop. Following with a quick, harsh scold, silence and stillness resumes reign over your genitalia.";
 
-				msg = "Your actions are cut short by what vaguely sounds like some whistling coming from your crotch. It’s your [pc.pussy], actually; your Mimbrane has gone beyond its little chirps and squeaks and seems to be trying out something more musical.";
+			msgArray.push(msg);
 
-				if (pc.isNice()) msg += " You believe a symphonic snatch, while interesting, may attract unwanted attention and ask the parasite to stop. It does with a particularly disappointed chirp.";
-				else if (pc.isMischievous()) msg +="You recall seeing some vid or something that featured a woman with a singing snatch. Yours barely resembles a songbird. It’ll need some training.";
-				else msg += "You squeeze your thighs together in an attempt to get the parasite to stop. Following with a quick, harsh scold, silence and stillness resumes reign over your genitalia.";
+			if (pc.wetness() > 3)
+			{
+				msgArray.push("Your Mimbrane seems to be having fun with your [pc.pussy] and its veritable river of feminine fluids. One moment the parasite seems to be blowing bubbles, the next it’s starting and stopping the works, and the next it’s merely producing moist chirps.");
+			}
 
-				messageArray.push(msg);
+			msgArray.push("Your [pc.pussy] nips at your [pc.armor], throwing you for a surprise. The Mimbrane must be feeling playful you imagine.");
+			msgArray.push("Your [legs] about melt to jello all of a sudden. Your Mimbrane is messing with your [clit], moving the little fun button around in provocative ways beneath your [armor].");
+			msgArray.push("A sudden pressure against your [pc.pussy] about knocks you over. You know there’s nothing there.... Is your Mimbrane just messing around with you?");
 
-				if (pc.wetness() > 3)
-				{
-					messageArray.push("Your Mimbrane seems to be having fun with your [pc.pussy] and its veritable river of feminine fluids. One moment the parasite seems to be blowing bubbles, the next it’s starting and stopping the works, and the next it’s merely producing moist chirps.");
-				}
-
-				messageArray.push("Your [pc.pussy] nips at your [pc.armor], throwing you for a surprise. The Mimbrane must be feeling playful you imagine.");
-				messageArray.push("Your [legs] about melt to jello all of a sudden. Your Mimbrane is messing with your [clit], moving the little fun button around in provocative ways beneath your [armor].");
-				messageArray.push("A sudden pressure against your [pc.pussy] about knocks you over. You know there’s nothing there.... Is your Mimbrane just messing around with you?")
-
-				output(messageArray[rand(messageArray.length)]);
-
-				kGAMECLASS.clearMenu();
-				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
-			});
+			addToEventBuffer(messageArray[rand(messageArray.length)]);
 		}
 	}
 
@@ -2095,32 +2086,25 @@ public function friendlyMimbraneEvents():void
 
 			outputDone = true;
 			
-			eventQueue.push(function():void {
-				kGAMECLASS.clearOutput();
+			var messageArray:Array = [];
+			var msg:String;
 
-				var messageArray:Array = [];
-				var msg:String;
+			msg = "Your eyes go wide when a noisy sound stumbles out from your [pc.ass]. Luckily, it appears you garnered no unwanted attention. It would seem your enthusiastic Mimbrane has taken to playing practical jokes on you, using its unique control of your posterior to produce faux fart sounds.";
+			if (pc.isNice()) msg +=" You politely ask that the parasite at least not be too loud. There’s no harm in fun, but there’s certainly harm to be had from certain sources should the racket get out of hand.";
+			else if (pc.isMischievous()) msg += "Funny enough, you begin to cook up some creative outlets for the Mimbrane’s newfound antics. Why only embarrass yourself when it’s so much easier to embarrass others?";
+			else msg += "Confident no one of any importance is looking, you grab your cheeks and stop the parasite’s raspberries. You make it clear to the creature that you will have no part in its stupid circus act.";
 
-				msg = "Your eyes go wide when a noisy sound stumbles out from your [pc.ass]. Luckily, it appears you garnered no unwanted attention. It would seem your enthusiastic Mimbrane has taken to playing practical jokes on you, using its unique control of your posterior to produce faux fart sounds.";
-				if (pc.isNice()) msg +=" You politely ask that the parasite at least not be too loud. There’s no harm in fun, but there’s certainly harm to be had from certain sources should the racket get out of hand.";
-				else if (pc.isMischievous()) msg += "Funny enough, you begin to cook up some creative outlets for the Mimbrane’s newfound antics. Why only embarrass yourself when it’s so much easier to embarrass others?";
-				else msg += "Confident no one of any importance is looking, you grab your cheeks and stop the parasite’s raspberries. You make it clear to the creature that you will have no part in its stupid circus act.";
+			messageArray.push(msg);
 
-				messageArray.push(msg);
+			if (pc.ass.looseness() > 3)
+			{
+				messageArray.push("It’s hard to go about your day when your [pc.asshole] pulsates between a gaping cavern and a tight pin hole. Your butt-bound Mimbrane seems to be enjoying your flexible lower chute.");
+			}
 
-				if (pc.ass.looseness() > 3)
-				{
-					messageArray.push("It’s hard to go about your day when your [pc.asshole] pulsates between a gaping cavern and a tight pin hole. Your butt-bound Mimbrane seems to be enjoying your flexible lower chute.");
-				}
+			messageArray.push("Each step you take is exaggerated by a rather large swing of your [pc.ass]. It isn’t long before you clearly suspect the rambunctious Mimbrane of the flamboyant disregard for your gait.");
+			messageArray.push("Occasionally your [ass] rubs its cheeks together. You derive no pleasure from the motion, but its entertainingly weird. The Mimbrane just seems to enjoy manipulating your hind quarters.");
 
-				messageArray.push("Each step you take is exaggerated by a rather large swing of your [pc.ass]. It isn’t long before you clearly suspect the rambunctious Mimbrane of the flamboyant disregard for your gait.");
-				messageArray.push("Occasionally your [ass] rubs its cheeks together. You derive no pleasure from the motion, but its entertainingly weird. The Mimbrane just seems to enjoy manipulating your hind quarters.");
-
-				output(messageArray[rand(messageArray.length)]);
-
-				kGAMECLASS.clearMenu();
-				kGAMECLASS.addButton(0, "Next", kGAMECLASS.mainGameMenu);
-			});
+			output(messageArray[rand(messageArray.length)]);
 		}
 	}
 	
