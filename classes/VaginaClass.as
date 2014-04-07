@@ -58,7 +58,7 @@
 			}
 			else if (arg != 0)
 			{
-				loosenessRaw = arg;
+				loosenessRaw += arg;
 			}
 			
 			var currLoose:Number = loosenessRaw + loosenessMod;

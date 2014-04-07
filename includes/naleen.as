@@ -238,7 +238,7 @@ function naleenFucksBoysScene():void {
 	output("\n\nWith your eyes surrounded by an endless mass of breast, you can only feel and hear as the coils of her tail tighten, and your ");
 	if(pc.cockTotal() == 1) output("cock grows");
 	else output("cocks grow");
-	output(" ever harder. Soft, furred fingers brush through your [pc.hair] soothingly as another set slip around your stiff member, gently stroking it to full erection. Her movements are slow and skilled, thumb swirling around your [pc.head] to coax out the first tender hint of pre");
+	output(" ever harder. Soft, furred fingers brush through your [pc.hair] soothingly as another set slip around your stiff member, gently stroking it to full erection. Her movements are slow and skilled, thumb swirling around your [pc.cockHead " + x + "] to coax out the first tender hint of pre");
 	if(pc.balls > 0) {
 		output(" before slipping down to cup your [pc.balls], fondling the heavy gonad");
 		if(pc.balls > 1) output("s");

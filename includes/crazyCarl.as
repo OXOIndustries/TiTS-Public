@@ -231,7 +231,55 @@ function crazyCarlShop():void {
 	addItemButton(3, new TheShocker(), shockerBuyTalk);
 	if(flags["TALKED_ABOUT_ZK_RIFLE_WITH_CARL"] == undefined) addItemButton(4, new ZKRifle(), zkRifleCarlTalk);
 	else if(flags["ROBOT_QUEST_COMPLETE"] != 2) addDisabledButton(4, "ZK Rifle");
+	addItemButton(5, new Warhammer(), warhammerBuyTalk);
+	addItemButton(6, new Machette(), machetteBuyTalk);
+	addItemButton(7, new Shortsword(), shortswordBuyTalk);
+	
 	addButton(14,"Back",insideCarlsShop); 
+}
+
+function warhammerBuyTalk():void
+{
+	clearOutput();
+	output("You tap a button and it expands, displaying view of a wicked looking warhammer. <i>\"I sell a pistol called the Hammer. This is an actual hammer. You could use to crack some nuts, maybe to smash open a hostile native if'n ya need. Not too pricey, and she's effective to boot.</i>\"");
+	output("\n\nYou nod and consider.");
+	processTime(1);
+	output("\n\nDamage Rating: 12");
+	output("\nAccuracy Bonus: -4");
+	output("\nDamage Type: Piercing");
+	clearMenu();
+	if(pc.credits >= 750) addButton(0,"Buy",buyFromCarl,"warhammer");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
+}
+function machetteBuyTalk():void
+{
+	clearOutput();
+	output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>\"The Machette? Ya figurin' on chopping yer way through yonder jungle then? She'll serve you well without costing too much. Probably handy for dealin' with some of them snakes too.</i>\"");
+	output("\n\nYou nod.");
+	processTime(1);
+	output("\n\nDamage Rating: 8");
+	output("\nDamage Type: Slashing");
+	clearMenu();
+	if(pc.credits >= 750) addButton(0,"Buy",buyFromCarl,"machette");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
+}
+function shortswordBuyTalk():void
+{
+	clearOutput();
+	output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carly interrupts, <i>\"That's a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you'd need in a weapon.</i>\"");
+	output("\n\nYou nod.");
+	processTime(1);
+	
+	output("\n\nDamage Rating: 7");
+	output("\nAccuracy Bonus: 1");
+	output("\nDamage Type: Piercing");
+
+	clearMenu();
+	if(pc.credits >= 750) addButton(0,"Buy",buyFromCarl,"shortsword");
+	else addDisabledButton(0,"Buy");
+	addButton(14,"Back",crazyCarlShop);
 }
 
 //[Hammer Pistol]
@@ -326,6 +374,21 @@ function buyFromCarl(arg:String = "ERROR"):void {
 		cost = 2000;
 		eventQueue[eventQueue.length] = lootHammerPistol;
 	}
+	else if(arg == "warhammer")
+	{
+		cost = 750;
+		eventQueue[eventQueue.length] = lootWarhammer();
+	}
+	else if(arg == "machette")
+	{
+		cost = 750;
+		eventQueue[eventQueue.length] = lootMachette();
+	}
+	else if(arg == "shortsword")
+	{
+		cost = 750;
+		eventQueue[eventQueue.length] = lootShortsword();
+	}
 	clearOutput();
 	output("You purchase a " + arg + " for " + cost + ".");
 	pc.credits -= cost;
@@ -333,6 +396,42 @@ function buyFromCarl(arg:String = "ERROR"):void {
 	addButton(0,"Next",crazyCarlShop);
 }
 
+function lootWarhammer():void {
+	clearOutput();
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new Warhammer();
+	//Set quantity!
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
+function lootMachette():void {
+	clearOutput();
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new Machette();
+	//Set quantity!
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
+function lootShortsword():void {
+	clearOutput();
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new Shortsword();
+	//Set quantity!
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
+}
 function lootShockPistol():void {
 	clearOutput();
 	var foundLootItems:Array = new Array();
