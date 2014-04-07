@@ -115,7 +115,7 @@
 				changes++;
 			}
 			//<= 75 libido get boosted by 5!
-			else if(pc.libido() <= 5) 
+			else if(pc.libido() <= 75) 
 			{
 				kGAMECLASS.output("\n\nSuddenly, you realize you need to fuck - right now. You want sex like a starving man wants food: fast and in as great a quantity as possible. Lolling out of your mouth, your [pc.tongue] hangs limply as you begin to pant, dripping saliva over your [pc.chest]. Your [pc.skin] is hot and flushed, so sensitive to the touch that you can't help but rub your hands along over yourself and quietly moan out your enjoyment. As soon as you can get your bearings straight, you're going to bend someone over and give them a good, hard fucking.");
 				if(!pc.hasCock()) kGAMECLASS.output(" Where did that thought come from? You don't even have a dick yet!");
