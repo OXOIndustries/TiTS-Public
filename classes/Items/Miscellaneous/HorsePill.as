@@ -533,7 +533,7 @@
 				else if(select == 14)
 				{
 					var chosenVagoo:int = -1;
-					for (var x:int = 0; x < target.vaginaTotal(); x++)
+					for (x = 0; x < target.vaginaTotal(); x++)
 					{
 						if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15 && chosenVagoo == -1)
 							chosenVagoo = x;
@@ -782,7 +782,7 @@
 						target.hairColor = newHairColour;
 						
 						//Bald
-						if(!target.hasHair) kGAMECLASS.eventBuffer += "Your scalp tingles, but without any hair there, you aren't aware of what changed. Perhaps it changed your hair color, but you can't be sure until you grow some!";
+						if(!target.hasHair()) kGAMECLASS.eventBuffer += "Your scalp tingles, but without any hair there, you aren't aware of what changed. Perhaps it changed your hair color, but you can't be sure until you grow some!";
 						//Short
 						else kGAMECLASS.eventBuffer += "Your scalp tingles meaningfully, and after scratching at it, it doesn't subside. You check yourself with your codex to make sure you aren't coming down with an aggressive new strain of lice and find <b>your hair has turned " + target.hairColor + ".</b>";
 					}

@@ -1,4 +1,4 @@
-package classes.Items.Miscellaneous
+﻿package classes.Items.Miscellaneous
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -513,7 +513,7 @@ package classes.Items.Miscellaneous
 			if(target.longestCockLength() > 8 && changes < changeLimit && rand(2) == 0) {
 				x = 0;
 				choices = new Array();
-				var blockedChoices:Array = new Array();
+				blockedChoices = new Array();
 				
 				//Make a list of all the big
 				while(x < target.cockTotal())
@@ -550,7 +550,7 @@ package classes.Items.Miscellaneous
 			//Search for dick that needs girthening first!
 			x = 0;
 			choices = new Array();
-			var blockedChoices:Array = new Array();
+			blockedChoices = new Array();
 			
 			//Make a list of all the girth needing
 			while(x < target.cockTotal())

@@ -23,6 +23,7 @@
 function appearance(target:Creature):void {
 	clearOutput2();
 	var rando:int = 0;
+	var feedVal:int;
 	if(target == pc) {
 		//Overall
 		if(target.originalRace == target.race()) output2("You are a " + target.originalRace + ".");
@@ -254,7 +255,7 @@ function appearance(target:Creature):void {
 		else if (target.armType == GLOBAL.HUMAN && target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;
-			var feedVal:int = 0;
+			feedVal = 0;
 
 			if (target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right")) bothHands = true;
 			
@@ -445,7 +446,7 @@ function appearance(target:Creature):void {
 			if (target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
 			{
 				var bothFeet:Boolean = false;
-				var feedVal:int = 0;
+				feedVal = 0;
 
 				if (target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
 				

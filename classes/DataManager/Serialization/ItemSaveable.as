@@ -66,6 +66,7 @@
 		public function getSaveObject():Object
 		{
 			var dataObject:Object = new Object();
+			var i:int;
 			
 			var _d:XML = describeType(this);
 			var _dl:XMLList = _d..variable;
@@ -91,7 +92,7 @@
 									{
 										dataObject[prop.@name] = new Array();
 										
-										for (var i:int = 0; i < this[prop.@name].length; i++)
+										for (i = 0; i < this[prop.@name].length; i++)
 										{
 											dataObject[prop.@name].push(this[prop.@name][i].getSaveObject());
 										}
@@ -100,7 +101,7 @@
 									{
 										dataObject[prop.@name] = new Array();
 										
-										for (var i:int = 0; i < this[prop.@name].length; i++)
+										for (i = 0; i < this[prop.@name].length; i++)
 										{
 											dataObject[prop.@name].push(this[prop.@name][i]);
 										}
@@ -158,6 +159,8 @@
 		
 		public function loadSaveObject(dataObject:Object):void
 		{
+			var prop:*;
+			
 			if (this._latestVersion == -1) return;
 			
 			if (this.hasRandomProperties == true)
@@ -181,7 +184,7 @@
 			var _d:XML = describeType(dataObject);
 			if (_d.@isDynamic == "true")
 			{
-				for (var prop in dataObject)
+				for (prop in dataObject)
 				{
 					if (_ignoredFields.length > 0)
 					{
@@ -201,7 +204,7 @@
 				var _dl:XMLList = _d..variable;
 				var _da:XMLList = _d..accessor;
 				
-				for each (var prop in _dl)
+				for each (prop in _dl)
 				{
 					if (this[prop.@name] != null && this[prop.@name] != undefined)
 					{

@@ -24,7 +24,7 @@ function useItem(item:ItemSlotClass):void {
 		else 
 		{
 			//If has a special global function set
-			if (item.useFunction != undefined) 
+			if (item.useFunction != null)
 			{
 				//if item use returns false, set up a menu.
 				if (!item.useFunction(chars["PC"])) 

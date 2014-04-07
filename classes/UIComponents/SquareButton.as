@@ -1,4 +1,4 @@
-package classes.UIComponents 
+﻿package classes.UIComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -84,12 +84,12 @@ package classes.UIComponents
 		{
 			_icon = new _iconClass();
 			this.addChild(_icon);
+			var ratio:Number;
 			
 			if (_icon.width != (_sizeX - _iconPadding) || _icon.height != (_sizeY - _iconPadding))
 			{
 				if (_sizeX >= _sizeY) // Tall or Square
 				{
-					var ratio:Number;
 					if (_icon.width > (_sizeX - _iconPadding))
 					{
 						ratio = _icon.width / (_sizeX - _iconPadding);
@@ -104,7 +104,6 @@ package classes.UIComponents
 				}
 				else if (_sizeY > _sizeX) // Wide
 				{
-					var ratio:Number;
 					if (_icon.height > (_sizeY - _iconPadding))
 					{
 						ratio = _icon.height / (_sizeY - _iconPadding);

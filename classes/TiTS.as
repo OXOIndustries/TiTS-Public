@@ -490,7 +490,7 @@
 		
 		public function pressButton(arg:int = 0):void 
 		{
-			if (this.userInterface.PressButton(arg, inCombat))
+			if (this.userInterface.PressButton(arg, inCombat()))
 			{
 				updatePCStats();
 			}

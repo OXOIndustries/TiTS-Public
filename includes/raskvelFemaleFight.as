@@ -326,7 +326,7 @@ function raskVelBabeGetsDoggieStyled():void
 
 	output("\n\nSeeing nothing but growing, eager assent on your once-foe, you rock your hips forward to place your [pc.cock " + x + "] against her plush, lube-oozing lips. Your [pc.cockHead " + x + "] spreads those plump vulvae like a curtain of oiled silk, slipping and sliding straight on past into the raskvel's almost virginally tight canal with the inexorable pressure of a horny " + pc.mf("male","herm") + ". Despite the clutching tightness of her inner walls, the small alien's pussy becomes more and more comfortable the further you slide into it. Instead of a hellishly tight vice, it moulds around your " + pc.cockDescript(x) + " into a warm, slick glove that could have been tailor-made for you.");
 	//Lose cockginity!
-	cockChange(x);
+	cockChange();
 	output("\n\n\"<i>Mmmmm,</i>\" the cute little lizard-woman coos from her place on the ground. She's drooling a little down her cheek, the one that's smushed flat against the ground, and her fingers are resolutely playing across her dick-dilated entrance, mopping the dripping juices up with her palm. Sometimes she even clutches at your cock and pulls, trying to drag you further into her. The raskvel's scaly legs twitch nervelessly as you slide home, deforming her belly in the outline of your [pc.cock " + x + "].");
 	if(pc.cocks[x].cLength() > 14) output(" There is no increase in resistance or blockage to stop you. Perhaps the closest thing is slightly tighter ring that could be her cervix, but there's been no complaining from the woman below. She takes you until you're past her the halfway mark of her belly.");
 	//Huge cocks only

@@ -160,7 +160,7 @@
 			// Can't lean on the shopKeep stuff, because some vendors in game atm don't use it (Crazy Carl), so we can't just track the "state" we need and pull the data later.
 			// I THINK I have a method to do this fairly cleanly, regardless -- but I think it would be better to just show the base price, and have some blurb in the scene text to list the actual
 			// prices a given NPC will sell/buy the stuff for.
-			if (this.basePrice != undefined)
+			if ('basePrice' in this)
 			{
 				if (compareString.length > 0) compareString += "\n";
 				
@@ -268,9 +268,10 @@
 			var resistDifferences:String = "";
 			var resistancesDiffString:String = "";
 			var foundResistDiff:Boolean = false;
+			var resistIndex:int;
 			
 			// Only display if either old or new item doesn't have a full set of default resistances
-			for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
+			for (resistIndex = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
 			{
 				if (newItem.bonusResistances[resistIndex] != 0 || oldItem.bonusResistances[resistIndex] != 0)
 				{
@@ -285,7 +286,7 @@
 				resistancesDiffString += "<textformat tabstops='64,96,150,209,246'>";
 				//resistancesDiffString += "<textformat tabstops='64,101,155,214,251'>";
 				
-				for (var resistIndex:int = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
+				for (resistIndex = 0; resistIndex < newItem.bonusResistances.length; resistIndex++)
 				{
 					// Print the new items resistance value as a %
 					resistancesDiffString += GLOBAL.DamageTypeStrings[resistIndex] + "\t ";

@@ -45,6 +45,7 @@
 		
 		private function Build():void
 		{
+			var i:int;
 			_roomIcon = new Sprite();
 			_roomIcon.graphics.beginFill(UIStyleSettings.gDebugPaneBackgroundColour, 1);
 			_roomIcon.graphics.drawRoundRect(0, 0, _sizeX, _sizeY, 5);
@@ -53,7 +54,7 @@
 			
 			this._icons = new Array();
 			
-			for (var i:int = 0; i < MiniMap.ICON_NAMES.length; i++)
+			for (i = 0; i < MiniMap.ICON_NAMES.length; i++)
 			{
 				var classType:Class = getDefinitionByName(String(MiniMap.ICON_NAMES[i])) as Class;
 				_icons[i] = new classType();
@@ -64,7 +65,7 @@
 			
 			// Redo the loop so we can get proper positioning values -- once all the objects are added, we'll have the proper max width/height to work with
 			// I think this might be a little bugged atm -- TODO
-			for (var i:int = 0; i < MiniMap.ICON_NAMES.length; i++)
+			for (i = 0; i < MiniMap.ICON_NAMES.length; i++)
 			{
 				_icons[i].x = (this.width - _icons[i].width) / 2;
 				_icons[i].y = (this.height - _icons[i].height) / 2;
