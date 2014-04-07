@@ -7882,6 +7882,13 @@
 				return;
 			}
 			
+			// The array storing chars will just throw out a null if a key doesn't exist - catch that and shit out an obvious error.
+			if (cumFrom == null)
+			{
+				throw new Error("Null creature used to call tryKnockUp. Does this creature actually have a defined statblock?");
+				return;
+			}
+			
 			// Check the sperm provider can actually knock up this hole
 			if (pregSlot <= 2 && cumFrom.canImpregnateVagina || pregSlot == 3 && cumFrom.canImpregnateButt)
 			{

@@ -1,3 +1,4 @@
+import classes.Characters.PregnancyPlaceholder;
 /*FIRST TIME INTRO
 [No]
 [Yes]
@@ -29,6 +30,18 @@ function alexNameBustDiplay():void {
 	userInterface.showBust("ALEX");
 	if(flags["FUCKED_ALEX"] != undefined || flags["LAST_MINUTE_ALEX_BACK_OUT"] != undefined) userInterface.showName("\nALEX");
 	else userInterface.showName("PRETTY\nBOY");
+}
+
+public function getAlexPregContainer():PregnancyPlaceholder
+{
+	var pregContainer:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	pregContainer.impregnateType = GLOBAL.HUMAN;
+	pregContainer.alwaysImpregnate = false;
+	pregContainer.canImpregnateButt = false;
+	pregContainer.canImpregnateVagina = false;
+	
+	return pregContainer;
 }
 
 //FIRST TIME INTRO
@@ -679,7 +692,7 @@ function catchVaginalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
-	//if(pc.hasVagina()) pc.loadInCunt(chars["ALEX"]);
+	if(pc.hasVagina()) pc.loadInCunt(getAlexPregContainer());
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
 }
@@ -1127,7 +1140,7 @@ function catchAnalFromAlex():void {
 	flags["FUCKED_ALEX"]++;
 	processTime(30+rand(15));
  	pc.orgasm();
-	//pc.loadInAss(chars["ALEX"]);
+	pc.loadInAss(getAlexPregContainer());
  	clearMenu();
  	addButton(0,"Next",mainGameMenu);
 }
