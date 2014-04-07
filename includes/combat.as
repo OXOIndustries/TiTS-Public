@@ -600,7 +600,7 @@ function enemyAttack(attacker:Creature):void
 }
 function playerAttack(target:Creature):void 
 {
-	attack(pc, target, false);
+	attack(pc, target, true);
 	mimbraneHandBonusAttack(target);
 	processCombat();
 }

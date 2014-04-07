@@ -83,7 +83,7 @@ function encounterASexBot():void
 		else
 		{
 			output("Something is slightly different this time. Instead of forming a fit, flat chest its waist thins as its chest and butt swells, liquid silicone pooling beneath the surface of its synthetic skin until it is sporting an almost impossible hourglass figure, perfect curves sheer in their latex housing.");
-			output("\n\nWhilst its sex stays the same its lips become pulpier, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty contouring into being. With a snap and click high heels form around its feet. For its own obtuse reasons this sexbot has chosen to appear female to you.");
+			output("\n\nWhilst its sex stays the same its lips become thicker, its chin narrows and its nose softens and turns up, an expression of preternaturally calm female beauty contouring into being. With a snap and click high heels form around its feet. For its own obtuse reasons this sexbot has chosen to appear female to you.");
 		}
 		output("\n\n“<i>Configuration complete,</i>” says the human shape in front of you smoothly. It puts its hand on its hip, its green eyes flickering at you as it pulls its full lips into a serene smile. “<i>Thank you for your patience, insert name here. I am a Pleasure Bot Mk 350, Empatron version. I am programmed to detect and then satisfy your most intimate desires. Please, insert name here, make yourself comfortable. I will begin as soon as you are ready.</i>”");
 		if(manbot) flags["MET_SEXBOT_MALE_ON_TARKUS"] = 1;
@@ -172,33 +172,40 @@ function sexbotAI():void
 	if(foes[0].hasStatusEffect("Shield Recharge")) 
 	{
 		shieldRegeneration();
+		return;
 	}
-	else if(!pc.hasStatusEffect("Grappled") && pc.shields() <= 0 && pc.statusEffectv1("Round") % 5 == 0)
+	if(!pc.hasStatusEffect("Grappled") && pc.shields() <= 0 && pc.statusEffectv1("Round") % 5 == 0)
 	{
 		grappleWithASexbot();
+		return;
 	}
-	else
+	if(pc.hasStatusEffect("Grappled"))
 	{
-		var choices:Array = new Array();
-		//Electropulse
-		//(Procs if PC still has shields)
-		if(pc.shields() > 0) choices[choices.length] = sexBotElectropulseAttack;
-		//Disable ranged weapon
-		//(Procs if PC does not have shields and has fired at the sexbot)
-		if(pc.rangedWeapon.shortName != "" && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
-		//Recharge shield
-		//(Procs if Sexbot has lost shields)
-		if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;
-		//Hack drone
-		//(Procs if PC has a drone)
-		if(pc.hasPerk("Attack Drone") && pc.shields() > 0 && !pc.hasStatusEffect("Porno Hacked Drone")) choices[choices.length] = getDroneHacked;
-		//Standard attack
-		choices[choices.length] = standardRobosexualAttack;
-
-		//Pick one to run!
-		choices[rand(choices.length)]();
+		grappleWithASexbot();
+		return;	
 	}
-	trace("BOT AI! BOOP");
+	var choices:Array = new Array();
+	//Electropulse
+	//(Procs if PC still has shields)
+	if(pc.shields() > 0) {
+		choices[choices.length] = sexBotElectropulseAttack;
+		choices[choices.length] = sexBotElectropulseAttack;
+	}
+	//Disable ranged weapon
+	//(Procs if PC does not have shields and has fired at the sexbot)
+	if(pc.rangedWeapon.shortName != "" && !pc.hasStatusEffect("Gunlock")) choices[choices.length] = disablePCGunz;
+	//Recharge shield
+	//(Procs if Sexbot has lost shields)
+	if(foes[0].shields() <= 0) choices[choices.length] = shieldRegeneration;
+	//Hack drone
+	//(Procs if PC has a drone)
+	if(pc.hasPerk("Attack Drone") && pc.shields() > 0 && !pc.hasStatusEffect("Porno Hacked Drone")) choices[choices.length] = getDroneHacked;
+	//Standard attack
+	choices[choices.length] = standardRobosexualAttack;
+	choices[choices.length] = standardRobosexualAttack;
+
+	//Pick one to run!
+	choices[rand(choices.length)]();
 }
 
 //Electropulse
@@ -296,7 +303,7 @@ function standardRobosexualAttack():void
 {
 	output("Making a series of violent clacks and breathy sounds, the sexbot whips out its tentacles out at you, ");
 	if(pc.shields() > 0) output("beating with the relentlessness of a machine against your shield.\n");
-	else output("snapping at pressure points, your throat and groin, aiming to weaken and drain you.\n");
+	else output("snapping at pressure points on your throat and groin, aiming to weaken and drain you.\n");
 	attack(foes[0],pc,true,0);
 	processCombat();
 }
