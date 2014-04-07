@@ -299,8 +299,8 @@
 						kGAMECLASS.output("\n\nA pleasant tingle in your [pc.cock " + x + "]");
 						if(target.cockTotal() > 1) kGAMECLASS.output(" and in that cock alone");
 						y = 2 + rand(3);
-						if(target.cocks[x].cLength - y < 8 && target.hasPerk("Hung")) y = target.cocks[x].cLength - 8;
-						else if(target.cocks[x].cLength - y < 4.5) y = target.cocks[x].cLength - 4.5;
+						if(target.cocks[x].cLengthRaw - y < 8 && target.hasPerk("Hung")) y = target.cocks[x].cLength - 8;
+						else if(target.cocks[x].cLengthRaw - y < 4.5) y = target.cocks[x].cLengthRaw - 4.5;
 						trace("Modified y: " + y);
 						if(y < 1) y = 1;
 						//round it
@@ -308,7 +308,7 @@
 						kGAMECLASS.output(" warns you that something is about to happen down south. As it intensifies, you can't stop yourself from moaning. It feels good, but at the same time your penis is getting smaller. Losing a half inch feels almost as good as cumming. Losing the whole inch brings you to your knees. The next one makes your eyes cross and your [pc.hips] jerk, but no ejaculate emerges. When you recover, you're missing " + y + " inch");
 						if(y > 1) kGAMECLASS.output("es");
 						kGAMECLASS.output(" of length from the exquisitely pleased cock.");
-						target.cocks[x].cLength -= y;
+						target.cocks[x].cLengthRaw -= y;
 					}
 				}
 				//Shrink balls UNLESS balls have trap pouch tf.
