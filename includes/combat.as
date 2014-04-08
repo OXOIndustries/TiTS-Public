@@ -1,4 +1,5 @@
 ﻿import classes.Creature;
+import classes.Items.Guns.Goovolver;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -746,7 +747,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	}
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
 	//Run with multiple attacks!
-	if ((attacker.hasPerk("Multiple Shots") || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
+	if (((attacker.hasPerk("Multiple Shots") && !(attacker.rangedWeapon is Goovolver)) || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
 		//Start up
 		if (!attacker.hasStatusEffect("Multiple Shots")) 
 		{
@@ -798,47 +799,79 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
-		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.rangedWeapon.longName + "!");
-		//Damage bonuses:
-		var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
-		//Bonus damage for "sneak attack perk!"
-		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
-			output("\n<b>Aimed shot!</b>");
-			damage += attacker.level * 2;
-			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
+		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
+		
+		if (!(attacker.rangedWeapon is Goovolver))
+		{
+			//Damage bonuses:
+			var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
+			//Bonus damage for "sneak attack perk!"
+			if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
+				output("\n<b>Aimed shot!</b>");
+				damage += attacker.level * 2;
+				if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
+			}
+			//Randomize +/- 15%
+			var randomizer = (rand(31)+ 85)/100;
+			damage *= randomizer;
+			var sDamage:Array = new Array();
+			//Apply damage reductions
+			if(target.shieldsRaw > 0) {
+				sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+				//Set damage to leftoverDamage from shieldDamage
+				damage = sDamage[1];
+				if(attacker == pc) {
+					if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
+					else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
+				}
+				else {
+					if(target.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
+					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
+				}
+			}
+			if(damage >= 1) {
+				damage = HPDamage(target,damage,attacker.rangedWeapon.damageType,"ranged");
+				if(attacker == pc) {
+					if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
+					else output(" (<b>" + damage + "</b>)");			
+				}
+				else {
+					if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
+					else output(" (<b>" + damage + "</b>)");	
+				}
+			}
 		}
-		//Randomize +/- 15%
-		var randomizer = (rand(31)+ 85)/100;
-		damage *= randomizer;
-		var sDamage:Array = new Array();
-		//Apply damage reductions
-		if(target.shieldsRaw > 0) {
-			sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
-			//Set damage to leftoverDamage from shieldDamage
-			damage = sDamage[1];
-			if(attacker == pc) {
-				if(target.shieldsRaw > 0) output(" The shield around " + target.a + target.short + " crackles under your assault, but it somehow holds. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
+		// Goovolver attack!
+		else
+		{
+			var lustDamage:int = 0;
+			var randomiser:Number = (rand(31) + 85) / 100;
+
+			if (target.lustVuln == 0)
+			{
+				output("\n<b>" + target.capitalA + target.short + " ");
+				if (target.plural) output("don’t");
+				else output("doesn’t");
+				output(" seem the least bit bothered by the miniature goo crawling over them. (0)</b>\n");
 			}
-			else {
-				if(target.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
-				else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
-			}
-		}
-		if(damage >= 1) {
-			damage = HPDamage(target,damage,attacker.rangedWeapon.damageType,"ranged");
-			if(attacker == pc) {
-				if(sDamage[0] > 0) output(" Your " + attacker.rangedWeapon.longName + " has enough momentum to carry through and strike your target! (<b>" + damage + "</b>)");
-				else output(" (<b>" + damage + "</b>)");			
-			}
-			else {
-				if(sDamage[0] > 0) output(" The hit carries on through to damage you! (<b>" + damage + "</b>)");
-				else output(" (<b>" + damage + "</b>)");	
+			else
+			{
+				lustDamage += 15;
+				lustDamage *= randomiser;
+				lustDamage *= target.lustVuln;
+
+				if (target.lust() + lustDamage > target.lustMax()) lustDamage = target.lustMax() - target.lust();
+				damage = Math.ceil(lustDamage);
+
+				output(" A tiny " + (attacker.rangedWeapon as Goovolver).randGooColour() + " goo, vaguely female in shape, pops out and starts to crawl over " + target.mf("him", "her") + ", teasing " + target.mf("his", "her") + " most sensitive parts!");
+				output(" (" + lustDamage +")");
+				target.lust(lustDamage);
 			}
 		}
+		
 	}
 	//Do multiple attacks if more are queued.
-	if(attacker.hasStatusEffect("Multiple Shots") && special == 0) {
+	if(attacker.hasStatusEffect("Multiple Shots") && special == 0 && !(attacker.rangedWeapon is Goovolver)) {
 		output("\n");
 		rangedAttack(attacker,target);
 		return;

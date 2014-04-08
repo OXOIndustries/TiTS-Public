@@ -1,6 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Items.Apparel.UGCUniform;
 import classes.Items.Guns.EagleHandgun;
+import classes.Items.Guns.Goovolver;
 import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
@@ -79,11 +80,11 @@ function debugMenus():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(3, new ZKRifle(), function():void {
+	addItemButton(3, new Goovolver(), function():void {
 		output("\n\nAnd I thought my test items were OP!");
 		
 		var foundLootItems:Array = new Array();
-		foundLootItems.push(new ZKRifle());
+		foundLootItems.push(new Goovolver());
 		
 		itemScreen = mainGameMenu;
 		lootScreen = mainGameMenu;
