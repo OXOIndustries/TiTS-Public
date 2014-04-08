@@ -26,6 +26,11 @@ package UIComponents.ContentModules
 			
 			this.Build();
 		}
+		
+		private function Build():void
+		{
+			
+		}
 	}
 
 }
