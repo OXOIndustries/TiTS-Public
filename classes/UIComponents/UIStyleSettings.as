@@ -57,6 +57,20 @@ package classes.UIComponents
 			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
+			
+			UIStyleSettings._gLevelUpPointsBarNumber = null;
+			UIStyleSettings._gLevelUpPointsBarText = null;
+			UIStyleSettings._gLevelLabelText = null;
+			UIStyleSettings._gLevelValueLabelText = null;
+
+			UIStyleSettings._gLevelUpBarLightLabelFormatter = null;
+			UIStyleSettings._gLevelUpBarDarkLabelFormatter = null;
+
+			UIStyleSettings._gLevelUpBarValueLabelFormatter = null;
+			UIStyleSettings._gLevelUpBarArrowButtonFormatter = null;
+
+			UIStyleSettings._gLevelUpBarMaxedColourTransform = null;
+			UIStyleSettings._gLevelUpBarChangeableColourTransform = null;
 		}
 		
 		// TITS VALUES
@@ -364,6 +378,133 @@ package classes.UIComponents
 			return UIStyleSettings._gCodexLinkFormatter;
 		}
 		
+		private static var _gLevelUpPointsBarNumber:TextFormat;
+		public static function get gLevelUpPointsBarNumber():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpPointsBarNumber == null)
+			{
+				UIStyleSettings._gLevelUpPointsBarNumber = new TextFormat();
+				UIStyleSettings._gLevelUpPointsBarNumber.size = 141;
+				UIStyleSettings._gLevelUpPointsBarNumber.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpPointsBarNumber.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelUpPointsBarNumber.kerning = true;
+				UIStyleSettings._gLevelUpPointsBarNumber.leading = -2;
+				UIStyleSettings._gLevelUpPointsBarNumber.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpPointsBarNumber;
+		}
+		
+		private static var _gLevelUpPointsBarText:TextFormat;
+		public static function get gLevelUpPointsBarText():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpPointsBarText == null)
+			{
+				UIStyleSettings._gLevelUpPointsBarText = new TextFormat();
+				UIStyleSettings._gLevelUpPointsBarText.size = 40;
+				UIStyleSettings._gLevelUpPointsBarText.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpPointsBarText.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelUpPointsBarText.kerning = true;
+				UIStyleSettings._gLevelUpPointsBarText.leading = 0;
+				UIStyleSettings._gLevelUpPointsBarText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpPointsBarText;
+		}
+
+		private static var _gLevelLabelText:TextFormat;
+		public static function get gLevelLabelText():TextFormat
+		{
+			if (UIStyleSettings._gLevelLabelText == null)
+			{
+				UIStyleSettings._gLevelLabelText = new TextFormat();
+				UIStyleSettings._gLevelLabelText.size = 144;
+				UIStyleSettings._gLevelLabelText.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelLabelText.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelLabelText.kerning = true;
+				UIStyleSettings._gLevelLabelText.leading = 0;
+				UIStyleSettings._gLevelLabelText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelLabelText;
+		}
+
+		private static var _gLevelValueLabelText:TextFormat;
+		public static function get gLevelValueLabelText():TextFormat
+		{
+			if (UIStyleSettings._gLevelValueLabelText == null)
+			{
+				UIStyleSettings._gLevelValueLabelText = new TextFormat();
+				UIStyleSettings._gLevelValueLabelText.size = 144;
+				UIStyleSettings._gLevelValueLabelText.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelValueLabelText.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelValueLabelText.kerning = true;
+				UIStyleSettings._gLevelValueLabelText.leading = 0;
+				UIStyleSettings._gLevelValueLabelText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelValueLabelText;
+		}
+
+		private static var _gLevelUpBarLightLabelFormatter:TextFormat;
+		public static function get gLevelUpBarLightLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarLightLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarLightLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.size = 65;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.color = UIStyleSettings.gBackgroundColour;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.leading = -1;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpBarLightLabelFormatter;
+		}
+
+		private static var _gLevelUpBarDarkLabelFormatter:TextFormat;
+		public static function get gLevelUpBarDarkLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarDarkLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.size = 65;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.leading = -1;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpBarDarkLabelFormatter;
+		}
+
+		private static var _gLevelUpBarValueLabelFormatter:TextFormat;
+		public static function get gLevelUpBarValueLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarValueLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarValueLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.size = 56;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.leading = -2;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarValueLabelFormatter;
+		}
+
+		private static var _gLevelUpBarArrowButtonFormatter:TextFormat;
+		public static function get gLevelUpBarArrowButtonFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarArrowButtonFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.size = 32;
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.color = UIStyleSettings.gHighlightColour
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarArrowButtonFormatter;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -515,6 +656,28 @@ package classes.UIComponents
 				UIStyleSettings._gMapFallbackRoomColourTransform.color = UIStyleSettings.gFallbackRoomColour;
 			}
 			return UIStyleSettings._gMapFallbackRoomColourTransform;
+		}
+
+		private static var _gLevelUpBarMaxedColourTransform:ColorTransform;
+		public static function get gLevelUpBarMaxedColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gLevelUpBarMaxedColourTransform == null)
+			{
+				UIStyleSettings._gLevelUpBarMaxedColourTransform = new ColorTransform();
+				UIStyleSettings._gLevelUpBarMaxedColourTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gLevelUpBarMaxedColourTransform;
+		}
+
+		private static var _gLevelUpBarChangeableColourTransform:ColorTransform;
+		public static function get gLevelUpBarChangeableColourTransform():ColorTransform
+		{						
+			if (UIStyleSettings._gLevelUpBarChangeableColourTransform == null)
+			{
+				UIStyleSettings._gLevelUpBarChangeableColourTransform = new ColorTransform();
+				UIStyleSettings._gLevelUpBarChangeableColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gLevelUpBarChangeableColourTransform;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks
