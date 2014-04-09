@@ -11,6 +11,7 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.UIStyleSettings;
 	import classes.UIComponents.ContentModuleComponents.VerticalPointsBar;
 	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -117,16 +118,22 @@ package classes.UIComponents.ContentModules
 		private var _targetCreature:Creature;
 		private var _pointDistribution:Array;
 		private var _availablePoints:int;
+		private var _initialPoints:int;
 		
 		public function setCreatureData(tarCreature:Creature):void
 		{
 			trace("Showing levelup screen for " + tarCreature.short);
 			
+			// Make some buttons available
+			kGAMECLASS.userInterface.clearGhostMenu();
+			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.userInterface.showPrimaryOutput);
+			
 			_targetCreature = tarCreature;
 			_pointDistribution = new Array();
-			_availablePoints = 5;
 			
-			_pointsBar.initialPointsValue = 5;
+			_availablePoints = 13;
+			_initialPoints = 13;
+			_pointsBar.initialPointsValue = _initialPoints;
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
@@ -136,6 +143,9 @@ package classes.UIComponents.ContentModules
 			updateBarStates();
 		}
 		
+		// This function could also be used to ensure that there are regular buttons available.
+		// Something to consider for accessibility reasons; I don't want to be exclusive of those that
+		// are relying on screen readers and the like.
 		private function updateBarStates():void
 		{
 			_pointsBar.pointsValue = _availablePoints;
@@ -173,6 +183,10 @@ package classes.UIComponents.ContentModules
 					_statBars[i].hideAddArrow();
 				}
 			}
+			
+			if (_availablePoints < _initialPoints) kGAMECLASS.userInterface.addGhostButton(13, "Reset", resetPoints);
+			
+			if (_availablePoints == 0) kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmPoints);
 		}
 		
 		private function arrowHandler(e:Event = null):void 
@@ -192,6 +206,30 @@ package classes.UIComponents.ContentModules
 			}
 			
 			updateBarStates();
+		}
+		
+		private function resetPoints():void
+		{
+			_availablePoints = _initialPoints;
+			for (var i:int = 0; i < _barLabels.length; i++)
+			{
+				_pointDistribution[i] = 0;
+			}
+		}
+		
+		private function confirmPoints():void
+		{
+			// Remove the flag that grants access to the level up stuffs
+			kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] = undefined;
+			
+			for (var i:int = 0; i < _barLabels.length; i++)
+			{
+				_targetCreature[_barLabels[i]](_pointDistribution[i]);
+			}
+			
+			// This is where we'd hook into the second stage of the levelling process
+			
+			kGAMECLASS.userInterface.showPrimaryOutput();
 		}
 	}
 

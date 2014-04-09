@@ -1,23 +1,4 @@
-﻿function levelUp():void {
-	tryAddLevel();
-	levelUpScreen();
-}
-
-function tryAddLevel():void
-{
-	if (pc.XPRaw >= pc.XPMax() && pc.level < 5)
-	{
-		pc.level++;
-		pc.XPRaw = 0;
-		pc.maxOutHP();
-		//Give level up points!
-		if(flags["LEVEL_UP_POINTS"] == undefined) flags["LEVEL_UP_POINTS"] = 0;
-		flags["LEVEL_UP_POINTS"] += 13;
-		flags["GAINED_LEVEL"] = 1;
-	}
-}
-
-function levelUpScreen():void {
+﻿function levelUpScreen():void {
 	//Initialize shit!
 	if(flags["LEVELING_PHYSIQUE_BONUS"] == undefined) flags["LEVELING_PHYSIQUE_BONUS"] = 0;
 	if(flags["LEVELING_REFLEXES_BONUS"] == undefined) flags["LEVELING_REFLEXES_BONUS"] = 0;
