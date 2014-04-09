@@ -26,6 +26,9 @@ function startCharacterCreation(e:Event = null):void
 	this.userInterface.hideTime();
 	flags = new Dictionary();
 
+	// Codex entries
+	CodexManager.unlockedEntryList = new Array();
+
 	this.userInterface.currentPCNotes = undefined;
 	//Tag as in creation.
 	chars["PC"].createStatusEffect("In Creation",0,0,0,0);
