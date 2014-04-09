@@ -11,7 +11,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -52,6 +52,7 @@
 			this.inventory.push(new Pandaneen());
 			this.inventory.push(new PandaPro());
 			this.inventory.push(new HorsePill());
+			this.inventory.push(new AusarTreats());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
@@ -177,6 +178,10 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new HorsePill().getSaveObject());
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.inventory.push(new AusarTreats().getSaveObject());
 		}
 	}
 
