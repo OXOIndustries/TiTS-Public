@@ -432,11 +432,11 @@ package classes.UIComponents
 			if (UIStyleSettings._gLevelValueLabelText == null)
 			{
 				UIStyleSettings._gLevelValueLabelText = new TextFormat();
-				UIStyleSettings._gLevelValueLabelText.size = 144;
-				UIStyleSettings._gLevelValueLabelText.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelValueLabelText.size = 200;
+				UIStyleSettings._gLevelValueLabelText.color = 0xFFFFFF;
 				UIStyleSettings._gLevelValueLabelText.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gLevelValueLabelText.kerning = true;
-				UIStyleSettings._gLevelValueLabelText.leading = 0;
+				UIStyleSettings._gLevelValueLabelText.leading = -5;
 				UIStyleSettings._gLevelValueLabelText.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gLevelValueLabelText;
@@ -483,6 +483,7 @@ package classes.UIComponents
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.size = 56;
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.color = 0xFFFFFF;
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.bold = true
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.kerning = true;
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.leading = -2;
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.font = "Lato";
@@ -496,10 +497,11 @@ package classes.UIComponents
 			if (UIStyleSettings._gLevelUpBarArrowButtonFormatter == null)
 			{
 				UIStyleSettings._gLevelUpBarArrowButtonFormatter = new TextFormat();
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.size = 32;
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.size = 44;
 				UIStyleSettings._gLevelUpBarArrowButtonFormatter.color = UIStyleSettings.gHighlightColour
 				UIStyleSettings._gLevelUpBarArrowButtonFormatter.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gLevelUpBarArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarArrowButtonFormatter.bold = true;
 				UIStyleSettings._gLevelUpBarArrowButtonFormatter.font = "Lato";
 			}
 			return UIStyleSettings._gLevelUpBarArrowButtonFormatter;

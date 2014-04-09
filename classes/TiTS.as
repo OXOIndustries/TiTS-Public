@@ -470,6 +470,22 @@
 			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
 		}
 		
+		public function levelUpHandler(e:Event = null):void
+		{
+			if (!this.userInterface.levelUpButton.isActive) return;
+			
+			if (!this.userInterface.levelUpButton.isHighlighted)
+			{
+				this.userInterface.showLevelUpStats(pc);
+				this.userInterface.levelUpButton.Glow();
+			}
+			else
+			{
+				this.userInterface.showPrimaryOutput();
+				this.userInterface.levelUpButton.DeGlow();
+			}
+		}
+		
 		public function spacebarKeyEvt():void
 		{
 			this.userInterface.SpacebarEvent();

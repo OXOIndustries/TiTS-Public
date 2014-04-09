@@ -579,6 +579,8 @@
 		{
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
+			kGAMECLASS.eventBuffer = "";
+			kGAMECLASS.userInterface.levelUpButton.Activate();
 			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.showPrimaryOutput();
 			

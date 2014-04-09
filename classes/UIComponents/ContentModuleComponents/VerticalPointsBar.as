@@ -1,4 +1,4 @@
-package UIComponents.ContentModuleComponents 
+package classes.UIComponents.ContentModuleComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -45,7 +45,7 @@ package UIComponents.ContentModuleComponents
 			_barElement = new Sprite();
 			_barElement.name = "bar";
 			_barElement.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_barElement.graphics.drawRect(0, 0, 72, 335);
+			_barElement.graphics.drawRect(0, 0, 72, 339);
 			_barElement.graphics.endFill();
 			this.addChild(_barElement);
 			
@@ -55,15 +55,16 @@ package UIComponents.ContentModuleComponents
 			_pointsValueText.multiline = false;
 			_pointsValueText.wordWrap = false;
 			_pointsValueText.embedFonts = true;
-			_pointsVlaueText.antiAliasType = AntiAliasType.ADVANCED;
+			_pointsValueText.antiAliasType = AntiAliasType.ADVANCED;
 			_pointsValueText.defaultTextFormat = UIStyleSettings.gLevelUpPointsBarNumber;
 			_pointsValueText.mouseEnabled = false;
 			_pointsValueText.mouseWheelEnabled = false;
+			_pointsValueText.text = "5";
 			
 			_pointsValueText.width = 72;
-			_pointsValueText.height = 100;
+			_pointsValueText.height = 150;
 			_pointsValueText.x = 0;
-			_pointsValueText.y = 5;
+			_pointsValueText.y = -15;
 			
 			this.addChild(_pointsValueText);
 			
@@ -77,28 +78,29 @@ package UIComponents.ContentModuleComponents
 			_pointsLabel.defaultTextFormat = UIStyleSettings.gLevelUpPointsBarText;
 			_pointsLabel.mouseEnabled = false;
 			_pointsLabel.mouseWheelEnabled = false;
+			_pointsLabel.text = "PTS";
 			
 			_pointsLabel.width = 72;
-			_pointsLabel.height = 30;
+			_pointsLabel.height = 50;
 			_pointsLabel.x = 0;
-			_pointsLabel.y = 140;
+			_pointsLabel.y = 115;
 			
 			this.addChild(_pointsLabel);
 		}
 		
 		private function updateBar():void
 		{
-			_pointsValueText.text = _pointsValue;
+			_pointsValueText.text = String(_pointsValue);
 			
 			if (_pointsValue > _initialPointsValue)
 			{
-				_barElement.height = 335;
+				_barElement.height = 339;
 				_barElement.y = 0;
 			}
 			else
 			{
-				_barElement.height = (335 / _initialPointsValue) * _pointsValue
-				_barElement.y = 335 - _barElement.height
+				_barElement.height = (339 / _initialPointsValue) * _pointsValue
+				_barElement.y = 339 - _barElement.height
 			}
 		}
 	}

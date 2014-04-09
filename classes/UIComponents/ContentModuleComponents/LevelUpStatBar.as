@@ -1,5 +1,6 @@
-package UIComponents.ContentModuleComponents 
+package classes.UIComponents.ContentModuleComponents 
 {
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.events.Event;
@@ -42,11 +43,11 @@ package UIComponents.ContentModuleComponents
 			_barLabel.setTextFormat(UIStyleSettings.gLevelUpBarDarkLabelFormatter);
 		}
 		
-		public function get addArrow():Sprite
+		public function get addArrow():DisplayObject
 		{
 			return _addArrow;
 		}
-		public function get remArrow():Sprite
+		public function get remArrow():DisplayObject
 		{
 			return _remArrow;
 		}
@@ -80,8 +81,8 @@ package UIComponents.ContentModuleComponents
 		private var _barValue:TextField;
 		private var _changeValue:TextField;
 		
-		private var _addArrow:Sprite;
-		private var _remArrow:Sprite;
+		private var _addArrow:DisplayObject;
+		private var _remArrow:DisplayObject;
 		private var _addArrowLabel:TextField;
 		private var _remArrowLabel:TextField;
 		
@@ -119,8 +120,8 @@ package UIComponents.ContentModuleComponents
 			_barLabel.mouseWheelEnabled = false;
 			
 			_barLabel.x = 5;
-			_barLabel.y = 5;
-			_barLabel.height = 50;
+			_barLabel.y = -8;
+			_barLabel.height = 60;
 			_barLabel.width = 275;
 			_barLabel.text = "SOME LABEL";
 			this.addChild(_barLabel);
@@ -138,9 +139,9 @@ package UIComponents.ContentModuleComponents
 			_barValue.mouseWheelEnabled = false;
 			
 			_barValue.x = 5;
-			_barValue.y = 5;
+			_barValue.y = -7;
 			_barValue.width = 540;
-			_barValue.height = 50;
+			_barValue.height = 60;
 			_barValue.text = "99";
 			this.addChild(_barValue);
 			
@@ -156,10 +157,10 @@ package UIComponents.ContentModuleComponents
 			_changeValue.mouseEnabled = false;
 			_changeValue.mouseWheelEnabled = false;
 			
-			_changeValue.x = 350;
-			_changeValue.y = 5;
-			_changeValue.width = 40;
-			_changeValue.height = 50;
+			_changeValue.x = 330;
+			_changeValue.y = -8;
+			_changeValue.width = 80;
+			_changeValue.height = 60;
 			_changeValue.text = "+1";
 			this.addChild(_changeValue);
 			
@@ -182,16 +183,16 @@ package UIComponents.ContentModuleComponents
 			_addArrowLabel.mouseWheelEnabled = false;
 			_addArrowLabel.text = "+";
 			
-			_addArrowLabel.x = _addArrow.x + 10;
-			_addArrowLabel.y = _addArrow.y + 10;
-			_addArrowLabel.width = 15;
-			_addArrowLabel.height = 15;
+			_addArrowLabel.x = 430;
+			_addArrowLabel.y = 0;
+			_addArrowLabel.width = 60;
+			_addArrowLabel.height = 60;
 			
 			this.addChild(_addArrowLabel);
 			
 			// "Remove points" arrow
 			_remArrow = new Change_Arrow_Down();
-			_remArrow.x = 295;
+			_remArrow.x = 285;
 			_remArrow.y = 15;
 			this.addChild(_remArrow);
 			
@@ -208,10 +209,10 @@ package UIComponents.ContentModuleComponents
 			_remArrowLabel.mouseWheelEnabled = false;
 			_remArrowLabel.text = "-";
 			
-			_remArrowLabel.x = _remArrow.x + 10;
-			_remArrowLabel.y = _remArrow.y + 10;
-			_remArrowLabel.width = 15;
-			_remArrowLabel.height = 15;
+			_remArrowLabel.x = 300;
+			_remArrowLabel.y = -2;
+			_remArrowLabel.width = 60;
+			_remArrowLabel.height = 60;
 			this.addChild(_remArrowLabel);
 			
 		}

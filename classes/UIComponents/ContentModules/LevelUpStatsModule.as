@@ -1,12 +1,15 @@
-package UIComponents.ContentModules 
+package classes.UIComponents.ContentModules 
 {
+	import classes.Creature;
 	import classes.UIComponents.ContentModule;
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.UIStyleSettings;
-	import UIComponents.ContentModuleComponents.VerticalPointsBar;
+	import classes.UIComponents.ContentModuleComponents.VerticalPointsBar;
+	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
 	
 	/**
 	 * ...
@@ -19,18 +22,21 @@ package UIComponents.ContentModules
 		private static var Levelup_Arrow:Class;
 		
 		// Display elements
-		private var _levelupArrow:Sprite;
+		private var _levelupArrow:DisplayObject;
 		private var _levelText:TextField;
 		private var _levelValueText:TextField;
 		
 		private var _pointsBar:VerticalPointsBar;
+		
+		private var _statBars:Vector.<LevelUpStatBar>;
+		private var _barLabels:Array = ["physique", "reflexes", "aim", "intelligence", "willpower"];
 		
 		public function LevelUpStatsModule() 
 		{
 			leftBarEnabled = true;
 			rightBarEnabled = true;
 			fullButtonTrayEnabled = true;
-			_moduleName = "LevelUp";
+			_moduleName = "LevelUpStats";
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -46,7 +52,7 @@ package UIComponents.ContentModules
 		{
 			_levelupArrow = new Levelup_Arrow();
 			_levelupArrow.x = 15;
-			_levelupArrow.y = 72;
+			_levelupArrow.y = 50;
 			this.addChild(_levelupArrow);
 			
 			_levelText = new TextField();
@@ -60,9 +66,9 @@ package UIComponents.ContentModules
 			_levelText.mouseEnabled = false;
 			_levelText.mouseWheelEnabled = false;
 			_levelText.x = 280;
-			_levelText.y = 110;
-			_levelText.height = 105;
-			_levelText.width = 230;
+			_levelText.y = 70;
+			_levelText.height = 140;
+			_levelText.width = 250;
 			_levelText.text = "LEVEL";
 			this.addChild(_levelText);
 			
@@ -76,16 +82,39 @@ package UIComponents.ContentModules
 			_levelValueText.defaultTextFormat = UIStyleSettings.gLevelValueLabelText;
 			_levelValueText.mouseEnabled = false;
 			_levelValueText.mouseWheelEnabled = false;
-			_levelValueText.x;
-			_levelValueText.y;
-			_levelValueText.width;
-			_levelValueText.height;
+			_levelValueText.x = 530;
+			_levelValueText.y = 30;
+			_levelValueText.width = 200;
+			_levelValueText.height = 200;
+			_levelValueText.text = "10";
 			this.addChild(_levelValueText);
 			
 			_pointsBar = new VerticalPointsBar();
-			_pointsBar.x = 125;
-			_pointsBar.y = 310;
+			_pointsBar.x = 138;
+			_pointsBar.y = 287;
 			this.addChild(_pointsBar);
+			
+			_statBars = new Vector.<LevelUpStatBar>();
+			for (var i:int = 0; i < 5; i++)
+			{
+				var newBar:LevelUpStatBar = new LevelUpStatBar();
+				this.addChild(newBar);
+				
+				newBar.barLabel = (_barLabels[i] as String).toUpperCase();
+				newBar.name = (_barLabels[i] as String).toLowerCase();
+				
+				newBar.x = 225;
+				newBar.y = 286 + ((60 + 10) * i);
+				
+				_statBars.push(newBar);
+			}
+		}
+		
+		public function setCreatureData(tarCreature:Creature):void
+		{
+			trace("Showing levelup screen for " + tarCreature.short);
+			
+			
 		}
 	}
 
