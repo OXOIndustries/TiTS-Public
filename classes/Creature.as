@@ -1247,6 +1247,12 @@
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
 					break;
+				case "cockColor":
+					buffer = cockColor(arg2);
+					break;
+				case "vaginaColor":
+					buffer = vaginaColor(arg2);
+					break;
 				case "cockHead":
 				case "cockhead":
 					buffer = cockHead(arg2);
@@ -4496,6 +4502,18 @@
 
 			//Add bonus flags and shit.
 			if (type == GLOBAL.EQUINE) {
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "black";
+				vaginas[slot].minLooseness = 2;
+			}
+			if (type == GLOBAL.HUMAN) {
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "pink";
+			}
+			if (type == GLOBAL.BEE)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "black and gold";
 			}
 		}
 		//Change cock type
@@ -4521,16 +4539,22 @@
 			}
 			if (type == GLOBAL.EQUINE) {
 				cocks[slot].knotMultiplier = 1;
+				if(rand(3) == 0) cocks[slot].cockColor = "black";
+				else if(rand(3) == 0) cocks[slot].cockColor = "mottled pink and black";
+				else cocks[slot].cockColor = "pink";
 				cocks[slot].addFlag(GLOBAL.BLUNT);
 				cocks[slot].addFlag(GLOBAL.FLARED);
 				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.BEE) {
+				if(rand(2) == 0) cocks[slot].cockColor = "black";
+				else cocks[slot].cockColor = "amber";
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FORESKINNED);
 			}
 			if (type == GLOBAL.NAGA) {
+				cocks[slot].cockColor = "purple";
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.TAPERED);
@@ -5964,12 +5988,12 @@
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "equine gash";
-					else if (temp <= 3) vag += "black-lipped vagina";
+					else if (temp <= 3) vag += "animalistic vagina";
 					else if (temp <= 5) vag += "animalistic cunny";
 					else if (temp <= 7) vag += "equine honeypot";
 					else if (temp <= 9) vag += "dusky snatch";
 					else if (temp <= 11) vag += "equine cunt";
-					else if (temp <= 13) vag += "black-lipped pussy";
+					else if (temp <= 13) vag += "pheromone-laden pussy";
 					else vag += "musky mare-cunt";
 				} else {
 					temp = this.rand(18);
@@ -6057,14 +6081,14 @@
 			} else if (type == GLOBAL.BEE) {
 				if (!simple) {
 					temp = this.rand(16);
-					if (temp <= 1) vag += "black-lipped gash";
+					if (temp <= 1) vag += "thick-lipped gash";
 					else if (temp <= 3) vag += "alien vagina";
-					else if (temp <= 5) vag += "yellow-lined cunt";
-					else if (temp <= 7) vag += "honey-colored honeypot";
-					else if (temp <= 9) vag += "dusky pussy";
+					else if (temp <= 5) vag += "inhuman cunt";
+					else if (temp <= 7) vag += "zil-like honeypot";
+					else if (temp <= 9) vag += "exceptionally smooth pussy";
 					else if (temp <= 11) vag += "exotic slit";
-					else if (temp <= 13) vag += "black-lipped pussy";
-					else vag += "gold-gilt snatch";
+					else if (temp <= 13) vag += "thick-lipped pussy";
+					else vag += "seductive snatch";
 				} else {
 					temp = this.rand(18);
 					if (temp <= 1) vag += "zil-pussy";
@@ -6137,9 +6161,15 @@
 
 			//Bonus chance for virgins
 			if (vaginalVirgin) bonus += 20
-
+			//Color super low chance!
+			if (adjectives && !forceAdjectives && rand(15) == 0)
+			{
+				descripted++;
+				vag += vaginas[vaginaNum].vaginaColor;
+			}
 			//low chance of size descriptor
 			if (((adjectives && this.rand(100) <= 25 + bonus) || forceAdjectives)) {
+				if (descripted > 0) vag += ", ";
 				//Virgin overpowers other shit half the time.
 				if (vaginalVirgin && this.rand(2) == 0) {
 					temp = this.rand(11);
@@ -6764,11 +6794,15 @@
 				multi = true;
 			}
 
-
+			//Color: 1/15 chance
+			if (!multi && rand(15) == 0)
+			{
+				descript += cocks[cockNum].cockColor;
+			}
 			//Pierced - 1/5 chance
-			if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
+			else if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
 				descript += "pierced";
-			} 
+			}
 			//Cocksocks!
 			else if (!multi && this.rand(5) == 0 && cocks[cockNum].sock != "") {
 				rando = this.rand(6);
@@ -7494,6 +7528,16 @@
 				else descript += cockNoun(dickNippleType);
 			}
 			return pluralize(descript);
+		}
+		public function cockColor(arg2:int = 0):String
+		{
+			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
+			else return cocks[arg2].cockColor;
+		}
+		public function vaginaColor(arg2:int = 0):String
+		{
+			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
+			else return vaginas[arg2].vaginaColor;	
 		}
 		public function cockDescript(cockNum: Number = 0): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";

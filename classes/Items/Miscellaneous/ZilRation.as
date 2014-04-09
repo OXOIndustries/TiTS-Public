@@ -233,13 +233,12 @@
 					kGAMECLASS.output(" than before and");
 				}
 				kGAMECLASS.output(" a yellow-gold hue reminiscent of some zil. It seems ");
-				if(target.vaginaTotal() > 1) kGAMECLASS.output("<b>you have a zil-like pussy now!</b>");
+				if(target.vaginaTotal() == 1) kGAMECLASS.output("<b>you have a zil-like pussy now!</b>");
 				else kGAMECLASS.output("<b>you have zil-like pussies now!</b>");
 				//Loop through and set 'em all, baby!
 				for(x = 0; x < target.totalVaginas(); x++)
 				{
-					target.vaginas[x].clits = 1;
-					target.vaginas[x].type = GLOBAL.BEE;
+					target.shiftVagina(x, GLOBAL.BEE);
 				}
 				changes++;
 			}
@@ -536,7 +535,7 @@
 					else if(y >= 2) kGAMECLASS.output(" It recedes until you've lost " + kGAMECLASS.num2Text(Math.round(y)) + " inches from your length.");
 					else if(y >= 1.1) kGAMECLASS.output(" Gradually, you lose well over an inch.");
 					else kGAMECLASS.output(" Gradually, you lose about an inch.");
-					target.cocks[x].cLength -= y;
+					target.cocks[x].cLengthRaw -= y;
 					kGAMECLASS.output(" Your girth thins to match your new proportions more appropriately. It's still pretty thick, all things considered.");
 					changes++;
 				}

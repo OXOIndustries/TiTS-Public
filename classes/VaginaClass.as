@@ -21,6 +21,7 @@
 		public var hymen:Boolean = true;
 		//I'm going to regret this, I'm sure of it.
 		public var clits:int = 1;
+		public var vaginaColor:String = "pink";
 		//Vag wetness - Runs 1 = normal. Scales up infinitely or down to 0 for no lubricational value.
 		public var wetnessRaw:Number = 1;
 		public var wetnessMod:Number = 0;

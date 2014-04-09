@@ -358,6 +358,17 @@ function chooseSkinTone():void
 }
 function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
+	if(pc.hasCock())
+	{
+		if(pc.cocks[x].cType == GLOBAL.HUMAN)
+		{
+			if(skinTone == "dark" || skinTone == "ebony")
+			{
+				pc.cocks[0].cockColor = "ebony";
+			}
+			else pc.cocks[0].cockColor = "pink";
+		}
+	}
 	chooseBreastSize();	
 }
 
