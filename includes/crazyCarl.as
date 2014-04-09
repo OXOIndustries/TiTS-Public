@@ -2,6 +2,9 @@
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.MagnumPistol;
 import classes.Items.Guns.TheShocker;
+import classes.Items.Melee.Shortsword;
+import classes.Items.Melee.Machette;
+import classes.Items.Melee.Warhammer;
 //Outside?
 function outsideCarlsShop():void {
 	//output("\n\nThere sits a small, humble building that is relatively unassuming given the larger works around the colony. Its fairly squat in appearance with a pair of industrialized steam stacks poking out from the roof, giving off the odd puff of heat to prove that some form of industry is going inside. Given the gaudy, faux-neon sign upfront with the vague image of a pistol, you can only assume it’s a gunsmith’s - something reaffirmed by the name of the shop that barely fits within the sign: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>.");
@@ -377,17 +380,17 @@ function buyFromCarl(arg:String = "ERROR"):void {
 	else if(arg == "warhammer")
 	{
 		cost = 750;
-		eventQueue[eventQueue.length] = lootWarhammer();
+		eventQueue[eventQueue.length] = lootWarhammer;
 	}
 	else if(arg == "machette")
 	{
 		cost = 750;
-		eventQueue[eventQueue.length] = lootMachette();
+		eventQueue[eventQueue.length] = lootMachette;
 	}
 	else if(arg == "shortsword")
 	{
 		cost = 750;
-		eventQueue[eventQueue.length] = lootShortsword();
+		eventQueue[eventQueue.length] = lootShortsword;
 	}
 	clearOutput();
 	output("You purchase a " + arg + " for " + cost + ".");

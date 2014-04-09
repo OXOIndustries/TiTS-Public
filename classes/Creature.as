@@ -2912,11 +2912,14 @@
 			removeStorage(statusEffects);
 		}
 		public function clearCombatStatuses(): void {
-			for (var x: int = 0; x < statusEffects.length; x++) {
-				if (statusEffects[x].combatOnly) 
+			//trace("Removing combat statuses.");
+			for (var x: int = statusEffects.length-1; x >= 0; x--) {
+				if (statusEffects[x].combatOnly)
 				{
+					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
 					statusEffects.splice(x,1);
 				}
+				//else trace("Not a combat status: " + statusEffects[x].storageName + " at position " + x + ".");
 			}
 		}
 		//perk
