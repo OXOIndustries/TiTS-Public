@@ -5,6 +5,7 @@ package classes.UIComponents.ContentModules
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.UIStyleSettings;
@@ -95,13 +96,16 @@ package classes.UIComponents.ContentModules
 			this.addChild(_pointsBar);
 			
 			_statBars = new Vector.<LevelUpStatBar>();
-			for (var i:int = 0; i < 5; i++)
+			for (var i:int = 0; i < _barLabels.length; i++)
 			{
 				var newBar:LevelUpStatBar = new LevelUpStatBar();
 				this.addChild(newBar);
 				
 				newBar.barLabel = (_barLabels[i] as String).toUpperCase();
 				newBar.name = (_barLabels[i] as String).toLowerCase();
+				
+				newBar.addArrow.addEventListener(MouseEvent.CLICK, arrowHandler);
+				newBar.remArrow.addEventListener(MouseEvent.CLICK, arrowHandler);
 				
 				newBar.x = 225;
 				newBar.y = 286 + ((60 + 10) * i);
@@ -110,11 +114,84 @@ package classes.UIComponents.ContentModules
 			}
 		}
 		
+		private var _targetCreature:Creature;
+		private var _pointDistribution:Array;
+		private var _availablePoints:int;
+		
 		public function setCreatureData(tarCreature:Creature):void
 		{
 			trace("Showing levelup screen for " + tarCreature.short);
 			
+			_targetCreature = tarCreature;
+			_pointDistribution = new Array();
+			_availablePoints = 5;
 			
+			_pointsBar.initialPointsValue = 5;
+			
+			for (var i:int = 0; i < _barLabels.length; i++)
+			{
+				_pointDistribution[i] = 0;
+			}
+			
+			updateBarStates();
+		}
+		
+		private function updateBarStates():void
+		{
+			_pointsBar.pointsValue = _availablePoints;
+			
+			for (var i:int = 0; i < _barLabels.length; i++)
+			{
+				_statBars[i].barValue = _targetCreature[_barLabels[i]]() + _pointDistribution[i];
+				
+				// General bar settings
+				if ((_targetCreature[_barLabels[i]]() + _pointDistribution[i]) < _targetCreature[_barLabels[i] + "Max"]())
+				{
+					_statBars[i].setBarChangeableMode();
+				}
+				else
+				{
+					_statBars[i].setBarMaxedMode();
+				}
+				
+				// Change value and +/- buttons
+				if (_pointDistribution[i] > 0)
+				{
+					_statBars[i].changeValue = _pointDistribution[i];
+					_statBars[i].showChangeValue();
+					_statBars[i].showRemArrow();
+				}
+				else
+				{
+					_statBars[i].hideChangeValue();
+					_statBars[i].hideRemArrow();
+				}
+				
+				// Hide add arrows when there are no more points to spend
+				if (_availablePoints == 0)
+				{
+					_statBars[i].hideAddArrow();
+				}
+			}
+		}
+		
+		private function arrowHandler(e:Event = null):void 
+		{
+			var statIndex:int = _barLabels.indexOf(e.target.parent.name);
+			
+			if (e.target.name == "add")
+			{
+				_pointDistribution[statIndex]++;
+				_availablePoints--;
+			}
+			
+			if (e.target.name == "rem")
+			{
+				_pointDistribution[statIndex]--;
+				_availablePoints++;
+			}
+			
+			updateBarStates();
 		}
 	}
 

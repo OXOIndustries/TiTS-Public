@@ -57,6 +57,7 @@ package classes.UIComponents
 			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
+			UIStyleSettings._gHighlightColourTransform = null;
 			
 			UIStyleSettings._gLevelUpPointsBarNumber = null;
 			UIStyleSettings._gLevelUpPointsBarText = null;
@@ -67,7 +68,8 @@ package classes.UIComponents
 			UIStyleSettings._gLevelUpBarDarkLabelFormatter = null;
 
 			UIStyleSettings._gLevelUpBarValueLabelFormatter = null;
-			UIStyleSettings._gLevelUpBarArrowButtonFormatter = null;
+			UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter = null;
+			UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter = null;
 
 			UIStyleSettings._gLevelUpBarMaxedColourTransform = null;
 			UIStyleSettings._gLevelUpBarChangeableColourTransform = null;
@@ -491,20 +493,36 @@ package classes.UIComponents
 			return UIStyleSettings._gLevelUpBarValueLabelFormatter;
 		}
 
-		private static var _gLevelUpBarArrowButtonFormatter:TextFormat;
-		public static function get gLevelUpBarArrowButtonFormatter():TextFormat
+		private static var _gLevelUpBarChangeableArrowButtonFormatter:TextFormat;
+		public static function get gLevelUpBarChangeableArrowButtonFormatter():TextFormat
 		{
-			if (UIStyleSettings._gLevelUpBarArrowButtonFormatter == null)
+			if (UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter == null)
 			{
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter = new TextFormat();
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.size = 44;
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.color = UIStyleSettings.gHighlightColour
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.align = TextFormatAlign.LEFT;
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.kerning = true;
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.bold = true;
-				UIStyleSettings._gLevelUpBarArrowButtonFormatter.font = "Lato";
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.size = 44;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.color = UIStyleSettings.gHighlightColour
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.bold = true;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.font = "Lato";
 			}
-			return UIStyleSettings._gLevelUpBarArrowButtonFormatter;
+			return UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter;
+		}
+
+		private static var _gLevelUpBarMaxedArrowButtonFormatter:TextFormat;
+		public static function get gLevelUpBarMaxedArrowButtonFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.size = 44;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.bold = true;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter;
 		}
 		
 		// Glows
@@ -581,6 +599,17 @@ package classes.UIComponents
 				UIStyleSettings._gForegroundColourTransform.color = UIStyleSettings.gForegroundColour;
 			}
 			return UIStyleSettings._gForegroundColourTransform;
+		}
+
+		private static var _gHighlightColourTransform:ColorTransform;
+		public static function get gHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gHighlightColourTransform == null)
+			{
+				UIStyleSettings._gHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gHighlightColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gHighlightColourTransform;
 		}
 		
 		private static var _gMovementButtonColourTransform:ColorTransform;
