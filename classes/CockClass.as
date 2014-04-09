@@ -67,6 +67,7 @@
 		
 		//Types as defined in consts.as!
 		public var cType:Number = 0;
+		public var cockColor:String = "pink";
 		//Used to determine thickness of knot relative to normal thickness
 		public var knotMultiplier:Number = 1;
 		public var flaccidMultiplier:Number = .25;

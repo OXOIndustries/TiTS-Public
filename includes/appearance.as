@@ -165,7 +165,7 @@ function appearance(target:Creature):void {
 			if(pc.skinType == GLOBAL.FUR) output2(" You have no hair, only a thin layer of fur atop of your head. ");
 			else output2(" You have no hair, showing only shiny " + target.skinFurScales() + " where your hair should be.");
 			if(pc.earType == GLOBAL.EQUINE) output2(" A pair of horse-like ears rise up from the top of your skull.");
-			else if(pc.earType == GLOBAL.CANINE) output2(" A pair of dog ears protrude from your skull, flopping down adorably.");
+			else if(pc.earType == GLOBAL.CANINE) output2(" A pair of pointed ausar-like ears protrude from your skull, pointed and alert.");
 			else if(pc.earType == GLOBAL.BOVINE) output2(" A pair of round, floppy cow ears protrude from the sides of your skull.");
 			else if(pc.earType == GLOBAL.DRIDER) output2(" A pair of large pointy ears stick out from your skull.");
 			else if(pc.earType == GLOBAL.FELINE) output2(" A pair of cute, fuzzy cat-like ears have sprouted from the top of your skull.");
@@ -249,6 +249,7 @@ function appearance(target:Creature):void {
 		//Wing arms
 		if(target.armType == GLOBAL.AVIAN) output2("  Feathers hang off your arms from shoulder to wrist, giving them a slightly wing-like look.");
 		else if(target.armType == GLOBAL.EQUINE) output2(" Hard, hoof-like tips have grown in place of fingernails, covering the end of each digit in shiny black. You can still feel through them all the same.")
+		else if(target.armType == GLOBAL.CANINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are tipped with short, canine claws as well, just like one of the ausar.");
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		else if(target.armType == GLOBAL.PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");

@@ -4511,7 +4511,7 @@
 			//Add bonus flags and shit.
 			if (type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
-
+				cocks[slot].cockColor = "bright red";
 				cocks[slot].addFlag(GLOBAL.TAPERED);
 				cocks[slot].addFlag(GLOBAL.KNOTTED);
 				cocks[slot].addFlag(GLOBAL.SHEATHED);
