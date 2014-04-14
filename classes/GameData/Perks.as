@@ -1,5 +1,6 @@
 package classes.GameData 
 {
+	import classes.GameData.PerkData;
 	
 	/**
 	 * ...
@@ -7,8 +8,23 @@ package classes.GameData
 	 */
 	public class Perks 
 	{
+		private var _perkList:Vector.<PerkData>;
+		
 		
 		public function Perks() 
+		{
+			_perkList = new Vector.<PerkData>();
+			
+			// Configure the class perk data
+			ConfigureClassPerks();
+		}
+		
+		private function ConfigureClassPerks():void
+		{
+			ConfigureMercenaryPerks();
+		}
+		
+		private function ConfigureMercenaryPerks():void
 		{
 			
 		}
