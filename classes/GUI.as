@@ -508,6 +508,13 @@
 			{
 				throw new Error("Couldn't find module \"" + module + "\"");
 			}
+			
+			// Update some button states
+			if (classes.kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] != undefined) this.levelUpButton.Activate();
+			else
+			{
+				this.levelUpButton.Deactivate();
+			}
 		}
 		
 		/**
@@ -1157,6 +1164,7 @@
 			this.mainMenuButton.DeGlow();
 			this.dataButton.DeGlow();
 			this.appearanceButton.DeGlow();
+			this.levelUpButton.DeGlow();
 		}
 
 		// New passthrough event/keyboard control handlers for scroll mechanics. Here, we can redirect them to the

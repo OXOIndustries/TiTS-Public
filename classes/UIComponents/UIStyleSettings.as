@@ -386,11 +386,12 @@ package classes.UIComponents
 			if (UIStyleSettings._gLevelUpPointsBarNumber == null)
 			{
 				UIStyleSettings._gLevelUpPointsBarNumber = new TextFormat();
-				UIStyleSettings._gLevelUpPointsBarNumber.size = 141;
+				UIStyleSettings._gLevelUpPointsBarNumber.size = 120;
 				UIStyleSettings._gLevelUpPointsBarNumber.color = 0xFFFFFF;
 				UIStyleSettings._gLevelUpPointsBarNumber.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gLevelUpPointsBarNumber.kerning = true;
+				UIStyleSettings._gLevelUpPointsBarNumber.kerning = false;
 				UIStyleSettings._gLevelUpPointsBarNumber.leading = -2;
+				UIStyleSettings._gLevelUpPointsBarNumber.letterSpacing = -15;
 				UIStyleSettings._gLevelUpPointsBarNumber.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gLevelUpPointsBarNumber;
