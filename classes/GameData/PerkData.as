@@ -52,6 +52,25 @@ package classes.GameData
 			if (slotNumber >= 0 && slotNumber <= 3) return _valueStorageNames[slotNumber];
 		}
 		
+		// Limiter Function -- Limit access to the perk based on the boolean return of a functor
+		private var _limitedAccess:Boolean = false;
+		public function get isLimitedAccess():Boolean { return _limitedAccess; }
+		
+		private var _limitedAccessFunctor:Function = null;
+		public function get isAccessable():Boolean 
+		{ 
+			if (_limitedAccessFunctor != null ) 
+			{
+				return _limitedAccessFunctor()
+			}
+			else
+			{
+				return true;
+			}
+		}
+		public function set isAccessable(v:Function):void { _limitedAccessFunctor = v; _limitedAccess = true; }
+		
+		
 		public function PerkData() 
 		{
 			

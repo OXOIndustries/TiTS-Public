@@ -22,9 +22,21 @@ package classes.GameData
 		private function ConfigureClassPerks():void
 		{
 			ConfigureMercenaryPerks();
+			ConfigureSmugglerPerks();
+			ConfigureEngineerPerks();
 		}
 		
 		private function ConfigureMercenaryPerks():void
+		{
+			
+		}
+		
+		private function ConfigureSmugglerPerks():void
+		{
+			
+		}
+		
+		private function ConfigureEngineerPerks():void
 		{
 			
 		}
