@@ -91,14 +91,17 @@ package classes.Resources
 		
 		// Alias some of the Icons to "friendly" properties; basically, lets us reinterpret/configure
 		// which icons to use in some cases
-		public static var Paralyze:Class = StatusIcons.Icon_Paralysis;
-		public static var Stun:Class = StatusIcons.Icon_MindcontrolledMindbroke;
-		public static var Constrict:Class = StatusIcons.Icon_Constricted;
-		public static var Poison:Class = StatusIcons.Icon_Poison;
 		public static var Blind:Class = StatusIcons.Icon_BlindAlt;
 		public static var Blocked:Class = StatusIcons.Icon_Blocked;
 		public static var Charmed:Class = StatusIcons.Icon_Charmed;
+		public static var Constrict:Class = StatusIcons.Icon_Constricted;
+		public static var DefenseUp:Class = StatusIcons.Icon_DefUp;
+		public static var Paralyze:Class = StatusIcons.Icon_Paralysis;
 		public static var Pill:Class = StatusIcons.Icon_DrugPill;
+		public static var Poison:Class = StatusIcons.Icon_Poison;
+		public static var Stun:Class = StatusIcons.Icon_MindcontrolledMindbroke;
+		
+		
 	}
 
 }

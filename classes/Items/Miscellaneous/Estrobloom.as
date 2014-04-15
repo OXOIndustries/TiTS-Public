@@ -290,7 +290,7 @@
 					{
 
 						kGAMECLASS.output("\n\nThe teltale heat of Estrobloom's changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It's getting smaller, and fast! It doesn't stop until its lost about a quarter of its former length, leaving you with only ");
-						target.cocks[x].cLengthRaw *= target.cocks[x].cLengthRaw;
+						target.cocks[x].cLengthRaw *= .75;
 						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you're going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"

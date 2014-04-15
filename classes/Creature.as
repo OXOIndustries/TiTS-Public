@@ -1639,7 +1639,10 @@
 				return currLust;
 			}
 		}
-		
+		public function lustDamage(arg:Number = 0):Number
+		{
+			return lust(arg);
+		}
 		public function physique(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply) 
@@ -1905,6 +1908,7 @@
 			temp += meleeWeapon.defense;
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
+			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			return temp;
 		}
@@ -1975,7 +1979,7 @@
 			total += bonusResistances[type];
 			total += armor.bonusResistances[type];
 			total += accessory.bonusResistances[type];
-			if(hasPerk("Tough") && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
+			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
 			{
 				total -= .1;
 			}

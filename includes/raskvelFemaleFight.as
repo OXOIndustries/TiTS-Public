@@ -8,6 +8,8 @@
 function encounterHostileRaskvelFemale():void
 {
 	CodexManager.unlockEntry("Raskvel");
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	//First Encounter
 	if(flags["MET_FEMALE_RASKVEL"] == undefined)
 	{
@@ -35,6 +37,8 @@ function encounterHostileRaskvelFemale():void
 function payDatRaskCunt():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	output("Not wanting to waste time with her, you transfer the hundred credits to a chit and toss it at her.\n\nThe little junkyard rat catches hold of your chit before making a dramatic bow. <i>\"Pleasure doing business with ya!\"</i> She vanishes into surrounding wreckage before you can reply.");
 	payRaskvel();
 	processTime(1);
@@ -46,6 +50,8 @@ function payDatRaskCunt():void
 //Combat
 function raskvelChickAI():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	if(foes[0].hasStatusEffect("Wrench Charge")) 
 	{
 		enemyWrenchAttack();
@@ -228,6 +234,8 @@ function raskvelGirlsTeasingCockwielders():void
 //Victory vs Raskvel
 function victoryVsRaskvel():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The extortive mechanic ");
 	if(foes[0].HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, \"<i>You win. Jerk.</i>\" Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
@@ -270,7 +278,17 @@ function victoryVsRaskvel():void
 			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
 			addButton(2,"RideHerFace",faceRidingRaskvelLadies);
 		}
-		else output(" If you had a pussy, you could ride her face. Sadly, you don't.");
+		else {
+			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
+			addDisabledButton(2,"RideHerFace");
+		}
+	}
+	else
+	{
+		output(" <b>You aren't turned on enough to engage in coitus with the alien babe.</b>");
+		addDisabledButton(0,"DoggyStyle");
+		addDisabledButton(1,"EarFap");
+		addDisabledButton(2,"RideHerFace");
 	}
 	output("\n\n");
 	addButton(14,"Leave",genericVictory);	
@@ -281,6 +299,8 @@ function raskVelBabeGetsDoggieStyled():void
 {
 	//Put her on all fours, left her ass up to be supported by your cock, grab hold of those ears for good measure, and play with them.
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	output("As you eye your ");
 	if(foes[0].HP() < 1) output("defeated");
@@ -389,6 +409,8 @@ function raskVelBabeGetsDoggieStyled():void
 function hugeDickEarJackoff():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The little mechanic is way to small to take you, even with hips as stacked as hers, so you decide on another way to quench the fiery heat she's stoked within you. She looks up at you ");
 	if(foes[0].HP() < 1) output("with an anxious expression that shifts into a lusty grin");
 	else output("with whore-shaming quantities of lust pooling in her slitted eyes");
@@ -426,6 +448,8 @@ function hugeDickEarJackoff():void
 function faceRidingRaskvelLadies():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("Tossing your equipment aside, you loom over the defeated raskvel, unashamedly letting your eyes play over her perky breasts, wide hips, lengthy tail, and cute, feather-topped head. ");
 	if(foes[0].HP() < 1) output("She looks on in trepidation, but at the site of your [pc.vaginas] looming overhead, the beginnings of a smile appears on her mouth. ");
 	output("Her tongue slips out of her mouth to play across her lips, giving you ");
@@ -492,6 +516,8 @@ function faceRidingRaskvelLadies():void
 function quotePayUnquoteFemRasks():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	output("Well, you can always pay another way and hope she goes easy on your wallet....");
 	foes = new Array();
 	chars["RASKVELFEMALE"].prepForCombat();
@@ -544,6 +570,8 @@ function defeatRoutingForFemRasks():void
 //Face-Sitting Footjobs
 function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//By Savin
 	author("Savin");
 	//{Combat Loss: Have a Dick}
@@ -616,6 +644,8 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//{Combat Loss: Don't Have a Dick}
 	if(combat)
 	{
@@ -679,6 +709,8 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 function hugeDicksGetForceWorshippedByFemRaskvel():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//HP loss
 	if(pc.HP() < 1)
 	{
@@ -800,6 +832,8 @@ function hugeDicksGetForceWorshippedByFemRaskvel():void
 //Double peg raskvel!
 function getPeggedWhileDoublePenetrate():void
 {	
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
 	//HP: 

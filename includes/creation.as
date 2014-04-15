@@ -45,11 +45,9 @@ function startCharacterCreation(e:Event = null):void
 	this.userInterface.hidePCStats();
 	this.userInterface.hideNPCStats();
 	this.clearMenu();
-	this.addButton(0,"Human",confirmRaceChoice);
-	this.addButton(1,"Ausar",confirmRaceChoice,"ausar");
-	this.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit");
-	if(debug) 
-		this.addButton(3,"Multicock",chooseStartingRace,"multicock");
+	this.addButton(0,"Human",confirmRaceChoice,"human","Human Mother","Victor's child will be born a full-blooded human.");
+	this.addButton(1,"Ausar",confirmRaceChoice,"ausar","Ausar Mother","Victor's child will have a dog-like ausar for a mother. Half-ausars will come into the world with anubis-like ears, canine genitalia (if male), additional hair color choices, more eye color choices, and a long, fluffy tail.");
+	this.addButton(2,"Kaithrit",confirmRaceChoice,"kaithrit","Kaithrit Mother","Victor's child will have a kaithrit mother, famed for their feline resemblance and doubled tails. Half-kaithrit come into the world with two feline tails, cat ears, additional hair color choices, more eye color choices, and cat genitalia (if male).");
 	//addButton(4,"Cheat",chooseHowPCIsRaised);
 }
 

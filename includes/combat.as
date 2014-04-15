@@ -99,97 +99,97 @@ function combatMainMenu():void
 	{
 		//Combat menu
 		this.clearMenu();
-		this.addButton(0,"Attack",attackRouter,playerAttack);
-		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack);
-		this.addButton(4,"Specials",specialsMenu);
-		this.addButton(5,"Tease",attackRouter,teaseMenu);
-		this.addButton(6,"Sense",attackRouter,sense);
-		this.addButton(9,"Fantasize",fantasize);
-		this.addButton(14,"Run",runAway);
+		this.addButton(0,"Attack",attackRouter,playerAttack,"Attack","Attack a single enemy with a melee strike. Damage is based on physique.");
+		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack,"Ranged Attack","Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
+		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
+		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
+		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
+		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
 
 function specialsMenu():void {
 	clearMenu();
-	addButton(14,"Back",combatMainMenu);
-	addButton(13,"Wait",wait);
+	addButton(14,"Back",combatMainMenu,undefined,"Go back to the main combat screen.");
+	addButton(13,"Wait",wait,undefined,"Wait","There's no real reason to this unless you're just dragging out combat to see what your enemy will do.");
 	var offset:int = 0;
 	if(pc.characterClass == GLOBAL.MERCENARY)
 	{
 		//EVERYONE HAS
-		if(pc.energy() >= 25) addButton(0,"Headbutt",attackRouter,headbutt);
+		if(pc.energy() >= 25) addButton(0,"Headbutt",attackRouter,headbutt,"Headbutt","A physique-based attack that does not factor in weapon damage but has a chance of stunning your target.\n\nConsumes 25 energy.");
 		else addDisabledButton(0,"Headbutt");
 		
 		//EITHER OR!
 		if(pc.hasStatusEffect("Rapid Fire Known"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire);
+			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Rapid Fire");
 		}
 		if(pc.hasStatusEffect("Power Strike Known"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike);
+			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Power Strike");
 		}
 		offset = 2;
 		if(pc.hasStatusEffect("Take Cover Known")) 
 		{
 			
-			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover);
+			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack this turn.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
 		if(pc.hasStatusEffect("Carpet Grenades Known"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades);
+			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
 		if(pc.hasStatusEffect("Det. Charge Known"))
 		{
-			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge);
+			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Det. Charge");
 			offset++;
 		}
 		if(pc.level >= 5)
 		{
-			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind);
+			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind,undefined,"Second Wind","Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.");
 			else addDisabledButton(offset,"Second Wind");
 			offset++;
 		}
 	}
 	else if(pc.characterClass == GLOBAL.ENGINEER) {
-		if(pc.energy() >= 25) addButton(0,"P.Shock",attackRouter,paralyzingShock);
+		if(pc.energy() >= 25) addButton(0,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
 		else addDisabledButton(0,"P.Shock");
 		if(pc.hasStatusEffect("Volley Known")) 
 		{
-			if(pc.energy() >= 20) addButton(1,"Volley",attackRouter,volley);
+			if(pc.energy() >= 20) addButton(1,"Volley",attackRouter,volley,"Volley","An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Volley");
 		}
 		if(pc.hasStatusEffect("Overcharge Known"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge);
+			if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(1,"Overcharge");
 		}
 		if(pc.hasStatusEffect("Deflector Regeneration Known"))
 		{
-			if(pc.energy() >= 20) addButton(2,"D. Regen.",deflectorRegeneration,pc);
+			if(pc.energy() >= 20) addButton(2,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","Restores a portion of your shields every turn. Higher intelligence characters will regain even more shields per turn.\n\nConsumes 20 energy.");
 			else addDisabledButton(2,"D. Regen.");
 		}
 		if(pc.hasStatusEffect("Power Surge Known"))
 		{
-			if(pc.energy() >= 33) addButton(2,"P. Surge",powerSurge,pc);
+			if(pc.energy() >= 33) addButton(2,"P. Surge",powerSurge,pc,"Power Surge","Restores a moderate amount of shields based on intelligence.\n\nConsumes 33 energy.");
 			else addDisabledButton(2,"P. Surge");
 		}
 		if(pc.hasKeyItem("Thermal Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor);
+			if(pc.energy() >= 25) addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"T. Disrupt.");
 		}
 		if(pc.hasKeyItem("Gravidic Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor);
+			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor,"Gravidic Disruptor","Deals a moderate amount of intelligence-based gravidic damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"G. Disrupt.");
 		}
 	}
@@ -197,35 +197,35 @@ function specialsMenu():void {
 	{
 		if(silly)
 		{
-			if(pc.energy() >= 10) addButton(0,"P.Sand",attackRouter,flashGrenade);
+			if(pc.energy() >= 10) addButton(0,"P.Sand",attackRouter,flashGrenade,"Pocket Sand","Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.\n\nConsumes 10 energy.");
 			else addDisabledButton(0,"P.Sand");
 		}
 		else
 		{
-			if(pc.energy() >= 10) addButton(0,"F.Grenade",attackRouter,flashGrenade);
+			if(pc.energy() >= 10) addButton(0,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","Produce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.\n\nConsumes 10 energy.");
 			else addDisabledButton(0,"F.Grenade");	
 		}
 		if(pc.hasStatusEffect("Low Blow Known"))
 		{
-			if(pc.energy() >= 15) addButton(1,"Low Blow",attackRouter,lowBlow);
+			if(pc.energy() >= 15) addButton(1,"Low Blow",attackRouter,lowBlow,"Low Blow","A melee strike with an aim-based chance of stunning your target.\n\nConsumes 15 energy.");
 			else addDisabledButton(1,"Low Blow");	
 		}
 		if(pc.hasStatusEffect("Disarming Shot Known")) {
-			if(pc.energy() >= 20) addButton(2,"Disarm Shot",attackRouter,disarmingShot);
+			if(pc.energy() >= 20) addButton(2,"Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
 			else addDisabledButton(2,"Disarm Shot");	
 		}
 		if(pc.hasStatusEffect("Stealth Field Generator Known")) {
-			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(2,"Stealth Field",stealthFieldActivation);
+			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(2,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","Creates a stealth field that greatly increases your evasion for a few turns.");
 			else addDisabledButton(2,"Stealth Field");	
 		}
 		if(pc.hasStatusEffect("Grenade Known"))
 		{
-			if(pc.energy() >= 25) addButton(3,"Grenade",attackRouter,grenade);
+			if(pc.energy() >= 25) addButton(3,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"Grenade");	
 		}
 		if(pc.hasStatusEffect("Gas Grenade Known"))
 		{
-			if(pc.energy() >= 25) addButton(3,"Gas Grenade",attackRouter,gasGrenade);
+			if(pc.energy() >= 25) addButton(3,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"Gas Grenade");	
 		}
 	}
@@ -1034,12 +1034,12 @@ function teaseMenu(target:Creature):void
 		output("\nHips tease skill: " + teases[3] + "/100");
 		output("\n\nYour ability at a tease can increase both its success rate and total damage.")
 		clearMenu();
-		addButton(0,"Ass",teaseButt,target);
-		addButton(1,"Chest",teaseChest,target);
-		if(pc.hasCock() || pc.hasVagina()) addButton(2,"Crotch",teaseCrotch,target);
+		addButton(0,"Ass",teaseButt,target,"Ass Tease","Use your [pc.butt] to tease your enemy.");
+		addButton(1,"Chest",teaseChest,target,"Chest Tease","Use your [pc.chest] to tease your enemy.");
+		if(pc.hasCock() || pc.hasVagina()) addButton(2,"Crotch",teaseCrotch,target,"Crotch Tease","Use your [pc.crotch] to tease your enemy.");
 		else addDisabledButton(2,"Crotch");
-		addButton(3,"Hips",teaseHips,target);
-		addButton(14,"Back",combatMainMenu);
+		addButton(3,"Hips",teaseHips,target,"Hips Tease","Use your [pc.hips] to tease your enemy.");
+		addButton(14,"Back",combatMainMenu,undefined,"Back","Back out. Recommended if you haven't yet used \"Sense\" to determine your foe's likes and dislikes. Remember you can pull up your appearance screen in combat or use the scene buffer buttons in the lower left corner to compare yourself to your foe's preferences!");
 	}
 }
 function teaseChest(target:Creature):void {
@@ -1181,6 +1181,9 @@ function enemyAI(aggressor:Creature):void
 		case "sex bot":
 			sexbotAI();
 			break;
+		case "gray goo":
+			grayGooAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1232,6 +1235,10 @@ function victoryRouting():void
 	{
 		defeatTheSexBot();
 	}
+	else if(foes[0] is GrayGoo)
+	{
+		pcDefeatsGrayGooInTheNameOfLove();
+	}
 	else genericVictory();
 }
 
@@ -1277,6 +1284,10 @@ function defeatRouting():void
 	else if(foes[0] is SexBot)
 	{
 		loseToSexBotRouter();
+	}
+	else if(foes[0] is GrayGoo)
+	{
+		loseToGrayGooRouter();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1453,6 +1464,9 @@ function startCombat(encounter:String):void
 			break;
 		case "SexBot":
 			chars["SEXBOT"].prepForCombat();
+			break;
+		case "Gray Goo":
+			chars["GRAYGOO"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2177,7 +2191,7 @@ function disarmingShot(target:Creature):void {
 	pc.energy(-20);
 	if(target.hasStatusEffect("Disarm Immune")) output("You try to disarm " + target.a + target.short + " but can't. <b>It's physically impossible!</b>\n");
 	else if(target.hasStatusEffect("Disarmed")) output("You try to disarm " + target.a + target.short + " but can't. <b>You already did!</b>\n");
-	else if(combatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
+	else if(rangedCombatMiss(pc,target)) output("You try to disarm " + target.a + target.short + " but miss.\n");
 	else {
 		output("You land a crack shot on " + possessive(target.a + target.short) + ", disarming them.\n");
 		target.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
@@ -2202,7 +2216,7 @@ function gasGrenade(target:Creature):void
 	pc.energy(-25);
 	output("Tossing a hissing grenade in the general direction of your target, you watch the stuff do its trick.");
 	
-	var damage:Number = 12 + rand(10);
+	var damage:Number = 14 + pc.level + rand(10);
 
 	//Any perks or shit go below here.
 	damage *= target.lustVuln;
@@ -2210,7 +2224,7 @@ function gasGrenade(target:Creature):void
 	damage = Math.ceil(damage);
 	output("\n");
 	output(teaseReactions(damage,target));
-	target.lust(damage);
+	target.lustDamage(damage);
 	output(" ("+ damage + ")\n");
 	processCombat();
 }

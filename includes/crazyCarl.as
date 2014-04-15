@@ -11,6 +11,7 @@ function outsideCarlsShop():void {
 	output("\n\nTraffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. While the road continues on to the west and east, to the north you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front declares: <i>Crazy Carl’s Crude Cylinder Collection Cache</i>. The crude neon outline of a handgun helps you fill in the blanks.");
 }
 function carlsShopDescription():void {
+	author("Magic Ted");
 	if(flags["MET_CARL"] == undefined)
 	{
 		output("You enter the store through the automatic sliding door, immediately shivering involuntarily at the feeling of the cool, comfortable air from inside washing over you in comparison to the warmer, muggier jungle outside. Not wanting to waste the controlled atmosphere you quickly hop inside as the commercial door slides shut behind you.");
@@ -32,6 +33,7 @@ function carlsShopDescription():void {
 //Inside
 function insideCarlsShop():void {
 	clearOutput();
+	author("Magic Ted");
 	//Inside (First time)
 	if(flags["MET_CARL"] == undefined)
 	{
@@ -63,6 +65,7 @@ function insideCarlsShop():void {
 function carlTalkMenu():void
 {
 	clearMenu();
+	author("Magic Ted");
 	addButton(0,"Him",chatWithCrazyCarlAboutHim);
 	addButton(1,"His Store",aboutCrazyCarlsStore);
 	if(flags["CRAZY_CARL_DAD_TALK_UNLOCKED"] == 1) addButton(2,"Your Dad",aboutThePCsDad);
@@ -75,6 +78,7 @@ function carlTalkMenu():void
 function chatWithCrazyCarlAboutHim():void
 {	
 	clearOutput();
+	author("Magic Ted");
 	output("You lean gently against the counter and put on a friendly face, not-so-subtly hinting that you’d like to get to know him a little before making a purchase. Especially one as expensive, and legally gridlocked, as a firearm!");
 	output("\n\n\"<i>Eh? Alrigh’, I sympathize some. Lesse... well! Name’s Carl! Carl Jakovich.</i>\"");
 	output("\n\nYou are disappointed that the nominal alliteration doesn’t continue, though he does.");
@@ -94,6 +98,7 @@ function chatWithCrazyCarlAboutHim():void
 //About store
 function aboutCrazyCarlsStore():void {
 	clearOutput();
+	author("Magic Ted");
 	output("One of the more catching questions you have is one of the first ones you had: <i>'Crazy Carl’s Crude Cylinder Collection Cache'</i>?");
 	output("\n\nCarl immediately responds with a loud, jovial guffaw. \"<i>Ha! I’ll say, yeah! Quite the eye catcher, ain’t it? Sticks in yer head. The original when I was younger and a bit of a sprout was just ‘Carl’s Gunshow’, ya can think of how well that turned over.</i>\"");
 	output("\n\nEh. That could work.");
@@ -112,6 +117,7 @@ function aboutCrazyCarlsStore():void {
 function aboutThePCsDad():void {
 	//*Available after About Carl*
 	clearOutput();
+	author("Magic Ted");
 	output("You’re admittedly a little incredulous about one ‘small’ detail. Leaning forward, you make a show of awe.  \"<i>You knew Victor Steele?</i>\"  Not the greatest acting, but it was passable.");
 	output("\n\n\"<i>Oh yeah, before he got famous even.</i>\"  The old man leans back in his chair, causing it to creak in complaint as the thick smile on his face grows wider. It looks like he’s reminiscing about matters, though his silent reprieve doesn’t last. \"<i>Bit of a weirdo back then, though. Wry thing, ran around willy-nilly and got into everyone’s business. Got arrested for wanderin’ to folks houses a few times, even. Anyway. Once the lad got going he actually kept comin’ back to my place. Said he liked the name. Only one that ‘stood out’. Decided to buy one of everythin’ for ‘collection’s sake’, then he actually did. Of course, back then my stock was a lot bigger than what you see out here. Heh... he always said where he got ‘em, too. Good business.</i>\"");
 	output("\n\nCertainly sounds like dad.");
@@ -123,6 +129,7 @@ function aboutThePCsDad():void {
 //About that robot
 function aboutTheRobotFromCrazyCarl():void {
 	clearOutput();
+	author("Magic Ted");
 	//*Unlocked from ZK rifle option*
 	//First time
 	if(flags["TALKED_WITH_CARL_ABOUT_HIS_ROBOT"] == undefined)
@@ -210,6 +217,7 @@ function aboutTheRobotFromCrazyCarl():void {
 //Flirt
 function flirtWithCarl():void {
 	clearOutput();
+	author("Magic Ted");
 	output("Time for a little fun.");
 	output("\n\nCasually you lean forward against the countertop, pressing your pelvis into it firmly. You jut your torso forward, shoving your [pc.chest] into the air confidentiality as you further loom over the counter. Already you’re practically across it and in Carl’s face - his somewhat amused, though unimpressed face. Er.");
 	output("\n\n\"<i>Heh, look at you.</i>\"  He quips, that mirthful tone still in his voice. \"<i>Glad to know I still got it, but... " + pc.mf("I'm afraid the hubby wouldn't really approve.","I’m afraid you’re just not my type.") + " I’m a business man, anyway; work and pleasure are separate. So... scoot off my counter, sprout.</i>\"");
@@ -223,6 +231,7 @@ function flirtWithCarl():void {
 //Shop
 function crazyCarlShop():void {
 	clearOutput();
+	author("Magic Ted");
 	output("\"<i>Well alrigh’ then, scamp! Let’s take a look what I got, here! Bit underwhelmin’ right now, gotta say, but I think you might find a few things.</i>\"  He taps a button on the side and the countertop suddenly lights up with a holo overlay display, functioning as a photographic store catalog of the various wares available. You notice that most of them are actually greyed out, as well as a majority of the catalog being pistols and other similarly small firearms which promps you to glance up to the gunsmith in confusion.");
 	output("\n\nLuckily, he appears to be clairvoyant; \"<i>Haven’t had the demand to make much more, gettin’ bit too up in age to just make ‘em. ‘Fraid as it stands I don’t quite got anythin’ on me to do requests, either. Whacha see is what ya can get, nothin’ more. Sorry ‘bout that.</i>\"");
 	output("\n\nCurious.");
@@ -244,6 +253,7 @@ function crazyCarlShop():void {
 function warhammerBuyTalk():void
 {
 	clearOutput();
+	author("Magic Ted");
 	output("You tap a button and it expands, displaying view of a wicked looking warhammer. <i>\"I sell a pistol called the Hammer. This is an actual hammer. You could use to crack some nuts, maybe to smash open a hostile native if'n ya need. Not too pricey, and she's effective to boot.</i>\"");
 	output("\n\nYou nod and consider.");
 	processTime(1);
@@ -258,6 +268,7 @@ function warhammerBuyTalk():void
 function machetteBuyTalk():void
 {
 	clearOutput();
+	author("Magic Ted");
 	output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>\"The Machette? Ya figurin' on chopping yer way through yonder jungle then? She'll serve you well without costing too much. Probably handy for dealin' with some of them snakes too.</i>\"");
 	output("\n\nYou nod.");
 	processTime(1);
@@ -271,6 +282,7 @@ function machetteBuyTalk():void
 function shortswordBuyTalk():void
 {
 	clearOutput();
+	author("Magic Ted");
 	output("You tap a button and it expands, displaying view of a quick, deadly-looking sword. Carly interrupts, <i>\"That's a simple shortblade. Back before we figured out how to kill each other with guns, that was the way to do it. Good for stabbing and does lots of damage. Not sure what else you'd need in a weapon.</i>\"");
 	output("\n\nYou nod.");
 	processTime(1);
@@ -288,6 +300,7 @@ function shortswordBuyTalk():void
 //[Hammer Pistol]
 function hammerPistolBuyTalk():void {
 	clearOutput();
+	author("Magic Ted");
 	output("You tap one of the buttons and it expands, taking up most of the display. Carl cuts you off before you can start reading off the appearing information, however; \"<i>Ah, the Hammer. Good all ‘round model, that one. Never really sits in stock for too long. Modified a bit, got a different trigger mechanism to stop it from accidentally firin’ all the time. Still need to have good trigger discipline, though, sprout.</i>\"");
 	output("\n\nYou nod gently, looking back down to the information.");
 	processTime(1);
@@ -308,6 +321,7 @@ function hammerPistolBuyTalk():void {
 //[Magnum Pistol]
 function magnumPistolBuyTalk():void {
 	clearOutput();
+	author("Magic Ted");
 	output("You tap one of the buttons and it expands, taking up a fair amount of the display. Before you can look over the appearing information, however, Carl pipes in, \"<i>Now here’s an ancient thing, no real surprise why it doesn’t move off too fast. Still one of the best of its type; big, powerful and simple. Got a bit of a kick, though, so aimin's a bit tricky. Careful with ‘er. Gonna make ya look like a cowpoke, too. Don’t go for the look.</i>\"");
 	processTime(1);
 	//All the cool spacers use revolvers, right?
@@ -325,6 +339,7 @@ function magnumPistolBuyTalk():void {
 //[Las branded affordable Laser Pistol]
 function lasPistolBuyTalk():void {
 	clearOutput();
+	author("Magic Ted");
 	output("You notice that a few of the choices are actually the same weapon or at least extremely similar one. Curious, you give it a tap and the screen flickers with a image of the pistol, taking up the entire display. \"<i>Cha, those things... Crowd favorite among the kids without much sense. Keep a bunch ‘round just to satisfy people who want something flashy, just in case, but if you ask me, you're better off with a good ol' fashioned powder-banger. Can’t be too careful ‘round on the frontier, even if you’re pretty well off.</i>\"");
 	output("\n\nYou nod. It’s good to keep your options open, at least, and the rest of the available weapons look to be ballistic, too. Not that slugthrowers are worse than lasers, just a little less practical.");
 	processTime(1);
@@ -342,6 +357,7 @@ function lasPistolBuyTalk():void {
 //[Las branded affordable Laser Pistol]
 function shockerBuyTalk():void {
 	clearOutput();
+	author("Magic Ted");
 	output("You push a button to bring up an interestingly named weapon, looking something like a cross between a pistol and a tesla coil. \"<i>Ah, fuckin' shocker. They're really called 'shock pistols,' but I like to call this one 'the shocker' on account of how it damn near fried my-... You know what? Let's just forget about that story. Point is, it'll fry shields like they were made of lard. Packs a bigger punch than the laser pistol too, even if it costs a bunch more.</i>\"");
 	processTime(1);
 	output("\n\nAccuracy Bonus: 2")
@@ -500,6 +516,7 @@ function lootZKRifle():void {
 //[ZK Rifle]
 function zkRifleCarlTalk():void {
 	clearOutput();
+	author("Magic Ted");
 	output("Naturally your eyes are drawn to one of the only buttons that actually look worthwhile, which stands in among the bigger, tougher looking though greyed out images. You tap the rifle, though you find yourself confused when some of the more mercantile information is missing. No price?");
 	output("\n\n\"<i>Ah, that ain’t supposed to be on there. We’ve got one of those laying around and it’s almost ready to go, but it needs some more tinkerin’ unless ya want it to explode. Or just not fire, more likely. I’ve love to give it to ya, but I don’t got my tools for it. Went psycho and wandered off.</i>\"");
 	output("\n\nNaturally, you respond with a curious look.");
@@ -516,6 +533,7 @@ function zkRifleCarlTalk():void {
 //[Sell?]
 function sellToCarl():void {
 	clearOutput();
+	author("Magic Ted");
 	output("You glance over the display for a moment, though find yourself curious about something. Looking up to the old man, you ask if he’ll buy anything instead of just sell.");
 	output("\n\n\"<i>Ah, ‘fraid not. Laws of the place says no... ya’d have to chuck it over at Artie the Junk Hut if ya wanted to lose some guns off ya, I can’t purchase ‘em. License whatsits, the Oogie-sea get a bit messed with ‘em.</i>\"");
 	output("\n\nYou nod gently in understanding.");
@@ -705,6 +723,7 @@ function suicideBullshit():void {
 //SHIT YEAH I PRESS THAT BUTTON
 //looks kinda like a jelly fish
 function pushButtanOnMagicTedsFireRobot():void {
+	author("Magic Ted");
 	output("You loom over the fallen, inert machine as it lays there sprawled across a particularly large, low-hanging fern. After you give it a few kicks to make sure, you are confident that the robot has been knocked out from the damage. You feel a swell of pride kick up in your chest at the victory, though that immediately starts to falter under the realization you still need to lug this thing back. Ugh.");
 	output("\n\nYou lean over the machine, brushing off the limp appendage-arms to either side. It looks an awful lot like a jellyfish, come to think of it. You recall Carl saying there was a factory-reset button somewhere in the undercarriage, so reach your hand into the mess and grope about. The outlet for its coolant, a few wires here and there. A button, a vent for what you can only assume is-- Wait, a button. You press in on the small, out-of-the-way thing firmly.");
 	output("\n\nImmediately the robot chirps and you yank your hand away, preparing to go back to fighting. However, instead of aggression the machine lazily hovers itself upright, spins in place once and then continues upwards. You can only watch as it rises up past the trees and floats to off to the side - towards town, you realize. Looks like it’s going to what it considers home after you reset it.");
@@ -715,6 +734,7 @@ function pushButtanOnMagicTedsFireRobot():void {
 
 //Defeat, bad end...
 function ohShitLoseToRobot():void {
+	author("Magic Ted");
 	if(pc.lust() > 99) output("Though you sink to your knees in need, that all changes when the robot fires a huge metal slug at you.\n\n");
 	output("Pain.");
 

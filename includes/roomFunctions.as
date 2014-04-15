@@ -326,6 +326,9 @@ function rustPlainsEncounters():Boolean {
 		choices[choices.length] = encounterASexBot;
 		choices[choices.length] = encounterASexBot;
 		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
 
 		//Run the event
 		choices[rand(choices.length)]();

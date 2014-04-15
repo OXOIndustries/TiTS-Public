@@ -105,6 +105,7 @@
 		}
 		public function lastPillTF():void {
 			pillTF(true);
+			kGAMECLASS.mainGameMenu();
 		}
 		private function smallHorsePillMutations(target:Creature):void
 		{
@@ -705,7 +706,9 @@
 					kGAMECLASS.eventBuffer += "Your " + target.cockDescript(chosenDong) + " feels a little off, and when you check on it, you discover that a soft, folded sheath has sprung up around its base, like an animal's.";
 					if(target.cockTotal() == 2) kGAMECLASS.eventBuffer += " Your other penis hasn't changed at all.";
 					else if(target.cockTotal() > 2) kGAMECLASS.eventBuffer += " Your other penises haven't changed at all.";
-					kGAMECLASS.eventBuffer += " Interestingly, your " + target.cockDescript(chosenDong) + " will withdraw inside the new growth when flaccid, only to emerge when hard. <b>You suppose your sheath is just one step towards a more equine you.</b>";
+					kGAMECLASS.eventBuffer += " Interestingly, your " + target.cockDescript(chosenDong) + " will withdraw inside the new growth when flaccid, only to emerge when hard. ";
+					if(target.hasASheath()) kGAMECLASS.eventBuffer += "<b>You suppose <i>one more</i> sheath is just another step towards a more equine you.</b>";
+					else kGAMECLASS.eventBuffer += "<b>You suppose your sheath is just one step towards a more equine you.</b>";
 					target.cocks[chosenDong].addFlag(GLOBAL.SHEATHED);
 				}
 				//#4 Horsecock - req's sheathed cawk
@@ -727,6 +730,8 @@
 						kGAMECLASS.eventBuffer += " More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.";
 						target.shiftCock(cockToBe,GLOBAL.EQUINE);
 						target.cocks[cockToBe].cLength(3+rand(4));
+						//Re-add the sheath if shiftCock clears it
+						if(!target.cocks[cockToBe].hasFlag(GLOBAL.SHEATHED)) target.cocks[cockToBe].addFlag(GLOBAL.SHEATHED);
 						target.lust(50 + rand(10));
 					}
 					else

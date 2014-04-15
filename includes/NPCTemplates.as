@@ -133,6 +133,10 @@
 	{
 		chars["SEXBOT"] = new classes.Characters.SexBot();
 	}
+	if (!justUpdate || (justUpdate && chars["GRAYGOO"] == undefined))
+	{
+		chars["GRAYGOO"] = new classes.Characters.GrayGoo();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

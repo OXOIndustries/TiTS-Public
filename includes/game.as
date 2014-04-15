@@ -290,8 +290,9 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 
 function statusTick():void {
 	var shitToCut:Array = new Array();
-	for(var x:int = 0; x < this.chars["PC"].statusEffects.length; x++) 
+	for(var x:int = this.chars["PC"].statusEffects.length-1; x >= 0; x--) 
 	{
+		//trace("Checking status effect: " + x + " of " + (this.chars["PC"].statusEffects.length-1));
 		//If times, count dat shit down.
 		if(this.chars["PC"].statusEffects[x].minutesLeft > 0) 
 		{
@@ -341,6 +342,7 @@ function statusTick():void {
 				}
 				//Mark out the ones that need cut!
 				shitToCut[shitToCut.length] = x;
+				//trace("Marking slot: " + x + " to cut");
 			}
 			
 		}
@@ -348,7 +350,7 @@ function statusTick():void {
 	//Cut the statuses that expired and need cut.
 	while(shitToCut.length > 0)
 	{
-		trace("REMOVING " + chars["PC"].statusEffects.storageName);
+		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[shitToCut.length-1]].storageName + " in slot " + shitToCut[shitToCut.length-1] + " due to status effect time out.");
 		this.chars["PC"].statusEffects.splice(shitToCut[shitToCut.length-1],1);
 		shitToCut.splice(shitToCut.length-1,1);
 	}
