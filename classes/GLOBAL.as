@@ -6,6 +6,7 @@
 		public static const SMUGGLER:int                               = 0;
 		public static const MERCENARY:int                              = 1;
 		public static const ENGINEER:int                               = 2;
+		public static const MAX_CLASSES:int							   = 3;
 
 		//Body Part Flags - used for any body part that supports the new flags system.
 		//NOTE: Not all flags work with all body parts, for obvious reasons
