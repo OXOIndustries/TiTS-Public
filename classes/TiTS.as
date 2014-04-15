@@ -96,6 +96,7 @@
 		include "../includes/vko.as";
 		include "../includes/raskvelFemaleFight.as";
 		include "../includes/sexbots.as";
+		include "../includes/grayGoo.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

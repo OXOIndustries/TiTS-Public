@@ -27,6 +27,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","V-Ko",VKoCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Rahn",rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goo",grayGooCodex);
 }
 
 public function codexHomeFunction():void
@@ -94,6 +95,18 @@ public function raskVelCodexEntry():void
 	outputCodex(blockHeader("Other Notes"));
 	outputCodex("Raskvel are known as skilled mechanics but less gifted inventors. They tend to be obsessed with fixing rather than creating, a trait that makes goblins prize them as pets in spite of their racial squabbles. Needless to say, the Raskvel do not enjoy being held in that state.");
 	CodexManager.viewedEntry("Raskvel");
+}
+
+//Codex Entry
+public function grayGooCodex():void
+{
+	clearOutputCodex();
+	outputCodex(header("Hazard: the \"Grey Goo\""));
+	outputCodex("The Grey Goo is an enemy seemingly unique to the junkyard wastelands of Tarkus, comprised of a network of small nanobots - mostly discarded microsurgeons and one-shot stimulants that haven't been properly disposed of. Grey goos require natural lubricants like oil in order to move around effectively, and may target living organics as potential victims for sexual assault, attempt to use orgasmic fluids as an emergency alternative.");
+
+	outputCodex("\n\nThey're smarter the more of them there are - blasting away at the grey goo with weapons will slowly corrupt their networked A.I. even if it only destroys a few bots. They are also susceptible to \"sensory overload,\" which may cause a temporary shutdown in their offensive programs, leaving them helpless but to beg for their necessary fluids. While the network has no specific shape, their drive for humanoid contact often leads them to adopt exaggerated humanoid figures, such as comically busty women or satyrian males in ill-conceived attempts to entice their prey. Recorded assaults generally involve a sexual harvesting, with the goos penetrating sexual orifices and molding themselves around phalluses and similar organs to stimulate orgasm.");
+	outputCodex("\n\nWhile no fatalities have yet been reported due to Grey Goo attacks, U.G.C. Scout Authority recommends explorers on Tarkus remain well-hydrated in the event of attack.");
+	CodexManager.viewedEntry("Gray Goo");
 }
 
 public function rahnCodexEntry():void

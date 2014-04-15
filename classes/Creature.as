@@ -1529,6 +1529,7 @@
 		}
 		public function orgasm(): void {
 			lustRaw = 0;
+			energy(-5);
 			minutesSinceCum = 0;
 			timesCum++;
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
