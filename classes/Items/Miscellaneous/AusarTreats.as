@@ -288,7 +288,7 @@
 					else kGAMECLASS.output(target.armTypeLockedMessage());
 				}
 				//Change leg-type to furred (Needs Bipedal legs)
-				if(pc.legType != GLOBAL.CANINE && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType != GLOBAL.CANINE)
+				if(pc.legType != GLOBAL.CANINE && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.CANINE)
 				{
 					if (target.legTypeUnlocked(GLOBAL.CANINE))
 					{
@@ -302,7 +302,7 @@
 					else kGAMECLASS.output(target.legTypeLockedMessage());
 				}
 				//Change leg type to bipedal?
-				if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0 && pc.armType != GLOBAL.CANINE)
+				if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.CANINE)
 				{
 					if (target.legTypeUnlocked(GLOBAL.CANINE))
 					{
