@@ -73,7 +73,7 @@
 		public var flaccidMultiplier:Number = .25;
 		public var virgin:Boolean = true;
 		//Used for flags.
-		private var cockFlags:Array = new Array();
+		public var cockFlags:Array = new Array();
 		
 		//Old CoC Piercing Info that I will fire into a star, most likely.
 		public var pierced:Number = 0;
