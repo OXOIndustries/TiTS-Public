@@ -209,7 +209,7 @@
 		 */
 		private function ConfigureButtons():void
 		{
-			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick, bufferButtonHandler);
+			this._buttonTray = new ButtonTray(this.titsClassPtr.buttonClick, BufferPageNextHandler, BufferPagePrevHandler);
 			this.titsClassPtr.addChild(_buttonTray);
 			this._buttonTray.x = 0;
 			this._buttonTray.y = 800;
@@ -617,6 +617,9 @@
 		public function get primaryOutputModule():GameTextModule { return (_availableModules["PrimaryOutput"] as GameTextModule); }
 		public function get secondaryOutputModule():GameTextModule { return (_availableModules["SecondaryOutput"] as GameTextModule); }
 		
+		// Child access because MORE LAZY
+		public function get buttonTray():ButtonTray { return _buttonTray; }
+		
 		public function showName(name:String):void
 		{
 			roomText = name;
@@ -900,18 +903,25 @@
 			}
 		}
 
-		private function bufferButtonHandler(e:MouseEvent):void
+		// Handler used for the Text page controls
+		public function BufferPageNextHandler(e:Event = null):void
 		{
-			var forward:Boolean = ((e.currentTarget as SquareButton).name == "bufferPageNext") ? true : false;
-			var pageTurn:Boolean = false;
-			
-			if (forward && textPage < 4)
+			if (_buttonTray.textPageNext.isActive == false) return;
+
+			if (textPage < 4)
 			{
 				textPage++;
-				pageTurn = true;
+				BufferPageUpdate();
 			}
-			else if (!forward && textPage > 0)
+		}
+		
+		public function BufferPagePrevHandler(e:Event = null):void
+		{
+			if (_buttonTray.textPagePrev.isActive == false) return;
+			
+			if (textPage > 0)
 			{
+				// Store shit for later
 				if (textPage == 4)
 				{
 					tempText = this.primaryOutputModule.htmlText;
@@ -919,24 +929,24 @@
 				}
 				
 				textPage--;
-				pageTurn = true;
+				BufferPageUpdate();
+			}
+		}
+		
+		private function BufferPageUpdate():void
+		{
+			if (textPage == 4)
+			{
+				this.primaryOutputModule.htmlText = tempText;
+				sceneBy = tempAuthor;
+			}
+			else
+			{
+				this.primaryOutputModule.htmlText = textBuffer[textPage];
+				sceneBy = authorBuffer[textPage];
 			}
 			
-			if (pageTurn)
-			{
-				if (textPage == 4)
-				{
-					this.primaryOutputModule.htmlText = tempText;
-					sceneBy = tempAuthor;
-				}
-				else
-				{
-					this.primaryOutputModule.htmlText = textBuffer[textPage];
-					sceneBy = authorBuffer[textPage];
-				}
-				//this.primaryOutputModule.updateScroll();
-				bufferButtonUpdater();
-			}
+			bufferButtonUpdater();
 		}
 
 		public function displayInput():void 

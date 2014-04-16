@@ -528,6 +528,16 @@
 			this.userInterface.endScrollText();
 		}
 		
+		public function nextOutputPage():void
+		{
+			this.userInterface.BufferPageNextHandler();
+		}
+		
+		public function prevOutputPage():void
+		{
+			this.userInterface.BufferPagePrevHandler();
+		}
+		
 		public function get pc():*
 		{
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.
