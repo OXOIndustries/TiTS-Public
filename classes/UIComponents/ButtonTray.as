@@ -52,12 +52,14 @@
 		private var _defaultHotkeys:Array = ["1", "2", "3", "4", "5", "Q", "W", "E", "R", "T", "A", "S", "D", "F", "G"];
 		
 		private var _buttonHandlerFunc:Function;
-		private var _bufferHandlerFunc:Function;
+		private var _bufferNextHandlerFunc:Function;
+		private var _bufferPrevHandlerFunc:Function;
 		
-		public function ButtonTray(buttonHandlerFunc:Function, bufferHandlerFunc:Function) 
+		public function ButtonTray(buttonHandlerFunc:Function, bufferNextHandlerFunc:Function, bufferPrevHandlerFunc:Function) 
 		{
 			_buttonHandlerFunc = buttonHandlerFunc;
-			_bufferHandlerFunc = bufferHandlerFunc;
+			_bufferNextHandlerFunc = bufferNextHandlerFunc;
+			_bufferPrevHandlerFunc = bufferPrevHandlerFunc;
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
@@ -172,15 +174,15 @@
 			_buttonPageNext.addEventListener(MouseEvent.CLICK, ButtonPageClickHandler);
 			_buttonPagePrev.addEventListener(MouseEvent.CLICK, ButtonPageClickHandler);
 			
-			_textPageNext.addEventListener(MouseEvent.CLICK, _bufferHandlerFunc);
-			_textPagePrev.addEventListener(MouseEvent.CLICK, _bufferHandlerFunc);
+			_textPageNext.addEventListener(MouseEvent.CLICK, _bufferNextHandlerFunc);
+			_textPagePrev.addEventListener(MouseEvent.CLICK, _bufferPrevHandlerFunc);
 		}
 		
 		/**
 		 * Handler used by the button page controls
 		 * @param	e
 		 */
-		private function ButtonPageClickHandler(e:Event):void
+		private function ButtonPageClickHandler(e:Event = null):void
 		{
 			if (!(e.currentTarget as SquareButton).isActive) return;
 			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext") ? true : false;

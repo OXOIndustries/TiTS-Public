@@ -72,7 +72,7 @@
 					}
 					return true;
 				}
-				else throbbPCEffects();
+				else return throbbPCEffects();
 
 			}
 			else {
@@ -80,7 +80,7 @@
 			}
 			return false;			
 		}
-		public function throbbPCEffects(arg:int = 0):void {
+		public function throbbPCEffects(arg:int = 0):Boolean {
 			var pc = kGAMECLASS.chars["PC"];
 			kGAMECLASS.clearOutput();
 			var changes:int = 0;
@@ -253,15 +253,50 @@
 			{
 				kGAMECLASS.output(pc.createCockLockedMessage());
 			}
-			
-			//Wear off
-			kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>");
-			kGAMECLASS.clearMenu();
-			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
+			trace("LIBIDO: " + pc.libido() + " COCK LENGTH: " + pc.biggestCockLength() + " BALLS: " + pc.balls + " BALL SIZE: " + pc.ballSize);
+			//Bad end: Occurs if libido hits 100 and cock is bigger than 30" long and balls are at least 10"
+			if(pc.libido() >= 100 && pc.biggestCockLength() >= 30 && pc.balls > 0 && pc.ballSize() >= 10)
+			{
+				kGAMECLASS.output("\n\nEven after the transformation ends, you just can't stop yourself....");
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0,"Next",throbbBadEnd);
+				return true;
+			}
+			else
+			{
+				//Wear off
+				kGAMECLASS.output("\n\nThe artificial heat and longing that filled you and put you into such a state fade, but the arousal and need remain. <b>You should probably go blow off some steam....</b>");
+				kGAMECLASS.clearMenu();
+				kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);
+				return false;
+			}
 		}
 		protected function rand(max:Number):Number
 		{
 			return int(Math.random()*max);
+		}
+		public function throbbBadEnd():void
+		{
+			kGAMECLASS.clearOutput();
+			kGAMECLASS.output("You masturbate on the spot, rubbing your [pc.cockBiggest] again and again while thick rivulets of [pc.cum] spil out of your distended [pc.cockHeadBiggest]. Even though you aren't orgasming, your swollen sack has become so productive that your pre-cum has been replaced by the real deal. You heft and squeeze ");
+			if(kGAMECLASS.pc.balls > 1) kGAMECLASS.output("one ");
+			kGAMECLASS.output("ball. The tightness against the sloshing orb is enough to make your length bloat and lurch, throwing a thick rope at least three meters into the air before it splatters down across your face.");
+			kGAMECLASS.output("\n\nThe sensation of ejaculation is too irresistible not to indulge. You run your hands up and down your drooling shaft to coax out enough another lurid deluge, letting loose a low moan when your member immediately and voluminously responds with spontaneous orgasm, pumping a out a glob of cum bigger than your head. A second follows before the first hits the ground. Your fourth shot is weaker. It most resembles one of those fountains that shoots laminar stream of water up to cascade back overself itself. The feeling of being slicked in your own steaming hot [pc.cumNoun] mid-orgasm nearly makes you pass out from raw pleasure.");
+			kGAMECLASS.output("\n\nYou lose yourself in the growing [pc.cumColor] lake, rolling your [pc.hips] with each muscle-clenching burst of ecstasy, letting your hands slide and stream wherever their lusty whims carry them. The lust hammering through every fibre of your being demands no less, and you couldn't resist if you wanted to. It's too damn strong. Your [pc.cockBiggest] is a pillar of pleasure that may as well be magnetically bound to your palms, because the only way you're going stop touching yourself is if your life depends on it.");
+			kGAMECLASS.output("\n\nPanting as you finish draining your [pc.balls], you try to remember what you were up to before you fell into another drug-fueled fap session. You were exploring or something, but everything was so sexy. Just thinking about some of the aliens you've encountered has your flagging phallus pumping up beautifully. Damn if you think about one more juicy, pliant pussy or pillowy bosom, you're going to have to... ahhh, fuck it. You grab hold of yourself and start jacking off again. You'll figure it out after another cum.");
+			kGAMECLASS.output("\n\nOf course, you don't. You wind up blowing a load all over your face and wondering why anyone would complain about it, and then you start thinking about coating other people's faces with your [pc.cum]. Then, you're right back where you started, letting yourself sink into another self-indulgent rut.");
+			kGAMECLASS.output("\n\nAfter a few dozen cyclic attempts to resume normal life, you give up. It's better to just wrap your hands around your cock and give in to the feelings it provides....");
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0,"Next",throbbBadEndPartDues);
+		}
+		public function throbbBadEndPartDues():void
+		{
+			kGAMECLASS.clearOutput();
+			//[Next]
+			kGAMECLASS.output("At some point, you realized that your dreams of following in your Dad's footsteps had died. There was no way you were going to be able to focus long enough to find the probes he left scattered around the universe. You made the best of a rough situation, though, by managing to set up an online holo-show.");
+			kGAMECLASS.output("\n\nOne of your fans was even nice enough to cart you off to a studio with drains and proper recording equipment. You let them worry about the money, of course. It's too much work to keep up with all that garbage when you could be using your time to queue up a hot new porno.");
+			kGAMECLASS.output("\n\n<b>Game Over - You have overdosed on Throbb.</b>");
+			kGAMECLASS.clearMenu();
 		}
 	}
 }

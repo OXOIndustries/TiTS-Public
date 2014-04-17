@@ -746,7 +746,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 		}
 		//Sex (Repeat Intro)
 		else {
-			output("\n\nYou flash the sexy ausar a grin and ask if she'd care to go back to your place for a little fun. She feigns mulling it over but the rising tent in her pants betrays her, and soon Syri's gathered her bag and has her arm hook around your waist, letting you lead on toward the docks.");
+			output("You flash the sexy ausar a grin and ask if she'd care to go back to your place for a little fun. She feigns mulling it over but the rising tent in her pants betrays her, and soon Syri's gathered her bag and has her arm hook around your waist, letting you lead on toward the docks.");
 			output("\n\nFlahne, the rahn secretary, gives you a little wave as you pass by her office - along with a knowing wink - and then you're in the elevator. The doors have barely closed before the lusty slut grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
 			if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
 			else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what's to come."); 

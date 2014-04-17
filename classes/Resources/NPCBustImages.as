@@ -59,6 +59,15 @@
 
 		[Embed(source = "../../assets/images/npcs/v-ko.png", mimeType = "image/png")]
 		public static var Bust_VKO:Class;
+
+		[Embed(source = "../../assets/images/npcs/raskvel.png", mimeType = "image/png")]
+		public static var Bust_RASKVELFEMALE:Class;
+
+		[Embed(source = "../../assets/images/npcs/sexbot.png", mimeType = "image/png")]
+		public static var Bust_SEXBOTFEMALE:Class;
+
+		[Embed(source = "../../assets/images/npcs/sera.png", mimeType = "image/png")]
+		public static var Bust_SERA:Class;
 		
 		[Embed(source = "../../assets/images/npcs/milodanfem.png", mimeType = "image/png")]
 		public static var Bust_MILODANFEM:Class;

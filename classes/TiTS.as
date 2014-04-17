@@ -96,6 +96,7 @@
 		include "../includes/vko.as";
 		include "../includes/raskvelFemaleFight.as";
 		include "../includes/sexbots.as";
+		include "../includes/grayGoo.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
@@ -183,7 +184,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.18";
+			version = "0.02.20";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -541,6 +542,16 @@
 		public function endScrollText():void
 		{
 			this.userInterface.endScrollText();
+		}
+		
+		public function nextOutputPage():void
+		{
+			this.userInterface.BufferPageNextHandler();
+		}
+		
+		public function prevOutputPage():void
+		{
+			this.userInterface.BufferPagePrevHandler();
 		}
 		
 		public function get pc():*

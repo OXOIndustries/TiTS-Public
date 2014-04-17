@@ -286,12 +286,12 @@
 				{
 					x = target.longestCockIndex();
 					//Cocks longer than 20" lose 25% of length
-					if(target.cocks[x].cLength > 20)
+					if(target.cocks[x].cLengthRaw > 20)
 					{
 
 						kGAMECLASS.output("\n\nThe teltale heat of Estrobloom's changes flares up in your expansive groin, specifically in your [pc.cock " + x + "]. Just as you look at it, the fleshy mass begins to shrink, and not from going flaccid either. It's getting smaller, and fast! It doesn't stop until its lost about a quarter of its former length, leaving you with only ");
-						target.cocks[x].cLength *= 0.75;
-						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength*10)/10) + " inches. If you keep taking this stuff, you're going to have a lot less dick to play with.");
+						target.cocks[x].cLengthRaw *= .75;
+						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you're going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
 					else
@@ -299,7 +299,7 @@
 						kGAMECLASS.output("\n\nA pleasant tingle in your [pc.cock " + x + "]");
 						if(target.cockTotal() > 1) kGAMECLASS.output(" and in that cock alone");
 						y = 2 + rand(3);
-						if(target.cocks[x].cLengthRaw - y < 8 && target.hasPerk("Hung")) y = target.cocks[x].cLength - 8;
+						if(target.cocks[x].cLengthRaw - y < 8 && target.hasPerk("Hung")) y = target.cocks[x].cLengthRaw - 8;
 						else if(target.cocks[x].cLengthRaw - y < 4.5) y = target.cocks[x].cLengthRaw - 4.5;
 						trace("Modified y: " + y);
 						if(y < 1) y = 1;

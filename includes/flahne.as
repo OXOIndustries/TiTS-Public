@@ -39,6 +39,7 @@ function flahneDickOut():Boolean {
 //Meeting Her:
 function meetingFlahne(outputT:Boolean = true):void {
 	this.userInterface.showBust("FLAHNE");
+	CodexManager.unlockEntry("Rahn");
 	flahneNameDisplay();
 	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] < 1) trace("NO DICK OUT");

@@ -566,7 +566,7 @@
 			return "";
 		}
 		
-		public var legCount: Number = 0;
+		public var legCount: Number = 2;
 		public function legCountUnlocked(newLegCount:Number):Boolean
 		{
 			if (this.hasStatusEffect("Mimbrane Foot Left") || this.hasStatusEffect("Mimbrane Foot Right")) return false;
@@ -1065,7 +1065,7 @@
 		{
 			return "";
 		}
-		
+		//This tracks whether or not the PC is actually producing yet. 0 to 100 with milk lactation starting above 50.
 		public var milkMultiplier: Number = 0;
 		public var milkType: Number = 0;
 		public function milkTypeUnlocked(newMilkType:Number):Boolean
@@ -1076,9 +1076,13 @@
 		{
 			return "";
 		}
-		
+		//This effects how much milk your tits can hold relative to human norms. High numbers = milk singularity
+		public var milkStorageMultiplier:Number = 1;
+		//This is a 1 to 100% measurement of how full yer tits are
+		public var milkFullness:Number = 0;
 		//The rate at which you produce milk. Scales from 0 to INFINITY.
-		public var milkRate: Number = 1;
+		public var milkRate: Number = 10;
+
 		public var ass = new VaginaClass(false);
 		public var analVirgin: Boolean = true;
 		public var perks: Array;
@@ -1246,6 +1250,12 @@
 					break;
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
+					break;
+				case "cockColor":
+					buffer = cockColor(arg2);
+					break;
+				case "vaginaColor":
+					buffer = vaginaColor(arg2);
 					break;
 				case "cockHead":
 				case "cockhead":
@@ -1523,6 +1533,7 @@
 		}
 		public function orgasm(): void {
 			lustRaw = 0;
+			energy(-5);
 			minutesSinceCum = 0;
 			timesCum++;
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
@@ -1632,7 +1643,10 @@
 				return currLust;
 			}
 		}
-		
+		public function lustDamage(arg:Number = 0):Number
+		{
+			return lust(arg);
+		}
 		public function physique(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply) 
@@ -1898,6 +1912,7 @@
 			temp += meleeWeapon.defense;
 			temp += rangedWeapon.defense;
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
+			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			return temp;
 		}
@@ -1968,7 +1983,7 @@
 			total += bonusResistances[type];
 			total += armor.bonusResistances[type];
 			total += accessory.bonusResistances[type];
-			if(hasPerk("Tough") && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
+			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
 			{
 				total -= .1;
 			}
@@ -2912,11 +2927,14 @@
 			removeStorage(statusEffects);
 		}
 		public function clearCombatStatuses(): void {
-			for (var x: int = 0; x < statusEffects.length; x++) {
-				if (statusEffects[x].combatOnly) 
+			//trace("Removing combat statuses.");
+			for (var x: int = statusEffects.length-1; x >= 0; x--) {
+				if (statusEffects[x].combatOnly)
 				{
+					//trace("Removed: " + statusEffects[x].storageName + " at position " + x + ".");
 					statusEffects.splice(x,1);
 				}
+				//else trace("Not a combat status: " + statusEffects[x].storageName + " at position " + x + ".");
 			}
 		}
 		//perk
@@ -4103,31 +4121,138 @@
 			if (breastRows[index].nipplesPerBreast > 0) return true;
 			return false;
 		}
-		public function isLactating(): Boolean {
+		public function canLactate():Boolean
+		{
+			//PC has reached lactation threshold!
+			if(milkMultiplier > 50) return true;
 			return false;
 		}
-		
-		public function lactationSpeed(): Number {
-			//Lactation * breastSize x 10 (milkPerBreast) determines scene
-			return biggestTitSize() * 10;
+
+		public function isLactating(): Boolean {
+			//PC can't be lactating unless they canLactate!
+			if(canLactate())
+			{
+				//Is there enough milk in yer tits for lactation?
+				if(milkFullness >= 10)
+				{
+					//yes? true!
+					return true;
+				}
+			}
+			//Didn't proc any trues? Not lactating.
+			return false;
 		}
-		public function lactationQ(): Number {
-			//(Milk production TOTAL= breastSize x 10 * lactationMultiplier * breast total * milking-endurance (1- default, maxes at 2.  Builds over time as milking as done)
-			//(Small – 0.01 mLs – Size 1 + 1 Multi)
-			//(Large – 0.8 - Size 10 + 4 Multi)
-			//(HUGE – 2.4 - Size 12 + 5 Multi + 4 tits)
-			var total: Number = 0;
-			if (hasStatusEffect("Lactation Endurance") < 0) createStatusEffect("Lactation Endurance", 1, 0, 0, 0);
-			total = biggestTitSize() * 10 * averageLactation() * statusEffectv1("Lactation Endurance") * totalBreasts();
-			if (statusEffectv1("Lactation Reduction") >= 48) total = total * 1.5;
-			return total;
+		public function canMilkSquirt():Boolean
+		{
+			if(milkFullness >= 80) return true;
+			return false;
 		}
+		public function milkProduced(minutes: Number): Number {
+			if(!canLactate()) return 0;
+			//How many mLs produced?
+			var mLsGained:Number = 1.73 * milkRate/10 * minutes;
+			//Factor in current milkMultiplier
+			mLsGained *= (milkMultiplier - 50)/50;
+			//Great. Now figure out how much fullness that adds.
+			var fullnessDelta:Number = mLsGained / milkCapacity();
+			
+			//If we're going above 100.
+			if(fullnessDelta + milkFullness > 100)
+			{
+				//If we start below 100, do that normally first
+				if(milkFullness < 100)
+				{
+					var subHundredFullness:Number = 100 - milkFullness;
+					milkFullness = 100;
+					fullnessDelta -= subHundredFullness;
+				}
+				//Grow at half rate since we're over 100
+				milkFullness += fullnessDelta/2;
+			}
+			//Not going above 100? Just add it
+			else milkFullness += fullnessDelta;
+
+			//Just check to make sure there's a cap for top end and bottom end
+			if(milkFullness > 200) milkFullness = 200;
+			else if(milkFullness < 0) {
+				trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
+				milkFullness = 0;
+			}
+			return mLsGained;
+		}
+		public function milkCapacity(arg:int = -1):Number
+		{
+			//400mLs + breastRating/2*100
+			var capacity:Number = 0;
+			//if arg == -1, mLs produced by biggest row.
+			if(arg == -1)
+			{
+				capacity = (400 + biggestTitSize() / 2 * 100) * milkStorageMultiplier;
+			}
+			//if arg == 99, total mLs produced by all rows
+			else if(arg == 99)
+			{
+				//Total it up!
+				for(var x:int = 0; x < breastRows.length; x++)
+				{
+					capacity += (400 + breastRows[x].breastRating / 2 * 100);
+				}
+				capacity *= milkStorageMultiplier;
+			}
+			//otherwise, mLs produced by arg # row.
+			else
+			{
+				if(arg < 0 || arg >= breastRows.length) return 0;
+				else capacity = (400 + breastRows[arg].breastRating / 2 * 100) * milkStorageMultiplier;
+			}
+			return capacity;
+		}
+		public function milkQ():Number {
+			return lactationQ();
+		}
+		public function lactationQ(arg:int = -1): Number {
+			//So much easier now - just a quick lookup.
+			//Arg -1 = amount from biggest tits.
+			if(arg == -1) return milkFullness * milkCapacity();
+			//Arg 99 = amount from all tits
+			else if(arg == 99)
+			{
+				var total:Number = 0;
+				//Total it up!
+				for(var x:int = 0; x < breastRows.length; x++)
+				{
+					total += milkFullness * milkCapacity(x);
+				}
+				return total;
+			}
+			//Specific row
+			else
+			{
+				if(arg < 0 || arg >= breastRows.length) return 0;
+				else return milkFullness * milkCapacity(arg);
+			}
+			//Failsafe:
+			return 0;
+		}
+		//PC has been milked for "amount" fullness.
+		public function milked(amount:Number = 50):Number
+		{
+			if(milkMultiplier < 100)
+			{
+				milkMultiplier +=  1 + Math.round(amount/50);
+			}
+			milkFullness -= amount;
+			return milkFullness;
+		}
+		/*CoC-Tier old milk shits OVERHAUL MILK SYSTEM!
 		public function boostLactation(todo: Number): Number {
 			if (breastRows.length == 0) return 0;
 			var counter: Number = breastRows.length;
 			var index: Number = 0;
 			var changes: Number = 0;
 			var temp2: Number = 0;
+			
+			
 			//Prevent lactation decrease if lactating.
 			if (todo >= 0) {
 				if (hasStatusEffect("Lactation Reduction") >= 0) setStatusValue("Lactation Reduction", 1, 0);
@@ -4136,8 +4261,6 @@
 				if (hasStatusEffect("Lactation Reduc2") >= 0) removeStatusEffect("Lactation Reduc2");
 				if (hasStatusEffect("Lactation Reduc3") >= 0) removeStatusEffect("Lactation Reduc3");
 			}
-			/*
-			9999 OVERHAUL MILK SYSTEM!
 			if(todo > 0) {
 				while(todo > 0) {
 					counter = breastRows.length;
@@ -4180,7 +4303,7 @@
 						if(breastRows[index].lactationMultiplier < 0) breastRows[index].lactationMultiplier = 0;
 					}
 				}
-			}*/
+			}
 			return changes;
 		}
 		public function averageLactation(): Number {
@@ -4192,7 +4315,7 @@
 				index += milkRate;
 			}
 			return Math.floor(index / breastRows.length);
-		}
+		}*/
 		//Body Type
 		public function bodyType(): String {
 			var desc: String = "";
@@ -4493,6 +4616,18 @@
 
 			//Add bonus flags and shit.
 			if (type == GLOBAL.EQUINE) {
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "black";
+				vaginas[slot].minLooseness = 2;
+			}
+			if (type == GLOBAL.HUMAN) {
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "pink";
+			}
+			if (type == GLOBAL.BEE)
+			{
+				vaginas[slot].clits = 1;
+				vaginas[slot].vaginaColor = "black and gold";
 			}
 		}
 		//Change cock type
@@ -4511,23 +4646,29 @@
 			//Add bonus flags and shit.
 			if (type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
-
+				cocks[slot].cockColor = "bright red";
 				cocks[slot].addFlag(GLOBAL.TAPERED);
 				cocks[slot].addFlag(GLOBAL.KNOTTED);
 				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.EQUINE) {
 				cocks[slot].knotMultiplier = 1;
+				if(rand(3) == 0) cocks[slot].cockColor = "black";
+				else if(rand(3) == 0) cocks[slot].cockColor = "mottled pink and black";
+				else cocks[slot].cockColor = "pink";
 				cocks[slot].addFlag(GLOBAL.BLUNT);
 				cocks[slot].addFlag(GLOBAL.FLARED);
 				cocks[slot].addFlag(GLOBAL.SHEATHED);
 			}
 			if (type == GLOBAL.BEE) {
+				if(rand(2) == 0) cocks[slot].cockColor = "black";
+				else cocks[slot].cockColor = "amber";
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.FORESKINNED);
 			}
 			if (type == GLOBAL.NAGA) {
+				cocks[slot].cockColor = "purple";
 				cocks[slot].knotMultiplier = 1;
 				cocks[slot].addFlag(GLOBAL.SMOOTH);
 				cocks[slot].addFlag(GLOBAL.TAPERED);
@@ -5961,12 +6102,12 @@
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "equine gash";
-					else if (temp <= 3) vag += "black-lipped vagina";
+					else if (temp <= 3) vag += "animalistic vagina";
 					else if (temp <= 5) vag += "animalistic cunny";
 					else if (temp <= 7) vag += "equine honeypot";
 					else if (temp <= 9) vag += "dusky snatch";
 					else if (temp <= 11) vag += "equine cunt";
-					else if (temp <= 13) vag += "black-lipped pussy";
+					else if (temp <= 13) vag += "pheromone-laden pussy";
 					else vag += "musky mare-cunt";
 				} else {
 					temp = this.rand(18);
@@ -6054,14 +6195,14 @@
 			} else if (type == GLOBAL.BEE) {
 				if (!simple) {
 					temp = this.rand(16);
-					if (temp <= 1) vag += "black-lipped gash";
+					if (temp <= 1) vag += "thick-lipped gash";
 					else if (temp <= 3) vag += "alien vagina";
-					else if (temp <= 5) vag += "yellow-lined cunt";
-					else if (temp <= 7) vag += "honey-colored honeypot";
-					else if (temp <= 9) vag += "dusky pussy";
+					else if (temp <= 5) vag += "inhuman cunt";
+					else if (temp <= 7) vag += "zil-like honeypot";
+					else if (temp <= 9) vag += "exceptionally smooth pussy";
 					else if (temp <= 11) vag += "exotic slit";
-					else if (temp <= 13) vag += "black-lipped pussy";
-					else vag += "gold-gilt snatch";
+					else if (temp <= 13) vag += "thick-lipped pussy";
+					else vag += "seductive snatch";
 				} else {
 					temp = this.rand(18);
 					if (temp <= 1) vag += "zil-pussy";
@@ -6134,9 +6275,15 @@
 
 			//Bonus chance for virgins
 			if (vaginalVirgin) bonus += 20
-
+			//Color super low chance!
+			if (adjectives && !forceAdjectives && rand(15) == 0)
+			{
+				descripted++;
+				vag += vaginas[vaginaNum].vaginaColor;
+			}
 			//low chance of size descriptor
 			if (((adjectives && this.rand(100) <= 25 + bonus) || forceAdjectives)) {
+				if (descripted > 0) vag += ", ";
 				//Virgin overpowers other shit half the time.
 				if (vaginalVirgin && this.rand(2) == 0) {
 					temp = this.rand(11);
@@ -6761,11 +6908,15 @@
 				multi = true;
 			}
 
-
+			//Color: 1/15 chance
+			if (!multi && rand(15) == 0)
+			{
+				descript += cocks[cockNum].cockColor;
+			}
 			//Pierced - 1/5 chance
-			if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
+			else if (!multi && this.rand(5) == 0 && cocks[cockNum].pierced > 0) {
 				descript += "pierced";
-			} 
+			}
 			//Cocksocks!
 			else if (!multi && this.rand(5) == 0 && cocks[cockNum].sock != "") {
 				rando = this.rand(6);
@@ -7491,6 +7642,16 @@
 				else descript += cockNoun(dickNippleType);
 			}
 			return pluralize(descript);
+		}
+		public function cockColor(arg2:int = 0):String
+		{
+			if(!hasCock() || arg2 < 0 || arg2 >= cockTotal()) return "ERROR";
+			else return cocks[arg2].cockColor;
+		}
+		public function vaginaColor(arg2:int = 0):String
+		{
+			if(!hasVagina() || arg2 < 0 || arg2 >= vaginaTotal()) return "ERROR";
+			else return vaginas[arg2].vaginaColor;	
 		}
 		public function cockDescript(cockNum: Number = 0): String {
 			if (totalCocks() == 0) return "<b>ERROR: CockDescript Called But No Cock Present</b>";

@@ -480,7 +480,7 @@ function multiCockFap():void {
 	}
 	var choices:Array = new Array();
 	//Randomly select from available!
-	var x:int = pc.longestCock();
+	var x:int = pc.longestCockIndex();
 	if(pc.hasFuckableNipples() && pc.biggestTitSize() >= 3 && pc.cocks[0].cLength()/pc.tallness >= 1/6) 
 		choices[choices.length] = 1;
 	if(pc.hasTailCunt() && !tailPussied) choices[choices.length] = 2;

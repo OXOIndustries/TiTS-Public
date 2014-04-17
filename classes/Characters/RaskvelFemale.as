@@ -51,7 +51,7 @@
 			this.energyRaw = 100;
 			this.lustRaw = 35;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
-			this.XPRaw = 300;
+			this.XPRaw = 150;
 			this.level = 3;
 			this.credits = 100;
 			this.HPMod = 0;
@@ -178,26 +178,6 @@
 			{
 				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
 			}
-		}
-		
-		override public function setDefaultSexualPreferences():void
-		{
-			this.sexualPreferences.clearPrefs();
-			
-			//Zil Girl Likes
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_PUSSIES,			GLOBAL.KINDA_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,			GLOBAL.REALLY_LIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS,	GLOBAL.REALLY_LIKES_SEXPREF);
-
-			//Zil Girl Dislikes:
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,		GLOBAL.REALLY_DISLIKES_SEXPREF);
-			//this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS,	GLOBAL.REALLY_DISLIKES_SEXPREF); // Guessing this is an error
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,				GLOBAL.REALLY_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER,			GLOBAL.KINDA_DISLIKES_SEXPREF);
-			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR,		GLOBAL.KINDA_DISLIKES_SEXPREF);
 		}
 		
 		override public function prepForCombat():void

@@ -326,6 +326,9 @@ function rustPlainsEncounters():Boolean {
 		choices[choices.length] = encounterASexBot;
 		choices[choices.length] = encounterASexBot;
 		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
 
 		//Run the event
 		choices[rand(choices.length)]();
@@ -347,6 +350,7 @@ function firstTimeOnTarkusBonus():Boolean
 		flags["BEEN_ON_TARKUS"] = 1;
 		clearOutput();
 		output("You step down out of your ship and into a crowd of tiny, scaly folk: only a few feet tall, they're all sporting lithe frames and ridiculously long ears that nearly drag around on the ground behind them, most bearing a variety of piercings and tattoos. As you leave your ship behind, you're quickly swarmed by several of these curious creatures, which your Codex helpfully identifies as the raskvel, the planet's native species (or one of them, anyway). They shower you with questions about name, sex, species, et cetera as one or two in very scruffy uniforms try to hand you some paperwork. You hurriedly scribble down your signature before pushing off some of the more outgoing raskvel climbing up your [pc.leg]. Eventually, another starship lands, leaving you in peace for a moment as they scurry off to see the next new and interesting thing.");
+		CodexManager.unlockEntry("Raskvel");
 		output("\n\n<b>You are on the starship Nova, now known as the raskvel's city, Novahome.</b>");
 	}
 	return false;

@@ -171,21 +171,14 @@
 		"Next Page",
 		"Go to next page of text (?)",
 		function(inThis:*):Function {
-			return function():void { inThis.pageNextButtonKeyEvt(); };
+			return function():void { inThis.nextOutputPage(); };
 		}(this));
 		
 	inputManager.AddBindableControl(
 		"Previous Page",
 		"Go to previous page of text (?)",
 		function(inThis:*):Function {
-			return function():void { inThis.pagePrevButtonKeyEvt(); };
-		}(this));
-		
-	inputManager.AddBindableControl(
-		"Debug Menu",
-		"Open the debug menu (?)",
-		function(inThis:*):Function {
-			return function():void { inThis.userInterface.debugmm(); };
+			return function():void { inThis.prevOutputPage(); };
 		}(this));
 		
 	import classes.Cheats;

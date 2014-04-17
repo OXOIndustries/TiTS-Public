@@ -161,7 +161,7 @@ function daneGrappleAttack():void {
 	{
 		output("\nYou try to twist out of the way, but there's just so many hands grabbing for you at once. Your arms are pinned to your [pc.hips] by one pair while the other bear hugs you against his broad, armored chest.");
 		output("\n<b>You are grappled!");
-		pc.createStatusEffect("Grappled",0,35,0,0,false,"Grappled","You're pinned in a grapple.",true,0);
+		pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 	}
 	processCombat();
 }

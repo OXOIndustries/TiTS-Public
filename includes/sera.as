@@ -19,6 +19,7 @@ function seraBonusFunction():Boolean
 //Actual Intro Stuff
 function approachSera():void {
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	if(flags["MET_SERA"] == undefined)
 	{
 		flags["MET_SERA"] = 1;
@@ -53,6 +54,7 @@ function approachSera():void {
 function seraMenu():void {
 	clearMenu();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	shopkeep = chars["SERA"];
 	chars["SERA"].keeperBuy = "While you're accessing the shopping terminal, Sera produces a file and goes to work on her nails to keep them honed to a razor-like sharpness. You suppose there's not much for her to do while she waits on you to make a purchase.\n";
 
@@ -75,6 +77,7 @@ function seraAppearance():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	output("Sera looks like a six foot one inch tall demon more than anything else. A set of ridged horn, glowing with phosphorescent luminance, curl outwards from her forehead. Additionally, her skin is a mild purple that only serves to further her unholy air. Black sclera ring her golden, glowing irises, split by lizard-like pupils. Above them, a row of gleaming, metal piercings line her brow. Her slightly upturned nose is unremarkable, aside from the single stud in her left nostril. Pale blue hair cascades wreath her visage like fine silk tapestries arranged to tastefully frame her.");
 	output("\n\nA choker of black-lined, blue-glowing conduits rings her neck, matched on her torso by a sable corset dotted by hard metal and glowing, technological baubles. Pentagonal plates have grown out of her shoulders, though you cannot tell if they exist as armor or ornamentation. Matching, blue-glowing bracers and armbands complete her ensemble, but your eyes spend little time looking at her outfit when it frames her other assets so beautifully.");
 	output("\n\nBig breasts that would easily fill an EE-cup bra and then some sit high and proud on her chest, obviously the result of some kind of artificial or biological enhancement. They're nicely rounded and capped with a pair of cerulean nipples that are ever so slightly pebbled in the air-conditioned station air. They're the kind of boobs that just beg to be fondled, and Sera's open display of them shows just how much she knows it.");
@@ -90,6 +93,7 @@ function talkToSeraAboutWhyShesPissedOff():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	flags["SERA_TALKED_ABOUT_BEING_PISSED_OFF"] = 1;
 	output("You ask, <i>\"So what got you so pissed off at your neighbor?\"</i>");
 	output("\n\nSera rolls her eyes as if it was obvious. <i>\"Well, this short little green guy was in here looking for some male enhancement, and he's loaded, right?\"</i> She gestures towards her terminal. <i>\"Well I've got this custom mod all lined up that would be exactly what he wants. Literally perfect. It's a horse-cock so big that it's practically a cum cannon, okay? And this is a mod that's one shot guaranteed - it always delivers as advertised.\"</i> Her hand curls up and makes masturbating motions. <i>\"He'd love it, but he wants to shop around.\"</i>");
@@ -114,6 +118,7 @@ function seraSexMenu(display:Boolean = false):void {
 		output(". <i>\"I don't mind, but if we fuck, you're on the bottom. I like to screw hard, fast, and wet. I don't have a problem riding you into the dirt, but you better be willing to bark when I say bark and spread 'em on command. Got it?\"</i>");
 	}
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	//OPTIONS
 	clearMenu();
 	if(pc.lust() >= 33) addButton(0,"Fuck Me",letSeraFuckYou);
@@ -147,6 +152,7 @@ function getTailUsedBySera():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	output("Your tail waves around your [pc.hips], as eager for a drop of cum as a snake salivating over its prey. Rather than reacting to your parasitic hind-limb with disgust or revulsion, Sera simply smiles and extends her arm, letting the sinuously undulating length of vagina-capped flesh curl about her arm. She pets it while cooing affectionately, much as someone might do to a pet, a happy smile on her pierced face.");
 	output("\n\n<i>\"You've got a little tagalong, huh?\"</i> the demoness purrs, slipping a finger into the moist entrance at its tip. Shudders of pleasure ripple up the tubular organ and into your spine where they diffuse through your body. A half-whimper, half-sigh slips out of your lips. Muscles clamp down about the invading digit automatically, pulling it deeper with noisy, squelching suckles, every rippling twist rubbing new, sensitive nerves against her. <i>\"I never understood the prohibitions against these little girls. All they want to do is get stuffed full of cum and make you feel good for it, right?\"</i>");
 	output("\n\nYou try to summon up some kind of response to her statement, but she slides her middle finger in next to her pointer, silencing you with a gag of feminine bliss.");
@@ -223,6 +229,7 @@ function getTailUsedBySera():void
 function getRodeFemdomStyleBySera():void {
 	clearOutput();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	var x:int = pc.cockThatFits(chars["SERA"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You nod.");
@@ -334,6 +341,7 @@ function getGiantDickTailfilledWhileEatingSeraOut():void
 {
 	clearOutput();
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	output("Sera casually strips your [pc.gear] from your body");
 	if(pc.isNude()) output(", not that you bother to wear much at all");
 	output(". Her hand traces down your [pc.belly] before pausing at your [pc.cockBiggest]. She grabs it slowly, almost hesitantly before pulling away.");
@@ -404,6 +412,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	clearOutput();
 	author("Savin");
 	userInterface.showName("\nSERA");
+	userInterface.showBust("SERA");
 	output("You nod your assent to the demon-morphed mistress's demand, which earns you a small grin from her blue-sheened lips. <i>\"Then prove it. Bark, little ");
 	if(pc.race() == "ausar") output("bitch");
 	else output("doggy");

@@ -1,31 +1,4 @@
-﻿/*
-Raskvel Codex
-Name: Raskvel
-Genders: Male & Female
-Height: Average heights fall between 3’6” and 4’3”
-Weight: Somewhere between 40 and 60 pounds.
-Hair: None. They have feathery plumage instead, often light blue, red, or black.
-Skin: Scaled skin of tan, dark red, or blue.
-Eyes: Two vertically slit, reptilian-like eyes.
-Ears: Raskvel have two ears that rival Earth’s rabbit species for length and size. Their ears are extraordinarily floppy and typically hang down alongside or behind their head. The positioning and posturing of one’s ears is considered similar to how humans style their hair. The scales covering these ears are typically a brighter or different hue than the rest of their body scales.
-Tongues: Lengthy purple organs that can extend five to seven inches out of their mouths. Their tongues are much thicker than humans'.
-Tails: Raskvel have one long reptilian tail that sways rapidly when its owner is excited or happy. They do not have enough control over it to grasp objects, but they are more than capable of guiding it into a suitable open orifice when the time calls for it.
-Additional Appearance Notes: Scales cover Raskvel bodies from head to toe, though the scales on their bellies, chests, and groins are far more soft and supple than elsewhere. Their hips are unusually wide for their size, allowing them to pass large eggs and accept large insertions with ease. Up top, Raskvel are nothing to write home about. B-cups are considered large for their species, and anything bigger than that is viewed as freakishly big. Males have narrower hips than females, though they are still wider by far than a human of proportionate size.
-Genitalia: Males have retractable, pointed purple penises that hide inside genital slits most of the time. Their gonads are kept in pouches that stay so taut to their belly that they appear almost spherical in spite of their three gonads. The female vaginas are purplish in hue, with small inner lips, larger outer lips, and clits on the top and the bottom.
-
-Combat: Raskvel are a peaceful people, but coexisting on a planet with limited resources and highly competitive goblins has forced them into enough fights to know how to handle themselves. They prefer to use nonlethal weapons: stun guns, dart guns, sexual distractions, and aphrodisiacs. The will often flee when close to defeat, though when faced with sexual defeat they will often stay, sometimes even giving up early rather than risk further injury.
-
-Environs: Raskvel build villages under the surface of the planet to better conceal themselves from their enemies, only emerging to scavenge for technology, food, and trade. They can survive well in any temperate clime, though their reptilian blood causes them issue when faced with extreme cold or heat.
-
-Reproduction: Raskvel are consummate breeders, one of the few races able to compete with goblins when it comes to sheer reproductive enthusiasm. The will breed with almost anything at any time, so long as it has a pleasant disposition and a compatible-looking penis or vagina. Most would consider them sluts, but to them, it is a way to survive a planet rife with industrial accidents and deadly foes. They love to mate with creatures bigger than themselves, believing it will give the young the strength to survive longer on their harsh home planet.
-	Shortly before pregnancy they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young Raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.
-
-Diplomatic Relations: Raskvel are often hostile toward goblins but will rarely throw the first attack. They hate rust monsters with a passion due to that race’s propensity for devouring their recently repaired machinery.
-
-Other Notes: Raskvel are skilled mechanics but less gifted inventors. They tend to be obsessed with fixing rather than creating, a trait that makes goblins prize them as pets in spite of their racial squabbles. Needless to say, the Raskvel do not enjoy being held in that state.
-*/
-
-//Hostile Female Raskvel Encounter
+﻿//Hostile Female Raskvel Encounter
 //Armed with aphrodisiac dart-gun.
 //Crotchless Mechanic's Overalls/Tattered Shirt and Skirt
 //Giant wrench shotgun.
@@ -34,13 +7,16 @@ Other Notes: Raskvel are skilled mechanics but less gifted inventors. They tend 
 
 function encounterHostileRaskvelFemale():void
 {
+	CodexManager.unlockEntry("Raskvel");
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	//First Encounter
 	if(flags["MET_FEMALE_RASKVEL"] == undefined)
 	{
 		flags["MET_FEMALE_RASKVEL"] = 1;
 		output("\n\nEmerging from behind a piece of wreckage, a short figure. The creature is perhaps four feet tall at most, couching a gigantic wrench on its shoulder and some kind of gun on its hip. It is dressed in a set of tattered mechanics overalls and little else, and as you look closer, you become aware of its undoubtedly feminine nature.");
 		output("\n\nThe crotch of the overalls girding this alien girl were torn away at some point in the past to expose her puffy sex. The outer lips are as swollen as a human woman's after being hooked to a vacuum pump for an hour, and purplish in hue. Two clits poke out from the bulging feminine genitalia, one in the front, one in the back. Her sex contrasts quite visibly with her " + foes[0].skinFurScales() + ", standing out in stark relief against the rest of her body, like some kind of erotic target. Her wide hips strain the waist of her garment, transforming her walk into an exaggerated sexual swivel, even though her top half is narrow and lithe, capped with small, pert breasts, B-cups at the most.");
-		output("\n\nBeeping, your codex alerts you that this is a female of the 'Raskvel' race, and issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
+		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. \"<i>An off-worlder, huh?</i>\"");
 		output("\n\nYou nod.");
 		output("\n\n\"<i>That's too bad. Since you're trespassing, you're going to have to pay the hundred credit fee,</i>\" the scaly little thing offers before smiling. \"<i>If you don't pay, I'll find another way to take it out of you.</i>\" She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". \"<i>I'd rather just play with you, but we need the money.</i>\" She shrugs her little shoulders apologetically and awaits your response.");
@@ -61,6 +37,8 @@ function encounterHostileRaskvelFemale():void
 function payDatRaskCunt():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	output("Not wanting to waste time with her, you transfer the hundred credits to a chit and toss it at her.\n\nThe little junkyard rat catches hold of your chit before making a dramatic bow. <i>\"Pleasure doing business with ya!\"</i> She vanishes into surrounding wreckage before you can reply.");
 	payRaskvel();
 	processTime(1);
@@ -72,6 +50,8 @@ function payDatRaskCunt():void
 //Combat
 function raskvelChickAI():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	if(foes[0].hasStatusEffect("Wrench Charge")) 
 	{
 		enemyWrenchAttack();
@@ -254,6 +234,8 @@ function raskvelGirlsTeasingCockwielders():void
 //Victory vs Raskvel
 function victoryVsRaskvel():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The extortive mechanic ");
 	if(foes[0].HP() < 1) output("tumbles head over heels, her wrench falling by the wayside. She hits the ground hard, panting and beaten before gasping, \"<i>You win. Jerk.</i>\" Her sex seems a bit puffier than before, and she's fallen in a pose that seems almost needlessly provocative. It's like she's still trying to tempt you with sex.");
 	else output("drops to her knees, the wrench falling by the wayside. She whimpers as her fingers disappear into her sodden box. You can see the moisture glistening on the scales of her legs as she desperately frigs herself, not even caring as she slumps down onto her back.");
@@ -296,7 +278,17 @@ function victoryVsRaskvel():void
 			output(" Her face looks like it would fit nicely against your [pc.vaginas].");
 			addButton(2,"RideHerFace",faceRidingRaskvelLadies);
 		}
-		else output(" If you had a pussy, you could ride her face. Sadly, you don't.");
+		else {
+			output(" If you had a pussy, you could ride her face. Sadly, you don't.");
+			addDisabledButton(2,"RideHerFace");
+		}
+	}
+	else
+	{
+		output(" <b>You aren't turned on enough to engage in coitus with the alien babe.</b>");
+		addDisabledButton(0,"DoggyStyle");
+		addDisabledButton(1,"EarFap");
+		addDisabledButton(2,"RideHerFace");
 	}
 	output("\n\n");
 	addButton(14,"Leave",genericVictory);	
@@ -307,6 +299,8 @@ function raskVelBabeGetsDoggieStyled():void
 {
 	//Put her on all fours, left her ass up to be supported by your cock, grab hold of those ears for good measure, and play with them.
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	output("As you eye your ");
 	if(foes[0].HP() < 1) output("defeated");
@@ -415,6 +409,8 @@ function raskVelBabeGetsDoggieStyled():void
 function hugeDickEarJackoff():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("The little mechanic is way to small to take you, even with hips as stacked as hers, so you decide on another way to quench the fiery heat she's stoked within you. She looks up at you ");
 	if(foes[0].HP() < 1) output("with an anxious expression that shifts into a lusty grin");
 	else output("with whore-shaming quantities of lust pooling in her slitted eyes");
@@ -452,6 +448,8 @@ function hugeDickEarJackoff():void
 function faceRidingRaskvelLadies():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("DEFEATED: F.\nRASKVEL");
 	output("Tossing your equipment aside, you loom over the defeated raskvel, unashamedly letting your eyes play over her perky breasts, wide hips, lengthy tail, and cute, feather-topped head. ");
 	if(foes[0].HP() < 1) output("She looks on in trepidation, but at the site of your [pc.vaginas] looming overhead, the beginnings of a smile appears on her mouth. ");
 	output("Her tongue slips out of her mouth to play across her lips, giving you ");
@@ -518,6 +516,8 @@ function faceRidingRaskvelLadies():void
 function quotePayUnquoteFemRasks():void
 {
 	clearOutput();
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("RASKVEL\nFEMALE");
 	output("Well, you can always pay another way and hope she goes easy on your wallet....");
 	foes = new Array();
 	chars["RASKVELFEMALE"].prepForCombat();
@@ -570,6 +570,8 @@ function defeatRoutingForFemRasks():void
 //Face-Sitting Footjobs
 function raskvelGirlsSitsIfTheyFits(combat:Boolean = false):void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//By Savin
 	author("Savin");
 	//{Combat Loss: Have a Dick}
@@ -642,6 +644,8 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 {
 	//By Savin
 	author("Savin");
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//{Combat Loss: Don't Have a Dick}
 	if(combat)
 	{
@@ -705,6 +709,8 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 //Huge Dicks Get Dosed With Aphrodisiac While Being Forcefully Worshipped
 function hugeDicksGetForceWorshippedByFemRaskvel():void
 {
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	//HP loss
 	if(pc.HP() < 1)
 	{
@@ -826,6 +832,8 @@ function hugeDicksGetForceWorshippedByFemRaskvel():void
 //Double peg raskvel!
 function getPeggedWhileDoublePenetrate():void
 {	
+	userInterface.showBust("RASKVELFEMALE");
+	userInterface.showName("LOST VS: F.\nRASKVEL");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity());
 	var y:int = pc.cockThatFits2(foes[0].vaginalCapacity());
 	//HP: 
