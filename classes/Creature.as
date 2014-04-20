@@ -1143,6 +1143,9 @@
 			var buffer: String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if (!arg2) arg2 = 0;
 			switch (desc) {
+				case "height":
+					buffer = height();
+					break;
 				case "gear":
 					buffer = gearDescript();
 					break;
@@ -1319,6 +1322,9 @@
 				case "chestDesc":
 				case "chest":
 					buffer = chestDesc();
+					break;
+				case "cupSize":
+					buffer = breastCup(arg2);
 					break;
 				case "allChestDescript":
 				case "fullChest":
@@ -2475,117 +2481,120 @@
 				else return "prehensile tail";
 			}
 			//8 - goo shit
-			if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
+			else if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
 				if (select == 0) return "mound of goo";
 				else if (select == 1) return "gelatinous mound";
 				else if (select == 2) return "gooey base";
 				else if (select == 3) return "semi-solid mass";
 			}
 			//NORMAL CASES.
-			//Type 1/4 of the time.
-			if (this.rand(4) == 0 || forceType) {
-				select = this.rand(10);
-				if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
-					if (select <= 3) output += "equine";
-					else if (select <= 6) output += "horse-like";
-					else output += "hoof-capped";
-				} else if (legType == GLOBAL.BOVINE) {
-					if (select <= 3) output += "bovine";
-					else if (select <= 6) output += "cow-like";
-					else output += "hoof-capped";
-				} else if (legType == GLOBAL.CANINE) {
-					if (select <= 3) output += "canine";
-					else if (select <= 6) output += "dog-like";
-					else output += "paw-footed";
-				} else if (legType == GLOBAL.FELINE) {
-					if (select <= 3) output += "feline";
-					else if (select <= 6) output += "cat-like";
-					else output += "graceful";
-				} else if (legType == GLOBAL.VULPINE) {
-					if (select <= 3) output += "vulpine";
-					else if (select <= 6) output += "fox-like";
-					else output += "foxy";
-				} else if (legType == GLOBAL.BEE) {
-					if (select <= 3) output += "chitinous";
-					else if (select <= 5) output += "armored";
-					else if (select <= 7) output += "insect-like";
-					else output += "carapace-covered";
-				} else if (legType == GLOBAL.ARACHNID) {
-					if (select <= 3) output += "chitinous";
-					else if (select <= 5) output += "armored";
-					else if (select <= 7) output += "insect-like";
-					else output += "carapace-covered";
-				} else if (legType == GLOBAL.DRIDER) {
-					if (select <= 1) output += "chitinous";
-					else if (select <= 3) output += "armored";
-					else if (select <= 5) output += "insect-like";
-					else if (select <= 7) output += "carapace-covered";
-					else output += "pointed";
-				} else if (legType == GLOBAL.LAPINE) {
-					if (select <= 3) output += "lapine";
-					else if (select <= 6) output += "rabbit-like";
-					else output += "bunny";
-				} else if (legType == GLOBAL.LAPINE) {
-					if (select <= 3) output += "lapine";
-					else if (select <= 6) output += "rabbit-like";
-					else output += "bunny";
-				} else if (legType == GLOBAL.AVIAN) {
-					if (select <= 3) output += "avian";
-					else if (select <= 6) output += "bird-like";
-					else output += "harpy";
-				} else if (legType == GLOBAL.DRACONIC) {
-					if (select <= 3) output += "draconic";
-					else if (select <= 6) output += "dragon-like";
-					else output += "reptilian";
-				} else if (legType == GLOBAL.LIZAN) {
-					if (select <= 3) output += "lizan";
-					else if (select <= 6) output += "reptile-like";
-					else output += "reptilian";
-				} else if (legType == GLOBAL.DEMONIC) {
-					if (select <= 3) output += "demon-like";
-					else if (select <= 6) output += "demonic";
-					else output += "claw-footed";
-				} else if (legType == GLOBAL.GOOEY) {
-					if (select <= 2) output += "gooey";
-					else if (select <= 5) output += "semi-solid";
-					else if (select <= 7) output += "gelatinous";
-					else output += "jiggly";
-				} else if (legType == GLOBAL.KANGAROO) {
-					if (select <= 3) output += "kangaroo-like";
-					else if (select <= 5) output += "powerful";
-					else output += "'roo";
-				} else if (legType == GLOBAL.TANUKI) {
-					if (select <= 3) output += "tanuki-like";
-					else if (select <= 6) output += "dexterous";
-					else output += "nimble";
-				} else if (legType == GLOBAL.DEER) {
-					if (select <= 3) output += "deer-like";
-					else if (select <= 6) output += "hooved";
-					else output += "nimble";
-				}
-			}
-			//ADJECTIVE!
-			if (this.rand(3) == 0 || forceAdjective) {
-				if (legCount > 2 && this.rand(2) == 0) {
-					output += "numerous";
-				} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
-					output += "digitigrade";
-				} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
-					output += "plantigrade";
-				} else if (hasLegFlag(GLOBAL.SCALED)) {
-					output += "scaled";
-				} else if (hasLegFlag(GLOBAL.FURRED)) {
+			else
+			{
+				//Type 1/4 of the time.
+				if (this.rand(4) == 0 || forceType) {
 					select = this.rand(10);
-					if (select <= 3) output += "furry";
-					else if (select <= 6) output += "fuzzy";
-					else output += "fur-covered";
-				} else if (hasLegFlag(GLOBAL.TENDRIL)) {
-					output += "wiggling";
+					if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
+						if (select <= 3) output += "equine";
+						else if (select <= 6) output += "horse-like";
+						else output += "hoof-capped";
+					} else if (legType == GLOBAL.BOVINE) {
+						if (select <= 3) output += "bovine";
+						else if (select <= 6) output += "cow-like";
+						else output += "hoof-capped";
+					} else if (legType == GLOBAL.CANINE) {
+						if (select <= 3) output += "canine";
+						else if (select <= 6) output += "dog-like";
+						else output += "paw-footed";
+					} else if (legType == GLOBAL.FELINE) {
+						if (select <= 3) output += "feline";
+						else if (select <= 6) output += "cat-like";
+						else output += "graceful";
+					} else if (legType == GLOBAL.VULPINE) {
+						if (select <= 3) output += "vulpine";
+						else if (select <= 6) output += "fox-like";
+						else output += "foxy";
+					} else if (legType == GLOBAL.BEE) {
+						if (select <= 3) output += "chitinous";
+						else if (select <= 5) output += "armored";
+						else if (select <= 7) output += "insect-like";
+						else output += "carapace-covered";
+					} else if (legType == GLOBAL.ARACHNID) {
+						if (select <= 3) output += "chitinous";
+						else if (select <= 5) output += "armored";
+						else if (select <= 7) output += "insect-like";
+						else output += "carapace-covered";
+					} else if (legType == GLOBAL.DRIDER) {
+						if (select <= 1) output += "chitinous";
+						else if (select <= 3) output += "armored";
+						else if (select <= 5) output += "insect-like";
+						else if (select <= 7) output += "carapace-covered";
+						else output += "pointed";
+					} else if (legType == GLOBAL.LAPINE) {
+						if (select <= 3) output += "lapine";
+						else if (select <= 6) output += "rabbit-like";
+						else output += "bunny";
+					} else if (legType == GLOBAL.LAPINE) {
+						if (select <= 3) output += "lapine";
+						else if (select <= 6) output += "rabbit-like";
+						else output += "bunny";
+					} else if (legType == GLOBAL.AVIAN) {
+						if (select <= 3) output += "avian";
+						else if (select <= 6) output += "bird-like";
+						else output += "harpy";
+					} else if (legType == GLOBAL.DRACONIC) {
+						if (select <= 3) output += "draconic";
+						else if (select <= 6) output += "dragon-like";
+						else output += "reptilian";
+					} else if (legType == GLOBAL.LIZAN) {
+						if (select <= 3) output += "lizan";
+						else if (select <= 6) output += "reptile-like";
+						else output += "reptilian";
+					} else if (legType == GLOBAL.DEMONIC) {
+						if (select <= 3) output += "demon-like";
+						else if (select <= 6) output += "demonic";
+						else output += "claw-footed";
+					} else if (legType == GLOBAL.GOOEY) {
+						if (select <= 2) output += "gooey";
+						else if (select <= 5) output += "semi-solid";
+						else if (select <= 7) output += "gelatinous";
+						else output += "jiggly";
+					} else if (legType == GLOBAL.KANGAROO) {
+						if (select <= 3) output += "kangaroo-like";
+						else if (select <= 5) output += "powerful";
+						else output += "'roo";
+					} else if (legType == GLOBAL.TANUKI) {
+						if (select <= 3) output += "tanuki-like";
+						else if (select <= 6) output += "dexterous";
+						else output += "nimble";
+					} else if (legType == GLOBAL.DEER) {
+						if (select <= 3) output += "deer-like";
+						else if (select <= 6) output += "hooved";
+						else output += "nimble";
+					}
 				}
+				//ADJECTIVE!
+				else if (this.rand(3) == 0 || forceAdjective) {
+					if (legCount > 2 && this.rand(2) == 0) {
+						output += "numerous";
+					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+						output += "digitigrade";
+					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+						output += "plantigrade";
+					} else if (hasLegFlag(GLOBAL.SCALED)) {
+						output += "scaled";
+					} else if (hasLegFlag(GLOBAL.FURRED)) {
+						select = this.rand(10);
+						if (select <= 3) output += "furry";
+						else if (select <= 6) output += "fuzzy";
+						else output += "fur-covered";
+					} else if (hasLegFlag(GLOBAL.TENDRIL)) {
+						output += "wiggling";
+					}
+				}
+				//NOUN IT UP BITCHES!
+				if (output != "") output += " ";
+				output += "leg";
 			}
-			//NOUN IT UP BITCHES!
-			if (output != "") output += " ";
-			output += "leg";
 			return output;
 		}
 		public function footAdjectives(forceType: Boolean = false, forceAdjective: Boolean = false) {
@@ -2682,6 +2691,13 @@
 				}
 			}
 			return output;
+		}
+		public function height():String
+		{
+			var buffer:String = "";
+			buffer += Math.floor(tallness / 12) + " feet";
+			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
+			return buffer;
 		}
 		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;

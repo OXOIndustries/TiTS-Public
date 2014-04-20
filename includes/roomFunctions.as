@@ -320,15 +320,21 @@ function rustPlainsEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		if(!debug)
+		{
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterDasGooGray;
+			choices[choices.length] = encounterDasGooGray;
+			choices[choices.length] = encounterDasGooGray;
+		}
 
 		//Run the event
 		choices[rand(choices.length)]();

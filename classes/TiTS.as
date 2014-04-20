@@ -97,6 +97,7 @@
 		include "../includes/raskvelFemaleFight.as";
 		include "../includes/sexbots.as";
 		include "../includes/grayGoo.as";
+		include "../includes/lapinara.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
@@ -184,7 +185,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.20";
+			version = "0.02.21";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -543,6 +544,11 @@
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.
 			// Case in point; Urtaquest-like "swapping" of the controllable character.
 			return chars["PC"];
+		}
+		public function get monster():*
+		{
+			if(foes.length == 0) return chars["PC"];
+			else return foes[0];
 		}
 
 		public function get celise():*
