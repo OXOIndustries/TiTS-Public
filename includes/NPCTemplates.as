@@ -137,6 +137,10 @@
 	{
 		chars["GRAYGOO"] = new classes.Characters.GrayGoo();
 	}
+	if (!justUpdate || (justUpdate && chars["LAPINARAFEMALE"] == undefined))
+	{
+		chars["LAPINARAFEMALE"] = new classes.Characters.LapinaraFemale();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

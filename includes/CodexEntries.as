@@ -28,6 +28,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Rahn",rahnCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goo",grayGooCodex);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
 }
 
 public function codexHomeFunction():void
@@ -60,12 +61,37 @@ public function codexHomeFunction():void
 
 	userInterface.outputCodex();
 }
+
+public function lapinaraCodexEntry():void
+{
+	clearOutputCodex();
+	//Name: 
+	outputCodex(header("Lapinara"));
+	outputCodex("<b>Name: Lapinara (same singular and plural)");
+	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
+	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 ft for all genders.");
+	outputCodex("\n<b>Weight:</b> Anywhere between 40 and 85 pounds for all genders.");
+	outputCodex("\n<b>Hair & Fur:</b> Hair is fast-growing, and typically very soft and curly. The hair and fur of Parasitic females is typically white, but can sometimes be silver or gray. All Lapinara have a thin layer of fur covering the entirety of their bodies. The hair is longer and curlier on the lower legs and forearms, resembling warmers. They have a long, puffy tuft of fuzz at the end of their long, whip-like tails.");
+	outputCodex("\n<b>Eyes:</b> Large and rabbit-like; Parasitic females always have glassy, cloudy, gray eyes. They resemble crystal balls.\n\n");
+
+	outputCodex(blockHeader("Features"));
+	outputCodex("The Lapinara are a sapient, rabbit-like race on digitigrade legs. Their faces are mostly humanesque, possessing tiny, button-like, constantly wiggling noses, as well as long whiskers. Their ears are large and rabbit-like. Given their long incisors and molars built for tough grinding, hey have a very powerful, painful bite. A pair of horns, similar to that of the pronghorn grow from the foreheads of all genders. Parasitic females, non-parasitic females, and fem-herms have small, perky breasts, never more than A-cup. Parasitic gender skin comes in varying shades of gray. The skin tone of the other genders is determined by their host parent.\n\n");
+	outputCodex(blockHeader("Environs Typically Inhabited"));
+	outputCodex("The Lapinara are a highly adaptive species. Not possessing a home planet of their own, they are a nomadic kind. Many of the parasitic variety, however, have taken up residence on Tarkus, taking advantage of the local sex-loving goblins and Raskvel, as well as any oblivious visitors.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Parasitic females are nothing short of pests. They are sex machines, completely obsessed with implanting their eggs into an unfortunate host. While appearing to have typical male genitalia, they are actually anything but. Their “penis” is actually an ovipositor, and their “testicles” instead hold their ovaries. These faux testicles swell up considerably when they have eggs ready. The presence of eggs causes the parasitic Lapinara to enter a rut-like state that doesn’t end until they are rid of them. The pre-cum of the parasitic Lapinara works as an anesthetic, preventing egg implantation from hurting the host.\n\nThe eggs are soft-shelled, and can only continue development if they’re implanted via a host organism’s anus or vagina, where they absorb the second half of the required genetic material. Labor is initiated when the soft outer shell dissolves. This produces non-parasitic offspring that are always born in pairs, and always the same gender as the host parent. Hair, eye, and skin color is also determined by the host parent. Males and herms tend to inherit penis type from their host parent, and females and herms tend to inherit vagina type from their host parent.\n\nMore parasitic females are produced when one parasitic female implants her eggs in another parasitic female. The non-parasitic genders reproduce just like any human, albeit with significantly shorter pregnancies, never longer than three months, but never shorter than two.\n\n");
+	outputCodex(blockHeader("History"));
+	outputCodex("The epidemic of parasitic Lapinara breeding has led to the foundation of the Lapinara Sanctuary, a charity organization that cares for orphan Lapinara, offers adoption, and provides oophorectomies (ovary removal) for any consenting parasitic Lapinara, essentially neutering them. The removed ovaries are sold to Tamani Corp for research for the advancement of fertility-enhancing products.");
+	outputCodex("\n\nIt is currently under fierce debate whether or not unconsenting parasitic oophorectomies are ethical and should be allowed.");
+	CodexManager.viewedEntry("Lapinara");
+}
+
 public function raskVelCodexEntry():void
 {
 	clearOutputCodex();
 	outputCodex(header("Raskvel Codex"));
 	outputCodex("<b>Name:</b> Raskvel");
-	outputCodex("\n<b>Genders:</b> Male & Female");
+	outputCodex("\n<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Average heights fall between 3’6” and 4’3”");
 	outputCodex("\n<b>Weight:</b> Somewhere between 40 and 60 pounds.");
 	outputCodex("\n<b>Hair:</b> None. They have feathery plumage instead, often light blue, red, or black.");
@@ -162,7 +188,7 @@ public function zilCodexEntry():void
 	userInterface.showBust("ZILFEMALE", "ZIL"); // ohoho lookit dis shit!
 
 	outputCodex(header("The Zil"));
-	outputCodex("\n<b>Genders:</b> Male and female.");
+	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> 5’ to 5’6” commonly. They can rarely attain heights of 6’.");
 	outputCodex("\n<b>Weight:</b> 80 to 140 pounds.");
 	outputCodex("\n<b>Hair:</b> Flexible spines covered in a downy-soft fuzz. They are commonly colored black, but sometimes can be yellow or yellow and black striped.");
@@ -233,7 +259,7 @@ public function ausarCodexEntry():void
 	userInterface.showBust("SYRI"); // An example of an Ausar?
 
 	outputCodex(header("The Ausar"));
-	outputCodex("\n<b>Genders:</b> Male and female.");
+	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Varies, usually similar to humans; they commonly range from five feet to just over six, with rare specimens reaching around seven feet in height.");
 	outputCodex("\n<b>Weight:</b> Ausar are lithely built, weighing less than a human -- often from just over 100 lbs, and rarely over 200.");
 	outputCodex("\n<b>Hair:</b> Color varies, with grey, black, and a dark gold being the most common. Some rare specimens have snow-white hair, or a fiery red mane.");
@@ -287,7 +313,7 @@ public function myrmedionCodexEntry():void
 	userInterface.showBust("NONE"); // aha this is going to bite me in the ass when we end up adding a race called NONE or some shit!
 
 	outputCodex(header("The Myrmedion"));
-	outputCodex("\n<b>Genders:</b> Male and female.");
+	outputCodex("\n<b>Sexes:</b> Male and female.");
 	outputCodex("\n<b>Height:</b> Myr are about human height, if possibly a tad shorter on average: a male is typically about 5 ft. 2; a female 5 ft. 6, being on average somewhat taller than the males.");
 	outputCodex("\n<b>Weight:</b> For their heights, myr are heavier than humans thanks to their heavy chitinous armor plates and sturdier bone and muscle structures."); 
 	outputCodex("<b>Hair:</b> Blacks and oranges are the most common colors. Red Myr, as the name suggests, have a higher tendency toward fiery red hair while the Gold Myr have a sizable population of strawberry-blondes.");
@@ -542,7 +568,7 @@ function naleenCodexEntry():void
 	userInterface.showBust("NALEEN");
 
 	outputCodex(header("The Naleen"));
-	outputCodex("<b>Genders:</b> Male & Female");
+	outputCodex("<b>Sexes:</b> Male & Female");
 	outputCodex("\n<b>Height:</b> Most Naleen rise about six feet from the ground, though their full length is often more than twice that from tail to brow.");
 	outputCodex("\n<b>Weight:</b> A fully grown Naleen could easily weigh several hundred pounds.");
 	outputCodex("\n<b>Hair:</b> Naleen arms and bellies are covered in a thin fur, usually black, orange, green, or tiger-striped. Their hair grows in a matching color to their body fur, and is worn long, and often braided.");
