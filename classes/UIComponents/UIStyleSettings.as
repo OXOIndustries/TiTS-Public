@@ -3,11 +3,13 @@ package classes.UIComponents
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
 	import flash.text.StyleSheet;
+	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextFormatDisplay;
 	import flash.text.Font;
 	import flash.text.StyleSheet;
+	import flash.text.AntiAliasType;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -73,6 +75,11 @@ package classes.UIComponents
 
 			UIStyleSettings._gLevelUpBarMaxedColourTransform = null;
 			UIStyleSettings._gLevelUpBarChangeableColourTransform = null;
+			
+			UIStyleSettings._gPerkHeaderLabelTextFormat = null;
+			
+			UIStyleSettings._gSelectedPerkTextFormat = null;
+			UIStyleSettings._gSelectedPerkNameFormat = null;
 		}
 		
 		// TITS VALUES
@@ -526,6 +533,51 @@ package classes.UIComponents
 			return UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter;
 		}
 		
+		private static var _gPerkHeaderLabelTextFormat:TextFormat;
+		public static function get gPerkHeaderLabelTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkHeaderLabelTextFormat == null)
+			{
+				UIStyleSettings._gPerkHeaderLabelTextFormat = new TextFormat();
+				UIStyleSettings._gPerkHeaderLabelTextFormat.size = 72;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.kerning = true;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gPerkHeaderLabelTextFormat;
+		}
+			
+		private static var _gSelectedPerkTextFormat:TextFormat;
+		public static function get gSelectedPerkTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkTextFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkTextFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkTextFormat.size = 32;
+				UIStyleSettings._gSelectedPerkTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gSelectedPerkTextFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkTextFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSelectedPerkTextFormat;
+		}
+		
+		private static var _gSelectedPerkNameFormat:TextFormat;
+		public static function get gSelectedPerkNameFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkNameFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkNameFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkNameFormat.size = 32;
+				UIStyleSettings._gSelectedPerkNameFormat.color = 0xFFFFFF;
+				UIStyleSettings._gSelectedPerkNameFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkNameFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkNameFormat.font = "Lato"
+			}
+			return UIStyleSettings._gSelectedPerkNameFormat;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -803,6 +855,31 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".active", activeCodexEntry);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
+		}
+		
+		// Util methods
+		public static function cfgLabel(obj:TextField):void
+		{
+			obj.border = false;
+			obj.background = false;
+			obj.multiline = false;
+			obj.wordWrap = false;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.mouseEnabled = false;
+			obj.mouseWheelEnabled = false;
+		}
+		
+		public static function cfgTextBlock(obj:TextField):void
+		{
+			obj.border = false;
+			obj.background = false;
+			obj.multiline = true;
+			obj.wordWrap = true;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.mouseEnabled = true;
+			obj.mouseWheelEnabled = true;
 		}
 	}
 
