@@ -1323,7 +1323,7 @@
 				case "chest":
 					buffer = chestDesc();
 					break;
-				case "cupSize":
+				case "breastCupSize":
 					buffer = breastCup(arg2);
 					break;
 				case "allChestDescript":
@@ -4170,7 +4170,7 @@
 			//Factor in current milkMultiplier
 			mLsGained *= (milkMultiplier - 50)/50;
 			//Great. Now figure out how much fullness that adds.
-			var fullnessDelta:Number = mLsGained / milkCapacity();
+			var fullnessDelta:Number = mLsGained / milkCapacity() * 100;
 			
 			//75% fullness notification
 			if(milkFullness < 75 && milkFullness + fullnessDelta >= 75) createStatusEffect("Pending Gain Milk Note: 75");
@@ -4204,6 +4204,7 @@
 				trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = 0;
 			}
+			trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
 			return mLsGained;
 		}
 		public function milkCapacity(arg:int = -1):Number
@@ -4229,36 +4230,54 @@
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else capacity = (400 + breastRows[arg].breastRating / 2 * 100) * milkStorageMultiplier;
+				else capacity = (400 + breastRows[arg].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
 			}
 			return capacity;
 		}
-		public function milkQ():Number {
-			return lactationQ();
+		public function milkQ(arg:int = -1):Number {
+			return lactationQ(arg);
 		}
 		public function lactationQ(arg:int = -1): Number {
+			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
-			if(arg == -1) return milkFullness * milkCapacity();
+			if(arg == -1) return milkFullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
 			{
-				var total:Number = 0;
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					total += milkFullness * milkCapacity(x);
+					//trace("Row " + x + " mLs: " + (milkFullness * milkCapacity(x)));
+					total += milkFullness/100 * milkCapacity(x);
 				}
+				//trace("MilkQ total: " + total);
 				return total;
 			}
 			//Specific row
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else return milkFullness * milkCapacity(arg);
+				else return milkFullness/100 * milkCapacity(arg);
 			}
 			//Failsafe:
 			return 0;
+		}
+		public function boostLactation(amount:Number = 1):void
+		{
+			//Record this for tracking change
+			var originalMultiplier = milkMultiplier;
+			//Actually change it
+			milkMultiplier += amount;
+			//Queue threshold notes!
+			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
+			if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
+			if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
+			if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
+			if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
+			if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
+			if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
+			if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
 		}
 		//PC has been milked for "amount" fullness.
 		public function milked(amount:Number = 50):Number
@@ -4266,15 +4285,7 @@
 			if(milkMultiplier < 100)
 			{
 				var originalMultiplier:int = milkMultiplier;
-				milkMultiplier +=  1 + Math.round(amount/50);
-				if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
-				if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
-				if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
-				if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
-				if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
-				if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
-				if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
-				if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+				boostLactation(1 + Math.round(amount/50));
 			}
 			milkFullness -= amount;
 			return milkFullness;

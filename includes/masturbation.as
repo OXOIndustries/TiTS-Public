@@ -36,7 +36,7 @@ function masturbateMenu():void {
 		funcs[funcs.length] = multiCockFap;
 		args[args.length] = undefined;
 	}
-	if(pc.isLactating())
+	if(pc.canLactate())
 	{
 		texts[texts.length] = "Hand Milk";
 		funcs[funcs.length] = milkturbation;
@@ -846,12 +846,13 @@ function milkturbation():void
 	output(", you grab your [pc.chest] and squeeze, rubbing gently towards your [pc.nipples] to coax yourself into letting down. The lactating flesh feels wonderful in your hands, and you shudder with barely suppressed delight at how good it feels to get yourself ready.");
 
 	//No Milk, Bra. Try but fail. Minor lust increase.
-	if(!pc.isLactating()) 
+	if(!pc.isLactating() || pc.milkFullness < 30) 
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
 		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn't work though; you'll have to give your body time to build some up first.");
 		pc.lust(5+rand(3));
+		pc.boostLactation(1);
 	}
 	//Milk Success!
 	//Look at all these bitchin' options
@@ -1024,7 +1025,7 @@ function milkturbation():void
 				output(" own pleasure plateau. [pc.girlCum] ");
 				if(pc.isSquirter())
 				{
-					if(pc.lowerUndergarments.shortName != "") output("floods your " + pc.lowerUndergarments.longName + " with sticky love");
+					if(pc.lowerUndergarment.shortName != "") output("floods your " + pc.lowerUndergarment.longName + " with sticky love");
 					else 
 					{
 						output("floods out of your uncovered entrance");
@@ -1034,7 +1035,7 @@ function milkturbation():void
 				}
 				else 
 				{
-					if(pc.lowerUndergarments.shortName != "") output("soaks your " + pc.lowerUndergarments.longName + " with fragrant feminine love");
+					if(pc.lowerUndergarment.shortName != "") output("soaks your " + pc.lowerUndergarment.longName + " with fragrant feminine love");
 					else output("soaks your [pc.thighs] with your fragrant feminine love");	
 				}
 				output(". Your lower lips and [pc.clits] feel positively swollen as ");
@@ -1047,7 +1048,7 @@ function milkturbation():void
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined) flags["TIMES_HAND_MILKED_SELF"] = 0;
 		flags["TIMES_HAND_MILKED_SELF"]++;
 		if(orgasmed) pc.orgasm();
-		pc.milked(pc.milkFullness - 10);
+		pc.milked(pc.milkFullness);
 	}
 	processTime(10+rand(5));
 	//Force faps

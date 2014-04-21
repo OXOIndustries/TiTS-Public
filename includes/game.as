@@ -477,6 +477,9 @@ public function processTime(arg:int):void {
 		}
 		arg--;
 	}
+	//Check to see if something changed in this department
+	milkMultiplierGainNotificationCheck();
+	
 	updatePCStats();
 }
 
@@ -499,14 +502,14 @@ function milkGainNotes():void
 	//This doubles past F-cup
 	if(pc.hasStatusEffect("Pending Gain Milk Note: 100"))
 	{
-		eventBuffer += "\n\nYour [pc.fullChest] feel more than a little sore. They're totally and unapologetically swollen with [pc.milk]. You heft the [pc.cupSize]s and sigh, swearing you can almost hear them slosh. <b>They're totally full.</b>";
+		eventBuffer += "\n\nYour [pc.fullChest] feel more than a little sore. They're totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They're totally full.</b>";
 		pc.removeStatusEffect("Pending Gain Milk Note: 100");
 	}
 	//Cross 150% milk fullness + 2 cups
 	//This doubles past F-cup
 	if(pc.hasStatusEffect("Pending Gain Milk Note: 150"))
 	{
-		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if you don't take care of it soon, a loss of production is likely. Right now, they're swollen up to [pc.cupSize]s.";
+		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if you don't take care of it soon, a loss of production is likely. Right now, they're swollen up to [pc.breastCupSize]s.";
 		pc.removeStatusEffect("Pending Gain Milk Note: 150");
 	}
 	//Hit 200% milk fullness cap + 3 cups
