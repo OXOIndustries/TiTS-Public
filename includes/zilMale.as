@@ -360,10 +360,11 @@ function buttfuckDefeatedZil():void {
 			output(".");
 		}
 	}
-	if(pc.isLactating() || pc.hasDickNipples()) {
+	if(pc.canMilkSquirt() || pc.hasDickNipples()) {
 		if(pc.hasDickNipples()) output(" Your [pc.dickNipples]");
 		else output(" Your [pc.nipples]");
 		output(" orgasm in sympathy, spewing [pc.milk] over your conquest. Much of it runs down the small of his back in a narrow river that splits at his neck and spiny hair.");
+		pc.milked();
 	}
 	//{Nice}
 	if(pc.isNice()) {
@@ -807,7 +808,10 @@ function tailCockPegTheZil():void {
 	output(".");
 	if(pc.hasVagina()) output(" Spasming wildly, [pc.eachVagina] squelches and releases a flow of girly secretions.");
 	if(pc.hasDickNipples()) output(" Your [pc.nippleCocks] climax as well, spraying their own [pc.milk] onto his back. The lust-lost zil doesn't seem to care.");
-	else if(pc.isLactating()) output(" Your [pc.nipples] spray [pc.milk] as your climax rocks your body, splattering across his back in waves.");
+	else if(pc.canMilkSquirt()) {
+		output(" Your [pc.nipples] spray [pc.milk] as your climax rocks your body, splattering across his back in waves.");
+		pc.milked(25);
+	}
 	
 	output("\n\nAfter the first few pumps, your [pc.tailCock] seems to develop a mind of it's own, and it begins to rock back and forth, plowing through it's own ejaculate in its incessant quest for enjoyment.  You keep fucking the zil until his asshole is gaping and frothing with your [pc.cum]. He doesn't seem to mind, if the puddle of honey soaking his legs is any indications. Shuddering, you pull out and let your [pc.tail] close back up.");
 	output("\n\nThe zil is lying there lamely, twitching his rump from time to time with a dopey smile on his face. This is an encounter he won't soon forget.\n\n");
@@ -981,7 +985,11 @@ function getBredByZil():void {
 		output(".");
 	}
 	if(pc.hasFuckableNipples()) output(" [pc.Cum] erupts from your [pc.nippleCocks] in long streams of phallic pleasure while the zil looks on, bemused by your copious fluid production.");
-	else if(pc.isLactating()) output(" [pc.Milk] erupts from your [pc.nipples] in long streams of lactic pleasure while the zil looks on, bemused by your copious fluid production.");
+	else if(pc.canMilkSquirt()) 
+	{
+		output(" [pc.Milk] erupts from your [pc.nipples] in long streams of lactic pleasure while the zil looks on, bemused by your copious fluid production.");
+		pc.milked(25);
+	}
 	
 	output("\n\nTime loses all meaning to you, so when you finally come down, you're more than a little confused. How long were you been cumming anyway? Globs of amber juice drip from your well-used entrance. It's puffy, engorged, and so sensitive from the recent breeding that you dare not touch yourself just yet. The zil suddenly appears in front of your and holds his dick, obviously expecting you to clean it. You stifle your eagerness until you catch a whiff of his pheromones, and then you're tugging him into your mouth, licking every drop of honey from his member.  You tongue around under the foreskin to collect every delicious drop, savoring the strengthening scent and taste of your alien lover's physique.");
 	output("\n\nAbruptly, he pulls himself out, clean of everything but your spit. Just how long were you cleaning him? The zil gathers some soft ferns and makes you a soft bed from them.  You're all too happy to lie on it, even if it does lift your [pc.butt] up in the air and make sure that all his seed stays deep inside you...\n\n");
@@ -1048,7 +1056,7 @@ function getTailPussyFuckedByZil():void {
 		else if(pc.cumQ() < 5000) output("it's gotten so wet and sticky that your entire front is soaked with the cum-mud, but you have a hard time caring, as good as it feels.");
 		else if(pc.cumQ() < 10000) output("it's gotten so wet and sticky that you sink partway into the mire, but it feels too good to care.");
 		else output("everything is so wet and sticky that a fair portion sinks into the swamp of cum-mud you've made. It feels so good that you don't even care - you just luxuriate in your dripping, spent spunk.");
-		if(pc.hasNippleCocks() || pc.isLactating()) {
+		if(pc.hasNippleCocks() || pc.canMilkSquirt()) {
 			output(" At the same time, your ");
 			if(pc.hasNippleCocks()) output("[pc.nippleCocks]");
 			else output("[pc.nipples]");
@@ -1071,7 +1079,7 @@ function getTailPussyFuckedByZil():void {
 		if(pc.vaginaTotal() > 1) output("es are");
 		else output(" is");
 		output(" so willing to provide. Fruitlessly humping, you writhe your way through your tail’s orgasm, wishing you had something inside the entire time.");
-		if(pc.hasNippleCocks() || pc.isLactating()) {
+		if(pc.hasNippleCocks() || pc.canMilkSquirt()) {
 			output(" At the same time, your ");
 				if(pc.hasNippleCocks()) output("[pc.nippleCocks]");
 			else output("[pc.nipples]");

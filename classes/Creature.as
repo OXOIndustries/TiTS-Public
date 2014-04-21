@@ -4267,8 +4267,26 @@
 		{
 			//Record this for tracking change
 			var originalMultiplier = milkMultiplier;
-			//Actually change it
-			milkMultiplier += amount;
+			//If below 100...
+			if(milkMultiplier < 100) {
+				//If we cross 100 threshold, set to 100 & go for slow grow.
+				if(milkMultiplier + amount > 100) 
+				{
+					amount = 100 - milkMultiplier;
+					milkMultiplier = 100;
+				}
+				//Otherwise add it up and zero out amount.
+				else {
+					milkMultiplier += amount;
+					amount = 0;
+				}
+			}
+			//Milk multiplier is over 100... slow gro.
+			if(amount > 0)
+			{
+				if(milkMultiplier < 110) milkMultiplier += amount/5;
+				else if(milkMultiplier < 125) milkMultiplier += amount/10;
+			}
 			//Queue threshold notes!
 			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
 			if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
@@ -4278,17 +4296,68 @@
 			if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
 			if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
 			if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+			if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
+			if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
 		}
 		//PC has been milked for "amount" fullness.
 		public function milked(amount:Number = 50):Number
 		{
-			if(milkMultiplier < 100)
-			{
-				var originalMultiplier:int = milkMultiplier;
-				boostLactation(1 + Math.round(amount/50));
-			}
+			var x:int;
+			if(hasPerk("Milky")) amount *= 1.5;
+			//Boost lactation by a relevant amount
+			if(milkMultiplier < 125) boostLactation(1 + Math.round(amount/50));
+			//Actually reduce held milk
 			milkFullness -= amount;
+			//Set boob swelling to new appropriate tier
+			setBoobSwelling();
 			return milkFullness;
+		}
+		public function setBoobSwelling():void
+		{
+			var x:int;
+			//No swelling!
+			if(milkFullness < 75) 
+			{
+				//Reset swelling
+				for(x = 0; x < bRows(); x++)
+				{
+					breastRows[x].breastRatingLactationMod = 0;
+				}
+			}
+			//75 - 99
+			else if(milkFullness < 100)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 1.5;
+					else breastRows[x].breastRatingLactationMod = 1;
+				}
+			}
+			//100 - 149
+			else if(milkFullness < 150)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 2.5;
+					else breastRows[x].breastRatingLactationMod = 1.5;
+				}	
+			}
+			else if(milkFullness < 200)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 3.5;
+					else breastRows[x].breastRatingLactationMod = 2;
+				}
+			}
+			else
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 4.5;
+					else breastRows[x].breastRatingLactationMod = 3;
+				}
+			}
 		}
 		/*CoC-Tier old milk shits OVERHAUL MILK SYSTEM!
 		public function boostLactation(todo: Number): Number {

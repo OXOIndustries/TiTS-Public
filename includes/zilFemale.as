@@ -791,7 +791,7 @@ function forceCunnilstingus():void {
 		output("\n\nSmiling as the heat works its way up your [pc.leg] and into [pc.eachVagina], you find your eyelids drifting closed. Your crotch is getting sticky from the heat, your nether-lips are engorged, and your [pc.nipples]");
 		if(pc.hasNippleCocks()) output(" abruptly release their immensely turgid shafts");
 		else if(pc.hasFuckableNipples()) output(" abruptly begin to leak trickles of lubricant");
-		else if(pc.isLactating()) output(" abruptly begin to drool in excitement");
+		else if(pc.canMilkSquirt()) output(" abruptly begin to drool in excitement");
 		else if(pc.hasFlatNipples()) output(" abruptly tingle in the humid air");
 		else output(" abruptly jut out to a full and totally erect state");
 		output(". The pleasure of your blossoming arousal is like a balm to your troubled mind, dulling your worry into a sort of curious, lewd wonderment.");
@@ -813,7 +813,7 @@ function forceCunnilstingus():void {
 		output("\n\nYour [pc.nipples]");
 		if(pc.hasNippleCocks()) output(" abruptly release their immensely turgid shafts.");
 		else if(pc.hasFuckableNipples()) output(" abruptly begin to leak trickles of lubricant.");
-		else if(pc.isLactating()) output(" abruptly begin to drool in excitement.");
+		else if(pc.canMilkSquirt()) output(" abruptly begin to drool in excitement.");
 		else if(pc.hasFlatNipples()) output(" abruptly tingle in the humid air.");
 		else output(" abruptly jut out to a full and totally erect state.");
 		output(" It's getting worse. Twitching and lurching, you can see her insectile tail contracting and squeezing as it pumps more of the mind-affecting chemical into you. It doesn't matter to you. You're beyond caring by this point; you just want her to hurry up and start fucking you before your brain melts from the omnipresent warmth and puddles between your thighs.");
@@ -853,7 +853,7 @@ function forceCunnilstingus():void {
 	else output("hand used as a wipe by the sated zil");
 	output(". Her voice buzzes, <i>“Have fun!”</i> as she lays you back, parting with a quick squeeze of your ");
 	if(pc.hasNippleCocks()) output("erupting [pc.nippleCock]");
-	else if(pc.hasFuckableNipples() || pc.isLactating()) output("leaking [pc.nipple]");
+	else if(pc.hasFuckableNipples() || pc.canMilkSquirt()) output("leaking [pc.nipple]");
 	else output("tense nipple");
 	output(". A fevered moan is your thank you and goodbye, your body well on its way to its next artificial climax as your eyes drift closed.\n\n");
 	processTime(200+rand(60));

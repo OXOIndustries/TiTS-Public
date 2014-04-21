@@ -300,7 +300,7 @@ function getSpitRoastedForPenny():void {
 		else output(" Gushing freely, your [pc.girlCum] washes out in an sticky wave, splattering your [pc.legs], the zil’s armored thighs, and the floor with liquid lust.");
 	}
 	else output(" Your [pc.asshole] clenches tight around the intruder, milking the jism deep inside you with pleasured contractions.");
-	if(pc.isLactating()) {
+	if(pc.canMilkSquirt()) {
 		if(pc.lactationQ() < 500) output(" [pc.Milk] dribbles from your [pc.nipples], coaxed out by the tremors of pleasure running through your body.");
 		else {
 			output(" [pc.Milk] spurts from your nipples, splashing ");
@@ -976,7 +976,7 @@ function femaleFirstTimePennyLesboz():void {
 		if(pc.tallness <= 55) output("<i>little </i>");
 		output("<i>pleasure pet.”</i>");
 	}
-	else if(pc.isLactating()) output(" [pc.Milk] has started to leak from your nipples, even though Penny barely touches them. She’s only squeezing them every now and again, mainly letting her fingers circle just beyond the areola, gathering up your leaking, lactic lube and smearing it over your breasts, painting them [pc.milkColor] until the water washes it away. Penny purrs, <i>“Should you moo for me, little cow?”</i>  You let out more, dripping the stuff.");
+	else if(pc.canMilkSquirt()) output(" [pc.Milk] has started to leak from your nipples, even though Penny barely touches them. She’s only squeezing them every now and again, mainly letting her fingers circle just beyond the areola, gathering up your leaking, lactic lube and smearing it over your breasts, painting them [pc.milkColor] until the water washes it away. Penny purrs, <i>“Should you moo for me, little cow?”</i>  You let out more, dripping the stuff.");
 	else 
 	{
 		output(" Your [pc.nipples] are achingly hard by this point, ");
@@ -1016,14 +1016,15 @@ function femaleFirstTimePennyLesboz():void {
 		else if(pc.cumQ() <= 15000) output("turns the tub into a half-full bath");
 		else output("floods the entire tub, covering you to your neck and her to her waist");
 		output(", but it is soon forgotten once she sees your eyes roll back.");
-		if(pc.isLactating())
+		if(pc.canMilkSquirt())
 		{
 			output(" Your milk pours out to join the rest of the fluid in the tub");
-			if(pc.cumQ() + pc.lactationQ() <= 1000) output(", vanishing down the drain as quickly as it appears");
+			if(pc.cumQ() + pc.lactationQ() <= 5000) output(", vanishing down the drain as quickly as it appears");
 			else if(pc.cumQ() + pc.lactationQ() <= 10000) output(", filling it a little bit higher");
 			else if(pc.lactationQ() + pc.cumQ() <= 15000) output(", filling it to the brim");
 			else output(", pouring out over the sides, wasted");
 			output(".");
+			pc.milked();
 		}
 	}
 	if(pc.wetness() >= 5) {

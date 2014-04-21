@@ -949,7 +949,10 @@ function getVagFukkedBySyri():void {
 	if(pc.biggestTitSize() >= 1) output(", cupping your [pc.chest] and squeezing the full orbs, bringing one up to Syri's mouth so that her lips can wrap around a stiff [pc.nipple]");
 	else output(", holding you tight enough that Syri can drag her tongue across your nearly flat chest, testing one of your [pc.nipples] before latching on");
 	output(". Her fingers drift back down as your back arches, responding to the pinch and pressure of your lover suckling from your teat");
-	if(pc.isLactating()) output(" and the flow of your [pc.milk] into her eager mouth");
+	if(pc.isLactating()) {
+		output(" and the flow of your [pc.milk] into her eager mouth");
+		pc.milked();
+	}
 	output(". Her hands finally grope your [pc.butt], kneading your cheeks and guiding you inexorably down toward her swollen base. You grit your teeth and try to relax as you slide down her length, suppressing a little gasp as you feel your lower lips parting at its crown. Your [pc.vagina " + x + "] spreads and stretches, pushed to the extremes of its elasticity to accommodate the ausar's thick knot until with a gasp and cry, it pushes past, tying you to your lover as you sink into her lap.");
 
 	output("\n\nSyri holds you tight to her as the knot sinks into your [pc.vagina " + x + "], planting kisses and caresses across your tender, sweating flesh. She cups your cheek, holding you steady for a long, tongue-tying kiss that soon has you both moving, grinding your hips against each other in the short, quick motions that the dog-tie holding you together allows. The feeling's enough to nearly overwhelm you, though: so utterly full, stretched and filled by Syri's swell, feeling her lengthy, pointed cock probing your womb... it's too much.");

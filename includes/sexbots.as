@@ -863,6 +863,7 @@ function consentaclesVictoryWithDannySexBot():void
 		if(!pc.hasFuckableNipples()) output(" into the rubber vacuums suckling them");
 		else output(" everywhere");
 		output(".");
+		pc.milked();
 	}
 	if(pc.isSquirter()) output(" The sound of a small, localised downpour reaches your ears as your over-juiced pussy spurts itself silly around the thrusting phallus buried in it, liberally soaking the crouching android below you with your fragrant excitement.");
 
