@@ -4172,6 +4172,11 @@
 			//Great. Now figure out how much fullness that adds.
 			var fullnessDelta:Number = mLsGained / milkCapacity();
 			
+			//75% fullness notification
+			if(milkFullness < 75 && milkFullness + fullnessDelta >= 75) createStatusEffect("Pending Gain Milk Note: 75");
+			//100% notification!
+			if(milkFullness < 100 && milkFullness + fullnessDelta >= 100) createStatusEffect("Pending Gain Milk Note: 100");
+
 			//If we're going above 100.
 			if(fullnessDelta + milkFullness > 100)
 			{
@@ -4182,9 +4187,14 @@
 					milkFullness = 100;
 					fullnessDelta -= subHundredFullness;
 				}
+				//150%
+				if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
+				//200%
+				if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
 				//Grow at half rate since we're over 100
 				milkFullness += fullnessDelta/2;
 			}
+
 			//Not going above 100? Just add it
 			else milkFullness += fullnessDelta;
 
@@ -4255,7 +4265,16 @@
 		{
 			if(milkMultiplier < 100)
 			{
+				var originalMultiplier:int = milkMultiplier;
 				milkMultiplier +=  1 + Math.round(amount/50);
+				if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
+				if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
+				if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
+				if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
+				if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
+				if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
+				if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
+				if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
 			}
 			milkFullness -= amount;
 			return milkFullness;
@@ -7837,7 +7856,7 @@
 				descript += breastSize(breastRows[rowNum].breastRating());
 				descripted = true;
 			}
-			if (milkRate > 1.5) {
+			if (isLactating() > 1.5) {
 				if (descripted) descript += ", ";
 				if (milkType == GLOBAL.MILK) {
 					temp = this.rand(4);

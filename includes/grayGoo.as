@@ -236,7 +236,7 @@ function reprogramGrayGoosForYerPleasure():void
 	output("\n\nYou pull the hefty Codex out of your backpack and spend a few minutes fiddling with the wireless networks nearby before finding the one holding the gray goo together. As you're poking around on the dataslate, though, the gray goo shudders and re-forms into her over-sexed human babe form, lips pursed quizzically as she watches you work.");
 	output("\n\n<i>\"A-are you not going to fuck me?\"</i> she asks after a moment, cocking her head to the side. Even that slight motion gets her huge, wobbly tits jiggling.");
 	output("\n\n<i>\"What's that?\"</i> you ask, pressing a button on your touch screen. The goo-girl freezes up, eyes wide. Another click, a few taps and new lines of code and her body shudders violently as the micro-bots inside her rearrange themselves.");
-	output("\n\nAfter a few moments, the goo-girl stands up straight, eyes vacant and staring straight ahead. Flatly, her voice intones: <i>\"Bell-Isle/Grunmann Technologies Integrated Triage System rebooting. This system has not rebooted in [[UNKNOWN]] -- [[UNKNOWN]] -- years. Systems resetting. Standby.\"</i>");
+	output("\n\nAfter a few moments, the goo-girl stands up straight, eyes vacant and staring straight ahead. Flatly, her voice intones: <i>\"Bell-Isle/Grunmann Technologies Integrated Triage System rebooting. This system has not rebooted in \\\[\\\[UNKNOWN\\\]\\\] -- \\\[\\\[UNKNOWN\\\]\\\] -- years. Systems resetting. Standby.\"</i>");
 	output("\n\n<i>\"Bell-Isle/Grunmann?\"</i> you muse, watching the goo-girl reformat herself. <i>\"Never heard of 'em.\"</i>");
 	output("\n\nAnother violent shudder and the goo-girl blinks as if waking from a long sleep. Her body quickly morphs itself into more... normal... human proportions: still voluptuous, but her tits slip down to a reasonable D-cup, and her butt and hips slim down to a more reasonable level. Were it not for her gray, shimmering exterior, she might just pass for human, now.");
 	output("\n\nTurning to you, she says, <i>\"You are not on the crew manifest. ADDENDUM: Databanks corrupted. Re-setting security protocols to factory standards. How may I help you, master?\"</i>");
@@ -594,7 +594,7 @@ function cockVariantForGrayGooKirbutashis():void
 
 	output("\n\n<i>“This journey is one of pure craftsmanship!”</i> she exclaims. The gray goo girl resumes her penile puppet show by thrusting your length down atop the silver blob, forcing a constrained gasp out of you. Your dick begins shaping the glob like a mound of clay, bending and rubbing against its surface. ");
 	if(pc.balls > 0) {
-		output("She even gets your [balls] in on the act, pressing ");
+		output("She even gets your [pc.balls] in on the act, pressing ");
 		if(pc.balls == 1) output("it");
 		else output("them");
 	}
