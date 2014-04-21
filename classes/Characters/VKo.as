@@ -3,6 +3,8 @@
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Protection.DecentShield;
+	import classes.Items.Accessories.JungleLure;
+	import classes.Items.Accessories.JungleRepel;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -51,6 +53,8 @@
 			this.HPRaw = this.HPMax();
 
 			this.inventory.push(new DecentShield());
+			this.inventory.push(new JungleLure());
+			this.inventory.push(new JungleRepel());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;

@@ -10,6 +10,8 @@ import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
+import classes.Items.Accessories.JungleLure;
+import classes.Items.Accessories.JungleRepel;
 
 function hangarBonus():Boolean 
 {
@@ -159,7 +161,10 @@ Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 function jungleEncounterChances():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	if (debug)
 	{
@@ -174,7 +179,7 @@ function jungleEncounterChances():Boolean {
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 6 && rand(4) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(4) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -193,11 +198,14 @@ function jungleEncounterChances():Boolean {
 function jungleMiddleEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 5 && rand(3) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(3) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(3) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -254,7 +262,10 @@ function claimMhengaOxonium():void {
 function jungleDeepEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	//in this room and da chick awake.
 	if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
@@ -280,7 +291,7 @@ function jungleDeepEncounters():Boolean {
 
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 5 && rand(2) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(2) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(2) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -347,6 +358,7 @@ function rustPlainsEncounters():Boolean {
 function anonsBarAddendums():void {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
+	ShellyBlurb();
 }
 
 function firstTimeOnTarkusBonus():Boolean
