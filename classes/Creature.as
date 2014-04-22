@@ -4168,7 +4168,7 @@
 			//How many mLs produced?
 			var mLsGained:Number = 1.73 * milkRate/10 * minutes;
 			//Factor in current milkMultiplier
-			mLsGained *= (milkMultiplier - 50)/50;
+			mLsGained *= (milkMultiplier)/100;
 			//Great. Now figure out how much fullness that adds.
 			var fullnessDelta:Number = mLsGained / milkCapacity() * 100;
 			

@@ -260,7 +260,10 @@ function talkToAlex():void {
 	author("RadicalBroseph");
 	//(Maybe there’ll be actual content here eventually but damn it I’m writing a fuckbuddy not a husbando)
 	output("You tell Alex you’re good with just spending some fully-clothed, pants-on, platonic friends time with him.");
-	output("\n\n<i>“Cool with me</i>,”  he says, shrugging. <i>“You’re a good fuck, but if I’m going to be totally honest here you outclass most of the folks around here in conversation too</i>.”");
+	output("\n\n<i>“Cool with me</i>,”  he says, shrugging. <i>“");
+	if(flags["FUCKED_ALEX"] != undefined) output("You’re a good fuck, but i");
+	else output("I");
+	output("f I’m going to be totally honest here you outclass most of the folks around here in conversation too</i>.”");
 	output("\n\nYou and Alex spend some ");
 	if(silly) output("fully-clothed, pants-on platonic friends ");
 	output("time together, chatting about your various adventures before you realize you need to get going and say your goodbyes.");

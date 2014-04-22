@@ -222,6 +222,8 @@ function jungleMiddleEncounters():Boolean {
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -311,7 +313,7 @@ function jungleDeepEncounters():Boolean {
 		}
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
-		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event
 		choices[rand(choices.length)]();
