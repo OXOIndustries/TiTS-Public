@@ -114,6 +114,8 @@ function debugMenus():void
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
 	});
+	
+	addDisabledButton(5, "Disabled", "Disabled Button", "Testing tooltips for disabled buttons.");
 }
 
 function bountyBoardExtra():Boolean

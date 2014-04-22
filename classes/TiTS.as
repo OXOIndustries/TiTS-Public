@@ -327,11 +327,11 @@
 			
 			if (evt.currentTarget.arg == undefined)
 			{
-				evt.currentTarget.func();
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
 			}
 			else
 			{
-				evt.currentTarget.func(evt.currentTarget.arg);
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
 			updatePCStats();
