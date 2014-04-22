@@ -46,26 +46,33 @@ package classes.UIComponents.ContentModuleComponents
 			_selectedPerkName = new TextField();
 			UIStyleSettings.cfgLabel(_selectedPerkName);
 			_selectedPerkName.defaultTextFormat = UIStyleSettings.gSelectedPerkNameFormat;
-			_selectedPerkName.x = 205;
+			_selectedPerkName.x = 165;
 			_selectedPerkName.y = 0;
 			_selectedPerkName.height = 50;
-			_selectedPerkName.width = 200;
-			_selectedPerkName.text = "SOME PERK";
+			_selectedPerkName.width = 400;
+			_selectedPerkName.text = "[ABILITY NAME]";
 			this.addChild(_selectedPerkName);
 			
 			// Text background
 			_textBlock = new Sprite();
 			_textBlock.graphics.beginFill(UIStyleSettings.gForegroundColour, 1);
-			_textBlock.graphics.drawRect(0, 0, 790, 180);
+			_textBlock.graphics.drawRect(0, 0, 790, 145);
 			_textBlock.graphics.endFill();
 			
 			_textBlock.x = 5;
-			_textBlock.y = 55;
+			_textBlock.y = 45;
 			this.addChild(_textBlock);
 			
 			// Description block
 			_selectedPerkText = new TextField();
-			
+			UIStyleSettings.cfgTextBlock(_selectedPerkText);
+			_selectedPerkText.defaultTextFormat = UIStyleSettings.gSelectedPerkDescriptionTextFormat;
+			_selectedPerkText.x = 10;
+			_selectedPerkText.y = 50;
+			_selectedPerkText.height = 170;
+			_selectedPerkText.width = 780;
+			_selectedPerkText.text = "DOOT DOOT HERE GOES WORDS TO DESCRIBE THE CURRENTLY SELECTED ABILITY.\n\nTHIS WAY WE DUN NEED A SHITLOAD OF TOOLTIPS OR SEPERATE SCREENS TO DISPLAY ALL OF THIS SHIT, IT CAN BE ONE SINGLE STATIC DISPLAY TO DO IT ALL.\n\nLOOKIT THAT, ISN'T IT GRAND?";
+			this.addChild(_selectedPerkText);
 		}
 		
 	}

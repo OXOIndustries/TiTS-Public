@@ -228,8 +228,9 @@ package classes.UIComponents.ContentModules
 			}
 			
 			// This is where we'd hook into the second stage of the levelling process
+			kGAMECLASS.userInterface.showLevelUpPerks(_targetCreature);
 			
-			kGAMECLASS.userInterface.showPrimaryOutput();
+			//kGAMECLASS.userInterface.showPrimaryOutput();
 		}
 	}
 

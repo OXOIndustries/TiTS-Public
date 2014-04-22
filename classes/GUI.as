@@ -7,6 +7,7 @@
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModules.GameTextModule;
+	import classes.UIComponents.ContentModules.LevelUpPerksModule;
 	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
@@ -451,6 +452,15 @@
 			pLevelUp.y = 0;
 			
 			pLevelUp.visible = false;
+			
+			var pPerkUp:LevelUpPerksModule = new LevelUpPerksModule();
+			titsClassPtr.addChild(pPerkUp);
+			_availableModules[pPerkUp.moduleName] = pPerkUp;
+			
+			pPerkUp.x = 200;
+			pPerkUp.y = 0;
+			
+			pPerkUp.visible = false;
 		}
 		
 		/**
@@ -510,7 +520,10 @@
 			}
 			
 			// Update some button states
-			if (classes.kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] != undefined) this.levelUpButton.Activate();
+			if (classes.kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] != undefined)
+			{
+				this.levelUpButton.Activate();
+			}
 			else
 			{
 				this.levelUpButton.Deactivate();
@@ -584,6 +597,12 @@
 		{
 			this.showModule("LevelUpStats");
 			(_currentModule as LevelUpStatsModule).setCreatureData(character);
+		}
+		
+		public function showLevelUpPerks(character:Creature):void
+		{
+			this.showModule("LevelUpPerks");
+			(_currentModule as LevelUpPerksModule).setCreatureData(character);
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI

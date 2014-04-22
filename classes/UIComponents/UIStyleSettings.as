@@ -80,6 +80,8 @@ package classes.UIComponents
 			
 			UIStyleSettings._gSelectedPerkTextFormat = null;
 			UIStyleSettings._gSelectedPerkNameFormat = null;
+			
+			UIStyleSettings._gSelectedPerkDescriptionTextFormat = null;
 		}
 		
 		// TITS VALUES
@@ -88,6 +90,7 @@ package classes.UIComponents
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		public static var gMovementButtonColour:uint		= 0x84449B;
 		public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
+		public static var gPaleColour:uint					= 0x53677b;
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
 		public static var gStatusGoodColour:uint			= 0x0CD71C;
@@ -558,6 +561,7 @@ package classes.UIComponents
 				UIStyleSettings._gSelectedPerkTextFormat.color = UIStyleSettings.gForegroundColour;
 				UIStyleSettings._gSelectedPerkTextFormat.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gSelectedPerkTextFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkTextFormat.bold = true;
 				UIStyleSettings._gSelectedPerkTextFormat.font = "Lato";
 			}
 			return UIStyleSettings._gSelectedPerkTextFormat;
@@ -573,9 +577,59 @@ package classes.UIComponents
 				UIStyleSettings._gSelectedPerkNameFormat.color = 0xFFFFFF;
 				UIStyleSettings._gSelectedPerkNameFormat.align = TextFormatAlign.LEFT;
 				UIStyleSettings._gSelectedPerkNameFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkNameFormat.bold = true;
 				UIStyleSettings._gSelectedPerkNameFormat.font = "Lato"
 			}
 			return UIStyleSettings._gSelectedPerkNameFormat;
+		}
+		
+		private static var _gSelectedPerkDescriptionTextFormat:TextFormat;
+		public static function get gSelectedPerkDescriptionTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkDescriptionTextFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.size = 18;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.color = 0xFFFFFF;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.font = "Lato"
+			}
+			return UIStyleSettings._gSelectedPerkDescriptionTextFormat;
+		}
+		
+		private static var _gPerkButtonBlueColourTextFormat:TextFormat;
+		public static function get gPerkButtonBlueColourTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkButtonBlueColourTextFormat == null)
+			{
+				UIStyleSettings._gPerkButtonBlueColourTextFormat = new TextFormat();
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.size = 21;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.leading = 0;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.kerning = true;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.bold = true;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gPerkButtonBlueColourTextFormat;
+		}
+
+		private static var _gPerkButtonWhiteColourTextFormat:TextFormat;
+		public static function get gPerkButtonWhiteColourTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkButtonWhiteColourTextFormat == null)
+			{
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat = new TextFormat();
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.size = 21;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.color = 0xFFFFFF;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.leading = 0;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.kerning = true;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.bold = true;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gPerkButtonWhiteColourTextFormat;
 		}
 		
 		// Glows
@@ -762,6 +816,39 @@ package classes.UIComponents
 				UIStyleSettings._gLevelUpBarChangeableColourTransform.color = UIStyleSettings.gHighlightColour;
 			}
 			return UIStyleSettings._gLevelUpBarChangeableColourTransform;
+		}
+		
+		private static var _gPerkButtonAvailableColorTransform:ColorTransform;
+		public static function get gPerkButtonAvailableColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonAvailableColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonAvailableColorTransform = new ColorTransform();
+				UIStyleSettings._gPerkButtonAvailableColorTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gPerkButtonAvailableColorTransform;
+		}
+		
+		private static var _gPerkButtonUnavailableColorTransform:ColorTransform;
+		public static function get gPerkButtonUnavailableColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonUnavailableColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonUnavailableColorTransform = new ColorTransform();
+				UIStyleSettings._gPerkButtonUnavailableColorTransform.color = UIStyleSettings.gPaleColour;
+			}
+			return UIStyleSettings._gPerkButtonUnavailableColorTransform;
+		}
+		
+		private static var _gPerkButtonTakenColorTransform:ColorTransform;
+		public static function get gPerkButtonTakenColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonTakenColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonTakenColorTransform = new ColorTransform;
+				UIStyleSettings._gPerkButtonTakenColorTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gPerkButtonTakenColorTransform;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks

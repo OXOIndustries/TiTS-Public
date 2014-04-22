@@ -7,6 +7,7 @@ package classes.UIComponents.ContentModules
 	import flash.text.TextField;
 	import flash.text.AntiAliasType;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.UIComponents.ContentModuleComponents.PerkDetailsPane;
 	
 	/**
 	 * ...
@@ -19,6 +20,8 @@ package classes.UIComponents.ContentModules
 		private var _perkList:ScrollPane;
 		
 		private var _selectedPerkDetails:PerkDetailsPane;
+		
+		private var _targetCreature:Creature;
 		
 		public function LevelUpPerksModule() 
 		{
@@ -56,6 +59,15 @@ package classes.UIComponents.ContentModules
 			_moduleHeader.text = "[CLASS] ABILITIES";
 			this.addChild(_moduleHeader);
 			
+			_selectedPerkDetails = new PerkDetailsPane();
+			_selectedPerkDetails.x = 0;
+			_selectedPerkDetails.y = 550;
+			this.addChild(_selectedPerkDetails);
+		}
+		
+		public function setCreatureData(creature:Creature):void
+		{
+			_targetCreature = creature;
 		}
 	}
 
