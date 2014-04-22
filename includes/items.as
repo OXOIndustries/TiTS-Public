@@ -470,7 +470,6 @@ function useLoot(lootList:Array):void {
 	var loot:ItemSlotClass = lootList[0];
 	lootList.splice(0,1);
 	useItem(loot);
-	
 }
 function abandonLoot(lootList:Array):void {
 	output("You toss out " + lootList[0].description + ".");

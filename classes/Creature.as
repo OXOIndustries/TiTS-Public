@@ -1414,6 +1414,9 @@
 				case "tailgina":
 					buffer = tailVaginaDescript();
 					break;
+				case "milkNoun":
+					buffer = fluidNoun(milkType);
+					break;
 				case "milkDescript":
 				case "milk":
 					buffer = milkDescript();
@@ -1536,6 +1539,17 @@
 		}
 		public function inventorySlots(): int {
 			return 10;
+		}
+		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
+		{
+			if(inventory.length == 0) return false;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				if(inventory[x].shortName == arg.shortName) foundAmount++;
+			}
+			if(foundAmount >= amount) return true;
+			return false;
 		}
 		public function orgasm(): void {
 			lustRaw = 0;
@@ -7419,6 +7433,11 @@
 			if (row >= bRows()) return 0;
 			else if (row < 0) return 0;
 			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10)
+		}
+		public function nippleWidth(row: int = 0): Number {
+			if (row >= bRows()) return 0;
+			else if (row < 0) return 0;
+			else return nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10)
 		}
 		//New cock adjectives.  The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false) {

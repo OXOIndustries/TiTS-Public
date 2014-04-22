@@ -537,9 +537,12 @@ function appearance(target:Creature):void {
 				}
 			}
 			//Lactation and breast cup final!
-			if(target.breastRows[0].fullness < 75) {}
-			else if(target.breastRows[0].fullness < 100) output2("  Your " + target.breastDescript(0) + " are painful and sensitive from being so stuffed with milk.  You should release the pressure soon.");
-			else output2("  <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst!</b>");
+			if(target.milkFullness < 50) output2(" Your " + target.breastDescript(0) + " are producing [pc.milk] but nowhere near full at the moment.");
+			else if(target.milkFullness < 75) output2(" Your " + target.breastDescript(0) + " have a noticable amount of [pc.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 100) output2(" Your " + target.breastDescript(0) + " are fairly full of [pc.milk] and noticeably swollen.")
+			else if(target.milkFullness < 150) output2(" Your " + target.breastDescript(0) + " are sore and sensitive from being so stuffed with [pc.milk].  You should release the pressure soon.");
+			else if(target.milkFullness < 200) output2(" Your " + target.breastDescript(0) + " are painfully swollen with [pc.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+			else output2(" <b>Your " + target.breastDescript(0) + " are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
 			if(target.breastRows[0].breastRating() >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
 		}
 		//many rows
@@ -599,6 +602,14 @@ function appearance(target:Creature):void {
 				}
 			}
 			//Done with tits.  Move on.
+			//Lactation and breast cup final!
+			if(target.milkFullness < 50) output2(" Your [pc.fullChest] are producing [pc.milk] but nowhere near full at the moment.");
+			else if(target.milkFullness < 75) output2(" Your [pc.fullChest] have a noticable amount of [pc.milk] inside them now. Before long, they'll start swelling.");
+			else if(target.milkFullness < 100) output2(" Your [pc.fullChest] are fairly full of [pc.milk] and noticeably swollen.")
+			else if(target.milkFullness < 150) output2(" Your [pc.fullChest] are sore and sensitive from being so stuffed with [pc.milk].  You should release the pressure soon.");
+			else if(target.milkFullness < 200) output2(" Your [pc.fullChest] are painfully swollen with [pc.milk], so much that they're much bigger than normal. The longer they stay like this, the more your lactation will slow.");
+			else output2(" <b>Your [pc.fullChest] are so full that they feel about to burst! Spending time like this is going to slow your milk production.</b>");
+			if(target.breastRows[0].breastRating() >= 1) output2("  You could easily fill a " + target.breastCup(0) + " bra.");
 		}
 		//CROTCH STUFF!
 		if(target.hasCock() || target.hasVagina()) {
