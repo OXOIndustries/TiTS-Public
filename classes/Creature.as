@@ -1546,7 +1546,7 @@
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
 			{
-				if(inventory[x].shortName == arg.shortName) foundAmount++;
+				if(inventory[x].shortName == arg.shortName) foundAmount += inventory[x].quantity;;
 			}
 			if(foundAmount >= amount) return true;
 			return false;
