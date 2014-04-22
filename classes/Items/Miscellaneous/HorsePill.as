@@ -946,18 +946,18 @@
 				{
 					if (target.skinTypeUnlocked(GLOBAL.FUR))
 					{
+						target.skinType = GLOBAL.FUR;
+						if(rand(4) == 0) target.furColor = "chocolate";
+						else if(rand(3) == 0) target.furColor = "ivory";
+						else if(rand(2) == 0) target.furColor = "brown-dappled";
+						else target.furColor = "sable";
+						
 						//Scales
 						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.eventBuffer += "Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.";
 						//Chitin
 						else if(target.skinType == GLOBAL.CHITIN) kGAMECLASS.eventBuffer += "Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.";
 						//Skin or whatever!
 						else kGAMECLASS.eventBuffer += "Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>";
-						
-						target.skinType = GLOBAL.FUR;
-						if(rand(4) == 0) target.furColor = "chocolate";
-						else if(rand(3) == 0) target.furColor = "ivory";
-						else if(rand(2) == 0) target.furColor = "brown-dappled";
-						else target.furColor = "sable";
 					}
 					else
 					{
