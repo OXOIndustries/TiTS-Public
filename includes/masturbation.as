@@ -846,7 +846,7 @@ function milkturbation():void
 	output(", you grab your [pc.chest] and squeeze, rubbing gently towards your [pc.nipples] to coax yourself into letting down. The lactating flesh feels wonderful in your hands, and you shudder with barely suppressed delight at how good it feels to get yourself ready.");
 
 	//No Milk, Bra. Try but fail. Minor lust increase.
-	if(!pc.isLactating() || pc.milkFullness < 30) 
+	if(!pc.isLactating() || pc.milkQ() < 200) 
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
@@ -860,7 +860,7 @@ function milkturbation():void
 	{
 		milked = true;
 		//Holy shit yer tits are full intro
-		if(pc.milkFullness >= 200)
+		if(pc.milkFullness >= 150)
 		{
 			output("\n\n[pc.Milk] beads on your [pc.nippleColor] teats at the first touches, and just like that, your saturated bosom lets loose. An eager sigh slips through your [pc.lips] at the sudden release of pressure. You feel like a ");
 			if(pc.totalBreasts() == 2) output("pair");

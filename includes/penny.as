@@ -665,7 +665,7 @@ function defeatZilPair():void {
 		output(", and [pc.eachVagina] is moist and ready");
 	else
 		output(", and your [pc.asshole] tingles in anticipation");
-	output(". You’re in the process of considering scratching your itch when a satisfied from groan from Penny catches your attention.");
+	output(". You’re in the process of considering scratching your itch when a satisfied groan from Penny catches your attention.");
 	
 	output("\n\nPants slip up over the fox-girl’s delta just as you turn back to regard her, obscuring the thoroughly juiced panties from view. She catches you looking and smirks, mirth twinkling in her eyes. <i>“Ease up there, lover-" + pc.mf("boy","girl") + ". These are my prisoners and it’s time to interrogate them. One of us has to keep a clear head.”</i>  Penny wipes her stained fingers on her trousers as she steps between you and the zil, snapping her bra back into place as she goes.");
 	output("\n\n<i>“Hey, native jackasses!</i> Penny slaps one of the zil. <i>“Why’d you have to make things so goddamned hard on me?”</i>  Penny growls in the back of her throat. <i>“Does everyone out here on the rim spend all their time trying to fuck everyone else?”</i>");

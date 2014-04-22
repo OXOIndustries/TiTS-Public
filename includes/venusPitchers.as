@@ -457,9 +457,9 @@ function tentacleJamAftermath():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
 	output("You waken alone in the jungle with no sign of the venus pitcher that had her way with you.");
-	if(!pc.isLactating()) {
+	if(!pc.canLactate()) {
 		pc.boostLactation(10);
-		if(!pc.isLactating()) output(" Your breasts are no longer swollen or lactating at least, thank god.");
+		if(!pc.canLactate()) output(" Your breasts are no longer swollen or lactating at least, thank god.");
 		else output(" Your breasts seem to be producing milk on their own now....");
 	}
 	else 
@@ -467,11 +467,11 @@ function tentacleJamAftermath():void {
 		if(pc.milkRate < 15) 
 		{
 			pc.milkRate++;
-			output(" Your breasts seem a bit more full of [pc.milk] than before.");
+			output(" Your breasts seem to be churning, making [pc.milk] faster than before.");
 		}
 	}
 	output(" The playful plant must be sleeping or hiding underground.");
-	output(" Your [pc.gear] is laying in a slimy puddle on the ground next to you.");
+	output(" A slimy puddle on the ground holds your [pc.gear].");
 	pc.orgasm();
 	processTime(200+rand(60));
 	clearMenu();

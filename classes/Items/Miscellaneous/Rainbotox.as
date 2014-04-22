@@ -76,14 +76,12 @@
 					if(targets.indexOf(3) == -1) 
 					{
 						choices[choices.length] = 3;
-						choices[choices.length] = 3;
 					}
 					if(targets.indexOf(2) == -1) 
 					{
 						choices[choices.length] = 2;
-						choices[choices.length] = 2;
 					}
-					if(targets.indexOf(2) == -1 && target.hasHair()) choices[choices.length] = 1;
+					if(targets.indexOf(1) == -1 && target.hasHair()) choices[choices.length] = 1;
 					//Pick a random one to append
 					if(choices.length > 0) targets[targets.length] = choices[rand(choices.length)];
 				}

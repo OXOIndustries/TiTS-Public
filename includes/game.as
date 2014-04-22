@@ -71,10 +71,13 @@ public function mainGameMenu():void {
 	this.addButton(2,"Inventory",inventory);
 	//Other standard buttons
 
-	if(this.chars["PC"].lust() < 33) 
-		this.addDisabledButton(3,"Masturbate");
-	else 
+	if(this.chars["PC"].lust() < 33) {
+		if(pc.canLactate()) addButton(3,"Hand Milk",milkturbation);
+		else this.addDisabledButton(3,"Masturbate");
+	}
+	else {
 		this.addButton(3,"Masturbate",masturbateMenu);
+	}
 	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
 		this.addButton(4,"Rest",rest);
 	else 
@@ -603,7 +606,9 @@ function milkMultiplierGainNotificationCheck():void
 	}
 	//50
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 50")) {
-		eventBuffer += "\n\nA single droplet of [pc.milk] escapes from one of your [pc.nipples]{, staining your [pc.upperGarments] [pc.milkColor]} <b>You're lactating</b>, albeit slowly.";
+		eventBuffer += "\n\nA single droplet of [pc.milk] escapes from one of your [pc.nipples]";
+		if(pc.isChestGarbed()) eventBuffer += ", staining your [pc.upperGarments] [pc.milkColor]";
+		eventBuffer += ". <b>You're lactating</b>, albeit slowly.";
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 50");
 	}
 	//60
@@ -630,7 +635,7 @@ function milkMultiplierGainNotificationCheck():void
 	}
 	//100
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 100")) {
-		eventBuffer += "\n\nA wonderful, productive feeling swells in your [pc.fullChests], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity.";
+		eventBuffer += "\n\nA wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity.";
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 100");
 	}
 	//110
