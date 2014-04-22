@@ -194,6 +194,7 @@
 		public static const DRUG:int                                   = 10;
 		public static const CLOTHING:int                               = 11;
 		public static const ALL:int                                    = 12; //Used for pawn shops!
+		public static const GADGET:int 								   = 13;
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;

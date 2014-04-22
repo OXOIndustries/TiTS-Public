@@ -5,6 +5,7 @@
 	import classes.Items.Protection.DecentShield;
 	import classes.Items.Accessories.JungleLure;
 	import classes.Items.Accessories.JungleRepel;
+	import classes.Items.Miscellaneous.MagicMilker;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -55,6 +56,7 @@
 			this.inventory.push(new DecentShield());
 			this.inventory.push(new JungleLure());
 			this.inventory.push(new JungleRepel());
+			this.inventory.push(new MagicMilker());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
 			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
 			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
