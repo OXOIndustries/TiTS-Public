@@ -354,6 +354,11 @@
 			userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
 		}
 		
+		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
+		{
+			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+		}
+		
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			var comparisonString:String = null;
