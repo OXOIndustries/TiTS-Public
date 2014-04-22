@@ -497,6 +497,7 @@ function feedDatNaleenSumMilk():void {
 	output("\n\nYou don't know what to say to that, if only for a moment. A moment she takes to plant a quick kiss on your cheek and slithers off, leaving you to your own devices.\n\n");
 	processTime(40+rand(10));
 	pc.orgasm();
+	pc.milked(pc.milkFullness);
 	naleenSexed();
 	genericVictory();
 }

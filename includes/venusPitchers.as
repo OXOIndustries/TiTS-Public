@@ -290,8 +290,14 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	else if(!pc.hasFlatNipples())
 	{
 		output("\n\nYour [pc.nipples] are so hard that the feel of moisture running down them is something you're VERY keenly aware of. The suckling tubes latch onto them at once and start to pulsate, rippling up and down their lengths as they rhythmically tug and pull, trying to milk your poor nips dry.");
-		if(!pc.isLactating()) output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like fish out of water.");
-		else output(" Fortunately for this plant lady, you’ve got [pc.milk] to give. Your lactic cargo bursts free of your [pc.nipples] almost immediately, running unchecked in drips and dribbles that are quickly devoured, pulled away by the pleasant tentacles pulsating suction. You start moaning from the erotic sensation of being drained, and your nipples puff up, bigger and longer than before, spraying more leaky tit-treasure with every passing moment. The burgeoning mountain of [pc.milk] inside you seem to grow faster than it can be pulled from you. You briefly wonder if the juices are enhancing your ability to produce, but that thought vanishes under the sheer, erotic sensation of having your milk suckled out of you. If it weren’t for the restraining vines, you’d be flopping around like a fish out of water.");
+		if(!pc.isLactating()) {
+			output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like fish out of water.");
+		}
+		else 
+		{
+			output(" Fortunately for this plant lady, you’ve got [pc.milk] to give. Your lactic cargo bursts free of your [pc.nipples] almost immediately, running unchecked in drips and dribbles that are quickly devoured, pulled away by the pleasant tentacles pulsating suction. You start moaning from the erotic sensation of being drained, and your nipples puff up, bigger and longer than before, spraying more leaky tit-treasure with every passing moment. The burgeoning mountain of [pc.milk] inside you seem to grow faster than it can be pulled from you. You briefly wonder if the juices are enhancing your ability to produce, but that thought vanishes under the sheer, erotic sensation of having your milk suckled out of you. If it weren’t for the restraining vines, you’d be flopping around like a fish out of water.");
+			pc.milked(pc.milkFullness);
+		}
 	}
 	//{Flat nipples}
 	else output("\n\nThe hollow tips pull back after touching your [pc.nipples], arching up and swiveling to face each other in confusion. Your host's gentle voice 'hmmm's in consternation, reaching out to touch them with her own hands. She slowly strokes and circles the sensitive spots before nodding and retreating, directing her hollow tentacles to take over for her nimble fingers. Those hollow tubes latch on with a wet “schluck” and begin to suck, tugging gently on your flesh with gentle pulses, causing your [pc.nipples] to puff up slightly inside them and grow more sensitive. The constant, bewildering levels of sensation are enough to make you squirm and writhe in your restraints while your strange chest is tugged and teased in a fruitless attempt to stimulate, or perhaps milk, you.");
@@ -451,8 +457,19 @@ function tentacleJamAftermath():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
 	output("You waken alone in the jungle with no sign of the venus pitcher that had her way with you.");
-	if(!pc.isLactating()) output(" Your breasts are no longer swollen or lactating at least, thank god.");
-	else output(" Your breasts seem a bit more full of [pc.milk] than before.");
+	if(!pc.isLactating()) {
+		pc.boostLactation(10);
+		if(!pc.isLactating()) output(" Your breasts are no longer swollen or lactating at least, thank god.");
+		else output(" Your breasts seem to be producing milk on their own now....");
+	}
+	else 
+	{
+		if(pc.milkRate < 15) 
+		{
+			pc.milkRate++;
+			output(" Your breasts seem a bit more full of [pc.milk] than before.");
+		}
+	}
 	output(" The playful plant must be sleeping or hiding underground.");
 	output(" Your [pc.gear] is laying in a slimy puddle on the ground next to you.");
 	pc.orgasm();
@@ -1003,6 +1020,8 @@ function milkyElderPitcherPlantPlay():void {
 	
 	output("\n\nGiggling dopily as you come down, you backslide into oblivion, cooing out soft little “moos” when prompted by your mistress’s commands. Her words continue to shape you as you sleep, conditioning you to obey and feed her whenever possible, like a good little cow.");
 	//Boost lactational bits!
+	pc.milked(pc.milkFullness+50);
+	if(pc.milkRate < 15) pc.milkRate++;
 	pc.slowStatGain("libido",2);
 	pc.orgasm();
 	processTime(20+rand(10));

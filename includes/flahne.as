@@ -694,7 +694,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 	else {
 		output(", pinching and pulling on it with confident motions. She’s obviously no stranger to nipple play");
 		if(pc.hasNippleCocks()) output(", pulling on it until the concealed cock within erects, parting the sensitive skin to bob heavily upon her chest. Flahne wraps her gooey fingers around it begins to stroke it, smoothly polishing your rod to the tempo her tongue has set");
-		else if(pc.isLactating()) output(", and she soon has you squirting and dripping [pc.milk]");
+		else if(pc.canMilkSquirt()) output(", and she soon has you squirting and dripping [pc.milk]");
 	}
 	output(". She goes faster and faster with each passing second. At times, her tongue is pulled out to wrap around your [pc.clit], rolling in circles around the oversensitive organ until you’re seeing white and your eyes have rolled halfway back in their sockets.");
 	
@@ -719,7 +719,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 		if(pc.cumQ() >= 100) output(" Even after it looks like she’s wearing a spunky mask, you keep shooting, forming a massive puddle beneath her where it drips from her oversized tits.");
 	}
 	//{Milk}
-	else if(pc.isLactating()) {
+	else if(pc.canMilkSquirt()) {
 		output(" Your [pc.nipples] abruptly begin to ");
 		if(pc.lactationQ() <= 5) output("leak");
 		else if(pc.lactationQ() <= 250) output("drip");
@@ -737,7 +737,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 	output("\n\n<i>“Ahh, nothing like a snack and a cum.”</i>  She sets to cleaning up");
 	if(pc.wetness() >= 3 || (pc.hasCock() && pc.cumQ() >= 25)) output(", crawling around to lap every drop of fluid up");
 	output(". ");
-	if((pc.hasCock() && pc.cumQ() >= 25) || pc.hasNippleCocks() || pc.isLactating()) output("The fluid covering her slowly vanishes, absorbed directly through her skin-like membrane. ");
+	if((pc.hasCock() && pc.cumQ() >= 25) || pc.hasNippleCocks() || pc.canMilkSquirt()) output("The fluid covering her slowly vanishes, absorbed directly through her skin-like membrane. ");
 	output("You nervelessly flop off the chair and onto the floor, but Flahne comes right over, vacuuming up every bit of swampy sex-juice from your body. The gel-woman is happy to help you up, and before long, the two of you are giggling and smiling, flush-faced after having sex in such an unconventional place. Flahne’s juicy ass barely fits back into her skirt, but she manages somehow. She does need your help with her shirt, and you’re happy to help her with the buttons. Unsurprisingly, you can’t manage to button it any higher than it was when you first met. Flahne doesn’t mind.");
 	output("\n\nA tingle of fresh lust stirs in your well-fucked vagina as you handle your lover’s big bust, but you manage to suppress it for now. Flahne seems to be a flushed a little more orange than normal as well.");
 	//Pass 20 minutes
@@ -760,7 +760,7 @@ function flahneDeskMunchies():void {
 	flahneNameDisplay();
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
 	output("\n\n<i>“Getting a good look?”</i>  she teases. The buxom gel pushes her chest even farther, ");
-	if(!pc.isLactating()) {
+	if(!pc.canMilkSquirt()) {
 		if(pc.biggestTitSize() >= 1) output("almost touching yours");
 		else output("almost touching your [pc.chest]");
 	}
