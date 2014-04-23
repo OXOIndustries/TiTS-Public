@@ -152,6 +152,10 @@
 				{
 					kGAMECLASS.addGhostButton(slotNum - 1, "Slot " + slotNum, this.loadGameData, slotNum);
 				}
+				else
+				{
+					kGAMECLASS.addDisabledGhostButton(slotNum - 1, "Slot " + slotNum);
+				}
 			}
 			
 			kGAMECLASS.output2(displayMessage);

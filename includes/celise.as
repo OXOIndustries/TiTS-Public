@@ -707,6 +707,7 @@ function celiseSleezeLactation():void {
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");
 	//(If possible, have Celise retain the colour on her description screen for a day or two if it changed)
 	if(pc.lactationQ() > 5000) output("\n\nAs you turn away, her [pc.milkColor] flesh is slowly changing back to green. She'll be back to her old self in no time.");
+	pc.milked(pc.milkFullness);1
 	//reset lust, add lust
 	processTime(30+rand(10));
 	pc.lust(5+rand(5));
@@ -910,6 +911,7 @@ function getDrainedSexyTimes():void {
 			output(" Almost immediately, Celise detects that your [pc.nipples] are giving her something that she wants, and she begins suckling. A mouths blooms into existence above each nipple to drain all of the fluids that they can from your [pc.fullChest]. Even when the source runs dry");
 			if(pc.lactationQ() >= 5000) output("much later");
 			output(", the mouths continue to suck in a loving manner.");
+			pc.milked(pc.milkFullness);
 		}
 	} 
 	//your breasts are too small, or are non-existent. You get nipple play instead.
@@ -920,6 +922,7 @@ function getDrainedSexyTimes():void {
 		if (pc.isLactating())
 		{
 			output(" Of course, when you start lactating, that all changes. Back come the rather sharp pinches for a few minutes, trying to get all the milk out of your [pc.chest] she can get. When you protest her poor treatment, she does fortunately let up and switch to a more relaxed pace.");
+			pc.milked(pc.milkFullness);
 		}
 	}
 	//tail cock

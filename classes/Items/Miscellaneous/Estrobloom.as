@@ -210,7 +210,7 @@
 					}
 				}
 				//Shrink balls UNLESS balls have trap pouch tf.
-				if(target.balls > 0 && target.ballSizeRaw > 1 && target.ballSizeUnlocked(1) && !target.hasStatusEffect("Uniball"))
+				if(target.balls > 0 && target.ballSizeRaw > 1 && target.ballSizeUnlocked(1) && (!target.hasStatusEffect("Uniball") || target.ballSizeRaw > 2))
 				{
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
@@ -317,14 +317,26 @@
 					kGAMECLASS.output("\n\nSomething pinches your [pc.balls] through your [pc.sack], but you can't seem to see anything that could possibly be hurting you down there. That riddle is solved when ");
 					if(target.balls > 1) kGAMECLASS.output("they start");
 					else kGAMECLASS.output("it starts");
-					kGAMECLASS.output(" to diminish before your very eyes, losing mass while your [pc.sack] keeps tight around ");
-					if(target.balls == 1) kGAMECLASS.output("it");
-					else kGAMECLASS.output("them");
+					kGAMECLASS.output(" to diminish before your very eyes, losing mass while your [pc.sack] ");
+
+					if(target.hasStatusEffect("Uniball"))
+					{
+						kGAMECLASS.output("keeps tight around ");
+						if(target.balls == 1) kGAMECLASS.output("it");
+						else kGAMECLASS.output("them");
+					}
+					else
+					{
+						kGAMECLASS.output("keeps pace with ");
+						if(target.balls == 1) kGAMECLASS.output("it");
+						else kGAMECLASS.output("them");
+					}
 					target.ballSizeRaw -= 2 + rand(3);
 					if(target.ballSizeRaw > 10) target.ballSizeRaw -= 2 + rand(3);
 					if(target.ballSizeRaw > 25) target.ballSizeRaw -= 2 + rand(3);
 					if(target.ballSizeRaw > 35) target.ballSizeRaw -= 2 + rand(3);
-					kGAMECLASS.output(" like a vacuum-sealed bag. <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
+					if(target.hasStatusEffect("Uniball")) kGAMECLASS.output(" like a vacuum-sealed bag");
+					kGAMECLASS.output(". <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
 				}
 				else if(select == 9)
 				{

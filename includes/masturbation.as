@@ -1,7 +1,10 @@
-﻿// This is an unholy fix, but, fuck me it needs to be made for serialization purposes
+﻿import classes.Items.Miscellaneous.MilkBag;
+import classes.Items.Miscellaneous.MagicMilker;
+
+// This is an unholy fix, but, fuck me it needs to be made for serialization purposes
 public var fapsArray:Object = { "Random":randomFapSelect, "Porn&Celise":tailCockCeliseFaps, "Vagina":vaginalFap,
 								"Penis":singleDickFap, "Penises":multiCockFap, "TailFuck":cuntTailFapScene,
-								"Tailingus":tailingusFapReqsCuntTail };
+								"Tailingus":tailingusFapReqsCuntTail,"Hand Milk":milkturbation };
 
 function masturbateMenu():void {
 	this.clearMenu();
@@ -36,6 +39,18 @@ function masturbateMenu():void {
 		funcs[funcs.length] = multiCockFap;
 		args[args.length] = undefined;
 	}
+	if(pc.canLactate())
+	{
+		texts[texts.length] = "Hand Milk";
+		funcs[funcs.length] = milkturbation;
+		args[args.length] = undefined;
+		if(pc.hasItem(new MagicMilker(),1))
+		{
+			texts[texts.length] = "Magic Milker";
+			funcs[funcs.length] = joyCoMagicMilker7Sucks;
+			args[args.length] = undefined;
+		}
+	}
 	//*Tailingus
 	if(pc.hasCuntTail()) {
 		if(pc.hasCock() && !pc.isTaur()) {
@@ -69,6 +84,69 @@ function masturbateMenu():void {
 //THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
 //BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
 // -Heavy
+function smartFapSelect():void {
+	clearMenu();
+	if(pc.milkFullness >= 150 && pc.isLactating())
+	{
+		milkturbation();
+		return;
+	}
+	var texts:Array = new Array();
+	var funcs:Array = new Array();
+	var args:Array = new Array();
+	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
+		texts[texts.length] = "Porn&Celise";
+		funcs[funcs.length] = tailCockCeliseFaps;
+		args[args.length] = undefined;
+	}
+	if(pc.hasVagina()) {
+		texts[texts.length] = "Vaginal";
+		funcs[funcs.length] = vaginalFap;
+		args[args.length] = undefined;
+	}
+	if(pc.hasCock()) {
+		texts[texts.length] = "Penis";
+		funcs[funcs.length] = singleDickFap;
+		args[args.length] = undefined;
+	}
+	if(pc.cockTotal() >= 2) {
+		texts[texts.length] = "Penises";
+		funcs[funcs.length] = multiCockFap;
+		args[args.length] = undefined;
+	}
+	if(pc.isLactating() && pc.milkFullness >= 70)
+	{
+		texts[texts.length] = "Hand Milk";
+		funcs[funcs.length] = milkturbation;
+		args[args.length] = undefined;
+		if(pc.hasItem(new MagicMilker(),1))
+		{
+			texts[texts.length] = "Magic Milker";
+			funcs[funcs.length] = joyCoMagicMilker7Sucks;
+			args[args.length] = undefined;
+		}
+	}
+	//*Tailingus
+	if(pc.hasCuntTail()) {
+		if(pc.hasCock() && !pc.isTaur()) {
+			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
+				texts[texts.length] = "TailFuck";
+				funcs[funcs.length] = cuntTailFapScene;
+				args[args.length] = undefined;
+			}
+		}
+		texts[texts.length] = "Tailingus";
+		funcs[funcs.length] = tailingusFapReqsCuntTail;
+		args[args.length] = undefined;
+	}
+	var x:int = rand(funcs.length);
+	if(args[x] == undefined) funcs[x]();
+	else funcs[x](args[x]);
+}
+
+//THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
+//BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
+// -Heavy
 function randomFapSelect():void {
 	clearMenu();
 	var texts:Array = new Array();
@@ -93,6 +171,18 @@ function randomFapSelect():void {
 		texts[texts.length] = "Penises";
 		funcs[funcs.length] = multiCockFap;
 		args[args.length] = undefined;
+	}
+	if(pc.isLactating())
+	{
+		texts[texts.length] = "Hand Milk";
+		funcs[funcs.length] = milkturbation;
+		args[args.length] = undefined;
+		if(pc.hasItem(new MagicMilker(),1))
+		{
+			texts[texts.length] = "Magic Milker";
+			funcs[funcs.length] = joyCoMagicMilker7Sucks;
+			args[args.length] = undefined;
+		}
 	}
 	//*Tailingus
 	if(pc.hasCuntTail()) {
@@ -735,3 +825,477 @@ function cuntTailFapScene():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
+//Gettin' Ready
+function milkturbation():void
+{
+	clearOutput();
+	flags["LAST_FAP"] = "Hand Milk";
+	var milked:Boolean = false;
+	author("Fenfen MilkCo.");
+	//No top
+	if(!pc.isChestGarbed())
+	{
+		output("Going around uncovered certainly makes it easier to get ahold of your ");
+		if(pc.milkFullness >= 200) output("achy, leaking teats");
+		else if(pc.milkFullness >= 150) output("[pc.milkNoun]-bloated teats");
+		else if(pc.milkFullness >= 100) output("swollen nips");
+		else if(pc.milkFullness >= 75) output("engorged tips");
+		else if(pc.milkFullness < 25) output("sore nips");
+		else output("[pc.nipples]");
+		output(", something you're more than thankful for since you started lactating.");
+	}
+	//Clothed
+	else
+	{
+		output("Modesty is all well and good, but it's a pain in the ass to strip out of your [pc.upperGarments] just to drain your ");
+		if(pc.milkFullness >= 200) output("achy, leaking teats");
+		else if(pc.milkFullness >= 150) output("[pc.milkNoun]-bloated teats");
+		else if(pc.milkFullness >= 100) output("swollen nips");
+		else if(pc.milkFullness >= 75) output("engorged tips");
+		else if(pc.milkFullness < 25) output("sore nips");
+		else output("[pc.nipples]");
+		output(".");
+	}
+	//Merge
+	if(currentLocation != "SHIP INTERIOR")
+	{
+		output(" Looking around to ");
+		if(pc.libido() >= 75) output("make sure you've got an audience");
+		else output("make sure noone is looking too closely");
+	}
+	else output(" Setting comfortably in a quiet corner");
+	output(", you grab your [pc.chest] and squeeze, rubbing gently towards your [pc.nipples] to coax yourself into letting down. The lactating flesh feels wonderful in your hands, and you shudder with barely suppressed delight at how good it feels to get yourself ready.");
+
+	//No Milk, Bra. Try but fail. Minor lust increase.
+	if(!pc.isLactating() || pc.milkQ() < 200) 
+	{
+		output("\n\nYou work your chest with rhythmic, ");
+		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
+		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn't work though; you'll have to give your body time to build some up first.");
+		pc.lust(5+rand(3));
+		pc.boostLactation(1);
+	}
+	//Milk Success!
+	//Look at all these bitchin' options
+	else
+	{
+		milked = true;
+		//Holy shit yer tits are full intro
+		if(pc.milkFullness >= 150)
+		{
+			output("\n\n[pc.Milk] beads on your [pc.nippleColor] teats at the first touches, and just like that, your saturated bosom lets loose. An eager sigh slips through your [pc.lips] at the sudden release of pressure. You feel like a ");
+			if(pc.totalBreasts() == 2) output("pair");
+			else if(pc.totalBreasts() == 3) output("trio");
+			else if(pc.totalBreasts() == 4) output("quartet");
+			else output("army");
+			output(" of soda bottles that have been shaken and had the caps are unscrewed - so full of potential energy needing to leak and spray everywhere. That's precisely what you do: spray. Liberal amounts of [pc.milk] are rushing out in thin streams, but they're too fine to vent all of your pressure any time soon. You'll have to milk it all out by hand.");
+		}
+		//Fuck you needed some relief intro
+		else if(pc.milkFullness >= 150)
+		{
+			output("\n\nIt does not take more than a second or two to make your [pc.nipples] shine with their own moisture, but you keep working yourself all the same. [pc.MilkColor] droplets hang from the tips of your tingling teats. You catch them in your palms and use them to lubricate your hands’ motions across your [pc.fullChest]. Soon, thin streams are spraying out even when you aren't squeezing. Your chest is clearly overdue for a good milking.");
+		}
+		//It was about time you tended to these tits intro
+		else if(pc.milkFullness >= 90)
+		{
+			output("\n\nJudging by how full they feel, you've left them go untended a little too long. It doesn't take long to tap the swollen milk-tanks; [pc.milk] bubbles out into a few pendulous droplets as you tug. You smear it over your [pc.nipples] as you work them, tugging and pulling until thin streams of [pc.milkColor] are arcing through the air with every movement of your hands. There's no disguising your sigh of relief or the mess you're starting to make now that you've gotten started.");
+		}
+		//Normal milking intro
+		else if(pc.milkFullness >= 40)
+		{
+			output("\n\nPerhaps a minute passes; you can feel the liquid slowly moving inside of you, letting down towards your [pc.nipples]. You groan when the moisture hits your questing fingertips, lubricating their busy strokes across your bust. The [pc.milk] is soon leaking out enough to form droplets on the ends of your teats. You smile down at yourself, gloating over your own [pc.milkColor]-leaking chest as you get ready to drain your [pc.fullChest].");
+		}
+		//Gotta work pretty hard to start intro
+		else {
+			output("\n\nNo amount of tugging, squeezing, and pulling seems to be making any difference. You know you have some [pc.milk] inside you, not much but certainly enough to lactate. If only you could get it started! Groaning softly as your efforts turn your [pc.nipples], you keep at it with a persistence born of lactic desire. Dribbles of moisture trickle out eventually. To you, they're the texture of success, and you beam with enjoyment as you prepare to drain the rest.");
+		}
+		//Middle: Express a small amount of milk for a human
+		if(pc.milkQ() < 300)
+		{
+			output("\n\nThe [pc.milk] comes out in slow dribbles and occasional squirts, running down your fingers to you knuckles before dripping off. Deciding to have a little fun with it, you start milking yourself more vigorously, spraying thin streams of the stuff this way and that, " + pc.mf("chuckling","giggling") + " in delight.");
+			if(pc.biggestTitSize() >= 5) output(" You even lift a [pc.chest] to your [pc.lips] and suckle some of your bounty from the tap.");
+			else output(" You find yourself wishing your [pc.chest] were big enough to bring to your [pc.lips]. You'd like a taste, however brief.");
+		}
+		//Middle: Express a normal amount of milk for a human
+		else if(pc.milkQ() <= 1000)
+		{
+			output("\n\nThe [pc.milk] comes out in steady streams and squirts, running down your fingers ");
+			if(pc.biggestTitSize() >= 1) output("and [pc.chest] ");
+			output("before dripping off. There seems to be plenty of it there, enough to feed a baby for sure, and you tend to your dripping nipples with consistent, busy pressure, making [pc.milkColor] puddles form by your [pc.feet].");
+			if(pc.biggestTitSize() >= 5) output(" You lift one to your [pc.lips] and drink deeply of your bounty. It floods your cheeks with its [pc.milkFlavor] flavor, and you greedily gulp it down.");
+			else output(" You kind of wish you were big enough to drink it directly, just to sample it.");
+		}
+		//Middle: Express a large amount of milk for a human
+		else if(pc.milkQ() <= 1600)
+		{
+			output("\n\nThe [pc.milk] comes out under your attentions in heavy drops and thick streams, splattering wetly on the floor with each exaggerated pump of your hands. It runs over your arms in thick streams. There's no way to avoid making a mess when you're producing this much, so you go with it, letting the [pc.milkColor] fluid run down your chest and [pc.belly]. Most terran mothers couldn't come anywhere close to your lactic prowess unaided.");
+		}
+		//Middle: Express milk like a cow (low)
+		else if(pc.milkQ() <= 3000)
+		{
+			output("\n\nThe [pc.milk] forms into puddles between your [pc.feet] while you're still getting started, and as you settle into giving yourself a proper milking, they only get bigger. Streams of [pc.milkColor] spill down your forearms to your elbows before falling off in rivers. You groan in animal pleasure, unable to help yourself; there's just so much coming out of you, and it feels like such a relief. The human body wasn't made to gush like this, but isn't science wonderful?");
+			if(pc.biggestTitSize() >= 5) output(" Grabbing a teat, you lift it to your [pc.lips] for a sample and sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
+			else output(" Wishing you could lift a teat to your mouth to sample to, you tug with wild abandon, squeezing heavier and heavier flows from your body.");
+		}
+		//Middle: Express milk like a fucking cow
+		else if(pc.milkQ() <= 7000)
+		{
+			output("\n\nThe [pc.milk] almost immediately gathers into deep puddles around your [pc.feet] as you extract the wondrous fluid. Cows and cow-like creatures are your only competition when it comes to unbridled lactation, and even then, you're sure such base creatures could never appreciate the heavenly sensations of it rolling down the underside of your [pc.chest] and arms. ");
+			if(pc.biggestTitSize() >= 5) output("Lifting one of your udders to your [pc.lips], you gleefully gulp the [pc.milkFlavor] liquid down. You let it fall away after a few swallows with a satisfied 'ahhh,' sating both your hunger and your need to empty your chest.");
+			else output("Aiming down, you splatter more and more of your lactic cargo into the budding lake while wishing you could sample it yourself. If only your chest was bigger!");
+		}
+		//Middle: Express milk like a pent-up cow-girl
+		else if(pc.milkQ() <= 10000)
+		{
+			output("\n\nThe [pc.milk] is expressed with blatantly super-human speed, puddling around your [pc.feet] with such speed that it splatters all over your [pc.legs]. The highly-modified indentured servant-girls of Venusia and their legendary milk-making capabilities would find themselves in a run for their money if pitted against you. As the fluid spills over your arms and [pc.fullChest] in small, frothy rivers, you realize that you could probably retire to such a life right now, if you wanted.");
+			if(pc.biggestTitSize() >= 5) output(" You mull it over as you lift a heavy teat to your lips, inadvertently hosing yourself down while root, managing a tight seal just in time to receive a mouthful of [pc.milkFlavor] flavor. You guzzle for a little while to fill your belly and burp noisily when you finish, still pouring more into the lake.");
+		}
+		//Middle: Express milk like a milk machine in the cafeteria
+		else if(pc.milkQ() <= 20000)
+		{
+			output("\n\nThe [pc.milk] sprays out like soda from a fountain, foaming from its own incredible pressure as it escapes you. You ");
+			if(pc.legCount <= 1) output("shift position");
+			else output("spread your [pc.legs]");
+			output(" to stop the inevitable splatters from soaking your lower body as you express the stuff with machine-like efficiency, flooding the area with more [pc.milk] than an organic has any business creating. There's so much that you can't help but stifle a smile; there isn't a cow-girl or alien in the human that could keep up with you.");
+			if(pc.biggestTitSize() >= 5) output(" Lifting one weighty teat to your lips, you coat your chin and mouth immediately, getting a nice full draught of [pc.milkFlavor] to sample for your troubles.");
+		}
+		//Middle: Express milk like a someone in a furry's hyper story
+		else if(pc.milkQ() <= 100000)
+		{
+			output("\n\nThe [pc.milk] gushes out of you in ");
+			if(pc.totalNipples() == 2) output("twinned");
+			else output("matched");
+			output(" geysers, foaming and splattering from the liquid force, so powerful and yet so pleasant-feeling all at once. Holding onto your [pc.chest] for dear life, you give tentative, encouraging squeezes whenever your firehose-like lactation slows, instantly restarting the flagging [pc.milkColor] deluge. Your fingers sometimes find their way to your [pc.nipples] where they can playfully tug and caress the milk-slicked spouts, ignorant of the lake rising up around your [pc.legs]. Someone is going to have to clean all this up, but that's a problem for someone who isn't experience the incredible relief of squeezing out gallons of delicious [pc.milkNoun].");
+		}
+		//Middle: Express milk like you have debug mode on
+		else
+		{
+			output("\n\nThe [pc.milk] explodes out of you like matter from a quasar, the overwhelming lactic mass practically a singularity of liquid fulfillment. You barely have to touch your [pc.chest] to keep it going once it starts. Your [pc.nipples] quiver and pulse as they disgorge the torrential [pc.milkColor] rivers. So much flows from you that you're soon lifted on a tide of your own making, floating in blissful relaxation while you shower yourself with even more, listening to the gentle patter of your rain impacting your new-born lake. Tugging nonstop, your fingers do their best to keep the milk eruptions going, or perhaps you're merely reveling in the sensation, stimulating yourself to a plateau of gushing bliss.");
+		}
+		//Orgasm Odds
+		//10% per 400 mLs over 1L. So: 2L: 25%, 4L: 75%, etc
+		var orgasmOdds:int = 0;
+		if(pc.milkQ() >= 1000) orgasmOdds += (pc.milkQ() - 1000) / 40;
+		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
+		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
+		if(!orgasmed && orgasmOdds <= 20)
+		{
+			output("\n\nSlowing to a trickle as your supply exhausts itself, your " + possessive(pc.chestDesc()) + " flow finally gives up in spite of your relentless tugging. You've milked out as much as you can by hand, leaving yourself with sore, glossy nipples and a moistened front. Tending to such a sensitive area has left you with a certain residual warmth in your [pc.crotch]");
+			pc.lust(10+rand(4));
+			if(pc.lust() < pc.lustMax()) output(", but it's not unmanageable.");
+			else {
+				output(", and you're going to have to masturbate immediately if you want to have chance of thinking straight in the near future.");
+			}
+		}
+		//End: Got really close to orgasm but couldn't quite get there -> Immediately choose a random fap scene for next (had a chance above 20%)
+		else if(orgasmOdds > 20 && !orgasmed)
+		{
+			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you've let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it's a wonderfully satisfying ache that sends tingles of ");
+			if(pc.hasVagina()) output("crotch-dampening ");
+			else if(pc.hasCock()) output("cock-thickening ");
+			else if(pc.balls > 0) output("ball-teasing ");
+			output("warmth to your most sensitive areas. You grind your [pc.hips] and cry out and need as the last droplets of [pc.milk], leaving you unfulfilled and delirious with need.");
+			output("\n\n<b>You start masturbating before the thought even reaches your brain. You have to.</b>");
+			pc.lust(1000);
+		}
+		//End: Minor orgasm all up in
+		else if(pc.milkQ() <= 5000)
+		{
+			output("\n\nGroaning as the pleasure of it all wells up in your breast, you let your hands do as they will, mauling your [pc.chest] with eager squeezes, wringing every last drop of [pc.milk] out. Each tug on a sore teat is a percussive pleasure note against the backdrop of your chest's sensuous symphony, building inexorably towards what can only be a climax. You moan");
+			if(pc.hasPerk("Ditz Speech") || pc.hasPerk("Brute Speech")) output(" brainlessly");
+			output(" as the last few drops fall away, pinching harder, the pain and pleasure all mixing together to make you quiver with bliss. You sag back in the wake of it, a satisfied smile on your [pc.lips].");
+		}
+		//End: Mooing cow-gasm all up in
+		//This one is for cow-girls. Requires boobs.
+		else if(pc.race() == "cow")
+		{
+			output("\n\nMooing at the ecstatic release that only milking can provide, your body responds to the sensation of emptying its [pc.milk] reservoirs in the only way it knows: bombarding you with blissful tremors of bovine pleasure. You moo again, louder and firmer than the first time. The first time was an instinctual vocalization. This time, it's a intentional declaration of your very purpose. Your [pc.chest] and the pleasure are gifts given to you so that you can make as much [pc.milk] to share with the galaxy as possible. Your eyes roll back, ");
+			if(pc.hasVagina())
+			{
+				output("your [pc.vaginas] gush");
+				if(pc.totalVaginas() > 1) output("es");
+				output(", ");
+			}
+			if(pc.hasCock())
+			{
+				output("your [pc.cocks] squirt");
+				if(pc.cockTotal() > 1) output("s");
+				output(", ");
+			}
+			output("your [pc.legs] quiver, and your flow finally ends, leaving you messy but totally sated. You can't wait to lactate again.");
+		}
+		//End: Shuddering, milky messgasm - non-cow
+		else
+		{
+			output("\n\nTwitching whenever your fingers pinch particularly aggressively, you feel the pleasure rising up in inverse proportion to the amount of [pc.milk] left inside you. You maul your own [pc.chest], panting, your eyes rolling back as the ecstasy overwhelms your consciousness.");
+			if(pc.hasPerk("Ditz Speech")) output(" Airheaded giggles mix with your moans, declaring your status as a climax-addled milk-slut for the universe to see.");
+			output(" The oiled slickness of your [pc.chest] makes your gropes all the more pleasant. Your misused nerves fire spasmodically, feeding your immense boobgasm until you're panting and gasping, your whole body shuddering in wild convulsions.");
+			//Dick
+			if(pc.hasCock())
+			{
+				output("\n\n[pc.Cum] sprays from your [pc.cocks] in lewd waves, unable to hold back with how good you're feeling. The hands-free ejaculation seems to keep going as long as you can keep your breasts cumming");
+				if(pc.cumQ() <= 100) output(", though it rapidly diminishes to little more than dick-shakes and slow-leaking droplets.");
+				else output(", spurting quite a bit of [pc.cum] everywhere.");
+			}
+			//Pussy
+			if(pc.hasVagina())
+			{
+				output("\n\nDespite being entirely left out, your [pc.vaginas] reach");
+				if(pc.vaginaTotal() == 1) output("es its");
+				else output(" their");
+				output(" own pleasure plateau. [pc.girlCum] ");
+				if(pc.isSquirter())
+				{
+					if(pc.lowerUndergarment.shortName != "") output("floods your " + pc.lowerUndergarment.longName + " with sticky love");
+					else 
+					{
+						output("floods out of your uncovered entrance");
+						if(pc.totalVaginas() > 1) output("s");
+						output(", squirting sticky love into the air in glittering arcs");
+					}
+				}
+				else 
+				{
+					if(pc.lowerUndergarment.shortName != "") output("soaks your " + pc.lowerUndergarment.longName + " with fragrant feminine love");
+					else output("soaks your [pc.thighs] with your fragrant feminine love");	
+				}
+				output(". Your lower lips and [pc.clits] feel positively swollen as ");
+				if(pc.totalVaginas() > 1) output("each of ");
+				output("your canal");
+				if(pc.totalVaginas() > 1) output("s");
+				output(" squeezes around phantom intruders, climaxing back to back.");
+			}
+		}
+		if(flags["TIMES_HAND_MILKED_SELF"] == undefined) flags["TIMES_HAND_MILKED_SELF"] = 0;
+		flags["TIMES_HAND_MILKED_SELF"]++;
+		if(orgasmed) pc.orgasm();
+		pc.milked(pc.milkFullness);
+	}
+	processTime(10+rand(5));
+	//Force faps
+	if(!orgasmed && milked && pc.lust() >= pc.lustMax())
+	{
+		clearMenu();
+		addButton(0,"Next",smartFapSelect);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//JoyCo Magic-Milker 7
+//Tooltip:
+//"For expectant mammalian mothers or personal use. Please consult an expert in your species' physiology before inducing lactation."
+//The JoyCo Magic Milker 7 looks like little more than an apple-sized sphere with an activation stud and two tiny, clear cups hanging off of metallic tubes. It seems that in order to use it, one nearly needs to hold it near exposed nipples and press the button. The machine will do the rest, even reshaping the cups to accommodate multiple nipples or revealing more in the case of particularly boobilicious users.
+//Intro
+public function joyCoMagicMilker7Sucks():void
+{
+	clearOutput();
+	var milkProduced:Number = pc.milkQ();
+	output("Grabbing the Magic-Milker 7, a product of Joyco, in your hand, you can't help but marvel at the sleek, engineered surface. Two small, clear cups hang down from the glittering orb on umbilicals of polished metal, dangling limply, though you know they'll spring to life as soon as you push the button on the central ball.");
+	//No Top
+	if(!pc.isChestGarbed()) output("\n\nYour " + pc.allBreastsDescript() + " are already bare to the world, and your [pc.nipples] have grown hard and a little crinkly from the chill. You're not going to get any more ready for a quick, machine-assisted milking.");
+	//Has Top
+	else output("\n\nYou peel your [pc.upperGarments] away from your " + pc.allBreastsDescript() + " and shiver as your [pc.nipples] immediately perk up, crinkling in the chill air. There's nothing between you and a quick, machine-assisted milking now.");
+	//Intro Pt II
+	output("\n\nThe button audibly clicks under your thumb, and the miniaturized milker whirrs. Like someone waking from a long, the machine's tubes writhe and lift, barely coordinated. After a few seconds of this, they lift the cups up before you.");
+	if(pc.totalBreasts() > 1) output(" A hatch on the Magic-Milker's main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cups emerge to compliment the original pair, one for every single one of your breasts.");
+	output(" The ");
+	if(pc.totalBreasts() > 1) output("many ");
+	output("milkers arrange themselves so that they're hovering a scant few inches from your soon to be sucked nipples and pause as if considering their options or calculating something.");
+	output("\n\nYou sigh in anticipatory boredom; nothing slows the passage of time like waiting for a pleasant activity. In this came, time seems to be slogging through molasses, though only a few seconds have passed. The Magic-Milker 7 activates just as you're inhaling a breath of fresh air, the cups snapping forward");
+	if(pc.nipplesPerBreast > 1 || pc.nippleLength() > 1 || pc.nippleWidth() > 1.5) 
+	{
+		output(", expanding as they go to ");
+		if(pc.nipplesPerBreast > 1) output("handle the multiple nipples your breasts house");
+		else if(pc.nippleLength() > 1) output("handle the lengthy teats");
+		else output("fat areolae");
+	}
+	output(". They feel warm and wet on your [pc.skinFurScales] hissing softly as they suck down against you, forming a perfect seal.");
+	output("\n\nGasping, you let go of the machine and cup yourself, feeling your [pc.nipples] hardening from gentle, almost imperceptible vacuum. It's enough to support the weight of the whirring device as it activates, but the spherical device is only getting started. Rising to a higher-pitched whine, the milker smoothly cranks the suction up until your [pc.nipples] start swelling, immensely hard");
+	if(pc.canMilkSquirt()) output(" and already dripping [pc.milkNoun]");
+	else if(pc.milkFullness >= 50) output(" and glossy with barely-leaking [pc.milkNoun]");
+	output(".");
+	if(pc.totalBreasts() > 2) output(" With all the tubes hanging off your front, you find yourself wondering if this is what a cow feels like.");
+	output("\n\nThe pump pulls tighter and tighter until it hits some kind of predefined vacuum-ceiling. Then, it starts stuttering the tugs into a staccato rhythm designed to maximum lactic stimulation. ");
+	//No new PG
+	//Teats B' Dry Yo
+	if(milkProduced < 100)
+	{
+		output("It makes your pumped-up teats tingle more than a little as it tries to pull the [pc.milk] out of you, but nothing is coming. You sit there squirming for at least fifteen minutes, [pc.nipples] sweating only the barest residue of [pc.milk] before you're forced to give up and press the deactivation button.");
+		output("\n\nThe cups detach and shrink back to their passive size");
+		if(pc.totalBreasts() > 1) output(", the extra arms withdrawing into the main chamber");
+		output(", leaving your [pc.chest] bare and sore. A single, blue-tinged holographic display briefly emerges above the spent sphere. It reads:\n\n<b>0 mL.</b>");
+		//Pass 20m + rand(5)
+		processTime(20 + rand(5));
+		//Raise lust by 10-15
+		pc.lust(10+rand(5));
+		//BoostLactation by a tiny amount.
+		pc.boostLactation(1);
+		//Nipples Enlarged
+		if(pc.nippleWidthRatio < 2 && rand(5) == 0)
+		{
+			output("\n\n<b>All that nipple-work has left your areolae looking a little more prominent. They're wider for sure.</b>");
+			pc.nippleWidthRatio += .1;
+		}
+		//Nipples Lengthened
+		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		{
+			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
+			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;
+			if(pc.nippleLengthRatio < 2) pc.nippleLengthRatio += .2;
+			pc.nippleLengthRatio += .2;
+		}
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	else
+	{
+		//Lactation Success: quantity low
+		if(milkProduced < 300)
+		{
+			output("It makes your [pc.nipples] visibly swell and distend, quickly gaining a moist shine as your body begins to let down. Trickles of liquid leak out one lazy drop at a time, hanging on your engorged tips before falling into the cups to be whisked away by the machine.");
+			output("\n\nSome of the harder tugs earn tiny sprays of [pc.milk], but the streams are thin and insubstantial. Your [pc.fullChest] just aren't very full right now, ");
+			if(pc.biggestTitSize() >= 6) output("no matter how enormous they are or how they jiggle from the application of suction.");
+			else output("perhaps if they were larger you could hold more.");
+			output(" Still, it feels nice to be doing something, even if that something is leaning back and ensuring that every single drop of your body's [pc.milk]-supply is thoroughly extracted. A small [pc.milkColor] baggie dangles from the back of the Magic-Milker 7 to hold it all.");
+			pc.lust(10);
+		}
+		//Lactation Success: quantity decent
+		else if(milkProduced < 700)
+		{
+			output("It makes your [pc.nipples] swell with soon-to-be released [pc.milkNoun], turning shiny and glossy a second before they start drooling into the cups. Those trickles turn into a series of rapidly expressed droplets and occasional squirts.");
+			output("\n\nYou sigh at the feeling of release and watch the cups fill with the sloshing liquid. It foams slightly before the motor pulls it down the silver tubes to the main sphere. There, it's collected into a clear back that dangles from the back of the device, turning [pc.milkColor] as hangs against your [pc.belly], filling. You groan from the feeling of having your sensitive flesh so aggressively worked over and do the only thing you can in such a situation: enjoy every second of it.");
+			pc.lust(25);
+		}
+		//Lactation Success: quantity good
+		else if(milkProduced <= 1000)
+		{
+			output("It makes your [pc.nipples] swell up a moment before they finally let down, gushing steady streams [pc.milk], filling the cups while leaking drops from the tips. The flow seems steady and reliable, above terran norms by a decent amount.");
+			output("\n\nYou groan at the intensity of the sensations you're presented with, cupping your [pc.chest] behind the device and squeezing to coax out more, shuddering at each exquisite spurt of [pc.milk] only to have the next well up before you finish. Reveling in the act of giving and producing becomes your entire focus, and you it subsume you while the device whisks your body's juice away. On the back side of the milker, a [pc.milkColor] bag has emerged. It hangs against your [pc.belly], half full and only getting fuller.");
+			if(pc.hasCock()) output(" Down south, [pc.OneCock] has risen up from below, throbbing with hot desire and pressing against the bag, pinning it to your body while it expands.");
+			output(" You whimper and tremble. Being milked is too damned good.");
+			pc.lust(50+rand(10));
+		}
+		//Lactation Success: quantity superhuman
+		else if(milkProduced <= 4000)
+		{
+			output("It makes your [pc.nipples] swell obscenely just before the finally burst, spraying streams of [pc.milk] into the accommodating cups, flooding them in superhuman amounts of liquid. Honestly, it could cut the suction in half, and you would gush just as hard. Your [pc.chest] are better at giving than most charities.");
+			output("\n\nYou can't stifle a " + pc.mf("groan","moan") + ", nor do you want to. You lean back, chest quivering, and give your full attention to the fluttering suckles of your [pc.nipples], rubbing along the undersides of your [pc.chest] to encourage the fluid-filled organs to release even more. Sharp tingles of sensation rise up with every staccato suck, and even when they relax, your [pc.nipples] thrum with tingles of titty-pleasing pleasure. If everyone in the galaxy knew how good they can feel, you're certain you'd be surrounded in mooing milkmaids in no time.");
+			output("\n\nWatching the [pc.milkColor] fluid vanish into the silvery tubes, you marvel at the engineering might displayed by the Magic-Milker. Someone at JoyCo did their job very - you gasp at a particularly potent surge of ecstasy - very right. A heavy, [pc.milkNoun]-filled bag has fallen out of the far side of the device to rest against your [pc.belly], and it's rapidly filling with the [pc.milk] you're producing.");
+			if(pc.hasVagina() || pc.hasCock()) 
+			{
+				output(" You barely notice ");
+				if(pc.hasVagina())
+				{
+					output("the [pc.girlCum] dripping from ");
+					if(pc.legCount == 1) output("above your [pc.leg]");
+					else output("between your [pc.legs]");
+					if(pc.hasCock()) output(" or ");
+				}
+				if(pc.hasCock())
+				{
+					output("the turgid stiff");
+					if(pc.cockTotal() > 1) output("ies");
+					output(" pressing up against the underside of the bag, pulsating as ");
+					if(pc.cockTotal() == 1) output("it's");
+					else output("they're");
+					output(" wreathed in barely-contained [pc.milk]");
+				}
+				output(".");
+			}
+			pc.lust(100);
+		}
+		//Lactation Success: quantity good for everybody else
+		else
+		{
+			output("It makes your [pc.nipples] nearly double in size before they gush out [pc.milk] like cannon, spraying against the inside of the cups with enough force to nearly pop them off. The durable little milker hangs on for dear life in spite of your torrential lactation.");
+			output("\n\nThere's no way to describe the pleasure and relief that expressing so much [pc.milk] gives you. Instead, you slump down to the ground and moan, writhing in place, your hands feverishly groping and squeezing encouraging at your [pc.chest]. There gurgling sounds the Magic-Milker makes as it works are drowned out by your own vocalizations of pleasure, and your eyes roll back from bliss, not bothering to watch the [pc.milkColor] fluid drain away into a bag on the back-end of the device. Shocks of ecstatic pleasure jostle and jiggle your leaking teats as you stagger through one boobquaking orgasm after another, leaving your head fuzzy with pleasure-static and thoughts of giving your [pc.milk] again and again.");
+			pc.orgasm();
+			pc.orgasm();
+			pc.orgasm();
+		}
+		//Bag Pops Cause Yer Hyper Milky
+		if(milkProduced >= 3000)
+		{
+			output("The plastic bag expands and expands... and expands, every wrinkle on its surface vanishing while it's pulled tight by the voluminous fluid inside. It audibly creaks, and for a second, you think it's going to pop. Then, it springs a leak in the corner, gushing [pc.milk] out onto the ground. That leak is rapidly joined by another in the opposite corner, and then the whole bottom of the bag gives out, soaking you from the waist down in your own [pc.milkColor] liquid.");
+			output("\n\nOf course, the pump keeps going on as if nothing happened, and you're too into it to mind a little mess.");
+		}
+		//Liter readout for cool kids that don't look at explosions.
+		output("\n\nThe Magic-Milker 7 tugs your teats until they're inflamed and sore. Every single drop that you have to give has been taken");
+		if(milkProduced < 3000) output(" and bagged.");
+		else output(", bagged, and spilled.");
+		output(" Detecting this, it turns off and withdraws the cup-tipped arms from your [pc.fullChest]. A blue-tinged holographic appears above the orb, reading:\n\n<b>" + Math.round(milkProduced) + " mLs.</b>");
+		//Nipples Enlarged
+		if(pc.nippleWidthRatio < 2 && rand(5) == 0)
+		{
+			output("\n\n<b>All that nipple-work has left your areolae looking a little more prominent. They're wider for sure.</b>");
+			pc.nippleWidthRatio += .1;
+		}
+		//Nipples Lengthened
+		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		{
+			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
+			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;
+			if(pc.nippleLengthRatio < 2) pc.nippleLengthRatio += .2;
+			pc.nippleLengthRatio += .2;
+		}
+		processTime(20+rand(5));
+		//Get Milk Item
+		if(milkProduced < 3000)
+		{
+			var foundLootItems:Array = new Array();
+			foundLootItems[foundLootItems.length] = new MilkBag();
+			output("\n\nThe bag seals off, leaving you with a ");
+			if(milkProduced < 700) 
+			{
+				output("small");
+				foundLootItems[0].longName = "small bag of " + pc.fluidNoun(pc.milkType);
+				foundLootItems[0].basePrice = 2;
+				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Not Very Full";
+			}
+			else if(milkProduced <= 1400) 
+			{
+				output("medium");
+				foundLootItems[0].longName = "medium bag of " + pc.fluidNoun(pc.milkType);
+				foundLootItems[0].basePrice = 4;
+				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Somewhat Full";
+			}
+			else if(milkProduced <= 2100) 
+			{
+				output("large");
+				foundLootItems[0].longName = "large bag of " + pc.fluidNoun(pc.milkType);
+				foundLootItems[0].basePrice = 6;
+				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Mostly Full";
+			}
+			else 
+			{
+				output("dangerously full");
+				foundLootItems[0].longName = "dangerously full bag of " + pc.fluidNoun(pc.milkType);
+				foundLootItems[0].tooltip += "\n\n<b>Fullness:</b> Dangerously Full";
+				foundLootItems[0].basePrice = 10;
+			}
+			foundLootItems[0].description = "a " + foundLootItems[0].longName;
+			output(" bag of [pc.milk].  ");
+			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
+			//Set value and adjust descs
+			if(pc.milkType == GLOBAL.HONEY)
+			{
+				foundLootItems[0].basePrice *= 2;
+			}
+			itemScreen = mainGameMenu;
+			lootScreen = mainGameMenu;
+			useItemFunction = mainGameMenu;
+			//Start loot
+			itemCollect(foundLootItems);
+		}
+		else {
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+		}
+		pc.milked(pc.milkFullness);
+	}
+}

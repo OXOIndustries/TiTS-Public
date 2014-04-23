@@ -345,7 +345,7 @@ function dominantReahaAss():void {
 	output("\n\nYour [pc.asshole] clenches rhythmically as the strapon's rod passes across it, smearing its lube across the mouth of your tender hole. Biting your lip and digging your fingers into Reaha's big, soft tits, you rise to your full height, ass quivering over the trembling pole of latex cockmeat beneath you, lining up your decent. Slowly, ever so slowly, you kneel down onto the strapon, reclining back until the crown kisses the ring of your [pc.asshole], spearing you with a shock of cold hardness that sends lightning bolts of pleasure throughout your lusty body. The first inch is exquisite agony: your voice breaks into a high cry as the thick rod punches mercilessly through your sphincter's defenses, spreading your poor ass apart. Your muscles go wild around the intruding plastic member, trying desperately to repel the cock ramming through them, but utterly unable to best the thick glaze of lube spread across the tip.");
 	output("\n\nThe dildo slides into you excruciatingly slowly, making you moan louder with every inch that pushes past your faltering sphincter. ");
 	if(pc.hasCock()) {
-		output("<i>\"[pc.EachCock] bounces to alert as the toy grinds across the knot of your prostate, pushing hard against your masculine gland until you can feel cum bubbling through your vein");
+		output("[pc.EachCock] bounces to alert as the toy grinds across the knot of your prostate, pushing hard against your masculine gland until you can feel cum bubbling through your vein");
 		if(pc.cockTotal() > 1) output("s");
 		output(", surging toward your tip");
 		if(pc.cockTotal() > 1) output("s");

@@ -497,7 +497,10 @@ function loseToSexBotAndHaveADick():void
 
 	output("\n\n“<i>Is this good for you, insert name here?</i>” You make a hoarse grunt which could be construed as an affirmative, your attention entirely on the synthetic flesh you are buried in. “<i>I am glad. Now I can begin phase 2.</i>” You stare up at it blearily. It’s reaching towards your face, its finger pads glowing a pale blue. What does it mean by...? Its fingers touch your neck and instantly you seize up, what feels like every muscle in your body tightening up as hundreds of thousands of your nerve endings all flare at once. You cry out in pain, pleasure, horror, bewilderment, every emotion that could be elicited from being gently electrocuted by the woman riding you.");
 	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with its tiny suggestion of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
-	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it push and pull your cocks with the exact motion of its tight, gel pussies, surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
+	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it push and pull your [pc.cocks] with the exact motion of its tight, gel ");
+	if(pc.cockTotal() > 1) output("pussies");
+	else output("pussy");
+	output(", surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, succulent rhythm of its tight pussies as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
 	if(pc.skinType == GLOBAL.FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
@@ -863,6 +866,7 @@ function consentaclesVictoryWithDannySexBot():void
 		if(!pc.hasFuckableNipples()) output(" into the rubber vacuums suckling them");
 		else output(" everywhere");
 		output(".");
+		pc.milked();
 	}
 	if(pc.isSquirter()) output(" The sound of a small, localised downpour reaches your ears as your over-juiced pussy spurts itself silly around the thrusting phallus buried in it, liberally soaking the crouching android below you with your fragrant excitement.");
 

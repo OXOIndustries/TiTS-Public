@@ -1143,6 +1143,9 @@
 			var buffer: String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if (!arg2) arg2 = 0;
 			switch (desc) {
+				case "height":
+					buffer = height();
+					break;
 				case "gear":
 					buffer = gearDescript();
 					break;
@@ -1320,6 +1323,9 @@
 				case "chest":
 					buffer = chestDesc();
 					break;
+				case "breastCupSize":
+					buffer = breastCup(arg2);
+					break;
 				case "allChestDescript":
 				case "fullChest":
 					buffer = allChestDesc();
@@ -1407,6 +1413,9 @@
 				case "cuntTail":
 				case "tailgina":
 					buffer = tailVaginaDescript();
+					break;
+				case "milkNoun":
+					buffer = fluidNoun(milkType);
 					break;
 				case "milkDescript":
 				case "milk":
@@ -1530,6 +1539,17 @@
 		}
 		public function inventorySlots(): int {
 			return 10;
+		}
+		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
+		{
+			if(inventory.length == 0) return false;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				if(inventory[x].shortName == arg.shortName) foundAmount += inventory[x].quantity;;
+			}
+			if(foundAmount >= amount) return true;
+			return false;
 		}
 		public function orgasm(): void {
 			lustRaw = 0;
@@ -2475,117 +2495,120 @@
 				else return "prehensile tail";
 			}
 			//8 - goo shit
-			if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
+			else if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
 				if (select == 0) return "mound of goo";
 				else if (select == 1) return "gelatinous mound";
 				else if (select == 2) return "gooey base";
 				else if (select == 3) return "semi-solid mass";
 			}
 			//NORMAL CASES.
-			//Type 1/4 of the time.
-			if (this.rand(4) == 0 || forceType) {
-				select = this.rand(10);
-				if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
-					if (select <= 3) output += "equine";
-					else if (select <= 6) output += "horse-like";
-					else output += "hoof-capped";
-				} else if (legType == GLOBAL.BOVINE) {
-					if (select <= 3) output += "bovine";
-					else if (select <= 6) output += "cow-like";
-					else output += "hoof-capped";
-				} else if (legType == GLOBAL.CANINE) {
-					if (select <= 3) output += "canine";
-					else if (select <= 6) output += "dog-like";
-					else output += "paw-footed";
-				} else if (legType == GLOBAL.FELINE) {
-					if (select <= 3) output += "feline";
-					else if (select <= 6) output += "cat-like";
-					else output += "graceful";
-				} else if (legType == GLOBAL.VULPINE) {
-					if (select <= 3) output += "vulpine";
-					else if (select <= 6) output += "fox-like";
-					else output += "foxy";
-				} else if (legType == GLOBAL.BEE) {
-					if (select <= 3) output += "chitinous";
-					else if (select <= 5) output += "armored";
-					else if (select <= 7) output += "insect-like";
-					else output += "carapace-covered";
-				} else if (legType == GLOBAL.ARACHNID) {
-					if (select <= 3) output += "chitinous";
-					else if (select <= 5) output += "armored";
-					else if (select <= 7) output += "insect-like";
-					else output += "carapace-covered";
-				} else if (legType == GLOBAL.DRIDER) {
-					if (select <= 1) output += "chitinous";
-					else if (select <= 3) output += "armored";
-					else if (select <= 5) output += "insect-like";
-					else if (select <= 7) output += "carapace-covered";
-					else output += "pointed";
-				} else if (legType == GLOBAL.LAPINE) {
-					if (select <= 3) output += "lapine";
-					else if (select <= 6) output += "rabbit-like";
-					else output += "bunny";
-				} else if (legType == GLOBAL.LAPINE) {
-					if (select <= 3) output += "lapine";
-					else if (select <= 6) output += "rabbit-like";
-					else output += "bunny";
-				} else if (legType == GLOBAL.AVIAN) {
-					if (select <= 3) output += "avian";
-					else if (select <= 6) output += "bird-like";
-					else output += "harpy";
-				} else if (legType == GLOBAL.DRACONIC) {
-					if (select <= 3) output += "draconic";
-					else if (select <= 6) output += "dragon-like";
-					else output += "reptilian";
-				} else if (legType == GLOBAL.LIZAN) {
-					if (select <= 3) output += "lizan";
-					else if (select <= 6) output += "reptile-like";
-					else output += "reptilian";
-				} else if (legType == GLOBAL.DEMONIC) {
-					if (select <= 3) output += "demon-like";
-					else if (select <= 6) output += "demonic";
-					else output += "claw-footed";
-				} else if (legType == GLOBAL.GOOEY) {
-					if (select <= 2) output += "gooey";
-					else if (select <= 5) output += "semi-solid";
-					else if (select <= 7) output += "gelatinous";
-					else output += "jiggly";
-				} else if (legType == GLOBAL.KANGAROO) {
-					if (select <= 3) output += "kangaroo-like";
-					else if (select <= 5) output += "powerful";
-					else output += "'roo";
-				} else if (legType == GLOBAL.TANUKI) {
-					if (select <= 3) output += "tanuki-like";
-					else if (select <= 6) output += "dexterous";
-					else output += "nimble";
-				} else if (legType == GLOBAL.DEER) {
-					if (select <= 3) output += "deer-like";
-					else if (select <= 6) output += "hooved";
-					else output += "nimble";
-				}
-			}
-			//ADJECTIVE!
-			if (this.rand(3) == 0 || forceAdjective) {
-				if (legCount > 2 && this.rand(2) == 0) {
-					output += "numerous";
-				} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
-					output += "digitigrade";
-				} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
-					output += "plantigrade";
-				} else if (hasLegFlag(GLOBAL.SCALED)) {
-					output += "scaled";
-				} else if (hasLegFlag(GLOBAL.FURRED)) {
+			else
+			{
+				//Type 1/4 of the time.
+				if (this.rand(4) == 0 || forceType) {
 					select = this.rand(10);
-					if (select <= 3) output += "furry";
-					else if (select <= 6) output += "fuzzy";
-					else output += "fur-covered";
-				} else if (hasLegFlag(GLOBAL.TENDRIL)) {
-					output += "wiggling";
+					if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
+						if (select <= 3) output += "equine";
+						else if (select <= 6) output += "horse-like";
+						else output += "hoof-capped";
+					} else if (legType == GLOBAL.BOVINE) {
+						if (select <= 3) output += "bovine";
+						else if (select <= 6) output += "cow-like";
+						else output += "hoof-capped";
+					} else if (legType == GLOBAL.CANINE) {
+						if (select <= 3) output += "canine";
+						else if (select <= 6) output += "dog-like";
+						else output += "paw-footed";
+					} else if (legType == GLOBAL.FELINE) {
+						if (select <= 3) output += "feline";
+						else if (select <= 6) output += "cat-like";
+						else output += "graceful";
+					} else if (legType == GLOBAL.VULPINE) {
+						if (select <= 3) output += "vulpine";
+						else if (select <= 6) output += "fox-like";
+						else output += "foxy";
+					} else if (legType == GLOBAL.BEE) {
+						if (select <= 3) output += "chitinous";
+						else if (select <= 5) output += "armored";
+						else if (select <= 7) output += "insect-like";
+						else output += "carapace-covered";
+					} else if (legType == GLOBAL.ARACHNID) {
+						if (select <= 3) output += "chitinous";
+						else if (select <= 5) output += "armored";
+						else if (select <= 7) output += "insect-like";
+						else output += "carapace-covered";
+					} else if (legType == GLOBAL.DRIDER) {
+						if (select <= 1) output += "chitinous";
+						else if (select <= 3) output += "armored";
+						else if (select <= 5) output += "insect-like";
+						else if (select <= 7) output += "carapace-covered";
+						else output += "pointed";
+					} else if (legType == GLOBAL.LAPINE) {
+						if (select <= 3) output += "lapine";
+						else if (select <= 6) output += "rabbit-like";
+						else output += "bunny";
+					} else if (legType == GLOBAL.LAPINE) {
+						if (select <= 3) output += "lapine";
+						else if (select <= 6) output += "rabbit-like";
+						else output += "bunny";
+					} else if (legType == GLOBAL.AVIAN) {
+						if (select <= 3) output += "avian";
+						else if (select <= 6) output += "bird-like";
+						else output += "harpy";
+					} else if (legType == GLOBAL.DRACONIC) {
+						if (select <= 3) output += "draconic";
+						else if (select <= 6) output += "dragon-like";
+						else output += "reptilian";
+					} else if (legType == GLOBAL.LIZAN) {
+						if (select <= 3) output += "lizan";
+						else if (select <= 6) output += "reptile-like";
+						else output += "reptilian";
+					} else if (legType == GLOBAL.DEMONIC) {
+						if (select <= 3) output += "demon-like";
+						else if (select <= 6) output += "demonic";
+						else output += "claw-footed";
+					} else if (legType == GLOBAL.GOOEY) {
+						if (select <= 2) output += "gooey";
+						else if (select <= 5) output += "semi-solid";
+						else if (select <= 7) output += "gelatinous";
+						else output += "jiggly";
+					} else if (legType == GLOBAL.KANGAROO) {
+						if (select <= 3) output += "kangaroo-like";
+						else if (select <= 5) output += "powerful";
+						else output += "'roo";
+					} else if (legType == GLOBAL.TANUKI) {
+						if (select <= 3) output += "tanuki-like";
+						else if (select <= 6) output += "dexterous";
+						else output += "nimble";
+					} else if (legType == GLOBAL.DEER) {
+						if (select <= 3) output += "deer-like";
+						else if (select <= 6) output += "hooved";
+						else output += "nimble";
+					}
 				}
+				//ADJECTIVE!
+				else if (this.rand(3) == 0 || forceAdjective) {
+					if (legCount > 2 && this.rand(2) == 0) {
+						output += "numerous";
+					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+						output += "digitigrade";
+					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+						output += "plantigrade";
+					} else if (hasLegFlag(GLOBAL.SCALED)) {
+						output += "scaled";
+					} else if (hasLegFlag(GLOBAL.FURRED)) {
+						select = this.rand(10);
+						if (select <= 3) output += "furry";
+						else if (select <= 6) output += "fuzzy";
+						else output += "fur-covered";
+					} else if (hasLegFlag(GLOBAL.TENDRIL)) {
+						output += "wiggling";
+					}
+				}
+				//NOUN IT UP BITCHES!
+				if (output != "") output += " ";
+				output += "leg";
 			}
-			//NOUN IT UP BITCHES!
-			if (output != "") output += " ";
-			output += "leg";
 			return output;
 		}
 		public function footAdjectives(forceType: Boolean = false, forceAdjective: Boolean = false) {
@@ -2682,6 +2705,13 @@
 				}
 			}
 			return output;
+		}
+		public function height():String
+		{
+			var buffer:String = "";
+			buffer += Math.floor(tallness / 12) + " feet";
+			if(tallness % 12 != 0) buffer += " and " + tallness % 12 + " inches";
+			return buffer;
 		}
 		public function feet(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
@@ -4152,10 +4182,15 @@
 			//How many mLs produced?
 			var mLsGained:Number = 1.73 * milkRate/10 * minutes;
 			//Factor in current milkMultiplier
-			mLsGained *= (milkMultiplier - 50)/50;
+			mLsGained *= (milkMultiplier)/100;
 			//Great. Now figure out how much fullness that adds.
-			var fullnessDelta:Number = mLsGained / milkCapacity();
+			var fullnessDelta:Number = mLsGained / milkCapacity() * 100;
 			
+			//75% fullness notification
+			if(milkFullness < 75 && milkFullness + fullnessDelta >= 75) createStatusEffect("Pending Gain Milk Note: 75");
+			//100% notification!
+			if(milkFullness < 100 && milkFullness + fullnessDelta >= 100) createStatusEffect("Pending Gain Milk Note: 100");
+
 			//If we're going above 100.
 			if(fullnessDelta + milkFullness > 100)
 			{
@@ -4166,9 +4201,14 @@
 					milkFullness = 100;
 					fullnessDelta -= subHundredFullness;
 				}
+				//150%
+				if(milkFullness < 150 && milkFullness + fullnessDelta/2 >= 150) createStatusEffect("Pending Gain Milk Note: 150");
+				//200%
+				if(milkFullness < 200 && milkFullness + fullnessDelta/2 >= 200) createStatusEffect("Pending Gain Milk Note: 200");
 				//Grow at half rate since we're over 100
 				milkFullness += fullnessDelta/2;
 			}
+
 			//Not going above 100? Just add it
 			else milkFullness += fullnessDelta;
 
@@ -4178,6 +4218,7 @@
 				trace("ERROR: Flash sucks dicks at math and somehow got a negative milk fullness.");
 				milkFullness = 0;
 			}
+			trace("Breast milk produced: " + mLsGained + ", Fullness: " + milkFullness + " Total mLs Held: " + milkQ(99) + ", Max mLs: " + milkCapacity());
 			return mLsGained;
 		}
 		public function milkCapacity(arg:int = -1):Number
@@ -4203,46 +4244,134 @@
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else capacity = (400 + breastRows[arg].breastRating / 2 * 100) * milkStorageMultiplier;
+				else capacity = (400 + breastRows[arg].breastRatingRaw / 2 * 100) * milkStorageMultiplier;
 			}
 			return capacity;
 		}
-		public function milkQ():Number {
-			return lactationQ();
+		public function milkQ(arg:int = -1):Number {
+			return lactationQ(arg);
 		}
 		public function lactationQ(arg:int = -1): Number {
+			var total:Number = 0;
 			//So much easier now - just a quick lookup.
 			//Arg -1 = amount from biggest tits.
-			if(arg == -1) return milkFullness * milkCapacity();
+			if(arg == -1) return milkFullness/100 * milkCapacity();
 			//Arg 99 = amount from all tits
 			else if(arg == 99)
 			{
-				var total:Number = 0;
 				//Total it up!
 				for(var x:int = 0; x < breastRows.length; x++)
 				{
-					total += milkFullness * milkCapacity(x);
+					//trace("Row " + x + " mLs: " + (milkFullness * milkCapacity(x)));
+					total += milkFullness/100 * milkCapacity(x);
 				}
+				//trace("MilkQ total: " + total);
 				return total;
 			}
 			//Specific row
 			else
 			{
 				if(arg < 0 || arg >= breastRows.length) return 0;
-				else return milkFullness * milkCapacity(arg);
+				else return milkFullness/100 * milkCapacity(arg);
 			}
 			//Failsafe:
 			return 0;
 		}
+		public function boostLactation(amount:Number = 1):void
+		{
+			//Record this for tracking change
+			var originalMultiplier = milkMultiplier;
+			//If below 100...
+			if(milkMultiplier < 100) {
+				//If we cross 100 threshold, set to 100 & go for slow grow.
+				if(milkMultiplier + amount > 100) 
+				{
+					amount = 100 - milkMultiplier;
+					milkMultiplier = 100;
+				}
+				//Otherwise add it up and zero out amount.
+				else {
+					milkMultiplier += amount;
+					amount = 0;
+				}
+			}
+			//Milk multiplier is over 100... slow gro.
+			if(amount > 0)
+			{
+				if(milkMultiplier < 110) milkMultiplier += amount/5;
+				else if(milkMultiplier < 125) milkMultiplier += amount/10;
+			}
+			//Queue threshold notes!
+			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
+			if(originalMultiplier < 40 && milkMultiplier >= 40) createStatusEffect("Pending Gain MilkMultiplier Note: 40");
+			if(originalMultiplier < 50 && milkMultiplier >= 50) createStatusEffect("Pending Gain MilkMultiplier Note: 50");
+			if(originalMultiplier < 60 && milkMultiplier >= 60) createStatusEffect("Pending Gain MilkMultiplier Note: 60");
+			if(originalMultiplier < 70 && milkMultiplier >= 70) createStatusEffect("Pending Gain MilkMultiplier Note: 70");
+			if(originalMultiplier < 80 && milkMultiplier >= 80) createStatusEffect("Pending Gain MilkMultiplier Note: 80");
+			if(originalMultiplier < 90 && milkMultiplier >= 90) createStatusEffect("Pending Gain MilkMultiplier Note: 90");
+			if(originalMultiplier < 100 && milkMultiplier >= 100) createStatusEffect("Pending Gain MilkMultiplier Note: 100");
+			if(originalMultiplier < 110 && milkMultiplier >= 110) createStatusEffect("Pending Gain MilkMultiplier Note: 110");
+			if(originalMultiplier < 125 && milkMultiplier >= 125) createStatusEffect("Pending Gain MilkMultiplier Note: 125");
+		}
 		//PC has been milked for "amount" fullness.
 		public function milked(amount:Number = 50):Number
 		{
-			if(milkMultiplier < 100)
-			{
-				milkMultiplier +=  1 + Math.round(amount/50);
-			}
+			var x:int;
+			if(hasPerk("Milky")) amount *= 1.5;
+			//Boost lactation by a relevant amount
+			if(milkMultiplier < 125) boostLactation(1 + Math.round(amount/50));
+			//Actually reduce held milk
 			milkFullness -= amount;
+			//Set boob swelling to new appropriate tier
+			setBoobSwelling();
 			return milkFullness;
+		}
+		public function setBoobSwelling():void
+		{
+			var x:int;
+			//No swelling!
+			if(milkFullness < 75) 
+			{
+				//Reset swelling
+				for(x = 0; x < bRows(); x++)
+				{
+					breastRows[x].breastRatingLactationMod = 0;
+				}
+			}
+			//75 - 99
+			else if(milkFullness < 100)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 1.5;
+					else breastRows[x].breastRatingLactationMod = 1;
+				}
+			}
+			//100 - 149
+			else if(milkFullness < 150)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 2.5;
+					else breastRows[x].breastRatingLactationMod = 1.5;
+				}	
+			}
+			else if(milkFullness < 200)
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 3.5;
+					else breastRows[x].breastRatingLactationMod = 2;
+				}
+			}
+			else
+			{
+				for(x = 0; x < bRows(); x++)
+				{
+					if(breastRows[x].breastRatingRaw >= 5) breastRows[x].breastRatingLactationMod = 4.5;
+					else breastRows[x].breastRatingLactationMod = 3;
+				}
+			}
 		}
 		/*CoC-Tier old milk shits OVERHAUL MILK SYSTEM!
 		public function boostLactation(todo: Number): Number {
@@ -7305,6 +7434,11 @@
 			else if (row < 0) return 0;
 			else return nippleLengthRatio * .25 * ((10 + breastRows[row].breastRating()) / 10)
 		}
+		public function nippleWidth(row: int = 0): Number {
+			if (row >= bRows()) return 0;
+			else if (row < 0) return 0;
+			else return nippleWidthRatio * .5 * ((10 + breastRows[row].breastRating()) / 10)
+		}
 		//New cock adjectives.  The old one sucked dicks
 		public function nippleCockAdjective(plural: Boolean = false) {
 			var descript: String = "";
@@ -7821,7 +7955,7 @@
 				descript += breastSize(breastRows[rowNum].breastRating());
 				descripted = true;
 			}
-			if (milkRate > 1.5) {
+			if (isLactating() > 1.5) {
 				if (descripted) descript += ", ";
 				if (milkType == GLOBAL.MILK) {
 					temp = this.rand(4);

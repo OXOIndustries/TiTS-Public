@@ -414,6 +414,13 @@
 			_buttons[slot].setData(cap, func, arg, ttHeader, ttBody);
 		}
 		
+		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
+		{
+			if (slot > 14) return;
+			
+			_buttons[slot].setDisabledData(cap, ttHeader, ttBody);
+		}
+		
 		public function lastButton():int
 		{
 			for (var i:int = _buttonData.length - 1; i >= 0; i++)

@@ -10,6 +10,8 @@ import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
+import classes.Items.Accessories.JungleLure;
+import classes.Items.Accessories.JungleRepel;
 
 function hangarBonus():Boolean 
 {
@@ -112,6 +114,8 @@ function debugMenus():void
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
 	});
+	
+	addDisabledButton(5, "Disabled", "Disabled Button", "Testing tooltips for disabled buttons.");
 }
 
 function bountyBoardExtra():Boolean
@@ -159,7 +163,10 @@ Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 function jungleEncounterChances():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	if (debug)
 	{
@@ -174,7 +181,7 @@ function jungleEncounterChances():Boolean {
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 6 && rand(4) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(4) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -193,11 +200,14 @@ function jungleEncounterChances():Boolean {
 function jungleMiddleEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 5 && rand(3) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(3) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(3) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -213,6 +223,8 @@ function jungleMiddleEncounters():Boolean {
 		}
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
 		choices[choices.length] = encounterCuntSnakeOnJungleLand;
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event
@@ -254,7 +266,10 @@ function claimMhengaOxonium():void {
 function jungleDeepEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
-	else flags["JUNGLE_STEP"]++;
+	else {
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
 	
 	//in this room and da chick awake.
 	if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
@@ -280,7 +295,7 @@ function jungleDeepEncounters():Boolean {
 
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
-	if(flags["JUNGLE_STEP"] >= 5 && rand(2) == 0) {
+	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(2) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(2) == 0)) {
 		//Reset step counter
 		flags["JUNGLE_STEP"] = 0;
 		
@@ -300,7 +315,7 @@ function jungleDeepEncounters():Boolean {
 		}
 		choices[choices.length] = femzilEncounter;
 		choices[choices.length] = maleZilEncounter;
-		choices[choices.length] = encounterRegularTentaclePitcherYouGay;
+		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event
 		choices[rand(choices.length)]();
@@ -320,15 +335,21 @@ function rustPlainsEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
-		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		if(!debug)
+		{
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterHostileRaskvelFemale;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterASexBot;
+			choices[choices.length] = encounterDasGooGray;
+			choices[choices.length] = encounterDasGooGray;
+			choices[choices.length] = encounterDasGooGray;
+		}
 
 		//Run the event
 		choices[rand(choices.length)]();
@@ -341,6 +362,7 @@ function rustPlainsEncounters():Boolean {
 function anonsBarAddendums():void {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
+	ShellyBlurb();
 }
 
 function firstTimeOnTarkusBonus():Boolean

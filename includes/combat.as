@@ -1184,6 +1184,9 @@ function enemyAI(aggressor:Creature):void
 		case "gray goo":
 			grayGooAI();
 			break;
+		case "female lapinara":
+			lapinaraAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1239,6 +1242,10 @@ function victoryRouting():void
 	{
 		pcDefeatsGrayGooInTheNameOfLove();
 	}
+	else if(foes[0] is LapinaraFemale)
+	{
+		defeatDatLapinara();
+	}
 	else genericVictory();
 }
 
@@ -1288,6 +1295,10 @@ function defeatRouting():void
 	else if(foes[0] is GrayGoo)
 	{
 		loseToGrayGooRouter();
+	}
+	else if(foes[0] is LapinaraFemale)
+	{
+		loseToFemaleLapinara();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1467,6 +1478,9 @@ function startCombat(encounter:String):void
 			break;
 		case "Gray Goo":
 			chars["GRAYGOO"].prepForCombat();
+			break;
+		case "Lapinara Parasitic":
+			chars["LAPINARAFEMALE"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

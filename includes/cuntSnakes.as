@@ -562,7 +562,7 @@ function fuckACuntSnake():void {
 	output("\n\nThe all consuming heat of release explodes out of you in a river of [pc.cum]. You arch your back and ejaculate again and again, giving the snake exactly what it wants the way you want it.");
 	if(pc.cockTotal() > 1) output(" The rest of your [pc.cocks] fire uncaught streams out into the air, painting long lines on the ground while you feed the snake as much as it can milk from you.");
 	if(pc.hasDickNipples()) output(" Sprays of [pc.milk] spout from your [pc.nippleCocks] all over everything within a five foot radius in front of you.");
-	else if(pc.isLactating()) output(" Sprays of [pc.milk] launch out from your [pc.nipples] as you unintentionally begin to lactate, lost to your pleasure.");
+	else if(pc.canMilkSquirt()) output(" Sprays of [pc.milk] launch out from your [pc.nipples] as you unintentionally begin to lactate, lost to your pleasure.");
 	if(pc.hasVagina())
 	{
 		if(pc.isSquirter()) output(" Squirts");

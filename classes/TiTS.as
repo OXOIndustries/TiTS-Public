@@ -97,6 +97,8 @@
 		include "../includes/raskvelFemaleFight.as";
 		include "../includes/sexbots.as";
 		include "../includes/grayGoo.as";
+		include "../includes/lapinara.as";
+		include "../includes/shelly.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";
@@ -184,7 +186,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.20";
+			version = "0.02.23";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -325,11 +327,11 @@
 			
 			if (evt.currentTarget.arg == undefined)
 			{
-				evt.currentTarget.func();
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
 			}
 			else
 			{
-				evt.currentTarget.func(evt.currentTarget.arg);
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
 			updatePCStats();
@@ -350,6 +352,11 @@
 		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addDisabledButton(slot, cap, ttHeader, ttBody);
+		}
+		
+		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
+		{
+			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
 		}
 		
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -559,6 +566,11 @@
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.
 			// Case in point; Urtaquest-like "swapping" of the controllable character.
 			return chars["PC"];
+		}
+		public function get monster():*
+		{
+			if(foes.length == 0) return chars["PC"];
+			else return foes[0];
 		}
 
 		public function get celise():*

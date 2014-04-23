@@ -71,10 +71,13 @@ public function mainGameMenu():void {
 	this.addButton(2,"Inventory",inventory);
 	//Other standard buttons
 
-	if(this.chars["PC"].lust() < 33) 
-		this.addDisabledButton(3,"Masturbate");
-	else 
+	if(this.chars["PC"].lust() < 33) {
+		if(pc.canLactate()) addButton(3,"Hand Milk",milkturbation);
+		else this.addDisabledButton(3,"Masturbate");
+	}
+	else {
 		this.addButton(3,"Masturbate",masturbateMenu);
+	}
 	if(!this.rooms[this.currentLocation].hasFlag(GLOBAL.BED)) 
 		this.addButton(4,"Rest",rest);
 	else 
@@ -381,6 +384,13 @@ public function processTime(arg:int):void {
 	//Top off shields
 	this.chars["PC"].shieldsRaw = this.chars["PC"].shieldsMax();
 	
+	//milk is chunked out all at once due to lazies
+	if(arg > 0 && pc.canLactate()) 
+	{
+		pc.milkProduced(arg);
+		milkGainNotes();
+	}
+
 	//loop through every minute
 	while(arg > 0) {
 		//Check for shit that happens.
@@ -398,6 +408,8 @@ public function processTime(arg:int):void {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
 			}
+			//Lactation effect updates
+			lactationUpdateHourTick();
 			//Horse pill procs!
 			if(pc.hasStatusEffect("Horse Pill"))
 			{
@@ -472,8 +484,176 @@ public function processTime(arg:int):void {
 		}
 		arg--;
 	}
+	//Check to see if something changed in this department
+	milkMultiplierGainNotificationCheck();
+
 	updatePCStats();
 }
+
+//Notes about milk gain increases
+function milkGainNotes():void
+{
+	var x:int = 0;
+	//Cross 75% milk fullness +1 cup
+	//This doubles past F-cup
+	if(pc.hasStatusEffect("Pending Gain Milk Note: 75"))
+	{
+		//Bump size!
+		for(x = 0; x < pc.bRows(); x++)
+		{
+			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 1.5;
+			else pc.breastRows[x].breastRatingLactationMod = 1;
+		}
+		eventBuffer = "\n\nThere's no way you could miss how your [pc.fullChest] have swollen up with [pc.milk]. You figure it won't be long before they're completely full. It might be a good idea to milk them soon. <b>With all that extra weight, ";
+
+		if(pc.bRows() > 1) eventBuffer += "the top row is ";
+		else eventBuffer += "they're ";
+		eventBuffer += "currently [pc.breastCupSize]s";
+		if(pc.bRows() > 1) eventBuffer += ", and the others are similarly swollen";
+		eventBuffer += ".</b>";
+		pc.removeStatusEffect("Pending Gain Milk Note: 75");
+	}
+	//Cross 100% milk fullness + 1.5 cups
+	//This doubles past F-cup
+	if(pc.hasStatusEffect("Pending Gain Milk Note: 100"))
+	{
+		//Bump size!
+		for(x = 0; x < pc.bRows(); x++)
+		{
+			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 2.5;
+			else pc.breastRows[x].breastRatingLactationMod = 1.5;
+		}
+		eventBuffer += "\n\nYour [pc.fullChest] feel more than a little sore. They're totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They're totally full.</b>";
+		pc.removeStatusEffect("Pending Gain Milk Note: 100");
+	}
+	//Cross 150% milk fullness + 2 cups
+	//This doubles past F-cup
+	if(pc.hasStatusEffect("Pending Gain Milk Note: 150"))
+	{
+		//Bump size!
+		for(x = 0; x < pc.bRows(); x++)
+		{
+			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 3.5;
+			else pc.breastRows[x].breastRatingLactationMod = 2;
+		}
+		eventBuffer += "\n\nYour [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It's actually getting kind of painful to hold in all that liquid weight, and if you don't take care of it soon, a loss of production is likely. Right now, they're swollen up to [pc.breastCupSize]s.";
+		pc.removeStatusEffect("Pending Gain Milk Note: 150");
+	}
+	//Hit 200% milk fullness cap + 3 cups
+	//This doubles past F-cup
+	if(pc.hasStatusEffect("Pending Gain Milk Note: 200"))
+	{
+		//Bump size!
+		for(x = 0; x < pc.bRows(); x++)
+		{
+			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 4.5;
+			else pc.breastRows[x].breastRatingLactationMod = 3;
+		}
+		eventBuffer += "\n\nThe tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can't help but wish for relief or a cessation of your lactation, whichever comes first. <b>If you don't tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>";
+		pc.removeStatusEffect("Pending Gain Milk Note: 200");
+	}
+}
+
+function lactationUpdateHourTick():void
+{
+	//These are easy since they proc with time passage and can be added to event buffer.
+	//Milk Multiplier crosses a 10 point threshold while dropping
+	//Drops .5 an hour above 150 fullness. 1 above 200 fullness
+	//Milk Rate drops by .1 an hour above 200.
+	var originalMultiplier = pc.milkMultiplier;
+	if(pc.milkFullness >= 200) 
+	{
+		if(pc.hasPerk("Milky")) pc.milkMultiplier -= .2;
+		else pc.milkMultiplier -= 1;
+	}
+	else if(pc.milkFullness >= 150) 
+	{
+		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= .5;
+	}
+	//Drops a tiny amount if below 50.
+	if(pc.milkMultiplier < 50) {
+		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= 0.1;
+		else pc.milkMultiplier -= 0.02;
+	}
+	//90
+	if(pc.milkMultiplier >= 90 && originalMultiplier < 90) eventBuffer += "\n\nYou're pretty sure that your lactation is starting to slow down a little bit. If you don't start milking yourself, you'll eventually stop producing.";
+	//80
+	if(pc.milkMultiplier >= 80 && originalMultiplier < 80) eventBuffer += "\n\nLow level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won't for too much longer.";
+	//70
+	if(pc.milkMultiplier >= 70 && originalMultiplier < 70) eventBuffer += "\n\nYou're feeling pretty sore in your [pc.chest], but it's not getting that much worse. <b>You're pretty sure that you're lactating less as a result of the inattention to your chest.</b>";
+	//60	
+	if(pc.milkMultiplier >= 60 && originalMultiplier < 60) eventBuffer += "\n\nYour body's ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won't take long before you stop production entirely.";
+	//50
+	if(pc.milkMultiplier >= 50 && originalMultiplier < 50) {
+		for(var x:int = 0; x < pc.bRows(); x++)
+		{
+			pc.breastRows[x].breastRatingLactationMod = 0;
+		}
+		eventBuffer += "\n\nLike a switch has been flipped inside you, you feel your body's [pc.milk]-factories power down. <b>You've stopped lactating entirely.</b>";
+		if(pc.milkFullness >= 75) eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCup]s.";
+	}
+}
+
+//Milk Multiplier crosses a 10 point threshold from raising
+function milkMultiplierGainNotificationCheck():void
+{
+	//kGAMECLASS cheat to cheat these messages into the event buffer? Or pass event buffer as an argument? Regardless, seems the cleanest way to keep it from interrupting the scene it gets called in.
+	//30
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 30")) {
+		eventBuffer += "\n\nThe soreness in your [pc.nipples] is both persistent and pleasant in its own unique way. There's no disguising how it makes your [pc.chest] practically glow with warmth.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 30");
+	}
+	//40
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 40")) {
+		eventBuffer += "\n\nTingles run through your [pc.fullChest] every now and again. Your [pc.nipples] even feel moist. Perhaps you'll start lactating soon?";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 40");
+	}
+	//50
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 50")) {
+		eventBuffer += "\n\nA single droplet of [pc.milk] escapes from one of your [pc.nipples]";
+		if(pc.isChestGarbed()) eventBuffer += ", staining your [pc.upperGarments] [pc.milkColor]";
+		eventBuffer += ". <b>You're lactating</b>, albeit slowly.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 50");
+	}
+	//60
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 60")) {
+		eventBuffer += "\n\nJudging by the feelings in your [pc.fullChest], you can safely say that you're making [pc.milk] faster than before. Is that what ";
+		if(pc.hasPregnancy()) eventBuffer += "it feels like to be an expectant mother?";
+		else eventBuffer += "expectant mothers feel like?";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 60");
+	}
+	//70
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 70")) {
+		eventBuffer += "\n\nYou're pretty sure you're lactating even more now. As a matter of fact, a scan by your codex confirms it. Your body is producing a decent amount of milk, perhaps a little under half its maximum capability.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 70");
+	}
+	//80
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 80")) {
+		eventBuffer += "\n\nHeat suffuses your chest, just another indication that your [pc.fullChest] have passed a new threshold of productivity. You're definitely lactating harder.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 80");
+	}
+	//90
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 90")) {
+		eventBuffer += "\n\nThere's no doubt about how bountiful your [pc.fullChest] are feeling, swollen with potential just waiting to be milked out so that they can produce more. <b>You're getting close to having your body as trained for lactation as possible.</b>";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 90");
+	}
+	//100
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 100")) {
+		eventBuffer += "\n\nA wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 100");
+	}
+	//110
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 110")) {
+		eventBuffer += "\n\nSomehow, your body is adapting to all the milking its been put through, and your [pc.fullChest] feel more powerful and fecund than ever before. Your chest is a well-trained milking machine.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 110");
+	}
+	//125
+	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 125")) {
+		eventBuffer += "\n\nYour chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you'll have to grow your [pc.fullChest] bigger or turn science.";
+		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 125");
+	}
+}
+
 function badEnd():void {
 	output("\n\n<b>GAME OVER</b>\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();

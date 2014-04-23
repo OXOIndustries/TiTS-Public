@@ -933,6 +933,11 @@
 		{
 			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
+		
+		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
+		{
+			_buttonTray.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+		}
 
 		public function pushToBuffer():void 
 		{

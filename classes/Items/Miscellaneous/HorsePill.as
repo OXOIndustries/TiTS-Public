@@ -951,6 +951,7 @@
 						else if(rand(3) == 0) target.furColor = "ivory";
 						else if(rand(2) == 0) target.furColor = "brown-dappled";
 						else target.furColor = "sable";
+						
 						//Scales
 						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.eventBuffer += "Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.";
 						//Chitin
