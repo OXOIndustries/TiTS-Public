@@ -1,4 +1,4 @@
-﻿package classes {
+package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -1414,6 +1414,9 @@
 				case "tailgina":
 					buffer = tailVaginaDescript();
 					break;
+				case "oneTailgina":
+				case "oneTailCunt":
+					buffer = oneTailVaginaDescript();
 				case "milkNoun":
 					buffer = fluidNoun(milkType);
 					break;
@@ -1546,7 +1549,7 @@
 			var foundAmount:int = 0;
 			for(var x:int = 0; x < inventory.length; x++)
 			{
-				if(inventory[x].shortName == arg.shortName) foundAmount += inventory[x].quantity;;
+				if(inventory[x].shortName == arg.shortName) foundAmount += inventory[x].quantity;
 			}
 			if(foundAmount >= amount) return true;
 			return false;
@@ -1684,6 +1687,8 @@
 
 			var currPhys:int = physiqueRaw + physiqueMod;
 
+			if(hasStatusEffect("Trip")) currPhys -= 4;
+
 			if (currPhys > physiqueMax()) 
 			{
 				return physiqueMax();
@@ -1714,6 +1719,9 @@
 			}
 
 			var currReflexes:int = reflexesRaw + reflexesMod;
+
+			//Debuffs!
+			if(hasStatusEffect("Trip")) currReflexes -= 4;
 
 			if (currReflexes > reflexesMax())
 			{
@@ -1958,6 +1966,9 @@
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 4;
 			if (hasPerk("Attack Drone")) temp += level;
+
+			//Debuffs!
+			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
 			return temp;
 		}
 		public function sexiness(): Number {
@@ -6161,6 +6172,15 @@
 			else return assholeDescript();
 		}
 		//Vaginas + Descript
+		public function oneTailVaginaDescript():String
+		{
+			var buffer:String = "";
+			if(tailCount > 1) buffer += "one of ";
+			buffer += "your";
+			if(tailCount > 1) buffer += pluralize(tailVaginaDescript());
+			else buffer += tailVaginaDescript();
+			return buffer;
+		}
 		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			//Vars
 			var vag: String = "";

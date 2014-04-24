@@ -104,6 +104,7 @@ function combatMainMenu():void
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
+		if(pc.hasStatusEffect("Trip")) addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 	}
@@ -398,6 +399,15 @@ function stunRecover(target:Creature):void
 	}
 	processCombat();
 }
+
+function standUp():void
+{
+	clearOutput();
+	output("You climb up onto your [pc.feet].\n");
+	pc.removeStatusEffect("Trip");
+	processCombat();
+}
+
 function celiseMenu():void 
 {
 	this.clearMenu();
@@ -1187,6 +1197,9 @@ function enemyAI(aggressor:Creature):void
 		case "female lapinara":
 			lapinaraAI();
 			break;
+		case "sydian male":
+			sydianMaleAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1246,6 +1259,10 @@ function victoryRouting():void
 	{
 		defeatDatLapinara();
 	}
+	else if(foes[0] is SydianMale)
+	{
+		beatUpARustMonster();
+	}
 	else genericVictory();
 }
 
@@ -1299,6 +1316,10 @@ function defeatRouting():void
 	else if(foes[0] is LapinaraFemale)
 	{
 		loseToFemaleLapinara();
+	}
+	else if(foes[0] is SydianMale)
+	{
+		loseToSydianMaleRouter();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1481,6 +1502,9 @@ function startCombat(encounter:String):void
 			break;
 		case "Lapinara Parasitic":
 			chars["LAPINARAFEMALE"].prepForCombat();
+			break;
+		case "Sydian Male":
+			chars["SYDIANMALE"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

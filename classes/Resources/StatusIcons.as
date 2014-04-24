@@ -96,6 +96,7 @@ package classes.Resources
 		public static var Charmed:Class = StatusIcons.Icon_Charmed;
 		public static var Constrict:Class = StatusIcons.Icon_Constricted;
 		public static var DefenseUp:Class = StatusIcons.Icon_DefUp;
+		public static var DefenseDown:Class = StatusIcons.Icon_DefDown;
 		public static var Paralyze:Class = StatusIcons.Icon_Paralysis;
 		public static var Pill:Class = StatusIcons.Icon_DrugPill;
 		public static var Poison:Class = StatusIcons.Icon_Poison;

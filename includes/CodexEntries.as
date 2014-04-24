@@ -29,6 +29,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Raskvel",raskVelCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goo",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydian",sydianCodexEntry);
 }
 
 public function codexHomeFunction():void
@@ -60,6 +61,39 @@ public function codexHomeFunction():void
 	outputCodex("\n\nCODEX-12b ready for user input.");
 
 	userInterface.outputCodex();
+}
+
+public function sydianCodexEntry():void
+{
+	clearOutputCodex();
+	outputCodex(header("Sydian"));
+	outputCodex("<b>Name:</b> Sydian");
+	outputCodex("\n<b>Sexes:</b> Male and Female");
+	outputCodex("\n<b>Height:</b> 4'6\" to 5'6\" for females and 6'3\" to 7'1\" for males.");
+	outputCodex("\n<b>Weight:</b> 90 to 160 lbs for females and 200 to 320 lbs for males.");
+	outputCodex("\n<b>Hair:</b> Fluffy, exquisitely soft hair, ranging from earthy browns to vibrant greens and reds. Can change depending on the season and the sydian's hormones.");
+	outputCodex("\n<b>Tongue:</b> Able to extend up to six inches from the sydian's mouth, fully prehensile.");
+	outputCodex("\n<b>Eyes:</b> Insectoid, multi-faceted eyes. Typically black, but in rare cases it can have a greenish sheen to it.");
+	outputCodex("\n<b>Antennae:</b> A pair of 1' to 2' long prehensile antennae, covered in a downy fuzz.");
+	outputCodex("\n<b>Hands:</b> Three-fingered.");
+	outputCodex("\n<b>Tail:</b> Armored and tough, ending in a quartet of protrusions covered in the same fuzz that covers their antennae.\n\n");
+
+	outputCodex(blockHeader("Corrosive Secretions"));
+	output("Throughout the sydian's body are glands that secrete an incredibly corrosive chemical. While the glands are particularly concentrated in the antennae, they are found all over the sydian's body, coating their exoskeleton in a thin sheen of the chemical. It rusts, corrodes or otherwise dissolves most metallic matter. However, on most living creatures, the substance is absorbed into the skin, flushing it hot and increasing the victim's arousal, a particularly effective way of encouraging non-violent encounters. Sydian secretions also have a slight citrus flavor and aroma.\n\n");
+	outputCodex(blockHeader("Armor"));
+	outputCodex("Sydians are covered from head to toe in a tough, chitinous armor. The only unarmored sections of the sydian's body are their eyes, mouth, and the fluff around their antennae and tail. Even their genitals and breasts are armored with retractable plates, preventing any manner of unwanted sexual advances. Sydian exoskeletons tend to be brown or brass-colored.\n\n");
+	outputCodex(blockHeader("Habitat"));
+	outputCodex("Sydians live almost exclusively in the junkyard wastes of Tarkus. Since they can dissolve and consume almost any type of metal, they are perfectly suited to their environment. Some colonies of sydians are found in the more civilized sections of Tarkus, but due to their corrosive touch, it's difficult for them to find and fulfill a niche.\n\n");
+	outputCodex(blockHeader("Sexual Dimorphism"));
+	outputCodex("Male sydians tend to be larger and burlier than their female counterparts, with larger, stockier tails. However, the males' antennae tend to be smaller, rarely growing longer than 1'4\". Their larger size and weaker corrosive fluids means that most males rely more on brute strength, while the more agile females brave the wastes of Tarkus can manage to work with only their speed and sensuality.\n\n");
+	outputCodex(blockHeader("Genitals"));
+	outputCodex("Males have genital slits that contain penises somewhat larger than the human average (pre-genetic manipulation). Exact measurements have yet to be taken, but first-hand accounts claim length falls somewhere around nine to thirteen inches. Of course, first encounters do typically result in inflated estimates. Sydian penises are universally bright orange in color and covered in hundreds of tiny brushes that automatically flutter on contact, providing pleasurable sensations to the male and his partner. Their sexual fluids are silvery in color, though early tests show them nontoxic to at least 85% of life forms.\n\n");
+	outputCodex("Female rust monsters have similarly concealable genitalia. Their vaginas appear as little more than a simple slit at first glance, but when aroused or in heat, their outer lips are reported to bloom, opening slightly to ease penetration and exposing the vibrant orange coloration of their inner channel. They have a single clitoris just like many other galactic species.\n\n");
+	outputCodex(blockHeader("Reproduction"));
+	outputCodex("Sydians reproduce very similarly to humans. The males penetrate the females with their penis, ejaculate and potentially impregnate the female. Three months later, the female sydian lays a clutch of 3-12 eggs. Every six months or so, female sydians will enter into a sort of heat where they begin craving the lust-inducing chemicals produced by other sydians, though they do not specifically crave penetration. While in this heat, the females hair often turns a fiery orange, displaying her readiness to the rest of her village.\n\n");
+	outputCodex(blockHeader("Society"));
+	outputCodex("Sydian society is largely patriarchal. The males, much larger and more powerful, typically assume leadership roles in the villages and packs, while the females are used sent out as hunters. Some beta males look after and educate children and perform general manual labor, though others will roam the wastes alone, like lone wolves. Though cultivation is difficult for sydians, some tribes have learned to farm some rudimentary crops using stone tools.\n\nEarly communications have hinter that sydians are actually quite intelligent; early interactions have resulted in near unanimous praise for their wit, though their corrosive touch and tumultuous environment have conspired to keep them in a literal stone age. Most adult sydians have accepted this fact of life, and may even be thankful for it, some claiming technology to be holding people back from leading a happy life. A few have left Tarkus with specially tailored gloves, intent on discovering the wonders of the technology they previous consumed for sustenance.");
+	CodexManager.viewedEntry("Sydian");
 }
 
 public function lapinaraCodexEntry():void

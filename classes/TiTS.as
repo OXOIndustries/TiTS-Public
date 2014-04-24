@@ -99,6 +99,7 @@
 		include "../includes/grayGoo.as";
 		include "../includes/lapinara.as";
 		include "../includes/shelly.as";
+		include "../includes/sydianMale.as";
 		
 		include "../includes/levelUp.as";
 		include "../includes/debug.as";

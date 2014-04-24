@@ -141,6 +141,10 @@
 	{
 		chars["LAPINARAFEMALE"] = new classes.Characters.LapinaraFemale();
 	}
+	if (!justUpdate || (justUpdate && chars["SYDIANMALE"] == undefined))
+	{
+		chars["SYDIANMALE"] = new classes.Characters.SydianMale();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

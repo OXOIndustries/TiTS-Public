@@ -78,6 +78,7 @@
 		public static const PANDA:int 								   = 40;
 		public static const MIMBRANE:int							   = 41;
 		public static const RASKVEL:int 							   = 42;
+		public static const SYDIAN:int 								   = 43;
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
@@ -113,6 +114,8 @@
 		public static const GIRLCUM:int                                = 5;
 		public static const CUMSAP:int								   = 6;
 		public static const CHOCOLATE_MILK:int 						   = 7;
+		public static const STRAWBERRY_MILK:int 					   = 8;
+		public static const SYDIAN_CUM:int 							   = 9;
 
 		//DAMAGE TYPES
 		//Guns and blunt weapons
