@@ -2,6 +2,7 @@ package classes.GameData
 {
 	import adobe.utils.ProductManager;
 	import classes.Characters.PlayerCharacter;
+	import classes.Creature;
 	import classes.GameData.PerkData;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
@@ -50,7 +51,7 @@ package classes.GameData
 			var armorPiercing:PerkData = new PerkData();
 			armorPiercing.classLimit = GLOBAL.MERCENARY;
 			armorPiercing.levelLimit = 2;
-			armorPiercing.perkname = "Armor Piercing";
+			armorPiercing.perkName = "Armor Piercing";
 			armorPiercing.perkDescription = "Ranged attacks ignore the first few points of enemy defense.";
 			insertPerkData(armorPiercing);
 			
@@ -330,19 +331,19 @@ package classes.GameData
 			return _perkList.filter(availablePerksFilter);
 		}
 		
-		private function classFilter(item:PerkData, index:int = 0, vector:Vector.<PerkData>):Boolean
+		private function classFilter(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean
 		{
 			if (item.isClassLimited == true && item.classLimit == (kGAMECLASS.pc as PlayerCharacter).characterClass) return true;
 			return false;
 		}
 		
-		private function nonClassFilter(item:PerkData, index:int = 0, vector:Vector.<PerkData>):Boolean
+		private function nonClassFilter(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean
 		{
 			if (item.isClassLimited == false) return true;
 			return false;
 		}
 		
-		private function availablePerksFilter(item:PerkData, index:int = 0, vector:Vector.<PerkData>):Boolean
+		private function availablePerksFilter(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean
 		{
 			if (item.isLevelLimited == false) return true;
 			if (item.isLevelLimited == true && item.levelLimit <= (kGAMECLASS.pc as PlayerCharacter).level) return true;
@@ -352,6 +353,35 @@ package classes.GameData
 		private function insertPerkData(perkData:PerkData):void
 		{
 			_perkList.push(perkData);
+		}
+		
+		public function getPerksForLevel(perkData:Vector.<PerkData>, level:int):Vector.<PerkData>
+		{
+			return perkData.filter(function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean {
+				if ((item as PerkData).autoGained == true) return false;
+				if ((item as PerkData).levelLimit == level) return true;
+				return false;
+			});
+		}
+		
+		public function getAutoPerkForCreature(creature:Creature):PerkData
+		{			
+			var filterPerk:Vector.<PerkData> = _perkList.filter(function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean {
+				if ((item as PerkData).autoGained == true
+					&& (item as PerkData).levelLimit == creature.level
+					&& (item as PerkData).isClassLimited == true
+					&& (item as PerkData).classLimit == creature.characterClass) return true;
+					return false;
+			});
+			
+			if (filterPerk.length > 1) throw new Error("Found more than one potential autoperk, fuck.");
+			
+			if (filterPerk.length == 1) 
+			{
+				return filterPerk[0];
+			}
+			
+			return null;
 		}
 	}
 

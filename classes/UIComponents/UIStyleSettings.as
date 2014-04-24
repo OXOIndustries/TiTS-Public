@@ -447,7 +447,7 @@ package classes.UIComponents
 				UIStyleSettings._gLevelValueLabelText = new TextFormat();
 				UIStyleSettings._gLevelValueLabelText.size = 200;
 				UIStyleSettings._gLevelValueLabelText.color = 0xFFFFFF;
-				UIStyleSettings._gLevelValueLabelText.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelValueLabelText.align = TextFormatAlign.CENTER;
 				UIStyleSettings._gLevelValueLabelText.kerning = true;
 				UIStyleSettings._gLevelValueLabelText.leading = -5;
 				UIStyleSettings._gLevelValueLabelText.font = "Univers UltraCondensed";

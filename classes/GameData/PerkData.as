@@ -9,6 +9,14 @@ package classes.GameData
 	 */
 	public class PerkData 
 	{
+		// Static init some filler perk data objects for reasons
+		{
+			UNKNOWN	= new PerkData();
+			UNKNOWN.perkName = "UNAVAILABLE";
+		}
+		
+		public static var UNKNOWN:PerkData;
+		
 		// perkName == storageClass.storageName - this is how we're gonna tie the two halves together.
 		private var _perkName:String = "";
 		public function get perkName():String { return _perkName; }
@@ -38,14 +46,22 @@ package classes.GameData
 		public function get autoGained():Boolean { return _autoGained; }
 		public function set autoGained(v:Boolean):void { _autoGained = v; }
 		
-		// Is a class-specific perk
-		private var _classLimitedPerk:Boolean = false;
-		public function get isClassLimited():Boolean { return _classLimitedPerk; }
-		
 		// Class this perk is limited to
 		private var _classLimited:int = -1;
 		public function get classLimit():int { return _classLimited; }
-		public function set classLimit(v:int):void { _classLimited = v; if (v != -1) _classLimited = true; }
+		public function set classLimit(v:int):void { _classLimited = v; }
+		public function get isClassLimited():Boolean 
+		{ 
+			if (_classLimited == -1) 
+			{
+				return false; 
+			}
+			else 
+			{
+				return true; 
+			}
+		}
+		
 		
 		// Is a level-tiered perk
 		private var _levelLimitedPerk:Boolean = false;
@@ -65,17 +81,18 @@ package classes.GameData
 		public function getStorageName(slotNumber:int):String
 		{
 			if (slotNumber >= 0 && slotNumber <= 3) return _valueStorageNames[slotNumber];
+			else throw new Error("Array access out of bounds.");
 		}
 		
 		private var _valueStorageValues:Array = [0, 0, 0, 0];
-		public function setStorageValues(v1:Number = undefined, v2:Number = undefined, v3:Number = undefined, v4:Number = undefined):void
+		public function setStorageValues(v1:* = null, v2:* = null, v3:* = null, v4:* = null):void
 		{
-			if (v1 != undefined) _valueStorageValues[0] = v1;
-			if (v2 != undefined) _valueStorageValues[1] = v2;
-			if (v3 != undefined) _valueStorageValues[2] = v3;
-			if (v4 != undefined) _valueStorageValues[3] = v4;
+			if (v1 != null) _valueStorageValues[0] = v1;
+			if (v2 != null) _valueStorageValues[1] = v2;
+			if (v3 != null) _valueStorageValues[2] = v3;
+			if (v4 != null) _valueStorageValues[3] = v4;
 		}
-		public function getStorageValue(slotNumber:int):void
+		public function getStorageValue(slotNumber:int):String
 		{
 			return _valueStorageValues[slotNumber];
 		}
@@ -96,7 +113,11 @@ package classes.GameData
 				return true;
 			}
 		}
-		public function set isAccessable(v:Function):void { _limitedAccessFunctor = v; _limitedAccess = true; }
+		public function set accessFunction(v:Function):void 
+		{ 
+			_limitedAccessFunctor = v; 
+			_limitedAccess = true; 
+		}
 		
 		// Application Function -- "Complex" addition functions so we can kinda automate some of this shit a little
 		private var _applicationFunction:Function = null;
@@ -113,8 +134,6 @@ package classes.GameData
 				_valueStorageValues[2],
 				_valueStorageValues[3],
 				_perkDescription);
-				
-			kGAMECLASS.eventBuffer += "<b>" + _perkName + " gained!</b> - " + _perkDescription;
 		}
 		public function set applicationFunction(v:Function):void { _applicationFunction = v; }
 		

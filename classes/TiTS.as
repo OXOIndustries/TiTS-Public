@@ -1,6 +1,7 @@
 ﻿package classes
 {
 
+	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
 	import fl.transitions.Tween;
@@ -172,6 +173,10 @@
 
 		public var whatTheFuck:Sprite;
 		public var whatTheFuckToggleState:Boolean;
+		
+		// Game data
+		private var _perkDB:Perks;
+		public function get perkDB():Perks { return _perkDB; }
 
 		public function TiTS()
 		{
@@ -245,6 +250,7 @@
 			//pc = chars[0];
 
 			this.chars["PC"] = new PlayerCharacter();
+			_perkDB = new Perks();
 			
 			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}

@@ -18,6 +18,12 @@ package classes.UIComponents.ContentModuleComponents
 		private var _textBlock:Sprite;
 		private var _selectedPerkText:TextField;
 		
+		public function get selectedPerkName():String { return _selectedPerkName.text; }
+		public function set selectedPerkName(v:String):void { _selectedPerkName.text = v; }
+		
+		public function get selectedPerkText():String { return _selectedPerkText.text; }
+		public function set selectedPerkText(v:String) { _selectedPerkText.text = v; }
+		
 		public function PerkDetailsPane() 
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
@@ -69,7 +75,7 @@ package classes.UIComponents.ContentModuleComponents
 			_selectedPerkText.defaultTextFormat = UIStyleSettings.gSelectedPerkDescriptionTextFormat;
 			_selectedPerkText.x = 10;
 			_selectedPerkText.y = 50;
-			_selectedPerkText.height = 170;
+			_selectedPerkText.height = 140;
 			_selectedPerkText.width = 780;
 			_selectedPerkText.text = "DOOT DOOT HERE GOES WORDS TO DESCRIBE THE CURRENTLY SELECTED ABILITY.\n\nTHIS WAY WE DUN NEED A SHITLOAD OF TOOLTIPS OR SEPERATE SCREENS TO DISPLAY ALL OF THIS SHIT, IT CAN BE ONE SINGLE STATIC DISPLAY TO DO IT ALL.\n\nLOOKIT THAT, ISN'T IT GRAND?";
 			this.addChild(_selectedPerkText);

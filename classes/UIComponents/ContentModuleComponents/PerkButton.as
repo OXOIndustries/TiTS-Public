@@ -1,5 +1,7 @@
 package classes.UIComponents.ContentModuleComponents 
 {
+	import classes.Creature;
+	import classes.GameData.PerkData;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -13,6 +15,8 @@ package classes.UIComponents.ContentModuleComponents
 	public class PerkButton extends Sprite
 	{
 		private var _label:TextField;
+		private var _perkReference:PerkData;
+		public function get perkReference():PerkData { return _perkReference; }
 		
 		private var _highlight:Sprite;
 		private var _body:Sprite;
@@ -21,13 +25,6 @@ package classes.UIComponents.ContentModuleComponents
 		
 		public function PerkButton() 
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, init);
-		}
-		
-		private function init(e:Event):void
-		{
-			this.removeEventListener(Event.ADDED_TO_STAGE, init);
-			
 			this.Build();
 		}
 		
@@ -66,6 +63,8 @@ package classes.UIComponents.ContentModuleComponents
 			_label.mouseEnabled = false;
 			_label.mouseWheelEnabled = false;
 			this.addChild(_label);
+			
+			this.mouseChildren = false;
 		}
 		
 		private var _state:String = "";
@@ -79,6 +78,7 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
+			mouseEnabled = true;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonAvailableColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonWhiteColourTextFormat);
 			_state = STATE_AVAILABLE;
@@ -93,6 +93,7 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
+			mouseEnabled = false;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonUnavailableColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonBlueColourTextFormat);
 			_state = STATE_UNAVAILABLE;
@@ -107,8 +108,10 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
+			mouseEnabled = false;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonTakenColorTransform;
-			_label.setTextFormat(UIStyleSettings.pPerkButtonBlueColourTextFormat);
+			_label.setTextFormat(UIStyleSettings.gPerkButtonBlueColourTextFormat);
+			_state = STATE_TAKEN;
 		}
 		
 		public static const STATE_SELECTED:String = "selected";
@@ -120,6 +123,7 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = _ringMask;
 			}
 			
+			mouseEnabled = true;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonAvailableColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonWhiteColourTextFormat);
 			_state = STATE_SELECTED;
@@ -139,16 +143,22 @@ package classes.UIComponents.ContentModuleComponents
 		
 		public function get isTaken():Boolean
 		{
-			if (_stage == STATE_TAKEN) return true;
+			if (_state == STATE_TAKEN) return true;
 			return false;
 		}
 		
 		public function get isSelected():Boolean
 		{
-			if (_stage == STATE_SELECTED) return true;
+			if (_state == STATE_SELECTED) return true;
 			return false;
 		}
 		
+		public function setPerkData(perkData:PerkData):void
+		{
+			_label.text = perkData.perkName;
+			name = perkData.perkName;
+			_perkReference = perkData;
+		}
 	}
 
 }

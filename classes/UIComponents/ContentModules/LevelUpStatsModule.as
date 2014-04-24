@@ -124,6 +124,9 @@ package classes.UIComponents.ContentModules
 		{
 			trace("Showing levelup screen for " + tarCreature.short);
 			
+			// Update the level number
+			_levelValueText.text = String(tarCreature.level);
+			
 			// Make some buttons available
 			kGAMECLASS.userInterface.clearGhostMenu();
 			kGAMECLASS.userInterface.addGhostButton(14, "Back", kGAMECLASS.userInterface.showPrimaryOutput);
