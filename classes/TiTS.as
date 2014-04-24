@@ -1,6 +1,7 @@
 ﻿package classes
 {
 
+	import classes.GameData.Perks;
 	import classes.TiTS_Settings;
 	import classes.UIComponents.MainButton;
 	import fl.transitions.Tween;
@@ -101,7 +102,6 @@
 		include "../includes/shelly.as";
 		include "../includes/sydianMale.as";
 		
-		include "../includes/levelUp.as";
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
@@ -173,6 +173,10 @@
 
 		public var whatTheFuck:Sprite;
 		public var whatTheFuckToggleState:Boolean;
+		
+		// Game data
+		private var _perkDB:Perks;
+		public function get perkDB():Perks { return _perkDB; }
 
 		public function TiTS()
 		{
@@ -246,6 +250,7 @@
 			//pc = chars[0];
 
 			this.chars["PC"] = new PlayerCharacter();
+			_perkDB = new Perks();
 			
 			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
@@ -477,6 +482,22 @@
 			//addGhostButton(2, "Log", function():void { } );
 			//addGhostButton(3, "CHEEVOS", function():void { } );
 			addGhostButton(4, "Back", this.userInterface.showPrimaryOutput);
+		}
+		
+		public function levelUpHandler(e:Event = null):void
+		{
+			if (!this.userInterface.levelUpButton.isActive) return;
+			
+			if (!this.userInterface.levelUpButton.isHighlighted)
+			{
+				this.userInterface.showLevelUpStats(pc);
+				this.userInterface.levelUpButton.Glow();
+			}
+			else
+			{
+				this.userInterface.showPrimaryOutput();
+				this.userInterface.levelUpButton.DeGlow();
+			}
 		}
 		
 		public function spacebarKeyEvt():void

@@ -583,6 +583,11 @@
 		{
 			//Purge out the event buffer so people can't buy something, load, and then get it.
 			kGAMECLASS.eventQueue = new Array();
+			kGAMECLASS.eventBuffer = "";
+			
+			// If the PC has previously had the Level Up availability message, ensure the level up button is available for use.
+			if (kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] == 1) kGAMECLASS.userInterface.levelUpButton.Activate();
+			
 			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.showPrimaryOutput();
 			

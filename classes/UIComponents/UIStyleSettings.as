@@ -3,11 +3,13 @@ package classes.UIComponents
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
 	import flash.text.StyleSheet;
+	import flash.text.TextField;
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextFormatDisplay;
 	import flash.text.Font;
 	import flash.text.StyleSheet;
+	import flash.text.AntiAliasType;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -57,6 +59,29 @@ package classes.UIComponents
 			UIStyleSettings._gMapOutdoorRoomFlagColourTransform = null;
 			UIStyleSettings._gMapFallbackRoomColourTransform = null;
 			UIStyleSettings._gMapPCLocationRoomColourTransform = null;
+			UIStyleSettings._gHighlightColourTransform = null;
+			
+			UIStyleSettings._gLevelUpPointsBarNumber = null;
+			UIStyleSettings._gLevelUpPointsBarText = null;
+			UIStyleSettings._gLevelLabelText = null;
+			UIStyleSettings._gLevelValueLabelText = null;
+
+			UIStyleSettings._gLevelUpBarLightLabelFormatter = null;
+			UIStyleSettings._gLevelUpBarDarkLabelFormatter = null;
+
+			UIStyleSettings._gLevelUpBarValueLabelFormatter = null;
+			UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter = null;
+			UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter = null;
+
+			UIStyleSettings._gLevelUpBarMaxedColourTransform = null;
+			UIStyleSettings._gLevelUpBarChangeableColourTransform = null;
+			
+			UIStyleSettings._gPerkHeaderLabelTextFormat = null;
+			
+			UIStyleSettings._gSelectedPerkTextFormat = null;
+			UIStyleSettings._gSelectedPerkNameFormat = null;
+			
+			UIStyleSettings._gSelectedPerkDescriptionTextFormat = null;
 		}
 		
 		// TITS VALUES
@@ -65,6 +90,7 @@ package classes.UIComponents
 		public static var gHighlightColour:uint				= 0x8D31B0; // Fancy schmancy highlights (the purple)
 		public static var gMovementButtonColour:uint		= 0x84449B;
 		public static var gPurpleGlowColour:uint			= 0x84449B; // The glow colour for button highlights was slightly different. Here for documentation purposes
+		public static var gPaleColour:uint					= 0x53677b;
 		
 		// VALUES I PULLED OUTTA MY ASS THAT SOMEBODY WHO CAN ACTUALLY DO UI DESIGN SHOULD PROBABLY LOOK AT
 		public static var gStatusGoodColour:uint			= 0x0CD71C;
@@ -364,6 +390,248 @@ package classes.UIComponents
 			return UIStyleSettings._gCodexLinkFormatter;
 		}
 		
+		private static var _gLevelUpPointsBarNumber:TextFormat;
+		public static function get gLevelUpPointsBarNumber():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpPointsBarNumber == null)
+			{
+				UIStyleSettings._gLevelUpPointsBarNumber = new TextFormat();
+				UIStyleSettings._gLevelUpPointsBarNumber.size = 120;
+				UIStyleSettings._gLevelUpPointsBarNumber.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpPointsBarNumber.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelUpPointsBarNumber.kerning = false;
+				UIStyleSettings._gLevelUpPointsBarNumber.leading = -2;
+				UIStyleSettings._gLevelUpPointsBarNumber.letterSpacing = -15;
+				UIStyleSettings._gLevelUpPointsBarNumber.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpPointsBarNumber;
+		}
+		
+		private static var _gLevelUpPointsBarText:TextFormat;
+		public static function get gLevelUpPointsBarText():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpPointsBarText == null)
+			{
+				UIStyleSettings._gLevelUpPointsBarText = new TextFormat();
+				UIStyleSettings._gLevelUpPointsBarText.size = 40;
+				UIStyleSettings._gLevelUpPointsBarText.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpPointsBarText.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelUpPointsBarText.kerning = true;
+				UIStyleSettings._gLevelUpPointsBarText.leading = 0;
+				UIStyleSettings._gLevelUpPointsBarText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpPointsBarText;
+		}
+
+		private static var _gLevelLabelText:TextFormat;
+		public static function get gLevelLabelText():TextFormat
+		{
+			if (UIStyleSettings._gLevelLabelText == null)
+			{
+				UIStyleSettings._gLevelLabelText = new TextFormat();
+				UIStyleSettings._gLevelLabelText.size = 144;
+				UIStyleSettings._gLevelLabelText.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelLabelText.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelLabelText.kerning = true;
+				UIStyleSettings._gLevelLabelText.leading = 0;
+				UIStyleSettings._gLevelLabelText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelLabelText;
+		}
+
+		private static var _gLevelValueLabelText:TextFormat;
+		public static function get gLevelValueLabelText():TextFormat
+		{
+			if (UIStyleSettings._gLevelValueLabelText == null)
+			{
+				UIStyleSettings._gLevelValueLabelText = new TextFormat();
+				UIStyleSettings._gLevelValueLabelText.size = 200;
+				UIStyleSettings._gLevelValueLabelText.color = 0xFFFFFF;
+				UIStyleSettings._gLevelValueLabelText.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelValueLabelText.kerning = true;
+				UIStyleSettings._gLevelValueLabelText.leading = -5;
+				UIStyleSettings._gLevelValueLabelText.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelValueLabelText;
+		}
+
+		private static var _gLevelUpBarLightLabelFormatter:TextFormat;
+		public static function get gLevelUpBarLightLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarLightLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarLightLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.size = 65;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.color = UIStyleSettings.gBackgroundColour;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.leading = -1;
+				UIStyleSettings._gLevelUpBarLightLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpBarLightLabelFormatter;
+		}
+
+		private static var _gLevelUpBarDarkLabelFormatter:TextFormat;
+		public static function get gLevelUpBarDarkLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarDarkLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.size = 65;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.leading = -1;
+				UIStyleSettings._gLevelUpBarDarkLabelFormatter.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gLevelUpBarDarkLabelFormatter;
+		}
+
+		private static var _gLevelUpBarValueLabelFormatter:TextFormat;
+		public static function get gLevelUpBarValueLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarValueLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarValueLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.size = 56;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.align = TextFormatAlign.RIGHT;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.bold = true
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.leading = -2;
+				UIStyleSettings._gLevelUpBarValueLabelFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarValueLabelFormatter;
+		}
+
+		private static var _gLevelUpBarChangeableArrowButtonFormatter:TextFormat;
+		public static function get gLevelUpBarChangeableArrowButtonFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.size = 44;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.color = UIStyleSettings.gHighlightColour
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.bold = true;
+				UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarChangeableArrowButtonFormatter;
+		}
+
+		private static var _gLevelUpBarMaxedArrowButtonFormatter:TextFormat;
+		public static function get gLevelUpBarMaxedArrowButtonFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.size = 44;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.bold = true;
+				UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarMaxedArrowButtonFormatter;
+		}
+		
+		private static var _gPerkHeaderLabelTextFormat:TextFormat;
+		public static function get gPerkHeaderLabelTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkHeaderLabelTextFormat == null)
+			{
+				UIStyleSettings._gPerkHeaderLabelTextFormat = new TextFormat();
+				UIStyleSettings._gPerkHeaderLabelTextFormat.size = 72;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.kerning = true;
+				UIStyleSettings._gPerkHeaderLabelTextFormat.font = "Univers UltraCondensed";
+			}
+			return UIStyleSettings._gPerkHeaderLabelTextFormat;
+		}
+			
+		private static var _gSelectedPerkTextFormat:TextFormat;
+		public static function get gSelectedPerkTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkTextFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkTextFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkTextFormat.size = 32;
+				UIStyleSettings._gSelectedPerkTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gSelectedPerkTextFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkTextFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkTextFormat.bold = true;
+				UIStyleSettings._gSelectedPerkTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSelectedPerkTextFormat;
+		}
+		
+		private static var _gSelectedPerkNameFormat:TextFormat;
+		public static function get gSelectedPerkNameFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkNameFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkNameFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkNameFormat.size = 32;
+				UIStyleSettings._gSelectedPerkNameFormat.color = 0xFFFFFF;
+				UIStyleSettings._gSelectedPerkNameFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkNameFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkNameFormat.bold = true;
+				UIStyleSettings._gSelectedPerkNameFormat.font = "Lato"
+			}
+			return UIStyleSettings._gSelectedPerkNameFormat;
+		}
+		
+		private static var _gSelectedPerkDescriptionTextFormat:TextFormat;
+		public static function get gSelectedPerkDescriptionTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSelectedPerkDescriptionTextFormat == null)
+			{
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat = new TextFormat();
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.size = 18;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.color = 0xFFFFFF;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.align = TextFormatAlign.LEFT;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.kerning = true;
+				UIStyleSettings._gSelectedPerkDescriptionTextFormat.font = "Lato"
+			}
+			return UIStyleSettings._gSelectedPerkDescriptionTextFormat;
+		}
+		
+		private static var _gPerkButtonBlueColourTextFormat:TextFormat;
+		public static function get gPerkButtonBlueColourTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkButtonBlueColourTextFormat == null)
+			{
+				UIStyleSettings._gPerkButtonBlueColourTextFormat = new TextFormat();
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.size = 21;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.color = UIStyleSettings.gForegroundColour;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.leading = 0;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.kerning = true;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.bold = true;
+				UIStyleSettings._gPerkButtonBlueColourTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gPerkButtonBlueColourTextFormat;
+		}
+
+		private static var _gPerkButtonWhiteColourTextFormat:TextFormat;
+		public static function get gPerkButtonWhiteColourTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gPerkButtonWhiteColourTextFormat == null)
+			{
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat = new TextFormat();
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.size = 21;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.color = 0xFFFFFF;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.leading = 0;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.kerning = true;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.bold = true;
+				UIStyleSettings._gPerkButtonWhiteColourTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gPerkButtonWhiteColourTextFormat;
+		}
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter
@@ -438,6 +706,17 @@ package classes.UIComponents
 				UIStyleSettings._gForegroundColourTransform.color = UIStyleSettings.gForegroundColour;
 			}
 			return UIStyleSettings._gForegroundColourTransform;
+		}
+
+		private static var _gHighlightColourTransform:ColorTransform;
+		public static function get gHighlightColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gHighlightColourTransform == null)
+			{
+				UIStyleSettings._gHighlightColourTransform = new ColorTransform();
+				UIStyleSettings._gHighlightColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gHighlightColourTransform;
 		}
 		
 		private static var _gMovementButtonColourTransform:ColorTransform;
@@ -515,6 +794,61 @@ package classes.UIComponents
 				UIStyleSettings._gMapFallbackRoomColourTransform.color = UIStyleSettings.gFallbackRoomColour;
 			}
 			return UIStyleSettings._gMapFallbackRoomColourTransform;
+		}
+
+		private static var _gLevelUpBarMaxedColourTransform:ColorTransform;
+		public static function get gLevelUpBarMaxedColourTransform():ColorTransform
+		{
+			if (UIStyleSettings._gLevelUpBarMaxedColourTransform == null)
+			{
+				UIStyleSettings._gLevelUpBarMaxedColourTransform = new ColorTransform();
+				UIStyleSettings._gLevelUpBarMaxedColourTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gLevelUpBarMaxedColourTransform;
+		}
+
+		private static var _gLevelUpBarChangeableColourTransform:ColorTransform;
+		public static function get gLevelUpBarChangeableColourTransform():ColorTransform
+		{						
+			if (UIStyleSettings._gLevelUpBarChangeableColourTransform == null)
+			{
+				UIStyleSettings._gLevelUpBarChangeableColourTransform = new ColorTransform();
+				UIStyleSettings._gLevelUpBarChangeableColourTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gLevelUpBarChangeableColourTransform;
+		}
+		
+		private static var _gPerkButtonAvailableColorTransform:ColorTransform;
+		public static function get gPerkButtonAvailableColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonAvailableColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonAvailableColorTransform = new ColorTransform();
+				UIStyleSettings._gPerkButtonAvailableColorTransform.color = UIStyleSettings.gForegroundColour;
+			}
+			return UIStyleSettings._gPerkButtonAvailableColorTransform;
+		}
+		
+		private static var _gPerkButtonUnavailableColorTransform:ColorTransform;
+		public static function get gPerkButtonUnavailableColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonUnavailableColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonUnavailableColorTransform = new ColorTransform();
+				UIStyleSettings._gPerkButtonUnavailableColorTransform.color = UIStyleSettings.gPaleColour;
+			}
+			return UIStyleSettings._gPerkButtonUnavailableColorTransform;
+		}
+		
+		private static var _gPerkButtonTakenColorTransform:ColorTransform;
+		public static function get gPerkButtonTakenColorTransform():ColorTransform
+		{
+			if (UIStyleSettings._gPerkButtonTakenColorTransform == null)
+			{
+				UIStyleSettings._gPerkButtonTakenColorTransform = new ColorTransform;
+				UIStyleSettings._gPerkButtonTakenColorTransform.color = UIStyleSettings.gHighlightColour;
+			}
+			return UIStyleSettings._gPerkButtonTakenColorTransform;
 		}
 		
 		// CSS Style Sheet to apply to "large" text blocks
@@ -608,6 +942,31 @@ package classes.UIComponents
 				UIStyleSettings._gMainTextCSSStyleSheet.setStyle(".active", activeCodexEntry);
 			}
 			return UIStyleSettings._gMainTextCSSStyleSheet;
+		}
+		
+		// Util methods
+		public static function cfgLabel(obj:TextField):void
+		{
+			obj.border = false;
+			obj.background = false;
+			obj.multiline = false;
+			obj.wordWrap = false;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.mouseEnabled = false;
+			obj.mouseWheelEnabled = false;
+		}
+		
+		public static function cfgTextBlock(obj:TextField):void
+		{
+			obj.border = false;
+			obj.background = false;
+			obj.multiline = true;
+			obj.wordWrap = true;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.mouseEnabled = true;
+			obj.mouseWheelEnabled = true;
 		}
 	}
 

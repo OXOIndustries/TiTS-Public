@@ -175,22 +175,26 @@ function rest():void {
 function sleep(outputs:Boolean = true):void {
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
+	
 	var minutes:int = 420 + rand(80) + 1
+	
 	if(outputs) 
 	{
 		clearOutput();
-		if ((pc.XPRaw >= pc.XPMax() && pc.level < 5) || (flags["LEVEL_UP_POINTS"] != undefined && flags["LEVEL_UP_POINTS"] != 0)) 
+		
+		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 5 && flags["LEVEL_UP_AVAILABLE"] == undefined)
 		{
-			if (flags["SKIP_ALLOCATION"] == undefined)
-			{
-				levelUp();
-				return;
-			}
-			else
-			{
-				flags["SKIP_ALLOCATION"] = undefined;
-			}
+			flags["LEVEL_UP_AVAILABLE"] = 1;
+			pc.level++;
+			pc.XPRaw = 0;
+			pc.maxOutHP();
+			
+			// Enable the button
+			userInterface.levelUpButton.Activate();
+			
+			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
+		
 		//CELISE NIGHT TIME BEDTIMEZ
 		if(celiseIsCrew())
 		{

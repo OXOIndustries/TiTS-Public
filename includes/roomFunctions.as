@@ -113,9 +113,11 @@ function debugMenus():void
 	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
-	});
+	}, undefined, "Cashmoney", "Sauce says you are TURRIBLE.");
 	
-	addDisabledButton(5, "Disabled", "Disabled Button", "Testing tooltips for disabled buttons.");
+	addButton(5, "XP", function():void {
+		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
+	});
 }
 
 function bountyBoardExtra():Boolean

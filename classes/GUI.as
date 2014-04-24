@@ -7,6 +7,7 @@
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModules.GameTextModule;
+	import classes.UIComponents.ContentModules.LevelUpPerksModule;
 	import classes.UIComponents.ContentModules.MainMenuModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
@@ -43,6 +44,8 @@
 	import classes.GameData.TooltipManager;
 	import classes.UIComponents.UIStyleSettings;
 	import classes.UIComponents.ContentModules.CodexModule;
+	import classes.UIComponents.ContentModuleComponents.LevelUpStatBar;
+	import classes.UIComponents.ContentModules.LevelUpStatsModule;
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
@@ -141,6 +144,7 @@
 			this.ConfigurePrimaryOutput();
 			this.ConfigureSecondaryOutput();
 			this.ConfigureCodex();
+			this.ConfigureLevelUp();
 			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
@@ -235,6 +239,7 @@
 			this._leftSideBar.menuButton.addEventListener(MouseEvent.CLICK, mainMenuToggle);
 			this._leftSideBar.appearanceButton.addEventListener(MouseEvent.CLICK, titsClassPtr.pcAppearance);
 			this._leftSideBar.dataButton.addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			this._leftSideBar.levelUpButton.addEventListener(MouseEvent.CLICK, titsClassPtr.levelUpHandler);
 		}
 		
 		private function mainMenuToggle(e:Event = null):void
@@ -437,6 +442,27 @@
 			pCodex.visible = false;
 		}
 		
+		private function ConfigureLevelUp():void
+		{
+			var pLevelUp:LevelUpStatsModule = new LevelUpStatsModule();
+			titsClassPtr.addChild(pLevelUp);
+			_availableModules[pLevelUp.moduleName] = pLevelUp;
+			
+			pLevelUp.x = 200;
+			pLevelUp.y = 0;
+			
+			pLevelUp.visible = false;
+			
+			var pPerkUp:LevelUpPerksModule = new LevelUpPerksModule();
+			titsClassPtr.addChild(pPerkUp);
+			_availableModules[pPerkUp.moduleName] = pPerkUp;
+			
+			pPerkUp.x = 200;
+			pPerkUp.y = 0;
+			
+			pPerkUp.visible = false;
+		}
+		
 		/**
 		 * Attempt to display a target module
 		 * @param	module
@@ -491,6 +517,16 @@
 			else
 			{
 				throw new Error("Couldn't find module \"" + module + "\"");
+			}
+			
+			// Update some button states
+			if (classes.kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] != undefined)
+			{
+				this.levelUpButton.Activate();
+			}
+			else
+			{
+				this.levelUpButton.Deactivate();
 			}
 		}
 		
@@ -557,6 +593,18 @@
 			(_currentModule as CodexModule).update();
 		}
 		
+		public function showLevelUpStats(character:Creature):void
+		{
+			this.showModule("LevelUpStats");
+			(_currentModule as LevelUpStatsModule).setCreatureData(character);
+		}
+		
+		public function showLevelUpPerks(character:Creature):void
+		{
+			this.showModule("LevelUpPerks");
+			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+		}
+		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI
 		// doesn't directly access properties of UI elements.
 		// f.ex rather than getting the players shield bar, then setting a value, engine code will
@@ -611,6 +659,7 @@
 		public function get dataButton():SquareButton { return _leftSideBar.dataButton; }
 		public function get mainMenuButton():SquareButton { return _leftSideBar.menuButton; }
 		public function get appearanceButton():SquareButton { return _leftSideBar.appearanceButton; }
+		public function get levelUpButton():SquareButton { return _leftSideBar.levelUpButton; }
 		
 		// Direct module access because LAZY
 		public function get mainMenuModule():MainMenuModule { return (_availableModules["MainMenu"] as MainMenuModule); }
@@ -1149,6 +1198,7 @@
 			this.mainMenuButton.DeGlow();
 			this.dataButton.DeGlow();
 			this.appearanceButton.DeGlow();
+			this.levelUpButton.DeGlow();
 		}
 
 		// New passthrough event/keyboard control handlers for scroll mechanics. Here, we can redirect them to the

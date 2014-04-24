@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="203.647"
+   height="551.23773"
+   id="svg8210"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   inkscape:export-filename="C:\Code\Git\TiTs\assets\icons\levelup_arrow.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   sodipodi:docname="levelup_arrow.svg">
+  <defs
+     id="defs8212">
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient6957"
+       id="linearGradient6967"
+       x1="273.633"
+       y1="479.56039"
+       x2="273.633"
+       y2="240.24825"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient6957">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop6959" />
+      <stop
+         style="stop-color:#1fdd17;stop-opacity:1;"
+         offset="1"
+         id="stop6961" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="-90.262738"
+     inkscape:cy="287.82365"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata8215">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(430.39493,700.39955)">
+    <g
+       transform="translate(-640.02793,-754.45555)"
+       id="g4306"
+       style="fill:#1fdd17;fill-opacity:0.79607843">
+      <polygon
+         points="284.627,123.685 238.9,128.489 282.116,143.792 243.923,168.703 278.553,164.165 325.454,117.077 372.391,164.201 406.744,168.703 368.551,143.792 411.767,128.489 366.04,123.685 396.99,90.613 354.202,107.016 365.797,63.751 335.752,97.603 325.333,54.056 314.915,97.603 284.87,63.751 296.465,107.016 253.677,90.613 "
+         id="polygon4308"
+         style="fill:#1fdd17;fill-opacity:1" />
+    </g>
+    <g
+       transform="translate(-640.02793,-754.45555)"
+       id="g4310">
+      <path
+         clip-rule="evenodd"
+         d="m 304.432,522.195 c 0,-19.76 0,-316.301 0,-316.301 l -38.614,38.019 -28.103,-27.649 87.782,-88.133 87.783,88.133 -28.102,29.377 -38.615,-39.746 c 0,0 0,297.138 0,316.609 0,114.619 -136.93,101.926 -136.93,12.683 h 42.132 c 0.001,30.385 52.667,40.27 52.667,-12.992 z"
+         id="path4312"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient6967);fill-opacity:1;fill-rule:evenodd" />
+    </g>
+  </g>
+</svg>
