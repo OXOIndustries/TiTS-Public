@@ -189,7 +189,8 @@ package classes.UIComponents.ContentModules
 			
 			if (_availablePoints < _initialPoints) kGAMECLASS.userInterface.addGhostButton(13, "Reset", resetPoints);
 			
-			if (_availablePoints == 0) kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmPoints);
+			if (_availablePoints == 0) kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmPoints, undefined, "", "");
+			else kGAMECLASS.userInterface.addDisabledGhostButton(0, "Confirm", "Confirm Allocation", "You must spend all points before you can confirm the current allocation!");
 		}
 		
 		private function arrowHandler(e:Event = null):void 
@@ -232,8 +233,6 @@ package classes.UIComponents.ContentModules
 			
 			// This is where we'd hook into the second stage of the levelling process
 			kGAMECLASS.userInterface.showLevelUpPerks(_targetCreature);
-			
-			//kGAMECLASS.userInterface.showPrimaryOutput();
 		}
 	}
 

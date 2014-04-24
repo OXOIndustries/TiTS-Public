@@ -66,7 +66,7 @@ function combatMainMenu():void
 	{
 		output("\n<b>You are wrapped up in coils!</b>");
 		addButton(0,"Struggle",naleenStruggle);
-		if(pc.hasStatusEffect("Static Burst Known")) {
+		if(pc.hasPerk("Static Burst")) {
 			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
@@ -77,7 +77,7 @@ function combatMainMenu():void
 	{
 		output("\n<b>You are grappled and unable to fight normally!</b>");
 		addButton(0,"Struggle",grappleStruggle);
-		if(pc.hasStatusEffect("Static Burst Known")) {
+		if(pc.hasPerk("Static Burst")) {
 			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
@@ -88,7 +88,7 @@ function combatMainMenu():void
 	{
 		output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 		addButton(0, "Struggle", mimbraneStruggle);
-		if (pc.hasStatusEffect("Static Burst Known"))
+		if (pc.hasPerk("Static Burst"))
 		{
 			if (pc.energy() >= 50) this.addButton(3, "Static Burst", staticBurst);
 			else this.addDisabledButton(3, "Static Burst");
@@ -122,31 +122,31 @@ function specialsMenu():void {
 		else addDisabledButton(0,"Headbutt");
 		
 		//EITHER OR!
-		if(pc.hasStatusEffect("Rapid Fire Known"))
+		if(pc.hasPerk("Rapid Fire"))
 		{
 			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Rapid Fire");
 		}
-		if(pc.hasStatusEffect("Power Strike Known"))
+		if(pc.hasPerk("Power Strike"))
 		{
 			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Power Strike");
 		}
 		offset = 2;
-		if(pc.hasStatusEffect("Take Cover Known")) 
+		if(pc.hasPerk("Take Cover")) 
 		{
 			
 			if(pc.energy() >= 20) addButton(offset,"Take Cover",takeCover,undefined,"Take Cover","Provides you a 90% chance of avoiding a ranged attack this turn.\n\nConsumes 20 energy.");
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
-		if(pc.hasStatusEffect("Carpet Grenades Known"))
+		if (pc.hasPerk("Carpet Grenades"))
 		{
 			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
-		if(pc.hasStatusEffect("Det. Charge Known"))
+		if(pc.hasPerk("Detonation Charge"))
 		{
 			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Det. Charge");
@@ -162,32 +162,32 @@ function specialsMenu():void {
 	else if(pc.characterClass == GLOBAL.ENGINEER) {
 		if(pc.energy() >= 25) addButton(0,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
 		else addDisabledButton(0,"P.Shock");
-		if(pc.hasStatusEffect("Volley Known")) 
+		if(pc.hasPerk("Volley")) 
 		{
 			if(pc.energy() >= 20) addButton(1,"Volley",attackRouter,volley,"Volley","An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
 			else addDisabledButton(1,"Volley");
 		}
-		if(pc.hasStatusEffect("Overcharge Known"))
+		if(pc.hasPerk("Overcharge"))
 		{
 			if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(1,"Overcharge");
 		}
-		if(pc.hasStatusEffect("Deflector Regeneration Known"))
+		if(pc.hasPerk("Deflector Regeneration"))
 		{
 			if(pc.energy() >= 20) addButton(2,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","Restores a portion of your shields every turn. Higher intelligence characters will regain even more shields per turn.\n\nConsumes 20 energy.");
 			else addDisabledButton(2,"D. Regen.");
 		}
-		if(pc.hasStatusEffect("Power Surge Known"))
+		if(pc.hasPerk("Power Surge"))
 		{
 			if(pc.energy() >= 33) addButton(2,"P. Surge",powerSurge,pc,"Power Surge","Restores a moderate amount of shields based on intelligence.\n\nConsumes 33 energy.");
 			else addDisabledButton(2,"P. Surge");
 		}
-		if(pc.hasKeyItem("Thermal Disruptor"))
+		if(pc.hasPerk("Thermal Disruptor"))
 		{
 			if(pc.energy() >= 25) addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"T. Disrupt.");
 		}
-		if(pc.hasKeyItem("Gravidic Disruptor"))
+		if(pc.hasPerk("Gravidic Disruptor"))
 		{
 			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor,"Gravidic Disruptor","Deals a moderate amount of intelligence-based gravidic damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"G. Disrupt.");
@@ -205,25 +205,25 @@ function specialsMenu():void {
 			if(pc.energy() >= 10) addButton(0,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","Produce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.\n\nConsumes 10 energy.");
 			else addDisabledButton(0,"F.Grenade");	
 		}
-		if(pc.hasStatusEffect("Low Blow Known"))
+		if(pc.hasPerk("Low Blow"))
 		{
 			if(pc.energy() >= 15) addButton(1,"Low Blow",attackRouter,lowBlow,"Low Blow","A melee strike with an aim-based chance of stunning your target.\n\nConsumes 15 energy.");
 			else addDisabledButton(1,"Low Blow");	
 		}
-		if(pc.hasStatusEffect("Disarming Shot Known")) {
+		if(pc.hasPerk("Disarming Shot")) {
 			if(pc.energy() >= 20) addButton(2,"Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
 			else addDisabledButton(2,"Disarm Shot");	
 		}
-		if(pc.hasStatusEffect("Stealth Field Generator Known")) {
+		if(pc.hasPerk("Stealth Field Generator")) {
 			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(2,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","Creates a stealth field that greatly increases your evasion for a few turns.");
 			else addDisabledButton(2,"Stealth Field");	
 		}
-		if(pc.hasStatusEffect("Grenade Known"))
+		if(pc.hasPerk("Grenade"))
 		{
 			if(pc.energy() >= 25) addButton(3,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"Grenade");	
 		}
-		if(pc.hasStatusEffect("Gas Grenade Known"))
+		if(pc.hasPerk("Gas Grenade"))
 		{
 			if(pc.energy() >= 25) addButton(3,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"Gas Grenade");	

@@ -120,7 +120,7 @@ package classes.GameData
 			var detCharge:PerkData = new PerkData();
 			detCharge.classLimit = GLOBAL.MERCENARY;
 			detCharge.levelLimit = 5;
-			detCharge.perkName = "Det Charge";
+			detCharge.perkName = "Detonation Charge";
 			detCharge.perkDescription = "Grants the ability to throw a focused detonation charge at an enemy for very high thermal damage. Focusing the charge restricts the blast radius to a single target.";
 			insertPerkData(detCharge);
 		}

@@ -92,7 +92,7 @@ package classes.UIComponents.ContentModules
 			_perkList.setInitialState(creature);
 			
 			// Give ourselves a disabled button
-			kGAMECLASS.userInterface.addDisabledGhostButton(0, "Confirm", "Confirm Selection", "You must select an available perk before you can confirm!");
+			kGAMECLASS.userInterface.addDisabledGhostButton(4, "Confirm", "Confirm Selection", "You must select an available perk before you can confirm!");
 		}
 		
 		public function perkButtonHandler(e:Event):void
@@ -109,7 +109,7 @@ package classes.UIComponents.ContentModules
 			_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
 			_selectedPerkDetails.selectedPerkText = _selectedPerkButton.perkReference.perkDescription;
 			
-			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the selected perk.");
+			kGAMECLASS.userInterface.addGhostButton(4, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the selected perk.");
 		}
 		
 		public function confirmSelection():void
