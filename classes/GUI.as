@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.GameData.CodexManager;
 	import classes.RoomClass;
 	import classes.UIComponents.ButtonTooltips;
@@ -520,7 +521,7 @@
 			}
 			
 			// Update some button states
-			if (classes.kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] != undefined)
+			if ((classes.kGAMECLASS.pc as PlayerCharacter).levelUpAvailable())
 			{
 				this.levelUpButton.Activate();
 			}
@@ -593,13 +594,13 @@
 			(_currentModule as CodexModule).update();
 		}
 		
-		public function showLevelUpStats(character:Creature):void
+		public function showLevelUpStats(character:PlayerCharacter):void
 		{
 			this.showModule("LevelUpStats");
 			(_currentModule as LevelUpStatsModule).setCreatureData(character);
 		}
 		
-		public function showLevelUpPerks(character:Creature):void
+		public function showLevelUpPerks(character:PlayerCharacter):void
 		{
 			this.showModule("LevelUpPerks");
 			(_currentModule as LevelUpPerksModule).setCreatureData(character);

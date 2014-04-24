@@ -177,12 +177,12 @@ package classes.UIComponents.ContentModuleComponents
 			_changeValue.wordWrap = false;
 			_changeValue.embedFonts = true;
 			_changeValue.antiAliasType = AntiAliasType.ADVANCED;
-			_changeValue.defaultTextFormat = UIStyleSettings.gLevelUpBarValueLabelFormatter;
+			_changeValue.defaultTextFormat = UIStyleSettings.gLevelUpBarChangeValueLabelFormatter;
 			_changeValue.mouseEnabled = false;
 			_changeValue.mouseWheelEnabled = false;
 			
-			_changeValue.x = 330;
-			_changeValue.y = -8;
+			_changeValue.x = 338;
+			_changeValue.y = 7;
 			_changeValue.width = 80;
 			_changeValue.height = 60;
 			_changeValue.text = "+1";
@@ -194,6 +194,7 @@ package classes.UIComponents.ContentModuleComponents
 			_addArrow.name = "add";
 			_addArrow.x = 413;
 			_addArrow.y = 15;
+			_addArrow.buttonMode = true;
 			this.addChild(_addArrow);
 			
 			// And a "+" text label for the arrow
@@ -222,6 +223,7 @@ package classes.UIComponents.ContentModuleComponents
 			_remArrow.name = "rem";
 			_remArrow.x = 285;
 			_remArrow.y = 15;
+			_remArrow.buttonMode = true;
 			this.addChild(_remArrow);
 			
 			// And a "-" text label for the arrow.

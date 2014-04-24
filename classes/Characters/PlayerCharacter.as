@@ -19,6 +19,19 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
+		// Level up stuff
+		public var unspentStatPoints:int = 0;
+		public var unclaimedClassPerks:int = 0;
+		public var unclaimedGenericPerks:int = 0;
+		
+		public function levelUpAvailable():Boolean
+		{
+			if (unspentStatPoints > 0) return true;
+			if (unclaimedClassPerks > 0) return true;
+			//if (unclaimedGenericPerks > 0) return true; // Placeholder for possible future usage.
+			return false;
+		}
+		
 		override public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):void
 		{
 			kGAMECLASS.mimbraneFeed("vagina");

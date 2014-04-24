@@ -1,4 +1,5 @@
-﻿
+﻿import classes.Characters.PlayerCharacter;
+
 public function get canSaveAtCurrentLocation():Boolean
 {
 
@@ -184,7 +185,10 @@ function sleep(outputs:Boolean = true):void {
 		
 		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 5 && flags["LEVEL_UP_AVAILABLE"] == undefined)
 		{
-			flags["LEVEL_UP_AVAILABLE"] = 1;
+			(pc as PlayerCharacter).unspentStatPoints += 13;
+			(pc as PlayerCharacter).unclaimedClassPerks += 1;
+			(pc as PlayerCharacter).unclaimedGenericPerks += 1;
+			
 			pc.level++;
 			pc.XPRaw = 0;
 			pc.maxOutHP();

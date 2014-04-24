@@ -98,7 +98,7 @@ package classes.GameData
 		{			
 			if (key in TooltipManager.TOOLTIPDB)
 			{
-				trace("Tooltip Database already contains data for the key [" + key +"]");
+				//trace("Tooltip Database already contains data for the key [" + key +"]");
 			}
 			
 			TooltipManager.TOOLTIPDB[key] = tooltip;
@@ -113,7 +113,7 @@ package classes.GameData
 		{
 			if (key in TooltipManager.FULLNAMEDB)
 			{
-				trace("Name Database already contains data for the key [" + key +"]");
+				//trace("Name Database already contains data for the key [" + key +"]");
 			}
 			
 			TooltipManager.FULLNAMEDB[key] = name;

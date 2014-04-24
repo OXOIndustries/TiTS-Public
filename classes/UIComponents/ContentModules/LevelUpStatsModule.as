@@ -1,5 +1,6 @@
 package classes.UIComponents.ContentModules 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.UIComponents.ContentModule;
 	import flash.display.DisplayObject;
@@ -115,12 +116,12 @@ package classes.UIComponents.ContentModules
 			}
 		}
 		
-		private var _targetCreature:Creature;
+		private var _targetCreature:PlayerCharacter;
 		private var _pointDistribution:Array;
 		private var _availablePoints:int;
 		private var _initialPoints:int;
 		
-		public function setCreatureData(tarCreature:Creature):void
+		public function setCreatureData(tarCreature:PlayerCharacter):void
 		{
 			trace("Showing levelup screen for " + tarCreature.short);
 			
@@ -134,8 +135,8 @@ package classes.UIComponents.ContentModules
 			_targetCreature = tarCreature;
 			_pointDistribution = new Array();
 			
-			_availablePoints = 13;
-			_initialPoints = 13;
+			_availablePoints = tarCreature.unspentStatPoints;
+			_initialPoints = tarCreature.unspentStatPoints;
 			_pointsBar.initialPointsValue = _initialPoints;
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
@@ -223,8 +224,8 @@ package classes.UIComponents.ContentModules
 		
 		private function confirmPoints():void
 		{
-			// Remove the flag that grants access to the level up stuffs
-			kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] = undefined;
+			// Remove the spent points from the creature object
+			_targetCreature.unspentStatPoints = 0;			
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{

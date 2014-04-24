@@ -140,5 +140,24 @@ package classes.UIComponents.ContentModuleComponents
 			
 			this.update();
 		}
+		
+		public function getSelectedPerks():Vector.<PerkData>
+		{
+			var selectedPerks:Vector.<PerkData> = new Vector.<PerkData>();
+			
+			for (var i:int = 0; i < _perkGroups.length; i++)
+			{
+				if (_perkGroups[i].buttonOne.isSelected && _perkGroups[i].buttonTwo.isAvailable)
+				{
+					selectedPerks.push(_perkGroups[i].buttonOne.perkReference);
+				}
+				else if (_perkGroups[i].buttonTwo.isSelected && _perkGroups[i].buttonOne.isAvailable)
+				{
+					selectedPerks.push(_perkGroups[i].buttonTwo.perkReference);
+				}
+			}
+			
+			return selectedPerks;
+		}
 	}
 }

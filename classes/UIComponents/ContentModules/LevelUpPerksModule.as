@@ -1,5 +1,6 @@
 package classes.UIComponents.ContentModules 
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModuleComponents.PerkButton;
@@ -112,7 +113,7 @@ package classes.UIComponents.ContentModules
 			kGAMECLASS.userInterface.addGhostButton(4, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the selected perk.");
 		}
 		
-		public function confirmSelection():void
+		public function confirmSelectionDepreciated():void
 		{
 			var _autoPerk:PerkData = kGAMECLASS.perkDB.getAutoPerkForCreature(_targetCreature);
 			_autoPerk.applyTo(_targetCreature);
@@ -121,6 +122,35 @@ package classes.UIComponents.ContentModules
 			kGAMECLASS.eventBuffer += "\n\nYou have gained a level. Your stats have increased and you have gained new abilities.";
 			kGAMECLASS.eventBuffer += "\n\nAuto Perk: <b>" + _autoPerk.perkName + "</b> - " +  _autoPerk.perkDescription;
 			kGAMECLASS.eventBuffer += "\n\nSelected Perk: <b>" + _selectedPerkButton.perkReference.perkName + "</b> - " + _selectedPerkButton.perkReference.perkDescription;
+			
+			kGAMECLASS.mainGameMenu();
+		}
+		
+		public function confirmSelection():void
+		{
+			kGAMECLASS.eventBuffer += "\n\nYou have gained a level. Your stats have increased and you have gained new abilities!";
+			
+			// Figure out autoperks that need to be applied
+			var _autoPerks:Vector.<PerkData> = kGAMECLASS.perkDB.getAutoPerksForCreature(_targetCreature);
+			
+			for (var i:int = 0; i < _autoPerks.length; i++)
+			{
+				if (!_targetCreature.hasPerk(_autoPerks[i].perkName))
+				{
+					(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
+					_autoPerks[i].applyTo(_targetCreature);
+					kGAMECLASS.eventBuffer += "\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription;
+				}
+			}
+			
+			// Get perk selections in the UI
+			var _selectedPerks:Vector.<PerkData> = _perkList.getSelectedPerks();
+			
+			for (var ii:int = 0; ii < _selectedPerks.length; ii++)
+			{
+				_selectedPerks[ii].applyTo(_targetCreature);
+				kGAMECLASS.eventBuffer += "\n\nLevel " + _selectedPerks[ii].levelLimit + " Selected Perk: <b>" + _selectedPerks[ii].perkName + "</b> - " + _selectedPerks[ii].perkDescription;
+			}
 			
 			kGAMECLASS.mainGameMenu();
 		}

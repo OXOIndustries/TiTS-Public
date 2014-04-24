@@ -56,7 +56,7 @@ package classes.UIComponents.ContentModuleComponents
 			_selectedPerkName.y = 0;
 			_selectedPerkName.height = 50;
 			_selectedPerkName.width = 400;
-			_selectedPerkName.text = "[ABILITY NAME]";
+			_selectedPerkName.text = "";
 			this.addChild(_selectedPerkName);
 			
 			// Text background
@@ -77,7 +77,7 @@ package classes.UIComponents.ContentModuleComponents
 			_selectedPerkText.y = 50;
 			_selectedPerkText.height = 140;
 			_selectedPerkText.width = 780;
-			_selectedPerkText.text = "DOOT DOOT HERE GOES WORDS TO DESCRIBE THE CURRENTLY SELECTED ABILITY.\n\nTHIS WAY WE DUN NEED A SHITLOAD OF TOOLTIPS OR SEPERATE SCREENS TO DISPLAY ALL OF THIS SHIT, IT CAN BE ONE SINGLE STATIC DISPLAY TO DO IT ALL.\n\nLOOKIT THAT, ISN'T IT GRAND?";
+			_selectedPerkText.text = "";
 			this.addChild(_selectedPerkText);
 		}
 		

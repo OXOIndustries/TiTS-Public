@@ -586,7 +586,7 @@
 			kGAMECLASS.eventBuffer = "";
 			
 			// If the PC has previously had the Level Up availability message, ensure the level up button is available for use.
-			if (kGAMECLASS.flags["LEVEL_UP_AVAILABLE"] == 1) kGAMECLASS.userInterface.levelUpButton.Activate();
+			if ((kGAMECLASS.pc as PlayerCharacter).levelUpAvailable()) kGAMECLASS.userInterface.levelUpButton.Activate();
 			
 			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.showPrimaryOutput();

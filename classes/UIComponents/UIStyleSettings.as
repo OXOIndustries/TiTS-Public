@@ -396,12 +396,12 @@ package classes.UIComponents
 			if (UIStyleSettings._gLevelUpPointsBarNumber == null)
 			{
 				UIStyleSettings._gLevelUpPointsBarNumber = new TextFormat();
-				UIStyleSettings._gLevelUpPointsBarNumber.size = 120;
+				UIStyleSettings._gLevelUpPointsBarNumber.size = 90;
 				UIStyleSettings._gLevelUpPointsBarNumber.color = 0xFFFFFF;
 				UIStyleSettings._gLevelUpPointsBarNumber.align = TextFormatAlign.CENTER;
 				UIStyleSettings._gLevelUpPointsBarNumber.kerning = false;
 				UIStyleSettings._gLevelUpPointsBarNumber.leading = -2;
-				UIStyleSettings._gLevelUpPointsBarNumber.letterSpacing = -15;
+				UIStyleSettings._gLevelUpPointsBarNumber.letterSpacing = -5;
 				UIStyleSettings._gLevelUpPointsBarNumber.font = "Univers UltraCondensed";
 			}
 			return UIStyleSettings._gLevelUpPointsBarNumber;
@@ -502,6 +502,23 @@ package classes.UIComponents
 				UIStyleSettings._gLevelUpBarValueLabelFormatter.font = "Lato";
 			}
 			return UIStyleSettings._gLevelUpBarValueLabelFormatter;
+		}
+		
+		private static var _gLevelUpBarChangeValueLabelFormatter:TextFormat;
+		public static function get gLevelUpBarChangeValueLabelFormatter():TextFormat
+		{
+			if (UIStyleSettings._gLevelUpBarChangeValueLabelFormatter == null)
+			{
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter = new TextFormat();
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.size = 32;
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.color = 0xFFFFFF;
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.align = TextFormatAlign.CENTER;
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.bold = true
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.kerning = true;
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.leading = -2;
+				UIStyleSettings._gLevelUpBarChangeValueLabelFormatter.font = "Lato";
+			}
+			return UIStyleSettings._gLevelUpBarChangeValueLabelFormatter;
 		}
 
 		private static var _gLevelUpBarChangeableArrowButtonFormatter:TextFormat;

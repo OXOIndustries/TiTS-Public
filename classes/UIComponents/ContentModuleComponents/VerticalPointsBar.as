@@ -63,7 +63,7 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_pointsValueText.width = 90;
 			_pointsValueText.height = 150;
-			_pointsValueText.x = -19;
+			_pointsValueText.x = -12;
 			_pointsValueText.y = -15;
 			
 			this.addChild(_pointsValueText);
@@ -83,7 +83,7 @@ package classes.UIComponents.ContentModuleComponents
 			_pointsLabel.width = 72;
 			_pointsLabel.height = 50;
 			_pointsLabel.x = 0;
-			_pointsLabel.y = 105;
+			_pointsLabel.y = 68;
 			
 			this.addChild(_pointsLabel);
 		}

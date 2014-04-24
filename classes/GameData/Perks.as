@@ -38,7 +38,7 @@ package classes.GameData
 			criticalBlows.levelLimit = 2;
 			criticalBlows.autoGained = true;
 			criticalBlows.perkName = "Critical Blows";
-			criticalBlows.perkDescription = "Your strikes and shots a 10% chance of doing double damage on normal melee and ranged attacks.";
+			criticalBlows.perkDescription = "Your strikes and shots gain a 10% chance of inflicting double damage on normal melee and ranged attacks.";
 			insertPerkData(criticalBlows);
 			
 			var bloodthirsty:PerkData = new PerkData();
@@ -61,7 +61,7 @@ package classes.GameData
 			tough.levelLimit = 3;
 			tough.autoGained = true;
 			tough.perkName = "Tough";
-			tough.perkDescription = "Vulnerability to piercing, slashing, and kinetic damage taken reduced by 10%";
+			tough.perkDescription = "Vulnerability to piercing, slashing, and kinetic damage taken reduced by 10%.";
 			insertPerkData(tough);
 			
 			var powerStrike:PerkData = new PerkData();
@@ -163,14 +163,14 @@ package classes.GameData
 			sneakAttack.classLimit = GLOBAL.SMUGGLER;
 			sneakAttack.levelLimit = 3;
 			sneakAttack.perkName = "Sneak Attack";
-			sneakAttack.perkDescription = "Grants the ability to perform a melee attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may further increase the damage.";
+			sneakAttack.perkDescription = "Grants the ability to perform a melee attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
 			insertPerkData(sneakAttack);
 			
 			var aimedShot:PerkData = new PerkData();
 			aimedShot.classLimit = GLOBAL.SMUGGLER;
 			aimedShot.levelLimit = 3;
 			aimedShot.perkName = "Aimed Shot";
-			aimedShot.perkDescription = "Grants the ability to perform a ranged attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may further increase the damage.";
+			aimedShot.perkDescription = "Grants the ability to perform a ranged attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
 			insertPerkData(aimedShot);
 			
 			// Level 4
@@ -193,7 +193,7 @@ package classes.GameData
 			disarmS.classLimit = GLOBAL.SMUGGLER;
 			disarmS.levelLimit = 4;
 			disarmS.perkName = "Disarming Shot";
-			disarmS.perkDescription = "Grants the ability to fire a precisely aimed at your targets weapon, preventing them from using a weapon for four combat rounds.";
+			disarmS.perkDescription = "Grants the ability to disarm your target, rendering them unable to wield a weapon for four combat rounds.";
 			insertPerkData(disarmS);
 			
 			// Level 5
@@ -382,6 +382,19 @@ package classes.GameData
 			}
 			
 			return null;
+		}
+		
+		public function getAutoPerksForCreature(creature:Creature):Vector.<PerkData>
+		{
+			var filterPerks:Vector.<PerkData> = _perkList.filter(function(item:PerkData, index:int, vector:Vector.<PerkData>):Boolean {
+				if ((item as PerkData).autoGained == true
+					&& (item as PerkData).levelLimit <= creature.level
+					&& (item as PerkData).isClassLimited == true
+					&& (item as PerkData).classLimit == creature.characterClass) return true;
+					return false;
+			});
+			
+			return filterPerks;
 		}
 	}
 
