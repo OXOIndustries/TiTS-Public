@@ -190,8 +190,22 @@ package classes.UIComponents.ContentModules
 			
 			if (_availablePoints < _initialPoints) kGAMECLASS.userInterface.addGhostButton(13, "Reset", resetPoints);
 			
-			if (_availablePoints == 0) kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmPoints, undefined, "", "");
-			else kGAMECLASS.userInterface.addDisabledGhostButton(0, "Confirm", "Confirm Allocation", "You must spend all points before you can confirm the current allocation!");
+			updateButton();
+		}
+		
+		private function updateButton():void
+		{
+			// No points spent
+			if (_availablePoints == _initialPoints) 
+			{
+				kGAMECLASS.userInterface.addGhostButton(0, "Skip", confirmPoints, undefined, "Skip Allocation", "Skip assigning stat points.");
+				kGAMECLASS.userInterface.addDisabledGhostButton(1, "Reset");
+			}
+			else 
+			{
+				kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmPoints, undefined, "Confirm Allocation", "Confirm the current stat allocation. Any remaining unallocated points may be assigned at any time by reviewing the level up page.");
+				kGAMECLASS.userInterface.addGhostButton(1, "Reset", resetPoints, undefined, "Reset Allocation", "Reset the currently allocated points.");
+			}
 		}
 		
 		private function arrowHandler(e:Event = null):void 
@@ -211,6 +225,7 @@ package classes.UIComponents.ContentModules
 			}
 			
 			updateBarStates();
+			updateButton();
 		}
 		
 		private function resetPoints():void
@@ -220,12 +235,13 @@ package classes.UIComponents.ContentModules
 			{
 				_pointDistribution[i] = 0;
 			}
+			updateBarStates();
 		}
 		
 		private function confirmPoints():void
 		{
 			// Remove the spent points from the creature object
-			_targetCreature.unspentStatPoints = 0;			
+			_targetCreature.unspentStatPoints = _availablePoints;			
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{

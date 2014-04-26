@@ -93,7 +93,7 @@ package classes.UIComponents.ContentModules
 			_perkList.setInitialState(creature);
 			
 			// Give ourselves a disabled button
-			kGAMECLASS.userInterface.addDisabledGhostButton(4, "Confirm", "Confirm Selection", "You must select an available perk before you can confirm!");
+			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the current perk selection, if any.");
 		}
 		
 		public function perkButtonHandler(e:Event):void
@@ -101,29 +101,22 @@ package classes.UIComponents.ContentModules
 			var tarButton:PerkButton = e.target as PerkButton;
 			var buttonGroup:PerkButtonGroup = tarButton.parent as PerkButtonGroup;
 			
-			tarButton.setSelected();
-			
-			if (buttonGroup.buttonOne == tarButton) buttonGroup.buttonTwo.setAvailable();
-			else buttonGroup.buttonOne.setAvailable();
+			if (!tarButton.isSelected)
+			{
+				tarButton.setSelected();
+				if (buttonGroup.buttonOne == tarButton) buttonGroup.buttonTwo.removeSelected();
+				else buttonGroup.buttonOne.removeSelected();
+				
+				if (_selectedPerkButton != null && (_selectedPerkButton.isUnavailable || _selectedPerkButton.isTaken)) _selectedPerkButton.removeSelected();
+			}
+			else
+			{
+				tarButton.removeSelected();
+			}
 			
 			_selectedPerkButton = tarButton;
 			_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
 			_selectedPerkDetails.selectedPerkText = _selectedPerkButton.perkReference.perkDescription;
-			
-			kGAMECLASS.userInterface.addGhostButton(4, "Confirm", confirmSelection, undefined, "Confirm Selection", "Confirm the selected perk.");
-		}
-		
-		public function confirmSelectionDepreciated():void
-		{
-			var _autoPerk:PerkData = kGAMECLASS.perkDB.getAutoPerkForCreature(_targetCreature);
-			_autoPerk.applyTo(_targetCreature);
-			_selectedPerkButton.perkReference.applyTo(_targetCreature);
-			
-			kGAMECLASS.eventBuffer += "\n\nYou have gained a level. Your stats have increased and you have gained new abilities.";
-			kGAMECLASS.eventBuffer += "\n\nAuto Perk: <b>" + _autoPerk.perkName + "</b> - " +  _autoPerk.perkDescription;
-			kGAMECLASS.eventBuffer += "\n\nSelected Perk: <b>" + _selectedPerkButton.perkReference.perkName + "</b> - " + _selectedPerkButton.perkReference.perkDescription;
-			
-			kGAMECLASS.mainGameMenu();
 		}
 		
 		public function confirmSelection():void
@@ -137,7 +130,6 @@ package classes.UIComponents.ContentModules
 			{
 				if (!_targetCreature.hasPerk(_autoPerks[i].perkName))
 				{
-					(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
 					_autoPerks[i].applyTo(_targetCreature);
 					kGAMECLASS.eventBuffer += "\n\nLevel " + _autoPerks[i].levelLimit + " Auto Perk: <b>" + _autoPerks[i].perkName + "</b> - " + _autoPerks[i].perkDescription;
 				}
@@ -149,6 +141,7 @@ package classes.UIComponents.ContentModules
 			for (var ii:int = 0; ii < _selectedPerks.length; ii++)
 			{
 				_selectedPerks[ii].applyTo(_targetCreature);
+				(_targetCreature as PlayerCharacter).unclaimedClassPerks--;
 				kGAMECLASS.eventBuffer += "\n\nLevel " + _selectedPerks[ii].levelLimit + " Selected Perk: <b>" + _selectedPerks[ii].perkName + "</b> - " + _selectedPerks[ii].perkDescription;
 			}
 			

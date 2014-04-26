@@ -26,6 +26,7 @@ package classes.UIComponents.ContentModuleComponents
 		public function PerkButton() 
 		{
 			this.Build();
+			mouseEnabled = true;
 		}
 		
 		private function Build():void
@@ -44,7 +45,7 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_ringMask = new Sprite();
 			_ringMask.graphics.beginFill(0xFFFFFF);
-			_ringMask.graphics.drawRoundRect(3, 3, 285 - 6, 40 - 6, 6, 6);
+			_ringMask.graphics.drawRoundRect(4, 4, 285 - 8, 40 - 8, 6, 6);
 			_ringMask.graphics.endFill();
 			this.addChild(_ringMask);
 			_body.mask = _ringMask;
@@ -78,8 +79,8 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
-			mouseEnabled = true;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonAvailableColorTransform;
+			_highlight.transform.colorTransform = UIStyleSettings.gPerkButtonTakenColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonWhiteColourTextFormat);
 			_state = STATE_AVAILABLE;
 		}
@@ -93,8 +94,8 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
-			mouseEnabled = false;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonUnavailableColorTransform;
+			_highlight.transform.colorTransform = UIStyleSettings.gPerkButtonTakenColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonBlueColourTextFormat);
 			_state = STATE_UNAVAILABLE;
 		}
@@ -108,13 +109,12 @@ package classes.UIComponents.ContentModuleComponents
 				_body.mask = null;
 			}
 			
-			mouseEnabled = false;
 			_body.transform.colorTransform = UIStyleSettings.gPerkButtonTakenColorTransform;
+			_highlight.transform.colorTransform = UIStyleSettings.gPerkButtonAvailableColorTransform;
 			_label.setTextFormat(UIStyleSettings.gPerkButtonBlueColourTextFormat);
 			_state = STATE_TAKEN;
 		}
 		
-		public static const STATE_SELECTED:String = "selected";
 		public function setSelected():void
 		{
 			if (_ringMask != null && _ringMask.parent == null)
@@ -122,11 +122,15 @@ package classes.UIComponents.ContentModuleComponents
 				this.addChild(_ringMask);
 				_body.mask = _ringMask;
 			}
-			
-			mouseEnabled = true;
-			_body.transform.colorTransform = UIStyleSettings.gPerkButtonAvailableColorTransform;
-			_label.setTextFormat(UIStyleSettings.gPerkButtonWhiteColourTextFormat);
-			_state = STATE_SELECTED;
+		}
+		
+		public function removeSelected():void
+		{
+			if (_ringMask != null && _ringMask.parent != null)
+			{
+				this.removeChild(_ringMask);
+				_body.mask = null;
+			}
 		}
 		
 		public function get isAvailable():Boolean
@@ -149,8 +153,8 @@ package classes.UIComponents.ContentModuleComponents
 		
 		public function get isSelected():Boolean
 		{
-			if (_state == STATE_SELECTED) return true;
-			return false;
+			if (_ringMask.parent == null) return false;
+			return true;
 		}
 		
 		public function setPerkData(perkData:PerkData):void

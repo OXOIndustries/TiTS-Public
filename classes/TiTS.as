@@ -490,7 +490,19 @@
 			
 			if (!this.userInterface.levelUpButton.isHighlighted)
 			{
-				this.userInterface.showLevelUpStats(pc);
+				// Select the correct entry point for the level up system
+				if ((pc as PlayerCharacter).unspentStatPoints > 0)
+				{
+					this.userInterface.showLevelUpStats(pc);
+				}
+				else if ((pc as PlayerCharacter).unclaimedClassPerks > 0)
+				{
+					this.userInterface.showLevelUpPerks(pc);
+				}
+				// else if ((pc as PlayerCharacter).unclaimedGenericPerks > 0)
+				//{
+				//		this.userInterface.showLevelUpGenericPerks(pc);
+				//}
 				this.userInterface.levelUpButton.Glow();
 			}
 			else
