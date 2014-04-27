@@ -101,6 +101,7 @@
 		include "../includes/lapinara.as";
 		include "../includes/shelly.as";
 		include "../includes/sydianMale.as";
+		include "../includes/theMess.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";

@@ -145,6 +145,10 @@
 	{
 		chars["SYDIANMALE"] = new classes.Characters.SydianMale();
 	}
+	if (!justUpdate || (justUpdate && chars["DELILAH"] == undefined))
+	{
+		chars["DELILAH"] = new classes.Characters.Delilah();
+	}
 
 	// Check all characters have version information set
 	for (var prop in chars)

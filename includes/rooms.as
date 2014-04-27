@@ -1375,10 +1375,11 @@ function initializeRooms():void
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
 	rooms["212"].roomName = "\nNOVAHOME";
-	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings.";
+	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.";
 	rooms["212"].runOnEnter = undefined;
 	rooms["212"].eastExit = "211";
 	rooms["212"].westExit = "213";
+	rooms["212"].northExit = "301";
 	rooms["212"].planet = "PLANET: TARKUS";
 	rooms["212"].system = "SYSTEM: REDACTED";
 	rooms["212"].addFlag(GLOBAL.INDOOR);
@@ -1830,6 +1831,26 @@ function initializeRooms():void
 	rooms["247"].addFlag(GLOBAL.OUTDOOR);
 	rooms["247"].addFlag(GLOBAL.HAZARD);
 	
+	rooms["301"] = new RoomClass(this);
+	rooms["301"].roomName = "THE\nMESS";
+	rooms["301"].description = "The Mess sure lives up to its name. Once the ship's mess hall, a vessel of this size would have had a large cafeteria, and this place doesn't disappoint. Easily large enough to seat several hundred raskvel (and it currently is), the Mess is dimly lit and smoky, thanks to a combination of tall, hookah-like devices set up on several tables as well as a pillar of woodsmoke coming from the kitchen, which is exposed to the mess hall thanks to a busted-in bulkhead. Several raskvel chefs in cute white aprons are running around trying to tend to dozens of orders at once. The wait-staff are hurrying about, trying to deliver their goods as fast as they can. Strangely, most of the waiters and waitresses are human, each bearing the emblem of the Carver Catering Company - three C's across the breast and back of their sheer black uniforms.\n\nOn the far side of the Mess, there's another room sealed off from the restaurant by a pair of heavy doors and glass windows. By its dark interior and the off-worlders coming and going, you reckon that's the way to the local tavern.";
+	rooms["301"].runOnEnter = messBonusFunction;
+	rooms["301"].southExit = "212";
+	rooms["301"].westExit = "302";
+	rooms["301"].planet = "PLANET: TARKUS";
+	rooms["301"].system = "SYSTEM: REDACTED";
+	rooms["301"].addFlag(GLOBAL.INDOOR);
+	rooms["301"].addFlag(GLOBAL.COMMERCE);
+
+	rooms["302"] = new RoomClass(this);
+	rooms["302"].roomName = "THE\nMESS";
+	rooms["302"].description = "You're in the Mess's attached bar, thankfully separated from the deafening din of the open hall by a sturdy wall and thick windows. Though still smoky, the bar has a much calmer, friendlier atmosphere, and you're quickly able to find a seat thanks to a hostess at the door, wearing a strikingly skimpy version of the Carver uniform: a simple black vest, a thong, and fishnets to cover most of her body. The rest of the staff seems to be just as scantily clad, if not more so: a stage has been erected on one wall, where a topless ausar girl in nothing but her fishnets and a pair of pasties is currently singing to the accompaniment of an old-earth jazz band made up of raskvel in little tuxedos. The bar here is clearly catering to a higher-class clientele, and most of the people lounging around are fellow spacers and pioneers coming in for the planet rush, while others have the air of off-duty U.G.C. scouts and engineers. Almost everyone has a drink or a half-nude server in their lap, maybe both. This place is a weird mesh of retro earth and sensuality, that's for sure.";
+	rooms["302"].runOnEnter = barBonusFunction;
+	rooms["302"].eastExit = "301";
+	rooms["302"].planet = "PLANET: TARKUS";
+	rooms["302"].system = "SYSTEM: REDACTED";
+	rooms["302"].addFlag(GLOBAL.INDOOR);
+	rooms["302"].addFlag(GLOBAL.BAR);
 	
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
