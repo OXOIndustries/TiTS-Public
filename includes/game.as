@@ -339,6 +339,11 @@ function statusTick():void {
 					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
 					trace("X-Zil-rate Expired: " + this.chars["PC"].statusEffects[x].value2);
 				}
+				if(this.chars["PC"].statusEffects[x].storageName == "Quivering Quasar")
+				{
+					this.chars["PC"].physiqueMod -= this.chars["PC"].statusEffects[x].value2;
+					trace("Quivering Quasar: " + this.chars["PC"].statusEffects[x].value2);
+				}
 				if(this.chars["PC"].statusEffects[x].storageName == "Zil Sting")
 				{
 					this.chars["PC"].reflexesMod += this.chars["PC"].statusEffects[x].value1;

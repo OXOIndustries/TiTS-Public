@@ -1,4 +1,4 @@
-package classes {
+﻿package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -1668,6 +1668,7 @@ package classes {
 		}
 		public function lustDamage(arg:Number = 0):Number
 		{
+			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
 			return lust(arg);
 		}
 		public function physique(arg:Number = 0, apply:Boolean = false):Number 
@@ -1864,7 +1865,9 @@ package classes {
 			return 100;
 		}
 		public function physiqueMax(): Number {
-			return level * 5;
+			var bonuses:int = 0;
+			if(hasStatusEffect("Quivering Quasar")) bonuses += 5;
+			return level * 5 + bonuses;
 		}
 		public function reflexesMax(): Number {
 			return level * 5;
@@ -3047,6 +3050,20 @@ package classes {
 		public function setStatusValue(storageName: String, storageValueNum: int, newValue) {
 			setStorageValue(statusEffects, storageName, storageValueNum, newValue);
 		}
+		public function getStatusMinutes(storageName: String)
+		{
+			var counter: Number = statusEffects.length;
+			//Various Errors preventing action
+			if (statusEffects.length <= 0) return;
+			while (counter > 0) {
+				counter--;
+				//Find it, report it.
+				if (statusEffects[counter].storageName == storageName) {
+					return statusEffects[counter].minutesLeft;
+				}
+			}
+			return -1;
+		}
 		public function setStatusMinutes(storageName: String, newMinutes:int)
 		{
 			var counter: Number = statusEffects.length;
@@ -3065,6 +3082,26 @@ package classes {
 				}
 			}
 			trace("ERROR: Looking for status '" + storageName + "' to change minutes, and " + short + " does not have the status affect.");
+			return;
+		}
+		public function addStatusMinutes(storageName: String, newMinutes:int)
+		{
+			var counter: Number = statusEffects.length;
+			//Various Errors preventing action
+			if (statusEffects.length <= 0) return;
+			while (counter > 0) {
+				counter--;
+				//Find it, change it, quit out
+				if (statusEffects[counter].storageName == storageName) 
+				{
+					statusEffects[counter].minutesLeft += newMinutes;
+					if (statusEffects[counter].minutesLeft < 0) {
+						statusEffects[counter].minutesLeft = 0;
+					}
+					return;
+				}
+			}
+			trace("ERROR: Looking for status '" + storageName + "' to add minutes, and " + short + " does not have the status affect.");
 			return;
 		}
 		public function setKeyItemValue(storageName: String, storageValueNum: int, newValue) {

@@ -250,6 +250,14 @@ function updateCombatStatuses():void {
 			pc.removeStatusEffect("Paralyzed");
 		}
 	}
+	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
+	{
+		if(rand(10) == 0) 
+		{
+			output("<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>")
+			pc.createStatusEffect("Blind",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		}
+	}
 	if(pc.hasStatusEffect("Blind")) {
 		pc.addStatusValue("Blind",1,-1);
 		if(pc.statusEffectv1("Blind") <= 0) {
@@ -1720,7 +1728,8 @@ function tease(target:Creature, part:String = "chest"):void {
 		}
 	}
 	trace("TOTAL MULTIPLICATION FACTOR: " + totalFactor);
-
+	//Multiplier gets 50% boost for quivering quasar
+	if(pc.hasStatusEffect("Sex On a Meteor")) totalFactor *= 1.5;
 	//Celise ignores ALL THIS SHIT!
 	if(!(target is Celise)) 
 	{

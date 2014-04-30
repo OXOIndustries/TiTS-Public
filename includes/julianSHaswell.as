@@ -59,8 +59,6 @@ function approachJulianRouter():void {
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
-
-
 }
 
 

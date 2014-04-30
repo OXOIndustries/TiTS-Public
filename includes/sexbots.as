@@ -355,7 +355,7 @@ function grappleWithASexbot():void
 			if(pc.cockTotal() == 1) output("s");
 		}
 		output(" eagerly to the warm, seeking vibrations of the tentacle attached to your groin.");
-		pc.lust(5+rand(5));
+		pc.lustDamage(5+rand(5));
 	}
 	else
 	{
@@ -378,7 +378,7 @@ function grappleWithASexbot():void
 			output(".");
 
 			output("\n\n“<i>You are encouraged to struggle as hard as you can,</i>” says the sexbot, green eyes glittering as it forcibly masturbates you. “<i>This unit prides itself on its bondage sub-routine, crash tested upon more than two hundred sentient beings to ensure every client may experience true helplessness.</i>”");
-			pc.lust(10+rand(5));
+			pc.lustDamage(10+rand(5));
 			pc.createStatusEffect("Grappled",0,35,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 		}
 	}

@@ -128,13 +128,26 @@ function getADrinkFromDCLsButt():void {
 function quiveringQuasar():void
 {
 	//{Temporarily Increases Physique value, small random chance to blind yourself on any given turn}
-	//9999
 	clearOutput();
 	processTime(3);
 	author("Savin");
 	output("<i>\"Let's try one of those Quasars.\"</i>");
 	output("\n\n<i>\"Careful, it kicks like a mule,\"</i> the bartender warns you as she mixes you a brightly-colored, almost glowing, drink which bubbles in its glass as she slides it on over. You pick the glass up, and recoil a bit at the ozone smell emanating off of it; giggling, the bartender adds, <i>\"It's electrifying, huh?\"</i>");
 	output("\n\nUh-huh. Well, bottoms up. You knock back your Quasar, shivering as it rushes down your throat, leaving your hair standing on end. You suddenly feel <i>strong</i>, like you could take on a pack of cyborg grizzly bears head-on!");
+	pc.credits -= 10;
+	if(pc.hasStatusEffect("Quivering Quasar")) {
+		if(pc.statusEffectv2("Quivering Quasar") < 10) {
+			pc.addStatusValue("Quivering Quasar",2,5);
+			pc.physiqueMod+=5;
+			pc.lust(5);
+		}
+		else output("\n\nYou're about as drunk on Quivering Quasar as you're going to get.");
+	}
+	else {
+		pc.createStatusEffect("Quivering Quasar",0,5,0,0,false,"Icon_DizzyDrunk","This top-shelf alcohol makes you feel stronger - so much so that your maximum physique is temporarily increased.",false,180);
+		pc.physiqueMod+=5;
+		pc.lust(5);
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -152,6 +165,18 @@ function sexOnAMeteor():void
 	output("\n\nAlrighty then. You grab your sexy, girly drink and start draining it. You barely realize how... how horny you're getting until you've drained the last drop, only to find a burning fire spreading through your loins.");
 	output("\n\nYou could really go for a dick to suck.");
 	output("\n\nWait, what!?");
+
+	pc.credits -= 20;
+	if(pc.hasStatusEffect("Sex On a Meteor")) {
+		if(pc.getStatusMinutes("Sex On a Meteor") < 700) {
+			pc.addStatusMinutes("Sex On a Meteor",60);
+		}
+		else output("\n\nYou're not going to get  as you're going to get.");
+	}
+	else {
+		pc.createStatusEffect("Sex On a Meteor",0,5,0,0,false,"LustUp","This top-shelf alcohol makes you almost irresistible, but easily aroused as well.",false,180);
+	}
+	pc.lust(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

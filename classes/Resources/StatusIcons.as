@@ -101,8 +101,7 @@ package classes.Resources
 		public static var Pill:Class = StatusIcons.Icon_DrugPill;
 		public static var Poison:Class = StatusIcons.Icon_Poison;
 		public static var Stun:Class = StatusIcons.Icon_MindcontrolledMindbroke;
-		
-		
+		public static var LustUp:Class = StatusIcons.Icon_LustUp;
 	}
 
 }

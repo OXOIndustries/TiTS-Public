@@ -84,21 +84,21 @@ function enemyAphrodisiacDarts():void
 	{
 		output("\nYou manage to avoid most of the projectiles, but one still impacts your arm, stinging you with a pinprick of pain. You yank it out, but it's payload is already spent, injected inside you.");
 		damage = 3 + rand(3);
-		pc.lust(damage);
+		pc.lustDamage(damage);
 	}
 	//Medium hit
 	else if(rangedCombatMiss(foes[0],pc))
 	{
 		output("\nTwo needles slam into your body, imparting bursts of searing pain when they penetrate your flesh. You yank them out in irritation, but whatever they contained is inside you now.");
 		damage = 7 + rand(3);
-		pc.lust(damage);
+		pc.lustDamage(damage);
 	}
 	//Full Hit
 	else
 	{
 		output("\nAll three needles hit you before you can react.");
 		damage = 11 + rand(3);
-		pc.lust(damage);
+		pc.lustDamage(damage);
 	}
 	//Reactions
 	if(hit)
@@ -195,13 +195,13 @@ function raskvelGirlsTeasingCockwielders():void
 	if(rand(4) == 0) 
 	{
 		output("The short female swivels to show you her rump, shaking it up and down to show off her puffed-up pussy and second clit from behind. She shakes and wobbles, bouncing her cheeks enticingly for your enjoyment while asking, \"<i>Come over here and give me some eggs, and we can forget all about this.</i>\"");
-		pc.lust(7+rand(3));
+		pc.lustDamage(7+rand(3));
 	}
 	//#2
 	else if(rand(3) == 0)
 	{
 		output("Pulling down her top to expose her nipples, " + foes[0].a + foes[0].short + " asks, \"<i>Still want to fight? You could always pay me in sperm, you know.</i>\"");
-		pc.lust(6+rand(7));
+		pc.lustDamage(6+rand(7));
 	}
 	//#3
 	else if(rand(2) == 0) 
@@ -210,7 +210,7 @@ function raskvelGirlsTeasingCockwielders():void
 		if(!pc.isCrotchGarbed()) output(" [pc.oneCock]");
 		else output(" [pc.oneCock] through your [pc.crotchGarments]");
 		output(". \"<i>Come play, we can forget about the money.</i>\"");
-		pc.lust(10+rand(4));
+		pc.lustDamage(10+rand(4));
 	}
 	//#4
 	else
@@ -225,7 +225,7 @@ function raskvelGirlsTeasingCockwielders():void
 			if(pc.hasHair()) output("through your [pc.hair]");
 			else output("over your head");
 			output(". She detaches before you can think to get her off of you, leaving you with the taste of her femininity on your lips and the thought sex on your mind.");
-			pc.lust(15+rand(6));
+			pc.lustDamage(15+rand(6));
 		}
 	}
 	processCombat();
