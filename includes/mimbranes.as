@@ -2601,7 +2601,7 @@ public function mimbraneStruggle():void
 	clearOutput();
 	if (pc.hasPerk("Escape Artist"))
 	{
-		if (pc.reflexes() + rand(10) > pc.statusEffectsv1("Mimbrane Smother") * 5)
+		if (pc.reflexes() + rand(10) > pc.statusEffectv1("Mimbrane Smother") * 5)
 		{
 			output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to prise it away from you.");
 			pc.removeStatusEffect("Mimbrane Smother");

@@ -1447,6 +1447,24 @@
 				case "milkColor":
 					buffer = milkColor();
 					break;
+				case "cumVisc":
+					buffer = fluidViscosity(cumType);
+					break;
+				case "girlCumVisc":
+					buffer = fluidViscosity(girlCumType);
+					break;
+				case "milkVisc":
+					buffer = fluidViscosity(milkType);
+					break;
+				case "cumFlavor":
+					buffer = fluidFlavor(cumType);
+					break;
+				case "girlCumFlavor":
+					buffer = fluidFlavor(girlCumType);
+					break;
+				case "milkFlavor":
+					buffer = fluidFlavor(milkType);
+					break;
 				case "leg":
 					buffer = leg();
 					break;
@@ -7705,6 +7723,68 @@
 		}
 		public function girlCumColor(): String {
 			return fluidColor(girlCumType);
+		}
+		public function fluidFlavor(arg: int):String {
+			var temp:int = rand(10);
+			//CUM & MILK TYPES
+			if (arg == GLOBAL.MILK)
+			{
+				if (temp <= 4) return "creamy";
+				else if (temp <= 7) return "delicious";
+				else if (temp <= 8) return "sweet";
+				else return "creamy";
+			} else if(arg == GLOBAL.CUM) {
+				if (temp <= 6) return "salty";
+				else return "potent";
+			} else if (arg == GLOBAL.HONEY) {
+				if (temp <= 4) return "sweet";
+				else if (temp <= 7) return "syrupy";
+				else return "sugary";
+			} else if (arg == GLOBAL.OIL) {
+				return "tasteless";
+			} else if (arg == GLOBAL.MILKSAP) {
+				if (temp <= 4) return "creamy";
+				else if (temp <= 7) return "sweet";
+				else if (temp <= 8) return "sugary";
+				else return "delicious";
+			} else if (arg == GLOBAL.GIRLCUM) {
+				if (temp <= 6) return "tangy";
+				else return "flavorful";
+			} else if (arg == GLOBAL.CUMSAP) {
+				if (temp <= 4) return "salty-sweet";
+				else if (temp <= 7) return "syrupy";
+				else return "salty";
+			}
+			return "bland";
+		}
+		public function fluidViscosity(arg: int):String {
+			var temp:int = rand(10);
+			//CUM & MILK TYPES
+			if (arg == GLOBAL.MILK)
+			{
+				return "creamy";
+			} else if(arg == GLOBAL.CUM) {
+				if (temp <= 5) return "thick";
+				else if (temp <= 7) return "slick";
+				else return "creamy";
+			} else if (arg == GLOBAL.HONEY) {
+				if (temp <= 5) return "sticky";
+				else return "slick";
+			} else if (arg == GLOBAL.OIL) {
+				if (temp <= 4) return "slippery";
+				return "slick";
+			} else if (arg == GLOBAL.MILKSAP) {
+				if (temp <= 4) return "creamy";
+				else return "syrupy";
+			} else if (arg == GLOBAL.GIRLCUM) {
+				if (temp <= 6) return "slick";
+				else return "slippery";
+			} else if (arg == GLOBAL.CUMSAP) {
+				if (temp <= 4) return "slick";
+				else if (temp <= 7) return "sticky";
+				else return "syrupy";
+			}
+			return "fluid";
 		}
 		public function fluidColor(arg: int): String {
 			var temp: int = this.rand(10);

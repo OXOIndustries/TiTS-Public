@@ -470,7 +470,9 @@ function feedDatNaleenSumMilk():void {
 		output("\n\nBut she won't let you off that easily. Shifting ever so slightly, her hand plays across your thighs, teasing your tender skin. You look down, just in time to see her white-clad fingers locking around [pc.oneCock]. You hadn't even realized how hard you were... She gives you a little wink, emerald eyes full of mischief as she starts to tenderly caress your cock, gently stroking it with fur so soft you could swear it was heaven. You move your hand in response, buried deep inside her. For every stroke, you thrust your fingers in, spearing her cunt and ass harder and faster as she picks up her pace, quickly building to a furious handjob. You grunt in sexual need, straining not to cum too quickly at the naleen's hand. She doesn't make it easy for you, though: she keeps up the unyielding pressure for what seems like eternity before finally, with a sly grin offset by her stuffed gob, she slips her waist forward, grinding her finger-filled cunt up against your drooling pecker. Your breath comes sharply as the radiant heat of her eager sex rubs off on you, her cunny's slick lube letting her hand work ever faster. You try to distract her by pushing her down on your breast, but the sudden shift of her body has just the wrong effect: with a gasp, you feel your [pc.cockSmallest] bend a moment before it suddenly finds itself rushing into a tight, warm, wet enclosure, hugging it tightly as your fingers clench inside her.");
 	}
 	
-	output("\n\nMoaning and purring, the naleen moves on your fingers, hips rocking, nearly baring you to the ground as she drinks and drinks, a seemingly endless hunger for your milk and sex overtaking her. You hook an arm around her, holding the passionate kitty as she grinds and humps on your hand {and cock}, pushing you deeper into her slavering holes as her tongue goes wild on your [pc.nipple], lapping at the constant flow of your sweet milk, urging you on into a torrent that bulges her cheeks, too fast for her to swallow it all. Soon, she's wholly overflowing with your bounty, humping away with utter abandon. Her eyes roll closed, utterly absorbed in the furious fuck.");
+	output("\n\nMoaning and purring, the naleen moves on your fingers, hips rocking, nearly baring you to the ground as she drinks and drinks, a seemingly endless hunger for your milk and sex overtaking her. You hook an arm around her, holding the passionate kitty as she grinds and humps on your hand");
+	if(pc.hasCock()) output(" and cock");
+	output(", pushing you deeper into her slavering holes as her tongue goes wild on your [pc.nipple], lapping at the constant flow of your sweet milk, urging you on into a torrent that bulges her cheeks, too fast for her to swallow it all. Soon, she's wholly overflowing with your bounty, humping away with utter abandon. Her eyes roll closed, utterly absorbed in the furious fuck.");
 	
 	//If cock:
 	output("\n\n");
@@ -481,7 +483,7 @@ function feedDatNaleenSumMilk():void {
 	output("The Naleen's tail coils around you, squeezing you tight as she moves, hips bucking as her face presses hard into your breast, sucking out every drop she can get - and nearly driving you mad with pleasure. Her tongue moves wildly, soft lips kissing, teeth scoring across your [pc.nipple]; you can't take much more of this. You throw your head back, pulling the huntress close as you feel your orgasm coming");
 	if(pc.hasCock()) output(", cock throbbing inside her, spilling the first trails of [pc.cumColor] into her sodden box");
 	output(". The naleen herself isn't much better off, her high voice whining as her quim drenches your fingers in orgasmic fluids, clamping and squeezing and milking ");
-	if(!pc.hasCock()) output("them ");
+	if(!pc.hasCock()) output("them");
 	else output("your [pc.cockSmallest]");
 	output(". The way she purrs and moans around your tit, though... the vibrations are what push you over, your titflesh quaking into a massive boogasm that wracks your body from the [pc.chest] out");
 	if(pc.hasCock()) 
@@ -490,6 +492,7 @@ function feedDatNaleenSumMilk():void {
 		if(pc.cockTotal() > 1) output("blow their pent-up loads, one spasming out a huge, thick swath of seed into her waiting hole.");
 		else output("blows its pent-up load, spasming out a huge thick swath of seed into her waiting hole.");
 	}
+	else output(".");
 	output("\n\nWith a gasp, the naleen falls onto her back, milk dripping from the corners of her mouth as she flops down, sodden tits jiggling obscenely. ");
 	if(pc.hasCock()) output("Your [pc.cockSmallest] pops free of her vice-like cunt as she does so, leaving a nice creamy smear on her thigh as you withdraw. ");
 	output("With a contented sigh, the huntress wipes her lips and idly rubs her cum-stained quim, regarding you with wide eyes. <i>“That was a magnificent treat, pet,”</i> she purrs, smiling. <i>“Among my people, it's a great honor to suckle from a mother's teats. A sign of unparalleled trust and love. Thank you, little pet.”</i>");

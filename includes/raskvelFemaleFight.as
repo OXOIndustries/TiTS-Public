@@ -58,10 +58,10 @@ function raskvelChickAI():void
 	}
 	else
 	{
-		if(rand(4) == 0) enemyWrenchAttack();
-		else if(rand(3) == 0) enemyAphrodisiacDarts();
-		else if(rand(2) == 0) raskvelFemShotgun();
-		else raskvelGirlsTeasingCockwielders();
+		if(rand(4) == 0 && pc.hasCock()) raskvelGirlsTeasingCockwielders();
+		else if(rand(3) == 0) enemyWrenchAttack();
+		else if(rand(2) == 0) enemyAphrodisiacDarts();
+		else raskvelFemShotgun();
 	}
 }
 
@@ -689,7 +689,7 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 	if(pc.biggestTitSize() >= 1) output("your [pc.chest] for support");
 	else output("her small teats, squeezing a nipple");
 	output(" as she starts to move her tail, letting it grind and slide and writhe inside you, and with that you cum, and cum hard. You scream, back arching as she slams her tail into you again and again, hammering a mind-shattering orgasm from you, your own cries masking hers as your tongue drives her over the edge with you, spattering your face with alien fem-cum.");
-	output("\n\nBy the time you come back to your senses, the raskvel slut's rolled off of you, clutching her clothes to her cum-smeared body, chest heaving. <i>\"You off-worlders... I gotta get my toll from you more often, " + pc.mf("handsome","beautiful") + " she winks, staggering to her feet. You meekly nod, feeling horribly, wonderfully loose after the mammoth tail-pegging you just recieved. The raskvel saunters off with a wink and a blown kiss, leaving you to collect your kit and leave the scene, [pc.legs] wobbling as you waddle off.");
+	output("\n\nBy the time you come back to your senses, the raskvel slut's rolled off of you, clutching her clothes to her cum-smeared body, chest heaving. <i>\"You off-worlders... I gotta get my toll from you more often, " + pc.mf("handsome","beautiful") + ",\"</i> she winks, staggering to her feet. You meekly nod, feeling horribly, wonderfully loose after the mammoth tail-pegging you just recieved. The raskvel saunters off with a wink and a blown kiss, leaving you to collect your kit and leave the scene, [pc.legs] wobbling as you waddle off.");
 	processTime(40+rand(20));
 	pc.orgasm();
 	//Incombat

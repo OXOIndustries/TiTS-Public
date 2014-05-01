@@ -11,6 +11,7 @@ function femzilEncounter(forceFriendly:Boolean = false):void {
 	pc.lust(4);
 	userInterface.showBust("ZILFEMALE");
 	userInterface.showName("FEMALE\nZIL");
+	CodexManager.unlockEntry("Zil");
 	var hostile:int = rand(4);
 	if(forceFriendly) hostile = 0;
 	//[First Time]

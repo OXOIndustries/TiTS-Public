@@ -198,9 +198,10 @@ function sleep(outputs:Boolean = true):void {
 			
 			eventBuffer += "\n\nA nights rest is just what you needed; you feel faster... stronger... harder....\n<b>Level Up is available!</b>";
 		}
+		else if(pc.level == 5) output("You are currently the maximum allowable level and cannot level any more.\n\n");
 		
 		//CELISE NIGHT TIME BEDTIMEZ
-		if(celiseIsCrew())
+		if(celiseIsCrew() && rand(3) == 0)
 		{
 			celiseOffersToBeYourBedSenpai();
 			return;
