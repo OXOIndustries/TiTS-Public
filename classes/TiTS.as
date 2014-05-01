@@ -102,6 +102,7 @@
 		include "../includes/shelly.as";
 		include "../includes/sydianMale.as";
 		include "../includes/theMess.as";
+		include "../includes/aliss.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
@@ -192,7 +193,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.23";
+			version = "0.02.25";
 
 			//temporary nonsense variables.
 			temp = 0;

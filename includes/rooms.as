@@ -60,9 +60,9 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].planet = "TAVROS STATION";
 	rooms["MERCHANT'S THOROUGHFARE"].system = "SYSTEM: KALAS";
 	rooms["MERCHANT'S THOROUGHFARE"].eastExit = "ANON'S BAR AND BOARD";
-	rooms["MERCHANT'S THOROUGHFARE"].westExit = "FUR EFFECT";
+	rooms["MERCHANT'S THOROUGHFARE"].westExit = "DARK CHRYSALIS";
 	rooms["MERCHANT'S THOROUGHFARE"].southExit = "BETHS BROADS";
-	rooms["MERCHANT'S THOROUGHFARE"].northExit = "DARK CHRYSALIS";
+	rooms["MERCHANT'S THOROUGHFARE"].northExit = "110";
 	rooms["MERCHANT'S THOROUGHFARE"].inExit = "LIFT: MERCHANT DECK";
 	rooms["MERCHANT'S THOROUGHFARE"].inText = "Lift";
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
@@ -106,7 +106,7 @@ function initializeRooms():void
 	rooms["DARK CHRYSALIS"].description = "The interior of this shop is difficult to make out thanks to a combination of dim lighting and a smoky haze that smells vaguely of walnuts. Looking around, you manage to locate the source of the illumination - four custom glowbulbs pumping out an unnatural-looking blue-black aura. The walls are covered in shelves with dozens of perverted-looking nicknames, many of them demonic in theme, and the lone counter in the back of the store is similarly decorated.";
 	rooms["DARK CHRYSALIS"].planet = "TAVROS STATION";
 	rooms["DARK CHRYSALIS"].system = "SYSTEM: KALAS";
-	rooms["DARK CHRYSALIS"].southExit = "MERCHANT'S THOROUGHFARE";
+	rooms["DARK CHRYSALIS"].eastExit = "MERCHANT'S THOROUGHFARE";
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.INDOOR);
 	rooms["DARK CHRYSALIS"].addFlag(GLOBAL.COMMERCE);
 	rooms["DARK CHRYSALIS"].runOnEnter = seraBonusFunction;
@@ -117,7 +117,7 @@ function initializeRooms():void
 	rooms["FUR EFFECT"].description = "The sign declared this store to be \"Fur Effect,\" and you can see why. Your [pc.feet] sink ankle-deep into thick, pink shag. The plush, pink rug covers the entire floor of the shop, giving way to a fuzzy-looking maroon wall treatment. Even the light sources appear to be wispy, vase-bound feathers, emitting a steady rainbow glow. There are also dozens of pictures and holos of attractive looking furred beings in various poses. One showcases a slinky ferret-girl bending her entire body backwards into an 'o' in a display of supreme flexibility. Another is a floating, holographic cow-girl modelling a straining set of overalls. Behind it, there is a velvety countertop and hardlight projected register.";
 	rooms["FUR EFFECT"].planet = "TAVROS STATION";
 	rooms["FUR EFFECT"].system = "SYSTEM: KALAS";
-	rooms["FUR EFFECT"].eastExit = "MERCHANT'S THOROUGHFARE";
+	rooms["FUR EFFECT"].eastExit = "110";
 	rooms["FUR EFFECT"].addFlag(GLOBAL.INDOOR);
 	rooms["FUR EFFECT"].addFlag(GLOBAL.COMMERCE);
 	rooms["FUR EFFECT"].runOnEnter = furEffectBonusFunction;
@@ -133,7 +133,29 @@ function initializeRooms():void
 	rooms["BETHS BROADS"].addFlag(GLOBAL.NPC);
 	rooms["BETHS BROADS"].runOnEnter = reahaBonusFunction;
 
-	
+	//109 "BETHS BROADS" Beth's Busty Broads
+	rooms["MI AMOUR"] = new RoomClass(this);
+	rooms["MI AMOUR"].roomName = "MI\nAMOUR";
+	rooms["MI AMOUR"].description = "";
+	rooms["MI AMOUR"].planet = "TAVROS STATION";
+	rooms["MI AMOUR"].system = "SYSTEM: KALAS";
+	rooms["MI AMOUR"].southExit = "110";
+	rooms["MI AMOUR"].addFlag(GLOBAL.INDOOR);
+	rooms["MI AMOUR"].addFlag(GLOBAL.NPC);
+	rooms["MI AMOUR"].runOnEnter = miAmoreBonusShit;
+
+	//110 MERCHANT'S THOROUGHFARE
+	rooms["110"] = new RoomClass(this);
+	rooms["110"].roomName = "MERCHANT'S\nTHOROUGHFARE";
+	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is closed off for now. To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room in from one of the larger businesses.";
+	rooms["110"].planet = "TAVROS STATION";
+	rooms["110"].system = "SYSTEM: KALAS";
+	rooms["110"].northExit = "MI AMOUR";
+	rooms["110"].southExit = "MERCHANT'S THOROUGHFARE";
+	rooms["110"].westExit = "FUR EFFECT";
+	//rooms["110"].westExit = "DARK CHRYSALIS";
+	rooms["110"].addFlag(GLOBAL.INDOOR);
+	rooms["110"].runOnEnter = undefined;
 
 	//0. Ship Hanger
 	rooms["SHIP HANGAR"] = new RoomClass(this);

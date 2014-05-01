@@ -149,7 +149,10 @@
 	{
 		chars["DELILAH"] = new classes.Characters.Delilah();
 	}
-
+	if (!justUpdate || (justUpdate && chars["ALISS"] == undefined))
+	{
+		chars["ALISS"] = new classes.Characters.Aliss();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
@@ -162,7 +165,5 @@
 			trace("Creature '" + prop + "' Game Version " + chars[prop].version);
 		}
 	}
-	
 	this.foes[0] = new Creature();
-
 }
