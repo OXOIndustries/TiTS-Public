@@ -48,7 +48,7 @@
 	import classes.Items.Apparel.*
 	import classes.Items.Miscellaneous.*
 
-	import classes.Parser.Main.Parser;
+	import classes.Parser.ParseEngine;
 
 	import classes.DataManager.DataManager;
 	import classes.GUI;
@@ -153,7 +153,7 @@
 		public var shipLocation:String;
 		public var inSceneBlockSaving:Boolean;
 
-		public var parser:classes.Parser.Main.Parser;
+		public var parser:ParseEngine;
 
 		public var dataManager:DataManager;
 		public var userInterface:GUI;
@@ -231,7 +231,7 @@
 			currentLocation = "SHIP HANGAR";
 			shipLocation = "SHIP HANGAR";
 
-			parser = new Parser(this, TiTS_Settings);
+			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
 

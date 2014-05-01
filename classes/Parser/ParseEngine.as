@@ -1,9 +1,8 @@
-﻿
-package classes.Parser.Main
+﻿package classes.Parser
 {
 	// import classes.CoC;
 
-	public class Parser
+	public class ParseEngine
 	{
 		import showdown.Showdown;
 
@@ -20,7 +19,7 @@ package classes.Parser.Main
 		public var printIntermediateParseStateDebug:Boolean = false;
 
 
-		public function Parser(ownerClass:*, settingsClass:*)
+		public function ParseEngine(ownerClass:*, settingsClass:*)
 		{
 			this._ownerClass = ownerClass;
 			this._settingsClass = settingsClass;
@@ -73,7 +72,7 @@ package classes.Parser.Main
 		public var parserState:Object = new Object();
 
 		// provides singleArgConverters
-		include "../singleArgLookups.as";
+		include "./singleArgLookups.as";
 
 		// Does lookup of single argument tags ("[cock]", "[armor]", etc...) in singleArgConverters
 		// Supported variables are the options listed in the above
@@ -146,15 +145,11 @@ package classes.Parser.Main
 					return "<b>!Unknown tag \"" + arg + "\"!</b>";
 				}
 			}
-
 		}
-
 
 		// provides twoWordNumericTagsLookup and twoWordTagsLookup, which use
 		// cockLookups/cockHeadLookups, and rubiLookups/arianLookups respectively
-		include "../doubleArgLookups.as";
-
-
+		include "./doubleArgLookups.as";
 
 		private function convertDoubleArg(inputArg:String):String
 		{
@@ -275,9 +270,6 @@ package classes.Parser.Main
 				}
 			}
 
-
-
-
 			if (lookupParserDebug) trace("No lookup found for", inputArg, " search result is: ", thing);
 			return "<b>!Unknown subject in two-word tag \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\</b>";
 			// return "<b>!Unknown tag \"" + arg + "\"!</b>";
@@ -285,12 +277,8 @@ package classes.Parser.Main
 			return argResult;
 		}
 
-
-
-
-
 		// Provides the conditionalOptions object
-		include "../conditionalConverters.as";
+		include "./conditionalConverters.as";
 
 		// converts a single argument to a conditional to
 		// the relevant value, either by simply converting to a Number, or
