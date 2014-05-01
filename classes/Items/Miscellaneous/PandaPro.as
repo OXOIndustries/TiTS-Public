@@ -204,7 +204,7 @@
 					if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1)
 					{
 						//1
-						if(rand(2) == 0) 
+						if(target.biggestTitSize() >= 1) 
 						{
 							kGAMECLASS.output("\n\nA ecstatic energy gathers in your chest as you await the effects of your panda splicing.");
 							if(target.isChestGarbed()) kGAMECLASS.output(" You push down your [pc.upperGarments] for a better view.");
