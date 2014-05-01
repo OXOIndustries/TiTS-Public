@@ -1,4 +1,4 @@
-﻿package classes {
+package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -1496,11 +1496,14 @@
 				case "emself":
 					buffer = this.mfn("himself", "herself", "eirself");
 					break;
+				case "skinTone":
+					buffer = this.skinTone;
+					break;
 				default:
 					// error production is now done up-stream in the parser
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.
-					//throw new Error("Unmatched tag descriptor: " + desc);
-					trace("WOOP WOOP ERROR WOOP WOOP. Unmatched tag descriptor: " + desc);
+					throw new Error("Unmatched tag descriptor: " + desc);
+					//trace("WOOP WOOP ERROR WOOP WOOP. Unmatched tag descriptor: " + desc);
 					return null; // "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 					break;
 			}

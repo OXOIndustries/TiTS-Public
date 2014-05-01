@@ -172,13 +172,8 @@ function jungleEncounterChances():Boolean {
 	
 	if (debug)
 	{
-		if (flags["JUNGLE_STEP"] >= 3)
-		{
-			flags["JUNGLE_STEP"] = 0;
-			encounterMimbrane();
-			return true;
-		}
-		return false;
+		encounterMimbrane();
+		return true;
 	}
 	
 	var choices:Array = new Array();
@@ -315,8 +310,8 @@ function jungleDeepEncounters():Boolean {
 			choices[choices.length] = naleenMaleEncounter;
 			choices[choices.length] = naleenMaleEncounter;
 		}
-		choices[choices.length] = femzilEncounter;
-		choices[choices.length] = maleZilEncounter;
+		choices[choices.length] = encounterMimbrane;
+		choices[choices.length] = encounterMimbrane;
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		
 		//Run the event

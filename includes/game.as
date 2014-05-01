@@ -111,6 +111,8 @@ public function mainGameMenu():void {
 	
 	// Show the minimap too!
 	this.userInterface.showMinimap();
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
 }
 
 function crew(counter:Boolean = false):Number {
@@ -134,17 +136,6 @@ function crew(counter:Boolean = false):Number {
 		{
 			addButton(count-1,"Reaha",approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
-		}
-	}
-	// For want of somewhere better to put this, I'm hanging it off of the crew menu for now
-	// [MIMBRANE CODE]
-	if (attachedMimbranes() > 0)
-	{
-		count++;
-		if (!counter)
-		{
-			addButton(count - 1, "Mimbranes", mimbraneMenu);
-			crewMessages += "\n\nThe parasites attached to a variety of your appendanges seem intelligent enough for some rudimentary communication....";
 		}
 	}
 	if(!counter) {

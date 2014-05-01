@@ -2415,6 +2415,13 @@ public function encounterMimbrane():void
 //AI: Uses Lust Cloud every two rounds after previous cloud effect has worn off. If PC <60 lust, uses Spit. If PC ≥ 60, will use Smother frequently. HP attacks are less frequent when PC ≥75 lust
 function mimbraneAI():void
 {
+	// Continue the smother stuff
+	if (pc.hasStatusEffect("Mimbrane Smother"))
+	{
+		mimbraneSmother();
+		return;
+	}
+	
 	if (foes[0].hasStatusEffect("Mimbrane Cloud Cooldown"))
 	{
 		if (foes[0].statusEffectv1("Mimbrane Cloud Cooldown") == 0)
@@ -2433,13 +2440,6 @@ function mimbraneAI():void
 		return; // Tested
 	}
 	
-	// Continue the smother stuff
-	if (pc.hasStatusEffect("Mimbrane Smother"))
-	{
-		mimbraneSmother();
-		return;
-	}
-
 	// Select between lust and HP attacks
 	var hpAttackWeight:int = 3; // 33% [1 in (0-2)]
 	if (pc.lustMax() / pc.lust() > 0.75) hpAttackWeight += 3; // 20% [1 in (0-5)]
@@ -2497,7 +2497,7 @@ function mimbraneAI():void
 //Light lust attack
 public function mimbraneSkinContact():void
 {
-	output("It’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch sight of the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!");
+	output("\nIt’s hard to keep track of the Mimbrane as it dashes through the air around you. You finally catch sight of the parasite just as it rears up in place above you, narrowing its form. It’s dive bombing straight towards you!");
 
 	//{standard miss/block text} 
 	if (combatMiss(foes[0], pc))
@@ -2589,7 +2589,7 @@ function mimbraneSmother():void
 	}
 	
 	//{hit} 
-	output("\n\nYour head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.");
+	output(" Your head is encased in the parasite’s embrace, smothering you in its slick, salacious skin. Its secretions are seeping into you; its aroma greets you with every attempt to breath.");
 	pc.lust(10 + pc.libido()/10);
 	processCombat();
 	
@@ -2601,7 +2601,7 @@ public function mimbraneStruggle():void
 	clearOutput();
 	if (pc.hasPerk("Escape Artist"))
 	{
-		if (pc.reflexes() + rand(10) > pc.statusEffectsv1("Mimbrane Smother") * 5)
+		if (pc.reflexes() + rand(10) > pc.statusEffectv1("Mimbrane Smother") * 5)
 		{
 			output("You keep your cool, calmly feeling around the edges of the parasite attached to your face and manage to find a weakness in its hold; working your fingers into the small imperfection in the Mimbranes seal around your features, you manage to prise it away from you.");
 			pc.removeStatusEffect("Mimbrane Smother");
@@ -3694,6 +3694,7 @@ public function attachAssMimbrane():void
 	else if (pc.hasStatusEffect("Mimbrane Cock") && !pc.hasStatusEffect("Mimbrane Pussy")) output("With your [pc.cock] already claimed, the");
 	else if (pc.hasStatusEffect("Mimbrane Pussy") && !pc.hasStatusEffect("Mimbrane Cock")) output("With your [pc.pussy] already claimed, the");
 	else if (pc.hasStatusEffect("Mimbrane Cock") && pc.hasStatusEffect("Mimbrane Pussy")) output("With both your [pc.cock] and [pc.pussy] already claimed, the");
+	else output("The ");
 	output (" Mimbrane sets its tiny sights on your hind quarters. One would assume the little guy wouldn’t make it much farther than your [pc.hips] laying on your back the way you are. But assumptions with alien lifeforms are typically dangerous to make.");
 	output("\n\nYour exaggerated panting gets interrupted by surprised gasps as the slick sheet forces itself in between the ground and your [pc.ass]. The parasite would likely have little trouble encompassing your posterior in this position, but your lust-addled mind involuntarily reacts to the wedging as a sign to flip over. You aren’t thinking straight enough to realize that pointing your bottom skyward may be to your disadvantage. ");
 	output("\n\nThe Mimbrane, however, is ecstatic with its endeavour being made that much easier. The creature scrambles atop your duo of hills only to find that first it must play janitor. It slides and sweeps over your [pc.skinfurscales], removing any of evidence of the jungle from its new home. You feel as if someone is sensually massaging your ass with a wet silk rag. It goes on for several minutes, long enough for you to start digging your hands into the ground to deal with the unrelenting turmoil.");
@@ -3754,7 +3755,7 @@ public function attachHandMimbrane():void
 		output("\n\nThat’s when a slick, smooth touch of your palm garners your attention. The parasite is prodding at your hand, seemingly examining it. Though you lack the coherence to whip your arm away, you’re at least able to clench your fingers. Your grip isn’t quite up to your full potential, but you do manage to snag the Mimbrane’s inquisitive corner. It doesn’t startle the creature, however, much to your disappointment. If anything, the direct contact with the parasite’s oily top side is only making your inner turmoil worse.");
 		output("\n\nNo, instead the Mimbrane casually wraps the rest of its body around your weak fist. You make a weak gesture, relinquishing your grapple to try and move your fingers in some useless attempt to escape the parasite. All you manage to do is make it easier for it to work its way around your digits and onto your palm. Falling back to making another fist is your final recourse, unable to move or react intelligibly enough to effectively defend yourself.");
 		output("\n\nThe gesture proves meaningless, and soon it appears you’ve found yourself a wriggling glove of sorts, grasped firmly onto your wrist. Next comes the recognizable sensation of the Mimbrane integrating into your nervous system. Though you can’t get a coherent feeling from them, you can at least still move your fingers. Soon, the moist, warm feeling of entrapment is replaced with the comparatively cool breeze of the jungle.");
-		output("\n\nYou’ve gotten rather used to this process by now. The jolt of normalcy isn’t even a shock anymore. The hunt for the creature’s eyes and mouth doesn’t even take long; a triage of tiny bumps lay concealed square center on your [pc.skincolor] palm. You rub your other thumb over them, a tad surprised to see how much durable the typically sensitive additions are. You suppose the Mimbrane has a grasp on what a hand actually is and has modified itself accordingly.");
+		output("\n\nYou’ve gotten rather used to this process by now. The jolt of normalcy isn’t even a shock anymore. The hunt for the creature’s eyes and mouth doesn’t even take long; a triage of tiny bumps lay concealed square center on your [pc.skinTone] palm. You rub your other thumb over them, a tad surprised to see how much durable the typically sensitive additions are. You suppose the Mimbrane has a grasp on what a hand actually is and has modified itself accordingly.");
 		output("\n\nAs you reach over for your gear, anxious to keep moving, something dawns on you. You run your thumb back over the parasitic palm again. Its actually moist. But this isn’t the remnants of your opponent. It looks like");
 		if (pc.hasCock()) output(" cum");
 		else if (pc.hasVagina()) output(" girl spunk");
@@ -3972,25 +3973,25 @@ public function mimbraneStatusString(effectName:String):String
 //Example:
 public function mimbraneMenu():void
 {
-	clearOutput();
-	userInterface.showBust("MIMBRANE");
-	clearMenu();
+	clearOutput2();
+	//userInterface.showBust("MIMBRANE");
+	clearGhostMenu();
 
-	output("You currently have " + attachedMimbranes() + " Mimbrane");
-	if (attachedMimbranes() > 1) output("s");
-	output(" attached to you.");
+	output2("You currently have " + attachedMimbranes() + " Mimbrane");
+	if (attachedMimbranes() > 1) output2("s");
+	output2(" attached to you.");
 
-	output("\n");
+	output2("\n");
 
 	for (var i:int = 0; i < mimbraneEffects.length; i++)
 	{
 		if (pc.hasStatusEffect(mimbraneEffects[i]))
 		{
-			output("\n" + mimbraneStatusString(mimbraneEffects[i]));
+			output2("\n" + mimbraneStatusString(mimbraneEffects[i]));
 		}
 	}
 
-	output("\n\n");
+	output2("\n\n");
 
 	// Fap/feeding stuff
 	if (hasFeedableMimbranes())
@@ -4000,57 +4001,57 @@ public function mimbraneMenu():void
 			// Gendered, not enough lust to fap
 			if (pc.hasCock() || pc.hasVagina())
 			{
-				output("You have");
-				if (attachedMimbranes() == 1) output(" a Mimbrane that is");
-				else output(" Mimbranes that are");
-				output(" ready to feed. However, you aren’t turned on enough to get your juices flowing!");
+				output2("You have");
+				if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
+				else output2(" Mimbranes that are");
+				output2(" ready to feed. However, you aren’t turned on enough to get your juices flowing!");
 			}
 			// Genderless, not enough lust to fap
 			else
 			{
-				output("You have ");
-				if (attachedMimbranes() == 1) output(" a Mimbrane that is");
-				else output(" Mimbranes that are");
-				output(" ready to feed. However, you have no means to feed them!")
+				output2("You have ");
+				if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
+				else output2(" Mimbranes that are");
+				output2(" ready to feed. However, you have no means to feed them!")
 			}
 
-			addDisabledButton(0, "Cock Feed");
-			addDisabledButton(1, "Vag Feed");
+			addDisabledGhostButton(0, "Cock Feed");
+			addDisabledGhostButton(1, "Vag Feed");
 		}
 		else
 		{
 			// FAPS
-			output("You have");
-			if (attachedMimbranes() == 1) output(" a Mimbrane that is");
-			else output(" Mimbranes that are");
-			output(" ready to feed.");
+			output2("You have");
+			if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
+			else output2(" Mimbranes that are");
+			output2(" ready to feed.");
 			
 			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addButton(0, "Cock Feed", feedMimbranesWithCock);
-			else addDisabledButton(0, "Cock Feed");
+			if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
+			else addDisabledGhostButton(0, "Cock Feed");
 
-			if (pc.hasVagina()) addButton(1, "Vag Feed", feedMimbranesWithPussy);
-			else addDisabledButton(1, "Vag Feed");
+			if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
+			else addDisabledGhostButton(1, "Vag Feed");
 		}
 	}
 	//If all Mimbranes are full
 	else
 	{
-		output("You try and interact with your Mimbrane");
-		if (attachedMimbranes() > 1) output("s");
-		output(", but");
-		if (attachedMimbranes() == 1) output(" it doesn’t seem");
-		else output(" they don’t seem");
-		output(" to be interested.");
-		if (attachedMimbranes() == 1) output(" It");
-		else output(" They");
-		output(" must be full.");
+		output2("You try and interact with your Mimbrane");
+		if (attachedMimbranes() > 1) output2("s");
+		output2(", but");
+		if (attachedMimbranes() == 1) output2(" it doesn’t seem");
+		else output2(" they don’t seem");
+		output2(" to be interested.");
+		if (attachedMimbranes() == 1) output2(" It");
+		else output2(" They");
+		output2(" must be full.");
 
-		addDisabledButton(0, "Cock Feed");
-		addDisabledButton(1, "Vag Feed");
+		addDisabledGhostButton(0, "Cock Feed");
+		addDisabledGhostButton(1, "Vag Feed");
 	}
 
-	output("\n\n");
+	output2("\n\n");
 
 	// Ability toggles
 
@@ -4058,121 +4059,121 @@ public function mimbraneMenu():void
 	//Unlocked when any Mimbrane hits level three trust. Occurs once, a few hours after hitting level three. Starts toggled off. Toggle disappears if no Mimbranes at level three or four exist.
 	if (highestMimbraneTrust() >= 3)
 	{
-		output("\n\n<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>");
+		output2("\n\n<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>");
 
 		var sweatText:String = "Toggle Sweat: ";
 		if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
 		{
 			sweatText += "On";
-			output("\nMimbrane sweating is currently <b>Disabled</b>");
+			output2("\nMimbrane sweating is currently <b>Disabled</b>");
 		}
 		else
 		{
 			sweatText += "Off";
-			output("\nMimbrane sweating is currently <b>Enabled</b>");
+			output2("\nMimbrane sweating is currently <b>Enabled</b>");
 		}
 
-		addButton(5, sweatText, toggleMimbraneSweat);
+		addGhostButton(5, sweatText, toggleMimbraneSweat);
 	}
 	else
 	{
-		addDisabledButton(5, "Toggle Sweat");
+		addDisabledGhostButton(5, "Toggle Sweat");
 	}
 
 	// Spit attacks
 	if (highestMimbraneTrust() >= 4)
 	{
-		output("\n\n<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>");
+		output2("\n\n<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>");
 
 		var spitText:String = "Toggle Spit: ";
 		if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
 		{
 			spitText += "On";
-			output("\nSpit attacks are currently <b>Disabled</b>");
+			output2("\nSpit attacks are currently <b>Disabled</b>");
 		}
 		else
 		{
 			spitText += "Off";
-			output("\nSpit attacks are currently <b>Enabled</b>");
+			output2("\nSpit attacks are currently <b>Enabled</b>");
 		}
 
-		addButton(6, spitText, toggleMimbraneSpit);
+		addGhostButton(6, spitText, toggleMimbraneSpit);
 	}
 	else
 	{
-		addDisabledButton(6, "Toggle Spit");
+		addDisabledGhostButton(6, "Toggle Spit");
 	}
 
 	// Face customisation
 	if (pc.hasStatusEffect("Mimbrane Face"))
 	{
-		addButton(10, "Face Hide", function():void {
-			clearOutput();
-			userInterface.showBust("MIMBRANE");
+		addGhostButton(10, "Face Hide", function():void {
+			clearOutput2();
+			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
-			output("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinAdj] tone.");
-			clearMenu();
-			addButton(0, "Back", mimbraneMenu);
+			output2("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinAdj] tone.");
+			clearGhostMenu();
+			addGhostButton(0, "Back", mimbraneMenu);
 		});
 
-		addButton(11, "Face B.Marks", function():void {
-			clearOutput();
-			userInterface.showBust("MIMBRANE");
+		addGhostButton(11, "Face B.Marks", function():void {
+			clearOutput2();
+			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = 1;
-			output("You ask the Mimbrane on your [pc.face] to disguise its eye bumps to look like beauty marks.");
-			clearMenu();
-			addButton(0, "Back", mimbraneMenu);
+			output2("You ask the Mimbrane on your [pc.face] to disguise its eye bumps to look like beauty marks.");
+			clearGhostMenu();
+			addGhostButton(0, "Back", mimbraneMenu);
 		});
 
 		if (pc.statusEffectv1("Mimbrane Face") >= 4)
 		{
-			output("\nIt's also offered to disguise itself as a set of lip piercings.");
+			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
 
-			addButton(11, "Face B.Marks", function():void {
-				clearOutput();
-				userInterface.showBust("MIMBRANE");
+			addGhostButton(11, "Face B.Marks", function():void {
+				clearOutput2();
+				//userInterface.showBust("MIMBRANE");
 				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
-				output("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
-				clearMenu();
-				addButton(0, "Back", mimbraneMenu);
+				output2("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
+				clearGhostMenu();
+				addGhostButton(0, "Back", mimbraneMenu);
 			});
 		}
 		else
 		{
-			addDisabledButton(12, "Face Lip Pc.Ing");
+			addDisabledGhostButton(12, "Face Lip Pc.Ing");
 		}
 
-		output("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
+		output2("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
 		if (flags["MIMBRANE_FACE_APPEARANCE"] == undefined)
 		{
-			addDisabledButton(10, "Face Hide");
-			output("\nIt's currently hiding itself as much as possible.");
-			output("\nYou could ask it to disguise its eyes as beauty marks.");
-			if (pc.statusEffectv1("Mimbrane Face") >= 4) output("\nYou could also ask it to resemble a pair of lip piercings.");
+			addDisabledGhostButton(10, "Face Hide");
+			output2("\nIt's currently hiding itself as much as possible.");
+			output2("\nYou could ask it to disguise its eyes as beauty marks.");
+			if (pc.statusEffectv1("Mimbrane Face") >= 4) output2("\nYou could also ask it to resemble a pair of lip piercings.");
 		}
 		else if (flags["MIMBRANE_FACE_APPEARANCE"] == 1)
 		{
-			addDisabledButton(11, "Face B.Marks");
-			output("\nIt's currently disguised as beauty marks above your lips.");
-			output("\nYou could ask it to hide itself as much as possible.");
-			if (pc.statusEffectv1("Mimbrane Face") >= 4) output("\nYou could also ask it to resemble a pair of lip piercings.");
+			addDisabledGhostButton(11, "Face B.Marks");
+			output2("\nIt's currently disguised as beauty marks above your lips.");
+			output2("\nYou could ask it to hide itself as much as possible.");
+			if (pc.statusEffectv1("Mimbrane Face") >= 4) output2("\nYou could also ask it to resemble a pair of lip piercings.");
 		}
 		else if (flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
-			addDisabledButton(12, "Face Lip Pc.Ing");
-			output("\nIt's eyes currently resemble a pair of lip piercings.");
-			output("\nYou could ask it to hide itself as much as possible.");
-			output("\nYou could also ask it to disguise its eyes as beauty marks.");
+			addDisabledGhostButton(12, "Face Lip Pc.Ing");
+			output2("\nIt's eyes currently resemble a pair of lip piercings.");
+			output2("\nYou could ask it to hide itself as much as possible.");
+			output2("\nYou could also ask it to disguise its eyes as beauty marks.");
 		}
 	}
 	else
 	{
-		addDisabledButton(10, "Face Hide");
-		addDisabledButton(11, "Face B.Marks")
-		addDisabledButton(12, "Face Lip Pc.Ing");
+		addDisabledGhostButton(10, "Face Hide");
+		addDisabledGhostButton(11, "Face B.Marks")
+		addDisabledGhostButton(12, "Face Lip Pc.Ing");
 	}
 	
-	addButton(14, "Back", crew);
+	addGhostButton(14, "Back", appearance, pc);
 }
 
 //{Mimbrane body parts}, if possible, is a list of all applicable Mimbrane body parts. So, it could be

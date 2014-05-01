@@ -40,7 +40,7 @@ package classes.Characters
 			this.armor.defense = 0;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 1;
+			this.physiqueRaw = 2;
 			this.reflexesRaw = 5;
 			this.aimRaw = 4;
 			this.intelligenceRaw = 1;
@@ -53,7 +53,7 @@ package classes.Characters
 			this.XPRaw = 20;
 			this.level = 1;
 			this.credits = 0;
-			this.HPMod = 0;
+			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 50;

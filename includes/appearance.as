@@ -15,8 +15,6 @@
 		userInterface.appearanceButton.Glow();
 		appearance(pc);
 		userInterface.showingPCAppearance = true;
-		userInterface.clearGhostMenu();
-		addGhostButton(14, "Back", pcAppearance);
 	}
 }
 
@@ -918,5 +916,16 @@ function appearance(target:Creature):void {
 		if(target.ass != undefined) {
 			output2("\n\nYou have one " + target.assholeDescript() + ", placed between your cheeks where it belongs.");
 		}
+		
+		clearGhostMenu();
+		// Mimbrane hooooook
+		// [MIMBRANECODE]
+		if (attachedMimbranes() > 0)
+		{
+			addGhostButton(0, "Mimbranes", mimbraneMenu);
+			output2("\n\nThe parasites attached to a variety of your appendages seem intelligent enough for some rudimentary communication....");
+		}
+		
+		addGhostButton(14, "Back", pcAppearance);
 	}
 }
