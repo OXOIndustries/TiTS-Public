@@ -121,8 +121,8 @@ function getDiseaseProbedYo():void
 	}
 	else if (attachedMimbranes() > 0)
 	{
-		if (attachedMimbranes() == 1) output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'M' epidel parasite! In order to treat that I will have to administer anesthesia. Shall we begin?");
-		else output("\n\nShe gasps, <i>\"Oh no! You've been infested by a number of class 'M' epidel parasites! In order to treat them I will have to administer anesthesia. Shall we begin?");
+		if (attachedMimbranes() == 1) output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'M' epidel parasite! In order to treat that I will have to administer anesthesia. Shall we begin?\"</i>");
+		else output("\n\nShe gasps, <i>\"Oh no! You've been infested by a number of class 'M' epidel parasites! In order to treat them I will have to administer anesthesia. Shall we begin?\"</i>");
 		
 		clearMenu();
 		addButton(0, "Yes", removeParasite, "mimbrane");

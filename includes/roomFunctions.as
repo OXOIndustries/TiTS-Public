@@ -39,9 +39,11 @@ function debugMenus():void
 {
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
-	output("\n\nTesting intentionally fucking up bold tags.");
-	output("<b>Open tag <b>Double open tag");
-	output("More text");
+	output("\n\nTesting some quotes.");
+	output("\n<i>\"Regular quotes, external italics.\"</i>");
+	output("\n\"<i>Regular quotes, internal italics.</i>\"");
+	output("\n\n\'Testing some more'");
+	output("\n\nTest 'words' go'here to check' this thing' work's");
 	
 	addItemButton(0, new DBGShield(), function():void {
 		output("\n\nDebug shield get.");
