@@ -539,6 +539,18 @@ public function mimbraneReproduce(effectName:String):void
 	resetMimbraneEffects(effectName);
 }
 
+public function removeMimbranes():void
+{
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			resetMimbraneEffects(mimbraneEffects[i]);
+			pc.removeStatusEffect(mimbraneEffects[i]);
+		}
+	}
+}
+
 public function mimbranesIncreaseDaysSinceFed():void
 {
 	var i:int;
@@ -3616,16 +3628,16 @@ public function attachAMimbrane():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 
-	if (pc.hasCock() && pc.totalCocks() == 1 && pc.cocks[0].cType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
-	else if (pc.hasVagina() && pc.totalVaginas() == 1 && pc.vaginas[0].type == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
+	if (pc.hasCock() && pc.totalCocks() == 1 && !pc.hasStatusEffect("Mimbrane Cock")) attachCockMimbrane();
+	else if (pc.hasVagina() && pc.totalVaginas() == 1 && !pc.hasStatusEffect("Mimbrane Pussy")) attachVagMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Ass")) attachAssMimbrane();
 	else if (pc.balls > 0 && pc.ballSize() > 0 && !pc.hasStatusEffect("Mimbrane Balls")) attachBallsMimbrane();
 	else if (pc.biggestTitSize() >= 1 && !pc.hasStatusEffect("Mimbrane Boobs")) attachBoobMimbrane();
-	else if (pc.armType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
-	else if (pc.armType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
+	else if (!pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
 	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
 	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
-	else if (pc.faceType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2)
+	else if (!pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2)
 	{
 		// Face attachment doesn't want to run genericLoss yet.
 		// cba to refactor, lazyfix.

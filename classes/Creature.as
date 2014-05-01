@@ -411,12 +411,10 @@ package classes {
 		public var faceType: Number = 0;
 		public function faceTypeUnlocked(newFaceType:Number):Boolean
 		{
-			if (this.hasStatusEffect("Mimbrane Face")) return false;
 			return true;
 		}
 		public function faceTypeLockedMessage():String
 		{
-			if (this.hasStatusEffect("Mimbrane Face")) return "The Mimbrane attached to your head compresses around your face tightly; it seems it's unwilling to allow your facial structure to change!";
 			return "";
 		}
 
@@ -524,12 +522,10 @@ package classes {
 		public var armType: Number = 0;
 		public function armTypeUnlocked(newArmType:Number):Boolean
 		{
-			if (this.hasStatusEffect("Mimbrane Hand Left") || this.hasStatusEffect("Mimbrane Hand Right")) return false;
 			return true;
 		}
 		public function armTypeLockedMessage():String
 		{
-			if (this.hasStatusEffect("Mimbrane Hand Left") || this.hasStatusEffect("Mimbrane Hand Right")) return "You can’t get rid of your hands while a Mimbrane surrounds them.";
 			return "";
 		}
 		

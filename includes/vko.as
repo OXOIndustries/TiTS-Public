@@ -104,10 +104,10 @@ function getDiseaseProbedYo():void
 	//Cunt snake
 	if(pc.hasCuntSnake())
 	{
-		output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'C' parasitic snake! In order to treat that I will have to administer anesthesia. Shall we begin?");
+		output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'C' parasitic snake! In order to treat that I will have to administer anesthesia. Shall we begin?\"</i>");
 		//Yes/No - no goes back to menu.
 		clearMenu();
-		addButton(0,"Yes",removeCuntSnake);
+		addButton(0,"Yes",removeParasite, "cuntsnake");
 		addButton(1,"No",turnDownTreatment);
 	}
 	//SSTD
@@ -118,6 +118,15 @@ function getDiseaseProbedYo():void
 		clearMenu();
 		addButton(0,"Yes",treatDisease);
 		addButton(1,"No",turnDownTreatment);
+	}
+	else if (attachedMimbranes() > 0)
+	{
+		if (attachedMimbranes() == 1) output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'M' epidel parasite! In order to treat that I will have to administer anesthesia. Shall we begin?");
+		else output("\n\nShe gasps, <i>\"Oh no! You've been infested by a number of class 'M' epidel parasites! In order to treat them I will have to administer anesthesia. Shall we begin?");
+		
+		clearMenu();
+		addButton(0, "Yes", removeParasite, "mimbrane");
+		addButton(1, "No", turnDownTreatment);
 	}
 	//Nothing
 	else
@@ -168,7 +177,7 @@ function treatDisease(diseaseName:String = ""):void
 }
 
 //Remove Cunt Snake
-function removeCuntSnake():void
+function removeParasite(name:String):void
 {
 	clearOutput();
 	userInterface.showBust("VKO");
@@ -177,30 +186,48 @@ function removeCuntSnake():void
 	output("\n\nYou open your mouth to comment on it while the world fades to a dead, abyssal black.");
 	//Pass three hours - > next
 	clearMenu();
-	addButton(0,"Next",removeCuntSnakeII);
+	addButton(0,"Next",removeParasiteII, name);
 }
-function removeCuntSnakeII():void {
+
+function removeParasiteII(name:String):void {
 	clearOutput();
 	userInterface.showBust("VKO");
 	userInterface.showName("\nV-KO");
 	output("<i>\"...complete success... ... vitals normal...\"</i>");
 	output("\n\nBits and pieces of V-Ko's voice pierce the murky haze that's fogging your thoughts. You blink your eyes open but immediately shut them against the harsh glare of the artificial lighting.");
 	output("\n\n<i>\"The chemicals should be metabolizing out of your bloodstream in a few seconds. Please be careful until then. It would not do for you to injure yourself so soon after having your ailments tended to.\"</i>");
-	output("\n\nYou open your eyes once more, this time slowly enough to let them adjustment. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride. <i>\"All 'C' type snakes have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
+	output("\n\nYou open your eyes once more, this time slowly enough to let them adjustment. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride.");
+	
+	if (name == "cuntsnake") output("<i>\"All 'C' type snakes have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
+	else if (name == "mimbrane") output("<i>\"All 'M' class epidel parasites have been removed from your extremities. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.\"</i>");
+	
 	output("\n\nYou slowly sit up. There's some dizziness but it fades by the time you get upright. True to V-Ko's word, the anesthetics are wearing off almost immediately. You recall her mentioning payment for healing her earlier. <i>\"");
 	if(pc.isNice()) output("Excuse me, shouldn't this cost some money?");
 	else if(pc.isMischievous()) output("Hey, I love freebies and all, but don't your services cost?");
 	else output("You forgot to charge me, and it's too late for you to make me pay.");
 	output("\"</i>");
 	output("\n\nV-Ko helps you down off the table. <i>\"There is no charge. Flahne has authorized me to deduct the requisite fees from this planet's health and wellness budget, paid for by local business taxes. Parasitism is taken very seriously across U.G.C. space and fully 90% of the member planets offer free treatments to remove them.\"</i>");
-	output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
+	
+	if (name == "cuntsnake") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It's as if you never had a tail at all.");
+	else if (name == "mimbrane") output("\n\nYou thank her the service; it's as if you never had any mimbranes to you at all.");
+	
 	output("\n\n<i>\"Now then, would you like to pursue some of my other services or will you be on your way?\"</i> V-Ko asks. <i>\"It has been a pleasure to serve.\"</i>");
 	//Menu
+	
+	// Do the removal shit
+	if (name == "cuntsnake")
+	{
+		pc.tailType = GLOBAL.HUMAN;
+		pc.tailCount = 0;
+		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
+		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
+	}
+	else if (name == "mimbrane")
+	{
+		removeMimbranes();
+	}
+	
 	processTime(180+rand(20));
-	pc.tailType = GLOBAL.HUMAN;
-	pc.tailCount = 0;
-	flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-	flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
 	approachVKo(false);
 }
 

@@ -286,7 +286,7 @@
 				}
 				//Appearance changes (listed in probable required order)
 				//Ears become panda ears.
-				if(target.earType != GLOBAL.PANDA)
+				if(target.earType != GLOBAL.PANDA && target.earTypeUnlocked(GLOBAL.PANDA))
 				{
 					//TF
 					kGAMECLASS.output("\n\nBetween the dull ache in your head and the tickling in your scalp, you're pretty sure something is changing up top. You go deaf in an instant, feeling your ears smooth away, and before you have the chance to react, new ones bulge out of your [pc.hair]. <b>You've grown round panda ears on top of your head.</b>");
@@ -294,7 +294,7 @@
 					changes++;
 				}
 				//Tails merge into single tail
-				if(target.tailCount > 1)
+				if(target.tailCount > 1 && target.tailCountUnlocked(1))
 				{
 					//TF
 					kGAMECLASS.output("\n\nYour [pc.tails] convulse uncontrollably, twisting together into one tangled knot. Then, lava-hot heat envelops the whole mass, dropping you to your [pc.knees] in agony. Underneath the pain, you can feel them fusing together into a single [pc.tail]. A growl slips escapes you as you recover, wondering why you decided to take this stuff.");
@@ -303,7 +303,7 @@
 					target.lust(-3);
 				}
 				//Single tail becomes small panda tail
-				if((target.tailCount == 0 || (target.tailCount == 1 && target.tailType != GLOBAL.PANDA)))
+				if ((target.tailCount == 0 && target.tailCountUnlocked(1)) || (target.tailCount == 1 && target.tailType != GLOBAL.PANDA && target.tailTypeUnlocked(GLOBAL.PANDA)))
 				{
 					//TF - No Tail
 					if(target.tailCount == 0)
@@ -323,7 +323,7 @@
 					changes++;
 				}
 				//Get fluffy pandafeet.
-				if(target.legType != GLOBAL.PANDA && target.tailType == GLOBAL.PANDA)
+				if(target.legType != GLOBAL.PANDA && target.legTypeUnlocked(GLOBAL.PANDA) && target.legCountUnlocked(2) && target.tailType == GLOBAL.PANDA)
 				{
 					//Omnileg/Naga/Goochassis -> Pandafeetz
 					if(target.legCount == 1)
@@ -349,14 +349,14 @@
 					changes++;
 				}
 				//Get fluffy panda paws
-				if(target.armType != GLOBAL.PANDA)
+				if(target.armType != GLOBAL.PANDA && target.armTypeUnlocked(GLOBAL.PANDA))
 				{
 					kGAMECLASS.output("\n\nYour hands clench into curled-up claws all on their own. Fascinated, you try to open them, but your mind's commands to your body go unheeded. The muscles in your fingers are twitching wildly, and slowly, you see them changing them shape into slightly-shortened, thick fingers. They relax, allowing you to open your hands, and just in time too! Sharp claws snick out of the tips of your fingers, completing <b>your new, fuzzy panda hands.</b> There's even " + target.furColor + " fur all over your arms!");
 					target.armType = GLOBAL.PANDA;
 					changes++;
 				}
 				//Fur is grown
-				if(target.skinType != GLOBAL.FUR)
+				if(target.skinType != GLOBAL.FUR && target.skinTypeUnlocked(GLOBAL.FUR))
 				{
 					//TF - Goo!
 					if(target.skinType == GLOBAL.GOO) kGAMECLASS.output("\n\nYour semi-solid surface feels unusually stiff, and after a moment, you can see it becoming more and more opaque! You're losing your gooeyness! In moments, you're back to having normal-looking skin, but all that changes when black and white fur erupts all over your body, growing into a short but dense coat. <b>You've got fur!</b>");
@@ -372,8 +372,8 @@
 					changes++;
 				}
 				//Face, if already has spots or inhuman, goes full panda
-				//PANDAFAAAAAACE
-				if(target.faceType != GLOBAL.PANDA)
+				//PANDAFAAAAAACE\\\\\
+				if(target.faceType != GLOBAL.PANDA && target.faceTypeUnlocked(GLOBAL.PANDA))
 				{
 					kGAMECLASS.output("\n\nYour cheekbones pull back into a snarl against your will, and as you struggle to maintain your expression, you feel your jawbone creak. The muscles of your face feel strained, the very sinews stretching. Your bones are deforming, making it hard to breath as your sinuses reroute, but soon enough the transformation completes. You check your appearance with your codex's holocorder. <b>You've got a short-muzzled, panda-like visage.</b>");
 					changes++;
