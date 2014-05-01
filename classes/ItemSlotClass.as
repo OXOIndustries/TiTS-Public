@@ -40,6 +40,7 @@
 		public var evasion:Number;
 		public var fortification:Number;
 		public var bonusResistances:Array;
+		public var hardLightEquipped:Boolean;
 		
 		//constructor
 		public function ItemSlotClass(dataObject:Object = null)
@@ -78,6 +79,7 @@
 			this.evasion = 0;
 			this.fortification = 0;
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.hardLightEquipped = false;
 		
 			if (dataObject != null)
 			{
