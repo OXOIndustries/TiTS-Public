@@ -437,10 +437,16 @@ public function resetMimbraneEffects(effectName:String):void
 	}
 }
 
+private var mimbraneEventHeaderDone:Boolean = false;
+
 public function addMimbraneEvent(msg:String):void
 {
-	if (attachedMimbranes() == 1) eventBuffer += "\n\n<u> Your mimbrane makes its presence known....</u>";
-	else if (attachedMimbranes() > 1) eventBuffer += "\n\n<u>Your Mimbranes make their presence known....</u>";
+	if (mimbraneEventHeaderDone == false)
+	{
+		if (attachedMimbranes() == 1) eventBuffer += "\n\n<u> Your mimbrane makes its presence known....</u>";
+		else if (attachedMimbranes() > 1) eventBuffer += "\n\n<u>Your mimbranes make their presence known....</u>";
+		mimbraneEventHeaderDone = true;
+	}
 	eventBuffer += "\n\n" + msg;
 }
 
@@ -639,6 +645,8 @@ public function mimbranesIncreaseDaysSinceFed():void
 			}
 		}
 	}
+	
+	mimbraneEventHeaderDone = false;
 }
 
 //These scenes/lines take place in between scenes much like Shouldra’s. Other than messages dictated by time (i.e. hungry Mimbrane warnings), the odds for these to occur are low to help prevent from getting repetitive and annoying.
@@ -1258,6 +1266,8 @@ public function mimbranesComplainAndShit():void
 			addMimbraneEvent("Head Mimbrane: You continue to enjoy the passionate sheen you get from the neverending downpour of oily Mimbrane sweat running down your [pc.face]. Even your [pc.lips] glint in the sunlight, their [pc.lipColor] color mixing with the lightly pink fluid. Any worries that your head would be in a 24 hour sauna melt away by how the almost eerily refreshing perspiration makes you feel. The clouds of carnality that you shed seem to have a larger effect on your surroundings than they do you.");
 		}
 	}
+	
+	mimbraneEventHeaderDone = false;
 }
 
 //Reproduction
@@ -1960,6 +1970,8 @@ public function mimbraneSleepEvents():void
 			addMimbraneEvent("An otherwise normal morning of sleeping in runs into a complication. It seems as if air were seeping into your [lips] of all places just as you were taking a breath! However, no amount of pawing and pulling at your mouth cushions reveals a damn thing. You figure its just time to wake up.");
 		}
 	}
+	
+	mimbraneEventHeaderDone = false;
 }
 
 public function mimbraneFaceReproduction():void
@@ -3892,10 +3904,10 @@ public function acceptFaceMimbrane():void
 		else output(" unnaturally explodes");
 		output(" forth.");
 
-		output("\n\nTypically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the [pc.cumcolor] fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re – and consequently you – finished, the majority of your jism is strewn about your midsection and torso.");
+		output("\n\nTypically your body would be getting into the act, but your back doesn’t even get the chance to arch. Your hands – controlled by their own Mimbrane coverings – bolt for the [pc.cumColor] fountain. Fingers rigid as steel work to contain the fruit of your loins in the general vicinity, strangely enough. It appears as if they don’t want to waste any of the precious cargo to the surrounding wilderness. By the time they’re – and consequently you – finished, the majority of your jism is strewn about your midsection and torso.");
 		output("\n\nYour body goes into a sudden uproar of noisy squeaks and chirps! Your [pc.lips] move on their own as well, reminding you of the latest addition to your merry band. Indeed, the skin around your head feels as if it were wriggling about ever so slightly, making for a rather peculiar experience. Seems everyone is amped to be fed, and your puppeted hands are happy to oblige. Smatterings of [pc.cum] are distributed around you, smeared anywhere a Mimbrane mouth may be.");
 		output("\n\nThere’s a hypothesis to be had here. Though you can’t entirely explain it, it would seem that your jolt to “normalcy” was the period in which your aggressors would feed on your liquid lust. Mimbranes naturally act in methods that preserve their secrecy on a host. When someone loses to one of the parasites, it becomes easy to simply overwhelm them in the parasite’s natural funk. A momentary lapse in consciousness doesn’t seem all that farfetched when one is already sweaty, hot and suffering from sexual yearning beyond perceivable belief.");
-		output("\n\nBut the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of [pc.cumTemp] sustinence to your eager [pc.lips]. The [pc.cumFlavor] flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.");
+		output("\n\nBut the Mimbrane that “<i>asked</i>” to attach itself to your head must be a sign that the collective trusts you. Their confidence in you is strong enough that they can overcome their instinct to knock you out and instead let you experience their feeding frenzy. “Frenzy” is how it feels, too, with your body acting on the whims and volitions of its puppet masters. A duo of fingers deliver a dollop of warm sustinence to your eager [pc.lips]. The [pc.cumFlavor] flavor is lost to you, however; the morsel is absorbed into your lips, which squeek happily in thanks.");
 		output("\n\nThe Mimbranes satiated, they begin to calm down. Though they’re incapable of wrestling away complete control of your body from you, awe was enough to render you essentially paralyzed up until this point. You touch your fingers to your lips, finding no trace of their treat. But they do suddenly kiss your tender touch, forcing a breathless laugh out of you. Digits return to find a duo of small bumps right above your upper lip. You weren’t going to be completely satisfied until you found those eyes...");
 		output("\n\nA veil of complacency has been lifted this day. The Mimbranes certainly seem content, and you even got a peek into some of their more rare tendencies. Sure, they may be driven to feed and survive more than anything – heaven forbid anyone hear about how fast they jerked one out of you – but there seems to be some semblance of companionship in the faux skin.");
 		output("\n\nRejuvenated, you gather your equipment and venture forth a bit happier than you were before.");
