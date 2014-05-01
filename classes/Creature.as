@@ -5096,12 +5096,40 @@
 			var rando: Number = 0;
 			//Determine race type:
 			var race: String = "human";
+			if (horseScore() >= 2) race = "part horse-morph";
 			if (ausarScore() >= 2 && race == "human") race = "half-ausar";
 			if (kaithritScore() >= 2 && race == "human") race = "half-kaithrit";
 			if (zilScore() >= 4) race = "zil";
+			if (horseScore() >= 4) race = "horse-morph";
+			if (pandaScore() >= 4) race = "panda-morph";
 			if (naleenScore() >= 5 && isNaga()) race = "naleen";
 			else if (isNaga()) race = "naga";
 			return race;
+		}
+		public function horseScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.EQUINE) counter++;
+			if (tailType == GLOBAL.EQUINE && hasTailFlag(GLOBAL.LONG)) counter++;
+			if (faceType == GLOBAL.EQUINE) counter++;
+			if (armType == GLOBAL.EQUINE) counter++;
+			if (legType == GLOBAL.EQUINE) counter++;
+			if (cockTotal(GLOBAL.EQUINE) > 0) counter++;
+			if (vaginaTotal(GLOBAL.EQUINE) > 0) counter++;
+			return counter;
+		}
+		public function pandaScore(): int
+		{
+			var counter:int = 0;
+			if (earType == GLOBAL.PANDA) counter++;
+			if (tailType == GLOBAL.PANDA) counter++;
+			if (faceType == GLOBAL.PANDA) counter++;
+			if (armType == GLOBAL.PANDA) counter++;
+			if (legType == GLOBAL.PANDA) counter++;
+			if (thickness >= 65 && counter > 0) counter++;
+			if (cockTotal(GLOBAL.PANDA) > 0) counter++;
+			if (vaginaTotal(GLOBAL.PANDA) > 0) counter++;
+			return counter;
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
