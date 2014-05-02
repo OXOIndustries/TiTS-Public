@@ -1,205 +1,189 @@
-﻿import classes.Items.Miscellaneous.MilkBag;
+﻿import classes.GameData.CommandContainer;
+import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
 
-// This is an unholy fix, but, fuck me it needs to be made for serialization purposes
-public var fapsArray:Object = { "Random":randomFapSelect, "Porn&Celise":tailCockCeliseFaps, "Vagina":vaginalFap,
-								"Penis":singleDickFap, "Penises":multiCockFap, "TailFuck":cuntTailFapScene,
-								"Tailingus":tailingusFapReqsCuntTail,"Hand Milk":milkturbation };
-
-function masturbateMenu():void {
-	this.clearMenu();
-	var texts:Array = new Array();
-	var funcs:Array = new Array();
-	var args:Array = new Array();
-	texts[texts.length] = "Random";
-	funcs[funcs.length] = randomFapSelect;
-	args[args.length] = undefined;
-	if(flags["LAST_FAP"] != undefined) {
-		texts[texts.length] = "Repeat";
-		funcs[funcs.length] = fapsArray[flags["LAST_FAP"]];
-		args[args.length] = undefined;
-	}
-	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
-		texts[texts.length] = "Porn&Celise";
-		funcs[funcs.length] = tailCockCeliseFaps;
-		args[args.length] = undefined;
-	}
-	if(pc.hasVagina()) {
-		texts[texts.length] = "Vaginal";
-		funcs[funcs.length] = vaginalFap;
-		args[args.length] = undefined;
-	}
-	if(pc.hasCock()) {
-		texts[texts.length] = "Penis";
-		funcs[funcs.length] = singleDickFap;
-		args[args.length] = undefined;
-	}
-	if(pc.cockTotal() >= 2) {
-		texts[texts.length] = "Penises";
-		funcs[funcs.length] = multiCockFap;
-		args[args.length] = undefined;
-	}
-	if(pc.canLactate())
+function availableFaps(roundTwo:Boolean = false):Array
+{
+	var faps:Array = new Array();
+	var fap:CommandContainer;
+	
+	// Overrides
+	// If any of these are true, do whatever you need and return after pushing a single function into the array
+	// We can then autoexecute on the only available option
+	if (pc.hasCuntTail() && pc.hasCock && !pc.isTaur() && (pc.cockThatFits(pc.TailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
-		texts[texts.length] = "Hand Milk";
-		funcs[funcs.length] = milkturbation;
-		args[args.length] = undefined;
-		if(pc.hasItem(new MagicMilker(),1))
-		{
-			texts[texts.length] = "Magic Milker";
-			funcs[funcs.length] = joyCoMagicMilker7Sucks;
-			args[args.length] = undefined;
-		}
+		clearOutput();
+		output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
+		addButton(0, "Next", cuntTailFapScene);
+		
+		return null;
 	}
-	//*Tailingus
-	if(pc.hasCuntTail()) {
-		if(pc.hasCock() && !pc.isTaur()) {
-			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
-				texts[texts.length] = "TailFuck";
-				funcs[funcs.length] = cuntTailFapScene;
-				args[args.length] = undefined;
-				if(flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7) {
-					clearOutput();
-					output("An insatiable hunger from your tail overwhelms you. You have to feed it!");
-					clearMenu();
-					addButton(0,"Next",cuntTailFapScene);
-					return;
-				}
-			}
-		}
-		texts[texts.length] = "Tailingus";
-		funcs[funcs.length] = tailingusFapReqsCuntTail;
-		args[args.length] = undefined;
-	}
-	for(var x:int = 0; x < texts.length; x++) {
-		if(x <= 13) {
-			this.addButton(x,texts[x],funcs[x],args[x]);
-		}
-		else 
-			this.addButton((x+1),texts[x],funcs[x],args[x]);
-	}
-	this.addButton(14,"Back",mainGameMenu);
-}
-
-//THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
-//BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
-// -Heavy
-function smartFapSelect():void {
-	clearMenu();
-	if(pc.milkFullness >= 150 && pc.isLactating())
+	
+	if (pc.milkFullness >= 150 && pc.isLactating())
 	{
 		milkturbation();
-		return;
+		return null;
 	}
-	var texts:Array = new Array();
-	var funcs:Array = new Array();
-	var args:Array = new Array();
-	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
-		texts[texts.length] = "Porn&Celise";
-		funcs[funcs.length] = tailCockCeliseFaps;
-		args[args.length] = undefined;
-	}
-	if(pc.hasVagina()) {
-		texts[texts.length] = "Vaginal";
-		funcs[funcs.length] = vaginalFap;
-		args[args.length] = undefined;
-	}
-	if(pc.hasCock()) {
-		texts[texts.length] = "Penis";
-		funcs[funcs.length] = singleDickFap;
-		args[args.length] = undefined;
-	}
-	if(pc.cockTotal() >= 2) {
-		texts[texts.length] = "Penises";
-		funcs[funcs.length] = multiCockFap;
-		args[args.length] = undefined;
-	}
-	if(pc.isLactating() && pc.milkFullness >= 70)
+	
+	// Previous fap has moved to consumers of the faps array.
+	// This enables us to check if the LAST_FAP targetted command is available (it'll be in the array), otherwise hide repeat.
+	
+	// List all the faps!
+	if (currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock())
 	{
-		texts[texts.length] = "Hand Milk";
-		funcs[funcs.length] = milkturbation;
-		args[args.length] = undefined;
-		if(pc.hasItem(new MagicMilker(),1))
+		fap = new CommandContainer();
+		fap.text = "Porn&Celise";
+		fap.func = tailCockCeliseFaps;
+		faps.push(fap);
+	}
+	
+	if (pc.hasVagina())
+	{
+		fap = new CommandContainer();
+		fap.text = "Vaginal";
+		fap.func = vaginalFap;
+		faps.push(fap);
+	}
+	
+	if (pc.hasCock())
+	{
+		fap = new CommandContainer();
+		fap.text = "Penis";
+		fap.func = singleDickFap;
+		faps.push(fap);
+	}
+	
+	if (pc.cockTotal() >= 2)
+	{
+		fap = new CommandContainer();
+		fap.text = "Penises";
+		fap.func = multiCockFap;
+		faps.push(fap);
+	}
+	
+	if ((pc.canLactate() && !roundTwo) || (pc.isLactating() && pc.milkFullness >= 70 && roundTwo))
+	{
+		if (pc.hasItem(new MagicMilker(), 1))
 		{
-			texts[texts.length] = "Magic Milker";
-			funcs[funcs.length] = joyCoMagicMilker7Sucks;
-			args[args.length] = undefined;
+			fap = new CommandContainer();
+			fap.text = "Magic Milker";
+			fap.func = joyCoMagicMilker7Sucks;
+			faps.push(fap);
+		}
+		
+		fap = new CommandContainer();
+		fap.text = "Hand Milk";
+		fap.func = milkturbation;
+		faps.push(fap);
+	}
+	
+	if (hasFeedableMimbranes() && currentLocation == "SHIP INTERIOR")
+	{
+		if (pc.hasCock())
+		{
+			fap = new CommandContainer();
+			fap.text = "Penis Feed";
+			fap.func = feedMimbranesWithCock;
+			faps.push(fap);
+		}
+		
+		if (pc.hasVagina())
+		{
+			fap = new CommandContainer();
+			fap.text = "Vaginal Feed";
+			fap.func = feedMimbranesWithPussy;
+			faps.push(fap);
 		}
 	}
-	//*Tailingus
-	if(pc.hasCuntTail()) {
-		if(pc.hasCock() && !pc.isTaur()) {
-			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
-				texts[texts.length] = "TailFuck";
-				funcs[funcs.length] = cuntTailFapScene;
-				args[args.length] = undefined;
-			}
+	
+	if (pc.hasCuntTail())
+	{
+		fap = new CommandContainer();
+		fap.text = "Tailingus";
+		fap.func = tailingusFapReqsCuntTail;
+		faps.push(fap);
+		
+		if (pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0))
+		{
+			fap = new CommandContainer();
+			fap.text = "TailFuck";
+			fap.func = cuntTailFapScene;
+			faps.push(fap);
 		}
-		texts[texts.length] = "Tailingus";
-		funcs[funcs.length] = tailingusFapReqsCuntTail;
-		args[args.length] = undefined;
 	}
-	var x:int = rand(funcs.length);
-	if(args[x] == undefined) funcs[x]();
-	else funcs[x](args[x]);
+	
+	return faps;
 }
 
-//THERE HAS GOT TO BE A BETTER WAY TO DO THIS BESIDES COPY/PASTING SO MUCH CODE
-//BUT I'M DAMNED IF I KNOW HOW. THIS WILL WORK. DA
-// -Heavy
-function randomFapSelect():void {
-	clearMenu();
-	var texts:Array = new Array();
-	var funcs:Array = new Array();
-	var args:Array = new Array();
-	if(currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock()) {
-		texts[texts.length] = "Porn&Celise";
-		funcs[funcs.length] = tailCockCeliseFaps;
-		args[args.length] = undefined;
-	}
-	if(pc.hasVagina()) {
-		texts[texts.length] = "Vaginal";
-		funcs[funcs.length] = vaginalFap;
-		args[args.length] = undefined;
-	}
-	if(pc.hasCock()) {
-		texts[texts.length] = "Penis";
-		funcs[funcs.length] = singleDickFap;
-		args[args.length] = undefined;
-	}
-	if(pc.cockTotal() >= 2) {
-		texts[texts.length] = "Penises";
-		funcs[funcs.length] = multiCockFap;
-		args[args.length] = undefined;
-	}
-	if(pc.isLactating())
+function selectRandomFap(faps:Array):void
+{
+	faps[rand(faps.length)].execute();
+}
+
+function masturbateMenu(roundTwo:Boolean = false):void {
+	this.clearMenu();
+
+	// Get available faps
+	var faps:Array = availableFaps(roundTwo);
+	var btnOffset:int = 0;
+	
+	if (roundTwo == true)
 	{
-		texts[texts.length] = "Hand Milk";
-		funcs[funcs.length] = milkturbation;
-		args[args.length] = undefined;
-		if(pc.hasItem(new MagicMilker(),1))
+		selectRandomFap(faps);
+	}
+	
+	// If we got back a null array from the listing functor, it should have created the button for us.
+	if (faps == null)
+	{
+		return;
+	}
+	
+	// If last is available, show repeat button
+	var showRepeat:Boolean = false;
+	
+	if (flags["LAST_FAP"] != undefined)
+	{
+		var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
+			if (flags["LAST_FAP"] == item.text) return true;
+			return false;
+		});
+		
+		// Available, show repeat
+		if (filtFaps.length > 0)
 		{
-			texts[texts.length] = "Magic Milker";
-			funcs[funcs.length] = joyCoMagicMilker7Sucks;
-			args[args.length] = undefined;
+			showRepeat = true;
+		}
+		// Unavailable, so we'll just not show the button (in case player backs out and comes back later when the scene is available)
+	}
+	
+	// Random button
+	if (faps.length > 0)
+	{
+		addButton(btnOffset, "Random", selectRandomFap, faps);
+		btnOffset++;
+	}
+	
+	// Repeat button
+	if (showRepeat)
+	{
+		addButton(btnOffset, "Repeat", filtFaps[0].func);
+		btnOffset++;
+	}
+
+	// Generate all the buttons for the available funcs
+	for (var i:int = 0; i < faps.length; i++)
+	{
+		if (i + btnOffset <= 13)
+		{
+			addButton(i + btnOffset, faps[i].text, faps[i].execute);
+		}
+		else
+		{
+			addButton(i + btnOffset + 1, faps[i].text, faps[i].execute);
 		}
 	}
-	//*Tailingus
-	if(pc.hasCuntTail()) {
-		if(pc.hasCock() && !pc.isTaur()) {
-			if(pc.cockThatFits(pc.tailCuntCapacity()) >= 0) {
-				texts[texts.length] = "TailFuck";
-				funcs[funcs.length] = cuntTailFapScene;
-				args[args.length] = undefined;
-			}
-		}
-		texts[texts.length] = "Tailingus";
-		funcs[funcs.length] = tailingusFapReqsCuntTail;
-		args[args.length] = undefined;
-	}
-	var x:int = rand(funcs.length);
-	if(args[x] == undefined) funcs[x]();
-	else funcs[x](args[x]);
+
+	this.addButton(14,"Back",mainGameMenu);
 }
 
 //Tailcock Fapping w/ Celise
@@ -1076,7 +1060,7 @@ function milkturbation():void
 	if(!orgasmed && milked && pc.lust() >= pc.lustMax())
 	{
 		clearMenu();
-		addButton(0,"Next",smartFapSelect);
+		addButton(0,"Next",masturbateMenu,true);
 	}
 	else
 	{
