@@ -191,7 +191,6 @@ function masturbateMenu(roundTwo:Boolean = false):void {
 //{Accessed from Masturbate menu whilst shipboard}
 function tailCockCeliseFaps():void {
 	clearOutput();
-	flags["LAST_FAP"] = "Porn&Celise";
 	author("Savin");
 	output("God damn you're horny.");
 	output("\n\nYou breathe a lusty sigh as the heat of arousal courses through your body, demanding release. You ");
@@ -222,7 +221,6 @@ function tailCockCeliseFaps():void {
 //Vaginal Fap
 function vaginalFap():void {
 	clearOutput();
-	flags["LAST_FAP"] = "Vagina";
 	output("You ");
 	if(pc.isNude()) output("lazily twist what little gear you wear to the side so as not to bump your arm into it while masturbating and smile to yourself about the practical advantages of being nude.");
 	else {
@@ -325,7 +323,6 @@ function vaginalFap():void {
 //Single Dick Fap
 function singleDickFap():void {
 	clearOutput();
-	flags["LAST_FAP"] = "Penis";
 	clearList();
 	if(pc.isNude() || (pc.armor.shortName == "" && pc.lowerUndergarment.shortName == "")) output("You sigh and stretch, letting [pc.eachCock] hang free. Sometimes, it's good to be nude. You");
 	else {
@@ -465,7 +462,6 @@ function singleDickFap():void {
 
 function multiCockFap():void {
 	clearOutput();
-	flags["LAST_FAP"] = "Penises";
 	output("There's no time like the present to deal with the insistent pulsations originating down south. You ");
 	if(!pc.isNude()) {
 		output("strip out of your ");
@@ -715,7 +711,6 @@ function multiCockFap():void {
 //*Tailingus
 function tailingusFapReqsCuntTail():void {
 	clearOutput();
-	flags["LAST_FAP"] = "Tailingus";
 	output("Figuring that you may as well blow off some steam while you have time, you shuck out of your gear and arrange it in a nearby pile, careful with your possessions even though you’re planning on getting some lewd self-satisfaction in. Your [pc.tail] curls ");
 	if(pc.isTaur()) output("up your back and shoulder to place itself against your [pc.chest]");
 	else output("around your [pc.legs] and [pc.hips] to place itself against your [pc.belly] when you seat yourself");
@@ -751,7 +746,6 @@ function tailingusFapReqsCuntTail():void {
 //Not 4 Hoarses.
 function cuntTailFapScene():void {
 	clearOutput();
-	flags["LAST_FAP"] = "TailFuck";
 	var x:int = pc.cockThatFits(pc.tailCuntCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = -1;
@@ -813,7 +807,6 @@ function cuntTailFapScene():void {
 function milkturbation():void
 {
 	clearOutput();
-	flags["LAST_FAP"] = "Hand Milk";
 	var milked:Boolean = false;
 	author("Fenfen MilkCo.");
 	//No top

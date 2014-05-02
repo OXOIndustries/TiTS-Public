@@ -333,28 +333,13 @@
 				trace("Button " + evt.currentTarget.caption.text + " clicked.");
 			}
 			
-			// Bear with me
-			try
+			if (evt.currentTarget.arg == undefined)
 			{
-				if (evt.currentTarget.arg == undefined)
-				{
-					if (evt.currentTarget.func != null) evt.currentTarget.func();
-				}
-				else
-				{
-					if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
-				}
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
 			}
-			catch (e:Error)
+			else
 			{
-				clearOutput();
-				output(header("An error has been detected."));
-				userInterface.outputBuffer += "\nPlease copy & paste this entire message in a bug report, either on the Github Issues page, or Fenoxo's forums.";
-				userInterface.outputBuffer += "\n\nError Message: " + e.message;
-				userInterface.outputBuffer += "\n\nStack: " + e.getStackTrace();
-				userInterface.output();
-				clearMenu();
-				addButton(14, "OK", mainGameMenu);
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
 			updatePCStats();
@@ -549,23 +534,9 @@
 		
 		public function pressButton(arg:int = 0):void 
 		{
-			try
+			if (this.userInterface.PressButton(arg, inCombat()))
 			{
-				if (this.userInterface.PressButton(arg, inCombat()))
-				{
-					updatePCStats();
-				}
-			}
-			catch (e:Error)
-			{
-				clearOutput();
-				output(header("An error has been detected."));
-				userInterface.outputBuffer += "\nPlease copy & paste this entire message in a bug report, either on the Github Issues page, or Fenoxo's forums.";
-				userInterface.outputBuffer += "\n\nError Message: " + e.message;
-				userInterface.outputBuffer += "\n\nStack: " + e.getStackTrace();
-				userInterface.output();
-				clearMenu();
-				addButton(14, "OK", mainGameMenu);
+				updatePCStats();
 			}
 		}
 

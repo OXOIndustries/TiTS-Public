@@ -1386,7 +1386,7 @@ public function mimbraneSleepEvents():void
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
 				output("A delightful romp through the idyllic dreamscape fades into whatever forgotten realm lost dreams subside. Something has pushed you out from slumber and into the dim silence of your idling ship. You lay motionless on your back staring at nothing in particular. For a moment you hope you’ll merely fade back unconsciousness, but a trembling shudder from your [pc.butt] about scares you half to death. Covers fly off as you flip over; though you may be curious enough to investigate the disturbance, your half-conscious subconscious isn’t ready to completely surrender the notion of returning to sleep.");
-				output("\n\nThe moment your hind quarters aren’t pressed against your bed, strained squeaks and chirps escape your [pc.butthole]. Its clear now that the strange spasms and anal contractions are due to this restless Mimbrane. Typically, sexual urges and depravity accompany strange, uncontrolled body complications. So its at least nice to know that no one slipped you something sinister.");
+				output("\n\nThe moment your hind quarters aren’t pressed against your bed, strained squeaks and chirps escape your [pc.asshole]. Its clear now that the strange spasms and anal contractions are due to this restless Mimbrane. Typically, sexual urges and depravity accompany strange, uncontrolled body complications. So its at least nice to know that no one slipped you something sinister.");
 				output("\n\nBut then what is wrong with the parasite for it to suddenly send your bubble butt into a conniption? Is it hungry? Does the parasite long for your hind end to be ravaged by some uncouth cock? Its already driven your poor rear hole to a gaping moist mess. What more does it want? Then it hits you: your codex mentioned something about Mimbrane reproduction. The enthusiastic bugger has plumped your ass out so much that it must be ready to split off a new Mimbrane! ");
 				output("\n\n");
 				if (flags["MIMBRANE_ASS_REPRODUCTION_NOTICED"] != undefined) output(" You’ve gone through this before, you remember. ");
@@ -1430,7 +1430,7 @@ public function mimbraneSleepEvents():void
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
 				output("The melodic hums of your ship surround you, a blissful sleep only resident in your memory. Something’s dragged you back to consciousness, but you’ll be damned if it’ll keep you here. Before you can toss and turn, however, that “something” materializes. Your [pc.balls] are wiggling around something fierce! Covers fly to the side, fueled by your sudden anxiety that some manner of insect – or worse – has infiltrated your privates.");
-				output("\n\nAll you find is the Mimbrane that has already captured your cum pouch. Its normally well-hid little bumps for eyes look to be clenched shut, straining for some reason. The parasite is trembling about, rustling your [pc.sack] every so often in its costive spasms. What’s gotten into this thing? Is it not enough that its already jacked up your [pc.cum] factories? You’re tempted to grab onto the possessed purse, but your frustrated weariness is brutally stabbed by calm reason and blossoming memories.");
+				output("\n\nAll you find is the Mimbrane that has already captured your cum pouch. Its normally well-hid little bumps for eyes look to be clenched shut, straining for some reason. The parasite is trembling about, rustling your [pc.sack] every so often in its costive spasms. What’s gotten into this thing? Is it not enough that its already jacked up your [pc.cumType] factories? You’re tempted to grab onto the possessed purse, but your frustrated weariness is brutally stabbed by calm reason and blossoming memories.");
 				if (flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"] != undefined) output(" You really ought to try and recall times like these more often before jumping to other conclusions.");
 				output(" The codex... it had discussed Mimbrane reproduction. Typically the parasite waits until the dead of night when its host is asleep to do the deed. This one has done a poor job of remaining concealed, or more likely it doesn’t mind you getting to bear witness to the magic.");
 				output("\n\nInstead you decide it to better to spread your [pc.legs] and give the struggling thing some room. Though the sensation of having your family jewels manipulated as such is particularly unordinary, you aren’t the least bit interested in not taking caution against them being caught or injured. Your role as spectator gets a little more interesting when the Mimbrane’s eyes burst open. There’s a strange hollowness to their gaze, however. What follows is an unsettling numbness overtaking your [pc.balls]. Unable to keep your hands free of the action, some fingers along your [pc.skinadj] balls confirm the lack of life.");
@@ -1579,7 +1579,7 @@ public function mimbraneSleepEvents():void
 				output("\n\nOut of the clear blue your");
 				if (!bothHands) output(" hand lurches");
 				else output(" hands lurch");
-				output(" forward, drooping towards the ground. The sudden action in the dead of night is frightening, but you’re more worried about anyone catching you with a visibly limp wrist. Thankfully, you aren’t stuck like this long. The [pc.skinadj]");
+				output(" forward, drooping towards the ground. The sudden action in the dead of night is frightening, but you’re more worried about anyone catching you with a visibly limp wrist. Thankfully, you aren’t stuck like this long. The " + pc.skinFurScales(false, true, true));
 				if (!bothHands) output(" mitt slides");
 				else output(" mitts slide");
 				output(" off your hand");
@@ -4075,17 +4075,15 @@ public function mimbraneMenu():void
 		addDisabledGhostButton(1, "Vag Feed");
 	}
 
-	output2("\n\n");
-
 	// Ability toggles
 
 	//Unlock Sweating
 	//Unlocked when any Mimbrane hits level three trust. Occurs once, a few hours after hitting level three. Starts toggled off. Toggle disappears if no Mimbranes at level three or four exist.
 	if (highestMimbraneTrust() >= 3)
-	{
+	{		
 		output2("\n\n<b>You’ve unlocked the ability to toggle sweating for any Mimbranes at Level 3 Trust or higher.</b>");
 
-		var sweatText:String = "Toggle Sweat: ";
+		var sweatText:String = "Sweat: ";
 		if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
 		{
 			sweatText += "On";

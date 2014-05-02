@@ -1516,9 +1516,10 @@ package classes {
 				default:
 					// error production is now done up-stream in the parser
 					// Gedan: I ain't seeing no errors, so I'm gonna Throw on unknown tags to make their presence 120% obvious when turbotesting scenes.
-					throw new Error("Unmatched tag descriptor: " + desc);
-					//trace("WOOP WOOP ERROR WOOP WOOP. Unmatched tag descriptor: " + desc);
+					//throw new Error("Unmatched tag descriptor: " + desc);
+					trace("ERROR: Unmatched tag descriptor detected: " + desc);
 					return null; // "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
+					
 					break;
 			}
 			if (arg.charCodeAt(0) > 64 && arg.charCodeAt(0) < 90) buffer = upperCase(buffer);
