@@ -4572,7 +4572,8 @@ public function feedMimbranesWithPussy():void
 	else output(" all of your Mimbranes");
 	output(" satisfied, you retrieve your equipment and go back to something a little more self-gratifying.");
 
-	mimbraneFeed("all", 3);
+	if (mimbraneDebug) mimbraneFeed("all", 15);
+	else mimbraneFeed("all", 3);
 	
 	pc.orgasm();
 	pc.orgasm();
