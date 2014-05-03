@@ -608,8 +608,6 @@ function attackRouter(destinationFunc):void
 	}
 	if(button < 14) button = 14;
 	this.addButton(button,"Back",combatMainMenu);
-
-	mimbraneCombatBonusAttacks();
 }
 
 // Really?
@@ -638,12 +636,17 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 			if(foes[i] == target) flags["DRONE_TARGET"] = i;
 		}
 	}
-	if(foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
-	if(!attacker.hasStatusEffect("Multiple Attacks") && attacker == pc) {
-		clearOutput();
-		if(attacker.hasPerk("Riposte")) attacker.createStatusEffect("Riposting",0,0,0,0,true,"","",true,0);
-		//Bloodthirsty restores energy on hits. Only works on one hit if multiple attacks.
-		if(pc.hasPerk("Bloodthirsty")) pc.energy(2+rand(3));
+	if (foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
+	if (attacker == pc)
+	{
+		if (!attacker.hasStatusEffect("Multiple Attacks") && !attacker.hasStatusEffect("Mimbrane Bonus Attack"))
+		{
+			clearOutput();
+			if (attacker.hasPerk("Riposte")) attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
+			
+			//Bloodthirsty restores energy on hits. Only works on one hit if multiple attacks.
+			if(pc.hasPerk("Bloodthirsty")) pc.energy(2+rand(3));
+		}
 	}
 	//Run with multiple attacks!
 	if (attacker.hasPerk("Multiple Attacks")) {
@@ -692,7 +695,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 	// Bonus evades from mimbrane feeties
 	else if (mimbraneFeetBonusEvade(target))
 	{
-		output("\n\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!");
+		output("\nYou’re taken by surprise as your [pc.foot] suddenly acts on its own, right as you’re about be attacked. The action is intense enough to slide you right out of the face of danger. Seems your Mimbrane is even more attentive than you are!\n");
 	}
 	//Attack connected!
 	else {

@@ -1,3 +1,4 @@
+import classes.Characters.PlayerCharacter;
 import classes.Creature;
 /*
 
@@ -3367,12 +3368,6 @@ public function mimbraneCombatInterference():Boolean
 	return false;
 }
 
-// Additional attacks that the mimbranes can do for the player
-public function mimbraneCombatBonusAttacks():void
-{
-	throw new Error("Not implemented yet.");
-}
-
 public function mimbraneHandBonusAttack(target:Creature):void
 {
 	if (target is Mimbrane) return;
@@ -3397,12 +3392,18 @@ public function mimbraneHandBonusAttack(target:Creature):void
 		}
 	}
 
-	if (bonusAttackChance > 0 && rand(100) <= (bonusAttackChance - 1))
+	var attackRoll:int = rand(100);
+	var msg:String = (bonusAttackChance - 1 >= attackRoll) ? "SUCCESS" : "FAILURE";
+	if (mimbraneDebug) trace("Handling Mimbrane Hand Bonus Attacks... " + bonusAttackChance + "%, rolled " + attackRoll + " for " + msg);
+	
+	if (bonusAttackChance - 1 >= attackRoll)
 	{
 		// Bonus attack successful
-		output("You’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. Seems as though the Mimbrane controlling it is eager to come to your aid!");
+		output("\nYou’re taken by surprise when your hand moves all on its own, quickly mimicking your previous attack. It seems as though the Mimbrane controlling it is eager to come to your aid!\n\n");
 
-		attack(pc, target, false);
+		(pc as PlayerCharacter).createStatusEffect("Mimbrane Bonus Attack", 0, 0, 0, 0, true, "", "", true, 0);
+		attack(pc, target, true);
+		(pc as PlayerCharacter).removeStatusEffect("Mimbrane Bonus Attack");
 	}
 }
 
@@ -4221,39 +4222,39 @@ public function unlockMimbraneSweatEvent(partName:String):void
 
 public function toggleMimbraneSweat():void
 {
-	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	clearOutput2();
+	//userInterface.showBust("MIMBRANE");
 
 	// Toggling on
 	if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined)
 	{
 		flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = 1;
 
-		output("You ask your Mimbrane");
-		if (attachedMimbranes() > 1) output("s");
-		output(" to sweat.");
-		if (attachedMimbranes() == 1) output(" It cheerfully squeaks its affirmation.");
-		else output(" They cheerfully squeak their affirmation.");
-		output(" Little time passes before your " + mimbraneBodypartString());
-		if (attachedMimbranes() == 1) output(" is");
-		else output(" are");
-		output(" soaked in oily, sensual perspiration.");
+		output2("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output2("s");
+		output2(" to sweat.");
+		if (attachedMimbranes() == 1) output2(" It cheerfully squeaks its affirmation.");
+		else output2(" They cheerfully squeak their affirmation.");
+		output2(" Little time passes before your " + mimbraneBodypartString());
+		if (attachedMimbranes() == 1) output2(" is");
+		else output2(" are");
+		output2(" soaked in oily, sensual perspiration.");
 	}
 	// Toggling off
 	else
 	{
 		flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] = undefined;
 
-		output("You ask your Mimbrane");
-		if (attachedMimbranes() > 1) output("s");
-		output(" to stop sweating.");
-		if (attachedMimbranes() == 1) output(" It cheerfully squeaks its affirmation.");
-		else output(" They cheerfully squeak their affirmation.");
-		output(" Before too long, your body is completely dry and free of the sweet, heady aroma that followed you around.");
+		output2("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output2("s");
+		output2(" to stop sweating.");
+		if (attachedMimbranes() == 1) output2(" It cheerfully squeaks its affirmation.");
+		else output2(" They cheerfully squeak their affirmation.");
+		output2(" Before too long, your body is completely dry and free of the sweet, heady aroma that followed you around.");
 	}
 
-	clearMenu();
-	addButton(0, "Back", mimbraneMenu);
+	clearGhostMenu();
+	addGhostButton(0, "Back", mimbraneMenu);
 }
 
 public function mimbraneBodypartString():String
@@ -4280,7 +4281,7 @@ public function mimbraneBodypartString():String
 	if (pc.hasStatusEffect("Mimbrane Face")) parts.push("face");
 
 	msg = parts[0];
-	parts = parts.splice(0, 1);
+	parts.splice(0, 1);
 
 	while (parts.length > 0)
 	{
@@ -4294,7 +4295,7 @@ public function mimbraneBodypartString():String
 		}
 
 		msg += parts[0];
-		parts = parts.splice(0, 1);
+		parts.splice(0, 1);
 	}
 
 	if (mimbraneDebug) trace("Generated Part String: " + msg);
@@ -4320,39 +4321,39 @@ public function unlockMimbraneSpittingEvent(partName:String):void
 
 public function toggleMimbraneSpit():void
 {
-	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	clearOutput2();
+	//userInterface.showBust("MIMBRANE");
 
 	// Toggling on
 	if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
 	{
 		flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = 1;
 
-		output("You let your Mimbrane");
-		if (attachedMimbranes() > 1) output("s");
-		output(" know that you’d like if");
-		if (attachedMimbranes() == 1) output(" it");
-		else output(" they");
-		output(" helped you in combat.");
-		if (attachedMimbranes() == 1) output(" It squeaks a happy affirmation.");
-		else output(" They squeak a happy affirmation.");
+		output2("You let your Mimbrane");
+		if (attachedMimbranes() > 1) output2("s");
+		output2(" know that you’d like if");
+		if (attachedMimbranes() == 1) output2(" it");
+		else output2(" they");
+		output2(" helped you in combat.");
+		if (attachedMimbranes() == 1) output2(" It squeaks a happy affirmation.");
+		else output2(" They squeak a happy affirmation.");
 	}
 	//Toggling Off
 	else
 	{
-		output("You ask your Mimbrane");
-		if (attachedMimbranes() > 1) output("s");
-		output(" not to interfere with your combat, preferring");
-		if (attachedMimbranes() == 1) output(" it doesn’t");
-		else output(" they don’t");
-		output(" interrupt you with");
-		if (attachedMimbranes() == 1) output(" its");
-		output(" their");
-		output(" own dangerous blasts of desire. ");
+		output2("You ask your Mimbrane");
+		if (attachedMimbranes() > 1) output2("s");
+		output2(" not to interfere with your combat, preferring");
+		if (attachedMimbranes() == 1) output2(" it doesn’t");
+		else output2(" they don’t");
+		output2(" interrupt you with");
+		if (attachedMimbranes() == 1) output2(" its");
+		output2(" their");
+		output2(" own dangerous blasts of desire. ");
 	}
 
-	clearMenu();
-	addButton(0, "Next", mimbraneMenu);
+	clearGhostMenu();
+	addGhostButton(0, "Next", mimbraneMenu);
 }
 
 //Unlock Head Customization
