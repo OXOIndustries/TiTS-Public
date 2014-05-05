@@ -4021,57 +4021,75 @@ public function mimbraneMenu():void
 	// Fap/feeding stuff
 	if (hasFeedableMimbranes())
 	{
-		if (pc.lust() < 33)
+		if (!inCombat())
 		{
-			// Gendered, not enough lust to fap
-			if (pc.hasCock() || pc.hasVagina())
+			if (pc.lust() < 33)
 			{
+				// Gendered, not enough lust to fap
+				if (pc.hasCock() || pc.hasVagina())
+				{
+					output2("You have");
+					if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
+					else output2(" Mimbranes that are");
+					output2(" ready to feed. However, you aren’t turned on enough to get your juices flowing!");
+				}
+				// Genderless, not enough lust to fap
+				else
+				{
+					output2("You have ");
+					if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
+					else output2(" Mimbranes that are");
+					output2(" ready to feed. However, you have no means to feed them!")
+				}
+
+				addDisabledGhostButton(0, "Cock Feed");
+				addDisabledGhostButton(1, "Vag Feed");
+			}
+			else
+			{
+				// FAPS
 				output2("You have");
 				if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
 				else output2(" Mimbranes that are");
-				output2(" ready to feed. However, you aren’t turned on enough to get your juices flowing!");
-			}
-			// Genderless, not enough lust to fap
-			else
-			{
-				output2("You have ");
-				if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
-				else output2(" Mimbranes that are");
-				output2(" ready to feed. However, you have no means to feed them!")
-			}
+				output2(" ready to feed.");
+				
+				//[Feed With Cock][Feed With Pussy]
+				if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
+				else addDisabledGhostButton(0, "Cock Feed");
 
-			addDisabledGhostButton(0, "Cock Feed");
-			addDisabledGhostButton(1, "Vag Feed");
+				if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
+				else addDisabledGhostButton(1, "Vag Feed");
+			}
 		}
 		else
 		{
-			// FAPS
-			output2("You have");
-			if (attachedMimbranes() == 1) output2(" a Mimbrane that is");
-			else output2(" Mimbranes that are");
-			output2(" ready to feed.");
+			output2("You can't attempt to feed your mimbranes whilst in combat!");
 			
-			//[Feed With Cock][Feed With Pussy]
-			if (pc.hasCock()) addGhostButton(0, "Cock Feed", feedMimbranesWithCock);
-			else addDisabledGhostButton(0, "Cock Feed");
-
-			if (pc.hasVagina()) addGhostButton(1, "Vag Feed", feedMimbranesWithPussy);
-			else addDisabledGhostButton(1, "Vag Feed");
+			addDisabledGhostButton(0, "Cock Feed");
+			addDisabledGhostButton(1, "Vag Feed");
 		}
 	}
 	//If all Mimbranes are full
 	else
 	{
-		output2("You try and interact with your Mimbrane");
-		if (attachedMimbranes() > 1) output2("s");
-		output2(", but");
-		if (attachedMimbranes() == 1) output2(" it doesn’t seem");
-		else output2(" they don’t seem");
-		output2(" to be interested.");
-		if (attachedMimbranes() == 1) output2(" It");
-		else output2(" They");
-		output2(" must be full.");
-
+		
+		if (!inCombat())
+		{
+			output2("You try and interact with your Mimbrane");
+			if (attachedMimbranes() > 1) output2("s");
+			output2(", but");
+			if (attachedMimbranes() == 1) output2(" it doesn’t seem");
+			else output2(" they don’t seem");
+			output2(" to be interested.");
+			if (attachedMimbranes() == 1) output2(" It");
+			else output2(" They");
+			output2(" must be full.");
+		}
+		else
+		{
+			output2("You can't attempt to feed your mimbranes whilst in combat!");
+		}
+		
 		addDisabledGhostButton(0, "Cock Feed");
 		addDisabledGhostButton(1, "Vag Feed");
 	}
