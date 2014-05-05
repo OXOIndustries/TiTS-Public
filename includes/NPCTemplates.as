@@ -153,6 +153,10 @@
 	{
 		chars["ALISS"] = new classes.Characters.Aliss();
 	}
+	if (!justUpdate || (justUpdate && chars["SHEKKA"] == undefined))
+	{
+		chars["SHEKKA"] = new classes.Characters.Shekka();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

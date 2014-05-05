@@ -1390,6 +1390,7 @@ function initializeRooms():void
 	rooms["211"].eastExit = "210";
 	rooms["211"].westExit = "212";
 	rooms["211"].southExit = "215";
+	rooms["211"].northExit = "WIDGET WAREHOUSE";
 	rooms["211"].planet = "PLANET: TARKUS";
 	rooms["211"].system = "SYSTEM: REDACTED";
 	rooms["211"].addFlag(GLOBAL.INDOOR);
@@ -1874,6 +1875,16 @@ function initializeRooms():void
 	rooms["302"].addFlag(GLOBAL.INDOOR);
 	rooms["302"].addFlag(GLOBAL.BAR);
 	
+	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
+	rooms["WIDGET WAREHOUSE"].roomName = "THE\nMESS";
+	rooms["WIDGET WAREHOUSE"].description = "";
+	rooms["WIDGET WAREHOUSE"].runOnEnter = widgetWarehouseBonusFuntimes;
+	rooms["WIDGET WAREHOUSE"].southExit = "211";
+	rooms["WIDGET WAREHOUSE"].planet = "PLANET: TARKUS";
+	rooms["WIDGET WAREHOUSE"].system = "SYSTEM: REDACTED";
+	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.COMMERCE);
+
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
 	rooms["DEBUG1"].roomName = "\nDEBUG ROOM";

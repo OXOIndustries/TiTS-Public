@@ -103,6 +103,7 @@
 		include "../includes/sydianMale.as";
 		include "../includes/theMess.as";
 		include "../includes/aliss.as";
+		include "../includes/shekka.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
@@ -193,7 +194,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.25";
+			version = "0.02.26";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -626,6 +627,11 @@
 		public function get penny():*
 		{
 			return chars["PENNY"];
+		}
+
+		public function get shekka():*
+		{
+			return chars["SHEKKA"];
 		}
 
 		public function get burt():*

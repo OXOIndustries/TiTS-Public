@@ -59,6 +59,7 @@ function anonsBarWaitressAddendum():void {
 function anonsBarWaitressApproach():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	////1A. “First time at the bar”
 	if(flags["MET_SELLESY"] == undefined)
@@ -95,6 +96,7 @@ function anonsBarWaitressApproach():void {
 function firstDrinkFromSellesy(first:Boolean = true):void {
 	author("Mr. Writer");
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	if(first)
 	{
 		clearOutput();
@@ -139,6 +141,7 @@ function genderlessEpilogueForSellesy():void {
 function firstTimeWithSellesyForCocks():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	output("The gyration of her hips increase in intensity. A series of delicate little moans escapes her, biting her lip in ecstasy. [pc.EachCock], already hardened by the experience thus far, responds naturally.");
 	//For massive cocks, 24” plus: 
@@ -161,6 +164,7 @@ function firstTimeWithSellesyForCocks():void {
 function firstTimeWithSellesyForVagoos():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	output("The gyration of her hips increases in intensity. A series of delicate little moans escape her, making her bite her lip in ecstasy. Your own pussy, hot and moist, experiences the simmering, wet feeling of her as she grinds your crotch. You can tell she's close, but can only exhale in shock as her legs clamp even tighter around you, and her pussy begins to frantically rub against your moistening slit. Your own orgasm builds steadily, as this incredibly sensual you cum uncontrollably as she traps you in the vice-grip of three orgasmically-clenched thighs.");
 	output("\n\nShe cries out breathlessly, throwing her arms around your back and squeezes you close as her entire body seizes up, and you feel your own climax shiver through your trapped body, her pussy clenching hungrily against yours. With your scant clothing separating the two, it feels wonderfully erotic.");
@@ -175,6 +179,7 @@ function firstTimeWithSellesyForVagoos():void {
 function repeatDrinkyDrink():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	output("As Sellesy casually strolls off to ‘prepare’ your drink, you take the opportunity to have a more in-depth look around the bar. There’s a wide variety of patrons, from what you can see through the incense, although many of them are seedy folk in nature. Given the nature of the bar, it’s unsurprising.");
 	//[Then continue the “First Drink” scene from the line: A soft, plush, yet firm touch presses against your cheek, bringing your attention to your front.]
@@ -186,6 +191,7 @@ function repeatDrinkyDrink():void {
 function sellesyPostDrinkEpilogue():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	processTime(15+rand(10));
 	output("You awaken a short while later, held amidst her tender arms as she holds you close to her bountiful bosom in the chair, which has grown to accommodate you both. Your stomach feels a little bloated, no doubt from draining her colossal tit, and yet now you look to her remaining, untouched pair.... They seem positively swollen!");
@@ -210,6 +216,7 @@ function sellesyPostDrinkEpilogue():void {
 function stayWithSellesy():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	output("Sellesy leads you up to her lavish, if modestly sized apartment above the bar, and she sits back contentedly on her large bed. She obviously earns enough to live very comfortably.");
 	output("\n\n\"<i>Hmmm... I guess you've got a bit of energy you want to put to use huh? Not to worry... I'll help you burn that off.</i>\"  she quips with a smirk.");
@@ -235,6 +242,7 @@ function stayWithSellesy():void {
 function titJobFromSellesy():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	var x:int = pc.biggestCockIndex();
 	output("Pulling you gently onto the bed, once in the embrace of her arms, you feel the rather snake-like sensation of her three legs beginning to embrace you once more. One leg worms its way ");
@@ -292,6 +300,7 @@ function titJobFromSellesy():void {
 function tripleFootjob():void {
 	clearOutput();
 	userInterface.showName("\nSELLESY");
+	userInterface.showBust("SELLESY");
 	author("Mr. Writer");
 	output("Dropping your [pc.gear], you can see she is immediately astounded by what she sees. She paws closer from her position on the bed, and reaches out almost in awe. As she gently massages [pc.oneCock], and measures it against her forearm, her eyes widen ever so slightly in realization.");
 	output("\n\n<i>\"I didn't realise you were so big... sorry honey, I just don't think it'll fit. Even our kind have limits,\"</i>  she says rather softly, sounding genuinely disappointed.");

@@ -1559,7 +1559,9 @@ package classes {
 			return str;
 		}
 		public function inventorySlots(): int {
-			return 10;
+			var slots:int = 10;
+			if(accessory.shortName == "Cargobot") slots += 2;
+			return slots;
 		}
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
@@ -1688,6 +1690,11 @@ package classes {
 		{
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
 			return lust(arg);
+		}
+		//% of max. Useful for determining things like how strong a PC is for his/her level.
+		public function PQ():Number
+		{
+			return Math.round(physique()/physiqueMax()*100);
 		}
 		public function physique(arg:Number = 0, apply:Boolean = false):Number 
 		{
@@ -2783,6 +2790,10 @@ package classes {
 			else output += "toes";
 			return output;
 		}
+		public function hasKnees():Boolean
+		{
+			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
+		}
 		public function knees(): String {
 			var select: Number = 0;
 			var output: String = "";
@@ -3493,7 +3504,7 @@ package classes {
 			var total: Number = 0;
 			while (counter > 0) {
 				counter--;
-				total += breastRows[counter].nipplesPerBreast * breastRows[counter].breasts;
+				total += nipplesPerBreast * breastRows[counter].breasts;
 			}
 			return total;
 		}
@@ -3590,7 +3601,7 @@ package classes {
 			while (counter > 0) {
 				counter--;
 				breasts += breastRows[counter].breasts;
-				nipples += breastRows[counter].nipplesPerBreast * breastRows[counter].breasts;
+				nipples += nipplesPerBreast * breastRows[counter].breasts;
 			}
 			if (breasts == 0) return 0;
 			return Math.floor(nipples / breasts);
@@ -4208,13 +4219,7 @@ package classes {
 			return false;
 		}
 		public function hasNipples(): Boolean {
-			var counter: Number = breastRows.length;
-			var index: Number = 0;
-			while (counter > 0) {
-				counter--;
-				if (breastRows[counter].nipplesPerBreast > 0) index = counter;
-			}
-			if (breastRows[index].nipplesPerBreast > 0) return true;
+			if(nipplesPerBreast > 0) return true;
 			return false;
 		}
 		public function canLactate():Boolean

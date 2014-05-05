@@ -279,7 +279,12 @@ function flyTo(arg:String):void {
 function move(arg:String, goToMainMenu:Boolean = true):void {
 	//Reset the thing that disabled encounters
 	flags["ENCOUNTERS_DISABLED"] = undefined;
-	processTime(rooms[currentLocation].moveMinutes);
+	var moveMinutes:int = rooms[currentLocation].moveMinutes;
+	if(pc.hasItem(new Hoverboard())) {
+		moveMinutes -= 1;
+		if(moveMinutes < 1) moveMinutes = 1;
+	}
+	processTime(moveMinutes);
 	currentLocation = arg;
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
@@ -404,10 +409,21 @@ public function processTime(arg:int):void {
 		if(this.minutes >= 60) {
 			this.minutes = 0;
 			this.hours++;
+			//Hours checks here!
+			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
+			{
+				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;
+				if(flags["SHEKKA_TALK_COOLDOWN"] < 0) flags["SHEKKA_TALK_COOLDOWN"] = 0;
+			}
 			if(flags["FLAHNE_PISSED"] > 0) {
 				flags["FLAHNE_PISSED"]--;
 				if(flags["FLAHNE_PISSED"] < 0) flags["FLAHNE_PISSED"] = 0;
 			}
+			if(chars["ALISS"].lust() < 70)
+			{
+				chars["ALISS"].lust(5);
+			}
+			chars["SHEKKA"].lust(15);
 			//Lactation effect updates
 			lactationUpdateHourTick();
 			//Horse pill procs!
@@ -416,8 +432,7 @@ public function processTime(arg:int):void {
 				var pill = new HorsePill();
 				//eventQueue[eventQueue.length] = pill.pillTF;
 				pill.pillTF();
-			}
-			//Hours checks here!
+			}	
 			//Cunt stretching stuff
 			if(this.chars["PC"].hasVagina()) {
 				for(x = 0; x < this.chars["PC"].totalVaginas(); x++) {
@@ -468,6 +483,10 @@ public function processTime(arg:int):void {
 			if(this.hours >= 24) {
 				this.days++;
 				this.hours = 0;
+				if(chars["ALISS"].lust() >= 70)
+				{
+					chars["ALISS"].orgasm();
+				}
 				//Cunt snake tomfoolery
 				if(this.chars["PC"].hasCuntTail()) {
 					if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined) flags["DAYS_SINCE_FED_CUNT_TAIL"] = 1;
