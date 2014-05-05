@@ -3768,6 +3768,8 @@ public function attachBoobMimbrane():void
 	output("\n\nThen everything’s back to normal. Did you black out or something? The instantaneous ending of the multiple sensations and urges and feelings wracking away at you is just as jarring and out of place as it always is. From your point of view, its as if everything just happened in less time than the blink of an eye. But by now you’re certain there’s more to it.");
 	output("\n\nYour next course of action is to examine your chest to try and find where the Mimbrane is hiding its eyes. The first assumption is around one of your [pc.nipples], but you don’t discover anything new. It takes a little bit of fondling before you find the two little lumps square center above your cleavage. Guess nature just can’t resist symmetry. You also miss the practically invisible bulge of [pc.skin] running around the perimeter of your knockers, presumably marking where the parasite ends and you begin. As always, its easy to miss and you have no hope of prying the thing off of you.");
 	output("\n\nYou gather up your equipment and head off with the new addition to your close family.");
+	
+	createMimbraneEffect("Mimbrane Boobs");
 }
 
 //Get Hands Mimbranes
