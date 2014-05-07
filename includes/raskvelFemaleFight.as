@@ -208,7 +208,7 @@ function raskvelGirlsTeasingCockwielders():void
 	{
 		output("The raskvel playfully scampers up and pivots, resting her butt against your crotch. She squeezes her surprisingly powerfully thighs to make her cushy little asscheeks wobble back and forth against");
 		if(!pc.isCrotchGarbed()) output(" [pc.oneCock]");
-		else output(" [pc.oneCock] through your [pc.crotchGarments]");
+		else output(" [pc.oneCock] through your [pc.lowerGarments]");
 		output(". \"<i>Come play, we can forget about the money.</i>\"");
 		pc.lustDamage(10+rand(4));
 	}

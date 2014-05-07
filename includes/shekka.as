@@ -781,6 +781,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	output("\n\nYou shrug, unable to hide the grin on your face. Your [pc.cum] is pooling between her legs on her bench, and she hasn't noticed. <i>\"Sure thing, babe.\"</i>");
 	output("\n\nShekka doesn't even bother cleaning herself up. She just starts tugging on her jumpsuit, making sure its tight enough against her swollen crotch to hold in every drop. Judging by the audible squish it makes as it presses against her nethers, you can only assume it caught a fair amount of liquid action itself. She doesn't comment on it, instead mentioning something about washing up after work, but you think she might just like the feel of her pussy swimming in it.");
 	fuckedShekka();
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
