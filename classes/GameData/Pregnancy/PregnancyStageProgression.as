@@ -1,4 +1,4 @@
-package GameData.Pregnancy 
+package classes.GameData.Pregnancy 
 {
 	/**
 	 * ...
@@ -19,7 +19,6 @@ package GameData.Pregnancy
 		{
 			if (_triggerFunc != null) _triggerFunc();
 		}
-		
 	}
 
 }
