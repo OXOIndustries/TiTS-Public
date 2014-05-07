@@ -1,4 +1,4 @@
-package GameData.Pregnancy 
+package classes.GameData.Pregnancy 
 {
 	/**
 	 * ...
@@ -6,12 +6,17 @@ package GameData.Pregnancy
 	 */
 	public class PregnancyManager 
 	{
+		private var _pregHandlers:Vector.<BasePregnancyHandler>;
 		
 		public function PregnancyManager() 
 		{
-			
+			_pregHandlers = new Vector.<BasePregnancyHandler>();
 		}
 		
+		public function insertNewHandler(pHandler:BasePregnancyHandler):void
+		{
+			_pregHandlers.push(pHandler);
+		}
 	}
 
 }
