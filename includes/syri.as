@@ -490,6 +490,7 @@ function approachSyriIntheMorning():void {
 		else addDisabledButton(1,"Sex");
 	}
 	addButton(2,"Appearance",syriAppearance);
+	if(flags["UNLOCK_SYRI_ANNO_TALK"] != undefined) addButton(3,"Anno",syriTalksAboutAnno);
 	addButton(14,"Leave",leaveMorningSyri);
 }
 

@@ -106,7 +106,60 @@ function shekkaMainMenu():void
 	}
 	addButton(5,"Buy",buyItem);
 	addButton(6,"Sell",sellItem);
+	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
+	else addDisabledButton(7,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
 	addButton(14,"Back",mainGameMenu);
+}
+
+function fixMyEmittersShekka():void
+{
+	clearOutput();
+	userInterface.showBust("SHEKKA");
+	userInterface.showName("\nSHEKKA");
+	output("<i>\"One of the sydians did a number on my shield emitters. You think you could fix them?\"</i>");
+	output("\n\nShekka circles you, looking your equipment over with a practiced eye before blurting out, <i>\"Oh, wow! The projector is all corroded, and I can see some degradation of the cabling here and here!\"</i> She jabs a finger into your side and your chest before launching herself onto your back to get at your shield projector directly. You stumble around the shop under the surprise weight, trying to catch yourself on the piles of junk. Shekka's hands seem to be everywhere at once, and she never stops streaming technobabble into your ears.");
+	output("\n\nYou interrupt her. <i>\"Can you fix it?\"</i>");
+	if(pc.hasHair()) output("\n\nRuffling your [pc.hair]");
+	else output("\n\nRubbing your head for good luck");
+	output(", she declares, <i>\"A simple job like this? You bet your ass I can.\"</i> She slows her excited scrambling. <i>\"Oh, and I guess it should cost... 50 credits? Gotta make a living, you know.\"</i>");
+	output("\n\nWill you pay her 50 credits to fix your emitters?");
+	//[Yes/No]
+	clearMenu();
+	if(pc.credits >= 50) addButton(0,"Yes",shekkaActuallyFixesEmitters,undefined,"Yes","Pay Shekka 50 creds to fix your emitters.");
+	else addDisabledButton(0,"Yes","Yes","You can't afford to have her fix your emitters.");
+	addButton(1,"No",turnDownEmitterFixingFromShekka,undefined,"No","Turn down getting your emitters fixed for right now.");
+}
+
+function shekkaActuallyFixesEmitters():void
+{
+	clearOutput();
+	userInterface.showBust("SHEKKA");
+	userInterface.showName("\nSHEKKA");
+	output("<i>\"Sure thing.\"</i> You transfer the credits as fast as you can with sixty pounds of rambunctious alien prodding you everywhere. It's tough to keep track of her, but you're pretty sure that she crawls around your middle at one point. A second later, she's hanging down by your [pc.butt] with her feet clutching tightly to your head. You try not to blush from her intimate closeness.");
+	output("\n\nBefore you know it, your emitters are fixed and the sassy mechanic is springing off of you. <i>\"A pleasure as always, [pc.name]. You be sure and come back to me if you have any more sydian problems, okay?\"</i>");
+	output("\n\nYou nod, uncomfortably aware of the residual warmth she left behind while she snaps her welding mask back into place and resumes working.");
+	//+lust
+	pc.lust(5);
+	//-50creds
+	pc.credits -= 50;
+	//2m pass
+	processTime(2);
+	pc.removeStatusEffect("Rusted Emitters");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+function turnDownEmitterFixingFromShekka():void
+{
+	clearOutput();
+	userInterface.showBust("SHEKKA");
+	userInterface.showName("\nSHEKKA");
+	output("Finally managing to get a grip on the rambunctious mechanic, you peel her off and lower her to the floor, uncomfortably aware of how her body had been pressing into yours. <i>\"Not right now. I might have the credits to spare later, though.\"</i>");
+	output("\n\nShekka shrugs and smiles. <i>\"Suit yourself. Something else you want?\"</i>");
+	//+lust
+	pc.lust(5);
+	processTime(1);
+	//Main menu
+	shekkaMainMenu();
 }
 
 //Appearance Screen

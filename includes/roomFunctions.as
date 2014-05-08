@@ -318,7 +318,34 @@ function jungleDeepEncounters():Boolean {
 	return false;
 }
 
+//Raskvel + Lapinara
 function rustPlainsEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+
+//Goo, Sydian
+function rustCoastEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -333,21 +360,64 @@ function rustPlainsEncounters():Boolean {
 		choices[choices.length] = encounterMaleSydian;
 		choices[choices.length] = encounterMaleSydian;
 		
-		if(!debug)
-		{
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterDasGooGray;
-			choices[choices.length] = encounterDasGooGray;
-			choices[choices.length] = encounterDasGooGray;
-		}
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+	
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+
+//Raskvel + Saxbots + Sydians
+function rustRidgesEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterMaleSydian;
+		choices[choices.length] = encounterMaleSydian;
+		choices[choices.length] = encounterMaleSydian;
+		
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		//choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+//Goos and Saxbots
+function rustScytheGladeEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
 
 		//Run the event
 		choices[rand(choices.length)]();

@@ -35,7 +35,7 @@ package classes.Items.Guns
 			this.attackVerb = "shoot";
 			
 			//Information
-			this.basePrice = 680;
+			this.basePrice = 4280;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.NO_TYPE;

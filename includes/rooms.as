@@ -1398,11 +1398,12 @@ function initializeRooms():void
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
 	rooms["212"].roomName = "\nNOVAHOME";
-	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.";
+	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window into the shop shows stacks of salvaged tech from the wastes outside, mostly old machine parts, though there are a few weapons and useful bits with glowing holo-price tags hovering over them.";
 	rooms["212"].runOnEnter = undefined;
 	rooms["212"].eastExit = "211";
 	rooms["212"].westExit = "213";
 	rooms["212"].northExit = "301";
+	rooms["212"].southExit = "303";
 	rooms["212"].planet = "PLANET: TARKUS";
 	rooms["212"].system = "SYSTEM: REDACTED";
 	rooms["212"].addFlag(GLOBAL.INDOOR);
@@ -1508,7 +1509,7 @@ function initializeRooms():void
 	rooms["221"] = new RoomClass(this);
 	rooms["221"].roomName = "RUST\nCANYON";
 	rooms["221"].description = "The path between the Nova and the piled detritus is almost punishingly narrow here. You have to duck and weave to navigate around the angled prow of the colossal starship. The air is thick with dust and stagnant. There isn't even that much light down here; the piled metal hulks above are leaning against the much larger hull of the Nova, keeping this area perpetually dark. You can squeeze south or west from here. Both directions are far more open and well lit.";
-	rooms["221"].runOnEnter = rustPlainsEncounters;
+	rooms["221"].runOnEnter = rustCoastEncounters;
 	rooms["221"].westExit = "222";
 	rooms["221"].southExit = "220";
 	rooms["221"].planet = "PLANET: TARKUS";
@@ -1520,7 +1521,7 @@ function initializeRooms():void
 	rooms["222"] = new RoomClass(this);
 	rooms["222"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["222"].description = "The air here smells vaguely of molten metal and pollution, stronger than many other places on Tarkus. The flakes of iron and other ferrous-based materials that make up the dusty soil are fine, so small you could almost mistake it for reddish-brown dirt if you didn't look to closely. You could head north around the prow of the Nova, east alongside a towering pile of junk, or west to the other side of the heap.";
-	rooms["222"].runOnEnter = rustPlainsEncounters;
+	rooms["222"].runOnEnter = rustCoastEncounters;
 	rooms["222"].eastExit = "221";
 	rooms["222"].northExit = "223";
 	rooms["222"].westExit = "229";
@@ -1533,7 +1534,7 @@ function initializeRooms():void
 	rooms["223"] = new RoomClass(this);
 	rooms["223"].roomName = "NOVA\nPOINT";
 	rooms["223"].description = "You're standing directly under the nose of the Nova. Around you hang stalactites of ancient, corroded metal, testaments to corrosive forces that have seen fit to grace the ship with a beard worthy of father time. In spite of that, the hull looks thick enough to remain spaceworthy. It was obviously built to withstand an obscene amount of punishment. The ground here is relatively flat. Why, there's barely even any junk sticking up out of the \"soil!\" You can amble around similar terrain to the north and west. Heading south would put you on a path alongside a mound of twisted wreckage.";
-	rooms["223"].runOnEnter = rustPlainsEncounters;
+	rooms["223"].runOnEnter = rustCoastEncounters;
 	rooms["223"].southExit = "222";
 	rooms["223"].westExit = "228";
 	rooms["223"].northExit = "224";
@@ -1546,7 +1547,7 @@ function initializeRooms():void
 	rooms["224"] = new RoomClass(this);
 	rooms["224"].roomName = "SHIPSIDE\nFIELD";
 	rooms["224"].description = "The surrounding expanse of flat, dusty fields is about as desolate as it gets, but even that hasn't stopped life, at least not yet. There's a few silvery plant stalks capped with iridescent blue leaves waving gently in the polluted breezes, somehow still here in spite of all this place has gone through. Stepping gingerly, you could go south or west from here. The Nova blocks passage to the east, and gray cliffs stretch up towards a cloudless sky to the north.";
-	rooms["224"].runOnEnter = rustPlainsEncounters;
+	rooms["224"].runOnEnter = rustCoastEncounters;
 	rooms["224"].southExit = "223";
 	rooms["224"].westExit = "225";
 	rooms["224"].planet = "PLANET: TARKUS";
@@ -1558,7 +1559,7 @@ function initializeRooms():void
 	rooms["225"] = new RoomClass(this);
 	rooms["225"].roomName = "POLLUTED\nBEACH";
 	rooms["225"].description = "Gurgling faintly to the west, a sea of sludge, filth, and corruption laps against a oily beach. Here, the pollution is not quite so bad, but it's still thick enough to make the flaky \"sand\" clump together around your [pc.feet]. You can go west or south if you want to experience the pollution firsthand. Otherwise, the Nova's fore is visible a few minutes to the east, dangling reddish stalactites off its chin.";
-	rooms["225"].runOnEnter = undefined;
+	rooms["225"].runOnEnter = rustCoastEncounters;
 	rooms["225"].southExit = "228";
 	rooms["225"].westExit = "226";
 	rooms["225"].eastExit = "224";
@@ -1571,7 +1572,7 @@ function initializeRooms():void
 	rooms["226"] = new RoomClass(this);
 	rooms["226"].roomName = "OIL SEA\nBEACH";
 	rooms["226"].description = "Here on the beach of the Oil Sea, you can't help but be aware of its stunning, unnatural beauty, a property lent to it by the glossy, metallic materials that comprise its slowly rolling waves. The smell is obscenely clingy. You can practically feel the tainted air sticking to the roof of your mouth, lending credence to the worrying thoughts that are assailing your mind, wondering how quickly this place is poisoning you. You can travel along the beach to the south, or you could head east away from the liquid's edge. A sheer cliff face blocks travel north, and you don't even want to think about trying to swim through the sludge to the west.";
-	rooms["226"].runOnEnter = undefined;
+	rooms["226"].runOnEnter = rustCoastEncounters;
 	rooms["226"].southExit = "227";
 	rooms["226"].eastExit = "225";
 	rooms["226"].planet = "PLANET: TARKUS";
@@ -1583,7 +1584,7 @@ function initializeRooms():void
 	rooms["227"] = new RoomClass(this);
 	rooms["227"].roomName = "OIL SEA\nBEACH";
 	rooms["227"].description = "The silver-black surface of the Oil Sea rolls with slow, almost malevolent purpose just to the south and west. Some exotic material inside those murky swells must be much thicker than water; they never crest or foam like seawater does, and the frequency and amplitude of their motions seems subtly wrong to you. You can follow the beach north or east from here.";
-	rooms["227"].runOnEnter = undefined;
+	rooms["227"].runOnEnter = rustCoastEncounters;
 	rooms["227"].northExit = "226";
 	rooms["227"].eastExit = "228";
 	rooms["227"].planet = "PLANET: TARKUS";
@@ -1595,7 +1596,7 @@ function initializeRooms():void
 	rooms["228"] = new RoomClass(this);
 	rooms["228"].roomName = "OIL SEA\nBEACH";
 	rooms["228"].description = "Here, at the tip of a small, oily inlet, the beach is even more blackened than elsewhere, perhaps due to collection sludge and sediment carried on the waves. You can actually spot pools of tar alongside silvery swirls and reddish quagmires, each of them as beautiful as they are deadly. It's hard not to feel like this whole planet is a spectacle of pollution and rot taken heaped upon itself until it's gained its own sense of obscene beauty. Surely there's something of value left on this planet - perhaps half-buried in the beach to the south or west. Maybe you could find something to the east, near the nose of the Nova or to the north under the cliffs.";
-	rooms["228"].runOnEnter = undefined;
+	rooms["228"].runOnEnter = rustCoastEncounters;
 	rooms["228"].northExit = "225";
 	rooms["228"].eastExit = "223";
 	rooms["228"].southExit = "229";
@@ -1609,7 +1610,7 @@ function initializeRooms():void
 	rooms["229"] = new RoomClass(this);
 	rooms["229"].roomName = "OIL SEA\nBEACH";
 	rooms["229"].description = "You have to stop to yank your [pc.foot] out of the muck at least once in order to continue on. Like brackish swamp water, mercurial deposits of tar and filth have gathered in every depression on the crimson tinged beach. You tread carefully as you navigate the unearthly landscape, keeping a wary eye on the slow waves of pollution that lap at the rusted shores. The beach leads north and south. To the east, you can spot a trail around a twisted mountain of wrecked machinery.";
-	rooms["229"].runOnEnter = undefined;
+	rooms["229"].runOnEnter = rustCoastEncounters;
 	rooms["229"].northExit = "228";
 	rooms["229"].eastExit = "222";
 	rooms["229"].southExit = "230";
@@ -1622,7 +1623,7 @@ function initializeRooms():void
 	rooms["230"] = new RoomClass(this);
 	rooms["230"].roomName = "OIL SEA\nBEACH";
 	rooms["230"].description = "This narrow strip of beach is made all the more precarious by a looming pile of wasted hulks and gutted spaceships. Someone went through all the trouble of scrounging them for useful parts and stacking the corroded leftovers into a pile, and whoever it was didn't even have the foresight to make it a little further away from the beach. You'll be forced to squeeze between the metal and the viscous waves numerous times if you want to go north or south, the only passable directions.";
-	rooms["230"].runOnEnter = undefined;
+	rooms["230"].runOnEnter = rustCoastEncounters;
 	rooms["230"].northExit = "229";
 	rooms["230"].southExit = "231";
 	rooms["230"].planet = "PLANET: TARKUS";
@@ -1634,7 +1635,7 @@ function initializeRooms():void
 	rooms["231"] = new RoomClass(this);
 	rooms["231"].roomName = "OIL SEA\nBEACH";
 	rooms["231"].description = "A slurping sound announces the languid connection of a minor waterway to the beach. The sluggish water pours an irregular stream into the contaminated water, creating a chunky froth. Fat-like chunks of scum litter the sand, looking like greasy, gray-black stones, already blistering in the elements. The smell of baked crude oil saturates the air, making it hard to breathe. You pick your way carefully through the deposits, holding your breath as one crumbles with your passing, filling the air with visible fumes. The wall stacked junkers blocking off the northeast doesn't help either. You can follow the beach to the north and east.";
-	rooms["231"].runOnEnter = undefined;
+	rooms["231"].runOnEnter = rustCoastEncounters;
 	rooms["231"].northExit = "230";
 	rooms["231"].eastExit = "232";
 	rooms["231"].planet = "PLANET: TARKUS";
@@ -1646,7 +1647,7 @@ function initializeRooms():void
 	rooms["232"] = new RoomClass(this);
 	rooms["232"].roomName = "OIL SEA\nBEACH";
 	rooms["232"].description = "The world around you gradually turns red. You rub your eyes, blaming fatigue for the sudden crimson shift. After blinking several times, you realize, no, the world has actually gone red. The sands are an unhealthy red-black, silicates tossed with metal particulates, and the entire stretch of water here looks uncomfortably like blood. Something massive is corroding off shore on this beach. You can see the mirror stillness of the \"water\" several yards out from where you stand, and try to shake off the impression of some oceanic titan bleeding to death. The beach curves around to the sound and west while twisting, creaking mass of forgotten wrecks has been stacked to the north and east, blocking your way.";
-	rooms["232"].runOnEnter = undefined;
+	rooms["232"].runOnEnter = rustCoastEncounters;
 	rooms["232"].westExit = "231";
 	rooms["232"].southExit = "233";
 	rooms["232"].planet = "PLANET: TARKUS";
@@ -1658,7 +1659,7 @@ function initializeRooms():void
 	rooms["233"] = new RoomClass(this);
 	rooms["233"].roomName = "OIL SEA\nBEACH";
 	rooms["233"].description = "While your first and second step onto the sand here are stable enough, your third nearly pitches you forward. The sand beneath your [pc.feet] crumbles away, leaving a black, fluid-filled depression a foot deep. Fumes rising from the pool make you think of cheap, chemical batteries. You notice a black underlayer to the water here and realize that the beach is slowly dissolving. It’s safe enough for now, but from this point on, you carefully test each step before committing your weight to it. Towering over you, a picked-through collection of ancient battle tanks twists in the breeze. Someone took the time to cut out all the valuable components and pile the gutted remains together. You can follow the beach north and east.";
-	rooms["233"].runOnEnter = undefined;
+	rooms["233"].runOnEnter = rustCoastEncounters;
 	rooms["233"].eastExit = "234";
 	rooms["233"].northExit = "232";
 	rooms["233"].planet = "PLANET: TARKUS";
@@ -1670,7 +1671,7 @@ function initializeRooms():void
 	rooms["234"] = new RoomClass(this);
 	rooms["234"].roomName = "OIL SEA\nBEACH";
 	rooms["234"].description = "The silence of your walk is interrupted by a chattering of high pitched tones. You glance around quickly, looking for the source of the ringing notes. You see nothing but the yellow-tinged fluid of the sea and this area's glittering sand. It is not until you begin walking that you hear the tinkling notes once more. You take a few more experimental steps forward, then look down, feeling awed and foolish at the same time. Chemical reactions here have crystallized the sand into miniscule, interlocking crystals. Each step snaps hundreds of them, resulting in the sound of scattered bells. The waterside twists away to the south and west, but you could head east into the rust fields if you wanted.";
-	rooms["234"].runOnEnter = undefined;
+	rooms["234"].runOnEnter = rustCoastEncounters;
 	rooms["234"].eastExit = "235";
 	rooms["234"].westExit = "233";
 	rooms["234"].southExit = "245";
@@ -1683,7 +1684,7 @@ function initializeRooms():void
 	rooms["235"] = new RoomClass(this);
 	rooms["235"].roomName = "RUST\nPATH";
 	rooms["235"].description = "Sandwiched between two different, tall mounds of junk, is a single, winding path. Ominous creaks of strained, failing metal slip out of the rusted ships and machinery stacked to the west with every errant gust of bone-dry breeze. Across the way, arms, legs, and treads spread akimbo, sticking out of a mass of rusted torsos, dead eyes, and forgotten power plants. Someone took the time to gather them all together, perhaps so that they could dig through the rust elsewhere. Heading north will take you between the piles. You could also travel south alongside the eerie, robotic graveyard or west beside the ancient, stripped starships.";
-	rooms["235"].runOnEnter = rustPlainsEncounters;
+	rooms["235"].runOnEnter = rustCoastEncounters;
 	rooms["235"].northExit = "236";
 	rooms["235"].westExit = "234";
 	rooms["235"].southExit = "244";
@@ -1780,7 +1781,7 @@ function initializeRooms():void
 	rooms["242"] = new RoomClass(this);
 	rooms["242"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["242"].description = "A load of batteries has calcified this portion of the robot pile. One of the android’s power cells, likely a cheap chemical battery of some kind, has leaked down from the top of the heap. The burst chest plate of this hulking android is a flower of torn metal, and the gout of calcification creates the impression of a mouth frozen mid-vomit. The corrosion has seared and blistered the metal of the robots below it, creating a frozen waterfall of white, corroded metal. Bars of bone-white residue pour cage-like rivulets down the cybernetic hecatomb. You give the silent cascade a sideways look as you hurry on your way.";
-	rooms["242"].runOnEnter = rustPlainsEncounters;
+	rooms["242"].runOnEnter = rustRidgesEncounters;
 	rooms["242"].northExit = "241";
 	rooms["242"].eastExit = "253";
 	rooms["242"].westExit = "243";
@@ -1794,7 +1795,7 @@ function initializeRooms():void
 	rooms["243"] = new RoomClass(this);
 	rooms["243"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["243"].description = "You gape at this section of the robot pile. Different parts have been loosely arranged into different heaps. You’re aware that it was likely someone sorting through the scrap, but the end result is extremely unnerving. A tangle of limbs, rusted pistons, snapped and bent bars, makes up the largest pile, a thicket of malformed pincers and robotic hands. Next to them is a heap of chassis of varying colors, smeared with the fungal encroach of rust and verdigris. Most unnerving, though, is the pile of heads next to the path. You know it to be act of a scrapper, but you just can’t shake the vaguely threatening feel of a stack of two dozen severed, metal heads pointed at you. The gathered robots continue to loom above you to the east and west. Distantly to the south, you can see huge, metal blades sticking up out of the metal-flaked earth.";
-	rooms["243"].runOnEnter = rustPlainsEncounters;
+	rooms["243"].runOnEnter = rustRidgesEncounters;
 	rooms["243"].eastExit = "242";
 	rooms["243"].westExit = "244";
 	rooms["243"].southExit = "249";
@@ -1807,7 +1808,7 @@ function initializeRooms():void
 	rooms["244"] = new RoomClass(this);
 	rooms["244"].roomName = "NEXT TO\nA JUNK PILE";
 	rooms["244"].description = "Skeletal robots lay sprawled across the heap, interlocked in a still, rusted orgy. Most are of stripped of their chassis, their interiors bare to the elements. What heads remain stare blankly at corrosion-streaked sky, silent observers of the slow death of the planet. You know that they were simply piled here, but you can’t help but imagine some accidental meaning to the coiling of coolant tubes, the criss-crossing of arms, and the gape of silent jaw joints. Despite no real change in temperature, you shiver, resolving to walk faster past this section of the pile. If you head north or east, you'll stay alongside this artificial graveyard. You can also west from here, towards a polluted beach, or south, towards a monolithic, metal blade that sticks up out of the ground like a shiny, gigantic rib.";
-	rooms["244"].runOnEnter = rustPlainsEncounters;
+	rooms["244"].runOnEnter = rustCoastEncounters;
 	rooms["244"].northExit = "235";
 	rooms["244"].eastExit = "243";
 	rooms["244"].westExit = "245";
@@ -1821,7 +1822,7 @@ function initializeRooms():void
 	rooms["245"] = new RoomClass(this);
 	rooms["245"].roomName = "OIL SEA\nBEACH";
 	rooms["245"].description = "Are those... sharks? Standing on the oxidized sand, you squint at the oily-yellow sea. Several dark, triangular “fins” cut through the surface just offshore. It takes you a few moments of squinting and holding up your thumb to realize that they’re not moving, and the space of several yards to see that they’re simply shards of metal standing upright in the sea. The irregular pulse of the tide had made them seem as if they were moving. You scold yourself for the flight of fancy. Sharks in the water! What’s next? Mistaking that twist of wire for a pair of glasses?";
-	rooms["245"].runOnEnter = undefined;
+	rooms["245"].runOnEnter = rustCoastEncounters;
 	rooms["245"].northExit = "234";
 	rooms["245"].eastExit = "244";
 	rooms["245"].southExit = "246";
@@ -1834,7 +1835,7 @@ function initializeRooms():void
 	rooms["246"] = new RoomClass(this);
 	rooms["246"].roomName = "OIL SEA\nBEACH";
 	rooms["246"].description = "An acrid cloud announces this stretch of beach before you really see it. The stuttered pulse of tidal actions slap a watery, greenish fluid against the ashy-white sand. With every half-formed push of the sea, the corrosive fluid pushes against the sand, burning away handfuls at a time, creating a noxious curtain of fumes at the sea’s edge. It smells like some ungodly blend of citrus, diesel, and urine. You nearly gag before you think to hold your breath. The beach runs north and south from here, but you can journey east into the rust fields as well.";
-	rooms["246"].runOnEnter = undefined;
+	rooms["246"].runOnEnter = rustCoastEncounters;
 	rooms["246"].northExit = "245";
 	rooms["246"].eastExit = "248";
 	rooms["246"].southExit = "247";
@@ -1847,7 +1848,7 @@ function initializeRooms():void
 	rooms["247"] = new RoomClass(this);
 	rooms["247"].roomName = "OIL SEA\nBEACH";
 	rooms["247"].description = "You are momentarily puzzled by the sound of a church bell. Could some alien culture have actually built a place of worship on this planet? And why in whoever’s name would they put it on this beach? A step around another battered hull exposes the mystery, but does nothing to dispel the oddity. As you watch, a cylindrical section of a ship, likely a spent fuel tank, rolls down a slope of metallic sand into the sea of chemicals. Rhythmically, the idiot tide shoves it back. The thick, syrupy waves push it up the slope far enough to clang the house-sized tank against a half-buried engine core, lodged in the shore. You wonder, in passing, how long this accidental bell has peeled, summoning it’s nonexistent flock. A blade of metal the size of a small skyscraper blocks travel to the south and east, leaving north the only passable direction.";
-	rooms["247"].runOnEnter = undefined;
+	rooms["247"].runOnEnter = rustCoastEncounters;
 	rooms["247"].northExit = "246";
 	rooms["247"].planet = "PLANET: TARKUS";
 	rooms["247"].system = "SYSTEM: REDACTED";
@@ -1858,7 +1859,7 @@ function initializeRooms():void
 	rooms["248"] = new RoomClass(this);
 	rooms["248"].roomName = "IRON\nRIDGES";
 	rooms["248"].description = "Jagged sheets and slabs of metal protrude from the ground all around you, forcing you to place your steps with meticulous care lest you cut yourself. Some of them are small, only rising a foot or two up out of the red-flaked sand. Others tower above you like broad, winged fighters that crashed down sideways. Still more rise up like foreboding monoliths, bowed by time but resolute against the gusting breezes. You can travel west towards a beach, east towards a small gap in the metallic plates, or north into the shadow of a veritable mountain of robotic carcasses.";
-	rooms["248"].runOnEnter = undefined;
+	rooms["248"].runOnEnter = rustCoastEncounters;
 	rooms["248"].westExit = "246";
 	rooms["248"].northExit = "244";
 	rooms["248"].eastExit = "249";
@@ -1871,7 +1872,7 @@ function initializeRooms():void
 	rooms["249"] = new RoomClass(this);
 	rooms["249"].roomName = "IRON\nRIDGES";
 	rooms["249"].description = "From here, you can see two gigantic metal plates in the distance: one to the southeast and the other to the southwest. The former is at least a dozen feet taller than the latter, but they're both easily hundreds of feet tall, big enough to have come from a capital ship or ocean-going vessel. There's enough of a gap for you to squeeze south between them. You could also head east or west along the ridges. Due north, into the rust plains, is an option as well, but a heap of piled robots will block your travels before you go too far.";
-	rooms["249"].runOnEnter = undefined;
+	rooms["249"].runOnEnter = rustRidgesEncounters;
 	rooms["249"].northExit = "243";
 	rooms["249"].eastExit = "251";
 	rooms["249"].southExit = "250";
@@ -1885,7 +1886,7 @@ function initializeRooms():void
 	rooms["250"] = new RoomClass(this);
 	rooms["250"].roomName = "IRON\nVALLEY";
 	rooms["250"].description = "The light is dim but still sufficient for you to navigate against some of the smaller protrusions in the area. Rough orange walls pen you in to the east and west, curved in enough to remind you of bloodied waves frozen in time. You battle down the fleeting claustrophobia that rears its ugly head and consider your options. There's too many chunks of metal to the south to allow you any further into this metallic ravine. North is the only passable direction.";
-	rooms["250"].runOnEnter = undefined;
+	rooms["250"].runOnEnter = rustRidgesEncounters;
 	rooms["250"].northExit = "249";
 	rooms["250"].planet = "PLANET: TARKUS";
 	rooms["250"].system = "SYSTEM: REDACTED";
@@ -1896,7 +1897,7 @@ function initializeRooms():void
 	rooms["251"] = new RoomClass(this);
 	rooms["251"].roomName = "IRON\nRIDGES";
 	rooms["251"].description = "The iron ridges provide a fascinating, if unnatural, landscape. Thousands of metallic plates of all sizes and descriptions comprise them, all aligned in the same north-south orientation. Here there's a bit of iron, flaking away into dust. There you can see a teal hunk of corroded bronze. Blue flakes fall like snow off alien pieces of metal you don't even recognize, but you know enough to realize that any value it once had flaked away with its structural integrity. The hunks of metal are too thick to the south to move in that direction, but travel east and west alongside the ridges is free and clear. To the north lie the rust plains and a distant pile of abandoned automatons.";
-	rooms["251"].runOnEnter = undefined;
+	rooms["251"].runOnEnter = rustRidgesEncounters;
 	rooms["251"].northExit = "242";
 	rooms["251"].eastExit = "252";
 	rooms["251"].westExit = "249";
@@ -1909,7 +1910,7 @@ function initializeRooms():void
 	rooms["252"] = new RoomClass(this);
 	rooms["252"].roomName = "IRON\nRIDGES";
 	rooms["252"].description = "A gust of biting wind lances by your cheek, opening a narrow cut in your flesh when you get unlucky enough to catch a rust flake just wrong. The stacked panels to the south have channeled Tarkus' natural breezes into a dangerous wind tunnel here. It'd be best to move on before too long. The edges of the iron ridges can be followed to the east and west, or you can journey north into the rust plains.";
-	rooms["252"].runOnEnter = undefined;
+	rooms["252"].runOnEnter = rustRidgesEncounters;
 	rooms["252"].northExit = "253";
 	rooms["252"].eastExit = "255";
 	rooms["252"].westExit = "251";
@@ -1922,7 +1923,7 @@ function initializeRooms():void
 	rooms["253"] = new RoomClass(this);
 	rooms["253"].roomName = "RUST\nPLAINS";
 	rooms["253"].description = "In an empty patch of the rust plains, Tarkus' ruined state is laid bare. There isn't a single living creature that you can see. The air smells like acid and ancient batteries. Worse still, fetid brown clouds roll across the sky, occasionally turning a sunny walk into a dreary slog. The ground isn't doing much to help either. It's covered in drifts of crumbled rust that hide razor-sharp bits of machinery and corrosive puddles. East and south of here, you can approach the iron ridges - groups of metal slabs of all shapes and sizes that have been gathered together for some unknown purpose. Some ancient ship wreckage lies a few minutes walk to the north, and robotic carcasses have been piled up a ways to the west.";
-	rooms["253"].runOnEnter = undefined;
+	rooms["253"].runOnEnter = rustRidgesEncounters;
 	rooms["253"].northExit = "240";
 	rooms["253"].eastExit = "254";
 	rooms["253"].southExit = "252";
@@ -1936,7 +1937,7 @@ function initializeRooms():void
 	rooms["254"] = new RoomClass(this);
 	rooms["254"].roomName = "IRON\nRIDGES";
 	rooms["254"].description = "A slab of ancient metal covered in enough scaled material to hide a house juts out of the iron ridges like the prow of an ancient sailing vessel. Drifts of detritus have gathered up around its leading edge like corroded waves, and the relatively smooth, unbroken length completes the illusion as it disappears southward into a virtual sea of similar plates. You can go south next to its western edge, east along the ends of similar ridges, north into the wastes towards a forgotten ship, or west into the empty, rusted plains.";
-	rooms["254"].runOnEnter = undefined;
+	rooms["254"].runOnEnter = rustRidgesEncounters;
 	rooms["254"].northExit = "292";
 	rooms["254"].eastExit = "257";
 	rooms["254"].southExit = "255";
@@ -1950,7 +1951,7 @@ function initializeRooms():void
 	rooms["255"] = new RoomClass(this);
 	rooms["255"].roomName = "IRON\nRIDGES";
 	rooms["255"].description = "Bits of rust - iron oxide, your old chemistry teacher would say - are falling like snow from the top of football field-sized sheet of metal to the east. Unlike a winter flurry, this precipitation grates on your [pc.skinFurScales] in a most irritating way. You brush a few off your shoulder and look around. There's enough room between the discarded metals to squeeze south into a metallic valley. You can always head west and north along the iron ridges as well.";
-	rooms["255"].runOnEnter = undefined;
+	rooms["255"].runOnEnter = rustRidgesEncounters;
 	rooms["255"].northExit = "254";
 	rooms["255"].southExit = "256";
 	rooms["255"].westExit = "252";
@@ -1963,7 +1964,7 @@ function initializeRooms():void
 	rooms["256"] = new RoomClass(this);
 	rooms["256"].roomName = "IRON\nVALLEY";
 	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. The end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There will be no travelling in that direction today.";
-	rooms["256"].runOnEnter = undefined;
+	rooms["256"].runOnEnter = rustRidgesEncounters;
 	rooms["256"].northExit = "255";
 	rooms["256"].planet = "PLANET: TARKUS";
 	rooms["256"].system = "SYSTEM: REDACTED";
@@ -1974,7 +1975,7 @@ function initializeRooms():void
 	rooms["257"] = new RoomClass(this);
 	rooms["257"].roomName = "IRON\nRIDGES";
 	rooms["257"].description = "Here at the iron ridges, it's obvious how they got their name. Ancient decks and armor plates have been stacked upright in the filth, some big enough that they resemble narrow mountains. Some of the smaller ones look less stable than their big brothers; you'll have to step carefully if you don't want to get slabbed. They're so so densely packed to the south that there's no stepping between them. You'll have to search east and west of here for another way. Alternatively, you could step north into the rust plains, towards a wrecked ship.";
-	rooms["257"].runOnEnter = undefined;
+	rooms["257"].runOnEnter = rustRidgesEncounters;
 	rooms["257"].northExit = "293";
 	rooms["257"].eastExit = "258";
 	rooms["257"].westExit = "254";
@@ -1987,7 +1988,7 @@ function initializeRooms():void
 	rooms["258"] = new RoomClass(this);
 	rooms["258"].roomName = "IRON\nRIDGES";
 	rooms["258"].description = "Blade-like pieces of metal, some as big as buildings, are embedded in the sand-like expanse of rusty flakes to the south. In between them, hundreds of smaller pieces litter the landscape, almost as if they were stacked that way. The only other explanation would be a ship deconstructing itself in the upper atmosphere above a particularly strong magnetic field. Shrugging, you consider your options. You can travel east and west along these impassible ridges. You can also go north into the rust plains.";
-	rooms["258"].runOnEnter = undefined;
+	rooms["258"].runOnEnter = rustRidgesEncounters;
 	rooms["258"].northExit = "259";
 	rooms["258"].eastExit = "267";
 	rooms["258"].westExit = "257";
@@ -2000,7 +2001,7 @@ function initializeRooms():void
 	rooms["259"] = new RoomClass(this);
 	rooms["259"].roomName = "RUST\nPLAINS";
 	rooms["259"].description = "This is one of the single most desolate, empty places you've yet come across on the planet of Tarkus. Rolling dunes of scale and metallic crust are your only company in every direction, shifting under your [pc.feet] to undermine your steps and concealing untold dangers. Distantly, you can make out huge metallic ridges to the south. A wrecked ship is visible in the western distance, and eastwards you can see light glittering off something silvery; are those trees? Much further north lies the wrecked Nova, now Novahome, its engines glowing dully under the raskvels' ministrations.";
-	rooms["259"].runOnEnter = undefined;
+	rooms["259"].runOnEnter = rustRidgesEncounters;
 	rooms["259"].northExit = "260";
 	rooms["259"].eastExit = "266";
 	rooms["259"].southExit = "258";
@@ -2014,7 +2015,7 @@ function initializeRooms():void
 	rooms["260"] = new RoomClass(this);
 	rooms["260"].roomName = "RUST\nPLAINS";
 	rooms["260"].description = "It's hard not to feel depressed when taking in views like this one. The nova, crashed long ago, lies half-buried in the red-flecked sand. Another ship in even worse condition lies west. Rolling plains interrupted by small piles of parts and assorted junk are the only landmarks here to keep you company. In a way, this place feels like a technological graveyard, only the planet's inhabitants obviously haven't left anything to rest. The rust plains stretch away in all directions.";
-	rooms["260"].runOnEnter = undefined;
+	rooms["260"].runOnEnter = rustPlainsEncounters;
 	rooms["260"].northExit = "262";
 	rooms["260"].eastExit = "265";
 	rooms["260"].southExit = "259";
@@ -2028,7 +2029,7 @@ function initializeRooms():void
 	rooms["261"] = new RoomClass(this);
 	rooms["261"].roomName = "NEXT TO\nCRASHED SHIP";
 	rooms["261"].description = "A half-buried ship sticks up out of the corroded soil like a long-forgotten, iron-rich boulder, its surface pitted and scarred from long-forgotten battles with ancient foes. One of the engines has managed to evade a burial in the shifting, metallic dunes to sit there, staring at you accusingly. The machinery that gave it life long ago rotted out long after its batteries failed a century back. All that remains is the emptied, battered husk of what once was a proud vessel.";
-	rooms["261"].runOnEnter = undefined;
+	rooms["261"].runOnEnter = rustPlainsEncounters;
 	rooms["261"].northExit = "263";
 	rooms["261"].eastExit = "260";
 	rooms["261"].southExit = "293";
@@ -2041,7 +2042,7 @@ function initializeRooms():void
 	rooms["262"] = new RoomClass(this);
 	rooms["262"].roomName = "RUST\nFIELDS";
 	rooms["262"].description = "Crusty collections of oxidized granules crunch under underneath your every motion as you walk around, vaguely reminding you of the soft crackle of autumn leaves. That illusion is swiftly shattered by the feeling a bone-dry breeze against your cheek, carried along the length of the Nova by weather systems you don't have time to study. That once-great capital ship's hull prevents any movement to the north, and an unsteady drift of dust amidst poorly-stacked machinery stops travel east.";
-	rooms["262"].runOnEnter = undefined;
+	rooms["262"].runOnEnter = rustPlainsEncounters;
 	rooms["262"].southExit = "260";
 	rooms["262"].westExit = "263";
 	rooms["262"].planet = "PLANET: TARKUS";
@@ -2053,7 +2054,7 @@ function initializeRooms():void
 	rooms["263"] = new RoomClass(this);
 	rooms["263"].roomName = "NEXT TO\nCRASHED SHIPS";
 	rooms["263"].description = "This shaded area is markedly cooler than the surrounding spaces thanks to the two nearby starships. The Nova's shadow is far larger, but the other ship, the one to the south, helps keep away any glare at times when the Nova's is angled in the other direction. The only problem is the omnipresent breeze from the west, channeled between the two ancient hulks. It carries enough flecks of tiny metal to grate irritatingly against you. You can travel south alongside the smaller ship's hull, west into the wall of wind, or east next to the Nova.";
-	rooms["263"].runOnEnter = undefined;
+	rooms["263"].runOnEnter = rustPlainsEncounters;
 	rooms["263"].eastExit = "262";
 	rooms["263"].southExit = "261";
 	rooms["263"].westExit = "264";
@@ -2066,7 +2067,7 @@ function initializeRooms():void
 	rooms["264"] = new RoomClass(this);
 	rooms["264"].roomName = "NEXT TO\nCRASHED SHIPS";
 	rooms["264"].description = "Wind whips by your face as you traverse the area. The rust-red wall of the nova to the north works with the curved orange hulk of another wrecked ship to the south to channel idle gusts into blistering, scything wind. It bears little bits of metal and grit with irritating force, forcing you to shield your eyes just to look around. The only passable directions are east and west.";
-	rooms["264"].runOnEnter = undefined;
+	rooms["264"].runOnEnter = rustPlainsEncounters;
 	rooms["264"].eastExit = "263";
 	rooms["264"].westExit = "216";
 	rooms["264"].planet = "PLANET: TARKUS";
@@ -2078,7 +2079,7 @@ function initializeRooms():void
 	rooms["265"] = new RoomClass(this);
 	rooms["265"].roomName = "RUST\nFIELDS";
 	rooms["265"].description = "The rust fields come to and end here, bordering on the edge of the scything glades. You can see how the glades get their name - the area is filled with silvery, tree-like plants, only the branches are tipped with sharp blades. As you watch, the wind carries a plastic bag into the side of one. It's impaled in a half-dozen places in seconds. There \"trees\" are too thick to risk travel to the east, and a mound of detritus to the north prevents movement that way.";
-	rooms["265"].runOnEnter = undefined;
+	rooms["265"].runOnEnter = rustPlainsEncounters;
 	rooms["265"].southExit = "266";
 	rooms["265"].westExit = "260";
 	rooms["265"].planet = "PLANET: TARKUS";
@@ -2090,7 +2091,7 @@ function initializeRooms():void
 	rooms["266"] = new RoomClass(this);
 	rooms["266"].roomName = "RUST\nFIELDS";
 	rooms["266"].description = "Here among the flat, featureless dunes of the rust fields, the sight of the silvery trees to the east comes as something of relief. Of course, you dare not tread among them; it's quite clear their branches are tipped with deadly blades, and they seem to swing them around with predatory intent whenever something moves nearby. You can go north and south along the border or west deeper into the rust fields.";
-	rooms["266"].runOnEnter = undefined;
+	rooms["266"].runOnEnter = rustRidgesEncounters;
 	rooms["266"].northExit = "265";
 	rooms["266"].southExit = "267";
 	rooms["266"].westExit = "259";
@@ -2103,7 +2104,7 @@ function initializeRooms():void
 	rooms["267"] = new RoomClass(this);
 	rooms["267"].roomName = "RUST\nFIELDS";
 	rooms["267"].description = "You stand on a crossroads of sorts. Though you're in technically in the rust fields, the iron ridges aren't far to the south, and the scything glade begins a few steps to the east. Luckily, there's a large enough gap between bladed trees for you to pass quite comfortably. You can spot at least one corroded stump in the middle of the open area - someone has gone through great pains to try and open a path through the deadly foilage.";
-	rooms["267"].runOnEnter = undefined;
+	rooms["267"].runOnEnter = rustRidgesEncounters;
 	rooms["267"].northExit = "266";
 	rooms["267"].eastExit = "269";
 	rooms["267"].southExit = "268";
@@ -2117,7 +2118,7 @@ function initializeRooms():void
 	rooms["268"] = new RoomClass(this);
 	rooms["268"].roomName = "METAL\nRAVINE";
 	rooms["268"].description = "This deep, dark crevice between two house-sized plates is about the quietest, most shadowy place you've found on planet. The air is marketly still, and drifts of fine dust have accumulated against the giant sheets of metal into small mounds. There's nowhere to travel but north from here.\n\n<b>Wait... what's that? You step forward to discover that Fenoxo plans to put something here and hasn't done it yet.</b>";
-	rooms["268"].runOnEnter = undefined;
+	rooms["268"].runOnEnter = rustRidgesEncounters;
 	rooms["268"].northExit = "267";
 	rooms["268"].planet = "PLANET: TARKUS";
 	rooms["268"].system = "SYSTEM: REDACTED";
@@ -2140,7 +2141,7 @@ function initializeRooms():void
 	rooms["270"] = new RoomClass(this);
 	rooms["270"].roomName = "SCYTHING\nGLADE";
 	rooms["270"].description = "The \"trees\" of the scything glade are relatively sparse and widespread here, allowing you a number of avenues of travel. If you head west, they briefly thicken, but you can spot the rolling vistas of the rust fields just beyond. Alternatively, you could follow the gaps between the scything trees to the north or the south. There doesn't seem to be any difference between the two paths besides direction.";
-	rooms["270"].runOnEnter = undefined;
+	rooms["270"].runOnEnter = rustScytheGladeEncounters;
 	rooms["270"].northExit = "291";
 	rooms["270"].southExit = "271";
 	rooms["270"].westExit = "269";
@@ -2153,7 +2154,7 @@ function initializeRooms():void
 	rooms["271"] = new RoomClass(this);
 	rooms["271"].roomName = "SCYTHING\nGLADE";
 	rooms["271"].description = "You're struck by how red the soil of Tarkus is inside the glade; it's so dark that's her nearly purple in places, broken only by the glittering silver roots of the trees that hem that your path. The gaps between them trail north and east from here, wide enough for you to be safe from the deadly blades so long as you mind your position.";
-	rooms["271"].runOnEnter = undefined;
+	rooms["271"].runOnEnter = rustScytheGladeEncounters;
 	rooms["271"].northExit = "270";
 	rooms["271"].eastExit = "272";
 	rooms["271"].planet = "PLANET: TARKUS";
@@ -2165,7 +2166,7 @@ function initializeRooms():void
 	rooms["272"] = new RoomClass(this);
 	rooms["272"].roomName = "SCYTHING\nGLADE";
 	rooms["272"].description = "The gaps between the deadly, bladed trees fork into a 'T' intersection, offering unrestricted movement to the north, south, and west. The silver blades on either side rattle menacingly in the breeze, and more than once, you catch yourself stepping back at the unexpected sound. You're glad for the good-siized gap in which you now stand. Those things don't look like the type to discriminate when it comes to targets.";
-	rooms["272"].runOnEnter = undefined;
+	rooms["272"].runOnEnter = rustScytheGladeEncounters;
 	rooms["272"].northExit = "283";
 	rooms["272"].southExit = "273";
 	rooms["272"].westExit = "271";
@@ -2178,7 +2179,7 @@ function initializeRooms():void
 	rooms["273"] = new RoomClass(this);
 	rooms["273"].roomName = "SCYTHING\nGLADE";
 	rooms["273"].description = "Web-like shadows shade the path, cast by the looming, metal behemoths on either side. There's a certain menace in the air, like this place itself is filled with potential violence just waiting to burst out and claim its latest victim, but that may simply be your imagination acting up in this eerie location. Clear openings lead north and east, the only safe directions. Moving any other way would surely result in you being cut to ribbons.";
-	rooms["273"].runOnEnter = undefined;
+	rooms["273"].runOnEnter = rustScytheGladeEncounters;
 	rooms["273"].northExit = "272";
 	rooms["273"].eastExit = "274";
 	rooms["273"].planet = "PLANET: TARKUS";
@@ -2190,7 +2191,7 @@ function initializeRooms():void
 	rooms["274"] = new RoomClass(this);
 	rooms["274"].roomName = "SCYTHING\nGLADE";
 	rooms["274"].description = "The air blows through the trees to produce a warbling, keening wail that you can feel all the way in your bones. It pitches up and down with the changing wind speed, always seeming to adopt a shivering, uncomfortable tone. You briefly consider the idea that the haunting sound could be an intentional product of the way these things grow. Perhaps a scientist will be able to tell you someday.";
-	rooms["274"].runOnEnter = undefined;
+	rooms["274"].runOnEnter = rustScytheGladeEncounters;
 	rooms["274"].eastExit = "275";
 	rooms["274"].westExit = "273";
 	rooms["274"].planet = "PLANET: TARKUS";
@@ -2202,7 +2203,7 @@ function initializeRooms():void
 	rooms["275"] = new RoomClass(this);
 	rooms["275"].roomName = "SCYTHING\nGLADE";
 	rooms["275"].description = "The light catches on the curves of the countless, scythe-like blades above, shining so brightly that you have to raise a hand to shield your eyes with alarming regularity. The gap between them bends to the south and west from here, uneven but suitably broad. You're pretty sure that you can make out the edge of a cliff a good way to the east.";
-	rooms["275"].runOnEnter = undefined;
+	rooms["275"].runOnEnter = rustScytheGladeEncounters;
 	rooms["275"].southExit = "276";
 	rooms["275"].westExit = "274";
 	rooms["275"].planet = "PLANET: TARKUS";
@@ -2214,7 +2215,7 @@ function initializeRooms():void
 	rooms["276"] = new RoomClass(this);
 	rooms["276"].roomName = "SCYTHING\nGLADE";
 	rooms["276"].description = "This winding path is almost maze-like. If it weren't for the readings from your codex, you'd risk getting lost in here, turned around until you got desperate enough to brave the bladed limbs. Instead, you're lucky enough to be able to chart your path. The path between the scythes twists east towards the face of a sheer cliff or canyon. You can't make out anything past the lip. The trail through the glade also goes back north.";
-	rooms["276"].runOnEnter = undefined;
+	rooms["276"].runOnEnter = rustScytheGladeEncounters;
 	rooms["276"].northExit = "275";
 	rooms["276"].eastExit = "277";
 	rooms["276"].planet = "PLANET: TARKUS";
@@ -2226,7 +2227,7 @@ function initializeRooms():void
 	rooms["277"] = new RoomClass(this);
 	rooms["277"].roomName = "PLANET\nDIVIDE";
 	rooms["277"].description = "Standing on the edge of this tremendous cliff, you can't help but be overwhelmed by a sense of vertigo so powerful that you nearly topple off the edge. This is unlike any stone face you've ever seen before. Tarkus' mettalic rocks protrude jaggedly out from the edge, yet they are short enough to allow you an unobstructed view towards the core of the planet, the reddish haze of the atmosphere the only thing that stops you from seeing through to the other side. Perhaps the native goblins or raskvel used ships to mine off the more prominent, valuable protrusions.";
-	rooms["277"].runOnEnter = undefined;
+	rooms["277"].runOnEnter = rustScytheGladeEncounters;
 	rooms["277"].westExit = "276";
 	rooms["277"].planet = "PLANET: TARKUS";
 	rooms["277"].system = "SYSTEM: REDACTED";
@@ -2237,7 +2238,7 @@ function initializeRooms():void
 	rooms["278"] = new RoomClass(this);
 	rooms["278"].roomName = "SCYTHING\nGLADE";
 	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that. One thing you can be sure is that a barricade has been set up between here and there, and guards of some kind are watching it.";
-	rooms["278"].runOnEnter = undefined;
+	rooms["278"].runOnEnter = rustScytheGladeEncounters;
 	rooms["278"].northExit = "281";
 	rooms["278"].eastExit = "279";
 	rooms["278"].planet = "PLANET: TARKUS";
@@ -2249,7 +2250,7 @@ function initializeRooms():void
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
 	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. To the east, a group of U.G.C. peacekeepers has set up a barricade of some sorts. You'll need to talk to them to get by. To the west, the curving silver blades of the scything glade glimmer ominously.";
-	rooms["279"].runOnEnter = undefined;
+	rooms["279"].runOnEnter = rustScytheGladeEncounters;
 	rooms["279"].westExit = "278";
 	rooms["279"].eastExit = "280";
 	rooms["279"].planet = "PLANET: TARKUS";
@@ -2261,7 +2262,7 @@ function initializeRooms():void
 	rooms["280"] = new RoomClass(this);
 	rooms["280"].roomName = "PLACE\nHOLDER";
 	rooms["280"].description = "Placeholder. There will be a dungeon here in a future build.";
-	rooms["280"].runOnEnter = undefined;
+	rooms["280"].runOnEnter = rustScytheGladeEncounters;
 	rooms["280"].westExit = "279";
 	rooms["280"].planet = "PLANET: TARKUS";
 	rooms["280"].system = "SYSTEM: REDACTED";
@@ -2272,7 +2273,7 @@ function initializeRooms():void
 	rooms["281"] = new RoomClass(this);
 	rooms["281"].roomName = "SCYTHING\nGLADE";
 	rooms["281"].description = "The scything trees that loom over you from nearly every angle split in three directions here: north, south, and west. A copse of reflective trunks prevents travel and sight to the east. You try not to think about what would happen to you if you were to stray into the murderous plants by accident and focus on keeping your eyes peeled for more mobile dangers.";
-	rooms["281"].runOnEnter = undefined;
+	rooms["281"].runOnEnter = rustScytheGladeEncounters;
 	rooms["281"].northExit = "284";
 	rooms["281"].southExit = "278";
 	rooms["281"].westExit = "282";
@@ -2285,7 +2286,7 @@ function initializeRooms():void
 	rooms["282"] = new RoomClass(this);
 	rooms["282"].roomName = "SCYTHING\nGLADE";
 	rooms["282"].description = "Two predatory plants have grown in too close to each other to the north. Their trunks have twisted around each other in a twisted, unhealthy-looking shape, and their many blades hang like sickly drapes around them, grinding audible with every arid breeze. The air itself smells vaguely of blood, and the ground seems almost stained with it as well. You can't really tell if the earth is truly saturated given how red with rust everything is, nor do you want to find out.";
-	rooms["282"].runOnEnter = undefined;
+	rooms["282"].runOnEnter = rustScytheGladeEncounters;
 	rooms["282"].eastExit = "281";
 	rooms["282"].westExit = "283";
 	rooms["282"].planet = "PLANET: TARKUS";
@@ -2297,7 +2298,7 @@ function initializeRooms():void
 	rooms["283"] = new RoomClass(this);
 	rooms["283"].roomName = "SCYTHING\nGLADE";
 	rooms["283"].description = "A gnarled, argent root has emerged from the granular soil like the back of some great sandworm. If it did not catch the light so beautifully, you might have wound up tripping over it. As it is, you're able to move carefully over its thickness. The thing's \"bark,\" if it can be called that, is smooth to the touch, almost slickened with a kind of oil. Perhaps that secretion is what keeps it from corroding away like so much. The path twists east and south from here.";
-	rooms["283"].runOnEnter = undefined;
+	rooms["283"].runOnEnter = rustScytheGladeEncounters;
 	rooms["283"].eastExit = "282";
 	rooms["283"].southExit = "272";
 	rooms["283"].planet = "PLANET: TARKUS";
@@ -2309,7 +2310,7 @@ function initializeRooms():void
 	rooms["284"] = new RoomClass(this);
 	rooms["284"].roomName = "SCYTHING\nGLADE";
 	rooms["284"].description = "This close to Tarkus' great chasm, the air can go from placid warmth to gusting currents of chemical-tinted coolness that whip the flakey dust into an all-natural sand-blaster in an instant. Such gusts end almost as soon as they begin, long before they can cause much in the way of damage, but it is quite the irritant. You can walk east out onto the edge or north along the edges of the scything glade.";
-	rooms["284"].runOnEnter = undefined;
+	rooms["284"].runOnEnter = rustScytheGladeEncounters;
 	rooms["284"].northExit = "286";
 	rooms["284"].eastExit = "285";
 	rooms["284"].southExit = "281";
@@ -2322,7 +2323,7 @@ function initializeRooms():void
 	rooms["285"] = new RoomClass(this);
 	rooms["285"].roomName = "PLANET\nDIVIDE";
 	rooms["285"].description = "Whoah. The view from here is outstanding. Firstly, there's the awe-inspiring chasm before you, but that's just the start of it. The walls of the seemingly bottomless pit are covered with rusty stalactites, gleaming gems, and veins of the most beautiful amethyst. Perhaps a mile away, you can make out the opposite side of the chasm. By the stars above, this thing is huge, and it runs around the entire circumference of the planet! The hazy, polluted atmosphere stops you from seeing the whole way to down whatever is holding this wreck of together. The only viable direction is best to the west.";
-	rooms["285"].runOnEnter = undefined;
+	rooms["285"].runOnEnter = rustScytheGladeEncounters;
 	rooms["285"].westExit = "284";
 	rooms["285"].planet = "PLANET: TARKUS";
 	rooms["285"].system = "SYSTEM: REDACTED";
@@ -2333,7 +2334,7 @@ function initializeRooms():void
 	rooms["286"] = new RoomClass(this);
 	rooms["286"].roomName = "PLANET\nDIVIDE";
 	rooms["286"].description = "The edge of the planet's immense, bisecting chasm rears its ugly to the east, its shattered surface as irregular as the mineral-dense formations that line its walls. So far away that you can barely make it out, you can see the other half of the planet, or more accurately, the other half-planet that's leashed to make up greater Tarkus. From here, it looks just about as trashed, though the wall on that side is a different shade of orange. You can continue south or west from here, though going west will take you back into the scything glade.";
-	rooms["286"].runOnEnter = undefined;
+	rooms["286"].runOnEnter = rustScytheGladeEncounters;
 	rooms["286"].southExit = "284";
 	rooms["286"].westExit = "287";
 	rooms["286"].planet = "PLANET: TARKUS";
@@ -2345,7 +2346,7 @@ function initializeRooms():void
 	rooms["287"] = new RoomClass(this);
 	rooms["287"].roomName = "SCYTHING\nGLADE";
 	rooms["287"].description = "The sharp-bladed trees are a little farther back from the path here than elsewhere, perhaps due to the sizes of the few that do grow nearby. They're easily twice as big as those around them. This could be a prime location for catching prey. You can definitely spot more than one skeleton half-buried in the rust-flaked earth around them. Safe paths lead north, east, and west from here.";
-	rooms["287"].runOnEnter = undefined;
+	rooms["287"].runOnEnter = rustScytheGladeEncounters;
 	rooms["287"].northExit = "288";
 	rooms["287"].eastExit = "286";
 	rooms["287"].westExit = "289";
@@ -2358,7 +2359,7 @@ function initializeRooms():void
 	rooms["288"] = new RoomClass(this);
 	rooms["288"].roomName = "DEAD END\nGLADE";
 	rooms["288"].description = "The path that you're currently walking comes to an abrupt and sudden end here, terminated by a ring of the bladed trees that loom over the edges like leering ghouls, ready to pounce on the unwary. In a way they are. You have no real desire to put their predatory instincts to the test, of course. The way south leads out of here.\n\n<b>Maybe Fen will put something here later?</b>";
-	rooms["288"].runOnEnter = undefined;
+	rooms["288"].runOnEnter = rustScytheGladeEncounters;
 	rooms["288"].southExit = "287";
 	rooms["288"].planet = "PLANET: TARKUS";
 	rooms["288"].system = "SYSTEM: REDACTED";
@@ -2369,7 +2370,7 @@ function initializeRooms():void
 	rooms["289"] = new RoomClass(this);
 	rooms["289"].roomName = "SCYTHING\nGLADE";
 	rooms["289"].description = "The air in this part of the scything glade is unusually quiet, so much more than in the surrounding forest. Every single movement seems to grind the rust-flecked dust louder than an industrial sander. It practically echoes! You move as carefully as you can through the open areas, careful not to get too close to any of the trees, lest you wind up impaled on one of their menacing talon-branches.";
-	rooms["289"].runOnEnter = undefined;
+	rooms["289"].runOnEnter = rustScytheGladeEncounters;
 	rooms["289"].eastExit = "287";
 	rooms["289"].southExit = "290";
 	rooms["289"].planet = "PLANET: TARKUS";
@@ -2381,7 +2382,7 @@ function initializeRooms():void
 	rooms["290"] = new RoomClass(this);
 	rooms["290"].roomName = "SCYTHING\nGLADE";
 	rooms["290"].description = "Webs of small, argent roots cross the open area between the trees here, exposed by eroding soil. The way they twist and entwine makes it impossible to distinguish one tree's roots from the next. It wouldn't surprise you to learn that they were all part of one giant root network, sharing nutrients from any tree lucky enough to catch a snack. You step carefully; there's no point in getting turned into fertilizer before you've claimed your legacy. The gap between the scythe-bearing branches twists north and west from here.";
-	rooms["290"].runOnEnter = undefined;
+	rooms["290"].runOnEnter = rustScytheGladeEncounters;
 	rooms["290"].northExit = "289";
 	rooms["290"].westExit = "291";
 	rooms["290"].planet = "PLANET: TARKUS";
@@ -2393,7 +2394,7 @@ function initializeRooms():void
 	rooms["291"] = new RoomClass(this);
 	rooms["291"].roomName = "SCYTHING\nGLADE";
 	rooms["291"].description = "Not far to the northwest, one of the trees looks to be suffering from the planet's mildly corrosive atmosphere. You look a little closer and discover, much to your disdain, that it isn't rust but dried-on blood. The ground around it is stained a dull crimson. There's no visible corpse, but you are very, very sure that you don't want to get any closer to these deadly plants. The gap between the dangerous flora bends east and south.";
-	rooms["291"].runOnEnter = undefined;
+	rooms["291"].runOnEnter = rustScytheGladeEncounters;
 	rooms["291"].eastExit = "290";
 	rooms["291"].southExit = "270";
 	rooms["291"].planet = "PLANET: TARKUS";
@@ -2401,23 +2402,11 @@ function initializeRooms():void
 	rooms["291"].addFlag(GLOBAL.OUTDOOR);
 	rooms["291"].addFlag(GLOBAL.HAZARD);
 
-	//#49 SCYTHING\nGLADE
-	rooms["PLACEHOLDER"] = new RoomClass(this);
-	rooms["PLACEHOLDER"].roomName = "SCYTHING\nGLADE";
-	rooms["PLACEHOLDER"].description = "";
-	rooms["PLACEHOLDER"].runOnEnter = undefined;
-	rooms["PLACEHOLDER"].northExit = "PLACE";
-	rooms["PLACEHOLDER"].planet = "PLANET: TARKUS";
-	rooms["PLACEHOLDER"].system = "SYSTEM: REDACTED";
-	rooms["PLACEHOLDER"].addFlag(GLOBAL.OUTDOOR);
-	rooms["PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
-
-
 	//#92 NEXT TO\nCRASHED SHIP
 	rooms["292"] = new RoomClass(this);
 	rooms["292"].roomName = "NEXT TO\nCRASHED SHIP";
 	rooms["292"].description = "A forgotten ship that looks almost as old as the rest of the planet crashed here so long ago that the junk mounds have consumed at least half of its bulk. A fanciful musing that this is just the tip of a much large craft comes to mind. What if this rounded, orange tip is just the capstone of a city-sized colony vessel? It would explain the wide variety of sapient natives. It's likely no more than idle thought. You can head east, south, and west of here.";
-	rooms["292"].runOnEnter = undefined;
+	rooms["292"].runOnEnter = rustPlainsEncounters;
 	rooms["292"].eastExit = "293";
 	rooms["292"].southExit = "254";
 	rooms["292"].westExit = "240";
@@ -2430,7 +2419,7 @@ function initializeRooms():void
 	rooms["293"] = new RoomClass(this);
 	rooms["293"].roomName = "NEXT TO\nCRASHED SHIP";
 	rooms["293"].description = "An orange ship, mostly covered in junk, sits to the northwest, it's rounded hull curving gracefully away to the north and west in spite of the many pits and blast marks that score its surface.\n<b>Fen note: custom loot stuff goes here later on along with a blurb from the room desc document.</b>";
-	rooms["293"].runOnEnter = undefined;
+	rooms["293"].runOnEnter = rustPlainsEncounters;
 	rooms["293"].northExit = "261";
 	rooms["293"].eastExit = "259";
 	rooms["293"].southExit = "257";
@@ -2460,6 +2449,16 @@ function initializeRooms():void
 	rooms["302"].system = "SYSTEM: REDACTED";
 	rooms["302"].addFlag(GLOBAL.INDOOR);
 	rooms["302"].addFlag(GLOBAL.BAR);
+
+	rooms["303"] = new RoomClass(this);
+	rooms["303"].roomName = "STEELE\nTECH";
+	rooms["303"].description = "";
+	rooms["303"].runOnEnter = steeleTechBonusFunction;
+	rooms["303"].northExit = "212";
+	rooms["303"].planet = "PLANET: TARKUS";
+	rooms["303"].system = "SYSTEM: REDACTED";
+	rooms["303"].addFlag(GLOBAL.INDOOR);
+	rooms["303"].addFlag(GLOBAL.NPC);
 	
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "THE\nMESS";

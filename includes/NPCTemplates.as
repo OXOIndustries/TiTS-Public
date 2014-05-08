@@ -157,6 +157,10 @@
 	{
 		chars["SHEKKA"] = new classes.Characters.Shekka();
 	}
+	if (!justUpdate || (justUpdate && chars["ANNO"] == undefined))
+	{
+		chars["ANNO"] = new classes.Characters.Anno();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
