@@ -57,19 +57,39 @@ function useItem(item:ItemSlotClass):void {
 	}
 }
 
-function combatUseItem(item:ItemSlotClass, targetCreature:Creature = pc):void
+// A call with just an item will 
+function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
-	if (item.useFunction != null)
+	// This is kinda bullshit. To save cheesing args for the function when called via a button,
+	// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
+	// pressed a button to invoke the call
+	if (targetCreature == null)
 	{
-		item.useFunction(targetCreature);
+		if (item.targetsSelf == true)
+		{
+			targetCreature = pc;
+		}
+		else
+		{
+			// TODO: Show target selection interface
+			// Invoke menu, early return, call back to self
+			targetCreature = foes[0];
+		}
 	}
+	
+	if (usingCreature == null)
+	{
+		usingCreature = pc;
+	}
+	
+	item.useFunction(targetCreature, usingCreature);
 	
 	if (!debug)
 	{
 		item.quantity--;
-		if (item.quantity <= 0 && targetCreature.hasItem(item))
+		if (item.quantity <= 0 && usingCreature.hasItem(item))
 		{
-			targetCreature.inventory.splice(pc.inventory.indexOf(item), 1);
+			usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
 		}
 	}
 	
@@ -295,21 +315,24 @@ function generalInventoryMenu():void
 
 function combatInventoryMenu():void
 {
-	clearOutput();
+	clearOutput2();
+	clearGhostMenu();
 	itemScreen = inventory;
 	useItemFunction = inventory;
 	
-	output("What item would you like to use?");
+	output2("What item would you like to use?");
 	
 	for (var i:int = 0; i < pc.inventory.length; i++)
 	{
 		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
 	}
+	
+	addButton(14, "Back", combatMainMenu);
 }
 
 function inventory():void 
 {
-	if (inCombat())
+	if (!inCombat())
 	{
 		generalInventoryMenu();
 	}

@@ -4,13 +4,14 @@ import classes.Items.Guns.Goovolver;
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
 
-function inCombat():Boolean 
+public function inCombat():Boolean 
 {
 	return (pc.hasStatusEffect("Round"));
 }
 
 function combatMainMenu():void 
 {
+	userInterface.showPrimaryOutput();
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
 		clearOutput();
@@ -100,7 +101,8 @@ function combatMainMenu():void
 		//Combat menu
 		this.clearMenu();
 		this.addButton(0,"Attack",attackRouter,playerAttack,"Attack","Attack a single enemy with a melee strike. Damage is based on physique.");
-		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack,"Ranged Attack","Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		this.addButton(1, upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		this.addButton(3, "Inventory", inventory, undefined, "Inventory", "Use items in combat.");
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
@@ -610,17 +612,18 @@ function attackRouter(destinationFunc):void
 	this.addButton(button,"Back",combatMainMenu);
 }
 
-// Really?
 function enemyAttack(attacker:Creature):void 
 {
 	attack(attacker, pc);
 }
+
 function playerAttack(target:Creature):void 
 {
 	attack(pc, target, true);
 	mimbraneHandBonusAttack(target);
 	processCombat();
 }
+
 function playerRangedAttack(target:Creature):void 
 {
 	rangedAttack(pc, target);
@@ -908,7 +911,7 @@ function droneAttack(target:Creature):void {
 	processCombat();
 }
 
-function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
+public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
 	damage *= randomizer;

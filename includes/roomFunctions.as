@@ -7,6 +7,7 @@ import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Miscellaneous.PHAccess;
+import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
@@ -82,31 +83,17 @@ function debugMenus():void
 	addItemButton(3, new Goovolver(), function():void {
 		output("\n\nAnd I thought my test items were OP!");
 		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new Goovolver());
+		quickLoot(new Goovolver());
+	});
+	
+	addButton(7, "Test Nades", function():void {
 		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
+		var tNades:TestGrenade = new TestGrenade();
+		tNades.quantity = 10;
 		
-		itemCollect(foundLootItems);
-	});
-	
-	addButton(7, "Milodan Pair", function():void {
-		userInterface.showBust("MILODANMALE", "MILODANFEM");
-		userInterface.bringLastBustToTop();
-		output("\n\nTesting bust images yo!");
-	});
-	
-	addButton(8, "Milodan Fem", function():void {
-		userInterface.showBust("MILODANFEM");
-		output("\n\nTesting fem bust image yo!");
-	});
-	
-	addButton(9, "Milodan Male", function():void {
-		userInterface.showBust("MILODANMALE");
-		output("\n\nTesting male bust image yo!");
-	});
+		quickLoot(tNades);
+		
+	}, undefined, "Test Grenades", "Get some testing grenades for combat stuff.");
 	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
@@ -115,6 +102,15 @@ function debugMenus():void
 	addButton(5, "XP", function():void {
 		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
 	});
+}
+
+function quickLoot(... args):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(args);
 }
 
 function bountyBoardExtra():Boolean
