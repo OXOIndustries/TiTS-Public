@@ -21,7 +21,7 @@ package classes.Items.Miscellaneous
 			this.stackSize = 10;
 			this.type = GLOBAL.EXPLOSIVECONSUMABLE;
 			
-			this.shortName = "Test Grenade";
+			this.shortName = "T.Gren";
 			
 			this.longName = "test grenade consumable";
 			
@@ -40,7 +40,7 @@ package classes.Items.Miscellaneous
 			this.damage = 15;
 			this.damageType = GLOBAL.THERMAL;
 			this.defense = 0;
-			this.shieldDefense = 1;
+			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
@@ -59,6 +59,7 @@ package classes.Items.Miscellaneous
 			{
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output("Pulling the pin on a grenade without a target to throw it at would be pretty dumb now, wouldn't it?");
+				this.quantity++;
 				return false;
 			}
 			else

@@ -141,7 +141,7 @@
 		public static const ELECTRIC:int                               = 6;
 		//THERMAL
 		public static const THERMAL:int                                = 7;
-		public static const NO_TYPE:int								   = 8
+		public static const NO_TYPE:int								   = 8;
 		
 		public static const MAX_DAMAGE_TYPES:int						= 9; // damageType bookend, probably gonna roll its usage into things like array generation and shit.
 		

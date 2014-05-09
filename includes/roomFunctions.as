@@ -8,6 +8,7 @@ import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.TestGrenade;
+import classes.Items.Miscellaneous.TestHPBooster;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
@@ -94,6 +95,15 @@ function debugMenus():void
 		quickLoot(tNades);
 		
 	}, undefined, "Test Grenades", "Get some testing grenades for combat stuff.");
+	
+	addButton(8, "Test HP.B", function():void {
+		
+		var tBooster:TestHPBooster = new TestHPBooster();
+		tBooster.quantity = 10;
+		
+		quickLoot(tBooster);
+		
+	}, undefined, "Test Booster", "Get some test HP boosters.");
 	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
