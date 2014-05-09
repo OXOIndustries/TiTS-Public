@@ -1,4 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
+import classes.ItemSlotClass;
 import classes.StringUtil;
 import classes.TiTS;
 
@@ -53,6 +55,25 @@ function useItem(item:ItemSlotClass):void {
 			}
 		}
 	}
+}
+
+function combatUseItem(item:ItemSlotClass, targetCreature:Creature = pc):void
+{
+	if (item.useFunction != null)
+	{
+		item.useFunction(targetCreature);
+	}
+	
+	if (!debug)
+	{
+		item.quantity--;
+		if (item.quantity <= 0 && targetCreature.hasItem(item))
+		{
+			targetCreature.inventory.splice(pc.inventory.indexOf(item), 1);
+		}
+	}
+	
+	processCombat();
 }
 
 function shop(keeper:Creature):void {
@@ -161,7 +182,8 @@ function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return Math.round(basePrice * keeper.sellMarkup * pc.buyMarkdown);
 }
 
-function inventory():void {
+function generalInventoryMenu():void
+{
 	clearOutput();
 	var x:int = 0;
 	itemScreen = inventory;
@@ -269,6 +291,32 @@ function inventory():void {
 	//Set user and target.
 	itemUser = pc;
 	this.addButton(14,"Back",mainGameMenu);
+}
+
+function combatInventoryMenu():void
+{
+	clearOutput();
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	
+	output("What item would you like to use?");
+	
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
+		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+	}
+}
+
+function inventory():void 
+{
+	if (inCombat())
+	{
+		generalInventoryMenu();
+	}
+	else
+	{
+		combatInventoryMenu();
+	}
 }
 
 
