@@ -1,4 +1,5 @@
-﻿import classes.Creature;
+﻿import classes.Characters.Mimbrane;
+import classes.Creature;
 import classes.Items.Guns.Goovolver;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
@@ -585,13 +586,16 @@ function rangedCombatMiss(attacker:Creature, target:Creature):Boolean
 function attackRouter(destinationFunc):void 
 {
 	// Inject the mimbrane attack shit infront of the regular attacks
+	clearOutput();
+	
 	if (mimbraneCombatInterference())
 	{
 		processCombat();
 		return;
 	}
-
-	clearOutput();
+	
+	playerMimbraneCloudAttack();
+	
 	output("Who do you target?\n");
 	for(var x:int = 0; x < foes.length; x++) {
 		output(foes[x].capitalA + foes[x].short + ": " + foes[x].HP() + " HP, " + foes[x].lust() + " Lust\n");
@@ -1068,13 +1072,13 @@ function teaseMenu(target:Creature):void
 	}
 }
 function teaseChest(target:Creature):void {
-	tease(target,"chest");
+	tease(target, "chest");
 }
 function teaseHips(target:Creature):void {
-	tease(target,"hips");
+	tease(target, "hips");
 }
 function teaseButt(target:Creature):void {
-	tease(target,"butt");
+	tease(target, "butt");
 }
 function teaseCrotch(target:Creature):void {
 	tease(target,"crotch");
@@ -1529,6 +1533,10 @@ function startCombat(encounter:String):void
 	userInterface.resetNPCStats();
 	showNPCStats();
 	updateNPCStats();
+	
+	if (foes[0] is Mimbrane) mutinousMimbranesCombat();
+	
+	if (mimbranesNeglected() > 0) neglectedMimbranesCombat();
 }
 
 function runAway():void {
@@ -1783,6 +1791,8 @@ function tease(target:Creature, part:String = "chest"):void {
 		}
 	}
 	else output("\n");
+	
+	playerMimbraneSpitAttack();
 	processCombat();
 }
 

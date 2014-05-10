@@ -382,7 +382,8 @@ public function processTime(arg:int):void {
 	productionFactor *= 4;
 	
 	//Half time.
-	else if(this.chars["PC"].hasPerk("Ice Cold")) productionFactor /= 2;
+	else if (this.chars["PC"].hasPerk("Ice Cold")) productionFactor /= 2;
+	
 	//Actually apply lust.
 	this.chars["PC"].lust(arg * productionFactor);
 	
@@ -395,6 +396,8 @@ public function processTime(arg:int):void {
 		pc.milkProduced(arg);
 		milkGainNotes();
 	}
+	
+	var doMimbraneComplaints:Boolean = true;
 
 	//loop through every minute
 	while(arg > 0) {
@@ -406,7 +409,18 @@ public function processTime(arg:int):void {
 		statusTick();
 		
 		//Tick hours!
-		if(this.minutes >= 60) {
+		if (this.minutes >= 60) {
+			
+			// Only allow one round of complaints to be displayed at worst
+			if (doMimbraneComplaints)
+			{
+				mimbranesComplainAndShit();
+				doMimbraneComplaints = false;
+			}
+			
+			// Lust increase per hour
+			mimbraneSweatHandler();
+			
 			this.minutes = 0;
 			this.hours++;
 			//Hours checks here!

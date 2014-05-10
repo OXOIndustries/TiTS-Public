@@ -315,7 +315,7 @@ function holeChange(target:Creature,hole:int,volume:Number,display:Boolean = tru
 		}
 	}
 	if(stretched) {
-		trace("HOLE CODE #:" + hole + " STRETCHED TO " + holePointer.looseness + ".");
+		trace("HOLE CODE #:" + hole + " STRETCHED TO " + holePointer.looseness() + ".");
 		//STRETCH SUCCESSFUL - begin flavor text if outputting it!
 		if(display) {
 			//Virgins get different formatting

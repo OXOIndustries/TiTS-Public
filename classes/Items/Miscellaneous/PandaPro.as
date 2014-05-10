@@ -213,13 +213,14 @@
 							kGAMECLASS.output("[pc.chest] look a little larger. In fact, you can actually see them swelling! They grow rounder with each passing moment, more alluring than ever before. You can't help but touch them while they change, marvelling at their supple weight. Once finished, they look like the kind of tits that have plenty of cleavage even when topless - the kind of tits that are perfect for teasing");
 							if(target.libido() >= 75 || target.lust() >= 75) kGAMECLASS.output("... or fucking");
 							kGAMECLASS.output(".");
+							target.breastRows[0].breastRatingRaw = Math.round(target.thickness * .25)+1;
 						}
 						//2
 						else
 						{
+							target.breastRows[0].breastRatingRaw = Math.round(target.thickness * .25)+1;
 							kGAMECLASS.output("\n\nYou shudder with your whole body when the splice kicks in. There's a euphoric rush that drives straight towards your chest and nearly doubles you over on the spot. Your [pc.nipples] push out, obscuring some of your [pc.belly] as they rise on a tide of quivering chest-flesh. <b>You're growing boobs - real, soft, breasts!</b> Gingerly, you give one a poke. It jiggles, swelling further. Encouraged by this, you grab hold with both hands and feverishly grope yourself, enjoying the feel of your cushy chest as it assumes its full size. <b>You've grown " + target.breastCup(0) + " melons!</b>");
 						}
-						target.breastRows[0].breastRatingRaw = Math.round(target.thickness * .25)+1;
 						changes++;
 					}
 					//Extra clits are removed
