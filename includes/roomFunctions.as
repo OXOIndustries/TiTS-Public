@@ -173,11 +173,7 @@ function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"]++;
 	}
 	
-	if (debug)
-	{
-		encounterMimbrane();
-		return true;
-	}
+	// APPARANTLY I AM NOT ALLOWED DEBUG FUNCTIONS. FML
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
