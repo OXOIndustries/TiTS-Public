@@ -1126,7 +1126,7 @@ function feedYourCuntTailWithDudeleen():void {
 		if(pc.hasVagina()) 
 		{
 			output(" Your [pc.vaginas] clench");
-			if(pc.totalCocks() > 1) output("es");
+			if(pc.totalVaginas() > 1) output("es");
 			output(" in sympathetic climax, drooling your [pc.girlCum] over the coils upon which you sit.");
 		}
 

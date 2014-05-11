@@ -86,5 +86,8 @@
 		[Embed(source = "../../assets/images/npcs/zilMale.png", mimeType = "image/png")]
 		public static var Bust_ZIL:Class;
 
+		[Embed(source = "../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
+		public static var Bust_DRBADGER:Class;
+
 	}
 }

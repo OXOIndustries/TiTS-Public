@@ -1078,9 +1078,9 @@ public function joyCoMagicMilker7Sucks():void
 	else output("\n\nYou peel your [pc.upperGarments] away from your " + pc.allBreastsDescript() + " and shiver as your [pc.nipples] immediately perk up, crinkling in the chill air. There's nothing between you and a quick, machine-assisted milking now.");
 	//Intro Pt II
 	output("\n\nThe button audibly clicks under your thumb, and the miniaturized milker whirrs. Like someone waking from a long, the machine's tubes writhe and lift, barely coordinated. After a few seconds of this, they lift the cups up before you.");
-	if(pc.totalBreasts() > 1) output(" A hatch on the Magic-Milker's main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cups emerge to compliment the original pair, one for every single one of your breasts.");
+	if(pc.totalBreasts() > 2) output(" A hatch on the Magic-Milker's main body opens, and " + num2Text(pc.totalBreasts()-2) + " more milking cups emerge to compliment the original pair, one for every single one of your breasts.");
 	output(" The ");
-	if(pc.totalBreasts() > 1) output("many ");
+	if(pc.totalBreasts() > 2) output("many ");
 	output("milkers arrange themselves so that they're hovering a scant few inches from your soon to be sucked nipples and pause as if considering their options or calculating something.");
 	output("\n\nYou sigh in anticipatory boredom; nothing slows the passage of time like waiting for a pleasant activity. In this came, time seems to be slogging through molasses, though only a few seconds have passed. The Magic-Milker 7 activates just as you're inhaling a breath of fresh air, the cups snapping forward");
 	if(pc.nipplesPerBreast > 1 || pc.nippleLength() > 1 || pc.nippleWidth() > 1.5) 
@@ -1103,7 +1103,7 @@ public function joyCoMagicMilker7Sucks():void
 	{
 		output("It makes your pumped-up teats tingle more than a little as it tries to pull the [pc.milk] out of you, but nothing is coming. You sit there squirming for at least fifteen minutes, [pc.nipples] sweating only the barest residue of [pc.milk] before you're forced to give up and press the deactivation button.");
 		output("\n\nThe cups detach and shrink back to their passive size");
-		if(pc.totalBreasts() > 1) output(", the extra arms withdrawing into the main chamber");
+		if(pc.totalBreasts() > 2) output(", the extra arms withdrawing into the main chamber");
 		output(", leaving your [pc.chest] bare and sore. A single, blue-tinged holographic display briefly emerges above the spent sphere. It reads:\n\n<b>0 mL.</b>");
 		//Pass 20m + rand(5)
 		processTime(20 + rand(5));
@@ -1118,7 +1118,7 @@ public function joyCoMagicMilker7Sucks():void
 			pc.nippleWidthRatio += .1;
 		}
 		//Nipples Lengthened
-		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		else if(pc.nippleLengthRatio < 3 && rand(3) == 0)
 		{
 			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
 			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;
@@ -1213,7 +1213,7 @@ public function joyCoMagicMilker7Sucks():void
 			pc.nippleWidthRatio += .1;
 		}
 		//Nipples Lengthened
-		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		else if(pc.nippleLengthRatio < 3 && rand(3) == 0)
 		{
 			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
 			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;

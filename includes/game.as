@@ -613,6 +613,11 @@ function lactationUpdateHourTick():void
 	if(pc.milkMultiplier < 50) {
 		if(!pc.hasPerk("Milky")) pc.milkMultiplier -= 0.1;
 		else pc.milkMultiplier -= 0.02;
+		if(pc.milkFullness > 0) 
+		{
+			pc.milkFullness -= 1;
+			if(pc.milkFullness < 0) pc.milkFullness = 0;
+		}
 	}
 	//90
 	if(pc.milkMultiplier >= 90 && originalMultiplier < 90) eventBuffer += "\n\nYou're pretty sure that your lactation is starting to slow down a little bit. If you don't start milking yourself, you'll eventually stop producing.";
@@ -629,7 +634,12 @@ function lactationUpdateHourTick():void
 			pc.breastRows[x].breastRatingLactationMod = 0;
 		}
 		eventBuffer += "\n\nLike a switch has been flipped inside you, you feel your body's [pc.milk]-factories power down. <b>You've stopped lactating entirely.</b>";
-		if(pc.milkFullness >= 75) eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCup]s.";
+		if(pc.milkFullness >= 75) 
+		{
+			eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCup]s.";
+			pc.milkFullness = 75;
+		}
+
 	}
 }
 
