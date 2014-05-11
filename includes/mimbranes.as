@@ -3113,6 +3113,8 @@ public function playerMimbraneCloudAttack():void
 				{
 					output("Its bad enough that the Mimbrane encasing your head has drenched you in a rich layer of sweat, but now you’re having trouble seeing through the thick cloud of salacious intent that’s forming as a result. You involuntarily go to wipe your brow, which accidentally causes you to inhale some of the dangerous fumes. The parasite manipulates your [pc.face] enough to avoid any further exposure to its premature attack.");
 				}
+				
+				return;
 			}
 			// Success
 			else
@@ -3154,6 +3156,8 @@ public function playerMimbraneCloudAttack():void
 				{
 					output("\nIts beginning to get hard to see, your head sweating profusely from the Mimbrane encasing it. Your vision is then covered entirely by a thick cloud of red lust surrounding your head! The parasite works to keep your [pc.face] from inhaling any of its dangerous vapors, instead manipulating it into sending the wanton fog towards your opponent.\n");
 				}
+				
+				return;
 			}
 		}
 	}
