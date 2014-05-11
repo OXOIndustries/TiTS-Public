@@ -382,6 +382,10 @@ function updateCombatStatuses():void {
 				else output("<b>" + foes[x].capitalA + foes[x].short + " is disarmed.</b>\n");
 			}
 		}
+		if (foes[x].hasStatusEffect("Mimbrane Lust Cloud"))
+		{
+			cloudDebuffHandler(foes[x]);
+		}
 	}
 }
 function stunRecover(target:Creature):void 
@@ -594,8 +598,6 @@ function attackRouter(destinationFunc):void
 		return;
 	}
 	
-	playerMimbraneCloudAttack();
-	
 	output("Who do you target?\n");
 	for(var x:int = 0; x < foes.length; x++) {
 		output(foes[x].capitalA + foes[x].short + ": " + foes[x].HP() + " HP, " + foes[x].lust() + " Lust\n");
@@ -625,12 +627,14 @@ function playerAttack(target:Creature):void
 {
 	attack(pc, target, true);
 	mimbraneHandBonusAttack(target);
+	playerMimbraneCloudAttack();
 	processCombat();
 }
 
 function playerRangedAttack(target:Creature):void 
 {
 	rangedAttack(pc, target);
+	playerMimbraneCloudAttack();
 }
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {

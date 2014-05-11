@@ -397,7 +397,20 @@ public function processTime(arg:int):void {
 		milkGainNotes();
 	}
 	
-	var doMimbraneComplaints:Boolean = true;
+	if (flags["MIMBRANES BITCH TIMER"] == undefined)
+	{
+		flags["MIMBRANES BITCH TIMER"] = arg;
+	}
+	else
+	{
+		flags["MIMBRANES BITCH TIMER"] += arg;
+	}
+	
+	if (flags["MIMBRANES BITCH TIMER"] >= 300)
+	{
+		flags["MIMBRANES BITCH TIMER"] = 0;
+		mimbranesComplainAndShit();
+	}
 
 	//loop through every minute
 	while(arg > 0) {
@@ -410,13 +423,6 @@ public function processTime(arg:int):void {
 		
 		//Tick hours!
 		if (this.minutes >= 60) {
-			
-			// Only allow one round of complaints to be displayed at worst
-			if (doMimbraneComplaints)
-			{
-				mimbranesComplainAndShit();
-				doMimbraneComplaints = false;
-			}
 			
 			// Lust increase per hour
 			mimbraneSweatHandler();
