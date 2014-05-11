@@ -7868,7 +7868,7 @@ package classes {
 				return "milk-sap";
 			} else if (arg == GLOBAL.GIRLCUM) {
 				return "girl-cum";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.CUMSAP) {
 				if (rand(4) <= 1) return "cum-sap";
 				else if (rand(2) == 0) return "botanical spunk";
 				else return "floral jism";

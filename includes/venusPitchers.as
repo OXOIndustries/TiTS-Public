@@ -982,13 +982,13 @@ function milkyElderPitcherPlantPlay():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
 	output(upperCase(num2Text(pc.totalNipples())) + " tentacles appear before you, waving back and forth hypnotically, matching the tempo of the floral mistress’s hands on her bosom that entrances you even now. Their tips are smooth and featureless at first. Then, the emerald-green skin peels back, exposing the tentacle’s true nature - that of a hollow tube with clear, nearly-transparent walls. The sides of the newly-revealed, organic milker - for that is what it reminds you of - bulge out slightly, perhaps to hold some milk. The way they seem to zero in on your nipples confirms your suspicions.");
-	output("\n\nA slow, sultry voice tickles your ears, “<i>A can sense a bounty in your bosom, " + pc.mfn("boy","girl","pet") + ". I do hope it isn’t as sickeningly sweet as the zil’s. For now, relax and focus on producing [pc.milk] for me. Let the pleasure wash over your nipples just as my voice does your mind.</i>”");
+	output("\n\nA slow, sultry voice tickles your ears, “<i>I can sense a bounty in your bosom, " + pc.mfn("boy","girl","pet") + ". I do hope it isn’t as sickeningly sweet as the zil’s. For now, relax and focus on producing [pc.milk] for me. Let the pleasure wash over your nipples just as my voice does your mind.</i>”");
 	
 	output("\n\nThe milkers move forward and push against your chest, their surface tingling soft and warm on the [pc.skin] of your [pc.chest] as they seal in place, tugging slightly from the increasing pressure. You groan in excitement, as you obey, focusing on producing milk for your hypnotic mistress to squeeze.");
 	
 	output("\n\nPale green skin closes in on you as the eager plant-woman takes you into her arms, wrapping them around the back of your head and pushing your [pc.face] as deeply into her bosom is possible. You sniffle a little, perhaps from her spores, and let yourself enjoy being cradled in her cleavage while her fingers gently stroke the back of your head");
 	if(pc.hasHair()) output(", running through your [pc.hair]");
-	output(". At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normally. [pc.Milk] beads at the tips and slowly begins to drip down.");
+	output(". At the same time, the milkers on your [pc.chest] narrow and begin to suck, their stalks lurching wildly from the vacuum pressure. Your [pc.nipples] puff and engorge rapidly, swelling with blood until they’re nearly half as big again as normal. [pc.Milk] beads at the tips and slowly begins to drip down.");
 	
 	output("\n\n“<i>Let it out...</i>”  your favorite venus pitcher instructs. Her hand reaches around to squeeze the underside of one tit, causing you to express a thin flow. You moan at the erotic release as imaginary tongues wrap around each [pc.nipple] and begin to suck, and ");
 	if(pc.totalNipples() > 2) output("the rest of your lactic nozzles release");
@@ -1002,7 +1002,7 @@ function milkyElderPitcherPlantPlay():void {
 	output("\n\nYou wanted to already, so her words dig deep into your subconscious, ensuring that you’ll drink every drop of \"medicine\" she’s willing to offer. After each successive swallow, burgeoning heat blooms in your [pc.nipples] and [pc.chest], causing both to engorge a little bit more. Your bust swells more and more with each passing moment, and the flow of milk becomes an unstoppable torrent. You whimper around the heavenly bud until it dries up and gentle hands separate it from your mouth, guiding you on to an equally delightful and yet-untapped source of your new favorite drink.");
 	output("\n\nThrough the transparency of their walls, the milkers' reservoirs slowly fill with your [pc.milk]. You also become aware of a slight variation in the suction applied to your [pc.nipples]; it pulsates in a rhythm, diminishing and then increasing in a way that your breasts respond quite strongly to. Blobs of liquid weight slide deeper down the tentacles, accompanied by a satisfied “mmmm” from nearby, and a sense of pride wells up inside in your chest (along with an uptick in the feeling of tongues on your teats");
 	if(pc.hasCock() || pc.hasVagina()) output(" and genitalia");
-	output(".");
+	output(".)");
 	
 	output("\n\n“<i>That’s all the medicine, little cow. I don’t have any more for you.</i>”");
 	
