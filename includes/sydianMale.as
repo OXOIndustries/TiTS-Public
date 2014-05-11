@@ -414,7 +414,7 @@ function chicksRideASydian():void
 	if(pc.biggestTitSize() >= 1) output(", just between your [pc.chest]");
 	output(".");
 
-	output("\n\nThe sydian's eyes widen appreciatively, and he reluctantly slows the fevered stroking of his pre-slicked, brass-colored rod. <i>\"I-I am now sure how to-... how to submit... to a woman.\"</i> He looks down and to the side, onyx eyes unwilling to meet your own.");
+	output("\n\nThe sydian's eyes widen appreciatively, and he reluctantly slows the fevered stroking of his pre-slicked, brass-colored rod. <i>\"I-I am not sure how to-... how to submit... to a woman.\"</i> He looks down and to the side, onyx eyes unwilling to meet your own.");
 	output("\n\nYou ");
 	if(pc.isNaga() || pc.isGoo()) output("slither on top of him, poking him with the tip of your [pc.foot] for good measure.");
 	else output("place a [pc.foot] square on his chest for good measure.");
