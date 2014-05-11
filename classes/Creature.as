@@ -1413,6 +1413,7 @@ package classes {
 				case "oneTailgina":
 				case "oneTailCunt":
 					buffer = oneTailVaginaDescript();
+					break;
 				case "milkNoun":
 					buffer = fluidNoun(milkType);
 					break;
@@ -6386,7 +6387,7 @@ package classes {
 			//Slimgina?
 			else if (type == GLOBAL.GOOEY) {
 				if (!simple) {
-					temp = this.rand(17);
+					temp = this.rand(16);
 					if (temp <= 1) vag += "slimey vagina";
 					else if (temp <= 3) vag += "gooey pussy";
 					else if (temp <= 5) vag += "slimy cunt";
@@ -6394,9 +6395,9 @@ package classes {
 					else if (temp <= 9) vag += "juicy twat";
 					else if (temp <= 11) vag += "slimy gash";
 					else if (temp <= 13) vag += "gooey honeypot";
-					else if (temp <= 15) vag += "slimey snatch";
+					else vag += "slimey snatch";
 				} else {
-					temp = this.rand(17);
+					temp = this.rand(16);
 					if (temp <= 1) vag += "slime-gina";
 					else if (temp <= 3) vag += "goo-pussy";
 					else if (temp <= 5) vag += "slime-cunt";
@@ -6404,7 +6405,7 @@ package classes {
 					else if (temp <= 9) vag += "goo-twat";
 					else if (temp <= 11) vag += "slime-gash";
 					else if (temp <= 13) vag += "honeypot";
-					else if (temp <= 15) vag += "slime-snatch";
+					else vag += "slime-snatch";
 				}
 			} else if (type == GLOBAL.SIREN || type == GLOBAL.ANEMONE) {
 				if (!simple) {
@@ -6494,7 +6495,6 @@ package classes {
 				else if (temp <= 14) vag += "honeypot";
 				else if (temp <= 15) vag += "snatch";
 			}
-
 			return vag;
 		}
 		//Vaginas + Descript
