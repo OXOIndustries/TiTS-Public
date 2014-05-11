@@ -1022,7 +1022,7 @@ package classes {
 			return "";
 		}
 		
-		public var nippleLengthRatio:int = 1;
+		public var nippleLengthRatio: Number = 1;
 		public function nippleLengthRatioUnlocked(newNippleLengthRatio:int):Boolean
 		{
 			return true;
@@ -1032,7 +1032,7 @@ package classes {
 			return "";
 		}
 		
-		public var nippleWidthRatio: int = 1;
+		public var nippleWidthRatio: Number = 1;
 		public function nippleWidthRatioUnlocked(newNippleWidthRatio:int):Boolean
 		{
 			return true;

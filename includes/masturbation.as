@@ -1118,7 +1118,7 @@ public function joyCoMagicMilker7Sucks():void
 			pc.nippleWidthRatio += .1;
 		}
 		//Nipples Lengthened
-		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		else if(pc.nippleLengthRatio < 3 && rand(3) == 0)
 		{
 			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
 			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;
@@ -1213,7 +1213,7 @@ public function joyCoMagicMilker7Sucks():void
 			pc.nippleWidthRatio += .1;
 		}
 		//Nipples Lengthened
-		else if(pc.nippleLengthRatio < 5 && rand(3) == 0)
+		else if(pc.nippleLengthRatio < 3 && rand(3) == 0)
 		{
 			output("\n\n<b>Your [pc.nipples] remain a little longer after the ordeal. This gleaming breast-pump seems determined to give you cow teats.</b>");
 			if(pc.nippleLengthRatio < 1) pc.nippleLengthRatio = 1;
