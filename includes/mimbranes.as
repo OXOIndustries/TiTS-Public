@@ -1892,7 +1892,7 @@ public function mimbraneSleepEvents():void
 
 			outputDone = true;
 
-			addMimbraneEvent("Upon stretching off the last vestiges of sleep, you notice something feels off about your [face]. It would appear that your [lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.");
+			addMimbraneEvent("Upon stretching off the last vestiges of sleep, you notice something feels off about your [pc.face]. It would appear that your [pc.lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.");
 		}
 
 		mimbraneReproduce("Mimbrane Face");
@@ -4209,7 +4209,7 @@ public function mimbraneMenu():void
 			addGhostButton(0, "Back", mimbraneMenu);
 		});
 
-		addGhostButton(11, "Face B.Marks", function():void {
+		addGhostButton(11, "B.Marks", function():void {
 			clearOutput2();
 			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = 1;
@@ -4222,7 +4222,7 @@ public function mimbraneMenu():void
 		{
 			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
 
-			addGhostButton(11, "Face B.Marks", function():void {
+			addGhostButton(12, "Lip Pc.Ing", function():void {
 				clearOutput2();
 				//userInterface.showBust("MIMBRANE");
 				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
@@ -4233,7 +4233,7 @@ public function mimbraneMenu():void
 		}
 		else
 		{
-			addDisabledGhostButton(12, "Face Lip Pc.Ing");
+			addDisabledGhostButton(12, "Lip Pc.Ing");
 		}
 
 		output2("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
