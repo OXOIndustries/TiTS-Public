@@ -191,9 +191,17 @@
 		},
 		true);
 		
+	inputManager.AddBindableControl(
+		"Room Transport",
+		"Move to a specific room name",
+		function():void {
+			Cheats.RoomTeleport();
+		},
+		true);
+		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
-
-
+	inputManager.BindCheatSequence("Room Transport", 73, 68, 67, 76, 69, 86);
+	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
 	inputManager.BindKeyToControl(50, "Button 2");             // case 50: pressButton(1);

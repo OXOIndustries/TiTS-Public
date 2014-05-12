@@ -23,6 +23,11 @@ package classes
 		
 		public static function GiveZilRations():void
 		{
+			if (kGAMECLASS.pc.short == "uncreated")
+			{
+				return;
+			}
+			
 			Cheats.OutputStuff();
 			
 			var lootArray:Array = new Array();
@@ -30,6 +35,49 @@ package classes
 			loot.quantity = 5;
 			lootArray.push(loot);
 			kGAMECLASS.itemCollect(lootArray);
+		}
+		
+		public static function RoomTeleport():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated")
+			{
+				return;
+			}
+			
+			Cheats.OutputStuff();
+			
+			kGAMECLASS.output("\nGimme a room name to TP to cheater!");
+			kGAMECLASS.displayInput();
+			kGAMECLASS.clearMenu();
+			kGAMECLASS.addButton(0, "Tele", Cheats.TryRoomTeleport);
+			kGAMECLASS.addButton(1, "Nah", Cheats.BackOutFromTeleport);
+		}
+		
+		public static function TryRoomTeleport():void
+		{
+			if (kGAMECLASS.userInterface.textInput.text == "")
+			{
+				Cheats.RoomTeleport();
+				kGAMECLASS.output("\n\n\n\nYou gots to gimme a room name yo.");
+				return;
+			}
+			
+			if (kGAMECLASS.rooms[kGAMECLASS.userInterface.textInput.text] == undefined)
+			{
+				Cheats.RoomTeleport();
+				kGAMECLASS.output("\n\n\n\nCouldn't find yo room. Wakka wakka.");
+				return;
+			}
+			
+			var room:String = kGAMECLASS.userInterface.textInput.text;
+			kGAMECLASS.removeInput();
+			kGAMECLASS.move(room);
+		}
+		
+		public static function BackOutFromTeleport():void
+		{
+			kGAMECLASS.removeInput();
+			kGAMECLASS.mainGameMenu();
 		}
 	}
 }
