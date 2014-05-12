@@ -1,13 +1,23 @@
-//Doc Badger’s Clinic
+﻿//Doc Badger’s Clinic
 //[text to be added to hub location where Doc Badger’s Clinic is]
 //There’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.
 //[Add button for “Doc Badger’s Shack” to options menu for location]
 
-//PC Enters Doc Badger’s Shack
-function drBadgerBonusShit():void
+function drBadgerMenu():void
 {
+	clearMenu();
+	//addButton(0,"Buy",buyItem,undefined,"Buy","Buy something from Doctor Badger.");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//PC Enters Doc Badger’s Shack
+function drBadgerBonusShit():Boolean
+{
+	author("Abe E. Seedy");
 	if(flags["MET_DR_BADGER"] == undefined)
 	{
+		userInterface.showBust("DRBADGER");
+		userInterface.showName("DR.\nBADGER");
 		output("The door swings open easily as you push at it, stepping cautiously inside. It’s surprisingly dark in here, and you squint in an attempt to make out more than just a vague suggestion of the four walls around you.");
 		output("\n\nSuddenly there’s an overwhelmingly bright flash of light, and you find yourself thrown back up against the inside of the door as it’s slammed shut behind you. A shrill beeping fills your ears as your equipment overloads dramatically, the tell-tale tingle of an EMP pulse ringing through your head. You have just enough time to register that this all means you’re completely defenseless when the feeling of claws digging lightly into your chest draws your attention to what exactly is happening in front of you.");
 		output("\n\nThere’s someone there, holding you easily up against the door with one hand and leering as they do so. It doesn’t take much to figure out that this must be Doctor Badger; with black fur covering their plump, curvy body except for the white muzzle marking her as a mustelid. The tight-fitting white nurse’s shirt they’re wearing not only presents them as some sort of medical professional, but also highlights the bulging breasts that show her up as enthusiastically female. She notices you looking, and while one red-gloved hand keeps you pressed firmly against the wall, the other casually points your head downwards, where you soon see she’s not wearing any pants. This lets her frankly massive black cock and balls hang down freely from her crotch, her shaft decorated rather than concealed by the odd half-sleeve featuring a red and white cross wrapped around it. The only other clothes she’s wearing are a pair of red thigh high boots, which match nicely with the long sleeved gloves you can still feel pressing against your {skin/scales/surface}. The whole effect of her outfit and demeanor does rather scream “mad doctor”, although “madly perverted” probably seems a little more accurate.");
@@ -20,8 +30,24 @@ function drBadgerBonusShit():void
 		addButton(1,"No",noImNotAHeroYouFuckingBimboDoctor,undefined,"No","You're pretty sure telling her no would be the best way to keep your cerebellum intact.");
 		return true;
 	}
+	else
+	{
+		//Room desc
+		output("The inside of the \"good\" doctor's shop is much the same as you remember it, complete with giant brain-lasers and devices whose purpose you don't even want to hazard. She's every bit the mad scientist you'd expect, which makes her the perfect person to sell you some of the less savory items the galaxy has to offer.\n\n");
+		
+	}
+	addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+	return false;
+}
+
+function repeatBadgerApproach():void
+{
+	clearOutput();
+	userInterface.showBust("DRBADGER");
+	userInterface.showName("DR.\nBADGER");
+	author("Abe E. Seedy");
 	//REPEAT GREETING NON-BIMBOIFIED
-	else if(flags["DR_BADGER_BIMBOED_PC"] == undefined)
+	if(flags["DR_BADGER_BIMBOED_PC"] == undefined)
 	{
 		output("The Doctor looks up at you, snorting with derision as you enter. “<i>Well well, if it isn’t the non-hero. Come to do some more shopping, have you? I’ve still got some of those little happy pills, if you decide you want to live a little for once...</i>”");
 		//[Buy Dumbfuck pills] [Leave]
@@ -34,13 +60,15 @@ function drBadgerBonusShit():void
 		output("\n\nIn the end however, she simply sighs heartily without standing. “<i>Unfortunately, my supplies are a little low right now</i>”, she says, indicating her ramshackle surroundings with a lazy sweep of her arm, “<i>so I’m afraid I can’t offer you anything more… intense… right now. I do still have some of those happy pills if you want them though. How does that sound</i>?”");
 	}
 	drBadgerMenu();
-	return true;
 }
 
 //YES
 function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 {
 	clearOutput();
+	userInterface.showBust("DRBADGER");
+	userInterface.showName("DR.\nBADGER");
+	author("Abe E. Seedy");
 	output("“<i>Oh, really?</i>”, she answers, one eyebrow arching upwards with amused curiosity. She steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of… ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and seeing your expression she starts grinning disturbingly. “<i>Heroes</i>”, she says, squeezing your throat again lightly for emphasis at the word, “<i>earn themselves a session with my patented bimbo-making machine over there</i>.”");
 	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind <i>would</i> probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
 
@@ -48,26 +76,33 @@ function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
 	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this probably going to result in a fight or rapid bimbofication; that much seems clear.");
-	addButton(1,"Shopper",noImNotAHeroYouFuckingBimboDoctor,undefined,"Shopper","Telling her that you're just shopping around might be the best plan.");
+	addButton(1,"Shopper",heyDocImJustHereToShop,undefined,"Shopper","Telling her that you're just shopping around might be the best plan.");
 }
 
 //NO
 function noImNotAHeroYouFuckingBimboDoctor():void
 {
 	clearOutput();
+	userInterface.showBust("DRBADGER");
+	userInterface.showName("DR.\nBADGER");
+	author("Abe E. Seedy");
 	output("“<i>Oh</i>”. She looks down for a moment, seeming to almost deflate as she relaxes a little. When she looks back up at you, you realise she looks a little… disappointed, somehow? “<i>Well… are you sure</i>?”, she asks hopefully.");
 	output("\n\nShe steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of… ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and she perks back up on seeing your wide-eyed expression. “<i>Heroes</i>”, she says with a hungry grin, “<i>earn themselves a session with my patented bimbo-making machine over there</i>.”");
 	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind would probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
 	output("\n\n“<i>So...</i>”, she concludes, licking her surprisingly plump lips, “<i>what do you say? Are you </i>sure<i> you’re not a hero?</i>”");
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
-	//9999
+	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this probably going to result in rapid bimbofication; that much seems clear.");
+	addButton(1,"JustShop",heyDocImJustHereToShop,undefined,"JustShop","A civilized option for a civilized result.");
 }
 
 //I’M A HERO
 function heyDocImAHero():void
 {
 	clearOutput();
+	userInterface.showBust("DRBADGER");
+	userInterface.showName("DR.\nBADGER");
+	author("Abe E. Seedy");
 	output("Doctor Badger grins widely, pressing you a little harder against the door as she moves one hand down to retrieve a remote control from some hidden pocket. “<i>Well, </i>hero”, she teases, “<i>let’s see just how heroic you are once I’ve had some fun with you…</i>”");
 	output("\n\nShe presses a prominent button on the remote, releasing you and stepping away to the side in one fluid motion. Before you can react you hear the machine in front of you whirr menacingly, and then a great white beam shoots out of it, bathing your head in a thick, hazy glow.");
 	output("\n\nIt feels… nice. Warm. You tense yourself for something dramatic to happen, but after several seconds you eventually re-open your eyes, and hesitantly wave a {hand/appendage} in front of your face. Several more seconds pass, and absolutely nothing continues to happen. Maybe it doesn’t work? Or maybe your protective enhancements were too powerful for it? Laughing, you strike a confident, heroic pose, turning to face Dr Badger again now that you’ve defeated her nefarious plan, only to discover her bearing down on you while holding a large hypodermic needle filled with some brightly glowing substance.");
@@ -222,7 +257,7 @@ function heyDocImAHero():void
 		output(" closed; leaving you with only one slick slit, ensuring that any groups of potential partners would have to pass you around one after the other to breed you successfully. <b>You now have only one vagina on your groin</b>!");
 		while(pc.totalVaginas() > 1)
 		{
-			pc.removeVagina(1,1,);
+			pc.removeVagina(1,1);
 		}
 	}
 	//IF PC HAS NO ASSHOLE
@@ -303,7 +338,7 @@ function heyDocImAHero():void
 	if(pc.hasCockTail() || pc.hasTailgina()) output(" I couldn’t help but leave your most interesting feature intact too. A beauty like that would have been a shame to lose.");
 	output(" If you ever get tired of pretending that you’re anything more than a slutty little bimbo pet, feel free to come on back and I’ll take care of the rest of your pesky mind. But for now…</i>”, you realise she’s moved behind you while she’s been talking, and suddenly you feel her claws sinking into the ample flesh of your rear before she continues, “<i>it’s time to claim first use.</i>”");
 	output("\n\nShe thrusts deeply into your ass before you put together her intentions, and as your eyes shoot open you can’t think about anything other than her inside you. It feels so good, her thick, powerful cock filling you utterly, while your slick and willing asshole eagerly accepts her intrusion. Your eyes roll back in your head in bliss; you moan deliriously as she settles into a fierce rhythm, making your massive breasts swing pendulously beneath you. She doesn’t even pretend to be gentle; grabbing your head and pulling you backwards towards her, both for leverage and as a gesture of dominance, and your only reaction is one of pleasure. Of course she isn’t gentle with you, she shouldn’t be - it’s right for to be fucked fiercely, to be held down and bred with wild abandon. Or tied up and forced to suck cock, or let loose to service others on command, or anything else demanded of you - you’re there to fuck and be fucked exactly how anyone else wants you to be. How could you be anything else? A desperate gasp makes it way out of your mouth as you feel any reservations drifting away, replaced with insatiable lust and an absolute need to serve. You shudder as you feel the cock filling you give one last dramatic thrust, and then the bliss of someone cumming inside you, and on the back of that wonderful feeling you finally, <i>finally</i> feel yourself properly orgasm; your cock spurting again and again onto the floor beneath you as your slit sends a great tide of slickness sliding down the inside of your thighs.");
-	buttChange(0,120,true,true,false);
+	buttChange(120,true,true,false);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -311,11 +346,23 @@ function heyDocImAHero():void
 	output("\n\n“<i>Now</i>”, Dr Badger says nonchalantly, as though nothing unusual had happened, “<i>with that… consultation out of the way, do you care to buy any of my take home products? I’ve got some lovely pills that will give you a nice little bimbo kick, although nowhere near as much as my personal attention.”");
 	//Give PC “Dumbfuck” perk, set at unlock level 9 (Breed-Hungry: +5 fertility rating and balls fill to halfway much faster than normal)
 	//Easy Perk
-	(<b>Bimbo Perk Upgraded: Easy</b> - gain 20% more lust from combat sources.)
-	//Inhuman Lust
-	(<b>Bimbo Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 15.)
+	if(!pc.hasPerk("Easy"))
+	{
+		output("\n\n(<b>Bimbo Perk Gained: Easy</b> - gain 20% more lust from combat sources.)");
+		pc.createPerk("Easy",20,0,0,0,"Gain 20% more lust from combat sources.");
+	}
+	//Inhuman Desire
+	if(!pc.hasPerk("Inhuman Desire"))
+	{
+		output("\n\n(<b>Bimbo Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 15.)");
+		pc.createPerk("Inhuman Desire",15,0,0,0,"Increases maximum lust by 15.");
+	}
 	//Breed-Hungry perk
-	(<b>Perk Gained: Breed Hungry</b> - Your balls refill much faster than normal and your pregnancies are more likely and faster.)
+	if(!pc.hasPerk("Breed Hungry"))
+	{
+		output("\n\n(<b>Bimbo Perk Gained: Breed Hungry</b> - Your balls refill much faster than normal and your pregnancies are more likely and faster.)");
+		pc.createPerk("Breed Hungry",15,0,0,0,"Increases speed that semen is created at and the pregnancy speed.");
+	}
 	//[Reduce PC intelligence by 30 to minimum of 20]
 	if(pc.libido() < 30) pc.libido(10);
 	if(pc.libido() < 50) pc.libido(10);
@@ -331,13 +378,15 @@ function heyDocImAHero():void
 }
 
 //I’M JUST HERE TO SHOP
-
-
-The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. “<i>Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for. 
-	“<i>What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.</i>” She rolls her eyes for a moment, mumbling to herself, “<i>not as much as I could have in person, but </i>oh well.”
-	“<i>Anyway</i>”, she continues to you directly, “<i>what do you want</i>?”
-
-//[Buy Dumbfuck pills] [Leave]
-
-
-
+function heyDocImJustHereToShop():void
+{
+	clearOutput();
+	userInterface.showBust("DRBADGER");
+	userInterface.showName("DR.\nBADGER");
+	author("Abe E. Seedy");
+	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. “<i>Fiiine</i>!” She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
+	output("\n\n“<i>What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.</i>” She rolls her eyes for a moment, mumbling to herself, “<i>not as much as I could have in person, but </i>oh well.”");
+	output("\n\n“<i>Anyway</i>”, she continues to you directly, “<i>what do you want</i>?”");
+	//[Buy Dumbfuck pills] [Leave]
+	drBadgerMenu();
+}

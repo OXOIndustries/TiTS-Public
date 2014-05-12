@@ -961,7 +961,13 @@ package classes {
 		}
 		
 		public var elasticity: Number = 1;
-		public var pregnancyMultiplier: Number = 1;
+		public var pregnancyMultiplierRaw: Number = 1;
+		public function pregnancyMultiplier():Number
+		{
+			var bonus:Number = 0;
+			if(hasPerk("Breed Hungry")) bonus += .5;
+			return (pregnancyMultiplierRaw + bonus);
+		}
 		public var girlCumType: Number = GLOBAL.GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
@@ -1300,6 +1306,9 @@ package classes {
 				case "nippleCocks":
 				case "dickNipples":
 					buffer = pluralize(nippleCockDescript());
+					break;
+				case "nippleColor":
+					buffer = nippleColor;
 					break;
 				case "eachCock":
 					buffer = eachCock();
@@ -1690,6 +1699,7 @@ package classes {
 		public function lustDamage(arg:Number = 0):Number
 		{
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
+			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
@@ -1888,7 +1898,9 @@ package classes {
 		}
 
 		public function lustMax(): Number {
-			return 100;
+			var bonus:int = 0;
+			if(hasPerk("Inhuman Desire")) bonus += statusEffectv1("Inhuman Desire");
+			return (100 + bonus);
 		}
 		public function physiqueMax(): Number {
 			var bonuses:int = 0;
@@ -4658,12 +4670,14 @@ package classes {
 			return Math.round(maxCum() * ballFullness);
 		}
 		public function cumProduced(minutes: Number): void {
+			var cumDelta:Number = 0;
 			while (minutes > 0) {
-				ballFullness += refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
-				if (ballFullness >= 100) ballFullness = 100;
-				//5.5 for 10"
+				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+				if(hasPerk("Breed Hungry")) cumDelta *= 2;
+				ballFullness += cumDelta;
 				minutes--;
 			}
+			if (ballFullness >= 100) ballFullness = 100;
 		}
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;

@@ -105,6 +105,7 @@
 		include "../includes/aliss.as";
 		include "../includes/shekka.as";
 		include "../includes/anno.as";
+		include "../includes/drBadger.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";

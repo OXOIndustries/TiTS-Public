@@ -512,7 +512,7 @@ function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Incubator"))
 	{
-		pc.pregnancyMultiplier -= .5;
+		pc.pregnancyMultiplierRaw -= .5;
 		pc.removePerk("Incubator");
 	}
 	if(pc.hasPerk("Hung"))
@@ -587,7 +587,7 @@ function applySexualGift(arg:String = "none"):void {
 		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
 	}
 	else if(arg == "incubator") {
-		pc.pregnancyMultiplier += .5;
+		pc.pregnancyMultiplierRaw += .5;
 		pc.createPerk("Incubator",0,0,0,0,"Increases the speed at which your pregnancies progress.");
 	}
 	else if(arg == "hung") {
