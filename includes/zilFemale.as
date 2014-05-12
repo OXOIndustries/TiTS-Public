@@ -1176,7 +1176,7 @@ function forceyFaceSittingFromFemzil():void {
 	}
 	else output("[pc.asshole] clenching wildly, hungry for penetration");
 	output(". Of course, you have to take a deep breath after that, sealing your fate. The pheromones pouring off her cunt have worked you into a");
-	if(pc.lust() >= 100) output("n even greater");
+	if(pc.lust() >= pc.lustMax()) output("n even greater");
 	output(" frenzy, one that has you ready to do anything just to plunge your face into that glorious, golden pussy and bathe it with your tongue, luxuriating in its heavenly scent.");
 	output("\n\nGiggling, the zil perched atop you asks, <i>“See something you like, off-worlder?”</i> She sticks a finger inside herself before pulling it out to hold under your nose, giving you a nice big whiff. When you sigh and lean forward to lick it, she playfully dodges, wiping it off on the bridge of your nose.");
 	if(pc.hasTongueFlag(GLOBAL.LONG)) output(" You flick out your extra-long tongue experimentally, but the zil just catches it and tuts at you disapprovingly.");

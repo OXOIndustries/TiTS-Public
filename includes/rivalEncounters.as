@@ -172,7 +172,7 @@ function daneCrotchSmother():void {
 	output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
 	output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
 	pc.lust(5+rand(7));
-	if(pc.lust() >= 100) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + pc.mfn("boy","girl","pet") + ".\"</i>");
+	if(pc.lust() >= pc.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + pc.mfn("boy","girl","pet") + ".\"</i>");
 	pc.addStatusValue("Grappled",3,1);
 	processCombat();
 }
@@ -197,7 +197,7 @@ function daneLickitongue():void {
 	else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
 	output(" Dane's tongue feels amazing.");
 	pc.lust(20+rand(10));
-	if(pc.lust() >= 100) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
+	if(pc.lust() >= pc.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
 	processCombat();
 }
 
@@ -254,7 +254,7 @@ function loseToDane():void {
 	}
 	//Merge
 	output("\n\nStrong hands tear your [pc.gear] from your body a piece at a time. Your codex is tossed over a broad shoulder and into the mud. Dane doesn't seem to care about any of your possessions so long as they don't get in his way. ");
-	if(pc.lust() >= 100) output("You don't really mind either, so long as he can take you again and again and again....");
+	if(pc.lust() >= pc.lustMax()) output("You don't really mind either, so long as he can take you again and again and again....");
 	else output("You give a token protest but lack the ability to properly resist.");
 	output(" The pale-skinned mercenary touches the clasps of his armor. It noisily clanks and clacks as the straps disengage, withdrawing into the shining body of the protective garment like snakes into burrows. It falls off him into his waiting hands, which carefully stow the armor into a pack on his back.");
 

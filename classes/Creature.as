@@ -1,4 +1,4 @@
-package classes {
+﻿package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -1592,6 +1592,15 @@ package classes {
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("cock");
 			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("vagina");
+			if (hasStatusEffect("Dumbfuck"))
+			{
+				if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
+				{
+					createStatusEffect("Dumbfuck Orgasm Procced", 0, 0, 0, 0, true, "", "", false, 0);
+				}
+				addStatusValue("Dumbfuck Orgasm Procced",1,1);
+				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
+			}
 		}
 		public function isNude(): Boolean {
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
@@ -1679,6 +1688,10 @@ package classes {
 				{
 					lustRaw = lustMax();
 				}
+				if (lustRaw < lustMin()) 
+				{
+					lustRaw = lustMin();
+				}
 			}
 			
 			var currLust:int = lustRaw + lustMod;
@@ -1687,9 +1700,9 @@ package classes {
 			{
 				return lustMax();
 			}
-			else if (currLust < Creature.STAT_CLAMP_VALUE)
+			else if (currLust < lustMin())
 			{
-				return Creature.STAT_CLAMP_VALUE;
+				return lustMin();
 			}
 			else 
 			{
@@ -1813,6 +1826,8 @@ package classes {
 			}
 			else if (arg != 0)
 			{
+				//Certain bimbo TFs reduce gains by 50%.
+				if(hasPerk("Drug Fucked") && arg > 0) arg /= 2;
 				intelligenceRaw += arg;
 				if (intelligenceRaw > intelligenceMax())
 				{
@@ -1844,6 +1859,7 @@ package classes {
 			}
 			else if (arg != 0)
 			{
+				if(arg < 0 && hasStatusEffect("Weak Will")) arg *= 2;
 				willpowerRaw += arg;
 				if (willpowerRaw > willpowerMax())
 				{
@@ -1874,10 +1890,16 @@ package classes {
 			}
 			else if (arg != 0)
 			{
+				//Certain bimbo TFs double gains
+				if(hasPerk("Drug Fucked") && arg > 0) arg *= 2;
 				libidoRaw += arg;
 				if (libidoRaw > libidoMax())
 				{
 					libidoRaw = libidoMax();
+				}
+				if (libidoRaw < libidoMin())
+				{
+					libidoRaw = libidoMin();
 				}
 			}
 			
@@ -1887,9 +1909,9 @@ package classes {
 			{
 				return libidoMax();
 			}
-			else if (currLib < Creature.STAT_CLAMP_VALUE)
+			else if (currLib < libidoMin())
 			{
-				return Creature.STAT_CLAMP_VALUE;
+				return libidoMin();;
 			}
 			else
 			{
@@ -1899,8 +1921,14 @@ package classes {
 
 		public function lustMax(): Number {
 			var bonus:int = 0;
-			if(hasPerk("Inhuman Desire")) bonus += statusEffectv1("Inhuman Desire");
+			if(hasPerk("Inhuman Desire")) bonus += perkv1("Inhuman Desire");
+			//trace("Max lust: " + (bonus + 100));
 			return (100 + bonus);
+		}
+		public function lustMin(): Number {
+			var bonus:int = 0;
+			if(hasPerk("Drug Fucked")) bonus += 10;
+			return (0 + bonus);
 		}
 		public function physiqueMax(): Number {
 			var bonuses:int = 0;
@@ -1921,6 +1949,11 @@ package classes {
 		}
 		public function libidoMax(): Number {
 			return 100;
+		}
+		public function libidoMin(): Number {
+			var bonus:int = 0;
+			if(hasPerk("Drug Fucked")) bonus += 40;
+			return (0 + bonus);
 		}
 		public function slowStatGain(stat: String, arg: Number = 0): Number {
 			var statCurrent: Number = 0;
@@ -3151,6 +3184,22 @@ package classes {
 		}
 		public function setPerkValue(perkName: String, perkValueNum: Number = 1, newNum: Number = 0) {
 			setStorageValue(perks, perkName, perkValueNum, newNum);
+		}
+		public function setPerkTooltip(perkName: String, perkTooltip: String):void
+		{
+			var counter: Number = perks.length;
+			//Various Errors preventing action
+			if (perks.length <= 0) return;
+			while (counter > 0) {
+				counter--;
+				//Find it, change it, quit out
+				if (perks[counter].perkName == perkName) {
+					perks[counter].tooltip = perkTooltip;
+					return;
+				}
+			}
+			trace("ERROR: Looking for status '" + perkName + "' to change value " + perkTooltip + ", and " + short + " does not have the status affect.");
+			return;
 		}
 		public function setStorageValue(array: Array, storageName: String, storageValueNum: int, newValue) {
 			var counter: Number = array.length;
@@ -4743,6 +4792,9 @@ package classes {
 		}
 		public function hasCockTail(): Boolean {
 			return hasTailCock();
+		}
+		public function hasTailgina(): Boolean {
+			return hasTailCunt();
 		}
 		public function hasCuntTail(): Boolean {
 			return hasTailCunt();

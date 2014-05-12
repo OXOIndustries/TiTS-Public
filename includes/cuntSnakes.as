@@ -120,7 +120,7 @@ function aphrodisiacBite():void {
 	else {
 		output("Two spears of hot lust slip through your defenses and straight into your vulnerable veins. In a second, genitalia-engorging chemicals are pumped throughout your body. More and more of them spread through you as the snake injects artificial ardor straight into you.");
 		pc.lust(10+rand(5));
-		if(pc.lust() >= 100) {
+		if(pc.lust() >= pc.lustMax()) {
 			output("\n\nYou moan and lie back, ");
 			if(pc.armor.shortName != "") output("digging into your [pc.armor]");
 			else if(pc.lowerUndergarment.shortName != "") output("digging into your [pc.lowerUndergarment]");

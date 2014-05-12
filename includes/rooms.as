@@ -1364,9 +1364,10 @@ function initializeRooms():void
 	//#9 EAST NOVAHOME
 	rooms["209"] = new RoomClass(this);
 	rooms["209"].roomName = "EAST\nNOVAHOME";
-	rooms["209"].description = "The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.";
+	rooms["209"].description = "The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There's still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.";
 	rooms["209"].runOnEnter = undefined;
 	rooms["209"].westExit = "208";
+	rooms["209"].northExit = "304";
 	rooms["209"].planet = "PLANET: TARKUS";
 	rooms["209"].system = "SYSTEM: REDACTED";
 	rooms["209"].addFlag(GLOBAL.INDOOR);
@@ -2459,6 +2460,16 @@ function initializeRooms():void
 	rooms["303"].system = "SYSTEM: REDACTED";
 	rooms["303"].addFlag(GLOBAL.INDOOR);
 	rooms["303"].addFlag(GLOBAL.NPC);
+
+	rooms["304"] = new RoomClass(this);
+	rooms["304"].roomName = "DR. BADGER'S\nBIMBOTORIUM";
+	rooms["304"].description = "";
+	rooms["304"].runOnEnter = drBadgerBonusShit;
+	rooms["304"].southExit = "209";
+	rooms["304"].planet = "PLANET: TARKUS";
+	rooms["304"].system = "SYSTEM: REDACTED";
+	rooms["304"].addFlag(GLOBAL.INDOOR);
+	rooms["304"].addFlag(GLOBAL.NPC);
 	
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "THE\nMESS";

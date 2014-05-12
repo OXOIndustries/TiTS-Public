@@ -30,6 +30,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Gray Goo",grayGooCodex);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Lapinara",lapinaraCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydian",sydianCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 }
 
 public function codexHomeFunction():void
@@ -62,6 +63,25 @@ public function codexHomeFunction():void
 
 	userInterface.outputCodex();
 }
+
+//Dumbfuck - A Bimbo TF
+//In a nutshell, this stuff boosts minimum lust slightly, minimum libido significantly, and worsens the effects with every orgasm while it remains in your system, eventually granting a few perks.
+function dumbfuckCodexEntry():void
+{
+	//Codex Article:
+	clearOutputCodex();
+	outputCodex(header("Dumbfuck, an Illegal Drug"));
+	outputCodex("The drug colloquially known as \"Dumbfuck\" was originally designed as an all-in-one fertility treatment for couples having trouble conceiving by Xenogen Biotech. It was designed to rebalance hormones of males, females, and hermaphrodites to promote a stronger sex drive as well as slightly enhancing the reproductive capabilities of each. During initial trials, it was discovered that the drug and microsurgeon cocktail had a number of unintended side effects that brought about the cessation of all research into it.");
+	outputCodex("\n\nThe first test subjects reported an increase in sensitivity and drive, as expected. Clinical tests also showed an uptick in fertility and virility well within expected bounds. What wasn't within expected bounds were the subjects' extreme reactions to undergoing an orgasm. The altered body chemistry and drugs combined to set of a cascade of neural activity upon climax.");
+	outputCodex("\n\nThis neural cascades did not peak until a few minutes after orgasm at the earliest, often accompanied by at least one uncontrollable sneeze and slight draining of the sinuses. Further research determined that the sneezes were merely a side effect triggered by wildly misfiring neurons as they adjusted their linkages. The end result of these new linkages was a confirmed loss of intellect and an increase in libido and sexual pleasure - roughly one I.Q. point per orgasm, though some subjects experienced noticeably more or less.");
+	outputCodex("\n\nMost subjects reported feeling \"dizzy\" or \"a little confused\" during their first few cascades. They seemed almost oblivious to their own rising desire or the way their brains were becoming increasingly obsessed with sexual pleasure. However, later on, they reported: <i>\"like, feeling great when they sneeze out brains to make more room for sex!\"</i>");
+	outputCodex("\n\nBy this point, it was impossible to corral the sex-obsessed volunteers into taking part in any moderately challenging mental testing. Keeping them from fucking or masturbating while the drugs exited their system was nigh impossible. After the chemicals left their bloodstream, additional changes stopped, but they were left with a permanently diminished mental capacity and superhuman libidos.");
+	outputCodex("\n\nA few were kept in house for further study. While superficially dumb, they mastered techniques both sexual and seductive with exceeding aptitude. They were still clearly capable of problem solving, just much, much more focused into a single discipline. One of the dumbest girls, Stacy \\\[Redacted\\\] discovered that she did enjoy more general learning when coupled with masturbation. She went on to master advanced physics and currently serves as a Xenogen personal instructor using her unique talents.");
+	outputCodex("\n\nIn conclusion, Xenogen Biotech created one of the first and most unusual bimbofication drugs. The company buried it deep until a Black Void hacker stole the code and chemical composition. Nowadays, an enhanced version of the stuff can be found in the hands of any moderately talented scientist with loose morals, though the U.G.C. declared it universally illegal in short order.");
+	outputCodex("\n\nThe drug leaves marked, permanent changes in brain and body chemistry that make it easy to identify one who has used it.");
+	CodexManager.viewedEntry("Dumbfuck");
+}
+
 
 public function sydianCodexEntry():void
 {

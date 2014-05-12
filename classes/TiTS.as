@@ -106,6 +106,7 @@
 		include "../includes/shekka.as";
 		include "../includes/anno.as";
 		include "../includes/drBadger.as";
+		include "../includes/dumbfuckBonus.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
