@@ -811,6 +811,7 @@ function helpAlissWithSexyTiems():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You're a little too big to fuck Aliss in the ass.");
 	}
+	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
