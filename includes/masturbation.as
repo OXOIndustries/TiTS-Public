@@ -130,6 +130,7 @@ function masturbateMenu(roundTwo:Boolean = false):void {
 	if (roundTwo == true)
 	{
 		selectRandomFap(faps);
+		return;
 	}
 	
 	// If we got back a null array from the listing functor, it should have created the button for us.

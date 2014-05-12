@@ -10,7 +10,6 @@
 	
 	public class HorsePill extends ItemSlotClass
 	{
-		
 		//constructor
 		public function HorsePill()
 		{
@@ -601,7 +600,7 @@
 			if(target.hairColor != "black" && target.hairColor != "brown" && target.hairColor != "chestnut" && target.hairColor != "white")
 				TFList[TFList.length] = 8;
 			//#9 Change fur color to chocolate, ivory, brown-dappled, or sable.
-			if(target.furColor != "chocolate" && target.furColor != "ivory" && target.furColor != "brown-dappled" && target.furColor != "sable")
+			if(target.skinType == GLOBAL.FUR && target.furColor != "chocolate" && target.furColor != "ivory" && target.furColor != "brown-dappled" && target.furColor != "sable")
 				TFList[TFList.length] = 9;
 			//#10 Grow hoarse ears - need tail first.
 			if(target.earType != GLOBAL.EQUINE && target.tailType == GLOBAL.EQUINE)

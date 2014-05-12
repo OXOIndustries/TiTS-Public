@@ -153,7 +153,7 @@ function biteAttackDudeleen():void {
 	pc.reflexesMod -= .5;
 	pc.addStatusValue("Naleen Venom",1,.5);
 	pc.lust(10+rand(10));
-	if(pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+	if(pc.lust() >= pc.lustMax() || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
 	processCombat();
 }
 	

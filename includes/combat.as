@@ -39,7 +39,7 @@ function combatMainMenu():void
 		victoryRouting();
 		return;
 	}
-	else if(pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && (foes[0] is Naleen || foes[0] is NaleenMale))) {
+	else if(pc.HP() <= 0 || pc.lust() >= pc.lustMax() || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom") && (foes[0] is Naleen || foes[0] is NaleenMale))) {
 		//YOU LOSE! GOOD DAY SIR!
 		trace("DEFEAT LOSS! - IN MAIN MENU");
 		output("\n");
@@ -447,7 +447,7 @@ function processCombat():void
 		this.addButton(0,"Victory",combatMainMenu);
 		return;
 	}
-	if (pc.HP() <= 0 || pc.lust() >= 100 || ((pc.physique() <= 0 || pc.willpower() <= 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen))
+	if (pc.HP() <= 0 || pc.lust() >= pc.lustMax() || ((pc.physique() <= 0 || pc.willpower() <= 0) && pc.hasStatusEffect("Naleen Venom") && foes[0] is Naleen))
 	{
 		trace("DEFEAT LOSS!");
 		trace("PHYS: " + pc.physique() + " WILLPOWAH:" + pc.willpower());
@@ -1100,7 +1100,7 @@ function displayMonsterStatus(targetFoe):void
 		else output("<b>is </b>");
 		output("<b>too turned on to fight.</b>\n");
 	}
-	else if(pc.lust() >= 100 || pc.HP() <= 0) {
+	else if(pc.lust() >= pc.lustMax() || pc.HP() <= 0) {
 		if(pc.HP() <= 0) {
 			if(foes[0].plural || foes.length > 1) output("<b>Your enemies have knocked you off your " + pc.feet() + "!</b>\n");
 			else output("<b>" + targetFoe.capitalA + targetFoe.short + " has knocked you off your " + pc.feet() + "!</b>\n");
@@ -1992,12 +1992,14 @@ function sense(target:Creature):void {
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
 	if(target.lustVuln == 0) output("You don't think sexuality can win this fight!\n");
 	var buffer:String = "";
+	var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
+	if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
 	for(var i:int = 0; i < GLOBAL.MAX_SEXPREF_VALUE; i++) {
 		buffer = GLOBAL.SEXPREF_DESCRIPTORS[i];
 		//If has a preference set, talk about it!
 		if(target.sexualPreferences.getPref(i) != 0) {
 			//If succeeds at sense check!
-			if(pc.intelligence()/2 + pc.libido()/20 + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
+			if(PCBonus + rand(20) + 1 >= target.level * 3 * (150-target.libido())/100) 
 			{
 				if(target.sexualPreferences.getPref(i) == GLOBAL.REALLY_LIKES_SEXPREF)
 				{
