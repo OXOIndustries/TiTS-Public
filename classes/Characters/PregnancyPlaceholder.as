@@ -38,7 +38,7 @@ package classes.Characters
 			
 			this.fertility = 15;
 			this.clitLength = 0.5;
-			this.pregnancyMultiplier = 1;
+			this.pregnancyMultiplierRaw = 1;
 			
 			this.balls = 2;
 			this.cumMultiplier = 50;

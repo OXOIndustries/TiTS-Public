@@ -156,7 +156,7 @@ package classes.Characters
 			
 			this.fertility = 0;
 			this.clitLength = 0.5;
-			this.pregnancyMultiplier = 1;
+			this.pregnancyMultiplierRaw = 1;
 			
 			this.breastRows[0].breastRatingRaw = 0;
 			
