@@ -1343,6 +1343,7 @@ public function mimbraneSleepEvents():void
 			// Noticed Reproduction
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("Some totally awesome dream of yours fades away, chased away by an odd feeling. Going back to sleep is paramount until you again feel an odd straining in your [pc.cock]. No longer concerned with pursuing your lost fantasy, you throw off your covers to figure out what is going on. The slab of meat has swollen considerably and appears to be erect, but you’re more concerned with the erratic twitching. When your cock spasms to one side, you finally notice that the Mimbrane’s eyes are wide open. The parasite appears to be under some heavy stress. Strangely, you feel fine despite knowing full well the second skin has worked all sorts of kinks into your nervous system.");
 				output("\n\nYour convulsing dick lets out a long, drawn-out squeak. It feels a little- Suddenly the life just vanishes from the Mimbrane’s eyes. The distended pecker limps to one side. For a moment you’re concerned the little bastard is doing something malicious, but then your senses kick in. The Mimbrane is reproducing!");
 				if (flags["MIMBRANE_COCK_REPRODUCTION_NOTICED"] != undefined) output(" The vestiges of sleep must be why you forgot.");
@@ -1385,6 +1386,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("One second you’re a mighty sexual " +  pc.mf("god", "goddess") + ", dominating the galaxy armed only with your amazing body. The next second you’re listening to the hum of your ship. Eyes dart around in pursuit of your dream slayer, but it’s a curious straining down at your [pc.pussy] that lets you know who the culprit was. Covers are tossed to the side, dim lighting revealing your spasming snatch. The Mimbrane’s miniature eyes are open as wide as they can manage. Something is wrong, but you sure as hell aren’t feeling anything stranger than the typical oddness that follows involuntary movement of your body. ");
 				output("\n\nStrained little chirps and squeaks escape your folds as they stretch and clench. The puffed-up pussy looks to be going through some ordeal, clearly. For a brief moment you figure the parasite is up to no good, but then you remember your codex’s valuable information. The little creature is reproducing!");
 				if (flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"] != undefined) output(" The vestiges of sleep must be why you forgot.");
@@ -1424,6 +1426,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("A delightful romp through the idyllic dreamscape fades into whatever forgotten realm lost dreams subside. Something has pushed you out from slumber and into the dim silence of your idling ship. You lay motionless on your back staring at nothing in particular. For a moment you hope you’ll merely fade back unconsciousness, but a trembling shudder from your [pc.butt] about scares you half to death. Covers fly off as you flip over; though you may be curious enough to investigate the disturbance, your half-conscious subconscious isn’t ready to completely surrender the notion of returning to sleep.");
 				output("\n\nThe moment your hind quarters aren’t pressed against your bed, strained squeaks and chirps escape your [pc.asshole]. Its clear now that the strange spasms and anal contractions are due to this restless Mimbrane. Typically, sexual urges and depravity accompany strange, uncontrolled body complications. So its at least nice to know that no one slipped you something sinister.");
 				output("\n\nBut then what is wrong with the parasite for it to suddenly send your bubble butt into a conniption? Is it hungry? Does the parasite long for your hind end to be ravaged by some uncouth cock? Its already driven your poor rear hole to a gaping moist mess. What more does it want? Then it hits you: your codex mentioned something about Mimbrane reproduction. The enthusiastic bugger has plumped your ass out so much that it must be ready to split off a new Mimbrane! ");
@@ -1468,6 +1471,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("The melodic hums of your ship surround you, a blissful sleep only resident in your memory. Something’s dragged you back to consciousness, but you’ll be damned if it’ll keep you here. Before you can toss and turn, however, that “something” materializes. Your [pc.balls] are wiggling around something fierce! Covers fly to the side, fueled by your sudden anxiety that some manner of insect – or worse – has infiltrated your privates.");
 				output("\n\nAll you find is the Mimbrane that has already captured your cum pouch. Its normally well-hid little bumps for eyes look to be clenched shut, straining for some reason. The parasite is trembling about, rustling your [pc.sack] every so often in its costive spasms. What’s gotten into this thing? Is it not enough that its already jacked up your [pc.cumType] factories? You’re tempted to grab onto the possessed purse, but your frustrated weariness is brutally stabbed by calm reason and blossoming memories.");
 				if (flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"] != undefined) output(" You really ought to try and recall times like these more often before jumping to other conclusions.");
@@ -1507,6 +1511,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("Sweet dreams are made of this. Who are you to disagree? You travel the world and the hum of your ship–");
 				output("\n\nGroggy eyes stare at the uninteresting ceiling of your room. Some manner of slumber has been mercilessly slain, leaving you confused and awake. It isn’t entirely obvious why you woke up, but you aren’t all that interested in finding out. But find out you will, as your [pc.fullChest] frightens you down to the core with a mighty shudder. The massive mounds are straining, trembling and wobbling as if possessed by some unholy demon!");
 				output("\n\nWhen you hear – and feel – an exerted chirp from one of your [pc.nipples], it becomes a lot more clear what the real deal is. Your chest-mounted Mimbrane seems to be having some sort of complication, flailing and shaking your titties around as a result. You attempt to calm the parasite, but it still shakes and thrusts in your grasp. Is it up to some new form of unusual mischief? Or maybe its getting ready to multiply?");
@@ -1553,6 +1558,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				var bothHands:Boolean = false;
 				if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right")) bothHands = true;
 
@@ -1718,6 +1724,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				var bothFeet:Boolean = false;
 				if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
 
@@ -1876,7 +1883,8 @@ public function mimbraneSleepEvents():void
 			{
 				eventQueue.push(function():void {
 					clearOutput();
-					userInterface.showBust("MIMBRANE");
+					//userInterface.showBust("MIMBRANE");
+					kGAMECLASS.userInterface.author("Kirbu");
 					flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"]++;
 
 					output("Something’s escorted you away from blissful slumber. Your ship is as silent as always, never the cheeriest of greeters. Dazed eyes peer around the room, curious to find anything out of the ordinary. They find nothing. Did you just wake up for no reason?");
@@ -2028,7 +2036,8 @@ public function mimbraneSleepEvents():void
 public function mimbraneFaceReproduction():void
 {
 	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	//userInterface.showBust("MIMBRANE");
+	kGAMECLASS.userInterface.author("Kirbu");
 
 	output("“Anything you want want before I head out for the night?” Victor asks. You stare around the room blankly, trying to think if you left anything out. Nothing comes to mind, and you tell him as much. Your father gives you a slight little wave and heads out the door.");
 	output("\n\nWait! An ice cream cone would be great! You jump over the coffee table and barrel down towards the door to catch him before he’s gone. Inky blackness is all that greets you. Which way did he go? You squint and strain, but can’t make out any details. Nothing’s clear. Nothing doing but to go back inside.");
@@ -2050,7 +2059,8 @@ public function mimbraneFaceReproduction():void
 public function mimbraneFaceReproductionGo(dream:Boolean = false):void
 {
 	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	//userInterface.showBust("MIMBRANE");
+	kGAMECLASS.userInterface.author("Kirbu");
 
 	if (dream)
 	{
