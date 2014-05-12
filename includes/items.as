@@ -1,4 +1,6 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Creature;
+import classes.ItemSlotClass;
 import classes.StringUtil;
 import classes.TiTS;
 
@@ -53,6 +55,45 @@ function useItem(item:ItemSlotClass):void {
 			}
 		}
 	}
+}
+
+// A call with just an item will 
+function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
+{
+	// This is kinda bullshit. To save cheesing args for the function when called via a button,
+	// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
+	// pressed a button to invoke the call
+	if (targetCreature == null)
+	{
+		if (item.targetsSelf == true)
+		{
+			targetCreature = pc;
+		}
+		else
+		{
+			// TODO: Show target selection interface
+			// Invoke menu, early return, call back to self
+			targetCreature = foes[0];
+		}
+	}
+	
+	if (usingCreature == null)
+	{
+		usingCreature = pc;
+	}
+	
+	item.useFunction(targetCreature, usingCreature);
+	
+	if (!debug)
+	{
+		item.quantity--;
+		if (item.quantity <= 0 && usingCreature.hasItem(item))
+		{
+			usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
+		}
+	}
+	
+	processCombat();
 }
 
 function shop(keeper:Creature):void {
@@ -161,7 +202,8 @@ function getBuyPrice(keeper:Creature,basePrice:Number):Number {
 	return Math.round(basePrice * keeper.sellMarkup * pc.buyMarkdown);
 }
 
-function inventory():void {
+function generalInventoryMenu():void
+{
 	clearOutput();
 	var x:int = 0;
 	itemScreen = inventory;
@@ -269,6 +311,35 @@ function inventory():void {
 	//Set user and target.
 	itemUser = pc;
 	this.addButton(14,"Back",mainGameMenu);
+}
+
+function combatInventoryMenu():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	itemScreen = inventory;
+	useItemFunction = inventory;
+	
+	output2("What item would you like to use?");
+	
+	for (var i:int = 0; i < pc.inventory.length; i++)
+	{
+		(this as TiTS).addItemButton((i < 14) ? i : i + 1, pc.inventory[i], combatUseItem, pc.inventory[i]);
+	}
+	
+	addButton(14, "Back", combatMainMenu);
+}
+
+function inventory():void 
+{
+	if (!inCombat())
+	{
+		generalInventoryMenu();
+	}
+	else
+	{
+		combatInventoryMenu();
+	}
 }
 
 

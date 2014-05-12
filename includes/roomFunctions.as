@@ -7,6 +7,8 @@ import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
 import classes.Items.Miscellaneous.PHAccess;
+import classes.Items.Miscellaneous.TestGrenade;
+import classes.Items.Miscellaneous.TestHPBooster;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
@@ -82,31 +84,26 @@ function debugMenus():void
 	addItemButton(3, new Goovolver(), function():void {
 		output("\n\nAnd I thought my test items were OP!");
 		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new Goovolver());
+		quickLoot(new Goovolver());
+	});
+	
+	addButton(7, "Test Nades", function():void {
 		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
+		var tNades:TestGrenade = new TestGrenade();
+		tNades.quantity = 10;
 		
-		itemCollect(foundLootItems);
-	});
+		quickLoot(tNades);
+		
+	}, undefined, "Test Grenades", "Get some testing grenades for combat stuff.");
 	
-	addButton(7, "Milodan Pair", function():void {
-		userInterface.showBust("MILODANMALE", "MILODANFEM");
-		userInterface.bringLastBustToTop();
-		output("\n\nTesting bust images yo!");
-	});
-	
-	addButton(8, "Milodan Fem", function():void {
-		userInterface.showBust("MILODANFEM");
-		output("\n\nTesting fem bust image yo!");
-	});
-	
-	addButton(9, "Milodan Male", function():void {
-		userInterface.showBust("MILODANMALE");
-		output("\n\nTesting male bust image yo!");
-	});
+	addButton(8, "Test HP.B", function():void {
+		
+		var tBooster:TestHPBooster = new TestHPBooster();
+		tBooster.quantity = 10;
+		
+		quickLoot(tBooster);
+		
+	}, undefined, "Test Booster", "Get some test HP boosters.");
 	
 	addButton(4, "Cashmoney", function():void {
 		pc.credits += 100000;
@@ -115,6 +112,15 @@ function debugMenus():void
 	addButton(5, "XP", function():void {
 		(pc as PlayerCharacter).XPRaw = (pc as PlayerCharacter).XPMax();
 	});
+}
+
+function quickLoot(... args):void
+{
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(args);
 }
 
 function bountyBoardExtra():Boolean
@@ -167,11 +173,7 @@ function jungleEncounterChances():Boolean {
 		flags["JUNGLE_STEP"]++;
 	}
 	
-	if (debug)
-	{
-		encounterMimbrane();
-		return true;
-	}
+	// APPARANTLY I AM NOT ALLOWED DEBUG FUNCTIONS. FML
 	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
@@ -318,7 +320,34 @@ function jungleDeepEncounters():Boolean {
 	return false;
 }
 
+//Raskvel + Lapinara
 function rustPlainsEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterALapinara;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+
+//Goo, Sydian
+function rustCoastEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	else flags["RUST_STEP"]++;
@@ -333,21 +362,64 @@ function rustPlainsEncounters():Boolean {
 		choices[choices.length] = encounterMaleSydian;
 		choices[choices.length] = encounterMaleSydian;
 		
-		if(!debug)
-		{
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterALapinara;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterHostileRaskvelFemale;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterASexBot;
-			choices[choices.length] = encounterDasGooGray;
-			choices[choices.length] = encounterDasGooGray;
-			choices[choices.length] = encounterDasGooGray;
-		}
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+	
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+
+//Raskvel + Saxbots + Sydians
+function rustRidgesEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterMaleSydian;
+		choices[choices.length] = encounterMaleSydian;
+		choices[choices.length] = encounterMaleSydian;
+		
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterHostileRaskvelFemale;
+		//choices[choices.length] = encounterHostileRaskvelFemale;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+
+		//Run the event
+		choices[rand(choices.length)]();
+		return true;
+	}
+	return false;
+}
+//Goos and Saxbots
+function rustScytheGladeEncounters():Boolean {
+	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
+	else flags["RUST_STEP"]++;
+	
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter
+	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+		//Reset step counter
+		flags["RUST_STEP"] = 0;
+		
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterASexBot;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
+		choices[choices.length] = encounterDasGooGray;
 
 		//Run the event
 		choices[rand(choices.length)]();

@@ -56,7 +56,7 @@
 		}
 		
 		//METHOD ACTING!
-		override public function useFunction(target:Creature):Boolean
+		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var changes:int = 0;
 			var changeLimit:int = 1;
@@ -621,6 +621,8 @@
 			//#15 SNOUTS! THE SAVIN SPECIAL! - req's fur
 			if(target.faceType != GLOBAL.EQUINE && target.skinType == GLOBAL.FUR && target.faceTypeUnlocked(GLOBAL.EQUINE))
 				TFList[TFList.length] = 15;
+			if(target.hasStatusEffect("Genital Slit"))
+				TFList[TFList.length] = 16;
 			//#0 DEFAULT CATCH ALL!
 			if(TFList.length == 0) TFList[TFList.length] = 0;
 
@@ -975,7 +977,15 @@
 					target.clearFaceFlags();
 					target.addFaceFlag(GLOBAL.LONG);
 					target.addFaceFlag(GLOBAL.MUZZLED);
-				}	
+				}
+				else if(select == 16)
+				{
+					kGAMECLASS.eventBuffer += "Your genital slit abruptly bulges, feeling way too tight all of a sudden. You wince as your [pc.cocks] ";
+					if(target.cockTotal() == 1) kGAMECLASS.eventBuffer += "is rudely thrust out of its warm, snuggly home.";
+					else kGAMECLASS.eventBuffer += "are rudely thrust out of their warm, snuggly homes.";
+					kGAMECLASS.eventBuffer += " Now exposed to the air, you're left to gasp as you feel the opening underneath diminishing until there's only a slight crease in your [pc.skin]. Even that fades over the course of a minute or so. <b>Your genital slit is gone.</b>"
+					target.removeStatusEffect("Genital Slit");
+				}
 				totalTFs--;
 			}
 		}

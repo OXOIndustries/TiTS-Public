@@ -379,16 +379,16 @@ function stressReliefGo():void
 	}
 	//Small
 	var x:int = rand(pc.cockTotal());
-	if(pc.cocks[x].cLength <= 5.5) output("\n\nV-Ko purrs, <i>\"Mmm, it comes in a nice, compact little package. The nerves appear to be packed tightly together, making your cock ideal for long, slow sucking. I estimate you'll be giving me all your cum within the next five minutes.\"</i>");
+	if(pc.cocks[x].cLength() <= 5.5) output("\n\nV-Ko purrs, <i>\"Mmm, it comes in a nice, compact little package. The nerves appear to be packed tightly together, making your cock ideal for long, slow sucking. I estimate you'll be giving me all your cum within the next five minutes.\"</i>");
 	//Average
-	else if(pc.cocks[x].cLength < 10) 
+	else if(pc.cocks[x].cLength() < 10) 
 	{
 		output("\n\nV-Ko looks up and down your exposed length");
 		if(pc.cockTotal() > 1) output("s before locking in on one");
 		output(". <i>\"Mmm, such a well-formed specimen. I estimate that it's a perfect fit for the synthflesh sleeve in my throat. You should be twitching and pouring all that stress into me within five minutes.\"</i>");
 	}
 	//Big
-	else if(pc.cocks[x].cLength < 17)
+	else if(pc.cocks[x].cLength() < 17)
 	{
 		output("\n\nV-Ko looks over your exposed length");
 		if(pc.cockTotal() > 1) output("s");
@@ -398,7 +398,7 @@ function stressReliefGo():void
 		output(" <i>\"Mmm, such a big, virile sample you've brought me. I suspect you will be straining the synthflesh in my throat, but bringing you to a full, cleansing orgasm will not exceed my rated capacity. With so much to please, you should blow in five minutes at the longest.\"</i>");
 	}
 	//Hyper
-	else if(pc.cocks[x].cLength < 30)
+	else if(pc.cocks[x].cLength() < 30)
 	{
 		output("\n\nV-Ko's eyes widen as she takes in all of your length");
 		if(pc.cockTotal() > 1) output("s");
@@ -415,7 +415,7 @@ function stressReliefGo():void
 	if(pc.cocks[x].thickness() >= 4) output(", distended beyond all reason to accept the incredible size you've offered her");
 	if(pc.cocks[x].thickness() >= 10) output(", stretching her neck around you so tightly that you can see every vein and ridge through her throat");
 	output(". Her mouth");
-	if(pc.cocks[x].cLength >= 9) output(" and throat");
+	if(pc.cocks[x].cLength() >= 9) output(" and throat");
 	output(" feel just like they should - warm and wet as they cling to your dickskin. The synthetic flesh is even slowly undulating against you, rippling in ways that human anatomy could never match.");
 
 	output("\n\nThe nursedroid doesn't need to breathe, but somehow, she keeps on sucking. She's staggering the vacuum pressure into pleasant, rhythmic pulsations so that even when she's sitting with her face buried in your crotch, your [pc.cock " + x + "] in awash in bliss. You moan and tremble inside her, harder than you could ever get unaided, your pre-cum leaking out with startling immediacy. V-Ko's voice, slightly muffled but otherwise still impressively comprehensible, states, <i>\"Now that I've gotten you ready, it's time to drain all that nasty stress. Frequent orgasms are proven to extend lifespan by up to ten percent in terrans and even longer in some other species.\"</i>");

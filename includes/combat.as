@@ -1,16 +1,18 @@
-﻿import classes.Creature;
+﻿import classes.Characters.Mimbrane;
+import classes.Creature;
 import classes.Items.Guns.Goovolver;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
 
-function inCombat():Boolean 
+public function inCombat():Boolean 
 {
 	return (pc.hasStatusEffect("Round"));
 }
 
 function combatMainMenu():void 
 {
+	userInterface.showPrimaryOutput();
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
 		clearOutput();
@@ -100,7 +102,8 @@ function combatMainMenu():void
 		//Combat menu
 		this.clearMenu();
 		this.addButton(0,"Attack",attackRouter,playerAttack,"Attack","Attack a single enemy with a melee strike. Damage is based on physique.");
-		this.addButton(1,upperCase(pc.rangedWeapon.attackVerb),attackRouter,playerRangedAttack,"Ranged Attack","Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		this.addButton(1, upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		this.addButton(3, "Inventory", inventory, undefined, "Inventory", "Use items in combat.");
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
@@ -379,6 +382,10 @@ function updateCombatStatuses():void {
 				else output("<b>" + foes[x].capitalA + foes[x].short + " is disarmed.</b>\n");
 			}
 		}
+		if (foes[x].hasStatusEffect("Mimbrane Lust Cloud"))
+		{
+			cloudDebuffHandler(foes[x]);
+		}
 	}
 }
 function stunRecover(target:Creature):void 
@@ -583,13 +590,14 @@ function rangedCombatMiss(attacker:Creature, target:Creature):Boolean
 function attackRouter(destinationFunc):void 
 {
 	// Inject the mimbrane attack shit infront of the regular attacks
+	clearOutput();
+	
 	if (mimbraneCombatInterference())
 	{
 		processCombat();
 		return;
 	}
-
-	clearOutput();
+	
 	output("Who do you target?\n");
 	for(var x:int = 0; x < foes.length; x++) {
 		output(foes[x].capitalA + foes[x].short + ": " + foes[x].HP() + " HP, " + foes[x].lust() + " Lust\n");
@@ -610,20 +618,23 @@ function attackRouter(destinationFunc):void
 	this.addButton(button,"Back",combatMainMenu);
 }
 
-// Really?
 function enemyAttack(attacker:Creature):void 
 {
 	attack(attacker, pc);
 }
+
 function playerAttack(target:Creature):void 
 {
 	attack(pc, target, true);
 	mimbraneHandBonusAttack(target);
+	playerMimbraneCloudAttack();
 	processCombat();
 }
+
 function playerRangedAttack(target:Creature):void 
 {
 	rangedAttack(pc, target);
+	playerMimbraneCloudAttack();
 }
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
@@ -767,8 +778,9 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		}
 	}
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
+	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + "Attacker = PC? " + String(attacker == pc) + " special? " + special);
 	//Run with multiple attacks!
-	if (((attacker.hasPerk("Multiple Shots") && !(attacker.rangedWeapon is Goovolver)) || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
+	if (((attacker.hasPerk("Multiple Shots")) || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
 		//Start up
 		if (!attacker.hasStatusEffect("Multiple Shots")) 
 		{
@@ -892,7 +904,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		
 	}
 	//Do multiple attacks if more are queued.
-	if(attacker.hasStatusEffect("Multiple Shots") && special == 0 && !(attacker.rangedWeapon is Goovolver)) {
+	if(attacker.hasStatusEffect("Multiple Shots") && special == 0) {
 		output("\n");
 		rangedAttack(attacker,target);
 		return;
@@ -907,7 +919,7 @@ function droneAttack(target:Creature):void {
 	processCombat();
 }
 
-function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
+public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
 	//Randomize +/- 15%
 	var randomizer = (rand(31)+ 85)/100;
 	damage *= randomizer;
@@ -1064,13 +1076,13 @@ function teaseMenu(target:Creature):void
 	}
 }
 function teaseChest(target:Creature):void {
-	tease(target,"chest");
+	tease(target, "chest");
 }
 function teaseHips(target:Creature):void {
-	tease(target,"hips");
+	tease(target, "hips");
 }
 function teaseButt(target:Creature):void {
-	tease(target,"butt");
+	tease(target, "butt");
 }
 function teaseCrotch(target:Creature):void {
 	tease(target,"crotch");
@@ -1525,6 +1537,10 @@ function startCombat(encounter:String):void
 	userInterface.resetNPCStats();
 	showNPCStats();
 	updateNPCStats();
+	
+	if (foes[0] is Mimbrane) mutinousMimbranesCombat();
+	
+	if (mimbranesNeglected() > 0) neglectedMimbranesCombat();
 }
 
 function runAway():void {
@@ -1779,6 +1795,8 @@ function tease(target:Creature, part:String = "chest"):void {
 		}
 	}
 	else output("\n");
+	
+	playerMimbraneSpitAttack();
 	processCombat();
 }
 
@@ -1871,7 +1889,28 @@ function crotchTeaseText(target:Creature):void {
 }
 
 function buttTeaseText():void {
-	if(pc.analCapacity() >= 450 && rand(3) == 0) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+
+	//75+
+	if(flags["TIMES_BUTT_TEASED"] > 75 && rand(3) == 0)
+	{
+		output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + foes[0].a + foes[0].short + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + foes[0].a + foes[0].short + " an excellent view of your [pc.asshole]");
+		if(pc.hasVagina() && pc.balls > 0) output("and [pc.vaginas] and [pc.balls]");
+		else if(pc.hasVagina()) output("and [pc.vaginas]");
+		else if(pc.balls > 0) output("and[pc.balls]");
+		output(".");
+	}
+	//50+
+	else if(flags["TIMES_BUTT_TEASED"] > 75 && rand(3) == 0 && pc.armor.shortName != "")
+	{
+		output("Swirling away, you find yourself facing away from your enemy. A cunning smile slaps itself across your [pc.face] as you hook your fingers into your " + pc.armor.longName + " and pull down your bottoms to expose your ");
+		if(pc.lowerUndergarment.shortName != "") output(pc.lowerUndergarment.longName + " and ");
+		output("[pc.butt]. Spreading your [pc.legs], you begin to shake your [pc.butt], bouncing ");
+		if(pc.lowerUndergarment.shortName != "") output("in your [underwear] ");
+		output("and tempting " + foes[0].a + foes[0].short + " with your ");
+		if(pc.lowerUndergarment.shortName != "") output("unseen ");
+		output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
+	}
+	else if(pc.analCapacity() >= 450 && rand(3) == 0) output("You quickly strip out of your [pc.armor] and turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole].  With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus.  You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, sure to give them a good show.  You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 	else {
 		output("You turn away");
 		if(pc.isCrotchGarbed()) output(", slide down your clothing,");
@@ -1896,21 +1935,39 @@ function chestTeaseText():void {
 	}
 	//Titties!
 	else {
-		//HYPER TIIIIITS
-		if(pc.biggestTitSize() >= 15) {
-			if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your " + pc.upperGarments() + " and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
-			else output("Your [pc.fullChest] is already completely uncovered, but that doesn't stop you from bringing your hands up to the more-than-ample cleavage and enhancing it by pressing down from each side. Your fingers sink deeply into your busty bosom as you look up at your chosen target, then, with a smile, you gentle shake them, making your titanic mammaries wobble oh-so-enticingly.")
-			if(pc.biggestTitSize() >= 25) output(" There's just so much breastflesh there; it feels good to use it.");
+		//User submitted milkiness! 75%!
+		if(pc.milkFullness > 50 && pc.isChestGarbed() && rand(4) != 0)
+		{
+			//If Breasts Tease >=75 Lactating.
+			if(pc.milkFullness >= 75)
+			{
+				output("Drawing your hands sensuously up your [pc.belly], you cup your milky tits, giving one a firm squeeze as you let out a low, lusty moan. With " + foes[0].a + foes[0].short + "’s gaze firmly captured, you pull away your [pc.upperGarments], releasing your [pc.fullChest] to the world, the fresh air blowing across your [pc.nipples]. You aren’t done teasing yet; a delicious idea slips into your devious mind.");
+				output("\n\nGrabbing both of your exposed melons, you jiggle them, causing a hypnotizing earthquake of mammary delight while taking care to pinch your nipples. The stimulation is just enough to get you started. Your [pc.milk] flows out as you begin to rub it into your [pc.skinFurScales], the [pc.milkColor] liquid soaking into your [pc.chest]. It takes you a tremendous effort to stop yourself and cover your jugs up again. Licking your fingers clean with an <i>Mmmmm…</i> for show, you ready yourself, noting that you’ll have to clean up a little later.");
+			}
+			//If Breast tease <75 Lactating.
+			else
+			{
+				output("Fumbling with your [pc.upperGarments] you release your [pc.chest], letting your bounty free with an enticing jiggle. You can feel " + foes[0].a + foes[0].short + "s eyes on you, running over your [pc.chest], and take advantage of that, swaying your shoulders to set off all kinds of pleasant jiggles. It’s not until you feel your [pc.milk] start to dribble out of your [pc.nipples] that you realize just what you’ve done. Reaching up, you grab the swells of your [pc.chest] to put them away, but you only succeed in coating yourself in your [pc.milk]. You can’t help but feel a little embarrassed and maybe a little aroused as you tuck your [pc.fullChest] away.");
+			}
 		}
-		//Big TiTS!
-		else if(pc.biggestTitSize() >= 4) {
-			if(pc.isChestGarbed()) output("You peel away your " + pc.upperGarments() + " with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
-			else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
-		}
-		//Petite ones!
-		else {
-			if(pc.isChestGarbed()) output("You remove your " + pc.upperGarments() + " with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
-			else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + foes[0].mfn("him","her","it") + ".");
+		else 
+		{
+			//HYPER TIIIIITS
+			if(pc.biggestTitSize() >= 15) {
+				if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your " + pc.upperGarments() + " and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
+				else output("Your [pc.fullChest] is already completely uncovered, but that doesn't stop you from bringing your hands up to the more-than-ample cleavage and enhancing it by pressing down from each side. Your fingers sink deeply into your busty bosom as you look up at your chosen target, then, with a smile, you gentle shake them, making your titanic mammaries wobble oh-so-enticingly.")
+				if(pc.biggestTitSize() >= 25) output(" There's just so much breastflesh there; it feels good to use it.");
+			}
+			//Big TiTS!
+			else if(pc.biggestTitSize() >= 4) {
+				if(pc.isChestGarbed()) output("You peel away your " + pc.upperGarments() + " with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
+				else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
+			}
+			//Petite ones!
+			else {
+				if(pc.isChestGarbed()) output("You remove your " + pc.upperGarments() + " with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
+				else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + foes[0].mfn("him","her","it") + ".");
+			}
 		}
 	}
 }

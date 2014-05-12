@@ -42,6 +42,9 @@
 		public var bonusResistances:Array;
 		public var hardLightEquipped:Boolean;
 		
+		public var combatUsable:Boolean;
+		public var targetsSelf:Boolean;
+		
 		//constructor
 		public function ItemSlotClass(dataObject:Object = null)
 		{
@@ -81,6 +84,9 @@
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 			this.hardLightEquipped = false;
 		
+			this.combatUsable = false;
+			this.targetsSelf = true;
+			
 			if (dataObject != null)
 			{
 				this.loadSaveObject(dataObject);
@@ -117,7 +123,7 @@
 			}
 		}
 		
-		public function useFunction(targetCreature:Creature):Boolean
+		public function useFunction(targetCreature:Creature, usingCreature:Creature = null):Boolean
 		{
 			throw new Error("useFunction must be overriden in a child class!");
 		}

@@ -57,7 +57,7 @@
  		}
 		
 		//METHOD ACTING!
-		override public function useFunction(target:Creature):Boolean
+		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var changes:int = 0;
 			var changeLimit:int = 1;
@@ -207,13 +207,13 @@
 				//**Same as Zil TF, I guess?
 				if(pc.hasVagina() && changes < changeLimit && pc.biggestTitSize() < 4 && rand(3) == 0)
 				{
-					if (target.breastRatingUnlocked(0, pc.breastRows[0].breastRating+1))
+					if (target.breastRatingUnlocked(0, pc.breastRows[0].breastRatingRaw+1))
 					{
-						pc.breastRows[0].breastRating++;
+						pc.breastRows[0].breastRatingRaw++;
 						changes++;
 						//Breasts up to DD-cup
 						//No titties yet
-						if(pc.breastRows[0].breastRating < 1)
+						if(pc.breastRows[0].breastRatingRaw < 1)
 						{
 							//Covered
 							if(pc.isChestGarbed()) kGAMECLASS.output("\n\nOut of nowhere, you can feel your [pc.nipples] pressing against your [pc.upperGarment]. You squirm uncomfortably in a self-imposed prison as your chest expands, swelling new, soft flesh into a pair of budding breasts where once you had nothing but pectorals. <b>You have A-cup breasts.</b>");
@@ -221,7 +221,7 @@
 							else kGAMECLASS.output("\n\nYou involuntarily gasp when your chest warms out of nowhere. One second, you're normal. The next, it's like you've been sunbathing with only your pecs exposed for a few hours. Your [pc.skin] tingles as its pulled tight by something expanding underneath it, and you're treated to the sight of <b>your new A-cup breasts.</b>");
 						}
 						//->B/C/D
-						else if(pc.breastRows[0].breastRating < 5)
+						else if(pc.breastRows[0].breastRatingRaw < 5)
 						{
 							kGAMECLASS.output("\n\nPinpricks of sensation on your [pc.chest] draws your attention, and the way your chest is bubbling up with new flesh keeps it. Grabbing hold of your swelling bustline, you heft the brazenly expanding globes as they finish their transformation. <b>You estimate you've grown up to " + pc.breastCup(0) + ".</b>");
 							if(pc.bRows() > 1)
@@ -245,7 +245,7 @@
 				if(changes < changeLimit && pc.breastRows[0].breastRating() >= 12 && rand(2) == 0)
 				{
 					var tittyDrop:int = 0;
-					if(pc.breastRows[0].breastRating() >= 24) tittyDrop += pc.breastRows[0].breastRating * .25;
+					if(pc.breastRows[0].breastRating() >= 24) tittyDrop += pc.breastRows[0].breastRatingRaw * .25;
 					else if(pc.breastRows[0].breastRating() >= 16) tittyDrop += rand(3);
 					tittyDrop += 1;
 					if (pc.breastRatingUnlocked(0, pc.breastRows[0].breastRating() - tittyDrop))

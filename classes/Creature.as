@@ -961,7 +961,13 @@ package classes {
 		}
 		
 		public var elasticity: Number = 1;
-		public var pregnancyMultiplier: Number = 1;
+		public var pregnancyMultiplierRaw: Number = 1;
+		public function pregnancyMultiplier():Number
+		{
+			var bonus:Number = 0;
+			if(hasPerk("Breed Hungry")) bonus += .5;
+			return (pregnancyMultiplierRaw + bonus);
+		}
 		public var girlCumType: Number = GLOBAL.GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
@@ -1022,7 +1028,7 @@ package classes {
 			return "";
 		}
 		
-		public var nippleLengthRatio:int = 1;
+		public var nippleLengthRatio: Number = 1;
 		public function nippleLengthRatioUnlocked(newNippleLengthRatio:int):Boolean
 		{
 			return true;
@@ -1032,7 +1038,7 @@ package classes {
 			return "";
 		}
 		
-		public var nippleWidthRatio: int = 1;
+		public var nippleWidthRatio: Number = 1;
 		public function nippleWidthRatioUnlocked(newNippleWidthRatio:int):Boolean
 		{
 			return true;
@@ -1301,6 +1307,9 @@ package classes {
 				case "dickNipples":
 					buffer = pluralize(nippleCockDescript());
 					break;
+				case "nippleColor":
+					buffer = nippleColor;
+					break;
 				case "eachCock":
 					buffer = eachCock();
 					break;
@@ -1413,6 +1422,7 @@ package classes {
 				case "oneTailgina":
 				case "oneTailCunt":
 					buffer = oneTailVaginaDescript();
+					break;
 				case "milkNoun":
 					buffer = fluidNoun(milkType);
 					break;
@@ -1689,6 +1699,7 @@ package classes {
 		public function lustDamage(arg:Number = 0):Number
 		{
 			if(hasStatusEffect("Sex On a Meteor")) arg *= 1.5;
+			if(hasPerk("Easy")) arg *= 1.2;
 			return lust(arg);
 		}
 		//% of max. Useful for determining things like how strong a PC is for his/her level.
@@ -1887,7 +1898,9 @@ package classes {
 		}
 
 		public function lustMax(): Number {
-			return 100;
+			var bonus:int = 0;
+			if(hasPerk("Inhuman Desire")) bonus += statusEffectv1("Inhuman Desire");
+			return (100 + bonus);
 		}
 		public function physiqueMax(): Number {
 			var bonuses:int = 0;
@@ -4657,12 +4670,14 @@ package classes {
 			return Math.round(maxCum() * ballFullness);
 		}
 		public function cumProduced(minutes: Number): void {
+			var cumDelta:Number = 0;
 			while (minutes > 0) {
-				ballFullness += refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
-				if (ballFullness >= 100) ballFullness = 100;
-				//5.5 for 10"
+				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+				if(hasPerk("Breed Hungry")) cumDelta *= 2;
+				ballFullness += cumDelta;
 				minutes--;
 			}
+			if (ballFullness >= 100) ballFullness = 100;
 		}
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;
@@ -6386,7 +6401,7 @@ package classes {
 			//Slimgina?
 			else if (type == GLOBAL.GOOEY) {
 				if (!simple) {
-					temp = this.rand(17);
+					temp = this.rand(16);
 					if (temp <= 1) vag += "slimey vagina";
 					else if (temp <= 3) vag += "gooey pussy";
 					else if (temp <= 5) vag += "slimy cunt";
@@ -6394,9 +6409,9 @@ package classes {
 					else if (temp <= 9) vag += "juicy twat";
 					else if (temp <= 11) vag += "slimy gash";
 					else if (temp <= 13) vag += "gooey honeypot";
-					else if (temp <= 15) vag += "slimey snatch";
+					else vag += "slimey snatch";
 				} else {
-					temp = this.rand(17);
+					temp = this.rand(16);
 					if (temp <= 1) vag += "slime-gina";
 					else if (temp <= 3) vag += "goo-pussy";
 					else if (temp <= 5) vag += "slime-cunt";
@@ -6404,7 +6419,7 @@ package classes {
 					else if (temp <= 9) vag += "goo-twat";
 					else if (temp <= 11) vag += "slime-gash";
 					else if (temp <= 13) vag += "honeypot";
-					else if (temp <= 15) vag += "slime-snatch";
+					else vag += "slime-snatch";
 				}
 			} else if (type == GLOBAL.SIREN || type == GLOBAL.ANEMONE) {
 				if (!simple) {
@@ -6494,7 +6509,6 @@ package classes {
 				else if (temp <= 14) vag += "honeypot";
 				else if (temp <= 15) vag += "snatch";
 			}
-
 			return vag;
 		}
 		//Vaginas + Descript
@@ -7868,7 +7882,7 @@ package classes {
 				return "milk-sap";
 			} else if (arg == GLOBAL.GIRLCUM) {
 				return "girl-cum";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.CUMSAP) {
 				if (rand(4) <= 1) return "cum-sap";
 				else if (rand(2) == 0) return "botanical spunk";
 				else return "floral jism";

@@ -701,7 +701,7 @@ function celiseSleezeLactation():void {
 
 	output("\n\n“<i>You taste sooooo good, [pc.name],</i>”  she sighs. “<i>");
 	if(pc.milkType == GLOBAL.HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
-	output("You’ll never stop leaking nice stuff from your top soft, will you? Because I just want to keep drinking that forever, and ever, and...</i>”  She pauses, and looks down at her bulging bimbo body. “<i>...well, maybe not </i>right<i> now, but you’ll come back with more, right?</i>”  You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
+	output("You’ll never stop leaking nice stuff from your top, will you? Because I just want to keep drinking that forever, and ever, and...</i>”  She pauses, and looks down at her bulging bimbo body. “<i>...well, maybe not </i>right<i> now, but you’ll come back with more, right?</i>”  You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
 	if(pc.lactationQ() <= 5000) output("green");
 	else output("[pc.milkColor], heavily-inflated");
 	output(" bottom arched towards you, her face peering round it with a sultry, come-hither expression plastered on it. She’s insatiable. You leave her to satisfy the raging thirst that has taken hold of you, before arousal forces you into a decision she’ll probably regret.");

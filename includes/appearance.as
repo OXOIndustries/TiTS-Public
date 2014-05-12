@@ -142,6 +142,12 @@ function appearance(target:Creature):void {
 			if(target.skinType == GLOBAL.FUR) output2(" You have a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + target.skinFurScales(true,true) + " covering your face, you have quite the fearsome visage.");
 			if(target.skinType == GLOBAL.SCALES) output2(" Your face is that of a lizard, complete with a toothy maw and pointed snout. " + upperCase(target.skinFurScales(true,true)) + " complete the look, making you look quite fearsome.");
 		}
+		if(target.faceType == GLOBAL.BADGER)
+		{
+			if(target.skinType == GLOBAL.SKIN || target.skinType == GLOBAL.GOO) output2(" Your head pushes out into a curiously hairless badger-face, covered only with " + target.skin(true,true) + ".");
+			if(target.skinType == GLOBAL.FUR) output2(" Your head pushes out into a muzzle with white fur across your nose and mouth as well as in a wide stripe up the centre of your brow, giving you the appearance of a humanoid badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
+			if(target.skinType == GLOBAL.SCALES) output2(" Your head pushes out into a muzzle with white scales across your nose and mouth as well as in a wide stripe up the centre of your brow, giving you the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + target.skinFurScales(true,true) + " that covers your " + target.skin(true,true) + ".");
+		}
 		if(target.faceType == GLOBAL.DRACONIC) {
 			output2(" Your face is a narrow, reptilian muzzle. It looks like a predatory lizard's, at first glance, but with an unusual array of spikes along the under-jaw. It gives you a regal but fierce visage. Opening your mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + target.skinFurScales(true,true) + ".");
 		}
@@ -252,6 +258,7 @@ function appearance(target:Creature):void {
 		else if(target.armType == GLOBAL.ARACHNID || target.armType == GLOBAL.DRIDER || target.armType == GLOBAL.BEE) output2("  Shining black exoskeleton  covers your arms from the biceps down, resembling a pair of long black gloves from a distance.");	
 		else if(target.armType == GLOBAL.FELINE) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your hands are still largely human in shape and dexterity aside from the fairly feline claws that have replaced your fingernails.");
 		else if(target.armType == GLOBAL.PANDA) output2(" A coat of " + pc.furColor + " fur covers your arms, giving them a distinctly animalistic bent. Your fingers are thick and capped with bear-like claws but maintain their human opposability.");
+		else if(target.armType == GLOBAL.BADGER) output2(" A coat of thick " + pc.furColor + " fur, while slight claws mark the tips of your fingers. These claws aren’t very long or sharp, and you get the feeling that the only thing they’re truly useful for is digging into someone’s skin emphatically while you’re fucking them roughly.");
 		else if (target.armType == GLOBAL.HUMAN && target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right"))
 		{
 			var bothHands:Boolean = false;
@@ -486,7 +493,7 @@ function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.CANINE) output2("  Two digitigrade legs grow downwards from your waist, ending in dog-like hind-paws.");
 		else if(target.legType == GLOBAL.NAGA) output2("  Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [pc.asshole].");
 		//Horse body is placed higher for readability purposes
-		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait.");
+		else if(target.legType == GLOBAL.SUCCUBUS) output2("  Your perfect lissom legs end in mostly human feet, apart from the horn protruding straight down from the heel that forces you to walk with a sexy, swaying gait. Surprisingly your mobility isn’t impaired by having your feet converted into natural high heels, although you are forced totter about with your upper body thrust forward a little to compensate, leaving you permanently locked into an awkwardly sexy pose.");
 		else if(target.legType == GLOBAL.DEMONIC) output2("  Your lithe legs are capped with flexible clawed feet.  Sharp black nails grow where once you had toe-nails, giving you fantastic grip.");
 		else if(target.legType == GLOBAL.BEE) output2("  Shimmering, armor-like chitin girds your legs from your toes to your mid-thigh. The sable material is rock hard right up until the ring of soft fluff that grows over the uppermost edge.");
 		else if(target.legType == GLOBAL.GOOEY) output2("  In place of legs you have a shifting amorphous blob.  Thankfully it's quite easy to propel yourself around on.  The lowest portions of your " + target.armor.longName + " float around inside you, bringing you no discomfort.");
@@ -501,7 +508,6 @@ function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.DRACONIC) output2("  Two human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.KUITAN) output2("  Your legs, though covered in fur, are humanlike.  Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
 		else if(target.legType == GLOBAL.PANDA) output2("  Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
-			
 		//Chesticles.
 		output2("\n\n");
 		if(target.gills) output2("A pair of feathery gills are growing out just below your neck, spreading out horizontally and draping down your chest.  They allow you to stay in the water for quite a long time.  ");

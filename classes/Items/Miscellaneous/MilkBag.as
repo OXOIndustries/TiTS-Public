@@ -55,7 +55,7 @@
 			this.version = _latestVersion;
 		}	
 		//METHOD ACTING!
-		override public function useFunction(target:Creature):Boolean
+		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			if(!kGAMECLASS.debug) quantity++;
 			if(target is PlayerCharacter) {

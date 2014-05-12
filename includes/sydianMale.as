@@ -414,7 +414,7 @@ function chicksRideASydian():void
 	if(pc.biggestTitSize() >= 1) output(", just between your [pc.chest]");
 	output(".");
 
-	output("\n\nThe sydian's eyes widen appreciatively, and he reluctantly slows the fevered stroking of his pre-slicked, brass-colored rod. <i>\"I-I am now sure how to-... how to submit... to a woman.\"</i> He looks down and to the side, onyx eyes unwilling to meet your own.");
+	output("\n\nThe sydian's eyes widen appreciatively, and he reluctantly slows the fevered stroking of his pre-slicked, brass-colored rod. <i>\"I-I am not sure how to-... how to submit... to a woman.\"</i> He looks down and to the side, onyx eyes unwilling to meet your own.");
 	output("\n\nYou ");
 	if(pc.isNaga() || pc.isGoo()) output("slither on top of him, poking him with the tip of your [pc.foot] for good measure.");
 	else output("place a [pc.foot] square on his chest for good measure.");
@@ -424,8 +424,9 @@ function chicksRideASydian():void
 	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tool's don't come with build-in stimulation functions. Your [pc.lips] wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
 	cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
-	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(foes[0].cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.{ Its slips into your capacitive slit like a hand into a tailored glove.");
+	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(foes[0].cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
 	if(pc.vaginalCapacity(x)/2 > foes[0].cockVolume(0)) output(" Silently, you wish he was a little bigger.");
+	else if(pc.vaginalCapacity(x)/1.5 > foes[0].cockVolume(0)) output(" Its slips into your capacitive slit like a hand into a tailored glove.");
 	else if(pc.vaginalCapacity(x) * .9 >= foes[0].cockVolume(0)) output(" It slips into your slit tightly but not tightly enough to be painful. If it wasn't for how wet you've gotten, you might not be enjoying this as much.");
 	else output(" It slips in with more than a little bit of pain, stretching your walls further apart than they were meant to go before pushing at your cervix like a battering ram. You hold still as your [pc.vagina " + x + "] adjusts to the oversized intrusion, thumping a fist at the chitinous brute's pecs until the fiery pain cools to warm pleasure.");
 	output(" His member's unique attributes all moving now, wriggling and slipping against your insides, feeling every nook and cranny.");
@@ -664,11 +665,11 @@ function hungryhungryTailginasThirst():void
 	output("\n\nHis words die when [pc.oneTailgina] whips over to his cilia-covered cock, brushing its lips against its head as if to taste it.");
 	if(pc.tailCount == 2) output(" The second one comes in a second later, kissing and slurping against his side, sometimes bumping at the one on his head as if to push it aside.");
 	else if(pc.tailCount > 2) output(" The others come in a second later, kissing and slurping alla long his sides, sometimes bumping at the one on his crown as if to bump it aside.");
-	output(" Any reply you might have summoned up is stifled by roiling waves of magma-hot pleasure that travel up your spine before breaking across the shoals of your consciousness. You moan like a wanton whore. You could suppress it if you tried. All you can do is try to keep yourself from shaking too much and try to enjoy it.");
+	output(" Any reply you might have summoned up is stifled by roiling waves of magma-hot pleasure that travel up your spine before breaking across the shoals of your consciousness. You moan like a wanton whore. You couldn't suppress it if you tried. All you can do is try to keep yourself from shaking too much and try to enjoy it.");
 	output("\n\nThe distracting bliss makes it difficult to focus on anything by the automatic motions of your posterior limb");
 	if(pc.tailCount > 1) output("s as they worship");
 	else output(" as it worships");
-	output(" the lucky alien's blood-swollen seed-dispenser. Unfortunately, the sydian has a tail of his own, and he brings to caress the side of your neck and face. While it's ultimately soft and pleasurable, it's also coated in something that immediately wicks into your [pc.skinFurScales], leaving a pleasant heat in its wake that gathers in your [pc.tails] and loins. Your [pc.tailgina], perhaps encouraged by the chemical aphrodisiac and lunges downward to take him to the root, filling and stretching itself in way that makes it difficult not to control yourself, let alone maintain conscious thought.");
+	output(" the lucky alien's blood-swollen seed-dispenser. Unfortunately, the sydian has a tail of his own, and he brings to caress the side of your neck and face. While it's ultimately soft and pleasurable, it's also coated in something that immediately wicks into your [pc.skinFurScales], leaving a pleasant heat in its wake that gathers in your [pc.tails] and loins. Your [pc.tailgina], perhaps encouraged by the chemical aphrodisiac, lunges downward to take him to the root, filling and stretching itself in way that makes it difficult to control yourself, let alone maintain conscious thought.");
 	output("\n\nThe rings of muscle that line your prehensile pussy go to work on the sydian while his vibrant phallus' cilia swirl against them. He obviously did not expect such a strong, skillful milking, and his eyes roll back. His tongue drools from the corner of his mouth, and he begins making happy-sounding grunts accompanied by gentle, needy twitches of his hips.");
 	output("\n\nOf course, nothing could prepare you for the sensory artillery his cilia turned out to be. If your nervous system is like a power grid, then everything behind your [pc.butt] is experiencing a power surge, sparking and trembling, too sizzlingly hot to handle. Your vision goes black when your eyes roll back, useless to the ecstasy-addicted mind controlling you, and your body sags down atop supine sydian, [pc.chest] to hardened chest. Your head lolls ");
 	if(pc.tallness > 90) output("above his");
@@ -688,9 +689,9 @@ function hungryhungryTailginasThirst():void
 	if(pc.tailCount > 1) output("lucky ");
 	output("tail undulates wildly through the air, sometimes appearing as an arch or a vague 'M' shape as it starts truly pumping, sliding up and down in addition to squeezing. Strands of lubricant squirt out around the edges of your [pc.tailgina] whenever it bottoms out. They roll down the alien's abdomen and thighs, and though you're not consciously aware of it, your scent is filling the air. No scent-sensing creature would doubt that this male belongs to you.");
 
-	output("\n\nHe's going to cum first. There's no doubt. After all, your [pc.tailgina] has had millennia to evolve into the perfect sperm-predator for species across the galaxy. It's true that every many species have different methods of ejaculation, but enough signs of a messy climax are there: the increased heart-rate, a sudden increase in genital thickness, expression of pre-cum. You don't think about this, of course. Your brain is far too busy trying not to black out from ecstasy to actually think, yet you still KNOW. The alien nervous system");
+	output("\n\nHe's going to cum first. There's no doubt. After all, your [pc.tailgina] has had millennia to evolve into the perfect sperm-predator for species across the galaxy. It's true that many species have different methods of ejaculation, but enough signs of a messy climax are there: the increased heart-rate, a sudden increase in genital thickness, expression of pre-cum. You don't think about this, of course. Your brain is far too busy trying not to black out from ecstasy to actually think, yet you still KNOW. The alien nervous system");
 	if(pc.tailCount > 1) output("s");
-	output(" conjoined to your ");
+	output(" conjoined to you ");
 	if(pc.tailCount == 1) output("has");
 	else output("have");
 	output(" passed that information on. Doing its part, your body thrusts your tail down, smashing it practically flat against the sydian's armored abdomen to prevent even a single drop of sperm from escaping.");

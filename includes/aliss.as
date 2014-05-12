@@ -811,6 +811,7 @@ function helpAlissWithSexyTiems():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You're a little too big to fuck Aliss in the ass.");
 	}
+	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
@@ -963,7 +964,7 @@ function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
 	//OR, if using strapon: 
 	if(x < 0) output("The artificial connection forged by the hardlight cock seems to waver, sending a rush of orgasmic energy through your body. Though there's no ejaculation, your arms and legs seems to quiver and quake as if you had just came with every inch of your body.");
 	//Condom:
-	if(condom)
+	else if(condom)
 	{
 		//Little Cum:
 		if(pc.cumQ() < 25) output("You feel your [pc.cock] pulse several times, filling the small rubber condom with your [pc.cum].");
@@ -1453,12 +1454,16 @@ function alissDiscussionsInsteadOfPanties():void
 	//[Sex] [Talk] 
 	clearMenu();
 	addButton(0,"Talk",talkToAliss,undefined,"Talk","Ask Aliss some questions.");
-	if(chars["ALISS"].lust() >= 40) 
+	if(flags["TIMES_SEXED_ALISS"] != undefined)
 	{
-		if(pc.lust() >= 33) addButton(1,"Sex",sexWithAlissFromMainMenu,undefined,"Sex","Talk the lingerie-wearing lady into a bedroom bout.");
-		else addDisabledButton(1,"Sex","Sex","You aren't turned on enough for sex with Aliss at the moment.");
+		if(chars["ALISS"].lust() >= 40) 
+		{
+			if(pc.lust() >= 33) addButton(1,"Sex",sexWithAlissFromMainMenu,undefined,"Sex","Talk the lingerie-wearing lady into a bedroom bout.");
+			else addDisabledButton(1,"Sex","Sex","You aren't turned on enough for sex with Aliss at the moment.");
+		}
+		else addDisabledButton(1,"Sex","Sex","Aliss doesn't seem turned on enough for sex.");
 	}
-	else addDisabledButton(1,"Sex","Sex","Aliss doesn't seem turned on enough for sex.");
+	else addDisabledButton(1,"Sex","Sex","You don't know Aliss well enough for sex. Perhaps if you got her to try on a number of slinky items in a row....");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -1484,6 +1489,7 @@ function sexWithAlissFromMainMenu():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You're a little too big to fuck Aliss in the ass.");
 	}
+	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");

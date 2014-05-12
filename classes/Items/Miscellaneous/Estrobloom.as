@@ -56,7 +56,7 @@
 		}
 		
 		//METHOD ACTING!
-		override public function useFunction(target:Creature):Boolean
+		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
 			var x:int = 0;
 			var y:Number = 0;

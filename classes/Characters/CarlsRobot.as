@@ -150,7 +150,7 @@
 			//Fertility is a % out of 100. 
 			this.fertility = 0;
 			this.clitLength = 0;
-			this.pregnancyMultiplier = 0;
+			this.pregnancyMultiplierRaw = 0;
 			
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";

@@ -198,6 +198,21 @@ public function highestMimbraneTrust():int
 	return trust;
 }
 
+public function mimbranesAtTrustMinimum(trust:int = 0):int
+{
+	var num:int = 0;
+	
+	for (var i:int = 0; i < mimbraneEffects.length; i++)
+	{
+		if (pc.hasStatusEffect(mimbraneEffects[i]))
+		{
+			if (pc.statusEffectv1(mimbraneEffects[i]) >= trust) num++;
+		}
+	}
+	
+	return num;
+}
+
 public function mimbranesNeglected():int
 {
 	var numNeglected:int = 0;
@@ -387,11 +402,12 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		else if (effectName == "Mimbrane Boobs")
 		{
-			// TODO: Enable Lactation
-			// TODO: 4% lactMulti p/ feed.
+			// Toggle lactation
+			if (oldFeedValue == 0 && pc.milkMultiplier < 50) pc.milkMultiplier = 50;
+			
+			// Doc called for a 4% lactate rate per feed level but a) pain b) pain
+			
 			pc.breastRows[0].breastRatingMod += actualFeed;
-
-			// Doc wanted nips to scale too - I believe bigger titties accounts for this using the nip scaling multi so w/e
 		}
 		else if (effectName == "Mimbrane Face")
 		{
@@ -405,36 +421,59 @@ public function resetMimbraneEffects(effectName:String):void
 {
 	if (mimbraneDebug) trace("Resetting Mimbrane Part Modifiers for [" + effectName + "]");
 
-	pc.willpowerMod += 0.6;
+	var willMod:Number = 0;
+	if (pc.statusEffectv3(effectName) >= 3) willMod += 0.2;
+	if (pc.statusEffectv3(effectName) >= 8) willMod += 0.2;
+	if (pc.statusEffectv3(effectName) >= 13) willMod += 0.2;
+	
+	pc.willpowerMod += willMod;
 	
 	if (effectName == "Mimbrane Penis")
 	{
-		pc.cocks[0].cThicknessRatioMod -= 0.05 * 15;
-		pc.cocks[0].cLengthMod -= 0.75 * 15;
+		pc.cocks[0].cThicknessRatioMod -= 0.05 * Number(pc.statusEffectv3("Mimbrane Penis"));
+		pc.cocks[0].cLengthMod -= 0.75 * Number(pc.statusEffectv3("Mimbrane Penis"));
 	}
 	else if (effectName == "Mimbrane Pussy")
 	{
-		pc.vaginas[0].loosenessMod -= 5;
-		pc.vaginas[0].wetnessMod -= 5;
+		var pussyMod:int = 0;
+		if (pc.statusEffectv3(effectName) >= 3) pussyMod++;
+		if (pc.statusEffectv3(effectName) >= 6) pussyMod++;
+		if (pc.statusEffectv3(effectName) >= 9) pussyMod++;
+		if (pc.statusEffectv3(effectName) >= 12) pussyMod++;
+		if (pc.statusEffectv3(effectName) >= 15) pussyMod++;
+		
+		pc.vaginas[0].loosenessMod -= pussyMod;
+		pc.vaginas[0].wetnessMod -= pussyMod;
 	}
 	else if (effectName == "Mimbrane Ass")
 	{
-		pc.ass.loosenessMod -= 5;
-		pc.ass.wetnessMod -= 5;
-		pc.buttRatingMod -= 7.5;
+		var buttMod:int = 0;
+		if (pc.statusEffectv3(effectName) >= 3) buttMod++;
+		if (pc.statusEffectv3(effectName) >= 6) buttMod++;
+		if (pc.statusEffectv3(effectName) >= 9) buttMod++;
+		if (pc.statusEffectv3(effectName) >= 12) buttMod++;
+		if (pc.statusEffectv3(effectName) >= 15) buttMod++;
+		
+		pc.ass.loosenessMod -= buttMod;
+		pc.ass.wetnessMod -= buttMod;
+		pc.buttRatingMod -= Number(pc.statusEffectv3(effectName)) / 2.0;
 	}
 	else if (effectName == "Mimbrane Balls")
 	{
-		pc.cumMultiplier -= (15 * 0.5);
-		pc.ballSizeMod -= (15 * 0.25);
+		pc.cumMultiplier -= (0.5 * Number(pc.statusEffectv3(effectName)));
+		pc.ballSizeMod -= (0.25 * Number(pc.statusEffectv3(effectName)));
 	}
 	else if (effectName == "Mimbrane Boobs")
 	{
-		pc.breastRows[0].breastRatingMod -= 15;
+		pc.breastRows[0].breastRatingMod -= pc.statusEffectv3(effectName);
 	}
 	else if (effectName == "Mimbrane Face")
 	{
-		pc.lipMod -= 2;
+		var lipMod:int = 0;
+		if (pc.statusEffectv3(effectName) >= 6) lipMod++;
+		if (pc.statusEffectv3(effectName) >= 12) lipMod++;
+		
+		pc.lipMod -= lipMod;
 	}
 }
 
@@ -469,6 +508,7 @@ public function mimbraneReproduce(effectName:String):void
 	if (!pc.hasStatusEffect(effectName)) throw new Error("A mimbrane the player doesn't have attempted to reproduce.");
 
 	var currentTrust:int = pc.statusEffectv1(effectName);
+	resetMimbraneEffects(effectName);
 
 	// 0->1
 	if (pc.statusEffectv1(effectName) == 0)
@@ -536,8 +576,6 @@ public function mimbraneReproduce(effectName:String):void
 		pc.setStatusValue(effectName, 3, 0);
 		pc.setStatusValue(effectName, 4, pc.statusEffectv4(effectName) + 1);
 	}
-
-	resetMimbraneEffects(effectName);
 }
 
 public function removeMimbranes():void
@@ -599,7 +637,7 @@ public function mimbranesIncreaseDaysSinceFed():void
 	{
 		if (mimbraneDebug) trace("Mimbrane Boobs unfed for 7 days!");
 
-		addMimbraneEvent("Your titty flesh is suddenly overwhelmed by a downpour of strawberry-scented liquid passion. <b>Your hungry Mimbrane is dousing your [pc.fullchest] in endless amounts of its sweat.</b>");
+		addMimbraneEvent("Your titty flesh is suddenly overwhelmed by a downpour of strawberry-scented liquid passion. <b>Your hungry Mimbrane is dousing your [pc.fullChest] in endless amounts of its sweat.</b>");
 	}
 
 	if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") == 7)
@@ -755,7 +793,7 @@ public function mimbranesComplainAndShit():void
 					//0-2 Trust: 
 					if (pc.statusEffectv1("Mimbrane Boobs") <= 2)
 					{
-						addMimbraneEvent("The wobbling in your [pc.fullchest] stops you in your tracks. They feel... hungry.");
+						addMimbraneEvent("The wobbling in your [pc.fullChest] stops you in your tracks. They feel... hungry.");
 					}
 					//3-4 Trust: 
 					else
@@ -773,7 +811,7 @@ public function mimbranesComplainAndShit():void
 						if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right"))
 						{
 							// Both hands should following the same feeding/upgrading pattern
-							if (pc.statusEffectV1("Mimbrane Hand Left") <= 2)
+							if (pc.statusEffectv1("Mimbrane Hand Left") <= 2)
 							{
 								addMimbraneEvent("Your hands start to feel weak. Its as if they were eager for something....");
 							}
@@ -813,7 +851,7 @@ public function mimbranesComplainAndShit():void
 						if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right"))
 						{
 							// Both feet should following the same feeding/upgrading pattern
-							if (pc.statusEffectV1("Mimbrane Foot Left") <= 2)
+							if (pc.statusEffectv1("Mimbrane Foot Left") <= 2)
 							{
 								addMimbraneEvent("There’s an indescribable feeling of hunger coming from your [pc.feet].");
 							}
@@ -932,12 +970,12 @@ public function mimbranesComplainAndShit():void
 					//0-2 Trust: 
 					if (pc.statusEffectv1("Mimbrane Boobs") <= 2)
 					{
-						addMimbraneEvent("This craving engulfing your [pc.fullchest] is only growing stronger. You fear something may happen if you ignore it any longer.");
+						addMimbraneEvent("This craving engulfing your [pc.fullChest] is only growing stronger. You fear something may happen if you ignore it any longer.");
 					}
 					//3-4 Trust: 
 					else
 					{
-						addMimbraneEvent("Your [pc.fullchest] is rubbing anxiously against your [pc.armor], soft squeaks pouring from your [nipples]. The hungry Mimbrane may do something drastic if it doesn’t see any action soon.");
+						addMimbraneEvent("Your [pc.fullChest] is rubbing anxiously against your [pc.armor], soft squeaks pouring from your [nipples]. The hungry Mimbrane may do something drastic if it doesn’t see any action soon.");
 					}
 				}
 				else if (mimbraneEffects[ii].indexOf("Mimbrane Hand") != -1)
@@ -1072,7 +1110,7 @@ public function mimbranesComplainAndShit():void
 				{
 					if (mimbraneDebug) trace("Mimbrane Boobs unfed for 7 days!");
 
-					addMimbraneEvent("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [fullchest] in. Every square inch of your bosom – down to the tip of your [nipples] – is just sopping wet in the hungry parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [armor] to greet you, bending you over and pounding you with their sensual intentions.");
+					addMimbraneEvent("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [pc.fullChest] in. Every square inch of your bosom – down to the tip of your [nipples] – is just sopping wet in the hungry parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [pc.gear] to greet you, bending you over and pounding you with their sensual intentions.");
 				}
 				else if (mimbraneEffects[ii].indexOf("Mimbrane Hand") != -1)
 				{
@@ -1161,7 +1199,7 @@ public function mimbranesComplainAndShit():void
 		{
 			if (mimbraneDebug) trace("Mimbrane Boobs spamming a message in cooperation with another hungry mimbrane!");
 
-			addMimbraneEvent("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [pc.fullchest] in. Every square inch of your bosom – down to the tip of your [pc.nipples] – is just sopping wet in the frustrated parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [pc.armor] to greet you, bending you over and pounding you with their sensual intentions.");
+			addMimbraneEvent("It’s almost gotten too stressful to breathe with the nonstop sexual turmoil the Mimbrane is coating your [pc.fullChest] in. Every square inch of your bosom – down to the tip of your [pc.nipples] – is just sopping wet in the frustrated parasite’s sweat. What’s more, constant strawberry-scented odors race out of your [pc.gear] to greet you, bending you over and pounding you with their sensual intentions.");
 		}
 
 		if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv2("Mimbrane Hand Left") < 7)
@@ -1207,76 +1245,76 @@ public function mimbranesComplainAndShit():void
 	{
 		if (mimbraneDebug) trace("Spamming some voluntary mimbrane sweat messages.");
 
-		if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv1("Mimbrane Cock") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Cock") && pc.statusEffectv1("Mimbrane Cock") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Cock is sweaing!");
 
 			addMimbraneEvent("The ever-present moist spot on your [pc.lowerGarment] is the telltale sign that your [pc.cock] is absolutely soaked in oily, sexual sweat. The Mimbrane member occasionally rubs against your inner thighs or slides up your waist, tickling you with moist perversion while simultaneously arousing you with each well-lubricated stroke.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv1("Mimbrane Pussy") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Pussy") && pc.statusEffectv1("Mimbrane Pussy") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Pussy is sweating!");
 
 			addMimbraneEvent("The pinkish haze around your groin about masks the constant dripping of Mimbrane sweat pouring out and around your [pc.pussy]. Your gait blends the perspiration all along your midsection, ensuring your oily perplexion doesn’t go to waste.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv1("Mimbrane Ass") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Ass") && pc.statusEffectv1("Mimbrane Ass") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Ass is sweating!");
 
 			addMimbraneEvent("Coated in oily Mimbrane persuasion, your [pc.ass] no longer seems to form any sort of traction against your [pc.armor]. Instead, each of your steps merely glides each cheek against the surface, tantalizing you with each whimsical caress. Occasionally small pink clouds of moist, humid, dense lust will escape out into the open, showing a fairly clear trail of where you’ve been. You suspect the parasitic [pc.asshole] is enjoying itself.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv1("Mimbrane Balls") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Balls") && pc.statusEffectv1("Mimbrane Balls") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Balls are sweating!");
 
 			addMimbraneEvent("It’s actually surprising how comfortable a friendly bath-of-sorts in Mimbrane lubricant can feel compared to when its done in an aggressive fashion. A curtain of oily, tingly lust drapes around your [pc.balls], causing them to effortlessly glide about in your [pc.armor]. The typically oppressive humid shroud that comes as a result of this parasitic perspiration is more pleasant to you as well. Though you still aren’t completely immune to just how much the ongoing oil massage turns you on....");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Boobs") && pc.statusEffectv1("Mimbrane Boobs") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Boobs are sweating!");
 
-			addMimbraneEvent("The amusement from having your [pc.fullchest] constantly covered in oily Mimbrane seat hasn’t gotten old to you yet. Your bosom glides freely about in your [pc.upperGarment], seeming to not even understand the meaning of the word “friction.” Not only that, but occasional clouds of strawberry-scented salaciousness escape your garments and tickle your senses.");
+			addMimbraneEvent("The amusement from having your [pc.fullChest] constantly covered in oily Mimbrane seat hasn’t gotten old to you yet. Your bosom glides freely about in your [pc.upperGarment], seeming to not even understand the meaning of the word “friction.” Not only that, but occasional clouds of strawberry-scented salaciousness escape your garments and tickle your senses.");
 		}
 
-		if ((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
-			|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") >= 3))
+		if (((pc.hasStatusEffect("Mimbrane Hand Left") && !pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+			|| (!pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Right") >= 3)) && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Hand is sweating!");
 
 			addMimbraneEvent("You hadn’t counted on the expert control your hand-bound Mimbrane would impart on its oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapon in combat, while refusing to abandon your moist sheen. It’s an impressive feat.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right") && pc.statusEffectv1("Mimbrane Hand Left") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Hands are sweating!");
 
 			addMimbraneEvent("You hadn’t counted on the expert control your hand-bound Mimbranes would impart on their oily secretions. In one instance your lubricated, sex-charged grasp glides effortlessly over all genitalia it encounters. But in another instance, you command a firm grip on your weapons in combat, while refusing to abandon your moist sheen. It’s an impressive feat.");
 		}
 
-		if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
-			|| (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") >= 3))
+		if (((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+			|| (!pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Right") >= 3)) && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Foot is sweating!");
 
 			addMimbraneEvent("Blissful confusion is a good description for what your [pc.foot] feels its going through. The Mimbrane-covered extremity is swimming in the parasite’s love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creature’s work.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right") && pc.statusEffectv1("Mimbrane Foot Left") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Feet are sweating!");
 
 			addMimbraneEvent("Blissful confusion is a good description for what your [pc.feet] feel they are going through. The Mimbrane-covered extremities are swimming in the parasites’ love-bent secretions, and yet you never lose your footing. The satisfaction of exposing a sweat-drenched, hot foot to the air is one you apparently can cherish continuously as well. But the usual stench of body order has been overwritten by the wanton strawberry aroma that radiates from the creatures’ work.");
 		}
 
-		if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") >= 3)
+		if (pc.hasStatusEffect("Mimbrane Face") && pc.statusEffectv1("Mimbrane Face") >= 3 && rand(100) <= 3)
 		{
 			if (mimbraneDebug) trace("Mimbrane Face is sweating!");
 
-			addMimbraneEvent("Head Mimbrane: You continue to enjoy the passionate sheen you get from the neverending downpour of oily Mimbrane sweat running down your [pc.face]. Even your [pc.lips] glint in the sunlight, their [pc.lipColor] color mixing with the lightly pink fluid. Any worries that your head would be in a 24 hour sauna melt away by how the almost eerily refreshing perspiration makes you feel. The clouds of carnality that you shed seem to have a larger effect on your surroundings than they do you.");
+			addMimbraneEvent("You continue to enjoy the passionate sheen you get from the neverending downpour of oily Mimbrane sweat running down your [pc.face]. Even your [pc.lips] glint in the sunlight, their [pc.lipColor] color mixing with the lightly pink fluid. Any worries that your head would be in a 24 hour sauna melt away by how the almost eerily refreshing perspiration makes you feel. The clouds of carnality that you shed seem to have a larger effect on your surroundings than they do you.");
 		}
 	}
 	
@@ -1305,6 +1343,7 @@ public function mimbraneSleepEvents():void
 			// Noticed Reproduction
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("Some totally awesome dream of yours fades away, chased away by an odd feeling. Going back to sleep is paramount until you again feel an odd straining in your [pc.cock]. No longer concerned with pursuing your lost fantasy, you throw off your covers to figure out what is going on. The slab of meat has swollen considerably and appears to be erect, but you’re more concerned with the erratic twitching. When your cock spasms to one side, you finally notice that the Mimbrane’s eyes are wide open. The parasite appears to be under some heavy stress. Strangely, you feel fine despite knowing full well the second skin has worked all sorts of kinks into your nervous system.");
 				output("\n\nYour convulsing dick lets out a long, drawn-out squeak. It feels a little- Suddenly the life just vanishes from the Mimbrane’s eyes. The distended pecker limps to one side. For a moment you’re concerned the little bastard is doing something malicious, but then your senses kick in. The Mimbrane is reproducing!");
 				if (flags["MIMBRANE_COCK_REPRODUCTION_NOTICED"] != undefined) output(" The vestiges of sleep must be why you forgot.");
@@ -1347,6 +1386,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("One second you’re a mighty sexual " +  pc.mf("god", "goddess") + ", dominating the galaxy armed only with your amazing body. The next second you’re listening to the hum of your ship. Eyes dart around in pursuit of your dream slayer, but it’s a curious straining down at your [pc.pussy] that lets you know who the culprit was. Covers are tossed to the side, dim lighting revealing your spasming snatch. The Mimbrane’s miniature eyes are open as wide as they can manage. Something is wrong, but you sure as hell aren’t feeling anything stranger than the typical oddness that follows involuntary movement of your body. ");
 				output("\n\nStrained little chirps and squeaks escape your folds as they stretch and clench. The puffed-up pussy looks to be going through some ordeal, clearly. For a brief moment you figure the parasite is up to no good, but then you remember your codex’s valuable information. The little creature is reproducing!");
 				if (flags["MIMBRANE_PUSSY_REPRODUCTION_NOTICED"] != undefined) output(" The vestiges of sleep must be why you forgot.");
@@ -1386,6 +1426,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("A delightful romp through the idyllic dreamscape fades into whatever forgotten realm lost dreams subside. Something has pushed you out from slumber and into the dim silence of your idling ship. You lay motionless on your back staring at nothing in particular. For a moment you hope you’ll merely fade back unconsciousness, but a trembling shudder from your [pc.butt] about scares you half to death. Covers fly off as you flip over; though you may be curious enough to investigate the disturbance, your half-conscious subconscious isn’t ready to completely surrender the notion of returning to sleep.");
 				output("\n\nThe moment your hind quarters aren’t pressed against your bed, strained squeaks and chirps escape your [pc.asshole]. Its clear now that the strange spasms and anal contractions are due to this restless Mimbrane. Typically, sexual urges and depravity accompany strange, uncontrolled body complications. So its at least nice to know that no one slipped you something sinister.");
 				output("\n\nBut then what is wrong with the parasite for it to suddenly send your bubble butt into a conniption? Is it hungry? Does the parasite long for your hind end to be ravaged by some uncouth cock? Its already driven your poor rear hole to a gaping moist mess. What more does it want? Then it hits you: your codex mentioned something about Mimbrane reproduction. The enthusiastic bugger has plumped your ass out so much that it must be ready to split off a new Mimbrane! ");
@@ -1430,6 +1471,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("The melodic hums of your ship surround you, a blissful sleep only resident in your memory. Something’s dragged you back to consciousness, but you’ll be damned if it’ll keep you here. Before you can toss and turn, however, that “something” materializes. Your [pc.balls] are wiggling around something fierce! Covers fly to the side, fueled by your sudden anxiety that some manner of insect – or worse – has infiltrated your privates.");
 				output("\n\nAll you find is the Mimbrane that has already captured your cum pouch. Its normally well-hid little bumps for eyes look to be clenched shut, straining for some reason. The parasite is trembling about, rustling your [pc.sack] every so often in its costive spasms. What’s gotten into this thing? Is it not enough that its already jacked up your [pc.cumType] factories? You’re tempted to grab onto the possessed purse, but your frustrated weariness is brutally stabbed by calm reason and blossoming memories.");
 				if (flags["MIMBRANE_BALLS_REPRODUCTION_NOTICED"] != undefined) output(" You really ought to try and recall times like these more often before jumping to other conclusions.");
@@ -1469,8 +1511,9 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				output("Sweet dreams are made of this. Who are you to disagree? You travel the world and the hum of your ship–");
-				output("\n\nGroggy eyes stare at the uninteresting ceiling of your room. Some manner of slumber has been mercilessly slain, leaving you confused and awake. It isn’t entirely obvious why you woke up, but you aren’t all that interested in finding out. But find out you will, as your [pc.fullchest] frightens you down to the core with a mighty shudder. The massive mounds are straining, trembling and wobbling as if possessed by some unholy demon!");
+				output("\n\nGroggy eyes stare at the uninteresting ceiling of your room. Some manner of slumber has been mercilessly slain, leaving you confused and awake. It isn’t entirely obvious why you woke up, but you aren’t all that interested in finding out. But find out you will, as your [pc.fullChest] frightens you down to the core with a mighty shudder. The massive mounds are straining, trembling and wobbling as if possessed by some unholy demon!");
 				output("\n\nWhen you hear – and feel – an exerted chirp from one of your [pc.nipples], it becomes a lot more clear what the real deal is. Your chest-mounted Mimbrane seems to be having some sort of complication, flailing and shaking your titties around as a result. You attempt to calm the parasite, but it still shakes and thrusts in your grasp. Is it up to some new form of unusual mischief? Or maybe its getting ready to multiply?");
 				if (flags["MIMBRANE_BOOBS_REPRODUCTION_NOTICED"] != undefined) output(" You would have noticed sooner that this was happening again had you not been so tired.");
 				output(" It has to be reproducing, you figure, it matches what your codex taught you. Typically the parasite will wait until the dead of night to split off its accumulated mass into a fresh new Mimbrane. Typically they only act when their host is asleep, but it would appear that yours doesn’t mind you getting a glimpse of the action.");
@@ -1494,7 +1537,7 @@ public function mimbraneSleepEvents():void
 		{
 			if (mimbraneDebug) trace("Unnoticed Mimbrane Boobs Reproduction!");
 
-			addMimbraneEvent("As you bid farewell to your dreams, a significant loss in weight on your chest catches your attention. It would seem that your [pc.fullchest] has returned back to its normal size and stature. Your supple mounds are a little tender to the touch, leading you to believe that your Mimbrane was able to split off its offspring while you were asleep.");
+			addMimbraneEvent("As you bid farewell to your dreams, a significant loss in weight on your chest catches your attention. It would seem that your [pc.fullChest] has returned back to its normal size and stature. Your supple mounds are a little tender to the touch, leading you to believe that your Mimbrane was able to split off its offspring while you were asleep.");
 		}
 
 		mimbraneReproduce("Mimbrane Boobs");
@@ -1515,6 +1558,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				var bothHands:Boolean = false;
 				if (pc.hasStatusEffect("Mimbrane Hand Left") && pc.hasStatusEffect("Mimbrane Hand Right")) bothHands = true;
 
@@ -1680,6 +1724,7 @@ public function mimbraneSleepEvents():void
 
 			eventQueue.push(function():void {
 				kGAMECLASS.clearOutput();
+				kGAMECLASS.userInterface.author("Kirbu");
 				var bothFeet:Boolean = false;
 				if (pc.hasStatusEffect("Mimbrane Foot Left") && pc.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
 
@@ -1838,7 +1883,8 @@ public function mimbraneSleepEvents():void
 			{
 				eventQueue.push(function():void {
 					clearOutput();
-					userInterface.showBust("MIMBRANE");
+					//userInterface.showBust("MIMBRANE");
+					kGAMECLASS.userInterface.author("Kirbu");
 					flags["MIMBRANE_FACE_REPRODUCTION_NOTICED"]++;
 
 					output("Something’s escorted you away from blissful slumber. Your ship is as silent as always, never the cheeriest of greeters. Dazed eyes peer around the room, curious to find anything out of the ordinary. They find nothing. Did you just wake up for no reason?");
@@ -1854,7 +1900,7 @@ public function mimbraneSleepEvents():void
 
 			outputDone = true;
 
-			addMimbraneEvent("Upon stretching off the last vestiges of sleep, you notice something feels off about your [face]. It would appear that your [lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.");
+			addMimbraneEvent("Upon stretching off the last vestiges of sleep, you notice something feels off about your [pc.face]. It would appear that your [pc.lips] have shrunk down to their normal size. In fact, your entire head feels a little raw and fresh, for lack of a more appropriate description. Somehow, your head-mounted Mimbrane managed to reproduce while you were knocked out.");
 		}
 
 		mimbraneReproduce("Mimbrane Face");
@@ -1990,7 +2036,8 @@ public function mimbraneSleepEvents():void
 public function mimbraneFaceReproduction():void
 {
 	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	//userInterface.showBust("MIMBRANE");
+	kGAMECLASS.userInterface.author("Kirbu");
 
 	output("“Anything you want want before I head out for the night?” Victor asks. You stare around the room blankly, trying to think if you left anything out. Nothing comes to mind, and you tell him as much. Your father gives you a slight little wave and heads out the door.");
 	output("\n\nWait! An ice cream cone would be great! You jump over the coffee table and barrel down towards the door to catch him before he’s gone. Inky blackness is all that greets you. Which way did he go? You squint and strain, but can’t make out any details. Nothing’s clear. Nothing doing but to go back inside.");
@@ -2012,7 +2059,8 @@ public function mimbraneFaceReproduction():void
 public function mimbraneFaceReproductionGo(dream:Boolean = false):void
 {
 	clearOutput();
-	userInterface.showBust("MIMBRANE");
+	//userInterface.showBust("MIMBRANE");
+	kGAMECLASS.userInterface.author("Kirbu");
 
 	if (dream)
 	{
@@ -3004,9 +3052,11 @@ public function playerMimbraneSpitAttack():void
 // Cloud debuff causes increased lust gain on the target when the player attacks, rather than a durational debuff that applies its own lust modifier.
 public function playerMimbraneCloudAttack():void
 {
+	if (mimbraneDebug) trace("Mimbrane player assist cloud attack processing...");
+	
 	// Only if enabled
 	if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == undefined) return;
-
+	
 	// Find all eligible mimbranes that could produce a cloud
 	var eligibleMimbranes:Array = new Array();
 
@@ -3032,6 +3082,8 @@ public function playerMimbraneCloudAttack():void
 			// 20% chance of misfire
 			if (rand(5) == 0) // 1 in 5 (0-4)
 			{
+				if (mimbraneDebug) trace("Cloud attack misfire!");
+				
 				// Misfires!
 				applyCloudDebuff(pc);
 
@@ -3071,45 +3123,51 @@ public function playerMimbraneCloudAttack():void
 				{
 					output("Its bad enough that the Mimbrane encasing your head has drenched you in a rich layer of sweat, but now you’re having trouble seeing through the thick cloud of salacious intent that’s forming as a result. You involuntarily go to wipe your brow, which accidentally causes you to inhale some of the dangerous fumes. The parasite manipulates your [pc.face] enough to avoid any further exposure to its premature attack.");
 				}
+				
+				return;
 			}
 			// Success
 			else
 			{
+				if (mimbraneDebug) trace("Cloud attack successful!");
+				
 				applyCloudDebuff(foes[0]);
 
 				// Output text
 				if (eligibleMimbranes[ii] == "Mimbrane Cock")
 				{
-					output("An unusually high amount of humidity gathers in your [pc.armor], forcing you to undo it and investigate. Your Mimbrane-controlled [cock] has worked up quite the sweat, producing a thick, noxious smog of concentrated lust. The parasite quickly fans it towards the bewildered " + foes[0].short + ".");
+					output("\nAn unusually high amount of humidity gathers in your [pc.armor], forcing you to undo it and investigate. Your Mimbrane-controlled [cock] has worked up quite the sweat, producing a thick, noxious smog of concentrated lust. The parasite quickly fans it towards the bewildered " + foes[0].short + ".\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Pussy")
 				{
-					output("Your fight falls back in your mind, replaced by the worry that your sopping [pc.pussy] may become an undiscovered swampland if you don’t air out the unusual perspiration. You’re shocked to find your Mimbrane-controlled vaginal walls exuding a deep red cloud of potent lust. The parasite quickly fans it towards the " + foes[0].short + " before you fall victim to its secretion.");
+					output("\nYour fight falls back in your mind, replaced by the worry that your sopping [pc.pussy] may become an undiscovered swampland if you don’t air out the unusual perspiration. You’re shocked to find your Mimbrane-controlled vaginal walls exuding a deep red cloud of potent lust. The parasite quickly fans it towards the " + foes[0].short + " before you fall victim to its secretion.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Ass")
 				{
-					output("The sweltering, moist ambience encompassing your [pc.ass] is slinking its way forefront in your mind. It snaps into focus when your hind quarters tremble fiercely, low-pitched squeaks escaping your [pc.asshole]. The pressure forces you to involuntarily drop trou, allowing the Mimbrane to force you around and point its parasitic pucker directly at the " + foes[0].short + ". The enthusiastic creature unleashes a sweet, dense haze of pink passion directly at " + foes[0].mfn("him", "her", "it") + ". You quickly regain your composure, anxious to just move on.");
+					output("\nThe sweltering, moist ambience encompassing your [pc.ass] is slinking its way forefront in your mind. It snaps into focus when your hind quarters tremble fiercely, low-pitched squeaks escaping your [pc.asshole]. The pressure forces you to involuntarily drop trou, allowing the Mimbrane to force you around and point its parasitic pucker directly at the " + foes[0].short + ". The enthusiastic creature unleashes a sweet, dense haze of pink passion directly at " + foes[0].mfn("him", "her", "it") + ". You quickly regain your composure, anxious to just move on.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Balls")
 				{
-					output("Your buildup of sweat and steam around your [pc.balls] starts to get to you, forcing you to try and air things out. You’re startled to see a thick red haze emanating from your parasitic sack. The Mimbrane gets to work, furiously swinging your [pc.balls] to force its secretion towards the " + foes[0].short + ".");
+					output("\nYour buildup of sweat and steam around your [pc.balls] starts to get to you, forcing you to try and air things out. You’re startled to see a thick red haze emanating from your parasitic sack. The Mimbrane gets to work, furiously swinging your [pc.balls] to force its secretion towards the " + foes[0].short + ".\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Boobs")
 				{
-					output("Things are getting positively balmy within your [pc.armor]. Your [pc.chest] are absolutely drenched. You quickly try and relieve them with some fresh air, only to be shocked to discover a thick red cloud of potent sensuality surrounds them. The Mimbrane mammaries quickly direct the haze over towards your opponent before either of you react in any meaningful fashion.");
+					output("\nThings are getting positively balmy within your [pc.armor]. Your [pc.chest] are absolutely drenched. You quickly try and relieve them with some fresh air, only to be shocked to discover a thick red cloud of potent sensuality surrounds them. The Mimbrane mammaries quickly direct the haze over towards your opponent before either of you react in any meaningful fashion.\n");
 				}
 				else if (eligibleMimbranes[ii].indexOf("Mimbrane Hand") != -1)
 				{
-					output("A thick red haze forms around your sweaty hand. You distance yourself from it as far as possible. The Mimbrane-controlled appendage fans the potent cloud of carnal desire towards the " + foes[0].short + " before you can fall victim to it yourself.");
+					output("\nA thick red haze forms around your sweaty hand. You distance yourself from it as far as possible. The Mimbrane-controlled appendage fans the potent cloud of carnal desire towards the " + foes[0].short + " before you can fall victim to it yourself.\n");
 				}
 				else if (eligibleMimbranes[ii].indexOf("Mimbrane Foot") != -1)
 				{
-					output("Your attention slides to your [pc.foot], stewing in uncomfortably dense perspiration. You expose your foot to the air for some relief, only to find it enshrouded in a haze of red carnal steam. The Mimbrane manages to direct it directly towards your opponent in short time.");
+					output("\nYour attention slides to your [pc.foot], stewing in uncomfortably dense perspiration. You expose your foot to the air for some relief, only to find it enshrouded in a haze of red carnal steam. The Mimbrane manages to direct it directly towards your opponent in short time.\n");
 				}
 				else if (eligibleMimbranes[ii] == "Mimbrane Face")
 				{
-					output("Its beginning to get hard to see, your head sweating profusely from the Mimbrane encasing it. Your vision is then covered entirely by a thick cloud of red lust surrounding your head! The parasite works to keep your [pc.face] from inhaling any of its dangerous vapors, instead manipulating it into sending the wanton fog towards your opponent.");
+					output("\nIts beginning to get hard to see, your head sweating profusely from the Mimbrane encasing it. Your vision is then covered entirely by a thick cloud of red lust surrounding your head! The parasite works to keep your [pc.face] from inhaling any of its dangerous vapors, instead manipulating it into sending the wanton fog towards your opponent.\n");
 				}
+				
+				return;
 			}
 		}
 	}
@@ -3117,9 +3175,15 @@ public function playerMimbraneCloudAttack():void
 
 public function applyCloudDebuff(target:Creature):void
 {
+	if (target.lustVuln == 0)
+	{
+		output("\nIt seems as though your mimbranes efforts to aid you might be wasted; your assailint doesn't seem the least bit hindered by the think cloud of lust surrounding them.\n");
+		return;
+	}
+	
 	if (!target.hasStatusEffect("Mimbrane Lust Cloud"))
 	{
-		target.createStatusEffect("Mimbrane Lust Cloud", 3, 1, 0, 0, true, "", "", true);
+		target.createStatusEffect("Mimbrane Lust Cloud", 3, 1, 0, 0, false, "Icon_LustUp", "", true);
 		return;
 	}
 	else
@@ -3132,6 +3196,13 @@ public function applyCloudDebuff(target:Creature):void
 public function cloudDebuffHandler(target:Creature):void
 {
 	target.lust(target.statusEffectv2("Mimbrane Lust Cloud") * 2);
+	target.addStatusValue("Mimbrane Lust Cloud", 1, -1);
+	
+	if (target.statusEffectv1("Mimbrane Lust Cloud") <= 0)
+	{
+		target.removeStatusEffect("Mimbrane Lust Cloud");
+		output("<b>The lust inducing cloud produced by your mimbranes has faded from " + target.a + target.short + "!</b>\n");
+	}
 }
 
 // Effects that interrupt combat and cause the player to potentially "miss" a turn
@@ -3754,7 +3825,7 @@ public function attachBallsMimbrane():void
 //Get Breasts Mimbrane 
 public function attachBoobMimbrane():void
 {
-	output("Through the uncomfortable humidity and insatiable sex drive, a tiny voice far back in your head ponders to itself. Falling victim to yet another Mimbrane makes it question whether or not you even tried to get around this. But the voice fucks off into a forgotten oblivion, hushed by your agony and desire to know just where the next contestant will wind up. After exchanging pleasantries with your appropriated body parts, the parasite glides along your body until its right atop your [pc.fullchest]. No hint of hesitation lies in the creature.");
+	output("Through the uncomfortable humidity and insatiable sex drive, a tiny voice far back in your head ponders to itself. Falling victim to yet another Mimbrane makes it question whether or not you even tried to get around this. But the voice fucks off into a forgotten oblivion, hushed by your agony and desire to know just where the next contestant will wind up. After exchanging pleasantries with your appropriated body parts, the parasite glides along your body until its right atop your [pc.fullChest]. No hint of hesitation lies in the creature.");
 	output("\n\nYou’re granted a short stare from your conqueror while its body stretches to encompass");
 	if (pc.breastRows.length > 1 || pc.breastRows[0].breasts > 2) output(" all");
 	else output(" both");
@@ -4115,9 +4186,9 @@ public function mimbraneMenu():void
 	// Spit attacks
 	if (highestMimbraneTrust() >= 4)
 	{
-		output2("\n\n<b>You’ve unlocked the ability to toggle spit attacks  for any Mimbranes at Level 4 Trust.</b>");
+		output2("\n\n<b>You’ve unlocked the ability to toggle spit attacks for any Mimbranes at Level 4 Trust.</b>");
 
-		var spitText:String = "Toggle Spit: ";
+		var spitText:String = "Spit: ";
 		if (flags["PLAYER_MIMBRANE_SPIT_ENABLED"] == undefined)
 		{
 			spitText += "On";
@@ -4143,12 +4214,12 @@ public function mimbraneMenu():void
 			clearOutput2();
 			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
-			output2("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinAdj] tone.");
+			output2("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinNoun] tone.");
 			clearGhostMenu();
 			addGhostButton(0, "Back", mimbraneMenu);
 		});
 
-		addGhostButton(11, "Face B.Marks", function():void {
+		addGhostButton(11, "B.Marks", function():void {
 			clearOutput2();
 			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = 1;
@@ -4161,7 +4232,7 @@ public function mimbraneMenu():void
 		{
 			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
 
-			addGhostButton(11, "Face B.Marks", function():void {
+			addGhostButton(12, "Lip Pc.Ing", function():void {
 				clearOutput2();
 				//userInterface.showBust("MIMBRANE");
 				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
@@ -4172,7 +4243,7 @@ public function mimbraneMenu():void
 		}
 		else
 		{
-			addDisabledGhostButton(12, "Face Lip Pc.Ing");
+			addDisabledGhostButton(12, "Lip Pc.Ing");
 		}
 
 		output2("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
@@ -4264,6 +4335,15 @@ public function toggleMimbraneSweat():void
 
 	clearGhostMenu();
 	addGhostButton(0, "Back", mimbraneMenu);
+}
+
+public function mimbraneSweatHandler():void
+{
+	if (flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined && flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] == 1)
+	{
+		var numSweating:int = mimbranesAtTrustMinimum(3);
+		pc.lust(numSweating);
+	}
 }
 
 public function mimbraneBodypartString():String
@@ -4453,8 +4533,8 @@ public function feedMimbranesWithCock():void
 	// Mimbrane boobs
 	if (pc.hasStatusEffect("Mimbrane Boobs"))
 	{
-		output("\n\nYour [pc.fullchest] jiggle with excitement as [pc.cum]-soaked fingers draw their way. The Mimbrane mounds seem to want to burst from your chest just to get closer to the [pc.cumNoun] feast. You press your hands against your [pc.nipples], sighing at the strangely pleasant suckling against your digits.");
-		if (pc.hasNipplecunts() || pc.hasLipples()) output(" You’re almost worried your hands will get sucked right in.");
+		output("\n\nYour [pc.fullChest] jiggle with excitement as [pc.cum]-soaked fingers draw their way. The Mimbrane mounds seem to want to burst from your chest just to get closer to the [pc.cumNoun] feast. You press your hands against your [pc.nipples], sighing at the strangely pleasant suckling against your digits.");
+		if (pc.hasFuckableNipples()) output(" You’re almost worried your hands will get sucked right in.");
 		output(" Breastflesh massages against your grasp. The parasite has essentially turned the tables on typical breast features, groping and nursing in the reserve direction. Not that you mind so much when it still feels just as nice.");
 	}
 
@@ -4559,7 +4639,7 @@ public function feedMimbranesWithPussy():void
 
 	if (pc.hasStatusEffect("Mimbrane Boobs"))
 	{
-		output("\n\nDripping anticipation pours from your [pc.fullchest]. The Mimbrane mounds are anxious for a taste of your pussy treats, bouncing and chirping softly. A moist hand delivers them what they seek, unsure which of your [pc.nipples] to go to first. It makes little difference to the parasite so long as you eventually choose one. Your breast pushes back against your tender touch, massaging your hand as it sucks up your feminine fluids. It almost becomes a grope tug-of-war, though neither of you are all that competitive about it.");
+		output("\n\nDripping anticipation pours from your [pc.fullChest]. The Mimbrane mounds are anxious for a taste of your pussy treats, bouncing and chirping softly. A moist hand delivers them what they seek, unsure which of your [pc.nipples] to go to first. It makes little difference to the parasite so long as you eventually choose one. Your breast pushes back against your tender touch, massaging your hand as it sucks up your feminine fluids. It almost becomes a grope tug-of-war, though neither of you are all that competitive about it.");
 	}
 
 	if ((pc.hasStatusEffect("Mimbrane Foot Left") && !pc.hasStatusEffect("Mimbrane Foot Right")) || (pc.hasStatusEffect("Mimbrane Foot Right") && !pc.hasStatusEffect("Mimbrane Foot Left")))
@@ -4582,8 +4662,7 @@ public function feedMimbranesWithPussy():void
 	else output(" all of your Mimbranes");
 	output(" satisfied, you retrieve your equipment and go back to something a little more self-gratifying.");
 
-	if (mimbraneDebug) mimbraneFeed("all", 15);
-	else mimbraneFeed("all", 3);
+	mimbraneFeed("all", 3);
 	
 	pc.orgasm();
 	pc.orgasm();

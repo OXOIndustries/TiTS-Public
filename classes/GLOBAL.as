@@ -86,6 +86,9 @@
 		public static const MIMBRANE:int							   = 41;
 		public static const RASKVEL:int 							   = 42;
 		public static const SYDIAN:int 								   = 43;
+		public static const LAPINARA:int 							   = 44;
+		public static const BADGER:int 								   = 45;
+		
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
@@ -141,7 +144,7 @@
 		public static const ELECTRIC:int                               = 6;
 		//THERMAL
 		public static const THERMAL:int                                = 7;
-		public static const NO_TYPE:int								   = 8
+		public static const NO_TYPE:int								   = 8;
 		
 		public static const MAX_DAMAGE_TYPES:int						= 9; // damageType bookend, probably gonna roll its usage into things like array generation and shit.
 		
@@ -205,6 +208,7 @@
 		public static const CLOTHING:int                               = 11;
 		public static const ALL:int                                    = 12; //Used for pawn shops!
 		public static const GADGET:int 								   = 13;
+		public static const EXPLOSIVECONSUMABLE:int					   = 14;
 
 		//CHARACTERS
 		public static const CELISE:int                                 = 1;
