@@ -2477,7 +2477,7 @@ function initializeRooms():void
 	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
-	rooms["WEST ESBETH 1"].westExit = "DEBUG1";
+	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
 	//rooms["DEBUG1"].southExit = "DEBUG2";
 	//rooms["DEBUG1"].westExit = "DEBUG3";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
