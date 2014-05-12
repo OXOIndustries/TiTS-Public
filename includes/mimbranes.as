@@ -4204,7 +4204,7 @@ public function mimbraneMenu():void
 			clearOutput2();
 			//userInterface.showBust("MIMBRANE");
 			flags["MIMBRANE_FACE_APPEARANCE"] = undefined;
-			output2("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinAdj] tone.");
+			output2("You convince the Mimbrane on your head to just make the bumps concealing its eyes to appear like your normal [pc.skinNoun] tone.");
 			clearGhostMenu();
 			addGhostButton(0, "Back", mimbraneMenu);
 		});
