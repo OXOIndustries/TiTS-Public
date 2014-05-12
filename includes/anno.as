@@ -74,7 +74,7 @@ function didAnnoyKnowYourDad():void
 	//If PC is male:
 	if(pc.hasCock())
 	{
-		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>\"You've got a big pair of shoes to fill, Mr. Steele, but ");
+		output("\n\nAnno turns to you, chewing the tips of her stylus as she regards you again. <i>\"You've got a big pair of shoes to fill, " + pc.mf("Mr.","Mrs.") + " Steele, but ");
 		//if small dick:
 		if(pc.biggestCockVolume() < 150) output("I think, with a lot of work and skill, you might just be able to fill them.");
 		//if PC has a big dick: 
@@ -426,7 +426,7 @@ function tellAnnoAboutSyri():void
 	else output("<i>\"We, uh, hung out.\"</i>");
 
 	//If PC has sex'd Anno:
-	if(flags["ANNO_SEXED"] == undefined)
+	if(flags["ANNO_SEXED"] != undefined)
 	{
 		output("\n\n<i>\"Hey... you're not trying to get some kind of weird sister-thing going on here, are you?\"</i> your ausar lover asks, eyes narrowing at you.");
 		output("\n\nYou quickly assure her you aren't. They're on different planets, after all.");

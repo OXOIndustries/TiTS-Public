@@ -86,6 +86,9 @@
 		public static const MIMBRANE:int							   = 41;
 		public static const RASKVEL:int 							   = 42;
 		public static const SYDIAN:int 								   = 43;
+		public static const LAPINARA:int 							   = 44;
+		public static const BADGER:int 								   = 45;
+		
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
