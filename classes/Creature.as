@@ -1,4 +1,4 @@
-﻿package classes {
+package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -581,6 +581,16 @@
 			return true;
 		}
 		public function legFlagsLockedMessage():String
+		{
+			return "";
+		}
+		
+		public var cumType: Number = GLOBAL.CUM;
+		public function cumTypeUnlocked(newCumType:Number):Boolean
+		{
+			return true;
+		}
+		public function cumTypeLockedMessage():String
 		{
 			return "";
 		}
@@ -8239,7 +8249,7 @@
 		}
 		
 		/**
-		 * This methods are stubs, intended to be overriden on a character-by-character basis.
+		 * These methods are stubs, intended to be overriden on a character-by-character basis.
 		 * Check the PlayerCharacter class to see what I mean.
 		 */
 		
@@ -8248,7 +8258,7 @@
 			// Only run the knockup shit if the creature actually gets saved
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, vagIndex);
+				this.tryKnockUp(cumFrom, vagIndex + 1);
 			}
 			else
 			{
@@ -8260,7 +8270,7 @@
 		{
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, 3);
+				this.tryKnockUp(cumFrom, 0);
 			}
 			else
 			{
@@ -8283,19 +8293,29 @@
 			
 		}
 		
-		public var cumMultiplier: Number = 1;
-		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-		public var cumQuality: Number = 1;
-		public var cumType: Number = GLOBAL.CUM;
-		public function cumTypeUnlocked(newCumType:Number):Boolean
+		public var impregnationType:String = "";
+		
+		// Male
+		public var cumQualityRaw:Number = 1;
+		public var cumQualityMod:Number = 0;
+		public function virility():Number
 		{
-			return true;
-		}
-		public function cumTypeLockedMessage():String
-		{
-			return "";
+			if (this.hasStatusEffect("Infertile")) return 0;
+			
+			return cumQualityRaw + cumQualityMod;
 		}
 		
+		public var cumMultiplierRaw:Number = 1;
+		public var cumMultiplierMod:Number = 0;
+		public function cumMultiplier():Number
+		{
+			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
+			
+			if (multi < 0) return 0;
+			return multi;
+		}
+		
+		// Female
 		public var pregnancyMultiplierRaw:Number = 1;
 		public var pregnancyMultiplierMod:Number = 0;
 		public function pregnancyMultiplier():Number
