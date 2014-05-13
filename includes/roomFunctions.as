@@ -332,11 +332,11 @@ function rustPlainsEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
+		if(!pc.hasStatusEffect("Lapinara Prophylactic")) choices[choices.length] = encounterALapinara;
+		if(!pc.hasStatusEffect("Lapinara Prophylactic")) choices[choices.length] = encounterALapinara;
 		choices[choices.length] = encounterALapinara;
-		choices[choices.length] = encounterALapinara;
-		choices[choices.length] = encounterALapinara;
-		choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterHostileRaskvelFemale;
+		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
+		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
 
 		//Run the event
@@ -357,9 +357,8 @@ function rustCoastEncounters():Boolean {
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
-		
-		choices[choices.length] = encounterMaleSydian;
-		choices[choices.length] = encounterMaleSydian;
+		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
+		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
 		choices[choices.length] = encounterMaleSydian;
 		
 		choices[choices.length] = encounterDasGooGray;
@@ -385,11 +384,11 @@ function rustRidgesEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		choices[choices.length] = encounterMaleSydian;
-		choices[choices.length] = encounterMaleSydian;
+		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
+		if(!pc.hasStatusEffect("Sydian Prophylactic")) choices[choices.length] = encounterMaleSydian;
 		choices[choices.length] = encounterMaleSydian;
 		
-		choices[choices.length] = encounterHostileRaskvelFemale;
+		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
 		//choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterASexBot;

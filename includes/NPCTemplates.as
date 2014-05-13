@@ -165,6 +165,10 @@
 	{
 		chars["DRBADGER"] = new classes.Characters.DrBadger();
 	}
+	if (!justUpdate || (justUpdate && chars["COLENSO"] == undefined))
+	{
+		chars["COLENSO"] = new classes.Characters.Colenso();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

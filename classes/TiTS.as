@@ -107,6 +107,7 @@
 		include "../includes/anno.as";
 		include "../includes/drBadger.as";
 		include "../includes/dumbfuckBonus.as";
+		include "../includes/colenso.as";
 		
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
@@ -197,7 +198,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.27b";
+			version = "0.02.28";
 
 			//temporary nonsense variables.
 			temp = 0;

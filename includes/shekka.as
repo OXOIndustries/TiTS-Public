@@ -49,6 +49,13 @@ function approachShekka():void
 	clearOutput();
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
+	if(pc.hasStatusEffect("Raskvel Prophylactic"))
+	{
+		output("The mechanic waves you away. <i>\"Come back when you don't stink like a rotting gark!\"</i>");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
 	//Approach Introductions
 	if(flags["MET_SHEKKA"] == undefined)
 	{

@@ -1354,9 +1354,10 @@ function initializeRooms():void
 	rooms["208"] = new RoomClass(this);
 	rooms["208"].roomName = "\nNOVAHOME";
 	rooms["208"].description = "You are in the central tunnel of Novahome. Once a gigantic tunnel in the core of an ancient ship, it's now packed with houses and shops of all styles and sizes. On one side, there's shack made from stapled-together, rusted plates, while on the north lies a structure of all hard, angled starship parts. You can continue east or west from here, though a huge wall looms in the former direction before long.";
-	rooms["208"].runOnEnter = undefined;
+	rooms["208"].runOnEnter = colensosAdjacentRoomStuff;
 	rooms["208"].eastExit = "209";
 	rooms["208"].westExit = "207";
+	rooms["208"].southExit = "305";
 	rooms["208"].planet = "PLANET: TARKUS";
 	rooms["208"].system = "SYSTEM: REDACTED";
 	rooms["208"].addFlag(GLOBAL.INDOOR);
@@ -2471,6 +2472,16 @@ function initializeRooms():void
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
 	
+	rooms["305"] = new RoomClass(this);
+	rooms["305"].roomName = "COLENSO’S\nJUNK";
+	rooms["305"].description = "";
+	rooms["305"].runOnEnter = colensosRoomBonusFunction;
+	rooms["305"].northExit = "208";
+	rooms["305"].planet = "PLANET: TARKUS";
+	rooms["305"].system = "SYSTEM: REDACTED";
+	rooms["305"].addFlag(GLOBAL.INDOOR);
+	rooms["305"].addFlag(GLOBAL.COMMERCE);
+
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "THE\nMESS";
 	rooms["WIDGET WAREHOUSE"].description = "";

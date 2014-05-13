@@ -100,6 +100,7 @@ package classes.Resources
 		public static var Paralyze:Class = StatusIcons.Icon_Paralysis;
 		public static var Pill:Class = StatusIcons.Icon_DrugPill;
 		public static var Poison:Class = StatusIcons.Icon_Poison;
+		public static var Radio:Class = StatusIcons.Icon_RadioSignal;
 		public static var Stun:Class = StatusIcons.Icon_MindcontrolledMindbroke;
 		public static var LustUp:Class = StatusIcons.Icon_LustUp;
 	}
