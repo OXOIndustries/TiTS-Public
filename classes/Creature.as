@@ -844,19 +844,6 @@
 			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " +  sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
 			return "";
 		}
-		
-		public var cumMultiplier: Number = 1;
-		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-		public var cumQuality: Number = 1;
-		public var cumType: Number = GLOBAL.CUM;
-		public function cumTypeUnlocked(newCumType:Number):Boolean
-		{
-			return true;
-		}
-		public function cumTypeLockedMessage():String
-		{
-			return "";
-		}
 
 		public var ballSizeRaw:Number = 1;
 		public var ballSizeMod:Number = 1;
@@ -948,8 +935,6 @@
 			return "";
 		}
 
-		//Fertility is a % out of 100. 
-		public var fertility: Number = 10;
 		public var clitLength: Number = .5;
 		public function clitLengthUnlocked(newClitLength:Number):Boolean
 		{
@@ -961,13 +946,7 @@
 		}
 		
 		public var elasticity: Number = 1;
-		public var pregnancyMultiplierRaw: Number = 1;
-		public function pregnancyMultiplier():Number
-		{
-			var bonus:Number = 0;
-			if(hasPerk("Breed Hungry")) bonus += .5;
-			return (pregnancyMultiplierRaw + bonus);
-		}
+		
 		public var girlCumType: Number = GLOBAL.GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
@@ -1088,26 +1067,7 @@
 		public var ass = new VaginaClass(false);
 		public var analVirgin: Boolean = true;
 		public var perks: Array;
-		public var statusEffects: Array;
-
-		//Preggos
-		//First 3 corrospond to vaginas. Last is for buttpreggo.
-		public var pregnancyIncubations: Array = new Array(0, 0, 0, 0);
-		public var pregnancyTypes: Array = new Array(0, 0, 0, 0);
-		public var pregnancyQuantity: Array = new Array(0, 0, 0, 0);
-		
-		// Sperm provider stuff
-		public var canImpregnateVagina:Boolean = false;
-		public var canImpregnateButt:Boolean = false;
-		public var canFertilizeEggs:Boolean = true;
-		public var alwaysImpregnate:Boolean = false;
-		public var impregnateType:int = 0;
-		public var basePregnancyIncubation:int = 0;
-		public var basePregnancyChance:int = 0;
-		
-		//Used for ovipositors
-		public var eggs: int = 0;
-		public var fertilizedEggs: int = 0;
+		public var statusEffects: Array;		
 
 		//Used for misc shit
 		var list: Array = new Array();
@@ -2925,82 +2885,6 @@
 			newKeyItem.value4 = value4;
 			newKeyItem.tooltip = desc;
 			alphabetize(perks, newKeyItem);
-		}
-		public function knockUp(hole: int, type: int = 0, incubation: int = 0, beat: int = 100, arg: int = 0): void {
-			//Contraceptives cancel!
-			if (hasStatusEffect("Contraceptives") >= 0) return;
-			//Not having an appropriate cunt cancels.			
-			if (hole < 3 && !hasVagina(hole)) return;
-
-			//LETS MAKE SOME BABIES.
-			var bonus: int = 0;
-			//If arg = 1 (always pregnant), bonus = 9000
-			if (arg >= 1) bonus = 9000;
-			if (arg <= -1) bonus = -9000;
-			//If unpregnant and fertility wins out:
-			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-				pregnancyTypes[hole] = type;
-				pregnancyIncubations[hole] = incubation;
-				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
-			}
-			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != 1 && type != 5 && type != 10) {
-				if (hasTailFlag(GLOBAL.OVIPOSITOR) && (tailType == GLOBAL.ARACHNID || tailType == GLOBAL.DRIDER || tailType == GLOBAL.BEE)) {
-					if (totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-						fertilizeEggs();
-					}
-				}
-			}
-		}
-		//Is a specific womb preggers
-		public function isPregnant(arg: int = 0): Boolean {
-			return false;
-		}
-		//Does the PC have any cunt pregnancy?
-		public function hasPregnancy(): Boolean {
-			return false;
-		}
-		public function totalPregnancies(): Number {
-			return 0;
-		}
-		public function canOvipositSpider(): Boolean {
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
-			return false;
-		}
-		public function canOvipositBee(): Boolean {
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
-			return false;
-		}
-		public function canOviposit(): Boolean {
-			if (canOvipositSpider() || canOvipositBee()) return true;
-			return false;
-		}
-		public function addEggs(arg: int = 0): int {
-			if (!canOviposit()) return -1;
-			else {
-				eggs += arg;
-				if (eggs > 50) eggs = 50;
-			}
-			return eggs;
-		}
-		public function dumpEggs(): void {
-			if (!canOviposit()) return;
-			eggs = 0;
-			fertilizedEggs = 0;
-		}
-		public function setEggs(arg: int = 0): int {
-			if (!canOviposit()) return -1;
-			else {
-				eggs = arg;
-				if (eggs > 50) eggs = 50;
-				return eggs;
-			}
-		}
-		public function fertilizeEggs(percent: Number = 50): int {
-			if (!canOviposit()) return -1;
-			fertilizedEggs += eggs * percent / 100;
-			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
-			return fertilizedEggs;
 		}
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
@@ -8397,6 +8281,109 @@
 		public function loadInCuntTail(cumFrom:Creature):void
 		{
 			
+		}
+		
+		public var cumMultiplier: Number = 1;
+		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+		public var cumQuality: Number = 1;
+		public var cumType: Number = GLOBAL.CUM;
+		public function cumTypeUnlocked(newCumType:Number):Boolean
+		{
+			return true;
+		}
+		public function cumTypeLockedMessage():String
+		{
+			return "";
+		}
+		
+		public var pregnancyMultiplierRaw:Number = 1;
+		public var pregnancyMultiplierMod:Number = 0;
+		public function pregnancyMultiplier():Number
+		{
+			var bonus:Number = 0;
+			if(hasPerk("Breed Hungry")) bonus += .5;
+			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
+		}
+		
+		//Used for ovipositors
+		public var eggs: int = 0;
+		public var fertilizedEggs: int = 0;
+		
+		public function knockUp(hole: int, type: int = 0, incubation: int = 0, beat: int = 100, arg: int = 0): void {
+			//Contraceptives cancel!
+			if (hasStatusEffect("Contraceptives") >= 0) return;
+			//Not having an appropriate cunt cancels.			
+			if (hole < 3 && !hasVagina(hole)) return;
+
+			//LETS MAKE SOME BABIES.
+			var bonus: int = 0;
+			//If arg = 1 (always pregnant), bonus = 9000
+			if (arg >= 1) bonus = 9000;
+			if (arg <= -1) bonus = -9000;
+			//If unpregnant and fertility wins out:
+			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+				pregnancyTypes[hole] = type;
+				pregnancyIncubations[hole] = incubation;
+				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
+			}
+			//Chance for eggs fertilization - ovi elixir and imps excluded!
+			if (type != 1 && type != 5 && type != 10) {
+				if (hasTailFlag(GLOBAL.OVIPOSITOR) && (tailType == GLOBAL.ARACHNID || tailType == GLOBAL.DRIDER || tailType == GLOBAL.BEE)) {
+					if (totalFertility() + bonus > Math.floor(Math.random() * beat)) {
+						fertilizeEggs();
+					}
+				}
+			}
+		}
+		//Is a specific womb preggers
+		public function isPregnant(arg: int = 0): Boolean {
+			return false;
+		}
+		//Does the PC have any cunt pregnancy?
+		public function hasPregnancy(): Boolean {
+			return false;
+		}
+		public function totalPregnancies(): Number {
+			return 0;
+		}
+		public function canOvipositSpider(): Boolean {
+			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
+			return false;
+		}
+		public function canOvipositBee(): Boolean {
+			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
+			return false;
+		}
+		public function canOviposit(): Boolean {
+			if (canOvipositSpider() || canOvipositBee()) return true;
+			return false;
+		}
+		public function addEggs(arg: int = 0): int {
+			if (!canOviposit()) return -1;
+			else {
+				eggs += arg;
+				if (eggs > 50) eggs = 50;
+			}
+			return eggs;
+		}
+		public function dumpEggs(): void {
+			if (!canOviposit()) return;
+			eggs = 0;
+			fertilizedEggs = 0;
+		}
+		public function setEggs(arg: int = 0): int {
+			if (!canOviposit()) return -1;
+			else {
+				eggs = arg;
+				if (eggs > 50) eggs = 50;
+				return eggs;
+			}
+		}
+		public function fertilizeEggs(percent: Number = 50): int {
+			if (!canOviposit()) return -1;
+			fertilizedEggs += eggs * percent / 100;
+			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
+			return fertilizedEggs;
 		}
 		
 		// Preg slot is the incubation slot we're gonna occupy, following the same rules as the array
