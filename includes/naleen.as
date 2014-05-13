@@ -181,7 +181,7 @@ function biteAttack():void {
 		pc.reflexesMod -= .5;
 		pc.addStatusValue("Naleen Venom",1,.5);
 		pc.lust(10+rand(10));
-		if(pc.lust() >= 100 || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
+		if(pc.lust() >= pc.lustMax() || ((pc.physique() == 0 || pc.willpower() == 0) && pc.hasStatusEffect("Naleen Venom"))) output("\n\n<b>You're too doped up to care anymore. You give in.</b>");
 	}
 	processCombat();
 }
@@ -205,7 +205,7 @@ function pcLosesToNaleenLiekABitch():void {
 	userInterface.showName("\nNALEEN");
 	output("Succumbing to the ");
 	if(pc.HP() <= 0) output("pain wracking your body");
-	else if(pc.lust() >= 100) output("lust boiling in your loins");
+	else if(pc.lust() >= pc.lustMax()) output("lust boiling in your loins");
 	else output("venom coursing through your veins");
 	output(", you topple backwards - only to land on the thick, leathery tail of your attacker. Grinning down at you with a predatory, hungry glint in her eye, the naleen woman coils around you, tail constricting around your weak [pc.legs] and waist.");
 	

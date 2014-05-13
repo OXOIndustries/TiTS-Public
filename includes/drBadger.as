@@ -5,8 +5,14 @@
 
 function drBadgerMenu():void
 {
+	shopkeep = chars["DRBADGER"];
+	//Unlock dumbfuck codex
+	CodexManager.unlockEntry("Dumbfuck");
 	clearMenu();
-	//addButton(0,"Buy",buyItem,undefined,"Buy","Buy something from Doctor Badger.");
+	addButton(0,"Buy",buyItem,undefined,"Buy something from Doctor Badger.");
+	addButton(1,"Sell",sellItem,undefined,"Sell something from Doctor Badger.");
+	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you're a hero. After your first encounter with the Doctor, you're fairly sure this is going to result in some heavy brain-drain.");
+	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don't really like, remember what this was all about.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -14,8 +20,11 @@ function drBadgerMenu():void
 function drBadgerBonusShit():Boolean
 {
 	author("Abe E. Seedy");
+	//Prep shop stuff!
+	
 	if(flags["MET_DR_BADGER"] == undefined)
 	{
+		flags["MET_DR_BADGER"] = 1;
 		userInterface.showBust("DRBADGER");
 		userInterface.showName("DR.\nBADGER");
 		output("The door swings open easily as you push at it, stepping cautiously inside. It’s surprisingly dark in here, and you squint in an attempt to make out more than just a vague suggestion of the four walls around you.");
@@ -23,7 +32,7 @@ function drBadgerBonusShit():Boolean
 		output("\n\nThere’s someone there, holding you easily up against the door with one hand and leering as they do so. It doesn’t take much to figure out that this must be Doctor Badger; with black fur covering their plump, curvy body except for the white muzzle marking her as a mustelid. The tight-fitting white nurse’s shirt they’re wearing not only presents them as some sort of medical professional, but also highlights the bulging breasts that show her up as enthusiastically female. She notices you looking, and while one red-gloved hand keeps you pressed firmly against the wall, the other casually points your head downwards, where you soon see she’s not wearing any pants. This lets her frankly massive black cock and balls hang down freely from her crotch, her shaft decorated rather than concealed by the odd half-sleeve featuring a red and white cross wrapped around it. The only other clothes she’s wearing are a pair of red thigh high boots, which match nicely with the long sleeved gloves you can still feel pressing against your {skin/scales/surface}. The whole effect of her outfit and demeanor does rather scream “mad doctor”, although “madly perverted” probably seems a little more accurate.");
 		output("\n\nYou look back up slowly, finally noticing her long, purple-highlighted black hair now that your attention isn’t being distracted by her startling succession of outsized sexual characteristics, finishing by looking in her deep green eyes as she finally speaks.");
 		output("\n\n“<i>So</i>”, she says, her voice somewhere between a growl and a purr, “<i>now that you’re </i>quite<i> done taking stock of me, I’ve got something I need to find out from you...</i>”");
-		output("\n\nShe shifts, and suddenly she’s got one hand around your throat, squeezing just hard enough to let you know that she could squeeze a <i>lot</i> harder if she wanted to. “<i>You’re not one of those… hero types, are you?</i>”, she asks, staring you down intensely.");
+		output("\n\nShe shifts, and suddenly she’s got one hand around your throat, squeezing just hard enough to let you know that she could squeeze a <i>lot</i> harder if she wanted to. “<i>You’re not one of those… hero types, are you?</i>” she asks, staring you down intensely.");
 		//[Yes] [No]
 		clearMenu();
 		addButton(0,"Yes",yesImAHeroHurhurDurhurGurhurhurhurShit,undefined,"Yes","Tell the Doctor that you're a hero. This might be a bad idea.");
@@ -47,7 +56,7 @@ function repeatBadgerApproach():void
 	userInterface.showName("DR.\nBADGER");
 	author("Abe E. Seedy");
 	//REPEAT GREETING NON-BIMBOIFIED
-	if(flags["DR_BADGER_BIMBOED_PC"] == undefined)
+	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech"))
 	{
 		output("The Doctor looks up at you, snorting with derision as you enter. “<i>Well well, if it isn’t the non-hero. Come to do some more shopping, have you? I’ve still got some of those little happy pills, if you decide you want to live a little for once...</i>”");
 		//[Buy Dumbfuck pills] [Leave]
@@ -72,7 +81,7 @@ function yesImAHeroHurhurDurhurGurhurhurhurShit():void
 	output("“<i>Oh, really?</i>”, she answers, one eyebrow arching upwards with amused curiosity. She steps a little to the side, still keeping you pinned up against the door, but now letting you see the large, complicated-looking machine behind her. It’s some sort of… ray gun, by the looks of it, but industrial-sized; some massive squatting mess of tangled wires and haphazardly bolted together metal, and the only thing you can say for sure about it is that it’s very definitely pointing at you. Your eyes flick back to Dr Badger, and seeing your expression she starts grinning disturbingly. “<i>Heroes</i>”, she says, squeezing your throat again lightly for emphasis at the word, “<i>earn themselves a session with my patented bimbo-making machine over there</i>.”");
 	output("\n\nBetween that ominous machine and the leering Dr Badger herself, you pretty quickly determine that saying the wrong thing here would have some fairly significant consequences. That said, something about her tells you that whatever she has in mind <i>would</i> probably be highly enjoyable, if you’re up for the sort of outsized genitalia and overblown libidos she seems to be all about, that is.");
 
-	output("\n\n“<i>So...</i>”, she concludes, licking her surprisingly plump lips, “<i>are you </i>sure<i> you’re a hero?</i>”");
+	output("\n\n“<i>So...</i>” she concludes, licking her surprisingly plump lips, “<i>are you </i>sure<i> you’re a hero?</i>”");
 	//[I’m a hero] [I’m just here to shop]
 	clearMenu();
 	addButton(0,"Hero",heyDocImAHero,undefined,"Hero","Yeah... this probably going to result in a fight or rapid bimbofication; that much seems clear.");
@@ -159,13 +168,13 @@ function heyDocImAHero():void
 	if(pc.biggestTitSize() < 1)
 	{
 		output("\n\nYour chest strains alarmingly, and even from your current position you manage to look down and watch your body reshape; the fluid being pumped into you somehow congregating in very specific spots until with a shuddering gasp two breasts push themselves out of your [pc.skin]. You can’t help but keep moaning as they swell further and further, until eventually they are left dangling almost all the way to the floor, pulling your bent over body downwards even more just by the sheer weight of fluid that sloshes inside of them. Strainingly stiff nipples cap them off, making you look like you’re perpetually on the verge of actively leaking. <b>You now have very large breasts</b>!");
-		pc.breastRows[0].breastRating = 8 + rand(4);
+		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 	}
 	//IF PC HAS SMALLER THAN VERY LARGE BREASTS
 	if(pc.biggestTitSize() < 8)
 	{
 		output("\n\nYour breasts seem to get the most attention, pushing out emphatically as the fluid somehow seems to concentrate itself in filling them as much as possible. You can’t help but moan as they grow to become achingly large, leaving them almost touching the floor as you’re bent double over this podium. They slosh noisily too, seeming to be filled with a vast reservoir of loose fluid that your strainingly stiff nipples struggle to contain without leaking eagerly. <b>You breasts are now very large</b>!");
-		pc.breastRows[0].breastRating = 8 + rand(4);
+		pc.breastRows[0].breastRatingRaw = 8 + rand(4);
 	}
 	//IF PC HAS MORE THAN ONE SET OF BREASTS
 	if(pc.bRows() > 1)
@@ -369,7 +378,7 @@ function heyDocImAHero():void
 	if(pc.libido() < 70) pc.libido(10);
 	pc.libido(10);
 	pc.intelligence(Math.round(-.5 * pc.intelligence()))
-
+	flags["DR_BADGER_BIMBOED_PC"] = 1;
 	//[Add the following as one of the random Tease attack texts: “You shake what Dr. Badger gave you, running your hand happily over your bimbo body to accentuate your slutty appeal to your opponent.”]
 	processTime(40+rand(15));
 

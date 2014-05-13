@@ -1,4 +1,8 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.GUI;
+import classes.StorageClass;
+import classes.UIComponents.SquareButton;
+import flash.events.Event;
 
 public function get canSaveAtCurrentLocation():Boolean
 {
@@ -113,6 +117,43 @@ public function mainGameMenu():void {
 	this.userInterface.showMinimap();
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
+	
+	// Enable the perk list button
+	(userInterface as GUI).perkDisplayButton.Activate();
+}
+
+// Temp display stuff for perks
+public function showPerkListHandler(e:Event = null):void
+{
+	var pButton:SquareButton = (userInterface as GUI).perkDisplayButton;
+	if (pButton.isActive && !pButton.isHighlighted)
+	{
+		showPerksList();
+		pButton.Highlight();
+	}
+	else if (pButton.isActive && pButton.isHighlighted)
+	{
+		mainGameMenu();
+		pButton.DeHighlight();
+	}
+}
+
+public function showPerksList():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	addGhostButton(0, "Next", showPerkListHandler);
+	
+	var perkList:Array = (pc as PlayerCharacter).perks;
+	
+	for (var i:int = 0; i < perkList.length; i++)
+	{
+		var perk:StorageClass = perkList[i] as StorageClass;
+		if (perk.combatOnly == false)
+		{
+			output2("<b>" + perk.storageName + "</b> - " + perk.tooltip + "\n");
+		}
+	}
 }
 
 function crew(counter:Boolean = false):Number {
@@ -525,7 +566,28 @@ public function processTime(arg:int):void {
 	}
 	//Check to see if something changed in this department
 	milkMultiplierGainNotificationCheck();
-
+	//Queue up dumbfuck procs
+	if(pc.hasStatusEffect("Dumbfuck"))
+	{
+		//Got some cums to pile oN?
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Procced"))
+		{
+			//No sneezes set up yet. Start dis shit.
+			if(!pc.hasStatusEffect("Dumbfuck Orgasm Queued"))
+			{
+				pc.createStatusEffect("Dumbfuck Orgasm Queued", pc.statusEffectv1("Dumbfuck Orgasm Procced"), 0, 0, 0, true, "", "", false, 0);
+			}
+			//Already got some. PILE ON!
+			else pc.addStatusValue("Dumbfuck Orgasm Queued",1,pc.statusEffectv1("Dumbfuck Orgasm Procced"));
+			//Clear out the holding status now that we're cued up for sneezin'
+			pc.removeStatusEffect("Dumbfuck Orgasm Procced");
+		}
+		//Add to event queue so long as it isn't on there already
+		if(pc.hasStatusEffect("Dumbfuck Orgasm Queued") && eventQueue.indexOf(procDumbfuckStuff) == -1)
+		{
+			eventQueue[eventQueue.length] = procDumbfuckStuff;
+		}
+	}
 	updatePCStats();
 }
 
