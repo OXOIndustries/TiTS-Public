@@ -8264,6 +8264,7 @@
 			{
 				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
 			}
+			return false;
 		}
 		
 		public function loadInAss(cumFrom:Creature):Boolean
@@ -8276,6 +8277,7 @@
 			{
 				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
 			}
+			return false;
 		}
 		
 		public function loadInMouth(cumFrom:Creature):Boolean
@@ -8290,6 +8292,14 @@
 		
 		public function loadInCuntTail(cumFrom:Creature):Boolean
 		{
+			if (this.neverSerialize == false)
+			{
+				return this.tryKnockUp(cumFrom, 4);
+			}
+			else
+			{
+				trace("Warning: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+			}
 			return false;
 		}
 		
@@ -8490,17 +8500,17 @@
 		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):Boolean
 		{
 			// Vagina/butt slot checking
-			if (pregSlot > 0 && !hasVagina(pregSlot) || pregSlot > 3)
+			if (pregSlot < -2 || (pregSlot > 0 && pregSlot <= 2 && !hasVagina(pregSlot)) || pregSlot > 4)
 			{
 				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
-				return;
+				return false;
 			}
 			
 			// The array storing chars will just throw out a null if a key doesn't exist - catch that and shit out an obvious error.
 			if (cumFrom == null)
 			{
 				throw new Error("Null creature used to call tryKnockUp. Does this creature actually have a defined statblock?");
-				return;
+				return false;
 			}
 			
 			return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);

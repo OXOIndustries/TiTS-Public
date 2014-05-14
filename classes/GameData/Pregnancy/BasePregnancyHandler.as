@@ -81,6 +81,32 @@ package classes.GameData.Pregnancy
 		
 		public function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
+			if (pregSlot <= 2 && !this.canImpregnateVagina) return false;
+			if (pregSlot == 3 && !this.canImpregnateButt) return false;
+			
+			// This may need to be reworked depending on a discussion about the actual handling of cunttail preggers
+			if (pregSlot == 4 && !this.canFertilizeEggs)
+			{
+				return false;
+			}
+			else
+			{			
+				// Egg fertilization
+				if (father.canFertilizeEggs)
+				{
+					if (mother.hasTailFlag(GLOBAL.OVIPOSITOR) && (mother.tailType == GLOBAL.ARACHNID || mother.tailType == GLOBAL.DRIDER || mother.tailType == GLOBAL.BEE))
+					{
+						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * father.basePregnancyChance))
+						{
+							mother.fertilizeEggs();
+							return true;
+						}
+					}
+				}
+				
+				return true;
+			}
+			
 			var wasSuccessful:Boolean = false;
 			if (_onTryImpregnate != null)
 			{
@@ -135,9 +161,40 @@ package classes.GameData.Pregnancy
 			}
 		}
 		
-		public function updatePregnancyStage(tarCreature:Creature, tMinutes:int):void
+		public function updatePregnancyStage(tarCreature:Creature, tMinutes:int, pregSlot:int):void
 		{
+			var pData:PregnancyData = tarCreature.pregnancyData[pregSlot];
 			
+			var modTDelta:int = Math.round(tMinutes * pData.pregnancyIncubationMulti);
+			
+			var oldInc:int = pData.pregnancyIncubation;
+			var newInc:int = pData.pregnancyIncubation - modTDelta;
+			
+			var triggeredPSPs:Array = new Array();
+			
+			for (var i:int = 0; i < _stageProgressions.length; i++)
+			{
+				var pPSP:PregnancyStageProgression = _stageProgressions[i];
+				if (pPSP.triggersAtDuration < oldInc && pPSP.triggersAtDuration >= newInc) triggeredPSPs.push(pPSP);
+			}
+			
+			for (i = 0; i < triggeredPSPs.length; i++)
+			{
+				pPSP.execute();
+			}
+			
+			if (newInc <= 0)
+			{
+				if (_onDurationEnd != null)
+				{
+					if (debugTrace) trace("Calling onDurationEnd handler");
+					_onDurationEnd(tarCreature, pregSlot, this);
+				}
+				else
+				{
+					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
+				}
+			}
 		}
 		
 		// Baseline data/interaction
@@ -263,8 +320,8 @@ package classes.GameData.Pregnancy
 			pData.pregnancyIncubationMulti = mother.pregnancyIncubationBonusMother() + father.pregnancyIncubationBonusFather() / 2.0;
 			if (thisPtr.debugTrace) trace("Calculated incubation acceleration multi as " + pData.pregnancyIncubationMulti);
 			
-			pData.pregnancyIncubation = thisPtr.basePregnancyIncubationTime * pData.pregnancyIncubationMulti;
-			if (thisPtr.debugTrace) trace("Calculated total incubation time as " + pData.pregnancyIncubation);
+			pData.pregnancyIncubation = thisPtr.basePregnancyIncubationTime;
+			if (thisPtr.debugTrace) trace("Total incubation time as " + pData.pregnancyIncubation);
 			
 			// Calculate the *number* of "children", if applicable
 			var quantity:Number = rand(thisPtr.pregnancyQuantityMaximum + 1);
@@ -314,7 +371,10 @@ package classes.GameData.Pregnancy
 		public function get onFailedImpregnation():Function { return _onFailedImpregnation; }
 		protected static function defaultOnFailedImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			if (thisPtr.debugTrace) trace("defaultOnFailedImpregnation handler called");
 			
+			father.orgasm();
+			mother.orgasm();
 		}
 		
 		private var _onFailedImpregnationOutput:Function;
@@ -331,7 +391,7 @@ package classes.GameData.Pregnancy
 		public function set onFailedImpregnationOutput():Function { return _onFailedImpregnationOutput; }
 		protected static function defaultOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
-			
+			if (thisPtr.debugTrace) trace("defaultOnFailedImpregnationOutput handler called");
 		}
 		
 		private var _onDurationEnd:Function;
@@ -340,9 +400,14 @@ package classes.GameData.Pregnancy
 		 * method(mother:Creature, thisPtr:BasePregnancyHandler):void
 		 */
 		public function set onDurationEnd(v:Function):void { _onDurationEnd = v; }
-		protected static function defaultOnDurationEnd(mother:Creature, thisPtr:BasePregnancyHandler):void
+		public function get onDurationEnd():Function { return _onDurationEnd; }
+		protected static function defaultOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			if (thisPtr.debugTrace) trace("defaultOnDurationEnd handler called");
 			
+			var pData:PregnancyData = mother.pregnancyData[pregSlot];
+			
+			pData.reset();
 		}
 		
 		private var _stageProgressions:Array;
@@ -379,66 +444,8 @@ package classes.GameData.Pregnancy
 					}
 				}
 			}
-		}
-		
-		// Some methods stripped outta creature for reference.
-		public function knockUp(hole: int, type: int = 0, incubation: int = 0, beat: int = 100, arg: int = 0): void {
-			//Contraceptives cancel!
-			if (hasStatusEffect("Contraceptives") >= 0) return;
-			//Not having an appropriate cunt cancels.			
-			if (hole < 3 && !hasVagina(hole)) return;
-
-			//LETS MAKE SOME BABIES.
-			var bonus: int = 0;
-			//If arg = 1 (always pregnant), bonus = 9000
-			if (arg >= 1) bonus = 9000;
-			if (arg <= -1) bonus = -9000;
-			//If unpregnant and fertility wins out:
-			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-				pregnancyTypes[hole] = type;
-				pregnancyIncubations[hole] = incubation;
-				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
-			}
-			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != 1 && type != 5 && type != 10) {
-				if (hasTailFlag(GLOBAL.OVIPOSITOR) && (tailType == GLOBAL.ARACHNID || tailType == GLOBAL.DRIDER || tailType == GLOBAL.BEE)) {
-					if (totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-						fertilizeEggs();
-					}
-				}
-			}
-		}
-		
-		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):void
-		{
-			// Check the sperm provider can actually knock up this hole
-			if (pregSlot <= 2 && cumFrom.canImpregnateVagina || pregSlot == 3 && cumFrom.canImpregnateButt)
-			{
-				// If the holes not already preggers
-				if (this.pregnancyIncubations[pregSlot] == 0)
-				{
-					// Roll the dice
-					// Creature.alwaysImpregnate is replacing the old arg fiddle. I don't *really* understand what was going 
-					// on with the arg paramemter, but it seems like it was being used to basically fuck the math into MASSIVELY 
-					// increasing the chance to be pregnant OR make it 100%.
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance))
-					{
-						// Knockup go!
-						this.pregnancyTypes[pregSlot] = cumFrom.impregnateType;
-						this.pregnancyIncubations[pregSlot] = cumFrom.basePregnancyIncubation;
-						trace(this.short + " Knocked up with pregnancy type: " + cumFrom.impregnateType + " for " + cumFrom.basePregnancyIncubation + " in hole#: " + pregSlot);
-					}
-				}
-			}
 			
-			// Egg fertilization
-			if (cumFrom.canFertilizeEggs)
-			{
-				if (this.hasTailFlag(GLOBAL.OVIPOSITOR) && (this.tailType == GLOBAL.ARACHNID || this.tailType == GLOBAL.DRIDER || this.tailType == GLOBAL.BEE))
-				{
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance)) this.fertilizeEggs();
-				}
-			}
+			_stageProgressions.sortOn("triggersAtDuration", Array.NUMERIC | Array.DESCENDING);
 		}
 	}
 }
