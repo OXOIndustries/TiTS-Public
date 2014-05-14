@@ -94,7 +94,7 @@ package classes.Items.Miscellaneous
 					kGAMECLASS.output(usingCreature.short + " pulls out a hp booster and jabs it against " + target.short + "s arm. Woosh noises etc.");
 				}
 				
-				var hpChange:int = gainHP(target);
+				hpChange = gainHP(target);
 				kGAMECLASS.output(" " + target.short + " gained " + hpChange + " hp!\n");
 				target.HP(hpChange);
 			}
