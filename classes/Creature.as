@@ -1,4 +1,4 @@
-package classes {
+﻿package classes {
 	import classes.Characters.PlayerCharacter;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
@@ -55,6 +55,12 @@ package classes {
 			keyItems = new Array();
 			inventory = new Array();
 			sexualPreferences = new SexualPreferences();
+			
+			pregnancyData = new Array();
+			for (var i:int = 0; i < 4; i++)
+			{
+				pregnancyData.push(new PregnancyData());
+			}
 		}
 
 		//For enemies
@@ -2142,15 +2148,6 @@ package classes {
 		}
 		public function addTongueFlag(arg): void {
 			if (!hasTongueFlag(arg)) tongueFlags[tongueFlags.length] = arg;
-		}
-		//Return bonus fertility
-		public function bonusFertility(): Number {
-			var counter: Number = 0;
-			return counter;
-		}
-		//return total fertility
-		public function totalFertility(): Number {
-			return (bonusFertility() + fertility);
 		}
 		public function displayTallness(): String {
 			var buffer: String = "";
@@ -4571,14 +4568,17 @@ package classes {
 			}
 			return desc;
 		}
-		//Calculate bonus virility rating!
-		//anywhere from 5% to 100% of normal cum effectiveness thru herbs!
-		public function cumQualityFinal(): Number {
-			if (!hasCock()) return 0;
-			var percent: Number = cumQuality;
-			if (percent > 10) percent = 10;
-			return percent;
+		
+		public var cumMultiplierRaw:Number = 1;
+		public var cumMultiplierMod:Number = 0;
+		public function cumMultiplier():Number
+		{
+			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
+			
+			if (multi < 0) return 0;
+			return multi;
 		}
+		
 		//Calculate cum return
 		public function cumQ(): Number {
 			if (!hasCock()) return 0;
@@ -8253,12 +8253,12 @@ package classes {
 		 * Check the PlayerCharacter class to see what I mean.
 		 */
 		
-		public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):void
+		public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
 		{
 			// Only run the knockup shit if the creature actually gets saved
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, vagIndex + 1);
+				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			else
 			{
@@ -8266,11 +8266,11 @@ package classes {
 			}
 		}
 		
-		public function loadInAss(cumFrom:Creature):void
+		public function loadInAss(cumFrom:Creature):Boolean
 		{
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, 0);
+				return this.tryKnockUp(cumFrom, 3);
 			}
 			else
 			{
@@ -8278,44 +8278,54 @@ package classes {
 			}
 		}
 		
-		public function loadInMouth(cumFrom:Creature):void
+		public function loadInMouth(cumFrom:Creature):Boolean
 		{
-			
+			return false;
 		}
 		
-		public function loadInNipples(cumFrom:Creature):void
+		public function loadInNipples(cumFrom:Creature):Boolean
 		{
-			
+			return false;
 		}
 		
-		public function loadInCuntTail(cumFrom:Creature):void
+		public function loadInCuntTail(cumFrom:Creature):Boolean
 		{
-			
+			return false;
 		}
 		
+		/**
+		 * Defined impregnation handler that this Creature will attempt to use.
+		 */
 		public var impregnationType:String = "";
 		
-		// Male
+		// Male-centric stuff (Father)
 		public var cumQualityRaw:Number = 1;
 		public var cumQualityMod:Number = 0;
+		public function cumQuality():Number
+		{
+			return cumQualityRaw + cumQualityMod;
+		}
+		
+		/**
+		 * Virility should be the overall multiplier used to modify the basePregnancyChance of any given pregnancy.
+		 * It should include all things that could possibly influence the raw "power" of virility.
+		 * @return
+		 */
 		public function virility():Number
 		{
 			if (this.hasStatusEffect("Infertile")) return 0;
 			
-			return cumQualityRaw + cumQualityMod;
+			return cumQuality();
 		}
 		
-		public var cumMultiplierRaw:Number = 1;
-		public var cumMultiplierMod:Number = 0;
-		public function cumMultiplier():Number
+		public var pregnancyIncubationBonusFatherRaw:Number = 1;
+		public var pregnancyIncubationBonusFatherMod:Number = 0;
+		public function pregnancyIncubationBonusFather():Number
 		{
-			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
-			
-			if (multi < 0) return 0;
-			return multi;
+			return pregnancyIncubationBonusFatherRaw + pregnancyIncubationBonusFatherMod;
 		}
 		
-		// Female
+		// Female-centric stuff (Mother)
 		public var pregnancyMultiplierRaw:Number = 1;
 		public var pregnancyMultiplierMod:Number = 0;
 		public function pregnancyMultiplier():Number
@@ -8325,60 +8335,116 @@ package classes {
 			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
 		}
 		
+		public var fertilityRaw:Number = 1;
+		public var fertilityMod:Number = 0;
+		public function fertility():Number
+		{
+			if (this.hasStatusEffect("Infertile")) return 0;
+			
+			return fertilityRaw + fertilityMod;
+		}
+		
+		public var pregnancyIncubationBonusMotherRaw:Number = 1;
+		public var pregnancyIncubationBonusMotherMod:Number = 0;
+		public function pregnancyIncubationBonusMother():Number
+		{
+			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod;
+		}
+		
+		// Pregnancy Data Storage
+		public var pregnancyData:Array = new Array();
+		
+		// Pregnancy Utility Methods
+		
+		/**
+		 * Determine if a creature has a pregnancy. Optionally supply an index to check for a specific pregnancy slot.
+		 * @param	slot	index to check, -1 for any
+		 * @return			true/false
+		 */
+		public function isPregnant(slot:int = -1):Boolean
+		{
+			// Any pregnancy
+			if (slot == -1)
+			{
+				for (var i:int = 0; i < pregnancyData.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType != "") return true;
+				}
+			}
+			
+			// Check the slot is in range
+			if (slot < -1 || slot > 3)
+			{
+				throw new Error("isPregnant argument out of range. Expected -1 to 3, got " + slot);
+			}
+			
+			// Find a pregnancy in a given slot
+			if (slot > 0)
+			{
+				if (!hasVagina(slot - 1))
+				{
+					throw new Error(this.short + " does not have a Vagina in slot " + slot + " to query for pregnancy data.");
+				}
+				
+				if ((pregnancyData[slot] as PregnancyData).pregnancyType != "") return true;
+			}
+			
+			return false;
+		}
+		public function hasPregnancy():Boolean { return isPregnant(); }
+		
+		/**
+		 * Find the total number of pregnancies for a given creature.
+		 * @return			total pregnancies
+		 */
+		public function totalPregnancies():int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
+			}
+			return count;
+		}
+		
+		/**
+		 * Find the index of the first empty pregnancy slot
+		 * @return			index of the first empty pregnancy slot, -1 if none available.
+		 */
+		public function findEmptyPregnancySlot():int
+		{
+			for (var i:int = 0; i < this.vaginas.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == "") return i;
+			}
+			
+			return -1;
+		}
+		
 		//Used for ovipositors
 		public var eggs: int = 0;
 		public var fertilizedEggs: int = 0;
-		
-		public function knockUp(hole: int, type: int = 0, incubation: int = 0, beat: int = 100, arg: int = 0): void {
-			//Contraceptives cancel!
-			if (hasStatusEffect("Contraceptives") >= 0) return;
-			//Not having an appropriate cunt cancels.			
-			if (hole < 3 && !hasVagina(hole)) return;
 
-			//LETS MAKE SOME BABIES.
-			var bonus: int = 0;
-			//If arg = 1 (always pregnant), bonus = 9000
-			if (arg >= 1) bonus = 9000;
-			if (arg <= -1) bonus = -9000;
-			//If unpregnant and fertility wins out:
-			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-				pregnancyTypes[hole] = type;
-				pregnancyIncubations[hole] = incubation;
-				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
-			}
-			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != 1 && type != 5 && type != 10) {
-				if (hasTailFlag(GLOBAL.OVIPOSITOR) && (tailType == GLOBAL.ARACHNID || tailType == GLOBAL.DRIDER || tailType == GLOBAL.BEE)) {
-					if (totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-						fertilizeEggs();
-					}
-				}
-			}
-		}
-		//Is a specific womb preggers
-		public function isPregnant(arg: int = 0): Boolean {
-			return false;
-		}
-		//Does the PC have any cunt pregnancy?
-		public function hasPregnancy(): Boolean {
-			return false;
-		}
-		public function totalPregnancies(): Number {
-			return 0;
-		}
-		public function canOvipositSpider(): Boolean {
+		public function canOvipositSpider(): Boolean 
+		{
 			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
 			return false;
 		}
-		public function canOvipositBee(): Boolean {
+		
+		public function canOvipositBee(): Boolean 
+		{
 			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
 			return false;
 		}
-		public function canOviposit(): Boolean {
+		
+		public function canOviposit(): Boolean 
+		{
 			if (canOvipositSpider() || canOvipositBee()) return true;
 			return false;
 		}
-		public function addEggs(arg: int = 0): int {
+		
+		public function addEggs(arg: int = 0): int 
+		{
 			if (!canOviposit()) return -1;
 			else {
 				eggs += arg;
@@ -8386,12 +8452,16 @@ package classes {
 			}
 			return eggs;
 		}
-		public function dumpEggs(): void {
+		
+		public function dumpEggs(): void 
+		{
 			if (!canOviposit()) return;
 			eggs = 0;
 			fertilizedEggs = 0;
 		}
-		public function setEggs(arg: int = 0): int {
+		
+		public function setEggs(arg: int = 0): int 
+		{
 			if (!canOviposit()) return -1;
 			else {
 				eggs = arg;
@@ -8399,7 +8469,9 @@ package classes {
 				return eggs;
 			}
 		}
-		public function fertilizeEggs(percent: Number = 50): int {
+		
+		public function fertilizeEggs(percent: Number = 50): int 
+		{
 			if (!canOviposit()) return -1;
 			fertilizedEggs += eggs * percent / 100;
 			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
@@ -8407,15 +8479,18 @@ package classes {
 		}
 		
 		// Preg slot is the incubation slot we're gonna occupy, following the same rules as the array
-		// 0-2 are vagina(s), 3 is butt
+		// 0 is butt, 1-3 are vagina(s)
 		// This isn't perfect, but it's a start.
-		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):void
+		/**
+		 * Try to impregnate this creature.
+		 * @param	cumFrom
+		 * @param	pregSlot
+		 * @return  success/failure
+		 */
+		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):Boolean
 		{
-			// Contraceptives
-			if (this.hasStatusEffect("Contraceptives")) return;
-			
 			// Vagina/butt slot checking
-			if (pregSlot < 3 && !hasVagina(pregSlot) || pregSlot > 3)
+			if (pregSlot > 0 && !hasVagina(pregSlot) || pregSlot > 3)
 			{
 				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
 				return;
@@ -8428,34 +8503,7 @@ package classes {
 				return;
 			}
 			
-			// Check the sperm provider can actually knock up this hole
-			if (pregSlot <= 2 && cumFrom.canImpregnateVagina || pregSlot == 3 && cumFrom.canImpregnateButt)
-			{
-				// If the holes not already preggers
-				if (this.pregnancyIncubations[pregSlot] == 0)
-				{
-					// Roll the dice
-					// Creature.alwaysImpregnate is replacing the old arg fiddle. I don't *really* understand what was going 
-					// on with the arg paramemter, but it seems like it was being used to basically fuck the math into MASSIVELY 
-					// increasing the chance to be pregnant OR make it 100%.
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance))
-					{
-						// Knockup go!
-						this.pregnancyTypes[pregSlot] = cumFrom.impregnateType;
-						this.pregnancyIncubations[pregSlot] = cumFrom.basePregnancyIncubation;
-						trace(this.short + " Knocked up with pregnancy type: " + cumFrom.impregnateType + " for " + cumFrom.basePregnancyIncubation + " in hole#: " + pregSlot);
-					}
-				}
-			}
-			
-			// Egg fertilization
-			if (cumFrom.canFertilizeEggs)
-			{
-				if (this.hasTailFlag(GLOBAL.OVIPOSITOR) && (this.tailType == GLOBAL.ARACHNID || this.tailType == GLOBAL.DRIDER || this.tailType == GLOBAL.BEE))
-				{
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance)) this.fertilizeEggs();
-				}
-			}
+			return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
 		}
 	}
 }
