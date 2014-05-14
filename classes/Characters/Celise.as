@@ -117,9 +117,9 @@
 			this.cocks = new Array();
 			//balls
 			this.balls = 0;
-			this.cumMultiplier = 50;
+			this.cumMultiplierRaw = 50;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQuality = 1;
+			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.CUM;
 			this.ballSizeRaw = 24;
 			this.ballFullness = 100;
@@ -142,7 +142,7 @@
 			//Goo is hyper friendly!
 			this.elasticity = 100;
 			//Fertility is a % out of 100. 
-			this.fertility = 1;
+			this.fertilityRaw = 1;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			

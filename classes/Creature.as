@@ -16,6 +16,8 @@
 	import flash.utils.ByteArray;
 
 	import classes.GLOBAL;
+	
+	import classes.GameData.Pregnancy.PregnancyManager;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -4585,7 +4587,7 @@
 			var quantity: Number = 0;
 			//lust - 50% = normal output.  0 = 75%. 100 = +125% output.
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
-			quantity = cumMultiplier * lustCoefficient * maxCum() / ballEfficiency;
+			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
 			quantity += statusEffectv1("rut");
 			if (quantity > currentCum()) quantity = currentCum();

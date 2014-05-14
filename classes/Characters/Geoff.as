@@ -149,9 +149,9 @@
 			this.cocks[0].cThicknessRatioRaw = 1.4;
 			//balls
 			this.balls = 2;
-			this.cumMultiplier = 3;
+			this.cumMultiplierRaw = 3;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQuality = 1;
+			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.CUM;
 			this.ballSizeRaw = 3;
 			//this.ballSize = titsPtr.chars["PC"].ballSize;
@@ -166,7 +166,7 @@
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			this.fertility = 5;
+			this.fertilityRaw = 1.05;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			

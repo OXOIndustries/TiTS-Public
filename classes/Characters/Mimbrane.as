@@ -137,9 +137,10 @@ package classes.Characters
 			
 			//balls
 			this.balls = 0;
-			this.cumMultiplier = 1;
+			this.cumMultiplierRaw = 1;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQuality = 0;
+			//this.cumQuality = 0;
+			this.createStatusEffect("Infertile");
 			this.cumType = 0;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 0;
@@ -153,8 +154,6 @@ package classes.Characters
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			
-			this.fertility = 0;
 			this.clitLength = 0.5;
 			this.pregnancyMultiplierRaw = 1;
 			

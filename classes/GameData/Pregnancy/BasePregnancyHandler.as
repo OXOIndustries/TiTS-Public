@@ -2,6 +2,8 @@ package classes.GameData.Pregnancy
 {
 	import classes.Creature;
 	import classes.rand;
+	import classes.GLOBAL;
+	import classes.PregnancyData;
 	
 	/**
 	 * ...
@@ -11,7 +13,7 @@ package classes.GameData.Pregnancy
 	public class BasePregnancyHandler 
 	{
 		private var _debugTrace:Boolean;
-		public function debugTrace():Boolean { return _debugTrace; }
+		public function get debugTrace():Boolean { return _debugTrace; }
 		
 		private var _handlesType:String;
 		public function get handlesType():String { return _handlesType; }
@@ -92,11 +94,11 @@ package classes.GameData.Pregnancy
 			else
 			{			
 				// Egg fertilization
-				if (father.canFertilizeEggs)
+				if (this.canFertilizeEggs)
 				{
 					if (mother.hasTailFlag(GLOBAL.OVIPOSITOR) && (mother.tailType == GLOBAL.ARACHNID || mother.tailType == GLOBAL.DRIDER || mother.tailType == GLOBAL.BEE))
 					{
-						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * father.basePregnancyChance))
+						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{
 							mother.fertilizeEggs();
 							return true;
@@ -388,7 +390,7 @@ package classes.GameData.Pregnancy
 		 * method(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		 */
 		public function set onFailedImpregnationOutput(v:Function):void { _onFailedImpregnationOutput = v; }
-		public function set onFailedImpregnationOutput():Function { return _onFailedImpregnationOutput; }
+		public function get onFailedImpregnationOutput():Function { return _onFailedImpregnationOutput; }
 		protected static function defaultOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnFailedImpregnationOutput handler called");
@@ -412,7 +414,7 @@ package classes.GameData.Pregnancy
 		
 		private var _stageProgressions:Array;
 		
-		public function addStageProgression(args ...):void
+		public function addStageProgression(... args):void
 		{
 			if (args.length > 0)
 			{

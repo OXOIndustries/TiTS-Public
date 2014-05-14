@@ -15,10 +15,6 @@ package classes.GameData.Pregnancy
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
 		private static var _pregHandlers:Array;
 		
-		// No new plz
-		private PregnancyManager() { }
-		
-		
 		// System data functions
 		public static function insertNewHandler(pHandler:BasePregnancyHandler):void
 		{
@@ -44,11 +40,11 @@ package classes.GameData.Pregnancy
 		{
 			if (tarCreature.isPregnant())
 			{
-				for (var i:int = 0; i < tarCreature.pregnancyIncubations.length; i++)
+				for (var i:int = 0; i < tarCreature.pregnancyData.length; i++)
 				{
-					if (_pregHandlers[tarCreature.pregnancyIncubations[i]] != null)
+					if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
 					{
-						_pregHandlers[tarCreature.pregnancyIncubations[i]].updatePregnancyStage(tarCreature, tMinutes);
+						_pregHandlers[tarCreature.pregnancyData[i].pregnancyType].updatePregnancyStage(tarCreature, tMinutes, i);
 					}
 				}
 			}
@@ -63,9 +59,16 @@ package classes.GameData.Pregnancy
 			var npc:Creature = (father is PlayerCharacter) ? mother : father;
 			
 			// Grab the pregtype from the NPC and find the handler we need to process it
-			BasePregnancyHandler pHandler = PregnancyManager.findHandler(npc.impregnationType);
+			var pHandler:BasePregnancyHandler = PregnancyManager.findHandler(npc.impregnationType);
 			
-			if (pHandler != null) pHandler.tryKnockUp(father, mother, pregSlot);
+			if (pHandler != null) 
+			{
+				return pHandler.tryKnockUp(father, mother, pregSlot);
+			}
+			else
+			{
+				return false;
+			}
 		}
 		
 		public static function tryKnockUpNPCs(father:Creature, mother:Creature, pregSlot:int):Boolean
