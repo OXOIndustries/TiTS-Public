@@ -30,11 +30,11 @@ package classes.DataManager
 		
 		public function upgradeCharData(data:Object):void
 		{
-			data.fertilityRaw = data.fertility;
-			data.fertilityMod = 0;
+			// Tossing out all of these properties and falling back to defaults as assigned in the classes.
+			// Outside of possibly Penny & the PC, I don't think this really matters atm.
 			delete data.fertility;
-			
-			data.pregnancyMultiplierMod = 0;
+			delete data.cumQuality;
+			delete data.cumMultiplier;
 			
 			delete data.pregnancyIncubations;
 			delete data.pregnancyTypes;
@@ -47,7 +47,6 @@ package classes.DataManager
 			delete data.impregnateType;
 			delete data.basePregnancyIncubation;
 			delete data.basePregnancyChance;
-			
 		}
 		
 		public function verify(data:Object):Boolean

@@ -333,7 +333,10 @@
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
-			updatePCStats();
+			if (chars["PC"] != undefined)
+			{
+				updatePCStats();
+			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}

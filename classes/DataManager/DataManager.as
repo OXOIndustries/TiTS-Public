@@ -22,7 +22,7 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 9;
+		private static const LATEST_SAVE_VERSION:int = 10;
 		private static const MINIMUM_SAVE_VERSION:int = 6;
 		
 		private var _autoSaveEnabled:Boolean = false;
@@ -42,6 +42,7 @@
 			var sv6:SaveVersionUpgrader6;
 			var sv7:SaveVersionUpgrader7;
 			var sv8:SaveVersionUpgrader8;
+			var sv9:SaveVersionUpgrader9;
 		}
 		
 		/**
@@ -409,7 +410,9 @@
 			}
 			
 			// Now we can shuffle data into disparate game systems 
-			var saveBackup:Object = this.loadBaseData(dataObject);
+			var saveBackup:Object = new Object();
+			
+			dataErrors = this.loadBaseData(dataObject, saveBackup);
 			
 			// Do some output shit
 			if (!dataErrors)
@@ -423,9 +426,10 @@
 			}
 			else
 			{
-				if (kGAMECLASS.chars["PC"].short != "uncreated")
+				if (kGAMECLASS.chars["PC"] != undefined && kGAMECLASS.chars["PC"].short != "uncreated")
 				{
-					this.loadBaseData(saveBackup);
+					var ph:Object = new Object();
+					this.loadBaseData(saveBackup, ph);
 				}
 				
 				kGAMECLASS.output2("Error: Could not load game data.");
@@ -439,11 +443,10 @@
 		 * Need to add some error handling in here
 		 * @param	obj
 		 */
-		private function loadBaseData(obj:Object):Object
+		private function loadBaseData(obj:Object, curGameObj:Object):Object
 		{
 			trace("loadBaseData");
 			// Base/Primary information
-			var curGameObj:Object = new Object();
 			var prop:String;
 			var i:int;
 			
@@ -463,6 +466,7 @@
 			// Game data
 			kGAMECLASS.chars = new Object();
 			var aRef:Object = kGAMECLASS.chars;
+			var failure:Boolean = false
 			
 			for (prop in obj.characters)
 			{
@@ -483,8 +487,25 @@
 				{
 					// If the classDefintion doesn't exist, we'll get a ReferenceError exception
 					trace(e.message)
+					
+					if (failure == false)
+					{
+						kGAMECLASS.output2("Load error(s) detected: \n\n");
+					}
+					
+					kGAMECLASS.output2(e.message);
+					kGAMECLASS.output2("\n");
+					
+					failure = true;
 				}
 			}
+			
+			if (failure == true)
+			{
+				kGAMECLASS.output2("\n\n");
+				return failure;
+			}
+			
 			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save
 			
 			kGAMECLASS.flags = new Dictionary();
@@ -533,7 +554,7 @@
 			}
 			
 			// Returns the backup
-			return curGameObj;
+			return false;
 		}
 		
 		private function printDataErrorMessage(property:String):void
