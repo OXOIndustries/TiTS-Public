@@ -2,6 +2,8 @@ package classes.GameData.Pregnancy
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
+	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
+	import classes.GameData.Pregnancy.Handlers.VenusPitcherSeedCarrierPregnancyHandler;
 	/**
 	 * ...
 	 * @author Gedan
@@ -10,10 +12,14 @@ package classes.GameData.Pregnancy
 	{
 		{
 			_pregHandlers = new Array();
+			
+			PregnancyManager.insertNewHandler(new VenusPitcherFertilizedSeedCarrierHandler());
+			PregnancyManager.insertNewHandler(new VenusPitcherSeedCarrierPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.
 		private static var _pregHandlers:Array;
+		private static var _debugTrace:Boolean = true;
 		
 		// System data functions
 		public static function insertNewHandler(pHandler:BasePregnancyHandler):void
@@ -28,11 +34,11 @@ package classes.GameData.Pregnancy
 		}
 		
 		// Usage functions
-		public static function updatePregnancyStages(creatures:Array, tMinutes:int):void
+		public static function updatePregnancyStages(creatures:Object, tMinutes:int):void
 		{
-			for (var i:int = 0; i < creatures.length; i++)
+			for each (var creature:Creature in creatures)
 			{
-				updateStageForCreature(creatures[i], tMinutes);
+				updateStageForCreature(creature, tMinutes);
 			}
 		}
 		
@@ -40,10 +46,13 @@ package classes.GameData.Pregnancy
 		{
 			if (tarCreature.isPregnant())
 			{
+				if (_debugTrace) trace("Updating pregnancy stages for " + tarCreature.short);
+				
 				for (var i:int = 0; i < tarCreature.pregnancyData.length; i++)
 				{
 					if (_pregHandlers[tarCreature.pregnancyData[i].pregnancyType] != null)
 					{
+						if (_debugTrace) trace("Found a valid pregnancy handler for type " + tarCreature.pregnancyData[i].pregnancyType);
 						_pregHandlers[tarCreature.pregnancyData[i].pregnancyType].updatePregnancyStage(tarCreature, tMinutes, i);
 					}
 				}

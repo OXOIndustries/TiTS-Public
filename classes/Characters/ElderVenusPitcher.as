@@ -147,6 +147,7 @@
 			this.refractoryRate = 200;
 			this.minutesSinceCum = 3650;
 			this.timesCum = 20;
+			this.impregnationType = "VenusPitcherSeedCarrier";
 			
 			//Goo is hyper friendly!
 			this.elasticity = 1;

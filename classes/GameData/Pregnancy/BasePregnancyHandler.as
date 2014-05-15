@@ -59,6 +59,8 @@ package classes.GameData.Pregnancy
 		
 		public function BasePregnancyHandler() 
 		{
+			_debugTrace = true;
+			
 			_handlesType = "";
 			_basePregnancyIncubationTime = -1;
 			_basePregnancyChance = -1;
@@ -73,6 +75,8 @@ package classes.GameData.Pregnancy
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 1;
 			
+			_stageProgressions = new Array();
+			
 			// Default event handlers
 			_onTryImpregnate = BasePregnancyHandler.defaultOnTryImpregnate;
 			_onSuccessfulImpregnation = BasePregnancyHandler.defaultOnSuccessfulImpregnation;
@@ -83,6 +87,21 @@ package classes.GameData.Pregnancy
 		
 		public function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
+			// Check if we have a valid pregnancy slot defined
+			if (pregSlot == -1)
+			{
+				// Find the first available pregnancy slot on the mother, else return a failure
+				pregSlot = mother.findEmptyPregnancySlot();
+				
+				if (pregSlot == -1) return false;
+			}
+			
+			// Abort if there's an existing pregnancy of this type and multipreg of this type is disabled
+			if (_allowMultiplePregnancies == false && mother.hasPregnancyOfType(_handlesType))
+			{
+				return false;
+			}
+			
 			if (pregSlot <= 2 && !this.canImpregnateVagina) return false;
 			if (pregSlot == 3 && !this.canImpregnateButt) return false;
 			
@@ -105,8 +124,6 @@ package classes.GameData.Pregnancy
 						}
 					}
 				}
-				
-				return true;
 			}
 			
 			var wasSuccessful:Boolean = false;
@@ -161,6 +178,8 @@ package classes.GameData.Pregnancy
 			{
 				throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onFailedImpregnation event handler.");
 			}
+			
+			return false;
 		}
 		
 		public function updatePregnancyStage(tarCreature:Creature, tMinutes:int, pregSlot:int):void
@@ -169,8 +188,13 @@ package classes.GameData.Pregnancy
 			
 			var modTDelta:int = Math.round(tMinutes * pData.pregnancyIncubationMulti);
 			
+			if (_debugTrace) trace("Incubation change of " + tMinutes + " * " + pData.pregnancyIncubationMulti + " = " + modTDelta);
+			
+			
 			var oldInc:int = pData.pregnancyIncubation;
 			var newInc:int = pData.pregnancyIncubation - modTDelta;
+			
+			if (_debugTrace) trace("New incubation value = " + newInc);
 			
 			var triggeredPSPs:Array = new Array();
 			
@@ -182,11 +206,13 @@ package classes.GameData.Pregnancy
 			
 			for (i = 0; i < triggeredPSPs.length; i++)
 			{
-				pPSP.execute();
+				if (_debugTrace) trace("Triggered StageProgression for duration index " + triggeredPSPs[i].triggersAtDuration);
+				triggeredPSPs[i].execute();
 			}
 			
 			if (newInc <= 0)
 			{
+				if (_debugTrace) trace("Incubation expired");
 				if (_onDurationEnd != null)
 				{
 					if (debugTrace) trace("Calling onDurationEnd handler");
@@ -196,6 +222,10 @@ package classes.GameData.Pregnancy
 				{
 					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
 				}
+			}
+			else
+			{
+				pData.pregnancyIncubation = newInc;
 			}
 		}
 		
@@ -215,15 +245,6 @@ package classes.GameData.Pregnancy
 		public static function defaultOnTryImpregnate(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):Boolean
 		{
 			if (thisPtr.debugTrace) trace("defaultOnTryImpregnate handler called");
-			
-			// Check if we have a valid pregnancy slot defined
-			if (pregSlot == -1)
-			{
-				// Find the first available pregnancy slot on the mother, else return a failure
-				pregSlot = mother.findEmptyPregnancySlot();
-				
-				if (pregSlot == -1) return false;
-			}
 			
 			// Process various ignore values
 			var virility:Number = father.virility();
@@ -319,7 +340,7 @@ package classes.GameData.Pregnancy
 			pData.pregnancyType = thisPtr.handlesType;
 			if (thisPtr.debugTrace) trace("Knocking up " + mother.short + " with pregnancy type " + pData.pregnancyType);
 			
-			pData.pregnancyIncubationMulti = mother.pregnancyIncubationBonusMother() + father.pregnancyIncubationBonusFather() / 2.0;
+			pData.pregnancyIncubationMulti = (mother.pregnancyIncubationBonusMother() + father.pregnancyIncubationBonusFather()) / 2.0;
 			if (thisPtr.debugTrace) trace("Calculated incubation acceleration multi as " + pData.pregnancyIncubationMulti);
 			
 			pData.pregnancyIncubation = thisPtr.basePregnancyIncubationTime;

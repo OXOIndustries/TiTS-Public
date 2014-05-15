@@ -32,7 +32,7 @@ package classes.Characters
 			return false;
 		}
 		
-		override public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):Boolean
+		override public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			return this.tryKnockUp(cumFrom, vagIndex);

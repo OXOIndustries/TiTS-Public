@@ -447,6 +447,9 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		output(" wider inside you, sealing the next bursts of spunk into your passage so that the only thing to escape is your own secretions.");
 		if(pc.totalVaginas() && !pc.hasPregnancy()) output(" Your [pc.belly] bloats a little under the forceful insemination, rubbed tenderly by other trembling stalks as you’re filled.");
 	}
+	
+	if (pc.hasVagina()) pc.loadInCunt(chars["VENUSPITCHER"]);
+	
 	//{Pass out}
 	output("\n\nAt once, the strength goes out of the restraints holding you up, and you fall into a puddle of mixed sensual fluids, sore from [pc.nipples] to [pc.butt] and covered in ropes of plant cum that still fall on you from time to time. A vague thought that you should be alarmed by the situation surfaces, but it vanishes in a flash, disappearing in a tired sneeze. Your body is pushed, stroked and prodded gently, lifted into a more comfortable position.");
 	output("\n\nA female voice coos, <i>“Thanks for the meal. I’ll take care of your...”</i>");
@@ -891,6 +894,7 @@ function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nYour eyes roll back as the orgasm drags on and on, [pc.eachVagina] writhing in ecstasy");
 	if(pc.vaginaTotal() >= 1) output(", even though some are empty");
 	output(". A comforting voice instructs, “<i>Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.</i>”");
+	pc.loadInCunt(chars["ELDERVENUSPITCHER"]);
 	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
 	pc.orgasm();
 	processTime(20+rand(10));
@@ -1201,7 +1205,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	// Do the needful with the pregnancy quantity. The complexity/interactions of this specific pregnancy make
 	// this a pain in the ass, this shouldn't need to be the case in a general sense
 	pData.pregnancyQuantity--;
-	pc.bellyModRaw -= 10;
+	pc.bellyRatingRaw -= 10;
 	
 	if (pData.pregnancyQuantity == 0)
 	{
@@ -1315,25 +1319,7 @@ public function layFertilizedVenusPitcherEgg():void
 	pc.orgasm();
 
 	// Do the needful with the eggs etc
-	pData.pregnancyQuantity--;
-	pc.bellyRatingMod -= 14;
-
 	if (pData.pregnancyQuantity >= 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
-
-	if (pData.pregnancyQuantity == 0)
-	{
-		if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished"))
-		{
-			pc.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
-		}
-
-		if (pc.hasStatusEffect("Venus Pitcher Seed Residue"))
-		{
-			pc.removeStatusEffect("Venus Pitcher Seed Residue");
-		}
-
-		pData.reset();
-	}
 
 	//Increase elasticity .1 towards a cap of 2
 	if (pc.elasticity < 2.0)
@@ -1342,7 +1328,6 @@ public function layFertilizedVenusPitcherEgg():void
 		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
 
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.")
-
 	}
 
 	clearMenu();

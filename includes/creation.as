@@ -567,7 +567,7 @@ function chooseSexualGift():void {
 
 function applySexualGift(arg:String = "none"):void {
 	if(arg == "virile") {
-		pc.cumQuality += 1.5;
+		pc.cumQualityRaw += 1.15;
 		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
 	}
 	else if(arg == "potent") {
@@ -580,14 +580,14 @@ function applySexualGift(arg:String = "none"):void {
 		pc.elasticity += .5;
 	}
 	else if(arg == "fertility") {
-		pc.fertility += 15;
+		pc.fertilityRaw += 1.15;
 		pc.createPerk("Fertility",0,0,0,0,"Increases your odds of getting pregnant.");
 	}
 	else if(arg == "milky") {
 		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
 	}
 	else if(arg == "incubator") {
-		pc.pregnancyMultiplierRaw += .5;
+		(pc as PlayerCharacter).pregnancyIncubationBonusMotherRaw += 0.5;
 		pc.createPerk("Incubator",0,0,0,0,"Increases the speed at which your pregnancies progress.");
 	}
 	else if(arg == "hung") {

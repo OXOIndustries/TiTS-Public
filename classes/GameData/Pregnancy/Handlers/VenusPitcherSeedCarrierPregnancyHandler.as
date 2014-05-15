@@ -4,6 +4,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.kGAMECLASS;
+	import classes.rand;
 	
 	/**
 	 * ...
@@ -21,7 +22,7 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = true;
 			_ignoreMotherInfertility = true;
 			_ignoreFatherInfertility = true;
-			_allowMultiplePregnancies = false;
+			_allowMultiplePregnancies = true;
 			_canImpregnateButt = false;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
@@ -29,24 +30,35 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMaximum = 9;
 			
 			onSuccessfulImpregnation = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnSuccessfulImpregnation;
-			onDurationEnd = VenusPitcherSeedCarrierPregnancyHandler
+			onDurationEnd = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnDurationEnd;
 		}
 		
-		public static function seedCarrierOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):Boolean
+		public static function seedCarrierOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			// Use the default to setup all the values and shit for us
+			// If the mother already has a Fertilized seed pregnancy ongoing
+			if (mother.hasPregnancyOfType("VenusPitcherFertilizedSeedCarrier"))
+			{
+				return;
+			}
+			
+			// If a second impregnation attempt happens whilst unfertilized, convert to Fertilized
+			if (mother.hasPregnancyOfType("VenusPitcherSeedCarrier"))
+			{
+				VenusPitcherFertilizedSeedCarrierHandler.convertPregnancy(father, mother, pregSlot);
+				return;
+			}
+			
+			// Otherwise, create the base data used for the pregnancy
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 			
 			// Bellymod from the eggs
 			mother.bellyRatingMod += 10 * mother.pregnancyData[pregSlot].pregnancyQuantity;
 			
-			// Now check if we need to convert the pregnancy type
+			// If the mother still has the seed residue from a previous seeding, convert to fertilized
 			if (mother.hasStatusEffect("Venus Pitcher Seed Residue"))
 			{
 				VenusPitcherFertilizedSeedCarrierHandler.convertPregnancy(father, mother, pregSlot);
 			}
-			
-			return true;
 		}
 		
 		public static function seedCarrierOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
@@ -58,7 +70,24 @@ package classes.GameData.Pregnancy.Handlers
 				mother.pregnancyData[pregSlot].pregnancyIncubation = 960 + rand(1200); // 16 - 36 hours
 			}
 			
-			kGAMECLASS.eventQueue.push(kGAMECLASS.venusPitcherLayUnfertilizedEgg());
+			kGAMECLASS.eventQueue.push(function():void {
+					kGAMECLASS.venusPitcherLayUnfertilizedEgg();
+					cleanupPregnancy(kGAMECLASS.pc);
+				});
+		}
+		
+		public static function cleanupPregnancy(target:Creature):void
+		{
+			if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+			
+			if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
+			{
+				target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160); // 2 weeks
+			}
+			else
+			{
+				target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
+			}
 		}
 	}
 
