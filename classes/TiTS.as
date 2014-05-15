@@ -51,6 +51,7 @@
 	import classes.Parser.ParseEngine;
 
 	import classes.DataManager.DataManager;
+	import classes.GameData.StatTracking;
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;

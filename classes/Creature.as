@@ -1,5 +1,6 @@
 ﻿package classes {
 	import classes.Characters.PlayerCharacter;
+	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Items.Miscellaneous.Empty;
@@ -8363,6 +8364,13 @@
 			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod;
 		}
 		
+		public var bellyRatingRaw:Number = 0;
+		public var bellyRatingMod:Number = 0;
+		public function bellyRating():Number
+		{
+			return bellyRatingRaw + bellyRatingMod;
+		}
+		
 		// Pregnancy Data Storage
 		public var pregnancyData:Array = new Array();
 		
@@ -8404,6 +8412,33 @@
 			return false;
 		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
+		
+		public function hasPregnancyOfType(type:String):Boolean
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return true;
+			}
+			return false;
+		}
+		
+		public function getPregnancyOfType(type:String):PregnancyData
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return pregnancyData[i];
+			}
+			return null;
+		}
+		
+		public function findPregnancyOfType(type:String):int
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return i;
+			}
+			return -1;
+		}
 		
 		/**
 		 * Find the total number of pregnancies for a given creature.

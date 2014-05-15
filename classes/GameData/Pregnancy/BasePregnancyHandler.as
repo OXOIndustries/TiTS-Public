@@ -12,49 +12,49 @@ package classes.GameData.Pregnancy
 	
 	public class BasePregnancyHandler 
 	{
-		private var _debugTrace:Boolean;
+		protected var _debugTrace:Boolean;
 		public function get debugTrace():Boolean { return _debugTrace; }
 		
-		private var _handlesType:String;
+		protected var _handlesType:String;
 		public function get handlesType():String { return _handlesType; }
 		
-		private var _basePregnancyIncubationTime:int;
+		protected var _basePregnancyIncubationTime:int;
 		public function get basePregnancyIncubationTime():int { return _basePregnancyIncubationTime; }
 		
-		private var _basePregnancyChance:Number;
+		protected var _basePregnancyChance:Number;
 		public function get basePregnancyChance():Number { return _basePregnancyChance; }
 		
-		private var _definedAverageLoadSize:Number;
+		protected var _definedAverageLoadSize:Number;
 		public function get definedAverageLoadSize():Number { return _definedAverageLoadSize; }
 		
-		private var _alwaysImpregnate:Boolean;
+		protected var _alwaysImpregnate:Boolean;
 		public function get alwaysImpregnate():Boolean { return _alwaysImpregnate; }
 		
-		private var _ignoreInfertility:Boolean;
+		protected var _ignoreInfertility:Boolean;
 		public function get ignoreInfertility():Boolean { return _ignoreInfertility; }
 		
-		private var _ignoreFatherInfertility:Boolean;
+		protected var _ignoreFatherInfertility:Boolean;
 		public function get ignoreFatherInfertility():Boolean { return _ignoreFatherInfertility; }
 		
-		private var _ignoreMotherInfertility:Boolean;
+		protected var _ignoreMotherInfertility:Boolean;
 		public function get ignoreMotherInfertility():Boolean { return _ignoreMotherInfertility; }
 		
-		private var _allowMultiplePregnancies:Boolean;
+		protected var _allowMultiplePregnancies:Boolean;
 		public function get allowMultiplePregnancies():Boolean { return _allowMultiplePregnancies; }
 		
-		private var _canImpregnateButt:Boolean;
+		protected var _canImpregnateButt:Boolean;
 		public function get canImpregnateButt():Boolean { return _canImpregnateButt; }
 		
-		private var _canImpregnateVagina:Boolean;
+		protected var _canImpregnateVagina:Boolean;
 		public function get canImpregnateVagina():Boolean { return _canImpregnateVagina; }
 		
-		private var _canFertilizeEggs:Boolean;
+		protected var _canFertilizeEggs:Boolean;
 		public function get canFertilizeEggs():Boolean { return _canFertilizeEggs; }
 		
-		private var _pregnancyQuantityMinimum:int;
+		protected var _pregnancyQuantityMinimum:int;
 		public function get pregnancyQuantityMinimum():int { return _pregnancyQuantityMinimum; }
 		
-		private var _pregnancyQuantityMaximum:int;
+		protected var _pregnancyQuantityMaximum:int;
 		public function get pregnancyQuantityMaximum():int { return _pregnancyQuantityMaximum; }
 		
 		public function BasePregnancyHandler() 
@@ -200,7 +200,7 @@ package classes.GameData.Pregnancy
 		}
 		
 		// Baseline data/interaction
-		private var _onTryImpregnate:Function = BasePregnancyHandler.defaultOnTryImpregnate;
+		protected var _onTryImpregnate:Function = BasePregnancyHandler.defaultOnTryImpregnate;
 		
 		/**
 		 * onTryImpregnate should be purely used to calculate the a pass/fail true/false success/fail impregnation chance. Any side-effects should
@@ -299,7 +299,7 @@ package classes.GameData.Pregnancy
 			return pregChanceSuccessful;
 		}
 		
-		private var _onSuccessfulImpregnation:Function;
+		protected var _onSuccessfulImpregnation:Function;
 		/**
 		 * onSuccessfulImpregnation should be where all of the side-effects from an initial impregnation attempt should happen.
 		 * This seperates the code handling the chance calculations from the changes that need to be made to the Creature objects.
@@ -309,7 +309,7 @@ package classes.GameData.Pregnancy
 		 */
 		public function set onSuccessfulImpregnation(v:Function):void { _onSuccessfulImpregnation = v; }
 		public function get onSuccessfulImpregnation():Function { return _onSuccessfulImpregnation; }
-		protected static function defaultOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnSuccessfulImpregnation handler called");
 			
@@ -343,7 +343,7 @@ package classes.GameData.Pregnancy
 			mother.orgasm();
 		}
 		
-		private var _onSuccessfulImpregnationOutput:Function;
+		protected var _onSuccessfulImpregnationOutput:Function;
 		/**
 		 * onSuccessfulImpregnationOutput should be where the output message(s) are defined from the impregnation attempt.
 		 * Again, this is seperated so that the generic mechanics handling can be removed from the specific text required of the pregnancy.
@@ -356,12 +356,12 @@ package classes.GameData.Pregnancy
 		 */
 		public function set onSuccessfulImpregnationOutput(v:Function):void { _onSuccessfulImpregnationOutput = v; }
 		public function get onSuccessfulImpregnationOutput():Function { return _onSuccessfulImpregnationOutput; }
-		protected static function defaultOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnSuccessfulImpregnationOutput handler called");
 		}
 		
-		private var _onFailedImpregnation:Function;
+		protected var _onFailedImpregnation:Function;
 		/**
 		 * onFailedImpregnantion should be where all of the side-effects from a failed initial impregnation attempt should happen.
 		 * This seperates the code handling the chance calculations from the changes that need to be made to the Creature objects.
@@ -371,7 +371,7 @@ package classes.GameData.Pregnancy
 		 */
 		public function set onFailedImpregnation(v:Function):void { _onFailedImpregnation = v; }
 		public function get onFailedImpregnation():Function { return _onFailedImpregnation; }
-		protected static function defaultOnFailedImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnFailedImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnFailedImpregnation handler called");
 			
@@ -379,7 +379,7 @@ package classes.GameData.Pregnancy
 			mother.orgasm();
 		}
 		
-		private var _onFailedImpregnationOutput:Function;
+		protected var _onFailedImpregnationOutput:Function;
 		/**
 		 * onFailedImpregnationOutput should be where the output message(s) are defined from the impregnation attempt.
 		 * Again, this is seperated so that the generic mechanics handling impregnation can be removed from the specific text required of the pregnancy.
@@ -391,19 +391,19 @@ package classes.GameData.Pregnancy
 		 */
 		public function set onFailedImpregnationOutput(v:Function):void { _onFailedImpregnationOutput = v; }
 		public function get onFailedImpregnationOutput():Function { return _onFailedImpregnationOutput; }
-		protected static function defaultOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnFailedImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnFailedImpregnationOutput handler called");
 		}
 		
-		private var _onDurationEnd:Function;
+		protected var _onDurationEnd:Function;
 		/**
 		 * Replacement onDurationEnd handlers should use the following function signature:
 		 * method(mother:Creature, thisPtr:BasePregnancyHandler):void
 		 */
 		public function set onDurationEnd(v:Function):void { _onDurationEnd = v; }
 		public function get onDurationEnd():Function { return _onDurationEnd; }
-		protected static function defaultOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
+		public static function defaultOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
 			if (thisPtr.debugTrace) trace("defaultOnDurationEnd handler called");
 			
@@ -412,7 +412,7 @@ package classes.GameData.Pregnancy
 			pData.reset();
 		}
 		
-		private var _stageProgressions:Array;
+		protected var _stageProgressions:Array;
 		
 		public function addStageProgression(... args):void
 		{

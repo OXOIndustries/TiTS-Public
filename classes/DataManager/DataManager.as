@@ -14,6 +14,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
 	import classes.GameData.CodexManager;
+	import classes.GameData.StatTracking;
 	
 	/**
 	 * Data Manager to handle the processing of player data files.
@@ -101,6 +102,15 @@
 			ret = copier.readObject();
 			
 			return ret;
+		}
+		
+		// Again, this is intended for PURE BASIC objects, nothing complex with complex types. Basically, complex object trees used as a heirarchy.
+		private function cloneObject(o:Object):Object
+		{
+			var copier:ByteArray = new ByteArray();
+			copier.writeObject(o.Data);
+			copier.position = 0;
+			return copier.readObject();
 		}
 		
 		/**
@@ -339,6 +349,9 @@
 			{
 				dataFile.viewedCodexEntries.push(cViewed[i]);
 			}
+			
+			// Stat tracking
+			dataFile.statTracking = clone(StatTracking.getStorageObject());
 		}
 		
 		/**
@@ -551,6 +564,11 @@
 			else
 			{
 				CodexManager.viewedEntryList = new Array();
+			}
+			
+			if (obj.statTracking != undefined && obj.statTracking is Object)
+			{
+				StatTracking.loadStorageObject(cloneObject(obj.statTracking));
 			}
 			
 			// Returns the backup

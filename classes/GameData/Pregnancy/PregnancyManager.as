@@ -21,7 +21,7 @@ package classes.GameData.Pregnancy
 			_pregHandlers[pHandler.handlesType] = pHandler;
 		}
 		
-		private static function findHandler(pType:String):BasePregnancyHandler
+		public static function findHandler(pType:String):BasePregnancyHandler
 		{
 			if (_pregHandlers[pType] != undefined) return _pregHandlers[pType];
 			return null;
