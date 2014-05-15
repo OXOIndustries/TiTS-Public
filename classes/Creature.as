@@ -13,6 +13,7 @@
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.GameData.StatTracking;
 
 	import flash.utils.ByteArray;
 
@@ -1569,8 +1570,18 @@
 			minutesSinceCum = 0;
 			timesCum++;
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
-			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("cock");
-			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("vagina");
+			
+			if (this is PlayerCharacter) 
+			{
+				kGAMECLASS.mimbraneFeed("cock");
+				kGAMECLASS.mimbraneFeed("vagina");
+				StatTracking.track("sex/player/orgasms");
+			}
+			else
+			{
+				StatTracking.track("characters/" + this.short + "/orgasms");
+			}
+			
 			if (hasStatusEffect("Dumbfuck"))
 			{
 				if(!hasStatusEffect("Dumbfuck Orgasm Procced"))

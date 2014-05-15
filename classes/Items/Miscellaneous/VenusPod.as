@@ -2,6 +2,10 @@ package classes.Items.Miscellaneous
 {
 	import classes.Creature;
 	import classes.kGAMECLASS;
+	import classes.ItemSlotClass;
+	import classes.GameData.TooltipManager;
+	import classes.GLOBAL;
+	import classes.StringUtil;
 	
 	/**
 	 * ...

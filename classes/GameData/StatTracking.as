@@ -24,10 +24,7 @@ package classes.GameData
 		
 		public static function track(stat:String, value:Number = 1.0):void
 		{
-			var path:String = StatTracking.getPath(stat);
-			stat = StatTracking.getStatName(stat);
-			
-			StatTracking.PlaceInTree(path, stat, value);
+			StatTracking.PlaceInTree(stat, value);
 		}
 		
 		public static function getStat(stat:String):Number
@@ -45,28 +42,30 @@ package classes.GameData
 			return stat.slice(stat.lastIndexOf("/") + 1);
 		}
 		
-		private static function PlaceInTree(path:String, stat:String, value:Number):void
+		private static function PlaceInTree(stat:String, value:Number):void
 		{
 			var base:Object = StatTracking._STORAGE;
-			var path:Array = path.split("/");
+			var path:String = StatTracking.getPath(stat);
+			var pathS:Array = path.split("/");
+			var statName:String = StatTracking.getStatName(stat);
 			
 			for (var i:int = 0; i < path.length; i++)
 			{
-				if (!(path[i] in base))
+				if (!(pathS[i] in base))
 				{
-					base[path[i]] = new Object();
+					base[pathS[i]] = new Object();
 				}
 				
-				base = base[path[i]];
+				base = base[pathS[i]];
 			}
 			
-			if (stat in base)
+			if (statName in base)
 			{
-				base[stat] += value;
+				base[statName] += value;
 			}
 			else
 			{
-				base[stat] = value;
+				base[statName] = value;
 			}
 		}
 		

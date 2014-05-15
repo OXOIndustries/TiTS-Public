@@ -351,7 +351,7 @@
 			}
 			
 			// Stat tracking
-			dataFile.statTracking = clone(StatTracking.getStorageObject());
+			dataFile.statTracking = cloneObject(StatTracking.getStorageObject());
 		}
 		
 		/**

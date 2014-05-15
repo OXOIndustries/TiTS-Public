@@ -1170,7 +1170,7 @@ function elderVenusPitcherEpilogue():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
-function venusPitcherLayUnfertilizedEgg():void {
+public function venusPitcherLayUnfertilizedEgg():void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -1181,7 +1181,7 @@ function venusPitcherLayUnfertilizedEgg():void {
 	output("Your [pc.belly] rumbles ominously a second before you feel a shift in your womb. Shit! Something is coming. Dropping to your [pc.knees], you double over,");
 	if (pc.isCrotchGarbed()) output(" your [pc.lowerGarments] suddenly chafing and tight. You uncover your [pc.vaginas] faster than you thought possible, sped on by biological impetuses beyond comprehension.");
 	else output(" watching slime drip from [pc.oneVagina].");
-	if (flags["LAID VENUS PITCHER SEEDS"] == undefined) output" Something is coming out of you, though whether a seed or a venus pitcher baby, you don't know. All you know is that your body is going to force it out any second now, and you had best brace yourself for the coming birth.");
+	if (flags["LAID VENUS PITCHER SEEDS"] == undefined) output(" Something is coming out of you, though whether a seed or a venus pitcher baby, you don't know. All you know is that your body is going to force it out any second now, and you had best brace yourself for the coming birth.");
 	else 
 	{
 		output(" Another seed pod must be itching to come out of you, and there is no delaying it. You brace yourself for the coming pleasure of another laying.");
