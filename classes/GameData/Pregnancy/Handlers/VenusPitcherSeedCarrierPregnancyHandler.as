@@ -30,24 +30,51 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMinimum = 4;
 			_pregnancyQuantityMaximum = 9;
 			
+			onTryImpregnate = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnTryImpregnate;
 			onSuccessfulImpregnation = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnSuccessfulImpregnation;
 			onDurationEnd = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnDurationEnd;
 		}
 		
+		public static function seedCarrierOnTryImpregnate(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):Boolean
+		{
+			// Fail if there's already an existing Fertilized pregnancy path ongoing
+			if (mother.hasPregnancyOfType("VenusPitcherFertilizedSeedCarrier")) return false;
+			
+			// If we need to find a slot
+			if (pregSlot == -1)
+			{
+				// Let the later code handle this for us, just true shit up for now
+				if (mother.hasPregnancyOfType(thisPtr.handlesType)) return true;
+				
+				// But if there's no available slot, and no existing pregnancy that can be "upgraded", then fail
+				pregSlot = mother.findEmptyPregnancySlot();
+				if (pregSlot == -1) return false;
+			}
+			
+			return true;
+		}
+		
 		public static function seedCarrierOnSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			// If the mother already has a Fertilized seed pregnancy ongoing
-			if (mother.hasPregnancyOfType("VenusPitcherFertilizedSeedCarrier"))
+			if (thisPtr.debugTrace) trace("VenusPitcherSeedCarrierPregnancyHandler onSuccessfulImpregnation handler called.");
+			
+			// If a second impregnation attempt happens whilst unfertilized, convert to Fertilized
+			if (mother.hasPregnancyOfType(thisPtr.handlesType))
 			{
+				if (thisPtr.debugTrace) trace("Converting Venus Pitcher Seed Carrier to Fertilized Variant");
+				VenusPitcherFertilizedSeedCarrierHandler.convertPregnancy(father, mother, mother.findPregnancyOfType(thisPtr.handlesType));
 				return;
 			}
 			
-			// If a second impregnation attempt happens whilst unfertilized, convert to Fertilized
-			if (mother.hasPregnancyOfType("VenusPitcherSeedCarrier"))
+			if (pregSlot == -1)
 			{
-				if (thisPtr.debugTrace) trace("Converting Venus Pitcher Seed Carrier to Fertilized Variant");
-				VenusPitcherFertilizedSeedCarrierHandler.convertPregnancy(father, mother, pregSlot);
-				return;
+				pregSlot = mother.findEmptyPregnancySlot();
+				
+				if (pregSlot == -1)
+				{
+					if (thisPtr.debugTrace) trace("No empty pregnancy slots, aborting.");
+					return;
+				}
 			}
 			
 			// Otherwise, create the base data used for the pregnancy

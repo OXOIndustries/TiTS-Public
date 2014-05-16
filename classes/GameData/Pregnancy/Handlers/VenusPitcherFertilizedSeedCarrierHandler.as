@@ -67,7 +67,7 @@ package classes.GameData.Pregnancy.Handlers
 			}
 			
 			// Do some outpootis.
-			kGAMECLASS.eventBuffer += "Your womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.";
+			kGAMECLASS.eventBuffer += "\n\nYour womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.";
 			
 			if (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined) kGAMECLASS.eventBuffer += " Mmmm, another batch of pods are growing inside you.";
 			else kGAMECLASS.eventBuffer += " The stuff the venus pitcher put inside you... it's growing!";

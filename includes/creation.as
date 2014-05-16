@@ -487,12 +487,12 @@ function chooseSexualGift():void {
 	this.clearMenu();
 	if(pc.hasPerk("Virile"))
 	{
-		pc.cumQuality -= 1.5;
+		pc.cumQualityRaw -= 1.5;
 		pc.removePerk("Virile");
 	}
 	if(pc.hasPerk("Potent"))
 	{
-		pc.cumMultiplier -= 1;
+		pc.cumMultiplierRaw -= 1;
 		pc.refractoryRate -= 1;
 		pc.removePerk("Potent");
 	}
@@ -503,7 +503,7 @@ function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Fertility"))
 	{
-		pc.fertility -= 15;
+		pc.fertilityRaw -= 15;
 		pc.removePerk("Fertility");
 	}
 	if(pc.hasPerk("Milky"))

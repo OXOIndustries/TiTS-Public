@@ -87,15 +87,6 @@ package classes.GameData.Pregnancy
 		
 		public function tryKnockUp(father:Creature, mother:Creature, pregSlot:int):Boolean
 		{
-			// Check if we have a valid pregnancy slot defined
-			if (pregSlot == -1)
-			{
-				// Find the first available pregnancy slot on the mother, else return a failure
-				pregSlot = mother.findEmptyPregnancySlot();
-				
-				if (pregSlot == -1) return false;
-			}
-			
 			// Abort if there's an existing pregnancy of this type and multipreg of this type is disabled
 			if (_allowMultiplePregnancies == false && mother.hasPregnancyOfType(_handlesType))
 			{
@@ -245,6 +236,21 @@ package classes.GameData.Pregnancy
 		public static function defaultOnTryImpregnate(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):Boolean
 		{
 			if (thisPtr.debugTrace) trace("defaultOnTryImpregnate handler called");
+			
+			// Check if we have a valid pregnancy slot defined
+			if (pregSlot == -1)
+			{
+				// Find the first available pregnancy slot on the mother, else return a failure
+				pregSlot = mother.findEmptyPregnancySlot();
+				
+				if (pregSlot == -1)
+				{
+					if (thisPtr.debugTrace) trace("No valid pregnancy slots available, aborting.");
+					return false;
+				}
+				
+				if (thisPtr.debugTrace) trace("Autosetting pregnancy to slot " + pregSlot);
+			}
 			
 			// Process various ignore values
 			var virility:Number = father.virility();
