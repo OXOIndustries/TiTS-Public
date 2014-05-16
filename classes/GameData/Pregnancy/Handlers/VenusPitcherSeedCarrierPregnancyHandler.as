@@ -4,6 +4,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.kGAMECLASS;
+	import classes.PregnancyData;
 	import classes.rand;
 	
 	/**
@@ -44,6 +45,7 @@ package classes.GameData.Pregnancy.Handlers
 			// If a second impregnation attempt happens whilst unfertilized, convert to Fertilized
 			if (mother.hasPregnancyOfType("VenusPitcherSeedCarrier"))
 			{
+				if (thisPtr.debugTrace) trace("Converting Venus Pitcher Seed Carrier to Fertilized Variant");
 				VenusPitcherFertilizedSeedCarrierHandler.convertPregnancy(father, mother, pregSlot);
 				return;
 			}
@@ -72,21 +74,31 @@ package classes.GameData.Pregnancy.Handlers
 			
 			kGAMECLASS.eventQueue.push(function():void {
 					kGAMECLASS.venusPitcherLayUnfertilizedEgg();
-					cleanupPregnancy(kGAMECLASS.pc);
+					VenusPitcherSeedCarrierPregnancyHandler.cleanupPregnancy(kGAMECLASS.pc);
 				});
 		}
 		
 		public static function cleanupPregnancy(target:Creature):void
 		{
-			if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+			var pData:PregnancyData = target.getPregnancyOfType("VenusPitcherSeedCarrier");
 			
-			if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
+			pData.pregnancyQuantity--;
+			target.bellyRatingRaw -= 10;
+			
+			if (pData.pregnancyQuantity == 0)
 			{
-				target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160); // 2 weeks
-			}
-			else
-			{
-				target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
+				pData.reset();
+				
+				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+				
+				if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
+				{
+					target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160); // 2 weeks
+				}
+				else
+				{
+					target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
+				}
 			}
 		}
 	}

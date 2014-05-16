@@ -1202,26 +1202,6 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	StatTracking.track("pregnancy/unfertilized venus pitcher seeds");
 	StatTracking.track("pregnancy/total births");
 	
-	// Do the needful with the pregnancy quantity. The complexity/interactions of this specific pregnancy make
-	// this a pain in the ass, this shouldn't need to be the case in a general sense
-	pData.pregnancyQuantity--;
-	pc.bellyRatingRaw -= 10;
-	
-	if (pData.pregnancyQuantity == 0)
-	{
-		if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished"))
-		{
-			pc.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
-		}
-
-		if (pc.hasStatusEffect("Venus Pitcher Seed Residue"))
-		{
-			pc.removeStatusEffect("Venus Pitcher Seed Residue");
-		}
-
-		pData.reset();
-	}
-	
 	output("\n\nOnce you catch your breath");
 	if (pc.isCrotchGarbed()) output(" and re-dress");
 	output(", you're left with the curious, oblong seed in front you. Using the codex, you determine that it wasn't fertilized. It also isn't considered edible by most species, but it's likely that you could consume it anyway if you didn't mind a major risk of bodily mutation to accommodate it.");
