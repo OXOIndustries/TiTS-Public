@@ -140,26 +140,26 @@ package classes.GameData.Pregnancy.Handlers
 			if (pData.pregnancyQuantity >= 8)
 			{
 				// Megafull
-				retString = "Your belly protrudes unnaturally far forward, the ovoid objects stuffed into your womb by the Venus Pitchers forming slight bulges in your [pc.skinFurScales]. ";
+				retString = "Your belly protrudes unnaturally far forward, the ovoid objects stuffed into your womb by the venus pitchers forming slight bulges in your [pc.skinFurScales]. ";
 			}
 			else if (pData.pregnancyQuantity >= 7)
 			{
 				// Full
-				retString = "Your belly is painfully distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb to an uncomfortable degree. ";
+				retString = "Your belly is painfully distended by your pregnancy, the venus pitcher seed pods stuffing your womb to an uncomfortable degree. ";
 			}
 			else if (pData.pregnancyQuantity >= 4)
 			{
-				retString = "Your belly is clearly distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb to the brim. ";
+				retString = "Your belly is clearly distended by your pregnancy, venus pitcher seed pods stuffing your womb to the brim. ";
 			}
 			else if (pData.pregnancyQuantity >= 3)
 			{
 				// First one (minimum) is done, trepidation at the rest
-				retString = "Your belly is still clearly distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb throughly. Passing the pods is quite an arduous task, but some part of you looks forward to the next time you can experience the process. ";
+				retString = "Your belly is still clearly distended by your pregnancy, the venus pitcher seed pods stuffing your womb throughly. Passing the pods is an arduous task, but some part of you looks forward to the next time you can experience the process. ";
 			}
 			else if (pData.pregnancyQuantity == 1)
 			{
 				// Had fun, just one left....
-				retString = "Your belly has shrunken considerably since your initial impregnantion at the tentacle-tips of the Venus Pitchers, but you can still clearly make out a final pod residing deep within your womb. ";
+				retString = "Your belly has shrunken considerably since your initial impregnantion at the tentacle-tips of the venus pitchers, but you can still clearly make out a final pod residing deep within your womb. ";
 			}
 			
 			if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished"))
@@ -167,15 +167,15 @@ package classes.GameData.Pregnancy.Handlers
 				// Eggs incubated and we're prepping to lay a new one
 				if (pData.pregnancyIncubation <= 60)
 				{
-					retString += "Your [pc.vagina] has grown wetter and eager once more, preparing itself for the coming task of birthing another of the Venus Pitchers seed pods.";
+					retString += "Your [pc.vagina] has grown wetter and eager once more, preparing itself for the coming task of birthing another of the venus pitchers seed pods.";
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina]. Your body must be preparing itself to birth another of the Venus Pitchers gifts.";
+					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina]. Your body must be preparing itself to birth another of the venus pitchers gifts.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{
-					retString += "Hints of slime are once again leaking down your thighs. Your [pc.vagina] must be preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
+					retString += "Hints of slime are once again leaking down your thighs. Your [pc.vagina] must be preparing itself for the upcoming task the venus pitchers have burdened your womb with.";
 				}
 			}
 			else
@@ -187,11 +187,11 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina]. Your body must be preparing itself to birth another of the Venus Pitchers gifts.";
+					retString += "A veritable waterfall of birthing slime is oozing from your [pc.vagina]. Your body must be preparing itself to birth another of the venus pitchers gifts.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{
-					retString += "Hints of slime leak down your thighs, your [pc.vagina] preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
+					retString += "Hints of slime leak down your thighs, your [pc.vagina] preparing itself for the upcoming task the venus pitchers have burdened your womb with.";
 				}
 			}
 			
