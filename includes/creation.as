@@ -571,7 +571,7 @@ function applySexualGift(arg:String = "none"):void {
 		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
 	}
 	else if(arg == "potent") {
-		pc.cumMultiplier += 1;
+		pc.cumMultiplierRaw += 1;
 		pc.refractoryRate += 1;
 		pc.createPerk("Potent",0,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
 	}

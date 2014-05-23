@@ -8441,11 +8441,11 @@
 			}
 			
 			// Find a pregnancy in a given slot
-			if (slot > 0)
+			if (slot >= 0 && slot <= 3)
 			{
-				if (!hasVagina(slot - 1))
+				if (!hasVagina(slot) && slot != 3)
 				{
-					throw new Error(this.short + " does not have a Vagina in slot " + slot + " to query for pregnancy data.");
+					return false;
 				}
 				
 				if ((pregnancyData[slot] as PregnancyData).pregnancyType != "") return true;

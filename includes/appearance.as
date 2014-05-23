@@ -512,7 +512,7 @@ function appearance(target:Creature):void {
 		// CoC places the pregnancy output directly after leg output
 		if (target.isPregnant())
 		{
-			output("\n\n");
+			output2("\n\n");
 			
 			// Fragments pass through the Creature class to get data from the individual pregnancy handlers.
 			// Creature -> Find largest pregnancy (based on pregData.contributedBellyRatingMod) ->
@@ -521,7 +521,7 @@ function appearance(target:Creature):void {
 			
 			// A fragment is intended to range anywhere from a full scentence to a full paragraph, to be merged in with existing text
 			// or stand as their own paragraphs.
-			output(target.pregBellyFragment());
+			output2(target.pregBellyFragment());
 		}
 		
 		//Chesticles.
