@@ -36,13 +36,13 @@ package classes.Characters
 			this.vaginas = [];
 			this.createVagina();
 			
-			this.fertility = 15;
+			this.fertilityRaw = 1.0;
 			this.clitLength = 0.5;
 			this.pregnancyMultiplierRaw = 1;
 			
 			this.balls = 2;
-			this.cumMultiplier = 50;
-			this.cumQuality = 1;
+			this.cumMultiplierRaw = 50;
+			this.cumQualityRaw = 1.0;
 			this.cumType = GLOBAL.CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
@@ -50,9 +50,8 @@ package classes.Characters
 			this.refractoryRate = 9999;
 			this.minutesSinceCum = 65;
 			this.timesCum = rand(2000) + 1;
-			
-			this.canImpregnateButt = false;
-			this.canImpregnateVagina = false;
+
+			this.impregnationType = "";
 			
 			this._isLoading = false;
 		}

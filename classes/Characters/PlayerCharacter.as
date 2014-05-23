@@ -32,37 +32,35 @@ package classes.Characters
 			return false;
 		}
 		
-		override public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):void
+		override public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
-			
-			// If we've got a valid cunt to fill, call the knockup routine
-			this.tryKnockUp(cumFrom, vagIndex);
+			return this.tryKnockUp(cumFrom, vagIndex);
 		}
 		
-		override public function loadInAss(cumFrom:Creature):void
+		override public function loadInAss(cumFrom:Creature):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
-			this.tryKnockUp(cumFrom, 3);
+			return this.tryKnockUp(cumFrom, 3);
 		}
 		
-		override public function loadInMouth(cumFrom:Creature):void
+		override public function loadInMouth(cumFrom:Creature):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("face");
+			return false;
 		}
 		
 		// *shrug*
-		override public function loadInNipples(cumFrom:Creature):void
+		override public function loadInNipples(cumFrom:Creature):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("boobs");
+			return false;
 		}
 		
-		override public function loadInCuntTail(cumFrom:Creature):void
+		override public function loadInCuntTail(cumFrom:Creature):Boolean
 		{
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake();
+			return this.tryKnockUp(cumFrom, 4);
 		}
-		
-		// If you wanna do unique stuff for the player, override the pregnancy method here. Swish.
-		// override public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):void {}
 	}
 }

@@ -51,6 +51,7 @@
 	import classes.Parser.ParseEngine;
 
 	import classes.DataManager.DataManager;
+	import classes.GameData.StatTracking;
 	import classes.GUI;
 	import classes.Mapper;
 	import classes.StringUtil;
@@ -120,38 +121,26 @@
 		public var days:int;
 		public var hours:int;
 		public var minutes:int;
-		
-		// These are all floating around in the TiTS namespace. Really
-		// they should be stored in an item Object() or something
-		// Also, *ideally*, they should all be sub-classes of ItemSlotClass, not instances of ItemSlotClass
-		// with some of their parameters overridden procedurally
-		public var holdOutPistol:ItemSlotClass
-		public var eagleClassHandgun:ItemSlotClass
-		public var scopedPistol:ItemSlotClass
-		public var laserPistol:ItemSlotClass
-		public var knife:ItemSlotClass
-		public var dressClothes:ItemSlotClass
-		public var spacePanties:ItemSlotClass
-		public var spaceBriefs:ItemSlotClass
-		public var spaceBra:ItemSlotClass
-		public var undershirt:ItemSlotClass
 
+		// Queued event system
 		public var eventBuffer:String;
 		public var eventQueue:Array;
 
+		// Version string/value
 		public var version:String;
 
+		// Room data
 		public var rooms:Object;
 
 		public var temp:int;
 		public var items:Object;
+		
 		//Toggles
 		public var silly:Boolean;
 		public var easy:Boolean;
 		public var debug:Boolean;
 		
 		public var inputManager:InputManager;
-
 
 		//Lazy man state checking
 		public var currentLocation:String;
@@ -166,7 +155,7 @@
 		public var shopkeep:Creature;
 		public var itemScreen:*;
 		public var lootScreen:*;
-		// public var lootList:Array;
+		
 		public var useItemFunction;
 		public var itemUser:Creature;
 		public var itemTarget:Creature;
@@ -178,6 +167,7 @@
 		// LE MAP
 		public var mapper:Mapper;
 
+		// Hacky fix for some UI updating problems under Chrome
 		public var whatTheFuck:Sprite;
 		public var whatTheFuckToggleState:Boolean;
 		
@@ -241,8 +231,6 @@
 			flags = new Dictionary();
 
 			this.userInterface = new GUI(this, stage)
-			
-			include "../includes/weaponVariables.as";
 
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
@@ -347,7 +335,10 @@
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 			
-			updatePCStats();
+			if (chars["PC"] != undefined)
+			{
+				updatePCStats();
+			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}

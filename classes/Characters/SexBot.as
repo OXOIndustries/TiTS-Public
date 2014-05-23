@@ -141,7 +141,8 @@
 
 			this.elasticity = 2;
 			//Fertility is a % out of 100. 
-			this.fertility = 0;
+			//this.fertilityRaw = 0;
+			this.createStatusEffect("Infertile");
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 

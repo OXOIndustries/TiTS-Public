@@ -1,5 +1,6 @@
 ﻿package classes {
 	import classes.Characters.PlayerCharacter;
+	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Items.Miscellaneous.Empty;
@@ -12,10 +13,13 @@
 	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
+	import classes.GameData.StatTracking;
 
 	import flash.utils.ByteArray;
 
 	import classes.GLOBAL;
+	
+	import classes.GameData.Pregnancy.PregnancyManager;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -55,6 +59,12 @@
 			keyItems = new Array();
 			inventory = new Array();
 			sexualPreferences = new SexualPreferences();
+			
+			pregnancyData = new Array();
+			for (var i:int = 0; i < 4; i++)
+			{
+				pregnancyData.push(new PregnancyData());
+			}
 		}
 
 		//For enemies
@@ -585,6 +595,16 @@
 			return "";
 		}
 		
+		public var cumType: Number = GLOBAL.CUM;
+		public function cumTypeUnlocked(newCumType:Number):Boolean
+		{
+			return true;
+		}
+		public function cumTypeLockedMessage():String
+		{
+			return "";
+		}
+		
 		//0 - Waist
 		//1 - Middle of a long tail. Defaults to waist on bipeds.
 		//2 - Between last legs or at end of long tail.
@@ -844,19 +864,6 @@
 			if (this.hasStatusEffect("Mimbrane Balls")) return "A powerful tug around your " + ballsDescript() + " keeps them from disappearing into your body. The Mimbrane encapsulating your " +  sackDescript() + " seems poised to act against any attempts to fully remove your cum factories.";
 			return "";
 		}
-		
-		public var cumMultiplier: Number = 1;
-		//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-		public var cumQuality: Number = 1;
-		public var cumType: Number = GLOBAL.CUM;
-		public function cumTypeUnlocked(newCumType:Number):Boolean
-		{
-			return true;
-		}
-		public function cumTypeLockedMessage():String
-		{
-			return "";
-		}
 
 		public var ballSizeRaw:Number = 1;
 		public var ballSizeMod:Number = 1;
@@ -948,8 +955,6 @@
 			return "";
 		}
 
-		//Fertility is a % out of 100. 
-		public var fertility: Number = 10;
 		public var clitLength: Number = .5;
 		public function clitLengthUnlocked(newClitLength:Number):Boolean
 		{
@@ -961,13 +966,7 @@
 		}
 		
 		public var elasticity: Number = 1;
-		public var pregnancyMultiplierRaw: Number = 1;
-		public function pregnancyMultiplier():Number
-		{
-			var bonus:Number = 0;
-			if(hasPerk("Breed Hungry")) bonus += .5;
-			return (pregnancyMultiplierRaw + bonus);
-		}
+		
 		public var girlCumType: Number = GLOBAL.GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
@@ -1088,26 +1087,7 @@
 		public var ass = new VaginaClass(false);
 		public var analVirgin: Boolean = true;
 		public var perks: Array;
-		public var statusEffects: Array;
-
-		//Preggos
-		//First 3 corrospond to vaginas. Last is for buttpreggo.
-		public var pregnancyIncubations: Array = new Array(0, 0, 0, 0);
-		public var pregnancyTypes: Array = new Array(0, 0, 0, 0);
-		public var pregnancyQuantity: Array = new Array(0, 0, 0, 0);
-		
-		// Sperm provider stuff
-		public var canImpregnateVagina:Boolean = false;
-		public var canImpregnateButt:Boolean = false;
-		public var canFertilizeEggs:Boolean = true;
-		public var alwaysImpregnate:Boolean = false;
-		public var impregnateType:int = 0;
-		public var basePregnancyIncubation:int = 0;
-		public var basePregnancyChance:int = 0;
-		
-		//Used for ovipositors
-		public var eggs: int = 0;
-		public var fertilizedEggs: int = 0;
+		public var statusEffects: Array;		
 
 		//Used for misc shit
 		var list: Array = new Array();
@@ -1387,6 +1367,7 @@
 				case "vaginasDescript":
 				case "vaginas":
 				case "pussies":
+				case "cunts":
 					buffer = vaginasDescript();
 					break;
 				case "eachVagina":
@@ -1590,8 +1571,18 @@
 			minutesSinceCum = 0;
 			timesCum++;
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
-			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("cock");
-			if (this is PlayerCharacter) kGAMECLASS.mimbraneFeed("vagina");
+			
+			if (this is PlayerCharacter) 
+			{
+				kGAMECLASS.mimbraneFeed("cock");
+				kGAMECLASS.mimbraneFeed("vagina");
+				StatTracking.track("sex/player/orgasms");
+			}
+			else
+			{
+				StatTracking.track("characters/" + this.short + "/orgasms");
+			}
+			
 			if (hasStatusEffect("Dumbfuck"))
 			{
 				if(!hasStatusEffect("Dumbfuck Orgasm Procced"))
@@ -2172,15 +2163,6 @@
 		}
 		public function addTongueFlag(arg): void {
 			if (!hasTongueFlag(arg)) tongueFlags[tongueFlags.length] = arg;
-		}
-		//Return bonus fertility
-		public function bonusFertility(): Number {
-			var counter: Number = 0;
-			return counter;
-		}
-		//return total fertility
-		public function totalFertility(): Number {
-			return (bonusFertility() + fertility);
 		}
 		public function displayTallness(): String {
 			var buffer: String = "";
@@ -2848,11 +2830,42 @@
 			else output += "knees";
 			return output;
 		}
+		// Placeholder shit, sue me. Calling the ill excuse etc.
 		public function bellyDescript(): String {
-			return "belly";
-		}
-		public function totalBellyRating(): Number {
-			return 0;
+			var sBuilder:String = "";
+			
+			if (bellyRating() <= 10)
+			{
+				sBuilder += "";
+			}
+			else if (bellyRating() <= 20)
+			{
+				sBuilder += "large ";
+			}
+			else if (bellyRating() <= 30)
+			{
+				sBuilder += "paunched ";
+			}
+			else if (bellyRating() <= 40)
+			{
+				sBuilder += "distended ";
+			}
+			else if (bellyRating() <= 50)
+			{
+				sBuilder += "inflated ";
+			}
+			else if (bellyRating() <= 80)
+			{
+				sBuilder += "over-inflated ";
+			}
+			else
+			{
+				sBuilder += "ginormous ";
+			}
+			
+			sBuilder += "belly";
+			
+			return sBuilder;
 		}
 		public function alphabetize(array, newKeyItem): void {
 			//used to denote that the array has already had its new spot pushed on.
@@ -2925,82 +2938,6 @@
 			newKeyItem.value4 = value4;
 			newKeyItem.tooltip = desc;
 			alphabetize(perks, newKeyItem);
-		}
-		public function knockUp(hole: int, type: int = 0, incubation: int = 0, beat: int = 100, arg: int = 0): void {
-			//Contraceptives cancel!
-			if (hasStatusEffect("Contraceptives") >= 0) return;
-			//Not having an appropriate cunt cancels.			
-			if (hole < 3 && !hasVagina(hole)) return;
-
-			//LETS MAKE SOME BABIES.
-			var bonus: int = 0;
-			//If arg = 1 (always pregnant), bonus = 9000
-			if (arg >= 1) bonus = 9000;
-			if (arg <= -1) bonus = -9000;
-			//If unpregnant and fertility wins out:
-			if ((arg == 2 || (pregnancyIncubations[hole] == 0)) && totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-				pregnancyTypes[hole] = type;
-				pregnancyIncubations[hole] = incubation;
-				trace("PC Knocked up with pregnancy type: " + type + " for " + incubation + " incubation in hole#: " + hole + ".");
-			}
-			//Chance for eggs fertilization - ovi elixir and imps excluded!
-			if (type != 1 && type != 5 && type != 10) {
-				if (hasTailFlag(GLOBAL.OVIPOSITOR) && (tailType == GLOBAL.ARACHNID || tailType == GLOBAL.DRIDER || tailType == GLOBAL.BEE)) {
-					if (totalFertility() + bonus > Math.floor(Math.random() * beat)) {
-						fertilizeEggs();
-					}
-				}
-			}
-		}
-		//Is a specific womb preggers
-		public function isPregnant(arg: int = 0): Boolean {
-			return false;
-		}
-		//Does the PC have any cunt pregnancy?
-		public function hasPregnancy(): Boolean {
-			return false;
-		}
-		public function totalPregnancies(): Number {
-			return 0;
-		}
-		public function canOvipositSpider(): Boolean {
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
-			return false;
-		}
-		public function canOvipositBee(): Boolean {
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
-			return false;
-		}
-		public function canOviposit(): Boolean {
-			if (canOvipositSpider() || canOvipositBee()) return true;
-			return false;
-		}
-		public function addEggs(arg: int = 0): int {
-			if (!canOviposit()) return -1;
-			else {
-				eggs += arg;
-				if (eggs > 50) eggs = 50;
-			}
-			return eggs;
-		}
-		public function dumpEggs(): void {
-			if (!canOviposit()) return;
-			eggs = 0;
-			fertilizedEggs = 0;
-		}
-		public function setEggs(arg: int = 0): int {
-			if (!canOviposit()) return -1;
-			else {
-				eggs = arg;
-				if (eggs > 50) eggs = 50;
-				return eggs;
-			}
-		}
-		public function fertilizeEggs(percent: Number = 50): int {
-			if (!canOviposit()) return -1;
-			fertilizedEggs += eggs * percent / 100;
-			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
-			return fertilizedEggs;
 		}
 		//Create a status
 		public function createStatusEffect(statusName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, hidden: Boolean = true, iconName: String = "", tooltip: String = "", combatOnly: Boolean = false, minutesLeft: Number = 0): void {
@@ -4677,21 +4614,24 @@
 			}
 			return desc;
 		}
-		//Calculate bonus virility rating!
-		//anywhere from 5% to 100% of normal cum effectiveness thru herbs!
-		public function cumQualityFinal(): Number {
-			if (!hasCock()) return 0;
-			var percent: Number = cumQuality;
-			if (percent > 10) percent = 10;
-			return percent;
+		
+		public var cumMultiplierRaw:Number = 1;
+		public var cumMultiplierMod:Number = 0;
+		public function cumMultiplier():Number
+		{
+			var multi:Number = cumMultiplierRaw + cumMultiplierMod;
+			
+			if (multi < 0) return 0;
+			return multi;
 		}
+		
 		//Calculate cum return
 		public function cumQ(): Number {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//lust - 50% = normal output.  0 = 75%. 100 = +125% output.
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
-			quantity = cumMultiplier * lustCoefficient * maxCum() / ballEfficiency;
+			quantity = cumMultiplier() * lustCoefficient * maxCum() / ballEfficiency;
 			//Rut means bigger, ball-draining orgasms.
 			quantity += statusEffectv1("rut");
 			if (quantity > currentCum()) quantity = currentCum();
@@ -8355,100 +8295,329 @@
 		}
 		
 		/**
-		 * This methods are stubs, intended to be overriden on a character-by-character basis.
+		 * These methods are stubs, intended to be overriden on a character-by-character basis.
 		 * Check the PlayerCharacter class to see what I mean.
 		 */
 		
-		public function loadInCunt(cumFrom:Creature, vagIndex:int = 0):void
+		public function loadInCunt(cumFrom:Creature, vagIndex:int = -1):Boolean
 		{
 			// Only run the knockup shit if the creature actually gets saved
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, vagIndex);
+				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			else
 			{
 				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
 			}
+			return false;
 		}
 		
-		public function loadInAss(cumFrom:Creature):void
+		public function loadInAss(cumFrom:Creature):Boolean
 		{
 			if (this.neverSerialize == false)
 			{
-				this.tryKnockUp(cumFrom, 3);
+				return this.tryKnockUp(cumFrom, 3);
 			}
 			else
 			{
 				trace("WARNING: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
 			}
+			return false;
 		}
 		
-		public function loadInMouth(cumFrom:Creature):void
+		public function loadInMouth(cumFrom:Creature):Boolean
 		{
-			
+			return false;
 		}
 		
-		public function loadInNipples(cumFrom:Creature):void
+		public function loadInNipples(cumFrom:Creature):Boolean
 		{
-			
+			return false;
 		}
 		
-		public function loadInCuntTail(cumFrom:Creature):void
+		public function loadInCuntTail(cumFrom:Creature):Boolean
 		{
+			if (this.neverSerialize == false)
+			{
+				return this.tryKnockUp(cumFrom, 4);
+			}
+			else
+			{
+				trace("Warning: Attempting to call knockUp on a Creature class that isn't serialized to save data. Better check this shit yo.");
+			}
+			return false;
+		}
+		
+		/**
+		 * Defined impregnation handler that this Creature will attempt to use.
+		 */
+		public var impregnationType:String = "";
+		
+		// Male-centric stuff (Father)
+		public var cumQualityRaw:Number = 1;
+		public var cumQualityMod:Number = 0;
+		public function cumQuality():Number
+		{
+			return cumQualityRaw + cumQualityMod;
+		}
+		
+		/**
+		 * Virility should be the overall multiplier used to modify the basePregnancyChance of any given pregnancy.
+		 * It should include all things that could possibly influence the raw "power" of virility.
+		 * @return
+		 */
+		public function virility():Number
+		{
+			if (this.hasStatusEffect("Infertile")) return 0;
 			
+			return cumQuality();
+		}
+		
+		public var pregnancyIncubationBonusFatherRaw:Number = 1;
+		public var pregnancyIncubationBonusFatherMod:Number = 0;
+		public function pregnancyIncubationBonusFather():Number
+		{
+			return pregnancyIncubationBonusFatherRaw + pregnancyIncubationBonusFatherMod;
+		}
+		
+		// Female-centric stuff (Mother)
+		public var pregnancyMultiplierRaw:Number = 1;
+		public var pregnancyMultiplierMod:Number = 0;
+		public function pregnancyMultiplier():Number
+		{
+			var bonus:Number = 0;
+			if(hasPerk("Breed Hungry")) bonus += .5;
+			return (pregnancyMultiplierRaw + pregnancyMultiplierMod + bonus);
+		}
+		
+		public var fertilityRaw:Number = 1;
+		public var fertilityMod:Number = 0;
+		public function fertility():Number
+		{
+			if (this.hasStatusEffect("Infertile")) return 0;
+			
+			return fertilityRaw + fertilityMod;
+		}
+		
+		public var pregnancyIncubationBonusMotherRaw:Number = 1;
+		public var pregnancyIncubationBonusMotherMod:Number = 0;
+		public function pregnancyIncubationBonusMother():Number
+		{
+			return pregnancyIncubationBonusMotherRaw + pregnancyIncubationBonusMotherMod;
+		}
+		
+		public var bellyRatingRaw:Number = 0;
+		public var bellyRatingMod:Number = 0;
+		public function bellyRating():Number
+		{
+			return bellyRatingRaw + bellyRatingMod;
+		}
+		
+		// Pregnancy Data Storage
+		public var pregnancyData:Array = new Array();
+		
+		// Pregnancy Utility Methods
+		
+		/**
+		 * Determine if a creature has a pregnancy. Optionally supply an index to check for a specific pregnancy slot.
+		 * @param	slot	index to check, -1 for any
+		 * @return			true/false
+		 */
+		public function isPregnant(slot:int = -1):Boolean
+		{
+			// Any pregnancy
+			if (slot == -1)
+			{
+				for (var i:int = 0; i < pregnancyData.length; i++)
+				{
+					if ((pregnancyData[i] as PregnancyData).pregnancyType != "") return true;
+				}
+			}
+			
+			// Check the slot is in range
+			if (slot < -1 || slot > 3)
+			{
+				throw new Error("isPregnant argument out of range. Expected -1 to 3, got " + slot);
+			}
+			
+			// Find a pregnancy in a given slot
+			if (slot >= 0 && slot <= 3)
+			{
+				if (!hasVagina(slot) && slot != 3)
+				{
+					return false;
+				}
+				
+				if ((pregnancyData[slot] as PregnancyData).pregnancyType != "") return true;
+			}
+			
+			return false;
+		}
+		public function hasPregnancy():Boolean { return isPregnant(); }
+		
+		public function hasPregnancyOfType(type:String):Boolean
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return true;
+			}
+			return false;
+		}
+		
+		public function getPregnancyOfType(type:String):PregnancyData
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return pregnancyData[i];
+			}
+			return null;
+		}
+		
+		public function findPregnancyOfType(type:String):int
+		{
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == type) return i;
+			}
+			return -1;
+		}
+		
+		/**
+		 * Find the total number of pregnancies for a given creature.
+		 * @return			total pregnancies
+		 */
+		public function totalPregnancies():int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < pregnancyData.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType != "") count++;
+			}
+			return count;
+		}
+		
+		/**
+		 * Find the index of the first empty pregnancy slot
+		 * @return			index of the first empty pregnancy slot, -1 if none available.
+		 */
+		public function findEmptyPregnancySlot():int
+		{
+			for (var i:int = 0; i < this.vaginas.length; i++)
+			{
+				if ((pregnancyData[i] as PregnancyData).pregnancyType == "") return i;
+			}
+			
+			return -1;
+		}
+		
+		//Used for ovipositors
+		public var eggs: int = 0;
+		public var fertilizedEggs: int = 0;
+
+		public function canOvipositSpider(): Boolean 
+		{
+			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
+			return false;
+		}
+		
+		public function canOvipositBee(): Boolean 
+		{
+			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
+			return false;
+		}
+		
+		public function canOviposit(): Boolean 
+		{
+			if (canOvipositSpider() || canOvipositBee()) return true;
+			return false;
+		}
+		
+		public function addEggs(arg: int = 0): int 
+		{
+			if (!canOviposit()) return -1;
+			else {
+				eggs += arg;
+				if (eggs > 50) eggs = 50;
+			}
+			return eggs;
+		}
+		
+		public function dumpEggs(): void 
+		{
+			if (!canOviposit()) return;
+			eggs = 0;
+			fertilizedEggs = 0;
+		}
+		
+		public function setEggs(arg: int = 0): int 
+		{
+			if (!canOviposit()) return -1;
+			else {
+				eggs = arg;
+				if (eggs > 50) eggs = 50;
+				return eggs;
+			}
+		}
+		
+		public function fertilizeEggs(percent: Number = 50): int 
+		{
+			if (!canOviposit()) return -1;
+			fertilizedEggs += eggs * percent / 100;
+			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
+			return fertilizedEggs;
 		}
 		
 		// Preg slot is the incubation slot we're gonna occupy, following the same rules as the array
-		// 0-2 are vagina(s), 3 is butt
+		// 0 is butt, 1-3 are vagina(s)
 		// This isn't perfect, but it's a start.
-		public function tryKnockUp(cumFrom:Creature, pregSlot:int = 0):void
+		/**
+		 * Try to impregnate this creature.
+		 * @param	cumFrom
+		 * @param	pregSlot
+		 * @return  success/failure
+		 */
+		public function tryKnockUp(cumFrom:Creature, pregSlot:int = -1):Boolean
 		{
-			// Contraceptives
-			if (this.hasStatusEffect("Contraceptives")) return;
-			
 			// Vagina/butt slot checking
-			if (pregSlot < 3 && !hasVagina(pregSlot) || pregSlot > 3)
+			if (pregSlot < -2 || (pregSlot > 0 && pregSlot <= 2 && !hasVagina(pregSlot)) || pregSlot > 4)
 			{
 				throw new Error("Unexpected pregnancy slot used to call tryKnockUp.");
-				return;
+				return false;
 			}
 			
 			// The array storing chars will just throw out a null if a key doesn't exist - catch that and shit out an obvious error.
 			if (cumFrom == null)
 			{
 				throw new Error("Null creature used to call tryKnockUp. Does this creature actually have a defined statblock?");
-				return;
+				return false;
 			}
 			
-			// Check the sperm provider can actually knock up this hole
-			if (pregSlot <= 2 && cumFrom.canImpregnateVagina || pregSlot == 3 && cumFrom.canImpregnateButt)
+			return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
+		}
+		
+		// Find the handler(s) dealing with the creatures current pregnancy(ies) and query them for descriptive output 
+		public function pregBellyFragment():String
+		{
+			if (!this.isPregnant()) return "ERROR: No current pregnancies";
+			
+			var tarSlot:int = -1;
+			
+			for (var i:int = 0; i < 4; i++)
 			{
-				// If the holes not already preggers
-				if (this.pregnancyIncubations[pregSlot] == 0)
+				if (this.isPregnant(i))
 				{
-					// Roll the dice
-					// Creature.alwaysImpregnate is replacing the old arg fiddle. I don't *really* understand what was going 
-					// on with the arg paramemter, but it seems like it was being used to basically fuck the math into MASSIVELY 
-					// increasing the chance to be pregnant OR make it 100%.
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance))
-					{
-						// Knockup go!
-						this.pregnancyTypes[pregSlot] = cumFrom.impregnateType;
-						this.pregnancyIncubations[pregSlot] = cumFrom.basePregnancyIncubation;
-						trace(this.short + " Knocked up with pregnancy type: " + cumFrom.impregnateType + " for " + cumFrom.basePregnancyIncubation + " in hole#: " + pregSlot);
-					}
+					if (tarSlot == -1) tarSlot = i;
+					else if (pregnancyData[i].pregnancyBellyRatingContribution > pregnancyData[tarSlot].pregnancyBellyRatingContribution) tarSlot = i;
 				}
 			}
 			
-			// Egg fertilization
-			if (cumFrom.canFertilizeEggs)
+			if (tarSlot != -1)
 			{
-				if (this.hasTailFlag(GLOBAL.OVIPOSITOR) && (this.tailType == GLOBAL.ARACHNID || this.tailType == GLOBAL.DRIDER || this.tailType == GLOBAL.BEE))
-				{
-					if (cumFrom.alwaysImpregnate || this.totalFertility() > Math.floor(Math.random() * cumFrom.basePregnancyChance)) this.fertilizeEggs();
-				}
+				return PregnancyManager.getPregBellyFragment(this, tarSlot);
 			}
+			
+			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
 		}
 	}
 }

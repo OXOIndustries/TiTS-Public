@@ -507,7 +507,23 @@ function appearance(target:Creature):void {
 		else if(target.legType == GLOBAL.VULPINE) output2("  Your legs are crooked into high knees with hocks and long feet, like those of a fox; cute bulbous toes decorate the ends.");
 		else if(target.legType == GLOBAL.DRACONIC) output2("  Two human-like legs grow down from your " + target.hipDescript() + ", sheathed in scales and ending in clawed feet.  There are three long toes on the front, and a small hind-claw on the back.");
 		else if(target.legType == GLOBAL.KUITAN) output2("  Your legs, though covered in fur, are humanlike.  Long feet on the ends bear equally long toes, and the pads on the bottoms are quite sensitive to the touch.");
-		else if(target.legType == GLOBAL.PANDA) output2("  Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		else if (target.legType == GLOBAL.PANDA) output2("  Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
+		
+		// CoC places the pregnancy output directly after leg output
+		if (target.isPregnant())
+		{
+			output2("\n\n");
+			
+			// Fragments pass through the Creature class to get data from the individual pregnancy handlers.
+			// Creature -> Find largest pregnancy (based on pregData.contributedBellyRatingMod) ->
+			//    query preg manager for fragment -> preg manager finds target handler -> query handler for
+			//    fragment string. Check VenusPitcherFertilizedSeedCarrierHandler::pregBellyFragment for examples
+			
+			// A fragment is intended to range anywhere from a full scentence to a full paragraph, to be merged in with existing text
+			// or stand as their own paragraphs.
+			output2(target.pregBellyFragment());
+		}
+		
 		//Chesticles.
 		output2("\n\n");
 		if(target.gills) output2("A pair of feathery gills are growing out just below your neck, spreading out horizontally and draping down your chest.  They allow you to stay in the water for quite a long time.  ");

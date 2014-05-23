@@ -487,12 +487,12 @@ function chooseSexualGift():void {
 	this.clearMenu();
 	if(pc.hasPerk("Virile"))
 	{
-		pc.cumQuality -= 1.5;
+		pc.cumQualityRaw -= 1.5;
 		pc.removePerk("Virile");
 	}
 	if(pc.hasPerk("Potent"))
 	{
-		pc.cumMultiplier -= 1;
+		pc.cumMultiplierRaw -= 1;
 		pc.refractoryRate -= 1;
 		pc.removePerk("Potent");
 	}
@@ -503,7 +503,7 @@ function chooseSexualGift():void {
 	}
 	if(pc.hasPerk("Fertility"))
 	{
-		pc.fertility -= 15;
+		pc.fertilityRaw -= 15;
 		pc.removePerk("Fertility");
 	}
 	if(pc.hasPerk("Milky"))
@@ -567,11 +567,11 @@ function chooseSexualGift():void {
 
 function applySexualGift(arg:String = "none"):void {
 	if(arg == "virile") {
-		pc.cumQuality += 1.5;
+		pc.cumQualityRaw += 1.15;
 		pc.createPerk("Virile",0,0,0,0,"Increases the quality of your sperm.");
 	}
 	else if(arg == "potent") {
-		pc.cumMultiplier += 1;
+		pc.cumMultiplierRaw += 1;
 		pc.refractoryRate += 1;
 		pc.createPerk("Potent",0,0,0,0,"Increases the size of your orgasms and the speed at which you produce ejaculate.");
 	}
@@ -580,14 +580,14 @@ function applySexualGift(arg:String = "none"):void {
 		pc.elasticity += .5;
 	}
 	else if(arg == "fertility") {
-		pc.fertility += 15;
+		pc.fertilityRaw += 1.15;
 		pc.createPerk("Fertility",0,0,0,0,"Increases your odds of getting pregnant.");
 	}
 	else if(arg == "milky") {
 		pc.createPerk("Milky",0,0,0,0,"Causes lactation to be induced more easily and harder to stop.");
 	}
 	else if(arg == "incubator") {
-		pc.pregnancyMultiplierRaw += .5;
+		(pc as PlayerCharacter).pregnancyIncubationBonusMotherRaw += 0.5;
 		pc.createPerk("Incubator",0,0,0,0,"Increases the speed at which your pregnancies progress.");
 	}
 	else if(arg == "hung") {

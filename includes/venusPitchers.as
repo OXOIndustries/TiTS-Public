@@ -1,4 +1,9 @@
-﻿//Venus Pitcher Plants
+﻿import classes.Characters.PlayerCharacter;
+import classes.Characters.PregnancyPlaceholder;
+import classes.GameData.CodexManager;
+import classes.Items.Miscellaneous.VenusPod;
+import classes.PregnancyData;
+//Venus Pitcher Plants
 
 
 // Flags:
@@ -442,6 +447,9 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		output(" wider inside you, sealing the next bursts of spunk into your passage so that the only thing to escape is your own secretions.");
 		if(pc.totalVaginas() && !pc.hasPregnancy()) output(" Your [pc.belly] bloats a little under the forceful insemination, rubbed tenderly by other trembling stalks as you’re filled.");
 	}
+	
+	if (pc.hasVagina()) pc.loadInCunt(chars["VENUSPITCHER"]);
+	
 	//{Pass out}
 	output("\n\nAt once, the strength goes out of the restraints holding you up, and you fall into a puddle of mixed sensual fluids, sore from [pc.nipples] to [pc.butt] and covered in ropes of plant cum that still fall on you from time to time. A vague thought that you should be alarmed by the situation surfaces, but it vanishes in a flash, disappearing in a tired sneeze. Your body is pushed, stroked and prodded gently, lifted into a more comfortable position.");
 	output("\n\nA female voice coos, <i>“Thanks for the meal. I’ll take care of your...”</i>");
@@ -886,6 +894,7 @@ function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nYour eyes roll back as the orgasm drags on and on, [pc.eachVagina] writhing in ecstasy");
 	if(pc.vaginaTotal() >= 1) output(", even though some are empty");
 	output(". A comforting voice instructs, “<i>Cum and cum and cum and cum for me. Remember this pleasure, because your twat is <b>cumming</b> so hard that you’ll want me to seed it every time your womb is empty. You can’t resist. Every lurch of ecstasy in your cunt is conditioning you into a helpless addict.</i>”");
+	pc.loadInCunt(chars["ELDERVENUSPITCHER"]);
 	output("\n\nYour eyes roll back and you black out, still orgasming and being painted by the writhing mass of tentacles. Flashes of repeated fuckings, breast suckling, and hot blasts of seed appear in your memory, though you’re never really anywhere near close enough to consciousness to store a cogent record.");
 	pc.orgasm();
 	processTime(20+rand(10));
@@ -1165,4 +1174,193 @@ function elderVenusPitcherEpilogue():void {
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function venusPitcherLayUnfertilizedEgg():void {
+	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
+	userInterface.showName("VENUS\nPITCHER");
+	userInterface.author("Fenoxo");
+	
+	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
+	
+	output("Your [pc.belly] rumbles ominously a second before you feel a shift in your womb. Shit! Something is coming. Dropping to your [pc.knees], you double over,");
+	if (pc.isCrotchGarbed()) output(" your [pc.lowerGarments] suddenly chafing and tight. You uncover your [pc.vaginas] faster than you thought possible, sped on by biological impetuses beyond comprehension.");
+	else output(" watching slime drip from [pc.oneVagina].");
+	
+	if (StatTracking.getStat("pregnancy/venus pitcher seeds") == 0)
+	{
+		output(" Something is coming out of you, though whether a seed or a venus pitcher baby, you don't know. All you know is that your body is going to force it out any second now, and you had best brace yourself for the coming birth.");
+	}
+	else 
+	{
+		output(" Another seed pod must be itching to come out of you, and there is no delaying it. You brace yourself for the coming pleasure of another laying.");
+		
+		if (pData.pregnancyQuantity > 1)
+		{
+			output(" How many more of these things do you have yet to birth?");
+		}
+		else
+		{
+			output(" This one feels like it might be the last, thankfully.");
+		}
+	}
+	
+	output("\n\nThe slime dripping from your lips thickens into a sticky deluge as muscles inside you relax, opening the way for the pod's lubricant to escape in a rush. You can feel the bulbous seed start sliding inside you, shifting and stretching, forcing you open in ways that would make even the biggest dicks ache with jealousy. It should hurt, but for some reason, there's blessedly little pain - just a sense of the slick form gliding down your nerve-laden channel as if it was made to lay these things all along.");
+	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing. The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind. Sexual pleasure blitzkriegs through your brain to war with wonder at what you're body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
+	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pc.findPregnancyOfType("VenusPitcherSeedCarrier") + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back, [pc.legs] splayed.");
+	
+	//CuntChange: size 800.
+	cuntChange(pc.findPregnancyOfType("VenusPitcherSeedCarrier"), 800, true, true, false);
+	
+	StatTracking.track("pregnancy/unfertilized venus pitcher seeds");
+	StatTracking.track("pregnancy/venus pitcher seeds");
+	StatTracking.track("pregnancy/total births");
+	
+	output("\n\nOnce you catch your breath");
+	if (pc.isCrotchGarbed()) output(" and re-dress");
+	output(", you're left with the curious, oblong seed in front you. Using the codex, you determine that it wasn't fertilized. It also isn't considered edible by most species, but it's likely that you could consume it anyway if you didn't mind a major risk of bodily mutation to accommodate it.");
+	pc.orgasm()
+	
+	if (pData.pregnancyQuantity >= 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
+	
+	//Increase elasticity .1 towards a cap of 1.6
+	if (pc.elasticity < 1.6)
+	{
+		pc.elasticity += 0.1;
+		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.\n\n");
+	}
+	
+	//Gain Venus Pod (TF item go!)
+	var podLoot:Array = [];
+	podLoot.push(new VenusPod());
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	itemCollect(podLoot);
 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function rumblyInYourTummy():void 
+{
+	// 14 hours after fertilization
+	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
+
+	eventBuffer +="\n\nThe [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It's actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There's so much of the slick stuff that your crotch appears practically oiled with it.\n\n";
+
+	//Increase bellymod to 14 * amount
+	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	pc.bellyRatingMod += 2 * pData.pregnancyQuantity;
+	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
+}
+
+public function poppingSoonAlert1():void
+{
+	//20 hours after fertilization
+	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
+
+	eventBuffer += "\n\nYou stroke your [pc.belly] happily as you feel the seeds taking root inside you, using your body's nutrients to accelerate their growth. Some of them must have little tendrils; you can see them pressing against the [pc.skin] of your middle from time to time. It won't be long now. You don't know how you know that, but it's true. In a few hours, you'll be giving birth to the most wonderful young. A compulsion to go somewhere wild and untamed seizes hold of you, propelled on whispery voices and full, velvet lips - a memory of a more pleasant time, perhaps.\n\n"
+}
+
+public function poppingSoonAlert2():void
+{
+	//23 hours after fertilization
+	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
+
+	eventBuffer += "\n\nYou'll be laying soon; you're sure of it. Your [pc.vaginas]";
+	if (pc.totalVaginas() > 1) eventBuffer += " have";
+	else eventBuffer += " has" 
+	eventBuffer += "grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";
+}
+
+public function layFertilizedVenusPitcherEgg():void
+{
+	clearOutput();
+	userInterface.showBust("VENUSPITCHER");
+	userInterface.author("Fenoxo");
+
+	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	var pSlot:int = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+
+	//24 hours after fertilization and every four hours after the first. (so 24, 28, 32, until the PC's womb empties)
+	output("It's time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
+	if (flags["LAID VENUS PITCHER SEEDS"] != undefined) output(", but that's likely just experience talking. You do so love to let the pitchers use your body as a nesting ground.");
+	else output(".");
+
+	if (!pc.isNude()) output(" You remove your [pc.gear] to make yourself ready.");
+	else output(" All you have to do is relax. You're ready.");
+	output(" The first contraction is automatic, even easy. You just have to spread");
+
+	if (!pc.isBiped()) output(" yourself out");
+	else output(" your [pc.legs]");
+	output(" over a flat spot and let instinct guide you.");
+
+	output("\n\nGushing out of you, a wave of viscous birth-slime prepares the way of the seed, lubricating your channel and providing a soft, warm place for it to land. Your [pc.vagina " + pSlot + "] ripples in excitement when your cervix dilates, just enough for flexible tendrils to squeeze through. They flail around the inside of your birth canal before stretching out to your entrance and hooking over your labia, one even finding purchase on [pc.oneClit]. You swoon and gasp, your [pc.hips] gently twisting and thrusting, reacting to an entirely different, more libidinous set of instincts.");
+
+	output("\n\nIt feels good to play mother for the pitchers, and every passing second reinforces that belief a hundred-fold. The pleasant, pliable expansion of your womb's entrance, the wriggling tentacles slipping and sliding across the surface and interior of your [pc.vagina " + pSlot + "], it's all too much. Grunting and on the verge of cumming already, you feel the pod slide through your tightly-stretched cervix to stretch your tunnel wide, pulled that far by the verdant, squirming vines reaching for the outside.");
+	output("\n\nEach time the egg-like pod moves another inch, you grunt louder than the last time. Sometimes a feverish moan escapes your [pc.lips], but the bulk of your vocalizations carry the force of your body's birthing effort rather than the pleasure it gives you, not that the pleasure is any less overwhelming. Indeed, your [pc.girlCum] mixes with the copious slime as you the egg parts your netherlips. There is a sexual component to your enjoyment, yet it mixes with a certain sublime satisfaction.");
+	output("\n\nYour lips are gaped wide by the seed now, enough for you to see where it has sprouted the tendrils, and they push down on your thighs to drag the slimy ovoid mass free. It pops out with a web of green-hued juices behind it, plopping noisily into the puddle below, triggering an immediate, powerful orgasm as your flushed lips snap back closed. The mix of birthing endorphins and climactic stimulation send you reeling, flopping bonelessly on the ground");
+	if (pc.isBiped()) output(", your toes curled");
+	output(".");
+
+	//Cuntchange 1,100 <-- unfertilized eggs specifed 800, leaving as a note for review
+	cuntChange(pSlot, 800, true, false, false);
+
+	output("\n\nWhen you come to a few minutes later, the little pod is still sitting there, its tendrils rooting around on the ground for a place to make its home. Someday, that's going to grow into a beautiful venus pitcher.");
+	
+	StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
+	StatTracking.track("pregnancy/venus pitcher seeds");
+	StatTracking.track("pregnancy/total births");
+
+	pc.orgasm();
+
+	// Do the needful with the eggs etc
+	if (pData.pregnancyQuantity >= 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
+
+	//Increase elasticity .1 towards a cap of 2
+	if (pc.elasticity < 2.0)
+	{
+		pc.elasticity += 0.1;
+		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
+
+		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.")
+	}
+
+	clearMenu();
+	if (currentLocation == "SHIP INTERIOR")
+	{
+		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
+		addButton(0, "Next", mainGameMenu);
+	}
+	else
+	{
+		output("\n\nAre you going to find a good spot for the fledgeling pitcher to root or call in a drone to have it delivered to your daycare?")
+		addButton(0, "Plant It", function():void {
+			clearOutput();
+			userInterface.author("Fenoxo");
+			output("Finding a spot where the pitcher can take root, you place the egg down and half bury in the ground, giving it as good a start as possible. Maybe when she grows up she'll remember you and thank you....");
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			
+			StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
+			StatTracking.track("pregnancy/venus pitcher seeds");
+			StatTracking.track("pregnancy/total births");
+		});
+
+		addButton(1, "Send It Off", function():void {
+			clearOutput();
+			userInterface.author("Fenoxo");
+			output("The best place for the pod would be back in the daycare on Tavros Station. You call in a transit pod and place it inside along with as much soil as you can gather in hopes of seeing her bloom into a beautiful pitcher back on the station.");
+			
+			StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
+			StatTracking.track("pregnancy/venus pitcher seeds");
+			StatTracking.track("pregnancy/total births");
+			StatTracking.track("pregnancy/total day care");
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+		});
+	}
+}

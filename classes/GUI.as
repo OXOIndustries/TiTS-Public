@@ -881,6 +881,8 @@
 			{
 				throw new Error("OutputCodex called whilst the currently active module was not the CodexDisplay!");
 			}
+			
+			trace("Output!");
 		}
 		
 		public function clearOutputCodex():void

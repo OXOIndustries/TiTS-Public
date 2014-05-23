@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.StorageClass;
 import classes.UIComponents.SquareButton;
@@ -430,6 +431,8 @@ public function processTime(arg:int):void {
 	
 	//Top off shields
 	this.chars["PC"].shieldsRaw = this.chars["PC"].shieldsMax();
+	
+	PregnancyManager.updatePregnancyStages(chars, arg);
 	
 	//milk is chunked out all at once due to lazies
 	if(arg > 0 && pc.canLactate()) 

@@ -35,12 +35,7 @@ function alexNameBustDiplay():void {
 public function getAlexPregContainer():PregnancyPlaceholder
 {
 	var pregContainer:PregnancyPlaceholder = new PregnancyPlaceholder();
-	
-	pregContainer.impregnateType = GLOBAL.HUMAN;
-	pregContainer.alwaysImpregnate = false;
-	pregContainer.canImpregnateButt = false;
-	pregContainer.canImpregnateVagina = false;
-	
+	pregContainer.createStatusEffect("Infertile");	
 	return pregContainer;
 }
 
