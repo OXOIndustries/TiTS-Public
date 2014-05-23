@@ -489,7 +489,7 @@ package classes.GameData.Pregnancy
 		 * @param	slot
 		 * @return
 		 */
-		override public function pregBellyFragment(target:Creature, slot:int):String
+		public function pregBellyFragment(target:Creature, slot:int):String
 		{
 			if (target.bellyRating() <= 20)
 			{

@@ -4,6 +4,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
+	import classes.rand;
 	
 	/**
 	 * ...
@@ -97,7 +98,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 			pData.pregnancyQuantity--;
 			pData.pregnancyBellyRatingContribution -= 14;
-			pData.pregnancyIncubation = (16 + rand(21)) * 60; // New random time from 16 - 36 hours
+			pData.pregnancyIncubation = 240 + rand(30);
 			target.bellyRatingRaw -= 14;
 			
 			if (pData.pregnancyQuantity == 0)
@@ -156,7 +157,7 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "The [pc.skinFurScales] covering your belly occasionally writes under the motions of the seed pods packed into your womb.";
+					retString += "The [pc.skinFurScales] covering your belly occasionally writhes under the motions of the seed pods packed into your womb.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{

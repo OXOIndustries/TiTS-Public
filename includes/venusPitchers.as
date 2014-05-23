@@ -1185,13 +1185,25 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	output("Your [pc.belly] rumbles ominously a second before you feel a shift in your womb. Shit! Something is coming. Dropping to your [pc.knees], you double over,");
 	if (pc.isCrotchGarbed()) output(" your [pc.lowerGarments] suddenly chafing and tight. You uncover your [pc.vaginas] faster than you thought possible, sped on by biological impetuses beyond comprehension.");
 	else output(" watching slime drip from [pc.oneVagina].");
-	if (flags["LAID VENUS PITCHER SEEDS"] == undefined) output(" Something is coming out of you, though whether a seed or a venus pitcher baby, you don't know. All you know is that your body is going to force it out any second now, and you had best brace yourself for the coming birth.");
+	
+	if (StatTracking.getStat("pregnancy/venus pitcher seeds") == 0)
+	{
+		output(" Something is coming out of you, though whether a seed or a venus pitcher baby, you don't know. All you know is that your body is going to force it out any second now, and you had best brace yourself for the coming birth.");
+	}
 	else 
 	{
 		output(" Another seed pod must be itching to come out of you, and there is no delaying it. You brace yourself for the coming pleasure of another laying.");
 		
-		if (pData.pregnancyQuantity > 1) output(" How many more of these things do you have yet to birth?"); 	else output(" This one feels like it might be the last, thankfully.");
+		if (pData.pregnancyQuantity > 1)
+		{
+			output(" How many more of these things do you have yet to birth?");
+		}
+		else
+		{
+			output(" This one feels like it might be the last, thankfully.");
+		}
 	}
+	
 	output("\n\nThe slime dripping from your lips thickens into a sticky deluge as muscles inside you relax, opening the way for the pod's lubricant to escape in a rush. You can feel the bulbous seed start sliding inside you, shifting and stretching, forcing you open in ways that would make even the biggest dicks ache with jealousy. It should hurt, but for some reason, there's blessedly little pain - just a sense of the slick form gliding down your nerve-laden channel as if it was made to lay these things all along.");
 	output("\n\nA rounded, green-hued surface appears between your spread lips, momentarily reminding you of a flower blooming until a muscular contraction hits. Then, they stretch so obscenely that you have a hard time understanding exactly what you're seeing. The pod is so big that you can feel it pressing on the nerves in your [pc.clits] from behind. Sexual pleasure blitzkriegs through your brain to war with wonder at what you're body is doing. When the pod finally makes the second half of its journey, the pleasure wins out.");
 	output("\n\nYou grunt unthinkingly as the slick, alien seed emerges from your [pc.vagina " + pc.findPregnancyOfType("VenusPitcherSeedCarrier") + "] and wetly plops into the puddled slime. A trickle of the slippery stuff escapes after it, drizzling over the verdant orb like icing in the brief moments before you muscles give out and drop you onto your back, [pc.legs] splayed.");
@@ -1200,6 +1212,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	cuntChange(pc.findPregnancyOfType("VenusPitcherSeedCarrier"), 800, true, true, false);
 	
 	StatTracking.track("pregnancy/unfertilized venus pitcher seeds");
+	StatTracking.track("pregnancy/venus pitcher seeds");
 	StatTracking.track("pregnancy/total births");
 	
 	output("\n\nOnce you catch your breath");
@@ -1295,7 +1308,9 @@ public function layFertilizedVenusPitcherEgg():void
 	cuntChange(pSlot, 800, true, false, false);
 
 	output("\n\nWhen you come to a few minutes later, the little pod is still sitting there, its tendrils rooting around on the ground for a place to make its home. Someday, that's going to grow into a beautiful venus pitcher.");
+	
 	StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
+	StatTracking.track("pregnancy/venus pitcher seeds");
 	StatTracking.track("pregnancy/total births");
 
 	pc.orgasm();
@@ -1325,9 +1340,12 @@ public function layFertilizedVenusPitcherEgg():void
 			clearOutput();
 			userInterface.author("Fenoxo");
 			output("Finding a spot where the pitcher can take root, you place the egg down and half bury in the ground, giving it as good a start as possible. Maybe when she grows up she'll remember you and thank you....");
+			
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
+			
 			StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
+			StatTracking.track("pregnancy/venus pitcher seeds");
 			StatTracking.track("pregnancy/total births");
 		});
 
@@ -1335,9 +1353,11 @@ public function layFertilizedVenusPitcherEgg():void
 			clearOutput();
 			userInterface.author("Fenoxo");
 			output("The best place for the pod would be back in the daycare on Tavros Station. You call in a transit pod and place it inside along with as much soil as you can gather in hopes of seeing her bloom into a beautiful pitcher back on the station.");
+			
 			StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
+			StatTracking.track("pregnancy/venus pitcher seeds");
 			StatTracking.track("pregnancy/total births");
-			StatTracking.track("pregnancy/day care");
+			StatTracking.track("pregnancy/total day care");
 			
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);

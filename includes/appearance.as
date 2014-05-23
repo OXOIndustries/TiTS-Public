@@ -513,7 +513,15 @@ function appearance(target:Creature):void {
 		if (target.isPregnant())
 		{
 			output("\n\n");
-			output(target.pregBellyDescript());
+			
+			// Fragments pass through the Creature class to get data from the individual pregnancy handlers.
+			// Creature -> Find largest pregnancy (based on pregData.contributedBellyRatingMod) ->
+			//    query preg manager for fragment -> preg manager finds target handler -> query handler for
+			//    fragment string. Check VenusPitcherFertilizedSeedCarrierHandler::pregBellyFragment for examples
+			
+			// A fragment is intended to range anywhere from a full scentence to a full paragraph, to be merged in with existing text
+			// or stand as their own paragraphs.
+			output(target.pregBellyFragment());
 		}
 		
 		//Chesticles.

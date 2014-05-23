@@ -8613,8 +8613,10 @@
 			
 			if (tarSlot != -1)
 			{
-				PregnancyManager.getPregBellyFragment(this, tarSlot);
+				return PregnancyManager.getPregBellyFragment(this, tarSlot);
 			}
+			
+			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
 		}
 	}
 }

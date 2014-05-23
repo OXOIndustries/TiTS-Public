@@ -98,6 +98,8 @@ package classes.GameData.Pregnancy
 			{
 				return pHandler.pregBellyFragment(target, slot);
 			}
+			
+			return "ERROR: No handler found for the pregnancy. Some shit is fucked yo.";
 		}
 	}
 

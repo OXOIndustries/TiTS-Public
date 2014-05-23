@@ -29,7 +29,11 @@ package classes.GameData
 		
 		public static function getStat(stat:String):Number
 		{
-			return getStatFromTree(stat);
+			var statVal:* = getStatFromTree(stat);
+			
+			if (statVal == null) statVal = 0;
+			
+			return statVal;
 		}
 		
 		private static function getPath(stat:String):String
