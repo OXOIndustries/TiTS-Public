@@ -1367,6 +1367,7 @@
 				case "vaginasDescript":
 				case "vaginas":
 				case "pussies":
+				case "cunts":
 					buffer = vaginasDescript();
 					break;
 				case "eachVagina":
