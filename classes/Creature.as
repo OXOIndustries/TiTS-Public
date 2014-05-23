@@ -2829,11 +2829,42 @@
 			else output += "knees";
 			return output;
 		}
+		// Placeholder shit, sue me. Calling the ill excuse etc.
 		public function bellyDescript(): String {
-			return "belly";
-		}
-		public function totalBellyRating(): Number {
-			return 0;
+			var sBuilder:String = "";
+			
+			if (bellyRating() <= 10)
+			{
+				sBuilder += "";
+			}
+			else if (bellyRating() <= 20)
+			{
+				sBuilder += "large ";
+			}
+			else if (bellyRating() <= 30)
+			{
+				sBuilder += "paunched ";
+			}
+			else if (bellyRating() <= 40)
+			{
+				sBuilder += "distended ";
+			}
+			else if (bellyRating() <= 50)
+			{
+				sBuilder += "inflated ";
+			}
+			else if (bellyRating() <= 80)
+			{
+				sBuilder += "over-inflated ";
+			}
+			else
+			{
+				sBuilder += "ginormous ";
+			}
+			
+			sBuilder += "belly";
+			
+			return sBuilder;
 		}
 		public function alphabetize(array, newKeyItem): void {
 			//used to denote that the array has already had its new spot pushed on.
@@ -8562,6 +8593,28 @@
 			}
 			
 			return PregnancyManager.tryKnockUp(cumFrom, this, pregSlot);
+		}
+		
+		// Find the handler(s) dealing with the creatures current pregnancy(ies) and query them for descriptive output 
+		public function pregBellyFragment():String
+		{
+			if (!this.isPregnant()) return "ERROR: No current pregnancies";
+			
+			var tarSlot:int = -1;
+			
+			for (var i:int = 0; i < 4; i++)
+			{
+				if (this.isPregnant(i))
+				{
+					if (tarSlot == -1) tarSlot = i;
+					else if (pregnancyData[i].pregnancyBellyRatingContribution > pregnancyData[tarSlot].pregnancyBellyRatingContribution) tarSlot = i;
+				}
+			}
+			
+			if (tarSlot != -1)
+			{
+				PregnancyManager.getPregBellyFragment(this, tarSlot);
+			}
 		}
 	}
 }

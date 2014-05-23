@@ -476,5 +476,49 @@ package classes.GameData.Pregnancy
 			
 			_stageProgressions.sortOn("triggersAtDuration", Array.NUMERIC | Array.DESCENDING);
 		}
+		
+		/**
+		 * This is just the basic fragment used when a specialised handler doesn't have its own override for the fragment return.
+		 * We'll just look at the overall bellyRating() and return something generic.
+		 * We need to figure out some kind of scale for the rating value, so that there can be some sense
+		 * of relative scale for different pregnancies.
+		 * 
+		 * We're passing the target and slot in so that specialised handlers know what to look for to
+		 * grab more relevant data with which they can generate their return values.
+		 * @param	target
+		 * @param	slot
+		 * @return
+		 */
+		override public function pregBellyFragment(target:Creature, slot:int):String
+		{
+			if (target.bellyRating() <= 20)
+			{
+				return "Your belly is larger than it used to be.";
+			}
+			else if (target.bellyRating() <= 40)
+			{
+				return "Your belly more noticably distended. You are probably pregnant.";
+			}
+			else if (target.bellyRating() <= 60)
+			{
+				return "The unmistakable bulge of pregnancy is visible in your tummy.";
+			}
+			else if (target.bellyRating() <= 80)
+			{
+				return "Your belly is obviously pregnant to anyone who looks at you.";
+			}
+			else if (target.bellyRating() <= 100)
+			{
+				return "It would be impossible to conceal your growing pregnancy from anyone who glanced your way.";
+			}
+			else if (target.bellyRating() <= 120)
+			{
+				return "Your stomach is painfully distended by your pregnancy, making it difficult to walk normally.";
+			}
+			else
+			{
+				return "Your belly protrudes unnaturally far forward, the sheer size of it making movement difficult.";
+			}
+		}
 	}
 }

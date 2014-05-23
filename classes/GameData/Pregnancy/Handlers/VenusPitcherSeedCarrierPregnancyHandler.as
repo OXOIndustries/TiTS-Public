@@ -110,6 +110,7 @@ package classes.GameData.Pregnancy.Handlers
 			var pData:PregnancyData = target.getPregnancyOfType("VenusPitcherSeedCarrier");
 			
 			pData.pregnancyQuantity--;
+			pData.pregnancyBellyRatingContribution -= 10;
 			target.bellyRatingRaw -= 10;
 			
 			if (pData.pregnancyQuantity == 0)
@@ -127,6 +128,11 @@ package classes.GameData.Pregnancy.Handlers
 					target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
 				}
 			}
+		}
+		
+		override public function pregBellyFragment(target:Creature, slot:int):String
+		{
+			
 		}
 	}
 

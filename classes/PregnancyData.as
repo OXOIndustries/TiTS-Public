@@ -34,12 +34,18 @@ package classes
 		 */
 		public var pregnancyIncubationMulti:Number;
 		
+		/**
+		 * The total contribution this pregnancy has made to the bellyRating modifier.
+		 */
+		public var pregnancyBellyRatingContribution:Number;
+		
 		public function reset():void
 		{
 			pregnancyIncubation = 0;
 			pregnancyType = "";
 			pregnancyQuantity = 0;
 			pregnancyIncubationMulti = 1.0;
+			pregnancyBellyRatingContribution = 0.0;
 		}
 	}
 

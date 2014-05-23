@@ -80,6 +80,7 @@ package classes.GameData.Pregnancy.Handlers
 
 			// Change bellyMod
 			mother.bellyRatingMod += 2 * pData.pregnancyQuantity;
+			pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
 		}
 		
 		public static function cleanupPregnancy(target:Creature):void
@@ -95,6 +96,8 @@ package classes.GameData.Pregnancy.Handlers
 			
 			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 			pData.pregnancyQuantity--;
+			pData.pregnancyBellyRatingContribution -= 14;
+			pData.pregnancyIncubation = (16 + rand(21)) * 60; // New random time from 16 - 36 hours
 			target.bellyRatingRaw -= 14;
 			
 			if (pData.pregnancyQuantity == 0)
@@ -102,6 +105,82 @@ package classes.GameData.Pregnancy.Handlers
 				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
 				pData.reset();
 			}
+		}
+		
+		/**
+		 * Fertilized seeds will make reference to the squirmly tentacle arm things, and the fact
+		 * the size is effectively inverted.
+		 * 
+		 * Some of this text + logic might be pretty dumb, but I'm ill as fuck and I want to DO something.
+		 * @param	target
+		 * @param	slot
+		 * @return
+		 */
+		override public function pregBellyFragment(target:Creature, slot:int):String
+		{
+			var pData:PregnancyData = target.pregnancyData[slot];
+			var retString:String = "";
+			
+			// This would have been 9, but it would be impossible to hit it given the cap is 9 eggs, and the first is laid when the ^ status effect is applied
+			if (pData.pregnancyQuantity >= 8)
+			{
+				// Megafull
+				retString = "Your belly protrudes unnaturally far forward, the ovoid objects stuffed into your womb by the Venus Pitchers forming slight bulges in your [pc.skinFurScales]. ";
+			}
+			else if (pData.pregnancyQuantity >= 7)
+			{
+				// Full
+				retString = "Your belly is painfully distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb to an uncomfortable degree. ";
+			}
+			else if (pData.pregnancyQuantity >= 4)
+			{
+				retString = "Your belly is clearly distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb to the brim. ";
+			}
+			else if (pData.pregnancyQuantity >= 3)
+			{
+				// First one (minimum) is done, trepidation at the rest
+				retString = "Your belly is still clearly distended by your pregnancy, the Venus Pitcher seed pods stuffing your womb throughly. Passing the pods is quite an arduous task, but some part of you looks forward to the next time you can experience the process. ";
+			}
+			else if (pData.pregnancyQuantity == 1)
+			{
+				// Had fun, just one left....
+				retString = "Your belly has shrunken considerably since your initial impregnantion at the tentacle-tips of the Venus Pitchers, but you can still clearly make out a final pod residing deep within your womb. ";
+			}
+			
+			if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished"))
+			{
+				// Eggs incubated and we're prepping to lay a new one
+				if (pData.pregnancyIncubation <= 60)
+				{
+					retString += "Your [pc.vagina] has grown wetter and eager once more, preparing itself for the coming task of birthing another of the Venus Pitchers seed pods.";
+				}
+				else if (pData.pregnancyIncubation <= 120)
+				{
+					retString += "The [pc.skinFurScales] covering your belly occasionally writes under the motions of the seed pods packed into your womb.";
+				}
+				else if (pData.pregnancyIncubation <= 600)
+				{
+					retString += "Hints of slime are once again leaking down your thighs. Your [pc.vagina] must be preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
+				}
+			}
+			else
+			{
+				// Eggs still incubating
+				if (pData.pregnancyIncubation <= 60)
+				{
+					retString += "You'll be laying soon, you're sure of it. Your [pc.vagina] has grown wetter and eager, birth-slime practically dripping out of you.";
+				}
+				else if (pData.pregnancyIncubation <= 120)
+				{
+					retString += "The [pc.skinFurScales] covering your belly occasionally writhes under the motions of the objects packed into your womb.";
+				}
+				else if (pData.pregnancyIncubation <= 600)
+				{
+					retString += "Hints of slime leak down your thighs, your [pc.vagina] preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
+				}
+			}
+			
+			return retString;
 		}
 	}
 }

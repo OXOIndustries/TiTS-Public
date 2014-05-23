@@ -84,6 +84,21 @@ package classes.GameData.Pregnancy
 		{
 			throw new Error("Not implemented yet.");
 		}
+		
+		// Fragments are large blocks of descriptive text that COULD be glued together.
+		public static function getPregBellyFragment(target:Creature, slot:int):String
+		{
+			var pHandler:BasePregnancyHandler;
+			if (target.pregnancyData[slot].pregnancyType != "")
+			{
+				pHandler = _pregHandlers[target.pregnancyData[slot].pregnancyType];
+			}
+			
+			if (pHandler != undefined && pHandler != null)
+			{
+				return pHandler.pregBellyFragment(target, slot);
+			}
+		}
 	}
 
 }
