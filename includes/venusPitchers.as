@@ -869,7 +869,10 @@ function elderVenusPitchersPlayWithCooches():void {
 	output("\n\nA gentle voice explains, “<i>Oh, my deeply hypnotized pet, you’re loving it aren’t you? The feeling of being filled with pitcher plant sperm is assuredly superior to that which any male can offer. Your pretty pussy craves the cum. It yearns for it. Feeling it flooding into your pussy");
 	if(!pc.isPregnant(x)) output(" and womb");
 	output(" is going to make you cum so hard your brain will dribble out of your twat.</i>” A fingertip subtly traces along the nap of your neck. “<i>I hope you’re ready, because I can feel a giant load of it building up.</i>");
-	if(pc.isPregnant(x)) output("<i> A shame you’re pregnant already, but you’ll come back for more after your pussy gets hooked on being stuffed by my stamen.</i>");
+	if (pc.isPregnant(x) && x == pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier")) 
+	{
+		output("<i> A shame you’re pregnant already, but you’ll come back for more after your pussy gets hooked on being stuffed by my stamen.</i>");
+	}
 	else output("<i> The feel of it swelling your belly with my seeds is going to be so addictive, matched only by the motherly bliss of laying my seeds in fertile soil.</i>");
 	output("<i></i>”");
 	output("\n\nThe tentacle buried in your [pc.vagina " + x + "] bottoms out while the larger, massive tentacle mashes itself against your pubic mound");
