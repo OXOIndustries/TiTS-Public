@@ -418,7 +418,7 @@ function divideAndConquerGinasWithGoos():void
 	if(pc.ass.loosenessRaw <= 2) output("ever so slight");
 	else if(pc.ass.loosenessRaw <= 4) output("sizable");
 	else output("massive");
-	output(" gape left by your stretched cheeks, a trickle into your butt that has you shivering and shuddering as she enters you. But that blessed respite lasts only a moment, and soon the trickle turns into a thickening rod with a firmly-established beachhead in your colon, stretching out out from the inside, filling you utterly with a thick, slippery shaft of goo-cock.");
+	output(" gape left by your stretched cheeks, a trickle into your butt that has you shivering and shuddering as she enters you. But that blessed respite lasts only a moment, and soon the trickle turns into a thickening rod with a firmly-established beachhead in your colon, stretching out from the inside, filling you utterly with a thick, slippery shaft of goo-cock.");
 	buttChange(40,true,true,false);
 
 	output("\n\nSpeared on two sides by googirl dicks, your body is consumed by shockwaves of pleasure that leave you writhing in the first sister's tender embrace, her arms holding you tight into her breasts as her hips start to thrust her cock into you. The slow, almost tender motion is mirrored by the other goo, whose hands hold your [pc.hips] rock-steady as she starts to withdraw her prick from you, only to let its self-lubricated length glide back in through your defenseless sphincter. Though they start in sync with each other, the giddy pair of goo-girls start to develop their own rhythms for fucking you, one thrusting deep in as the other pulls out, working together to make sure you're never without a thick, throbbing cock to stretch and fill you. The sensation is overwhelming, and you're soon a moaning, quivering pile of lust and fuck atop the first sister, your hips bucking to meet theirs, mouth coming to enclose one of her big, dark teats as her fingers guide you to it. Your muffled cries are absorbed into the jiggling, gooey boob, though to your satisfaction, your tongue and squeezing holes are able to draw a few quiet moans and gasps from the goo-sisters.");
@@ -469,7 +469,7 @@ function pcDefeatByGooBitch():void
 	//If PC has a cock:
 	if(pc.hasCock()) 
 	{
-		output(" The more you lick, the harder [pc.eachCocks] gets, diamond hard and ready to fuck thanks to the heavenly feeling of the googirl's pussy on your lips. A few more moments of this and you don't think you'll be able to stop yourself from ramming your rod");
+		output(" The more you lick, the harder [pc.eachCock] gets, diamond hard and ready to fuck thanks to the heavenly feeling of the googirl's pussy on your lips. A few more moments of this and you don't think you'll be able to stop yourself from ramming your rod");
 		if(pc.cockTotal() > 1) output("s");
 		output(" home in that inviting little cunt!");
 	}

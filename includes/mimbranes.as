@@ -3247,7 +3247,10 @@ public function mimbraneCombatInterference():Boolean
 				// Failure text
 				if (eligibleMimbranes[i] == "Mimbrane Cock")
 				{
-					output("Some unrelenting pressure in your [armor] is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your {cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
+					output("Some unrelenting pressure in your ");
+					if(pc.isCrotchGarbed()) output("[pc.underGarments]");
+					else output("crotch");
+					output(" is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your [pc.cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
 				}
 				else if (eligibleMimbranes[i] == "Mimbrane Pussy")
 				{
@@ -3640,7 +3643,7 @@ public function useDatMimbraneLikeACondom():void
 	else output(" There’s no lengths the parasite can stretch to that would allow it to properly contain your otherworldly discharge. The poor creature strains to move under the sheer weight of the [pc.cumColor] volume its collected. It would happily consume all that it could not carry if it could, but its metabolism would prevent it from indulging for very long.");
 	output("\n\nYou watch the Mimbrane");
 	if (pc.cumQ() <= 600) output(" waddle off with its payload. The parasite takes precious care to maintain that which it cannot eat on the spot.");
-	else output(" struggle under its immense payload. The parasite’s forced to let off some of its [pc.cumType] load just so it can begin to drag itself along the jungle floor.");
+	else output(" struggle under its immense payload. The parasite’s forced to let off some of its [pc.cumColor] load just so it can begin to drag itself along the jungle floor.");
 	output(" It’s an interesting sight to say the very least. Let no one say you aren’t a merciful conqueror.");
 	if (!pc.isNude()) output("\n\nReclaiming your [pc.armor], you realize that while you have satisfied your initial craving, y");
 	else output("\n\nY");

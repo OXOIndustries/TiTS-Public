@@ -116,6 +116,8 @@ function sexWithShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	var x:int = pc.cockThatFits(100);
+	if(x < 0) x = pc.smallestCockIndex();
 	processTime(50+rand(10));
 	output("You ask Shelly if she’d be up for a little more than just egg-laying assistance. She looks confused for a moment before realization lights up her face.");
 	output("\n\n<i>“Really? You’d do that, with me?”</i> she asks, obviously happy but not totally sure.");
@@ -130,7 +132,7 @@ function sexWithShelly():void
 	if(!pc.isTaur())
 	{
 		output("\n\nYou grasp [pc.cock " + x + "], bringing its length to bear and slipping it between her thighs. You hear her gasp with surprised pleasure as the top of [pc.cock " + x + "] slides over her slit, parting her folds slightly and rubbing her heated entrance. She turns her head to kiss you, and you return it, playing with her tongue and tasting her candy sweet saliva. You rub her legs and grip them, preparing to lift her up.");
-		output("\n\nWhen you hoist, you're surprised to find her to be incredibly light and end up nearly flinging her onto the bed. She gives a surprised giggle, not realizing your overzealous lift was an error. You’re happy to go with it, lowering her back until [pc.cockHead " + x + "] slightly pushes her folds apart, hovering just above penetration. After a few seconds of teasing rubs, you slower lower her over your [pc.cockNoun " + x + "].");
+		output("\n\nWhen you hoist, you're surprised to find her to be incredibly light and end up nearly flinging her onto the bed. She gives a surprised giggle, not realizing your overzealous lift was an error. You’re happy to go with it, lowering her back until [pc.cockHead " + x + "] slightly pushes her folds apart, hovering just above penetration. After a few seconds of teasing rubs, you slower lower her over your [pc.cockNounSimple " + x + "].");
 		output("\n\nShe sighs with ecstasy as you fill her, her heated insides clamping down on [pc.cock " + x + "], until soon ");
 		if(pc.cockVolume(x) <= 50) output("you hilt inside her");
 		else output("your [pc.cockHead " + x + "] bumps into her cervix");
