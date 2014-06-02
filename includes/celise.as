@@ -222,7 +222,7 @@ function celiseSucksYouDry():void {
 		output(" You can feel your body responding to her sexual training already if that wondrous throb is any indication.");
 		if(pc.balls > 0 && pc.ballSize() < 5) pc.ballSizeRaw++;
 		if(pc.ballEfficiency < 400) pc.ballEfficiency++;
-		if(pc.cumMultiplier < 150) pc.cumMultiplier++;
+		if(pc.cumMultiplier() < 150) pc.cumMultiplierRaw++;
 		if(pc.refractoryRate < 50) pc.refractoryRate += .5;
 	}
 	pc.orgasm();
@@ -439,7 +439,7 @@ function celiseInBallsFinalEnding():void {
 	output(" shrunk back down to normal, leaving nothing but a dull, almost painful ache to remind you of never-ending orgasm you seem to have experienced. Celise has busied herself moving the condoms towards a refridgeration unit, leaving you a moment to dry off, catch your breath, and get dressed.");
 	if(pc.cumQ() >= 5000) {
 		output(" With how hard you’re throbbing down there, you think you might have permanently lowered your ability to produce cum. Perhaps you’re a bit more productive than Celise would prefer?");
-		if(pc.cumMultiplier > 10) pc.cumMultiplier -= 5;
+		if(pc.cumMultiplierRaw > 10) pc.cumMultiplierRaw -= 5;
 		if(pc.ballEfficiency > 20) pc.ballEfficiency -= 10;
 	}
 	output("\n\nThe area is a total mess, but you’re sure the goo-girl will suck it up soon enough.");

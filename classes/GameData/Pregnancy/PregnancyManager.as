@@ -1,4 +1,4 @@
-package classes.GameData.Pregnancy 
+﻿package classes.GameData.Pregnancy 
 {
 	import classes.Characters.PlayerCharacter;
 	import classes.Creature;
@@ -94,7 +94,7 @@ package classes.GameData.Pregnancy
 				pHandler = _pregHandlers[target.pregnancyData[slot].pregnancyType];
 			}
 			
-			if (pHandler != undefined && pHandler != null)
+			if (pHandler != null)
 			{
 				return pHandler.pregBellyFragment(target, slot);
 			}

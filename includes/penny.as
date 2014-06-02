@@ -1649,7 +1649,7 @@ function pennySproutsAWeiner():void {
 	penny.createCock();
 	penny.shiftCock(0,GLOBAL.VULPINE);
 	penny.cocks[0].cLengthRaw = 6;
-	penny.cumMultiplier += 1;
+	penny.cumMultiplierRaw += 1;
 	penny.ballEfficiency += 2;
 	penny.orgasm();
 	flags["PENNY_THROBB_USES"] = 1;
@@ -1682,7 +1682,7 @@ function pennyToBigPenny():void {
 		penny.balls = 2;
 		penny.ballSizeRaw = 2;
 	}
-	penny.cumMultiplier += 2;
+	penny.cumMultiplierRaw += 2;
 	penny.ballEfficiency += 3;
 	penny.cocks[0].cLengthRaw = 11.5;
 	penny.cocks[0].cThicknessRatioRaw = 1.1;
@@ -1731,7 +1731,7 @@ function pennyBecomesHYPERPENNY():void {
 	penny.cocks[0].cLengthRaw = 18;
 	penny.cocks[0].cThicknessRatioRaw = 1.2;
 	if(penny.cocks[0].knotMultiplier < 2) penny.cocks[0].knotMultiplier = 2;
-	penny.cumMultiplier += 5;
+	penny.cumMultiplierRaw += 5;
 	penny.ballEfficiency += 3;
 	penny.orgasm();
 	this.clearMenu();
