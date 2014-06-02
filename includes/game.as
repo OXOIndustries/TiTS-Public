@@ -685,15 +685,15 @@ function lactationUpdateHourTick():void
 		}
 	}
 	//90
-	if(pc.milkMultiplier >= 90 && originalMultiplier < 90) eventBuffer += "\n\nYou're pretty sure that your lactation is starting to slow down a little bit. If you don't start milking yourself, you'll eventually stop producing.";
+	if(pc.milkMultiplier < 90 && originalMultiplier >= 90) eventBuffer += "\n\nYou're pretty sure that your lactation is starting to slow down a little bit. If you don't start milking yourself, you'll eventually stop producing.";
 	//80
-	if(pc.milkMultiplier >= 80 && originalMultiplier < 80) eventBuffer += "\n\nLow level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won't for too much longer.";
+	if(pc.milkMultiplier < 80 && originalMultiplier >= 80) eventBuffer += "\n\nLow level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won't for too much longer.";
 	//70
-	if(pc.milkMultiplier >= 70 && originalMultiplier < 70) eventBuffer += "\n\nYou're feeling pretty sore in your [pc.chest], but it's not getting that much worse. <b>You're pretty sure that you're lactating less as a result of the inattention to your chest.</b>";
+	if(pc.milkMultiplier < 70 && originalMultiplier >= 70) eventBuffer += "\n\nYou're feeling pretty sore in your [pc.chest], but it's not getting that much worse. <b>You're pretty sure that you're lactating less as a result of the inattention to your chest.</b>";
 	//60	
-	if(pc.milkMultiplier >= 60 && originalMultiplier < 60) eventBuffer += "\n\nYour body's ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won't take long before you stop production entirely.";
+	if(pc.milkMultiplier < 60 && originalMultiplier >= 60) eventBuffer += "\n\nYour body's ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won't take long before you stop production entirely.";
 	//50
-	if(pc.milkMultiplier >= 50 && originalMultiplier < 50) {
+	if(pc.milkMultiplier < 50 && originalMultiplier >= 50) {
 		for(var x:int = 0; x < pc.bRows(); x++)
 		{
 			pc.breastRows[x].breastRatingLactationMod = 0;
@@ -701,7 +701,7 @@ function lactationUpdateHourTick():void
 		eventBuffer += "\n\nLike a switch has been flipped inside you, you feel your body's [pc.milk]-factories power down. <b>You've stopped lactating entirely.</b>";
 		if(pc.milkFullness >= 75) 
 		{
-			eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCup]s.";
+			eventBuffer += " The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.";
 			pc.milkFullness = 75;
 		}
 
