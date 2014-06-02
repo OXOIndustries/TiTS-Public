@@ -2483,7 +2483,7 @@ function initializeRooms():void
 	rooms["305"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
-	rooms["WIDGET WAREHOUSE"].roomName = "THE\nMESS";
+	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";
 	rooms["WIDGET WAREHOUSE"].description = "";
 	rooms["WIDGET WAREHOUSE"].runOnEnter = widgetWarehouseBonusFuntimes;
 	rooms["WIDGET WAREHOUSE"].southExit = "211";

@@ -1570,8 +1570,17 @@
 			energy(-5);
 			minutesSinceCum = 0;
 			timesCum++;
+			if(isNaN(ballFullness)) 
+			{
+				trace("ERROR: ballFullness is not a number. This has been rectified.");
+				ballFullness = 0;
+			}
 			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
-			
+			if(isNaN(ballFullness)) 
+			{
+				trace("ORGASM MADE ballFullness NaN! Investigate later!");
+				ballFullness = 0;
+			}
 			if (this is PlayerCharacter) 
 			{
 				kGAMECLASS.mimbraneFeed("cock");
@@ -4651,21 +4660,33 @@
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
-			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2) * ballEfficiency;
-			else quantity = Math.round(ballSize() * balls * 2) * ballEfficiency;
+			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2 * ballEfficiency);
+			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 			return quantity;
 		}
 		public function currentCum(): Number {
-			return Math.round(maxCum() * ballFullness);
+			if(isNaN(ballFullness)) 
+			{
+				trace("ERROR: ballFullness is not a number. This has been rectified.");
+				ballFullness = 0;
+			}
+			return Math.round(maxCum() * ballFullness/100);
 		}
 		public function cumProduced(minutes: Number): void {
 			var cumDelta:Number = 0;
+			//trace("MINUTES OF CUM CHARGING: " + minutes + " FULLNESS: " + ballFullness);
+			if(isNaN(ballFullness)) 
+			{
+				trace("ERROR: ballFullness is not a number. This has been rectified.");
+				ballFullness = 0;
+			}
 			while (minutes > 0) {
 				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
 				if(hasPerk("Breed Hungry")) cumDelta *= 2;
 				ballFullness += cumDelta;
 				minutes--;
 			}
+			trace("AFTER FULLNESS: " + ballFullness);
 			if (ballFullness >= 100) ballFullness = 100;
 		}
 		public function isSquirter(arg: int = 0): Boolean {
