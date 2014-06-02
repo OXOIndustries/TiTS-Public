@@ -795,7 +795,7 @@ function flahneDeskMunchies():void {
 		//Suck off
 		this.addButton(1,"Suck Off",flahneGetsSuckedAndSwallowed);
 		//Play&Spray
-		if(pc.isAss()) this.addButton(0,"PlayNSpray",playAndSpray);
+		if(pc.isAss()) this.addButton(2,"PlayNSpray",playAndSpray);
 	}
 }
 
