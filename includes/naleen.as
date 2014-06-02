@@ -373,15 +373,19 @@ function beatDatCatNaga():void {
 		addButton(0,"Titfuck",naleenTitFuck)
 		if(pc.cockThatFits(chars["NALEEN"].vaginalCapacity()) >= 0) addButton(1,"FuckHer",bendNaleenOver);
 		else addDisabledButton(1,"Fuck Her");
+
+		addButton(4,"Blowjob",pcGetsABlowjobThatTurnsIntoButtSmex,undefined,"Blowjob","You could give into your lust and force the defeated naleen to blow you, although her unusual lower-half might lead to unintended mishaps.");
 	}
 	else {
 		addDisabledButton(0,"Titfuck");
 		addDisabledButton(1,"Fuck Her");
+		addDisabledButton(4,"Blowjob");
 	}
 	if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
 	else addDisabledButton(2,"GetTailPeg");
 	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
 	else addDisabledButton(3,"Breastfeed");
+
 	addButton(14,"Leave",genericVictory);
 }
 /*
@@ -844,4 +848,88 @@ function finishNaleenSnuggles():void {
 	processTime(30+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+ //Naleen - PC Victory Scene 
+//(Get Blown)
+//[if(pc.libido >= 60) “You could give into your lust and force the defeated naleen to blow you, although her unusual lower-half might lead to unintended mishaps.”] 
+function pcGetsABlowjobThatTurnsIntoButtSmex():void
+{
+	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
+	author("Space");
+	output("You gaze down upon the ");
+	if(foes[0].HP() < 1) output("beaten");
+	else output("horny");
+	output(" naleen at your [pc.feet]. She is exuberantly feminine and outwardly defiant, even in defeat. She hisses at you softly, but it is obvious her actions are a mere ploy. Her skin, fur, and scales glisten with sweat, and you can see the droplets of her exhaustion slide down the ridges of her toned body. Further down the feline-serpent’s form, you see that her tanned, puffy lower-lips are glossed with a wet sheen. How fortunate that your own needs are presenting themselves equally strongly; perhaps this is what she wanted all along?");
+	output("\n\nYou ");
+	if(!pc.isNude()) output("shed your [pc.gear], exposing your [pc.cockBiggest]");
+	else output("shift your [pc.hips] forward, exposing your [pc.cockBiggest]");
+	output(". Taking it in one hand, you stroke it slowly as you show your manhood to the Naleen. The kitty visibly relaxes and even smiles as you cautiously inch toward her. You try to keep yourself ready for some kind of trickery, but her feline agility affords her excess of stealthy prowess. You feel her striped snake-tail wrap firmly around your [pc.feet] before you see it, then fall directly into the amazoness’ embrace.");
+	output("\n\nTemporarily outmaneuvered by the Naleen, you scramble to assume control over the coiled trickster once more. As you shove her human-like torso to the side and stand up, you inadvertently slide your [pc.cockBiggest] up her chest. Your [pc.cockHeadBiggest] thickens and rapidly fills with blood as your member is assailed by the fine, feline fur that covers the naga’s body. The sensation tickles your shaft in a enjoyable way, and you leave a smear of your pre-cum against her belly as you stand up. Recovering from your push, the tightly coiled spring of feline grace raises herself up only to find herself faced with your [pc.cockBiggest].");
+	output("\n\nSmiling and taking a hold of one of her feline ears, you pull her head forward towards your waiting dong. As her lips make contact your crown, shivers of pleasure run through your [pc.cockBiggest]. Her gentle breathing blows cool air into your opening. Your advances are halted, however, when  she refuses to un-purse her lips to allow access to the part of her you want most. You remove your hand from her ear and instead use your digits to push her cheeks forward, forcing her pucker apart and her mouth open just enough to allow you slip your [pc.cockHeadBiggest] past her lips. With your length now past the sexual predator’s fangs, you figure that if she were going to bite, she would have by now, so you remove your hand from her face and allow yourself a moment to take in the feeling of sublime, warm wetness that now surrounds your member.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",naleenReverseBJPart2);
+}
+function naleenReverseBJPart2():void
+{
+	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
+	author("Space");
+	output("You notice immediately that despite the feline features of her face, the girl's mouth is very snake-like, and her tongue is long and slippery rather than lined with the hard bristles that one would expect from a feline. The naleen’s lips purse around your shaft, but her snake-like tongue reels away from your cock as she tastes you. Of course, this causes balmy drool to cover your [pc.cockBiggest], which is warmed with every breath she expels. Disheartened by the less than stellar response from the big cat, you reluctantly pull your [pc.cockBiggest] free, if only for the moment. She looks away as your pillar of cock towers in front of her face, but her gaze shifts back soon enough. A moment later, her slitted eyes flick up to your own. She leans forward, taking hold of your base as she guides her snaking tongue up your cock, breathing in the musk of your ");
+	if(pc.balls > 0) output("[pc.balls]");
+	else output("[pc.cockBiggest]");
+	output(", causing her drool. Her newfound eagerness coats her tongue in a slick lubrication, and she wastes no time in coating the rest of your shaft with her serpentine appendage.");
+	output("\n\nThe snake woman shyly smiles at you as you pull away, returning to a standing position. She darts forward and takes your quivering cock between her feline claws. “<i>Mine?</i>” the naga asks as she gently pets and plays with your [pc.cockBiggest] using her fuzzy fingers. The light fur ");
+	if(pc.libido() < 80) output("covering her dextrous fingers causes your member to twitch from her pleasurable touch.");
+	else output("coating her dextrous fingers gives them a slightly soft feeling around your member. The gentle tickling from her ministrations causes extra blood to fill your glans.");
+	output(" You nod, and the naleen presses her head against your chest in a show of affection while her hands move around your [pc.hips]. With a snap of her head, she lunges forward with her mouth open and takes much of your shaft into her warm maw. Her long, snake-like tongue slips under your rod and pulls it further inside. As she draws more into her mouth, the slick, hot flesh encasing your cock tightens with sharp pressure and you realise that your dick has breached her throat.");
+	output("\n\nWith an unnatural squelching slurp, you watch as half of your member slides into her expansive passage. You hold it there for a moment, enjoying the feeling of the constricting wet heat before pulling yourself back to give the naga’s throat a rest before you thrust back into her constrictive warm mouth. This time, she takes it in one gulp, rewarding your ears with the loud, messy-sounding gulps. With practiced effort, the naleen bobs her head up and down your [pc.cockBiggest], taking a little more of your length each time.");
+	output("\n\nAs your member slowly disappears between her full lips, your snake-like partner intensifies her technique, this time using her serpentine tongue to wrap around your erect [pc.cockBiggest], softly coiling around your entire length, covering the parts of your cock that that haven’t been touched by her puckers with a thick mixture of drool and precum. Her throat quivers around you and constricts tightly, locking your rod in her juicy, sweltering maw. She looks up at you and grins toothily, her snake-like pointed fangs glistening with lustful want.");
+	output("\n\nYou admire the naleen’s superior muscle control as she pulls away from you once more, all the while keeping her windpipe clenched snugly around you. As your tip leaves the snake-girl’s lips, a throb of carnal pleasure runs down your shaft as her hot breath blows against your " + pc.cockColor(pc.biggestCockIndex()) + " skin. Your cock twitches in response to the amazoness’ caring ministrations and releases another large blob your [pc.cum] which dangles elegantly in bead from your slit. The jungle cat-snake eyes it like prey once more. She opens her mouth wide, allowing you watch her long tongue snake out past her lips and slurp up your seed.");
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",naleenReverseBJPart3);
+}
+function naleenReverseBJPart3():void
+{
+	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
+	author("Space");
+	output("With that, she nuzzles her head up against your chest before going down on your throbbing meat-stick.The naleen quickly recovers her progress like a champ, and you enjoy the sight and sound of her throat expanding to accept. Pleased with the girl’s effort so far, you use one had to pat her head in appreciation and even go as far as to give the kitty-hybrid a scratch behind her large, striped feline ears, to which the naga closes her slitted eyes and rubs and pushes her head against your hand. You feel a ripple of slight constrictions travel from the head of your engulfed shaft, quickly followed the same feeling from her tongue as it binds itself around your [pc.cockBiggest] as well as a soft wind of warm air that tickles your member in just the right way.");
+	output("\n\nIt occurs to you that the cat-naga is actually purring as she sucks on your [pc.cockBiggest]; the vibrations help to push your impending climax ever closer. Her throat constricts around your glans as the pulsations continue. You shiver as your [pc.cockBiggest] trembles from the naleen’s hot, wet, and wriggling flesh as her service continues. You pull her back from your engorged member and watch a thin line of sticky drool spread from your tip to her dusky lips. She licks them before opening her mouth wide, much further than you expected, and eyes you with a seductive gaze.");
+	output("\n\nInside her maw and past her cute fangs, you can see your goal: her bright pink passage, mostly closed but opening slightly as the amazoness takes short, panting breaths. Almost as if aware of your view, it opens up and gapes widely with obscene lewdness a second before taking a hold of you and spearing down on your [pc.cockBiggest]. You can do nothing but watch on as her gullet slowly swallows the entirety of your member. You note to yourself that this catgirl-naga hybrid appears to have no gag reflex, which is quite fortunate for you. She pushes her tongue out from underneath your base and grips your [pc.sack], wrapping it in a soft, wet bed of tongue. More precum spills from your cockslit as her purring vibrations continue.");
+	output("\n\nWith each hot breath of air that brushes past your rod, you feel the muscles of her gullet softly press against you from every direction. On her next inhale, you feel a ring of the pliable flesh clamp around your tip, and when she exhales, more of these bands of constriction work their way down your length until all of it is encircled within her passage. As she exhales, her throat squirms and snakes in sequential constricting motions. Her throat is literally milking your cock, and it feels like just one last push will bring you to your climax. As you mull the thought over, you feel smooth, dry scales slide past your [pc.hips] and settle gently between your [pc.butt].");
+	output("\n\nYou decide to ignore the scaled appendage for now, and reason that if you're going to cum into the snake-girl's mouth it might as well be in a large shot, all at once. Before she can snake herself into your ass, you");
+	if(pc.tailCount > 0 && pc.tailType != GLOBAL.HUMAN && pc.hasTailFlag(GLOBAL.LONG)) output(" hook your own tail around hers and");
+	output(" reach around and grab it with one hand and pull it forward so the tip is underneath her chin. While she suckles on your [pc.cockBiggest] with feverous intensity, you use the excess saliva that she's drooling and dribbling to coat her tail with a generous slathering of lubrication for the impending penetration. Satisfied that you've done all you can to prevent any mischief from your orally-fixated lover's tail, you release it and relax, enjoying the sound and sensations of the naleen's throat as it ripples and pulsates in an unearthly fashion around your rod.");
+	output("\n\nIt feels as if your [pc.cockBiggest] is being devoured as the feline-serpentress tries to get more and more of your shaft inside her throat");
+	if(pc.balls > 0) output(", even to the point of taking in your [pc.sack] if she could");
+	output(". You have enjoy the last few moments of the imprisoning blow-job before the naleen presses her tail-tip against your [pc.butthole]. She gently but firmly pushes it until your rear entrance yields to her desires. With ungraceful blind groping, the naga slowly presses herself further and further into your no-man’s-land, causing you to wriggle and squirm against her, compelled by the strange sensations of the snake-girl’s soft scales sliding into your abused pucker. It's obvious she's searching for your vulnerable prostate.");
+	//Buttchange
+	buttChange(50,true,true,false);
+	processTime(7);
+	clearMenu();
+	addButton(0,"Next",naleenReverseBJPart4);
+}
+
+function naleenReverseBJPart4():void
+{
+	clearOutput();
+	userInterface.showBust("NALEEN");
+	userInterface.showName("\nNALEEN");
+	author("Space");
+	output("Fortunately for you, she finds your sweet spot in no time and immediately begins applying delicate pressure onto the vulnerable organ in time with her attentive slurps and sucks. The snake-feline’s throat locks a ring of muscle around the base of your length, preventing any hope of releasing your tension. With your mouth-bound member being assailed by constant pleasure from all directions for so long, you feel as if your [pc.cockBiggest] can’t get any harder as it aches for release. Seemingly sensing your looming climax, the naleen’s tail begins to thrash about inside, each twist of the strong appendage squeezes your gland hard, milking you.");
+	output("\n\nWith no control over the situation, you can’t help pant with lust and lose yourself to the bliss. Her tail slips out of your loosened hole and teases your clenching ring of flesh before resting against it. Looking down at the moments-before-defeated girl, you see that she gives you a glance which almost looks like a smile of sinister delight. In the next moment, she thrusts her long tail deep inside into your [pc.asshole]");
+	if(pc.balls > 0) output(" while her extended tongue slithers to coax the cum directly from your [pc.balls]");
+	output(". With a shaking pulse, you feel your orgasm arrive, but feel no release. The tight band of muscle in the naleen's throat is acting as quite an effective cock-ring, and you feel the pressure in your [pc.cockBiggest] swell with intensity.");
+	output("\n\nYour next orgasm comes quickly as she continues to extort your shaft for all of its contents. This continues until the desire to cum causes your head to nod slightly with exhaustion. Anticipating your imminent fatigue, the jungle-girl releases the binding around you. All of the pent-up [pc.cumNoun] from her from her laborious efforts is released into her maw in a torrent of [pc.cumColor] fluid. Most of it vanishes down her hungry gullet while the rest fills her mouth. She quickly gulps into her gaping passage, giving a brief view of her bulging cheeks.");
+	output("\n\nYou collapse to the ground, utterly drained and watch as the naleen pats her belly, seemingly satisfied. She glances at you before leaving, and her tail vanishes into the jungle. Weariness quickly overtakes you and you close your eyes to rest.\n\n");
+	processTime(20);
+	pc.orgasm();
+	genericVictory();
 }
