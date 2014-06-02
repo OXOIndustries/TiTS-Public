@@ -206,6 +206,7 @@ function tryOnTheSwimBraAlice():void
 	output("\n\n\"<i>Of course, like all our garments, this is completely hydrophobic. Any liquid will just run off of it like it was nothing. You don't have to worry about liquid stains in the least! This bra in particular is pretty popular as part of a swimsuit, though really any of our bras can fill that niche, depending on how you want to look on a given day.</i>\"");
 	output("\n\n\"<i>So, what do you think?</i>\"");
 	//[Buy] [Back]
+	clearMenu();
 	if(pc.credits >= getAlissPrice(new SportsBra())) addButton(0,"Buy", purchaseSomethingFromAliss, new SportsBra());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
 	addButton(14,"Back",upperBodyAlice);
@@ -248,6 +249,7 @@ function tryDatCorsetOnAlice():void
 	output("\n\nAliss turns around so you can see the laces of the back, not to mention her supple, pantied ass and thick tail. \"<i>Secondly, it includes an automatic cincher. A hundred years ago, putting on a corset properly would take a team of at least two people, but with this, you can do it alone with minimal discomfort! Finally, older corsets used to be made of old Earth whale bone, but these babies come with nanosteel fibers instead. What that means is it's effectively indestructible, at least in terms of normal wear and tear. It will continuously support you, and never snap or break. In the event that you lose consciousness, the corset will even loosen, allowing you to regain your breath! Handy, right?</i>\"");
 	output("\n\nThe reptilian alien twirls around once more and gives a small bow, showing off her impressive cleavage. \"<i>So, what do you think?</i>\"");
 	//[Buy] [Back]
+	clearMenu();
 	if(pc.credits >= getAlissPrice(new Corset())) addButton(0,"Buy", purchaseSomethingFromAliss, new Corset());
 	else addDisabledButton(0,"Buy","Buy","You cannot afford this item.");
 	addButton(14,"Back",upperBodyAlice);
