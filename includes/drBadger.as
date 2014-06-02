@@ -217,7 +217,7 @@ function heyDocImAHero():void
 		output("\n\nThe flow of fluid shifts within you, moving to pool at the very base of your crotch. Here it simply builds unstoppably, dragging a groan from you as you feel your body swell in response, a growing set of balls descending slowly. The fluid focusses on these mercilessly; pumping them so achingly full that they feel like they’re overflowing - a constant, endless, churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>You now have very large balls</b>!");
 		pc.balls = 2;
 		pc.ballSize = 4;
-		if(pc.cumMultiplier < 60) pc.cumMultiplier = 60;
+		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
 		if(pc.ballEfficiency < 120) pc.ballEfficiency = 120;
 	}
 	//IF PC HAS SMALLER THAN LARGE BALLS, OR HAS LESS THAN LARGE CUM PRODUCTION
@@ -227,7 +227,7 @@ function heyDocImAHero():void
 		else output("\n\nThe flow of fluid shifts within you, moving to pool heavily in your ball. Here it simply builds unstoppably, dragging a groan from you as you feel it swell in response. The fluid focusses on it mercilessly, pumping it so achingly full that it grows dramatically. It feels like it's overflowing - a constant, endless churning torturing you as your seed demands to be spent, and even then you’re not sure how much release you would get from any one single orgasm. <b>Your ball is extra productive</b>!");
 
 		if(pc.ballSize < 4) pc.ballSize = 4;
-		if(pc.cumMultiplier < 60) pc.cumMultiplier = 60;
+		if(pc.cumMultiplierRaw < 60) pc.cumMultiplierRaw = 60;
 		if(pc.ballEfficiency < 120) pc.ballEfficiency = 120;
 	}
 	//IF PC HAS MORE THAN ONE SET OF BALLS

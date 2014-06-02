@@ -329,7 +329,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		else output("\n\nAn unseen presence makes itself known: a spire of semi-rigid plant-flesh that drives itself through your cleavage without concern for how it jostles its siblings, slicking the valley between your boobs with its own lube, even though you were already soaked with the stuff. It surfaces between your [pc.chest], the big, green flare trembling as it drips everywhere. It pulls back, vanishing into your chesty crevasse with gusto. Your tits are bounced and jiggled by the weighty flora-cock as it uses you for its own pleasure, a fact confirmed by the lusty pants the woman in the center of it all is making while she strokes two similar vines.");
 	}
 	//{Preggo belly bonus}
-	if(pc.totalBellyRating() >= 9999) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n	<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
+	if ((pc as PlayerCharacter).bellyRating() >= 30) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n	<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
 	
 	//{Single cock}
 	if(pc.totalCocks() == 1) {
@@ -379,7 +379,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	//{Tentadick - cum in your mouth}
 	if(stamen) {
 		output("\n\nThe tentacle dong stuffed into your throat is the first to receive the heady payload. Pressure mounts against your lips when the sperm-packed bulge impacts your face, too large to fit inside in one huge squirt. Instead, the cock-slime slides through a constant, never-ending rope of jism, pumping straight down the back of your throat with such force that you can barely manage to swallow it, tasting the salty-sweet aftertaste of it on the back of your tongue. Eventually the bulge passes, and you get a chance to breathe. Then, another arrives, and you gulp anew, groaning around your burgeoning");
-		if(pc.totalBellyRating() > 9999) output(", pregnancy enlarged");
+		if(pc.bellyRating() > 30) output(", pregnancy enlarged");
 		output(" belly.");
 	}
 	//{Tentacunt - cum in mouth}
@@ -791,8 +791,8 @@ function elderVenusPitchersDickplay():void {
 		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
 		//{Good boost to cum quantity and skip to end}
 		pc.ballEfficiency += 2;
-		pc.cumMultiplier += 2;
-		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
+		pc.cumMultiplierRaw += 2;
+		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 2;
 		pc.slowStatGain("libido",2);
 	}
 	//{Medium Cum}
@@ -805,8 +805,8 @@ function elderVenusPitchersDickplay():void {
 		output("\n\n“<i>You’re going to remember how good this feels,</i>” the venus pitcher says, “<i>and feel drawn to me whenever you have time to come into the woods...</i>” You nod dreamily and pass out.");
 		//Small cum volume boost.
 		pc.ballEfficiency += .5;
-		pc.cumMultiplier += .5;
-		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 1.5;
+		pc.cumMultiplierRaw += .5;
+		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 1.5;
 		pc.slowStatGain("libido",1);
 	}
 	//{High Cum+}
@@ -965,8 +965,8 @@ function elderVenusPitcherDickNipplePlay():void {
 		output("\n\nConsciousness slowly ebbs from the assault of ecstasy, your last thoughts centered around how you’ll come back here again and again, feeding your lust to the venus pitchers in exchange for the mind-blanking pleasures. Her whispers chase you all the way into sleep, seeding your mind with obedience.");
 		//Big cum boost!
 		pc.ballEfficiency += 2;
-		pc.cumMultiplier += 2;
-		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
+		pc.cumMultiplierRaw += 2;
+		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 2;
 		pc.slowStatGain("libido",2);
 	}
 	//{Medium Cum Amount}
@@ -1080,8 +1080,8 @@ function elderPitcherPlantTailCockPlay():void {
 		
 		output("\n\nAfter a time, the pleasure grows so great that you begin to lose your grip on awareness. A voice chases after you into the blackness, sliding straight into your brain and layering on blissful obedience.");
 		pc.ballEfficiency += 2;
-		pc.cumMultiplier += 2;
-		if(pc.ballEfficiency/pc.cumMultiplier < 3) pc.ballEfficiency += 2;
+		pc.cumMultiplierRaw += 2;
+		if(pc.ballEfficiency/pc.cumMultiplierRaw < 3) pc.ballEfficiency += 2;
 		pc.slowStatGain("libido",2);
 	}
 	//{other}

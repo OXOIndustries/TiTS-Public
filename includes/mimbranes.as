@@ -397,7 +397,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1):void
 		}
 		else if (effectName == "Mimbrane Balls")
 		{
-			pc.cumMultiplier += (actualFeed * 0.5);
+			pc.cumMultiplierMod += (actualFeed * 0.5);
 			pc.ballSizeMod += (actualFeed * 0.25);
 		}
 		else if (effectName == "Mimbrane Boobs")
@@ -460,7 +460,7 @@ public function resetMimbraneEffects(effectName:String):void
 	}
 	else if (effectName == "Mimbrane Balls")
 	{
-		pc.cumMultiplier -= (0.5 * Number(pc.statusEffectv3(effectName)));
+		pc.cumMultiplierMod -= (0.5 * Number(pc.statusEffectv3(effectName)));
 		pc.ballSizeMod -= (0.25 * Number(pc.statusEffectv3(effectName)));
 	}
 	else if (effectName == "Mimbrane Boobs")

@@ -212,22 +212,22 @@
 			}
 			
 			//Increase cum capacity if can hold less than 3 shots a day!
-			if(pc.cumMultiplier / 3 >= pc.ballEfficiency && pc.hasCock() && changes < changeLimit) {
+			if(pc.cumMultiplierRaw / 3 >= pc.ballEfficiency && pc.hasCock() && changes < changeLimit) {
 				kGAMECLASS.output("\n\nYou whimper and ooze a strand of [pc.cum] onto yourself when a strange but pleasurable sensation rolls over your [pc.balls]. It isn't necessarily growth, nor is it some kind overly erotic, orgasm-inducing surge. The feeling could best be described as a budding capacitance. <b>Somehow, you know your body can hold even more [pc.cum] in its reserves.</b>");
 				changes++;
 				pc.ballEfficiency += 3 + rand(6);
 			}
 			//Increase cum multiplier to a max of x50!
-			if(pc.cumMultiplier < 50 && pc.hasCock() && rand(2) == 0 && changes < changeLimit) {
+			if(pc.cumMultiplierRaw < 50 && pc.hasCock() && rand(2) == 0 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nMuscles in your abdomen lock and release, rhythmically clenching with the pulsing pleasure that's running through your [pc.cocks], pushing more and more pre out each time. <b>You can force out even more ejaculate during orgasm!</b>");
-				pc.cumMultiplier += 2 + rand(3);
+				pc.cumMultiplierRaw += 2 + rand(3);
 				pc.ballEfficiency++;
 				changes++;
 			}
 			//Increase cum quality by 25%
-			if(pc.cumQuality < 2 && pc.hasCock() && rand(3) == 0 && changes < changeLimit) {
+			if(pc.cumQualityRaw < 2 && pc.hasCock() && rand(3) == 0 && changes < changeLimit) {
 				kGAMECLASS.output("\n\nAs heavy as loins are feeling right now, you're not sure you could drag yourself anywhere, but at the same time, your body is demanding you get up and stuff yourself inside the closest pussy - not just any pussy either: the wettest, most fertile twat you can find. You find yourself fantasizing about dozens of round-bellied women riding you one after the other, all carrying your offspring, when you become aware of that heavy feeling settling in your [pc.balls]. There's no doubt about it; <b>you've gotten more virile.</b>");
-				pc.cumQuality += .25;
+				pc.cumQualityRaw += .25;
 				changes++;
 			}
 			//Increase refractory rate!
