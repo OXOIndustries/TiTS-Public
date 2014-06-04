@@ -40,7 +40,7 @@ function widgetWarehouseBonusFuntimes():Boolean
 	{
 		output("\n\nShekka seems to be busy welding together parts from a dozen disparate machines into something new and different. Her tail wags back and forth while she works, brushing against her nearly floor-dragging ears and causing the piercings embedded in them to chime musically.");
 		addButton(0,"Shekka",approachShekka);
-	}	
+	}
 	return false;
 }
 
@@ -1273,5 +1273,4 @@ function shekkaMilkDrankingPartII():void
 	fuckedShekka();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-
 }

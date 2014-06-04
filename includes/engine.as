@@ -92,7 +92,7 @@ public function num2Text2(number:int):String {
 	return(returnVar);
 }
 
-function author(arg:String):void 
+public function author(arg:String):void 
 {
 	userInterface.author(arg);
 }
