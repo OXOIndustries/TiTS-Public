@@ -363,7 +363,7 @@
 			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
 		}
 		
-		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
 		{
 			var comparisonString:String = null;
 			var compareItem:ItemSlotClass = null;
@@ -402,7 +402,7 @@
 				compareItem = new NoItem();
 			}
 			
-			comparisonString = item.compareTo(compareItem);
+			comparisonString = item.compareTo(compareItem, seller, buyer);
 			
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.

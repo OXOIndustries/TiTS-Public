@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.Characters.PlayerCharacter;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.DataManager.Serialization.ItemSaveable;
 	import flash.utils.describeType;
@@ -133,7 +134,7 @@
 		 * @param	item	Item to compare against
 		 * @return			Resultant HTML formatted string of the diff
 		 */
-		public function compareTo(oldItem:ItemSlotClass):String
+		public function compareTo(oldItem:ItemSlotClass, seller:Creature = null, buyer:Creature = null):String
 		{
 			var compareString:String = "";
 			var statString:String = "";
@@ -172,7 +173,14 @@
 			{
 				if (compareString.length > 0) compareString += "\n";
 				
-				var valueString:String = "Base Price: " + this.basePrice + " Credits";
+				var price:Number = this.basePrice;
+								
+				if (seller != null && buyer != null)
+				{
+					price = Math.round(price * seller.sellMarkup * buyer.buyMarkdown);
+				}
+				
+				var valueString:String = "Price: " + price + " Credits";
 				
 				compareString = mergeString(compareString, valueString);
 			}

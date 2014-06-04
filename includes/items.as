@@ -136,8 +136,8 @@ function buyItem():void {
 			trace("DISPLAYING SHIT");
 			if(temp <= pc.credits) {
 				trace("SHOWAN BUTANS: " + x);
-				if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
-				if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x]);
+				if (x <= 13) addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
+				if (x > 13) addItemButton(x + 1, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
@@ -176,8 +176,8 @@ function sellItem():void {
 			//Does the shopkeep buy this type?
 			if(shopkeep.buysType(pc.inventory[x].type)) {
 				output("\n" + upperCase(pc.inventory[x].description) + " - " + getSellPrice(shopkeep,pc.inventory[x].basePrice) + " credits.");
-				if(x <= 13) this.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,sellItemGo,pc.inventory[x]);
-				if(x > 13) this.addButton(x+1,pc.inventory[x].shortName,sellItemGo,pc.inventory[x]);
+				if(x <= 13) this.addItemButton(x, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
+				if (x > 13) this.addItemButton(x + 1, pc.inventory[x], sellItemGo, pc.inventory[x], null, null, pc, shopkeep);
 			}
 		}
 	}
