@@ -1320,6 +1320,7 @@
 					buffer = biggestBreastDescript();
 					break;
 				case "breasts":
+				case "boobs":
 					buffer = breastDescript(arg2);
 				case "sheathDescript":
 				case "sheath":

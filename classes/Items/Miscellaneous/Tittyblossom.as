@@ -8,11 +8,11 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class Estrobloom extends ItemSlotClass
+	public class Tittyblossom extends ItemSlotClass
 	{
 		
 		//constructor
-		public function Estrobloom()
+		public function Tittyblossom()
 		{
 			this._latestVersion = 1;
 			
@@ -21,25 +21,25 @@
 			this.type = GLOBAL.PILL;
 			
 			//Used on inventory buttons
-			this.shortName = "Estrobloom";
+			this.shortName = "Tittyblossom";
 			
 			//Regular name
-			this.longName = "popsicle labelled 'Estrobloom'";
+			this.longName = "popsicle labelled 'Tittyblossom'";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a popsicle labelled 'Estrobloom'";
+			this.description = "a popsicle labelled 'Tittyblossom'";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Estrobloom is a chemical cocktail engineered by JoyCo designed to help its users \"bloom into the feminine flower they always deserved to be.\" Some planets have banned Estrobloom due to the disruption it can introduce to racial gender identities, but in more liberal systems the product flows unrestricted.\n\nIt comes in convenient popsicle form for easy use, and the wrapper lists a bevy of potential side effects: increases in hip and butt size, loss of muscle tone, longer hair, reduction of phallus size, and even lip swelling. It does guarantee, in big bold letters, that <b>every use will cause facial feminization</b>.";
+			this.tooltip = "Marketed as \"Estrobloom Plus\" but better known colloquially as \"Tittyblossom,\" this hormone package is an enhanced version of the popular feminizing product Estrobloom. Packed with micromachines and stimulants to promote rapid breast growth in addition to standard feminization, Tittyblossom is a smash hit among those looking to enhance their feminine side.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "";
 			
 			//Information
-			this.basePrice = 600;
+			this.basePrice = 1000;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.KINETIC;
@@ -63,31 +63,43 @@
 			var choices:Array = new Array();
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
-				//A little flavor for the flavor, limit it to one flavor a color, so we just don't have every fruit flavor you can possibly think of in this array.
-				var flavors:Array = [["strawberry","pink"],["cherry","red"],["orange","orange"],["banana","yellow"],["apple","green"],["blueberry","blue"],["grape","purple"]];
-				var flavorIndex:int = rand(flavors.length);
-				var popFlavor:String = flavors[flavorIndex][0];
-				var popColor:String = flavors[flavorIndex][1];
-				
+				//First use
+				kGAMECLASS.author("Various");
 				//Consume:
-				if(target.hasStatusEffect("Taken Estrobloom")) 
+				if(kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] == undefined) 
 				{
-					kGAMECLASS.output("You waste no time in unwrapping the ");
-					kGAMECLASS.output(popFlavor);
-					kGAMECLASS.output(" popsicle and cramming it straight into your waiting gob. Your [pc.lips] seal tightly around the delicious, mutagenic treat, slurping the rapidly-melting, ");
-					kGAMECLASS.output(popColor);
-					kGAMECLASS.output(" syrupy goo down as quickly as possible. You finish it in less than half a minute, though you spend a moment running your [pc.tongue] across your [pc.lips] to harvest every lost drop of sticky goodness from them.");
+					kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] = 1;
+					kGAMECLASS.output("You carefully strip the wrapper, revealing an alluring, shimmering purple popsicle that makes its lesser cousin look slim by comparison. As you insert it between your [pc.Lips], you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
+					target.createStatusEffect("TittiesUsed",1,0,0,0, true, "", "", false, 720);
 				}
+				//Repeat use
 				else
 				{
-					kGAMECLASS.output("You unwrap the popsicle, cringing at the excessively loud snapping of the foil-lined wrapper. Why do they make these damned things so noisy to open, anyway? Shrugging, you put the wrapper away to reveal a slender, ");
-					kGAMECLASS.output(popFlavor);
-					kGAMECLASS.output("-scented popsicle. You gingerly slip the ");
-					kGAMECLASS.output(popColor);
-					kGAMECLASS.output("-colored treat past your [pc.lips], marveling at its syrupy-sweet taste. You'd never guess this was a transformative cocktail and not a mundane popsicle by the flavor alone.\n\nThe estrobloom melts in your mouth like cotton candy, and in less than a minute, you've reduced it to a ");
-					kGAMECLASS.output(popColor);
-					kGAMECLASS.output("-stained, wooden stick.");
-					target.createStatusEffect("Taken Estrobloom",0,0,0,0,true,"","",false,0);
+					if(!target.hasStatusEffect("TittiesUsed")) target.createStatusEffect("TittiesUsed",1,0,0,0, true, "", "", false, 720);
+					else target.addStatusValue("TittiesUsed",1,1);
+					if(target.statusEffectv1("TittiesUsed") < 2)
+					{
+						kGAMECLASS.output("You carefully strip the wrapper, revealing a purple popsicle. As you insert it between your [pc.lips] you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
+						//→ Just Estrobloom effects. If none proc, append the following
+					}
+					//Second use - within 12 hours?
+					else if(target.statusEffectv1("TittiesUsed") < 3)
+					{
+						kGAMECLASS.output("You open the wrapper with more haste than the last, savouring the electric tingle it sends as you insert the large frozen stick into your maw.");
+						
+					}
+					//Third use - within 6 hours? of second. Includes previous effects if proc.
+					else if(target.statusEffectv1("TittiesUsed") < 4)
+					{
+						kGAMECLASS.output("You remove the wrapper, eyes glazing over a little as you practically inhale the purplish cocktail, consuming it within seconds. You wait for that vicarious tingle to flood through you, and it does.");
+						target.addStatusValue("TittiesUsed",1,1);
+					}
+					//Fourth use - within 3 hours? of third.
+					else
+					{
+						kGAMECLASS.output("You impatiently rip the popsicle from its confines and stuff it between your [pc.lips], eager to experience the flood of flavour and then sensation that comes after it.");
+						target.addStatusValue("TittiesUsed",1,1);
+					}
 				}
 				//DO ZE FEMINIZATION, SLOOTS
 				y = target.femininity;
@@ -218,11 +230,24 @@
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
 				}
-
+				if(target.breastRows[0].breastRatingRaw < 20)
+				{
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+					choices[choices.length] = 11;
+				}
 				//Default to no changes, then roll on the array for a change if some are available.
 				var select:int = 9;
 				if(choices.length > 0) select = choices[rand(choices.length)];
-
+				//Always force boobies
+				if(target.biggestTitSize() < 1) select = 10;
 				//(RARE) Slowly boosts lip mod to 1
 				if(select == 1)
 				{
@@ -338,9 +363,142 @@
 					if(target.hasStatusEffect("Uniball")) kGAMECLASS.output(" like a vacuum-sealed bag");
 					kGAMECLASS.output(". <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
 				}
+				//Growing TiTS
+				//{PC has a flat chest / tiny lil' moobs; always append as the last TF}
+				else if(select == 10)
+				{
+					kGAMECLASS.output("\n\nMinutes pass. You fidget around expectantly, awaiting the appearance of your new boobs. The label insisted there was a \"good chance\" of growth, right? You start pacing, ");
+					if(target.armor.shortName != "") kGAMECLASS.output("adjusting your " + target.armor.longName + " and ");
+					kGAMECLASS.output("feeling around your chest, looking for any sign of swelling. Finally after what seems like an eternity of anxious anticipation, you feel a tightness in your chest.");
+					if(target.isChestGarbed()) kGAMECLASS.output(" You claw at your [pc.upperGarments], pulling it off to make room for your incoming expansion!");
+					target.breastRows[0].breastRatingRaw += 1 + rand(3);
+					kGAMECLASS.output(" You only just suppress a moan as the tightness turns into pleasure. The [pc.skin] of your once-small chest burgeons, filling out with balloon-like speed. You cup your new tits, shuddering at the suddenly sensitive flesh around your [pc.nipples]. Oh, that's nice.... You now have [pc.breastCupSize]s!");
+					target.lust(19+rand(5));
+				}
+				//Growing tits not first time
+				else if(select == 11)
+				{
+					target.breastRows[0].breastRatingRaw += 1 + rand(2);
+					//Expanding a Current Rack (up to D cups)
+					if(target.breastRows[0].breastRating() < 7)
+					{
+						kGAMECLASS.output("\n\nYou feel a sudden tightness in your chest, just behind your tits. You grit your teeth through a flash moment of pain before it turns to pleasure. With a sigh of relief, you cup your boobs as the Tittyblossom lives up to its name, steadily expanding your bust");
+						if(target.isChestGarbed()) kGAMECLASS.output(" until it strains against your [pc.upperGarment], demanding release from the now-too-tight confines");
+						kGAMECLASS.output(". You now have a nice, firm pair of [pc.breastCupSize]s!");
+						target.lust(9+rand(5));
+					}
+					//Expanding a Current Rack (Over D cups)
+					else
+					{
+						kGAMECLASS.output("\n\nA sudden tightness clenches behind your buxom breasts, making you wince in pain before it turns into a delightful pleasure. You sigh");
+						if(!target.isNude()) kGAMECLASS.output(", shrugging out of your [pc.gear]");
+						kGAMECLASS.output(" as your tits swell in size, urged to even greater size by the hormone and nanomachine combination. You can't stop yourself from cupping one and playing with it as it grows, pinching your [pc.nipple] as it grows even more sensitive. It takes every bit of willpower you have not to start masturbating on the spot, to find some release for the sexual tension coursing through your veins as the medicine does its works.");
+						kGAMECLASS.output("\n\nFinally, the growth in your - now very sizable - tits subsides, leaving them bouncing with your every breath, nice and huge.");
+						if(target.upperUndergarment.shortName == "") kGAMECLASS.output(" You're probably going to want to invest in a bra, now... <i>or not</i> you think, giving yourself another squeeze.");
+						kGAMECLASS.output(" You now have a hefty pair of [pc.breastCupSize]s!");
+						target.lust(9+rand(5));
+					}
+					//Breasturbation
+					//{Proc if PC has high lust & grows D+ cups. Append to end of TF segment so it looks longer and more interesting.}
+					if(target.lust() >= 75)
+					{
+						kGAMECLASS.author("Savin");
+						kGAMECLASS.output("\n\nThe sight of your gorgeous new bosom, combined with the still-burning heat radiating through your [pc.nipples] and loins soon lulls you into a daze, leaving your moaning and teasing yourself, fingers working away at your stiff teats. Oh, that's nice. Your [pc.knees] wobble as you expand your play, hands roaming down the sheer swell of your nanomachine-enhanced bosom, kneading and caressing every new inch of boobflesh as you go.");
+						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch of squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
+						if(target.hasCock()) 
+						{
+							kGAMECLASS.output("rapidly hardening cock");
+							if(target.cockTotal() > 1) kGAMECLASS.output("s");
+						}
+						else if(target.hasVagina()) 
+						{
+							kGAMECLASS.output("quivering quim");
+							if(target.vaginaTotal() > 1) kGAMECLASS.output("s");
+						}
+						else kGAMECLASS.output("tinging, faceless groin");
+						kGAMECLASS.output(". With a shudder, you slink down to your [pc.knees], spreading 'em wide as you lose yourself to your lust.");
+
+						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined.");
+						if(target.hasCock()) 
+						{
+							kGAMECLASS.output(" [pc.EachCock] sprays a thick load, hands-free as your grope yourself, splattered the ground with wasted seed");
+							if(target.hasVagina()) kGAMECLASS.output("; y");
+						}
+						else if(target.hasVagina()) kGAMECLASS.output(". Y");
+						if(target.hasVagina()) 
+						{
+						 	kGAMECLASS.output("our [pc.vaginas] quivers, leaking fem-cum as ");
+						 	if(target.totalVaginas() == 1) kGAMECLASS.output("it desperately grasps for something to fuck as it sends shockwaves of pleasure through you");
+						 	else kGAMECLASS.output("they desperately grasp for something to fuck as they send shockwaves of pleasure through you");
+						}
+						if(target.hasCock() || target.hasVagina()) kGAMECLASS.output(".");
+						kGAMECLASS.output(" You only just stop yourself from collapsing as your orgasm wracks your body, radiating from your [pc.chest] and groins as you continue to grope and caress yourself.");
+						kGAMECLASS.output("\n\nThe orgasm seems to last for ages, moments stretching to eternities as you succub to bliss and your own explosive arousal, only groping yourself harder as you reach your climax, and slowly come down. When it ends, you find yourself drenched in sweat");
+						if(target.hasCock() || target.hasVagina())
+						{
+							kGAMECLASS.output(" and ");
+							if(!target.hasCock()) kGAMECLASS.output("[pc.girlCum]");
+							else kGAMECLASS.output("[pc.cum]");
+						}
+						kGAMECLASS.output(", trying to catch your breath as you slump down to the ground on weak [pc.knees]. Holy shit...");
+						kGAMECLASS.processTime(5);
+						target.orgasm();
+					}
+					//Prevent "nothing happens" message.
+					select = 10;
+				}
+				//Cunt TF (requires no cunt)
+				//{If PC uses 5+ times in 24 hours, and doesn't already have a vagina. Procs last in scene
+				if(target.statusEffectv1("TittiesUsed") >= 6)
+				{
+					//→ No vagoo
+					if(!target.hasVagina())
+					{
+						target.createVagina();
+						kGAMECLASS.output("\n\nYou are overcome with the sensation of blissful warmth, particularly at your crotch, yet when you reach down you don’t feel anything strange at all. In fact, the only outward signs of anything is a flush that spreads across your groin. Your crotch feels... empty, yearning to be filled...");
+						//→ balls
+						if(target.balls > 0 && target.ballSize() >= 2)
+						{
+							kGAMECLASS.output("\n\nThen suddenly, an abrupt sucking sensation can be felt on your [pc.balls] - from the inside! You reach down once more only to find, with a start, ");
+							//→ small balls and no trap pouch
+							if(target.ballSizeRaw < 3 && !target.hasStatusEffect("Uniball"))
+							{
+								kGAMECLASS.output("that they are shrinking into you at an alarming rate!");
+								target.ballSizeRaw = 0;
+							}
+							//→ huge balls and no trap pouch
+							else if(!target.hasStatusEffect("Uniball"))
+							{
+								kGAMECLASS.output("that vast amounts are sinking into you at an alarming rate!");
+								target.ballSizeRaw *= .5;
+							}
+							//→ trap pouch
+							else if(target.ballSizeRaw > 1)
+							{
+								kGAMECLASS.output("that your trappy pouch puckers, and tightens against your holstered nuts.");
+								target.ballSizeRaw = 1;
+							}
+						}
+						kGAMECLASS.output("\n\nYou can’t help but shiver at the changes surging through you. Suddenly, you feel... juices... running down and slickening your leg. Wait, what? You give a gasp of pleasure as you feel your groin splitting open - not painfully, but rather with an eruption of ecstasy. Your [pc.knees] buckle as your groin opens up, gushing a nearly-orgasmic flood of new feminine fluids as your new hole takes shape. You have a [pc.pussy] now");
+						if(target.ballSizeRaw < .75)
+						{
+							target.balls = 0;
+							kGAMECLASS.output(" where your balls once were");
+						}
+						kGAMECLASS.output("!");
+						kGAMECLASS.output("\n\nIntrigued, you can’t help but explore this new asset. Reaching down, you spread your quivering quim - soaking your fingers in juices - and as you slip a digit in you almost instantaneously clench up in orgasm, racking your body with a sensation so great you barely avoid crumpling to the floor. It seems your new vagina is especially sensitive... and probably will be for a while until you get used to having it. As your hands slip out of your new, beautiful pussy, you think... perhaps you should enjoy the added sensitivity while it lasts.");
+						target.orgasm();
+						kGAMECLASS.author("Gruey");
+						target.lust(30+rand(20));
+						//{+LOTS of Lust}
+					}
+					//Prevent "nothing happens" message.
+					select = 10;
+				}
 				else if(select == 9)
 				{
-					kGAMECLASS.output("\n\nThat's it. Nothing else happens. There must not be much for Estrobloom to enhance at this point.");
+					if(target.statusEffectv1("TittiesUsed") < 2) kGAMECLASS.output("\n\nYou wait, and yet nothing happens aside from a slight tingle. Was this a dud? You feel slightly more feminine than before, but you’re not sure you look it. Still, you can’t help but want another....");
+					else kGAMECLASS.output("\n\nYou wait, and yet nothing happens aside from a slight tingle. Was this a dud? You feel slightly more feminine than before, but you’re not sure you look it. Still, you can’t help but want another....");
 				}
 			}
 			else {
