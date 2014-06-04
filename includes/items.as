@@ -447,7 +447,7 @@ function equipItem(arg:ItemSlotClass):void {
 	}
 }
 
-function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
+public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void {
 	trace("itemCollect", newLootList);
 	if(clearScreen) clearOutput();
 	var target:PlayerCharacter = pc;
