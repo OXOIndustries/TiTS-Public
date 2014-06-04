@@ -3525,6 +3525,19 @@
 			}
 			return total;
 		}
+		public function totalNippleCocks():int
+		{
+			var count:int = 0;
+			for (var i:int = 0; i < breastRows.length; i++)
+			{
+				if (breastRows[i].nippleType == GLOBAL.DICK)
+				{
+					count += nipplesPerBreast * breastRows[i].breasts;
+				}
+			}
+			return count;
+		}
+		
 		public function biggestTitSize(): Number {
 			if (breastRows.length == 0) return -1;
 			var counter: Number = breastRows.length;
