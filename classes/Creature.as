@@ -1479,26 +1479,36 @@
 					break;
 				case "he":
 				case "she":
+					buffer = this.mf("he", "she");
+					break;
 				case "ey":
 					buffer = this.mfn("he", "she", "ey");
 					break;
 				case "himo":
 				case "hero":
+					buffer = this.mf("him", "her");
+					break;
 				case "em":
 					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
 					break;
 				case "hisa":
 				case "hera":
+					buffer = this.mf("his", "her");
+					break;
 				case "eir":
 					buffer = this.mfn("his", "her", "eir");
 					break;
 				case "hisp":
 				case "hersp":
+					buffer = this.mf("his", "hers");
+					break;
 				case "eirs":
 					buffer = this.mfn("his", "hers", "eirs"); // hisp == "his possessive pronoun"
 					break;
 				case "himself":
 				case "herself":
+					buffer = this.mf("himself", "herself");
+					break;
 				case "emself":
 					buffer = this.mfn("himself", "herself", "eirself");
 					break;
