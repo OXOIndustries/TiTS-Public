@@ -1903,7 +1903,7 @@ function buttTeaseText():void {
 		output("Swirling away, you find yourself facing away from your enemy. A cunning smile slaps itself across your [pc.face] as you hook your fingers into your " + pc.armor.longName + " and pull down your bottoms to expose your ");
 		if(pc.lowerUndergarment.shortName != "") output(pc.lowerUndergarment.longName + " and ");
 		output("[pc.butt]. Spreading your [pc.legs], you begin to shake your [pc.butt], bouncing ");
-		if(pc.lowerUndergarment.shortName != "") output("in your [underwear] ");
+		if(pc.lowerUndergarment.shortName != "") output("in your [pc.lowerUndergarment] ");
 		output("and tempting " + foes[0].a + foes[0].short + " with your ");
 		if(pc.lowerUndergarment.shortName != "") output("unseen ");
 		output("goods. Your ass shaking has gotten faster and more tasteful with all of that practice, and you rock your [pc.butt] as best as you can to show that off.");
