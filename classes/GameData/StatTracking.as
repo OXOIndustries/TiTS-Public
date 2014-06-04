@@ -53,7 +53,7 @@ package classes.GameData
 			var pathS:Array = path.split("/");
 			var statName:String = StatTracking.getStatName(stat);
 			
-			for (var i:int = 0; i < path.length; i++)
+			for (var i:int = 0; i < pathS.length; i++)
 			{
 				if (!(pathS[i] in base))
 				{

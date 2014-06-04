@@ -108,9 +108,12 @@
 		private function cloneObject(o:Object):Object
 		{
 			var copier:ByteArray = new ByteArray();
-			copier.writeObject(o.Data);
+			var ret:Object = new Object();
+			copier.writeObject(o);
 			copier.position = 0;
-			return copier.readObject();
+			ret = copier.readObject();
+			
+			return ret;
 		}
 		
 		/**
