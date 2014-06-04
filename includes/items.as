@@ -19,8 +19,12 @@ function useItem(item:ItemSlotClass):void {
 		if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
 			|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
 		{
-			equipItem(item);
+			// Order of operations band-aid.
+			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
+			// item replacement. The player can have a "full" inventory including the item they've just equipped!
 			pc.inventory.splice(pc.inventory.indexOf(item), 1);
+			equipItem(item);
+			
 		}
 		//Else try to use a stored function!
 		else 
@@ -527,7 +531,7 @@ function replaceItemPicker(lootList:Array):void {
 	clearOutput();
 	output("What will you replace?");
 	this.clearMenu();
-	for(var x:int = 0; x < pc.inventorySlots(); x++) {
+	for(var x:int = 0; x < pc.inventory.length; x++) {
 		if(pc.inventory[x].shortName != "" && pc.inventory[x].quantity > 0) 
 		{
 			var butDesc:String = pc.inventory[x].shortName + " x" + pc.inventory[x].quantity
