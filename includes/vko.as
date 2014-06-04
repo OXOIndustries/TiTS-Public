@@ -156,7 +156,7 @@ function getDiseaseProbedYo():void
 	}
 	else if (detectedParasites == 1)
 	{
-		outputText("\n\n\"Shall we begin your treatment?\"");
+		output("\n\n\"Shall we begin your treatment?\"");
 	}
 	
 	processTime(10+rand(3));

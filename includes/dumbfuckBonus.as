@@ -199,7 +199,7 @@ function procDumbfuckStuff():void
 	{
 		output("\n\nA quick quick touch to your ");
 		if(pc.hasCock()) output("[pc.cock]");
-		else if(pc.hasVaigna()) output("[pc.vagina]");
+		else if(pc.hasVagina()) output("[pc.vagina]");
 		else if(pc.hasTailCock()) output("[pc.tailCock]");
 		else if(pc.hasTailCunt()) output("[pc.tailVagina]");
 		else output("[pc.asshole]");

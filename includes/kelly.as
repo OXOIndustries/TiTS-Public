@@ -6,6 +6,12 @@ function showKellyName():void
 	else userInterface.showName("\nKELLY");
 }
 
+// Stubtown4compile
+public function kellyAttraction(modValue:int = 0):int
+{
+	throw new Error("Not Implemented Yet");
+}
+
 //Appearance
 function kellyAppearance():void {
 	clearOutput();
@@ -530,7 +536,8 @@ function talkToKellyAtBar():void
 		output("<i>\"Talk?\"</i> she says, pouting in dismay. <i>\"What, all of this isn't enough for you? Come on, I'm a prime-grade sex machine! ...Oh, very well, if you really want to just talk, I'll humour you. But trust me, a night with me is something you'll <b>never</b> forget,\"</i> she winks lewdly for emphasis.");
 	}
 	else //If Sexed:
-		output(<i>\"Oooh; great in bed <b>and</b> actually interested in me to boot? Talk about hitting the jackpot!\"</i> she laughs, making a cheering motion with her arm. <i>\"I’m listening honey,\"</i> she informs you, and blows you a kiss.");
+	{
+		output("<i>\"Oooh; great in bed <b>and</b> actually interested in me to boot? Talk about hitting the jackpot!\"</i> she laughs, making a cheering motion with her arm. <i>\"I’m listening honey,\"</i> she informs you, and blows you a kiss.");
 	}
 	//Regardless of Talk option chosen, increase Kelly's Attraction meter by +5//
 	kellyAttraction(5);
@@ -633,6 +640,7 @@ function waitKellyOutAfterFlattering():void
 	//9999
 }
 
+/*
 Mods
 "Modifications, huh? You sure you wouldn't rather a little hand's on analysis, hmm? Wouldn't that be a much more fun way to find out?" she winks suggestively at you.
 
@@ -1649,3 +1657,4 @@ It’s not like you have anything to hide, you smile.
 She smiles back and steps in closer to remove your {gear}; she doesn't rip it off of you, like you might have expected, but she visibly savors everything that is revealed, tongue darting out to caress your [pc.nipple] as she makes her way down your chest, loudly inhaling your musk as she exposes your loins. "Mmm... much better," she declares, standing up again. "So, honey, had anything in particular in mind, now that we're here...?"
 
 //Display sex options//
+*/

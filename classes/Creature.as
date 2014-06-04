@@ -3149,7 +3149,7 @@
 			while (counter > 0) {
 				counter--;
 				//Find it, change it, quit out
-				if (perks[counter].perkName == perkName) {
+				if (perks[counter].storageName == perkName) {
 					perks[counter].tooltip = perkTooltip;
 					return;
 				}
