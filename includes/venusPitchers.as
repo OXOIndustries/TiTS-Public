@@ -329,7 +329,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		else output("\n\nAn unseen presence makes itself known: a spire of semi-rigid plant-flesh that drives itself through your cleavage without concern for how it jostles its siblings, slicking the valley between your boobs with its own lube, even though you were already soaked with the stuff. It surfaces between your [pc.chest], the big, green flare trembling as it drips everywhere. It pulls back, vanishing into your chesty crevasse with gusto. Your tits are bounced and jiggled by the weighty flora-cock as it uses you for its own pleasure, a fact confirmed by the lusty pants the woman in the center of it all is making while she strokes two similar vines.");
 	}
 	//{Preggo belly bonus}
-	if ((pc as PlayerCharacter).bellyRating() >= 30) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n	<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
+	if ((pc as PlayerCharacter).bellyRating() >= 30) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
 	
 	//{Single cock}
 	if(pc.totalCocks() == 1) {
@@ -1225,7 +1225,7 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	output(", you're left with the curious, oblong seed in front you. Using the codex, you determine that it wasn't fertilized. It also isn't considered edible by most species, but it's likely that you could consume it anyway if you didn't mind a major risk of bodily mutation to accommodate it.");
 	pc.orgasm()
 	
-	if (pData.pregnancyQuantity >= 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
+	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.");
 	
 	//Increase elasticity .1 towards a cap of 1.6
 	if (pc.elasticity < 1.6)
@@ -1287,6 +1287,17 @@ public function layFertilizedVenusPitcherEgg():void
 
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 	var pSlot:int = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	
+	if (pData == null)
+	{
+		trace("WARNING: Found a potential issue birthing seed pods. Couldn't find the correct pregnancy data index.");
+	}
+	
+	if (pSlot == -1)
+	{
+		trace("WARNING: Found a potential issue birthing seed pods. Couldn't find the correct cunt index.");
+		pSlot = 0;
+	}
 
 	//24 hours after fertilization and every four hours after the first. (so 24, 28, 32, until the PC's womb empties)
 	output("It's time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
@@ -1321,7 +1332,7 @@ public function layFertilizedVenusPitcherEgg():void
 	pc.orgasm();
 
 	// Do the needful with the eggs etc
-	if (pData.pregnancyQuantity >= 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
+	if (pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you're going to be going through this at least once more. You can't stop your [pc.vaginas] from tingling hotly at the thought.")
 
 	//Increase elasticity .1 towards a cap of 2
 	if (pc.elasticity < 2.0)

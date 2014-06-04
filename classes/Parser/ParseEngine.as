@@ -113,7 +113,9 @@
 				obj = this.getObjectFromString(this._ownerClass, descriptorArray[0]);
 				if (obj == null)		// Completely bad tag
 				{
-					return "<b>!Unknown subject in \"" + arg + "\"!</b>";
+					var msg:String = "!Unknown subject in \"" + arg + "\"!";
+					trace("Warning: " + msg);
+					return "<b>" + msg + "</b>";
 				}
 				if (obj.hasOwnProperty("getDescription") && arg.indexOf(".") > 0)
 				{
@@ -142,7 +144,9 @@
 				else
 				{
 					if (lookupParserDebug) trace("No lookup found for", arg, " search result is: ", obj);
-					return "<b>!Unknown tag \"" + arg + "\"!</b>";
+					var msg:String = "!Unknown tag \"" + arg + "\"!";
+					trace("Warning: " + msg);
+					return "<b>" + msg + "</b>";
 				}
 			}
 		}
@@ -201,7 +205,11 @@
 					return argResult;
 				}
 				else
-					return "<b>!Unknown aspect in two-word tag \"" + inputArg + "\"! ASCII Aspect = \"" + aspectLower + "\"</b>";
+				{
+					var msg:String = "!Unknown aspect in two-word tag \"" + inputArg + "\"! ASCII Aspect = \"" + aspectLower + "\"";
+					trace("Warning: " + msg);
+					return "<b>"+ msg +"</b>";
+				}
 
 			}
 
@@ -219,7 +227,8 @@
 			thing = this.getObjectFromString(this._ownerClass, descriptorArray[0]);
 			if (thing == null)		// Completely bad tag
 			{
-				return "<b>!Unknown subject in \"" + inputArg + "\"!</b>";
+				var msg:String = "!Unknown subject in \"" + inputArg + "\"!"
+				return "<b>"+ msg +"</b>";
 			}
 			if (thing.hasOwnProperty("getDescription") && subject.indexOf(".") > 0)
 			{
@@ -271,7 +280,9 @@
 			}
 
 			if (lookupParserDebug) trace("No lookup found for", inputArg, " search result is: ", thing);
-			return "<b>!Unknown subject in two-word tag \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\</b>";
+			var msg:String = "!Unknown subject in two-word tag \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\"";
+			trace("Warning: " + msg);
+			return "<b>"+ msg +"</b>";
 			// return "<b>!Unknown tag \"" + arg + "\"!</b>";
 
 			return argResult;
@@ -883,6 +894,7 @@
 			else
 			{
 				if (mainParserDebug) trace("Cannot parse content. What?", textCtnt)
+				trace("WARNING: !Unknown multi - word tag \"" + retStr + "\"!");
 				retStr += "<b>!Unknown multi-word tag \"" + retStr + "\"!</b>";
 			}
 
