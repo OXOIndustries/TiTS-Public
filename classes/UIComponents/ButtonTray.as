@@ -241,6 +241,9 @@
 		 */
 		public function resetButtons():void
 		{
+			CheckPages();
+			if (lastButton() < 14) _buttonPage = 1;
+			
 			var initialIndex:int = (_buttonPage - 1) * 15;
 			
 			for (var i:int = 0; i < _buttons.length; i++)
@@ -423,12 +426,11 @@
 		
 		public function lastButton():int
 		{
-			for (var i:int = _buttonData.length - 1; i >= 0; i++)
+			for (var i:int = _buttonData.length - 1; i >= 0; i--)
 			{
 				if (_buttonData[i].buttonName != "") break;
 			}
 			
-			if (_buttonData[i].buttonName == "" && i == 0) i = -1;
 			return i;
 		}
 	}
