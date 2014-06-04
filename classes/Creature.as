@@ -901,6 +901,7 @@
 		}
 		
 		public var ballFullness: Number = 100;
+
 		public function ballFullnessUnlocked(newBallFullness:Number):Boolean
 		{
 			return true;
@@ -1570,17 +1571,15 @@
 			energy(-5);
 			minutesSinceCum = 0;
 			timesCum++;
-			if(isNaN(ballFullness)) 
+			
+			// NaN production was down to maxCum
+			// if the player didn't have a cock, maxCum returns 0.
+			// anything / 0 = NaN
+			if (hasCock())
 			{
-				trace("ERROR: ballFullness is not a number. This has been rectified.");
-				ballFullness = 0;
+				ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
 			}
-			ballFullness = Math.round(((currentCum() - cumQ()) / maxCum()) * 100);
-			if(isNaN(ballFullness)) 
-			{
-				trace("ORGASM MADE ballFullness NaN! Investigate later!");
-				ballFullness = 0;
-			}
+			
 			if (this is PlayerCharacter) 
 			{
 				kGAMECLASS.mimbraneFeed("cock");
