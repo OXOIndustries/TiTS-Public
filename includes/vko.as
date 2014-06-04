@@ -101,35 +101,44 @@ function getDiseaseProbedYo():void
 	output("\n\n<i>\"Analyzing....\"</i>");
 	output("\n\n<i>\"Analyzing....\"</i> V-Ko bites her tongue as she focuses, working.");
 
+	var detectedParasites:int = 0;
+	clearMenu();
+	
 	//Cunt snake
 	if(pc.hasCuntSnake())
 	{
-		output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'C' parasitic snake! In order to treat that I will have to administer anesthesia. Shall we begin?\"</i>");
-		//Yes/No - no goes back to menu.
-		clearMenu();
-		addButton(0,"Yes",removeParasite, "cuntsnake");
-		addButton(1,"No",turnDownTreatment);
+		output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'C' parasitic snake! In order to treat that I will have to administer anesthesia.\"</i>");
+		addButton(detectedParasites, "Treat C.Snk", removeParasite, "cuntsnake");
+		addButton(14, "No Removal", turnDownTreatment);
+		detectedParasites++;
 	}
-	//SSTD
-	else if(9999 == 0)
+
+	if (attachedMimbranes() > 0)
 	{
-		output("\n\nShe gasps, <i>\"I have identified a disease! You appear to have (disease name)!\"</i> While non-fatal, if left untreated it could have many deleterious effects. I can concoct a treatment to cure you for the low price of 500 standard galactic credits.\"</i> V-Ko pitches her head inquisitively in your direction. <i>\"Is that acceptable?\"</i>");
-		//Yes/No - goes back to main menu
-		clearMenu();
-		addButton(0,"Yes",treatDisease);
-		addButton(1,"No",turnDownTreatment);
-	}
-	else if (attachedMimbranes() > 0)
-	{
-		if (attachedMimbranes() == 1) output("\n\nShe gasps, <i>\"Oh no! You've been infested by a class 'M' epidel parasite! In order to treat that I will have to administer anesthesia. Shall we begin?\"</i>");
-		else output("\n\nShe gasps, <i>\"Oh no! You've been infested by a number of class 'M' epidel parasites! In order to treat them I will have to administer anesthesia. Shall we begin?\"</i>");
+		if (detectedParasites == 0)
+		{
+			output("\n\nShe gasps, <i>\"Oh no!");
+		}
+		else
+		{
+			output("\n\nShe gasps again, in exactly the same tone as before, <i>\"I'm also detecting a secondary classification of infestation!");
+		}
 		
-		clearMenu();
-		addButton(0, "Yes", removeParasite, "mimbrane");
-		addButton(1, "No", turnDownTreatment);
+		output(" You have");
+		if (attachedMimbranes() == 1) output(" a");
+		output(" class 'M' epidel parasite");
+		if (attachedMimbranes() > 1) output("s")
+		output("! In order to treat");
+		if (attachedMimbranes() == 1) output(" it");
+		else output(" them");
+		output(" I will have to administer anesthesia. Shall we begin?\"</i>");
+				
+		addButton(detectedParasites, "Treat Mimbs", removeParasite, "mimbrane");
+		addButton(14, "No Removal", turnDownTreatment);
+		detectedParasites++;
 	}
-	//Nothing
-	else
+	
+	if (detectedParasites == 0)
 	{
 		output("\n\nShe gasps, <i>\"You're completely clean! I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.\"</i>");
 		output("\n\nYou inform her that she's correct as you hop down off the table. <i>\"");
@@ -141,6 +150,15 @@ function getDiseaseProbedYo():void
 		//Menu
 		approachVKo(false);
 	}
+	else if (detectedParasites > 1)
+	{
+		output("\n\n\"Unfortunately, I am only able to treat one categorisation of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.\"");
+	}
+	else if (detectedParasites == 1)
+	{
+		outputText("\n\n\"Shall we begin your treatment?\"");
+	}
+	
 	processTime(10+rand(3));
 }
 
