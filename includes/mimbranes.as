@@ -1,3 +1,4 @@
+import classes.Characters.Mimbrane;
 import classes.Characters.PlayerCharacter;
 import classes.Creature;
 /*
@@ -2792,6 +2793,11 @@ function mimbraneTrip():void
 //Suffering from neglected Mimbrane in-combat (choose randomly from group, appears at start of combat): 
 public function neglectedMimbranesCombat():void
 {
+	if (mimbranesNeglected() == 0) return;
+	if (foes[0] is Mimbrane) return;
+	
+	output("\n");
+	
 	var select:int = rand(3);
 
 	if (select == 0)
@@ -2824,11 +2830,18 @@ public function neglectedMimbranesCombat():void
 		else output(" its")
 		output("sensual sweat.");
 	}
+	
+	output("\n");
 }
 
 //Suffering from mutinous Mimbranes in-combat (choose randomly from group, appears at start of combat)
 public function mutinousMimbranesCombat():void
 {
+	if (!(foes[0] is Mimbrane)) return;
+	if (attachedMimbranes() == 0) return;
+	
+	output("\n");
+	
 	var select:int = rand(3);
 
 	if (select == 0)
@@ -2868,6 +2881,8 @@ public function mutinousMimbranesCombat():void
 		else output(" its");
 		output(" fellow parasite.");
 	}
+	
+	output("\n");
 }
 
 // Spit attacks are automatic additions to any lust attack the player attempts

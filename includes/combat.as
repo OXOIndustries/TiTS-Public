@@ -1114,6 +1114,8 @@ function displayMonsterStatus(targetFoe):void
 			if(targetFoe is Naleen) author("Savin");
 			if(targetFoe is ZilFemale) author("Savin");
 			showMonsterArousalFlavor(targetFoe);
+			mutinousMimbranesCombat();
+			neglectedMimbranesCombat();
 		}
 		else {
 			output("<b>You're too blind to see your foe!</b>\n");
@@ -1537,10 +1539,6 @@ function startCombat(encounter:String):void
 	userInterface.resetNPCStats();
 	showNPCStats();
 	updateNPCStats();
-	
-	if (foes[0] is Mimbrane) mutinousMimbranesCombat();
-	
-	if (mimbranesNeglected() > 0) neglectedMimbranesCombat();
 }
 
 function runAway():void {
