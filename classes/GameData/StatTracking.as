@@ -82,9 +82,9 @@ package classes.GameData
 			
 			for (var i:int = 0; i < pathS.length; i++)
 			{
-				if (path[i] in base)
+				if (pathS[i] in base)
 				{
-					base = base[path[i]];
+					base = base[pathS[i]];
 				}
 				else
 				{
