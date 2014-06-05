@@ -4,6 +4,7 @@ function shellyDisplay():void
 {
 	if(flags["KNOW_SHELLYS_NAME"] == undefined) userInterface.showName("BUNNY\nWOMAN");
 	else userInterface.showName("\nSHELLY");
+	userInterface.showBust("SHELLY");
 	author("Gardeford");
 }
 

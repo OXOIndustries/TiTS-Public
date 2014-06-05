@@ -47,6 +47,7 @@ function approachJulianRouter():void {
 	else if(pc.hasKeyItem("Capture Harness"))
 	{
 		clearOutput();
+		userInterface.showBust("DR_HASWELL");
 		output("Dr Haswell mutters, <i>\"The zil aren't going to capture themselves. I have no business with you until you do.\"</i>");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -55,6 +56,7 @@ function approachJulianRouter():void {
 	else
 	{
 		clearOutput();
+		userInterface.showBust("DR_HASWELL");
 		output("Dr. Haswell doesn't even look up at you. <i>\"I have no business with you at present, [pc.name].\"</i>\n\nIt looks like there's nothing to be done with him right now.");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -65,6 +67,7 @@ function approachJulianRouter():void {
 //Introduction
 function introductionToJulian():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	flags["MET_DR_HASWELL"] = 1;
 	output("Coughing lightly to get the mousy-looking man's attention, you wonder what point there is in having a secretary if he doesn't even care about talking to the people she lets into his office.");
 	output("\n\nThe scientist's face snaps up to regard you, and you nearly take a step back under his piercing, inhuman glare. He looked like a normal enough human, sans the blue hair, but his eyes are a piercing, almost glowing blue, wrapped around a pair of deep black slits that would look more at home on a feline than a human. <i>\"I suppose you must be here about the notice I posted on the bounty board, yes?\"</i>");
@@ -110,6 +113,7 @@ function introductionToJulian():void {
 //Repeat Capture Mission Offer [No Captures Yet]
 function julianFirstOfferRepeat():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("Julian smiles when he realizes you want his attention once more. \"<i>Come back for the job after all then? That doesn't surprise me, there's a fortune to be made on the backs of unwashed savages like the zil.</i>\"  His vertically slit eyes narrow in your direction. \"<i>Just like before, take the capture box and use it on one you've subdued. One thousand credits, easy as that, unless you still have some sort of hangup?</i>\"  His gaze twinkles with cold, unshared mirth.");
 	processTime(1);
 	//Yes no go to default first time.
@@ -121,6 +125,7 @@ function julianFirstOfferRepeat():void {
 //Accept Zil Capture Mission
 function acceptZilCapMission():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] = 1;
 	output("You grab the capture harness and nod to the scientist. \"<i>I'll do it.</i>\"");
 	output("\n\n\"<i>Excellent!</i>\"  Julian cheers. \"<i>Male or female will do. I need them both eventually. The credits will be transferred to your account as soon as we have the creature in custody. Now...</i>\"  Julian seats himself, \"<i>, if you'll excuse me, there is a mountain of work to do and only one researcher to get it all done.</i>\"  He turns back to his work, dismissing you without another word.");
@@ -135,6 +140,7 @@ function acceptZilCapMission():void {
 //Decline Zil Capture Mission
 function declinedZilCaptureMission():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	//Bimbo
 	if(pc.hasPerk("Ditz Speech") || pc.hasPerk("Brute Speech")) output("\"<i>No way, Doc!</i>\"  you say with a shake of your head. \"<i>I'm not gonna do something that " + pc.mf("lame","mean") + "!</i>\"");
 	//Nice
@@ -153,6 +159,7 @@ function declinedZilCaptureMission():void {
 //Approach After Bagging A Zil
 function zilBaggedApproach():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("\"<i>Ahhh, there's the intrepid " + pc.mfn("hunter","huntress","hunter") + ",</i>\"  Julian says as he rises from his chair to greet you. He gives you a friendly handshake, admitting, \"<i>Your work shaved months off my own. I already have a few products nearing general release testing, if you'll believe that!</i>\"  He beams, proud of his progress. \"<i>You can talk to Kelly if you'd like to try any of them. I've told given her clearance to sell them to you at a reduced rate as thanks for your work.</i>\"");
 	output("\n\n\"<i>That's not all,</i>\"  Doctor Haswell explains, \"<i>We need both sexes of zil if we're going to enable men AND women all over the galaxy to cum delicious, flavored sweetness with no ill side effects!</i>\"  He depresses a button on the desk, suddenly causing one of the displays to show your captured zil.");
 
@@ -186,6 +193,7 @@ function zilBaggedApproach():void {
 
 function repeatSecondHarnessOffer():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("Julian offhandedly gestures at the capture harness. <i>\"The harness is there if you want some work. The choice is yours.\"</i>");
 	clearMenu();
 	addButton(0,"Accept",acceptRepeatZilMission);
@@ -197,6 +205,7 @@ function repeatSecondHarnessOffer():void {
 //Decline Repeat Zil Mission
 function declineDrHaswellsRepeatMission():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("You decline the offer for now.");
 	output("\n\nJulian seems nonplussed by your admission but does not press you. He seats himself and resumes his work, having gotten enough from you already.");
 	clearMenu();
@@ -206,6 +215,7 @@ function declineDrHaswellsRepeatMission():void {
 //Accept Repeat Zil Mission
 function acceptRepeatZilMission():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("Picking up the familiar, compact harness, you nod to Julian.");
 	output("\n\n\"<i>Fantastic! I can't wait to have another subject in the lab.</i>\"  He taps a key to open the door and seats himself, returning to his undoubtedly massive workload. \"<i>This is the beginning of a beautiful partnership, [pc.name],</i>\"  he idly admits after settling in.");
 	//Key item notification "Capture Harness"
@@ -220,6 +230,7 @@ function acceptRepeatZilMission():void {
 //Could really use something similar to the previous display of what was being done with them, but I'm not feeling it atm.
 function finalZilCaptureTurnInEpilogue():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("Julian bounds up out of his chair. \"<i>There's my favorite contractor! I trust you found the wilds to your liking, yes?</i>\"  He shakes his head, dismissing his own question. \"<i>That doesn't matter. What does matter is the raft of useful genetic material you've brought in! The drones dropped your zil off and I got ");
 	if(flags["LAST_ZIL_CAPTURED_FOR_HASWELL_SEX"] == 1) output("him");
 	else output("her");
@@ -237,6 +248,7 @@ function finalZilCaptureTurnInEpilogue():void {
 //Using the Capture Harness
 function useTheCaptureHarness():void {
 	clearOutput();
+	userInterface.showBust("DR_HASWELL");
 	output("You thumb the single activation switch on the capture harness and toss the suddenly beeping cube in the direction of your fallen foe. Halfway there, it unfurls into a mass of whip-like, black tentacles. Before you can finish blinking in surprise, the zil is completely enmeshed in a web of restraints. A small, red-blinking square on " + foes[0].mf("his","her") + " chest glows angrily, and you wonder just what you're supposed to do now.");
 	output("\n\nThat question is answered by the high-pitched whine of atmospheric engines. A sleek, metallic probe a little bigger than a jet-bike zips into the area and dangles a magnetic anchor, snapping it onto the square plate at the center of the harness. Looking very much like an insect in a spider's trap, the zil is reeled in closer. The probe extends a number of intricately worked \"legs\" to wrap around its acquisition and immediately zips off, leaving you alone with your thoughts.");
 	output("\n\nFive minutes later, your codex beeps. It looks like your bank account is one thousand credits richer.\n\n");
