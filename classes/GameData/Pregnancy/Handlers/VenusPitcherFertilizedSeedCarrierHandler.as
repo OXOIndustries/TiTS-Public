@@ -43,10 +43,12 @@ package classes.GameData.Pregnancy.Handlers
 				mother.createStatusEffect("Venus Pitcher Egg Incubation Finished");
 			}
 			
-			kGAMECLASS.eventQueue.push(function():void {
-					kGAMECLASS.layFertilizedVenusPitcherEgg();
-					VenusPitcherFertilizedSeedCarrierHandler.cleanupPregnancy(kGAMECLASS.pc);
-				});
+			kGAMECLASS.eventQueue.push(VenusPitcherFertilizedSeedCarrierHandler.doEggLay);
+		}
+		
+		public static function doEggLay():void {
+			kGAMECLASS.layFertilizedVenusPitcherEgg();
+			VenusPitcherFertilizedSeedCarrierHandler.cleanupPregnancy(kGAMECLASS.pc);
 		}
 	
 		public static function convertPregnancy(father:Creature, mother:Creature, pregSlot:int):void
