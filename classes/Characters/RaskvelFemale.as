@@ -184,7 +184,7 @@
 		{
 			var combatRaskvelFemale:RaskvelFemale = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("RASKVELFEMALE");
+			kGAMECLASS.userInterface.showBust("RASKVEL_FEMALE");
 			kGAMECLASS.setLocation("FIGHT: FEM.\nRASKVEL", "PLANET: TARKUS", "SYSTEM: REDACTED");
 			combatRaskvelFemale.sexualPreferences.setRandomPrefs(3 + rand(3));
 			

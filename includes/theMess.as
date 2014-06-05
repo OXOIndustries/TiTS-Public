@@ -36,6 +36,8 @@ function approachDCLTrap():void
 {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	if(flags["MET_DEL"] == undefined)
 	{
 		flags["MET_DEL"] = 1;
@@ -90,6 +92,8 @@ function approachDCLBooty():void
 {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	output("<i>\"You're free?\"</i> Not much of a brothel if the mistress is giving it away for nothing!");
 	output("\n\nShe hesitates, then seems to take a mental second wind, stomping her foot down. <i>\"I'm not a girly girl! I'm a man, damn it! I didn't sign up for this!\"</i>");
 	output("\n\n<i>\"A... man?\"</i> She looks about as far from it as you can get.");
@@ -109,6 +113,8 @@ function approachDCLBooty():void
 function getADrinkFromDCLsButt():void {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	processTime(1);
 	output("<i>\"Oh, thank God,\"</i> the bartender says, her relief palpable. <i>\"So, what can I get you?\"</i>\n\n<b><u>Menu:</u></b>\nBeer - 1 cred.\nQuivering Quasar - 10 creds.\nSex on a Meteor - 20 creds.");
 	clearMenu();
@@ -130,6 +136,8 @@ function quiveringQuasar():void
 	//{Temporarily Increases Physique value, small random chance to blind yourself on any given turn}
 	clearOutput();
 	processTime(3);
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	author("Savin");
 	output("<i>\"Let's try one of those Quasars.\"</i>");
 	output("\n\n<i>\"Careful, it kicks like a mule,\"</i> the bartender warns you as she mixes you a brightly-colored, almost glowing, drink which bubbles in its glass as she slides it on over. You pick the glass up, and recoil a bit at the ozone smell emanating off of it; giggling, the bartender adds, <i>\"It's electrifying, huh?\"</i>");
@@ -156,6 +164,8 @@ function quiveringQuasar():void
 function sexOnAMeteor():void
 {
 	clearOutput();
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	processTime(3);
 	author("Savin");
 	//{Raise lust, temp. +Libido, -Lust Resistance, +Tease Damage}
@@ -186,6 +196,8 @@ function haveABeer():void
 {
 	clearOutput();
 	processTime(5);
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	pc.credits--;
 	author("Savin");
 	output("<i>\"Just a beer,\"</i> you say. She nods, and produces a cold one from under the counter, popping the cap for you before serving it. You spend a few minutes chatting with her, ");
@@ -200,6 +212,8 @@ function haveABeer():void
 function buttStretchDelsAnus():void
 {
 	clearOutput();
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	author("Savin");
@@ -295,6 +309,8 @@ function buttStretchDelsAnus():void
 function sitOnDelilahsFace():void
 {
 	clearOutput();
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH");
 	var x:int = rand(pc.totalVaginas());
 	author("Savin");
 	output("<i>\"I think I'll take your mistress up on that offer,\"</i> you say, grinning lustfully at the pretty girly-boy body on display for you. <i>\"Why don't you get up on the bar for me, cutey?\"</i>");

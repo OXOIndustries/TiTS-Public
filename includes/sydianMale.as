@@ -1,6 +1,7 @@
 ﻿function encounterMaleSydian():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//Male Encounter
 	//First Time
 	if(flags["MET_SYDIAN_MALE"] == undefined)
@@ -37,6 +38,7 @@
 function sydianMaleAI():void
 {
 	userInterface.showName("FIGHT:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	var choices:Array = new Array();
 	choices[choices.length] = rustBroDegrade;
 	//HP Time!
@@ -256,6 +258,7 @@ function chooseToLeaveBeatenRustBro():void
 	clearOutput();
 	author("LukaDoc");
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//Kind:
 	if(pc.isNice() || pc.isMischievous()) 
 	{
@@ -275,6 +278,7 @@ function spankHPBeatenRustBro():void
 	clearOutput();
 	author("LukaDoc");
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	output("Pushing him down, you lift one of his legs and begin administering a well deserved spanking to the naughty critter. <i>“Bad boy!”</i> you exclaim as you wail on that butt until your hand’s imprinted on his sorry behind.");
 	if(foes[0].HP() < 1) output("\n\nThe sydian yelps in pain until eventually his yelps turn into lusty moans. You note his cock is erect and throbbing visibly when he starts moaning. So the slut’s enjoying this? What a perverted sydian.");
 	else output("\n\nThe sydian moans as you administer his punishment. It’s quite obvious he’s enjoying this. Quite the slut, this guy.");
@@ -292,6 +296,7 @@ function dudesButtFuckInATotallyNonGayWay():void
 	if(x < 0) x = pc.smallestCockIndex();
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//Better get nakkers
 	if(!pc.isNude())
 	{
@@ -389,6 +394,7 @@ function chicksRideASydian():void
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	output("Fighting this brutish sydian male has worked up a powerful appetite within you, one that flutters down your belly to your [pc.thighs] and, more importantly, your [pc.vaginas]. A seven foot tall xeno with a huge, thick dick and ");
 	if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output("fluttering cilia just waiting to stroke your canal?");
 	else output("who knows what kind of pleasurable quirks?");
@@ -469,6 +475,7 @@ function takeRustBroCumInside(arg:int = 0):void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	var x:int = arg;
 	output("Perhaps you're feeling generous.");
 	if(!pc.isPregnant(x)) output(" Perhaps you'd like to see if a sydian can impregnate you.");
@@ -487,6 +494,7 @@ function takeRustBroCumOutside(arg:int = 0):void
 	var x:int = arg;
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	output("Giggling, you slide yourself off his quim-tickling length and watch it throb. The brushes are moving wildly, going nuts trying to stroke a phantom pussy, his need superseding his body's natural instincts. The sydian looks at you pleadingly, and with a nod, you relax the iron-hard grip on his dribbling dick. He swells immediately and significantly, growing at least 25% thicker in the span of half-dozen pounding heartbeats.");
 	output("\n\nYour [pc.lips] curl slowly as you whisper just loudly enough for him to hear, <i>\"Good boy. Cum.\"</i>");
 	output("\n\nAs if the sydian could do anything else! He tips his head back and closes his eyes. The pupils were already rolling back anyhow, and his tongue lolls from his mouth, slathering his cheek and neck in clear spittle. More importantly, his expanded boner's shape distends from the cum surging into it just before going off. Silver seed arcs up into the air, hanging in long, solid streams before splattering off his armored chest in long ropes. The alien's hips twitch, repeating the action again and again. You count six such ejaculations before you give up and just enjoy the show, watching him waste his cum for your benefit, his prick doing exactly what you want it to do.");
@@ -500,6 +508,7 @@ function haveADrinkOnMeWithSnowBallsMrRustBro():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	author("Frogapus");
 	output("The Sydian staggers back, collapsing against a nearby junk pile as he ");
 	if(foes[0].lust() >= foes[0].lustMax()) output("grips his massive cock, masturbating furiously.");
@@ -565,6 +574,7 @@ function greatFootjerbSavin():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//Savin
 	//+5 Classiness
 	author("Savin");
@@ -618,6 +628,7 @@ function hungryhungryTailginasThirst():void
 {
 	clearOutput();
 	userInterface.showName("DEFEATED:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//Well fed
 	if(flags["DAYS_SINCE_FED_CUNT_TAIL"] == undefined || flags["DAYS_SINCE_FED_CUNT_TAIL"] < 7)
 	{
@@ -749,6 +760,7 @@ function loseToSydianMaleRouter():void
 function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//HP
 	if(pc.HP() < 1) 
 	{
@@ -836,6 +848,7 @@ function applyRustBroStatus():void
 function getPeggedToOrgasmByRustBro():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//By JimT & LukaD
 	author("JimT & LukaD");
 	//HP
@@ -927,6 +940,7 @@ function getPeggedToOrgasmByRustBro():void
 function mouthfulOfPenniesByFrogalog():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
+	userInterface.showBust("SYDIAN_MALE");
 	//frogapus
 	author("Frogapus");
 	output("As you collapse at the feet of the burly rust monster, he chuckles and bends down, grabbing you by your [pc.gear]. He strides towards a nearby junk pile, dragging you along the ground before dropping you at his feet. He plops down backward atop the scrap, the metal hissing and corroding slowly into a throne-like depression for the monster man.");

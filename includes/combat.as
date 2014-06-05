@@ -1517,7 +1517,7 @@ function startCombat(encounter:String):void
 			chars["MIMBRANE"].prepForCombat();
 			break;
 		case "RaskvelFemale":
-			chars["RASKVELFEMALE"].prepForCombat();
+			chars["RASKVEL_FEMALE"].prepForCombat();
 			break;
 		case "SexBot":
 			chars["SEXBOT"].prepForCombat();

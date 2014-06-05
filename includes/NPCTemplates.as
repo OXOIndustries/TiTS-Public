@@ -121,9 +121,9 @@
 	{
 		chars["MIMBRANE"] = new classes.Characters.Mimbrane();
 	}
-	if (!justUpdate || (justUpdate && chars["RASKVELFEMALE"] == undefined))
+	if (!justUpdate || (justUpdate && chars["RASKVEL_FEMALE"] == undefined))
 	{
-		chars["RASKVELFEMALE"] = new classes.Characters.RaskvelFemale();
+		chars["RASKVEL_FEMALE"] = new classes.Characters.RaskvelFemale();
 	}
 	if (!justUpdate || (justUpdate && chars["VKO"] == undefined))
 	{
