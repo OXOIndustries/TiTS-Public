@@ -628,6 +628,9 @@
 			kGAMECLASS.eventQueue = new Array();
 			kGAMECLASS.eventBuffer = "";
 			
+			// If the text input was being displayed, hide it
+			kGAMECLASS.removeInput();
+			
 			// If the PC has previously had the Level Up availability message, ensure the level up button is available for use.
 			if ((kGAMECLASS.pc as PlayerCharacter).levelUpAvailable()) kGAMECLASS.userInterface.levelUpButton.Activate();
 			
