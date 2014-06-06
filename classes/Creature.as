@@ -5229,9 +5229,9 @@
 			var desc: String = "";
 			if ((adjectives && this.rand(3) == 0) || forceAdjectives) {
 				if (ballFullness <= 0) desc += "painfully empty ";
-				if (ballFullness <= 20) desc += "empty ";
-				else if (ballFullness >= 80) desc += "mostly full ";
-				else if (ballFullness >= 100) {
+				else if (ballFullness <= 20) desc += "empty ";
+				else if (ballFullness >= 80 && ballFullness <= 100) desc += "mostly full ";
+				else if (ballFullness > 100) {
 					var temp: int = this.rand(5);
 					if (temp == 0) desc += "full ";
 					else if (temp == 1) desc += "sloshing ";
