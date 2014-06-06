@@ -111,8 +111,8 @@ public function mainGameMenu():void {
 		this.addButton(1,"Enter Ship",move,"SHIP INTERIOR");
 
 
-	this.addButton(13, "Codex", showCodex);
-	this.addButton(14, "RESET NPCs", initializeNPCs);
+	if (kGAMECLASS.debug) this.addButton(13, "RESET NPCs", initializeNPCs);
+	this.addButton(14, "Codex", showCodex);
 	
 	// Show the minimap too!
 	this.userInterface.showMinimap();
