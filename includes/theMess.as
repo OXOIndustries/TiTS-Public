@@ -213,7 +213,7 @@ function buttStretchDelsAnus():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
+	userInterface.showBust("DELILAH_NUDE");
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	author("Savin");
@@ -310,7 +310,7 @@ function sitOnDelilahsFace():void
 {
 	clearOutput();
 	userInterface.showName("\nDELILAH");
-	userInterface.showBust("DELILAH");
+	userInterface.showBust("DELILAH_NUDE");
 	var x:int = rand(pc.totalVaginas());
 	author("Savin");
 	output("<i>\"I think I'll take your mistress up on that offer,\"</i> you say, grinning lustfully at the pretty girly-boy body on display for you. <i>\"Why don't you get up on the bar for me, cutey?\"</i>");

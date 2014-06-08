@@ -38,7 +38,7 @@ function flahneDickOut():Boolean {
 
 //Meeting Her:
 function meetingFlahne(outputT:Boolean = true):void {
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE");
 	CodexManager.unlockEntry("Rahn");
 	flahneNameDisplay();
 	trace("FLAHNE OVI STATUS: " + flags["FLAHNE_LIKE_OVIPOSITOR"]);
@@ -392,7 +392,7 @@ function flahneSexMenu(display:Boolean = true):void {
 			output("\n\n<i>“See something you like, cutie?”</i>  Flahne’s voice practically oozes over to you, liquid with desire to use her pent-up sex.");
 		}
 	}
-	userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	//if quadruped, all branches output:
 	if(pc.isTaur()) output("\n\nYour body length, while impressive, sadly limits your options in this tiny office. You’ll be able to do her over the desk, but that’s about it.");
 	processTime(1);
@@ -442,7 +442,7 @@ function flahneSexMenu(display:Boolean = true):void {
 function bendFlahneOver():void {
 	clearOutput();
 	author("Savin");
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	var x:int = pc.cockThatFits(flahne.vaginalCapacity());
 	output("You slip your arms around the bubbly, affectionate rahn, letting your hands play across her gel-like skin, squeezing and caressing her many curves. Flahne coos as your fingers worship at the temple of her curvaceous body, groping a big handful of her ass under her skirt, drifting under her clothes, across her tremendous ass and thick thighs.");
@@ -545,7 +545,7 @@ function bendFlahneOver():void {
 function rahnSuppository():void {
 	clearOutput();
 	author("Savin");
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	
 	output("Pulling Flahne close, your hands dig in deep to her malleable amber flesh, cupping and kneading her big ass cheeks. As if on cue, the object of your desires peeks through your bodies: Flahne's huge, girthy ovipositor tents her skirt, pressing into your [pc.skin]. With a low, sensual growl, you grab the phallic member and giving it a languid stroke. <i>“Oooh, careful sweet thing,”</i>  the squishy secretary giggles, <i>“you don't wanna start something you can't finish with my big... sensitive... oh-so-stretchy ovi-cock.”</i>");
@@ -608,6 +608,7 @@ function rahnSuppository():void {
 //also incompatible with quadrupeds -Z
 function flahneMunchesBoxesMetalBawkses():void {
 	clearOutput();
+	userInterface.showBust("FLAHNE_NUDE");
 	output("Pulling Flahne close, you whisper your request into her ear. The woman blushes, but then smiles coyly. <i>“I don’t mind - I can get you nice and wet,”</i>  she returns, rubbing the membranous skin of her lips and drawing her hand away with a strand of moisture to prove her point. She rubs it into your cheek softly, trailing the sweet fluid to your lips, before speaking again. <i>“Just... let me lock these doors and then we’ll have our fun.”</i>  She pulls away, her hand lingering on your face until the last, and then walks to each door, proofing it against intrusion.");
 	output("\n\n<i>“Let’s get this started then, cutey,”</i>  Flahne says as she pops her buttons open one at a time, revealing inch after inch of jiggling boob. When the last fastener is slipped open, the top springs apart completely, falling open to her sides, exposing her nipples in their complete, honeyed glory. The smooth buds, like dark-colored caps, jut just so from the surrounding surface in a way that invites you to touch and squeeze them. Flahne drops her arms and lets the stretched-out shirt slide down to collect in a rumpled pile on the floor.");
 	output("\n\nYou let your eyes play over her exposed skin");
@@ -756,7 +757,7 @@ function flahneMunchesBoxesMetalBawkses():void {
 //Crawl under Flahne’s desk and service her while she deals with other folks.
 function flahneDeskMunchies():void {
 	clearOutput();
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	output("Saying nothing, you advance on the endowed woman. Before she can get out of her chair, you pull it away from the desk, leaning over and resting your own hands on her damp armrests to pin the secretary in her seat.");
 	output("\n\n<i>“Getting a good look?”</i>  she teases. The buxom gel pushes her chest even farther, ");
@@ -803,7 +804,7 @@ function flahneDeskMunchies():void {
 //If she has a dong, surprise desk bukkake drip.
 function eatFlahneOutUnderDesk():void {
 	clearOutput();
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	output("You pry apart Flahne’s dripping entrance while the newcomer drones on about her situation, completely oblivious to the libertine delights going on just below the desk. ");
 	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0) output("Her ovipositor stiffens at your touches, rising higher and higher, until it stops at a 45 degree angle, smearing her sticky efflux across the hardwood surface above. When she cums, she’s probably going to soak the whole thing, and you. ");
@@ -885,7 +886,7 @@ function eatFlahneOutUnderDesk():void {
 //Suck&Swallow
 function flahneGetsSuckedAndSwallowed():void {
 	clearOutput();
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	output("You squeeze her shaft right around the base to remind it who’s boss before taking pity on it, relaxing your grip and arching it down to be properly tended to. It wouldn’t do to have her burst all over the bottom of her desk, creating a rain of white that would completely cover you. Well, that might not be too bad, but you’re not gonna let that happen today.");
 	output("\n\nFlahne’s flexible boner is easy to wrangle up to your mouth. It even drips a few strands of white onto your lips, growing a bit fatter in your hand as you hold it. Its owner shudders slightly, sending a ripple through her luxurious thighs all the way down to her feet, shifting position so that her wet gash hangs just over the edge of the seat, it’s golden lips still expanding with lust. You rub her twat with one hand while slowly beginning to pump her cock-like ovipositor with the other, testing the gel-woman’s self-control as well as you can.");
@@ -930,7 +931,7 @@ function flahneGetsSuckedAndSwallowed():void {
 //Play&Spray
 function playAndSpray():void {
 	clearOutput();
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	output("A devilish idea takes shape as you hear the door behind you slide open and high-heeled footsteps click across the floor. Taking Flahne’s dangling organ in hand, you stroke it languidly, collecting moisture from the tip and smearing it along the length. You can see her seat shift uneasily as you work the shaft in time to the visitor’s footsteps.");
 	
@@ -1024,7 +1025,7 @@ function playAndSpray():void {
 //requires ovipositor OK’d, ovipositor out
 function fuckAndSuckWithFlahne():void {
 	clearOutput();
-	this.userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	flahneNameDisplay();
 	author("Gardeford");
 	output("<i>“I know something fun,”</i>  you tease, sliding a finger down Flahne’s straining cleavage. <i>“But you should probably lock the doors unless you don’t mind more people joining in.”</i>");
@@ -1091,7 +1092,7 @@ function fuckAndSuckWithFlahne():void {
 function flahneExhibitionHugsGirls():void {
 	clearOutput();
 	author("Gardeford");
-	userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	output("You revel in the feeling of the gel girl embracing you and ");
 	if(pc.isNaga()) output("slither");
 	else if(pc.isGoo()) output("ooze");
@@ -1171,7 +1172,7 @@ function flahneExhibitionHugsGirls():void {
 function flahneIfMalesFitTheySitExhibitionism():void {
 	clearOutput();
 	author("Gardeford");
-	userInterface.showBust("FLAHNE");
+	userInterface.showBust("FLAHNE_NUDE");
 	var x:int = pc.cockThatFits(chars["FLAHNE"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You revel in the feeling of the gel girl embracing you and stand from your chair to return her affections. Giving her a sly look, you ");

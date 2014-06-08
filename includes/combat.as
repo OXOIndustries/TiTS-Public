@@ -1466,6 +1466,20 @@ function getCombatPrizes(newScreen:Boolean = false):void
 	}
 }
 
+function startCombatLight():void
+{
+	flags["DRONE_TARGET"] = undefined;
+	combatStage = 0;
+	hideMinimap();
+	pc.removeStatusEffect("Round");
+	combatMainMenu();
+	userInterface.resetNPCStats();
+	showNPCStats();
+	updateNPCStats();
+	if(foes[0] is LapinaraFemale) lapinaraBust();
+	else if(foes[0] is SexBot) sexBotDisplay();
+}
+
 function startCombat(encounter:String):void 
 {
 	//Reset drone target before a fight!

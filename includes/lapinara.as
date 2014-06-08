@@ -7,7 +7,10 @@
 //Finding a Lapinara:
 function encounterALapinara():void
 {
+	foes = new Array();
+	chars["LAPINARAFEMALE"].prepForCombat();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	//[First Encounter]
 	if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] == undefined)
 	{
@@ -26,7 +29,13 @@ function encounterALapinara():void
 	}
 	flags["ENCOUNTERED_PARASITIC_LAPINARA"]++;
 	clearMenu();
-	addButton(0,"Next",startCombat,"Lapinara Parasitic");
+	addButton(0,"Next",startCombatLight);
+}
+
+function lapinaraBust():void
+{
+	if(foes[0].hairColor == "silver") userInterface.showBust("LAPINARA_2");
+	else userInterface.showBust("LAPINARA");
 }
 
 //Combat Description:
@@ -34,6 +43,7 @@ function encounterALapinara():void
 
 function lapinaraAI():void
 {
+	lapinaraBust();
 	if(rand(3) == 0) lapinaraHornCharge();
 	else if(rand(2) == 0) lapinaraFalconPunch();
 	else lapinaraBite();
@@ -142,6 +152,7 @@ function loseToFemaleLapinara():void
 function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 {
 	author("WorldOfDrakan");
+	lapinaraBust();
 	//(Male/Genderless Variant)
 	output("Your lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. ");
 	if(pc.hasCock()) output("The sex-crazed bunny-girl takes a moment to inspect your package");
@@ -190,6 +201,7 @@ function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 function loseToLapinaraAndGetEggplantedChicks():void
 {
 	author("WorldOfDrakan");
+	lapinaraBust();
 	var x:int = rand(pc.vaginaTotal());
 	output("\n\nYour lapinara assailant grins wickedly as she admires you, her prize. She approaches you, forcibly removing your [pc.gear]. The sex-crazed bunny-girl takes a moment to inspect your [pc.crotch]. You see her nodding in silent approval. She then moves a hand down to play with [pc.oneVagina], licking her lips in anticipation as she gently rubs your [pc.clits] with her thumb, another finger prodding at your entrance.");
 	output("\n\n<i>“You got ");
@@ -236,6 +248,7 @@ function loseToLapinaraAndGetEggplantedChicks():void
 function defeatDatLapinara():void
 {
 	author("WorldOfDrakan");
+	lapinaraBust();
 	//Lapinara Loses By HP:
 	if(foes[0].HP() < 1)
 	{
@@ -279,6 +292,7 @@ function cuntTailFuckLapinaraParasitic():void
 {
 	clearOutput();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	output("You bring your fluid-hungry tail pussy to your front, giving the lapinara a good look at it. You tell her that her egg chute is going to be getting a good milking. She rolls her eyes at you, letting out an annoyed sigh.");
 	output("\n\n<i>“You won’t be getting any cum out of this thing, you know, and I can’t impregnate tail-cunts!”</i>");
 	output("\n\nYou make it perfectly clear that impregnating your tail was never the point. The point is that your tail wants a nice cock to milk, even if it is just a pseudocock, and that’s exactly what your tail is going to do. The lapinara nods in understanding. She did promise to let you choose after all.");
@@ -322,6 +336,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 {
 	clearOutput();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	var x:int = cockNum;
 	if(x < 0) x = pc.smallestCockIndex();
 	//(Normal Variant)
@@ -357,6 +372,7 @@ function hotdoggingALapinara(cockNum:int = 0):void
 {
 	clearOutput();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	var x:int = cockNum;
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You lie down on the ground, pulling the lapinara to your lap. You give her a nice pat on the ass, telling her that you’ll be putting it to good use. She is absolutely beaming at the idea, nodding furiously.");
@@ -384,6 +400,7 @@ function getLickedByLapinara():void
 {
 	clearOutput();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	//**Requires vagina.
 	output("You lie down on the ground, spreading your [pc.legs] for the lapinara. She grins widely at the sight of your [pc.vaginas], and you swear that you can make out a hint of blush under her fur. You point to ");
 	if(pc.totalVaginas() > 1) output("a");
@@ -413,6 +430,7 @@ function getBlownByLapinara(cockNum:int = 0):void
 	if(x < 0) x = pc.biggestCockIndex();
 	clearOutput();
 	author("WorldOfDrakan");
+	lapinaraBust();
 	//(Dick/Biggest Dick Just Right Size Variant- 12 Inches and Below)
 	if(pc.cocks[x].cLength() <= 12)
 	{

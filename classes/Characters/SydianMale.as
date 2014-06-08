@@ -168,7 +168,7 @@
 		{
 			var combatSydianMale:SydianMale = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("SYDIANMALE");
+			kGAMECLASS.userInterface.showBust("SYDIAN_MALE");
 			kGAMECLASS.userInterface.showName("FIGHT:\nSYDIAN MALE");
 			
 			CodexManager.unlockEntry("Sydian");

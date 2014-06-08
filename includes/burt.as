@@ -154,6 +154,7 @@ function burtSex():void {
 	//Repeat
 	else {
 		clearOutput();
+		userInterface.showBust("BURT_NUDE");
 		output("You smirk at Burt and suggest another little visit to the back room.");
 		output("\n\nBurt chuckles and turns Three-Dee on, telling the holographic Zil that he will be back in a bit, and then he once again ushers you behind the bar, leading you to his private storage room and office before stripping down and exposing that unique equine cybercock of his. It glistens as it juts up towards you like a spear, and from the look in Burt’s eyes, it is clear that he is eager to sheath his weapon again.");
 		output("\n\nHe watches as you ");
@@ -170,7 +171,7 @@ function burtFirstTimeSexPartI():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("The back room of Burt’s Kickass Mead Hall is one of the most cluttered spaces you have seen in a long time. There are barrels and kegs of mead and beer, and other drinks sure to make one tipsy, stacked all over the place, in seeming disarray, as well as a small desk with a computer atop it, buzzing away as it monitors the sales, inventory, and expenses of Burt’s business.");
 	output("\n\nBehind a selection of kegs you find a simple army cot, spread with some native blankets made by the Zil. Burt motions to the cot and says,<i> “Get comfortable.”</i>");
 	output("\n\nYou nod and smile as you ");
@@ -193,7 +194,7 @@ function yesIWantYerCrazyHoarseWeinerBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You smile and reassure Burt that you see nothing wrong with his manmade manhood, reaching out to caress it gently with one hand.");
 	output("\n\nBurt grins, giving a little shiver at the caress, which shows that he can feel through that metal and plastic phallus well enough. Nearly invisible segmented plates built into the design shift and expand, letting the inorganic organ pulse and bounce like a real erection would. His mechanical length is cool to the touch, and undeniably firm, having no organic give or padding to it at all.");
 	output("\n\nBurt grins at you and says,<i> “I’m glad you are taking this all in stride... so, what should we do?”</i>");
@@ -205,7 +206,7 @@ function yesIWantYerCrazyHoarseWeinerBurt():void {
 function burtSexMenu():void {
 	this.clearMenu();
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	//[Give a BJ]	[Get Oral]		[Anal]		[Vaginal]*	[Back]
 	this.addButton(0,"Give BJ",giveBurtABJ);
 	if(pc.hasVagina() || pc.hasCock()) this.addButton(1,"ReceiveOral",getOralFromBurt);
@@ -229,7 +230,7 @@ function noRoboHorseWeinersHere():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You shake your head, that kind of thing is just a bit much for you. You gather your things and with a blush and an apology, you exit the back room, getting dressed as you go and trying to ignore the looks of the other patrons.");
 	//[pg]
 	//[Next] (Move to just outside the Mead Hall.) 
@@ -590,7 +591,7 @@ function giveBurtABJ():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("Your eyes linger on that pulsing cybernetic erection, and you find that you just can’t help yourself. You lean forward towards it and drag your [pc.tongue] across the cool metal flare. You can feel a tingle shiver through your tongue, like licking a battery, but you can also taste a hint of old musk lingering around his piss hole. Burt lets out a groan of pleasure as you give oral attention to his erection and smiles down at you, his hands reaching out to stroke through your [pc.hair]. You give a few more licks before moving your hands to caress his length, feeling the nearly seamless segments of his length as they shift and adjust to his body’s needs. It is a marvel of technology, almost feeling like flesh save for its completely unyielding surface.");
 	output("\n\nBurt groans out, <i>“Oh [pc.name]....”</i>  and then without warning his hands grip your [pc.hair] tightly and he pulls forward, forcing your jaw to stretch almost painfully around the nearly five inch thick shaft, but it is clear that his mechanical cock is immune to the scrape of your teeth. Your [pc.tongue] tries to push against the invasion, but that just spurns Burt on further. He shudders in pleasure and pushes slowly deeper into your mouth.");
 	output("\n\nHis flare nears in on your gag reflex and you feel tears well in your eyes as you fear he will rip your throat apart, but then you hear a click and hiss, and feel something cold spray down your throat. You can’t taste it, whatever it is, but the effect is almost instant, numbing your throat and relaxing the muscles, as well as killing your gag reflex. He waits the length of a few breaths, moaning in pleasure, and then he jerks at your hair, pulling you down his shaft until your lips kiss his medial ring, sending well over half a foot of equine metal down your throat. You don’t choke, and you don’t feel pain, but you can clearly feel the passage, and your hand drifts to your neck, feeling how your neck bulges and expands to accommodate him.");
@@ -605,7 +606,7 @@ function giveBurtABJPartII():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You are forced to hold your breath, with your mouth and throat stretched beyond taut around his member, but he doesn’t hold his position long. Burt draws back, dragging that flare back up your neck, against the swallowing grip of your throat muscles. He draws away until his flare escapes into your mouth, letting you grab a quick breath through your nose before he slams back in, pulling your hair again as he drives back deep into your throat. It is a slow pace, but intense, as he draws back and then slams back in, stretching your mouth and throat a little more each time.");
 	output("\n\nHis medial ring clacks against your teeth again and again with his thrusts, and finally he gives a firm shove, spearing deeper into your throat and pushing his ring past your teeth and into your throat as he starts to fuck your face in earnest. His hips drive forward hard and fast as the muscles of his toned ass cheeks clench and relax again and again. Your hands move to his hips to steady yourself, but it does nothing to slow his pace.");
 	output("\n\nYou can feel his flare and ring overstretching your throat and jaws again and again as he pounds away, and before long his hairy human balls are slapping your chin with each thrust, your nose hitting his belly as he well and truly fucks your face.");
@@ -625,7 +626,7 @@ function getOralFromBurt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	//if (naga = true)
 	if(pc.isNaga()) 
 	{
@@ -807,7 +808,7 @@ function burtsWeinerInYourButt():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You mention that you wouldn’t mind trying to take Burt’s monstrous shaft, and he nods, considering it before saying,<i> “I would be willing to oblige, but I want a piece of ass right now.”</i>  ");
 	if(pc.willpower() > 29) output("You blush and swallow, but agree, nodding silently.");
 	else output("You eagerly agree, your [pc.asshole] giving a twitch in anticipation. You grin wide as you press against him and lick your lips.");
@@ -883,7 +884,7 @@ function burtSticksItInThePCsVajayjay():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You smirk and tell Burt that you definitely know where he can put that tool of his, and he chuckles his agreement.");
 	var x:int = pc.cuntThatFits(burt.cockVolume(0));
 	if(x < 0) x = 0;
@@ -984,7 +985,7 @@ function giveBurtAHandyYouSlooooooooooot():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You reach out with your hands and wrap them around the base of his artificial erection, feeling the metal that is smooth and perfect, and as warm as Burt’s own flesh. He’s a big guy, and his cock is even bigger, so wide that you need both hands just to get all the way around it. ");
 	if(pc.intelligence() > 75) output("Up close, you can see how the interlocking metal and plastic plates grant the illusion of give without actually having any real flexibility. Plastic veins run the length of his rod, hiding thermal and moisture gauges, and friction gauges beneath the plates allow him to feel drag and pressure. ");
 	output("He groans in pleasure as you caress his artificial flesh, reaching his hands down to stroke lovingly through your [pc.hair].");
@@ -1004,7 +1005,7 @@ function burtHandyPartDeux():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("Listening to the sounds Burt makes, and the way he moves, you figure out his ideal speed, your hands driving up and down that hard equine length over and over, in an almost exhausting pace. The smell of aroused male fills your nostrils and you can see Burt’s toned abdomen flex and bounce with his quickened breaths.");
 	//if (hasVagina = true)
 	if(pc.hasVagina()) output(" You can feel your pussy flush with heat, thoughts of taking Burt’s intimidating tool internally rushing through your head. A trickle of moisture begins to drool out of your [pc.vaginas] and a tingle of pleasure teases through your [pc.clits].");
@@ -1028,7 +1029,7 @@ function lickBurtsAssholeYouFilthyButtlicker():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	//if (will > 29)
 	if(pc.willpower() > 29) output("You look up at Burt’s naked body, blushing as you consider what you want to do. You catch a sweet scent in the air around him, mixed in with the heady musk of his masculinity, and you find yourself drawn to it, licking your lips as you look around behind Burt at his tight and toned ass. He chuckles as he looks back at you and asks,<i> “What, wanting a taste?”</i>  You find yourself nodding despite yourself.");
 	//[if (will < 30)]
@@ -1063,7 +1064,7 @@ function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You move your hands to your [pc.fullChest], lifting and pressing your pillows together, giving Burt a teasing wink, and he grins as he gets the idea. He pushes his equine shaft between the curves of your ample breasts and starts to gently saw up and down, letting you lick and kiss at his flared tip whenever his thrusts are at their highest. He groans as your breasts caress and slide along his metal and plastic length, his hands stroking through you [pc.hair] gently.");
 	//[if (lipples = true)]
 	if(pc.hasLipples()) 
@@ -1097,7 +1098,7 @@ function tailFuckBurtBecauseWhyNot():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("You grin at Burt and let your [pc.tail] slither in a loose spiral around his mechanical cock, and watch as he shivers in pleasure, looking down at that prehensile appendage curiously and spotting your [pc.tailCunt]. He smirks a bit and says,<i> “Oh, this should be interesting.”</i>");
 	output("\n\nYou nod and press in, kissing him on the lips as your tail continues to entice and stimulate his artificial equine member. Your [pc.tailCunt] drags across the chromed surface, leaving a slimy trail of slick girlcum as your tail searches out the full length of his shaft as it rests trapped between your body and his.");
 	output("\n\nWhen you reach the broad flared apex of his shaft with your heated and pulsing folds, you feel him exhale in a moan into the kiss. You tell him to just relax and let you pleasure him for a change. He nods and leans back against one of the mead barrels, looking down at your tail as it begins to stretch around his cockhead and begin the slow process of swallowing him in rippling gulps. Inch after slow inch of metal cock slides into your [pc.tailCunt], forcing it to stretch to accommodate him.");
@@ -1118,7 +1119,7 @@ function randomBurtSexExit():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	if(flags["TIMES_FUCKED_BURT"] == undefined) flags["TIMES_FUCKED_BURT"] = 1;
 	else flags["TIMES_FUCKED_BURT"]++;
 	var choice:int = rand(4);
@@ -1170,7 +1171,7 @@ function threeDSurprise():void {
 	clearOutput();
 	author("Danaume");
 	userInterface.showName("\nBURT");
-	userInterface.showBust("BURT");
+	userInterface.showBust("BURT_NUDE");
 	output("...or not?");
 	output("\n\nYou hear Burt shout a warning to you, but before you can react, tentacles wrap around your [pc.legs] from behind, hoisting you into the air upside down. Your " + pc.rangedWeapon.longName + " slips out of your grip, landing with a clatter on the floor as Three-Dee’s black tentacles coil around your arms and jerk them out to the sides, rendering you relatively immobile.");
 	output("\n\nYou can feel the blood rushing to your head as you are held there, watching as Burt fights through the tentacles, trying to get to the control panel at the bar to turn her off.");

@@ -107,17 +107,6 @@ function encounterASexBot():void
 	}
 }
 
-function startSexBotCombat():void
-{
-	flags["DRONE_TARGET"] = undefined;
-	combatStage = 0;
-	hideMinimap();
-	combatMainMenu();
-	userInterface.resetNPCStats();
-	showNPCStats();
-	updateNPCStats();
-}
-
 //No/lust < 30:
 function turnDownRobotSexuals(newScreen:Boolean = false):void
 {
@@ -144,7 +133,7 @@ function turnDownRobotSexuals(newScreen:Boolean = false):void
 	output("\n\n“<i>Consent protocols not responding,</i>” says the sexbot, in the same tone of depthless calm. With a whirr and the now-familiar sound of unwinding rope, four flexible tentacles tipped with rounded rubber grabbers appear out of its back. They sway restlessly around the eerily beautiful droid as it advances upon you. “<i>I am sorry, insert name here, but I cannot do that.</i>”");
 	
 	clearMenu();
-	addButton(0,"Next",startSexBotCombat);
+	addButton(0,"Next",startCombatLight);
 }
 
 //Yes: 

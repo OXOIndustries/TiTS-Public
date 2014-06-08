@@ -687,7 +687,7 @@ function shekkaSexMenu():void
 function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	var x:int = pc.cockThatFits(chars["SHEKKA"].vaginalCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
@@ -862,7 +862,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 function tailbadism():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	var x:int = rand(pc.totalVaginas());
 	output("<i>\"Lets have a little bit of girlish fun, just you and me,\"</i> you offer, flicking a sign on the door to read <i>\"Closed.\"</i>");
@@ -925,7 +925,7 @@ function tailbadism():void
 function shekkaGrindsFinish():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	output("You come to feeling wet and sticky all over, a small form perched atop you. Its brilliant, exuberant eyes blink at you, and your groggy mind identifies it as Shekka. She giggles, kissing you on the lips once more before standing up and offering a hand");
 	if(pc.tallness >= 60) output(", a gesture that's almost comical given the size difference");
@@ -970,7 +970,7 @@ function fuckedShekka():void
 function hugeEarShekkaFaps():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	author("Kirbu");
 	
@@ -1056,7 +1056,7 @@ function hugeEarShekkaFaps():void
 function pageTwoOfShekkaStuffs():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	author("Kirbu");
 	output("<i>\"I’m... I’m not through.\"</i>");
@@ -1098,7 +1098,7 @@ function pageTwoOfShekkaStuffs():void
 function pageThreeOfShekkaStuffs():void
 {
 	clearOutput();
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 	author("Kirbu");
 	output("An untold amount of time later, Shekka squirms to life, slowly reaching towards the inward slider of your zipper. The undoing is much less enthusiastic than the opposite action had been. A visible haze flees from the scene, the potent, heady love kissing you on the nose. There’s a bit of worry deep in your chest that this musk will drive you right back to a third round! The relatively cool air dancing across your tender flesh calms your nerves, however. Though your soul may be willing, your body could use a little time off.");
@@ -1148,7 +1148,7 @@ function shekkaMilkDranking():void
 	clearOutput();
 	//By Tanini
 	author("Tanini");
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 
 	output("As you observe the shapely Raskvel female in front of you, you can’t help but notice her plump, uncared-for lips. While the rest of her face is  nice enough, you can’t help but focus on those inviting lips. Oh how you’d love to stuff something between them.");
@@ -1170,7 +1170,7 @@ function shekkaMilkDrankingPartII():void
 	clearOutput();
 	//By Tanini
 	author("Tanini");
-	userInterface.showBust("SHEKKA");
+	userInterface.showBust("SHEKKA_NUDE");
 	userInterface.showName("\nSHEKKA");
 
 	output("You can’t think of a better plan at the moment, and you pull her into a forceful kiss, your [pc.lips] mashed roughly against hers. You let out a slutty moan into the kiss as she pinches your streaming nipples, the added stimulation sparking surges of pleasure all down your spine. ");

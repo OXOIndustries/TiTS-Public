@@ -212,7 +212,7 @@ function pcBeatsSyriWhenSexBet():void {
 //Req's any dick! Handles big dongs A-okay.
 function victoryFuckSyrisBunghole():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("Unable to resist the urge to spread this dog-slut's legs and fuck her like the bitch she is, you flip Syri around and push her down onto the nearest table, pinning her arms behind her back. She squirms, struggling against you as your hand plays across her wide hips, squeezing one of her full cheeks beneath her pants. It's like putty in your hand, so soft and kneadable. Her tail twitches and flickers, swatting across your face as its owner tries to pretend she doesn't enjoy you playing with her big, delicious ass. You let her carry on for a few minutes as you grope her ass, starting to grind on her, cock swelling as it rubs against the coarse fabric of her clothes, feeling the radiant warmth of the ausar's body and the hypnotic movements of her hips.");
@@ -282,7 +282,7 @@ function victoryFuckSyrisBunghole():void {
 //Ride Her Cock
 function rideSyrisCockYouWinner():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("If her tone was half an indicator, Syri wanted to bend you over the table there and fuck your ass raw. And to be honest, you wanted her cock up your ass, too. Otherwise, why the hell would you have bet yourself? You won, and it's time to take your reward: a nice, knotty cock to spread your [pc.asshole] wide. You grab the ausar girl by the hips and push her back against the wall, cupping her breasts and drinking in her earthy musk. Syri gives a sharp gasp, but as soon as your lips wrap around one of her pert nipples, she gets the idea. Her legs hug your [pc.hips], and you feel a furry hand brushing ");
@@ -380,7 +380,7 @@ function pcLosesToSyriCredBetting():void {
 //PC Loses the Shoot, Betting for Sex
 function pcLosesToSyriBettingHisAss():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("Nearly an hour passes in the game. The graphics are photo-realistic, the controls tight and precise. Every movement you make is perfectly mirrored in the game. The map is huge, and your character is slow. It's a maze, and soon you realize it's less skill in battle, here, than skill at the hunt. Just finding Syri in the ruined city the game has you in is challenging, and every time you think you've got her, she darts away. Finally you slay her, pulling a bullet between her avatar's eyes. The audience cheers, and more and more people gather as they realize you've got skill.");
@@ -727,7 +727,7 @@ function talkToSyriNumber4():void {
 function syriSexMenu(outputs:Boolean = true):void {
 	if(outputs) {
 		clearOutput();
-		userInterface.showBust("SYRI");
+		userInterface.showBust("SYRI_NUDE");
 		showSyriName();
 		author("Savin");
 		//(First Time Variant) 
@@ -792,7 +792,7 @@ function syriSexMenu(outputs:Boolean = true):void {
 //Reverse Cowgirl
 function syriReverseCowgirlConsensualization():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	var x:int = pc.cockThatFits(chars["SYRI"].analCapacity());
@@ -854,7 +854,7 @@ function syriReverseCowgirlConsensualization():void {
 //Missionary
 function missionaryWithTheDogDickedSlutSyri():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	var x:int = pc.cockThatFits(chars["SYRI"].analCapacity());
@@ -913,7 +913,7 @@ function getVagFukkedBySyri():void {
 	var x:int = pc.cuntThatFits(chars["SYRI"].cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("Reaching between the lusty ausar's spread legs, you wrap your hands around her throbbing red knotty cock and ask her how she'd like to bury that bad boy to the hilt inside you. She grins from ear to pointed ear, <i>“Now you're speaking my language, Steele. Don't you stop.”</i>");
@@ -976,7 +976,7 @@ function getVagFukkedBySyri():void {
 //Catch Anal
 function catchAnalFromSyriIfYouDontUseACondom():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("You spread your [pc.legs] around the ausar beauty's hips, leaving your [pc.butt] perfectly vulnerably to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You're just an insatiable slut, aren't you, Steele?”</i>  Syri laughs, giving you a sharp slap on the thigh. <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>");
@@ -1051,7 +1051,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 //Blow Her
 function blowSyriYouFukkinSlut():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("Grinning up at your hung alien lover, you ask her if she'd like some good old fashioned oral attention. Syri grins and rolls off you, cock rising skyward as you crawl downward, slipping between her spread legs to give yourself a good view of her eager member. The ausar's veiny puppy pecker is nice and stiff, swaying slightly as it stands erect for your inspection. Syri gives a little whine and shifts her legs, and her shaft waggles comedically at you, nearly brushing up against your nose; you take the opportunity to let your [pc.tongue] play out, lapping at her sensitive underside. The taste is bitter, but the sound of Syri's breath catching in her throat is exquisite, and with the look of wanton pleasure etched on her face to motivate you, you slip down toward her base, tongue probing at the red, pulsing prick down and down to its very roots, your fingers rubbing aside the downy fuzz around her stem to plant a kiss on her most sensitive flesh.");
@@ -1101,7 +1101,7 @@ function blowSyriYouFukkinSlut():void {
 function syriSexOutro():void {
 	processTime(120+rand(60));
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("You wake up several hours later, wrapped up in a tight, warm embrace of ausar fur and blankets. Syri's arms are still locked around you, holding you tight. You look up from the valley of her cleavage, and find her smiling down at you, blue eyes glistening in the dim cabin light.");
@@ -1124,7 +1124,7 @@ function syriSexOutro():void {
 //{High libido/lust PCs}
 function dontGoAwayYouKnotCunt():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("<i>“What, you think we're done?”</i>  you say, grabbing your ausar lover by the waist and pulling her into a tight embrace, feeling her bare breasts pressing hard into your [pc.chest].");
@@ -1146,7 +1146,7 @@ function dontGoAwayYouKnotCunt():void {
 //Alternative:
 function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("<i>“Sure,”</i>  you say, pointing her toward your bathroom. She gives you a wink as she grabs her scattered clothes and vanishes, giving you a chance to get geared up");
@@ -1168,7 +1168,7 @@ function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 //Appearance
 function syriAppearance():void {
 	clearOutput();
-	userInterface.showBust("SYRI");
+	userInterface.showBust("SYRI_NUDE");
 	showSyriName();
 	author("Savin");
 	output("Syri Dorna is a six-foot tall ausar girl with shoulder-length raven hair and a pair of huge, perky wolf ears perched atop her head. Though she's got a distinctly human body and face, the silky fur on her arms and legs, and the swishing, bushy tail give her a distinctly feral, alien appearance. Her attire is loose and carefree: a pair of torn up jeans, tall leather boots, and a T-shirt that's a little too tight, accentuating her ample bust; more distinctive, though, is the long military coat she's wearing. Long and flowing, her jacket nearly reaches the floor, and certainly seems to have seen better days, even if its buttons are brightly polished, glistening proudly amidst tears and cuts all around them. Under her tight clothes, you can see the outlines of her taut muscles: powerful legs, a firm ass, and a hint of a six-pack. What draws your eyes, though is the distinctive bulge between her legs, hinting at the big, veiny, knotty cock lurking below.");

@@ -22,6 +22,8 @@
 
 		[Embed(source = "../../assets/images/npcs/Burt.png", mimeType = "image/png")]
 		public static var Bust_BURT:Class;
+		[Embed(source = "../../assets/images/npcs/Burt_Nude.png", mimeType = "image/png")]
+		public static var Bust_BURT_NUDE:Class;
 
 		[Embed(source = "../../assets/images/npcs/Crazy_Carl.png", mimeType = "image/png")]
 		public static var Bust_CARL:Class;
@@ -34,13 +36,14 @@
 
 		[Embed(source = "../../assets/images/npcs/Delilah.png", mimeType = "image/png")]
 		public static var Bust_DELILAH:Class;
+		[Embed(source = "../../assets/images/npcs/Delilah_Nude.png", mimeType = "image/png")]
+		public static var Bust_DELILAH_NUDE:Class;
 
 		[Embed(source = "../../assets/images/npcs/Dr_Haswell.png", mimeType = "image/png")]
 		public static var Bust_DR_HASWELL:Class;
 		
 		[Embed(source = "../../assets/images/npcs/Flahne.png", mimeType = "image/png")]
 		public static var Bust_FLAHNE:Class;
-
 		[Embed(source = "../../assets/images/npcs/Flahne_Nude.png", mimeType = "image/png")]
 		public static var Bust_FLAHNE_NUDE:Class;
 		
@@ -49,6 +52,8 @@
 		
 		[Embed(source = "../../assets/images/npcs/Jade.png", mimeType = "image/png")]
 		public static var Bust_JADE:Class;
+		[Embed(source = "../../assets/images/npcs/Jade_Nude.png", mimeType = "image/png")]
+		public static var Bust_JADE_NUDE:Class;
 
 		[Embed(source = "../../assets/images/npcs/Rival_Jill.png", mimeType = "image/png")]
 		public static var Bust_JILL:Class;
@@ -64,6 +69,12 @@
 		
 		[Embed(source = "../../assets/images/npcs/Kiro_Nude.png", mimeType = "image/png")]
 		public static var Bust_KIRONUDE:Class;
+
+		[Embed(source = "../../assets/images/npcs/Lapinara.png", mimeType = "image/png")]
+		public static var Bust_LAPINARA:Class;
+
+		[Embed(source = "../../assets/images/npcs/Lapinara_2.png", mimeType = "image/png")]
+		public static var Bust_LAPINARA_2:Class;
 		
 		[Embed(source = "../../assets/images/npcs/Machina.png", mimeType = "image/png")]
 		public static var Bust_MACHINA:Class;
@@ -124,7 +135,6 @@
 
 		[Embed(source = "../../assets/images/npcs/Shekka.png", mimeType = "image/png")]
 		public static var Bust_SHEKKA:Class;
-
 		[Embed(source = "../../assets/images/npcs/Shekka_Nude.png", mimeType = "image/png")]
 		public static var Bust_SHEKKA_NUDE:Class;
 
@@ -142,7 +152,6 @@
 
 		[Embed(source = "../../assets/images/npcs/Syri.png", mimeType = "image/png")]
 		public static var Bust_SYRI:Class;
-
 		[Embed(source = "../../assets/images/npcs/Syri_Nude.png", mimeType = "image/png")]
 		public static var Bust_SYRI_NUDE:Class;
 		
