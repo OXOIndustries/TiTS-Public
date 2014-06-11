@@ -525,6 +525,8 @@
 			kGAMECLASS.initializeNPCs(true); // Creates any "missing" NPCs from the save
 			
 			kGAMECLASS.flags = new Dictionary();
+			//Update room placement:
+			kGAMECLASS.variableRoomUpdateCheck();
 			for (prop in obj.flags)
 			{
 				kGAMECLASS.flags[prop] = obj.flags[prop];

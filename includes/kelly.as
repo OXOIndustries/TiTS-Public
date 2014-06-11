@@ -74,10 +74,10 @@ function kellysOfficeBonusFunction():Boolean
 			//1st Time:
 			output("\n\nYou walk over to the rabbit-like receptionist, currently busy going over some files. One flopping ear, nearly hidden amongst the lush strands of honey-orange hair she has, twitches as you approach and she looks up towards you with a beaming smile. \"<i>Why, hello there, and welcome to Xenogen Research Labs, where the wonders of biotechnology never cease! My name is Kelly, the receptionist - how may I help you today?</i>\" Though her words are professional and welcoming, her tone is sincerely chirpy and friendly, suggesting she's quite happy to see you.");
 			//If no Laquine entry in codex:
-			if(9999 == 0)
+			if(!CodexManager.entryUnlocked("Laquine"))
 			{
 				output("\n\nYour codex gives a beep, signalling that Kelly is a member of an alien race. Stealthily, you check it out and skim the summary; Kelly here is a member of a race of rabbit-like anthro aliens known as the Laquines. They're most well-known for their high rate of hermaphroditism, and their rabbit-like breeding abilities, though in recent decades a mysterious \"sterility plague\" has been afflicting the race.");
-				//9999 unlock codex.
+				CodexManager.unlockEntry("Laquine");
 			}
 			output("\n\nHer fingers tap away at the keyboard, and she scans the screen professionally. <i>\"Hmm... I see we don't have your ID in our registry. Before we can allow you into the building or offer any kind of services to you, we require that you fill out a registry form, " + pc.mf("sir","madam") + ". Would you like to register now, " + pc.mf("sir","madam") + "?\"</i>");
 			
@@ -90,6 +90,7 @@ function kellysOfficeBonusFunction():Boolean
 		}
 		else
 		{
+			CodexManager.unlockEntry("Laquine");
 			output("\n\nKelly is at her usual position behind the receptionist counter, idly going over her work. She sees you entering and smiles, giving you a friendly wave, before getting back to work.");
 			addButton(0,"Kelly",kellyOfficeApproach);
 		}
@@ -349,6 +350,7 @@ public function kellyAtTheBar():void
 function approachKellyAtTheBar():void
 {
 	clearOutput();
+	CodexManager.unlockEntry("Laquine");
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
