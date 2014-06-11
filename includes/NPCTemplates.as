@@ -169,6 +169,10 @@
 	{
 		chars["COLENSO"] = new classes.Characters.Colenso();
 	}
+	if (!justUpdate || (justUpdate && chars["KELLY"] == undefined))
+	{
+		chars["KELLY"] = new classes.Characters.Kelly();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

@@ -15,6 +15,21 @@ import classes.Items.Apparel.TSTArmor;
 import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
 
+function xenogenOutsideBlurb():Boolean
+{
+	if(hours < 6 || hours >= 17)
+	{
+		output("\n\n<b>The doorway to the north is currently sealed.</b> A notice declares that it will be open again at 6:00 standard terran time.");
+		rooms["SOUTH ESBETH 2"].northExit = "";			
+	}
+	else
+	{
+		output("\n\n<b>Xenogen Biotech is currently open!</b> Office hours are 6:00 to 17:00 standard terran time.");
+		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
+	}
+	return false;
+}
+
 function hangarBonus():Boolean 
 {
 	trace("this", this);
@@ -154,6 +169,12 @@ function checkOutBountyBoard():void
 	addButton(0,"Next",mainGameMenu);
 }
 	
+function barBackRoomBonus():Boolean
+{
+	if(flags["KELLY_MET"] == 1 && (hours > 17 || hours < 6)) kellyAtTheBar();
+	return false;
+}
+
 
 /*
 Fern, Lichens, and Ironwoods:

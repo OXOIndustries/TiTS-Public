@@ -24,7 +24,6 @@ function useItem(item:ItemSlotClass):void {
 			// item replacement. The player can have a "full" inventory including the item they've just equipped!
 			pc.inventory.splice(pc.inventory.indexOf(item), 1);
 			equipItem(item);
-			
 		}
 		//Else try to use a stored function!
 		else 

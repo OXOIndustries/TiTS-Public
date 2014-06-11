@@ -258,13 +258,14 @@ function initializeRooms():void
 	//9. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 2"] = new RoomClass(this);
 	rooms["SOUTH ESBETH 2"].roomName = "SOUTH\nESBETH";
-	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The build to the north is a monolithic looking thing labelled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
+	rooms["SOUTH ESBETH 2"].description = "Traffic on these hard-packed paths is light the whole way around the small town of Esbeth. No matter where you are, you usually don’t see more than a few people. Most of them appear to be townsfolk on the way to some errand or in the process of improving a ramshackle abode, but every now and again you see someone who is out hunting and prospecting like yourself, kitted out for a fight and looking at everything with sharp eyes. The building to the north is a monolithic looking thing labelled 'Xenogen Biotech.' A large doorway to the north provides access, and the road goes on to the east and west.";
 	rooms["SOUTH ESBETH 2"].planet = "PLANET: MHEN'GA";
 	rooms["SOUTH ESBETH 2"].system = "SYSTEM: ARA ARA";
 	rooms["SOUTH ESBETH 2"].westExit = "SOUTH ESBETH 1";
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
 
 	//10. Esbeth’s Southern Path
 	rooms["SOUTH ESBETH 3"] = new RoomClass(this);
@@ -361,6 +362,8 @@ function initializeRooms():void
 	rooms["BURT'S BACK END"].system = "SYSTEM: ARA ARA";
 	rooms["BURT'S BACK END"].southExit = "BURT'S MAIN HALL";
 	rooms["BURT'S BACK END"].addFlag(GLOBAL.INDOOR);
+	rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+	rooms["BURT'S BACK END"].runOnEnter = barBackRoomBonus;
 	// Amusing naming FTW
 
 	//19. The Eastern Exit of Esbeth

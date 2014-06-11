@@ -1577,6 +1577,26 @@
 			if(foundAmount >= amount) return true;
 			return false;
 		}
+		public function destroyItem(arg:ItemSlotClass,amount:int = 1):void
+		{
+			if(inventory.length == 0) return;
+			var foundAmount:int = 0;
+			for(var x:int = 0; x < inventory.length; x++)
+			{
+				//Item in the slot?
+				if(inventory[x].shortName == arg.shortName) 
+				{
+					//If we still need to eat some, eat em up!
+					while(amount > 0 && inventory[x].quantity > 0) 
+					{
+						inventory[x].quantity--;
+						amount--;
+						if(inventory[x].quantity <= 0) inventory.splice(x,1);
+					}
+				}
+			}
+			return;
+		}
 		public function orgasm(): void {
 			lustRaw = 0;
 			energy(-5);

@@ -474,6 +474,19 @@ public function processTime(arg:int):void {
 			this.minutes = 0;
 			this.hours++;
 			//Hours checks here!
+			//Kelly's work - close/open Xenogen Biotech.
+			//Open up shop: link room
+			if(hours == 6) 
+			{
+				rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
+				rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
+			}
+			//Close shop: remove link
+			if(hours == 17) 
+			{
+				rooms["SOUTH ESBETH 2"].northExit = "";
+				if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+			}
 			if(flags["SHEKKA_TALK_COOLDOWN"] != undefined)
 			{
 				if(flags["SHEKKA_TALK_COOLDOWN"] > 0) flags["SHEKKA_TALK_COOLDOWN"]--;

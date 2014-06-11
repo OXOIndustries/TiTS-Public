@@ -54,7 +54,7 @@
 		}
 		public function removeFlag(arg):void {
 			for(var x:int = 0; x <= roomFlags.length; x++) {
-				roomFlags.splice(x,1);
+				if(arg == roomFlags[x]) roomFlags.splice(x,1);
 			}
 		}
 	}
