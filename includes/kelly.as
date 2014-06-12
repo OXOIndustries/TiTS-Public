@@ -105,6 +105,16 @@ function kellyOfficeApproach():void {
 	userInterface.showBust("KELLY");
 	showKellyName();
 	author("Quiet Browser & LD");
+
+	//Update her sold items for old saves:
+	if(flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new HoneySeed())) chars["KELLY"].inventory.push(new HoneySeed());
+	}
+	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
+	{
+		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
+	}
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");
 	//{my friend}/{honey}
@@ -118,9 +128,13 @@ function kellysOfficeMenu():void {
 	clearMenu();
 	userInterface.showBust("KELLY");
 	showKellyName();
+	shopkeep = chars["KELLY"];
 	author("Quiet Browser & LD");
 	addButton(0,"Appearance",kellyAppearance);
 	addButton(1,"Talk",talkToKellyInOffice);
+	if(chars["KELLY"].inventory.length == 0) addDisabledButton(2,"Buy","Buy","Kelly does not currently have anything to sell you.");
+	else addButton(2,"Buy",buyItem,undefined,"Buy","Buy some of Xenogen Biotech's wares.");
+	addButton(3,"Sell",sellItem,undefined,"Sell","Sell Kelly some of your excess mods.");
 	addButton(14,"Leave",mainGameMenu);
 }
 

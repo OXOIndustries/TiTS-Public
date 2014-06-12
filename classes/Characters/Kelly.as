@@ -11,9 +11,19 @@
 		//constructor
 		public function Kelly()
 		{
+			//this.inventory.push(new Pandaneen());
+			this.keeperSell = "<i>\"Xenogen isn't usually in the business of buying mods to sell, but we'll offer fair compensation,\"</i> Kelly explains.\n";
+			this.keeperBuy = "<i>\"<i>Oh, you'd like to purchase some of our basic modification programs? Why, certainly,</i>\"</i> Kelly chimes merrily.\n";
+			this.keeperGreeting = "Kelly asks, <i>\"Is there anything else I can do for you?\"</i>";
+			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
+			this.typesBought[this.typesBought.length] = GLOBAL.POTION;
+			this.typesBought[this.typesBought.length] = GLOBAL.DRUG;
+			this.sellMarkup = 1.3;
+			this.buyMarkdown = .4;
+
 			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.short = "Kelly";
 			this.originalRace = "laquine";
@@ -25,8 +35,8 @@
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon.attackVerb = "claw";
-			this.meleeWeapon.longName = "claws";
+			this.meleeWeapon.attackVerb = "punch";
+			this.meleeWeapon.longName = "fist";
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "shield-corset";

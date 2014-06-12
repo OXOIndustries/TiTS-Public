@@ -112,6 +112,10 @@ function shop(keeper:Creature):void {
 		approachSera();
 		return;
 	}
+	if(keeper is Kelly) {
+		kellyOfficeApproach();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

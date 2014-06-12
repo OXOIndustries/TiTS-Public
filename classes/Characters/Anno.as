@@ -166,8 +166,9 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 			this.createVagina();
-			this.vaginas[0].wetnessRaw = 2;
+			this.vaginas[0].wetnessRaw = 6;
 			this.vaginas[0].loosenessRaw = 1;
+			this.vaginas[0].bonusCapacity = 20;
 			
 			this._isLoading = false;
 		}		
