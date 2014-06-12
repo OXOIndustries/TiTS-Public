@@ -1188,6 +1188,15 @@
 				case "ear":
 					buffer = earDescript();
 					break;
+				case "eyes":
+					buffer = eyesDescript();
+					break;
+				case "eye":
+					buffer = eyeDescript();
+					break;
+				case "eyePigment":
+					buffer = eyeColor;
+					break;
 				case "hairsDescript":
 					buffer = hairDescript();
 					break;
@@ -2346,9 +2355,62 @@
 			return result;
 		}
 		public function earDescript(): String {
-			return "ear";
+			var adjectives:Array = new Array();
+			var nouns:Array = ["ear"];
+			var description:String = "";
+			switch (earType)
+			{
+				case GLOBAL.CANINE:
+					adjectives[adjectives.length] = "pointed";
+					adjectives[adjectives.length] = "ausar";
+					adjectives[adjectives.length] = "furry";
+					adjectives[adjectives.length] = "upraised";
+					adjectives[adjectives.length] = "anubis-like";
+					break;
+				case GLOBAL.EQUINE:
+					adjectives[adjectives.length] = "equine";
+					adjectives[adjectives.length] = "horse-like";
+					adjectives[adjectives.length] = "furry";
+					adjectives[adjectives.length] = "bestial";
+					adjectives[adjectives.length] = "inhuman";
+					break;
+				case GLOBAL.BOVINE:
+					adjectives[adjectives.length] = "bovine";
+					adjectives[adjectives.length] = "cow-like";
+					adjectives[adjectives.length] = "floppy";
+					adjectives[adjectives.length] = "softly furred";
+					break;
+				case GLOBAL.RASKVEL:
+					adjectives[adjectives.length] = "raskvel";
+					adjectives[adjectives.length] = "obscenely long";
+					adjectives[adjectives.length] = "oh-so sensitive";
+					adjectives[adjectives.length] = "smooth-scaled";
+					adjectives[adjectives.length] = "lengthy";
+					break;
+			}
+			//Pick an adjective about 75% of the time
+			if(rand(4) < 3 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Pick a noun.
+			description += nouns[rand(nouns.length)];
+			return description;
 		}
 		public function earsDescript(): String {
+			return pluralize(earDescript());
+		}
+		public function eyeDescript(): String {
+			var adjectives:Array = new Array();
+			var nouns:Array = ["eye"];
+			var description:String = "";
+			
+			adjectives[adjectives.length] = eyeColor;
+
+			//Show color 50% of the time
+			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Pick a noun.
+			description += nouns[rand(nouns.length)];
+			return description;
+		}
+		public function eyesDescript(): String {
 			return pluralize(earDescript());
 		}
 		public function tongueDescript(): String {
@@ -2604,7 +2666,57 @@
 			else return legs(forceType, forceAdjective);
 		}
 		public function tailDescript(): String {
-			return "tail";
+			var adjectives:Array = new Array();
+			var nouns:Array = ["tail"];
+			var description:String = "";
+			if(hasTailFlag(GLOBAL.PREHENSILE)) 
+			{
+				adjectives[adjectives.length] = "talented";
+				adjectives[adjectives.length] = "nimble";
+			}
+			if(hasTailFlag(GLOBAL.LONG)) 
+			{
+				adjectives[adjectives.length] = "lengthy";
+				adjectives[adjectives.length] = "long";
+			}
+			if(hasTailFlag(GLOBAL.FLUFFY)) 
+			{
+				adjectives[adjectives.length] = "furry";
+				adjectives[adjectives.length] = "furred";
+				adjectives[adjectives.length] = "fluffy";
+				adjectives[adjectives.length] = "soft";
+			}
+			if(hasTailFlag(GLOBAL.SMOOTH)) 
+			{
+				adjectives[adjectives.length] = "smooth";
+				adjectives[adjectives.length] = "sleek";
+			}
+			if(tailType == GLOBAL.LAPINE)
+			{
+				adjectives[adjectives.length] = "twitching";
+				adjectives[adjectives.length] = "rabbit-like";
+				adjectives[adjectives.length] = "lapine";
+			}
+			else if(tailType == GLOBAL.EQUINE)
+			{
+				adjectives[adjectives.length] = "equine";
+				adjectives[adjectives.length] = "horse-like";
+			}
+			else if(tailType == GLOBAL.CANINE)
+			{
+				adjectives[adjectives.length] = "ausar";
+				adjectives[adjectives.length] = "dog-like";
+			}
+			else if(tailType == GLOBAL.BOVINE)
+			{
+				adjectives[adjectives.length] = "bovine";
+				adjectives[adjectives.length] = "cow-like";
+			}		
+			//Show color 50% of the time
+			if(rand(2) == 0 && adjectives.length > 0) description = adjectives[rand(adjectives.length)] + " ";
+			//Pick a noun.
+			description += nouns[rand(nouns.length)];
+			return description;
 		}
 		public function tailsDescript():String {
 			if(tailCount == 1) return tailDescript();
