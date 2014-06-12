@@ -658,5 +658,9 @@
 		{
 			return chars["MIMBRANE"];
 		}
+		public function get anno():*
+		{
+			return chars["ANNO"];
+		}
 	}
 }

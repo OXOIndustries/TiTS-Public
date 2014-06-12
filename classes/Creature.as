@@ -1658,6 +1658,31 @@
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
+		//Placeholders for when i rework the personality system soon-ish.
+		public function addHard(arg:Number):void
+		{
+			personality += arg;
+			if(personality > 100) personality = 100;
+		}
+		public function addNice(arg:Number):void
+		{
+			personality -= arg;
+			if(personality < 0) personality = 0;
+		}
+		public function addMischievous(arg:Number):void
+		{
+			var originalPersonality:Number = personality;
+			if(personality < 50)
+			{
+				personality += arg;
+				if(personality > 50) personality = 50;
+			}
+			else
+			{
+				personality -= arg
+				if(personality < 50) personality = 50;
+			}
+		}
 		//XP!
 		function XP(arg: int = 0): Number {
 			XPRaw += arg;

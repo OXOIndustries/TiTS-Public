@@ -121,6 +121,7 @@ function dumbfuckCodexEntry():void
 public function sydianCodexEntry():void
 {
 	clearOutputCodex();
+	userInterface.showBust("SYDIAN_MALE","SYDIAN_FEMALE");
 	outputCodex(header("Sydian"));
 	outputCodex("<b>Name:</b> Sydian");
 	outputCodex("\n<b>Sexes:</b> Male and Female");
@@ -156,6 +157,7 @@ public function lapinaraCodexEntry():void
 	clearOutputCodex();
 	//Name: 
 	outputCodex(header("Lapinara"));
+	userInterface.showBust("LAPINARA","LAPINARA_2");
 	outputCodex("<b>Name:</b> Lapinara (same singular and plural)");
 	outputCodex("\n<b>Sexes:</b> Female (parasitic variant), Female (non-parasitic variant), Male, Herm, and Genderless.");
 	outputCodex("\n<b>Height:</b> Anywhere between 3 and 4 ft for all genders.");
@@ -178,6 +180,7 @@ public function lapinaraCodexEntry():void
 public function raskVelCodexEntry():void
 {
 	clearOutputCodex();
+	userInterface.showBust("RASKVEL_MALE","RASKVEL_FEMALE","RASKVEL_MALE_NUDE","RASKVEL_FEMALE_NUDE");
 	outputCodex(header("Raskvel Codex"));
 	outputCodex("<b>Name:</b> Raskvel");
 	outputCodex("\n<b>Sexes:</b> Male & Female");
@@ -345,7 +348,7 @@ public function VKoCodex():void
 public function ausarCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("SYRI"); // An example of an Ausar?
+	userInterface.showBust("SYRI","ANNO","SYRI_NUDE","ANNO_NUDE"); // An example of an Ausar?
 
 	outputCodex(header("The Ausar"));
 	outputCodex("\n<b>Sexes:</b> Male and female.");
@@ -569,7 +572,7 @@ public function mimbraneCodexEntry():void
 
 function venusPitcherCodexEntry():void {
 	clearOutputCodex();
-	userInterface.showBust("VENUSPITCHER");
+	userInterface.showBust("VENUSPITCHER","VENUS_PITCHER_ELDER");
 	outputCodex(header("Venus Pitchers"));
 	outputCodex("\n<b>Sexes:</b> Hermaphrodite");
 	outputCodex("\n<b>Height:</b> Three to fifteen feet above the ground, depending on age.");
@@ -654,7 +657,7 @@ function cuntSnakeCodexEntry():void
 function naleenCodexEntry():void
 {
 	clearOutputCodex();
-	userInterface.showBust("NALEEN");
+	userInterface.showBust("NALEEN","NALEEN_MALE");
 
 	outputCodex(header("The Naleen"));
 	outputCodex("<b>Sexes:</b> Male & Female");
