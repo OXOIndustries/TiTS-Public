@@ -84,6 +84,11 @@ function approachDCLTrap():void
 	if(pc.hasVagina() && pc.lust() >= 33) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut's face and make her go to work pleasing you.");
 	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del's face requires you have a vagina and be suitably lusty.");
 	addButton(2,"Get Drink",getADrinkFromDCLsButt,undefined,"Get Drink","Ask about purchasing a drink.");
+
+	//Slut Training
+	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
+	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You're the perfect person to show her how it's done...");
+	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be an trappy, non anal virgin so that you can show Delilah how it's done.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -106,6 +111,10 @@ function approachDCLBooty():void
 	if(pc.hasVagina() && pc.lust() >= 33) addButton(1,"Face Sit",sitOnDelilahsFace,undefined,"Face Sit","Sit on the trapslut's face and make her go to work pleasing you.");
 	else addDisabledButton(1,"Face Sit","Face Sit","Sitting on Del's face requires you have a vagina and be suitably lusty.");
 	addButton(2,"Get Drink",getADrinkFromDCLsButt,undefined,"Get Drink","Ask about purchasing a drink.");
+	//Slut Training
+	//Requirement: PC is a trap or shemale with a non-virgin asshole. Access via normal sex menu
+	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(3,"SlutTraining",delilahSlutTraining,undefined,"SlutTraining"," Delilah needs to learn how to properly service her clients with that tight little ass of hers. You're the perfect person to show her how it's done...");
+	else addDisabledButton(3,"SlutTraining","SlutTraining","SlutTraining requires you to be an trappy, non anal virgin so that you can show Delilah how it's done.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -490,16 +499,18 @@ function stephIrsonEpisodeTwo():void
 function delilahSlutTraining():void
 {
 	clearOutput();
-	//9999
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH_NUDE");
+	author("Savin");
 	output("<i>\"Not me, no,\"</i> you say, taunting the cute trap. You curl your finger in a come-hither, drawing her out from behind the bar, and take a look at your trappy protege. She's lithe and feminine, whether by gene-mod or naturally, you don't know; either way, she's certainly more girly than man, especially in the cross between maid uniform and outright lingerie she's dressed up in, complete with thigh-high stockings and garter hidden under a sinfully short skirt that can't quite reach to her knees. The perfect combination of cute and slutty, just right for someone like the two of you.");
-	output("\n\n<i>\"Watch and learn,\"</i> you breathe into her ear, close enough that your [pc.lips] brush against her ear as you slip over to the bar, bending over it and wiggling your [pc.hips] toward the patrons of the bar. A few boys look your way as you shimmy up onto the bar, ass in the air, giving everyone who even glances your way a full-force show as you start to peel off your [pcc.gear], revealing the full cheeks of your [pc.butt]. That gets their attention: a few wolf-whistles and cat-calls come your way as you let your hind end slip free, making sure to spread 'em wide as your welcoming little hole comes into view while simultaneously keeping your [pc.cock] well out of view, trapped between your [pc.legs].");
+	output("\n\n<i>\"Watch and learn,\"</i> you breathe into her ear, close enough that your [pc.lips] brush against her ear as you slip over to the bar, bending over it and wiggling your [pc.hips] toward the patrons of the bar. A few boys look your way as you shimmy up onto the bar, ass in the air, giving everyone who even glances your way a full-force show as you start to peel off your [pc.gear], revealing the full cheeks of your [pc.butt]. That gets their attention: a few wolf-whistles and cat-calls come your way as you let your hind end slip free, making sure to spread 'em wide as your welcoming little hole comes into view while simultaneously keeping your [pc.cock] well out of view, trapped between your [pc.legs].");
 	output("\n\nYou cast a glance over your shoulder to your impromptu audience, gratified to see several tented trousers among the gathering of humans, ausar, and other coreward races sitting in the booths, all with a front-row seat to your show. Now for a little audience participation....");
 	output("\n\nYou reach back and give yourself a slap on the ass, drawing a sharp breath at the gratifying snap of pain, and the motion of your jiggling cheeks as they recoil from the blow. Your hand moves in, spreading your cheeks wide so everyone can get a good look at your [pc.asshole], shamelessly on display and already craving cock. You can <i>feel</i>the need in your loins and hole, hungry for the familiar taste of cock inside you, pounding you into the cold, unforgiving wood of the bar, stretching your slutty hole wide open.");
 	output("\n\nYour mouth is watering. And oh <i>god</i> is your cock hard.");
 	output("\n\n<i>\"Why don't you get me ready?\"</i> you whisper to Del with another wiggle of your [pc.hips].");
 
 	//if 1-4 time:
-	if(9999 <= 4)
+	if(timesDelilahSexed() <= 4)
 	{
 		output("\n\n<i>\"W-what do you...\"</i> Del starts to ask, before you reach back, grab her head, and smash it down into the crack of your ass. She gasps, struggling against your grasp as your hold her against your butt, waiting until the inevitable sinks in. To her credit, she learns fast.");
 	}
@@ -522,14 +533,14 @@ function delilahSlutTraining():void
 	output("\n\n<i>\"Oh yeah! Fuck me!\"</i> your purr, even as his cock's halfway inside you, using the previous tenant's spunk as a thicker, longer-lasting lube to slide easily into your unopposing depths. As the man hilts himself inside you, you can't hold back a long, moaning <i>\"Ooohhh fuck.\"</i>");
 	output("\n\nYou pull yourself up onto your elbows as the man gets to ass-fucking you, tearing off what remains of your [pc.gear] to get at your [pc.chest], tweaking one of your stiff nipples to add to your pleasure. From this angle, you can see more than half the bar's on their feet, tented pants (and a few skirts, you note) on display as a bit of a line forms up behind you, everyone eager to get their turn at your [pc.asshole]. Now there's a thought you can relish for a while. Between lewd moans and husky words of encouragement to your current butt-lover, you whistle over to another man in the crowd, wiggling a finger until he's in front of you, cock flopping out of his jeans. You twist a bit to get a good angle on the juicy-looking cock on display, brushing your fingertips up the turgid length until your hand is wrapped around it, guiding it toward your mouth.");
 	output("\n\nAs your tongue lashes out toward the man's prick, your eyes roll back at the wonderful, earthy taste of cock. You feel yourself trembling as you take the dick into your mouth, wrapping your [pc.lips] around the head and tasting the salty flavor. You guide your third john in, opening wide to let him bury himself in your mouth, even as number two's pounding away at your other hole. You lose yourself into the mindless bliss of the double-team, eyes fluttering closed as you let your cock-wielding customers use your body as they like. You barely even notice this time as the man fucking your ass cums, spraying your colon with another load of seed to ease the entrance of the next.");
-	output("\n\nMinutes of cock-sucking and ass-fucking go by before you manage to remember why you started this -- other than your own rampant cocklust, anyway. You grunt as the third man cums in your mouth, shooting a thick load of spunk down your throat. With a cough and a lip-licking grin, you let him stumble off. With spooge drooling down your chin, you turn to Del, and find her staring wide-eyed at you, ");
+	output("\n\nMinutes of cock-sucking and ass-fucking go by before you manage to remember why you started this - other than your own rampant cocklust, anyway. You grunt as the third man cums in your mouth, shooting a thick load of spunk down your throat. With a cough and a lip-licking grin, you let him stumble off. With spooge drooling down your chin, you turn to Del, and find her staring wide-eyed at you, ");
 	//if 1-4:
-	if(9999 < 4) output"utterly horrified at the display on hard");
+	if(timesDelilahSexed() < 5) output("utterly horrified at the display on hard");
 	else output("a look of utter, needy lust writ large on her whorish face");
 	output("."); 
 
 	output("\n\n<i>\"Come on,\"</i> you say, patting the bar beside you. You barely notice a big glob of spunk fall out of your mouth, splattering on the wood. The trappy slut looks nervously at the line of men waiting to try out your ass or mouth, but ");
-	if(9999) output("resigned to her fate");
+	if(timesDelilahSexed() < 5) output("resigned to her fate");
 	else output("giving in to her own lusts");
 	output(", she clambers up beside you, mirroring your position of submission, sticking her ass up in the air and shimmying out of her panties, leaving her own little hole open to the crowd.");
 
@@ -544,21 +555,32 @@ function delilahSlutTraining():void
 	output("\n\nYou watch with glee as the horsecock-toting hermaphrodite circles around you and the fellow currently making use of your ass, stepping up behind Del as the lithe little trap recovers from her ass-pounding. She goes wide-eyed as a two-inch thick rod of horsemeat suddenly flops onto her back, looking almost as long as her torso at this angle. You lick your lips, suddenly reminded of just how <i>hard</i> you are as you watch the horse-herm rub the flare of her prick through Del's spread crack, slathering the her crown with the runoff seed of the last john to take your trappy protege.");
 	output("\n\nSufficiently lubed up, the equine babe gives you a sultry wink and thrusts her hips towards Del's. The trap-slut screams in pain and pleasure as she's suddenly and violently stretched open on the blunted flare of the horsecock. As she's introduced to the thick, throbbing horsemember, you're suddenly all-too-aware of the cock pumping into your own hole, and how very near to orgasm you are. You try to hold back, clenching your [pc.cock] tight between your [pc.legs], focusing not on the thick, spunk-slathered schlong pounding your hole, but on the huge, girthy, gut-distending rod slowly splitting Delilah in half. She's being physically lifted from the ground on the rigid length of horsemeat probing her guts, feet dangling as the towering equine's dick visibly stretches her body out, showing through her once-flat belly as it travels through the tight passage of her ass.");
 	output("\n\nBetween the lewd show Del and the horsecock'd girl are putting on and the ever-present feeling of being fucked, the constant pressure on your backdoor pleasure-buzzer and the churning in your [pc.balls], you can't hold out for long. You look back at the guy currently balls-deep in your ass and, in the most seductive voice you can manage while drooling cum from two holes and just about to bust your own nut, moan out, <i>\"Cum with me! Shoot your load deep inside! Make me cum!\"</i>");
-	output("\n\nThat gets him excited. The man grabs your [pc.hips] and plows in, thrusting fast and hard until you're both moaning openly, and you can feel the familiar, rising pleasure of an anal orgasm riding up on you. You grip the bar as tight as you can, focusing entirely on the ass-spearing pleasure and the sight of Del being fucking into a quivering pile of trappy lust. Oh, you could get used to this...
+	output("\n\nThat gets him excited. The man grabs your [pc.hips] and plows in, thrusting fast and hard until you're both moaning openly, and you can feel the familiar, rising pleasure of an anal orgasm riding up on you. You grip the bar as tight as you can, focusing entirely on the ass-spearing pleasure and the sight of Del being fucking into a quivering pile of trappy lust. Oh, you could get used to this....");
+	output("\n\nYou reward your ardent lover with a high, girly whine of pleasure as he fills you with a thick wad of man-goo, joining the lake already backed up in your [pc.asshole], and finally let yourself cum. As soon as your relax yourself, you feel a surge of [pc.cum] rushing through your [pc.cock], explosively splattering on the side of the bar as the cum's fucked out of your from behind. Moaning like the whore you are, you ride out the orgasm to the beat of the buttfucking, smearing your thighs and the wood of the bar with your messy orgasm, enjoying every moment of cumming like a proper girl.");
+	output("\n\nYou give a self-pleasured shudder as the last cock pulls slowly out of your cum-stuffed backdoor, letting spooge leak out like a waterfall as your still-twitching muscles work out all that backlogged spunk. You collapse atop the bar, barely sensate, just keeping your eyes open long enough to watch Del's belly suddenly swell as the horse-girl blows her load deep in the dusky trap's ass, leaving her looking nine months pregnant before she pulls out with a gusto, letting a flood of horse-cream flow out onto the floor....");
+	if(pc.isAss()) output(" Gonna have to make Del clean all this up after. Maybe with her mouth.");
+	pc.orgasm();
+	pc.orgasm();
+	processTime(60+rand(5));
+	clearMenu();
+	addButton(0,"Next",delSlutTraining2);
+	//Pass ~1 hr
+}
 
-You reward your ardent lover with a high, girly whine of pleasure as he fills you with a thick wad of man-goo, joining the lake already backed up in your [pc.asshole], and finally let yourself cum. As soon as your relax yourself, you feel a surge of [pc.cum] rushing through your [pc.cock], explosively splattering on the side of the bar as the cum's fucked out of your from behind. Moaning like the whore you are, you ride out the orgasm to the beat of the buttfucking, smearing your thighs and the wood of the bar with your messy orgasm, enjoying every moment of cumming like a proper girl. 
-
-You give a self-pleasured shudder as the last cock pulls slowly out of your cum-stuffed backdoor, letting spooge leak out like a waterfall as your still-twitching muscles work out all that backlogged spunk. You collapse atop the bar, barely sensate, just keeping your eyes open long enough to watch Del's belly suddenly swell as the horse-girl blows her load deep in the dusky trap's ass, leaving her looking nine months pregnant before she pulls out with a gusto, letting a flood of horse-cream flow out onto the floor.... {If Hard: Gonna have to make Del clean all this up after. Maybe with her mouth.}
-
-[Next]
-//Pass ~1 hr
-
-<b>Time passes...</b>
-
-You lost count of how many men (and women!) have used your body. At least thirty; probably more. Someone got on their holoband and called their friends over after the line got thinned out, and pretty soon you and Del were swimming in an ocean of spooge coating yourselves and the bar. You can't feel your [pc.legs] anymore... but in a good, contented, tired-from-getting-your-brains-fucked-out sort of way. You lie with your back atop the bar, your [pc.legs] spread almost to your ears as the last man standing finishes himself inside you. You give an approving gasp, nearly joining him -- though you've already cum on yourself enough for one day, perhaps: your [pc.chest] is completely soaked, with rivulets running off your bare body to stain the hardwood below you. 
-
-With a grunt, the last john of the day pulls out of you, still leaking cum, and wipes himself off on your thigh. You give him a wink and blow a kiss after him before collapsing back, trying to catch your breath. Delilah's beside you still, though you're not sure if she's still conscious: that horsecock'd woman left her pretty well ruined for the moment, and only the best-endowed me have used her since. But she's certainly gotten her taste of what it REALLY means to be a cock-hungry whore. You lean over and give her a peck on the cheek before unsteadily clambering off the bar and searching for your gear. Nice and cum-soaked...
-
+function delSlutTraining2():void
+{
+	clearOutput();
+	userInterface.showName("\nDELILAH");
+	userInterface.showBust("DELILAH_NUDE");
+	author("Savin");
+	output("<b>Time passes...</b>");
+	output("\n\nYou lost count of how many men (and women!) have used your body. At least thirty; probably more. Someone got on their holoband and called their friends over after the line got thinned out, and pretty soon you and Del were swimming in an ocean of spooge coating yourselves and the bar. You can't feel your [pc.legs] anymore... but in a good, contented, tired-from-getting-your-brains-fucked-out sort of way. You lie with your back atop the bar, your [pc.legs] spread almost to your ears as the last man standing finishes himself inside you. You give an approving gasp, nearly joining him - though you've already cum on yourself enough for one day, perhaps: your [pc.chest] is completely soaked, with rivulets running off your bare body to stain the hardwood below you.");
+	output("\n\nWith a grunt, the last john of the day pulls out of you, still leaking cum, and wipes himself off on your thigh. You give him a wink and blow a kiss after him before collapsing back, trying to catch your breath. Delilah's beside you still, though you're not sure if she's still conscious: that horsecock'd woman left her pretty well ruined for the moment, and only the best-endowed me have used her since. But she's certainly gotten her taste of what it REALLY means to be a cock-hungry whore. You lean over and give her a peck on the cheek before unsteadily clambering off the bar and searching for your gear. Nice and cum-soaked....");
+	processTime(15);
+	timesDelilahSexed(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
 
 
