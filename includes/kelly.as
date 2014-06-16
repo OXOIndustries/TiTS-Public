@@ -1601,8 +1601,8 @@ function useKellysHoneyForCooking():void
 	processTime(20);
 	clearMenu();
 	addButton(0,"Yes",haveKellyServeAfterUsingHerHoney,undefined,"Yes","Kelly will serve dinner.");
-	addButton(1,"Serve Her",haveKellyServeAfterUsingHerHoney,undefined,"Serve Her","You will serve dinner.");
-	addButton(2,"No",haveKellyServeAfterUsingHerHoney,undefined,"No","Everyone will get their own meal.");
+	addButton(1,"Serve Her",serveKellyDindinsAfterUsingHerHoney,undefined,"Serve Her","You will serve dinner.");
+	addButton(2,"No",noServingFoodAfterKellyUsesHerCum,undefined,"No","Everyone will get their own meal.");
 }
 
 //[=Yes=]

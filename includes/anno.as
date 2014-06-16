@@ -294,7 +294,6 @@ function doNothingWhileAnnoShoots():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",takeYourShot)
-	takeYourShot()
 }
 
 //Grope Her
@@ -316,7 +315,6 @@ function gropeAnnoShoots():void
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",takeYourShot,true)
-	takeYourShot()
 }
 
 //Take Your Shot!
