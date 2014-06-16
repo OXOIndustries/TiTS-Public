@@ -193,7 +193,7 @@ function specialsMenu():void {
 		}
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor,"Gravidic Disruptor","Deals a moderate amount of intelligence-based gravidic damage to a single target.\n\nConsumes 25 energy.");
+			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
 			else addDisabledButton(3,"G. Disrupt.");
 		}
 	}
@@ -2139,7 +2139,7 @@ function gravidicDisruptor(target:Creature):void
 {
 	clearOutput();
 	pc.energy(-25);
-	output("Raising the disruptor, you unleash a targetted gravidic disruption on " + target.a + target.short + "! ");
+	output("Raising the disruptor, you unleash a targetted gravitic disruption on " + target.a + target.short + "! ");
 	var damage:Number = Math.round(10 + pc.intelligence()/2 + rand(10));
 	genericDamageApply(damage,pc,target,GLOBAL.GRAVITIC);
 	output("\n");

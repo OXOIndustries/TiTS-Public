@@ -304,7 +304,7 @@ package classes.GameData
 			gDisrupt.classLimit = GLOBAL.ENGINEER;
 			gDisrupt.levelLimit = 5;
 			gDisrupt.perkName = "Gravidic Disruptor";
-			gDisrupt.perkDescription = "Grants the ability to deal Gravidic damage to targetted enemies. There shouldn't be anything out there that's resistant to gravidic damage!";
+			gDisrupt.perkDescription = "Grants the ability to deal Gravidic damage to targetted enemies. There shouldn't be anything out there that's resistant to gravitic damage!";
 			insertPerkData(gDisrupt);
 			
 			var tDisrupt:PerkData = new PerkData();

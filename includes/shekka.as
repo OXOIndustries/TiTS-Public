@@ -673,7 +673,7 @@ function shekkaSexMenu():void
 	//big dick requirement in tandem with a minimum height requirement of around 5’6\"</i> (5-6 feet)
 	//Requires 500mLs fo cum
 	trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + pc.cumQ());
-	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() >= 0 && pc.tallness >= 60 && pc.cumQ() >= 500) 
+	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && pc.cumQ() >= 500) 
 		addButton(2,"Big Dick",hugeEarShekkaFaps,undefined,"Big Dick Shenanigans","Use your oversized member on the small mechanic. She's gotta have some way to please it, right?");
 	else addDisabledButton(2,"Big Dick","Big Dick Shenanigans","This scene requires a large dick, a height of above five feet, and large volume of cum.");
 
@@ -794,10 +794,13 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		{
 			output(" Gigantic blasts of [pc.cum] force their way into Shekka's eager tunnel");
 			if(y >= 0) output("s");
-			output(" packing them full with the first few injections. The next ones, sealed in by your knot");
+			output(" packing ");
+			if(y >= 0) output("them ");
+			else output("it ");
+			output("full with the first few injections. The next ones, sealed in by your knot");
 			if(y >= 0) output("s");
 			output(", swell her [shekka.belly] with added weight, giving her a positively pregnant appearance.");
-			if(!knots) output(" Sadly, you don't have knots to plug both sides, and waves of hot-pumping [pc.cumNoun] vent out over one of your [pc.cocks].");
+			if(!knots && y >= 0) output(" Sadly, you don't have knots to plug both sides, and waves of hot-pumping [pc.cumNoun] vent out over one of your [pc.cocks].");
 			if(pc.cumQ() >= 5000) output(" Her wobbly, spunk-stuffed tummy grows so big that you worry for her health, but by then the fluid distention widens her passage enough for streams of it to sluice out over your crotch, venting the pressure.");
 		}
 		output("\n\nYou go limp, your ardor spent, but your knot");
@@ -839,7 +842,10 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		{
 			output("Gigantic blasts of [pc.cum] force their way into Shekka's eager tunnel");
 			if(y >= 0) output("s");
-			output(" packing them full with the first few injections. The next ones, heavy as they are, swell her [shekka.belly] with added weight, giving her a positively pregnant appearance. Waves of excess, hot-pumping [pc.cumNoun] vent out over your [pc.cocks] as you continue to ejaculate, sluicing down your ");
+			output(" packing ");
+			if(y >= 0) output("them ");
+			else output("it ");
+			output(" full with the first few injections. The next ones, heavy as they are, swell her [shekka.belly] with added weight, giving her a positively pregnant appearance. Waves of excess, hot-pumping [pc.cumNoun] vent out over your [pc.cocks] as you continue to ejaculate, sluicing down your ");
 			if(pc.balls > 0) output("[pc.balls]");
 			else output("[pc.leg]");
 			output(".");
