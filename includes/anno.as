@@ -608,7 +608,7 @@ function earScritchesForAnno():void
 	pc.lust(3);
 	//[Sex][Tease]
 	clearMenu();
-	if(pc.lust() >= 33 && pc.hasCock() && pc.hasVagina()) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
+	if(pc.lust() >= 33 && pc.hasCock() || pc.hasVagina()) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
 	else addDisabledButton(0,"Sex","Sex","You need to be turned on enough for sex and have a penis or vagina.");
 	addButton(1,"Tease",teaseAnno,undefined,"Tease","Tease her like a dog - really pet that bitch.");
 }
@@ -700,19 +700,22 @@ function askAbootAnnoz():void
 	//{if PC has met Syri:}
 	if(flags["MET_SYRI"] != undefined)
 	{
-		output("\n\n<i>\"Wait... do you mean Syri?\"</i>");
-		output("\n\nAnno blinks. <i>\"You know my sister?\"</i>");
-		output("\n\n<i>\"Yeah, I met her back on Mhen'ga.\"</i>");
-		flags["UNLOCK_SYRI_ANNO_TALK"] = 1;
-		//If PC fucked Syri:
-		if(flags["FUCKED_SYRI_COUNT"] != undefined)
+		if(flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] == undefined)
 		{
-			output(" You could tell Anno about your relationship with her sister at this point, and try your luck. Or just keep it to yourself. It's not technically lying, right?");
-			//[Tell Her] [Don't]
-			clearMenu();
-			addButton(0,"Tell Her",tellAnnoAboutSyri);
-			addButton(1,"Don't",dontTellAnnoAboutSyri);
-			return;
+			output("\n\n<i>\"Wait... do you mean Syri?\"</i>");
+			output("\n\nAnno blinks. <i>\"You know my sister?\"</i>");
+			output("\n\n<i>\"Yeah, I met her back on Mhen'ga.\"</i>");
+			flags["UNLOCK_SYRI_ANNO_TALK"] = 1;
+			//If PC fucked Syri:
+			if(flags["FUCKED_SYRI_COUNT"] != undefined)
+			{
+				output(" You could tell Anno about your relationship with her sister at this point, and try your luck. Or just keep it to yourself. It's not technically lying, right?");
+				//[Tell Her] [Don't]
+				clearMenu();
+				addButton(0,"Tell Her",tellAnnoAboutSyri);
+				addButton(1,"Don't",dontTellAnnoAboutSyri);
+				return;
+			}
 		}
 		output("\n\nShe smirks. <i>\"Hey, if you see her, tell her I said 'Write me, bitch!'\"</i>");
 	}
@@ -730,6 +733,7 @@ function tellAnnoAboutSyri():void
 	if(flags["SYRI_TALKS"] != undefined) output("<i>\"We got pretty close, actually.\"</i>");
 	else output("<i>\"We, uh, hung out.\"</i>");
 
+	flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] = 1;
 	//If PC has sex'd Anno:
 	if(annoSexed() == 0)
 	{
