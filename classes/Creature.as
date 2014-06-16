@@ -1484,7 +1484,7 @@
 					buffer = toes();
 					break;
 				case "knees":
-					buffer = knees();
+					buffer = kneesDescript();
 					break;
 				case "belly":
 					buffer = bellyDescript();
@@ -3003,7 +3003,7 @@
 		{
 			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
 		}
-		public function knees(): String {
+		public function kneesDescript(): String {
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
