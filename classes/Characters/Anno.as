@@ -14,7 +14,7 @@
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.inventory.push(new HammerCarbine());
 			this.inventory.push(new LaserCarbine());
@@ -165,6 +165,7 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+			this.ass.bonusCapacity = 30;
 			this.createVagina();
 			this.vaginas[0].wetnessRaw = 6;
 			this.vaginas[0].loosenessRaw = 1;
