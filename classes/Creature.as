@@ -1644,15 +1644,18 @@
 			}
 		}
 		public function isNude(): Boolean {
+			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
 		}
 		public function isCrotchGarbed(): Boolean {
+			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			return (armor.shortName != "" || lowerUndergarment.shortName != "");
 		}
 		public function isGroinCovered(): Boolean {
 			return isCrotchGarbed();
 		}
 		public function isChestCovered(): Boolean {
+			if(hasStatusEffect("Temporary Nudity Cheat")) return false;
 			return (armor.shortName != "" || upperUndergarment.shortName != "");
 		}
 		public function isChestGarbed(): Boolean {

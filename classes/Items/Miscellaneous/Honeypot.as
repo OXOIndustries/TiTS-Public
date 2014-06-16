@@ -65,6 +65,7 @@
 			var choices:Array;
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
+				kGAMECLASS.author("n666");
 				//Usage text:
 				//{Effect: If pc has a Vagina, changes girlCum to Honey.}
 				if(target.hasVagina())

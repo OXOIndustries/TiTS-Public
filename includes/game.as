@@ -67,6 +67,8 @@ public function mainGameMenu():void {
 	setLocation(this.rooms[this.currentLocation].roomName,this.rooms[this.currentLocation].planet,this.rooms[this.currentLocation].system);
 	if(inCombat()) 
 		output("\n\n<b>You're still in combat, you ninny!</b>");
+	if(pc.hasStatusEffect("Temporary Nudity Cheat"))
+		output("\n\n<b>BUG REPORT: TEMP NUDITY STUCK ON.</b>");
 	//Standard buttons:
 	this.clearMenu(false);
 	this.userInterface.showBust("none");

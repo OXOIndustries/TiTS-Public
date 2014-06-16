@@ -21,6 +21,15 @@ public function kellyFucked():void
 	flags["KELLY_SEXED"]++;
 }
 
+public function tempNudeOn():void
+{
+	if(pc.hasStatusEffect("Temporary Nudity Cheat")) pc.createStatusEffect("Temporary Nudity Cheat",0,0,0,0,true,"","",false);
+}
+public function tempNudeOff():void
+{
+	pc.removeStatusEffect("Temporary Nudity Cheat");
+}
+
 //Appearance
 function kellyAppearance():void {
 	clearOutput();
@@ -1430,6 +1439,7 @@ function getComfyAfterKellyShopping():void
 	//if Attraction =< 50:
 	if(kellyAttraction() <= 50) output("\n\nKelly turns to watch you, openly enjoying every moment as your clothes come off and you are standing naked before her. She lets out a wolf whistle of delight once the last comes off. <i>\"Now there's a sight to admire; stick around after dinner, maybe we'll have a bit of my special dessert,\"</i> she coos, winking at you.");
 	else output("\n\nKelly immediately snaps around to face you, blatantly ogling with glee as you make yourself as naked as she is. With an almost predatory intensity she struts towards you, making a circuit around you as the last bit of gear hits the floor. <i>\"Now you, honey, are what we call <b>damn</b> fine... you have <b>got</b> to stick around after dinner, try some of my special dessert,\"</i> she coos. The sudden admiring slap she delivers to your [pc.butt] in emphasis of the word \"special\" leaves you with little doubt as to what's on her mind.");
+	tempNudeOn();
 	kellyDinnerPrepGogo();
 }
 
@@ -1749,6 +1759,7 @@ function refuseDesertFromKellysWang():void
 		output("\n\n<i>\"That'll do it,\"</i> she giggles dreamily, still looking a little dopey.");
 	}
 	output("\n\nYou apologise, but you really should get going.");
+	tempNudeOff();
 	if(!pc.isNude()) output(" With a quick stop to gather your gear and dress up, y");
 	else output(" Y");
 	output("ou thank her for the food and make your way towards the door.");
@@ -2026,6 +2037,7 @@ function postMealEpilogue():void
 	showKellyName();
 	author("Quiet Browser & LD");
 	output("\n\n<i>\"Well, honey... since dinner went down so smooth, how about some dessert before you go, hmm?\"</i> Kelly's voice is husky with desire as she suggests this, one hip outthrust, shafts rising shamelessly before her, one hand kneading her breasts with abandon as she awaits your decision.");
+	tempNudeOff();
 	processTime(12);
 	//Display Sex Scene options, PC gains a boost to Attraction (say, 15, 20?)//
 	kellyAttraction(15);
@@ -3030,12 +3042,12 @@ function kellysCocksGetBLOWN():void
 	output("\n\nA trill of bliss bursts from Kelly's lips, interrupted when you start smearing her precum along her upper shaft by a faint giggle and a full-body shiver that you can feel right through the cock in your mouth. The laquine's ticklish, it seems... but it also seems that she rather enjoys it, since she inches forward again, trying to avoid moving in such a way that she'll accidentally pop her dick from your mouth, her other hand joining the first atop your head to help her balance.");
 
 	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. But surely she must realise this?");
-	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
+	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
 
 	output("\n\nEvidently, no, she doesn't realise it. She just keeps on blindly inching forward, a slave to her lusts and her fixation on your mouth, pumping her hips even as she crawls forward. Finally, she pushes her luck too far; as you are lifting your head back along her shaft, she pumps forward in an effort to keep it inside of your mouth, only to lose her balance completely! With a startled yelp, Kelly falls clean off the table, sending it clattering off its legs behind her as she hurtles down right on top of you!");
 
 	output("\n\n");
-	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0) output("Oh bother, not again! ");
+	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("Oh bother, not again! ");
 	output("You steel yourself to catch the falling laquine as you immediately hop back to avoid getting hurt by the crashing table. ");
 	//Strength Check:
 	if(pc.physique() > 30) output("Luckily you’re strong enough to heft her up as a loud bang of wood-meets-floor resounds around the kitchen.");
@@ -3064,7 +3076,7 @@ function kellysCocksGetBLOWN():void
 			output("\n\nYou extend your [pc.wings] and point a thumb at them. Clearly you’d have flown over her head and landed safely and sound away from this mess, or better yet....");
 		}
 		output("\n\nYou wouldn’t have made this mess in the first place.");
-		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0) output(" Much less repeat it after the first time, you add.");
+		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" Much less repeat it after the first time, you add.");
 		output(" Closing your hand you lightly knock on her head. Is there a brain in there or is she just not using it? You doubt you’ve developed to suck her brains out through her dick yet.");
 		output("\n\n<i>\"Yes, there's a brain in there,\"</i> she pouts at you in wounded dignity. <i>\"But, like I always say, if you have time to use your brain when you're fucking, you're clearly not enjoying yourself properly,\"</i> she declares with a huff, folding her arms under her impressive cleavage for emphasis.");
 		output("\n\nChuckling, you tug on her nipple and muffle her moan with a kiss. Alright, she has a point, you concede. Now, back to dessert?");
@@ -3077,7 +3089,7 @@ function kellysCocksGetBLOWN():void
 		output("\n\nWithout another word you adjust her and bend her over your lap, lifting a hand and spanking her pretty butt hard enough to leave hand imprints.");
 		output("\n\nKelly yelps and squirms at each slap, but the throbbing of her cocks against your thighs and the sticky smears they leave as each impact makes them rub against your [pc.skinFurScales] makes it clear that she's not entirely put out by the roughness. When you finally deign to stop spanking her, she lets out a childish moan of disapproval, one hand reaching back to gently stroke the now-tenderised flesh of her butt. <i>\"Why'd you do that? It was an accident,\"</i> she whines.");
 		output("\n\n");
-		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0) output("She obviously didn’t learn her lesson the first time, so a repeat of her punishment is in order, you retort.");
+		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("She obviously didn’t learn her lesson the first time, so a repeat of her punishment is in order, you retort.");
 		else output("An accident that could have been easily avoided if she was less of a slut or less of a showoff, you retort.");
 		output(" She was a bad girl, messing up the kitchen like that. And you punish your girls when they’re naughty. It’s only logical, you explain.");
 		output("\n\n<i>\"I guess,\"</i> she declares, clearly trying to sound grudging as she does so. <i>\"Though I suppose I'm lucky; my mom spanks me a lot harder than that when I do something wrong,\"</i> she admits, actually giggling as she does so, her former gloom brushed to the wayside now.");
@@ -3086,7 +3098,7 @@ function kellysCocksGetBLOWN():void
 		output("\n\nYou drape an arm over her shoulders, smiling confidently. She’s got one little detail wrong. It’s always sexy when it’s you doing the spanking. Now if she doesn’t want another. You haven’t finished your dessert yet.");
 		output("\n\n<i>\"Oh? Still hungry? Well...\"</i> she trails off, making a show of thinking about, one hand placing its fingers delicately upon her chin, the other tracing idle circles atop the nearest of her flat glanses. <i>\"I think I can still give you what you need,\"</i> she declares, a wicked smirk on her lips.");
 	}
-	output("\n\nLifting herself daintily from your lap, the horny laquine sashays over to a chair that remained standing when she brought the table. With an exaggerated flick of her tail - and the luscious ass underneath - she plonks herself down upon it, balls hanging comfortably over the edge , grinning as she awaits your approach.");
+	output("\n\nLifting herself daintily from your lap, the horny laquine sashays over to a chair that remained standing when she brought down the table. With an exaggerated flick of her tail - and the luscious ass underneath - she plonks herself down upon it, balls hanging comfortably over the edge , grinning as she awaits your approach.");
 	output("\n\nYou spread her legs and kneel before her, but before you continue you’re just going to have to confirm. <i>\"You’re going to stay in your seat this time, right?\"</i>");
 	output("\n\nKelly pouts indignantly. <i>\"Yes, I am,\"</i> she huffs, turning her nose up at the comment that has so wounded her pride.");
 	output("\n\nYou chuckle at her reaction. Well, no sense in dilly-dallying. You lean over her twin masts and give the lower one a soft kiss, right on its flared tip.");
@@ -3147,7 +3159,7 @@ function drinkAllOfKellysSpoo():void
 	output("\n\nYou can't do much in your condition, so you tell her, <i>\"Sure, go on.\"</i>");
 
 	output("\n\nKelly grins the grin of a cat who's about to get all the cream she wants. <i>\"Trust me, you're going to love this,\"</i> she purrs, already starting to kneel down before you, eventually vanishing beneath your stomach.");
-	if(pc.hasCock() || pc.hasVagina()) output(" From her position, however, you can hear her calling up to you, <i>\"Do you want me to do your cock? Or your pussy?\"</i>");
+	if(pc.hasCock() && pc.hasVagina()) output(" From her position, however, you can hear her calling up to you, <i>\"Do you want me to do your cock? Or your pussy?\"</i>");
 	pc.lust(35);
 	processTime(12);
 	//[Cock][Pussy]
@@ -3866,7 +3878,7 @@ function getDPedByKelly():void
 
 	output("\n\n<i>\"Ah!... Honey, if you keep holding me like that....\"</i> she trails off into a moan of her own. By the time you feel her hips flush against yours, you’re both a panting mess. Kelly strokes your cheek lovingly as you move your [pc.legs] to wrap around her, securing her in place and ensuring she can’t get away.");
 
-	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly what I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you waiting as you conform to the shape of her pricks, tongues dancing as the flame of your lusts threaten to consume you.");
+	output("\n\nShe giggles, <i>\"You don’t have to hold me down, sweet thing. I’m not going anywhere. I’m exactly where I want to be,\"</i> she grins. Slowly, she leans down to wrap your [pc.lips] into a deep kiss. You welcome her questing tongue whilst feeding her your own. The two of you waiting as you conform to the shape of her pricks, tongues dancing as the flame of your lusts threaten to consume you.");
 
 	output("\n\nWith a wet pop, Kelly frees her mouth of yours, tongue lolling momentarily, still linked to yours by a thin strand of saliva. Panting so heavily that her breasts jiggle hypnotically before your eyes, she pushes herself fully upright from where she was sprawled across your belly. A hand reaches down to your hip and pulls you closer to the edge of the bed, adjusting your position to better suit her needs.");
 
