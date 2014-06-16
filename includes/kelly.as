@@ -114,6 +114,7 @@ function kellyOfficeApproach():void {
 	if(flags["CAPTURED_A_FEMALE_ZIL_FOR_DR_HASWELL"] != undefined)
 	{
 		if(!chars["KELLY"].hasItem(new Honeydew())) chars["KELLY"].inventory.push(new Honeydew());
+		if(!chars["KELLY"].hasItem(new Honeypot())) chars["KELLY"].inventory.push(new Honeypot());
 	}
 	output("Kelly looks up at your approach, smiling to see you with her usual chipper attitude. \"<i>Welcome back to Xenogen Research Labs, where the wonders of biotechnology never cease! How may I help you, ");
 	output("[pc.name]");

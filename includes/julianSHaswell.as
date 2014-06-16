@@ -179,6 +179,7 @@ function zilBaggedApproach():void {
 	else
 	{
 		chars["KELLY"].inventory.push(new Honeydew());
+		chars["KELLY"].inventory.push(new Honeypot());
 		output("\n\nShe's suspended in the air by dozens of oily black tentacles, thrusting her hips furtively against a rippling black tube that lies embedded in her mons. You can see the surface buzzing and vibrating as it does its best to extract her nectar, its obscene motions obviously bringing great pleasure to the female. Her eyes have long ago rolled back into her head, lost to the never-ending ecstasy she's been trapped in.");
 		output("\n\n\"<i>The females of the species are going to be a veritable goldmine. Not only are their pussies nearly as pleasant to smell as flowers, but their sexual fluids are absolutely delicious. Such a transformation will fetch us millions of credits, easy!</i>\" Julian cheers. \"<i>All it took was a little modification and motivation - the M and M's, I like to call them.</i>\"");
 		output("\n\nThe zil's breasts appear to be nearly three times as large as the last time you met her. The heavy, pendulous globes are capped with nipple-encapsulating tubes that vaguely resemble the one in her pussy, and judging from the way these are moving, they're suckling very aggressively.");
@@ -252,7 +253,6 @@ function finalZilCaptureTurnInEpilogue():void {
 //Using the Capture Harness
 function useTheCaptureHarness():void {
 	clearOutput();
-	userInterface.showBust("DR_HASWELL");
 	output("You thumb the single activation switch on the capture harness and toss the suddenly beeping cube in the direction of your fallen foe. Halfway there, it unfurls into a mass of whip-like, black tentacles. Before you can finish blinking in surprise, the zil is completely enmeshed in a web of restraints. A small, red-blinking square on " + foes[0].mf("his","her") + " chest glows angrily, and you wonder just what you're supposed to do now.");
 	output("\n\nThat question is answered by the high-pitched whine of atmospheric engines. A sleek, metallic probe a little bigger than a jet-bike zips into the area and dangles a magnetic anchor, snapping it onto the square plate at the center of the harness. Looking very much like an insect in a spider's trap, the zil is reeled in closer. The probe extends a number of intricately worked \"legs\" to wrap around its acquisition and immediately zips off, leaving you alone with your thoughts.");
 	output("\n\nFive minutes later, your codex beeps. It looks like your bank account is one thousand credits richer.\n\n");

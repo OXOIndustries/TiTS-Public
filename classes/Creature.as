@@ -1247,9 +1247,11 @@
 					buffer = simpleCockNoun(arg2);
 					break;
 				case "cockColor":
+				case "dickColor":
 					buffer = cockColor(arg2);
 					break;
 				case "vaginaColor":
+				case "cuntColor":
 					buffer = vaginaColor(arg2);
 					break;
 				case "cockHead":
