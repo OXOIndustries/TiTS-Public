@@ -89,7 +89,7 @@
 					kGAMECLASS.output("\n\nYou can't stop to think about it for long: the need in your [pc.nipples] is far too much to be ignored for more than a moment. Your hands return to your tits, working them as you always do, milking yourself of the thick, flowing yellow honey demanding release. You're panting and moaning before long, kneeling in a puddle of sticky honey as your breasts finally begin to calm down, settling into their new norm. <b>It looks like you're lactating now... and honey at that!</b>");
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
 					target.milkType = GLOBAL.HONEY;
-					target.milkMultiplier = 50;
+					target.milkMultiplier = 70;
 					//Flag as milked
 					target.milked();
 				}
@@ -107,7 +107,7 @@
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the suppository to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " uses the cream to no effect.");
 			}
 			return false;
 		}

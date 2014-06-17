@@ -5324,6 +5324,15 @@
 			else if (isNaga()) race = "naga";
 			return race;
 		}
+		//Placeholders
+		public function cowScore():int
+		{
+			return bovineScore();
+		}
+		public function bovineScore():int
+		{
+			return 0;
+		}
 		public function horseScore(): int
 		{
 			var counter:int = 0;
@@ -7999,13 +8008,20 @@
 				if (temp <= 4) return "salty-sweet";
 				else if (temp <= 7) return "syrupy";
 				else return "salty";
-			}
+			} else if (arg == GLOBAL.CHOCOLATE_MILK)
+			{
+				if (temp <= 2) return "creamy";
+				else if (temp <= 4) return "delicious";
+				else if (temp <= 5) return "sweet";
+				else if (temp <= 8) return "chocolatey";
+				else return "rich";
+			} 
 			return "bland";
 		}
 		public function fluidViscosity(arg: int):String {
 			var temp:int = rand(10);
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.MILK)
+			if (arg == GLOBAL.MILK || arg == GLOBAL.CHOCOLATE_MILK)
 			{
 				return "creamy";
 			} else if(arg == GLOBAL.CUM) {
@@ -8061,6 +8077,10 @@
 				if (temp <= 4) return "off white";
 				else if (temp <= 7) return "pearl-marbled amber";
 				else return "ivory-amber";
+			} else if(arg == GLOBAL.CHOCOLATE_MILK) {
+				if (temp <= 4) return "chocolate";
+				else if(temp <= 7) return "creamy brown, chocolate";
+				else return "dark, chocolate";
 			}
 			return "ERROR, INVALID FLUID TYPE.";
 		}
@@ -8084,6 +8104,8 @@
 				if (rand(4) <= 1) return "cum-sap";
 				else if (rand(2) == 0) return "botanical spunk";
 				else return "floral jism";
+			} else if(arg == GLOBAL.CHOCOLATE_MILK) {
+				return "milk";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
 		}

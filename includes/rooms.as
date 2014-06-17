@@ -1968,7 +1968,7 @@ function initializeRooms():void
 	//#56 IRON\nVALLEY
 	rooms["256"] = new RoomClass(this);
 	rooms["256"].roomName = "IRON\nVALLEY";
-	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. The end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There will be no travelling in that direction today.";
+	rooms["256"].description = "Sun glitters on the few places that these plates haven't been obscured by rust and corrosion, occasionally forcing you to squint your eyes. The further south you go, the narrower the space between the ridges grows. In the space of a few hundred steps, the walls of metal have all but closed together. The end not far ahead, but the gap between them is filled with dozens of smaller, erosion-sharpened slabs. There's little reason to brave such a dangerous path without some foreknowledge as to what lies beyond....";
 	rooms["256"].runOnEnter = rustRidgesEncounters;
 	rooms["256"].northExit = "255";
 	rooms["256"].planet = "PLANET: TARKUS";
@@ -2434,6 +2434,17 @@ function initializeRooms():void
 	rooms["293"].addFlag(GLOBAL.OUTDOOR);
 	rooms["293"].addFlag(GLOBAL.HAZARD);
 	
+	//#94 Factrory Square
+	rooms["294"] = new RoomClass(this);
+	rooms["294"].roomName = "FACTORY\nSQUARE";
+	rooms["294"].description = "To the south between the slabs and sickly vegetation, you can make out a large, squat, brick building, blackened with age and mouldy with ancient Raskvel graffiti. An iron radio tower looms over it. It looks wholly unpromising, but the GPS data you compiled tells you that the sexbots originate from this area, and that building is the only significant structure in the area. It’s going to be a complete pain in the ass approaching it – the wreckage and briars which surround it are thick and hostile-looking. Looking through the detritus at the dark, blocky shape you feel a profound sense of foreboding. You’d best be as prepared as possible before confronting whatever is inside, if that is your intention.";
+	rooms["294"].runOnEnter = sexbotQuestRoom2;
+	rooms["294"].northExit = "256";
+	rooms["294"].planet = "PLANET: TARKUS";
+	rooms["294"].system = "SYSTEM: REDACTED";
+	rooms["294"].addFlag(GLOBAL.OUTDOOR);
+	rooms["294"].addFlag(GLOBAL.HAZARD);
+
 	rooms["301"] = new RoomClass(this);
 	rooms["301"].roomName = "THE\nMESS";
 	rooms["301"].description = "The Mess sure lives up to its name. Once the ship's mess hall, a vessel of this size would have had a large cafeteria, and this place doesn't disappoint. Easily large enough to seat several hundred raskvel (and it currently is), the Mess is dimly lit and smoky, thanks to a combination of tall, hookah-like devices set up on several tables as well as a pillar of woodsmoke coming from the kitchen, which is exposed to the mess hall thanks to a busted-in bulkhead. Several raskvel chefs in cute white aprons are running around trying to tend to dozens of orders at once. The wait-staff are hurrying about, trying to deliver their goods as fast as they can. Strangely, most of the waiters and waitresses are human, each bearing the emblem of the Carver Catering Company - three C's across the breast and back of their sheer black uniforms.\n\nOn the far side of the Mess, there's another room sealed off from the restaurant by a pair of heavy doors and glass windows. By its dark interior and the off-worlders coming and going, you reckon that's the way to the local tavern.";

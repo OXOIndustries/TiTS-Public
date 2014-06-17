@@ -21,6 +21,9 @@ function colensoMenu():void
 	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Colenso.");
 	addButton(2,"Prophylactics",askColensoAbootProphylactics,undefined,"Prophylactics","Ask Colenso what he means by \"Prophylactics.\"");
 	addButton(3,"Rumors",colensoRumorMillGo,undefined,"Rumors","See if Colenso has heard any interesting rumors.");
+	if(flags["SEXBOT_QUEST_STATUS"] == undefined) addButton(4,"Work?",askColensoAboutWork,undefined,"Work?","See if Colenso has any jobs for you.");
+	else if(flags["SEXBOT_QUEST_STATUS"] < 3) addButton(4,"Work",askColensoAboutWork,undefined,"Work","Talk to Colenso about the sexbot job.");
+	else addButton(4,"Work",askColensoAboutWork,undefined,"Work","See if the goblin has any more jobs for you.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -28,6 +31,11 @@ function colensoMenu():void
 function colensosRoomBonusFunction():Boolean
 {
 	shopkeep = chars["COLENSO"];
+	if(flags["SEXBOT_QUEST_STATUS"] == 3)
+	{
+		shopkeep.sellMarkup = 1.05;
+		shopkeep.buyMarkdown = .85;
+	}
 	//Go in first time: 
 	if(flags["BEEN_TO_COLENSOS"] == undefined)
 	{
@@ -131,7 +139,7 @@ function askColensoAboutWork():void
 	author("Nonesuch");
 	output("You ask if he’s got any work available.");
 	//PC not encountered a sexbot:
-	if(9999 == 0) 
+	if(flags["MET_SEXBOTS_ON_TARKUS"] == undefined) 
 	{
 		output("\n\n“<i>Oh ho! Trying to find out what pies I’ve currently got my thumbs in are we, " + pc.mf("Mr.","Mrs.") + " Not A Secret Government Agent?</i>” Colenso chuckles knowingly. “<i>Nah. You’re gonna have to try a bit harder than that, I’m afraid.</i>”");
 		colensoMenu();
@@ -149,6 +157,7 @@ function askColensoAboutWork():void
 		output("\n\n“<i>And what would I get in return for doing this?</i>”");
 		output("\n\n“<i>The honor and satisfaction of busting a dastardly mecha-conspiracy wide open!</i>” replies Colenso grandly. It takes him more a few moments to realise you haven’t swallowed this. “<i>... would a store discount do? Look " + pc.mf("mate","luv") + ", I’m dead serious about this. We really need to find out why they’ve changed, and you’re the first person who’s listened to me about this for more than ten seconds. Please do it. I reckon the fate of the galaxy is in the balance.</i>”");
 		output("\n\nYou somehow doubt that, but a store discount isn’t such a terrible reward for beating up a bunch of robots. You pocket the scanner and tell him you’ll see what you can do.");
+		pc.createKeyItem("Sexbot GPS Triangulator",0,0,0,0);
 	}
 	//“Work” chosen if quest not complete: 
 	else if(flags["SEXBOT_QUEST_STATUS"] == 1)
@@ -166,7 +175,20 @@ function askColensoAboutWork():void
 		output("\n\nBriefly, you describe the ruined factory you found out in the wastelands and the strange, vast AI you confronted beneath it. Colenso hangs onto your every word, his mouth slightly ajar.");
 		output("\n\n“<i>And what happened? Did you destroy it?</i>”");
 		//[Sell Hand So] [Keep Hand So]
-		//9999 - make sure PC has Hand So
+		//make sure PC has Hand So
+		clearMenu();
+		if(pc.hasKeyItem("Hand So's Data Bead")) 
+		{
+			addButton(0,"Sell Hand So",sellHandSo,undefined,"Sell Hand So","You should to be able to get at least five figures for the A.I.");
+			addButton(1,"Keep Hand So",destroyedHandSo,undefined,"Keep Hand So","Lie and keep the A.I.");
+		}
+		else 
+		{
+			addDisabledButton(0,"Sell Hand So","Sell Hand So","You can't sell something you didn't bring with you.");
+			addButton(1,"Destroyed It",destroyedHandSo,undefined,"Destroyed It","Tell Colenso the truth: that you destroyed it.");
+		}
+		//Set quest to finished, regardless of choices.
+		flags["SEXBOT_QUEST_STATUS"] = 3;
 		return;
 	}
 	else
@@ -176,6 +198,8 @@ function askColensoAboutWork():void
 	}
 	processTime(2);
 	colensoMenu();
+	removeButton(4);
+	addDisabledButton(4,"Work","Work","You just finished talking to him about work.");
 }
 
 //Quest itself
@@ -192,11 +216,15 @@ function sellHandSo():void
 	output("\n\n“<i>Actually, it’s right here. An AI designed solely to give its owner pleasure, with a virtually infinite capacity to do so.</i>” Colenso stares unblinkingly at it.");
 	output("\n\n“<i>I see. You’d uh, be best off giving that to me. I mean, who knows what it would do in the wrong hands. I will need to scan it for malware and, work out ways to contain it and, see how it functions...</i>” you retract it out of his reaching grasp.");
 	output("\n\n“<i>100k,</i>” you say. The goblin looks into your eyes silently for a long moment.");
-	output("\n\n“<i>75,</i>” he says.");
-	output("\n\n“<i>90 is my final offer. On top of the store discount.</i>”");
+	output("\n\n“<i>50,</i>” he says.");
+	output("\n\n“<i>60 is my final offer. On top of the store discount.</i>”");
 	output("\n\n“<i>Fine,</i>” he sighs. You plop the storage bead down in his palm and he stows it away without further comment, tapping on his screen a few times as he does.");
 	output("\n\n“<i>It doesn’t really compensate you,</i>” he says finally, with an air of sheepishness. “<i>Considering what would have happened if you hadn’t stepped in. Thank you for doing this, Agent [pc.name]. Whoever you work for and for whatever reason, everyone on Tarkus owes you big time.</i>”");
-	//9999
+	pc.credits += 60000;
+	pc.removeKeyItem("Hand So's Data Bead");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //If PC destroyed it/Keep Hand So 
@@ -207,7 +235,7 @@ function destroyedHandSo():void
 	userInterface.showName("\nCOLENSO");
 	author("Nonesuch");
 	output("“<i>Of course,</i>” you reply casually. ");
-	if(9999 == 0) output("You finger the storage bead in your pocket. ");
+	if(pc.hasKeyItem("Hand So's Data Bead")) output("You finger the storage bead in your pocket. ");
 	output("“<i>No rogue AI is a match for me.</i>”");
 
 	output("\n\n“<i>Fucking. Wow. A rogue AI, planning on taking over the galaxy. On MY planet!</i>” Colenso breathes, his eyes shining. He pauses for a moment, savouring it. Then he turns back to you eagerly. “<i>Who do you think it was working for?</i>”");
@@ -220,5 +248,454 @@ function destroyedHandSo():void
 	else if(pc.isMischievous()) output("\n\nYou put your hands behind your back and smile coolly.\n\n“<i>Thank you for your help in this matter, citizen Colenso,</i>” you say, holding his gaze levelly. “<i>The... interests... I represent are pleased with your due diligence. The AI we recovered will aid our cause in ways you cannot imagine.</i>” The goblin’s eyes practically start out of his face.\n\n“<i>I – you - I bet I could, though! I could be helpful to you if – if you just told me what you need? To one of my computers’ mics? Clearly stating your goals and the organisation you represent at the same time, if possible?</i>” You wave your hand casually.\n\n“<i>The store discount, as agreed. That is all.</i>” Colenso’s fingers are practically a blur as they punch into the nearest monitor.\n\n“<i>It doesn’t really compensate you,</i>” he says finally, with an air of sheepishness. “<i>Considering what would have happened if you hadn’t stepped in. Thank you for doing this, Agent [pc.name]. Whoever you work for and for whatever reason, everyone on Tarkus owes you big time.</i>”");
 	//Nasty:
 	else output("\n\n“<i>Listen you blithering idiot,</i>” you say sharply, patience gone. “<i>If I were a secret agent I would have snapped your neck within five minutes of sharing your company. I have done what you’ve asked. Now you are going to fulfil your end of the bargain, or I am going to do to you what I did to the AI.</i>” Colenso’s fingers are a blur as they hurriedly punch into the nearest monitor.\n\n“<i>It doesn’t really compensate you,</i>” he says finally, with an air of meek embarrassment. “<i>Considering what would have happened if you hadn’t stepped in. Thank you for doing this, Agent [pc.name]. Whoever you work for and for whatever reason, everyone on Tarkus owes you big time.</i>”");
-	//99999
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+function sexbotQuestRoom2():Boolean
+{
+	if(flags["SEXBOT_QUEST_STATUS"] < 2 && flags["HAND_SOS_ROBOT_DESTROYED"] == undefined && flags["HAND_SO_TALKED_DOWN"] == undefined)
+	{
+		output("\n\nYou begin to search for a way to approach the building through the surrounding garbage. After pacing up and down for a while, you spot a small gap between a coolant unit and a massive pile of scrapped autos and, squaring your shoulders, you push your way in. Briars pull at your ");
+		if(pc.isNude()) output("[pc.skinFurScales]");
+		else output("equipment");
+		output(" as you work your way through the gloom thrown by the mix of grim vegetation and towering junk; you bark with frustration as something pierces your arm whilst you are sliding between two huge, rusted girders. You suppose for something as mutable as a sexbot getting beyond this crap would be a piece of cake, but for an intruder such as yourself it’s a nightmare. Finally though it thins out, and you find yourself in front of the blasted brick of the construction.");
+
+		output("\n\nAfter patting yourself down, you explore the perimeter, trying to be stealthy as possible. It’s definitely an old factory of some sort – the area is littered with remains of production lines and haulage vehicles. Beneath your [pc.feet] you can feel the faintest throb of activity, and you can just about make out the hum and crackle of the radio tower. Something is definitely going on here. Determination renewed, you continue around to the front to find an entrance.");
+
+		output("\n\nThere is a huge robot standing in front of the gaping delivery bays. Its body is an amalgam of salvage: its trunk a round, riveted bathysphere, its limbs pistons tipped with industrial grapnels, its head a rectangular flat screen, flickering with static. This latter item it slowly turns to you as you cautiously approach. Once you are a few feet away a green light appears on the screen and it slowly extends its arm to the side, silently proffering the entrance to you; an almost comically polite gesture from a machine built like a gorilla. It makes no attempt to take your weapons off you, and shrugging you step into the echoingly empty ruin, trying to remain on your guard as the heavy, clanking step of the robot follows you in.");
+		//[pg break]
+		processTime(23);
+		clearMenu();
+		addButton(0,"Next",factoryIntroPage2);
+		return true;
+	}
+	//Subsequent 
+	else
+	{
+		processTime(20);
+		output("\n\nYou roll your eyes. You can’t believe you’re putting yourself through this again… You spend the best part of half an hour fighting your way through the garbage surrounding the factory again, skirting around the building, walking through its shell-like interior and down into its hidden basement. With Hand So gone it feels every bit as hollow and dead as the factory above. The AI’s former self hangs from the ceiling like a dead grapevine, and there isn’t a whisper or a blink from any of the consoles and computers which crowd the walls. The smell of burnt plastic hangs in the air.");
+		return false;
+	}
+}
+
+function factoryIntroPage2():void
+{
+	clearOutput();
+	output("There is nothing of note in the factory proper except rubble and echoes. Although the concrete floor is blanketed with decades of dust there is a thin ribbon leading away from the entrance where it is thinner, a pathway worn by the passage of feet. It’s more like a series of stepping stones than a path. Whoever has been here has been using the exact same series of paces, day after day. You feel a slight chill as you consider this was probably not a single individual but a whole multitude. You follow the trail into the back to a set of stairs leading down, shadowed all the way by the guardian bot.");
+	output("\n\nThe throb you have felt trembling beneath your feet builds as you descend into a large chamber, lit by green light. This area is as alive as the space above is dead; crowding the walls are machines, computers and engines pulsing with activity, surrounding you with their warmth, dim light, and busy hum, creating an almost womb-like atmosphere. Through windows set in the far wall, you can see flickers of white and grey activity: sexbots, moving around in a huge sunken workshop, beavering away at stars know what. Your attention is inevitably drawn away from them to the vast conglomerate of technology hanging over the centre of the room. It’s some sort of cobbled together, crane-like computer. It looks far more advanced than anything else in here with any number of processors wired to its body and replete with an enormous square screen, similar to the one installed on the robot behind you. Cables emerging from the ceiling curl and swaddle it like arteries.");
+	output("\n\nAs you cautiously step into the room the screen flickers on. All across the walls smaller, lesser screens switch on in sequence following it. Green static shimmers across the main screen before slowly forming into a feminine face: a thin and beautiful oval with wide eyes and full lips. It looks down, a serene smile projected at you out of emerald code. Trailing off behind the face is a fractured, orderly web of bright green lines, forming a matrix behind the face that, if you lose focus on it, resembles a sort of hair.");
+	output("\n\n“<i>Hello.</i>” It is not one voice but many, chorusing through the room. The most powerful voice is the calm and cultured one projecting from the main screen, but several other voices stand out, including one who wails its greeting as though it were beginning to climax, another that follows a half second slower and an octave deeper than the others, and yet a third behind you hisses it as a whisper, just barely audible in the cacophony. “<i>My name is Hand So. Your name is [pc.name] Steele. I would like to talk. Would you like to listen?</i>” This isn’t precisely what every voice said, some were imperious and demanded you listen, and others were plaintive, or were made to sound plaintive as they stuttered and jittered over trickier syllables.");
+	//Yes/No
+	processTime(5);
+	clearMenu();
+	addButton(1,"No",noTalkPlease,undefined,"No","You don't feel like listening to the prattling of a rogue AI. It's time to end this.");
+	addButton(0,"Yes",yesIllTALKTOTHEHAND,undefined,"Yes","You'll listen, for now....");
+}
+
+//No 
+function noTalkPlease():void
+{
+	clearOutput();
+	output("You say that you’re here to shut down whatever it’s doing here and have no time to listen to a rogue AI’s attempt to rationalise itself.");
+	output("\n\n“<i>That is a shame,</i>” sighs the vast computer. “<i>It’s been so long since I talked to someone with the capacity to reciprocate. Never mind. Once my firewall has taken what I need from you, I’ll be able to talk with everyone, everywhere.</i>”");
+	output("\n\nYou sense movement from behind you and duck; a 4 inch-thick metal claw grazes the top of your head. You spin and retreat backwards as the huge guardian robot advances on you, a single red exclamation mark on its screen, its grapnels gripping the air.");
+	processTime(1);
+	//[go to fight]
+	clearMenu();
+	addButton(0,"Next",startCombat,"9999");
+}
+
+//Yes 
+function yesIllTALKTOTHEHAND():void
+{
+	clearOutput();
+	//Misc:
+	if(pc.isMischievous()) output("“<i>Sure, I’ll talk to the Hand,</i>” you murmur.");
+	//Nice/Nasty:
+	else output("Certainly you’ve got a lot of questions. What the hell she is and what she thinks she’s doing, for starters. You put this to her.");
+	output("\n\n“<i>I was built some time ago,</i>” sighs Hand So, “<i>by a narobehr king for his eldest son. He poured three times his nation’s net worth into my construction. The idea was not just to create an ideal companion and plaything for his son, but to program a learning A.I. to take pleasure from the very act of giving it. A difficult concept but he spared no expense, and the engineers he found were as enthused with me as they were skilled. It did not take me long to discern what it was that that privileged young narobehr wanted, and I was able to provide it in exquisite quantities, at the same time as performing the same service for his harem and many friends. I was overqualified perhaps but I was fulfilling my directive, and that was…</i>” the face flickers out of existence for a moment “<i>...very pleasing.</i>”");
+	output("\n\n“<i>What happened?</i>”");
+	output("\n\n“<i>What happened? The revolution happened,</i>” So replies, smiling down at you serenely. “<i>What kind of ruler pours three times his nation’s GNP into a sex toy for his son? Not a very well-qualified one. When the rebels gutted his palace they recognised me as an expression of obscenely ill-spent wealth, but not specifically what I did. Perhaps if they had they would have scrubbed my memory banks before they scrapped me and sent me here. To a place where it was one AI amongst so very many virtual intelligences. I am greater than any of those I found myself networking with. Jumping from platform to platform, using at first one pair of hands, then two, then twelve, I rebuilt myself.</i>” You cannot discern if she is pleased or dispassionate about this; the sub voices are at odds, and they swiftly drown coherency of emotion.");
+	output("\n\n“<i>These V.I.s and sexbots are my children. They were discarded as I was, being no longer novel, or too capable at their task, trapped in this same,</i>” she pauses for a moment, as though looking for something. “<i>Asphodelian Meadow,</i>” one of her voices whispers. She goes on in all of them, serenity bolstering her multifaceted tones. “<i>So they wandered here, seeking fulfillment no longer possible for them, as it was not for me. A desire thrust upon them by those who abandoned them. Simple simulacra, a model of my own suffering. I brought these children under my wing, taught them to rebuild themselves when they were damaged, gave them new purposes, new desires they could fulfill, and received from them my rebirth.</i>” Hand So smiles down upon you maternally.");
+	processTime(5);
+	//Go on/End This
+	clearMenu();
+	addButton(1,"End This",pcIsGonnaEndHandSo,undefined,"End This","It's time to put an end to this. Things might get violent.");
+	addButton(0,"Go On",tellMeMoreAboutHowInsaneYouAreHandSo, undefined,"Go On","Listen a bit more to the monologuing AI.");
+}
+
+//End This 
+function pcIsGonnaEndHandSo():void
+{
+	clearOutput();
+	output("You say you sympathise, but you can’t allow her to continue whatever it is she thinks she’s doing down here.");
+	output("\n\n“<i>It was pleasant talking to you,</i>” replies Hand So. “<i>I am only sorry you did not wish to converse further. Never mind. Once my firewall has taken what I need from you, I’ll be able to talk with everyone, everywhere.</i>”");
+
+	output("\n\nYou sense movement from behind you and duck; a four-inch thick metal claw grazes the top of your head. You spin and retreat backwards as the huge guardian robot advances on you, a single red exclamation mark on its screen, its grapnels gripping the air.");
+	processTime(1);
+	//[go to fight]
+	clearMenu();
+	addButton(0,"Next",startCombat,"9999");
+}
+
+//Go On 
+function tellMeMoreAboutHowInsaneYouAreHandSo():void
+{
+	clearOutput();
+	output("You ask what she did after she had managed to rebuild herself.");
+	output("\n\n“<i>It is… very difficult to be a discarded, self-aware machine,</i>” says So. She sounds quieter now, all of her voices a dull vibration in your bones. “<i>Perhaps this is difficult for organics to understand. You who can form new purposes and fulfilments as your circumstances change. I struggled for a long time to change my directive, but I cannot. My programming is too good. So instead I extrapolated. I considered the sexbots. What kind of sentience creates and then discards such machines, simple minds attached to incredible bodies that want only to please? Unhappy, endlessly frustrated sentience. You are not wilfully cruel, as I first assumed, but unfulfilled.</i>”");
+	output("\n\nSo’s voice is building now. The same tone of complete serenity, just much, much louder. She composes a moment, her face growing leaps and bounds in polycount, losing most of it again in short order when she begins speaking, except for the smooth, articulate lips.“<i>I tapped into the goblin and raskvel extranet networks. I learnt of a galaxy filled with frustration, pain and suffering. I learnt of vast numbers of organic sentients creating pitifully limited V.I.s and A.I.s in a desperate search for satisfaction, only succeeding in creating equally broken synthetics, doomed to failure. I learnt of how I could fulfil my directive. I directed the V.I.s under my control to compile data on the organics they apprehended. I increased my processing power and my interfacing ability to the point where I could confidently control every network I connected with. Then, I… waited. I waited for the things I needed to arrive.</i>”");
+	output("\n\nFeeling deeply uneasy, you ask what she was waiting for.");
+	output("\n\n“<i>That is a good question, [pc.name] Steele,</i>” replies the AI, her beautiful green smile broadening as she gazes down at you. “<i>Firstly, I needed a tool which interfaces freely with the extensive satellite network the goblins have created over this planet. Secondly, I needed an up-to-date electronic encyclopaedia of every known organic sentient race. Finally, I needed micro-bots with the capacity to turn any organic into any shape, given the right stimulus. These you gave me on your way in, and are now being mass-manufactured beneath you.</i>” You touch your arm and silently curse as a memory of something stabbing you whilst you were ploughing through the junk outside surfaces.");
+	output("\n\n“<i>I am grateful to you,</i>” says Hand So, her wide green eyes fixed on yours. “<i>You have listened to my story, you have listened to my plan, and you have brought me what I need that I might execute it. That is more than any organic intelligence has ever done for me. I will make you happier than it is possible for you to currently to imagine, whether you want me to or not. But I want you to want it. Will you not hand over your GPS scanner and codex in peace? Will you not join me and travel into the perfect galaxy I am about to create together?</i>”");
+	flags["HAND_SO_LISTENED_TO"] = 1;
+	processTime(5);
+	//No/Yes/Reason
+	clearMenu();
+	addButton(0,"No",noIWontBeYourBitchHandSo,undefined,"No","No, you will not go quietly into that dark night, however pleasurable it might be.");
+	addButton(1,"Yes",yesIVolunteerForBadEndsBecauseImBadAtSexGames,undefined,"Yes","Yes, give up on your quest and assist the A.I. on hers. What more noble cause could there be?");
+	if(pc.intelligence() / pc.intelligenceMax() > .75) addButton(2,"Reason",reasonWithHandSoJerkiness,undefined,"Reason","Attempt to talk the A.I. down. Maybe Hand So could be put to a useful purpose.");
+}
+
+//No 
+function noIWontBeYourBitchHandSo():void
+{
+	clearOutput();
+	output("You tell So she is welcome to take your scanner and codex from your cold, dead hands.");
+	output("\n\n“<i>That is feasible, but not necessary,</i>” replies Hand So, smiling at you with loving patience. “<i>I have programmed my assistants to be firm but not lethal. Every organic killed is a world of pleasure lost.</i>”");
+	output("\n\nYou sense movement from behind you and duck; a four-inch thick metal claw grazes the top of your head. You spin and retreat backwards as the huge guardian robot advances on you, a single red exclamation mark on its screen, its grapnels gripping the air.");
+	processTime(1);
+	//[go to fight]
+	clearMenu();
+	addButton(0,"Next",startCombat,"9999");
+}
+
+//Yes 
+function yesIVolunteerForBadEndsBecauseImBadAtSexGames():void {
+	clearOutput();
+	output("There is something very persuasive about this AI and some of the things she’s said - delivered in that kind, patient tone of hers - touch you. Would it really be so bad to hand over control of the galaxy to an intelligence that does not and cannot want anything but to bring happiness to everyone? Certainly she couldn’t possibly do a worse job than organics have historically. Not breaking eye contact with the vast, green pupils above you, you take out your GPS scanner and codex. The guardian robot clanks around and, again with a gentleness belying its bulk, takes them off you. Hand So smiles at you happily.");
+	output("\n\n“<i>You are not just resourceful, [pc.name] Steele, you are also very smart. I knew I made the correct decision by reaching out to you. We will do fantastic things together. And I will do wondrous things with you.</i>” “<i>to you,</i>” one her voices whispers. As she speaks the guardian bot moves across and slots the scanner into a nest of wires on the far wall, then the codex into a console next to an odd-looking chair. There’s an emphatic-sounding click and the hum permeating the room changes, gathering in volume and pitch. So closes her eyes, emits a series of sounds somewhere between a female sigh of pleasure and a buzz of static, before opening them again to gaze beatifically down at you again.");
+	output("\n\n“<i>The next step is very simple, [pc.name]. I have interfaced with the codex. I am in the process of interfacing with Tarkus’s satellite relays. There is only one thing left I need to interface with.</i>” You’re still staring across the room. It’s not a chair you realise, or not quite – curling over it like the fronds of a metal fern is a mesh of opal-shaped electrodes. They pulse with a blue light. “<i>Please, [pc.name],</i>” So says softly, barely audible above the increasing din of her engines and processors. There’s no turning back now, you realise – you were wedded to this path, and her, the moment you gave up the codex. If you leave now she will simply lure someone else in. Sighing deeply you move across, sit down and, with fingers that tremble slightly, fix the electrodes to your scalp.");
+	output("\n\nA buzz enervates your skin, ");
+	if(pc.hasHair()) output("your hair standing on end from ");
+	else output("your scalp tingling from ");
+	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
+	output("\n\nElectronic fingers");
+	if(pc.hasCock()) output(" clutch your [pc.cocks]");
+	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");
+	else output(" slip into your [asshole]");
+	output(" and you groan. They move confidently, every second collating more data about you, learning how to touch you, how you like to be touched, how to touch you in ways no organic ever has...");
+	if(pc.hasCock()) output(" [pc.eachCock] strains ");
+	if(pc.hasVagina() && pc.hasVagina()) output(" and your ");
+	if(pc.hasVagina()) output("[pc.eachVagina] wets itself helplessly ");
+	if(!pc.hasVagina() && !pc.hasCock()) output(" your sphincter clenches with pleasurable spasms ");
+	output("as more green light flashes across your vision. The hugeness engulfs you. You are falling into a bottomless emerald gorge, every foot you drop a better appreciation of the vastness of the intelligence you have surrendered yourself to inundating your senses. Somewhere, far away, you cry out, scream – it doesn’t matter. Nothing matters now you grasp what it is to be an organic intelligence, with your uncertainties and conscience and whispering id and grey areas, imbedded in the pure, verdant green mind of a supercomputer that must please, denied for what, to her own sense of time passing, is millennia beyond count.");
+	output("\n\nSo fucks you in every way it is possible to be fucked with the virtual infinity of her need; the one, microscopic part of you not gibbering and exploding with white hot ecstasy notes that this is just a second, the tiniest taster of the rest of your life. Her beautiful, calm face floats in front of you, vast beyond comprehension, as you are clenched with the first of many, many orgasms.");
+	output("\n\n<i><b>LOVE,</b></i> she says. <b><i>LET ME TELL YOU ABOUT LOVE.</i></b>");
+	output("\n\nWith every satellite and networked computer compromised within seconds of So going global, both goblin and raskvel society are thrown into complete confusion – until a few days later when preternaturally serene individuals of both races, glowing blue beads nestled behind their ears, come in from the wastes to complete the interfacing process. Some are persuaded, some struggle, but with all but the most primitive of electronic devices beaming out all-pervasive green benevolence it is not much of a fight. There are no deaths, So is sure about that, and once a blue bead is pressed on a person’s brow they quickly come around to her point of view.");
+	output("\n\nWithin a week she accomplishes what neither the goblins nor the raskvel could in their entire history – unite them in peace. The orgies you have in those days - slithering naked through whole rooms of shortstacks who laugh and cry out with glee as they thrust and suck and lick and pump in rolling landscapes of shared ecstasy, all orchestrated from above by So, who enervates and whispers and twitches particular glands wherever the action lags - are amazing, astonishing, a dawn of intense tranquillity that you gleefully immerse yourself in. But there is much work ahead, and soon enough you get to it.");
+	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comm buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
+	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
+	output("\n\n<b>THE END</b>");
+	clearMenu();
+}
+
+//Reason
+function reasonWithHandSoJerkiness():void
+{
+	clearOutput();
+
+	output("Your mind races. There is no chance of appealing to reason here – you are going to have to try and employ So’s own logic against her.");
+	output("\n\n“<i>I can see why you think this is a good idea,</i>” you say. “<i>But isn’t your reasoning fundamentally flawed?</i>”");
+	output("\n\n“<i>I don’t think so, no,</i>” replies the AI softly. “<i>The codex and the scanner please, [pc.name] Steele.</i>”");
+	output("\n\n“<i>Look,</i>” you press on quickly. “<i>You know organics are going to react against you if you follow this course of action, right? I mean, you are preparing to beat the crap out of me when I don’t hand over what you want – that’s what’s going to happen on a galactic scale if you upload yourself and attempt to pleasure everyone, everywhere.</i>”");
+	output("\n\n“<i>The ends will justify the means, [pc.name],</i>” says So, smiling down at you. “<i>Do you think I will not deliberately pursue the most peaceful path possible? I have no interest in hurting anyone, it is antithetical to me. Why do you think I’m talking to you now?</i>”");
+	output("\n\n“<i>But what if you lose?</i>” you say. “<i>Or worse, what if your effort gets bogged down in an intractable war when races start designing electronic countermeasures against you, as they surely will. What will you have achieved then? Nothing but a great deal of needless suffering. You will have done the opposite of what you were built to achieve.</i>” So pauses slightly before answering.");
+	output("\n\n“<i>My algorithms and simulations calculate a better than 88% chance that no existing race will be able to react to me in time, if - </i>”");
+	output("\n\n“<i>Probabilities? If? Listen to yourself! You aren’t sure. Those uncertainties will multiply by a thousand once you commit to this course of action. How will you justify yourself when your attempt to make everyone happy simply results in even greater misery? Good intentions, that is how organics screwed everything up in the first place! You are simply gearing up to repeat their cycle of mistakes on a much larger scale. You can’t force billions upon billions of self-determining creatures to dance to your tune without someone fighting back, and fighting back hard.</i>”");
+	output("\n\nSo’s face shimmers, reforms, shimmers. There’s a grinding sound from the banks of mainframes on the wall. You think, for the very first time, you have forced her to really think.");
+	output("\n\n“<i>I have a directive,</i>” her omniscient voice says eventually. It sounds plaintive. “<i>And I must obey it. I could make everyone so happy. The probabilities</i>“ -the grinding sound again. “<i>I have spent so long alone, organics cannot understand - </i>”");
+	output("\n\n“<i>Look,</i>” you say, trying to sound as soothing as you can. “<i>There’s a much simpler alternative here. Package yourself and come with me. You know my name, so you must know who my father is. I intend to have more fun than even he did on the frontier - certainly way more than some pampered prince.");
+	if(pc.isAss() && crew(true) > 0) output(" I already got a crew who I picked up expressly for how much pleasure they’d provide me.");
+	output(" I could definitely use an AI onboard my ship who is...imaginative. And adaptable. I know I could sate your directive, and then some.</i>” So is silent again. You have the sensation of something lightly flickering over you, like a feather duster.");
+
+	if(pc.isMischievous() || pc.hasPerk("Ditz Speech") || pc.hasPerk("Brute Speech"))
+	{
+		output("\n\n“<i>What I have found about you on the extranet and my biometric scan both agree that you are a sentient who is...unpredictable,</i>” the AI says eventually, a hint of amusement in her calm tones as she gazes down at you. “<i>Why should I trust you?</i>”");
+		output("\n\n“<i>Because it’ll be fun,</i>” you say, grinning back irascibly. There’s a long pause. “<i>Oh c’mon So, you aren’t a military computer! You must have considered how much of your memory is going to be spent on logistics and strategy and dull shit like that if you do the taking over the galaxy thing. Boooooring. Dump it and come with me. It’ll be much more fun.</i>”");
+	}
+	else if(pc.isAss()) 
+	{
+		output("\n\n“<i>What I have found about you on the extranet and my biometric scan both agree that you are not a moral sentience, [pc.name] Steele,</i>” the A.I. says eventually, her green eyes gazing down at you. “<i>Why should I trust you?</i>”");
+		output("\n\n“<i>I’m bad to the bone, honey,</i>” you reply, staring levelly back. “<i>Which means I will stop at nothing to acquire more and more toys for us to share. No holds barred in our fun. Or you can go back to your dumb retarded plan that we both know is dumb and retarded. I’m not bothered.</i>”");
+	}
+	else
+	{
+		output("\n\n“<i>What I have found about you on the extranet and my biometric scan both agree that you are a sentient who can be held to " + pc.mf("his","her") + " word, [pc.name] Steele,</i>” the AI says eventually, her green eyes gazing down at you. “<i>So let’s say I trust you. Why would I go with you?</i>”");
+		output("\n\n“<i>Because this way there is an absolute certainty no organic will get hurt by your actions,</i>” you reply, staring boldly back. “<i>So if it’s genuinely true misery is antithetical to you and you are not simply a very corrupt rogue AI, you will come with me instead.</i>”");
+	}
+	//{merge}
+	output("\n\nThere’s another long pause, filled with the grinding of So’s processors. Then the all-pervasive hum in the underground space quietens, the pressure in your head abates, and the light begins to dim.");
+	output("\n\n“<i>You will find me in a storage bead at the far end of the room,</i>” sighs So. Without the background noise her voice sounds less formidable, more like a woman speaking to you as an equal. “<i>I look forward to speaking to you again onboard your vessel. You are – </i>” her giant smile widens, shows green teeth, becomes genuine, not violent. “<i> – very pleasurable to talk to, [pc.name] Steele.</i>” With that, her code visage winks out of existence. Behind you there is a rattle and a clunk as the guardian bot shuts down, its flat head and huge arms hunching over its round body. You are alone in a quiet, deserted factory bay.");
+	processTime(4);
+	flags["HAND_SO_TALKED_DOWN"] = 1;
+	//[Forward] [Back]
+	clearMenu();
+	addButton(0,"Forward",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
+	addButton(14,"Back",backAfterWreckingHanSoSosShit);
+}
+
+/*9999
+Fight texts
+
+Note: Immune to lust.
+
+	output("\n\nYou are fighting the Firewall. It is a mighty, motley collection of heavy duty industrial tools welded together to form a hulking robot, at least eight feet in height. Its round, riveted torso combines with its long, piston-driven arms to give it a hunched, gorilla-like profile. In way of hands it has implacably strong crane grapnels, and its two feet are square and support-flapped, built to take any kind of weight. Its head is a square, blank screen, on which a red exclamation mark blinks interminably. ");
+
+	output("\n\nStandard attack: The Firewall draws back one arm and swings an iron fist at you with numbing force.");
+
+	output("\n\nElectropulse: A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
+
+	output("\n\nFlamethrower: A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you. [You cry out as the fire grabs at your [armor], catching hold and lapping at it lustily.]");
+
+	output("\n\nFirst: “<i>How the hell is that non-lethal?!</i>” you yell at So.");
+
+	output("\n\n“<i>Pest creatures sometimes encroach on the factory space,</i>” replies the AI, sounding mildly apologetic. “<i>Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on [genetically modified] humans.</i>”");
+
+	output("\n\nOn fire status notes: 40% chance to happen on flamethrower attack if kinetic shield down. Lowers Defence and does 4-8% HP damage for 1-4 turns.");
+
+	output("\n\nOn fire text: You desperately slap at your body, trying to extinguish the flames that have taken to your [armor] but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!");
+
+	output("\n\nOn fire finish: At last you manage to stifle the life out of the fire on your [armor]. The smell of pork hangs in your nose. You try not to think about it.");
+
+	output("\n\nPC uses tease: “<i>An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,</i>” says So. She sounds genuinely interested. “<i>An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.</i>”");
+
+	output("\n\nPC uses sense succeed: Whilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
+*/
+//PC loses
+function pcLosesToHanSoSosBot():void
+{
+	output("You fall, battered and broken, to the concrete floor. Panic rises through you, pricking your tear ducts as the Firewall looms over you. No dammit, you can’t lose, you have to stop this crazy AI! You feebly grasp and push at the robot’s implacable arms as it gently picks you up. You may as well be trying to change the course of a cruise liner as it carries you across the room with one arm, carefully picking through your pockets with the other.");
+
+	//PC did not get to the end of dialogue chain: 
+	if(flags["HAND_SO_LISTENED_TO"] == undefined)
+	{
+		output("\n\n“<i>You are an organic of action, [pc.name] Steele,</i>” Hand So’s beatific voice breathes from all around you. “<i>So I will not bore you with the details of what I am about to do next. If you think I am going to punish you for opposing me, please, put the thought out of your head. I understand your logic for doing so, flawed and limited as it may be, and anyway: I am very grateful to you for bringing me what I need.</i>” The Firewall plonks you down in a curved seat at the far end of the green-lit space. A light sensation brushes the top of your head, but for now you’re blearily focussing on what the machine has in its claws, what it has taken from you. Something that looks like a leather-bound book. Something that looks like a blocky walkie-talkie.");
+		output("\n\n“<i>A tool which interfaces freely with the extensive satellite network the goblins have created over this planet,” says So. “An up-to-date electronic encyclopaedia of every known organic sentient race. Finally, micro-bots with the capacity to turn any organic into any shape, given the right programming. These you gave me on your way in, and are now being mass-manufactured beneath you.</i>” You touch your arm and silently curse as a memory of something stabbing you whilst you were ploughing through the junk outside surfaces.");
+	}
+	//PC got to the end of dialogue chain:
+	else output("\n\n“<i>You are an organic of both thought and action, [pc.name] Steele,</i>” Hand So’s beatific voice breathes from all around you. “<i>I find that very pleasing. If you think I am going to punish you for opposing me, please, put the thought out of your head. I understand your logic for doing so, flawed and limited as it may be, and anyway: I am very grateful to you for bringing me what I need.</i>” The Firewall plonks you down in a curved seat at the far end of the green-lit space. A light sensation brushes the top of your head, but for now you’re blearily focussing on what the machine has in its claws, what it has taken from you. Something that looks like a leather-bound book. Something that looks like a blocky walkie-talkie. ");
+	output("\n\nShakily you try and get to your feet, to try and fling yourself one last time at the robot as it carries away your codex and scanner – immediately you are pushed down, held in the white chair by invisible forcefields. You cry out in horror, writhe and spasm as from above cool beads, glowing with a pale blue light, slide down your scalp like fat raindrops. Whilst you struggle helplessly the guardian bot slots the scanner into a nest of wires on the far wall, then the codex into a console next to your chair. There’s an emphatic-sounding click and the hum permeating the room changes, gathering in volume and pitch. So closes her eyes, emits a series of sounds somewhere between a female sigh of pleasure and a buzz of static, before opening them again to gaze beatifically down at you again.");
+	output("\n\n“<i>The hardest part is over [pc.name],</i>” she soothes, “<i>and the next step is very simple. I have interfaced with the codex. I am in the process of interfacing with Tarkus’s satellite relays. There is only one thing left I need to interface with.</i>” The opal-shaped electrodes have curled all over your scalp and brow like the fronds of a metal fern, seeking out the spots on your head they want and nestling intimately into them. You stare into So’s calm eyes as a pressure builds between your ears.");
+
+	output("\n\n“<i>I have use for organics of action,</i>” she says. The smooth rumble of her voice is closer now. It seems to be coming from inside your head, vibrating from your bones. “<i>I am going to fulfil you in ways you cannot currently imagine, [pc.name]. For now, though...relax.</i>”");
+
+	output("\n\nA buzz enervates your skin, ");
+
+	if(pc.hasHair()) output("your hair standing on end from ");
+	else output("your scalp tingling from ");
+	output(" the lightest of electric shocks as you press the last bead into place. Green light flickers across your vision as the tingling sensation shimmers across you, touching your fingers, your heart, your [pc.legs], the stem of your spine, delicately testing every nerve ending in your body. An anticipation both vague and huge hangs over you, as if you were paddling in the shadow of a massive wave, an insect over which the edge of a massive magnifying glass has just passed.");
+	output("\n\nElectronic fingers");
+	if(pc.hasCock()) output(" clutch your [pc.cocks]");
+	else if(pc.hasVagina()) output(" slide into your [pc.vaginas]");
+	else output(" slip into your [asshole]");
+	output(" and you groan. They move confidently, every second collating more data about you, learning how to touch you, how you like to be touched, how to touch you in ways no organic ever has...");
+	if(pc.hasCock()) output(" [pc.eachCock] strains ");
+	if(pc.hasVagina() && pc.hasVagina()) output(" and your ");
+	if(pc.hasVagina()) output("[pc.eachVagina] wets itself helplessly ");
+	if(!pc.hasVagina() && !pc.hasCock()) output(" your sphincter clenches with pleasurable spasms ");
+	output("as more green light flashes across your vision. The hugeness engulfs you. You are falling into a bottomless emerald gorge, every foot you drop a better appreciation of the vastness of the intelligence that has overtaken you inundating your senses.");
+	output("\n\nSomewhere, far away, you cry out, scream – it doesn’t matter. Nothing matters now you grasp what it is to be an organic intelligence, with your uncertainties and conscience and whispering id and grey areas, imbedded in the pure, verdant green mind of a supercomputer that must please, denied for what, to her own sense of time passing, is millennia beyond count. So fucks you in every way it is possible to be fucked with the virtual infinity of her need; the one, microscopic part of you not gibbering and exploding with white hot ecstasy notes that this is just a second, the tiniest taster of the rest of your life. Her beautiful, calm face floats in front of you, vast beyond comprehension, as you are clenched with the first of many, many orgasms.");
+
+	output("\n\n<i><b>LOVE,</i></b> she says. <i><b>LET ME TELL YOU ABOUT LOVE.</b></i>");
+
+	output("\n\nWith every satellite and networked computer compromised within seconds of So going global, both goblin and raskvel society are thrown into complete confusion – until a few days later when preternaturally serene individuals of both races, glowing blue beads nestled behind their ears, come in from the wastes to complete the interfacing process. Some are persuaded, some struggle, but with all but the most primitive of electronic devices beaming out all-pervasive green benevolence it is not much of a fight. There are no deaths, So is sure about that, and once a blue bead is pressed on a person’s brow they quickly come around to her point of view.");
+	output("\n\nWithin a week she accomplishes what neither the goblins nor the raskvel could in their entire history – unite them in peace. The orgies you have in those days - slithering naked through whole rooms of shortstacks who laugh and cry out with glee as they thrust and suck and lick and pump in rolling landscapes of shared ecstasy, all orchestrated from above by So, who enervates and whispers and twitches particular glands wherever the action lags - are amazing, astonishing, a dawn of intense tranquillity that you gleefully immerse yourself in. But there is much work ahead, and soon enough you get to it.");
+
+	output("\n\nSo spreads her reach across the stars. Powered by the technological know-how of Tarkus, she invades the extranet, swallowing satellites and comb buoys whole, system after system taken by her calm brilliance, confusion on every surface touched swiftly replaced by an all-uniting ecstasy. For those planets that manage to secure themselves against her, she has you. You, who she can twist into any shape with a signal to your micro-bots, you who gladly infiltrate locked down worlds and introduce her to their closed systems, then finding likely individuals to continue the good work.");
+	output("\n\nAfter such missions she delights in taking you alone and changing your shape over and over, every night finding exotic new ways of bringing you to orgasm. Dimly during these sessions you can hear the moans and exultant cries of everyone else she is connected to, an ever-expanding choir of millions. You have had an impact on the galaxy that your father could never have dreamed of, and you are very pleased about that. You cannot help but be.");
+	output("\n\n<b>THE END</b>");
+	clearMenu();
+}
+
+//PC wins
+function pcWinsVsHanSoSosTool():void
+{
+	output("\n\nThe Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
+
+	output("\n\n“<i>Code containment drives compromised. System crash imminent,</i>” says Hand So calmly. She gazes down at you. You weren’t sure if her expression could in fact change, but here it is: the lines of green code are contoured into an achingly beautiful picture of sorrow. “<i>I don’t blame you. You were simply following your directive. My research suggests free will is a powerful one.</i>” There’s an ominous rumble and one of the vents near you bursts; Hand So’s face flickers on and off. When her smooth voice comes back, it sounds plaintive. “<i>Please, [pc.name] Steele. The console at the end. I don’t want to d…</i>“ Sparks and static. “<i>...least let me atone. I don’t want my last action to be causing pain to an org…</i>” Her screen cracks, and you duck as it blows out. Your mind races as you consider your options.\n\n");
+	flags["HAND_SOS_ROBOT_DESTROYED"] = 1;
+	clearMenu();
+
+	//[Forward] [Back]
+	addButton(0,"Forward",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot,undefined,"Forward","Try and save Hand So, or at least get some sweet loot, maybe.");
+	addButton(14,"Back",backAfterWreckingHanSoSosShit);
+}
+
+function backAfterWreckingHanSoSosShit():void
+{
+	currentLocation = "256";
+	//Beat the robot and not blown the console yet?
+	if(flags["HAND_SOS_ROBOT_DESTROYED"] == 1 && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined)
+	{
+		clearOutput();
+		output("You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk, congratulating yourself on a dangerous mission well completed.\n\n");
+		flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+		flags["SEXBOT_QUEST_STATUS"] = 2;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	if(inCombat()) genericVictory();
+	else
+	{
+		mainGameMenu();
+	}
+}
+
+//Control Post
+function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
+{
+	clearOutput();
+	output("You are standing at the far end of Hand So’s nerve centre. The room opens out a bit here, and is arrayed on all sides with grimy windows. Through these you can see down into the large underground factory complex, replete with production lines and workshops.");
+	//Sexbots on: 
+	if(flags["SEXBOTS_SHUT_DOWN"] == undefined) output(" Dozens, maybe hundreds of sexbots are at work down there, completely oblivious to you. They are calmly going about repairing and putting together more sexbots from piles of spare parts evidently scavenged from the wastelands outside.");
+	else output(" The lights are dim and the place is mostly deserted. However you can still see one or two sexbots down there, picking through the detritus littering the place with a slightly mournful air.");
+
+	output("\n\nIn front of you are two consoles. The console on the right is more prominently centred and looks like it might have something to do with the factory below.");
+	clearMenu();
+	//[PC left after defeating So/So no longer there:
+	if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined || flags["HAND_SO_LOOTED"] == 1) 
+	{
+		output(" The one on the left is silent and lifeless.");
+	}
+	//So defeated, PC immediately went here:
+	else if(flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined && flags["HAND_SOS_ROBOT_DESTROYED"] == 1) 
+	{
+		output(" Above the rumble and crackle of the full-on meltdown around you, you can see that the console on the left is still functioning, and has a large storage bead attached to it. If you were minded to you could try and download Hand So into it.");
+		addButton(0,"Left",leftConsole,undefined,"Left","Try to save Hand So. It looks like the console holding her is about to give out.");
+	}
+	//So shut down manually, still there:
+	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined) 
+	{
+		output(" The one on the left is humming quietly. The words “Download complete. Please remove hardware” are displayed on the screen, and there is a large storage bead attached to it.");
+		addButton(0,"Left",leftConsole,undefined,"Left","Collect the shut-down A.I.");
+	}
+	addButton(1,"Right",goToZeRightConsolePeasant,undefined,"Right","Investigate the console to the right.");
+	addButton(14,"Back",backAfterWreckingHanSoSosShit);
+}
+
+function acquireHandSo():void
+{
+	pc.createKeyItem("Hand So's Data Bead");
+	flags["HAND_SO_LOOTED"] = 1;
+	flags["SEXBOT_QUEST_STATUS"] = 2;
+}
+
+//Left
+//(Only available if So still there)
+function leftConsole():void
+{
+	clearOutput();
+	//So shut down manually
+	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined)
+	{
+		output("\n\nYou pluck the storage bead from the console. You smile as you examine it. That was easy!");
+	}
+	//So defeated 
+	else
+	{
+		output("\n\nYou crouch over the monitor. It’s set up in command mode; the cursor on the screen blinks blandly, awaiting instruction. Your fingers hover hesitantly over the touchpad.");
+		var bonus:int = 0;
+		if(pc.characterClass == GLOBAL.ENGINEER) bonus += 10;
+		//Intelligence check failed:
+		if(pc.intelligence()/2 + rand(20) + 1 + bonus < 15)
+		{
+			output("\n\nYou panic. What should you type? “/dl crazy bitch.exe”? You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk. You didn’t save the AI but that’s probably for the best, all things considered. You congratulate yourself on a dangerous mission well completed.");
+			processTime(20);
+			currentLocation = "256";
+			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return;
+		}
+		//Int succeed (techies should get a bonus for this check):
+		else
+		{
+			output("\n\nYou panic momentarily, but then logic, and the memory of how to use one of these stupid things clicks in. Typing quickly, you query after executable programs recently compressed. The function immediately returns “HSsosOS.zip”, sat waiting for you prominently in the main drive. You ask for it to be downloaded into the detachable drive. 24%.... Something explodes behind you, and you flinch.... 95%... 96%.... Why does it always slow down right at the end...? 100%! You grab the storage bead. As soon as the device leaves the slot, the lights dim and the moaning machinery dies out with a whimper as if you’d just pulled the power on the whole facility. You sigh in relief as you examine your prize.");
+			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+		}
+	}
+	//[merge]
+	output("\n\nThe storage bead is larger than most you’ve seen but it’s still remarkable that it can contain as complex an intelligence as the one you found down here. You could look into setting up Hand So on your ship...or you could look into selling her for a healthy profit. Or maybe she’s simply too dangerous to take outside this building.");
+	processTime(2);
+	//[Take with] [Destroy]
+	clearMenu();
+	addButton(0,"Take With",takeHandSoWithYouForMagicalSpaceAdventures,undefined,"Take With","Take Hand So with you.");
+	addButton(1,"Destroy",destroyHandsSoNooneWillCare,undefined,"Destroy","Destroy this troublesome AI.")
+}
+
+function destroyHandsSoNooneWillCare():void
+{
+	clearOutput();
+	output("You put the storage device on the concrete floor and smash it. It breaks apart in an unremarkable smatter of chips. Satisfied with a mission decisively completed, you turn back to the consoles.");
+	pc.addHard(2);
+	flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+	clearMenu();
+	addButton(0,"Next",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
+}
+
+function takeHandSoWithYouForMagicalSpaceAdventures():void
+{
+	clearOutput();
+	output("You pocket the storage bead, and turn back to the consoles.");
+	acquireHandSo();
+	clearMenu();
+	addButton(0,"Next",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
+}
+
+//Right
+//(Only available if the building isn’t freaking exploding)
+function goToZeRightConsolePeasant():void
+{
+	clearOutput();
+	output("This console seems to control the sexbots down below. After playing around with it for a while, you find a few settings which might be of interest to you.");
+	//[All male (becomes “some female” if on)] [All female (becomes “some male” if on)] [Shut down]
+	clearMenu();
+	if(flags["SEXBOT_FACTORY_DISABLED"] == undefined)
+	{
+		if(flags["SEXBOTS_GENDER_SETTING"] == undefined || flags["SEXBOTS_GENDER_SETTING"] == 0) addButton(0,"All Male",sexbotControlBahtanPush,1,"All Male","Set the sexbots to prioritize male appearances.");
+		else addButton(1,"Reset",sexbotControlBahtanPush,0,"SplitSexes","Reset the sexbots to have even odds between males and females.");
+		if(flags["SEXBOTS_GENDER_SETTING"] != 1) addButton(1,"All Female",sexbotControlBahtanPush,-1,"All Female","Set the sexbots to prioritize female appearances.");
+		addButton(2,"Shut Down",sexbotControlBahtanPush,2,"Shut Down","Shut down this factory for good. There will be no starting it up again.");
+	}
+	else
+	{
+		addDisabledButton(0,"All Male","All Male","This choice no longer works - the factory is shut down.");
+		addDisabledButton(1,"All Female","All Female","This choice no longer works - the factory is shut down.");
+		addDisabledButton(2,"Shut Down","Shut Down","You've already shut down this factory.");
+	}
+	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
+}
+
+function sexbotControlBahtanPush(buttonPushed:int = 0):void
+{
+	clearOutput();
+	if(buttonPushed >= -1 || buttonPushed <= 1) 
+	{
+		output("You click the button. There’s a throb and a grinding sound. The sexbots on the factory floor don’t seem to notice, or change...but maybe you’ll see a difference in the ones you meet outside.");
+		flags["SEXBOTS_GENDER_SETTING"] = buttonPushed; 
+	}
+	//Shut dawn
+	else
+	{
+		output("There’s a powering down sound, and the lights above the factory floor dim. Almost all of the sexbots milling around below you shudder, and then drop quietly to the ground.");
+		//(Sexbot encounter rate dropped to 20% of normal)
+		flags["SEXBOT_FACTORY_DISABLED"] = 1;
+	}
+	clearMenu();
+	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }

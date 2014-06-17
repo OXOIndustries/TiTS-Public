@@ -427,6 +427,11 @@ public function variableRoomUpdateCheck():void
 		rooms["SOUTH ESBETH 2"].northExit = "";
 		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
+	//Sexbot factory opeeeeeen.
+	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
+	{
+		rooms["256"].southExit = "294";
+	}
 }
 
 public function processTime(arg:int):void {
