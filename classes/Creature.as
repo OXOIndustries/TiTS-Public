@@ -2085,6 +2085,11 @@
 			temp += armor.defense + upperUndergarment.defense + lowerUndergarment.defense + accessory.defense + shield.defense;
 			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
+			if (hasStatusEffect("Burning")) 
+			{
+				temp -= 5;
+				if(temp < 0) temp = 0;
+			}
 			return temp;
 		}
 		public function shieldDefense(): Number {

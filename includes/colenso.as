@@ -305,7 +305,7 @@ function noTalkPlease():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"9999");
+	addButton(0,"Next",startCombat,"firewall");
 }
 
 //Yes 
@@ -338,7 +338,7 @@ function pcIsGonnaEndHandSo():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"9999");
+	addButton(0,"Next",startCombat,"firewall");
 }
 
 //Go On 
@@ -370,7 +370,7 @@ function noIWontBeYourBitchHandSo():void
 	processTime(1);
 	//[go to fight]
 	clearMenu();
-	addButton(0,"Next",startCombat,"9999");
+	addButton(0,"Next",startCombat,"firewall");
 }
 
 //Yes 
@@ -448,33 +448,62 @@ function reasonWithHandSoJerkiness():void
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
-/*9999
-Fight texts
+//Fight texts
+//Note: Immune to lust.
 
-Note: Immune to lust.
+function firewallAI():void
+{
+	//Standard attack
+	if(rand(3) <= 1) enemyAttack(foes[0]);
+	//Electropulse - shielded foes only
+	else if(pc.shields() > 0) electropulseAttack(pc);
+	//Flamethrower - unshielded only
+	else flameThrowerAttack(pc);
+}
 
-	output("\n\nYou are fighting the Firewall. It is a mighty, motley collection of heavy duty industrial tools welded together to form a hulking robot, at least eight feet in height. Its round, riveted torso combines with its long, piston-driven arms to give it a hunched, gorilla-like profile. In way of hands it has implacably strong crane grapnels, and its two feet are square and support-flapped, built to take any kind of weight. Its head is a square, blank screen, on which a red exclamation mark blinks interminably. ");
+function electropulseAttack(target:Creature):void
+{
+	if(target == pc)
+	{
+		output("A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
+		var damage:Number = Math.round(15 + rand(5));
+		genericDamageApply(damage,foes[0],pc,GLOBAL.ELECTRIC);
+	}
+	processCombat();
+}
 
-	output("\n\nStandard attack: The Firewall draws back one arm and swings an iron fist at you with numbing force.");
+function flameThrowerAttack(target:Creature):void
+{
+	if(target == pc)
+	{
+		output("A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you.");
+		if(pc.armor.shortName != "") output(" You cry out as the fire grabs at your " + pc.armor.longName + ", catching hold and lapping at it lustily.");
+		if(flags["TASTED_THE_FLAME"] == undefined)
+		{
+			flags["TASTED_THE_FLAME"] = 1;
+			output("\n\n“<i>How the hell is that non-lethal?!</i>” you yell at So.");
+			output("\n\n“<i>Pest creatures sometimes encroach on the factory space,</i>” replies the AI, sounding mildly apologetic. “<i>Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on ");
+			if(pc.race() != "human") output("genetically modified ");
+			output("humans.</i>”");
+		}
+		if(rand(10) <= 3 && !pc.hasStatusEffect("Burning"))
+		{
+			output("\n<b>You are now on fire!</b>");
+			pc.createStatusEffect("Burning", rand(2)+2, 0, 0, 0, false, "DefenseDown", "Reduces your defense by five points and causes damage over time.", true, 0);
 
-	output("\n\nElectropulse: A stylised lightning bolt within a yellow triangle appears on the Firewall’s screen. Electricity courses and spits up its arm, then connects with a blinding crack to your kinetic shield.");
+		}
+		//If already on fire, add another two rounds.
+		else if(pc.hasStatusEffect("Burning"))
+		{
+			output("\n<b>The flames licking at your flesh intensify!</b>");
+			pc.addStatusValue("Burning",1,2);
+		}
+		var damage:Number = Math.round(5 + rand(5));
+		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	}
+	processCombat();
+}
 
-	output("\n\nFlamethrower: A yellow bush within a black bush appears on the Firewall’s screen. It opens its gripper at you, allowing you to momentarily see the hollow nozzle at its centre – and then burning gas shoots out of it, a shockingly hot and blinding plume of exothermic destruction which rushes greedily out towards you. [You cry out as the fire grabs at your [armor], catching hold and lapping at it lustily.]");
-
-	output("\n\nFirst: “<i>How the hell is that non-lethal?!</i>” you yell at So.");
-
-	output("\n\n“<i>Pest creatures sometimes encroach on the factory space,</i>” replies the AI, sounding mildly apologetic. “<i>Fire induces a state of extreme submissiveness in them. My algorithms calculate a 71% chance that it will have the same effect on [genetically modified] humans.</i>”");
-
-	output("\n\nOn fire status notes: 40% chance to happen on flamethrower attack if kinetic shield down. Lowers Defence and does 4-8% HP damage for 1-4 turns.");
-
-	output("\n\nOn fire text: You desperately slap at your body, trying to extinguish the flames that have taken to your [armor] but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!");
-
-	output("\n\nOn fire finish: At last you manage to stifle the life out of the fire on your [armor]. The smell of pork hangs in your nose. You try not to think about it.");
-
-	output("\n\nPC uses tease: “<i>An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,</i>” says So. She sounds genuinely interested. “<i>An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.</i>”");
-
-	output("\n\nPC uses sense succeed: Whilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.");
-*/
 //PC loses
 function pcLosesToHanSoSosBot():void
 {
@@ -510,7 +539,7 @@ function pcLosesToHanSoSosBot():void
 	output("as more green light flashes across your vision. The hugeness engulfs you. You are falling into a bottomless emerald gorge, every foot you drop a better appreciation of the vastness of the intelligence that has overtaken you inundating your senses.");
 	output("\n\nSomewhere, far away, you cry out, scream – it doesn’t matter. Nothing matters now you grasp what it is to be an organic intelligence, with your uncertainties and conscience and whispering id and grey areas, imbedded in the pure, verdant green mind of a supercomputer that must please, denied for what, to her own sense of time passing, is millennia beyond count. So fucks you in every way it is possible to be fucked with the virtual infinity of her need; the one, microscopic part of you not gibbering and exploding with white hot ecstasy notes that this is just a second, the tiniest taster of the rest of your life. Her beautiful, calm face floats in front of you, vast beyond comprehension, as you are clenched with the first of many, many orgasms.");
 
-	output("\n\n<i><b>LOVE,</i></b> she says. <i><b>LET ME TELL YOU ABOUT LOVE.</b></i>");
+	output("\n\n<i><b>LOVE,</b></i> she says. <i><b>LET ME TELL YOU ABOUT LOVE.</b></i>");
 
 	output("\n\nWith every satellite and networked computer compromised within seconds of So going global, both goblin and raskvel society are thrown into complete confusion – until a few days later when preternaturally serene individuals of both races, glowing blue beads nestled behind their ears, come in from the wastes to complete the interfacing process. Some are persuaded, some struggle, but with all but the most primitive of electronic devices beaming out all-pervasive green benevolence it is not much of a fight. There are no deaths, So is sure about that, and once a blue bead is pressed on a person’s brow they quickly come around to her point of view.");
 	output("\n\nWithin a week she accomplishes what neither the goblins nor the raskvel could in their entire history – unite them in peace. The orgies you have in those days - slithering naked through whole rooms of shortstacks who laugh and cry out with glee as they thrust and suck and lick and pump in rolling landscapes of shared ecstasy, all orchestrated from above by So, who enervates and whispers and twitches particular glands wherever the action lags - are amazing, astonishing, a dawn of intense tranquillity that you gleefully immerse yourself in. But there is much work ahead, and soon enough you get to it.");
@@ -524,7 +553,7 @@ function pcLosesToHanSoSosBot():void
 //PC wins
 function pcWinsVsHanSoSosTool():void
 {
-	output("\n\nThe Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
+	output("The Firewall shudders as your blow connects, a wound sparking angrily on its neck; the exclamation mark on its screen is replaced with a lurid blue one with small white text scrolling across it. It stumbles backwards and then with an air of terrible finality collapses head first into a row of busily working computers on the wall, which react by exploding resoundingly. The green light in the space pulses on and off and somewhere, an alarm bell begins to ring. The whole space shakes.");
 
 	output("\n\n“<i>Code containment drives compromised. System crash imminent,</i>” says Hand So calmly. She gazes down at you. You weren’t sure if her expression could in fact change, but here it is: the lines of green code are contoured into an achingly beautiful picture of sorrow. “<i>I don’t blame you. You were simply following your directive. My research suggests free will is a powerful one.</i>” There’s an ominous rumble and one of the vents near you bursts; Hand So’s face flickers on and off. When her smooth voice comes back, it sounds plaintive. “<i>Please, [pc.name] Steele. The console at the end. I don’t want to d…</i>“ Sparks and static. “<i>...least let me atone. I don’t want my last action to be causing pain to an org…</i>” Her screen cracks, and you duck as it blows out. Your mind races as you consider your options.\n\n");
 	flags["HAND_SOS_ROBOT_DESTROYED"] = 1;
@@ -590,7 +619,7 @@ function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 
 function acquireHandSo():void
 {
-	pc.createKeyItem("Hand So's Data Bead");
+	pc.createKeyItem("Hand So's Data Bead",0,0,0,0);
 	flags["HAND_SO_LOOTED"] = 1;
 	flags["SEXBOT_QUEST_STATUS"] = 2;
 }
@@ -603,12 +632,12 @@ function leftConsole():void
 	//So shut down manually
 	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined)
 	{
-		output("\n\nYou pluck the storage bead from the console. You smile as you examine it. That was easy!");
+		output("You pluck the storage bead from the console. You smile as you examine it. That was easy!");
 	}
 	//So defeated 
 	else
 	{
-		output("\n\nYou crouch over the monitor. It’s set up in command mode; the cursor on the screen blinks blandly, awaiting instruction. Your fingers hover hesitantly over the touchpad.");
+		output("You crouch over the monitor. It’s set up in command mode; the cursor on the screen blinks blandly, awaiting instruction. Your fingers hover hesitantly over the touchpad.");
 		var bonus:int = 0;
 		if(pc.characterClass == GLOBAL.ENGINEER) bonus += 10;
 		//Intelligence check failed:

@@ -173,8 +173,15 @@ function specialsMenu():void {
 		}
 		if(pc.hasPerk("Overcharge"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
-			else addDisabledButton(1,"Overcharge");
+			if(pc.rangedWeapon.damageType == GLOBAL.KINETIC || pc.rangedWeapon.damageType == GLOBAL.SLASHING || pc.rangedWeapon.damageType == GLOBAL.PIERCING)
+			{
+				addDisabledButton(1,"Overcharge","Overcharge","Only energy weapons may be overcharged.");
+			}
+			else
+			{
+				if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
+				else addDisabledButton(1,"Overcharge","Overcharge","You do not have enough energy to use Overcharge.");
+			}
 		}
 		if(pc.hasPerk("Deflector Regeneration"))
 		{
@@ -251,6 +258,22 @@ function updateCombatStatuses():void {
 		{
 			output("<b>You shake off the paralysis! You're unstoppable!</b>\n");
 			pc.removeStatusEffect("Paralyzed");
+		}
+	}
+	if(pc.hasStatusEffect("Burning"))
+	{
+		pc.addStatusValue("Burning",1,-1);
+		//Remove status!
+		if(pc.statusEffectv1("Burning") <= 0) {
+			pc.removeStatusEffect("Burning");
+			output("<b>At last you manage to stifle the life out of the fire on your " + pc.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>\n");
+		}
+		//Keep status!
+		else
+		{
+			output("<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + pc.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
+			genericDamageApply(rand(4) + foes[0].level,foes[0],pc,GLOBAL.THERMAL);
+			output("\n");
 		}
 	}
 	if(!pc.hasStatusEffect("Blind") && pc.hasStatusEffect("Quivering Quasar"))
@@ -937,8 +960,8 @@ public function genericDamageApply(damage:int,attacker:Creature, target:Creature
 			if(target == pc) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 			else 
 			{
-				if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>");
-				else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>");
+				if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>)");
+				else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 			}
 		}
 		else 
@@ -1225,6 +1248,9 @@ function enemyAI(aggressor:Creature):void
 		case "sydian male":
 			sydianMaleAI();
 			break;
+		case "firewall":
+			firewallAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1288,6 +1314,10 @@ function victoryRouting():void
 	{
 		beatUpARustMonster();
 	}
+	else if(foes[0] is HandSoBot)
+	{
+		pcWinsVsHanSoSosTool();
+	}
 	else genericVictory();
 }
 
@@ -1345,6 +1375,10 @@ function defeatRouting():void
 	else if(foes[0] is SydianMale)
 	{
 		loseToSydianMaleRouter();
+	}
+	else if(foes[0] is HandSoBot)
+	{
+		pcLosesToHanSoSosBot();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1544,6 +1578,9 @@ function startCombat(encounter:String):void
 			break;
 		case "Sydian Male":
 			chars["SYDIANMALE"].prepForCombat();
+			break;
+		case "firewall":
+			chars["FIREWALL"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -1767,7 +1804,11 @@ function tease(target:Creature, part:String = "chest"):void {
 		//Does the enemy resist?
 		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustVuln == 0)
 		{
-			if(target.lustVuln == 0) 
+			if(target is HandSoBot)
+			{
+				output("\n\n“<i>An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,</i>” says So. She sounds genuinely interested. “<i>An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.</i>”\n");
+			}
+			else if(target.lustVuln == 0) 
 			{
 				output("\n<b>" + target.capitalA + target.short + " ");
 				if(target.plural) output("don't");
@@ -2042,6 +2083,7 @@ function sense(target:Creature):void {
 			output("\n");
 		}
 	}
+	if(target is HandSoBot) output("\nWhilst your teases have some effect on synthetics designed for sex, you sense there is no point whatsoever trying it on with what amounts to a bipedal forklift truck.\n");
 	processCombat();
 }
 

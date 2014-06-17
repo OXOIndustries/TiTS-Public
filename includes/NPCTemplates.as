@@ -173,6 +173,10 @@
 	{
 		chars["KELLY"] = new classes.Characters.Kelly();
 	}
+	if (!justUpdate || (justUpdate && chars["FIREWALL"] == undefined))
+	{
+		chars["FIREWALL"] = new classes.Characters.HandSoBot();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
