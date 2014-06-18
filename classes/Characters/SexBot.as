@@ -176,14 +176,24 @@
 
 			//Male or female configuration
 			var manbot:Boolean = false;
+
+			//Chance sets base % of getting a dudebot
+			var chance:int = 50;
 			//Pure dude? 25% chance of dude
-			if(kGAMECLASS.pc.hasCock() && !kGAMECLASS.pc.hasVagina()) manbot = (rand(4) == 0);
+			if(kGAMECLASS.pc.hasCock() && !kGAMECLASS.pc.hasVagina()) chance = 25;
 			//Dude with a cunt? 50% chance
-			else if(kGAMECLASS.pc.hasCock()) manbot = (rand(2) == 0);
+			else if(kGAMECLASS.pc.hasCock()) chance = 50;
 			//Just a cunt? 75%!
-			else if(kGAMECLASS.pc.hasVagina()) manbot = (rand(4) != 0);
+			else if(kGAMECLASS.pc.hasVagina()) chance = 75;
 			//Neuter? 50/50
-			else manbot = (rand(2) == 0);
+			else manbot = chance = 50;
+
+			//Factory settings override base chance
+			if(kGAMECLASS.flags["SEXBOTS_GENDER_SETTING"] == 1) chance = 90;
+			else if(kGAMECLASS.flags["SEXBOTS_GENDER_SETTING"] == -1) chance = 10;
+
+			//Now run chance!
+			manbot = (rand(100) < chance)
 			//Female bot:
 			if(!manbot)
 			{

@@ -412,9 +412,9 @@ function rustRidgesEncounters():Boolean {
 		if(!pc.hasStatusEffect("Raskvel Prophylactic")) choices[choices.length] = encounterHostileRaskvelFemale;
 		choices[choices.length] = encounterHostileRaskvelFemale;
 		//choices[choices.length] = encounterHostileRaskvelFemale;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || rand(2) == 0) choices[choices.length] = encounterASexBot;
 
 		//Run the event
 		choices[rand(choices.length)]();
@@ -434,9 +434,9 @@ function rustScytheGladeEncounters():Boolean {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
-		choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) choices[choices.length] = encounterASexBot;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || rand(2) == 0) choices[choices.length] = encounterASexBot;
 		choices[choices.length] = encounterDasGooGray;
 		choices[choices.length] = encounterDasGooGray;
 		choices[choices.length] = encounterDasGooGray;

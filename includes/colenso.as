@@ -276,7 +276,14 @@ function sexbotQuestRoom2():Boolean
 	else
 	{
 		processTime(20);
-		output("\n\nYou roll your eyes. You can’t believe you’re putting yourself through this again… You spend the best part of half an hour fighting your way through the garbage surrounding the factory again, skirting around the building, walking through its shell-like interior and down into its hidden basement. With Hand So gone it feels every bit as hollow and dead as the factory above. The AI’s former self hangs from the ceiling like a dead grapevine, and there isn’t a whisper or a blink from any of the consoles and computers which crowd the walls. The smell of burnt plastic hangs in the air.");
+		output("\n\nYou roll your eyes. You can’t believe you’re putting yourself through this again… You spend the best part of half an hour fighting your way through the garbage surrounding the factory again, skirting around the building, walking through its shell-like interior and down into its hidden basement. With Hand So gone it feels every bit as hollow and dead as the factory above. The AI’s former self hangs from the ceiling like a dead grapevine");
+		if(flags["HAND_SOS_CONSOLE_EXPLODED"] != undefined) output(", and there isn’t a whisper or a blink from any of the consoles and computers which crowd the walls. The smell of burnt plastic hangs in the air");
+		output(".");
+		//Factrory intact
+		if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined)
+		{
+			addButton(0,"Forward",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
+		}
 		return false;
 	}
 }
@@ -573,6 +580,7 @@ function backAfterWreckingHanSoSosShit():void
 		clearOutput();
 		output("You flinch as something explodes behind you. Messing about here is a mistake. You turn and flee the control centre, coughing back the acrid smell of melting plastic. As you get to the top of the stairs, there’s a resounding crash behind you. Sighing with relief, you make your way out of the factory and back out through the surrounding junk, congratulating yourself on a dangerous mission well completed.\n\n");
 		flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+		flags["SEXBOT_FACTORY_DISABLED"] = 1;
 		flags["SEXBOT_QUEST_STATUS"] = 2;
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -591,7 +599,7 @@ function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	clearOutput();
 	output("You are standing at the far end of Hand So’s nerve centre. The room opens out a bit here, and is arrayed on all sides with grimy windows. Through these you can see down into the large underground factory complex, replete with production lines and workshops.");
 	//Sexbots on: 
-	if(flags["SEXBOTS_SHUT_DOWN"] == undefined) output(" Dozens, maybe hundreds of sexbots are at work down there, completely oblivious to you. They are calmly going about repairing and putting together more sexbots from piles of spare parts evidently scavenged from the wastelands outside.");
+	if(flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) output(" Dozens, maybe hundreds of sexbots are at work down there, completely oblivious to you. They are calmly going about repairing and putting together more sexbots from piles of spare parts evidently scavenged from the wastelands outside.");
 	else output(" The lights are dim and the place is mostly deserted. However you can still see one or two sexbots down there, picking through the detritus littering the place with a slightly mournful air.");
 
 	output("\n\nIn front of you are two consoles. The console on the right is more prominently centred and looks like it might have something to do with the factory below.");
@@ -610,10 +618,11 @@ function forwardAfterWreckingHanSoSosShitToGetAIPleasureBot():void
 	//So shut down manually, still there:
 	if(flags["HAND_SOS_ROBOT_DESTROYED"] == undefined) 
 	{
-		output(" The one on the left is humming quietly. The words “Download complete. Please remove hardware” are displayed on the screen, and there is a large storage bead attached to it.");
-		addButton(0,"Left",leftConsole,undefined,"Left","Collect the shut-down A.I.");
+		if(flags["HAND_SO_LOOTED"] == undefined && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) output(" The one on the left is humming quietly. The words “Download complete. Please remove hardware” are displayed on the screen, and there is a large storage bead attached to it.");
+		else output(" The one on the left is dead and lifeless.");
+		addButton(1,"Right",goToZeRightConsolePeasant,undefined,"Right","Investigate the console to the right.");
 	}
-	addButton(1,"Right",goToZeRightConsolePeasant,undefined,"Right","Investigate the console to the right.");
+	if(flags["HAND_SO_LOOTED"] == undefined && flags["HAND_SOS_CONSOLE_EXPLODED"] == undefined) addButton(0,"Left",leftConsole,undefined,"Left","Collect the shut-down A.I.");
 	addButton(14,"Back",backAfterWreckingHanSoSosShit);
 }
 
@@ -647,6 +656,7 @@ function leftConsole():void
 			processTime(20);
 			currentLocation = "256";
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+			flags["SEXBOT_FACTORY_DISABLED"] = 1;
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 			return;
@@ -656,6 +666,7 @@ function leftConsole():void
 		{
 			output("\n\nYou panic momentarily, but then logic, and the memory of how to use one of these stupid things clicks in. Typing quickly, you query after executable programs recently compressed. The function immediately returns “HSsosOS.zip”, sat waiting for you prominently in the main drive. You ask for it to be downloaded into the detachable drive. 24%.... Something explodes behind you, and you flinch.... 95%... 96%.... Why does it always slow down right at the end...? 100%! You grab the storage bead. As soon as the device leaves the slot, the lights dim and the moaning machinery dies out with a whimper as if you’d just pulled the power on the whole facility. You sigh in relief as you examine your prize.");
 			flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+			flags["SEXBOT_FACTORY_DISABLED"] = 1;
 		}
 	}
 	//[merge]
@@ -672,7 +683,7 @@ function destroyHandsSoNooneWillCare():void
 	clearOutput();
 	output("You put the storage device on the concrete floor and smash it. It breaks apart in an unremarkable smatter of chips. Satisfied with a mission decisively completed, you turn back to the consoles.");
 	pc.addHard(2);
-	flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
+	flags["HAND_SO_LOOTED"] = 1;
 	clearMenu();
 	addButton(0,"Next",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }
@@ -694,26 +705,19 @@ function goToZeRightConsolePeasant():void
 	output("This console seems to control the sexbots down below. After playing around with it for a while, you find a few settings which might be of interest to you.");
 	//[All male (becomes “some female” if on)] [All female (becomes “some male” if on)] [Shut down]
 	clearMenu();
-	if(flags["SEXBOT_FACTORY_DISABLED"] == undefined)
-	{
-		if(flags["SEXBOTS_GENDER_SETTING"] == undefined || flags["SEXBOTS_GENDER_SETTING"] == 0) addButton(0,"All Male",sexbotControlBahtanPush,1,"All Male","Set the sexbots to prioritize male appearances.");
-		else addButton(1,"Reset",sexbotControlBahtanPush,0,"SplitSexes","Reset the sexbots to have even odds between males and females.");
-		if(flags["SEXBOTS_GENDER_SETTING"] != 1) addButton(1,"All Female",sexbotControlBahtanPush,-1,"All Female","Set the sexbots to prioritize female appearances.");
-		addButton(2,"Shut Down",sexbotControlBahtanPush,2,"Shut Down","Shut down this factory for good. There will be no starting it up again.");
-	}
-	else
-	{
-		addDisabledButton(0,"All Male","All Male","This choice no longer works - the factory is shut down.");
-		addDisabledButton(1,"All Female","All Female","This choice no longer works - the factory is shut down.");
-		addDisabledButton(2,"Shut Down","Shut Down","You've already shut down this factory.");
-	}
+	if(flags["SEXBOTS_GENDER_SETTING"] != 1) addButton(0,"All Male",sexbotControlBahtanPush,1,"All Male","Set the sexbots to prioritize male appearances.");
+	if(flags["SEXBOTS_GENDER_SETTING"] == 0 || flags["SEXBOTS_GENDER_SETTING"] == undefined) addButton(1,"Reset",sexbotControlBahtanPush,0,"SplitSexes","Reset the sexbots to have even odds between males and females.");
+	if(flags["SEXBOTS_GENDER_SETTING"] != -1) addButton(1,"All Female",sexbotControlBahtanPush,-1,"All Female","Set the sexbots to prioritize female appearances.");
+	if(flags["SEXBOT_FACTORY_DISABLED"] == undefined) addButton(2,"Shut Down",sexbotControlBahtanPush,2,"Shut Down","This should reduce the number of sexbots out there....");
+	else addButton(2,"Start Up",sexbotControlBahtanPush,2,"Start Up","Pressing this should restore the sexbots to their previous levels.");
+
 	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
 }
 
 function sexbotControlBahtanPush(buttonPushed:int = 0):void
 {
 	clearOutput();
-	if(buttonPushed >= -1 || buttonPushed <= 1) 
+	if(buttonPushed >= -1 && buttonPushed <= 1) 
 	{
 		output("You click the button. There’s a throb and a grinding sound. The sexbots on the factory floor don’t seem to notice, or change...but maybe you’ll see a difference in the ones you meet outside.");
 		flags["SEXBOTS_GENDER_SETTING"] = buttonPushed; 
@@ -721,9 +725,17 @@ function sexbotControlBahtanPush(buttonPushed:int = 0):void
 	//Shut dawn
 	else
 	{
-		output("There’s a powering down sound, and the lights above the factory floor dim. Almost all of the sexbots milling around below you shudder, and then drop quietly to the ground.");
-		//(Sexbot encounter rate dropped to 20% of normal)
-		flags["SEXBOT_FACTORY_DISABLED"] = 1;
+		if(flags["SEXBOT_FACTORY_DISABLED"] == undefined || flags["SEXBOT_FACTORY_DISABLED"] == 0)
+		{
+			output("There’s a powering down sound, and the lights above the factory floor dim. Almost all of the sexbots milling around below you shudder, and then drop quietly to the ground.");
+			//(Sexbot encounter rate dropped to 20% of normal)
+			flags["SEXBOT_FACTORY_DISABLED"] = 1;
+		}
+		else
+		{
+			output("There's a powering up sound as lights blink on around the factory one by one. Sexbots slowly make their way into the area, one shuddering step at a time as the place resumes activity.");
+			flags["SEXBOT_FACTORY_DISABLED"] = undefined;
+		}
 	}
 	clearMenu();
 	addButton(14,"Back",forwardAfterWreckingHanSoSosShitToGetAIPleasureBot);
