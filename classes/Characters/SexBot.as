@@ -186,7 +186,7 @@
 			//Just a cunt? 75%!
 			else if(kGAMECLASS.pc.hasVagina()) chance = 75;
 			//Neuter? 50/50
-			else manbot = chance = 50;
+			else chance = 50;
 
 			//Factory settings override base chance
 			if(kGAMECLASS.flags["SEXBOTS_GENDER_SETTING"] == 1) chance = 90;
