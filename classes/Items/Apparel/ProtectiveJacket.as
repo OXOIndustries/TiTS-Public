@@ -5,10 +5,10 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	
-	public class NaleenArmor extends ItemSlotClass
+	public class ProtectiveJacket extends ItemSlotClass
 	{
 		//constructor
-		public function NaleenArmor()
+		public function ProtectiveJacket()
 		{
 			this._latestVersion = 1;
 
@@ -17,32 +17,32 @@
 			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
-			this.shortName = "NaleenScale";
+			this.shortName = "P.Jacket";
 			
 			//Regular name
-			this.longName = "naleenscale armor";
+			this.longName = "protective jacket";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a suit of naleenscale armor";
+			this.description = "an armored leather jacket";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This crude but effective looking armor is made in the style of ancient armors from days long past. Instead of using pounded metal to fashion the protective plates, the maker of this armor gathered discarded scales from Mhen'ga's native Naleen species.";
+			this.tooltip = "Revelling in the sort of stylish fashion and utter swagger only a deprecated wasteland environment could provide, this auburn brown jacket could woo the folks at home and make anyone look good rocking a pompadour. It jingles faintly with each shake though, betraying the armored plates inside of it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 2200;
+			this.basePrice = 2500;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;
-			this.defense = 3;
+			this.defense = 4;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = 0;
+			this.sexiness = 1;
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;

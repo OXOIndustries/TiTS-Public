@@ -47,6 +47,7 @@
 	import classes.Items.Melee.*
 	import classes.Items.Apparel.*
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Accessories.*
 
 	import classes.Parser.ParseEngine;
 
@@ -109,7 +110,7 @@
 		include "../includes/drBadger.as";
 		include "../includes/dumbfuckBonus.as";
 		include "../includes/colenso.as";
-		
+		include "../includes/aurora.as";
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
