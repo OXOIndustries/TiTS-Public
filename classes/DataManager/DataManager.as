@@ -44,6 +44,7 @@
 			var sv7:SaveVersionUpgrader7;
 			var sv8:SaveVersionUpgrader8;
 			var sv9:SaveVersionUpgrader9;
+			var sv10:SaveVersionUpgrader10;
 		}
 		
 		/**
@@ -218,16 +219,6 @@
 				return (String(slotNumber) + ": <b>EMPTY</b>\n\n");
 			}
 			
-			if (dataFile.data.minVersion == undefined) // Special case for v1 files, where minVersion wasn't defined
-			{
-				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
-			}
-			
-			if (dataFile.data.version < DataManager.LATEST_SAVE_VERSION)
-			{
-				return (String(slotNumber) + ": <B>REQUIRES UPGRADE</b>\n\n");
-			}
-			
 			if (dataFile.data.minVersion > DataManager.LATEST_SAVE_VERSION)
 			{
 				return (String(slotNumber) + ": <b>INCOMPATIBLE</b>\n\n");
@@ -240,6 +231,7 @@
 			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
 			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
 			returnString += "  <b>Location:</b> " + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			
 			returnString += "\n";
 			return returnString;
 		}
@@ -333,10 +325,7 @@
 				dataFile.flags[prop] = kGAMECLASS.flags[prop];
 			}
 			
-			// Game options
-			dataFile.sillyMode 	= kGAMECLASS.silly;
-			dataFile.easyMode 		= kGAMECLASS.easy;
-			dataFile.debugMode 	= kGAMECLASS.debug;
+			dataFile.gameOptions = kGAMECLASS.gameOptions.getSaveObject();
 			
 			// Codex entries
 			dataFile.unlockedCodexEntries = new Array();
@@ -533,9 +522,7 @@
 			}
 			
 			// Game settings
-			kGAMECLASS.silly = obj.sillyMode;
-			kGAMECLASS.easy = obj.easyMode;
-			kGAMECLASS.debug = obj.debugMode;
+			kGAMECLASS.gameOptions.loadSaveObject(obj.gameOptions);
 			
 			// Codex entry stuff
 			// Codex entry keys are always strings stuffed in arrays, so we don't need to do anything special... yet
@@ -615,9 +602,7 @@
 			if (data.currentMinutes == undefined) throw new Error("currentMinutes failed");
 			if (data.characters == undefined) throw new Error("characters failed");
 			if (data.flags == undefined) throw new Error("flags failed");
-			if (data.sillyMode == undefined) throw new Error("sillyMode failed");
-			if (data.easyMode == undefined) throw new Error("easyMode failed");
-			if (data.debugMode == undefined) throw new Error("debugMode failed");
+			if ((data.sillyMode == undefined || data.easyMode == undefined || data.debugMode == undefined) && data.gameOptions == undefined) throw new Error("Game options failed");
 			return true;
 		}
 		

@@ -36,6 +36,8 @@
 	// Game content managers
 	import classes.GameData.TooltipManager;
 	import classes.GameData.CodexManager;
+	import classes.GameData.GameOptions;
+	
 	import fl.transitions.easing.None;
 
 	import classes.InputManager;
@@ -137,9 +139,15 @@
 		public var items:Object;
 		
 		//Toggles
-		public var silly:Boolean;
-		public var easy:Boolean;
-		public var debug:Boolean;
+		public var gameOptions:GameOptions;
+		
+		public function get silly():Boolean { return gameOptions.sillyMode; }
+		public function get easy():Boolean { return gameOptions.easyMode; }
+		public function get debug():Boolean { return gameOptions.debugMode; }
+		
+		public function set silly(v:Boolean):void { gameOptions.sillyMode = v; }
+		public function set easy(v:Boolean):void { gameOptions.easyMode = v; }
+		public function set debug(v:Boolean):void { gameOptions.debugMode = v; }
 		
 		public var inputManager:InputManager;
 
@@ -180,6 +188,7 @@
 		{
 			kGAMECLASS = this;
 			dataManager = new DataManager();
+			gameOptions = new GameOptions();
 			this.inputManager = new InputManager(stage, false);
 			this.setupInputControls();
 			
