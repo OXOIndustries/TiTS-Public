@@ -11,10 +11,16 @@ package classes.GameData
 		public function GameOptions() 
 		{
 			_bustPriority = ["CHESIRE", "GATS"];
+			_bustsDisabled = false;
 			_bustFallbacks = true;
 			_easyMode = false;
 			_debugMode = false;
 		}
+		
+		// Busts disabled
+		private var _bustsDisabled:Boolean;
+		public function get bustsDisabled():Boolean { return _bustsDisabled; }
+		public function set bustsDisabled(v:Boolean):void { _bustsDisabled = v; }
 		
 		// Priority list of bust names
 		private var _bustPriority:Array;

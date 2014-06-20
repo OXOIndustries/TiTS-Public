@@ -1,177 +1,72 @@
 ﻿package classes.Resources 
 {
+	import classes.GameData.GameOptions;
+	import classes.kGAMECLASS;
+	import flash.utils.getDefinitionByName
+	import classes.Resources.Busts.*;
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	public class NPCBustImages 
 	{
-		//[Embed(source = "../../assets/images/npcs/.png", mimeType = "image/png")]
-		//public static var Bust_:Class;
-		[Embed(source = "../../assets/images/npcs/alex.png", mimeType = "image/png")]
-		public static var Bust_ALEX:Class;
-
-		[Embed(source = "../../assets/images/npcs/aliss.png", mimeType = "image/png")]
-		public static var Bust_ALISS:Class;
-
-		[Embed(source = "../../assets/images/npcs/Anno.png", mimeType = "image/png")]
-		public static var Bust_ANNO:Class;
-
-		[Embed(source = "../../assets/images/npcs/Anno_Nude.png", mimeType = "image/png")]
-		public static var Bust_ANNO_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Burt.png", mimeType = "image/png")]
-		public static var Bust_BURT:Class;
-		[Embed(source = "../../assets/images/npcs/Burt_Nude.png", mimeType = "image/png")]
-		public static var Bust_BURT_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Crazy_Carl.png", mimeType = "image/png")]
-		public static var Bust_CARL:Class;
-
-		[Embed(source = "../../assets/images/npcs/Celise.png", mimeType = "image/png")]
-		public static var Bust_CELISE:Class;
+		public static var OVERRIDES:Object = new OverrideBusts();
+		public static var GATS:Object = new GatsBusts();
+		public static var CHESIRE:Object = new ChesireBusts();
 		
-		[Embed(source = "../../assets/images/npcs/Cunt_Snake.png", mimeType = "image/png")]
-		public static var Bust_CUNTSNAKE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Delilah.png", mimeType = "image/png")]
-		public static var Bust_DELILAH:Class;
-		[Embed(source = "../../assets/images/npcs/Delilah_Nude.png", mimeType = "image/png")]
-		public static var Bust_DELILAH_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Dr_Haswell.png", mimeType = "image/png")]
-		public static var Bust_DR_HASWELL:Class;
+		// Return the required bust class definition based on the current game settings.
+		public static function getBust(bustName:String):Class
+		{
+			var opts:GameOptions = kGAMECLASS.gameOptions;
+			
+			// Busts off, return no image == nothing displayed.
+			if (opts.bustsDisabled == true) return null;
+			
+			// Determine which version of the image we're going to display
+			var doNude:Boolean;
+			if (bustName.indexOf("_NUDE") != -1) doNude = true;
+			else doNude = false;
+			
+			var tBust:Class;
+			
+			// Check if we have a "forced" override present in the primary bust class.
+			tBust = lookupBustInClass(bustName, NPCBustImages.OVERRIDES, doNude);
+			if (tBust != null) return tBust;
+			
+			var primary:Object = NPCBustImages[opts.bustPriority[0]];
+			var secondary:Object = NPCBustImages[opts.bustPriority[1]];
+			
+			// Check the exact thing we're looking for
+			tBust = lookupBustInClass(bustName, primary, doNude);
+			if (tBust != null) return tBust;
+			
+			// If we can't find the exact thing we're looking for, or a reasonable alt from the Primary artist, fallback to secondary.
+			if (opts.bustFallbacks == true)
+			{
+				tBust = lookupBustInClass(bustName, secondary, doNude);
+				if (tBust != null) return tBust;
+			}
+			
+			return null;
+		}
 		
-		[Embed(source = "../../assets/images/npcs/Flahne.png", mimeType = "image/png")]
-		public static var Bust_FLAHNE:Class;
-		[Embed(source = "../../assets/images/npcs/Flahne_Nude.png", mimeType = "image/png")]
-		public static var Bust_FLAHNE_NUDE:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Rival_Jack.png", mimeType = "image/png")]
-		public static var Bust_JACK:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Jade.png", mimeType = "image/png")]
-		public static var Bust_JADE:Class;
-		[Embed(source = "../../assets/images/npcs/Jade_Nude.png", mimeType = "image/png")]
-		public static var Bust_JADE_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Rival_Jill.png", mimeType = "image/png")]
-		public static var Bust_JILL:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Kelly.png", mimeType = "image/png")]
-		public static var Bust_KELLY:Class;
-
-		[Embed(source = "../../assets/images/npcs/Kelly_Nude.png", mimeType = "image/png")]
-		public static var Bust_KELLY_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Kiro.png", mimeType = "image/png")]
-		public static var Bust_KIRO:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Kiro_Nude.png", mimeType = "image/png")]
-		public static var Bust_KIRONUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Lapinara.png", mimeType = "image/png")]
-		public static var Bust_LAPINARA:Class;
-
-		[Embed(source = "../../assets/images/npcs/Lapinara_2.png", mimeType = "image/png")]
-		public static var Bust_LAPINARA_2:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Machina.png", mimeType = "image/png")]
-		public static var Bust_MACHINA:Class;
-
-		[Embed(source = "../../assets/images/npcs/milodanfem.png", mimeType = "image/png")]
-		public static var Bust_MILODANFEM:Class;
-		
-		[Embed(source = "../../assets/images/npcs/milodanfem_stack.png", mimeType = "image/png")]
-		public static var Bust_MILODANFEM_STACK:Class;
-		
-		[Embed(source = "../../assets/images/npcs/milodanmale.png", mimeType = "image/png")]
-		public static var Bust_MILODANMALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Naleen_Female.png", mimeType = "image/png")]
-		public static var Bust_NALEEN:Class;
-
-		[Embed(source = "../../assets/images/npcs/Naleen_Male.png", mimeType = "image/png")]
-		public static var Bust_NALEEN_MALE:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Penny.png", mimeType = "image/png")]
-		public static var Bust_PENNY:Class;
-
-		[Embed(source = "../../assets/images/npcs/Penny_Nude.png", mimeType = "image/png")]
-		public static var Bust_PENNY_NUDE:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Raskvel_Female.png", mimeType = "image/png")]
-		public static var Bust_RASKVEL_FEMALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Raskvel_Female_Nude.png", mimeType = "image/png")]
-		public static var Bust_RASKVEL_FEMALE_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Raskvel_Male.png", mimeType = "image/png")]
-		public static var Bust_RASKVEL_MALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Raskvel_Male_Nude.png", mimeType = "image/png")]
-		public static var Bust_RASKVEL_MALE_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Reaha.png", mimeType = "image/png")]
-		public static var Bust_REAHA:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sellesy.png", mimeType = "image/png")]
-		public static var Bust_SELLESY:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sellesy_Nude.png", mimeType = "image/png")]
-		public static var Bust_SELLESY_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sera.png", mimeType = "image/png")]
-		public static var Bust_SERA:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sera_Nude.png", mimeType = "image/png")]
-		public static var Bust_SERA_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/sexbot.png", mimeType = "image/png")]
-		public static var Bust_SEXBOTFEMALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sexbot_Male.png", mimeType = "image/png")]
-		public static var Bust_SEXBOT_MALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Shekka.png", mimeType = "image/png")]
-		public static var Bust_SHEKKA:Class;
-		[Embed(source = "../../assets/images/npcs/Shekka_Nude.png", mimeType = "image/png")]
-		public static var Bust_SHEKKA_NUDE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Shelly.png", mimeType = "image/png")]
-		public static var Bust_SHELLA:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sydian_Female.png", mimeType = "image/png")]
-		public static var Bust_SYDIAN_FEMALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Sydian_Male.png", mimeType = "image/png")]
-		public static var Bust_SYDIAN_MALE:Class;
-
-		[Embed(source = "../../assets/images/npcs/Shelly.png", mimeType = "image/png")]
-		public static var Bust_SHELLY:Class;
-
-		[Embed(source = "../../assets/images/npcs/Syri.png", mimeType = "image/png")]
-		public static var Bust_SYRI:Class;
-		[Embed(source = "../../assets/images/npcs/Syri_Nude.png", mimeType = "image/png")]
-		public static var Bust_SYRI_NUDE:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Venus_Pitcher.png", mimeType = "image/png")]
-		public static var Bust_VENUSPITCHER:Class;
-
-		[Embed(source = "../../assets/images/npcs/Venus_Pitcher_Elder.png", mimeType = "image/png")]
-		public static var Bust_VENUS_PITCHER_ELDER:Class;
-		
-		[Embed(source = "../../assets/images/npcs/V-Ko.png", mimeType = "image/png")]
-		public static var Bust_VKO:Class;
-
-		[Embed(source = "../../assets/images/npcs/Zil_Female.png", mimeType = "image/png")]
-		public static var Bust_ZILFEMALE:Class;
-		
-		[Embed(source = "../../assets/images/npcs/Zil_Male.png", mimeType = "image/png")]
-		public static var Bust_ZIL:Class;
-
-		[Embed(source = "../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
-		public static var Bust_DRBADGER:Class;
-
+		private static function lookupBustInClass(bustName:String, targetClass:Object, nudeMode:Boolean):Class
+		{
+			if ("Bust_" + bustName in targetClass) return targetClass["Bust_" + bustName];
+			
+			// If we're trying to find a nude version and we can't find it, look for a non-nude version
+			if (nudeMode == true)
+			{
+				if ("Bust_" + bustName.split("_")[0] in targetClass) return targetClass["Bust_" + bustName.split("_")[0]];
+			}
+			
+			// If we're trying to find the non-nude version and we can't find it...
+			if (nudeMode == false)
+			{
+				if ("Bust_" + bustName + "_NUDE" in targetClass) return targetClass["Bust_" + bustName + "_NUDE"];
+			}
+			
+			return null;
+		}
 	}
 }

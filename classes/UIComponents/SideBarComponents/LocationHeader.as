@@ -166,17 +166,6 @@ package classes.UIComponents.SideBarComponents
 			}
 			else
 			{
-				// Figure out if we have "stack" variations
-				// Stack variations are differently scaled versions of the bust images to maintain scaling
-				// between certain combination of busts.
-				for (var i:int = 0; i < busts.length; i++)
-				{
-					if (NPCBustImages["Bust_" + busts[i] + "_STACK"] !== undefined)
-					{
-						busts[i] = busts[i] + "_STACK";
-					}
-				}
-					
 				showMultipleBusts(busts);
 			}
 		}
@@ -184,13 +173,13 @@ package classes.UIComponents.SideBarComponents
 		private function showSingleBust(name:String):void
 		{
 			var bustT:Class;
-			var tName:String = "Bust_" + name;
 			
-			if (NPCBustImages[tName] !== undefined)
+			if (name == "none") bustT = null;
+			else bustT = NPCBustImages.getBust(name);
+			
+			if (bustT != null)
 			{
 				_bustOrderSet = false;
-				
-				bustT = NPCBustImages[tName];
 				
 				// If there is an existing bust
 				if (_npcBusts.numChildren == 1)
@@ -229,13 +218,12 @@ package classes.UIComponents.SideBarComponents
 		{
 			// Build a list of available busts from the incoming args
 			var available:Array = new Array();
+			var bustT:Class;
 			
 			for (var i:int = 0; i < args.length; i++)
 			{
-				if (NPCBustImages["Bust_" + args[i]] !== undefined)
-				{
-					available.push(NPCBustImages["Bust_" + args[i]]);
-				}
+				bustT = NPCBustImages.getBust(args[i]);
+				if (bustT != null) available.push(bustT);
 			}
 			
 			// We're going to add the images in reverse order, so to check if the busts currently present are the same,
