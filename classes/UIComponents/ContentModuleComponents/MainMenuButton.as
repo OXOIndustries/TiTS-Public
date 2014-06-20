@@ -24,6 +24,8 @@ package classes.UIComponents.ContentModuleComponents
 		
 		private var _toggledOn:Boolean;
 		
+		public function bodyHeight():Number { return _background.height; }
+		
 		public function MainMenuButton(sizeModeBig:Boolean = false) 
 		{
 			_sizeMode = sizeModeBig;
@@ -68,6 +70,8 @@ package classes.UIComponents.ContentModuleComponents
 			_text.text = "A Button";
 			_text.mouseEnabled = false;
 			_text.mouseWheelEnabled = false;
+			
+			this.mouseChildren = false;
 			
 			this.addChild(_text);
 		}

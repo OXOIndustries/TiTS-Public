@@ -151,7 +151,7 @@ package classes.UIComponents.ContentModules
 			
 			for (var btnIdx:int = 0; btnIdx < 6; btnIdx++)
 			{
-				var newBtn:MainMenuButton = new MainMenuButton((btnIdx <= 2) ? false : true); 
+				var newBtn:MainMenuButton = new MainMenuButton(); 
 				
 				if (btnIdx == 3)
 				{
@@ -168,6 +168,8 @@ package classes.UIComponents.ContentModules
 				newBtn.mouseChildren = false;
 				
 				_mainMenuButtons.push(newBtn);
+				
+				if (btnIdx == 3 || btnIdx == 5) newBtn.visible = false;
 			}
 		}
 	}

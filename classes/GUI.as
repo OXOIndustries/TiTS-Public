@@ -10,6 +10,7 @@
 	import classes.UIComponents.ContentModules.GameTextModule;
 	import classes.UIComponents.ContentModules.LevelUpPerksModule;
 	import classes.UIComponents.ContentModules.MainMenuModule;
+	import classes.UIComponents.ContentModules.OptionsModule;
 	import classes.UIComponents.LeftSideBar;
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
@@ -146,6 +147,7 @@
 			this.ConfigureSecondaryOutput();
 			this.ConfigureCodex();
 			this.ConfigureLevelUp();
+			this.ConfigureOptions();
 			
 			this.setupRightSidebar();
 			this.setupLeftSidebar();
@@ -299,14 +301,9 @@
 			(buttons[2] as MainMenuButton).buttonName = "Credits";
 			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
 			
-			(buttons[3] as MainMenuButton).buttonName = "Easy Mode:\nOff";
-			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleEasyHandler);
 			
-			(buttons[4] as MainMenuButton).buttonName = "Debug Mode:\nOff";
-			(buttons[4] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleDebugHandler);
-			
-			(buttons[5] as MainMenuButton).buttonName = "Silly Mode:\nOff";
-			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, toggleSillyHandler);
+			(buttons[4] as MainMenuButton).buttonName = "Options";
+			(buttons[4] as MainMenuButton).addEventListener(MouseEvent.CLICK, showOptions);
 		}
 		
 		public function confirmNewCharacter():void
@@ -335,55 +332,9 @@
 			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
 		}
 		
-		private function toggleEasyHandler(e:Event):void
+		private function showOptions(e:Event):void
 		{
-			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
-			if (titsClassPtr.easy == true)
-			{
-				titsClassPtr.easy = false;
-				tarButton.DeHighlight();
-				tarButton.buttonName = "Easy Mode:\nOff";
-			}
-			else
-			{
-				titsClassPtr.easy = true;
-				tarButton.Highlight();
-				tarButton.buttonName = "Easy Mode:\nOn";
-			}
-		}
-		
-		private function toggleDebugHandler(e:Event):void
-		{
-			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
-			if (titsClassPtr.debug == true)
-			{
-				titsClassPtr.debug = false;
-				tarButton.DeHighlight();
-				tarButton.buttonName = "Debug Mode:\nOff"
-			}
-			else
-			{
-				titsClassPtr.debug = true;
-				tarButton.Highlight();
-				tarButton.buttonName = "Debug Mode:\nOn";
-			}
-		}
-		
-		private function toggleSillyHandler(e:Event):void
-		{
-			var tarButton:MainMenuButton = e.currentTarget as MainMenuButton;
-			if (titsClassPtr.silly == true)
-			{
-				titsClassPtr.silly = false;
-				tarButton.DeHighlight();
-				tarButton.buttonName = "Silly Mode:\nOff";
-			}
-			else
-			{
-				titsClassPtr.silly = true;
-				tarButton.Highlight();
-				tarButton.buttonName = "Silly Mode:\nOn";
-			}
+			this.showOptionsModule();
 		}
 		
 		/**
@@ -463,6 +414,18 @@
 			pPerkUp.y = 0;
 			
 			pPerkUp.visible = false;
+		}
+		
+		private function ConfigureOptions():void
+		{
+			var pOptions:OptionsModule = new OptionsModule();
+			titsClassPtr.addChild(pOptions);
+			_availableModules[pOptions.moduleName] = pOptions;
+			
+			pOptions.x = 200;
+			pOptions.y = 0;
+			
+			pOptions.visible = false;
 		}
 		
 		/**
@@ -554,6 +517,13 @@
 			_buttonTray.buttonPagePrev.Deactivate();
 			_buttonTray.textPageNext.Deactivate();
 			_buttonTray.textPagePrev.Deactivate();
+		}
+		
+		public function showOptionsModule():void
+		{
+			this.showModule("Options");
+			clearGhostMenu();
+			addGhostButton(4, "Back", showMainMenu);
 		}
 		
 		// Interaction bullshit for the main menu

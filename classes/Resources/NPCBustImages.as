@@ -20,7 +20,7 @@
 			var opts:GameOptions = kGAMECLASS.gameOptions;
 			
 			// Busts off, return no image == nothing displayed.
-			if (opts.bustsDisabled == true) return null;
+			if (opts.bustsEnabled == false) return null;
 			
 			// Determine which version of the image we're going to display
 			var doNude:Boolean;

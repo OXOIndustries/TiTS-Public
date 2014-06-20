@@ -1,7 +1,13 @@
 package classes.UIComponents.ContentModules 
 {
 	import classes.UIComponents.ContentModule;
+	import classes.UIComponents.ContentModuleComponents.BustsPreferenceControl;
+	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
+	import classes.UIComponents.ContentModuleComponents.OptionsControlToggle;
+	import fl.containers.ScrollPane;
+	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	/**
 	 * ...
 	 * @author Gedan
@@ -9,19 +15,80 @@ package classes.UIComponents.ContentModules
 	public class OptionsModule extends ContentModule
 	{
 		
+		private var _scrollPane:ScrollPane;
+		private var _controlsContainer:MovieClip;
+		private var _controls:Array;
+		private var _pC:*;
+				
 		public function OptionsModule() 
 		{
 			leftBarEnabled = true;
 			rightBarEnabled = true;
-			fullButtonTrayEnabled = true;
-			_moduleName = "options";
+			fullButtonTrayEnabled = false;
+			_moduleName = "Options";
 			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
 		private function init(e:Event):void
 		{
+			this.visible = false;
 			this.removeEventListener(Event.ADDED_TO_STAGE, init);
+			
+			_controls = new Array();
+			
+			this.Build();
+			this.BuildControls();
+		}
+		
+		private function Build():void
+		{
+			_scrollPane = new ScrollPane();
+			_scrollPane.x = 5;
+			_scrollPane.y = 10;
+			_scrollPane.height = 735;
+			_scrollPane.width = 780;
+			_scrollPane.opaqueBackground = null;
+			this.addChild(_scrollPane);
+			
+			var nullSkin:MovieClip = new MovieClip();
+			_scrollPane.setStyle("skin", nullSkin);
+			_scrollPane.setStyle("upSkin", nullSkin);
+			
+			_controlsContainer = new MovieClip();
+			_scrollPane.source = _controlsContainer;
+			_scrollPane.update();
+		}
+		
+		private function BuildControls():void
+		{
+			addToggleControl("Toggle debug mode access to game functions.", "Debug Mode", "debugMode");
+			addToggleControl("Toggle easy mode game difficulty.", "Easy Mode", "easyMode");
+			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
+			
+			addBustPreferenceControl();
+		}
+		
+		private function addToggleControl(d:String, n:String, p:String):void
+		{
+			var tC:OptionsControlToggle = new OptionsControlToggle();
+			_controls.push(tC);
+			_controlsContainer.addChild(tC);
+			
+			if (_pC != null) tC.y = _pC.y + _pC.height;
+			_pC = tC;
+			
+			tC.configure(d, n, p);
+		}
+		
+		private function addBustPreferenceControl():void
+		{
+			var bpC:BustsPreferenceControl = new BustsPreferenceControl();
+			_controls.push(bpC);
+			_controlsContainer.addChild(bpC);
+			
+			if (_pC != null) bpC.y = _pC.y + _pC.height;
+			_pC = bpC;
 		}
 	}
 
