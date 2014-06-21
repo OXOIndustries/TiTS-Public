@@ -65,6 +65,11 @@
 				
 				if (kGAMECLASS.pc.short == "uncreated")
 				{
+					kGAMECLASS.userInterface.showPrimaryOutput();
+				}
+				
+				if (kGAMECLASS.pc.short.length == 0)
+				{
 					kGAMECLASS.userInterface.showMainMenu();
 				}
 			}
@@ -431,7 +436,7 @@
 			}
 			else
 			{
-				if (kGAMECLASS.chars["PC"] != undefined && kGAMECLASS.chars["PC"].short != "uncreated")
+				if (kGAMECLASS.chars["PC"] != undefined && kGAMECLASS.chars["PC"].short != "uncreated" && kGAMECLASS.chars["PC"].short.length > 0)
 				{
 					var ph:Object = new Object();
 					this.loadBaseData(saveBackup, ph);
@@ -456,7 +461,7 @@
 			var i:int;
 			
 			// Watch this magic
-			if (kGAMECLASS.chars["PC"].short != "uncreated")
+			if (kGAMECLASS.chars["PC"].short != "uncreated" && kGAMECLASS.chars["PC"].short.length > 0)
 			{
 				this.saveBaseData(curGameObj); // Current game state backed up! Shocking!
 			}

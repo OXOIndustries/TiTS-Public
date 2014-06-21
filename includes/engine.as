@@ -142,7 +142,7 @@ function deglow():void
 	this.userInterface.deglow()
 }	
 public function updatePCStats():void {
-	if (pc.short != "uncreated")
+	if (pc.short != "uncreated" && pc.short.length > 0)
 		this.userInterface.setGuiPlayerNameText(pc.short);
 	else
 		this.userInterface.setGuiPlayerNameText("");

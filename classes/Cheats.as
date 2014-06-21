@@ -23,7 +23,7 @@ package classes
 		
 		public static function GiveZilRations():void
 		{
-			if (kGAMECLASS.pc.short == "uncreated")
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
 			{
 				return;
 			}
@@ -39,7 +39,7 @@ package classes
 		
 		public static function RoomTeleport():void
 		{
-			if (kGAMECLASS.pc.short == "uncreated")
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
 			{
 				return;
 			}

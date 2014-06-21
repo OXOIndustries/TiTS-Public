@@ -154,7 +154,7 @@ package classes.UIComponents
 			_nameText.defaultTextFormat = UIStyleSettings.gNameHeaderFormatter;
 			_nameText.embedFonts = true;
 			_nameText.antiAliasType = AntiAliasType.ADVANCED;
-			_nameText.text = "uncreated";
+			_nameText.text = "";
 			_nameText.mouseEnabled = false;
 			_nameText.mouseWheelEnabled = false;
 			this.addChild(_nameText);

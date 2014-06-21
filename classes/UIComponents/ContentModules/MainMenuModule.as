@@ -168,8 +168,6 @@ package classes.UIComponents.ContentModules
 				newBtn.mouseChildren = false;
 				
 				_mainMenuButtons.push(newBtn);
-				
-				if (btnIdx == 3 || btnIdx == 5) newBtn.visible = false;
 			}
 		}
 	}

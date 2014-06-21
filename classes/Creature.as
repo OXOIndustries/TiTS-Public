@@ -68,7 +68,7 @@
 		}
 
 		//For enemies
-		public var short: String = "uncreated";
+		public var short: String = "";
 		public var originalRace: String = "human";
 		public var a: String = "a ";
 		public var long: String = "You scrawny, yo.";

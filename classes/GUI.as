@@ -100,6 +100,7 @@
 		
 		// Module handling
 		private var _currentModule:ContentModule;
+		private var _previousModule:String = "";
 		private var _availableModules:Object;
 		
 		public function GUI(titsClassPtrArg:*, stagePtrArg:*)
@@ -249,6 +250,7 @@
 		private function mainMenuToggle(e:Event = null):void
 		{
 			if (!mainMenuButton.isActive) return;
+			if (kGAMECLASS.pc.short.length == 0) return;
 			
 			if (_availableModules["MainMenu"].visible == true)
 			{
@@ -298,38 +300,45 @@
 			
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
-			(buttons[2] as MainMenuButton).buttonName = "Credits";
-			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
+			(buttons[1] as MainMenuButton).buttonName = "Data";
+			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, kGAMECLASS.dataManager.dataRouter);
 			
+			(buttons[2] as MainMenuButton).buttonName = "Options";
+			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, showOptions);
+						
+			(buttons[5] as MainMenuButton).buttonName = "Credits";
+			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
 			
-			(buttons[4] as MainMenuButton).buttonName = "Options";
-			(buttons[4] as MainMenuButton).addEventListener(MouseEvent.CLICK, showOptions);
+			(buttons[3] as MainMenuButton).buttonName = "Yes";
+			(buttons[3] as MainMenuButton).visible = false;
+			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			
+			(buttons[4] as MainMenuButton).visible = false;
 		}
 		
 		public function confirmNewCharacter():void
 		{
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
-			(buttons[0] as MainMenuButton).buttonName = "Yes";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			(buttons[0] as MainMenuButton).buttonName = "No";
+			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
 			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
 			
-			(buttons[1] as MainMenuButton).buttonName = "No";
-			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
-			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
+			(buttons[3] as MainMenuButton).visible = true;
 		}
 		
-		public function resetMenuButtons():void
+		public function resetMenuButtons(e:Event = null):void
 		{
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
+			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
+			
 			(buttons[0] as MainMenuButton).buttonName = "New Game";
 			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
-			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
 			
-			(buttons[1] as MainMenuButton).buttonName = "Data";
-			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.dataManager.dataRouter);
-			(buttons[1] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
+			(buttons[3] as MainMenuButton).visible = false;
+			
 		}
 		
 		private function showOptions(e:Event):void
@@ -476,6 +485,7 @@
 				}
 				
 				_availableModules[module].visible = true;
+				if (_currentModule != null) _previousModule = _currentModule.name;
 				_currentModule = _availableModules[module];
 				this.clearGhostMenu();
 			}
@@ -506,11 +516,7 @@
 			
 			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
 			
-			if (buttons[3].IsOn() != titsClassPtr.easy) buttons[3].ToggleState();
-			if (buttons[4].IsOn() != titsClassPtr.debug) buttons[4].ToggleState();
-			if (buttons[5].IsOn() != titsClassPtr.silly) buttons[5].ToggleState();
-			
-			this.mainMenuButton.Glow();
+			if (kGAMECLASS.pc.short.length > 0) this.mainMenuButton.Glow();
 			this.resetMenuButtons();
 			
 			_buttonTray.buttonPageNext.Deactivate();
@@ -523,7 +529,9 @@
 		{
 			this.showModule("Options");
 			clearGhostMenu();
-			addGhostButton(4, "Back", showMainMenu);
+			
+			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);
+			else addGhostButton(4, "Back", showPrimaryOutput);
 		}
 		
 		// Interaction bullshit for the main menu
@@ -1030,7 +1038,7 @@
 		public function menuButtonsOn():void 
 		{
 			//trace("this.stagePtr = ", this.stagePtr);
-			if (!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short != "uncreated") 
+			if (!titsClassPtr.pc.hasStatusEffect("In Creation") && titsClassPtr.pc.short.length > 0) 
 			{
 				appearanceOn();
 			}
