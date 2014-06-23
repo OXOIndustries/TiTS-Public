@@ -346,6 +346,12 @@ function parseVKoCustomInputs():void
 			this.removeInput();
 		vKoElectroTherapy();
 	}
+	else if(toParse.indexOf("milk") >= 0 || toParse.indexOf("breastpump") >= 0 || toParse.indexOf("pump") >= 0 || toParse.indexOf("lactate") >= 0)
+	{
+		if(stage.contains(this.userInterface.textInput)) 
+			this.removeInput();
+		VKOBreastPumpFunction();
+	}
 	else
 	{
 		clearOutput();
@@ -878,57 +884,91 @@ function agreeToElectroStim():void
 }
 
 
-/*
-Breast Pump (Stress relief for milky breasts)
+//Breast Pump (Stress relief for milky breasts)
 //Requires players with lactating boobs.
-
-{if PC doesn’t meet the requirements:
-After the input, V-Ko’s eye scanners light up for a moment, looking you over. Finished, the shebot states, “Unable to comply.”
-
-A few lights blink out as she reboots and greets you again as if you had just arrived.
-
-(Play initial greeting.)
+function VKOBreastPumpFunction():void {
+	clearOutput();
+	author("LukaDoc & QB");
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	//if PC doesn’t meet the requirements:
+	if(!pc.isLactating() || pc.biggestTitSize() < 1)
+	{
+		output("After the input, V-Ko’s eye scanners light up for a moment, looking you over. Finished, the shebot states, <i>“Unable to comply.”</i>");
+		output("\n\nA few lights blink out as she reboots and greets you again as if you had just arrived.");
+		processTime(1);
+		//(Play initial greeting.)
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	output("Her eyes light up as she processes your latest input, scanning your form and focusing particularly on your [pc.milk]-filled [pc.breasts]. Her eyes flicker as they confirm the presence of fluid, before powering down their scan mode as she says, <i>“Please confirm that this is the directive which you wish to engage.\"</i>");
+	processTime(1);
+	//[Agree][Disagree]
+	clearMenu();
+	addButton(0,"Agree",agreeToVKoBoobSucks);
+	addButton(1,"Disagree",declineToGetYourBreastVKOPumped);
 }
 
-Her eyes light up as she processes your latest input, scanning your form and focusing particularly on your [pc.milkType]-filled [pc.breasts]. Her eyes flicker as they confirm the presence of fluid, before powering down their scan mode as she says, “Please confirm that this is the directive which you wish to engage."
-
-[Agree][Disagree]
-
-[=Disagree=]
-
-A few lights blink out as she reboots and greets you again as if you had just arrived.
-
-(Play initial greeting.)
-
-[=Agree=]
-
-The nursedroid points to a nearby chair. It twists and reshapes itself into a comfy {easy chair}{if taur: mattress.}
-
-{if taur: //just in case
-The nursedroid points to the bed located along the wall, and you settle your tauric self atop it.
-}
-With a nod you move over to the indicated seat, already removing your [pc.clothesTop] {and your [pc.clothesBra] in turn}. Once your [pc.breasts] are exposed, you settle down on the {chair}/{mattress} and make yourself comfortable; once you find the position you're most happy in, you indicate to the nursedroid that you're ready to begin.
-
-V-Ko approaches you and you note the red crosses on her chest moving. They extend from her tits atop a pair of prehensile, hose-like protrusions. The crosses themselves seemingly melt into paraboles perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.
-
-A shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups. {Though your [lipples]/[nipple-cunts] have no protrusions to play with, that doesn't stop the cups fashioning themselves around you areolas and ensuring that your [pc.milkType] will go inside of the nursedroid.} {Below your primary tits, your [pc.breastNumber-1] breasts practically tingle with anticipation of their turn.}
-
-Her chest starts emitting a low pumping noise, and you feel the cups begin to drain your of your [pc.milk]. You breath a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.
-
-So relaxed you are that you find yourself slipping into an almost trance-like state. The steady pumping of breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess milk leaking from V-Ko. Her own breasts look {at least a little inflated.}{bloated.}{enormous, she must’ve drained quite a bit from you.}{ready to burst, then again it’s no surprise with how productive you are.}
-
-She finds a bucket nearby and promptly proceeds to dump your collected [pc.milk] inside.
-
-As the droid busies herself with emptying your [pc.milk-type] from her own tits, your fingers reach up and gently knead the tender flesh of your [pc.breastsRow1]. A smile crosses your lips as you stroke the still-tingling, sensitive meat of your just-milked nipples. You may not have climaxed from this treatment, but you still feel a lot better than you did before - it's just so good to get all that [pc.milktype] <b>out</b>. {Your lower breasts still ache with their load, though, and your smile widens in anticipation; you're going to enjoy getting them milked, too.}
-
-{if extra boobs:
-As soon as she’s done, V-Ko returns and readjusts her suction cups, twisting them to fit your lower row of breasts. You gasp as they latch onto you and begin the process anew. A pleasured moan escaping you as you allow yourself to slip back into your milking trance...
+//[=Disagree=]
+function declineToGetYourBreastVKOPumped():void
+{
+	clearOutput();
+	author("LukaDoc & QB");
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	output("A few lights blink out as she reboots and greets you again as if you had just arrived.");
+	//(Play initial greeting.)
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
-Done milking you, V-Ko looks to you and bows. “Procedure concluded, please come again.”
+//[=Agree=]
+function agreeToVKoBoobSucks():void
+{
+	clearOutput();
+	author("LukaDoc & QB");
+	userInterface.showBust("VKO");
+	userInterface.showName("\nV-KO");
+	output("The nursedroid points to a nearby chair. It twists and reshapes itself into a comfy ");
+	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("easy chair");
+	else output("mattress");
+	output(".");
 
-Rising from the {chair}{mattress}, you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.
+	output("\n\nWith a nod, you move over to the indicated seat");
+	if(pc.isChestGarbed()) output(", already removing your [pc.upperGarments]. Once your [pc.breasts] are exposed");
+	else output(". With your [pc.breasts] already exposed");
+	output(", you settle down on the ");
+	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
+	else output("mattress");
+	output(" and make yourself comfortable; once you find the position you're most happy in, you indicate to the nursedroid that you're ready to begin.");
+	output("\n\nV-Ko approaches you, and you note the red crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
 
-(Possibly give the PC’s milk back, bottled and useable as an item?)
-(Only if you want Fen.)
-*/
+	output("\n\nA shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups.");
+	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn't stop the cups fashioning themselves around you areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
+	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
+
+	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain your of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.");
+
+	output("\n\nSo relaxed you are that you find yourself slipping into an almost trance-like state. The steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
+	if(pc.milkQ() < 9999) output("at least a little inflated.");
+	else if(pc.milkQ() < 9999) output("bloated.");
+	else if(pc.milkQ() < 9999) output("enormous, she must’ve drained quite a bit from you.");
+	else output("ready to burst, then again it’s no surprise with how productive you are.");
+
+	output("\n\nAs the droid busies herself with emptying your [pc.milk] from her tits and into a nearby receptacle, your fingers reach up and gently knead the tender flesh of your [pc.breasts]. A smile crosses your lips as you stroke the still-tingling, sensitive skin of your just-milked nipples. You may not have climaxed from this treatment, but you still feel a lot better than you did before - it's just so good to get all that [pc.milk] <b>out</b>.");
+	if(pc.bRows() > 1) output(" Your lower breasts still ache with their load, though, and your smile widens in anticipation; you're going to enjoy getting them milked, too.\n\nAs soon as she’s done, V-Ko returns and readjusts her suction cups, twisting them to fit your lower row of breasts. You gasp as they latch onto you and begin the process anew. A pleasured moan escaping you as you allow yourself to slip back into your milking trance....");
+	output("\n\nDone milking you, V-Ko looks to you and bows. <i>“Procedure concluded, please come again.”</i>");
+
+	output("\n\nRising from the ");
+	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
+	else output("mattress");
+	output(", you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.");
+	processTime(45+rand(10));
+	pc.lust(rand(10)+1);
+	pc.milked(pc.milkFullness);
+	//(Possibly give the PC’s milk back, bottled and useable as an item?)
+	//(Only if you want Fen.)
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
