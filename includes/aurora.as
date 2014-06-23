@@ -39,8 +39,24 @@ Interior
 function auroraBonus():Boolean
 {
 	output("The cavernous room is dimly lit with swaying, hanging lamps similar to a gloomy and moonlit night on a much more <i>habitable</i> world, still bright enough to make out vague details. The room isn’t a comfortable one, claustrophobic with the stacks of shelves, boxes and half-ruined devices haphazardly placed about with little rhyme or reason, or the signs of damaged hull that seem especially prevalent here, making it hard to get around. If that wasn’t enough to make you on edge, the thick, heady scent of char permeates the room, making your senses reel and head dizzy as you try to keep it all together.");
+	if(!pc.isCrotchGarbed())
+	{
+		auroraBust();
+		author("Fenoxo");
+		output("\n\nAs soon as you step inside, a howling, screeching alarm goes off. Did you trigger some kind of anti-intrusion system? The sound of a fist hitting metal jars you out of your reverie, and you at last identify the inhuman tone as coming from ");
+		if(flags["MET_AURORA"] == undefined) output("the small bat-girl in the back of the chamber.");
+		else output("Aurora.");
+		output(" Her knuckles have depressed a big, red button, and she screeches, <i>\"Creep!\"</i> as a mechanism in the wall kicks into gear.");
+		output("\n\nIn the blink of an eye, a giant metallic palm swings out of the wall on strength from a dozen pneumatic cylinders, bowling you right out the doorway. A shrill voice chases you, calling, <i>\"Put some pants on!\"</i>");
+		output("\n\n<b>It looks like you need clothes to go in that shop....</b>");
+		pc.HP(-1);
+		clearMenu();
+		addButton(0,"Next",move,"213");
+		return true;
+	}
 	output("\n\nThe one saving grace is also one if it’s biggest (if structural) flaws; there’s a massive tear in the far away wall, exposing the room to the outside and, most importantly, fresh air. The outside light is a lovely appeal to comfort, too. Musing, you realize it’s all rather reminiscent to a cave.");
 	output("\n\nDespite the mess, it’s rather easier to find the shopkeeper in all her batty, kid-mechanist glory as she zooms about the room while doing her upside down work, causing the rubbery rigging clinging to the ceiling to stretch and the metal rafters groan under her modest weight. It’d be a lot safer for her to come to you instead of trying to mimic her behavior, so you figure it’d be prudent to get her attention.");
+
 	// [Aurora] [South]
 	if(flags["MET_AURORA"] == undefined) addButton(0,"Bat-Kid",approachAurora);
 	else addButton(0,"Aurora",approachAurora);
@@ -59,7 +75,7 @@ function approachAurora():void
 	clearOutput();
 	author("Magic Ted");
 	auroraBust();
-	if(pc.isNude())
+	if(!pc.isCrotchGarbed())
 	{
 		author("Fenoxo");
 		output("As soon as you step inside, a howling, screeching alarm goes off. Did you trigger some kind of anti-intrusion system? The sound of a fist hitting metal jars you out of your reverie, and you at last identify the inhuman tone as coming from ");
@@ -506,7 +522,7 @@ function electrogunStuffAtAuroras():void
 	output("\n\nWhich, given the sort of shop you are in, wasn’t all that farfetched.");
 	output("\n\n<i>\"I just changed the emitter so it shoots a electrical charge, mostly forward! It’ll spread out some so it messes with shields and gives people the shakes! But... it kinda runs out of batteries pretty fast, cuz it’s not designed to run so inefficiently. And if you wanna actually... ya know, end something with it, you’re going to be at it for a while...\"</i>");
 	output("\n\n<i>\"So, er, want it?\"</i>");
-	processTime(2):
+	processTime(2);
 	// Bzzt! Should be straightforward, comparable damage to Carl’s guns but uses a anti-shield damage type or something.
 	output("\n\nDamage Rating: 12");
 	output("\nAccuracy Rating: 2");
