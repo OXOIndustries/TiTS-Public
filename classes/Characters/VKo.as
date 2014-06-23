@@ -6,6 +6,7 @@
 	import classes.Items.Accessories.JungleLure;
 	import classes.Items.Accessories.JungleRepel;
 	import classes.Items.Miscellaneous.MagicMilker;
+	import classes.Items.Miscellaneous.ShieldBooster;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -53,6 +54,7 @@
 			this.HPMod = 15;
 			this.HPRaw = this.HPMax();
 
+			this.inventory.push(new ShieldBooster());
 			this.inventory.push(new DecentShield());
 			this.inventory.push(new JungleLure());
 			this.inventory.push(new JungleRepel());
