@@ -1998,7 +1998,7 @@ function helpKellyCleanUpAfterDindinsWithNormalHoney():void
 		output("\n\nFine, fine. You’ve had your fun... for now.");
 	}
 	//Kind:
-	else if(pc.isKind())
+	else if(pc.isNice())
 	{
 		output("\n\nNonsense, you can take care of everything by yourself.");
 		output("\n\n<i>\"Don't tempt me,\"</i> she drawls, then grins. <i>\"But thanks for the offer,\"</i> she adds, before plunging her hands into the soapy water.");
@@ -3778,7 +3778,7 @@ function getDPedByKelly():void
 	{
 		output("\n\n<i>\"Well, well, lookie what we got here; aren't we just a perfect match?\"</i> the laquine giggles at her own question, leaning in closer to examine your [pc.vaginas]. <i>\"I don't meet someone who can match me two-for-two every day,\"</i> she purrs, licking her lips at the thought.");
 		//Kind:
-		if(pc.isKind())
+		if(pc.isNice())
 		{
 			output("\n\nYou thought she’d appreciate that. Now why doesn’t she come and work those beautiful rods of her inside so you two can feel good?");
 			output("\n\n<i>\"Mmm... you don't need to ask me twice,\"</i> she purrs in anticipation.");

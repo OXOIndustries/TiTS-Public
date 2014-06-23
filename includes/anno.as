@@ -123,7 +123,7 @@ function firstTimeAnnoTalks():void
 function soAboutDatDiscountSlut():void
 {
 	shopkeep = chars["ANNO"];
-	chars["ANNO"].keeperBuy = "<i>\"So, about that discount...\"</i>\n\n<i>\"Of course. Right this way, " + pc.mf("Mr.","Ms") + " Steele,\"</i> Anno says, guiding you to the register.";
+	chars["ANNO"].keeperBuy = "<i>\"So, about that discount...\"</i>\n\n<i>\"Of course. Right this way, " + pc.mf("Mr.","Ms") + " Steele,\"</i> Anno says, guiding you to the register.\n";
 	//[Shop Menu Here]
 	buyItem();
 }
@@ -608,7 +608,7 @@ function earScritchesForAnno():void
 	pc.lust(3);
 	//[Sex][Tease]
 	clearMenu();
-	if(pc.lust() >= 33 && pc.hasCock() || pc.hasVagina()) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
+	if(pc.lust() >= 33 && (pc.hasCock() || pc.hasVagina())) addButton(0,"Sex",sexWIthAnnoPostTease,undefined,"Sex","See if Anno is up for some sexytimes.");
 	else addDisabledButton(0,"Sex","Sex","You need to be turned on enough for sex and have a penis or vagina.");
 	addButton(1,"Tease",teaseAnno,undefined,"Tease","Tease her like a dog - really pet that bitch.");
 }

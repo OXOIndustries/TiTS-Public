@@ -17,7 +17,7 @@
 			
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.ACCESSORY;
+			this.type = GLOBAL.ARMOR;
 			
 			//Used on inventory buttons
 			this.shortName = "Smartclothes";
@@ -44,7 +44,7 @@
 			this.damageType = GLOBAL.KINETIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 5;
+			this.shields = 12;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;

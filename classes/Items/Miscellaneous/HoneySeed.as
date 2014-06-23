@@ -85,6 +85,7 @@
 					kGAMECLASS.output("\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
 					target.orgasm();
 					kGAMECLASS.output("\n\nPanting and gasping for breath, your orgasmic transformation leaves you plastered in spooge and smelling like a beehive.");
+					target.cumType = GLOBAL.HONEY;
 				}
 				//No Effect (You Already do the Thing!)
 				else

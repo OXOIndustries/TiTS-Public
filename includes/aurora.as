@@ -486,7 +486,7 @@ function buyFromAurora(arg:String = "ERROR"):void {
 	output("You purchase a " + arg + " for " + cost + ".");
 	pc.credits -= cost;
 	clearMenu();
-	addButton(0,"Next",crazyCarlShop);
+	addButton(0,"Next",shopAtAuroras);
 }
 
 //Rocket Hammer
@@ -566,7 +566,7 @@ function protectiveJacketFromAurora():void
 	output("\nPrice: 2800");
 	processTime(2);
 	clearMenu();
-	if(pc.credits >= 2800) addButton(0,"Buy",buyFromAurora,"P.Jacket","ProtectiveJacket","Buy an armored jacket from Aurora.\n\nDefense Rating: +4\nAppearance Rating: +1\nPrice: 2800 credits.");
+	if(pc.credits >= 2800) addButton(0,"Buy",buyFromAurora,"ProtectiveJacket","ProtectiveJacket","Buy an armored jacket from Aurora.\n\nDefense Rating: +4\nAppearance Rating: +1\nPrice: 2800 credits.");
 	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2800 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
 }

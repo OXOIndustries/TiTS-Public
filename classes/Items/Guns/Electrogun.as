@@ -18,7 +18,7 @@
 			//this.indexNumber = 4;
 			this.quantity = 1;
 			this.stackSize = 1;
-			this.type = GLOBAL.MELEE_WEAPON;
+			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
 			this.shortName = "Electrogun";
@@ -41,7 +41,7 @@
 			this.basePrice = 3450;
 			this.attack = 2;
 			this.damage = 12;
-			this.damageType = GLOBAL.KINETIC;
+			this.damageType = GLOBAL.ELECTRIC;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

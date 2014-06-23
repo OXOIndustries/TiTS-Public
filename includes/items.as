@@ -116,6 +116,11 @@ function shop(keeper:Creature):void {
 		kellyOfficeApproach();
 		return;
 	}
+	if(keeper is Anno)
+	{
+		repeatAnnoApproach();
+		return;
+	}
 	clearOutput();
 	output(keeper.keeperGreeting);
 	shopkeep = keeper;

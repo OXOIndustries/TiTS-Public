@@ -243,7 +243,7 @@ function reprogramGrayGoosForYerPleasure():void
 	output("\n\nNeat!\n\n");
 	processTime(5+rand(3));
 	clearMenu();
-	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
+	if(pc.HP() < pc.maxHP()) addButton(0,"Heal Me",healMeGrayGooYoureMyOnlyHopeDotDotDot,undefined,"Heal Me","Have the goo woman user her microsurgeons to heal you.");
 	else addDisabledButton(0,"Heal Me");
 	addButton(1,"Take Sample",takeASampleOfTheGrayGoo,undefined,"Sample","Collect a sample of the mysterious woman for... science!");;
 	addButton(14,"Leave",genericVictory);
@@ -260,7 +260,7 @@ function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	output("\n\n<i>\"Yes, master,\"</i> the goo says, stepping up to you and unceremoniously putting a finger in your mouth. You try to pull back, but too late - you can feel several drops of microbots already swimming down your throat. A moment later, a shudder works its way through your body as they do their job, your bruises and cuts from prior fighting quickly healing.");
 	output("\n\n<i>\"Services rendered. Good day, master,\"</i> the goo says before wandering off.");
 	output("\n\nThat's one less rape-monster on this planet. You do good work!\n\n");
-	pc.HP(20);
+	pc.HP(50);
 	processTime(1);
 	genericVictory();
 }
