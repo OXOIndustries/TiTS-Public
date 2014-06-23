@@ -274,10 +274,23 @@ function takeASampleOfTheGrayGoo():void {
 	output("Now that the goo-girl's not in rape-mode anymore, you might be able to find a use for some of the microbots that comprise her shimmering gray body. You pull a vial from your pack and step up: <i>\"Just, uh, need to take a sample. Hold still.\"</i>");
 	output("\n\n<i>\"Yes, master,\"</i> she intones blankly, holding stock still as you dip the vial into one of her tits, filling it up with squirming micro-machines. You cork it and stow the vial back in your pack.");
 	output("\n\n<i>\"If that's all, master,\"</i> she says before wandering off into the wastes.");
-	output("\n\nThat's one less rape-monster on this planet. You do good work!");
-	output("\n\n<b>You got a vial of Gray Microbots! NOT YET IMPLIMENTED</b>\n\n");
+	output("\n\nThat's one less rape-monster on this planet. You do good work!\n\n");
+
+	eventQueue[eventQueue.length] = getSomeGrayGoo;
 	processTime(1);
 	genericVictory();
+}
+
+function getSomeGrayGoo():void {
+	clearOutput();
+	output("That vial of honey is still here.\n\n");
+	var foundLootItems:Array = new Array();
+	foundLootItems[foundLootItems.length] = new GrayMicrobots();
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
 }
 
 
@@ -684,16 +697,3 @@ function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	genericLoss();
 }
-
-
-/*New Item: Gray Microbots
-{Tooltip} This vial of a sloshing, semi-viscous gray liquid was taken from the body of a reprogrammed Gray Goo, one of the cybernetic creatures native to Tarkus. Thanks to your tech-savviness, it should be safe to handle. Wonder what it could be used for...
-
-USE the Gray Microbots
-Bottoms up! You pop the cork on your vial and down the reprogrammed healer bots. You give a little shudder as they go to work, patching up any injuries they come across.
-{Restores moderate HP}
-{VERY slight chance to undo any non-starter TFs/reset towards human?}
-
-
-The Path to Goo Armor
-{First time PC interacts with Celise while carrying Gray Microbots}*/
