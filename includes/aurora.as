@@ -47,10 +47,32 @@ function auroraBonus():Boolean
 	return false;
 }
 
+function auroraBust():void
+{
+	userInterface.showName("\nAURORA");
+	userInterface.showBust("\nAURORA");
+}
+
 //Aurora
 function approachAurora():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
+	if(pc.isNude())
+	{
+		author("Fenoxo");
+		output("As soon as you step inside, a howling, screeching alarm goes off. Did you trigger some kind of anti-intrusion system? The sound of a fist hitting metal jars you out of your reverie, and you at last identify the inhuman tone as coming from ");
+		if(flags["MET_AURORA"] == undefined) output("the small bat-girl in the back of the chamber.");
+		else output("Aurora.");
+		output(" Her knuckles have depressed a big, red button, and she screeches, <i>\"Creep!\"</i> as a mechanism in the wall kicks into gear.");
+		output("\n\nIn the blink of an eye, a giant metallic palm swings out of the wall on strength from a dozen pneumatic cylinders, bowling you right out the doorway. A shrill voice chases you, calling, <i>\"Put some pants on!\"</i>");
+		output("\n\n<b>It looks like you need clothes to go in that shop....</b>");
+		pc.HP(-1);
+		clearMenu();
+		addButton(0,"Next",move,"213");
+		return;
+	}
 	//First meeting
 	if(flags["MET_AURORA"] == undefined)
 	{
@@ -82,12 +104,14 @@ function approachAurora():void
 
 		output("\n\n<i>\"My name’s Aurora, by the way! Feel free to just come in whenever. I sleep here! It’s comfortable.\"</i> Yeah, cave-like indeed. <i>\"Oh! But I don’t take anything, you have to go somewhere else to sell. Even if it’s good scrap and stuff! Or fruit. I’m not supposed to take fruit from strangers...\"</i>");
 		output("\n\nNow you’ve met Aurora, one of the techies of Novahome.");
+		processTime(4);
 	}
 	//After first time
 	else
 	{
 		output("\n\nStaying put in your safe bastion, you wave down the kid-mechanistic from whatever she was doing and she’s all to happy to comply, running along the rafters to dangle in front of you with a bright, fangy smile; <i>\"<b>Hello</b>!\"</i>");
 		output("\n\nFolding her wings and “hands\" in what you can only describe as a business formal fashion, despite those thick, pushed up welding goggles and bits of grease and mechanical filth dotting her fur. Aurora cocks her head to the side, <i>\"Whacha need?\"</i>");
+		processTime(1);
 	}
 	//menu hurr
 	auroraBaseMenu();
@@ -109,9 +133,12 @@ function auroraBaseMenu(disabledButton:int = -1):void
 function talkToAurora():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Glancing behind her into the gloomy mess of her shop, you start to get a few curious thoughts. Just what is a child doing out here all on her lonesome, looking relatively unattended? Her wares might be pretty good stuff for what she has to work with out here, but what about her? This is hardly a healthy environment for much of anyone, let alone a displaced kid. Before you can actually go to speak, however, she does; <i>\"What do you want to talk about, then?\"</i> Aurora is quick to duck her head and glance to the side awkwardly afterwards, giving you a brief reprieve from the constant gaze of her golden eyes. <i>\"Er, everyone gets all quiet and curious when they want to chat, so...\"</i>");
 	output("\n\nIt takes her a moment to wash away the self-brought anxiety while reassuring her that she was right and soon after she’s just as attentive as before - and starring yet again. Er.");
 	output("\n\nJust what did you want to ask about?");
+	processTime(1);
 	auroraTalkMenu();
 }
 
@@ -135,12 +162,15 @@ function auroraTalkMenu(disabledButton:int = -1):void
 function askAuroraAboutHerself():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Asking about Aurora herself is a easy start....");
 	output("\n\nYou go for the easy question and simply ask about <i>her</i>, interested in what such a out of place girl is doing somewhere like this.");
 	output("\n\n<i>\"Me, huh? Yeah, I get that a lot, too... Well!\"</i> Aurora takes in a deep breath, puffing out her fuzzy cheeks rather adorably as she prepares for a routine response; <i>\"I’m Aurora! I am a machinist and tinker stuff people bring in from the wastes and fix stuff and build new stuff out of broken stuff! I’ve been out here since I remember - but not here-here, we moved twice - and I don’t know who my parents are. I’m an orphan! The raskvel here take care of me and are pretty nice. B-Better than their own kids, actually...\"</i> Distracting herself from the tangent, she deflates and starts to consider the thought in the back of her frenzied mind before perking back to attention. <i>\"Oh! And I don’t know what I am and I don’t want to leave, especially to confederates! They just wanna </i>science<i> me...\"</i>");
 	output("\n\n<i>\"Anything else?\"</i> While she distracted herself by going off tangent, you get the feeling that this routine response is a pretty regular one. She even glossed over some of the mellow portion of her “backstory\" without even a hint of remorse, something irregular for someone emotionally young.");
 	output("\n\nStill trying to process the rush of information, you shake your head, satisfied.");
 	//Talk menu minus about her
+	processTime(2);
 	auroraTalkMenu(0);
 }
 
@@ -148,6 +178,8 @@ function askAuroraAboutHerself():void
 function askAuroraAboutWork():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("You see a workshop, but what does she actually do around here?");
 	output("<i>\"What do I do here, huh? I fix stuff, durr. And make stuff! Usually I make new stuff out of broken stuff, really.\"</i> Aurora muses, slowly starting to sway back and forth in a gesture that might almost be considered thoughtful for a bat, or simply idling childishly. After a moment of this silence, she excitedly extends her “hands\" forward, where she was already clutching some mechanism that looked suspiciously like a plumbing valve. <i>\"Like this thing! I don’t know what it was originally, but now I am making it to regulate a atomical engine board to help steady the wubs!\"</i>");
 	output("\n\n...The what?");
@@ -155,6 +187,7 @@ function askAuroraAboutWork():void
 	output("\n\nShaking your head, you try to shift to subject to what <i>else</i> she does then just operate a machine shop. By herself.");
 	output("\n\n<i>\"Oh, well. I do all kinds of stuff for the rask! Like... build stuff! They bring scrap and junk back that they can’t use or got frisked by the rusties, and I help them by making it work again! And usually other stuff, like making new stuff out of old stuff that works good! Ooh, like I got the lighting to work again from a doohickey! At least it usually works... I kinda preferred when it didn’t, though. Um. Oooh! Sometimes I carry people, too! Cuz they’re super light so I just pick them up by the shoulders or the ears or the legs or wherever really and go voosh! They usually start screaming, but it’s to help them! Like if they get stuck in sludge or a pit or a sludge pit! They’re just afraid of flying for some reason.\"</i> As excitable as ever, Aurora is practically beaming with those out of place fangs on full display, bouncing in place like a yo-yo.");
 	output("\n\nYou’re certain she makes her keep here and probably well beyond that, too. Someone like her really deserves better in life, just it also doesn’t seem like she wants to leave. You muse over the possibility for a moment until you’re brought back out of it by the girl’s ever present, soul-searching stares and decide not to leave the impatient kid waiting.");
+	processTime(3);
 	auroraTalkMenu(1);
 }
 
@@ -162,9 +195,12 @@ function askAuroraAboutWork():void
 function askAuroraAboutRaskvel():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("It’s got to be weird being raised by Raskvel. What’s her opinion on her caretakers?");
 	output("\n\n<i>\"Huh? Them? Well, they’re nice enough. Some of them get weird and evasive around me but I think that’d cuz they get all fiddly and adult-y all the time and I’m not one! They’re pretty quick to grow up, but not me-eeee! It makes it kinda lonely. But I have scrap and stuff to make </i>all<i> the time so it’s cool!\"</i> After she flails her arms around in emphasis, Aurora takes a bit more somber of a tone, <i>\"Nah. They’re great. Sometimes I wish I were more at my supposed home, but they’re my family, and they love me, and I love them. Never had a issue!\"</i>");
 	output("\n\nIt’s nice to know that there is still good in the universe. Even if that good are tiny little things that hump every (adult, at least) thing that moves.");
+	processTime(2);
 	auroraTalkMenu(2);
 }
 
@@ -172,6 +208,8 @@ function askAuroraAboutRaskvel():void
 function askAuroraAboutHerSpecies():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Just what is she, anyway?");
 	output("\n\n<i>\"<b>No idea</b>!\"</i> Her rather boisterous start probably would have caught you off guard if you didn’t already know how loud she tended to get on the drop of a hat. <i>\"No one knows! People keep asking and then they try to offer to take me away to somewhere nice but I know they really just wanna stick me in a lab and poke me with science forks and stuff to see how I work and why. And that’s lame! Nyeeeh!\"</i> Childishly, Aurora sticks her pink little tongue out at you in playful rebellion. <i>\"But no one knows what I’m supposed to be, or where I came from. Which sucks. I had a mom and dad and stuff, probably!\"</i>");
 	output("\n\nCurious, you bring up your codex to see if it has any information on her - and sure enough, you’re given a error message in short order. Not only is there no information, but she’s also too young to actually <i>generate</i> information on her. It’s all inconclusive, at least with your hardware.");
@@ -186,6 +224,7 @@ function askAuroraAboutHerSpecies():void
 	output("\n\nYou can’t make any promises, but you’ll see what you can do");
 	if(silly) output(", knowing that this isn’t actually a quest hook");
 	output(".");
+	processTime(4);
 	auroraTalkMenu(3);
 }
 
@@ -193,6 +232,8 @@ function askAuroraAboutHerSpecies():void
 function askAuroraAboutNovahome():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("How about the place she calls home?");
 	output("\n\n<i>\"The </i>Nova<i>? Well, everyone here calls it the Novahome to be cute and stuff, but... well, it’s something. I’ve put a lot of work into this thing! I’m kinda the only one actually making progress most of the time. Those rusties made a mess of things; I only got the reactor working after people figured out this is a humie ship! There are a lot of parts about, but it’s best to match them up! A few cones of the engines are working now, too, so whenever we suddenly need to go no where fast with a bunch of fire we can!\"</i> Er. <i>\"Whenever this landed it was still working enough that it had a controlled fall, otherwise it woulda gotten all burnt up racing through atmosphere and lawndarted instead of skidding, or at least fell on its side. So all the damage is just on the bottom and even that’s pretty much nothing. They’re made for this sort of thing!\"</i>");
 	output("\n\n<i>\"Most of the issues is actually software and stuff. Even the rusties went for bigger, non-important stuff, like doors and the smaller ones nibbled on pipes like candy bars. But the computers! I dunno anything about computers, but that Steele Tech lady sure does, so whenever I find one she always comes racing over, but always gets annoyed cuz it doesn’t work on the inside, I guess. Sometimes I follow her cuz the hallways are tall and people don’t notice me and she get all fidgety like every noise is out to get her. It’s funny!\"</i>");
@@ -201,6 +242,7 @@ function askAuroraAboutNovahome():void
 	output("\n\nWill she ever be space capable again?");
 	output("\n\n<i>\"<b>Nope</b>! The rusties ate through most of the important air pipes and, among other things, the reactor is all messed up and never really could put out enough! Even if you somehow replaced all that, though, the hull is brittle and torn with age and the whole crashing thing. Rusties, too, durr. I’m no rocket scientist, but I am pretty sure she’d just break in half from the weight if we tried tossing her up, full speed ahead. Nothing is really in good shape to cannibalize, either - space is a bad place! You want prime stuff out in space. A bunch of uppity people second guess me, though, and have this whole dream of taking the ‘home’ out of ‘Novahome’, but it won’t happen. Besides, then they’d need more than just me!\"</i>");
 	output("\n\nYou nod, curtly. By your gathering Aurora is pretty much the self-appointed chief engineer on this junk, if only because no one else has the skills for it. How <i>she</i> has the skills for it, though, is a mystery in of itself. Nonetheless, it sounds like she keeps her head out of other people’s affairs and just works on the ship, not having much to say for the various people in it. Which isn’t surprising coming from a kid.");
+	processTime(3);
 	auroraTalkMenu(4);
 }
 
@@ -209,9 +251,12 @@ function askAuroraAboutNovahome():void
 function lookAroundAurorasShop():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("You glance around the ship gloomily lit shop, cat-like curiosity starting to mount towards silhouettes that you can barely make out of the shadows. Aurora isn’t selling everything here, of course, or at least not offering them to you. You can’t help but wonder-");
 	output("\n\n<i>\"<b>Curious</b>?!\"</i> - Oh geez your ears - <i>\"I’ve got lots of stuff lying around! Some of it works! Some. Little bit. Ten of them work as intended, too, which is great! But those usually get shipped out cuz I sell them or put them somewhere for the rask and stuff. But I like talking about my work! A lot of people are scared to come in here, thinking they might get hurt or irradiated or explode. But they won’t! Probably.\"</i> Giddy at the possibility of showing off, Aurora clasps her fingers together and bounces enough that you’re actually worried she’ll lose her grip on the rafters. <i>\"Feel free to point anything out, alright?\"</i>");
 	output("\n\nPut on the spot, you start to scan over the subtle shapes for anything that catches your eye....");
+	processTime(2);
 	lookAroundShopMenu();
 
 }
@@ -236,6 +281,8 @@ function lookAroundShopMenu(disabledButton:int = -1):void
 function aurorasRayGunThing():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("What’s that thing that looks suspiciously like a cartoon handheld ray gun hanging there?");
 	output("\n\nWith your vague prompting Aurora quickly to scampers over to one of the racks where a host of various knick knacks and half built devices and scrap hang. The only one that stands out is the rather colorful thing dangling by its hilt, which looks very much like some “alien raygun\" that you’d find little green men waving around in cartoons and other fanciful things. It looks like a toy, which wouldn’t really be out of place in Aurora’s repertoire if she didn’t seem a little above that sort of thing. At least you could tease her about it.");
 	output("\n\n<i>\"This? It’s my ray gun!\"</i> Chirps the bat, holding the maybe-toy with remarkable trigger discipline for a youth. <i>\"Someone found it and brought it to me! But it was empty and just had a speaker in it for some reason, so I fixed it! Now it works properly!\"</i>");
@@ -243,6 +290,7 @@ function aurorasRayGunThing():void
 	output("\n\nImmediately, you regret asking as she swings her arm out to the side and brandishes the “weapon\" in full, pointing the brightly colored object towards the open rift in the ship’s hull that then leads outside. Suddenly your senses go dizzy, body quaking and simultaneously clamming up like you’re about to puke, and it isn’t until the effect subsides a brief few seconds later that you’re able to gather what just happened. The weapon must have fired a brilliant emerald beam of some sort as wisps still linger in the path. The actual damage the weapon made is all to clear outside, where a big pile of useless, rusty scrap metal now has a molten hole the size of a doorway, still caving in on itself from gravity.");
 	output("\n\nNaturally, Aurora herself didn’t seem phased by her “little\" blaster whatsoever and was once again oblivious, giddily smiling towards you even as you recollect yourself, ears still ringing. <i>\"See! I’m not quite sure how it worked before, so I just used whatever I could get to fit. It took a while! But now it can fire forever and it’s pretty great! It still has some issues, and I kinda like it so it’s not on sale. Sorry if you were interested!\"</i>");
 	output("\n\nThis girl will be a terror on the galaxy when she grows up...");
+	processTime(2);
 	lookAroundShopMenu(0);
 }
 
@@ -250,9 +298,12 @@ function aurorasRayGunThing():void
 function aurorasCannonThing():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("There’s a thing over there that looks a awful lot like a old cannon....");
 	output("\n\nThis is like a treasure hunt in a mad scientist’s lair! One shape in particular literally peeks out from the heaps of misused wreckage and assorted paraphernalia at a relatively shallow angle, betraying its rather noticeable size, almost like... A cannon?");
 	output("\n\n<i>\"A howitzer, actually! C’mon, even I know that!\"</i> Comes the rapid if teasing, reply for a question you hadn’t even realized you said out loud. <i>\"But it’s too ruined to work to well, and you’d need like, shells and stuff to do all the </i>actual<i> work. So I fiddled with it some! I use it as a trash bin now!\"</i> Sensible recycling? <i>\"Uh huh! When I find something just too ruined or I mess up to bad I just toss it down the barrel and then when something is about to explode I toss it in the pan and it goes out the hole in the wall!\"</i> This sounds both terrifying and exceedingly dangerous, as well as simply counterproductive. Why not just toss it outside to begin with? <i>\"It’s fine! It’s never failed and I’ve been doing it for a month! Besides, tossing it is a hassle and can scratch the paint whenever someone gets around to prettying up the hull. Gotta make a routine! Besides, I don’t want those rusties below sniffing around and figuring out I got all this quality junk! Keeping it hidden, quiet.\"</i> ...O-oookay.");
+	processTime(2);
 	lookAroundShopMenu(1);
 }
 
@@ -260,22 +311,28 @@ function aurorasCannonThing():void
 function aurorasPocketWatchThing():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Something just hanging on the wall there... It looks like a antique pocket watch.");
 	output("\n\nIn a fit of amusement, you point out a golden clasp dangling by an equally golden chain on one of the racks of the room, the slight shine making it stand out among the grey and deprecated things hanging beside it. <i>\"What’s that?\"</i>");
 	output("\n\n<i>\"A pocket watch!\"</i>");
 	output("\n\nOh. Well then-");
 	output("\n\n<i>\"It’s not for sale, though! I use it to regulate voltage when I’m working.\"</i> Aurora continues, cutting you off and completely ignoring your now newly founded bewilderment. While you wait, subtly giving her time to explain in further detail, she doesn’t take the hint, evidently finished speaking on the topic.");
+	processTime(2);
 	lookAroundShopMenu(2);
 }
 //That aircraft
 function aurorasAircraftThing():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("It’s a hard to be clear with the sheer amount of stuff layered between you and it, but that’s definitely a cockpit attached to a miniature aerodynamic frame you see crammed in the corner, there.");
 	output("\n\nIt takes you far longer than it really should for you to notice the vehicle settled in the corner of the room, rather cleaned up without any wayward items piled on top of it. The fact that its so well presented actually has your eyes sliding off it when you’re looking for something catching! Still, you can’t exactly make out the details past that it’s relatively narrow, smooth with a faux-glass looking cockpit that you yourself just might be able to cram into.");
 	output("\n\n<i>\"That’s a minipod! It even works, too! But there isn’t a lot of fuel for it, so I just keep it lying around here. Everyone else is too scared to try to fly it! I dunno why, but then again the raskvel always panic when I pick them up and take them somewhere!\"</i> Nodding rapidly, the oblivious Aurora is all smiles before continuing. <i>\"Besides, I can just fly anyway! And probably faster!\"</i> The bat shifts, moving her wings from the visage of a noble cape to instead outstretching them in either direction. It’s a rather impressive wingspan, barely able to fit in the junk-less bastion of the room you both are in! She flaps them twice as part of her stretch and bellows cool air over you before slowly retracting them, balling them to her sides again.");
 	output("\n\n<i>\"Interested in buying it?\"</i> The question comes as a bit of a surprise given the device didn’t appear like it was on sale, but none the less you mull the offer in your head. You don’t know if the minipod is compatible for <i>you</i>, let alone your ship. You could get a professional and <i>safer</i> model from any sort of dealer in a more Core-oriented system, anyway. Looking a lot less retro, too. You diplomatically decline even if you’re not sure you could ever actually get a frown out of her.");
 	output("\n\n<i>\"O-ooookay!\"</i>");
+	processTime(2);
 	lookAroundShopMenu(3);
 }
 
@@ -283,12 +340,15 @@ function aurorasAircraftThing():void
 function aurorasGlowingCylinder():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Especially in such a ramshackle hole-in-the-wall place like this, you can’t feel too safe with something over in the corner giving off a yellowish glow.");
 	output("\n\nIt’s difficult to make out through the other sources of more natural light in the room, but off in the corner, around piles of other junk obstructing the way, there is a squat looking cylindrical device, the panels of which giving off a industrial, yellowish glow. The light looks similar some ornate lamp or an insect trap, and seeing it in such a run down and <i>dangerous</i> sort of workshop like this, made you suspicious and on edge. Just what was that...?");
 	output("\n\n<i>\"It’s a power generator! Durr, what else glows like that and looks all generator-y? I use it so I don’t make a short on the </i>Nova<i>’s power supply! It’s pretty, uh, janky. Both of ‘em... and quit looking at it like that, it won’t explode or something! Hmph.\"</i> It looks like she caught your skeptical look. Nonetheless all it takes is a sheepish little grin to temper her again. <i>\"Besides, it’s not even on!\"</i>");
 	output("\n\n<i>\"... Why is it glowing then?\"</i>");
 	output("\n\n<i>\"<b>No idea</b>!\"</i>");
 	output("\n\nNow you’re unsure whether or not Aurora is trying to fuck with you despite that big, fangy cheshire smile growing over her face. It’s hard to read someone when they’re upside down. Either way, she didn’t appear too worried about it, and she was the one who had every right to be, so you decide not to press the topic any further.");
+	processTime(4);
 	lookAroundShopMenu(4);
 }
 
@@ -297,11 +357,14 @@ function aurorasGlowingCylinder():void
 function shopAtAuroras():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Upon announcing your interest in her purchasable wares you practically have to avert your eyes from the ensuing adorable giddiness. Those golden eyes sparkle ");
 	if(silly) output("with the glow of <i>capitalism</i> ");
 	output("as her idle smile turned into a downright fangy beam, bouncing in place. <i>\"Good! I like getting money! It pays for things.\"</i>");
 	output("\n\nIn short order, she silently takes you off to the side where a simple whiteboard hangs on the wall. She swings it rightside up so you can read it, and you look over the chicken-scratch writing Aurora has provided. It reads off like a menu at a restaurant: a bunch of names and titles with little context provided for you to pick from as well as helpful prices - in credits, naturally.");
 	output("\n\nAurora looks “down\" to you expectantly all the while, of course.");
+	processTime(1);
 	clearMenu();
 	addButton(0,"RocketHammer",rocketHammerDescription,undefined,"RocketHammer","Ask Aurora about her rocket hammer.");
 	//addItemButton(x, shopkeep.inventory[x], buyItemGo, shopkeep.inventory[x], null, null, shopkeep, pc);
@@ -414,12 +477,15 @@ function buyFromAurora(arg:String = "ERROR"):void {
 function rocketHammerDescription():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("<i>\"Oooh, I know right? A name like that just attracts everyone’s attention, huh? I’m proud of it! It’s simple, just a hammer with a rocket attached to it!\"</i> Before your imagination can so much as start to whirr Aurora waddles down the rafter and around a rack out of view, coming back with the weapon clutched over her head and nearly touching the ground rather haphazardly.");
 	output("\n\n<i>\"You hit stuff with it! Durr. It’s too big for anyone here to really use, and I have to admit, it doesn’t work all the time. The ignitor just doesn’t kick! Cuz it gets messed around when you hit stuff with it, probably. Design flaw! But sometimes it does!\"</i> Ready to prove it, Aurora slips her clawed feet around one of the nearby dangling lamps, gripping into the metallic shade as she starts to swing the hammer back and forth like a dangerous pendulum. Already, you feel <i>entirely</i> unsafe and you barely recognize that she starts talking again, to focused on potentially avoiding something.");
 	output("\n\n<i>\"Just press this button in the shaft to activate it! Doesn’t need any fuel or anything, it just takes off! Like... This! This! Hm. This? Thisthisthis-\"</i> You want to put a stop to it before she hurts herself or ");
 	if(pc.isAss()) output("more importantly, ");
 	output("you, but your voice of concern if cut off when it actually <i>does</i> work as intended, to mutual surprise. With a shrill shriek, the accelerant inside comes to life and some sort of flame comes roaring out, sending the poor bat spinning circles on a lamp-based rodeo and endangering anyone’s head at the wrong sort of height - like your’s.");
 	output("\n\nYou hit the deck before that can happen, and the little show comes to an end in short order, giving you a brief moment to gain your composure as Aurora fights to keep the room from spinning, for her, anyway. <i>\"Eh... That was fun. Ah! See! Works perfectly. Sometimes. Want it?\"</i>");
+	processTime(3);
 	// It should be weaker than a actual sledgehammer item, like the one in, say, Molar’s shop, but should have a higher crit chance and higher crit damage. Whether or not it also needs a strength score is up to you boss, but it’s supposed to be relatively lighter - hence the less damage.
 	output("\n\nDamage Rating: 17")
 	output("\nPrice: 2000");
@@ -433,11 +499,14 @@ function rocketHammerDescription():void
 function electrogunStuffAtAuroras():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("<i>\"It’s weird! People tend to buy these little things the most out of the usual selection, I dunno why. They’re pretty lame. The raskvel especially love ‘em, cuz they zappy stuff and then to ruin people’s personal shields! Then they can hit ‘em with a stick and run with their wallet. Allegedly.\"</i>");
 	output("\n\nYou watch as Aurora scampers over to the side, taking something off one of the nearby shelves and bringing it back to you for presentation. It looks like a fairly routine, if cheap laser pistol, clad in a dull brown plastic-like casing with the usual pistol appearance. However, instead of a flashy barrel to give it the appearance of a snazzy laser, it’s largely smashed open with metal prongs sticking out every which way as if it had recently exploded.");
 	output("\n\nWhich, given the sort of shop you are in, wasn’t all that farfetched.");
 	output("\n\n<i>\"I just changed the emitter so it shoots a electrical charge, mostly forward! It’ll spread out some so it messes with shields and gives people the shakes! But... it kinda runs out of batteries pretty fast, cuz it’s not designed to run so inefficiently. And if you wanna actually... ya know, end something with it, you’re going to be at it for a while...\"</i>");
 	output("\n\n<i>\"So, er, want it?\"</i>");
+	processTime(2):
 	// Bzzt! Should be straightforward, comparable damage to Carl’s guns but uses a anti-shield damage type or something.
 	output("\n\nDamage Rating: 12");
 	output("\nAccuracy Rating: 2");
@@ -465,6 +534,8 @@ function choppyBecauseWarhammer40kDidntDoThisAlready():void
 function protectiveJacketFromAurora():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	//Tooltip:
 	output("Admittedly, you’re rather surprised about this entry in particular on the listing. Some sort of fashion was a stark departure from the variety of weapons and assorted gizmos in the shop, sparking your suspicions. Still, you aren’t particularly surprised when Aurora comes back with it, the heavy object dangling from her arms. Brown in color, it looks like it was picked up somewhere in the scrap heaps of the planet and then brought back just like everything else lying around, the coat looking worn and stretched with age, use and, more importantly, misuse. It’s bigger than she is, which makes her awkward attempts to bring it over all the more amusing. However, last you checked you're not some kid, and eyeballing it, you see that it could fit on you pretty well. Yet... why is it jingling?");
 	output("\n\n<i>\"It’s a jacket!\"</i>");
@@ -473,11 +544,11 @@ function protectiveJacketFromAurora():void
 	if(!silly) output("good looking");
 	else output("swank");
 	output(". <i>\"It’s nothing special or advanced, but it’s certainly a step up from regular clothing. These things sell like hot cakes, and this one doesn’t even have any holes in it to cut you or anything! Want it?\"</i>");
-
 	// Minor armor, minor bonus to sexiness. Because SWANK. Should basically be the safe upgrade from comfortable clothes. I guess if Shekka sells elemental resists, it’d be the TS-T armor that Anno sells for tease-y people.
 	output("\n\nDefense Rating: 4");
 	output("\nAppearance Rating: 1");
 	output("\nPrice: 2800");
+	processTime(2);
 	clearMenu();
 	if(pc.credits >= 2800) addButton(0,"Buy",buyFromAurora,"P.Jacket","ProtectiveJacket","Buy an armored jacket from Aurora.\n\nDefense Rating: +4\nAppearance Rating: +1\nPrice: 2800 credits.");
 	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2800 credits for this item.");
@@ -488,6 +559,8 @@ function protectiveJacketFromAurora():void
 function trashArmor():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("Instead of bringing it to you, this time Aurora tugs at your hand and brings you along into the dark recesses of the shop, guiding you around piles of junk or at the very most relatively shallow ones that you can navigate through without much fear of tripping and catastrophic doom. Shortly after you round one of the lengthy shelves, you understand why. There’s no way Aurora could bring this thing out herself!");
 	output("\n\nPropped up on an unseen stand or mannequin, you could have easily mistaken this “armor\" for a vending machine or a rather bulky trash can. The dull grey metal resembles a humanoid shape, the limbs looking surprisingly mobile for all its blockiness from the crude-looking metallic slabs. Still, despite the recycled materials, it looked immaculately crafted, not so much of a single weld line visible as if the armor itself was molded this way. Aurora had every right to be beaming proudly beside it as she presented it, despite being the one who named it.");
 	output("\n\n<i>\"It’s a metal suit! You just wiggle on in it, and you’re protected from just about everything! ...Well, maybe a thousand years ago, but you’re still pretty well off! The joints move just fine, but it’s really heavy! You can’t really go anywhere fast, and you’re probably going to fall over a bunch, and it’s going to be pretty bad on your back, but... It works! And it’s padded inside, too, so it’s pretty comfortable! Sorta. Kinda. It’s not all metal!\"</i>");
@@ -500,6 +573,7 @@ function trashArmor():void
 	output("\nAccuracy Rating: -2");
 	output("\nPrice: 4500");
 	clearMenu();
+	processTime(3);
 	if(pc.credits >= 4500) addButton(0,"Buy",buyFromAurora,"T.Armor","TrashArmor","Buy an ancient space suit, or \"trash armor\" from Aurora.\n\nDefense Rating: +8\nAppearance Rating: -2\nAccuracy Rating: -2\nPrice: 4500 credits.");
 	else addDisabledButton(0,"Buy","Buy","You cannot afford the 4500 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
@@ -510,12 +584,15 @@ function trashArmor():void
 function aimAssistEyepiece():void
 {
 	clearOutput();
+	author("Magic Ted");
+	auroraBust();
 	output("<i>\"It’s a accessory!\"</i> Aurora chirps rather immediately, swinging herself to the side to reach for the nearby device. It’s pretty small and easily fits in her small “hand\", most of the mass being a faux-glass display and then some sort of clip on. There isn’t a lot to see, nor do you expect Aurora had a lot of hand in this one. <i>\"You place it by your eyes and hook it up to a pistol or something! Then it says where you’re aiming stuff! I used it on a screwdriver once and it got </i>really<i> confused.\"</i> Nodding, you muse it over. The lack of depth perception means it wouldn’t be helpful very far, but at the very least you wouldn’t have to constantly aim down the sights of your weapon to get an accurate shot. Good for a scuffle.");
 	output("\n\n<i>\"Want it? It’s cheeeap.\"</i>");
 	// It is indeed cheap! Gives +1 aim. Maybe +2.*/
 	output("\n\nAccuracy Rating: +2");
 	output("\nPrice: 800");
 	clearMenu();
+	processTime(1);
 	if(pc.credits >= 800) addButton(0,"Buy",buyFromAurora,"AimEye","AimEye","Buy an aim-boosting eyepiece from Aurora.\n\nAccuracy Rating: +2\nPrice: 800 credits.");
 	else addDisabledButton(0,"Buy","Buy","You cannot afford the 800 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);

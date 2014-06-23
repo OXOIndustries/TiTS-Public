@@ -1420,7 +1420,7 @@ function initializeRooms():void
 	rooms["213"].runOnEnter = undefined;
 	rooms["213"].eastExit = "212";
 	rooms["213"].westExit = "214";
-	rooms["213"].northExit = "295";
+	rooms["213"].southExit = "295";
 	rooms["213"].planet = "PLANET: TARKUS";
 	rooms["213"].system = "SYSTEM: REDACTED";
 	rooms["213"].addFlag(GLOBAL.INDOOR);
@@ -2450,7 +2450,7 @@ function initializeRooms():void
 	rooms["295"].roomName = "MECHANIST’S\nSHOP";
 	rooms["295"].description = "";
 	rooms["295"].runOnEnter = auroraBonus;
-	rooms["295"].southExit = "213";
+	rooms["295"].northExit = "213";
 	rooms["295"].planet = "PLANET: TARKUS";
 	rooms["295"].system = "SYSTEM: REDACTED";
 	rooms["295"].addFlag(GLOBAL.INDOOR);
