@@ -1394,7 +1394,7 @@ function talkToGirfriendPenny():void {
 	if(flags["HAD_PENNY_GOAL_CHAT"] == 1) this.addButton(4,"Futanari",pennyFutanariTalk);
 	else addDisabledButton(4,"Futanari");
 	if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] == 1) this.addButton(5,"Buy Throbb",buySomeThrobbFrompenny);
-	else addDisabledButton(5,"Buy Throbb");
+	else addDisabledButton(5,"Buy Throbb","Buy Throbb","You need to talk to Penny about futanarification before you can buy this from her.");
 	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(6,"Cumsluttery",pennyCumslutterMenuTalk);
 	else addDisabledButton(6,"Cumsluttery");
 	this.addButton(14,"Back",approachGirlfriendPenny);

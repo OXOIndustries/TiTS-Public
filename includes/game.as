@@ -289,6 +289,7 @@ function flyMenu():void {
 		if(shipLocation != "201") addButton(2,"Tarkus",flyTo,"Tarkus");
 		else addDisabledButton(2,"Tarkus");
 	}
+	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
 
 	this.addButton(14,"Back",mainGameMenu);
 }
