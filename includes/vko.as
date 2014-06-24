@@ -951,9 +951,9 @@ function agreeToVKoBoobSucks():void
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain your of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It's not quite sexual, at least not so much that you're going to cum over the seats any moment now, but still very satisfying on a deep level.");
 
 	output("\n\nSo relaxed you are that you find yourself slipping into an almost trance-like state. The steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
-	if(pc.milkQ() < 9999) output("at least a little inflated.");
-	else if(pc.milkQ() < 9999) output("bloated.");
-	else if(pc.milkQ() < 9999) output("enormous, she must’ve drained quite a bit from you.");
+	if(pc.milkQ() < 500) output("at least a little inflated.");
+	else if(pc.milkQ() < 5000) output("bloated.");
+	else if(pc.milkQ() < 10000) output("enormous, she must’ve drained quite a bit from you.");
 	else output("ready to burst, then again it’s no surprise with how productive you are.");
 
 	output("\n\nAs the droid busies herself with emptying your [pc.milk] from her tits and into a nearby receptacle, your fingers reach up and gently knead the tender flesh of your [pc.breasts]. A smile crosses your lips as you stroke the still-tingling, sensitive skin of your just-milked nipples. You may not have climaxed from this treatment, but you still feel a lot better than you did before - it's just so good to get all that [pc.milk] <b>out</b>.");
