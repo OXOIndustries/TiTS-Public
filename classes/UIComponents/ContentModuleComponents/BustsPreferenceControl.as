@@ -18,14 +18,18 @@ package classes.UIComponents.ContentModuleComponents
 	{
 		private var _descriptionText:TextField;
 		
+		private var _gatsOldButton:MainMenuButton;
 		private var _gatsButton:MainMenuButton;
-		private var _chesireButton:MainMenuButton;
+		private var _cheshireButton:MainMenuButton;
 		private var _noneButton:MainMenuButton;
 		
 		private var _optsProperty:String;
 		
-		public function BustsPreferenceControl() 
+		private var _prio:int;
+		
+		public function BustsPreferenceControl(priority:int) 
 		{
+			_prio = priority;
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -42,18 +46,28 @@ package classes.UIComponents.ContentModuleComponents
 			this.addChild(_noneButton);
 			_noneButton.buttonName = "None";
 			_noneButton.x = 780 - (_noneButton.width + 10);
+			_noneButton.y = 30;
 			
-			_chesireButton = new MainMenuButton();
-			_chesireButton.name = "CHESIRE";
-			this.addChild(_chesireButton);
-			_chesireButton.buttonName = "Chesire";
-			_chesireButton.x = _noneButton.x - (_chesireButton.width + 5);
+			_cheshireButton = new MainMenuButton();
+			_cheshireButton.name = "CHESHIRE";
+			this.addChild(_cheshireButton);
+			_cheshireButton.buttonName = "Cheshire";
+			_cheshireButton.x = _noneButton.x - (_cheshireButton.width + 5);
+			_cheshireButton.y = 30;
 						
 			_gatsButton = new MainMenuButton();
 			_gatsButton.name = "GATS";
 			this.addChild(_gatsButton);
 			_gatsButton.buttonName = "Gats";
-			_gatsButton.x = _chesireButton.x - (_gatsButton.width + 5);
+			_gatsButton.x = _cheshireButton.x - (_gatsButton.width + 5);
+			_gatsButton.y = 30;
+			
+			_gatsOldButton = new MainMenuButton();
+			_gatsOldButton.name = "GATSOLD";
+			this.addChild(_gatsOldButton);
+			_gatsOldButton.buttonName = "Old Gats";
+			_gatsOldButton.x = _gatsButton.x - (_gatsOldButton.width + 5);
+			_gatsOldButton.y = 30;
 			
 			_descriptionText = new TextField();
 			_descriptionText = new TextField();
@@ -67,18 +81,18 @@ package classes.UIComponents.ContentModuleComponents
 			_descriptionText.y = 0;
 			_descriptionText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_descriptionText.name = "name";
-			_descriptionText.htmlText = "<span class='words'><p><b>Bust display preference.</b></p></span>";
+			if (_prio == 0) _descriptionText.htmlText = "<span class='words'><p><b>Primary bust preference.</b></p></span>";
+			if (_prio == 1) _descriptionText.htmlText = "<span class='words'><p><b>Secondary bust preference.</b></p></span>";
+			if (_prio == 2) _descriptionText.htmlText = "<span class='words'><p><b>Tertiary bust preference.</b></p></span>";
 			this.addChild(_descriptionText);
 			
 			_descriptionText.width = _gatsButton.x - 10;
 			_descriptionText.height = _gatsButton.bodyHeight();
 			
-			_descriptionText.y += Math.round((_descriptionText.height - _descriptionText.textHeight) / 2);
-			_descriptionText.height = _descriptionText.textHeight;
-			
 			_noneButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
-			_chesireButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
+			_cheshireButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
 			_gatsButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
+			_gatsOldButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
 			
 			updateStateFromOptions();
 		}
@@ -87,44 +101,46 @@ package classes.UIComponents.ContentModuleComponents
 		{
 			var opts:GameOptions = kGAMECLASS.gameOptions;
 			
-			if (opts.bustsEnabled == false)
+			if (opts.getBustPriority(_prio) == null)
 			{
 				_gatsButton.DeHighlight();
-				_chesireButton.DeHighlight();
+				_cheshireButton.DeHighlight();
 				_noneButton.Highlight();
+				_gatsOldButton.DeHighlight();
 			}
-			else
+			else if (opts.getBustPriority(_prio) == "CHESHIRE")
 			{
-				if (opts.bustPriority[0] == "CHESIRE")
-				{
-					_gatsButton.DeHighlight();
-					_chesireButton.Highlight();
-					_noneButton.DeHighlight();
-				}
-				else
-				{
-					_gatsButton.Highlight();
-					_chesireButton.DeHighlight();
-					_noneButton.DeHighlight();
-				}
+				_gatsOldButton.DeHighlight();
+				_gatsButton.DeHighlight();
+				_cheshireButton.Highlight();
+				_noneButton.DeHighlight();
 			}
+			else if (opts.getBustPriority(_prio) == "GATS")
+			{
+				_gatsOldButton.DeHighlight();
+				_gatsButton.Highlight();
+				_cheshireButton.DeHighlight();
+				_noneButton.DeHighlight();
+			}
+			else if (opts.getBustPriority(_prio) == "GATSOLD")
+			{
+				_gatsOldButton.Highlight();
+				_gatsButton.DeHighlight();
+				_cheshireButton.DeHighlight();
+				_noneButton.DeHighlight();
+			}
+		}
+		
+		public function updateDisplay():void
+		{
+			updateStateFromOptions();
 		}
 		
 		private function buttonClickHandler(e:MouseEvent):void
 		{
 			var tName:String = e.target.name;
 			
-			if (tName == "none") kGAMECLASS.gameOptions.bustsEnabled = false;
-			if (tName == "CHESIRE")
-			{
-				kGAMECLASS.gameOptions.bustPriority = ["CHESIRE", "GATS"];
-				kGAMECLASS.gameOptions.bustsEnabled = true;
-			}
-			if (tName == "GATS") 
-			{
-				kGAMECLASS.gameOptions.bustPriority = ["GATS", "CHESIRE"];
-				kGAMECLASS.gameOptions.bustsEnabled = true;
-			}
+			kGAMECLASS.gameOptions.setBustPriority(tName, _prio);
 			
 			updateStateFromOptions();
 		}

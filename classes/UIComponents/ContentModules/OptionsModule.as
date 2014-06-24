@@ -67,8 +67,6 @@ package classes.UIComponents.ContentModules
 			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
 			
 			addBustPreferenceControl();
-			
-			addToggleControl("Allow bust fallback display.", "Bust Fallback", "bustFallbacks");
 		}
 		
 		/**
@@ -92,12 +90,23 @@ package classes.UIComponents.ContentModules
 		
 		private function addBustPreferenceControl():void
 		{
-			var bpC:BustsPreferenceControl = new BustsPreferenceControl();
-			_controls.push(bpC);
-			_controlsContainer.addChild(bpC);
-			
-			if (_pC != null) bpC.y = _pC.y + _pC.height;
-			_pC = bpC;
+			for (var i:int = 0; i < 3; i++)
+			{
+				var bpC:BustsPreferenceControl = new BustsPreferenceControl(i);
+				_controls.push(bpC);
+				_controlsContainer.addChild(bpC);
+				
+				if (_pC != null) bpC.y = _pC.y + _pC.height;
+				_pC = bpC;
+			}
+		}
+		
+		public function updateDisplay():void
+		{
+			for (var i:int = 0; i < _controls.length; i++)
+			{
+				_controls[i].updateDisplay();
+			}
 		}
 	}
 

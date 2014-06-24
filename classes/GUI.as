@@ -528,6 +528,7 @@
 		public function showOptionsModule():void
 		{
 			this.showModule("Options");
+			(_currentModule as OptionsModule).updateDisplay();
 			clearGhostMenu();
 			
 			if (kGAMECLASS.pc.short.length == 0) addGhostButton(4, "Back", showMainMenu);

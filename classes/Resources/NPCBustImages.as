@@ -12,7 +12,8 @@
 	{
 		public static var OVERRIDES:Object = new OverrideBusts();
 		public static var GATS:Object = new GatsBusts();
-		public static var CHESIRE:Object = new ChesireBusts();
+		public static var GATSOLD:Object = new GatsOldBusts();
+		public static var CHESHIRE:Object = new CheshireBusts();
 		
 		// Return the required bust class definition based on the current game settings.
 		public static function getBust(bustName:String):Class
@@ -33,20 +34,12 @@
 			tBust = lookupBustInClass(bustName, NPCBustImages.OVERRIDES, doNude);
 			if (tBust != null) return tBust;
 			
-			var primary:Object = NPCBustImages[opts.bustPriority[0]];
-			var secondary:Object = NPCBustImages[opts.bustPriority[1]];
-			
-			// Check the exact thing we're looking for
-			tBust = lookupBustInClass(bustName, primary, doNude);
-			if (tBust != null) return tBust;
-			
-			// If we can't find the exact thing we're looking for, or a reasonable alt from the Primary artist, fallback to secondary.
-			if (opts.bustFallbacks == true)
+			for (var i:int = 0; i < kGAMECLASS.gameOptions.bustPriority.length; i++)
 			{
-				tBust = lookupBustInClass(bustName, secondary, doNude);
+				tBust = lookupBustInClass(bustName, NPCBustImages[opts.bustPriority[i]], doNude);
 				if (tBust != null) return tBust;
 			}
-			
+						
 			return null;
 		}
 		

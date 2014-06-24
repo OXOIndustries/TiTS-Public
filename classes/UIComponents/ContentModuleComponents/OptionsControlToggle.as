@@ -93,6 +93,11 @@ package classes.UIComponents.ContentModuleComponents
 			}
 		}
 		
+		public function updateDisplay():void
+		{
+			updateStateFromOptions();
+		}
+		
 		private function buttonClickHandler(e:MouseEvent):void
 		{
 			if (_optsProperty in kGAMECLASS.gameOptions)
