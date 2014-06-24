@@ -236,26 +236,26 @@ function winVsZil():void {
 	//Raise lust to 33 minimum, menu.
 	if(pc.lust() < 33) pc.lust(33-pc.lust());
 	clearMenu();
-	if(pc.hasCock() && pc.cockThatFits(foes[0].analCapacity()) >= 0) addButton(0,"Buttfuck",buttfuckDefeatedZil);
-	else addDisabledButton(0,"Buttfuck");
+	if(pc.hasCock() && pc.shortestCockLength() <= 17) addButton(0,"Buttfuck",buttfuckDefeatedZil);
+	else addDisabledButton(0,"Buttfuck","Buttfuck","You'll need a dick shorter than 17\" long to plug this wasp.");
 	//*Ride His Cock
 	//To cumfinity, and beyond! REQS CUNT
 	if(pc.hasVagina()) addButton(1,"Ride Him",rideDatZilCawk);
-	else addDisabledButton(1,"Ride Him");
+	else addDisabledButton(1,"Ride Him","Ride Him","You must have a vagina to ride this ride.");
 	//*Footjob scene - Req's humanlike feetsies
 	//(By Miesha)
 	if(pc.legType == GLOBAL.HUMAN) addButton(2,"GiveFootjob",giveTheZilAFootjob);
-	else addDisabledButton(2,"GiveFootjob");
+	else addDisabledButton(2,"GiveFootjob","GiveFootjob","Giving a zil a footjob requires human feet.");
 	
 	//*Foreskin Oral Play
 	//(By Alkahest) (If this needs to be edited, I will do so. Lemme know your opinion plz)
 	//Requires a decent amount of zil sex, a dick, a pussy, or nippledicks!
 	//Reqs loss suck some.
 	if((pc.hasCock() || pc.hasVagina() || pc.hasNippleCocks()) && flags["TIMES_LOSS_SUCKED_ZIL_MALE"] >= 2) addButton(3,"Oral Play",alkahestsForeskinOralPlay);
-	else addDisabledButton(3,"Oral Play");
+	else addDisabledButton(3,"Oral Play","Oral Play","This scene would only make sense if you've had to suck a zil off twice already.... Oh, and you'll need to have genitals too.");
 	//*Tailcock Peg Him
 	if(pc.hasTailCock()) addButton(4,"Tail Peg",tailCockPegTheZil);
-	else addDisabledButton(4,"Tail Peg");
+	else addDisabledButton(4,"Tail Peg","Tail Peg","You'll need a tailcock to peg the zil with it.");
 
 	//Femzil prompt
 	if(pc.hasKeyItem("Capture Harness") && flags["CAPTURED_A_MALE_ZIL_FOR_DR_HASWELL"] == undefined) {
@@ -1229,7 +1229,7 @@ function theZilPretendToBeHelia():void {
 	output("\n\nThe flying wasp-man nods graciously as he comes back around behind you, squeezing your [pc.butt] affectionately");
 	if(pc.isNaga()) output(" before flipping you over to have access to your vagina");
 	output(". His sheathed prong slides across your " + pc.skinFurScales() + " eagerly, barely exposing his tip, leaking his masculine pre-honey across your eager flesh. You ache to have him inside you, but you're little more than a spectator in this play. A literal and figurative honey-pot is brought closer, so close that it blocks most of the surroundings from your view, filling the air with the lusty aroma that has your head swimming. A tuft of neatly trimmed hair sits above it, covered in droplets of accumulated ardor, and underneath you see inky pussy, its lips puffy and ever-so-sightly parted by the bud of her clit.");
-	output("\n\nSome unseen signal passes between your waspy lovers, and the press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind will a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth it's passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female's cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
+	output("\n\nSome unseen signal passes between your waspy lovers, and the press their hips in on you from both sides as one. The taste of a lovely, wondrous pussy on your lips wars with the sensation of being suddenly stuffed from behind with a throbbing, dominant cock. The member drips and dribbles a bit of pre-emptive payload to smooth it's passage as it burrows into your [pc.vagOrAss]. The honey suspended in the surprisingly soft pubic hair above the female's cleft smears across your nose, assisting you deeper into your lusty fugue, and your mouth dumbly falls open, the tongue extending of its own volition to taste the marvelous flavor the wasp-woman has to offer.");
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = rand(pc.vaginaTotal());
 	//{stretch}

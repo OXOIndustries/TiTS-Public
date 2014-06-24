@@ -1274,6 +1274,11 @@
 				case "cockHeadBiggest":
 					buffer = cockHead(biggestCockIndex());
 					break;
+				case "smellestCockDescript":
+				case "smallestCock":
+				case "cockSmallest":
+					buffer = cockDescript(smallestCockIndex());
+					break;
 				case "eachCockHead":
 					buffer = eachCockHead();
 					break;

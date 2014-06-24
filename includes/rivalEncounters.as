@@ -288,7 +288,7 @@ function loseToDane():void {
 	output("\n\nYou moan out loud, unable to contain your pleasure. It erupts out of your lungs with the same fervent power as Dane's savage, ass-rending thrusts. The third knot slips inside you, much more easily than the first two, and you shudder and shake within his firm grip, on the verge of anal orgasm. One of his hand shifts to ");
 	if(pc.biggestTitSize() >= 2) output("cup your breast, kneading it gently as he thumbs your [pc.nipple].");
 	else output("stroke your chest, thumbing at your [pc.nipple] as he pounds away.");
-	output(" The ausar's body feels like an implacable wall behind you, one you're behing battered against again and again, every stroke filling you fuller and more completely than the one before.");
+	output(" The ausar's body feels like an implacable wall behind you, one you're being battered against again and again, every stroke filling you fuller and more completely than the one before.");
 	output("\n\nPop! Dane's fourth knot slips in");
 	if(pc.hasCock()) output(", sliding over your prostate exquisitely");
 	output(", filling you to brimming with dick. Your gut is churning, but it's pleasant too. His thrusts are getting longer and more intense each time, thanks to the many bulges he forces through your [pc.asshole], and you're getting looser and more blissed out as well. Your eyes have started to roll partway back in their sockets. Even your [pc.legs] are quivering in insensate fulfillment. You whimper pleadingly.");
