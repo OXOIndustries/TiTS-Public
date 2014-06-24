@@ -6271,8 +6271,12 @@
 					if (this.rand(2) == 0) descript += "long";
 					else descript += "shoulder-length";
 				} else if (hairLength < 26) {
-					if (this.rand(2) == 0) descript += "very long";
-					else descript += "long flowing locks";
+					if(rand(3) == 0) descript += "very long";
+					else if(rand(2) == 0) descript += "back-length";
+					else descript += "lengthy";
+					//Disabled alternate due to weirdness:
+					//"long flowing locks, [haircolor] hair"
+					//else descript += "long flowing locks";
 				} else if (hairLength < tallness / 2) descript += "ass-length";
 				else if (hairLength < tallness) descript += "obscenely long";
 				else {
