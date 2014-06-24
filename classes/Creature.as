@@ -7089,7 +7089,7 @@
 					else if (rando <= 2) descript += "knotty ";
 					else if (rando <= 3) descript += "bestial ";
 					else if (rando <= 4) descript += "animalistic ";
-					else if (rando <= 5) descript += "bright red ";
+					else if (rando <= 5) descript += "canine ";
 					else if (rando <= 6) descript += "animalistic ";
 					else descript += "knotted ";
 				}
