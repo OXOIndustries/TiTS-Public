@@ -381,7 +381,7 @@ function annoShootsResults(easy:Boolean = false):void
 
 		output("\n\nAs your tongue goes in for another taste of Anno's quivering quim, you feel a powerful twitch beside your ear as Anno's leg moves, knocking limply against your back. You lick again, and feel the same motion, twice now. As you continue to lick and slurp at Anno's cunt, you cast a glance aside, watching her leg start to spasm to the beat of your oral ministrations. You lick faster, suckling on her clit and probing deep into her pussy, working the poor, lust-addled ausar up into a leg-shaking frenzy.");
 
-		output("\n\nOh, she's <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it's running down your chin, pooling between your [knees] as you feast. Good lord, she wasn't kidding about how wet she'd get. But that only gets <i>you</i> ");
+		output("\n\nOh, she's <i>panting</i> now! You grin as you feel her chest heaving, body going wild as you tease her most sensitive spots with unrelenting oral force, lapping up her sweet honey until it's running down your chin, pooling between your [pc.knees] as you feast. Good lord, she wasn't kidding about how wet she'd get. But that only gets <i>you</i> ");
 		if(pc.hasCock() && pc.hasVagina()) output("harder and wetter");
 		else if(pc.hasCock()) output("harder");
 		else if(pc.hasVagina()) output("wetter");
