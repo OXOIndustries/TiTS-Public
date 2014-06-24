@@ -433,7 +433,7 @@
 					kGAMECLASS.output("\n\nAn audible 'snick' meets your [pc.ears] as a stinger forces its way out of the back, full of potent, arousing venom. <b>Your [pc.tail] has been replaced by a fully functional zil tail.</b>");
 				}
 				//No tail!
-				else kGAMECLASS.output("\n\nJust at the bottom of your spine, right above your [pc.butt], a knot of heat blooms into existence. At first, it's not much of a bother, but the sensation gets less and less bearable over time. You even seem to be swelling back there! Suddenly, a wave of relief rolls over you, and out of the corner of your eye, you're treated to the sight of an insectile abdomen, black as night and slick with fluid, settling into place above your [butt]. It bobs heavily, stinger in all. <b>It seems you have a fully functional zil tail!</b>");
+				else kGAMECLASS.output("\n\nJust at the bottom of your spine, right above your [pc.butt], a knot of heat blooms into existence. At first, it's not much of a bother, but the sensation gets less and less bearable over time. You even seem to be swelling back there! Suddenly, a wave of relief rolls over you, and out of the corner of your eye, you're treated to the sight of an insectile abdomen, black as night and slick with fluid, settling into place above your [pc.butt]. It bobs heavily, stinger in all. <b>It seems you have a fully functional zil tail!</b>");
 				target.clearTailFlags();
 				target.addTailFlag(GLOBAL.SMOOTH);
 				target.addTailFlag(GLOBAL.STINGER_TIPPED);

@@ -1199,7 +1199,7 @@ public function joyCoMagicMilker7Sucks():void
 		//Bag Pops Cause Yer Hyper Milky
 		if(milkProduced >= 3000)
 		{
-			output("The plastic bag expands and expands... and expands, every wrinkle on its surface vanishing while it's pulled tight by the voluminous fluid inside. It audibly creaks, and for a second, you think it's going to pop. Then, it springs a leak in the corner, gushing [pc.milk] out onto the ground. That leak is rapidly joined by another in the opposite corner, and then the whole bottom of the bag gives out, soaking you from the waist down in your own [pc.milkColor] liquid.");
+			output("\n\nThe plastic bag expands and expands... and expands, every wrinkle on its surface vanishing while it's pulled tight by the voluminous fluid inside. It audibly creaks, and for a second, you think it's going to pop. Then, it springs a leak in the corner, gushing [pc.milk] out onto the ground. That leak is rapidly joined by another in the opposite corner, and then the whole bottom of the bag gives out, soaking you from the waist down in your own [pc.milkColor] liquid.");
 			output("\n\nOf course, the pump keeps going on as if nothing happened, and you're too into it to mind a little mess.");
 		}
 		//Liter readout for cool kids that don't look at explosions.
