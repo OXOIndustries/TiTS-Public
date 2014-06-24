@@ -116,7 +116,6 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sera.png", mimeType = "image/png")]
 		public var Bust_SERA:Class;
-
 		[Embed(source = "../../../assets/images/npcs/gats/Sera_Nude.png", mimeType = "image/png")]
 		public var Bust_SERA_NUDE:Class;
 
@@ -132,7 +131,9 @@ package classes.Resources.Busts
 		public var Bust_SHEKKA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Shelly.png", mimeType = "image/png")]
-		public var Bust_SHELLA:Class;
+		public var Bust_SHELLY:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Shelly_Nude.png", mimeType = "image/png")]
+		public var Bust_SHELLY_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Female.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_FEMALE:Class;

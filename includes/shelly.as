@@ -125,6 +125,7 @@ function sexWithShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	userInterface.showBust("SHELLY_NUDE");
 	var x:int = pc.cockThatFits(100);
 	if(x < 0) x = pc.smallestCockIndex();
 	processTime(50+rand(10));
@@ -182,6 +183,7 @@ function humanoidsCumOutsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	userInterface.showBust("SHELLY_NUDE");
 	output("Deciding to honor her wish, you piston a few more times for build-up and then gently lay her on the bed, popping your cock out of her pussy just in time. [pc.EachCock] pulses with orgasmic bliss, spurting blasts of [pc.cum] all over her body. A few ropes reach her face, painting parts of her dusky body [pc.cumColor]. She smiles and thanks you for not cumming inside.");
 
 	//if first time: 
@@ -195,6 +197,7 @@ function humanoidsCumInsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	userInterface.showBust("SHELLY_NUDE");
 	output("Ignoring her warning, you piston several times inside her before hilting in preparation for the coming torrent. Your rapid thrusts set off her second orgasm, and you give her a kiss as her body clamps around you. Her tightened insides are too much to resist, and your dick blows its load inside her egg filled womb.");
 	if(pc.cockTotal() > 2) output(" Your other cocks spurt wildly over her legs and the underside of her stomach.");
 	else if(pc.cockTotal() == 2) output(" Your other cock spurts wildly over her legs and the underside of her stomach.");
@@ -210,6 +213,7 @@ function taursCumOutsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	userInterface.showBust("SHELLY_NUDE");
 	output("Deciding to honor her wish, you thrust a few more times, popping out of her velvety box just in time. [pc.EachCock] pulses with orgasmic fervor, spurting your load over her butt and back. Your cum paints her back [pc.cumColor], and a few shots even make it to her neck. She smiles weakly and thanks you for not cumming inside.");
 	//(if first time: Curious, you ask her why not.)
 	if(flags["KNOWS_ABOUT_SHELLY_CUM_REACTION"] == undefined) output("\n\nCurious, you ask her why not.");
@@ -222,6 +226,7 @@ function taursCumInsideShelly():void
 {
 	clearOutput();
 	shellyDisplay();
+	userInterface.showBust("SHELLY_NUDE");
 	output("Ignoring her warning, you piston your powerful hips a few more times, finally hilting inside her in preparation for flooding her with seed. Your thrusts start her orgasm anew, and she bites the sheets, now soaked in sugary fluids. Her tightened insides are too much to resist in the heat of the moment, and your breath catches as you’re overwhelmed by lust. Your dick pumps its load into her egg-stuffed womb.");
 	if(pc.cockTotal() > 1)
 	{
