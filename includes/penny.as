@@ -2353,7 +2353,7 @@ function pennyFrottage():void {
 	output("\n\nYour hands knead and caress her perky ass with eager attentiveness, while she grinds atop you, working her [penny.cock]. The phalluses slide against one another, both beginning to drip pre from stimulation. Gathering up the leaking cock-lube, Penny uses her hand to slather it over the pulsating pair of pricks. You grunt at that and look in the eye, begging for more.");
 	
 	output("\n\nWinking back at you, Penny takes your [pc.cockBiggest] in a two handed grip and eagerly announces, <i>“I can’t take much more of this!”</i>  Lifting the doubled dicks up partway, the fox-girl begins to mount your cock, sliding her pre-greased tool back and forth eagerly. Her own liquid ardor spills out in thick ribbons onto your ");
-	if(pc.biggestCockVolume() * 1.25 < penny.cockVolume(0)) output("bigger dick");
+	if(pc.biggestCockVolume() * 1.25 > penny.cockVolume(0)) output("bigger dick");
 	else output("[pc.belly]");
 	output(", polishing your skin with her leaky anticipation. [pc.EachCock] is throbbingly, achingly erect, surging with each beat of your hammering heart. Little muscle spasms wrack your crotch, making your genitals dance beneath the busily humping fox, and you start to lift your hips with anticipation. Your [pc.cockBiggest] slides against the vixen’s [penny.cock] faster and faster.");
 	
