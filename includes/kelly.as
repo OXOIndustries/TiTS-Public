@@ -253,10 +253,6 @@ function talkToKellyAboutWorkingHere():void {
 	removeButton(2);
 }
 
-//Purchase Mods (requires GUI update)
-//9999
-//"<i>Oh, you'd like to purchase some of our basic modification programs? Why, certainly,</i>" she chimes merrily. 
-
 //Flirt
 function flirtWithKellyInTheOffice():void {
 	clearOutput();
