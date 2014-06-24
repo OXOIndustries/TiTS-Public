@@ -1392,6 +1392,7 @@ function swallowAlissSpunk():void
 	output("\n\nNodding, you agree, and share another kiss. After a moment Aliss sits back up. \"<i>All right, </i>mi amour<i>, I'll handle the clean up, why don't you get your sexy ass back outside before people think we're having a sex marathon in here?</i>\"");
 	output("\n\nYou smile, get dressed and head back out into the store. All eyes are on you, until Aliss rejoins you a few minutes later.");
 	chars["ALISS"].orgasm();
+	pc.loadInMouth(chars["ALISS"]);
 	fuckedAliss();
 	pc.lust(10);
 	processTime(5);
