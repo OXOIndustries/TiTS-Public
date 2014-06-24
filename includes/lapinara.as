@@ -181,7 +181,7 @@ function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	output(" You won’t be moving them anytime soon.");
 
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against your hole, her strange pre causing your outer rim to tingle pleasantly. You feel little to no pain when she finally enters you. It’s as if her fluids are working as an anesthetic of sorts.");
-	output("\n\nAs she continues to work her way in and out of your [pc.ass], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight… stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
+	output("\n\nAs she continues to work her way in and out of your [pc.ass], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
 	//Buttchange go!
 	buttChange(60,true,true,false);
 
@@ -228,7 +228,7 @@ function loseToLapinaraAndGetEggplantedChicks():void
 	else output("an");
 	output(" entrance, her strange pre causing your outer lips to tingle pleasantly. You feel little to no pain when she finally enters you. It’s as if her fluids are working as an anesthetic of sorts.");
 
-	output("\n\nAs she continues to work her way in and out of your [pc.vagina " + x + "], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight… stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
+	output("\n\nAs she continues to work her way in and out of your [pc.vagina " + x + "], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
 	//Cuntchange!
 	cuntChange(x,60,true,true,false);
 
@@ -261,7 +261,7 @@ function defeatDatLapinara():void
 	}
 	output("\n\n<i>“Wait!”</i>");
 	output("\n\nYou turn to face her, wondering what she could possibly want.");
-	output("\n\n<i>“I’m… sorry for being so rough with you, okay? It’s just that my hormones go all crazy when I have eggs ready. I’d still like to fuck, if you feel up to it. I’ll even let you pick how we do it, I promise! Please?”</i>");
+	output("\n\n<i>“I’m... sorry for being so rough with you, okay? It’s just that my hormones go all crazy when I have eggs ready. I’d still like to fuck, if you feel up to it. I’ll even let you pick how we do it, I promise! Please?”</i>");
 	if(pc.lust() >= 33) output("\n\nThat does sound like a tempting offer. What will you do?");
 	else {
 		output("\n\nYou aren't any where near horny enough to even consider the offer.\n\n");
@@ -341,7 +341,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 	if(x < 0) x = pc.smallestCockIndex();
 	//(Normal Variant)
 	output("You lie down on the ground, pulling the lapinara to your lap. You give her a nice pat on the ass, telling her that you’ll be putting it to good use. She is absolutely beaming at the idea, nodding furiously.");
-	output("\n\n<i>“Yesss… Yesyesyes I’d love that very much!”</i>");
+	output("\n\n<i>“Yesss... Yesyesyes I’d love that very much!”</i>");
 
 	//Cock/Biggest cock is 12 inches and under:
 	if(pc.cocks[x].cLength() < 12) output("\n\nYou’re glad that she shares the sentiment, and without further ado, you slowly but surely ease her onto your [pc.cock " + x  + "]. Her eyes roll into the back of her head, and she dreamily pumps her pecker with one hand, holding on to you with the other. She’s nice and tight, surprising for the sex machine that she so obviously is. Her tail whips about excitedly.");
@@ -351,7 +351,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 		output("\n\nYou’re glad that she shares the sentiment.");
 		output("\n\n<i>“But wait!”</i> she interrupts as you’re about to slip her onto your [pc.cock " + x  + "].");
 		output("\n\n<i>“What is it?”</i> you ask.");
-		output("\n\n<i>“You’re… a bit larger than what I usually take, to say the least. Could you go easy on me?”</i>");
+		output("\n\n<i>“You’re... a bit larger than what I usually take, to say the least. Could you go easy on me?”</i>");
 		output("\n\nYou nod understandably, and without further ado, you slowly but surely ease her onto your [pc.cock " + x  + "], being sure not to force her over the entire length. Her eyes roll into the back of her head, and she dreamily pumps her pecker with one hand, holding on to you with the other. She’s nice and tight, surprising for the sex machine that she so obviously is. Her tail whips about excitedly.");
 	}
 	cockChange(true,false);
@@ -360,7 +360,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 	output("\n\nAmused by your partner’s eagerness, you gladly oblige her, bouncing her up and down on your [pc.cock " + x + "]. She thrashes her head back, squealing to the sky as she further loses herself in the pleasure that you were so kind to give her. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");
 	output("\n\n<i>“E-EGG eggeggEGG!”</i> she whines lustily, pistoning her hand over her pseudocock at a rate you would have never imagined possible.");
 	output("\n\nA mere seconds later, you blow your load into her, and two soft-shelled eggs shoot from her cock in rapid succession with a loud pop, landing on your chest. She starts panting, exhausted and at a loss for breath. You lift her off of you easily, sitting her down at your side.");
-	output("\n\n<i>“You’re fucking amazing…”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>");
+	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>");
 	processTime(20+rand(5));
 	pc.orgasm();
 	genericVictory();
@@ -376,7 +376,7 @@ function hotdoggingALapinara(cockNum:int = 0):void
 	var x:int = cockNum;
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You lie down on the ground, pulling the lapinara to your lap. You give her a nice pat on the ass, telling her that you’ll be putting it to good use. She is absolutely beaming at the idea, nodding furiously.");
-	output("\n\n<i>“Yesss… Yesyesyes I’d love that very much!”</i>");
+	output("\n\n<i>“Yesss... Yesyesyes I’d love that very much!”</i>");
 	output("\n\nYou’re glad that she shares the sentiment.");
 	output("\n\n<i>“Whoa there, Tiger!”</i> she interrupts as you’re about to slip her onto your [pc.cock " + x + "].");
 	output("\n\n<i>“What is it?”</i> you ask.");
@@ -389,7 +389,7 @@ function hotdoggingALapinara(cockNum:int = 0):void
 	output("\n\nOh, so she wants to go for some hotdogging? Clever girl! You give her a-okay to continue. Without another word, the lapinara skillfully rubbing your length between her spacious rump cheeks. They’re so delightfully soft! Occasionally, she takes the time to give your cock a playful squeeze with her tail and hand as well, stroking herself all the while. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");
 	output("\n\n<i>“E-EGG eggeggEGG!”</i> she whines lustily, now pistoning her hand over her pseudocock at a rate you would have never imagined possible.");
 	output("\n\nA mere seconds later, you lose it, blowing your [pc.cumColor] spooge all over her back. At the same time, two soft-shelled eggs shoot from her cock in rapid succession with a loud pop, landing onto your chest. She slumps over you, exhausted and at a loss for breath.");
-	output("\n\n<i>“You’re fucking amazing…”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
+	output("\n\n<i>“You’re fucking amazing...”</i> she finally speaks up, a dazed look on her face. <i>“We really need to do that again sometime.”</i>\n\n");
 	processTime(20+rand(5));
 	pc.orgasm();
 	genericVictory();
@@ -413,7 +413,7 @@ function getLickedByLapinara():void
 	output("\n\n<i>“Oh, right. Sorry,”</i> she apologizes.");
 
 	output("\n\nWithout further interruption, the lapinara gets to licking. She starts by gingerly tracing your outer lips with her tongue, pulling them apart to expose your labia, taking a moment to gently nibble on the folds. She then moves on to [pc.oneClit], kissing it lovingly before cusping her mouth over it, suckling.");
-	output("\n\nYou gasp in surprise as you feel one of your partner’s fingers slipping into your vag, then two, then three… With her free hand, she furiously pumps her pseudocock, eliciting girly moans from deep within her throat. You swear that you can make out words in her muffled moans. Something about eggs, you think.");
+	output("\n\nYou gasp in surprise as you feel one of your partner’s fingers slipping into your vag, then two, then three... With her free hand, she furiously pumps her pseudocock, eliciting girly moans from deep within her throat. You swear that you can make out words in her muffled moans. Something about eggs, you think.");
 	output("\n\nIt isn’t much longer before you reach orgasm, your inner walls reflexively clamping down on the lapinara’s skilled fingers. She releases her mouth from your clit, wailing to the sky as a strange popping sound originates from under her. A quick glance reveals two soft-shelled eggs on the ground that weren’t there before.");
 	output("\n\n<i>“That was fun!”</i> she comments, catching her breath. <i>“Do you think that we could do that again sometime?”</i>");
 	output("\n\nYou very well might like to do that again someday.\n\n");
