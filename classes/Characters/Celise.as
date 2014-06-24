@@ -26,7 +26,7 @@
 			this.plural = false;
 			this.lustVuln = 1;
 			this.meleeWeapon = new GooeyPsuedopod();
-			this.armor.longName new GooeyCoverings();
+			this.armor.longName = new GooeyCoverings();
 			this.physiqueRaw = 3;
 			this.reflexesRaw = 1;
 			this.aimRaw = 1;
