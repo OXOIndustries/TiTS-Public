@@ -3162,6 +3162,8 @@ function drinkAllOfKellysSpoo():void
 	if(pc.hasCock() && pc.hasVagina()) output(" From her position, however, you can hear her calling up to you, <i>\"Do you want me to do your cock? Or your pussy?\"</i>");
 	pc.lust(35);
 	processTime(12);
+	pc.loadInMouth(chars["KELLY"]);
+	pc.loadInMouth(chars["KELLY"]);
 	//[Cock][Pussy]
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Cock",getBlownByKelly);
@@ -3201,7 +3203,7 @@ function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 	output("\n\nFinally, however, even the laquine's mighty reserves run dry. <i>\"Nnnghn! Ohh! Ah! L-last - one!\"</i> she manages to bark out, thrusting her hips forward and loosing one last gut-glazer into your mouth. With a great heaving sigh of satisfaction, she slumps back against her chair, panting for breath. <i>\"Gods, I <b>love</b> cutting loose like that,\"</i> she moans to herself, once she's caught it. Sleepily, she opens her eyes and smiles at you. <i>\"You okay, sweet thing?\"</i> she asks, gently stroking your head as she does.");
 
 	output("\n\nYou get up from between her legs, licking a stray strand of honey off your lips. Patting your belly, you inform her that you’ll be fine once you’ve actually had a bath. Kelly’s done a number on you. You motion to your honey-drenched self.");
-
+	pc.loadInMouth(chars["KELLY"]);
 	//If Attraction < 50:
 	if(kellyAttraction() < 50)
 	{
@@ -3288,6 +3290,7 @@ function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ():void
 //Kelly's Cunny
 function eatOutKellysQuoteUnquoteCunny():void
 {
+	pc.girlCumInMouth(chars["KELLY"]);
 	clearOutput();
 	userInterface.showBust("KELLY_NUDE");
 	showKellyName();
@@ -3967,6 +3970,18 @@ function getDPedByKelly():void
 		output("\n\nEventually, the two of you wake and Kelly helps you clean off, squeezing out most of the honey she stuffed you with in the process. Some of it's a little stubborn, remaining firmly packed in your wombs despite your best efforts, but the resultant belly-chub isn't enough to interfere with putting your [pc.top] back on. Kelly smiles once you're dressed and playfully pets your slightly bulging stomach. <i>\"Good thing I take contraception seriously, or you'd be pregnant twice over,\"</i> she giggles, then steps in to kiss you affectionately. <i>\"Mmm... don't be a stranger, hear?\"</i> she purrs once she's released your lips, tongue darting out to affectionately flick the tip of your nose before she steps away.");
 
 		output("\n\nSaying your goodbyes, you return to the ship.");
+	}
+	pc.loadInVagina(chars["KELLY"],x);
+	pc.loadInVagina(chars["KELLY"],x);
+	if(y >= 0) 
+	{
+		pc.loadInVagina(chars["KELLY"],y);
+		pc.loadInVagina(chars["KELLY"],y);
+	}
+	else 
+	{
+		pc.loadInAss(chars["KELLY"]);
+		pc.loadInAss(chars["KELLY"]);
 	}
 	processTime(30+rand(10));
 	pc.orgasm();
