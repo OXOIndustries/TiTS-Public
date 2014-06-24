@@ -147,7 +147,7 @@ function initializeRooms():void
 	//110 MERCHANT'S THOROUGHFARE
 	rooms["110"] = new RoomClass(this);
 	rooms["110"].roomName = "MERCHANT'S\nTHOROUGHFARE";
-	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is closed off for now. To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room in from one of the larger businesses.";
+	rooms["110"].description = "The merchant's thoroughfare twists through the center of the station in a circular pattern, though the way north of here is blocked off for now by a shop called \"Mi Amour\". To the west, you see a brightly-lit shop labelled as \"Fur Effect.\" The east wall is bare, likely filled by a side room in from one of the larger businesses.";
 	rooms["110"].planet = "TAVROS STATION";
 	rooms["110"].system = "SYSTEM: KALAS";
 	rooms["110"].northExit = "MI AMOUR";
