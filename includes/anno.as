@@ -193,30 +193,6 @@ function annoShopSetup():void
 	chars["ANNO"].keeperGreeting = "Anno shrugs. <i>\"Well, how can I help you, boss?\"</i>\n";
 }
 
-/*9999 items 2 add
-Hammer Carbine
-	Attack: +2
-	Damage: 14 Kinetic
-	Tooltip: A questionably civilian-legal modification of the popular Hammer pistol, the Hammer Carbine features a folding stock for greater accuracy, an expanded magazine, and a three-round burst trigger mod, greatly increasing damage-per-hit over its smaller cousin.
-
-Laser Carbine
-	Attack: +3
-	Damage: 12 Energy
-	Tooltip: The Reaper Mk.5 Laser Carbine is currently the service rifle of the Terran Coalition Expeditionary Force, the main force of Earth's military. Produced with an integrated holographic scope and digital heads-up display, the Reaper Mk.5 is a sturdy, balanced rifle suitable for a variety of combat scenarios.
-
-EMP Grenade
-	Tooltip: Used by soldiers and police officers to quickly neutralize shielded or robotic opponents, modern EMP grenades temporarily fry electronics. Though individually expensive, these little babies pretty much pay for themselves when you're up against a heavily shielded enemy or an assassin droid!
-
-TS-T Armor Plating
-	{From debug room. Why not!}
-
-Goovolver
-	{Also from debug room :3}
-
-ZK Rifle
-	{Since you can't get one if you don't do GurobotQuest}
-*/
-
 //Test Drive
 function testDriveArmorsForShit():void
 {

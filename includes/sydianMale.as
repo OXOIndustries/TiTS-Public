@@ -486,6 +486,7 @@ function takeRustBroCumInside(arg:int = 0):void
 	output("\n\nTrickles of silvery spooge leak around his length as he finishes. When you rise up off of him, those same trickles turn into fat globules of wasted spunk, but more than enough clings inside you to leave you sticky and sated.");
 	output("\n\nHe sits there leaking thin trails of excess spunk onto his belly while you gather your [pc.gear]. By the time you depart, he's asleep and gently stroking himself to what you can only assume are dreams of you.\n\n");
 	processTime(5);
+	pc.loadInCunt(chars["SYDIANMALE"],x);
 	genericVictory();
 }
 //Cum Outside
@@ -559,6 +560,7 @@ function haveADrinkOnMeWithSnowBallsMrRustBro():void
 	output("\n\nHis eyes struggle to open, and he lets out a muffled protest as your kiss forces his last load into his mouth. He would probably fight if he had any energy left. As it stands, he provides only a moment’s resistance before swallowing his own seed, delivered by your kiss, your tongue forcing it into his mouth, playing with his broad, thick tongue.");
 	output("\n\nWhen you break the kiss, he whimpers briefly before his eyes close, and he passes out, snoring immediately. You grin, rising from your seat on the rust monster, swaying a bit as you shake off the quaking rhythm you’ve been riding for the past half hour. As you leave, you take one last look, nodding in satisfaction at the cum-smeared hulk snoring gently in the junk pile.\n\n");
 	pc.lust(10+rand(10));
+	pc.loadInMouth(chars["SYDIANMALE"]);
 	processTime(20+rand(5));
 	genericVictory();
 }
@@ -740,7 +742,7 @@ function hungryhungryTailginasThirst():void
 	processTime(35+rand(5));
 	pc.orgasm();
 	genericVictory();
-	feedCuntSnake();
+	pc.loadInCuntTail(chars["SYDIANMALE"]);
 }
 
 function loseToSydianMaleRouter():void
@@ -761,6 +763,7 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 {
 	userInterface.showName("LOST VS:\nSYDIAN MALE");
 	userInterface.showBust("SYDIAN_MALE");
+	var x:int = rand(pc.totalVaginas());
 	//HP
 	if(pc.HP() < 1) 
 	{
@@ -770,8 +773,8 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 		output("\n\nThe seven foot tall male's tail curls to lay against your [pc.hip], letting you feel the soft antennae that radiate from its tip. They're incredibly soft and coated in a viscous substance that feels warm on your skin. Shivering in disgust, you squirm away only to discover that the greasy secretion is already vanishing, but where it touched you, your skin is hot and flushed. What's more, you're starting to feel warm in other places too - places you didn't think would be feeling this way around such a brutish, alien oaf.");
 		output("\n\nYou gasp as the unnamed creature brings his tail against you once more, this time draping it over your [pc.belly], slicking it with a much thicker layer of his mysterious fluid. It feels... good, better than it has any reason to. You're forced to bite your [pc.lip] to keep from crying out, and your struggle mightily to keep from rubbing the stuff all over. A whimper escapes you anyway, high pitched and keeping. Your captor smiles knowingly as his tail traces across your [pc.fullChest]. There's no hiding the ");
 		if(pc.wetness(x) <= 2) output("dew dutifully beading on your netherlips");
-		else if(pc.wetness() <= 3) output("slick glossiness of your netherlips");
-		else if(pc.wetness() <= 4) output("way your juiced-up netherlips are dribbling with need");
+		else if(pc.wetness(x) <= 3) output("slick glossiness of your netherlips");
+		else if(pc.wetness(x) <= 4) output("way your juiced-up netherlips are dribbling with need");
 		else 
 		{
 			output("puddle spreading beneath you as your over-juiced puss");
@@ -832,7 +835,7 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	}
 	else output(", and your shield emitter is as damaged as it was before.");
 	output(" You'll have to go get it repaired at Novahome if you want your full shield capacity back.\n\n");
-
+	pc.loadInCunt(chars["SYDIANMALE"],x);
 	processTime(35+rand(5));
 	pc.orgasm();
 	genericLoss();
@@ -929,7 +932,7 @@ function getPeggedToOrgasmByRustBro():void
 	}
 	else output(", and your shield emitter is as damaged as it was before.");
 	output(" You'll have to go get it repaired at Novahome if you want your full shield capacity back.\n\n");
-	
+	pc.loadInAss(chars["SYDIANMALE"]);
 	processTime(90+rand(10));
 	// Five PC orgasms, one orgasm in the PC's ass by the Male Sydian.
 	pc.orgasm();
@@ -970,6 +973,7 @@ function mouthfulOfPenniesByFrogalog():void
 	output("\n\nHe pats your head once, then leans back in his scrap-pile, beginning to snore almost immediately. Still woozy from the experience, you begin to obediently slurp at his absolutely soaked cock. With the sydian asleep, you have time to recover from the mind-bending ordeal his cock instigated. It’s not until you’ve nearly finished licking his cock clean that your head completely clears, and you realize that you should probably go.");
 	output("\n\nAs you gather your things and sneak away, you spy one of the Sydian’s eyes open, watching your clumsy escape. He snorts, but doesn’t seem interested in stopping you.\n\n");
 	pc.lust(40+rand(10));
+	pc.loadInMouth(chars["SYDIANMALE"]);
 	processTime(40+rand(10));
 	genericVictory();
 }
