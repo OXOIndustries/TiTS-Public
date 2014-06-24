@@ -87,8 +87,8 @@ function daneOmniExplanation():void {
 	flags["MET_DANE"] = 1;
 	flags["FOUGHT_DANE_ON_MHENGA"] = 1;
 	clearOutput();
-	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
+	userInterface.showBust("DANE");
+	userInterface.showName("\nDANE");
 	output("It's huge, standing nearly eight feet tall, and as it steps into the light, your mouth drops. This creature, Dane, has four arms, each corded with thick muscle under his shining, white fur. For armor, he wears a silvery harness over his chest and upper legs, covered in glowing lights. A large, illuminated core sits square in the middle of it, glowing like a miniature sun. The ausar's hair is as white as his fur, and his skin is paler than cream. Eyes like burning coals glare out at you from his sockets. He's an albino.");
 	output("\n\nYour cousin passes into the shadows, saying <i>\"I'll send a gunship to pick you up when you finish disciplining my uppity cousin. Don't kill " + pc.mfn("him","her","it") + ", okay?\"</i>");
 	output("\n\nDane smiles, his pointed ears twitching. <i>\"Wouldn't think of it, boss. I've got better uses for a piece of meat like this.\"</i>");
@@ -226,7 +226,7 @@ function defeatDane():void
 {
 	clearOutput();
 	userInterface.showBust(chars["RIVAL"].short.toUpperCase());
-	userInterface.showName(chars["RIVAL"].short.toUpperCase());
+	userInterface.showName("DANE AND\n" + chars["RIVAL"].short.toUpperCase());
 	output("Slumping, the hulking ausar thug looks like he's close to giving in. Before you can finish this, explosions stitch up the ground in front of you, forcing you to dive for cover. The bass hum of thrusters in atmosphere greets you before the gusting backwash does, giving you enough time to put your arm up to block the worst of it. Dane stumbles into the ship, one blade falling from a numb grip to the ground behind him.");
 	output("\n\nThe hatch closes, but you're able to see [rival.short]'s pearly teeth behind [rival.eir] smile as it does. You ");
 	if(pc.rangedWeapon.shortName == "") output("chuck a few rocks");
@@ -242,6 +242,8 @@ function defeatDane():void
 //Buttfuck!
 function loseToDane():void {
 	clearOutput();
+	userInterface.showName("\nDANE");
+	userInterface.showBust("DANE_NUDE");
 	//HP
 	if(pc.HP() <= 0) 
 	{

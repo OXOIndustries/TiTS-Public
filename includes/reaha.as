@@ -461,6 +461,8 @@ function talkToBrothelLady():void
 {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
 	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've got one slut left, and she's a handful.</i>\"");
 	output("\n\n\"<i>What happened to all the others?</i>\"");
 	output("\n\nShe cocks an eyebrow at you, finally bothering to look up from her slate. \"<i>Boss was using indentured labor, but she had some kinda crisis, whatever. Had to sell most of the contracts out. A lot of the regulars bought up their favorite sluts to keep 'em forever. Or close enough to forever as money can buy.</i>\"");
@@ -497,6 +499,8 @@ function talkToBrothelLadyRepeat():void
 {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
 	output("You approach the mistress, clearing your throat to get her attention. With marked boredom, she intones, \"<i>Welcome to Beth's Busty Broads. If you're here for our going out of business sale, you're out of luck. The selection's... pretty limited. And by that I mean we've still got just the one cow-slut left, and she's a handful.</i>\"");
 
 	brothelMainMenu();
@@ -506,6 +510,8 @@ function ReahaBrothelSexMenu():void
 {
 	clearOutput();
 	author("Savin");
+	userInterface.showName("MISTRESS AND\nREAHA");
+	userInterface.showBust("BORING_MISTRESS","REAHA");
 	output("You tell the mistress that you'd like to spend some time with this cow of hers. She shrugs and tucks her data slate under her arm, leading you past a drawn velvet curtain into a long, dark hall. You follow her down a winding stair to a dimly-lit hall flanked by perhaps a dozen sealed doors, each with a small slit in the center, revealing the sparse accommodations: most have been emptied out, left as nothing but bare steel chambers. The last door, though, still has a light on inside.");
 	output("\n\nThe mistress stops at the last door on the right, indicating the view slit beneath the nameplate \"Reaha.\" Looking through, you see an overly-busty woman, clearly human once, with her wrists chained to a steel bar, several tubes poking into her back from a vent in the ceiling, pumping her full of some misty pink liquid. Aphrodisiacs, you'd guess. From your vantage point, you can see her over-sized ass pointed toward the door, giving you a perfect view of her sodden cunt and a long, swishing tail tipped with a cute tuft of fur. Her tiny microskirt does nothing to hide her sundered modesty. With a pair of tiny ivory horns growing from her head, a pair of floppy bovine ears, and a pair of absolutely massive tits, it isn't hard to see why the brothel mistress calls her a cow.");
 	output("\n\nAs if reading your mind, the mistress says, \"<i>Gene mods. Crazy, right? Why someone'd want to turn herself into a stupid cow, I'll never guess. Anyway, you want a go at her, there's the credit scan,</i>\"  she nods to a box on the wall. \"<i>I'll leave you to it.</i>\"");
@@ -531,8 +537,10 @@ function ReahaBrothelSexMenu():void
 
 function askAboutBusinessLikeASir():void
 {
-	author("Savin");
 	clearOutput();
+	author("Savin");
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
 	output("You ask the mistress how business is doing, exactly. There's enough people sitting around enjoying the girls on the floor alone to suggest Beth's is doing well.");
 	output("\n\nShe shrugs. \"<i>New madame's whipped up a lot of new customers. Old one didn't do much, let the place fall to shit. I was about to put in my two-weeks' when she up and left. Dunno why. But things are picking up again. New girls coming in, old ones going out. Even fixed the surround sound.</i>\"")
 	//GET RID OF ZIS BUTTON U CUNT
@@ -548,7 +556,8 @@ function buyYourselfACowslut():void
 {
 	author("Savin");
 	clearOutput();
-	
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
 	output("Curious, you ask what the price on the cow-girl's contract is.");
 	output("\n\nThe mistress cocks an eyebrow at you, but dutifully flips through a few screens on her slate before making a tsking sound, nibbling on one of her big crimson lips. \"<i>Poor little Reaha here was in pretty deep, but she's been working here for a while, so she's cleared a good chunk of her debt. Let's see... hmm, the boss's got a note here, looks like she'll take five grand for the cow. Pretty good deal for what we paid for her. So what do you say, hun? She in your price range?</i>\"");
 	//output("\n\n<b>Buying the contract is currently disabled due to unfinished content.</b>");
@@ -564,6 +573,8 @@ function noCowslutsForYou():void
 {
 	author("Savin");
 	clearOutput();
+	userInterface.showName("BROTHEL\nMISTRESS");
+	userInterface.showBust("BORING_MISTRESS");
 	clearMenu();
 	output("You shake your head, saying that you can't make that deal just now. The mistress shrugs and flicks her datapad idly. \"So, what'll it be, then? Just a go at her, or can I show you the door?\"");
 
@@ -576,7 +587,7 @@ function buyCowslutsForYou():void
 	author("Savin");
 	clearOutput();
 	userInterface.showName("\nREAHA");
-	userInterface.showBust("REAHA");
+	userInterface.showBust("BORING_MISTRESS","REAHA");
 	flags["REAHA_BOUGHT"] = 1;
 	flags["REAHA_IS_CREW"] = 1;
 

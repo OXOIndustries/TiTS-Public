@@ -41,6 +41,8 @@ function approachDCLTrap():void
 	if(flags["MET_DEL"] == undefined)
 	{
 		flags["MET_DEL"] = 1;
+		userInterface.showBust("BETH","DELILAH");
+		userInterface.showName("BETH AND\nDELILAH");
 		output("You approach the slender bartender and ask what's on tap.");
 		output("\n\n<i>\"Quivering Quasars for 10 credits, Sex on a Meteor for 20. Of course, we've got good ol' beer and liquor, too,\"</i> she says matter-of-factly. Just as she's reaching for a glass for you, though, a tall, buxom woman steps out from the kitchen behind the bar, dressed in nothing but a pair of pasties barely doing anything to cover her large, pink areola, and a tight thong that leaves nothing to the imagination.");
 		output("\n\n<i>\"Did you forget to mention today's special?\"</i> the nearly-nude woman asks sternly, looking down on the comparatively tiny bartender. Tsking her tongue, the woman turns to you and says, <i>\"I apologize for my slave. I am Bethany. Bethany Carver. This is my establishment, and soon to be brothel. One of many in my possession. The little one here seems to have forgotten her place, hasn't she?\"</i>");

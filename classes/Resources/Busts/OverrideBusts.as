@@ -14,9 +14,6 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/drBadger.png", mimeType = "image/png")]
 		public var Bust_DRBADGER:Class;
-		
-		[Embed(source = "../../../assets/images/npcs/sexbot.png", mimeType = "image/png")]
-		public var Bust_SEXBOTFEMALE:Class;
 	}
 
 }

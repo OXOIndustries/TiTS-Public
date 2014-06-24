@@ -9,6 +9,8 @@ function scrapyardMaintenance():void {
 	author("Nonesuch");
 	if(flags["SCRAPYARD_SEEN"] == undefined) {
 		flags["SCRAPYARD_SEEN"] = 1;
+		userInterface.showBust("ARTIE");
+		userInterface.showName("\nARTIE");
 		output("You go through the open gate of the scrapyard and cautiously stick your head around the stone hut’s door. It is, if anything, even more packed with junk than the outside - the room is gloomy with the amount of stuff piled up against the walls and windows. Stands filled with everything from old shoes to busted hologram projectors jostle for room with silent, antiquated robots and mismatched gun racks slithering with spools of power connectors.");
 		output("\n\n<i>“Ah! Another adventurer into the cosmic unknown,”</i>  says a reedy voice. <i>“Please, friend- take three steps forward and one to the right.”</i>  You step into the junk shop and, as your eyes adjust to the gloom, take in the curious figure sat in the middle of this empire of crap. He’s a small, middle aged man with walnut skin, completely bald, dressed in sandals and a brown shift which might once have passed for an ancient monk’s cowl, before it got completely covered in oil stains. He is perched cross-legged upon a big shipping crate, surrounded on all sides by meticulously cleaned metal parts and pieces. He looks at you placidly.");
 		output("\n\n<i>“And one to the right.”</i>  Baffled, you step to the right and are rewarded with a big, beatific smile spreading across his face.");
@@ -18,6 +20,8 @@ function scrapyardMaintenance():void {
 		output("\n\n<i>“Good lad, but not terribly clued up on the cosmic side of things,”</i>  Artie says to you, en sotto. <i>“I’m afraid talking to him will not be as spiritual an experience as with me.”</i>");
 	}
 	else {
+		userInterface.showBust("ARTIE");
+		userInterface.showName("\nARTIE");
 		//Sell/Buy/Leave
 		output("Artie nods at you as you enter the scrap yard hut, smiling peacefully as he closes his eyes and goes back to meditating over a large diode. Geoff is busy working on something in the back.");
 	}
@@ -32,6 +36,8 @@ function sellToArtie():void {
 function buyFromGeoff():void {
 	clearOutput();
 	author("Nonesuch");
+	userInterface.showBust("GEOFF");
+	userInterface.showName("\nGEOFF");
 	if(flags["MET_GEOFF"] == undefined) output("You pick your way through the clutter to the back part of the shop. Geoff is sat in front of a wall hung with armor, shields and other robust pieces of technology, evidently reconstructed from scrap. He wipes his hand on a rag as you reach him and then offers you it.\n\n<i>“Hey. Nice to see a new face,”</i>  he says. He grins at you sheepishly. <i>“Uh, everything you can see behind me is for sale. If you want to sell stuff, you’ll have to talk to Artie. The last time I bought something it turned out to have an evil aura, or something.”</i>");
 	else if(flags["SEXED_GEOFF"] == 1) output("Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name]. Looking to buy something? Or...”</i>  his grin becomes wider. <i>“...do you need a hand with something?”</i>");
 	else output("Geoff smiles at you as you carefully make your way over to him.\n\n<i>“Hey, [pc.name]. Looking to buy something?”</i>");
@@ -60,6 +66,8 @@ function buyFromGeoff():void {
 function talkToGeoff():void {
 	clearOutput();
 	author("Nonesuch");
+	userInterface.showBust("GEOFF");
+	userInterface.showName("\nGEOFF");
 	if(flags["SEXED_GEOFF"] == undefined) {
 		output("You ask the lanky, dreadlocked young man what brought him out to the frontier.");
 		output("\n\n<i>“Tuition fees,”</i>  he says simply, as he goes on cleaning engine parts. <i>“I grew up on Sigius VI and wanted to go into engineering. Got the grades, but my folks don’t have the money. When my dad mentioned my uncle was going to come out here with a business and was looking for an assistant, it seemed to me like a win-win: make the money I need, and see the stars. Once in a century opportunity for a hell of a gap year, man.”</i>  He sighs. <i>“I, uh, kinda forgot what my uncle is like.”</i>");
@@ -91,6 +99,8 @@ function flirtWithGeoff():void {
 	
 	//PC is andro/masculine male/herm OR centaur/some other stupid shape with the genitals on the back:
 	if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga() || (!pc.hasCock() && !pc.hasVagina())) {
+		userInterface.showBust("GEOFF");
+		userInterface.showName("\nGEOFF");
 		output("\n\n<i>“Sure!”</i> beams Geoff. <i>“Whenever you have a free afternoon, come around. I’ve got to get used to guys watching me dismantle engines and guns and stuff, right?”</i>");
 		output("\n\nYou decide you’re better off not explaining what you actually meant.");
 		this.clearMenu();
@@ -98,6 +108,8 @@ function flirtWithGeoff():void {
 		return;
 	}
 	flags["SEXED_GEOFF"] = 1;
+	userInterface.showBust("GEOFF_NUDE");
+	userInterface.showName("\nGEOFF");
 	output("\n\n<i>“You?...I, uh.”</i>  says Geoff. He blushes- but then a wide grin breaks out on his long, pleasant face and he meets your eye. <i>“No, I could probably take a few minutes out to, uh, demonstrate a few things.”</i>  He slides his warm hand into yours before turning and leading you out into the shop’s back lot.");
 	output("\n\n<i>“I told you you wouldn’t gain anything spiritual talking to him...”</i>  a reedy, sighing voice follows you out.");
 	output("\n\nThe back lot is a sprawling, open aired garage-like area, dominated by a stationary robot wrapping a large hovercraft in cleansing steam. The hissing will certainly mask any noise of your own you will make, and increasingly eager, you deliberately press into the tall young mechanic, feeling his tight, firm flesh under your arms. Laughing, he responds by sending his hand roaming down your side, sliding down until he finds and cups your [pc.butt]. The garage is shielded from the worst of the hot sun by a metal roof, but sunlight still stubbornly pushes through its grimy skylights. The humidity couples with the haze of water in the air to give the place, for all that it smells of oil and metal, a sauna-like atmosphere. Moisture beads upon your skin as Geoff presses you into a free space on the wall, his gleeful grin replaced by an expression of concentration as he slides his hands over your skin, his breath coming heavier as he begins to remove your clothing and his fingers come into contact with the warmer, softer parts of your body. You smile, hang your arms around his skinny shoulders, and let him do the work.");
@@ -178,6 +190,8 @@ function flirtWithGeoff():void {
 function GeoffRepeatFuck():void {
 	clearOutput();
 	author("Nonesuch");
+	userInterface.showBust("GEOFF_NUDE");
+	userInterface.showName("\nGEOFF");
 	output("You return his grin and slide your hand into his, and without a word the two of you debunk to the humidity and steam in the back.");
 	
 	//Female/Herm Repeat: 

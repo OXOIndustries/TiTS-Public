@@ -11,6 +11,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats/Anno_Nude.png", mimeType = "image/png")]
 		public var Bust_ANNO_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/Artie.png", mimeType = "image/png")]
+		public var Bust_ARTIE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Beth.png", mimeType = "image/png")]
+		public var Bust_BETH:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/BoringMistress.png", mimeType = "image/png")]
+		public var Bust_BORING_MISTRESS:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Burt.png", mimeType = "image/png")]
 		public var Bust_BURT:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Burt_Nude.png", mimeType = "image/png")]
@@ -22,8 +31,16 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats/Crazy_Carl.png", mimeType = "image/png")]
 		public var Bust_CARL:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/Colenso.png", mimeType = "image/png")]
+		public var Bust_COLENSO:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Cunt_Snake.png", mimeType = "image/png")]
 		public var Bust_CUNTSNAKE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Dane.png", mimeType = "image/png")]
+		public var Bust_DANE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Dane_Nude.png", mimeType = "image/png")]
+		public var Bust_DANE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Delilah.png", mimeType = "image/png")]
 		public var Bust_DELILAH:Class;
@@ -38,6 +55,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats/Flahne_Nude.png", mimeType = "image/png")]
 		public var Bust_FLAHNE_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/gats/Geoff.png", mimeType = "image/png")]
+		public var Bust_GEOFF:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Geoff_Nude.png", mimeType = "image/png")]
+		public var Bust_GEOFF_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
 		
@@ -62,6 +84,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/gats/Machina.png", mimeType = "image/png")]
 		public var Bust_MACHINA:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Mimbrane.png", mimeType = "image/png")]
+		public var Bust_MIMBRANE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Naleen_Female.png", mimeType = "image/png")]
 		public var Bust_NALEEN:Class;
@@ -97,6 +122,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sexbot_Male.png", mimeType = "image/png")]
 		public var Bust_SEXBOT_MALE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Sexbot_Female.png", mimeType = "image/png")]
+		public var Bust_SEXBOT_FEMALE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Shekka.png", mimeType = "image/png")]
 		public var Bust_SHEKKA:Class;

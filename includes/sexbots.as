@@ -1029,9 +1029,9 @@ function dogEStyleWithSexBots():void
 }
 
 
-function sexBotDisplay():void
+public function sexBotDisplay():void
 {
-	if(foes[0].mf("","chick") == "chick") userInterface.showBust("SEXBOTFEMALE");
+	if(foes[0].mf("","chick") == "chick") userInterface.showBust("SEXBOT_FEMALE");
 	else userInterface.showBust("SEXBOT_MALE")
 	if(pc.hasStatusEffect("Round")) userInterface.showName("FIGHT:\nSEXBOT");
 	else userInterface.showName("\nSEXBOT");
