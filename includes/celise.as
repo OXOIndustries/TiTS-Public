@@ -88,7 +88,6 @@ function dudesFeedCelise():void {
 	
 	output("\n\nCelise’s body surges up to recapture your escaping genitals, dragging you back inside her while you try to process her words. A dozen fingers tickle across your crotch while the spunk-drinking goo-girl ponders how best to harvest your seed. If you speak up now, she’d likely obey you, but if you wait, she’s going to pick one....");
 	//[Suck Out] [Squeeze Out] [Go In] [Say Nothing]
-	//9999
 	this.clearMenu();
 	this.addButton(0,"Suck Out",celiseSucksYouDry);
 	this.addButton(1,"SqueezeOut",celiseDoesSomeAnalMilking);
