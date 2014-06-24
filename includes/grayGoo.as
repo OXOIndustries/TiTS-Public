@@ -421,7 +421,6 @@ function divideAndConquerGinasWithGoos():void
 	output("\n\nThen another pair of hands grabs your ass.");
 	output("\n\nYour breath catches in your throat as your booty's grabbed and groped from behind. You try to turn around, but the cock inside you seems to hold you still, only letting you catch a glimpse of your attacker - the goo-girl!");
 	output("\n\n<i>\"Heh, hold still, silly!\"</i> the second goo-girl teases as the first's cock wiggles tentacle-like inside your [pc.vagina]. As it does so, a second slippery rod flops down between your spread cheeks, its gooey tip pressing dangerously against the dark ring of your [pc.asshole]. You wince as the second goo presses in, just on the edge of penetration; her identical twin gives her a sultry wink, jiggling her tits enticingly. The second goo gets the hint, and a firm hand pushes you down to rest your head in the soft, cool pillow that is the girl's cleavage, cheek nestling against one of her quaking boobs as both girls' hands grab your ass, spreading your cheeks wide.");
-	
 	output("\n\nFrom your new vantage point, you can see that the girls are connected at the feet -- their legs trailing off at the calf into a pool of goo between them, bridging the gap between googirls. They both giggle as you notices, saying in unison, <i>\"Double the pleasure, double the fun!\"</i>");
 
 	output("\n\nWell, you can't argue with that. You clutch at the original goo's chest, holding her tight and relaxing your [pc.asshole] as best you can as her sister starts to push in. The feeling of her entering you is totally alien");
@@ -457,7 +456,12 @@ function divideAndConquerGinasWithGoos():void
 	output("\n\n<i>\"Okay!\"</i> the first sister beams, giggling as she starts to slither away in the direction her sister pointed. <i>\"Bye, sis! See you later!\"</i>");
 	output("\n\n<i>\"Bye!\"</i> the other goo says, waving as she, too, wanders away, leaving you soaked in a pool of your own cum and discarded goo-bots.");
 	output("\n\nYou're gonna be sore after that.\n\n");
-
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInVagina(chars["GRAYGOO"]);
+	pc.loadInVagina(chars["GRAYGOO"]);
+	pc.loadInVagina(chars["GRAYGOO"]);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -538,6 +542,8 @@ function pcDefeatByGooBitch():void
 	buttChange(25,true,true,false);
 
 	output("\n\nAnd grow the orgy does. Just as the male rask blows his load in your ass, filling you with his hot, creamy seed, another male seems to take his place, another cock slamming into the abused hole. You cry out, just in time for another cock to find your mouth an inviting target, plunging it.");
+	//This should be changed to a male raskvel once they're done.
+	pc.loadInAss(chars["GRAYGOO"]);
 
 	output("\n\n<i>\"Oh, wow, there's SO MANY!\"</i> the googirl giggles into your ear, twisting your head just enough to let you see a growing crowd of rask boys clambering over the junk toward the sounds of rampant sex. <i>\"Oooh, you're gonna get me so much juice!\"</i>");
 
@@ -548,6 +554,22 @@ function pcDefeatByGooBitch():void
 	output("\n\n<b>You awaken two hours later</b>, sore and exhausted and so full of what you can only imagine is cum that your belly is quite literally bloated, stretching by the amount of seed that even the googirl couldn't steal from you. Around you is a pile of raskvel boys and girls, some still fucking each other, others exhausted and snoring. There must be nearly fifty here, and you have no doubt your goo girl bodysuit let every one of them bust a nut in you. At least she's gone, having gotten all she could from your body.");
 	output("\n\nYou stagger off to find your gear, leaving the rask to work out what lust they have left.\n\n");
 	processTime(120+rand(10));
+
+	//This should be changed to a male raskvel once they're done.
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
+	pc.loadInAss(chars["GRAYGOO"]);
+	pc.loadInMouth(chars["GRAYGOO"]);
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
@@ -684,9 +706,9 @@ function gooGooEnvelopsCunts():void
 	output("\n\nA blissful orgasm finally strikes you, causing you to convulse and spout, and your partner to moan out in ecstasy. Your gray covering contains your offering, but there’s little sign of the goo girl knowing what’s she’s received. She just continues the onslaught, and you continue to cum. The thrusts get slower as time goes on; strength is escaping the enraptured tech-goo. The knight’s unseen horse wang slowly slides out of your battered sex, leaving the two of you to recover.");
 	output("\n\nThe gray goo eventually speaks up, <i>“And they fucking lived happily ever after.”</i> She weakly gets a smirk out of your face. <i>“Wow. That was way more intense than I would have figured. I fucking loving having a physical body.”</i>");
 	output("\n\nHaving?");
-	output("\n\n<i>“ If I keep you fed - We can just keep on doing stuff like this right? I’ll get to keep on...”</i>");
+	output("\n\n<i>“If I keep you fed - We can just keep on doing stuff like this right? I’ll get to keep on...”</i>");
 	output("\n\nSomething whirs to life within you. This line of thinking is going to get you fucked in an unending way if you don’t do something. You try and move... and it registers! Some manner of hidden force manifests in your adrenaline-fueled body, and you proceed to tear your slimy covering off! However, the goo girl doesn’t put a fight and merely sinks to your [pc.feet].");
-	output("\n\n<i>“Okay! Okay! I’m not in the slave-taking business!”</i> the blob shouts. She meekly reforms beside you, barely even resembling her original appearance. It’s apparent just how much that little acting session took out of her. ");
+	output("\n\n<i>“Okay! Okay! I’m not in the slave-taking business!”</i> the blob shouts. She meekly reforms beside you, barely even resembling her original appearance. It’s apparent just how much that little acting session took out of her.");
 	output("\n\n<i>“But you gotta admit you enjoyed it as much as I did.”</i>");
 	output("\n\nA raising hand is the most you’ll give her, still a tad out of breath. You think she rolled her eyes in response, but there’s no telling. Despite her words to the contrary, you imagine your predicament would have been entirely different had she the strength to subdue you. With that chilling thought, you see yourself away and back to where you lost your gear.\n\n");
 

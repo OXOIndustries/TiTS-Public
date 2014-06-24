@@ -383,7 +383,8 @@ function heyDocImAHero():void
 	flags["DR_BADGER_BIMBOED_PC"] = 1;
 	//[Add the following as one of the random Tease attack texts: “You shake what Dr. Badger gave you, running your hand happily over your bimbo body to accentuate your slutty appeal to your opponent.”]
 	processTime(40+rand(15));
-
+	pc.loadInAss(chars["DRBADGER"]);
+	pc.loadInAss(chars["DRBADGER"]);
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }

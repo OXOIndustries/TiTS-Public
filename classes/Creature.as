@@ -8558,7 +8558,10 @@
 			}
 			return false;
 		}
-		
+		public function girlCumInMouth(cumFrom:Creature):Boolean
+		{
+			return false;
+		}
 		public function loadInMouth(cumFrom:Creature):Boolean
 		{
 			return false;

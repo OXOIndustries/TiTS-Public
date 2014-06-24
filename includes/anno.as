@@ -426,6 +426,7 @@ function annoShootsResults(easy:Boolean = false):void
 		else output("<i>\"If you're lucky, maybe next time I'll return the favor.\"</i>");
 
 		output("\n\nYou leave Anno to get cleaned up, and return to the storefront.");
+		pc.girlCumInMouth(chars["ANNO"]);
 		processTime(30+rand(10));
 		pc.lust(23);
 		clearMenu();
