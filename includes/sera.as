@@ -217,7 +217,7 @@ function getTailUsedBySera():void
 	if(pc.tailCount > 1 || pc.vaginaTotal() > 1) output("s");
 	output(" clench, and a drop of goo dangles down from your juice-soaked entrance. You catch it in your mouth before it can dirty her floor and spend the next several minutes obediently licking out every drop that your tail failed to consume.");
 	output("\n\nShe doesn't seem to have any complaints about your face being covered in pussy juice. You do your best to wipe up anyway, but you're sure you still smell vaguely of cunt. The satisfaction your [pc.tailgina] exudes makes it all worthwhile.");
-	feedCuntSnake();
+	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
 	pc.orgasm();
 	clearMenu();
@@ -401,6 +401,7 @@ function getGiantDickTailfilledWhileEatingSeraOut():void
 	output("\n\nThe only thanks you get is a <i>\"Nice tongue-work, meat.\"</i> when you hand the soiled fabric back to her. She tosses it in a chute without a second glance and looks to the door, bored with you and awaiting her next client.");
 	if(pc.cumQ() >= 5000) output(" She's lucky there are drains in the floor sucking away all the cum!");
 	processTime(30+rand(10));
+	pc.girlCumInMouth(chars["SERA"]);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -486,7 +487,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		else output("turned on");
 		output(" by the syrupy texture of your spunk. You spend a few long seconds slurping up every drop that you shot across her hoof, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
 		output("\n\n<i>\"Don't think I was letting you off THAT easy, meat. Drink up,\"</i>  she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress's cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
-		output("\n\n<i>\"Gooood doggy,\"</i>  she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
+		output("\n\n<i>\"Gooood doggy,\"</i> she coos as you take her dick to the hilt, coating it with as much spunky, salivating lube as you can muster, trying to make things easier on yourself later.");
 		//End PC cock Variant
 	}
 	output("\n\n<i>\"Now it's time for the main course,\"</i>  she grins, grabbing you by the hair and throwing you up against the counter. You gasp as the wind's knocked out of you, doubling over the counter as the demon babe steps up behind you, flopping the shaft of her big, wet cock between the crack of your ass. You squirm as she locks her fingers into your [pc.hips], holding your ass dead steady, all but bending your over the counter as she gets ready to take her pleasure from your body. You can feel her sloppy, wet schlong trail down your cleft, a hefty foot-long slab of demon meat ready to pound you into the ground. At least she gave you the chance to lube it up!");
@@ -542,6 +543,8 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	output(" and run off.");
 	flags["SERA_STUCK_IT_ALL_IN_BUTT"]  = 1;
 	processTime(40+rand(10));
+	pc.loadInAss(chars["SERA"]);
+	if(pc.hasVagina()) pc.loadInVagina(chars["SERA"],0);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
