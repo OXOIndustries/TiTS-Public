@@ -57,50 +57,24 @@ function debugMenus():void
 	clearMenu();
 	output("The room of debug. Where am I? How did I get here? What do you want?!");
 	
-	addItemButton(0, new DBGShield(), function():void {
-		output("\n\nDebug shield get.");
-		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new DBGShield());
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
+	// Need the buttons back to test other stuff.
+	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
 	
-	addItemButton(1, new TSTArmor(), function():void {
-		output("\n\nTest armor get.");
-		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new TSTArmor());
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
+	addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
 	
-	addItemButton(2, new PHAccess(), function():void {
-		output("\n\nPlaceholder accessory get.");
-		
-		var foundLootItems:Array = new Array();
-		foundLootItems.push(new PHAccess());
-		
-		itemScreen = mainGameMenu;
-		lootScreen = mainGameMenu;
-		useItemFunction = mainGameMenu;
-		
-		itemCollect(foundLootItems);
-	});
+	//addItemButton(0, new DBGShield(), function():void {
+		//output("\n\nDebug shield get.");
+		//
+		//var foundLootItems:Array = new Array();
+		//foundLootItems.push(new DBGShield());
+		//
+		//itemScreen = mainGameMenu;
+		//lootScreen = mainGameMenu;
+		//useItemFunction = mainGameMenu;
+		//
+		//itemCollect(foundLootItems);
+	//});
 	
-	addItemButton(3, new Goovolver(), function():void {
-		output("\n\nAnd I thought my test items were OP!");
-		
-		quickLoot(new Goovolver());
-	});
 	
 	addButton(7, "Test Nades", function():void {
 		
