@@ -1149,21 +1149,18 @@
 					buffer = upperUndergarment.longName;
 					break;
 				case "upperGarment":
-					buffer = upperGarment();
+					buffer = upperGarmentDescript();
 					break;
 				case "upperGarments":
-					buffer = upperGarments();
+					buffer = upperGarmentsDescript();
 					break;
 				case "lowerGarments":
 				case "underGarments":
-					buffer = lowerGarments();
+					buffer = lowerGarmentsDescript();
 					break;
 				case "lowerGarment":
 				case "underGarment":
-					buffer = lowerGarment();
-					break;
-				case "originalRace":
-					buffer = originalRace;
+					buffer = lowerGarmentDescript();
 					break;
 				case "skinNoun":
 					buffer = skinNoun(true);
@@ -1178,10 +1175,6 @@
 				case "skin":
 					buffer = skin();
 					break;
-				case "hairDescript":
-				case "hair":
-					buffer = hairDescript();
-					break;
 				case "ears":
 					buffer = earsDescript();
 					break;
@@ -1195,9 +1188,14 @@
 					buffer = eyeDescript();
 					break;
 				case "eyePigment":
+				case "eyeColor":
 					buffer = eyeColor;
 					break;
 				case "hairsDescript":
+					buffer = hairsDescript();
+					break;
+				case "hairDescript":
+				case "hair":
 					buffer = hairDescript();
 					break;
 				case "face":
@@ -1224,12 +1222,18 @@
 					break;
 				case "base":
 				case "sheath":
+				case "sheathDescript":
 					buffer = sheathDescript(arg2);
+					break;
+				case "biggestSheath":
+				case "sheathBiggest":
+					buffer = sheathDescript(biggestCockIndex());
 					break;
 				case "knot":
 					buffer = knotDescript(arg2);
 					break;
 				case "multiCockDescript":
+				case "multiCocks":
 					buffer = multiCockDescript();
 					break;
 				case "cocks":
@@ -1313,11 +1317,12 @@
 				case "oneCock":
 					buffer = oneCock();
 					break;
-				case "ballsDescript":
 				case "balls":
 					buffer = ballsDescript();
 					break;
-				case "sackDescript":
+				case "ball":
+					buffer = ballsDescript();
+					break;
 				case "sack":
 					buffer = sackDescript();
 					break;
@@ -1338,18 +1343,8 @@
 				case "breasts":
 				case "boobs":
 					buffer = breastDescript(arg2);
-				case "sheathDescript":
-				case "sheath":
-					buffer = sheathDescript(arg2);
-					break;
-				case "biggestSheath":
-					buffer = sheathDescript(biggestCockIndex());
-					break;
 				case "cockClit":
 					buffer = cockClit(arg2);
-					break;
-				case "sackDescript":
-					buffer = sackDescript();
 					break;
 				case "assholeDescript":
 				case "asshole":
@@ -1376,13 +1371,11 @@
 				case "thighs":
 					buffer = thighsDescript();
 					break;
-				case "vaginaDescript":
 				case "vagina":
 				case "pussy":
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
-				case "vaginasDescript":
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -1398,7 +1391,6 @@
 				case "pussyOrAsshole":
 					buffer = vagOrAss(arg2);
 					break;
-				case "clitDescript":
 				case "clit":
 					buffer = clitDescript();
 					break;
@@ -1408,7 +1400,6 @@
 				case "oneClit":
 					buffer = oneClit();
 					break;
-				case "clitsDescript":
 				case "clits":
 					buffer = clitsDescript();
 					break;
@@ -5431,7 +5422,7 @@
 			if (hasCock() && number >= 0 && number < cockTotal()) return cockDescript(number);
 			else return clitDescript();
 		}
-		public function sheathDescript(arg: Number): String {
+		public function sheathDescript(arg: Number = 0): String {
 			if (hasSheath(arg)) return "sheath";
 			else return "base";
 		}
@@ -6479,7 +6470,11 @@
 			//Horse descriptors - 50%
 			else if (skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.EQUINE) && this.rand(3) <= 0) descript += "mare-";
 			randt = this.rand(10);
-			if (randt == 0) descript += "clit";
+			if (randt == 0) 
+			{
+				if(clitLength >= 5) descript += "girl-pole";
+				else descript += "clit";
+			}
 			else if (randt == 1) descript += "clitty";
 			else if (randt == 2) descript += "button";
 			else if (randt == 3) descript += "pleasure-buzzer";
@@ -7010,7 +7005,11 @@
 		}
 		public function crotchDescript():String {
 			//Nothing to talk about? K
-			if(!hasCock() && !hasVagina()) return "bare crotch";
+			if(!hasCock() && !hasVagina()) 
+			{
+				if(rand(2) == 0) return "bare crotch";
+				else return "bare groin";
+			}
 			//Make da list!
 			if(hasCock()) addToList(cocksDescript());
 			if(balls > 0) addToList(ballsDescript());
@@ -7018,23 +7017,23 @@
 			
 			return formatList();
 		}
-		public function lowerGarment(): String {
+		public function lowerGarmentDescript(): String {
 			if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
 			else return "nothing";
 		}
-		public function upperGarment(): String {
+		public function upperGarmentDescript(): String {
 			if (upperUndergarment.shortName != "") return upperUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
 			else return "nothing";
 		}
-		public function upperGarments(): String {
+		public function upperGarmentsDescript(): String {
 			if (upperUndergarment.shortName != "" && armor.shortName != "") return armor.longName + " and " + upperUndergarment.longName;
 			else if (upperUndergarment.shortName != "") return upperUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
 			else return "nothing";
 		}
-		public function lowerGarments(): String {
+		public function lowerGarmentsDescript(): String {
 			if (lowerUndergarment.shortName != "" && armor.shortName != "") return armor.longName + " and " + lowerUndergarment.longName;
 			else if (lowerUndergarment.shortName != "") return lowerUndergarment.longName;
 			else if (armor.shortName != "") return armor.longName;
