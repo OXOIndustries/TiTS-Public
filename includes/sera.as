@@ -544,7 +544,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	flags["SERA_STUCK_IT_ALL_IN_BUTT"]  = 1;
 	processTime(40+rand(10));
 	pc.loadInAss(chars["SERA"]);
-	if(pc.hasVagina()) pc.loadInVagina(chars["SERA"],0);
+	if(pc.hasVagina()) pc.loadInCunt(chars["SERA"],0);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

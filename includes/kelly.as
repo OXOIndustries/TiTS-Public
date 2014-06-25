@@ -3967,12 +3967,12 @@ function getDPedByKelly():void
 
 		output("\n\nSaying your goodbyes, you return to the ship.");
 	}
-	pc.loadInVagina(chars["KELLY"],x);
-	pc.loadInVagina(chars["KELLY"],x);
+	pc.loadInCunt(chars["KELLY"],x);
+	pc.loadInCunt(chars["KELLY"],x);
 	if(y >= 0) 
 	{
-		pc.loadInVagina(chars["KELLY"],y);
-		pc.loadInVagina(chars["KELLY"],y);
+		pc.loadInCunt(chars["KELLY"],y);
+		pc.loadInCunt(chars["KELLY"],y);
 	}
 	else 
 	{
