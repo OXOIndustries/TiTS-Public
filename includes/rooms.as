@@ -2517,6 +2517,76 @@ function initializeRooms():void
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.COMMERCE);
 
+	// THE PHOENIX
+	rooms["PHOENIX RECROOM"] = new RoomClass(this);
+	rooms["PHOENIX RECROOM"].roomName = "PHOENIX:\nREC ROOM";
+	rooms["PHOENIX RECROOM"].description = "";
+	rooms["PHOENIX RECROOM"].runOnEnter = phoenixRecRoom;
+	rooms["PHOENIX RECROOM"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX RECROOM"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX RECROOM"].northExit = "PHOENIX QUARTERS";
+	rooms["PHOENIX RECROOM"].eastExit = "PHOENIX CARGO";
+	rooms["PHOENIX RECROOM"].westExit = "PHOENIX BRIDGE";
+	rooms["PHOENIX RECROOM"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX BRIDGE"] = new RoomClass(this);
+	rooms["PHOENIX BRIDGE"].roomName = "PHOENIX:\nBRIDGE";
+	rooms["PHOENIX BRIDGE"].description = "";
+	rooms["PHOENIX BRIDGE"].runOnEnter = phoenixBridge;
+	rooms["PHOENIX BRIDGE"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX BRIDGE"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX BRIDGE"].eastExit = "PHOENIX RECROOM";
+	rooms["PHOENIX BRIDGE"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX QUARTERS"] = new RoomClass(this);
+	rooms["PHOENIX QUARTERS"].roomName = "PHOENIX:\nQUARTERS";
+	rooms["PHOENIX QUARTERS"].description = "";
+	rooms["PHOENIX QUARTERS"].runOnEnter = phoenixCrewQuarters;
+	rooms["PHOENIX QUARTERS"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX QUARTERS"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX QUARTERS"].southExit = "PHOENIX RECROOM";
+	rooms["PHOENIX QUARTERS"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX CARGO"] = new RoomClass(this);
+	rooms["PHOENIX CARGO"].roomName = "PHOENIX:\nCARGO BAY";
+	rooms["PHOENIX CARGO"].description = "";
+	rooms["PHOENIX CARGO"].runOnEnter = phoenixCargo;
+	rooms["PHOENIX CARGO"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX CARGO"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX CARGO"].eastExit = "PHOENIX LIFT L1";
+	rooms["PHOENIX CARGO"].westExit = "PHOENIX RECROOM";
+	rooms["PHOENIX CARGO"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX ENGINEERING"] = new RoomClass(this);
+	rooms["PHOENIX ENGINEERING"].roomName = "PHOENIX:\nENGINEERING";
+	rooms["PHOENIX ENGINEERING"].description = "";
+	rooms["PHOENIX ENGINEERING"].runOnEnter = phoenixEngineering;
+	rooms["PHOENIX ENGINEERING"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX ENGINEERING"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX ENGINEERING"].westExit = "PHOENIX LIFT L2";
+	rooms["PHOENIX ENGINEERING"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX LIFT L1"] = new RoomClass(this);
+	rooms["PHOENIX LIFT L1"].roomName = "PHOENIX:\nLIFT L1";
+	rooms["PHOENIX LIFT L1"].description = "";
+	rooms["PHOENIX LIFT L1"].inExit = "PHOENIX LIFT L2";
+	rooms["PHOENIX LIFT L1"].inText = "Down";
+	rooms["PHOENIX LIFT L1"].planet = "SHIP: PHOENIX"
+	rooms["PHOENIX LIFT L1"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX LIFT L1"].westExit = "PHOENIX CARGO";
+	rooms["PHOENIX LIFT L1"].addFlag(GLOBAL.INDOOR);
+
+	rooms["PHOENIX LIFT L2"] = new RoomClass(this);
+	rooms["PHOENIX LIFT L2"].roomName = "PHOENIX:\nLIFT L2";
+	rooms["PHOENIX LIFT L2"].description = "";
+	rooms["PHOENIX LIFT L2"].outExit = "PHOENIX LIFT L1"
+	rooms["PHOENIX LIFT L2"].eastExit = "PHOENIX ENGINEERING";
+	rooms["PHOENIX LIFT L2"].outText = "Up";
+	rooms["PHOENIX LIFT L2"].planet = "SHIP: PHOENIX";
+	rooms["PHOENIX LIFT L2"].system = "SYSTEM: REDACTED";
+	rooms["PHOENIX LIFT L2"].westExit = "PHOENIX CARGO";
+	rooms["PHOENIX LIFT L2"].addFlag(GLOBAL.INDOOR);
+
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
 	rooms["DEBUG1"].roomName = "\nDEBUG ROOM";
@@ -2541,3 +2611,5 @@ Naleen, Cuntsnake, Venus Pitchers
 Deep Jungle Biome:
 Naleen, Venus Pitchers, Elder Venus Pitchers, Zil
 */
+
+

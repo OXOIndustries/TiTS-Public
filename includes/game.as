@@ -295,7 +295,23 @@ function flyMenu():void {
 }
 
 function flyTo(arg:String):void {
+	
+	if (flags["SUPRESS TRAVEL EVENT"] == 1)
+	{
+		flags["SUPRESS TRAVEL EVENT"] = 0;
+	}
+	else
+	{
+		var tEvent:Function = tryProcTravelEvent();
+		if (tEvent != null)
+		{
+			incomingMessage(tEvent, arg);
+			return;
+		}
+	}
+	
 	clearOutput();	
+	
 	if(arg == "Mhen'ga") {
 		shipLocation = "SHIP HANGAR";
 		currentLocation = "SHIP HANGAR";

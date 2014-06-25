@@ -287,9 +287,29 @@
 		 */
 		public function clearButtons():void
 		{
+			resetButtonColours();
 			clearButtonData();
 			clearGhostButtons();
 			CheckPages();
+		}
+		
+		public function resetButtonColours():void
+		{
+			for (var i:int = 0; i < _buttons.length; i++)
+			{
+				if (i == 6 || i == 10 || i == 11 || i == 12) _buttons[i].setPurple();
+				else _buttons[i].setBlue();
+			}
+		}
+		
+		public function setButtonBlue(i:int):void
+		{
+			_buttons[i].setBlue();
+		}
+		
+		public function setButtonPurple(i:int):void
+		{
+			_buttons[i].setPurple();
 		}
 		
 		/**

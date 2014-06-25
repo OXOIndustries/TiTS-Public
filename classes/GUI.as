@@ -901,6 +901,16 @@
 			_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
 		}
 		
+		public function setButtonBlue(slot:int):void
+		{
+			_buttonTray.setButtonBlue(slot);
+		}
+		
+		public function setButtonPurple(slot:int):void
+		{
+			_buttonTray.setButtonPurple(slot);
+		}
+		
 		//Returns the position of the last used buttonData spot.
 		function lastButton():int 
 		{

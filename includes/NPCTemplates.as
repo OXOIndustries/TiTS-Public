@@ -1,4 +1,5 @@
-﻿public function initializeNPCs(justUpdate:Boolean = false):void 
+﻿import classes.Characters.PhoenixPirates;
+public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
 	if (!justUpdate || (justUpdate && chars["CELISE"] == undefined))
@@ -176,6 +177,10 @@
 	if (!justUpdate || (justUpdate && chars["FIREWALL"] == undefined))
 	{
 		chars["FIREWALL"] = new classes.Characters.HandSoBot();
+	}
+	if (!justUpdate || (justUpdate && chars["PHOENIXPIRATES"] == undefined))
+	{
+		chars["PHOENIXPIRATES"] = new PhoenixPirates();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

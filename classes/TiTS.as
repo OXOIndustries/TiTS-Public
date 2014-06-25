@@ -116,6 +116,8 @@
 		include "../includes/debug.as";
 		include "../includes/ControlBindings.as";
 		include "../includes/CodexEntries.as";
+		include "../includes/travelEvents.as";
+		include "../includes/travelEvents.fallOfThePhoenix.as";
 			
 		public var chars:Object;
 		public var foes:Array;

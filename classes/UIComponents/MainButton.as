@@ -277,6 +277,24 @@ package classes.UIComponents
 			this.mouseEnabled = false;
 			this.mouseChildren = false;
 		}
+		
+		public function setBlue():void
+		{
+			setColour(BLUE_BUTTON);
+		}
+		
+		public function setPurple():void
+		{
+			setColour(PURPLE_BUTTON);
+		}
+		
+		private function setColour(type:int):void
+		{
+			var clrTrans:ColorTransform = new ColorTransform();
+			clrTrans.color = (type == BLUE_BUTTON) ? UIStyleSettings.gForegroundColour : UIStyleSettings.gMovementButtonColour;
+
+			_buttonBody.transform.colorTransform = clrTrans;
+		}
 	}
 
 }

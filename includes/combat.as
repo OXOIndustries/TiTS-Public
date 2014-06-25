@@ -1,4 +1,5 @@
 ﻿import classes.Characters.Mimbrane;
+import classes.Characters.PhoenixPirates;
 import classes.Creature;
 import classes.Items.Guns.Goovolver;
 
@@ -482,6 +483,13 @@ function processCombat():void
 		this.addButton(0,"Defeat",combatMainMenu);
 		return;
 	}
+	
+	// Hooking some stuff up for Fall of the Phoenix
+	if (pc.hasStatusEffect("Saendra Fights4Buttes") && combatStage == 1)
+	{
+		saendraInjuredHelperAI();
+	}
+	
 	//If enemies still remain, do their AI routine.
 	if(combatStage-1 < foes.length) {
 		output("\n");
@@ -830,7 +838,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	else if(rangedCombatMiss(attacker,target)) {
 		if(target.customDodge == "") {
-			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+			if (attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
 		}
 		else output(target.customDodge)
@@ -1251,6 +1259,9 @@ function enemyAI(aggressor:Creature):void
 		case "firewall":
 			firewallAI();
 			break;
+		case "pirate gang":
+			phoenixPiratesAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1318,6 +1329,10 @@ function victoryRouting():void
 	{
 		pcWinsVsHanSoSosTool();
 	}
+	else if (foes[0] is PhoenixPirates)
+	{
+		victoryOverPhoenixPirates();
+	}
 	else genericVictory();
 }
 
@@ -1379,6 +1394,10 @@ function defeatRouting():void
 	else if(foes[0] is HandSoBot)
 	{
 		pcLosesToHanSoSosBot();
+	}
+	else if (foes[0] is PhoenixPirates)
+	{
+		loseToPhoenixPirates();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1581,6 +1600,9 @@ function startCombat(encounter:String):void
 			break;
 		case "firewall":
 			chars["FIREWALL"].prepForCombat();
+			break;
+		case "phoenixpirates":
+			chars["PHOENIXPIRATES"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
