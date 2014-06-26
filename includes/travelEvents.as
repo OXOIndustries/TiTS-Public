@@ -22,7 +22,14 @@ public function flyToWrapper(destination:String):void
 // Travel events should take the signature of function <name>(destination:String) -- turning down the event can then direct the player to their original destination
 public function tryProcTravelEvent():Function
 {
-	if (flags["FALL OF THE PHOENIX STATUS"] == 0 && rand(4) == 0) return fallOfThePhoenixMessage;
+	var possibleMessages:Array = new Array();
+	if (flags["FALL OF THE PHOENIX STATUS"] == undefined) possibleMessages.push(fallOfThePhoenixMessage);
+	
+	if (possibleMessages.length > 0 && rand(4) == 0)
+	{
+		return possibleMessages[rand(possibleMessages.length)];
+	}
+	
 	return null;
 }
 

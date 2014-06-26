@@ -636,6 +636,9 @@
 				kGAMECLASS.userInterface.showMinimap();
 			}
 			
+			// *throws up in mouth a little*
+			kGAMECLASS.phoenixSetMapState();
+			
 			kGAMECLASS.mainGameMenu();
 		}
 		

@@ -2,7 +2,9 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Melee.Fists;
+	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.kGAMECLASS;
 	import classes.rand;
 	
@@ -25,6 +27,8 @@ package classes.Characters
 			this.lustVuln = 0;
 			
 			this.meleeWeapon = new Fists();
+			this.rangedWeapon = new MagnumPistol();
+			this.shield = new JoyCoPremiumShield();
 			
 			this.armor.longName = "black void armor";
 			this.armor.defense = 4;
@@ -36,7 +40,7 @@ package classes.Characters
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 20;
-			this.shieldsRaw = 30;
+			this.shieldsRaw = 40;
 			this.energyRaw = 100;
 			this.lustRaw = 10;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);

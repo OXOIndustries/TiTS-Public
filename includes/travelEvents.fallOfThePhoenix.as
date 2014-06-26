@@ -1,10 +1,13 @@
 import classes.Items.Melee.Rock;
 import classes.Items.Miscellaneous.Empty;
+import classes.kGAMECLASS;
+
 public function startFallOfThePhoenix(destination:String):void
 {
 	clearOutput();
 	author("Savin");
-	output("You divert your course towards the attached coordinates. It isn't far, and the journey takes little more than a few minutes at top acceleration. When you return to relativistic speeds, your viewscreen lights up with a picture of utter carnage: a small cargo transport surrounded by a field of debris - mostly blasted from its hull - and locked in the clutches of several magnetic hooks attached to a medium frigate holding maybe two clicks off the port side. The frigate's proudly painted with the skull and crossbones on its engine nacelles, each skull surrounded by a circle of woven rose vines. Your computer handily highlights a battery of powerful lasers and rocket pods bristling all across the attacking ship's hull. Nasty piece of work. It doesn't look like the pirate crew's noticed you, yet, though... you could still back out, or maybe swing in low under the victim transport, blocking your ship from the pirates' weapon batteries. ");
+	output("You divert your course towards the attached coordinates. It isn't far, and the journey takes little more than a few minutes at top acceleration. When you return to relativistic speeds, your viewscreen lights up with a picture of utter carnage: a small cargo transport surrounded by a field of debris - mostly blasted from its hull - and locked in the clutches of several magnetic hooks attached to a medium frigate holding maybe two clicks off the port side. The frigate's proudly painted with the skull and crossbones on its engine nacelles, each skull surrounded by a circle of woven rose vines.");
+	output("\n\nYour computer handily highlights a battery of powerful lasers and rocket pods bristling all across the attacking ship's hull. Nasty piece of work. It doesn't look like the pirate crew's noticed you, yet, though... you could still back out, or maybe swing in low under the victim transport, blocking your ship from the pirates' weapon batteries. ");
 	processTime(10+rand(6));
 
 	//[Move In] [Back off]
@@ -25,8 +28,19 @@ public function fuckThisShittyShip(destination:String):void
 	addButton(0, "Next", flyToWrapper, destination);
 }
 
+// In lieu of having proper support for lockable room status based off of some intenralised map structure, this is the only real way I can set this up. Basically, post-load state will set the nessecary setup of the rooms in the Phoenix based on flags.
+public function phoenixSetMapState():void
+{
+	// RecRoom -> Bridge
+	if (flags["FALL OF THE PHOENIX BRIDGE ACCESSIBLE"] == undefined) rooms["PHOENIX RECROOM"].westExit = null;
+	else rooms["PHOENIX RECROOM"].westExit = "PHOENIX BRIDGE";
+}
+
 public function moveInToDaShip():void
 {
+	// Set the initial map state
+	phoenixSetMapState();
+	
 	clearOutput();
 	author("Savin");
 	output("Carefully, you angle your ship around beneath the <i>Phoenix</i>, putting it between you and the pirate vessel. With those grappling lines, the enemy shouldn't be able to move around and engage you, at least for a few minutes. That’s all you need to close the distance between your ships, using the docking thrusters to guide your vessel in through the field of wreckage left over from the ruptured hull. You get about as close as you can, aligning your ship with the <i>Phoenix</i>'s main airlock, though you've still got a good hundred yards between you. You abandon the bridge, hiking down to the armory and load up your kit and and a grappling gun before suiting up for E.V.A.");
@@ -58,6 +72,9 @@ public function phoenixRecRoom():void
 	{
 		output("The recreational room of the <i>Phoenix</i> has been trashed thanks to your dynamic entry through the airlock. Most of the furniture is smashed against the floor now that gravity is back. With power on again, Valeria's avatar has flickered onto a holo-platform beside the shorted-out computer, desperately working on several different data windows. A casual glance tells you she's manually operating the ship's defenses, keeping the shields up against the pirate ship's bombardment.");
 	}
+	
+	if (flags["FALL OF THE PHOENIX BRIDGE ACCESSIBLE"] == 1) output("\n\nThe door leading to the bridge of the <i>Phoenix</i> is slightly ajar.");
+	else output("\n\nThere's an ominous red glow coming from an access panel adjacent to a door to the west.");
 
 	//[Computer]
 	if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) addButton(0, "Computer", phoenixRecRoomComputer);
@@ -73,6 +90,9 @@ public function phoenixRecRoomComputer():void
 	flags["FALL OF THE PHOENIX COMPUTER STATUS"] = 1;
 
 	output("\n\n\"<i>Sorry,</i>\" the now-disembodied voice says into your comms, \"<i>If you're here to help, please, you have to get to the bridge and turn the shields on. That'll stop the atmosphere from venting, and might buy us some time against the pirate ship's weapons.</i>\"");
+	
+	flags["FALL OF THE PHOENIX BRIDGE ACCESSIBLE"] = 1;
+	rooms["PHOENIX RECROOM"].westExit = "PHOENIX BRIDGE";
 
 	//[Who are you?] [Next]
 	clearMenu();
@@ -110,9 +130,10 @@ public function phoenixBridge():void
 	//	{Power hasn't been restored}
 	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == undefined || flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 0)
 	{
-		output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen. The captain clearly wasn't expecting company: there are several half-eaten bags of chips and cookies floating around in the zero-G");
+		output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen.");
+		output("\n\nThe captain clearly wasn't expecting company: there are several half-eaten bags of chips and cookies floating around in the zero-G");
 		
-		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(", along with a pair of holodisks obviously labeled '<b>Horsecock Hell 2: A Tail of Two Twats</b>'");
+		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(", along with a pair of holodisks obviously labeled <b>‘Horsecock Hell 2: A Tail of Two Twats’</b>");
 		
 		if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined) output(" and an oversized pink dildo shaped like an equine phallus, currently trapped under the headrest after the decompression sucked it out of... wherever she'd hidden it");
 		output(".");
@@ -126,9 +147,9 @@ public function phoenixBridge():void
 	}
 
 	if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2) addButton(0, "Shields", phoenixBridgeShields);
-	if (pc.hasKeyItem("Holodisk: Horsecock Hell 2")) addButton(1, "Disks", phoenixBridgeDisks);
-	if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined || flags["FALL OF THE PHOENIX DILDO GET"] == 0) addButton(2, "Dildo", phoenixBridgeDildo);
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1) addButton(3, "Saendra", phoenixBridgeCaptain);
+	if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) addButton(1, "Disks", phoenixBridgeDisks);
+	if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined || flags["FALL OF THE PHOENIX DILDO GET"] == 0) addButton(5, "Dildo", phoenixBridgeDildo);
+	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1) addButton(7, "Saendra", phoenixBridgeCaptain);
 }
 
 public function phoenixBridgeCaptain():void
@@ -198,6 +219,7 @@ public function phoenixBridgeShields():void
 		output("\n\nNothing happens. ");
 
 		output("\n\n\"<i>Uh...</i>\" the A.I. groans, half-thinking and half-panicking. \"<i>Pirates must have shorted the systems out when they hit us. Oh, no. Okay, okay, uh... there's a flux coupling behind the bulkhead in the captain's quarters. Come on, we can re-route the power from there!</i>\"");
+		flags["FALL OF THE PHOENIX SHIELDS STATUS"] = 1;
 	}
 	// {PC has routed the power}
 	else
@@ -210,7 +232,7 @@ public function phoenixBridgeShields():void
 
 		output("\n\n\"<i>I guess not! We have to hurry!</i>\"");
 
-		flags["FALL OF THE PHOENIX SHIELDS STATUS"] = 1;
+		flags["FALL OF THE PHOENIX SHIELDS STATUS"] = 2;
 	}
 
 	clearMenu();
@@ -225,7 +247,7 @@ public function phoenixCrewQuarters():void
 
 	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] == 2) output( "One of the wall panels has been yanked off, giving you access to the wiring inside the bulkhead. A floppy, pink horsecock dildo is sticking out of it, blackened by electricity.");
 
-	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2) addButton(0, "Flux Coupl.", phoenixCrewQuartersFluxCouple)
+	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2 && flags["FALL OF THE PHOENIX SHIELDS STATUS"] == 1) addButton(0, "Flux Coupl.", phoenixCrewQuartersFluxCouple)
 }
 
 public function phoenixCrewQuartersFluxCouple():void
@@ -260,7 +282,7 @@ public function phoenixCrewQuartersFluxCouple():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function phoenixCargo():void
+public function phoenixCargo():Boolean
 {
 	clearOutput();
 	author("Savin");
@@ -274,8 +296,7 @@ public function phoenixCargo():void
 
 		output("\n\nShit.");
 		currentLocation = "PHOENIX RECROOM";
-		clearMenu();
-		addButton(0, "Next", mainGameMenu);
+		return false;
 	}
 	else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)
 	{
@@ -295,6 +316,14 @@ public function phoenixCargo():void
 
 		clearMenu();
 		addButton(0, "Fight", startPhoenixPirateFight);
+		return true;
+	}
+	else
+	{
+		output("The <i>Phoenix</i>'s cargo bay is spacious for its size, full of crates and barrels and other cargo. Several dead pirates are splattered on the deck, while others have been knocked out in the battle. Red emergency lights are active, now that the power is semi-out in secondary systems, and the floor is lousy with blood and shell-casings.");
+		
+		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) output("\n\nSaendra is slumped against the wall, using a first-aid kit to patch the hole up in her side.");
+		return false;
 	}
 }
 
@@ -328,7 +357,7 @@ public function loseToPhoenixPirates():void
 	output("\n\n\"<i>At least you managed to do something right,</i>\" the pirate sighs, looking over the data chit. Satisfied, she looks to one of the guards and says, \"<i>Take Saendra down to the holding cells. Do something about those injuries and process her. Maybe Carver can get some use out of her.</i>\"");
 
 	output("\n\nThe guard nods, and drags her away through a side door. The pirate captain then turns to you,");
-	if (pc.tallness() > 80) output(" taking a knee and"); 
+	if (pc.tallness > 80) output(" taking a knee and"); 
 	output(" looking you in the eye. \"<i>Unfortunate that you stuck your nose in. Still, we're not looking for slaves.</i>\" She looks up to one of the other guards, \"<i>Strip "+ pc.mf("his","her") +" credits and equipment, and throw the "+ pc.mf("him","her") +" back on "+ pc.mf("his","her") +" ship.</i>\"");
 
 	output("\n\n\"<i>Aye, captain,</i>\" the guard says, just before you get a rifle butt in the back of the head.");
@@ -376,9 +405,9 @@ public function victoryOverPhoenixPirates():void
 
 	output("\n\n\"<i>That doesn't sound like a good idea,</i>\" you say, looking at the mangled mess of her arm and side. ");
 
-	output("\n\nShe actually flashes you a grin, letting you see her face clearly for the first time: fierce, feminine, beautiful. Her green, slitted cat-eyes shine bright. \"<i>No choice, hero,</i>\" she says, struggling to her feet. \"<i>... And thanks. Wouldn't have made it through that without you.</i>\"");
+	output("\n\nShe actually flashes you a grin, letting you see her face clearly for the first time: fierce, feminine, beautiful. Her green, slitted cat-eyes shine bright. \"<i>No choice, hero...</i>\" she says, struggling to her feet. \"<i>and thanks. Wouldn't have made it through that without you.</i>\"");
 
-	output("\n\nYou help her up, and grab the first-aid kit from the wall nearby. Before you can do anything with it, though, another explosion rocks the hull as the pirate frigate opens up on the <i>Phoenix</i> again. You stumble as the deck jolts around, only spurred to action when the A.I., Valeria, shouts, \"<i>We have to go! The ship can't take much more, captain! [pc.name], come down to the engineering deck. We need to get the engines restarted if we're going to make it out of here!</i>\"");
+	output("\n\nYou help her up, and grab the first-aid kit from the wall nearby. Before you can do anything with it, though, another explosion rocks the hull as the pirate frigate opens up on the <i>Phoenix</i> again. You stumble as the deck jolts around, only spurred to action when the A.I., Valeria, shouts, \"<i>We have to go! The ship can't take much more, captain! [pc.name], come down to the engineering deck. We need to get the engines restarted if we're going to make it out of here!</i>\"\n\n");
 
 	flags["FALL OF THE PHOENIX DEFEATED PIRATES"] = 1;
 
@@ -428,7 +457,7 @@ public function phoenixPiratesAI():void
 // Several light attacks
 public function phoenixPiratesBulletstorm():void
 {
-	output("Several of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
+	output("\nSeveral of the pirates pop up from cover, firing on full-auto and sending a withering hail of gunfire downrange at you!");
 
 	foes[0].energy(-20);
 	var weaponStacks:int = 5;
@@ -449,22 +478,26 @@ public function phoenixPiratesBulletstorm():void
 
 public function phoenixPiratesCarpetGrenades():void
 {
-	output("\"<i>Frag out!</i>\" one of the pirates shouts, hurling a beeping black cylinder your way.");
+	output("“<i>Frag out!</i>” one of the pirates shouts, hurling a beeping black cylinder your way.");
 
+	output(" You dive out of the way, but still get riddled with shrapnel.");
+	
 	genericDamageApply(25, foes[0], pc, GLOBAL.KINETIC);
 
-	output("\n\nYou dive out of the way, but still get riddled with shrapnel.");
-
+	output("\n");
+	
 	processCombat();
 }
 
 public function phoenixPiratesBroadside():void
 {
-	output("Suddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
+	output("\nSuddenly, a particularly stealthy pirate pops up on your portside flank, poised to pound you into a pulp with a particularly potent-looking pump-action shotgun.");
 
+	output(" You get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
+	
 	genericDamageApply(30, foes[0], pc, GLOBAL.KINETIC);
-
-	output("\n\nYou get blasted by the shotty, throwing you back with the sheer force of the sneak attack!");
+	
+	output("\n");
 
 	processCombat();
 }
@@ -477,7 +510,7 @@ public function saendraInjuredHelperAI():void
 
 public function saendraHammerPistol():void
 {
-	output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+	output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
 
 	// :effort: to rig up a special statblock for injured Saendra and make all this shit work based off of it.
 	if (rand(5) == 0)
@@ -489,11 +522,13 @@ public function saendraHammerPistol():void
 		output(" shooting one of the pirates square in the back!");
 		genericDamageApply(10, null, foes[0], GLOBAL.KINETIC);
 	}
+	
+	output("\n");
 }
 
 public function saendraDisarmingShot():void
 {
-	output("On the other side of the pirates, the wounded captain fires her Hammer pistol, ");
+	output("\nOn the other side of the pirates, the wounded captain fires her Hammer pistol, ");
 
 	if (rand(5) == 0)
 	{
@@ -512,6 +547,8 @@ public function saendraDisarmingShot():void
 			foes[0].addStatusValue("Disarming Shot Stacks", 1, 1);
 		}
 	}
+	
+	output("\n");
 }
 
 public function phoenixEngineering():void
@@ -524,8 +561,8 @@ public function phoenixEngineering():void
 
 	// [Valeria] [Engines] [Cargo]
 	if (flags["FALL OF THE PHOENIX ENGINE STATUS"] == undefined && flags["FALL OF THE PHOENIX TALKED TO AI IN ENGINEERING"] == undefined) addButton(0, "Valeria", phoenixEngineeringValeria);
-	addButton(1, "Engines", phoenixEngineeringEngines);
-	if (flags["FALL OF THE PHOENIX TAKEN SHIELD"] == undefined) addButton(2, "Cargo", phoenixEngineeringCargo);
+	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) addButton(1, "Engines", phoenixEngineeringEngines);
+	if (flags["FALL OF THE PHOENIX TAKEN SHIELD"] == undefined) addButton(5, "Cargo", phoenixEngineeringCargo);
 }
 
 public function phoenixEngineeringCargo():void
@@ -533,7 +570,7 @@ public function phoenixEngineeringCargo():void
 	clearOutput();
 	author("Savin");
 	output("You poke your head into the cargo lifter to see what's inside. On the lifter, you find several crates loaded up and ready for delivery, though one has been cracked open. Inside, you can see several shield belts on a rack. Probably meant for one of the private security groups on the Rush.");
-	if (pc.isMischevious()) output(" They wouldn't miss ONE, would they?");
+	if (pc.isMischievous()) output(" They wouldn't miss ONE, would they?");
 
 	// [Take] [Leave]
 	clearMenu();
@@ -549,7 +586,7 @@ public function phoenixEngineeringTakeShield():void
 
 	output("\n\n\"<i>Heeeey!</i>\" Valeria cries from the console. \"<i>That's not yours!</i>\"");
 
-	output("\n\n\"<i>Deal with it,</i>\" you say, stowing the belt. She harrumphs, but locked in virtual space as she is, there's not much she can do about it.");
+	output("\n\n\"<i>Deal with it,</i>\" you say, stowing the belt. She harrumphs, but locked in virtual space as she is, there's not much she can do about it.\n\n");
 
 	flags["FALL OF THE PHOENIX TAKEN SHIELD"] = 1;
 
@@ -617,6 +654,8 @@ public function phoenixEngineeringEngines(doOutput:Boolean = true):void
 		output("\n\nFrom the holo-platform near the elevator, Valeria says, \"<i>Okay, I'm spooling up the engines now. The power converters are on manual reset, however. You'll need to guide the power into the sweet spot </i>without<i> going too far over, or I'll have to activate emergency shutdown, and you'll have to start over. Please hurry, [pc.name]: our shields won't hold for long.</i>\"");
 
 		output("\n\nYou nod, and watch the emergency power flood into the engines in one last, desperate attempt to spin them up. Power readouts flash onto the screen, and your fingers go to work...");
+		
+		if (easy) output("\n\nYou can barely make out three letters scratched into the surface of the control panels casing; ‘C-A-C’.");
 	}
 
 	clearMenu();
@@ -651,46 +690,61 @@ public function phoenixToggleEngine(slot:int):void
 		userInterface.setButtonBlue(slot);
 	}
 
-	calculateDaPOWAH();
-}
-
-public function calculateDaPOWAH():void
-{
-	var powahs:Array = [33, 12, -9, 16, 19]
-	var sweetSpot:int = 52;
-	var ohFuckValue:int = 66;
-
-	for (var i:int = 0; i < powahs.length; i++)
-	{
-		var powah:int = 0;
-		if (phoenixEngineButtons[i] == 1) powah += powahs[i];
-	}
-
+	var powah:int = calculateDaPOWAH();
+	var sweetSpot:int = 45;
+	var ohFuckValue:int = 48;
+	
+	clearOutput();
+	output("The power reading is flashing ‘" + powah + "%’.");
+	
 	if (powah == sweetSpot) phoenixYOUDIDITCHAMP();
 	if (powah >= ohFuckValue) phoenixTRYAGAINCHAMP();
 }
 
+public function calculateDaPOWAH():int
+{
+	var powahs:Array = [33, 22, 7, 40, 16]
+
+
+	var powah:int = 0;
+	
+	for (var i:int = 0; i < powahs.length; i++)
+	{
+		if (phoenixEngineButtons[i] == 1) powah += powahs[i];
+	}
+	
+	return powah;
+}
+
 public function phoenixTRYAGAINCHAMP():void
 {
-	clearOutput();
+	if (flags["FALL OF THE PHOENIX FAILED ENGINEERING PUZZLE"] == undefined) flags["FALL OF THE PHOENIX FAILED ENGINEERING PUZZLE"] = 1;
+	else flags["FALL OF THE PHOENIX FAILED ENGINEERING PUZZLE"]++;
+	
 	author("Savin");
-	output("\"<i>It's too much! Engines going critical!</i>\" Valeria shouts, bringing up several readouts around her avatar, working feverishly. \"<i>Emergency shutdown protocols initiated.... done!</i>\"");
+	output("\n\n\"<i>It's too much! Engines going critical!</i>\" Valeria shouts, bringing up several readouts around her avatar, working feverishly. \"<i>Emergency shutdown protocols initiated.... done!</i>\"");
 
 	output("\n\nIn front of you, the engines spin back down. A moment later, they're silent. ");
 
 	output("\n\n\"<i>Okay, okay... no pressure. Let's try this again.</i>\"");
+	
+	if (easy)
+	{
+		if (flags["FALL OF THE PHOENIX FAILED ENGINEERING PUZZLE"] == 1) output("\n\n‘C-A-C’? There's only three controls that have that feature those letters prominently....");
+		else output("\n\nPerhaps the Ion <b>C</b>hamber, the Neutron <b>A</b>ccelerator and the Prefire <b>C</b>hamber?");
+	}
 
 	phoenixEngineeringEngines(false);
 }
 
 public function phoenixYOUDIDITCHAMP():void
 {
-	clearOutput();
 	author("Savin");
-	output("With a sudden roar, the engines come to life, thrumming deafeningly. You step back as heat rolls off them, staying just long enough to see that the power is holding steady. Finally, the lights flicker back on, and the shaking of the deck abates as the shields are reinforced by the added power. Looks like you've bought the <i>Phoenix</i> some time once again.");
+	output("\n\nWith a sudden roar, the engines come to life, thrumming deafeningly. You step back as heat rolls off them, staying just long enough to see that the power is holding steady. Finally, the lights flicker back on, and the shaking of the deck abates as the shields are reinforced by the added power. Looks like you've bought the <i>Phoenix</i> some time once again.");
 
 	output("\n\n\"<i>I think we're alright,</i>\" Valeria says, barely audible over the roar of the engines. \"<i>Ah, the captain wants you. Head back up to the cockpit, [pc.name]. We need to get out of here before the shields buckle again!</i>\"");
 	flags["FALL OF THE PHOENIX ENGINEERING STATUS"] = 1;
 
-	mainGameMenu();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
