@@ -148,7 +148,7 @@ function firstTimeWithSellesyForCocks():void {
 	if(pc.shortestCockLength() < 24) 
 	{
 		output(" Your massive cock, already hardened by the experience thus far");
-		if(pc.isCrotchGarbed()) output(", begins to stretch your " + pc.lowerGarment() + " to the limit.");
+		if(pc.isCrotchGarbed()) output(", begins to stretch your [pc.lowerGarment] to the limit.");
 		else output(", begins to stretch to its full, erect size.")
 	}
 	output(" A wet, slick feeling is growing at your stomach, as your pre-cum is rhythmically squeezed from your cock, one drip at a time. You give her ample area to grind against.");
