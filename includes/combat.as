@@ -1921,7 +1921,7 @@ function crotchTeaseText(target:Creature):void {
 	var select:int = choices[rand(choices.length)];
 	//1 - dick!
 	if(select == 1) {
-		if(pc.isCrotchGarbed()) output("You open your " + pc.lowerGarments() + " just enough to let ");
+		if(pc.isCrotchGarbed()) output("You open your [pc.lowerGarments] just enough to let ");
 		else output("You shift position while ");
 		output("your [pc.cocks]");
 		if(pc.balls > 0) output(" and [pc.balls]");
@@ -1938,7 +1938,7 @@ function crotchTeaseText(target:Creature):void {
 	}	
 	//3 - cunt!
 	else if(select == 3) {
-		if(pc.isCrotchGarbed()) output("You coyly open your " + pc.lowerGarments());
+		if(pc.isCrotchGarbed()) output("You coyly open your [pc.lowerGarments]");
 		else output("You coyloy gesture to your groin");
 		if(pc.hasPerk("Ditz Speech")) output(" and giggle, <i>\"Is this, like, what you wanted to see?\"</i>  ");
 		else {
@@ -2005,7 +2005,7 @@ function buttTeaseText():void {
 
 function chestTeaseText():void {
 	if(pc.biggestTitSize() < 1) {
-		if(pc.isChestGarbed()) output("You peel open your " + pc.upperGarments() + " to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
+		if(pc.isChestGarbed()) output("You peel open your [pc.upperGarments] to expose your [pc.chest] and [pc.nipples], running a hand up your [pc.skinFurScales] to one as you lock eyes with your target. You make sure that every bit of your musculature is open and on display before you bother to cover back up.");
 		else output("Naked as you are, there's nothing you need to do to expose your [pc.chest] and [pc.nipples], and it running a hand up your [pc.skinFurScales] only enhances the delicious exposure. You make sure that every bit of your musculature is open and on display before you adopt a less sensual pose.")
 	}
 	//Titties!
@@ -2029,18 +2029,18 @@ function chestTeaseText():void {
 		{
 			//HYPER TIIIIITS
 			if(pc.biggestTitSize() >= 15) {
-				if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your " + pc.upperGarments() + " and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
+				if(pc.isChestGarbed()) output("With a slow pivot and sultry look, you reach up to your [pc.upperGarments] and peel away the offending coverings with deliberate slowness. With each inch of breast-flesh you expose, your smile grows wider. You pause above your [pc.nipples] before letting them out with a flourish, digging your hands in to your soft, incredibly well-endowed chest in a display of mammary superiority. You cover up after a moment with a knowing smile.");
 				else output("Your [pc.fullChest] is already completely uncovered, but that doesn't stop you from bringing your hands up to the more-than-ample cleavage and enhancing it by pressing down from each side. Your fingers sink deeply into your busty bosom as you look up at your chosen target, then, with a smile, you gentle shake them, making your titanic mammaries wobble oh-so-enticingly.")
 				if(pc.biggestTitSize() >= 25) output(" There's just so much breastflesh there; it feels good to use it.");
 			}
 			//Big TiTS!
 			else if(pc.biggestTitSize() >= 4) {
-				if(pc.isChestGarbed()) output("You peel away your " + pc.upperGarments() + " with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
+				if(pc.isChestGarbed()) output("You peel away your [pc.upperGarments] with careful, slow tugs to expose your [pc.fullChest]. Only after you've put yourself on display do you look back at your target and truly begin to tease, starting with a knowing wink. Then, you grab hold of your [pc.chest] and cup them to enhance your cleavage, lifting one than the other in slow, sensuous display. Covering them up is something you do a little a regretfully.");
 				else output("You delicately trace a finger up your [pc.belly] to your exposed cleavage, slowing it nestles in place. Your motion causes your breasts to gently sway as you explore yourself, and you pause to look at your target. With one hand, you squeeze your left tit, crushing your other hand's finger in tit while you grope yourself. With your erotic display complete, you release yourself and stretch, glad to be uncovered.");
 			}
 			//Petite ones!
 			else {
-				if(pc.isChestGarbed()) output("You remove your " + pc.upperGarments() + " with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
+				if(pc.isChestGarbed()) output("You remove your [pc.upperGarments] with ease to free the perfectly rounded, perky breasts. You run your hands across the [pc.skinFurScales] to thumb at your nipples and grace your target with a lascivious look before putting the girls away a little regretfully.");
 				else output("With your [pc.fullChest] on complete display, you arch your back to present yourself as pleasingly as possible. Your hands wind their way up to your [pc.nipples] and give them a little tweak, sliding down the supple curve of your underbust. You give your target a smile before you stop, but even now, your bared [pc.skinFurScales] will taunt " + foes[0].mfn("him","her","it") + ".");
 			}
 		}
