@@ -2371,6 +2371,14 @@ function stealthFieldActivation():void {
 	processCombat();
 }
 
+function NPCstealthFieldActivation(user:Creature):void {
+	clearOutput();
+	user.energy(-20);
+	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.\n");
+	user.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
+	processCombat();
+}
+
 function disarmingShot(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
@@ -2382,6 +2390,17 @@ function disarmingShot(target:Creature):void {
 		target.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
+}
+function NPCDisarmingShot(user:Creature):void
+{
+	user.energy(-20);
+	if(pc.hasStatusEffect("Disarm Immune")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>It's physically impossible!</b>\n");
+	else if(pc.hasStatusEffect("Disarmed")) output(user.capitalA + user.short + " tries to shoot your weapons out of your hands but can't. <b>You're already disarmed!</b>");
+	else if(rangedCombatMiss(pc,pc)) output(user.capitalA + user.short + " misses when trying hit you with disarming shots!");
+	else {
+		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
+		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+	}
 }
 
 function grenade(target:Creature):void 
