@@ -51,6 +51,8 @@
 			this.fortification = 0;
 			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 			
+			this.isUsable = false;
+			
 			this.version = _latestVersion;
 		}	
 		//METHOD ACTING!
@@ -66,7 +68,7 @@
 				kGAMECLASS.clearOutput();
 				kGAMECLASS.output(target.capitalA + target.short + " cannot use this.");
 			}
-			return true;
+			return false;
 		}
 	}
 }

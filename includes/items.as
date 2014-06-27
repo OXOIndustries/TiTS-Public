@@ -5,6 +5,11 @@ import classes.StringUtil;
 import classes.TiTS;
 
 function useItem(item:ItemSlotClass):void {
+	if (item.isUsable == false)
+	{
+		trace("Need to find where the use button for this item was generated and disable it with isUsable == false checks.");
+		return;
+	}
 	if (item.quantity == 0) 
 	{
 		clearOutput();
@@ -521,7 +526,7 @@ public function itemCollect(newLootList:Array, clearScreen:Boolean = false):void
 			this.clearMenu();
 			this.addButton(0,"Replace", replaceItemPicker, newLootList);  // ReplaceItem is a actionscript keyword. Let's not override it, mmkay?
 			this.addButton(1,"Discard", discardItem,       newLootList);
-			this.addButton(2,"Use",     useLoot,           newLootList);
+			if ((newLootList[0] as ItemSlotClass).isUsable == true) this.addButton(2,"Use",     useLoot,           newLootList);
 		}
 	}
 }

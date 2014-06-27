@@ -43,6 +43,7 @@
 		public var bonusResistances:Array;
 		public var hardLightEquipped:Boolean;
 		
+		public var isUsable:Boolean;
 		public var combatUsable:Boolean;
 		public var targetsSelf:Boolean;
 		
@@ -85,6 +86,7 @@
 			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
 			this.hardLightEquipped = false;
 		
+			this.isUsable = true;
 			this.combatUsable = false;
 			this.targetsSelf = true;
 			
