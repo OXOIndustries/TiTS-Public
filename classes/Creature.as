@@ -1142,6 +1142,12 @@
 				case "armor":
 					buffer = armor.longName;
 					break;
+				case "meleeWeapon":
+					buffer = meleeWeapon.longName;
+					break;
+				case "rangedWeapon":
+					buffer = rangedWeapon.longName;
+					break;
 				case "lowerUndergarment":
 					buffer = lowerUndergarment.longName;
 					break;
