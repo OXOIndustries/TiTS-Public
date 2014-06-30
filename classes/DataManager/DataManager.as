@@ -1,5 +1,7 @@
 ﻿package classes.DataManager 
 {
+	import classes.Items.Apparel.TSTArmor;
+	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
 	import classes.ShipClass;
 	import flash.display.Shader;
@@ -35,6 +37,7 @@
 		{
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
+			
 			var sv1:SaveVersionUpgrader1;
 			var sv2:SaveVersionUpgrader2;
 			var sv3:SaveVersionUpgrader3;
@@ -46,6 +49,10 @@
 			var sv9:SaveVersionUpgrader9;
 			var sv10:SaveVersionUpgrader10;
 			var sv11:SaveVersionUpgrader11;
+			
+			// I'm putting this fucking thing here for the same reason.
+			var dbgShield:DBGShield;
+			var tstArmor:TSTArmor;
 		}
 		
 		/**
