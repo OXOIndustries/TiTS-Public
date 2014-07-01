@@ -6511,7 +6511,7 @@
 		{
 			var buffer:String = "";
 			if(tailCount > 1) buffer += "one of ";
-			buffer += "your";
+			buffer += "your ";
 			if(tailCount > 1) buffer += pluralize(tailVaginaDescript());
 			else buffer += tailVaginaDescript();
 			return buffer;
