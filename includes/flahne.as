@@ -466,7 +466,7 @@ function bendFlahneOver():void {
 	
 	output("\n\n<i>“Mmm... you really know how to operate, [pc.name],”</i>  she puns. <i>“But we’re locked in now... I think we can be a bit naughtier.”</i>  She pulls you from her skirt and slips down, her descending form slipping between your hands until you've got a good grip in her soft shoulders, guiding her in as she ");
 	if(pc.armor.shortName != "") output("unfastens your [pc.armor], letting your stiff prick pop free into her waiting mouth.");
-	else if(pc.lowerUndergarment.shortName != "") output("unfastens your [pc.armor], letting your stiff prick pop free into her waiting mouth.");
+	else if(pc.lowerUndergarment.shortName != "") output("unfastens your [pc.lowerUndergarment], letting your stiff prick pop free into her waiting mouth.");
 	else output("wraps her fingers around your stiff prick, guiding you into her gooey mouth like a fleshy sucker.");
 	output(" As her lips wrap around your head, Flahne hums a delighted, soft <i>“Mmmm,”</i>  rolling across your glans, wrapping your member in soft, wet tongue. You let out a heavy, contented sigh as Flahne goes to work, putting all her candy-sucking skills to use on her newest treat, fellating you with expert precision. Your grip tightens on her shoulder, guiding her head further and further down your " + pc.cockDescript(x) + " until her lips press against your ");
 	if(pc.hasSheath(x)) output("sheath");
