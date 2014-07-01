@@ -419,9 +419,9 @@ function pcLosesToSyriBettingHisAss():void {
 	output("\n\nLeaning down right next to your ear, Syri breathes, <i>“You know, an Ausar knot can stay filled for hours. Your earth dogs have nothing on us, [pc.name].”</i>  She leaves you with a wet, affectionate lick across the cheek as she straightens and leans back, gripping her giant bitch-breaking boner and lining up with your puckered hole. You brace yourself as the pointed tip presses against your [pc.asshole], barely putting any pressure on your ass at all before she leans back, grabs your flanks, and rams it home. Your mouth gapes in a wordless, silent scream, your voice failing as inch after inch of throbbing alien cock slams into your ass, stretching you apart. Your fingers dig into the tables, leaving long marks as your anal passage becomes Syri's personal cocksleeve, wrapping around the girthy girl-boner until her thickening knot presses against you, utterly hilted.");
 
 	//If PC is uber-tight:
-	if(pc.analCapacity() < chars["SYRI"].cockVolume(0) * .75) output("\n\n<i>“O-oh shit you're tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
+	if(pc.ass.looseness() < 2) output("\n\n<i>“O-oh shit you're tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
 	// if mid-tight: 
-	else if(pc.analCapacity() < chars["SYRI"].cockVolume(0) * 1.5) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the asuar girl pants, reaching up to stroke your hair.");
+	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the asuar girl pants, reaching up to stroke your hair.");
 	// if supah-loose: 
 	else {
 		output("\n\n<i>“Hoooly shit, [pc.name], what do you shove up here - people? God damn, I'm </i>hung<i> and there's enough room back here for two of me.”</i>  She swats your behind, trying to get you to tighten up for her. Her attention, though, goes to some of the bystanders to your sexual submission: <i>“Hey, that wasn't an invitation. This time. Avert your eyes.”</i>  And more quietly, just for you, she adds: <i>“You're loose enough for a few guests, huh? Maybe next time we'll wager you between all the regulars. That might just fill this [pc.asshole] of yours up, huh?”</i>");
