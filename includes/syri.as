@@ -1116,7 +1116,7 @@ function syriSexOutro():void {
 	clearMenu();
 
 	addButton(1,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
-	if(pc.libido() >= 40 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
+	if(pc.libido() >= 60 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
 	else addDisabledButton(2,"Don't Go");
 }
 
