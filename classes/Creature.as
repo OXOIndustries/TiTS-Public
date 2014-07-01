@@ -1349,6 +1349,7 @@
 				case "breasts":
 				case "boobs":
 					buffer = breastDescript(arg2);
+					break;
 				case "cockClit":
 					buffer = cockClit(arg2);
 					break;

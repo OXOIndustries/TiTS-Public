@@ -17,15 +17,15 @@
 			this.type = GLOBAL.MELEE_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "Machette";
+			this.shortName = "Machete";
 			
 			//Regular name
-			this.longName = "machette";
+			this.longName = "machete";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a machette";
+			this.description = "a machete";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "This slightly curved blade is made for hacking and chopping through jungle vegetation, but it'll chop through flesh and bone with equal effacy. The blade is made from tempered still and feels nice and heavy in your hand.";
