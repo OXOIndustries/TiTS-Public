@@ -1415,6 +1415,12 @@
 				case "tailgina":
 					buffer = tailVaginaDescript();
 					break;
+				case "tailVaginas":
+				case "tailCunts":
+				case "cuntTails":
+				case "tailginas":
+					buffer = tailVaginasDescript();
+					break;
 				case "oneTailgina":
 				case "oneTailCunt":
 					buffer = oneTailVaginaDescript();
@@ -6505,6 +6511,11 @@
 			if(tailCount > 1) buffer += pluralize(tailVaginaDescript());
 			else buffer += tailVaginaDescript();
 			return buffer;
+		}
+		public function tailVaginasDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
+			if(tailCount > 1) return pluralize(tailVaginaDescript(forceAdjectives,adjectives));
+			else if(tailCount == 1) return tailVaginaDescript(forceAdjectives,adjectives);
+			else return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
 		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			//Vars

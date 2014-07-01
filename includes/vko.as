@@ -734,7 +734,7 @@ function agreeToElectroStim():void
 		output("\n\nYou feel her gently pet your [pc.tails], stroking and measuring their girth.");
 		//if cocktail: 
 		if(pc.hasCockTail()) output(" It feels good, you can already feel the [pc.tailCockHeads] of your [pc.tailCocks] hardening.");
-		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailcunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
+		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailCunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
 		output(" V-Ko procures " + num2Text(pc.tailCount) + " ring");
 		if(pc.tailCount > 1) output("s");
 		output(" from her case and bring them over. She attaches ");
