@@ -1383,6 +1383,9 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				case "vaginaNounSimple":
+					buffer = vaginaNounDescript(arg2);
+					break;
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -6580,6 +6583,11 @@
 				vag += vaginaNoun(tailGenitalArg);
 			}
 			return vag;
+		}
+		public function vaginaNounDescript(vaginaNum: Number = 0):String
+		{
+			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
+			else return vaginaNoun(vaginas[vaginaNum].type);
 		}
 		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
 			var vag: String = "";

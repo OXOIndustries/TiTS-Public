@@ -358,7 +358,7 @@ function grappleWithASexbot():void
 		else
 		{
 			output("\n\nTwo strong, synthetic cables pin your arms to your side whilst another pulls tight around your waist. Your lash out desperately with your [pc.legs] but you cannot stop the sexbot’s remaining tentacle slowly ");
-			if(pc.isCrotchGarbed()) output("burrowing through your [pc.lowerGarments] and) laying its soft rubber grip upon your ");
+			if(pc.isCrotchGarbed()) output("burrowing through your [pc.lowerGarments] and laying its soft rubber grip upon your ");
 			if(pc.hasCock()) output("[pc.cocks]");
 			else output("[pc.vaginas]");
 			output(". You groan in frustration as with a buzz it begins to vibrate, sending delicious sensation throbbing through your ");
