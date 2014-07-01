@@ -204,7 +204,7 @@
 						//Add SMOOTH face tag!
 						target.clearFaceFlags();
 						target.addFaceFlag(GLOBAL.SMOOTH);
-						kGAMECLASS.output("\n\nThen, a your canines elongate into sharp, retractable fangs. They don't feel hollow to you, so perhaps they don't quite work like a proper naleen's. Still, <b>your face looks almost exactly like a naleen's now.</b>");
+						kGAMECLASS.output("\n\nThen, your canines elongate into sharp, retractable fangs. They don't feel hollow to you, so perhaps they don't quite work like a proper naleen's. Still, <b>your face looks almost exactly like a naleen's now.</b>");
 						target.faceType = GLOBAL.NALEEN_FACE;
 						changes++;
 					}
