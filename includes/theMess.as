@@ -537,7 +537,7 @@ function delilahSlutTraining():void
 	output("\n\nAs your tongue lashes out toward the man's prick, your eyes roll back at the wonderful, earthy taste of cock. You feel yourself trembling as you take the dick into your mouth, wrapping your [pc.lips] around the head and tasting the salty flavor. You guide your third john in, opening wide to let him bury himself in your mouth, even as number two's pounding away at your other hole. You lose yourself into the mindless bliss of the double-team, eyes fluttering closed as you let your cock-wielding customers use your body as they like. You barely even notice this time as the man fucking your ass cums, spraying your colon with another load of seed to ease the entrance of the next.");
 	output("\n\nMinutes of cock-sucking and ass-fucking go by before you manage to remember why you started this - other than your own rampant cocklust, anyway. You grunt as the third man cums in your mouth, shooting a thick load of spunk down your throat. With a cough and a lip-licking grin, you let him stumble off. With spooge drooling down your chin, you turn to Del, and find her staring wide-eyed at you, ");
 	//if 1-4:
-	if(timesDelilahSexed() < 5) output("utterly horrified at the display on hard");
+	if(timesDelilahSexed() < 5) output("utterly horrified at the display on hand");
 	else output("a look of utter, needy lust writ large on her whorish face");
 	output("."); 
 
