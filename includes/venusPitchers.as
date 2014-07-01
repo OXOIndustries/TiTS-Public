@@ -295,7 +295,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	else if(!pc.hasFlatNipples())
 	{
 		output("\n\nYour [pc.nipples] are so hard that the feel of moisture running down them is something you're VERY keenly aware of. The suckling tubes latch onto them at once and start to pulsate, rippling up and down their lengths as they rhythmically tug and pull, trying to milk your poor nips dry.");
-		if(!pc.isLactating()) {
+		if(!pc.canLactate()) {
 			output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like fish out of water.");
 		}
 		else 
@@ -1276,7 +1276,7 @@ public function poppingSoonAlert2():void
 	eventBuffer += "\n\nYou'll be laying soon; you're sure of it. Your [pc.vaginas]";
 	if (pc.totalVaginas() > 1) eventBuffer += " have";
 	else eventBuffer += " has" 
-	eventBuffer += "grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";
+	eventBuffer += " grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";
 }
 
 public function layFertilizedVenusPitcherEgg():void
