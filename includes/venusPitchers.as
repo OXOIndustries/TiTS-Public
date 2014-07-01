@@ -788,7 +788,7 @@ function elderVenusPitchersDickplay():void {
 		}
 		output("in your groin, just behind your [pc.cocks]");
 		output(". The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [pc.cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.");
-		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
+		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thirst....");
 		//{Good boost to cum quantity and skip to end}
 		pc.ballEfficiency += 2;
 		pc.cumMultiplierRaw += 2;
