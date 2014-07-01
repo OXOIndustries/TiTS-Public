@@ -194,7 +194,7 @@ function specialsMenu():void {
 			}
 			else
 			{
-				if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
+				if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 20 energy.");
 				else addDisabledButton(offset, "Overcharge", "Overcharge", "You do not have enough energy to use Overcharge.");
 			}
 			offset++;
