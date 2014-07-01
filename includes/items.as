@@ -28,7 +28,7 @@ function useItem(item:ItemSlotClass):void {
 			// Order of operations band-aid.
 			// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
 			// item replacement. The player can have a "full" inventory including the item they've just equipped!
-			pc.inventory.splice(pc.inventory.indexOf(item), 1);
+			if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
 			equipItem(item);
 		}
 		//Else try to use a stored function!
