@@ -2513,7 +2513,7 @@ function goozookaCannon(target:Creature):void
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
 			output(" (Heals " + heal + ")");
-			output(" (Lust Damage " + damage + ")");
+			output(" (Lust Damage " + damage + ")\n");
 			
 			target.HP(heal);
 			target.lust(damage);
