@@ -136,7 +136,7 @@ public function showPerkListHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		mainGameMenu();
+		userInterface.showPrimaryOutput();
 		pButton.DeHighlight();
 	}
 }
