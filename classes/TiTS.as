@@ -357,6 +357,16 @@
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
 		}
 		
+		public function showBust(... args):void
+		{
+			userInterface.showBust.apply(null, args);
+		}
+		
+		public function showName(name:String):void
+		{
+			userInterface.showName(name);
+		}
+		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);

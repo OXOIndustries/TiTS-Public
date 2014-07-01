@@ -210,9 +210,13 @@ function pcDefeatsGrayGooInTheNameOfLove():void
 			if(pc.cockTotal() > 1) addButton(2,"MultiFuck",multiCockMayhem,undefined,"Multicock Fuck","Use multiple dicks on her simultaneously.")
 			else addDisabledButton(2,"MultiFuck");
 		}
-		else addDisabledButton(1,"MutualFap");
+		else
+		{
+			addDisabledButton(1, "MutualFap", "Mutual Masturbation", "If only you had a cock....");
+			addDisabledButton(2, "MultiFuck", "Multicock Fuck", "If only you had a pair of cocks....");
+		}
 		if(pc.hasVagina()) addButton(3,"Catch: DP",divideAndConquerGinasWithGoos,undefined,"Catch: Double Penetration","Get the goo to divide and take you both ways at once!");
-		else addDisabledButton(3,"Catch: DP");
+		else addDisabledButton(3,"Catch: DP", "Catch: Double Penetration", "If only you had a vagina....");
 	}
 	else
 	{
@@ -283,7 +287,7 @@ function takeASampleOfTheGrayGoo():void {
 
 function getSomeGrayGoo():void {
 	clearOutput();
-	output("That vial of honey is still here.\n\n");
+	output("That gray vial of microbots is still here.\n\n");
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new GrayMicrobots();
 	itemScreen = mainGameMenu;

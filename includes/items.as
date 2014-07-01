@@ -1,6 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Creature;
 import classes.ItemSlotClass;
+import classes.StorageClass;
 import classes.StringUtil;
 import classes.TiTS;
 
@@ -233,12 +234,22 @@ function generalInventoryMenu():void
 	output("<b>Accessory:</b> " + StringUtil.toTitleCase(pc.accessory.description) + "\n");
 	output("<b>Underwear Bottom:</b> " + StringUtil.toTitleCase(pc.lowerUndergarment.description) + "\n");
 	output("<b>Underwear Top:</b> " + StringUtil.toTitleCase(pc.upperUndergarment.description) + "\n\n");
-	output("<b><u>Key Items:</u></b>:\n");
+	output("<b><u>Key Items:</u></b>\n");
 	if(pc.keyItems.length > 0) 
 	{
 		for(x = 0; x < pc.keyItems.length; x++) 
 		{
-			output(pc.keyItems[x].storageName + "\n");
+			var pItem:StorageClass = pc.keyItems[x];
+			
+			if (pItem.tooltip != null && pItem.tooltip.length > 0)
+			{
+				output(pItem.storageName + " - " + pItem.tooltip + "\n");
+			}
+			else
+			{
+				output(pItem.storageName + "\n");
+			}
+			
 		}
 		output("\n");
 	}
