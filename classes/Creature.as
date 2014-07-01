@@ -6727,8 +6727,7 @@
 				if (!simple) {
 					temp = this.rand(5);
 					if (temp <= 1) vag += "human ";
-					else if (temp <= 3) vag += "terran ";
-					else vag += "pink ";
+					else vag += "terran ";
 				}
 				temp = this.rand(16);
 				if (temp <= 2) vag += "vagina";
