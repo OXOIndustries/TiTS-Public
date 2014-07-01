@@ -226,7 +226,7 @@ public function phoenixBridgeShields():void
 	{
 		output("You press the shield control again, and this time, you're rewarded with a roaring sound from the back of the ship and several panels in the cockpit shorting out, showering you in sparks. Through the viewscreen, you're rewarded with the sight of bright orange energy wrapping around the cockpit, spreading out from the emitters overhead and enveloping the wreck of the <i>Phoenix</i>. ");
 
-		output("\n\n\"<i>You did it!</i>\" your A.I. companion cheers. \"<i>No more pirates are getting aboard while the shields are up. If we're lucky, their ship won't risk firing on us again while their crew is aboard. Thank god for you, [pc.mister]. Now let's go rescue Captain en Illya!</i>\"");
+		output("\n\n\"<i>You did it!</i>\" your A.I. companion cheers. \"<i>No more pirates are getting aboard while the shields are up. If we're lucky, their ship won't risk firing on us again while their crew is aboard. Thank god for you, " + pc.mf("mister","miss") + ". Now let's go rescue Captain en Illya!</i>\"");
 
 		output("\n\nJust as she says it, though, you're nearly thrown off your [pc.feet] as an explosion rocks the <i>Phoenix</i>. You grab the headrest, trying to steady yourself as the ship shudders and rocks, the shields barely holding.");
 
