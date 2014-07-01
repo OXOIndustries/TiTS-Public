@@ -459,22 +459,22 @@ function buyFromAurora(arg:String = "ERROR"):void {
 	var cost:int = 0;
 	if(arg == "RocketHammer")
 	{
-		cost = 2000;
+		cost = 1850;
 		eventQueue[eventQueue.length] = lootRocketHammer;
 	}
 	else if(arg == "Electrogun")
 	{
-		cost = 3600;
+		cost = 3450;
 		eventQueue[eventQueue.length] = lootElectrogun;
 	}
 	else if(arg == "ProtectiveJacket")
 	{
-		cost = 2800;
+		cost = 2500;
 		eventQueue[eventQueue.length] = lootProtectiveJacket;
 	}
 	else if(arg == "TrashArmor")
 	{
-		cost = 4500;
+		cost = 3000;
 		eventQueue[eventQueue.length] = lootTrashArmor;
 	}
 	else if(arg == "AimEye")
@@ -503,12 +503,12 @@ function rocketHammerDescription():void
 	output("\n\nYou hit the deck before that can happen, and the little show comes to an end in short order, giving you a brief moment to gain your composure as Aurora fights to keep the room from spinning, for her, anyway. <i>\"Eh... That was fun. Ah! See! Works perfectly. Sometimes. Want it?\"</i>");
 	processTime(3);
 	// It should be weaker than a actual sledgehammer item, like the one in, say, Molar’s shop, but should have a higher crit chance and higher crit damage. Whether or not it also needs a strength score is up to you boss, but it’s supposed to be relatively lighter - hence the less damage.
-	output("\n\nDamage Rating: 17")
-	output("\nPrice: 2000");
 	clearMenu();
-	if(pc.credits >= 2000) addButton(0,"Buy",buyFromAurora,"RocketHammer","RocketHammer","Buy a warhammer from Aurora.\n\nDamage Rating: +17\nPrice: 2000 credits.");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2000 credits for this item.");
+	if(pc.credits >= 1850) addOverrideItemButton(0, new RocketHammer(), "Buy", buyFromAurora, "RocketHammer");
+	else addDisabledButton(0,"Buy","Buy","You cannot afford the 1850 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
+	
+	
 }
 
 //Electrogun
@@ -524,12 +524,9 @@ function electrogunStuffAtAuroras():void
 	output("\n\n<i>\"So, er, want it?\"</i>");
 	processTime(2);
 	// Bzzt! Should be straightforward, comparable damage to Carl’s guns but uses a anti-shield damage type or something.
-	output("\n\nDamage Rating: 12");
-	output("\nAccuracy Rating: 2");
-	output("\nPrice: 3600");
 	clearMenu();
-	if(pc.credits >= 3600) addButton(0,"Buy",buyFromAurora,"Electrogun","Electrogun","Buy an electrogun from Aurora.\n\nDamage Rating: +12\nAccuracy Rating: +2\nPrice: 3600 credits.");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 3600 credits for this item.");
+	if(pc.credits >= 3450) addOverrideItemButton(0, new Electrogun(), "Buy", buyFromAurora, "Electrogun");
+	else addDisabledButton(0,"Buy","Buy","You cannot afford the 3450 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
 }
 
@@ -561,13 +558,10 @@ function protectiveJacketFromAurora():void
 	else output("swank");
 	output(". <i>\"It’s nothing special or advanced, but it’s certainly a step up from regular clothing. These things sell like hot cakes, and this one doesn’t even have any holes in it to cut you or anything! Want it?\"</i>");
 	// Minor armor, minor bonus to sexiness. Because SWANK. Should basically be the safe upgrade from comfortable clothes. I guess if Shekka sells elemental resists, it’d be the TS-T armor that Anno sells for tease-y people.
-	output("\n\nDefense Rating: 4");
-	output("\nAppearance Rating: 1");
-	output("\nPrice: 2800");
 	processTime(2);
 	clearMenu();
-	if(pc.credits >= 2800) addButton(0,"Buy",buyFromAurora,"ProtectiveJacket","ProtectiveJacket","Buy an armored jacket from Aurora.\n\nDefense Rating: +4\nAppearance Rating: +1\nPrice: 2800 credits.");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2800 credits for this item.");
+	if(pc.credits >= 2500) addOverrideItemButton(0, new ProtectiveJacket(), "Buy", buyFromAurora, "ProtectiveJacket");
+	else addDisabledButton(0,"Buy","Buy","You cannot afford the 2500 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
 }
 
@@ -587,11 +581,11 @@ function trashArmor():void
 	output("\n\nDefense Rating: +8");
 	output("\nAppearance Rating: -2");
 	output("\nAccuracy Rating: -2");
-	output("\nPrice: 4500");
+	output("\nPrice: 3000");
 	clearMenu();
 	processTime(3);
-	if(pc.credits >= 4500) addButton(0,"Buy",buyFromAurora,"T.Armor","TrashArmor","Buy an ancient space suit, or \"trash armor\" from Aurora.\n\nDefense Rating: +8\nAppearance Rating: -2\nAccuracy Rating: -2\nPrice: 4500 credits.");
-	else addDisabledButton(0,"Buy","Buy","You cannot afford the 4500 credits for this item.");
+	if(pc.credits >= 3000) addOverrideItemButton(0, new TrashArmor(), "Buy", buyFromAurora, "TrashArmor");
+	else addDisabledButton(0,"Buy","Buy","You cannot afford the 3000 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
 }
 //Aim assist eyepiece
@@ -605,11 +599,9 @@ function aimAssistEyepiece():void
 	output("<i>\"It’s a accessory!\"</i> Aurora chirps rather immediately, swinging herself to the side to reach for the nearby device. It’s pretty small and easily fits in her small “hand\", most of the mass being a faux-glass display and then some sort of clip on. There isn’t a lot to see, nor do you expect Aurora had a lot of hand in this one. <i>\"You place it by your eyes and hook it up to a pistol or something! Then it says where you’re aiming stuff! I used it on a screwdriver once and it got </i>really<i> confused.\"</i> Nodding, you muse it over. The lack of depth perception means it wouldn’t be helpful very far, but at the very least you wouldn’t have to constantly aim down the sights of your weapon to get an accurate shot. Good for a scuffle.");
 	output("\n\n<i>\"Want it? It’s cheeeap.\"</i>");
 	// It is indeed cheap! Gives +1 aim. Maybe +2.*/
-	output("\n\nAccuracy Rating: +2");
-	output("\nPrice: 800");
 	clearMenu();
 	processTime(1);
-	if(pc.credits >= 800) addButton(0,"Buy",buyFromAurora,"AimEye","AimEye","Buy an aim-boosting eyepiece from Aurora.\n\nAccuracy Rating: +2\nPrice: 800 credits.");
+	if(pc.credits >= 800) addOverrideItemButton(0, new AimEyepiece(), "Buy", buyFromAurora, "AimEye");
 	else addDisabledButton(0,"Buy","Buy","You cannot afford the 800 credits for this item.");
 	addButton(14,"Back",shopAtAuroras);
 }
