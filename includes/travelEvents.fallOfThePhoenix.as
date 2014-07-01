@@ -330,8 +330,8 @@ public function phoenixCargo():Boolean
 // Not starting it directly so I can inject a status effect onto the player to handle the help from Sae
 public function startPhoenixPirateFight():void
 {
-	pc.createStatusEffect("Saendra Fights4Buttes");
 	startCombat("phoenixpirates");
+	pc.createStatusEffect("Saendra Fights4Buttes", 0, 0, 0, 0, true, "", "", true, 0);
 }
 
 public function loseToPhoenixPirates():void 
