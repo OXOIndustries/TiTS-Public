@@ -2171,7 +2171,7 @@ function initializeRooms():void
 	//#72 SCYTHING\nGLADE
 	rooms["272"] = new RoomClass(this);
 	rooms["272"].roomName = "SCYTHING\nGLADE";
-	rooms["272"].description = "The gaps between the deadly, bladed trees fork into a 'T' intersection, offering unrestricted movement to the north, south, and west. The silver blades on either side rattle menacingly in the breeze, and more than once, you catch yourself stepping back at the unexpected sound. You're glad for the good-siized gap in which you now stand. Those things don't look like the type to discriminate when it comes to targets.";
+	rooms["272"].description = "The gaps between the deadly, bladed trees fork into a 'T' intersection, offering unrestricted movement to the north, south, and west. The silver blades on either side rattle menacingly in the breeze, and more than once, you catch yourself stepping back at the unexpected sound. You're glad for the good-sized gap in which you now stand. Those things don't look like the type to discriminate when it comes to targets.";
 	rooms["272"].runOnEnter = rustScytheGladeEncounters;
 	rooms["272"].northExit = "283";
 	rooms["272"].southExit = "273";
