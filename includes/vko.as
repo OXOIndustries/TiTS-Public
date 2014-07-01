@@ -55,7 +55,7 @@ function approachVKo(showShit:Boolean = true):void {
 	{
 		if(showShit)
 		{
-			output("V-Ko smiles disarmingly at you as you approach. <i>\"Your biosigns identify you as [pc.short] Steele. How may I serve your needs today?\"</i> She seems blissfully aware of the implications of her statement, beaming with what seems to be a genuine desire to assist you.");
+			output("V-Ko smiles disarmingly at you as you approach. <i>\"Your biosigns identify you as [pc.short] Steele. How may I serve your needs today?\"</i> She seems blissfully unaware of the implications of her statement, beaming with what seems to be a genuine desire to assist you.");
 			//Uninjured
 			if(pc.HP() >= pc.HPMax()) output("\n\n<i>\"You appear in good health, but my other services are available if you need to purchase supplies or require treatment of potential diseases.\"</i>");
 			//Slightly Injured
