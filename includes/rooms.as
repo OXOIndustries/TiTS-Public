@@ -2291,7 +2291,7 @@ function initializeRooms():void
 	//#82 SCYTHING\nGLADE
 	rooms["282"] = new RoomClass(this);
 	rooms["282"].roomName = "SCYTHING\nGLADE";
-	rooms["282"].description = "Two predatory plants have grown in too close to each other to the north. Their trunks have twisted around each other in a twisted, unhealthy-looking shape, and their many blades hang like sickly drapes around them, grinding audible with every arid breeze. The air itself smells vaguely of blood, and the ground seems almost stained with it as well. You can't really tell if the earth is truly saturated given how red with rust everything is, nor do you want to find out.";
+	rooms["282"].description = "Two predatory plants have grown in too close to each other to the north. Their trunks have twisted around each other in a twisted, unhealthy-looking shape, and their many blades hang like sickly drapes around them, grinding audibly with every arid breeze. The air itself smells vaguely of blood, and the ground seems almost stained with it as well. You can't really tell if the earth is truly saturated given how red with rust everything is, nor do you want to find out.";
 	rooms["282"].runOnEnter = rustScytheGladeEncounters;
 	rooms["282"].eastExit = "281";
 	rooms["282"].westExit = "283";
