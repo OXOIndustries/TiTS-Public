@@ -1256,7 +1256,7 @@ public function rumblyInYourTummy():void
 
 	//Increase bellymod to 14 * amount
 	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
-	pc.bellyRatingMod += 2 * pData.pregnancyQuantity;
+	pc.bellyRatingMod = 14 * pData.pregnancyQuantity;
 	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
 }
 
@@ -1300,7 +1300,7 @@ public function layFertilizedVenusPitcherEgg():void
 	}
 
 	//24 hours after fertilization and every four hours after the first. (so 24, 28, 32, until the PC's womb empties)
-	output("It's time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
+	output("It is time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
 	if (flags["LAID VENUS PITCHER SEEDS"] != undefined) output(", but that's likely just experience talking. You do so love to let the pitchers use your body as a nesting ground.");
 	else output(".");
 

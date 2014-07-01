@@ -4448,6 +4448,7 @@ public function toggleMimbraneSpit():void
 	//Toggling Off
 	else
 	{
+		flags["PLAYER_MIMBRANE_SPIT_ENABLED"] = undefined;
 		output2("You ask your Mimbrane");
 		if (attachedMimbranes() > 1) output2("s");
 		output2(" not to interfere with your combat, preferring");
