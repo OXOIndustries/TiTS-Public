@@ -109,7 +109,7 @@
 						target.addLegFlag(GLOBAL.SMOOTH);
 						target.addLegFlag(GLOBAL.TENDRIL);
 						target.legType = GLOBAL.NAGA;
-						kGAMECLASS.output("\n\nSlithering back up atop it practically second nature to you, as easy as walking or running ever was.");
+						kGAMECLASS.output("\n\nSlithering back up atop it is practically second nature to you, as easy as walking or running ever was.");
 						
 						changes++;
 					}
