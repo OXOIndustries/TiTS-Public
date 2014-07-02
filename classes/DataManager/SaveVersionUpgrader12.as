@@ -18,9 +18,9 @@ package classes.DataManager
 		
 		public function upgrade(data:Object):Boolean
 		{
+			var newArray:Array = new Array();
 			for (var i:int = 0; i < data.characters["PC"].statusEffects.length; i++)
 			{
-				var newArray:Array = new Array();
 				if (data.characters["PC"].statusEffects[i].storageName != "Saendra Fights4Buttes")
 				{
 					newArray.push(data.characters["PC"].statusEffects[i]);
