@@ -419,9 +419,9 @@ function pcLosesToSyriBettingHisAss():void {
 	output("\n\nLeaning down right next to your ear, Syri breathes, <i>“You know, an Ausar knot can stay filled for hours. Your earth dogs have nothing on us, [pc.name].”</i>  She leaves you with a wet, affectionate lick across the cheek as she straightens and leans back, gripping her giant bitch-breaking boner and lining up with your puckered hole. You brace yourself as the pointed tip presses against your [pc.asshole], barely putting any pressure on your ass at all before she leans back, grabs your flanks, and rams it home. Your mouth gapes in a wordless, silent scream, your voice failing as inch after inch of throbbing alien cock slams into your ass, stretching you apart. Your fingers dig into the tables, leaving long marks as your anal passage becomes Syri's personal cocksleeve, wrapping around the girthy girl-boner until her thickening knot presses against you, utterly hilted.");
 
 	//If PC is uber-tight:
-	if(pc.analCapacity() < chars["SYRI"].cockVolume(0) * .75) output("\n\n<i>“O-oh shit you're tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
+	if(pc.ass.looseness() < 2) output("\n\n<i>“O-oh shit you're tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
 	// if mid-tight: 
-	else if(pc.analCapacity() < chars["SYRI"].cockVolume(0) * 1.5) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the asuar girl pants, reaching up to stroke your hair.");
+	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the asuar girl pants, reaching up to stroke your hair.");
 	// if supah-loose: 
 	else {
 		output("\n\n<i>“Hoooly shit, [pc.name], what do you shove up here - people? God damn, I'm </i>hung<i> and there's enough room back here for two of me.”</i>  She swats your behind, trying to get you to tighten up for her. Her attention, though, goes to some of the bystanders to your sexual submission: <i>“Hey, that wasn't an invitation. This time. Avert your eyes.”</i>  And more quietly, just for you, she adds: <i>“You're loose enough for a few guests, huh? Maybe next time we'll wager you between all the regulars. That might just fill this [pc.asshole] of yours up, huh?”</i>");
@@ -893,7 +893,7 @@ function missionaryWithTheDogDickedSlutSyri():void {
 
 	output("\n\nAs if responding to her words, her feel Syri's ass tighten hard around your [pc.cock " + x + "] and look down as her own knotty cock bulges and twitches. You lean out as she cums, cock spasming as it shoots a thick cream-white rope of dog-spunk right between her heaving breasts. Syri yelps as the hot cum hits her flesh, and her shaft responds with another deluge, depositing a thick load of seed on her belly. Watching the squirming ausar cream herself and smelling the overpowering, heady odor of her musky seed is a potent combination that has you rutting like mad, racing to join your lover in orgasm.");
 
-	output("\n\nYou cum with explosive force, ramming your [pc.cock " + x + "] deep up Syri's ass before discharging a huge, sticky [pc.Cumcolor] glob into her bowels. The ausar girl cries out as you pound her, clearly feeling your seed pouring into her. Her cock jumps upright again, knot trembling with renewed vigor as your prick passes over her over-sensitive bud, milking it of every last drop leftover from her own orgasm. Grunting and growling with feral passion, you cum deep inside your lover, grabbing her cheeks and pulling her into a tongue-tying kiss that soon has you rolling over each other, flipping off the lights as the sheets and blankets wrap around your bare, entwined bodies. Syri pulls you into her arms, letting you nestle your head back between her big breasts, cock deflating inside her");
+	output("\n\nYou cum with explosive force, ramming your [pc.cock " + x + "] deep up Syri's ass before discharging a huge, sticky [pc.cumColor] glob into her bowels. The ausar girl cries out as you pound her, clearly feeling your seed pouring into her. Her cock jumps upright again, knot trembling with renewed vigor as your prick passes over her over-sensitive bud, milking it of every last drop leftover from her own orgasm. Grunting and growling with feral passion, you cum deep inside your lover, grabbing her cheeks and pulling her into a tongue-tying kiss that soon has you rolling over each other, flipping off the lights as the sheets and blankets wrap around your bare, entwined bodies. Syri pulls you into her arms, letting you nestle your head back between her big breasts, cock deflating inside her");
 	if(pc.hasKnot(x)) output(", though your own knot, like hers, will take some time to come back out, tying you together for a time");
 	output(" as curl up to sleep it off with your lover.");
 
@@ -942,7 +942,7 @@ function getVagFukkedBySyri():void {
 
 	output("\n\nYou nod and grab the condom between your teeth, slipping back between her spread legs to press your face to her throbbing erection, planting one last kiss upon its crown before you adjust the condom clenched between your teeth, getting the almost imperceptibly thin fibers lined up just right before you plunge down, spreading it down and around her cock, letting it snap tight on the crown of her thick knot. Syri draws a sharp breath as the condom pops into place, reaching down to draw it tight as you straddle her once again, arms wrapping around her slender shoulders, [pc.vagina " + x + "] hovering over her slick, sheathed shaft.");
 
-	output("\n\nThis time, Syri grabs your [pc.hips] and pulls you down, spearing you right on her cock! Your back steadily arches as the lips of your [pc.vagina " + x + "] part, swallowing inch after inch of Syri's cock, feeling the impending, unstoppable fullness of being stuffed with alien dick until you let out a shrill yelp, cunt straining to accommodate the thick knot ramming it. You rock yourself back, pulling her back out to the head few inches, giving yourself a moment to brace for the knotting this time. A few short bounces on her cock slowly loosens you up, spreading your wet and ready walls wide for the real pleasure.");
+	output("\n\nThis time, Syri grabs your [pc.hips] and pulls you down, spearing you right on her cock. Your back steadily arches as the lips of your [pc.vagina " + x + "] part, swallowing inch after inch of Syri's cock, feeling the impending, unstoppable fullness of being stuffed with alien dick until you let out a shrill yelp, cunt straining to accommodate the thick knot ramming it. You rock yourself back, pulling her back out to the head few inches, giving yourself a moment to brace for the knotting this time. A few short bounces on her cock slowly loosens you up, spreading your wet and ready walls wide for the real pleasure.");
 	cuntChange(x,chars["SYRI"].cockVolume(0),true,true,false);
 
 	output("\n\nYou take it easy for the first few minutes, steadily working further and further down her length, moaning and whimpering with pleasure as her thick cock grinds into you. Soft, furred hands play across your skin");
@@ -1116,7 +1116,7 @@ function syriSexOutro():void {
 	clearMenu();
 
 	addButton(1,"Sure",sureUseMyShowerAndClogTheDrainWithDogHair);
-	if(pc.libido() >= 40 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
+	if(pc.libido() >= 60 || pc.lust() >= 33) addButton(2,"Don't Go",dontGoAwayYouKnotCunt);
 	else addDisabledButton(2,"Don't Go");
 }
 

@@ -983,7 +983,7 @@ function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
 		//Little Cum: 
 		if(pc.cumQ() < 25) output("Your body tingles as you unleash a few quick jets of [pc.cum] directly into Aliss' bowels.");
 		//Medium Cum:
-		else if(pc.cumQ() < 100) output("You blast Aliss' insides [pc.cumcolor] as you deposit your load directly into Aliss' backdoor, filling her up with your hot [pc.cum].");
+		else if(pc.cumQ() < 100) output("You blast Aliss' insides [pc.cumColor] as you deposit your load directly into Aliss' backdoor, filling her up with your hot [pc.cum].");
 		//Lots'o'Cum:
 		else if(pc.cumQ() < 500) output("Your manhood trembles as you blast Aliss' bowels with your hot [pc.cum], filling her to the brim. She wriggles under your grasp as small streams of love juice escapes the seal around your cock and dribbles down her legs.");
 		//SupersizeMe:

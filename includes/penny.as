@@ -806,7 +806,7 @@ function firstTimePennyShowerSex():void {
 	var y:int = pc.cockThatFits2(penny.vaginalCapacity());
 	output("Stepping into the next room, you hear the gentle sound of a running shower. You follow the auditory trail through another doorway, getting hit by a wave of steam and a view of feminine curves all at once. Penny is standing in a surprisingly large shower stall with the door open and the water running down her back, slicking her fur down so that it shines with the moisture. She beckons you closer, saying, <i>“I don’t bite... much.”</i>");
 	output("\n\nYou step in alongside her, letting the hot water run over your [pc.skinFurScales]. The heat practically melts the soreness and exhaustion from your body, though it does nothing for the different warmth blooming in your loins. In fact, the burgeoning lust seems to expand, spreading through your limbs when Penny presses her warm, wet form against you, her arms winding their way to your groin, sliding her palms down your [pc.belly] until they press against the turgid mass of [pc.oneCock].");
-	output("\n\n<i>“Mmm, a fitting tribute, prey,”</i>  Penny coos from behind you. One hand wraps around your " + num2Text(Math.round(pc.cocks[x].thickness()*10)/10) + " inches of girth, squeezing it softly. <i>“I like to play with my food.”</i>  True to her word, she begins to stroke you, sliding her water-slicked palm up and down along your length. Her other hand ");
+	output("\n\n<i>“Mmm, a fitting tribute, prey,”</i>  Penny coos from behind you. One hand wraps around your " + num2Text(Math.round(pc.cocks[x].thickness())) + " inches of girth, squeezing it softly. <i>“I like to play with my food.”</i>  True to her word, she begins to stroke you, sliding her water-slicked palm up and down along your length. Her other hand ");
 	if(pc.hasVagina()) 
 	{
 		output("seeks out your [pc.vagina]");
@@ -3169,9 +3169,10 @@ function bukkakePenny():void {
 	if(pc.cockTotal() > 1 || pc.hasVagina())
 	{
 		output("your ");
-		if(pc.cockTotal() > 2 && pc.hasVagina()) output("other cocks and [pc.vaginas]");
-		else if(pc.cockTotal() == 2) output("other cock");
-		else output("other cocks");
+		if(pc.cockTotal() == 2) output("other cock");
+		else if(pc.cockTotal() > 2) output("other cocks");
+		if(pc.cockTotal() > 1 && pc.hasVagina()) output(" and ");
+		if(pc.hasVagina()) output("[pc.vaginas]");
 		output(" soon joining in sympathetically, and ");
 	}
 	output("your [pc.cumColor] cum spurting out to land on her face.");

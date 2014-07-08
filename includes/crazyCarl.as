@@ -280,7 +280,7 @@ function machetteBuyTalk():void
 	clearOutput();
 	author("Magic Ted");
 	userInterface.showBust("CARL");
-	output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>\"The Machette? Ya figurin' on chopping yer way through yonder jungle then? She'll serve you well without costing too much. Probably handy for dealin' with some of them snakes too.</i>\"");
+	output("You tap a button and it expands, displaying view of a fairly standard curved blade. <i>\"The Machete? Ya figurin' on chopping yer way through yonder jungle then? She'll serve you well without costing too much. Probably handy for dealin' with some of them snakes too.</i>\"");
 	output("\n\nYou nod.");
 	processTime(1);
 	output("\n\nDamage Rating: 8");

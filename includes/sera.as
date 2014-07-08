@@ -234,7 +234,9 @@ function getRodeFemdomStyleBySera():void {
 	if(x < 0) x = pc.smallestCockIndex();
 	output("You nod.");
 	output("\n\n<i>\"Good, get your ass on the floor behind the counter,\"</i> Sera says, pointing to direct you.");
-	output("\n\nWhat? Your incredulity must be painted on your face, because Sera smirks right back at you. <i>\"I'm not gonna tell you again. If you want some of this,\"</i> she gestures up and down her body, <i>\"then you had better get {naked and }on the floor. Otherwise, you can go spank it somewhere else.\"</i> The purple-hued woman makes crude, jacking motions with her hand while she waits to see how you react.");
+	output("\n\nWhat? Your incredulity must be painted on your face, because Sera smirks right back at you. <i>\"I'm not gonna tell you again. If you want some of this,\"</i> she gestures up and down her body, <i>\"then you had better get ");
+	if(!pc.isNude()) output("naked and ");
+	output("on the floor. Otherwise, you can go spank it somewhere else.\"</i> The purple-hued woman makes crude, jacking motions with her hand while she waits to see how you react.");
 	output("\n\nWell, if the price for getting ridden cow-girl is having to obediently stretch out on the floor, so be it.");
 	if(!pc.isNude()) output(" You strip out of your [pc.gear] without any concern and");
 	else output("You");

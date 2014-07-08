@@ -97,7 +97,7 @@ package classes.UIComponents.ContentModuleComponents
 			if (_configured == false || _configuredForClass != creature.characterClass)
 			{
 				this.Build();
-				_configuredForClass == creature.characterClass;
+				_configuredForClass = creature.characterClass;
 			}
 			
 			// Check each perk from each group

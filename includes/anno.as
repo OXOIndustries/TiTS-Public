@@ -1,4 +1,6 @@
-﻿//Steele Tech Shop (Tarkus)
+﻿import classes.Items.Guns.Goovolver;
+import classes.Items.Miscellaneous.GrayMicrobots;
+//Steele Tech Shop (Tarkus)
 //Dogsloots 'r' Us
 
 function annoSexed(arg:int = 0):int {
@@ -158,7 +160,7 @@ function annoMainMenu():void
 	addButton(2,"Talk",annoTalkMenu,undefined,"Talk","Talk to Anno about a variety of topics.");
 	addButton(3,"EarScratches",earScritchesForAnno,undefined,"Ear Scratches","Give her a good scratching right behind the ears. She's been a good girl, after all.");
 	addButton(5,"Appearance",annoAppearance,undefined,"Appearance","Review what Anno's entire body looks like.");
-	if(pc.hasStatusEffect("Rusted Emitters")) addButton(4,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
+	if(pc.hasStatusEffect("Rusted Emitters")) addButton(4,"Fix Emit.",repairMyRustBroInjuryAnno,undefined,"Fix Emit.","See if Anno can possibly fix your sydian-damaged shield emitters.");
 	else addDisabledButton(4,"Fix Emit.","Fix Emit.","Your shield emitters are totally undamaged. Don't worry about it.");
 	if(flags["SEEN_ANNO_BUY_MENU"] != undefined) addButton(4,"Test Drive",testDriveArmorsForShit);
 	addButton(14,"Leave",mainGameMenu);
@@ -556,6 +558,7 @@ function repairMyRustBroInjuryAnno():void
 	output("\n\n<i>\"I'll try,\"</i> you chuckled, putting your stuff back on.");
 	pc.credits -= 50;
 	processTime(15);
+	pc.removeStatusEffect("Rusted Emitters");
 	//Main menu
 	annoMainMenu();
 }
@@ -645,11 +648,25 @@ function talkToAnnoAboutShitz():void
 function annoTalkMenu():void
 {
 	clearMenu();
+	showBust("ANNO");
+	showName("\nANNO");
 	addButton(0,"Anno",askAbootAnnoz,undefined,"Anno","Ask her about herself.");
 	addButton(1,"Novahome",novaHomeTalk,undefined,"Novahome","Ask her about the Nova.");
 	addButton(2,"Locals",talkToSyriAboutTheLocals,undefined,"Locals","Ask her about the locals.");
 	addButton(3,"Lovers?",anyoneSpecial,undefined,"Lovers?","Ask Anno if she has any lovers.");
-	addButton(4,"Business?",howsBusiness,undefined,"How's Business?","Ask Anno about how business is at her shop.");
+	addButton(4, "Business?", howsBusiness, undefined, "How's Business?", "Ask Anno about how business is at her shop.");
+	
+	if (!pc.hasKeyItem("Goozooka"))
+	{
+		if (pc.hasItem(new GrayMicrobots()))
+		{
+			addButton(5, "Gray Goo", beginTheGoozookeningHas, undefined, "Gray Goo", "Ask Anno about the samples you've collected from some Grey Goos.");
+		}
+		else
+		{
+			addDisabledButton(5, "Gray Goo", "Gray Goo", "Maybe you could ask Anno about the Gray Goo Menace local to Tarkus if you had a sample of their microbots to hand.");
+		}
+	}
 	addButton(14,"Back",repeatAnnoApproach);
 }
 
@@ -1290,4 +1307,130 @@ function cumWithAnnoOnTop():void
 	if(chars["ANNO"].ass.loosenessRaw < 2) chars["ANNO"].ass.loosenessRaw = 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+// {PC Must have a Grey Goo Sample on-hand}
+function beginTheGoozookeningHas():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+	
+	output("<i>\"Hey, you're pretty techie, right?\"</i> you say by way of opening as you dig into your pack.");
+	output("\n\nAnno shrugs. <i>\"Literal rocket scientist here, so... kinda? Whatcha need?\"</i>");
+	output("\n\nYou pull out the vial of gray goo you extracted from one of the lusty mecha-babes and hand it over to Anno. <i>\"Think you could do something with this?\"</i>");
+	output("\n\n<i>\"Gray goo?\"</i> she asks quizzically, looking the sample over. <i>\"Uh... I can burn it for you. I think I've got an incinerator unit around here somewhere...\"</i>");
+	output("\n\n<i>\"Something </i>useful<i>,</i>\"</i> you correct, planting a defensive hand on the sample before she can toss it in the furnace.");
+	output("\n\nShe shrugs. <i>\"Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot grey goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something's cooch when you fire it. Plus I'd have to rebuild the magazine well, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun -- I sell them, but can't give it to you for free, sorry -- and a thousand credits for spare parts and I could probably whip something together.\"</i>");
+
+	processTime(1);
+	
+	clearMenu();
+	
+	var pGoovolver:Goovolver = new Goovolver();
+	
+	if (pc.hasItem(pGoovolver) || pc.rangedWeapon is Goovolver)
+	{
+		if (pc.credits >= 1000)
+		{
+			addButton(0, "Upgrade", gimmeAGoozooka, false, "Upgrade", "Pay 1000 credits to upgrade your Goovolver into a Goozooka.");
+		}
+		else
+		{
+			addDisabledButton(0, "Upgrade", "Upgrade", "You need at least a thousand credits to upgrade your Goovolver.");
+		}
+	}
+	else
+	{
+		var pGooCost:int = pGoovolver.basePrice * anno.sellMarkup * pc.buyMarkdown;
+		
+		if (pc.credits >= pGooCost + 1000)
+		{
+			addButton(0, "Upgrade", gimmeAGoozooka, true, "Upgrade", "Pay " + String(pGooCost + 1000) + " credits to buy a Goovolver and pay for the parts Anno needs to upgrade it.");
+		}
+		else
+		{
+			addDisabledButton(0, "Upgrade", "Upgrade", "You need " + String(pGooCost + 1000) + " credits to buy a Goovolver and pay for the parts Anno needs to upgrade it.");
+		}
+	}
+	
+	addButton(1, "Nope", annoMainMenu);
+}
+
+function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+
+	output("<i>\"Alright! Now we're in business!\"</i> Anno grins as you hand over the goo-slinging revolver and the spare credits. <i>\"Just gimme a few minutes to do the work, alright?\"</i>");
+
+	output("\n\nYou nod, and find something vaguely seat-worthy among the junk-piles lining the shop. Anno slips out through the backdoor, and into her workshop. Soon, you can hear the clanking and buzzing of her at work, though the minutes begin to drag on and on before she finally returns, carting what might, once, have been a goovolver. Now, though, it looks more like a grenade launcher, with a hugely oversized barrel and a break-action rather than a cylinder. A flickering computer has been bolted onto the side of the gun next to the trigger, with several flashing LED screens allowing you to program your gooey projectiles.");
+
+	output("\n\n<i>\"Try this on for size,\"</i> Anno smirks, handing the heavy weapon over. <i>\"Just make sure you actually have enough gray goo canisters, boss. This thing can't shoot galotian charges anymore.\"</i>");
+
+	if (silly)
+	{
+		output("\n\n<i>\"Where did the ones already loaded in there go?\"</i> you ask her whilst taking stock of the weapon for yourself.");
+		
+		output("\n\n<i>\"Shh. No questions now. Only dreams.\"</i>");
+	}
+
+	// Take da fee
+	var pGoovolver:Goovolver = new Goovolver();
+	
+	if (buyGoovolverToo == false)
+	{
+		pc.credits -= 1000;
+		if (pc.hasItem(pGoovolver)) pc.destroyItem(pGoovolver, 1);
+		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
+	}
+	else
+	{
+		var pGooCost:int = pGoovolver.basePrice * anno.sellMarkup * pc.buyMarkdown;
+		pc.credits -= (pGooCost + 1000);
+	}
+	
+	pc.destroyItem(new GrayMicrobots());
+
+	pc.createKeyItem("Goozooka", 0, 0, 0, 0, "This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy's most sensitive spots. Consumes a vial of gray goo per shot!");
+	output("\n\n<b>(Key Item Gained: Goozooka -</b> This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy's most sensitive spots. Consumes a vial of gray goo per shot!<b>)</b>");
+	
+	processTime(15);
+	
+	//[Try on Anno] [Leave]
+	clearMenu();
+	
+	// I'm implying that Anno left the sample you gave her loaded into the thing
+	addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
+	addButton(1, "Leave", mainGameMenu);
+}
+
+function goozookaRaepsForAnnoButts():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+
+	//{+Mischevious, -1 Goo Sample}
+	pc.addMischievous(1);
+	pc.destroyItem(new GrayMicrobots(), 1);
+
+	output("When Anno turns to get back to her job, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno's hind end and flick the button on the computer beside the trigger.");
+
+	output("\n\nHearing the little 'click', Anno turns to look at you... just in time to see you pull the trigger. There's a loud pneumatic hiss as the gun discharges, sending a big gray blob straight at Anno's ass. She shrieks as she's slammed up against the wall by the impact, and then again as a tiny gray googirl coalesces right on the little bubble of her butt sticking back through her catsuit.");
+
+	output("\n\nA tiny voice cheers, <i>\"Oooh! You're cute... wanna fuck?\"</i> before the gray goo drills her way through the ass of Anno's uniform and vanishes from sight. Anno immediately goes rigid, eyes wide and tail sticking straight out as the little goo finds something sensitive under that suit of hers and gets to work. You lean back and enjoy the show as Anno desperately wiggles her way out of her uniform's top, trying to get out her bottom before you can <i>see</i> the blob of a googirl squirming around her hip and into her pussy. There's a momentary pause before Anno goes cross-eyed and flops down onto the counter, helpless but to moan and wiggle her hips as the goo takes advantage of her.");
+
+	output("\n\nOh yeah. This is gonna be fun.");
+
+	processTime(2);
+	
+	pc.lust(10);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

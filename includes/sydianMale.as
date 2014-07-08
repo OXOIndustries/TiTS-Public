@@ -873,7 +873,7 @@ function getPeggedToOrgasmByRustBro():void
 		if(pc.hasCock() || pc.hasVagina()) output(" and let your [pc.crotch] escape the searing heat that courses through your body");
 		output(".");
 		
-		output("\n\nThe male sydian just shakes his head and pushes you on your back. He begins stripping your off your [pc.gear] with practiced ease, and before you know you it, you’re completely naked and at his mercy. You’d be worried, but you’re just too horny to care. As long as he does something, <b>anything</b>, to rid you of this heat, you just don’t care.");
+		output("\n\nThe male sydian just shakes his head and pushes you on your back. He begins stripping off your [pc.gear] with practiced ease, and before you know you it, you’re completely naked and at his mercy. You’d be worried, but you’re just too horny to care. As long as he does something, <b>anything</b>, to rid you of this heat, you just don’t care.");
 	}
 	//Nekkid:
 	else

@@ -851,7 +851,9 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 			output(".");
 			if(pc.hasCockFlag(GLOBAL.FLARED)) output(" Your flared tip makes sure a fair portion of it shoots directly against her cervix.");
 		}
-		output("\n\nYou go limp, your ardor spent and your softening length{s} slipping halfway out of her. You take the moment to appreciate the shapeliness of her shoulder blades and the natural scent of her air.");
+		output("\n\nYou go limp, your ardor spent and your softening length");
+		if(y >= 0) output("s");
+		output(" slipping halfway out of her. You take the moment to appreciate the shapeliness of her shoulder blades and the natural scent of her air.");
 	}
 	//Merge
 	output("\n\nAfter a while of holding her like this, she comes down from her own plateau and cranes her head around to look at you, smiling. It isn't a mere sated smile either - the kind that telegraphs just how well fucked she's been. No. It's a gloating, knowing smile. She flicks a switch on the flashlight, and a beam of incandescent light illuminates her work area. Shekka gently pushes you back with her feet, letting your soaked [pc.cocks] fall away. She pulls herself up onto her workbench, rubbing her belly, a slightly vacant look in her eyes. <i>\"I think we both won that little competition.\"</i>");

@@ -1349,6 +1349,7 @@
 				case "breasts":
 				case "boobs":
 					buffer = breastDescript(arg2);
+					break;
 				case "cockClit":
 					buffer = cockClit(arg2);
 					break;
@@ -1382,6 +1383,9 @@
 				case "cunt":
 					buffer = vaginaDescript(arg2);
 					break;
+				case "vaginaNounSimple":
+					buffer = vaginaNounDescript(arg2);
+					break;
 				case "vaginas":
 				case "pussies":
 				case "cunts":
@@ -1414,6 +1418,12 @@
 				case "cuntTail":
 				case "tailgina":
 					buffer = tailVaginaDescript();
+					break;
+				case "tailVaginas":
+				case "tailCunts":
+				case "cuntTails":
+				case "tailginas":
+					buffer = tailVaginasDescript();
 					break;
 				case "oneTailgina":
 				case "oneTailCunt":
@@ -6501,10 +6511,15 @@
 		{
 			var buffer:String = "";
 			if(tailCount > 1) buffer += "one of ";
-			buffer += "your";
+			buffer += "your ";
 			if(tailCount > 1) buffer += pluralize(tailVaginaDescript());
 			else buffer += tailVaginaDescript();
 			return buffer;
+		}
+		public function tailVaginasDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
+			if(tailCount > 1) return pluralize(tailVaginaDescript(forceAdjectives,adjectives));
+			else if(tailCount == 1) return tailVaginaDescript(forceAdjectives,adjectives);
+			else return "ERROR: TAIL DESCRIPT CALLED WITH NO TAILS PRESENT.";
 		}
 		public function tailVaginaDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			//Vars
@@ -6568,6 +6583,11 @@
 				vag += vaginaNoun(tailGenitalArg);
 			}
 			return vag;
+		}
+		public function vaginaNounDescript(vaginaNum: Number = 0):String
+		{
+			if(vaginaNum > vaginas.length || vaginaNum < 0) return "ERROR, INVALID PUSSY";
+			else return vaginaNoun(vaginas[vaginaNum].type);
 		}
 		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
 			var vag: String = "";
@@ -6716,8 +6736,7 @@
 				if (!simple) {
 					temp = this.rand(5);
 					if (temp <= 1) vag += "human ";
-					else if (temp <= 3) vag += "terran ";
-					else vag += "pink ";
+					else vag += "terran ";
 				}
 				temp = this.rand(16);
 				if (temp <= 2) vag += "vagina";

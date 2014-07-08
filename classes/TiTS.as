@@ -202,7 +202,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.02.38";
+			version = "0.02.39";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -355,6 +355,16 @@
 			}
 			
 			userInterface.updateTooltip((evt.currentTarget as DisplayObject));
+		}
+		
+		public function showBust(... args):void
+		{
+			userInterface.showBust.apply(null, args);
+		}
+		
+		public function showName(name:String):void
+		{
+			userInterface.showName(name);
 		}
 		
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void

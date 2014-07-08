@@ -295,7 +295,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	else if(!pc.hasFlatNipples())
 	{
 		output("\n\nYour [pc.nipples] are so hard that the feel of moisture running down them is something you're VERY keenly aware of. The suckling tubes latch onto them at once and start to pulsate, rippling up and down their lengths as they rhythmically tug and pull, trying to milk your poor nips dry.");
-		if(!pc.isLactating()) {
+		if(!pc.canLactate()) {
 			output(" Unfortunately for this plant lady, you aren't lacta.... Ooohhh, why does that feel so good! Something is coming out of your breasts in drips and dribbles, sometimes even small bursts. The flow gradually increases whenever you gulp down another throat-full of sticky plant-juice, and your [pc.chest] puffs up slightly, expanding under the weight of your burgeoning milk supply. It feels good enough that you're thankful for the restraints - without them, you'd be flopping around like fish out of water.");
 		}
 		else 
@@ -788,7 +788,7 @@ function elderVenusPitchersDickplay():void {
 		}
 		output("in your groin, just behind your [pc.cocks]");
 		output(". The heat of your orgasm returns in a vengeance, causing you to sputter off the nipple and cry out. Suction begins again at your groin, drinking of the fresh wave of [pc.cum] that your body produces. Your head is jammed back onto the nipple insistently, and you drink for what feels like minutes, cumming and swallowing for what feels like hours.");
-		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thist....");
+		output("\n\nEventually, you lose consciousness, but the [pc.cumColor] flow keeps going, feeding the plant woman’s insatiable thirst....");
 		//{Good boost to cum quantity and skip to end}
 		pc.ballEfficiency += 2;
 		pc.cumMultiplierRaw += 2;
@@ -1256,7 +1256,7 @@ public function rumblyInYourTummy():void
 
 	//Increase bellymod to 14 * amount
 	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
-	pc.bellyRatingMod += 2 * pData.pregnancyQuantity;
+	pc.bellyRatingMod = 14 * pData.pregnancyQuantity;
 	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
 }
 
@@ -1276,7 +1276,7 @@ public function poppingSoonAlert2():void
 	eventBuffer += "\n\nYou'll be laying soon; you're sure of it. Your [pc.vaginas]";
 	if (pc.totalVaginas() > 1) eventBuffer += " have";
 	else eventBuffer += " has" 
-	eventBuffer += "grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";
+	eventBuffer += " grown wetter and eager. The birth-slime is practically dripping out of you nonstop at this point. All you need to do is protect the children inside you - the beautiful creatures just waiting to grow up into elegant venus pitchers. You just have to stay somewhere good for them, then spread yourself and allow them to root. It is a simple fact of existence, one that's making you wetter by the second.";
 }
 
 public function layFertilizedVenusPitcherEgg():void
@@ -1300,7 +1300,7 @@ public function layFertilizedVenusPitcherEgg():void
 	}
 
 	//24 hours after fertilization and every four hours after the first. (so 24, 28, 32, until the PC's womb empties)
-	output("It's time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
+	output("It is time. The way the seedlings are squirming inside you is all the evidence you need. You feel as if you've trained for this");
 	if (flags["LAID VENUS PITCHER SEEDS"] != undefined) output(", but that's likely just experience talking. You do so love to let the pitchers use your body as a nesting ground.");
 	else output(".");
 

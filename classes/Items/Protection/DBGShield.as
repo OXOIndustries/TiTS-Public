@@ -28,20 +28,20 @@ package classes.Items.Protection
 			this.description = "a Delta Borite-Gavlon shield emitter";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "It could be said that, in many ways, GDN systems development of their personal defense shielding technology was a game changer... almost as if their devices, the DBG ranked amongst them, could dramatically unbalance the playing field.";
+			this.tooltip = "It could be said that, in many ways, GDN systems development of their personal defense shielding technology was a game changer... almost as if their devices, the DBG ranked amongst them, could dramatically unbalance the playing field.\n\nThat is until the item had served its purpose for debugging item tooltips. Now it's little more than a pile of barely functional junk.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 50;
+			this.basePrice = 1;
 			this.attack = 0;
 			this.damage = 0;
 			this.damageType = GLOBAL.PIERCING;
 			this.defense = 0;
 			this.shieldDefense = 0;
-			this.shields = 500;
+			this.shields = 1;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;

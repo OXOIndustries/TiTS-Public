@@ -210,9 +210,13 @@ function pcDefeatsGrayGooInTheNameOfLove():void
 			if(pc.cockTotal() > 1) addButton(2,"MultiFuck",multiCockMayhem,undefined,"Multicock Fuck","Use multiple dicks on her simultaneously.")
 			else addDisabledButton(2,"MultiFuck");
 		}
-		else addDisabledButton(1,"MutualFap");
+		else
+		{
+			addDisabledButton(1, "MutualFap", "Mutual Masturbation", "If only you had a cock....");
+			addDisabledButton(2, "MultiFuck", "Multicock Fuck", "If only you had a pair of cocks....");
+		}
 		if(pc.hasVagina()) addButton(3,"Catch: DP",divideAndConquerGinasWithGoos,undefined,"Catch: Double Penetration","Get the goo to divide and take you both ways at once!");
-		else addDisabledButton(3,"Catch: DP");
+		else addDisabledButton(3,"Catch: DP", "Catch: Double Penetration", "If only you had a vagina....");
 	}
 	else
 	{
@@ -283,7 +287,7 @@ function takeASampleOfTheGrayGoo():void {
 
 function getSomeGrayGoo():void {
 	clearOutput();
-	output("That vial of honey is still here.\n\n");
+	output("That gray vial of microbots is still here.\n\n");
 	var foundLootItems:Array = new Array();
 	foundLootItems[foundLootItems.length] = new GrayMicrobots();
 	itemScreen = mainGameMenu;
@@ -645,7 +649,7 @@ function cockVariantForGrayGooKirbutashis():void
 	cockChange();
 
 	output("\n\nYou lose yourself in the frantic fuck, bombarded by the dual sensations of your silver skin shifting against your dick and the broadcasted feeling of said skin rubbing against the firm, ribbed makeshift toy. The longer it goes on, the tighter the goo feels around your [pc.cockBiggest]. Something about this is sending the goo girl out into orbit, you figure. She must be enjoying a similar sensory overload of her own. Each thrust is stronger than the last. The customized toy fits you perfectly, covering your prick right down to the hilt at maximum pound.");
-	output("\n\nThe yearn to climax has about knocked you out. Your overwrought senses fell off a cliff back when the goo girl turned your cock into a sculpting tool. But the silver computer made of slime really is the captain of this ship after all. And it just so happens that she’s now ready to turn hard to port. She rams your tool deep in the silver mound and the floodgates burst open. Your silver-coated body convulses over each orgasm. There’s no keeping count in either of the pleasure-pounded minds, just a seemingly unending series of releases. The silver toy turns a shade of [pc.cumcolor] as its saturated by your relief.");
+	output("\n\nThe yearn to climax has about knocked you out. Your overwrought senses fell off a cliff back when the goo girl turned your cock into a sculpting tool. But the silver computer made of slime really is the captain of this ship after all. And it just so happens that she’s now ready to turn hard to port. She rams your tool deep in the silver mound and the floodgates burst open. Your silver-coated body convulses over each orgasm. There’s no keeping count in either of the pleasure-pounded minds, just a seemingly unending series of releases. The silver toy turns a shade of [pc.cumColor] as its saturated by your relief.");
 	output("\n\nYou aren’t sure who’s in control for a moment. The two of you merely bask in an afterglow, paralyzed with your [pc.cockBiggest] still lodged inside what once appeared to be a sculpted onahole.");
 	output("\n\n<i>“Wow. What a meal,”</i> you’re finally forced to say. <i>“I... I didn’t expect this little experiment to give such a jolt.”</i>");
 	output("\n\nThe [pc.cumcolor]-colored blob sinks into your cock to rejoin its brethren. The rushing sensation is quite pleasurable.");

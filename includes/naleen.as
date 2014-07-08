@@ -168,7 +168,7 @@ function biteAttack():void {
 		output(" You manage to avoid " + attacker.a + possessive(attacker.short) + " bite!");
 	}
 	else {
-		output("The nalenn sinks her teeth into you, twin fangs piercing your tender [pc.skin]. You grint in pain, but that's replaced a moment later by an overwhelming feeling of calm, of peace, of slow dreariness. You just want to curl up in a ball and take a nap. Maybe with a beautiful kitty-snake to ");
+		output("The nalenn sinks her teeth into you, twin fangs piercing your tender [pc.skin]. You grunt in pain, but that's replaced a moment later by an overwhelming feeling of calm, of peace, of slow dreariness. You just want to curl up in a ball and take a nap. Maybe with a beautiful kitty-snake to ");
 		if(pc.hasCock()) output("stroke you off");
 		else if(pc.hasVagina()) output("eat you out");
 		else output("fuck your ass with her big tail");

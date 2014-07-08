@@ -55,7 +55,7 @@ function approachVKo(showShit:Boolean = true):void {
 	{
 		if(showShit)
 		{
-			output("V-Ko smiles disarmingly at you as you approach. <i>\"Your biosigns identify you as [pc.short] Steele. How may I serve your needs today?\"</i> She seems blissfully aware of the implications of her statement, beaming with what seems to be a genuine desire to assist you.");
+			output("V-Ko smiles disarmingly at you as you approach. <i>\"Your biosigns identify you as [pc.short] Steele. How may I serve your needs today?\"</i> She seems blissfully unaware of the implications of her statement, beaming with what seems to be a genuine desire to assist you.");
 			//Uninjured
 			if(pc.HP() >= pc.HPMax()) output("\n\n<i>\"You appear in good health, but my other services are available if you need to purchase supplies or require treatment of potential diseases.\"</i>");
 			//Slightly Injured
@@ -734,7 +734,7 @@ function agreeToElectroStim():void
 		output("\n\nYou feel her gently pet your [pc.tails], stroking and measuring their girth.");
 		//if cocktail: 
 		if(pc.hasCockTail()) output(" It feels good, you can already feel the [pc.tailCockHeads] of your [pc.tailCocks] hardening.");
-		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailcunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
+		if(pc.hasTailCunt()) output(" Moisture drips from your [pc.tailCunts] as she strokes you. The anticipation for what’s to follow is enough to almost make you giddy.");
 		output(" V-Ko procures " + num2Text(pc.tailCount) + " ring");
 		if(pc.tailCount > 1) output("s");
 		output(" from her case and bring them over. She attaches ");

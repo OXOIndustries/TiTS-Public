@@ -835,7 +835,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		else output("lusty");
 		output(" form, his mouth opens into a predatory grin.");
 
-		output("\n\n<i>“You invaders are all the same. Take away your walls and your guns, and you are all wimps,”</i>  he mocks you. <i>“But you did put up a decent struggle; it was fun, so this, time I’ll spare you,”</i>  he says, coiling his body around himself.");
+		output("\n\n<i>“You invaders are all the same. Take away your walls and your guns, and you are all wimps,”</i>  he mocks you. <i>“But you did put up a decent struggle; it was fun, so this time I’ll spare you,”</i>  he says, coiling his body around himself.");
 
 		output("\n\nYou begin to pick yourself up, shakily climbing to your [pc.feet] in order to leave when you find yourself roughly pushed on your back. You struggle to keep your footing, but are too dazed to avoid falling down.");
 

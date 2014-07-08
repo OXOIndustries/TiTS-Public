@@ -1,5 +1,8 @@
 ﻿package classes.DataManager 
 {
+	import classes.Items.Apparel.TSTArmor;
+	import classes.Items.Miscellaneous.PHAccess;
+	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
 	import classes.ShipClass;
 	import flash.display.Shader;
@@ -23,18 +26,19 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		protected static const LATEST_SAVE_VERSION:int = 12;
-		protected static const MINIMUM_SAVE_VERSION:int = 6;
+		private static const LATEST_SAVE_VERSION:int = 13;
+		private static const MINIMUM_SAVE_VERSION:int = 6;
 		
-		protected var _autoSaveEnabled:Boolean = false;
-		protected var _lastManualDataSlot:int = -1;
+		private var _autoSaveEnabled:Boolean = false;
+		private var _lastManualDataSlot:int = -1;
 		
-		protected var _debug:Boolean = true;
+		private var _debug:Boolean = true;
 		
 		public function DataManager() 
 		{
 			// This is some bullshit workaround to ensure classes are compiled into the packages so they'll be available later -- This is stupid and bullshit, but there needs to be an *explict* reference to a class somewhere in the code
 			// For it to actually be compiled.
+			
 			var sv1:SaveVersionUpgrader1;
 			var sv2:SaveVersionUpgrader2;
 			var sv3:SaveVersionUpgrader3;
@@ -46,6 +50,12 @@
 			var sv9:SaveVersionUpgrader9;
 			var sv10:SaveVersionUpgrader10;
 			var sv11:SaveVersionUpgrader11;
+			var sv12:SaveVersionUpgrader12;
+			
+			// I'm putting this fucking thing here for the same reason.
+			var dbgShield:DBGShield;
+			var tstArmor:TSTArmor;
+			var phAccess:PHAccess;
 		}
 		
 		/**

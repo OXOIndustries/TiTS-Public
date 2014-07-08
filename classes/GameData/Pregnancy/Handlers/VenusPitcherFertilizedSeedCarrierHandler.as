@@ -142,7 +142,7 @@ package classes.GameData.Pregnancy.Handlers
 			else if (pData.pregnancyQuantity >= 3)
 			{
 				// First one (minimum) is done, trepidation at the rest
-				retString = "Your belly is still clearly distended by your pregnancy, the venus pitcher seed pods stuffing your womb throughly. Birthing the pods is an arduous task, but some part of you looks forward to the next time you can experience the process. ";
+				retString = "Your belly is still clearly distended by your pregnancy, the venus pitcher seed pods stuffing your womb thoroughly. Birthing the pods is an arduous task, but some part of you looks forward to the next time you can experience the process. ";
 			}
 			else if (pData.pregnancyQuantity == 1)
 			{
@@ -182,7 +182,6 @@ package classes.GameData.Pregnancy.Handlers
 					retString += "Hints of slime leak down your thighs, your [pc.vagina] preparing itself for the upcoming task the venus pitchers have burdened your womb with.";
 				}
 			}
-			
 			return retString;
 		}
 	}

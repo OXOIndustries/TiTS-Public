@@ -1,7 +1,9 @@
-﻿import classes.Characters.Mimbrane;
+﻿import classes.Characters.GrayGoo;
+import classes.Characters.Mimbrane;
 import classes.Characters.PhoenixPirates;
 import classes.Creature;
 import classes.Items.Guns.Goovolver;
+import classes.Items.Miscellaneous.GrayMicrobots;
 
 //Tracks what NPC in combat we are on. 0 = PC, 1 = first NPC, 2 = second NPC, 3 = fourth NPC... totalNPCs + 1 = status tic
 
@@ -123,21 +125,25 @@ function specialsMenu():void {
 	if(pc.characterClass == GLOBAL.MERCENARY)
 	{
 		//EVERYONE HAS
-		if(pc.energy() >= 25) addButton(0,"Headbutt",attackRouter,headbutt,"Headbutt","A physique-based attack that does not factor in weapon damage but has a chance of stunning your target.\n\nConsumes 25 energy.");
-		else addDisabledButton(0,"Headbutt");
+		if(pc.energy() >= 25) addButton(offset,"Headbutt",attackRouter,headbutt,"Headbutt","A physique-based attack that does not factor in weapon damage but has a chance of stunning your target.\n\nConsumes 25 energy.");
+		else addDisabledButton(offset, "Headbutt");
+		offset++;
 		
 		//EITHER OR!
 		if(pc.hasPerk("Rapid Fire"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
-			else addDisabledButton(1,"Rapid Fire");
+			if(pc.energy() >= 20) addButton(offset,"Rapid Fire",attackRouter,rapidFire,"Rapid Fire","Perform a long range attack with two additional, low accuracy shots following it.\n\nConsumes 20 energy.");
+			else addDisabledButton(offset, "Rapid Fire");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Power Strike"))
 		{
-			if(pc.energy() >= 20) addButton(1,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
-			else addDisabledButton(1,"Power Strike");
+			if(pc.energy() >= 20) addButton(offset,"Power Strike",attackRouter,powerStrike,"Power Strike","Strike once with a melee weapon for double damage.\n\nConsumes 20 energy.");
+			else addDisabledButton(offset, "Power Strike");
+			offset++;
 		}
-		offset = 2;
+		
 		if(pc.hasPerk("Take Cover")) 
 		{
 			
@@ -145,18 +151,21 @@ function specialsMenu():void {
 			else addDisabledButton(offset,"Take Cover");
 			offset++;
 		}
+		
 		if (pc.hasPerk("Carpet Grenades"))
 		{
 			if(pc.energy() >= 25) addButton(offset,"Carpet Grenades",carpetGrenades,undefined,"Carpet Grenades","An attack that is extra effective against multiple foes. It deals thermal damage and is not tied into particular stat.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Carpet Grenades");
 			offset++;
 		}
+		
 		if(pc.hasPerk("Detonation Charge"))
 		{
 			if(pc.energy() >= 25) addButton(offset,"Det. Charge",attackRouter,detCharge,"Detonation Charge","Deals a moderate amount of thermal damage against a single foe.\n\nConsumes 25 energy.");
 			else addDisabledButton(offset,"Det. Charge");
 			offset++;
 		}
+		
 		if(pc.level >= 5)
 		{
 			if(!pc.hasStatusEffect("Used Second Wind")) addButton(offset,"Second Wind",secondWind,undefined,"Second Wind","Regenerate 50% of your maximum HP and energy once per battle! An invaluable ability for the mercenary in the field.");
@@ -164,81 +173,122 @@ function specialsMenu():void {
 			offset++;
 		}
 	}
-	else if(pc.characterClass == GLOBAL.ENGINEER) {
-		if(pc.energy() >= 25) addButton(0,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
-		else addDisabledButton(0,"P.Shock");
+	else if (pc.characterClass == GLOBAL.ENGINEER) 
+	{
+		if(pc.energy() >= 25) addButton(offset,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
+		else addDisabledButton(offset, "P.Shock");
+		offset++;
+		
 		if(pc.hasPerk("Volley")) 
 		{
-			if(pc.energy() >= 20) addButton(1,"Volley",attackRouter,volley,"Volley","An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
-			else addDisabledButton(1,"Volley");
+			if (pc.energy() >= 20) addButton(offset, "Volley", attackRouter, volley, "Volley", "An attack that allows you to fire your gun one additional time at lowered accuracy. Players with higher aim will notice the attack has a higher chance of blinding of the target.\n\nConsumes 20 energy.");
+			else addDisabledButton(offset, "Volley");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Overcharge"))
 		{
 			if(pc.rangedWeapon.damageType == GLOBAL.KINETIC || pc.rangedWeapon.damageType == GLOBAL.SLASHING || pc.rangedWeapon.damageType == GLOBAL.PIERCING)
 			{
-				addDisabledButton(1,"Overcharge","Overcharge","Only energy weapons may be overcharged.");
+				addDisabledButton(offset,"Overcharge","Overcharge","Only energy weapons may be overcharged.");
 			}
 			else
 			{
-				if(pc.energy() >= 20) addButton(1,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 25 energy.");
-				else addDisabledButton(1,"Overcharge","Overcharge","You do not have enough energy to use Overcharge.");
+				if(pc.energy() >= 20) addButton(offset,"Overcharge",attackRouter,overcharge,"Overcharge","A powerful ranged attack, Overcharge deals 150% damage and has a chance of stunning. Higher aim increases the chance of successfully stunning your foe.\n\nConsumes 20 energy.");
+				else addDisabledButton(offset, "Overcharge", "Overcharge", "You do not have enough energy to use Overcharge.");
 			}
+			offset++;
 		}
+		
 		if(pc.hasPerk("Deflector Regeneration"))
 		{
-			if(pc.energy() >= 20) addButton(2,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","Restores a portion of your shields every turn. Higher intelligence characters will regain even more shields per turn.\n\nConsumes 20 energy.");
-			else addDisabledButton(2,"D. Regen.");
+			if(pc.energy() >= 20) addButton(offset,"D. Regen.",deflectorRegeneration,pc,"Deflector Regeneration","Restores a portion of your shields every turn. Higher intelligence characters will regain even more shields per turn.\n\nConsumes 20 energy.");
+			else addDisabledButton(offset, "D. Regen.");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Power Surge"))
 		{
-			if(pc.energy() >= 33) addButton(2,"P. Surge",powerSurge,pc,"Power Surge","Restores a moderate amount of shields based on intelligence.\n\nConsumes 33 energy.");
-			else addDisabledButton(2,"P. Surge");
+			if(pc.energy() >= 33) addButton(offset,"P. Surge",powerSurge,pc,"Power Surge","Restores a moderate amount of shields based on intelligence.\n\nConsumes 33 energy.");
+			else addDisabledButton(offset, "P. Surge");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Thermal Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(3,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
-			else addDisabledButton(3,"T. Disrupt.");
+			if(pc.energy() >= 25) addButton(offset,"T. Disrupt.",attackRouter,thermalDisruptor,"Thermal Disruptor","Deals a large amount of intelligence-based thermal damage to a single target.\n\nConsumes 25 energy.");
+			else addDisabledButton(offset, "T. Disrupt.");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Gravidic Disruptor"))
 		{
-			if(pc.energy() >= 25) addButton(3,"G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
-			else addDisabledButton(3,"G. Disrupt.");
+			if(pc.energy() >= 25) addButton(offset, "G. Disrupt.",attackRouter,gravidicDisruptor,"Gravitic Disruptor","Deals a moderate amount of intelligence-based gravitic damage to a single target.\n\nConsumes 25 energy.");
+			else addDisabledButton(offset, "G. Disrupt.");
+			offset++;
 		}
 	}
 	else if(pc.characterClass == GLOBAL.SMUGGLER)
 	{
 		if(silly)
 		{
-			if(pc.energy() >= 10) addButton(0,"P.Sand",attackRouter,flashGrenade,"Pocket Sand","Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.\n\nConsumes 10 energy.");
-			else addDisabledButton(0,"P.Sand");
+			if(pc.energy() >= 10) addButton(offset,"P.Sand",attackRouter,flashGrenade,"Pocket Sand","Produce some sand from your level and use it to blind your enemies! Better aim will help you land the attack.\n\nConsumes 10 energy.");
+			else addDisabledButton(offset, "P.Sand");
+			offset++;
 		}
 		else
 		{
-			if(pc.energy() >= 10) addButton(0,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","Produce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.\n\nConsumes 10 energy.");
-			else addDisabledButton(0,"F.Grenade");	
+			if(pc.energy() >= 10) addButton(offset,"F.Grenade",attackRouter,flashGrenade,"Flash Grenade","Produce a rechargible flash grenade and use it to blind your enemy. Better aim will increase the chance of success.\n\nConsumes 10 energy.");
+			else addDisabledButton(offset, "F.Grenade");	
+			offset++;
 		}
+		
 		if(pc.hasPerk("Low Blow"))
 		{
-			if(pc.energy() >= 15) addButton(1,"Low Blow",attackRouter,lowBlow,"Low Blow","A melee strike with an aim-based chance of stunning your target.\n\nConsumes 15 energy.");
-			else addDisabledButton(1,"Low Blow");	
+			if(pc.energy() >= 15) addButton(offset,"Low Blow",attackRouter,lowBlow,"Low Blow","A melee strike with an aim-based chance of stunning your target.\n\nConsumes 15 energy.");
+			else addDisabledButton(offset, "Low Blow");	
+			offset++;
 		}
-		if(pc.hasPerk("Disarming Shot")) {
-			if(pc.energy() >= 20) addButton(2,"Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
-			else addDisabledButton(2,"Disarm Shot");	
+		
+		if (pc.hasPerk("Disarming Shot")) 
+		{
+			if(pc.energy() >= 20) addButton(offset, "Disarm Shot",attackRouter,disarmingShot,"Disarming Shot","Disarms your foe, preventing them from making use of melee or ranged weapons for turn.\n\nConsumes 15 energy.");
+			else addDisabledButton(offset, "Disarm Shot");	
+			offset++;
 		}
-		if(pc.hasPerk("Stealth Field Generator")) {
-			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(2,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","Creates a stealth field that greatly increases your evasion for a few turns.");
-			else addDisabledButton(2,"Stealth Field");	
+		
+		if (pc.hasPerk("Stealth Field Generator")) 
+		{
+			if(pc.energy() >= 20 && !pc.hasStatusEffect("Stealth Field Generator")) addButton(offset,"Stealth Field",stealthFieldActivation,undefined,"Stealth Field","Creates a stealth field that greatly increases your evasion for a few turns.");
+			else addDisabledButton(offset, "Stealth Field");
+			offset++;
 		}
+		
 		if(pc.hasPerk("Grenade"))
 		{
-			if(pc.energy() >= 25) addButton(3,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
-			else addDisabledButton(3,"Grenade");	
+			if(pc.energy() >= 25) addButton(offset,"Grenade",attackRouter,grenade,"Grenade","Does a moderate amount of thermal damage to a single opponent.\n\nConsumes 25 energy.");
+			else addDisabledButton(offset, "Grenade");	
+			offset++;
 		}
+		
 		if(pc.hasPerk("Gas Grenade"))
 		{
-			if(pc.energy() >= 25) addButton(3,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
-			else addDisabledButton(3,"Gas Grenade");	
+			if(pc.energy() >= 25) addButton(offset,"Gas Grenade",attackRouter,gasGrenade,"Gas Grenade","An unavoidable attack that deals a fair amount of lust damage.\n\nConsumes 25 energy.");
+			else addDisabledButton(offset, "Gas Grenade");	
+			offset++;
+		}
+	}
+	
+	// Shared Specials!
+	if (pc.hasKeyItem("Goozooka"))
+	{
+		if (!pc.hasItem(new GrayMicrobots()))
+		{
+			addDisabledButton(offset, "Goozooka", "Fire Goozooka", "You don't have any Gray Goo samples to use as ammunition for the Goozoka.");
+		}
+		else
+		{
+			addButton(offset, "Goozooka", attackRouter, goozookaCannon, "Fire Goozooka", "Fire a Gray Goo at your enemy for the princely sum of a single sample of Gray Microbots.");
 		}
 	}
 }
@@ -599,12 +649,15 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 	if(target.hasPerk("Melee Immune")) return true;
 	return false;
 }
-function rangedCombatMiss(attacker:Creature, target:Creature):Boolean 
+function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1):Boolean 
 {
+	if (overrideAttack == -1) overrideAttack = attacker.rangedWeapon.attack;
+	
 	//Immune!
-	if(target.hasPerk("Ranged Immune")) return true;
+	if (target.hasPerk("Ranged Immune")) return true;
+	
 	//Standard miss chance
-	if(rand(100) + attacker.aim()/5 + attacker.rangedWeapon.attack - target.reflexes()/3 < 10 && !target.isImmobilized()) 
+	if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 && !target.isImmobilized()) 
 	{
 		return true;
 	}
@@ -2430,6 +2483,54 @@ function gasGrenade(target:Creature):void
 	output(teaseReactions(damage,target));
 	target.lustDamage(damage);
 	output(" ("+ damage + ")\n");
+	processCombat();
+}
+
+function goozookaCannon(target:Creature):void
+{
+	clearOutput();
+	pc.destroyItem(new GrayMicrobots(), 1);
+	
+	output("You pull the goo launcher from over your shoulder and slam a vial of Gray Goo into the back. You brace yourself, sighting in on your target and flipping the ON switch. The launcher beeps, and you pull the trigger, sending a great big blob of gray goop hurtling toward your opponent!");
+	
+	if (rangedCombatMiss(pc, target, 0))
+	{
+		// Missed
+		output("\n\nBut the goo sample goes wide, splattering on the ground a little ways away. A moment later, a miniature gray googirl congeals from the mess, looks around, and starts hauling ass away from the fight. Whoops.");
+	}
+	else
+	{
+		// Hit
+		if (target is GrayGoo)
+		{
+			output("\n\nAlthough you probably should have thought this plan through a little better before actioning it; firing Gray Goo samples <i>at a Gray Goo</i> might not have been the smartest choice. All you seem to have achieved is bolstering the strength of your foe!\n");
+			
+			var heal:Number = target.HPMax() * 0.2;
+			if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
+			
+			var damage:Number = 5 * target.lustVuln;
+			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
+			
+			output("The Gray Goo absorbs her smaller twin on contact.");
+			output(" (Heals " + heal + ")");
+			output(" (Lust Damage " + damage + ")\n");
+			
+			target.HP(heal);
+			target.lust(damage);
+		}
+		else
+		{
+			output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
+		
+			var damage:Number = 33 * target.lustVuln;
+			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
+			damage = Math.ceil(damage);
+			output(teaseReactions(damage, target));
+			target.lustDamage(damage);
+			output(" (" + damage + ")\n");
+		}
+	}
+	
 	processCombat();
 }
 
