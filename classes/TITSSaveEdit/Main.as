@@ -4,6 +4,8 @@ package classes.TITSSaveEdit
 	import flash.events.Event;
 	import classes.TITSSaveEdit.UI.SEUserInterface;
 	import classes.TITSSaveEdit.Data.SEDataManager;
+	import flash.events.MouseEvent;
+	import classes.UIComponents.MainButton;
 	
 	/**
 	 * ...
@@ -36,8 +38,34 @@ package classes.TITSSaveEdit
 			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			
-			data = new SEDataManager();
+			ui.loadButton.addEventListener(MouseEvent.CLICK, buttonFunc);
+			ui.importButton.addEventListener(MouseEvent.CLICK, buttonFunc);
+			ui.saveButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			
+			data = new SEDataManager();
+			stage.addChild(data);
+			data.x = 200;
+		}
+		
+		public function buttonFunc(evt:MouseEvent = null):void 
+		{
+			if (evt.currentTarget is MainButton)
+			{
+				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
+			}
+			else
+			{
+				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			}
+			
+			if (evt.currentTarget.arg == undefined)
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
+			}
+			else
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
+			}
 		}
 		
 		private function loadTitsSave():void
