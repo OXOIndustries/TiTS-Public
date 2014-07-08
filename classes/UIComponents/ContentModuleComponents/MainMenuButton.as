@@ -99,16 +99,30 @@ package classes.UIComponents.ContentModuleComponents
 			}
 		}
 		
+		public function Disable():void
+		{
+			_toggledOn = false;
+			_background.transform.colorTransform = UIStyleSettings.gForegroundColourTransform;
+			this.alpha = 0.3;
+			this.buttonMode = false;
+			
+		}
+		
 		public function Highlight():void
 		{
 			_toggledOn = true;
 			_background.transform.colorTransform = UIStyleSettings.gMovementButtonColourTransform;
+			this.alpha = 1;
+			this.buttonMode = true;
+			
 		}
 		
 		public function DeHighlight():void
 		{
 			_toggledOn = false;
 			_background.transform.colorTransform = UIStyleSettings.gForegroundColourTransform;
+			this.alpha = 1;
+			this.buttonMode = true;
 		}
 	}
 

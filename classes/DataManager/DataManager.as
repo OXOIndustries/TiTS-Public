@@ -23,13 +23,13 @@
 	public class DataManager 
 	{
 		// Define the current version of save games.
-		private static const LATEST_SAVE_VERSION:int = 12;
-		private static const MINIMUM_SAVE_VERSION:int = 6;
+		protected static const LATEST_SAVE_VERSION:int = 12;
+		protected static const MINIMUM_SAVE_VERSION:int = 6;
 		
-		private var _autoSaveEnabled:Boolean = false;
-		private var _lastManualDataSlot:int = -1;
+		protected var _autoSaveEnabled:Boolean = false;
+		protected var _lastManualDataSlot:int = -1;
 		
-		private var _debug:Boolean = true;
+		protected var _debug:Boolean = true;
 		
 		public function DataManager() 
 		{

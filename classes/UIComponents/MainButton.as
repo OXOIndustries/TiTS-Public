@@ -100,6 +100,7 @@ package classes.UIComponents
 		
 		public static const BLUE_BUTTON:int = 1;
 		public static const PURPLE_BUTTON:int = 2;
+		public static const FOREGROUND_BUTTON:int = 3;
 		
 		/**
 		 * Default display settings
@@ -288,10 +289,26 @@ package classes.UIComponents
 			setColour(PURPLE_BUTTON);
 		}
 		
+		public function setLightBlue():void
+		{
+			setColour(FOREGROUND_BUTTON);
+		}
+		
 		private function setColour(type:int):void
 		{
 			var clrTrans:ColorTransform = new ColorTransform();
-			clrTrans.color = (type == BLUE_BUTTON) ? UIStyleSettings.gForegroundColour : UIStyleSettings.gMovementButtonColour;
+			if (type == BLUE_BUTTON)
+			{
+				clrTrans.color = UIStyleSettings.gForegroundColour;
+			}
+			else if (type == PURPLE_BUTTON)
+			{
+				clrTrans.color = UIStyleSettings.gMovementButtonColour;
+			}
+			else if (type == FOREGROUND_BUTTON)
+			{
+				clrTrans.color = UIStyleSettings.gBackgroundColour;
+			}
 
 			_buttonBody.transform.colorTransform = clrTrans;
 		}
