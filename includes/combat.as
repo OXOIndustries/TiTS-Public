@@ -1345,12 +1345,14 @@ function enemyAI(aggressor:Creature):void
 		case "Tams and turrets":
 			tamtamtamtamtamtamAI();
 			break;
+		case "rocket pods":
+			rocketPodAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
 	}
 }
-
 function victoryRouting():void 
 {
 	hideNPCStats();
@@ -1419,6 +1421,10 @@ function victoryRouting():void
 	else if (foes[0] is GunTurrets)
 	{
 		tamtamGetsPunkedByPCs();
+	}
+	else if (foes[0] is RocketTurrets)
+	{
+		pcBeatsRocketPods();
 	}
 	else genericVictory();
 }
@@ -1489,6 +1495,10 @@ function defeatRouting():void
 	else if (foes[0] is GunTurrets)
 	{
 		tamtamBadEndPetPooch();
+	}
+	else if (foes[0] is RocketTurrets)
+	{
+		pcLosesToRocketPods();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1697,6 +1707,9 @@ function startCombat(encounter:String):void
 			break;
 		case "auto-turrets":
 			chars["AUTOTURRETS"].prepForCombat();
+			break;
+		case "rocket pods":
+			chars["ROCKETPODS"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2334,7 +2347,7 @@ function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
-	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"Regeneration","You are recovering some of your shields every round",true,0);
+	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
 	processCombat();
 }
 

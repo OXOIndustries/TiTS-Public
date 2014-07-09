@@ -1,4 +1,4 @@
-import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.PlayerCharacter;
 
 
 function initializeRooms():void 
@@ -2523,12 +2523,31 @@ function initializeRooms():void
 	rooms["352"].description = "A short flight of stairs leads down from the Lift Station's entrance to the engineering deck, a dark room surrounded by thrumming machinery and readouts from all over the station. You can clearly see the lift controls, now set to ";
 	rooms["352"].runOnEnter = liftStationEngineeringDeckBonusFunc;
 	rooms["352"].westExit = "351";
+	rooms["352"].eastExit = "353";
 	rooms["352"].planet = "PLANET: TARKUS";
 	rooms["352"].system = "SYSTEM: REDACTED";
 	rooms["352"].addFlag(GLOBAL.OUTDOOR);
 	rooms["352"].addFlag(GLOBAL.HAZARD);
 
+	rooms["353"] = new RoomClass(this);
+	rooms["353"].roomName = "LIFT\nSTATION";
+	rooms["353"].description = "Just beyond the control station is the huge cargo elevator leading down into the chasm between worlds. Large enough for a couple of cargo freighters to ride down side by side together, the cargo lift is currently stacked with crates and heavy equipment, doubtless intended for the tether station at the core. Stepping forward, you can see the elevator tracks leading down almost beyond sight, deep into the planetary heart.\n\nBeside the cargo lift, though, is a much smaller personnel elevator: a glass-encased car on a straight rail down to the station below, just big enough for a dozen workers or so to cram into. That's your ticket down.";
+	rooms["353"].runOnEnter = bombAlertBonusFunction;
+	rooms["353"].westExit = "352";
+	rooms["353"].planet = "PLANET: TARKUS";
+	rooms["353"].system = "SYSTEM: REDACTED";
+	rooms["353"].addFlag(GLOBAL.OUTDOOR);
+	rooms["353"].addFlag(GLOBAL.HAZARD);
 
+	rooms["354"] = new RoomClass(this);
+	rooms["354"].roomName = "CORE\nWALKWAY";
+	rooms["354"].description = "The walkway connecting the lift and the tether control station is a long, thin passageway overlooking the great planetary rift through the heart of Tarkus. With every step, it shifts precariously on its supports";
+	rooms["354"].runOnEnter = coreWalkWayBonus;
+	//rooms["354"].westExit = "352";
+	rooms["354"].planet = "PLANET: TARKUS";
+	rooms["354"].system = "SYSTEM: REDACTED";
+	rooms["354"].addFlag(GLOBAL.OUTDOOR);
+	rooms["354"].addFlag(GLOBAL.HAZARD);
 
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);

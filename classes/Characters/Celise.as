@@ -139,6 +139,7 @@
 			this.vaginas[0].wetnessRaw = 5;
 			this.vaginas[0].loosenessRaw = 1;
 			this.vaginas[0].bonusCapacity = 10;
+			this.vaginas[0].vaginaColor = "green";
 			//Goo is hyper friendly!
 			this.elasticity = 100;
 			//Fertility is a % out of 100. 

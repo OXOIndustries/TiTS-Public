@@ -92,6 +92,11 @@ function liftStationBonus():Boolean
 		return true;
 	}
 	else output("\n\nYou're surrounded by debris from your fight with cat-girl's drones: the floor is littered with drone parts and scattered bits of armor plating and wire. The walls are covered with bullet holes and carbon burns from laser fire: it looks like a war zone in here.");
+	//If you don't know about the bomb, oh shit.
+	if(flags["TARKUS_BOMB_TIMER"] == undefined && flags["TAM_DISABLE_METHOD"] != undefined)
+	{
+		if(bombAlertBonusFunction()) return true;
+	}
 	return false;
 }
 
@@ -537,8 +542,6 @@ function yesTechSpecialistsTakeTamWulf():void
 //Tam-wolf as a Drone Replacement
 //Tooltip: Tam-wolf is a state of the art Fenris attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal, intelligent, and alert, you new robotic friend is the closest thing you can get to a real attack dog these days. He's replaced your original attack drone, giving you a powerful, bitey friend in battle.
 
-
-
 //Tam-Tam Bad End: The Crew's Pet Pooch
 function tamtamBadEndPetPooch():void
 {
@@ -669,40 +672,71 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	clearMenu();
 }
 
-/*
-Shit Gets Real, Here
-{First time PC tries to leave the engineering room}
+//Shit Gets Real, Here
+//{First time PC tries to leave the engineering room}
+//Fen note: Actually play overtop of the normal room descriptions in the next room. Horray, cheezing! ...also the other room
+function bombAlertBonusFunction():Boolean
+{
+	if(flags["TARKUS_BOMB_TIMER"] == undefined)
+	{
+		clearOutput();
+		output("As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red \"INCOMING\" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.");
+		output("\n\n<i>\"Tam, where the fuck are you, you lazy slut? Pick up!\"</i>");
+		output("\n\nWhen no answer is forthcoming, the figure sighs and scowls. <i>\"I hope you're recording this. Three hours until detonation. You better have your shit packed and ready to go before then.\"</i>");
+		output("\n\nThe figure winks out as the transmission cuts. Three hours? Oh, shit....");
+		processTime(1);
+		//Fen note: START ZE TIMAH 180 minutes. AKA: Don't fuck around too long.
+		flags["TARKUS_BOMB_TIMER"] = 180;
+		clearMenu();
+		//Reset position as you haven't really moved.
+		currentLocation = "352";
+		var map:* = mapper.generateMap(currentLocation);
+		this.userInterface.setMapData(map);
+		addButton(0,"Next",mainGameMenu);
+		return true;
+	}
+	if(currentLocation == "353") addButton(0,"LiftDown",liftDownEvent,undefined,"Down","Hop on the elevator and ride it down to the core.");
+	return false;
+}
 
-As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red "INCOMING" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.
+//[Lift Down] (First time: prepare for ass-assination)
+function liftDownEvent():void
+{
+	clearOutput();
+	if(flags["ROCKET_PODS_ENCOUNTERED"] == undefined)
+	{
+		output("You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. Quickly, the light of the ");
+		if(hours < 20 && hours >= 5) output("sun and ");
+		output("stars is blocked out by the rise of huge earthen cliff sides as you descend into the chasm. You step up to the glass fore of the car, squinting to see the tether station far below. You can't at first, but as time passes (and the elevator picks up speed), it comes into view. It's a large installation, circular, surrounded by a wide walkway with a lengthy bridge leading from the bottom of the lift tracks to the door of the station proper.");
 
-"Tam, where the fuck are you, you lazy slut? Pick up!"
+		output("\n\nWhat a long way down. You take a moment to catch your breath after the deadly shootout with that crazed cat-girl and her robotic friend; ");
+		if(pc.rangedWeapon.shortName != "" && pc.rangedWeapon.damageType == "GLOBAL.KINETIC") output("you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide");
+		else if(pc.rangedWeapon.shortName != "") output("you check the ammunition readings on your weapon, satisfied you're up for another encounter");
+		else output("you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]");
+		output(". Satisfied you're ready for a proper fight, you step back from the window and steel yourself from what's to come.");
 
-When no answer is forthcoming, the figure sighs and scowls. "I hope you're recording this. Three hours until detonation. You better have your shit packed and ready to go before then."
+		//output("\n\nAnd it comes much earlier than you expected.");
+		//output("\n\nAt first, you think you hear a loud gust of wind. As it grows louder, though, you finally step back up to the window to see what's wrong -- only to be thrown back a moment later as the front of the lift explodes in a shower of glass shards. You yell out, covering your eyes as a huge figure barrels into the lift with you, a fearsome warcry tearing from his lips. You leap to your feat, drawing down as the figure, a dark-skinned man, rises to his full height -- well over six feet -- and brandishes a pair of long, curved swords.");
+		//output("\n\nThe man scowls fiercely at you, eyes narrowed beneath a pair of thick, boney ridges. Indeed, beneath his light black armor, he seems to be covered with bone protrusions, intermixed with a network of scars from a thousand injuries. A kost'oran, than: fierce warriors, these. Over his shoulders, you see a jetpack still buzzing with life, ready to send him and his deadly blades hurtling into you.");
+		//output("\n\n<i>\"You're not making it to the core,\"</i> he says coldly, taking a stride forward and raising his blades in a battle post. <i>\"This ends here.\"</i>");
+		output("\n\nYou press your back to the edge of the cart, and ride it the rest of the way down, ready for anything now... but surprisingly, there's no further threat until you hear the elevator clicking into place at the base of the walkway.\n\nBy now, you're practically floating inside the elevator. It seems that the center of a planet is a bad place to go for walks. Luckily, a compartment on the side of the elevator opens, revealing a variety of electromagnetically charged boots, sleeves, and plates - gear for a variety of races to stick to the metal of the walkway.");
+		output("\n\nYou grab the most comfortable pair and settle into place, ready to go.");
+	}
+	else
+	{
+		output("You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. This trip is much like the last. You try and spend the time the admiring what passes for a view, mentally preparing yourself for whatever challenges remain at the bottom.");
+		output("\n\nGravity slowly fades, and you're sure to put on some of the electromagnetic equipment before it vanishes completely.")
+	}
+	processTime(25);
+	//Move the PC
+	currentLocation = "354";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-The figure winks out as the transmission cuts. Three hours? Oh, shit...
-//Fen note: START ZE TIMAH 180 minutes. AKA: Don't fuck around too long.
-
-The Lift
-
-Room Description, Topside
-Just beyond the control station is the huge cargo elevator leading down into the chasm between worlds. Large enough for a couple of cargo freighters to ride down side by side together, the cargo lift is currently stacked with crates and heavy equipment, doubtless intended for the tether station at the core. Stepping forward, you can see the elevator tracks leading down almost beyond sight, deep into the planetary heart. 
-
-Beside the cargo lift, though, is a much smaller personnel elevator: a glass-encased car on a straight rail down to the station below, just big enough for a dozen workers or so to cram into. That's your ticket down.
-
-[Lift Down] (First time: prepare for ass-assination)
-You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. Quickly, the light of the {sun and} stars is blocked out by the rise of huge earthen cliff sides as you descend into the chasm. You step up to the glass fore of the car, squinting to see the tether station far below. It's a large installation, circular, surrounded by a wide walkway with a lengthy bridge leading from the bottom of the lift tracks to the door of the station proper. 
-
-Long way down. You take a moment to catch your breath after the deadly shootout with that crazed cat-girl and her robotic friend; {if PC has a kinetic ranged weapon: "you drop the magazine from your [pc.rangedWeapon], slamming a new one home and racking the slide" // elseif energy weapon: "you twist the battery out of your [pc.rangedWeapon], checking to make sure you still have a good charge" //elseif no ranged weapon, "you rub a bit of the drones' machine oil off of your well-used [pc.meleeWeapon]"}. Satisfied you're ready for a proper fight, you step back from the window and steel yourself from what's to come.
-
-And it comes much earlier than you expected. 
-
-At first, you think you hear a loud gust of wind. As it grows louder, though, you finally step back up to the window to see what's wrong -- only to be thrown back a moment later as the front of the lift explodes in a shower of glass shards. You yell out, covering your eyes as a huge figure barrels into the lift with you, a fearsome warcry tearing from his lips. You leap to your feat, {drawing down / balling your fists} as the figure, a dark-skinned man, rises to his full height -- well over six feet -- and brandishes a pair of long, curved swords.
-
-The man scowls fiercely at you, eyes narrowed beneath a pair of thick, boney ridges. Indeed, beneath his light black armor, he seems to be covered with bone protrusions, intermixed with a network of scars from a thousand injuries. A kost'oran, than: fierce warriors, these. Over his shoulders, you see a jetpack still buzzing with life, ready to send him and his deadly blades hurtling into you. 
-
-"You're not making it to the core," he says coldly, taking a stride forward and raising his blades in a battle post. "This ends here." 
-
-Kost'oran Assssin Battle
+/*Kost'oran Assssin Battle
 {Main Screen Turn On}
 You're fighting a kost'oran assassin!
 
@@ -748,93 +782,162 @@ PC is Victorious!
 
 The jetpack beeps loudly, growing in intensity. Oh, no... Instinct kicks in: you grab the assassin, twist around to the window, and push. He reacts too quickly to stop you, too worn out to put up a proper fight as you throw him out the window, taking his overcharging jetpack with him. A moment later, you hear the explosion far below you, and the whole of the cart rattles with the impact. You grab the side of the carriage, holding on as the shockwave rushes over you.
 
-There goes stealth. 
+There goes stealth.
 
-You press your back to the edge of the cart, and ride it the rest of the way down, ready for anything now... but surprisingly, there's no further threat until you hear the elevator clicking into place at the base of the walkway. 
+You press your back to the edge of the cart, and ride it the rest of the way down, ready for anything now... but surprisingly, there's no further threat until you hear the elevator clicking into place at the base of the walkway. */
 
-Security Checkpoint / Rocket Pod Encounter
+//Security Checkpoint / Rocket Pod Encounter
 
+function coreWalkWayBonus():Boolean
+{
+	if(flags["ROCKET_PODS_ENCOUNTERED"] == undefined)
+	{
+		clearOutput();
+		flags["ROCKET_PODS_ENCOUNTERED"] = 1;
+		output("Stepping out of what remains of the lift");
+		// after your fight with the sword-slinging kost'oran pirate
+		output(", you come to face a long, narrow walkway perched precariously between the rocky outcropping at the base of the lift and the titanic tether station hanging between the two halves of the planet. Ahead, between you and the station, you catch a glimpse of several turrets set up along the walkway and the roof of the station, all aimed at you.");
+		output("\n\nOh, shit.");
+		output("\n\nYou scramble behind");
+		if(silly) output(" a convenient nearby chest high wall");
+		else output(" some crates stacked nearby");
+		output(" before they can target you. Unlike the crazy cat-girl's turrets topside, these are sleek and heavy looking, probably part of the installation's normal security. And if those barrels are anything to go by, they're probably loaded with micro-rockets rather than bullets - powerful enough to chew through a dropship or a freighter. You'll need to take these bastards down fast if you want any hope of fighting forward.");
+		//[Fight] [Lift] [Sneak By] [{if Tech Spec.: Hack Turrets}]
+		clearMenu();
+		addButton(0,"Fight",startCombat,"rocket pods");
+		if(pc.characterClass == GLOBAL.SMUGGLER)
+		{
+			output("\n\nThis situation reminds you of the time you snuck by the guards on Antaris VII. Zero-G environs do open up some unconventional paths....");
+			addButton(1,"Sneak",sneakByZeTurrets);
+		}
+		else addDisabledButton(1,"Sneak","Sneak","Smugglers can probably find a way to avoid this fight entirely....");
+		if(pc.characterClass == GLOBAL.ENGINEER) addButton(2,"HackTurrets",hackTheRocketPodsOnTarkus);
+		else addDisabledButton(2,"HackTurrets","Hack Turrets","A tech specialist could probably hack these things.");
+		return true;
+	}
+	if(flags["ROCKET_PODS_HACKED"] == 1 || flags["ROCKET_PODS_SNEAKED"] == 1)
+	{
+		output(". The rocket pods are sitting at the end of the walkway, scanning for hostile targets. As you approach, they chirp a digital greeting at you, utterly harmless.");
+	}
+	else output(", especially now that it's been blasted with holes from the now defunct rocket turrets, which are sitting in a shorted-out heap at the edge of the way, rendered harmless. From here, you have an uninterrupted line of sight all the way back to the top of the lift track, as well as a commanding view of the lift station, big and bulky and ancient, sitting before you.");
+	addButton(0,"Ride Lift",goUpTarkusLift);
+	return false;
+}
 
-Room Description
-The walkway connecting the lift and the tether control station is a long, thin passageway overlooking the great planetary rift through the heart of Tarkus. With every step, it shifts precariously on its supports{. The rocket pods are sitting at the end of the walkway, scanning for hostile targets. As you approach, they chirp a digital greeting at you, utterly harmless. // -- especially now that it's been blasted with holes from the now defunct rocket turrets, which are sitting in a shorted-out heap at the edge of the way, rendered harmless. From here, you have an uninterrupted line of sight all the way back to the top of the lift track, as well as a commanding view of the lift station, big and bulky and ancient, sitting before you. 
+function goUpTarkusLift():void
+{
+	clearOutput();
+	output("Stepping into the lift, you press the activation key. The elavoter hums softly and accelerates upward, replacing gravity with acceleration until you're far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
+	processTime(30);
+	//Move the PC
+	currentLocation = "353";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-{ROCKET PODS encounter}
-{You are now reading this in the Comanche voice from C&C Generals}
+//Hack Turrets
+//{Fuck you and your Codex, Fen}
+//{PC needs to pass a moderate INT check for this shit}
+function hackTheRocketPodsOnTarkus():void
+{
+	clearOutput();
+	output("<i>\"Fight smart, not hard,\"</i> Dad always said. You reach into your pack and pull out your Codex, bringing up the network selection, and quickly slicing into the station's wireless.");
+	//{On Fail}
+	if(pc.intelligence() + rand(20) + 1 < 25)
+	{
+		output("\n\nYou spend a few minutes tapping around in the security system, but someone's clearly been ramping up the anti-intruder countermeasures. You grit your teeth with effort, trying to pierce the security, but finding no backdoors or weak points to exploit. With a grunt of frustration, you toss your Codex back in your pack. Looks like it's the hard way.");
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",startCombat,"rocket pods");
+	}
+	//{On Pass}
+	else
+	{
+		output("\n\nClearly Tam was already in here fiddling around, and the security she put back up isn't too bad at all, easily falling prey to your trained skill. A few minutes later, you hear a tell-tale \"BEEP\" from the turrets ahead as they reset to their default parameters. Another few strokes, and you slice yourself into their Friend/Foe ID system, and tag yourself as friendly. Pirates, not so much.");
+		output("\n\nStepping out from behind cover, you nervously approach the turrets. Their many rocket launchers swivel around to regard you, laser targeters taking a bead... before the nearest one makes a happy-sounding chirp, and the battery disengages. Whew.");
+		processTime(2);
+		flags["ROCKET_PODS_HACKED"] = 1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 
-Stepping out of what remains of the lift after your fight with the sword-slinging kost'oran pirate, you come to face a long, narrow walkway perched precariously between the rocky outcropping at the base of the lift and the titanic tether station hanging between the two halves of the planet. Ahead, between you and the station, you catch a glimpse of several turrets set up along the walkway and the roof of the station, all aimed at you.
+//Sneak By
+//This reminds you of the time you snuck by the guards on Antaris VII.
+function sneakByZeTurrets():void
+{
+	clearOutput();
+	//{PC needs to make a difficult PHYSIQUE check. Taurs/Nagas/whatevers probably can't do this, since they weigh a ton and their arms would snap off}
+	//{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
+	output("<i>\"Discretion is the better part of valor,\"</i> Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble weightlessly, grabbing the bottom of the bridge, leaving yourself hanging over the void.");
+	output("\n\nOHGODTHAT'SALONGWAYDOWN! Up?! Whatever....");
+	output("\n\nYou try not to stare, even as your [pc.feet] dangle down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you.  Whoever programmed them take into account the new paths that zero G would offer.");
 
-Oh, shit. 
+	output("\n\nAfter a few moments' of stepping carefully, constantly worried the turrets will turn on you, you step over to a nearby console conveniently labeled \"defense turrets\" and flip the switch. No more of that.");
+	flags["ROCKET_PODS_SNEAKED"] = 1;
+	processTime(5);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-You scramble behind {if silly: a convenient nearby chest high wall // some crates stacked nearby} before they can target you. Unlike the crazy cat-girl's turrets topside, these are sleek and heavy looking, probably part of the installation's normal security. And if those barrels are anything to go by, they're probably loaded with micro-rockets rather than bullets -- powerful enough to chew through a dropship or a freighter. You'll need to take these bastards down fast if you want any hope of fighting forward. 
+//MAIN SCREEN TURN ON:
+//You're fighting a battery of rocket pods! (Level: 4)
+function rocketPodAI():void
+{
+	if(foes[0].shields() == 0 && rand(2) == 0 && !foes[0].hasStatusEffect("Shields Refilled")) shieldsUp();
+	else rocketPodRocketAttk();
+}
 
-[Fight] [Lift] [Sneak By] [{if Tech Spec.: Hack Turrets}]
-
-Hack Turrets
-{Fuck you and your Codex, Fen}
-{PC needs to pass a moderate INT check for this shit}
-
-"Fight smart, not hard," Dad always said. You reach into your pack and pull out your Codex, bringing up the network selection, and quickly slicing into the station's wireless.
-{On Fail}
-You spend a few minutes tapping around in the security system, but someone's clearly been ramping up the anti-intruder countermeasures. You grit your teeth with effort, trying to pierce the security, but finding no backdoors or weak points to exploit. With a grunt of frustration, you toss your Codex back in your pack. Looks like it's the hard way.
-{On Pass}
-Clearly Tam was already in here fiddling around, and the security she put back up isn't too bad at all, easily falling prey to your trained skill. A few minutes later, you hear a tell-tale "BEEP" from the turrets ahead as they reset to their default parameters. Another few strokes, and you slice yourself into their Friend/Foe ID system, and tag yourself as friendly. Pirates, not so much.
-
-Stepping out from behind cover, you nervously approach the turrets. Their many rocket launchers swivel around to regard you, laser targeters taking a bead... before the nearest one makes a happy-sounding chirp, and the battery disengages. Whew.
-
-Sneak By
-{PC needs to make a difficult PHYSIQUE check. Taurs/Nagas/whatevers probably can't do this, since they weigh a ton and their arms would snap off}
-{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
-
-"Discretion is the better part of valor," Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble down , grabbing the bottom of the bridge, leaving yourself hanging over the void. 
-
-OHGODTHAT'SALONGWAYDOWN.
-
-You try not to stare, even as your [feet] dangle down ponderously below you, swaying over the blackness of space. You gulp, and start to move, hand over hand along the side of the walkway. At least the turrets aren't targeting you... must be programmed just to hit the walkway. Small miracles, right? 
-
-{If PC succeeds the check}
-It's hard going. The gravity is punishing at this depth, threatening to tear you from the walkway at any moment. Still, you perservere, breathing hard and focusing just on putting one hand after the next, until finally you come to the edge of the station. With a final grunt of effort, you swing up onto the deck, nearly collapsing from the strain. Good lord, that was a long walkway!
-
-After a few moments' recovery, you step over to a nearby console conveniently labeled "defense turrets" and flip the switch. No more of that.
-
-{If... not so much}
-It's hard going. The gravity is punishing at this depth, threatening to tear you from the walkway at any moment. You can feel your fingers slipping, working harder for each swing forward. Your chest burns with the effort. So close.... One more...
-
-Your hand meets dead space. A scream tears from your lips as you slip off the walkway, and into the black oblivion of space....
-
-<b>Time passess...</b>
-{+1 hour}
-You wake up. Surprisingly. With a grunt of effort, you stagger to your feet, taking stock of your surroundings. Rocky, barren, metallic. Ugh. You glance up, and see the bottom of the lift platform looming overhead. You must have gotten yourself flung to the side. Small miracles, indeed. You scramble back up to the platform and check your watch. A whole hour gone... better hurry if you want to defuse that bomb in time!
-
-Fight
-{SHOULDA PLAYED TECHIE, SON!}
-You draw your [weapon] and rush out from behind cover. The turrets are quick, swiveling around and buzzing dangerously. Red lasers dance across your chest as they move to engage.
-
-MAIN SCREEN TURN ON:
-You're fighting a battery of rocket pods! (Level: 4)
-
-Several sleek black turrets are arrayed before you across the walkway, the roof of the installation, and even some hover-plats floating around the walkway's side, tethered to the station. Any chance of stealth on this mission is long gone, now, as a{nother} volley of micro-rockets lock into barrels, ready to blast you to smithereens.
-
-Primary Attack: ROCKET (duh)
+//Primary Attack: ROCKET (duh)
+function rocketPodRocketAttk():void
+{
 	//Count as one HEAVY physical attack, but has a low to-hit chance.
-	One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!
-	//Hit: You jump back just in time as the rocket slams into the walkway, blowing you off your feet and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!
-	//Miss: You tuck and roll under the rocket, dodging the blast!
+	output("One of the micro-rocket turrets takes a bead on you, its laser targeter dancing across your chest for a moment before a loud <i>THUMP</i> echoes across the rift and a tiny warhead races toward you!");
+	//Triple normal miss chance.
+	if(rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc) || rangedCombatMiss(foes[0],pc))
+	{
+		output("\n\nYou tuck and roll under the rocket, dodging the blast!");
+	}
+	else
+	{
+		output("\n\nYou jump back just in time as the rocket slams into the walkway, blowing you off your feet and sending you rocketing back! You slam into some crates, breaking your fall (and nearly your back). Lucky you still have all your limbs!");
+		var damage:int = 15;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	}
+	processCombat();
+}
 
-Ability 2: SHIELDS UP!
+//Ability 2: SHIELDS UP!
+function shieldsUp():void
+{
 	//1 time per encounter, re-charges 50% of shields once they drop.
-	The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!
+	output("The rocket pods beep noisily at each other, stopping their barrage for a few moments. As they do so, you see the tell-tale flicker of a shield barrier going up. Shit!");
+	foes[0].shields(Math.round(foes[0].shieldsMax()/2));
+	foes[0].createStatusEffect("Shields Refilled",0,0,0,0);
+	processCombat();
+}
 
-PC Victory vs Rocket Pods
-With a mighty KABOOM, the last rocket turret explodes in a hail of shrapnel and sparks. You heave a sigh of relief as silence again reigns in the rift. Can only spare a few moments to catch your breath, though, before you have to push on: there's a bomb that needs defusing!
+//PC Victory vs Rocket Pods
+function pcBeatsRocketPods():void
+{
+	output("With a mighty KABOOM, the last rocket turret explodes in a hail of shrapnel and sparks. You heave a sigh of relief as silence again reigns in the rift. Can only spare a few moments to catch your breath, though, before you have to push on: there's a bomb that needs defusing!\n\n");
+	genericVictory();
+}
 
-PC Loss vs Rocket Pods
-{SPLAT}
-Rockets pummel into the ground around you, Closer and closer, blasting you off your feet, bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the black void of space, little more than a perforated meat bag. 
+//PC Loss vs Rocket Pods
+function pcLosesToRocketPods():void
+{
+	output("Rockets pummel into the ground around you, Closer and closer, blasting you off your feet, bouncing you around like a toy. You scream in pain as shrapnel tears through you, explosive force hurling you off the walkway and into the void around Tarkus' core. Your corpse will have to rest amongst the floating strata.");
+	output("\n\n<b>GAME OVER</b>");
+	clearMenu();
+}
 
-<b>YOU DIED.</b>
-
-
-
+/*
 END BOSS: Captain Khorgan Brytheck
 {Dungeon end boss, in two parts: a damage-dealing heavy-hitter mech-suit fight, followed by a tease-heavy duel between her and the PC, swashbuckler style. Mech is armed with great big rocket pods and a gattling laser; PC has to square-hop to avoid missiles when they come in, or take MASSIVE damage}
 
