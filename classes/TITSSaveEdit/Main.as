@@ -14,7 +14,7 @@ package classes.TITSSaveEdit
 	public class Main extends Sprite 
 	{
 		private var ui:SEUserInterface;
-		private var data:SEDataManager;
+		private var dataMan:SEDataManager;
 		
 		public function Main():void 
 		{
@@ -32,7 +32,7 @@ package classes.TITSSaveEdit
 		private function Build():void
 		{
 			ui = new SEUserInterface();
-			stage.addChild(ui);
+			this.addChild(ui);
 			
 			ui.loadButton.setData("Load Save", loadTitsSave, undefined, "Load TiTs Save", "Load a save file from the TiTs client.");
 			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
@@ -42,9 +42,9 @@ package classes.TITSSaveEdit
 			ui.importButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			ui.saveButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			
-			data = new SEDataManager();
-			stage.addChild(data);
-			data.x = 200;
+			dataMan = new SEDataManager();
+			this.addChild(dataMan);
+			dataMan.x = 200;
 		}
 		
 		public function buttonFunc(evt:MouseEvent = null):void 
@@ -71,7 +71,23 @@ package classes.TITSSaveEdit
 		private function loadTitsSave():void
 		{
 			ui.hideMain();
-			data.showLoadMenu();
+			dataMan.showLoadMenu();
+		}
+		
+		public function setTITSData(data:Object):void
+		{
+			dataMan.visible = false;
+			
+			ui.topText.text = "EDITING:\n" + data.saveName;
+			ui.middleText.text = "";
+			ui.bottomText.text = "";
+			
+			fillUI(data);
+		}
+		
+		private function fillUI(data:Object):void
+		{
+			
 		}
 	}
 	

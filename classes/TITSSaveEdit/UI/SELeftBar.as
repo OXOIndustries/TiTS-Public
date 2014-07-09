@@ -5,6 +5,7 @@ package classes.TITSSaveEdit.UI
 	import classes.UIComponents.UIStyleSettings;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.text.TextField;
 	
 	/**
 	 * ...
@@ -20,6 +21,10 @@ package classes.TITSSaveEdit.UI
 		public function get titsButton():MainButton { return _loadTitsButton; }
 		public function get importButton():MainButton { return _importCocButton; }
 		public function get saveButton():MainButton { return _saveChangesButton; }
+		
+		public function get topText():TextField { return _header.topText; }
+		public function get middleText():TextField { return _header.middleText; }
+		public function get bottomText():TextField { return _header.bottomText; }
 		
 		public function SELeftBar() 
 		{

@@ -52,7 +52,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <!-- example: <element path="..." /> -->
+    <element path="style_uiscroll.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

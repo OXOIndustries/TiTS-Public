@@ -10,6 +10,9 @@ package classes.TITSSaveEdit.Data
 	import classes.StringUtil;
 	import flash.utils.ByteArray;
 	import classes.TITSSaveEdit.Main;
+	import classes.UIComponents.MainButton;
+	import flash.events.MouseEvent;
+	import flash.events.Event;
 	
 	/**
 	 * ...
@@ -40,6 +43,8 @@ package classes.TITSSaveEdit.Data
 			_text.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 			_text.width = 1000;
 			_text.height = 640;
+			_text.x = 5;
+			_text.y = 5;
 			this.addChild(_text);
 			_text.htmlText = "SUM WORDS UP IN DIS BITCHHHHH.";
 			
@@ -67,14 +72,15 @@ package classes.TITSSaveEdit.Data
 			_text.htmlText = "";
 			
 			var msg:String = "";
+			msg += "<span class='words'><p>"
 			msg += "<b>Which slot would you like to load?</b>\n";
 			
 			_buttonTray.clearMenu();
 			
 			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
 			{
-				var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slotNumber, "/");
-				displayMessage += this.generateSavePreview(dataFile, slotNum);
+				var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slotNum, "/");
+				msg += this.generateSavePreview(dataFile, slotNum);
 				
 				if (this.slotCompatible(dataFile) == true)
 				{
@@ -86,7 +92,9 @@ package classes.TITSSaveEdit.Data
 				}
 			}
 			
+			msg += "</p></span>";
 			_text.htmlText = msg + "\n";
+			
 			
 		}
 		
@@ -94,17 +102,17 @@ package classes.TITSSaveEdit.Data
 		{
 			var returnString:String = "";
 			
-			if (dataFile.data.version == undefined)
+			if (data.data.version == undefined)
 			{
 				return (String(slotNum) + ": <b>EMPTY</b>\n\n");
 			}
 			
-			returnString += slotNumber;
-			returnString += ": <b>" + dataFile.data.saveName + "</b>";
-			returnString += " - <i>" + dataFile.data.saveNotes + "</i>\n";
-			returnString += "\t<b>Days:</b> " + dataFile.data.daysPassed;
-			returnString += "  <b>Gender:</b> " + dataFile.data.playerGender;
-			returnString += "  <b>Location:</b>" + StringUtil.toTitleCase(dataFile.data.saveLocation);
+			returnString += slotNum;
+			returnString += ": <b>" + data.data.saveName + "</b>";
+			returnString += " - <i>" + data.data.saveNotes + "</i>\n";
+			returnString += "\t<b>Days:</b> " + data.data.daysPassed;
+			returnString += "  <b>Gender:</b> " + data.data.playerGender;
+			returnString += "  <b>Location:</b>" + StringUtil.toTitleCase(data.data.saveLocation);
 			
 			returnString += "\n";
 			return returnString;
@@ -141,9 +149,25 @@ package classes.TITSSaveEdit.Data
 			return new Object();
 		}
 		
-		private function buttonFunctor(e:Event = null):void
+		private function buttonFunctor(evt:Event = null):void
 		{
+			if (evt.currentTarget is MainButton)
+			{
+				trace("Button " + (evt.currentTarget as MainButton).buttonName + " clicked");
+			}
+			else
+			{
+				trace("Button " + evt.currentTarget.caption.text + " clicked.");
+			}
 			
+			if (evt.currentTarget.arg == undefined)
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func();
+			}
+			else
+			{
+				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
+			}
 		}
 	}
 

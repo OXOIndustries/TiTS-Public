@@ -10,6 +10,7 @@ package classes.UIComponents
 	import flash.text.Font;
 	import flash.text.StyleSheet;
 	import flash.text.AntiAliasType;
+	import flash.text.TextFieldType;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -984,6 +985,17 @@ package classes.UIComponents
 			obj.antiAliasType = AntiAliasType.ADVANCED;
 			obj.mouseEnabled = true;
 			obj.mouseWheelEnabled = true;
+		}
+		
+		public static function cfgTextInput(obj:TextField):void
+		{
+			obj.backgroundColor = 0xFFFFFF;
+			obj.border = true;
+			obj.borderColor = 0xFFFFFF;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.type = TextFieldType.INPUT;
+			obj.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
 		}
 	}
 
