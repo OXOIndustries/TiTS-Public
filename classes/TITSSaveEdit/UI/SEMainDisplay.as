@@ -1,6 +1,7 @@
 package classes.TITSSaveEdit.UI 
 {
 	import classes.TITSSaveEdit.UI.Controls.GeneralStats;
+	import classes.TITSSaveEdit.UI.Controls.CoreStats;
 	import fl.containers.ScrollPane;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -15,13 +16,19 @@ package classes.TITSSaveEdit.UI
 	{
 		private var _scrollPane:ScrollPane;
 		private var _content:MovieClip;
+		private var _left:Array;
+		private var _right:Array;
 		
 		private var _generalStats:GeneralStats;
+		private var _coreStats:CoreStats;	
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		
 		public function SEMainDisplay() 
 		{
+			_left = new Array();
+			_right = new Array();
+			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -51,36 +58,47 @@ package classes.TITSSaveEdit.UI
 			_scrollPane.source = _content;
 		}
 		
-		private function AddControl(control:DisplayObject):void
+		private static const LEFT_COL:Boolean = true;
+		private static const RIGHT_COL:Boolean = false;
+		
+		private function AddControl(control:DisplayObject, left:Boolean = true):void
 		{
 			var numChildren:int = _content.numChildren;
+			var yOffset:int = 0;
+			var colArray:Array;
 			
-			if (numChildren > 0)
+			if (left)
 			{
-				if (numChildren % 2 == 1) control.x = 400;
-				
-				// Find the lowest down control on the prev row
-				if (numChildren > 1)
-				{
-					var prevL:int = _content.getChildAt(numChildren - 2).y + _content.getChildAt(numChildren - 2).height;
-					var prevR:int = _content.getChildAt(numChildren - 1).y + _content.getChildAt(numChildren - 1).height;
-					
-					if (prevR > prevL) prevL = prevR;
-					
-					prevR += 5;
-					
-					control.y = prevR;
-				}
+				colArray = _left;
+				control.x = 0;
 			}
+			else
+			{
+				colArray = _right;
+				control.x = 400;
+			}
+			
+			if (colArray.length > 0)
+			{
+				yOffset = (colArray[colArray.length - 1] as DisplayObject).y + (colArray[colArray.length - 1] as DisplayObject).height;
+			}
+			
+			colArray.push(control);
+			control.y = yOffset;
+			
 			_content.addChild(control);
 			_scrollPane.update();
 		}
 		
 		private function BuildControls():void
 		{
-			var newControl:GeneralStats = new GeneralStats();
-			AddControl(newControl);
-			newControl.name = "generalstats";
+			_generalStats = new GeneralStats();
+			AddControl(_generalStats, LEFT_COL);
+			_generalStats.name = "generalstats";
+			
+			_coreStats = new CoreStats();
+			AddControl(_coreStats, LEFT_COL);
+			_coreStats.name = "corestats";
 		}
 	}
 
