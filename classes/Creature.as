@@ -14,6 +14,8 @@
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
+	import classes.Items.Accessories.TamWolf;
+	import classes.Items.Accessories.TamWolfDamaged;
 
 	import flash.utils.ByteArray;
 
@@ -2125,7 +2127,7 @@
 			temp += armor.shields + upperUndergarment.shields + lowerUndergarment.shields + accessory.shields + shield.shields;
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 4;
-			if (hasPerk("Attack Drone")) temp += level;
+			if (hasPerk("Attack Drone") && !(accessory is TamWolf || accessory is TamWolfDamaged)) temp += level;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);

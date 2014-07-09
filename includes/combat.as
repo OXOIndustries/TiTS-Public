@@ -551,7 +551,7 @@ function processCombat():void
 	if(flags["DRONE_TARGET"] != undefined) trace("DRONE_TARGET: " + flags["DRONE_TARGET"]);
 	else trace("DRONE_TARGET: UNDEFINED");
 	//DRONE TIME - only attacks targets if they've been marked!
-	if(combatStage == foes.length+1 && pc.hasPerk("Attack Drone") && flags["DRONE_TARGET"] != undefined)
+	if(combatStage == foes.length+1 && (pc.hasPerk("Attack Drone") || pc.accessory is TamWolfDamaged) && flags["DRONE_TARGET"] != undefined)
 	{
 		if(pc.shields() > 0) {
 			output("\n\n");
@@ -565,8 +565,12 @@ function processCombat():void
 		}
 		//No shields and drone not down yet? Give notification!
 		else if(!pc.hasStatusEffect("Drone Down")) {
-			output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
-			pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
+			if(!(pc.accessory is TamWolfDamaged || pc.accessory is TamWolf)) 
+			{
+				output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
+				pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
+			}
+			else droneAttack(foes[flags["DRONE_TARGET"]]);
 		}
 	}
 	combatStage = 0;
@@ -727,14 +731,7 @@ function playerRangedAttack(target:Creature):void
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
 	//Set drone target
-	if(attacker == pc && pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	if (foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
 	if (attacker == pc)
 	{
@@ -857,14 +854,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 {
 	trace("Ranged shot...");
 	//Set drone target
-	if(attacker == pc && pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
 	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + "Attacker = PC? " + String(attacker == pc) + " special? " + special);
 	//Run with multiple attacks!
@@ -1003,9 +993,40 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 }
 
 function droneAttack(target:Creature):void {
-	output("Your drone repeatedly zaps " + target.a + target.short + ".");
-	genericDamageApply(1+pc.level + rand(2 + pc.level/2),pc,target,GLOBAL.ELECTRIC);
+	if(pc.accessory is TamWolf) 
+	{
+		//In Combat:
+		// Tam-wolf has the same stats as a normal Attack Drone in terms of damage -- maybe a little higher. Though he doesn't boost your shields, he can operate even after yours collapse. Handy!
+		//Attack!
+		output("<i>\"Enemy detected, " + pc.mf("master","mistress") + " [pc.name]! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting " + target.a + target.short + ".");
+		genericDamageApply(droneDamage(),pc,target,GLOBAL.PIERCING);
+		output(" Good boy!");
+	}
+	else if(pc.accessory is TamWolfDamaged) 
+	{
+		//In Combat:
+		//Tam-wolf has a 30% chance of doing nothing on his turn. Otherwise, he makes a light Piercing attack.
+		//Do Nothing:
+		if(rand(10) <= 2) output("Tam-wolf leaps forward at " + target.a + target.short + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
+		//Attack!
+		else
+		{
+			output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.short + ". He hits!");
+			genericDamageApply(droneDamage()-1,pc,target,GLOBAL.PIERCING);
+			output(" Good boy!");
+		}
+	}
+	else 
+	{
+		output("Your drone repeatedly zaps " + target.a + target.short + ".");
+		genericDamageApply(droneDamage(),pc,target,GLOBAL.ELECTRIC);
+	}
 	processCombat();
+}
+//Broke this out so all can be adjusted at once as buffed/nerfed.
+function droneDamage():int
+{
+	return (1+pc.level + rand(2 + pc.level/2));
 }
 
 public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
@@ -2223,11 +2244,10 @@ function volley(target:Creature):void {
 	processCombat();
 }
 
-function overcharge(target:Creature):void {
-	clearOutput();
-	pc.energy(-20);
+function setDroneTarget(target:Creature):void
+{
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
+	if(pc.hasPerk("Attack Drone") || pc.accessory is TamWolf || pc.accessory is TamWolfDamaged)
 	{
 		//Figure out where in the foes array the target is and set drone target to the index.
 		//Clunky as all fuck but it works.
@@ -2235,6 +2255,12 @@ function overcharge(target:Creature):void {
 			if(foes[i] == target) flags["DRONE_TARGET"] = i;
 		}
 	}
+}
+
+function overcharge(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	setDroneTarget(target);
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	if(rangedCombatMiss(pc,target)) {
@@ -2393,14 +2419,7 @@ function lowBlow(target:Creature):void {
 
 	pc.energy(-15);
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	output("You swing low, aiming for a sensitive spot.\n");
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
@@ -2578,14 +2597,7 @@ function powerStrike(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	if(combatMiss(pc,target)) {

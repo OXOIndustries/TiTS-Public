@@ -471,11 +471,12 @@ function dontTakeTamWulf():void
 function yesTechSpecialistsTakeTamWulf():void
 {
 	clearOutput();
+	var foundLootItems:Array = new Array();
 	//Drone techs!
 	if(pc.hasPerk("Attack Drone"))
 	{
-		output("You pull a cord from your codex to the datajack in the back of Tam-wolf canid head and upload a basic clear and reformat program. Then it's a simple matter of uploading your normal drone's command and control programs to Tam-wolf and fixing that borked leg of his: just a few minutes' work, really, now that you can concentrate. Pretty soon, he's good as new! You pick up the hefty cyber-doberman and set it on the ground before flicking the on button hidden under his hind leg. With a synthesized bark, the attack drone comes to life -- and your own drone flops out of the air into your waiting hand.");
-		output("\n\nThe wolf-drone shudders, then its tail starts wagging rhythmically as it turns to face you. Its booming, synthesized voice announces, <i>\"Grrrreetings [Master]. This unit is programmed to be your faithful protector. What is your command?\"</i>");
+		output("You pull a cord from your codex to the datajack in the back of Tam-wolf canid head and upload a basic clear and reformat program. Then it's a simple matter of uploading your normal drone's command and control programs to Tam-wolf and fixing that borked leg of his: just a few minutes' work, really, now that you can concentrate. Pretty soon, he's good as new! You pick up the hefty cyber-doberman and set it on the ground before flicking the on button hidden under his hind leg. With a synthesized bark, the attack drone comes to life.");
+		output("\n\nThe wolf-drone shudders, then its tail starts wagging rhythmically as it turns to face you. Its booming, synthesized voice announces, <i>\"Grrrreetings " + pc.mf("Master","Mistress") + ". This unit is programmed to be your faithful protector. What is your command?\"</i>");
 
 		//If PC is Nice:
 		if(pc.isNice()) output("\n\n<i>\"Uh... sit?\"</i>\n\nTam-wolf sits obediently, tail still wagging.");
@@ -484,6 +485,7 @@ function yesTechSpecialistsTakeTamWulf():void
 		//if PC is Hard:
 		else output("\n\n<i>\"Uh... play dead!\"</i>\n\nTam-wolf obediently rolls onto his back and is completely still.");
 		output("\n\n<i>\"Alright, come on, boy!\"</i> You say, stepping back from the work bench -- quickly followed by your loyal new friend.");
+		foundLootItems[foundLootItems.length] = new TamWolf();
 	}
 	//Yes
 	//{PC is not a Drone Tech}
@@ -494,12 +496,14 @@ function yesTechSpecialistsTakeTamWulf():void
 		if(pc.intelligence() + rand(20) + 1 < 10)
 		{
 			output("\n\nShit. You can't make heads or tails of this! With a frustrated grunt, you yank the cord out of the useless canine drone and step back from the bench.");
+			processTime(4);
 			clearMenu();
 			addButton(0,"Next",mainGameMenu);
 		}
 		//PC Succeeds: 
 		else
 		{
+			foundLootItems[foundLootItems.length] = new TamWolfDamaged();
 			output("\n\nEventually, with quite a bit of effort, you're able to clear out the various diagnostics and find your way to what looks like a Factory Reset button, which should clear out all of the cat-girl's modifications... and make the drone not attack you, hopefully. You key it, and pull your codex out once its completed. With that done, you search around for an \"on\" button. You find... something switch-like between the robo-mutt's legs, flip it, and plant the drone on the ground.");
 			output("\n\nIt shudders to life, nearly falling over on its damaged leg. With some effort, the drone turns around to face you, its synthetic voice booming, <i>\"Grrrrreetings, [pc.Master]. This-this-this unit is programmed to be-be-be your faithful prooooooooooooootector. What is your c-c-command?\"</i>");
 			output("\n\nUh oh, looks like that damage was worse than you thought. You try and think up a command to give it, just to test:");
@@ -518,27 +522,22 @@ function yesTechSpecialistsTakeTamWulf():void
 			output("\n\n<i>\"Alright, come on, boy!\"</i> You say, stepping back from the work bench -- eventually followed by your loyal, if barely-functional, new friend.");
 		}
 	}
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	processTime(3);
+	output("\n\n");
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	//Start loot
+	itemCollect(foundLootItems);
 }
 
 //Tam-wolf as an Accessory Item
 //Tooltip: Tam-wolf is a badly damaged Fenris-class attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal to a fault, the patched-up cyber-pup follows you around wherever you go -- just equip him in your Accessory slot, and he'll leap into battle with you. Or fall flat on his face and explode trying to, anyway.
-//In Combat:
-//Tam-wolf has a 30% chance of doing nothing on his turn. Otherwise, he makes a light Piercing attack.
-//Do Nothing:
-   //Tam-wolf leaps forward at [enemy]... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!
-//Attack!
- //"ENEMY DETECTED, MISTRESS TAM. I WILL DEFEND YOU," Tam-wolf loudly announces as he lunges at [enemy]. {He hits, biting [enemy] for {X} damage! Good boy! // Unfortunately, he misses! Bad dog!}
 
 //Tam-wolf as a Drone Replacement
 //Tooltip: Tam-wolf is a state of the art Fenris attack drone you looted from a crazed cat-girl, coincidentally also named Tam. Loyal, intelligent, and alert, you new robotic friend is the closest thing you can get to a real attack dog these days. He's replaced your original attack drone, giving you a powerful, bitey friend in battle.
 
-//In Combat:
-// Tam-wolf has the same stats as a normal Attack Drone in terms of damage -- maybe a little higher. Though he doesn't boost your shields, he can operate even after yours collapse. Handy!
 
-//Attack!
-//  "Enemy detected, [master] [pc.name]! I will defend you!" Tam-wolf announces, leaping into the fray. {He hits, biting [enemy] for {X} damage! Good boy! // Unfortunately, he misses! Bad dog!}
 
 //Tam-Tam Bad End: The Crew's Pet Pooch
 function tamtamBadEndPetPooch():void
