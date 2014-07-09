@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PhoenixPirates;
+import classes.Characters.GunTurrets;
 public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
@@ -181,6 +182,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["PHOENIXPIRATES"] == undefined))
 	{
 		chars["PHOENIXPIRATES"] = new PhoenixPirates();
+	}
+	if (!justUpdate || (justUpdate && chars["AUTOTURRETS"] == undefined))
+	{
+		chars["AUTOTURRETS"] = new GunTurrets();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

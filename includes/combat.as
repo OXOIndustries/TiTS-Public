@@ -662,7 +662,11 @@ function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Num
 		return true;
 	}
 	//Evasion chances
-	if(target.evasion() >= rand(100) + 1) return true;
+	if(target.evasion() >= rand(100) + 1) 
+	{
+		trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
+		return true;
+	}
 	//Take cover chance
 	if(target.hasStatusEffect("Taking Cover") && rand(100) + 1 < 90) return true;
 	//10% miss chance for lucky breaks!
@@ -902,7 +906,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 || special == 2 && rand(100) <= 45 && !target.isImmobilized()) {
+	else if((special == 1 || special == 2) && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
@@ -916,6 +920,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
+		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connects with their " + attacker.rangedWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
 		if (!(attacker.rangedWeapon is Goovolver))
@@ -1315,6 +1320,10 @@ function enemyAI(aggressor:Creature):void
 		case "pirate gang":
 			phoenixPiratesAI();
 			break;
+		case "auto-turrets":
+		case "Tams and turrets":
+			tamtamtamtamtamtamAI();
+			break;
 		default:
 			enemyAttack(aggressor);
 			break;
@@ -1386,6 +1395,10 @@ function victoryRouting():void
 	{
 		victoryOverPhoenixPirates();
 	}
+	else if (foes[0] is GunTurrets)
+	{
+		tamtamGetsPunkedByPCs();
+	}
 	else genericVictory();
 }
 
@@ -1451,6 +1464,10 @@ function defeatRouting():void
 	else if (foes[0] is PhoenixPirates)
 	{
 		loseToPhoenixPirates();
+	}
+	else if (foes[0] is GunTurrets)
+	{
+		tamtamBadEndPetPooch();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1656,6 +1673,9 @@ function startCombat(encounter:String):void
 			break;
 		case "phoenixpirates":
 			chars["PHOENIXPIRATES"].prepForCombat();
+			break;
+		case "auto-turrets":
+			chars["AUTOTURRETS"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

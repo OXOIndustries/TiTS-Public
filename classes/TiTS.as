@@ -118,6 +118,7 @@
 		include "../includes/CodexEntries.as";
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents.fallOfThePhoenix.as";
+		include "../includes/stellarTether.as";
 		
 		include "../includes/lightsOut.as";
 			

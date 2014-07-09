@@ -87,7 +87,6 @@ function rustBroDegrade():void
 		//Wearing armor!
 		if(pc.armor.shortName != "" && !pc.hasStatusEffect("Degraded Armor"))
 		{
-			
 			output(" The strike doesn't hit hard to deal damage, but smear of your " + pc.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
 			pc.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
 		}

@@ -2243,7 +2243,7 @@ function initializeRooms():void
 	//#78 SCYTHING\nGLADE
 	rooms["278"] = new RoomClass(this);
 	rooms["278"].roomName = "SCYTHING\nGLADE";
-	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that. One thing you can be sure is that a barricade has been set up between here and there, and guards of some kind are watching it.";
+	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that.";
 	rooms["278"].runOnEnter = rustScytheGladeEncounters;
 	rooms["278"].northExit = "281";
 	rooms["278"].eastExit = "279";
@@ -2255,25 +2255,14 @@ function initializeRooms():void
 	//#79 ARTIFICIAL\nPLATFORM
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
-	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. To the east, a group of U.G.C. peacekeepers has set up a barricade of some sorts. You'll need to talk to them to get by. To the west, the curving silver blades of the scything glade glimmer ominously.";
+	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
 	rooms["279"].runOnEnter = rustScytheGladeEncounters;
 	rooms["279"].westExit = "278";
-	rooms["279"].eastExit = "280";
+	rooms["279"].eastExit = "350";
 	rooms["279"].planet = "PLANET: TARKUS";
 	rooms["279"].system = "SYSTEM: REDACTED";
 	rooms["279"].addFlag(GLOBAL.OUTDOOR);
 	rooms["279"].addFlag(GLOBAL.HAZARD);
-
-	//#80 PLACE\nHOLDER
-	rooms["280"] = new RoomClass(this);
-	rooms["280"].roomName = "PLACE\nHOLDER";
-	rooms["280"].description = "Placeholder. There will be a dungeon here in a future build.";
-	rooms["280"].runOnEnter = rustScytheGladeEncounters;
-	rooms["280"].westExit = "279";
-	rooms["280"].planet = "PLANET: TARKUS";
-	rooms["280"].system = "SYSTEM: REDACTED";
-	rooms["280"].addFlag(GLOBAL.OUTDOOR);
-	rooms["280"].addFlag(GLOBAL.HAZARD);
 
 	//#81 SCYTHING\nGLADE
 	rooms["281"] = new RoomClass(this);
@@ -2506,6 +2495,41 @@ function initializeRooms():void
 	rooms["305"].system = "SYSTEM: REDACTED";
 	rooms["305"].addFlag(GLOBAL.INDOOR);
 	rooms["305"].addFlag(GLOBAL.COMMERCE);
+
+
+	rooms["350"] = new RoomClass(this);
+	rooms["350"].roomName = "THE\nCHASMFALL";
+	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you've seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. And each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
+	rooms["350"].runOnEnter = chasmfallBonusFunction;
+	rooms["350"].westExit = "279";
+	rooms["350"].planet = "PLANET: TARKUS";
+	rooms["350"].system = "SYSTEM: REDACTED";
+	rooms["350"].addFlag(GLOBAL.OUTDOOR);
+	rooms["350"].addFlag(GLOBAL.HAZARD);
+
+	rooms["351"] = new RoomClass(this);
+	rooms["351"].roomName = "LIFT\nSTATION";
+	rooms["351"].description = "The lift station's foyer is a large, semi-circular waiting room, dominated by a big desk facing outward, laden with security monitors and data outputs, showing the status of the rift and tethers at a glance. The pirates have, wisely, jacked internal camera feeds from the core station below, preventing you from getting a head's-up on their positions.";
+	rooms["351"].runOnEnter = liftStationBonus;
+	rooms["351"].westExit = "350";
+	rooms["351"].eastExit = "352";
+	rooms["351"].planet = "PLANET: TARKUS";
+	rooms["351"].system = "SYSTEM: REDACTED";
+	rooms["351"].addFlag(GLOBAL.OUTDOOR);
+	rooms["351"].addFlag(GLOBAL.HAZARD);
+
+	rooms["352"] = new RoomClass(this);
+	rooms["352"].roomName = "ENGINEERING\nDECK";
+	rooms["352"].description = "A short flight of stairs leads down from the Lift Station's entrance to the engineering deck, a dark room surrounded by thrumming machinery and readouts from all over the station. You can clearly see the lift controls, now set to ";
+	rooms["352"].runOnEnter = liftStationEngineeringDeckBonusFunc;
+	rooms["352"].westExit = "351";
+	rooms["352"].planet = "PLANET: TARKUS";
+	rooms["352"].system = "SYSTEM: REDACTED";
+	rooms["352"].addFlag(GLOBAL.OUTDOOR);
+	rooms["352"].addFlag(GLOBAL.HAZARD);
+
+
+
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";

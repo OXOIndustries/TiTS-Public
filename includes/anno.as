@@ -420,7 +420,6 @@ function snuggleWithAnnoAfterWhuppinHerAss():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	clearOutput();
 	if(flags["ANNO_SNUGGLED_AFTER_SHOOTOFF"] == undefined)
 	{
 		flags["ANNO_SNUGGLED_AFTER_SHOOTOFF"] = 1;

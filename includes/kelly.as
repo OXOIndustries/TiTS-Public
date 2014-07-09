@@ -3819,6 +3819,7 @@ function getDPedByKelly():void
 		}
 	}
 	var x:int = pc.cuntThatFits(chars["KELLY"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
 	var y:int = -1;
 	if(pc.vaginaTotal() > 1)
 	{

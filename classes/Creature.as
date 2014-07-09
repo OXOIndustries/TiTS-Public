@@ -5158,7 +5158,7 @@
 			trace("Femininity Rating = " + weighting);
 			//Neuters first!
 			if (neuter != "") {
-				if (weighting >= 45 && weighting <= 55) return neuter;
+				if (weighting >= 45 && weighting <= 55 || hasStatusEffect("Force It Gender")) return neuter;
 				else if (weighting < 45) return male;
 				else return female;
 			} else {
