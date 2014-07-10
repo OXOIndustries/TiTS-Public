@@ -3,6 +3,10 @@ package classes.TITSSaveEdit.UI.Controls
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.display.DisplayObject;
+	import classes.UIComponents.UIStyleSettings;
+	import classes.TITSSaveEdit.UI.Controls.ComboLabelPair;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -18,6 +22,7 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _intelligence:InputLabelPair;
 		private var _willpower:InputLabelPair;
 		private var _libido:InputLabelPair;
+		private var _affinity:ComboLabelPair;
 		
 		public function get physique():int { return int(_physique.inputValue); }
 		public function set physique(v:int):void { _physique.inputValue = String(v); }
@@ -37,6 +42,9 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get libido():int { return int(_libido.inputValue); }
 		public function set libido(v:int):void { _libido.inputValue = String(v); }
 		
+		public function get affinity():String { return String(_affinity.inputValue); }
+		public function set affinity(v:String):void { _affinity.inputValue = v; }
+		
 		public function CoreStats() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -54,8 +62,9 @@ package classes.TITSSaveEdit.UI.Controls
 			UIStyleSettings.cfgLabel(_header);
 			_header.defaultTextFormat = UIStyleSettings.gTooltipHeaderFormatter;
 			this.addChild(_header);
+			_header.x = 15;
 			_header.height = 25;
-			_header.width = 390
+			_header.width = 300
 			_header.text = "Core Stats";
 			
 			_underline = new Sprite();
@@ -74,33 +83,44 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_reflexes = new InputLabelPair();
 			AddControl(_reflexes);
-			_reflexes.labelText = "";
+			_reflexes.labelText = "Reflexes";
 			_reflexes.inputValue = "5";
 			_reflexes.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_aim = new InputLabelPair();
 			AddControl(_aim);
-			_aim.labelText = "";
+			_aim.labelText = "Aim";
 			_aim.inputValue = "5";
 			_aim.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_intelligence = new InputLabelPair();
 			AddControl(_intelligence);
-			_intelligence.labelText = "";
+			_intelligence.labelText = "Intelligence";
 			_intelligence.inputValue = "5";
 			_intelligence.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_willpower = new InputLabelPair();
 			AddControl(_willpower);
-			_willpower.labelText = "";
+			_willpower.labelText = "Willpower";
 			_willpower.inputValue = "5";
 			_willpower.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_libido = new InputLabelPair();
 			AddControl(_libido);
-			_libido.labelText = "";
+			_libido.labelText = "Libido";
 			_libido.inputValue = "5";
 			_libido.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			
+			_affinity = new ComboLabelPair();
+			AddControl(_affinity);
+			_affinity.labelText = "Affinity";
+			_affinity.addItem("intelligence", "Intelligence");
+			_affinity.addItem("physique", "Physique");
+			_affinity.addItem("reflexes", "Reflexes");
+			_affinity.addItem("aim", "Aim");
+			_affinity.addItem("willpower", "Willpower");
+			_affinity.disableEdits();
+			_affinity.selectedIndex = 0;
 		}
 		
 		private function AddControl(control:DisplayObject):void

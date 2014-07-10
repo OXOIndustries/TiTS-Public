@@ -11,6 +11,7 @@ package classes.UIComponents
 	import flash.text.StyleSheet;
 	import flash.text.AntiAliasType;
 	import flash.text.TextFieldType;
+	import classes.UIComponents.CustomCellRenderer;
 	
 	/**
 	 * Static class-like interface to centralise UI display settings & associated formatting.
@@ -998,5 +999,4 @@ package classes.UIComponents
 			obj.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
 		}
 	}
-
 }

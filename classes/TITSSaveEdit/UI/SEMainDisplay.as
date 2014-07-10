@@ -80,7 +80,7 @@ package classes.TITSSaveEdit.UI
 			
 			if (colArray.length > 0)
 			{
-				yOffset = (colArray[colArray.length - 1] as DisplayObject).y + (colArray[colArray.length - 1] as DisplayObject).height;
+				yOffset = (colArray[colArray.length - 1] as DisplayObject).y + (colArray[colArray.length - 1] as DisplayObject).height + 10;
 			}
 			
 			colArray.push(control);

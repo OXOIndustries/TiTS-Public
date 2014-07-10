@@ -49,8 +49,9 @@ package classes.TITSSaveEdit.UI.Controls
 			UIStyleSettings.cfgLabel(_header);
 			_header.defaultTextFormat = UIStyleSettings.gTooltipHeaderFormatter;
 			this.addChild(_header);
+			_header.x = 15;
 			_header.height = 25;
-			_header.width = 390
+			_header.width = 300
 			_header.text = "General";
 			
 			_underline = new Sprite();
