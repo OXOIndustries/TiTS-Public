@@ -148,7 +148,7 @@
 		
 		public static const MAX_DAMAGE_TYPES:int						= 9; // damageType bookend, probably gonna roll its usage into things like array generation and shit.
 		
-		public static const DamageTypeStrings = 
+		public static const DamageTypeStrings:Array = 
 		[
 			"Kinetic",
 			"Slashing",
@@ -161,7 +161,7 @@
 			"Not Applicable",
 		];
 		
-		public static const DamageTypeShortStrings = 
+		public static const DamageTypeShortStrings:Array = 
 		[
 			"Kntc",
 			"Slsh",

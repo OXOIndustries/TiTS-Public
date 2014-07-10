@@ -93,7 +93,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_input.setStyle("embedFonts", true);
 			_input.setStyle("antiAliasType", AntiAliasType.ADVANCED);
 			
-			
 			_input.x = 148;
 			_input.y = 2;
 			_input.width = 241;
@@ -104,9 +103,6 @@ package classes.TITSSaveEdit.UI.Controls
 		public function addItem(itemData:*, itemLabel:String):void
 		{
 			_input.addItem( { data:itemData, label:itemLabel } );
-			
-			// If this works ima be mad.
-			
 		}
 		
 		public function clear():void

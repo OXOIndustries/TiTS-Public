@@ -5,6 +5,8 @@ package classes.TITSSaveEdit.UI.Controls
 	import flash.events.Event;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.TITSSaveEdit.UI.Controls.ComboLabelPair;
+	import classes.GLOBAL;
 	
 	/**
 	 * ...
@@ -19,6 +21,8 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _level:InputLabelPair;
 		private var _xp:InputLabelPair;
 		private var _credits:InputLabelPair;
+		private var _characterClass:ComboLabelPair;
+		private var _personality:InputLabelPair;
 		
 		public function get playerName():String { return _playerName.inputValue; }
 		public function set playerName(v:String):void { _playerName.inputValue = v; }
@@ -31,6 +35,12 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function get credits():String { return _credits.inputValue; }
 		public function set credits(v:String):void { _credits.inputValue = v; }
+		
+		public function get characterClass():int { return int(_characterClass.inputValue); }
+		public function set characterClass(v:int):void { _characterClass.inputValue = v; }
+		
+		public function get personality():String { return _personality.inputValue; }
+		public function set personality(v:String):void { _personality.inputValue = v; }
 		
 		public function GeneralStats() 
 		{
@@ -85,6 +95,24 @@ package classes.TITSSaveEdit.UI.Controls
 			_credits.labelText = "Credits";
 			_credits.inputValue = "Bloop";
 			_credits.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			
+			_personality = new InputLabelPair();
+			AddControl(_personality);
+			_personality.labelText = "Personality";
+			_personality.inputValue = "Bloop";
+			_personality.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			
+			_characterClass = new ComboLabelPair();
+			AddControl(_characterClass);
+			_characterClass.labelText = "Class";
+			
+			for (var i:int = 0; i < GLOBAL.CLASS_NAMES.length; i++)
+			{
+				_characterClass.addItem(i, String(GLOBAL.CLASS_NAMES[i]));
+			}
+			
+			_characterClass.disableEdits();
+			_characterClass.selectedIndex = 0;
 		}
 		
 		private function AddControl(control:DisplayObject):void
