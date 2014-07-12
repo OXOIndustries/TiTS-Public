@@ -120,7 +120,12 @@ package classes.TITSSaveEdit.UI.Controls
 		private function AddControl(control:DisplayObject):void
 		{
 			//control.x = 5;
-			control.y = this.getChildAt(this.numChildren - 1).y + this.getChildAt(this.numChildren - 1).height + 2;
+			var yOffset:int = 0;
+			
+			if (this.getChildAt(this.numChildren - 1) is ComboLabelPair) yOffset -= 73;
+			yOffset += this.getChildAt(this.numChildren - 1).y + this.getChildAt(this.numChildren - 1).height + 2;
+			
+			control.y = yOffset;
 			this.addChild(control);
 		}
 		

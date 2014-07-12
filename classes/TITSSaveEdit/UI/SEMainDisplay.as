@@ -4,7 +4,10 @@ package classes.TITSSaveEdit.UI
 	import classes.TITSSaveEdit.UI.Controls.GeneralAppearance;
 	import classes.TITSSaveEdit.UI.Controls.GeneralStats;
 	import classes.TITSSaveEdit.UI.Controls.CoreStats;
+	import classes.TITSSaveEdit.UI.Controls.HairAppearance;
+	import classes.TITSSaveEdit.UI.Controls.HeadAppearance;
 	import classes.TITSSaveEdit.UI.Controls.Resistances;
+	import classes.TITSSaveEdit.UI.Controls.SkinAppearance;
 	import fl.containers.ScrollPane;
 	import fl.controls.ComboBox;
 	import flash.display.DisplayObject;
@@ -32,6 +35,9 @@ package classes.TITSSaveEdit.UI
 		private var _resistances:Resistances;
 		
 		private var _generalAppearance:GeneralAppearance;
+		private var _hairAppearance:HairAppearance;
+		private var _skinAppearance:SkinAppearance;
+		private var _headAppearance:HeadAppearance;
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
@@ -39,6 +45,9 @@ package classes.TITSSaveEdit.UI
 		public function get resistances():Resistances { return _resistances; }
 		
 		public function get generalAppearance():GeneralAppearance { return _generalAppearance; }
+		public function get hairAppearance():HairAppearance { return _hairAppearance; }
+		public function get skinAppearance():SkinAppearance { return _skinAppearance; }
+		public function get headAppearance():HeadAppearance { return _headAppearance; }
 		
 		public function SEMainDisplay() 
 		{
@@ -103,14 +112,18 @@ package classes.TITSSaveEdit.UI
 				
 				// Turbo bullshit fix for combo boxes
 				var childOffset:int = 0;
-				for (var i:int = colArray[colArray.length - 1].numChildren - 1; i >= 0; i--)
+				//for (var i:int = colArray[colArray.length - 1].numChildren - 1; i >= 0; i--)
+				//{
+					//var childCtrl:DisplayObject = colArray[colArray.length - 1].getChildAt(i);
+					//
+					//if (childCtrl is ComboLabelPair)
+					//{
+						//childOffset -= 77;
+					//}
+				//}
+				if (colArray[colArray.length - 1].getChildAt(colArray[colArray.length - 1].numChildren - 2) is ComboLabelPair)
 				{
-					var childCtrl:DisplayObject = colArray[colArray.length - 1].getChildAt(i);
-					
-					if (childCtrl is ComboLabelPair)
-					{
-						childOffset -= 77;
-					}
+					childOffset -= 77;
 				}
 			}
 			
@@ -142,6 +155,18 @@ package classes.TITSSaveEdit.UI
 			_generalAppearance = new GeneralAppearance();
 			AddControl(_generalAppearance, RIGHT_COL);
 			_generalAppearance.name = "generalappearance";
+			
+			_hairAppearance = new HairAppearance();
+			AddControl(_hairAppearance, RIGHT_COL);
+			_hairAppearance.name = "hairappearance";
+			
+			_skinAppearance = new SkinAppearance();
+			AddControl(_skinAppearance, RIGHT_COL);
+			_skinAppearance.name = "skinappearance";
+			
+			_headAppearance = new HeadAppearance();
+			AddControl(_headAppearance, RIGHT_COL);
+			_headAppearance.name = "headappearance";
 		}
 		
 		private function addSpacer(control:DisplayObjectContainer):void

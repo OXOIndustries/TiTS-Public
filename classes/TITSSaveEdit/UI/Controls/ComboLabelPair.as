@@ -58,9 +58,6 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function set selectedIndex(v:int):void { _input.selectedIndex = v; }
 		
-		public function get inputText():String { return _input.value; }
-		public function set inputText(v:String):void { _input.value; }
-		
 		public function ComboLabelPair() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);

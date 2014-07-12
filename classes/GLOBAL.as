@@ -49,6 +49,7 @@
 		public static const FORESKINNED:int	    					   = 31;
 		
 		public static const FLAG_NAMES:Array = [
+			"OFFSET -- INVALID",
 			"Long",
 			"Prehensile",
 			"Lubricated",
@@ -80,6 +81,13 @@
 			"Stinger Tip",
 			"Nubby",
 			"Foreskinned",
+		];
+		
+		public static const VALID_SKIN_FLAGS:Array = [
+			SMOOTH,
+			THICK,
+			STICKY,
+			FLUFFY,
 		];
 		
 		//TYPES
@@ -116,6 +124,11 @@
 		public static const MLP:int                                    = 32;
 		public static const CUNTSNAKE:int                              = 33;
 		public static const VENUSPITCHER:int						   = 34;
+		public static const SUCCUBUS:int                               = 35;
+		public static const SMALLBEE:int                               = 36;
+		public static const SMALLDEMONIC:int                           = 37;
+		public static const SMALLDRACONIC:int                          = 38;
+		public static const NALEEN_FACE:int 						   = 39;
 		public static const PANDA:int 								   = 40;
 		public static const MIMBRANE:int							   = 41;
 		public static const RASKVEL:int 							   = 42;
@@ -156,6 +169,11 @@
 			"MLP",
 			"Cuntsnake",
 			"Venus Pitcher",
+			"Succubus",
+			"Small Bee",
+			"Small Demonic",
+			"Small Draconic",
+			"Naleen",
 			"Panda",
 			"Mimbrane",
 			"Raskvel",
@@ -164,21 +182,92 @@
 			"Badger",
 		];
 		
-		//Used for custom legs, otherwise demonic!
-		public static const SUCCUBUS:int                               = 35;
+		public static const VALID_FACE_TYPES:Array = [
+			HUMAN,
+			FELINE,
+			EQUINE,
+			BOVINE,
+			LIZAN,
+			DRACONIC,
+			NALEEN_FACE,
+			SHARK,
+			SIREN,
+			LAPINE,
+			NAGA,
+			HUMANMASKED,
+			KUITAN,
+			VULPINE,
+			MOUSEMAN,
+			MOUSE,
+			CANINE,
+			PANDA,
+			BADGER,
+			KANGAROO,
+			
+		];
 		
-		//Special wing types!
-		public static const SMALLBEE:int                               = 36;
-		public static const SMALLDEMONIC:int                           = 37;
-		public static const SMALLDRACONIC:int                          = 38;
-		public static const NALEEN_FACE:int 						   = 39;
-
+		public static const VALID_FACE_FLAGS:Array = [
+			SMOOTH,
+			MUZZLED,
+			ANGULAR,
+		];
+		
+		public static const VALID_TONGUE_TYPES:Array = [
+			HUMAN,
+			NAGA,
+			DEMONIC,
+			DRACONIC,
+		];
+		
+		public static const VALID_TONGUE_FLAGS:Array = [
+			LONG,
+			PREHENSILE,
+		];
+		
+		public static const VALID_EAR_TYPES:Array = [
+			EQUINE,
+			CANINE,
+			BOVINE,
+			DRIDER,
+			FELINE,
+			LIZAN,
+			LAPINE,
+			KANGAROO,
+			VULPINE,
+			DRACONIC,
+			KUITAN,
+			MOUSE,
+			PANDA,
+			HUMAN,
+		];
+		
+		public static const VALID_ANTENNAE_TYPES:Array = [
+			HUMAN,
+			BEE,
+			SYDIAN,
+		];
+		
+		public static const VALID_HORN_TYPES:Array = [
+			DEMONIC,
+			BOVINE,
+			LIZAN,
+			DEER,
+		];
+		
 		//SKINTYPES
 		public static const SKIN:int                                   = 0;
 		public static const FUR:int                                    = 1;
 		public static const SCALES:int                                 = 2;
 		public static const GOO:int                                    = 3;
 		public static const CHITIN:int                                 = 4;
+		
+		public static const SKIN_TYPE_NAMES:Array = [
+			"Skin",
+			"Fur",
+			"Scales",
+			"Goo",
+			"Chitin",
+		];
 				
 		//NIPPLETYPES
 		public static const NORMAL:int                                 = 0;
