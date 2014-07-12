@@ -48,6 +48,40 @@
 		public static const NUBBY:int  		                           = 30;
 		public static const FORESKINNED:int	    					   = 31;
 		
+		public static const FLAG_NAMES:Array = [
+			"Long",
+			"Prehensile",
+			"Lubricated",
+			"Fluffy",
+			"Squishy",
+			"Smooth",
+			"Tapered",
+			"Flared",
+			"Knotted",
+			"Blunt",
+			"Aphrodisiac",
+			"Sticky",
+			"Thick",
+			"Muzzled",
+			"Angular",
+			"Plantigrade",
+			"Digitgrade",
+			"Tendril",
+			"Amorphous",
+			"Furred",
+			"Scaled",
+			"Hooves",
+			"Paws",
+			"Heels",
+			"Ovipositor",
+			"Sheathed",
+			"Tailcock",
+			"Stinger Base",
+			"Stinger Tip",
+			"Nubby",
+			"Foreskinned",
+		];
+		
 		//TYPES
 		public static const HUMAN:int                                  = 0;
 		public static const EQUINE:int                                 = 1;
@@ -89,6 +123,46 @@
 		public static const LAPINARA:int 							   = 44;
 		public static const BADGER:int 								   = 45;
 		
+		public static const TYPE_NAMES:Array = [
+			"Human",
+			"Equine",
+			"Bovine",
+			"Canine",
+			"Feline",
+			"Vulpine",
+			"Bee",
+			"Arachnid",
+			"Drider",
+			"Lapine",
+			"Avian",
+			"Draconic",
+			"Lizan",
+			"Naga",
+			"Centaur",
+			"Demonic",
+			"Gooey",
+			"Kangaroo",
+			"Tanuki",
+			"Shark",
+			"Siren",
+			"Deer",
+			"Anemone",
+			"Tentacle",
+			"Kuitan",
+			"Humanmasked",
+			"Mouse",
+			"Mouseman",
+			"Dragonfly",
+			"MLP",
+			"Cuntsnake",
+			"Venus Pitcher",
+			"Panda",
+			"Mimbrane",
+			"Raskvel",
+			"Sydian",
+			"Lapinara",
+			"Badger",
+		];
 		
 		//Used for custom legs, otherwise demonic!
 		public static const SUCCUBUS:int                               = 35;
@@ -126,6 +200,21 @@
 		public static const CHOCOLATE_MILK:int 						   = 7;
 		public static const STRAWBERRY_MILK:int 					   = 8;
 		public static const SYDIAN_CUM:int 							   = 9;
+		
+		// HAIRTYPES
+		public static const HAIR_REGULAR:int						= 0;
+		public static const HAIR_FEATHERS:int						= 1;
+		public static const HAIR_TRANSPARENT:int					= 2;
+		public static const HAIR_GOO:int							= 3;
+		public static const HAIR_TENTACLES:int						= 4;
+		
+		public static const HAIR_TYPE_NAMES:Array = [
+			"Hair",
+			"Feathers",
+			"Transparent",
+			"Gooey",
+			"Tentacles",
+		];
 
 		//DAMAGE TYPES
 		//Guns and blunt weapons

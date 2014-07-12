@@ -46,7 +46,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_input.text = "Input";
 			_input.x = 148;
 			_input.y = 2;
-			_input.width = 240;
+			_input.width = 233;
 			_input.height = 25;
 			this.addChild(_input);
 		}
@@ -54,6 +54,7 @@ package classes.TITSSaveEdit.UI.Controls
 		public static const RESTRICT_NUMERIC:int = 0;
 		public static const RESTRICT_ALPHA:int = 1;
 		public static const RESTRICT_ALPHANUMERIC:int = 2;
+		public static const RESTRICT_NUMBER:int = 3;
 		
 		public function setRestriction(type:int):void
 		{
@@ -67,6 +68,10 @@ package classes.TITSSaveEdit.UI.Controls
 					break;
 				case RESTRICT_ALPHA:
 					_input.restrict = "A-Za-z"
+					break;
+				case RESTRICT_NUMBER:
+					_input.restrict = "0-9.";
+					break;
 			}
 		}
 	}

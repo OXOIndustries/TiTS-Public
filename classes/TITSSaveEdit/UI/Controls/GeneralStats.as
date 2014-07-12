@@ -66,7 +66,7 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_underline = new Sprite();
 			_underline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_underline.graphics.drawRect(0, 0, 390, 2);
+			_underline.graphics.drawRect(0, 0, 383, 2);
 			_underline.graphics.endFill();
 			this.addChild(_underline);
 			_underline.x = 5;
