@@ -1,5 +1,6 @@
 package classes.TITSSaveEdit.UI 
 {
+	import classes.TITSSaveEdit.UI.Controls.BodyAppearance;
 	import classes.TITSSaveEdit.UI.Controls.CombatStats;
 	import classes.TITSSaveEdit.UI.Controls.GeneralAppearance;
 	import classes.TITSSaveEdit.UI.Controls.GeneralStats;
@@ -38,6 +39,7 @@ package classes.TITSSaveEdit.UI
 		private var _hairAppearance:HairAppearance;
 		private var _skinAppearance:SkinAppearance;
 		private var _headAppearance:HeadAppearance;
+		private var _bodyAppearance:BodyAppearance;
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
@@ -48,6 +50,7 @@ package classes.TITSSaveEdit.UI
 		public function get hairAppearance():HairAppearance { return _hairAppearance; }
 		public function get skinAppearance():SkinAppearance { return _skinAppearance; }
 		public function get headAppearance():HeadAppearance { return _headAppearance; }
+		public function get bodyAppearance():BodyAppearance { return _bodyAppearance; }
 		
 		public function SEMainDisplay() 
 		{
@@ -167,6 +170,10 @@ package classes.TITSSaveEdit.UI
 			_headAppearance = new HeadAppearance();
 			AddControl(_headAppearance, RIGHT_COL);
 			_headAppearance.name = "headappearance";
+			
+			_bodyAppearance = new BodyAppearance();
+			AddControl(_bodyAppearance, RIGHT_COL);
+			_bodyAppearance.name = "bodyappearance";
 		}
 		
 		private function addSpacer(control:DisplayObjectContainer):void

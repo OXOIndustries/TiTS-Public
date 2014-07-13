@@ -81,7 +81,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_header.x = 15;
 			_header.height = 25;
 			_header.width = 300
-			_header.text = "Appearance - General";
+			_header.text = "Appearance - Head";
 			
 			_underline = new Sprite();
 			_underline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);

@@ -241,6 +241,58 @@
 			HUMAN,
 		];
 		
+		public static const VALID_ARM_TYPES:Array = [
+			HUMAN,
+			EQUINE,
+			PANDA,
+			CANINE,
+			BEE,
+			FELINE,
+			AVIAN,
+			ARACHNID,
+			DRIDER,
+			BADGER,
+		];
+		
+		public static const VALID_LEG_TYPES:Array = [
+			HUMAN,
+			NAGA,
+			DRIDER,
+			ARACHNID,
+			GOOEY,
+			EQUINE,
+			CENTAUR,
+			BOVINE,
+			CANINE,
+			FELINE,
+			VULPINE,
+			BEE,
+			LAPINE,
+			AVIAN,
+			DRACONIC,
+			LIZAN,
+			DEMONIC,
+			KANGAROO,
+			TANUKI,
+			DEER,
+			PANDA,
+			MLP,
+			SUCCUBUS,
+			KUITAN,
+		];
+		
+		public static const VALID_LEG_FLAGS:Array = [
+			DIGITIGRADE,
+			PLANTIGRADE,
+			AMORPHOUS,
+			SCALED,
+			FURRED,
+			TENDRIL,
+			HOOVES,
+			PAWS,
+			HEELS,
+		];
+		
 		public static const VALID_ANTENNAE_TYPES:Array = [
 			HUMAN,
 			BEE,
@@ -252,6 +304,17 @@
 			BOVINE,
 			LIZAN,
 			DEER,
+		];
+		
+		public static const VALID_WING_TYPES:Array = [
+			BEE,
+			SMALLBEE,
+			SMALLDEMONIC,
+			SMALLDRACONIC,
+			SHARK,
+			AVIAN,
+			DRAGONFLY,
+			DRACONIC,
 		];
 		
 		//SKINTYPES

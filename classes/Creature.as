@@ -2986,7 +2986,7 @@
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.HOOVES)) output += "hooves";
 			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paws";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "cilia";
+			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heels";
 			else output += "feet";
 			return output;
@@ -2999,7 +2999,7 @@
 			if (output != "") output += " ";
 			if (hasLegFlag(GLOBAL.HOOVES)) output += "hoof";
 			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paw";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "undercarriage";
+			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "undercarriage";
 			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heel";
 			else output += "foot";
 			return output;
@@ -3011,7 +3011,7 @@
 			//Noun
 			if (hasLegFlag(GLOBAL.HOOVES)) output += "hoof-tips";
 			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "fuzzy toes";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "cilia";
+			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "toes";
 			else output += "toes";
 			return output;
@@ -3024,7 +3024,7 @@
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOO) output += "cilia";
+			if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
 			else output += "knees";
 			return output;
 		}
