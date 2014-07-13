@@ -2538,9 +2538,10 @@ function initializeRooms():void
 	rooms["353"].system = "SYSTEM: REDACTED";
 	rooms["353"].addFlag(GLOBAL.OUTDOOR);
 	rooms["353"].addFlag(GLOBAL.HAZARD);
+	rooms["353"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["354"] = new RoomClass(this);
-	rooms["354"].roomName = "CORE\nWALKWAY";
+	rooms["354"].roomName = "\nWALKWAY";
 	rooms["354"].description = "The walkway connecting the lift and the tether control station is a long, thin passageway overlooking the great planetary rift through the heart of Tarkus. With every step, it shifts precariously on its supports";
 	rooms["354"].runOnEnter = coreWalkWayBonus;
 	//rooms["354"].westExit = "352";
@@ -2548,6 +2549,64 @@ function initializeRooms():void
 	rooms["354"].system = "SYSTEM: REDACTED";
 	rooms["354"].addFlag(GLOBAL.OUTDOOR);
 	rooms["354"].addFlag(GLOBAL.HAZARD);
+	rooms["354"].addFlag(GLOBAL.COMMERCE);
+
+	rooms["355"] = new RoomClass(this);
+	rooms["355"].roomName = "CORE\nPLATFORM";
+	rooms["355"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for you [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["355"].runOnEnter = undefined;
+	rooms["355"].westExit = "354";
+	rooms["355"].northExit = "356";
+	rooms["355"].southExit = "";
+	rooms["355"].planet = "PLANET: TARKUS";
+	rooms["355"].system = "SYSTEM: REDACTED";
+	rooms["355"].addFlag(GLOBAL.OUTDOOR);
+	rooms["355"].addFlag(GLOBAL.HAZARD);
+
+	rooms["356"] = new RoomClass(this);
+	rooms["356"].roomName = "CORE\nPLATFORM";
+	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for you [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["356"].runOnEnter = undefined;
+	rooms["356"].westExit = "355";
+	rooms["356"].northExit = "357";
+	rooms["356"].southExit = "9999";
+	rooms["356"].planet = "PLANET: TARKUS";
+	rooms["356"].system = "SYSTEM: REDACTED";
+	rooms["356"].addFlag(GLOBAL.OUTDOOR);
+	rooms["356"].addFlag(GLOBAL.HAZARD);
+
+	rooms["357"] = new RoomClass(this);
+	rooms["357"].roomName = "CORE\nPLATFORM";
+	rooms["357"].description = "The metal supports that ring the central structure have been supplanted by a series of floating platforms to the north, piled with crates and other equipment. The primary platforms bend south and east from here, shaded in places by metal beams and shafts of pure energy that radiate into the half-planets on either side.";
+	rooms["357"].runOnEnter = undefined;
+	rooms["357"].eastExit = "358";
+	rooms["357"].southExit = "356";
+	rooms["357"].planet = "PLANET: TARKUS";
+	rooms["357"].system = "SYSTEM: REDACTED";
+	rooms["357"].addFlag(GLOBAL.OUTDOOR);
+	rooms["357"].addFlag(GLOBAL.HAZARD);
+
+	rooms["358"] = new RoomClass(this);
+	rooms["358"].roomName = "CORE\nPLATFORM";
+	rooms["358"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex's instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
+	rooms["358"].runOnEnter = undefined;
+	rooms["358"].eastExit = "359";
+	rooms["358"].westExit = "357";
+	rooms["358"].planet = "PLANET: TARKUS";
+	rooms["358"].system = "SYSTEM: REDACTED";
+	rooms["358"].addFlag(GLOBAL.OUTDOOR);
+	rooms["358"].addFlag(GLOBAL.HAZARD);
+
+	rooms["359"] = new RoomClass(this);
+	rooms["359"].roomName = "CORE\nPLATFORM";
+	rooms["359"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex's instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
+	rooms["359"].runOnEnter = undefined;
+	rooms["359"].eastExit = "359";
+	rooms["359"].westExit = "357";
+	rooms["359"].planet = "PLANET: TARKUS";
+	rooms["359"].system = "SYSTEM: REDACTED";
+	rooms["359"].addFlag(GLOBAL.OUTDOOR);
+	rooms["359"].addFlag(GLOBAL.HAZARD);
 
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);

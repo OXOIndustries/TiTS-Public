@@ -937,11 +937,10 @@ function pcLosesToRocketPods():void
 	clearMenu();
 }
 
-/*
-END BOSS: Captain Khorgan Brytheck
-{Dungeon end boss, in two parts: a damage-dealing heavy-hitter mech-suit fight, followed by a tease-heavy duel between her and the PC, swashbuckler style. Mech is armed with great big rocket pods and a gattling laser; PC has to square-hop to avoid missiles when they come in, or take MASSIVE damage}
+//END BOSS: Captain Khorgan Brytheck
+//{Dungeon end boss, in two parts: a damage-dealing heavy-hitter mech-suit fight, followed by a tease-heavy duel between her and the PC, swashbuckler style. Mech is armed with great big rocket pods and a gattling laser; PC has to square-hop to avoid missiles when they come in, or take MASSIVE damage}
 
-Room Description: Platinum Vein Approach
+/*Room Description: Platinum Vein Approach
 {This is the big fucking C on your map; the other three rooms are arrayed in front of it (7,8,9 positions to its 5. From there, the Captain herself occupies another room to the North, making a cross of five rooms breaking off from the station}
 A makeshift array of hover-platforms have been bolted down to the ledge of the control station, leading into a great big crack in the rock ahead of you. Clearly a recent addition, the platforms creak and groan uneasily as the station itself shifts and settles on its precarious supports. Without any guard rails or walls ahead, one thing becomes clear: it's a long way down.
 
@@ -959,265 +958,613 @@ One of the large hover-platforms bolted to the edge of the station, bridging the
 
 Room Description: Platinum Deposit
 The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot. {A glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus. // There's an empty crate here, where the pirates were storing their mined platinum. You're sure nobody will begrudge you your reward...}
+*/
 
 
+//Captain Boss Fight: Introduction
+function pirateCaptainBossFightIntro():void
+{
+	clearOutput();
+	output("You step up onto the hover platform attached to the station, hand on your [pc.rangedWeapon]. Just a few paces ahead of you, a steel behemoth is at work, a gorilla-like mechanical suit busily drilling into the crust with a mining laser on its wrist. As you approach, you see the suit's other arm punch into the lasered-out rock, and rip out a fistful of a shiny silvery metal -- the glimmer of platinum is unmistakable. The suit turns, dumping the platinum shard into a half-full crate nearby... and sees you walking toward it.");
+	output("\n\nWith a footstep that sends the whole platform shuddering, the mech suit lumbers around to face you. The suit's torso is a dome of plated glass, inside which you can see a powerfully built greenskinned woman, surrounded by hovering holo-displays and sporting an almost ridiculously outdated tricorn hat. She scowls at you, and you hear the mining laser powering back up as she takes a step forward; the reverberations are nearly strong enough to knock you on your back.");
+	output("\n\n<i>\"AND WHO DO YOU THINK YOU ARE!?\"</i> the suit roars, the pilot's voice coming out as a deafening synthetic scream. <i>\"YOU'RE NOT A COP. SO WHAT: BOUNTY HUNTER? INTERPOL? OR DO YOU JUST HAVE A DEATHWISH, MAGGOT?\"</i>");
+	output("\n\n<i>\"Steele. [pc.name] Steele,\"</i> you say, leveling your [pc.rangedWeapon] at the suit's armored cockpit.");
 
-Captain Boss Fight: Introduction
-You step up onto the hover platform attached to the station, hand on your [rangedWeapon]. Just a few paces ahead of you, a steel behemoth is at work, a gorilla-like mechanical suit busily drilling into the crust with a mining laser on its wrist. As you approach, you see the suit's other arm punch into the lasered-out rock, and rip out a fistful of a shiny silvery metal -- the glimmer of platinum is unmistakable. The suit turns, dumping the platinum shard into a half-full crate nearby... and sees you walking toward it. 
+	output("\n\nShe laughs. Hearty, genuine laughter that the suit belches out as a splitting, grating creak. <i>\"I'M CAPTAIN KHORGAN BRYTHECK OF THE </i>TARASQUE<i>, AND I'M IN CHARGE HERE. YOU'VE GOT A LOT OF BALLS" + pc.mf(""," FOR A GIRL") + ". I'M ALMOST IMPRESSED. KEEP IT UP, AND I MIGHT GRANT YOU A QUICK DEATH... OR MAYBE I'LL KEEP YOU AROUND WHEN MY SUIT'S CHEWED YOU UP. WHAT DO YOU SAY TO BEING MY PERSONAL BITCH UNTIL I KICK YOU OUT AN AIRLOCK SOMETIME? SOUND FUN? THEN COME ON!\"</i>");
+	output("\n\nThe mining laser revs up, glowing red hot. Here we go!");
+	processTime(1);
+	clearMenu();
+	flags["KHORGAN_LEFT_COVER"] = 100;
+	flags["KHORGAN_CENTER_COVER"] = 100;
+	flags["KHORGAN_RIGHT_COVER"] = 100;
+	addButton(0,"Next",startCombat,"9999");
+}
 
-With a footstep that sends the whole platform shuddering, the mech suit lumbers around to face you. The suit's torso is a dome of plated glass, inside which you can see a powerfully built greenskinned woman, surrounded by hovering holo-displays and sporting an almost ridiculously outdated tricorn hat. She scowls at you, and you hear the mining laser powering back up as she takes a step forward; the reverberations are nearly strong enough to knock you on your back. 
-
-"AND WHO DO YOU THINK YOU ARE!?" the suit roars, the pilot's voice coming out as a deafening synthetic scream. "YOU'RE NOT A COP. SO WHAT: BOUNTY HUNTER? INTERPOL? OR DO YOU JUST HAVE A DEATHWISH, MAGGOT?"
-
-"Steele. [Name] Steele," you say, leveling your [ranged.Weapon] at the suit's armored cockpit. 
-
-She laughs. Hearty, genuine laughter that the suit belches out as a splitting, grating creak. " I'M CAPTAIN KHORGAN BRYTHECK OF THE </i>TARASQUE<i>, AND I'M IN CHARGE HERE. YOU'VE GOT A LOT OF BALLS{ FOR A GIRL}. I'M ALMOST IMPRESSED. KEEP IT UP, AND I MIGHT GRANT YOU A QUICK DEATH... OR MAYBE I'LL KEEP YOU AROUND WHEN MY SUIT'S CHEWED YOU UP. WHAT DO YOU SAY TO BEING MY PERSONAL BITCH UNTIL I KICK YOU OUT AN AIRLOCK SOMETIME? SOUND FUN? THEN COME ON!"
-
-The mining laser revs up, glowing red hot. Here we go!
-
-
-Combat Screen
+/*Combat Screen
 You're fighting Captain Khorgan!
 
 Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams "party-shop pirate," with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter. {if the suit's taken little damage: "This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!" //moderate damage: " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!" //critical damage: "The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!"}
+*/
 
 //How the fight should work: the mech suit's WAY too powerful for Steele to just take on straight up. Especially with that fuckhuge missile launcher on its back. Luckily, there's plenty of cover around in the three squares Steele can move between here, which should be displayed beneath Khorgan's description text as a %, which slowly deteriorates as she blasts the crates, boxes, and barriers on each platform. Maybe have each %pt be worth 2 points of damage, so having 100% cover absorbs 50% of damage coming your way, etc. Every so often, Khorgan will blast a cover spot with a missile, forcing you to relocate or take MASSIVE damage from it + have no cover. In her mechsuit, she's basically immune to LUST damage, and has heavy shields and armor besides. Seriously tough, even for level 5 PCs. FANTASIZE probably shouldn't work here, either.
 
 
-Mining Laser Barrage
+//% of cover = 2 HP.
+//% of cover = % chance cover will take the hit instead of PC.
+
+//Mining Laser Barrage
 //Several medium-damage attacks
-	The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!
-	Miss: You find yourself screaming as a deafening, blistering-hot barrage soars overhead, melting through your cover and only just missing you through the stacks of crates around you,
-	Hit: Even cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.
+function miningLaserBarrage():void
+{
+	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
+	var damage:int = 0;
+	var leftOverDamage:int = 0;
+	var randomizer = (rand(31)+ 85)/100;
+	for(var x:int = 3;x > 0;x--)
+	{
+		//Damage!
+		if(rangedCombatMiss(foes[0],pc))
+		{
+			output("\nYou find yourself screaming as a deafening, blistering-hot barrage soars overhead, melting through your cover and only just missing you through the stacks of crates around you.");
+			coverDamage(4);
+		}
+		else
+		{
+			output("\nEven cover isn't enough to save you as bolts burn through the boxes and crates, hammering into you like a thousand tiny suns.");
+			damage = 10;
+			randomizer = (rand(31)+ 85)/100;
+			damage *= randomizer;
+			//Leftover damage is what doesn't get eaten by cover.
+			leftOverDamage = damage - Math.round(damage * coverPercent());
+			//Cover soaks up it's % in damage.
+			coverDamage(damage * coverPercent());
+			//Figure out how much is left
+			genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		}
+	}
+	processCombat();
 
-Mining Laser Charge Shot
+
+function coverMiss():Boolean
+{
+	if(currentLocation == "KHORGAN_LEFT_COVER" && rand(100)+1 <= flags["KHORGAN_LEFT_COVER"])
+	{
+		return true;
+	}
+	else if(currentLocation == "KHORGAN_CENTER_COVER" && rand(100)+1 <= flags["KHORGAN_CENTER_COVER"])
+	{
+		return true;	
+	}
+	else if(currentLocation == "KHORGAN_RIGHT_COVER" && rand(100)+1 <= flags["KHORGAN_RIGHT_COVER"])
+	{
+		return true;
+	}
+	return false;
+}
+
+function coverPercent():Number
+{
+	if(currentLocation == "KHORGAN_LEFT_COVER")
+	{
+		return flags["KHORGAN_LEFT_COVER"]/100;
+	}
+	else if(currentLocation == "KHORGAN_CENTER_COVER")
+	{
+		return flags["KHORGAN_CENTER_COVER"]/100;
+	}
+	else if(currentLocation == "KHORGAN_RIGHT_COVER")
+	{
+		return flags["KHORGAN_RIGHT_COVER"]/100;
+	}
+}
+
+function coverDamage(damage:int):void
+{
+	var coverNuked:Boolean = false;
+	var coverRemaining:Number = -1;
+	if(currentLocation == "KHORGAN_LEFT_COVER")
+	{
+		flags["KHORGAN_LEFT_COVER"] -= damage/2;
+		if(flags["KHORGAN_LEFT_COVER"] < 0) 
+		{
+			flags["KHORGAN_LEFT_COVER"] = 0;
+			coverNuked = true;
+		}
+		coverRemaining = flags["KHORGAN_LEFT_COVER"];
+	}
+	else if(currentLocation == "KHORGAN_CENTER_COVER")
+	{
+		flags["KHORGAN_CENTER_COVER"] -= damage/2;
+		if(flags["KHORGAN_CENTER_COVER"] < 0)
+		{
+			flags["KHORGAN_CENTER_COVER"] = 0;
+			coverNuked = true;
+		}
+		coverRemaining = flags["KHORGAN_CENTER_COVER"]
+	}
+	else if(currentLocation == "KHORGAN_RIGHT_COVER")
+	{
+		flags["KHORGAN_RIGHT_COVER"] -= damage/2;
+		if(flags["KHORGAN_RIGHT_COVER"] < 0) 
+		{
+			flags["KHORGAN_RIGHT_COVER"] = 0;
+			coverNuked = true;
+		}
+		coverRemaining = flags["KHORGAN_RIGHT_COVER"]
+	}
+	if(coverNuked) output(" <b>(Cover gone!)</b>");
+	else output(" (-" + damage/2 + "% Cover)");
+	/*
+	if(coverRemaining >= 100) output(" Your cover is still in pristine condition!");
+		else if(coverRemaining >= 75) output(" The cover is largely intact.");
+		else if(coverRemaining >= 50) output(" The cover is in pretty rough shape.");
+		else if(coverRemaining >= 25) output(" Cover is getting pretty sparse.");
+		else if(coverRemaining > 0) output(" There's barely anything to hide behind at this point!");
+		else output(" <b>There isn't a scrap of cover to be found! You need to move!</b>");
+	}*/
+}
+
+
+//Mining Laser Charge Shot
 //One MEGA attack, low accuracy
-	With a roar of rage, the captain thrusts her laser-bearing arm forward and fires, one huge, continuous stream of laser fire that shears into the steel platform, tearing into what little cover you can find.
-	Miss: You hurl yourself flat to the ground, getting as small as possible as the heavy blast tears through the platform around you.
-	Hit: You try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your {[shields] and} gear. 
+function miningLaserSuperShot():void
+{
+	output("With a roar of rage, the captain thrusts her laser-bearing arm forward and fires, one huge, continuous stream of laser fire that shears into the steel platform, tearing into what little cover you can find.");
+	if(rangedCombatMiss(foes[0],pc))
+	{
+		output("\n\nYou hurl yourself flat to the ground, getting as small as possible as the heavy blast tears through the platform around you.");
+		coverDamage(20);
+	}
+	//Hit:
+	else
+	{
+		output("\n\nYou try and run, but there's nowhere to hide from the death laser as it slams into you, throwing you to the deck as the captain concentrates fire on you, shearing into your ");
+		if(pc.shields() > 0) output("shields and ");
+		output("gear.");
+		var damage:int = 30;
+		var randomizer:Number = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		//Leftover damage is what doesn't get eaten by cover.
+		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		//Cover soaks up it's % in damage.
+		coverDamage(damage * coverPercent());
+		//Figure out how much is left
+		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	}
+	processCombat();
+}
 
-Crate Throw
+//Crate Throw
 // Medium damage, chance to cause knockdown or stun or something
-	The captain stops her seemingly endless barrage of laser fire to stomp over and pick up a nearby crate, obviously quite full as her suit works hard to heft it up over her head. With a loud hydraulic hiss, the suit hurls the crate straight at you!
-	Miss: You roll aside, barely ducking the steel box.
-	Hit: OHSHIT. You scream as the box slams into you with rib-cracking force, hurling you to the edge of the platform, where you only just catch yourself. With a grunt, you scramble back up onto the hover-plat, {but find yourself STUNNED}.
+function crateThrow():void
+{
+	output("The captain stops her seemingly endless barrage of laser fire to stomp over and pick up a nearby crate, obviously quite full as her suit works hard to heft it up over her head. With a loud hydraulic hiss, the suit hurls the crate straight at you!");
+	//Miss:
+	if(rangedCombatMiss(foes[0],pc)) 
+	{
+		output("\n\nYou roll aside, barely ducking the steel box.");
+	}
+	//Hit
+	else
+	{
+		output("\n\nOHSHIT. You scream as the box slams into you with rib-cracking force, hurling you to the edge of the platform, where you only just catch yourself. With a grunt, you scramble back up onto the hover-plat");
+		if (!pc.hasStatusEffect("Stunned") && pc.physique() + rand(20) + 1 < 15)
+		{
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0);
+			output(", but find yourself STUNNED");
+		}
+		output(".");
+		var damage:int = 15;
+		var randomizer:Number = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		//Leftover damage is what doesn't get eaten by cover.
+		var leftOverDamage:int = damage - Math.round(damage * coverPercent());
+		//Cover soaks up it's % in damage.
+		coverDamage(damage * coverPercent());
+		//Figure out how much is left
+		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+	}
+	processCombat();
+}
+
+//Missile Incoming!
+function missileIncoming():void
+{
+	//ULTRA HEAVY DAMAGE
+	//Turn 1: 
+	if(!foes[0].hasStatusEffect("Missile Chargeup"))
+	{
+		foes[0].createStatusEffect("Missile Chargeup",0,0,0,0);
+		output("<i>\"YOU WANT SOME!? GET SOME!\"</i> the captain shouts, bringing her suit down into a low crouch and bringing up the launcher on its back. Oh, shit. You cover your ears as the missile launches, hurtling straight up in the air.");
+		output("\n\n<b>MISSILE INCOMING.</b>");
+		flags["MISSILE_TARGET"] = currentLocation;
+	}
+	//Turn 3
+	else
+	{
+		//{if PC moved.}
+		if(flags["MISSILE_TARGET"] != currentLocation)
+		{
+			output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there's barely anything left of that platform anymore!");
+			//9999 nuke cover at target!
+			flags[flags["MISSILE_TARGET"]] = 0;
+			output(" <b>(-100% Cover)</b>");
+		}
+		//{if PC didn't move. YA GOOF}
+		else
+		{
+			output("You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a body full of shrapnel, tearing into you as you're tossed about like a ragdoll.");
+			flags[flags["MISSILE_TARGET"]] = 0;
+			output(" <b>(-100% Cover)</b>");
+			var damage:int = 20;
+			var randomizer:Number = (rand(31)+ 85)/100;
+			damage *= randomizer;
+			//Figure out how much is left
+			genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		}
+	}
+	processCombat();
+}
+
+//Captain Phase 1: PC Victorious
+function victoriousVsCaptainOrcButt():void
+{
+	clearOutput();
+	output("The reinforced mining suit shudders, smoke billowing off of it as the captain struggles to keep it standing. With one final roar of outrage, she levels the mining laser at you, intending to go down with a fight... but it doesn't fire. Indeed, it <i>catches</i> fires as she spins it up, quickly bursting into flames from excess heat. You bat a billow of smoke away from your face as the suit collapses to one knee, its guns melting to slag.");
+	output("\n\nBut she's not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit's powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it's strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust.");
+	output("\n\nWith a pneumatic hiss, the mech suit's cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core.");
+	output("\n\n<i>\"You stupid " + pc.mf("bastard","bitch") + ",\"</i> the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist's pose. <i>\"All you and the damn Peacekeepers had to do was was stay back a few hours... nobody had to get hurt. But you... now you've ruined everything. Probably killed half my crew, haven't you? And now my suit! My beautiful suit!\"</i>");
+	output("\n\nYou have just enough time to pull your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
+	output("\n\nShe circles, breathing hard. <i>\"You're strong, I'll give you that. That suit should have been able to mow through a whole squad of soldiers, but you...\"</i>");
+	output("\n\nKhorgan sighs, a slight grin crossing her lips. She charges, swinging low. You parry, leaping back as you see the feint for what it is, only just dodging a left hook that would have had you on your ass. She follows up with a few swings which you alternatively dodge or parry before countering with your own attack, pushing her back -- and giving you some room to breathe.");
+	output("\n\n<i>\"Good!\"</i> the captain grins, the fury in her voice fading to what you might venture to call mirth. <i>\"You're good, Steele. Maybe even good enough...\"</i>");
+	output("\n\nYou just catch the dangerous glint in her eye before she rushes you. Your weapons clash, but she's <i>strong</i>, strong enough to lock blades with you and start twisting your weapon aside. You strain against her, trying to keep yourself centered, but to no avail -- she pushes you aside just enough to smash her head into yours, sending you staggering back. Rather than follow-up, though, she roars in triumph, head and arms thrown back in a primal display. Her tricorn flutters aside, revealing a shock of brilliant orange hair against her green skin, a flowing braid dancing behind her as she starts to circle again, force cutlass readied.");
+	output("\n\n<i>\"Why did you come here, Steele?\"</i> she sneers, <i>\"Are you some kind of hero -- thought you could save the planet from the big, bad pirates?\"</i>");
+	output("\n\nYou move next, charging in with a pair of wild swings, enough to batter down her guard before you fully commit, leaping into an overhand blow. She dodges at the last moment, pulling back hard -- your weapon sheers through air and fabric, tearing into the front of her corset. When she recovers, she's grinning maniacally, her big breasts barely restrained by the remaining strings of her outfit, threatening to burst free at any moment as tatters of fabric fall away.");
+	output("\n\nKhorgan regards you with fiery red eyes, and to your surprise, laughs. <i>\"You really ARE good, aren't you. Ha! I'll enjoy breaking you... and breeding you, if you're lucky.... Why don't you put the weapon down, Steele. You're wasting your time, you know that? The bomb was never meant to go off. It was just insurance, to keep the Peacekeepers away. We'd have disarmed it before we left. It would have worked, too, if a mad{wo}man like you hadn't come along and stuck your FUCKING NOSE IN.\"</i>");
+
+	output("\n\n");
+	//If PC beat Kaska:
+	if(9999 == 0)
+	{
+		output("<i>\"You have the other detonator, don't you? Well, you can't disarm the bomb without both, Steele! Neither of us can.\"</i> ");
+	}
+	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
+	clearMenu();
+	addButton(0,"Fight",startCombat,"9999","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	//{Go to Captain Fight: Part 2}
+	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
+	//{Tooltip: She's right. You don't have a chance...}
+	addButton(2,"Give Up",surrenderToCapnKhorgath,undefined,"Surrender","Surrender to the Captain. Why bother fighting?");
+}
 
 
-Missile Incoming!
-// ULTRA HEAVY DAMAGE
-	Turn 1: "YOU WANT SOME!? GET SOME!" the captain shouts, bringing her suit down into a low crouch and bringing up the launcher on its back. Oh, shit. You cover your ears as the missile launches, hurtling straight up in the air.
-	<b>MISSILE INCOMING.</b>
+//Demand Surrender
+function demandSurrenderFromPirate():void
+{
+	//Tooltip: She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.}
+	clearOutput();
+	output("<i>\"You've got no chance, captain. How about YOU put your weapon down,\"</i> you say, holding your ground.");
+	output("\n\n<i>\"Ballsy,\"</i> she laughs, still clutching her force cutlass tight. <i>\"I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I'll still take you as my personal fuck-slave.");
+	output("\n\n<i>\"Or would you rather we sit here flapping our gums till the timer runs out? That'll be a hell of a way to go, out with a blast, huh!?\"</i>");
+	output("\n\nIf you want to get out of this, it doesn't look like you're going to have much of a choice after all.");
+	processTime(1);
+	//[Fight!]
+	clearMenu();
+	addButton(0,"Fight",startCombat,"9999","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+}
 
-	Turn 2
-	//Combat as normal, add missile incoming message
+//Surrender Yourself
+//{Tooltip: She's right. You don't have a chance...}
+function surrenderToCapnKhorgath():void
+{
+	clearOutput();
+	output("With a heavy sigh, you drop your weapon and gear. At least this way you'll make it out of here alive, even if Tarkus might be doomed because of it.");
+	output("\n\n<i>\"Really?\"</i> the captain sneers, scowling. <i>\"I didn't think you were that spineless, Steele. Fine, then. Get down on the ground, and don't make any sudden movements.\"</i>");
+	//{Go to Captain Khorgan's Broodmare badend}
+	clearMenu();
+	addButton(0,"Next",9999);
+}
 
-	Turn 3
-	{if PC moved.}
-	You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there's barely anything left of that platform anymore!
-	{if PC didn't move. YA GOOF}
-	You look up just in time to see the warhead coming, a huge red tip bearing down on you. Fuck! You leap as far as you can, but barely dodge the initial blast, and are sent hurtling away with a {shield / body} full of shrapnel, tearing into you as you're tossed about like a ragdoll. 
-
-
-Captain Phase 1: PC Victorious
-The reinforced mining suit shudders, smoke billowing off of it as the captain struggles to keep it standing. With one final roar of outrage, she levels the mining laser at you, intending to go down with a fight... but it doesn't fire. Indeed, it <i>catches</i> fires as she spins it up, quickly bursting into flames from excess heat. You bat a billow of smoke away from your face as the suit collapses to one knee, its guns melting to slag. 
-
-But she's not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit's powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it's strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust. 
-
-With a pneumatic hiss, the mech suit's cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core. 
-
-"You stupid {bitch / bastard}," the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist's pose. "All you and the damn Peacekeepers had to do was was stay back a few hours... nobody had to get hurt. But you... now you've ruined everything. Probably killed half my crew, haven't you? And now my suit! My beautiful suit!"
-
-You have just enough time to {draw your [pc.meleeWeapon] //else if no appropriate bladed weapon: grab a nearby pipe} when she lunges at you, only barely parrying the thrust. 
-
-She circles, breathing hard. "You're strong, I'll give you that. That suit should have been able to mow through a whole squad of soldiers, but you..."
-
-Khorgan sighs, a slight grin crossing her lips. She charges, swinging low. You parry, leaping back as you see the feint for what it is, only just dodging a left hook that would have had you on your ass. She follows up with a few swings which you alternatively dodge or parry before countering with your own attack, pushing her back -- and giving you some room to breathe. 
-
-"Good!" the captain grins, the fury in her voice fading to what you might venture to call mirth. "You're good, Steele. Maybe even good enough..."
-
-You just catch the dangerous glint in her eye before she rushes you. Your weapons clash, but she's <i>strong</i>, strong enough to lock blades with you and start twisting your weapon aside{, shearing through your pipe's tip, leaving a burned-smooth angled point behind}. You strain against her, trying to keep yourself centered, but to no avail -- she pushes you aside just enough to smash her head into yours, sending you staggering back. Rather than follow-up, though, she roars in triumph, head and arms thrown back in a primal display. Her tricorn flutters aside, revealing a shock of brilliant orange hair against her green skin, a flowing braid dancing behind her as she starts to circle again, force cutlass readied. 
-
-"Why did you come here, Steele?" she sneers, "Are you some kind of hero -- thought you could save the planet from the big, bad pirates?"
-
-You move next, charging in with a pair of wild swings, enough to batter down her guard before you fully commit, leaping into an overhand blow. She dodges at the last moment, pulling back hard -- your weapon sheers through air and fabric, tearing into the front of her corset. When she recovers, she's grinning maniacally, her big breasts barely restrained by the remaining strings of her outfit, threatening to burst free at any moment as tatters of fabric fall away. 
-
-Khorgan regards you with fiery red eyes, and to your surprise, laughs. "You really ARE good, aren't you. Ha! I'll enjoy breaking you... and breeding you, if you're lucky.... Why don't you put the weapon down, Steele. You're wasting your time, you know that? The bomb was never meant to go off. It was just insurance, to keep the Peacekeepers away. We'd have disarmed it before we left. It would have worked, too, if a mad{wo}man like you hadn't come along and stuck your FUCKING NOSE IN."
-
-{If PC beat Kaska: "You have the other detonator, don't you? Well, you can't disarm the bomb without both, Steele! Neither of us can. "}From her pocket, she pulls a small remote, and glances at it. "Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch..."
-
-Fight!
-{Tooltip: The captain's clearly not going down without a fight. Time to finish this.}
-{Go to Captain Fight: Part 2}
-
-Demand Surrender
-{Tooltip: She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.}
-
-"You've got no chance, captain. How about YOU put your weapon down," you say, holding your ground. 
-
-"Ballsy," she laughs, still clutching her force cutlass tight. "I like that in a {wo}man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I'll still take you as my personal fuck-slave.
-
-"Or would you rather we sit here flapping our gums till the timer runs out? That'll be a hell of a way to go, out with a blast, huh!?"
-
-If you want to get out of this, it doesn't look like you're going to have much of a choice after all. 
-
-[Fight!]
-
-
-Surrender Yourself
-{Tooltip: She's right. You don't have a chance...}
-
-With a heavy sigh, you drop your weapon and gear. At least this way you'll make it out of here alive, even if Tarkus might be doomed because of it. 
-
-"Really?" the captain sneers, scowling. "I didn't think you were that spineless, Steele. Fine, then. Get down on the ground, and don't make any sudden movements."
-
-{Go to Captain Khorgan's Broodmare badend}
-
-
-
-
+/*
 Captain Boss Fight: Part 2
 //This part is a straight-up combat encounter. She focuses primarily on lust attacks in this form: she wants the PC as her brood slave, not dead. Captain has great physical defenses, but is vulnerable to LUST attacks. (ie, Reverse of last time)
 
 You're fighting Captain Khorgan!
 Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!
+*/
 
-Cutlass Strike
+
+//Cutlass Strike
 //Basic physical attack
-	The captain rushes at you, swinging her force cutlass in a brutal arc. You dodge the blow, but find another heading toward you almost immediately, trying to get through your still-staggered guard. 
-	If Miss: You deftly parry the strike!
-	If Hit: The strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest. 
+function captainCutlassAttk():void
+{
+	output("The captain rushes at you, swinging her force cutlass in a brutal arc. You dodge the blow, but find another heading toward you almost immediately, trying to get through your still-staggered guard.");
+	//If Miss:
+	if(combatMiss(foes[0],pc)) output(" You deftly parry the strike!");
+	else 
+	{
+		output("\n\nThe strike connects! You wince in pain as the force blade leaves a gloaming cut across your chest.");
+		var damage:int = foes[0].meleeWeapon.damage + foes[0].physique()/2;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		genericDamageApply(damage,foes[0],pc);
+	}
+	processCombat();
+}
 
-Roundhouse Kick
+//Roundhouse Kick
 //Physical, chance to knockdown
-	You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [chest].
-	If Miss: You grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe. 
-	If Hit: You grunt as the kick connects, throwing you back {onto your back!}. Oof!
+function roundHouseKickFromCapn():void
+{
+	clearOutput();
+	output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
+	//If Miss: 
+	if(combatMiss(foes[0],pc)) output("\n\nYou grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
+	//If Hit:
+	else
+	{
+		output("\n\nYou grunt as the kick connects, throwing you back ");
+		if(!pc.hasStatusEffect("Trip") && pc.reflexes() + rand(20) + 1 < 25)
+		{
+			pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+			output("onto your back!");
+		}
+		else output(".");
+		output(" Oof!");
+		var damage:int = 4;
+		genericDamageApply(damage,foes[0],pc,GLOBAL.KINETIC);
+	}
+	processCombat();
+}
 
-Crotch-Face-Smash
+//Crotch-Face-Smash
 //Heavy lust attack
-	Amid a flurry of sword-swings, Captain Khorgan reaches out, grabbing your head and forcing you to your [knees] with a mighty grunt. You give a gasp as your [face] is thrust into the growing damp patch on her crotch, put face to face with her burning battle-lust.
-	Success: You shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you. 
-	Fail: You hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance. 
+function crotchFaceSmash():void
+{
+	output("Amid a flurry of sword-swings, Captain Khorgan reaches out, grabbing your head and forcing you to your [pc.knees] with a mighty grunt. You give a gasp as your [pc.face] is thrust into the growing damp patch on her crotch, put face to face with her burning battle-lust.");
+	//Success:
+	if(pc.willpower() + rand(20) + 1 < 20)
+	{
+		output("\n\nYou shudder as the potent, earthy smell of the captain's arousal washes over you, smearing across your face through the the fabric of her pants. You try to deny it, but there's a powerful heat starting to spread through your loins before she releases you.");
+		pc.lustDamage(15);
+	}
+	else 
+	{
+		output("\n\nYou hold your breath, trying not to think too hard around the overzealous thraggen warrior trying to pelvic-thrust you into submission. Finally, with a feral grunt, you shove the captain off and resume your battle stance.");
+		pc.lust(2);
+	}
+	processCombat();
+}
 
-Motorboat
+//Motorboat
 //Basic lust attack
-	You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [face] between her massive tits.
-	Success: You try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.
-	Failure: You shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing. 
+function motorboatedByASpork():void
+{
+	output("You find your guard battered down by a rapid-fire series of sword swipes, only for the captain to grab you by the shoulders and force your head into the gulf of her ample cleavage, burying your [pc.face] between her massive tits.");
+	//Success: 
+	if(pc.willpower() + rand(20) + 1 < 25)
+	{
+		output("\n\nYou try to resist, but the sensation of being trapped in a jiggling sea of boobflesh is almost too good to fight back against. You only just keep yourself from grabbing Khorgan's tits and taking out your own mounting lust on those big, perfect green orbs.");
+		pc.lustDamage(7+rand(3));
+	}
+	//Failure:
+	else output("\n\nYou shove the captain back before she can get too into rubbing you down with her tits, leaving her almost popping out of her corset as you try and recover your footing.");
+	processCombat();
+}
 
-She Gets off on it!?
+//She Gets off on it!?
 //Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
-	The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets. 
-	Grinning she says, "Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do..."
+function gettingOffOnZePain():void
+{
+	output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
+	output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
+	foes[0].HP(25);
+	foes[0].lust(10+rand(3));
+	pc.lust(2);
+	processCombat();
+}
 
-Captain Fight Phase 2: PC Victorious
-{if by Lust}
-"Oh, fuck," Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. "I can't.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I'm all yours, you fucking animal."
+//Captain Fight Phase 2: PC Victorious
+function youBeatUpAnOrcWaytoGo():void
+{
+	//{if by Lust}
+	if(foes[0].lust() >= foes[0].maxLust())
+	{
+		output("<i>\"Oh, fuck,\"</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. <i>\"I can't.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I'm all yours, you fucking animal.\"</i>");
+	}
+	//{if by Damage}
+	else
+	{
+		output("<i>\"Oh, fuck,\"</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. She wipes a trickle of blood from the corner of her mouth, shooting you a twisted grin even as she winces in pain. <i>\"Damn, you're good. I yield, Steele... have your damn detonator. Have me, too. You've earned it,\"</i> she adds, her hand slipping down to the ruins of her corset and pulling it aside to reveal the sheer swells of her heaving green bosom. Her look is inviting, almost desperate, practically begging you to fuck her.");
+	}
+	//{Combine:}
+	output("\n\nYou grab the detonator from her outstretched hand, eyes wandering across the bare expanse of her bust, unable to deny the ");
+	if(pc.hasCock()) output("stiffening of your [pc.cocks]");
+	else if(pc.hasVagina()) output("the growing wetness in your [pc.vagina]");
+	else output("the heat in your own loins");
+	output(" as you're confronted with the lusty captain, a willing thraggen pirate.");
+	//9999
+}
 
-{if by Damage}
-"Oh, fuck," Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. She wipes a trickle of blood from the corner of her mouth, shooting you a twisted grin even as she winces in pain. "Damn, you're good. I yield, Steele... have your damn detonator. Have me, too. You've earned it," she adds, her hand slipping down to the ruins of her corset and pulling it aside to reveal the sheer swells of her heaving green bosom. Her look is inviting, almost desperate, practically begging you to fuck her.
+//Leave
+function leaveDatThragginBootayBehind():void
+{
+	clearOutput();
+	output("<i>\"I don't think so,\"</i> you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you.\n\n");
+	genericVictory();
+}
 
-{Combine:}
-You grab the detonator from her outstretched hand, eyes wandering across the bare expanse of her bust, unable to deny the {stiffening of your [cock] // the growing wetness in your [vagina] // the heat in your own loins} as you're confronted with the lusty captain, a willing thraggen pirate.
+//Dick Fuck
+//It from Defeat menu: 
+function dickFuckDatThraggenCoochie():void
+{
+	clearOutput();
+	//Combat defeat
+	if(9999 == 9999) output("You can hardly turn down an offer like that.");
+	//Repeat repeat
+	else output("Time to take advantage of the suddenly submissive captain. ");
+	//if no detonator:
+	if(9999 == 0)
+	{
+		output("You pocket the detonator before");
+		//9999
+	}
+	else output("You start by");
+	output(" stepping up and grabbing the captain by the waist, pulling her into a deep kiss. Her breath catches at the sudden move, but she quickly relents, her powerful hands quickly searching down your own body, grabbing your [pc.butt] and squeezing hard.");
+	output("\n\nWhen you break the kiss, she's smiling wide: <i>\"I don't even mind losing. Not to someone as strong as you. Among the thraggen, there's no shame in yielding to a foe who proves [pc.his] superiority... and you have.\"</i>");
+	output("\n\nWith a few slight movements of her hands, she starts to pull the [pc.gear] from your body, baring the [pc.skinFurScales] beneath. You return the favor, tearing apart what's left of her corset so that her breasts fall fully free, pressed against your own [pc.chest] as your hands run all over each others, tearing at clothes and groping at bare stretches of flesh, slowly working towards each others' most sensitive parts. Eventually, you hook your fingers through her belt and give it a downward tug. She gives a little moan as you wiggle her breeches off, leaving the damp, torn garments for her to kick off. True to form, that captain's gone without panties, leaving the dark gash of her sex on blatant display, already glistening with slick excitement.");
+	output("\n\n<i>\"Oh yeah,\"</i> she groans as your wandering hand caresses her mons, a pair of fingers easily probing their way into her. <i>\"Right there, Steele. Just like that.\"</i>");
+	output("\n\nYou thrust your hand deeper, burying your digits to the knuckles, and are rewarded with a gasp of pleasure and a feral growl as Khorgan wraps her powerful arms around you, squeezing you almost painfully tight. You're about to complain when one of her legs hooks around your [pc.leg]; you give a little yelp as the two of you tumble to the ground, slamming into the steel deck with head-rattling force. When your vision clears, though, you see that all's well with the world: the captain's straddling you, thighs clamped around your [pc.hips] with her own slick sex poised overtop [pc.oneCock], almost on the brink of penetration.");
+	output("\n\n<i>\"I want you,\" she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock " + x + "] reacts to her wet, hot touch, jumping to attention by the time she's finished one full bounce along its now-turgid length. She doesn't stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock " + x + "] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the core.");
+	output("\n\nGrinning, Khorgan rises on her knees, one hand firmly planted on your [pc.chest] to support herself, the other reaching up to grope one of her massive green melons. She gives you a look as if to say, '<i>are you ready?</i>' as her hips shift, finally aligning the channel of her sex with the [pc.cockHead " + x + "] of your [pc.cock " + x + "]. You give her a slight nod, and quickly find your head rolling back, a primal roar of sexual satisfaction rolling off your lips as Khorgan slides onto you, submerging your [pc.cock " + x + "] into the tight, sweltering, sodden slit between her legs.");
+	cockChange();
+	output("\n\n<i>\"YES!\"</i> Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain's hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain's sexual assault is overwhelming, threatening to batter the cum right out of you -- and probably put you in the hospital, if the greenskin slut's got anything to say about it.");
+	output("\n\n<i>\"Do you like it, Steele?\"</i> the captain teases at the apex of another pelvis-crushing bounce, <i>\"Cum for me. Breed me.... Give me one of your powerful offspring.... Imagine what we could do together....\"</i>");
+	output("\n\nOh no she doesn't! Marshalling what's left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain's back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock " + x + "] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.");
+	output("\n\nNow it's your turn. You lean in through the splayed gulf of her groin, deep enough to grab one of the dark teats atop Khorgan's breasts between your teeth, rolling the pert bud between your incisors until the captain groans with pleasure, vaginal muscles tensing around your thrusting prick. At this angle, though, no matter how tight she clenches, you've got the perfect vantage to pound her pussy. Your hips piston forward, slamming home against her up-raised cheeks with enough force to make her whole body tremble, her hefty tits bouncing hypnotically with every thrust.");
+	output("\n\nYou grab those heavy, perfect orbs, sinking your fingers into the pliant flesh until Khorgan's howling with pleasure, all but begging for release. You refuse to let up on your furious sexual assault, putting the amazonian in her place with your hammering [pc.hips] and thrusting cock filling her cunny. Finally, the captain throws her head back and gives a feral, lusty roar -- a sound that echoes out through the gulf of the planet's riven core as she cums. Her muscular legs wrap around your neck, pulling you tight into the heaving mounds of her tits as she climaxes, letting you feel the heat radiating off her lust-addled body, the beat of her heart through the tensed muscles of her sex as she slathers you in fem-spunk, drenching your groin even as her pussy milks you, muscles instinctively trying to drain the seed from you.");
+	output("\n\nThat, at least, you'll let her have. You move faster, your [pc.hips] slamming into her with greater and greater force as your speed reaches dizzying heights. The captain's orgasm drags out as you hammer her, pulling you closer and closer to your own with her low, guttural cries and wild-wringing muscles. Between your frantic thrusts, you feel your orgasm coming, a thick rope of [pc.cum] surging through your [pc.cock " + x + "] and into the slick, squirming tunnel of the captain's sex.");
+	output("\n\n<i>\"Fuck yes!\"</i> Khorgan screams, feeling your seed ");
+	if(silly) output("sploosh");
+	else output("rush");
+	output(" into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her");
+	if(pc.hasKnot(x)) output(", your [pc.knot " + x + "] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt");
+	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave. There's a bomb that needs your attention.\n\n");
+	processTime(20+rand(10));
+	pc.orgasm();
+	genericVictory();
+}
 
-Leave
-"I don't think so," you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you. 
-
-Dick Fuck
-{It from Defeat menu: You can hardly turn down an offer like that. //elseif repeat: Time to take advantage of the suddenly submissive captain} (if no detonator: You pocket the detonator before// You start by) stepping up and grabbing the captain by the waist, pulling her into a deep kiss. Her breath catches at the sudden move, but she quickly relents, her powerful hands quickly searching down your own body, grabbing your [pc.butt] and squeezing hard. 
-
-When you break the kiss, she's smiling wide: "I don't even mind losing. Not to someone as strong as you. Among the thraggen, there's no shame in yielding to a foe who proves [pc.his] superiority... and you have."
-
-With a few slight movements of her hands, she starts to pull the [pc.gear] from your body, baring the [pc.skinFurScales] beneath. You return the favor, tearing apart what's left of her corset so that her breasts fall fully free, pressed against your own [pc.chest] as your hands run all over each others, tearing at clothes and groping at bare stretches of flesh, slowly working towards each others' most sensitive parts. Eventually, you hook your fingers through her belt and give it a downward tug. She gives a little moan as you wiggle her breeches off, leaving the damp, torn garments for her to kick off. True to form, that captain's gone without panties, leaving the dark gash of her sex on blatant display, already glistening with slick excitement. 
-
-"Oh yeah," she groans as your wandering hand caresses her mons, a pair of fingers easily probing their way into her. "Right there, Steele. Just like that."
-
-You thrust your hand deeper, burying your digits to the knuckles, and are rewarded with a gasp of pleasure and a feral growl as Khorgan wraps her powerful arms around you, squeezing you almost painfully tight. You're about to complain when one of her legs hooks around your [pc.leg]; you give a little yelp as the two of you tumble to the ground, slamming into the steel deck with head-rattling force. When your vision clears, though, you see that all's well with the world: the captain's straddling you, thighs clamped around your [pc.hips] with her own slick sex poised overtop your [pc.cock " + x + "], almost on the brink of penetration. 
-
-"I want you," she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock " + x + "] reacts to her wet, hot touch, jumping to attention by the time she's finished one full bounce along its now-turgid length. She doesn't stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock " + x + "] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the core. 
-
-Grinning, Khorgan rises on her knees, one hand firmly planted on your [pc.chest] to support herself, the other reaching up to grope one of her massive green melons. She gives you a look as if to say, '<i>are you ready?</i>' as her hips shift, finally aligning the channel of her sex with the [pc.cockHead " + x + "] of your [pc.cock " + x + "]. You give her a slight nod, and quickly find your head rolling back, a primal roar of sexual satisfaction rolling off your lips as Khorgan slides onto you, submerging your [pc.cock " + x + "] into the tight, sweltering, sodden slit between her legs. 
-
-"YES!" Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain's hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain's sexual assault is overwhelming, threatening to batter the cum right out of you -- and probably put you in the hospital, if the greenskin slut's got anything to say about it.
-
-"Do you like it, Steele?" the captain teases at the apex of another pelvis-crushing bounce, "Cum for me. Breed me.... Give me one of your powerful offspring.... Imagine what we could do together...."
-
-Oh no she doesn't! Marshalling what's left of your strength, you issue a primal roar of outrage as you flip the both of you over, slamming the captain's back into the deck and leaving you on your knees between her splayed legs. Khorgan looks up at you in shock, just as you hike her legs up over your shoulders and slam your [pc.hips] in, hilting your [pc.cock] in her. Rather than resisting as you might have expected, the captain gives you an approving nod and hooks her hands under her powerful legs, holding them nice and wide, giving you unobstructed access to her cunt.
-
-Now it's your turn. You lean in through the splayed gulf of her groin, deep enough to grab one of the dark teats atop Khorgan's breasts between your teeth, rolling the pert bud between your incisors until the captain groans with pleasure, vaginal muscles tensing around your thrusting prick. At this angle, though, no matter how tight she clenches, you've got the perfect vantage to pound her pussy. Your hips piston forward, slamming home against her up-raised cheeks with enough force to make her whole body tremble, her hefty tits bouncing hypnotically with every thrust. 
-
-You grab those heavy, perfect orbs, sinking your fingers into the pliant flesh until Khorgan's howling with pleasure, all but begging for release. You refuse to let up on your furious sexual assault, putting the amazonian in her place with your hammering [pc.hips] and thrusting cock filling her cunny. Finally, the captain throws her head back and gives a feral, lusty roar -- a sound that echoes out through the gulf of the planet's riven core as she cums. Her muscular legs wrap around your neck, pulling you tight into the heaving mounds of her tits as she climaxes, letting you feel the heat radiating off her lust-addled body, the beat of her heart through the tensed muscles of her sex as she slathers you in fem-spunk, drenching your groin even as her pussy milks you, muscles instinctively trying to drain the seed from you. 
-
-That, at least, you'll let her have. You move faster, your [pc.hips] slamming into her with greater and greater force as your speed reaches dizzying heights. The captain's orgasm drags out as you hammer her, pulling you closer and closer to your own with her low, guttural cries and wild-wringing muscles. Between your frantic thrusts, you feel your orgasm coming, a thick rope of [pc.cum] surging through your [pc.cock] and into the slick, squirming tunnel of the captain's sex.
-
-"Fuck yes!" Khorgan screams, feeling your seed {sploosh / rush} into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her{, your [pc.knot " + x + "] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt}. Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave. There's a bomb that needs your attention.
-
-
-Lesbos- gardeford can into helping
+//Lesbos- gardeford can into helping
 //Gardeford wrote dis! :D
-{if First time: Who are you to refuse such a tempting offer. (pc doesn't have detonator: You pocket the detonator before //else// You start by) giving her a push in the center of her oh so inviting chest. Given her weakened state, your push is enough to send her falling back with a grunt of surprise.}
-{If Repeat: You grab the well-fucked captain by the tatters of her corset, locking eyes with her before giving her a firm push down. She grunts with surprise as you cast her down, though her eyes tell you instantly she's ready for more}
-She lands on her butt but falls further as you follow her down, pressing her onto the floor of the station by the stomach. Her breasts jiggle as they are shaken in the half prison of cloth that used to be her corset. You lay next to her, holding her arm down with the weight of your upper body as you lean in and give her a kiss that presses the back of her head to the floor.
-She grins happily as you pull away. <i>“I feel no shame yielding to someone as strong as you, Ms. Steele. Among thraggen, there is nothing wrong with losing to a superior foe… and superior you are.”</i>
-As she speaks, her hands strip you of your [pc.gear]. Her free hand grips the [pc.skinfurscales] of your shoulder, while the arm thats under you concedes to groping at one cheek of your [pc.butt]. You join her after you’re free of obstructions, ripping away the tattered remains of her shirt and corset. Her breasts fall fully free when you’re done, still glistening with the sweat of your fight. 
-You grasp one of her tits in your palm, giving it a squeeze before narrowing your hold to pinch her darker viridian nipple. Her trapped arm twitches, instinctually wanting to join your hand in playing with her breasts. Luckily for her, you have no intention of leaving your current playthings twin unattended. You lean in close, starting at the base of her arm and kissing along the side of her sizeable melon. Your kisses culminate as you reach her rock hard nipple, softly biting it as you gaze lustily into the thraggen pirates eyes.
-As your mouth works its magic on her breast, you let your hand trail down her stomach, brushing the cleanly defined muscle of her abs. When you reach her waist you find it’s still covered by her britches, but decide to leave them there for now. You slip your hand under the belt of her pants, pleased to find that the green-skinned captain has gone commando. You dip your fingers into the folds of her vagina, circling her hole once before plunging two fingers into its depths.
-<i>“Yes, Steele! More!”</i> she moans, her hand replacing the missing one in fondling her abandoned tit. The heat of her cunt is immense inside the hotbox of her pants, and you feel the warmth of it spreading up your arm as you dig your fingers deeper inside at her insistence. The nipple in your mouth has become nearly as hard as the platinum the captain was so invested in mining, and you bite a little harder with each pass until you have Khorgan roaring with pleasure at each touch of your teeth.
-The lust drunk pirate bucks her hips against your hand, her legs rapidly alternating between being locked together and splaying out in rapture. The inner walls of her sex clamp around your hand like a cinch, but you pull in and out just as rapidly, adding a third finger to your spelunking escapade. In the excitement, you fail to notice that her other arm has edged its way out of the body trap you’d placed it under.
-You tense in astonishment as a feral growl escapes the captains throat, and she grasps both of your shoulders, rolling the both of you over till she lies on top of you. <i>“I can’t just lie there and not give anything back, can I Steele?”</i>
-(if pc shortstack: She sits atop your fingers, hands gripping at [pc.fullchest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her pants. The britches, having already been tatters at the start of your lovemaking, are soaked so deeply that droplets of Khorgan’s feminine juices drip down periodically onto your own sex. You shiver as her fluids mix with the ones already trickling down your [pc.legs] from [pc.eachvagina].)
-(if pc notsoshort: The thraggen captain straddles your hand, which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she lets down, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sets rivulets of your sexual fluids dripping down [pc.legs])
-Despite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move it around to her chiseled ass. You slip your second hand under her pants as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands and pull her torn britches down to her knees, flipping her onto her back with the momentum.
-The jade-skinned pirates face is a mask of shock, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s bewildered form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.
-Unable to wait any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.
-Khorgan’s well muscled legs shudder and tense in the air above the two of you, trapped together by the tattered remains of her britches. Her eyes have lost some of their fiery intensity, and seem to be set in focus as she resists your assault to the best of her ability. Her jaw is clenched with teeth bared, (if silly:considerably white for a pirate. You guess no one has an excuse to not keep up with dental hygiene considering new advances in the technology./but you imagine you have her howling in short notice.)
-A final twitch of her clit is the only warning you get before the pirate captains body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.
-Your victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. Theres still something missing from this equation though. You haven’t actually gotten off yet, but you think you have the answer to that problem. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.
-(<i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair./<i>“You can’t be done so soon,”</i> you chide teasingly./<i>”Lick,”</i> you command with a grin.) Some primal part of the poor girl must hear you, as she weakly grasps your hips and pulls you down onto her mouth. Her tongue laps at your juices and licks your folds, sending small shockwaves of bliss through your body when she teases {a/your} [pc.clit]. you massage her tensed body while she tends to your cunt, rubbing the stress out of her athletic abs and sturdy hips. While the idea of fingering her again is tempting, you decide to let her off the hook, especially since she’s doing such a good job.
-Her powerful tongue has since slipped into your [pc.vagina " + x + "], pressing all the right places with all the right pressure. In a matter of seconds, one of her tongue's strokes passes a spot that fills your head with rhapsodic bliss. Your body follows closely behind, tensing and showering Khorgan’s face with your [pc.girlCum]. You remain seated for a few more seconds to catch your breath, giggling as the pirate captain continues to weakly lick your mons periodically. Eventually, you raise yourself from her, gathering your gear before turning back to her. She offers no resistance as you tie her hands together and hitch them to her mech suit, giving you a warm grin as your juices drip from her nose. {Getting back to the matter at hand, there’s a bomb that requires your attention.}
+function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
+{
+	clearOutput();
+	author("Gardeford");
+	//if First time:
+	if(9999 == 9999)
+	{
+		output("Who are you to refuse such a tempting offer.");
+		//if no detonator:
+		if(9999 == 0)
+		{
+			output("You pocket the detonator before");
+			//9999
+		}
+		else output("You start by"); 
+		output(" giving her a push in the center of her oh so inviting chest. Given her weakened state, your push is enough to send her falling back with a grunt of surprise.");
+	}
+	//If Repeat:
+	else
+	{
+		output("You grab the well-fucked captain by the tatters of her corset, locking eyes with her before giving her a firm push down. She grunts with surprise as you cast her down, though her eyes tell you instantly she's ready for more.");
+	}
+	output("\n\nShe lands on her butt but falls further as you follow her down, pressing her onto the floor of the station by the stomach. Her breasts jiggle as they are shaken in the half prison of cloth that used to be her corset. You lay next to her, holding her arm down with the weight of your upper body as you lean in and give her a kiss that presses the back of her head to the floor.");
+	output("\n\nShe grins happily as you pull away. <i>“I feel no shame yielding to someone as strong as you, " + pc.mf("Mr.","Ms.") + " Steele. Among thraggen, there is nothing wrong with losing to a superior foe... and superior you are.”</i>");
+	output("\n\nAs she speaks, her hands strip you of your [pc.gear]. Her free hand grips the [pc.skinFurScales] of your shoulder, while the arm thats under you concedes to groping at one cheek of your [pc.butt]. You join her after you’re free of obstructions, ripping away the tattered remains of her shirt and corset. Her breasts fall fully free when you’re done, still glistening with the sweat of your fight.");
+	output("\n\nYou grasp one of her tits in your palm, giving it a squeeze before narrowing your hold to pinch her darker viridian nipple. Her trapped arm twitches, instinctually wanting to join your hand in playing with her breasts. Luckily for her, you have no intention of leaving your current playthings twin unattended. You lean in close, starting at the base of her arm and kissing along the side of her sizeable melon. Your kisses culminate as you reach her rock hard nipple, softly biting it as you gaze lustily into the thraggen pirates eyes.");
+	output("\n\nAs your mouth works its magic on her breast, you let your hand trail down her stomach, brushing the cleanly defined muscles of her abs. When you reach her waist, you find it’s still covered by her britches, but decide to leave them there for now. You slip your hand under the belt of her pants, pleased to find that the green-skinned captain has gone commando. You dip your fingers into the folds of her vagina, circling her hole once before plunging two fingers into its depths.");
+	output("\n\n<i>“Yes, Steele! More!”</i> she moans, her hand replacing the missing one in fondling her abandoned tit. The heat of her cunt is immense inside the hotbox of her pants, and you feel the warmth of it spreading up your arm as you dig your fingers deeper inside at her insistence. The nipple in your mouth has become nearly as hard as the platinum the captain was so invested in mining, and you bite a little harder with each pass until you have Khorgan roaring with pleasure at each touch of your teeth.");
+	output("\n\nThe lust drunk pirate bucks her hips against your hand, her legs rapidly alternating between being locked together and splaying out in rapture. The inner walls of her sex clamp around your hand like a cinch, but you pull in and out just as rapidly, adding a third finger to your spelunking escapade. In the excitement, you fail to notice that her other arm has edged its way out of the body trap you’d placed it under.");
+	output("\n\nYou tense in astonishment as a feral growl escapes the captain's throat, and she grasps both of your shoulders, rolling the both of you over till she lies on top of you. <i>“I can’t just lie there and not give anything back, can I Steele?”</i>");
+	//if pc shortstack:
+	if(pc.tallness <= 59) output("\n\nShe sits atop your fingers, hands gripping at [pc.fullChest]. You gasp with pleasure as she squeezes your [pc.breasts] and tweaks your [pc.nipples]. Her hips gyrate on your fingers, still buried in her pants. The britches, having already been tatters at the start of your lovemaking, are soaked so deeply that droplets of Khorgan’s feminine juices drip down periodically onto your own sex. You shiver as her fluids mix with the ones already trickling down your [pc.legs] from [pc.eachVagina].");
+	//if pc notsoshort:
+	else output("\n\nThe thraggen captain straddles your hand which still lies buried in her pants. She grins at you, baring her fang-like teeth before gently biting one of your [pc.breasts]. Her soft gnawing grows in intensity until you flinch with discomfort, at which point she lets down, sucking on your [pc.nipple] to soothe your hurt. Her tongue is just as developed as the rest of her muscles, and plays across your flesh like an exotic dancer. You shiver as the euphoric mixture of pleasure and pain sends rivulets of your sexual fluids dripping down [pc.legs].");
+	output("\n\nDespite how good she’s making you feel, you aren’t about to give up control of the situation. While the captain is busy playing with your [pc.chest], you pull your fingers out of her burning cunt and move them around to her chiseled ass. You slip your second hand under her pants as well, caressing her cheeks to further lull her into a false sense of security. The next time she clenches her legs together to keep herself up, you swiftly withdraw your hands and pull her torn britches down to her knees, flipping her onto her back with the momentum.");
+	output("\n\nThe jade-skinned pirate's face is a mask of shock, and seeing it brings a renewed feeling of triumph and vigor to your body. You grip Khorgan’s bewildered form around the waist, pulling her wonderfully tight butt and cunt up to your face, and hugging her back to your [pc.chest]. Despite the fact that it has been freed from enclosure, her cunt is still thoroughly soaked with sweltering hot juices. The sight and smell of it causes [pc.eachVagina] to become noticeably wetter.");
+	output("\n\nUnable to wait any longer, you bury your face in her waiting folds. Your [pc.tongue] dives into her hole, licking around her insides as your nose rubs fervently against her budding clit. The thraggen captain grunts and moans at the sudden penetration, momentarily unsure of what to do with herself. Eventually her hands find their way to her breasts, playing and tugging at them with a mindless resolve. Holding her in place with one arm, you join one of her hands in massaging, intertwining your fingers with hers and coaxing her to squeeze her helpless tit with a little extra force.");
+	output("\n\nKhorgan’s well muscled legs shudder and tense in the air above the two of you, trapped together by the tattered remains of her britches. Her eyes have lost some of their fiery intensity, and seem to be set in focus as she resists your assault to the best of her ability. Her jaw is clenched with teeth bared, ");
+	if(silly) output("considerably white for a pirate. You guess no one has an excuse to not keep up with dental hygiene considering new advances in the technology.");
+	else output("but you imagine you have her howling in short notice.");
 
-Captain Khorgan's Broodmare Badend
-{If PC loses in the Mecha Fight}
-Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own. 
-{if PC loses in the Swordfight, via lust:}
-Your knees buckle as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance. 
-{if PC loses in the Swordfight, via damage:}
-You're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance. 
+	output("\n\nA final twitch of her clit is the only warning you get before the pirate captain's body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.");
+	output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There's still something missing from this equation though. You haven’t actually gotten off yet, but you think you have the answer to that problem. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.");
+	if(pc.isNice()) output("\n\n<i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair.");
+	else if(pc.isMischievous()) output("<i>“You can’t be done so soon,”</i> you chide teasingly.");
+	else output("<i>”Lick,”</i> you command with a grin.");
 
-{Combine, next para.}
-Grinning fiercely, the captain says, "You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live? 
+	output("\n\nSome primal part of the poor girl must hear you, as she weakly grasps your hips and pulls you down onto her mouth. Her tongue laps at your juices and licks your folds, sending small shockwaves of bliss through your body when she teases ");
+	if(pc.totalClits() == 1) output("a");
+	else output("your");
+	output(" [pc.clit]. you massage her tensed body while she tends to your cunt, rubbing the stress out of her athletic abs and sturdy hips. While the idea of fingering her again is tempting, you decide to let her off the hook, especially since she’s doing such a good job.");
+	output("\n\nHer powerful tongue has since slipped into your [pc.vagina " + x + "], pressing all the right places with all the right pressure. In a matter of seconds, one of her tongue's strokes passes a spot that fills your head with rhapsodic bliss. Your body follows closely behind, tensing and showering Khorgan’s face with your [pc.girlCum]. You remain seated for a few more seconds to catch your breath, giggling as the pirate captain continues to weakly lick your mons periodically. Eventually, you raise yourself from her, gathering your gear before turning back to her. She offers no resistance as you tie her hands together and hitch them to her mech suit, giving you a warm grin as your juices drip from her nose.");
+	if(9999 == 0) output("\n\nGetting back to the matter at hand, there’s a bomb that requires your attention.");
+	output("\n\n");
+	processTime(20+rand(10));
+	if(inCombat()) genericVictory();
+	else 
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 
-You nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die. 
+//Captain Khorgan's Broodmare Badend
+//{If PC loses in the Mecha Fight}
+function loseToCaptainKhorganBadEnd():void
+{
+	clearOutput();
+	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
+	//{if PC loses in the Swordfight, via lust:}
+	if(foes[0] is 9999 && pc.lust() >= pc.lustMax())
+	{
+		output("\n\nYour knees buckle as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
+	}
+	//{if PC loses in the Swordfight, via damage:}
+	else if(foes[0] is 9999)
+	{
+		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
+	}
+	//{Combine, next para.}
+	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?");
+	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die.");
+	output("\n\n<i>\"Good choice,\"</i> the captain says, looming over you. She flicks off her sword and sheathes it, kicking your own weapons away from you. <i>\"I think you'll make a good breeder, Steele. We'll have such strong children... and if you're a very, very good bed slave, you might see the sun again.\"</i>");
+	//if PC doesn't have a cock.
+	if(!pc.hasCock())
+	{
+		output("\n\n<i>\"Though we'll have to make some changes, of course,\"</i> the captain leers, reaching into her pocket and drawing out a pill bottle. <i>\"I was thinking about using these myself, but... well, you're not quite up to my standard as you are, Steele. I'm sure you won't mind changing a bit for me, will you?\"</i>");
+		output("\n\nYou think a moment. Her other hand is still resting on her blade. <i>\"N-no...\"</i>");
+		output("\n\n<i>\"No </i>what<i>?\"</i> the captain snaps, her foot grinding on your [pc.chest].");
+		output("\n\nYou groan. <i>\"No, captain.\"</i>");
+		output("\n\n<i>\"Good,\"</i> she grins, taking two pills out of the bottle. As she does so, you're able to catch a glimpse at the label on the side: THROBB. You gulp as the captain leans down, doing nothing but opening your mouth obediently as she puts the pair of pills atop your tongue. You swallow -- no sense in defying her now. She'd know. You gulp the pills down and wait, a slight moan escaping your lips as you soon begin to feel the tell-tale tingling of nanomachines rewriting your body, changing your very genetic structure. Your fingers claw at the steel platform, trying to steady yourself as a wave of pleasure crashes through your loins and a twisting sensation churns ");
+		if(!pc.hasVagina()) output("under your bare crotch");
+		else 
+		{
+			output("just above the slit");
+			if(pc.totalVagina() > 1) output("s");
+			output(" of your sex");
+		}
+		output(".");
+		output("\n\nYou can't help but scream in pleasure as your groin erupts, the skin of your crotch reforming and bulging, growing out from your loins into a thick, long, humanoid prick. Your body convulses, shuddering in pleasure as as your new, throbbing cock forms. ");
+	}
+	else output("\n\n");
+	output("The captain coos");
+	if(!pc.isNude()) output(" as she tears into your equipment, ripping it off");
+	output(" before planting her foot straight on the base of your cock. You groan under the sudden pressure on your member, shifting under the semi-pleasurable weight of her foot on your rod, rubbing you ever-so-slightly as she decides what to do with you.");
 
-"Good choice," the captain says, looming over you. She flicks off her sword and sheathes it, kicking your own weapons away from you. "I think you'll make a good breeder, Steele. We'll have such strong children... and if you're a very, very good bed slave, you might see the sun again." 
+	output("\n\n<i>\"Not bad,\"</i> Khorgan says with a slight smile, sizing up your prick. She leans back against the deactivated mech, grabbing it for support and kicking off her boot, revealing one of her bare, green feet. She returns them to your crotch, planting her heel under your cock's base and gripping the shaft between her toes, tugging your sensitive flesh upwards. You grimace, shuddering as a strange pleasure washes over you. Khorgan grins, cupping one of her own large, dark tits, squeezing it between her powerful fingers as her foot moves up and down your shaft, jacking you off - just to see you squirm, you think. You try and put on a brave face, resisting her advances, but soon find yourself grunting and moaning, your [pc.hips] moving on their own, bucking into the underside of your captain's foot.");
+	output("\n\nShe grins at your unwilling submission, grinding down hard on your rod until a thick bead of [pc.cum] drools from its tip, smearing across your belly. You fidget, trying to hold back and failing horribly, unable to contain your sounds of pleasure at the surprise footjob. She's relentless, her toes jacking you off with sure, ceaseless motions, only growing stronger as your will weakens. Her toes wrap around you, the firm green skin startlingly smooth on your cock, yet strong enough to nearly make you cum in moments.");
+	output("\n\nYour resistance to her advances crumble to nothing before you can fully understand what's even happening to you; with a grunt, you find yourself cumming");
+	if(!pc.hasCock()) output(", the sensation utterly alien and strange as your new-grown cock cums for the very first time");
+	output(". Your hips buck instinctively as a high moan is torn from your lips by the orgasmic pleasure coursing through your body, and [pc.cumColor] spunk surges up your shaft, working up by the incessant movements of her foot. Your back arches, body nearly going numb as you blow your load, cum blasting from your crown onto your belly, [pc.chest], and the sole of Khorgan's foot.");
 
-{if PC doesn't have a cock. "Though we'll have to make some changes, of course," the captain leers, reaching into her pocket and drawing out a pill bottle. "I was thinking about using these myself, but... well, you're not quite up to my standard as you are, Steele. I'm sure you won't mind changing a bit for me, will you?"
+	output("\n\nThe captain sucks in a hiss of breath as your hot seed splatters across the bottom of her foot, her lips twisting into a feral grin as you cream yourself. <i>\"Tsk, already? I suppose it can't be helped. And the smell... delicious. Strong.\"</i>");
 
-You think a moment. Her other hand is still resting on her blade. "N-no..."
+	output("\n\nThe captain's foot lifts from your spent prick and moves upward, hovering over your [pc.face]. With a grin, the captain commands you, <i>\"Clean me off. Let's get you used to your new place in life, Steele. Soon enough, that tongue of yours is going to lick me clean every night...\"</i>");
 
-"No </i>what<i>?" the captain snaps, her foot grinding on your [pc.chest].
+	output("\n\nYou shudder at the thought, recoiling as the muscular, amazonian woman hovers her spunk-soaked foot over you, teasing, <i>\"If you're lucky, it will only be your seed you need to eat. Better me than my precious Tam, isn't it? She'd have you sucking every cock on the crew, if I know the crazy cat.\"</i> You hesitantly let your tongue poke out from your mouth, tracing along the bridge of her foot and lapping up your own cum. You shudder at the [pc.cumFlavor] taste of your own seed, but at the captain's insistence, you proceed, lapping up the cream you smeared on her supple skin.");
+	output("\n\nKhorgan coos appreciatively, her wandering hand shifting down from her breasts to her crotch, slipping into her pants, where a damp patch of excitement is steadily growing. <i>\"Good " + pc.mf("boy","girl") + ". That's it, learn your place. You're nothing more than my slave, now. A breeder. A personal fucktoy. But the way you creamed yourself, the way you'relicking up your own seed... I think you were made for it. All that strength, for nothing. No, for me... my use. My enjoyment.\"</i>");
+	output("\n\nYou recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck");
+	if(pc.tallness < foes[0].tallness) output(", leaving your [pc.feet] dangling beneath you");
+	output(". You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.");
+	output("\n\n<b>GAME OVER</b>");
+	clearMenu();
+}
 
-You groan. "No, captain."
-
-"Good," she grins, taking two pills out of the bottle. As she does so, you're able to catch a glimpse at the label on the side: THROBB. You gulp as the captain leans down, doing nothing but opening your mouth obediently as she puts the pair of pills atop your tongue. You swallow -- no sense in defying her now. She'd know. You gulp the pills down and wait, a slight moan escaping your lips as you soon begin to feel the tell-tale tingling of nanomachines rewriting your body, changing your very genetic structure. Your fingers claw at the steel platform, trying to steady yourself as a wave of pleasure crashes through your loins and a twisting sensation churns (under your bare crotch / just above the slit{s} of your sex). 
-
-You can't help but scream in pleasure as your groin erupts, the skin of your crotch reforming and bulging, growing out from your loins into a thick, long, humanoid prick. Your body convulses, shuddering in pleasure as as your new, throbbing cock forms.} The captain coos{ as she tears into your equipment, ripping it off} before planting her foot straight on the base of your cock. You groan under the sudden pressure on your member, shifting under the semi-pleasurable weight of her foot on your rod, rubbing you ever-so-slightly as she decides what to do with you. 
-
-"Not bad," Khorgan says with a slight smile, sizing up your prick. She leans back against the deactivated mech, grabbing it for support and kicking off her boot, revealing one of her bare, green feet. She returns them to your crotch, planting her heel under your cock's base and gripping the shaft between her toes, tugging your sensitive flesh upwards. You grimace, shuddering as a strange pleasure washes over you. Khorgan grins, cupping one of her own large, dark tits, squeezing it between her powerful fingers as her foot moves up and down your shaft, jacking you off -- just to see you squirm, you think. You try and put on a brave face, resisting her advances, but soon find yourself grunting and moaning, your [pc.hips] moving on their own, bucking into the underside of your captain's foot. 
-
-She grins at your unwilling submission, grinding down hard on your rod until a thick bead of [pc.cum] drools from its [pc.cockHead " + x + "], smearing across your belly. You fidget, trying to hold back and failing horribly, unable to contain your sounds of pleasure at the surprise footjob. She's relentless, her toes jacking you off with sure, ceaseless motions, only growing stronger as your will weakens. Her toes wrap around you, the firm green skin startlingly smooth on your cock, yet strong enough to nearly make you cum in moments. 
-
-Your resistance to her advances crumble to nothing before you can fully understand what's even happening to you; with a grunt, you find yourself cumming{, the sensation utterly alien and strange as your new-grown cock cums for the very first time}. Your hips buck instinctively as a high moan is torn from your lips by the orgasmic pleasure coursing through your body, and [pc.cumColor] spunk surges up your shaft, working up by the incessant movements of her foot. Your back arches, body nearly going numb as you blow your load, cum blasting from your crown onto your belly, [pc.chest], and the sole of Khorgan's foot.
-
-The captain sucks in a hiss of breath as your hot seed splatters across the bottom of her foot, her lips twisting into a feral grin as you cream yourself. "Tsk, already? I suppose it can't be helped. And the smell... delicious. Strong."
-
-The captain's foot lifts from your spent prick and moves upward, hovering over your [pc.face]. With a grin, the captain commands you, <i>\"Clean me off. Let's get you used to your new place in life, Steele. Soon enough, that tongue of yours is going to lick me clean every night...\"</i>
-
-You shudder at the thought, recoiling as the muscular, amazonian woman hovers her spunk-soaked foot over you, teasing, "If you're lucky, it will only be your seed you need to eat. Better me than my precious Tam, isn't it? She'd have you sucking every cock on the crew, if I know the crazy cat." You hesitantly let your tongue poke out from your mouth, tracing along the bridge of her foot and lapping up your own cum. You shudder at the [pc.cumFlavor] taste of your own seed, but at the captain's insistence, you proceed, lapping up the cream you smeared on her supple skin. 
-
-Khorgan coos appreciatively, her wandering hand shifting down from her breasts to her crotch, slipping into her pants, where a damp patch of excitement is steadily growing. "Good {boy / girl}. That's it, learn your place. You're nothing more than my slave, now. A breeder. A personal fucktoy. But the way you creamed yourself, the way you'relicking up your own seed... I think you were made for it. All that strength, for nothing. No, for me... my use. My enjoyment."
-
-You recoil as the captain plants her foot back on the deck, now spotless, and hauls you up by the nape of your neck{, leaving your [pc.feet] dangling beneath you}. You stare into her fiery red eyes, and realize that this is your place now, your life. Nothing but the captain's personal stud.
+/*
 Post Combat Captain
 //Since she doesn't actually disappear when you win.
 Room blurb for defeated Cap'n
