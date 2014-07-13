@@ -418,7 +418,7 @@
 		public static const STRAWBERRY_MILK:int 					   = 8;
 		public static const SYDIAN_CUM:int 							   = 9;
 		
-		public static const CUM_TYPE_NAMES:Array = [
+		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
 			"Honey",
 			"Cum",
@@ -467,6 +467,25 @@
 			"Tentacles",
 		];
 
+		public static const GENITAL_SPOT_WAIST:int		= 0;
+		public static const GENITAL_SPOT_MIDTAIL:int	= 1;
+		public static const GENITAL_SPOT_REARLEGS:int	= 2;
+		public static const GENITAL_SPOT_UNDERTAIL:int	= 3;
+		
+		public static const VALID_GENITAL_SPOTS:Array = [
+			GENITAL_SPOT_WAIST,
+			GENITAL_SPOT_MIDTAIL,
+			GENITAL_SPOT_REARLEGS,
+			GENITAL_SPOT_UNDERTAIL,
+		];
+		
+		public static const GENITAL_SPOT_NAMES:Array = [
+			"Waist",
+			"Mid-tail",
+			"Hind legs",
+			"Under-tail",
+		];
+		
 		//DAMAGE TYPES
 		//Guns and blunt weapons
 		public static const KINETIC:int                                = 0;

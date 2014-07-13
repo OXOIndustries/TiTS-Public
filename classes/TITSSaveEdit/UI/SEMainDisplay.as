@@ -2,7 +2,9 @@ package classes.TITSSaveEdit.UI
 {
 	import classes.TITSSaveEdit.UI.Controls.BodyAppearance;
 	import classes.TITSSaveEdit.UI.Controls.CombatStats;
+	import classes.TITSSaveEdit.UI.Controls.FluidSettings;
 	import classes.TITSSaveEdit.UI.Controls.GeneralAppearance;
+	import classes.TITSSaveEdit.UI.Controls.GeneralGender;
 	import classes.TITSSaveEdit.UI.Controls.GeneralStats;
 	import classes.TITSSaveEdit.UI.Controls.CoreStats;
 	import classes.TITSSaveEdit.UI.Controls.HairAppearance;
@@ -36,6 +38,8 @@ package classes.TITSSaveEdit.UI
 		private var _combatStats:CombatStats;
 		private var _resistances:Resistances;
 		private var _tailAppearance:TailAppearance
+		private var _fluidSettings:FluidSettings;
+		private var _generalGender:GeneralGender;
 		
 		private var _generalAppearance:GeneralAppearance;
 		private var _hairAppearance:HairAppearance;
@@ -48,6 +52,8 @@ package classes.TITSSaveEdit.UI
 		public function get combatStats():CombatStats { return _combatStats; }
 		public function get resistances():Resistances { return _resistances; }
 		public function get tailAppearance():TailAppearance { return _tailAppearance; }
+		public function get fluidSettings():FluidSettings { return _fluidSettings; }
+		public function get generalGender():GeneralGender { return _generalGender; }
 		
 		public function get generalAppearance():GeneralAppearance { return _generalAppearance; }
 		public function get hairAppearance():HairAppearance { return _hairAppearance; }
@@ -160,6 +166,14 @@ package classes.TITSSaveEdit.UI
 			_tailAppearance = new TailAppearance();
 			AddControl(_tailAppearance, LEFT_COL);
 			_tailAppearance.name = "tailappearance";
+			
+			_fluidSettings = new FluidSettings();
+			AddControl(_fluidSettings, LEFT_COL);
+			_fluidSettings.name = "fluidsettings";
+			
+			_generalGender = new GeneralGender();
+			AddControl(_generalGender, LEFT_COL);
+			_generalGender.name = "generalgender";
 			
 			// RIGHT
 			_generalAppearance = new GeneralAppearance();
