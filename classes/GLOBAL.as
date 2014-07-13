@@ -418,6 +418,40 @@
 		public static const STRAWBERRY_MILK:int 					   = 8;
 		public static const SYDIAN_CUM:int 							   = 9;
 		
+		public static const CUM_TYPE_NAMES:Array = [
+			"Milk",
+			"Honey",
+			"Cum",
+			"Oil",
+			"Milksap",
+			"Girlcum",
+			"Cumsap",
+			"Chocolate Milk",
+			"Strawberry Milk",
+			"Sydian Cum",
+		];
+		
+		public static const VALID_CUM_TYPES:Array = [
+			CUM,
+			HONEY,
+			CUMSAP,
+			SYDIAN_CUM,
+			MILK,
+		];
+		
+		public static const VALID_GIRLCUM_TYPES:Array = [
+			GIRLCUM,
+			HONEY,
+		];
+		
+		public static const VALID_MILK_TYPES:Array = [
+			MILK,
+			HONEY,
+			MILKSAP,
+			CHOCOLATE_MILK,
+			STRAWBERRY_MILK,
+		];
+		
 		// HAIRTYPES
 		public static const HAIR_REGULAR:int						= 0;
 		public static const HAIR_FEATHERS:int						= 1;
