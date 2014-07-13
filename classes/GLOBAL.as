@@ -307,6 +307,7 @@
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
+			0,
 			BEE,
 			SMALLBEE,
 			SMALLDEMONIC,
@@ -315,6 +316,70 @@
 			AVIAN,
 			DRAGONFLY,
 			DRACONIC,
+		];
+		
+		// None is for specifying no tail, which would normally pull the HUMAN name.
+		// It's going to be overwritten in the SaveEdit UI to save duplicating a lot of name arrays.
+		public static const VALID_TAIL_TYPES:Array = [
+			0,
+			LAPINE,
+			EQUINE,
+			CANINE,
+			BOVINE,
+			CUNTSNAKE,
+			PANDA,
+			FELINE,
+			BEE,
+			ARACHNID,
+			DEMONIC,
+			DRIDER,
+			SHARK,
+			SIREN,
+			LIZAN,
+			AVIAN,
+			KANGAROO,
+			VULPINE,
+			DRACONIC,
+			KUITAN,
+			MOUSE,
+			BADGER,
+			RASKVEL,
+			NAGA,
+			SYDIAN,
+		];
+		
+		public static const VALID_TAIL_FLAGS:Array = [
+			PREHENSILE,
+			LONG,
+			FLUFFY,
+			SMOOTH,
+			TAILCOCK,
+			FURRED,
+			OVIPOSITOR
+		];
+		
+		public static const TAIL_GENITAL_NONE:int 	= 0;
+		public static const TAIL_GENITAL_COCK:int	= 1;
+		public static const TAIL_GENITAL_VAGINA:int	= 2;
+		
+		public static const TAIL_GENTIAL_TYPE_NAMES:Array = [
+			"None",
+			"Cock",
+			"Vagina",
+		];
+		
+		public static const TAIL_GENITAL_TYPES:Array = [
+			TAIL_GENITAL_NONE,
+			TAIL_GENITAL_COCK,
+			TAIL_GENITAL_VAGINA,
+		];
+		
+		public static const VALID_TAIL_GENITAL_ARGS:Array = [
+			HUMAN,
+			EQUINE,
+			CANINE,
+			GOOEY,
+			SIREN,
 		];
 		
 		//SKINTYPES

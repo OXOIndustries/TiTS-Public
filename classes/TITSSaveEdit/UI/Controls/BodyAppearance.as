@@ -84,7 +84,14 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			for (var i:int = 0; i < GLOBAL.VALID_WING_TYPES.length; i++)
 			{
-				_wingType.addItem(GLOBAL.VALID_WING_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_WING_TYPES[i]]);
+				if (GLOBAL.VALID_WING_TYPES[i] == 0)
+				{
+					_wingType.addItem(GLOBAL.VALID_WING_TYPES[i], "None");
+				}
+				else
+				{
+					_wingType.addItem(GLOBAL.VALID_WING_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_WING_TYPES[i]]);
+				}
 			}
 			
 			_wingType.disableEdits();

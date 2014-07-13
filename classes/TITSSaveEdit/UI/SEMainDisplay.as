@@ -9,6 +9,7 @@ package classes.TITSSaveEdit.UI
 	import classes.TITSSaveEdit.UI.Controls.HeadAppearance;
 	import classes.TITSSaveEdit.UI.Controls.Resistances;
 	import classes.TITSSaveEdit.UI.Controls.SkinAppearance;
+	import classes.TITSSaveEdit.UI.Controls.TailAppearance;
 	import fl.containers.ScrollPane;
 	import fl.controls.ComboBox;
 	import flash.display.DisplayObject;
@@ -34,6 +35,7 @@ package classes.TITSSaveEdit.UI
 		private var _coreStats:CoreStats;
 		private var _combatStats:CombatStats;
 		private var _resistances:Resistances;
+		private var _tailAppearance:TailAppearance
 		
 		private var _generalAppearance:GeneralAppearance;
 		private var _hairAppearance:HairAppearance;
@@ -45,6 +47,7 @@ package classes.TITSSaveEdit.UI
 		public function get coreStats():CoreStats { return _coreStats; }
 		public function get combatStats():CombatStats { return _combatStats; }
 		public function get resistances():Resistances { return _resistances; }
+		public function get tailAppearance():TailAppearance { return _tailAppearance; }
 		
 		public function get generalAppearance():GeneralAppearance { return _generalAppearance; }
 		public function get hairAppearance():HairAppearance { return _hairAppearance; }
@@ -153,6 +156,10 @@ package classes.TITSSaveEdit.UI
 			_resistances = new Resistances();
 			AddControl(_resistances, LEFT_COL);
 			_resistances.name = "resistances";
+			
+			_tailAppearance = new TailAppearance();
+			AddControl(_tailAppearance, LEFT_COL);
+			_tailAppearance.name = "tailappearance";
 			
 			// RIGHT
 			_generalAppearance = new GeneralAppearance();
