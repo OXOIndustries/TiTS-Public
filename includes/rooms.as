@@ -2544,7 +2544,7 @@ function initializeRooms():void
 	rooms["354"].roomName = "\nWALKWAY";
 	rooms["354"].description = "The walkway connecting the lift and the tether control station is a long, thin passageway overlooking the great planetary rift through the heart of Tarkus. With every step, it shifts precariously on its supports";
 	rooms["354"].runOnEnter = coreWalkWayBonus;
-	//rooms["354"].westExit = "352";
+	rooms["354"].eastExit = "355";
 	rooms["354"].planet = "PLANET: TARKUS";
 	rooms["354"].system = "SYSTEM: REDACTED";
 	rooms["354"].addFlag(GLOBAL.OUTDOOR);
@@ -2552,12 +2552,12 @@ function initializeRooms():void
 	rooms["354"].addFlag(GLOBAL.COMMERCE);
 
 	rooms["355"] = new RoomClass(this);
-	rooms["355"].roomName = "CORE\nPLATFORM";
-	rooms["355"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for you [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["355"].roomName = "\nWALKWAY";
+	rooms["355"].description = "Suspended between two planets with nothing but void above and below, this walkway cuts a dangerous path to the facility in the center of it all. Signs of conflict cover the facility - scorch marks here, dents there, even a railing sliced clean through by some kind of energy blade. The facility lies east and the elevator out west.";
 	rooms["355"].runOnEnter = undefined;
 	rooms["355"].westExit = "354";
-	rooms["355"].northExit = "356";
-	rooms["355"].southExit = "";
+	rooms["355"].eastExit = "356";
+	//rooms["355"].southExit = "";
 	rooms["355"].planet = "PLANET: TARKUS";
 	rooms["355"].system = "SYSTEM: REDACTED";
 	rooms["355"].addFlag(GLOBAL.OUTDOOR);
@@ -2569,7 +2569,7 @@ function initializeRooms():void
 	rooms["356"].runOnEnter = undefined;
 	rooms["356"].westExit = "355";
 	rooms["356"].northExit = "357";
-	rooms["356"].southExit = "9999";
+	//rooms["356"].southExit = "9999";
 	rooms["356"].planet = "PLANET: TARKUS";
 	rooms["356"].system = "SYSTEM: REDACTED";
 	rooms["356"].addFlag(GLOBAL.OUTDOOR);
@@ -2581,6 +2581,7 @@ function initializeRooms():void
 	rooms["357"].runOnEnter = undefined;
 	rooms["357"].eastExit = "358";
 	rooms["357"].southExit = "356";
+	rooms["357"].northExit = "KHORGAN_LEFT_COVER";
 	rooms["357"].planet = "PLANET: TARKUS";
 	rooms["357"].system = "SYSTEM: REDACTED";
 	rooms["357"].addFlag(GLOBAL.OUTDOOR);
@@ -2592,22 +2593,75 @@ function initializeRooms():void
 	rooms["358"].runOnEnter = undefined;
 	rooms["358"].eastExit = "359";
 	rooms["358"].westExit = "357";
+	rooms["358"].northExit = "KHORGAN_CENTER_COVER";
 	rooms["358"].planet = "PLANET: TARKUS";
 	rooms["358"].system = "SYSTEM: REDACTED";
 	rooms["358"].addFlag(GLOBAL.OUTDOOR);
 	rooms["358"].addFlag(GLOBAL.HAZARD);
 
+	//NE corner of permanent bits
 	rooms["359"] = new RoomClass(this);
 	rooms["359"].roomName = "CORE\nPLATFORM";
-	rooms["359"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex's instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
+	rooms["359"].description = "The permanent walkway around the stellar tether curves south and west around the central facility here, well-anchored and relatively safe to travel upon. The hastily deployed floating platforms to the north are objectively secure, barely anchored in place as they are. Placed there by the pirates, these temporary structures are covered in crates of all sizes and descriptions.";
 	rooms["359"].runOnEnter = undefined;
-	rooms["359"].eastExit = "359";
-	rooms["359"].westExit = "357";
+	//rooms["359"].southExit = "360";
+	rooms["359"].northExit = "KHORGAN_RIGHT_COVER";
+	rooms["359"].westExit = "358";
 	rooms["359"].planet = "PLANET: TARKUS";
 	rooms["359"].system = "SYSTEM: REDACTED";
 	rooms["359"].addFlag(GLOBAL.OUTDOOR);
 	rooms["359"].addFlag(GLOBAL.HAZARD);
 
+	//West side pirate platform
+	rooms["KHORGAN_LEFT_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_LEFT_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_LEFT_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The surface is pock-marked with carbon burns and craters from your battle with the captain.";
+	rooms["KHORGAN_LEFT_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_LEFT_COVER"].southExit = "357";
+	rooms["KHORGAN_LEFT_COVER"].eastExit = "KHORGAN_CENTER_COVER";
+	rooms["KHORGAN_LEFT_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_LEFT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//Middle Pirate platform
+	rooms["KHORGAN_CENTER_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_CENTER_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_CENTER_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The middle of the three, this platform took a hell of a beating from the captain's opening salvo. Between the cracks and holes left in the plates, you can see the distant stars through the Tarkus rift.";
+	rooms["KHORGAN_CENTER_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_CENTER_COVER"].southExit = "358";
+	rooms["KHORGAN_CENTER_COVER"].eastExit = "KHORGAN_RIGHT_COVER";
+	rooms["KHORGAN_CENTER_COVER"].westExit = "KHORGAN_LEFT_COVER";
+	rooms["KHORGAN_CENTER_COVER"].northExit = "360";
+	rooms["KHORGAN_CENTER_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_CENTER_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//East pirate platform
+	rooms["KHORGAN_RIGHT_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_RIGHT_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_RIGHT_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The platform is barely hanging on after the fight, nearly blasted off by a rocket blast. Watch your step!";
+	rooms["KHORGAN_RIGHT_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_RIGHT_COVER"].southExit = "359";
+	rooms["KHORGAN_RIGHT_COVER"].westExit = "KHORGAN_CENTER_COVER";
+	rooms["KHORGAN_RIGHT_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_RIGHT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//Ultranorth pirate platform
+	rooms["360"] = new RoomClass(this);
+	rooms["360"].roomName = "MINING\nPLATFORM";
+	rooms["360"].description = "The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot.";
+	rooms["360"].runOnEnter = undefined;
+	//rooms["360"].southExit = "360";
+	//rooms["360"].northExit = "360";
+	rooms["360"].southExit = "KHORGAN_RIGHT_COVER";
+	rooms["360"].planet = "PLANET: TARKUS";
+	rooms["360"].system = "SYSTEM: REDACTED";
+	rooms["360"].addFlag(GLOBAL.OUTDOOR);
+	rooms["360"].addFlag(GLOBAL.HAZARD);
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";

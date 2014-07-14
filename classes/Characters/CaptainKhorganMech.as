@@ -7,10 +7,10 @@
 	import classes.rand;
 	import classes.GameData.CodexManager;
 	
-	public class CaptainKhorgan extends Creature
+	public class CaptainKhorganMech extends Creature
 	{
 		//constructor
-		public function CaptainKhorgan()
+		public function CaptainKhorganMech()
 		{
 			this._latestVersion = 1;
 			this.version = _latestVersion;
@@ -20,45 +20,45 @@
 			this.originalRace = "Thrakken";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!";
-			this.customBlock = "She easily deflects your attack.";
+			this.long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
+			this.customBlock = "The exoskeleton easy absorbs your attack.";
 			this.plural = false;
-			this.lustVuln = 1;
+			this.lustVuln = 0;
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			this.meleeWeapon.damage = 3;
-			this.meleeWeapon.attack = 2;
-			this.meleeWeapon.longName = "cutlass";
-			this.meleeWeapon.attackVerb = "slash";
-			this.meleeWeapon.hasRandomProperties = true;
+			this.rangedWeapon.damage = 10;
+			this.rangedWeapon.attack = 10;
+			this.rangedWeapon.longName = "mining laser";
+			this.rangedWeapon.attackVerb = "laser";
+			this.rangedWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "sexy bodice";
-			this.armor.defense = 1;
+			this.armor.longName = "hull plates";
+			this.armor.defense = 5;
 			this.armor.hasRandomProperties = true;
 			
-			//this.shield = new JoyCoPremiumShield();
+			this.shield = new JoyCoPremiumShield();
 
-			this.physiqueRaw = 21;
-			this.reflexesRaw = 19;
+			this.physiqueRaw = 25;
+			this.reflexesRaw = 5;
 			this.aimRaw = 18;
 			this.intelligenceRaw = 19;
 			this.willpowerRaw = 20;
 			this.libidoRaw = 55;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 55;
-			this.resistances = new Array(1.2,1.2,1.2,0.9,0.9,0.9,0.9,1);
+			this.lustRaw = 0;
+			this.resistances = new Array(.9,.9,.9,1.1,1.1,1,1.25,1);
 			this.XPRaw = 500;
 			this.level = 5;
 			this.credits = 987;
-			this.HPMod = 25;
+			this.HPMod = 100;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 85;
 			this.eyeType = GLOBAL.HUMAN;
 			this.eyeColor = "red";
-			this.tallness = 85;
+			this.tallness = 132;
 			this.thickness = 42;
 			this.tone = 44;
 			this.hairColor = "red";
@@ -166,15 +166,23 @@
 			
 			this._isLoading = false;
 		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			if (dataObject.legFlags.length == 0)
+			{
+				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+			}
+		}
 		override public function prepForCombat():void
 		{
-			var combatCaptainKhorgan:CaptainKhorgan = this.makeCopy();
+			var combatCaptainKhorganMech:CaptainKhorganMech = this.makeCopy();
 			
 			kGAMECLASS.userInterface.showBust("CAPTAIN_KHORGAN");
 			kGAMECLASS.setLocation("FIGHT: CAP'N\nKHORGAN", "PLANET: TARKUS", "SYSTEM: REDACTED");
-			combatCaptainKhorgan.sexualPreferences.setRandomPrefs(3 + rand(3));
+			//combatCaptainKhorganMech.sexualPreferences.setRandomPrefs(3 + rand(3));
 			
-			kGAMECLASS.foes.push(combatCaptainKhorgan);
+			kGAMECLASS.foes.push(combatCaptainKhorganMech);
 		}
 	}
 }

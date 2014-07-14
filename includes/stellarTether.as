@@ -960,6 +960,23 @@ Room Description: Platinum Deposit
 The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot. {A glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus. // There's an empty crate here, where the pirates were storing their mined platinum. You're sure nobody will begrudge you your reward...}
 */
 
+function spessPirateCaptainFightFightGoTimeBonus():Boolean
+{
+	if(flags["STARTED_KHORGAN_FIGHT"] == undefined)
+	{
+		pirateCaptainBossFightIntro();
+		flags["STARTED_KHORGAN_FIGHT"] = 1;
+		return true;
+	}
+	return false;
+}
+
+function PlatinumSuperBonusFunction():Boolean
+{
+	if(flags["PLATINUM_TAKEN"] == undefined) output("\n\nA glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus.");
+	else output("\n\nThere's an empty crate here, where the pirates were storing their mined platinum. You're sure nobody will begrudge you your reward...");
+	return false;
+}
 
 //Captain Boss Fight: Introduction
 function pirateCaptainBossFightIntro():void
@@ -977,14 +994,7 @@ function pirateCaptainBossFightIntro():void
 	flags["KHORGAN_LEFT_COVER"] = 100;
 	flags["KHORGAN_CENTER_COVER"] = 100;
 	flags["KHORGAN_RIGHT_COVER"] = 100;
-	addButton(0,"Next",startCombat,"9999");
-}
-
-
-//Phase I
-function captainKhorganSuitDamageDisplay():void
-{
-	
+	addButton(0,"Next",startCombat,"khorgan mechfight");
 }
 
 //How the fight should work: the mech suit's WAY too powerful for Steele to just take on straight up. Especially with that fuckhuge missile launcher on its back. Luckily, there's plenty of cover around in the three squares Steele can move between here, which should be displayed beneath Khorgan's description text as a %, which slowly deteriorates as she blasts the crates, boxes, and barriers on each platform. Maybe have each %pt be worth 2 points of damage, so having 100% cover absorbs 50% of damage coming your way, etc. Every so often, Khorgan will blast a cover spot with a missile, forcing you to relocate or take MASSIVE damage from it + have no cover. In her mechsuit, she's basically immune to LUST damage, and has heavy shields and armor besides. Seriously tough, even for level 5 PCs. FANTASIZE probably shouldn't work here, either.
@@ -1003,19 +1013,24 @@ function khorganSuitAI():void
 	else foes[0].long += " The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
 
 	//Actual enemy AI function nau!
-	//Mining Laser Barrage
-	//Several medium-damage attacks
-	//function miningLaserBarrage():void
-	//Mining Laser Charge Shot
-	//One MEGA attack, low accuracy
-	//function miningLaserSuperShot():void
-	//Crate Throw
-	// Medium damage, chance to cause knockdown or stun or something
-	//function crateThrow():void
 
 	//Missile Incoming!
 	//Charged attack
-	//function missileIncoming():void
+	//Every six rounds charges and fires the following round.
+	if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0 || foes[0].hasStatusEffect("Missile Chargeup"))
+	{
+		missileIncoming();
+		return;
+	}
+	//Mining Laser Barrage
+	//Several medium-damage attacks
+	if(rand(2) == 0) miningLaserBarrage();
+	//Crate Throw
+	// Medium damage, chance to cause knockdown or stun or something
+	else if(rand(2) == 0) crateThrow();
+	//Mining Laser Charge Shot
+	//One MEGA attack, low accuracy
+	else miningLaserSuperShot();
 }
 
 
@@ -1026,7 +1041,7 @@ function miningLaserBarrage():void
 	output("The captain levels her laser-armed arm at you, steadying the massive weapon with her off-hand as its six barrels spin up, glowing red as they prepare to blast you into oblivion! You have just enough time to dive into cover before the bolts of red-hot death start flying!\n");
 	var damage:int = 0;
 	var leftOverDamage:int = 0;
-	var randomizer = (rand(31)+ 85)/100;
+	var randomizer = 0;
 	for(var x:int = 3;x > 0;x--)
 	{
 		//Damage!
@@ -1046,27 +1061,10 @@ function miningLaserBarrage():void
 			//Cover soaks up it's % in damage.
 			coverDamage(damage * coverPercent());
 			//Figure out how much is left
-			genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+			genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
 		}
 	}
 	processCombat();
-
-
-function coverMiss():Boolean
-{
-	if(currentLocation == "KHORGAN_LEFT_COVER" && rand(100)+1 <= flags["KHORGAN_LEFT_COVER"])
-	{
-		return true;
-	}
-	else if(currentLocation == "KHORGAN_CENTER_COVER" && rand(100)+1 <= flags["KHORGAN_CENTER_COVER"])
-	{
-		return true;	
-	}
-	else if(currentLocation == "KHORGAN_RIGHT_COVER" && rand(100)+1 <= flags["KHORGAN_RIGHT_COVER"])
-	{
-		return true;
-	}
-	return false;
 }
 
 function coverPercent():Number
@@ -1083,6 +1081,7 @@ function coverPercent():Number
 	{
 		return flags["KHORGAN_RIGHT_COVER"]/100;
 	}
+	return 9000;
 }
 
 function coverDamage(damage:int):void
@@ -1121,16 +1120,24 @@ function coverDamage(damage:int):void
 	}
 	if(coverNuked) output(" <b>(Cover gone!)</b>");
 	else output(" (-" + damage/2 + "% Cover)");
-	/*
-	if(coverRemaining >= 100) output(" Your cover is still in pristine condition!");
-		else if(coverRemaining >= 75) output(" The cover is largely intact.");
-		else if(coverRemaining >= 50) output(" The cover is in pretty rough shape.");
-		else if(coverRemaining >= 25) output(" Cover is getting pretty sparse.");
-		else if(coverRemaining > 0) output(" There's barely anything to hide behind at this point!");
-		else output(" <b>There isn't a scrap of cover to be found! You need to move!</b>");
-	}*/
 }
 
+function coverUpdateDisplay():void
+{
+	var coverRemaining:Number = 0;
+	if(currentLocation == "KHORGAN_LEFT_COVER") coverRemaining = flags["KHORGAN_LEFT_COVER"];
+	else if(currentLocation == "KHORGAN_RIGHT_COVER") coverRemaining = flags["KHORGAN_RIGHT_COVER"];
+	else if(currentLocation == "KHORGAN_CENTER_COVER") coverRemaining = flags["KHORGAN_CENTER_COVER"];
+	coverRemaining = Math.round(coverRemaining * 10)/10;
+	output("\n");
+	if(coverRemaining >= 100) output(" Your cover is still in pristine condition!");
+	else if(coverRemaining >= 75) output(" The cover is largely intact.");
+	else if(coverRemaining >= 50) output(" The cover is in pretty rough shape.");
+	else if(coverRemaining >= 25) output(" Cover is getting pretty sparse.");
+	else if(coverRemaining > 0) output(" There's barely anything to hide behind at this point!");
+	else output(" <b>There isn't a scrap of cover to be found! You need to move!</b>");
+	output(" (" + coverRemaining + " %)")
+}
 
 //Mining Laser Charge Shot
 //One MEGA attack, low accuracy
@@ -1156,7 +1163,7 @@ function miningLaserSuperShot():void
 		//Cover soaks up it's % in damage.
 		coverDamage(damage * coverPercent());
 		//Figure out how much is left
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
 	}
 	processCombat();
 }
@@ -1189,8 +1196,43 @@ function crateThrow():void
 		//Cover soaks up it's % in damage.
 		coverDamage(damage * coverPercent());
 		//Figure out how much is left
-		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		genericDamageApply(leftOverDamage,foes[0],pc,GLOBAL.THERMAL);
 	}
+	processCombat();
+}
+
+function khorganMechBonusMenu():void
+{
+	if(currentLocation == "KHORGAN_RIGHT_COVER")
+	{
+		addButton(10,"Move Left",moveLeft,undefined,"Move Left","Move to the next platform and its cover.");
+		addDisabledButton(12,"Move Right","Move Right","There's no more floating platforms to your right. You'll have to move right!");
+	}
+	else if(currentLocation == "KHORGAN_CENTER_COVER")
+	{
+		addButton(10,"Move Left",moveLeft,undefined,"Move Left","Move to the next platform and its cover.");
+		addButton(12,"Move Right",moveRight,undefined,"Move Right","Move to the next platform and its cover.");
+	}
+	else if(currentLocation == "KHORGAN_LEFT_COVER")
+	{
+		addButton(12,"Move Right",moveRight,undefined,"Move Right","Move to the next platform and its cover.");
+		addDisabledButton(10,"Move Left","Move Left","There's no more floating platforms to your left. You'll have to move right!");
+	}
+}
+function moveRight():void
+{
+	clearOutput();
+	output("You sprint along to the next platform and whatever cover it has to offer!\n");
+	if(currentLocation == "KHORGAN_LEFT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
+	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_RIGHT_COVER";
+	processCombat();
+}
+function moveLeft():void
+{
+	clearOutput();
+	output("You sprint along to the next platform and whatever cover it has to offer!\n");
+	if(currentLocation == "KHORGAN_RIGHT_COVER") currentLocation = "KHORGAN_CENTER_COVER";
+	else if(currentLocation == "KHORGAN_CENTER_COVER") currentLocation = "KHORGAN_LEFT_COVER";
 	processCombat();
 }
 
@@ -1209,11 +1251,12 @@ function missileIncoming():void
 	//Turn 3
 	else
 	{
+		foes[0].removeStatusEffect("Missile Chargeup");
 		//{if PC moved.}
 		if(flags["MISSILE_TARGET"] != currentLocation)
 		{
 			output("You hear a deafening KABLAM beside you, and a sudden shockwave of force throws you to the ground. You cough and splutter, waving dust out of your face as the blast zone clears. Damn, there's barely anything left of that platform anymore!");
-			//9999 nuke cover at target!
+			//nuke cover at target!
 			flags[flags["MISSILE_TARGET"]] = 0;
 			output(" <b>(-100% Cover)</b>");
 		}
@@ -1258,7 +1301,7 @@ function victoriousVsCaptainOrcButt():void
 	}
 	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
 	clearMenu();
-	addButton(0,"Fight",startCombat,"9999","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 	//{Go to Captain Fight: Part 2}
 	addButton(1,"Demand",demandSurrenderFromPirate,undefined,"Demand Surrender","She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.");
 	//{Tooltip: She's right. You don't have a chance...}
@@ -1272,13 +1315,13 @@ function demandSurrenderFromPirate():void
 	//Tooltip: She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.}
 	clearOutput();
 	output("<i>\"You've got no chance, captain. How about YOU put your weapon down,\"</i> you say, holding your ground.");
-	output("\n\n<i>\"Ballsy,\"</i> she laughs, still clutching her force cutlass tight. <i>\"I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I'll still take you as my personal fuck-slave.");
+	output("\n\n<i>\"Ballsy,\"</i> she laughs, still clutching her force cutlass tight. <i>\"I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I'll still take you as my personal fuck-slave.\"</i>");
 	output("\n\n<i>\"Or would you rather we sit here flapping our gums till the timer runs out? That'll be a hell of a way to go, out with a blast, huh!?\"</i>");
 	output("\n\nIf you want to get out of this, it doesn't look like you're going to have much of a choice after all.");
 	processTime(1);
 	//[Fight!]
 	clearMenu();
-	addButton(0,"Fight",startCombat,"9999","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
+	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 }
 
 //Surrender Yourself
@@ -1290,7 +1333,7 @@ function surrenderToCapnKhorgath():void
 	output("\n\n<i>\"Really?\"</i> the captain sneers, scowling. <i>\"I didn't think you were that spineless, Steele. Fine, then. Get down on the ground, and don't make any sudden movements.\"</i>");
 	//{Go to Captain Khorgan's Broodmare badend}
 	clearMenu();
-	addButton(0,"Next",9999);
+	addButton(0,"Next",loseToCaptainKhorganBadEnd);
 }
 
 /*
@@ -1298,7 +1341,7 @@ Captain Boss Fight: Part 2
 //This part is a straight-up combat encounter. She focuses primarily on lust attacks in this form: she wants the PC as her brood slave, not dead. Captain has great physical defenses, but is vulnerable to LUST attacks. (ie, Reverse of last time)
 
 You're fighting Captain Khorgan!
-Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!
+
 */
 
 
@@ -1536,15 +1579,15 @@ function loseToCaptainKhorganBadEnd():void
 	clearOutput();
 	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
-	if(foes[0] is 9999 && pc.lust() >= pc.lustMax())
-	{
+	//if(foes[0] is 9999 && pc.lust() >= pc.lustMax())
+	//{
 		output("\n\nYour knees buckle as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
-	}
+	//}
 	//{if PC loses in the Swordfight, via damage:}
-	else if(foes[0] is 9999)
-	{
+	//else if(foes[0] is 9999)
+	//{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
-	}
+	//}
 	//{Combine, next para.}
 	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?");
 	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die.");

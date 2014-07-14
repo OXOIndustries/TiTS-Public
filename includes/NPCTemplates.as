@@ -191,6 +191,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["ROCKETPODS"] = new RocketTurrets();
 	}
+	if (!justUpdate || (justUpdate && chars["CAPTAINKHORGANMECH"] == undefined))
+	{
+		chars["CAPTAINKHORGANMECH"] = new CaptainKhorganMech();
+	}
+	if (!justUpdate || (justUpdate && chars["CAPTAINKHORGAN"] == undefined))
+	{
+		chars["CAPTAINKHORGAN"] = new CaptainKhorgan();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{
