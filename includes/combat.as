@@ -1288,70 +1288,26 @@ function enemyAI(aggressor:Creature):void
 		processCombat();
 		return;
 	}
-	//Foe specific AIs
-	switch(aggressor.short) {
-		case "Celise":
-			celiseAI();
-			break;
-		case "two zil":
-			zilpackAI();
-			break;
-		case "zil male":
-			zilMaleAI();
-			break;
-		case "female zil":
-			zilGirlAI();
-			break;
-		case "cunt snake":
-			cuntSnakeAI();
-			break;
-		case "naleen":
-			naleenAI();
-			break;
-		case "naleen male":
-			naleenMaleAI();
-			break;
-		case "machina":
-			machinaAI();
-			break;
-		case "Dane":
-			daneAI();
-			break;
-		case "mimbrane":
-			mimbraneAI();
-			break;
-		case "female raskvel":
-			raskvelChickAI();
-			break;
-		case "sex bot":
-			sexbotAI();
-			break;
-		case "gray goo":
-			grayGooAI();
-			break;
-		case "female lapinara":
-			lapinaraAI();
-			break;
-		case "sydian male":
-			sydianMaleAI();
-			break;
-		case "firewall":
-			firewallAI();
-			break;
-		case "pirate gang":
-			phoenixPiratesAI();
-			break;
-		case "auto-turrets":
-		case "Tams and turrets":
-			tamtamtamtamtamtamAI();
-			break;
-		case "rocket pods":
-			rocketPodAI();
-			break;
-		default:
-			enemyAttack(aggressor);
-			break;
-	}
+	if(aggressor is Celise) celiseAI();
+	else if(aggressor is ZilPack) zilpackAI();
+	else if(aggressor is ZilMale) zilMaleAI();
+	else if(aggressor is ZilFemale) zilGirlAI();
+	else if(aggressor is CuntSnake) cuntSnakeAI();
+	else if(aggressor is Naleen) naleenAI();
+	else if(aggressor is NaleenMale) naleenMaleAI();
+	else if(aggressor is CarlsRobot) machinaAI();
+	else if(aggressor is Dane) daneAI();
+	else if(aggressor is Mimbrane) mimbraneAI();
+	else if(aggressor is RaskvelFemale) raskvelChickAI();
+	else if(aggressor is SexBot) sexbotAI();
+	else if(aggressor is GrayGoo) grayGooAI();
+	else if(aggressor is LapinaraFemale) lapinaraAI();
+	else if(aggressor is SydianMale) sydianMaleAI();
+	else if(aggressor is HandSoBot) firewallAI();
+	else if(aggressor is PhoenixPirates) phoenixPiratesAI();
+	else if(aggressor is GunTurrets) tamtamtamtamtamtamAI();
+	else if(aggressor is RocketTurrets) rocketPodAI();
+	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
 {

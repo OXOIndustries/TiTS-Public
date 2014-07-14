@@ -980,17 +980,44 @@ function pirateCaptainBossFightIntro():void
 	addButton(0,"Next",startCombat,"9999");
 }
 
-/*Combat Screen
-You're fighting Captain Khorgan!
 
-Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams "party-shop pirate," with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter. {if the suit's taken little damage: "This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!" //moderate damage: " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!" //critical damage: "The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!"}
-*/
+//Phase I
+function captainKhorganSuitDamageDisplay():void
+{
+	
+}
 
 //How the fight should work: the mech suit's WAY too powerful for Steele to just take on straight up. Especially with that fuckhuge missile launcher on its back. Luckily, there's plenty of cover around in the three squares Steele can move between here, which should be displayed beneath Khorgan's description text as a %, which slowly deteriorates as she blasts the crates, boxes, and barriers on each platform. Maybe have each %pt be worth 2 points of damage, so having 100% cover absorbs 50% of damage coming your way, etc. Every so often, Khorgan will blast a cover spot with a missile, forcing you to relocate or take MASSIVE damage from it + have no cover. In her mechsuit, she's basically immune to LUST damage, and has heavy shields and armor besides. Seriously tough, even for level 5 PCs. FANTASIZE probably shouldn't work here, either.
 
-
 //% of cover = 2 HP.
 //% of cover = % chance cover will take the hit instead of PC.
+
+function khorganSuitAI():void
+{
+	//Update description for next round display.
+	foes[0].long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
+	var percent:int = foes[0].HP()/foes[0].HPMax() * 100;
+	//if the suit's taken little damage:
+	if(percent >= 66) foes[0].long += " This monstrosity could probably give a military suit a run for its money, and against you? Better bring your A-game, Steele!";
+	else if(percent >= 33) foes[0].long += " The mech's armor plates are starting to fall off, and smoke and sparks fly from damaged servos and circuits. Keep up the pressure!";
+	else foes[0].long += " The suit is smoking like cigar, shuddering with every moment as the captain struggles to keep it standing. Almost there!";
+
+	//Actual enemy AI function nau!
+	//Mining Laser Barrage
+	//Several medium-damage attacks
+	//function miningLaserBarrage():void
+	//Mining Laser Charge Shot
+	//One MEGA attack, low accuracy
+	//function miningLaserSuperShot():void
+	//Crate Throw
+	// Medium damage, chance to cause knockdown or stun or something
+	//function crateThrow():void
+
+	//Missile Incoming!
+	//Charged attack
+	//function missileIncoming():void
+}
+
 
 //Mining Laser Barrage
 //Several medium-damage attacks
