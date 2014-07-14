@@ -364,8 +364,8 @@ public function kirosShipChubnookiUpDaCooter():void
 	else output(" them");
 	output(" as the nearly perpetually orgasming woman ejaculates herself dry.");
 
-	if (pc.tallness > 74) output(" First your [pc.feet] then hers touch down");
-	else if (pc.tallness < 60) output(" First her feet, then yours touch down");
+	if (pc.tallness > kiro.tallness + 6) output(" First your [pc.feet] then hers touch down");
+	else if (pc.tallness < kiro.tallness - 6) output(" First her feet, then yours touch down");
 	else output(" Both her feet and your own touch down at roughly the same time");
 	output(", suddenly on solid ground once more. Having a sure, stable footing makes it all the easier for you to resume your pace, and you slap yourself in and out of her hot little holes with rampant, lusty strokes.");
 
@@ -496,26 +496,54 @@ public function kirosShipChubnookiFucksYouGud():void
 	else output(" womb with cervix-shattering force");
 	output(". Your [pc.belly] bulges bigger from the weight of the deposit. It actually jiggles and sloshes ponderously on the next bounce, forcing bigger, fatter cum-shots directly inside you, and each time, your swollen sperm-paunch gets bigger and bigger.");
 
-	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They're flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover's cushy boobs and {scream/howl} in delight, your body quaking with delight. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again… and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
+	output("\n\nThis erotic, sensuously exotic fuck is setting your nerves off like overloaded circuit-breakers. They're flipping from pleasure to mind-crushing orgasm in rapid succession, causing you to arch yourself back against your soft-furred lover's cushy boobs and {scream/howl} in delight, your body quaking with delight. She holds you tight through it all, squeezing cumshots that would be considered large to a normal person into you again and again... and again. You whimper when you become so full that her ejaculations are causing spermy backblasts to bathe her ball sack with a spreading puddle of white.");
 
+	output("\n\n");
 	//Dickgasms
-	{[OneCock], {the one }lucky enough to be held by your lover's pre-slickened palm, explodes, spouting [cum] so forcefully that it splatters against a wall. The successive shotgun-like blasts of seed fall a bit lower but still succeed in making a mess. Seeing this, she strokes you in between fountainous jets of her own, letting some of your [cumColor] love cover her hand. You're milking her inside of you as she milks you, and it feels so damned good.}
+	if (pc.hasCock())
+	{
+		output("[pc.OneCock]");
+		if (pc.cockTotal() > 1) output(", the one");
+		output(" lucky enough to be held by your lover's pre-slickened palm, explodes, spouting [pc.cum] so forcefully that it splatters against a wall. The successive shotgun-like blasts of seed fall a bit lower but still succeed in making a mess. Seeing this, she strokes you in between fountainous jets of her own, letting some of your [pc.cumColor] love cover her hand. You're milking her inside of you as she milks you, and it feels so damned good. ");
+	}
 
 	//Tailgasm (no new PG)
-	Your tail thrashes against her, spurting [cum] all over her belly, legs, and tits, even whipping out to hit her in the face with a blast of [cumColor] slickness. It's just firing out of your [tailCock], completely uncontrolled. You're helpless to stop it, yet you don't really want to. It feels too damned good.
-	Bounce-fucking your way through your orgasm, you feel parts of your mind shutting down one after another, but you don't mind. It makes it that much easier to focus on how good [eachVagina] feels. The way your folds stretch and give, the way her hot, passionate gushes roll around inside you before blasting back out into the growing pool on the floor - these things keep every neuron busy and pleasurably pulsating. You don't even see anything anymore, though whether your eyes have closed or your mind has simply momentarily forgotten how to process visual cues, you don't know.
+	if (pc.hasTailCock())
+	{
+		output("Your tail thrashes against her, spurting [pc.cum] all over her belly, legs, and tits, even whipping out to hit her in the face with a blast of [cumColor] slickness. It's just firing out of your [pc.tailCock], completely uncontrolled. You're helpless to stop it, yet you don't really want to. It feels too damned good.");
+	}
 
-	Paw-like hands squeeze and grope your tits enthusiastically to add another sensation to the symphony of ecstasy. They roll your [nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.
+	output("\n\nBounce-fucking your way through your orgasm, you feel parts of your mind shutting down one after another, but you don't mind. It makes it that much easier to focus on how good [pc.eachVagina] feels. The way your folds stretch and give, the way her hot, passionate gushes roll around inside you before blasting back out into the growing pool on the floor - these things keep every neuron busy and pleasurably pulsating. You don't even see anything anymore, though whether your eyes have closed or your mind has simply momentarily forgotten how to process visual cues, you don't know.");
 
-	Locked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [feet], [legs] and eventually [hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your [vagina] only to be sprayed back out later. It's getting so high, and you can actually feel your [feet] touching the ground!
+	output("\n\nPaw-like hands squeeze and grope your tits enthusiastically to add another sensation to the symphony of ecstasy. They roll your [pc.nipples] and sometimes tug, rocking every single erogenous zone they can get at. Loving little nips bite at your neck, not hard enough to break your [pc.skinFurScales], but enough to be felt digging in, possessively clamping down near your neck.");
 
-	The raccoon-like space-woman grabs you tighter, more fiercely as her super-long orgasm continues. She's obviously touched down as well, because she's slapping her hips against yours, fucking your cum-buried pussy with steady, machine-like motions. She's working your poor, sodden box with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes -- or has it been hours --  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive snatch. The jizz crests past your [belly], almost to your {lowest row of }[breasts lowest].
+	output("\n\nLocked together like that, you serve as the tanuki-woman's willing cum-sleeve, milking pressurized waves of spunk from her until she you feel warmth wrapping your [pc.feet], [pc.legs] and eventually [pc.hips]. You're slowly sinking down into a puddle of spent cum, the very same alabaster cream that was pumped into your [pc.vagina] only to be sprayed back out later. It's getting so high, and you can actually feel your [pc.feet] touching the ground!");
 
-	Eventually, the cum stops, but your lover's aggressive fucking doesn't slow for a few minutes. She's growling and grunting with each bone-jarring hilting, smashing her cum-soaked sheath against you again and again with furious strikes. She’s almost feral in the way that she spends her lust on your form. Thankfully, she does eventually wear out, giving you a small cum as she rams herself home one last time. Her tongue lolls out, and she groans in satisfaction, "<i>Ohhhhh, thank you, babe. You're wonderful.</i>"
+	output("\n\nThe raccoon-like space-woman grabs you tighter, more fiercely as her super-long orgasm continues. She's obviously touched down as well, because she's slapping her hips against yours, fucking your cum-buried pussy with steady, machine-like motions. She's working your poor, sodden box with consummate skill, and as she piledrives it harder and faster, the ridiculously potent orgasm you've been riding for the past few minutes - or has it been hours -  intensifies again. Her huge balls are sloshing through the lake, swaying back and forth as they empty the last of their ultra-virile load straight into your receptive snatch. The jizz crests past your [pc.belly], almost to your");
+	var bRow:int = 0;
+	if (pc.bRows() > 1)
+	{
+		output(" lowest row of");
+		bRow = pc.bRows() - 1;
+	}
+	output(" [pc.breasts " + bRow + "].");
 
-	Gently, she dips lower into the spunky lake of her own making, letting her softening shaft ooze out of your spunk-soaked channel. Tremors of bliss explode out with the passage of each vein, and when the swollen head emerges, a torrent of lady-spunk and stored-up tanuki goo pours out into the waiting jizz bath.
-	"<i>Damn, now that's a rescue,</i>" the tanuki-woman says with an exhausted smile.
+	output("\n\nEventually, the cum stops, but your lover's aggressive fucking doesn't slow for a few minutes. She's growling and grunting with each bone-jarring hilting, smashing her cum-soaked sheath against you again and again with furious strikes. She’s almost feral in the way that she spends her lust on your form. Thankfully, she does eventually wear out, giving you a small cum as she rams herself home one last time. Her tongue lolls out, and she groans in satisfaction, \"<i>Ohhhhh, thank you, babe. You're wonderful.</i>\"");
 
-	{Silly: A nun opens the door, diving through the tidal wive of sperm as it rolls out, sealing the portal behind herself. She pants breathily, "<i>Sorry… I got here… as soon… as I could.</i>" Her onyx ringlets shine in the artificial light as throws herself face down into the swimming pool's worth of spunk. You shake your head and look again. There's nothing there. Maybe you just need a nap.}
+	output("\n\nGently, she dips lower into the spunky lake of her own making, letting her softening shaft ooze out of your spunk-soaked channel. Tremors of bliss explode out with the passage of each vein, and when the swollen head emerges, a torrent of lady-spunk and stored-up tanuki goo pours out into the waiting jizz bath.");
 
+	output("\n\n\"<i>Damn, now that's a rescue,</i>\" the tanuki-woman says with an exhausted smile.");
+
+	if (silly) output("\n\nA nun opens the door, diving through the tidal wive of sperm as it rolls out, sealing the portal behind herself. She pants breathily, \"<i>Sorry... I got here... as soon... as I could.</i>\" Her onyx ringlets shine in the artificial light as she throws herself face down into the swimming pool's worth of spunk. You shake your head and look again, but there's nothing there when you take a second look. Maybe you just need a nap.");
+
+	// Lotta fuckyfucky
+	for (var i:int = 0; i < 20; i++)
+	{
+		pc.loadInCunt(kiro);
+	}
+
+	processTime(60+rand(15));
+
+	clearMenu();
+	addButton(0, "Next", kirosShipPostFirstFuck);
 }
