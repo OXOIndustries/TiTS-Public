@@ -6,7 +6,7 @@ public function answerKiroDistressCall(destination:String):void
 	outputText("\n\nThe message said that systems were failing, but the power output is perfectly in the green. Did they already get help? Is this a trap? What do you do?");
 	//[Board it] [Wait] [Leave]
 	clearMenu();
-	addButton(0, "Board", boardKirosShipRescue);
+	addButton(0, "Board", boardKirosShipRescue, destination);
 	if (flags["RESCUE KIRO WAITED TO BOARD"] == undefined) addButton(1, "Wait", waitKirosShipRescue, destination);
 	addButton(2, "Leave", leaveKirosShipRescue, destination);
 }
@@ -55,7 +55,7 @@ public function waitKirosShipRescue(destination:String):void
 	addButton(1, "Leave", leaveKirosShipRescue, destination);
 }
 
-public function boardKirosShipRescue():void
+public function boardKirosShipRescue(destination:String):void
 {
 	clearOutput();
 
@@ -63,6 +63,7 @@ public function boardKirosShipRescue():void
 
 	// [Normal ship menu with exit ship as if had landed at a planet]
 	shipLocation = "KIROS SHIP INTERIOR";
+	flags["STORED SHIP DESTINATION"] = destination;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -114,24 +115,28 @@ public function kirosShipCutlass():void
 	//(A fairly standard steel cutlass for the renaissance reenactor in all of us. This hefty sword is and has been a standard for close-quarters boarding actions since the age of sail and has analogs in most interstellar cultures. A favorite of pirates, raiders and navy officers the galaxy over.
 }
 
-public function kirosShipWails():void
+public function kirosShipWails(doOutput:Boolean = true):void
 {
-	clearOutput();
 	showBust("KIRO_NUDE");
-	
-	output("Creeping forward, [pc.rangedWeapon] drawn, you close in on the pained sounds, only the closer you get the more they sound like pleased moans instead. The voice creating the racket is unmistakably female, and up close at the doorway, you're sure that it sounds both pleasured AND pained. What is going on in there? You peek around the doorway and gasp at what lies beyond...");
 
-	output("\n\nThe room looks to have once been a rec room in its early days, but the pool tables, holoprojectors and couches have all been shoved up into the corners in a pile. A massive mechanical device dominates the emptied space, hanging from the ceiling. Dozens of cables and pipes shroud its central workings from view. Perched atop it, a vidscreen and a pair of holoprojectors flicker on and off, sometimes displaying little more than fuzzes of static. Other times they display intensely erotic ultraporn, the kind of stuff you need sixteen licenses to produce. The bottom portions of the device are obscured by something else entirely, the real thing that made you gasp: giant, furry balls.");
+	if (doOutput)
+	{
+		clearOutput();
+		
+		output("Creeping forward, [pc.rangedWeapon] drawn, you close in on the pained sounds, only the closer you get the more they sound like pleased moans instead. The voice creating the racket is unmistakably female, and up close at the doorway, you're sure that it sounds both pleasured AND pained. What is going on in there? You peek around the doorway and gasp at what lies beyond...");
 
-	output("\n\nPerched atop them is a naked feminine form, legs splayed so that they're sunk partway into the surprisingly squishy sack. Her whole body is stacked on top of her tremendous nuts, and she's gasping and thrashing and crying all at once. It's no wonder she put out a distress call; she's completely immobilized by those massive cum-tanks, weighing her down like an old-time anchor. You can actually hear the stuff slosh around inside them whenever her struggles become particularly violent. Her immense, fluffy, racoon-like tail is bouncing up and down behind her as she struggles. Two-tone brown fur sheaths her entire body from head to toe, and a darker, rich-chocolate mass of hair tangles around her sweating brow and neck. She's clearly some kind of racoon- or tanuki-girl.");
+		output("\n\nThe room looks to have once been a rec room in its early days, but the pool tables, holoprojectors and couches have all been shoved up into the corners in a pile. A massive mechanical device dominates the emptied space, hanging from the ceiling. Dozens of cables and pipes shroud its central workings from view. Perched atop it, a vidscreen and a pair of holoprojectors flicker on and off, sometimes displaying little more than fuzzes of static. Other times they display intensely erotic ultraporn, the kind of stuff you need sixteen licenses to produce. The bottom portions of the device are obscured by something else entirely, the real thing that made you gasp: giant, furry balls.");
 
-	output("\n\nThe gasp you made upon entry was enough to draw the animal-girl's attention, and she twists to look at you, desperation in her eyes. Her breasts jiggle in her new pose, naked to your roving eyes and capped with nipples a chocolate so dark that they're almost black. Voice breaking, she begs, \"<i>Help me cum, please! My milker's broken and I'm so pent up! I can't cum without it or a nice, tight cunt! Ohgod, please, I need a cunt!</i>\" Her wails become almost feverish, and she thrashes, enabling you to see something massively swollen between her legs slipping partway out of the defunct machine. It's the color of dark-cherry and covered in angry veins with a positively equine sheath at its base. This tanuki is packing some serious horse-meat!");
+		output("\n\nPerched atop them is a naked feminine form, legs splayed so that they're sunk partway into the surprisingly squishy sack. Her whole body is stacked on top of her tremendous nuts, and she's gasping and thrashing and crying all at once. It's no wonder she put out a distress call; she's completely immobilized by those massive cum-tanks, weighing her down like an old-time anchor. You can actually hear the stuff slosh around inside them whenever her struggles become particularly violent. Her immense, fluffy, racoon-like tail is bouncing up and down behind her as she struggles. Two-tone brown fur sheaths her entire body from head to toe, and a darker, rich-chocolate mass of hair tangles around her sweating brow and neck. She's clearly some kind of racoon- or tanuki-girl.");
 
-	output("\n\n\"<i>D-don't just stand there, fuck me or something! This is- unnnnghmmm... It's- ooohhh gods... life or death!</i>\" she cries as she bends over her mechanized lover and reaches back,  spreading her well-rounded cheeks to expose her dark-lipped pussy and darker anal star. \"<i>P-please, if I cum the swelling will go down!</i>\" Her eyes desperately implore you to help her get off.");
+		output("\n\nThe gasp you made upon entry was enough to draw the animal-girl's attention, and she twists to look at you, desperation in her eyes. Her breasts jiggle in her new pose, naked to your roving eyes and capped with nipples a chocolate so dark that they're almost black. Voice breaking, she begs, \"<i>Help me cum, please! My milker's broken and I'm so pent up! I can't cum without it or a nice, tight cunt! Ohgod, please, I need a cunt!</i>\" Her wails become almost feverish, and she thrashes, enabling you to see something massively swollen between her legs slipping partway out of the defunct machine. It's the color of dark-cherry and covered in angry veins with a positively equine sheath at its base. This tanuki is packing some serious horse-meat!");
 
-	output("\n\nHow do you try to set her off?");
+		output("\n\n\"<i>D-don't just stand there, fuck me or something! This is- unnnnghmmm... It's- ooohhh gods... life or death!</i>\" she cries as she bends over her mechanized lover and reaches back,  spreading her well-rounded cheeks to expose her dark-lipped pussy and darker anal star. \"<i>P-please, if I cum the swelling will go down!</i>\" Her eyes desperately implore you to help her get off.");
+
+		output("\n\nHow do you try to set her off?");
+	}
+
 	//[Anally] [Vaginally] [Get Filled][Nope I'm Out]
-
 	clearMenu();
 	if (pc.hasCock())
 	{
@@ -151,6 +156,22 @@ public function kirosShipWails():void
 	else
 	{
 		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tankuis monster cock.");
+	}
+
+	if (pc.characterClass == GLOBAL.ENGINEER)
+	{
+		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
+		{
+			addButton(3, "Fix Machine", kirosShipfixDaMachine, undefined, "Fix the Machine", "Bring your considerable technical knowhow to bare on the troubled machine.")
+		}
+		else
+		{
+			addDisabledButton(3, "Fix Machine", "Fix the Machine", "You've already tried - and failed - to successfully fix the troubled machine that would grant the Kui-tan the relief she so desperately needs.")
+		}
+	}
+	else
+	{
+		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
 	}
 }
 
@@ -546,4 +567,91 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	clearMenu();
 	addButton(0, "Next", kirosShipPostFirstFuck);
+}
+
+public function kirosShipfixDaMachine():void
+{
+	clearOutput();
+	author("Savin"); // Maybe?
+	showBust("KIRO_NUDE");
+
+	//Tech Specialist only, needs Difficult INT Check
+	output("\"<i>Hang on, ma'am, help's on the way,</i>\" you say, grabbing your tools as you approach the gigantic cock-milker.");
+
+	output("\n\n\"<i>W-what!? Just fuck me already! I tried it!</i>\" she cries, but you put up a hand and spin a spanner around your trigger finger. You're gonna make this machine your bitch. You drop to a crouch, popping a panel off the side, looking down into the maze of wires and chips. And... it's covered in spooge. Of course it is, what else. You sigh, pull on a glove, and reach in. A few moments, and a few new wires later, you slap the panel back on and hit the power button. Nothing happens.");
+
+	//{If FAIL!}
+	if (pc.IQ() < 0.75)
+	{
+		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = -1;
+		output("\n\n\"<i>Told you!</i>\" the tanuki screams, wobbling on her gigantic ballsack. \"<i>NOW HELP ME FOR FUCK'S SAKE!</i>\"");
+
+		clearMenu();
+		addButton(0, "Next", kirosShipWails, false);
+	}
+	//{Success}
+	else
+	{
+		flags["RESCUE KIRO TECHSPEC MACHINE FIX"] = 1;
+		output("\n\nYou rear back and THWACK the side of the cock-milker with the side of your spanner. The Tanuki starts to yell at you, but suddenly an animalistic roar erupts from the machine, and the raccoon girl spontaneously orgasms, throwing her head back with a cry of perverse pleasure as the machine resumes, sucking hard on her cock like a legion of whores. You rub your own crotch as the tanuki's balls seem to deflate, lowering her back to the floor. Before you know it, she's humping the shit out of that cock milker, pounding it like a mecha-pussy until the cum's gushing from her cock in an unstoppable flood, a force of sexual nature.");
+		output("\n\nDamn, she was pent up.");
+
+		clearMenu();
+		addButton(0, "Next", kirosShipPostFirstFuck);
+	}
+}
+
+public function kirosShipNopeFuckThisShit():void
+{
+	clearOutput();
+	showBust("KIRO_NUDE");
+	author("Fenoxo");
+
+	output("\n\nYou throw your hands up and say, \"<i>Nope, I'm out. Don't get paid enough for this shit.</i>\" You turn away and run back to your ship, not daring to look back at the monstrously perverted mess behind you. When the familiar flooring of your ship is underfoot once more, you sigh with relief and slam the hatch closed. You can't fly away quick enough.");
+	
+	//Resume previous travels.
+	currentLocation = "SHIP INTERIOR";
+	flags["RESCUE KIRO FROM BLUEBALLS"] = -1;
+
+	clearMenu();
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
+}
+
+public function kirosShipPostFirstFuck():void
+{
+	clearOutput();
+	showBust("KIRO_NUDE");
+	author("Fenoxo");
+
+	//Combine after sex scenes or Tech Spec. repair job. 
+	output("A little while later, the big-tailed, big-balled, big-cocked… big-everything girl is leaning against the wall, completely ignoring the salty musk that's coating her nearly from head to toe. She gives you a measuring glance. Her reddish-brown eyes are wide and searching, taking in every detail of her rescuer before returning to your [pc.face]. Suckling some of her excess from a fingertip, she smacks her lips and nods her head in your direction thankfully. \"<i>I couldn't have done it without you, kid. Thanks.</i>\" She cleans another finger, licking down to her palm while she gathers her thoughts. \"<i>The name's Kiro Tamahime; you might have heard of me.</i>\"");
+
+	output("\n\nYou cock your head to the side.");
+
+	output("\n\n\"<i>You haven't? Shit, I thought I was at least making the news,</i>\" she says, stomping a padded foot in irritation. \"<i>What's your name, angel?</i>\"");
+
+	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help but to keep glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
+
+	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel. I'd love to fuck a few more times, but I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + player.mf("handsome","gorgeous") + ".</i>\"");
+
+	output("\n\nWhoah, whoah. If she's a famous space pirate, she can surely afford some kind of reward for your efforts, right? You put your hands on your hips and ask.");
+
+	if (flags["RESCUE KIRO TOOK PISTOL"] == 1 || flags["RESCUE KIRO TOOK CUTLASS"] == 1)
+	{
+		output("\n\n\"<i>You already took your reward from my cabin. If you hadn't saved my ass, we'd be tangling over that sweet little gun right now,</i>\" Kiro boldly answers.");
+	}
+	else
+	{
+		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire one thousand credits here over to the " + player.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
+
+		pc.credits += 1000; 
+	}
+
+	output("\n\nThe tanuki-woman turns away, big tail waving, and waves, giving a sly smile over her shoulder as she bids you farewell. \"<i>If we cross paths again, I'd love to spend some time with you. Don't be a stranger.</i>\" A doorway hisses closed behind her, and one after another, the other doors in the ship slam shut, all except the ones leading back toward your ship. Well, you earned some points with a pirate and turned a tidy little profit. Not a bad payout for a good samaritan.");
+
+	flags["RESCUE KIRO FROM BLUEBALLS"] = 1;
+	currentLocation = "SHIP INTERIOR";
+
+	clearMenu();
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }

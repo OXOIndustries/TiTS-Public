@@ -1901,6 +1901,12 @@
 			}
 		}
 
+		// HUE
+		public function IQ():Number
+		{
+			return Math.round(intelligence()/intelligenceMax()*100);
+		}
+		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply)

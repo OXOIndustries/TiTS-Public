@@ -310,7 +310,7 @@ function flyTo(arg:String):void {
 		}
 	}
 	
-	clearOutput();	
+	clearOutput();
 	
 	if(arg == "Mhen'ga") {
 		shipLocation = "SHIP HANGAR";

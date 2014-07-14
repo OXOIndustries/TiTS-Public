@@ -15,6 +15,7 @@ public function incomingMessage(travelEvent:Function, originalDestination:String
 public function flyToWrapper(destination:String):void
 {
 	flags["SUPRESS TRAVEL EVENTS"] = 1;
+	if (flags["STORED SHIP DESTINATION"] != undefined) flags["STORED SHIP DESTINATION"] = undefined;
 	flyTo(destination);
 }
 
