@@ -297,7 +297,7 @@ function buttStretchDelsAnus():void
 	else if(pc.cocks[x].cLength() <= 12) output("your hips press into hers, your shaft fully buried");
 	else output("her stomach is bulging from the massive, throbbing prick buried in her, stretching her asshole until she's apt to break in half");
 	output(". She cries out, fingers digging into the edge of the bar as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
-	cockChange(true,false);
+	pc.cockChange(true,false);
 
 	output("\n\nBut that's the last kindness you're going to show this wanton whore's little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the trap-slut's bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white wells up at its tip. You consider giving her a little tug to help her along, but then... that'd defeat the purpose! This slut's supposed to be a little anal whore, so by God that's what she'll be. You reaffirm your grab on her girly hips and start pounding with a vengeance, faster and harder until the little slut's whining and moaning with every push, crying her pleasure aloud with utter abandon, any trace of her once-bashful reserve melting away as you pound her ass.");
 	output("\n\nBetween the sloppy blowjob she gave you and now the tight, wringing grip of the trap's ");
@@ -464,7 +464,7 @@ function stephIrsonEpisodeTwo():void
 		if(pc.hasCock()) 
 		{
 			output("\n\nAlready used to your cock, it's easy to shift the girl from sitting in your lap to sitting on your dick. She gives a quiet gasp as you plant her hips over your crown, clasping her hands over her mouth as you let her go, leaving her to slide down your [pc.cock " + x + "], encasing it in the tight, warm confines of her boypussy. You give a sigh of relief, happy to have a nice sheath for your schlong, her muscles contracting and writhing around your girth, waiting eagerly to accept your cum when the goo's done with Steph. Speaking of which....");
-			cockChange(true,false);
+			pc.cockChange(true,false);
 		}
 		//If PC has a vag:
 		else 
@@ -472,7 +472,7 @@ function stephIrsonEpisodeTwo():void
 			output("\n\nHaving seen the googirl's show the same as you, your poor little ladyboy is already rock-hard, cock making a nice little tent under her skirt. You figure, why not be generous? Even sissies need to cum sometimes. You spread your legs for her");
 			if(pc.isCrotchGarbed()) output(", pushing your [pc.lowerGarments] out of the way");
 			output(" to give the bartender easy access to your [pc.vagina " + x + "]. Horny as she is, it doesn't take much more prompting than that to get your favorite Tarkusian trap to straddle your [pc.legs] and start pounding away, her tiny prick easily entering your sex and spearing you with pleasure. Now that's more like it. You lean back in your booth, letting the trappy slut wrap her arms around you as she fucks you, and enjoy the show and the sex at once....");
-			cuntChange(x,chars["DELILAH"].cockVolume(0),true,true,false);
+			pc.cuntChange(x,chars["DELILAH"].cockVolume(0),true,true,false);
 		}
 	}
 
@@ -528,7 +528,7 @@ function delilahSlutTraining():void
 	output("\n\nThe asuar's quick to take you up on your now-explicit offer, his black-furred hands grabbing your [pc.hips] and unceremoniously flops his thick, red, canine cock onto your backside, the pointed crown pressing into your spit-slick hole.");
 	output("\n\n<i>\"Not the knot, please,\"</i> you whisper, <i>\"Gonna have a long line for me.\"</i>");
 	output("\n\n<i>\"Yeah, yeah,\"</i> the ausar says, already sliding his hips forwards into you. You bite your lip, stifling a groan as that hollowness in you, that need, is suddenly and wonderfully filled. Your back arches as the ausar stretches you wide on thick canid cock, thrusting deep in until you can feel the bulb of his knot against your hole. For a moment, you're afraid he'll ruin your fun; but he's a good sport and pulls right back out until there's just his tapered tip inside you.");
-	buttChange(130,true,false);
+	pc.buttChange(130,true,false);
 	output("\n\nYou squeeze down on the intruding member, giving the ausar a nice, tight, wet hole to thrust into - and he does so with gusto. A few slow, even strokes to start you off, and then he's pounding away at you, hammering his crotch into your ass, forcing you into the bar with every smack of flesh-on-flesh. You moan, crying out as his meaty prick stretches you wide, putting just enough pressure on that wonderful bud inside your clenching hole to make your [pc.cock] jump back to attention, bobbing as your hips are rocked by the impact of his cock slamming home.");
 	output("\n\nIt doesn't take long before the man's grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score you flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your boypussy.");
 	output("\n\nPanting, the ausar man stumbles back, red cock slathered with his own cum as it flops out of you. You push back a little as he withdraws, and shudder as you feel a little trickle of his hot, creamy spunk drool out of your hole, pooling between your wide-spread [pc.legs]. That's how it's done! You give Del a sultry wink as the first of many men leaves you, only to be quickly replaced by a second: a human man, if the bulbous crown pressing into your now-gaping, cum-filled hole is any indication.");

@@ -8922,7 +8922,7 @@
 				}
 				else
 				{
-					output("<b>" + short + " has succumbed to " + mf("his", "her") + " and lost " + mf("his, her"));
+					output("<b>" + short + " has succumbed to " + mf("his", "her") + " and lost " + mf("his", "her"));
 					if (hasVagina()) output(" masculine");
 					output(" virginity.</b>");
 				}
@@ -8983,7 +8983,7 @@
 					}
 					else if(analVirgin) {
 						output("<b>, robbing you of your anal virginity</b>");
-						target.analVirgin = false;
+						analVirgin = false;
 					}
 					output("<b>.</b>");
 				}
@@ -9055,11 +9055,11 @@
 						}
 						else
 						{
-							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + assholeDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
-							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + assholeDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
-							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + assholeDescript(hole) + " is now somewhat loose.</b>");
-							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + assholeDescript(hole) + " is a little more used to insertions.</b>");
-							else output("<b>" + short + "s " + assholeDescript(hole) + " is stretched out a little bit.</b>");
+							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + short + "s " + assholeDescript() + " is stretched out a little bit.</b>");
 						}
 					}
 					if(spacingsB) output(" ");

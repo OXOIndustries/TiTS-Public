@@ -1,9 +1,11 @@
+import classes.Items.Guns.CustomLP17;
+import classes.Items.Melee.Cutlass;
 public function answerKiroDistressCall(destination:String):void
 {
 	clearOutput();
-	outputText("You divert your course towards the attached coordinates. It isn't far, and the journey takes little more than a few moments at top speed. When your ship begins decelerating from relativistic speeds, your viewscreen lights up with a picture of the vessel in question. It's an oddly leaf-shaped craft with a notch out of one side for a docking bay. In the back, a group of engines bundle together to form the stem. Your equipment is easily able to determine that the ship's systems are all online, yet it remains stubbornly static and unmoving.");
+	output("You divert your course towards the attached coordinates. It isn't far, and the journey takes little more than a few moments at top speed. When your ship begins decelerating from relativistic speeds, your viewscreen lights up with a picture of the vessel in question. It's an oddly leaf-shaped craft with a notch out of one side for a docking bay. In the back, a group of engines bundle together to form the stem. Your equipment is easily able to determine that the ship's systems are all online, yet it remains stubbornly static and unmoving.");
 
-	outputText("\n\nThe message said that systems were failing, but the power output is perfectly in the green. Did they already get help? Is this a trap? What do you do?");
+	output("\n\nThe message said that systems were failing, but the power output is perfectly in the green. Did they already get help? Is this a trap? What do you do?");
 	//[Board it] [Wait] [Leave]
 	clearMenu();
 	addButton(0, "Board", boardKirosShipRescue, destination);
@@ -51,8 +53,8 @@ public function waitKirosShipRescue(destination:String):void
 	flags["RESCUE KIRO WAITED TO BOARD"] = 1;
 
 	clearMenu();
-	addButton(0, "Board", boardKirosShipRescue);
-	addButton(1, "Leave", leaveKirosShipRescue, destination);
+	addButton(0, "Board", boardKirosShipRescue, destination);
+	addButton(2, "Leave", leaveKirosShipRescue, destination);
 }
 
 public function boardKirosShipRescue(destination:String):void
@@ -78,7 +80,7 @@ public function kirosShipInterior():void
 	addButton(0, "Wails", kirosShipWails);
 }
 
-public function kirosShipInteriorQuarters():void
+public function kirosShipQuarters():void
 {
 	clearOutput();
 	author("Savin");
@@ -101,18 +103,20 @@ public function kirosShipInteriorQuarters():void
 
 public function kirosShipPistol():void
 {
-	flags["RESCUE KIRO TOOK PISTOL"] = 1;
+	clearOutput();
+	var pistol:CustomLP17 = new CustomLP17();
 
-	// {PC acquires Kiro's Laser, a highly accurate version of the basic las handgun.}
-	//(This customized Reaper Armaments LP-17 is a sleek, trimmed down version of the civilian-bought model. This particular version is stacked with an extended magazine, heat sink and a top-mounted holographic sight keyed to a half-trigger pull: in effect, making the weapon highly accurate and rapid-firing. A perfect solution for boarding parties and close quarters entanglements, packing the power and accuracy of a carbine while leaving one hand free to wield a melee weapon.)
+	flags["RESCUE KIRO TOOK PISTOL"] = 1;
+	itemCollect([pistol], false);
 }
 
 public function kirosShipCutlass():void
 {
+	clearOutput();
+	var cutlass:Cutlass = new Cutlass();
+	
 	flags["RESCUE KIRO TOOK CUTLASS"] = 1;
-
-	//{PC acquired Cutlass, a basic mid-damage one-handed melee weapon}
-	//(A fairly standard steel cutlass for the renaissance reenactor in all of us. This hefty sword is and has been a standard for close-quarters boarding actions since the age of sail and has analogs in most interstellar cultures. A favorite of pirates, raiders and navy officers the galaxy over.
+	itemCollect([cutlass], false);
 }
 
 public function kirosShipWails(doOutput:Boolean = true):void
@@ -318,9 +322,9 @@ public function kirosShipChubnookiUpDaCooter():void
 		output("\n\nBiting her lip, the lust-crazed woman nods, and the moisture you saw before dries. Her lips slowly quirk into a smile, saying, \"<i>Okay. I suppose my virginity will be hero's reward enough for you then, my savior.</i>\" She pulls her hands away from the machine she's started packing full and moves them up to her heaving breasts, pressing her palms protectively over your own. \"<i>I never thought being saved and taken would feel this good....</i>\"");
 	}
 	//Mischievious
-	else (pc.isMischievous())
+	else if (pc.isMischievous())
 	{
-		output("\n\nYou feel a little bad about stealing her virginity, but then you remember that you're saving her life. You unashamedly grab hold of both her tits, giving them a hefty, affectionate squeeze. \"<i>Don't fret, baby. Just think, how many girls get to say they lost their virginity and got rescued by a " + player.mf("gallant","lovely") + " space captain, saved from the clutches of the deep darkness and loved in the most tender, perfect way possible at the same time?</i>\"");
+		output("\n\nYou feel a little bad about stealing her virginity, but then you remember that you're saving her life. You unashamedly grab hold of both her tits, giving them a hefty, affectionate squeeze. \"<i>Don't fret, baby. Just think, how many girls get to say they lost their virginity and got rescued by a " + pc.mf("gallant","lovely") + " space captain, saved from the clutches of the deep darkness and loved in the most tender, perfect way possible at the same time?</i>\"");
 
 		output("\n\nShe may have a velvet-soft coating of fur covering her face, but you swear, she must be blushing. The big-balled damsel smiles back at you. \"<i>You're right, and mmmm, just start moving your hips soon, okay? Just taking you made me have a nice little cum. There's so much waiting to come out....</i>\" She reaches away from the jizz-oozing machinery and places her hands over yours, squeezing you against her breasts from the outside.");
 	}
@@ -498,7 +502,7 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output("\n\nGushes of girlish-cream splatter out from your nether-lips, and you resume your steady slide downward. You're sure you can feel your internal organs shifting to make room, bent out of the way in proper deference to this powerful, masculine organ. You whimper, biting your [pc.lip] and letting your arms go limp. Your brain feels like it’s shutting down, and you lack the will to make your muscles do anything at this point. You're just limply sliding down, accepting more and more of the tanuki-woman's tremendous, towering erection into your taut folds. She's so big and firm that even with you laying back, limp, it holds you in place, supporting you in a way that your muscles and skeleton have failed to do.");
 
-	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + player.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina biggest] should be crying out in protest, but all it's doing is dripping nonstop.");
+	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina biggest] should be crying out in protest, but all it's doing is dripping nonstop.");
 
 	output("\n\nTouching down, your [pc.legs] contact with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skin] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
@@ -632,7 +636,7 @@ public function kirosShipPostFirstFuck():void
 
 	output("\n\nYou introduce yourself to the tanuki pirate, but you can't help but to keep glancing down at her naked, sperm-coated breasts, dripping cock, and still-large balls.");
 
-	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel. I'd love to fuck a few more times, but I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + player.mf("handsome","gorgeous") + ".</i>\"");
+	output("\n\nKiro smiles warmly at you, and her stallion-sized dick twitches slightly. \"<i>That's a nice name, angel. I'd love to fuck a few more times, but I've got a run to finish up before the buyer changes his mind,</i>\" she explains with a wink. \"<i>I'll catch you later, " + pc.mf("handsome","gorgeous") + ".</i>\"");
 
 	output("\n\nWhoah, whoah. If she's a famous space pirate, she can surely afford some kind of reward for your efforts, right? You put your hands on your hips and ask.");
 
@@ -642,7 +646,7 @@ public function kirosShipPostFirstFuck():void
 	}
 	else
 	{
-		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire one thousand credits here over to the " + player.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
+		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire one thousand credits here over to the " + pc.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
 
 		pc.credits += 1000; 
 	}

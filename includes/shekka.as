@@ -732,7 +732,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 	if(y >= 0) output(" or your [pc.cock " + y + "] from battering into her tight asshole");
 	output(". You certainly wouldn't be capable of holding back the growl that rips its way out of your throat as your body asserts its primal need to fuck and breed the female its been presented with.");
 	output("\n\nShekka's legs slam against the table as you take her from behind, pressing on her hard enough that she winds up pressing her tits around her project and sending her tools scattering away. Her lips cling to your piston like oiled cylinder walls, and as you really start to give it to her they only seal tighter around you. Every forceful thrust is accompanied by lurid squelches, every cock-hilting thrust matched by affectionate, muscular squeezes from Shekka's box. The impacts cause you to bump her rearward clit repeatedly, and she moans each time. These raskvel were made to be fucked from any angle; no matter how you take them, one of their clits will be happily sparking.");
-	cockChange(true,false);
+	pc.cockChange(true,false);
 	output("\n\nYou settle into an easy musical rhythm. Her swaying, pierced ears provide a pleasant jingling background while her staccato moans provide proof positive that's getting the hard fucking she wanted. Shekka's petite body feels almost entirely wrapped around your [pc.cock " + x + "] even though such a thing is impossible. Her tail is wrapped around your waist encouragingly, helping you to thrust into her as hard as absolutely possible. If you weren't so caught up in the moment, you might be worried that you would bruise her thighs against the workbench. She wouldn't let you stop, though. She'd tell you to get back to work. After all, she's working.");
 	output("\n\nIt's hard to tell if she's still working, actually. She did manage to pull the cylindrical device out from between her perky tits. Damn, her nipples look hard. And she seems to be trying to do something with it, but she keeps throwing back her head and moaning. Her free hand keeps dropping screws and scrabbling against the workbench's unforgiving surface. Shekka might have made some good progress on her toy, but there's no way she's going to finish it in this condition.");
 	output("\n\nShe's little more than a slutty mess of fuckjuice and pleasure now - a tingling bundle of nerves spasming around your ");
@@ -920,7 +920,7 @@ function tailbadism():void
 		output(" your [pc.cum] between your slick, squirming forms, simultaneously forgotten and yet adding another layer of bliss to your overpowering release.");
 	}
 	//Cuntchange
-	cuntChange(x,5,true,true,false);
+	pc.cuntChange(x,5,true,true,false);
 	output("\n\nYou twist on the floor, the raskvel riding you, pumping you wildly. The air fills with the high-pitched sounds of your passion and the scent of your mixed secretions almost seems to steam the air around your sweaty, entwined bodies. Shekka pulls partway out to hold her tip against [pc.oneClit], and the vibrating length drives your consciousness away in an explosion of ecstasy.");
 	processTime(40+rand(10));
 	pc.orgasm();

@@ -2731,7 +2731,7 @@ function initializeRooms():void
 
 	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
 	rooms["KIROS SHIP TROPHYROOM"].roomName = "Ship Interior";
-	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled "Trophy Room." Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
+	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";
