@@ -687,5 +687,10 @@
 		{
 			return chars["ANNO"];
 		}
+		
+		public function get kiro():*
+		{
+			return chars["KIRO"];
+		}
 	}
 }
