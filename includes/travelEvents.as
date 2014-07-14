@@ -77,9 +77,9 @@ public function rescueKiroMessage(destination:String):void
 	output("\n\n<i><b>Distress call detected! Message text follows:</b>");
 	output("\nIf anyone is receiving this, please help. Onboard systems are failing, and I can no longer reach navigation controls. Emergency power is in the red. Help me, please!");
 	
-	output("<b>Message repeats.</b></i>");
+	output("\n\n<b>Message repeats.</b></i>");
 	
-	output("Answering it wouldn't take you that far out of the way. Do you respond to the distress call?");
+	output("\n\nAnswering it wouldn't take you that far out of the way. Do you respond to the distress call?");
 	//[Yes] [No]
 	clearMenu();
 	addButton(0, "Yes", answerKiroDistressCall, destination);

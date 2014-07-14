@@ -1,3 +1,4 @@
+import classes.Characters.PlayerCharacter;
 import classes.Items.Guns.CustomLP17;
 import classes.Items.Melee.Cutlass;
 public function answerKiroDistressCall(destination:String):void
@@ -73,16 +74,11 @@ public function boardKirosShipRescue(destination:String):void
 
 public function kirosShipInterior():void
 {
-	clearOutput();
-
-	mainGameMenu();
-
 	addButton(0, "Wails", kirosShipWails);
 }
 
 public function kirosShipQuarters():void
 {
-	clearOutput();
 	author("Savin");
 
 	output("\n\nOn a rack over the headboard is a nice assortment of armaments");
@@ -94,8 +90,6 @@ public function kirosShipQuarters():void
 		if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) output(" a shiny laser pistol with a mounted scope. Clearly a custom job.");
 	}
 	output(" The owner's put a lot of work - and credits - into this arsenal. They're ripe for the taking, but then again, that'd earn you a good slapping if you meet the captain. On the desk opposite the bed is a single little bonsai tree, surrounded by stacks of gardening books. It looks about on the verge of death, utterly wilted like it hasn't been watered in ages. Poor thing.");
-
-	mainGameMenu();
 
 	if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) addButton(0, "Take Pistol", kirosShipPistol);
 	if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Pistol", kirosShipCutlass);
@@ -494,15 +488,17 @@ public function kirosShipChubnookiFucksYouGud():void
 	if (pc.vaginaTotal() > 1) output(" of your [pc.vaginas], fingerfucking yourself in a way that lets you press against the cock inside you, rubbing it to ease the penetration.");
 
 	output("\n\n\"<i>Ohhhh yesss,</i>\" the raccoon-girl gasps, \"<i>You're going to make me cum so hard. I can feel it.</i>\" She kisses you without warning, her pouty lower lip slipping over your own in advance of her probing tongue. It finds your own and begins to tangle with it, distracting you from your pace until your muscles relax and your body slides three inches down that turgid fuckpole all at once. You moan and aggressively kiss her back, not even trying to control your descent anymore. It feels too good, and you're too horny to try to master yourself any longer. You're going to let yourself be fucked as fast as your soaking-wet snatch and gravity will allow, stretching out to handle the huge insertion as you go, her pulsating head bathing your reproductive organs in a slippery-warm soup of tanuki love.");
+	
+	var selVag:int = (pc as PlayerCharacter).biggestVaginaIndex();
 
-	output("\n\nGoddamn, she's huge. Your [pc.vagina biggest] is filled so beautifully that you have to wonder if this is what you were meant to be: an organic, dick-draining cock-wrapper. A sudden change in thickness arrests your slow slide down for a moment until it pops past your clinging lips and follows the flare through your canal, stroking over-sensitive nerve bundles along every fold of your cunt. You whimper and arch your back, feeling it stretch the whole of your body.");
+	output("\n\nGoddamn, she's huge. Your [pc.vagina "+ selVag +"] is filled so beautifully that you have to wonder if this is what you were meant to be: an organic, dick-draining cock-wrapper. A sudden change in thickness arrests your slow slide down for a moment until it pops past your clinging lips and follows the flare through your canal, stroking over-sensitive nerve bundles along every fold of your cunt. You whimper and arch your back, feeling it stretch the whole of your body.");
 	if (pc.bellyRating() > 25) output(" If your belly weren't so big, you're sure you'd see her cock outlined in stark relief on your [pc.skin].");
 	else output(" Her cock is outlined in stark relief on the [pc.skin] of your [pc.belly].");
 	output(" That cock is just wrecking your pussy. It's so fucking huge and hot and wet that you're not sure you'll ever be able to settle for anything less again.");
 
 	output("\n\nGushes of girlish-cream splatter out from your nether-lips, and you resume your steady slide downward. You're sure you can feel your internal organs shifting to make room, bent out of the way in proper deference to this powerful, masculine organ. You whimper, biting your [pc.lip] and letting your arms go limp. Your brain feels like it’s shutting down, and you lack the will to make your muscles do anything at this point. You're just limply sliding down, accepting more and more of the tanuki-woman's tremendous, towering erection into your taut folds. She's so big and firm that even with you laying back, limp, it holds you in place, supporting you in a way that your muscles and skeleton have failed to do.");
 
-	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina biggest] should be crying out in protest, but all it's doing is dripping nonstop.");
+	output("\n\nThere's a palpable sense of fullness, a stretching in your middle, and you're not even all the way down yet. From how high up you are, you guess you've only handled about three quarters of that beast-cock, but it feels so big inside you that you could swear you should have had it all by now. How much more prick can one " + pc.mfn("man","woman","person") + "'s crotch hold? Her arms wrap around your chest in a remarkably comforting motion, the soft, padded tips of her fingers pressing down on your [pc.nipples] with gentle squeezes. Her hips lurch upward, and you cry out from rapturous pleasure. Your body is so full, so stuffed with cock, that it should hurt. Your [pc.vagina "+ selVag +"] should be crying out in protest, but all it's doing is dripping nonstop.");
 
 	output("\n\nTouching down, your [pc.legs] contact with the tanuki-herm's gloriously soft thighs, her silky fur sliding sensuously across your [pc.skin] as you settle down atop that pillar of perfect fuckmeat, letting the folds of her sheath bunch up on your outer lips. The two sets of soaked, sensitive crotch-flesh slip and slide all over one another like two sloppy-wet pussies tribbing against each other.");
 	if (pc.hasCock())
@@ -516,7 +512,7 @@ public function kirosShipChubnookiFucksYouGud():void
 
 	output(" You're panting and cooing with delight while your body lamely twists upon the impaling phallus. Your whole world, much like yourself, is wrapped completely around that cock.");
 
-	output("\n\n\"<i>Mmmm, my savior,</i>\" the ludicrously endowed woman purrs into your ear a moment before she shifts her weight, setting you both bouncing upon her over-inflated sack. She gently drags you up her cock, every rigid vein and pulsing bulge felt in stark relief on the inside of your [pc.vagina biggest]. Then, in a moment of exquisite friction and fullness, you both bounce down, bodies locking together once more just in time for a healthy blast of sperm to launch into your");
+	output("\n\n\"<i>Mmmm, my savior,</i>\" the ludicrously endowed woman purrs into your ear a moment before she shifts her weight, setting you both bouncing upon her over-inflated sack. She gently drags you up her cock, every rigid vein and pulsing bulge felt in stark relief on the inside of your [pc.vagina "+ selVag +"]. Then, in a moment of exquisite friction and fullness, you both bounce down, bodies locking together once more just in time for a healthy blast of sperm to launch into your");
 	if (pc.biggestVaginalCapacity() > kiro.biggestCockVolume()) output(" channel");
 	else output(" womb with cervix-shattering force");
 	output(". Your [pc.belly] bulges bigger from the weight of the deposit. It actually jiggles and sloshes ponderously on the next bounce, forcing bigger, fatter cum-shots directly inside you, and each time, your swollen sperm-paunch gets bigger and bigger.");
