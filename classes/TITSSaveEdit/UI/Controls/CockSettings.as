@@ -9,6 +9,7 @@ package classes.TITSSaveEdit.UI.Controls
 	import flash.events.Event;
 	import classes.UIComponents.UIStyleSettings;
 	import classes.GLOBAL;
+	import flash.text.TextFieldType;
 	
 	/**
 	 * ...
@@ -130,6 +131,7 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_cockNumControl);
 			_cockNumControl.minNum = 0;
 			_cockNumControl.maxNum = 10;
+			_cockNumControl.labelText = "Total Cocks: ";
 			_cockNumControl.onAdd = addCock;
 			_cockNumControl.onRem = remCock;
 			_cockNumControl.labelNum = _cockData.length;
@@ -221,12 +223,12 @@ package classes.TITSSaveEdit.UI.Controls
 		private function cockSelectLabelFunction(item:CockClass):String
 		{
 			var str:String = "";
-			str += String(Math.floor(10 * item.cLength()) / 10) + "\"";
+			str += String(Math.floor(10 * item.cLength()) / 10) + "\"  ";
 			str += GLOBAL.TYPE_NAMES[item.cType] + " Cock";
 			return str;
 		}
 		
-		private function cockSelectedChangeHandler(e:Event):void
+		private function cockSelectedChangeHandler(e:Event = null):void
 		{
 			var selCock:CockClass = _cockData.getItemAt(_selectedCock.selectedIndex) as CockClass;
 			
@@ -267,11 +269,44 @@ package classes.TITSSaveEdit.UI.Controls
 		public function addCock():void
 		{
 			if (_cockData.length < 10) _cockData.addItem(new CockClass());
+			if (_cockData.length > 0)
+			{
+				enableComponents();
+				_selectedCock.selectedIndex = 0;
+				cockSelectedChangeHandler();
+			}
 		}
 		
 		public function remCock():void
 		{
 			if (_cockData.length > 0) _cockData.removeItemAt(_cockData.length - 1);
+			if (_cockData.length == 0) disableComponents();
+		}
+		
+		private function enableComponents():void
+		{
+			_selectedCock.enable();
+			_cockLength.enable();
+			_cockThickness.enable();
+			_cockType.enable();
+			_cockColor.enable();
+			_knotMulti.enable();
+			_flaccidMulti.enable();
+			_virgin.enable();
+			_cockFlags.enable();
+		}
+		
+		private function disableComponents():void
+		{
+			_selectedCock.disable();
+			_cockLength.disable();
+			_cockThickness.disable();
+			_cockType.disable();
+			_cockColor.disable();
+			_knotMulti.disable();
+			_flaccidMulti.disable();
+			_virgin.disable();
+			_cockFlags.disable();
 		}
 	
 		private function AddControl(control:DisplayObject):void

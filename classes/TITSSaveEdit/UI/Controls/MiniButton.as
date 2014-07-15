@@ -31,14 +31,17 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_body = new Sprite();
 			_body.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
-			_body.graphics.drawRoundRect(0, 0, 20, 20, 5, 5);
+			_body.graphics.drawRoundRect(0, 0, 115, 30, 5, 5);
 			_body.graphics.endFill();
 			
 			this.addChild(_body);
 			
 			_label = new TextField();
 			UIStyleSettings.cfgLabel(_label);
+			_label.defaultTextFormat = UIStyleSettings.gSaveEditorCenteredLabelTextFormat;
 			_label.text = "?";
+			_label.height = 25;
+			_label.width = 115;
 			_body.addChild(_label);
 		}
 		

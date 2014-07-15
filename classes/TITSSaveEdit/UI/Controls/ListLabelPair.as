@@ -108,6 +108,19 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			return 85;
 		}
+		
+		public function enable():void
+		{
+			_input.enabled = true;
+			_input.alpha = 1.0;
+		}
+		
+		public function disable():void
+		{
+			_input.enabled = false;
+			_input.alpha = 0.3;
+			_input.selectedIndices = [];
+		}
 	}
 
 }

@@ -123,6 +123,20 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			return 30;
 		}
+		
+		public function enable():void
+		{
+			_input.enabled = true;
+			_input.alpha = 1.0;
+			_input.mouseEnabled = true;
+		}
+		
+		public function disable():void
+		{
+			_input.enabled = false;
+			_input.alpha = 0.3;
+			_input.mouseEnabled = false;
+		}
 	}
 
 }

@@ -700,6 +700,22 @@ package classes.UIComponents
 			return UIStyleSettings._gSaveEditorLabelTextFormat;
 		}
 		
+		private static var _gSaveEditorCenteredLabelTextFormat:TextFormat;
+		public static function get gSaveEditorCenteredLabelTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSaveEditorCenteredLabelTextFormat == null)
+			{
+				_gSaveEditorCenteredLabelTextFormat = new TextFormat();
+				_gSaveEditorCenteredLabelTextFormat.size = 18;
+				_gSaveEditorCenteredLabelTextFormat.color = 0xFFFFFF;
+				_gSaveEditorCenteredLabelTextFormat.align = TextFormatAlign.CENTER;
+				_gSaveEditorCenteredLabelTextFormat.leading = 0;
+				_gSaveEditorCenteredLabelTextFormat.kerning = true;
+				_gSaveEditorCenteredLabelTextFormat.bold = true;
+				_gSaveEditorCenteredLabelTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSaveEditorCenteredLabelTextFormat;
+		}
 		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;

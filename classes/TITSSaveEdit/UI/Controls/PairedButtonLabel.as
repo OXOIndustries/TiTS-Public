@@ -58,23 +58,24 @@ package classes.TITSSaveEdit.UI.Controls
 			_buttonRem.addEventListener(MouseEvent.CLICK, buttonHandler);
 			_buttonRem.disable();
 			_buttonRem.setRem();
+			_buttonRem.x = 149;
 			
 			_buttonAdd = new MiniButton();
 			this.addChild(_buttonAdd);
-			_buttonAdd.x = 400 - (_buttonAdd.width + 4);
+			_buttonAdd.x = 269;
 			_buttonAdd.addEventListener(MouseEvent.CLICK, buttonHandler);
 			_buttonAdd.disable();
 			_buttonAdd.setAdd();
 			
 			_label = new TextField();
 			UIStyleSettings.cfgLabel(_label);
-			_label.x = _buttonRem.width + 4;
-			_label.width = 400 - ((_buttonRem.width + 4 ) * 2);
-			_label.text = "LABEL";
+			_label.defaultTextFormat = UIStyleSettings.gSaveEditorLabelTextFormat;
+			_label.x = 0;
+			_label.height = 25;
+			_label.width = 140;
+			_label.text = "Total Cocks";
 			
-			this.graphics.beginFill(0xFF0000);
-			this.graphics.drawRect(0, 0, this.width, this.height);
-			this.graphics.endFill();
+			this.addChild(_label);
 		}
 		
 		private function updateLabel():void

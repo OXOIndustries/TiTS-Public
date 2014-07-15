@@ -41,6 +41,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_checkBox = new CheckBox();
 			_checkBox.setStyle("embedFonts", true);
 			_checkBox.setStyle("textFormat", UIStyleSettings.gSaveEditorLabelTextFormat);
+			_checkBox.setStyle("disabledTextFormat", UIStyleSettings.gSaveEditorLabelTextFormat);
 			_checkBox.setStyle("antiAliasType", "advanced"); 
 			_checkBox.label = "Cock Virgin";
 			_checkBox.y = 2;
@@ -54,6 +55,18 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			return 30;
 			//return super.height;
+		}
+		
+		public function enable():void
+		{
+			_checkBox.enabled = true;
+			_checkBox.alpha = 1.0;
+		}
+		
+		public function disable():void 
+		{
+			_checkBox.enabled = false;
+			_checkBox.alpha = 0.3;
 		}
 		
 	}

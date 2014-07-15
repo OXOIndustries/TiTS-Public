@@ -4,7 +4,7 @@ package classes.TITSSaveEdit.UI.Controls
 	import flash.events.Event;
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
-	
+	import flash.text.TextFieldType;
 	/**
 	 * ...
 	 * @author Gedan
@@ -76,6 +76,19 @@ package classes.TITSSaveEdit.UI.Controls
 					_input.restrict = "0-9.";
 					break;
 			}
+		}
+		
+		public function enable():void
+		{
+			_input.alpha = 1.0;
+			_input.type = TextFieldType.INPUT;
+		}
+		
+		public function disable():void
+		{
+			_input.alpha = 0.3;
+			_input.type = TextFieldType.DYNAMIC;
+			_input.text = "";
 		}
 	}
 }
