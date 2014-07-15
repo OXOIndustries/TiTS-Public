@@ -2601,7 +2601,7 @@ function initializeRooms():void
 	rooms["359"].roomName = "CORE\nPLATFORM";
 	rooms["359"].description = "The permanent walkway around the stellar tether curves south and west around the central facility here, well-anchored and relatively safe to travel upon. The hastily deployed floating platforms to the north are objectively secure, barely anchored in place as they are. Placed there by the pirates, these temporary structures are covered in crates of all sizes and descriptions.";
 	rooms["359"].runOnEnter = undefined;
-	//rooms["359"].southExit = "360";
+	rooms["359"].southExit = "361";
 	rooms["359"].northExit = "KHORGAN_RIGHT_COVER";
 	rooms["359"].westExit = "358";
 	rooms["359"].planet = "PLANET: TARKUS";
@@ -2659,6 +2659,19 @@ function initializeRooms():void
 	rooms["360"].addFlag(GLOBAL.OUTDOOR);
 	rooms["360"].addFlag(GLOBAL.HAZARD);
 	rooms["360"].addFlag(GLOBAL.NPC);
+
+	//BOMB ROOM!
+	rooms["361"] = new RoomClass(this);
+	rooms["361"].roomName = "CORE\nPLATFORM";
+	rooms["361"].description = "";
+	rooms["361"].runOnEnter = bombRoomBonusFunc;
+	rooms["361"].northExit = "359";
+	//rooms["361"].southExit = "KHORGAN_CENTER_COVER";
+	rooms["361"].planet = "PLANET: TARKUS";
+	rooms["361"].system = "SYSTEM: REDACTED";
+	rooms["361"].addFlag(GLOBAL.OUTDOOR);
+	rooms["361"].addFlag(GLOBAL.HAZARD);
+	rooms["361"].addFlag(GLOBAL.NPC);
 
 	
 

@@ -16,7 +16,7 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "Captain Khorgan";
+			this.short = "Kaska";
 			this.originalRace = "Dzaan";
 			this.a = "";
 			this.capitalA = "";
@@ -26,8 +26,8 @@
 			this.lustVuln = 1;
 			//this.meleeWeapon = new RaskvelWrench();
 			
-			this.rangedWeapon.damage = 3;
-			this.rangedWeapon.attack = 2;
+			this.rangedWeapon.damage = -2;
+			this.rangedWeapon.attack = -5;
 			this.rangedWeapon.longName = "dual-barreled machine gun";
 			this.rangedWeapon.attackVerb = "shot";
 			this.rangedWeapon.damageType = GLOBAL.KINETIC;
@@ -47,7 +47,7 @@
 			this.libidoRaw = 65;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 55;
+			this.lustRaw = 20;
 			this.resistances = new Array(1,1,1,1,1,1,1,1);
 			this.XPRaw = 450;
 			this.level = 5;
@@ -177,8 +177,8 @@
 		{
 			var combatKaska:Kaska = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("CAPTAIN_KHORGAN");
-			kGAMECLASS.setLocation("FIGHT: CAP'N\nKHORGAN", "PLANET: TARKUS", "SYSTEM: REDACTED");
+			kGAMECLASS.userInterface.showBust("KASKA");
+			kGAMECLASS.setLocation("FIGHT:\nKASKA", "PLANET: TARKUS", "SYSTEM: REDACTED");
 			//KASKA Likes:
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_FEMININE,			GLOBAL.KINDA_LIKES_SEXPREF);
 			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HERMAPHRODITE,	GLOBAL.KINDA_LIKES_SEXPREF);

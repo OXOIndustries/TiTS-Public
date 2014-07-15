@@ -674,7 +674,7 @@ public function kirosShipPostFirstFuck():void
 	{
 		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire one thousand credits here over to the " + pc.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
 
-		pc.credits += 1000; 
+		pc.credits += 2000; 
 	}
 
 	output("\n\nThe tanuki-woman turns away, big tail waving, and waves, giving a sly smile over her shoulder as she bids you farewell. \"<i>If we cross paths again, I'd love to spend some time with you. Don't be a stranger.</i>\" A doorway hisses closed behind her, and one after another, the other doors in the ship slam shut, all except the ones leading back toward your ship. Well, you earned some points with a pirate and turned a tidy little profit. Not a bad payout for a good samaritan.");

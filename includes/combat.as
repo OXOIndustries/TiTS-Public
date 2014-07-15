@@ -70,11 +70,13 @@ function combatMainMenu():void
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
 		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
+		clearMenu();
 		this.addButton(0,"Recover",stunRecover,pc);
 	}
 	//Bound Menu
 	else if (pc.hasStatusEffect("Naleen Coiled"))
 	{
+		clearMenu();
 		output("\n<b>You are wrapped up in coils!</b>");
 		addButton(0,"Struggle",naleenStruggle);
 		if(pc.hasPerk("Static Burst")) {
@@ -86,6 +88,7 @@ function combatMainMenu():void
 	//Grapple Menu
 	else if (pc.hasStatusEffect("Grappled"))
 	{
+		clearMenu();
 		output("\n<b>You are grappled and unable to fight normally!</b>");
 		addButton(0,"Struggle",grappleStruggle);
 		if(pc.hasPerk("Static Burst")) {
@@ -97,6 +100,7 @@ function combatMainMenu():void
 	// Mimbrane Smother
 	else if (pc.hasStatusEffect("Mimbrane Smother"))
 	{
+		clearMenu();
 		output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 		addButton(0, "Struggle", mimbraneStruggle);
 		if (pc.hasPerk("Static Burst"))
@@ -116,7 +120,7 @@ function combatMainMenu():void
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
-		if(pc.hasStatusEffect("Trip")) addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
+		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 		//Bonus shit for stuff!
@@ -578,7 +582,11 @@ function processCombat():void
 				output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
 				pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
 			}
-			else droneAttack(foes[flags["DRONE_TARGET"]]);
+			else 
+			{
+				output("\n\n");
+				droneAttack(foes[flags["DRONE_TARGET"]]);
+			}
 		}
 	}
 	combatStage = 0;
@@ -1317,6 +1325,7 @@ function enemyAI(aggressor:Creature):void
 	else if(aggressor is RocketTurrets) rocketPodAI();
 	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
 	else if(aggressor is CaptainKhorgan) actualKhorganAI();
+	else if(aggressor is Kaska) kaskaFightAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
@@ -1400,6 +1409,10 @@ function victoryRouting():void
 	{
 		youBeatUpAnOrcWaytoGo();
 	}
+	else if(foes[0] is Kaska)
+	{
+		defeatKaska();
+	}
 	else genericVictory();
 }
 
@@ -1481,6 +1494,10 @@ function defeatRouting():void
 	else if(foes[0] is CaptainKhorgan)
 	{
 		loseToCaptainKhorganBadEnd();
+	}
+	else if(foes[0] is Kaska)
+	{
+		defeatedByKaska();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1698,6 +1715,9 @@ function startCombat(encounter:String):void
 			break;
 		case "khorgan":
 			chars["CAPTAINKHORGAN"].prepForCombat();
+			break;
+		case "Kaska":
+			chars["KASKA"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2309,7 +2329,7 @@ function NPCOvercharge():void {
 	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) output(foes[0].capitalA + possessive(foes[0].short) + " blinded, <b>overcharged</b> shot fails to connect!");
 	//Attack connected!
 	else {
-		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b>" + foes[0].rangedWeapon.longName + "!");
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackVerb + "!");
 		//Damage bonuses:
 		var damage:int = foes[0].rangedWeapon.damage + foes[0].aim()/2;
 		//OVER CHAAAAAARGE

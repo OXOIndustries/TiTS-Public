@@ -1,10 +1,11 @@
-// Because fuck you that's why
+﻿// Because fuck you that's why
 
 public var lightsOutVictoryFunction:Function;
+public var lightsOutFailureFunction:Function;
 
 public var lightsArray:Array;
 
-function startLightsOut(victoryFunction:Function = null):void
+function startLightsOut(victoryFunction:Function = null, failureFunction:Function = null):void
 {
 	clearOutput();
 	output("Lights out. Because fuck you that's why.");
@@ -12,6 +13,8 @@ function startLightsOut(victoryFunction:Function = null):void
 	
 	if (victoryFunction == null) victoryFunction = mainGameMenu;
 	lightsOutVictoryFunction = victoryFunction;
+	if (failureFunction == null) failureFunction = mainGameMenu;
+	lightsOutFailureFunction = failureFunction;
 	
 	clearMenu();
 	lightsArray = new Array();
@@ -72,15 +75,21 @@ public function toggleLight(slot:int):void
 	toggleNearby(slot);
 	
 	var allOff:Boolean = true;
+	var allOn:Boolean = true;
 	
 	for (var i:int = 0; i < 15; i++)
 	{
 		if (lightsArray[i] == 1) allOff = false;
+		if (lightsArray[i] == 0) allOn = false;
+
 	}
-	
+	if (allOn)
+	{
+		lightsOutFailureFunction();
+	}
 	if (allOff)
 	{
-		testVictoryFunc();
+		lightsOutVictoryFunction();
 	}
 }
 

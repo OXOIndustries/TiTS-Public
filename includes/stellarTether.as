@@ -407,14 +407,14 @@ function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 	pc.cockChange();
 
 	//If PC has a dick bigger than Kaska's: 
-	if(pc.cockVolume(x) >= 9999 * 1.5)
+	if(pc.cockVolume(x) >= chars["KASKA"].cockVolume(0) * 1.5)
 	{
 		output("\n\n<i>\"Oh, god... so big...\"</i> she moans, bracing against the desk as you put more and more cock into her. <i>\"Mmmm, when did you get that THICK, chief? Nevermind, just keep doing it. Oh, that's it... just like that...\"</i>");
 		output("\n\nShe purrs contentedly as you slowly fuck yourself into her, stretching her pussy out until she's begging for respite. Tam's belly is bulging with the sheer size of it, but that doesn't deter her for a second. Man, kaithrit are built to take 'em!");
 		output("\n\n<i>\"Mmm, somebody's been getting into that Throbb we pulled, huh? I looooove it,\"</i> she moans, back arching as you start to slide the shaft out of her. <i>\"You're being so gentle today... oh, when're you gonna get to the rough stuff, huh? I wanna test this new dick of yours out for real!\"</i>");
 	}
 	//elseif PC's dick is ~the same size as Kaska's:
-	else if(pc.cockVolume(x) >= 9999 * .75)
+	else if(pc.cockVolume(x) >= chars["KASKA"].cockVolume(0) * .75)
 	{
 		output("\n\n<i>\"Ahhh, yeah, just like that,\"</i> she moans, back arching as you slide into her cunt. Her wet, writhing walls meld perfectly to your shape and size, apparently quite accustomed to somebody of your girth. This Kaska must be pretty hung, to keep her favorite pussy stretched out enough to take you easily. You give Tam an appreciative slap on the ass, grinning as her flesh jiggles in response, reddening at your touch.");
 		output("\n\n<i>\"You've been downstairs too long... I was already missing your dick,\"</i> Tam purrs, starting to move back against you. <i>\"You're being so gentle today... oh, when're you gonna get to the rough stuff, huh?\"</i>");
@@ -1306,7 +1306,7 @@ function victoriousVsCaptainOrcButt():void
 
 	output("\n\n");
 	//If PC beat Kaska:
-	if(9999 == 0)
+	if(pc.hasKeyItem("Kaska's Detonator"))
 	{
 		output("<i>\"You have the other detonator, don't you? Well, you can't disarm the bomb without both, Steele! Neither of us can.\"</i> ");
 	}
@@ -1751,8 +1751,41 @@ Bigass balls relative to the size of her length.
 Shower, not a grower. Only gets an extra 2-3" when hard. Big floppy dick when soft (7"), though.
 Laser LMG with underslung automatic slug-gun.
 Uses last-based attacks until the PC takes her below 80% health, then goes ALL GUNSHOTS. Now she shoots until she gets horny, then gets all sexual.
-Bomb Room Description
-Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last. {More pressing is the bomb a few feet away. It's not nearly as big as you would have expected a doomsday device to be, about as big as a bucket and equally visually appealing. Then again, all it has to do is destablize this station's links to let the half planets' gravitational forces tear each other apart./The bomb you disarmed is still sitting here, inert. With it's detonators powered down, it's about as harmful as a toothless tallisarian sand mite.}*/
+Bomb Room Description*/
+
+function bombRoomBonusFunc():Boolean
+{
+	output("Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last.");
+	if(flags["TARKUS_BOMB_TIMER"] != 0)
+	{
+		output(" More pressing is the bomb a few feet away. It's not nearly as big as you would have expected a doomsday device to be, about as big as a bucket and equally visually appealing. Then again, all it has to do is destablize this station's links to let the half planets' gravitational forces tear each other apart.");
+	}
+	else output("The bomb you disarmed is still sitting here, inert. With it's detonators powered down, it's about as harmful as a toothless tallisarian sand mite.");
+	if(!pc.hasKeyItem("Kaska's Detonator"))
+	{
+		meetUpWithKaskaZeBossSloot();
+		return true;
+	}
+	//Unfucked Appearance
+	if(flags["KASKA_FUCKED"] == undefined)
+	{
+		output("\n\nKaska is sitting in a puddle of her own juices, still stroking her cock and looking at you with needy eyes.");
+		addButton(0,"Kaska",approachUnfuckedKaska);
+	}
+	//Fucked Appearance
+	else output("\n\nKaska is floating in place, anchored to the deck by her boots but completely unconscious. Ropes of her jizz float in a cloud around her, to say nothing of the thick smears of it that drench her skin, face, and hair.");
+
+	//Da Bomb!
+	//Disarmed
+	if(flags["TARKUS_BOMB_TIMER"] == 0) output("\n\nThe bomb is sitting here, inert and useless. It shouldn't give anyone trouble in its current state.");
+	//Active
+	else
+	{
+		output("\n\nThe bomb is sitting here, blinking ominously.");
+		addButton(1,"Bomb",activeBombApproach);
+	}
+	return false;
+}
 
 //Kaska meeting
 //Starts playing upon entering her room post bomb descriptions
@@ -1764,7 +1797,7 @@ function meetUpWithKaskaZeBossSloot():void
 	output("\n\nThe dzaan that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable.");
 	output("\n\nThe hermaphrodite's (you have to assume - it's hard to see past that swollen pouch) height and distinctive posture keep your gaze from lingering too long on the rest of her impressive assets. The double-barreled gun she's hefting one-handed is bigger than her leg, and by the looks of it, it's a combination slug-gun and laser weapon. The bottom barrel has a small drum magazine, and power indicators along the top indicate that it's fully charged.");
 	//Cap'n Buttsloot downed:
-	if(flags["STARTED_KHORGAN_FIGHT"] != undefined) output("\n\n<i>\"I can't believe you took out the Captain,\"</i> the newcomer says wonderingly. <i>\"Not that it matters. I'm twice the woman she was, and I've got the balls to back it up!\"</i>\n\nYou... wait... what?\n\nSeeing, your look of incredulity, the well-endowed pirate snorts, <i>\"Oh, sod off. You're dealing with Kaska Beamfury, first mate of the Tarasque, and it's time a piece of jetsam like you learned [pc.his] place.\"</i> She levels her impressive weapon in your direction. <b>You'll have to fight her if you want to get anywhere near that bomb!</b>");
+	if(flags["STARTED_KHORGAN_FIGHT"] != undefined) output("\n\n<i>\"I can't believe you took out the Captain,\"</i> the newcomer says wonderingly. <i>\"Not that it matters. I'm twice the woman she was, and I've got the balls to back it up!\"</i>\n\nYou... wait... what?\n\nSeeing, your look of incredulity, the well-endowed pirate snorts, <i>\"Oh, sod off. You're dealing with Kaska Beamfury, first mate of the Tarasque, and it's time a piece of jetsam like you learned [pc.his] place.\"</i> She levels her impressive weapon in your direction.");
 	//Cap'n Buttsloot not downed:
 	else output("\n\n<i>\"Who the fuck are you... and how did you get by the captain?\"</i> the newcomer asks wonderingly. She goes on, not expecting an answer from you. <i>\"It doesn't really matter. You're looking at Kaska Beamfury, first mate of the Tarasque - the last sight you'll ever see if you're lucky.\"</i> She levels her gun. <i>\"Now, why don't you be a dear and give me a decent fight.\"</i>");
 	output("\n\n<b>There's no getting out of it. You'll have to fight!</b>");
@@ -1775,8 +1808,55 @@ function meetUpWithKaskaZeBossSloot():void
 }
 
 /*KASKA FIGHT!
-
 Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks.*/
+function kaskaFightAI():void
+{
+	//Switch to lust mode:
+	if(foes[0].lust() > 45 && !foes[0].hasStatusEffect("Futa Lust")) 
+	{
+		kaskaFutaLusts();
+		return;
+	}
+
+	var choices:Array = new Array();
+	//HP Shit
+	if(!foes[0].hasStatusEffect("Futa Lust"))
+	{
+		if(pc.statusEffectv1("Round") % 6 == 0 && pc.statusEffectv1("Round") != 0)
+		{
+			NPCDisarmingShot(foes[0]);
+			return;
+		}
+		if(!foes[0].hasStatusEffect("Stealth Field Generator") && rand(3) == 0)
+		{
+			NPCstealthFieldActivation(foes[0]);
+			return;
+		}
+		if(pc.shields() > 0)
+		{
+			choices[choices.length] = shieldBustah;
+			choices[choices.length] = shieldBustah;
+		}
+		choices[choices.length] = kaskaVolleyShot;
+		choices[choices.length] = NPCOvercharge;
+		if(!pc.hasStatusEffect("Blind")) choices[choices.length] = NPCFlashGrenade;
+	}
+	//Lust Shit
+	else
+	{
+		if(pc.statusEffectv1("Round") % 5 == 0 && pc.statusEffectv1("Round") != 0)
+		{
+			choices[choices.length] = tittyGrapple;
+			return;
+		}
+		choices[choices.length] = crateTeaseFromKaska;
+		choices[choices.length] = futaSnuggleAttack;
+		if(!pc.hasStatusEffect("Disarmed")) choices[choices.length] = kaskaHighKick;
+	}
+	//Pick one
+	choices[rand(choices.length)]();
+}
+
 
 //Shield-Buster
 //Five shots from her laser with the intention of wrecking shields.
@@ -1797,7 +1877,7 @@ function shieldBustah():void
 
 //Volley
 //Four shots from each gun with heightened miss chance.
-function volleyShot():void
+function kaskaVolleyShot():void
 {
 	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
 	rangedAttack(foes[0],pc,true,1);
@@ -1821,19 +1901,6 @@ function volleyShot():void
 	foes[0].rangedWeapon.damageType = GLOBAL.KINETIC;
 	processCombat();
 }
-//Overcharged Shot
-//Laser attack as per the PC ability.Used once every seven rounds.
-//NPCOvercharge();
-
-//Flashbang
-//As per the smuggler ability. Used once every five rounds.
-//NPCFlashGrenade();
-
-//Disarming Shot
-//As per the PC ability
-//Stealth Field Generator
-//NPCstealthFieldActivation(foes[0]);
-
 
 //Always used at 50% Lust.
 //Futa Lust
@@ -1843,6 +1910,7 @@ function kaskaFutaLusts():void
 	output("Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.");
 	output("\n\n<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop. It bounces off the deck, clattering noisily before ricochetting into a crate thanks to the zero-G. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>");
 	output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
+	foes[0].createStatusEffect("Futa Lust",0,0,0,0);
 	//+5 lust each
 	pc.lustDamage(5);
 	foes[0].lustDamage(5);
@@ -2103,7 +2171,7 @@ function kaskaBadEndPartDues():void
 		if(pc.vaginaTotal() == 1) output("your");
 		else output("a");
 		output(" pussy crammed full of the genuine article. Juices puddle under your [pc.butt], and [pc.hips] press upwards, grinding your [pc.clits] into the pirate's toned crotch.");
-		cuntChange(x,chars["KASKA"].cockVolume(0),true,true,false);
+		pc.cuntChange(x,chars["KASKA"].cockVolume(0),true,true,false);
 		output("\n\nA strong hand settles around your neck, putting a stop to your squirming and subtly declaring Kaska's control of the situation, driving home just how in control of your body she is as this point. She squeezes just enough to keep a fragment of your attention there, and pushes her hips back. The motion is sinuous and graceful. You can actually see her back gently roll with the graceful rhythm as she slides back in, fucking you with practiced, natural ease, her every motion driving home that she was born and bred to do this.");
 		output("\n\nThe way that the caramel-skinned beauty takes you is casual and unhurried, like she's merely using [pc.oneVaginas] as little more than a masturbation sleeve for a lazy, drawn-out release. Her thrusts come perhaps a second apart. She's revelling in the journey through your juicy gates, bathing in the feeling of your folds against her rigid veins, wallowing in the way that your [pc.clits] rub");
 		if(pc.clitTotal() == 1) output("s");
@@ -2190,7 +2258,7 @@ function kaskaBadEndPartDues():void
 		else if(pc.ass.looseness() < 3) output("tight");
 		else output("well-trained");
 		output(" asshole. You do your best, but she feels so damn thick. At least she's slick with pre-cum and your own spit. The randy dickgirl moves her other hand up to join her first at your shoulders, levering another inch of her length up your rear entrance and saying, <i>\"Yeah, I think this'll work fine.\"</i> She crams another two inches inside. You gasp. <i>\"Once I wring a few anal orgasms from you and get you used to having an ass full of spunk, you'll never want to do anything else. I hear it's something about our cum being chemically addictive in large enough doses, I guess. I didn't bother to pay attention in school though, so we'll just have to find out, huh?\"</i>");
-		buttChange(chars["KASKA"].cockVolume(0),true,false);
+		pc.buttChange(chars["KASKA"].cockVolume(0),true,false);
 		output("\n\nHer balls clap against your [pc.butt]. As absolutely stuffed as you feel, you didn't expect her to bottom out already. The dickgirl pirate's length was just so slippery that it was able to ease right in. Your backside is tingling erotically");
 		if(pc.hasCock()) output(", and [pc.eachCock] drips with pre-cum, squeezed out of your compressed prostate");
 		else output(", and you can't help but wonder how good it will feel once she's cumming inside you");
@@ -2256,7 +2324,7 @@ function defeatKaska():void
 		output("\n\nYou take the device in case you need it to disarm the bomb and consider your options.");
 		if(flags["TARKUS_BOMB_TIMER"] >= 60) output(" She didn't seem to be worried about the bomb going off any time soon. Maybe she would like a chance to slake your lusts.");
 	}
-	pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
+	pc.createKeyItem("Kaska's Detonator",0,0,0,0);
 	processTime(1);
 	//Options
 	if(pc.lust() >= 33)
@@ -2350,7 +2418,7 @@ function victoryKaskaDicksex():void
 	else output("[pc.base " + x + "] presses against her");
 	output(", you're almost saddened. You would've been content to slide into her forever.");
 	//Dickginity loss
-	cockChange();
+	pc.cockChange();
 
 	output("\n\n<i>\"M-more...\"</i> Kaska stutters in between pants. <i>\"Don't stop!\"</i> She's looking over her shoulder at you imploringly, red eyes flicking back and forth as she searches for the words to spur you onwards. They gleam with fiery intensity when she finds them. <i>\"Fuck me! Fuck me... make me your slut!\"</i> The last half is uttered with more than a little trepidation.");
 	output("\n\nAs you pull back to line up your second stroke, you ponder her words, wondering if those are the kinds of things she likes girls to say to her. Kaska bubbles, <i>\"Fuck me!\"</i> again when you thrust home. There's no need to take it slow with how wet she is. Juices dribble out of her thighs with every piston-like pump into her thighs, and her voice is all to happy to release high-pitched squeals of intermingled ecstasy and excitement. You let her have it and commence drilling her gushing honeypot in earnest, watching her plush ass and luscious tits jiggle and quake from the force of the pounding.");
@@ -2484,27 +2552,69 @@ function makeKaskaSuchYerCoochLikeABaws():void
 	}
 }
 
-/*
-Da Bomb!
-	//Disarmed
-	The bomb is sitting here, inert and useless. It shouldn't give anyone trouble in its current state.
-	//Active
-	The bomb is sitting here, blinking ominously.
-Approaching Active Bomb
-	You kneel in front of the bomb{ and pull out the {two detonators/detonator}}. An ominous timer on the face of it is counting down. There are currently {x} hours and {y} minutes left to disarm it or get off this rock. A bomb like this doesn't have the yield to directly destroy the planet, but placed here, it'll easily wreck this facility and the tethers that hold the half planets together. {Without whatever super-science is at work here, Tarkus will tear itself apart./Without the gravitic stabilization this station provides, Tarkus will tear itself apart!}
-	Do you attempt to disarm it?{ It might be a better idea to just book it off planet and write the place off as a loss. Surely you can find some of your Dad's probes somewhere else.}
-Disarming It
+//Approaching Active Bomb
+function activeBombApproach():void {
+	clearOutput();
+	output("You kneel in front of the bomb and pull out the ");
+	if(pc.hasKeyItem("Khorgan's Detonator")) output("two detonators");
+	else output("detonator");
+	var thours:int = Math.floor(flags["TARKUS_BOMB_TIMER"]/60);
+	var tminutes:int = flags["TARKUS_BOMB_TIMER"] - (thours * 60);
+	output(". An ominous timer on the face of it is counting down. There are currently " + thours + " hours and " + tminutes + " minutes left to disarm it or get off this rock. A bomb like this doesn't have the yield to directly destroy the planet, but placed here, it'll easily wreck this facility and the tethers that hold the half planets together.");
+	if(pc.characterClass != GLOBAL.ENGINEER) output(" Without whatever super-science is at work here, Tarkus will tear itself apart.");
+	else output(" Without the gravitic stabilization this station provides, Tarkus will tear itself apart!");
+	output("\n\nDo you attempt to disarm it?");
+	if(pc.isAss()) output(" It might be a better idea to just book it off planet and write the place off as a loss. Surely you can find some of your Dad's probes somewhere else.");
+	clearMenu();
+	addButton(0,"Disarm",attemptToDisarmTheBomb);
+	addButton(14,"Back",mainGameMenu);
+}
+
+//Disarming It
+function attemptToDisarmTheBomb():void
+{
+	clearOutput();
 	//One detonator
-	You fiddle with Kaska's detonator. While it's rigged to blow at the touch of a single button, a flashing error message informs you that both detonators must be present to disarm the bomb. Where's the second detonator?
+	if(!pc.hasKeyItem("Khorgan's Detonator")) 
+	{
+		output("You fiddle with Kaska's detonator. While it's rigged to blow at the touch of a single button, a flashing error message informs you that both detonators must be present to disarm the bomb. Where's the second detonator?");
 		//[Back]
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 	//Both detonators
-	You pull out the pair of detonators and go over their controls. There's far more buttons than a simple remote would warrant. When you push the disarm key, the bomb itself beeps, and a modulated voice chirps, <i>\"Invalid user detected. Please complete manual override to disarm.\"</i> Lights illuminate on the touchpad, representing various relays in the bomb's circuitry. You'll have to manage to flick them off without overloading the bomb itself.
-OH SHIT SON U DON BLU IT UP
-	The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating nova. The Tarkus asteroid belt becomes your grave.
-	GAME OVER
-Succeed at Light's Out
-	The last of the illuminated relays fade, and the panel's display reconfigures to display one, simple word: disarmed. Wiping a bead of sweat from your brow, you look around the carnage of your passing. The floating platforms are in rough shape, but the facility itself is intact. You've saved Tarkus. You wonder if anyone will believe you when you tell this story later. You sigh. Probably not. At least the U.G.C. guys up top will know.
-	If you wanted to grab anything before you left, now is the time for it. <b>You might not be able to return later.</b>
+	else
+	{
+		output("You pull out the pair of detonators and go over their controls. There's far more buttons than a simple remote would warrant. When you push the disarm key, the bomb itself beeps, and a modulated voice chirps, <i>\"Invalid user detected. Please complete manual override to disarm.\"</i> Lights illuminate on the touchpad, representing various relays in the bomb's circuitry. You'll have to manage to flick them off without overloading the bomb itself.");
+		clearMenu();
+		addButton(0,"Next",lightsOutBombPrep);
+	}
+}
+function lightsOutBombPrep():void
+{
+	startLightsOut(disarmedTarkusBomb,failedToDisarmTarkusBomb);
+}
+
+//OH SHIT SON U DON BLU IT UP
+function failedToDisarmTarkusBomb():void
+{
+	clearOutput();
+	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating nova. The Tarkus asteroid belt becomes your grave.");
+	output("\n\n<b>GAME OVER</b>");
+	clearMenu();
+}
+//Succeed at Light's Out
+function disarmedTarkusBomb():void
+{
+	clearOutput();
+	output("The last of the illuminated relays fade, and the panel's display reconfigures to display one, simple word: disarmed. Wiping a bead of sweat from your brow, you look around the carnage of your passing. The floating platforms are in rough shape, but the facility itself is intact. You've saved Tarkus. You wonder if anyone will believe you when you tell this story later. You sigh. Probably not. At least the U.G.C. guys up top will know.");
+	output("If you wanted to grab anything before you left, now is the time for it. <b>You might not be able to return later.</b>");
+	flags["TARKUS_BOMB_TIMER"] = 0;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+/*
 [FAILURE] Bomb goes off while in the Core
 	There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.
 	GAME OVER
