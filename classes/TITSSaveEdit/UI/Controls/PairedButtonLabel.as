@@ -71,6 +71,10 @@ package classes.TITSSaveEdit.UI.Controls
 			_label.x = _buttonRem.width + 4;
 			_label.width = 400 - ((_buttonRem.width + 4 ) * 2);
 			_label.text = "LABEL";
+			
+			this.graphics.beginFill(0xFF0000);
+			this.graphics.drawRect(0, 0, this.width, this.height);
+			this.graphics.endFill();
 		}
 		
 		private function updateLabel():void
@@ -91,15 +95,15 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		private function buttonHandler(e:MouseEvent):void
 		{
-			if (e.currentTarget = _buttonRem)
+			if (e.target == _buttonRem)
 			{
 				if (_labelNum > _minNum) _labelNum--;
-				if (_onRem != null) _onRem(_labelNum);
+				if (_onRem != null) _onRem();
 			}
-			else if (e.currentTarget = _buttonAdd)
+			else if (e.target == _buttonAdd)
 			{
 				if (_labelNum < _maxNum) _labelNum++;
-				if (_onAdd != null) _onAdd(_labelNum);
+				if (_onAdd != null) _onAdd();
 			}
 			
 			updateLabel();

@@ -23,6 +23,8 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get labelText():String { return _label.text; }
 		public function set labelText(v:String):void { _label.text = v; }
 		
+		public function get combobox():ComboBox { return _input; }
+		
 		/**
 		 * Returns the data of the currently selected input item.
 		 * null == no items in combo box
@@ -57,6 +59,7 @@ package classes.TITSSaveEdit.UI.Controls
 		}
 		
 		public function set selectedIndex(v:int):void { _input.selectedIndex = v; }
+		public function get selectedIndex():int { return _input.selectedIndex; }
 		
 		public function ComboLabelPair() 
 		{
@@ -73,7 +76,7 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			_label = new TextField();
 			UIStyleSettings.cfgLabel(_label);
-			_label.defaultTextFormat = UIStyleSettings.gGeneralInfoValueFormatter;
+			_label.defaultTextFormat = UIStyleSettings.gSaveEditorLabelTextFormat;
 			_label.text = "Label";
 			_label.height = 25;
 			_label.width = 140;
@@ -85,7 +88,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_input.textField.setStyle("antiAliasType", AntiAliasType.ADVANCED);
 			_input.textField.setStyle("textPadding", -2);
 			_input.dropdown.setStyle("cellRenderer", CustomCellRenderer);
-			_input.dropdown.rowHeight = _label.textHeight - 8;
 			_input.setStyle("textFormat", UIStyleSettings.gTextInputFormatter);
 			_input.setStyle("embedFonts", true);
 			_input.setStyle("antiAliasType", AntiAliasType.ADVANCED);
@@ -115,6 +117,11 @@ package classes.TITSSaveEdit.UI.Controls
 		public function disableEdits():void
 		{
 			_input.editable = false;
+		}
+		
+		override public function get height():Number
+		{
+			return 30;
 		}
 	}
 

@@ -651,6 +651,56 @@ package classes.UIComponents
 			return UIStyleSettings._gPerkButtonWhiteColourTextFormat;
 		}
 		
+		private static var _gSaveEditorInputEnabledTextFormat:TextFormat;
+		public static function get gSaveEditorInputEnabledTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSaveEditorInputEnabledTextFormat == null)
+			{
+				_gSaveEditorInputEnabledTextFormat = new TextFormat();
+				_gSaveEditorInputEnabledTextFormat.size = 18;
+				_gSaveEditorInputEnabledTextFormat.color = 0xFFFFFF;
+				_gSaveEditorInputEnabledTextFormat.align = TextFormatAlign.LEFT;
+				_gSaveEditorInputEnabledTextFormat.leading = 0;
+				_gSaveEditorInputEnabledTextFormat.kerning = true;
+				_gSaveEditorInputEnabledTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSaveEditorInputEnabledTextFormat;
+		}
+		
+		private static var _gSaveEditorInputDisabledTextFormat:TextFormat;
+		public static function get gSaveEditorInputDisabledTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSaveEditorInputDisabledTextFormat == null)
+			{
+				_gSaveEditorInputDisabledTextFormat = new TextFormat();
+				_gSaveEditorInputDisabledTextFormat.size = 18;
+				_gSaveEditorInputDisabledTextFormat.color = 0x666666;
+				_gSaveEditorInputDisabledTextFormat.align = TextFormatAlign.LEFT;
+				_gSaveEditorInputDisabledTextFormat.leading = 0;
+				_gSaveEditorInputDisabledTextFormat.kerning = true;
+				_gSaveEditorInputDisabledTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSaveEditorInputDisabledTextFormat;
+		}
+		
+		private static var _gSaveEditorLabelTextFormat:TextFormat;
+		public static function get gSaveEditorLabelTextFormat():TextFormat
+		{
+			if (UIStyleSettings._gSaveEditorLabelTextFormat == null)
+			{
+				_gSaveEditorLabelTextFormat = new TextFormat();
+				_gSaveEditorLabelTextFormat.size = 18;
+				_gSaveEditorLabelTextFormat.color = 0xFFFFFF;
+				_gSaveEditorLabelTextFormat.align = TextFormatAlign.RIGHT;
+				_gSaveEditorLabelTextFormat.leading = 0;
+				_gSaveEditorLabelTextFormat.kerning = true;
+				_gSaveEditorLabelTextFormat.bold = true;
+				_gSaveEditorLabelTextFormat.font = "Lato";
+			}
+			return UIStyleSettings._gSaveEditorLabelTextFormat;
+		}
+		
+		
 		// Glows
 		private static var _gRoomLocationTextGlow:GlowFilter;
 		public static function get gRoomLocationTextGlow():GlowFilter

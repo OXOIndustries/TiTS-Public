@@ -31,11 +31,13 @@ package classes.TITSSaveEdit.UI.Controls
 			Build();
 		}
 		
+		public function get input():TextField { return _input; }
+		
 		private function Build():void
 		{
 			_label = new TextField();
 			UIStyleSettings.cfgLabel(_label);
-			_label.defaultTextFormat = UIStyleSettings.gGeneralInfoValueFormatter;
+			_label.defaultTextFormat = UIStyleSettings.gSaveEditorLabelTextFormat;
 			_label.text = "Label"
 			_label.height = 25;
 			_label.width = 140;
@@ -43,6 +45,7 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_input = new TextField();
 			UIStyleSettings.cfgTextInput(_input);
+			_input.defaultTextFormat = UIStyleSettings.gSaveEditorInputEnabledTextFormat;
 			_input.text = "Input";
 			_input.x = 148;
 			_input.y = 2;

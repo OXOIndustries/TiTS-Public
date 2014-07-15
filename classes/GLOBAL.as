@@ -486,6 +486,34 @@
 			"Under-tail",
 		];
 		
+		public static const VALID_COCK_TYPES:Array = [
+			HUMAN,
+			EQUINE,
+			CANINE,
+			FELINE,
+			DEMONIC,
+			TENTACLE,
+			SNAKE,
+			ANEMONE,
+			SIREN,
+			KANGAROO,
+			DRACONIC,
+			BEE,
+		];
+		
+		public static const VALID_COCK_FLAGS:Array = [
+			PREHENSILE,
+			FLARED,
+			KNOTTED,
+			SHEATHED,
+			STINGER_BASED,
+			TAPERED,
+			STINGER_TIPPED,
+			NUBBY,
+			AMORPHOUS,
+			BLUNT,
+		];
+		
 		//DAMAGE TYPES
 		//Guns and blunt weapons
 		public static const KINETIC:int                                = 0;

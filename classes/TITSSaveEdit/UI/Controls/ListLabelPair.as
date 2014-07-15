@@ -5,6 +5,7 @@ package classes.TITSSaveEdit.UI.Controls
 	import flash.text.TextField;
 	import fl.controls.List;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.UIComponents.CustomCellRenderer;
 	
 	/**
 	 * ...
@@ -17,6 +18,8 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function get labelText():String { return _label.text; }
 		public function set labelText(v:String):void { _label.text = v; }
+		
+		public function get list():List { return _input; }
 		
 		public function get inputValues():Array
 		{
@@ -70,13 +73,15 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			_label = new TextField();
 			UIStyleSettings.cfgLabel(_label);
-			_label.defaultTextFormat = UIStyleSettings.gGeneralInfoValueFormatter;
+			_label.defaultTextFormat = UIStyleSettings.gSaveEditorLabelTextFormat;
 			_label.text = "Label";
 			_label.height = 25;
 			_label.width = 140;
 			this.addChild(_label);
 			
 			_input = new List();
+			_input.setStyle("cellRenderer", CustomCellRenderer);
+			
 			_input.x = 148;
 			_input.y = 2;
 			_input.width = 234;
@@ -97,6 +102,11 @@ package classes.TITSSaveEdit.UI.Controls
 		public function disableMultiSelect():void
 		{
 			_input.allowMultipleSelection = false;
+		}
+		
+		override public function get height():Number
+		{
+			return 85;
 		}
 	}
 

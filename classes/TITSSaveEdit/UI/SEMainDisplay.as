@@ -12,6 +12,7 @@ package classes.TITSSaveEdit.UI
 	import classes.TITSSaveEdit.UI.Controls.Resistances;
 	import classes.TITSSaveEdit.UI.Controls.SkinAppearance;
 	import classes.TITSSaveEdit.UI.Controls.TailAppearance;
+	import classes.TITSSaveEdit.UI.Controls.CockSettings;
 	import fl.containers.ScrollPane;
 	import fl.controls.ComboBox;
 	import flash.display.DisplayObject;
@@ -46,6 +47,7 @@ package classes.TITSSaveEdit.UI
 		private var _skinAppearance:SkinAppearance;
 		private var _headAppearance:HeadAppearance;
 		private var _bodyAppearance:BodyAppearance;
+		private var _cockAppearance:CockSettings;
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
@@ -60,6 +62,7 @@ package classes.TITSSaveEdit.UI
 		public function get skinAppearance():SkinAppearance { return _skinAppearance; }
 		public function get headAppearance():HeadAppearance { return _headAppearance; }
 		public function get bodyAppearance():BodyAppearance { return _bodyAppearance; }
+		public function get cockAppearance():CockSettings { return _cockAppearance; }
 		
 		public function SEMainDisplay() 
 		{
@@ -105,7 +108,6 @@ package classes.TITSSaveEdit.UI
 			var colArray:Array;
 			
 			_content.addChild(control);
-			addSpacer(control);
 			
 			if (left)
 			{
@@ -120,27 +122,14 @@ package classes.TITSSaveEdit.UI
 			
 			if (colArray.length > 0)
 			{
-				yOffset = (colArray[colArray.length - 1] as DisplayObject).y + (colArray[colArray.length - 1] as DisplayObject).height;
+				var colArrayDOC:DisplayObjectContainer = colArray[colArray.length - 1];
+				var lastChild:DisplayObject = colArrayDOC.getChildAt(colArrayDOC.numChildren - 1);
 				
-				// Turbo bullshit fix for combo boxes
-				var childOffset:int = 0;
-				//for (var i:int = colArray[colArray.length - 1].numChildren - 1; i >= 0; i--)
-				//{
-					//var childCtrl:DisplayObject = colArray[colArray.length - 1].getChildAt(i);
-					//
-					//if (childCtrl is ComboLabelPair)
-					//{
-						//childOffset -= 77;
-					//}
-				//}
-				if (colArray[colArray.length - 1].getChildAt(colArray[colArray.length - 1].numChildren - 2) is ComboLabelPair)
-				{
-					childOffset -= 77;
-				}
+				yOffset = colArrayDOC.y + lastChild.y + lastChild.height + 15;
 			}
 			
 			colArray.push(control);
-			control.y = yOffset + childOffset;
+			control.y = yOffset;
 			_scrollPane.update();
 		}
 		
@@ -195,17 +184,11 @@ package classes.TITSSaveEdit.UI
 			_bodyAppearance = new BodyAppearance();
 			AddControl(_bodyAppearance, RIGHT_COL);
 			_bodyAppearance.name = "bodyappearance";
-		}
-		
-		private function addSpacer(control:DisplayObjectContainer):void
-		{
-			var spacer:Sprite = new Sprite();
-			spacer.graphics.beginFill(UIStyleSettings.gBackgroundColour, 1);
-			spacer.graphics.drawRect(0, 0, 393, 25);
-			spacer.graphics.endFill();
-			spacer.y = control.getChildAt(control.numChildren - 1).y + control.getChildAt(control.numChildren - 1).height + 2;
-			control.addChild(spacer);
+			
+			_cockAppearance = new CockSettings();
+			AddControl(_cockAppearance, RIGHT_COL);
+			_cockAppearance.name = "cockappearance";
+			
 		}
 	}
-
 }

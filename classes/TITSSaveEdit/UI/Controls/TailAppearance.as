@@ -134,8 +134,7 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			//control.x = 5;
 			var yOffset:int = 0;
-			
-			if (this.getChildAt(this.numChildren - 1) is ComboLabelPair) yOffset -= 73;
+
 			yOffset += this.getChildAt(this.numChildren - 1).y + this.getChildAt(this.numChildren - 1).height + 2;
 			
 			control.y = yOffset;

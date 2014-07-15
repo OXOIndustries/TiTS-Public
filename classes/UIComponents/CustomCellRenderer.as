@@ -12,9 +12,11 @@ package classes.UIComponents
 	{
 		public function CustomCellRenderer() 
 		{
+			super();
 			setStyle("embedFonts", true);
-			setStyle("textFormat", UIStyleSettings.gTextInputFormatter);
+			setStyle("textFormat", UIStyleSettings.gSaveEditorInputEnabledTextFormat);
+			setStyle("disabledTextFormat", UIStyleSettings.gSaveEditorInputDisabledTextFormat);
 			setStyle("antiAliasType", "advanced");
-		}		
+		}
 	}
 }
