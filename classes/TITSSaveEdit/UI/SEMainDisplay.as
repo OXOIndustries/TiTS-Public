@@ -13,6 +13,7 @@ package classes.TITSSaveEdit.UI
 	import classes.TITSSaveEdit.UI.Controls.SkinAppearance;
 	import classes.TITSSaveEdit.UI.Controls.TailAppearance;
 	import classes.TITSSaveEdit.UI.Controls.CockSettings;
+	import classes.TITSSaveEdit.UI.Controls.VaginaSettings;
 	import fl.containers.ScrollPane;
 	import fl.controls.ComboBox;
 	import flash.display.DisplayObject;
@@ -48,6 +49,7 @@ package classes.TITSSaveEdit.UI
 		private var _headAppearance:HeadAppearance;
 		private var _bodyAppearance:BodyAppearance;
 		private var _cockAppearance:CockSettings;
+		private var _vaginaAppearance:VaginaSettings;
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
@@ -63,6 +65,7 @@ package classes.TITSSaveEdit.UI
 		public function get headAppearance():HeadAppearance { return _headAppearance; }
 		public function get bodyAppearance():BodyAppearance { return _bodyAppearance; }
 		public function get cockAppearance():CockSettings { return _cockAppearance; }
+		public function get vaginaAppearance():VaginaSettings { return _vaginaAppearance; }
 		
 		public function SEMainDisplay() 
 		{
@@ -188,6 +191,10 @@ package classes.TITSSaveEdit.UI
 			_cockAppearance = new CockSettings();
 			AddControl(_cockAppearance, RIGHT_COL);
 			_cockAppearance.name = "cockappearance";
+			
+			_vaginaAppearance = new VaginaSettings();
+			AddControl(_vaginaAppearance, RIGHT_COL);
+			_vaginaAppearance.name = "vaginaappearance";
 			
 		}
 	}

@@ -514,6 +514,20 @@
 			BLUNT,
 		];
 		
+		public static const VALID_VAGINA_TYPES:Array = [
+			HUMAN,
+			EQUINE,
+		]
+		
+		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
+		// So I'm winging it.
+		public static const VALID_VAGINA_FLAGS:Array = [
+			LUBRICATED,
+			APHRODISIAC_LACED,
+			TENDRIL,
+			NUBBY,
+		];
+		
 		//DAMAGE TYPES
 		//Guns and blunt weapons
 		public static const KINETIC:int                                = 0;

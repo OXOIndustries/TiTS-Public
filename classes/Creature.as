@@ -5210,7 +5210,7 @@
 		
 		//create vagoo
 		public function createVagina(): Boolean {
-			if (vaginas.length >= 2) return false;
+			if (vaginas.length >= 3) return false;
 			var newVagina = new VaginaClass();
 			vaginas.push(newVagina);
 			return true;
