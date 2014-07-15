@@ -24,7 +24,7 @@ public function flyToWrapper(destination:String):void
 public function tryProcTravelEvent():Function
 {
 	var possibleMessages:Array = new Array();
-	//if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level >= 3) possibleMessages.push(fallOfThePhoenixMessage);
+	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level >= 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	
 	if (possibleMessages.length > 0 && (debug || rand(4) == 0))

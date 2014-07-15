@@ -8,6 +8,11 @@ package classes.Characters
 	import classes.Items.Protection.JoyCoPremiumShield;
 	
 	/**
+	 * KIRO FLAG DOCS
+	 * "RESCUE KIRO FROM BLUEBALLS" (Undefined = not attempted, -1 ignored the message or left her, 1 = saved from beachedballs)
+	 */
+	
+	/**
 	 * ...
 	 * @author Gedan
 	 */
