@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.RoomClass;
 
 
 function initializeRooms():void 
@@ -2751,21 +2752,20 @@ function initializeRooms():void
 
 	// KIROS SHIP
 	rooms["KIROS SHIP INTERIOR"] = new RoomClass(this);
-	rooms["KIROS SHIP INTERIOR"].roomName = "Ship Interior";
+	rooms["KIROS SHIP INTERIOR"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but you can hear distressed wails coming from one near the end of the hall.";
 	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP QUARTERS";
 	rooms["KIROS SHIP INTERIOR"].eastExit = "KIROS SHIP ENGINEERING";
+	rooms["KIROS SHIP INTERIOR"].southExit = "KIROS SHIP AIRLOCK";
 	rooms["KIROS SHIP INTERIOR"].westExit = "KIROS SHIP TROPHYROOM";
 	rooms["KIROS SHIP INTERIOR"].runOnEnter = kirosShipInterior;
-	rooms["KIROS SHIP INTERIOR"].outText = "Your Ship";
-	rooms["KIROS SHIP INTERIOR"].outExit = "SHIP INTERIOR";
 	rooms["KIROS SHIP INTERIOR"].planet = "SHIP: LEAF"
 	rooms["KIROS SHIP INTERIOR"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
 	rooms["KIROS SHIP INTERIOR"].moveMinutes = 1;
 
 	rooms["KIROS SHIP QUARTERS"] = new RoomClass(this);
-	rooms["KIROS SHIP QUARTERS"].roomName = "Ship Interior";
+	rooms["KIROS SHIP QUARTERS"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
 	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
 	rooms["KIROS SHIP QUARTERS"].southExit = "KIROS SHIP INTERIOR";
@@ -2775,7 +2775,7 @@ function initializeRooms():void
 	rooms["KIROS SHIP QUARTERS"].moveMinutes = 1;
 
 	rooms["KIROS SHIP ENGINEERING"] = new RoomClass(this);
-	rooms["KIROS SHIP ENGINEERING"].roomName = "Ship Interior";
+	rooms["KIROS SHIP ENGINEERING"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP ENGINEERING"].description = "Thrumming powerfully, the ship's power core seems to be operating within normal parameters. This room is large enough to be staffed by a crew of a dozen, perhaps, but the only staff you see are a few sets of mechanized arms that move along tracks on the ceiling, adjusting the computer systems to keep everything running fine. You thread your way through the equipment, ducking here and there to avoid the arms as they flit between whatever tasks their robotic brain assigns them to. Everything seems built to accommodate this automation, and you catch a glimpse of 'KihaCorp' stamped across some of the polished metal armatures. There are no other exits or items of note here.";
 	rooms["KIROS SHIP ENGINEERING"].westExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP ENGINEERING"].planet = "SHIP: LEAF";
@@ -2784,13 +2784,23 @@ function initializeRooms():void
 	rooms["KIROS SHIP ENGINEERING"].moveMinutes = 1;
 
 	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
-	rooms["KIROS SHIP TROPHYROOM"].roomName = "Ship Interior";
+	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
 	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
 	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
 	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";
 	rooms["KIROS SHIP TROPHYROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["KIROS SHIP TROPHYROOM"].moveMinutes = 1;
+	
+	rooms["KIROS SHIP AIRLOCK"] = new RoomClass(this);
+	rooms["KIROS SHIP AIRLOCK"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP AIRLOCK"].description = "This is the oddly-shaped ships airlock, currently connecting it to your ship and allowing you to move between the two freely. You're hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.";
+	rooms["KIROS SHIP AIRLOCK"].northExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP AIRLOCK"].planet = "SHIP: LEAF";
+	rooms["KIROS SHIP AIRLOCK"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 5;
 
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
@@ -2799,9 +2809,6 @@ function initializeRooms():void
 	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
-	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
-	//rooms["DEBUG1"].southExit = "DEBUG2";
-	//rooms["DEBUG1"].westExit = "DEBUG3";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG1"].runOnEnter = debugMenus;
 }

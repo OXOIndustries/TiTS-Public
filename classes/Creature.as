@@ -1394,9 +1394,13 @@
 					buffer = vaginasDescript();
 					break;
 				case "eachVagina":
+				case "eachPussy":
+				case "eachCunt":
 					buffer = eachVagina();
 					break;
 				case "oneVagina":
+				case "onePussy":
+				case "oneCunt":
 					buffer = oneVagina();
 					break;
 				case "vagOrAss":

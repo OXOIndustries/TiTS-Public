@@ -65,7 +65,7 @@ public function boardKirosShipRescue(destination:String):void
 	output("The ship proves remarkable easy to dock with. In fact, as soon as your navigational computer begins to plot a course, it automatically extends a docking umbilical in your direction. You guide your craft through the necessary navigational hoops in order to properly connect with it and grab your gear. This could be dangerous.");
 
 	// [Normal ship menu with exit ship as if had landed at a planet]
-	shipLocation = "KIROS SHIP INTERIOR";
+	shipLocation = "KIROS SHIP AIRLOCK";
 	flags["STORED SHIP DESTINATION"] = destination;
 
 	clearMenu();
@@ -92,7 +92,7 @@ public function kirosShipQuarters():void
 	output(" The owner's put a lot of work - and credits - into this arsenal. They're ripe for the taking, but then again, that'd earn you a good slapping if you meet the captain. On the desk opposite the bed is a single little bonsai tree, surrounded by stacks of gardening books. It looks about on the verge of death, utterly wilted like it hasn't been watered in ages. Poor thing.");
 
 	if (flags["RESCUE KIRO TOOK PISTOL"] == undefined) addButton(0, "Take Pistol", kirosShipPistol);
-	if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Pistol", kirosShipCutlass);
+	if (flags["RESCUE KIRO TOOK CUTLASS"] == undefined) addButton(1, "Take Cutlass", kirosShipCutlass);
 }
 
 public function kirosShipPistol():void
@@ -169,7 +169,7 @@ public function kirosShipWails(doOutput:Boolean = true):void
 	}
 	else
 	{
-		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
+		addDisabledButton(3, "Fix Machine", "An individual with substantial engineering know-how might be in a possition to attempt fixing the machine for the beached Kui-Tan.")
 	}
 }
 
@@ -232,7 +232,7 @@ public function kirosShipChubnookiUpDaButt():void
 
 	output("\n\n\"<i>I only use my cock!</i>\" she groans, cupping one of her tits, squeezing the teat. \"<i>Sometimes my ass, but my pussy... never.</i>\"");
 
-	output("\n\n\"<i>Well, could have fooled me,</i>\" you say, caressing her hips as her muscles squeeze rhythmically on your [pc.cock" + selCock + "], practically milking you in return. Damn, that's good... If she ever gets her balls down to size, you wouldn't mind sheathing your cock in this tight, soft ass again. She seems to agree, her hips gyrating back against you, cheeks reddening as you start to sink your cock back in, tiny thrusts carrying you forward into her warm embrace.");
+	output("\n\n\"<i>Well, could have fooled me,</i>\" you say, caressing her hips as her muscles squeeze rhythmically on your [pc.cock " + selCock + "], practically milking you in return. Damn, that's good... If she ever gets her balls down to size, you wouldn't mind sheathing your cock in this tight, soft ass again. She seems to agree, her hips gyrating back against you, cheeks reddening as you start to sink your cock back in, tiny thrusts carrying you forward into her warm embrace.");
 
 	output("\n\nAnd then you hit it.");
 
@@ -279,7 +279,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	var selCock:int = pc.biggestCockIndex();
 	var selCock2:int = pc.biggestCockIndex2();
 
-	output("\n\nSmiling at the curvy, animalistic woman riding high on those titanic balls, you can see a perfect, glittering target up there, between her swollen sack and the curve of her cushy-looking derriere. A pair of glossy, half-hidden netherlips peek out at you, puffy with lust and parted ever-so-slightly. [pc.EachCock] practically explode");
+	output("Smiling at the curvy, animalistic woman riding high on those titanic balls, you can see a perfect, glittering target up there, between her swollen sack and the curve of her cushy-looking derriere. A pair of glossy, half-hidden netherlips peek out at you, puffy with lust and parted ever-so-slightly. [pc.EachCock] practically explode");
 	if (pc.cockTotal() == 1) output("s");
 	output(" into full mast");
 	if (pc.isCrotchGarbed()) output(", tugging tightly at your [pc.lowerGarment], almost painfully");
@@ -330,7 +330,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	}
 
 	//Merge
-	output("\n\nYou pull back slowly, watching the strange woman's knees quake as you stroke her sensitive inner walls with your departing [pc.cockHead " + selCock + "]. It slides nearly the whole way out, exposing your lube-dripping pole to the air for what feels like forever. You hold it there, enjoying watching your hyper-endowed lover squirm, and then you thrust with a firm, assertive stroke, burying yourself wholly inside her. This time, the going is far, far easier. She loosened up a little while you talked, the shape of her tight cunt molding around the girth of your [pc.cockFit " + selCock + "], yeilding to its iron-hard shape with every passing moment. Now, as you pull back for a second stroke, she's simply sinfully tight, sensuously caressing every inch of turgid cockmeat that finds its way inside her.");
+	output("\n\nYou pull back slowly, watching the strange woman's knees quake as you stroke her sensitive inner walls with your departing [pc.cockHead " + selCock + "]. It slides nearly the whole way out, exposing your lube-dripping pole to the air for what feels like forever. You hold it there, enjoying watching your hyper-endowed lover squirm, and then you thrust with a firm, assertive stroke, burying yourself wholly inside her. This time, the going is far, far easier. She loosened up a little while you talked, the shape of her tight cunt molding around the girth of your [pc.cock " + selCock + "], yeilding to its iron-hard shape with every passing moment. Now, as you pull back for a second stroke, she's simply sinfully tight, sensuously caressing every inch of turgid cockmeat that finds its way inside her.");
 
 	//Optional DP fork goooo!
 	if (pc.cockTotal() > 1)
