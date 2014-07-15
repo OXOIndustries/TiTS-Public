@@ -1495,7 +1495,7 @@ function useKellysHoneyForCooking():void
 	if(x >= 0 || pc.hasTailCock()) 
 	{
 		output(" At the same time, you pull away from her nethers and instead align yourself with her tight pucker. She groans appreciatively, wriggling her ass as if in open invitation for you to penetrate her, visibly keeping herself from joining your fingers as they dance along her dicks.");
-		cockChange();
+		pc.cockChange();
 	}
 	output("\n\n<i>\"Oh, you're good... really know how to make a girl feel <b>wanted</b>,\"</i> she growls lustfully");
 	if(x >= 0 || pc.hasTailCock()) 
@@ -2286,7 +2286,7 @@ function kellyHyperPlayAwwwYiss():void
 	output("\"</i> she murmurs. You can feel her inner walls squeezing you, simultaneously milking your shaft and sucking you inside, hungry to have you in to the hilt");
 	if(y >= 0) output(", both shafts frictioning each other through her flesh");
 	output(". With little reason not to comply, you push deeper, making your partner moan and buck back against you, her fluffy little tail tickling against your [pc.belly] as you rut her passionately.");
-	cockChange();
+	pc.cockChange();
 
 	output("\n\nThe room is filled with the sound of flesh on flesh as your respective hips collide, Kelly moaning under you in pleasure, you voicing your own sounds of pleasure above her. Her fingers squeeze at her bedding for support, eyes screwed shut as she loses herself in the sensations. As you continue to plough her, though, you become aware of a strange dissonance in the background; a wet slapping noise that isn't the two of you. Twisting around is a little awkward, but you manage to find the source; it's Kelly's cocks! Under your ministrations, her two horse-like shafts have grown into 20-inch long monsters, bouncing forcibly against her belly and into the canyon of her cleavage in rough synchronicity with the thrusting of your hips.");
 
@@ -2538,7 +2538,7 @@ function doKellyInTheBumBUMBUMMMMMMMM():void
 		output("\n\n<i>\"Mmm... yes,\"</i> she purrs, arching her neck and holding onto the back of the chair for support, her rosebud stretching around your [pc.cockHead " + x + "].");
 
 		output("\n\nThe penetration goes smoothly. As well lubed as she is, Kelly is no stranger to anal. She starts sucking you in the moment you get past her resisting sphincter. In no time, you’re safely nestled between a pair of cushiony bunny-bums.");
-		cockChange();
+		pc.cockChange();
 	}
 	//Mischievous:
 	else if(pc.isMischievous())
@@ -2571,7 +2571,7 @@ function doKellyInTheBumBUMBUMMMMMMMM():void
 		output("\n\nYou climb down and pull her ass in position. Nestling your [pc.cockHead " + x + "] against her pucker you whisper into her ear, <i>\"You’re my queen bee, let me show you my stinger.\"</i>");
 		output("\n\nShe moans as she feels your [pc.cockHead " + x + "] pushing inside her, arching her back as her fingers clench onto the couch for support.");
 		output("\n\nShe resists at first, but after a few pumps her sphincter yields nicely around your girth. From there on it’s one smooth ride as you feed her more of your cock while she sucks you in. <i>\"Yes, take it all like a good girl.\"</i>");
-		cockChange();
+		pc.cockChange();
 		output("\n\n<i>\"G-gladly,\"</i> she replies, shoulders tensing as she focuses on moving her rosebud's walls to draw you inside, determined to take you to the hilt. Inch after inch penetrates the moaning laquine, until finally you have nothing left to feed to her. <i>\"T-there you are, nice and snug,\"</i> she says, sounding pleased with herself.");
 		output("\n\nYou thank her for the hospitality. She really knows how to make a " + pc.mf("guy","girl") + " feel welcome.");
 	}
@@ -2607,7 +2607,7 @@ function doKellyInTheBumBUMBUMMMMMMMM():void
 		output("\n\nShe lets out a soft groan, but reaches back with her hands, spreading her fluffy-textured luscious butt apart as you commanded, letting you get a good eyeful of her rosebud.");
 
 		output("\n\nWithout further ado, you shove forward and thrust your [pc.cock " + x + "] into her butthole. Bullseye! You bury half your shaft into her in one go.");
-		cockChange();
+		pc.cockChange();
 
 		output("\n\nA howl of surprise, pleasure and pain escapes Kelly, whose whole body tenses up, back arching as you assault her so suddenly.");
 
@@ -3819,6 +3819,7 @@ function getDPedByKelly():void
 		}
 	}
 	var x:int = pc.cuntThatFits(chars["KELLY"].cockVolume(0));
+	if(x < 0) x = pc.biggestVaginaIndex();
 	var y:int = -1;
 	if(pc.vaginaTotal() > 1)
 	{
@@ -3871,9 +3872,9 @@ function getDPedByKelly():void
 	if(y < 0) output(" You’re thankful that she went through the trouble of getting your [pc.asshole] ready too. Her insistent pushing knocking your sphincter wide open as you’re forced to grant her entry.");
 	else output(" Your other [pc.vagina " + y + "] welcomes her as easily as your first one.");
 	output(" Inch by inch she feeds you, hands roaming over your body, tracing your [pc.chest], teasing your [pc.nipples]. When she gives your chest an appreciative lick you cry out in pleasure. Kelly’s warmth spreads throughout you, and you find yourself instinctively clamping down on her intruding shafts.");
-	cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);
-	if(y < 0) buttChange(chars["KELLY"].cockVolume(0),true,false);
-	else cuntChange(y,chars["KELLY"].cockVolume(0),true,true,false);
+	pc.cuntChange(x,chars["KELLY"].cockVolume(0),true,true,false);
+	if(y < 0) pc.buttChange(chars["KELLY"].cockVolume(0),true,false);
+	else pc.cuntChange(y,chars["KELLY"].cockVolume(0),true,true,false);
 
 	output("\n\n<i>\"Ah!... Honey, if you keep holding me like that....\"</i> she trails off into a moan of her own. By the time you feel her hips flush against yours, you’re both a panting mess. Kelly strokes your cheek lovingly as you move your [pc.legs] to wrap around her, securing her in place and ensuring she can’t get away.");
 
@@ -4071,7 +4072,7 @@ function getDoubleStuffedByKellyCancelled():void
 
 	output("\n\nA giggle echoes from behind you. <i>\"You want a cock already? Greedy thing,\"</i> she chides you, digging her fingers particularly deep inside of your yearning ass for emphasis. <i>\"But... I suppose one won't spoil your appetite,\"</i> she muses, seemingly to herself, even as she pries herself free of the grip your walls have on her fingers. For what seems like a small eternity, you are left empty and aching, before you feel something warm and wet and slimy being rubbed tantalizingly through the canyon of your ass-cleavage. <i>\"Alright honey; you wanted one? Here it comes,\"</i> Kelly chirps, even as she aligns her lube-smeared cock with your [pc.butt] and pushes it home, impaling you with the first of her pony-like fucksticks.");
 
-	buttChange(chars["KELLY"].cockVolume(0),true,false);
+	pc.buttChange(chars["KELLY"].cockVolume(0),true,false);
 
 	output("\n\n<i>\"Yes!\"</i> you cry. Finally! You buck back, willing your [pc.asshole] to greedily swallow the offering and screaming at the laquine to take you. To rut you like you know she wants to. To show you just how much of a beast she is. You want to feel her lust, her desire. You want to know how much she wants you. And you want her to know how much you want her in turn. You clench your ass, strangling her cock in a vice-like grip.");
 

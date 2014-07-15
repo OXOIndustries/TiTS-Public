@@ -938,7 +938,7 @@ function condomOrNoCondomAlissButtfuck(x:int = -1, condom:Boolean = false):void
 		else output(" Aliss' walls unsurprisingly cling tightly to your huge cock. She closes her eyes as she sucks in her lower lip. You can only imagine the feelings going through her head right now, of being <i>filled</i> so exquisitely. With every extra inch you sink into her ass lusty moans escape her throat.");
 	}
 	else output(" A few more inches are swallowed up by Aliss' hungry anus. The reptilian moans slightly, as each thrust puts a little bit more pressure on her prostate.");
-	if(x >= 0) cockChange(true);
+	if(x >= 0) pc.cockChange(true);
 
 	output("\n\nAliss' cock trembles, going completely untouched. With every thrust of your hips, her dick bobs, copious amounts of precum ");
 	if(condom) output("collecting in the transparent condom");
@@ -1112,7 +1112,7 @@ function offerPussyYouSloot():void
 	output("\n\nAliss smirks and obliges, sinking the first few inches of her impressive cock into your waiting cunt. ");
 	if(pc.hasCock()) output("[pc.eachCock] has a pang of jealousy and twitches, rapidly growing to full mast while Aliss plunges into you. ");
 	output("You feel her girth stretching you wide, a pleasant feeling that makes your whole body quiver. The alien shemale wastes no time developing a fast-paced rhythm as she dives into your trembling depths again and again. Your whole body aches, you want to use your hands for something, anything! But bound as they are, you feel so helpless, at the whims of Aliss and whatever she wants to do to you.");
-	cuntChange(x,chars["ALISS"].cockVolume(x),true,true,false);
+	pc.cuntChange(x,chars["ALISS"].cockVolume(x),true,true,false);
 
 	output("\n\nYour nipples, hard as they are, ache to be caressed. A need Aliss is all too willing to fulfill. With one hand on your hip, the other takes hold of one of your nipples, gripping it roughly between several fingers. You arch your back, moaning as she rolls the little nub around, gently teasing and tantalizing it. Aliss continues to pound away at your wet, sloppy cunt, a determined look on her face.");
 
@@ -1234,7 +1234,7 @@ function offerAlissYourAss():void
 	else if(pc.analCapacity() >= chars["ALISS"].cockVolume(0)) output("Your asshole resists, reflexively attempting to clamp shut as the anal invader inches forward. You bite your lip as Aliss grunts, thrusting in with one smooth motion.");
 	else output("Your spacious and gaped asshole yawns widely as Aliss thrusts forward, engulfing her alien cock in one smooth motion.");
 	output(" A sigh escapes your lips as your fuckhole widens to accept the dick. You clench once, acutely aware of the miniature beast within you.");
-	buttChange(chars["ALISS"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["ALISS"].cockVolume(0),true,true,false);
 
 	output("\n\n\"<i>Ohh, fuck yes,</i>\" Aliss mutters under her breath, \"<i>");
 	if(pc.ass.looseness() < 1) output("You are <b>tight</b>!");

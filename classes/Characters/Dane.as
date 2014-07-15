@@ -27,8 +27,12 @@
 			this.lustVuln = 1;
 			
 			this.meleeWeapon = new ShockBlade();
+			this.meleeWeapon.hasRandomProperties = true;
+			this.meleeWeapon.damage = 3;
 			this.rangedWeapon = new HammerPistol();
+			this.rangedWeapon.hasRandomProperties = true;
 			this.rangedWeapon.attackVerb = "shot";
+			this.rangedWeapon.damage = 3;
 			
 			this.armor.longName = "armor";
 			this.armor.defense = 3;

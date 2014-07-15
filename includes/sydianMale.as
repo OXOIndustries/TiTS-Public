@@ -87,7 +87,6 @@ function rustBroDegrade():void
 		//Wearing armor!
 		if(pc.armor.shortName != "" && !pc.hasStatusEffect("Degraded Armor"))
 		{
-			
 			output(" The strike doesn't hit hard to deal damage, but smear of your " + pc.armor.longName + ". <b>Your armor is degraded and will not provide any defense for the rest of this fight!</b>");
 			pc.createStatusEffect("Degraded Armor", 0, 0, 0, 0, false, "DefenseDown", "Your armor is temporarily degraded and will not provide any defensive benefit.", true, 0);
 		}
@@ -327,7 +326,7 @@ function dudesButtFuckInATotallyNonGayWay():void
 	output("\n\nAmazing how a little show of dominance can turn the swaggering rust-beast into an eager, lusty trollop. You push into his tailhole. At first, it's slow going. He may be eager for a fuck, but his star his far from well-worn. His sphincter tries to remain stubbornly closed, yet it gives all the same, eventually acceding to your [pc.cock " + x + "] rapacious demands for entrance. He's so very warm on the inside, and you slide into the sensuous ring with glee, all the way to your [pc.knot " + x + "].");
 	if(pc.hasKnot(x)) output(" At that point, the additional girth catches, but it's nothing a few gentle rubs of your new fuck-buddy's ass won't help him relax for. A few pushes later, and you're in.");
 	output("\n\nDroplets of what looks like pure silver slowly roll out of his lust-bloated cocktip as you ream him, liquid evidence of his enjoyment. A bass groan rumbles out of his chest as you pull back only to turn into a higher-pitched yelp when you roughly jackhammer in a second thrust. You rebound off his ass for another and another, and another... and another. Your [pc.cock " + x + "] blasts through his black hole rapid-fire, focused entirely on using him as little more than a pleasing sleeve, but he seems to enjoy it all the same.");
-	cockChange(true,false);
+	pc.cockChange(true,false);
 	output("\n\nThe sydian's tail is slaps your [pc.butt] every time you slow, spurring you to further - and harder - into your chosen cum-dumpster. The repeated strikes leave behind more of that sticky secretion. It may absorb into your [pc.skinFurScales] almost immediately, but it leaves behind a little more heat and a little excess need with every strike. [pc.EachCocks] feels overburdened with blood, so hard that it's becoming painful. With your need always on the rise, you piston harder and faster, squeezing more silvery pre-jizz out of him from the inside.");
 	output("\n\n<i>\"More!\"</i> the encouraging sydian growls from below. <i>\"Harder!\"</i>");
 
@@ -429,14 +428,14 @@ function chicksRideASydian():void
 	output("\n\nEasing yourself down, you grab hold of his fuzzy, orange prick. The thousands of little brushes that coat it wriggle and squirm against your hand, made sticky by the liquid-excitement he's leaking. You can't wait to have them inside you, squirming and rubbing along the inside of your tunnel, massaging pleasure into every square inch of nerve-packed skin. Trickles of moisture leak down your [pc.legs]. You don't really mind; the extra lubrication is just going to make this all the more pleasurable.");
 	output("\n\nThe turgid, alien cock's cilia flutter against your netherlips as the greater bulk of his mass parts them, wracking you with far more sensation than simple insertion alone should provide. Then again, most tool's don't come with build-in stimulation functions. Your [pc.lips] wider than their sisters down south as you moan and slip down, letting a half-dozen inches of thick, orange prick deep into your canal. Every bit of him is covered in those squirming tendrils, and the ones coming into contact with you kick lightning-fast, stroking your walls with hellishly distracting pleasure.");
 	//Cuntchange: half volume.
-	cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
+	pc.cuntChange(x,foes[0].cockVolume(0)/2,true,true,false);
 	output("\n\nShuddering, you try to still your body's frantic desire for a deeper, more fulfilling fuck and ultimately fail. Your hips drop, impaling you all " + num2Text(Math.round(foes[0].cocks[0].cLength())) + " inches of hole-stretching, wall-massaging cunt-stuffer at once.");
 	if(pc.vaginalCapacity(x)/2 > foes[0].cockVolume(0)) output(" Silently, you wish he was a little bigger.");
 	else if(pc.vaginalCapacity(x)/1.5 > foes[0].cockVolume(0)) output(" Its slips into your capacitive slit like a hand into a tailored glove.");
 	else if(pc.vaginalCapacity(x) * .9 >= foes[0].cockVolume(0)) output(" It slips into your slit tightly but not tightly enough to be painful. If it wasn't for how wet you've gotten, you might not be enjoying this as much.");
 	else output(" It slips in with more than a little bit of pain, stretching your walls further apart than they were meant to go before pushing at your cervix like a battering ram. You hold still as your [pc.vagina " + x + "] adjusts to the oversized intrusion, thumping a fist at the chitinous brute's pecs until the fiery pain cools to warm pleasure.");
 	output(" His member's unique attributes all moving now, wriggling and slipping against your insides, feeling every nook and cranny.");
-	cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	output("\n\nThis moment, right here, right now, is the moment the sydian was waiting for - the moment when his tool sufficiently distracted you, the moment when your nervous system was too overwhelmed by cascades of sensation to function properly. He grabs you by the arms and pulls, dragging you down to his chest, your [pc.chest] pressed flat against him. His tongue lolls out to lick to against your cheek while he forcefully lifts his hips and begins bouncing you in place, fucking you like a ragdoll. There's no skill to it, just rough, animal fucking - one pair of hips slapping into another again and again.");
 	output("\n\nEyes crossed in ecstasy, you try not to let it show how much you're enjoying this or that you expected something like this to happen all along. Instead you focus on the rough plowing of your [pc.vagina " + x + "] and wrapping your arms around your stud's neck so that you can steady yourself against the rampant fuck and nuzzle into his neck at the same time. He growls, a powerful bass rumble that vibrates out of his throat more than his mouth but doesn't move to stop you. In fact, he licks your cheek with a long orange tongue, slobbering his affections as his dick grows thicker within you.");
 	output("\n\n<i>\"Not yet,\"</i> you manage to say without sounding like a moaning harlot. You reach back to find his balls, already slick with your [pc.girlCum], and grab him around the top of his sack, pinching tight around them and his shaft together. <i>\"Naughty boys don't get to cum unless they get mistress off. Go on,\"</i> you pant, <i>\"Harder.\"</i>");
@@ -806,7 +805,7 @@ function pcVagoosGetPlowedOpenByRustBrosAfterAphrodisiacs():void
 	output(". The brief, fluttering touches of his antennae are all the foreplay you're going to get. His cock presses against your cheeks, thicker and harder than you remember it being earlier. The cilia covering it are flat at the moment. You can feel them clinging wetly to his length, unmoving but still giving him a unique texture.");
 	output("\n\nThe sydian doesn't ask for permission, and you don't give it. He simply thrusts and takes while you yield before his might, spread bare to worship on the altar of his glorious orange cock, feeling it plunge deep into your folds as if belonged there. Rather than squeezing down to press his veins more firmly against your inner walls, you wind up feeling his cilia rise up against you, their tips feathery, like little brushes. They flit and flutter inside you whenever their owner bottoms out inside you, massaging starbursts of pleasure into your nerves, moving like one thousand little tongues.");
 	//Cunt change!
-	cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	output("\n\nHis squared, chitinous hips slap against your [pc.butt] with echo-birthing force, jolting you against an ancient deckplate");
 	if(pc.biggestTitSize() >= 4 || pc.buttRating > 10)
 	{
@@ -904,7 +903,7 @@ function getPeggedToOrgasmByRustBro():void
 	output("\n\n<i>\"Please, I'm begging you, fuck my [pc.ass] and fill me to the hilt with your cock!\"</i> You discard whatever shame you have as you bitch yourself out to the mysterious alien man; you'd do anything to sate the burning desires coursing through your body at this point.");
 	output("\n\n<i>\"As you wish, my mate.\"</i> You swear you hear the seven foot male sydian chuckle triumphantly as he presses the head of his alien tool against your back door. It's a good thing you're well lubricated by his juices as he plunges his glorious orange cock right into your [pc.asshole], claiming it for himself.");
 	// Check buttginity.
-	buttChange(foes[0].cockVolume(0),true,true,false);
+	pc.buttChange(foes[0].cockVolume(0),true,true,false);
 	output("\n\nShockwaves of ecstasy course through your body and you shoot your load just from his insertion, spurting ");
 	if(pc.cumQ() >= 10) output("your [pc.cum]");
 	else output("tiny dribbles of [pc.cum]");

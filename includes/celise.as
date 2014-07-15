@@ -359,7 +359,7 @@ function yepGetInMyBallsUBitch():void {
 	if(pc.balls > 1) output("Even your balls grow heavy and warm. ");
 	else if(pc.balls == 1) output("Even your ball grows heavy and warm. ");
 	output("With each passing second, your sexual organs are more and more stuffed with the hungry goo-girl’s green goop until you wonder how you’ll hold it any more.");
-	cockChange();
+	pc.cockChange();
 	output("\n\nIt is at that point that Celise finally breaks contact with your [pc.cockBiggest], depositing a wet kiss upon its " + pc.cockHead(pc.biggestCockIndex()) + " as the last of her stuff disappears into your urethra. The strange tingles that her actions have filled you with cause your [pc.legs] to quiver slightly, and you nervously grab your slime-shined penis, examining it while your innards shift. You feel so full!");
 	output("\n\nLong lashes flutter innocently as Celise watches you squirm. She idly runs her hands across the expansive curve of her chest before pulling you deeper into her base, snuggling your head between her tits and securely ensconcing your groin in the gentle mass. <i>“Wait for it,”</i>  she coos, stroking your back with one hand and your [pc.chest] with the other.");
 	output("\n\n<i>“Wait for what?”</i>  you retort, finally starting to feel more at ease with the squirming inside you. Before the question leaves your mouth, the warmth inside you changes to a fervent stroking, caressing the entirety of your reproductive system from the inside. The heat in your [pc.balls] doubles in that moment, and you cry out in excitement, back on the cusp of cumming once more. An explosion of bliss explodes from deep within you, and you feel your body clenching and pumping, producing what feels a like a hot, messy orgasm. However, unexpectedly, nothing emerges into the waiting goo maiden’s mass.");
@@ -480,9 +480,9 @@ function feedCeliseBySavin():void {
 	output(" your holes are suddenly filled with thick, hot goo.");
 	//STRETCH ALL PUSSIES AND BUTTHOLES GOOOOOOOOOO
 	for(var x:int = 0; x < pc.vaginaTotal(); x++) {
-		cuntChange(x,pc.vaginalCapacity(x));
+		pc.cuntChange(x,pc.vaginalCapacity(x));
 	}
-	buttChange(pc.analCapacity(),true,true,false);
+	pc.buttChange(pc.analCapacity(),true,true,false);
 	output("\n\nYour orgasm is almost instantaneous; your body is completely overwhelmed by the moment, your holes forced agape by the " + num2Text(pc.vaginaTotal() + 1) + " dripping hot rods Celise is fucking into you. Your [pc.pussies] and ass quiver in response, spasming and squeezing around the cocks forced inside them, your [pc.pussies] spasming and squirting, dousing the viscous goo-cocks with your fem-cum. Celise gives a quiet moan of satisfaction as she drinks it up, absorbing every drop of your orgasmic fluids");
 	if(pc.cockTotal() > 0) output(", grabbing your [pc.cocks] and jerking them off until they, too, erupt in a salty stream right onto her face. She needn't eat it, but simply absorbs the [pc.cumColor] smear on her cheeks right up, her face's normally bright green hue shifting a touch [pc.cumColor]");
 	output(".");
@@ -613,7 +613,7 @@ function celiseSleezeLactation():void {
 	else if(pc.hasCock())
 	{
 		output("\n\nIt doesn’t take her long to find and envelope your semi-erect [pc.cockBiggest] in warm, kneading gel. You move your [pc.hips] with measured motion, letting Celise do most of the work. Her flood of slime coils your cock up and down, working it until it is bulging and you are urgent and straining with desire as she continues to lick and suckle on your [pc.nipples].");
-		cockChange();
+		pc.cockChange();
 	}
 	//PC has vagina: 
 	else if(pc.hasVagina())
@@ -621,7 +621,7 @@ function celiseSleezeLactation():void {
 		output("\n\nThe warm, kneading gel flows deep into your delta, sliding and oozing over your [pc.clits] as it reaches your wet entrance and pushes hungrily into [pc.oneVagina]. Within a few seconds you are packed full of goo, working up and down your sensitive tunnel until you are dribbling excitement, urgent with desire. You move your [pc.hips] with measured motion, letting Celise do most of the work. The goo is insatiable - ");
 		if(pc.wetness() >= 3) output("though you are as ever tapping femcum eagerly, ");
 		output("it is difficult not to lose control and buck against the warm softness of it because it absorbs every drop of wetness you produce the instant it forms, gently but insistently pressing on your [pc.clits] and your tunnel to force more and more from you all the while she continues to lick and suckle on your [pc.nipples].");
-		cuntChange(rand(pc.totalVaginas()),5,true,true,false);
+		pc.cuntChange(rand(pc.totalVaginas()),5,true,true,false);
 	}
 	//[merge]
 	output("\n\nThe effect of the slime’s stimulation is to push your body into a heat of production, and you begin to pant; blood rushes to your skin as your [pc.nipples] open wide and release their deepest, thickest [pc.milkNoun] into Celise’s tight, sucking maws. She makes a sound of complete contentment as your own higher cognition shuts down; you can only think of pumping more and more of your body’s bounty into your goo pet. The heat reaches a high as she ");
@@ -880,7 +880,7 @@ function getDrainedSexyTimes():void {
 	if(pc.hasCock() || pc.isLactating()) output("milk");
 	else output("please");
 	output(" you lots tonight.</i>”  Before you have a chance to respond, she shushes your lips, closes your eyes with her fingers, and gets to work.");
-	buttChange(5,true,true,false);
+	pc.buttChange(5,true,true,false);
 	//asshole
 	output("\n\nThe tip of the column of gel embedded deep inside your backside swells up, growing bigger and bigger until there is a large ball of goo on the end of it. She tests this gel sphere against your backside’s ring with a tug, ");
 	if(pc.ass.looseness() >= 5) output("and proves a bit disappointed when it slips out of your gaping rear. She promptly puts it back and increases the size a bit more to make sure it stays in there.");
@@ -960,7 +960,7 @@ function getDrainedSexyTimes():void {
 		else output("\n\nWhen you're finally brought to your first peak, the ravenous gel girl quickly changes the means of her assault from a gentle treatment to a vigorous pumping. She roughly coaxes everything she can out of your climaxing member through her rippling prison. Finally when you're spent, her calm serene treatment starts anew, carefully bringing you back to full hardness and continuing her massage.");
 
 		output("\n\nThroughout the night she draws out a multitude of orgasms with long build-ups and sudden releases that ooze out of you and are quickly absorbed by the hungry mass of goo surrounding your body. While she never lets you go soft, she paces you so that the period between each orgasm is at least thirty minutes, so you never feel uncomfortable from the continuous stimulation.");
-		cockChange();
+		pc.cockChange();
 	}
 	//vagina
 	else if(pc.hasVagina())
@@ -979,7 +979,7 @@ function getDrainedSexyTimes():void {
 		else output(" of your womb");
 		output(". Only then do they stop and are content rubbing every surface they can find inside you. The intense stimulation only becomes greater when you crest a hill of pleasure and ride it down. Your discharge sends the wormy appendages into overdrive to collect and entice as much of it from your body as possible. When you reach the bottom of the hill, you’re allowed to relax, and the gentle buzz of gooey pleasure begins anew.");
 		for(var v:int = 0; v < pc.totalVaginas(); v++)
-			cuntChange(v,5,true,true,false);
+			pc.cuntChange(v,5,true,true,false);
 	}
 	pc.orgasm();
 	pc.orgasm();

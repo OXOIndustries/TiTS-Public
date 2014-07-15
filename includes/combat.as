@@ -58,8 +58,14 @@ function combatMainMenu():void
 	}
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
+		//Encounter with a shitty cover mechanic.
+		if(foes[0] is CaptainKhorganMech)
+		{
+			coverUpdateDisplay();
+		}
 		updateCombatStatuses();
 	}
+	
 	//Stunned Menu
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
@@ -113,6 +119,8 @@ function combatMainMenu():void
 		if(pc.hasStatusEffect("Trip")) addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+		//Bonus shit for stuff!
+		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
@@ -551,7 +559,7 @@ function processCombat():void
 	if(flags["DRONE_TARGET"] != undefined) trace("DRONE_TARGET: " + flags["DRONE_TARGET"]);
 	else trace("DRONE_TARGET: UNDEFINED");
 	//DRONE TIME - only attacks targets if they've been marked!
-	if(combatStage == foes.length+1 && pc.hasPerk("Attack Drone") && flags["DRONE_TARGET"] != undefined)
+	if(combatStage == foes.length+1 && (pc.hasPerk("Attack Drone") || pc.accessory is TamWolfDamaged) && flags["DRONE_TARGET"] != undefined)
 	{
 		if(pc.shields() > 0) {
 			output("\n\n");
@@ -565,8 +573,12 @@ function processCombat():void
 		}
 		//No shields and drone not down yet? Give notification!
 		else if(!pc.hasStatusEffect("Drone Down")) {
-			output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
-			pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
+			if(!(pc.accessory is TamWolfDamaged || pc.accessory is TamWolf)) 
+			{
+				output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
+				pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
+			}
+			else droneAttack(foes[flags["DRONE_TARGET"]]);
 		}
 	}
 	combatStage = 0;
@@ -662,7 +674,11 @@ function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Num
 		return true;
 	}
 	//Evasion chances
-	if(target.evasion() >= rand(100) + 1) return true;
+	if(target.evasion() >= rand(100) + 1) 
+	{
+		trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
+		return true;
+	}
 	//Take cover chance
 	if(target.hasStatusEffect("Taking Cover") && rand(100) + 1 < 90) return true;
 	//10% miss chance for lucky breaks!
@@ -723,14 +739,7 @@ function playerRangedAttack(target:Creature):void
 
 function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, special:int = 0):void {
 	//Set drone target
-	if(attacker == pc && pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	if (foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
 	if (attacker == pc)
 	{
@@ -853,14 +862,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 {
 	trace("Ranged shot...");
 	//Set drone target
-	if(attacker == pc && pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
 	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + "Attacker = PC? " + String(attacker == pc) + " special? " + special);
 	//Run with multiple attacks!
@@ -902,7 +904,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
-	else if(special == 1 || special == 2 && rand(100) <= 45 && !target.isImmobilized()) {
+	else if((special == 1 || special == 2) && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
 			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
@@ -916,6 +918,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Attack connected!
 	else {
 		if(attacker == pc) output("You land a hit on " + target.a + target.short + " with your " + pc.rangedWeapon.longName + "!");
+		else if(attacker.plural) output(attacker.capitalA + attacker.short + " connects with their " + attacker.rangedWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his", "her", "its") + " " + attacker.rangedWeapon.longName + "!");
 		
 		if (!(attacker.rangedWeapon is Goovolver))
@@ -998,9 +1001,40 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 }
 
 function droneAttack(target:Creature):void {
-	output("Your drone repeatedly zaps " + target.a + target.short + ".");
-	genericDamageApply(1+pc.level + rand(2 + pc.level/2),pc,target,GLOBAL.ELECTRIC);
+	if(pc.accessory is TamWolf) 
+	{
+		//In Combat:
+		// Tam-wolf has the same stats as a normal Attack Drone in terms of damage -- maybe a little higher. Though he doesn't boost your shields, he can operate even after yours collapse. Handy!
+		//Attack!
+		output("<i>\"Enemy detected, " + pc.mf("master","mistress") + " [pc.name]! I will defend you!\"</i> Tam-wolf announces, leaping into the fray. He hits, biting " + target.a + target.short + ".");
+		genericDamageApply(droneDamage(),pc,target,GLOBAL.PIERCING);
+		output(" Good boy!");
+	}
+	else if(pc.accessory is TamWolfDamaged) 
+	{
+		//In Combat:
+		//Tam-wolf has a 30% chance of doing nothing on his turn. Otherwise, he makes a light Piercing attack.
+		//Do Nothing:
+		if(rand(10) <= 2) output("Tam-wolf leaps forward at " + target.a + target.short + "... but his bum leg catches, and he goes tumbling into the ground. Dammit, Tam-wolf!");
+		//Attack!
+		else
+		{
+			output("<i>\"ENEMY DETECTED, MISTRESS TAM! I WILL DEFEND YOU,\"</i> Tam-wolf loudly announces as he lunges at " + target.a + target.short + ". He hits!");
+			genericDamageApply(droneDamage()-1,pc,target,GLOBAL.PIERCING);
+			output(" Good boy!");
+		}
+	}
+	else 
+	{
+		output("Your drone repeatedly zaps " + target.a + target.short + ".");
+		genericDamageApply(droneDamage(),pc,target,GLOBAL.ELECTRIC);
+	}
 	processCombat();
+}
+//Broke this out so all can be adjusted at once as buffed/nerfed.
+function droneDamage():int
+{
+	return (1+pc.level + rand(2 + pc.level/2));
 }
 
 public function genericDamageApply(damage:int,attacker:Creature, target:Creature,damTypeOverride:int = -1):void {
@@ -1262,65 +1296,28 @@ function enemyAI(aggressor:Creature):void
 		processCombat();
 		return;
 	}
-	//Foe specific AIs
-	switch(aggressor.short) {
-		case "Celise":
-			celiseAI();
-			break;
-		case "two zil":
-			zilpackAI();
-			break;
-		case "zil male":
-			zilMaleAI();
-			break;
-		case "female zil":
-			zilGirlAI();
-			break;
-		case "cunt snake":
-			cuntSnakeAI();
-			break;
-		case "naleen":
-			naleenAI();
-			break;
-		case "naleen male":
-			naleenMaleAI();
-			break;
-		case "machina":
-			machinaAI();
-			break;
-		case "Dane":
-			daneAI();
-			break;
-		case "mimbrane":
-			mimbraneAI();
-			break;
-		case "female raskvel":
-			raskvelChickAI();
-			break;
-		case "sex bot":
-			sexbotAI();
-			break;
-		case "gray goo":
-			grayGooAI();
-			break;
-		case "female lapinara":
-			lapinaraAI();
-			break;
-		case "sydian male":
-			sydianMaleAI();
-			break;
-		case "firewall":
-			firewallAI();
-			break;
-		case "pirate gang":
-			phoenixPiratesAI();
-			break;
-		default:
-			enemyAttack(aggressor);
-			break;
-	}
+	if(aggressor is Celise) celiseAI();
+	else if(aggressor is ZilPack) zilpackAI();
+	else if(aggressor is ZilMale) zilMaleAI();
+	else if(aggressor is ZilFemale) zilGirlAI();
+	else if(aggressor is CuntSnake) cuntSnakeAI();
+	else if(aggressor is Naleen) naleenAI();
+	else if(aggressor is NaleenMale) naleenMaleAI();
+	else if(aggressor is CarlsRobot) machinaAI();
+	else if(aggressor is Dane) daneAI();
+	else if(aggressor is Mimbrane) mimbraneAI();
+	else if(aggressor is RaskvelFemale) raskvelChickAI();
+	else if(aggressor is SexBot) sexbotAI();
+	else if(aggressor is GrayGoo) grayGooAI();
+	else if(aggressor is LapinaraFemale) lapinaraAI();
+	else if(aggressor is SydianMale) sydianMaleAI();
+	else if(aggressor is HandSoBot) firewallAI();
+	else if(aggressor is PhoenixPirates) phoenixPiratesAI();
+	else if(aggressor is GunTurrets) tamtamtamtamtamtamAI();
+	else if(aggressor is RocketTurrets) rocketPodAI();
+	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
+	else enemyAttack(aggressor);
 }
-
 function victoryRouting():void 
 {
 	hideNPCStats();
@@ -1385,6 +1382,18 @@ function victoryRouting():void
 	else if (foes[0] is PhoenixPirates)
 	{
 		victoryOverPhoenixPirates();
+	}
+	else if (foes[0] is GunTurrets)
+	{
+		tamtamGetsPunkedByPCs();
+	}
+	else if (foes[0] is RocketTurrets)
+	{
+		pcBeatsRocketPods();
+	}
+	else if(foes[0] is CaptainKhorganMech)
+	{
+		victoriousVsCaptainOrcButt();
 	}
 	else genericVictory();
 }
@@ -1451,6 +1460,18 @@ function defeatRouting():void
 	else if (foes[0] is PhoenixPirates)
 	{
 		loseToPhoenixPirates();
+	}
+	else if (foes[0] is GunTurrets)
+	{
+		tamtamBadEndPetPooch();
+	}
+	else if (foes[0] is RocketTurrets)
+	{
+		pcLosesToRocketPods();
+	}
+	else if(foes[0] is CaptainKhorganMech)
+	{
+		loseToCaptainKhorganBadEnd();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1656,6 +1677,18 @@ function startCombat(encounter:String):void
 			break;
 		case "phoenixpirates":
 			chars["PHOENIXPIRATES"].prepForCombat();
+			break;
+		case "auto-turrets":
+			chars["AUTOTURRETS"].prepForCombat();
+			break;
+		case "rocket pods":
+			chars["ROCKETPODS"].prepForCombat();
+			break;
+		case "khorgan mechfight":
+			chars["CAPTAINKHORGANMECH"].prepForCombat();
+			break;
+		case "khorgan":
+			chars["CAPTAINKHORGAN"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
@@ -2203,11 +2236,10 @@ function volley(target:Creature):void {
 	processCombat();
 }
 
-function overcharge(target:Creature):void {
-	clearOutput();
-	pc.energy(-20);
+function setDroneTarget(target:Creature):void
+{
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
+	if(pc.hasPerk("Attack Drone") || pc.accessory is TamWolf || pc.accessory is TamWolfDamaged)
 	{
 		//Figure out where in the foes array the target is and set drone target to the index.
 		//Clunky as all fuck but it works.
@@ -2215,6 +2247,12 @@ function overcharge(target:Creature):void {
 			if(foes[i] == target) flags["DRONE_TARGET"] = i;
 		}
 	}
+}
+
+function overcharge(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	setDroneTarget(target);
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	if(rangedCombatMiss(pc,target)) {
@@ -2288,7 +2326,7 @@ function deflectorRegeneration(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	output("You fiddle with your shield, tuning it regenerate over the next few turns.\n");
-	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"Regeneration","You are recovering some of your shields every round",true,0);
+	pc.createStatusEffect("Deflector Regeneration",4,Math.round((pc.intelligence()/3 + 8 + rand(6))/4),0,0,false,"DefenseUp","You are recovering some of your shields every round",true,0);
 	processCombat();
 }
 
@@ -2373,14 +2411,7 @@ function lowBlow(target:Creature):void {
 
 	pc.energy(-15);
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	output("You swing low, aiming for a sensitive spot.\n");
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
@@ -2558,14 +2589,7 @@ function powerStrike(target:Creature):void {
 	clearOutput();
 	pc.energy(-20);
 	//Set drone target
-	if(pc.hasPerk("Attack Drone"))
-	{
-		//Figure out where in the foes array the target is and set drone target to the index.
-		//Clunky as all fuck but it works.
-		for(var i:int = 0; i < foes.length; i++) {
-			if(foes[i] == target) flags["DRONE_TARGET"] = i;
-		}
-	}
+	setDroneTarget(target);
 	//Attack missed!
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	if(combatMiss(pc,target)) {

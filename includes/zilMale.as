@@ -310,7 +310,7 @@ function buttfuckDefeatedZil():void {
 		else output(" You push your thumb back into him and make him drip his syrupy boy-milk all over, turning the area between his thighs into a sloppy, sticky morass.");
 		output(" The zil's wings flutter futilely as you finish gathering your lube and bottom out against his butt, grabbing his hips as you ready yourself to properly fuck him.");
 	}
-	cockChange();
+	pc.cockChange();
 	
 	//{Merge back together}
 	output("\n\nDropping down to rest himself with his shoulder upon the ground, the zil looks back at you as you use him, reaching under himself with one hand to ");
@@ -480,7 +480,7 @@ function rideDatZilCawk():void {
 	}
 	//{end cunt forks}
 	//{stretch check.}
-	cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	
 	output("\n\nMoving faster now, you pivot your hips in small circles in order to grind every millimeter of your interior against his lovely, ebony shaft, your cunt clenching unintentionally whenever he hits a sensitive spot, squeezing just hard enough to make him feel as if you're milking him.  Then, you switch tempos, bouncing on his cock, letting your [pc.butt] compress against him each time you bottom out.");
 	if(!pc.isTaur()) {
@@ -918,7 +918,7 @@ function getBredByZil():void {
 	if(rand(2) == 0) output("you can feel your cunny pulling back his skin to expose his crown.");
 	else output("you can feel your cunny vainly trying to pull back his phimotic dick-skin. His crown stays steadfastly hidden from your lusty snatch, but you're sure you'll make him fill you all the same.");
 	//Cuntchange!
-	cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	output("\n\nYou feel the zil's hands shift to wrap around your chest");
 	if(pc.biggestTitSize() >= 2) output(" and hold onto your [pc.chest]");
 	else output(" for support");
@@ -966,7 +966,7 @@ function getBredByZil():void {
 	if(pc.totalVaginas() > 1) {
 		for(var y:int = 0; y < pc.totalVaginas(); y++) {
 			if(y != x) {
-				cuntChange(y,foes[0].cockVolume(0),true,true,false);
+				pc.cuntChange(y,foes[0].cockVolume(0),true,true,false);
 				break;
 			}
 		}
@@ -1155,7 +1155,7 @@ function zilSticksItInYourBoot():void {
 		else output("they're");
 		output(" rising up against your belly with fresh lust, spooling out ribbons of pre-cum that seem without end.");
 		//{lose virginity!}
-		buttChange(foes[0].cockVolume(0),true,true,false);
+		pc.buttChange(foes[0].cockVolume(0),true,true,false);
 		output("\n\nThe alien slaps your [pc.butt] when he bottoms out, making you drip even harder, and he congratulates you, <i>“Good " + pc.mf("boy","girl") + ". It's going to get even better. Now just take it and cum yourself dry.”</i>");
 		output("\n\nIt gets better? A sudden void encompases your consciousness as the zil withdraws, but he's back a moment later, slapping his hips into your ass with one smooth pump. He bounces back off and assumes an easy rhythm, fucking you firm and gentle. He seems to love the way you feel wrapped around his tool - that or he's loving the fact that he's the one to deflower you.");
 	}
@@ -1165,7 +1165,7 @@ function zilSticksItInYourBoot():void {
 		output("\n\nThe alien blinks his black eyes and chortles, <i>“Not your first time?”</i> His finger presses against your anal star, wiggling around and exploring you in anticipation of the butt-fuck to come. <i>“No, not your first time. That's good; I won't have to go easy on you.”</i>");
 		output("\n\nYou whimper at that declaration, but your insectile master proves it true a moment later when he smoothly thrusts himself inside you. His slippery dick slides right past your sphincter in seconds, the inches plowing aside your body's token resistance as you simply try to relax and enjoy it. It's not easy, but after he bottoms out with his balls resting against you, you find yourself feeling rather good. [pc.EachCock] rises to full size and begins to dribble a steady runnel of pre-cum onto the ground, spilling out your orgasmic precursor in quantities far beyond normal.");
 		//{buttchange}
-		buttChange(foes[0].cockVolume(0),true,true,false);
+		pc.buttChange(foes[0].cockVolume(0),true,true,false);
 		output("\n\nThe zil squeezes your cheeks in his hands and begins to knead them with almost mindless attention, rolling and squeezing the closest bit of your flesh that he can get in his palms. His hips slowly pull back to leave you empty. A moment later, he's back inside, pumping you full of his hot wasp-cock with slow, steady strokes. Between your skin and his copious, honeyed pre, he's able to violate your bottom without an ounce of resistance. His strokes are long and firm, and he shows no sign of stopping. Not that you want him to.");
 	}
 	//{both}
@@ -1233,8 +1233,8 @@ function theZilPretendToBeHelia():void {
 	var x:int = pc.cuntThatFits(foes[0].cockVolume(0));
 	if(x < 0) x = rand(pc.vaginaTotal());
 	//{stretch}
-	if(!pc.hasVagina()) buttChange(foes[0].cockVolume(0),true,true,false);
-	else cuntChange(x,foes[0].cockVolume(0),true,true,false);
+	if(!pc.hasVagina()) pc.buttChange(foes[0].cockVolume(0),true,true,false);
+	else pc.cuntChange(x,foes[0].cockVolume(0),true,true,false);
 	output("\n\nSmooth armor compresses your [pc.butt] when the foreskin-wrapped dick bottoms out, the zil's smooth, hairless sack rubbing against you for a moment before he draws back and begins to fuck your [pc.vagOrAss] slowly, almost languidly.");
 	output("\n\n<i>“Oh, this is nice,”</i> he admits. His sack seems to grow a little bit bigger against your body as his constantly leaking pre turns your innards into slippery mess. The slow friction gradually increases as the zil begins to pump faster and faster, locking eyes with his opposite across your submissive, conquered frame. His dick grows a hair thicker and plumper; his hips thrust faster, and you know a messy, gooey climax is is close at hand for bug-man.");
 	output("\n\nThe female bites her lips and shudders while your tongue polishes her clit, gathering every drop of her hot honey, sliding deeper into her folds where it can properly tickle the rest of her nerve endings. You dole out cunnilingus with no thought but eagerness for the taste in your mouth, instinctively improving your technique whenever you discover something that gets you a fresh dribble of her juices. Her legs are quaking lustily around your head as she rides you towards a much-needed cum. If your mouth weren't muff-deep in cunt, a dopey smile would be visible on it.");

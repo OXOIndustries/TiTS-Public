@@ -46,7 +46,7 @@
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 0;
-			this.resistances = new Array(1,1,1,.85,.9,1,.5,.75);
+			this.resistances = new Array(1,1,1,1.15,1.1,1,1.4,.75);
 			this.XPRaw = 750;
 			this.level = 5;
 			this.credits = 0;
@@ -180,7 +180,7 @@
 			
 			//kGAMECLASS.userInterface.showBust("NALEEN_MALE");
 			kGAMECLASS.setLocation("FIGHT:\nMACHINA", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
-			combatMachina.setDefaultSexualPreferences();
+			//combatMachina.setDefaultSexualPreferences();
 			
 			kGAMECLASS.foes.push(combatMachina);
 		}

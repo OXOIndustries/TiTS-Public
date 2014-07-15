@@ -1,4 +1,5 @@
-import classes.Characters.PlayerCharacter;
+﻿import classes.Characters.PlayerCharacter;
+import classes.RoomClass;
 
 
 function initializeRooms():void 
@@ -2243,7 +2244,7 @@ function initializeRooms():void
 	//#78 SCYTHING\nGLADE
 	rooms["278"] = new RoomClass(this);
 	rooms["278"].roomName = "SCYTHING\nGLADE";
-	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that. One thing you can be sure is that a barricade has been set up between here and there, and guards of some kind are watching it.";
+	rooms["278"].description = "The dangerous flora of the scything glade is thinner here than in other places - you suppose due to the impending cliff to the east. More interestingly, an artificial platform starts just to the east, leading over the edge of the cliff to some kind of mechanical facility. From here, it's difficult to tell its purpose; you'll have to get closer for that.";
 	rooms["278"].runOnEnter = rustScytheGladeEncounters;
 	rooms["278"].northExit = "281";
 	rooms["278"].eastExit = "279";
@@ -2255,25 +2256,14 @@ function initializeRooms():void
 	//#79 ARTIFICIAL\nPLATFORM
 	rooms["279"] = new RoomClass(this);
 	rooms["279"].roomName = "ARTIFICIAL\nPLATFORM";
-	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. To the east, a group of U.G.C. peacekeepers has set up a barricade of some sorts. You'll need to talk to them to get by. To the west, the curving silver blades of the scything glade glimmer ominously.";
+	rooms["279"].description = "You're standing on the west end of a metal platform. It's surface gleams in the light from Tarkus' sun in spite of the many scratches and scars that it bears. Somehow, it has yet to corrode in the harsh conditions. Whoever made this place built it to last, that much is clear. Barricades have been set up to the east around it.";
 	rooms["279"].runOnEnter = rustScytheGladeEncounters;
 	rooms["279"].westExit = "278";
-	rooms["279"].eastExit = "280";
+	rooms["279"].eastExit = "350";
 	rooms["279"].planet = "PLANET: TARKUS";
 	rooms["279"].system = "SYSTEM: REDACTED";
 	rooms["279"].addFlag(GLOBAL.OUTDOOR);
 	rooms["279"].addFlag(GLOBAL.HAZARD);
-
-	//#80 PLACE\nHOLDER
-	rooms["280"] = new RoomClass(this);
-	rooms["280"].roomName = "PLACE\nHOLDER";
-	rooms["280"].description = "Placeholder. There will be a dungeon here in a future build.";
-	rooms["280"].runOnEnter = rustScytheGladeEncounters;
-	rooms["280"].westExit = "279";
-	rooms["280"].planet = "PLANET: TARKUS";
-	rooms["280"].system = "SYSTEM: REDACTED";
-	rooms["280"].addFlag(GLOBAL.OUTDOOR);
-	rooms["280"].addFlag(GLOBAL.HAZARD);
 
 	//#81 SCYTHING\nGLADE
 	rooms["281"] = new RoomClass(this);
@@ -2507,6 +2497,173 @@ function initializeRooms():void
 	rooms["305"].addFlag(GLOBAL.INDOOR);
 	rooms["305"].addFlag(GLOBAL.COMMERCE);
 
+
+	rooms["350"] = new RoomClass(this);
+	rooms["350"].roomName = "THE\nCHASMFALL";
+	rooms["350"].description = "Before you is the Chasmfall, a chasm through the heart of the planet where Tarkus was stitched together centuries if not millennia ago from the shattered remains of two disparate worlds. Here is the border between this half of the world and another, separated by a gap nearly a mile wide. At the edge of the rift, you can see a towering steel structure: the monitor station, one of the few structures on Tarkus you've seen that actually looks well-cared-for. Beyond it, you can see a massive cargo elevator and shaft have been built into the side of the chasm, surrounded by hundreds of the great tethers bolted between the halves of the planet, desperately straining to hold Tarkus together. And each of them seems attached to that building, each carefully checked and monitored constantly for any sign of trouble.";
+	rooms["350"].runOnEnter = chasmfallBonusFunction;
+	rooms["350"].westExit = "279";
+	rooms["350"].planet = "PLANET: TARKUS";
+	rooms["350"].system = "SYSTEM: REDACTED";
+	rooms["350"].addFlag(GLOBAL.OUTDOOR);
+	rooms["350"].addFlag(GLOBAL.HAZARD);
+
+	rooms["351"] = new RoomClass(this);
+	rooms["351"].roomName = "LIFT\nSTATION";
+	rooms["351"].description = "The lift station's foyer is a large, semi-circular waiting room, dominated by a big desk facing outward, laden with security monitors and data outputs, showing the status of the rift and tethers at a glance. The pirates have, wisely, jacked internal camera feeds from the core station below, preventing you from getting a head's-up on their positions.";
+	rooms["351"].runOnEnter = liftStationBonus;
+	rooms["351"].westExit = "350";
+	rooms["351"].eastExit = "352";
+	rooms["351"].planet = "PLANET: TARKUS";
+	rooms["351"].system = "SYSTEM: REDACTED";
+	rooms["351"].addFlag(GLOBAL.OUTDOOR);
+	rooms["351"].addFlag(GLOBAL.HAZARD);
+
+	rooms["352"] = new RoomClass(this);
+	rooms["352"].roomName = "ENGINEERING\nDECK";
+	rooms["352"].description = "A short flight of stairs leads down from the Lift Station's entrance to the engineering deck, a dark room surrounded by thrumming machinery and readouts from all over the station. You can clearly see the lift controls, now set to ";
+	rooms["352"].runOnEnter = liftStationEngineeringDeckBonusFunc;
+	rooms["352"].westExit = "351";
+	rooms["352"].eastExit = "353";
+	rooms["352"].planet = "PLANET: TARKUS";
+	rooms["352"].system = "SYSTEM: REDACTED";
+	rooms["352"].addFlag(GLOBAL.OUTDOOR);
+	rooms["352"].addFlag(GLOBAL.HAZARD);
+
+	rooms["353"] = new RoomClass(this);
+	rooms["353"].roomName = "LIFT\nSTATION";
+	rooms["353"].description = "Just beyond the control station is the huge cargo elevator leading down into the chasm between worlds. Large enough for a couple of cargo freighters to ride down side by side together, the cargo lift is currently stacked with crates and heavy equipment, doubtless intended for the tether station at the core. Stepping forward, you can see the elevator tracks leading down almost beyond sight, deep into the planetary heart.\n\nBeside the cargo lift, though, is a much smaller personnel elevator: a glass-encased car on a straight rail down to the station below, just big enough for a dozen workers or so to cram into. That's your ticket down.";
+	rooms["353"].runOnEnter = bombAlertBonusFunction;
+	rooms["353"].westExit = "352";
+	rooms["353"].planet = "PLANET: TARKUS";
+	rooms["353"].system = "SYSTEM: REDACTED";
+	rooms["353"].addFlag(GLOBAL.OUTDOOR);
+	rooms["353"].addFlag(GLOBAL.HAZARD);
+	rooms["353"].addFlag(GLOBAL.COMMERCE);
+
+	rooms["354"] = new RoomClass(this);
+	rooms["354"].roomName = "\nWALKWAY";
+	rooms["354"].description = "The walkway connecting the lift and the tether control station is a long, thin passageway overlooking the great planetary rift through the heart of Tarkus. With every step, it shifts precariously on its supports";
+	rooms["354"].runOnEnter = coreWalkWayBonus;
+	rooms["354"].eastExit = "355";
+	rooms["354"].planet = "PLANET: TARKUS";
+	rooms["354"].system = "SYSTEM: REDACTED";
+	rooms["354"].addFlag(GLOBAL.OUTDOOR);
+	rooms["354"].addFlag(GLOBAL.HAZARD);
+	rooms["354"].addFlag(GLOBAL.COMMERCE);
+
+	rooms["355"] = new RoomClass(this);
+	rooms["355"].roomName = "\nWALKWAY";
+	rooms["355"].description = "Suspended between two planets with nothing but void above and below, this walkway cuts a dangerous path to the facility in the center of it all. Signs of conflict cover the facility - scorch marks here, dents there, even a railing sliced clean through by some kind of energy blade. The facility lies east and the elevator out west.";
+	rooms["355"].runOnEnter = undefined;
+	rooms["355"].westExit = "354";
+	rooms["355"].eastExit = "356";
+	//rooms["355"].southExit = "";
+	rooms["355"].planet = "PLANET: TARKUS";
+	rooms["355"].system = "SYSTEM: REDACTED";
+	rooms["355"].addFlag(GLOBAL.OUTDOOR);
+	rooms["355"].addFlag(GLOBAL.HAZARD);
+
+	rooms["356"] = new RoomClass(this);
+	rooms["356"].roomName = "CORE\nPLATFORM";
+	rooms["356"].description = "This platform circles around a massive, ancient machine of alien design. It's roughly cylindrical and extends at least a few hundred feet in all directions. Metal gratings provide a solid anchor for you [pc.feet] thanks to the electromagnetic gear you picked up in the elevator.";
+	rooms["356"].runOnEnter = undefined;
+	rooms["356"].westExit = "355";
+	rooms["356"].northExit = "357";
+	//rooms["356"].southExit = "9999";
+	rooms["356"].planet = "PLANET: TARKUS";
+	rooms["356"].system = "SYSTEM: REDACTED";
+	rooms["356"].addFlag(GLOBAL.OUTDOOR);
+	rooms["356"].addFlag(GLOBAL.HAZARD);
+
+	rooms["357"] = new RoomClass(this);
+	rooms["357"].roomName = "CORE\nPLATFORM";
+	rooms["357"].description = "The metal supports that ring the central structure have been supplanted by a series of floating platforms to the north, piled with crates and other equipment. The primary platforms bend south and east from here, shaded in places by metal beams and shafts of pure energy that radiate into the half-planets on either side.";
+	rooms["357"].runOnEnter = undefined;
+	rooms["357"].eastExit = "358";
+	rooms["357"].southExit = "356";
+	rooms["357"].northExit = "KHORGAN_LEFT_COVER";
+	rooms["357"].planet = "PLANET: TARKUS";
+	rooms["357"].system = "SYSTEM: REDACTED";
+	rooms["357"].addFlag(GLOBAL.OUTDOOR);
+	rooms["357"].addFlag(GLOBAL.HAZARD);
+
+	rooms["358"] = new RoomClass(this);
+	rooms["358"].roomName = "CORE\nPLATFORM";
+	rooms["358"].description = "Beams of energy and corded metal alike radiate from the central column, connecting to the planet on all sides. To the north, or at least what your codex's instruments report as north, are a series of floating platforms laden with all manner of crates and equipment. They do not appear to be a permanent installation; perhaps the pirates brought them with them?";
+	rooms["358"].runOnEnter = undefined;
+	rooms["358"].eastExit = "359";
+	rooms["358"].westExit = "357";
+	rooms["358"].northExit = "KHORGAN_CENTER_COVER";
+	rooms["358"].planet = "PLANET: TARKUS";
+	rooms["358"].system = "SYSTEM: REDACTED";
+	rooms["358"].addFlag(GLOBAL.OUTDOOR);
+	rooms["358"].addFlag(GLOBAL.HAZARD);
+
+	//NE corner of permanent bits
+	rooms["359"] = new RoomClass(this);
+	rooms["359"].roomName = "CORE\nPLATFORM";
+	rooms["359"].description = "The permanent walkway around the stellar tether curves south and west around the central facility here, well-anchored and relatively safe to travel upon. The hastily deployed floating platforms to the north are objectively secure, barely anchored in place as they are. Placed there by the pirates, these temporary structures are covered in crates of all sizes and descriptions.";
+	rooms["359"].runOnEnter = undefined;
+	//rooms["359"].southExit = "360";
+	rooms["359"].northExit = "KHORGAN_RIGHT_COVER";
+	rooms["359"].westExit = "358";
+	rooms["359"].planet = "PLANET: TARKUS";
+	rooms["359"].system = "SYSTEM: REDACTED";
+	rooms["359"].addFlag(GLOBAL.OUTDOOR);
+	rooms["359"].addFlag(GLOBAL.HAZARD);
+
+	//West side pirate platform
+	rooms["KHORGAN_LEFT_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_LEFT_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_LEFT_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The surface is pock-marked with carbon burns and craters from your battle with the captain.";
+	rooms["KHORGAN_LEFT_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_LEFT_COVER"].southExit = "357";
+	rooms["KHORGAN_LEFT_COVER"].eastExit = "KHORGAN_CENTER_COVER";
+	rooms["KHORGAN_LEFT_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_LEFT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//Middle Pirate platform
+	rooms["KHORGAN_CENTER_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_CENTER_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_CENTER_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The middle of the three, this platform took a hell of a beating from the captain's opening salvo. Between the cracks and holes left in the plates, you can see the distant stars through the Tarkus rift.";
+	rooms["KHORGAN_CENTER_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_CENTER_COVER"].southExit = "358";
+	rooms["KHORGAN_CENTER_COVER"].eastExit = "KHORGAN_RIGHT_COVER";
+	rooms["KHORGAN_CENTER_COVER"].westExit = "KHORGAN_LEFT_COVER";
+	rooms["KHORGAN_CENTER_COVER"].northExit = "360";
+	rooms["KHORGAN_CENTER_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_CENTER_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//East pirate platform
+	rooms["KHORGAN_RIGHT_COVER"] = new RoomClass(this);
+	rooms["KHORGAN_RIGHT_COVER"].roomName = "FLOATING\nPLATFORM";
+	rooms["KHORGAN_RIGHT_COVER"].description = "One of the large hover-platforms at the edge of the station, bridging the gap between the station and the crust for ease of mining. The platform is barely hanging on after the fight, nearly blasted off by a rocket blast. Watch your step!";
+	rooms["KHORGAN_RIGHT_COVER"].runOnEnter = spessPirateCaptainFightFightGoTimeBonus;
+	rooms["KHORGAN_RIGHT_COVER"].southExit = "359";
+	rooms["KHORGAN_RIGHT_COVER"].westExit = "KHORGAN_CENTER_COVER";
+	rooms["KHORGAN_RIGHT_COVER"].planet = "PLANET: TARKUS";
+	rooms["KHORGAN_RIGHT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.OUTDOOR);
+	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.HAZARD);
+
+	//Ultranorth pirate platform
+	rooms["360"] = new RoomClass(this);
+	rooms["360"].roomName = "MINING\nPLATFORM";
+	rooms["360"].description = "The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot.";
+	rooms["360"].runOnEnter = undefined;
+	//rooms["360"].southExit = "360";
+	//rooms["360"].northExit = "360";
+	rooms["360"].southExit = "KHORGAN_RIGHT_COVER";
+	rooms["360"].planet = "PLANET: TARKUS";
+	rooms["360"].system = "SYSTEM: REDACTED";
+	rooms["360"].addFlag(GLOBAL.OUTDOOR);
+	rooms["360"].addFlag(GLOBAL.HAZARD);
+
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";
 	rooms["WIDGET WAREHOUSE"].description = "";
@@ -2593,6 +2750,58 @@ function initializeRooms():void
 	rooms["PHOENIX LIFT L2"].addFlag(GLOBAL.INDOOR);
 	rooms["PHOENIX LIFT L2"].moveMinutes = 1;
 
+	// KIROS SHIP
+	rooms["KIROS SHIP INTERIOR"] = new RoomClass(this);
+	rooms["KIROS SHIP INTERIOR"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP INTERIOR"].description = "The inside of the other ship is so richly appointed that it looks to belong to some noble or C.E.O. The halls are paneled with exotic woods, covered in vertical amber and brown striae. The panels are lavishly polished to an almost mirror shine, and the floor is padded with earth-toned carpets so plush that you sink an inch into them as you walk. Small flowering plants are positioned at different points along the short hallway. There are a number of open doorways leading to different sections of the ship, but you can hear distressed wails coming from one near the end of the hall.";
+	rooms["KIROS SHIP INTERIOR"].northExit = "KIROS SHIP QUARTERS";
+	rooms["KIROS SHIP INTERIOR"].eastExit = "KIROS SHIP ENGINEERING";
+	rooms["KIROS SHIP INTERIOR"].southExit = "KIROS SHIP AIRLOCK";
+	rooms["KIROS SHIP INTERIOR"].westExit = "KIROS SHIP TROPHYROOM";
+	rooms["KIROS SHIP INTERIOR"].runOnEnter = kirosShipInterior;
+	rooms["KIROS SHIP INTERIOR"].planet = "SHIP: LEAF"
+	rooms["KIROS SHIP INTERIOR"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP INTERIOR"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP INTERIOR"].moveMinutes = 1;
+
+	rooms["KIROS SHIP QUARTERS"] = new RoomClass(this);
+	rooms["KIROS SHIP QUARTERS"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP QUARTERS"].description = "The ship's more than big enough to accommodate a crew of a few dozen, but most of the rooms are stripped bare; nothing left but spaces in the dust where furniture once was. The largest of the rooms -- the captain's quarters -- is still furnished. An overly large king-sized bed is pushed up against one wall, surrounded by a sea of dirty magazines and holo-vid boxes for a variety of big-booty porn. You see a bin beside the bed, full of tied-off condoms in a whole slew of colors, all filled to bursting with spooge. Nasty.";
+	rooms["KIROS SHIP QUARTERS"].runOnEnter = kirosShipQuarters;
+	rooms["KIROS SHIP QUARTERS"].southExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP QUARTERS"].planet = "SHIP: LEAF"
+	rooms["KIROS SHIP QUARTERS"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP QUARTERS"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP QUARTERS"].moveMinutes = 1;
+
+	rooms["KIROS SHIP ENGINEERING"] = new RoomClass(this);
+	rooms["KIROS SHIP ENGINEERING"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP ENGINEERING"].description = "Thrumming powerfully, the ship's power core seems to be operating within normal parameters. This room is large enough to be staffed by a crew of a dozen, perhaps, but the only staff you see are a few sets of mechanized arms that move along tracks on the ceiling, adjusting the computer systems to keep everything running fine. You thread your way through the equipment, ducking here and there to avoid the arms as they flit between whatever tasks their robotic brain assigns them to. Everything seems built to accommodate this automation, and you catch a glimpse of 'KihaCorp' stamped across some of the polished metal armatures. There are no other exits or items of note here.";
+	rooms["KIROS SHIP ENGINEERING"].westExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP ENGINEERING"].planet = "SHIP: LEAF";
+	rooms["KIROS SHIP ENGINEERING"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP ENGINEERING"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP ENGINEERING"].moveMinutes = 1;
+
+	rooms["KIROS SHIP TROPHYROOM"] = new RoomClass(this);
+	rooms["KIROS SHIP TROPHYROOM"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP TROPHYROOM"].description = "This room is not quite what you expected for something labeled 'Trophy Room.' Namely, rather than animal heads and hunting kit, the walls are utterly covered from floor to ceiling with cum-stained panties tacked onto the wall. A thousand colors of undies from myriad races, from mono-holed waistbands to a tauric creature's flank-hugging silks, this room is a testament to sexual conquests. Next to each pair of panties is a small holo-pic of what must be their owner, bent over with a gut-stretching cock buried up her ass or twat. God <i>damn</i> the captain's hung or fancies stallions.";
+	rooms["KIROS SHIP TROPHYROOM"].eastExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP TROPHYROOM"].planet = "SHIP: LEAF";
+	rooms["KIROS SHIP TROPHYROOM"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP TROPHYROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP TROPHYROOM"].moveMinutes = 1;
+	
+	rooms["KIROS SHIP AIRLOCK"] = new RoomClass(this);
+	rooms["KIROS SHIP AIRLOCK"].roomName = "LEAF SHIP\nINTERIOR";
+	rooms["KIROS SHIP AIRLOCK"].description = "This is the oddly-shaped ships airlock, currently connecting it to your ship and allowing you to move between the two freely. You're hard pressed to even call such a small space a room, but the massive doors at either end of it - strong enough to survive the rigors of space - reinforce how important even tiny areas such as this can be.";
+	rooms["KIROS SHIP AIRLOCK"].northExit = "KIROS SHIP INTERIOR";
+	rooms["KIROS SHIP AIRLOCK"].planet = "SHIP: LEAF";
+	rooms["KIROS SHIP AIRLOCK"].system = "SYSTEM: REDACTED";
+	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.INDOOR);
+	rooms["KIROS SHIP AIRLOCK"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["KIROS SHIP AIRLOCK"].moveMinutes = 5;
+
 	//DEBUG
 	rooms["DEBUG1"] = new RoomClass(this);
 	rooms["DEBUG1"].roomName = "\nDEBUG ROOM";
@@ -2600,9 +2809,6 @@ function initializeRooms():void
 	rooms["DEBUG1"].planet = "PLANET: MHEN'GA";
 	rooms["DEBUG1"].system = "SYSTEM: ARA ARA";
 	rooms["DEBUG1"].eastExit = "WEST ESBETH 1";
-	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
-	//rooms["DEBUG1"].southExit = "DEBUG2";
-	//rooms["DEBUG1"].westExit = "DEBUG3";
 	rooms["DEBUG1"].addFlag(GLOBAL.INDOOR);
 	rooms["DEBUG1"].runOnEnter = debugMenus;
 }

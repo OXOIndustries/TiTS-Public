@@ -183,7 +183,7 @@ function loseToLapinaraAndGetEggplantedDudesAndNeuters():void
 	output("\n\nStarting off slow, the lapinara gently works her dong over your crack until a dollop of pre forms at the tip. It is then that she presses her wet tip against your hole, her strange pre causing your outer rim to tingle pleasantly. You feel little to no pain when she finally enters you. It’s as if her fluids are working as an anesthetic of sorts.");
 	output("\n\nAs she continues to work her way in and out of your [pc.ass], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
 	//Buttchange go!
-	buttChange(60,true,true,false);
+	pc.buttChange(60,true,true,false);
 
 	output("\n\n<i>“Eggs... Eggs, eggs, EGG eg-EGG!”</i>");
 
@@ -230,7 +230,7 @@ function loseToLapinaraAndGetEggplantedChicks():void
 
 	output("\n\nAs she continues to work her way in and out of your [pc.vagina " + x + "], your insides become progressively number until you feel no more than a pleasant warmth and dull throb. You soon feel a slight... stretching sensation. At least you think it’s a stretching, given the numbness of your nethers. You hear the lapinara shakily mumbling something.");
 	//Cuntchange!
-	cuntChange(x,60,true,true,false);
+	pc.cuntChange(x,60,true,true,false);
 
 	output("\n\n<i>“Eggs... Eggs, eggs, EGG eg-EGG!”</i>");
 	output("\n\nNo way. This bitch! She’s implanting her eggs in you! Soon enough, you feel a new sensation, a new object in your vag, likely one of her damn eggs. You see the bunny-girl thrashing about madly in a fit of pleasure, and it isn’t long before another one comes in behind its brother. You’re sure that it has to be the last of the eggs, as she’s collapsed over you, panting. Eventually, she pulls out, playfully rustling your hair.");
@@ -354,7 +354,7 @@ function buttFuckALapinara(cockNum:int = 0):void
 		output("\n\n<i>“You’re... a bit larger than what I usually take, to say the least. Could you go easy on me?”</i>");
 		output("\n\nYou nod understandably, and without further ado, you slowly but surely ease her onto your [pc.cock " + x  + "], being sure not to force her over the entire length. Her eyes roll into the back of her head, and she dreamily pumps her pecker with one hand, holding on to you with the other. She’s nice and tight, surprising for the sex machine that she so obviously is. Her tail whips about excitedly.");
 	}
-	cockChange(true,false);
+	pc.cockChange(true,false);
 	output("\n\n<i>“Y-you can pick up the pace there, Tiger. PleaaAAssSE!”</i>");
 
 	output("\n\nAmused by your partner’s eagerness, you gladly oblige her, bouncing her up and down on your [pc.cock " + x + "]. She thrashes her head back, squealing to the sky as she further loses herself in the pleasure that you were so kind to give her. It is then that you notice something peculiar about her dick. It’s swollen to nearly three times its original width!");

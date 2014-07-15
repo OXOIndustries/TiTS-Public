@@ -948,7 +948,7 @@ function boobToBoobSexathon():void {
 	{
 		output("\n\nAn appreciative hum escapes Jade's lips and she swishes her bountiful figure forward, momentarily blinding you with her huge boobs as she straddles your waist. You can't see it, but you can certainly feel it as her warm vulva tickles over your [pc.belly] and drops down to envelop your [pc.cock " + x + "]. Clearly no virgin, she swallows you to the hilt, groaning with pleasure as she seats herself firmly in your lap. You can feel her squeeze you a little, on instinct, but she makes no active move to ride you, instead letting your erection nestle comfortably in her warm love-canal.");
 		//Take virginity
-		cockChange();
+		pc.cockChange();
 	}
 	//else if PC.clit=BigEnough:
 	else if(pc.hasVagina() && pc.clitLength >= 4)
