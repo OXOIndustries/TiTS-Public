@@ -58,8 +58,14 @@ function combatMainMenu():void
 	}
 	if(flags["COMBAT MENU SEEN"] == undefined)
 	{
+		//Encounter with a shitty cover mechanic.
+		if(foes[0] is CaptainKhorganMech)
+		{
+			coverUpdateDisplay();
+		}
 		updateCombatStatuses();
 	}
+	
 	//Stunned Menu
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
@@ -113,6 +119,8 @@ function combatMainMenu():void
 		if(pc.hasStatusEffect("Trip")) addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
+		//Bonus shit for stuff!
+		if(foes[0] is CaptainKhorganMech) khorganMechBonusMenu();
 	}
 	flags["COMBAT MENU SEEN"] = 1;
 }
@@ -1288,70 +1296,27 @@ function enemyAI(aggressor:Creature):void
 		processCombat();
 		return;
 	}
-	//Foe specific AIs
-	switch(aggressor.short) {
-		case "Celise":
-			celiseAI();
-			break;
-		case "two zil":
-			zilpackAI();
-			break;
-		case "zil male":
-			zilMaleAI();
-			break;
-		case "female zil":
-			zilGirlAI();
-			break;
-		case "cunt snake":
-			cuntSnakeAI();
-			break;
-		case "naleen":
-			naleenAI();
-			break;
-		case "naleen male":
-			naleenMaleAI();
-			break;
-		case "machina":
-			machinaAI();
-			break;
-		case "Dane":
-			daneAI();
-			break;
-		case "mimbrane":
-			mimbraneAI();
-			break;
-		case "female raskvel":
-			raskvelChickAI();
-			break;
-		case "sex bot":
-			sexbotAI();
-			break;
-		case "gray goo":
-			grayGooAI();
-			break;
-		case "female lapinara":
-			lapinaraAI();
-			break;
-		case "sydian male":
-			sydianMaleAI();
-			break;
-		case "firewall":
-			firewallAI();
-			break;
-		case "pirate gang":
-			phoenixPiratesAI();
-			break;
-		case "auto-turrets":
-		case "Tams and turrets":
-			tamtamtamtamtamtamAI();
-			break;
-		case "rocket pods":
-			rocketPodAI();
-			break;
-		default:
-			enemyAttack(aggressor);
-			break;
-	}
+	if(aggressor is Celise) celiseAI();
+	else if(aggressor is ZilPack) zilpackAI();
+	else if(aggressor is ZilMale) zilMaleAI();
+	else if(aggressor is ZilFemale) zilGirlAI();
+	else if(aggressor is CuntSnake) cuntSnakeAI();
+	else if(aggressor is Naleen) naleenAI();
+	else if(aggressor is NaleenMale) naleenMaleAI();
+	else if(aggressor is CarlsRobot) machinaAI();
+	else if(aggressor is Dane) daneAI();
+	else if(aggressor is Mimbrane) mimbraneAI();
+	else if(aggressor is RaskvelFemale) raskvelChickAI();
+	else if(aggressor is SexBot) sexbotAI();
+	else if(aggressor is GrayGoo) grayGooAI();
+	else if(aggressor is LapinaraFemale) lapinaraAI();
+	else if(aggressor is SydianMale) sydianMaleAI();
+	else if(aggressor is HandSoBot) firewallAI();
+	else if(aggressor is PhoenixPirates) phoenixPiratesAI();
+	else if(aggressor is GunTurrets) tamtamtamtamtamtamAI();
+	else if(aggressor is RocketTurrets) rocketPodAI();
+	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
+	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
 {
@@ -1426,6 +1391,10 @@ function victoryRouting():void
 	{
 		pcBeatsRocketPods();
 	}
+	else if(foes[0] is CaptainKhorganMech)
+	{
+		victoriousVsCaptainOrcButt();
+	}
 	else genericVictory();
 }
 
@@ -1499,6 +1468,10 @@ function defeatRouting():void
 	else if (foes[0] is RocketTurrets)
 	{
 		pcLosesToRocketPods();
+	}
+	else if(foes[0] is CaptainKhorganMech)
+	{
+		loseToCaptainKhorganBadEnd();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1710,6 +1683,12 @@ function startCombat(encounter:String):void
 			break;
 		case "rocket pods":
 			chars["ROCKETPODS"].prepForCombat();
+			break;
+		case "khorgan mechfight":
+			chars["CAPTAINKHORGANMECH"].prepForCombat();
+			break;
+		case "khorgan":
+			chars["CAPTAINKHORGAN"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
