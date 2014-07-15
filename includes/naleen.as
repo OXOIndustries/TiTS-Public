@@ -259,7 +259,7 @@ function naleenFucksBoysScene():void {
 	output("\n\nYou gulp and try to squirm away, but the paralytic in your veins keeps you perfectly placid and unresisting as the naleen's hand gently glides from your [pc.hair] down your [pc.chest], stopping to giving one of your [pc.nipples] a pinch and a tug before sliding it down to where the groin would be on a humanoid. Where the feline torso meets serpent body, the naleen's fingers slip into a nearly hidden vertical slit, vanishing up to the knuckle. She breathes deep as her fingers work, the swells of her breasts carrying your head as you lie paralyzed against her, helpless but to listen as a wet schlicking echoes up from her slit and the hand on your [pc.cock " + x + "] gives it a little tug, lining it up with the naleen's reptilian cunt.");
 	
 	output("\n\nOver you, the naleen gives a surprisingly feminine whimper of pleasure as your [pc.cock " + x + "] brushes her folds, just barely parting the lips of her slit. She pushes you in further a moment later, and before you can blink your prick's engulfed in a warm, silken cocoon: the naleen's tender muscles gently contract and squeeze the invading [pc.cock " + x + "], massaging and caressing inch after glorious inch as the serpentine cunt takes your dick. Helpless as you are, you can do little but moan as your rod slides into the slick snake-pussy, engulfed in her magnificent muff.");
-	cockChange();
+	pc.cockChange();
 	
 	output("\n\n<i>“What's that, love?”</i>  the naleen purrs, a hand running through your hair before pulling your face from the depths of her cleavage, letting you gaze up at her feline face once more. You moan again as her muscles squeeze down all at once, vice-like on your [pc.cock " + x + "]. The naleen giggles, cupping your cheek in both her hands. <i>“You see, I tried to tell you how nice it would be... but that's no matter now, hmm? No, no. You're all mine now, my dear little walking cock. I do so love the feel of you inside me... so perfect, is it not? Mmm, I'm just not alive without a </i>");
 	
@@ -322,15 +322,15 @@ function ohNoNoCawkNaleenLoss():void {
 	if(pc.hasVagina()) output("lips of your [pc.vagina " + x + "]");
 	else output("the ring of your [pc.asshole]");
 	output(". With a groan, you feel your limp defenses giving way, letting the slim tip pierce into your helpless hole.");
-	if(!pc.hasVagina()) buttChange(20,true,true,false);
-	else cuntChange(x,20,true,true,false);
+	if(!pc.hasVagina()) pc.buttChange(20,true,true,false);
+	else pc.cuntChange(x,20,true,true,false);
 	
 	output("\n\nThe first inch feels like her finger: long and slender, delving between the parted walls of your [pc.vagOrAss " + x + "], caressing every paralyzed muscle until your body is screaming in pleasure and pain, trying desperately to accommodate the growing pressure forcing its way into your body. While the tip was small, easy to accommodate with your relaxed, envenomed body, its size doubles again and again, stretching your hole until you're screaming incoherently, overwhelmed by the massive tail insertion. The naleen's penetration is unrelenting, inch after inch of ever-widening scales pumped into your [pc.vagOrAss " + x + "]. As you cry and moan, the huntress gently strokes your cheeks, fingers ");
 	if(pc.hasHair()) output("running through your [pc.hair]");
 	else output("rubbing across your head");
 	output(" as she violates your deepest depths, stretching you until you feel as if you'll be torn apart.");
-	if(!pc.hasVagina()) buttChange(100,true,true,false);
-	else cuntChange(x,100,true,true,false);
+	if(!pc.hasVagina()) pc.buttChange(100,true,true,false);
+	else pc.cuntChange(x,100,true,true,false);
 	
 	output("\n\n<i>“I can almost see your stomach bulging, pet. You love having so much of me inside you, yes? I can feel your heart hammering, your body reacting to so much, so soon. But you love it, don't you? Being my little slut to be violated again and again, stretched until you cry my name to the heavens.”</i>  As she speaks, though, you can feel the massive insertion slithering back up your [pc.vagOrAss " + x + "], leaving you with a cavernous, unquenchable emptiness as the great tail slides out, leaving little more than the tip in your well-stretched hole. Breathing hard, heart pounding from the pleasure of such a tremendous stretching, your gaze locks with the naleen's brilliant orange eyes for the briefest moment... before the great serpentine tail slams back home, ramming into your ");
 	if(pc.hasVagina()) output("cunt");
@@ -571,7 +571,7 @@ function bendNaleenOver():void {
 	output(", pushing back hard against you to make your work for every inch. But she's so wet, it barely slows your onslaught. ");
 	if(y >= 0) output("Her ass gives a bit more of a fight, but the steady push of your hips keeps it going - and your lover's not shy about thrusting her hips back, too, moaning louder with every pump you give into her tight behind. ");
 	output("She's loving every second of it, clutching at her tits and purring so throatily you can feel it all the way back in her quivering quim, a thrumming vibration that spreads to your very core.");
-	cockChange();
+	pc.cockChange();
 	
 	output("\n\nYou wrap your hand through her fiery hair, pulling the slut's head back to stop her before you cum too soon. She gives a sharp cry, but returns your harsh rebuke by grinding her hips back against you, nearly swallowing your cock");
 	if(y >= 0) output("s");
@@ -675,7 +675,7 @@ function obligatorySavinTailPegging():void {
 		output("[pc.cocks] slide");
 		if(pc.cockTotal() == 1) output("s");
 		output(" across her taut body, gliding through the slick field of her spilt excitement until the crown brushes her netherlips. Penetrating her is effortless, her slutty slit easily parting to accept your cock, taking inch after inch as you slide yourself home inside her.");
-		cockChange();
+		pc.cockChange();
 	}
 	else output("featureless groin rubbing her pussy, gliding across her with almost unnatural ease thanks to the lake of fem-slime coating her groin.");
 	output(" Her back arches under you as she cries her pleasure, filled with such primal lust that you fear she'll cum on the spot! Your sexes meet, crotches grinding with a steady passion, keeping the kitten on the edge of her orgasm as you take hold of her wet tail-tip, guiding it back around your entwined bodies toward your own pleasure.");
@@ -699,7 +699,7 @@ function obligatorySavinTailPegging():void {
 	else output("[pc.cock " + x + "] deeper and deeper");
 	output(" until she's cumming with you, head thrown back and screaming her orgasm. Desperately, you grab the kitty's cheek and kiss her, fingers brushing through her fiery tresses as you silence her. She tries to reciprocate, but it's as if she's lost to the pleasure, spasming in your arms.");
 	
-	buttChange(100,true,true,false);
+	pc.buttChange(100,true,true,false);
 	
 	output("\n\nYou know time passes, but for you, it has little meaning as the naleen mercilessly writhes and thrashes in your ass, ramming more and more tail deep inside you even as your orgasm passes, replaced by mind-numbing anal pleasure. She groans and moans, holding you tight as your stomach distends, organs pushed and cramped to take the massive insertion cramming up your bum. When it's finally over, all you can do is sigh with utter, complete contentment, hand holding your bulging belly as the half-senseless naleen slowly pulls herself from you.");
 	output("\n\nYou don't know how many times you've cum");
@@ -809,7 +809,7 @@ function yesSnuggleWifZatNaleen():void {
 		output(" oh so sweetly inside herself.");
 		
 		output("\n\n<i>“Much,”</i> you groan, laying your head to rest as the huntress holds you tight, letting you drift off to sleep buried inside her, cumming again and again throughout the night thanks to her ceaseless ministrations. You've never felt warmer.");
-		cockChange();
+		pc.cockChange();
 		pc.orgasm();
 		pc.orgasm();
 		if(rand(3) == 0) pc.orgasm();
@@ -911,7 +911,7 @@ function naleenReverseBJPart3():void
 	if(pc.balls > 0) output(", even to the point of taking in your [pc.sack] if she could");
 	output(". You have enjoy the last few moments of the imprisoning blow-job before the naleen presses her tail-tip against your [pc.asshole]. She gently but firmly pushes it until your rear entrance yields to her desires. With ungraceful blind groping, the naga slowly presses herself further and further into your no-man’s-land, causing you to wriggle and squirm against her, compelled by the strange sensations of the snake-girl’s soft scales sliding into your abused pucker. It's obvious she's searching for your vulnerable prostate.");
 	//Buttchange
-	buttChange(50,true,true,false);
+	pc.buttChange(50,true,true,false);
 	processTime(7);
 	clearMenu();
 	addButton(0,"Next",naleenReverseBJPart4);

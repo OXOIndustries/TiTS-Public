@@ -364,8 +364,8 @@ function rideDudeleensWithAPussaaaaah():void {
 	output("\n\n<i>“Yes-sssss!”</i>  he hisses, as you finally bottom out. His face contorts in equal parts relief and pleasure.");
 
 	//CHECK VIRGINITIES HERE!
-	cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
-	cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+	pc.cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+	pc.cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 
 	output("\n\nYou groan lustily, clenching down and feeling ");
 	if(pc.totalVaginas() > 1) output("their");
@@ -699,7 +699,7 @@ function getTakenInTheAssByDudeleen():void {
 	output("\n\nHis entrance is slow, almost grudgingly so. Whenever he meets with resistance, he stops in his tracks and wiggles a bit to loosen you enough so he continue to press inside you. In a few moments, you feel the touch of his scaly snake half, and you smile knowing he’s fully hilted inside you. He lets out a grunt that easily devolves into a purr of enjoyment as you grip around his bulbous base with your sphincter.");
 
 	//BUTTGINITY CHECK HURR!
-	buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 	
 	output("\n\nYou arch your back and moan in pleasure, praising the naleen for how good he feels inside of you, instructing him to thrust slowly, to let you feel him massaging your insides with his wonderful snake-cock. If he does well, you promise, you'll reward him. In fact, you have something for him now, so he'd best open wide....");
 
@@ -928,7 +928,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 			if(pc.balls > 0) output("scraping along your [pc.balls] before ");
 			output("sliding its strangely textured shaft over your own [pc.cockBiggest], unabashedly frotting you as it goes.");
 		}
-		cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+		pc.cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 	}
 	//if two or more Vaginas:
 	else if(pc.totalVaginas() > 1)
@@ -937,15 +937,15 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		if(pc.totalVaginas() > 2) output("two");
 		else output("both");
 		output(" of your [pc.cunts] at the same time, spreading you wide in unison and sliding home with a smoothness that you doubt could be achieved by taking two partners at once. The bulbs lining his shafts seem to almost massage the thin wall between your stuffed pussies, as if trying to frot themselves inside you even as he penetrates you.");
-		cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
-		cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+		pc.cuntChange(x,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+		pc.cuntChange(y,chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 	}
 	else //If the PC only has their ass.
 	{
 		output("\n\nWith only the one hole available to him, his topmost shaft slides home, stretching you out as the progressively larger bulges of his shaft push through your [pc.asshole] like a cross between a dildo and a string of anal beads, rubbing you in the most delicious of ways. His second cock has to settle for gliding through your [pc.butt]");
 		if(pc.tailCount > 0) output(" and eventually rubbing against the base of your tail");
 		output(", taking what pleasure it can from the friction there.");
-		buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+		pc.buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 	}
 	trace("NALEEN COCK RATING: " + chars["NALEEN_MALE"].cockVolume(0));
 	trace("PC ButtCapacity: " + pc.analCapacity());
@@ -978,7 +978,7 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 		output("\n\nA thrill of desire surges through you as you realise what he intends. You don’t really have time to say or do anything else, as he begins penetrating you once more. The first few inches of his [pc.girlCumNoun]-drenched shaft penetrate your ass while his throbbing topmost tool enters your pussy. As soon as the first few inches are safely guarded within you, he bucks violently, feeding you his twin bulbous cocks at once.");
 
 		output("\n\nYou cry out in pleasure at the feeling of being stuffed in both holes simultaneously, stretching around his paired phalli and rubbing through your inner walls, massaging you inside with incredible intimacy.");
-		buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
+		pc.buttChange(chars["NALEEN_MALE"].cockVolume(0),true,true,false);
 
 		output("\n\nHe pounds your holes with renewed vigor, snarling furiously as, with a final shove, he yowls, and you feel warmth beginning to soak your insides.");
 		output("\n\nThe feeling of his seed rolling around inside of you is all the stimulus you need, and you cry out as your own orgasm washes through you, your holes clamping down on the naleen's shafts and milking him for all he's worth as you climax together. You grip the twin members impaling you with each shuddering wave of electric pleasure that crashes over you");

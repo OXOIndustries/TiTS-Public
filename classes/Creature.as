@@ -1394,9 +1394,13 @@
 					buffer = vaginasDescript();
 					break;
 				case "eachVagina":
+				case "eachPussy":
+				case "eachCunt":
 					buffer = eachVagina();
 					break;
 				case "oneVagina":
+				case "onePussy":
+				case "oneCunt":
 					buffer = oneVagina();
 					break;
 				case "vagOrAss":
@@ -1901,6 +1905,12 @@
 			}
 		}
 
+		// HUE
+		public function IQ():Number
+		{
+			return Math.round(intelligence()/intelligenceMax()*100);
+		}
+		
 		public function intelligence(arg:Number = 0, apply:Boolean = false):Number 
 		{
 			if (apply)
@@ -8889,6 +8899,177 @@
 			}
 			
 			return "ERROR: Couldn't find a valid pregnancy slot but the creature is defined as being pregnant. SHITS FUCKED YO.";
+		}
+		
+		function cuntChange(arg:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
+		{
+			return holeChange(arg,volume,display,spacingsF,spacingsB);
+		}
+		
+		function buttChange(volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
+		{
+			return holeChange(-1,volume,display,spacingsF,spacingsB);
+		}
+		
+		function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):void 
+		{
+			if (cockVirgin && hasCock())
+			{
+				cockVirgin = false;
+				if(spacingsF) output(" ");
+				
+				if (this is PlayerCharacter)
+				{
+					output("<b>You have succumbed to your desires and lost your </b>");
+					if (hasVagina()) output("<b>masculine </b>");
+					output("<b>virginity.</b>");
+				}
+				else
+				{
+					output("<b>" + short + " has succumbed to " + mf("his", "her") + " and lost " + mf("his", "her"));
+					if (hasVagina()) output(" masculine");
+					output(" virginity.</b>");
+				}
+				
+				if(spacingsB) output(" ");
+			}
+		}
+		
+		protected function output(msg:String):void
+		{
+			kGAMECLASS.output(msg);
+		}
+		
+		function holeChange(hole:int, volume:Number, display:Boolean = true, spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
+		{
+			var stretched:Boolean = false;
+			var devirgined:Boolean = false;
+			var capacity:Number;
+			var holePointer:VaginaClass;
+			//Set capacity based on the hole.
+			if(hole == -1) {
+				capacity = analCapacity();
+				holePointer = ass;
+			}
+			else {
+				if(hole+1 > totalVaginas()) return false;
+				else {
+					capacity = vaginalCapacity(hole);
+					holePointer = vaginas[hole];
+				}
+			}
+			//cArea > capacity = autostreeeeetch.
+			if(volume >= capacity) {
+				if(holePointer.looseness() >= 5) {}
+				else holePointer.looseness(1);
+				stretched = true;
+			}
+			//If within top 10% of capacity, 50% stretch
+			else if(volume >= .9 * capacity && rand(2) == 0) {
+				holePointer.looseness(1);
+				stretched = true;
+			}
+			//if within 75th to 90th percentile, 25% stretch
+			else if(volume >= .75 * capacity && rand(4) == 0) {
+				holePointer.looseness(1);
+				stretched = true;
+			}
+			//If virgin
+			if(holePointer.hymen || (hole < 0 && analVirgin) || (hole >= 0 && vaginalVirgin)) {
+				if (spacingsF) output(" ");
+				if (this is PlayerCharacter)
+				{
+					if(holePointer.hymen) output("<b>Your hymen is torn</b>");
+					else output("<b>You have been penetrated</b>");
+					if(hole >= 0 && vaginalVirgin) {
+						vaginalVirgin = false;
+						output("<b>, robbing you of your vaginal virginity</b>");
+					}
+					else if(analVirgin) {
+						output("<b>, robbing you of your anal virginity</b>");
+						analVirgin = false;
+					}
+					output("<b>.</b>");
+				}
+				else
+				{
+					if (holePointer.hymen) output("<b>" + short + "s hymen is torn</b>");
+					else output("<b>" + short + " has been penetrated</b>");
+					if (hole >= 0 && vaginalVirgin)
+					{
+						vaginalVirgin = false;
+						output("<b>, robbing them of " + mf("his", "her") + " vaginal virginity</b>");
+					}
+					else if (analVirgin)
+					{
+						analVirgin = false;
+						output("<b>, robbing them of " + mf("his", "her") + " anal virginity</b>");
+					}
+					output("<b>.</b>");
+				}
+				if(spacingsB) output(" ");
+				devirgined = true;
+			}
+			//Delay anti-stretching
+			if(volume >= .35 * capacity) {
+				if(hole >= 0) {
+					holePointer.shrinkCounter = 0;
+				}
+				else {
+					holePointer.shrinkCounter = 0;
+				}
+			}
+			if(stretched) {
+				trace(short + " HOLE CODE #:" + hole + " STRETCHED TO " + holePointer.looseness() + ".");
+				//STRETCH SUCCESSFUL - begin flavor text if outputting it!
+				if(display) {
+					//Virgins get different formatting
+					if(devirgined) {
+						//If no spaces after virgin loss
+						if(!spacingsB) output(" ");
+					}
+					//Non virgins as usual
+					else if(spacingsF) output(" ");
+					if (hole >= 0) {
+						if (this is PlayerCharacter)
+						{
+							if(holePointer.looseness() >= 5) output("<b>Your " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
+							else if(holePointer.looseness() >= 4) output("<b>Your " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>Your " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>Your " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>Your " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+						}
+						else
+						{
+							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + vaginaDescript(hole) + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + vaginaDescript(hole) + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + vaginaDescript(hole) + " is a little more used to insertions.</b>");
+							else output("<b>" + short + "s " + vaginaDescript(hole) + " is stretched out a little bit.</b>");
+						}
+					}
+					else {
+						if (this is PlayerCharacter)
+						{
+							if(holePointer.looseness() >= 5) output("<b>Your " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow you.</b>");
+							else if(holePointer.looseness() >= 4) output("<b>Your " + assholeDescript() + " painfully dilates, the pucker now able to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>Your " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>Your " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>Your " + assholeDescript() + " is stretched out a little bit.</b>");
+						}
+						else
+						{
+							if(holePointer.looseness() >= 5) output("<b>" + short + "s " + assholeDescript() + " is stretched painfully wide, gaped in a way that practically invites huge monster-cocks to plow " + mf("him", "her") +".</b>");
+							else if(holePointer.looseness() >= 4) output("<b>" + short + "s " + assholeDescript() + " painfully stretches, the lips now wide enough to gape slightly.</b>");
+							else if(holePointer.looseness() >= 3) output("<b>" + short + "s " + assholeDescript() + " is now somewhat loose.</b>");
+							else if(holePointer.looseness() >= 2) output("<b>" + short + "s " + assholeDescript() + " is a little more used to insertions.</b>");
+							else output("<b>" + short + "s " + assholeDescript() + " is stretched out a little bit.</b>");
+						}
+					}
+					if(spacingsB) output(" ");
+				}
+			}
+			return (stretched || devirgined);
 		}
 	}
 }

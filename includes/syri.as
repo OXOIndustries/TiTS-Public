@@ -239,7 +239,7 @@ function victoryFuckSyrisBunghole():void {
 	output("\n\n<i>“Don't just sit there,”</i>  the horny alien growls, tail caressing your cock until you shudder, waves of pleasure seething from the thousands of nerves on your crown. More seductively, voice bordering on a purr, she whispers, <i>“I'm waiting.”</i>");
 
 	output("\n\nA predatory, sexual groan escapes your lips as your hips rock back, leveling your thick erection right at the bullseye between her cheeks. Syri even reaches back to pull them apart, giving you a straight shot into her waiting hole. With such a welcoming invitation, how could you refuse? You move forward, [pc.cockHead " + x + "] pressing into the spit-slick dark star, and immediately you can hear the thunk of Syri's prick jumping to attention, slapping wetly against the cum-soaked table, drooling in anticipation.");
-	cockChange();
+	pc.cockChange();
 
 	output("\n\nSyri starts to speak, but her voice catches as you push in, instead coming out as a high-pitched squeal as your prick spreads her wide, battering past her spasming sphincter and into the dark, warm, wet channel beyond. She grabs the table, trying to steady herself as your hips rock slowly forward, giving her just enough time to adjust to each and every one of your " + possessive(pc.cockDescript(x)));
 	//{if cockLength >= 12:}
@@ -307,7 +307,7 @@ function rideSyrisCockYouWinner():void {
 	output(" with your bare ass hovering over her spit-and-cum-slick cock.");
 
 	output("\n\nManaging a little smile, Syri plants her hands on your [pc.hips]: not forcing you down, no, she's learned her lesson. Instead they simply rest on your hips, holding you gently as her thumb caresses your bare [pc.skin], surprisingly affectionate. Hell, why not... you lean down and plant a quick kiss on her lips, softly nibbling on her lower lip when she tries to return the gesture. Your hands move up, cupping her breasts, ready to use her for support as you start to lower yourself down. Her prick's like a steel rod, perfectly erect and ready, slick with all the lubricant you've lavished over it. When the tip presses into your [pc.asshole], it slides in almost effortlessly, passing your relaxed sphincter. A low groan escapes your clenched teeth as you slide down Syri's slick fuckstick, all the way down until you can feel her swelling sphere pressing into your ass.");
-	buttChange(chars["SYRI"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["SYRI"].cockVolume(0),true,true,false);
 
 	output("\n\n<i>“N-not the knot,”</i>  Syri whines. <i>“You don't wanna be here for hours, do you?”</i>");
 
@@ -426,7 +426,7 @@ function pcLosesToSyriBettingHisAss():void {
 	else {
 		output("\n\n<i>“Hoooly shit, [pc.name], what do you shove up here - people? God damn, I'm </i>hung<i> and there's enough room back here for two of me.”</i>  She swats your behind, trying to get you to tighten up for her. Her attention, though, goes to some of the bystanders to your sexual submission: <i>“Hey, that wasn't an invitation. This time. Avert your eyes.”</i>  And more quietly, just for you, she adds: <i>“You're loose enough for a few guests, huh? Maybe next time we'll wager you between all the regulars. That might just fill this [pc.asshole] of yours up, huh?”</i>");
 	}
-	buttChange(chars["SYRI"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["SYRI"].cockVolume(0),true,true,false);
 
 	output("\n\nYou groan, entire body shuddering around the thick prick spearing it. Syri keeps still inside you, her veiny cock pulsing and throbbing in your clenched anal tunnel, letting you slowly adjust to its presence before she moves. Involuntarily, your body shivers as you feel a thick, steaming hot plop of canine pre drip into your ass, much hotter than any human seed. You groan as the ausar girl gently rocks her hips, dragging the smear down your rectal walls until just her tip is spearing you, holding your hole open as she adjusts her grip on your [pc.hips] and slides back in. She pauses at each zenith of movement, fucking you with agonizing slowness.");
 	if(pc.hasCock()) output(" [pc.EachCock] twitches against the table's side each time her thick tip rolls across your prostate, and soon you're dribbling a steady stream of [pc.CumColor], staining the faux wood and dripping onto the floor. Pretty soon, you've left a nice little lake between Syri's furry legs.");
@@ -817,7 +817,7 @@ function syriReverseCowgirlConsensualization():void {
 	output("\n\nWith a wiggle of her hips, Syri starts to hump your shaft. Leaning forward, she grabs your [pc.legs] for support, bracing her arms against them as she picks up the pace, hot-dogging your [pc.cock " + x + "] until you can see the streaks of creamy pre you're starting to leave in her crack, adding just the right amount of lube to your stiff cockhead for her to confidently start to position herself overtop it, ready for the main course.");
 
 	output("\n\nSyri reaches between her legs, steadying your [pc.cock " + x + "] as she slides down it. Her breath catches as the [pc.cockHead " + x + "] pierces her sphincter, but soon she's cooing happily as your prick slides deep into her asshole. Before she even reaches the base, Syri's head is thrown back and her back is arched as her whole body reacts to the thick, throbbing, and clearly quite pleasurable invader. As she slides down, you can do little more than bite your lip and grab her hips, gently guiding the ausar's movements until after agonizing moments she's fully impaled on your [pc.cock " + x + "].");
-	cockChange();
+	pc.cockChange();
 
 	output("\n\nLeaning back in your lap, Syri lets loose a deeply feminine little moan, her bushy black tail swishing happily as she adjusts to the utter fullness of your [pc.cock " + x + "] embedded in her ass. After a moment of adjustment, Syri plants her hands on your [pc.knees], steadying herself on the edge of your bed as she starts to move. It's short, shallow movements at first, only pulling an inch or two up from your lap before descending back down, ending every slide with a satisfied moan or an emphatic twitch of the tail. As her pace starts to quicken, you move your hips up to meet her, thrusting back - but she quickly plants a palm on your chest, pushing you back down on the bed.");
 
@@ -880,7 +880,7 @@ function missionaryWithTheDogDickedSlutSyri():void {
 	output(" Syri growls, pulling your head down into a tongue-filled kiss as your hips move closer to her own, pressing in until your [pc.cockHead " + x + "] brushes her taut cheeks. Her breath catches, body tensing as your prick prods against her puckered hole; she grabs her own red cock, rubbing it as she pulls it out of the way, giving you unrestricted access to her ass. As you press on, her arms wrap around your neck, lips pressing to yours in short, frantic kisses as her mind and body brace for impact.");
 
 	output("\n\nYou push in, [pc.hips] rocking forward ever so slowly, edging your [pc.cock " + x + "] into the warm embrace of the ausar girl's asshole. She draws a sharp breath at the moment of penetration, back arching as her nails dig into your back, holding your fast as you enter her. Syri's legs curl as your cock slides deeper, locking around your bare [pc.butt] and pulling you in. <i>“Don't hold back, Steele,”</i>  she groans, furry legs forcing your fuckstick deeper and deeper, faster and faster, <i>“Give it to me!”</i>");
-	cockChange();
+	pc.cockChange();
 
 	output("\n\nNot one to keep a lady waiting, you thrust all the way in with one long, furious thrust that leaves Syri screaming her pleasure and your cock ");
 	if(pc.cockVolume(x) <= chars["SYRI"].analCapacity()) output("buried up to the hilt, groin pressed against her taut cheeks");
@@ -943,7 +943,7 @@ function getVagFukkedBySyri():void {
 	output("\n\nYou nod and grab the condom between your teeth, slipping back between her spread legs to press your face to her throbbing erection, planting one last kiss upon its crown before you adjust the condom clenched between your teeth, getting the almost imperceptibly thin fibers lined up just right before you plunge down, spreading it down and around her cock, letting it snap tight on the crown of her thick knot. Syri draws a sharp breath as the condom pops into place, reaching down to draw it tight as you straddle her once again, arms wrapping around her slender shoulders, [pc.vagina " + x + "] hovering over her slick, sheathed shaft.");
 
 	output("\n\nThis time, Syri grabs your [pc.hips] and pulls you down, spearing you right on her cock. Your back steadily arches as the lips of your [pc.vagina " + x + "] part, swallowing inch after inch of Syri's cock, feeling the impending, unstoppable fullness of being stuffed with alien dick until you let out a shrill yelp, cunt straining to accommodate the thick knot ramming it. You rock yourself back, pulling her back out to the head few inches, giving yourself a moment to brace for the knotting this time. A few short bounces on her cock slowly loosens you up, spreading your wet and ready walls wide for the real pleasure.");
-	cuntChange(x,chars["SYRI"].cockVolume(0),true,true,false);
+	pc.cuntChange(x,chars["SYRI"].cockVolume(0),true,true,false);
 
 	output("\n\nYou take it easy for the first few minutes, steadily working further and further down her length, moaning and whimpering with pleasure as her thick cock grinds into you. Soft, furred hands play across your skin");
 
@@ -1004,7 +1004,7 @@ function catchAnalFromSyriIfYouDontUseACondom():void {
 	if(pc.ass.looseness() >= 4) output("even your loose, battered anus is making her work for every inch");
 	else output("she's forced to work for every inch she thrusts");
 	output(". Her movements becomes sharp and shallow, tiny, fast thrusts into your tightly-clenched hole until she's practically battering her way in. So much for gentle! You grab Syri's flared hips and guide her in, urging her deeper and deeper until you once again feel a potent pressure building up against your tight-held hole. Syri grunts with effort, hammering it into you until you're practically crying out. You manage to relax your body, forcibly loosening your [pc.asshole] so that the great orb of Syri's knot can push through, reaming your abused sphincter with a flurry of quick strokes before it can finally push into you.");
-	buttChange(chars["SYRI"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["SYRI"].cockVolume(0),true,true,false);
 
 	output("\n\nBut she only goes half-way, leaving her knot stretching your ass at its widest point. You whine, trying to move your hips to either push it out or pull her thick tool in, but Syri grabs your [pc.hips], holding you immobile as her throbbing knot pulls you apart at the seams. The pleasure is incredible, but the feeling is mired with the sheer stretch inflicted on your [pc.asshole], making you whimper and whine, begging for more. Instead, Syri's fingers dig into your hips as she pulls out, knot coming out with a wet pop that leaves you feeling horribly, irrevocably empty. You can barely notice her cock pulling out of your agape ass, flopping against your thigh as your lover grins down at you with a predatory lust.");
 

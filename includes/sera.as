@@ -288,7 +288,7 @@ function getRodeFemdomStyleBySera():void {
 	output(". With one hand, she covers your eyes. With the other, she firms her grip on your throat. Her lips meet yours hard enough that you nearly cut the insides of yours on your teeth, and then her long snake-like tongue is twirling over your gums. Her slit slides further up, her hips shift, and suddenly, your [pc.cockHead " + x + "] isn't just warm but hot, wreathed in wet folds. She glides down you while kissing you, her grip as tight as her twat and the tongue-kiss.");
 
 	output("\n\nShe breaks away, her lips still wet with mixed spit. You feel her come down to the hilt, soaked and clinging. Another moan rises off, but it's a choked, weak little thing. Her grip on your neck is just tight enough to make it hard to talk but not enough to actually stop your breathing. Sera straightens to start fucking you, the steady rise and fall of her hips feeling like heaven to your over-focused consciousness. If she started choking you now, you probably wouldn't resist. Her pussy feels to good to interrupt.");
-	cockChange(true,false);
+	pc.cockChange(true,false);
 	output("\n\n<i>\"You like this, don't you? ");
 	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Why do I even ask? You came back for more, like an obedient, well-trained puppy.");
 	else output("If you didn't before, you sure do now.");
@@ -494,7 +494,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	}
 	output("\n\n<i>\"Now it's time for the main course,\"</i>  she grins, grabbing you by the hair and throwing you up against the counter. You gasp as the wind's knocked out of you, doubling over the counter as the demon babe steps up behind you, flopping the shaft of her big, wet cock between the crack of your ass. You squirm as she locks her fingers into your [pc.hips], holding your ass dead steady, all but bending your over the counter as she gets ready to take her pleasure from your body. You can feel her sloppy, wet schlong trail down your cleft, a hefty foot-long slab of demon meat ready to pound you into the ground. At least she gave you the chance to lube it up!");
 	output("\n\nInstinct kicks in, and you wince back as the head of her cock brushes against the tight-clenched ring of your [pc.asshole], sending a little shock through your body. You try your best to relax, letting yourself go in Sera's strong, unyielding grasp; slowly, your sphincter relaxes, just enough to admit the thick, wet head of Sera's crown. A low, desperate moan escapes your lips as your body reacts, ass spasming against the sudden, girthy intrusion but unable to push it back thanks to all the lube you've slathered it with. Sera's hands dig into your flanks, relentless in her advance. All you can do is dig your fingers into the counter and grit your teeth, trying to relax and failing utterly as Sera batters her way into your ass.");
-	buttChange(chars["SERA"].cockVolume(0),true,true,false);
+	pc.buttChange(chars["SERA"].cockVolume(0),true,true,false);
 
 	//if PC is tight:
 	if(pc.ass.looseness() <= 2) output("\n\n<i>\"Ooooh, nice and tight back here,\"</i>  Sera comments, giving one of your cheeks a hard smack. <i>\"Don't tell me this is your first time, meat. Or do you only let the special dick-girls in back here?\"</i>");
@@ -520,7 +520,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		output("\n\nSuddenly, you feel another warm, hard pressure against your [pc.leg]. You yelp and look down, seeing Sera's tail swishing between your legs... and another cock where the spade ought to have been.");
 		output("\n\n<i>\"I know your type,\"</i>  Sera grins as the tail-cock lines up with your [pc.vagina], its length wriggling excitedly between the violent thrusts of her hips. <i>\"A slut like you couldn't be satisfied with just one cock, could you? So I brought you an extra one...\"</i>");
 		output("\n\nBetween the brutal ass-fucking you're already getting, you don't have much wiggle room to complain... even if you wanted to. And the thought of that other thick member doubling your pleasure quickly erodes any hope of resistance. Instead, you spread your [pc.legs] as best you can as the little tail-cock demands entrance to your sex. A yelp of pleasure escapes your mouth as the cock thrusts into you, spearing your [pc.vagina] right to the mouth of your womb, thrusting in without the faintest hint of a rhythm, driving you wild with its erratic thrusts between her hip-slapping ass-fucking.");
-		cuntChange(0,8,true,true,false);
+		pc.cuntChange(0,8,true,true,false);
 	}
 	//If PC has a tail-cock:
 	if(pc.hasCockTail())

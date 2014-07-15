@@ -457,7 +457,7 @@ function pitchIntoAlexsBoyPussy():void {
 		output("\n\nHe’s tight, wonderfully tight to the point that you can actually feel his pulse pounding through the wet, hot walls of his pussy, and that’s just with the tip inside. You moan and ease in, stretching his already loose cunt even further, bit by bit until your cockhead is pressed flush against his cervix.");
 	}
 	//(DICK VIRGINITY CHECK)
-	cockChange();
+	pc.cockChange();
 
 	output("\n\nYou let him rock back against you for a little while, leaning forward ");
 	//if breasts > B cup:
@@ -565,7 +565,7 @@ function catchVaginalFromAlex():void {
 	if(pc.wetness(x) >= 3) output(" while your fluids sheath him in slick wetness before you’ve even taken him");
 	output(". You can actually see him straining not to buck his hips or try to force you down onto him and you revel in it, savoring each moment as much as you can before it becomes too much for you and you drop down onto him with a wet slapping sound.");
 	//(VAGINAL VIRGINITY/HYMEN CHECK)
-	cuntChange(x,20,true,true,false);
+	pc.cuntChange(x,20,true,true,false);
 	//If tight:
 	if(pc.vaginalCapacity(x) <= 25) 
 	{
@@ -1053,7 +1053,7 @@ function catchAnalFromAlex():void {
 		output(" slapping against his balls. He yelps, doubling over slightly for a moment before recovering.");
 	}
 	//(ANAL VIRGINITY CHECK)
-	buttChange(20,true,true,false);
+	pc.buttChange(20,true,true,false);
 
 	output("\n\n<i>“Shit,”</i> he hisses through gritted teeth, clinging to your [pc.hips] as if for dear life. <i>“You’re so ");
 	if(pc.ass.looseness() < 2) output("hot and tight");

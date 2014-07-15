@@ -118,6 +118,7 @@
 		include "../includes/CodexEntries.as";
 		include "../includes/travelEvents.as";
 		include "../includes/travelEvents.fallOfThePhoenix.as";
+		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/stellarTether.as";
 		
 		include "../includes/lightsOut.as";
@@ -686,6 +687,11 @@
 		public function get anno():*
 		{
 			return chars["ANNO"];
+		}
+		
+		public function get kiro():*
+		{
+			return chars["KIRO"];
 		}
 	}
 }
