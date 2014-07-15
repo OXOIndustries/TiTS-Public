@@ -2561,7 +2561,6 @@ function initializeRooms():void
 	rooms["355"].planet = "PLANET: TARKUS";
 	rooms["355"].system = "SYSTEM: REDACTED";
 	rooms["355"].addFlag(GLOBAL.OUTDOOR);
-	rooms["355"].addFlag(GLOBAL.HAZARD);
 
 	rooms["356"] = new RoomClass(this);
 	rooms["356"].roomName = "CORE\nPLATFORM";
@@ -2573,7 +2572,6 @@ function initializeRooms():void
 	rooms["356"].planet = "PLANET: TARKUS";
 	rooms["356"].system = "SYSTEM: REDACTED";
 	rooms["356"].addFlag(GLOBAL.OUTDOOR);
-	rooms["356"].addFlag(GLOBAL.HAZARD);
 
 	rooms["357"] = new RoomClass(this);
 	rooms["357"].roomName = "CORE\nPLATFORM";
@@ -2585,7 +2583,6 @@ function initializeRooms():void
 	rooms["357"].planet = "PLANET: TARKUS";
 	rooms["357"].system = "SYSTEM: REDACTED";
 	rooms["357"].addFlag(GLOBAL.OUTDOOR);
-	rooms["357"].addFlag(GLOBAL.HAZARD);
 
 	rooms["358"] = new RoomClass(this);
 	rooms["358"].roomName = "CORE\nPLATFORM";
@@ -2597,8 +2594,7 @@ function initializeRooms():void
 	rooms["358"].planet = "PLANET: TARKUS";
 	rooms["358"].system = "SYSTEM: REDACTED";
 	rooms["358"].addFlag(GLOBAL.OUTDOOR);
-	rooms["358"].addFlag(GLOBAL.HAZARD);
-
+	
 	//NE corner of permanent bits
 	rooms["359"] = new RoomClass(this);
 	rooms["359"].roomName = "CORE\nPLATFORM";
@@ -2610,7 +2606,6 @@ function initializeRooms():void
 	rooms["359"].planet = "PLANET: TARKUS";
 	rooms["359"].system = "SYSTEM: REDACTED";
 	rooms["359"].addFlag(GLOBAL.OUTDOOR);
-	rooms["359"].addFlag(GLOBAL.HAZARD);
 
 	//West side pirate platform
 	rooms["KHORGAN_LEFT_COVER"] = new RoomClass(this);
@@ -2654,14 +2649,17 @@ function initializeRooms():void
 	rooms["360"] = new RoomClass(this);
 	rooms["360"].roomName = "MINING\nPLATFORM";
 	rooms["360"].description = "The ledge where the pirate captain was working is little more than a large platform extending from the main control station, allowing access to the dead core of the planet. Crates of drilling equipment, as well as a destroyed powered exoskeleton, are scattered around, evidence of the pirates' plot.";
-	rooms["360"].runOnEnter = undefined;
+	rooms["360"].runOnEnter = PlatinumSuperBonusFunction;
 	//rooms["360"].southExit = "360";
 	//rooms["360"].northExit = "360";
-	rooms["360"].southExit = "KHORGAN_RIGHT_COVER";
+	rooms["360"].southExit = "KHORGAN_CENTER_COVER";
 	rooms["360"].planet = "PLANET: TARKUS";
 	rooms["360"].system = "SYSTEM: REDACTED";
 	rooms["360"].addFlag(GLOBAL.OUTDOOR);
 	rooms["360"].addFlag(GLOBAL.HAZARD);
+	rooms["360"].addFlag(GLOBAL.NPC);
+
+	
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";

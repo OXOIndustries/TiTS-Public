@@ -639,7 +639,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	if(pc.biggestTitSize() >= 1) output("<i>much</i> larger ");
 	output("pair of huge, swinging mammaries drop out onto the deck! You gasp, suddenly realizing the old trick Mistress has used on you, even as your huge tits expand, growing monstrously huge until you're practically lying atop them, your stunted, bound arms unable to touch the ground. As your chest grows, the rest of you does as well, your hips and ass straining against the tight leather of your puppy-suit, threatening to break from your constraints.");
 
-	output("\n\nBetween the strange, stretching feeling in your suddenly much more  curvy body and the vibrator still humming away in your ass, you only just stop short of cumming as waves of mutating bliss flow through your changing body. Mistress gently strokes your [pc.hair], cooing what a good puppy you are as you slump out of her lap, usable to sit upright thanks to your heavier bosom.");
+	output("\n\nBetween the strange, stretching feeling in your suddenly much more curvy body and the vibrator still humming away in your ass, you only just stop short of cumming as waves of mutating bliss flow through your changing body. Mistress gently strokes your [pc.hair], cooing what a good puppy you are as you slump out of her lap, usable to sit upright thanks to your heavier bosom.");
 	if(!pc.hasVagina()) output(" But that's not the last change Mistress's drugs have in store for you, as you can feel a slight, stretching pain in your loins, as something... something tears in your crotch. You cry out, but not in pain, but pleasure. You can't reach back to see what's happening, but Mistress seems to understand your need, as she reaches down and pulls away the leathers covering your groin and ass. You wince as cool air brushes across something new and alien between your legs -- and that wince turns into a howl of ecstasy as one of her dainty fingers slips inside what you suddenly realize is a new hole. A cunt. But just as soon as she does so, she withdraws, clearly satisfied with your new slit.");
 	else output(" With your new additions straining against your suit, Mistress slips a hand back around your prone body, yanking down the leather around your [pc.ass] to let your womanhood kiss the stale air of the cabin for the first time in what seems like forever.");
 
@@ -873,7 +873,7 @@ function sneakByZeTurrets():void
 	//{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
 	output("<i>\"Discretion is the better part of valor,\"</i> Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble weightlessly, grabbing the bottom of the bridge, leaving yourself hanging over the void.");
 	output("\n\nOHGODTHAT'SALONGWAYDOWN! Up?! Whatever....");
-	output("\n\nYou try not to stare, even as your [pc.feet] dangle down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you.  Whoever programmed them take into account the new paths that zero G would offer.");
+	output("\n\nYou try not to stare, even as your [pc.feet] dangle down ponderously below you, swaying over the blackness of space. You gulp, and swing them up, grinning widely when they snap into place thanks to the electromagnetic gear girding them. The experience is dizzying, but at least the turrets aren't targeting you. Whoever programmed them take into account the new paths that zero G would offer.");
 
 	output("\n\nAfter a few moments' of stepping carefully, constantly worried the turrets will turn on you, you step over to a nearby console conveniently labeled \"defense turrets\" and flip the switch. No more of that.");
 	flags["ROCKET_PODS_SNEAKED"] = 1;
@@ -973,8 +973,19 @@ function spessPirateCaptainFightFightGoTimeBonus():Boolean
 
 function PlatinumSuperBonusFunction():Boolean
 {
-	if(flags["PLATINUM_TAKEN"] == undefined) output("\n\nA glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus.");
+	//Room blurb for defeated Cap'n
+	//Captain was Fucked: 
+	if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined) output("\n\nCaptain Khorgan is lying against the broken remains of her mech suit in a well-fucked mess, clutching the tatters of her clothes back around her shoulders.");
+	//Captain wasn't fucked:
+	else output("\n\nCaptain Khorgan is sitting against the railing of the platform, tied up and looking none too pleased that you didn't take her up on her offer of sex.");
+
+	if(flags["PLATINUM_TAKEN"] == undefined) 
+	{
+		output("\n\nA glittering pile of platinum has been stacked here, freshly mined from the depths of Tarkus.");
+		addButton(1,"Take Plat",takeZePlatinumAwwwwyiss);
+	}
 	else output("\n\nThere's an empty crate here, where the pirates were storing their mined platinum. You're sure nobody will begrudge you your reward...");
+	addButton(0,"Captain",approachCaptainPostDefeat,undefined,"Captain","Approach the captain once more. She did seem keen on sleeping with you, after all.");
 	return false;
 }
 
@@ -1300,6 +1311,7 @@ function victoriousVsCaptainOrcButt():void
 		output("<i>\"You have the other detonator, don't you? Well, you can't disarm the bomb without both, Steele! Neither of us can.\"</i> ");
 	}
 	output("From her pocket, she pulls a small remote, and glances at it. <i>\"Not much time left, Steele. Maybe you ought to start running... you might make it back to your ship, if you're lucky. Or maybe you'd rather get a ride out with me, hmm? Submit to me, and I guarantee you'll live. You might even like being my personal bitch....\"</i>");
+	pc.shields(pc.shieldsMax());
 	clearMenu();
 	addButton(0,"Fight",startCombat,"khorgan","Fight!","The captain's clearly not going down without a fight. Time to finish this.");
 	//{Go to Captain Fight: Part 2}
@@ -1339,11 +1351,18 @@ function surrenderToCapnKhorgath():void
 /*
 Captain Boss Fight: Part 2
 //This part is a straight-up combat encounter. She focuses primarily on lust attacks in this form: she wants the PC as her brood slave, not dead. Captain has great physical defenses, but is vulnerable to LUST attacks. (ie, Reverse of last time)
-
-You're fighting Captain Khorgan!
-
 */
 
+function actualKhorganAI():void
+{
+	//She Gets off on it!?
+	//Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
+	if(foes[0].HP()/foes[0].HPMax() * 100 < rand(100) - 30) gettingOffOnZePain();
+	else if(rand(4) == 0) captainCutlassAttk();
+	else if(rand(3) == 0) roundHouseKickFromCapn();
+	else if(rand(2) == 0) crotchFaceSmash();
+	else motorboatedByASpork();
+}
 
 //Cutlass Strike
 //Basic physical attack
@@ -1368,7 +1387,6 @@ function captainCutlassAttk():void
 //Physical, chance to knockdown
 function roundHouseKickFromCapn():void
 {
-	clearOutput();
 	output("You parry a few sword-strokes, but find yourself pushed back by the captain's unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
 	//If Miss: 
 	if(combatMiss(foes[0],pc)) output("\n\nYou grab the captain's foot a hand's breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
@@ -1431,7 +1449,7 @@ function gettingOffOnZePain():void
 	output("The captain heaves a heavy, husky sigh, her breathing less hard as it is a throaty panting. Putting some distance between the two of you, she cups one of her huge green tits through the sheer, tattered fabric of her corset, teasing the pert nipple beneath it. It's almost like the more you hurt her, the more excited she gets.");
 	output("\n\nGrinning she says, <i>\"Come on, Steele... still not too late to surrender. If you keep up the foreplay, though, I don't know what I might do...\"</i>");
 	foes[0].HP(25);
-	foes[0].lust(10+rand(3));
+	foes[0].lust(5+rand(3));
 	pc.lust(2);
 	processCombat();
 }
@@ -1439,8 +1457,9 @@ function gettingOffOnZePain():void
 //Captain Fight Phase 2: PC Victorious
 function youBeatUpAnOrcWaytoGo():void
 {
+	currentLocation = "360";
 	//{if by Lust}
-	if(foes[0].lust() >= foes[0].maxLust())
+	if(foes[0].lust() >= foes[0].lustMax())
 	{
 		output("<i>\"Oh, fuck,\"</i> Captain Khorgan growls, the force cutlass falling out of her hand to clatter against the steel platform below. Her hands reach up, clutching at her breasts, tearing what remains of her corset and clothes off to get at the stiff teats beneath. <i>\"I can't.... Fuck it, Steele, you can have the damn detonator. Take it! Just fuck me, take me, throw me on the deck and pound me. I'm all yours, you fucking animal.\"</i>");
 	}
@@ -1455,7 +1474,25 @@ function youBeatUpAnOrcWaytoGo():void
 	else if(pc.hasVagina()) output("the growing wetness in your [pc.vagina]");
 	else output("the heat in your own loins");
 	output(" as you're confronted with the lusty captain, a willing thraggen pirate.");
-	//9999
+	processTime(1);
+	clearMenu();
+	if(pc.lust() >= 33)
+	{
+		if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
+		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
+		if(pc.hasCock()) 
+		{
+			if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
+			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn't handle what you're packing.");
+		}
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
+	}
+	else
+	{
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren't turned on enough for sex at the moment.");
+		addDisabledButton(1,"Girly Fun","Girly Fun","You aren't turned on enough for sex at the moment.");
+	}
+	addButton(14,"Leave",leaveDatThragginBootayBehind);
 }
 
 //Leave
@@ -1463,6 +1500,7 @@ function leaveDatThragginBootayBehind():void
 {
 	clearOutput();
 	output("<i>\"I don't think so,\"</i> you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you.\n\n");
+	if(!pc.hasKeyItem("Khorgan's Detonator")) pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
 	genericVictory();
 }
 
@@ -1471,15 +1509,18 @@ function leaveDatThragginBootayBehind():void
 function dickFuckDatThraggenCoochie():void
 {
 	clearOutput();
+	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	flags["DICKFUCKED_CAPN_KHORGAN"] = 1;
 	//Combat defeat
-	if(9999 == 9999) output("You can hardly turn down an offer like that.");
+	if(inCombat()) output("You can hardly turn down an offer like that.");
 	//Repeat repeat
 	else output("Time to take advantage of the suddenly submissive captain. ");
 	//if no detonator:
-	if(9999 == 0)
+	if(!pc.hasKeyItem("Khorgan's Detonator"))
 	{
 		output("You pocket the detonator before");
-		//9999
+		pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
 	}
 	else output("You start by");
 	output(" stepping up and grabbing the captain by the waist, pulling her into a deep kiss. Her breath catches at the sudden move, but she quickly relents, her powerful hands quickly searching down your own body, grabbing your [pc.butt] and squeezing hard.");
@@ -1487,7 +1528,7 @@ function dickFuckDatThraggenCoochie():void
 	output("\n\nWith a few slight movements of her hands, she starts to pull the [pc.gear] from your body, baring the [pc.skinFurScales] beneath. You return the favor, tearing apart what's left of her corset so that her breasts fall fully free, pressed against your own [pc.chest] as your hands run all over each others, tearing at clothes and groping at bare stretches of flesh, slowly working towards each others' most sensitive parts. Eventually, you hook your fingers through her belt and give it a downward tug. She gives a little moan as you wiggle her breeches off, leaving the damp, torn garments for her to kick off. True to form, that captain's gone without panties, leaving the dark gash of her sex on blatant display, already glistening with slick excitement.");
 	output("\n\n<i>\"Oh yeah,\"</i> she groans as your wandering hand caresses her mons, a pair of fingers easily probing their way into her. <i>\"Right there, Steele. Just like that.\"</i>");
 	output("\n\nYou thrust your hand deeper, burying your digits to the knuckles, and are rewarded with a gasp of pleasure and a feral growl as Khorgan wraps her powerful arms around you, squeezing you almost painfully tight. You're about to complain when one of her legs hooks around your [pc.leg]; you give a little yelp as the two of you tumble to the ground, slamming into the steel deck with head-rattling force. When your vision clears, though, you see that all's well with the world: the captain's straddling you, thighs clamped around your [pc.hips] with her own slick sex poised overtop [pc.oneCock], almost on the brink of penetration.");
-	output("\n\n<i>\"I want you,\" she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock " + x + "] reacts to her wet, hot touch, jumping to attention by the time she's finished one full bounce along its now-turgid length. She doesn't stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock " + x + "] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the core.");
+	output("\n\n<i>\"I want you,\"</i> she breathes huskily, leaning down just enough to press her face to yours, her tongue tracing along the line of your jaw, licking along your sweat-slick [pc.skin] as she starts to grind against you, her pussy reaching down to kiss the length of your stiffening shaft, rubbing along it. You gasp, reeling from the electric shock of pleasure spreading from your loins as your [pc.cock " + x + "] reacts to her wet, hot touch, jumping to attention by the time she's finished one full bounce along its now-turgid length. She doesn't stop, her hips continuing to pump up along your cockflesh, rubbing it down through the slit of her sex until your [pc.cock " + x + "] is well and truly drenched, smeared with feminine slime so that it glistens in the dim light of the core.");
 	output("\n\nGrinning, Khorgan rises on her knees, one hand firmly planted on your [pc.chest] to support herself, the other reaching up to grope one of her massive green melons. She gives you a look as if to say, '<i>are you ready?</i>' as her hips shift, finally aligning the channel of her sex with the [pc.cockHead " + x + "] of your [pc.cock " + x + "]. You give her a slight nod, and quickly find your head rolling back, a primal roar of sexual satisfaction rolling off your lips as Khorgan slides onto you, submerging your [pc.cock " + x + "] into the tight, sweltering, sodden slit between her legs.");
 	cockChange();
 	output("\n\n<i>\"YES!\"</i> Khorgan roars, back arched and tits bouncing as she slams herself down on your rod. The breath explodes from your chest as the captain's hips ram into yours and the amazonian woman starts to ride you, bucking and bouncing overtop you. Her movements are forceful and violent, every buck of her hips an attack against you with almost bone-shattering force. You groan and struggle under her, but the captain's sexual assault is overwhelming, threatening to batter the cum right out of you -- and probably put you in the hospital, if the greenskin slut's got anything to say about it.");
@@ -1501,10 +1542,19 @@ function dickFuckDatThraggenCoochie():void
 	else output("rush");
 	output(" into her. Before she can continue, you silence her with a rough kiss, forcing your tongue through her lips and across the pointed tips of her fang-like teeth. The thraggen captain grunts her approval, hands grabbing your [pc.butt] and forcing you deeper inside as you blow your load into her cumming cunny. With her pulling you in, you finally hilt yourself inside her");
 	if(pc.hasKnot(x)) output(", your [pc.knot " + x + "] forcing the lips of her pussy wide open, lodging itself in the mouth of her cunt");
-	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave. There's a bomb that needs your attention.\n\n");
+	output(". Panting, you finally disentangle yourself from the cum-filled thraggen, leaning back on your [pc.knees] and heaving a sigh of exhaustion. The captain grins up at you, fingers rubbing gingerly at the rim of her sex, making no move to resist you as you grab her wrists and tie them to the wreckage of her mech suit. You gather your gear and get ready to leave. There's a bomb that needs your attention.");
 	processTime(20+rand(10));
 	pc.orgasm();
-	genericVictory();
+	if(inCombat()) 
+	{
+		output("\n\n");
+		genericVictory();
+	}
+	else 
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
 }
 
 //Lesbos- gardeford can into helping
@@ -1514,14 +1564,15 @@ function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	clearOutput();
 	author("Gardeford");
 	//if First time:
-	if(9999 == 9999)
+	if(flags["LESBOED_KHORGAN"] == undefined)
 	{
+		flags["LESBOED_KHORGAN"] = 1;
 		output("Who are you to refuse such a tempting offer.");
 		//if no detonator:
-		if(9999 == 0)
+		if(!pc.hasKeyItem("Khorgan's Detonator"))
 		{
 			output("You pocket the detonator before");
-			//9999
+			pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
 		}
 		else output("You start by"); 
 		output(" giving her a push in the center of her oh so inviting chest. Given her weakened state, your push is enough to send her falling back with a grunt of surprise.");
@@ -1561,10 +1612,14 @@ function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	else output("your");
 	output(" [pc.clit]. you massage her tensed body while she tends to your cunt, rubbing the stress out of her athletic abs and sturdy hips. While the idea of fingering her again is tempting, you decide to let her off the hook, especially since she’s doing such a good job.");
 	output("\n\nHer powerful tongue has since slipped into your [pc.vagina " + x + "], pressing all the right places with all the right pressure. In a matter of seconds, one of her tongue's strokes passes a spot that fills your head with rhapsodic bliss. Your body follows closely behind, tensing and showering Khorgan’s face with your [pc.girlCum]. You remain seated for a few more seconds to catch your breath, giggling as the pirate captain continues to weakly lick your mons periodically. Eventually, you raise yourself from her, gathering your gear before turning back to her. She offers no resistance as you tie her hands together and hitch them to her mech suit, giving you a warm grin as your juices drip from her nose.");
-	if(9999 == 0) output("\n\nGetting back to the matter at hand, there’s a bomb that requires your attention.");
-	output("\n\n");
+	if(flags["TARKUS_BOMB_TIMER"] != 0) output("\n\nGetting back to the matter at hand, there’s a bomb that requires your attention.");
 	processTime(20+rand(10));
-	if(inCombat()) genericVictory();
+	pc.orgasm();
+	if(inCombat()) 
+	{
+		output("\n\n");
+		genericVictory();
+	}
 	else 
 	{
 		clearMenu();
@@ -1579,17 +1634,17 @@ function loseToCaptainKhorganBadEnd():void
 	clearOutput();
 	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
-	//if(foes[0] is 9999 && pc.lust() >= pc.lustMax())
-	//{
+	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
+	{
 		output("\n\nYour knees buckle as the captain's sexual advances continue, her breasts all but falling out of her corset, her wide hips swaying hypnotically with every motion. Your loins burn with desire, making your grip on your weapon shakey, your palms sweating. Taking a step forward, the thraggen woman easily bats your weapon aside, and it clatters to the ground, slipping from your loose grasp. With an easy push, she send you onto your back and plants one of her boot on your chest, utterly asserting her dominance.");
-	//}
+	}
 	//{if PC loses in the Swordfight, via damage:}
-	//else if(foes[0] is 9999)
-	//{
+	else if(foes[0] is CaptainKhorgan)
+	{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
-	//}
+	}
 	//{Combine, next para.}
-	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?");
+	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?\"</i>");
 	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die.");
 	output("\n\n<i>\"Good choice,\"</i> the captain says, looming over you. She flicks off her sword and sheathes it, kicking your own weapons away from you. <i>\"I think you'll make a good breeder, Steele. We'll have such strong children... and if you're a very, very good bed slave, you might see the sun again.\"</i>");
 	//if PC doesn't have a cock.
@@ -1634,35 +1689,60 @@ function loseToCaptainKhorganBadEnd():void
 	clearMenu();
 }
 
-/*
-Post Combat Captain
+//Post Combat Captain
 //Since she doesn't actually disappear when you win.
-Room blurb for defeated Cap'n
-//Captain was Fucked: "Captain Khorgan is lying against the broken remains of her mech suit in a well-fucked mess, clutching the tatters of her clothes back around her shoulders."
+function approachCaptainPostDefeat():void
+{
+	clearOutput();
+	//Captain was Fucked: 
+	if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined) output("Captain Khorgan looks a little dazed after your last encounter, but there's no disguising her eagerness for more.");
+	//Captain wasn't fucked:
+	else 
+	{
+		output("You step up to the defeated captain, cutting her bonds free. The captain rubs her wrists, staring you down.");
+		output("\n\n<i>\"What do you say, captain?\"</i> you grin, looming over the greenskin. <i>\"Time to make good on that offer....\"</i>");
+	}
+	clearMenu();
+	if(pc.lust() >= 33)
+	{
+		if(pc.hasVagina()) addButton(1,"Girly Fun",thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo,undefined,"Girly Fun","Make sure every pussy on the deck gets licked, regardless of owner.");
+		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
+		if(pc.hasCock()) 
+		{
+			if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
+			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn't handle what you're packing.");
+		}
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
+	}
+	else
+	{
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You aren't turned on enough for sex at the moment.");
+		addDisabledButton(1,"Girly Fun","Girly Fun","You aren't turned on enough for sex at the moment.");
+	}
+	addButton(14,"Leave",leaveDaCapnRepeat);
+}
 
-//Captain wasn't fucked: "Captain Khorgan is sitting against the railing of the platform, tied up and looking none too pleased that you didn't take her up on her offer of sex."
+function leaveDaCapnRepeat():void
+{
+	clearOutput();
+	output("You leave the good captain as you found her.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-Approach Downed Cap'n For More Fucks (If Savin Wants)
-[Fuck Her]
-You step up to the defeated captain{if PC didn't fuck her before: , cutting her bonds free. The captain rubs her wrists, staring you down."}
+//Spoils of War: Taking the Platinum
+function takeZePlatinumAwwwwyiss():void
+{
+	clearOutput();
+	output("You step up to the crate Captain Khorgan was filling and pick up a chunk of the silvery metal. It's heavy, but malleable, and incredibly lustrous. Platinum, certainly, but something seems... off about it. You pull your codex out of your pack and boot up your mineral scanning app. The scanner goes to work, quickly identifying the metal: Platinum 190, a super-rare isotope. Rare, and very expensive. You think this would net a tidy profit somewhere....");
+	flags["PLATINUM_TAKEN"] = 1;
+	output("\n\n(<b>Gained Key Item: Platinum 190</b> - This should be worth a good chunk of change to someone.)");
+	pc.createKeyItem("Platinum 190",0,0,0,0);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"What do you say, captain?" you grin, looming over the greenskin. "Time to make good on that offer...
-
-Spoils of War: Taking the Platinum
-You step up to the crate Captain Khorgan was filling and pick up a chunk of the silvery metal. It's heavy, but malleable, and incredibly lustrous. Platinum, certainly, but something seems... off about it. You pull your codex out of your pack and boot up your mineral scanning app. The scanner goes to work, quickly identifying the metal: Platinum 190, a super-rare isotope. Rare, and very expensive. You think this would net a tidy profit somewhere...
-
-<b>Plat190 added as a key item</b>
-
-
-
-
-
-
-
-
-
-
-Kaska (The First Mate & Bomb Guard)
+/*Kaska (The First Mate & Bomb Guard)
 
 Dark skinned
 Right half of head shaved
@@ -1672,259 +1752,739 @@ Shower, not a grower. Only gets an extra 2-3" when hard. Big floppy dick when so
 Laser LMG with underslung automatic slug-gun.
 Uses last-based attacks until the PC takes her below 80% health, then goes ALL GUNSHOTS. Now she shoots until she gets horny, then gets all sexual.
 Bomb Room Description
-Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last. {More pressing is the bomb a few feet away. It's not nearly as big as you would have expected a doomsday device to be, about as big as a bucket and equally visually appealing. Then again, all it has to do is destablize this station's links to let the half planets' gravitational forces tear each other apart./The bomb you disarmed is still sitting here, inert. With it's detonators powered down, it's about as harmful as a toothless tallisarian sand mite.}
-Kaska meeting
+Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last. {More pressing is the bomb a few feet away. It's not nearly as big as you would have expected a doomsday device to be, about as big as a bucket and equally visually appealing. Then again, all it has to do is destablize this station's links to let the half planets' gravitational forces tear each other apart./The bomb you disarmed is still sitting here, inert. With it's detonators powered down, it's about as harmful as a toothless tallisarian sand mite.}*/
+
+//Kaska meeting
 //Starts playing upon entering her room post bomb descriptions
-	The sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to{. Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you}. You finger your [pc.rangedWeapon] while looking around for the source of fire, only to have the shooter reveal herself. Holy hell, does she reveal herself!
-	The [stripper-heel] that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable. 
-	The hermaphrodite's (you have to assume - it's hard to see past that swollen pouch) height and distinctive posture keep your gaze from lingering too long on the rest of her impressive assets. The double-barreled gun she's hefting one-handed is bigger than her leg, and by the looks of it, it's a combination slug-gun and laser weapon. The bottom barrel has a small drum magazine, and power indicators along the top indicate that it's fully charged.
+function meetUpWithKaskaZeBossSloot():void
+{
+	output("\n\nThe sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to");
+	if(pc.shields() > 0) output(". Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you");
+	output(". You finger your [pc.rangedWeapon] while looking around for the source of fire, only to have the shooter reveal herself. Holy hell, does she reveal herself!");
+	output("\n\nThe dzaan that strides out from behind one of larger crates is packing heat, and not just from the oversized machine gun she's toting. A strapping, seven inch member dangles from her groin, laying flaccid atop a pair of lemon-sized balls that you couldn't miss under the smooth, shining skin of her sack. The pirate is ostensibly clothed, wearing stockings, armored leg plates, and a corset that only serve to make the lack of garments for her crotch that much noticeable.");
+	output("\n\nThe hermaphrodite's (you have to assume - it's hard to see past that swollen pouch) height and distinctive posture keep your gaze from lingering too long on the rest of her impressive assets. The double-barreled gun she's hefting one-handed is bigger than her leg, and by the looks of it, it's a combination slug-gun and laser weapon. The bottom barrel has a small drum magazine, and power indicators along the top indicate that it's fully charged.");
 	//Cap'n Buttsloot downed:
-	<i>\"I can't believe you took out the Captain,\"</i> the newcomer says wonderingly. <i>\"Not that it matters. I'm twice the woman she was, and I've got the balls to back it up!\"</i>
-	You... wait... what?
-	Seeing, your look of incredulity, the well-endowed pirate snorts, <i>\"Oh, sod off. You're dealing with Kaska Beamfury, first mate of the Tarasque, and it's time a piece of jetsam like you learned [pc.his] place.\"</i> She levels her impressive weapon in your direction. <b>You'll have to fight her if you want to get anywhere near that bomb!</b>
+	if(flags["STARTED_KHORGAN_FIGHT"] != undefined) output("\n\n<i>\"I can't believe you took out the Captain,\"</i> the newcomer says wonderingly. <i>\"Not that it matters. I'm twice the woman she was, and I've got the balls to back it up!\"</i>\n\nYou... wait... what?\n\nSeeing, your look of incredulity, the well-endowed pirate snorts, <i>\"Oh, sod off. You're dealing with Kaska Beamfury, first mate of the Tarasque, and it's time a piece of jetsam like you learned [pc.his] place.\"</i> She levels her impressive weapon in your direction. <b>You'll have to fight her if you want to get anywhere near that bomb!</b>");
 	//Cap'n Buttsloot not downed:
-	<i>\"Who the fuck are you... and how did you get by the captain?\"</i> the newcomer asks wonderingly. She goes on, not expecting an answer from you. <i>\"It doesn't really matter. You're looking at Kaska Beamfury, first mate of the Tarasque - the last sight you'll ever see if you're lucky.\"</i> She levels her gun. <i>\"Now, why don't you be a dear and give me a decent fight.\"</i>
-	<b>There's no getting out of it. You'll have to fight!</b>
+	else output("\n\n<i>\"Who the fuck are you... and how did you get by the captain?\"</i> the newcomer asks wonderingly. She goes on, not expecting an answer from you. <i>\"It doesn't really matter. You're looking at Kaska Beamfury, first mate of the Tarasque - the last sight you'll ever see if you're lucky.\"</i> She levels her gun. <i>\"Now, why don't you be a dear and give me a decent fight.\"</i>");
+	output("\n\n<b>There's no getting out of it. You'll have to fight!</b>");
 	//Start combat
-Combat Description
-	Kaska is an imposing woman, standing seven and a half feet tall and toting a weapon bigger than a fair number of coreward races. Half her reddish purple hair is bound in tightly-cropped dreadlocks while the rest hangs over one bare shoulder. She'd cut an attractive, if oversized, figure in any number of drinking establishments if it wasn't for her aggressive, warlike expression. Then there's the matter of the seven inch python between her legs. It isn't even hard, and it already matches the average size of terran erections. She's unarmed save for a pair of armor plated shinguards. Tight leather wrappings cover her up elsewhere, covering up her nipples in a kind of obscene, faux modesty.
-Attacks
-Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks. 
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",startCombat,"Kaska");
+}
 
-Shield-Buster
+/*KASKA FIGHT!
+
+Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks.*/
+
+//Shield-Buster
 //Five shots from her laser with the intention of wrecking shields.
-Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.
-Volley
+function shieldBustah():void
+{
+	output("Kaska flicks a switch the side of her gun, and the indicator lights on the bottom barrel dim. <i>\"Let's see how your shields like laser!\"</i> she cries.\n\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	processCombat();
+}
+
+//Volley
 //Four shots from each gun with heightened miss chance.
-The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.
-Overcharged Shot
+function volleyShot():void
+{
+	output("The scantily clad pirate lifts the butt of her gun to her shoulder, shifting to a two-handed grip before pulling down the trigger, spraying a huge volley of shots from both barrels at once. Glowing orange-red beams and bullets fill the air with a lethal rain.");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	//LAZORS!
+	foes[0].rangedWeapon.damageType = GLOBAL.THERMAL;
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	output("\n");
+	rangedAttack(foes[0],pc,true,1);
+	//Set back to Kinetic for normal shots!
+	foes[0].rangedWeapon.damageType = GLOBAL.KINETIC;
+	processCombat();
+}
+//Overcharged Shot
 //Laser attack as per the PC ability.Used once every seven rounds.
-Flashbang
+//NPCOvercharge();
+
+//Flashbang
 //As per the smuggler ability. Used once every five rounds.
-Low Blow
-//If the PC uses this attack, it should auto-succeed and be better than normal.
-Kaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of plump lips. <b>She's very, very stunned.\"</b>
-Disarming Shot
+//NPCFlashGrenade();
+
+//Disarming Shot
 //As per the PC ability
-Stealth Field Generator
-//Always used at 50% HP.
-Futa Lust
+//Stealth Field Generator
+//NPCstealthFieldActivation(foes[0]);
+
+
+//Always used at 50% Lust.
+//Futa Lust
 //Toss aside the gun and approach the PC, and show engorging phallus or bend over to show bubble butt and hot, wet gash.
-Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.
-<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop to the deck, clattering noisily. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>
-With her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>
-//+5 lust each
-Tittygrapple
+function kaskaFutaLusts():void
+{
+	output("Kaska looks visibly perturbed. She chews on her lip, looking you up and down over the sights on her gunbarrel before relaxing her posture. While her weapon drifts down, so too does her gaze, flicking across the expanse of her chest to take in the sight of now hardened nipples. Her brows knit when her eyes alight on the sight of her hard, throbbing cock jutting out from her crotch.");
+	output("\n\n<i>\"Oh... fuck it.\"</i> the aggressive pirate lets her machinegun drop. It bounces off the deck, clattering noisily before ricochetting into a crate thanks to the zero-G. <i>\"It looks like you get to live, assuming you can finish what you've started.\"</i>");
+	output("\n\nWith her hands freed, Kaska is able to take her length, now about ten inches, and rub it, milking a few drops of pre into her other palm without ever taking her eyes off you. She stops after a second and flicks a dollop your way. It slaps into your cheek. <i>\"I have missed having a harem. You can be my first " + pc.mf("\"wife\"","wife") + ".\"</i>");
+	//+5 lust each
+	pc.lustDamage(5);
+	foes[0].lustDamage(5);
+	processCombat();
+}
+//Tittygrapple
 //Grapples the PC, forcing his or her head into her tits for multiround squishes.
-	Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.
+function tittyGrapple():void
+{
+	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.");
+	pc.createStatusEffect("Grappled",30,0,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
+	processCombat();
+}
 
-Do Nothing
-	Kaska grins as she feels you go limp against her{ but hard somewhere else}. <i>\"Oh, you are adorable! First you act like you stand a chance, and then a little bit of boob turns you to jello.\"</i> She relaxes her grip enough to pet {the back of your head/your [pc.hair]}. <i>\"Go on then, kiss them. You'll be getting much more familiar with them if I decide to keep you.\"</i>
-	Your lips are already pressing against her ebony melons. You go ahead and purse them while you wait. {It's... more pleasant than you thought it would be./It's too much for your already overloaded mind. What starts as a kiss rapidly degrades into a slobbering, smooching motorboat. These tits are fantastic, and you can't get enough of them! Why were you even fighting this siren?}
-Failed Strugle
-	You try to struggle, but all you manage to do is squirm against the pillowy, chocolate prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. {It feels... good to rub against it./Damn, these tits are great! If you don't get out soon, things are going to get out of hand!/It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?}
-Pinch Nipple
+//Do Nothing
+function doNothingWhileTittyGrappled():void
+{
+	clearOutput();
+	output("Kaska grins as she feels you go limp against her");
+	if(pc.hasCock()) output(" but hard somewhere else");
+	output(". <i>\"Oh, you are adorable! First you act like you stand a chance, and then a little bit of boob turns you to jello.\"</i> She relaxes her grip enough to pet ");
+	if(!pc.hasHair()) output("the back of your head");
+	else output("your [pc.hair]");
+	output(". <i>\"Go on then, kiss them. You'll be getting much more familiar with them if I decide to keep you.\"</i>");
+
+	output("\n\nYour lips are already pressing against her ebony melons. You go ahead and purse them while you wait. ");
+	if(pc.lust() < pc.lustMax()) output("It's... more pleasant than you thought it would be.");
+	else output("It's too much for your already overloaded mind. What starts as a kiss rapidly degrades into a slobbering, smooching motorboat. These tits are fantastic, and you can't get enough of them! Why were you even fighting this siren?");
+	pc.lust(20+rand(10));
+	processCombat();
+}
+
+//Failed Strugle
+function failToStruggleKaskaBoobs():void
+{
+	output("You try to struggle, but all you manage to do is squirm against the pillowy, chocolatey prison, rubbing against the pirate's slick skin in way that's undeniably pleasant. No matter how hard you try to deny it, your lips and nose are stuffed directly into cleavage. ");
+	pc.lustDamage(10+rand(5));
+	if(pc.lust() <= 50) output("It feels... good to rub against it.");
+	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
+	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?\n");
+	processCombat();
+}
+
+//Pinch Nipple
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
-	One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?
-	Kaska merely pants and flushes. Did she enjoy the pinch that much?
-Crate Tease
+function pinchNipple():void
+{
+	clearOutput();
+	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
+	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
+	pc.lustDamage(4+rand(3));
+	chars["KASKA"].lustDamage(7+rand(3));
+	processCombat();
+}
+//Crate Tease
 //Recline and splay legs on a nearby crate. Only used at very high lust as Kaska isn't normally that submissive about it.
-	Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>
-Futasnuggle
+function crateTeaseFromKaska():void
+{
+	output("Groaning, Kaska leans back against a crate. Her toned thighs flex once, quivering slightly as if fighting some unknown force, slicked with sweat that can't be explained away by the fight alone. Suddenly, the quivering stops, and the pirate's legs spread, lifting up off the ground entirely until they're in a perfect, suspended split. You can see the dusky, glistening lips of the woman's sex from underneath her swollen balls and dripping, erect phallus. Holding herself like that, Kaska curls her toes as if to beckon you forward. <i>\"You know you want it.\"</i>");
+	pc.lustDamage(8+rand(10));
+	processCombat();
+}
+//Futasnuggle
 //Kaska gets in close and grinds herself against the PC along with an ear-lick.
-Kaska feigns a kick one way before reversing and coming up inside your guard. Her toned body wraps briefly around your own, {leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]/leaving you intimately aware of the pressure of her dick on your [pc.armor]}. She licks the lobe of your ear, whispering, <i>\"I could do things to you that no mere woman or man could dream of.\"</i>
-	{The horny dick-girl doesn't bother resisting when you push her away, but her scent and warmth remain./You're enjoying this far too much to push her away.}
-Highkick
+function futaSnuggleAttack():void
+{
+	output("Kaska feigns a kick one way before reversing and coming up inside your guard. Her toned body wraps briefly around your own, ");
+	if(pc.armor.shortName == "") output("leaving you intimately aware of the feeling of her devilishly hot member grinding on your [pc.thigh]");
+	else output("leaving you intimately aware of the pressure of her dick on your [pc.armor]");
+	output(". She licks the lobe of your ear, whispering, <i>\"I could do things to you that no mere woman or man could dream of.\"</i>");
+	pc.lustDamage(9+rand(5));
+	if(pc.lust() < pc.lustMax()) output("\n\nThe horny dick-girl doesn't bother resisting when you push her away, but her scent and warmth remain.");
+	else output("You're enjoying this far too much to push her away.");
+	processCombat();
+}
+
+//Highkick
 //Kaska kicks the PC's weapons away and then rests her heel on the PC's shoulder. Basically 1 round disarm + lust attack.
-	Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!{ It's too much. You can't keep up the facade of fighting her any longer./You stumble back, more aroused by the view than you care to admit.}
-Defeated by Kaska: Not Turned On
-You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!
-<b>Game Over</b>
-Defeated by Kaska: Turned On
-//Get taildrilled, cunt-drilled, tit-drilled, or buttdrilled. Preferences are in that order. After, Kaska throws you over her shoulder and takes you onboard her ship to fit you with a slave-collar. It probably comes off after she breaks your desire to be anything other than her cocksleeve.
-	//Lust
-		//Boobgrappled
-When Kaska lets you slide out of her cleavage and onto the ground, you're wearing a dopey, excited smile. The kind of smile that says, \"I'm doing something stupid, but at least I'm getting laid.\"
-		//Normal
-		You lean back against a crate as you look up at the lustful pirate. She's proven a far better tease. Now you're hoping you'll find out she's just as good of a fuck.
-	//HP
-	You sink to the ground, panting and too injured to move, and Kaska... that horny pirate, Kaska.... She's just smirking at you and pulling a vial out of her belt.
-	<i>\"Don't you die on me, damnit! You did this to me, so you're gonna deal with it. Believe me, the captain isn't the only one doing some drilling today!\"</i> Kaska snarls, spitting the cork out into the void. It spins aimlessly through zero G, drifting amongst the floating platforms and rocks that are so common here. <i>\"Now drink up. This'll pep you right up.\"</i>
-	Given the choice between drinking a strange concoction or bleeding to death, you choose not to bleed to death. The silvery draught goes down smooth, leaving an overwhelming orange flavor in your mouth along with a tingling, caustic aftertaste. You cough, <i>\"Just what was that?\"</i>
-Kaska smiles down at you and tosses the vial into the void. Her other hand lazily strokes her cock, bunching the skin up just below the crown then turning it shiny and taut when she pulls back down to her balls. <i>\"Just some military grade microsurgeons mixed with [planet-name] love-toxin.\"</i> She strokes her appetizing-looking length again, slower. <i>\"I like my partners to enjoy what I'm doing to them.\"</i>
-Your scowl of defiance turns into dazed bewilderment as your wounds painlessly close. They should hurt, or at least itch or something. Running your fingers over your [pc.skinFurScales], you feel nothing but good. Licking your lips, you let your palms flatten out and continue to rub yourself{ under your [pc.armor]}, marvelling at the electric charge of skin on skin, the way your heartbeats speed up with every caress. Just because you feel... fucking awesome... doesn't mean you're going to let her fuck you. No drugs can make you lust after her gorgeous tits... or that hard, leaking prick. Your tongue licks your lips again; it's almost as good as giving french kiss.
-//Display all of the below if they fit
-//Cocks
-Your own length{s aren't/ isn't} far behind.{ You can feel your [pc.lowerGarment] slipping and sliding wetly against {it/them}, practically soaked with leaking pre-cum./ You can feel yourself slipping and sliding against the [pc.skinFurScales] of your [pc.belly], leaking pre-cum like a sieve.} It's so sticky and wet.... You can't help but be aware of how sensitive your hardness{es have/ has} become. Shifting position just a little bit is enough to make your dick{s} jump.
-//Pussies
-And your [pc.vaginas].... You're wet. As wet as you've ever been and then a little bit more. {There must be a puddle in your [pc.underGarment] by now.} You can practically feel your vulva pumping up, bloating with surges of erogenous energy that leave your [pc.clits] hard and ready. Your [pc.hips] wiggle a little on their own, and it's enough for you to feel netherlips slipping and sliding against one another. [pc.EachVagina] is practically fucking itself with your every move.
-//Nipples - non fuckable
-{Your nipples make themselves known by suddenly popping out, jutting out from your chest like twin antennas, each begging to be tugged and twisted./Your attention is rudely yanked down to your chest by your nipples. It's almost as if they've gained sentience and are screaming at your brain, petitioning it for attention, begging to be touched, stroked and fondled.}{ [pc.Milk] beads from the tips in narrow streams. The {twin/army of} lactic springs feel oddly like drool - like your tits are so eager for a good groping that they're actually drooling all over themselves in anticipation.} The tips of your nipples {tense and tighten, fully engorging, so sensitive that you can feel the air blowing across them, torturously teasing them./catching on your [pc.upperGarment] with every breath, shooting spasms of pleasure up your nerves, making you breathe faster. You're caught up in an erotic feedback loop and loving it.}
-//Nipples - fuckable
-	//Lipples
-Your [pc.nipples] make themselves known by suddenly puckering, rubbing their increasingly slick lips against one another until they shine. They're hungry to be filled, to suck and squeeze around something, frictioning their pillowy entrances until the pleasure is sizzling through your nerves nonstop. {Feeling them slip and slide against your [pc.upperGarment] is almost enough to make you compress the offending garb against yourself in an effort to increase the sensation./They make noisy kissy sounds in the open air, seemingly possessing their own drives, their own need to consume something. A phallus would do nicely, but you wouldn't mind letting them kiss some nipples either.}
-//Normal fucknips
-Your nipples, rather than popping out, make themselves known by becoming suddenly, indescribably moist. No, you decide, moist isn't how they feel at all. They're wet - soaked even. Your tits feel wet enough to belong on a galotian, slippery and oozing, aching to be penetrated. Every shake and shiver causes the shifting channels in your [pc.breasts] to caress the opposite side of their inner walls, which in turn causes them to get even wetter. Your teats are soon sopping wet, drooling their liquid hunger in torrid cascades.
-//None of the above
-There's no way she can fuck you anyway. You don't have some dick she can take advantage of or a dripping wet pussy just waiting to get fucked. You've only got a mouth... and a... a butthole. She wouldn't fuck that, would she? You suckle your bottom lip, stifling a moan as best you can, and imagine her ramming that thick, caramel cock straight into you. She could bend you over a crate to do it. Then your [pc.nipples] could drag against the rough surface for extra texture while she pounds your ass. Your sphincter twitches eagerly.
-//Merge
-Laughing softly, the chocolate-skinned pirate steps over you, stradding your chest. It takes all of a heartbeat for her to sit down on your [pc.breasts]. Her cock, hard and dripping, flops against your cheek, smearing its heady lube across you.
-<i>\"Get me good and wet while I think of what to do with you,\"</i> Kaska orders, feeding her length into your surprisingly pliant, unresisting lips. The pre oozing from its slit makes letting it in easy, and once the tip is in, you can't seem to come up with a reason not to humor the rest of her length. <i>\"{So many options and only one cock. I wonder which hole I should take first?/You are a prize for sure, but I wonder, will you last?}\"</i> The pirate pets your {head/[pc.hair]} while considering, listening to the quiet slurping you make while you polish her rod{ in a drug-fueled haze/, too turned on to care}.
-//Taildrilled
-Watching your hungry [pc.tails] thrashing behind you, Kaska's grin broadens into a knowing smile. <i>\"Picked up a cunt snake{ or two}, have you? The poor thing looks practically malnourished,\"</i> she observes. Grabbing hold of {it/one}, she idly fingers the oozing, slippery tailsex, remarking on the way it suckles her finger, pulling it partway inside, <i>\"Oh yes, you and I are going to get along.\"</i>
-Between the dick in your mouth and the feelings coursing down the length of the lucky tail, you're in no position to argue. You mutely suck on her length instead, slurping noisily on her rod until she pulls it out. The dusky cock gleams with a thick layer of your saliva. Here and there, bubbles adorn its surface, evidence of some of your more vigorous attempts at oral service. Kaska lifts it away, but only to offer it to another a different, more sensitive part of you - a wetter, more pliant part of you. Clenching your knuckles, you brace yourself for the coming penetration. Feelings of overwhelming eagerness are being fed up your spine, making it difficult not smile. It's contagious.
-The dickgirl pirate doesn't push herself inside right away. She takes it slow, rubbing her glans against your [pc.tailgina]'s over-lubricated folds, finding the little clit and letting her cumslit prod at the thing before sliding back across the other way. Your entrance feebly gropes at tantalizing, leaking dick, sucking down every drop of pre yet powerless to pull the tool's proper length inside. You squirm beneath Kaska, too turned on and excited to sit still, until she tires of her game and allows your [pc.tailgina] to envelop her head.
-Gasping at the same time as Kaska, you revel in the sensations pouring up your tail and into your brain. No matter how many times you feed the parasitic creature that has become part of you, you'll never get used to the surges of raw pleasure that it feeds you in return. Every tail-feeding experience seems calibrated to fill your pleasure-centers with bubbling bliss, and once you get used to it, it merely shifts the pattern and vector of its transmissions to tickle your mind anew.
-The amount of tactile sensation hitting your cerebellum is enough to make picking apart any detail impossible, so you lie there, hearing the sounds of the slow, sucking penetration more than feeling it. There's too much ecstasy to pick out the individual threads of feeling, the pressure of a vein against your inner walls, the curvature of her glans probing into you. They're definitely there, but you lack the ability to process them.
-Sighing, Kaska admits, <i>\"Now this is a pussy.\"</i> She lets it engulf her down to the root. <i>\"If I had known that these little - mmm... that these little parasites felt like this! I would have gotten one long ago. Oh, fuck yes!\"</i> Her hips quiver uselessly, anxious to thrust and fuck, an action rendered unnecessary by talented muscles working over her cock. She mauls her own breasts in response, taking out her energies on an untended-to erogenous zone, her fingers disappearing under the taut xeno leather of her top.
-You gradually become aware of a bone-dry thirst, totally incongruous with how full of spit and pre your mouth is after the short blowjob. The [pc.tailgina]'s desires must be transmitting so powerful as to override your own sensations. Aching, empty, desire fills you to paradoxical capacity, and your hands reach forward to caress Kaska's weighty, twitching balls. You've got to have her cum! Kneading her swollen cum-tanks, you feel them twitch in your palms, wet with the musky juices of a barely-concealed pussy. They bounce and contract at your touches, ready to blow any second now. All it will take is a little something to push them past the point of no return.
-The lusty privateer archers her back, grinding her slit against your [pc.chest]. The bump of her clit catches on a [pc.nipple], enough to make her scream in sudden climax. Her hips shudder with barely-contained energy, and then lurch forward, dropping her balls square on top of your mouth and her slit directly onto your chin. The first rope of heady cream blasts into your tunnel at the same time, triggering a climax of your own. Your mouth opens to vocalize your pleasure but immediately fills with weighty, twat-slicked sack, transforming your moans into muffled vibrations that caress Kaska's cum-pumping ballsack, shaking every hidden drop of sperm loose for the dickgirl's orgasm.
-The lose The lose? consciousness to the feel of the busty pirate's sweat-slick body grinding against you.
-//Cunt-drilled
-It does not take the well-endowed pirate long to settle on a course of action. Her fingers, slightly calloused from hard work and practice with her firearms, slide down your body to the passion-inflamed slit{s}{ at the joining of your [pc.legs]}, pressing softly against your labia until you begin to moan into the dickgirl's turgid shaft.
-Kaska sighs and comments, <i>\"This is a nice, sensitive pussy you've got here. A breeder's pussy.\"</i> She makes slow, lazy circles around the flushed entrance. <i>\"I don't think the Cap'n will object to me finally claiming a harem for myself so long as I'm not cluttering up the ship with a bunch of pregnant sluts.\"</i> Pumping her finger in hard enough to make you squeak, she adds, <i>\"Of course, I'll have to break you in first.\"</i>
-Break you in?
-Kaska adds a second finger, wiping the incredulous look off your face with a flash of pleasure. Her digits feel so firm and hot against you, and they pump so wonderfully. It's difficult to maintain a cogent line of thought in the face of it. She rambles on, laughing softly to herself all the while, <i>\"Yeah, I'm gonna break you in. Once this little honeypot gets a taste of being well and truly fucked, it'll never want to go back to its old life.\"</i> She squeezes a third finger in while her cock drools tasty dollops into your throat. <i>\"There's a reason my race has tends to have dozens of willing girls for every alpha herm.\"</i>
-The tip of her thumb graces [pc.oneClit] with a gentle brush, sending your [pc.hips] to shaking and grinding back against the invasive lengths of her fingers.
-<i>\"I'm told it's something about chemically addictive pregnancy or causing slight glandular imbalances, but I never really paid much attention in school,\"</i> Kaska admits. She slides backwards, pulling her iron-hard length out of your mouth. Spit bubbles on your lips as you regard her dully, too busy getting fingered to answer. <i>\"All that matters is that I'm going to fuck you here until we leave, then fuck you a little more once we're flying out of here. By the time we land, you'll be begging me not to pull out.\"</i>
-Shifting her position, the horny woman places her soaked tool against the [pc.vagina " + x + "] she had been so busily fingering. <i>\"Just try not to scream too loudly. The Captain's trying to work over there.\"</i>
-The sensation of her thick, eleven-inch length spreading your folds triggers a minor orgasm. You grunt low in the back of your throat and ball your hands into fists, trying to hold on, to keep from letting your muscles from going slack and passive. Some part of you still longs for control of the situation - of your body - but such protestations are in vain. Kaska has you pinned to the ground with your mouth full of the taste of her dick and {your/a} pussy crammed full of the genuine article. Juices puddle under your [pc.butt], and [pc.hips] press upwards, grinding your [pc.clits] into the pirate's toned crotch.
-A strong hand settles around your neck, putting a stop to your squirming and subtly declaring Kaska's control of the situation, driving home just how in control of your body she is as this point. She squeezes just enough to keep a fragment of your attention there, and pushes her hips back. The motion is sinuous and graceful. You can actually see her back gently roll with the graceful rhythm as she slides back in, fucking you with practiced, natural ease, her every motion driving home that she was born and bred to do this.
-The way that the caramel-skinned beauty takes you is casual and unhurried, like she's merely using [pc.oneVaginas] as little more than a masturbation sleeve for a lazy, drawn-out release. Her thrusts come perhaps a second apart. She's revelling in the journey through your juicy gates, bathing in the feeling of your folds against her rigid veins, wallowing in the way that your [pc.clits] rub{s} against her when she's all the way in. Not all of the lubricants leaking down your [pc.thighs] are your own, though. Some of Kaska's own are dripping down the backside of her potent nutsack, and her pre-cum is churning your lubricant into a spunky slurry.
-Panting gently, Kaska slightly increases the pace, watching you intently and smiling when you moan whorishly.
-In between grunts, she observes, <i>\"I think my harem member is starting to like her new position, isn't she\"</i>{ Kaska doesn't seem to care about your masculinity. To her, you're little more than a pet pussy waiting to be tamed.}
-You shake your head back and forth while biting back another moan, trying your very best to maintain some small ounce of dignity.
-<i>\"Oh, how can you say that while your hot, wet cunt is squeezing my dick like a long lost lover?\"</i> Kaska asks while tightening her grip on your throat to hold you still once more. <i>\"How can you sit there and deny your inner slut? Look at you, flat on your back on the deck, moaning and dripping for the big, strong dickgirl pirate.\"</i>
-Kaska pinches a [pc.nipple] with her free hand, and you can't help but cum, twitching feebly against her. Your pussy ripples hungrily around her shaft, trying to milk it for all it's worth, but only earns a few drops of pre-cum for its efforts.
-The confident hermaphrodite laughs and dips a finger into the juices puddling beneath you and licks it, humming happily at the taste. Her cheeks darken in a slight flush, and her member surges inside you, not far from orgasm. <i>"Here, taste yourself,\"</i> Kaska offers, gathering another coating of wetness on her fingertips before pressing them through your [pc.lips]. The taste is... [pc.girlCumFlavor], not unpleasant and entirely sexual. Her hips never slow, not even while you're suckling your juices from her fingers. <i>\"That's a slut's taste,\"</i> she explains.
-Her easy dominance combines with your own shameful position to finally overwhelm your resistance. Your mouth tastes like slutty, horny pussy and a thick, musky cock. Your cunt is creaming itself Kaska's masterful length, and you can't deny it. You're loving every second of it. When the well-cleaned fingers are withdrawn from your mouth, you moan and cum once more. Your hands automatically reach for your [pc.chest], seeking your [pc.nipples], but Kaska simply bats them away, fucking your spasming slit all the while. The orgasms are getting closer and closer together, but your alpha's face shows nothing but approval.
-She speeds her pace into a proper, hard fucking, sending you into a world of constant, crotch-drenching climaxes. Some unknowable amount of time later, Kaska finally joins you in release, squirting hot jets directly into your needy quim. Your [pc.vagina " + x + "] noisily squelches from the fluid load and still-thrusting futanari, and {strings/runnels/torrents} of [pc.girlCum] deepen the puddle below. Kaska cums for what feels like ages, more than long enough for you to ride out two orgasms and be feeling aftershocks from the second by the time she stops out.
-Your crotch is gooey... sticky with spent lust and totally, completely satiated.{ You were so into it that you didn't even notice your [pc.cocks] firing off onto your {belly/chest/face}.} All that cum, and the thick dick that put it there, have made you feel flush and woozy, perhaps a little cum-drunk. You giggle and sigh, limp beneath Kaska. Yeah... you can probably deal with being in her harem.
-//Titdrilled
-The pirate smirks. <i>\"Melons like these have better uses than being cushions for my ass.\"</i> She arches her back, sliding her toned butt down to press against your [pc.belly] while simultaneously dragging her well-sucked dick free of your maw. It slips across your cheek and over your collarbone before finally coming to rest atop your cleavage. Kaska admires the view, admitting, <i>\"I used to be jealous of girls with boobs like these until I realized that they belonged on obedient chattel, not women of consequence like myself.\"</i>
-You open your mouth to reply, but Kaska simply grabs your [pc.nipples] and pinches hard enough to make you wince. Despite the hurt it causes, an undercurrent of erotic thrill comes along with it.
-<i>\"The only thing I want that mouth for is sucking cock. If you had any thoughts worth talking about, you would've had the sense not to try fighting me,\"</i> she growls, tugging your nipples apart to let her dick fall into the valley between them. Then, she lets go, and your quaking boobs slam together around the intruding member, wreathing it in a pillowy cocoon of warm titflesh. <i>\"Mmm, see? That's perfect. Look at it. Have you ever seen a more perfect sight?\"</i>
-Licking the taste of her cock off your lips, you do as she bids either out of subservience or your own curiosity, you can't say. The sight that greets you is about what you expected, but the experiences of expecting something and seeing it for yourself are wildly different. There's a big, fat cockhead jutting out of the top of your mountainous melons, glistening faintly with your saliva, slipping slightly with every breath either of you takes. You swallow noisily. It is kind of hot.
-<i>\"See?\"</i> Kaska offers, <i>\"Big boobs like those are meant to wrap around a dick. Why would you have them if not to please fat cocks like mine?\"</i> The pirate presses her hands down on either side to increase the friction. <i>\"Mmm, yeah, now that's the stuff. Why don't you go ahead and tend do yourself while you watch, okay slut?\"</i>
-You don't need to be told to get yourself off twice in the state you're in, nor can you ignore the sight of her thick, vein-corded shaft starting to slowly rock back and forth through your cleavage, making your boobs jiggle and quake. Your hands reach down, {grab [pc.oneCock], and start to feverishly stroke./press against [pc.oneVagina], and start to vigorously finger the opening./find your [pc.asshole], and start to rub around the sensitive ring}. Kaska smirks adjusts her grip so that her thumbs can circle up to your [pc.nipples]{ and sink inside}.
-//Fuckable nips
-Being penetrated while being titfucked nearly throws you over the edge on the spot. Her thumbs are like anchors inside your [pc.breasts], causing every jiggle and shake to vibrate your flesh against the stable digits. {[pc.GirlCum]/Saliva} soon slicks Kaska's fingers and trickles into your cleavage, lubricating her increasingly fevered thrusts. The horny dickgirl doesn't seem to mind this developmentt. In fact, she starts to aggressively circle her thumbs around  your [pc.nipples], stimulating them to leak even more.
-	//Nonfuck nips
-The slow circling of her thumbs starts out as a simple, pleasant feeling layered on top of your own masturbation, but the longer she does it, the more raw and intense the sensations become. When she finally decides to pinch them again, you nearly scream in ecstasy before mastering yourself enough to turn it into a muffled moan. The horny dickgirl doesn't seem to mind in the slightest. In fact, she starts to pinch them with each titty-bouncing thrust, watching you try not to act like a wanton slut while being thoroughly taken.
-	//Nipvariant Merge
-Between how turned on you were before this all started, your busy hands, and the fact that a live-action porno is taking place a scant six inches from your face, you find yourself coming close to climax all too soon. Kaska smiles knowingly and pumps your tits faster. You watch her dick vanish into your pre-soaked mounds and remerge, nearly hitting you on the chin now. The pirate must be getting close herself, because a fresh drop of pre is beading on her tip each time she lurches into you now. It's so close. You could kiss it, if you wanted.
-The decision is taken out of your hands when Kaska abruptly grabs you by the back of the head and pulls you up, pressing your lips into her dick. There's no time to think about it, and in your current state, you probably won't turn it down anyway. The herm's girlcock lodges itself into your mouth, pulsing on your tongue, and unloads a thick, mouth-filling glob of cum. You gurgle around it as your fingers bring you off at the same time and swallow. She tastes salty, savory, and unmistakably sexual. You find yourself wanting more to go along with your climax. Kaska provides in spades.
-The hermaphrodite's balls quake against the other side of your well-fucked tits while they unload. You marvel at the way her dick thickens with each heavy jet of cream that it delivers. Her ejaculations are on par with some of the terran ultraporn stars you've seen. Perhaps she could surpass them for sheer quantity. It's hard to judge when your mouth is flooded with so much cum that it's squirting out around the edge of your [pc.lips]. It's even harder when you're cumming at the same time.
-You do your best to drink it all down.  By the time she's finished, you feel full, and your [pc.skin] practically glows with satisfaction. {Of course, sucking cocks feels awesome. Why wouldn't it?/You never would've expected to derive such satisfaction for oral service, but you do all the same.} You idly wonder when she's going to do it again, not that you want more of her cum or anything.
+function kaskaHighKick():void
+{
+	output("Spinning like a top, Kaska launches kick after kick in your direction. You manage to dodge the first few, but the canny pirate had never planned on hurting you. The next two knock your [pc.meleeWeapon] and [pc.rangedWeapon] away. She slows, landing her heel on your shoulder while you're still reeling from the loss of your weapons, a pose that gives you a perfect, unobstructed view from her ankles to her thighs, to her exposed crotch. You can see her veins pulse with excitement - excitement for you!");
+	pc.lustDamage(3+rand(4));
+	pc.createStatusEffect("Disarmed",3,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+	if(pc.lust() >= pc.lustMax()) output("\n\nIt's too much. You can't keep up the facade of fighting her any longer.");
+	else output("\n\nYou stumble back, more aroused by the view than you care to admit.");
+	processCombat();
+}
 
+//Defeated by Kaska: Not Turned On
+function defeatedByKaska():void
+{
+	if(foes[0].lust() < 50)
+	{
+		output("You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!");
+		output("\n\n<b>Game Over</b>");
+		clearMenu();
+	}
+	//Defeated by Kaska: Turned On
+	else
+	{
+		//Get taildrilled, cunt-drilled, tit-drilled, or buttdrilled. Preferences are in that order. After, Kaska throws you over her shoulder and takes you onboard her ship to fit you with a slave-collar. It probably comes off after she breaks your desire to be anything other than her cocksleeve.
+		//Lust
+		if(pc.lust() >= pc.lustMax())
+		{
+			//Boobgrappled
+			if(pc.hasStatusEffect("Grappled"))
+			{
+				output("When Kaska lets you slide out of her cleavage and onto the ground, you're wearing a dopey, excited smile. The kind of smile that says, \"I'm doing something stupid, but at least I'm getting laid.\"");
+			}
+			//Normal
+			else output("You lean back against a crate as you look up at the lustful pirate. She's proven a far better tease. Now you're hoping you'll find out she's just as good of a fuck.");
+		}
+		//HP
+		else
+		{
+			output("You sink to the ground, panting and too injured to move, and Kaska... that horny pirate, Kaska.... She's just smirking at you and pulling a vial out of her belt.");
+			output("\n\n<i>\"Don't you die on me, damnit! You did this to me, so you're gonna deal with it. Believe me, the captain isn't the only one doing some drilling today!\"</i> Kaska snarls, spitting the cork out into the void. It spins aimlessly through zero G, drifting amongst the floating platforms and rocks that are so common here. <i>\"Now drink up. This'll pep you right up.\"</i>");
+			output("\n\nGiven the choice between drinking a strange concoction or bleeding to death, you choose not to bleed to death. The silvery draught goes down smooth, leaving an overwhelming orange flavor in your mouth along with a tingling, caustic aftertaste. You cough, <i>\"Just what was that?\"</i>");
+			output("\n\nKaska smiles down at you and tosses the vial into the void. Her other hand lazily strokes her cock, bunching the skin up just below the crown then turning it shiny and taut when she pulls back down to her balls. <i>\"Just some military grade microsurgeons mixed with [planet-name] love-toxin.\"</i> She strokes her appetizing-looking length again, slower. <i>\"I like my partners to enjoy what I'm doing to them.\"</i>");
+			output("\n\nYour scowl of defiance turns into dazed bewilderment as your wounds painlessly close. They should hurt, or at least itch or something. Running your fingers over your [pc.skinFurScales], you feel nothing but good. Licking your lips, you let your palms flatten out and continue to rub yourself");
+			if(pc.armor.shortName != "") output(" under your [pc.armor]");
+			output(", marvelling at the electric charge of skin on skin, the way your heartbeats speed up with every caress. Just because you feel... fucking awesome... doesn't mean you're going to let her fuck you. No drugs can make you lust after her gorgeous tits... or that hard, leaking prick. Your tongue licks your lips again; it's almost as good as giving french kiss.");
+			//Display all of the below if they fit
+			//Cocks
+			if(pc.hasCock())
+			{
+				output("\n\nYour own length");
+				if(pc.cockTotal() > 1) output("s aren't");
+				else output(" isn't");
+				output(" far behind.");
+				if(pc.crotchGarbed()) 
+				{
+					output(" You can feel your [pc.lowerGarment] slipping and sliding wetly against ");
+					if(pc.cockTotal() == 1) output("it");
+					else output("them");
+					output(", practically soaked with leaking pre-cum.");
+				}
+				else
+				{
+					output(" You can feel yourself slipping and sliding against the [pc.skinFurScales] of your [pc.belly], leaking pre-cum like a sieve.");
+				}
+				output(" It's so sticky and wet.... You can't help but be aware of how sensitive your hardness");
+				if(pc.cockTotal() > 1) output("es have");
+				else output(" has");
+				output(" become. Shifting position just a little bit is enough to make your dick");
+				if(pc.cockTotal() > 1) output("s");
+				output(" jump.");
+			}
+			//Pussies
+			if(pc.hasVagina())
+			{
+				output("\n\nAnd your [pc.vaginas].... You're wet. As wet as you've ever been and then a little bit more. ");
+				if(pc.lowerUndergarment.shortName != "") output("There must be a puddle in your [pc.underGarment] by now. ");
+				output("You can practically feel your vulva pumping up, bloating with surges of erogenous energy that leave your [pc.clits] hard and ready. Your [pc.hips] wiggle a little on their own, and it's enough for you to feel netherlips slipping and sliding against one another. [pc.EachVagina] is practically fucking itself with your every move.");
+			}
+			//Nipples - non fuckable
+			if(!pc.hasFuckableNipples())
+			{
+				if(pc.hasDickNipples()) output("\n\nYour nipples make themselves known by suddenly popping out, jutting out from your chest like twin antennas, each begging to be tugged and twisted.");
+				else output("\n\nYour attention is rudely yanked down to your chest by your nipples. It's almost as if they've gained sentience and are screaming at your brain, petitioning it for attention, begging to be touched, stroked and fondled.");
+				if(pc.isLactating()) 
+				{
+					output(" [pc.Milk] beads from the tips in narrow streams. The ");
+					if(pc.totalNipples() == 2) output("twin");
+					else output("army of");
+					output(" lactic springs feel oddly like drool - like your tits are so eager for a good groping that they're actually drooling all over themselves in anticipation.");
+				}
+				output(" The tips of your nipples ");
+				if(!pc.isChestGarbed()) output("tense and tighten, fully engorging, so sensitive that you can feel the air blowing across them, torturously teasing them.");
+				else output("catching on your [pc.upperGarment] with every breath, shooting spasms of pleasure up your nerves, making you breathe faster. You're caught up in an erotic feedback loop and loving it.");
+			}
+			//Nipples - fuckable
+			else
+			{
+				//Lipples
+				if(pc.hasLipples())
+				{
+					output("\n\nYour [pc.nipples] make themselves known by suddenly puckering, rubbing their increasingly slick lips against one another until they shine. They're hungry to be filled, to suck and squeeze around something, frictioning their pillowy entrances until the pleasure is sizzling through your nerves nonstop.");
+					if(pc.isChestGarbed()) output(" Feeling them slip and slide against your [pc.upperGarment] is almost enough to make you compress the offending garb against yourself in an effort to increase the sensation.");
+					else output(" They make noisy kissy sounds in the open air, seemingly possessing their own drives, their own need to consume something. A phallus would do nicely, but you wouldn't mind letting them kiss some nipples either.");
+				}
+				//Normal fucknips
+				else
+				{
+					output("\n\nYour nipples, rather than popping out, make themselves known by becoming suddenly, indescribably moist. No, you decide, moist isn't how they feel at all. They're wet - soaked even. Your tits feel wet enough to belong on a galotian, slippery and oozing, aching to be penetrated. Every shake and shiver causes the shifting channels in your [pc.breasts] to caress the opposite side of their inner walls, which in turn causes them to get even wetter. Your teats are soon sopping wet, drooling their liquid hunger in torrid cascades.");
+				}
+				
+			}
+			//None of the above
+			if(!pc.hasCock() && !pc.hasVagina() && !pc.hasDickNipples() && !pc.hasFuckableNipples())
+			{
+				output("\n\nThere's no way she can fuck you anyway. You don't have some dick she can take advantage of or a dripping wet pussy just waiting to get fucked. You've only got a mouth... and a... a butthole. She wouldn't fuck that, would she? You suckle your bottom lip, stifling a moan as best you can, and imagine her ramming that thick, caramel cock straight into you. She could bend you over a crate to do it. Then your [pc.nipples] could drag against the rough surface for extra texture while she pounds your ass. Your sphincter twitches eagerly.");
+			}
+		}
+		//Merge
+		output("\n\nLaughing softly, the chocolate-skinned pirate steps over you, stradding your chest. It takes all of a heartbeat for her to sit down on your [pc.breasts]. Her cock, hard and dripping, flops against your cheek, smearing its heady lube across you.");
+		output("\n\n<i>\"Get me good and wet while I think of what to do with you,\"</i> Kaska orders, feeding her length into your surprisingly pliant, unresisting lips. The pre oozing from its slit makes letting it in easy, and once the tip is in, you can't seem to come up with a reason not to humor the rest of her length. <i>\"");
+		if(pc.totalVaginas() > 1 || (pc.hasVagina() && pc.hasTailCunt()) || pc.hasFuckableNipples()) output("So many options and only one cock. I wonder which hole I should take first?");
+		else output("You are a prize for sure, but I wonder, will you last?");
+		output("\"</i> The pirate pets your ");
+		if(!pc.hasHair()) output("head");
+		else output("[pc.hair]");
+		output(" while considering, listening to the quiet slurping you make while you polish her rod");
+		if(pc.lust() < pc.lustMax()) output(" in a drug-fueled haze");
+		else output(", too turned on to care");
+		output(".");
+		processTime(5);
+		pc.lust(pc.lustMax());
+		//NEXT!
+		clearMenu();
+		addButton(0,"Next",kaskaBadEndPartDues);
+	}
+}
 
-//Buttdrilled catchall
-It doesn't take Kaska long to make up her mind. Reaching back, she grabs hold of your [pc.butt] and squeezes your cheeks, kneading them affectionately. <i>\"Since you don't have something better for me to fuck, I'll have to see to training your ass. You can be my {little //oversized }anal toy.\"</i> She pulls out of your mouth and stands up, pointing at one of the nearby crates. <i>\"Bend over.\"</i>
-You're so turned on that you'll take it however you can get it at this point and {struggle to get in place on the crate. It's just so hard with you're little! Fortunately, Kaska sees your plight and lifts you up by your hips, propping you up on the crate for a nice buttfuck./bend over the crate without a second thought. Kaska gives your [pc.butt] an approving swat.}
-<i>\"That's a good girl\"</i> Kaska says{, ignoring your obvious masculinity}, <i>\"Anal isn't my favorite, but I suppose I could get used to seeing you like this. Once you get used to taking me, you're never going to want to do anything else. You'll be my little harem buttslut.\"</i>
-Wait, harem... what?
-One of Kaska's hands presses against the small of your back. Her dick's hot, pre-oozing tip fingers your sphincter a minute later. Rather than pushing in, she holds it there, pressing against you just hard enough to hold it in place. She does let her hips gently rock from side to side, dragging her hard tip over every sensitive part of your pucker. Her other hand comes to rest on your shoulder, and she slowly begins to thrust forward.
-<i>\"Just relax,\"</i> Kaska coos while unsubtly pushing herself through your {virgin/virginal/tight/well-trained} asshole. You do your best, but she feels so damn thick. At least she's slick with pre-cum and your own spit. The randy dickgirl moves her other hand up to join her first at your shoulders, levering another inch of her length up your rear entrance and saying, <i>\"Yeah, I think this'll work fine.\"</i> She crams another two inches inside. You gasp. <i>\"Once I wring a few anal orgasms from you and get you used to having an ass full of spunk, you'll never want to do anything else. I hear it's something about our cum being chemically addictive in large enough doses, I guess. I didn't bother to pay attention in school though, so we'll just have to find out, huh?\"</i>
-Her balls clap against your [pc.butt]. As absolutely stuffed as you feel, you didn't expect her to bottom out already. The dickgirl pirate's length was just so slippery that it was able to ease right in. Your backside is tingling erotically{, and [pc.eachCock] drips with pre-cum, squeezed out of your compressed prostate/, and you can't help but wonder how good it will feel once she's cumming inside you}. Involuntary spasms clench your [pc.asshole] around the anal intruder, squeezing Kaska's dick in what feels like a familiar, affectionate way.
-<i>\"Ooh, buttslut likes, does she?\"</i> Kaska asks while reaching down to cup one cheek. <i>\"I'm told a lot of races don't really care for it, my own among them, but us alphas just can't help but want to plug it.\"</i> She slowly pulls out, dripping pre-cum over the emptiness inside you before thrusting back into her self-lubricated, anal toy. You shiver in unexpected delight.
-Kaska suggests, <i>\"There must be a helluvalot of nerves back there, or something. In my experience, people that don't like anal just didn't have a partner that knew what they were doing.\"</i> She bounces off your cheeks, lazily fucking your ass with slow, even strokes. <i>\"I've never had anyone complain after I've pounded their ass.\"</i> She playfully paddles your bum. <i>\"Aside from complaining about walking funny, that is.\"</i>
-You nod; you'll definitely be walking funny when she finishes with you, but it does feel really, really good. Your [pc.legs] tremble when she bottoms out again.{ Milked-out [pc.cumNoun] trickles down the side of the crate in small streams. You haven't even came yet, but she's squeezing the stuff out of you nonetheless.} Wow.
-Picking up the pace now, Kaska suggests, <i>\"So, what do you say, buttslut, are you gonna want me to do this again later?\"</i>
-Perhaps it's pride or the desire to maintain some shred of dignity, but you decline to answer with your voice. It'd sound too turned on and needy. You lie, shaking your head no.
-	<i>\"Really?\"</i> Kaska asks, slapping her balls against you as she picks up the pace. Your body shivers under the aggressive dickgirl, slowly learning every intimate detail of her member. You could probably pick it out of a crowd by the patterns and texture of the veins that cover it. <i>\"You're gonna sit there and lie, pretending you don't like THIS!?\"</i> She bottoms out and holds it there, flexing her muscles to make her dick bounce slightly inside you.
-	You can't hold back the throaty moan of pleasure that wells up in your chest. It's too much.
-	<i>\"That's what I thought, slut,\"</i> the pirate boasts, <i>\"I've never met a bitch who didn't love the feel of this beast inside them. You do love it, don't you?\"</i> She presses her hips against you hard enough to flatten your cheeks a little, squeezing an extra half-inch inside you. <i>\"You love it when I buttfuck you.\"</i>
-	<i>\"Yes...\"</i> the hissed admission hangs in the air. You didn't mean to say it, but you did. There's no taking it back or denying now. You've lost this fight to. There's no more reason to hide, so you let your mouth open and your voice pour out another 'yes'. This one is louder and syrupy with desire, the kind of sound a girl on the cusp of an orgasm might make. Admitting it makes your [pc.asshole] tingle pleasantly, or perhaps that's the length inside you. Unconcerned, you try the word out again, this time moaning it wantonly.
-	Kaska picks up fucking you, going faster now. She purrs, <i>\"Good slut,\"</i> while her hips piston away, feeding her eleven inches into your nicely-gaped ass with ease. You're coming to hate the empty feeling moments when she's almost pulled out, but they make the seconds of total penetration that much sweeter. Her sweaty balls noisily slap at your [pc.skinFurScales], churning with their burgeoning load. Her cock is getting thicker as well, filling past capacity with blood in the seconds before it finally cums.
-	Scrabbling at the edge of the crate, you brace yourself as Kaska joins you in moaning, digging your fingertips into the metal and plastic as the dickgirl really starts to ream you. The spit and precum have combined into a slurry of fuck-fueling lubrication that noisily squelches with each pistoning thrust. Over the sensual din, you hear her cry out, <i>\"Take it, slut!\"</i> a moment before her cock surges. The feeling of her cum flooding your ass is like a subtle, spreading warmth that makes her thrusts feel even better.
-	Your [pc.legs] flop bonelessly as you're drilled and filled, your ass inseminated with alien spunk and loving it. Your [pc.asshole] flutters, leaking cum, and you finally lose it, screaming and babbling encouragement, degrading yourself and begging her to fill you up with more. Kaska does not disappoint. Her orgasm even manages to outlast your own. By the time you sag, limp, she's still pumping her hips and creaming your backdoor.
-Lying there, helpless and spent, you're surprised by how satisfying it feels to take her jizz, how right it feels nestled inside you. Anal isn't supposed to be quite this good, is it? Isn't this how vaginas are supposed to feel, not asshole? Kaska squirts a last dollop of her cock's heavy cream into your stuffed belly, scattering any concerns. You won't mind doing this again.
-//Merge with generic kaska pulling out of a well-fucked hole and giving the PC a sedative.
-You're barely aware of Kaska pulling out of your well-filled hole at first, but the conspicuous lack of cock does eventually rouse you from your lazy, post-coital state. You blink open your eyes to look up at her in time to see her leaning over you with a dermamist applicator. She presses it to your neck, and you hear the quiet hiss of it delivering something through the membrane of your skin. Blackness takes you....
+function kaskaBadEndPartDues():void
+{
+	clearOutput();
+	var choices:Array = new Array();
+	if(pc.hasCuntTail()) choices[choices.length] = 0;
+	if(pc.hasVagina()) choices[choices.length] = 1;
+	if(pc.biggestTitSize() >= 7) choices[choices.length] = 2;
+
+	var select:int = choices[rand(choices.length)];
+	//Taildrilled
+	if(select == 0)
+	{
+		output("Watching your hungry [pc.tails] thrashing behind you, Kaska's grin broadens into a knowing smile. <i>\"Picked up a cunt snake");
+		if(pc.tailCount > 1) output(" or two");
+		output(", have you? The poor thing looks practically malnourished,\"</i> she observes. Grabbing hold of ");
+		if(pc.tailCount == 1) output("it");
+		else output("one");
+		output(", she idly fingers the oozing, slippery tailsex, remarking on the way it suckles her finger, pulling it partway inside, <i>\"Oh yes, you and I are going to get along.\"</i>");
+
+		output("\n\nBetween the dick in your mouth and the feelings coursing down the length of the lucky tail, you're in no position to argue. You mutely suck on her length instead, slurping noisily on her rod until she pulls it out. The dusky cock gleams with a thick layer of your saliva. Here and there, bubbles adorn its surface, evidence of some of your more vigorous attempts at oral service. Kaska lifts it away, but only to offer it to another a different, more sensitive part of you - a wetter, more pliant part of you. Clenching your knuckles, you brace yourself for the coming penetration. Feelings of overwhelming eagerness are being fed up your spine, making it difficult not smile. It's contagious.");
+		output("\n\nThe dickgirl pirate doesn't push herself inside right away. She takes it slow, rubbing her glans against your [pc.tailgina]'s over-lubricated folds, finding the little clit and letting her cumslit prod at the thing before sliding back across the other way. Your entrance feebly gropes at tantalizing, leaking dick, sucking down every drop of pre yet powerless to pull the tool's proper length inside. You squirm beneath Kaska, too turned on and excited to sit still, until she tires of her game and allows your [pc.tailgina] to envelop her head.");
+		output("\n\nGasping at the same time as Kaska, you revel in the sensations pouring up your tail and into your brain. No matter how many times you feed the parasitic creature that has become part of you, you'll never get used to the surges of raw pleasure that it feeds you in return. Every tail-feeding experience seems calibrated to fill your pleasure-centers with bubbling bliss, and once you get used to it, it merely shifts the pattern and vector of its transmissions to tickle your mind anew.");
+		output("\n\nThe amount of tactile sensation hitting your cerebellum is enough to make picking apart any detail impossible, so you lie there, hearing the sounds of the slow, sucking penetration more than feeling it. There's too much ecstasy to pick out the individual threads of feeling, the pressure of a vein against your inner walls, the curvature of her glans probing into you. They're definitely there, but you lack the ability to process them.");
+		output("\n\nSighing, Kaska admits, <i>\"Now this is a pussy.\"</i> She lets it engulf her down to the root. <i>\"If I had known that these little - mmm... that these little parasites felt like this! I would have gotten one long ago. Oh, fuck yes!\"</i> Her hips quiver uselessly, anxious to thrust and fuck, an action rendered unnecessary by talented muscles working over her cock. She mauls her own breasts in response, taking out her energies on an untended-to erogenous zone, her fingers disappearing under the taut xeno leather of her top.");
+		output("\n\nYou gradually become aware of a bone-dry thirst, totally incongruous with how full of spit and pre your mouth is after the short blowjob. The [pc.tailgina]'s desires must be transmitting so powerful as to override your own sensations. Aching, empty, desire fills you to paradoxical capacity, and your hands reach forward to caress Kaska's weighty, twitching balls. You've got to have her cum! Kneading her swollen cum-tanks, you feel them twitch in your palms, wet with the musky juices of a barely-concealed pussy. They bounce and contract at your touches, ready to blow any second now. All it will take is a little something to push them past the point of no return.");
+		output("\n\nThe lusty privateer archers her back, grinding her slit against your [pc.chest]. The bump of her clit catches on a [pc.nipple], enough to make her scream in sudden climax. Her hips shudder with barely-contained energy, and then lurch forward, dropping her balls square on top of your mouth and her slit directly onto your chin. The first rope of heady cream blasts into your tunnel at the same time, triggering a climax of your own. Your mouth opens to vocalize your pleasure but immediately fills with weighty, twat-slicked sack, transforming your moans into muffled vibrations that caress Kaska's cum-pumping ballsack, shaking every hidden drop of sperm loose for the dickgirl's orgasm.");
+		output("\n\nYou lose consciousness to the feel of the busty pirate's sweat-slick body grinding against you.");
+	}
+	//Cunt-drilled
+	else if(select == 1)
+	{
+		var x:int = rand(pc.totalVaginas());
+		output("It does not take the well-endowed pirate long to settle on a course of action. Her fingers, slightly calloused from hard work and practice with her firearms, slide down your body to the passion-inflamed slit");
+		if(pc.totalVaginas() > 1) output("s");
+		if(pc.legCount > 1) output(" at the joining of your [pc.legs]");
+		output(", pressing softly against your labia until you begin to moan into the dickgirl's turgid shaft.");
+		output("\n\nKaska sighs and comments, <i>\"This is a nice, sensitive pussy you've got here. A breeder's pussy.\"</i> She makes slow, lazy circles around the flushed entrance. <i>\"I don't think the Cap'n will object to me finally claiming a harem for myself so long as I'm not cluttering up the ship with a bunch of pregnant sluts.\"</i> Pumping her finger in hard enough to make you squeak, she adds, <i>\"Of course, I'll have to break you in first.\"</i>");
+		output("\n\nBreak you in?");
+		output("\n\nKaska adds a second finger, wiping the incredulous look off your face with a flash of pleasure. Her digits feel so firm and hot against you, and they pump so wonderfully. It's difficult to maintain a cogent line of thought in the face of it. She rambles on, laughing softly to herself all the while, <i>\"Yeah, I'm gonna break you in. Once this little honeypot gets a taste of being well and truly fucked, it'll never want to go back to its old life.\"</i> She squeezes a third finger in while her cock drools tasty dollops into your throat. <i>\"There's a reason my race has tends to have dozens of willing girls for every alpha herm.\"</i>");
+		output("\n\nThe tip of her thumb graces [pc.oneClit] with a gentle brush, sending your [pc.hips] to shaking and grinding back against the invasive lengths of her fingers.");
+		output("\n\n<i>\"I'm told it's something about chemically addictive pregnancy or causing slight glandular imbalances, but I never really paid much attention in school,\"</i> Kaska admits. She slides backwards, pulling her iron-hard length out of your mouth. Spit bubbles on your lips as you regard her dully, too busy getting fingered to answer. <i>\"All that matters is that I'm going to fuck you here until we leave, then fuck you a little more once we're flying out of here. By the time we land, you'll be begging me not to pull out.\"</i>");
+		output("\n\nShifting her position, the horny woman places her soaked tool against the [pc.vagina " + x + "] she had been so busily fingering. <i>\"Just try not to scream too loudly. The Captain's trying to work over there.\"</i>");
+		output("\n\nThe sensation of her thick, eleven-inch length spreading your folds triggers a minor orgasm. You grunt low in the back of your throat and ball your hands into fists, trying to hold on, to keep from letting your muscles from going slack and passive. Some part of you still longs for control of the situation - of your body - but such protestations are in vain. Kaska has you pinned to the ground with your mouth full of the taste of her dick and ");
+		if(pc.vaginaTotal() == 1) output("your");
+		else output("a");
+		output(" pussy crammed full of the genuine article. Juices puddle under your [pc.butt], and [pc.hips] press upwards, grinding your [pc.clits] into the pirate's toned crotch.");
+		cuntChange(x,chars["KASKA"].cockVolume(0),true,true,false);
+		output("\n\nA strong hand settles around your neck, putting a stop to your squirming and subtly declaring Kaska's control of the situation, driving home just how in control of your body she is as this point. She squeezes just enough to keep a fragment of your attention there, and pushes her hips back. The motion is sinuous and graceful. You can actually see her back gently roll with the graceful rhythm as she slides back in, fucking you with practiced, natural ease, her every motion driving home that she was born and bred to do this.");
+		output("\n\nThe way that the caramel-skinned beauty takes you is casual and unhurried, like she's merely using [pc.oneVaginas] as little more than a masturbation sleeve for a lazy, drawn-out release. Her thrusts come perhaps a second apart. She's revelling in the journey through your juicy gates, bathing in the feeling of your folds against her rigid veins, wallowing in the way that your [pc.clits] rub");
+		if(pc.clitTotal() == 1) output("s");
+		output(" against her when she's all the way in. Not all of the lubricants leaking down your [pc.thighs] are your own, though. Some of Kaska's own are dripping down the backside of her potent nutsack, and her pre-cum is churning your lubricant into a spunky slurry.");
+		output("\n\nPanting gently, Kaska slightly increases the pace, watching you intently and smiling when you moan whorishly.");
+		output("\n\nIn between grunts, she observes, <i>\"I think my harem member is starting to like her new position, isn't she\"</i>");
+		if(pc.femininity < 40) output(" Kaska doesn't seem to care about your masculinity. To her, you're little more than a pet pussy waiting to be tamed.");
+		output("\n\nYou shake your head back and forth while biting back another moan, trying your very best to maintain some small ounce of dignity.");
+		output("\n\n<i>\"Oh, how can you say that while your hot, wet cunt is squeezing my dick like a long lost lover?\"</i> Kaska asks while tightening her grip on your throat to hold you still once more. <i>\"How can you sit there and deny your inner slut? Look at you, flat on your back on the deck, moaning and dripping for the big, strong dickgirl pirate.\"</i>");
+		output("\n\nKaska pinches a [pc.nipple] with her free hand, and you can't help but cum, twitching feebly against her. Your pussy ripples hungrily around her shaft, trying to milk it for all it's worth, but only earns a few drops of pre-cum for its efforts.");
+		output("\n\nThe confident hermaphrodite laughs and dips a finger into the juices puddling beneath you and licks it, humming happily at the taste. Her cheeks darken in a slight flush, and her member surges inside you, not far from orgasm. <i>\"Here, taste yourself,\"</i> Kaska offers, gathering another coating of wetness on her fingertips before pressing them through your [pc.lips]. The taste is... [pc.girlCumFlavor], not unpleasant and entirely sexual. Her hips never slow, not even while you're suckling your juices from her fingers. <i>\"That's a slut's taste,\"</i> she explains.");
+		output("\n\nHer easy dominance combines with your own shameful position to finally overwhelm your resistance. Your mouth tastes like slutty, horny pussy and a thick, musky cock. Your cunt is creaming itself Kaska's masterful length, and you can't deny it. You're loving every second of it. When the well-cleaned fingers are withdrawn from your mouth, you moan and cum once more. Your hands automatically reach for your [pc.chest], seeking your [pc.nipples], but Kaska simply bats them away, fucking your spasming slit all the while. The orgasms are getting closer and closer together, but your alpha's face shows nothing but approval.");
+		output("\n\nShe speeds her pace into a proper, hard fucking, sending you into a world of constant, crotch-drenching climaxes. Some unknowable amount of time later, Kaska finally joins you in release, squirting hot jets directly into your needy quim. Your [pc.vagina " + x + "] noisily squelches from the fluid load and still-thrusting futanari, and ");
+		if(pc.wetness(x) < 2) output("strings");
+		else if(pc.wetness(x) < 4) output("runnels");
+		else output("torrents");
+		output(" of [pc.girlCum] deepen the puddle below. Kaska cums for what feels like ages, more than long enough for you to ride out two orgasms and be feeling aftershocks from the second by the time she stops out.");
+		output("\n\nYour crotch is gooey... sticky with spent lust and totally, completely satiated.");
+		if(pc.hasCock()) 
+		{
+			output(" You were so into it that you didn't even notice your [pc.cocks] firing off onto your ");
+			if(pc.biggestCockLength() < 12) output("[pc.belly]");
+			else if(pc.biggestCockLength() < 18) output("[pc.chest]");
+			else output("[pc.face]");
+			output(".");
+		}
+		output(" All that cum, and the thick dick that put it there, have made you feel flush and woozy, perhaps a little cum-drunk. You giggle and sigh, limp beneath Kaska. Yeah... you can probably deal with being in her harem.");
+	}
+	//Titdrilled
+	else if(select == 2)
+	{
+		output("The pirate smirks. <i>\"Melons like these have better uses than being cushions for my ass.\"</i> She arches her back, sliding her toned butt down to press against your [pc.belly] while simultaneously dragging her well-sucked dick free of your maw. It slips across your cheek and over your collarbone before finally coming to rest atop your cleavage. Kaska admires the view, admitting, <i>\"I used to be jealous of girls with boobs like these until I realized that they belonged on obedient chattel, not women of consequence like myself.\"</i>");
+		output("\n\nYou open your mouth to reply, but Kaska simply grabs your [pc.nipples] and pinches hard enough to make you wince. Despite the hurt it causes, an undercurrent of erotic thrill comes along with it.");
+		output("\n\n<i>\"The only thing I want that mouth for is sucking cock. If you had any thoughts worth talking about, you would've had the sense not to try fighting me,\"</i> she growls, tugging your nipples apart to let her dick fall into the valley between them. Then, she lets go, and your quaking boobs slam together around the intruding member, wreathing it in a pillowy cocoon of warm titflesh. <i>\"Mmm, see? That's perfect. Look at it. Have you ever seen a more perfect sight?\"</i>");
+		output("\n\nLicking the taste of her cock off your lips, you do as she bids either out of subservience or your own curiosity, you can't say. The sight that greets you is about what you expected, but the experiences of expecting something and seeing it for yourself are wildly different. There's a big, fat cockhead jutting out of the top of your mountainous melons, glistening faintly with your saliva, slipping slightly with every breath either of you takes. You swallow noisily. It is kind of hot.");
+		output("\n\n<i>\"See?\"</i> Kaska offers, <i>\"Big boobs like those are meant to wrap around a dick. Why would you have them if not to please fat cocks like mine?\"</i> The pirate presses her hands down on either side to increase the friction. <i>\"Mmm, yeah, now that's the stuff. Why don't you go ahead and tend do yourself while you watch, okay slut?\"</i>");
+		output("\n\nYou don't need to be told to get yourself off twice in the state you're in, nor can you ignore the sight of her thick, vein-corded shaft starting to slowly rock back and forth through your cleavage, making your boobs jiggle and quake. Your hands reach down, ");
+		if(pc.hasCock()) output("grab [pc.oneCock], and start to feverishly stroke.");
+		else if(pc.hasVagina()) output("press against [pc.oneVagina], and start to vigorously finger the opening.");
+		else output("find your [pc.asshole], and start to rub around the sensitive ring");
+		output(". Kaska smirks adjusts her grip so that her thumbs can circle up to your [pc.nipples]");
+		if(pc.hasFuckableNipples()) output(" and sink inside");
+		output(".");
+		//Fuckable nips
+		if(pc.hasFuckableNipples()) 
+		{
+			output("\n\nBeing penetrated while being titfucked nearly throws you over the edge on the spot. Her thumbs are like anchors inside your [pc.breasts], causing every jiggle and shake to vibrate your flesh against the stable digits. ");
+			if(!pc.hasLipples()) output("[pc.GirlCum]");
+			else output("Saliva");
+			output(" soon slicks Kaska's fingers and trickles into your cleavage, lubricating her increasingly fevered thrusts. The horny dickgirl doesn't seem to mind this development. In fact, she starts to aggressively circle her thumbs around your [pc.nipples], stimulating them to leak even more.");
+		}
+		//Nonfuck nips
+		else
+		{
+			output("\n\nThe slow circling of her thumbs starts out as a simple, pleasant feeling layered on top of your own masturbation, but the longer she does it, the more raw and intense the sensations become. When she finally decides to pinch them again, you nearly scream in ecstasy before mastering yourself enough to turn it into a muffled moan. The horny dickgirl doesn't seem to mind in the slightest. In fact, she starts to pinch them with each titty-bouncing thrust, watching you try not to act like a wanton slut while being thoroughly taken.");
+		}
+		//Nipvariant Merge
+		output("\n\nBetween how turned on you were before this all started, your busy hands, and the fact that a live-action porno is taking place a scant six inches from your face, you find yourself coming close to climax all too soon. Kaska smiles knowingly and pumps your tits faster. You watch her dick vanish into your pre-soaked mounds and remerge, nearly hitting you on the chin now. The pirate must be getting close herself, because a fresh drop of pre is beading on her tip each time she lurches into you now. It's so close. You could kiss it, if you wanted.");
+		output("\n\nThe decision is taken out of your hands when Kaska abruptly grabs you by the back of the head and pulls you up, pressing your lips into her dick. There's no time to think about it, and in your current state, you probably won't turn it down anyway. The herm's girlcock lodges itself into your mouth, pulsing on your tongue, and unloads a thick, mouth-filling glob of cum. You gurgle around it as your fingers bring you off at the same time and swallow. She tastes salty, savory, and unmistakably sexual. You find yourself wanting more to go along with your climax. Kaska provides in spades.");
+		output("\n\nThe hermaphrodite's balls quake against the other side of your well-fucked tits while they unload. You marvel at the way her dick thickens with each heavy jet of cream that it delivers. Her ejaculations are on par with some of the terran ultraporn stars you've seen. Perhaps she could surpass them for sheer quantity. It's hard to judge when your mouth is flooded with so much cum that it's squirting out around the edge of your [pc.lips]. It's even harder when you're cumming at the same time.");
+		output("\n\nYou do your best to drink it all down. By the time she's finished, you feel full, and your [pc.skin] practically glows with satisfaction.");
+		if(pc.hasPerk("Ditz Speech")) output(" Of course, sucking cocks feels awesome. Why wouldn't it?");
+		else output(" You never would've expected to derive such satisfaction for oral service, but you do all the same.");
+		output(" You idly wonder when she's going to do it again, not that you want more of her cum or anything.");
+	}
+	//Buttdrilled catchall
+	else
+	{
+		output("It doesn't take Kaska long to make up her mind. Reaching back, she grabs hold of your [pc.butt] and squeezes your cheeks, kneading them affectionately. <i>\"Since you don't have something better for me to fuck, I'll have to see to training your ass. You can be my ");
+		if(pc.tallness <= 60) output("little ");
+		else if(pc.tallness >= 84) output("oversized ");
+		output("anal toy.\"</i> She pulls out of your mouth and stands up, pointing at one of the nearby crates. <i>\"Bend over.\"</i>");
+		output("\n\nYou're so turned on that you'll take it however you can get it at this point and ");
+		if(pc.tallness <= 60) output("struggle to get in place on the crate. It's just so hard with you're little! Fortunately, Kaska sees your plight and lifts you up by your hips, propping you up on the crate for a nice buttfuck.");
+		else output("bend over the crate without a second thought. Kaska gives your [pc.butt] an approving swat.");
+		output("\n\n<i>\"That's a good girl\"</i> Kaska says");
+		if(pc.femininity < 40) output(", ignoring your obvious masculinity");
+		output(", <i>\"Anal isn't my favorite, but I suppose I could get used to seeing you like this. Once you get used to taking me, you're never going to want to do anything else. You'll be my little harem buttslut.\"</i>");
+		output("\n\nWait, harem... what?");
+		output("\n\nOne of Kaska's hands presses against the small of your back. Her dick's hot, pre-oozing tip fingers your sphincter a minute later. Rather than pushing in, she holds it there, pressing against you just hard enough to hold it in place. She does let her hips gently rock from side to side, dragging her hard tip over every sensitive part of your pucker. Her other hand comes to rest on your shoulder, and she slowly begins to thrust forward.");
+		output("\n\n<i>\"Just relax,\"</i> Kaska coos while unsubtly pushing herself through your ");
+		if(pc.analVirgin) output("virgin");
+		else if(pc.ass.looseness() < 2) output("virginal");
+		else if(pc.ass.looseness() < 3) output("tight");
+		else output("well-trained");
+		output(" asshole. You do your best, but she feels so damn thick. At least she's slick with pre-cum and your own spit. The randy dickgirl moves her other hand up to join her first at your shoulders, levering another inch of her length up your rear entrance and saying, <i>\"Yeah, I think this'll work fine.\"</i> She crams another two inches inside. You gasp. <i>\"Once I wring a few anal orgasms from you and get you used to having an ass full of spunk, you'll never want to do anything else. I hear it's something about our cum being chemically addictive in large enough doses, I guess. I didn't bother to pay attention in school though, so we'll just have to find out, huh?\"</i>");
+		buttChange(chars["KASKA"].cockVolume(0),true,false);
+		output("\n\nHer balls clap against your [pc.butt]. As absolutely stuffed as you feel, you didn't expect her to bottom out already. The dickgirl pirate's length was just so slippery that it was able to ease right in. Your backside is tingling erotically");
+		if(pc.hasCock()) output(", and [pc.eachCock] drips with pre-cum, squeezed out of your compressed prostate");
+		else output(", and you can't help but wonder how good it will feel once she's cumming inside you");
+		output(". Involuntary spasms clench your [pc.asshole] around the anal intruder, squeezing Kaska's dick in what feels like a familiar, affectionate way.");
+		output("\n\n<i>\"Ooh, buttslut likes, does she?\"</i> Kaska asks while reaching down to cup one cheek. <i>\"I'm told a lot of races don't really care for it, my own among them, but us alphas just can't help but want to plug it.\"</i> She slowly pulls out, dripping pre-cum over the emptiness inside you before thrusting back into her self-lubricated, anal toy. You shiver in unexpected delight.");
+		output("\n\nKaska suggests, <i>\"There must be a helluvalot of nerves back there, or something. In my experience, people that don't like anal just didn't have a partner that knew what they were doing.\"</i> She bounces off your cheeks, lazily fucking your ass with slow, even strokes. <i>\"I've never had anyone complain after I've pounded their ass.\"</i> She playfully paddles your bum. <i>\"Aside from complaining about walking funny, that is.\"</i>");
+		output("\n\nYou nod; you'll definitely be walking funny when she finishes with you, but it does feel really, really good. Your [pc.legs] tremble when she bottoms out again.");
+		if(pc.hasCock()) output(" Milked-out [pc.cumNoun] trickles down the side of the crate in small streams. You haven't even came yet, but she's squeezing the stuff out of you nonetheless.");
+		output(" Wow.");
+
+		output("\n\nPicking up the pace now, Kaska suggests, <i>\"So, what do you say, buttslut, are you gonna want me to do this again later?\"</i>");
+		output("\n\nPerhaps it's pride or the desire to maintain some shred of dignity, but you decline to answer with your voice. It'd sound too turned on and needy. You lie, shaking your head no.");
+		output("\n\n<i>\"Really?\"</i> Kaska asks, slapping her balls against you as she picks up the pace. Your body shivers under the aggressive dickgirl, slowly learning every intimate detail of her member. You could probably pick it out of a crowd by the patterns and texture of the veins that cover it. <i>\"You're gonna sit there and lie, pretending you don't like THIS!?\"</i> She bottoms out and holds it there, flexing her muscles to make her dick bounce slightly inside you.");
+		output("\n\nYou can't hold back the throaty moan of pleasure that wells up in your chest. It's too much.");
+		output("\n\n<i>\"That's what I thought, slut,\"</i> the pirate boasts, <i>\"I've never met a bitch who didn't love the feel of this beast inside them. You do love it, don't you?\"</i> She presses her hips against you hard enough to flatten your cheeks a little, squeezing an extra half-inch inside you. <i>\"You love it when I buttfuck you.\"</i>");
+		output("\n\n<i>\"Yes...\"</i> the hissed admission hangs in the air. You didn't mean to say it, but you did. There's no taking it back or denying now. You've lost this fight to. There's no more reason to hide, so you let your mouth open and your voice pour out another 'yes'. This one is louder and syrupy with desire, the kind of sound a girl on the cusp of an orgasm might make. Admitting it makes your [pc.asshole] tingle pleasantly, or perhaps that's the length inside you. Unconcerned, you try the word out again, this time moaning it wantonly.");
+
+		output("\n\nKaska picks up fucking you, going faster now. She purrs, <i>\"Good slut,\"</i> while her hips piston away, feeding her eleven inches into your nicely-gaped ass with ease. You're coming to hate the empty feeling moments when she's almost pulled out, but they make the seconds of total penetration that much sweeter. Her sweaty balls noisily slap at your [pc.skinFurScales], churning with their burgeoning load. Her cock is getting thicker as well, filling past capacity with blood in the seconds before it finally cums.");
+		output("\n\nScrabbling at the edge of the crate, you brace yourself as Kaska joins you in moaning, digging your fingertips into the metal and plastic as the dickgirl really starts to ream you. The spit and precum have combined into a slurry of fuck-fueling lubrication that noisily squelches with each pistoning thrust. Over the sensual din, you hear her cry out, <i>\"Take it, slut!\"</i> a moment before her cock surges. The feeling of her cum flooding your ass is like a subtle, spreading warmth that makes her thrusts feel even better.");
+		output("\n\nYour [pc.legs] flop bonelessly as you're drilled and filled, your ass inseminated with alien spunk and loving it. Your [pc.asshole] flutters, leaking cum, and you finally lose it, screaming and babbling encouragement, degrading yourself and begging her to fill you up with more. Kaska does not disappoint. Her orgasm even manages to outlast your own. By the time you sag, limp, she's still pumping her hips and creaming your backdoor.");
+		output("\n\nLying there, helpless and spent, you're surprised by how satisfying it feels to take her jizz, how right it feels nestled inside you. Anal isn't supposed to be quite this good, is it? Isn't this how vaginas are supposed to feel, not asshole? Kaska squirts a last dollop of her cock's heavy cream into your stuffed belly, scattering any concerns. You won't mind doing this again.");
+	}
+	//Merge with generic kaska pulling out of a well-fucked hole and giving the PC a sedative.
+	output("\n\nYou're barely aware of Kaska pulling out of your well-filled hole at first, but the conspicuous lack of cock does eventually rouse you from your lazy, post-coital state. You blink open your eyes to look up at her in time to see her leaning over you with a dermamist applicator. She presses it to your neck, and you hear the quiet hiss of it delivering something through the membrane of your skin. Blackness takes you....");
+	pc.orgasm();
+	processTime(20+rand(10));
+	clearMenu();
+	addButton(0,"Next",kaskaBadEndPartIII);
+}
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
-<b>Some time later....</b>
-You wouldn't have expected to wake up embedded on Kaska's dick somewhere on the edge of civilized space, but you did. You wouldn't have expected to moan so shamelessly at the realization either, but you did. You certainly wouldn't have expected to sit quietly in the corner, rubbing your [pc.belly], while Kaska got permission to take you as her part of the score. And feeling excited at the Captain's confirmation? That was out of the question, but you did. Secretly, you thrilled at it.
-You were made to service Kaska three time more times before making port. It was surprisingly easy; you just settled in front of her chair, opened up, and started sucking. The pirate crew might have been dining on food, but you never really got hungry, or wondered why. Once, when you started talking, Kaska pulled you onto her soft cock to give you something to do. It still tasted vaguely of her cum. It took over fifteen minutes of sucking to extract every ounce of flavor, but then she was leaking again.
-You got to see Kaska's apartment later. It was really messy, and when you told her, told you that you'd have to clean it before you could have her cock again. At first, that didn't seem that bad. You were used to doing lots of things, but as you sat there, cuddled on her couch watching the latest holoprograms, you started to want it.
-Before you knew it, you were cleaning. Kaska even found you a feather duster, but a few minutes after you started dusting, she was on you, giving you just what you needed. You still finished dusting after, too. It was better when she let you have her cock at all hours of the day. You got really good at sucking dick and mopping up cum stains.
-It was really hard the first time Kaska went out on jobs. You were home alone, and after a few hours, the need for her became almost overwhelming. It was agony and ecstasy. You'd sit there for hours masturbating to the nastiest dickgirl porn you could find on the extranet, barely doing anything else, just imagining the taste and texture of Kaska on your tongue or in your ass - anywhere, really.
-When Kaska got home days later, you were an absolute mess. She had to scrub you down in the shower because you hadn't showered the entire time. Of course, her dick was in your mouth the whole time.
-After that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your knees and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.
-GAME OVER
-Defeat Kaska
-	//Lust
-	<i>\"By the stars...\"</i> Kaska groans before dropping to her knees and tugging on her dick. She's wantonly fucking herself at this point, only paying attention to you to fuel her masturbatory fantasy. Her vagina is curiously ignored but dripping.
-Her gun has floated off somewhere, but a blinking detonator is hanging from her hip. Kaska doesn't stop you from swiping it. It might come in handy for defusing the bomb.{ Of course, you're pretty horny, and she didn't seem to be in any rush. You could pretty easily get her to service you, if you wanted.}
-//HP
-Kaska doubles over, dropping to her knees and cradling a myriad injuries. She looks hatefully in your direction, scowling as she produces a vial with a glittering, silver liquid. <i>\"I really should've kept some of this unaltered...\"</i> She pops the cork. <i>\"Bottoms up!\"</i>
-You lunge forward to stop her from drinking the mystery fluid, but it's too late. She's already swallowed it, and the vial and cork are floating harmlessly away. Kaska groans, <i>\"Last time I premix repair microsurgeons with love-toxin.\"</i> A bleeding wound on her cheek closes, good as new. <i>\"This stuff was meant to save some nubile cutey!\"</i> Another wound closes. Kaska licks her lips, humming softly, <i>\"It isn't so bad.\"</i> She bats one of her hands away from her tits and smiles, her dick surging to full erectness while you watch. <i>\"You ARE kind of a cutey.\"</i>
-The pirate can barely manage to keep her hands off herself, and after a few more second admiring you, she begins brazenly stroking herself to the sight of you, alleviating any concerns that that vial might lead to more fighting. Kaska crawls over to you, repeatedly licking her lips and groping herself all over while she masturbates, ignorant of the fact that the detonator on her hip is on full display.
-You take the device in case you need it to disarm the bomb and consider your options.{ She didn't seem to be worried about the bomb going off any time soon. Maybe she would like a chance to slake your lusts.}
-//Options
-Leave
-	An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.
-Unfucked Appearance
-	Kaska is sitting in a puddle of her own juices, still stroking her cock and looking at you with needy eyes.
-Fucked Appearance
-	Kaska is floating in place, anchored to the deck by her boots but completely unconscious. Ropes of her jizz float in a cloud around her, to say nothing of the thick smears of it that drench her skin, face, and hair.
-Repeat Conscious Approach
-	Kaska, still tugging her length, smiles at your approach. <i>\"I should hate you right now, but everything is awesome, and you're awesome, and I'm so fucking hard, and you can fuck me however you want, just fuck me!\"</i> Well... you suppose you could do just that.
-Victory Dicksex
-	{Opening up your [pc.lowerGarments], you select {the biggest of }your [pc.cocks] and draw it out,/Grabbing hold of{ the biggest of} your [pc.cocks], you calmly stroke it,} waggling it in front of the tugging pirate. Her eyes widen lustily. <i>\"See something you like?\"</i> you ask while inching closer, eventually letting it slap against her cheek. <i>\"Why don't you get me warmed up?\"</i>
-	You don't have to ask twice. The pirate twists her neck to put her lips against the underside of your rod{ with her nose against your knot} and presses her tongue out to taste you. She runs it up to your [pc.cockHeadBiggest] before parting her lips and letting it inside. She's warm, wet and eager. In large part, her fervor for cocksucking could be attributed to her own overwhelming lust, turning an onerous favor into fuel for her own masturbation. As long as your dick is getting sucked, you're fine with it.
-	Kaska noisily gasps for air in between her slurps. She doesn't look up or acknowledge you, and you get the impression that she must not do this very often. Grabbing hold of her hair, you yank her back up to your [pc.cockHeadBiggest] and tip her head back, forcing her to look you eye to eye. A spark of defiance glows in her eyes but gutters and dies a second later. She may not like to take orders, yet she knows when she's beaten. There isn't even token resistance when you push her back and forth, coating {most of }your road with an even coat of pirate spit.
-	After a few minutes of this, you Kaska's technique improves, and you start to get dangerously hard. It'd be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You're forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.
-	<i>\"Please, let me fuck you,\"</i> she begs. Sweat beads on her brow. <i>\"I need it. My balls are so full!\"</i>
-	You smile and hook your hands under her armpits, lifting her up to her feet. <i>\"{Don't worry, I'll make sure you get off too./Well, we are going to fuck. You got that part right./Nope. I'm gonna fuck you, sugar tits.}\"</i>
-	<i>\"No... I'm... an alpha...\"</i> Kaska weekly protests as you bend her over a crate. Her dick, still leaking, is pointed straight down, pinned between her balls and the cool metal, and you get a good, long look at her pussy, for once not obscured by her troublesome maleness. It's clear she's a stranger to the feminine pleasures her body could enjoy, but that doesn't stop her from being dripping wet, her lips slightly parted invitingly. The pirate's pussy is just asking for a hard fucking.
-	You don't keep it waiting. Pushing your [pc.cockHead " + x + "] against her sodden entrance, you marvel at the silky texture of her spreading labia, slowing your push to give you time to drag yourself all over the exterior of her sex. The alien hermaphrodite may have styled herself as something of a masculine breeder, but when it comes down to it, her cunt is desperate to be fucked and used.
-	Kaska gasps, <i>\"W-why does it feel this good?\"</i> Her legs wobble dangerously. <i>\"No... I'm... I'm not supposed to like this...\"</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>\"Yesssss....\"</i>
-You almost don't hear the quiet admittance of pleasure, but it's there all the same. You'd never guess her so vaginally inexperienced after slipping inside of her oozing slut-tunnel. The muscles inside squeeze and stroke at you with greater levels of excitement after each new inch you feed it. Your [pc.cock " + x + "] trembles under the caresses. They are at the same time both foreign and familiar; Kaska's race's anatomy is just different enough that the muscles squeezing at you from inside her pussy do so in unexpected ways, feeling distinctly alien yet all too pleasurable. When your {[pc.balls] slap against her own/[pc.base " + x + "] presses against her}, you're almost saddened. You would've been content to slide into her forever.
-	//Dickginity loss
-	<i>\"M-more...\"</i> Kaska stutters in between pants. <i>\"Don't stop!\"</i> She's looking over her shoulder at you imploringly, red eyes flicking back and forth as she searches for the words to spur you onwards. They gleam with fiery intensity when she finds them. <i>\"Fuck me! Fuck me... make me your slut!\"</i> The last half is uttered with more than a little trepidation.
-	As you pull back to line up your second stroke, you ponder her words, wondering if those are the kinds of things she likes girls to say to her. Kaska bubbles, <i>\"Fuck me!\"</i> again when you thrust home. There's no need to take it slow with how wet she is. Juices dribble out of her thighs with every piston-like pump into her thighs, and her voice is all to happy to release high-pitched squeals of intermingled ecstasy and excitement. You let her have it and commence drilling her gushing honeypot in earnest, watching her plush ass and luscious tits jiggle and quake from the force of the pounding.
-	Kaska cums almost immediately. You'd almost miss it if you were listening to her increasingly out of control wails. They're a nonstop mix of babbled pleasure and ecstatic moans. Her pussy communicates her pleasure instead, clamping down about your length in one, long convulsive squeeze. The moment in relaxes, a squirt of girlcum hits your [pc.leg], and her folds go wild, independently quivering as they lose all control, nervelessly spasming against your [pc.cock " + x + "]. The uncoordinate uncoordinated* strokes do exactly what dzaan genetics designed them to do: overwhelm with a hundred threads of pleasure, all contesting for your attention.
-	You thrust in, bottoming out. Your mind may not know what to do with the avalanche of sensory data, but your body responds on autopilot.{ Your [pc.balls] clench.} [pc.EachCock] grows as hard as an iron bar, visibly swelling with every beat of your hammering heart. The warm contractions of your release build in your mid-section, and in one glorious moment, you explode, spurting {a few meager drops from your [pc.cocks]/your release from your [pc.cocks]/long ropes of pleasure from your [pc.cocks]/huge blobs of goo from your [pc.cocks]/tremendous blasts of release from your [pc.cocks]} into Kaska's spunk-holster{, packing it full/, flooding it with so much [pc.cum] that the excess pours down the backside of her balls in a waterfall/, flooding it with so much [pc.cum] that you can feel the pressure pushing back against the knot you've locked inside her}.{ You hold her in place, sealing every drop inside thanks to the way your inhuman tool swells at its base, wondering if this little tryst will have your pirate bitch bred.}
-	Eventually calming down, you pull out {with an audible pop }to examine your work. The once-mighty pirate is a blubbering wreck, still quivering in the aftershocks of her pleasure. She glistens with sweat and pants for breath, reduced to a quivering puddle sex. Slowly drifting up, her limp body floats in the zero-G atmosphere. The spunk she had been shooting, unnoticed until now, bubbles and swirls around her, though a residue of white lines the box she had been pressed against.{ It seems you both managed to cream a box today.}
-	Now that you can think a little more clearly, it's time to deal with that bomb.
-	//Pass 17 minutes.
-	//Orgasm
-	//Tag Kaska as fucked.
-Victory Cuntsex
-//Make her eat you out. Probably a shortie. Suck mah dick.
-	{You lazily open your [pc.lowerGarments],/You lazily step forward,} intending to get some quick, oral relief from this pirate before dealing with the potentially planet-cracking bomb. Her eyes are a little glassy and unfocused, like someone half lost in a daydream. You grab her by the chin and tip her head back to look you in the eye. Her jaw works, opening and closing, trying to find the words that she undoubtedly believes she must say. You put a finger to her lips to shush her and speak yourself.
-	//Nice
-	<i>\"We've both gotten worked up here, and I think it would be best if we both sated our baser needs before moving on.\"</i> You smile warmly, saying, <i>\"Since I won fair and square, I think it's only fair that I get to dictate how all this will work. Don't you agree?\"</i>
-	Kaska tilts her head slightly, then nods, either too lust-drunk to object or secretly submissive enough to want this. She even kisses at your finger as you pull it away.
-	<i>\"Great,\"</i> you add, <i>\"then you can lick me while you tug on that dick of yours, okay?\"</i>
-	//Mischievous
-	<i>\"Since you did me the favor of getting me nice and wet, you should really do something about that, hadn't you?\"</i> You edge closer and wink. <i>\"Look at it, all flush with excitement and dripping wet. I bet you wanna stick your dick in it, don't you?\"</i>
-	Kaska whimpers needily and nods. Slipping out from between her lips, her tongue idly caresses the side of your finger as you retract it.
-	<i>\"Quite a tongue you've got there,\"</i> you observe. <i>\"How about you put it to use right... here!\"</i> You wiggle a finger in between {a pair of/your} lower lips. <i>\"If you wanted to fuck me, you should've fought harder.\"</i> You edge your [pc.hips] close enough to Kaska's face that she can't help but smell your scent. <i>\"I might even help you tug on that thing while you do it.\"</i>
-	//Naughty
-	<i>\"A hot little mouth like that deserves to be busy on a box.\"</i> You shift your grip to more firmly hold her chin, pinching her cheeks and turning her head this way and that, admiring the way the light glints off her puckered lips. <i>\"I got just the place for you to put that.\"</i>
-	Kaska shudders when you release her chin and nervously licks her lips, nodding with surprising meekness. Her eyes rove down your [pc.belly] to your crotch.
-	<i>\"You're gonna please {that pussy/those pussies},\"</i> you command, <i>\"and if you do a good enough job, I might let you tug on your dick while you do it.\"</i>
-	//Merge
-	Amazed at how a once proud, combative pirate can be turned into an eager cunt-licker, grab her by the back of the head and pull her face into your crotch, mashing it into [pc.oneVagina]. At first, Kaska seems confused at her new place, but within a few seconds, she opens her mouth and tentatively takes her first few licks. It's obviously from the nervous, inexpert flicks of her tongue that she's no frequent pussy-licker. She soon makes up for her lack of experience with sheer passion, letting her ardor guide her into rapid, hungry licks that penetrate deeply while her lips seal around your lower pair.
-	The busily licking hermaphrodite is soon {marked by streaks of [pc.girlCum] on her on cheeks/dripping your [pc.girlCum] off her chin onto her cleavage and cock/soaked with your [pc.girlCum] from chin to crotch}. {Becoming aware of {another nearby pussy/other nearby pussies}, she shifts over to take the next in her mouth. You're stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] for the pirate to taste.{ She moves to your third twat after licking the second clean, then back to the first. You could get used to this kind of attention.}}
-	Faint, wet sounds of flesh slapping flesh come from below you. Glancing around Kaska's noisily slurping head, you spot the source of the sound. She's got her fist wrapped tightly around her cock and is pumping it with wild abandon. There's so much pre-cum leaking from her tip that her entire hand glistens with it, and the sticky liquid has frothed into a bubbling ring just below her glans. She's stroking so fast that can't be far from finishing. It would only take a little extra to push her over the edge.
-	//Gooey undercarriage
-	You let extend your semi-liquid lower body out until it makes contact with the dickgirl's overfull cum factories and swiftly engulf them. Kaska whimpers, but to her credit, she doesn't lose it yet. You smile through your own moans of pleasure and push your gooey pseudopod further, swallowing up the bottom half of her dick. She loses it then, completely abandoning her own attempts to please her cock. The pirate's hand falls by her side, and her hips thrust futilely against you while you bind her in shifting liquid. Her balls squeeze, and you rub them encouragingly, coaxing the biggest possible orgasm out of her. You let the tip poke out the top, so that when she blows, she'll blow all over herself.
-	//Foot
-	You extend a [pc.foot] out until you make contact with the dickgirl's swollen nuts. Stopping there, you let your toes rub across the slick surface of her hairless sack, caressing her with your foot while she goes to town on your [pc.vaginas]. You can feel them twitch and pulse, so close to delivering their gooey payload and yet so far. In the interest of helping your loyal clit-licker along, you fondle your way up to her shaft and press your toes around it, pushing her hand away so that you can jerk her off with your foot. She moans into [pc.oneVagina], and her dick thickens, preparing to shoot.
-	//Errything else
-	You nudge your [pc.foot] against the dickgirl's swollen balls and discover her hairless sack to be remarkably slick with her lewd secretions. She gasps into [pc.oneVagina] and redoubles her efforts there while her thick cock strains in her fingers, on the edge of exploding. You decide to aid her by rolling your [pc.foot] back and forth, sometimes lifting it to rub against the underside of her dick or bringing it down to gently roll across her orbs. It's too much for the busy clit-licker. She's going to go off any second now. You can tell by the way her dick is thickening and twitching.
-	//Back to business as usual
-	Kaska's tongue goes wild against [pc.oneClit] at the same time that her orgasm hits her. The wild thrashing of that slick muscle on your most sensitive place nearby doubles you over, and you instinctively grab her by the back of her head, mashing her face harder into your juicing cunn{y/ies}. Wet trails of cum fall on your [pc.legs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.
-	If gravity were normal, you both would've collapsed into a pile of sweaty, orgasmically spent bodies long ago, but you're able to float in place, cumming yourselves dry, for some time. When you do manage to stumble away from the jizz-stained pirate, she's gasping and weakly stroking herself, her lips stained with your [pc.girlCum] as well as much of her own juice as she can gather.
-	Kaska won't be bothering anyone for a while. You had better deal with the bomb.
+function kaskaBadEndPartIII():void
+{
+	clearOutput();
+	output("<b>Some time later....</b>");
+	output("\nYou wouldn't have expected to wake up embedded on Kaska's dick somewhere on the edge of civilized space, but you did. You wouldn't have expected to moan so shamelessly at the realization either, but you did. You certainly wouldn't have expected to sit quietly in the corner, rubbing your [pc.belly], while Kaska got permission to take you as her part of the score. And feeling excited at the Captain's confirmation? That was out of the question, but you did. Secretly, you thrilled at it.");
+	output("\n\nYou were made to service Kaska three time more times before making port. It was surprisingly easy; you just settled in front of her chair, opened up, and started sucking. The pirate crew might have been dining on food, but you never really got hungry, or wondered why. Once, when you started talking, Kaska pulled you onto her soft cock to give you something to do. It still tasted vaguely of her cum. It took over fifteen minutes of sucking to extract every ounce of flavor, but then she was leaking again.");
+	output("\n\nYou got to see Kaska's apartment later. It was really messy, and when you told her, told you that you'd have to clean it before you could have her cock again. At first, that didn't seem that bad. You were used to doing lots of things, but as you sat there, cuddled on her couch watching the latest holoprograms, you started to want it.");
+	output("\n\nBefore you knew it, you were cleaning. Kaska even found you a feather duster, but a few minutes after you started dusting, she was on you, giving you just what you needed. You still finished dusting after, too. It was better when she let you have her cock at all hours of the day. You got really good at sucking dick and mopping up cum stains.");
+	output("\n\nIt was really hard the first time Kaska went out on jobs. You were home alone, and after a few hours, the need for her became almost overwhelming. It was agony and ecstasy. You'd sit there for hours masturbating to the nastiest dickgirl porn you could find on the extranet, barely doing anything else, just imagining the taste and texture of Kaska on your tongue or in your ass - anywhere, really.");
+	output("\n\nWhen Kaska got home days later, you were an absolute mess. She had to scrub you down in the shower because you hadn't showered the entire time. Of course, her dick was in your mouth the whole time.");
+	output("\n\nAfter that, she'd remember to leave some of her spunk for you in the refrigerator, and you would keep the place spotless in her absence, greeting her on your knees and ready for a dose of the fresh stuff. Your sense of initiative dwindled to nothing, but love and submissiveness grew to replace it. You had forgotten your father's fortune by the end of the first week in Kaska's apartment; living with her was the real treasure.");
+	output("\n\n<b>GAME OVER</b>");
+	clearMenu();
+}
 
-	
-	
-	
-	
-	
+//Defeat Kaska
+function defeatKaska():void
+{
+	clearOutput();
+	//Lust
+	if(foes[0].lust() >= foes[0].lustMax())
+	{
+		output("<i>\"By the stars...\"</i> Kaska groans before dropping to her knees and tugging on her dick. She's wantonly fucking herself at this point, only paying attention to you to fuel her masturbatory fantasy. Her vagina is curiously ignored but dripping.");
+		output("\n\nHer gun has floated off somewhere, but a blinking detonator is hanging from her hip. Kaska doesn't stop you from swiping it. It might come in handy for defusing the bomb.");
+		if(pc.lust() >= 33) output(" Of course, you're pretty horny, and she didn't seem to be in any rush. You could pretty easily get her to service you, if you wanted.");
+	}
+	//HP
+	else
+	{
+		output("Kaska doubles over, dropping to her knees and cradling a myriad injuries. She looks hatefully in your direction, scowling as she produces a vial with a glittering, silver liquid. <i>\"I really should've kept some of this unaltered...\"</i> She pops the cork. <i>\"Bottoms up!\"</i>");
+		output("\n\nYou lunge forward to stop her from drinking the mystery fluid, but it's too late. She's already swallowed it, and the vial and cork are floating harmlessly away. Kaska groans, <i>\"Last time I premix repair microsurgeons with love-toxin.\"</i> A bleeding wound on her cheek closes, good as new. <i>\"This stuff was meant to save some nubile cutey!\"</i> Another wound closes. Kaska licks her lips, humming softly, <i>\"It isn't so bad.\"</i> She bats one of her hands away from her tits and smiles, her dick surging to full erectness while you watch. <i>\"You ARE kind of a cutey.\"</i>");
+		output("\n\nThe pirate can barely manage to keep her hands off herself, and after a few more second admiring you, she begins brazenly stroking herself to the sight of you, alleviating any concerns that that vial might lead to more fighting. Kaska crawls over to you, repeatedly licking her lips and groping herself all over while she masturbates, ignorant of the fact that the detonator on her hip is on full display.");
+		output("\n\nYou take the device in case you need it to disarm the bomb and consider your options.");
+		if(flags["TARKUS_BOMB_TIMER"] >= 60) output(" She didn't seem to be worried about the bomb going off any time soon. Maybe she would like a chance to slake your lusts.");
+	}
+	pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
+	processTime(1);
+	//Options
+	if(pc.lust() >= 33)
+	{
+		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
+		if(pc.hasVagina()) addButton(1,"Cunnlingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She'd be a pretty great pussy licker while she takes care of herself....");
+		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+	}
+	else
+	{
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
+		addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+	}
+	addButton(14,"Leave",leaveKaskaPostCombat);
+}
+
+//Leave
+function leaveKaskaPostCombat():void
+{
+	clearOutput();
+	output("An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.\n\n");
+	genericVictory();
+}
+
+//Unfucked Appearance
+//Kaska is sitting in a puddle of her own juices, still stroking her cock and looking at you with needy eyes.
+//Fucked Appearance
+//	Kaska is floating in place, anchored to the deck by her boots but completely unconscious. Ropes of her jizz float in a cloud around her, to say nothing of the thick smears of it that drench her skin, face, and hair.
+
+//Repeat Conscious Approach
+function approachUnfuckedKaska():void
+{
+	clearOutput();
+	output("Kaska, still tugging her length, smiles at your approach. <i>\"I should hate you right now, but everything is awesome, and you're awesome, and I'm so fucking hard, and you can fuck me however you want, just fuck me!\"</i> Well... you suppose you could do just that.");
+	clearMenu();
+	if(pc.lust() >= 33)
+	{
+		if(pc.hasCock() && pc.cockThatFits(chars["KASKA"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",victoryKaskaDicksex,undefined,"Dick Fuck","She seems awful proud of her male endowment. Maybe she could stand to learn a little about taking one from someone else.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
+		if(pc.hasVagina()) addButton(1,"Cunnlingus",makeKaskaSuchYerCoochLikeABaws,undefined,"Cunnilingus","She'd be a pretty great pussy licker while she takes care of herself....");
+		else addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+	}
+	else
+	{
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
+		addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+	}
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Victory Dicksex
+function victoryKaskaDicksex():void
+{
+	clearOutput();
+	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
+	if(x < 0) x = pc.smallestCockIndex();
+	if(pc.isCrotchGarbed())
+	{
+		output("Opening up your [pc.lowerGarments], you select ");
+		if(pc.cockTotal() > 1) output("the biggest of ");
+		output("your [pc.cocks] and draw it out,");
+	}
+	else
+	{
+		output("Grabbing hold of");
+		if(pc.cockTotal() > 1) output(" the biggest of");
+		output(" your [pc.cocks], you calmly stroke it,");
+	}
+	output(" waggling it in front of the tugging pirate. Her eyes widen lustily. <i>\"See something you like?\"</i> you ask while inching closer, eventually letting it slap against her cheek. <i>\"Why don't you get me warmed up?\"</i>");
+	output("\n\nYou don't have to ask twice. The pirate twists her neck to put her lips against the underside of your rod");
+	if(pc.hasKnot(x)) output(" with her nose against your knot");
+	output(" and presses her tongue out to taste you. She runs it up to your [pc.cockHeadBiggest] before parting her lips and letting it inside. She's warm, wet and eager. In large part, her fervor for cocksucking could be attributed to her own overwhelming lust, turning an onerous favor into fuel for her own masturbation. As long as your dick is getting sucked, you're fine with it.");
+	output("\n\nKaska noisily gasps for air in between her slurps. She doesn't look up or acknowledge you, and you get the impression that she must not do this very often. Grabbing hold of her hair, you yank her back up to your [pc.cockHeadBiggest] and tip her head back, forcing her to look you eye to eye. A spark of defiance glows in her eyes but gutters and dies a second later. She may not like to take orders, yet she knows when she's beaten. There isn't even token resistance when you push her back and forth, coating ");
+	if(pc.biggestCockLength() >= 12) output("most of ");
+	output("your road with an even coat of pirate spit.");
+
+	output("\n\nAfter a few minutes of this, you Kaska's technique improves, and you start to get dangerously hard. It'd be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You're forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.");
+	output("\n\n<i>\"Please, let me fuck you,\"</i> she begs. Sweat beads on her brow. <i>\"I need it. My balls are so full!\"</i>");
+
+	output("\n\nYou smile and hook your hands under her armpits, lifting her up to her feet. <i>\"");
+	if(pc.isNice()) output("Don't worry, I'll make sure you get off too.");
+	else if(pc.isMischievous()) output("Well, we are going to fuck. You got that part right.");
+	else output("Nope. I'm gonna fuck you, sugar tits.");
+	output("\"</i>");
+	output("\n\n<i>\"No... I'm... an alpha...\"</i> Kaska weekly protests as you bend her over a crate. Her dick, still leaking, is pointed straight down, pinned between her balls and the cool metal, and you get a good, long look at her pussy, for once not obscured by her troublesome maleness. It's clear she's a stranger to the feminine pleasures her body could enjoy, but that doesn't stop her from being dripping wet, her lips slightly parted invitingly. The pirate's pussy is just asking for a hard fucking.");
+	output("\n\nYou don't keep it waiting. Pushing your [pc.cockHead " + x + "] against her sodden entrance, you marvel at the silky texture of her spreading labia, slowing your push to give you time to drag yourself all over the exterior of her sex. The alien hermaphrodite may have styled herself as something of a masculine breeder, but when it comes down to it, her cunt is desperate to be fucked and used.");
+	output("\n\nKaska gasps, <i>\"W-why does it feel this good?\"</i> Her legs wobble dangerously. <i>\"No... I'm... I'm not supposed to like this...\"</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>\"Yesssss....\"</i>");
+	output("\n\nYou almost don't hear the quiet admittance of pleasure, but it's there all the same. You'd never guess her so vaginally inexperienced after slipping inside of her oozing slut-tunnel. The muscles inside squeeze and stroke at you with greater levels of excitement after each new inch you feed it. Your [pc.cock " + x + "] trembles under the caresses. They are at the same time both foreign and familiar; Kaska's race's anatomy is just different enough that the muscles squeezing at you from inside her pussy do so in unexpected ways, feeling distinctly alien yet all too pleasurable. When your ");
+	if(pc.balls > 0) output("[pc.balls] slap against her own");
+	else output("[pc.base " + x + "] presses against her");
+	output(", you're almost saddened. You would've been content to slide into her forever.");
+	//Dickginity loss
+	cockChange();
+
+	output("\n\n<i>\"M-more...\"</i> Kaska stutters in between pants. <i>\"Don't stop!\"</i> She's looking over her shoulder at you imploringly, red eyes flicking back and forth as she searches for the words to spur you onwards. They gleam with fiery intensity when she finds them. <i>\"Fuck me! Fuck me... make me your slut!\"</i> The last half is uttered with more than a little trepidation.");
+	output("\n\nAs you pull back to line up your second stroke, you ponder her words, wondering if those are the kinds of things she likes girls to say to her. Kaska bubbles, <i>\"Fuck me!\"</i> again when you thrust home. There's no need to take it slow with how wet she is. Juices dribble out of her thighs with every piston-like pump into her thighs, and her voice is all to happy to release high-pitched squeals of intermingled ecstasy and excitement. You let her have it and commence drilling her gushing honeypot in earnest, watching her plush ass and luscious tits jiggle and quake from the force of the pounding.");
+	output("\n\nKaska cums almost immediately. You'd almost miss it if you were listening to her increasingly out of control wails. They're a nonstop mix of babbled pleasure and ecstatic moans. Her pussy communicates her pleasure instead, clamping down about your length in one, long convulsive squeeze. The moment in relaxes, a squirt of girlcum hits your [pc.leg], and her folds go wild, independently quivering as they lose all control, nervelessly spasming against your [pc.cock " + x + "]. The uncoordinated strokes do exactly what dzaan genetics designed them to do: overwhelm with a hundred threads of pleasure, all contesting for your attention.");
+	output("\n\nYou thrust in, bottoming out. Your mind may not know what to do with the avalanche of sensory data, but your body responds on autopilot.");
+	if(pc.balls > 0) output(" Your [pc.balls] clench.");
+	output(" [pc.EachCock] grows as hard as an iron bar, visibly swelling with every beat of your hammering heart. The warm contractions of your release build in your mid-section, and in one glorious moment, you explode, spurting ");
+	if(pc.cumQ() < 8) output("a few meager drops from your [pc.cocks]");
+	else if(pc.cumQ() < 25) output("your release from your [pc.cocks]");
+	else if(pc.cumQ() < 100) output("long ropes of pleasure from your [pc.cocks]");
+	else if(pc.cumQ() < 1000) output("huge blobs of goo from your [pc.cocks]");
+	else
+	{
+		output("tremendous blasts of release from your [pc.cocks]");
+	}
+	output(" into Kaska's spunk-holster");
+	if(pc.cumQ() >= 250 && pc.cumQ() < 3000) output(", packing it full");
+	else if(pc.cumQ() >= 3000) 
+	{
+		if(!pc.hasKnot(x)) output(", flooding it with so much [pc.cum] that the excess pours down the backside of her balls in a waterfall");
+		else output(", flooding it with so much [pc.cum] that you can feel the pressure pushing back against the knot you've locked inside her");
+	}
+	output(".");
+	if(pc.hasKnot(x)) output(" You hold her in place, sealing every drop inside thanks to the way your inhuman tool swells at its base, wondering if this little tryst will have your pirate bitch bred.");
+	output("\n\nEventually calming down, you pull out ");
+	if(pc.hasKnot(x)) output("with an audible pop ");
+	output("to examine your work. The once-mighty pirate is a blubbering wreck, still quivering in the aftershocks of her pleasure. She glistens with sweat and pants for breath, reduced to a quivering puddle sex. Slowly drifting up, her limp body floats in the zero-G atmosphere. The spunk she had been shooting, unnoticed until now, bubbles and swirls around her, though a residue of white lines the box she had been pressed against.");
+	if(silly) output("\n\n It seems you both managed to cream two boxes today.");
+	output("\n\nNow that you can think a little more clearly, it's time to deal with that bomb.");
+	//Pass 17 minutes.
+	processTime(17);
+	//Orgasm
+	pc.orgasm();
+	//Tag Kaska as fucked.
+	flags["KASKA_FUCKED"] = 1;
+	if(inCombat())
+	{
+		output("\n\n");
+		genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//Victory Cuntsex
+//Make her eat you out. Probably a shortie. Suck mah dick.
+function makeKaskaSuchYerCoochLikeABaws():void
+{
+	clearOutput();
+	if(pc.isCrotchGarbed()) output("You lazily open your [pc.lowerGarments],");
+	else output("You lazily step forward,");
+	output(" intending to get some quick, oral relief from this pirate before dealing with the potentially planet-cracking bomb. Her eyes are a little glassy and unfocused, like someone half lost in a daydream. You grab her by the chin and tip her head back to look you in the eye. Her jaw works, opening and closing, trying to find the words that she undoubtedly believes she must say. You put a finger to her lips to shush her and speak yourself.");
+	//Nice
+	if(pc.isNice())
+	{
+		output("\n\n<i>\"We've both gotten worked up here, and I think it would be best if we both sated our baser needs before moving on.\"</i> You smile warmly, saying, <i>\"Since I won fair and square, I think it's only fair that I get to dictate how all this will work. Don't you agree?\"</i>");
+		output("\n\nKaska tilts her head slightly, then nods, either too lust-drunk to object or secretly submissive enough to want this. She even kisses at your finger as you pull it away.");
+		output("\n\n<i>\"Great,\"</i> you add, <i>\"then you can lick me while you tug on that dick of yours, okay?\"</i>");
+	}
+	//Mischievous
+	else if(pc.isMischievous())
+	{
+		output("\n\n<i>\"Since you did me the favor of getting me nice and wet, you should really do something about that, hadn't you?\"</i> You edge closer and wink. <i>\"Look at it, all flush with excitement and dripping wet. I bet you wanna stick your dick in it, don't you?\"</i>");
+		output("\n\nKaska whimpers needily and nods. Slipping out from between her lips, her tongue idly caresses the side of your finger as you retract it.");
+		output("\n\n<i>\"Quite a tongue you've got there,\"</i> you observe. <i>\"How about you put it to use right... here!\"</i> You wiggle a finger in between ");
+		if(pc.vaginaTotal() > 1) output("a pair of");
+		else output("your");
+		output(" lower lips. <i>\"If you wanted to fuck me, you should've fought harder.\"</i> You edge your [pc.hips] close enough to Kaska's face that she can't help but smell your scent. <i>\"I might even help you tug on that thing while you do it.\"</i>");
+	}
+	//Naughty
+	else
+	{
+		output("\n\n<i>\"A hot little mouth like that deserves to be busy on a box.\"</i> You shift your grip to more firmly hold her chin, pinching her cheeks and turning her head this way and that, admiring the way the light glints off her puckered lips. <i>\"I got just the place for you to put that.\"</i>");
+		output("\n\nKaska shudders when you release her chin and nervously licks her lips, nodding with surprising meekness. Her eyes rove down your [pc.belly] to your crotch.");
+		output("\n\n<i>\"You're gonna please {that pussy/those pussies},\"</i> you command, <i>\"and if you do a good enough job, I might let you tug on your dick while you do it.\"</i>");
+	}
+	//Merge
+	output("\n\nAmazed at how a once proud, combative pirate can be turned into an eager cunt-licker, grab her by the back of the head and pull her face into your crotch, mashing it into [pc.oneVagina]. At first, Kaska seems confused at her new place, but within a few seconds, she opens her mouth and tentatively takes her first few licks. It's obviously from the nervous, inexpert flicks of her tongue that she's no frequent pussy-licker. She soon makes up for her lack of experience with sheer passion, letting her ardor guide her into rapid, hungry licks that penetrate deeply while her lips seal around your lower pair.");
+	output("\n\nThe busily licking hermaphrodite is soon ");
+	if(pc.wetness(x) < 2) output("marked by streaks of [pc.girlCum] on her on cheeks");
+	else if(pc.wetness(x) < 4) output("dripping your [pc.girlCum] off her chin onto her cleavage and cock");
+	else output("soaked with your [pc.girlCum] from chin to crotch");
+	output(".");
+	if(pc.totalVaginas() > 1) 
+	{
+		output("Becoming aware of ");
+		if(pc.totalVaginas() == 2) output("another nearby pussy");
+		else output("other nearby pussies");
+		output(", she shifts over to take the next in her mouth. You're stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] for the pirate to taste.");
+		if(pc.totalVaginas() > 2) output(" She moves to your third twat after licking the second clean, then back to the first. You could get used to this kind of attention.");
+	}
+	output("\n\nFaint, wet sounds of flesh slapping flesh come from below you. Glancing around Kaska's noisily slurping head, you spot the source of the sound. She's got her fist wrapped tightly around her cock and is pumping it with wild abandon. There's so much pre-cum leaking from her tip that her entire hand glistens with it, and the sticky liquid has frothed into a bubbling ring just below her glans. She's stroking so fast that can't be far from finishing. It would only take a little extra to push her over the edge.");
+	//Gooey undercarriage
+	if(pc.isGoo())
+	{
+		output("\n\nYou let extend your semi-liquid lower body out until it makes contact with the dickgirl's overfull cum factories and swiftly engulf them. Kaska whimpers, but to her credit, she doesn't lose it yet. You smile through your own moans of pleasure and push your gooey pseudopod further, swallowing up the bottom half of her dick. She loses it then, completely abandoning her own attempts to please her cock. The pirate's hand falls by her side, and her hips thrust futilely against you while you bind her in shifting liquid. Her balls squeeze, and you rub them encouragingly, coaxing the biggest possible orgasm out of her. You let the tip poke out the top, so that when she blows, she'll blow all over herself.");
+	}
+	//Foot
+	else if(pc.legType == GLOBAL.HUMAN)
+	{
+		output("\n\nYou extend a [pc.foot] out until you make contact with the dickgirl's swollen nuts. Stopping there, you let your toes rub across the slick surface of her hairless sack, caressing her with your foot while she goes to town on your [pc.vaginas]. You can feel them twitch and pulse, so close to delivering their gooey payload and yet so far. In the interest of helping your loyal clit-licker along, you fondle your way up to her shaft and press your toes around it, pushing her hand away so that you can jerk her off with your foot. She moans into [pc.oneVagina], and her dick thickens, preparing to shoot.");
+	}
+	//Errything else
+	else
+	{
+		output("\n\nYou nudge your [pc.foot] against the dickgirl's swollen balls and discover her hairless sack to be remarkably slick with her lewd secretions. She gasps into [pc.oneVagina] and redoubles her efforts there while her thick cock strains in her fingers, on the edge of exploding. You decide to aid her by rolling your [pc.foot] back and forth, sometimes lifting it to rub against the underside of her dick or bringing it down to gently roll across her orbs. It's too much for the busy clit-licker. She's going to go off any second now. You can tell by the way her dick is thickening and twitching.");
+	}
+	//Back to business as usual
+	output("\n\nKaska's tongue goes wild against [pc.oneClit] at the same time that her orgasm hits her. The wild thrashing of that slick muscle on your most sensitive place nearby doubles you over, and you instinctively grab her by the back of her head, mashing her face harder into your juicing cunn");
+	if(pc.totalVagina() == 1) output("y");
+	else output("ies");
+	output(". Wet trails of cum fall on your [pc.legs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.");
+	output("\n\nIf gravity were normal, you both would've collapsed into a pile of sweaty, orgasmically spent bodies long ago, but you're able to float in place, cumming yourselves dry, for some time. When you do manage to stumble away from the jizz-stained pirate, she's gasping and weakly stroking herself, her lips stained with your [pc.girlCum] as well as much of her own juice as she can gather.");
+	output("\n\nKaska won't be bothering anyone for a while. You had better deal with the bomb.");
+	processTime(18);
+	pc.orgasm();
+	//Tag Kaska as fucked.
+	flags["KASKA_FUCKED"] = 1;
+	if(inCombat())
+	{
+		output("\n\n");
+		genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
+
+/*
 Da Bomb!
 	//Disarmed
 	The bomb is sitting here, inert and useless. It shouldn't give anyone trouble in its current state.
@@ -1953,7 +2513,7 @@ Succeed at Light's Out
 	The groans of straining metal being rent asunder give voice to the collapsing planet's pain. You're thrown into air along with a mountain of debris. The vantage offered by such heights allows you to watch Tarkus' crust split apart. Other pieces join you in the air, dislodged by the incredible tectonic forces at work. There is nowhere to run, nowhere to hide. You have a front row seat to the destruction of a planet, and it does not disappoint. The orange ball has already fractured into hundreds of island-sized asteroids. Luckily, you're crushed by a mountain of metal long before the atmosphere scatters to the void.
 	GAME OVER
 [FAILURE] Bomb goes off while in Nova
-	Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a  tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.
+	Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.
 	The ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, goblins, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.
 	Dry winds scream like banshees, propelled by geological forces beyond comprehension. {Anno/A white-haired ausar} seems to be one of the only ones not panicking. As a matter of fact, you see her pulling herself on handholds towards the sucking hole in the side of the hull. Opposite, {Shekka/a pink-haired raskvel in a gleaming white jumpsuit} is wearing a pair of glowing boots, stomping along the deck towards a lever. {Anno/The ausar} is almost at a matching one on the other side. They reach them at the same time, and recessed doors slide out of the walls, trailing a curtain of rust particles, and slam shut.
 	While the horrible sounds from outside may have died out, the ship is still spinning and shaking like wild. A tinny, raskvel voice comes over the speaker, <i>\"Tarkus is breaking up! Get the shields-\"</i> It cuts off with a burst of static. The lights dim, and the din of crying aliens reaches a whole new crescendo. Staggering, you make your way towards the hangar. Maybe you can save yourself.
