@@ -48,13 +48,13 @@ function buyFromGeoff():void {
 	this.addButton(1,"Talk",talkToGeoff);
 	if(flags["SEXED_GEOFF"] == 1) {
 		if(pc.mfn("","chick","") != "chick" || pc.isTaur() || pc.isNaga()) {
-			this.addDisabledButton(3,"Sex");
+			this.addDisabledButton(3,"Sex","Sex","You aren't feminine enough for sex with Geoff.");
 			output("\n\nGeoff doesn't seem interested in sex with the way you look right now...");
 		}
 		else {
 			if(pc.lust() >= 33) this.addButton(3,"Sex",GeoffRepeatFuck);
 			else {
-				this.addDisabledButton(3,"Sex");
+				this.addDisabledButton(3,"Sex","Sex","You aren't aroused enough for sex.");
 				output("\n\nYou aren't aroused enough for sex.");
 			}
 		}
