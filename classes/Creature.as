@@ -10,17 +10,12 @@
 	import classes.ItemSlotClass;
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
-	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
-
-	import flash.utils.ByteArray;
-
 	import classes.GLOBAL;
-	
 	import classes.GameData.Pregnancy.PregnancyManager;
 
 	/**
@@ -42,14 +37,16 @@
 		 * seems much overkill.
 		 */
 		protected var _neverSerialize: Boolean = false;
-		public function get neverSerialize(): Boolean {
+		public function get neverSerialize(): Boolean 
+		{
 			return _neverSerialize;
 		}
 
 		private static const STAT_CLAMP_VALUE:Number = 0;
 		
 		//Constructor
-		public function Creature() {
+		public function Creature() 
+		{
 			this.addIgnoredField("neverSerialize");
 
 			cocks = new Array();

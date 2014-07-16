@@ -139,6 +139,7 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_selectedVagina = new ComboLabelPair();
 			AddControl(_selectedVagina);
+			_selectedVagina.labelText = "Selected Vagina";
 			_selectedVagina.combobox.dropdown.iconField = null;
 			_selectedVagina.combobox.labelFunction = vagSelectLabelFunction;
 			_selectedVagina.combobox.dataProvider = _vaginaData;

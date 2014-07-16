@@ -1,5 +1,7 @@
 package classes.TITSSaveEdit.UI.Controls 
 {
+	import adobe.utils.ProductManager;
+	import fl.data.DataProvider;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
@@ -7,6 +9,7 @@ package classes.TITSSaveEdit.UI.Controls
 	import classes.BreastRowClass;
 	import classes.UIComponents.UIStyleSettings;
 	import classes.GLOBAL;
+	import flash.text.TextFieldType;
 	
 	/**
 	 * ...
@@ -17,21 +20,520 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _underline:Sprite;
 		private var _header:TextField;
 		
+		private var _nippleColor:InputLabelPair;
+		private var _nipplesPerBreast:InputLabelPair;
+		private var _nippleLengthRatio:InputLabelPair;
+		private var _nippleWidthRatio:InputLabelPair;
+		private var _dickNippleMultiplier:InputLabelPair;
+		private var _dickNippleType:ComboLabelPair;
+		
+		public function get nippleColor():String { return _nippleColor.inputValue; }
+		public function set nippleColor(v:String):void { _nippleColor.inputValue = v; }
+		
+		public function get nipplesPerBreast():int { return int(_nipplesPerBreast.inputValue); }
+		public function set nipplesPerBreast(v:int):void { _nipplesPerBreast.inputValue = String(v); }
+		
+		public function get nippleLengthRatio():Number { return Number(_nippleLengthRatio.inputValue); }
+		public function set nippleLengthRatio(v:Number):void { _nippleLengthRatio.inputValue = String(v); }
+		
+		public function get nippleWidthRatio():Number { return Number(_nippleWidthRatio.inputValue); }
+		public function set nippleWidthRatio(v:Number):void { _nippleWidthRatio.inputValue = String(v); }
+		
+		public function get dickNippleType():int { return int(_dickNippleType.inputValue); }
+		public function set dickNippleType(v:int):void { _dickNippleType.inputValue = int(v); }
+		
+		public function get dickNippleMultiplier():Number { return Number(_dickNippleMultiplier.inputValue); }
+		public function set dickNippleMultiplier(v:Number):void { _dickNippleMultiplier.inputValue = String(v); }
+		
+		// Milk stuff
+		private var _milkMultiplier:InputLabelPair;
+		private var _milkType:ComboLabelPair;
+		private var _milkStorageMultiplier:InputLabelPair;
+		private var _milkFullness:InputLabelPair;
+		private var _milkRate:InputLabelPair;
+		
+		public function get milkMultiplier():Number { return Number(_milkMultiplier.inputValue); }
+		public function set milkMultiplier(v:Number):void { _milkMultiplier.inputValue = String(v); }
+		
+		public function get milkType():int { return int(_milkType.inputValue); }
+		public function set milkType(v:int):void { _milkType.inputValue = int(v); }
+		
+		public function get milkStorageMultiplier():Number { return Number(_milkStorageMultiplier.inputValue); }
+		public function set milkStorageMultiplier(v:Number):void { _milkStorageMultiplier.inputValue = String(v); }
+		
+		public function get milkFullness():Number { return Number(_milkFullness.inputValue); }
+		public function set milkFullness(v:Number):void { _milkFullness.inputValue = String(v); }
+		
+		public function get milkRate():Number { return Number(_milkRate.inputValue); }
+		public function set milkRate(v:Number):void { _milkRate.inputValue = String(v); }
+		
+		public function get breastRows():Array { return _breastData.toArray(); }
+		public function set breastRows(v:Array):void
+		{
+			_breastData.removeAll();
+			_breastData.addItems(v);
+		}
+		
+		private var _breastNumControl:PairedButtonLabel;
+		private var _selectedBreastRow:ComboLabelPair;
+		
+		private var _breastData:DataProvider;
+		
+		private var _numBreasts:InputLabelPair;
+		private var _nippleType:ComboLabelPair;
+		private var _breastRating:InputLabelPair;
+		private var _fullness:InputLabelPair;
+		
+		public function get numBreasts():int { return int(_numBreasts.inputValue); }
+		public function set numBreasts(v:int):void { _numBreasts.inputValue = String(v); }
+		
+		public function get nippleType():int { return int(_nippleType.inputValue); }
+		public function set nippleType(v:int):void { _nippleType.inputValue = int(v); }
+		
+		public function get breastRating():Number { return Number(_breastRating.inputValue); }
+		public function set breastRating(v:Number):void { _breastRating.inputValue = String(v) }
+		
+		public function get fullness():Number { return Number(_fullness.inputValue); }
+		public function set fullness(v:Number):void { _fullness.inputValue = String(v); }
+		
 		public function BreastSettings() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
+			_breastData = new DataProvider([new BreastRowClass()]);
 		}
 		
 		private function init(e:Event = null):void
 		{
-			
+			removeEventListener(Event.ADDED_TO_STAGE, init);
+			Build();
 		}
 		
 		private function Build():void 
 		{
+			_header = new TextField();
+			UIStyleSettings.cfgLabel(_header);
+			_header.defaultTextFormat = UIStyleSettings.gTooltipHeaderFormatter;
+			this.addChild(_header);
+			_header.x = 15;
+			_header.height = 25;
+			_header.width = 300
+			_header.text = "Sex Characteristics - Breasts";
+			
+			_underline = new Sprite();
+			_underline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+			_underline.graphics.drawRect(0, 0, 383, 2);
+			_underline.graphics.endFill();
+			this.addChild(_underline);
+			_underline.x = 5;
+			_underline.y = _header.y + _header.height - 2;
+			
+			_nippleColor = new InputLabelPair();
+			AddControl(_nippleColor);
+			_nippleColor.labelText = "Nipple Color";
+			_nippleColor.inputValue = "pink";
+			_nippleColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
+			
+			_nipplesPerBreast = new InputLabelPair();
+			AddControl(_nipplesPerBreast);
+			_nipplesPerBreast.labelText = "Nipples/Breast";
+			_nipplesPerBreast.inputValue = "1";
+			_nipplesPerBreast.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			
+			_nippleLengthRatio = new InputLabelPair();
+			AddControl(_nippleLengthRatio);
+			_nippleLengthRatio.labelText = "Nip. Length";
+			_nippleLengthRatio.inputValue = "1.0";
+			_nippleLengthRatio.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_nippleWidthRatio = new InputLabelPair();
+			AddControl(_nippleWidthRatio);
+			_nippleWidthRatio.labelText = "Nip. Width";
+			_nippleWidthRatio.inputValue = "1.0";
+			_nippleWidthRatio.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_dickNippleMultiplier = new InputLabelPair();
+			AddControl(_dickNippleMultiplier);
+			_dickNippleMultiplier.labelText = "Dicknip Length";
+			_dickNippleMultiplier.inputValue = "1.0";
+			_dickNippleMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_dickNippleType = new ComboLabelPair();
+			AddControl(_dickNippleType);
+			_dickNippleType.labelText = "Dicknip Type";
+			
+			for (var i:int = 0; i < GLOBAL.VALID_DICKNIPPLE_TYPES.length; i++)
+			{
+				_dickNippleType.addItem(GLOBAL.VALID_DICKNIPPLE_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_DICKNIPPLE_TYPES[i]]);
+			}
+			
+			_dickNippleType.disableEdits();
+			_dickNippleType.selectedIndex = 0;
+			
+			_milkMultiplier = new InputLabelPair();
+			AddControl(_milkMultiplier);
+			_milkMultiplier.labelText = "Milk Multi.";
+			_milkMultiplier.inputValue = "1.0";
+			_milkMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_milkType = new ComboLabelPair();
+			AddControl(_milkType);
+			_milkType.labelText = "Milk Type";
+			
+			for (var i:int = 0; i < GLOBAL.VALID_MILK_TYPES.length; i++)
+			{
+				_milkType.addItem(GLOBAL.VALID_MILK_TYPES[i], GLOBAL.FLUID_TYPE_NAMES[GLOBAL.VALID_MILK_TYPES[i]]);
+			}
+			
+			_milkType.disableEdits();
+			_milkType.selectedIndex = 0;
+			
+			_milkStorageMultiplier = new InputLabelPair();
+			AddControl(_milkStorageMultiplier);
+			_milkStorageMultiplier.labelText = "Milk Storage";
+			_milkStorageMultiplier.inputValue = "1.0";
+			_milkStorageMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_milkFullness = new InputLabelPair();
+			AddControl(_milkFullness);
+			_milkFullness.labelText = "Milk Fullness";
+			_milkFullness.inputValue = "0.0";
+			_milkFullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_milkRate = new InputLabelPair();
+			AddControl(_milkRate);
+			_milkRate.labelText = "Milk Rate";
+			_milkRate.inputValue = "1.0";
+			_milkRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_breastNumControl = new PairedButtonLabel();
+			AddControl(_breastNumControl);
+			_breastNumControl.minNum = 1;
+			_breastNumControl.maxNum = 10;
+			_breastNumControl.labelText = "Breast Rows: ";
+			_breastNumControl.onAdd = addBRow;
+			_breastNumControl.onRem = remBRow;
+			_breastNumControl.labelNum = _breastData.length;
+			
+			_selectedBreastRow = new ComboLabelPair();
+			AddControl(_selectedBreastRow);
+			_selectedBreastRow.labelText = "Selected Row";
+			_selectedBreastRow.combobox.dropdown.iconField = null;
+			_selectedBreastRow.combobox.labelFunction = breastRowLabelFunction;
+			_selectedBreastRow.combobox.dataProvider = _breastData;
+			_selectedBreastRow.combobox.addEventListener(Event.CHANGE, bRowSelectedChangeHandler);
+			
+			_numBreasts = new InputLabelPair();
+			AddControl(_numBreasts);
+			_numBreasts.labelText = "Num. Breasts";
+			_numBreasts.inputValue = "2";
+			_numBreasts.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
+			_numBreasts.name = "breasts";
+			_numBreasts.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
+			
+			_nippleType = new ComboLabelPair();
+			AddControl(_nippleType);
+			_nippleType.labelText = "Nip. Type";
+			
+			for (var i:int = 0; i < GLOBAL.VALID_NIPPLE_TYPES.length; i++)
+			{
+				_nippleType.addItem(GLOBAL.VALID_NIPPLE_TYPES[i], GLOBAL.NIPPLE_TYPE_NAMES[GLOBAL.VALID_NIPPLE_TYPES[i]]);
+			}
+			
+			_nippleType.disableEdits();
+			_nippleType.selectedIndex = 0;
+			_nippleType.name = "nippleType";
+			_nippleType.combobox.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
+			
+			_breastRating = new InputLabelPair();
+			AddControl(_breastRating);
+			_breastRating.labelText = "Breast Rating";
+			_breastRating.inputValue = "0.0";
+			_breastRating.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			_breastRating.name = "breastRatingRaw";
+			_breastRating.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
+			
+			_fullness = new InputLabelPair();
+			AddControl(_fullness);
+			_fullness.labelText = "Fullness";
+			_fullness.inputValue = "0.0";
+			_fullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			_fullness.name = "fullness";
+			_fullness.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
+			
 			
 		}
 		
+		private function addBRow():void
+		{
+			if (_breastData.length < 10) _breastData.addItem(new BreastRowClass());
+		}
+		
+		private function remBRow():void
+		{
+			if (_breastData.length > 1) _breastData.removeItemAt(_breastData.length - 1);
+		}
+		
+		private function breastRowLabelFunction(item:BreastRowClass):String
+		{
+			var str:String = "";
+			
+			str += String(item.breasts) + " "
+
+			var curRating:Number = item.breastRatingRaw;
+			
+			if (curRating == 0)
+			{
+				return "Flat Chest";
+			} 
+			else if (curRating < 1) str += "0-cup";
+			else if (curRating < 2) str += "A-cup";
+			else if (curRating < 3) str += "B-cup";
+			else if (curRating < 4) str += "C-cup";
+			else if (curRating < 5) str += "D-cup";
+			else if (curRating < 6) str += "DD-cup";
+			else if (curRating < 7) str += "big DD-cup";
+			else if (curRating < 8) str += "E-cup";
+			else if (curRating < 9) str += "big E-cup";
+			else if (curRating < 10) str += "EE-cup";
+			else if (curRating < 11) str += "big EE-cup";
+			else if (curRating < 12) str += "F-cup";
+			else if (curRating < 13) str += "big F-cup";
+			else if (curRating < 14) str += "FF-cup";
+			else if (curRating < 15) str += "big FF-cup";
+			else if (curRating < 16) str += "G-cup";
+			else if (curRating < 17) str += "big G-cup";
+			else if (curRating < 18) str += "GG-cup";
+			else if (curRating < 19) str += "big GG-cup";
+			else if (curRating < 20) str += "H-cup";
+			else if (curRating < 21) str += "big H-cup";
+			else if (curRating < 22) str += "HH-cup";
+			else if (curRating < 23) str += "big HH-cup";
+			else if (curRating < 24) str += "HHH-cup";
+			else if (curRating < 25) str += "I-cup";
+			else if (curRating < 26) str += "big I-cup";
+			else if (curRating < 27) str += "II-cup";
+			else if (curRating < 28) str += "big II-cup";
+			else if (curRating < 29) str += "J-cup";
+			else if (curRating < 30) str += "big J-cup";
+			else if (curRating < 31) str += "JJ-cup";
+			else if (curRating < 32) str += "big JJ-cup";
+			else if (curRating < 33) str += "K-cup";
+			else if (curRating < 34) str += "big K-cup";
+			else if (curRating < 35) str += "KK-cup";
+			else if (curRating < 36) str += "big KK-cup";
+			else if (curRating < 37) str += "L-cup";
+			else if (curRating < 38) str += "big L-cup";
+			else if (curRating < 39) str += "LL-cup";
+			else if (curRating < 40) str += "big LL-cup";
+			else if (curRating < 41) str += "M-cup";
+			else if (curRating < 42) str += "big M-cup";
+			else if (curRating < 43) str += "MM-cup";
+			else if (curRating < 44) str += "big MM-cup";
+			else if (curRating < 45) str += "MMM-cup";
+			else if (curRating < 46) str += "large MMM-cup";
+			else if (curRating < 47) str += "N-cup";
+			else if (curRating < 48) str += "large N-cup";
+			else if (curRating < 49) str += "NN-cup";
+			else if (curRating < 50) str += "large NN-cup";
+			else if (curRating < 51) str += "O-cup";
+			else if (curRating < 52) str += "large O-cup";
+			else if (curRating < 53) str += "OO-cup";
+			else if (curRating < 54) str += "large OO-cup";
+			else if (curRating < 55) str += "P-cup";
+			else if (curRating < 56) str += "large P-cup";
+			else if (curRating < 57) str += "PP-cup";
+			else if (curRating < 58) str += "large PP-cup";
+			else if (curRating < 59) str += "Q-cup";
+			else if (curRating < 60) str += "large Q-cup";
+			else if (curRating < 61) str += "QQ-cup";
+			else if (curRating < 62) str += "large QQ-cup";
+			else if (curRating < 63) str += "R-cup";
+			else if (curRating < 64) str += "large R-cup";
+			else if (curRating < 65) str += "RR-cup";
+			else if (curRating < 66) str += "large RR-cup";
+			else if (curRating < 67) str += "S-cup";
+			else if (curRating < 68) str += "large S-cup";
+			else if (curRating < 69) str += "SS-cup";
+			else if (curRating < 70) str += "large SS-cup";
+			else if (curRating < 71) str += "T-cup";
+			else if (curRating < 72) str += "large T-cup";
+			else if (curRating < 73) str += "TT-cup";
+			else if (curRating < 74) str += "large TT-cup";
+			else if (curRating < 75) str += "U-cup";
+			else if (curRating < 76) str += "large U-cup";
+			else if (curRating < 77) str += "UU-cup";
+			else if (curRating < 78) str += "large UU-cup";
+			else if (curRating < 79) str += "V-cup";
+			else if (curRating < 80) str += "large V-cup";
+			else if (curRating < 81) str += "VV-cup";
+			else if (curRating < 82) str += "large VV-cup";
+			else if (curRating < 83) str += "W-cup";
+			else if (curRating < 84) str += "large W-cup";
+			else if (curRating < 85) str += "WW-cup";
+			else if (curRating < 86) str += "large WW-cup";
+			else if (curRating < 87) str += "X-cup";
+			else if (curRating < 88) str += "large X-cup";
+			else if (curRating < 89) str += "XX-cup";
+			else if (curRating < 90) str += "large XX-cup";
+			else if (curRating < 91) str += "Y-cup";
+			else if (curRating < 92) str += "large Y-cup";
+			else if (curRating < 93) str += "YY-cup";
+			else if (curRating < 94) str += "large YY-cup";
+			else if (curRating < 95) str += "Z-cup";
+			else if (curRating < 96) str += "large Z-cup";
+			else if (curRating < 97) str += "ZZ-cup";
+			else if (curRating < 98) str += "large ZZ-cup";
+			else if (curRating < 99) str += "ZZZ-cup";
+			else if (curRating < 100) str += "large ZZZ-cup";
+			else if (curRating < 101) str += "hyper A-cup";
+			else if (curRating < 102) str += "hyper B-cup";
+			else if (curRating < 103) str += "hyper C-cup";
+			else if (curRating < 104) str += "hyper D-cup";
+			else if (curRating < 105) str += "hyper DD-cup";
+			else if (curRating < 106) str += "hyper big DD-cup";
+			else if (curRating < 107) str += "hyper E-cup";
+			else if (curRating < 108) str += "hyper big E-cup";
+			else if (curRating < 109) str += "hyper EE-cup";
+			else if (curRating < 110) str += "hyper big EE-cup";
+			else if (curRating < 111) str += "hyper F-cup";
+			else if (curRating < 112) str += "hyper big F-cup";
+			else if (curRating < 113) str += "hyper FF-cup";
+			else if (curRating < 114) str += "hyper big FF-cup";
+			else if (curRating < 115) str += "hyper G-cup";
+			else if (curRating < 116) str += "hyper big G-cup";
+			else if (curRating < 117) str += "hyper GG-cup";
+			else if (curRating < 118) str += "hyper big GG-cup";
+			else if (curRating < 119) str += "hyper H-cup";
+			else if (curRating < 120) str += "hyper big H-cup";
+			else if (curRating < 121) str += "hyper HH-cup";
+			else if (curRating < 122) str += "hyper big HH-cup";
+			else if (curRating < 123) str += "hyper HHH-cup";
+			else if (curRating < 124) str += "hyper I-cup";
+			else if (curRating < 125) str += "hyper big I-cup";
+			else if (curRating < 126) str += "hyper II-cup";
+			else if (curRating < 127) str += "hyper big II-cup";
+			else if (curRating < 128) str += "hyper J-cup";
+			else if (curRating < 129) str += "hyper big J-cup";
+			else if (curRating < 130) str += "hyper JJ-cup";
+			else if (curRating < 131) str += "hyper big JJ-cup";
+			else if (curRating < 132) str += "hyper K-cup";
+			else if (curRating < 133) str += "hyper big K-cup";
+			else if (curRating < 134) str += "hyper KK-cup";
+			else if (curRating < 135) str += "hyper big KK-cup";
+			else if (curRating < 136) str += "hyper L-cup";
+			else if (curRating < 137) str += "hyper big L-cup";
+			else if (curRating < 138) str += "hyper LL-cup";
+			else if (curRating < 139) str += "hyper big LL-cup";
+			else if (curRating < 140) str += "hyper M-cup";
+			else if (curRating < 141) str += "hyper big M-cup";
+			else if (curRating < 142) str += "hyper MM-cup";
+			else if (curRating < 143) str += "hyper big MM-cup";
+			else if (curRating < 144) str += "hyper MMM-cup";
+			else if (curRating < 145) str += "hyper large MMM-cup";
+			else if (curRating < 146) str += "hyper N-cup";
+			else if (curRating < 147) str += "hyper large N-cup";
+			else if (curRating < 148) str += "hyper NN-cup";
+			else if (curRating < 149) str += "hyper large NN-cup";
+			else if (curRating < 150) str += "hyper O-cup";
+			else if (curRating < 151) str += "hyper large O-cup";
+			else if (curRating < 152) str += "hyper OO-cup";
+			else if (curRating < 153) str += "hyper large OO-cup";
+			else if (curRating < 154) str += "hyper P-cup";
+			else if (curRating < 155) str += "hyper large P-cup";
+			else if (curRating < 156) str += "hyper PP-cup";
+			else if (curRating < 157) str += "hyper large PP-cup";
+			else if (curRating < 158) str += "hyper Q-cup";
+			else if (curRating < 159) str += "hyper large Q-cup";
+			else if (curRating < 160) str += "hyper QQ-cup";
+			else if (curRating < 161) str += "hyper large QQ-cup";
+			else if (curRating < 162) str += "hyper R-cup";
+			else if (curRating < 163) str += "hyper large R-cup";
+			else if (curRating < 164) str += "hyper RR-cup";
+			else if (curRating < 165) str += "hyper large RR-cup";
+			else if (curRating < 166) str += "hyper S-cup";
+			else if (curRating < 167) str += "hyper large S-cup";
+			else if (curRating < 168) str += "hyper SS-cup";
+			else if (curRating < 169) str += "hyper large SS-cup";
+			else if (curRating < 170) str += "hyper T-cup";
+			else if (curRating < 171) str += "hyper large T-cup";
+			else if (curRating < 172) str += "hyper TT-cup";
+			else if (curRating < 173) str += "hyper large TT-cup";
+			else if (curRating < 174) str += "hyper U-cup";
+			else if (curRating < 175) str += "hyper large U-cup";
+			else if (curRating < 176) str += "hyper UU-cup";
+			else if (curRating < 177) str += "hyper large UU-cup";
+			else if (curRating < 178) str += "hyper V-cup";
+			else if (curRating < 179) str += "hyper large V-cup";
+			else if (curRating < 180) str += "hyper VV-cup";
+			else if (curRating < 181) str += "hyper large VV-cup";
+			else if (curRating < 182) str += "hyper W-cup";
+			else if (curRating < 183) str += "hyper large W-cup";
+			else if (curRating < 184) str += "hyper WW-cup";
+			else if (curRating < 185) str += "hyper large WW-cup";
+			else if (curRating < 186) str += "hyper X-cup";
+			else if (curRating < 187) str += "hyper large X-cup";
+			else if (curRating < 188) str += "hyper XX-cup";
+			else if (curRating < 189) str += "hyper large XX-cup";
+			else if (curRating < 190) str += "hyper Y-cup";
+			else if (curRating < 191) str += "hyper large Y-cup";
+			else if (curRating < 192) str += "hyper YY-cup";
+			else if (curRating < 193) str += "hyper large YY-cup";
+			else if (curRating < 194) str += "hyper Z-cup";
+			else if (curRating < 195) str += "hyper large Z-cup";
+			else if (curRating < 196) str += "hyper ZZ-cup";
+			else if (curRating < 197) str += "hyper large ZZ-cup";
+			else if (curRating < 198) str += "hyper ZZZ-cup";
+			else if (curRating < 199) str += "hyper large ZZZ-cup";
+			else str += "Jacques00-cup";
+
+			str += " Breasts";
+			return str;
+		}
+		
+		private function bRowSelectedChangeHandler(e:Event = null):void
+		{
+			var bRow:BreastRowClass = _breastData.getItemAt(_selectedBreastRow.selectedIndex) as BreastRowClass;
+			
+			numBreasts = bRow.breasts;
+			nippleType = bRow.nippleType;
+			breastRating = bRow.breastRatingRaw;
+			fullness = bRow.fullness;
+		}
+		
+		private function breastPropertyChangeHandler(e:Event = null):void
+		{
+			var bRow:BreastRowClass = _breastData.getItemAt(_selectedBreastRow.selectedIndex) as BreastRowClass;
+			
+			if (e.target.parent is InputLabelPair)
+			{
+				bRow[e.target.parent.name] = (e.target.parent as InputLabelPair).inputValue;
+			}
+			else if (e.target.parent is ComboLabelPair)
+			{
+				bRow[e.target.parent.name] = (e.target.parent as ComboLabelPair).inputValue;
+			}
+			else if (e.target.parent is CheckboxContainer)
+			{
+				bRow[e.target.parent.name] = (e.target.parent as CheckboxContainer).selected;
+			}
+			else if (e.target.parent is ListLabelPair)
+			{
+				bRow[e.target.parent.name] = (e.target.parent as ListLabelPair).inputValues;
+			}
+			
+			_breastData.invalidateItem(bRow);
+		}
+		
+		private function AddControl(control:DisplayObject):void
+		{
+			//control.x = 5;
+			var yOffset:int = 0;
+			
+			yOffset += this.getChildAt(this.numChildren - 1).y + this.getChildAt(this.numChildren - 1).height + 2;
+			
+			control.y = yOffset;
+			this.addChild(control);
+		}
 	}
 
 }

@@ -59,10 +59,12 @@ package classes.TITSSaveEdit.UI.Controls
 			_buttonRem.disable();
 			_buttonRem.setRem();
 			_buttonRem.x = 149;
+			_buttonRem.y = 3;
 			
 			_buttonAdd = new MiniButton();
 			this.addChild(_buttonAdd);
 			_buttonAdd.x = 269;
+			_buttonAdd.y = 3;
 			_buttonAdd.addEventListener(MouseEvent.CLICK, buttonHandler);
 			_buttonAdd.disable();
 			_buttonAdd.setAdd();
@@ -71,6 +73,7 @@ package classes.TITSSaveEdit.UI.Controls
 			UIStyleSettings.cfgLabel(_label);
 			_label.defaultTextFormat = UIStyleSettings.gSaveEditorLabelTextFormat;
 			_label.x = 0;
+			_label.y = 3;
 			_label.height = 25;
 			_label.width = 140;
 			_label.text = "Total Cocks";
@@ -108,6 +111,11 @@ package classes.TITSSaveEdit.UI.Controls
 			}
 			
 			updateLabel();
+		}
+		
+		override public function get height():Number
+		{
+			return super.height + 6;
 		}
 	}
 

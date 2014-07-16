@@ -405,7 +405,33 @@
 		public static const FLAT:int                                   = 4;
 		public static const INVERTED:int                               = 5;
 		public static const TENTACLED:int 							   = 6;
-				
+		
+		public static const NIPPLE_TYPE_NAMES:Array = [
+			"Normal",
+			"Fuckable",
+			"Lipples",
+			"Dick",
+			"Flat",
+			"Inverted",
+			"Tentacled"
+		];
+		
+		public static const VALID_DICKNIPPLE_TYPES:Array = [
+			HUMAN,
+			EQUINE,
+			FELINE,
+		];
+		
+		public static const VALID_NIPPLE_TYPES:Array = [
+			NORMAL,
+			FUCKABLE,
+			LIPPLES,
+			DICK,
+			FLAT,
+			INVERTED,
+			TENTACLED,
+		];
+		
 		//CUM & MILK TYPES
 		public static const MILK:int                                   = 0;
 		public static const HONEY:int                                  = 1;

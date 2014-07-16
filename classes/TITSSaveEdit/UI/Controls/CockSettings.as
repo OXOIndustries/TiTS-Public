@@ -2,7 +2,6 @@ package classes.TITSSaveEdit.UI.Controls
 {
 	import classes.CockClass;
 	import fl.data.DataProvider;
-	import fl.motion.AnimatorFactory;
 	import flash.display.Sprite;
 	import flash.display.DisplayObject;
 	import flash.text.TextField;
@@ -138,6 +137,7 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_selectedCock = new ComboLabelPair();
 			AddControl(_selectedCock);
+			_selectedCock.labelText = "Selected Cock";
 			_selectedCock.combobox.dropdown.iconField = null;
 			_selectedCock.combobox.labelFunction = cockSelectLabelFunction;
 			_selectedCock.combobox.dataProvider = _cockData;
