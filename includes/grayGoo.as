@@ -12,7 +12,7 @@ function encounterDasGooGray():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("\nGRAY GOO");
 	output("As you make your way through the byzantine maze of junk strewn across Tarkus' surface, you slowly come to the realization that... something... is moving through the debris around you. Your hand sneaks down to your " + pc.rangedWeapon.longName + " as you catch a flash of movement atop the wreckage of what might have once been a tank. By the time you've whirled 'round to face whatever it was, it's long gone. You sigh with frustration before turning back to your path - and coming face to face with a hyper-busty woman, her skin made of a reflective gray-blue material that shimmers in the hazy light. Her huge, gravity-defying tits bounce jubilantly as she steps forward, her feet melting and reforming on the ground with every wobbling step.");
 	output("\n\n<i>\"Hi!\"</i> she giggles in a voice just faintly synthetic, more bubbly than menacing. Seeing that she's caught your attention, the metallic babe arches her back, making her great big tits stand even further out, literally dripping");
@@ -52,7 +52,7 @@ function grayGooAI():void
 //Basic Attack: Teases
 function grayGooTeaseAttackGo():void
 {
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	if(rand(2) == 0) output("The nano-goo-girl gives you a sultry grin before spinning around, leaning over to give you a good look at her big, full ass. She shakes what her programmers gave her, bouncing up and down as one of her arms turns into a huge horsecock-like dildo and rams it straight inside her, eliciting a gasp of pleasure from her big lips.");
@@ -71,7 +71,7 @@ function grayGooTeaseAttackGo():void
 //Restrain Attack
 function grayGooRestrain():void
 {
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	if(!pc.hasStatusEffect("Grappled"))
@@ -112,7 +112,7 @@ function grayGooRestrain():void
 //Reformat
 function grayGooReformatting():void
 {
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	//{Restores light HP, removes status effects}
@@ -127,7 +127,7 @@ function grayGooReformatting():void
 //{Increase armor for a few turns}
 function grayGooHarden():void
 {
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	output("The nano-goo shudders for a moment as her shimmering skin flashes brighter, seeming to become harder and more solid than it has been so far. She giggles and smiles at you, giving you a come-hither crook of her finger as she slinks to the ground and spreads her legs invitingly.");
@@ -147,7 +147,7 @@ function grayGooHarden():void
 function dontDoAnythingFromHardenAttack():void
 {
 	clearOutput();
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 	//{PC +Lust, Goo -Lust}
@@ -162,7 +162,7 @@ function dontDoAnythingFromHardenAttack():void
 function quickieAfterGooHarden():void
 {
 	clearOutput();
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("FIGHT:\nGRAY GOO");
 	author("Savin");
 
@@ -192,7 +192,7 @@ function loseToGrayGooRouter():void
 function pcDefeatsGrayGooInTheNameOfLove():void
 {
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Jiggling and deforming under the ");
 	if(foes[0].lust() > 99) output("teasing display of sensuality you're giving it");
@@ -234,7 +234,7 @@ function reprogramGrayGoosForYerPleasure():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Hmm. According to the Codex, this slut's just a great big pile of micro-bots, kind of like your micro-surgeons. Assuming a networked intelligence, it shouldn't be too hard to muck around with her mind. Maybe get this one to be a little friendlier in the future.");
 	output("\n\nYou pull the hefty Codex out of your backpack and spend a few minutes fiddling with the wireless networks nearby before finding the one holding the gray goo together. As you're poking around on the dataslate, though, the gray goo shudders and re-forms into her over-sexed human babe form, lips pursed quizzically as she watches you work.");
@@ -258,7 +258,7 @@ function reprogramGrayGoosForYerPleasure():void
 function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("It did say it was a medical system, after all...");
 	output("\n\n<i>\"Yes, master,\"</i> the goo says, stepping up to you and unceremoniously putting a finger in your mouth. You try to pull back, but too late - you can feel several drops of microbots already swimming down your throat. A moment later, a shudder works its way through your body as they do their job, your bruises and cuts from prior fighting quickly healing.");
@@ -273,7 +273,7 @@ function healMeGrayGooYoureMyOnlyHopeDotDotDot():void {
 function takeASampleOfTheGrayGoo():void {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Now that the goo-girl's not in rape-mode anymore, you might be able to find a use for some of the microbots that comprise her shimmering gray body. You pull a vial from your pack and step up: <i>\"Just, uh, need to take a sample. Hold still.\"</i>");
 	output("\n\n<i>\"Yes, master,\"</i> she intones blankly, holding stock still as you dip the vial into one of her tits, filling it up with squirming micro-machines. You cork it and stow the vial back in your pack.");
@@ -304,7 +304,7 @@ function multiCockMayhem():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Looking at the nearly amorphous pile of cybernetic goo at your feet, a dirty little thought crosses your mind. If she wanted some of that \"organic lubricant,\" why not give her all she can handle? Licking your lips, you step up to the gray goo and drop your [pc.gear], revealing the swelling shafts of your [pc.cocks]. The goo gasps in delight as the drooping lengths of your multiple cocks drag across her gel-like skin, sending ripples through her as you look for a hole to fuck.");
 	output("\n\nTo your surprise (delight?), one forms for you as the cyber-goo-girl finally reconfigures herself, the comically-busty babe appearing once more from the puddle of micro-machines, but this time with a great big gaping pussy situated between the cleavage of her breasts. Woah, nelly. <i>\"Maybe this'll be more your style?\"</i> she says with an exaggerated wink, jiggling her massive tits around the gaping slit of her faux-pussy, inviting you to ram your rods right on in. You step up as if to straddle the goo's waist, but she gives you a quick shake of her head and twirls her fingers - come in from the other side.");
@@ -355,7 +355,7 @@ function mutualGooMasturbation():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Time to put this cybernetic goo-girl's endurance to the test. You shuck your [pc.gear] and approach the defeated goo. Seeing your bared [pc.cock] hanging half-hard between your [pc.legs], she quickly reforms into the ultra-busty babe she attacked you as, big lips pursed in a curious expression as you loom over her.");
 	output("\n\n<i>\"Oooh, that's a nice [pc.cockNounSimple] you've got there,\"</i> the silver goo giggles to herself, her gray eyes locked on your stiffening shaft, crossing each other as you present it to her lips for a sucking. <i>\"Y-you want me to... but... why'd you fight me? I was gonna make you feel good anyway!\"</i>");
@@ -408,7 +408,7 @@ function divideAndConquerGinasWithGoos():void
 {
 	clearOutput();
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("DEFEATED:\nGRAY GOO");
 	output("Looking over the defeated pile of goo before you, you can't help but feel a twinge of lust for its malleable, ever-changing body. You give a little shudder as [pc.eachVagina] starts to soak your ");
 	if(pc.isCrotchGarbed()) output("[pc.lowerGarment]");
@@ -479,7 +479,7 @@ function divideAndConquerGinasWithGoos():void
 function pcDefeatByGooBitch():void
 {
 	author("Savin");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("LOST VS.\nGRAY GOO");
 	output("Your skin flushes, blood rushing to your genitals as the gray googirl's sensual display continues. Jiggling her huge, bouncy tits and wiggling her over-sized hips, she dances around you, rubbing up against any exposed bit of [pc.skin] she can find, pressing her chest to you, hands groping and squeezing your [pc.crotch]. You stifle a gasp as her gooey body flows ");
 	if(!pc.isNude()) output("through your [pc.gear], slipping inside, only to start stripping you bare");
@@ -585,7 +585,7 @@ function pcDefeatByGooBitch():void
 function bodySuitedKirbuDefeat():void
 {
 	author("Kirbu");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("LOST VS.\nGRAY GOO");
 	output("Your best efforts are slain by wanton lust, weighing you down to a single knee before a rather excited victor. Even through your labored breathing, you can tell plain as day that the technological gelatin can’t even begin to decide what to do with you. Judging by her boisterous attitude, you suspect it’s been quite some time since this gray gal’s last meal. A rather impatient gaze on your part eventually catches her attention, knocking her out of her babbling trance.");
 	output("\n\n<i>“Oh, you’re rather anxious, aren’t you?”</i> the goo girl responds, rambunctiousness practically dripping from her voice. She steps your way, trying to hide her excitement with a sexy gait. Doubt melts away at the sight of her jiggling, exaggerated hips, each alternating in size in time with her overstated steps. <i>“There’s nothing but–”</i>");
@@ -618,7 +618,7 @@ function cockVariantForGrayGooKirbutashis():void
 {
 	clearOutput();
 	author("Kirbu");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("LOST VS.\nGRAY GOO");
 	output("<i>“You know... I’ve always had an appreciation for the arts,”</i> the gray goo suddenly blurts from your mouth. She ceases the caress and puts your hands on your hips. It isn’t entirely clear what she’s alluding to until you feel your [pc.cocks]");
 	if(pc.balls > 0) output(" and [pc.balls]");
@@ -673,7 +673,7 @@ function gooGooEnvelopsCunts():void
 {
 	clearOutput();
 	author("Kirbu");
-	userInterface.showBust("GRAYGOO");
+	userInterface.showBust("GRAY_GOO");
 	userInterface.showName("LOST VS.\nGRAY GOO");
 	output("<i>“You know... I’ve always had an appreciation for the theater,”</i> the gray goo suddenly blurts from your mouth. She wanders over and sits you down on a little outcropping of assorted junk just in front of her makeshift mirror.");
 	output("\n\n<i>“I think I’ve got quite the knack for storytelling myself,”</i> she boasts, your arms wildly gesticulating for emphasis. The prima donna is spreading your legs");
