@@ -419,13 +419,14 @@ function statusTick():void {
 			}
 			
 		}
-	}
+	}	
+	
 	//Cut the statuses that expired and need cut.
 	while(shitToCut.length > 0)
 	{
-		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[shitToCut.length-1]].storageName + " in slot " + shitToCut[shitToCut.length-1] + " due to status effect time out.");
-		this.chars["PC"].statusEffects.splice(shitToCut[shitToCut.length-1],1);
-		shitToCut.splice(shitToCut.length-1,1);
+		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[0]].storageName + " in slot " + shitToCut[0] + " due to status effect time out.");
+		this.chars["PC"].statusEffects.splice(shitToCut[0],1);
+		shitToCut.splice(0,1);
 	}
 }
 

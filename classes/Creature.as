@@ -4920,6 +4920,10 @@
 			if (vaginas[arg].wetness >= 4) return true;
 			return false;
 		}
+		public function clitTotal():Number
+		{
+			return totalClits();
+		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
 			var count: int = 0;

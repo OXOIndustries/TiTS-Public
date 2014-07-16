@@ -1309,7 +1309,7 @@ function khorganMechBonusMenu():void
 	if(currentLocation == "KHORGAN_RIGHT_COVER")
 	{
 		addButton(10,"Move Left",moveLeft,undefined,"Move Left","Move to the next platform and its cover.");
-		addDisabledButton(12,"Move Right","Move Right","There's no more floating platforms to your right. You'll have to move right!");
+		addDisabledButton(12,"Move Right","Move Right","There's no more floating platforms to your right. You'll have to move left!");
 	}
 	else if(currentLocation == "KHORGAN_CENTER_COVER")
 	{
@@ -1777,7 +1777,7 @@ function loseToCaptainKhorganBadEnd():void
 		else 
 		{
 			output("just above the slit");
-			if(pc.totalVagina() > 1) output("s");
+			if(pc.totalVaginas() > 1) output("s");
 			output(" of your sex");
 		}
 		output(".");
