@@ -6316,34 +6316,34 @@
 			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
-					if (hairType == 2) {
+					if (hairType == GLOBAL.TRANSPARENTHAIR) {
 						if (descripted > 0) descript += ", ";
 						descript += "transparent";
 						descripted++;
 					}
 				}
 				if (descripted > 0) descript += " mane";
-				if (hairType == 1) descript += " of feathers";
-				if (hairType == 3) descript += " of goo";
-				if (hairType == 4) descript += " of tentacles";
+				if (hairType == GLOBAL.FEATHERHAIR) descript += " of feathers";
+				if (hairType == GLOBAL.GOOHAIR) descript += " of goo";
+				if (hairType == GLOBAL.TENTACLEHAIR) descript += " of tentacles";
 			}
 			//Not manes
 			else {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
-					if (hairType == 2) {
+					if (hairType == GLOBAL.TRANSPARENTHAIR) {
 						if (descripted > 0) descript += ", ";
 						descript += "transparent";
 						descripted++;
-					} else if (hairType == 3) {
+					} else if (hairType == GLOBAL.GOOHAIR) {
 						if (descripted > 0) descript += ", ";
 						descript += "gooey";
 						descripted++;
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == 4 && this.rand(2) == 0) descript += "tentacle-hair";
-				else if (hairType == 1 && this.rand(2) == 0) descript += "plumage";
+				if (hairType == GLOBAL.TENTACLEHAIR && this.rand(2) == 0) descript += "tentacle-hair";
+				else if (hairType == GLOBAL.FEATHERHAIR && this.rand(2) == 0) descript += "plumage";
 				else descript += "hair";
 			}
 			return descript;
@@ -6389,16 +6389,16 @@
 			//Not manes
 			//Oddball shit
 			if (this.rand(2) == 0 && descripted < 2) {
-				if (hairType == 2) {
+				if (hairType == GLOBAL.TRANSPARENTHAIR) {
 					if (descripted > 0) descript += ", ";
 					descript += "transparent";
 					descripted++;
 				}
 			}
 			if (descripted > 0) descript += " ";
-			if (hairType == 4) descript += "tentacles";
-			else if (hairType == 1) descript += "feathers";
-			else if (hairType == 3) descript += "locks of goo";
+			if (hairType == GLOBAL.TENTACLEHAIR) descript += "tentacles";
+			else if (hairType == GLOBAL.FEATHERHAIR) descript += "feathers";
+			else if (hairType == GLOBAL.GOOHAIR) descript += "locks of goo";
 			else descript += "locks";
 			return descript;
 		}

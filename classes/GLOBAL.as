@@ -105,7 +105,17 @@
 		public static const SCALES:int                                 = 2;
 		public static const GOO:int                                    = 3;
 		public static const CHITIN:int                                 = 4;
-				
+		
+		//HAIRTYPES
+		//Dis way HUMANHAIR == HUMAN and my laziness works.
+		public static const HUMANHAIR:int 							   = 0;
+		public static const TENTACLEHAIR:int 						   = 1;
+		public static const TRANSPARENTHAIR:int 					   = 2;
+		//GOOHAIR == the GOO skintype value.
+		public static const GOOHAIR:int 							   = 3;
+		public static const FEATHERHAIR:int 						   = 4;
+
+
 		//NIPPLETYPES
 		public static const NORMAL:int                                 = 0;
 		public static const FUCKABLE:int                               = 1;
