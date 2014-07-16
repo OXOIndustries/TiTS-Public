@@ -1258,6 +1258,9 @@
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
 					break;
+				case "lipColor":
+					buffer = lipColor;
+					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1590,6 +1593,12 @@
 			else if (lastChar == "x") str += "es";
 			//Normal pluralizes
 			else str += "s";
+			return str;
+		}
+		public function possessive(str:String):String {
+			var lastChar:String = str.substr(str.length-1,str.length);
+			if(lastChar == "s") str += "'";
+			else str += "'s";
 			return str;
 		}
 		public function inventorySlots(): int {
@@ -8981,33 +8990,39 @@
 				if (spacingsF) output(" ");
 				if (this is PlayerCharacter)
 				{
-					if(holePointer.hymen) output("<b>Your hymen is torn</b>");
-					else output("<b>You have been penetrated</b>");
+					if(display)
+					{
+						if(holePointer.hymen) output("<b>Your hymen is torn</b>");
+						else output("<b>You have been penetrated</b>");
+					}
 					if(hole >= 0 && vaginalVirgin) {
 						vaginalVirgin = false;
-						output("<b>, robbing you of your vaginal virginity</b>");
+						if(display) output("<b>, robbing you of your vaginal virginity</b>");
 					}
 					else if(analVirgin) {
-						output("<b>, robbing you of your anal virginity</b>");
 						analVirgin = false;
+						if(display) output("<b>, robbing you of your anal virginity</b>");
 					}
-					output("<b>.</b>");
+					if(display) output("<b>.</b>");
 				}
 				else
 				{
-					if (holePointer.hymen) output("<b>" + short + "s hymen is torn</b>");
-					else output("<b>" + short + " has been penetrated</b>");
+					if(display)
+					{
+						if (holePointer.hymen) output("<b>" + possessive(short) + " hymen is torn</b>");
+						else output("<b>" + short + " has been penetrated</b>");
+					}
 					if (hole >= 0 && vaginalVirgin)
 					{
 						vaginalVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " vaginal virginity</b>");
+						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " vaginal virginity</b>");
 					}
 					else if (analVirgin)
 					{
 						analVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " anal virginity</b>");
+						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " anal virginity</b>");
 					}
-					output("<b>.</b>");
+					if(display) output("<b>.</b>");
 				}
 				if(spacingsB) output(" ");
 				devirgined = true;

@@ -308,7 +308,7 @@ public function kirosShipChubnookiUpDaCooter():void
 	output("\n\nDamn, she's tight! Her cunt, for all its wetness, is vice-like in its tightness, squeezing you so tightly as you push in that you wonder if you'll make it at all. The well-endowed raccoon-woman's body arches, her every muscle locking as you slowly work your way inside. For a moment, you feel like you catch on something, but a quick pull and forward stroke has you progressing once more through the squeezing, dripping tightness of her nethers. Her mouth is moving, opening and closing as she tries to deal with the sensations you're forcing her to experience. Whoever this girl is, you don't think she's had a proper fuck in a long time.");
 
 	pc.cockChange(true, false);
-	kiro.cuntChange(pc.cockVolume(selCock), false, false, false);
+	kiro.cuntChange(pc.cockVolume(selCock), false, true, false);
 	
 	output("\n\nSuddenly, she finds her voice and mewls, \"<i>Y-you took my... you took my virginity!</i>\" Her pussy spasms wildly around your [pc.cock " + selCock + "] in untamed contractions, pouring lubricants out all over");
 	if (pc.balls > 0) output(" your [pc.sack]");
@@ -351,7 +351,7 @@ public function kirosShipChubnookiUpDaCooter():void
 
 		output("\n\nYou do not stop to think further on the situation, instead, you simply slam your [pc.hips] home, burying your slick shaft straight into the tanuki-girl's willing anus. Surprisingly, it parts around your intruding member with far greater ease than her lower lips did, gleefully accepting your second cock like the asshole of a well-trained butt-slut.");
 		
-		kiro.buttChange(pc.cockVolume(selCock2), false, false, false);
+		kiro.buttChange(pc.cockVolume(selCock2), false, true, false);
 
 		output("\n\nYou hit something partway in, arresting your motion. At the same time, the tanuki-woman's cock throbs, and her balls quake beneath you. She cries out, \"<i>Yeeessssss!</i>\" in a long, drawn out hiss, and you hear the heavy liquid sloshing of a viscous liquid being forcefully pumped into the machinery she's docked with. Droplets of white roll out around the edges of the sleeve she's stuck inside, but the bulk seems to be disappearing deep into the tubes that hang from the device, forced to flow by sheer pressure rather than artificial suction.");
 	}

@@ -2693,7 +2693,7 @@ function makeKaskaSuchYerCoochLikeABaws():void
 	}
 	//Back to business as usual
 	output("\n\nKaska's tongue goes wild against [pc.oneClit] at the same time that her orgasm hits her. The wild thrashing of that slick muscle on your most sensitive place nearby doubles you over, and you instinctively grab her by the back of her head, mashing her face harder into your juicing cunn");
-	if(pc.totalVagina() == 1) output("y");
+	if(pc.totalVaginas() == 1) output("y");
 	else output("ies");
 	output(". Wet trails of cum fall on your [pc.legs] as the hermaphroditic rogue squirts her own lusts into the air. Some finds its way into the quaking slit-sucker's hair thanks to the zero-G, but you're far too busy filling her mouth with [pc.girlCum] to worry about the few stray drops of cum that get on you.");
 	output("\n\nIf gravity were normal, you both would've collapsed into a pile of sweaty, orgasmically spent bodies long ago, but you're able to float in place, cumming yourselves dry, for some time. When you do manage to stumble away from the jizz-stained pirate, she's gasping and weakly stroking herself, her lips stained with your [pc.girlCum] as well as much of her own juice as she can gather.");

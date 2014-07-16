@@ -222,7 +222,7 @@
 					}
 				}
 				//Shrink balls UNLESS balls have trap pouch tf.
-				if(target.balls > 0 && target.ballSizeRaw > 1 && target.ballSizeUnlocked(1) && (!target.hasStatusEffect("Uniball") || target.ballSizeRaw > 2))
+				if(target.balls > 0 && target.ballSizeRaw >= 2 && target.ballSizeUnlocked(1) && (!target.hasStatusEffect("Uniball") || target.ballSizeRaw > 2))
 				{
 					choices[choices.length] = 8;
 					choices[choices.length] = 8;
@@ -361,6 +361,7 @@
 					if(target.ballSizeRaw > 25) target.ballSizeRaw -= 2 + rand(3);
 					if(target.ballSizeRaw > 35) target.ballSizeRaw -= 2 + rand(3);
 					if(target.hasStatusEffect("Uniball")) kGAMECLASS.output(" like a vacuum-sealed bag");
+					if(target.ballSizeRaw < 1) target.ballSizeRaw = 1;
 					kGAMECLASS.output(". <b>You've got " + target.ballsDescript(false,true) + " now.</b>");
 				}
 				//Growing TiTS

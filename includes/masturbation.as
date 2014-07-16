@@ -115,9 +115,22 @@ function availableFaps(roundTwo:Boolean = false):Array
 	return faps;
 }
 
+/*Old:
 function selectRandomFap(faps:Array):void
 {
 	faps[rand(faps.length)].execute();
+}*/
+
+function selectRandomFap(faps:Array):void
+{
+	// Don't allow milk scenes to be selected randomly
+	var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
+		if (item.fap.text == "Hand Milk") return false;
+		if (item.fap.text == "Magic Milker") return false;
+		return true;
+	});
+	
+	filtFaps[rand(filtFaps .length)].execute();
 }
 
 function masturbateMenu(roundTwo:Boolean = false):void {

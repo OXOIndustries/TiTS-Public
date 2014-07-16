@@ -25,9 +25,9 @@ public function goAheadAndDumbfuck():void
 		output("Down the hatch! You pop it on in and swallow. It actually feels like it fizzes a little in your tummy, but you don't feel any different, yet anyway. Wiping a bead of nervous sweat from your brow, you wonder how you'll know when it's working. ");
 		if(pc.hasCock() || pc.hasVagina())
 		{
-			if(pc.isCrotchGarbed()) output("Maybe checking inside your [pc.lowerCovering] for a look at");
+			if(pc.isCrotchGarbed()) output("Maybe checking inside your [pc.lowerGarment] for a look at");
 			else output("Maybe keeping an eye on");
-			output("[pc.crotch]");
+			output(" your [pc.crotch]");
 			output(" is a good idea - just to make sure you aren't suddenly super horny.");
 		}
 		else if(pc.hasCockTail()) output("Maybe you should check your [pc.cockTails] - just to make sure you aren't suddenly super horny.");

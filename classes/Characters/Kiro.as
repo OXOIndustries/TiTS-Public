@@ -172,7 +172,7 @@ package classes.Characters
 			this.timesCum = 2478;
 			this.cockVirgin = false;
 			this.vaginalVirgin = true;
-			this.analVirgin = true;
+			this.analVirgin = false;
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 

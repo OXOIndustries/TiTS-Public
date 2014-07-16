@@ -3203,7 +3203,7 @@ function pennyVsFlahneWhoWillOutslutWho():void
 	output("\n\n“<i>Muh-uhmm!</i>” is all Penny can say, her ability to make words rapidly being pushed out of her head by your closeness.");
 	if (flags["PENNY_HIDING_CUMSLUTTERY"] != undefined || flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 	{
-		output("“<i>“<i>I haven’t let... I haven’t let her help!</i>” she managed. “<i>I’ve wanted to; oh, [pc.name] how I’ve wanted to! But I haven’t! It’s not... it’s not for her....</i>”");
+		output("“<i>I haven’t let... I haven’t let her help!</i>” she managed. “<i>I’ve wanted to; oh, [pc.name] how I’ve wanted to! But I haven’t! It’s not... it’s not for her....</i>”");
 	}
 	
 	output("\n\nYou interrupt her floundering by pressing softly on her lips, letting her know delicately but undeniably that now is not the time for her to be talking. “<i>She asked me to put in a word for her with you, did you know that? Can you guess what she wants from you?</i>”");
