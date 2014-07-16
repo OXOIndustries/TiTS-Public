@@ -28,6 +28,13 @@ function widgetWarehouseBonusFuntimes():Boolean
 	output("Reddish dust filters down from the improvised rafters of this small, warehouse-like structure. The door snaps shut behind you with the audible hiss you'd expect from a high-efficiency starship hatch in spite of its placement in a ramshackle hut. Ancient, rusted bins and buckets are stacked into wobbly pillars, each holding mechanical parts, circuits and devices in far better shape than themselves. The light from a dozen fixtures of various designs and luminances shines off the stored machine parts brightly enough to make you shield your eyes as you look around. Leaning against the far wall like an exhausted soldier is an improvised workbench. Why, its middle is built on the back of a torso from a hollowed-out construction droid.");
 	output("\n\nThere can be no doubt; you're in an engineer's workshop.");
 
+	//Planet cracking dungeon followup:
+	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
+	{
+		shekkaMidDeal();
+		return true;
+	}
+
 	//Shekka's Room Appearance Blurb
 	//Not met
 	if(flags["MET_SHEKKA"] == undefined)

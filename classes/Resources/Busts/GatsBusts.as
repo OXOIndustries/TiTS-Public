@@ -25,6 +25,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats/Burt_Nude.png", mimeType = "image/png")]
 		public var Bust_BURT_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan_Nude.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
@@ -59,6 +64,9 @@ package classes.Resources.Busts
 		public var Bust_GEOFF:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Geoff_Nude.png", mimeType = "image/png")]
 		public var Bust_GEOFF_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Gray_Goo.png", mimeType = "image/png")]
+		public var Bust_GRAY_GOO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
@@ -145,6 +153,14 @@ package classes.Resources.Busts
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Syri_Nude.png", mimeType = "image/png")]
 		public var Bust_SYRI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Tamtam.png", mimeType = "image/png")]
+		public var Bust_TAMTAM:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Tamtam_Nude.png", mimeType = "image/png")]
+		public var Bust_TAMTAM_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
+		public var Bust_TAMWOLF:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;

@@ -1392,7 +1392,7 @@ function initializeRooms():void
 	rooms["211"] = new RoomClass(this);
 	rooms["211"].roomName = "\nNOVAHOME";
 	rooms["211"].description = "The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus' surface. Before you can get to the windswept junkyards, you'll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.";
-	rooms["211"].runOnEnter = undefined;
+	rooms["211"].runOnEnter = roomOutsideShekkasBonus;
 	rooms["211"].eastExit = "210";
 	rooms["211"].westExit = "212";
 	rooms["211"].southExit = "215";
@@ -2505,6 +2505,7 @@ function initializeRooms():void
 	rooms["350"].westExit = "279";
 	rooms["350"].planet = "PLANET: TARKUS";
 	rooms["350"].system = "SYSTEM: REDACTED";
+	rooms["350"].moveMinutes = 1;
 	rooms["350"].addFlag(GLOBAL.OUTDOOR);
 	rooms["350"].addFlag(GLOBAL.HAZARD);
 
@@ -2516,6 +2517,7 @@ function initializeRooms():void
 	rooms["351"].eastExit = "352";
 	rooms["351"].planet = "PLANET: TARKUS";
 	rooms["351"].system = "SYSTEM: REDACTED";
+	rooms["351"].moveMinutes = 1;
 	rooms["351"].addFlag(GLOBAL.OUTDOOR);
 	rooms["351"].addFlag(GLOBAL.HAZARD);
 
@@ -2527,6 +2529,7 @@ function initializeRooms():void
 	rooms["352"].eastExit = "353";
 	rooms["352"].planet = "PLANET: TARKUS";
 	rooms["352"].system = "SYSTEM: REDACTED";
+	rooms["352"].moveMinutes = 1;
 	rooms["352"].addFlag(GLOBAL.OUTDOOR);
 	rooms["352"].addFlag(GLOBAL.HAZARD);
 
@@ -2537,6 +2540,7 @@ function initializeRooms():void
 	rooms["353"].westExit = "352";
 	rooms["353"].planet = "PLANET: TARKUS";
 	rooms["353"].system = "SYSTEM: REDACTED";
+	rooms["353"].moveMinutes = 1;
 	rooms["353"].addFlag(GLOBAL.OUTDOOR);
 	rooms["353"].addFlag(GLOBAL.HAZARD);
 	rooms["353"].addFlag(GLOBAL.COMMERCE);
@@ -2548,6 +2552,7 @@ function initializeRooms():void
 	rooms["354"].eastExit = "355";
 	rooms["354"].planet = "PLANET: TARKUS";
 	rooms["354"].system = "SYSTEM: REDACTED";
+	rooms["354"].moveMinutes = 1;
 	rooms["354"].addFlag(GLOBAL.OUTDOOR);
 	rooms["354"].addFlag(GLOBAL.HAZARD);
 	rooms["354"].addFlag(GLOBAL.COMMERCE);
@@ -2561,6 +2566,7 @@ function initializeRooms():void
 	//rooms["355"].southExit = "";
 	rooms["355"].planet = "PLANET: TARKUS";
 	rooms["355"].system = "SYSTEM: REDACTED";
+	rooms["355"].moveMinutes = 1;
 	rooms["355"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["356"] = new RoomClass(this);
@@ -2569,7 +2575,8 @@ function initializeRooms():void
 	rooms["356"].runOnEnter = undefined;
 	rooms["356"].westExit = "355";
 	rooms["356"].northExit = "357";
-	//rooms["356"].southExit = "9999";
+	rooms["356"].southExit = "364";
+	rooms["356"].moveMinutes = 1;
 	rooms["356"].planet = "PLANET: TARKUS";
 	rooms["356"].system = "SYSTEM: REDACTED";
 	rooms["356"].addFlag(GLOBAL.OUTDOOR);
@@ -2583,6 +2590,7 @@ function initializeRooms():void
 	rooms["357"].northExit = "KHORGAN_LEFT_COVER";
 	rooms["357"].planet = "PLANET: TARKUS";
 	rooms["357"].system = "SYSTEM: REDACTED";
+	rooms["357"].moveMinutes = 1;
 	rooms["357"].addFlag(GLOBAL.OUTDOOR);
 
 	rooms["358"] = new RoomClass(this);
@@ -2594,6 +2602,7 @@ function initializeRooms():void
 	rooms["358"].northExit = "KHORGAN_CENTER_COVER";
 	rooms["358"].planet = "PLANET: TARKUS";
 	rooms["358"].system = "SYSTEM: REDACTED";
+	rooms["358"].moveMinutes = 1;
 	rooms["358"].addFlag(GLOBAL.OUTDOOR);
 	
 	//NE corner of permanent bits
@@ -2606,6 +2615,7 @@ function initializeRooms():void
 	rooms["359"].westExit = "358";
 	rooms["359"].planet = "PLANET: TARKUS";
 	rooms["359"].system = "SYSTEM: REDACTED";
+	rooms["359"].moveMinutes = 1;
 	rooms["359"].addFlag(GLOBAL.OUTDOOR);
 
 	//West side pirate platform
@@ -2617,6 +2627,7 @@ function initializeRooms():void
 	rooms["KHORGAN_LEFT_COVER"].eastExit = "KHORGAN_CENTER_COVER";
 	rooms["KHORGAN_LEFT_COVER"].planet = "PLANET: TARKUS";
 	rooms["KHORGAN_LEFT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_LEFT_COVER"].moveMinutes = 1;
 	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.OUTDOOR);
 	rooms["KHORGAN_LEFT_COVER"].addFlag(GLOBAL.HAZARD);
 
@@ -2631,6 +2642,7 @@ function initializeRooms():void
 	rooms["KHORGAN_CENTER_COVER"].northExit = "360";
 	rooms["KHORGAN_CENTER_COVER"].planet = "PLANET: TARKUS";
 	rooms["KHORGAN_CENTER_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_CENTER_COVER"].moveMinutes = 1;
 	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.OUTDOOR);
 	rooms["KHORGAN_CENTER_COVER"].addFlag(GLOBAL.HAZARD);
 
@@ -2643,6 +2655,7 @@ function initializeRooms():void
 	rooms["KHORGAN_RIGHT_COVER"].westExit = "KHORGAN_CENTER_COVER";
 	rooms["KHORGAN_RIGHT_COVER"].planet = "PLANET: TARKUS";
 	rooms["KHORGAN_RIGHT_COVER"].system = "SYSTEM: REDACTED";
+	rooms["KHORGAN_RIGHT_COVER"].moveMinutes = 1;
 	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.OUTDOOR);
 	rooms["KHORGAN_RIGHT_COVER"].addFlag(GLOBAL.HAZARD);
 
@@ -2656,6 +2669,7 @@ function initializeRooms():void
 	rooms["360"].southExit = "KHORGAN_CENTER_COVER";
 	rooms["360"].planet = "PLANET: TARKUS";
 	rooms["360"].system = "SYSTEM: REDACTED";
+	rooms["360"].moveMinutes = 1;
 	rooms["360"].addFlag(GLOBAL.OUTDOOR);
 	rooms["360"].addFlag(GLOBAL.HAZARD);
 	rooms["360"].addFlag(GLOBAL.NPC);
@@ -2666,14 +2680,51 @@ function initializeRooms():void
 	rooms["361"].description = "";
 	rooms["361"].runOnEnter = bombRoomBonusFunc;
 	rooms["361"].northExit = "359";
-	//rooms["361"].southExit = "KHORGAN_CENTER_COVER";
+	rooms["361"].southExit = "362";
 	rooms["361"].planet = "PLANET: TARKUS";
 	rooms["361"].system = "SYSTEM: REDACTED";
+	rooms["361"].moveMinutes = 1;
 	rooms["361"].addFlag(GLOBAL.OUTDOOR);
 	rooms["361"].addFlag(GLOBAL.HAZARD);
 	rooms["361"].addFlag(GLOBAL.NPC);
 
+	//SE ROOM!
+	rooms["362"] = new RoomClass(this);
+	rooms["362"].roomName = "CORE\nPLATFORM";
+	rooms["362"].description = "";
+	rooms["362"].runOnEnter = undefined;
+	rooms["362"].westExit = "363";
+	rooms["362"].northExit = "361";
+	rooms["362"].planet = "PLANET: TARKUS";
+	rooms["362"].system = "SYSTEM: REDACTED";
+	rooms["362"].moveMinutes = 1;
+	rooms["362"].addFlag(GLOBAL.OUTDOOR);
 	
+	//S ROOM!
+	rooms["363"] = new RoomClass(this);
+	rooms["363"].roomName = "CORE\nPLATFORM";
+	rooms["363"].description = "";
+	rooms["363"].runOnEnter = undefined;
+	rooms["363"].westExit = "364";
+	rooms["363"].eastExit = "362";
+	//rooms["363"].southExit = "KHORGAN_CENTER_COVER";
+	rooms["363"].planet = "PLANET: TARKUS";
+	rooms["363"].system = "SYSTEM: REDACTED";
+	rooms["363"].moveMinutes = 1;
+	rooms["363"].addFlag(GLOBAL.OUTDOOR);
+	
+	//SW ROOM!
+	rooms["364"] = new RoomClass(this);
+	rooms["364"].roomName = "CORE\nPLATFORM";
+	rooms["364"].description = "";
+	rooms["364"].runOnEnter = undefined;
+	rooms["364"].eastExit = "363";
+	rooms["364"].northExit = "356";
+	rooms["364"].planet = "PLANET: TARKUS";
+	rooms["364"].system = "SYSTEM: REDACTED";
+	rooms["364"].moveMinutes = 1;
+	rooms["364"].addFlag(GLOBAL.OUTDOOR);
+		
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";

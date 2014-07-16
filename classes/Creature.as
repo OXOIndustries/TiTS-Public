@@ -1514,6 +1514,7 @@
 				case "ey":
 					buffer = this.mfn("he", "she", "ey");
 					break;
+				case "him":
 				case "himo":
 				case "hero":
 					buffer = this.mf("him", "her");
@@ -1521,6 +1522,7 @@
 				case "em":
 					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
 					break;
+				case "his":
 				case "hisa":
 				case "hera":
 					buffer = this.mf("his", "her");

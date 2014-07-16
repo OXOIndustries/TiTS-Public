@@ -8,8 +8,9 @@ public var lightsArray:Array;
 function startLightsOut(victoryFunction:Function = null, failureFunction:Function = null):void
 {
 	clearOutput();
-	output("Lights out. Because fuck you that's why.");
-	output("\n\nA gif of winning you say? Nobody said I couldn't cheat.");
+	showName("MANUAL\nOVERRIDE");
+	output("Circuits illustrated in purple are currently powered on. Blue circuits are presently disabled.");
+	output("\n\nDisable all circuits to disable the device as a whole. Enable all circuits to force activation.");
 	
 	if (victoryFunction == null) victoryFunction = mainGameMenu;
 	lightsOutVictoryFunction = victoryFunction;
@@ -27,14 +28,23 @@ function startLightsOut(victoryFunction:Function = null, failureFunction:Functio
 		addButton(i, " ", toggleLight, i);
 	}
 	
-	lightsArray[0] = true;
 	lightsArray[1] = true;
 	lightsArray[5] = true;
+	lightsArray[6] = true;
+	lightsArray[9] = true;
+	lightsArray[10] = true;
+	lightsArray[11] = true;
+	lightsArray[12] = true;
+	lightsArray[13] = true;
 	
-	userInterface.setButtonPurple(0);
 	userInterface.setButtonPurple(1);
 	userInterface.setButtonPurple(5);
-	
+	userInterface.setButtonPurple(6);
+	userInterface.setButtonPurple(9);
+	userInterface.setButtonPurple(10);
+	userInterface.setButtonPurple(11);
+	userInterface.setButtonPurple(12);
+	userInterface.setButtonPurple(13);
 	
 	
 	//for (var i:int = 0; i < 15; i++)

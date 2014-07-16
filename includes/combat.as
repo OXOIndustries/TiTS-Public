@@ -95,6 +95,7 @@ function combatMainMenu():void
 			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
+		if(foes[0] is Kaska) addButton(10,"Nip-Pinch",pinchKaskaNipple,undefined,"Nip-Pinch","Maybe pinching Kaska's nipple will get her to release you.");
 		this.addButton(4,"Do Nothing",wait);
 	}
 	// Mimbrane Smother
@@ -616,6 +617,7 @@ function grappleStruggle():void {
 	if(pc.hasStatusEffect("Grappled"))
 	{
 		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
+		else if(foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
@@ -1821,6 +1823,7 @@ function fantasize():void {
 function wait():void {
 	clearOutput();
 	output("You choose not to act.\n");
+	if(foes[0] is Kaska && pc.hasStatusEffect("Grappled")) doNothingWhileTittyGrappled();
 	processCombat();
 }
 
@@ -2528,7 +2531,7 @@ function stealthFieldActivation():void {
 
 function NPCstealthFieldActivation(user:Creature):void {
 	user.energy(-20);
-	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.\n");
+	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.");
 	user.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
 	processCombat();
 }
@@ -2555,6 +2558,7 @@ function NPCDisarmingShot(user:Creature):void
 		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
 	}
+	processCombat();
 }
 
 function grenade(target:Creature):void 

@@ -1,14 +1,31 @@
 ﻿//{If Dungeon not completed, add:}
 function chasmfallBonusFunction():Boolean
 {
-	if(9999 == 9999)
+	if(flags["STELLAR_TETHER_CLOSED"] == undefined)
 	{
-		output("\n\n...At least, it should be.");
-		output("\n\nAhead, you see half a dozen armored personnel carriers, all marked with the black-and-blue symbol of the U.G.C. Peacekeepers, parked a short way back from the edge of the sheer cliff. Several troops are milling about, all armed to the teeth with laser rifles and kitted up with heavy riot armor.");
-		output("\n\nLooks like something's up.");
-		addButton(0,"Approach",approachUGCTroopers,undefined,"Approach","Find out what's up.");
+		if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0)
+		{
+			//Dungeon Done, Bosses Molestered, Bomb Disarmed
+			//Play when PC goes back topside, play when stepping out of the elevator.
+			//This assumes the PC won't be able to re-visit the dungeon. Which, logically, you wouldn't be since the place would be back to operating as usual.
+			victoryCelebrationPCIsAwesomeGuyFuntimes();
+			return true;
+		}
+		else if(flags["TAM_DISABLE_METHOD"] != undefined && flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0)
+		{
+			//Sod the Quest: Fucking off w/o Disarming the Bomb
+			//PC must have defeated TamTam
+			fuckOffWithoutDisarmingTheBomb();
+		}
+		else
+		{
+			output("\n\n...At least, it should be.");
+			output("\n\nAhead, you see half a dozen armored personnel carriers, all marked with the black-and-blue symbol of the U.G.C. Peacekeepers, parked a short way back from the edge of the sheer cliff. Several troops are milling about, all armed to the teeth with laser rifles and kitted up with heavy riot armor.");
+			output("\n\nLooks like something's up.");
+			addButton(0,"Approach",approachUGCTroopers,undefined,"Approach","Find out what's up.");
+		}
 	}
-	else
+	else if(flags["STELLAR_TETHER_CLOSED"] == 1)
 	{
 		output("\n\nLooks like the place is sealed up pretty tightly now. There's no getting back inside.");
 	}
@@ -19,6 +36,8 @@ function chasmfallBonusFunction():Boolean
 function approachUGCTroopers():void
 {
 	clearOutput();
+	showName("U.G.C.\nTROOPERS");
+	author("Savin");
 	if(flags["MET_UGC_TROOPER_AT_CHASMFALL"] == undefined)
 	{
 		flags["MET_UGC_TROOPER_AT_CHASMFALL"] = 1;
@@ -49,6 +68,8 @@ function approachUGCTroopers():void
 function canIHelpWithShittyJamesBondIntroductions():void
 {
 	clearOutput();
+	showName("U.G.C.\nTROOPERS");
+	author("Savin");
 	output("<i>\"Anything I can do to help?\"</i> you venture. <i>\"The name's Steele. [pc.name] Steele.\"</i>");
 	output("\n\n<i>\"Steele?\"</i> the vet asks, clearly surprised. <i>\"Oh, don't tell me you're one of Vic's little snots, are you?\"</i>");
 	output("\n\n<i>\"Hey, I--\"</i>");
@@ -62,6 +83,8 @@ function canIHelpWithShittyJamesBondIntroductions():void
 //[The Mission]
 function askAUGCTroopAboutStellarTetherMission():void {
 	clearOutput();
+	showName("HORACE\nDECKER");
+	author("Savin");
 	output("<i>\"Good to have you onboard, kid,\"</i> the old man says, walking you into the heart of the encampment. <i>\"The name's Horace, by the way. Sergeant Horace Decker.\"</i>");
 	output("\n\nSgt. Decker gives you a firm handshake, his grip just about crushing your hand. Strong in his old age! Several of the troops standing around give you respectful nods as you step into one of the APCs. At a touch from the sergeant, a holo-map of the facility and the Chasm appear between you.");
 	output("\n\n<i>\"Here's the situation: a group of pirates, a splinter group from the Black Void near as we can tell, have taken up residence inside the Tether station here. I don't know what their game is -- they haven't made any demands, except that we keep clear. What they DO have is a bomb, and a big one: Command's got radiological alarms going off like you wouldn't believe. Worse, they've locked down the cargo lift that goes down to the station at the planetary core, and are threatening to blow the place if we try and go down. I've got twenty good SWAT troopers out here sitting on their asses, and there's not a lot we can do about it. We've got orders to sit tight, straight from the top.\"</i>");
@@ -79,6 +102,9 @@ function liftStationBonus():Boolean
 	//Text on Entering, First Time:
 	if(flags["FOUGHT_TAM"] == undefined)
 	{
+		showName("\nTURRETS");
+		showBust("TAMTAM")
+		author("Savin");
 		output("\n\nYou make your way to the lift station, sitting precariously on the side of the rift. A pair of glass double doors slide open automatically as you approach, admitting you entrance... right into the barrels of a dozen auto-turrets. Welp.");
 		output("\n\nFrom behind the welcome desk, a pink-haired kiathrit cat-girl pops up, a great big goofy grin on her face. <i>\"Surprise!\"</i> she announces as the turrets level on your chest. <i>\"I told your stupid sergeant not to mess with me, didn't I? Well, he should have listened... I'm more dangerous than I look, you know! Go get " + pc.mf("him","her") + ", boys!\"</i>");
 		output("\n\nShit! You dive aside as the turrets light up, blasting the space you occupied a second ago with a thousand rounds of ammo. The cat-girl herself joins in the fun, whipping out a laser pistol and firing a few shots after you as you tumble into cover behind a flimsy looking couch, which is quickly torn to shreds over you as you duck down beneath a hail of fire. A moment later, the gunfire dies down, and the kaithrit makes an audible huff. You poke your head up, [pc.rangedWeapon] ready.");
@@ -91,7 +117,11 @@ function liftStationBonus():Boolean
 		flags["FOUGHT_TAM"] = 1;
 		return true;
 	}
-	else output("\n\nYou're surrounded by debris from your fight with cat-girl's drones: the floor is littered with drone parts and scattered bits of armor plating and wire. The walls are covered with bullet holes and carbon burns from laser fire: it looks like a war zone in here.");
+	else 
+	{
+		author("Savin");
+		output("\n\nYou're surrounded by debris from your fight with cat-girl's drones: the floor is littered with drone parts and scattered bits of armor plating and wire. The walls are covered with bullet holes and carbon burns from laser fire: it looks like a war zone in here.\n\n<b>If you cross past the barricade to the west again, you might not be able to come back.</b>");
+	}
 	//If you don't know about the bomb, oh shit.
 	if(flags["TARKUS_BOMB_TIMER"] == undefined && flags["TAM_DISABLE_METHOD"] != undefined)
 	{
@@ -102,6 +132,8 @@ function liftStationBonus():Boolean
 
 function tamtamtamtamtamtamAI():void
 {
+	showBust("TAMTAM","TAMWOLF");
+	showName("FIGHT:\nTAM DRONES");
 	if(foes[0].hasStatusEffect("Turret Aimhacks"))
 	{
 		turretVolleyAttackMotherFucker();
@@ -298,6 +330,8 @@ function tamwolfOilslick():void
 //Tam-Tam: Player Victory!
 function tamtamGetsPunkedByPCs():void
 {
+	author("Savin");
+	showBust("TAMTAM");
 	output("<i>\"Get " + pc.mf("him","her") + " Tam-wolf! I believe in you!\"</i> the cat-girl, Tam, cheers as her cyberhound advances on you, growling. When it lunges, though, one of its legs snaps audibly, and the drone tumbles to the ground in a lump.");
 	output("\n\n<i>\"NOOOO! TAM-WOLF!\"</i> Tam shrieks, rushing forward and grabbing the malfunctioning drone, cradling his head. <i>\"You... you monster! What did you do to my poor Tam-wolf?\"</i>");
 	output("\n\nBefore you can say a word, the remaining turrets -- what few are left -- open up, forcing you to dive into cover as the cat-girl retreats into the back room, dragging her attack drone and cursing up a storm at you. A few well-placed swings take out the last of the turrets, leaving you standing in the room amid a decimated army of drones and gun-turrets and a sea of shell casings. Your ears are ringing, but at least you're alive....");
@@ -308,6 +342,7 @@ function tamtamGetsPunkedByPCs():void
 //Lift Station: Engineering Deck
 function liftStationEngineeringDeckBonusFunc():Boolean
 {
+	author("Savin");
 	if(flags["TAM_DISABLE_METHOD"] == undefined) output("RED, preventing you from descending.");
 	else output("GREEN, enabling you to take the elevator down to the rift station at the planet's core.");
 
@@ -319,6 +354,9 @@ function liftStationEngineeringDeckBonusFunc():Boolean
 	//Upon entering, first time:
 	if(flags["TAM_DISABLE_METHOD"] == undefined)
 	{
+		author("Savin");
+		showBust("TAMTAM");
+		showName("\nTAM");
 		output("\n\nYou quietly push open the door to Engineering, leading with your [pc.rangedWeapon], wary of ambush. A short, curved flight of stairs take you down just below the surface, into a room full of gently-rumbling machines, powering the Lift Station... but not the lift, you see. You take a moment to scan the room before your eyes alight on the lift control panel, currently blinking red... and right below it sits Tam.");
 		output("\n\nThe cat-girl is currently hunched over a workbench, desperately working on the damaged wolf-drone, also named Tam. Apparently. She doesn't seem to notice you, or care if she does. For the first time, you're able to get a good look at the crazy kitty: she's slim but buxom, as is common for her race, with a pair of EE-cups hanging heavily inside her greasy T-shirt, swaying free with her every motion. She's got a nice, rounded ass, currently sticking straight up in the air as she works, guarded by nothing put a pair of low-riding jean shorts that are doing a poor job of keeping her modest, and a pair of swishing pink tails. It wouldn't take much to just yank those shorts down and have your way with her... and without any drones left, you doubt she could stop you.");
 		clearMenu();
@@ -334,6 +372,9 @@ function liftStationEngineeringDeckBonusFunc():Boolean
 function knockOutTamtam():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMTAM");
+	showName("\nTAM");
 	//{+Hard}
 	pc.addHard(2);
 	output("A quick check around the room reveals a great big stonking wrench sitting within an arm's reach. You pick it up, and approach the cat-girl. As she's working, she doesn't bother to look up as you near her. <i>\"Kaska, is that you? Oh thank god, there was this crazy " + pc.mf("guy","bitch") + " and " + pc.mf("he","she") + " was shooting the place up and then Tam-wolf got hit and...\"</i>");
@@ -349,6 +390,9 @@ function knockOutTamtam():void
 function fuckTamTamIntoUnconscitude():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMTAM");
+	showName("\nTAM");
 	flags["TAM_DISABLE_METHOD"] = 2;
 	output("A lusty grin spreads across your face as you approach the seemingly unawares cat-girl, eyes transfixed by her booty. She wiggles it as she works, tails swaying and lifting as you approach, almost invitingly.");
 	output("\n\n<i>\"Kaska, is that you?\"</i> she whimpers over her shoulder, still not looking up. <i>\"Oh thank god, there was this crazy " + pc.mf("guy","bitch") + " and " + pc.mf("he","she") + " was shooting the place up and then Tam-wolf got hit and... and...\"</i>");
@@ -377,6 +421,9 @@ function fuckTamTamIntoUnconscitude():void
 function wrenchTamtamsCooch():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMTAM");
+	showName("\nTAM");
 	output("Giving Tam's pussy one last, long slurp, you grab the wrench from nearby and press the blunted end of the handle into the gaping lips of her hole. The cat-girl shudders in excitement, her juices now running freely down her thighs as she gently presses back against the handle, eager for more. You try to stifle a chuckle as you guide the handle in: Tam gasps, back arching as the shaft penetrates her, sliding easily in through her well-lubed lips.");
 	output("\n\n<i>\"Oh, god... so big...\"</i> she moans, bracing against the desk as you put more and more wrench into her. <i>\"Mmmm, when did you get that THICK, chief? Nevermind, just keep doing it. Oh, that's it... just like that...\"</i>");
 	output("\n\nShe purrs contentedly as you slowly fuck the wrench into her, screwing it into her socket until it's practically buried to the hilt (or rather, head!) inside her. Tam's belly is bulging with the sheer size of it, but that doesn't deter her for a second. Man, kaithrit are built to take 'em!");
@@ -395,6 +442,9 @@ function wrenchTamtamsCooch():void
 function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMTAM");
+	showName("\nTAM");
 	var x:int = pc.cockThatFits(500);
 	if(x < 0) x = pc.smallestCockIndex();
 	output("She asked for it! You fumble with your [pc.gear], pulling it off piece by piece until you're able to flop your [pc.cock " + x + "] down onto the arch of Tam's back. She gasps happily as your prick drops down, and her tails quickly catch and wrap it, both wriggling, fuzzy lengths curling around your [pc.cock " + x + "] until it's just a great big fuzzy package. She's got remarkable control over those tails of hers, and with a wiggle of her booty she puts them to use massaging your prick, squeezing just enough to make you moan.");
@@ -449,6 +499,9 @@ function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 function takeTamWulf():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMWOLF");
+	showName("\nTAMWOLF");
 	output("With the psychotic cat-girl incapacitated, you take a gander at the damaged drone dog on the work table. Looking just like a sleek black doberman, the drone is certainly quite powerful -- and those teeth can take a bite right out of you. With a little re-working, you could probably turn him into your new best friend.");
 	if(silly) output(" Then again, stealing is wrong... even from pirates.");
 	//If PC is a Tech w/ drone:
@@ -466,6 +519,9 @@ function takeTamWulf():void
 function dontTakeTamWulf():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMWOLF");
+	showName("\nTAMWOLF");
 	output("Nah. You'd hate to deprive the crazy cat-girl of her pet pooch, anyway. She'd be heartbroken!");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -476,6 +532,9 @@ function dontTakeTamWulf():void
 function yesTechSpecialistsTakeTamWulf():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("TAMWOLF");
+	showName("\nTAMWOLF");
 	var foundLootItems:Array = new Array();
 	//Drone techs!
 	if(pc.hasPerk("Attack Drone"))
@@ -527,6 +586,7 @@ function yesTechSpecialistsTakeTamWulf():void
 			output("\n\n<i>\"Alright, come on, boy!\"</i> You say, stepping back from the work bench -- eventually followed by your loyal, if barely-functional, new friend.");
 		}
 	}
+	flags["TAKEN_TAMWOLF"] = 1;
 	processTime(3);
 	output("\n\n");
 	itemScreen = mainGameMenu;
@@ -545,6 +605,9 @@ function yesTechSpecialistsTakeTamWulf():void
 //Tam-Tam Bad End: The Crew's Pet Pooch
 function tamtamBadEndPetPooch():void
 {
+	author("Savin");
+	showBust("TAMTAM","TAMWOLF");
+	showName("\nTAMWOLF");
 	//If During phase 1:
 	if(!foes[0].hasStatusEffect("Phase 2"))
 	{
@@ -593,6 +656,9 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	days += 94;
 	processTime(rand(2400));
 	clearOutput();
+	author("Savin");
+	showBust("TAMTAM","TAMWOLF");
+	showName("\nTAMWOLF");
 	output("<b>Months pass</b>");
 	output("\n\nYou can barely feel your extremities. The leather outfit is restraining, tight against your nude body, holding you onto ");
 	if(!pc.hasKnees()) output("your newly grown ");
@@ -680,6 +746,9 @@ function bombAlertBonusFunction():Boolean
 	if(flags["TARKUS_BOMB_TIMER"] == undefined)
 	{
 		clearOutput();
+		author("Savin");
+		showBust("KASKA");
+		showName("MYSTERY\nWOMAN");
 		output("As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red \"INCOMING\" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.");
 		output("\n\n<i>\"Tam, where the fuck are you, you lazy slut? Pick up!\"</i>");
 		output("\n\nWhen no answer is forthcoming, the figure sighs and scowls. <i>\"I hope you're recording this. Three hours until detonation. You better have your shit packed and ready to go before then.\"</i>");
@@ -702,7 +771,9 @@ function bombAlertBonusFunction():Boolean
 //[Lift Down] (First time: prepare for ass-assination)
 function liftDownEvent():void
 {
+	pc.energy(75);
 	clearOutput();
+	author("Savin");
 	if(flags["ROCKET_PODS_ENCOUNTERED"] == undefined)
 	{
 		output("You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. Quickly, the light of the ");
@@ -727,7 +798,7 @@ function liftDownEvent():void
 		output("You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. This trip is much like the last. You try and spend the time the admiring what passes for a view, mentally preparing yourself for whatever challenges remain at the bottom.");
 		output("\n\nGravity slowly fades, and you're sure to put on some of the electromagnetic equipment before it vanishes completely.")
 	}
-	processTime(25);
+	processTime(23);
 	//Move the PC
 	currentLocation = "354";
 	var map:* = mapper.generateMap(currentLocation);
@@ -793,6 +864,8 @@ function coreWalkWayBonus():Boolean
 	if(flags["ROCKET_PODS_ENCOUNTERED"] == undefined)
 	{
 		clearOutput();
+		author("Savin");
+		showName("ROCKET\nPODS");
 		flags["ROCKET_PODS_ENCOUNTERED"] = 1;
 		output("Stepping out of what remains of the lift");
 		// after your fight with the sword-slinging kost'oran pirate
@@ -817,9 +890,13 @@ function coreWalkWayBonus():Boolean
 	}
 	if(flags["ROCKET_PODS_HACKED"] == 1 || flags["ROCKET_PODS_SNEAKED"] == 1)
 	{
+		author("Savin");
 		output(". The rocket pods are sitting at the end of the walkway, scanning for hostile targets. As you approach, they chirp a digital greeting at you, utterly harmless.");
 	}
-	else output(", especially now that it's been blasted with holes from the now defunct rocket turrets, which are sitting in a shorted-out heap at the edge of the way, rendered harmless. From here, you have an uninterrupted line of sight all the way back to the top of the lift track, as well as a commanding view of the lift station, big and bulky and ancient, sitting before you.");
+	else {
+		author("Savin");
+		output(", especially now that it's been blasted with holes from the now defunct rocket turrets, which are sitting in a shorted-out heap at the edge of the way, rendered harmless. From here, you have an uninterrupted line of sight all the way back to the top of the lift track, as well as a commanding view of the lift station, big and bulky and ancient, sitting before you.");
+	}
 	addButton(0,"Ride Lift",goUpTarkusLift);
 	return false;
 }
@@ -827,8 +904,9 @@ function coreWalkWayBonus():Boolean
 function goUpTarkusLift():void
 {
 	clearOutput();
+	pc.energy(75);
 	output("Stepping into the lift, you press the activation key. The elavoter hums softly and accelerates upward, replacing gravity with acceleration until you're far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
-	processTime(30);
+	processTime(25);
 	//Move the PC
 	currentLocation = "353";
 	var map:* = mapper.generateMap(currentLocation);
@@ -843,6 +921,8 @@ function goUpTarkusLift():void
 function hackTheRocketPodsOnTarkus():void
 {
 	clearOutput();
+	author("Savin");
+	showName("ROCKET\nPODS");
 	output("<i>\"Fight smart, not hard,\"</i> Dad always said. You reach into your pack and pull out your Codex, bringing up the network selection, and quickly slicing into the station's wireless.");
 	//{On Fail}
 	if(pc.intelligence() + rand(20) + 1 < 25)
@@ -869,6 +949,8 @@ function hackTheRocketPodsOnTarkus():void
 function sneakByZeTurrets():void
 {
 	clearOutput();
+	author("Savin");
+	showName("ROCKET\nPODS");
 	//{PC needs to make a difficult PHYSIQUE check. Taurs/Nagas/whatevers probably can't do this, since they weigh a ton and their arms would snap off}
 	//{Maybe tooltip: "The only other way past the turrets is to go under the walkway. Could be dangerous...}
 	output("<i>\"Discretion is the better part of valor,\"</i> Dad always said. You roll your shoulders, wipe the sweat from your palms, and pull yourself over the guard rail. You tumble weightlessly, grabbing the bottom of the bridge, leaving yourself hanging over the void.");
@@ -886,6 +968,8 @@ function sneakByZeTurrets():void
 //You're fighting a battery of rocket pods! (Level: 4)
 function rocketPodAI():void
 {
+	author("Savin");
+	showName("ROCKET\nPODS");
 	if(foes[0].shields() == 0 && rand(2) == 0 && !foes[0].hasStatusEffect("Shields Refilled")) shieldsUp();
 	else rocketPodRocketAttk();
 }
@@ -973,6 +1057,8 @@ function spessPirateCaptainFightFightGoTimeBonus():Boolean
 
 function PlatinumSuperBonusFunction():Boolean
 {
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
 	//Room blurb for defeated Cap'n
 	//Captain was Fucked: 
 	if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined) output("\n\nCaptain Khorgan is lying against the broken remains of her mech suit in a well-fucked mess, clutching the tatters of her clothes back around her shoulders.");
@@ -993,6 +1079,9 @@ function PlatinumSuperBonusFunction():Boolean
 function pirateCaptainBossFightIntro():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("You step up onto the hover platform attached to the station, hand on your [pc.rangedWeapon]. Just a few paces ahead of you, a steel behemoth is at work, a gorilla-like mechanical suit busily drilling into the crust with a mining laser on its wrist. As you approach, you see the suit's other arm punch into the lasered-out rock, and rip out a fistful of a shiny silvery metal -- the glimmer of platinum is unmistakable. The suit turns, dumping the platinum shard into a half-full crate nearby... and sees you walking toward it.");
 	output("\n\nWith a footstep that sends the whole platform shuddering, the mech suit lumbers around to face you. The suit's torso is a dome of plated glass, inside which you can see a powerfully built greenskinned woman, surrounded by hovering holo-displays and sporting an almost ridiculously outdated tricorn hat. She scowls at you, and you hear the mining laser powering back up as she takes a step forward; the reverberations are nearly strong enough to knock you on your back.");
 	output("\n\n<i>\"AND WHO DO YOU THINK YOU ARE!?\"</i> the suit roars, the pilot's voice coming out as a deafening synthetic scream. <i>\"YOU'RE NOT A COP. SO WHAT: BOUNTY HUNTER? INTERPOL? OR DO YOU JUST HAVE A DEATHWISH, MAGGOT?\"</i>");
@@ -1015,6 +1104,9 @@ function pirateCaptainBossFightIntro():void
 
 function khorganSuitAI():void
 {
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("FIGHT: CAP'N\nKHORGAN");
 	//Update description for next round display.
 	foes[0].long = "Barely visible beneath tons of steel mech suit, the captain cuts an impressive figure: buxom, muscular, and fierce. Her every moment is precise and furious, as if her rage at your intrusion alone is enough to overwhelm you. What you can see of her dress screams \"party-shop pirate,\" with ruffles and a tricorn hat and everything. Even the suit she's wearing is outdated, an old civilian mining exoskeleton, the kind used for deep-depth ore drilling and excavation, probably a century old. But it's been heavily reinforced with makeshift armor plating, shield emitters, and weapon upgrades -- including a massive missile launcher strapped to its back, probably ripped off of a starfighter or freighter.";
 	var percent:int = foes[0].HP()/foes[0].HPMax() * 100;
@@ -1291,6 +1383,9 @@ function missileIncoming():void
 function victoriousVsCaptainOrcButt():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("The reinforced mining suit shudders, smoke billowing off of it as the captain struggles to keep it standing. With one final roar of outrage, she levels the mining laser at you, intending to go down with a fight... but it doesn't fire. Indeed, it <i>catches</i> fires as she spins it up, quickly bursting into flames from excess heat. You bat a billow of smoke away from your face as the suit collapses to one knee, its guns melting to slag.");
 	output("\n\nBut she's not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit's powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it's strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust.");
 	output("\n\nWith a pneumatic hiss, the mech suit's cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core.");
@@ -1326,6 +1421,9 @@ function demandSurrenderFromPirate():void
 {
 	//Tooltip: She's desperate, you can hear it in her voice! Tell her to put HER weapon down, if she wants to get out of this.}
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("<i>\"You've got no chance, captain. How about YOU put your weapon down,\"</i> you say, holding your ground.");
 	output("\n\n<i>\"Ballsy,\"</i> she laughs, still clutching her force cutlass tight. <i>\"I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I'll still take you as my personal fuck-slave.\"</i>");
 	output("\n\n<i>\"Or would you rather we sit here flapping our gums till the timer runs out? That'll be a hell of a way to go, out with a blast, huh!?\"</i>");
@@ -1341,6 +1439,9 @@ function demandSurrenderFromPirate():void
 function surrenderToCapnKhorgath():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("With a heavy sigh, you drop your weapon and gear. At least this way you'll make it out of here alive, even if Tarkus might be doomed because of it.");
 	output("\n\n<i>\"Really?\"</i> the captain sneers, scowling. <i>\"I didn't think you were that spineless, Steele. Fine, then. Get down on the ground, and don't make any sudden movements.\"</i>");
 	//{Go to Captain Khorgan's Broodmare badend}
@@ -1355,6 +1456,9 @@ Captain Boss Fight: Part 2
 
 function actualKhorganAI():void
 {
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("FIGHT: CAP'N\nKHORGAN");
 	//She Gets off on it!?
 	//Chance of use increases as her HP falls. Restores some HP, but raises her lust. 
 	if(foes[0].HP()/foes[0].HPMax() * 100 < rand(100) - 30) gettingOffOnZePain();
@@ -1457,6 +1561,9 @@ function gettingOffOnZePain():void
 //Captain Fight Phase 2: PC Victorious
 function youBeatUpAnOrcWaytoGo():void
 {
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	currentLocation = "360";
 	//{if by Lust}
 	if(foes[0].lust() >= foes[0].lustMax())
@@ -1499,6 +1606,9 @@ function youBeatUpAnOrcWaytoGo():void
 function leaveDatThragginBootayBehind():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("<i>\"I don't think so,\"</i> you say, giving the captain the slightest push -- which in her state, is enough to topple her over. She gives a startled gasp as she collapses into a lusty heap on the ground, legs splayed and boobs jiggling. You take a moment to tie her hands together before, detonator in hand, you turn your back on the cursing, hot mass of greenskin behind you.\n\n");
 	if(!pc.hasKeyItem("Khorgan's Detonator")) pc.createKeyItem("Khorgan's Detonator",0,0,0,0);
 	genericVictory();
@@ -1509,6 +1619,9 @@ function leaveDatThragginBootayBehind():void
 function dickFuckDatThraggenCoochie():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	flags["DICKFUCKED_CAPN_KHORGAN"] = 1;
@@ -1562,6 +1675,8 @@ function dickFuckDatThraggenCoochie():void
 function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 {
 	clearOutput();
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	author("Gardeford");
 	//if First time:
 	if(flags["LESBOED_KHORGAN"] == undefined)
@@ -1632,6 +1747,9 @@ function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 function loseToCaptainKhorganBadEnd():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
 	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
@@ -1694,6 +1812,9 @@ function loseToCaptainKhorganBadEnd():void
 function approachCaptainPostDefeat():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	//Captain was Fucked: 
 	if(flags["DICKFUCKED_CAPN_KHORGAN"] != undefined || flags["LESBOED_KHORGAN"] != undefined) output("Captain Khorgan looks a little dazed after your last encounter, but there's no disguising her eagerness for more.");
 	//Captain wasn't fucked:
@@ -1725,6 +1846,9 @@ function approachCaptainPostDefeat():void
 function leaveDaCapnRepeat():void
 {
 	clearOutput();
+	author("Savin");
+	showBust("CAPTAIN_KHORGAN");
+	showName("CAPTAIN\nKHORGAN");
 	output("You leave the good captain as you found her.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1734,6 +1858,7 @@ function leaveDaCapnRepeat():void
 function takeZePlatinumAwwwwyiss():void
 {
 	clearOutput();
+	author("Savin");
 	output("You step up to the crate Captain Khorgan was filling and pick up a chunk of the silvery metal. It's heavy, but malleable, and incredibly lustrous. Platinum, certainly, but something seems... off about it. You pull your codex out of your pack and boot up your mineral scanning app. The scanner goes to work, quickly identifying the metal: Platinum 190, a super-rare isotope. Rare, and very expensive. You think this would net a tidy profit somewhere....");
 	flags["PLATINUM_TAKEN"] = 1;
 	output("\n\n(<b>Gained Key Item: Platinum 190</b> - This should be worth a good chunk of change to someone.)");
@@ -1755,6 +1880,9 @@ Bomb Room Description*/
 
 function bombRoomBonusFunc():Boolean
 {
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	output("Keeping your bearings down here, surrounded by on all sides by endless rock, is a challenge. Doing it while your belly does backflips from the lack of gravity is a trial. Luckily you're anchored to the metal platform by electromagnetic forces, at least as long as the batteries in the kit you picked up from the elevator last.");
 	if(flags["TARKUS_BOMB_TIMER"] != 0)
 	{
@@ -1791,6 +1919,9 @@ function bombRoomBonusFunc():Boolean
 //Starts playing upon entering her room post bomb descriptions
 function meetUpWithKaskaZeBossSloot():void
 {
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	output("\n\nThe sharp report of a slug-thrower being fired stops you cold in your tracks. A flurry of sparks erupts from the deckplates a scant few inches ahead of you. Whoever took that shot could've hit you if they wanted to");
 	if(pc.shields() > 0) output(". Not that it would matter with your shields operational. It'll take more than a primitive powder-blaster to drop you");
 	output(". You finger your [pc.rangedWeapon] while looking around for the source of fire, only to have the shooter reveal herself. Holy hell, does she reveal herself!");
@@ -1811,6 +1942,14 @@ function meetUpWithKaskaZeBossSloot():void
 Kaska will use her gun and some smuggler-like abilities until becoming aroused (40 lust). At this point, she'll switch to exclusively using tease style attacks.*/
 function kaskaFightAI():void
 {
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("FIGHT:\nKASKA");
+	if(pc.hasStatusEffect("Grappled"))
+	{
+		processCombat();
+		return;
+	}
 	//Switch to lust mode:
 	if(foes[0].lust() > 45 && !foes[0].hasStatusEffect("Futa Lust")) 
 	{
@@ -1846,7 +1985,7 @@ function kaskaFightAI():void
 	{
 		if(pc.statusEffectv1("Round") % 5 == 0 && pc.statusEffectv1("Round") != 0)
 		{
-			choices[choices.length] = tittyGrapple;
+			tittyGrapple();
 			return;
 		}
 		choices[choices.length] = crateTeaseFromKaska;
@@ -1920,7 +2059,7 @@ function kaskaFutaLusts():void
 //Grapples the PC, forcing his or her head into her tits for multiround squishes.
 function tittyGrapple():void
 {
-	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.");
+	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.\n\n<b>You are grappled!</b>");
 	pc.createStatusEffect("Grappled",30,0,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 	processCombat();
 }
@@ -1928,8 +2067,7 @@ function tittyGrapple():void
 //Do Nothing
 function doNothingWhileTittyGrappled():void
 {
-	clearOutput();
-	output("Kaska grins as she feels you go limp against her");
+	output("\nKaska grins as she feels you go limp against her");
 	if(pc.hasCock()) output(" but hard somewhere else");
 	output(". <i>\"Oh, you are adorable! First you act like you stand a chance, and then a little bit of boob turns you to jello.\"</i> She relaxes her grip enough to pet ");
 	if(!pc.hasHair()) output("the back of your head");
@@ -1939,8 +2077,8 @@ function doNothingWhileTittyGrappled():void
 	output("\n\nYour lips are already pressing against her ebony melons. You go ahead and purse them while you wait. ");
 	if(pc.lust() < pc.lustMax()) output("It's... more pleasant than you thought it would be.");
 	else output("It's too much for your already overloaded mind. What starts as a kiss rapidly degrades into a slobbering, smooching motorboat. These tits are fantastic, and you can't get enough of them! Why were you even fighting this siren?");
+	output("\n");
 	pc.lust(20+rand(10));
-	processCombat();
 }
 
 //Failed Strugle
@@ -1950,19 +2088,19 @@ function failToStruggleKaskaBoobs():void
 	pc.lustDamage(10+rand(5));
 	if(pc.lust() <= 50) output("It feels... good to rub against it.");
 	else if(pc.lust() <= 80) output("Damn, these tits are great! If you don't get out soon, things are going to get out of hand!");
-	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?\n");
-	processCombat();
+	else output("It feels to good to hold out any longer. You start licking and kissing with reckless abandon, letting your struggles to escape cease. Why fight the inevitable?");
 }
 
 //Pinch Nipple
 //Automatically escapes tittygrapple at the expense of a little bit of lust damage to both of you.
-function pinchNipple():void
+function pinchKaskaNipple():void
 {
 	clearOutput();
 	output("One of her leather-covered nipples brushes your cheek, giving you all the information you need to target it. You twist your torso slightly and free enough room for your arm to snake up into her cleavage. Then, your fingers find your target. It's hard and pebbly. You pinch. Gasping, Kaska drops you, staggering back and panting, her nipples even more visible through the thin xeno-leather corset. Her nipple felt nice between your fingers. Maybe you ought to let her grab you again?");
 	output("\n\nKaska merely pants and flushes. Did she enjoy the pinch that much?\n");
+	pc.removeStatusEffect("Grappled");
 	pc.lustDamage(4+rand(3));
-	chars["KASKA"].lustDamage(7+rand(3));
+	foes[0].lustDamage(7+rand(3));
 	processCombat();
 }
 //Crate Tease
@@ -2002,6 +2140,9 @@ function kaskaHighKick():void
 //Defeated by Kaska: Not Turned On
 function defeatedByKaska():void
 {
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	if(foes[0].lust() < 50)
 	{
 		output("You collapse, or you would if you weren't in a weightless environ. Your body hangs bonelessly, tethered in place by the magnetic equipment you picked up from the elevator. Burn marks and wounds riddle your ailing form, and as your eyes drift closed, you hear one final, echoing sound. BLAM!");
@@ -2128,6 +2269,9 @@ function defeatedByKaska():void
 function kaskaBadEndPartDues():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	var choices:Array = new Array();
 	if(pc.hasCuntTail()) choices[choices.length] = 0;
 	if(pc.hasVagina()) choices[choices.length] = 1;
@@ -2292,6 +2436,9 @@ function kaskaBadEndPartDues():void
 function kaskaBadEndPartIII():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	output("<b>Some time later....</b>");
 	output("\nYou wouldn't have expected to wake up embedded on Kaska's dick somewhere on the edge of civilized space, but you did. You wouldn't have expected to moan so shamelessly at the realization either, but you did. You certainly wouldn't have expected to sit quietly in the corner, rubbing your [pc.belly], while Kaska got permission to take you as her part of the score. And feeling excited at the Captain's confirmation? That was out of the question, but you did. Secretly, you thrilled at it.");
 	output("\n\nYou were made to service Kaska three time more times before making port. It was surprisingly easy; you just settled in front of her chair, opened up, and started sucking. The pirate crew might have been dining on food, but you never really got hungry, or wondered why. Once, when you started talking, Kaska pulled you onto her soft cock to give you something to do. It still tasted vaguely of her cum. It took over fifteen minutes of sucking to extract every ounce of flavor, but then she was leaking again.");
@@ -2308,6 +2455,9 @@ function kaskaBadEndPartIII():void
 function defeatKaska():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	//Lust
 	if(foes[0].lust() >= foes[0].lustMax())
 	{
@@ -2346,6 +2496,9 @@ function defeatKaska():void
 function leaveKaskaPostCombat():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	output("An overheated dickgirl isn't any problem of yours. You leave her panting on the deckplates, still stroking herself.\n\n");
 	genericVictory();
 }
@@ -2359,6 +2512,9 @@ function leaveKaskaPostCombat():void
 function approachUnfuckedKaska():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	output("Kaska, still tugging her length, smiles at your approach. <i>\"I should hate you right now, but everything is awesome, and you're awesome, and I'm so fucking hard, and you can fuck me however you want, just fuck me!\"</i> Well... you suppose you could do just that.");
 	clearMenu();
 	if(pc.lust() >= 33)
@@ -2380,6 +2536,9 @@ function approachUnfuckedKaska():void
 function victoryKaskaDicksex():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	if(pc.isCrotchGarbed())
@@ -2471,6 +2630,9 @@ function victoryKaskaDicksex():void
 function makeKaskaSuchYerCoochLikeABaws():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showBust("KASKA");
+	showName("\nKASKA");
 	if(pc.isCrotchGarbed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");
 	output(" intending to get some quick, oral relief from this pirate before dealing with the potentially planet-cracking bomb. Her eyes are a little glassy and unfocused, like someone half lost in a daydream. You grab her by the chin and tip her head back to look you in the eye. Her jaw works, opening and closing, trying to find the words that she undoubtedly believes she must say. You put a finger to her lips to shush her and speak yourself.");
@@ -2555,6 +2717,8 @@ function makeKaskaSuchYerCoochLikeABaws():void
 //Approaching Active Bomb
 function activeBombApproach():void {
 	clearOutput();
+	author("Fenoxo");
+	showName("\nBOMB");
 	output("You kneel in front of the bomb and pull out the ");
 	if(pc.hasKeyItem("Khorgan's Detonator")) output("two detonators");
 	else output("detonator");
@@ -2574,6 +2738,8 @@ function activeBombApproach():void {
 function attemptToDisarmTheBomb():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showName("\nBOMB");
 	//One detonator
 	if(!pc.hasKeyItem("Khorgan's Detonator")) 
 	{
@@ -2599,6 +2765,8 @@ function lightsOutBombPrep():void
 function failedToDisarmTarkusBomb():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showName("\nBOMB");
 	output("The moment all the relays light up, the bomb releases a high-pitched whine. Uh oh. The explosion happens faster than you can perceive it, ending your life and your quest in a coruscating nova. The Tarkus asteroid belt becomes your grave.");
 	output("\n\n<b>GAME OVER</b>");
 	clearMenu();
@@ -2607,129 +2775,434 @@ function failedToDisarmTarkusBomb():void
 function disarmedTarkusBomb():void
 {
 	clearOutput();
+	author("Fenoxo");
+	showName("\nBOMB");
 	output("The last of the illuminated relays fade, and the panel's display reconfigures to display one, simple word: disarmed. Wiping a bead of sweat from your brow, you look around the carnage of your passing. The floating platforms are in rough shape, but the facility itself is intact. You've saved Tarkus. You wonder if anyone will believe you when you tell this story later. You sigh. Probably not. At least the U.G.C. guys up top will know.");
-	output("If you wanted to grab anything before you left, now is the time for it. <b>You might not be able to return later.</b>");
+	output("\n\nIf you wanted to grab anything before you left, now is the time for it. <b>You might not be able to return later.</b>");
 	flags["TARKUS_BOMB_TIMER"] = 0;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
-[FAILURE] Bomb goes off while in the Core
-	There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.
-	GAME OVER
-[FAILURE] Bomb goes off while on Tarkus.
-	You feel a sudden shift in the ground a moment before you hear a faint, distantly echoing boom. The sound is almost tinny, carried on reverberations through the metallic countryside. The bomb went off before you could make it back to your ship! You push yourself into a sprint, but the whole planet rumbles, splitting open into a giant crevasse in front of you. A gust of wind slams into you, displaced from the core when the two half planets crashed into one another.
-	The groans of straining metal being rent asunder give voice to the collapsing planet's pain. You're thrown into air along with a mountain of debris. The vantage offered by such heights allows you to watch Tarkus' crust split apart. Other pieces join you in the air, dislodged by the incredible tectonic forces at work. There is nowhere to run, nowhere to hide. You have a front row seat to the destruction of a planet, and it does not disappoint. The orange ball has already fractured into hundreds of island-sized asteroids. Luckily, you're crushed by a mountain of metal long before the atmosphere scatters to the void.
-	GAME OVER
-[FAILURE] Bomb goes off while in Nova
-	Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.
-	The ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, goblins, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.
-	Dry winds scream like banshees, propelled by geological forces beyond comprehension. {Anno/A white-haired ausar} seems to be one of the only ones not panicking. As a matter of fact, you see her pulling herself on handholds towards the sucking hole in the side of the hull. Opposite, {Shekka/a pink-haired raskvel in a gleaming white jumpsuit} is wearing a pair of glowing boots, stomping along the deck towards a lever. {Anno/The ausar} is almost at a matching one on the other side. They reach them at the same time, and recessed doors slide out of the walls, trailing a curtain of rust particles, and slam shut.
-	While the horrible sounds from outside may have died out, the ship is still spinning and shaking like wild. A tinny, raskvel voice comes over the speaker, <i>\"Tarkus is breaking up! Get the shields-\"</i> It cuts off with a burst of static. The lights dim, and the din of crying aliens reaches a whole new crescendo. Staggering, you make your way towards the hangar. Maybe you can save yourself.
+function bombExplodes():void
+{
+	clearOutput();
+	author("Fenoxo");
+	//[FAILURE] Bomb goes off while in the Core
+	if(currentLocation == "350" || currentLocation == "351" || currentLocation == "352" || currentLocation == "353" || currentLocation == "354" || currentLocation == "355" || currentLocation == "356" || currentLocation == "357" || currentLocation == "358" || currentLocation == "359" || currentLocation == "360" || currentLocation == "361" || currentLocation == "362" || currentLocation == "363" || currentLocation == "364" || currentLocation == "KHORGAN_CENTER_COVER" || currentLocation == "KHORGAN_LEFT_COVER" || currentLocation == "KHORGAN_RIGHT_COVER")
+	{
+		output("There is a flash of light too fast to react to, and then nothing. Your life ended on the leading edge of a facility-shredding blast wave. The only consolation for your departing spirit is that you didn't have to watch the planet above tear itself to pieces, killing nearly every living creature on its surface in the process.");
+		output("\n\n<b>GAME OVER</b>");
+		clearMenu();
+	}
+	//PC Bailed on Dungeon, Didn't Defeat Kaska OR Khorgan
+	if(!pc.hasKeyItem("Kaska's Detonator") && !pc.hasKeyItem("Khorgan's Detonator"))
+	{
+		//Three hours later, after the bomb should have gone off
+		output("You codex buzzes, a priority message alert chiming through. You answer, and see a 2-D image coming through on the Codex's primitive screen: of all the people you didn't expect to see, it's the nutty cat-girl you beat down ");
+		if(flags["TAM_DISABLE_METHOD"] == 2) output("and fucked ");
+		output("in the control station.");
+		output("\n\n<i>\"Hey!\"</i> she cheers, beaming at you. Behind her, ");
+		if(flags["TAKEN_TAMWOLF"] != undefined) output("a new canine attack drone");
+		else output("Tam-wolf");
+		output(" looks over her shoulder, its ruby-red eyes blazing. <i>\"The captain wanted me to call you and say 'thanks for not killing me!' Thank God you didn't actually fight the rest of us, or the whole planet might have asploded!\"</i> she says, waving her arms around for dramatic effect.");
+		output("\n\n<i>\"It was just a bluff, anyway,\"</i> she adds with a sly grin. <i>\"We weren't gonna blow the whole planet up! That'd be evil as shit. But still, thanks for not putting a bullet in my brainpan.");
+		if(flags["TAKEN_TAMWOLF"] != undefined) output(" But also fuck you for stealing my Tam-wolf! You're lucky I had a spare, or I'd be SUPER pissed off at you!");
+		output(" We should shoot each other a bunch more some time! Ooh, Cap'n wants me. See ya!\"</i>");
+		output("\n\nThe message cuts off.");
+		output("\n\nWhat the actual fuck.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	//[FAILURE] Bomb goes off while off planet.
+	else if(rooms[this.currentLocation].planet != "PLANET: TARKUS")
+	{
+		output("You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a goblin space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?");
+		flags["TARKUS_DESTROYED"] = 1;
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//[FAILURE] Bomb goes off while on Tarkus.
+	else if(rooms[this.currentLocation].hasFlag(GLOBAL.OUTDOOR))
+	{
+		output("You feel a sudden shift in the ground a moment before you hear a faint, distantly echoing boom. The sound is almost tinny, carried on reverberations through the metallic countryside. The bomb went off before you could make it back to your ship! You push yourself into a sprint, but the whole planet rumbles, splitting open into a giant crevasse in front of you. A gust of wind slams into you, displaced from the core when the two half planets crashed into one another.");
+		output("\n\nThe groans of straining metal being rent asunder give voice to the collapsing planet's pain. You're thrown into air along with a mountain of debris. The vantage offered by such heights allows you to watch Tarkus' crust split apart. Other pieces join you in the air, dislodged by the incredible tectonic forces at work. There is nowhere to run, nowhere to hide. You have a front row seat to the destruction of a planet, and it does not disappoint. The orange ball has already fractured into hundreds of island-sized asteroids. Luckily, you're crushed by a mountain of metal long before the atmosphere scatters to the void.");
+		output("\n\n<b>GAME OVER</b>");
+		clearMenu();
+	}
+	//[FAILURE] Bomb goes off while in Nova
+	else
+	{
+		showBust("ANNO","SHEKKA");
+		output("Novahome groans like a wounded animal and shifts at least a foot to the left, dumping you to the deck. Alarms sound while you're climbing back to your [pc.feet]. When did the raskvel get those working? Screams of alarm fill the corridors, and you're nearly swept along on a tide of scaley panic. The ship lurches a few more times. You're lucky enough to grab hold of a hand hold this time, and you make your way to the ship's exit ramp.");
+		output("\n\nThe ramp itself is gone. There's an open air gap in its place and no sign of those who might have been walking on it. The Nova bucks like a nautical vessel of old trapped in the gale-force winds of a hurricane. Your belly turns, and you watch the ground fall away a second before tarkus' surface shatters like a piece of glass. Chunks of ore go hurtling by. Raskvel, goblins, and rushers alike are sucked out of the hull, screaming in terror. You barely manage to keep your grip as you watch the bomb tear apart the planet you could've saved.");
+		output("\n\nDry winds scream like banshees, propelled by geological forces beyond comprehension. ");
+		if(flags["MET_ANNO"] != undefined) output("Anno");
+		else output("A white-haired ausar");
+		output(" seems to be one of the only ones not panicking. As a matter of fact, you see her pulling herself on handholds towards the sucking hole in the side of the hull. Opposite, ");
+		if(flags["MET_SHEKKA"] != undefined) output("Shekka");
+		else output("a pink-haired raskvel in a gleaming white jumpsuit");
+		output(" is wearing a pair of glowing boots, stomping along the deck towards a lever. ");
+		if(flags["MET_ANNO"] != undefined) output("Anno");
+		else output("The ausar");
+		output(" is almost at a matching one on the other side. They reach them at the same time, and recessed doors slide out of the walls, trailing a curtain of rust particles, and slam shut.");
+		output("\n\nWhile the horrible sounds from outside may have died out, the ship is still spinning and shaking like wild. A tinny, raskvel voice comes over the speaker, <i>\"Tarkus is breaking up! Get the shields-\"</i> It cuts off with a burst of static. The lights dim, and the din of crying aliens reaches a whole new crescendo. Staggering, you make your way towards the hangar. Maybe you can save yourself.");
+		processTime(2);
+		//[Next]
+		clearMenu();
+		addButton(0,"Next",planetAsplodeWhileInNova);
+	}
+	flags["TARKUS_BOMB_TIMER"] = -1;
+}
+
+function planetAsplodeWhileInNova():void
+{
+	currentLocation = "201";
+	var map:* = mapper.generateMap(currentLocation);
+	this.userInterface.setMapData(map);
+	clearOutput();
+	author("Fenoxo");
+	output("The hangar's blast doors are sealed. You didn't even know the hangar HAD blast doors, but they've closed all the same. Your ship and a half dozen others are piled together on the far side of the chamber, damaged but unbroken. You're lucky no one brought any larger ships here before the planets came apart. Your ride could've gotten smashed.");
+	output("\n\nStill bumping and bouncing, you wonder if you're going to die like this - trapped in a metal coffin with a bunch of space-");
+	if(!silly) output("rats");
+	else output("kobolds");
+	output(", doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.");
+	output("\n\nThe lights come on, bringing with it the tinny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking goblins must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?");
+	processTime(3);
 	//[Next]
-	The hangar's blast doors are sealed. You didn't even know the hangar HAD blast doors, but they've closed all the same. Your ship and a half dozen others are piled together on the far side of the chamber, damaged but unbroken. You're lucky no one brought any larger ships here before the planets came apart. Your ride could've gotten smashed.
-	Still bumping and bouncing, you wonder if you're going to die like this - trapped in a metal coffin with a bunch of space-{rats/kobolds}, doomed by your own incompetence. The overhead lights flicked and die, plunging you into darkness. The nova rings like a gong when something slams into it, forcing you to clap your hands to your [pc.ears]. You're going to die. It's finished, then. There's no way out.
-	The lights come on, bringing with it the tinny voice of whatever raskvel sits at the helm. <i>\"Shields are up! Shields are up! Get me engines! Fucking goblins must have wrecked their own planet. Someone should've told them it would take more than that to wipe us out!\"</i> A cheer goes through the huddled masses around you. Maybe you'll live after all?
-	[Next]
-	Somehow, you didn't die, and neither did the raskvel - at least not the ones onboard Novahome. With no other option save extinction, the scrappy little aliens managed to get the engines and life support on this old boat running. {A dark-skinned girl/Del} spearheaded options to keep the refugees fed{ and suitably serviced} while the hangar was cleared. You helped out where you could, anything to see the hangar and your ship operational again. An escape vector is always nice.
-	A day later, life calmed down enough for things to get back to something approaching normal on Novahome. While deciding what to do next, you catch wind that {Jack/Jill} is in {Shekka's shop/a nearby shop}. A pity they didn't get sucked out the airlock.
+	clearMenu();
+	addButton(0,"Next",planetAsplodeWhileInNovaPartIII);
+}
+
+function planetAsplodeWhileInNovaPartIII():void
+{
+	clearOutput();
+	author("Fenoxo");
+	output("Somehow, you didn't die, and neither did the raskvel - at least not the ones onboard Novahome. With no other option save extinction, the scrappy little aliens managed to get the engines and life support on this old boat running. ");
+	if(flags["MET_DEL"] == undefined) output("A dark-skinned girl");
+	else output("Del");
+	output(" spearheaded options to keep the refugees fed{ and suitably serviced} while the hangar was cleared. You helped out where you could, anything to see the hangar and your ship operational again. An escape vector is always nice.");
+	output("\n\nA day later, life calmed down enough for things to get back to something approaching normal on Novahome. While deciding what to do next, you catch wind that [rival.name] is in ");
+	if(flags["MET_SHEKKA"] != undefined) output("Shekka's shop");
+	else output("a nearby shop");
+	output(". A pity they didn't get sucked out the airlock.");
+	flags["TARKUS_DESTROYED"] = 1;
+	processTime(1475);
 	//[Next] - main menu
-[FAILURE] Bomb goes off while off planet.
-	You receive a notification on your codex that Tarkus was destroyed by the bomb you failed to disarm. The news feeds make a big deal of playing up the survival of a group of raskvel onboard Novahome, and some mention is made of a goblin space station being intact as well. Maybe you should check up on Novahome and see how the raskvel are doing?
-	
-Dungeon Done, Bosses Molestered, Bomb Disarmed
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+function bombStatusUpdate():void
+{
+	if(flags["TARKUS_BOMB_TIMER"] == 120) eventBuffer += "\n\n<b>There's only two hours left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 90) eventBuffer += "\n\n<b>There's only an hour and a half left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 60) eventBuffer += "\n\n<b>There's only one hour left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 45) eventBuffer += "\n\n<b>There's only one 45 minutes left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 30) eventBuffer += "\n\n<b>There's only one 30 minutes left to disarm the bomb!</b>";
+	if(flags["TARKUS_BOMB_TIMER"] == 15) eventBuffer += "\n\n<b>There's only one 15 minutes left to disarm the bomb!</b>";
+}
+
+//Dungeon Done, Bosses Molestered, Bomb Disarmed
 //Play when PC goes back topside, play when stepping out of the elevator.
 //This assumes the PC won't be able to re-visit the dungeon. Which, logically, you wouldn't be since the place would be back to operating as usual. 
+function victoryCelebrationPCIsAwesomeGuyFuntimes():void
+{
+	clearOutput();
+	author("Savin");
+	showName("HORACE\nDECKER");
+	output("You're greeted by a sudden chorus of cheers. You recoil, until you see that you're surrounded by Sgt. Decker's S.W.A.T. team, all clustering around you. The sergeant himself steps forward, chomping on his cigar over a great big grin. <i>\"We just got the word from Command: they saw everything. Great work, kid!\"</i>");
+	output("\n\nSeveral officers shake your hand or clap you on the back as you try and make your way out of the lift. As they do, several of them peel off from the main group, heading into the personnel lift to go and make the official arrests on the pirates you defeated. Speaking of which: just ahead, you can see the crazed cat-girl, Tam, being led out of the ground-side station in cuffs, struggling against a pair of burly officers and crying out for her wolf drone.");
+	if(flags["TAKEN_TAMWOLF"] != undefined) output("\n\n<i>\"She screams bloody murder at you, calling out for Tam-wolf to come to her, to no avail.\"</i>");
 
-As you step out of the elevator, you're greeted by a sudden chorus of cheers. You recoil, until you see that you're surrounded by Sgt. Decker's S.W.A.T. team, all clustering around you. The sergeant himself steps forward, chomping on his cigar over a great big grin. "We just got the word from Command: they saw everything. Great work, kid!" 
+	output("\n\nAs you make your way out of the gathering of officers, Sgt. Decker falls in beside you, billowing smoke like a chimney. <i>\"You did good, kid. Your old man would have been proud. Listen, you go back to the </i>Nova<i>, rest up. We'll handle things from here, make sure the place is secured. With luck, whatever passes for a government here will be looking to the U.G.C. for help, now. Might even be willing to join the ConFed now. That'll make the brass hard as diamonds. Wish I had a way to reward you, kid. Though I bet you found something worthwhile down there, huh?\"</i>");
+	//If PC has Platinum:
+	if(pc.hasKeyItem("Platinum 190")) output("\n\nYou give the sergeant a knowing wink as you depart.");
+	else output("\n\nYou shrug, feeling as though you forgot something...");
+	processTime(4);
+	clearMenu();
+	flags["STELLAR_TETHER_CLOSED"] = 1;
+	addButton(0,"Next",move,279);
+}
 
-Several officers shake your hand or clap you on the back as you try and make your way out of the lift. As they do, several of them peel off from the main group, heading into the personnel lift to go and make the official arrests on the pirates you defeated. Speaking of which: just ahead, you can see the crazed cat-girl, Tam, being led out of the ground-side station in cuffs, struggling against a pair of burly officers and crying out for her wolf drone. {if PC has Tamwolf: "She screams bloody murder at you, calling out for Tam-wolf to come to her, to no avail."}
-
-As you make your way out of the gathering of officers, Sgt. Decker falls in beside you, billowing smoke like a chimney. "You did good, kid. Your old man would have been proud. Listen, you go back to the </i>Nova<i>, rest up. We'll handle things from here, make sure the place is secured. With luck, whatever passes for a government here will be looking to the U.G.C. for help, now. Might even be willing to join the ConFed now. That'll make the brass hard as diamonds. Wish I had a way to reward you, kid. Though I bet you found something worthwhile down there, huh?"
-
-{If PC has Platinum: "You give the sergeant a knowing wink as you depart." else "You shrug, feeling as though you forgot something..."}
-
-Sod the Quest: Fucking off w/o Disarming the Bomb
+//Sod the Quest: Fucking off w/o Disarming the Bomb
 //PC must have defeated TamTam
+function fuckOffWithoutDisarmingTheBomb():void
+{
+	clearOutput();
+	author("Savin");
+	showName("U.G.C.\nOFFICERS");
+	output("You rush past the S.W.A.T. officers, hurtling down the road. <i>\"You've got less than ");
+	if(flags["TARKUS_BOMB_TIMER"] > 120) output("three hours");
+	else if(flags["TARKUS_BOMB_TIMER"] > 60) output("two hours");
+	else output("one hour");
+	output(" before that bomb goes off!\"</i> you shout over your shoulder.");
+	output("\n\n<i>\"What?\"</i> Decker shouts after you, staring a moment before a look of horror spreads across his face. He grabs his radio. <i>\"Command, this is Peacekeeper One. Bomb detonation imminent. Request immediate evac!\"</i>");
 
-You rush past the S.W.A.T. officers, hurtling down the road. "You've got less than [three, two, one] hour{s} before that bomb goes off!" you shout over your shoulder. 
+	output("\n\nGood luck with that.");
+	flags["STELLAR_TETHER_CLOSED"] = 1;
+	clearMenu();
+	addButton(0,"Next",move,279);
+}
 
-"What?" Decker shouts after you, staring a moment before a look of horror spreads across his face. He grabs his radio. "Command, this is Peacekeeper One. Bomb detonation imminent. Request immediate evac!"
+//Rival In Shekka's!
+function roomOutsideShekkasBonus():Boolean
+{
+	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
+	{
+		author("Fenoxo");
+		showBust("DANE");
+		showName("\nDANE");
+		output("\n\n<b>Dane is standing outside of Shekka's Widget Warehouse, his four arms crossed over his chest. His white-furred ears flick up in recognition. <i>\"");
+		if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output("The boss was mighty pleased with how I handled you last mission. I wouldn't mind a repeat sometime when I'm off the clock.\"</i> The ausar merc chuckles. <i>\"Boss also said to let you in if you showed up. Guess [rival.he] figured you were too poor to stop him now.");
+		else output("You've got a lot of balls showing up here,\"</i> he growls before smiling. <i>\"Boss said not to stop you, and after last time, I'm not sure I'd want to try. Just don't start any trouble, all right?");
+		output("\"</i> He gives you an unsubtle wink.</b>");
+	}
+	return false;
+}
 
-Good luck with that.
+//Walking In, Middeal
+//Overwrites all other bonus bits.
+function shekkaMidDeal():void
+{
+	author("Fenoxo");
+	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
+	showBust("RIVAL","SHEKKA");
+	output("\n\n<i>\"-gonna need at least 15,000 creds for it,\"</i> ");
+	if(flags["MET_SHEKKA"] == undefined) output("the raskvel running the shop");
+	else output("Shekka");
+	output(" says, thumping a familiar-looking probe. <i>\"This thing is high tech, core world technology. The gene-lock on it alone could probably buy me a small ship at full price. You're lucky I'm even considering such a weak offer.\"</i>");
+	output("\n\n[rival.name] shrugs, <i>\"Well, I suppose my father can afford to foot this one for me. What's one more expense in pursuit of my fortune, after all?\"</i>");
+	output("\n\nBoth parties start at the sight of you. ");
+	if(flags["MET_SHEKKA"] != undefined) output("Shekka recovers first, smiling. <i>\"You're a welcome sight, [pc.name]. I'll be with you after I finish this deal.\"</i>");
+	else output("The raskvel grins. <i>\"Welcome to my shop, stranger. The name's Shekka, and I'll be with you as soon as I finish up this deal.\"</i>");
 
-PC Bailed on Dungeon, Didn't Defeat Kaska OR Khorgan
-//Three hours later, after the bomb should have gone off
+	output("\n\nLaughing, [rival.name] adds, <i>\"Yes, [pc.name], wait a minute. I'm almost finished buying the keys to your legacy.\"</i>");
+	output("\n\nPausing, Shekka looks between the two of you. <i>\"You two know each other?\"</i>");
+	output("\n\n[rival.name] nods to Shekka at the same time.");
+	output("\n\n<i>\"And you both want this probe - the one I just got in stock");
+	if(flags["TARKUS_DESTROYED"] != undefined) output(" before the planet blew");
+	output("?\"</i> the little alien asks with a puzzled look on her face.");
+	output("\n\nYou both nod against, though your rival looks a little unsettled by the tone in Shekka's voice.");
+	output("\n\n<i>\"Well, this baby's hotter than fusion core rod,\"</i> the short-statured alien chirps. She runs a hand along the gleaming metal. <i>\"The deal's off, tough stuff. We're going to do this raskvel style. Each of you make me an offer. The first one to make me an offer I won't say no to - or to go so high that the other gives up - wins.\"</i> Shekka seems a little wistful. <i>\"We used to do this at swap meets all the time, before Novahome.\"</i>");
+	output("\n\nSighing, [rival.name] opens up before you have a chance to check your credit balance. <i>\"15,000, as we discussed.\"</i>");
+	output("\n\nShekka turns back to you, <i>\"");
+	if(flags["TIMES_SEXED_SHEKKA"] != 0) output("You can do better than that, right, tiger?");
+	else output("Got anything better?");
+	output("\"</i>");
+	processTime(2);
+	//16,000, 20,0000, 25,000, platinum, "Nope"
+	clearMenu();
+	if(pc.credits >= 16000) addButton(0,"16,000",bid16k,undefined,"16,000","Bid 16,000 credits for the pod.");
+	else addDisabledButton(0,"16,000","16,000","You don't have that many credits.");
+	if(pc.credits >= 20000) addButton(1,"20,000",bidVariable,20000,"20,000","Bid 20,000 credits for the pod.");
+	else addDisabledButton(1,"20,000","20,000","You don't have that many credits.");
+	if(pc.credits >= 25000) addButton(2,"25,000",bidVariable,25000,"25,000","Bid 20,000 credits for the pod.");
+	else addDisabledButton(2,"25,000","25,000","You don't have that many credits.");
+	if(pc.hasKeyItem("Platinum 190")) addButton(3,"Platinum",payWithYourPlatinumPremiumCard,undefined,"Platinum 190","This stuff should more than cover the cost of the probe.");
+	else addDisabledButton(3,"Locked","Locked","Perhaps you missed something valuable at the Stellar Tether that could have covered this unexpected expense.");
+	addButton(4,"Don't Buy",tooPoorToBuyTheProbe,undefined,"Don't Buy","Whether you can afford it or not, you can't justify that kind of expenditure. Dad probably sent these things out by the hundred anyway.");
+}
 
-You codex buzzes, a priority message alert chiming through. You answer, and see a 2-D image coming through on the Codex's primitive screen: of all the people you didn't expect to see, it's the nutty cat-girl you beat down {and fucked} in the control station. 
+//Too Poor To Buy Probe
+function tooPoorToBuyTheProbe():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
+	showBust("RIVAL","SHEKKA");
+	output("\n\nYou shake your head. The money isn't there.");
+	if(flags["TIMES_SEXED_SHEKKA"] == undefined) output("Shekka shrugs and turns to [rival.name].");
+	else output("Shekka looks a little disappointed to turn to [rival.name]. It's clear she would've loved to sell it to you.");
+	output(" She places a pad on the hunk of metal and gestures to a row of boxes. <i>\"Make your mark here, and we'll get this finalized. The cart is included in the fee, so you can leave with it today if it suits your fancy.\"</i> She looks your well-dressed cousin up and down. <i>\"Fancy indeed.\"</i>");
+	output("\n\nLeaning over the probe, [rival.name] makes [rival.his] mark, then puts [rival.his] hands on the hull of the thing to push away. A prim-sounding female voice chimes, <i>\"DNA signature recognized.\"</i>");
+	output("\n\n<i>\"No! No! Not while [pc.he]'s around!\"</i> Your cousin panics, slapping ineffectually at the gleaming metal. A seam appears next to [rival.name]'s hand and retracts, revealing a blinking, electronic screen with a set of flashing coordinates. <i>\"Damn,\"</i> [rival.he] mutters. To [rival.his] credit, your cousin recovers quickly. [rival.He] flashes you a smarmy grin. <i>\"I still beat you to two of them. I'll be sure to send you a message when I get the keys to Uncle Vic's fortune.\"</i> Snapping [rival.his] fingers, [rival.name] calls, <i>\"Dane, lug this hunk of metal back to the ship. We're out of here.\"</i>");
+	output("\n\nYou make sure to copy the coordinates down into your codex. It looks like UNNAMED is the next stop on your journey.");
+	flags["PLANET_3_UNLOCKED"] = 1;
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
 
-"Hey!" she cheers, beaming at you. Behind her, {a new canine attack drone / Tam-wolf} looks over her shoulder, its ruby-red eyes blazing. "The captain wanted me to call you and say 'thanks for not killing me!' Thank God you didn't actually fight the rest of us, or the whole planet might have asploded!" she says, waving her arms around for dramatic effect. 
-
-"It was just a bluff, anyway," she adds with a sly grin. "We weren't gonna blow the whole planet up! That'd be evil as shit. But still, thanks for not putting a bullet in my brainpan. {But also fuck you for stealing my Tam-wolf! You're lucky I had a spare, or I'd be SUPER pissed off at you! We should shoot each other a bunch more some time! Ooh, Cap'n wants me. See ya!"
-
-The message cuts off.
-
-What the actual fuck. 
-Rival In Shekka's!
-	Dane is standing outside of Shekka's Widget Warehouse, his four arms crossed over his chest. His white-furred ears flick up in recognition. <i>\"{The boss was mighty pleased with how I handled you last mission. I wouldn't mind a repeat sometime when I'm off the clock.\"</i> The ausar merc chuckles. <i>\"Boss also said to let you in if you showed up. Guess [rival.he] figured you were too poor to stop him now./You've got a lot of balls showing up here,\"</i> he growls before smiling. <i>\"Boss said not to stop you, and after last time, I'm not sure I'd want to try. Just don't start any trouble, all right?}\"</i> He gives you an unsubtle wink.
-
-Walking In, Middeal
-	<i>\"-gonna need at least 15,000 creds for it,\"</i> {the raskvel running the shop/Shekka} says, thumping a familiar-looking probe. <i>\"This thing is high tech, core world technology. The gene-lock on it alone could probably buy me a small ship at full price. You're lucky I'm even considering such a weak offer.\"</i>
-	[rival.name] shrugs, <i>\"Well, I suppose my father can afford to foot this one for me. What's one more expense in pursuit of my fortune, after all?\"</i>
-	Both parties start at the sight of you. {Shekka recovers first, smiling. <i>\"You're a welcome sight, [pc.name]. I'll be with you after I finish this deal.\"</i>/The raskvel grins. <i>\"Welcome to my shop, stranger. The name's Shekka, and I'll be with you as soon as I finish up this deal.\"</i>}
-	Laughing, [rival.name] adds, <i>\"Yes, [pc.name], wait a minute. I'm almost finished buying the keys to your legacy.\"</I>
-	Pausing, Shekka looks between the two of you. <i>\"You two know each other?\"</i>
-	[rival.name] nods to Shekka at the same time.
-	<i>\"And you both want this probe - the one I just got in stock{ before the planet blew}?\"</i> the little alien asks with a puzzled look on her face.
-	You both nod against, though your rival looks a little unsettled by the tone in Shekka's voice.
-	<i>\"Well, this baby's hotter than fusion core rod,\"</i> the short-statured alien chirps. She runs a hand along the gleaming metal. <i>\"The deal's off, tough stuff. We're going to do this raskvel style. Each of you make me an offer. The first one to make me an offer I won't say no to - or to go so high that the other gives up - wins.\"</i> Shekka seems a little wistful. <i>\"We used to do this at swap meets all the time, before Novahome.\"</i>
-	Sighing, [rival.name] opens up before you have a chance to check your credit balance. <i>\"15,000, as we discussed.\"</i>
-	Shekka turns back to you, <i>\"{You can do better than that, right, tiger?/Got anything better?}\"</i>
-//16,000, 20,0000, 25,000, platinum, "Nope"
-Too Poor To Buy Probe
-	You shake your head. The money isn't there.
-	{Shekka shrugs and turns to [rival.name]./Shekka looks a little disappointed to turn to [rival.name]. It's clear she would've loved to sell it to you.} She places a pad on the hunk of metal and gestures to a row of boxes. <i>\"Make your mark here, and we'll get this finalized. The cart is included in the fee, so you can leave with it today if it suits your fancy.\"</i> She looks your well-dressed cousin up and down. <i>\"Fancy indeed.\"</i>
-	Leaning over the probe, [rival.name] makes [rival.his] mark, then puts [rival.his] hands on the hull of the thing to push away. A prim-sounding female voice chimes, <i>\"DNA signature recognized.\"</i>
-	<i>\"No! No! Not while [pc.he]'s around!\"</i> Your cousin panics, slapping ineffectually at the gleaming metal. A seam appears next to [rival.name]'s hand and retracts, revealing a blinking, electronic screen with a set of flashing coordinates. <i>\"Damn,\"</i> [rival.he] mutters. To [rival.his] credit, your cousin recovers quickly. [rival.He] flashes you a smarmy grin. <i>\"I still beat you to two of them. I'll be sure to send you a message when I get the keys to Uncle Vic's fortune.\"</i> Snapping [rival.his] fingers, [rival.name] calls, <i>\"Dane, lug this hunk of metal back to the ship. We're out of here.\"</i>
-	You make sure to copy the coordinates down into your codex. It looks like [planet name] is the next stop on your journey.
-16,000 Bid
-	<i>\"16,000,\"</i> you announce.
+//16,000 Bid
+function bid16k():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
+	showBust("RIVAL","SHEKKA");
+	output("<i>\"16,000,\"</i> you announce.");
 	//Fucked Shekka
-	Shekka smiles radiantly and turns towards you. <i>\"I can't turn down an offer like that.\"</i> She graces you with a sly wink, sure to hide it from your cousin. <i>\"16,000 is more than I've made in a long time.\"</i>
-	[rival.name] sniffs angrily and turns on [rival.his] heel. <i>\"You clearly have some relationship with this... this... creature. 16,000 was barely within her asking price before.\"</i> [rival.He] snaps his fingers. <i>\"Dane, we're leaving. Have [pc.name]'s ship tracked. We'll get the next one.\"</i>
+	if(flags["TIMES_SEXED_SHEKKA"] != 0)
+	{
+		output("\n\nShekka smiles radiantly and turns towards you. <i>\"I can't turn down an offer like that.\"</i> She graces you with a sly wink, sure to hide it from your cousin. <i>\"16,000 is more than I've made in a long time.\"</i>");
+		output("\n\n[rival.name] sniffs angrily and turns on [rival.his] heel. <i>\"You clearly have some relationship with this... this... creature. 16,000 was barely within her asking price before.\"</i> [rival.He] snaps his fingers. <i>\"Dane, we're leaving. Have [pc.name]'s ship tracked. We'll get the next one.\"</i>");
+		processTime(1);
+		pc.credits -= 16000;
+		clearMenu();
+		addButton(0,"Next",youWonSomePodShit);
+	}
 	//Not Fucked Shekka
-	Shekka smiles. <i>\"Not bad. What about you, [rival.name]? Got a counter offer?\"</i>
-	Your cousin casually examines [rival.his] nails. <i>\"Of course. 18,000. A sum of no concern.\"</i>
-	The long-eared shopkeeper's eyes practically bug out of their sockets at that. <i>\"Well, that's bigger than a sexbot's tit. You better have something pretty great for a counter-offer, [pc.name]. I'm sorely tempted as is.\"</i>
-	[20,000][25,000][Platinum]
-20,000+ Bid
-	<i>\"X,000\"</i> you announce.
-	Shekka peeps, mouse-like, and claps her hands across her mouth. The pressure of her excitement instead chooses to vent by making her tail wag, and it clangs noisily against the metal of the probe. <i>\"Really!?\"</i> she gasps. <i>\"You win. I can fix so many things on Novahome with all that cash!\"</i>{ The exuberant raskvel hugs{ your [pc.legs]/you}. <i>\"You're the best!\"</i>}
-	Sniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>
-	[rival.name] and {his} bulky mercenary leave you with Shekka and your prize.
-Platinum
-	<i>\"How about this?\"</i> you ask while pulling out the chunk of platinum 190 you recovered. <i>\"Does that cover it?\"</i>
-	Shekka is a blur of activity, picking up the rock, peering at it, and grabbing various sensors from her workbench to point at it. It's difficult to keep up with her, but after a minute of such activity, she slows and stares at the shining lump in her palm. <i>\"This is platinum 190. This stuff is rarer than a busty raskvel.\"</i> Her tail quivers behind her. <i>\"I could probably buy two of these things with this. Sold!\"</i>
-Sniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>
-	[rival.name] and his bulky mercenary leave you with Shekka and your prize.
-Bid Winning Epilogue
-	You finalize the payment and run your hands across the pod until it chimes. The tone is brief and almost musical. You'd expect to hear similar from a lift on a luxury planet. <i>\"DNA signature detected, welcome [pc.name] Steele,\"</i> a synthesized, female voice announces. A seam appears on the face of the gleaming metal, recessing itself down before sliding out of the way and into the body of the probe. Behind it, there's a simple screen with a set of coordinates.
-	Shekka whistles, <i>\"Guess it's a good thing you bought that, huh? She seems to recognize you.\"</i>
-	You nod while turning to your codex. The coordinates correspond to another planet linked up by the rush - one of two habitable worlds in the system. You had better head to [planet name] if you want to claim your father's legacy, but first, there is the matter of this spent pod. You don't need to lug it everywhere. You could give it to Shekka, sell it to her, or sell it back to your dad's company.
-	[SellShekka] [GiveShekka] [SellSteele]	
-Sell to Shekka
-	<i>\"{Hey, I got what I need from this thing. Want to buy it back and flip it for more profit?/Hey, can I get a refund?/I'm done with this hunk of junk. How much for it?\"</i>
-	Shekka blinks, momentarily confused. <i>\"This day just keeps getting weirder and weirder. All right, I can give you {10,000/14,000} for it. I've got to make a profit on it, you know?\"</i>
-	Do you sell it back to Shekka or something else?
+	else
+	{
+		output("\n\nShekka smiles. <i>\"Not bad. What about you, [rival.name]? Got a counter offer?\"</i>");
+			output("\n\nYour cousin casually examines [rival.his] nails. <i>\"Of course. 18,000. A sum of no concern.\"</i>");
+		output("\n\nThe long-eared shopkeeper's eyes practically bug out of their sockets at that. <i>\"Well, that's bigger than a sexbot's tit. You better have something pretty great for a counter-offer, [pc.name]. I'm sorely tempted as is.\"</i>");
+		//[20,000][25,000][Platinum]
+		clearMenu();
+		if(pc.credits >= 20000) addButton(1,"20,000",bidVariable,20000,"20,000","Bid 20,000 credits for the pod.");
+		else addDisabledButton(1,"20,000","20,000","You don't have that many credits.");
+		if(pc.credits >= 25000) addButton(2,"25,000",bidVariable,25000,"25,000","Bid 20,000 credits for the pod.");
+		else addDisabledButton(2,"25,000","25,000","You don't have that many credits.");
+		if(pc.hasKeyItem("Platinum 190")) addButton(3,"Platinum",payWithYourPlatinumPremiumCard,undefined,"Platinum 190","This stuff should more than cover the cost of the probe.");
+		else addDisabledButton(3,"Locked","Locked","Perhaps you missed something valuable at the Stellar Tether that could have covered this unexpected expense.");
+		addButton(4,"Don't Buy",tooPoorToBuyTheProbe,undefined,"Don't Buy","Whether you can afford it or not, you can't justify that kind of expenditure. Dad probably sent these things out by the hundred anyway.");
+	}
+}
 
-	//Sold: A little richer, you make ready to go on your way.
-Give to Shekka +Niceguy
-	<i>\"{Hey, I got what I needed from this thing. Why don't you take it and sell it someone? I'm sure you guys could use the cash more than me./I must be nuts, but I don't have a use for this thing. How about you take it back to sell to someone else, and you can just owe me a favor, all right?/Hey, Shekka. I'm not carrying this piece of crap around me. You can keep it.}\"</i>
-	Shekka deadpans, <i>\"You're pulling my tail, right?\"</i>
-	<i>\"Nah, I don't need it.\"</i>
-	{The raskvel's ears jingle jubilantly as she throws herself against you, hugging you tightly. <i>\"You're the best, [pc.name]. I hope you're as good to the folks on the next planet as you've been here.\"</i>/Quietly, the raskvel answers, <i>\"I don't know what to say, [pc.name]. This means a lot to me. The credits will go a long way towards helping my people, I promise you that.\"</i>}
-	You make ready to go on your way, {ruffling her feathery hair. <i>\"Happy to help.\"</i>/joking, <i>\"Try not to lose it!\"</i>/doing your best to focus on the greater objective. <i>\"See ya around, kid.\"</i>}
-Sell to Steeletech
-	A quickly-written missive later, you're offered 20,000 by your father's company. Do you take it or do something else with it?
-//Sold: The 20,000 credits come immediately, sent as an advance for services rendered. A company delegate will be by the shop to take the probe in a few hours.*/
+//20,000+ Bid
+function bidVariable(arg:Number = 20000):void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
+	showBust("RIVAL","SHEKKA");
+	output("<i>\"" + arg + "\"</i> you announce.");
+	output("\n\nShekka peeps, mouse-like, and claps her hands across her mouth. The pressure of her excitement instead chooses to vent by making her tail wag, and it clangs noisily against the metal of the probe. <i>\"Really!?\"</i> she gasps. <i>\"You win. I can fix so many things on Novahome with all that cash!\"</i>");
+	//Sexed:
+	if(flags["TIMES_SEXED_SHEKKA"] != 0) 
+	{
+		output(" The exuberant raskvel hugs");
+		if(pc.tallness >= 84) output(" your [pc.legs]");
+		else output("you");
+		output(". <i>\"You're the best!\"</i>");
+	}
+	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
+	output("\n\n[rival.name] and [rival.his] bulky mercenary leave you with Shekka and your prize.");
+	pc.credits -= arg;
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",youWonSomePodShit);
+}
+
+//Platinum
+function payWithYourPlatinumPremiumCard():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName(chars["RIVAL"].mf("JACK","JILL") + "\n& SHEKKA");
+	showBust("RIVAL","SHEKKA");
+	output("<i>\"How about this?\"</i> you ask while pulling out the chunk of platinum 190 you recovered. <i>\"Does that cover it?\"</i>");
+	output("\n\nShekka is a blur of activity, picking up the rock, peering at it, and grabbing various sensors from her workbench to point at it. It's difficult to keep up with her, but after a minute of such activity, she slows and stares at the shining lump in her palm. <i>\"This is platinum 190. This stuff is rarer than a busty raskvel.\"</i> Her tail quivers behind her. <i>\"I could probably buy two of these things with this. Sold!\"</i>");
+	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
+	output("\n\n[rival.name] and his bulky mercenary leave you with Shekka and your prize.");
+	pc.removeKeyItem("Platinum 190");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",youWonSomePodShit);
+}
+
+//Bid Winning Epilogue
+function youWonSomePodShit():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nSHEKKA");
+	showBust("SHEKKA");
+	output("You finalize the payment and run your hands across the pod until it chimes. The tone is brief and almost musical. You'd expect to hear similar from a lift on a luxury planet. <i>\"DNA signature detected, welcome [pc.name] Steele,\"</i> a synthesized, female voice announces. A seam appears on the face of the gleaming metal, recessing itself down before sliding out of the way and into the body of the probe. Behind it, there's a simple screen with a set of coordinates.");
+	output("\n\nShekka whistles, <i>\"Guess it's a good thing you bought that, huh? She seems to recognize you.\"</i>");
+	output("\n\nYou nod while turning to your codex. The coordinates correspond to another planet linked up by the rush - one of two habitable worlds in the system. You had better head to REDACTED if you want to claim your father's legacy, but first, there is the matter of this spent pod. You don't need to lug it everywhere. You could give it to Shekka, sell it to her, or sell it back to your dad's company.");
+	processTime(2);
+	flags["PLANET_3_UNLOCKED"] = 1;
+	//[SellShekka] [GiveShekka] [SellSteele]	
+	clearMenu();
+	addButton(0,"SellSteele",sellThePodToSteeleTech,undefined,"SellSteele","Dad probably set up the company to pay out for the pods if you sent them back.");
+	addButton(1,"ShekkaSell",sellDatPodToShekka,undefined,"ShekkaSell","The raskvel would probably buy it back for a portion of its value.")
+	addButton(2,"ShekkaGive",giveTheProbeToShekkaForNuttin,undefined,"ShekkaGive","You don't need the pod itself. Why not just give it to the little raskvel? They could probably use the extra resources around this junk heap.");
+}
+
+//Sell to Shekka
+function sellDatPodToShekka():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nSHEKKA");
+	showBust("SHEKKA");
+	output("<i>\"");
+	if(pc.isNice()) output("Hey, I got what I need from this thing. Want to buy it back and flip it for more profit?");
+	else if(pc.isMischievous()) output("Hey, can I get a refund?");
+	else output("I'm done with this hunk of junk. How much for it?");
+	output("\"</i>");
+	output("\n\nShekka blinks, momentarily confused. <i>\"This day just keeps getting weirder and weirder. All right, I can give you ");
+	if(flags["TIMES_SEXED_SHEKKA"] == undefined) output("10,000");
+	else output("14,000");
+	output(" for it. I've got to make a profit on it, you know?\"</i>");
+	if(silly) output(" She tilts her head. <i>\"Like they're always saying on that Prawnstars holo the terrans have been running. I gotta admit, I don't see the appeal of watching a bunch of lobster-dudes bilking some poor xeno out of a valuable find.\"</i>");
+	output("\n\nDo you sell it back to Shekka or something else?");
+	//[SellShekka] [GiveShekka] [SellSteele]	
+	clearMenu();
+	addButton(0,"Sell It",processSellToShekkaTransaction,undefined,"SellSteele","Dad probably set up the company to pay out for the pods if you sent them back.");
+	addButton(1,"Options",youWonSomePodShit,undefined,"Options","Back up and consider your options.");
+}
+
+//Sold:
+function processSellToShekkaTransaction():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nSHEKKA");
+	showBust("SHEKKA");
+	output("A little richer, you make ready to go on your way.");
+	if(flags["TIMES_SEXED_SHEKKA"] == undefined) pc.credits += 10000;
+	else pc.credits += 14000;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Give to Shekka +Niceguy
+function giveTheProbeToShekkaForNuttin():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nSHEKKA");
+	showBust("SHEKKA");
+	output("<i>\"");
+	if(pc.isNice()) output("Hey, I got what I needed from this thing. Why don't you take it and sell it someone? I'm sure you guys could use the cash more than me.");
+	else if(pc.isMischievous()) output("I must be nuts, but I don't have a use for this thing. How about you take it back to sell to someone else, and you can just owe me a favor, all right?");
+	else output("Hey, Shekka. I'm not carrying this piece of crap around me. You can keep it.");
+	output("\"</i>");
+	output("\n\nShekka deadpans, <i>\"You're pulling my tail, right?\"</i>");
+	output("\n\n<i>\"Nah, I don't need it.\"</i>");
+	if(flags["TIMES_SEXED_SHEKKA"] != 0) output("\n\nThe raskvel's ears jingle jubilantly as she throws herself against you, hugging you tightly. <i>\"You're the best, [pc.name]. I hope you're as good to the folks on the next planet as you've been here.\"</i>");
+	else output("Quietly, the raskvel answers, <i>\"I don't know what to say, [pc.name]. This means a lot to me. The credits will go a long way towards helping my people, I promise you that.\"</i>");
+	output("\n\nYou make ready to go on your way, ");
+	if(pc.isNice()) output("ruffling her feathery hair. <i>\"Happy to help.\"</i>");
+	else if(pc.isMischievous()) output("joking, <i>\"Try not to lose it!\"</i>");
+	else output("doing your best to focus on the greater objective. <i>\"See ya around, kid.\"</i>");
+	processTime(1);
+	flags["GAVE_SHEKKA_PROBE"] = 1;
+	pc.addNice(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Sell to Steeletech
+function sellThePodToSteeleTech():void
+{
+	clearOutput();
+	output("A quickly-written missive later, you're offered 20,000 by your father's company. Do you take it or do something else with it?");
+	clearMenu();
+	addButton(0,"Sell It",actuallySellToSteeleTech);
+	addButton(1,"Options",youWonSomePodShit,undefined,"Options","Back up and consider your options.");
+}
+
+function actuallySellToSteeleTech():void
+{
+	clearOutput();
+	output("The 20,000 credits come immediately, sent as an advance for services rendered. A company delegate will be by the shop to take the probe in a few hours.");
+	processTime(1);
+	pc.credits += 20000;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
