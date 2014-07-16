@@ -87,12 +87,12 @@ function burtBarMenu():void {
 	//* Only appears as an option if the PC has a Lust higher than 20.
 	//** Appears as [Collectables?] until the PC first visits the shop menu.
 	this.clearMenu();
-	this.addButton(0,"Drink",burtDrinkMenu);
-	this.addButton(1,"Talk",talkToDisBurtGuey);
-	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex);
-	else this.addDisabledButton(2,"Sex");
-	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables);
-	else this.addButton(3,"Shop",BurtShopCollectables);
+	this.addButton(0,"Drink",burtDrinkMenu,undefined,"Drink","Check out the drink menu.");
+	this.addButton(1,"Talk",talkToDisBurtGuey,undefined,"Talk","Talk to Burt.");
+	if(pc.lust() >= 33) this.addButton(2,"Sex",burtSex,undefined,"Sex","See if you can get in the bartender's pants.");
+	else this.addDisabledButton(2,"Sex","Sex","You aren't turned on enough for sex.");
+	if(flags["BURT_COLLECTABLE_SHOP"] == undefined) this.addButton(3,"Collectables?",BurtShopCollectables,undefined,"Collectables?","Ask Burt by what he meant by \"collectables.\"");
+	else this.addButton(3,"Shop",BurtShopCollectables,undefined,"Shop","Look into selling Burt some of the stuff you've found out on Mhen'ga.");
 	this.addButton(14,"Leave",mainGameMenu);
 }
 
@@ -107,12 +107,12 @@ function burtDrinkMenu():void {
 	output("\n\nCrabbst Blue Ribbon - 1 Credit\nMead - 10 Credits\nX-Zil-rate - 50 Credits");
 	
 	this.clearMenu();
-	if(pc.credits >= 1) this.addButton(0,"Crabbst",crabbstBlueRibbonPurchase);
-	else this.addDisabledButton(0,"Crabbst");
-	if(pc.credits >= 10) this.addButton(1,"Mead",buyMeadFromBurt);
-	else this.addDisabledButton(1,"Mead");
-	if(pc.credits >= 50) this.addButton(2,"X-Zil-rate",burtXilErAte);
-	else this.addDisabledButton(2,"X-Zil-rate");
+	if(pc.credits >= 1) this.addButton(0,"Crabbst",crabbstBlueRibbonPurchase,undefined,"Crabbst","Shitty beer.");
+	else this.addDisabledButton(0,"Crabbst","Crabbst","You can't afford this. Damn, you're poor.");
+	if(pc.credits >= 10) this.addButton(1,"Mead",buyMeadFromBurt,undefined,"Mead","Honey-based mead.");
+	else this.addDisabledButton(1,"Mead","Mead","You can't afford this.");
+	if(pc.credits >= 50) this.addButton(2,"X-Zil-rate",burtXilErAte,undefined,"X-Zil-rate","Some kind of exotic, expensive brew.");
+	else this.addDisabledButton(2,"X-Zil-rate","Z-Zil-rate","You cannot afford this.");
 	//[Crabbst Blue Ribbon]		[Mead]		[X-Zil-rate]		[Back]
 	this.addButton(14,"Back",burtapproach);
 }
@@ -207,17 +207,19 @@ function burtSexMenu():void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT_NUDE");
 	//[Give a BJ]	[Get Oral]		[Anal]		[Vaginal]*	[Back]
-	this.addButton(0,"Give BJ",giveBurtABJ);
-	if(pc.hasVagina() || pc.hasCock()) this.addButton(1,"ReceiveOral",getOralFromBurt);
-	else this.addDisabledButton(1,"ReceiveOral");
-	this.addButton(2,"Anal",burtsWeinerInYourButt);
-	if(pc.hasVagina()) this.addButton(3,"Vagina",burtSticksItInThePCsVajayjay);
-	else this.addDisabledButton(3,"Vagina");
+	this.addButton(0,"Give BJ",giveBurtABJ,undefined,"Give BJ","Give Burt a blowjob.");
+	if(pc.hasVagina() || pc.hasCock()) this.addButton(1,"ReceiveOral",getOralFromBurt,undefined,"ReceiveOral","Have Burt perform oral on you.");
+	else this.addDisabledButton(1,"ReceiveOral","ReceiveOral","How can Burt give you oral if you don't have a dick or a pussy?");
+	this.addButton(2,"Anal",burtsWeinerInYourButt,undefined,"Anal","Let Burt fuck your asshole.");
+	if(pc.hasVagina()) this.addButton(3,"Vagina",burtSticksItInThePCsVajayjay,undefined,"Vagina","Let Burt fuck your vagina.");
+	else this.addDisabledButton(3,"Vagina","Vagina","You need a vagina in order for Burt to fuck it.");
 	//[Handjob]	[Rimjob]		[Titfuck]**	[Tailfuck]*
-	this.addButton(4,"Handjob",giveBurtAHandyYouSlooooooooooot);
-	this.addButton(5,"Rimjob",lickBurtsAssholeYouFilthyButtlicker);
-	if(pc.biggestTitSize() >= 7) this.addButton(6,"Titfuck",titFuckBurtBecauseYoureAFilthyFatChestedHo);
-	if(pc.hasCuntTail()) this.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot);
+	this.addButton(4,"Handjob",giveBurtAHandyYouSlooooooooooot,undefined,"Handjob","Give Burt a handjob.");
+	this.addButton(5,"Rimjob",lickBurtsAssholeYouFilthyButtlicker,undefined,"Rimjob","Give Burt a rimjob.");
+	if(pc.biggestTitSize() >= 7) this.addButton(6,"Titfuck",titFuckBurtBecauseYoureAFilthyFatChestedHo,undefined,"Titfuck","Titfuck Burt.");
+	else addDisabledButton(7,"Titfuck","Titfuck","You need some big tits to titfuck Burt with.");
+	if(pc.hasCuntTail()) this.addButton(7,"Tailfuck",tailFuckBurtBecauseWhyNot,undefined,"Tailfuck","Use your tail-mounted vagina on Burt's dick.");
+	else addDisabledButton(7,"Tailfuck","Tailfuck","You need a tail-mounted vagina in order to fuck Burt with it.");
 	this.addButton(14,"Back",burtapproach);
 	//* Requires requisite part, vagina or tailpussy.
 	//** Requires C cup or bigger
