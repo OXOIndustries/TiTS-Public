@@ -89,7 +89,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_tailCount = new InputLabelPair();
 			AddControl(_tailCount);
 			_tailCount.labelText = "Tail Count";
-			_tailCount.inputValue = "0";
 			_tailCount.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_tailFlags = new ListLabelPair();

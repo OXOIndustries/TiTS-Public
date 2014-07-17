@@ -140,13 +140,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_lipMod = new InputLabelPair();
 			AddControl(_lipMod);
 			_lipMod.labelText = "Lip Mod";
-			_lipMod.inputValue = "1";
 			_lipMod.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_lipColor = new InputLabelPair();
 			AddControl(_lipColor);
 			_lipColor.labelText = "Lip Color";
-			_lipColor.inputValue = "pink";
 			_lipColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 
 			_earType = new ComboLabelPair();
@@ -164,13 +162,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_horns = new InputLabelPair();
 			AddControl(_horns);
 			_horns.labelText = "Num. Horns";
-			_horns.inputValue = "0";
 			_horns.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_hornLength = new InputLabelPair();
 			AddControl(_hornLength);
 			_hornLength.labelText = "Horn Length";
-			_hornLength.inputValue = "0";
 			_hornLength.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_hornType = new ComboLabelPair();

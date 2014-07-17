@@ -115,19 +115,16 @@ package classes.TITSSaveEdit.UI.Controls
 			_ballFullness = new InputLabelPair();
 			AddControl(_ballFullness);
 			_ballFullness.labelText = "Ball Fullness";
-			_ballFullness.inputValue = "0";
 			_ballFullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_ballEfficiency = new InputLabelPair();
 			AddControl(_ballEfficiency);
 			_ballEfficiency.labelText = "Ball Efficiency";
-			_ballEfficiency.inputValue = "0";
 			_ballEfficiency.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_refactoryRate = new InputLabelPair();
 			AddControl(_refactoryRate);
 			_refactoryRate.labelText = "Refactory Rate";
-			_refactoryRate.inputValue = "0";
 			_refactoryRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkType = new ComboLabelPair();
@@ -145,25 +142,21 @@ package classes.TITSSaveEdit.UI.Controls
 			_milkMultiplier = new InputLabelPair();
 			AddControl(_milkMultiplier);
 			_milkMultiplier.labelText = "Milk Multiplier";
-			_milkMultiplier.inputValue = "1.0";
 			_milkMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkStorageMultiplier = new InputLabelPair();
 			AddControl(_milkStorageMultiplier);
 			_milkStorageMultiplier.labelText = "Milk Storage";
-			_milkStorageMultiplier.inputValue = "1.0";
 			_milkStorageMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkFullness = new InputLabelPair();
 			AddControl(_milkFullness);
 			_milkFullness.labelText = "Milk Fullness";
-			_milkFullness.inputValue = "0";
 			_milkFullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkRate = new InputLabelPair();
 			AddControl(_milkRate);
 			_milkRate.labelText = "Milk Rate";
-			_milkRate.inputValue = "0";
 			_milkRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 		}
 		

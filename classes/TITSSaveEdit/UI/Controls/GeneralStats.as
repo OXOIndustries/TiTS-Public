@@ -75,31 +75,26 @@ package classes.TITSSaveEdit.UI.Controls
 			_playerName = new InputLabelPair();
 			AddControl(_playerName);
 			_playerName.labelText = "Name";
-			_playerName.inputValue = "Bloop";
 			_playerName.setRestriction(InputLabelPair.RESTRICT_ALPHANUMERIC);
 			
 			_level = new InputLabelPair();
 			AddControl(_level);
 			_level.labelText = "Level";
-			_level.inputValue = "Bloop";
 			_level.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_xp = new InputLabelPair();
 			AddControl(_xp);
 			_xp.labelText = "XP";
-			_xp.inputValue = "Bloop";
 			_xp.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_credits = new InputLabelPair();
 			AddControl(_credits);
 			_credits.labelText = "Credits";
-			_credits.inputValue = "Bloop";
 			_credits.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_personality = new InputLabelPair();
 			AddControl(_personality);
 			_personality.labelText = "Personality";
-			_personality.inputValue = "Bloop";
 			_personality.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_characterClass = new ComboLabelPair();

@@ -74,13 +74,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_minutesSinceCum = new InputLabelPair();
 			AddControl(_minutesSinceCum);
 			_minutesSinceCum.labelText = "Last Came";
-			_minutesSinceCum.inputValue = "1";
 			_minutesSinceCum.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_timesCum = new InputLabelPair();
 			AddControl(_timesCum);
 			_timesCum.labelText = "Times Cum";
-			_timesCum.inputValue = "0";
 			_timesCum.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 		}
 
