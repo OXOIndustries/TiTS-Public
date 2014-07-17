@@ -125,8 +125,8 @@ function selectRandomFap(faps:Array):void
 {
 	// Don't allow milk scenes to be selected randomly
 	var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
-		if (item.fap.text == "Hand Milk") return false;
-		if (item.fap.text == "Magic Milker") return false;
+		if (item.text == "Hand Milk") return false;
+		if (item.text == "Magic Milker") return false;
 		return true;
 	});
 	
