@@ -1,4 +1,4 @@
-package classes.Resources.Busts 
+﻿package classes.Resources.Busts 
 {
 	/**
 	 * ...
@@ -6,6 +6,16 @@ package classes.Resources.Busts
 	 */
 	public class GatsBusts 
 	{
+		[Embed(source = "../../../assets/images/npcs/gats/Alex.png", mimeType = "image/png")]
+		public var Bust_ALEX:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Alex_Nude.png", mimeType = "image/png")]
+		public var Bust_ALEX_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Aliss.png", mimeType = "image/png")]
+		public var Bust_ALISS:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Aliss_Nude.png", mimeType = "image/png")]
+		public var Bust_ALISS_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Anno.png", mimeType = "image/png")]
 		public var Bust_ANNO:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Anno_Nude.png", mimeType = "image/png")]
@@ -142,6 +152,23 @@ package classes.Resources.Busts
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Shelly_Nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Steph.png", mimeType = "image/png")]
+		public var Bust_STEPH:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_2.png", mimeType = "image/png")]
+		public var Bust_STEPH_2:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_2_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE_2:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_3.png", mimeType = "image/png")]
+		public var Bust_STEPH_3:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_3_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE_3:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_4.png", mimeType = "image/png")]
+		public var Bust_STEPH_4:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_4_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE_4:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Female.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_FEMALE:Class;

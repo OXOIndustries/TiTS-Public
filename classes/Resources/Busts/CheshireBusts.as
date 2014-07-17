@@ -6,6 +6,9 @@ package classes.Resources.Busts
 	 */
 	public class CheshireBusts 
 	{
+		[Embed(source = "../../../assets/images/npcs/aliss.png", mimeType = "image/png")]
+		public var Bust_ALISS:Class;
+		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
