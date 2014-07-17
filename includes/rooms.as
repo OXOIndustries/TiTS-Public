@@ -1417,7 +1417,7 @@ function initializeRooms():void
 	//#13 NOVAHOME
 	rooms["213"] = new RoomClass(this);
 	rooms["213"].roomName = "\nNOVAHOME";
-	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset.";
+	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset. An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.";
 	rooms["213"].runOnEnter = undefined;
 	rooms["213"].eastExit = "212";
 	rooms["213"].westExit = "214";
