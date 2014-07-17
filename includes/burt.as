@@ -1220,7 +1220,9 @@ function threeDSurprise():void {
 function stephIrsonBountHunterEpisodeOne():void {
 	//[Watch Viewscreen]
 	clearOutput();
-	
+	author("Savin");
+	showName("STEPH\nIRSON");
+	showBust("STEPH");
 	output("You flop down in a comfy couch near the front of the bar, looking up at a huge Super-HD Viewscreen mounted on the wall. As you sit down, the last commercial break is just coming to an end, telling you to buy Naughty Wyvern brand fibrecondoms before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a ");
 	if(hours < 11) output("bright sunrise ");
 	else if(hours < 17) output(" mellow afternoon sun ");
@@ -1271,8 +1273,17 @@ function stephIrsonBountHunterEpisodeOne():void {
 	output("\n\n<i>“Uh-oh, looks like I'm a goner! This paralytic venom could spell the end if she bites me!”</i>  For someone convinced she's about to die, Steph's awfully calm about this.");
 	
 	output("\n\nThe naleen sighs and bites down, injecting a dose of paralytic venom into the show's host. Much of the crowd gasps as the host limply falls into the huntress's waiting arms. Giggling, the naleen tosses Steph over her shoulder and carries her off, slithering into the forest - and the camera drone dutifully follows, tracking the pair of them for several minutes in the brush until they come to a cave mouth. The naleen slithers in, and the camera switches to nightvision as it follows her through a network of caves and into a large, natural pit in the ground.");
-	
-	output("\n\n<i>“Ugh, mah head!”</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",stephIrsonEpisodeOnePartTwo);
+}
+function stephIrsonEpisodeOnePartTwo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("STEPH\nIRSON");
+	showBust("STEPH_NUDE");
+	output("<i>“Ugh, mah head!”</i>  Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she's dragged me back to her nest! Oh, but look here! Before she eats me, I'm getting to witness the ultimate alien curiosity: the naleen mating ball!”</i>  The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she's bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn't waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
 	
@@ -1293,7 +1304,7 @@ function stephIrsonBountHunterEpisodeOne():void {
 	output("\n\nSteph's head lolls haplessly, her voice breaking as she orgasms for the... hell, you lost count twenty males ago. Blowing his wad, the male pushes her off his rods, letting Steph flop down atop the coils of slumbering naleen. The camera flies down for a final closeup, showing her spunk-slathered body in its full high-definition beauty; where she should be delivering a final monologue about her exploits, Steph only manages to gurgle weakly, cum drooling down her cheeks.");
 	
 	output("\n\n<i>\"This show brought to you by the Xenogen Biotech firm. Xenogen reminds you that galactic exploration is dangerous, and that natural wildlife is not to be approached without assistance from your friendly local rangers. Xenogen is not responsible for any graphic content witnessed on live galactic broadcasts or the safety of its personnel.\"</i>");
-	processTime(35);
+	processTime(30);
 	if(flags["SYRI_TALKS"] != undefined) pc.orgasm();
 	else pc.lust(33);
 	this.clearMenu();

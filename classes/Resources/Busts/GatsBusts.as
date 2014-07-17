@@ -160,15 +160,15 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_2.png", mimeType = "image/png")]
 		public var Bust_STEPH_2:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_2_Nude.png", mimeType = "image/png")]
-		public var Bust_STEPH_NUDE_2:Class;
+		public var Bust_STEPH_2_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_3.png", mimeType = "image/png")]
 		public var Bust_STEPH_3:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_3_Nude.png", mimeType = "image/png")]
-		public var Bust_STEPH_NUDE_3:Class;
+		public var Bust_STEPH_3_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_4.png", mimeType = "image/png")]
 		public var Bust_STEPH_4:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Steph_4_Nude.png", mimeType = "image/png")]
-		public var Bust_STEPH_NUDE_4:Class;
+		public var Bust_STEPH_4_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Female.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_FEMALE:Class;
