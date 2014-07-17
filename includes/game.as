@@ -433,12 +433,12 @@ function statusTick():void {
 public function variableRoomUpdateCheck():void
 {
 	//Handle planet explosions
-	if(flags["TARKUS_DESTROYED"] == 1) 
+	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
 		rooms["211"].southExit = "";
 		rooms["213"].southExit = "";
 	}
-	else 
+	else if(rooms["211"].southExit == "")
 	{
 		rooms["211"].southExit = "215";
 		rooms["213"].southExit = "295";
