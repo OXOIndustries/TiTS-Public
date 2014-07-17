@@ -66,12 +66,12 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.generalStats.characterClass = char.characterClass;
 			_mainDisplay.generalStats.personality = char.personality;
 			
-			_mainDisplay.coreStats.physique = char._physiqueRaw;
-			_mainDisplay.coreStats.reflexes = char._reflexesRaw;
-			_mainDisplay.coreStats.aim = char._aimRaw;
-			_mainDisplay.coreStats.intelligence = char._intelligenceRaw;
-			_mainDisplay.coreStats.willpower = char._willpowerRaw;
-			_mainDisplay.coreStats.libido = char._libidoRaw;
+			_mainDisplay.coreStats.physique = char.physiqueRaw;
+			_mainDisplay.coreStats.reflexes = char.reflexesRaw;
+			_mainDisplay.coreStats.aim = char.aimRaw;
+			_mainDisplay.coreStats.intelligence = char.intelligenceRaw;
+			_mainDisplay.coreStats.willpower = char.willpowerRaw;
+			_mainDisplay.coreStats.libido = char.libidoRaw;
 			_mainDisplay.coreStats.affinity = char.affinity;
 			
 			_mainDisplay.combatStats.hpMod = char.HPMod;

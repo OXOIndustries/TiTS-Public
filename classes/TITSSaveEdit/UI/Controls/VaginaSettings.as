@@ -36,6 +36,9 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			_vaginaData.removeAll();
 			_vaginaData.addItems(v);
+			
+			_vaginaNumControl.labelNum = v.length;
+			updateVaginaDisplay();
 		}
 		
 		private var _vaginaNumControl:PairedButtonLabel;
@@ -291,6 +294,21 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			if (_vaginaData.length > 0) _vaginaData.removeItemAt(_vaginaData.length - 1);
 			if (_vaginaData.length <= 0) disableComponents();
+		}
+		
+		public function updateVaginaDisplay():void
+		{
+			if (_vaginaData.length > 0)
+			{
+				enableComponents();
+				_selectedVagina.selectedIndex = 0;
+				vaginaSelectedChangeHandler();
+			}
+			if (_vaginaData.length == 0)
+			{
+				disableComponents();
+				_selectedVagina.selectedIndex = -1;
+			}
 		}
 		
 		private function enableComponents():void

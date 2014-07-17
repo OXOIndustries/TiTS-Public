@@ -50,6 +50,8 @@ package classes.TITSSaveEdit.UI.Controls
 		{
 			_breastData.removeAll();
 			_breastData.addItems(v);
+			
+			_breastNumControl.labelNum = v.length;
 		}
 		
 		private var _breastNumControl:PairedButtonLabel;

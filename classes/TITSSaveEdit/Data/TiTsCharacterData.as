@@ -16,6 +16,91 @@ package classes.TITSSaveEdit.Data
 	public dynamic class TiTsCharacterData
 	{
 		public var backup:Object;
+		public var propertyNames:Array = [
+			"short",
+			"level",
+			"XPRaw",
+			"credits",
+			"personality",
+			"characterClass",
+			"physiqueRaw",
+			"reflexesRaw",
+			"aimRaw",
+			"intelligenceRaw",
+			"willpowerRaw",
+			"libidoRaw",
+			"affinity",
+			"HPMod",
+			"energyMod",
+			"lustRaw",
+			"lustVuln",
+			"resistances",
+			"tailType",
+			"tailCount", 
+			"tailFlags",
+			"tailGenitalArg",
+			"tailGenital",
+			"cumType",
+			"girlCumType",
+			"ballFullness",
+			"ballEfficiency",
+			"refactoryRate",
+			"milkType",
+			"milkMultiplier",
+			"milkStorageMultiplier",
+			"milkFullness",
+			"milkRate",
+			"genitalSpot",
+			"minutesSinceCum",
+			"timesCum",
+			"femininity",
+			"tallness",
+			"thickness",
+			"tone",
+			"hipRatingRaw",
+			"buttRatingRaw",
+			"bellyRatingRaw",
+			"hairType",
+			"hairColor",
+			"hairLength",
+			"skinTone",
+			"furColor",
+			"scaleColor",
+			"skinType",
+			"skinFlags",
+			"faceType",
+			"faceFlags",
+			"tongueType",
+			"tongueFlags",
+			"lipMod",
+			"lipColor",
+			"earType",
+			"horns",
+			"hornLength",
+			"hornType",
+			"armType",
+			"wingType",
+			"legType",
+			"legFlags",
+			"legCount",
+			"cocks",
+			"vaginas",
+			"breastRows",
+			"ass",
+			"balls",
+			"ballSizeRaw",
+			"cockVirgin",
+			"clitLength",
+			"elasticity",
+			"vaginalVirgin",
+			"nippleColor",
+			"nipplesPerBreast",
+			"nippleLengthRatio",
+			"nippleWidthRatio",
+			"dickNippleMultiplier",
+			"dickNippleType",
+			"analVirgin",
+		];
 		
 		// General
 		public var short:String;
@@ -26,12 +111,12 @@ package classes.TITSSaveEdit.Data
 		public var characterClass:int;
 		
 		// Core Stats
-		public var _physiqueRaw:int;
-		public var _reflexesRaw:int;
-		public var _aimRaw:int;
-		public var _intelligenceRaw:int;
-		public var _willpowerRaw:int;
-		public var _libidoRaw:int;
+		public var physiqueRaw:int;
+		public var reflexesRaw:int;
+		public var aimRaw:int;
+		public var intelligenceRaw:int;
+		public var willpowerRaw:int;
+		public var libidoRaw:int;
 		public var affinity:String;
 		
 		// Combat stats
@@ -201,12 +286,12 @@ package classes.TITSSaveEdit.Data
 			personality = 50;
 			characterClass = GLOBAL.CLASS_ENGINEER;
 			
-			_physiqueRaw = 3;
-			_reflexesRaw = 3;
-			_aimRaw = 3;
-			_intelligenceRaw = 3;
-			_willpowerRaw = 3;
-			_libidoRaw = 3;
+			physiqueRaw = 3;
+			reflexesRaw = 3;
+			aimRaw = 3;
+			intelligenceRaw = 3;
+			willpowerRaw = 3;
+			libidoRaw = 3;
 			affinity = "intelligence";
 			
 			HPMod = 0;
@@ -246,7 +331,7 @@ package classes.TITSSaveEdit.Data
 		{
 			var newObj:Object = clone(backup);
 			
-			for each (var property:String in this)
+			for each (var property:String in propertyNames)
 			{
 				if (property == "backup")
 				{
@@ -296,8 +381,13 @@ package classes.TITSSaveEdit.Data
 		{
 			this.backup = clone(o);
 			
-			for each (var property:String in this)
+			for each (var property:String in propertyNames)
 			{
+				if (property == "_physiqueRaw")
+				{
+					trace("bp");
+				}
+				
 				if (property == "backup")
 				{
 					continue;
@@ -308,7 +398,8 @@ package classes.TITSSaveEdit.Data
 					
 					for (var i:int = 0; i < o.cocks.length; i++)
 					{
-						this.cocks.push(new CockClass().loadSaveObject(o.cocks[i]));
+						this.cocks.push(new CockClass());
+						this.cocks[this.cocks.length - 1].loadSaveObject(o.cocks[i]);
 					}
 				}
 				else if (property == "vaginas")
@@ -317,7 +408,8 @@ package classes.TITSSaveEdit.Data
 					
 					for (var i:int = 0; i < o.vaginas.length; i++)
 					{
-						this.vaginas.push(new VaginaClass().loadSaveObject(o.vaginas[i]));
+						this.vaginas.push(new VaginaClass());
+						this.vaginas[this.vaginas.length - 1].loadSaveObject(o.vaginas[i]);
 					}
 				}
 				else if (property == "breastRows")
@@ -326,7 +418,8 @@ package classes.TITSSaveEdit.Data
 					
 					for (var i:int = 0; i < o.breastRows.length; i++)
 					{
-						this.breastRows.push(new BreastRowClass().loadSaveObject(o.breastRows[i]));
+						this.breastRows.push(new BreastRowClass());
+						this.breastRows[this.breastRows.length - 1].loadSaveObject(o.breastRows[i]);
 					}
 				}
 				else if (property == "ass")
@@ -336,8 +429,12 @@ package classes.TITSSaveEdit.Data
 				}
 				else
 				{
+					if (o[property] == null || o[property] == undefined) continue;
+					if (o[property] is Number && isNaN(o[property])) continue;
 					this[property] = o[property];
 				}
+				
+				trace("end bp");
 			}
 		}
 		

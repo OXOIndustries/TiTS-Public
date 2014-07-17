@@ -37,6 +37,9 @@ package classes.TITSSaveEdit.UI.Controls
 		{ 
 			_cockData.removeAll();
 			_cockData.addItems(v);
+			
+			_cockNumControl.labelNum = v.length;
+			updateCockDisplay();
 		}
 		
 		private var _cockNumControl:PairedButtonLabel;
@@ -262,18 +265,28 @@ package classes.TITSSaveEdit.UI.Controls
 		public function addCock():void
 		{
 			if (_cockData.length < 10) _cockData.addItem(new CockClass());
+			updateCockDisplay();
+		}
+		
+		public function remCock():void
+		{
+			if (_cockData.length > 0) _cockData.removeItemAt(_cockData.length - 1);
+			updateCockDisplay();
+		}
+		
+		public function updateCockDisplay():void
+		{
 			if (_cockData.length > 0)
 			{
 				enableComponents();
 				_selectedCock.selectedIndex = 0;
 				cockSelectedChangeHandler();
 			}
-		}
-		
-		public function remCock():void
-		{
-			if (_cockData.length > 0) _cockData.removeItemAt(_cockData.length - 1);
-			if (_cockData.length == 0) disableComponents();
+			if (_cockData.length == 0)
+			{
+				disableComponents();
+				_selectedCock.selectedIndex = -1;
+			}
 		}
 		
 		private function enableComponents():void

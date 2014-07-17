@@ -136,7 +136,7 @@ package classes.TITSSaveEdit.Data
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slot, "/");
 			var dataObject:Object = copyObject(dataFile);
 			
-			(this.parent as Main).setTITSData(dataObject);
+			(this.parent as Main).setTITSData(dataObject.characters["PC"]);
 		}
 		
 		public function saveTiTsSlot(slot:int, object:Object):void
