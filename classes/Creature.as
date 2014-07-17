@@ -4885,7 +4885,7 @@
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
-			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2 * ballEfficiency);
+			if (balls == 0) quantity = Math.round(10 * 2 * 2 * ballEfficiency);
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 			return quantity;
 		}
@@ -4906,8 +4906,10 @@
 				ballFullness = 0;
 			}
 			while (minutes > 0) {
-				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+				if(balls == 0) cumDelta = refractoryRate / 60 * 6 / 4 * 2;
+				else cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
 				if(hasPerk("Breed Hungry")) cumDelta *= 2;
+				trace("cumDelta: " + cumDelta);
 				ballFullness += cumDelta;
 				minutes--;
 			}

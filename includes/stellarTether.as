@@ -2276,6 +2276,7 @@ function kaskaBadEndPartDues():void
 	if(pc.hasCuntTail()) choices[choices.length] = 0;
 	if(pc.hasVagina()) choices[choices.length] = 1;
 	if(pc.biggestTitSize() >= 7) choices[choices.length] = 2;
+	if(!pc.hasCuntTail() && !pc.hasVagina() && pc.biggestTitSize() < 7) choices[choices.length] = 3;
 
 	var select:int = choices[rand(choices.length)];
 	//Taildrilled
@@ -2402,7 +2403,7 @@ function kaskaBadEndPartDues():void
 		else if(pc.ass.looseness() < 3) output("tight");
 		else output("well-trained");
 		output(" asshole. You do your best, but she feels so damn thick. At least she's slick with pre-cum and your own spit. The randy dickgirl moves her other hand up to join her first at your shoulders, levering another inch of her length up your rear entrance and saying, <i>\"Yeah, I think this'll work fine.\"</i> She crams another two inches inside. You gasp. <i>\"Once I wring a few anal orgasms from you and get you used to having an ass full of spunk, you'll never want to do anything else. I hear it's something about our cum being chemically addictive in large enough doses, I guess. I didn't bother to pay attention in school though, so we'll just have to find out, huh?\"</i>");
-		pc.buttChange(chars["KASKA"].cockVolume(0),true,false);
+		pc.buttChange(chars["KASKA"].cockVolume(0),true,true,false);
 		output("\n\nHer balls clap against your [pc.butt]. As absolutely stuffed as you feel, you didn't expect her to bottom out already. The dickgirl pirate's length was just so slippery that it was able to ease right in. Your backside is tingling erotically");
 		if(pc.hasCock()) output(", and [pc.eachCock] drips with pre-cum, squeezed out of your compressed prostate");
 		else output(", and you can't help but wonder how good it will feel once she's cumming inside you");
