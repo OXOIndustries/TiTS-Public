@@ -2848,7 +2848,7 @@ function bombExplodes():void
 		if(flags["MET_ANNO"] != undefined) output("Anno");
 		else output("The ausar");
 		output(" is almost at a matching one on the other side. They reach them at the same time, and recessed doors slide out of the walls, trailing a curtain of rust particles, and slam shut.");
-		output("\n\nWhile the horrible sounds from outside may have died out, the ship is still spinning and shaking like wild. A tinny, raskvel voice comes over the speaker, <i>\"Tarkus is breaking up! Get the shields-\"</i> It cuts off with a burst of static. The lights dim, and the din of crying aliens reaches a whole new crescendo. Staggering, you make your way towards the hangar. Maybe you can save yourself.");
+		output("\n\nWhile the horrible sounds from outside may have died out, the ship is still spinning and shaking like wild gark. A tinny, raskvel voice comes over the speaker, <i>\"Tarkus is breaking up! Get the shields-\"</i> It cuts off with a burst of static. The lights dim, and the din of crying aliens reaches a whole new crescendo. Staggering, you make your way towards the hangar. Maybe you can save yourself.");
 		processTime(2);
 		//[Next]
 		clearMenu();
