@@ -144,9 +144,9 @@ package classes.TITSSaveEdit.Data
 			
 		}
 		
-		public function loadCoCSave(slot:int):Object
+		public function loadCoCSave(slot:int):void
 		{
-			return new Object();
+			
 		}
 		
 		private function buttonFunctor(evt:Event = null):void

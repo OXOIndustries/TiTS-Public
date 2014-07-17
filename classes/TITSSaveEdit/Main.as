@@ -1,5 +1,6 @@
 package classes.TITSSaveEdit
 {
+	import classes.TITSSaveEdit.Data.TiTsCharacterData;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import classes.TITSSaveEdit.UI.SEUserInterface;
@@ -15,6 +16,7 @@ package classes.TITSSaveEdit
 	{
 		private var ui:SEUserInterface;
 		private var dataMan:SEDataManager;
+		private var character:TiTsCharacterData;
 		
 		public function Main():void 
 		{
@@ -25,15 +27,17 @@ package classes.TITSSaveEdit
 		private function init(e:Event = null):void 
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-			// entry point
 			Build();
 		}
 		
 		private function Build():void
 		{
+			character = new TiTsCharacterData();
+			
 			ui = new SEUserInterface();
 			this.addChild(ui);
 			
+			ui.newButton.setData("New Character", newCharacter, undefined, "New Character", "Create a new default character to edit.");
 			ui.loadButton.setData("Load Save", loadTitsSave, undefined, "Load TiTs Save", "Load a save file from the TiTs client.");
 			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
@@ -77,20 +81,44 @@ package classes.TITSSaveEdit
 		public function setTITSData(data:Object):void
 		{
 			dataMan.visible = false;
+			ui.showMain();
 			
-			ui.topText.text = "EDITING:\n" + data.saveName;
+			ui.topText.text = "";
 			ui.middleText.text = "";
 			ui.bottomText.text = "";
 			
-			fillUI(data);
+			character = new TiTsCharacterData();
+			character.loadSaveObject(data);
+			
+			fillUI();
 		}
 		
-		private function fillUI(data:Object):void
+		public function newCharacter():void
 		{
-			// Can't actually use the game player object class, because of heavy use of kGAMECLASS.
-			// Importing PlayerCharacter < Creature < kGAMECLASS < ALL OTHER GAME CONTENT.
+			dataMan.visible = false;
+			ui.showMain();
 			
-			//trace (character.short);
+			ui.topText.text = "";
+			ui.middleText.text = "";
+			ui.bottomText.text = "";
+			
+			character = new TiTsCharacterData();
+			
+			fillUI();
+		}
+		
+		private function fillUI():void
+		{
+			// Ideally I'd use 2 way databinds against an underlying character object into the UI, but seeing
+			// as this app is so simple and AS3 doesn't actually have a code-based databind system by default... fuck it.
+			
+			ui.topText.text = "EDITING:\n" + character.short;
+			ui.setCharacterData(character);
+		}
+		
+		private function updateFromUI():void
+		{
+			
 		}
 	}
 	

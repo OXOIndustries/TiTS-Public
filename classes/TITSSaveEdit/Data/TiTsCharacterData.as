@@ -6,14 +6,17 @@ package classes.TITSSaveEdit.Data
 	import classes.DataManager.Serialization.VersionedSaveable;
 	import classes.GLOBAL;
 	import classes.VaginaClass;
+	import flash.utils.ByteArray;
 	
 	/**
 	 * ...
 	 * @author Gedan
 	 */
 	
-	public dynamic class TiTsCharacterData implements ISaveable
+	public dynamic class TiTsCharacterData
 	{
+		public var backup:Object;
+		
 		// General
 		public var short:String;
 		public var level:int;
@@ -131,8 +134,10 @@ package classes.TITSSaveEdit.Data
 		// Sexy Bits -- Ass
 		public var analVirgin:Boolean;
 		
-		public TiTsCharacterData()
+		public function TiTsCharacterData()
 		{
+			backup = null;
+			
 			analVirgin = true;
 			
 			nippleColor = "pink";
@@ -168,7 +173,7 @@ package classes.TITSSaveEdit.Data
 			lipMod = 0;
 			lipColor = "peach";
 			horns = 0;
-			hornType = 0;
+			hornType = GLOBAL.TYPE_DEMONIC;
 			hornLength = 0;
 			
 			skinTone = "albino";
@@ -222,7 +227,7 @@ package classes.TITSSaveEdit.Data
 			tailGenitalArg = 0;
 			
 			cumType = 0;
-			girlCumType = 0;
+			girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			ballFullness = 100;
 			ballEfficiency = 3;
 			refactoryRate = 1;
@@ -239,13 +244,65 @@ package classes.TITSSaveEdit.Data
 		
 		public function getSaveObject():Object
 		{
-			return new Object();
-		}
-		public function loadSaveObject(o:Object):void
-		{
+			var newObj:Object = clone(backup);
+			
 			for each (var property:String in this)
 			{
-				if (property == "cocks")
+				if (property == "backup")
+				{
+					continue;
+				}
+				else if (property == "cocks")
+				{
+					newObj.cocks = new Array();
+					
+					for (var i:int = 0; i < this.cocks.length; i++)
+					{
+						newObj.cocks.push(this.cocks[i].getSaveObject());
+					}
+				}
+				else if (property == "vaginas")
+				{
+					newObj.vaginas = new Array();
+					
+					for (var i:int = 0; i < this.vaginas.length; i++)
+					{
+						newObj.vaginas.push(this.vaginas[i].getSaveObject());
+					}
+				}
+				else if (property == "breastRows")
+				{
+					newObj.breastRows = new Array();
+					
+					for (var i:int = 0; i < this.breastRows.length; i++)
+					{
+						newObj.breastRows.push(this.breastRows[i].getSaveObject());
+					}
+				}
+				else if (property == "ass")
+				{
+					newObj.ass = this.ass.getSaveObject();
+				}
+				else
+				{
+					newObj[property] = this[property];
+				}
+			}
+			
+			return newObj;
+		}
+		
+		public function loadSaveObject(o:Object):void
+		{
+			this.backup = clone(o);
+			
+			for each (var property:String in this)
+			{
+				if (property == "backup")
+				{
+					continue;
+				}
+				else if (property == "cocks")
 				{
 					this.cocks = new Array();
 					
@@ -274,13 +331,28 @@ package classes.TITSSaveEdit.Data
 				}
 				else if (property == "ass")
 				{
-					this.ass = new VaginaClass(false).loadSaveObject(o.ass);
+					this.ass = new VaginaClass(false);
+					this.ass.loadSaveObject(o.ass);
 				}
 				else
 				{
 					this[property] = o[property];
 				}
 			}
+		}
+		
+		public function resetToInitialState():void
+		{
+			loadSaveObject(backup);
+		}
+		
+		private function clone(o:Object):Object
+		{
+			var cp:ByteArray = new ByteArray();
+			cp.writeObject(o);
+			cp.position = 0;
+			var newO:Object = cp.readObject();
+			return newO;
 		}
 	}
 

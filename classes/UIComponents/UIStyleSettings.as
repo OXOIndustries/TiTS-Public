@@ -1064,5 +1064,17 @@ package classes.UIComponents
 			obj.type = TextFieldType.INPUT;
 			obj.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
 		}
+		
+		public static function cfgEditorTextInput(obj:TextField):void
+		{
+			obj.background = true;
+			obj.backgroundColor = UIStyleSettings.gForegroundColour;
+			obj.border = true;
+			obj.borderColor = 0xFFFFFF;
+			obj.embedFonts = true;
+			obj.antiAliasType = AntiAliasType.ADVANCED;
+			obj.type = TextFieldType.INPUT;
+			obj.defaultTextFormat = UIStyleSettings.gTextInputFormatter;
+		}
 	}
 }

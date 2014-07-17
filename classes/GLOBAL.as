@@ -300,6 +300,7 @@
 		];
 		
 		public static const VALID_HORN_TYPES:Array = [
+			0,
 			TYPE_DEMONIC,
 			TYPE_BOVINE,
 			TYPE_LIZAN,

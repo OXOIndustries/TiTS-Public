@@ -157,43 +157,31 @@ package classes.TITSSaveEdit.UI
 			AddControl(_combatStats, LEFT_COL);
 			_combatStats.name = "combatstats";
 			
-			_resistances = new Resistances();
-			AddControl(_resistances, LEFT_COL);
-			_resistances.name = "resistances";
-			
-			_tailAppearance = new TailAppearance();
-			AddControl(_tailAppearance, LEFT_COL);
-			_tailAppearance.name = "tailappearance";
-			
-			_fluidSettings = new FluidSettings();
-			AddControl(_fluidSettings, LEFT_COL);
-			_fluidSettings.name = "fluidsettings";
-			
-			_generalGender = new GeneralGender();
-			AddControl(_generalGender, LEFT_COL);
-			_generalGender.name = "generalgender";
-			
-			// RIGHT
 			_generalAppearance = new GeneralAppearance();
-			AddControl(_generalAppearance, RIGHT_COL);
+			AddControl(_generalAppearance, LEFT_COL);
 			_generalAppearance.name = "generalappearance";
 			
 			_hairAppearance = new HairAppearance();
-			AddControl(_hairAppearance, RIGHT_COL);
+			AddControl(_hairAppearance, LEFT_COL);
 			_hairAppearance.name = "hairappearance";
 			
 			_skinAppearance = new SkinAppearance();
-			AddControl(_skinAppearance, RIGHT_COL);
+			AddControl(_skinAppearance, LEFT_COL);
 			_skinAppearance.name = "skinappearance";
 			
 			_headAppearance = new HeadAppearance();
-			AddControl(_headAppearance, RIGHT_COL);
+			AddControl(_headAppearance, LEFT_COL);
 			_headAppearance.name = "headappearance";
 			
 			_bodyAppearance = new BodyAppearance();
-			AddControl(_bodyAppearance, RIGHT_COL);
-			_bodyAppearance.name = "bodyappearance";
+			AddControl(_bodyAppearance, LEFT_COL);
+			_bodyAppearance.name = "bodyappearance";			
 			
+			_resistances = new Resistances();
+			AddControl(_resistances, LEFT_COL);
+			_resistances.name = "resistances";
+				
+			// RIGHT			
 			_cockAppearance = new CockSettings();
 			AddControl(_cockAppearance, RIGHT_COL);
 			_cockAppearance.name = "cockappearance";
@@ -209,6 +197,18 @@ package classes.TITSSaveEdit.UI
 			_assSettings = new AssSettings();
 			AddControl(_assSettings, RIGHT_COL);
 			_assSettings.name = "asssettings";
+			
+			_tailAppearance = new TailAppearance();
+			AddControl(_tailAppearance, RIGHT_COL);
+			_tailAppearance.name = "tailappearance";
+			
+			_fluidSettings = new FluidSettings();
+			AddControl(_fluidSettings, RIGHT_COL);
+			_fluidSettings.name = "fluidsettings";
+			
+			_generalGender = new GeneralGender();
+			AddControl(_generalGender, RIGHT_COL);
+			_generalGender.name = "generalgender";
 			
 		}
 	}

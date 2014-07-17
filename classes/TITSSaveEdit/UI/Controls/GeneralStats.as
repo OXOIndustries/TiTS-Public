@@ -27,20 +27,20 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get playerName():String { return _playerName.inputValue; }
 		public function set playerName(v:String):void { _playerName.inputValue = v; }
 		
-		public function get level():String { return _level.inputValue; }
-		public function set level(v:String):void { _level.inputValue = v; }
+		public function get level():int { return int(_level.inputValue); }
+		public function set level(v:int):void { _level.inputValue = String(v); }
 		
-		public function get xp():String { return _xp.inputValue; }
-		public function set xp(v:String):void { _xp.inputValue = v; }
+		public function get xp():int { return int(_xp.inputValue); }
+		public function set xp(v:int):void { _xp.inputValue = String(v); }
 		
-		public function get credits():String { return _credits.inputValue; }
-		public function set credits(v:String):void { _credits.inputValue = v; }
+		public function get credits():int { return int(_credits.inputValue); }
+		public function set credits(v:int):void { _credits.inputValue = String(v); }
 		
 		public function get characterClass():int { return int(_characterClass.inputValue); }
 		public function set characterClass(v:int):void { _characterClass.inputValue = v; }
 		
-		public function get personality():String { return _personality.inputValue; }
-		public function set personality(v:String):void { _personality.inputValue = v; }
+		public function get personality():int { return int(_personality.inputValue); }
+		public function set personality(v:int):void { _personality.inputValue = String(v); }
 		
 		public function GeneralStats() 
 		{

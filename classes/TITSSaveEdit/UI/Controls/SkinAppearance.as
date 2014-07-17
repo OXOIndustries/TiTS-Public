@@ -22,6 +22,22 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _skinType:ComboLabelPair;
 		private var _skinFlags:ListLabelPair;
 		
+		public function get skinTone():String { return _skinTone.inputValue; }
+		public function set skinTone(v:String):void { _skinTone.inputValue = v; }
+		
+		public function get furColor():String { return _furColor.inputValue; }
+		public function set furColor(v:String):void { _furColor.inputValue = v; }
+		
+		public function get scaleColor():String { return _scaleColor.inputValue; }
+		public function set scaleColor(v:String):void { _scaleColor.inputValue = v; }
+		
+		public function get skinType():int { return _skinType.inputValue; }
+		public function set skinType(v:int):void { _skinType.inputValue = v; }
+		
+		public function get skinFlags():Array { return _skinFlags.inputValues; }
+		public function set skinFlags(v:Array):void { _skinFlags.inputValues = v; }
+		
+		
 		public function SkinAppearance() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);

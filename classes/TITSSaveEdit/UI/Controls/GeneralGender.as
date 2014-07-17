@@ -21,7 +21,7 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _timesCum:InputLabelPair;
 		
 		public function get genitalSpot():int { return int(_genitalSpot.inputValue); }
-		public function set geintalSpot(v:int):void { _genitalSpot.inputValue = int(v); }
+		public function set genitalSpot(v:int):void { _genitalSpot.inputValue = int(v); }
 		
 		public function get minutesSinceCum():int { return int(_minutesSinceCum.inputValue); }
 		public function set minutesSinceCum(v:int):void { _minutesSinceCum.inputValue = String(v); }
@@ -49,7 +49,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_header.x = 15;
 			_header.height = 25;
 			_header.width = 300
-			_header.text = "Sex Characteristics - Fluids";
+			_header.text = "Sex Characteristics - General";
 			
 			_underline = new Sprite();
 			_underline.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
