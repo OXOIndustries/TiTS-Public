@@ -751,11 +751,11 @@ function bombAlertBonusFunction():Boolean
 		showName("MYSTERY\nWOMAN");
 		output("As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red \"INCOMING\" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.");
 		output("\n\n<i>\"Tam, where the fuck are you, you lazy slut? Pick up!\"</i>");
-		output("\n\nWhen no answer is forthcoming, the figure sighs and scowls. <i>\"I hope you're recording this. Three hours until detonation. You better have your shit packed and ready to go before then.\"</i>");
+		output("\n\nWhen no answer is forthcoming, the figure sighs and scowls. <i>\"I hope you're recording this. Four hours until detonation. You better have your shit packed and ready to go before then.\"</i>");
 		output("\n\nThe figure winks out as the transmission cuts. Three hours? Oh, shit....");
 		processTime(1);
 		//Fen note: START ZE TIMAH 180 minutes. AKA: Don't fuck around too long.
-		flags["TARKUS_BOMB_TIMER"] = 180;
+		flags["TARKUS_BOMB_TIMER"] = 240;
 		clearMenu();
 		//Reset position as you haven't really moved.
 		currentLocation = "352";
@@ -2935,7 +2935,8 @@ function fuckOffWithoutDisarmingTheBomb():void
 	author("Savin");
 	showName("U.G.C.\nOFFICERS");
 	output("You rush past the S.W.A.T. officers, hurtling down the road. <i>\"You've got less than ");
-	if(flags["TARKUS_BOMB_TIMER"] > 120) output("three hours");
+	if(flags["TARKUS_BOMB_TIMER"] > 180) output("four hours");
+	else if(flags["TARKUS_BOMB_TIMER"] > 120) output("three hours");
 	else if(flags["TARKUS_BOMB_TIMER"] > 60) output("two hours");
 	else output("one hour");
 	output(" before that bomb goes off!\"</i> you shout over your shoulder.");

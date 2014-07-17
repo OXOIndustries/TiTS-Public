@@ -105,6 +105,13 @@ function kellysOfficeBonusFunction():Boolean
 		}
 		return false;
 	}
+	else
+	{
+		output("\n\n<b>Xenogen Biotech is currently closed. You'll have to come back later.</b>");
+		clearMenu();
+		addButton(0,"Next",move,"SOUTH ESBETH 2");
+		return true;
+	}
 	return false;
 }
 
