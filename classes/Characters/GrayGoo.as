@@ -179,7 +179,7 @@
 		{
 			var combatGrayGoo:GrayGoo = this.makeCopy();
 			
-			kGAMECLASS.userInterface.showBust("GRAYGOO");
+			kGAMECLASS.userInterface.showBust("GRAY_GOO");
 			kGAMECLASS.userInterface.showName("FIGHT:\nGRAY GOO");
 			combatGrayGoo.sexualPreferences.setRandomPrefs(3 + rand(3));
 			

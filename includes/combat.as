@@ -70,11 +70,13 @@ function combatMainMenu():void
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
 		if(pc.hasStatusEffect("Stunned")) output("\n<b>You're still stunned!</b>");
+		clearMenu();
 		this.addButton(0,"Recover",stunRecover,pc);
 	}
 	//Bound Menu
 	else if (pc.hasStatusEffect("Naleen Coiled"))
 	{
+		clearMenu();
 		output("\n<b>You are wrapped up in coils!</b>");
 		addButton(0,"Struggle",naleenStruggle);
 		if(pc.hasPerk("Static Burst")) {
@@ -86,17 +88,20 @@ function combatMainMenu():void
 	//Grapple Menu
 	else if (pc.hasStatusEffect("Grappled"))
 	{
+		clearMenu();
 		output("\n<b>You are grappled and unable to fight normally!</b>");
 		addButton(0,"Struggle",grappleStruggle);
 		if(pc.hasPerk("Static Burst")) {
 			if(pc.energy() >= 50) this.addButton(3,"StaticBurst",staticBurst);
 			else this.addDisabledButton(3,"StaticBurst");
 		}
+		if(foes[0] is Kaska) addButton(10,"Nip-Pinch",pinchKaskaNipple,undefined,"Nip-Pinch","Maybe pinching Kaska's nipple will get her to release you.");
 		this.addButton(4,"Do Nothing",wait);
 	}
 	// Mimbrane Smother
 	else if (pc.hasStatusEffect("Mimbrane Smother"))
 	{
+		clearMenu();
 		output("\n\n<b>You are being smothered by a Mimbrane!</b>");
 		addButton(0, "Struggle", mimbraneStruggle);
 		if (pc.hasPerk("Static Burst"))
@@ -116,7 +121,7 @@ function combatMainMenu():void
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
 		this.addButton(6,"Sense",attackRouter,sense,"Sense","Attempts to get a feel for a foe's likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his","her") + " way out of a fight.");
-		if(pc.hasStatusEffect("Trip")) addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
+		if(pc.hasStatusEffect("Trip")) this.addButton(8,"Stand Up",standUp,undefined,"Stand Up","Stand up, getting rid of the \"Trip\" status effect. This will consume your offensive action for this turn.");
 		this.addButton(9,"Fantasize",fantasize,undefined,"Fantasize","Fantasize about your foe until you're helpless and on your knees before them.");
 		this.addButton(14,"Run",runAway,undefined,"Run","Attempt to run away from your enemy. Success is greatly dependant on reflexes. Immobilizing your enemy before attempting to run will increase the odds of success.");
 		//Bonus shit for stuff!
@@ -578,7 +583,11 @@ function processCombat():void
 				output("\n\nYour drone collapses along with your shields. It sputters weakly as it shuts down.<b> It won't be doing any more damage until you bring your shields back up!</b>");
 				pc.createStatusEffect("Drone Down",0,0,0,0,true,"","",true,0);
 			}
-			else droneAttack(foes[flags["DRONE_TARGET"]]);
+			else 
+			{
+				output("\n\n");
+				droneAttack(foes[flags["DRONE_TARGET"]]);
+			}
 		}
 	}
 	combatStage = 0;
@@ -608,6 +617,7 @@ function grappleStruggle():void {
 	if(pc.hasStatusEffect("Grappled"))
 	{
 		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
+		else if(foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
@@ -1316,6 +1326,8 @@ function enemyAI(aggressor:Creature):void
 	else if(aggressor is GunTurrets) tamtamtamtamtamtamAI();
 	else if(aggressor is RocketTurrets) rocketPodAI();
 	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
+	else if(aggressor is CaptainKhorgan) actualKhorganAI();
+	else if(aggressor is Kaska) kaskaFightAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
@@ -1395,6 +1407,14 @@ function victoryRouting():void
 	{
 		victoriousVsCaptainOrcButt();
 	}
+	else if(foes[0] is CaptainKhorgan)
+	{
+		youBeatUpAnOrcWaytoGo();
+	}
+	else if(foes[0] is Kaska)
+	{
+		defeatKaska();
+	}
 	else genericVictory();
 }
 
@@ -1472,6 +1492,14 @@ function defeatRouting():void
 	else if(foes[0] is CaptainKhorganMech)
 	{
 		loseToCaptainKhorganBadEnd();
+	}
+	else if(foes[0] is CaptainKhorgan)
+	{
+		loseToCaptainKhorganBadEnd();
+	}
+	else if(foes[0] is Kaska)
+	{
+		defeatedByKaska();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1690,6 +1718,9 @@ function startCombat(encounter:String):void
 		case "khorgan":
 			chars["CAPTAINKHORGAN"].prepForCombat();
 			break;
+		case "Kaska":
+			chars["KASKA"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;
@@ -1792,6 +1823,7 @@ function fantasize():void {
 function wait():void {
 	clearOutput();
 	output("You choose not to act.\n");
+	if(foes[0] is Kaska && pc.hasStatusEffect("Grappled")) doNothingWhileTittyGrappled();
 	processCombat();
 }
 
@@ -2055,9 +2087,9 @@ function buttTeaseText():void {
 	if(flags["TIMES_BUTT_TEASED"] > 75 && rand(3) == 0)
 	{
 		output("Turning away at an opportune moment, you slip down your clothes and reach back, slapping your [pc.butt] into a bounce before shaking it for " + foes[0].a + foes[0].short + ". Your technique has grown impeccable, and you bounce your [pc.butt] masterfully, even reaching back and spreading your cheeks, giving " + foes[0].a + foes[0].short + " an excellent view of your [pc.asshole]");
-		if(pc.hasVagina() && pc.balls > 0) output("and [pc.vaginas] and [pc.balls]");
-		else if(pc.hasVagina()) output("and [pc.vaginas]");
-		else if(pc.balls > 0) output("and[pc.balls]");
+		if(pc.hasVagina() && pc.balls > 0) output(" and [pc.vaginas] and [pc.balls]");
+		else if(pc.hasVagina()) output(" and [pc.vaginas]");
+		else if(pc.balls > 0) output(" and [pc.balls]");
 		output(".");
 	}
 	//50+
@@ -2290,6 +2322,34 @@ function overcharge(target:Creature):void {
 	processCombat();
 }
 
+function NPCOvercharge():void {
+	foes[0].energy(-20);
+	output(foes[0].capitalA + foes[0].short + " smiles as a high-pitched hum emanates from " + foes[0].mfn("his","her","its") + " " + foes[0].rangedWeapon.longName + "! ");
+	//Attack missed!
+	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
+	if(rangedCombatMiss(foes[0],pc)) output("You manage to avoid " + foes[0].a + possessive(foes[0].short) + " overcharged " + foes[0].rangedWeapon.attackVerb + ".");
+	//Extra miss for blind
+	else if(pc.hasStatusEffect("Blind") && rand(10) > 0) output(foes[0].capitalA + possessive(foes[0].short) + " blinded, <b>overcharged</b> shot fails to connect!");
+	//Attack connected!
+	else {
+		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackVerb + "!");
+		//Damage bonuses:
+		var damage:int = foes[0].rangedWeapon.damage + foes[0].aim()/2;
+		//OVER CHAAAAAARGE
+		damage *= 1.75;
+		//Randomize +/- 15%
+		var randomizer = (rand(31)+ 85)/100;
+		damage *= randomizer;
+		var sDamage:Array = new Array();
+		genericDamageApply(damage,foes[0],pc,GLOBAL.THERMAL);
+		if(foes[0].aim()/2 + rand(20) + 1 > pc.physique()/2 + 10 && !pc.hasStatusEffect("Stunned")) {
+			output(" <b>You are stunned!</b>");
+			pc.createStatusEffect("Stunned",1,0,0,0,false,"Stunned","You cannot act for one turn!",true,0);
+		}
+	}
+	processCombat();
+}
+
 function gravidicDisruptor(target:Creature):void 
 {
 	clearOutput();
@@ -2344,6 +2404,18 @@ function flashGrenade(target:Creature):void {
 		else output("<b>the coarse granules.</b>\n");
 	}
 	else output("\n" + target.capitalA + target.short + " manages to keep away from the blinding projectile.\n")
+	processCombat();
+}
+function NPCFlashGrenade():void {
+	pc.energy(-10);
+	output(monster.capitalA + monster.short + "produces a flash grenade and hucks it in your direction!\n");
+	//Chance of bliiiiiiiind
+	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind")) {
+		output("\n<b>You're blinded by </b>");
+		pc.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		output("<b>the luminous flashes.</b>");
+	}
+	else output("You manage to keep away from the blinding projectile!");
 	processCombat();
 }
 
@@ -2434,10 +2506,12 @@ function lowBlow(target:Creature):void {
 		damage *= randomizer;
 		var sDamage:Array = new Array();
 		genericDamageApply(damage,pc,target);
-		if(pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) {
-			if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
+		if((pc.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Stunned")) || target is Kaska) {
+			if(target is Kaska) output("\nKaska's eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of plump lips. <b>She's very, very stunned.\"</b>");
+			else if(target.plural) output("\n<b>" + target.capitalA + target.short + " are stunned.</b>");
 			else output("\n<b>" + target.capitalA + target.short + " is stunned.</b>");
-			target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			if(target is Kaska) target.createStatusEffect("Stunned",3,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
+			else target.createStatusEffect("Stunned",2,0,0,0,false,"Stunned","Cannot act for a turn.",true,0);
 		}
 		else {
 			output("\nIt doesn't look like you accomplished much more than hitting your target.");
@@ -2456,9 +2530,8 @@ function stealthFieldActivation():void {
 }
 
 function NPCstealthFieldActivation(user:Creature):void {
-	clearOutput();
 	user.energy(-20);
-	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.\n");
+	output(user.capitalA + user.short + " activates a stealth field generator, fading into nigh-invisibility.");
 	user.createStatusEffect("Stealth Field Generator",2,0,0,0,false,"Stealth Field","Provides a massive bonus to evasion chances!",true,0);
 	processCombat();
 }
@@ -2485,6 +2558,7 @@ function NPCDisarmingShot(user:Creature):void
 		output(user.capitalA + user.short + " shoots your weapons away with well-placed shots!");
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
 	}
+	processCombat();
 }
 
 function grenade(target:Creature):void 

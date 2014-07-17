@@ -50,8 +50,6 @@
 			this.HPMod = 7;
 			this.HPRaw = this.HPMax();
 			
-			
-			
 			this.femininity = 35;
 			this.eyeType = GLOBAL.BEE;
 			this.eyeColor = "black";

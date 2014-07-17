@@ -89,6 +89,7 @@ function chooseStartingRace(race:String = "human"):void {
 		this.addButton(1,"Female",setStartingSex,3);
 	}
 	else if(pc.originalRace == "half-ausar") {
+		pc.addLegFlag(GLOBAL.PLANTIGRADE);
 		pc.earType = GLOBAL.CANINE;
 		pc.tailType = GLOBAL.CANINE;
 		pc.tailCount = 1;
@@ -101,6 +102,7 @@ function chooseStartingRace(race:String = "human"):void {
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-kaithrit") {
+		pc.addLegFlag(GLOBAL.DIGITIGRADE);
 		pc.earType = GLOBAL.FELINE;
 		pc.tailType = GLOBAL.FELINE;
 		pc.tailCount = 2;
@@ -112,6 +114,7 @@ function chooseStartingRace(race:String = "human"):void {
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-multicock") {
+		pc.addLegFlag(GLOBAL.PLANTIGRADE);
 		pc.earType = GLOBAL.FELINE;
 		pc.tailType = GLOBAL.FELINE;
 		pc.tailCount = 2;

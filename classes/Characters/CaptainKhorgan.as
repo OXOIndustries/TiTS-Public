@@ -17,7 +17,7 @@
 			this._neverSerialize = true;
 			
 			this.short = "Captain Khorgan";
-			this.originalRace = "Thrakken";
+			this.originalRace = "Thraggen";
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Captain Khorgan cuts a truly impressive figure: a towering, muscular thraggen woman with a lengthy braid of red hair trailing down her back. Her impressive bust is barely restrained by the tatters of her corset, threatening to spill free at any moment. In one hand, the captain is clutching a force cutlass, a shimmering blue hardlight blade more than capable of shearing through steel; with the other, she clutches the remote detonator for the planet-cracking bomb you've been sent to disarm. She's breathing hard, chest heaving: and not from exertion. Her stiff nipples are poking through the ruins of her corset, and you can see an ever-growing damp patch on her pants, as if she's getting off on the fight!";
@@ -154,8 +154,8 @@
 			this.fertilityRaw = 1.05;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
-
-			this.breastRows[0].breastRatingRaw = 0;
+			//Savin wasn't around so I just threw a # in.
+			this.breastRows[0].breastRatingRaw = 10;
 			this.nippleColor = "dark green";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.MILK;

@@ -419,29 +419,49 @@ function statusTick():void {
 			}
 			
 		}
-	}
+	}	
+	
 	//Cut the statuses that expired and need cut.
 	while(shitToCut.length > 0)
 	{
-		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[shitToCut.length-1]].storageName + " in slot " + shitToCut[shitToCut.length-1] + " due to status effect time out.");
-		this.chars["PC"].statusEffects.splice(shitToCut[shitToCut.length-1],1);
-		shitToCut.splice(shitToCut.length-1,1);
+		trace("REMOVING " + chars["PC"].statusEffects[shitToCut[0]].storageName + " in slot " + shitToCut[0] + " due to status effect time out.");
+		this.chars["PC"].statusEffects.splice(shitToCut[0],1);
+		shitToCut.splice(0,1);
 	}
 }
 
 public function variableRoomUpdateCheck():void
 {
+	//Handle planet explosions
+	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
+	{
+		rooms["211"].southExit = "";
+		rooms["213"].southExit = "";
+	}
+	else if(rooms["211"].southExit == "")
+	{
+		rooms["211"].southExit = "215";
+		rooms["213"].southExit = "295";
+	}
+	
 	//Kelly's work - close/open Xenogen Biotech.
 	//Open up shop: link room
 	if(hours >= 6 && hours < 17) 
 	{
 		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
+		//Add back in icons.
+		if(!rooms["JULIAN'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
+		if(!rooms["KELLY'S OFFICE"].hasFlag(GLOBAL.NPC)) rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 	}
-	//Close shop: remove link
+	//Close shop: 
 	else
 	{
-		rooms["SOUTH ESBETH 2"].northExit = "";
+		//rooms["SOUTH ESBETH 2"].northExit = "";
+		//Get rid of icons
+		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
+		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
+		//Add Kelly icon in the bar
 		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
 	//Sexbot factory opeeeeeen.
@@ -506,6 +526,14 @@ public function processTime(arg:int):void {
 		//Status Effect Updates
 		statusTick();
 		
+		//Tarkus'splosions
+		if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] > 0)
+		{
+			flags["TARKUS_BOMB_TIMER"]--;
+			bombStatusUpdate();
+			if(flags["TARKUS_BOMB_TIMER"] == 0) eventQueue[eventQueue.length] = bombExplodes;
+		}
+
 		//Tick hours!
 		if (this.minutes >= 60) {
 			

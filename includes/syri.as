@@ -47,9 +47,12 @@ function syriGamesStart():void {
 	}
 	//[Bet 10] [Bet 50] [Bet 100] [Not today] [Bet yourself]
 	clearMenu();
-	addButton(0,"Bet 10",betSyriCredits,10);
-	addButton(1,"Bet 50",betSyriCredits,50);
-	addButton(2,"Bet 100",betSyriCredits,100);
+	if(pc.credits >= 10) addButton(0,"Bet 10",betSyriCredits,10);
+	else addDisabledButton(0,"Bet 10","Bet 10","You're too poor.");
+	if(pc.credits >= 50) addButton(1,"Bet 50",betSyriCredits,50);
+	else addDisabledButton(1,"Bet 50","Bet 50","You're too poor.");
+	if(pc.credits >= 100) addButton(2,"Bet 100",betSyriCredits,100);
+	else addDisabledButton(2,"Bet 100","Bet 100","You're too poor.");
 	if(flags["TIMES_WON_AGAINST_SYRI"] == undefined) flags["TIMES_WON_AGAINST_SYRI"] = 0;
 	if(flags["TIMES_LOST_TO_SYRI"] == undefined) flags["TIMES_LOST_TO_SYRI"] = 0;
 	if(flags["TIMES_WON_AGAINST_SYRI"] + flags["TIMES_LOST_TO_SYRI"] >= 3) addButton(3,"BetYourself",betYourselfAgainstSyri);

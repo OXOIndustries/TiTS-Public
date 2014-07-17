@@ -941,12 +941,12 @@ function dogEStyleWithSexBots():void
 	output("\n\nYou close your eyes, clutch its white flanks and gently plunge inwards; in front of your [pc.cockHead " + x + "] its limit slowly retreats, its capacity increasing to match your size perfectly. It’s like sinking into a warm dough that holds the shape of your cock after you withdraw. You thrust deeper and deeper, delighting in the fact no matter how much of yourself you feed into its warm, fleshlight hole, its pussy perfectly clings and clutches at your bulging flesh.");
 
 	//Small:
-	if(pc.cocks[x].cLength <= 5.5)
+	if(pc.cocks[x].cLength() <= 5.5)
 	{
 		output("\n\nIt obviously doesn’t take much for the sexbot to take all of your cute " + pc("boy","girl") + " dick down to the base; indeed, you have the sneaking suspicion it actually tightened up a bit to properly glove you. The thought brings heat to your cheeks which you channel into clapping your [pc.hips] into it hard, determined to make the most out of a hole small enough for you to completely fill for once.");
 	}
 	//Average:
-	else if(pc.cocks[x].cLength <= 12) 
+	else if(pc.cocks[x].cLength() <= 12) 
 	{
 		output("\n\nYour ");
 		if(pc.balls == 1) output("ball soon touches");

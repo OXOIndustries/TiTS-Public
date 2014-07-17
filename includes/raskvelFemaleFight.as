@@ -660,7 +660,7 @@ function getRaskVelTailPegged(combat:Boolean = false):void
 	{
 		clearOutput();
 		output("Well, let's be honest. You don't want to fight the little scaly slut, and the way she moves those hips and flaunts her pussy... you couldn't resist that if you tried. You pull out a credit chit and toss it her way, and the tiny raskvel girl snatches it eagerly, stumbling to catch it. She looks awfully surprised when you decide to pay up, but the look of glee on her face is priceless. She must really need the cash!");
-		output("\n\nShe recomposes herself a moment later, leaning back against her wrench planted in the ground. <i>\"Mmm, now wasn't that easy?\"</i> she teases, licking her lips, eying you, <i>\"Just for that, I guess I'll throw in something for you in return. You might now have a dick for baby-making, but I bet I can get your money's worth.\"</i>");
+		output("\n\nShe recomposes herself a moment later, leaning back against her wrench planted in the ground. <i>\"Mmm, now wasn't that easy?\"</i> she teases, licking her lips, eying you, <i>\"Just for that, I guess I'll throw in something for you in return. You might not have a dick for baby-making, but I bet I can get your money's worth.\"</i>");
 		//deduct credits!
 		payRaskvel();
 	}

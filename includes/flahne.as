@@ -401,38 +401,37 @@ function flahneSexMenu(display:Boolean = true):void {
 	
 	//Fuck n’ Suck (Flahne Autofellates)
 	//requires ovipositor OK’d, ovipositor out
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur() && pc.hasCock()) this.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne);
-	else this.addDisabledButton(0,"Locked");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur() && pc.hasCock()) this.addButton(0,"Fuck N Suck",fuckAndSuckWithFlahne,undefined,"Fuck And Suck","Fuck Flahne while she self-sucks her ovipositor.");
+	else this.addDisabledButton(0,"Fuck N Suck","Fuck And Suck","This scene requires Flahne's ovipositor to be out and the PC to have a phallus. It does not accomodate taurs.");
 	//Desk Munchies
 	//Requires rahn race discussion has taken place
-	if(flags["TALKED_ABOUT_FLAHNES_RACE"] > 0 && flags["FLAHNE_DESK_DISABLED"] != 1 && !pc.isTaur()) this.addButton(1,"Under Desk",flahneDeskMunchies);
-	else this.addDisabledButton(1,"Locked");
+	if(flags["TALKED_ABOUT_FLAHNES_RACE"] > 0 && flags["FLAHNE_DESK_DISABLED"] != 1 && !pc.isTaur()) this.addButton(1,"Under Desk",flahneDeskMunchies,undefined,"Under Desk","Climb under Flahne's desk and give her some oral pleasure.");
+	else this.addDisabledButton(1,"Under Desk","Under Desk","This scene requires that you not be a taur, that you've talked about Flahne's race with her, and that you haven't somehow pissed her off into forbidding this act.");
 	//Get Box Munched
 	//You suggest that Flahne could take a few licks and see just how long it would take to get to your center... Turns out its 3 bites.
-	if(pc.hasVagina() && !pc.isTaur()) this.addButton(2,"GetEatenOut",flahneMunchesBoxesMetalBawkses);
-	else this.addDisabledButton(2,"Locked");
+	if(pc.hasVagina() && !pc.isTaur()) this.addButton(2,"GetEatenOut",flahneMunchesBoxesMetalBawkses,undefined,"GetEatenOut","Get Flahne to eat you out.");
+	else this.addDisabledButton(2,"GetEatenOut","Get Eaten Out","This scene requires you to have a pussy and not be a centaur.");
 	
 	//Rahn Suppository (All Sexes, or lack thereof; needs Ovi; Savin's Fault)
-	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur()) this.addButton(3,"Get Stuffed",rahnSuppository);
-	else this.addDisabledButton(3,"Locked");
+	if(flags["FLAHNE_LIKE_OVIPOSITOR"] > 0 && !pc.isTaur()) this.addButton(3,"Get Stuffed",rahnSuppository,undefined,"Get Stuffed","Take Flahne's ovipositor anally.");
+	else this.addDisabledButton(3,"Get Stuffed","Get Stuffed","This scene requires Flahne to have her ovipositor out. Taurs cannot get this scene.");
 	
 	//Bend her Over (Dickwielders; Savin wrote dis)
-	if(pc.hasCock() && pc.cockThatFits(flahne.vaginalCapacity()) >= 0) this.addButton(4,"Bend Her Over",bendFlahneOver);
-	else this.addDisabledButton(4,"Locked");
+	if(pc.hasCock() && pc.cockThatFits(flahne.vaginalCapacity()) >= 0) this.addButton(4,"Bend Her Over",bendFlahneOver,undefined,"Bend Her Over","Bend her over and fuck the slutty rahn secretary.");
+	else this.addDisabledButton(4,"Bend Her Over","Bend Her Over","This scene requires you have a dick that would fit inside Flahne's vagina.");
 
 	//Gardeford's Exhibitionism Scenes
 	if(flags["FLAHNE_EXHIBITIONISM_UNLOCKED"] == 1 && flags["FLAHNE_DESK_DISABLED"] == undefined)
 	{
 		if(pc.cockThatFits(chars["FLAHNE"].vaginalCapacity()) >= 0 && pc.hasCock()) 
-			addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism);
-		else addDisabledButton(5,"Locked");
-		if(pc.hasVagina()) 
-			addButton(6,"(F)Exhibition",flahneExhibitionHugsGirls);
-		else addDisabledButton(6,"Locked");
+			addButton(5,"(M)Exhibition",flahneIfMalesFitTheySitExhibitionism,undefined,"(M)Exhibition","Get Flahne to try some exhibitionism and get your rocks off in the process.");
+		else addDisabledButton(5,"(M)Exhibition","(M)Exhibition","This scene requires you to have a penis that would fit inside Flahne's vagina.");
+		if(pc.hasVagina()) addButton(6,"(F)Exhibition",flahneExhibitionHugsGirls,undefined,"(F)Exhibition","Get Flahne to try some exhibitionism and involve your girl parts in the process.");
+		else addDisabledButton(6,"(F)Exhibition","(F)Exhibition","This scene requires you to have a vagina.");
 	}
 	else {
-		addDisabledButton(5,"Locked");
-		addDisabledButton(6,"Locked");
+		addDisabledButton(5,"(M)Exhibition","(M)Exhibition","This scene requires you to have interested Flahne in exhibitionism.");
+		addDisabledButton(6,"(F)Exhibition","(F)Exhibition","This scene requires you to have interested Flahne in exhibitionism.");
 	}
 	this.addButton(14,"Back",mainGameMenu);
 }
@@ -586,7 +585,7 @@ function rahnSuppository():void {
 	
 	output("\n\n<i>“Oh, fuck,”</i>  Flahne groans, biting her lower lip as she hilts you again, sixteen inches of thick, gelcock buried deep in your ass, <i>“S-so good. You're amazing, [pc.name]. Best ass I've had in ages! Oh, you've gotta let me go again. Pretty please?”</i>");
 	
-	output("\n\nYou groan in dread at the merest thought of taking her cock again, barely able to withstand the current anal assault. But you don't seem to have much longer: Flahne's chest is heaving, her breath ragged as she reams you, and her moans grow ever more shrill until she's crying her pleasure to the heavens, blasting a thick, creamy ooze deep in your bowels. You scream, arching your back as the rahn girl fills you with her eggs, blasting so much into you in the first go that the second could pushes it back out around her cock - if it weren’t much too thick to let that happen. Instead your belly grows, pumped full of spurt after massive spurt of alien gel-cock ejaculate until you look positively gravid, stomach churning from the unexpectedly massive load being shot into you.");
+	output("\n\nYou groan in dread at the merest thought of taking her cock again, barely able to withstand the current anal assault. But you don't seem to have much longer: Flahne's chest is heaving, her breath ragged as she reams you, and her moans grow ever more shrill until she's crying her pleasure to the heavens, blasting a thick, creamy ooze deep in your bowels. You scream, arching your back as the rahn girl fills you with her eggs and goo, blasting so much into you that it feels as like it ought to be squirting out around her cock - if it weren’t much too thick to let that happen. Instead your belly grows, pumped full of spurt after massive spurt of alien gel-cock ejaculate until you look positively gravid, stomach churning from the unexpectedly massive load being shot into you.");
 	
 	output("\n\nWith a flourish, Flahne pulls out, grabbing her prong and aiming it dead at your face for the last load. You try to shield yourself, but too late; a nice, thick load of steaming rahn-spooge hits you right on the cheek and dribbles down your face in hot, sticky rivulets.");
 	
@@ -792,11 +791,11 @@ function flahneDeskMunchies():void {
 	//[Eat Out] [Suck&Swallow] [Play&Spray(only for semi-bastards)]
 	else {
 		//Eat Out
-		this.addButton(0,"Eat Out",eatFlahneOutUnderDesk);
+		this.addButton(0,"Eat Out",eatFlahneOutUnderDesk,undefined,"Eat Out","Eat Flahne out from underneath the desk.");
 		//Suck off
-		this.addButton(1,"Suck Off",flahneGetsSuckedAndSwallowed);
+		this.addButton(1,"Suck Off",flahneGetsSuckedAndSwallowed,undefined,"Suck Off","Suck off Flahne from underneath the desk.");
 		//Play&Spray
-		if(pc.isAss()) this.addButton(2,"PlayNSpray",playAndSpray);
+		if(pc.isAss()) this.addButton(2,"PlayNSpray",playAndSpray,undefined,"PlayNSpray","Make a mess and probably get Flahne in trouble. <b>She might not like this very much,</b> but it'll be fun.");
 	}
 }
 

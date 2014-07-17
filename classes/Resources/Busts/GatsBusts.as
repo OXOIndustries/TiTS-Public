@@ -1,4 +1,4 @@
-package classes.Resources.Busts 
+﻿package classes.Resources.Busts 
 {
 	/**
 	 * ...
@@ -6,6 +6,16 @@ package classes.Resources.Busts
 	 */
 	public class GatsBusts 
 	{
+		[Embed(source = "../../../assets/images/npcs/gats/Alex.png", mimeType = "image/png")]
+		public var Bust_ALEX:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Alex_Nude.png", mimeType = "image/png")]
+		public var Bust_ALEX_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Aliss.png", mimeType = "image/png")]
+		public var Bust_ALISS:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Aliss_Nude.png", mimeType = "image/png")]
+		public var Bust_ALISS_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Anno.png", mimeType = "image/png")]
 		public var Bust_ANNO:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Anno_Nude.png", mimeType = "image/png")]
@@ -24,6 +34,11 @@ package classes.Resources.Busts
 		public var Bust_BURT:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Burt_Nude.png", mimeType = "image/png")]
 		public var Bust_BURT_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Captain_Khorgan_Nude.png", mimeType = "image/png")]
+		public var Bust_CAPTAIN_KHORGAN_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
@@ -59,6 +74,9 @@ package classes.Resources.Busts
 		public var Bust_GEOFF:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Geoff_Nude.png", mimeType = "image/png")]
 		public var Bust_GEOFF_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Gray_Goo.png", mimeType = "image/png")]
+		public var Bust_GRAY_GOO:Class;
 
 		[Embed(source = "../../../assets/images/npcs/gats/Rival_Jack.png", mimeType = "image/png")]
 		public var Bust_JACK:Class;
@@ -135,6 +153,23 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/gats/Shelly_Nude.png", mimeType = "image/png")]
 		public var Bust_SHELLY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/Steph.png", mimeType = "image/png")]
+		public var Bust_STEPH:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_2.png", mimeType = "image/png")]
+		public var Bust_STEPH_2:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_2_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_2_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_3.png", mimeType = "image/png")]
+		public var Bust_STEPH_3:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_3_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_3_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_4.png", mimeType = "image/png")]
+		public var Bust_STEPH_4:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Steph_4_Nude.png", mimeType = "image/png")]
+		public var Bust_STEPH_4_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Sydian_Female.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_FEMALE:Class;
 
@@ -145,6 +180,14 @@ package classes.Resources.Busts
 		public var Bust_SYRI:Class;
 		[Embed(source = "../../../assets/images/npcs/gats/Syri_Nude.png", mimeType = "image/png")]
 		public var Bust_SYRI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Tamtam.png", mimeType = "image/png")]
+		public var Bust_TAMTAM:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Tamtam_Nude.png", mimeType = "image/png")]
+		public var Bust_TAMTAM_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/gats/Tamwolf.png", mimeType = "image/png")]
+		public var Bust_TAMWOLF:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/gats/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;

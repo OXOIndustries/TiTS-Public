@@ -411,6 +411,7 @@ function pitchIntoAlexsBoyPussy():void {
 	clearOutput();
 	author("RadicalBroseph");
 	alexNameBustDiplay();
+	showBust("ALEX_NUDE");
 	//If none of your cocks fit:
 	if(pc.cockThatFits(200) < 0)
 	{
@@ -549,6 +550,7 @@ function catchVaginalFromAlex():void {
 	clearOutput();
 	author("RadicalBroseph");
 	alexNameBustDiplay();
+	showBust("ALEX_NUDE");
 	var x:int = pc.cuntThatFits(20);
 	if(x < 0) x = rand(pc.cuntTotal());
 	output("You smile down at Alex and ");
@@ -701,6 +703,7 @@ function frottageWithAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
+	showBust("ALEX_NUDE");
 	var x:int = pc.biggestCockIndex();
 	output("Smiling ");
 	if(pc.isAss()) output("wolfishly");
@@ -1003,6 +1006,7 @@ function catchAnalFromAlex():void {
 	clearOutput();
 	alexNameBustDiplay();
 	author("RadicalBroseph");
+	showBust("ALEX_NUDE");
 	//if taur or some kind of caterpillar thing:
 	if(pc.isTaur()) output("You straighten up, leaving Alex lying on the bed, then pull a graceful about-face, turning so your [pc.butt] faces him, and glance over your shoulder as you sway your [pc.hips] seductively.");
 	//if biped, naga, goo, tripod: 

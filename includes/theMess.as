@@ -419,6 +419,8 @@ function stephIrsonEpisodeTwo():void
 	//[Watch Screen]
 	clearOutput();
 	author("Savin");
+	showName("STEPH\nIRSON");
+	showBust("STEPH_2");
 	output("You flop down in a quiet booth in the corner of the bar, looking up at a sizable Super-HD Viewscreen mounted above the bar. As you sit down, the last commercial break is just coming to an end, telling you to buy JoyCo brand healing services before the screen fades to a superimposed logo of <b>Steph Irson: Galactic Huntress</b>, a popular nature show. The camera pans down from a bright sunrise to an athletic young woman in an almost comically skimpy ranger outfit, with khaki hotpants and low-cut shirt rolled up to expose her midriff and ample cleavage both. Her blonde ponytail bounces excitedly as she jogs along through a jungle underbrush, the camera-drone struggling to keep pace with her. Despite her obvious humanity, the hostess is sporting a pair of perky kitty-ears atop her sandy hair, which twitch cutely as the camera focuses in on them.");
 	output("\n\nA U.G.C. mandated warning appears on the screen in tiny letters:");
 	output("\n\n<b>\"The U.G.C. Scout Authority apologizes for content in previous episodes of <i>Steph Irson: Galactic Huntress</i>, and warns that interacting with unidentified xeno-biotics can result in erratic and unexpected mutations or grievous injury. Do not attempt anything seen in this series at home, or without professional guidance.\"</b>");
@@ -440,7 +442,21 @@ function stephIrsonEpisodeTwo():void
 	output("\n\n<i>\"Aw, that's alright, babe. I'll call you Carrie! Like my mum!\"</i> Steph says with a grin, starting to write on the goo's tit... only to have her pen... and her hand... sink into her gooey skin.");
 	output("\n\nThe goo and Steph both stare at the huntress's wrist as it vanishes into the goo-girl's tit. <i>\"Oops. I guess I'm hungry! Oh well! This is gonna be super duper fun, Miss Irson, I promise.\"</i>");
 	output("\n\nSteph manages only to let out a panicked scream as a surge of grey goo rushes up her arm, crashing across her body like a tidalwave, pulling her into the main mass of silvery machines. Her voice is silenced as a million micromachines surround her, dragging the show's host into the googirl's body until there's no trace of her left except her ponytail wiggling around behind the goo's head, dripping with moist micromachines. Giggling to herself, the goo spins around and strikes a pose, now almost perfectly mirroring Steph's shapely, athletic form (except for a much larger bust and ass), even pouring herself in to fill out the huntress's clothes.");
-	output("\n\n<i>\"Say hi to the camera!\"</i> The goo titters, bending over and wiggling her ass at the camera drone hovering around her. Winking at the camera over her shoulder, she reaches back and spreads her cheeks, quick and hard enough to rip her short pants and revealing a glistening wet ass and pussy - a human pair - beneath the torn bits of short pants still clinging to the hidden Steph's hips. The drone zooms in on her slit, catching a bit of lens flare as the dim sun reflects off of Steph's soaked-wet pussy, showing a thick trail of vaginal secretion trickling down from her spread hole.");
+	processTime(4);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",stephIrsonEpisodeTwoDashTwo);
+}
+function stephIrsonEpisodeTwoDashTwo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("STEPH\nIRSON");
+	showBust("STEPH_2_NUDE");
+	var x:int = 0;
+	if(pc.hasCock()) x = pc.smallestCockIndex();
+	else if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	output("<i>\"Say hi to the camera!\"</i> The goo titters, bending over and wiggling her ass at the camera drone hovering around her. Winking at the camera over her shoulder, she reaches back and spreads her cheeks, quick and hard enough to rip her short pants and revealing a glistening wet ass and pussy - a human pair - beneath the torn bits of short pants still clinging to the hidden Steph's hips. The drone zooms in on her slit, catching a bit of lens flare as the dim sun reflects off of Steph's soaked-wet pussy, showing a thick trail of vaginal secretion trickling down from her spread hole.");
 	output("\n\n<i>\"Won't need THESE anymore,\"</i> the goo giggles, fingers slipping into her hips and pulling off the ruins of Steph's shorts, and then her lacy black panties, which the goo pauses to get a nice whiff of. <i>\"Oh, she smells just like I thought she would! M-maybe I should keep these...\"</i> she says, looking around in mock-guilt before stuffing them into her gooey cleavage.");
 	output("\n\nPants gone, the goo shimmies down to the ground, planting her ass on the dusty plain and lifting her long, toned legs up, slowly pulling off her boots one by one, leaving Steph's long stockings bare to the camera. <i>\"Oooh, sexy! Maybe I'll just leave these on!\"</i> the goo giggles, rolling onto her knees and showing off her backside and legs for the camera.");
 	output("\n\nThe goo's absolutely putting on a show of her own, now, crawling toward the camera on all fours, slowly letting her machines tear apart Steph's shirt to reveal her impressive bust, barely held back by a tight black bra. She exaggerates her movements, making sure her heavy chest is nice and bouncy for the camera as she approaches.");
@@ -490,7 +506,7 @@ function stephIrsonEpisodeTwo():void
 	else pc.lust(33);
 	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone's eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>\"Experiencing Technical Difficulties\"</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
 	output("\n\n<i>\"So, you're gonna edit all that out in post, right?\"</i> the goo giggles, just as a commercial comes on.");
-	processTime(23);
+	processTime(19);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

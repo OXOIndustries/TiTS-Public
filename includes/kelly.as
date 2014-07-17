@@ -105,6 +105,13 @@ function kellysOfficeBonusFunction():Boolean
 		}
 		return false;
 	}
+	else
+	{
+		output("\n\n<b>Xenogen Biotech is currently closed. You'll have to come back later.</b>");
+		clearMenu();
+		addButton(0,"Next",move,"SOUTH ESBETH 2");
+		return true;
+	}
 	return false;
 }
 
@@ -3038,12 +3045,12 @@ function kellysCocksGetBLOWN():void
 	output("\n\nA trill of bliss bursts from Kelly's lips, interrupted when you start smearing her precum along her upper shaft by a faint giggle and a full-body shiver that you can feel right through the cock in your mouth. The laquine's ticklish, it seems... but it also seems that she rather enjoys it, since she inches forward again, trying to avoid moving in such a way that she'll accidentally pop her dick from your mouth, her other hand joining the first atop your head to help her balance.");
 
 	output("\n\nNot that you don’t appreciate her enthusiasm, but if she keeps moving like that she’ll miss the table sometime soon. You would warn her if you weren’t so busy with her cock stuffed in your mouth. But surely she must realise this?");
-	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
+	if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" It’s not like she’d repeat her mistake from last time. That table of hers can only take so much abuse before it shatters into a million splinters. There’s no way she’s that much of an air-head... right?");
 
 	output("\n\nEvidently, no, she doesn't realise it. She just keeps on blindly inching forward, a slave to her lusts and her fixation on your mouth, pumping her hips even as she crawls forward. Finally, she pushes her luck too far; as you are lifting your head back along her shaft, she pumps forward in an effort to keep it inside of your mouth, only to lose her balance completely! With a startled yelp, Kelly falls clean off the table, sending it clattering off its legs behind her as she hurtles down right on top of you!");
 
 	output("\n\n");
-	if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("Oh bother, not again! ");
+	if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("Oh bother, not again! ");
 	output("You steel yourself to catch the falling laquine as you immediately hop back to avoid getting hurt by the crashing table. ");
 	//Strength Check:
 	if(pc.physique() > 30) output("Luckily you’re strong enough to heft her up as a loud bang of wood-meets-floor resounds around the kitchen.");
@@ -3072,7 +3079,7 @@ function kellysCocksGetBLOWN():void
 			output("\n\nYou extend your [pc.wings] and point a thumb at them. Clearly you’d have flown over her head and landed safely and sound away from this mess, or better yet....");
 		}
 		output("\n\nYou wouldn’t have made this mess in the first place.");
-		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" Much less repeat it after the first time, you add.");
+		if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output(" Much less repeat it after the first time, you add.");
 		output(" Closing your hand you lightly knock on her head. Is there a brain in there or is she just not using it? You doubt you’ve developed to suck her brains out through her dick yet.");
 		output("\n\n<i>\"Yes, there's a brain in there,\"</i> she pouts at you in wounded dignity. <i>\"But, like I always say, if you have time to use your brain when you're fucking, you're clearly not enjoying yourself properly,\"</i> she declares with a huff, folding her arms under her impressive cleavage for emphasis.");
 		output("\n\nChuckling, you tug on her nipple and muffle her moan with a kiss. Alright, she has a point, you concede. Now, back to dessert?");
@@ -3085,7 +3092,7 @@ function kellysCocksGetBLOWN():void
 		output("\n\nWithout another word you adjust her and bend her over your lap, lifting a hand and spanking her pretty butt hard enough to leave hand imprints.");
 		output("\n\nKelly yelps and squirms at each slap, but the throbbing of her cocks against your thighs and the sticky smears they leave as each impact makes them rub against your [pc.skinFurScales] makes it clear that she's not entirely put out by the roughness. When you finally deign to stop spanking her, she lets out a childish moan of disapproval, one hand reaching back to gently stroke the now-tenderised flesh of her butt. <i>\"Why'd you do that? It was an accident,\"</i> she whines.");
 		output("\n\n");
-		if(flags["KELLY_BLOWJOBS_GIVEN"] > 0 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("She obviously didn’t learn her lesson the first time, so a repeat of her punishment is in order, you retort.");
+		if(flags["KELLY_BLOWJOBS_GIVEN"] > 1 && flags["KELLY_BLOWJOBS_GIVEN"] != undefined) output("She obviously didn’t learn her lesson the first time, so a repeat of her punishment is in order, you retort.");
 		else output("An accident that could have been easily avoided if she was less of a slut or less of a showoff, you retort.");
 		output(" She was a bad girl, messing up the kitchen like that. And you punish your girls when they’re naughty. It’s only logical, you explain.");
 		output("\n\n<i>\"I guess,\"</i> she declares, clearly trying to sound grudging as she does so. <i>\"Though I suppose I'm lucky; my mom spanks me a lot harder than that when I do something wrong,\"</i> she admits, actually giggling as she does so, her former gloom brushed to the wayside now.");

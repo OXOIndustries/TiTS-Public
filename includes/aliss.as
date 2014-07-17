@@ -776,7 +776,7 @@ function alissSexyTimes():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You ask if Aliss would be so kind as to model this garment for you. She nods, though for some reason her face flushes hotly, turning a deeper shade of purple. \"<i>You, ah, you just wait right here, [pc.name]. I'll be right back!</i>\" She turns away and quickly makes her way to the changing rooms, her steps a little more hurried than usual. How odd. That's the first time she's called you by your name.");
 	output("\n\nAfter a minute's time you hear a soft call from the changing rooms, \"<i>Ah, [pc.name]. Could you come here for a moment? I, ah, need your help with something.</i>\" You raise an eyebrow. Need help with something? It couldn't be that hard to put on, could it?");
@@ -800,7 +800,7 @@ function helpAlissWithSexyTiems():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You slip inside the changing room, noting how spacious it seems to be. Surprise dick or not, you figure you'd have to be an idiot to pass up an opportunity like this. Aliss beams at you as she turns around, letting you come face to face with the fourteen inch purple cock between her legs.");
 	if(!pc.isNude()) output(" You quickly strip down, tossing your clothes into a neat pile in the corner.");
@@ -826,7 +826,7 @@ function questionAlissAboutHerHorsecock():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("Before you agree to anything, you've got to settle a few things. \"<i>So... Is that normal?</i>\" you ask in a quiet voice, motioning towards the dick between her legs.");
 	output("\n\nAliss shrugs nonchalantly, \"<i>Whenever I get horny, but I'm guessing that's not what you meant, is it?</i>\" You shake your head. \"<i>I'm guessing you don't know much about my race then? Well then, fun fact, [pc.name], I'm a male! Males for my species, the ovir, are pretty \"feminine\" according to your culture. Breasts, hips, the whole shebang. Oh yeah, and this thing,</i>\" she grips the horse-like cock between her legs for emphasis. \"<i>Don't worry though, </i>mi amour<i>, I don't plan on sticking it anywhere you don't want it to go. So, how about it? Are you going to join me in here, or do I have to deal with this thing by myself?</i>\"");
@@ -842,7 +842,7 @@ function nopeDafuqOut():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You shake your head and softly close the door before quickly ");
 	if(!silly) output("retreating from the store");
@@ -864,7 +864,7 @@ function fuckDatBitchesSluttyAss():void
 	//PC can also use a hardlight strapon that she sells, if it's worn and the PC has no applicable cocks.
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("As tantalizing as that cock is, you think you can help Aliss relieve herself in other ways. Advancing, your hands grip her upper arms, while you lean in for a kiss. The alien lets out a surprised sound, but once your lips meet with her strawberry flavored ones, she seems to melt in your arms.");
 
@@ -895,7 +895,7 @@ function condomWithAliss(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You decide to oblige Aliss, and pick up one of the stray condoms she had with her. Emblazoned on it is the word \"Stallionguard\" along with a stylized picture of an eight-legged horse.");
 	output("\n\n\"<i>Yep, those are the ones,</i>\" Aliss says, looking over her shoulder. \"<i>They're designed for folks with equine dicks, but they fit us ovir perfectly too. They'll certainly fit you as well, just maybe not as comfortably.</i>\"");
@@ -912,7 +912,7 @@ function noCondomsAlissYerASlut(x:int = -1):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You shake your head, a grin on your face. There will be no condoms today. Any mess she makes she'll have to clean up herself. She raises her eyebrows in surprise, but quickly lowers one, giving you a sultry look. \"<i>Well then I hope for your sake, you're worth it,</i>\" she says, looking over her shoulder at you.");
 
@@ -1035,7 +1035,7 @@ function alissButtFuxEnd(x:int = -1, condom:Boolean = false):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("<b>One hour later.</b>");
 	output("\n\nInsatiable as she is, the rapacious ovir doesn't let you go until you've ");
@@ -1071,7 +1071,7 @@ function offerPussyYouSloot():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	var x:int = rand(pc.totalVaginas());
 	output("The cock before you glistens tantalizingly with precum. You swallow hard, feeling a warm tingle from down below. Almost instinctually [pc.eachVagina] is growing wet with arousal.");
@@ -1148,7 +1148,7 @@ function takeItInZeCoochFromAlissFinal(x:int = 0):void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("<b>One hour later.</b>");
 	output("\n\nYou emerge from the changing room shakily. Your body feels like it's been through an intense workout. Not content to have just one romp, Aliss filled several more condoms inside of you, stacking them all in the corner of the room like a perverted timepiece. You switched positions several times, and even got free of the damnable panties once, forcing her into the same position you were in while you rode her for all she's worth.");
@@ -1171,7 +1171,7 @@ function offerAlissYourAss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You bite your lip as you look at the impressive member between Aliss' legs.");
 	if(pc.hasCock() && pc.biggestCockLength() >= 15) output(" It's not as big as yours, of course, but as far as natural dicks go, fourteen inches is quite respectable.");
@@ -1296,7 +1296,7 @@ function offerAlissYourAssPart2():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("<b>One hour later.</b>");
 	output("\nSeemingly insatiable, Aliss doesn't quit until several condoms surround her");
@@ -1322,7 +1322,7 @@ function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("The way that purple alien cock dangles between Aliss' legs makes your mouth water. There's something about the fresh pre-cum glistening across its length that seems so mesmerizing. As you watch, the alien gathers another dollop of pre-cum and smears it along the shaft.");
 	output("\n\n\"<i>You seem quite fixated on this... perhaps you'd like a taste?</i>\" she asks, a devilish smile creeping over her face. You nod absently. Aliss steps forward suddenly, slipping a hand underneath your chin ");
@@ -1383,7 +1383,7 @@ function swallowAlissSpunk():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You quickly make the decision to swallow every last drop of her cum. As she's tensing up you make sure she's buried as far into your mouth as possible. Aliss bites her lip, and you can feel her body tensing up. The tail wrapped around your midsection constricts, though not painfully. Aliss bucks her hips as the cock within your throat suddenly grows rigid.");
 	output("\n\nAn unearthly cry escapes from the lizard-girl's throat, filling the little changing room, and most certainly echoing throughout the rest of the store. A sudden flood of warmth envelops your body as Aliss' seed is pumped directly into your stomach. You pull the cock out slightly so that jet after jet of cum goes straight into your mouth. You gulp it down greedily, your mind in too much of a haze right now to think properly. You swirl the cum around in your mouth, luxuriating in its taste. With every gulp of cum you feel your body growing warmer... more aroused with every mouthful.");
@@ -1405,7 +1405,7 @@ function takeALoadInDaFaceFromAliss():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("As nice as it would be to have this cum inside you, what you really want is to be covered in it. At the last second you pull the cock out of your mouth and aim it at your face. Aliss' body tenses up, and the tail around you constricts painlessly. You wrap your hands around her cock, pumping them up and down as it grows suddenly rigid.");
 	output("\n\nAll at once, her cumvein thickens, and then a burst of white, gooey cum erupts from the alien cock before you. The first jet of cum splatters against your face. The rest are less precise, landing on your outstretched tongue, chin, chest, really an available space. Pretty soon you're practically covered in the warm substance. You greedily gulp down whatever lands in your mouth.");
@@ -1424,7 +1424,7 @@ function alissDumpsALoadOnHirseflLOLHirDurhurhur():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("A mischievous thought crosses your mind. As much as you'd like the cum... you think Aliss might like a taste of her own medicine. As her body tenses and the cock inside your throat grows rigid, you pull your mouth away. You grip it firmly and point it, not at yourself, but at the lizard-like woman in the throes of passion.");
 	output("\n\nHer cumvein thickens and suddenly a burst of pearlescent white cum erupts from the cock, splattering against her own face. Her eyes widen in surprise, but there's nothing she can do about it as another jet blasts against her face, then another against her breasts. Blast after blast covers her from face to stomach in creamy goo. You can't help but giggle as she gulps down any that falls into her mouth. She licks her lips and actually scoops up some more seed with two fingers, letting that dribble into her mouth.");
@@ -1477,7 +1477,7 @@ function sexWithAlissFromMainMenu():void
 {
 	clearOutput();
 	author("Third");
-	userInterface.showBust("ALISS");
+	userInterface.showBust("ALISS_NUDE");
 	userInterface.showName("\nALISS");
 	output("You slide your hand along Aliss' ass and whisper in her ear if she'd like to head into the changing to blow off some steam. She blushes, but gives you a smile, \"<i>All right, </i>mi amour<i>\, follow me.</i>\"");
 	output("\n\nShe takes you by the hand and leads you into the closest changing room. You notice several other employees at the store rolling their eyes, though others seem to have barely-concealed smirks.");

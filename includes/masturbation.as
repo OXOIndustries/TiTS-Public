@@ -115,9 +115,22 @@ function availableFaps(roundTwo:Boolean = false):Array
 	return faps;
 }
 
+/*Old:
 function selectRandomFap(faps:Array):void
 {
 	faps[rand(faps.length)].execute();
+}*/
+
+function selectRandomFap(faps:Array):void
+{
+	// Don't allow milk scenes to be selected randomly
+	var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
+		if (item.text == "Hand Milk") return false;
+		if (item.text == "Magic Milker") return false;
+		return true;
+	});
+	
+	filtFaps[rand(filtFaps .length)].execute();
 }
 
 function masturbateMenu(roundTwo:Boolean = false):void {
@@ -435,9 +448,9 @@ function singleDickFap():void {
 		output(formatList() + ".");
 	}
 	else if(pc.cumQ() <= 250) output(" Thick spurt after thick spurt emerges from your cumslit, painting you from your [pc.belly] to your [pc.hair] in [pc.cumColor] relief.");
-	else if(pc.cumQ() <= 500) output("Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+	else if(pc.cumQ() <= 500) output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human's by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
 	else {
-		output("Large torrents of [pc.cum] spray out of your cumslit with such vigor that you're able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
+		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you're able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
 		if(pc.cumQ() < 1000) {}
 		else if(pc.cumQ() < 2000) output(", nevermind the growing puddle below");
 		else if(pc.cumQ() <= 5000) output(", nevermind the inch-deep puddle below");

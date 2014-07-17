@@ -712,7 +712,7 @@ function approachFriendPenny(outputT:Boolean = true):void {
 	this.addButton(2,"Talk:Fun",whatDoesPennyDoForFun);
 	this.addButton(3,"Talk:Species",talkToPennyAboutSpecies);
 	if((pc.hasCock() || pc.hasVagina()) && pc.lust() >= 33) this.addButton(4,"Sex",pennySexFirstTime);
-	else this.addDisabledButton(4,"Sex");
+	else this.addDisabledButton(4,"Sex","You need a penis or vagina and lust at or above 33 to attempt intercourse with Penny.");
 }
 
 //[Sex]
@@ -1366,7 +1366,7 @@ function approachGirlfriendPenny():void {
 	this.clearMenu();
 	this.addButton(0,"Talk",talkToGirfriendPenny);
 	if(pc.lust() >= 33) this.addButton(1,"Sex",pennySexMenu);
-	else this.addDisabledButton(1,"Sex");
+	else this.addDisabledButton(1,"Sex","Sex","This choice requires lust at or above 33.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -1637,8 +1637,8 @@ function pennySproutsAWeiner():void {
 	output("\n\nThe shaking vial slowly descends toward her pubic mound clasped as it is in the fennec’s quaking fingers. It stops a perhaps a millimeter above her exposed skin, just above her slit but below the line where her tawny fur begins. She whimpers, glances at you for support, and without another word, she plunges the needle into herself. Startled, Penny gasps, <i>“It didn’t hurt at all! The anesthetic coating on these needles is perfect!”</i>  She depresses the plunger with one firm push, her previous worries forgotten.");
 	output("\n\nThere’s no change at first. Penny glances up at you with a worried look while she works the needle free and places it on her desk. <i>“Was it a d... dud?”</i>  she wonders. One of her eyes starts to dilate, and then the other. Her tongue doesn’t even make it the whole way back into her mouth. It just kind of flops out to the side and twitches slightly. <i>“F-feeling it aowww...”</i>  she slurs, her breaths coming hard and fast. Her left nipple and then her right pop out, sticking out through her wraps as lust overwhelms her. At the same time, her pussy lips clench and then relax, opening as wide as that orifice can, leaking clear, feminine fuck-slime onto her chair.");
 	output("\n\nThe insensate fennec slams her hand down onto her pussy hard enough to splatter her lubricants onto her desk, three fingers immediately buried to the knuckle in her simmering slot. Her hips lift and grind against her hand, and a lazy, ecstatic grin spreads across her face as she masturbates. <i>“Sho good,”</i>  she babbles while fucking herself. <i>“So hot... so hot!”</i>  Her movements grow jerky, and an ugly-looking lump begins to rise at the injection site, discolored and red.");
-	output("\n\nPenny doesn’t seem to care about the growth in the slightest. She’s worked a fourth finger into her twat and is so busily fucking herself that she looks about ready to start fisting any moment now. Meanwhile, the red lump is nearly an inch tall. Veins rise on the surface, visibly expanding with each pump of heated blood, seeming to feel the object as it rises higher. Around the border of the protrusion, her skin bunches up, folds stacking upon folds into something not dissimilar from foreskin or an animal’s sheath. Penny’s fur spreads down as it thickens, confirming that it is a sheath, which means the red bulge is... her cock. It’s risen up to a full two inches in height already, and the rate of its grown is only accelerating.");
-	output("\n\nBlinking as she starts to fistfuck herself, Penny seems to suddenly become aware of the new, growing organ. Her free hand wraps around it, and she gasps. A narrow tip peeks through her fingers while the base thickens, fed by the spiderwebs of fresh veins that feed further engorgement. Her cock swells further, slowly straining her tightly-clasped fingers apart to reveal a bulging knot. At the same time, a tiny slit appears at the tip and begins to weep white droplets of liquid lust.");
+	output("\n\nPenny doesn’t seem to care about the growth in the slightest. She’s worked a fourth finger into her twat and is so busily fucking herself that she looks about ready to start fisting any moment now. Meanwhile, the red lump is nearly an inch tall. Veins rise on the surface, visibly expanding with each pump of heated blood, seeming to fill the object as it rises higher. Around the border of the protrusion, her skin bunches up, folds stacking upon folds into something not dissimilar from foreskin or an animal’s sheath. Penny’s fur spreads down as it thickens, confirming that it is a sheath, which means the red bulge is... her cock. It’s risen up to a full two inches in height already, and the rate of its growth is only accelerating.");
+	output("\n\nBlinking as she starts to fist-fuck herself, Penny seems to suddenly become aware of the new, growing organ. Her free hand wraps around it, and she gasps. A narrow tip peeks through her fingers while the base thickens, fed by the spiderwebs of fresh veins that feed further engorgement. Her cock swells further, slowly straining her tightly-clasped fingers apart to reveal a bulging knot. At the same time, a tiny slit appears at the tip and begins to weep white droplets of liquid lust.");
 	output("\n\nThe lust-drugged vixen throws her head back and moans in orgasmic bliss while her expanding fox-cock flexes in her grip, just in time to launch long ropes of jism up onto it’s owner’s tits. Again and again, sticky semen is sprayed up onto the underside of Penny’s breasts. Some falls on her belly after a few moments, losing momentum as the drug’s potential is expended. Slouching into her chair, Penny shudders and sighs, pulling her hand free of her momentarily-gaped snatch with a lewd-sounding pop.");
 	output("\n\nThe newly-minted hermaphrodite uncurls her fingers from around her prized possession, gazing on it with a sense of wonder. It’s definitely a dog-dick; it has a clearly visible but shrinking knot at its base. The new-grown tool looks to stand about six inches tall when hard, but it’s already starting to retract into its fleshy sheath. <b>Penny has a cock!</b> She doesn’t have balls, but from her description of the drug, she’s liable to get some if you give her more.");
 	output("\n\nPenny interrupts your speculations with a ringing endorsement, <i>“Oh god, it’s perfect! It’s just like I always imagined.”</i>  She flutters her lashes in your direction, letting her eyebrows sink low as she says, <i>“And it felt better than I ever expected. I can’t wait to try it out with you!”</i>  In confirmation of her statement, her sheath spreads to expose an inch of the pointed tip, sliding out to point accusingly in your direction. She idly gathers some of her cum off her chest to taste, each swallow aiding another inch of erection in slipping free. By the time she’s cleaned, her cock is out and throbbing again.");
@@ -1835,7 +1835,6 @@ function lootThrobb():void {
 	itemCollect(foundLootItems);
 }
 
-
 //Penny Sex Menu
 function pennySexMenu(outputT:Boolean = true):void {
 	this.userInterface.showBust("PENNY");
@@ -1860,38 +1859,37 @@ function pennySexMenu(outputT:Boolean = true):void {
 	this.clearMenu();
 	
 	// I don't THINK these scene is supposed to /require/ the player have a cock; it never once uses any logic or parse tags for the players cock, nor refer to it within the scene text OR the "exit" texts...
-	if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
-	else this.addDisabledButton(0, "Onahole Her");
+	if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole,undefined,"Onahole","Jerk off Penny's newly grown cock with an onahole.");
+	else this.addDisabledButton(0, "Onahole Her","Onahole Her","Penny must be a futanari for this scene to work.");
 	
 	if (pc.hasCock())
 	{
 		//if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
 		//else this.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
-		trace("COCK SIZE: " + pc.cockVolume(0) + " PENNY CAPACITY: " + penny.vaginalCapacity());
-		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck);
-		else this.addDisabledButton(1,"OverDeskFuck");
-		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage);
-		else this.addDisabledButton(2,"Frottage");
-		this.addButton(3,"Pawjob",penniliciousPawjob);
-		this.addButton(4,"FaceFuckHer",faceFuckPenny);
+		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck,"OverDeskFuck","Bend Penny over the desk and go to town.");
+		else this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","You're too big to bend her over the desk and fuck her.");
+		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage,undefined,"Frottage","Grind dicks with Penny.");
+		else this.addDisabledButton(2,"Frottage","Frottage","This scene requires Penny to have a dick.");
+		this.addButton(3,"Pawjob",penniliciousPawjob,undefined,"Pawjob","Get a fluffy footjob from Penny.");
+		this.addButton(4,"FaceFuckHer",faceFuckPenny,undefined,"FaceFuckHer","Fuck Penny's face.");
 	}
 	else 
 	{
-		this.addDisabledButton(1,"OverDeskFuck");
-		this.addDisabledButton(2,"Frottage");
-		this.addDisabledButton(3,"Pawjob");
+		this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","This scene requires you to have a penis.");
+		this.addDisabledButton(2,"Frottage","Frottage","This scene requires you to have a penis.");
+		this.addDisabledButton(3,"Pawjob","Pawjob","This scene requires you to have a penis.");
 		//this.addDisabledButton(4,"FaceFuckHer");
-		if(penny.hasCock()) this.addButton(4,"Catch Anal",getAssFuckedByPenny);
+		if(penny.hasCock()) this.addButton(4,"Catch Anal",getAssFuckedByPenny,undefined,"Catch Anal","Get ass-fucked by Penny.");
+		addDisabledButton(4,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
 	}
-	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex);
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(6,"Selfsuck",pennySelfSuckCumsluttery);
-	else addDisabledButton(6,"Selfsuck");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(7,"Bukkake",bukkakePenny);
-	else addDisabledButton(7,"Bukkake");
-	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho);
-	else addDisabledButton(8, "Invite Flahne");
-
+	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(6,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	else addDisabledButton(6,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(7,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	else addDisabledButton(7,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
+	else addDisabledButton(8, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
 
@@ -1971,9 +1969,11 @@ function faceFuckPenny():void {
 	penny.loadInMouth(pc);
 	//[Fuck her butt] [Get ass fucked] [Nah, girl]
 	this.clearMenu();
-	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh);
-	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny);
-	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll);
+	if(pc.hasCock()) this.addButton(0,"Fuck Her Butt",fuckPennyButtFromFraceFuckSceneNyahhhh,undefined,"Fuck Her Butt","Fuck Penny's ass.");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her Butt","Fuck Her Butt","You need a dick to fuck Penny's ass.")
+	if(penny.hasCock()) this.addButton(1,"GetButtFucked",getAssFuckedByPenny,undefined,"Get Butt Fucked","Let Penny drill you in the ass.");
+	else addDisabledButton(1,"GetButtFucked","Get Butt Fucked","Penny needs to have a dick for this scene.")
+	this.addButton(2,"Nah, girl",nahhhhGurrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrllllllllllllllllllllllllllllllllllll,undefined,"Nah, girl","You're too tired for that right now.");
 }
 
 //Nah,girl
@@ -2188,10 +2188,12 @@ function penniliciousPawjob():void {
 	//[Lick Out] [Suck Off] [GetGroundOn] [Frot]
 	//The first two go to the same scene with variations. The second two are unique.
 	this.clearMenu();
-	this.addButton(0,"Lick Out",lickOutSomePennyDawg);
-	if(penny.hasCock()) this.addButton(1,"Suck Off",suckOffPennyDawgYoMahDiggity);
-	this.addButton(2,"GetGroundOn",getGroundOnByPenny);
-	if(penny.hasCock()) this.addButton(3,"Frot",pennyFrottage);
+	this.addButton(0,"Lick Out",lickOutSomePennyDawg,undefined,"Lick Out","Eat out Penny's vagina.");
+	if(penny.hasCock()) this.addButton(1,"Suck Off",suckOffPennyDawgYoMahDiggity,undefined,"Suck Off","Suck off Penny's cock.");
+	else addDisabledButton(1,"Suck Off","Suck Off","You can only suck off Penny if she actually has a dick.");
+	this.addButton(2,"GetGroundOn",getGroundOnByPenny,undefined,"Get Ground On","Have Penny mount your dick and grind across its length.");
+	if(penny.hasCock()) this.addButton(3,"Frot",pennyFrottage,undefined,"Frot","Rub dicks with Penny.");
+	else addDisabledButton(3,"Frot","Frot","Penny needs to have a dick in order for you to frot with it.");
 }
 
 //Lick Out
@@ -2695,9 +2697,9 @@ function jackinPennyOffWithAnOnahole():void {
 	
 	
 	//[Throw It Away] [Bite It] [Feed2Her]
-	this.addButton(0,"Throw Away",throwPennysCumAway);
-	this.addButton(1,"Bite It",bitePennysCondom);
-	this.addButton(2,"Feed2Her",feedPennysCondomToHer);
+	this.addButton(0,"Throw Away",throwPennysCumAway,undefined,"Throw away the filled condom.");
+	this.addButton(1,"Bite It",bitePennysCondom,undefined,"Bite the filled condom, probably getting quite a bit messy in the process.");
+	this.addButton(2,"Feed2Her",feedPennysCondomToHer,undefined,"Feed2Her","Feed Penny her own cum.");
 }
 
 //Throw It Away
@@ -2928,9 +2930,9 @@ function teasePenny():void
 	pc.lust(20+rand(10));
 	//[Let them join in] [Let them watch] [Hide her actions]
 	clearMenu();
-	addButton(0,"Join In",letThemJoinInPennyYouSlut);
-	addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut);
-	addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut);
+	addButton(0,"Join In",letThemJoinInPennyYouSlut,undefined,"Join In","Instruct Penny to fuck and suck just about everyone she meets. She'd probably enjoy it, the slut.");
+	addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut,undefined,"Let Watch","Instruct Penny to be something of an exhibitionism slut. She seems like the type to get off on it.");
+	addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut,undefined,"Hide It","Instruct Penny to keep her rampant cum-sluttery a secret if possible.");
 }
 
 //HIDE HER ACTIONS
@@ -3025,10 +3027,10 @@ function letThemJoinInPennyYouSlut():void {
 	processTime(10);
 	clearMenu();
 	//[Use your cock] [Use her cock] [Find someone in public]
-	if(pc.hasCock()) addButton(0,"Your Cock",useYourCocksOnCumSluttyPenny);
-	else addDisabledButton(0,"Your Cock");
-	addButton(1,"Penny's Cock",makeUseOfPennysCumSlutCock);
-	addButton(2,"Find Someone",findSomeonePublicToHelpPennyCumslut);
+	if(pc.hasCock()) addButton(0,"Your Cock",useYourCocksOnCumSluttyPenny,undefined,"Your Cock","Cum all over Penny with your cock.");
+	else addDisabledButton(0,"Your Cock","Your Cock","You need a dick in order to use it on Penny.");
+	addButton(1,"Penny's Cock",makeUseOfPennysCumSlutCock,undefined,"Penny's Cock","Penny can make a mess of herself with her own cock.");
+	addButton(2,"Find Someone",findSomeonePublicToHelpPennyCumslut,undefined,"Find Someone","Find someone to give Penny the cum she needs.");
 }
 
 //USE YOUR COCKS (characters with penis and ability to produce non-zero amounts of cum only)
@@ -3115,12 +3117,12 @@ function pennyCumslutterMenuTalk():void {
 	//[Let them join in] [Let them watch] [Hide her actions] --(all of these previous as before)-- [Calm down]
 	clearMenu();
 	if(flags["PENNY_BEING_A_PUBLIC_CUMSLUT"] == undefined) addButton(0,"Join In",letThemJoinInPennyYouSlut);
-	else addDisabledButton(0,"Join In");
+	else addDisabledButton(0,"Join In","Join In","Penny is already doing this.");
 	if(flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] == undefined) addButton(1,"Let Watch",pennyLetThemWatchYouCumSlut);
-	else addDisabledButton(1,"Let Watch");
+	else addDisabledButton(1,"Let Watch","Let Watch","Penny is already doing this.");
 	if(flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) addButton(2,"Hide It",hideYourCumslutteryPennyYouSlut);
-	else addDisabledButton(2,"Hide It");
-	addButton(4,"Calm Down",calmDownPennyBitch4Repeats);
+	else addDisabledButton(2,"Hide It","Hide It","Penny is already doing this.");
+	addButton(4,"Calm Down",calmDownPennyBitch4Repeats,undefined,"Calm Down","Talk Penny into not being such a brazen, cum-drinking slut.");
 }
 
 //CALM DOWN
@@ -3201,7 +3203,7 @@ function pennyVsFlahneWhoWillOutslutWho():void
 	output("\n\n“<i>Muh-uhmm!</i>” is all Penny can say, her ability to make words rapidly being pushed out of her head by your closeness.");
 	if (flags["PENNY_HIDING_CUMSLUTTERY"] != undefined || flags["PENNY_LETTING_OTHERS_WATCH_CUMSLUTTERY"] != undefined)
 	{
-		output("“<i>“<i>I haven’t let... I haven’t let her help!</i>” she managed. “<i>I’ve wanted to; oh, [pc.name] how I’ve wanted to! But I haven’t! It’s not... it’s not for her....</i>”");
+		output("“<i>I haven’t let... I haven’t let her help!</i>” she managed. “<i>I’ve wanted to; oh, [pc.name] how I’ve wanted to! But I haven’t! It’s not... it’s not for her....</i>”");
 	}
 	
 	output("\n\nYou interrupt her floundering by pressing softly on her lips, letting her know delicately but undeniably that now is not the time for her to be talking. “<i>She asked me to put in a word for her with you, did you know that? Can you guess what she wants from you?</i>”");

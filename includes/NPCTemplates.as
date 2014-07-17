@@ -200,6 +200,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["CAPTAINKHORGAN"] = new CaptainKhorgan();
 	}
+	if (!justUpdate || (justUpdate && chars["KASKA"] == undefined))
+	{
+		chars["KASKA"] = new Kaska();
+	}
 	if (!justUpdate || (justUpdate && chars["KIRO"] == undefined))
 	{
 		chars["KIRO"] = new Kiro();

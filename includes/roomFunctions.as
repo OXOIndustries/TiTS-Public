@@ -17,15 +17,14 @@ import classes.Items.Accessories.JungleRepel;
 
 function xenogenOutsideBlurb():Boolean
 {
+	variableRoomUpdateCheck();
 	if(hours < 6 || hours >= 17)
 	{
-		output("\n\n<b>The doorway to the north is currently sealed.</b> A notice declares that it will be open again at 6:00 standard terran time.");
-		rooms["SOUTH ESBETH 2"].northExit = "";			
+		output("\n\n<b>The doorway to the north is currently marked \"Closed.\"</b> A notice declares that it will be open again at 6:00 standard terran time.");		
 	}
 	else
 	{
 		output("\n\n<b>Xenogen Biotech is currently open!</b> Office hours are 6:00 to 17:00 standard terran time.");
-		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	}
 	return false;
 }

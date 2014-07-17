@@ -28,6 +28,13 @@ function widgetWarehouseBonusFuntimes():Boolean
 	output("Reddish dust filters down from the improvised rafters of this small, warehouse-like structure. The door snaps shut behind you with the audible hiss you'd expect from a high-efficiency starship hatch in spite of its placement in a ramshackle hut. Ancient, rusted bins and buckets are stacked into wobbly pillars, each holding mechanical parts, circuits and devices in far better shape than themselves. The light from a dozen fixtures of various designs and luminances shines off the stored machine parts brightly enough to make you shield your eyes as you look around. Leaning against the far wall like an exhausted soldier is an improvised workbench. Why, its middle is built on the back of a torso from a hollowed-out construction droid.");
 	output("\n\nThere can be no doubt; you're in an engineer's workshop.");
 
+	//Planet cracking dungeon followup:
+	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
+	{
+		shekkaMidDeal();
+		return true;
+	}
+
 	//Shekka's Room Appearance Blurb
 	//Not met
 	if(flags["MET_SHEKKA"] == undefined)
@@ -1087,7 +1094,7 @@ function pageTwoOfShekkaStuffs():void
 	output("\n\nThe inadequacies don’t last long, thankfully. Shekka raises her head up from being buried deep into your [pc.cockHeadBiggest]. Thick, numerous strands of cum, sweat and whatever else form a tingly spiderweb between her head and yours. Her eyes are no less wide than they were before. But the silent, little alien has a glimmer of warm, mischievous fun in her expression now. For as cold and determined as she’s been up until now, it sets you at ease to see her enjoying herself. You were worried your cock had hypnotized her!");
 	output("\n\n`Her presence is short lived. Shekka seals herself within your suit with one large, swift motion along the front zipper.  You’re alone, staring at your lumpy front side and left wondering how the rask is carrying on. One other thing is quickly dawning on you as well: this suit is hot as hades! Tarkus isn’t exactly a winter wonderland to begin with, nor does your frugal wonder mechanic seem all in that interested in investing in central air conditioning.");
 	output("\n\nYour already sexually slick body is sweating up a storm. Just as you’re about to start squirming about in the uncomfortable recliner, the bundle of alien writhes to life! Shekka is taking in deep breathes; from the sounds of it, her nose is doing all the work. A few moments later, she starts grinding against your [pc.cocks]");
-	if(pc.balls > 0) output(" and [balls]");
+	if(pc.balls > 0) output(" and [pc.balls]");
 	output(". Its slow, but forceful.");
 
 	output("\n\nThere was a time where you had actually forgotten about the ear-sheath wrapped tightly around your dick. That time has long since passed; the velvet flaps of skin feel just as heavenly on your swollen member as ever. Shekka’s newfound sense of action works its way down into her tail, next. It rubs and writhes between your thighs, slightly vibrating during its pound-fest upon the horny technician’s toolbox. Soon, her whole body is on fire, sliding and grinding against your moist, sensitive... everything!");
@@ -1242,7 +1249,7 @@ function shekkaMilkDrankingPartII():void
 		if(pc.cockTotal() == 1) output("your");
 		else output("one");
 		output(" turgid shaft and gliding over it’s overstimulated length. Yet, she’s not gone for long, returning with an odd pair of gloves on her hands. You notice she’s inches deep on her tail vibrator and leaking like a faucet, though you shouldn’t be talking when you’re nearly swimming in your own [pc.milk]. With all the thinking you’ve managed, you don’t notice her straddling you again.");
-		output("\n\nYou do notice when you feel her hands on your [pc.Fullchest], squeezing your [pc.nipples] and pulling, but something’s different. Something is making your entire chest tingle, and looking down at her strange gloves, you get an idea of just what it is. Shekka smiles as she lets the shock gloves pulse a surge into your sensitive [pc.nipples] causing your already painful arousal to intensify even as you buck your hips and drench your thighs with femcum, silent screams gripping you as you thrash like a bronco, making the smaller woman bounce her big, egg-bearing, Raskvel hips on you.");
+		output("\n\nYou do notice when you feel her hands on your [pc.fullChest], squeezing your [pc.nipples] and pulling, but something’s different. Something is making your entire chest tingle, and looking down at her strange gloves, you get an idea of just what it is. Shekka smiles as she lets the shock gloves pulse a surge into your sensitive [pc.nipples] causing your already painful arousal to intensify even as you buck your hips and drench your thighs with femcum, silent screams gripping you as you thrash like a bronco, making the smaller woman bounce her big, egg-bearing, Raskvel hips on you.");
 	}
 	//Male
 	//[if(hasVagina!=true & hasPenis=true)]

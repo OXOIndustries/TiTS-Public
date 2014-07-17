@@ -1255,6 +1255,9 @@
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
 					break;
+				case "lipColor":
+					buffer = lipColor;
+					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1511,6 +1514,7 @@
 				case "ey":
 					buffer = this.mfn("he", "she", "ey");
 					break;
+				case "him":
 				case "himo":
 				case "hero":
 					buffer = this.mf("him", "her");
@@ -1518,6 +1522,7 @@
 				case "em":
 					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
 					break;
+				case "his":
 				case "hisa":
 				case "hera":
 					buffer = this.mf("his", "her");
@@ -1585,6 +1590,12 @@
 			else if (lastChar == "x") str += "es";
 			//Normal pluralizes
 			else str += "s";
+			return str;
+		}
+		public function possessive(str:String):String {
+			var lastChar:String = str.substr(str.length-1,str.length);
+			if(lastChar == "s") str += "'";
+			else str += "'s";
 			return str;
 		}
 		public function inventorySlots(): int {
@@ -4871,7 +4882,7 @@
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
-			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2 * ballEfficiency);
+			if (balls == 0) quantity = Math.round(10 * 2 * 2 * ballEfficiency);
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 			return quantity;
 		}
@@ -4892,8 +4903,10 @@
 				ballFullness = 0;
 			}
 			while (minutes > 0) {
-				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+				if(balls == 0) cumDelta = refractoryRate / 60 * 6 / 4 * 2;
+				else cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
 				if(hasPerk("Breed Hungry")) cumDelta *= 2;
+				trace("cumDelta: " + cumDelta);
 				ballFullness += cumDelta;
 				minutes--;
 			}
@@ -4905,6 +4918,10 @@
 			if (arg < 0 || arg >= totalVaginas()) return false;
 			if (vaginas[arg].wetness >= 4) return true;
 			return false;
+		}
+		public function clitTotal():Number
+		{
+			return totalClits();
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
@@ -8976,33 +8993,39 @@
 				if (spacingsF) output(" ");
 				if (this is PlayerCharacter)
 				{
-					if(holePointer.hymen) output("<b>Your hymen is torn</b>");
-					else output("<b>You have been penetrated</b>");
+					if(display)
+					{
+						if(holePointer.hymen) output("<b>Your hymen is torn</b>");
+						else output("<b>You have been penetrated</b>");
+					}
 					if(hole >= 0 && vaginalVirgin) {
 						vaginalVirgin = false;
-						output("<b>, robbing you of your vaginal virginity</b>");
+						if(display) output("<b>, robbing you of your vaginal virginity</b>");
 					}
 					else if(analVirgin) {
-						output("<b>, robbing you of your anal virginity</b>");
 						analVirgin = false;
+						if(display) output("<b>, robbing you of your anal virginity</b>");
 					}
-					output("<b>.</b>");
+					if(display) output("<b>.</b>");
 				}
 				else
 				{
-					if (holePointer.hymen) output("<b>" + short + "s hymen is torn</b>");
-					else output("<b>" + short + " has been penetrated</b>");
+					if(display)
+					{
+						if (holePointer.hymen) output("<b>" + possessive(short) + " hymen is torn</b>");
+						else output("<b>" + short + " has been penetrated</b>");
+					}
 					if (hole >= 0 && vaginalVirgin)
 					{
 						vaginalVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " vaginal virginity</b>");
+						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " vaginal virginity</b>");
 					}
 					else if (analVirgin)
 					{
 						analVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " anal virginity</b>");
+						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " anal virginity</b>");
 					}
-					output("<b>.</b>");
+					if(display) output("<b>.</b>");
 				}
 				if(spacingsB) output(" ");
 				devirgined = true;
