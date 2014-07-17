@@ -1,11 +1,11 @@
-﻿import classes.GameData.CommandContainer;
+﻿import classes.GameData.CommandContainers.FapCommandContainer;
 import classes.Items.Miscellaneous.MilkBag;
 import classes.Items.Miscellaneous.MagicMilker;
 
 function availableFaps(roundTwo:Boolean = false):Array
 {
 	var faps:Array = new Array();
-	var fap:CommandContainer;
+	var fap:FapCommandContainer;
 	
 	// Overrides
 	// If any of these are true, do whatever you need and return after pushing a single function into the array
@@ -31,7 +31,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	// List all the faps!
 	if (currentLocation == "SHIP INTERIOR" && celiseIsCrew() && pc.hasTailCock())
 	{
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Porn&Celise";
 		fap.func = tailCockCeliseFaps;
 		faps.push(fap);
@@ -39,7 +39,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (pc.hasVagina())
 	{
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Vaginal";
 		fap.func = vaginalFap;
 		faps.push(fap);
@@ -47,7 +47,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (pc.hasCock())
 	{
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Penis";
 		fap.func = singleDickFap;
 		faps.push(fap);
@@ -55,7 +55,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (pc.cockTotal() >= 2)
 	{
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Penises";
 		fap.func = multiCockFap;
 		faps.push(fap);
@@ -65,15 +65,17 @@ function availableFaps(roundTwo:Boolean = false):Array
 	{
 		if (pc.hasItem(new MagicMilker(), 1))
 		{
-			fap = new CommandContainer();
+			fap = new FapCommandContainer();
 			fap.text = "Magic Milker";
 			fap.func = joyCoMagicMilker7Sucks;
+			fap.ignoreRandomSelection = true;
 			faps.push(fap);
 		}
 		
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Hand Milk";
 		fap.func = milkturbation;
+		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
 	
@@ -81,7 +83,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 	{
 		if (pc.hasCock())
 		{
-			fap = new CommandContainer();
+			fap = new FapCommandContainer();
 			fap.text = "Penis Feed";
 			fap.func = feedMimbranesWithCock;
 			faps.push(fap);
@@ -89,7 +91,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 		
 		if (pc.hasVagina())
 		{
-			fap = new CommandContainer();
+			fap = new FapCommandContainer();
 			fap.text = "Vaginal Feed";
 			fap.func = feedMimbranesWithPussy;
 			faps.push(fap);
@@ -98,14 +100,14 @@ function availableFaps(roundTwo:Boolean = false):Array
 	
 	if (pc.hasCuntTail())
 	{
-		fap = new CommandContainer();
+		fap = new FapCommandContainer();
 		fap.text = "Tailingus";
 		fap.func = tailingusFapReqsCuntTail;
 		faps.push(fap);
 		
 		if (pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0))
 		{
-			fap = new CommandContainer();
+			fap = new FapCommandContainer();
 			fap.text = "TailFuck";
 			fap.func = cuntTailFapScene;
 			faps.push(fap);
@@ -125,8 +127,7 @@ function selectRandomFap(faps:Array):void
 {
 	// Don't allow milk scenes to be selected randomly
 	var filtFaps:Array = faps.filter(function(item:*, index:int, array:Array):Boolean {
-		if (item.text == "Hand Milk") return false;
-		if (item.text == "Magic Milker") return false;
+		if ((item as FapCommandContainer).ignoreRandomSelection == true) return false;
 		return true;
 	});
 	
