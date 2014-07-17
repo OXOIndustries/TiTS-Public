@@ -124,7 +124,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_legCount = new InputLabelPair();
 			AddControl(_legCount);
 			_legCount.labelText = "Leg Count";
-			_legCount.inputValue = "2";
 			_legCount.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 		}
 		

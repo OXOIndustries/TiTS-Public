@@ -130,31 +130,26 @@ package classes.TITSSaveEdit.UI.Controls
 			_nippleColor = new InputLabelPair();
 			AddControl(_nippleColor);
 			_nippleColor.labelText = "Nipple Color";
-			_nippleColor.inputValue = "pink";
 			_nippleColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			
 			_nipplesPerBreast = new InputLabelPair();
 			AddControl(_nipplesPerBreast);
 			_nipplesPerBreast.labelText = "Nipples/Breast";
-			_nipplesPerBreast.inputValue = "1";
 			_nipplesPerBreast.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_nippleLengthRatio = new InputLabelPair();
 			AddControl(_nippleLengthRatio);
 			_nippleLengthRatio.labelText = "Nip. Length";
-			_nippleLengthRatio.inputValue = "1.0";
 			_nippleLengthRatio.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_nippleWidthRatio = new InputLabelPair();
 			AddControl(_nippleWidthRatio);
 			_nippleWidthRatio.labelText = "Nip. Width";
-			_nippleWidthRatio.inputValue = "1.0";
 			_nippleWidthRatio.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_dickNippleMultiplier = new InputLabelPair();
 			AddControl(_dickNippleMultiplier);
 			_dickNippleMultiplier.labelText = "Dicknip Length";
-			_dickNippleMultiplier.inputValue = "1.0";
 			_dickNippleMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_dickNippleType = new ComboLabelPair();
@@ -172,7 +167,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_milkMultiplier = new InputLabelPair();
 			AddControl(_milkMultiplier);
 			_milkMultiplier.labelText = "Milk Multi.";
-			_milkMultiplier.inputValue = "1.0";
 			_milkMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkType = new ComboLabelPair();
@@ -190,19 +184,16 @@ package classes.TITSSaveEdit.UI.Controls
 			_milkStorageMultiplier = new InputLabelPair();
 			AddControl(_milkStorageMultiplier);
 			_milkStorageMultiplier.labelText = "Milk Storage";
-			_milkStorageMultiplier.inputValue = "1.0";
 			_milkStorageMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkFullness = new InputLabelPair();
 			AddControl(_milkFullness);
 			_milkFullness.labelText = "Milk Fullness";
-			_milkFullness.inputValue = "0.0";
 			_milkFullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkRate = new InputLabelPair();
 			AddControl(_milkRate);
 			_milkRate.labelText = "Milk Rate";
-			_milkRate.inputValue = "1.0";
 			_milkRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_breastNumControl = new PairedButtonLabel();
@@ -225,7 +216,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_numBreasts = new InputLabelPair();
 			AddControl(_numBreasts);
 			_numBreasts.labelText = "Num. Breasts";
-			_numBreasts.inputValue = "2";
 			_numBreasts.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			_numBreasts.name = "breasts";
 			_numBreasts.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
@@ -247,7 +237,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_breastRating = new InputLabelPair();
 			AddControl(_breastRating);
 			_breastRating.labelText = "Breast Rating";
-			_breastRating.inputValue = "0.0";
 			_breastRating.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_breastRating.name = "breastRatingRaw";
 			_breastRating.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
@@ -255,12 +244,9 @@ package classes.TITSSaveEdit.UI.Controls
 			_fullness = new InputLabelPair();
 			AddControl(_fullness);
 			_fullness.labelText = "Fullness";
-			_fullness.inputValue = "0.0";
 			_fullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_fullness.name = "fullness";
 			_fullness.input.addEventListener(Event.CHANGE, breastPropertyChangeHandler);
-			
-			
 		}
 		
 		private function addBRow():void

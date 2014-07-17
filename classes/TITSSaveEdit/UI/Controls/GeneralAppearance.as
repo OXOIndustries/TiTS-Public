@@ -77,43 +77,36 @@ package classes.TITSSaveEdit.UI.Controls
 			_femininity = new InputLabelPair();
 			AddControl(_femininity);
 			_femininity.labelText = "Femininity";
-			_femininity.inputValue = "50";
 			_femininity.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_tallness = new InputLabelPair();
 			AddControl(_tallness);
 			_tallness.labelText = "Height";
-			_tallness.inputValue = "Bloop";
 			_tallness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_thickness = new InputLabelPair();
 			AddControl(_thickness);
 			_thickness.labelText = "Thickness";
-			_thickness.inputValue = "Bloop";
 			_thickness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_tone = new InputLabelPair();
 			AddControl(_tone);
 			_tone.labelText = "Muscle Tone";
-			_tone.inputValue = "Bloop";
 			_tone.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_hipRating = new InputLabelPair();
 			AddControl(_hipRating);
 			_hipRating.labelText = "Hip Rating";
-			_hipRating.inputValue = "Bloop";
 			_hipRating.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_buttRating = new InputLabelPair();
 			AddControl(_buttRating);
 			_buttRating.labelText = "Butt Rating";
-			_buttRating.inputValue = "Bloop";
 			_buttRating.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 
 			_bellyRating = new InputLabelPair();
 			AddControl(_bellyRating);
 			_bellyRating.labelText = "Belly Rating";
-			_bellyRating.inputValue = "Bloop";
 			_bellyRating.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 		}
 		

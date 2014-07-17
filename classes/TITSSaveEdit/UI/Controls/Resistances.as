@@ -75,7 +75,6 @@ package classes.TITSSaveEdit.UI.Controls
 				var newControl:InputLabelPair = new InputLabelPair();
 				AddControl(newControl);
 				newControl.labelText = GLOBAL.DamageTypeStrings[i];
-				newControl.inputValue = "1.0";
 				newControl.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 				
 				_resistances.push(newControl);

@@ -112,13 +112,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_balls = new InputLabelPair();
 			AddControl(_balls);
 			_balls.labelText = "Balls";
-			_balls.inputValue = "2";
 			_balls.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_ballSize = new InputLabelPair();
 			AddControl(_ballSize);
 			_ballSize.labelText = "Ball Size";
-			_ballSize.inputValue = "3.0";
 			_ballSize.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_cockVirgin = new CheckboxContainer();
@@ -146,7 +144,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_cockLength = new InputLabelPair();
 			AddControl(_cockLength);
 			_cockLength.labelText = "Length";
-			_cockLength.inputValue = "0";
 			_cockLength.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_cockLength.name = "cLengthRaw";
 			_cockLength.input.addEventListener(Event.CHANGE, cockPropertyChangeHandler);
@@ -154,7 +151,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_cockThickness = new InputLabelPair();
 			AddControl(_cockThickness);
 			_cockThickness.labelText = "Thickness";
-			_cockThickness.inputValue = "0";
 			_cockThickness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_cockThickness.name = "cThicknessRatioRaw";
 			_cockThickness.input.addEventListener(Event.CHANGE, cockPropertyChangeHandler);
@@ -176,7 +172,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_cockColor = new InputLabelPair();
 			AddControl(_cockColor);
 			_cockColor.labelText = "Color";
-			_cockColor.inputValue = "pink";
 			_cockColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			_cockColor.name = "cockColor";
 			_cockColor.input.addEventListener(Event.CHANGE, cockPropertyChangeHandler);
@@ -184,7 +179,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_knotMulti = new InputLabelPair();
 			AddControl(_knotMulti);
 			_knotMulti.labelText = "Knot Multi";
-			_knotMulti.inputValue = "1.5";
 			_knotMulti.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_knotMulti.name = "knotMultiplier";
 			_knotMulti.input.addEventListener(Event.CHANGE, cockPropertyChangeHandler);
@@ -192,7 +186,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_flaccidMulti = new InputLabelPair();
 			AddControl(_flaccidMulti);
 			_flaccidMulti.labelText = "Flaccid Multi";
-			_flaccidMulti.inputValue = "0.75";
 			_flaccidMulti.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_flaccidMulti.name = "flaccidMultiplier";
 			_flaccidMulti.input.addEventListener(Event.CHANGE, cockPropertyChangeHandler);

@@ -79,13 +79,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_hairColor = new InputLabelPair();
 			AddControl(_hairColor);
 			_hairColor.labelText = "Hair Color";
-			_hairColor.inputValue = "Bloop";
 			_hairColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			
 			_hairLength = new InputLabelPair();
 			AddControl(_hairLength);
 			_hairLength.labelText = "Hair Length";
-			_hairLength.inputValue = "5";
 			_hairLength.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 		}

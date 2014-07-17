@@ -15,10 +15,14 @@ package classes.TITSSaveEdit.UI.Controls
 	{
 		private var _checkBox:CheckBox;
 		
-		public function isSelected():Boolean { return _checkBox.selected; }
-		
-		public function get selected():Boolean { return _checkBox.selected; }
-		public function set selected(v:Boolean):void { _checkBox.selected = v; }
+		public function get selected():Boolean 
+		{
+			return _checkBox.selected; 
+		}
+		public function set selected(v:Boolean):void 
+		{ 
+			_checkBox.selected = v; 
+		}
 		
 		public function get labelText():String { return _checkBox.label; }
 		public function set labelText(v:String):void { _checkBox.label = v; }

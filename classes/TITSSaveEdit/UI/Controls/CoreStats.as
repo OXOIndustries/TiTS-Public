@@ -84,37 +84,31 @@ package classes.TITSSaveEdit.UI.Controls
 			_physique = new InputLabelPair();
 			AddControl(_physique);
 			_physique.labelText = "Physique";
-			_physique.inputValue = "5";
 			_physique.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_reflexes = new InputLabelPair();
 			AddControl(_reflexes);
 			_reflexes.labelText = "Reflexes";
-			_reflexes.inputValue = "5";
 			_reflexes.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_aim = new InputLabelPair();
 			AddControl(_aim);
 			_aim.labelText = "Aim";
-			_aim.inputValue = "5";
 			_aim.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_intelligence = new InputLabelPair();
 			AddControl(_intelligence);
 			_intelligence.labelText = "Intelligence";
-			_intelligence.inputValue = "5";
 			_intelligence.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_willpower = new InputLabelPair();
 			AddControl(_willpower);
 			_willpower.labelText = "Willpower";
-			_willpower.inputValue = "5";
 			_willpower.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 
 			_libido = new InputLabelPair();
 			AddControl(_libido);
 			_libido.labelText = "Libido";
-			_libido.inputValue = "5";
 			_libido.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_affinity = new ComboLabelPair();

@@ -14,11 +14,27 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _label:TextField;
 		private var _input:TextField;
 		
+		private var _defaultValue:String;
+		
 		public function get labelText():String { return _label.text; }
 		public function set labelText(v:String):void { _label.text = v; }
 		
-		public function get inputValue():String { return _input.text; }
-		public function set inputValue(v:String):void { _input.text = v; }
+		public function get inputValue():String 
+		{
+			if (_input.text.length == 0 && _defaultValue != null && _defaultValue.length > 0)
+			{
+				return _defaultValue;
+			}
+			return _input.text; 
+		}
+		public function set inputValue(v:String):void 
+		{
+			if (_defaultValue == null && v.length > 0)
+			{
+				_defaultValue = v;
+			}
+			_input.text = v; 
+		}
 		
 		public function InputLabelPair() 
 		{

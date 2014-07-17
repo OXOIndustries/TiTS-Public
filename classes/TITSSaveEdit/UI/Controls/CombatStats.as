@@ -69,25 +69,21 @@ package classes.TITSSaveEdit.UI.Controls
 			_hpMod = new InputLabelPair();
 			AddControl(_hpMod);
 			_hpMod.labelText = "Health Mod";
-			_hpMod.inputValue = "0";
 			_hpMod.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_energyMod = new InputLabelPair();
 			AddControl(_energyMod);
 			_energyMod.labelText = "Energy Mod";
-			_energyMod.inputValue = "0";
 			_energyMod.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_lust = new InputLabelPair();
 			AddControl(_lust)
 			_lust.labelText = "Lust";
-			_lust.inputValue = "0";
 			_lust.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			
 			_lustVuln = new InputLabelPair();
 			AddControl(_lustVuln);
 			_lustVuln.labelText = "Lust Vuln.";
-			_lustVuln.inputValue = "1.0";
 			_lustVuln.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 		}
 		

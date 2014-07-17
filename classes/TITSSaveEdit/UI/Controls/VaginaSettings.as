@@ -114,13 +114,11 @@ package classes.TITSSaveEdit.UI.Controls
 			_clitLength = new InputLabelPair();
 			AddControl(_clitLength);
 			_clitLength.labelText = "Clit Length";
-			_clitLength.inputValue = "0.5";
 			_clitLength.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_elasticity = new InputLabelPair();
 			AddControl(_elasticity);
 			_elasticity.labelText = "Elasticity";
-			_elasticity.inputValue = "1.0";
 			_elasticity.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_vaginalVirgin = new CheckboxContainer();
@@ -167,7 +165,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_clits = new InputLabelPair();
 			AddControl(_clits);
 			_clits.labelText = "Clits";
-			_clits.inputValue = "1";
 			_clits.setRestriction(InputLabelPair.RESTRICT_NUMERIC);
 			_clits.name = "clits";
 			_clits.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -175,7 +172,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_vaginaColor = new InputLabelPair();
 			AddControl(_vaginaColor);
 			_vaginaColor.labelText = "Color";
-			_vaginaColor.inputValue = "pink";
 			_vaginaColor.name = "vaginaColor";
 			_vaginaColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			_vaginaColor.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -183,7 +179,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_wetness = new InputLabelPair();
 			AddControl(_wetness);
 			_wetness.labelText = "Wetness";
-			_wetness.inputValue = "1.0";
 			_wetness.name = "wetnessRaw"
 			_wetness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_wetness.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -191,7 +186,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_looseness = new InputLabelPair();
 			AddControl(_looseness);
 			_looseness.labelText = "Looseness";
-			_looseness.inputValue = "1.0";
 			_looseness.name = "loosenessRaw";
 			_looseness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_looseness.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -199,7 +193,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_minLooseness = new InputLabelPair();
 			AddControl(_minLooseness);
 			_minLooseness.labelText = "Min. Loose";
-			_minLooseness.inputValue = "1.0";
 			_minLooseness.name = "minLooseness";
 			_minLooseness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_minLooseness.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -207,7 +200,6 @@ package classes.TITSSaveEdit.UI.Controls
 			_bonusCapacity = new InputLabelPair();
 			AddControl(_bonusCapacity);
 			_bonusCapacity.labelText = "Bonus Cap.";
-			_bonusCapacity.inputValue = "0";
 			_bonusCapacity.name = "bonusCapacity";
 			_bonusCapacity.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			_bonusCapacity.input.addEventListener(Event.CHANGE, vagPropertyChangeHandler);
@@ -303,7 +295,16 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		private function enableComponents():void
 		{
-			
+			_selectedVagina.enable();
+			_vaginaType.enable();
+			_hymen.enable();
+			_clits.enable();
+			_vaginaColor.enable();
+			_wetness.enable();
+			_looseness.enable();
+			_minLooseness.enable();
+			_bonusCapacity.enable();
+			_flags.enable();
 		}
 		
 		private function disableComponents():void
