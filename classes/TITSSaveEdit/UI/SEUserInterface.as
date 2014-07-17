@@ -6,6 +6,8 @@ package classes.TITSSaveEdit.UI
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.text.AntiAliasType;
+	import classes.UIComponents.UIStyleSettings;
 	
 	/**
 	 * ...
@@ -16,14 +18,32 @@ package classes.TITSSaveEdit.UI
 		private var _leftBar:SELeftBar;
 		private var _mainDisplay:SEMainDisplay;
 		
-		public function get newButton():MainButton { return _leftBar.newButton; }
+		private var _loadTextDisplay:TextField;
+		private var _buff:String;
+		
 		public function get loadButton():MainButton { return _leftBar.titsButton; }
+		public function get resetButton():MainButton { return _leftBar.resetButton; }
 		public function get importButton():MainButton { return _leftBar.importButton; }
 		public function get saveButton():MainButton { return _leftBar.saveButton; }
 		
 		public function get topText():TextField { return _leftBar.topText; }
 		public function get middleText():TextField { return _leftBar.middleText; }
 		public function get bottomText():TextField { return _leftBar.bottomText; }
+		
+		public function output(msg:String):void
+		{
+			_buff += msg;
+		}
+		
+		public function clearOutput():void
+		{
+			_buff = "";
+		}
+		
+		public function buffRender():void
+		{
+			_loadTextDisplay.htmlText = "<span class='words'><p>" + _buff + "</p></span>";
+		}
 		
 		public function SEUserInterface() 
 		{
@@ -33,6 +53,8 @@ package classes.TITSSaveEdit.UI
 		private function init(e:Event = null):void
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
+			_buff = "";
+			
 			Build();
 			setCharacterData(new TiTsCharacterData()); // Inits the UI defaults.
 		}
@@ -45,16 +67,38 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay = new SEMainDisplay();
 			this.addChild(_mainDisplay);
 			_mainDisplay.x = 200;
+			
+			_loadTextDisplay = new TextField();
+			this.addChild(_loadTextDisplay);
+			_loadTextDisplay.border = false;
+			_loadTextDisplay.background = false;
+			_loadTextDisplay.multiline = true;
+			_loadTextDisplay.wordWrap = true;
+			_loadTextDisplay.embedFonts = true;
+			_loadTextDisplay.antiAliasType = AntiAliasType.ADVANCED;
+			_loadTextDisplay.x = 205;
+			_loadTextDisplay.y = 5;
+			_loadTextDisplay.height = 800;
+			_loadTextDisplay.width = 800;
+			_loadTextDisplay.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
 		}
 		
 		public function hideMain():void
 		{
 			_mainDisplay.visible = false;
+			_loadTextDisplay.visible = true;
 		}
 		
 		public function showMain():void
 		{
 			_mainDisplay.visible = true;
+			_loadTextDisplay.visible = false;
+		}
+		
+		public function hideAll():void
+		{
+			_mainDisplay.visible = false;
+			_loadTextDisplay.visible = false;
 		}
 		
 		public function setCharacterData(char:TiTsCharacterData):void
