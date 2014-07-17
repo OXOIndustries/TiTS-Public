@@ -391,7 +391,7 @@ function fuckTamTamIntoUnconscitude():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("TAMTAM");
+	showBust("TAMTAM_NUDE");
 	showName("\nTAM");
 	flags["TAM_DISABLE_METHOD"] = 2;
 	output("A lusty grin spreads across your face as you approach the seemingly unawares cat-girl, eyes transfixed by her booty. She wiggles it as she works, tails swaying and lifting as you approach, almost invitingly.");
@@ -422,7 +422,7 @@ function wrenchTamtamsCooch():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("TAMTAM");
+	showBust("TAMTAM_NUDE");
 	showName("\nTAM");
 	output("Giving Tam's pussy one last, long slurp, you grab the wrench from nearby and press the blunted end of the handle into the gaping lips of her hole. The cat-girl shudders in excitement, her juices now running freely down her thighs as she gently presses back against the handle, eager for more. You try to stifle a chuckle as you guide the handle in: Tam gasps, back arching as the shaft penetrates her, sliding easily in through her well-lubed lips.");
 	output("\n\n<i>\"Oh, god... so big...\"</i> she moans, bracing against the desk as you put more and more wrench into her. <i>\"Mmmm, when did you get that THICK, chief? Nevermind, just keep doing it. Oh, that's it... just like that...\"</i>");
@@ -443,7 +443,7 @@ function stickItInZeCatgirlCoochWhileSheThinksYerKaska():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("TAMTAM");
+	showBust("TAMTAM_NUDE");
 	showName("\nTAM");
 	var x:int = pc.cockThatFits(500);
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1620,7 +1620,7 @@ function dickFuckDatThraggenCoochie():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAIN_KHORGAN");
+	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
 	var x:int = pc.cockThatFits(foes[0].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
@@ -1675,7 +1675,7 @@ function dickFuckDatThraggenCoochie():void
 function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 {
 	clearOutput();
-	showBust("CAPTAIN_KHORGAN");
+	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
 	author("Gardeford");
 	//if First time:
@@ -1748,7 +1748,7 @@ function loseToCaptainKhorganBadEnd():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("CAPTAIN_KHORGAN");
+	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
 	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
