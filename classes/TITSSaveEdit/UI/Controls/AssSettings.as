@@ -29,7 +29,7 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get wetness():Number { return Number(_wetness.inputValue); }
 		public function set wetness(v:Number):void { _wetness.inputValue = String(v); }
 		
-		public function get looseness():Number { return Number(_looseness.inputValue; }
+		public function get looseness():Number { return Number(_looseness.inputValue); }
 		public function set looseness(v:Number):void { _looseness.inputValue = String(v); }
 		
 		public function get minLooseness():Number { return Number(_minLooseness.inputValue); }

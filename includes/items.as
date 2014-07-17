@@ -378,23 +378,23 @@ function unequip(arg:String, next:Boolean = true):void
 
 	if(arg == "bra") {
 		unequippedItems[unequippedItems.length] = pc.upperUndergarment;
-		pc.upperUndergarment = new classes.Items.Miscellaneous.Empty();
+		pc.upperUndergarment = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "underwear") {
 		unequippedItems[unequippedItems.length] = pc.lowerUndergarment;
-		pc.lowerUndergarment = new classes.Items.Miscellaneous.Empty();
+		pc.lowerUndergarment = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "shield") {
 		unequippedItems[unequippedItems.length] = pc.shield;
-		pc.shield = new classes.Items.Miscellaneous.Empty();
+		pc.shield = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "accessory") {
 		unequippedItems[unequippedItems.length] = pc.accessory;
-		pc.accessory = new classes.Items.Miscellaneous.Empty();
+		pc.accessory = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "armor") {
 		unequippedItems[unequippedItems.length] = pc.armor;
-		pc.armor = new classes.Items.Miscellaneous.Empty();
+		pc.armor = new classes.Items.Miscellaneous.EmptySlot();
 	}
 	else if(arg == "mWeapon") {
 		unequippedItems[unequippedItems.length] = pc.meleeWeapon;

@@ -68,9 +68,9 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_hairType);
 			_hairType.labelText = "Hair Type";
 			
-			for (var i:int = 0; i < GLOBAL.HAIR_TYPE_TYPE_NAMES.length; i++)
+			for (var i:int = 0; i < GLOBAL.HAIR_TYPE_NAMES.length; i++)
 			{
-				_hairType.addItem(i, String(GLOBAL.HAIR_TYPE_TYPE_NAMES[i]));
+				_hairType.addItem(i, String(GLOBAL.HAIR_TYPE_NAMES[i]));
 			}
 			
 			_hairType.disableEdits();

@@ -1,5 +1,6 @@
 package classes.TITSSaveEdit.UI 
 {
+	import classes.TITSSaveEdit.UI.Controls.AssSettings;
 	import classes.TITSSaveEdit.UI.Controls.BodyAppearance;
 	import classes.TITSSaveEdit.UI.Controls.BreastSettings;
 	import classes.TITSSaveEdit.UI.Controls.CombatStats;
@@ -52,6 +53,7 @@ package classes.TITSSaveEdit.UI
 		private var _cockAppearance:CockSettings;
 		private var _vaginaAppearance:VaginaSettings;
 		private var _breastAppearance:BreastSettings;
+		private var _assSettings:AssSettings;
 		
 		public function get generalStats():GeneralStats { return _generalStats; }
 		public function get coreStats():CoreStats { return _coreStats; }
@@ -69,6 +71,7 @@ package classes.TITSSaveEdit.UI
 		public function get cockAppearance():CockSettings { return _cockAppearance; }
 		public function get vaginaAppearance():VaginaSettings { return _vaginaAppearance; }
 		public function get breastAppearance():BreastSettings { return _breastAppearance; }
+		public function get assSettings():AssSettings { return _assSettings; }
 		
 		public function SEMainDisplay() 
 		{
@@ -202,6 +205,10 @@ package classes.TITSSaveEdit.UI
 			_breastAppearance = new BreastSettings();
 			AddControl(_breastAppearance, RIGHT_COL);
 			_breastAppearance.name = "breastappearance";
+			
+			_assSettings = new AssSettings();
+			AddControl(_assSettings, RIGHT_COL);
+			_assSettings.name = "asssettings";
 			
 		}
 	}

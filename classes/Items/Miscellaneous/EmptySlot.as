@@ -3,10 +3,10 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	
-	public class Empty extends ItemSlotClass
+	public class EmptySlot extends ItemSlotClass
 	{
 		//constructor
-		public function Empty()
+		public function EmptySlot()
 		{
 			this._latestVersion = 1;
 			

@@ -45,28 +45,6 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get dickNippleMultiplier():Number { return Number(_dickNippleMultiplier.inputValue); }
 		public function set dickNippleMultiplier(v:Number):void { _dickNippleMultiplier.inputValue = String(v); }
 		
-		// Milk stuff
-		private var _milkMultiplier:InputLabelPair;
-		private var _milkType:ComboLabelPair;
-		private var _milkStorageMultiplier:InputLabelPair;
-		private var _milkFullness:InputLabelPair;
-		private var _milkRate:InputLabelPair;
-		
-		public function get milkMultiplier():Number { return Number(_milkMultiplier.inputValue); }
-		public function set milkMultiplier(v:Number):void { _milkMultiplier.inputValue = String(v); }
-		
-		public function get milkType():int { return int(_milkType.inputValue); }
-		public function set milkType(v:int):void { _milkType.inputValue = int(v); }
-		
-		public function get milkStorageMultiplier():Number { return Number(_milkStorageMultiplier.inputValue); }
-		public function set milkStorageMultiplier(v:Number):void { _milkStorageMultiplier.inputValue = String(v); }
-		
-		public function get milkFullness():Number { return Number(_milkFullness.inputValue); }
-		public function set milkFullness(v:Number):void { _milkFullness.inputValue = String(v); }
-		
-		public function get milkRate():Number { return Number(_milkRate.inputValue); }
-		public function set milkRate(v:Number):void { _milkRate.inputValue = String(v); }
-		
 		public function get breastRows():Array { return _breastData.toArray(); }
 		public function set breastRows(v:Array):void
 		{
@@ -163,38 +141,6 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_dickNippleType.disableEdits();
 			_dickNippleType.selectedIndex = 0;
-			
-			_milkMultiplier = new InputLabelPair();
-			AddControl(_milkMultiplier);
-			_milkMultiplier.labelText = "Milk Multi.";
-			_milkMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
-			
-			_milkType = new ComboLabelPair();
-			AddControl(_milkType);
-			_milkType.labelText = "Milk Type";
-			
-			for (var i:int = 0; i < GLOBAL.VALID_MILK_TYPES.length; i++)
-			{
-				_milkType.addItem(GLOBAL.VALID_MILK_TYPES[i], GLOBAL.FLUID_TYPE_NAMES[GLOBAL.VALID_MILK_TYPES[i]]);
-			}
-			
-			_milkType.disableEdits();
-			_milkType.selectedIndex = 0;
-			
-			_milkStorageMultiplier = new InputLabelPair();
-			AddControl(_milkStorageMultiplier);
-			_milkStorageMultiplier.labelText = "Milk Storage";
-			_milkStorageMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
-			
-			_milkFullness = new InputLabelPair();
-			AddControl(_milkFullness);
-			_milkFullness.labelText = "Milk Fullness";
-			_milkFullness.setRestriction(InputLabelPair.RESTRICT_NUMBER);
-			
-			_milkRate = new InputLabelPair();
-			AddControl(_milkRate);
-			_milkRate.labelText = "Milk Rate";
-			_milkRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_breastNumControl = new PairedButtonLabel();
 			AddControl(_breastNumControl);

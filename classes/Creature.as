@@ -3,7 +3,7 @@
 	import classes.Characters.PregnancyPlaceholder;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
-	import classes.Items.Miscellaneous.Empty;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.VaginaClass;
 	import classes.BreastRowClass;
 	import classes.StorageClass;
@@ -16,12 +16,10 @@
 	import classes.GameData.StatTracking;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
-
 	import flash.utils.ByteArray;
-
 	import classes.GLOBAL;
-	
 	import classes.GameData.Pregnancy.PregnancyManager;
+	import classes.Items.Miscellaneous.EmptySlot;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -86,13 +84,13 @@
 		public var customBlock: String = "";
 
 		//Clothing/Armor
-		public var meleeWeapon: ItemSlotClass = new Empty();
-		public var rangedWeapon: ItemSlotClass = new Empty();
-		public var armor: ItemSlotClass = new Empty();
-		public var upperUndergarment: ItemSlotClass = new Empty();
-		public var lowerUndergarment: ItemSlotClass = new Empty();
-		public var accessory: ItemSlotClass = new Empty();
-		public var shield: ItemSlotClass = new Empty();
+		public var meleeWeapon: ItemSlotClass = new EmptySlot();
+		public var rangedWeapon: ItemSlotClass = new EmptySlot();
+		public var armor: ItemSlotClass = new EmptySlot();
+		public var upperUndergarment: ItemSlotClass = new EmptySlot();
+		public var lowerUndergarment: ItemSlotClass = new EmptySlot();
+		public var accessory: ItemSlotClass = new EmptySlot();
+		public var shield: ItemSlotClass = new EmptySlot();
 
 		public var inventory: Array = new Array();
 

@@ -1,5 +1,5 @@
 import classes.Items.Melee.Rock;
-import classes.Items.Miscellaneous.Empty;
+import classes.Items.Miscellaneous.EmptySlot;
 import classes.kGAMECLASS;
 
 public function startFallOfThePhoenix(destination:String):void
@@ -367,9 +367,9 @@ public function loseToPhoenixPirates():void
 
 	//{PC loses 75% of credits + all equipment save underclothes}
 	pc.credits *= 0.25;
-	pc.shield = new Empty();
-	pc.accessory = new Empty();
-	pc.armor = new Empty();
+	pc.shield = new EmptySlot();
+	pc.accessory = new EmptySlot();
+	pc.armor = new EmptySlot();
 	pc.meleeWeapon = new Rock();
 	pc.rangedWeapon = new Rock();
 	pc.inventory = [];

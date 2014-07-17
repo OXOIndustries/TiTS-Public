@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Knife;
-	import classes.Items.Miscellaneous.Empty;
+	import classes.Items.Miscellaneous.EmptySlot;
 	
 	public class Reaha extends Creature
 	{
@@ -26,7 +26,7 @@
 			this.lustVuln = 1;
 			
 			this.meleeWeapon = new Knife();
-			this.armor = new Empty();
+			this.armor = new EmptySlot();
 			
 			this.physiqueRaw = 5;
 			this.reflexesRaw = 5;

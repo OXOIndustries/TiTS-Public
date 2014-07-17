@@ -87,7 +87,10 @@ package classes.TITSSaveEdit
 		
 		private function fillUI(data:Object):void
 		{
+			// Can't actually use the game player object class, because of heavy use of kGAMECLASS.
+			// Importing PlayerCharacter < Creature < kGAMECLASS < ALL OTHER GAME CONTENT.
 			
+			//trace (character.short);
 		}
 	}
 	

@@ -62,7 +62,7 @@ package classes.TITSSaveEdit.UI.Controls
 			_input = new TextField();
 			UIStyleSettings.cfgTextInput(_input);
 			_input.defaultTextFormat = UIStyleSettings.gSaveEditorInputEnabledTextFormat;
-			_input.text = "Input";
+			_input.text = "";
 			_input.x = 148;
 			_input.y = 2;
 			_input.width = 233;

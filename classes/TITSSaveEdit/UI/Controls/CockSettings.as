@@ -29,7 +29,7 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get ballSize():Number { return Number(_ballSize.inputValue); }
 		public function set ballSize(v:Number):void { _ballSize.inputValue = String(v); }
 		
-		public function get cockVirgin():Boolean { return _cockVirgin.isSelected(); }
+		public function get cockVirgin():Boolean { return _cockVirgin.selected; }
 		public function set cockVirgin(v:Boolean):void { _cockVirgin.selected = v; }
 		
 		public function get cocks():Array { return _cockData.toArray(); }
