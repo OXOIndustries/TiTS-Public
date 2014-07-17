@@ -117,12 +117,6 @@ function availableFaps(roundTwo:Boolean = false):Array
 	return faps;
 }
 
-/*Old:
-function selectRandomFap(faps:Array):void
-{
-	faps[rand(faps.length)].execute();
-}*/
-
 function selectRandomFap(faps:Array):void
 {
 	// Don't allow milk scenes to be selected randomly
