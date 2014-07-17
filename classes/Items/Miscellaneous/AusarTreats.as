@@ -79,7 +79,7 @@
 				choices = new Array();
 				for(x = 0; x < pc.cockTotal(); x++)
 				{
-					if(pc.cocks[x].cType != GLOBAL.CANINE) choices[choices.length] = x;
+					if(pc.cocks[x].cType != GLOBAL.TYPE_CANINE) choices[choices.length] = x;
 				}
 				//Set x to a random dick from choices
 				if(choices.length > 0) x = choices[rand(choices.length)];
@@ -87,7 +87,7 @@
 				else x = -1;
 				if(changes < changeLimit && x >= 0 && rand(3) == 0)
 				{
-					if(target.cockTypeUnlocked(x,GLOBAL.CANINE))
+					if(target.cockTypeUnlocked(x,GLOBAL.TYPE_CANINE))
 					{
 						kGAMECLASS.output("\n\nYour [pc.cock " + x + "] throbs suddenly ");
 						if(pc.isCrotchGarbed()) kGAMECLASS.output("beneath your [pc.lowerGarments]");
@@ -97,14 +97,14 @@
 						{
 							kGAMECLASS.output("as the flesh of your cock shifts color to a bright red");
 						}
-						if(!pc.hasCockFlag(GLOBAL.TAPERED)) kGAMECLASS.output(", skin melding strangely into a long, pointed shape");
+						if(!pc.hasCockFlag(GLOBAL.FLAG_TAPERED)) kGAMECLASS.output(", skin melding strangely into a long, pointed shape");
 						kGAMECLASS.output(".");
 						//if cock was less than 6 inches: 
 						if(pc.cocks[x].cLength() < 6) {
 							kGAMECLASS.output(" Your prick grows, too, expanding several inches from your groin.");
 							pc.cocks[x].cLength(2+rand(3));
 						}
-						if(!pc.hasCockFlag(GLOBAL.TAPERED)) kGAMECLASS.output(" The [pc.cockHead " + x + "] of your dick twists into a pointed tip");
+						if(!pc.hasCockFlag(GLOBAL.FLAG_TAPERED)) kGAMECLASS.output(" The [pc.cockHead " + x + "] of your dick twists into a pointed tip");
 						else kGAMECLASS.output(" The [pc.cockHead " + x + "] jumps");
 						kGAMECLASS.output(", drooling a sticky [pc.cumColor] river from its engorged slit.");
 						if(pc.balls > 0) kGAMECLASS.output(" Just over your [pc.balls]");
@@ -114,7 +114,7 @@
 						pc.lust(20+rand(20));
 						pc.libido(2);
 						changes++;
-						pc.shiftCock(x,GLOBAL.CANINE);
+						pc.shiftCock(x,GLOBAL.TYPE_CANINE);
 					}
 					else
 					{
@@ -277,34 +277,34 @@
 					}
 				}
 				//Change arm type to furred
-				if(pc.armType != GLOBAL.CANINE && changes < changeLimit && rand(3) == 0)
+				if(pc.armType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(3) == 0)
 				{
-					if (target.armTypeUnlocked(GLOBAL.CANINE))
+					if (target.armTypeUnlocked(GLOBAL.TYPE_CANINE))
 					{
 						kGAMECLASS.output("\n\nYou feel a powerful itch spread across your arms. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your arms are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer, now....");
-						pc.armType = GLOBAL.CANINE;
+						pc.armType = GLOBAL.TYPE_CANINE;
 						changes++;
 					}
 					else kGAMECLASS.output(target.armTypeLockedMessage());
 				}
 				//Change leg-type to furred (Needs Bipedal legs)
-				if(pc.legType != GLOBAL.CANINE && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.CANINE)
+				if(pc.legType != GLOBAL.TYPE_CANINE && changes < changeLimit && pc.legCount >= 2 && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
 				{
-					if (target.legTypeUnlocked(GLOBAL.CANINE))
+					if (target.legTypeUnlocked(GLOBAL.TYPE_CANINE))
 					{
 						kGAMECLASS.output("\n\nYou feel a powerful itch spread across your [pc.legs]. You clutch at them, scratching violently as your hair grows and thickens, spreading out into a dark mat across your [pc.skin]. Within a few minutes, your legs are utterly covered in a thick, silky-smooth " + pc.furColor + " fur! At least you'll keep a little warmer <b>with your ausar legs.</b>");
-						pc.legType = GLOBAL.CANINE;
+						pc.legType = GLOBAL.TYPE_CANINE;
 						pc.clearLegFlags();
-						pc.addLegFlag(GLOBAL.DIGITIGRADE);
-						pc.addLegFlag(GLOBAL.PAWS);
+						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}
 					else kGAMECLASS.output(target.legTypeLockedMessage());
 				}
 				//Change leg type to bipedal?
-				if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.CANINE)
+				if(pc.legCount != 2 && changes < changeLimit && rand(3) == 0 && pc.armType == GLOBAL.TYPE_CANINE)
 				{
-					if (target.legTypeUnlocked(GLOBAL.CANINE))
+					if (target.legTypeUnlocked(GLOBAL.TYPE_CANINE))
 					{
 						if(pc.legCount < 2)
 						{
@@ -316,16 +316,16 @@
 							kGAMECLASS.output("\n\nYour [pc.legs] wobble and then fold, dropping you flat on your [pc.butt]. They thrash wildly, so fast you can barely track them, then collide. This time, they stick together, reshaping into two distinct, bipedal legs. Fur springs up over the new limbs, and by the time it finishes, <b>you've grown ausar-like legs.</b>");
 						}
 						pc.legCount = 2;
-						pc.addLegFlag(GLOBAL.DIGITIGRADE);
-						pc.addLegFlag(GLOBAL.PAWS);
+						pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						pc.addLegFlag(GLOBAL.FLAG_PAWS);
 						changes++;
 					}
 					else kGAMECLASS.output(target.legTypeLockedMessage());
 				}
 				//Grow doggy tail -- you know what, fuck you, use the CoC Dogtail growth texts. 
-				if(pc.tailType != GLOBAL.CANINE && changes < changeLimit && rand(4) == 0)
+				if(pc.tailType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(4) == 0)
 				{
-					if (target.tailTypeUnlocked(GLOBAL.CANINE))
+					if (target.tailTypeUnlocked(GLOBAL.TYPE_CANINE))
 					{
 						//{If PC had a tail before: }
 						if(pc.tailCount == 1) kGAMECLASS.output("\n\nYou feel something itching on your [pc.tail]. Twisting around, you watch in a mix of horror and excitement as " + pc.furColor + " bristles, the beginnings of a thick coat of fur, sprout up across the length of your reforming posterior appendage. It starts wagging as the change completes, <b>leaving you with an ausar's dog-like tail.</b>");
@@ -339,21 +339,21 @@
 							kGAMECLASS.output(". There's a raised, irritated lump there, and it's getting bigger. Wiggling slightly, it extends as new bones form within it, gently wagging as it lengthens. You're growing a tail! Fine hairs sprout on its [pc.skin], giving it a distinctly canine cast. When it finishes growing, it's long enough to lazily swish back and forth; <b>you've obviously gained an ausar's tail.</b>");
 						}
 						pc.tailCount = 1;
-						pc.tailType = GLOBAL.CANINE;
+						pc.tailType = GLOBAL.TYPE_CANINE;
 						pc.clearTailFlags();
-						pc.addTailFlag(GLOBAL.LONG);
-						pc.addTailFlag(GLOBAL.FLUFFY);
+						pc.addTailFlag(GLOBAL.FLAG_LONG);
+						pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
 						changes++;
 					}
 					else kGAMECLASS.output(target.tailTypeLockedMessage());
 				}
 				//Grow wolf ears
-				if(pc.earType != GLOBAL.CANINE && changes < changeLimit && rand(4) == 0)
+				if(pc.earType != GLOBAL.TYPE_CANINE && changes < changeLimit && rand(4) == 0)
 				{
-					if (target.earTypeUnlocked(GLOBAL.CANINE))
+					if (target.earTypeUnlocked(GLOBAL.TYPE_CANINE))
 					{
 						kGAMECLASS.output("\n\nYour ears begin to itch uncontrollably. You desperately try to scratch at them, but the itch spreads and grows... as do your ears! Your ears twist and morph, growing a thin layer of " + pc.furColor + " fur as they reshape into a pair of perky points, towering over your head. You experimentally move them, feeling them perk and flop at your command. And you can hear so much better than before, every slight creak and rustle around you is so clear now! <b>You now have an ausar's wolf-ears!</b>");
-						pc.earType = GLOBAL.CANINE;
+						pc.earType = GLOBAL.TYPE_CANINE;
 						changes++;
 					}
 					else kGAMECLASS.output(target.earTypeLockedMessage());

@@ -60,7 +60,7 @@
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 90;
-			this.eyeType = GLOBAL.HUMAN;
+			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "amber";
 			this.tallness = 69;
 			this.thickness = 55;
@@ -72,34 +72,34 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
 			
-			this.faceType = GLOBAL.LAPINE;
+			this.faceType = GLOBAL.TYPE_LAPINE;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.ZIL;
 			this.lipMod = 1;
-			this.earType = GLOBAL.LAPINE;
+			this.earType = GLOBAL.TYPE_LAPINE;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
 			this.hornLength = 0;
-			this.armType = GLOBAL.HUMAN;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.LAPINE;
+			this.tailType = GLOBAL.TYPE_LAPINE;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -142,7 +142,7 @@
 			this.cumMultiplierRaw = 250;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -172,9 +172,9 @@
 			this.breastRows[0].breastRatingRaw = 5;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.HONEY;
-			this.cumType = GLOBAL.HONEY;
-			this.girlCumType = GLOBAL.HONEY;
+			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
+			this.cumType = GLOBAL.FLUID_TYPE_HONEY;
+			this.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;

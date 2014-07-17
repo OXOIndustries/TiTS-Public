@@ -287,11 +287,11 @@
 				}
 				//Appearance changes (listed in probable required order)
 				//Ears become panda ears.
-				if(target.earType != GLOBAL.PANDA && target.earTypeUnlocked(GLOBAL.PANDA))
+				if(target.earType != GLOBAL.TYPE_PANDA && target.earTypeUnlocked(GLOBAL.TYPE_PANDA))
 				{
 					//TF
 					kGAMECLASS.output("\n\nBetween the dull ache in your head and the tickling in your scalp, you're pretty sure something is changing up top. You go deaf in an instant, feeling your ears smooth away, and before you have the chance to react, new ones bulge out of your [pc.hair]. <b>You've grown round panda ears on top of your head.</b>");
-					target.earType = GLOBAL.PANDA;
+					target.earType = GLOBAL.TYPE_PANDA;
 					changes++;
 				}
 				//Tails merge into single tail
@@ -304,7 +304,7 @@
 					target.lust(-3);
 				}
 				//Single tail becomes small panda tail
-				if ((target.tailCount == 0 && target.tailCountUnlocked(1)) || (target.tailCount == 1 && target.tailType != GLOBAL.PANDA && target.tailTypeUnlocked(GLOBAL.PANDA)))
+				if ((target.tailCount == 0 && target.tailCountUnlocked(1)) || (target.tailCount == 1 && target.tailType != GLOBAL.TYPE_PANDA && target.tailTypeUnlocked(GLOBAL.TYPE_PANDA)))
 				{
 					//TF - No Tail
 					if(target.tailCount == 0)
@@ -316,15 +316,15 @@
 					{
 						kGAMECLASS.output("\n\nYour [pc.tail] twitches, growing warmer even as its sensation deadens. You twist backwards in time to see it changing shape, morphing into stubby little thing covered in " + target.furColor + " fur. <b>There's a poofy little panda-tail just above your [pc.butt]!</b>");
 					}
-					target.tailType = GLOBAL.PANDA;
+					target.tailType = GLOBAL.TYPE_PANDA;
 					target.tailCount = 1;
 					target.clearTailFlags();
-					target.addTailFlag(GLOBAL.FLUFFY);
-					target.addTailFlag(GLOBAL.FURRED);
+					target.addTailFlag(GLOBAL.FLAG_FLUFFY);
+					target.addTailFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				//Get fluffy pandafeet.
-				if(target.legType != GLOBAL.PANDA && target.legTypeUnlocked(GLOBAL.PANDA) && target.legCountUnlocked(2) && target.tailType == GLOBAL.PANDA)
+				if(target.legType != GLOBAL.TYPE_PANDA && target.legTypeUnlocked(GLOBAL.TYPE_PANDA) && target.legCountUnlocked(2) && target.tailType == GLOBAL.TYPE_PANDA)
 				{
 					//Omnileg/Naga/Goochassis -> Pandafeetz
 					if(target.legCount == 1)
@@ -342,45 +342,45 @@
 						kGAMECLASS.output("\n\nYou drop to the ground as your [pc.legs] go boneless. The jarring impact is enough to make you wince, but of far more concern is what's happening below your bruised bottom. Your [pc.legs] are changing! <b>Your [pc.feet] reform into fluffy panda-paws tipped by sharp-looking claws.</b> It'll take a little bit of practice to get used to walking with these.");
 					}
 					target.legCount = 2;
-					target.legType = GLOBAL.PANDA;
+					target.legType = GLOBAL.TYPE_PANDA;
 					target.clearLegFlags();
-					target.addLegFlag(GLOBAL.DIGITIGRADE);
-					target.addLegFlag(GLOBAL.FURRED);
-					target.addLegFlag(GLOBAL.PAWS);
+					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+					target.addLegFlag(GLOBAL.FLAG_FURRED);
+					target.addLegFlag(GLOBAL.FLAG_PAWS);
 					changes++;
 				}
 				//Get fluffy panda paws
-				if(target.armType != GLOBAL.PANDA && target.armTypeUnlocked(GLOBAL.PANDA))
+				if(target.armType != GLOBAL.TYPE_PANDA && target.armTypeUnlocked(GLOBAL.TYPE_PANDA))
 				{
 					kGAMECLASS.output("\n\nYour hands clench into curled-up claws all on their own. Fascinated, you try to open them, but your mind's commands to your body go unheeded. The muscles in your fingers are twitching wildly, and slowly, you see them changing them shape into slightly-shortened, thick fingers. They relax, allowing you to open your hands, and just in time too! Sharp claws snick out of the tips of your fingers, completing <b>your new, fuzzy panda hands.</b> There's even " + target.furColor + " fur all over your arms!");
-					target.armType = GLOBAL.PANDA;
+					target.armType = GLOBAL.TYPE_PANDA;
 					changes++;
 				}
 				//Fur is grown
-				if(target.skinType != GLOBAL.FUR && target.skinTypeUnlocked(GLOBAL.FUR))
+				if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 				{
 					//TF - Goo!
-					if(target.skinType == GLOBAL.GOO) kGAMECLASS.output("\n\nYour semi-solid surface feels unusually stiff, and after a moment, you can see it becoming more and more opaque! You're losing your gooeyness! In moments, you're back to having normal-looking skin, but all that changes when black and white fur erupts all over your body, growing into a short but dense coat. <b>You've got fur!</b>");
+					if(target.skinType == GLOBAL.SKIN_TYPE_GOO) kGAMECLASS.output("\n\nYour semi-solid surface feels unusually stiff, and after a moment, you can see it becoming more and more opaque! You're losing your gooeyness! In moments, you're back to having normal-looking skin, but all that changes when black and white fur erupts all over your body, growing into a short but dense coat. <b>You've got fur!</b>");
 					//TF - Scales!
-					else if(target.skinType == GLOBAL.SCALES) kGAMECLASS.output("\n\nPlink. You look for the source of the sound. It happens again a moment later. You hear it a third time on the heels of the second. The next time, you manage to see what's making the noise. Your scales are flaking off, one by one, and falling to the ground, and the pace seems to be accelerating. Soon, you're shedding scales like a rain and scratching yourself all over through the itchy transformation. In place of your lost armor, white and black fur is emerging everywhere. You sigh heavily and regard yourself. <b>You've got panda fur.</b>");
+					else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) kGAMECLASS.output("\n\nPlink. You look for the source of the sound. It happens again a moment later. You hear it a third time on the heels of the second. The next time, you manage to see what's making the noise. Your scales are flaking off, one by one, and falling to the ground, and the pace seems to be accelerating. Soon, you're shedding scales like a rain and scratching yourself all over through the itchy transformation. In place of your lost armor, white and black fur is emerging everywhere. You sigh heavily and regard yourself. <b>You've got panda fur.</b>");
 					//TF - Generic
 					else kGAMECLASS.output("\n\nStarting in the center of your chest, your [pc.skin] starts itching. It spreads outward like vibrations from a fault line, and the harder you scratch at it, the faster it seems to go. When you give up pull your hand away, you spot fur growing, and it's not just on your chest. Fur is growing everywhere on your body. It isn't just one color, either. Some places are white and some are black. The only constant is that it's everywhere. <b>You have black and white panda fur!</b>");
-					target.skinType = GLOBAL.FUR;
+					target.skinType = GLOBAL.SKIN_TYPE_FUR;
 					target.furColor = "white and black";
 					target.clearSkinFlags();
-					target.addSkinFlag(GLOBAL.FLUFFY);
-					target.addSkinFlag(GLOBAL.FURRED);
+					target.addSkinFlag(GLOBAL.FLAG_FLUFFY);
+					target.addSkinFlag(GLOBAL.FLAG_FURRED);
 					changes++;
 				}
 				//Face, if already has spots or inhuman, goes full panda
 				//PANDAFAAAAAACE\\\\\
-				if(target.faceType != GLOBAL.PANDA && target.faceTypeUnlocked(GLOBAL.PANDA))
+				if(target.faceType != GLOBAL.TYPE_PANDA && target.faceTypeUnlocked(GLOBAL.TYPE_PANDA))
 				{
 					kGAMECLASS.output("\n\nYour cheekbones pull back into a snarl against your will, and as you struggle to maintain your expression, you feel your jawbone creak. The muscles of your face feel strained, the very sinews stretching. Your bones are deforming, making it hard to breath as your sinuses reroute, but soon enough the transformation completes. You check your appearance with your codex's holocorder. <b>You've got a short-muzzled, panda-like visage.</b>");
 					changes++;
-					target.faceType = GLOBAL.PANDA;
+					target.faceType = GLOBAL.TYPE_PANDA;
 					target.clearFaceFlags();
-					target.addFaceFlag(GLOBAL.MUZZLED);
+					target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 				}
 				if(changes == 0)
 				{

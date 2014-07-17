@@ -52,7 +52,7 @@
 			
 			
 			this.femininity = 5;
-			this.eyeType = GLOBAL.SYDIAN;
+			this.eyeType = GLOBAL.TYPE_SYDIAN;
 			this.eyeColor = "black";
 			this.tallness = 85;
 			this.thickness = 70;
@@ -61,33 +61,33 @@
 			this.scaleColor = "orange";
 			this.furColor = "orange";
 			this.hairLength = 6;
-			this.hairType = GLOBAL.HUMAN;
+			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.CHITIN;
+			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "orange";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.SYDIAN;
+			this.tongueType = GLOBAL.TYPE_SYDIAN;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 2;
-			this.antennaeType = GLOBAL.SYDIAN;
+			this.antennaeType = GLOBAL.TYPE_SYDIAN;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.SYDIAN;
+			this.armType = GLOBAL.TYPE_SYDIAN;
 			this.gills = false;
-			this.wingType = GLOBAL.HUMAN;
-			this.legType = GLOBAL.SYDIAN;
+			this.wingType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_SYDIAN;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.SYDIAN;
+			this.tailType = GLOBAL.TYPE_SYDIAN;
 			this.tailCount = 1;
 			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!
@@ -131,7 +131,7 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.SYDIAN_CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_SYDIAN_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -151,7 +151,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;

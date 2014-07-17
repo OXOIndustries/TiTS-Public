@@ -106,7 +106,7 @@ package classes.GameData.Pregnancy
 				// Egg fertilization
 				if (this.canFertilizeEggs)
 				{
-					if (mother.hasTailFlag(GLOBAL.OVIPOSITOR) && (mother.tailType == GLOBAL.ARACHNID || mother.tailType == GLOBAL.DRIDER || mother.tailType == GLOBAL.BEE))
+					if (mother.hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && (mother.tailType == GLOBAL.TYPE_ARACHNID || mother.tailType == GLOBAL.TYPE_DRIDER || mother.tailType == GLOBAL.TYPE_BEE))
 					{
 						if (this.alwaysImpregnate || mother.fertility() > Math.floor(Math.random() * this.basePregnancyChance))
 						{

@@ -478,16 +478,16 @@ function getACuntTail():void {
 	if(pc.tailCount > 0) output(" Where did your [pc.tail] go? The snake is connected to you right where your old tail used to be... did it swallow it whole?");
 	
 	output("\n\nAt the same time, the pain is slowly fading - the agony has been replaced by the tingly throb of knitting flesh and connecting nerve tissue. You wince and poke at it, feeling the pressure from both sides as the irritation diminishes. It seems to have joined with your body, and there's not even a seam you can grab hold of to pry it apart! You grab the thing a bit further down and tug, but it hurts even more, like tugging directly on your spine. The vertebrae inside the thing seem connected directly to your own at this point.");
-	if(pc.skinType == GLOBAL.SCALES) output("\n\nThe scales already match your own, so in a way, it's as if this thing was perfectly made to join with you.");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("\n\nThe scales already match your own, so in a way, it's as if this thing was perfectly made to join with you.");
 	else output("\n\nThe scales flake off at your touch, exposing fresh  that matches your [pc.skinFurScales] exactly.");
 	output(" The thing’s moisture - no, your moisture now - drips from the end as you handle it. You cannot resist lifting the " + foes[0].tailVaginaDescript() + " in front of you to examine. Touching the parasite visibly excites the entrance, and slipping a finger in it feels even better. You flex muscles you didn't even know you had and impale your digit, sucking and wringing it dry with your fresh tail-cunt before you summon the strength of will to pull it away.");
 	output("\n\n<b>It will take some time to adjust to having a pussy-tipped tail.</b>\n\n");
 	pc.clearTailFlags();
-	pc.tailType = GLOBAL.CUNTSNAKE;
+	pc.tailType = GLOBAL.TYPE_CUNTSNAKE;
 	pc.tailCount = 1;
-	pc.addTailFlag(GLOBAL.PREHENSILE);
-	pc.addTailFlag(GLOBAL.LONG);
-	pc.addTailFlag(GLOBAL.THICK);
+	pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+	pc.addTailFlag(GLOBAL.FLAG_LONG);
+	pc.addTailFlag(GLOBAL.FLAG_THICK);
 	pc.tailGenitalArg = foes[0].tailGenitalArg;
 	genericLoss();
 }

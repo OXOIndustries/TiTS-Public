@@ -50,7 +50,7 @@
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
 			
 			this.femininity = 35;
-			this.eyeType = GLOBAL.BEE;
+			this.eyeType = GLOBAL.TYPE_BEE;
 			this.eyeColor = "black";
 			this.tallness = 54;
 			this.thickness = 20;
@@ -59,27 +59,27 @@
 			this.scaleColor = "black";
 			this.furColor = "yellow";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.BEE;
+			this.hairType = GLOBAL.TYPE_BEE;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.CHITIN;
+			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.BEE;
+			this.faceType = GLOBAL.TYPE_BEE;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.BEE;
+			this.tongueType = GLOBAL.TYPE_BEE;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 2;
-			this.antennaeType = GLOBAL.BEE;
+			this.antennaeType = GLOBAL.TYPE_BEE;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.BEE;
+			this.armType = GLOBAL.TYPE_BEE;
 			this.gills = false;
-			this.wingType = GLOBAL.BEE;
-			this.legType = GLOBAL.BEE;
+			this.wingType = GLOBAL.TYPE_BEE;
+			this.legType = GLOBAL.TYPE_BEE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -132,7 +132,7 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.HONEY;
+			this.cumType = GLOBAL.FLUID_TYPE_HONEY;
 			this.ballSizeRaw = 1.5;
 			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -152,7 +152,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.HONEY;
+			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
@@ -164,7 +164,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
 		

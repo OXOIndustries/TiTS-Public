@@ -245,7 +245,7 @@
 				kGAMECLASS.output(". It feels achy and a little painful but very very sensitive, and it's getting bigger with alarming ridity. The little knot is sticking an inch out past your [pc.skinFurScales], turning glossy and red as it does. You touch its tip and moan, assaulted by pleasure you barely understand, watching the bulge stretch out another inch in eager response. In seconds, you're rubbing and fondling it, coaxing more and more length from your crotch until ");
 				pc.createCock();
 				pc.cocks[0].cLengthRaw = 5;
-				if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.shiftCock(arg,GLOBAL.CANINE);
+				if(pc.race() == "ausar" || pc.race() == "half-ausar") pc.shiftCock(arg,GLOBAL.TYPE_CANINE);
 				kGAMECLASS.output("<b>your hand is wrapped around a five-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}

@@ -811,7 +811,7 @@ function frottageWithAlex():void {
 	
 	if(pc.cockTotal() > 1) output("his cock almost lost among your [pc.cocks]")
 
-	else if(pc.hasCockFlag(GLOBAL.PREHENSILE)) {
+	else if(pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE)) {
 		output("your wet cock twining around his");
 	}
 	//small/med/big dick:

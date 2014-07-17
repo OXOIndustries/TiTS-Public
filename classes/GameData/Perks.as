@@ -34,7 +34,7 @@ package classes.GameData
 		{
 			// Level 2 Perks
 			var criticalBlows:PerkData = new PerkData();
-			criticalBlows.classLimit = GLOBAL.MERCENARY;
+			criticalBlows.classLimit = GLOBAL.CLASS_MERCENARY;
 			criticalBlows.levelLimit = 2;
 			criticalBlows.autoGained = true;
 			criticalBlows.perkName = "Critical Blows";
@@ -42,14 +42,14 @@ package classes.GameData
 			insertPerkData(criticalBlows);
 			
 			var bloodthirsty:PerkData = new PerkData();
-			bloodthirsty.classLimit = GLOBAL.MERCENARY;
+			bloodthirsty.classLimit = GLOBAL.CLASS_MERCENARY;
 			bloodthirsty.levelLimit = 2;
 			bloodthirsty.perkName = "Bloodthirsty";
 			bloodthirsty.perkDescription = "Melee attacks restore a few points of energy.";
 			insertPerkData(bloodthirsty);
 			
 			var armorPiercing:PerkData = new PerkData();
-			armorPiercing.classLimit = GLOBAL.MERCENARY;
+			armorPiercing.classLimit = GLOBAL.CLASS_MERCENARY;
 			armorPiercing.levelLimit = 2;
 			armorPiercing.perkName = "Armor Piercing";
 			armorPiercing.perkDescription = "Ranged attacks ignore the first few points of enemy defense.";
@@ -57,7 +57,7 @@ package classes.GameData
 			
 			// Level 3 Perks
 			var tough:PerkData = new PerkData();
-			tough.classLimit = GLOBAL.MERCENARY;
+			tough.classLimit = GLOBAL.CLASS_MERCENARY;
 			tough.levelLimit = 3;
 			tough.autoGained = true;
 			tough.perkName = "Tough";
@@ -65,14 +65,14 @@ package classes.GameData
 			insertPerkData(tough);
 			
 			var powerStrike:PerkData = new PerkData();
-			powerStrike.classLimit = GLOBAL.MERCENARY;
+			powerStrike.classLimit = GLOBAL.CLASS_MERCENARY;
 			powerStrike.levelLimit = 3;
 			powerStrike.perkName = "Power Strike";
 			powerStrike.perkDescription = "Grants the ability to perform a single melee attack for 200% normal damage.";
 			insertPerkData(powerStrike);
 			
 			var rapidFire:PerkData = new PerkData();
-			rapidFire.classLimit = GLOBAL.MERCENARY;
+			rapidFire.classLimit = GLOBAL.CLASS_MERCENARY;
 			rapidFire.levelLimit = 3;
 			rapidFire.perkName = "Rapid Fire";
 			rapidFire.perkDescription = "Grants the ability to perform a ranged attack with two extra, reduced-accuracy shots.";
@@ -80,7 +80,7 @@ package classes.GameData
 			
 			// Level 4
 			var juggernaut:PerkData = new PerkData();
-			juggernaut.classLimit = GLOBAL.MERCENARY;
+			juggernaut.classLimit = GLOBAL.CLASS_MERCENARY;
 			juggernaut.levelLimit = 4;
 			juggernaut.autoGained = true;
 			juggernaut.perkName = "Juggernaut";
@@ -88,14 +88,14 @@ package classes.GameData
 			insertPerkData(juggernaut);
 			
 			var riposte:PerkData = new PerkData();
-			riposte.classLimit = GLOBAL.MERCENARY;
+			riposte.classLimit = GLOBAL.CLASS_MERCENARY;
 			riposte.levelLimit = 4;
 			riposte.perkName = "Riposte";
 			riposte.perkDescription = "Grants increased evasion after any melee attack made for the remainder of the combat round.";
 			insertPerkData(riposte);
 			
 			var takeCover:PerkData = new PerkData();
-			takeCover.classLimit = GLOBAL.MERCENARY;
+			takeCover.classLimit = GLOBAL.CLASS_MERCENARY;
 			takeCover.levelLimit = 4;
 			takeCover.perkName = "Take Cover";
 			takeCover.perkDescription = "Grants the ability to avoid nearly all incoming ranged attacks for 3 combat rounds.";
@@ -103,7 +103,7 @@ package classes.GameData
 			
 			// Level 5
 			var secondWind:PerkData = new PerkData();
-			secondWind.classLimit = GLOBAL.MERCENARY;
+			secondWind.classLimit = GLOBAL.CLASS_MERCENARY;
 			secondWind.levelLimit = 5;
 			secondWind.autoGained = true;
 			secondWind.perkName = "Second Wind";
@@ -111,14 +111,14 @@ package classes.GameData
 			insertPerkData(secondWind);
 			
 			var carpetGrenades:PerkData = new PerkData();
-			carpetGrenades.classLimit = GLOBAL.MERCENARY;
+			carpetGrenades.classLimit = GLOBAL.CLASS_MERCENARY;
 			carpetGrenades.levelLimit = 5;
 			carpetGrenades.perkName = "Carpet Grenades";
 			carpetGrenades.perkDescription = "Grants the ability to toss out a handful of micro-grenades, damaging everything in a large area. Hits all enemies.";
 			insertPerkData(carpetGrenades);
 			
 			var detCharge:PerkData = new PerkData();
-			detCharge.classLimit = GLOBAL.MERCENARY;
+			detCharge.classLimit = GLOBAL.CLASS_MERCENARY;
 			detCharge.levelLimit = 5;
 			detCharge.perkName = "Detonation Charge";
 			detCharge.perkDescription = "Grants the ability to throw a focused detonation charge at an enemy for very high thermal damage. Focusing the charge restricts the blast radius to a single target.";
@@ -129,7 +129,7 @@ package classes.GameData
 		{
 			// Level 2
 			var lucky:PerkData = new PerkData();
-			lucky.classLimit = GLOBAL.SMUGGLER;
+			lucky.classLimit = GLOBAL.CLASS_SMUGGLER;
 			lucky.levelLimit = 2;
 			lucky.autoGained = true;
 			lucky.perkName = "Lucky Breaks";
@@ -137,14 +137,14 @@ package classes.GameData
 			insertPerkData(lucky);
 			
 			var shootFirst:PerkData = new PerkData();
-			shootFirst.classLimit = GLOBAL.SMUGGLER;
+			shootFirst.classLimit = GLOBAL.CLASS_SMUGGLER;
 			shootFirst.levelLimit = 2;
 			shootFirst.perkName = "Shoot First";
 			shootFirst.perkDescription = "When using a ranged attack during the first round of combat, gain an additional attack.";
 			insertPerkData(shootFirst);
 			
 			var lowBlow:PerkData = new PerkData();
-			lowBlow.classLimit = GLOBAL.SMUGGLER;
+			lowBlow.classLimit = GLOBAL.CLASS_SMUGGLER;
 			lowBlow.levelLimit = 2;
 			lowBlow.perkName = "Low Blow";
 			lowBlow.perkDescription = "Grants the ability to perform a melee strike with a high chance of stunning the target.";
@@ -152,7 +152,7 @@ package classes.GameData
 			
 			// Level 3
 			var escapeArtist:PerkData = new PerkData();
-			escapeArtist.classLimit = GLOBAL.SMUGGLER;
+			escapeArtist.classLimit = GLOBAL.CLASS_SMUGGLER;
 			escapeArtist.levelLimit = 3;
 			escapeArtist.autoGained = true;
 			escapeArtist.perkName = "Escape Artist";
@@ -160,14 +160,14 @@ package classes.GameData
 			insertPerkData(escapeArtist);
 			
 			var sneakAttack:PerkData = new PerkData();
-			sneakAttack.classLimit = GLOBAL.SMUGGLER;
+			sneakAttack.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sneakAttack.levelLimit = 3;
 			sneakAttack.perkName = "Sneak Attack";
 			sneakAttack.perkDescription = "Grants the ability to perform a melee attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
 			insertPerkData(sneakAttack);
 			
 			var aimedShot:PerkData = new PerkData();
-			aimedShot.classLimit = GLOBAL.SMUGGLER;
+			aimedShot.classLimit = GLOBAL.CLASS_SMUGGLER;
 			aimedShot.levelLimit = 3;
 			aimedShot.perkName = "Aimed Shot";
 			aimedShot.perkDescription = "Grants the ability to perform a ranged attack with greatly increased damage against stunned or blinded targets. Additional negative status effects may increase the damage further.";
@@ -175,7 +175,7 @@ package classes.GameData
 			
 			// Level 4
 			var agility:PerkData = new PerkData();
-			agility.classLimit = GLOBAL.SMUGGLER;
+			agility.classLimit = GLOBAL.CLASS_SMUGGLER;
 			agility.levelLimit = 4;
 			agility.autoGained = true;
 			agility.perkName = "Agility";
@@ -183,14 +183,14 @@ package classes.GameData
 			insertPerkData(agility);
 			
 			var sfGen:PerkData = new PerkData();
-			sfGen.classLimit = GLOBAL.SMUGGLER;
+			sfGen.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sfGen.levelLimit = 4;
 			sfGen.perkName = "Stealth Field Generator";
 			sfGen.perkDescription = "Grants the ability to massively increase evasion chance for two combat rounds.";
 			insertPerkData(sfGen);
 			
 			var disarmS:PerkData = new PerkData();
-			disarmS.classLimit = GLOBAL.SMUGGLER;
+			disarmS.classLimit = GLOBAL.CLASS_SMUGGLER;
 			disarmS.levelLimit = 4;
 			disarmS.perkName = "Disarming Shot";
 			disarmS.perkDescription = "Grants the ability to disarm your target, rendering them unable to wield a weapon for four combat rounds.";
@@ -198,7 +198,7 @@ package classes.GameData
 			
 			// Level 5
 			var sharpEyes:PerkData = new PerkData();
-			sharpEyes.classLimit = GLOBAL.SMUGGLER;
+			sharpEyes.classLimit = GLOBAL.CLASS_SMUGGLER;
 			sharpEyes.levelLimit = 5;
 			sharpEyes.autoGained = true;
 			sharpEyes.perkName = "Sharp Eyes";
@@ -206,14 +206,14 @@ package classes.GameData
 			insertPerkData(sharpEyes);
 			
 			var gasGren:PerkData = new PerkData();
-			gasGren.classLimit = GLOBAL.SMUGGLER;
+			gasGren.classLimit = GLOBAL.CLASS_SMUGGLER;
 			gasGren.levelLimit = 5;
 			gasGren.perkName = "Gas Grenade";
 			gasGren.perkDescription = "Grants the ability to throw a grenade designed to emit a lust-inducing smog. Deals lust damage to all enemies in combat.";
 			insertPerkData(gasGren);
 			
 			var grenade:PerkData = new PerkData();
-			grenade.classLimit = GLOBAL.SMUGGLER;
+			grenade.classLimit = GLOBAL.CLASS_SMUGGLER;
 			grenade.levelLimit = 5;
 			grenade.perkName = "Grenade";
 			grenade.perkDescription = "Grants the ability to throw a grenade designed to emit high levels of thermal radiation. Deals Thermal damage to all enemies in combat.";
@@ -224,7 +224,7 @@ package classes.GameData
 		{
 			// Level 2
 			var shieldTweaks:PerkData = new PerkData();
-			shieldTweaks.classLimit = GLOBAL.ENGINEER;
+			shieldTweaks.classLimit = GLOBAL.CLASS_ENGINEER;
 			shieldTweaks.levelLimit = 2;
 			shieldTweaks.autoGained = true;
 			shieldTweaks.perkName = "Shield Tweaks";
@@ -232,14 +232,14 @@ package classes.GameData
 			insertPerkData(shieldTweaks);
 			
 			var attackDrone:PerkData = new PerkData();
-			attackDrone.classLimit = GLOBAL.ENGINEER;
+			attackDrone.classLimit = GLOBAL.CLASS_ENGINEER;
 			attackDrone.levelLimit = 2;
 			attackDrone.perkName = "Attack Drone";
 			attackDrone.perkDescription = "Grants an attack drone that will automatically fire on your enemies every combat round as long as your shields are up. The drone will also supplant your shields with its own, raising your maximum shielding by one point per level.";
 			insertPerkData(attackDrone);
 			
 			var shieldBooster:PerkData = new PerkData();
-			shieldBooster.classLimit = GLOBAL.ENGINEER;
+			shieldBooster.classLimit = GLOBAL.CLASS_ENGINEER;
 			shieldBooster.levelLimit = 2;
 			shieldBooster.perkName = "Shield Booster";
 			shieldBooster.perkDescription = "Grants a further increase to your shield generator, providing an additional four points of protection per level.";
@@ -247,7 +247,7 @@ package classes.GameData
 			
 			// Level 3
 			var enhancedDampeners:PerkData = new PerkData();
-			enhancedDampeners.classLimit = GLOBAL.ENGINEER;
+			enhancedDampeners.classLimit = GLOBAL.CLASS_ENGINEER;
 			enhancedDampeners.levelLimit = 3;
 			enhancedDampeners.autoGained = true;
 			enhancedDampeners.perkName = "Enhanced Dampeners";
@@ -255,14 +255,14 @@ package classes.GameData
 			insertPerkData(enhancedDampeners);
 			
 			var overcharge:PerkData = new PerkData();
-			overcharge.classLimit = GLOBAL.ENGINEER;
+			overcharge.classLimit = GLOBAL.CLASS_ENGINEER;
 			overcharge.levelLimit = 3;
 			overcharge.perkName = "Overcharge";
 			overcharge.perkDescription = "Grants the ability to perform a single ranged attack for 150% normal damage. If the target's shields have been depleted, the shot may stun the target. Requires an energy weapon.";
 			insertPerkData(overcharge);
 			
 			var volley:PerkData = new PerkData();
-			volley.classLimit = GLOBAL.ENGINEER;
+			volley.classLimit = GLOBAL.CLASS_ENGINEER;
 			volley.levelLimit = 3;
 			volley.perkName = "Volley";
 			volley.perkDescription = "Grants the ability to perform an extra ranged attack with reduced accuracy, but a chance of causing blindness regardless. Requires an energy weapon.";
@@ -270,7 +270,7 @@ package classes.GameData
 			
 			// Level 4
 			var armorTweaks:PerkData = new PerkData();
-			armorTweaks.classLimit = GLOBAL.ENGINEER;
+			armorTweaks.classLimit = GLOBAL.CLASS_ENGINEER;
 			armorTweaks.levelLimit = 4;
 			armorTweaks.autoGained = true;
 			armorTweaks.perkName = "Armor Tweaks";
@@ -278,14 +278,14 @@ package classes.GameData
 			insertPerkData(armorTweaks);
 			
 			var powerSurge:PerkData = new PerkData();
-			powerSurge.classLimit = GLOBAL.ENGINEER;
+			powerSurge.classLimit = GLOBAL.CLASS_ENGINEER;
 			powerSurge.levelLimit = 4;
 			powerSurge.perkName = "Power Surge";
 			powerSurge.perkDescription = "Grants the ability to restore a moderate amount of shielding for 33 energy.";
 			insertPerkData(powerSurge);
 			
 			var deflectorRegen:PerkData = new PerkData();
-			deflectorRegen.classLimit = GLOBAL.ENGINEER;
+			deflectorRegen.classLimit = GLOBAL.CLASS_ENGINEER;
 			deflectorRegen.levelLimit = 4;
 			deflectorRegen.perkName = "Deflector Regeneration";
 			deflectorRegen.perkDescription = "Grants the ability to restore a moderate amount of shielding over four combat rounds for 20 energy.";
@@ -293,7 +293,7 @@ package classes.GameData
 			
 			// Level 5
 			var staticBurst:PerkData = new PerkData();
-			staticBurst.classLimit = GLOBAL.ENGINEER;
+			staticBurst.classLimit = GLOBAL.CLASS_ENGINEER;
 			staticBurst.levelLimit = 5;
 			staticBurst.autoGained = true;
 			staticBurst.perkName = "Static Burst";
@@ -301,14 +301,14 @@ package classes.GameData
 			insertPerkData(staticBurst);
 			
 			var gDisrupt:PerkData = new PerkData();
-			gDisrupt.classLimit = GLOBAL.ENGINEER;
+			gDisrupt.classLimit = GLOBAL.CLASS_ENGINEER;
 			gDisrupt.levelLimit = 5;
 			gDisrupt.perkName = "Gravidic Disruptor";
 			gDisrupt.perkDescription = "Grants the ability to deal Gravidic damage to targetted enemies. There shouldn't be anything out there that's resistant to gravitic damage!";
 			insertPerkData(gDisrupt);
 			
 			var tDisrupt:PerkData = new PerkData();
-			tDisrupt.classLimit = GLOBAL.ENGINEER;
+			tDisrupt.classLimit = GLOBAL.CLASS_ENGINEER;
 			tDisrupt.levelLimit = 5;
 			tDisrupt.perkName = "Thermal Disruptor";
 			tDisrupt.perkDescription = "Grants the ability to deal Thermal damage to your foes. Deals higher base damage than Gravidic Disruptor, but some enemies may be resistant to Thermal damage.";

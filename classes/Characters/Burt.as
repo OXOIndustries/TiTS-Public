@@ -74,7 +74,7 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "FIXME";
 			//this.skinTone = titsPtr.chars["PC"].skinTone;
 			this.skinFlags = new Array();
@@ -90,9 +90,9 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -142,7 +142,7 @@
 			this.cumMultiplierRaw = 10;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 4.5;
 			this.ballFullness = 10;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -162,7 +162,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "brown";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
@@ -176,7 +176,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
 	}

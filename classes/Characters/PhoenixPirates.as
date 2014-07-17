@@ -53,7 +53,7 @@ package classes.Characters
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
 			
 			this.femininity = 35;
-			this.eyeType = GLOBAL.HUMAN;
+			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 68;
 			this.thickness = 20;
@@ -62,25 +62,25 @@ package classes.Characters
 			this.scaleColor = "black";
 			this.furColor = "black";
 			this.hairLength = 3;
-			this.hairType = GLOBAL.HUMAN;
+			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.HUMAN;
+			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.HUMAN;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
-			this.legType = GLOBAL.HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -130,7 +130,7 @@ package classes.Characters
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 1.5;
 			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -150,7 +150,7 @@ package classes.Characters
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;

@@ -135,7 +135,7 @@ function specialsMenu():void {
 	addButton(14,"Back",combatMainMenu,undefined,"Go back to the main combat screen.");
 	addButton(13,"Wait",wait,undefined,"Wait","There's no real reason to this unless you're just dragging out combat to see what your enemy will do.");
 	var offset:int = 0;
-	if(pc.characterClass == GLOBAL.MERCENARY)
+	if(pc.characterClass == GLOBAL.CLASS_MERCENARY)
 	{
 		//EVERYONE HAS
 		if(pc.energy() >= 25) addButton(offset,"Headbutt",attackRouter,headbutt,"Headbutt","A physique-based attack that does not factor in weapon damage but has a chance of stunning your target.\n\nConsumes 25 energy.");
@@ -186,7 +186,7 @@ function specialsMenu():void {
 			offset++;
 		}
 	}
-	else if (pc.characterClass == GLOBAL.ENGINEER) 
+	else if (pc.characterClass == GLOBAL.CLASS_ENGINEER) 
 	{
 		if(pc.energy() >= 25) addButton(offset,"P.Shock",attackRouter,paralyzingShock,"Paralyzing Shock","An attack that allows you to paralyze a single foe. Characters with higher intelligence will have greater success using this skill.\n\nConsumes 25 energy.");
 		else addDisabledButton(offset, "P.Shock");
@@ -241,7 +241,7 @@ function specialsMenu():void {
 			offset++;
 		}
 	}
-	else if(pc.characterClass == GLOBAL.SMUGGLER)
+	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 	{
 		if(silly)
 		{

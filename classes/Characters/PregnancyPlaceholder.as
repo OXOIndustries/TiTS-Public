@@ -43,7 +43,7 @@ package classes.Characters
 			this.balls = 2;
 			this.cumMultiplierRaw = 50;
 			this.cumQualityRaw = 1.0;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
 			this.ballEfficiency = 400;

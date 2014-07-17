@@ -853,7 +853,7 @@ function getPeggedWhileDoublePenetrate():void
 		output(". She licks her lips with a debauched glimmer in her eyes and a knowing smile.");
 		output("\n\n<i>\"Oh, quit it, you. You came on my planet and lost to me. You should be thankful that all I want are a few credits and a little fun. On some world's you'd be turned into a slave or mulched into fertilizer,\"</i>  the victorious lady says flatly. <i>\"I think you'll find paying my fine to be more than worth your while, if you'll just relax a little, you big stiffy.\"</i>  She idly caresses [pc.oneCock] with a toe. <i>\"Yess, big and stiff...\"</i>");
 		output("\n\nAn undesired blush works across your [pc.skin]");
-		if(pc.skinType == GLOBAL.FUR || pc.skinType == GLOBAL.SCALES) output(", hidden as it is by [pc.skinFurScales],");
+		if(pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output(", hidden as it is by [pc.skinFurScales],");
 		output(" as your [pc.cocks] react to the slight creature's toe-touches");
 		if(pc.lust() > 66) output(", twitching hard enough to press against the bottoms of her feet.");
 		else output(", filling and engorging so fast that their girthy shapes press against the bottoms of her feet.");

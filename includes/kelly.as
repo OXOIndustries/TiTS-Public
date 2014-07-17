@@ -1038,7 +1038,7 @@ function getKellyOff(newScreen:Boolean = false):void
 	output("\n\nYou grip each of her shafts, slick with honeyed pre, and begin pumping. She closes her eyes and whimpers softly at the feel of your fingers on her sensitive shafts. You alternate your strokes, sometimes stopping at her flared tips to coax more honey out of them. She groans and wriggles under your ministrations, bucking her hips against your touches.");
 
 	//If prehensile tail: //Assuming this also includes cock-tails
-	if(pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.hasTailFlag(GLOBAL.LONG))
+	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output("\n\nYou adjust your [pc.tails], tickling her clit with the tip. She wriggles at the ticklish sensation, letting out a soft moan of pleasure. Without warning you plunge into her depths, stretching her around you as you invade with a wet schluk.");
 		output("\n\nA cry spills from her throat as your tail plunges into her depths, the hot, wet flesh stretching around your ");
@@ -1087,7 +1087,7 @@ function getKellyOff(newScreen:Boolean = false):void
 	output("\n\nYou speed up your pace, filling the room with slick sounds of flesh slapping on flesh as you masturbate her furiously.");
 
 	output("\n\nEyes screwed shut the laquine moans like a whore, hot shafts pulsing in your grip, sending twin streamers of thick, sweet semen washing down her lengths and bathing your fingers, aiding your strokes and caresses as they lubricate her dicks. Her ");
-	if(pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.hasTailFlag(GLOBAL.LONG)) output("tail-stuffed");
+	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("tail-stuffed");
 	else output("neglected");
 	output(" pussy drools a slickness of its own, her breasts bouncing pleasantly with each passionate inhalation and exhalation she makes. She grunts and gasps, totally helpless under your onslaught, and clearly loving every moment of it.");
 
@@ -1104,14 +1104,14 @@ function getKellyOff(newScreen:Boolean = false):void
 	output(".");
 
 	output("\n\nA delighted squeal ripples from her throat, she arches her back and clenches down");
-	if(pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.hasTailFlag(GLOBAL.LONG))
+	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output(", inadvertently squeezing your [pc.tails] in the silken vice of her depths");
 	}
 	output(", before her cocks bulge once more and send twin streamers of semen flying for the ceiling. Though they make a spirited attempt, they fall short, and instead drop like molten meteors back down to splat wetly against her already-smeared face and belly. She moans and cries and whimpers in ecstasy as she paints herself a second time; finally coming to a halt, she is completely plastered in her own herm-goo, panting for breath in a near-palpable fug of honeyed sex fumes.");
 
 	output("\n\nYou release her");
-	if(pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.hasTailFlag(GLOBAL.LONG))
+	if(pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.hasTailFlag(GLOBAL.FLAG_LONG))
 	{
 		output(", withdrawing your [pc.tails] from her abused holes");
 		if(pc.tailCount > 1) output("s");
@@ -1696,7 +1696,7 @@ function eatingWithKellysHoneyForSeasoning():void
 	output("\n\nYou roll your eyes. She sure likes to keep bragging about her honey, doesn’t she?");
 	if(pc.hasCock())
 	{
-		if(pc.hasCock() && pc.cumType == GLOBAL.HONEY) 
+		if(pc.hasCock() && pc.cumType == GLOBAL.FLUID_TYPE_HONEY) 
 		{
 			output(" Perhaps <b>you</b> should provide the honey next time.");
 		}
@@ -1707,7 +1707,7 @@ function eatingWithKellysHoneyForSeasoning():void
 		if(pc.isNude()) output(" You reach under the table to stroke your [pc.cockBiggest].");
 
 		output("\n\n<i>\"Hey, if you got it, flaunt it,\"</i> she states, unabashed at being called a braggart. <i>\"But as for trying <b>your</b> ");
-		if(pc.cumType == GLOBAL.HONEY) output("honey");
+		if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) output("honey");
 		else output("special seasoning");
 		output("...\"</i> she leans over the table and licks her lips, slowly and deliberately. <i>\"I'm game if you are, honey. I <b>love</b> trying new flavors,\"</i> she purrs, then settles back in her chair,");
 	}
@@ -2271,7 +2271,7 @@ function kellyHyperPlayAwwwYiss():void
 	output("\n\nAn appreciative coo echoes from the direction of Kelly's head, but you are more concerned with savoring her flavors. Though it's not the honey that is steadily seeping from her twin shafts, it's still a very sweet flavor - sugary sweet, in fact. Certainly pleasant enough to encourage you to take a second lick, and then a third, rolling your tongue through her plump pussy and plumbing her wet depths, soaking up the tastes that ensue. A steady stream of approving groans and moans fill the air, as does the sweet scent of honey, Kelly's arousal increasing with each caress you give her fem-sex. Her cunt winks and ripples, trying to catch and hold your squirming tongue in her depths, but you slide free, teasing her at her futile efforts.");
 
 	//Long or SuperLong Tongue
-	if(pc.hasTongueFlag(GLOBAL.LONG))
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
 	{
 		output("\n\nAware of her quad swaying back and forth as she rocks under your ministrations, a wicked idea comes to mind. Your inhuman {pc.tongue} worms its way through her slick netherlips and slithers downwards; even as some of it continues stroking and teasing her femininity, the rest of it writhes like a tentacle, brushing gently over the swollen skin of her quad-stuffed girlsac. It moves across the tender flesh with tantalizing strokes, reaching along and then looping itself around the base of her two shafts, filling your senses with the strange cocktail of tastes: her sugary-sweet pussy-juices, mingling with the honeyed taste of her precum as it paints her shafts, all undercut with just the faintest salty tang of sweet.");
 		output("\n\n<i>\"Oh, gods... I'm gonna have to remember that trick,\"</i> Kelly groans, deep and low in her throat, longing filling her voice.");
@@ -2366,7 +2366,7 @@ function keepGoingWithFuckingHyperModeKelly():void
 		else
 		{
 			output("\n\n<i>\"F-fuck! Fuck me, fuck me, fuck me!\"</i> Kelly cries out, writhing helplessly as your deluge of semen crashes against her womb, swamping her interior in an enormous flood of [pc.cum]. So huge does her belly grow, and so rapidly, that she has to wriggle slightly onto her side and cock a leg to let her own male climax erupt, painting great streaks of honey all over the floor, filling the air with the scent of her modified semen even as some of your own spunk spurts back out around her desperately grasping netherlips, mixing your scent with hers. By the time you are both finished, the floor is covered in an inches-deep puddle of honey undercut with");
-			if(pc.cumType == GLOBAL.HONEY) output(" more honey");
+			if(pc.cumType == GLOBAL.FLUID_TYPE_HONEY) output(" more honey");
 			else output("[pc.cumNoun]");
 			output(", whilst Kelly is wobbling slightly atop a belly like a beachball. She gasps and pants, too dazed from the fucking she just received to say anything coherent... though she does eventually mumble a dreamy, <i>\"Where have you been all my life?\"</i> in your direction.");
 		}
@@ -3384,7 +3384,7 @@ function eatOutKellysQuoteUnquoteCunny():void
 		output("\n\nAlright, you agree. It’s time to show her you always keep your end of the bargain. Without another word you plunge your finger into her butt, stroking past her tight ring as you look for whatever special spot you can find. You nuzzle her cunny, kissing her labia and piercing her with your [pc.tongue]. This time plunging it as far as you can and tasting the sweetness within. Warm, wet and inviting, just the way you like it.");
 		output("\n\nKelly moans, deep and low, a sigh of deepest satisfaction, whole body loosening as you finally penetrate her. Her sopping folds wrap themselves around your [pc.tongue], holding it in a hot, sweet, silken vice, drawing it as deeply into her as you can reach.");
 		//if long tongue:
-		if(pc.hasTongueFlag(GLOBAL.LONG))
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG))
 		{
 			output("\n\nShe wants more, and you’re happy to oblige. Using your [pc.tongue] to its fullest, you plunge into her as far as you can reach. Her cervix tries its best to deter your advances, and while it does take some work for you to find wiggle room, you eventually pierce that barrier guarding her innermost sanctuary.");
 			output("\n\nKelly arches her back with an ecstatic cry of pleasure, her cunt greedily clenching down on your tongue as it penetrates her very womb, soaking you in the taste of her honeyed fluids.");

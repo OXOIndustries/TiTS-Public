@@ -65,47 +65,47 @@
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 85;
-			this.eyeType = GLOBAL.RASKVEL;
+			this.eyeType = GLOBAL.TYPE_RASKVEL;
 			this.eyeColor = "cloudy";
 			this.tallness = 48;
 			this.thickness = 42;
 			this.tone = 44;
 			this.hairColor = "PLACEHOLDER";
-			this.hairType = GLOBAL.RASKVEL;
+			this.hairType = GLOBAL.TYPE_RASKVEL;
 			this.scaleColor = "blue";;
 			this.furColor = "PLACEHOLDER";
 			this.hairLength = 12;
 			
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_FUR;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.RASKVEL;
+			this.faceType = GLOBAL.TYPE_RASKVEL;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.RASKVEL;
+			this.tongueType = GLOBAL.TYPE_RASKVEL;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
-			this.antennaeType = GLOBAL.HUMAN;
+			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 2;
-			this.hornType = GLOBAL.DEMONIC;
-			this.armType = GLOBAL.HUMAN;
+			this.hornType = GLOBAL.TYPE_DEMONIC;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
-			this.wingType = GLOBAL.HUMAN;
-			this.legType = GLOBAL.RASKVEL;
+			this.wingType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_RASKVEL;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.RASKVEL;
+			this.tailType = GLOBAL.TYPE_RASKVEL;
 			this.tailCount = 1;
 			this.tailFlags = new Array();
-			this.addTailFlag(GLOBAL.LONG);
-			this.addTailFlag(GLOBAL.PREHENSILE);
+			this.addTailFlag(GLOBAL.FLAG_LONG);
+			this.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -140,7 +140,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createVagina();
-			this.girlCumType = GLOBAL.GIRLCUM;
+			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			this.vaginalVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
@@ -150,7 +150,7 @@
 			this.cumMultiplierRaw = 6;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -168,7 +168,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "purple";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;

@@ -276,7 +276,7 @@ function tamtamPhaseTwoLetsGo():void
 	output("You're slowly tearing through the turrets. The foyer has certainly seen better days: it's littered with broken bits of machinery and destroyed turret husks, not to mention the walls riddled with bullet holes. Still, you're making progress, and the cat-girl behind the counter is starting to look awful nervous. Finally, she plants her hands on her (now that you look, surprisingly big) hips and scowls at you.");
 	output("\n\n<i>\"Look at what you did to my poor turrets! What did they ever do to you, huh!?\"</i> she shouts over the din of gunfire as her pets continue to fire at you. <i>\"Well fine! Boss said nobody gets past here, so I'll just have to use my SUPER SECRET WEAPON! Come on out, boy!\"</i>");
 	output("\n\nWhat!? You look up just in time to see the door behind the desk being bashed open and a huge, quadrupedal black form rush out. It leaps over the desk, skidding to a halt between you and the guns, barring a set of glittering metallic teeth. It looks like ");
-	if(pc.characterClass != GLOBAL.ENGINEER) output("some kind of crazy cyber dog");
+	if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output("some kind of crazy cyber dog");
 	else output("a canid-formed Fenris-class attack drone");
 	output(", complete with a razor claws and fangs.");
 	output("\n\n<i>\"Go get " + pc.mf("him","her") + ", Tam-wolf!\"</i> the cat-girl cheers, pumping a fist into the air.");
@@ -505,7 +505,7 @@ function takeTamWulf():void
 	output("With the psychotic cat-girl incapacitated, you take a gander at the damaged drone dog on the work table. Looking just like a sleek black doberman, the drone is certainly quite powerful -- and those teeth can take a bite right out of you. With a little re-working, you could probably turn him into your new best friend.");
 	if(silly) output(" Then again, stealing is wrong... even from pirates.");
 	//If PC is a Tech w/ drone:
-	else if(pc.characterClass == GLOBAL.ENGINEER) output(" <b>Taking Tamwolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" <b>Taking Tamwolf would let you replace your shock-slinging default drone with a bitey attack drone by equipping it as an accessory</b>.");
 	else output(" If only you had the expertise and experience to work with drones, you could probably get Tam-wolf up to peak form -- as is, he's still pretty damaged, and might be unreliable.");
 	output("\n\nTake him?");
 	processTime(1);
@@ -878,13 +878,13 @@ function coreWalkWayBonus():Boolean
 		//[Fight] [Lift] [Sneak By] [{if Tech Spec.: Hack Turrets}]
 		clearMenu();
 		addButton(0,"Fight",startCombat,"rocket pods");
-		if(pc.characterClass == GLOBAL.SMUGGLER)
+		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
 			output("\n\nThis situation reminds you of the time you snuck by the guards on Antaris VII. Zero-G environs do open up some unconventional paths....");
 			addButton(1,"Sneak",sneakByZeTurrets);
 		}
 		else addDisabledButton(1,"Sneak","Sneak","Smugglers can probably find a way to avoid this fight entirely....");
-		if(pc.characterClass == GLOBAL.ENGINEER) addButton(2,"HackTurrets",hackTheRocketPodsOnTarkus);
+		if(pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(2,"HackTurrets",hackTheRocketPodsOnTarkus);
 		else addDisabledButton(2,"HackTurrets","Hack Turrets","A tech specialist could probably hack these things.");
 		return true;
 	}
@@ -2683,7 +2683,7 @@ function makeKaskaSuchYerCoochLikeABaws():void
 		output("\n\nYou let extend your semi-liquid lower body out until it makes contact with the dickgirl's overfull cum factories and swiftly engulf them. Kaska whimpers, but to her credit, she doesn't lose it yet. You smile through your own moans of pleasure and push your gooey pseudopod further, swallowing up the bottom half of her dick. She loses it then, completely abandoning her own attempts to please her cock. The pirate's hand falls by her side, and her hips thrust futilely against you while you bind her in shifting liquid. Her balls squeeze, and you rub them encouragingly, coaxing the biggest possible orgasm out of her. You let the tip poke out the top, so that when she blows, she'll blow all over herself.");
 	}
 	//Foot
-	else if(pc.legType == GLOBAL.HUMAN)
+	else if(pc.legType == GLOBAL.TYPE_HUMAN)
 	{
 		output("\n\nYou extend a [pc.foot] out until you make contact with the dickgirl's swollen nuts. Stopping there, you let your toes rub across the slick surface of her hairless sack, caressing her with your foot while she goes to town on your [pc.vaginas]. You can feel them twitch and pulse, so close to delivering their gooey payload and yet so far. In the interest of helping your loyal clit-licker along, you fondle your way up to her shaft and press your toes around it, pushing her hand away so that you can jerk her off with your foot. She moans into [pc.oneVagina], and her dick thickens, preparing to shoot.");
 	}
@@ -2726,7 +2726,7 @@ function activeBombApproach():void {
 	var thours:int = Math.floor(flags["TARKUS_BOMB_TIMER"]/60);
 	var tminutes:int = flags["TARKUS_BOMB_TIMER"] - (thours * 60);
 	output(". An ominous timer on the face of it is counting down. There are currently " + thours + " hours and " + tminutes + " minutes left to disarm it or get off this rock. A bomb like this doesn't have the yield to directly destroy the planet, but placed here, it'll easily wreck this facility and the tethers that hold the half planets together.");
-	if(pc.characterClass != GLOBAL.ENGINEER) output(" Without whatever super-science is at work here, Tarkus will tear itself apart.");
+	if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" Without whatever super-science is at work here, Tarkus will tear itself apart.");
 	else output(" Without the gravitic stabilization this station provides, Tarkus will tear itself apart!");
 	output("\n\nDo you attempt to disarm it?");
 	if(pc.isAss()) output(" It might be a better idea to just book it off planet and write the place off as a loss. Surely you can find some of your Dad's probes somewhere else.");

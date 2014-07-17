@@ -69,33 +69,33 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
-			this.addTongueFlag(GLOBAL.LONG);
+			this.addTongueFlag(GLOBAL.FLAG_LONG);
 			this.lipMod = 0;
-			this.earType = GLOBAL.CANINE;
+			this.earType = GLOBAL.TYPE_CANINE;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.CANINE;
+			this.armType = GLOBAL.TYPE_CANINE;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.CANINE;
+			this.legType = GLOBAL.TYPE_CANINE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.CANINE;
+			this.tailType = GLOBAL.TYPE_CANINE;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -132,14 +132,14 @@
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 1.2;
 			this.cocks[0].cLengthRaw = 18;
-			this.cocks[0].addFlag(GLOBAL.TAPERED);
-			this.cocks[0].addFlag(GLOBAL.KNOTTED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			//balls
 			this.balls = 2;
 			this.cumMultiplierRaw = 15;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -161,7 +161,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "pale pink";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;

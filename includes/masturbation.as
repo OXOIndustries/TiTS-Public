@@ -350,7 +350,7 @@ function singleDickFap():void {
 	output(" idly reach down to toy with [pc.oneCock], grabbing hold and feeling it fill out in your palm, stiffening in anticipatory lust - not that you needed any more. You're plenty horny, and you begin to stroke, working yourself towards greater levels of pleasure with great vigor, pumping hard and fast on your ");
 	if(pc.cockTotal() > 1) output("chosen ");
 	output(" phallus. The [pc.cockHead] plumps up nice and full in your grip, already swelling out to its full size");
-	if(pc.hasCockFlag(GLOBAL.FLARED)) output(", the flare dangerously expanding already");
+	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) output(", the flare dangerously expanding already");
 	output(", hot, lusty, and ready for action.");
 	//In ship? Pull up porno!
 	if(currentLocation == "SHIP INTERIOR") {
@@ -360,13 +360,13 @@ function singleDickFap():void {
 	}
 	//Bottom of dick intro
 	var selector:Array = new Array();
-	if(pc.hasCockFlag(GLOBAL.KNOTTED)) selector[selector.length] = GLOBAL.KNOTTED;
-	if(pc.hasCockFlag(GLOBAL.SHEATHED)) selector[selector.length] = GLOBAL.SHEATHED;
-	if(pc.hasCockFlag(GLOBAL.STINGER_BASED)) selector[selector.length] = GLOBAL.STINGER_BASED;
-	if(selector.length == 0) selector[selector.length] = GLOBAL.HUMAN;
+	if(pc.hasCockFlag(GLOBAL.FLAG_KNOTTED)) selector[selector.length] = GLOBAL.FLAG_KNOTTED;
+	if(pc.hasCockFlag(GLOBAL.FLAG_SHEATHED)) selector[selector.length] = GLOBAL.FLAG_SHEATHED;
+	if(pc.hasCockFlag(GLOBAL.FLAG_STINGER_BASED)) selector[selector.length] = GLOBAL.FLAG_STINGER_BASED;
+	if(selector.length == 0) selector[selector.length] = GLOBAL.TYPE_HUMAN;
 	var temp:int = selector[rand(selector.length)];
 	//Knotted
-	if(temp == GLOBAL.KNOTTED) {
+	if(temp == GLOBAL.FLAG_KNOTTED) {
 		output("\n\nYou start by gently feeling around the bottom of your ");
 		if(pc.cocks[0].knotMultiplier <= 1.4) output("dutifully swelling");
 		else if(pc.cocks[0].knotMultiplier <= 1.6) output("nice, thick");
@@ -376,11 +376,11 @@ function singleDickFap():void {
 		output(" knot, feeling the swollen cocklump pulse with every beat of your heart. The many veins visible around its circumference tingle pleasantly as they drum against your palm.");
 	}
 	//Sheath
-	else if(temp == GLOBAL.SHEATHED) output("\n\nYou start by gently feeling around the sheath, rubbing the sensitive skin that would usually conceal your organ were it not so erect, and even let your fingers dip down into the folds between, running your them around the inside, feeling your hands on your dick and yet at the same time penetrating you. By the time you pull them free, your heady, musky aroma is thick in the air. You move up to the shaft a nano-second later, eager to get into the real action.");
+	else if(temp == GLOBAL.FLAG_SHEATHED) output("\n\nYou start by gently feeling around the sheath, rubbing the sensitive skin that would usually conceal your organ were it not so erect, and even let your fingers dip down into the folds between, running your them around the inside, feeling your hands on your dick and yet at the same time penetrating you. By the time you pull them free, your heady, musky aroma is thick in the air. You move up to the shaft a nano-second later, eager to get into the real action.");
 	//Anemone Wavy
-	else if(temp == GLOBAL.STINGER_BASED) {
+	else if(temp == GLOBAL.FLAG_STINGER_BASED) {
 		output("\n\nYou start by gently feeling around the base of your shaft, letting your wriggling tendrils brush your knuckles, their stinging venom both painful and pleasant all at once. A chemical excitement spreads up your arm, darkening the [pc.skin]");
-		if(pc.skinType != GLOBAL.SKIN) output(" under your [pc.skinFurScales]");
+		if(pc.skinType != GLOBAL.SKIN_TYPE_SKIN) output(" under your [pc.skinFurScales]");
 		output(", exciting your heart until you feel it's about to thud its way out of your chest. A ripple of sensual pleasure spreads out from your crotch as the venom circulates through your bloodstream to its goal.");
 	}
 	//Nothing special:
@@ -388,28 +388,28 @@ function singleDickFap():void {
 	
 	//Top of dick intro
 	selector = new Array();
-	if(pc.hasCockFlag(GLOBAL.TAPERED)) selector[selector.length] = GLOBAL.TAPERED;
-	if(pc.hasCockFlag(GLOBAL.FLARED)) selector[selector.length] = GLOBAL.FLARED;
-	if(pc.hasCockFlag(GLOBAL.PREHENSILE)) selector[selector.length] = GLOBAL.PREHENSILE;
-	if(pc.hasCockFlag(GLOBAL.STINGER_TIPPED)) selector[selector.length] = GLOBAL.STINGER_TIPPED;
-	if(selector.length == 0) selector[selector.length] = GLOBAL.HUMAN;
+	if(pc.hasCockFlag(GLOBAL.FLAG_TAPERED)) selector[selector.length] = GLOBAL.FLAG_TAPERED;
+	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) selector[selector.length] = GLOBAL.FLAG_FLARED;
+	if(pc.hasCockFlag(GLOBAL.FLAG_PREHENSILE)) selector[selector.length] = GLOBAL.FLAG_PREHENSILE;
+	if(pc.hasCockFlag(GLOBAL.FLAG_STINGER_TIPPED)) selector[selector.length] = GLOBAL.FLAG_STINGER_TIPPED;
+	if(selector.length == 0) selector[selector.length] = GLOBAL.TYPE_HUMAN;
 	temp = selector[rand(selector.length)];
 	
 	//Pointed
-	if(temp == GLOBAL.TAPERED) {
+	if(temp == GLOBAL.FLAG_TAPERED) {
 		output("\n\nSoon, you're panting with excitement, thrusting against your hand when your fingers touch the sensitive point to bury yourself back to down to your [pc.knot] in your hand's reflexively tight grip. You stroke up again, fondle yourself, and whine as your body forces you to thrust, embedding your pointed prick deep into your hand once more, pleasuring yourself with rapid humps and vice-like squeezes.");
 	}
 	//Flared
-	else if(temp == GLOBAL.FLARED) {
+	else if(temp == GLOBAL.FLAG_FLARED) {
 		output("\n\nSoon, you're panting with excitement, your [pc.hips] quivering as you dance your touches up past the middle of your flexing member. Your member gives a mighty shudder when you approach the flare, and that masculine ring thickens in response, engorging with fresh blood and becoming even more responsive to your touches.");
 		if(pc.isTaur()) output(" You fail to suppress a muted whinney as your body gives in to its animalistic instincts.");
 	}
 	//Anemone Wavy
-	else if(temp == GLOBAL.STINGER_TIPPED) {
+	else if(temp == GLOBAL.FLAG_STINGER_TIPPED) {
 		output("\n\nSoon, you're panting with excitement and stroking your hand up and down your length. It's hard and sensitive as you've come to expect, but on your upstrokes, you get to your favorite part: the squirming tendrils that ring your crown. They have all the sensitivity of your cocktip, but at the same time, they also move with their own independant skills and desires, slipping between your fingers and dosing you with even more of your own venom.");
 	}
 	//Prehensile
-	else if(temp == GLOBAL.PREHENSILE) {
+	else if(temp == GLOBAL.FLAG_PREHENSILE) {
 		output("\n\nSoon, you're panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
 	}
 	//Nothing special
@@ -515,7 +515,7 @@ function multiCockFap():void {
 			output(". You whimper as feelings of fucking and being fucked war with the sensation of doubled masturbation at the forefront of your mind. The only winner here is pleasure, and you subsume yourself in it, stroking like wild while trying to hold back the mother of all orgasms.");
 			tailPussied = true;
 		}
-		else if(pc.tailCount >= pc.cockTotal() - 2 && pc.hasTailFlag(GLOBAL.PREHENSILE) && pc.tailType != GLOBAL.HUMAN) {
+		else if(pc.tailCount >= pc.cockTotal() - 2 && pc.hasTailFlag(GLOBAL.FLAG_PREHENSILE) && pc.tailType != GLOBAL.TYPE_HUMAN) {
 			output(" Lucky for you, you've got [pc.tails] that are more than capable of wrapping around an unclaimed tool and stroking up and down, letting you please every single cock at once in a symphony of pleasure ");
 			if(pc.cockTotal() >= 7) output("with so many different harmonies that it almost overloads your mind");
 			else output("so powerful that it's hard not to slip away into the ecstasy immediately");
@@ -1273,7 +1273,7 @@ public function joyCoMagicMilker7Sucks():void
 			output(" bag of [pc.milk].  ");
 			//Milk items probably just good for selling. Value relatively low for normal milk but honey is worth 2x milk, and maybe other more exotic lactations could also get value boosts?
 			//Set value and adjust descs
-			if(pc.milkType == GLOBAL.HONEY)
+			if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY)
 			{
 				foundLootItems[0].basePrice *= 2;
 			}

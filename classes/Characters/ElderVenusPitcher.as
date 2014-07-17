@@ -55,7 +55,7 @@
 			
 
 			this.femininity = 95;
-			this.eyeType = GLOBAL.VENUSPITCHER;
+			this.eyeType = GLOBAL.TYPE_VENUSPITCHER;
 			this.eyeColor = "green";
 			this.tallness = 65;
 			this.thickness = 35;
@@ -64,15 +64,15 @@
 			this.scaleColor = this.scaleColor;
 			this.furColor = "yellow";
 			this.hairLength = 24;
-			this.hairType = GLOBAL.VENUSPITCHER;
+			this.hairType = GLOBAL.HAIR_TYPE_TENTACLES;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale green";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.VENUSPITCHER;
+			this.tongueType = GLOBAL.TYPE_VENUSPITCHER;
 			this.lipMod = 3;
 			this.earType = 0;
 			this.antennae = 0;
@@ -82,9 +82,9 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.VENUSPITCHER;
+			this.legType = GLOBAL.TYPE_VENUSPITCHER;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -127,9 +127,9 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock(10,2.5);
-			this.cocks[0].cType = GLOBAL.VENUSPITCHER;
+			this.cocks[0].cType = GLOBAL.TYPE_VENUSPITCHER;
 			this.createVagina();
-			this.girlCumType = GLOBAL.GIRLCUM;
+			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			this.vaginalVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
@@ -138,7 +138,7 @@
 			this.cumMultiplierRaw = 10;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUMSAP;
+			this.cumType = GLOBAL.FLUID_TYPE_CUMSAP;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 1;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -159,7 +159,7 @@
 			this.breastRows[0].breastRatingRaw = 11;
 			this.nippleColor = "dark green";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILKSAP;
+			this.milkType = GLOBAL.FLUID_TYPE_MILKSAP;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
@@ -172,7 +172,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
 	}

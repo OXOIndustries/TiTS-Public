@@ -93,7 +93,7 @@ function getDiseaseProbedYo():void
 	output("\n\n<i>\"Very well, please, climb on the bed,\"</i> the nursedroid instructs, patting gently on the fabric-covered bed to indicate where.");
 	output("\n\nYou climb up onto the crude but sterile bed and look at V-Ko, waiting.");
 	output("\n\n<i>\"This will only take a short time. Please, remain stationary.\"</i> She does not wait for you to respond, instead coming up next to you and grabbing you by the wrist. Her fingers are surprisingly warm and soft for an artificial creature, but her grip is as firm as a trained athlete's, perhaps firmer. She presses a pair of fingers around the inside of your wrist. They glow, flickering slightly as she searches for an artery");
-	if(pc.skin == GLOBAL.CHITIN) output(" beneath your chitin");
+	if(pc.skin == GLOBAL.SKIN_TYPE_CHITIN) output(" beneath your chitin");
 	output(". When she does, they turn bright red, pulsating visibly with every beat of your heart. V-Ko's eyes drift closed. She murmurs, <i>\"Scanning blood for contaminants....\"</i>");
 	output("\n\nYour [pc.skin] prickles as electromagnetic energies pulse through your body. It isn't a painful sensation. In a way, it's oddly pleasant, like a combination of tickling and phantom caresses. It's easy to relax while the droid works her magic to diagnose your ailments. In fact, you lean back against the wall and just watch her as she runs through her diagnostics, her high pitched voice quietly reporting on her progress.");
 	output("\n\n<i>\"Checking lymphatic system....\"</i>");
@@ -235,7 +235,7 @@ function removeParasiteII(name:String):void {
 	// Do the removal shit
 	if (name == "cuntsnake")
 	{
-		pc.tailType = GLOBAL.HUMAN;
+		pc.tailType = GLOBAL.TYPE_HUMAN;
 		pc.tailCount = 0;
 		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
 		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
@@ -747,7 +747,7 @@ function agreeToElectroStim():void
 	}
 	output("\n\nFinally, she finds a ring. <i>“Please open your mouth, " + pc.mf("sir","madam") + ",”</i> she requests. And you comply.");
 	output("\n\nThe ring prevents you from biting down and it’s tied up behind your head, ensuring you have no way to dispose of it.");
-	if(pc.hasFaceFlag(GLOBAL.MUZZLED)) output(" A few straps hold your [pc.face] shut to prevent any possible accidents.");
+	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output(" A few straps hold your [pc.face] shut to prevent any possible accidents.");
 
 	output("\n\nShortly after she inserts a small plug, made from some sort of elastic gel inside your maw. It’s long enough to almost reach your throat. A wire connects it to the console, similar to the other toys. With a small click, she finishes attaching it to the ring inside your mouth.");
 	output("\n\n<i>“Ready to begin, " + pc.mf("sir","madam") + "?”</i>");

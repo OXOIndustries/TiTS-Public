@@ -145,8 +145,8 @@ function heyDocImAHero():void
 			output("\n\nThis change seems to come at the expense of your lower body, your rounding figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
 			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.PLANTIGRADE);
-			pc.legType = GLOBAL.HUMAN;
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.legType = GLOBAL.TYPE_HUMAN;
 		}
 	}
 	else
@@ -156,15 +156,15 @@ function heyDocImAHero():void
 			output("\n\nYour lower body is the first to change, your changing figure reconstituting your mass with startling speed. <b>You are now standing on two legs</b>.");
 			pc.legCount = 2;
 			pc.clearLegFlags();
-			pc.addLegFlag(GLOBAL.PLANTIGRADE);
-			pc.legType = GLOBAL.HUMAN;
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.legType = GLOBAL.TYPE_HUMAN;
 		}
 	}
 	//IF PC HAS GOO-SKIN
-	if(pc.skinType == GLOBAL.GOO) 
+	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
-		pc.skinType = GLOBAL.GOO;
+		pc.skinType = GLOBAL.SKIN_TYPE_GOO;
 	}
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)
@@ -289,56 +289,56 @@ function heyDocImAHero():void
 		else output("They shift up on themselves");
 		output(", bunching up into a little black tuft, perfectly imitating the Doctor’s own tail. <b>Your tail is now a badger tail</b>!");
 		pc.tailCount = 1;
-		pc.tailType = GLOBAL.BADGER;
+		pc.tailType = GLOBAL.TYPE_BADGER;
 		pc.clearTailFlags();
-		pc.addTailFlag(GLOBAL.FLUFFY);
-		pc.addTailFlag(GLOBAL.FURRED);
+		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 	}
 	//IF PC DOES NOT HAVE A TAIL
 	if(pc.tailCount == 0)
 	{
 		output("\n\nThere’s a sudden stretching sensation in your backside, and then a short sharp shock as you feel a small fluffy tail burst through your flesh. It twitches for a few moments before settling down, a perfect imitation of the Doctor’s own tail. <b>You now have a badger tail</b>!");
 		pc.tailCount = 1;
-		pc.tailType = GLOBAL.BADGER;
+		pc.tailType = GLOBAL.TYPE_BADGER;
 		pc.clearTailFlags();
-		pc.addTailFlag(GLOBAL.FLUFFY);
-		pc.addTailFlag(GLOBAL.FURRED);
+		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 	}
 	//IF PC DOES NOT HAVE FUR
-	if(pc.skinType != GLOBAL.FUR)
+	if(pc.skinType != GLOBAL.SKIN_TYPE_FUR)
 	{
 		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel fur slide blissfully out over your skin, sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
-		pc.skinType = GLOBAL.FUR;
+		pc.skinType = GLOBAL.SKIN_TYPE_FUR;
 		pc.clearSkinFlags();
-		pc.addSkinFlag(GLOBAL.FURRED);
+		pc.addSkinFlag(GLOBAL.FLAG_FURRED);
 		pc.furColor = "black";
 	}
 	//IF PC HAS NON-BLACK FUR
-	if(pc.skinType == GLOBAL.FUR && pc.furColor != "black")
+	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR && pc.furColor != "black")
 	{
 		output("\n\nA shiver runs through your entire body, and with a feeling like sinking into a warm bath you feel your fur changing, a wave of color sweeping over your body in moments to leave you wrapped entirely in thick black fur. <b>You now have black fur</b>!");
 		pc.furColor = "black";
 	}
-	if(pc.legType != GLOBAL.SUCCUBUS)
+	if(pc.legType != GLOBAL.TYPE_SUCCUBUS)
 	{
 		output("\n\nYour feet tense abruptly, and you grit your teeth against a brief flash of pain as you feel your bones altering dramatically. The soles of your feet are shifted upwards, pushing you onto your tiptoes as the heels of your feet extend downwards in a thin spike. The changes finish in only a few moments, leaving you with feet that are somehow natural high heels; forcing you to totter about with your gait altered permanently. <b>Your feet are now permanent high heels</b>!");
-		pc.legType = GLOBAL.SUCCUBUS;
+		pc.legType = GLOBAL.TYPE_SUCCUBUS;
 		pc.clearLegFlags();
-		pc.addLegFlag(GLOBAL.PLANTIGRADE);
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 	}
-	if(pc.armType != GLOBAL.BADGER)
+	if(pc.armType != GLOBAL.TYPE_BADGER)
 	{
 		output("\n\nYour hands change too, albeit not so dramatically; finishing up almost normal looking - so long as your definition of “normal” includes black fur and small but significant claws. <b>Your hands are now clawed badger hands</b>!");
-		pc.armType = GLOBAL.BADGER;
+		pc.armType = GLOBAL.TYPE_BADGER;
 	}
 	output("\n\nFinally you begin to feel full, the liquid that has been mercilessly pumping into you seeming to surge back up your throat and fill the inside of your head. The haze you’ve been swimming in intensifies, a pink mist so thick that it’s almost physical overwhelming your thoughts. Your vision blurs, and you’re dimly aware of your face reshaping, but mostly all you can think about is your need. You <i>need</i> to fuck - no, that’s not right; you need to <i>be</i> fucked. That’s right, that’s what’s important; you need to be used and taken and god you’d forgotten that smell of cock but suddenly it’s in front of you again and it’s all you can think about. Thinking is hard, but somehow you <i>know</i> deep inside yourself that thinking isn’t important for you anymore, nowhere near as important as being fucked.");
 	output("\n\nYou barely register the tendril pulling itself out of your mouth, the only thought that provokes in you is one of mild discomfort as you’re no longer being filled from at least one end. You drool helplessly, your dripping tongue hanging from your lips");
-	if(pc.faceType != GLOBAL.BADGER)
+	if(pc.faceType != GLOBAL.TYPE_BADGER)
 	{
 		output(" as you only just manage to notice the feeling of your mouth shifting, changing into a black and white muzzle just like the smiling face of the Doctor before you. You can barely even manage to look up at her; you feel at once both so utterly drained and so completely in need of release. <b>Your head is now shaped into a badger muzzle</b>!");
-		pc.faceType = GLOBAL.BADGER;
+		pc.faceType = GLOBAL.TYPE_BADGER;
 		pc.clearFaceFlags();
-		pc.addFaceFlag(GLOBAL.MUZZLED);
+		pc.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 	}
 	else output(".");
 	if(pc.femininity > 75) pc.femininity = 75;

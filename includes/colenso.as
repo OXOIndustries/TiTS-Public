@@ -661,7 +661,7 @@ function leftConsole():void
 	{
 		output("You crouch over the monitor. It’s set up in command mode; the cursor on the screen blinks blandly, awaiting instruction. Your fingers hover hesitantly over the touchpad.");
 		var bonus:int = 0;
-		if(pc.characterClass == GLOBAL.ENGINEER) bonus += 10;
+		if(pc.characterClass == GLOBAL.CLASS_ENGINEER) bonus += 10;
 		//Intelligence check failed:
 		if(pc.intelligence()/2 + rand(20) + 1 + bonus < 15)
 		{

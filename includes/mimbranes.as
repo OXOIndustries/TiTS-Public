@@ -3725,8 +3725,8 @@ public function attachAMimbrane():void
 	else if (pc.biggestTitSize() >= 1 && !pc.hasStatusEffect("Mimbrane Boobs")) attachBoobMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Hand Left")) attachHandMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Hand Right")) attachHandMimbrane();
-	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
-	else if (pc.legType == GLOBAL.HUMAN && !pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
+	else if (pc.legType == GLOBAL.TYPE_HUMAN && !pc.hasStatusEffect("Mimbrane Foot Left")) attachFootMimbrane();
+	else if (pc.legType == GLOBAL.TYPE_HUMAN && !pc.hasStatusEffect("Mimbrane Foot Right")) attachFootMimbrane();
 	else if (!pc.hasStatusEffect("Mimbrane Face") && lowestMimbraneTrust() >= 2)
 	{
 		// Face attachment doesn't want to run genericLoss yet.

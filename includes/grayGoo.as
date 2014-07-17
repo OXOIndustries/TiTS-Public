@@ -200,7 +200,7 @@ function pcDefeatsGrayGooInTheNameOfLove():void
 	output(", the gray goo finally collapses into little more than a puddle of goop on the ground, only vaguely in humanoid shape. Looming over her - it - you could do just about anything. And it probably wouldn't even mind.\n\n");
 	
 	clearMenu();
-	if(pc.intelligence() >= 20 || pc.characterClass == GLOBAL.ENGINEER) addButton(0,"Reprogram",reprogramGrayGoosForYerPleasure,undefined,"Reprogram","Reprogram the goo into a less harmful form.");
+	if(pc.intelligence() >= 20 || pc.characterClass == GLOBAL.CLASS_ENGINEER) addButton(0,"Reprogram",reprogramGrayGoosForYerPleasure,undefined,"Reprogram","Reprogram the goo into a less harmful form.");
 	else addDisabledButton(0,"Reprogram");
 	if(pc.lust() >= 33)
 	{
@@ -524,7 +524,7 @@ function pcDefeatByGooBitch():void
 	else {
 		output("\n\n<i>\"Oooh, this is SO PERFECT!\"</i> the goo declares, grabbing your massive wang with both hands, jacking it off vigorously. <i>\"And it's all mine! Mineminemine!\"</i>");
 		output("\n\nYou shudder as the goo surrounding your dong shifts and writhes, sending shockwaves of pleasure through your body, nearly enough to knock your off your [pc.feet].");
-		if(pc.cocks[pc.biggestCockIndex()].type != GLOBAL.EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape you member into the form of immense, equine-like phallus.");
+		if(pc.cocks[pc.biggestCockIndex()].type != GLOBAL.TYPE_EQUINE) output(" You gasp and groan as the glistening waves of liquid metal shape you member into the form of immense, equine-like phallus.");
 	}
 	//{Combine all cock variants:}
 	output("\n\nHappily jerking on her big, new cock, the goo-girl takes a few steps forward, twisting her head as if looking for something. <i>\"Hmm. Where's a cute lil' raskvel when you need one, huh? Ooh! I think I hear one over there!\"</i>");

@@ -244,7 +244,7 @@ function winVsZil():void {
 	else addDisabledButton(1,"Ride Him","Ride Him","You must have a vagina to ride this ride.");
 	//*Footjob scene - Req's humanlike feetsies
 	//(By Miesha)
-	if(pc.legType == GLOBAL.HUMAN) addButton(2,"GiveFootjob",giveTheZilAFootjob);
+	if(pc.legType == GLOBAL.TYPE_HUMAN) addButton(2,"GiveFootjob",giveTheZilAFootjob);
 	else addDisabledButton(2,"GiveFootjob","GiveFootjob","Giving a zil a footjob requires human feet.");
 	
 	//*Foreskin Oral Play
@@ -421,7 +421,7 @@ function rideDatZilCawk():void {
 	}
 	if(pc.hasCock()) {
 		output(" [pc.EachCock] is almost as hard as his");
-		if(pc.cockTotal(GLOBAL.BEE) == 0) output(", though you lack the thick, wrinkled, musky shroud his has");
+		if(pc.cockTotal(GLOBAL.TYPE_BEE) == 0) output(", though you lack the thick, wrinkled, musky shroud his has");
 		output(". ");
 		if(pc.cockTotal() == 1) output("It drips");
 		else output("They drip");

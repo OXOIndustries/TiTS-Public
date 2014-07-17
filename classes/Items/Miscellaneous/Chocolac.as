@@ -69,7 +69,7 @@
 				//{Effect: If the PC is lactating, it changes the lactation type to Honey. If the PC is not currently lactating but has a large bust (F+ cup?), then there is a chance that a honey lactation will be induced. Side effects! >:3 }
 				kGAMECLASS.output("You pull the bottle of ChocoLac cream out of your pack, staring at the dark, chocolatey label and the cavalcade of busty girls on display, all arranged just right to keep them work-safe. Clever positioning, indeed. You slowly shrug out of your [pc.gear], leaving your [pc.chest] bare, your [pc.nipples] already stiffening at the thought of your new lactic bounty. With a grin of anticipation, you twist the cap off of the bottle and scoop a bit of the nanomachine-laced cream out onto your fingers. It feels almost like ice cream, cool and creamy to the touch, practically rolling into a ball as you scoop it out of the jar. You shudder slightly as you bring the cold cream to your bare [pc.chest], smearing it across your [pc.skin]. God damn, that's cold. You struggle to spread the cream across your breasts, but eventually manage to smear the whole jar across your chest, leaving you looking mud-covered.");
 				//Milk TF (Already Lactating)
-				if(target.canLactate() && target.milkType != GLOBAL.CHOCOLATE_MILK)
+				if(target.canLactate() && target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
 				{
 					kGAMECLASS.output("\n\nYou bite your [pc.lip], groaning as your bosom swells and contracts while the nanomachines work their magic, rewriting your body to their own microscopic ends. Instinctively, your hands wander up your body, cupping your [pc.chest] and giving the teats atop them a little squeeze. Instantly, your over-full bosom lets loose a flood of sweet cream: a few first, straggling white drops are quickly chased out by a rich, brown flow. Your whole body shivers in nearly-orgasmic pleasure as the first drops of chocolate milk roll out of you, your fingers working along the lengths of your [pc.nipples] until both your breasts are working at full force, unleashing a torrent of chocolate to pool on the ground.");
 					kGAMECLASS.output("\n\nYou only just suppress a low, guttural ");
@@ -85,16 +85,16 @@
 					kGAMECLASS.output("\n\nSlowly, the feeling of fullness drains from your [pc.chest], leaving you panting and gasping for breath, barely cognizant enough to realize how sodden you've made yourself. So much chocolate milk! You shudder in delight at the sight of your new productivity, and can't possibly stop yourself from licking a few drops off your hands. Delicious! <b>It looks like you now lactate a sweet chocolate milk!</b>");
 					//{+ MilkVol}
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
-					target.milkType = GLOBAL.CHOCOLATE_MILK;
+					target.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 					//Flag as milked
 					target.milked();
 				}
 				//Milk TF (Not Lactating)
-				else if(target.milkType != GLOBAL.CHOCOLATE_MILK && !target.canLactate() && target.biggestTitSize() >= 4 && rand(2) == 0)
+				else if(target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK && !target.canLactate() && target.biggestTitSize() >= 4 && rand(2) == 0)
 				{
 					kGAMECLASS.output("\n\nYou quickly feel nanomachines activating, their tell-tale tingle reaching through your skin and entering your bloodstream. A gasp escapes your lips as your [pc.chest] suddenly becomes much more sensitive, able to feel every gust of air passing by. Slowly, a tightness begins to form in your chest, and you can <i>feel</i> your [pc.chest] expanding, your breasts swelling as they're suddenly kicked into overdrive. You nearly double over as the pressure mounts in your chest, your hormones going wild as they're suddenly urged to produce.");
 					if(target.milkStorageMultiplier < 3) target.milkStorageMultiplier += .5;
-					//target.milkType = GLOBAL.CHOCOLATE_MILK;
+					//target.milkType = GLOBAL.FLUID_TYPE_CHOCOLATE_MILK;
 					target.milkMultiplier = 70;
 					//Flag as milked
 					target.milked();
@@ -103,10 +103,10 @@
 				else
 				{
 					kGAMECLASS.output("\n\nYou wait for several minutes, occasionally scratching at your ");
-					if(target.milkType != GLOBAL.CHOCOLATE_MILK || !target.canLactate()) kGAMECLASS.output("milkless ");
+					if(target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || !target.canLactate()) kGAMECLASS.output("milkless ");
 					else kGAMECLASS.output("already chocolate-drooling ");
 					kGAMECLASS.output("teats, waiting for... something. Anything, really. Eventually, you sigh and grab something to wipe the dud cream off with. <b>Looks like you ");
-					if(target.milkType == GLOBAL.CHOCOLATE_MILK) kGAMECLASS.output("already have the full effect of the drug</b>.");
+					if(target.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) kGAMECLASS.output("already have the full effect of the drug</b>.");
 					else kGAMECLASS.output("might need to be lactating already for this mutagen to work</b>.");
 				}
 			}

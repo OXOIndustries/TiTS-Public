@@ -383,7 +383,7 @@ function beatDatCatNaga():void {
 	}
 	if(pc.hasVagina() || pc.hasCock()) addButton(2,"GetTailPeg",obligatorySavinTailPegging);
 	else addDisabledButton(2,"GetTailPeg");
-	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
+	if(pc.isLactating() && chars["PC"].milkType == GLOBAL.FLUID_TYPE_MILK) addButton(3,"Breastfeed",feedDatNaleenSumMilk);
 	else addDisabledButton(3,"Breastfeed");
 
 	addButton(14,"Leave",genericVictory);
@@ -911,7 +911,7 @@ function naleenReverseBJPart3():void
 	output("\n\nInside her maw and past her cute fangs, you can see your goal: her bright pink passage, mostly closed but opening slightly as the amazoness takes short, panting breaths. Almost as if aware of your view, it opens up and gapes widely with obscene lewdness a second before taking a hold of you and spearing down on your [pc.cockBiggest]. You can do nothing but watch on as her gullet slowly swallows the entirety of your member. You note to yourself that this catgirl-naga hybrid appears to have no gag reflex, which is quite fortunate for you. She pushes her tongue out from underneath your base and grips your [pc.sack], wrapping it in a soft, wet bed of tongue. More precum spills from your cockslit as her purring vibrations continue.");
 	output("\n\nWith each hot breath of air that brushes past your rod, you feel the muscles of her gullet softly press against you from every direction. On her next inhale, you feel a ring of the pliable flesh clamp around your tip, and when she exhales, more of these bands of constriction work their way down your length until all of it is encircled within her passage. As she exhales, her throat squirms and snakes in sequential constricting motions. Her throat is literally milking your cock, and it feels like just one last push will bring you to your climax. As you mull the thought over, you feel smooth, dry scales slide past your [pc.hips] and settle gently between your [pc.butt].");
 	output("\n\nYou decide to ignore the scaled appendage for now, and reason that if you're going to cum into the snake-girl's mouth it might as well be in a large shot, all at once. Before she can snake herself into your ass, you");
-	if(pc.tailCount > 0 && pc.tailType != GLOBAL.HUMAN && pc.hasTailFlag(GLOBAL.LONG)) output(" hook your own tail around hers and");
+	if(pc.tailCount > 0 && pc.tailType != GLOBAL.TYPE_HUMAN && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output(" hook your own tail around hers and");
 	output(" reach around and grab it with one hand and pull it forward so the tip is underneath her chin. While she suckles on your [pc.cockBiggest] with feverous intensity, you use the excess saliva that she's drooling and dribbling to coat her tail with a generous slathering of lubrication for the impending penetration. Satisfied that you've done all you can to prevent any mischief from your orally-fixated lover's tail, you release it and relax, enjoying the sound and sensations of the naleen's throat as it ripples and pulsates in an unearthly fashion around your rod.");
 	output("\n\nIt feels as if your [pc.cockBiggest] is being devoured as the feline-serpentress tries to get more and more of your shaft inside her throat");
 	if(pc.balls > 0) output(", even to the point of taking in your [pc.sack] if she could");

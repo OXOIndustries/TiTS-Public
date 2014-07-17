@@ -856,7 +856,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 			if(pc.balls > 0) output("[pc.balls]");
 			else output("[pc.leg]");
 			output(".");
-			if(pc.hasCockFlag(GLOBAL.FLARED)) output(" Your flared tip makes sure a fair portion of it shoots directly against her cervix.");
+			if(pc.hasCockFlag(GLOBAL.FLAG_FLARED)) output(" Your flared tip makes sure a fair portion of it shoots directly against her cervix.");
 		}
 		output("\n\nYou go limp, your ardor spent and your softening length");
 		if(y >= 0) output("s");

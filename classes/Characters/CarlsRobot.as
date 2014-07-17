@@ -70,11 +70,11 @@
 			this.skinTone = "metal";
 			this.skinFlags = new Array();
 			
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.HUMAN;
+			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 0;
-			this.earType = GLOBAL.HUMAN;
+			this.earType = GLOBAL.TYPE_HUMAN;
 			this.antennae = 2;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -131,7 +131,7 @@
 			this.cumMultiplierRaw = 0;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 0;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 0;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -157,7 +157,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
@@ -173,7 +173,7 @@
 		{
 			if (dataObject.skinFlags.length == 0)
 			{
-				dataObject.skinFlags.push(GLOBAL.FLUFFY);
+				dataObject.skinFlags.push(GLOBAL.FLAG_FLUFFY);
 			}
 		}
 		

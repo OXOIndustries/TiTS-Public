@@ -370,7 +370,7 @@ function annoShootsResults(easy:Boolean = false):void
 		output(", urging you on as your [pc.tongue] slithers past her folds and into the smooth passage of her " + chars["ANNO"].vaginaDescript() + ".");
 
 		//if PC has some kinda bigass tongue
-		if(pc.hasTongueFlag(GLOBAL.LONG)) output("\n\nAnno only just holds back a scream as your inhuman tongue rolls out, slithering into her open passage, spreading her nice and wide as you eat her out.");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nAnno only just holds back a scream as your inhuman tongue rolls out, slithering into her open passage, spreading her nice and wide as you eat her out.");
 		else output("\n\nAnno gasps as your tongue slips into her, circling the spread lips of her cunt before slipping into her channel, spreading her out as you dig into her pussy.");
 		output("\n\nAgain her legs clamp and squeeze around your head, muscles on auto-pilot as she stifles little gasps and moans of pleasure. You respond with faster movements, deeper inside her, swirling around in her spasming sex until you can taste the trickles of fem-slime beading around your probing [pc.tongue]. The taste is divine, sweet and just a little bitter, and utterly alien. You barely notice your own heavy breathing as the taste and smell of Anno's growing excitement threaten to overwhelm you");
 		if(pc.hasCock()) output("; [pc.eachCock] strains painfully under your [pc.gear]");

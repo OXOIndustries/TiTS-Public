@@ -75,7 +75,7 @@
 				kGAMECLASS.output(". You gasp as the Honeyseed suppository slides into you, a tiny knot of pressure in your anus that lasts only for a few moments before the auto-release in the capsule triggers, and the nanomachines inside are released into your body.");
 			
 				//Cum TF
-				if(target.cumType != GLOBAL.HONEY && target.hasCock())
+				if(target.cumType != GLOBAL.FLUID_TYPE_HONEY && target.hasCock())
 				{
 					kGAMECLASS.output("\n\nYou have only to wait a few moments before a sudden tightness clenches in your [pc.balls], making your [pc.cocks] jump to attention. You grimace as the sensation intensifies, making you nearly double over as the Honeydew's changes wrack your body, altering the very fabric of your being, radiating out from the [pc.balls] to your manhood. You grab ");
 					if(target.cockTotal() > 1) kGAMECLASS.output("one of your rods");
@@ -85,13 +85,13 @@
 					kGAMECLASS.output("\n\n<b>It looks like you'll be cumming honey from here on out.</b>");
 					target.orgasm();
 					kGAMECLASS.output("\n\nPanting and gasping for breath, your orgasmic transformation leaves you plastered in spooge and smelling like a beehive.");
-					target.cumType = GLOBAL.HONEY;
+					target.cumType = GLOBAL.FLUID_TYPE_HONEY;
 				}
 				//No Effect (You Already do the Thing!)
 				else
 				{
 					kGAMECLASS.output("\n\nYou wait for several minutes, occasionally scratching at your slightly sore ass, trying to ignore the faint tingle in your loins as you find yourself waiting for... something. Anything, really. Eventually, you sigh and grab your gear, realizing this is probably a dud. <b>Looks like you ");
-					if(target.cumType == GLOBAL.HONEY) kGAMECLASS.output("already have the full effect of the drug");
+					if(target.cumType == GLOBAL.FLUID_TYPE_HONEY) kGAMECLASS.output("already have the full effect of the drug");
 					else kGAMECLASS.output("might not have the right bodyparts for this thing to change");
 					kGAMECLASS.output("</b>.");
 				}

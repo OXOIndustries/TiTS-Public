@@ -83,43 +83,40 @@ function chooseStartingRace(race:String = "human"):void {
 	//Menus vary based on race.
 	this.clearMenu();
 	if(race == "human") {
-		pc.addLegFlag(GLOBAL.PLANTIGRADE);
+		pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 	}
 	else if(pc.originalRace == "half-ausar") {
-		pc.addLegFlag(GLOBAL.PLANTIGRADE);
-		pc.earType = GLOBAL.CANINE;
-		pc.tailType = GLOBAL.CANINE;
+		pc.earType = GLOBAL.TYPE_CANINE;
+		pc.tailType = GLOBAL.TYPE_CANINE;
 		pc.tailCount = 1;
-		pc.addTailFlag(GLOBAL.LONG);
-		pc.addTailFlag(GLOBAL.FLUFFY);
-		pc.addTailFlag(GLOBAL.FURRED);
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-kaithrit") {
-		pc.addLegFlag(GLOBAL.DIGITIGRADE);
-		pc.earType = GLOBAL.FELINE;
-		pc.tailType = GLOBAL.FELINE;
+		pc.earType = GLOBAL.TYPE_FELINE;
+		pc.tailType = GLOBAL.TYPE_FELINE;
 		pc.tailCount = 2;
-		pc.addTailFlag(GLOBAL.LONG);
-		pc.addTailFlag(GLOBAL.FURRED);
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
 		//addButton(2,"Herm.",setStartingSex,2);
 	}
 	else if(pc.originalRace == "half-multicock") {
-		pc.addLegFlag(GLOBAL.PLANTIGRADE);
-		pc.earType = GLOBAL.FELINE;
-		pc.tailType = GLOBAL.FELINE;
+		pc.earType = GLOBAL.TYPE_FELINE;
+		pc.tailType = GLOBAL.TYPE_FELINE;
 		pc.tailCount = 2;
-		pc.addTailFlag(GLOBAL.LONG);
-		pc.addTailFlag(GLOBAL.FURRED);
+		pc.addTailFlag(GLOBAL.FLAG_LONG);
+		pc.addTailFlag(GLOBAL.FLAG_FURRED);
 		output("male or female");
 		this.addButton(0,"Male",setStartingSex,1);
 		this.addButton(1,"Female",setStartingSex,3);
@@ -151,10 +148,10 @@ function setStartingSex(sex:int = 1):void {
 		pc.balls = 2;
 		pc.ballSizeRaw = 1.5;
 		if (pc.originalRace == "half-ausar") {
-			pc.shiftCock(0,GLOBAL.CANINE);
+			pc.shiftCock(0,GLOBAL.TYPE_CANINE);
 		}
 		if (pc.originalRace ==  "half-kaithrit") {
-			pc.shiftCock(0,GLOBAL.FELINE);
+			pc.shiftCock(0,GLOBAL.TYPE_FELINE);
 		}
 		//MALE!
 		if(sex == 1) {
@@ -362,7 +359,7 @@ function applySkinTone(skinTone:String = "pale"):void {
 	pc.skinTone = skinTone;
 	if(pc.hasCock())
 	{
-		if(pc.cocks[x].cType == GLOBAL.HUMAN)
+		if(pc.cocks[x].cType == GLOBAL.TYPE_HUMAN)
 		{
 			if(skinTone == "dark" || skinTone == "ebony")
 			{
@@ -729,17 +726,17 @@ function chooseClass():void {
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
 	output("You're all grown up and finished with your schooling. Dad pushed you hard, which makes sense. He accomplished a lot and wants you to follow in his footsteps, but for whatever reason, he insisted you take on an occupation, and an odd one at that.");
 	this.clearMenu();
-	this.addButton(0,"Smuggler",classConfirm,GLOBAL.SMUGGLER);
-	this.addButton(1,"Mercenary",classConfirm,GLOBAL.MERCENARY);
-	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.ENGINEER);
+	this.addButton(0,"Smuggler",classConfirm,GLOBAL.CLASS_SMUGGLER);
+	this.addButton(1,"Mercenary",classConfirm,GLOBAL.CLASS_MERCENARY);
+	this.addButton(2,"TechSpecialist",classConfirm,GLOBAL.CLASS_ENGINEER);
 	this.addButton(14,"Back",chooseAlignment);
 }
 function classConfirm(arg:int = 0):void {
 	clearOutput();
 	setLocation("SELECT\nA CLASS","PLANET: TERRA","SYSTEM: SOL");
-	if(arg == GLOBAL.SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
-	else if(arg == GLOBAL.MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
-	else if(arg == GLOBAL.ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
+	if(arg == GLOBAL.CLASS_SMUGGLER) output("<b><u>Smuggler</u></b>:\nAs a smuggler, your abilities would rely heavily on having good reflexes and either aim or physique, depending on your method of attack. You’d learn to be pretty sneaky, fly well, and hit your foes where they least expect it, all while making your living in the underbelly of the United Galactic Confederacy, or U.G.C. The life of a smuggler is one of profit through luck and skill.");
+	else if(arg == GLOBAL.CLASS_MERCENARY) output("<b><u>Mercenary</u></b>:\nAs a mercenary, you’d depend on raw physique or aim for your attacks, focusing more on a good battle plan and tough armor than anything else. You’d learn to overpower your foes with sheer strength and determination, defend yourself with all manner of weapons and equipment, and fly a ship when the situation calls for it. The life of a mercenary is one of profit through violence.");
+	else if(arg == GLOBAL.CLASS_ENGINEER) output("<b><u>Tech Specialist</u></b>:\nAs a tech specialist, your abilities would rely heavily on your intelligence and aim. You’d learn to work with all kinds of technologies, perhaps even make your own robotic defense turrets! Your intellect would be your greatest weapon, though you wouldn’t shy away from tweaking your own high-tech ranged weaponry. The life of a tech specialist is one of profit through smart decisions and superior technology.");
 	output("\n\nIs this the career you’d like to pursue?");
 	this.clearMenu();
 	this.addButton(0,"Yes",setClass,arg);
@@ -748,13 +745,13 @@ function classConfirm(arg:int = 0):void {
 
 function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
-	if(arg == GLOBAL.SMUGGLER) {
+	if(arg == GLOBAL.CLASS_SMUGGLER) {
 		pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
 	}
-	if(arg == GLOBAL.MERCENARY) {
+	if(arg == GLOBAL.CLASS_MERCENARY) {
 		pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
 	}
-	if(arg == GLOBAL.ENGINEER) {
+	if(arg == GLOBAL.CLASS_ENGINEER) {
 		pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
 		pc.shield = new classes.Items.Protection.DecentShield();
 	}
@@ -855,8 +852,8 @@ function tutorialIntro4():void {
 	output("\n\nSighing, you press the injector port to the inside of your arm.");
 	output("\n\n<i>“This recording is set up to rep-”</i>");
 	output("\n\nThe injector hisses as it pricks your skin, pouring its payload into your veins. There’s a bit of burning pain, but nothing as bad ");
-	if(pc.characterClass == GLOBAL.ENGINEER) output("as the time you shocked yourself on an arc spanner");
-	else if(pc.characterClass == GLOBAL.MERCENARY) output("as the time you took a slug in the leg");
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("as the time you shocked yourself on an arc spanner");
+	else if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("as the time you took a slug in the leg");
 	else output("as the time you dropped your cargo on your foot, breaking more than a few toes in the process");
 	output(". You grow a little flushed for a moment as the tiny machines settle into you. It passes swiftly. All things considered, you feel... the same.");
 	output("\n\n<i>“Atta " + pc.mf("boy","girl") + ". I had something like that made for me after a particularly rough infection, though it wound up mutating me from exotic species’ sexual fluids as well.”</i>");

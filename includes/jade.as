@@ -787,7 +787,7 @@ function jadeUsesNippleMod():void {
 
 	output("\n\nDespite her recent orgasm, her nipples continue their relentless assault on Jade. Maybe you should help her try to contain her new appendages? Then again, she seems to be enjoying herself...");
 
-	chars["JADE"].breastRows[0].nippleType = GLOBAL.TENTACLED;
+	chars["JADE"].breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_TENTACLED;
 	processTime(10+rand(5));
 	clearMenu();
 	addButton(0,"Help Her",helpJadeWithHerNewNipples);

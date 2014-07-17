@@ -61,7 +61,7 @@
 			
 			
 			this.femininity = 50;
-			this.eyeType = GLOBAL.HUMAN;
+			this.eyeType = GLOBAL.TYPE_HUMAN;
 			this.eyeColor = "black";
 			this.tallness = 24;
 			this.thickness = 70;
@@ -70,33 +70,33 @@
 			this.scaleColor = "none";
 			this.furColor = "none";
 			this.hairLength = 0;
-			this.hairType = GLOBAL.HUMAN;
+			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.HUMAN;
+			this.skinType = GLOBAL.TYPE_HUMAN;
 			this.skinTone = "steel gray";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.HUMAN;
+			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 1;
-			this.antennaeType = GLOBAL.HUMAN;
+			this.antennaeType = GLOBAL.TYPE_HUMAN;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.HUMAN;
+			this.armType = GLOBAL.TYPE_HUMAN;
 			this.gills = false;
-			this.wingType = GLOBAL.HUMAN;
-			this.legType = GLOBAL.HUMAN;
+			this.wingType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 3;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.HUMAN;
+			this.tailType = GLOBAL.TYPE_HUMAN;
 			this.tailCount = 1;
 			this.tailFlags = new Array();
 			//Used to set cunt or dick type for cunt/dick tails!

@@ -269,7 +269,7 @@ function shieldRegeneration():void
 	if(!foes[0].hasStatusEffect("Shield Recharge"))
 	{
 		output("The sexbot chatters and whirrs quietly to itself, then its eyes go dark and its limbs limp. Its background hum intensifies however, and you suspect it’s up to something");
-		if(pc.characterClass == GLOBAL.ENGINEER) output(", probably diverting all available processing power and energy into recharging its shield. You should try and hit it with everything you’ve got before it can do so");
+		if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(", probably diverting all available processing power and energy into recharging its shield. You should try and hit it with everything you’ve got before it can do so");
 		output(".");
 		foes[0].createStatusEffect("Shield Recharge",1,0,0,0);
 	}
@@ -492,9 +492,9 @@ function loseToSexBotAndHaveADick():void
 	output(", surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, succulent rhythm of its tight pussies as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
-	if(pc.skinType == GLOBAL.FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
-	else if(pc.skinType == GLOBAL.GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
-	else if(pc.skinType == GLOBAL.SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
 	output(".");
 	//Vagina:
 	if(pc.hasVagina()) output("\n\nIt doesn’t take it long to calibrate the pulse needed to find the thousands of nerve endings in your [pc.vagina]. It packs your tunnel full of vibrations, [pc.oneClit] flicked and caressed by insistent electric fingers until you have moved from moans to screams, your female sex forced to orgasm again and again whilst your cocks are kept trapped in the endlessly tight rubber above.");
@@ -576,9 +576,9 @@ function femalePCsGetBangedByAFemBot():void
 	output(" in stupefaction. Your roll your eyes back with the force of it, unable to think or do anything but to let it continue pumping and teasing you with its sure tentacles, surrendering utterly to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, firm rhythm of its tenta-cocks as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently");
-	if(pc.skinType == GLOBAL.FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
-	else if(pc.skinType == GLOBAL.GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
-	else if(pc.skinType == GLOBAL.SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
 	//Cunt nipples:
 	if(pc.hasCuntNipples()) output("\n\nIt doesn’t take it long to calibrate the pulse needed to find your beading nipple cunts. It packs your sensitive breasts full of vibrations, your tunnels stroked and caressed by insistent electric fingers until you have moved from moans to screams, your nipples forced to quivering orgasm again and again, spurting [pc.milk] down your front.");
 	//Cock tail:
@@ -648,9 +648,9 @@ function malebotDefeatsMalePCs():void
 	output("\n\n“<i>Please do not be alarmed, insert name here,</i>” says the sexbot in its perversely soothing tone with just the barest hint of sadistic enjoyment. “<i>You will enjoy me interfacing with your nervous system. In time.</i>” Its hand reaches for your neck again. This time it lights up only one side of your body, sending a huge electric thrill shuddering down your spine, making your [pc.legs] thrash wildly. What the hell were they thinking when they made these things? It’s kept its hand pressed upon your neck and you grip it, trying to plead with it wordlessly to stop.");
 	output("\n\n“<i>That’s it, insert name here,</i>” it responds kindly. “<i>Just relax. When you relax it makes the interfacing that much smoother.</i>” This time the shock is smaller, directed; vibrations are sent buzzing through [pc.eachCock] and [pc.nipples], making blood rush to them. All will to try and fuck the robot back has been completely zapped out of you and you lie your head back, letting it fill your back passage with the exact, sure motion of its thick, heated cock, surrendering to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, firm rhythm of its cock as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently, ");
-	if(pc.skinType == GLOBAL.FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
-	else if(pc.skinType == GLOBAL.GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
-	else if(pc.skinType == GLOBAL.SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
 	
 	//2 < Cocks:
 	if(pc.cockTotal() > 2)
@@ -746,9 +746,9 @@ function loseToManBotWhenHavingAPussy():void
 	output(" in stupefaction. Your roll your eyes back with the force of it, unable to think or do anything but let it continue pumping and teasing you with its sure, exact strokes, surrendering utterly to the calm hand on your neck and the teasing electric fingers it sends touching and squeezing through your whole body.");
 
 	output("\n\nYou lose track of time in the throes of the electric sex, jerking and writhing to the sexbot’s whim. It plays you like a nervous xylophone, using the precise, succulent rhythm of its steel cocks as a beat whilst it stunningly lights up different parts of your insides, growing more and more precise with its manipulations as it goes on. For long moments it fires thousands of neurons in your head simultaneously, making you taste colours and see sounds, the brisk squeak of latex against [pc.skin] blooming violet neon across your eyes. It makes the whole of your epidermis shimmer gently, ");
-	if(pc.skinType == GLOBAL.FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
-	else if(pc.skinType == GLOBAL.GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
-	else if(pc.skinType == GLOBAL.SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
+	if(pc.skinType == GLOBAL.SKIN_TYPE_FUR) output(", causing every hair on your body to stand up as stiff as your [pc.cock " + x + "]");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) output(", your goo made to feel like it is being slowly simmered in pleasure");
+	else if(pc.skinType == GLOBAL.SKIN_TYPE_SCALES) output("your [pc.skinFurScales] made to feel like incredibly sensitive goo");
 	//Cunt nipples:
 	if(pc.hasCuntNipples())
 	{

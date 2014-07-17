@@ -902,7 +902,7 @@ function flahneGetsSuckedAndSwallowed():void {
 	output("\n\nThe female voice asserts, <i>“Look, I’ve met a couple rahn before, and what’s going on here isn’t normal. You’re a loo’rahn, right? You’re very flushed, and quite frankly, it sounds like you’re about to pass out. Come on, let’s get you to the doctor. I’ll finish the forms while I wait on you, okay?”</i>");
 	
 	output("\n\n<i>“N-n-noooo,”</i>  Flahne stutters as her thighs spread wider of their own accord. <i>“Just, fill out t-the formmmm... uh.”</i>  You slip a third finger inside her vagina while moving your other hand even faster. ");
-	if(pc.hasFaceFlag(GLOBAL.MUZZLED)) output("Thanks to your muzzle, you don’t have much problems accepting a few more inches into your mouth. ");
+	if(pc.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) output("Thanks to your muzzle, you don’t have much problems accepting a few more inches into your mouth. ");
 	output("Her member is getting thicker and bobbing every second or two, while her slit squeezes down around your fingers like a nicely-padded vise. She’s just about to pop.");
 	output("\n\nFootsteps begin coming closer. With each percussive step, Flahne’s body becomes more tense, and her phallic organ grows thicker, though it remains softer and pudgier than you would have thought. It’s now or never. You slip your pinky inside her and slide your tongue from side to side, starting to gently suck on it, trying to draw the cum out of her by using your mouth like some kind of spunky vacuum cleaner. Flahne groans.");
 	output("\n\nThe other woman isn’t far away. Maybe two or three steps. You hear her heels click alongside the desk.");

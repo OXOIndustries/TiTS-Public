@@ -56,9 +56,9 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.GOO;
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "green";
-			this.skinFlags = [GLOBAL.SQUISHY, GLOBAL.LUBRICATED, GLOBAL.AMORPHOUS];
+			this.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED, GLOBAL.FLAG_AMORPHOUS];
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
@@ -71,9 +71,9 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.GOOEY;
+			this.legType = GLOBAL.TYPE_GOOEY;
 			this.legCount = 1;
-			this.legFlags = [GLOBAL.AMORPHOUS];
+			this.legFlags = [GLOBAL.FLAG_AMORPHOUS];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -120,7 +120,7 @@
 			this.cumMultiplierRaw = 50;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 24;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -150,7 +150,7 @@
 			this.breastRows[0].breastRatingRaw = 14;
 			this.nippleColor = "deep emerald";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 5;
@@ -163,7 +163,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.AMORPHOUS);
+				dataObject.legFlags.push(GLOBAL.FLAG_AMORPHOUS);
 			}
 		}
 		

@@ -61,7 +61,7 @@
 			this.buyMarkdown = .8;
 
 			this.femininity = 85;
-			this.eyeType = GLOBAL.DEMONIC;
+			this.eyeType = GLOBAL.TYPE_DEMONIC;
 			this.eyeColor = "glowing amber";
 			this.tallness = 73;
 			this.thickness = 21;
@@ -73,24 +73,24 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "light purple";
 			this.skinFlags = new Array();
 			
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.HUMAN;
+			this.tongueType = GLOBAL.TYPE_HUMAN;
 			this.lipMod = 1;
-			this.earType = GLOBAL.DEMONIC;
+			this.earType = GLOBAL.TYPE_DEMONIC;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 2;
-			this.hornType = GLOBAL.DEMONIC;
+			this.hornType = GLOBAL.TYPE_DEMONIC;
 			this.hornLength = 13;
-			this.armType = GLOBAL.DEMONIC;
+			this.armType = GLOBAL.TYPE_DEMONIC;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
 			this.legCount = 2;
 			this.legFlags = new Array();
 			//0 - Waist
@@ -98,9 +98,9 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.DEMONIC;
+			this.tailType = GLOBAL.TYPE_DEMONIC;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.TAILCOCK,GLOBAL.SMOOTH,GLOBAL.PREHENSILE,GLOBAL.LONG];
+			this.tailFlags = [GLOBAL.FLAG_TAILCOCK,GLOBAL.FLAG_SMOOTH,GLOBAL.FLAG_PREHENSILE,GLOBAL.FLAG_LONG];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -141,7 +141,7 @@
 			this.cumMultiplierRaw = 30;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -171,7 +171,7 @@
 			this.breastRows[0].breastRatingRaw = 10;
 			this.nippleColor = "cerulean";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;

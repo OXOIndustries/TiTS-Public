@@ -711,7 +711,7 @@ function watchElderVenusPitcher():void {
 	output("\n\n“<i>That’s it. Come closer, my good " + pc.mfn("boy","girl","pet") + ",”</i>  the big-breasted plant-woman says encouragingly, “<i>Don’t think, just let my words filter into your empty, breast-locked mind. It feels good to stay empty and obey. It feels good to let my spiraling boobs draw you closer and closer. Letting go and accepting my thoughts as your own feels like tongues on your genitals, licking and lapping and teasing you to a glorious new high.”</i>");
 	
 	output("\n\nWhimpering slightly, you take one staggering ");
-	if(pc.hasLegFlag(GLOBAL.DIGITIGRADE) || pc.hasLegFlag(GLOBAL.PLANTIGRADE)) output("step");
+	if(pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output("step");
 	else output("movement");
 	output(" forward after another, shedding your gear as you go. She won’t hurt you. Her words are like tongues of honey sliding all over your mind and body, guiding you closer, drawing you nearer with each passing second. It feels so good to let her control your mind, to steer you into erotic indulgence of her every enunciation. Verdant breasts grow larger in your view, and you find their effect on you intensified the closer you get and the more of the stuffy air around her that you breathe in.");
 	

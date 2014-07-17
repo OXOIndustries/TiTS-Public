@@ -57,14 +57,14 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.HUMAN;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 2;
-			this.earType = GLOBAL.BOVINE;
+			this.earType = GLOBAL.TYPE_BOVINE;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -74,15 +74,15 @@
 			this.wingType = 0;
 			this.legType = 0;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.BOVINE;
+			this.tailType = GLOBAL.TYPE_BOVINE;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLUFFY,GLOBAL.LONG,GLOBAL.FURRED];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG,GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -121,7 +121,7 @@
 			this.cumMultiplierRaw = 1.5;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -150,7 +150,7 @@
 			this.breastRows[0].breastRatingRaw = 13;
 			this.nippleColor = "pink";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;

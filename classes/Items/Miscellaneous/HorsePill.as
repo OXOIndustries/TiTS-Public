@@ -153,7 +153,7 @@
 			if(target.antennae > 0)
 				TFList[TFList.length] = 11;
 			//#12 Grow hair length to 6"
-			if(target.hairType == 0 && target.hairLength < 6)
+			if(target.hairType == GLOBAL.HAIR_TYPE_REGULAR && target.hairLength < 6)
 				TFList[TFList.length] = 12;
 			//#13 Mane? YES LETS FUCKING CALL IT A MANE!
 			if(!target.hasPerk("Mane"))
@@ -463,11 +463,11 @@
 						if(target.horns == 1) kGAMECLASS.eventBuffer += "it";
 						else kGAMECLASS.eventBuffer += "them";
 						kGAMECLASS.eventBuffer += " crumble away in your hands like loose chalk. You touch the stumps on your head only to have them come away in the same fashion. <b>Unbroken [pc.skinFurScales] ";
-						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.eventBuffer += "are";
+						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) kGAMECLASS.eventBuffer += "are";
 						else kGAMECLASS.eventBuffer += "is";
 						kGAMECLASS.eventBuffer += " all that remains in place of your [pc.horns].</b>";
 						target.horns = 0;
-						target.hornType = GLOBAL.HUMAN;
+						target.hornType = GLOBAL.TYPE_HUMAN;
 						target.hornLength = 0;
 					}
 					else
@@ -535,7 +535,7 @@
 					var chosenVagoo:int = -1;
 					for (x = 0; x < target.vaginaTotal(); x++)
 					{
-						if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15 && chosenVagoo == -1)
+						if(target.vaginas[x].type == GLOBAL.TYPE_EQUINE && target.vaginas[x].bonusCapacity < 15 && chosenVagoo == -1)
 							chosenVagoo = x;
 					}
 					
@@ -594,31 +594,31 @@
 			if(target.hasCock() && target.balls == 1 && target.ballsUnlocked(2))
 				TFList[TFList.length] = 6;
 			//#7 Horsecunt.
-			if(target.vaginaTotal(GLOBAL.EQUINE) < target.vaginaTotal())
+			if(target.vaginaTotal(GLOBAL.TYPE_EQUINE) < target.vaginaTotal())
 				TFList[TFList.length] = 7;
 			//#8 Change hair color to black, brown, chestnut, or white (rare)
 			if(target.hairColor != "black" && target.hairColor != "brown" && target.hairColor != "chestnut" && target.hairColor != "white")
 				TFList[TFList.length] = 8;
 			//#9 Change fur color to chocolate, ivory, brown-dappled, or sable.
-			if(target.skinType == GLOBAL.FUR && target.furColor != "chocolate" && target.furColor != "ivory" && target.furColor != "brown-dappled" && target.furColor != "sable")
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR && target.furColor != "chocolate" && target.furColor != "ivory" && target.furColor != "brown-dappled" && target.furColor != "sable")
 				TFList[TFList.length] = 9;
 			//#10 Grow hoarse ears - need tail first.
-			if(target.earType != GLOBAL.EQUINE && target.tailType == GLOBAL.EQUINE)
+			if(target.earType != GLOBAL.TYPE_EQUINE && target.tailType == GLOBAL.TYPE_EQUINE)
 				TFList[TFList.length] = 10;
 			//#11 Grow horse tail - no prereq
-			if(target.tailType != GLOBAL.EQUINE)
+			if(target.tailType != GLOBAL.TYPE_EQUINE)
 				TFList[TFList.length] = 11;
 			//#12 Gain black hoof-nails on fingertips.
-			if(target.armType != GLOBAL.EQUINE)
+			if(target.armType != GLOBAL.TYPE_EQUINE)
 				TFList[TFList.length] = 12;
 			//#13 Get propah hooves. - Req's ears
-			if(target.legType != GLOBAL.EQUINE && target.earType == GLOBAL.EQUINE)
+			if(target.legType != GLOBAL.TYPE_EQUINE && target.earType == GLOBAL.TYPE_EQUINE)
 				TFList[TFList.length] = 13;
 			//#14 Grow Fur - Req's hooves
-			if(target.skinType != GLOBAL.FUR && target.legType == GLOBAL.EQUINE)
+			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.legType == GLOBAL.TYPE_EQUINE)
 				TFList[TFList.length] = 14;
 			//#15 SNOUTS! THE SAVIN SPECIAL! - req's fur
-			if(target.faceType != GLOBAL.EQUINE && target.skinType == GLOBAL.FUR && target.faceTypeUnlocked(GLOBAL.EQUINE))
+			if(target.faceType != GLOBAL.TYPE_EQUINE && target.skinType == GLOBAL.SKIN_TYPE_FUR && target.faceTypeUnlocked(GLOBAL.TYPE_EQUINE))
 				TFList[TFList.length] = 15;
 			if(target.hasStatusEffect("Genital Slit"))
 				TFList[TFList.length] = 16;
@@ -710,7 +710,7 @@
 					kGAMECLASS.eventBuffer += " Interestingly, your " + target.cockDescript(chosenDong) + " will withdraw inside the new growth when flaccid, only to emerge when hard. ";
 					if(target.hasASheath()) kGAMECLASS.eventBuffer += "<b>You suppose <i>one more</i> sheath is just another step towards a more equine you.</b>";
 					else kGAMECLASS.eventBuffer += "<b>You suppose your sheath is just one step towards a more equine you.</b>";
-					target.cocks[chosenDong].addFlag(GLOBAL.SHEATHED);
+					target.cocks[chosenDong].addFlag(GLOBAL.FLAG_SHEATHED);
 				}
 				//#4 Horsecock - req's sheathed cawk
 				else if(select == 4)
@@ -719,20 +719,20 @@
 					//Find a sheathed non-horsewang
 					for(x = 0; x < target.cockTotal(); x++)
 					{
-						if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.EQUINE && cockToBe == -1) cockToBe = x;
+						if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.TYPE_EQUINE && cockToBe == -1) cockToBe = x;
 					}
 					
-					if (target.cockTypeUnlocked(cockToBe, GLOBAL.EQUINE))
+					if (target.cockTypeUnlocked(cockToBe, GLOBAL.TYPE_EQUINE))
 					{
 						kGAMECLASS.eventBuffer += "A pinch of slight discomfort garners your attention, and the immediate blossoming of unnatural warmth within holds it. Building slowly, the strange yet pleasant sensation spreads through your length to your abdominal core. Then, like a butterfly emerging from its cocoon, your [pc.cock " + cockToBe + "] reveals itself, changed ";
 						//Ovir or other horsecockalikes
-						if(target.hasCockFlag(GLOBAL.BLUNT)) kGAMECLASS.eventBuffer += "subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.";
+						if(target.hasCockFlag(GLOBAL.FLAG_BLUNT)) kGAMECLASS.eventBuffer += "subtly. The head is still blunt, but its slightly more flared, and the shaft looks so meaty and full of veins that it would only look at home on a beast of burden, note a sapient creature.";
 						else kGAMECLASS.eventBuffer += "obviously. The head is flat, blunted, and just slightly wider than the rest of the shaft. Behind it, the shaft is smooth except for veins and a bulgy medial ring about halfway down its length. A cock like this would look more at home on a beast of burden than a sapient being.";
 						kGAMECLASS.eventBuffer += " More and more of it slides out of your sheath until it's well beyond your previous length. It pulses hotly, drizzling pre-cum from the pleasure of the change, and you struggle not to masturbate on the spot.";
-						target.shiftCock(cockToBe,GLOBAL.EQUINE);
+						target.shiftCock(cockToBe,GLOBAL.TYPE_EQUINE);
 						target.cocks[cockToBe].cLength(3+rand(4));
 						//Re-add the sheath if shiftCock clears it
-						if(!target.cocks[cockToBe].hasFlag(GLOBAL.SHEATHED)) target.cocks[cockToBe].addFlag(GLOBAL.SHEATHED);
+						if(!target.cocks[cockToBe].hasFlag(GLOBAL.FLAG_SHEATHED)) target.cocks[cockToBe].addFlag(GLOBAL.FLAG_SHEATHED);
 						target.lust(50 + rand(10));
 					}
 					else
@@ -760,13 +760,13 @@
 					var cuntToBe:int = -1;
 					for(x = 0; x < target.vaginaTotal(); x++)
 					{
-						if(target.vaginas[x].type != GLOBAL.EQUINE && cuntToBe == -1) cuntToBe = x;
+						if(target.vaginas[x].type != GLOBAL.TYPE_EQUINE && cuntToBe == -1) cuntToBe = x;
 					}
 					
-					if (target.vaginaTypeUnlocked(cuntToBe, GLOBAL.EQUINE))
+					if (target.vaginaTypeUnlocked(cuntToBe, GLOBAL.TYPE_EQUINE))
 					{
 						kGAMECLASS.eventBuffer += "You stagger as your [pc.vagina " + cuntToBe + "] abruptly engorges, feeling utterly and completely swollen with blood. It feels even fuller and more plush than when you're turned on, most noticeably around the outer lips. It looks just like... well, a horse-cunt. <b>You've got a big, puffy horse-cunt</b>, perfectly sized to take a big, blunted member.";
-						target.shiftVagina(cuntToBe,GLOBAL.EQUINE);
+						target.shiftVagina(cuntToBe,GLOBAL.TYPE_EQUINE);
 						target.lust(10);
 					}
 					else
@@ -821,13 +821,13 @@
 				//Ears - requires tail
 				else if(select == 10)
 				{
-					if (target.earTypeUnlocked(GLOBAL.EQUINE))
+					if (target.earTypeUnlocked(GLOBAL.TYPE_EQUINE))
 					{
-						if (target.earType == GLOBAL.HUMAN) kGAMECLASS.eventBuffer += "Your ears tug painfully on your face as they begin shifting, moving upwards to the top of your head and transforming into a upright animalistic ears.";
-						else if (target.earType == GLOBAL.CANINE) kGAMECLASS.eventBuffer += "Your ears change shape, morphing into from their doglike shape into equine-like ears!";
+						if (target.earType == GLOBAL.TYPE_HUMAN) kGAMECLASS.eventBuffer += "Your ears tug painfully on your face as they begin shifting, moving upwards to the top of your head and transforming into a upright animalistic ears.";
+						else if (target.earType == GLOBAL.TYPE_CANINE) kGAMECLASS.eventBuffer += "Your ears change shape, morphing into from their doglike shape into equine-like ears!";
 						else kGAMECLASS.eventBuffer += "Your ears change shape, morphing into teardrop-shaped horse ears!";
 						kGAMECLASS.eventBuffer += "<b> You now have horse ears.</b>";
-						target.earType = GLOBAL.EQUINE;
+						target.earType = GLOBAL.TYPE_EQUINE;
 					}
 					else
 					{
@@ -837,11 +837,11 @@
 				//#11 Grow horse tail
 				else if(select == 11)
 				{
-					if (target.tailTypeUnlocked(GLOBAL.EQUINE) && target.tailCountUnlocked(1))
+					if (target.tailTypeUnlocked(GLOBAL.TYPE_EQUINE) && target.tailCountUnlocked(1))
 					{
 						if(target.tailType == 0) kGAMECLASS.eventBuffer += "There is a sudden tickling on your ass, and you notice you have sprouted a long, shiny horsetail of the same " + target.hairColor + " color as your hair.";
 						//if bee/spider-butt.
-						else if (target.tailType == GLOBAL.ARACHNID || target.tailType == GLOBAL.BEE)
+						else if (target.tailType == GLOBAL.TYPE_ARACHNID || target.tailType == GLOBAL.TYPE_BEE)
 						{
 							kGAMECLASS.eventBuffer += "Your [pc.tails] bunch";
 							if(target.tailCount == 1) kGAMECLASS.eventBuffer += "es";
@@ -871,11 +871,11 @@
 						}
 						kGAMECLASS.eventBuffer += " <b>You now have a horse-tail.</b>", false;
 						target.clearTailFlags();
-						target.addTailFlag(GLOBAL.LONG);
+						target.addTailFlag(GLOBAL.FLAG_LONG);
 						target.tailCount = 1;
-						target.tailType = GLOBAL.EQUINE;
+						target.tailType = GLOBAL.TYPE_EQUINE;
 					}
-					else if (!target.tailTypeUnlocked(GLOBAL.EQUINE))
+					else if (!target.tailTypeUnlocked(GLOBAL.TYPE_EQUINE))
 					{
 						kGAMECLASS.eventBuffer += target.tailTypeLockedMessage();
 					}
@@ -887,10 +887,10 @@
 				//#12 Gain black hoof-nails on fingertips.
 				else if(select == 12)
 				{
-					if (target.armTypeUnlocked(GLOBAL.EQUINE))
+					if (target.armTypeUnlocked(GLOBAL.TYPE_EQUINE))
 					{
 						kGAMECLASS.eventBuffer += "Your fingers abruptly clench, driving your fingertips into your palm. The feel firmer than normal, and when you open your hands, you discover that from the last joint of your finger on your fingers have hardened into black, almost hoof-like material. You can still feel through them. <b>You've grown hoof-nails!</b>";
-						target.armType = GLOBAL.EQUINE;
+						target.armType = GLOBAL.TYPE_EQUINE;
 					}
 					else
 					{
@@ -900,7 +900,7 @@
 				//#13 Get propah hooves.
 				else if(select == 13)
 				{
-					if (target.legTypeUnlocked(GLOBAL.EQUINE) && (target.legCountUnlocked(2) || target.legCountUnlocked(4)))
+					if (target.legTypeUnlocked(GLOBAL.TYPE_EQUINE) && (target.legCountUnlocked(2) || target.legCountUnlocked(4)))
 					{
 						//Single legs
 						if(target.legCount == 1 && target.legCountUnlocked(2))
@@ -924,20 +924,20 @@
 						else
 						{
 							kGAMECLASS.eventBuffer += "Your legs wobble warningly a moment before dumping you to the ground as they nervelessly twitch. Their shape gets less and less distinct as their structure morphs and shifts, ";
-							if(!target.hasLegFlag(GLOBAL.DIGITIGRADE)) kGAMECLASS.eventBuffer += "becoming distinctly digitigrade in nature";
+							if(!target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) kGAMECLASS.eventBuffer += "becoming distinctly digitigrade in nature";
 							else kGAMECLASS.eventBuffer += "remaining digitigrade but in slightly different proportion";
 							kGAMECLASS.eventBuffer += ". Your [pc.feet] curl up into compact, hard keratin, shiny black and cloven. <b>You have hooved feet!</b>";
 						}
 						target.clearLegFlags();
-						target.addLegFlag(GLOBAL.DIGITIGRADE);
-						target.addLegFlag(GLOBAL.HOOVES);
-						target.legType = GLOBAL.EQUINE;
+						target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+						target.addLegFlag(GLOBAL.FLAG_HOOVES);
+						target.legType = GLOBAL.TYPE_EQUINE;
 					}
 					else if (!target.legCountUnlocked(2) || !target.legCountUnlocked(4))
 					{
 						kGAMECLASS.eventBuffer += target.legCountLockedMessage();
 					}
-					else if (!target.legTypeUnlocked(GLOBAL.EQUINE))
+					else if (!target.legTypeUnlocked(GLOBAL.TYPE_EQUINE))
 					{
 						kGAMECLASS.eventBuffer += target.legTypeLockedMessage();
 					}
@@ -945,18 +945,18 @@
 				//#14 Grow Fur
 				else if(select == 14)
 				{
-					if (target.skinTypeUnlocked(GLOBAL.FUR))
+					if (target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 					{
-						target.skinType = GLOBAL.FUR;
+						target.skinType = GLOBAL.SKIN_TYPE_FUR;
 						if(rand(4) == 0) target.furColor = "chocolate";
 						else if(rand(3) == 0) target.furColor = "ivory";
 						else if(rand(2) == 0) target.furColor = "brown-dappled";
 						else target.furColor = "sable";
 						
 						//Scales
-						if(target.skinType == GLOBAL.SCALES) kGAMECLASS.eventBuffer += "Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.";
+						if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) kGAMECLASS.eventBuffer += "Your scales are flaking off! One after another, the shiny " + target.scaleColor + " little plates are falling to the ground. In their place, [pc.skinFurScales] is springing up, thick and glossy. You brush the last of your scales away as your full-body fur finishes growing in. An odd desire to be brushed nags at your mind.";
 						//Chitin
-						else if(target.skinType == GLOBAL.CHITIN) kGAMECLASS.eventBuffer += "Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.";
+						else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN) kGAMECLASS.eventBuffer += "Your chitinous armor cracks loudly. Thankfully, it doesn't hurt even though the fractures are spreading across your body like breaking glass. You peel away a piece and discover [pc.skinFurScales] growing up out of the gap, and as you marvel at it, the rest of your chitin slowly sloughs off. <b>Your whole body is covered in fur, like a horse!</b> An odd desire to be brushed rises up within you.";
 						//Skin or whatever!
 						else kGAMECLASS.eventBuffer += "Tiny hairs break through the surface of your [pc.skin], making you itch like crazy. It's enough to distract you for sure, and it only gets worse as more and more hair emerges. The ones that came out first are getting longer and thicker, with the newer additions following close behind. Before you know it, your [pc.skin] vanishes under your new coat of [pc.skinFurScales]. <b>You struggle with a strange desire to be brushed as you admire your new horse hair coat.</b>";
 					}
@@ -969,13 +969,13 @@
 				else if(select == 15)
 				{
 					//Already snouted
-					if(target.hasFaceFlag(GLOBAL.MUZZLED)) kGAMECLASS.eventBuffer += "Your muzzle stretches outward and squares off at the end as it takes on more horse-like proportions. It doesn't even hurt, though when the transformation finishes, you're left with a blend of equine and humanoid features. <b>You have an anthropomorphic horse face.</b>";
+					if(target.hasFaceFlag(GLOBAL.FLAG_MUZZLED)) kGAMECLASS.eventBuffer += "Your muzzle stretches outward and squares off at the end as it takes on more horse-like proportions. It doesn't even hurt, though when the transformation finishes, you're left with a blend of equine and humanoid features. <b>You have an anthropomorphic horse face.</b>";
 					//Nonsnouted
 					else kGAMECLASS.eventBuffer += "Your eyes water like crazy as the bones in your face abruptly... flex. Blinking like mad, you try to watch your expanding, lengthening nose and jaw, but your eyes just aren't working right. You're left nearly blind while <b>your face is rearranged into a elongated horse face!</b>";
-					target.faceType = GLOBAL.EQUINE;
+					target.faceType = GLOBAL.TYPE_EQUINE;
 					target.clearFaceFlags();
-					target.addFaceFlag(GLOBAL.LONG);
-					target.addFaceFlag(GLOBAL.MUZZLED);
+					target.addFaceFlag(GLOBAL.FLAG_LONG);
+					target.addFaceFlag(GLOBAL.FLAG_MUZZLED);
 				}
 				else if(select == 16)
 				{
@@ -1006,7 +1006,7 @@
 			if(target.cockTotal() == 0) return false;
 			for (var x:int = 0; x < target.cockTotal(); x++)
 			{
-				if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.EQUINE) return true;
+				if(target.hasSheath(x) && target.cocks[x].cType != GLOBAL.TYPE_EQUINE) return true;
 			}
 			return false;
 		}
@@ -1015,7 +1015,7 @@
 			if(target.vaginaTotal() == 0) return false;
 			for (var x:int = 0; x < target.vaginaTotal(); x++)
 			{
-				if(target.vaginas[x].type == GLOBAL.EQUINE && target.vaginas[x].bonusCapacity < 15) return true;
+				if(target.vaginas[x].type == GLOBAL.TYPE_EQUINE && target.vaginas[x].bonusCapacity < 15) return true;
 			}
 			return false;
 		}

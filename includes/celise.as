@@ -569,7 +569,7 @@ function celiseSleezeLactation():void {
 	else if(pc.hasFuckableNipples())
 	{
 		output("\n\nYour [pc.nipples] are leaking precipitously by now, dribbling a needy mixture of [pc.milk] and lubrication down your front.");
-		if(pc.milkType == GLOBAL.HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You pull her firmly back into your softness, impatient now she has tapped your liquid wealth. In response she slides her hot tongue into your slit, drawing out long strokes of honey with expert laps of her mouth muscle yet continuing to suckle and squeeze on your areola.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You pull her firmly back into your softness, impatient now she has tapped your liquid wealth. In response she slides her hot tongue into your slit, drawing out long strokes of honey with expert laps of her mouth muscle yet continuing to suckle and squeeze on your areola.");
 		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural mixture crosses her lips. “<i>Strange...</i>” she sighs, “<i>and a little slimy... kind of like cum!” With the association locked in her mind, Celise dives in again, plunging her tongue into your nipple-slit and swirling it around the insides, stimulating the entrance in her best impression of a sex toy.]
 		//[Otherwise: 
 		else output(" Celise drinks up the stream you’ve presented to her with vocal delight, humming into your flesh as she laps up your fluids before inserting her hot tongue into your slit, absorbing milk with expert rolls of her mouth muscle, yet continuing to suckle and squeeze on your areola.");
@@ -578,7 +578,7 @@ function celiseSleezeLactation():void {
 	//Normal nipples:
 	else {
 		output("\n\nYour [pc.nipples] are almost painfully hard by now and it takes only a few seconds for the one Celise has seized upon to open and begin to dribble [pc.milk] into hot, wet, roiling, licking pressure.");
-		if(pc.milkType == GLOBAL.HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You push her firmly back into your flesh, impatient now she has tapped your liquid wealth.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output(" The goo girl hums with delight as you fill her mouth with your oozing, golden fluids. “<i>Sho shweet!</i>”  she exclaims, pulling away to stare at the thick nectar beading freely from your breast. You push her firmly back into your flesh, impatient now she has tapped your liquid wealth.");
 		//[Inedible Fluid (in case of later TF): The goo girl winces as the first taste of your unnatural bounty crosses her lips. “<i>Bitter... but not bad,</i>” she sighs, settling back into her task and coaxing your strange fluid from you once again.]
 		//Otherwise: 
 		else output(" The goo girl hums with delight as she begins to suckle, drawing it out with expert pulls of her lips, rolling her tongue along the underside as her own pseudo-boobs squish into your stomach.");
@@ -699,7 +699,7 @@ function celiseSleezeLactation():void {
 	output("\n\nAfter Celise has composed herself a bit she looks at you, frowning as if something were bothering her. Whatever she’s thinking slowly gathers pace; she opens her mouth and... burps richly. Her blush turns into an embarrassed titter when you laugh, shaking your head at your stuffed goo pet.");
 
 	output("\n\n“<i>You taste sooooo good, [pc.name],</i>”  she sighs. “<i>");
-	if(pc.milkType == GLOBAL.HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
+	if(pc.milkType == GLOBAL.FLUID_TYPE_HONEY) output("How lucky am I to have a captain who’s like a giant walking honey pot? ");
 	output("You’ll never stop leaking nice stuff from your top, will you? Because I just want to keep drinking that forever, and ever, and...</i>”  She pauses, and looks down at her bulging bimbo body. “<i>...well, maybe not </i>right<i> now, but you’ll come back with more, right?</i>”  You tell her as long as she’s a good girl and keeps using her mouth like she does, you’ll always give her exactly what she needs. Her response to this is to reform herself so she is lying on her front with her ");
 	if(pc.lactationQ() <= 5000) output("green");
 	else output("[pc.milkColor], heavily-inflated");

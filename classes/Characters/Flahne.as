@@ -61,24 +61,24 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.GOO;
+			this.skinType = GLOBAL.SKIN_TYPE_GOO;
 			this.skinTone = "yellow";
-			this.skinFlags = [GLOBAL.SQUISHY, GLOBAL.LUBRICATED];
+			this.skinFlags = [GLOBAL.FLAG_SQUISHY, GLOBAL.FLAG_LUBRICATED];
 			this.faceType = 0;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 2;
 			this.earType = 0;
 			this.antennae = 2;
-			this.antennaeType = GLOBAL.GOOEY;
+			this.antennaeType = GLOBAL.TYPE_GOOEY;
 			this.horns = 0;
 			this.hornType = 0;
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.GOOEY;
+			this.legType = GLOBAL.TYPE_GOOEY;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -123,15 +123,15 @@
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 1.25;
 			this.cocks[0].cLengthRaw = 16;
-			this.cocks[0].addFlag(GLOBAL.LUBRICATED);
-			this.cocks[0].addFlag(GLOBAL.SQUISHY);
-			this.cocks[0].addFlag(GLOBAL.SMOOTH);
+			this.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_SQUISHY);
+			this.cocks[0].addFlag(GLOBAL.FLAG_SMOOTH);
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 50;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -160,7 +160,7 @@
 			this.breastRows[0].breastRatingRaw = 15;
 			this.nippleColor = "honey";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 3;
@@ -172,7 +172,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.PLANTIGRADE);
+				dataObject.legFlags.push(GLOBAL.FLAG_PLANTIGRADE);
 			}
 		}
 	}

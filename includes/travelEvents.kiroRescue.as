@@ -156,7 +156,7 @@ public function kirosShipWails(doOutput:Boolean = true):void
 		addDisabledButton(2, "Get Filled", "Get Filled", "If you had a cunt, you could ride the Tankuis monster cock.");
 	}
 
-	if (pc.characterClass == GLOBAL.ENGINEER)
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
 		if (flags["RESCUE KIRO TECHSPEC MACHINE FIX"] == undefined)
 		{

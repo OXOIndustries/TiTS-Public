@@ -10,12 +10,17 @@
 	import classes.ItemSlotClass;
 	import classes.DataManager.Serialization.ISaveable;
 	import classes.DataManager.Serialization.VersionedSaveable;
+	import flash.utils.describeType;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
 	import classes.Items.Accessories.TamWolf;
 	import classes.Items.Accessories.TamWolfDamaged;
+
+	import flash.utils.ByteArray;
+
 	import classes.GLOBAL;
+	
 	import classes.GameData.Pregnancy.PregnancyManager;
 
 	/**
@@ -37,16 +42,14 @@
 		 * seems much overkill.
 		 */
 		protected var _neverSerialize: Boolean = false;
-		public function get neverSerialize(): Boolean 
-		{
+		public function get neverSerialize(): Boolean {
 			return _neverSerialize;
 		}
 
 		private static const STAT_CLAMP_VALUE:Number = 0;
 		
 		//Constructor
-		public function Creature() 
-		{
+		public function Creature() {
 			this.addIgnoredField("neverSerialize");
 
 			cocks = new Array();
@@ -211,7 +214,7 @@
 		public var libidoMod: Number = 0;
 
 		public var affinity: String = "intelligence";
-		public var characterClass: int = GLOBAL.SMUGGLER;
+		public var characterClass: int = GLOBAL.CLASS_SMUGGLER;
 		public var personality: int = 50;
 
 		//Combat Stats
@@ -561,7 +564,7 @@
 		public var legType: Number = 0;
 		public function legTypeUnlocked(newLegType:Number):Boolean
 		{
-			if (newLegType != GLOBAL.HUMAN && this.hasStatusEffect("Mimbrane Foot Left") || this.hasStatusEffect("Mimbrane Foot Right")) return false;
+			if (newLegType != GLOBAL.TYPE_HUMAN && this.hasStatusEffect("Mimbrane Foot Left") || this.hasStatusEffect("Mimbrane Foot Right")) return false;
 			return true;
 		}
 		public function legTypeLockedMessage():String
@@ -594,7 +597,7 @@
 			return "";
 		}
 		
-		public var cumType: Number = GLOBAL.CUM;
+		public var cumType: Number = GLOBAL.FLUID_TYPE_CUM;
 		public function cumTypeUnlocked(newCumType:Number):Boolean
 		{
 			return true;
@@ -967,7 +970,7 @@
 		
 		public var elasticity: Number = 1;
 		
-		public var girlCumType: Number = GLOBAL.GIRLCUM;
+		public var girlCumType: Number = GLOBAL.FLUID_TYPE_GIRLCUM;
 		public function girlCumTypeUnlocked(newGirlCumType:Number):Boolean
 		{
 			return true;
@@ -1255,9 +1258,6 @@
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
 					break;
-				case "lipColor":
-					buffer = lipColor;
-					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1514,7 +1514,6 @@
 				case "ey":
 					buffer = this.mfn("he", "she", "ey");
 					break;
-				case "him":
 				case "himo":
 				case "hero":
 					buffer = this.mf("him", "her");
@@ -1522,7 +1521,6 @@
 				case "em":
 					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
 					break;
-				case "his":
 				case "hisa":
 				case "hera":
 					buffer = this.mf("his", "her");
@@ -1590,12 +1588,6 @@
 			else if (lastChar == "x") str += "es";
 			//Normal pluralizes
 			else str += "s";
-			return str;
-		}
-		public function possessive(str:String):String {
-			var lastChar:String = str.substr(str.length-1,str.length);
-			if(lastChar == "s") str += "'";
-			else str += "'s";
 			return str;
 		}
 		public function inventorySlots(): int {
@@ -1741,9 +1733,9 @@
 		}
 		public function HPMax(): Number {
 			var hitPoints: Number = 15 + (level - 1) * 15 + HPMod;
-			if (characterClass == GLOBAL.MERCENARY)
+			if (characterClass == GLOBAL.CLASS_MERCENARY)
 				hitPoints += level * 5;
-			if (characterClass == GLOBAL.ENGINEER)
+			if (characterClass == GLOBAL.CLASS_ENGINEER)
 				hitPoints -= level * 5;
 			return hitPoints;
 		}
@@ -2262,7 +2254,7 @@
 			legFlags = new Array();
 		}
 		public function hasLeg(): Boolean {
-			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
+			return (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || hasLegFlag(GLOBAL.FLAG_PLANTIGRADE));
 			return false;
 		}
 		public function hasLegs(): Boolean {
@@ -2402,27 +2394,27 @@
 			var description:String = "";
 			switch (earType)
 			{
-				case GLOBAL.CANINE:
+				case GLOBAL.TYPE_CANINE:
 					adjectives[adjectives.length] = "pointed";
 					adjectives[adjectives.length] = "ausar";
 					adjectives[adjectives.length] = "furry";
 					adjectives[adjectives.length] = "upraised";
 					adjectives[adjectives.length] = "anubis-like";
 					break;
-				case GLOBAL.EQUINE:
+				case GLOBAL.TYPE_EQUINE:
 					adjectives[adjectives.length] = "equine";
 					adjectives[adjectives.length] = "horse-like";
 					adjectives[adjectives.length] = "furry";
 					adjectives[adjectives.length] = "bestial";
 					adjectives[adjectives.length] = "inhuman";
 					break;
-				case GLOBAL.BOVINE:
+				case GLOBAL.TYPE_BOVINE:
 					adjectives[adjectives.length] = "bovine";
 					adjectives[adjectives.length] = "cow-like";
 					adjectives[adjectives.length] = "floppy";
 					adjectives[adjectives.length] = "softly furred";
 					break;
-				case GLOBAL.RASKVEL:
+				case GLOBAL.TYPE_RASKVEL:
 					adjectives[adjectives.length] = "raskvel";
 					adjectives[adjectives.length] = "obscenely long";
 					adjectives[adjectives.length] = "oh-so sensitive";
@@ -2604,16 +2596,16 @@
 			var temp;
 			//33% of the time, add an adjective.
 			if (forceAdjective || this.rand(3) == 0) {
-				if (hasSkinFlag(GLOBAL.SMOOTH)) output += "smooth";
-				else if (hasSkinFlag(GLOBAL.THICK)) output += "thick";
-				else if (hasSkinFlag(GLOBAL.STICKY)) output += "sticky";
-				else if (hasSkinFlag(GLOBAL.FLUFFY) && !skin && skinType == 1) output += "fluffy";
+				if (hasSkinFlag(GLOBAL.FLAG_SMOOTH)) output += "smooth";
+				else if (hasSkinFlag(GLOBAL.FLAG_THICK)) output += "thick";
+				else if (hasSkinFlag(GLOBAL.FLAG_STICKY)) output += "sticky";
+				else if (hasSkinFlag(GLOBAL.FLAG_FLUFFY) && !skin && skinType == GLOBAL.SKIN_TYPE_FUR) output += "fluffy";
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || this.rand(4) == 0) {
 				if (output != "") output += ", ";
-				if (skinType == GLOBAL.FUR && !skin) output += furColor;
-				else if (skinType == GLOBAL.SCALES && !skin) output += scaleColor;
+				if (skinType == GLOBAL.SKIN_TYPE_FUR && !skin) output += furColor;
+				else if (skinType == GLOBAL.SKIN_TYPE_SCALES && !skin) output += scaleColor;
 				else output += skinTone;
 			}
 			//Setup for words
@@ -2626,21 +2618,21 @@
 			var output: String = "";
 			var temp: int = 0;
 			//Set skin words.
-			if (skinType == 0 || skin) {
+			if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
 				temp = this.rand(10);
 				if (temp <= 8) output += "skin";
 				else output += "dermis";
-			} else if (skinType == 1) {
+			} else if (skinType == GLOBAL.SKIN_TYPE_FUR) {
 				temp = this.rand(10);
 				if (temp <= 7) output += "fur";
 				else if (temp <= 8) output += "pelt";
 				else output += "coat";
-			} else if (skinType == 2) {
+			} else if (skinType == GLOBAL.SKIN_TYPE_SCALES) {
 				temp = this.rand(10);
 				if (temp <= 7) output += "scales";
 				else if (temp <= 8) output += "plates";
 				else output += "lamina";
-			} else if (skinType == 3) {
+			} else if (skinType == GLOBAL.SKIN_TYPE_GOO) {
 				if (temp <= 7) output += "goo";
 				else output += "membrane";
 			}
@@ -2653,18 +2645,18 @@
 			var output: String = "";
 			//1 in 4 chance unless forcing adjectives
 			if (this.rand(4) == 0 || forceAdjectives) {
-				if (faceType == GLOBAL.FELINE) output += "feline";
-				if (faceType == GLOBAL.EQUINE) output += "long";
-				if (faceType == GLOBAL.BOVINE) output += "bovine";
-				if (hasFaceFlag(GLOBAL.ANGULAR)) output += "angular";
-				if (faceType == GLOBAL.LIZAN || faceType == GLOBAL.DRACONIC) output += "reptilian";
+				if (faceType == GLOBAL.TYPE_FELINE) output += "feline";
+				if (faceType == GLOBAL.TYPE_EQUINE) output += "long";
+				if (faceType == GLOBAL.TYPE_BOVINE) output += "bovine";
+				if (hasFaceFlag(GLOBAL.FLAG_ANGULAR)) output += "angular";
+				if (faceType == GLOBAL.TYPE_LIZAN || faceType == GLOBAL.TYPE_DRACONIC) output += "reptilian";
 			}
 			//Space if adjective'd
 			if (output != "") output += " ";
 
 			//Add Noun
-			if (hasFaceFlag(GLOBAL.MUZZLED) && this.rand(2) == 0) output += "muzzle";
-			else if (this.rand(2) == 0 && hasFaceFlag(GLOBAL.MUZZLED) && (faceType == GLOBAL.LIZAN || faceType == GLOBAL.DRACONIC))
+			if (hasFaceFlag(GLOBAL.FLAG_MUZZLED) && this.rand(2) == 0) output += "muzzle";
+			else if (this.rand(2) == 0 && hasFaceFlag(GLOBAL.FLAG_MUZZLED) && (faceType == GLOBAL.TYPE_LIZAN || faceType == GLOBAL.TYPE_DRACONIC))
 				output += "snout";
 			else output += "face";
 
@@ -2676,7 +2668,7 @@
 			return true;
 		}
 		public function isNaga(): Boolean {
-			if (legCount == 1 && legType == GLOBAL.NAGA) return true;
+			if (legCount == 1 && legType == GLOBAL.TYPE_NAGA) return true;
 			return false;
 		}
 		public function isTaur(): Boolean {
@@ -2684,10 +2676,10 @@
 			return false;
 		}
 		public function isDrider(): Boolean {
-			return (legCount >= 4 && (legType == GLOBAL.DRIDER || legType == GLOBAL.ARACHNID));
+			return (legCount >= 4 && (legType == GLOBAL.TYPE_DRIDER || legType == GLOBAL.TYPE_ARACHNID));
 		}
 		public function isGoo(): Boolean {
-			if (legType == GLOBAL.GOOEY) return true;
+			if (legType == GLOBAL.TYPE_GOOEY) return true;
 			return false;
 		}
 		public function isImmobilized(): Boolean {
@@ -2696,8 +2688,8 @@
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String {
 			var select: Number = 0;
 			//EDGE CASSES
-			if (legType == GLOBAL.SNAKE) return "coils";
-			else if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
+			if (legType == GLOBAL.TYPE_SNAKE) return "coils";
+			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) {
 				select = this.rand(5);
 				return "mounds of goo";
 			}
@@ -2711,45 +2703,45 @@
 			var adjectives:Array = new Array();
 			var nouns:Array = ["tail"];
 			var description:String = "";
-			if(hasTailFlag(GLOBAL.PREHENSILE)) 
+			if(hasTailFlag(GLOBAL.FLAG_PREHENSILE)) 
 			{
 				adjectives[adjectives.length] = "talented";
 				adjectives[adjectives.length] = "nimble";
 			}
-			if(hasTailFlag(GLOBAL.LONG)) 
+			if(hasTailFlag(GLOBAL.FLAG_LONG)) 
 			{
 				adjectives[adjectives.length] = "lengthy";
 				adjectives[adjectives.length] = "long";
 			}
-			if(hasTailFlag(GLOBAL.FLUFFY)) 
+			if(hasTailFlag(GLOBAL.FLAG_FLUFFY)) 
 			{
 				adjectives[adjectives.length] = "furry";
 				adjectives[adjectives.length] = "furred";
 				adjectives[adjectives.length] = "fluffy";
 				adjectives[adjectives.length] = "soft";
 			}
-			if(hasTailFlag(GLOBAL.SMOOTH)) 
+			if(hasTailFlag(GLOBAL.FLAG_SMOOTH)) 
 			{
 				adjectives[adjectives.length] = "smooth";
 				adjectives[adjectives.length] = "sleek";
 			}
-			if(tailType == GLOBAL.LAPINE)
+			if(tailType == GLOBAL.TYPE_LAPINE)
 			{
 				adjectives[adjectives.length] = "twitching";
 				adjectives[adjectives.length] = "rabbit-like";
 				adjectives[adjectives.length] = "lapine";
 			}
-			else if(tailType == GLOBAL.EQUINE)
+			else if(tailType == GLOBAL.TYPE_EQUINE)
 			{
 				adjectives[adjectives.length] = "equine";
 				adjectives[adjectives.length] = "horse-like";
 			}
-			else if(tailType == GLOBAL.CANINE)
+			else if(tailType == GLOBAL.TYPE_CANINE)
 			{
 				adjectives[adjectives.length] = "ausar";
 				adjectives[adjectives.length] = "dog-like";
 			}
-			else if(tailType == GLOBAL.BOVINE)
+			else if(tailType == GLOBAL.TYPE_BOVINE)
 			{
 				adjectives[adjectives.length] = "bovine";
 				adjectives[adjectives.length] = "cow-like";
@@ -2771,7 +2763,7 @@
 			var typed: Boolean = false;
 			var adjectived: Boolean = false;
 			//SPECIAL CASES.
-			if (legType == GLOBAL.SNAKE) {
+			if (legType == GLOBAL.TYPE_SNAKE) {
 				select = this.rand(10);
 				if (select <= 3) return "snake tail";
 				else if (select <= 5) return "flexible tail";
@@ -2780,7 +2772,7 @@
 				else return "prehensile tail";
 			}
 			//8 - goo shit
-			else if (legType == GLOBAL.GOOEY && hasLegFlag(GLOBAL.AMORPHOUS)) {
+			else if (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) {
 				if (select == 0) return "mound of goo";
 				else if (select == 1) return "gelatinous mound";
 				else if (select == 2) return "gooey base";
@@ -2792,80 +2784,80 @@
 				//Type 1/4 of the time.
 				if (this.rand(4) == 0 || forceType) {
 					select = this.rand(10);
-					if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
+					if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR) {
 						if (select <= 3) output += "equine";
 						else if (select <= 6) output += "horse-like";
 						else output += "hoof-capped";
-					} else if (legType == GLOBAL.BOVINE) {
+					} else if (legType == GLOBAL.TYPE_BOVINE) {
 						if (select <= 3) output += "bovine";
 						else if (select <= 6) output += "cow-like";
 						else output += "hoof-capped";
-					} else if (legType == GLOBAL.CANINE) {
+					} else if (legType == GLOBAL.TYPE_CANINE) {
 						if (select <= 3) output += "canine";
 						else if (select <= 6) output += "dog-like";
 						else output += "paw-footed";
-					} else if (legType == GLOBAL.FELINE) {
+					} else if (legType == GLOBAL.TYPE_FELINE) {
 						if (select <= 3) output += "feline";
 						else if (select <= 6) output += "cat-like";
 						else output += "graceful";
-					} else if (legType == GLOBAL.VULPINE) {
+					} else if (legType == GLOBAL.TYPE_VULPINE) {
 						if (select <= 3) output += "vulpine";
 						else if (select <= 6) output += "fox-like";
 						else output += "foxy";
-					} else if (legType == GLOBAL.BEE) {
+					} else if (legType == GLOBAL.TYPE_BEE) {
 						if (select <= 3) output += "chitinous";
 						else if (select <= 5) output += "armored";
 						else if (select <= 7) output += "insect-like";
 						else output += "carapace-covered";
-					} else if (legType == GLOBAL.ARACHNID) {
+					} else if (legType == GLOBAL.TYPE_ARACHNID) {
 						if (select <= 3) output += "chitinous";
 						else if (select <= 5) output += "armored";
 						else if (select <= 7) output += "insect-like";
 						else output += "carapace-covered";
-					} else if (legType == GLOBAL.DRIDER) {
+					} else if (legType == GLOBAL.TYPE_DRIDER) {
 						if (select <= 1) output += "chitinous";
 						else if (select <= 3) output += "armored";
 						else if (select <= 5) output += "insect-like";
 						else if (select <= 7) output += "carapace-covered";
 						else output += "pointed";
-					} else if (legType == GLOBAL.LAPINE) {
+					} else if (legType == GLOBAL.TYPE_LAPINE) {
 						if (select <= 3) output += "lapine";
 						else if (select <= 6) output += "rabbit-like";
 						else output += "bunny";
-					} else if (legType == GLOBAL.LAPINE) {
+					} else if (legType == GLOBAL.TYPE_LAPINE) {
 						if (select <= 3) output += "lapine";
 						else if (select <= 6) output += "rabbit-like";
 						else output += "bunny";
-					} else if (legType == GLOBAL.AVIAN) {
+					} else if (legType == GLOBAL.TYPE_AVIAN) {
 						if (select <= 3) output += "avian";
 						else if (select <= 6) output += "bird-like";
 						else output += "harpy";
-					} else if (legType == GLOBAL.DRACONIC) {
+					} else if (legType == GLOBAL.TYPE_DRACONIC) {
 						if (select <= 3) output += "draconic";
 						else if (select <= 6) output += "dragon-like";
 						else output += "reptilian";
-					} else if (legType == GLOBAL.LIZAN) {
+					} else if (legType == GLOBAL.TYPE_LIZAN) {
 						if (select <= 3) output += "lizan";
 						else if (select <= 6) output += "reptile-like";
 						else output += "reptilian";
-					} else if (legType == GLOBAL.DEMONIC) {
+					} else if (legType == GLOBAL.TYPE_DEMONIC) {
 						if (select <= 3) output += "demon-like";
 						else if (select <= 6) output += "demonic";
 						else output += "claw-footed";
-					} else if (legType == GLOBAL.GOOEY) {
+					} else if (legType == GLOBAL.TYPE_GOOEY) {
 						if (select <= 2) output += "gooey";
 						else if (select <= 5) output += "semi-solid";
 						else if (select <= 7) output += "gelatinous";
 						else output += "jiggly";
-					} else if (legType == GLOBAL.KANGAROO) {
+					} else if (legType == GLOBAL.TYPE_KANGAROO) {
 						if (select <= 3) output += "kangaroo-like";
 						else if (select <= 5) output += "powerful";
 						else output += "'roo";
-					} else if (legType == GLOBAL.TANUKI) {
+					} else if (legType == GLOBAL.TYPE_TANUKI) {
 						if (select <= 3) output += "tanuki-like";
 						else if (select <= 6) output += "dexterous";
 						else output += "nimble";
-					} else if (legType == GLOBAL.DEER) {
+					} else if (legType == GLOBAL.TYPE_DEER) {
 						if (select <= 3) output += "deer-like";
 						else if (select <= 6) output += "hooved";
 						else output += "nimble";
@@ -2875,18 +2867,18 @@
 				else if (this.rand(3) == 0 || forceAdjective) {
 					if (legCount > 2 && this.rand(2) == 0) {
 						output += "numerous";
-					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+					} else if (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) {
 						output += "digitigrade";
-					} else if (hasLegFlag(GLOBAL.DIGITIGRADE)) {
+					} else if (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) {
 						output += "plantigrade";
-					} else if (hasLegFlag(GLOBAL.SCALED)) {
+					} else if (hasLegFlag(GLOBAL.FLAG_SCALED)) {
 						output += "scaled";
-					} else if (hasLegFlag(GLOBAL.FURRED)) {
+					} else if (hasLegFlag(GLOBAL.FLAG_FURRED)) {
 						select = this.rand(10);
 						if (select <= 3) output += "furry";
 						else if (select <= 6) output += "fuzzy";
 						else output += "fur-covered";
-					} else if (hasLegFlag(GLOBAL.TENDRIL)) {
+					} else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) {
 						output += "wiggling";
 					}
 				}
@@ -2902,90 +2894,90 @@
 			//Type! 1/5 times
 			if (this.rand(5) == 0) {
 				select = this.rand(10);
-				if (legType == GLOBAL.EQUINE || legType == GLOBAL.CENTAUR) {
+				if (legType == GLOBAL.TYPE_EQUINE || legType == GLOBAL.TYPE_CENTAUR) {
 					if (select <= 4) output += "equine";
 					else output += "horse-like";
-				} else if (legType == GLOBAL.BOVINE) {
+				} else if (legType == GLOBAL.TYPE_BOVINE) {
 					if (select <= 4) output += "bovine";
 					else output += "cow-like";
-				} else if (legType == GLOBAL.CANINE) {
+				} else if (legType == GLOBAL.TYPE_CANINE) {
 					if (select <= 4) output += "canine";
 					else output += "dog-like";
-				} else if (legType == GLOBAL.FELINE) {
+				} else if (legType == GLOBAL.TYPE_FELINE) {
 					if (select <= 4) output += "feline";
 					else output += "cat-like";
-				} else if (legType == GLOBAL.VULPINE) {
+				} else if (legType == GLOBAL.TYPE_VULPINE) {
 					if (select <= 4) output += "vulpine";
 					else if (select <= 6) output += "fox-like";
 					else output += "foxy";
-				} else if (legType == GLOBAL.BEE) {
+				} else if (legType == GLOBAL.TYPE_BEE) {
 					if (select <= 3) output += "chitinous";
 					else if (select <= 5) output += "armored";
 					else if (select <= 7) output += "insect-like";
 					else output += "carapace-covered";
-				} else if (legType == GLOBAL.ARACHNID) {
+				} else if (legType == GLOBAL.TYPE_ARACHNID) {
 					if (select <= 3) output += "chitinous";
 					else if (select <= 5) output += "armored";
 					else if (select <= 7) output += "insect-like";
 					else output += "carapace-covered";
-				} else if (legType == GLOBAL.DRIDER) {
+				} else if (legType == GLOBAL.TYPE_DRIDER) {
 					if (select <= 1) output += "chitinous";
 					else if (select <= 3) output += "armored";
 					else if (select <= 5) output += "insect-like";
 					else if (select <= 7) output += "carapace-covered";
 					else output += "pointed";
-				} else if (legType == GLOBAL.LAPINE) {
+				} else if (legType == GLOBAL.TYPE_LAPINE) {
 					if (select <= 3) output += "lapine";
 					else if (select <= 6) output += "rabbit-like";
 					else output += "bunny";
-				} else if (legType == GLOBAL.LAPINE) {
+				} else if (legType == GLOBAL.TYPE_LAPINE) {
 					if (select <= 3) output += "lapine";
 					else if (select <= 6) output += "rabbit-like";
 					else output += "bunny";
-				} else if (legType == GLOBAL.AVIAN) {
+				} else if (legType == GLOBAL.TYPE_AVIAN) {
 					if (select <= 3) output += "avian";
 					else if (select <= 6) output += "bird-like";
 					else output += "taloned";
-				} else if (legType == GLOBAL.DRACONIC) {
+				} else if (legType == GLOBAL.TYPE_DRACONIC) {
 					if (select <= 3) output += "draconic";
 					else if (select <= 6) output += "clawed";
 					else output += "reptilian";
-				} else if (legType == GLOBAL.LIZAN) {
+				} else if (legType == GLOBAL.TYPE_LIZAN) {
 					if (select <= 3) output += "lizan";
 					else if (select <= 6) output += "clawed";
 					else output += "reptilian";
-				} else if (legType == GLOBAL.DEMONIC) {
+				} else if (legType == GLOBAL.TYPE_DEMONIC) {
 					if (select <= 3) output += "corrupted-looking";
 					else if (select <= 6) output += "demonic";
 					else output += "clawed";
-				} else if (legType == GLOBAL.GOOEY) {
+				} else if (legType == GLOBAL.TYPE_GOOEY) {
 					if (select <= 2) output += "gooey";
 					else if (select <= 5) output += "semi-solid";
 					else if (select <= 7) output += "gelatinous";
 					else output += "jiggly";
-				} else if (legType == GLOBAL.KANGAROO) {
+				} else if (legType == GLOBAL.TYPE_KANGAROO) {
 					if (select <= 3) output += "kangaroo-like";
 					else if (select <= 5) output += "powerful";
 					else output += "'roo";
-				} else if (legType == GLOBAL.TANUKI) {
+				} else if (legType == GLOBAL.TYPE_TANUKI) {
 					if (select <= 3) output += "tanuki-like";
 					else if (select <= 6) output += "dexterous";
 					else output += "nimble";
-				} else if (legType == GLOBAL.DEER) {
+				} else if (legType == GLOBAL.TYPE_DEER) {
 					if (select <= 4) output += "deer-like";
 					else output += "nimble";
 				}
 			}
 			//ADJECTIVE!
 			if (this.rand(3) == 0 || forceAdjective) {
-				if (hasLegFlag(GLOBAL.SCALED)) {
+				if (hasLegFlag(GLOBAL.FLAG_SCALED)) {
 					output += "scaled";
-				} else if (hasLegFlag(GLOBAL.FURRED)) {
+				} else if (hasLegFlag(GLOBAL.FLAG_FURRED)) {
 					select = this.rand(10);
 					if (select <= 3) output += "furry";
 					else if (select <= 6) output += "fuzzy";
 					else output += "fur-covered";
-				} else if (hasLegFlag(GLOBAL.TENDRIL)) {
+				} else if (hasLegFlag(GLOBAL.FLAG_TENDRIL)) {
 					output += "wiggling";
 				}
 			}
@@ -3004,10 +2996,10 @@
 			output = footAdjectives(forceType, forceAdjective);
 			//Noun
 			if (output != "") output += " ";
-			if (hasLegFlag(GLOBAL.HOOVES)) output += "hooves";
-			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paws";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
-			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heels";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "paws";
+			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
+			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heels";
 			else output += "feet";
 			return output;
 		}
@@ -3017,10 +3009,10 @@
 			output = footAdjectives(forceType, forceAdjective);
 			//Noun
 			if (output != "") output += " ";
-			if (hasLegFlag(GLOBAL.HOOVES)) output += "hoof";
-			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "paw";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "undercarriage";
-			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "high-heel";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "paw";
+			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "undercarriage";
+			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "high-heel";
 			else output += "foot";
 			return output;
 		}
@@ -3029,22 +3021,22 @@
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.HOOVES)) output += "hoof-tips";
-			else if (hasLegFlag(GLOBAL.PAWS) && this.rand(2) == 0) output += "fuzzy toes";
-			else if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
-			else if (hasLegFlag(GLOBAL.HEELS) && this.rand(2) == 0) output += "toes";
+			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tips";
+			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && this.rand(2) == 0) output += "fuzzy toes";
+			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
+			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && this.rand(2) == 0) output += "toes";
 			else output += "toes";
 			return output;
 		}
 		public function hasKnees():Boolean
 		{
-			return (hasLegFlag(GLOBAL.DIGITIGRADE) || hasLegFlag(GLOBAL.PLANTIGRADE));
+			return (hasLegFlag(GLOBAL.FLAG_DIGITIGRADE) || hasLegFlag(GLOBAL.FLAG_PLANTIGRADE));
 		}
 		public function kneesDescript(): String {
 			var select: Number = 0;
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.AMORPHOUS) && legType == GLOBAL.GOOEY) output += "cilia";
+			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else output += "knees";
 			return output;
 		}
@@ -3730,7 +3722,7 @@
 			var count:int = 0;
 			for (var i:int = 0; i < breastRows.length; i++)
 			{
-				if (breastRows[i].nippleType == GLOBAL.DICK)
+				if (breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
 				{
 					count += nipplesPerBreast * breastRows[i].breasts;
 				}
@@ -3838,28 +3830,28 @@
 		}
 		public function hasASheath(): Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].hasFlag(GLOBAL.SHEATHED)) return true;
+				if (cocks[x].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
 			}
 			return false;
 		}
 		public function hasFullSheaths():Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (!cocks[x].hasFlag(GLOBAL.SHEATHED)) return false;
+				if (!cocks[x].hasFlag(GLOBAL.FLAG_SHEATHED)) return false;
 			}
 			return true;	
 		}
 		public function hasSheath(arg: int = 0): Boolean {
 			if (arg >= cocks.length) return false;
-			if (cocks[arg].hasFlag(GLOBAL.SHEATHED)) return true;
+			if (cocks[arg].hasFlag(GLOBAL.FLAG_SHEATHED)) return true;
 			return false;
 		}
 		public function hasKnot(arg: int = 0): Boolean {
 			if (arg > cockTotal() - 1 || arg < 0) return false;
-			return (cocks[arg].hasFlag(GLOBAL.KNOTTED));
+			return (cocks[arg].hasFlag(GLOBAL.FLAG_KNOTTED));
 		}
 		public function hasAKnot(): Boolean {
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].hasFlag(GLOBAL.KNOTTED)) return true;
+				if (cocks[x].hasFlag(GLOBAL.FLAG_KNOTTED)) return true;
 			}
 			return false;
 		}
@@ -3880,18 +3872,18 @@
 			var cylinder: Number = 3.142 * 1.5 / 2 * 1.5 / 2 * (8 - 1.5);
 			var tip: Number = (4 / 3 * 3.142 * 1.5 / 2 * 1.5 / 2 * 1.5 / 2) / 2;
 			//If blunt, tip is converted to cylinder as well.
-			if (tailGenitalArg == GLOBAL.EQUINE) tip = (3.142 * 1.5 / 2 * 1.5 / 2 * 1.5);
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = (3.142 * 1.5 / 2 * 1.5 / 2 * 1.5);
 			//If flared, tip is multiplied by 1.3.
-			if (tailGenitalArg == GLOBAL.EQUINE) tip = tip * 1.3;
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
-			if (tailGenitalArg == GLOBAL.CANINE) {
+			if (tailGenitalArg == GLOBAL.TYPE_CANINE) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			if (effective) {
-				//if(GLOBAL.LUBRICATED) temp *= .75;
-				//if(hasFlag(GLOBAL.STICKY)) temp *= 1.25;
+				//if(GLOBAL.FLAG_LUBRICATED) temp *= .75;
+				//if(hasFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
 			}
 			return Math.round(temp * 100) / 100;
 		}
@@ -3964,7 +3956,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if ((cocks[index].cType != 1 && cocks[counter].cType == 1) || (cocks[index].cLength < cocks[counter].cLength() && cocks[counter].cType == 1)) index = counter;
+				if ((cocks[index].cType != GLOBAL.TYPE_EQUINE && cocks[counter].cType == GLOBAL.TYPE_EQUINE) || (cocks[index].cLength < cocks[counter].cLength() && cocks[counter].cType == GLOBAL.TYPE_EQUINE)) index = counter;
 			}
 			return cocks[index].cLength();
 		}
@@ -4386,7 +4378,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.TENTACLED) return true;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_TENTACLED) return true;
 			}
 			return false;
 		}
@@ -4395,9 +4387,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.FUCKABLE) index = counter;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) index = counter;
 			}
-			if (breastRows[counter].nippleType == GLOBAL.FUCKABLE) return true;
+			if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) return true;
 			return false;
 		}
 		public function hasFuckableNipples(): Boolean {
@@ -4415,9 +4407,9 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.LIPPLES) index = counter;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) index = counter;
 			}
-			if (breastRows[index].nippleType == GLOBAL.LIPPLES) return true;
+			if (breastRows[index].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) return true;
 			return false;
 		}
 		public function hasDickNipples(): Boolean {
@@ -4429,7 +4421,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.DICK) return true;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_DICK) return true;
 			}
 			return false;
 		}
@@ -4438,7 +4430,7 @@
 			var index: Number = 0;
 			while (counter > 0) {
 				counter--;
-				if (breastRows[counter].nippleType == GLOBAL.FLAT) return true;
+				if (breastRows[counter].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) return true;
 			}
 			return false;
 		}
@@ -4882,7 +4874,7 @@
 			var lustCoefficient: Number = (lust() / 2 + 75) / 100;
 
 			//Figure on 3x a cumshot value?
-			if (balls == 0) quantity = Math.round(10 * 2 * 2 * ballEfficiency);
+			if (balls == 0) quantity = Math.round(ballSize() * 2 * 2 * ballEfficiency);
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 			return quantity;
 		}
@@ -4903,10 +4895,8 @@
 				ballFullness = 0;
 			}
 			while (minutes > 0) {
-				if(balls == 0) cumDelta = refractoryRate / 60 * 6 / 4 * 2;
-				else cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+				cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
 				if(hasPerk("Breed Hungry")) cumDelta *= 2;
-				trace("cumDelta: " + cumDelta);
 				ballFullness += cumDelta;
 				minutes--;
 			}
@@ -4918,10 +4908,6 @@
 			if (arg < 0 || arg >= totalVaginas()) return false;
 			if (vaginas[arg].wetness >= 4) return true;
 			return false;
-		}
-		public function clitTotal():Number
-		{
-			return totalClits();
 		}
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
@@ -4976,7 +4962,7 @@
 			return false;
 		}
 		public function hasTailCock(): Boolean {
-			if (hasTailFlag(GLOBAL.TAILCOCK) && tailCount > 0) return true;
+			if (hasTailFlag(GLOBAL.FLAG_TAILCOCK) && tailCount > 0) return true;
 			return false;
 		}
 		public function hasCockTail(): Boolean {
@@ -4989,7 +4975,7 @@
 			return hasTailCunt();
 		}
 		public function hasTailCunt(): Boolean {
-			if (tailType == GLOBAL.CUNTSNAKE && tailCount > 0) return true;
+			if (tailType == GLOBAL.TYPE_CUNTSNAKE && tailCount > 0) return true;
 			return false;
 		}
 		//In case there's ever different types of cuntTails available, we'll need different methods.
@@ -5005,7 +4991,7 @@
 			else return 100;
 		}
 		public function hasTail(): Boolean {
-			if (tailType != GLOBAL.HUMAN) return true;
+			if (tailType != GLOBAL.TYPE_HUMAN) return true;
 			return false;
 		}
 		public function isBald(): Boolean {
@@ -5036,12 +5022,12 @@
 			if (!hasCock()) return false;
 			if (arg >= 0) {
 				if (arg >= cocks.length) return false;
-				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, arg) || cocks[arg].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1);
+				return (cocks[arg].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, arg) || cocks[arg].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1);
 			}
 			//Negative is code for see if any can.
 			else {
 				for (var x: int = 0; x < cocks.length; x++) {
-					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
+					if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
 						return true;
 				}
 				return false;
@@ -5053,7 +5039,7 @@
 		public function aCockToSuck(): int {
 			var choices: Array = new Array();
 			for (var x: int = 0; x < cocks.length; x++) {
-				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
+				if (cocks[x].cLength() >= 1 / 6 && (hasCockFlag(GLOBAL.FLAG_PREHENSILE, x) || cocks[x].cLength() / tallness <= 1 / 3) && genitalLocation() <= 1)
 					choices[choices.length] = x;
 			}
 			if (choices.length == 0) return 0;
@@ -5071,16 +5057,16 @@
 			vaginas[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.EQUINE) {
+			if (type == GLOBAL.TYPE_EQUINE) {
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "black";
 				vaginas[slot].minLooseness = 2;
 			}
-			if (type == GLOBAL.HUMAN) {
+			if (type == GLOBAL.TYPE_HUMAN) {
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "pink";
 			}
-			if (type == GLOBAL.BEE)
+			if (type == GLOBAL.TYPE_BEE)
 			{
 				vaginas[slot].clits = 1;
 				vaginas[slot].vaginaColor = "black and gold";
@@ -5089,7 +5075,7 @@
 		//Change cock type
 		public function shiftCock(slot: int = 0, type: int = -1): void {
 			if (type == -1) // check if type was not passed, and if so, override with EQUINE
-				type = GLOBAL.EQUINE;
+				type = GLOBAL.TYPE_EQUINE;
 			if (slot + 1 > cocks.length) return;
 			else if (slot < 0) return;
 
@@ -5100,41 +5086,41 @@
 			cocks[slot].clearFlags();
 
 			//Add bonus flags and shit.
-			if (type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
+			if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				cocks[slot].knotMultiplier = 1.25;
 				cocks[slot].cockColor = "bright red";
-				cocks[slot].addFlag(GLOBAL.TAPERED);
-				cocks[slot].addFlag(GLOBAL.KNOTTED);
-				cocks[slot].addFlag(GLOBAL.SHEATHED);
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+				cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
-			if (type == GLOBAL.EQUINE) {
+			if (type == GLOBAL.TYPE_EQUINE) {
 				cocks[slot].knotMultiplier = 1;
 				if(rand(3) == 0) cocks[slot].cockColor = "black";
 				else if(rand(3) == 0) cocks[slot].cockColor = "mottled pink and black";
 				else cocks[slot].cockColor = "pink";
-				cocks[slot].addFlag(GLOBAL.BLUNT);
-				cocks[slot].addFlag(GLOBAL.FLARED);
-				cocks[slot].addFlag(GLOBAL.SHEATHED);
+				cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+				cocks[slot].addFlag(GLOBAL.FLAG_FLARED);
+				cocks[slot].addFlag(GLOBAL.FLAG_SHEATHED);
 			}
-			if (type == GLOBAL.BEE) {
+			if (type == GLOBAL.TYPE_BEE) {
 				if(rand(2) == 0) cocks[slot].cockColor = "black";
 				else cocks[slot].cockColor = "amber";
 				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.SMOOTH);
-				cocks[slot].addFlag(GLOBAL.FORESKINNED);
+				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+				cocks[slot].addFlag(GLOBAL.FLAG_FORESKINNED);
 			}
-			if (type == GLOBAL.NAGA) {
+			if (type == GLOBAL.TYPE_NAGA) {
 				cocks[slot].cockColor = "purple";
 				cocks[slot].knotMultiplier = 1;
-				cocks[slot].addFlag(GLOBAL.SMOOTH);
-				cocks[slot].addFlag(GLOBAL.TAPERED);
+				cocks[slot].addFlag(GLOBAL.FLAG_SMOOTH);
+				cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 			}
 		}
 		//PC can fly?
 		public function canFly(): Boolean {
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
-			if (wingType == GLOBAL.BEE) return true;
+			if (wingType == GLOBAL.TYPE_BEE) return true;
 			return false;
 		}
 		public function hasWings(): Boolean {
@@ -5379,64 +5365,64 @@
 		public function horseScore(): int
 		{
 			var counter:int = 0;
-			if (earType == GLOBAL.EQUINE) counter++;
-			if (tailType == GLOBAL.EQUINE && hasTailFlag(GLOBAL.LONG)) counter++;
-			if (faceType == GLOBAL.EQUINE) counter++;
-			if (armType == GLOBAL.EQUINE) counter++;
-			if (legType == GLOBAL.EQUINE) counter++;
-			if (cockTotal(GLOBAL.EQUINE) > 0) counter++;
-			if (vaginaTotal(GLOBAL.EQUINE) > 0) counter++;
+			if (earType == GLOBAL.TYPE_EQUINE) counter++;
+			if (tailType == GLOBAL.TYPE_EQUINE && hasTailFlag(GLOBAL.FLAG_LONG)) counter++;
+			if (faceType == GLOBAL.TYPE_EQUINE) counter++;
+			if (armType == GLOBAL.TYPE_EQUINE) counter++;
+			if (legType == GLOBAL.TYPE_EQUINE) counter++;
+			if (cockTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
+			if (vaginaTotal(GLOBAL.TYPE_EQUINE) > 0) counter++;
 			return counter;
 		}
 		public function pandaScore(): int
 		{
 			var counter:int = 0;
-			if (earType == GLOBAL.PANDA) counter++;
-			if (tailType == GLOBAL.PANDA) counter++;
-			if (faceType == GLOBAL.PANDA) counter++;
-			if (armType == GLOBAL.PANDA) counter++;
-			if (legType == GLOBAL.PANDA) counter++;
+			if (earType == GLOBAL.TYPE_PANDA) counter++;
+			if (tailType == GLOBAL.TYPE_PANDA) counter++;
+			if (faceType == GLOBAL.TYPE_PANDA) counter++;
+			if (armType == GLOBAL.TYPE_PANDA) counter++;
+			if (legType == GLOBAL.TYPE_PANDA) counter++;
 			if (thickness >= 65 && counter > 0) counter++;
-			if (cockTotal(GLOBAL.PANDA) > 0) counter++;
-			if (vaginaTotal(GLOBAL.PANDA) > 0) counter++;
+			if (cockTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
+			if (vaginaTotal(GLOBAL.TYPE_PANDA) > 0) counter++;
 			return counter;
 		}
 		public function ausarScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.CANINE) counter++;
-			if (tailType == GLOBAL.CANINE && hasTailFlag(GLOBAL.LONG) && hasTailFlag(GLOBAL.FLUFFY) && hasTailFlag(GLOBAL.FURRED)) counter++;
-			if (faceType == GLOBAL.HUMAN && counter > 0) counter++;
-			if (armType == GLOBAL.CANINE) counter++;
+			if (earType == GLOBAL.TYPE_CANINE) counter++;
+			if (tailType == GLOBAL.TYPE_CANINE && hasTailFlag(GLOBAL.FLAG_LONG) && hasTailFlag(GLOBAL.FLAG_FLUFFY) && hasTailFlag(GLOBAL.FLAG_FURRED)) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
+			if (armType == GLOBAL.TYPE_CANINE) counter++;
 			return counter;
 		}
 		public function kaithritScore(): int {
 			var counter: int = 0;
-			if (earType == GLOBAL.FELINE) counter++;
-			if (tailType == GLOBAL.FELINE && tailCount == 2) counter++;
+			if (earType == GLOBAL.TYPE_FELINE) counter++;
+			if (tailType == GLOBAL.TYPE_FELINE && tailCount == 2) counter++;
 			return counter;
 		}
 		public function zilScore(): int {
 			var counter: int = 0;
-			if (cockTotal(GLOBAL.BEE) > 0) counter++;
-			if (hasVagina(GLOBAL.BEE)) counter++;
-			if (armType == GLOBAL.BEE) counter++;
-			if (legType == GLOBAL.BEE && legCount == 2) counter++;
-			if (wingType == GLOBAL.SMALLBEE || wingType == GLOBAL.BEE) counter++;
-			if (tailType == GLOBAL.BEE && tailCount > 0) counter++;
-			if (faceType == GLOBAL.HUMAN && counter > 0) counter++;
+			if (cockTotal(GLOBAL.TYPE_BEE) > 0) counter++;
+			if (hasVagina(GLOBAL.TYPE_BEE)) counter++;
+			if (armType == GLOBAL.TYPE_BEE) counter++;
+			if (legType == GLOBAL.TYPE_BEE && legCount == 2) counter++;
+			if (wingType == GLOBAL.TYPE_SMALLBEE || wingType == GLOBAL.TYPE_BEE) counter++;
+			if (tailType == GLOBAL.TYPE_BEE && tailCount > 0) counter++;
+			if (faceType == GLOBAL.TYPE_HUMAN && counter > 0) counter++;
 			return counter;
 		}
 		public function naleenScore(): int {
 			var counter: int = 0;
 			if (isNaga()) counter += 2;
-			if (faceType == GLOBAL.NALEEN_FACE) counter++;
-			if (armType == GLOBAL.FELINE) counter++;
-			if (earType == GLOBAL.FELINE) counter++;
+			if (faceType == GLOBAL.TYPE_NALEEN_FACE) counter++;
+			if (armType == GLOBAL.TYPE_FELINE) counter++;
+			if (earType == GLOBAL.TYPE_FELINE) counter++;
 			if (hasStatusEffect("Genital Slit")) counter++;
-			if (hasVagina(GLOBAL.NAGA)) counter++;
-			if (cockTotal(GLOBAL.NAGA) > 0) counter++;
-			if (skinType == GLOBAL.FUR && counter > 0) counter++;
-			if (armType == GLOBAL.FELINE && counter > 0) counter++;
+			if (hasVagina(GLOBAL.TYPE_NAGA)) counter++;
+			if (cockTotal(GLOBAL.TYPE_NAGA) > 0) counter++;
+			if (skinType == GLOBAL.SKIN_TYPE_FUR && counter > 0) counter++;
+			if (armType == GLOBAL.TYPE_FELINE && counter > 0) counter++;
 			return counter;
 		}
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
@@ -6061,7 +6047,7 @@
 			var description: String = "";
 			var rando: Number = 0;
 			//Size descriptors 25% chance
-			if (this.rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED) {
+			if (this.rand(4) == 0 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED) {
 				//TINAHHHH
 				if (nippleLength(rowNum) < .25) {
 					rando = this.rand(3);
@@ -6110,7 +6096,7 @@
 			//Milkiness/Arousal/Wetness Descriptors 33% of the time
 			if (this.rand(3) == 0 && descripted < 2) {
 				//Fuckable chance first!
-				if (breastRows[rowNum].nippleType == GLOBAL.FUCKABLE) {
+				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 					if (descripted > 0) description += ", ";
 					//Fuckable and lactating?
 					if (isLactating()) {
@@ -6134,7 +6120,7 @@
 					descripted++;
 				}
 				//Lipples
-				else if (breastRows[rowNum].nippleType == GLOBAL.LIPPLES) {
+				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 					if (descripted > 0) description += ", ";
 					if (isLactating()) {
 						rando = this.rand(5);
@@ -6152,7 +6138,7 @@
 					descripted++;
 				}
 				//Dicknipples
-				else if (breastRows[rowNum].nippleType == GLOBAL.DICK) {
+				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK) {
 					if (descripted > 0) description += ", ";
 					rando = this.rand(3);
 					if (rando == 0) description += "cock-concealing";
@@ -6161,7 +6147,7 @@
 					descripted++;
 				}
 				//Flat
-				else if (breastRows[rowNum].nippleType == GLOBAL.FLAT) {
+				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) {
 					if (descripted > 0) description += ", ";
 					rando = this.rand(3);
 					if (rando == 0) description += "tipless";
@@ -6171,7 +6157,7 @@
 					descripted++;
 				}
 				//Inverted
-				else if (breastRows[rowNum].nippleType == GLOBAL.INVERTED) {
+				else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_INVERTED) {
 					if (descripted > 0) description += ", ";
 					if (rando == 0) description += "inverted";
 					descripted++;
@@ -6204,7 +6190,7 @@
 				}
 			}
 			//Possible arousal descriptors
-			else if (this.rand(3) == 0 && descripted < 2 && breastRows[rowNum].nippleType != GLOBAL.FLAT && breastRows[rowNum].nippleType != GLOBAL.INVERTED && breastRows[rowNum].nippleType != GLOBAL.LIPPLES && breastRows[rowNum].nippleType != GLOBAL.FUCKABLE) {
+			else if (this.rand(3) == 0 && descripted < 2 && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_LIPPLES && breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 				if (lust() > 50 && lust() < 75) {
 					if (descripted > 0) description += ", ";
 					rando = this.rand(5);
@@ -6231,7 +6217,7 @@
 				else description += "pierced ";
 				descripted++;
 			}
-			if (!descripted && skinType == 3) {
+			if (!descripted && skinType == GLOBAL.SKIN_TYPE_GOO) {
 				if (descripted > 0) description += ", ";
 				rando = this.rand(3);
 				if (rando == 0) description += "slime-slick ";
@@ -6245,7 +6231,7 @@
 				else description += "sable ";
 			}*/
 			//Nounsssssssss*BOOM*
-			if (breastRows[rowNum].nippleType == GLOBAL.FUCKABLE) {
+			if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 				rando = this.rand(5);
 				if (descripted > 0) description += ", ";
 				if (rando == 0) description += "penetrable nipple";
@@ -6253,7 +6239,7 @@
 				else if (rando == 2) description += "fuckable nipple";
 				else if (rando == 3) description += "pliable nipple-cunt";
 				else if (rando == 4) description += "stretchy nipple-cunt";
-			} else if (breastRows[rowNum].nippleType == GLOBAL.LIPPLES) {
+			} else if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES) {
 				rando = this.rand(5);
 				if (descripted > 0) {
 					if (rando > 2) description += ", ";
@@ -6328,34 +6314,34 @@
 			if (hasPerk("Mane") && hairLength > 3 && this.rand(2) == 0) {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TRANSPARENT) {
+					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
 						if (descripted > 0) descript += ", ";
 						descript += "transparent";
 						descripted++;
 					}
 				}
 				if (descripted > 0) descript += " mane";
-				if (hairType == GLOBAL.HAIR_FEATHERS) descript += " of feathers";
-				if (hairType == GLOBAL.HAIR_GOO) descript += " of goo";
-				if (hairType == GLOBAL.HAIR_TENTACLES) descript += " of tentacles";
+				if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += " of feathers";
+				if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += " of goo";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += " of tentacles";
 			}
 			//Not manes
 			else {
 				//Oddball shit
 				if (this.rand(2) == 0 && descripted < 2) {
-					if (hairType == GLOBAL.HAIR_TRANSPARENT) {
+					if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
 						if (descripted > 0) descript += ", ";
 						descript += "transparent";
 						descripted++;
-					} else if (hairType == GLOBAL.HAIR_GOO) {
+					} else if (hairType == GLOBAL.HAIR_TYPE_GOO) {
 						if (descripted > 0) descript += ", ";
 						descript += "gooey";
 						descripted++;
 					}
 				}
 				if (descripted > 0) descript += " ";
-				if (hairType == GLOBAL.HAIR_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
-				else if (hairType == GLOBAL.HAIR_REGULAR && this.rand(2) == 0) descript += "plumage";
+				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
+				else if (hairType == GLOBAL.HAIR_TYPE_REGULAR && this.rand(2) == 0) descript += "plumage";
 				else descript += "hair";
 			}
 			return descript;
@@ -6401,16 +6387,16 @@
 			//Not manes
 			//Oddball shit
 			if (this.rand(2) == 0 && descripted < 2) {
-				if (hairType == GLOBAL.HAIR_TRANSPARENT) {
+				if (hairType == GLOBAL.HAIR_TYPE_TRANSPARENT) {
 					if (descripted > 0) descript += ", ";
 					descript += "transparent";
 					descripted++;
 				}
 			}
 			if (descripted > 0) descript += " ";
-			if (hairType == GLOBAL.HAIR_TENTACLES) descript += "tentacles";
-			else if (hairType == GLOBAL.HAIR_FEATHERS) descript += "feathers";
-			else if (hairType == GLOBAL.HAIR_GOO) descript += "locks of goo";
+			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES) descript += "tentacles";
+			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
+			else if (hairType == GLOBAL.HAIR_TYPE_GOO) descript += "locks of goo";
 			else descript += "locks";
 			return descript;
 		}
@@ -6473,7 +6459,7 @@
 			//Descriptive descriptions - 50% chance of being called
 			if (this.rand(3) == 0 && descripted < 2) {
 				//Elizabeth descriptors
-				if (skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.VULPINE) && this.rand(3) <= 1) {
+				if (skinType == GLOBAL.SKIN_TYPE_FUR && hasVaginaType(GLOBAL.TYPE_VULPINE) && this.rand(3) <= 1) {
 					if (descripted > 0) descript += ", ";
 					descript += "foxy ";
 					descripted++;
@@ -6508,9 +6494,9 @@
 			//Clit nouns
 			if (descripted > 0) descript += " ";
 			//HYPHENING SHIT ONTO DOSE NOUNS, YO!
-			if (skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.CANINE) && this.rand(2) == 0) descript += "bitch-";
+			if (skinType == GLOBAL.SKIN_TYPE_FUR && hasVaginaType(GLOBAL.TYPE_CANINE) && this.rand(2) == 0) descript += "bitch-";
 			//Horse descriptors - 50%
-			else if (skinType == GLOBAL.FUR && hasVaginaType(GLOBAL.EQUINE) && this.rand(3) <= 0) descript += "mare-";
+			else if (skinType == GLOBAL.SKIN_TYPE_FUR && hasVaginaType(GLOBAL.TYPE_EQUINE) && this.rand(3) <= 0) descript += "mare-";
 			randt = this.rand(10);
 			if (randt == 0) 
 			{
@@ -6592,7 +6578,7 @@
 				}
 				descripted++;
 			}
-			if (descripted < 2 && skinType == 3 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
+			if (descripted < 2 && skinType == GLOBAL.SKIN_TYPE_GOO && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
 				if (this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
@@ -6618,7 +6604,7 @@
 		public function vaginaNoun(type: int = 0, simple: Boolean = false): String {
 			var vag: String = "";
 			var temp: int = 0;
-			if (type == GLOBAL.EQUINE) {
+			if (type == GLOBAL.TYPE_EQUINE) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "equine gash";
@@ -6643,7 +6629,7 @@
 				}
 			}
 			//Maybe doge?
-			else if (type == GLOBAL.CANINE) {
+			else if (type == GLOBAL.TYPE_CANINE) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "canine gash";
@@ -6667,7 +6653,7 @@
 				}
 			}
 			//Slimgina?
-			else if (type == GLOBAL.GOOEY) {
+			else if (type == GLOBAL.TYPE_GOOEY) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "slimey vagina";
@@ -6689,7 +6675,7 @@
 					else if (temp <= 13) vag += "honeypot";
 					else vag += "slime-snatch";
 				}
-			} else if (type == GLOBAL.SIREN || type == GLOBAL.ANEMONE) {
+			} else if (type == GLOBAL.TYPE_SIREN || type == GLOBAL.TYPE_ANEMONE) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "wriggling gash";
@@ -6712,7 +6698,7 @@
 					else if (temp <= 15) vag += "siren-pussy";
 					else vag += "cunt";
 				}
-			} else if (type == GLOBAL.BEE) {
+			} else if (type == GLOBAL.TYPE_BEE) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "thick-lipped gash";
@@ -6735,7 +6721,7 @@
 					else if (temp <= 15) vag += "zil-cunt";
 					else vag += "twat";
 				}
-			} else if (type == GLOBAL.NAGA) {
+			} else if (type == GLOBAL.TYPE_NAGA) {
 				if (!simple) {
 					temp = this.rand(16);
 					if (temp <= 1) vag += "raptilian gash";
@@ -6902,7 +6888,7 @@
 				}
 				descripted++;
 			}
-			if (descripted < 2 && skinType == 3 && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
+			if (descripted < 2 && skinType == GLOBAL.SKIN_TYPE_GOO && ((adjectives && this.rand(3) == 0) || forceAdjectives)) {
 				if (descripted > 0) vag += ", ";
 				if (this.rand(2) == 0) vag += "gooey";
 				else vag += "slimy";
@@ -7125,9 +7111,9 @@
 			var rando: Number = 0;
 			//If a taildick, convert to human so we can mention its a tailcock 50% of the time!
 			if (tail && this.rand(2) == 0) {
-				type = GLOBAL.HUMAN;
+				type = GLOBAL.TYPE_HUMAN;
 			}
-			if (type == GLOBAL.HUMAN) {
+			if (type == GLOBAL.TYPE_HUMAN) {
 				if (!simple) {
 					rando = this.rand(7);
 					if (rando <= 3) descript += "human ";
@@ -7139,10 +7125,10 @@
 				else if (rando <= 6) noun += "prick";
 				else if (rando <= 7) noun += "pecker";
 				else noun += "shaft";
-			} else if (type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
+			} else if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				if (!simple) {
 					rando = this.rand(8);
-					if (rando <= 0 && type == GLOBAL.CANINE) descript += "canine ";
+					if (rando <= 0 && type == GLOBAL.TYPE_CANINE) descript += "canine ";
 					else if (rando <= 0) descript += "vulpine ";
 					else if (rando <= 1) descript += "pointed ";
 					else if (rando <= 2) descript += "knotty ";
@@ -7152,7 +7138,7 @@
 					else if (rando <= 6) descript += "animalistic ";
 					else descript += "knotted ";
 				}
-				if (type == GLOBAL.CANINE) {
+				if (type == GLOBAL.TYPE_CANINE) {
 					rando = this.rand(11);
 					if (rando == 0) noun += "doggie-dong";
 					else if (rando == 1) noun += "shaft";
@@ -7179,7 +7165,7 @@
 					else if (rando == 9) noun += "cock";
 					else noun += "fox-cock";
 				}
-			} else if (type == GLOBAL.EQUINE) {
+			} else if (type == GLOBAL.TYPE_EQUINE) {
 				if (!simple) {
 					rando = this.rand(7);
 					if (rando == 0) descript += "flared ";
@@ -7201,7 +7187,7 @@
 				else if (rando <= 7) noun += "stallion-cock";
 				else if (rando <= 8) noun += "tool";
 				else noun += "phallus";
-			} else if (type == GLOBAL.DEMONIC) {
+			} else if (type == GLOBAL.TYPE_DEMONIC) {
 				if (!simple) {
 					rando = this.rand(9);
 					if (rando == 0) descript += "nub-covered ";
@@ -7226,7 +7212,7 @@
 				else if (rando <= 8) noun += "prick";
 				else if (rando <= 9) noun += "member";
 				else noun += "tool";
-			} else if (type == GLOBAL.TENTACLE) {
+			} else if (type == GLOBAL.TYPE_TENTACLE) {
 				if (!simple) {
 					rando = this.rand(9);
 					if (rando == 0) descript += "twisting ";
@@ -7253,7 +7239,7 @@
 				else if (rando <= 8) noun += "tentacle-dick";
 				else if (rando <= 9 && descript != "vine-like ") noun += "vine-prick";
 				else noun += "cock";
-			} else if (type == GLOBAL.FELINE) {
+			} else if (type == GLOBAL.TYPE_FELINE) {
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "feline ";
@@ -7277,7 +7263,7 @@
 				else if (rando <= 8) noun += "shaft";
 				else if (rando <= 9) noun += "dick";
 				else noun += "kitten-prick";
-			} else if (type == GLOBAL.NAGA || type == GLOBAL.SNAKE) {
+			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_SNAKE) {
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "reptilian ";
@@ -7301,7 +7287,7 @@
 				else if (rando == 8) noun += "tool";
 				else if (rando == 9) noun += "snake-shaft";
 				else noun += "snake-dick";
-			} else if (type == GLOBAL.ANEMONE) {
+			} else if (type == GLOBAL.TYPE_ANEMONE) {
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "tentacle-ringed ";
@@ -7325,7 +7311,7 @@
 				if (rando == 8) noun += "dick";
 				if (rando == 9) noun += "shaft";
 				if (rando == 10) noun += "shaft";
-			} else if (type == GLOBAL.KANGAROO) {
+			} else if (type == GLOBAL.TYPE_KANGAROO) {
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "kangaroo-like ";
@@ -7349,7 +7335,7 @@
 				else if (rando <= 8) noun += "cock";
 				else if (rando <= 9 && descript != "kangaroo-like ") noun += "kangaroo-cock";
 				else noun += "shaft";
-			} else if (type == GLOBAL.DRACONIC) {
+			} else if (type == GLOBAL.TYPE_DRACONIC) {
 				if (!simple) {
 					rando = this.rand(8);
 					if (rando == 0) descript += "dragon-like ";
@@ -7373,7 +7359,7 @@
 				else if (rando <= 8 && descript != "dragon-like ") noun += "dragon-dick";
 				else if (rando <= 9) noun += "endowment";
 				else noun += "shaft";
-			} else if (type == GLOBAL.BEE) {
+			} else if (type == GLOBAL.TYPE_BEE) {
 				if (!simple) {
 					rando = this.rand(7);
 					if (rando == 0) descript += "foreskin-covered ";
@@ -7450,7 +7436,7 @@
 				else descript += "covered";
 			}
 			//Goo - 1/4 chance
-			else if (skinType == 3 && this.rand(4) == 0) {
+			else if (skinType == GLOBAL.SKIN_TYPE_GOO && this.rand(4) == 0) {
 				rando = this.rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -7476,17 +7462,17 @@
 				} else if (cocks[cockNum].cLength() < 11) {
 					rando = this.rand(3);
 					if (rando == 0) {
-						if (cocks[cockNum].cType == GLOBAL.EQUINE) descript = "pony-sized";
+						if (cocks[cockNum].cType == GLOBAL.TYPE_EQUINE) descript = "pony-sized";
 						else descript = "long";
 					} else if (rando == 1) {
-						if (cocks[cockNum].cType == GLOBAL.EQUINE) descript = "colt-like";
+						if (cocks[cockNum].cType == GLOBAL.TYPE_EQUINE) descript = "colt-like";
 						else descript = "lengthy";
 					} else descript = "sizable";
 				} else if (cocks[cockNum].cLength() < 14) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "huge";
 					else if (rando == 1) {
-						if (cocks[cockNum].cType == GLOBAL.CANINE) descript = "mastiff-like";
+						if (cocks[cockNum].cType == GLOBAL.TYPE_CANINE) descript = "mastiff-like";
 						else descript = "cucumber-length";
 					} else descript = "foot-long";
 				} else if (cocks[cockNum].cLength() < 18) {
@@ -7501,7 +7487,7 @@
 					else descript = "arm-length";
 				} else if (cocks[cockNum].cLength() < 50) {
 					rando = this.rand(7);
-					if (cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (cocks[cockNum].cType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "towering";
 						else if (rando == 1) descript = "freakish";
@@ -7513,7 +7499,7 @@
 					}
 				} else if (cocks[cockNum].cLength() < 100) {
 					rando = this.rand(8);
-					if (cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (cocks[cockNum].cType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "person-sized";
 						else if (rando == 1) descript = "ridiculously massive";
@@ -7526,7 +7512,7 @@
 					}
 				} else {
 					rando = this.rand(6);
-					if (cocks[cockNum].cType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (cocks[cockNum].cType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
 						else if (rando == 1) descript = "vehicle-sized";
@@ -7639,7 +7625,7 @@
 			var rando: Number = 0;
 			var multi: Boolean = false;
 			//Goo - 1/4 chance
-			if (skinType == 3 && this.rand(4) == 0) {
+			if (skinType == GLOBAL.SKIN_TYPE_GOO && this.rand(4) == 0) {
 				rando = this.rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -7665,17 +7651,17 @@
 				} else if (l < 11) {
 					rando = this.rand(3);
 					if (rando == 0) {
-						if (type == GLOBAL.EQUINE) descript = "pony-sized";
+						if (type == GLOBAL.TYPE_EQUINE) descript = "pony-sized";
 						else descript = "long";
 					} else if (rando == 1) {
-						if (type == GLOBAL.EQUINE) descript = "colt-like";
+						if (type == GLOBAL.TYPE_EQUINE) descript = "colt-like";
 						else descript = "lengthy";
 					} else descript = "sizable";
 				} else if (l < 14) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "huge";
 					else if (rando == 1) {
-						if (type == GLOBAL.CANINE) descript = "mastiff-like";
+						if (type == GLOBAL.TYPE_CANINE) descript = "mastiff-like";
 						else descript = "cucumber-length";
 					} else descript = "foot-long";
 				} else if (l < 18) {
@@ -7690,7 +7676,7 @@
 					else descript = "arm-length";
 				} else if (l < 50) {
 					rando = this.rand(7);
-					if (type == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "towering";
 						else if (rando == 1) descript = "freakish";
@@ -7702,7 +7688,7 @@
 					}
 				} else if (l < 100) {
 					rando = this.rand(8);
-					if (type == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "person-sized";
 						else if (rando == 1) descript = "ridiculously massive";
@@ -7715,7 +7701,7 @@
 					}
 				} else {
 					rando = this.rand(6);
-					if (type == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (type == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
 						else if (rando == 1) descript = "vehicle-sized";
@@ -7851,7 +7837,7 @@
 				}
 			}
 			//Goo - 1/4 chance
-			else if (skinType == 3 && this.rand(4) == 0) {
+			else if (skinType == GLOBAL.SKIN_TYPE_GOO && this.rand(4) == 0) {
 				rando = this.rand(3);
 				if (rando == 0) descript += "goopey";
 				else if (rando == 1) descript += "gooey";
@@ -7876,17 +7862,17 @@
 				} else if (l < 11) {
 					rando = this.rand(3);
 					if (rando == 0) {
-						if (dickNippleType == GLOBAL.EQUINE) descript = "pony-sized";
+						if (dickNippleType == GLOBAL.TYPE_EQUINE) descript = "pony-sized";
 						else descript = "long";
 					} else if (rando == 1) {
-						if (dickNippleType == GLOBAL.EQUINE) descript = "colt-like";
+						if (dickNippleType == GLOBAL.TYPE_EQUINE) descript = "colt-like";
 						else descript = "lengthy";
 					} else descript = "sizable";
 				} else if (l < 14) {
 					rando = this.rand(3);
 					if (rando == 0) descript = "huge";
 					else if (rando == 1) {
-						if (dickNippleType == GLOBAL.CANINE) descript = "mastiff-like";
+						if (dickNippleType == GLOBAL.TYPE_CANINE) descript = "mastiff-like";
 						else descript = "cucumber-length";
 					} else descript = "foot-long";
 				} else if (l < 18) {
@@ -7901,7 +7887,7 @@
 					else descript = "arm-length";
 				} else if (l < 50) {
 					rando = this.rand(7);
-					if (dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (dickNippleType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "towering";
 						else if (rando == 1) descript = "freakish";
@@ -7913,7 +7899,7 @@
 					}
 				} else if (l < 100) {
 					rando = this.rand(8);
-					if (dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (dickNippleType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "person-sized";
 						else if (rando == 1) descript = "ridiculously massive";
@@ -7926,7 +7912,7 @@
 					}
 				} else {
 					rando = this.rand(6);
-					if (dickNippleType == 4 && this.rand(4) == 0) descript = "coiled ";
+					if (dickNippleType == GLOBAL.TYPE_FELINE && this.rand(4) == 0) descript = "coiled ";
 					else {
 						if (rando == 0) descript = "car-sized";
 						else if (rando == 1) descript = "vehicle-sized";
@@ -8045,34 +8031,34 @@
 		public function fluidFlavor(arg: int):String {
 			var temp:int = rand(10);
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.MILK)
+			if (arg == GLOBAL.FLUID_TYPE_MILK)
 			{
 				if (temp <= 4) return "creamy";
 				else if (temp <= 7) return "delicious";
 				else if (temp <= 8) return "sweet";
 				else return "creamy";
-			} else if(arg == GLOBAL.CUM) {
+			} else if(arg == GLOBAL.FLUID_TYPE_CUM) {
 				if (temp <= 6) return "salty";
 				else return "potent";
-			} else if (arg == GLOBAL.HONEY) {
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				if (temp <= 4) return "sweet";
 				else if (temp <= 7) return "syrupy";
 				else return "sugary";
-			} else if (arg == GLOBAL.OIL) {
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				return "tasteless";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				if (temp <= 4) return "creamy";
 				else if (temp <= 7) return "sweet";
 				else if (temp <= 8) return "sugary";
 				else return "delicious";
-			} else if (arg == GLOBAL.GIRLCUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				if (temp <= 6) return "tangy";
 				else return "flavorful";
-			} else if (arg == GLOBAL.CUMSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				if (temp <= 4) return "salty-sweet";
 				else if (temp <= 7) return "syrupy";
 				else return "salty";
-			} else if (arg == GLOBAL.CHOCOLATE_MILK)
+			} else if (arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
 			{
 				if (temp <= 2) return "creamy";
 				else if (temp <= 4) return "delicious";
@@ -8085,26 +8071,26 @@
 		public function fluidViscosity(arg: int):String {
 			var temp:int = rand(10);
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.MILK || arg == GLOBAL.CHOCOLATE_MILK)
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK)
 			{
 				return "creamy";
-			} else if(arg == GLOBAL.CUM) {
+			} else if(arg == GLOBAL.FLUID_TYPE_CUM) {
 				if (temp <= 5) return "thick";
 				else if (temp <= 7) return "slick";
 				else return "creamy";
-			} else if (arg == GLOBAL.HONEY) {
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				if (temp <= 5) return "sticky";
 				else return "slick";
-			} else if (arg == GLOBAL.OIL) {
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				if (temp <= 4) return "slippery";
 				return "slick";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				if (temp <= 4) return "creamy";
 				else return "syrupy";
-			} else if (arg == GLOBAL.GIRLCUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				if (temp <= 6) return "slick";
 				else return "slippery";
-			} else if (arg == GLOBAL.CUMSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				if (temp <= 4) return "slick";
 				else if (temp <= 7) return "sticky";
 				else return "syrupy";
@@ -8114,34 +8100,34 @@
 		public function fluidColor(arg: int): String {
 			var temp: int = this.rand(10);
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.MILK || arg == GLOBAL.CUM) {
+			if (arg == GLOBAL.FLUID_TYPE_MILK || arg == GLOBAL.FLUID_TYPE_CUM) {
 				if (temp <= 4) return "white";
 				else if (temp <= 6) return "alabaster";
 				else if (temp <= 7) return "ivory";
 				else return "pearly";
-			} else if (arg == GLOBAL.HONEY) {
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				if (temp <= 4) return "amber";
 				else if (temp <= 7) return "yellow";
 				else if (temp <= 8) return "gold";
 				else return "tawny";
-			} else if (arg == GLOBAL.OIL) {
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				if (temp <= 4) return "semi-transparent";
 				else if (temp <= 7) return "transluscent brown";
 				else return "lucent";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				if (temp <= 4) return "whitish-yellow";
 				else if (temp <= 7) return "ivory gold";
 				else if (temp <= 8) return "off-white";
 				else return "pearly";
-			} else if (arg == GLOBAL.GIRLCUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				if (temp <= 4) return "transluscent";
 				else if (temp <= 7) return "clear";
 				else return "semi-transparent";
-			} else if (arg == GLOBAL.CUMSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				if (temp <= 4) return "off white";
 				else if (temp <= 7) return "pearl-marbled amber";
 				else return "ivory-amber";
-			} else if(arg == GLOBAL.CHOCOLATE_MILK) {
+			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				if (temp <= 4) return "chocolate";
 				else if(temp <= 7) return "creamy brown, chocolate";
 				else return "dark, chocolate";
@@ -8151,24 +8137,24 @@
 		public function fluidNoun(arg: int): String {
 			var temp: int = this.rand(10);
 			//CUM & MILK TYPES
-			if (arg == GLOBAL.MILK) {
+			if (arg == GLOBAL.FLUID_TYPE_MILK) {
 				if (temp <= 4) return "milk";
 				else return "cream";
-			} else if (arg == GLOBAL.CUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUM) {
 				return "cum";
-			} else if (arg == GLOBAL.HONEY) {
+			} else if (arg == GLOBAL.FLUID_TYPE_HONEY) {
 				return "honey";
-			} else if (arg == GLOBAL.OIL) {
+			} else if (arg == GLOBAL.FLUID_TYPE_OIL) {
 				return "oil";
-			} else if (arg == GLOBAL.MILKSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_MILKSAP) {
 				return "milk-sap";
-			} else if (arg == GLOBAL.GIRLCUM) {
+			} else if (arg == GLOBAL.FLUID_TYPE_GIRLCUM) {
 				return "girl-cum";
-			} else if (arg == GLOBAL.CUMSAP) {
+			} else if (arg == GLOBAL.FLUID_TYPE_CUMSAP) {
 				if (rand(4) <= 1) return "cum-sap";
 				else if (rand(2) == 0) return "botanical spunk";
 				else return "floral jism";
-			} else if(arg == GLOBAL.CHOCOLATE_MILK) {
+			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				return "milk";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";
@@ -8425,13 +8411,13 @@
 			}
 			if (isLactating() > 1.5) {
 				if (descripted) descript += ", ";
-				if (milkType == GLOBAL.MILK) {
+				if (milkType == GLOBAL.FLUID_TYPE_MILK) {
 					temp = this.rand(4);
 					if (temp == 0) descript += "lactating";
 					else if (temp == 1) descript += "milky";
 					else if (temp == 2) descript += "milk-filled";
 					else descript += "fluid-filled";
-				} else if (milkType == GLOBAL.HONEY) {
+				} else if (milkType == GLOBAL.FLUID_TYPE_HONEY) {
 					temp = this.rand(4);
 					if (temp == 0) descript += "honey-filled";
 					else if (temp == 1) descript += "honey-stuffed";
@@ -8487,7 +8473,7 @@
 			var type: int;
 			if (cocks.length == 0)
 				return "ERROR. CockHead lookup with no cocks!";
-			if (cockNum < 0) type = GLOBAL.HUMAN;
+			if (cockNum < 0) type = GLOBAL.TYPE_HUMAN;
 			else type = cocks[cockNum].cType;
 			if (cockNum > cocks.length - 1) return "ERROR";
 
@@ -8506,28 +8492,28 @@
 			var type: int;
 			if (cocks.length == 0)
 				return "ERROR. CockHead lookup with no cocks!";
-			if (type == GLOBAL.EQUINE) {
+			if (type == GLOBAL.TYPE_EQUINE) {
 				temp = this.rand(5);
 				if (temp == 0) return "flare";
 				else if (temp <= 1) return "blunt head";
 				else if (temp <= 2) return "equine glans";
 				else if (temp <= 3) return "flat tip";
 				else return "cock-head";
-			} else if (type == GLOBAL.CANINE || type == GLOBAL.VULPINE) {
+			} else if (type == GLOBAL.TYPE_CANINE || type == GLOBAL.TYPE_VULPINE) {
 				temp = this.rand(5);
 				if (temp == 0) return "canine crown";
 				else if (temp <= 1) return "pointed cock-head";
 				else if (temp <= 2) return "narrow glans";
 				else if (temp <= 3) return "tip";
 				else return "cock-head";
-			} else if (type == GLOBAL.DEMONIC) {
+			} else if (type == GLOBAL.TYPE_DEMONIC) {
 				temp = this.rand(5);
 				if (temp == 0) return "tainted crown";
 				else if (temp <= 1) return "nubby head";
 				else if (temp <= 2) return "demonic glans";
 				else if (temp <= 3) return "nub-ringed tip";
 				else return "cock-head";
-			} else if (type == GLOBAL.TENTACLE) {
+			} else if (type == GLOBAL.TYPE_TENTACLE) {
 				temp = this.rand(6);
 				if (temp == 0) return "crown";
 				else if (temp <= 1) return "tentacle-head";
@@ -8535,7 +8521,7 @@
 				else if (temp <= 3) return "tip";
 				else if (temp <= 4) return "mushroom-like tip";
 				else return "wide, plant-like crown";
-			} else if (type == GLOBAL.NAGA || type == GLOBAL.LIZAN || type == GLOBAL.SNAKE) {
+			} else if (type == GLOBAL.TYPE_NAGA || type == GLOBAL.TYPE_LIZAN || type == GLOBAL.TYPE_SNAKE) {
 				temp = this.rand(6);
 				if (temp == 0) return "point";
 				else if (temp <= 1) return "narrow tip";
@@ -8543,7 +8529,7 @@
 				else if (temp <= 3) return "tip";
 				else if (temp <= 4) return "violet tip";
 				else return "reptilian crown";
-			} else if (type == GLOBAL.ANEMONE || type == GLOBAL.SIREN) {
+			} else if (type == GLOBAL.TYPE_ANEMONE || type == GLOBAL.TYPE_SIREN) {
 				temp = this.rand(6);
 				if (temp == 0) return "blue tip";
 				else if (temp == 1) return "tentacle-ringed glans";
@@ -8812,13 +8798,13 @@
 
 		public function canOvipositSpider(): Boolean 
 		{
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && isDrider()) return true;
+			if (eggs >= 10 && hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && isDrider()) return true;
 			return false;
 		}
 		
 		public function canOvipositBee(): Boolean 
 		{
-			if (eggs >= 10 && hasTailFlag(GLOBAL.OVIPOSITOR) && tailType == GLOBAL.BEE) return true;
+			if (eggs >= 10 && hasTailFlag(GLOBAL.FLAG_OVIPOSITOR) && tailType == GLOBAL.TYPE_BEE) return true;
 			return false;
 		}
 		
@@ -8993,39 +8979,33 @@
 				if (spacingsF) output(" ");
 				if (this is PlayerCharacter)
 				{
-					if(display)
-					{
-						if(holePointer.hymen) output("<b>Your hymen is torn</b>");
-						else output("<b>You have been penetrated</b>");
-					}
+					if(holePointer.hymen) output("<b>Your hymen is torn</b>");
+					else output("<b>You have been penetrated</b>");
 					if(hole >= 0 && vaginalVirgin) {
 						vaginalVirgin = false;
-						if(display) output("<b>, robbing you of your vaginal virginity</b>");
+						output("<b>, robbing you of your vaginal virginity</b>");
 					}
 					else if(analVirgin) {
+						output("<b>, robbing you of your anal virginity</b>");
 						analVirgin = false;
-						if(display) output("<b>, robbing you of your anal virginity</b>");
 					}
-					if(display) output("<b>.</b>");
+					output("<b>.</b>");
 				}
 				else
 				{
-					if(display)
-					{
-						if (holePointer.hymen) output("<b>" + possessive(short) + " hymen is torn</b>");
-						else output("<b>" + short + " has been penetrated</b>");
-					}
+					if (holePointer.hymen) output("<b>" + short + "s hymen is torn</b>");
+					else output("<b>" + short + " has been penetrated</b>");
 					if (hole >= 0 && vaginalVirgin)
 					{
 						vaginalVirgin = false;
-						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " vaginal virginity</b>");
+						output("<b>, robbing them of " + mf("his", "her") + " vaginal virginity</b>");
 					}
 					else if (analVirgin)
 					{
 						analVirgin = false;
-						if(display) output("<b>, robbing " + mf("him","her") + " of " + mf("his", "her") + " anal virginity</b>");
+						output("<b>, robbing them of " + mf("his", "her") + " anal virginity</b>");
 					}
-					if(display) output("<b>.</b>");
+					output("<b>.</b>");
 				}
 				if(spacingsB) output(" ");
 				devirgined = true;

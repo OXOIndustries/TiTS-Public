@@ -3,9 +3,9 @@
 	public class GLOBAL
 	{
 		//CLASSES
-		public static const SMUGGLER:int                               = 0;
-		public static const MERCENARY:int                              = 1;
-		public static const ENGINEER:int                               = 2;
+		public static const CLASS_SMUGGLER:int                               = 0;
+		public static const CLASS_MERCENARY:int                              = 1;
+		public static const CLASS_ENGINEER:int                               = 2;
 		public static const MAX_CLASSES:int							   = 3;
 		
 		public static const CLASS_NAMES:Array = [
@@ -16,37 +16,37 @@
 
 		//Body Part Flags - used for any body part that supports the new flags system.
 		//NOTE: Not all flags work with all body parts, for obvious reasons
-		public static const LONG:int                                   = 1;
-		public static const PREHENSILE:int                             = 2;
-		public static const LUBRICATED:int                             = 3;
-		public static const FLUFFY:int                                 = 4;
-		public static const SQUISHY:int                                = 5;
-		public static const SMOOTH:int                                 = 6;
-		public static const TAPERED:int                                = 7;
-		public static const FLARED:int                                 = 8;
-		public static const KNOTTED:int                                = 9;
-		public static const BLUNT:int                                  = 10;
-		public static const APHRODISIAC_LACED:int                      = 11;
-		public static const STICKY:int                                 = 12;
-		public static const THICK:int                                  = 13;
-		public static const MUZZLED:int                                = 14;
-		public static const ANGULAR:int                                = 15;
-		public static const PLANTIGRADE:int                            = 16;
-		public static const DIGITIGRADE:int                            = 17;
-		public static const TENDRIL:int                                = 18;
-		public static const AMORPHOUS:int                              = 19;
-		public static const FURRED:int                                 = 20;
-		public static const SCALED:int                                 = 21;
-		public static const HOOVES:int                                 = 22;
-		public static const PAWS:int                                   = 23;
-		public static const HEELS:int                                  = 24;
-		public static const OVIPOSITOR:int                             = 25;
-		public static const SHEATHED:int                               = 26;
-		public static const TAILCOCK:int                               = 27;
-		public static const STINGER_BASED:int                          = 28;
-		public static const STINGER_TIPPED:int                         = 29;
-		public static const NUBBY:int  		                           = 30;
-		public static const FORESKINNED:int	    					   = 31;
+		public static const FLAG_LONG:int                                   = 1;
+		public static const FLAG_PREHENSILE:int                             = 2;
+		public static const FLAG_LUBRICATED:int                             = 3;
+		public static const FLAG_FLUFFY:int                                 = 4;
+		public static const FLAG_SQUISHY:int                                = 5;
+		public static const FLAG_SMOOTH:int                                 = 6;
+		public static const FLAG_TAPERED:int                                = 7;
+		public static const FLAG_FLARED:int                                 = 8;
+		public static const FLAG_KNOTTED:int                                = 9;
+		public static const FLAG_BLUNT:int                                  = 10;
+		public static const FLAG_APHRODISIAC_LACED:int                      = 11;
+		public static const FLAG_STICKY:int                                 = 12;
+		public static const FLAG_THICK:int                                  = 13;
+		public static const FLAG_MUZZLED:int                                = 14;
+		public static const FLAG_ANGULAR:int                                = 15;
+		public static const FLAG_PLANTIGRADE:int                            = 16;
+		public static const FLAG_DIGITIGRADE:int                            = 17;
+		public static const FLAG_TENDRIL:int                                = 18;
+		public static const FLAG_AMORPHOUS:int                              = 19;
+		public static const FLAG_FURRED:int                                 = 20;
+		public static const FLAG_SCALED:int                                 = 21;
+		public static const FLAG_HOOVES:int                                 = 22;
+		public static const FLAG_PAWS:int                                   = 23;
+		public static const FLAG_HEELS:int                                  = 24;
+		public static const FLAG_OVIPOSITOR:int                             = 25;
+		public static const FLAG_SHEATHED:int                               = 26;
+		public static const FLAG_TAILCOCK:int                               = 27;
+		public static const FLAG_STINGER_BASED:int                          = 28;
+		public static const FLAG_STINGER_TIPPED:int                         = 29;
+		public static const FLAG_NUBBY:int  		                           = 30;
+		public static const FLAG_FORESKINNED:int	    					   = 31;
 		
 		public static const FLAG_NAMES:Array = [
 			"OFFSET -- INVALID",
@@ -84,57 +84,57 @@
 		];
 		
 		public static const VALID_SKIN_FLAGS:Array = [
-			SMOOTH,
-			THICK,
-			STICKY,
-			FLUFFY,
+			FLAG_SMOOTH,
+			FLAG_THICK,
+			FLAG_STICKY,
+			FLAG_FLUFFY,
 		];
 		
 		//TYPES
-		public static const HUMAN:int                                  = 0;
-		public static const EQUINE:int                                 = 1;
-		public static const BOVINE:int                                 = 2;
-		public static const CANINE:int                                 = 3;
-		public static const FELINE:int                                 = 4;
-		public static const VULPINE:int                                = 5;
-		public static const BEE:int                                    = 6;
-		public static const ARACHNID:int                               = 7;
-		public static const DRIDER:int                                 = 8;
-		public static const LAPINE:int                                 = 9;
-		public static const AVIAN:int                                  = 10;
-		public static const DRACONIC:int                               = 11;
-		public static const LIZAN:int                                  = 12;
-		public static const SNAKE:int                                  = 13;
-		public static const NAGA:int                                   = GLOBAL.SNAKE;
-		public static const CENTAUR:int                                = 14;
-		public static const DEMONIC:int                                = 15;
-		public static const GOOEY:int                                  = 16;
-		public static const KANGAROO:int                               = 17;
-		public static const TANUKI:int                                 = 18;
-		public static const SHARK:int                                  = 19;
-		public static const SIREN:int                                  = 20;
-		public static const DEER:int                                   = 21;
-		public static const ANEMONE:int                                = 22;
-		public static const TENTACLE:int                               = 23;
-		public static const KUITAN:int                                 = 24;
-		public static const HUMANMASKED:int                            = 25;
-		public static const MOUSE:int                                  = 26;
-		public static const MOUSEMAN:int                               = 27;
-		public static const DRAGONFLY:int                              = 31;
-		public static const MLP:int                                    = 32;
-		public static const CUNTSNAKE:int                              = 33;
-		public static const VENUSPITCHER:int						   = 34;
-		public static const SUCCUBUS:int                               = 35;
-		public static const SMALLBEE:int                               = 36;
-		public static const SMALLDEMONIC:int                           = 37;
-		public static const SMALLDRACONIC:int                          = 38;
-		public static const NALEEN_FACE:int 						   = 39;
-		public static const PANDA:int 								   = 40;
-		public static const MIMBRANE:int							   = 41;
-		public static const RASKVEL:int 							   = 42;
-		public static const SYDIAN:int 								   = 43;
-		public static const LAPINARA:int 							   = 44;
-		public static const BADGER:int 								   = 45;
+		public static const TYPE_HUMAN:int                                  = 0;
+		public static const TYPE_EQUINE:int                                 = 1;
+		public static const TYPE_BOVINE:int                                 = 2;
+		public static const TYPE_CANINE:int                                 = 3;
+		public static const TYPE_FELINE:int                                 = 4;
+		public static const TYPE_VULPINE:int                                = 5;
+		public static const TYPE_BEE:int                                    = 6;
+		public static const TYPE_ARACHNID:int                               = 7;
+		public static const TYPE_DRIDER:int                                 = 8;
+		public static const TYPE_LAPINE:int                                 = 9;
+		public static const TYPE_AVIAN:int                                  = 10;
+		public static const TYPE_DRACONIC:int                               = 11;
+		public static const TYPE_LIZAN:int                                  = 12;
+		public static const TYPE_SNAKE:int                                  = 13;
+		public static const TYPE_NAGA:int                                   = GLOBAL.TYPE_SNAKE;
+		public static const TYPE_CENTAUR:int                                = 14;
+		public static const TYPE_DEMONIC:int                                = 15;
+		public static const TYPE_GOOEY:int                                  = 16;
+		public static const TYPE_KANGAROO:int                               = 17;
+		public static const TYPE_TANUKI:int                                 = 18;
+		public static const TYPE_SHARK:int                                  = 19;
+		public static const TYPE_SIREN:int                                  = 20;
+		public static const TYPE_DEER:int                                   = 21;
+		public static const TYPE_ANEMONE:int                                = 22;
+		public static const TYPE_TENTACLE:int                               = 23;
+		public static const TYPE_KUITAN:int                                 = 24;
+		public static const TYPE_HUMANMASKED:int                            = 25;
+		public static const TYPE_MOUSE:int                                  = 26;
+		public static const TYPE_MOUSEMAN:int                               = 27;
+		public static const TYPE_DRAGONFLY:int                              = 31;
+		public static const TYPE_MLP:int                                    = 32;
+		public static const TYPE_CUNTSNAKE:int                              = 33;
+		public static const TYPE_VENUSPITCHER:int						   = 34;
+		public static const TYPE_SUCCUBUS:int                               = 35;
+		public static const TYPE_SMALLBEE:int                               = 36;
+		public static const TYPE_SMALLDEMONIC:int                           = 37;
+		public static const TYPE_SMALLDRACONIC:int                          = 38;
+		public static const TYPE_NALEEN_FACE:int 						   = 39;
+		public static const TYPE_PANDA:int 								   = 40;
+		public static const TYPE_MIMBRANE:int							   = 41;
+		public static const TYPE_RASKVEL:int 							   = 42;
+		public static const TYPE_SYDIAN:int 								   = 43;
+		public static const TYPE_LAPINARA:int 							   = 44;
+		public static const TYPE_BADGER:int 								   = 45;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -183,179 +183,179 @@
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
-			HUMAN,
-			FELINE,
-			EQUINE,
-			BOVINE,
-			LIZAN,
-			DRACONIC,
-			NALEEN_FACE,
-			SHARK,
-			SIREN,
-			LAPINE,
-			NAGA,
-			HUMANMASKED,
-			KUITAN,
-			VULPINE,
-			MOUSEMAN,
-			MOUSE,
-			CANINE,
-			PANDA,
-			BADGER,
-			KANGAROO,
+			TYPE_HUMAN,
+			TYPE_FELINE,
+			TYPE_EQUINE,
+			TYPE_BOVINE,
+			TYPE_LIZAN,
+			TYPE_DRACONIC,
+			TYPE_NALEEN_FACE,
+			TYPE_SHARK,
+			TYPE_SIREN,
+			TYPE_LAPINE,
+			TYPE_NAGA,
+			TYPE_HUMANMASKED,
+			TYPE_KUITAN,
+			TYPE_VULPINE,
+			TYPE_MOUSEMAN,
+			TYPE_MOUSE,
+			TYPE_CANINE,
+			TYPE_PANDA,
+			TYPE_BADGER,
+			TYPE_KANGAROO,
 			
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
-			SMOOTH,
-			MUZZLED,
-			ANGULAR,
+			FLAG_SMOOTH,
+			FLAG_MUZZLED,
+			FLAG_ANGULAR,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
-			HUMAN,
-			NAGA,
-			DEMONIC,
-			DRACONIC,
+			TYPE_HUMAN,
+			TYPE_NAGA,
+			TYPE_DEMONIC,
+			TYPE_DRACONIC,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
-			LONG,
-			PREHENSILE,
+			FLAG_LONG,
+			FLAG_PREHENSILE,
 		];
 		
 		public static const VALID_EAR_TYPES:Array = [
-			EQUINE,
-			CANINE,
-			BOVINE,
-			DRIDER,
-			FELINE,
-			LIZAN,
-			LAPINE,
-			KANGAROO,
-			VULPINE,
-			DRACONIC,
-			KUITAN,
-			MOUSE,
-			PANDA,
-			HUMAN,
+			TYPE_EQUINE,
+			TYPE_CANINE,
+			TYPE_BOVINE,
+			TYPE_DRIDER,
+			TYPE_FELINE,
+			TYPE_LIZAN,
+			TYPE_LAPINE,
+			TYPE_KANGAROO,
+			TYPE_VULPINE,
+			TYPE_DRACONIC,
+			TYPE_KUITAN,
+			TYPE_MOUSE,
+			TYPE_PANDA,
+			TYPE_HUMAN,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
-			HUMAN,
-			EQUINE,
-			PANDA,
-			CANINE,
-			BEE,
-			FELINE,
-			AVIAN,
-			ARACHNID,
-			DRIDER,
-			BADGER,
+			TYPE_HUMAN,
+			TYPE_EQUINE,
+			TYPE_PANDA,
+			TYPE_CANINE,
+			TYPE_BEE,
+			TYPE_FELINE,
+			TYPE_AVIAN,
+			TYPE_ARACHNID,
+			TYPE_DRIDER,
+			TYPE_BADGER,
 		];
 		
 		public static const VALID_LEG_TYPES:Array = [
-			HUMAN,
-			NAGA,
-			DRIDER,
-			ARACHNID,
-			GOOEY,
-			EQUINE,
-			CENTAUR,
-			BOVINE,
-			CANINE,
-			FELINE,
-			VULPINE,
-			BEE,
-			LAPINE,
-			AVIAN,
-			DRACONIC,
-			LIZAN,
-			DEMONIC,
-			KANGAROO,
-			TANUKI,
-			DEER,
-			PANDA,
-			MLP,
-			SUCCUBUS,
-			KUITAN,
+			TYPE_HUMAN,
+			TYPE_NAGA,
+			TYPE_DRIDER,
+			TYPE_ARACHNID,
+			TYPE_GOOEY,
+			TYPE_EQUINE,
+			TYPE_CENTAUR,
+			TYPE_BOVINE,
+			TYPE_CANINE,
+			TYPE_FELINE,
+			TYPE_VULPINE,
+			TYPE_BEE,
+			TYPE_LAPINE,
+			TYPE_AVIAN,
+			TYPE_DRACONIC,
+			TYPE_LIZAN,
+			TYPE_DEMONIC,
+			TYPE_KANGAROO,
+			TYPE_TANUKI,
+			TYPE_DEER,
+			TYPE_PANDA,
+			TYPE_MLP,
+			TYPE_SUCCUBUS,
+			TYPE_KUITAN,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
-			DIGITIGRADE,
-			PLANTIGRADE,
-			AMORPHOUS,
-			SCALED,
-			FURRED,
-			TENDRIL,
-			HOOVES,
-			PAWS,
-			HEELS,
+			FLAG_DIGITIGRADE,
+			FLAG_PLANTIGRADE,
+			FLAG_AMORPHOUS,
+			FLAG_SCALED,
+			FLAG_FURRED,
+			FLAG_TENDRIL,
+			FLAG_HOOVES,
+			FLAG_PAWS,
+			FLAG_HEELS,
 		];
 		
 		public static const VALID_ANTENNAE_TYPES:Array = [
-			HUMAN,
-			BEE,
-			SYDIAN,
+			TYPE_HUMAN,
+			TYPE_BEE,
+			TYPE_SYDIAN,
 		];
 		
 		public static const VALID_HORN_TYPES:Array = [
-			DEMONIC,
-			BOVINE,
-			LIZAN,
-			DEER,
+			TYPE_DEMONIC,
+			TYPE_BOVINE,
+			TYPE_LIZAN,
+			TYPE_DEER,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
 			0,
-			BEE,
-			SMALLBEE,
-			SMALLDEMONIC,
-			SMALLDRACONIC,
-			SHARK,
-			AVIAN,
-			DRAGONFLY,
-			DRACONIC,
+			TYPE_BEE,
+			TYPE_SMALLBEE,
+			TYPE_SMALLDEMONIC,
+			TYPE_SMALLDRACONIC,
+			TYPE_SHARK,
+			TYPE_AVIAN,
+			TYPE_DRAGONFLY,
+			TYPE_DRACONIC,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
 		// It's going to be overwritten in the SaveEdit UI to save duplicating a lot of name arrays.
 		public static const VALID_TAIL_TYPES:Array = [
 			0,
-			LAPINE,
-			EQUINE,
-			CANINE,
-			BOVINE,
-			CUNTSNAKE,
-			PANDA,
-			FELINE,
-			BEE,
-			ARACHNID,
-			DEMONIC,
-			DRIDER,
-			SHARK,
-			SIREN,
-			LIZAN,
-			AVIAN,
-			KANGAROO,
-			VULPINE,
-			DRACONIC,
-			KUITAN,
-			MOUSE,
-			BADGER,
-			RASKVEL,
-			NAGA,
-			SYDIAN,
+			TYPE_LAPINE,
+			TYPE_EQUINE,
+			TYPE_CANINE,
+			TYPE_BOVINE,
+			TYPE_CUNTSNAKE,
+			TYPE_PANDA,
+			TYPE_FELINE,
+			TYPE_BEE,
+			TYPE_ARACHNID,
+			TYPE_DEMONIC,
+			TYPE_DRIDER,
+			TYPE_SHARK,
+			TYPE_SIREN,
+			TYPE_LIZAN,
+			TYPE_AVIAN,
+			TYPE_KANGAROO,
+			TYPE_VULPINE,
+			TYPE_DRACONIC,
+			TYPE_KUITAN,
+			TYPE_MOUSE,
+			TYPE_BADGER,
+			TYPE_RASKVEL,
+			TYPE_NAGA,
+			TYPE_SYDIAN,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
-			PREHENSILE,
-			LONG,
-			FLUFFY,
-			SMOOTH,
-			TAILCOCK,
-			FURRED,
-			OVIPOSITOR
+			FLAG_PREHENSILE,
+			FLAG_LONG,
+			FLAG_FLUFFY,
+			FLAG_SMOOTH,
+			FLAG_TAILCOCK,
+			FLAG_FURRED,
+			FLAG_OVIPOSITOR
 		];
 		
 		public static const TAIL_GENITAL_NONE:int 	= 0;
@@ -375,19 +375,19 @@
 		];
 		
 		public static const VALID_TAIL_GENITAL_ARGS:Array = [
-			HUMAN,
-			EQUINE,
-			CANINE,
-			GOOEY,
-			SIREN,
+			TYPE_HUMAN,
+			TYPE_EQUINE,
+			TYPE_CANINE,
+			TYPE_GOOEY,
+			TYPE_SIREN,
 		];
 		
 		//SKINTYPES
-		public static const SKIN:int                                   = 0;
-		public static const FUR:int                                    = 1;
-		public static const SCALES:int                                 = 2;
-		public static const GOO:int                                    = 3;
-		public static const CHITIN:int                                 = 4;
+		public static const SKIN_TYPE_SKIN:int                                   = 0;
+		public static const SKIN_TYPE_FUR:int                                    = 1;
+		public static const SKIN_TYPE_SCALES:int                                 = 2;
+		public static const SKIN_TYPE_GOO:int                                    = 3;
+		public static const SKIN_TYPE_CHITIN:int                                 = 4;
 		
 		public static const SKIN_TYPE_NAMES:Array = [
 			"Skin",
@@ -398,51 +398,25 @@
 		];
 				
 		//NIPPLETYPES
-		public static const NORMAL:int                                 = 0;
-		public static const FUCKABLE:int                               = 1;
-		public static const LIPPLES:int                                = 2;
-		public static const DICK:int                                   = 3;
-		public static const FLAT:int                                   = 4;
-		public static const INVERTED:int                               = 5;
-		public static const TENTACLED:int 							   = 6;
-		
-		public static const NIPPLE_TYPE_NAMES:Array = [
-			"Normal",
-			"Fuckable",
-			"Lipples",
-			"Dick",
-			"Flat",
-			"Inverted",
-			"Tentacled"
-		];
-		
-		public static const VALID_DICKNIPPLE_TYPES:Array = [
-			HUMAN,
-			EQUINE,
-			FELINE,
-		];
-		
-		public static const VALID_NIPPLE_TYPES:Array = [
-			NORMAL,
-			FUCKABLE,
-			LIPPLES,
-			DICK,
-			FLAT,
-			INVERTED,
-			TENTACLED,
-		];
-		
+		public static const NIPPLE_TYPE_NORMAL:int                                 = 0;
+		public static const NIPPLE_TYPE_FUCKABLE:int                               = 1;
+		public static const NIPPLE_TYPE_LIPPLES:int                                = 2;
+		public static const NIPPLE_TYPE_DICK:int                                   = 3;
+		public static const NIPPLE_TYPE_FLAT:int                                   = 4;
+		public static const NIPPLE_TYPE_INVERTED:int                               = 5;
+		public static const NIPPLE_TYPE_TENTACLED:int 							   = 6;
+				
 		//CUM & MILK TYPES
-		public static const MILK:int                                   = 0;
-		public static const HONEY:int                                  = 1;
-		public static const CUM:int                                    = 2;
-		public static const OIL:int                                    = 3;
-		public static const MILKSAP:int                                = 4;
-		public static const GIRLCUM:int                                = 5;
-		public static const CUMSAP:int								   = 6;
-		public static const CHOCOLATE_MILK:int 						   = 7;
-		public static const STRAWBERRY_MILK:int 					   = 8;
-		public static const SYDIAN_CUM:int 							   = 9;
+		public static const FLUID_TYPE_MILK:int                                   = 0;
+		public static const FLUID_TYPE_HONEY:int                                  = 1;
+		public static const FLUID_TYPE_CUM:int                                    = 2;
+		public static const FLUID_TYPE_OIL:int                                    = 3;
+		public static const FLUID_TYPE_MILKSAP:int                                = 4;
+		public static const FLUID_TYPE_GIRLCUM:int                                = 5;
+		public static const FLUID_TYPE_CUMSAP:int								   = 6;
+		public static const FLUID_TYPE_CHOCOLATE_MILK:int 						   = 7;
+		public static const FLUID_TYPE_STRAWBERRY_MILK:int 					   = 8;
+		public static const FLUID_TYPE_SYDIAN_CUM:int 							   = 9;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -458,32 +432,32 @@
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
-			CUM,
-			HONEY,
-			CUMSAP,
-			SYDIAN_CUM,
-			MILK,
+			FLUID_TYPE_CUM,
+			FLUID_TYPE_HONEY,
+			FLUID_TYPE_CUMSAP,
+			FLUID_TYPE_SYDIAN_CUM,
+			FLUID_TYPE_MILK,
 		];
 		
 		public static const VALID_GIRLCUM_TYPES:Array = [
-			GIRLCUM,
-			HONEY,
+			FLUID_TYPE_GIRLCUM,
+			FLUID_TYPE_HONEY,
 		];
 		
 		public static const VALID_MILK_TYPES:Array = [
-			MILK,
-			HONEY,
-			MILKSAP,
-			CHOCOLATE_MILK,
-			STRAWBERRY_MILK,
+			FLUID_TYPE_MILK,
+			FLUID_TYPE_HONEY,
+			FLUID_TYPE_MILKSAP,
+			FLUID_TYPE_CHOCOLATE_MILK,
+			FLUID_TYPE_STRAWBERRY_MILK,
 		];
 		
 		// HAIRTYPES
-		public static const HAIR_REGULAR:int						= 0;
-		public static const HAIR_FEATHERS:int						= 1;
-		public static const HAIR_TRANSPARENT:int					= 2;
-		public static const HAIR_GOO:int							= 3;
-		public static const HAIR_TENTACLES:int						= 4;
+		public static const HAIR_TYPE_REGULAR:int						= 0;
+		public static const HAIR_TYPE_FEATHERS:int						= 1;
+		public static const HAIR_TYPE_TRANSPARENT:int					= 2;
+		public static const HAIR_TYPE_GOO:int							= 3;
+		public static const HAIR_TYPE_TENTACLES:int						= 4;
 		
 		public static const HAIR_TYPE_NAMES:Array = [
 			"Hair",
@@ -513,45 +487,45 @@
 		];
 		
 		public static const VALID_COCK_TYPES:Array = [
-			HUMAN,
-			EQUINE,
-			CANINE,
-			FELINE,
-			DEMONIC,
-			TENTACLE,
-			SNAKE,
-			ANEMONE,
-			SIREN,
-			KANGAROO,
-			DRACONIC,
-			BEE,
+			TYPE_HUMAN,
+			TYPE_EQUINE,
+			TYPE_CANINE,
+			TYPE_FELINE,
+			TYPE_DEMONIC,
+			TYPE_TENTACLE,
+			TYPE_SNAKE,
+			TYPE_ANEMONE,
+			TYPE_SIREN,
+			TYPE_KANGAROO,
+			TYPE_DRACONIC,
+			TYPE_BEE,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
-			PREHENSILE,
-			FLARED,
-			KNOTTED,
-			SHEATHED,
-			STINGER_BASED,
-			TAPERED,
-			STINGER_TIPPED,
-			NUBBY,
-			AMORPHOUS,
-			BLUNT,
+			FLAG_PREHENSILE,
+			FLAG_FLARED,
+			FLAG_KNOTTED,
+			FLAG_SHEATHED,
+			FLAG_STINGER_BASED,
+			FLAG_TAPERED,
+			FLAG_STINGER_TIPPED,
+			FLAG_NUBBY,
+			FLAG_AMORPHOUS,
+			FLAG_BLUNT,
 		];
 		
 		public static const VALID_VAGINA_TYPES:Array = [
-			HUMAN,
-			EQUINE,
+			TYPE_HUMAN,
+			TYPE_EQUINE,
 		]
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
 		// So I'm winging it.
 		public static const VALID_VAGINA_FLAGS:Array = [
-			LUBRICATED,
-			APHRODISIAC_LACED,
-			TENDRIL,
-			NUBBY,
+			FLAG_LUBRICATED,
+			FLAG_APHRODISIAC_LACED,
+			FLAG_TENDRIL,
+			FLAG_NUBBY,
 		];
 		
 		//DAMAGE TYPES

@@ -57,7 +57,7 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 50;
-			this.eyeType = GLOBAL.MIMBRANE;
+			this.eyeType = GLOBAL.TYPE_MIMBRANE;
 			this.eyeColor = "red";
 			this.tallness = 6 + rand(31); // 6-36
 			this.thickness = 1;
@@ -72,9 +72,9 @@ package classes.Characters
 			this.skinType = 0;
 			this.skinTone = "red";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.MIMBRANE;
+			this.faceType = GLOBAL.TYPE_MIMBRANE;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.MIMBRANE;
+			this.tongueType = GLOBAL.TYPE_MIMBRANE;
 			this.lipMod = 0;
 			this.earType = 0;
 			this.antennae = 0;
@@ -84,7 +84,7 @@ package classes.Characters
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.MIMBRANE;
+			this.legType = GLOBAL.TYPE_MIMBRANE;
 			this.legCount = 1;
 			this.legFlags = new Array();
 			

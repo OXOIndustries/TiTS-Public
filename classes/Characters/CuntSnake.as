@@ -66,14 +66,14 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SCALES;
+			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			this.skinTone = "pink";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.CUNTSNAKE;
+			this.faceType = GLOBAL.TYPE_CUNTSNAKE;
 			this.faceFlags = new Array();
-			this.tongueType = GLOBAL.CUNTSNAKE;
+			this.tongueType = GLOBAL.TYPE_CUNTSNAKE;
 			this.lipMod = 1;
-			this.earType = GLOBAL.CUNTSNAKE;
+			this.earType = GLOBAL.TYPE_CUNTSNAKE;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -81,17 +81,17 @@
 			this.armType = 0;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.CUNTSNAKE;
+			this.legType = GLOBAL.TYPE_CUNTSNAKE;
 			this.legCount = 1;
-			this.legFlags = [GLOBAL.TENDRIL];
+			this.legFlags = [GLOBAL.FLAG_TENDRIL];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.CUNTSNAKE;
+			this.tailType = GLOBAL.TYPE_CUNTSNAKE;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.SCALED, GLOBAL.LONG, GLOBAL.THICK, GLOBAL.PREHENSILE];
+			this.tailFlags = [GLOBAL.FLAG_SCALED, GLOBAL.FLAG_LONG, GLOBAL.FLAG_THICK, GLOBAL.FLAG_PREHENSILE];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -130,7 +130,7 @@
 			this.cumMultiplierRaw = 1.5;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
@@ -152,7 +152,7 @@
 			this.breastRows[0].breastRatingRaw = 0;
 			this.nippleColor = "green";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 1;
 			this.ass.wetnessRaw = 0;
@@ -167,7 +167,7 @@
 		{
 			if (dataObject.legFlags.length == 0)
 			{
-				dataObject.legFlags.push(GLOBAL.TENDRIL);
+				dataObject.legFlags.push(GLOBAL.FLAG_TENDRIL);
 			}
 		}
 		
@@ -189,27 +189,27 @@
 			
 			if(rand(5) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
+				combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
 				combatCSnake.long += "<b>slippery, terran-like cunt</b>";
 			}
 			else if(rand(4) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
+				combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
 				combatCSnake.long += "<b>puffy, horse-like gash</b>";
 			}
 			else if(rand(3) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.CANINE;
+				combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
 				combatCSnake.long += "<b>slippery, dog-like slit</b>";
 			}
 			else if(rand(2) == 0) 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
+				combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
 				combatCSnake.long += "<b>slippery slime creature's cunt</b>";
 			}
 			else 
 			{
-				combatCSnake.tailGenitalArg = GLOBAL.SIREN;
+				combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
 				combatCSnake.long += "<b>cilia-filled tunnel</b>";
 			}	
 
@@ -218,11 +218,11 @@
 			combatCSnake.customBlock = "Your attack deflects off the cunt snake's " + combatCSnake.scaleColor + " scales!";
 
 			// What's all this shit for? Is i supposed to still be here after all the rand^ calls? It was in the initCSnake function so...
-			//combatCSnake.tailGenitalArg = GLOBAL.HUMAN;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.EQUINE;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.CANINE;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.GOOEY;
-			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.SIREN;
+			//combatCSnake.tailGenitalArg = GLOBAL.TYPE_HUMAN;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_EQUINE;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_CANINE;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_GOOEY;
+			//if(rand(3) == 0) combatCSnake.tailGenitalArg = GLOBAL.TYPE_SIREN;
 
 			kGAMECLASS.foes.push(combatCSnake);
 		}

@@ -78,34 +78,34 @@ package classes.Characters
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = [];
-			this.faceType = GLOBAL.KUITAN;
+			this.faceType = GLOBAL.TYPE_KUITAN;
 			this.faceFlags = [];
 			this.tongueType = 0;
 			this.tongueFlags = [];
 			this.lipMod = 1;
-			this.earType = GLOBAL.KUITAN;
+			this.earType = GLOBAL.TYPE_KUITAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
 			this.hornType = 0;
-			this.armType = GLOBAL.KUITAN;
+			this.armType = GLOBAL.TYPE_KUITAN;
 			this.gills = false;
 			this.wingType = 0;
-			this.legType = GLOBAL.TANUKI;
+			this.legType = GLOBAL.TYPE_TANUKI;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.PLANTIGRADE];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TANUKI;
+			this.tailType = GLOBAL.TYPE_TANUKI;
 			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLUFFY];
+			this.tailFlags = [GLOBAL.FLAG_FLUFFY];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -142,8 +142,8 @@ package classes.Characters
 			this.createCock();
 			this.cocks[0].cThicknessRatioRaw = 3.5;
 			this.cocks[0].cLengthRaw = 21;
-			this.cocks[0].cType = GLOBAL.EQUINE;
-			this.cocks[0].cockFlags = [GLOBAL.FLARED, GLOBAL.SHEATHED, GLOBAL.BLUNT]
+			this.cocks[0].cType = GLOBAL.TYPE_EQUINE;
+			this.cocks[0].cockFlags = [GLOBAL.FLAG_FLARED, GLOBAL.FLAG_SHEATHED, GLOBAL.FLAG_BLUNT]
 			
 			this.vaginas = new Array();
 			this.createVagina();
@@ -159,7 +159,7 @@ package classes.Characters
 			
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 0;
-			this.cumType = GLOBAL.CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 3;
 			this.ballFullness = 100;
 			
@@ -183,7 +183,7 @@ package classes.Characters
 			this.breastRows[0].breastRatingRaw = 11;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
-			this.milkType = GLOBAL.MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;

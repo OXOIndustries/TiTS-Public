@@ -70,8 +70,8 @@
 
 					choices = new Array();
 					if(targets.indexOf(7) == -1) choices[choices.length] = 7;
-					if(targets.indexOf(6) == -1 && (target.isNaga() || target.skinType == GLOBAL.SCALES)) choices[choices.length] = 6;
-					if(targets.indexOf(5) == -1 && target.skinType == GLOBAL.FUR) choices[choices.length] = 5;
+					if(targets.indexOf(6) == -1 && (target.isNaga() || target.skinType == GLOBAL.SKIN_TYPE_SCALES)) choices[choices.length] = 6;
+					if(targets.indexOf(5) == -1 && target.skinType == GLOBAL.SKIN_TYPE_FUR) choices[choices.length] = 5;
 					if(targets.indexOf(4) == -1) choices[choices.length] = 4;
 					if(targets.indexOf(3) == -1) 
 					{

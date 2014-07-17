@@ -308,7 +308,7 @@ function getSpitRoastedForPenny():void {
 			else output("onto the floor");
 			output(".");
 		}
-		if(pc.milkType == GLOBAL.MILK) output(" If your mouth wasn’t full of cock, you’d moo like the universe's sluttiest cow.");
+		if(pc.milkType == GLOBAL.FLUID_TYPE_MILK) output(" If your mouth wasn’t full of cock, you’d moo like the universe's sluttiest cow.");
 	}
 	
 	output("\n\nYour waspish suitors pull out of you at the same time, wings buzzing. Your shaking limbs tremble, trying to hold you up as they switch places, floating past each other as they reposition, presenting you with a yellow-skinned, cum-covered cock to suck. You smile drunkenly up at the Zil and open wide to the sound of Penny’s moans.");
@@ -981,7 +981,7 @@ function femaleFirstTimePennyLesboz():void {
 	else 
 	{
 		output(" Your [pc.nipples] are achingly hard by this point, ");
-		if(pc.breastRows[0].nippleType == GLOBAL.FLAT) output("even though they have no proper tips, only engorged areolae, ");
+		if(pc.breastRows[0].nippleType == GLOBAL.NIPPLE_TYPE_FLAT) output("even though they have no proper tips, only engorged areolae, ");
 		output("and Penny begins to properly work them, gliding her fingers in circles over their soft surface, gripping them between her thumb and index finger, gently tugging or rolling them in between. You gasp, arching your back to allow her better access, and the fox is more than happy to oblige, purring, <i>“A pity you don’t lactate, like proper prey.”</i>  She pinches, <i>“But, perhaps you might be a worthy mate after all.”</i>  Her digits hurriedly work your box, making you moan again. <i>“Maybe not.”</i>");
 	}
 	output("\n\nThe fox-girl pushes onward, guiding you down to the base of the tub. She quickly arranges your [pc.legs] to allow her the best possible access to [pc.oneVagina]");
@@ -1054,10 +1054,10 @@ function femaleFirstTimePennyLesboz():void {
 	if(pc.vaginaTotal() > 1) output(", a second hand finding another twat to fondle,");
 	output(" and demurely lick your [pc.lips], egging the lusty fox on. You even lean up and extend your [pc.tongue], letting it hang out as an open invitation. Penny growls and throws her hips forward, pressing her fur-ringed mound into your face, the top of her folds parting on your nose while the majority of her channel rubs upon your unresisting mouth. She grabs you by the head and pushes harder, grinding her slippery snatch into your face, sliding her lower lips against your upper ones and alternatively releasing assertive growls and pleasured groans.");
 	output("\n\n<i>“Ahhhh,”</i>  the fennec moans, <i>“I knew that mouth would be good down here, a perfect slit-stuffer, huh, my mate?”</i>  She doesn’t allow you to answer her rhetorical question, and instead gyrates in lewd semi-circles on your face. Her tiny button can be felt through her engorged mons, concealed with her small, inner labia behind the puffy, outer portion of her twat. Her juices are both sweet and tangy on your [pc.tongue], and you allow your hungry mouth-muscle to slide into her, burrowing as deeply as you can into her channel.");
-	if(pc.hasTongueFlag(GLOBAL.LONG)) 
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
 	{
 		output(" Of course, you have a rather long tongue, so you’ve completely filled her gash with squirming oral appendage in no time flat.");
-		if(pc.hasTongueFlag(GLOBAL.PREHENSILE)) output(" Your dextrous muscles make it easy to control your tongue inside her, and you coil it so that it can press on all the portions of her walls at once, sliding over every fold and sensitive portion with skilled licks.");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) output(" Your dextrous muscles make it easy to control your tongue inside her, and you coil it so that it can press on all the portions of her walls at once, sliding over every fold and sensitive portion with skilled licks.");
 	}
 	
 	output("\n\nPenny’s pussy isn’t the only one getting attention; your talented fingers have been busy at your crotch, stirring your your soaked nethers until they’re ready to go off again. The fennec woman’s juicy slit isn’t far from climax either. Her hot little box is trembling around your tongue, dancing on the edge of orgasm. It’ll just take one little push to send her careening off into sexual ecstasy. You tip your head back and let your nose slip across the hidden bud, pressing just so on it, giving the fox-girl the stimulation her needy cunt is aching for. The reaction is as immediate as it is violent. Penny holds you firmly, grinding herself so hard against you that she must feel your teeth through your [pc.lips], her whole body quaking. Juices drip down your tongue, letting you know that the fennec is far from a squirter, but she’s plenty wet, judging by the way your throat is bobbing as you swallow. You reach another nice cum while your face is used by Penny’s pussy, providing a blissful memory to associate with the taste of her twat.");
@@ -1089,10 +1089,10 @@ function stickAHugeDickInPennysWorld():void {
 	
 	output("\n\nYou lean against the wall and grab a nearby shower rung, nonchalantly standing there as the prick-hungry vixen worships your musky tool, rubbing her face against it with great enthusiasm. ");
 	if(pc.hasKnot(x)) output("When she sees your knot, she gives it a happy squeeze.");
-	else if(pc.hasCockFlag(x,GLOBAL.FLARED)) output("When she sees your flare, she licks around the edge of the expanding dick-rim with a happy hum.");
-	else if(pc.hasCockFlag(x,GLOBAL.NUBBY)) output("When she feels the nubs, she stops and suckles on them one after another, happiness plastered on her face.");
-	else if(pc.hasCockFlag(x,GLOBAL.STINGER_TIPPED)) output("When she feels the tendrils pricking on her cheek, she gasps and turns, unintentionally getting stung all over her lips. They swell slightly, but her eyelids lower as the aphrodisiac venom sinks in. Her oral service resumes in short order with even greater enthusiasm.");
-	else if(pc.hasCockFlag(x,GLOBAL.AMORPHOUS)) output("When the heat half-melts your gooey boner, Penny purrs, blowing bubbles over your semi-liquid shaft to happily pleasure it. The bubbly bliss is intimately pleasurable, and Penny seems to greatly be enjoying the goo-play.");
+	else if(pc.hasCockFlag(x,GLOBAL.FLAG_FLARED)) output("When she sees your flare, she licks around the edge of the expanding dick-rim with a happy hum.");
+	else if(pc.hasCockFlag(x,GLOBAL.FLAG_NUBBY)) output("When she feels the nubs, she stops and suckles on them one after another, happiness plastered on her face.");
+	else if(pc.hasCockFlag(x,GLOBAL.FLAG_STINGER_TIPPED)) output("When she feels the tendrils pricking on her cheek, she gasps and turns, unintentionally getting stung all over her lips. They swell slightly, but her eyelids lower as the aphrodisiac venom sinks in. Her oral service resumes in short order with even greater enthusiasm.");
+	else if(pc.hasCockFlag(x,GLOBAL.FLAG_AMORPHOUS)) output("When the heat half-melts your gooey boner, Penny purrs, blowing bubbles over your semi-liquid shaft to happily pleasure it. The bubbly bliss is intimately pleasurable, and Penny seems to greatly be enjoying the goo-play.");
 	else output("When she notices you watching, she gives you a happy smile, nuzzling your dick with great enthusiasm.");
 	output(" The short auburn hairs of her mohawk tickle your [pc.cockHeadBiggest] occasionally, causing you to jerk back a half-inch involuntarily before your lustful urges reassert themselves, compelling you to get closer and plant your dick back on the fennec’s whorishly-pleased face.");
 	
@@ -1648,7 +1648,7 @@ function pennySproutsAWeiner():void {
 	this.clearMenu();
 	processTime(20);
 	penny.createCock();
-	penny.shiftCock(0,GLOBAL.VULPINE);
+	penny.shiftCock(0,GLOBAL.TYPE_VULPINE);
 	penny.cocks[0].cLengthRaw = 6;
 	penny.cumMultiplierRaw += 1;
 	penny.ballEfficiency += 2;
@@ -2384,7 +2384,7 @@ function pennyFrottage():void {
 	output(", setting off a mind-blanking pleasure-cascade. Two streams of cum erupt from the doubled-up dicks");
 	if(pc.cockTotal() > 1) output(", boosted by the stuff spraying from the rest of your [pc.cocks]");
 	output(". Penny’s is alabaster white and gooey as it falls over your [pc.fullChest]. Yours ");
-	if(pc.cumType == GLOBAL.CUM) output("matches it nicely");
+	if(pc.cumType == GLOBAL.FLUID_TYPE_CUM) output("matches it nicely");
 	else output("is similarly gooey but [pc.cumColor] in coloration");
 	output(" when it ");
 	if(pc.biggestCockLength() < penny.biggestCockLength() * .5) output("leaks lamely into your belly, unable to launch far due to the overwhelming size of the fennec’s superior shaft");
@@ -2777,10 +2777,10 @@ function gardeFordWritesPennySmex():void {
 		output("\n\nYou plant a sloppy kiss on the fennec’s puffy mound, rubbing your tongue against her tiny clit. Penny’s legs give out for a moment, and she grips the desk before sliding off. Her knees lock her in a half-standing position as you continue to assault her pussy with licks and kisses. The slippery combo of her juices and your saliva trails down her knees, dripping down to the floor and pooling on the ground.");
 		output("\n\nPenny’s wagging tail bats against your head whenever it comes by, and her fur feels wonderfully soft against your [pc.skin]. Your [pc.tongue] pushes aside the fox-girl’s pussy lips and slides into her depths. Penny lets out a long moan as your tongue explores her moist cleft. “Ooohhh, [pc.name], pull me down and devour me like the beast you are!” Penny shouts with a growl of lust. You happily oblige, and the busty fennec’s knees buckle as your licking intensifies. One of your hands continues to stroke the feisty fox girl’s sonar dishes, rubbing with the fur to make sure it feels the best. Your other hand helps to steady her legs.");
 		output("\n\nThe foxy police-woman’s moans escalate as your tongue stretches as far as it can inside her love tunnel. ");
-		if(!pc.hasTongueFlag(GLOBAL.LONG)) output(" You slather her walls with your saliva, and it mixes with her juices as the combined fluids run down her legs like a softly flowing stream.");
+		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You slather her walls with your saliva, and it mixes with her juices as the combined fluids run down her legs like a softly flowing stream.");
 		else output(" Your tongue snakes all the way to her womb and swirls around her cervix in short circles. She gives out a little squeak with the completion of each rotation. Her juices flow into your mouth and down her legs to drip into the growing pool at your feet.");
 		output(" Penny’s entire body gives a great shiver as you explore her depths, and you greedily lap at the escaping ");
-		if(!pc.hasTongueFlag(GLOBAL.LONG)) output("juices");
+		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("juices");
 		else output("fluid");
 		output(".");
 		
@@ -2794,7 +2794,7 @@ function gardeFordWritesPennySmex():void {
 		output("\n\nThe fennec’s tail bats against your face with every pass, the soft fur feeling wonderful against your [pc.skinFurScales]. You move your tongue back down to her vagina and circle it around the edge. When you reach her hole you slide in and lick around her inner walls. “Ahh, f-fuck, eat me like the predator you are, Steele,” Penny slurs through her moans. You happily oblige, moving her legs over your shoulders for easier holding. Her thighs tighten around your head as your licks intensify, and you return both hands to Penny’s sonar dishes.");
 		output("\n\nThe fiesty fox-girl’s moans escalate as you stretch your tongue as far as it can go. ");
 		//if short tongue: 
-		if(!pc.hasTongueFlag(GLOBAL.LONG)) output("You slather her walls with your saliva, mixing it with her juices and letting it run into your mouth and down her body like a mountain stream.");
+		if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slather her walls with your saliva, mixing it with her juices and letting it run into your mouth and down her body like a mountain stream.");
 		else output("Your tongue reaches all the way to her womb and runs little circles around her cervix. Her thighs tense against your head as each rotation is completed. The juices flow into your mouth and down her own body to pool on the table.");
 		output(" The full length of Penny’s body shivers as you explore her depths, and you greedily lap at the fluid that escapes.");
 		output("\n\nSuddenly the fox-girl’s legs tense and her moans grow into screams of ecstasy. You remove one hand from her head and drag it seductively along her trembling body till it reaches her nethers. When it arrives you slowly rub its thumb in circles around her budding clit, and the fur on Penny’s body stands on end as she explodes in orgasm.");

@@ -1129,7 +1129,7 @@ function offerPussyYouSloot():void
 	output("\n\nYour entire body feels like it's one big erogenous zone at this point, like almost any kind of touch could send you right over the edge. But with your hands bound, you're at the mercy of Aliss, who seems to know exactly what to do to keep you on the brink. Your body quivers at her touch, your pussy clamping down on her condom-clad cock. It just feels so damn <b>good</b> to be filled like this, but it's not enough! You need more!");
 
 	output("\n\nJust when you think Aliss is going to keep you like this forever, she gives a grunt, her euphoric cries surpassing your own. Her slick rod pulses within you, filling the condom somewhere in your belly with a warm, gooey payload. This. This more than anything sends you teetering over the edge. You'd been building up to this for several minutes, and now you give in, letting your instinctual mind take over. Your body ignites like a firework. Orgasmic electricity fires throughout your body. Fingers ");
-	if(pc.legType == GLOBAL.HUMAN) output("and toes ");
+	if(pc.legType == GLOBAL.TYPE_HUMAN) output("and toes ");
 	output("curl. Your stomach tenses and back arches. You clamp your eyes so tightly shut you can see blue-tinged specks erupt in the darkness. Gasping for air, your mouth hangs open, tongue easily lolling out. Your limbs twitch and spasm, completely out of your control. Your cunt clamps down on the invader inside it and pulses, as if trying to milk the cock for all it's worth.");
 
 	output("\n\nAs the powerful orgasm begins to subside, you slump back");
@@ -1349,7 +1349,7 @@ function suckAlissOffBecauseYouLikeToGulpDownLoadsOfJizzYouSlut():void
 	output("\n\n\"<i>Come on then, my little cockslut,</i>\" she says, a coy smile on her face. \"<i>Give it a lick.</i>\"");
 
 	output("\n\nYou nod absently and lean forward, your tongue extending. You lap at the long trail of precum dribbling down her length, sucking it up into your mouth and savoring its salty-sweet taste.");
-	if(pc.hasTongueFlag(GLOBAL.LONG)) output(" Then you wrap your [pc.tongue] around her shaft, marveling at its taste. Using it like a hand, you slip it up and down, pausing only to lick at the head, or to gently caress the folds of her cloaca.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" Then you wrap your [pc.tongue] around her shaft, marveling at its taste. Using it like a hand, you slip it up and down, pausing only to lick at the head, or to gently caress the folds of her cloaca.");
 	else output(" You lick up and down her shaft, tracing every vein and paying close attention to the slight flare around her cockhead.");
 	output(" Aliss moans quietly, leaning back on the bench while you work.");
 

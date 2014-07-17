@@ -46,7 +46,7 @@
 		//If it reaches 100 it reduces lactation multiplier.
 		public var fullness:Number = 0;
 		public function fuckable():Boolean {
-			return (nippleType == GLOBAL.FUCKABLE || nippleType == GLOBAL.LIPPLES);
+			return (nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE || nippleType == GLOBAL.NIPPLE_TYPE_LIPPLES);
 		}
 	}
 }

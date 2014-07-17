@@ -203,9 +203,9 @@ function aboutTheRobotFromCrazyCarl():void {
 		output("\n\n\"<i>Do you have a license for HC-5 class weapons and energy disposal, or a Klamer’s certification card or other U.G.C accepted Eighteen Ninety Weapons Treaty-accommodating titles?</i>”");
 
 		//*If mercenary:
-		if(pc.characterClass == GLOBAL.MERCENARY) output("\n\nYou give a firm nod. “<i>Of course.</i>\"");
+		if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nYou give a firm nod. “<i>Of course.</i>\"");
 		//If tech-specialist:
-		else if(pc.characterClass == GLOBAL.ENGINEER) output("\n\nYou can get one by the end of the day. Legally, of <i>course</i>.");
+		else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("\n\nYou can get one by the end of the day. Legally, of <i>course</i>.");
 		//If smuggler:
 		else output("\n\nYou hesitate a half-moment before nodding, lying with a silver tongue, \"<i>Absolutely.</i>\"");
 

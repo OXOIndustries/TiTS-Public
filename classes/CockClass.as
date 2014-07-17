@@ -88,11 +88,11 @@
 			var cylinder:Number = 3.142 * thickness()/2 * thickness()/2 * (cLength() - thickness());
 			var tip:Number = (4/3 * 3.142 * thickness()/2 * thickness()/2 * thickness()/2)/2;
 			//If blunt, tip is converted to cylinder as well.
-			if(hasFlag(GLOBAL.BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness());
+			if(hasFlag(GLOBAL.FLAG_BLUNT)) tip = (3.142 * thickness()/2 * thickness()/2 * thickness());
 			//If flared, tip is multiplied by 1.3.
-			if(hasFlag(GLOBAL.FLARED)) tip = tip * 1.3;
+			if(hasFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
 			//If tapered, reduce total by a factor of 75%
-			if(hasFlag(GLOBAL.TAPERED)) {
+			if(hasFlag(GLOBAL.FLAG_TAPERED)) {
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
@@ -108,8 +108,8 @@
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
 			var temp:Number = volume();
-			if(hasFlag(GLOBAL.LUBRICATED)) temp *= .75;
-			if(hasFlag(GLOBAL.STICKY)) temp *= 1.25;
+			if(hasFlag(GLOBAL.FLAG_LUBRICATED)) temp *= .75;
+			if(hasFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
 			return Math.round(temp * 100) / 100;
 		}
 		//FLAG CHECKIN!
@@ -139,13 +139,13 @@
 				while(increase > 0) {
 					temp = 1;
 					//Cut length growth for huge dicked
-					if(cLength() > 10 && cType != 1) {
+					if(cLength() > 10 && cType != GLOBAL.TYPE_EQUINE) {
 						temp /= 2;
 					}
-					if(cType == 1 && cLength() > 17) temp/=2;
+					if(cType == GLOBAL.TYPE_EQUINE && cLength() > 17) temp/=2;
 					//Cut again for massively dicked
-					if(cType != 1 && cLength() > 24) temp/=2;
-					if(cType == 1 && cLength() > 40) temp/=2;
+					if(cType != GLOBAL.TYPE_EQUINE && cLength() > 24) temp/=2;
+					if(cType == GLOBAL.TYPE_EQUINE && cLength() > 40) temp/=2;
 					//Start adding up bonus cLength
 					amountGrown += temp;
 					cLength(temp);
@@ -164,12 +164,12 @@
 						temp /= 2;
 					}
 					//Cut cLength loss, horses lose slower
-					if(cType == 1 && cLength() < 10) temp/=3;
+					if(cType == GLOBAL.TYPE_EQUINE && cLength() < 10) temp/=3;
 					else if(cLength() < 10) temp/=2;
 					//Cut again for massively dicked
-					if(cType == 1 && cLength() < 4) temp/=3;
+					if(cType == GLOBAL.TYPE_EQUINE && cLength() < 4) temp/=3;
 					else if(cLength() < 4) temp/=2;
-					if(cType == 1 && cLength() < 6) temp/=3;
+					if(cType == GLOBAL.TYPE_EQUINE && cLength() < 6) temp/=3;
 					else if(cLength() < 6) temp/=2;
 					//MINIMUM cLength OF 1!
 					if(cLength() == 1) temp = 0;

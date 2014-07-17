@@ -462,8 +462,8 @@ function getBlownByDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
 	output("Looking between your would-be assailant and your crotch, you decide there's only one thing to do in this situation. Turnabout is fair play, after all, but first, you had better see about securing his hands. You don't want any nasty little surprises if he gets a second wind, after all. With plenty of nearby vines, finding something to bind his hands is as simple ");
-	if(pc.characterClass == GLOBAL.MERCENARY) output("as a bodyguarding job");
-	else if(pc.characterClass == GLOBAL.SMUGGLER) output("as a borderworld smuggling run");
+	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("as a bodyguarding job");
+	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("as a borderworld smuggling run");
 	else output("as a drive calibration");
 	output(".");
 
