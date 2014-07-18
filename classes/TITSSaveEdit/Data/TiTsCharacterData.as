@@ -15,7 +15,16 @@ package classes.TITSSaveEdit.Data
 	
 	public class TiTsCharacterData
 	{
-		public var backup:Object;
+		private var _backup:Object;
+		public function get backup():Object { return _backup; }
+		public function set backup(v:Object):void 
+		{
+			if (v == null)
+				trace("bp");
+				
+			_backup = v; 
+		}
+		
 		public var propertyNames:Array = [
 			"short",
 			"level",

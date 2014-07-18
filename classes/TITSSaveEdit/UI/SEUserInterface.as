@@ -203,9 +203,106 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.assSettings.ass = char.ass;
 		}
 		
-		public function getCharacterData():Object
+		public function getCharacterData(char:TiTsCharacterData):void
 		{
-			return new TiTsCharacterData();
+			char.short = _mainDisplay.generalStats.playerName;
+			char.level = _mainDisplay.generalStats.level;
+			char.XPRaw = _mainDisplay.generalStats.xp;
+			char.credits = _mainDisplay.generalStats.credits;
+			char.characterClass = _mainDisplay.generalStats.characterClass;
+			char.personality = _mainDisplay.generalStats.personality;
+			
+			char.physiqueRaw = _mainDisplay.coreStats.physique;
+			char.reflexesRaw = _mainDisplay.coreStats.reflexes;
+			char.aimRaw = _mainDisplay.coreStats.aim;
+			char.intelligenceRaw = _mainDisplay.coreStats.intelligence;
+			char.willpowerRaw = _mainDisplay.coreStats.willpower;
+			char.libidoRaw = _mainDisplay.coreStats.libido;
+			char.affinity = _mainDisplay.coreStats.affinity;
+			
+			char.HPMod = _mainDisplay.combatStats.hpMod;
+			char.energyMod = _mainDisplay.combatStats.energyMod;
+			char.lustRaw = _mainDisplay.combatStats.lust;
+			char.lustVuln = _mainDisplay.combatStats.lustVuln;
+			
+			char.resistances = _mainDisplay.resistances.resistances;
+			
+			char.tailType = _mainDisplay.tailAppearance.tailType;
+			char.tailCount = _mainDisplay.tailAppearance.tailCount;
+			char.tailFlags = _mainDisplay.tailAppearance.tailFlags;
+			char.tailGenital = _mainDisplay.tailAppearance.tailGenitalArg;
+			char.tailGenitalArg = _mainDisplay.tailAppearance.tailGenitalType;
+			
+			char.cumType = _mainDisplay.fluidSettings.cumType;
+			char.girlCumType = _mainDisplay.fluidSettings.girlCumType;
+			char.ballFullness = _mainDisplay.fluidSettings.ballFullness;
+			char.ballEfficiency = _mainDisplay.fluidSettings.ballEfficiency;
+			char.refractoryRate = _mainDisplay.fluidSettings.refractoryRate;
+			char.milkType = _mainDisplay.fluidSettings.milkType;
+			char.milkMultiplier = _mainDisplay.fluidSettings.milkMultiplier;
+			char.milkStorageMultiplier = _mainDisplay.fluidSettings.milkStorageMultiplier;
+			char.milkFullness = _mainDisplay.fluidSettings.milkFullness;
+			char.milkRate = _mainDisplay.fluidSettings.milkRate;
+			
+			char.genitalSpot = _mainDisplay.generalGender.genitalSpot;
+			char.minutesSinceCum = _mainDisplay.generalGender.minutesSinceCum;
+			char.timesCum = _mainDisplay.generalGender.timesCum;
+			
+			char.femininity = _mainDisplay.generalAppearance.femininity;
+			char.tallness = _mainDisplay.generalAppearance.tallness;
+			char.thickness = _mainDisplay.generalAppearance.thickness;
+			char.tone = _mainDisplay.generalAppearance.tone;
+			char.hipRatingRaw = _mainDisplay.generalAppearance.hipRating;
+			char.buttRatingRaw = _mainDisplay.generalAppearance.buttRating;
+			char.bellyRatingRaw = _mainDisplay.generalAppearance.bellyRating;
+			
+			char.hairType = _mainDisplay.hairAppearance.hairType;
+			char.hairColor = _mainDisplay.hairAppearance.hairColor;
+			char.hairLength = _mainDisplay.hairAppearance.hairLength;
+			
+			char.skinTone = _mainDisplay.skinAppearance.skinTone;
+			char.furColor = _mainDisplay.skinAppearance.furColor;
+			char.scaleColor = _mainDisplay.skinAppearance.scaleColor;
+			char.skinType = _mainDisplay.skinAppearance.skinType;
+			char.skinFlags = _mainDisplay.skinAppearance.skinFlags;
+			
+			char.faceType = _mainDisplay.headAppearance.faceType;
+			char.faceFlags = _mainDisplay.headAppearance.faceFlags;
+			char.tongueType = _mainDisplay.headAppearance.tongueType;
+			char.tongueFlags = _mainDisplay.headAppearance.tongueFlags;
+			char.lipMod = _mainDisplay.headAppearance.lipMod;
+			char.lipColor = _mainDisplay.headAppearance.lipColor;
+			char.earType = _mainDisplay.headAppearance.earType;
+			char.horns = _mainDisplay.headAppearance.horns;
+			char.hornType = _mainDisplay.headAppearance.hornType;
+			char.hornLength = _mainDisplay.headAppearance.hornLength;
+			
+			char.armType = _mainDisplay.bodyAppearance.armType;
+			char.wingType = _mainDisplay.bodyAppearance.wingType;
+			char.legType = _mainDisplay.bodyAppearance.legType;
+			char.legFlags = _mainDisplay.bodyAppearance.legFlags;
+			char.legCount = _mainDisplay.bodyAppearance.legCount;
+			
+			char.balls = _mainDisplay.cockAppearance.balls;
+			char.ballSizeRaw = _mainDisplay.cockAppearance.ballSize;
+			char.cockVirgin = _mainDisplay.cockAppearance.cockVirgin;
+			char.cocks = _mainDisplay.cockAppearance.cocks;
+			
+			char.clitLength = _mainDisplay.vaginaAppearance.clitLength;
+			char.elasticity = _mainDisplay.vaginaAppearance.elasticity;
+			char.vaginalVirgin = _mainDisplay.vaginaAppearance.vaginalVirgin;
+			char.vaginas = _mainDisplay.vaginaAppearance.vaginas;
+			
+			char.nippleColor = _mainDisplay.breastAppearance.nippleColor;
+			char.nipplesPerBreast = _mainDisplay.breastAppearance.nipplesPerBreast;
+			char.nippleLengthRatio = _mainDisplay.breastAppearance.nippleLengthRatio;
+			char.nippleWidthRatio = _mainDisplay.breastAppearance.nippleWidthRatio;
+			char.dickNippleMultiplier = _mainDisplay.breastAppearance.dickNippleMultiplier;
+			char.dickNippleType = _mainDisplay.breastAppearance.dickNippleType;
+			char.breastRows = _mainDisplay.breastAppearance.breastRows;
+			
+			char.analVirgin = _mainDisplay.assSettings.analVirgin;
+			char.ass = _mainDisplay.assSettings.ass;
 		}
 		
 	}

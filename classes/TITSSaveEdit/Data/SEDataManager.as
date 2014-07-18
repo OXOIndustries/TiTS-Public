@@ -13,6 +13,7 @@ package classes.TITSSaveEdit.Data
 	import classes.UIComponents.MainButton;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
+	import org.osmf.net.httpstreaming.flv.FLVTagScriptDataObject;
 	
 	/**
 	 * ...
@@ -25,6 +26,8 @@ package classes.TITSSaveEdit.Data
 		
 		private var _supportedVersion:int = -1;
 		private var _loadedFromSlot:int = -1; // Marker so that we can highlight the slot a save was originally loaded from when we come back to save later
+		
+		private var _storedCharacter:TiTsCharacterData = null;
 		
 		public function SEDataManager(version:int)
 		{
@@ -97,8 +100,6 @@ package classes.TITSSaveEdit.Data
 			
 			msg += "</p></span>";
 			_text.htmlText = msg + "\n";
-			
-			
 		}
 		
 		private function generateSavePreview(data:SharedObject, slotNum:int):String
@@ -139,9 +140,27 @@ package classes.TITSSaveEdit.Data
 			return true;
 		}
 		
-		public function showSaveMenu():void
+		public function showSaveMenu(newCharData:TiTsCharacterData):void
 		{
+			_storedCharacter = newCharData;
+			
 			this.visible = true;
+			
+			_text.htmlText = "";
+			var msg:String = "";
+			msg += "<span class='words'><p>"
+			msg += "<b>Which slot would you like to save in?</b>\n";
+			_buttonTray.clearMenu();
+			
+			for (var slotNum:int = 1; slotNum <= 14; slotNum++)
+			{
+				var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slotNum, "/");
+				msg += this.generateSavePreview(dataFile, slotNum);
+				_buttonTray.addButton(slotNum - 1, "Slot " + slotNum, this.saveTiTsSave, slotNum);
+			}
+			
+			msg += "</p></span>";
+			_text.htmlText = msg + "\n";
 		}
 		
 		public function loadTiTsSave(slot:int):void
@@ -149,16 +168,55 @@ package classes.TITSSaveEdit.Data
 			_loadedFromSlot = slot;
 			
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slot, "/");
-			var dataObject:Object = copyObject(dataFile);
+			var dataObject:Object = copyObject(dataFile); // copyObject() copies SO.data, not SO
 			
 			var titsData:TiTsCharacterData = new TiTsCharacterData();
+			
 			titsData.loadSaveObject(dataObject.characters["PC"]);
 			(parent as TiTsSE).setTITSData(titsData);
 		}
 		
-		public function saveTiTsSlot(object:Object, slot:int = -1):void
+		public function saveTiTsSave(slotNum:int):void
 		{
+			// Grab the file that the current character was loaded from
+			var origFile:SharedObject = SharedObject.getLocal("TiTs_" + _loadedFromSlot, "/");
+			var dataObject:Object = copyObject(origFile);
 			
+			try
+			{
+				var charObj:Object = _storedCharacter.getSaveObject();
+				dataObject.characters["PC"] = charObj;
+				
+				var targetSO:SharedObject;
+				
+				// Open the target save if required
+				if (slotNum != _loadedFromSlot)
+				{
+					targetSO = SharedObject.getLocal("TiTs_" + slotNum, "/");
+					targetSO.clear();
+				}
+				else
+				{
+					targetSO = origFile;
+				}
+				
+				for (var property:String in dataObject)
+				{
+					targetSO.data[property] = dataObject[property];
+				}
+				
+				targetSO.flush();
+				
+				(parent as TiTsSE).saveSucceeded(slotNum);
+			}
+			catch (error:DataError)
+			{
+				(parent as TiTsSE).saveFailed(slotNum);
+			}
+			catch (error:Error)
+			{
+				(parent as TiTsSE).saveFailed(slotNum);
+			}	
 		}
 		
 		public function loadCoCSave(slot:int):void
@@ -186,6 +244,14 @@ package classes.TITSSaveEdit.Data
 				if (evt.currentTarget.func != null) evt.currentTarget.func(evt.currentTarget.arg);
 			}
 		}
+		
+		private function clone(o:Object):Object
+		{
+			var cp:ByteArray = new ByteArray();
+			cp.writeObject(o);
+			cp.position = 0;
+			var newO:Object = cp.readObject();
+			return newO;
+		}
 	}
-
 }

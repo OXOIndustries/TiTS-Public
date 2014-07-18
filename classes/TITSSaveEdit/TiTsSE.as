@@ -26,9 +26,6 @@ package classes.TITSSaveEdit
 		private var dataMan:SEDataManager;
 		private var character:TiTsCharacterData;
 		
-		// Copying the TiTs version string.
-		public var EditorVersion:String = "0.02.40";
-		
 		/**
 		 * The version property in the save file structure.
 		 * 
@@ -50,6 +47,9 @@ package classes.TITSSaveEdit
 		 * a "hey dumbass fix me too" alarm.
 		 */
 		public var SupportedSaveVersion:int = 13;
+		
+		// Copying the TiTs version string.
+		public var EditorVersion:String = "0.02.40";
 		
 		public function TiTsSE():void 
 		{
@@ -149,7 +149,7 @@ package classes.TITSSaveEdit
 				character = data;
 				fillUI();
 				ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
-				ui.saveButton.setData("Save Changes", saveChangedData, undefed, "Save changes", "Save changes that have been made to the current save slot.");
+				ui.saveButton.setData("Save Changes", saveChangedData, undefined, "Save changes", "Save changes that have been made to the current save slot.");
 			}
 			catch (error:DataError)
 			{
@@ -185,10 +185,40 @@ package classes.TITSSaveEdit
 			ui.setCharacterData(character);
 		}
 		
-		private function updateFromUI():void
+		private function saveChangedData():void
 		{
+			ui.hideAll();
 			
+			ui.getCharacterData(character);
+			dataMan.showSaveMenu(character);
+		}
+		
+		public function saveFailed(slotNum:int):void
+		{
+			dataMan.visible = false;
+			ui.hideMain();
+			
+			ui.clearOutput();
+			ui.output("Save failed to slot " + slotNum);
+			ui.buffRender();
+			
+			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
+			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
+			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
+		}
+		
+		public function saveSucceeded(slotNum:int):void
+		{
+			dataMan.visible = false;
+			ui.hideMain();
+			
+			ui.clearOutput();
+			ui.output("Save succeeded to slot " + slotNum);
+			ui.buffRender();
+			
+			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
+			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
+			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 		}
 	}
-	
 }
