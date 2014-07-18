@@ -22,10 +22,13 @@ package classes.TITSSaveEdit.Data
 	{
 		private var _text:TextField;
 		private var _buttonTray:SEButtonTray;
+		
+		private var _supportedVersion:int = -1;
 		private var _loadedFromSlot:int = -1; // Marker so that we can highlight the slot a save was originally loaded from when we come back to save later
 		
-		public function SEDataManager()
+		public function SEDataManager(version:int)
 		{
+			_supportedVersion = version;
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -107,6 +110,16 @@ package classes.TITSSaveEdit.Data
 				return (String(slotNum) + ": <b>EMPTY</b>\n\n");
 			}
 			
+			if (data.data.version < _supportedVersion)
+			{
+				return (String(slotNum) + ": <b>Requires upgrade in TiTS client</b>\n\n");
+			}
+			
+			if (data.data.version > _supportedVersion)
+			{
+				return (String(slotNum) + ": <b>Requires new version of the Editor</b>\n\n");
+			}
+			
 			returnString += slotNum;
 			returnString += ": <b>" + data.data.saveName + "</b>";
 			returnString += " - <i>" + data.data.saveNotes + "</i>\n";
@@ -121,6 +134,8 @@ package classes.TITSSaveEdit.Data
 		private function slotCompatible(dataFile:SharedObject):Boolean
 		{
 			if (dataFile.data.version == undefined)	return false;
+			if (dataFile.data.version < _supportedVersion) return false;
+			if (dataFile.data.verison > _supportedVersion) return false;
 			return true;
 		}
 		
@@ -129,17 +144,19 @@ package classes.TITSSaveEdit.Data
 			this.visible = true;
 		}
 		
-		public function loadTiTsSave(slot:int):void
+		public function loadTiTsSave(slot:int):Object
 		{
 			_loadedFromSlot = slot;
 			
 			var dataFile:SharedObject = SharedObject.getLocal("TiTs_" + slot, "/");
 			var dataObject:Object = copyObject(dataFile);
 			
-			(this.parent as Main).setTITSData(dataObject.characters["PC"]);
+			var titsData:TiTsCharacterData = new TiTsCharacterData();
+			titsData.loadSaveObject(dataObject.characters["PC"]);
+			setTITSData(titsData);
 		}
 		
-		public function saveTiTsSlot(slot:int, object:Object):void
+		public function saveTiTsSlot(object:Object, slot:int = -1):void
 		{
 			
 		}

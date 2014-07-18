@@ -14,6 +14,8 @@ package classes.TITSSaveEdit
 	import classes.TITSSaveEdit.UI.bad;
 	import classes.TITSSaveEdit.UI.blockHeader;
 	
+	import classes.TITSSaveEdit.Data.DataError;
+	
 	/**
 	 * ...
 	 * @author Gedan
@@ -23,6 +25,31 @@ package classes.TITSSaveEdit
 		private var ui:SEUserInterface;
 		private var dataMan:SEDataManager;
 		private var character:TiTsCharacterData;
+		
+		// Copying the TiTs version string.
+		public var EditorVersion:String = "0.02.40";
+		
+		/**
+		 * The version property in the save file structure.
+		 * 
+		 * I'm not replicating the data system to allow upgrades here too -- it's too much code and too much work
+		 * without having to refactor the main TiTs DataManager to no longer rely on kGAMECLASS.
+		 * 
+		 * Basically, the DataManager IS separable from the main game expect for its UX binding through kGAMECLASS.
+		 * At some point in the future I could rebuild DataManager and remove its reliance on kGAMECLASS to get
+		 * stuff back to the user, at which point it can pretty much slot straight into place over the "mini" version
+		 * in the save editor, and thus allow SaveUpgrading to take place here too. That would also require changes
+		 * to all of the classes that end up serialised too though, again, to remove the reliance on kGAMECLASS.
+		 * 
+		 * If one kGAMECLASS reference makes it into the save editor, it will include ALL of the actual game content.
+		 * 
+		 * This is why globals are bad juju.
+		 * 
+		 * In the short term, the Version value acts as a safeguard. If we fuck with the save structure in TiTs
+		 * enough to warrant a version bump, the editor will no longer work until it is also attended to. Effectively
+		 * a "hey dumbass fix me too" alarm.
+		 */
+		public var SupportedSaveVersion:int = 13;
 		
 		public function Main():void 
 		{
@@ -53,6 +80,8 @@ package classes.TITSSaveEdit
 			ui.output(blockHeader(bad("Caveat Emptor for all of this tool right now.")));
 			ui.output("Until this tool reaches version 1.0 you should assume that it can and will destroy your save.");
 			ui.output("\n" + bad("BUYER BEWARE") + " etc");
+
+			ui.output("\n\nSupports TiTs save files from TiTs " + EditorVersion + " and up");
 			
 			ui.output("\n\n1. Load an existing TiTs save to make changes to the PlayerCharacter of.");
 			ui.output("\n- The TiTs save structure and required data is much more complex than CoC. To save a bunch of hassle until the this tool hits 1.0 it requires data from an existing save.");
@@ -70,7 +99,7 @@ package classes.TITSSaveEdit
 			ui.importButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			ui.saveButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			
-			dataMan = new SEDataManager();
+			dataMan = new SEDataManager(SupportedSaveVersion);
 			this.addChild(dataMan);
 			dataMan.x = 200;
 			
@@ -105,7 +134,7 @@ package classes.TITSSaveEdit
 			dataMan.showLoadMenu();
 		}
 		
-		public function setTITSData(data:Object):void
+		public function setTITSData(data:TiTsCharacterData):void
 		{
 			dataMan.visible = false;
 			ui.showMain();
@@ -114,10 +143,28 @@ package classes.TITSSaveEdit
 			ui.middleText.text = "";
 			ui.bottomText.text = "";
 			
-			character = new TiTsCharacterData();
-			character.loadSaveObject(data);
-			
-			fillUI();
+			try
+			{
+				character = data;
+				fillUI();
+			}
+			catch (error:DataError)
+			{
+				ui.hideMain();
+				ui.clearOutput();
+				ui.output("An error occured whilst attempting to load save data.\n\n");
+				ui.output("Error: " + error.message);
+				ui.buffRender();
+			}
+			catch (error:Error)
+			{
+				ui.hideMain();
+				ui.clearOutput();
+				ui.output("An unspecified error occured.\n\n");
+				ui.output("Error: " + error.message);
+				ui.output("\n\nThe error message will most likely be blank when not running within the Flash deblug player. Please report this error and provide your save along with the report.");
+				ui.buffRender();
+			}
 		}
 		
 		public function resetCharacterData():void

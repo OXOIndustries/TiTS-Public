@@ -21,7 +21,7 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _girlCumType:ComboLabelPair;
 		private var _ballFullness:InputLabelPair;
 		private var _ballEfficiency:InputLabelPair;
-		private var _refactoryRate:InputLabelPair;
+		private var _refractoryRate:InputLabelPair;
 		private var _milkType:ComboLabelPair;
 		private var _milkMultiplier:InputLabelPair;
 		private var _milkStorageMultiplier:InputLabelPair;
@@ -40,8 +40,8 @@ package classes.TITSSaveEdit.UI.Controls
 		public function get ballEfficiency():Number { return Number(_ballEfficiency.inputValue); }
 		public function set ballEfficiency(v:Number):void { _ballEfficiency.inputValue = String(v); }
 		
-		public function get refactoryRate():Number { return Number(_refactoryRate.inputValue); }
-		public function set refactoryRate(v:Number):void { _refactoryRate.inputValue = String(v); }
+		public function get refractoryRate():Number { return Number(_refractoryRate.inputValue); }
+		public function set refractoryRate(v:Number):void { _refractoryRate.inputValue = String(v); }
 		
 		public function get milkType():int { return int(_milkType.inputValue); }
 		public function set milkType(v:int):void { _milkType.inputValue = int(v); }
@@ -122,10 +122,10 @@ package classes.TITSSaveEdit.UI.Controls
 			_ballEfficiency.labelText = "Ball Efficiency";
 			_ballEfficiency.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
-			_refactoryRate = new InputLabelPair();
-			AddControl(_refactoryRate);
-			_refactoryRate.labelText = "Refactory Rate";
-			_refactoryRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			_refractoryRate = new InputLabelPair();
+			AddControl(_refractoryRate);
+			_refractoryRate.labelText = "Refractory Rate";
+			_refractoryRate.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_milkType = new ComboLabelPair();
 			AddControl(_milkType);

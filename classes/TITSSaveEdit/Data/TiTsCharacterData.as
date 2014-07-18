@@ -13,7 +13,7 @@ package classes.TITSSaveEdit.Data
 	 * @author Gedan
 	 */
 	
-	public dynamic class TiTsCharacterData
+	public class TiTsCharacterData
 	{
 		public var backup:Object;
 		public var propertyNames:Array = [
@@ -44,7 +44,7 @@ package classes.TITSSaveEdit.Data
 			"girlCumType",
 			"ballFullness",
 			"ballEfficiency",
-			"refactoryRate",
+			"refractoryRate",
 			"milkType",
 			"milkMultiplier",
 			"milkStorageMultiplier",
@@ -140,7 +140,7 @@ package classes.TITSSaveEdit.Data
 		public var girlCumType:Number;
 		public var ballFullness:Number;
 		public var ballEfficiency:Number;
-		public var refactoryRate:Number;
+		public var refractoryRate:Number;
 		public var milkType:Number;
 		public var milkMultiplier:Number;
 		public var milkStorageMultiplier:Number;
@@ -315,7 +315,7 @@ package classes.TITSSaveEdit.Data
 			girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			ballFullness = 100;
 			ballEfficiency = 3;
-			refactoryRate = 1;
+			refractoryRate = 1;
 			milkType = 0;
 			milkMultiplier = 0;
 			milkStorageMultiplier = 1;
@@ -383,9 +383,14 @@ package classes.TITSSaveEdit.Data
 			
 			for each (var property:String in propertyNames)
 			{
-				if (property == "_physiqueRaw")
+				if (o[property] == undefined)
 				{
-					trace("bp");
+					throw new DataError("Couldn't find property name " + property + " on the incoming data object.", 0);
+				}
+				
+				if (this[property] == undefined)
+				{
+					throw new DataError("Couldn't find property name " + property + " on the Editor Character storage shim.", 1);
 				}
 				
 				if (property == "backup")
@@ -433,8 +438,6 @@ package classes.TITSSaveEdit.Data
 					if (o[property] is Number && isNaN(o[property])) continue;
 					this[property] = o[property];
 				}
-				
-				trace("end bp");
 			}
 		}
 		
