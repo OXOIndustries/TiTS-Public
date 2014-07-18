@@ -463,6 +463,59 @@ package classes.TITSSaveEdit.Data
 			var newO:Object = cp.readObject();
 			return newO;
 		}
+		
+		// Assistance functions to generate the stored save file data used for slot indent
+		public function mfn(m:String, f:String, n:String = null):String
+		{
+			var w:Number = femininity;
+			
+			if (biggestTitSize() >= 1)
+			{
+				if (biggestTitSize() * 3 > 50) w += 50;
+				else w += biggestTitSize() * 3;
+			}
+			else if (biggestTitSize() == 0)
+			{
+				w -= 20;
+			}
+			
+			if (hipRatingRaw >= 6) w += hipRatingRaw * 1.5;
+			else w -= (6 - hipRatingRaw) * 3;
+			
+			if (hairLength > 8) w += (hairLength - 7) * 1.5;
+			else w -= (8 - hairLength) * 1.5;
+			
+			if (tone > 70) w -= 10;
+			if (tone < 30) w += 10;
+			
+			if (lipMod > 1) w += lipMod * 3;
+			
+			if (n != null)
+			{
+				if (w >= 45 && w <= 55) return n;
+				if (w <= 45) return m;
+				return f;
+			}
+			else
+			{
+				if (w < 50) return m;
+				return f;
+			}
+		}
+		
+		public function biggestTitSize():Number
+		{
+			if (breastRows.length == 0) return -1;
+			
+			var ret:Number = -1;
+			
+			for (var i:int = 0; i < breastRows.length; i++)
+			{
+				if (breastRows[i].breastRating() > ret) ret = breastRows[i].breastRating();
+			}
+			
+			return ret;
+		}
 	}
 
 }

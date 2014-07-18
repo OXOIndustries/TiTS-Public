@@ -187,6 +187,10 @@ package classes.TITSSaveEdit.Data
 				var charObj:Object = _storedCharacter.getSaveObject();
 				dataObject.characters["PC"] = charObj;
 				
+				// Update the static lookup values used for save ident
+				dataObject.saveName = _storedCharacter.short;
+				dataObject.playerGender = _storedCharacter.mfn("M", "F", "A");
+				
 				var targetSO:SharedObject;
 				
 				// Open the target save if required
