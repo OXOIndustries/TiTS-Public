@@ -130,7 +130,8 @@ package classes.TITSSaveEdit
 		private function loadTitsSave():void
 		{
 			ui.hideAll();
-			ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
+			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
+			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			dataMan.showLoadMenu();
 		}
 		
@@ -147,6 +148,8 @@ package classes.TITSSaveEdit
 			{
 				character = data;
 				fillUI();
+				ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
+				ui.saveButton.setData("Save Changes", saveChangedData, undefed, "Save changes", "Save changes that have been made to the current save slot.");
 			}
 			catch (error:DataError)
 			{
