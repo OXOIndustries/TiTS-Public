@@ -84,7 +84,7 @@ package classes.TITSSaveEdit.UI.Controls
 			
 			_input.x = 148;
 			_input.y = 2;
-			_input.width = 234;
+			_input.width = 233;
 			_input.height = 80;
 			this.addChild(_input);
 		}

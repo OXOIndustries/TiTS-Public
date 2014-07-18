@@ -20,7 +20,7 @@ package classes.TITSSaveEdit
 	 * ...
 	 * @author Gedan
 	 */
-	public class Main extends Sprite 
+	public class TiTsSE extends Sprite 
 	{
 		private var ui:SEUserInterface;
 		private var dataMan:SEDataManager;
@@ -51,7 +51,7 @@ package classes.TITSSaveEdit
 		 */
 		public var SupportedSaveVersion:int = 13;
 		
-		public function Main():void 
+		public function TiTsSE():void 
 		{
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);

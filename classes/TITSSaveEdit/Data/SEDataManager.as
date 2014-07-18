@@ -9,7 +9,7 @@ package classes.TITSSaveEdit.Data
 	import classes.TITSSaveEdit.UI.SEButtonTray;
 	import classes.StringUtil;
 	import flash.utils.ByteArray;
-	import classes.TITSSaveEdit.Main;
+	import classes.TITSSaveEdit.TiTsSE;
 	import classes.UIComponents.MainButton;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
@@ -144,7 +144,7 @@ package classes.TITSSaveEdit.Data
 			this.visible = true;
 		}
 		
-		public function loadTiTsSave(slot:int):Object
+		public function loadTiTsSave(slot:int):void
 		{
 			_loadedFromSlot = slot;
 			
@@ -153,7 +153,7 @@ package classes.TITSSaveEdit.Data
 			
 			var titsData:TiTsCharacterData = new TiTsCharacterData();
 			titsData.loadSaveObject(dataObject.characters["PC"]);
-			setTITSData(titsData);
+			(parent as TiTsSE).setTITSData(titsData);
 		}
 		
 		public function saveTiTsSlot(object:Object, slot:int = -1):void
