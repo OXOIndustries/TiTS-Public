@@ -15,17 +15,7 @@ package classes.TITSSaveEdit.Data
 		public var level:int;
 		public var xp:int;
 		
-		public var fatigue:int;
 		public var femininity:int;
-		
-		public var intelligence:int;
-		public var libido:int;
-		public var lust:int;
-		public var strength:int;
-		public var sensetivity:int;
-		public var toughness:int;
-		
-		public var speed:int;
 		
 		public var skinAdj:String;
 		public var skinDesc:String;
@@ -36,6 +26,7 @@ package classes.TITSSaveEdit.Data
 		public var tailType:int;
 		public var tallness:int;
 		public var tone:int;
+		public var thickness:int;
 		public var tongueType:int;
 		public var wingDesc:String;
 		public var wingType:int;
