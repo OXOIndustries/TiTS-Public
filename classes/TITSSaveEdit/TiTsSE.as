@@ -46,7 +46,7 @@ package classes.TITSSaveEdit
 		 * enough to warrant a version bump, the editor will no longer work until it is also attended to. Effectively
 		 * a "hey dumbass fix me too" alarm.
 		 */
-		public var SupportedSaveVersion:int = 13;
+		public var SupportedSaveVersion:int = 14;
 		
 		// Copying the TiTs version string.
 		public var EditorVersion:String = "0.02.40";
