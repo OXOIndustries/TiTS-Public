@@ -127,12 +127,21 @@ package classes.TITSSaveEdit
 			}
 		}
 		
+		/**
+		 * TiTs specific functions
+		 */
 		private function loadTitsSave():void
 		{
 			ui.hideAll();
 			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			dataMan.showLoadMenu();
+		}
+		
+		public function showMain():void
+		{
+			dataMan.visible = false;
+			ui.showMain();
 		}
 		
 		public function setTITSData(data:TiTsCharacterData):void
@@ -149,6 +158,7 @@ package classes.TITSSaveEdit
 				character = data;
 				fillUI();
 				ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
+				ui.importButton.setData("Import CoC", importCoCData, undefined, "Import CoC Data", "Import character appearance data from a CoC save.");
 				ui.saveButton.setData("Save Changes", saveChangedData, undefined, "Save changes", "Save changes that have been made to the current save slot.");
 			}
 			catch (error:DataError)
@@ -170,6 +180,18 @@ package classes.TITSSaveEdit
 			}
 		}
 		
+		/**
+		 * CoC specific functions
+		 */
+		public function importCoCData():void
+		{
+			ui.hideAll();
+			dataMan.showCoCMenu();
+		}
+		
+		/**
+		 * General stuff section
+		 */
 		public function resetCharacterData():void
 		{
 			character.resetToInitialState();

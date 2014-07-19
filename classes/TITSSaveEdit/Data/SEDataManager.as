@@ -71,6 +71,9 @@ package classes.TITSSaveEdit.Data
 			return ret;
 		}
 		
+		/**
+		 * TiTs load menu
+		 */
 		public function showLoadMenu():void
 		{
 			this.visible = true;
@@ -102,6 +105,12 @@ package classes.TITSSaveEdit.Data
 			_text.htmlText = msg + "\n";
 		}
 		
+		/**
+		 * Generate a preview string for the given TiTs save
+		 * @param	data	Object to generate for
+		 * @param	slotNum	Slot number the save resides at
+		 * @return
+		 */
 		private function generateSavePreview(data:SharedObject, slotNum:int):String
 		{
 			var returnString:String = "";
@@ -132,6 +141,11 @@ package classes.TITSSaveEdit.Data
 			return returnString;
 		}
 		
+		/**
+		 * Determine if the save is compatible with arbitrary datamanager requirements
+		 * @param	dataFile	Data file to inspect
+		 * @return				Bool true/false for compatibility
+		 */
 		private function slotCompatible(dataFile:SharedObject):Boolean
 		{
 			if (dataFile.data.version == undefined)	return false;
@@ -140,6 +154,10 @@ package classes.TITSSaveEdit.Data
 			return true;
 		}
 		
+		/**
+		 * Show the save menu for character data.
+		 * @param	newCharData
+		 */
 		public function showSaveMenu(newCharData:TiTsCharacterData):void
 		{
 			_storedCharacter = newCharData;
@@ -163,6 +181,10 @@ package classes.TITSSaveEdit.Data
 			_text.htmlText = msg + "\n";
 		}
 		
+		/**
+		 * Load data from the specified TiTs slot number
+		 * @param	slot
+		 */
 		public function loadTiTsSave(slot:int):void
 		{
 			_loadedFromSlot = slot;
@@ -176,6 +198,10 @@ package classes.TITSSaveEdit.Data
 			(parent as TiTsSE).setTITSData(titsData);
 		}
 		
+		/**
+		 * Save data to the specified TiTs slot number
+		 * @param	slotNum
+		 */
 		public function saveTiTsSave(slotNum:int):void
 		{
 			// Grab the file that the current character was loaded from
@@ -223,11 +249,10 @@ package classes.TITSSaveEdit.Data
 			}	
 		}
 		
-		public function loadCoCSave(slot:int):void
-		{
-			
-		}
-		
+		/**
+		 * Button activation function
+		 * @param	evt
+		 */
 		private function buttonFunctor(evt:Event = null):void
 		{
 			if (evt.currentTarget is MainButton)
@@ -249,6 +274,74 @@ package classes.TITSSaveEdit.Data
 			}
 		}
 		
+		public function showCoCMenu():void
+		{
+			this.visible = true;
+			
+			_text.htmlText = "";
+			_buttonTray.clearMenu();
+			
+			var msg:String = "<span class='words'><p>";
+			msg += "<b>Which save would you like to import?</b>";
+			
+			for (var i:int = 1; i <= 9; i++)
+			{
+				var dataFile:SharedObject = SharedObject.getLocal("CoC_" + String(i), "/");
+				msg += generateCoCSavePreview(dataFile.data, i);
+				
+				if (CoCSlotCompatible(dataFile.data))
+				{
+					_buttonTray.addButton(i - 1, "Slot " + i, loadCoCSave, i, "Load CoC Slot " + i, "Load save data from CoC slot " + i + ".");
+				}
+				else
+				{
+					_buttonTray.addDisabledButton(i - 1, "Slot " + i, "Load CoC Slot " + i, "Load save data from CoC slot " + i + ".");
+				}
+			}
+			
+			_buttonTray.addDisabledButton(10, "Load File", "Load from File", "Import CoC character data from a file saved using the Save to File feature in CoC.");
+			_buttonTray.addButton(14, "Back", (parent as TiTsSE).showMain, undefined, "Back", "Abort CoC data import.");
+			
+			
+			msg += "</span></p>";
+		}
+		
+		private function generateCoCSavePreview(saveFile:Object, slotName:String):String
+		{
+			if (saveFile.exists == false)
+			{
+				return (String(slotNum) + ": <b>EMPTY</b>\n\n");
+			}
+			
+			var returnString:String = "";
+			
+			returnString += String(slotNum);
+			returnString += ": <b>" + saveFile.short + "</b>";
+			returnString += " - <i>" + saveFile.notes + "</i>\n";
+			returnString += "\t<b>Days:</b> " + saveFile.days
+			returnString += "  <b>Gender:</b> ";
+			
+			if (saveFile.gender == 0) returnString += "U";
+			else if (saveFile.gender == 1) returnString += "M";
+			else if (saveFile.gender == 2) returnString += "F";
+			else if (saveFile.gender == 3) returnString += "H";
+			
+			returnString += "\n";
+			return returnString;
+		}
+		
+		private function CoCSlotCompatible(saveFile:Object):Boolean
+		{
+			if (saveFile.exists == true) return true;
+			return false;
+		}
+		
+		/**
+		 * Use ByteArray to make a complete copy of the given object to disconnect it from
+		 * SharedObject referencing
+		 * @param	o
+		 * @return
+		 */
 		private function clone(o:Object):Object
 		{
 			var cp:ByteArray = new ByteArray();
