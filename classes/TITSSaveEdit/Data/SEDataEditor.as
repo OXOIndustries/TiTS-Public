@@ -118,8 +118,8 @@ package classes.TITSSaveEdit.Data
 			
 			// This makes an attempt to convert the nippleLength from CoC data to the ratios used in TiTs based on the
 			// largest breast size found.
-			tits.nippleLengthRatio = (coc.nippleLength / 0.25) / ((10 + biggestBRating) / 10);
-			tits.nippleWidthRatio = (coc.nippleLength / 0.5) / ((10 + biggestBRating) / 10);
+			tits.nippleLengthRatio = 4 * (coc.nippleLength / biggestBRating);
+			tits.nippleWidthRatio = 2 * (coc.nippleLength / biggestBRating); // We don't have a width property to use, so this may need "play" to get ok-ish from Leng.
 			
 			tits.dickNippleType = 0;
 			tits.dickNippleMultiplier = 2;
@@ -206,10 +206,7 @@ package classes.TITSSaveEdit.Data
 				
 				titsCock.cLengthRaw = cocCock.cockLength;
 				
-				// Try and build the ratio based off the assertion that 5.5l == 1t
-				// l / lDefault * t = tRatio
-				titsCock.cThicknessRatioRaw = (cocCock.cockLength / 5.5) * cocCock.cockThickness;
-				
+				titsCock.cThicknessRatioRaw = 6 * (cocCock.cockThickness / cocCock.cockLength);	
 				titsCock.knotMultiplier = cocCock.knotMultiplier;
 				
 				//titsCock.cockColor = ???
