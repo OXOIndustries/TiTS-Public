@@ -291,7 +291,7 @@ package classes.TITSSaveEdit.Data
 				
 				if (CoCSlotCompatible(dataFile.data))
 				{
-					_buttonTray.addButton(i - 1, "Slot " + i, loadCoCSave, i, "Load CoC Slot " + i, "Load save data from CoC slot " + i + ".");
+					_buttonTray.addButton(i - 1, "Slot " + i, loadCoCSol, i, "Load CoC Slot " + i, "Load save data from CoC slot " + i + ".");
 				}
 				else
 				{
@@ -304,6 +304,22 @@ package classes.TITSSaveEdit.Data
 			
 			
 			msg += "</span></p>";
+		}
+		
+		private function loadCoCSol(slotNum:int):void
+		{
+			var dataFile:SharedObject = SharedObject.getLocal("CoC_" + String(slotNum), "/");
+			var dataObject:Object = copyObject(dataFile);
+			
+			var cocData:CoCCharacterData = new CoCCharacterData();
+			cocData.loadSaveObject(dataObject);
+			
+			(parent as TiTsSE).setCoCData(cocData);
+		}
+		
+		private function loadCoCFile(dataFile:Object):void
+		{
+			
 		}
 		
 		private function generateCoCSavePreview(saveFile:Object, slotName:String):String

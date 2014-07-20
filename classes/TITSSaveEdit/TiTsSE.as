@@ -1,5 +1,6 @@
 package classes.TITSSaveEdit
 {
+	import classes.TITSSaveEdit.Data.CoCCharacterData;
 	import classes.TITSSaveEdit.Data.TiTsCharacterData;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -15,6 +16,7 @@ package classes.TITSSaveEdit
 	import classes.TITSSaveEdit.UI.blockHeader;
 	
 	import classes.TITSSaveEdit.Data.DataError;
+	import classes.TITSSaveEdit.Data.SEDataEditor;
 	
 	/**
 	 * ...
@@ -178,6 +180,12 @@ package classes.TITSSaveEdit
 				ui.output("\n\nThe error message will most likely be blank when not running within the Flash deblug player. Please report this error and provide your save along with the report.");
 				ui.buffRender();
 			}
+		}
+		
+		public function setCoCData(data:CoCCharacterData):void
+		{
+			SEDataEditor.mergeData(character, data);
+			fillUI();
 		}
 		
 		/**
