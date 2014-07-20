@@ -79,6 +79,8 @@ package classes.TITSSaveEdit.Data
 			// Setup to read max rows for TiTs data structure
 			var numRows:int = (coc.breastRows.length <= 10) ? coc.breastRows.length : 10;
 			var biggestBRating:Number = 0;
+			var totalNips:int = 0;
+			var totalBoobs:int = 0;
 			
 			for (var i:int = 0; i < numRows; i++)
 			{
@@ -90,7 +92,10 @@ package classes.TITSSaveEdit.Data
 				if (titsRow.breastRatingRaw > biggestBRating) biggestBRating = titsRow.breastRatingRaw;
 				
 				titsRow.breasts = 2; // CoC never sets anything other than 2.
-				titsRow.nipplesPerBreast = cocRow.nipplesPerBreast;
+				totalBoobs += 2;
+				
+				totalNips += cocRow.nipplesPerBreast;
+				
 				titsRow.breastRatingLactationMod = cocRow.lactationMultiplier;
 				titsRow.fullness = cocRow.milkFullness;
 				
@@ -100,12 +105,15 @@ package classes.TITSSaveEdit.Data
 				}
 			}
 			
+			tits.nipplesPerBreast = Math.floor(totalNips / totalBoobs);
+			if (tits.nipplesPerBreast < 1) tits.nipplesPerBreast = 1; // I don't think no-nips is possible in CoC like it (presumably - see Jade) is with TiTs.
+			
 			// Try and gen default values for stuff
 			
 			// This makes an attempt to convert the nippleLength from CoC data to the ratios used in TiTs based on the
 			// largest breast size found.
 			tits.nippleLengthRatio = (coc.nippleLength / 0.25) / ((10 + biggestBRating) / 10);
-			tits.nippleWidthRatio = (coc.nippleLength / 0.5) / ((10 + buggestBRating) / 10);
+			tits.nippleWidthRatio = (coc.nippleLength / 0.5) / ((10 + biggestBRating) / 10);
 			
 			tits.dickNippleType = 0;
 			tits.dickNippleMultiplier = 2;
@@ -358,7 +366,7 @@ package classes.TITSSaveEdit.Data
 			
 			// No flags are actually ever added to the player yet afaik although descriptors/sceneflow is setup to
 			// support some.
-			tits.tongeFlags = [];
+			tits.tongueFlags = [];
 		}
 		
 		private static const CONVERT_WING_TYPES:Array;

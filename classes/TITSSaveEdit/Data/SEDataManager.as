@@ -322,7 +322,7 @@ package classes.TITSSaveEdit.Data
 			
 		}
 		
-		private function generateCoCSavePreview(saveFile:Object, slotName:String):String
+		private function generateCoCSavePreview(saveFile:Object, slotNum:int):String
 		{
 			if (saveFile.exists == false)
 			{

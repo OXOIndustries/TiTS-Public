@@ -111,7 +111,7 @@ package classes.TITSSaveEdit.Data
 			"analVirgin",
 			"eyeType",
 			"eyeColor",
-			"cumMultiplier",
+			"cumMultiplierRaw",
 		];
 		
 		// General
@@ -341,6 +341,9 @@ package classes.TITSSaveEdit.Data
 			timesCum = 0;
 			minutesSinceCum = 0;
 			cumMultiplierRaw = 1;
+			
+			eyeType = 0;
+			eyeColor = "blue";
 		}
 		
 		public function getSaveObject():Object

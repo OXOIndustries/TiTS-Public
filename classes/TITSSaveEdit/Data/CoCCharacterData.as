@@ -41,17 +41,20 @@ package classes.TITSSaveEdit.Data
 		public var hairColor:String;
 		public var hairType:int;
 		public var hairLength:int;
-		public var hipRating:int;
 		public var hornType:int;
 		public var horns:int;
-		
+		public var earType:int;
+				
 		public var hoursSinceCum:int;
+		
+		public var buttRating:Number;
+		public var hipRating:int;
+		
 		public var balls:int;
 		public var ballSize:Number;
-		public var buttRating:Number;
-		public var clitLength:Number;
 		public var cumMultiplier:Number;
-		public var earType:int;		
+
+		public var clitLength:Number;
 		
 		public var ass:CoCAssClass;
 		public var breastRows:Array;
