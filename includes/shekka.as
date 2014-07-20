@@ -184,7 +184,7 @@ function shekkaAppearance():void
 	userInterface.showName("\nSHEKKA");
 	output("From Shekka's distinctively long ears to egg-bearing hips that easily dwarf her narrow shoulders, she is a prime example of a healthy raskvel woman. Her feathery plumage is long for her species, down past the nape of her neck and dyed into a comely pink mane. A twist of wire wraps some of the feathers together into a tight cord that hangs down the side of her face for simple ornamentation. Just above it, her ears emerge. They're long and floppy, as you've come to expect, and dangle down to her ankles. She has perhaps the biggest ears of any raskvel you've met, and they are so heavily pierced that her every movement is accompanied by musical chiming.");
 	output("\n\nShekka's face features two pink, slitted eyes, a button nose, and large but uncared for lips. She could really doll herself up if she desired, but it's clear that the inquisitive raskvel has interests beyond her own potential beauty. Her smile is still quite winsome, and her large eyes make you question if you'd be able to turn her down if she were to beg for something.");
-	output("\n\nThe rest of her body, including her hands, feet and tail, is shrink-wrapped in a white, hex-patterned jumpsuit bearing the symbol the Aegis Shipyards LLC over one B-cup breast. In spite of the full body cover, she manages to make it look absolutely lewd. Her nipples stick out as if shrink-wrapped, and her lush netherlips appear enhanced rather than covered by the nano-weave fabric. You can even make out the twin bumps of her front and rear clits! Given the intelligent gleam in her eyes, you can only assume that she doesn't care much for modesty. One doesn't simply \"forget\" to wear underwear with a garment like that.");
+	output("\n\nThe rest of her body, including her hands, feet and tail, is covered in a white, hex-patterned jumpsuit bearing the symbol the Aegis Shipyards LLC over one B-cup breast. In spite of the full body cover, she manages to make it look absolutely lewd. Her nipples stick out as if shrink-wrapped, and her lush netherlips appear enhanced rather than covered by the nano-weave fabric. You can even make out the twin bumps of her front and rear clits! Given the intelligent gleam in her eyes, you can only assume that she doesn't care much for modesty. One doesn't simply \"forget\" to wear underwear with a garment like that.");
 	if(flags["TIMES_SEXED_SHEKKA"] != undefined) output("\n\nYou know from experience that her pussy and tongue are both a deep, vibrant purple, while her nipples are a lighter eggplant shade. Her scales are pale red from the top of her head to her toes.");
 	else output("\n\nYou can only guess at the coloration of her alien genitalia, but one thing you can tell is that her scales are a pale red in hue. Likely the pigmentation continues below the neckline of her jumpsuit. You'd have to talk her out of it if you wanted to confirm, though.");
 	//No new paragraph:
@@ -204,7 +204,10 @@ function talkToShekka():void
 	if(flags["SHEKKA_TALK_COOLDOWN"] == undefined)
 	{
 		flags["SHEKKA_TALK_COOLDOWN"] = 6;
-		output("Shekka smiles. <i>\"You sure you're a real rusher? The rest of them buy what they need and charge out into the wilderness without looking at me twice. If you spend too much time schmoozing with the locals, how do you expect to make a fortune?\"</i> She blinks innocently. <i>\"That's not to say that I don't mind your company. I just don't want to cost you anything more than what I actually charge.\"</i>");
+		output("Shekka smiles. <i>\"You sure you're a real rusher? The rest of them buy what they need and ");
+		if(flags["TARKUS_DESTROYED"] == 1) output("fly off to their next destination without looking at me twice.");
+		else output("charge out into the wilderness without looking at me twice.");
+		output(" If you spend too much time schmoozing with the locals, how do you expect to make a fortune?\"</i> She blinks innocently. <i>\"That's not to say that I don't mind your company. I just don't want to cost you anything more than what I actually charge.\"</i>");
 		output("\n\nYou inform her that you only have to beat one person out there. Even then, you'll get to go up against " + chars["RIVAL"].mf("him","her") + " a lot more before this is all over.");
 		output("\n\n<i>\"Great! I was wanting to take a break anyway. Got something in mind?\"</i> Shekka asks with a tilt of her head. Her ears softly jingle.");
 	}
@@ -250,23 +253,44 @@ function talkToShekkaAboutTarkus():void
 	clearOutput();
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
-	output("You mention that you'd like to hear more about Tarkus from a local's perspective.");
-	output("\n\n<i>\"That's... a smart question, [pc.name],\"</i> Shekka observes. <i>\"Most people that stop to ask me something are either trying to make a joke at my expense or wanting to know if our vaginal secretions are acidic.\"</i> She rolls her eyes. <i>\"I even had someone asking me if goo-girls were likely to gum up artificial genitalia. I told him no, of course. Any cybernetic dick worth its cock-mustard would be built to handle a little aqueous loving.\"</i>");
-	output("\n\nThere is no way you can avoid cocking an eyebrow to such a fact.");
-	output("\n\n<i>\"Pshhh, if that makes your carburetor sputter, I've got some stories for you!\"</i> Shekka teases while walking over to her workbench. She leans against it like an old friend. <i>\"But you wanted to hear about Tarkus, so I might as well stick to the topic at hand.\"</i>");
-	output("\n\nYou ");
-	if(pc.isNice()) output("smile and");
-	else if(pc.isMischievous()) output("grin and");
-	else output("coldly");
-	output(" agree.");
-	output("\n\n<i>\"I can tell you what my people know, which is about as limited as a sexbots vocabulary, unfortunately. We've never been much for record-keeping,\"</i> the raskvel notes, <i>\"but so far as we can tell, Tarkus is put together from two different half-planets of about the same size and composition. We figure the goblins must have trashed them both and then picked up the pieces rather than jumping out of system. There's more than a few asteroid belts out there thanks to them.\"</i> She sighs. <i>\"They might be the only ones on this rust ball more destructive than my own people.\"</i>");
-	output("\n\n<i>\"What do you mean?\"</i> you ask.");
-	output("\n\nSighing even more heavily, Shekka goes on, <i>\"Most raskvel don't really... What's the word you humans have for it? Oh! Plan! They don't really plan ahead. If a tribe is already straining their food supply, they'll keep on fucking like nobody's business. If there's no more room in the warrens for any more of us, they'll just keep laying eggs and kick out the least popular among them.\"</i> She puffs out her cheeks in frustration. <i>\"We're the same way with machines too. Put a radiation-spewing reactor a few miles away from a tribe, and in a few weeks we'll either have it fixed or be dying from radiation poisoning.\"</i>");
-	output("\n\nReally? You can't help but look a little incredulous.");
-	output("\n\nShekka nods. <i>\"Really. We can't help it. When we see something broken - the more technological the better - we get almost like this itch in the back of our heads. We have to go poke around it, prod it, and try to fix it. It's impossible not to! And then when we do fix something?\"</i> She sags a little bit against the bench, her fingers gripping it hard. <i>\"It's almost as good as sex. Not as passionate or pleasure-filled, but the satisfaction... ohhh, the satisfaction. You ever have a nice meal after having to go hungry for a while? Turning something from garbage into a working, productive machine is at least twice that good.\"</i> Her pink, slitted eyes twinkle. <i>\"Why do you think I'm here, making my living fixing and selling gadgets?\"</i>");
-	output("\n\nYou tell her she ought to consider lowering her prices.");
-	output("\n\n<i>\"Not on your life, [pc.name]. I'm the best mechanic in Novahome, and you're nuts if you think that I'm going to cheapen my skills just because I get a thrill out of practicing them!\"</i> She shakes her head. <i>\"Anyways, the goblins fucked this planet up something fierce. Some of 'em live in the filth around us, but a fair portion of them moved up into their space station. Now they just make us mine up resources or enslave us while the rest of us try to make a living off their garbage.\"</i> Scowling, Shekka pushes off her workbench and paces. <i>\"They treat us like animals.\"</i>");
-	output("\n\nA gout of steam issues forth from a device that looks like little more than tangled pipes strapped to a display, starting the both of you. Shekka straightens, though her shoulders seem burdened by unspoken responsibility. <i>\"Looks like duty calls, [pc.name]. Talk later, 'kay?\"</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined) 
+	{
+		output("You mention that you'd like to hear more about Tarkus from a local's perspective.");
+		output("\n\n<i>\"That's... a smart question, [pc.name],\"</i> Shekka observes. <i>\"Most people that stop to ask me something are either trying to make a joke at my expense or wanting to know if our vaginal secretions are acidic.\"</i> She rolls her eyes. <i>\"I even had someone asking me if goo-girls were likely to gum up artificial genitalia. I told him no, of course. Any cybernetic dick worth its cock-mustard would be built to handle a little aqueous loving.\"</i>");
+		output("\n\nThere is no way you can avoid cocking an eyebrow to such a fact.");
+		output("\n\n<i>\"Pshhh, if that makes your carburetor sputter, I've got some stories for you!\"</i> Shekka teases while walking over to her workbench. She leans against it like an old friend. <i>\"But you wanted to hear about Tarkus, so I might as well stick to the topic at hand.\"</i>");
+		output("\n\nYou ");
+		if(pc.isNice()) output("smile and");
+		else if(pc.isMischievous()) output("grin and");
+		else output("coldly");
+		output(" agree.");
+		output("\n\n<i>\"I can tell you what my people know, which is about as limited as a sexbot's vocabulary, unfortunately. We've never been much for record-keeping,\"</i> the raskvel notes, <i>\"but so far as we can tell, Tarkus is put together from two different half-planets of about the same size and composition. We figure the goblins must have trashed them both and then picked up the pieces rather than jumping out of system. There's more than a few asteroid belts out there thanks to them.\"</i> She sighs. <i>\"They might be the only ones on this rust ball more destructive than my own people.\"</i>");
+		output("\n\n<i>\"What do you mean?\"</i> you ask.");
+		output("\n\nSighing even more heavily, Shekka goes on, <i>\"Most raskvel don't really... What's the word you humans have for it? Oh! Plan! They don't really plan ahead. If a tribe is already straining their food supply, they'll keep on fucking like nobody's business. If there's no more room in the warrens for any more of us, they'll just keep laying eggs and kick out the least popular among them.\"</i> She puffs out her cheeks in frustration. <i>\"We're the same way with machines too. Put a radiation-spewing reactor a few miles away from a tribe, and in a few weeks we'll either have it fixed or be dying from radiation poisoning.\"</i>");
+		output("\n\nReally? You can't help but look a little incredulous.");
+		output("\n\nShekka nods. <i>\"Really. We can't help it. When we see something broken - the more technological the better - we get almost like this itch in the back of our heads. We have to go poke around it, prod it, and try to fix it. It's impossible not to! And then when we do fix something?\"</i> She sags a little bit against the bench, her fingers gripping it hard. <i>\"It's almost as good as sex. Not as passionate or pleasure-filled, but the satisfaction... ohhh, the satisfaction. You ever have a nice meal after having to go hungry for a while? Turning something from garbage into a working, productive machine is at least twice that good.\"</i> Her pink, slitted eyes twinkle. <i>\"Why do you think I'm here, making my living fixing and selling gadgets?\"</i>");
+		output("\n\nYou tell her she ought to consider lowering her prices.");
+		output("\n\n<i>\"Not on your life, [pc.name]. I'm the best mechanic in Novahome, and you're nuts if you think that I'm going to cheapen my skills just because I get a thrill out of practicing them!\"</i> She shakes her head. <i>\"Anyways, the goblins fucked this planet up something fierce. Some of 'em live in the filth around us, but a fair portion of them moved up into their space station. Now they just make us mine up resources or enslave us while the rest of us try to make a living off their garbage.\"</i> Scowling, Shekka pushes off her workbench and paces. <i>\"They treat us like animals.\"</i>");
+		output("\n\nA gout of steam issues forth from a device that looks like little more than tangled pipes strapped to a display, starting the both of you. Shekka straightens, though her shoulders seem burdened by unspoken responsibility. <i>\"Looks like duty calls, [pc.name]. Talk later, 'kay?\"</i>");
+	}
+	else
+	{
+		output("You mention that you'd like to hear about Tarkus from a local's perspective, now that it's gone.");
+		output("\n\n<i>\"That's... an uncomfortable question, [pc.name],\"</i> Shekka quietly answers. <i>\"It was our our home - our cradle. We didn't just live on it, it shaped us into what we are today, and now... now it's gone.\"</i> The short-statured mechanic shivers. <i>\"In a way, it feels wrong that we survived when Tarkus died. She was a shit-heap, but she was our shit-heap.\"</i>");
+		output("\n\nYou nod");
+		if(!pc.isAss()) output(" understandingly");
+		else output(", hoping she'll hurry along");
+		output(".");
+		output("\n\nShekka fiddles with an oversized wrench that has a shotgun embedded into the handle. <i>\"I won't lie, we picked up a lot of negative traits surviving on the ol' junk-ball, but it didn't deserve to die for them.\"</i> Shaking her head, the pink-haired woman sighs. <i>\"They say it was pirates too. Some plot to sneak a mining operation at the core that went tits up.\"</i> She spits. <i>\"We blamed the goblins at first, too. Turns out they were as fucked by this as us. Their space station took a pretty good beating from the debris.\"</i>");
+		output("\n\nYou've heard about that, but you wanted to know more about life on the planet.");
+		output("\n\nShekka reads your look, and explains, <i>\"I can tell you what my people know, but that's about as limited as a sexbot's vocabulary. We've never been much for record keeping, you see.\"</i> She gestures around her shop. At first, you respond with confusion. Then, you see what she means; there isn't a single scribble or note anywhere aside from company stamps on machinery. <i>\"So far as we can tell, Tarkus was put together from two different half-planets of about the same size and composition. We figure the goblins must have trashed them both and then picked up the pieces rather than jumping out of system. There's more than a few asteroid belts out there thanks to them.\"</i> She sighs. <i>\"And now one more is added to the list. Damn pirates\"</i>");
+		output("\n\nSighing even more heavily, Shekka goes on, <i>\"Most raskvel don't really... What's the word you humans have for it? Oh! Plan. They don't really plan ahead. If a tribe is already straining their food supply, they'd keep on fucking like nobody's business. If there's no more room in the warrens, they'd just keep laying eggs and kick out the least popular among them. Of course, that's not an option now. We need a better solution before we starve.\"</i> She puffs out her cheeks in frustration. <i>\"We're the same way with machines too. Put a radiation-spewing reactor a few miles away from a tribe, and in a few weeks we'll either have it fixed or be dying from radiation poisoning.\"</i>");
+		output("\n\nReally? You can't help but look a little incredulous.");
+		output("\n\nShekka nods. <i>\"Really. We can't help it. When we see something broken - the more technological the better - we get almost like this itch in the back of our heads. We have to go poke around it, prod it, and try to fix it. It's impossible not to! And then when we do fix something?\"</i> She sags a little bit against the bench, her fingers gripping it hard. <i>\"It's almost as good as sex. Not as passionate or pleasure-filled, but the satisfaction... ohhh, the satisfaction. You ever have a nice meal after having to go hungry for a while? Turning something from garbage into a working, productive machine is at least twice that good.\"</i> Her pink, slitted eyes twinkle. <i>\"Why do you think I'm here, making my living fixing and selling gadgets?\"</i>");
+		output("\n\nYou tell her she ought to consider lowering her prices.");
+		output("\n\n<i>\"Not on your life, [pc.name]. I'm the best mechanic in Novahome, and you're nuts if you think that I'm going to cheapen my skills just because I get a thrill out of practicing them!\"</i> She shakes her head. <i>\"Anyways, the planet's gone now. All that's left of us are the ones living in this ship, and maybe a few over in the goblin's station.");
+		output("\n\nA gout of steam issues forth from a device that looks like little more than tangled pipes strapped to a display, starting the both of you. Shekka straightens, though her shoulders seem burdened by unspoken responsibility. <i>\"Looks like duty calls, [pc.name]. Talk later, 'kay?\"</i>");
+	}
 	flags["SHEKKA_TALKED_TARKUS"] = 1;
 	processTime(15+rand(10));
 	clearMenu();
@@ -281,17 +305,59 @@ function talkToShekkaAboutRaskvel():void
 	userInterface.showName("\nSHEKKA");
 	//Unlocked via Tarkus Chat
 	output("You ask her if she'd like to talk more about her race, the raskvel.");
-	output("\n\n<i>\"Seems a little narcissistic, but if you really want, I suppose I could jabber about my people a little,\"</i> Shekka answers with an exaggerated shrug of her tiny shoulders. She gestures for you to follow and starts milling around pillars of buckers and parts, rambling all the while. <i>\"Near as I see it, we're a byproduct of this metallic dustball your people have christened Tarkus.\"</i> She stops at an oversized bucket and roots around inside it for a part. Her feet flail in the air when she dives a little too deeply and nearly falls in, but she keeps talking all the same.");
-	output("\n\n<i>\"We figure we probably started out on the other half of the planet; there's a lot more of us over there. The farther you get from the divide - that's the space where the planet halves meet - the less of us you tend to run into, at least on this side. Over there we're as thick as fermites in a ruined girder,\"</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>\"Not just us either. The Lapinara are the same way. Maybe we both came from the same ancestor, I don't know. There's enough similarities to make you wonder, right?\"</i>");
+	output("\n\n<i>\"Seems a little narcissistic, but if you really want, I suppose I could jabber about my people a little,\"</i> Shekka answers with an exaggerated shrug of her tiny shoulders. She gestures for you to follow and starts milling around pillars of buckers and parts, rambling all the while. <i>\"Near as I see it, we're a byproduct of ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("this metallic dustball your people have ");
+	else output("the metallic dustball your people had ");
+	output("christened Tarkus.\"</i> She stops at an oversized bucket and roots around inside it for a part. Her feet flail in the air when she dives a little too deeply and nearly falls in, but she keeps talking all the same.");
+	output("\n\n<i>\"We figure we probably started out on the other half of the planet; there");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("'s");
+	else output("was");
+	output(" a lot more of us over there. The farther you ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("get ");
+	else output("got ");
+	output("from the divide - that's the space where the planet halves ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("meet ");
+	else output("met");
+	output("- the less of us ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("you tend to ");
+	else output("you would ");
+	output("run into, at least on ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("this side");
+	else output("the side Novahome was on");
+	output(". Over there ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("we're ");
+	else output("we were ");
+	output("as thick as fermites in a ruined girder,\"</i> Shekka explains while climbing her way out of the bin and searching around for another, still working on something. <i>\"Not just us either. The Lapinara ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("are");
+	else output("were");
+	output(" the same way. Maybe we both came from the same ancestor, I don't know. There's enough similarities to make you wonder, right?\"</i>");
 	output("\n\nYou find yourself nodding, though Shekka is too busy examining serial numbers on power converters to see.");
-	output("\n\n<i>\"Anyhow, like I was saying, I think we're the way we are because of the way Tarkus is. It's a terribly dangerous place filled with poisons, radiation, and machinery that's as likely to rust away as kill you. And us? We're able to identify plenty of poisons by scent alone. We're immune half a dozen others. We can cope with radiation better than most, and we breed almost as fast as we mature. Oh, and there's the bit about us being naturally inclined to tinker and repair with just about anything you put in front of us.\"</i> She comes up with a gleaming cylinder and smiles, first at it, then you.");
-	output("\n\nThose do seem to be traits well matched to surviving in a place like this. You tell her as much.");
-	output("\n\nShekka shakes her head sadly while hooking her prize on a thin belt attached to her jumpsuit. <i>\"Yeah, good for surviving here, but not so good for making it on our own. Focusing on fixing things is great when you've got a race like the goblins leaving broken tech left and right, but what happens if we want to make our own start somewhere? Without something to fix, we're more likely to laze around and fuck than do anything productive. Then what? We overpopulate and starve ourselves out.\"</i> The little mechanic sighs heavily. <i>\"Sorry if I'm getting a little bit grim, but I've been thinking about this a lot.\"</i>");
+	output("\n\n<i>\"Anyhow, like I was saying, I think we're the way we are because of the way Tarkus ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("is. It's");
+	else output("was. It was");
+	output(" a terribly dangerous place filled with poisons, radiation, and machinery that's as likely to rust away as kill you. And us? ");
+	output("We're able to identify plenty of poisons by scent alone. We're immune half a dozen others. We can cope with radiation better than most, and we breed almost as fast as we mature. Oh, and there's the bit about us being naturally inclined to tinker and repair with just about anything you put in front of us.\"</i> She comes up with a gleaming cylinder and smiles, first at it, then you.");
+	output("\n\nThose do seem to be traits well matched to surviving in a place like ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("this");
+	else output("that");
+	output(". You tell her as much.");
+	output("\n\nShekka shakes her head sadly while hooking her prize on a thin belt attached to her jumpsuit. <i>\"Yeah, good for surviving ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("here");
+	else output("there");
+	output(", but not so good for making it on our own. Focusing on fixing things is great when you've got a race like the goblins leaving broken tech left and right, but what happens if we ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("want");
+	else output("have");
+	output(" to make our own start somewhere? Without something to fix, we're more likely to laze around and fuck than do anything productive. Then what? We overpopulate and starve ourselves out.\"</i> The little mechanic sighs heavily. <i>\"Sorry if I'm getting a little bit grim, but I've been thinking about this a lot");
+	if(flags["TARKUS_DESTROYED"] != undefined) output(" since.... You know");
+	output(".\"</i>");
 	output("\n\n<i>\"I don't mind,\"</i> you reply. <i>\"I did want to learn about your people, remember?\"</i>");
 	output("\n\nSmiling, the short-statured alien places her hands on her significant hips and says, <i>\"Well aren't you a breath of contaminant-free air.\"</i> She turns to walk in another direction, crooking a finger your way to indicate that you should keep up. ");
 	if(pc.tallness < 50) output("Luckily, you're short enough to slip after without having to duck under a low arch of well-stacked light fixtures.");
 	else output("You have to duck under an arch of well-stacked light fixtures to follow.");
-	output(" <i>\"So, yeah... we're ideal for surviving on Tarkus, but not for mastering it. We just don't seem to have that creative spark that the goblins are so flush with or the inherent need for greatness that so drives the terrans.\"</i>");
+	output(" <i>\"So, yeah... ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("we're");
+	else output("we were");
+	output(" ideal for surviving on Tarkus, but not for mastering it. We just don't seem to have that creative spark that the goblins are so flush with or the inherent need for greatness that so drives the terrans.\"</i>");
 	output("\n\nTrailing off as she navigates a through a web of charging cables, the sad-eyed raskvel looks for a battery among hundreds. <i>\"I never really thought about this kind of stuff until we found Novahome, and even then, I never dwelled on it 'til the rush found us. It was hard enough just to survive, you know?\"</i>");
 	output("\n\nYou give an understanding nod while trying to puzzle out what she's working on.");
 	output("\n\n<i>\"Now it's all I can think about - aside from finding new tech to fiddle with. If we don't do something fast, we're going to wind up as little more than slaves, either to the goblins or the rest of the universe.\"</i> You think you see a little moisture pooling at the corner of one slitted eye, but she wipes her hand past it before you can be sure. <i>\"Naturally, I realized that we were broken, and it suddenly made sense why I was thinking about this so much.\"</i>");
@@ -306,7 +372,10 @@ function talkToShekkaAboutRaskvel():void
 	output(" accidents, there's no need to have so many kids. Maybe we could just tweak down the number of eggs we lay at a time.\"</i>");
 	output("\n\nShaking her head, the girl skillfully tightens something inside the machine's chest cavity. <i>\"Anyway, the point is that if we can scrape together enough credits, maybe we can get a modification package put together that will fix us. That way, we can do more than fuck, eat and kill ourselves on dangerous tech.\"</i> She snaps the battery into robot and closes the hatch. <i>\"Just like this robot. It was out there killing people.\"</i> Her finger flicks the activation stud. <i>\"Now it's going to be somebody's bodyguard.\"</i>");
 	output("\n\nYou step back in alarm, a hand on your " + pc.meleeWeapon.longName + " just in case something goes wrong once it's activation sequence completes. The barrel-chested machine jolts upright, deadly blades at the end of its arms folding into narrow fingers. <i>\"Shekkatech B.D. Guard at your service. Master designation not found. Who is my master?\"</i> Its flickering amber eyes search around the room.");
-	output("\n\nShekka clicks the machine off for now. <i>\"He still needs a little more work on his circuits, but he's getting there.\"</i> Looking up at you, she admits, <i>\"I didn't think you'd stick around through all of that, to be honest, but that's my plan.\"</i> She looks like she's expecting judgement or reproach, but when none comes, she breaks into a smile. <i>\"It'll be expensive as all hell, I know. The elders see the wisdom in it, though. We figure in a few years, we'll have the credits stored up. We just to keep your megacorps from ruining our little haven until then.\"</i>");
+	output("\n\nShekka clicks the machine off for now. <i>\"He still needs a little more work on his circuits, but he's getting there.\"</i> Looking up at you, she admits, <i>\"I didn't think you'd stick around through all of that, to be honest, but that's my plan.\"</i> She looks like she's expecting judgement or reproach, but when none comes, she breaks into a smile. <i>\"It'll be expensive as all hell, I know. The elders see the wisdom in it, though. We figure in a few years, we'll have the credits stored up. We just to keep your megacorps from ruining our little ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("haven");
+	else output("lifeboat");
+	output(" until then.\"</i>");
 	output("\n\nTaking you by the ");
 	if(pc.tallness >= 84) output("[pc.leg]");
 	else if(pc.tallness >= 70) output("[pc.hip]");
@@ -361,9 +430,35 @@ function shekkasPlanDiscussion():void
 	}
 	//Hard
 	else output("\n\nYou cross your arms and look her square in the eye. <i>\"I don't see the problem here. You don't have any other choice if you want your people to chart their own destiny.\"</i>");
-	output("\n\nShekka swallows noisily. <i>\"I know, I know, but it's good to consider all the options. The worst part of it all is that even if we get a treatment designed, we won't be able to force all the tribes to take it. Those of us in Novahome shouldn't be a problem - we can see the problems first hand now that we have the rest of the galaxy to measure against, but the wilders won't accept something like this. Nor are we the type to force it on them.\"</i> Dropping her ear, she starts drumming on the countertop as she thinks. <i>\"The wilders will outbreed the civilized raskvel dozens to one, and I fear that outside of well-defended towns like this one, there will be no change.\"</i>");
-	output("\n\nYou think aloud, <i>\"Though your civilized brothers and sisters would be better able to put down roots and develop their own safe havens. They might get a little watered down through crossbreeding, but once they established proper towns and farming, they'd outlive the wilders by a massive margin.\"</i>");
-	output("\n\nShekka nods. <i>\"That's the best case scenario anyway. We'll have to see how it all pans out in the long run.\"</i> She runs a hand through her feathers to buy her time to gather her thoughts. <i>\"If I keep talking about this, I'm probably going to start rambling about interstellar philosophy. Maybe it's best we wrapped this up for now.\"</i>");
+	output("\n\nShekka swallows noisily. ");
+	if(flags["TARKUS_DESTROYED"] != undefined)
+	{
+		output("<i>\"I know, I know, but the worst part... the worst part is how Tarkus biting it has made this so much easier.\"</i> Twisting the middle of one ear, she continues, <i>\"I used to agonize about the wilder tribes and convincing them to join us... or the effects of unmodified raskvel wildly outbreeding those of us that took the improvements.\"</i>");
+		output("\n\nThe mechanic pulls her welding mask off and examines it, unwilling to meet your gaze. <i>\"Surviving when so many millions died is bad enough. Finding out that a part of you, even a tiny one, is pleased by that is worse... like knowing that you're running on fouled oil that you can't even change.\"</i> She puts her visor aside and looks up at you, tears clearly beading in her eyes. <i>\"I'm sorry. I shouldn't have burdened you with that. I'm not sure why I even said that to you. You don't want to hear to hear my rambles.\"</i> Each sentence is spoken more quietly than the last until the mechanic gives up on speach entirely and sags against ");
+		if(pc.tallness >= 60) output("your [pc.leg]");
+		else output("you");
+		output(", openly weeping.");
+		if(pc.isNice())
+		{
+			output("You put an arm around her, holding her tight. Her sobs, now that they're coming, come in fits and awkward, stuttering cries. She gasps for air every now and then, clinging to you like a wreck survivor to an emergency oxygen tank.");
+		}
+		else if(pc.isMischievous())
+		{
+			output("You put an arm around and try to lighten the mode, joking that if she didn't feel that way. Her sobbing only intensifies, coming in fits and awkward, stuttering cries. She gasps for air like a fish out of water, clinging as her emotions overwhelm her.")
+		}
+		else
+		{
+			output("You stand there, looking down at her as she shudders and shakes. <i>\"You're not going to accomplish anything by wasting time on tears.\"</i>");
+		}
+		output("\n\nEventually, she breaks away, slapping her visor back onto her head and down before you can get a look at her tear-stained scales. <i>\"Thanks for not freaking out, [pc.name]. I should work.\"</i>");
+		output("\n\nIt'd be good to give her some time.");
+	}
+	else 
+	{
+		output("<i>\"I know, I know, but it's good to consider all the options. The worst part of it all is that even if we get a treatment designed, we won't be able to force all the tribes to take it. Those of us in Novahome shouldn't be a problem - we can see the problems first hand now that we have the rest of the galaxy to measure against, but the wilders won't accept something like this. Nor are we the type to force it on them.\"</i> Dropping her ear, she starts drumming on the countertop as she thinks. <i>\"The wilders will outbreed the civilized raskvel dozens to one, and I fear that outside of well-defended towns like this one, there will be no change.\"</i>");
+		output("\n\nYou think aloud, <i>\"Though your civilized brothers and sisters would be better able to put down roots and develop their own safe havens. They might get a little watered down through crossbreeding, but once they established proper towns and farming, they'd outlive the wilders by a massive margin.\"</i>");
+		output("\n\nShekka nods. <i>\"That's the best case scenario anyway. We'll have to see how it all pans out in the long run.\"</i> She runs a hand through her feathers to buy her time to gather her thoughts. <i>\"If I keep talking about this, I'm probably going to start rambling about interstellar philosophy. Maybe it's best we wrapped this up for now.\"</i>");
+	}
 	flags["SHEKKA_TALKED_PLAN"] = 1;
 	processTime(15+rand(5));
 	clearMenu();
@@ -378,7 +473,10 @@ function talkToShekkaAboutNovahome():void
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
 	output("You ask about Novahome.");
-	output("\n\n<i>\"Oh isn't it just the best!\"</i> Shekka throws her arms up in the air and practically dances in place, revealing the flighty side that most of her race seem to spend all their time exposing. <i>\"It's way better than living in some smoky hole in the ground, fighting the sydians or rogue bots every rotation. Hell, it's hard enough to keep the parasitic lapinara from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!\"</i> She puffs her chest out in pride, clearly outlining the curves of her small bosom for all to see. Her nipples stick out like tiny, sore thumbs, begging to be tweaked or touched. You restrain yourself for now, wanting to hear the rest of her words.");
+	output("\n\n<i>\"Oh isn't it just the best!\"</i> Shekka throws her arms up in the air and practically dances in place, revealing the flighty side that most of her race seem to spend all their time exposing. <i>\"It's way better than living in some smoky hole in the ground, fighting the sydians or rogue bots every rotation. ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("It even saved us from the death of our planet. ");
+	else output("Hell, it's hard enough to keep the parasitic lapinara from tunneling into our homes, looking for warm bodies to inseminate. We might like laying eggs, but we want them to be our own!");
+	output("\"</i> She puffs her chest out in pride, clearly outlining the curves of her small bosom for all to see. Her nipples stick out like tiny, sore thumbs, begging to be tweaked or touched. You restrain yourself for now, wanting to hear the rest of her words.");
 	output("\n\nShekka explains, <i>\"I was pretty young when my tribe moved in. I can still remember huddling in a leaky old cave around the warmth of a dozen half-repaired generators at night. Luckily, one of our neighboring tribes, the Gyss, found the Nova while foraging. They wanted to make it their home, but there were too many sydians inside for them to take on their own, not to mention all the aquiara inside.\"</i>");
 	output("\n\n<i>\"Aquiara?\"</i> you wonder.");
 	output("\n\n<i>\"Sorry, the translators are still playing catch-up with some of our slang. I'm surprised you understand so many of the idioms I've been throwing out,\"</i> Shekka dutifully apologizes. <i>\"I think most rushers have taken to calling them... gray... goo? Something like that.\"</i>");
@@ -398,7 +496,9 @@ function talkToShekkaAboutNovahome():void
 	output("\n\nYou nod");
 	if(pc.lust() >= 75 || pc.libido() >= 75) output(", a little sad that you won't get to peel her out of her jumpsuit right now");
 	output(".");
-	output("\n\n<i>\"So we took the Novahome, but it took us the better part of a decade to get it built up to where it is now. There weren't even any working power plants back then, and the electrical systems were fried. We're still trying to get the west half of the ship lit properly.\"</i> Shekka gestures towards a window in her \"little\" workshop. <i>\"It won't be long now till we get most of the ship up and running - even the engines. Unfortunately, when this thing crashed, all the repulsors along the underside were completely decimated. It won't be going orbital without a few years of excavation and repairs.\"</i>");
+	output("\n\n<i>\"So we took the Novahome, but it took us the better part of a decade to get it built up to where it is now. There weren't even any working power plants back then, and the electrical systems were fried. ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("We're still trying to get the west half of the ship lit properly.\"</i> Shekka gestures towards a window in her \"little\" workshop. <i>\"It won't be long now till we get most of the ship up and running - even the engines. Unfortunately, when this thing crashed, all the repulsors along the underside were completely decimated. It won't be going orbital without a few years of excavation and repairs.\"</i>");
+	else output("We're still trying to get the west half of the ship lit properly.\"</i> Shekka gestures towards a window in her \"little\" workshop. <i>\"We got the engines up and running, and life support barely going. You might say life support is on life support until we can get some more parts in. The Nova can't even land anywhere sub-orbital. The repulsors along the underside were totally decimated when she crashed.\"</i>");
 	output("\n\n<i>\"Since it crashed,\"</i> you start, <i>\"was there any evidence of the original crew?\"</i>");
 	output("\n\nShekka shakes her head. <i>\"None. The place was empty except for the goo and the sydians. There weren't even skeletons anywhere. We knew it was alien from the alphabets being used, but until we got linked into the rest of the galaxy, we had no idea who made it.\"</i> She points at a bulkhead with terran-style lettering. <i>\"Turns out it was ");
 	if(pc.race() == "human") output("you");
@@ -421,19 +521,31 @@ function talkToShekkaAboutTheWastes():void
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
 	output("<i>\"Could you tell me about the wastes?\"</i> you ask.");
-	output("\n\nShekka takes off her welding mask, a somber look on her pink-topped visage. <i>\"Yeah, though there isn't much to tell, I think. It’s hot in the sun and cold in the night. Actual food is scarce - finding healthy plants is like discovering buried treasure, and seeds are guarded with our lives. We can usually rig up small underground fields to feed ourselves, but once there's enough of us in a tribe, we wind up either leaving eggs in the wilds or kicking a few unlucky souls.\"</i> She shudders. <i>\"It's a pretty horrible life, to be honest.\"</i>");
+	output("\n\nShekka takes off her welding mask, a somber look on her pink-topped visage. <i>\"Yeah, though there isn't much to tell");
+	if(flags["TARKUS_DESTROYED"] == undefined) output(", I think. It’s hot in the sun and cold in the night. Actual food is scarce - finding healthy plants is like discovering buried treasure, and seeds are guarded with our lives. We can usually rig up small underground fields to feed ourselves, but once there's enough of us in a tribe, we wind up either leaving eggs in the wilds or kicking a few unlucky souls.\"</i> She shudders. <i>\"It's a pretty horrible life, to be honest.\"</i>");
+	else output(" since Tarkus died. It was hot in the sun and cold at night. Actual food was scarce. Finding healthy plants was like discovering buried treasures, and seeds were guarded with our lives. We managed to rig up small, underground fields to feed ourselves, but once enough of us were born, we'd wind up leaving eggs in the wilds or kicking out a few unlucky souls.\"</i> She shudders. <i>\"It was a pretty horrible life to be honest. I pray we can overcome our instincts before we wind up overpopulating Novahome.\"</i>")
 	output("\n\n<i>\"It sounds awful.\"</i>");
-	output("\n\n<i>\"It is,\"</i> Shekka agrees. <i>\"You've got to forage for supplies without raising the ire of the other tribes or running into something worse, like a thirsty goo or an irritable sydian. Bam!\"</i> She pounds one fist into the other out of nowhere. <i>\"You lose a whole day worth of foraging and wind up laying in the dirt, holes stretched. Sure, you got your rocks off, but you're left hungry, empty-handed and alone.\"</i>");
+
+	if(flags["TARKUS_DESTROYED"] == undefined) output("\n\n<i>\"It is,\"</i> Shekka agrees. <i>\"You've got to forage for supplies without raising the ire of the other tribes or running into something worse, like a thirsty goo or an irritable sydian. Bam!\"</i> She pounds one fist into the other out of nowhere. <i>\"You lose a whole day worth of foraging and wind up laying in the dirt, holes stretched. Sure, you got your rocks off, but you're left hungry, empty-handed, and alone.\"</i>");
+	else output("\n\n<i>\"It was,\"</i> Shekka agrees. <i>\"You had to forage for supplies without raising the ire of other tribes or running into something worse, like a thirsty goo or an irritable sydian. Bam!\"</i> She pounds one fist into the other out of nowhere. <i>\"You'd lose a whole day worth of foraging and wind up laying in the dirt, holes stretched. Sure, you'd get your rocks off, but you'd be left hungry, empty-handed, and alone.\"</i>");
 	output("\n\nYou mention that it sounds a little like your own experiences with the planet rush.");
 	output("\n\nThe corner of the little alien's mouth quirks up at that. <i>\"Really?\"</i>");
 	output("\n\nYou nod. <i>\"Really.\"</i> You then proceed to detail some of your previous adventures in sordid detail.");
-	output("\n\n<i>\"Damn,\"</i> the reddish raskvel mutters, <i>\"I guess you haven't had it too easy either.\"</i> She taps her chin, thinking. <i>\"There's other areas like the wastes that are just about as bad if not worse. For one, there's the scything glades. Trees grow there, metallic, predatory trees that lash out at anything that comes too close with razor-sharp blades. There's usually a few safe paths through them, but you'd best keep your wits about you if you don't want to wind up cut to ribbons with your blood used as fertilizer.\"</i>");
+	output("\n\n<i>\"Damn,\"</i> the reddish raskvel mutters, <i>\"I guess you haven't had it too easy either.\"</i> She taps her chin, thinking. ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>\"There's other areas like the wastes that are just about as bad if not worse. For one, there's the scything glades. Trees grow there, metallic, predatory trees that lash out at anything that comes too close with razor-sharp blades. There's usually a few safe paths through them, but you'd best keep your wits about you if you don't want to wind up cut to ribbons with your blood used as fertilizer.\"</i>");
+	else output("<i>\"There were other areas like the wastes that were just about as bad if not worse. For one, there was the scything glades. Trees grew there, metallic, predatory trees that lashed out at anything that came to close with razor-sharp blades. There were usually a few safe paths through them, but you had to keep your wits about you if you didn't want to wind up cut to ribbons with your blood used for fertilizer.\"</i>");
 	output("\n\n<i>\"That's terrifying!\"</i>");
-	output("\n\nShekka ticks off her fingers, counting in her head. <i>\"Then there's the Oil Sea. It isn't really just oil either. It's full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.\"</i> She moves on to the next finger. <i>\"Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there - there's lapinara and worse aplenty.\"</i>");
+	output("\n\nShekka ticks off her fingers, counting in her head. ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("<i>\"Then there's the Oil Sea. It isn't really just oil either. It's full of liquid metals, pollutants, corrosives, and the like. The place has been swarming with the goos since we kicked them out of Novahome. I guess the lubricants and moisture there have helped them reproduce.\"</i> She moves on to the next finger. <i>\"Watch out around the iron ridges too. All these metal plates make it the perfect place for ambushes. Our tribe never really went there - there's lapinara and worse aplenty.\"</i>");
+	else output("<i>\"Then there was the Oil Sea. It wasn't just oil either. It was full of liquid metals, pollutants, corrosives, and the like. That place swarmed with gray goos once we kicked them out of Novahome. I guess the lubricants and moisture helped them to reproduce.\"</i> She moves on to the next finger. <i>\"The iron ridges were tricky too: all metal plates and perfect places to ambush. Our tribe never really went there - there were lapinara and worse aplenty.\"</i>");
 	output("\n\nYou make a mental note about that and thank for the intel.");
-	output("\n\n<i>\"Just don't get caught in a storm, and you'll be fine. They don't happen often, but the metal flakes will cut you to ribbons in minutes if you're out in the open,\"</i> Shekka warns. <i>\"Make sure you've always got an eye on a potential bolt-hole. You'll do fine, [pc.name]. You've got a good head on you");
-	if(pc.hasPerk("Ditz Speech")) output(", I think....");
-	output("\"</i> She turns away from you, and busies herself putting her mask back on. <i>\"That's it. You be safe out here, and I'll try not to lose any fingers to my welding torch. Deal?\"</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("\n\n<i>\"Just don't get caught in a storm, and you'll be fine. They don't happen often, but the metal flakes will cut you to ribbons in minutes if you're out in the open,\"</i> Shekka warns. <i>\"Make sure you've always got an eye on a potential bolt-hole. You'll do fine, [pc.name]. You've got a good head on you");
+	else output("\n\n<i>\"You didn't want to get caught in a storm either. They didn't happen often, but the metal flakes would cut you to ribbons in minutes if you were out in the open,\"</i> Shekka warns. <i>\"You had to always keep an eye out for a bolt-hole. You would've done fine, [pc.name]. You've got a good head on you");
+	if(pc.hasPerk("Ditz Speech")) output(", I think...");
+	output(".\"</i> She turns away from you, and busies herself putting her mask back on. <i>\"That's it. You be safe ");
+	if(flags["TARKUS_DESTROYED"] == undefined) output("out here");
+	else output("in your travels");
+	output(", and I'll try not to lose any fingers to my welding torch. Deal?\"</i>");
 	output("\n\nDeal.");
 	processTime(15+rand(5));
 	flags["SHEKKA_TALKED_WASTES"] = 1;
@@ -461,13 +573,15 @@ function talkToShekkaAboutHerShop():void
 	output("\n\nUpon closer inspection, it's clear you wouldn't want to live in a place like this, but as far as Tarkusian homes go, it's one of the better ones. <i>\"It could use a little work.\"</i>");
 	output("\n\nShekka puffs her cheeks out before exhaling, deflating under your scrutiny. <i>\"Yeah, I guess so, but it'll have to do for now. I've gotta bank up all the credits I can, which means not spending any more than I have to on frivolous stuff like pretty walls or a watertight roof.\"</i> Folding her arms across her insignificant chest, she continues. <i>\"I do well enough for myself here anyway. None of the other builds are any better, and it's enough to count as a permanent address for ordering goods from the core.\"</i>");
 	output("\n\nYou wonder aloud, <i>\"You order from the core?\"</i>");
-	output("\n\nLeaning against her workbench a little more comfortably, Shekka nods. <i>\"Yeah, when I think I'll be able to resell it at a premium. A lot of you rushers will pay pretty well for some core comforts, and Tarkus is pretty rough on clothes. Keeping some smartclothes in stock has been one of the best ideas I've had for my profit margins. Between them, custom repairs and selling whatever else I can get working, business has been pretty good.\"</i>");
+	output("\n\nLeaning against her workbench a little more comfortably, Shekka nods. <i>\"Yeah, when I think I'll be able to resell it at a premium. A lot of you rushers will pay pretty well for some core comforts");
+	if(flags["TARKUS_DESTROYED"] == undefined) output(", and Tarkus is pretty rough on clothes");
+	output(". Keeping some smartclothes in stock has been one of the best ideas I've had for my profit margins. Between them, custom repairs and selling whatever else I can get working, business has been pretty good.\"</i>");
 	output("\n\n<i>\"What about taxes?\"</i> you ask.");
 	output("\n\nShekka smirks. <i>\"Tarkus isn't officially a member planet of the U.G.C. We aren't paying them squat... yet. Our own people aren't really much for governing constructs like taxes either. The elders know I'm putting my money into the tribe's well being, and they do what they can to make sure I'm going to be successful. It's a simpler way, and it works for now.\"</i>");
 	output("\n\nYou scratch your chin and ask, <i>\"Your tribes seem pretty big now. Is that kind of informal structure going to hold up on a larger scale?\"</i>");
 	output("\n\n<i>\"Probably not,\"</i> Shekka thinks aloud, <i>\"but it's working now. Hopefully by the time that becomes a problem we'll have new generations of more level-headed thinkers to help us figure out a better answer.\"</i>");
 	output("\n\n<i>\"Procrastination isn't a solution.\"</i>");
-	output("\n\nShekka snorts, <i>\"Yeah, but you've got to crawl before you can walk.\"</i> The little alien seems uncomfortable with her lack of a clear answer, fidgeting nervously in place, but she declines to offer up a better answer, instead saying, <i>\"Look, I should get back to work. We can talk later.\"</i>");
+	output("\n\nShekka snorts, <i>\"Yeah, but you've got to crawl before you can walk.\"</i> The little alien seems uncomfortable with her lack of a decent solution, fidgeting nervously in place, but she declines to offer up a better answer, instead saying, <i>\"Look, I should get back to work. We can talk later.\"</i>");
 	processTime(15+rand(5));
 	flags["SHEKKA_TALKED_HERSHOP"] = 1;
 	clearMenu();

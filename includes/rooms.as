@@ -1380,8 +1380,8 @@ function initializeRooms():void
 	//#10 NOVAHOME
 	rooms["210"] = new RoomClass(this);
 	rooms["210"].roomName = "\nNOVAHOME";
-	rooms["210"].description = "You're almost smack in the middle of the tremendous passageway that runs through the center of this starship-turned-town. It would take at least fifteen minutes of walking to reach either end, and there's plenty of lateral room as well. Such a huge, central void would make this ship poorly suited for combat, but perhaps it served some other purpose back in its day. Now, it's being used as a place of residence and business, filled with raskvel of every color and variety. Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.";
-	rooms["210"].runOnEnter = undefined;
+	rooms["210"].description = "You're almost smack in the middle of the tremendous passageway that runs through the center of this starship-turned-town. It would take at least fifteen minutes of walking to reach either end, and there's plenty of lateral room as well. Such a huge, central void would make this ship poorly suited for combat, but perhaps it served some other purpose back in its day. Now, it's being used as a place of residence and business, filled with raskvel of every color and variety.";
+	rooms["210"].runOnEnter = BonusFunction210;
 	rooms["210"].eastExit = "207";
 	rooms["210"].westExit = "211";
 	rooms["210"].planet = "PLANET: TARKUS";
@@ -1391,7 +1391,7 @@ function initializeRooms():void
 	//#11 NOVAHOME
 	rooms["211"] = new RoomClass(this);
 	rooms["211"].roomName = "\nNOVAHOME";
-	rooms["211"].description = "The section of deck upon which you now stand is undoubtedly the busiest place in all of Novahome, either because of its central location or the access tunnel that opens up to the south, leading out onto Tarkus' surface. Before you can get to the windswept junkyards, you'll have to walk across a wobbling gangplank made of hundreds of welded-together metal plates. The aliens pay it no mind. You could also go to the east or west if you wanted to explore Novahome and the people within.";
+	rooms["211"].description = "";
 	rooms["211"].runOnEnter = roomOutsideShekkasBonus;
 	rooms["211"].eastExit = "210";
 	rooms["211"].westExit = "212";
@@ -1404,7 +1404,7 @@ function initializeRooms():void
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
 	rooms["212"].roomName = "\nNOVAHOME";
-	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window into the shop shows stacks of salvaged tech from the wastes outside, mostly old machine parts, though there are a few weapons and useful bits with glowing holo-price tags hovering over them.";
+	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" sign hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.";
 	rooms["212"].runOnEnter = undefined;
 	rooms["212"].eastExit = "211";
 	rooms["212"].westExit = "213";
@@ -1417,8 +1417,8 @@ function initializeRooms():void
 	//#13 NOVAHOME
 	rooms["213"] = new RoomClass(this);
 	rooms["213"].roomName = "\nNOVAHOME";
-	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset. An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.";
-	rooms["213"].runOnEnter = undefined;
+	rooms["213"].description = "The Nova's internal lighting flickers gently with its own asynchronous rhythm. To the east, the illumination is brighter and more steady. You estimate the ship's powerplants are located in the aft of the ship, near its engines, and the power conduits are in less than pristine condition. Further west, where the corridor ends, it's even dimmer, oddly reminiscent of just minutes after sunset.";
+	rooms["213"].runOnEnter = bonusFunction213;
 	rooms["213"].eastExit = "212";
 	rooms["213"].westExit = "214";
 	rooms["213"].southExit = "295";

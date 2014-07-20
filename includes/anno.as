@@ -13,6 +13,10 @@ function annoSexed(arg:int = 0):int {
 //output("Set into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window into the shop shows stacks of salvaged tech from the wastes outside, mostly old machine parts, though there are a few weapons and useful bits with glowing holo-price tags hovering over them.");
 function steeleTechBonusFunction():Boolean
 {
+	if(flags["TARKUS_DESTROYED"] != undefined)
+	{
+		return insideSteeleTechPostPlanetCrack();
+	}
 	//Inside Descriptor (First Time)
 	if(flags["MET_ANNO"] == undefined)
 	{
@@ -179,7 +183,7 @@ function buyFromDatDogslut():void
 		flags["SEEN_ANNO_BUY_MENU"] = 1;
 		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"We mostly do business with rushers and pioneers coming through, so I've got some pretty decent weapons and armor in stock. Even some military grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.";
 	}
-	else chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.\"</i>\n";
+	else annoShopSetup();
 	buyItem();
 }
 function annoShopSetup():void
@@ -188,7 +192,12 @@ function annoShopSetup():void
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
 	shopkeep = chars["ANNO"];
-	chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.\"</i>\n";
+	if(flags["TARKUS_DESTROYED"] != undefined)
+	{
+		//{First Time}
+		chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue?\"</i> Anno says hopefully. <i>\"Not a lot of business to work with after the planet blew, so I've got some pretty decent weapons and armor in stock. Even some military-grade stuff, which I'm pretty sure you're allowed to buy. Plus, plenty of junk I've managed to repair or repurpose from the wasteland. Here, let me pull up the inventory for you.\"</i>\n\nA holographic display pops to life between you, listing the Steele Tech shop's goods.";
+	}
+	else chars["ANNO"].keeperBuy = "<i>\"Wanna take a look through the catalogue? Victor said I could give you a pretty nice discount.\"</i>\n";
 	//List prices and whatnot. Back should go back to Jade's main menu.
 	//Sell Menu
 	chars["ANNO"].keeperSell = "<i>\"Got a little something weighing you down? I'm sure I can take a load off you!\"</i> she chuckles as you sort through your sellable gear.\n";
@@ -803,13 +812,26 @@ function novaHomeTalk():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("<i>\"So, what do you think of Nova?\"</i> you ask, gesturing out the shop front to the derelict spaceship around you.");
-	output("\n\n<i>\"Honestly? Scares the hell out of me,\"</i> Anno says, matter-of-factly. <i>\"The decks creak, pipes and wires break all the time... I'm amazed we have power. And more amazed that when we do, the reactor doesn't go nuclear. I wouldn't be surprised if I wake up one morning as a pile of ash. And that's on a good day.\"</i>");
-	output("\n\nAnno shudders. <i>\"Sorry to be a downer, boss. It's not the worst gig in the world: at least I'm not stationed on Galotia or something. Still, this ship's seen better days, even putting aside the crash. I'm not sure if the Nova got shot down or just fell into the planet's gravity well, but this place is </i>ancient<i>, and I don't use the word lightly. I'm still poking around, doing some research on it. I know its human, but I couldn't extranet search up a trace of it. At least, from before the rushers found it. No departure records, no crew manifest, no record of who owned it... I've turned up something about a Bell-Isle-stroke-Grunmann company from the robo-goo-things outside after I net-hacked a few of them, but other than that... nothing. Every computer onboard is either slagged or wiped, and I can't recover anything. The only databanks I've come across are deadlocked. I tried connecting to the reactor's computer, and got my rig fried for my trouble.\"</i>");
-	output("\n\n<i>\"Something's seriously wrong with this ship,\"</i> she concludes. And quieter, she adds, <i>\"When my computer burnt out, I heard... God, it was like the wails of the damned. This place is a tomb.\"</i>");
-	output("\n\n<i>\"Woah.\"</i>");
-	output("\n\n<i>\"Yeah,\"</i> Anno sighs. <i>\"It's like something out of a horror movie, but so far we're just in the tense part, before the jump scares. There's even been some disappearances, you know? That Shekel girl or whatever across the way's been screaming about it, just about starting a riot... but she's not wrong. I don't think its slavers, though. The pioneers woke this ship up when they landed, and now?\"</i>");
-	output("\n\n<i>\"Anyway, I probably sound like a nut job, huh? Let's just say this place gives me the creeps, boss. You ask me: bomb the </i>Nova<i> from orbit.\"</i>");
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		output("<i>\"So, what do you think of Nova?\"</i> you ask, gesturing out the shop front to the derelict spaceship around you.");
+		output("\n\n<i>\"Honestly? Scares the hell out of me,\"</i> Anno says, matter-of-factly. <i>\"The decks creak, pipes and wires break all the time... I'm amazed we have power. And more amazed that when we do, the reactor doesn't go nuclear. I wouldn't be surprised if I wake up one morning as a pile of ash. And that's on a good day.\"</i>");
+		output("\n\nAnno shudders. <i>\"Sorry to be a downer, boss. It's not the worst gig in the world: at least I'm not stationed on Galotia or something. Still, this ship's seen better days, even putting aside the crash. I'm not sure if the Nova got shot down or just fell into the planet's gravity well, but this place is </i>ancient<i>, and I don't use the word lightly. I'm still poking around, doing some research on it. I know its human, but I couldn't extranet search up a trace of it. At least, from before the rushers found it. No departure records, no crew manifest, no record of who owned it... I've turned up something about a Bell-Isle-stroke-Grunmann company from the robo-goo-things outside after I net-hacked a few of them, but other than that... nothing. Every computer onboard is either slagged or wiped, and I can't recover anything. The only databanks I've come across are deadlocked. I tried connecting to the reactor's computer, and got my rig fried for my trouble.\"</i>");
+		output("\n\n<i>\"Something's seriously wrong with this ship,\"</i> she concludes. And quieter, she adds, <i>\"When my computer burnt out, I heard... God, it was like the wails of the damned. This place is a tomb.\"</i>");
+		output("\n\n<i>\"Woah.\"</i>");
+		output("\n\n<i>\"Yeah,\"</i> Anno sighs. <i>\"It's like something out of a horror movie, but so far we're just in the tense part, before the jump scares. There's even been some disappearances, you know? That Shekel girl or whatever across the way's been screaming about it, just about starting a riot... but she's not wrong. I don't think its slavers, though. The pioneers woke this ship up when they landed, and now?\"</i>");
+		output("\n\n<i>\"Anyway, I probably sound like a nut job, huh? Let's just say this place gives me the creeps, boss. You ask me: bomb the </i>Nova<i> from orbit.\"</i>");
+	}
+	else
+	{
+		output("<i>\"So, what do you think of Nova?\"</i> you ask, gesturing out the shop front to the derelict spaceship around you.");
+		output("\n\n<i>\"Honestly? Scares the hell out of me,\"</i> Anno says, matter-of-factly. <i>\"The decks creak, pipes and wires break all the time... I'm amazed we have power. And more amazed that when we do, the reactor doesn't go nuclear. I wouldn't be surprised if I wake up one morning as a pile of ash. And that's on a good day. How the hell this this didn't just break apart when we went orbital, I don't even know.\"</i>");
+		output("\n\nAnno shudders. <i>\"I don't mean to be a downer, but... this place is a deathtrap. It's a humanitarian crisis that there's thousands of people stuck in here, waiting for a bulkhead to give out or an airlock to malfunction. Hell, even before the crash the ship's seen better days. I'm not sure if the Nova got shot down or just fell into the planet's gravity well, but this place is </i>ancient<i>, and I don't use the word lightly. I'm still poking around, doing some research on it. I know it’s human, but I couldn't extranet search up a trace of it. At least, from before the rushers found it. No departure records, no crew manifest, no record of who owned it... I've turned up something about a Bell-Isle-stroke-Grunmann company from the robo-goo-things that didn't get spaced after I net-hacked a few of them, but other than that... nothing. Every computer onboard is either slagged or wiped, and I can't recover anything. The only databanks I've come across are deadlocked. I even tried connecting to the reactor's computer, and got my rig fried for my trouble.\"</i>");
+		output("\n\n<i>\"Something's seriously wrong with this ship,\"</i> she concludes. And, more quietly, she adds, <i>\"When my computer burnt out, I heard... God, it was like the wails of the damned. This place is a tomb.\"</i>");
+		output("\n\n<i>\"Woah.\"</i>");
+		output("\n\n<i>\"Yeah,\"</i> Anno sighs. <i>\"It's like something out of a horror movie, but so far we're just in the tense part, before the jump scares. There's even been some disappearances, you know? That Shekel girl or whatever across the way's been screaming about it, just about starting a riot... but she's not wrong. I don't think its slavers, though. The pioneers woke this ship up when they landed, and now?\"</i>");
+		output("\n\n<i>\"Anyway, I probably sound like a nut job, huh? Let's just say this place gives me the creeps, boss. If you offered me a ride out on the next shithaul freighter, I wouldn't say no.\"</i>");
+	}
 	processTime(10+rand(2));
 	annoTalkMenu();
 	removeButton(1);
@@ -823,17 +845,36 @@ function talkToSyriAboutTheLocals():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("<i>\"So, what can you tell me about the locals?\"</i>");
-	output("\n\n<i>\"Who the raskvel? Or do you mean planet-wide? Or just on the ship? No, don't ask me that, I don't know anybody in Nova except the bartender and that stone-cold dominatrix lady that runs the Mess. So, uh, planet-wide. That sounds fun.\"</i>");
-	output("\n\n<i>\"First thing to know: there are a lot of different species on Tarkus. Really, that's the trend the Rush, with multi-species planets. Normally you only get one dominant race per world, like on Terra or Ausaril; here, you've got several equally powerful, prominent races sharing the world. The only reason Tarkus seems like the Planet of the Rask is because they're the ones holding onto Novahome when the pioneers opened the gate up, and of course they landed on the creepy human ship.\"</i>");
-	output("\n\n<i>\"That could be because Tarkus is actually a hybrid planet made up of several fragments. I don't know if the different races are natives to the different worlds of Tarkus, if they came here by colonization, or what, but it's strange.\"</i> She pauses a moment for breath, then grins, <i>\"I've been thinking of writing a book while I'm here, in case you're wondering.\"</i>");
-	output("\n\nShe sighs wistfully. <i>\"Anyway, the most important actual races are the sydians and the raskvel. Sydians are pretty interesting: they rip apart metal and eat it, thanks to some kind of chemical on their feelers. Plus they have biological aphrodisiacs in their spit. I think? Could be cum, need to research more. Possibly hands on, if you know what I mean. Either way, I'm sure Xenogen is going to love getting their dirty hands on some... specimens... to dissect. They also have big dicks, big, bulging muscles, and an adversity to clothes, which as a lady who likes the D, is a pretty big bonus. They're eye candy of the highest order.\"</i>");
-	output("\n\n<i>\"Then there's the raskvel. They're cute as buttons, but their average I.Q. seems to be about fish, give or take trout. Some are clever repairmen, and I have to admit, they did wonders restoring this ship of theirs, but... they just seem kind of doe-eyed, you know? They're the kind of aliens I want to have stuffed animals of and cuddle, not have a conversation with. And they smell like dirt and leather. The ones here in Novahome are pretty tame, but watch out if you go outside: they get kind of rapey when nobody's there to stop them, and those wrenches of theirs pack a punch when they've got shotguns built into the grip.\"</i>");
-	output("\n\nShe laughs, <i>\"Still, if you want an easy lay, just ");
-	if(pc.hasCock()) output("grab a rask and bend her over something");
-	else output("bend over and hike your clothes");
-	output("; they'll take care of the rest. As a race, they're obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.\"</i>");
-	output("\n\nAfter a moment of thought, Anno adds, <i>\"There's also the little eggy girls, the lapinara; goblins - they're like something out of that shitty book-game-thing my sister plays - and probably other races, too. Don't know much about them, though. Try the extranet,\"</i> she says with a playful wink.");
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		output("<i>\"So, what can you tell me about the locals?\"</i>");
+		output("\n\n<i>\"Who the raskvel? Or do you mean planet-wide? Or just on the ship? No, don't ask me that, I don't know anybody in Nova except the bartender and that stone-cold dominatrix lady that runs the Mess. So, uh, planet-wide. That sounds fun.\"</i>");
+		output("\n\n<i>\"First thing to know: there are a lot of different species on Tarkus. Really, that's the trend the Rush, with multi-species planets. Normally you only get one dominant race per world, like on Terra or Ausaril; here, you've got several equally powerful, prominent races sharing the world. The only reason Tarkus seems like the Planet of the Rask is because they're the ones holding onto Novahome when the pioneers opened the gate up, and of course they landed on the creepy human ship.\"</i>");
+		output("\n\n<i>\"That could be because Tarkus is actually a hybrid planet made up of several fragments. I don't know if the different races are natives to the different worlds of Tarkus, if they came here by colonization, or what, but it's strange.\"</i> She pauses a moment for breath, then grins, <i>\"I've been thinking of writing a book while I'm here, in case you're wondering.\"</i>");
+		output("\n\nShe sighs wistfully. <i>\"Anyway, the most important actual races are the sydians and the raskvel. Sydians are pretty interesting: they rip apart metal and eat it, thanks to some kind of chemical on their feelers. Plus they have biological aphrodisiacs in their spit. I think? Could be cum, need to research more. Possibly hands on, if you know what I mean. Either way, I'm sure Xenogen is going to love getting their dirty hands on some... specimens... to dissect. They also have big dicks, big, bulging muscles, and an adversity to clothes, which as a lady who likes the D, is a pretty big bonus. They're eye candy of the highest order.\"</i>");
+		output("\n\n<i>\"Then there's the raskvel. They're cute as buttons, but their average I.Q. seems to be about fish, give or take trout. Some are clever repairmen, and I have to admit, they did wonders restoring this ship of theirs, but... they just seem kind of doe-eyed, you know? They're the kind of aliens I want to have stuffed animals of and cuddle, not have a conversation with. And they smell like dirt and leather. The ones here in Novahome are pretty tame, but watch out if you go outside: they get kind of rapey when nobody's there to stop them, and those wrenches of theirs pack a punch when they've got shotguns built into the grip.\"</i>");
+		output("\n\nShe laughs, <i>\"Still, if you want an easy lay, just ");
+		if(pc.hasCock()) output("grab a rask and bend her over something");
+		else output("bend over and hike your clothes");
+		output("; they'll take care of the rest. As a race, they're obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.\"</i>");
+		output("\n\nAfter a moment of thought, Anno adds, <i>\"There's also the little eggy girls, the lapinara; goblins - they're like something out of that shitty book-game-thing my sister plays - and probably other races, too. Don't know much about them, though. Try the extranet,\"</i> she says with a playful wink.");
+	}
+	else
+	{
+		//The Locals
+		output("<i>\"So, what can you tell me about the locals?\"</i>");
+		output("\n\n<i>\"Who, the raskvel? Heh, I guess that's about all that's left of the old world, huh? Everybody else... God. Shit, I don't even know anybody in Nova except the bartender and that stone-cold dominatrix lady that runs the Mess.\"</i>");
+		output("\n\n<i>\"Well. Tell me about Tarkus-that-was, then,\"</i> you suggest. <i>\"There used to be lots of critters running around.\"</i>");
+		output("\n\nAnno shrugs. <i>\"Yeah. I can do that. First thing to know: there were a lot of different species on Tarkus. Really, that's the trend this Rush, with multi-species planets. Normally you only get one dominant race per world, like on Terra or Ausaril; here, you had several equally powerful, prominent races sharing the world. The only reason Tarkus seemed like the Planet of the Rask is because they were the ones holding onto Novahome when the pioneers opened the gate up, and of course they landed on the creepy human ghost ship.\"</i>");
+		output("\n\n<i>\"That could be because Tarkus was actually a hybrid planet made up of several fragments. I don't know if the different races were natives to the different worlds of Tarkus, if they came here by colonization, or what, but it's strange.\"</i> She pauses a moment for breath, then grins, <i>\"I was just about to query some publishers about writing a book before... before the subject pool got a whole lot smaller.\"</i>");
+		output("\n\nShe sighs sadly. <i>\"Anyway, the most important actual races are the sydians and the raskvel. Sydians are pretty interesting: they rip apart metal and eat it, thanks to some kind of chemical on their feelers. Plus they have biological aphrodisiacs in their spit. I think? Could be cum; need to research more. Possibly hands-on, if you know what I mean. Either way, I'm sure Xenogen is going to love getting their dirty hands on some... specimens... to dissect. They also have big dicks and big, bulging muscles, not to mention an adversity to clothes... which, as a lady who likes the D, is a pretty big bonus. They're eye candy of the highest order. There's even a fairly good population left aboard the ship, still. Not a breeding pool, though... I think these sydians will be the last, or close to it.\"</i>");
+		output("\n\n<i>\"Then there's the raskvel. They're cute as buttons, but their average I.Q. seems to be about fish, give or take trout. Some are clever repairmen, and I have to admit, they did a miracle restoring this ship of theirs to be mostly-kind-of spaceworthy, but... they just seem kind of doe-eyed, you know? They're the kind of aliens I want to have stuffed animals of and cuddle, not have a conversation with. And they smell like dirt and leather. The ones here in Novahome are pretty tame, and the real asshole ones that'd attack you all got spaced, so... I guess that takes care of the aggressive part of the gene pool.\"</i>");
+		output("\n\nShe laughs, <i>\"Still, if you want an easy lay, just ");
+		if(pc.hasCock()) output("grab a rask and bend her over something");
+		else output("bend over and hike your clothes");
+		output("); they'll take care of the rest. As a race, they're obsessed with eggs and rutting, which makes sense when they can just get stepped on by sydians. Outbreed and outlast.\"</i>");
+		output("\n\nAfter a moment of thought, Anno adds, <i>\"I don't think any other races made it off Tarkus. Not in enough numbers, anyway. Still some of the more harmless grey goo and goblins around, but not many.\"</i>");
+	}
 	processTime(10);
 	annoTalkMenu();
 	removeButton(2);
@@ -935,12 +976,24 @@ function howsBusiness():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("<i>\"So, how's business these days?\"</i> you ask, giving a nod towards the widget shop across the way.");
-	output("\n\nAnno's eyes dart around the storefront, mostly devoid of customers, and shrugs. <i>\"Could be better. The Mess keeps most of the spacers close by, but they're the only ones buying, pretty much. Which is fine, I guess: we're more of a research station than a shop, anyway. And it leaves me with plenty of free time.\"</i>");
-	output("\n\nYou give her a little nudge and ask about the competition.");
-	output("\n\n<i>\"Well... there's Skezza's junk hut across the corridor. Or was it Shella? Shekka? Shekka! She's mostly selling shit the raskvel salvage from Nova or the wasteland outside, and most of what I've bought from her just breaks or explodes. For a race supposedly all about fixing things over building them, you'd think I could walk down the hall without a shield belt on. Wouldn't buy from her again, but she seems pretty cute, so... I dunno. I just wanna give her a hug every time I see her.\"</i>");
-	output("\n\nYou chuckle at the thought, but Anno just sighs. <i>\"Honestly, I kind of think... no, I </i>know<i> I'm wasted out here. I've got a fucking PhD, but I'm manning a store on... on fucking TARKUS of all places. Thanks for giving me responsibility and all, I appreciate that - I really do - but seriously. It smeeeeelllsssss heeeerrreeeee.\"</i>");
-	output("\n\nYou pat Anno reassuringly on the shoulder as she pouts.");
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		output("<i>\"So, how's business these days?\"</i> you ask, giving a nod towards the widget shop across the way.");
+		output("\n\nAnno's eyes dart around the storefront, mostly devoid of customers, and shrugs. <i>\"Could be better. The Mess keeps most of the spacers close by, but they're the only ones buying, pretty much. Which is fine, I guess: we're more of a research station than a shop, anyway. And it leaves me with plenty of free time.\"</i>");
+		output("\n\nYou give her a little nudge and ask about the competition.");
+		output("\n\n<i>\"Well... there's Skezza's junk hut across the corridor. Or was it Shella? Shekka? Shekka! She's mostly selling shit the raskvel salvage from Nova or the wasteland outside, and most of what I've bought from her just breaks or explodes. For a race supposedly all about fixing things over building them, you'd think I could walk down the hall without a shield belt on. Wouldn't buy from her again, but she seems pretty cute, so... I dunno. I just wanna give her a hug every time I see her.\"</i>");
+		output("\n\nYou chuckle at the thought, but Anno just sighs. <i>\"Honestly, I kind of think... no, I </i>know<i> I'm wasted out here. I've got a fucking PhD, but I'm manning a store on... on fucking TARKUS of all places. Thanks for giving me responsibility and all, I appreciate that - I really do - but seriously. It smeeeeelllsssss heeeerrreeeee.\"</i>");
+		output("\n\nYou pat Anno reassuringly on the shoulder as she pouts.");
+	}
+	else
+	{
+		output("<i>\"So, how's business these days?\"</i> you ask, indicating the piles of disorganized crap all over the shop.");
+		output("\n\nAnno's eyes dart around the storefront, entirely devoid of customers, and shrugs. <i>\"Nonexistent. The only reason to come out here was to salvage shit from the planet. Now most of it’s either floating in space or even MORE broken, so... let's say traffic to Tarkus is plummeting.\"</i>");
+		output("\n\nYou give her a little nudge and ask about the competition.");
+		output("\n\n<i>\"Well... there's Skezza's junk hut across the corridor. Or was it Shella? Shekka? Shekka! She's mostly selling shit the raskvel salvage from... I don't even know where anymore... and most of what I've bought from her just breaks or explodes. For a race supposedly all about fixing things over building them, you'd think I could walk down the hall without a shield belt on. Wouldn't buy from her again, but she seems pretty cute, so... I dunno. I just wanna give her a hug every time I see her.\"</i>");
+		output("\n\nYou chuckle at the thought, but Anno just sighs. <i>\"Honestly, I kind of think... no, I </i>know<i> I'm wasted out here. I've got a fucking PhD, but I'm manning a store on a fucking ghost ship that nobody comes to. I don't even know why I'm out here anymore, but Corporate won't approve my transfer requests. They're fucking punishing me for getting special treatment from Vic, I know it. I just want off this fucking tub!\"</i>");
+		output("\n\nYou pat Anno reassuringly on the shoulder as she pouts.");
+	}
 	processTime(3);
 	annoTalkMenu();
 	removeButton(4);
@@ -1432,4 +1485,102 @@ function goozookaRaepsForAnnoButts():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+function insideSteeleTechPostPlanetCrack():Boolean
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+	//Inside Descriptor (First Time)
+	if(flags["MET_ANNO"] == undefined)
+	{
+		output("The inside of the shop is an absolute wreck. Piles of junk are scattered around in complete disarray, wall panels and lighting fixtures are hanging by threads of loose wire, and sparks occasionally fly from tears in the bulkhead. The shop clearly took a beating when the ship went orbital.");
+		output("\n\nA snowy-haired ausar woman is moving between the wreckage with a clipboard, apparently trying to reorganize the battered shop. She’s clad in the skin-tight black and yellow uniform Dad issued a few years ago. It hugs her curves nicely, even if her bushy white tail is hiding her backside from view.");
+		//Meeting Anno First Time AFTER PlanetCrack
+		addButton(0,"Ausar",firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWithThisFunctionName);
+	}
+	//Inside Descriptor (Repeat)
+	else
+	{
+		output("The Steele Tech shop is a bigger wreck than ever; it’s more of a death trap than a storefront now. Piles of junk are scattered around in complete disarray, wall panels and lighting fixtures are hanging by threads of loose wire, and sparks occasionally fly from tears in the bulkhead. The shop clearly took a beating when the ship went orbital.");
+		//{PC has met Anno before, first time back in the shop:}
+		if(flags["MET_ANNO_POST_SPLOSION"] == undefined)
+		{
+			firstTimeBackAfterPlanetSplosionsButMetAnnoBefore();
+			return true;
+		}
+		output("\n\nAnno is sitting behind a counter with a compact holdout pistol and a bottle of whiskey shamelessly placed atop it. She grins weakly at you. <i>\"Hey, boss. What's up?\"</i>");
+		addButton(0,"Anno",repeatAnnoApproach);
+	}
+	return false;
+}
+
+//Meeting Anno First Time AFTER PlanetCrack
+//[Ausar]
+function firstTImeAnnoPostPlanetCrackNeverMetTheBitchBeforeIunnoWhatsUpWithThisFunctionName():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+	output("You step closer to the ausar woman, clearing your throat to get her attention. She looks up with a start, turning to face you. <i>\"Oh thank God! Pleeeaaassse tell me you're the company rep coming in to tell me I can get off this bucket! Pleasepleaseplease!\"</i>");
+	output("\n\n<i>\"Woah, slow down,\"</i> you start as the snowy-haired ausar goes all puppy-dog eyed at you.");
+	output("\n\n<i>\"Wait, no, shit!\"</i> she says, leaning in and sniffing at you. <i>\"Holy shit! You're... you're not Victor's kid, are you?\"</i>");
+	output("\n\nYou nod.");
+	output("\n\n<i>\"I'M SAVED!\"</i> she cheers, rushing up and throwing her arms around your neck. <i>\"I thought you guys had forgot about me out here, but I get the CEO in person! And... and wait.\"</i>");
+	output("\n\nThe ausar woman picks up her datapad and scrolls through it hurriedly. <i>\"Shit. That memo, right... You're not here to get me out of here, are you?\"</i> she sighs, shoulders slumping. <i>\"Sorry about that, boss. Shouldn't have gotten my hopes up. I'm the planetary manager for your dad's company. Well, not PLANETARY anymore, huh? Uh, anyway.\"</i>");
+	output("\n\n<i>\"By the way: we all got the memo after Victor passed on. I can give you a fair discount on our public inventory, but otherwise we're to treat you just like anyone else until otherwise notified.\"</i>");
+	output("\n\nShe hesitates a moment before tucking the pad under her arm and putting a surprisingly familiar hand on your shoulder. <i>\"Sorry about your old man, by the way. The 'verse is a lesser place without him. The name's Anno, by the way,\"</i> she says, extending a fluffy hand to you. <i>\"Anno Dorna. Planetary manager for the company here.\"</i>");
+	flags["MET_ANNO_POST_SPLOSION"] = -1;
+	flags["MET_ANNO"] = 1;
+	processTime(2);
+	annoMainMenu();
+}
+
+//{PC has met Anno before, first time back in the shop:}
+function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
+{
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+	output("\n\nYou've barely made it through the door to the Steele Tech shop when you hear the tell-tale click of a gun leveling at you. Your eyes go wide when you see Anno behind the counter, a pistol aimed square at your chest.");
+	output("\n\nA tense moment passes... before Anno lowers her weapon. <i>\"Shit, boss. I thought you were dead,\"</i> she sighs, holstering her sidearm on her hip and collapsing against the back wall. <i>\"I saw you go out, right before... fuck.\"</i>");
+	output("\n\nAnno shakes her head, looking out of the shop window to the debris-cluttered corridor. <i>\"Sorry. I'm just... I'm glad you're alright, [pc.name].\"</i>");
+	output("\n\nYou fully enter the shop, and ");
+	//if notsex'd anno:
+	if(annoSexed() > 0) output("put a reassuring hand on the ausar girl's shoulder");
+	else output("sweep Anno up into a tight hug. She goes rigid in your arms a moment, surprised, before relaxing into your embrace");
+	output(". <i>\"Thanks.\"</i>");
+	output("\n\nShe sighs and sits back behind the counter. <i>\"So. Something tells me the planet rush is just about over for Tarkus.\"</i>");
+
+	//if Nice:
+	if(pc.isNice()) output("\n\n<i>\"Ouch,\"</i>");
+	else if(pc.isMischievous()) output("\n\n<i>\"What makes you say that?\"</i>");
+	else output("\n\n<i>\"No, really?\"</i>");
+	output(" you answer.");
+
+	output("\n\n<i>\"What's there to even come here for, now? I thought it was a shithole before, but now... the planet's gone, and the raskvel don't have shit to offer aside from cockshines for the galaxy. Damn it, I might as well pack up shop. Fuck your dad, and fuck this post. I want to go home!\"</i>");
+	output("\n\nAfter a moment of pouting, she groans, <i>\"I don't suppose you need a warp-field expert on your crew, boss? Hell, I can do mechanical engineering, too. Just get me the fuck off the tub before it vents us all into space. I'm begging you!\"</i>");
+	flags["MET_ANNO_POST_SPLOSION"] = 1;
+	processTime(3);
+	//Join Crew or Hold Up
+	clearMenu();
+	addDisabledButton(0,"Join Crew","Join Crew","Whoah there, space cowboy! This encounter isn't coded yet.");
+	addButton(1,"Hold Up",holdOnAnno,undefined,"Hold Up","You aren't ready to take her on as crew just yet.")
+}
+
+//Hold On
+function holdOnAnno():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	userInterface.showName("\nANNO");
+	output("<i>\"Keep your chin up, Anno,\"</i> you say, patting the miserable scientist between her big, fluffy ears. <i>\"You've got a job to do.\"</i>");
+	output("\n\n<i>\"Ugh. I know,\"</i> Anno sighs, but still nuzzles her head up against your palm. <i>\"I'm just scared, boss. We lost some people when the boat went orbital. Lost that little bat kid. A fuckin' kid, [pc.name]. I swear to God I heard her getting sucked out when we lost atmosphere.\"</i> She shudders. <i>\"I don't want to be next. This clanker is barely holding together. I mean, it crashed for a reason, right?\"</i>");
+	output("\n\n<i>\"Shit. Nevermind me, boss. I'm a big girl, I'll take care of myself. Anyway, you came here for something, or just to check on me?\"</i>");
+	processTime(1);
+	annoMainMenu();
 }

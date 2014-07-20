@@ -440,3 +440,15 @@ function firstTimeOnTarkusBonus():Boolean
 	}
 	return false;
 }
+
+function BonusFunction210():Boolean
+{
+	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
+	return false;
+}
+function bonusFunction213():Boolean
+{
+	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
+	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red \'X\' spraypainted across it.");
+	return false;
+}

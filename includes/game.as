@@ -435,11 +435,13 @@ public function variableRoomUpdateCheck():void
 	//Handle planet explosions
 	if(flags["TARKUS_DESTROYED"] == 1 && rooms["211"].southExit != "") 
 	{
+		trace("PLANET BLEWED UP. HIDIN ROOMS");
 		rooms["211"].southExit = "";
 		rooms["213"].southExit = "";
 	}
-	else if(rooms["211"].southExit == "")
+	else if(rooms["211"].southExit == "" && flags["TARKUS_DESTROYED"] == undefined)
 	{
+		trace("PLANET DIDN'T BLOWED UP. LINKIN' ROOMS");
 		rooms["211"].southExit = "215";
 		rooms["213"].southExit = "295";
 	}
