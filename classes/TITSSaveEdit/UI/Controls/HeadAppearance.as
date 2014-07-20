@@ -23,6 +23,8 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _lipMod:InputLabelPair;
 		private var _lipColor:InputLabelPair;
 		private var _earType:ComboLabelPair;
+		private var _eyeType:ComboLabelPair;
+		private var _eyeColor:InputLabelPair;
 		
 		//private var _antennae:InputLabelPair;
 		//private var _antennaeType:ComboLabelPair;
@@ -51,6 +53,12 @@ package classes.TITSSaveEdit.UI.Controls
 
 		public function get earType():int { return int(_earType.inputValue); }
 		public function set earType(v:int):void { _earType.inputValue = int(v); }
+		
+		public function get eyeType():int { return int(_eyeType.inputValue); }
+		public function set eyeType(v:int):void { _eyeType.inputValue = v; }
+		
+		public function get eyeColor():String { return _eyeColor.inputValue; }
+		public function set eyeColor(v:String):void { _eyeColor.inputValue = v; }
 
 		public function get horns():int { return int(_horns.inputValue); }
 		public function set horns(v:int):void { _horns.inputValue = String(v); }
@@ -158,6 +166,23 @@ package classes.TITSSaveEdit.UI.Controls
 			_earType.labelText = "Ear Type";
 			_earType.disableEdits();
 			_earType.selectedIndex = 0;
+			
+			_eyeType = new ComboLabelPair();
+			AddControl(_eyeType);
+			
+			for (var i:int = 0; i < GLOBAL.VALID_EYE_TYPES.length; i++)
+			{
+				_eyeType.addItem(GLOBAL.VALID_EYE_TYPES[i], GLOBAL.TYPE_NAMES[GLOBAL.VALID_EYE_TYPES[i]]);
+			}
+			
+			_eyeType.labelText = "Eye Type";
+			_eyeType.disableEdits();
+			_eyeType.selectedIndex = 0;
+			
+			_eyeColor = new InputLabelPair();
+			AddControl(_eyeColor);
+			_eyeColor.labelText = "Eye Color";
+			_eyeColor.setRestriction(InputLabelPair.RESTRICT_ALPHA);
 			
 			_horns = new InputLabelPair();
 			AddControl(_horns);

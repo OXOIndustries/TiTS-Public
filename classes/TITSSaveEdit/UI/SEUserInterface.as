@@ -174,6 +174,8 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.headAppearance.horns = char.horns;
 			_mainDisplay.headAppearance.hornType = char.hornType;
 			_mainDisplay.headAppearance.hornLength = char.hornLength;
+			_mainDisplay.headAppearance.eyeType = char.eyeType;
+			_mainDisplay.headAppearance.eyeColor = char.eyeColor;
 			
 			_mainDisplay.bodyAppearance.armType = char.armType;
 			_mainDisplay.bodyAppearance.wingType = char.wingType;

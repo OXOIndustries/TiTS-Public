@@ -109,6 +109,8 @@ package classes.TITSSaveEdit.Data
 			"dickNippleMultiplier",
 			"dickNippleType",
 			"analVirgin",
+			"eyeType",
+			"eyeColor",
 		];
 		
 		// General
@@ -193,6 +195,8 @@ package classes.TITSSaveEdit.Data
 		public var horns:Number;
 		public var hornLength:Number;
 		public var hornType:Number;
+		public var eyeType:Number;
+		public var eyeColor:String;
 		
 		// Appearance -- Body
 		public var armType:Number;

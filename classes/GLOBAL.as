@@ -212,6 +212,13 @@
 			FLAG_ANGULAR,
 		];
 		
+		public static const VALID_EYE_TYPES:Array = [
+			TYPE_HUMAN,
+			TYPE_ARACHNID,
+			TYPE_FELINE,
+			TYPE_SNAKE,
+		];
+		
 		public static const VALID_TONGUE_TYPES:Array = [
 			TYPE_HUMAN,
 			TYPE_NAGA,
