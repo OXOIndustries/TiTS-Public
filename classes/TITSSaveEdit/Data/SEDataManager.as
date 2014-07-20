@@ -282,7 +282,7 @@ package classes.TITSSaveEdit.Data
 			_buttonTray.clearMenu();
 			
 			var msg:String = "<span class='words'><p>";
-			msg += "<b>Which save would you like to import?</b>";
+			msg += "<b>Which save would you like to import?</b>\n\n";
 			
 			for (var i:int = 1; i <= 9; i++)
 			{
@@ -302,8 +302,8 @@ package classes.TITSSaveEdit.Data
 			_buttonTray.addDisabledButton(10, "Load File", "Load from File", "Import CoC character data from a file saved using the Save to File feature in CoC.");
 			_buttonTray.addButton(14, "Back", (parent as TiTsSE).showMain, undefined, "Back", "Abort CoC data import.");
 			
-			
-			msg += "</span></p>";
+			msg += "</span></p>\n";
+			_text.htmlText = msg;
 		}
 		
 		private function loadCoCSol(slotNum:int):void
@@ -324,16 +324,22 @@ package classes.TITSSaveEdit.Data
 		
 		private function generateCoCSavePreview(saveFile:Object, slotNum:int):String
 		{
-			if (saveFile.exists == false)
+			if (saveFile.exists == undefined || saveFile.exists == false)
 			{
 				return (String(slotNum) + ": <b>EMPTY</b>\n\n");
+			}
+			
+			var notesT:String = "No notes available";
+			if (saveFile.notes == undefined)
+			{
+				notesT = saveFile.notes;
 			}
 			
 			var returnString:String = "";
 			
 			returnString += String(slotNum);
 			returnString += ": <b>" + saveFile.short + "</b>";
-			returnString += " - <i>" + saveFile.notes + "</i>\n";
+			returnString += " - <i>" + notesT + "</i>\n";
 			returnString += "\t<b>Days:</b> " + saveFile.days
 			returnString += "  <b>Gender:</b> ";
 			

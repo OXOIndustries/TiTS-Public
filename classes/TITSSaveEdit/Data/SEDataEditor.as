@@ -85,6 +85,8 @@ package classes.TITSSaveEdit.Data
 			for (var i:int = 0; i < numRows; i++)
 			{
 				var titsRow:BreastRowClass = new BreastRowClass();
+				tits.breastRows.push(titsRow);
+				
 				var cocRow:CoCBreastRowClass = coc.breastRows[i] as CoCBreastRowClass;
 				
 				titsRow.breastRatingRaw = cocRow.breastRating;
@@ -102,6 +104,10 @@ package classes.TITSSaveEdit.Data
 				if (cocRow.fuckable == true)
 				{
 					titsRow.nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
+				}
+				else
+				{
+					titsRow.nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 				}
 			}
 			
@@ -129,9 +135,11 @@ package classes.TITSSaveEdit.Data
 			// CoC will only ever present a singular cunt but it IS stored in an Array... URGH.
 			tits.vaginas = new Array();
 			
-			if (coc.vaginas.length = 0) return;
+			if (coc.vaginas.length == 0) return;
 			
 			var titsCunt:VaginaClass = new VaginaClass();
+			tits.vaginas.push(titsCunt);
+			
 			var cocCunt:CoCVaginaClass = coc.vaginas[0];
 			
 			titsCunt.wetnessRaw = cocCunt.vaginalWetness;
@@ -187,6 +195,8 @@ package classes.TITSSaveEdit.Data
 			for (var i:int = 0; i < numCocks; i++)
 			{
 				var titsCock:CockClass = new CockClass();
+				tits.cocks.push(titsCock);
+				
 				var cocCock:CoCCockClass = coc.cocks[i];
 				
 				if (CONVERT_COCK_TYPES[cocCock.cockType] != undefined)
@@ -207,7 +217,7 @@ package classes.TITSSaveEdit.Data
 			}
 		}
 		
-		private static const CONVERT_SKIN_TYPES:Array;
+		private static var CONVERT_SKIN_TYPES:Array;
 		
 		{
 			CONVERT_SKIN_TYPES = [];
@@ -263,7 +273,7 @@ package classes.TITSSaveEdit.Data
 			}
 		}
 		
-		private static const CONVERT_TAIL_TYPES:Array;
+		private static var CONVERT_TAIL_TYPES:Array;
 		
 		{
 			CONVERT_TAIL_TYPES = [];
@@ -346,7 +356,7 @@ package classes.TITSSaveEdit.Data
 			}
 		}
 		
-		private static const CONVERT_TONGUE_TYPES:Array;
+		private static var CONVERT_TONGUE_TYPES:Array;
 		
 		{
 			CONVERT_TONGUE_TYPES = [];
@@ -369,7 +379,7 @@ package classes.TITSSaveEdit.Data
 			tits.tongueFlags = [];
 		}
 		
-		private static const CONVERT_WING_TYPES:Array;
+		private static var CONVERT_WING_TYPES:Array;
 		
 		{
 			CONVERT_WING_TYPES = [];
@@ -398,7 +408,7 @@ package classes.TITSSaveEdit.Data
 			// There are no other available properties in TiTs to do anything with coc.wingDesc so whatevs!
 		}
 		
-		private static const CONVERT_ARM_TYPES:Array;
+		private static var CONVERT_ARM_TYPES:Array;
 		
 		{
 			CONVERT_ARM_TYPES = [];
@@ -416,7 +426,7 @@ package classes.TITSSaveEdit.Data
 			}
 		}
 		
-		private static const CONVERT_EYE_TYPES:Array;
+		private static var CONVERT_EYE_TYPES:Array;
 		
 		{
 			CONVERT_EYE_TYPES = [];
@@ -426,7 +436,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_EYE_TYPES[CoCTypeDefs.EYES_BLACK_EYES_SAND_TRAP] = GLOBAL.TYPE_HUMAN;
 		}
 		
-		private static const CONVERT_FACE_TYPES:Array;
+		private static var CONVERT_FACE_TYPES:Array;
 		
 		{
 			CONVERT_FACE_TYPES = [];
@@ -451,7 +461,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_FACE_TYPES[CoCTypeDefs.FACE_FERRET] = GLOBAL.TYPE_HUMAN; // fallback to default
 		}
 		
-		private static const CONVERT_HAIR_TYPES:Array;
+		private static var CONVERT_HAIR_TYPES:Array;
 		
 		{
 			CONVERT_HAIR_TYPES = [];
@@ -463,7 +473,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_HAIR_TYPES[CoCTypeDefs.HAIR_ANEMONE ] = GLOBAL.HAIR_TYPE_TENTACLES;
 		}
 		
-		private static const CONVERT_HORN_TYPES:Array;
+		private static var CONVERT_HORN_TYPES:Array;
 		
 		{
 			CONVERT_HORN_TYPES = [];
@@ -475,7 +485,7 @@ package classes.TITSSaveEdit.Data
 			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG] = 0; // Type not available
 		}
 		
-		private static const CONVERT_EAR_TYPES:Array;
+		private static var CONVERT_EAR_TYPES:Array;
 		
 		{
 			CONVERT_EAR_TYPES = [];

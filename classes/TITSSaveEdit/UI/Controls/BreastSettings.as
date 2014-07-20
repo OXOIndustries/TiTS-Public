@@ -52,6 +52,9 @@ package classes.TITSSaveEdit.UI.Controls
 			_breastData.addItems(v);
 			
 			_breastNumControl.labelNum = v.length;
+			
+			_selectedBreastRow.selectedIndex = 0;
+			bRowSelectedChangeHandler();
 		}
 		
 		private var _breastNumControl:PairedButtonLabel;

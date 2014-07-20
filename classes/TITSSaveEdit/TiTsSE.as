@@ -185,6 +185,9 @@ package classes.TITSSaveEdit
 		public function setCoCData(data:CoCCharacterData):void
 		{
 			SEDataEditor.mergeData(character, data);
+			dataMan.visible = false;
+			ui.showMain();
+			
 			fillUI();
 		}
 		
