@@ -135,6 +135,7 @@ package classes.TITSSaveEdit.UI
 			_mainDisplay.fluidSettings.girlCumType = char.girlCumType;
 			_mainDisplay.fluidSettings.ballFullness = char.ballFullness;
 			_mainDisplay.fluidSettings.ballEfficiency = char.ballEfficiency;
+			_mainDisplay.fluidSettings.cumMultiplier = char.cumMultiplierRaw;
 			_mainDisplay.fluidSettings.refractoryRate = char.refractoryRate;
 			_mainDisplay.fluidSettings.milkType = char.milkType;
 			_mainDisplay.fluidSettings.milkMultiplier = char.milkMultiplier;

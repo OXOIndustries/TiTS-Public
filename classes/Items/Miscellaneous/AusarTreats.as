@@ -343,6 +343,7 @@
 						pc.clearTailFlags();
 						pc.addTailFlag(GLOBAL.FLAG_LONG);
 						pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+						pc.addTailFlag(GLOBAL.FLAG_FURRED);
 						changes++;
 					}
 					else kGAMECLASS.output(target.tailTypeLockedMessage());

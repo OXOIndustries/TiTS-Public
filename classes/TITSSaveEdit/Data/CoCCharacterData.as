@@ -15,19 +15,27 @@ package classes.TITSSaveEdit.Data
 		public var level:int;
 		public var xp:int;
 		public var femininity:int;
+		
 		public var skinAdj:String;
 		public var skinDesc:String;
 		public var skinTone:String;
 		public var skinType:int;
+		
 		public var tailType:int;
+		
 		public var tallness:int;
 		public var tone:int;
 		public var thickness:int;
+		
 		public var tongueType:int;
+		
 		public var wingDesc:String;
 		public var wingType:int;
+		
 		public var nippleLength:Number;
+		
 		public var armType:int;
+		
 		public var eyeType:int;
 		public var faceType:int
 		public var hairColor:String;
@@ -36,6 +44,7 @@ package classes.TITSSaveEdit.Data
 		public var hipRating:int;
 		public var hornType:int;
 		public var horns:int;
+		
 		public var hoursSinceCum:int;
 		public var balls:int;
 		public var ballSize:Number;

@@ -546,12 +546,13 @@
 				//#15 +1-4" height to a max of 6'11" for dicked and 6' for undicked.
 				else if(select == 15)
 				{
-					var newHeight:Number = target.tallness + 1 + rand(4);
+					var heightChange:Number = 1 + rand(4);
+					var newHeight:Number = target.tallness + heightChange;
 					
 					if (target.tallnessUnlocked(newHeight))
 					{
 						kGAMECLASS.eventBuffer += "You forget to duck and whack your head into something. Frowning in irritation, you have to wonder if you've gotten taller. Now that you think about it, you're pretty sure you have. It's a small but significant step up.";
-						target.tallness += 1 + rand(4);
+						target.tallness += heightChange;
 					}
 					else
 					{

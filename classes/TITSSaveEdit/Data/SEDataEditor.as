@@ -1,7 +1,10 @@
 package classes.TITSSaveEdit.Data 
 {
+	import classes.BreastRowClass;
+	import classes.CockClass;
 	import classes.GLOBAL;
 	import classes.TITSSaveEdit.Data.CoCTypeDefs;
+	import classes.VaginaClass;
 	
 	/**
 	 * ...
@@ -11,13 +14,133 @@ package classes.TITSSaveEdit.Data
 	{
 		public static function mergeData(tits:TiTsCharacterData, coc:CoCCharacterData):void
 		{
+			// Basic properties first
+			if (coc.short.length > 0) tits.short = coc.short;
+			if (coc.femininity >= 0 && coc.femininity <= 100) tits.femininity = coc.femininity;
 			
+			tits.tallness = coc.tallness;
+			tits.tone = coc.tone;
+			tits.thickness = coc.thickness;
+			
+			tits.minutesSinceCum = coc.hoursSinceCum * 60;
+			
+			tits.buttRatingRaw = coc.buttRating;
+			tits.hipRatingRaw = coc.hipRating;
+			
+			// Skin
+			convertSkinData(tits, coc);
+			
+			// Tongue
+			convertTongueData(tits, coc);
+			
+			// Tail
+			convertTailData(tits, coc);
+			
+			// Wings
+			convertWingData(tits, coc);
+			
+			// Titties
+			convertBreastData(tits, coc);
+			
+			// Arms
+			convertArmData(tits, coc);
+			
+			// Head data
+			convertHeadData(tits, coc);
+			
+			// Cocks
+			convertCockData(tits, coc);
+			
+			// Cunts
+			convertCuntData(tits, coc);
+			
+			// Butt
+			convertAssData(tits, coc);
 		}
 		
-		// Conversion arrays
-		// Format of "FromType : ToType"
-		// From == all applicable CoC types for a slot.
-		// To == closest available match (or fallback) available in TiTs
+		// Conversion functions
+		// Each function is paired with backing data lookups that are based off of:
+		// CoC\includes\AppearanceDefs.as
+		// TiTs\Classes\Global.as
+		
+		private static function convertBreastData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			// If there are no incoming arrays, force-clear the breast data and setup the default initial row
+			// CoC probably works in a similar manner (min 1 row, goes to rating 0 etc) as TiTs but I'm being careful.
+			if (coc.breastRows.length == 0)
+			{
+				tits.breastRows = new Array();
+				tits.breastRows.push(new BreastRowClass());
+				return;
+			}
+			
+			tits.breastRows = new Array();
+			
+			// Setup to read max rows for TiTs data structure
+			var numRows:int = (coc.breastRows.length <= 10) ? coc.breastRows.length : 10;
+			var biggestBRating:Number = 0;
+			
+			for (var i:int = 0; i < numRows; i++)
+			{
+				var titsRow:BreastRowClass = new BreastRowClass();
+				var cocRow:CoCBreastRowClass = coc.breastRows[i] as CoCBreastRowClass;
+				
+				titsRow.breastRatingRaw = cocRow.breastRating;
+				
+				if (titsRow.breastRatingRaw > biggestBRating) biggestBRating = titsRow.breastRatingRaw;
+				
+				titsRow.breasts = 2; // CoC never sets anything other than 2.
+				titsRow.nipplesPerBreast = cocRow.nipplesPerBreast;
+				titsRow.breastRatingLactationMod = cocRow.lactationMultiplier;
+				titsRow.fullness = cocRow.milkFullness;
+				
+				if (cocRow.fuckable == true)
+				{
+					titsRow.nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
+				}
+			}
+			
+			// Try and gen default values for stuff
+			
+			// This makes an attempt to convert the nippleLength from CoC data to the ratios used in TiTs based on the
+			// largest breast size found.
+			tits.nippleLengthRatio = (coc.nippleLength / 0.25) / ((10 + biggestBRating) / 10);
+			tits.nippleWidthRatio = (coc.nippleLength / 0.5) / ((10 + buggestBRating) / 10);
+			
+			tits.dickNippleType = 0;
+			tits.dickNippleMultiplier = 2;
+			tits.nippleColor = "pink";
+			tits.nipplesPerBreast = 1;
+		}
+		
+		private static function convertCuntData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			// General stuffs
+			tits.clitLength = coc.clitLength;
+			
+			// CoC will only ever present a singular cunt but it IS stored in an Array... URGH.
+			tits.vaginas = new Array();
+			
+			if (coc.vaginas.length = 0) return;
+			
+			var titsCunt:VaginaClass = new VaginaClass();
+			var cocCunt:CoCVaginaClass = coc.vaginas[0];
+			
+			titsCunt.wetnessRaw = cocCunt.vaginalWetness;
+			titsCunt.loosenessRaw = cocCunt.vaginalLooseness;
+			titsCunt.hymen = cocCunt.virgin;
+			
+			if (cocCunt.type == 5) // I think this is sandtrap vagoo
+				titsCunt.vaginaColor = "obsidian";
+		}
+		
+		private static function convertAssData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			tits.ass = new VaginaClass(false);
+			
+			tits.ass.wetnessRaw = coc.ass.analWetness;
+			tits.ass.loosenessRaw = coc.ass.analLooseness;
+		}
 		
 		private static var CONVERT_COCK_TYPES:Array;
 		
@@ -39,6 +162,43 @@ package classes.TITSSaveEdit.Data
 			CONVERT_COCK_TYPES[CoCTypeDefs.COCK_TYPE_UNDEFINED] = GLOBAL.TYPE_HUMAN; // kek "Enum"
 		}
 		
+		private static function convertCockData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			// Ballstuff
+			tits.balls = coc.balls;
+			tits.ballSizeRaw = coc.ballSize;
+						
+			tits.cocks = new Array();
+			
+			// Early exit if no cocks.
+			if (coc.cocks.length == 0) return;
+			
+			// Configure for max tits supported cocks
+			var numCocks:int = (coc.cocks.length <= 10) ? coc.cocks.length : 10;
+			
+			for (var i:int = 0; i < numCocks; i++)
+			{
+				var titsCock:CockClass = new CockClass();
+				var cocCock:CoCCockClass = coc.cocks[i];
+				
+				if (CONVERT_COCK_TYPES[cocCock.cockType] != undefined)
+				{
+					titsCock.cType = CONVERT_COCK_TYPES[cocCock.cockType];
+				}
+				
+				titsCock.cLengthRaw = cocCock.cockLength;
+				
+				// Try and build the ratio based off the assertion that 5.5l == 1t
+				// l / lDefault * t = tRatio
+				titsCock.cThicknessRatioRaw = (cocCock.cockLength / 5.5) * cocCock.cockThickness;
+				
+				titsCock.knotMultiplier = cocCock.knotMultiplier;
+				
+				//titsCock.cockColor = ???
+				// color is never explicitly mentioned in CoC afaik (outside of a few type assertions f.ex red puppy pecker or whatever maybe).
+			}
+		}
+		
 		private static const CONVERT_SKIN_TYPES:Array;
 		
 		{
@@ -49,6 +209,50 @@ package classes.TITSSaveEdit.Data
 			CONVERT_SKIN_TYPES[CoCTypeDefs.SKIN_TYPE_GOO] = GLOBAL.SKIN_TYPE_GOO;
 			CONVERT_SKIN_TYPES[CoCTypeDefs.SKIN_TYPE_SCALES] = GLOBAL.SKIN_TYPE_SCALES;
 			CONVERT_SKIN_TYPES[CoCTypeDefs.SKIN_TYPE_UNDEFINED] = GLOBAL.SKIN_TYPE_SKIN;
+		}
+		
+		private static function convertSkinData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			if (CONVERT_SKIN_TYPES[coc.skinType] != undefined)
+			{
+				tits.skinType = CONVERT_SKIN_TYPES[coc.skinType];
+			}
+			
+			// Skin Adjectives.
+			// All known adjectives from the CoC codebase are listed
+			switch(coc.skinAdj)
+			{
+				case "rubber":
+				case "latex":
+				case "smooth":
+				case "milky":
+				case "ashen":
+				case "silky":
+					tits.skinFlags = [GLOBAL.FLAG_SMOOTH];
+					break;
+					
+				case "slimy":
+				case "slimey":
+				case "goopey":
+					tits.skinFlags = [GLOBAL.FLAG_STICKY];
+					break;
+					
+				case "thick":
+					tits.skinFlags = [GLOBAL.FLAG_THICK];
+					break;
+					
+				case "freckled":
+				default:
+					tits.skinFlags = [];
+					break;
+			}
+			
+			// SkinDesc only ever appears to be "skin/fur/scales/goo" in the majority of cases so fuck it.
+			
+			if (coc.skinTone.length > 0)
+			{
+				tits.skinTone = coc.skinTone;
+			}
 		}
 		
 		private static const CONVERT_TAIL_TYPES:Array;
@@ -76,6 +280,64 @@ package classes.TITSSaveEdit.Data
 			CONVERT_TAIL_TYPES[CoCTypeDefs.TAIL_TYPE_FERRET] = 0;
 		}
 		
+		private static function convertTailData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			var initTail:int = tits.tailType;
+			
+			if (CONVERT_TAIL_TYPES[coc.tailType] != undefined)
+			{
+				tits.tailType = CONVERT_TAIL_TYPES[coc.tailType];
+			}
+			
+			// Early exit if type didn't actually change
+			if (tits.tailType == initTail) return;
+			
+			// Continue setting up more tail data with some useful defaults.
+			if (tits.tailType == 0)
+			{
+				tits.tailCount = 0;
+				tits.tailFlags = [];
+				tits.tailGenital = 0;
+				tits.tailGenitalArg = 0;
+			}
+			else
+			{
+				// The only tail the player can have more than one if in TiTs are the kitsune tails, and the data
+				// for those is stored in a fucking annoying way, so I'm pretending like I didn't see it.
+				tits.tailCount = 1;
+				
+				switch (tits.tailType)
+				{
+					case GLOBAL.TYPE_EQUINE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG];
+						break;
+						
+					case GLOBAL.TYPE_PANDA:
+						tits.tailFlags = [GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
+						break;
+					
+					case GLOBAL.TYPE_CANINE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FLUFFY, GLOBAL.FLAG_FURRED];
+						break;
+						
+					case GLOBAL.TYPE_FELINE:
+						tits.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+						break;
+						
+					case GLOBAL.TYPE_BEE:
+						tits.tailFlags = [GLOBAL.FLAG_SMOOTH, GLOBAL.FLAG_STINGER_TIPPED];
+						break;
+					
+					default:
+						tits.tailFlags = [];
+						break;
+				}
+				
+				tits.tailGenital = 0;
+				tits.tailGenitalArg = 0;
+			}
+		}
+		
 		private static const CONVERT_TONGUE_TYPES:Array;
 		
 		{
@@ -85,6 +347,18 @@ package classes.TITSSaveEdit.Data
 			CONVERT_TONGUE_TYPES[CoCTypeDefs.TONUGE_SNAKE] = GLOBAL.TYPE_NAGA;
 			CONVERT_TONGUE_TYPES[CoCTypeDefs.TONUGE_DEMONIC] = GLOBAL.TYPE_DEMONIC;
 			CONVERT_TONGUE_TYPES[CoCTypeDefs.TONUGE_DRACONIC] = GLOBAL.TYPE_DRACONIC;
+		}
+		
+		private static function convertTongueData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			if (CONVERT_TONGUE_TYPES[coc.tongueType] != undefined)
+			{
+				tits.tongueType = CONVERT_TONGUE_TYPES[coc.tongueType];
+			}
+			
+			// No flags are actually ever added to the player yet afaik although descriptors/sceneflow is setup to
+			// support some.
+			tits.tongeFlags = [];
 		}
 		
 		private static const CONVERT_WING_TYPES:Array;
@@ -106,6 +380,16 @@ package classes.TITSSaveEdit.Data
 			CONVERT_WING_TYPES[CoCTypeDefs.WING_TYPE_GIANT_DRAGONFLY] = GLOBAL.TYPE_DRAGONFLY;
 		}
 		
+		private static function convertWingData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			if (CONVERT_WING_TYPES[coc.wingType] != undefined)
+			{
+				tits.wingType = coc.wingType;
+			}
+			
+			// There are no other available properties in TiTs to do anything with coc.wingDesc so whatevs!
+		}
+		
 		private static const CONVERT_ARM_TYPES:Array;
 		
 		{
@@ -114,6 +398,14 @@ package classes.TITSSaveEdit.Data
 			CONVERT_ARM_TYPES[CoCTypeDefs.ARM_TYPE_HUMAN] = GLOBAL.TYPE_HUMAN;
 			CONVERT_ARM_TYPES[CoCTypeDefs.ARM_TYPE_HARPY] = GLOBAL.TYPE_AVIAN;
 			CONVERT_ARM_TYPES[CoCTypeDefs.ARM_TYPE_SPIDER] = GLOBAL.TYPE_ARACHNID;
+		}
+		
+		private static function convertArmData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			if (CONVERT_ARM_TYPES[coc.armType] != undefined)
+			{
+				tits.armType = CONVERT_ARM_TYPES[coc.armType];
+			}
 		}
 		
 		private static const CONVERT_EYE_TYPES:Array;
@@ -168,11 +460,11 @@ package classes.TITSSaveEdit.Data
 		{
 			CONVERT_HORN_TYPES = [];
 			
-		CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_NONE] = 0;
-		CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DEMON] = GLOBAL.TYPE_DEMONIC;
-		CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_COW_MINOTAUR] = GLOBAL.TYPE_BOVINE;
-		CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X2] = 0; // Type not available
-		CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG] = 0; // Type not available
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_NONE] = 0;
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DEMON] = GLOBAL.TYPE_DEMONIC;
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_COW_MINOTAUR] = GLOBAL.TYPE_BOVINE;
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X2] = 0; // Type not available
+			CONVERT_HORN_TYPES[CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG] = 0; // Type not available
 		}
 		
 		private static const CONVERT_EAR_TYPES:Array;
@@ -180,21 +472,133 @@ package classes.TITSSaveEdit.Data
 		{
 			CONVERT_EAR_TYPES = [];
 			
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_HUMAN] = GLOBAL.TYPE_HUMAN;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_HORSE] = GLOBAL.TYPE_EQUINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DOG] = GLOBAL.TYPE_CANINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_COW] = GLOBAL.TYPE_BOVINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_ELFIN] = GLOBAL.TYPE_HUMAN;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_CAT] = GLOBAL.TYPE_FELINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_LIZARD] = GLOBAL.TYPE_LIZAN;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_BUNNY] = GLOBAL.TYPE_LAPINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_KANGAROO] = GLOBAL.TYPE_KANGAROO;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FOX] = GLOBAL.TYPE_VULPINE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DRAGON] = GLOBAL.TYPE_DRACONIC;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_RACCOON] = GLOBAL.TYPE_HUMAN;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_MOUSE] = GLOBAL.TYPE_MOUSE;
-		CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FERRET] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_HUMAN] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_HORSE] = GLOBAL.TYPE_EQUINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DOG] = GLOBAL.TYPE_CANINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_COW] = GLOBAL.TYPE_BOVINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_ELFIN] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_CAT] = GLOBAL.TYPE_FELINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_LIZARD] = GLOBAL.TYPE_LIZAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_BUNNY] = GLOBAL.TYPE_LAPINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_KANGAROO] = GLOBAL.TYPE_KANGAROO;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FOX] = GLOBAL.TYPE_VULPINE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_DRAGON] = GLOBAL.TYPE_DRACONIC;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_RACCOON] = GLOBAL.TYPE_HUMAN;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_MOUSE] = GLOBAL.TYPE_MOUSE;
+			CONVERT_EAR_TYPES[CoCTypeDefs.EARS_FERRET] = GLOBAL.TYPE_HUMAN;	
+		}
+		
+		private static function convertHeadData(tits:TiTsCharacterData, coc:CoCCharacterData):void
+		{
+			// eyes
+			if (CONVERT_EYE_TYPES[coc.eyeType] != undefined)
+			{
+				tits.eyeType = CONVERT_EYE_TYPES[coc.eyeType];
+			}
 			
+			// face
+			var initFaceType:int = tits.faceType;
+			
+			if (CONVERT_FACE_TYPES[coc.faceType] != undefined)
+			{
+				tits.faceType = CONVERT_FACE_TYPES[coc.faceType];
+			}
+			
+			if (tits.faceType != initFaceType)
+			{
+				tits.faceFlags = [];
+				
+				switch (tits.faceType)
+				{
+					case GLOBAL.TYPE_EQUINE:
+						tits.faceFlags.push(GLOBAL.FLAG_LONG);
+						tits.faceFlags.push(GLOBAL.FLAG_MUZZLED);
+						break;
+						
+					case GLOBAL.TYPE_FELINE:
+					case GLOBAL.TYPE_LIZAN:
+					case GLOBAL.TYPE_KANGAROO:
+					case GLOBAL.TYPE_VULPINE:
+					case GLOBAL.TYPE_DRACONIC:
+					case GLOBAL.TYPE_PANDA:
+					case GLOBAL.TYPE_BADGER:
+					case GLOBAL.TYPE_BOVINE:
+						tits.faceFlags.push(GLOBAL.FLAG_MUZZLED);
+						break;
+						
+					case GLOBAL.TYPE_SHARK:
+						tits.faceFlags.push(GLOBAL.FLAG_ANGULAR);
+						break;
+						
+					default:
+						break;
+				}
+			}
+			
+			// ears
+			if (CONVERT_EAR_TYPES[coc.earType] != undefined)
+			{
+				tits.earType = CONVERT_EAR_TYPES[coc.earType];
+			}
+			
+			// hair
+			tits.hairColor = coc.hairColor;
+			tits.hairLength = coc.hairLength;
+			
+			if (CONVERT_HAIR_TYPES[coc.hairType] != undefined)
+			{
+				tits.hairType = CONVERT_HAIR_TYPES[coc.hairType];
+			}
+			
+			// horns
+			if (CONVERT_HORN_TYPES[coc.hornType] != undefined)
+			{
+				tits.hornType = CONVERT_HORN_TYPES[coc.hornType];
+			}
+			
+			if (tits.hornType != 0)
+			{
+				switch (coc.hornType)
+				{
+					case CoCTypeDefs.HORNS_DEMON:
+						
+						tits.horns = coc.horns;
+						
+						if (coc.horns <= 2)
+						{
+							tits.hornLength = 2;
+						}
+						else if (coc.horns > 2 && coc.horns <= 4)
+						{
+							tits.hornLength = 5;
+						}
+						else if (coc.horns > 4 && coc.horns <= 6)
+						{
+							tits.hornLength = 8;
+						}
+						else
+						{
+							tits.hornLength = 10;
+						}
+						
+						break;
+					
+					case CoCTypeDefs.HORNS_DRACONIC_X2:
+					case CoCTypeDefs.HORNS_COW_MINOTAUR:
+						tits.horns = 2;
+						tits.hornLength = coc.horns;
+						break;
+						
+					case CoCTypeDefs.HORNS_DRACONIC_X4_12_INCH_LONG:
+						tits.horns = 4;
+						tits.hornLength = coc.horns;
+						break;
+					
+					default:
+						tits.horns = 0;
+						tits.hornLength = 0;
+				}
+			}
 		}
 		
 	}

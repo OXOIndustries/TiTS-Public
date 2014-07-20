@@ -111,6 +111,7 @@ package classes.TITSSaveEdit.Data
 			"analVirgin",
 			"eyeType",
 			"eyeColor",
+			"cumMultiplier",
 		];
 		
 		// General
@@ -214,6 +215,7 @@ package classes.TITSSaveEdit.Data
 		// Sexy Bits -- Cocks
 		public var balls:Number;
 		public var ballSizeRaw:Number;
+		public var cumMultiplierRaw:Number;
 		public var cockVirgin:Boolean;
 		
 		// Sexy Bits -- Cunts
@@ -338,6 +340,7 @@ package classes.TITSSaveEdit.Data
 			genitalSpot = 0;
 			timesCum = 0;
 			minutesSinceCum = 0;
+			cumMultiplierRaw = 1;
 		}
 		
 		public function getSaveObject():Object

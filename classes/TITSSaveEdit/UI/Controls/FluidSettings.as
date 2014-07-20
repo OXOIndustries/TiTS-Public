@@ -21,6 +21,7 @@ package classes.TITSSaveEdit.UI.Controls
 		private var _girlCumType:ComboLabelPair;
 		private var _ballFullness:InputLabelPair;
 		private var _ballEfficiency:InputLabelPair;
+		private var _cumMultiplier:InputLabelPair;
 		private var _refractoryRate:InputLabelPair;
 		private var _milkType:ComboLabelPair;
 		private var _milkMultiplier:InputLabelPair;
@@ -36,6 +37,9 @@ package classes.TITSSaveEdit.UI.Controls
 		
 		public function get ballFullness():Number { return Number(_ballFullness.inputValue); }
 		public function set ballFullness(v:Number):void { _ballFullness.inputValue = String(v); }
+		
+		public function get cumMultiplier():Number { return Number(_cumMultiplier.inputValue); }
+		public function set cumMultiplier(v:Number):void { _cumMultiplier.inputValue = String(v); }
 		
 		public function get ballEfficiency():Number { return Number(_ballEfficiency.inputValue); }
 		public function set ballEfficiency(v:Number):void { _ballEfficiency.inputValue = String(v); }
@@ -121,6 +125,11 @@ package classes.TITSSaveEdit.UI.Controls
 			AddControl(_ballEfficiency);
 			_ballEfficiency.labelText = "Ball Efficiency";
 			_ballEfficiency.setRestriction(InputLabelPair.RESTRICT_NUMBER);
+			
+			_cumMultiplier = new InputLabelPair();
+			AddControl(_cumMultiplier);
+			_cumMultiplier.labelText = "Cum Multiplier";
+			_cumMultiplier.setRestriction(InputLabelPair.RESTRICT_NUMBER);
 			
 			_refractoryRate = new InputLabelPair();
 			AddControl(_refractoryRate);
