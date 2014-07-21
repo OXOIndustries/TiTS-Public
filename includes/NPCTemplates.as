@@ -1,6 +1,7 @@
 ﻿import classes.Characters.Kiro;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.GunTurrets;
+import classes.Characters.Saendra;
 public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
@@ -207,6 +208,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["KIRO"] == undefined))
 	{
 		chars["KIRO"] = new Kiro();
+	}
+	if (!justUpdate || (justUpdate && chars["SAENDRA"] == undefined))
+	{
+		chars["SAENDRA"] = new Saendra();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

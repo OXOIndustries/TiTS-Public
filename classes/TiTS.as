@@ -693,5 +693,10 @@
 		{
 			return chars["KIRO"];
 		}
+		
+		public function get saendra():*
+		{
+			return chars["SAENDRA"];
+		}
 	}
 }
