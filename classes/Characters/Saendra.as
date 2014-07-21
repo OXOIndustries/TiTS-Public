@@ -66,7 +66,7 @@ package classes.Characters
 			this.scaleColor = "";
 			this.furColor = "grey";
 			this.hairLength = 36;
-			this.hairType GLOBAL.HAIR_TYPE_REGULAR;
+			this.hairType = GLOBAL.HAIR_TYPE_REGULAR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_FUR;
@@ -101,7 +101,7 @@ package classes.Characters
 			this.balls = 0;
 			this.cumMultiplierRaw = 0;
 			this.cumQualityRaw = 0;
-			this.cumType GLOBAL.FLUID_TYPE_CUM;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
 			this.ballSizeRaw = 0;
 			this.ballFullness = 0;
 			this.refractoryRate = 6;

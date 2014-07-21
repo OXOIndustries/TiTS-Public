@@ -98,6 +98,13 @@
             "replace": "...",
             "greedy": true,
             "case": false
+        },
+        "remove_blank_outputs": {
+            "find": "output(\"\\n\\n\");",
+            "replace": "",
+            "literal": true,
+            "greedy": true,
+            "case": false
         }
     },
 

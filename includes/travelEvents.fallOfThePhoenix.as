@@ -22,7 +22,7 @@ public function fuckThisShittyShip(destination:String):void
 	author("Savin");
 	output("No way you can deal with this. With a heavy heart, you back your ship off from the skirmish, leaving the <i>Phoenix</i> to its fate.");
 
-	flags["FALL OF THE PHOENIX STATUS"] = 1;
+	flags["FALL OF THE PHOENIX STATUS"] = -1;
 
 	clearMenu();
 	addButton(0, "Next", flyToWrapper, destination);
@@ -704,7 +704,6 @@ public function phoenixToggleEngine(slot:int):void
 public function calculateDaPOWAH():int
 {
 	var powahs:Array = [33, 22, 7, 40, 16]
-
 
 	var powah:int = 0;
 	
