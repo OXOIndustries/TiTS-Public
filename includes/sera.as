@@ -11,7 +11,13 @@ function seraBonusFunction():Boolean
 	else
 	{
 		output("\n\nSera is slouching at her countertop, looking rather bored. The mess she made when you first met her has since been cleaned up. Her bright eyes flick your way, but she doesn't say a word just yet, waiting for you to approach her.");
-		addButton(0,"Sera",approachSera);
+		addButton(0, "Sera", approachSera);
+		
+		if (saendraAtDarkChrysalis())
+		{
+			darkChrysalisSaendraInject();
+			addButton(1, "Saendra", saendraTalkInDC);
+		}
 	}
 	return false;
 }
@@ -127,8 +133,40 @@ function seraSexMenu(display:Boolean = false):void {
 	trace("COCK VOLUME:" + pc.cockVolume(0) + " SERA CAPACITY: " + chars["SERA"].vaginalCapacity(0));
 }
 
+public function initSeraFuckFlags():void
+{
+	if (flags["SERA FUCKED PCS TAILCUNT"] == undefined) flags["SERA FUCKED PCS TAILCUNT"] = 0;
+	if (flags["TIMES_RODE_BY_SERA"] == undefined) flags["TIMES_RODE_BY_SERA"] = 0;
+	if (flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) flags["SERA_STUCK_IT_ALL_IN_BUTT"] = 0;
+}
+
+public function fuckedSeraBefore():Boolean
+{
+	initSeraFuckFlags();
+	
+	if (flags["FUCKED SERA"] == 1) return true;
+	
+	// Tailfuck scene has to flag set atm, added but yeah
+	
+	if (flags["SERA FUCKED PCS TAILCUNT"] > 0) return true;
+	if (flags["TIMES_RODE_BY_SERA"] > 0) return true;
+	if (flags["SERA_STUCK_IT_ALL_IN_BUTT"] > 0) return true;
+	
+	return false;
+}
+
+public function timesFuckedSera():int
+{
+	initSeraFuckFlags();
+	
+	return flags["SERA FUCKED PCS TAILCUNT"] + flags["TIMES_RODE_BY_SERA"] + flags["SERA_STUCK_IT_ALL_IN_BUTT"];
+}
+
 function letSeraFuckYou():void
 {
+	flags["FUCKED SERA"] = 1;
+	initSeraFuckFlags();
+	
 	var choices:Array = new Array();
 	//Get Giant Dick Urethrally Tail-filled while eating her out
 	//You get the gist
@@ -217,6 +255,9 @@ function getTailUsedBySera():void
 	if(pc.tailCount > 1 || pc.vaginaTotal() > 1) output("s");
 	output(" clench, and a drop of goo dangles down from your juice-soaked entrance. You catch it in your mouth before it can dirty her floor and spend the next several minutes obediently licking out every drop that your tail failed to consume.");
 	output("\n\nShe doesn't seem to have any complaints about your face being covered in pussy juice. You do your best to wipe up anyway, but you're sure you still smell vaguely of cunt. The satisfaction your [pc.tailgina] exudes makes it all worthwhile.");
+	
+	flags["SERA FUCKED PCS TAILCUNT"]++;
+	
 	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
 	pc.orgasm();
@@ -242,7 +283,7 @@ function getRodeFemdomStyleBySera():void {
 	else output("You");
 	output(" walk to where she's indicated and sit down. The floor is cold on your [pc.butt]. You barely manage to suppress an involuntary shiver before forcing yourself to lay out on the frigid deckplates. You'd think she could at least spring for some carpet if she was planning to fuck potential clients on the floor.");
 	output("\n\nSera appears almost oblivious to your discomfort. She's smiling down at you, licking her lips as her heels click and clack closer to you. She laughs and admits, <i>\"");
-	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Already back in your place, meat? I suppose it isn't that hard to train that wanton dick of yours.");
+	if(flags["TIMES_RODE_BY_SERA"] > 0) output("Already back in your place, meat? I suppose it isn't that hard to train that wanton dick of yours.");
 	else output("You know, I wasn't sure you'd do that right here and now. What if someone walked in? You'd be laying there shivering while I haggle over mods with them. Maybe if you were lucky, I might have given you a few rubs with my heel. Gotta keep my meat warm.\"</i> She smiles. <i>\"Let's get to your training then, shall we?");
 	output("\"</i>");
 	output("\n\nYou color shamefully at her stinging words,  and then she's standing astride you, her cock and balls dangling but not so far that you can't see her moist cleft. A single, pearl-like droplet of feminine lubricant slides down the backside of her sack, hanging there as she regards you. She looks almost regal from what you can see of her; her horns are like a curling, twisted crown, and her eyes, they glow with a powerful inner light. You lay hard and helpless before her, waiting for her to take you and do what she will with your body.");
@@ -290,7 +331,7 @@ function getRodeFemdomStyleBySera():void {
 	output("\n\nShe breaks away, her lips still wet with mixed spit. You feel her come down to the hilt, soaked and clinging. Another moan rises off, but it's a choked, weak little thing. Her grip on your neck is just tight enough to make it hard to talk but not enough to actually stop your breathing. Sera straightens to start fucking you, the steady rise and fall of her hips feeling like heaven to your over-focused consciousness. If she started choking you now, you probably wouldn't resist. Her pussy feels to good to interrupt.");
 	pc.cockChange(true,false);
 	output("\n\n<i>\"You like this, don't you? ");
-	if(flags["TIMES_RODE_BY_SERA"] != undefined) output("Why do I even ask? You came back for more, like an obedient, well-trained puppy.");
+	if (flags["TIMES_RODE_BY_SERA"] > 0) output("Why do I even ask? You came back for more, like an obedient, well-trained puppy.");
 	else output("If you didn't before, you sure do now.");
 	output("\"</i> Sera moves faster, tits jiggling above you. You can only see them out of the corner of your eyes; you're dutifully keeping your gaze averted, lest you draw her ire. It leaves you with nothing to focus on but the feelings and your own submission. You pant, breathing hard, gently nodding as much as her hand will allow.");
 	output("\n\nSera's free hand moves to your [pc.chest] and grabs a [pc.nipple], twisting cruelly.");
@@ -331,7 +372,7 @@ function getRodeFemdomStyleBySera():void {
 	if(pc.cockTotal() == 1) output("es");
 	output(" in response. Luckily, she doesn't see.");
 	output("\n\nAfter you're both suitably presentable, you walk back around the corner. Sera mirthfully asks, <i>\"Is there anything I can do for you, pet?\"</i> You flush as you consider your options.");
-	flags["TIMES_RODE_BY_SERA"] = 1;
+	flags["TIMES_RODE_BY_SERA"]++;
 	processTime(35+rand(10));
 	pc.orgasm();
 	seraMenu();
@@ -422,7 +463,7 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	output(".\"</i>  You hesitate a moment, not sure if she's being serious, and her slim smile fades into a sneer. <i>\"I said BARK, slut.\"</i>");
 
 	//if first-time:
-	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined)
+	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
 	{
 		output("\n\nNo way you're going to ACTUALLY bark like a little doggy for her. Sera merely crosses her arms under her pronounced, purple promontories, <i>tsk</i>ing her tongue. <i>\"I guess you weren't serious about wanting some of this,\"</i>  she says, her thick prick twitching between her supple thighs. <i>\"Too bad.\"</i>");
 		output("\n\n<i>\"Wait,\"</i>  you answer, putting out a hand to stop her from turning away from you. <i>\"I didn't... I mean, I do, but...\"</i>");
@@ -481,13 +522,13 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 		output("\n\nWith a shriek of pleasure, you let it all go, cock erupting in a wave of seed to splatter across Sera's foot and the deck below. She grimaces as you cum onto her, but says nothing, letting you ride out your longed-for orgasm until you're nothing more than a quivering pile of lust on her deck, shuddering full-body into the powerful throes of pleasure. <i>\"And now you got me dirty. Great job, meat.\"</i>  Sera crosses her dirtied leg over the other, letting her spunk-drenched hoof hang in the air. <i>\"You better clean that up, if you want me to even THINK about being gentle with that [pc.asshole] of yours. If you were smart, and that's a big if, you might even slather me up with it. My cock's gotten a little dry without that pretty mouth of yours to keep it warm.\"</i>");
 		pc.orgasm();
 		//If PC isn't Sera's bitch yet: 
-		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined)
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
 		{
 			output("\n\nYou hesitate at the thought of slurping up your own cum, but... the prospect of her going in dry isn't exactly appealing, either");
 		}
 		else output("\n\nYou eagerly crawl onto your hands and [pc.knees] before your demonic mistress, wiggling your hips in anticipation of what she's about to do to you");
 		output(". You lean down and cup her spunk-slathered hoof, bringing it up to your tongue and licking across its sheer, hard surface. You shudder at the taste of your own cum, utterly ");
-		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) output("revolted");
+		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0) output("revolted");
 		else output("turned on");
 		output(" by the syrupy texture of your spunk. You spend a few long seconds slurping up every drop that you shot across her hoof, making sure not to swallow, before rising up to your [pc.knees] and wrapping your lips around her rock-hard demon wang, sucking her cock right back up and slathering it with your spunky lube. She gives a little moan of satisfaction as you fellate her, doubly so when your tongue starts spreading your thick cream across her length, but after a few moments, points an accusing finger to the tiny lake of sperm still splattered across the deck.");
 		output("\n\n<i>\"Don't think I was letting you off THAT easy, meat. Drink up,\"</i>  she says, pushing you off her cock and down to the floor. With an obedient whimper, you all but put your nose in it, lapping up your hot, sticky seed and delivering it back to your mistress's cock, coating her from tip to base in a sheen of semen. She gives you an approving smile as you go down for seconds, spending a good minute cleaning her deck with your tongue until it sparkles.");
@@ -542,10 +583,10 @@ function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	if(pc.hasCockTail()) output(" It takes her a moment longer to finally yank your tail-cock from her ass, though; and when she does, a nice little waterfall of cum drizzles down with it.");
 	output("\n\n<i>\"What're you still doing here?\"</i>  she adds a moment later, interrupting your after-glow. <i>\"Go on, get outta here before people start talking. Unless you want me to bend you over this counter again and open you up to my favorite customers? That'd draw in business.\"</i>");
 	//If PC isn't a bitch:
-	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == undefined) output("\n\nYou shudder at the thought");
+	if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0) output("\n\nYou shudder at the thought");
 	else output("\n\nBefore you annoy the mistress, you hurriedly gather your things");
 	output(" and run off.");
-	flags["SERA_STUCK_IT_ALL_IN_BUTT"]  = 1;
+	flags["SERA_STUCK_IT_ALL_IN_BUTT"]++;
 	processTime(40+rand(10));
 	pc.loadInAss(chars["SERA"]);
 	if(pc.hasVagina()) pc.loadInCunt(chars["SERA"],0);

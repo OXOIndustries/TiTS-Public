@@ -3,6 +3,29 @@ public function saenHeader():void
 	clearOutput();
 	author("Savin");
 	showBust("SAENDRA");
+	showName("\nSAENDRA");
+}
+
+public function saendraAtBar():Boolean
+{
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
+	{
+		if (flags["SAEN MET AT THE BAR"] == undefined)
+		{
+			return true;
+		}
+
+		if (flags["SAENDRA GONNA GO GET A COCK"] >= 1)
+		{
+			return false;
+		}
+
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 public function saendraAffection(arg:int = 0):int
@@ -24,8 +47,6 @@ public function saendraAffection(arg:int = 0):int
 // Returns true if it output, false if it didnt
 public function saenAtTheBarFirstTimeEvent():Boolean
 {
-	if (!flags["FALL OF THE PHOENIX STATUS"] == 1 || !flags["SAEN MET AT THE BAR"] == undefined) return false;
-
 	flags["SAEN MET AT THE BAR"] = 1;
 
 	saenHeader();
@@ -481,6 +502,12 @@ public function saendraFutification():void
 {
 	saenHeader();
 
+	if (pc.credits >= 2000 && flags["SAENDRA OH GOD IM POOR"] != undefined)
+	{
+		saendraOkayLetsDoItCredits();
+		return;
+	}
+
 	output("A bit hesitantly, you broach the subject of your own desires for the fluffy halfbreed. “<i>So, uh, Saendra... you know, you’re a beast in bed, but...</i>”");
 	
 	output("\n\nShe interrupts you with a wolfish grin, leaning in until her heavy breasts are straining against her vest, her ample cleavage on full display. “<i>Lemme guess... you want to talk me into getting a big, thick cock, right? {if PC is male: “<i>I knew you were a little buttslut at heart, hero... you just needed the right person to bring it out!</i>” // if PC is female: “<i>A strapon or tenta-probe not cutting it for ya, babe?</i>”}");
@@ -495,9 +522,479 @@ public function saendraFutification():void
 	output("\n\n{If Affection => 50:");
 	output("\n\nSaen sighs, rubbing the back of her neck with her silvery arm. “<i>Ahhh. I dunno, hero. I just... I mean... why? I’m happy the way I am. We have good sex -- no, </i>great<i> sex! -- and I’m fine sticking with toys and stuff when I wanna go after a tight little hole like yours. I just don’t see why I need a dick. I like being a girl.</i>” ");
 
-[Drop It] [Push:Reversable] [Push:FeelsGood]
-
 	saendraAffection(-5);
 
+	//[Drop It] [Push:Reversable] [Push:FeelsGood]
 	clearMenu();
+	addButton(0, "Drop It", saendraDropIt, "Drop It", "Drop the subject.");
+	if (flags["SAENDRA TALKED ABOUT FUTA"] >= 1 && saendraAffection() >= 50)
+	{
+		addButton(1, "Push: Reverse", saendraFutaReversable, true, "Push: Reversable", "Push the discussion about Saendra getting a cock. Emphasise that the process is reversable after all...");
+		addButton(2, "Push: Good", saendraFutaFeelsGoodMan, false, "Push: Feels Good", "Push the discussion about Saendra getting a cock. Emphasise that it would feel really special.")
+	}
+	else
+	{
+		if (saendraAffection() < 50)
+		{
+			addDisabledButton(1, "Push: Reverse", "Push: Reversable", "If your relationship with Saendra was a little more developed, you might be able to talk her into it.");
+			addDisabledButton(2, "Push: Good", "Push: Feels Good", "If your relationship with Saendra was a little more developed, you might be able to talk her into it.")
+		}
+		else
+		{
+			addDisabledButton(1, "Push: Reverse", "Push: Reversable", "Maybe if you really try talking to her about it again, she might be more willing to go through with it.");
+			addDisabledButton(2, "Push: Good", "Push: Feels Good", "Maybe if you really try talking to her about it again, she might be more willing to go through with it.")
+		}
+		
+	}
+}
+
+public function saendraDropIt():void
+{
+	saenHeader();
+
+	if (flags["SAENDRA TALKED ABOUT FUTA"] == undefined) flags["SAENDRA TALKED ABOUT FUTA"] = 1;
+	else flags["SAENDRA TALKED ABOUT FUTA"]++;
+
+	output("“<i>Alright, alright. Forget I asked,</i>” you say, patting Saen’s shoulder. ");
+	
+	output("\n\nShe nods slowly. “<i>Yeah. Let’s, uh, let’s just move on, huh?</i>”");
+
+	clearMenu();
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+}
+
+public function saendraFutaTalkII(reversePath:Boolean = true):void
+{
+	saenHeader();
+
+	if (reversePath)
+	{
+		output("“<i>Come on, Saen, haven’t you ever wanted to try it out? Besides, what do you have to lose? If you don’t like it, you can always get rid of it.</i>”");
+		
+		output("\n\nSaen fidgets uncomfortably. “<i>I... I guess. I don’t know, [pc.name], I can tell you really want it, but... you know what? Fuck it! You’re right, I can always get rid of it later.</i>” ");
+		
+		output("\n\nYou break into a big grin as Saendra finally gives into your cocklust. She hops to her feet, suddenly excited. “<i>Alright. I know this creepy demon chick across the hall that does custom mods. But </i>you’re<i> paying for it, you want it so bad.</i>”");
+	}
+	else
+	{
+		output("“<i>C’mon, Saen. It’ll feel amazing,</i>” you say, putting a hand on your lover’s. “<i>Imagine a great big clit, super sensitive, pounding");
+		if (pc.hasVagina()) output(" my pussy");
+		else output(" my ass");
+		output(". And you’d have a prostate, too... you haven’t had anal until you’ve done it with a prostate in your backdoor.</i>”");
+		
+		output("\n\n“<i>You’re not wrong,</i>” Saen admits. “<i>I hear shit like that all the time... extranet’s got plenty of dickgirl porn, you know.</i>”");
+		
+		output("\n\nValeria pops up. “<i>And you’ve downloaded most of it!</i>”");
+		
+		output("\n\n“<i>Sh-shut it, pixel-butt!</i>” Saen snaps, clicking Val off. “<i>Look, I dunno, hero. I can tell you really want it, but... ah, maybe you’re right. It probably </i>would<i> feel amazing. Maybe you’re right. What’s the harm in trying, right?</i>” ");
+		
+		output("\n\nYou break into a big grin as Saendra finally gives into your cocklust. She hops to her feet, suddenly excited. “<i>Alright. I know this creepy demon chick across the hall that does custom mods. But </i>you’re<i> paying for it, you want it so bad.</i>”");
+	}
+
+	saendraDoCockuMenu();
+}
+
+public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
+{
+	clearMenu();
+	if (player.credits >= 2000)
+	{
+		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra setup with a cock.");
+	}
+	else
+	{
+		addButton(0, "Okay", saendraBuhuImPoor, undefined, "Okay", "Agree to pay the fees required to get Saendra setup with a cock.");
+	}
+
+	if (!triedThrobb)
+	{
+		addDisabledButton(1, "Throbb", "Use Throbb", "Saendra seemed pretty against the idea of using Throbb for the process.");
+	}
+	else
+	{
+		if (player.hasItem(new Throbb()))
+		{
+			addButton(1, "Throbb", saendraUseTheThrobbLuke, undefined, "Use Throbb", "Hey, you've got some of this stuff kicking around. Might as well put it to a good use, right?");
+		}
+		else
+		{
+			addDisabledButton(1, "Throbb", "Use Throbb", "If you had some, you could try and offer a dose of Throbb to Saendra rather than having to pay the extortionate fee it would otherwise take.");
+		}
+	}
+}
+
+public function saendraOkayLetsDoItCredits():void
+{
+	saenHeader();
+
+	if (flags["SAENDRA OH GOD IM POOR"] == undefined)
+	{
+		pc.credits -= 2000;
+
+		output("“<i>Sounds good. Let’s do it.</i>”");
+
+		output("\n\nSaen flashes you a grin, her prior nervousness evaporating behind her usual bravado. “<i>Alright. I’ll meet you over there, hero. Don’t keep me waiting!</i>” With that, she slips out of the booth, grabs her jacket from over her seat, and pops out of the bar. ");
+	}
+	else
+	{
+		output("“<i>Hey, I finally got the money!</i>” you announce.");
+		
+		output("\n\nSaen blinks. “<i>Huh? Didya win a bet or something, hero?</i>”");
+		
+		output("\n\n“<i>No, for getting you, you know... what we talked about.</i>” ");
+		
+		output("\n\n“<i>...Oh. I guess I did agree to that, huh? Alright, if you got the money, I’m still willing to give it a shot, [pc.name]. Meet ya at Dark Chrysalis?</i>”");
+		
+		output("\n\nYou nod as Saen packs up and pops on out of the bar, reaching back and brushing your cheek with one of her fluffy tails as she goes. ");
+	}
+
+	flags["SAENDRA GONNA GO GET A COCK"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function saendraUseTheThrobbLuke():void
+{
+	saenHeader();
+
+	output("“<i>Actually... I have a little something here. We could do it right now,</i>” you suggest, producing a Throbb injection.");
+	
+	output("\n\n“<i>Woah!</i>” Saen says, waving her hands. “<i>Nuh-uh. No way. I’ve heard about that shit. It fucks with your mind, man. I got better shit to do than spend all day fapping my brains out and eating my own cum or something. Not happening. We do it my way, or you can cram your dicklust right up your ass... before I cram my dick up there.</i>”");
+
+	saendraDoCockuMenu(true);
+}
+
+public function saendraBuhuImPoor():void
+{
+	saenHeader();
+
+	flags["SAENDRA OH GOD IM POOR"] = 1;
+
+	output("You");
+	if (pc.armor != EmptySlot()) output(" turn out your pockets");
+	else output(" shrug apologetically");
+	output(". “<i>I don’t think I can really afford that.</i>”");
+	
+	output("\n\n“<i>Welp,</i>” Saen says with a sigh, plopping back down in her seat. “<i>I guess you’ll just have to make due with a wet, lusty, libidinous slut of a fuckbuddy without a dick. Poor you!</i>”");
+	
+	output("\n\nShe gives you a playful punch on the arm. “<i>C’mon, let’s drop it... though all this talk of dicks might have gotten me a little horny. You gonna take responsibility for that, hero?</i>” she teases. ");
+
+	clearMenu();
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+}
+
+public function saendraAtDarkChrysalis():Boolean
+{
+	if (flags["SAENDRA GONNA GO GET A COCK"] == 1 && !saendra.hasCock()) return true;
+	return false;
+}
+
+public function darkChrysalisSaendraInject():void
+{
+	output("\n\nSaendra is leaning against the counter, her twin tails wagging ever so slightly. Surprisingly given Saen's slutty nature, she's managed to keep herself off of Sera's free-swinging dick so far. By the looks the halfbreed keeps shooting that way, though, you doubt it's going to last much longer. Better make it quick.");
+}
+
+public function saenSeraHeader():void
+{
+	clearOutput();
+	showBust("SERA", "SAENDRA");
+	author("Savin");
+	showName("SERA &\nSAENDRA");
+}
+
+public function saendraTalkInDC():void
+{
+	saenSeraHeader();
+
+	output("“<i>Hey,</i>” you say, approaching your fluffy lover and grabbing a handful of her ass. “<i>Ready for this?</i>”");
+	
+	output("\n\nShe nods. “<i>I think so. Let’s get this over with before I change my mind, okay?</i>”");
+	
+	output("\n\n“<i>You lovebirds done yet?</i>” Sera says with disinterest. The wanna-be succubus is leaning against the counter, filing her long, pointed nails. Her big, firm breasts are at the perfect angle to let her ring piercings brush the countertop, swaying slightly in the artificial breeze coming in from the vent. “<i>Gonna buy something, or are you just here to see how many cockhungry sluts I can fuck into submission in a row? Here’s a hint: more than the two of you.</i>”");
+	
+	output("\n\nYou step up to her. The imposing demoness finally looks up.");
+	if (fuckedSeraBefore()) output(" “<i>Oh, you again. So its definitely the latter. C’mon, meat, get your girlfriend to bend over and hike those pants down. I don’t have all day.</i>”");
+	else output(" “<i>So what’s it gonna be, meat? You want something, or just my dick?</i>”");
+	
+	output("\n\n“<i>We came to buy something,</i>” you finally say, cutting off any further innuendo from the succubus. “<i>Saendra here...</i>”");
+	
+	output("\n\n“<i>Wants to grow a dick? Christ, be more vanilla.</i>”");
+	
+	output("\n\n“<i>Uh. Yeah, actually.</i>”");
+	
+	output("\n\nSera snorts. “<i>Called it. Hey, ease up. Girls with dicks are basically the new big tits fetish. Especially when they’ve got both, huh?</i>” she says, shifting slightly to emphasize her own ample bust. “<i>So what’s it gonna be, kitten? You want a big, thick cock to fuck your [pc.boy]friend here with?");
+	if (pc.hasCock()) output(" Maybe one so big that you’ll put [pc.hisp] to shame?");
+	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they spread your legs and fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.</i>”");
+	
+	output("\n\nFlashing the demoness a grin, Saendra leans in and whispers, “<i>You’re just jealous that I don’t have to fake it.</i>”");
+	
+	output("\n\n“<i>Ha! Guess it must be hard to hold it in when half the station’s had a go at your ass today.</i>”");
+	
+	output("\n\n“<i>Not my fault the boys - and the girls - are lining up around the block for a chance at me!</i>”");
+	
+	output("\n\nSera snickers. “<i>A chance? Like you could keep your legs closed if they payed you to.</i>” ");
+	
+	output("\n\n“<i>That’s right,</i>” Saen says, leaning in so close her nose is practically touching the succubus’s, “<i>I give it away, instead of having to brow-beat my customers into it. How’s it feel not being able to actually get a date, glow-in-the-dark?</i>”");
+	
+	output("\n\n“<i>Mmm. Keep talking dirty to me and I might let you suck my cock, furball. But only if you ask nice.</i>”");
+	
+	output("\n\nSaen sidles in, a little closer. Their lips all but brush. “<i>Half off?</i>”");
+	
+	output("\n\nSera answers by reaching out and grabbing Saendra’s tit through her vest. “<i>Done. But " + pc.mfn("man-meat", "tits mcgee", "your butt-buddy") + " gets in on it, too.</i>”");
+
+	processTime(5);
+
+	//[Threesome!] [No way!] [Watch] [Know each other?] [Just Buy]
+	//If PC has fucked Sera a few times, go right to threesome.
+	if (timesFuckedSera() >= 4)
+	{
+		addButton(0, "Next", saenAndSeraThreesome);
+	}
+	else
+	{
+		addButton(0, "Threesome!", saenAndSeraThreesome, undefined, "Threesome", "Get in on some hot furball-on-demon action. Because why not.");
+		addButton(1, "No way!", saenAndSeraNoWay, undefined, "No way!", "Avoid most likely taking it up the butt... for now.");
+		
+		if (silly) addButton(2, "Watch", saenAndSeraWatch, undefined, "Watch", "You'd prefer to just watch Sera work Saendra over with her cock... or is it Saendra who will be doing the working? NEXT TIME ON EPIC FUCK BATTLES");
+		else addButton(2, "Watch", saenAndSeraWatch, undefined, "Watch", "You'd prefer to just watch Sera work Saendra over with her cock... or is it Saendra who will be doing the working?");
+
+		addButton(3, "You've Met?!", saenAndSeraMet, undefined);
+		addButton(4, "Just buy", saenAndSeraJustBuy, undefined);
+
+	}
+}
+
+public function saenAndSeraJustBuy():void
+{
+	saenSeraHeader();
+
+	output("“<i>I think we’ll just pay the full price,</i>” you say, planting a credit chit on the counter.");
+	
+	output("\n\nSera huffs. “<i>A thousand creds just to keep your dignity? Impressive. I guess I’ll just have to pound your girlfriend’s ass some other time.</i>”");
+
+	processTime(1);
+
+	clearMenu();
+	addButton(0, "Next", saenAndSeraGetTheDrugs, true);
+}
+
+public function saenAndSeraMet():void
+{
+	saenSeraHeader();
+
+	output("“<i>I take it you two know each other?</i>” you say, watching the two girls practically making out already.");
+	
+	output("\n\nSera eyes Saendra. “<i>What? You didn’t tell [pc.him]?</i>”");
+	
+	output("\n\n“<i>T-tell [pc.him] what?</i>” Saendra says, fidgeting.");
+	
+	output("\n\n“<i>That </i>somebody<i> sucked cock to get those big, bouncy meatbags on her chest.</i>”");
+	
+	output("\n\nSaen blushes. “<i>Hey!</i>”");
+	
+	output("\n\n“<i>Aww, it’s okay, furball,</i>” Sera teases, squeezing Saendra’s breast until she winces. “<i>They turned out pretty nice. You might just get to use them on me... if you’re lucky</i>”");
+	
+	output("\n\nTurning to you, Saen whimpers, “<i>I-it was just once! One cup size, honest!</i>”");
+	
+	output("\n\nSera’s fingers move to Saen’s nipple, pinching down. “<i>Big-titted bimbo bashful about her boobs? Tsk-tsk.</i>” ");
+
+	processTime(3);
+
+	removeButton(3);
+}
+
+public function saenAndSeraWatch():void
+{
+	saenSeraHeader();
+
+	output("“<i>I think I’ll just watch...</i>” you say, stepping back from the entangled pair. ");
+	
+	output("\n\nSera huffs. “<i>Fine. But only a quarter off for one cock-sucker.</i>”");
+	
+	output("\n\nSaendra gives you a reproachful look... just before Sera grabs her head and face-plants her on the counter. “<i>Hope you’re ready for a five hundred credit peepshow, meat,</i>” Sera says, walking around the counter and planting her legs behind Saendra’s upturned ass. The smooth, purple-hued hand not holding the fluffy privateer down reaches around and slaps her ass, fingers sinking into the halfbreed’s squeezable booty. ");
+	
+	output("\n\n“<i>So where do you want it, slut?</i>” Sera sneers, her lengthy, blue-purple prick flopping into the crack of Saen’s ass.");
+	
+	output("\n\n“<i>Ass,</i>” Saendra answers, her hands bracing against the countertop.");
+	
+	output("\n\nSera laughs, her hands hooking through Saen’s belt and yanking down. The halfbreed gives a muted gasp as her pants fall to the deck, leaving her womanhood bare to the succubus’s pleasure. Rather than take the shot, Sera says, “<i>What’s that, furball? I don’t think I heard you.</i>”");
+	
+	output("\n\n“<i>Put it... gah! Put it in my ass!</i>” Saendra gasps as a pair of Sera’s finger slip into her sex, sliding into her pussy up to the knuckles. Saen groans, fingers digging into the steel countertop as the demoness’s digits probe deep in her slit. ");
+	
+	output("\n\n“<i>Stop mumbling, slut,</i>” Sera snaps, thrusting her fingers so deep that Saen screams, her tails shooting straight out. “<i>Where do you want me to fuck you in?</i>”");
+	
+	output("\n\n“<i>My ass!</i>” Saen cries, “<i>Fuck my ass! Fuck my ass, Sera!</i>”");
+	
+	output("\n\nSera reaches forward, grabbing the scruff of Saen’s neck and pulling her back, hard enough to get the halfbreed to look at her. “<i>There. Was that so hard, slut?</i>” she says, her tongue languidly reaching out to lick the side of Saen’s face, the over-long appendage dragging slowly from chin to where her a human’s ears might have been. Saen shivers, her tails tucking in around Sera’s fingers buried in her cunt. The succubus roughly pulls them back out of the way, keeping the fluffy twins well away from her prize. ");
+	
+	output("\n\nThe demon-girl releases Saendra’s head, shifting her grip to her own foot-long manhood and guiding her glans down to the ring of the halfbreed’s pucker. “<i>Woah, what’ve you been putting back here, slut? Could fit a fucking tuna can in you,</i>” Sera sneers, apparently having no trouble sliding her purple schlong right into Saendra’s ass. Saen grimaces, biting her lip as she takes the lengthy member. You watch as her gut visibly distends, a little lump forming in her belly as the crown of Sera’s demonic dong pushes against her innards; opposite that, Sera’s heavy nuts bop into Saendra’s backside, resting against the lips of her drooling gash. ");
+	saendra.buttChange(sera.cockVolume(0), false, false, false);
+	
+	output("\n\nWith a little grunt, Saen looks over her shoulder and flashes the succubus a grin. “<i>Is it in yet?</i>”");
+	
+	output("\n\n“<i>You’re fucking nuts, slut,</i>” Sera laughs. “<i>Alright, let’s see how you like this.</i>”");
+	
+	output("\n\nSera’s demonic tail swings around one of her legs, the cock-like appendage on its tip reaching up to join its owner’s other manhood. Just like the first, Sera takes her tail-cock and guides it to the now-gaping hole of Saendra’s ass, pressing the crown into the space between her footlong as the top of Saen’s hole. The halfbreed gives a muted gasp as the tail-cock pushes in, spreading Saen wide open between the two of them.");
+	saendra.buttChange(sera.cockVolume(0) + sera.cockTailVolume(), false, false, false);
+	
+	output("\n\n“<i>Feel it now, bitch?</i>” Sera sneers, slapping Saen’s ass. ");
+	
+	output("\n\n“<i>Is that one finger or two?</i>” Saen laughs, her voice turning into a yelp as the succubus spanks her again. That shuts the randy kitten-bitch up for a moment as the succubus gets ready to start really fucking her. ");
+	
+	output("\n\nYou lean back against the far wall, a small smirk playing across your face as Sera starts to thrust her hips into the halfbreed’s backside, ripple of flesh quaking through her big behind as the succubus pounds her twin lengths into Saendra’s clenching hole. The fluffy slut lets out a cry of pleasure as the demoness goes to work on her, and you suddenly become very aware of the heat spreading through your own loins, turned on by the rigorous assfucking on display. You let a hand snake down");
+	if (pc.lowerUndergarment == EmptySlot()) output(" to your [pc.crotch]");
+	else output(" your [pc.underwear] to your [pc.crotch]");
+	output(", running your fingers across your");
+	if (pc.hasCock()) output(" [pc.cock]");
+	else if (pc.hasVagina()) output(" [pc.cunt]");
+	else output(" ass");
+	output(" to give yourself a little stimulation. ");
+	
+	output("\n\nSaen catches sight of your will breaking down and shoots you a wink. “<i>Missing out, hero!</i>” she jeers, just as Sera’s hips slam into her ass, both cocks buried to the hilt. “<i>More than enough cock to go around!</i>”");
+	
+	output("\n\n“<i>[pc.He] made [pc.hisa] choice, furball,</i>” Sera grunts, hips moving faster. “<i>Now clench that ass tighter before I see if I can fit my fist up there, too!</i>”");
+	
+	output("\n\n“<i>Shut up and fuck me harder, pencil-dick!</i>” Saen laughs back, raising her tails and pushing her hips back against the demoness’s thrusting cocks. ");
+	
+	output("\n\nYou can only imagine they were yours, the mounting pleasure of pounding your bitch-kitten’s hot little ass, two rods rubbing against each other through the deep, tight-clenched channel of Saendra’s ass. You start to");
+	if (pc.hasVagina()) output(" finger");
+	else output(" stroke");
+	output(" yourself to the thought, emulating that imagined sensation as best you can with what you have. ");
+	
+	output("\n\n“<i>Now </i>that<i> gets me hot,</i>” Saen cheers from over at the counter. “<i>Harder, [pc.name], harder!</i>”");
+	
+	output("\n\nYou watch as Saen’s hand snakes down between her spread legs, mirror your own intentions as she starts to stroke her clit. “<i>Ohhh yeah, just like that....</i>” ");
+	
+	output("\n\n“<i>Fuck,</i>” Sera jeers, “<i>if I wanted this shit, I’d have gone into camwhoring. Get over here and suck a cock already, freeloader.</i>”");
+	
+	output("\n\nBefore the succubus can get too irate with you, Saendra clamps down hard on the twin pricks spearing her ass, stopping the demoness’s assfucking mid-thrust. “<i>Oh, </i>now<i> you get tight...</i>” Sera starts to say, before grunting with pleasure. “<i>Knock it off or I’m gonna...</i>”");
+	
+	output("\n\n“<i>Gonna c-c-cuuuum,</i>” Saen finishes, panting hard as her fingers work overtime on the engorged red mound of her pleasure-buzzer. Before Sera can do anything, the succubus’s balls and thighs are suddenly slathered in a squirt of fem-cum as Saen blows her girly load across the shopkeep’s sack; Saen’s legs are visibly shaking from the pleasure as she cums and cums, eyes rolling in her head as orgasm rocks her. ");
+	saendra.orgasm();
+	
+	output("\n\nGrabbing the halfbreed’s shoulders for leverage, Sera slaps her cocks in to the hilt despite how clenched the fluffy slut’s gotten during her orgasm. Saendra screams, back arching and tails shooting straight out as Sera forcefully reams her ass, ignoring the tightness as she buries herself in the bitch-kitten’s ass. “<i>Take it, slut!</i>” Sera growls, hilting herself in the halfbreed’s hole, “<i>Take it and fucking scream my name!</i>”");
+	
+	output("\n\nSera’s cocks visibly engorge and throb as her demonic dicks fill with cum, and empty out into Saendra’s colon. The halfbreed gasps, grabbing at her tits and bucking back against the demon’s dicks as she’s suddenly filled with hot seed. With a final moan, Saen face-plants on the counter, tails swishing happily as the succubus pumps her ass with spooge. ");
+	saendra.loadInAss(sera);
+	saendra.loadInAss(sera);
+	sera.orgasm();
+	sera.orgasm();
+	saendra.orgasm();
+	
+	output("\n\n“<i>Not bad,</i>” Sera says after a long moment, planting a hand on Saendra’s backside and using it to leverage herself out of her tight hole. A waterfall of cum sloshes out with her, splattering onto the deck or the succubus’s thighs; Saen just grins blissfully, still rubbing her clit and wagging her tails happily. ");
+	
+	output("\n\n“<i>Ugh,</i>” the demoness grimaces, wiping a few stray strands of spooge off her dick onto Saen’s upturned ass. “<i>I guess you earned your discount, slut. Though you better clean your damn mess up.</i>”");
+
+	//Go to Get the Drug
+	pc.lust(15);
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", saenAndSeraGetTheDrugs);
+}
+
+public function saenAndSeraThreesome():void
+{
+	saenSeraHeader();
+
+	output("“<i>Good choice, meat,</i>” Sera says, sliding herself up onto the counter and slowly spreading her legs, giving you a good look at the footlong cock and heavy, swinging balls between them. “<i>What’s a mouthful of cum for a discount, right? Come on, bitches, on your knees. I don’t have all day.</i>”");
+	
+	output("\n\nAt the succubus’s instruction, you take Saen’s hand as you both sink to your knees");
+	if (!pc.hasKnees()) output(", or close enough, in your bestial case");
+	output(". “<i>Good sluts,</i>” Sera coos, hooking one of her long, purple legs over each of your shoulders, leaving her half-hard shaft bobbing between you and Saen, almost inviting in the way it twitches, growing more turgid under your fixed gazes. Slowly, you crane your neck up toward the foot-long cock on offer and reach your tongue out for a taste.");
+	
+	output("\n\n“<i>Not yet!</i>” Sera snaps, cracking her thigh into the side of your face, just hard enough to get your attention. She wraps her fingers around her bobbing cock, lifting it up and pointing towards her hefty sack. “<i>You’ve got to earn your way up to the main course, meat.</i>”");
+	
+	output("\n\nSaen grins at that. “<i>At least it’s better than getting tea-bagged,</i>” she says before reaching up and daintily wrapping her lips around one of Sera’s nads, perfectly encompassing the testicular orb; you take the cue and mirror your lover’s action, all but kissing her across the gulf of Sera’s sack as you take her nut into your mouth. The taste is strong, thick and musky and oh-so-enticing; your eyes flutter,");
+	if (pc.hasCock() output(" cock stiffening");
+	else if (pc.hasVagina()) output(" cooch wettening");
+	else output(" loins afire");
+	output(" as desire suddenly takes hold over you. Without further prompting from the dominant demoness, you start to suckle on the supple orb of her teste. Your tongue rolls her nut around your mouth, licking and lapping at the taut skin, sucking just enough to feel the pull as Saen does the same, your mouths tugging her ball in opposite directions. ");
+	
+	output("\n\n“<i>Not bad,</i>” Sera says, her clawed fingers brushing through Saen’s fiery locks and across your own [pc.hair]. “<i>You two really ought to come as a pair... keep this up and I might just hire you out for the night... or should I be pimping you out to my customers? That’d drum up some business...</i>”");
+	
+	output("\n\n“<i>Uck oo uu, uut</i>” Saen mumbles around her mouthful of demon-balls. ");
+	
+	output("\n\n“<i>What’s that?</i>” the demon growls, “<i>Sorry, couldn’t hear you over my balls in your mouth.</i>”");
+	
+	output("\n\nSera doesn’t wait for an answer, just wrapping her smooth, high-heeled demon legs around your shoulders and pulling the both of you in. You open wide, letting as much demon-nut into your mouth as Sera wants to shove in, until the bottom of her sack is being ppushed up by your bottom lip, straining between your mouth and Saendra’s. The succubus’s thighs push you further together, all but forcing you to make out around her churning balls. And churn they do: you can feel the demon’s sack reacting to your loving attention, clenching and throbbing with need, with pent-up seed ready to be drained from Sera’s rock-hard rod. ");
+	
+	output("\n\nSeeing where your eyes are going, Sera gives you a curt nod. “<i>Go on, bitch. I guess you can’t curb that cocklust forever, can you?</i>”");
+	
+	output("\n\nYou ignore the insult in favor of getting your lips around the cyan blue crown of Sera’s dick. The demoness groans, reclining on her hands as you cradle her cock, lips parting to take the first few inches. The taste is intoxicating, the sensation of watery pre caressing your [pc.tongue] as the demonic dick throbs and twitches at your touch.");
+	
+	output("\n\n“<i>No fair!</i>” Saen complains, popping off of the succubus’s nuts, “<i>Cheater.</i>”");
+	
+	output("\n\n“<i>Plenty of cock to go around, furball,</i>” Sera grins, her prick-tapered tail swishing around into view. Before Saen can protest, Sera’s tail rushes forward and plugs her mouth full of tailcock, silencing the bitch-kitten with a nice mouthful of her favorite snack. ");
+	
+	output("\n\nNow getting double-teamed on two ends, Sera merely gives a little shudder and closes her eyes, leaving the heavy lifting to her two dutiful cock-shiners. With your halfbreed lover occupied by a vigorous mouthfucking, you’re free to fulfil the succubus’s wish, slowly sliding yourself down her lengthy rod. You make a sensual trip downwards, doing all you can to tame your gag reflex as the monstrously long demon dong stretches your throat wide, feeling like it’s reaching into your gut by the time your lips touch Sera’s groin. Rather than moving your head overmuch, you content yourself with letting your quaking throat pleasure your demonic mistress, squeezing and caressing the slick shaft until even the normally stoic Sera is is groaning, her legs binding you tight against her crotch until it’s hard to breath - you’re not sure if its the cock lodged in your gullet or the overpowering musky odor drifting up from her pussy and straight into your nose. ");
+	
+	output("\n\n“<i>Tsk. I feel like I’m doing all the work here, sluts,</i>” Sera sneers, even as her tailcock pounds Saendra’s mouth until the lust-addled bitch-kitten is practically delirious. “<i>Step it up if you want to earn that discount. Or are you two just sucking my cocks it because you love it?</i>”");
+	
+	output("\n\nBefore you can try and rectify your apparent failings, Sera grabs the both of you by the head, using her powerful legs to push you onto the deck. “<i>You know, in some early earth dances,</i>” the succubus coos, her cocks popping out of your and Saendra’s open mouths, “<i>you sometimes had to switch partners right in the middle of things. It’s going to be something like that.</i>”");
+	
+	output("\n\nBefore you can question what’s going on, Sera’s high-heeled foot plants you face-first on the deck, putting you on all fours with your ass pressed against your lover’s. Sera hops off the counter, planting her legs between your asses and spreading you apart with a flick of her tail. You lean out, giving the succubus just enough room to kneel between the two of you. You wince as you feel a veiny, writhing mass of cockflesh slap your ass; behind you, Saen’s tails wriggle apart, spreading like her legs as Sera’s yardarm plops between her cheeks. You find yourself bodily pushed forward as the succubus leans back, all but using you like a chair as she presses the cyan crown of her cock into Saendras bum.");
+	saendra.buttChange(sera.cockVolume(0), false, false, false);
+	
+	output("\n\nYou, of course, aren’t left out of the ass-pounding action. Sera’s twisting tailcock wraps around your [pc.leg], hugging your flesh tight as the tip of her tentacle-like appendage teases the rim of your [pc.asshole]. You shiver, bracing yourself and trying to relax as the pressure against your ass increases. Finally, with a grunt of effort from the succubus - and one of pleasure from you - she’s in! " + pc.buttChange(sera.cockTailVolume(), true, false, false); + " You grit your teeth, fingers digging into the cold, unforgiving steel of the deck as you feel yourself being speared by the tendril of Sera’s alien cock. Her probing member’s entrance isn’t painful: she goes nice and slow, clearly concerned entirely for the tightness of your hole and her own pleasure, making no move towards returning the favor. You grit and bear it as she fucks herself deep into your [pc.asshole], forging ahead no matter how tight you clench, her tailcock thruting until you could swear you feel your stomach bulging. ");
+	
+	output("\n\nBehind you, you hear a cry of pleasure tear itself from Saen’s lips as the succubu thrusts her hips forward, plowing her spit-slick prick into the halfbreed’s well-trained fuckhole. Saen screams in pleasure, her tails flicking wildly around the succubus’s hips, batting at your [pc.butt]. You can all but feel the demon’s cock pushing into Saen’s asshole, feeling every inch of purple dick by the beat of Saen’s tails wagging around. Sera takes her time fucking herself into your lover’s ass, but finally bottoms out -- in you, too. Fully buried in two tight holes, Sera gives a groan of pleasure and grabs a handful of both your asses, squeezing hard enough to make you clench on her tailcock. ");
+	
+	output("\n\n“<i>Oh fuck, get it in there,</i>” Saen moans, vigorously fingering herself as the demon’s crotch presses into her squishable butt. “<i>Juuuuust like that.</i>”");
+	
+	output("\n\n“<i>Oh, you’re just insatiable, aren’t you?</i>” Sera grins, giving her a slap on the hiney. “<i>Lucky you your friend here’s occupying my other prick, or I’d giving you a one-woman DP.</i>” ");
+	
+	output("\n\nSaen looks over her shoulder, flashing the demoness a grin. “<i>We’ll see about that,</i>” she says, and suddenly Sera’s cock inside you goes wild, straining against your anal walls. You let out a startled gasp, moaning like a whore as the tailcock suddenly thrashes in your hole.");
+	
+	output("\n\n“<i>Too... too tight, bitch!</i>” Sera snaps, swatting Saen on the ass again. The slutty halfbreed is unrelenting, though, clenching down so tight on the demon’s dick that you can <i>feel</i> the cum surging through her slender tail, desperate for release. “<i>Cut it out or I’m gonna... gonna...</i>”");
+	
+	output("\n\n“<i>Gonna cum?</i>” Saen finishes for her, wiggling her hips around the succubu-girl’s cock. That does it! Sera lashes out, striking Saendra’s ass as hard as she can - which only serves to make the bitch-kitten squeeze tighter and urge on her own orgasm. ");
+	
+	output("\n\nYou don’t have much more warning that a sudden twitch in Sera’s tailcock to herald her orgasm. A flood of warm, sticky wetness flows into your [pc.asshole], squirting deep into your colon thanks to the buried tailcock inside you. You groan as you’re pumped full of demon-cum, your stomach roiling as it receives an injection from the wrong end. Saen echoes you with a howling cry of pleasure as she’s fucked full of the demon’s cum; even with Saen’s muscles clenching hard, the demoness grips down on the fluff-slut’s hips and manages to forcefully fuck her ass, slowly hammering at Saen’s ass until her primary cock cums as well, filling the halfbreed’s spasming hole with another thick load of demonic spunk. ");
+	pc.loadInAss(sera);
+	saendra.loadInAss(sera);
+	pc.orgasm();
+	saendra.orgasm();
+	sera.orgasm();
+	sera.orgasm();
+	
+	output("\n\nSera heaves a heavy sighs, and you feel the tendril of her cocktail recede from inside you. “<i>Not bad,</i>” she growls, “<i>I guess that’ll do. This time.</i>”");
+
+	processTime(30+rand(15));
+
+	clearMenu();
+	addButton(0, "Next", saenAndSeraGetTheDrugs);
+}
+
+public function saenAndSeraNoWay():void
+{
+	saenSeraHeader();
+
+	output("“<i>No way!</i>” you say, taking a step back. “<i>Not happening.</i>”");
+	
+	output("\n\nSera rolls her eyes. “<i>What, can’t stand to see your slutty girlfriend get pounded by someone with a real dick? Or are you having second thoughts about letting her peg your ass with a real slab of meat? Don’t worry, meat, no amount of cockdrug is going to make this furball half the woman I am. So man up and throw the cash down, or get the fuck out.</i>”");
+
+	processTime(3);
+
+	removeButton(1);
+}
+
+public function saenAndSeraGetTheDrugs(fullPrice:Boolean = false):void
+{
+	saenSeraHeader();
+
+	// Money was already taken by Saen, so she'll give you half of it back
+	if (!fullPrice) pc.credits += 1000;
+
+	output("“<i>Alright,</i>” Sera says, taking credit chit offered by Saen and pulling a small hypo spray out from under her counter. “<i>Here you go, furball. Read the fucking warning label before you take the damn thing, or I’m gonna laugh when you end up in the hospital with a dick bigger than you are.</i>” ");
+	
+	output("\n\n“<i>Yeah, yeah, whatever,</i>” Saendra says, snatching the hypo from the succubus’s hands and tucking it into her cleavage. She turns her attention back to you, “<i>Well, we’ve got it. Let’s do this... somewhere with some privacy, alright? Meet me at the </i>Phoenix<i> and we’ll... we’ll do it. Together.</i>” ");
+	
+	output("\n\n“<i>Seriously. Warning label. It’s not there for you to wipe your ass with,</i>” Sera calls after Saen as the fluffy captain slips out of the shop. Sera grimaces. “<i>Dipshit.</i>” ");
+
+	flags["SAENDRA GONNA GO GET A COCK"] = 2;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

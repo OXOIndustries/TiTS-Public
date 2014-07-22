@@ -80,9 +80,9 @@ package classes.Characters
 			this.antennae = 0;
 			this.horns = 0;
 			this.hornType = 0
-			this.armType = GLOBAL.TYPE_FELINE;
+			this.armType = GLOBAL.TYPE_CANINE;
 			this.gills = 0
-			this.legType = GLOBAL.TYPE_FELINE;
+			this.legType = GLOBAL.TYPE_CANINE;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			
@@ -135,6 +135,18 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
+		// Util to create her default cock during her futafication
+		public function createDefaultCock():void
+		{
+			if (this.cocks.length > 0)
+			{
+				trace("Saen already has a cock. Can't add a second.");
+				return;
+			}
+			
+			this.createCock();
+			this.balls = 2;
+		}
 	}
 
 }
