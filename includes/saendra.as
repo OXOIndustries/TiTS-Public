@@ -44,8 +44,7 @@ public function saendraAffection(arg:int = 0):int
 }
 
 // Procs the first time the player enters Anno's bar after rescuing Saen
-// Returns true if it output, false if it didnt
-public function saenAtTheBarFirstTimeEvent():Boolean
+public function saenAtTheBarFirstTimeEvent():void
 {
 	flags["SAEN MET AT THE BAR"] = 1;
 
@@ -147,7 +146,7 @@ public function saendrasBarMenu():void
 	//NOTE: Unless otherwise noted, nothing but Sex & Leave will cause the PC to leave; ie, you return to her main menu after each choice made. 
 	
 	addButton(0, "Talk", talkToSaendraAboutStuffAndThings, undefined);
-	addButton(1, "Sex", saendraSexMenu, undefined);
+	addButton(1, "Sex", saendraSexTalk, undefined);
 	addButton(2, "Appearance", takeAGoodLookAtSaendra, undefined);
 	if (saendraAffection() >= 70)
 	{
@@ -171,7 +170,8 @@ public function saendraSexMenu():void
 	{
 		addButton(5, "Cowgirl", saendraRidesYouCowgirlStyle, undefined, "Cowgirl Style", "Let Saendra ride your cock cowgirl style.");
 		addButton(6, "Fuck Her Ass", saendraTakesItUpDaButte, undefined, "Fuck Her Ass", "Fuck Saendras wonderous ass.");
-		addButton(7, "Titfuck", saendrasTitsLookRatherGloriousItdBeAShameIfSomebodyStuckTheirCockIntoThatDeliciousCleavage, undefined, "Titfuck", "Saendras tits look rather glorious. It'd be a shame if somebody stuck their cock into that delicious cleavage.");
+		//addButton(7, "Titfuck", saendrasTitsLookRatherGloriousItdBeAShameIfSomebodyStuckTheirCockIntoThatDeliciousCleavage, undefined, "Titfuck", "Saendras tits look rather glorious. It'd be a shame if somebody stuck their cock into that delicious cleavage.");
+		addDisabledButton(7, "Titfuck", "Saendras tits look rather glorious. It'd be a shame if somebody stuck their cock into that delicious cleavage... AND SAVIN HAD ACTUALLY WRITTEN IT.");
 	}
 	else
 	{
@@ -529,8 +529,8 @@ public function saendraFutification():void
 	addButton(0, "Drop It", saendraDropIt, "Drop It", "Drop the subject.");
 	if (flags["SAENDRA TALKED ABOUT FUTA"] >= 1 && saendraAffection() >= 50)
 	{
-		addButton(1, "Push: Reverse", saendraFutaReversable, true, "Push: Reversable", "Push the discussion about Saendra getting a cock. Emphasise that the process is reversable after all...");
-		addButton(2, "Push: Good", saendraFutaFeelsGoodMan, false, "Push: Feels Good", "Push the discussion about Saendra getting a cock. Emphasise that it would feel really special.")
+		addButton(1, "Push: Reverse", saendraFutaTalkII, true, "Push: Reversable", "Push the discussion about Saendra getting a cock. Emphasise that the process is reversable after all...");
+		addButton(2, "Push: Good", saendraFutaTalkII, false, "Push: Feels Good", "Push the discussion about Saendra getting a cock. Emphasise that it would feel really special.")
 	}
 	else
 	{
@@ -597,7 +597,7 @@ public function saendraFutaTalkII(reversePath:Boolean = true):void
 public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 {
 	clearMenu();
-	if (player.credits >= 2000)
+	if (pc.credits >= 2000)
 	{
 		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra setup with a cock.");
 	}
@@ -612,7 +612,7 @@ public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 	}
 	else
 	{
-		if (player.hasItem(new Throbb()))
+		if (pc.hasItem(new Throbb()))
 		{
 			addButton(1, "Throbb", saendraUseTheThrobbLuke, undefined, "Use Throbb", "Hey, you've got some of this stuff kicking around. Might as well put it to a good use, right?");
 		}
@@ -672,7 +672,7 @@ public function saendraBuhuImPoor():void
 	flags["SAENDRA OH GOD IM POOR"] = 1;
 
 	output("You");
-	if (pc.armor != EmptySlot()) output(" turn out your pockets");
+	if (!(pc.armor is EmptySlot)) output(" turn out your pockets");
 	else output(" shrug apologetically");
 	output(". “<i>I don’t think I can really afford that.</i>”");
 	
@@ -843,7 +843,7 @@ public function saenAndSeraWatch():void
 	output("\n\n“<i>Is that one finger or two?</i>” Saen laughs, her voice turning into a yelp as the succubus spanks her again. That shuts the randy kitten-bitch up for a moment as the succubus gets ready to start really fucking her. ");
 	
 	output("\n\nYou lean back against the far wall, a small smirk playing across your face as Sera starts to thrust her hips into the halfbreed’s backside, ripple of flesh quaking through her big behind as the succubus pounds her twin lengths into Saendra’s clenching hole. The fluffy slut lets out a cry of pleasure as the demoness goes to work on her, and you suddenly become very aware of the heat spreading through your own loins, turned on by the rigorous assfucking on display. You let a hand snake down");
-	if (pc.lowerUndergarment == EmptySlot()) output(" to your [pc.crotch]");
+	if (!(pc.lowerUndergarment is EmptySlot)) output(" to your [pc.crotch]");
 	else output(" your [pc.underwear] to your [pc.crotch]");
 	output(", running your fingers across your");
 	if (pc.hasCock()) output(" [pc.cock]");
@@ -907,7 +907,7 @@ public function saenAndSeraThreesome():void
 	output("\n\n“<i>Not yet!</i>” Sera snaps, cracking her thigh into the side of your face, just hard enough to get your attention. She wraps her fingers around her bobbing cock, lifting it up and pointing towards her hefty sack. “<i>You’ve got to earn your way up to the main course, meat.</i>”");
 	
 	output("\n\nSaen grins at that. “<i>At least it’s better than getting tea-bagged,</i>” she says before reaching up and daintily wrapping her lips around one of Sera’s nads, perfectly encompassing the testicular orb; you take the cue and mirror your lover’s action, all but kissing her across the gulf of Sera’s sack as you take her nut into your mouth. The taste is strong, thick and musky and oh-so-enticing; your eyes flutter,");
-	if (pc.hasCock() output(" cock stiffening");
+	if (pc.hasCock()) output(" cock stiffening");
 	else if (pc.hasVagina()) output(" cooch wettening");
 	else output(" loins afire");
 	output(" as desire suddenly takes hold over you. Without further prompting from the dominant demoness, you start to suckle on the supple orb of her teste. Your tongue rolls her nut around your mouth, licking and lapping at the taut skin, sucking just enough to feel the pull as Saen does the same, your mouths tugging her ball in opposite directions. ");
@@ -937,7 +937,7 @@ public function saenAndSeraThreesome():void
 	output("\n\nBefore you can question what’s going on, Sera’s high-heeled foot plants you face-first on the deck, putting you on all fours with your ass pressed against your lover’s. Sera hops off the counter, planting her legs between your asses and spreading you apart with a flick of her tail. You lean out, giving the succubus just enough room to kneel between the two of you. You wince as you feel a veiny, writhing mass of cockflesh slap your ass; behind you, Saen’s tails wriggle apart, spreading like her legs as Sera’s yardarm plops between her cheeks. You find yourself bodily pushed forward as the succubus leans back, all but using you like a chair as she presses the cyan crown of her cock into Saendras bum.");
 	saendra.buttChange(sera.cockVolume(0), false, false, false);
 	
-	output("\n\nYou, of course, aren’t left out of the ass-pounding action. Sera’s twisting tailcock wraps around your [pc.leg], hugging your flesh tight as the tip of her tentacle-like appendage teases the rim of your [pc.asshole]. You shiver, bracing yourself and trying to relax as the pressure against your ass increases. Finally, with a grunt of effort from the succubus - and one of pleasure from you - she’s in! " + pc.buttChange(sera.cockTailVolume(), true, false, false); + " You grit your teeth, fingers digging into the cold, unforgiving steel of the deck as you feel yourself being speared by the tendril of Sera’s alien cock. Her probing member’s entrance isn’t painful: she goes nice and slow, clearly concerned entirely for the tightness of your hole and her own pleasure, making no move towards returning the favor. You grit and bear it as she fucks herself deep into your [pc.asshole], forging ahead no matter how tight you clench, her tailcock thruting until you could swear you feel your stomach bulging. ");
+	output("\n\nYou, of course, aren’t left out of the ass-pounding action. Sera’s twisting tailcock wraps around your [pc.leg], hugging your flesh tight as the tip of her tentacle-like appendage teases the rim of your [pc.asshole]. You shiver, bracing yourself and trying to relax as the pressure against your ass increases. Finally, with a grunt of effort from the succubus - and one of pleasure from you - she’s in! " + pc.buttChange(sera.cockTailVolume(), true, false, false) + " You grit your teeth, fingers digging into the cold, unforgiving steel of the deck as you feel yourself being speared by the tendril of Sera’s alien cock. Her probing member’s entrance isn’t painful: she goes nice and slow, clearly concerned entirely for the tightness of your hole and her own pleasure, making no move towards returning the favor. You grit and bear it as she fucks herself deep into your [pc.asshole], forging ahead no matter how tight you clench, her tailcock thruting until you could swear you feel your stomach bulging. ");
 	
 	output("\n\nBehind you, you hear a cry of pleasure tear itself from Saen’s lips as the succubu thrusts her hips forward, plowing her spit-slick prick into the halfbreed’s well-trained fuckhole. Saen screams in pleasure, her tails flicking wildly around the succubus’s hips, batting at your [pc.butt]. You can all but feel the demon’s cock pushing into Saen’s asshole, feeling every inch of purple dick by the beat of Saen’s tails wagging around. Sera takes her time fucking herself into your lover’s ass, but finally bottoms out -- in you, too. Fully buried in two tight holes, Sera gives a groan of pleasure and grabs a handful of both your asses, squeezing hard enough to make you clench on her tailcock. ");
 	
@@ -997,4 +997,341 @@ public function saenAndSeraGetTheDrugs(fullPrice:Boolean = false):void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function phoenixRecRoomAtTavros():void
+{
+	output("\n\nSaendra is pacing nervously around the rec room of her ship, her twin tails tightly clutched to her body as she wanders around. Seeing you, she smiles, “<i>Make yourself at home, hero. Lemme know when you’re ready and we’ll get started.</i>”");
+
+	addButton(0, "Saendra", doTheCockingDeed);
+}
+
+public function doTheCockingDeed():void
+{
+	saenHeader();
+
+	output("“<i>Hey, babe,</i>” Saen says as you approach. Before you can say a word, she");
+	if (pc.tallness >= (seandra.tallness - 6)) output(" slips into your arms");
+	else output(" picks you right up");
+	output(" and plants a kiss on your lips. This one’s more passionate than usual, almost fervent as she pulls you in tight, desperate. When she breaks it, her feline eyes open slowly, and she flashes you a smile. “<i>I read over the instructions. I think... I think I’m ready when you are.</i>”");
+	
+	output("\n\nYou nod and lead your lover into her cabin, planting her in the bed and helping her undress. Saen’s eager to be rid of her clothes, stripping out of her vest and unbuttoning her shirt. She’s a little slower when it comes to her pants, wiggling out of her jeans and spreading her legs, feet planted on the edge of the bed. You stand between then like a gynecologist, eyes fixed on the slick slit of Saendra’s sex; her silver fingers run across her lips, teasing the hood of her clit even as she pulls the tip off the hypospray. ");
+	
+	output("\n\n“<i>Okay. I just need to set the dial on the tip here to the size I want... there we go. Let’s see... do I want balls? Eeehhhh.... I guess. Would look weird without them. I mean, where would the cum come from? Oooh! Wait! I’m gonna have a prostate now, aren’t I? Maybe this won’t be so bad after all... having a cock is just going to make anal even better! I like the sound of that.... Alright, balls for sure, let’s go for, uh, eight on dick length? I don’t exactly have anything to compensate for... but let’s dial up the thickness a little. Trust me, that’s what gets you. Length is nice, but I </i>love<i> a good stretching.</i>”");
+	
+	output("\n\nFinished adjusting the hypo’s settings, Saen breathes out, steeling herself as she presses the head of the spray to her groin, just over her [saendra.pussy]. “<i>Alright, [pc.name], here goes nothing...</i>” ");
+	
+	output("\n\nYou hear the hiss of the spray activating, and the deed is done. A long moment passes. You and Saendra hold almost perfectly still, silent, waiting for Sera’s drug to take effect. ");
+	
+	output("\n\n“<i>Was... was it a dud?</i>” she finally asks, hazarding a look down at her cockless crotch. “<i>Son of a b-</i>”");
+	
+	output("\n\nBefore she can complete her thought, Saen suddenly doubles over in pain, clutching her gut. “<i>Oh shit it’s... aaahhhh!</i>” she cries, squirming and whimpering as the drug takes effect, rewriting her body to its very core. “<i>It’s coming it’s coming it’s COMING!</i>”");
+	
+	output("\n\nYou watch with bated breath as the flesh above her cunt swells, bulging out in the vague shape of a cockhead erupting from her groin. “<i>Fuck it feels good...</i>” she gaps, hands running up from her stomach to her tits, pinching hard on her nips. “<i>Oh fuck oh fuck...</i>” ");
+	
+	output("\n\nSuddenly, her hands are on your head, grabbing you and forcing you down into her crotch. You give a startled yelp as Saen mashes your lips right onto the burgeoning tip of her cockhead, now bristling with nodules and bumps like a cat’s prick. You don’t have much choice as the mutant member literally grows into your waiting mouth, forcing its way through your lips and onto your [pc.tongue]. ");
+	
+	output("\n\n“<i>You... you asked for this,</i>” Saen grunts, hips shifting to push more of her dick into your mouth. “<i>Come on, just suck it!</i>”");
+	
+	output("\n\nGiven your position, you can’t really argue. You let your tongue play across the bristly head of Saen’s new cock, caressing its underside and tapered crown, letting it steadily grow past your [pc.lips] and down your throat. Eight inches never seemed so <i>big</i> before; you’re struggling to open your jaw wide enough to take the girthy, turgid shaft - she wasn’t kidding when she said she wanted it thick! As it grows, you feel something... something much bigger start to press against your lips. You strain against Saen’s firm hands, pulling back just enough to see what could only be a canid knot swelling at the base of her new prick. You gulp as the swollen bitch-breaker presses insistently against your lips, finally growing large enough to force its way into your mouth.");
+	saendra.createDefaultCock();
+	
+	output("\n\nYou lick at it, and are immediately rewarded with a pleasured wince from your lover, and a thick trickle of pre rolling down your throat. “<i>Ah! God DAMN it’s sensitive... geeentle, hero!</i>” Saen gasps, and the way her cock’s twitching in you now, you’d be surprised if you weren’t about to swallow her very first load of cum. ");
+	
+	output("\n\nBefore that can happen, though, her balls make their appearance. Your chin is pushed back by the sudden swell of dangling flesh beneath Saen’s cock. Rather than forming into a heavy, dangling set of nads like you might have expected, though, the skin forming under Saendra’s cock stays tight against her groin, filling out into a smooth little trap-pouch hanging just over her cooch. ");
+	
+	output("\n\n“<i>And here I was worried about them getting in the way,</i>” Saen grins, reaching down to caress her new sack. The moment she touches it, though, her whole body shudders, a sudden surge of pleasure seizing her. “<i>Fuck! What’s... oh fuck yes! I think I’m... I think I’m cumming!</i>” ");
+	pc.loadInMouth(saendra);
+	saendra.orgasm();
+	
+	output("\n\nOh, boy! You brace yourself, sucking hard on the halfbreed’s half-and-half cock as it swells and throbs; you feel the cum rushing up it just a moment before you taste it, her cockhead engorging as it blows a massive wad down your throat. You all but gag on the voluminous alien jizz, much thicker and much more of it than a human’s ejaculate, smearing across the back of your throat. You tear yourself off of Saen’s cock, desperately swallowing down the creamy load already coating your mouth -- only to get a follow-up facial, her cock painting your face white. Her fur-coated hands reaches down and grabs her shaft, stroking off through the remainder of her orgasm while you recover.");
+	
+	output("\n\nPanting, chest heaving, Saen gives a slight chuckle as the last drops of spunk drip down from her tapered head, drooling between her fingers. “<i>Oh, fuck, that felt AMAZING,</i>” she says, flashing you a grin. “<i>I don’t know why I was so against this... it’s great. Like a huge fucking clit!</i>”");
+	
+	output("\n\n“<i>See?</i>” you say, returning her smile. “<i>Told you you’d like it.</i>”");
+	
+	output("\n\nShe laughs. “<i>C’mere, you,</i>” she says, pulling you up overtop her and hugging you tight. Her tongue licks across your cheek, lapping up her still-warm spunk. Giggling, she says, “<i>Not bad! Might have to take some yoga classes and work on my flexibility...</i>” ");
+	
+	output("\n\nYou recline in your lover’s arms as she continues to ‘groom’ you, licking up all her excess seed from your cheeks and off your lips, ending with a long and tongue-filled kiss. You let her hold you a while longer after that, cheek resting atop her soft tits as Saendra recovers from her very first male orgasm.");
+
+	flags["SAENDRA GONNA GO GET A COCK"] = 3;
+
+	//{Deposit PC in Saen's cabin}
+	processTime(30+rand(15));
+	currentLocation = "PHOENIX QUARTERS";
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function saendraSexTalk():void
+{
+	saenHeader();
+
+	output("Leaning across the table with a sly, lusty grin, you ask “<i>What do you say, Saen -- care to blow off some steam?</i>”");
+	
+	output("\n\nGrinning from ear to ear, the fluffy halfbreed takes you by the hand and pulls you out of the booth. You follow her up the stairs to the bar’s collection of rooms, enjoying the view of her pert, gropable behind swaying with every step. Her pair of dexterous tails gently tease you as you make your way upstairs, flicking across your [pc.chest] or brushing against your thighs until you’re");
+	if (pc.hasCock()) output(" hard as a rock");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" dripping wet");
+	if (!pc.hasCock() && !pc.hasVagina()) output(" shivering with need");
+	output(", never letting up until she swipes her keycard and lets you in, the two of you practically tumbling over each other onto the soft bed. Groping, teasing, and kissing, the two of you spend several minutes rolling on the bed: Saen straddling you one moment,")
+	if (pc.biggestTitSize() > 0) output(" cupping your breasts");
+	if (pc.biggestTitSize() > 0 && pc.hasCock()) output(" and");
+	if (pc.hasCock())
+	{
+		output(" caressing your [pc.cock]");
+		if (pc.isCrotchGarbed()) output(" through your [pc.gear]");
+	}
+	output("; the next, you’ve got her pinned beneath yourself, tugging blindly at her belt as she presses your face into her chest, burying you in a valley of her breasts. She gasps softly into your ear as your hand disappears down her pants,");
+	if (!saendra.hasCock()) output(" caressing the lips of her wet, inviting womanhood");
+	else output(" grabbing the throbbing, turgid shaft of her bristly cock");
+	output(". She hooks a clawed hand through your [pc.gear], pulling you into her, trailing kisses along your neck and cheek.");
+	
+	output("\n\nFor a second, you part; you’re both panting with lust and desire, hands roaming all over each other. Her voice dripping with raw sexuality, your lover asks, “<i>So how do you want me, hero? I’m all yours....</i>”");
+
+	saendraSexMenu();
+}
+
+public function takeAGoodLookAtSaendra():void
+{
+Captain Saendra en Illya is a six-foot-three halfbreed, a clear mix of ausar and kaithrit physiology. She's humanoid, tall and lanky, with just enough visible muscle to give her a chiseled appearance, harder than your average gal. Her face is human enough, though she sports a pair of green slitted eyes, distinctly feline, and a pair of overly tall, perky grey cat ears that adorn the top of her head. Both ears are pierced with rows of small silver studs from base to tip. Her right arm is coated up to the elbow in a thin layer of soft grey fur, and her fingers are tipped with tiny curved claws. Her legs are long and powerful, furred from the knee down, and ending in a pair of soft, padded soles. A pair of long, bushy tails swish gaily behind her, coiling around her with a kaithrit's prehensile dexterity. Saen's facial features are feminine, with a smattering of pale freckles accentuating her cute little nose, though a trio of faint scars on her right cheek and brow belie a history of violence. A long, fiery-red ponytail hangs all the way down her back to her waist, bound by a pretty pink bow. She has flared hips and a soft, squishy butt; above it, you can just see the outline of a holster, loaded with her archaic Hammer pistol. She’s wearing a low-cut white blouse under a black vest, and a pair of dark blue pants held up by a belt sporting all manner of gadgets, as well as a pair of suspenders that hug her breasts nicely. She's wearing a leather choker around her neck, from which dangles a pair of long silk strips that hang to her waist, each tipped with a golden bell. Saen's left arm is visibly mechanical from the elbow down, now sporting a wrist-mounted display screen and holo-projector on which flutters her Artificial Intelligence companion. Valeria’s holo-avatar smiles warmly at you.
+
+Saen has a pair of big, pillowy E-cup breasts, each with a perky nipple at their tip.
+
+{Hanging between Saendra's legs is a very thick eight inch cock, a hybrid of knotty ausar prick and a spiney, bumpy-headed kitty cock. Her phallus is accompanied by a tight little pouch of a sack, clinging tight under her swinging dick. }She has a warm, wet, and accommodating pussy between her legs and a cock-draining asshole between her gropable buttcheeks, right where it belongs.
+
+}
+
+public function saendraProbesYourCuntWithHerMechaArm():void
+{
+//Fucking finally a literal anal probe ahahahaha scifi porn yay.
+	You roll onto your back and tear off your [pc.armor], spreading your [pc.legs] around the busty bitch-kitten’s hips so she’s got a good view of your groin and the tender little ring of your ass. Saen grins from ear to ear, reaching down to roughly squeeze your [pc.butt], kneading the soft flesh of your ready backside. "I think I know what you're after... you want a taste of this bad boy, don'tcha?" she chuckles, flicking her wrist and letting her thick, prehensile probe slither out from her mechanical arm. The snake-like steel coils around your [pc.leg] and then toward your face, its slender, ice-cold tip tickling your nose and lips with deft, sure motions. "Go on, then. Get him ready," she says, sinking to her knees between your spread [pc.legs]. 
+	Taking the hint, you open your mouth and let the tip of Saendra’s probe slither in like a rectal-ravishing serpent, the cool metal hard and unyielding against your tongue, the rusty taste overpowering your senses. You shudder as a little gout of steam pours from your mouth and nose, but dutifully suckle on Saen’s tip, lathering it with saliva in preparation of the coming onslaught. With a little verbal urging from your lover, your start to move your head with it, soon sucking on it like a thick cock. She wriggles it in your grasp, slithering inch after inch into your mouth until you’re practically deepthroating her wrist-probe.
+	{If Male or Herm: "As you suck Saen's metal tentacle, she kindly returns the favor. Your entire body convulses as her hot breath sears across your bare cockflesh, making you tremble with anticipation as she nuzzles up against your shaft. Her bestial tongue flickers across the base of your shaft, coiling around it with slow, languid ease. The halfbreed grins up at you as she massages your prick with her rough alien tongue, slathering it just as you’re doing to her probe before releasing you. "Don’t worry {little // big} fella," Saen coos, kissing the tip, "we’ll convince [pc.name] to ram you up my ass and fuck me silly next time. Till then, here’s something to remember me by...."
+	Saen cups her hefty breasts and presses them around your cock. Your eyes roll back into your head as she starts to titfuck you, moving her entire body up and down your shaft with practiced speed, enveloping every inch of your [pc.cock] in warm, soft titflesh with each and every motion. You groan in her grasp, reveling in the sensation of her magnificent rack worshipping your cock as it smears thick stains of pre through the wide valley of her cleavage.}
+	{If Female: "As you suck Saen's probe, the pretty fluffball slips down to you groin, her smooth, clawed hand running across your thighs, caressing your tender [pc.skin]. She leans her head against your [pc.leg], her hot breath searing across your womanhood. She takes a great, deep breath, exhaling with a groan of satisfaction. "You smell incredible, hero. So strong, so potent... oh god it gets my heart racing," she says with a grin, running a knuckle around the lips of your womanhood before leaning in to plant a tender little kiss on the nub of your [pc.clit]. "Maybe next time I’ll get to play with this hole, hmm?" she adds, her long tongue flickering out and diving into your unprotected [pc.cunt]. You gasp at the sudden penetration, at the feeling of her slender tongue caressing your inner walls.}
+	The foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts her tail from your mouth, leaving you feeling suddenly empty as the sultry redhead stands, {if two legs: "spreading your legs wide for herself, hands braced on your knees" else "positioning herself between your [pc.legs], bracing herself on your [pc.hips]}. You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of her tail brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... 
+	But at the last moment, Saen lunges forward, cupping your cheek and pressing her lips to yours. You gasp, breath catching in your throat as Saen’s tongue slips between your lips, playing across your teeth. It takes a second to relax, finally easing into the unexpected kiss, wrapping your arms around Saen’s slender waist as she finally pushes her telescoping probe forward, bringing the rounded steel head through the circle of your sphincter. You groan into Saendra’s lips, but the penetration comes surprisingly easily, helped along by your long minutes of preparation and the tender, loving embrace of your red-maned lover. With the first inches inside your rectum, Saen breaks the kiss, smiling down at you with a deep, radiant warmth. She caresses your cheek, gently cupping it and bringing your head up for another quick kiss as she wiggles her hips, easing another few inches into you. You roll your head back and moan openly as her tentacle pushes in, stretching your rectal walls wider and wider as the slender steel thickens. Soon you’ve gone from her needle-like point to the grapefruit-sized rod of cold, unforgiving probe that’s now stretching your bum wide. 
+	"Oh, you’re a fine piece of ass, hero," Saen laughs. "So fuckin' glad I put sense strips on that probe... the tip’s soooo sensitive... I can feel every inch of your [pc.asshole] clamping down on me, fighting for every inch. Oh god...."
+	You pull Saendra down onto you, holding her tight as more and more of her probe slithers in, starting to wriggle and writhe inside of you -- more like a tentacle than a cock, now, as her tip brushes every inch of your walls in its wild flailing. You groan with anal pleasure, feeling as if she’s tearing you apart as the thickness being ramming into your ass increases with every inch, until eventually you can take no more. {If PC has a cock: The pressure on your prostate is incredible -- too much to bear! You can feel cum surging through your groin, your [pc.multicock] reacting to the ceaseless push on your most sensitive spot.}
+	By now, though, you’re on the edge of paradise, entire body writhing and breath raggedly catching as Saen kisses along your neck and [pc.chest], easing you through it as she slowly starts to move -- no more goes in, but instead she increases the writhing of what’s inside, her probe acting like an impossibly long metal vibrater rammed so far up your ass you can almost taste it. With something that mobile crammed that far up your ass, you can’t hope to last long. Within minutes, you can feel the swelling pressure of an anally-induced orgasm crashing through you, your entire body seizing up as feral pleasure takes hold. Screaming your pleasure until the walls seem to shake around you, your grab onto Saendra and hang on for dear life as your body convulses around the thick, unyielding tail inside you. {Cum spurts from your [pc.multicock], blasting Saen's gut with an explosive load of [pc.cumColor] spunk. She grins down at you, her flesh-wrought hand grabbing your cock and giving it the attention it so desperately craved, pumping your shaft as your blow your load across her belly, finally winding down until you're trickling cum onto yourself, rivulets running through the gray fur of Saen's fingers.}
+	By time it’s done, you’re covered in a cold sweat, wrapped in Saen’s arms as she slowly withdraws from inside you. You’re left feeling powerfully empty, as if Saen’s probe <i>belongs</i> inside you, and you’re incomplete without it. You give a pathetic little whine as she leaves, you, your [pc.legs] wrapping around you lover and refusing to let her part from you. Smiling, Saen curls up against you, head resting on your heaving chest, trailing kisses along your [pc.chest] until you drift off to sleep, clutched in your lover's arms. 
+}
+
+public function takeSaensStrappedyDappedyCock():void
+{
+//Strapon buttsecks. Not available after FutaSaen rises. 
+
+Dangling on the side of Saen's nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon. {if PC has a cock: "Wanna see if you can take as good as you can get?" Saen teases, grabbing your [pc.cock] and giving it a few playful tugs. //elseif PC has tried to futafy her before// "You wanted to see me with a cock, huh? Let me show you why I don't need one!" Saen teases, a dangerous glint in her eyes. //else// Saen's fingers brush along your [pc.butt], squeezing one of the cheeks between her steel fingers. "I know what you want, slut," she teases. "Now spread 'em wide!"} You squirm beneath your fiery lover as she straddles your [pc.hips], effortlessly strapping on the oversized latex rod. It bobs menacingly between her legs, hanging just over the slick slit of her sex, its base pressed tight to the hood of her clit. Somehow, you doubt you're the only one who's going to be feeling that thing...
+
+"Ready for this?" Saen grins, looming over you, hands planting on your shoulders to pin you down, helpless before her advance. You nod eagerly, spreading your [pc.legs] wide open for Saen's big, plastic cock. Rather than go straight for the prize, though, Saen pulls you up into a kiss, her thin lips locking to your own, pressed tight for a long moment. Your eyes close, arms wrapping around your lover's back, holding her tight until she breaks the kiss. With a wolfish grin, Saen slithers down your body, gently leaning you back in the bed and trailing kisses down your [pc.skin], hands roaming across your [pc.chest] and [pc.hips] as she slowly, sensually makes her way back toward your inviting hole. It's ready for her by the time Saen reaches it: {your [pc.asshole] is as relaxed as it can be, lulled into a false sense of security by Saen's surprisingly gentle treatment // your [pc.cunt] is drooling with excitement, lips wet and ready for the coming fucking}. Saen's mechanical hand slips down, one finger pressing easily into your [pc.vagOrAss]; you give a gasp, squirming as her digit probes your depths -- its as if she's testing you out, gently stretching you, slowly fingering herself deeper down until she's buried to the knuckle. 
+
+"I think you're ready, hero," she grins, popping her finger out of your hole and grabbing your [pc.legs], yanking you closer to her until her floppy strapon's head is all but pressed against the {rim/lips} of your [pc.vagOrAss]. Saen leans in, one hand resting on your [pc.chest], the other cupping your ass, keeping you nice and spread for her as her hips slowly begin to rock in. Your breath catches as the plastic cockhead pushes into you, stretching the walls of your [pc.vagOrAss] around its thick girth. You groan, back arching instinctively as shockwaves of pleasure course through you, spurred on as Saen's hips thrust her strapon in inch by inch. It's slow going, but gentle, each thrust bringing her a little deeper inside you; knowing Saen's this pace won't last long, but you enjoy it while you can, wrapping your [pc.legs] around her waist and guiding her in. 
+
+It's a blissful eternity before Saendra's fully buried inside you, the base of her strapon pressing tight against {your ass / the lips of your [pc.cunt]}. Your chest is already heaving, breath coming hot and heavy as your lover fucks herself hilt-deep into your [pc.vagOrAss]. Finally she's finished, as deep as she'll get into your quivering hole, panting with the effort of it. Then you notice: the vibrator isn't even on yet. Your eyes go wide, meeting Saendra's as she licks her lips, a finger brushing the very back of her latex cock, where a little switch is hidden away.
+
+"I want you to scream for me," she whispers, so low you can barely hear her, before she flicks the switch. 
+
+You give Saen her wish, a cry tearing from your lips as the vibrator skips from zero to full throttle in the span of a heartbeat, thrumming against the tight confines of your [pc.vagOrAss] like a jackhammer. Saen, too, gives a gasp of pleasure, wincing as the vibe presses back against her clit, teasing her pleasure buzzer even as it assails your hole. Her fingers dig into you, steadying the both of you as the vibe gets to work, pulling you back from the edge of climax; you groan and clutch at your lover, trying to hold back your cries of pleasure. Saen only gives you a moment to adjust before her hands wander down to your [pc.hips] and take hold, gripping you tight as her hips start to move. The sensation's only stronger as her hips start to buck, teasing the very {rim/lips} of your [pc.vagOrAss] before plunging back in at full force. The first time she slams herself back in, you scream -- loud, high, unable to contain yourself as your lover fucks your [pc.vagOrAss]. 
+
+"That's what I like to hear!" Saen grunts through gritted teeth as her crotch slaps against your well-fucked hole, driving the vibe hard against her own clit. "Ooooh fuck! Take it, [pc.name]! Fucking take it!" 
+
+You fucking take it. Even when Saen's strength all but gives out, you just pull your lover down atop you, holding her tight as her hips piston against you, driving the shivering strapon into your [pc.vagOrAss] again and again. With every pounding thrust, you can feel your orgasm mounting, your release more and more urgent as Saen's hot breath scores across your cheek, her firm breasts pressing against yours, kissing trailing across your shoulders, hands teasing your thighs and [pc.chest].... 
+
+Orgasm hits you like a brick wall. With a particularly potent thrust, Saendra hilts you on her vibrator, slamming all twelve inches deep into your quivering hole. Your screams reach a crescendo as your body reacts, muscles afire with pleasure, wringing the latex rod clenched between them like vices. Saen doesn't seem far behind you, especially as your orgasming hole pushes the vibe back, holding it to her clit until she's crying out, teased over the edge by the incessant vibrations. Saen yanks you into a kiss, pulling you tight as {both your cunts / your cunt and her ass} are consumed by pleasure.
+
+"Oh fuck," Saen breathes, chest pressed tight to yours as she slowly comes down from her orgasmic high. "You fucking take it like a champ, hero."
+
+"And you give it like a damn amazon," you answer, grabbing a handful of Saen's leather-strapped booty. Saen giggles, nuzzling up against you -- and burying the vibe deeper inside you. You give a little grunt, until your lover mercifully turns the toy off, though she does nothing about leaving it hilt deep inside you... and you'd have it no other way. With your fiery lover close at hand, arms wrapped around each other, you drift off into a peaceful, sex-exhausted sleep.
+}
+
+public function saendraStuffsHerFutacockInYourCunt():void
+{
+//Cuntcommanders only. Better than missionary position because Fen has sexual PTSD. So much cockworship, you'd think it was an Elzi thread. 
+
+Looking up at your red-maned lover, you ask how she'd like a little attention on that thick, knotted kitty-cock of hers. Saen grins, her chrome fingers already wrapped around her shaft. "Normally I'm one to take the lead, but... for you, anything." She winks and rolls off of you, spreading her half-furred legs invitingly. You follow her, slinking down the length of the bed and back up between her legs, shifting them up over your shoulders as you advance. Saendra squirms, biting her lip in anticipation as you draw near her prick. Saen's cock is standing straight up, wholly ready for your your attention by the time you make your slow, tantalizing way up to it. Her hard red shaft bobs slightly as you approach, its many crimson bristles looking like such a tasty treat that you can't help but lick your way across them, feeling an inch-long coating spines pass across the tip of your tongue, leaving your head swimming with their musky, earthy taste. When your [pc.tongue] crests the crown of her tapered hybrid cock, Saen visibly shudders, a wave of pleasure washing through her strong enough to nearly dislodge her legs from over you. 
+
+"Careful with the tip," she whines,her fingers digging into the bed. "The barbs are sensitive..."
+
+Oh, that's practically an invitation. Your tongue unfurls again, the very tip pressing up against the slight swell of Saen's bitch-breaking knot licking up from her stem to the cluster of spines near her tip, going nice and slow, making sure Saen gets to feel every moment of your tantalizing ascent. She moans and squirms, hips shifting around you as you tease and lick her cock, slowly coating the turgid shaft with a thick glaze of drool. Every flick of your [pc.tongue] earns you a new girlish gasp or sexy moan from your lover, and soon her flared hips are rising to meet your mouth, an unsubtle plea for more. You give Saen a wink and open wide, letting the the eager bitch-kitten thrust herself deep in your mouth, slamming her tapered cockhead against the back of your throat. 
+
+Rather than let her keep going, though, you clamp your lips around the base of her slowly-swelling knot, ardently refusing to let Saen pull out. Your lover gives a muted whine as she finds herself trapped between your [pc.lips], left utterly at your [pc.tongue]'s mercy. You keep her there, utterly still, for a long moment, just long enough to remind her who's boss before slowly bobbing your head off her rod. As you do so, Saen busies herself by leaning over to her nightstand and pulling out the familiar shape of a vacuum-sealed condom. At the apex of your sucking, Saendra pushes you off her pecker just long enough to plant the rim of the sheath over her crown; you do the rest. Your teeth easily stretch the nano-fiber sheath down over Saen's length, encasing it in a tight, form-fitting protective layer. You can practically taste her through it. 
+
+There's so much more of Saendra to explore than just her cock, though. As you continue to lick and tease the manhood you've given her, your fingers wander up her spread legs. Starting at the break where her fur ends and the bare, hot flesh begins, you slowly trace your fingers down, brushing along her sensitive thighs and down to the underside of her spit-slick prick. Your digits tease and caress the small, tight pouch of Saen's sack, giving it just enough of a squeeze to make her gasp and clench before moving dowards. Immediately below it, almost hidden under the swell of her balls, is the stiff red bud of her clit. You don't dare touch it outright, but your fingers deftly tease their way around its hood, which turns out to be more than enough to make her cry out, a slick trickle of excitement drooling out into your hand. You grin up at her as she moans, locking eyes with your lover for the briefest of seconds before letting a brace of fingers slip into her sex. 
+
+"So much for my cock," she groans as you finger her sodden twat. "Even after all that... still can't get enough of my pussy, can you?" 
+
+You stick your tongue out at the lusyy slut, punctuating the action by pushing your fingers in to the knuckle. Saen's back arches, her hands clutching fistfuls of the sheets as you ram yourself home inside her. Her cock reacts, too, going rigid against your lapping tongue and ejecting a thick dollop of pre right onto your [pc.lips]. Yum! You lick it off, reveling in the strong, salty taste of her seed... oh, you need more of that. 
+
+Enough of this foreplay shit -- you want it now! You surge forward, grabbing Saen's cock and straddling her hips. "Now we're talking!" she grins, reaching up to steady you as you move overtop her, angling her slick schlong towards the lips of your [pc.cunt]. You hold there, just a moment, savoring the anticipation; but you can't deny your mounting lust much longer than that, and slide yourself down onto Saen's turgid cock. 
+
+You'd almost forgotten about the ring of barbs surrounding her crown, but they make themselves readily apparent as Saen's thick rod slides into you. You scream your pleasure as you're lowered onto the bristly cock, stretched wide and left to feel every one of those nodules pressing tight into the sensitive walls of your eager pussy. The alien feeling nearly drives you to orgasm in moments as her bristly cock scrapes along your cunt's walls, her tapered tip pressing into the lps of your womb. You swoon, barely able to stay upright over Saen without her hands firmly locked on your hips, rooting you in place as you adjust to her unique shape and size. 
+
+"You alright, babe?" she grins, gently stroking your [pc.skinFurScales]. You nod, taking Saen's hands and lacing your fingers through hers. She gives you a slight nod, shifting her arms to support you as you start to move. You're all too happy to lean into her grip, putting your weight onto the halfbreed as you start to rise off her lap, once again feeling her bristly cock sliding through your {tight / clenching} passage. You really start to bounce after that, moving your [pc.hips] over Saen's throbbing cock, faster and faster, finally hitting your stride. 
+
+Your hands shift up, finally no longer needed Saen's support, and latch onto her big, E-cup tits. Saen gives a little gasp as your fingers dig in, squeezing the soft mounds until flesh rises between your digits like putty. You give her big, pink nipples a squeeze -- just enough to give Saen a shudder of pleasure -- before returning your attentions to the sex proper, groping and squeezing Saendra's lush bust with every rise and fall of your hips. As you continue to ride her dick, Saen's fluffy tails beat eagerly behind you, mindlessly showing their approval as you take their owner's kittycock deep into your eager sex. 
+
+The way Saen's breathing hard, now, you don't think she's going to last much longer... and neither are you, really. Her cock's too good, so thick and so... alien. The sensation of her nodules against your tender slit, the dread of her swollen bitch-breaker pressing into your lips, is almost too much to bear. And that knot... you know you'll have to take it, that your lover <i>needs</i> to have it tied inside you, spreading you wide open as she cums. You squirm, wrestling with your own willpower, steeling yourself to take the plunge. 
+
+As if she's reading your mind, Saen locks eyes with you and grins, her hands locking back around your [pc.hips] and pulling you down, just hard enough to break down the last of your will. You let yourself slide down her rod, slow and steady until the swell of Saen's knot is pressed tight against the lips of your [pc.pussy]. You push yourself further, groaning as the knot pushes into you. The fulness, the stretching sensation, nearly drives you over the edge. You scream your pleasure, back arching like a bitch in heat as you tie yourself to your halfbreed lover. 
+
+"Ooooh fuck yeah," Saen groans as her knot slides into you, "Clench on it... tighter... fuck I'm gonna..."
+
+You feel it before she says anything: a powerful throbbing all through her bristly kittycock, punctuated by a hot squirt of cum that fills the condom wrapped tight around her cock, ballooning the reservoir inside you like a second knot. Fuck it's <i>hot</i>, straining against your pussy's walls until you're crying out, hips thrusting faster on their own, working to drain the halfbreed's prick of all its seed. You barely notice your own orgasm rising amid the intense pleasure of your knotting; your cunt contracts around her cum-blasting cock, waves of pleasure rocking your body as Saen cums and cums, and you do too. 
+
+With a shudder, you collapse atop Saendra, breath ragged as pleasure finally overtakes you. Your lover's arms wrap tight around your waist holding you close as your orgasms come to pass, ushering you off into sleep. 
+}
+
+public function takeSaensCompletelyReasonablyProportionedFutaCock():void
+{
+//You thought tailpegging was terrifying!
+
+Saendra leans over you, her big tits blocking out the lights overhead as she plants her hands on either side of you, staring down with a fierce grin. "I saw where you were looking, hero," she growls, one of her hands gripping yours and forcing it down into her crotch. Your fingers instinctively wrap around the throbbing, hot cockflesh hanging there, tips brushing along the spiny ridges of her feline crown. "You wanted this thing so bad... I hope you're ready to get what you wished for, [pc.name]."
+
+She leans down, just enough to brush her lips across yours, getting a taste of you before licking her lips and squeezing your hand around her mutant cat-dog cock. "Want to put that {talented tongue / if silly: pretty mouth} of yours to work, hero?" she teases, her other hand stroking your [pc.hair], ever so gently pushing you towards her crotch. Too predictable. You answer her by grabbing a handful of her butt and yanking her forward, forcing Saen to stumble forward on her knees until she's straddling your shoulders, her cock resting on your [pc.chest]. 
+
+She grins, {cupping your breasts, squeezing them around her prick.} "That works too."
+
+You rest back on your elbows, gently stroking Saen's cock as she wiggles her hips toward your waiting mouth. Your fingers brush along the bumpy ridge of spines cresting her cockhead, the mere touch sending a shiver of pleasure down your lover's spine. A tiny whimper catches in her throat as you tease the sensitive spines, her hands digging into your [pc.chest] as her ribbed crown approaches your [pc.lips]. Your [pc.tongue] reaches out to greet it, one quick lick across the tapered head before {if longtongue: "coiling around it, guiding her kittycock into your mouth" // "caressing her kittycock's underside, urging it in with short, fast laps until her cockhead's brushing your lips}. The taste of her dick is magnificent, earthy and musky and oh so <i>right</i>; your tongue eagerly caresses the feline bumps around her crown, lovingly sucking the prick you worked so hard to give your sexy, hermaphroditic lover. 
+
+Saen groans, hips rocking into your open mouth, slowly riding your face. {If PC has D+ tits: "Her hands gently cup and squeeze your [pc.chest], pushing your mounds together around the base of her cock as she rocks her hips back. You grin up at her, letting the sultry halfbreed use your boobs, squeeze them around her knotty back half before sliding her cock forward back into your mouth. Titfuck and a cocksucking? If she keeps that up, you're worried your lover won't last to the main event!} You concentrate for the moment on getting her rod as wet as you can, slathering it with spit every time she thrusts into your mouth, opening wide in wait of her return when she withdraws. Soon, her cock is glistening in the dim light, every inch covered in your spit-lube, hot and throbbing against your writhing tongue. 
+
+"God damn, you really want it, don't you?" Saen grins, hips moving faster, fucking your mouth to keep you from answering. "Does it get your {hard / wet / excited} when a smoking hot dickgirl facefucks you? Huh?"
+
+Your answer is gagged out by the mouthful of kitten-dick spearing your face, sounding more like you gargling the trickle of pre starting to ooze down your throat. Saendra grins wolfishly at the sound, and you suddenly find yourself sucking not just her cock but her fingers as well, lips bending around two of the fur-clad digits. "Sounds like you're about done, hero. Don't worry, I'll give as good as I get... now get 'em nice and wet, or those spines on my cock are going to hurt." 
+
+Knowing what's coming, you do as your red-maned lover suggests and start suckling on her fingers until they're mated down and dripping, just as wet as her dick. Nodding approvingly, she slips them out of your mouth, and downwards towards her real goal. Your body goes stiff, breath catching as her fingers press hard against your [pc.asshole]. All you can do is relax yourself, trying to grant her an easy entry; you still manage to cry out when she pushes in, a wordless gasp of pleasure as your lover's well-lubed digits pierce your hole, caressing your bare, squirming walls. Your back arches a bit as she spreads the lube around, taking her time with slow, even swirls to make sure that you get a nice, even coating across every inch of your rectal walls she can reach. 
+
+Satisfied with her work, Saendra slips herself out of you and with a little nudge, rolls you onto your stomach. You gasp, moaning as her fingers leave you empty... and wanting more. You eagerly roll onto all fours, lifting your ass in the air for her. Her metallic hand rewards you with a sharp slap on the [pc.butt], letting your flesh jiggle as she moves back behind you, flopping her sodden cock into your upturned crack. 
+
+"You wanted it, hero," she teases, her hands gripping your [pc.hips]. Her cock drags down until the tapered tip is resting against your well-lubed hole, wet and hot and so very hard against your [pc.asshole]. She leans in close, her chest almost against your back, and whispers, "So take it."
+
+She thrusts in, her spiny kitten-dick spearing your ass open around its rounded barbs. The feeling is incredible, countless tiny bulbs caressing the very rim of your hole, teasing the over-sensitive flesh as she pushes in. She only goes easy for the briefest second, just long enough to let her tip spread you open, before she rams herself hilt-deep into you slick hole. You stop yourself from screaming only by biting down hard on Saen's pillow, fingers clawing at the bedsheets as you're anally violated by the thick, meaty girth of her kittycock. Once she gets into you, her prick feels more like a fist forcing its way into you, stretching your spasming walls wide open around its rounded point, making sure you feel every bump and ridge of her spiney feline member. 
+
+"How do you like it, [pc.name]?" she breathes, her swelling knot pressing against your hole. "Was it worth it?"
+
+You cry something back at her, but it's lost to the ether around the pillow bit hard between your teeth. She takes that for assent and starts to move, out and in with unrelenting force; each thrust in slams you into the bed, burying your face in the mattress as your lover buttfucks you with a vengeance. {If PC has a cock: At least she's thinking of you while she's doing it: after the first few tentative thrusts, Saen reaches around your [pc.hips] and grabs your [pc.cock], giving it a rough tug for ever hammer-fall she makes into your eager ass.} You can't help but gasp and cry out every time Saen's bristly cock plunges into you, your sensitive ass exploding with sensation as her nodule-covered prick slides into and out of you, so strange and alien that you're helpless but to shiver and moan. 
+
+Every one of your sweet, sexual noises seems to make Saendra go wilder with lust, fucking you hard and fast, relentlessly driving you into the bed. You know you're not going to hold out long against her anal assault, but any resemblance of objection, or conscious thought at all, is quickly swept aside by her plunging thrusts and bucking hips, the feeling of her stretching you out and her spines scraping tenderly along every inch of your rectal walls{, putting such wonderful pressure on your backdoor's own little pleasure buzzer that you have to fight to keep yourself from cumming every time her bristles press against your prostate. Saen's milking the cum out of you with every thrust}. 
+
+Your climax comes quickly, and messily, announced by a high scream of pleasure as your ass contracts around Saen's thrusting kittycock. {Your [pc.cunt] spasms with orgasmic tremors, drooling and squirming, instinctively looking for a cock to milk even as your asshole is being relentlessly drilled.} {Your [pc.cock], spurred on by the pressure on your well-fucked prostate, erupts in a shower of [pc.cumNoun], splattering onto the bedsheets in a waterfall of sexual fluids. Saen's pumping hand moves faster, rubbing out your wad of cum with the same vigor that she pounds your [pc.asshole].} 
+
+Even as your orgasm overtakes you, you're seized by the dread that Saen's nowhere near done with you. You give a plaintive look over your shoulder, and are met with a wicked grin plastered across Saendra's features, her fingers only digging deeper into your pliant flesh. "Not letting you off that easy," she grins, punctuating the thought with a harsh slap on your ass. Youch! You wince, biting your lip as the fluffy slut makes you squeeze around her ribbed prick, making sure you feel every barb. 
+
+Another spank has you screaming, voice undulating with the apex of every thrust, muscles going wild around your lover's cock. Only slowly do you become aware of a thick, heavy pressure against your [pc.asshole], demanding entry: you gulp as Saen's knot presses into your crack, feeling as thick around as a fist against your clenching hole. 
+
+"Oh, fuck," you whine as the knot pushes in, relentlessly forging into your clenched hole, forcing you open, stretching you over its mighty girth. Saen smacks your [pc.butt] again and again, never letting you relax, making you nice and tight around her as she force-fucks her knot into your quaking hole. You issue a shrill cry as her bitch-breaker finally smashes through your limp, half-hearted defenses, finally lodging itself inside you. Your last attempts at resistance fall away to nothing as Saen lodges her knot in your [pc.asshole], tying herself to you just as her own orgasm arrives. With a final smack on your thoroughly abused ass, Saen lets herself go, roaring like a beast as she thrusts deep and cums. You moan as you feel her hot, thick spunk shooting into you, splatting through your ass in hot, sticky waves. 
+
+"How'd you like that, [pc.name]?" Saen grins, giving your cum-filled ass an affectionate pat. "Think you got your money's worth out of it?"
+
+You give the randy bitch-kitten a half-nod, barely able to muster the will to move. She leans in, planting a kiss on your cheek -- and then grabs you by the waist, flipping the both of you onto your sides. You go down with a grunt, but quickly find yourself wrapped in a soft, warm embrace, Saen's tails curling around you as she pulls you tight against her, letting your feel her big, bare breasts press against your back. 
+
+She nuzzles against your neck, whispering, "Well, the rough stuff only gets you so far, huh?" You smile slightly, feeling your lover's cock twitch inside you, still drooling, the knot slowly releasing you over the next half hour. For now, though, you content yourself to relax in Saendra's embrace, drifting off to sleep.
+}
+
+public function saendraTakesItUpDaButte():void
+{
+	//Because sometimes a man's gotta take charge... until Saen reveals that she can totally top from the bottom, too.
+//Or, how Savin acquired infinite rage because there's no vaginal whatsoever in Spess Hel
+
+You hook your hands around Saen's thick hips and roll the towering beauty over onto her back. She gives a little gasp, silenced as you press your lips to hers, finding her big, bestial tongue eagerly awaiting your own. Your lover moans sensually, returning your kiss with her insatiable, fiery passion, hands grabbing your [pc.butt] and pulling you down hard atop her. Before you can recover, you feel a hot, soft warmth across your lower body, and a moment later your [pc.cock] is encircled by the fluffy embrace of one of Saen's tails. The busty captain breaks the kiss, grinning at you as her prehensile appendage gently squeezes your manhood as it moves, slowly wrapping around your [pccock] from [pc.cockhead] to stem{if balls: ", the very tip coming to rest pressed against your [pc.balls], gently flicking across your cum-swollen orbs"}.
+
+The way she moves her tail, rhythmically squeezing one loop after the other is near enough to drive you mad. Saen chuckles as you groan, body convulsing at her tender tail-wank, nearly losing control so early. You have to grit your teeth and bear it, shivering as your [pc.cock] is oh so tenderly milked by the lusty captain's supple, fluffy grasp. Your hand wanders up, fingers trailing along the pale flesh of her thighs, making her gasp and groan as you grab one of her big, pillowy tits, squeezing the bra-bursting globe hard enough to make her squeal. You shift down, lips trailing across her skin to one of her stiff nipples, gently grazing it with your teeth, just hard enough to make her breath catch before you kiss it, taking the small point into your mouth like a suckling babe. Her back arches at your touch, yielding to your oral advance as your [pc.tongue] laps across her puffy teat, giving it a little twist with your teeth that has her moaning aloud, silvery fingers running {through / across} your [pc.hair], urging you on. Her tail mercifully loosens its grasp on your prick, her mind so distracted by the pleasure in her breasts that she's forgotten about you, giving you a moment to catch your breath.
+
+Your respite doesn't last long, though. Suckling hard, your other hand is soon guided by your lover to her other boob, left to squeeze and caress the soft mountain of tit-flesh. Even as you do so, though, you can feel Saen moving beneath you, pushing back against your mouth as her legs wrap around your waist, feet locking just behind your [pc.butt] and pushing your forward. Your cockhead grazes her thigh, so close to her sex that you can feel the wet heat boiling off her, searing the sensitive flesh of your [pc.cockhead] with a pleasant, thoroughly arousing warmth that seems to reach deep into you, leaving you even harder with cum roiling in your [pc.balls], already eager to paint your partner's thighs with seed. A quiet, lust-addled moan betrays you, and with a slick smile Saen's tail contracts again, wrapping your prick in a soft heat so perfect a match for your [pc.cock] that you could swear her tail was made for you. Saen coos appreciatively as your [pchips] buck against her grasp, trying to thrust into the tight, soft vice holding your member; she cups your cheek, pulling you from her breast to kiss you again, holding you to herself for a long minute. Her tail is unrelenting throughout, massaging you from stem to stern until you can feel slick trails of pre leaking from your slit, bubbling up in preparation for the coming storm. You try and warn Saen, but she pulls you hard, refusing to allow your lips to stray from hers. 
+
+When you finally do break free, mumbling, "G-gonna cum!" Saen only smiles.
+
+"Come on, a {cute little // big, hung} {pc.race} like you's gotta be able to cum twice… three times… before I wear you out. So come on, let it go, hero. Smear my thighs with your seed."
+
+You couldn't resist that invitation even if you wanted to. And with the way she moves, the way her burning hot cunt swelters just a hair's breadth from your leaking cockhead… you wouldn't dream of holding back. With a fierce grunt, you slam your hips forward, almost piercing the folds of Saen's sodden box, and blow your pent up load all over her taut thighs and sultry snatch. Your hips piston, fucking the wringing coils of her tail as cum bursts from your [pc.cock], hot globs of [pc.cumColor] smearing lewdly across her pussy. She's quick to reach down and spread herself wide for you, lips agape as your seed pours in or smears around her crotch. "Fuck yeah, hero! Just like that. Let it all out!"
+
+You carry on, panting and groaning as you hump away, fucking like mad until every last drop of your orgasmic seed has coated Saendra's thighs, leaving her groin a sticky [pc.cumColor] mess. She grins, rubbing you thick spooge in before licking it off her fingertips, moaning in satisfaction. "Oh yeah, that's good… god, I don't just get </i>covered<i> in cum nearly enough. What do you say, hero? Wanna let me jerk your [pc.cock] off again and again till I'm just dripping [pc.cumColor]?"
+
+[Anal] [Tail Wank]
+}
+
+public function saendraButteFuckeAnal():void
+{
+Tempting, but you've got other plans. While she's been basking in a covering of hot spunk, Saen's tail has relaxed around your [pc.cock], letting you slip the well-wrung member free of the redhead's grasp. She gives a little gasp as you pull free, but when you grab her hips and roll her over, face down on the bed, she just cries out with glee and lifts her tails, swishing gaily to give you a nice view of her taut ass and cunny, still dripping with cum. "No? Well, in that case… fuck my ass! Let me feel all that pent-up spunk of yours deep inside!"
+
+Now that's an idea. You heft her up, getting the lusty slut on her knees, ass swaying happily as her silver arm reaches back, teasing her clit as she spreads her legs, an open invitation to use her to your heart's content. With aplomb, Saen scoops up the seed smeared across her thighs and pushes it into her ass as lube, her well-trained ring offering no resistance to her powerful mechanical digits. She gives a little moan as she readies herself, coating her waiting anal walls with your first load of seed. Satisfied, she looks over her shoulder and gives you a wink. "Don't you dare be gentle, hero, I want it </i>rough<i>!"
+
+She asked for it. You give her a hard slap on that spankable ass of hers, setting her flesh to jiggling as you grab your cock and line it up with her tight little crack. Saen grins over her shoulder and shakes her booty for you, letting you pull her hand from her hole, leaving her ass agape and winking, stretched wide like a cunt and oh so inviting. Your hips slide forward, hotdogging her crack to get your rod nice and covered with your own seed still, smeared on her and hot as hellfire. The sensation of the steaming spunk on your tool has you hard again in moments, and with the barest motion your [pc.cock] slides in, gliding past the gaping, well-lubed ring of the horny whore's asshole and into the warm, tight depths of her anus. 
+
+For such a buttslut, Saendra's tighter than a vice when she wants to be. You get the first few inches of your cum-slathered crank into her before she clenches down, making you gasp in pain and pleasure as her powerful muscles wring your prick for all its worth, squeezing and contracting rhythmically as you try to push in. You give her another harsh slap, and the sudden squeeze just about pushes you right back out -- before she completely relaxes, and you nearly fall in, sinking right up to the groin{, balls slapping into the sodden mess of Saen's dripping cunt}. She groans, fingers digging into the sheets as you bury yourself {balls }deep inside her, stopping only when your hips press into her cushy keister. A long moment passes, both you and your lover caught in the rapture of absolute penetration: Saen moaning, chest heaving as you try and catch your breath, reveling in the way her ass contracts around your prick, trying to milk your next load of cum right out of you. 
+
+You give Saen's ass a squeeze, fingers scoring across her taut flesh as you start to move. Every inch draws a lusty moan or a cry of pleasure from the sultry bitch-kitten; she screams when you thrust back in, burying her face in the pillow as you start to hammer her cock-gripping asshole. Her tails wrap around your waist, hugging you tight as you pull out before caressing your [pc.butt] and pulling you back in. In answer you grab Saen's long ponytail, yanking her hair back until her back arches with a scream of pleasure, finally unable to hold back her cries. You give the rampant slut another spank, and then another, picking up a sadistic rhythm that keeps her squeezing so wonderfully tight around your cock. You can feel the cum boiling up your vein, rushing up into the roiling inferno of Saen's spasming anal muscles.
+
+{if Futa Saen: You reach around to grab your lover's bristly cock as you pound her. She gives a delighted little squeal as your fingers wrap around her throbbing erection, jacking it to the beat your your thrusting hips, cresting her tapered cockhead each time your [pc.hips] slam into her jiggling ass.} "Oh yeah! Fuck my ass harder!" Saen cries as you hammer her gaping hole, "Harder! I need it harder!"
+
+You're not sure how much harder you can go! With a grunt of effort you push her hips down, planting her flat on the bed and shifting your [pc.legs] until your right over her, cock angled right into the slut's sultry hole. You shift your hands up, grabbing the lusty redhead by the tits for leverage; she screams her pleasure as you plant your [pc.knees] around her waist and start to jackhammer her ass. "Fuck! Just like that!" she cries, clawed fingers tearing into her sheets, "Fuck me just like that, hero! FUCK ME!"
+
+As fast as you can move your hips, you fuck the needy halfbreed's ass. Her muscles go wild around you, squeezing so hard you think you're going to faint -- you fight for every inch, throwing your entire strength into the redhead's squeezing hole until the inevitable, heart pounding rise of your own orgasm flickers through your mind, breath quickening as your body prepares to unleash its second load. You'd feel bad, if at that moment Saen didn't scream again as a wetness spread between your [pc.knees]. You grin as she cums, her pussy juices soaking the sheets{ as her cock spurts all over her belly, her thick seed trapped between her gut and the bed}. You let yourself go, releasing your hold on your load and joining her in orgasm. [pc.cum] floods down your [pc.cock] and into the roiling depths of Saendra's ass, filling the halfbreed's gut with a rush of cum. "Yeah! I feel it!" she cries, reaching back to grab your [pc.butt]. "Fill me with it, hero! Fuck me full of cum!" 
+
+Hilt-deep in the lusty slut, you finally let yourself stop thrusting, just reveling in the sensation of her muscles wringing you, milking every last drop of seed from your [pc.cock]. Panting to catch your breath, you let yourself fall onto Saen's back, nuzzling into the nape of her neck as your cock continues to drool into her hot hole. She leans back to plant a kiss on your cheek, rubbing herself against you as your eyes flutter closed, content to sleep off the afterglow in your lover's clutches. 
+}
+
+public function saendraButteFuckeTailwank():void
+{
+That's an offer you can't resist. You give the sultry redhead a little nod, and immediately feel her twin tails go to work with cat-like grace, completely prehensile despite their soft, fluffy, canid appearance. Still over-sensitive from your first orgasm, your body reacts with a pleasured shudder as her fluffy tails wrap around your [pc.cock], squeezing just enough to keep you from going completely soft in her grasp. Saen's powerful legs hook around your waist, pulling you into her tails' embrace, rocking your [pc.hips] forward. 
+
+Your hands find their way to her tits in the meanwhile, steadying yourself overtop the sexy space slut by seizing her supple breasts and squeezing hard. Saen gasps, squirming under your grasp as you squeeze and knead her big tits, pinching and tugging her pink nips until they're a pair of diamond-hard points, perfect to roll between your fingers. Grinning lustily, Saen whispers, "You like 'em, huh? Do a nice pair of big, squishy tits turn you on as much as me?" {if PC has D+ cups: "Saen reaches up and grabs your own tits for emphasis, giving you a taste of your own medicine. You shiver in delight as her soft-and-steel fingers run across your tender flesh, brushing the tips of your [pc.nipples]." //else: "Saen's hands squeeze overtop your own, wandering across her ample tits and guiding you to her most sensitive spots. You grin as the captain's breath catches, her tails going rigid as she works with you to savage her bust."}
+
+As you work the halfbreed's tits, her tails finally get back in the action, squeezing harder around your [pc.cock] and smearing your first load of cum back around your shaft. "Keep going," she says, her voice little more than a husky whisper in your ear, "See if you can make me cum just from my tits..." That's a challenge you wouldn't mind undertaking... though the way her fluffy appendages are starting to work your cock, you might not last long enough to see it through. Grinning up at you, Saen's legs grip your hips tighter, pulling you in toward her, forcefully thrusting your [pc.hips] forward into the tight, soft grip of her tails. You finally get the idea, and when her legs relent, you start to move on your own, fucking her tails like they're one big, fluffy onahole. She gives you an approving wink, which quickly devolves into a back-arching groan of pleasure as you squeeze her tits hard, giving the sultry slut something else to think about for a moment. 
+
+You take advantage of the momentary lapse in her tail-based assault to shift position, backing your [pc.legs] up from a position of penetration to one better suited to fucking Saendra's tails. You get yourself angled in on the cum-slick hole made by her tails and start to pistol into them, ready to give the sexy bitch-kitten the cum-glazing she asked for. You're getting close again already, and watching the cute little twitches and gasps of pleasure play across Saen's face as you grope her big boobs is only making you hotter.
+
+"Don't hold back," she growls, as if reading your mind. "Fucking give it to me!"
+
+You cum on command, one last buck of your hips before your [pc.cock] erupts in a geyser of [pc.cumColor] spooge raining down on Saen's belly. The redhead grins, licking her lips hungrily as her gut and the undersides of her tits are basted with your hot seed. "That's two!" she cheers, wiping up a particularly thick glob of spunk and licking it off her fingertips. She's got a good glaze now, your spunk smeared liberally across her stomach and chest from two rapid-fire orgasms, though the hungry, predatory look in her eyes says you aren't done yet. 
+
+Saen's tails contract tight around your [pc.cock] as you continue to spurt, your cum draining into her fur as she grapples your member. You're too drained to thrust even if you want to, so Saen takes over, her tail tips rubbing and caressing your [pc.cock], ceaseless in their attention to your sensitive, sex-weary flesh. You grunt and groan, shivering as Saen's fluff teases you, refusing to let your take even a moment to recover. All you can do is try and take your mind off of it: and Saendra's quaking, cum-covered bosom provides the perfect opportunity. You grab your bitch-kitten lover by the shoulder and pull her up, holding her tight as your mouth seeks out one of her pert teats, locking on luck a suckling babe. Saen gasps, tails wringing at you in response to the sudden stimulation. Saen's arms wrap around you, fingers digging into your back as you molest her chest, sucking and squeezing for all you're worth. Her tails return the favor of course, wringing your cock faster and harder until you can't help but cry out; your skin is so fucking sensitive from the second cumming! 
+
+You shouldn't be able to come again. There's no way... not after twice, so soon together, but as the seconds wrest into minutes, pleasure overwhelming your lust-addled mind, you don't think he sultry redhead's going to give you any choice. You're just along for the ride, now, letting her soft, semen-slathered tails wring every last drop from your poor, abused cock. You try and give as good as you get, suckling, caressing, pinching, and squeezing those big, beautiful tits of hers -- and it's working! Saen's panting and gasping, her sex hot and wet against your [pc.leg]{, her bristly cock throbbing with need, drooling pre onto her already cum-slathered body}, only adding to the mess you've made the quivering slut.
+
+This time, she cums first. You're greeted by a rush of fem-cum splattering across your groin and a wail of pleasure tearing from Saen's lips{ as her mutant cock erupts, her boobgasm reaching all the way to her untouched rod. Her cock shoots a thick rope right onto your belly before she can grab it and pull up, angling the rest of her explosive orgasm to mix with yours, adding to the cum-basting she's already gotten -- and will be getting more of, if her tails have anything to say about it}. Her tails are going wild around your [pc.cock], the prehensile tools squeezing you so hard you're afraid even if you could cum, it would just be bottled up by her sadistic pressure. She's relentless, though, and it isn't long before you feel the pressure building again, your body racing to follow your lover over the edge of bliss. 
+
+"You earned it," Saen grins, and suddenly her tails relax around you, the gripping pressure gone in an instant. The sudden release is too much, spurring your pent-up prick to cum again. You scream, the sensation too much as cum rushes up your thrice-used shaft and onto the bitch-kitten's belly, blasting her with a {third / if futa: fourth} load of spunk. Saen grins and takes it like the cum-hungry slut she is, leaning back and letting you blow your whole load across her tits and stomach, eagerly rubbing the hot spooge in as you deliver the finale of your one-{wo}man bukkake. 
+
+The money-shot ends with Saen's body slathered with your cum, looking more [pc.cumColor] than pink. With a sated sigh, the lusty halfbreed flops back in the bed, idly rubbing the coating of cum sticking to her skin. She <i>reeks</i> of sex now, a heady aroma of your cum and hers mixing around her. "Oh, that's nice," she grins, eyes fluttering closed. One her her hands hooks under your arm, tugging you down.  "C'mere, hero, unless you you wanna go for number four."
+
+You obediently collapse beside your lover, more exhausted than she is from your sexual ordeal. Sleep overtakes you in moments.
+}
+
+public function saendraRidesYouCowgirlStyle():void
+{
+You roll onto your back and tell Saen to take charge, that you’d love to leave yourself in her capable, experienced hands. Your lover smiles for the briefest moment, then pounces, leaping over you, straddlingyour waist, tugging at your [pc.gear] and quickly freeing your [pc.cock]. You groan as she grips your prick, quickly pumping it as she shifts her weight around, getting into position. Soon, her flared hips and big, gropable ass are hovering over your dick, so tantalizingly close that you can feel the intense, radiant warmth of her body on your [pc.cockhead]. But she holds steady over you, continuing to stroke you with fast, furious motions; before long, thick drops of slick pre are running down your length, staining Saen's fur-clad fingers and making your [pc.cock] a slippery, sticky mess. Satisfied, Saen lets your cock go, bringing her pre-slick fingers up to her mouth and cleaning them off one by one, slipping each digit in and suckling on it like a tiny cock, making sure to get every last drop. 
+
+While your lover busies herself cleaning off her fingers, she's left you in the lurch, cock standing straight up at attention, still bubbling drops of pre in anticipation of a fucking that's suddenly seemed to stop. Hazed with lust, your body starts to jerk and shiver in desperation, consumed by the need to breed. Your hips thrust upwards, cockhead brushing Saen's cheeks and thighs but unable to make headway without help. You grit your teeth and sink back, but just as you've given up for the moment, Saen eases herself down, her meaty cheeks brushing along either side of your throbbing erection, squeezing it into her sizable crack. You moan aloud, unable to contain your sexual relief as the gentle, all-consuming sensation of Saendra's soft cheeks closes around your cockflesh. 
+
+You reach down, trying to guide your cock into one of your lover's welcoming holes, over eager to bury yourself inside her searing depths. Before you can, though, one of Saen's tail swishes out from around her, snatching up your wrists in its surprisingly firm grip. "Oh, no," the halfbreed teases, shifting your hands back over your head. "Just lie back, hero. Trust me."
+
+She leans down, pressing her lips to yours. With a lust-filled sigh, your relax into her kiss, letting Saendra have her way with you. She smiles, trailing down your body with gentle nuzzles and caresses, tracing across your [pc.chest] and belly with a hundred loving kisses. As she moves down your body, Saen starts to slowly rock her hips, dragging your cock through her tightly-clenched derriere. Now things are looking up! You let yourself go, relaxing completely as Saen hotdogs you, slowly picking up the pace. Now that you've submitted, Saendra rewards you with faster thrusts, hips rising and falling with abandon. Pre leaks liberally from your eager cock, smearing your lover's rump with a thickening coat of sticky white seed. 
+
+Grinning, Saen lets go of your wrists, taking your hands in hers and guiding them to the flares of her hips. Your fingers sink into her yielding flesh, clutching her tightly and starting to guide her pace. The lusty red-head licks her lips hungrily, and you can see her chest heaving, hefty breasts bouncing beneath rock-hard nipples. It doesn't take a genius to see that she wants it just as much as you want to give it to her. You lock eyes with the pretty privateer, and she gives you just the slightest of nods, never breaking the pace of her silky-smoothing motions, never giving your cock a chance to breathe. 
+
+You brace yourself and reach around her thick hips, grabbing your rock-hard shaft and holding it straight up into Saen's oncoming hips. She stops just at the tip, your [pc.cockhead] pressing into her welcoming asshole, its dark ring kissing your crown. Heat radiants off of Saendra's body, pouring from her rectal opening to the sensitive flesh of your prick, making your groan as she tantalizingly lowers herself down. You both gasp as your [pc.cock] pops into her, suddenly clenched in the hot, slick embrace of her anal walls. A low, sensual moan escapes your lover's lips, Saen's sonorous voice crying out her pleasure as she sinks down on your cock, taking more and more inside herself. It takes nearly a minute for her to finally stop, her motions so agonizingly slow as she buries you inside her that you've nearly cummed by the time she's seated on your lap. 
+
+"I love..." she groans, rolling her head back and cupping one of her huge tits, pinching the nipple between her clawed fingers, "Oh, fuck, I love your cock in my ass, [pc.name]. I can feel your heartbeat inside me, so.... oh, so strong, so thick. That's right, go ahead and cum, fill me up with everything you've got, hero. Let me bask in it."
+
+"Not yet," you groan, clenching your teeth with effort, trying to hold it in. But Saen's muscles clenching and massaging and caressing your cock's every inch is almost too much to stand, and you can feel your [pc.balls] ready to burst inside her. While you can, you grip Saen's big old hips and push her up, trying to get the big girl back in action. She laughs, but starts moving with you, rolling her hips up until your prick nearly pops out of her backdoor, only to slowly slide back down your pole {until your balls press into her plush booty}. She locks her hands onto your [pc.chest] for support, starting to rise and fall quicker, hammering onto your lap, your prick pounding her ass hard and fast until you're both moaning lustily, the room echoing with your cries of passion and the raw, musky smell of sex. 
+
+It isn't long before the inevitable climax, but now as you start to feel your prick swell with cum, you can feel Saen's heart racing, her breath hot and ragged on your chest as she rides you with everything she's got, her sodden box drooling her feminine slime across your lap, smearing you with a mix of her cum and your pre. {if Futadra: "Her cock bounces with her every motion, her own turgid length bobbing, pre glistening on its bristled tip. }With one last groan of mind-rending pleasure, you yank Saendra down onto your cock, ramming yourself as far up her slick hole as you can go before the first great blast of cum explodes from your slit, smearing her rectal walls [pc.cumColor] with seed. She cries aloud, clutching at her heaving breasts as she follows you over the edge, clamping down hard on your cock as her pussy erupts, drooling fem-cum over your belly{ even as her halfbreed cock shoots its own load, pushed over by the pressure on her feminine prostate; you try and cover your face as she cums, spraying your [pc.chest] and neck with thick, white spunk}.
+
+Moments later, your lover collapses atop you, body quivering as you fill her ass with more and more of your potent seed. Little spurts squirt back out of her, smearing onto your [pc.legs] and staining her sheets with frothy cream. You wrap your arms around her shoulders, holding the beautiful girl close as your orgasms slowly subside, fading into the blissful afterglow of sexual release, and then into a peaceful sleep, your [pc.cock] still fully buried inside Saen's tight, spunk-filled ass.
+}
+
+public function saendrasTitsLookRatherGloriousItdBeAShameIfSomebodyStuckTheirCockIntoThatDeliciousCleavage():void
+{
+	// WELP
+}
+
+public function saendraPostFuckscene():void
+{
+You awaken after a short nap in your lover's arms, only to find yourself alone in the big bed. You rub the sleep from your eyes and prop yourself up, punctuated by a long yawn. Just past the foot of the bed, Saen looks over her shoulder and gives you a grin as she finishes buttoning her shirt. 
+
+"Thanks for that, hero," she says with a wink before hiking her pants back, your last glimpse of her bare, sexy body vanishing. "{If First time: We should do that again some time. You know where to find me." else "I really needed that. You're the best, [pc.name]."} She hops over to plant a quick kiss on your cheek before grabbing her keys off the counter, telling you to let yourself out when you're ready. A moment later, she slips out the door, leaving you alone.
+
+You spend a few minutes gathering your things{ and dressing} before following suit, back down to the bar. 
 }

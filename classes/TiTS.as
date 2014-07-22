@@ -120,6 +120,7 @@
 		include "../includes/travelEvents.fallOfThePhoenix.as";
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/stellarTether.as";
+		include "../includes/saendra.as";
 		
 		include "../includes/lightsOut.as";
 			
@@ -697,6 +698,10 @@
 		public function get saendra():*
 		{
 			return chars["SAENDRA"];
+		}
+		public function get sera():*
+		{
+			return chars["SERA"];
 		}
 	}
 }

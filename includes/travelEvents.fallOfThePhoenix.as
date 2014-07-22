@@ -78,6 +78,14 @@ public function phoenixRecRoom():void
 
 	//[Computer]
 	if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) addButton(0, "Computer", phoenixRecRoomComputer);
+	
+	// Hooking into Phoenix Room stuff for post-arrival at Tavros
+	// See: Saendra.as
+	if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
+	{
+		phoenixRecRoomAtTavros();
+		addButton(7, "Exit", move, "TAVROS HANGAR");
+	}
 }
 
 public function phoenixRecRoomComputer():void

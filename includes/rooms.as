@@ -69,12 +69,11 @@ function initializeRooms():void
 	rooms["MERCHANT'S THOROUGHFARE"].addFlag(GLOBAL.INDOOR);
 
 	//104 "LIFT: MERCHANT DECK". In The Lift - Merchant's Thoroughfare
-	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);;
+	rooms["LIFT: MERCHANT DECK"] = new RoomClass(this);
 	rooms["LIFT: MERCHANT DECK"].roomName = "LIFT: MERCHANT\nDECK";
 	rooms["LIFT: MERCHANT DECK"].description = "Steady, mechanical thrums suffice the stuffy air inside this tube of metal and and plastic. There is a brass-hued railing to stablize oneself with during the highspeed travel through the kilometers-long station and a sturdy mechanical keypad with which to designate your target level. Much of the lift stations look to be inactive; right now, the hangar and the merchant's thoroughfare are the only areas reachable by lift.";
 	rooms["LIFT: MERCHANT DECK"].planet = "TAVROS STATION";
 	rooms["LIFT: MERCHANT DECK"].system = "SYSTEM: KALAS";
-	//rooms["LIFT: MERCHANT DECK"].inExit = "MERCHANT'S THOROUGHFARE";
 	rooms["LIFT: MERCHANT DECK"].outExit = "MERCHANT'S THOROUGHFARE";
 	rooms["LIFT: MERCHANT DECK"].addFlag(GLOBAL.INDOOR);
 	rooms["LIFT: MERCHANT DECK"].runOnEnter = hangarBonus;
@@ -87,7 +86,8 @@ function initializeRooms():void
 	rooms["TAVROS HANGAR"].system = "SYSTEM: KALAS";
 	rooms["TAVROS HANGAR"].inExit = "TAVROS LIFT";
 	rooms["TAVROS HANGAR"].inText = "Lift";
-	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS HANGAR"].addFlag(GLOBAL.INDOOR);	
+	rooms["TAVROS HANGAR"].runOnEnter = tavrosHangarStuff;
 
 	//106"TAVROS LIFT". In The Lift - The Hangar
 	rooms["TAVROS LIFT"] = new RoomClass(this);

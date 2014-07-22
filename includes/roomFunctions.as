@@ -43,6 +43,19 @@ function hangarBonus():Boolean
 	return false;
 }
 
+public function tavrosHangarStuff():Boolean
+{
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
+	{
+		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighbouring hangar.");
+		
+		if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
+			addButton(0, "The Phoenix", move, "PHOENIX RECROOM");
+	}
+	
+	return false;
+}
+
 function liftMove(destination:String):void {
 	move(destination,false);
 	clearOutput();

@@ -1,6 +1,7 @@
 package classes.Characters 
 {
 	import classes.BreastRowClass;
+	import classes.CockClass;
 	import classes.Creature;
 	import classes.GLOBAL;
 	import classes.Items.Apparel.ComfortableClothes;
@@ -145,7 +146,22 @@ package classes.Characters
 			}
 			
 			this.createCock();
+			var tCock:CockClass = this.cocks[0];
+			
+			tCock.cLengthRaw = 8;
+			tCock.cThicknessRatioRaw = 1.5;
+			tCock.cType = GLOBAL.TYPE_FELINE;
+			tCock.flags = [GLOBAL.FLAG_KNOTTED];
+			tCock.cockColor;
+			tCock.knotMultiplier = 1.25;
+			tCock.flaccidMultiplier = 0.33;
+			tCock.virgin = true;
+			
 			this.balls = 2;
+			this.ballSizeRaw = 2;
+			this.createStatusEffect("Uniball");
+			this.cumMultiplierRaw = 2;
+			this.refractoryRate = 10;
 		}
 	}
 
