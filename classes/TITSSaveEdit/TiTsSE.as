@@ -51,7 +51,8 @@ package classes.TITSSaveEdit
 		public var SupportedSaveVersion:int = 14;
 		
 		// Copying the TiTs version string.
-		public var EditorVersion:String = "0.02.40";
+		public var GameVersion:String = "0.02.42";
+		public var EditorVersion:String = "0.01.01";
 		
 		public function TiTsSE():void 
 		{
@@ -77,13 +78,13 @@ package classes.TITSSaveEdit
 			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			
-			ui.output(title("TiTs Save Editor Alpha 0.1"));
+			ui.output(title("TiTs Save Editor - " + String(EditorVersion)));
 			ui.output("\n");
 			ui.output(blockHeader(bad("Caveat Emptor for all of this tool right now.")));
 			ui.output("Until this tool reaches version 1.0 you should assume that it can and will destroy your save.");
 			ui.output("\n" + bad("BUYER BEWARE") + " etc");
 
-			ui.output("\n\nSupports TiTs save files from TiTs " + EditorVersion + " and up");
+			ui.output("\n\nSupports TiTs save files from TiTs " + GameVersion + " and up");
 			
 			ui.output("\n\n1. Load an existing TiTs save to make changes to the PlayerCharacter of.");
 			ui.output("\n- The TiTs save structure and required data is much more complex than CoC. To save a bunch of hassle until the this tool hits 1.0 it requires data from an existing save.");
