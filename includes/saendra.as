@@ -35,7 +35,7 @@ public function saendraAtBar():Boolean
 			return true;
 		}
 
-		if (flags["SAENDRA GONNA GO GET A COCK"] >= 1)
+		if (flags["SAENDRA GONNA GO GET A COCK"] == 1 || flags["SAENDRA GONNA GO GET A COCK"] == 2)
 		{
 			return false;
 		}
@@ -60,6 +60,7 @@ public function saendraAffection(arg:int = 0):int
 	// capped!
 	if (flags["SAENDRA AFFECTION"] > 69) flags["SAENDRA AFFECTION"] = 69;
 
+	trace("Saendra Affection: " + flags["SAENDRA AFFECTION"]);
 	return flags["SAENDRA AFFECTION"];
 }
 
@@ -286,8 +287,13 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	if (flags["SAENDRA OFFER CREDITS UNLOCKED"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "Offer Credits", saendraOfferCredits, "Offer Credits", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
 	else addDisabledButton(5, "Offer Credits", "Offer Credits", "Maybe if you can find out about the problems she's been having in a little more detail, you could offer to help her out with some credits.");
 
-	if (flags["SAENDRA FUCKED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she's ever thought about growing a dick.");
-	else addDisabledButton(6, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
+	if (!saendra.hasCock())
+	{
+		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she's ever thought about growing a dick.");
+		else addDisabledButton(6, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
+	}
+	
+	addButton(14, "Back", saendrasBarMenu);
 }
 
 public function saendraHowsWork():void
@@ -315,8 +321,7 @@ public function saendraHowsWork():void
 
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(0);
 }
 
 public function saendraHobbies():void
@@ -337,8 +342,7 @@ public function saendraHobbies():void
 
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(1);
 }
 
 public function saendraValeriaWork():void
@@ -367,9 +371,7 @@ public function saendraValeriaWork():void
 
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
-
+	removeButton(2);
 }
 
 public function saendraHerRace():void
@@ -393,9 +395,7 @@ public function saendraHerRace():void
 	//[Next] [Parents]
 	saendraAffection(5);
 	
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
-	addButton(1, "Parents", saendraParents);
+	addButton(3, "Parents", saendraParents);
 }
 
 public function saendraParents():void
@@ -413,8 +413,8 @@ public function saendraParents():void
 	output("\n\nShe shrugs. “<i>It’s fine. That was years ago, I’m okay now,</i>” she says, patting your hand. “<i>Now c’mon, let’s talk about something a little bit more fun, huh?</i>”");
 
 	saendraAffection(-10); // -5 plus remove the 5 we added before the branch.
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	
+	removeButton(3);
 }
 
 public function saendraHerArm():void
@@ -435,7 +435,7 @@ public function saendraHerArm():void
 	
 	output("\n\nSaen gives you a grin and flicks her cyber-wrist. From the palm, a long, thick metallic hose snakes out, slithering across the table toward you. “<i>Three feet long, thick as a bullcock, and completely prehensile. Took a little mucking around with the firmware and the control chip they put in my brain - ow, by the way. Don’t recommend it - but I got it to work! Give it a kiss!</i>” she laughs as the slithering probe rears up like a cobra, its rounded, pointy tip reaching over to peck you on the lips. ");
 	
-	if (flags["SAENDRA FUCKED"] != undefined)
+	if (flags["SAENDRA TIMES SEXED"] != undefined)
 	{
 		output("\n\n“<i>So... when do I get to use this bad boy on you, hero?</i>” she teases, adding an exaggerated wink for emphasis.");
 	}
@@ -497,8 +497,7 @@ public function saendraPhoenixStatus():void
 
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(4);
 }
 
 public function saendraOfferCredits():void
@@ -523,8 +522,7 @@ public function saendraOfferCredits():void
 
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(5);
 }
 
 public function saendraFutification():void
@@ -539,31 +537,36 @@ public function saendraFutification():void
 
 	output("A bit hesitantly, you broach the subject of your own desires for the fluffy halfbreed. “<i>So, uh, Saendra... you know, you’re a beast in bed, but...</i>”");
 	
-	output("\n\nShe interrupts you with a wolfish grin, leaning in until her heavy breasts are straining against her vest, her ample cleavage on full display. “<i>Lemme guess... you want to talk me into getting a big, thick cock, right? {if PC is male: “<i>I knew you were a little buttslut at heart, hero... you just needed the right person to bring it out!</i>” // if PC is female: “<i>A strapon or tenta-probe not cutting it for ya, babe?</i>”}");
+	output("\n\nShe interrupts you with a wolfish grin, leaning in until her heavy breasts are straining against her vest, her ample cleavage on full display. “<i>Lemme guess... you want to talk me into getting a big, thick cock, right?");
+	if (!pc.hasVagina() && pc.hasCock()) output(" I knew you were a little buttslut at heart, hero... you just needed the right person to bring it out!</i>”");
+	if (pc.hasVagina()) output(" A strapon or tenta-probe not cutting it for ya, babe?</i>”");
 	
 	output("\n\n“<i>Uh. Well, yeah, actually.</i>”");
 	
 	output("\n\nSaen blinks. “<i>O-oh. I was... hey, I was just joking. C’mon, hero, knock it off.</i>”");
 	
-	output("\n\n{if Affection =< 49:");
-	output("\n\nYou try to push the issue, but are firmly rebuffed. “<i>Seriously, [pc.name], I’m not... look, I like you and all, but I’m not gonna mess my body up just for you. That’s asking waaay too much, babe,</i>” she says, putting a hand on yours. “<i>Now c’mon, let’s get a drink and do something </i>fun<i>.</i>”}");
-	
-	output("\n\n{If Affection => 50:");
-	output("\n\nSaen sighs, rubbing the back of her neck with her silvery arm. “<i>Ahhh. I dunno, hero. I just... I mean... why? I’m happy the way I am. We have good sex -- no, </i>great<i> sex! -- and I’m fine sticking with toys and stuff when I wanna go after a tight little hole like yours. I just don’t see why I need a dick. I like being a girl.</i>” ");
+	if (saendraAffection() <= 49)
+	{
+		output("\n\nYou try to push the issue, but are firmly rebuffed. “<i>Seriously, [pc.name], I’m not... look, I like you and all, but I’m not gonna mess my body up just for you. That’s asking waaay too much, babe,</i>” she says, putting a hand on yours. “<i>Now c’mon, let’s get a drink and do something </i>fun<i>.</i>”");
+	}
+	else
+	{
+		output("\n\nSaen sighs, rubbing the back of her neck with her silvery arm. “<i>Ahhh. I dunno, hero. I just... I mean... why? I’m happy the way I am. We have good sex -- no, </i>great<i> sex! -- and I’m fine sticking with toys and stuff when I wanna go after a tight little hole like yours. I just don’t see why I need a dick. I like being a girl.</i>” ");
+	}
 
 	saendraAffection(-5);
 
 	//[Drop It] [Push:Reversable] [Push:FeelsGood]
 	clearMenu();
-	addButton(0, "Drop It", saendraDropIt, "Drop It", "Drop the subject.");
-	if (flags["SAENDRA TALKED ABOUT FUTA"] >= 1 && saendraAffection() >= 50)
+	addButton(0, "Drop It", saendraDropIt, undefined, "Drop It", "Drop the subject.");
+	if (flags["SAENDRA TALKED ABOUT FUTA"] >= 1 && saendraAffection() > 49)
 	{
 		addButton(1, "Push: Reverse", saendraFutaTalkII, true, "Push: Reversable", "Push the discussion about Saendra getting a cock. Emphasise that the process is reversable after all...");
 		addButton(2, "Push: Good", saendraFutaTalkII, false, "Push: Feels Good", "Push the discussion about Saendra getting a cock. Emphasise that it would feel really special.")
 	}
 	else
 	{
-		if (saendraAffection() < 50)
+		if (saendraAffection() <= 49)
 		{
 			addDisabledButton(1, "Push: Reverse", "Push: Reversable", "If your relationship with Saendra was a little more developed, you might be able to talk her into it.");
 			addDisabledButton(2, "Push: Good", "Push: Feels Good", "If your relationship with Saendra was a little more developed, you might be able to talk her into it.")
@@ -588,8 +591,8 @@ public function saendraDropIt():void
 	
 	output("\n\nShe nods slowly. “<i>Yeah. Let’s, uh, let’s just move on, huh?</i>”");
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	talkToSaendraAboutStuffAndThings(false);
+	removeButton(6);
 }
 
 public function saendraFutaTalkII(reversePath:Boolean = true):void
@@ -715,7 +718,7 @@ public function saendraBuhuImPoor():void
 
 public function saendraAtDarkChrysalis():Boolean
 {
-	if (flags["SAENDRA GONNA GO GET A COCK"] == 1 && !saendra.hasCock()) return true;
+	if (flags["SAENDRA GONNA GO GET A COCK"] == 1) return true;
 	return false;
 }
 
@@ -777,6 +780,7 @@ public function saendraTalkInDC():void
 
 	//[Threesome!] [No way!] [Watch] [Know each other?] [Just Buy]
 	//If PC has fucked Sera a few times, go right to threesome.
+	clearMenu();
 	if (timesFuckedSera() >= 4)
 	{
 		addButton(0, "Next", saenAndSeraThreesome);
@@ -1202,7 +1206,7 @@ public function takeSaensStrappedyDappedyCock():void
 		selCunt = pc.cuntThatFits(33.5);
 		if (selCunt == -1) selCunt = pc.biggestVaginaIndex();
 	}
-	else selCunt = -1;
+	else selCunt = 0;
 
 	output("Dangling on the side of Saen’s nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon.");
 	if (pc.hasCock()) output(" “<i>Wanna see if you can take as good as you can get?</i>” Saen teases, grabbing your [pc.cock] and giving it a few playful tugs.");
@@ -1585,7 +1589,9 @@ public function saendraPostFuckscene():void
 
 	flags["SAENDRA TIMES SEXED"]++;
 	
-	processTime(120+((rand(60)+1) - 30));
+	processTime(120 + ((rand(60) + 1) - 30));
+	
+	saendraAffection(5);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

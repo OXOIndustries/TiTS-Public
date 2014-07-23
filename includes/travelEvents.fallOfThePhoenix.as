@@ -81,11 +81,15 @@ public function phoenixRecRoom():void
 	
 	// Hooking into Phoenix Room stuff for post-arrival at Tavros
 	// See: Saendra.as
-	if (flags["SAENDRA TALK PHOENIX STATUS"] != undefined)
+	if (flags["SAENDRA GONNA GO GET A COCK"] == 2)
 	{
 		phoenixRecRoomAtTavros();
+	}
+	if (flags["SAENDRA GONNA GO GET A COCK"] >= 2)
+	{
 		addButton(7, "Exit", move, "TAVROS HANGAR");
 	}
+	
 }
 
 public function phoenixRecRoomComputer():void
@@ -151,13 +155,13 @@ public function phoenixBridge():void
 	{
 		output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen. With main power back on, the accumulated trash has fallen back onto the ground.");
 		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(" The porno holos are noticeably absent, and");
-		output(" Captain Saendra is slumped in her captain's chair, fiddling with the controls.");
+		if (flags["FALL OF THE PHOENIX STATUS"] != 1) output(" Captain Saendra is slumped in her captain's chair, fiddling with the controls.");
 	}
 
 	if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2) addButton(0, "Shields", phoenixBridgeShields);
 	if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) addButton(1, "Disks", phoenixBridgeDisks);
 	if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined || flags["FALL OF THE PHOENIX DILDO GET"] == 0) addButton(5, "Dildo", phoenixBridgeDildo);
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1) addButton(7, "Saendra", phoenixBridgeCaptain);
+	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1 && flags["FALL OF THE PHOENIX STATUS"] != 1) addButton(7, "Saendra", phoenixBridgeCaptain);
 }
 
 public function phoenixBridgeCaptain():void
