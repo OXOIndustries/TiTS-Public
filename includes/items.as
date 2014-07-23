@@ -69,36 +69,46 @@ function useItem(item:ItemSlotClass):void {
 // A call with just an item will 
 function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {
-	// This is kinda bullshit. To save cheesing args for the function when called via a button,
-	// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
-	// pressed a button to invoke the call
-	if (targetCreature == null)
+	// If we're looking at an equippable item, equip it
+	if (item.type == GLOBAL.ARMOR || item.type == GLOBAL.CLOTHING || item.type == GLOBAL.SHIELD || item.type == GLOBAL.ACCESSORY || item.type == GLOBAL.UPPER_UNDERGARMENT 
+		|| item.type == GLOBAL.LOWER_UNDERGARMENT || item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON)
 	{
-		if (item.targetsSelf == true)
-		{
-			targetCreature = pc;
-		}
-		else
-		{
-			// TODO: Show target selection interface
-			// Invoke menu, early return, call back to self
-			targetCreature = foes[0];
-		}
+		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
+		equipItem(item);
 	}
-	
-	if (usingCreature == null)
+	else
 	{
-		usingCreature = pc;
-	}
-	
-	item.useFunction(targetCreature, usingCreature);
-	
-	if (!debug)
-	{
-		item.quantity--;
-		if (item.quantity <= 0 && usingCreature.hasItem(item))
+		// This is kinda bullshit. To save cheesing args for the function when called via a button,
+		// we're gonna rebuild sensible defaults if the args are absent. No args = assume the player
+		// pressed a button to invoke the call
+		if (targetCreature == null)
 		{
-			usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
+			if (item.targetsSelf == true)
+			{
+				targetCreature = pc;
+			}
+			else
+			{
+				// TODO: Show target selection interface
+				// Invoke menu, early return, call back to self
+				targetCreature = foes[0];
+			}
+		}
+		
+		if (usingCreature == null)
+		{
+			usingCreature = pc;
+		}
+		
+		item.useFunction(targetCreature, usingCreature);
+		
+		if (!debug)
+		{
+			item.quantity--;
+			if (item.quantity <= 0 && usingCreature.hasItem(item))
+			{
+				usingCreature.inventory.splice(usingCreature.inventory.indexOf(item), 1);
+			}
 		}
 	}
 	

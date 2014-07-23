@@ -7,6 +7,25 @@ public function saenHeader(nude:Boolean = false):void
 	showName("\nSAENDRA");
 }
 
+public function saendraBarAddendum():Boolean
+{
+	if (saendraAtBar())
+	{
+		if (flags["SAEN MET AT THE BAR"] == undefined)
+		{
+			saenAtTheBarFirstTimeEvent();
+			return true;
+		}
+		else
+		{
+			output("\n\nThe firey red-head you saved from the pirates aboard <i>The Phoenix</i> is here tucked away in one of the many booths available throughout the bar.");
+			addButton(7, "Saendra", meetSaenAtTheBar);
+			return false;
+		}
+	}
+	return false;
+}
+
 public function saendraAtBar():Boolean
 {
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
@@ -135,7 +154,7 @@ public function meetSaenAtTheBar():void
 
 	output("\n\n“<i>Heyya, hero,</i>” she says, grinning even as her pair of fluffy tails coil affectionately around your [pc.leg]. She kicks back what’s left of her drink as you say hello, leaning back in her seat with her arm slung over the back and her chest pressed out, straining her blouse in all the right ways. “<i>So what’s up? Just come for the company... or do you wanna blow off some steam?</i>”");
 
-		saendrasBarMenu();
+	saendrasBarMenu();
 }
 
 public function saendrasBarMenu():void
@@ -147,7 +166,8 @@ public function saendrasBarMenu():void
 	//NOTE: Unless otherwise noted, nothing but Sex & Leave will cause the PC to leave; ie, you return to her main menu after each choice made. 
 	
 	addButton(0, "Talk", talkToSaendraAboutStuffAndThings, undefined);
-	addButton(1, "Sex", saendraSexTalk, undefined);
+	if (pc.lust() >= 33) addButton(1, "Sex", saendraSexTalk, undefined);
+	else addDisabledButton(1, "Sex", "Sex", "Probably want to be a little lusty yourself before you go bringing up the topic of sex.");
 	addButton(2, "Appearance", takeAGoodLookAtSaendra, undefined);
 	if (saendraAffection() >= 70)
 	{
@@ -204,6 +224,13 @@ public function saendraSexMenu():void
 			addDisabledButton(11, "Ride Cock", "Ride Cock", "Maybe you should talk to Saendra about various other... improvements available these days. Maybe she could pick up a cock and you could get yourself a vagina?");
 		}
 	}
+	
+	addButton(14, "Leave", function():void {
+		saendraAffection( -5);
+		mainGameMenu();
+	}, undefined,
+	"Leave Her",
+	"Leave Saendra hanging; she'll probably be a little offended...");
 }
 
 public function leaveSaendraAtTheBar():void
@@ -236,14 +263,18 @@ public function kissSaendraOnTheLipsAndEverystuff():void
 	saendrasBarMenu();
 }
 
-public function talkToSaendraAboutStuffAndThings():void
+public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 {
-	saenHeader();
+	if (doOutput)
+	{
+		saenHeader();
 
-	output("You ask Saen if she’s got a few minutes to just chat.");
+		output("You ask Saen if she’s got a few minutes to just chat.");
 
-	output("\n\n“<i>Sure, hero,</i>” she says with a warm smile. “<i>What’s on your mind?</i>”");
+		output("\n\n“<i>Sure, hero,</i>” she says with a warm smile. “<i>What’s on your mind?</i>”");
+	}
 
+	clearMenu();
 	addButton(0, "How's Work", saendraHowsWork);
 	addButton(1, "Hobbies", saendraHobbies);
 	addButton(2, "Valiera Work", saendraValeriaWork);
@@ -263,7 +294,7 @@ public function saendraHowsWork():void
 {
 	saenHeader();
 
-	output("\n\n“<i>So, how’s work,</i>” you ask, remembering the strained conversation between her and Valeria when you first met her here.");
+	output("“<i>So, how’s work,</i>” you ask, remembering the strained conversation between her and Valeria when you first met her here.");
 	
 	output("\n\nSaen makes a face and grabs another drink from a passing waitress. “<i>Could be better, honestly. The </i>Phoenix<i> took a beating from those pirates and the repair costs were, uh, unexpected.</i>”");
 	
@@ -285,7 +316,7 @@ public function saendraHowsWork():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraHobbies():void
@@ -307,7 +338,7 @@ public function saendraHobbies():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraValeriaWork():void
@@ -337,7 +368,7 @@ public function saendraValeriaWork():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 
 }
 
@@ -363,7 +394,7 @@ public function saendraHerRace():void
 	saendraAffection(5);
 	
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 	addButton(1, "Parents", saendraParents);
 }
 
@@ -383,7 +414,7 @@ public function saendraParents():void
 
 	saendraAffection(-10); // -5 plus remove the 5 we added before the branch.
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraHerArm():void
@@ -413,7 +444,7 @@ public function saendraHerArm():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraPhoenixStatus():void
@@ -467,7 +498,7 @@ public function saendraPhoenixStatus():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraOfferCredits():void
@@ -493,7 +524,7 @@ public function saendraOfferCredits():void
 	saendraAffection(5);
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraFutification():void
@@ -558,7 +589,7 @@ public function saendraDropIt():void
 	output("\n\nShe nods slowly. “<i>Yeah. Let’s, uh, let’s just move on, huh?</i>”");
 
 	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings);
+	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
 }
 
 public function saendraFutaTalkII(reversePath:Boolean = true):void

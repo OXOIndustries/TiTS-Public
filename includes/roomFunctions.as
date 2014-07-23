@@ -435,10 +435,18 @@ function rustScytheGladeEncounters():Boolean {
 }
 
 
-function anonsBarAddendums():void {
+function anonsBarAddendums():Boolean {
+	
+	if (saendraBarAddendum())
+	{
+		return true;
+	}
+	
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
 	ShellyBlurb();
+	
+	return false;
 }
 
 function firstTimeOnTarkusBonus():Boolean
