@@ -1201,11 +1201,7 @@ public function takeSaensStrappedyDappedyCock():void
 	//Strapon buttsecks. Not available after FutaSaen rises.
 	saenHeader(true);
 	var selCunt:int;
-	if (pc.hasVagina())
-	{
-		selCunt = pc.cuntThatFits(33.5);
-		if (selCunt == -1) selCunt = pc.biggestVaginaIndex();
-	}
+	if (pc.hasVagina()) selCunt = pc.cuntThatFits(33.5);
 	else selCunt = 0;
 
 	output("Dangling on the side of Saen’s nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon.");
@@ -1268,7 +1264,7 @@ public function saendraStuffsHerFutacockInYourCunt():void
 	saenHeader(true);
 	//Cuntcommanders only. Better than missionary position because Fen has sexual PTSD. So much cockworship, you'd think it was an Elzi thread.
 	var selCunt:int = pc.cuntThatFits(saendra.cockVolume(0));
-	if (selCunt == -1) selCunt = pc.biggestVaginaIndex();
+	if (selCunt == -1) selCunt = pc.biggestVaginaIndex(); // Should never happen, but w/e
 
 	output("Looking up at your red-maned lover, you ask how she’d like a little attention on that thick, knotted kitty-cock of hers. Saen grins, her chrome fingers already wrapped around her shaft. “<i>Normally I’m one to take the lead, but... for you, anything.</i>” She winks and rolls off of you, spreading her half-furred legs invitingly. You follow her, slinking down the length of the bed and back up between her legs, shifting them up over your shoulders as you advance. Saendra squirms, biting her lip in anticipation as you draw near her prick. Saen’s cock is standing straight up, wholly ready for your your attention by the time you make your slow, tantalizing way up to it. Her hard red shaft bobs slightly as you approach, its many crimson bristles looking like such a tasty treat that you can’t help but lick your way across them, feeling an inch-long coating spines pass across the tip of your tongue, leaving your head swimming with their musky, earthy taste. When your [pc.tongue] crests the crown of her tapered hybrid cock, Saen visibly shudders, a wave of pleasure washing through her strong enough to nearly dislodge her legs from over you. ");
 
