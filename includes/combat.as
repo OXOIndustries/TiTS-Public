@@ -2605,6 +2605,8 @@ function goozookaCannon(target:Creature):void
 	}
 	else
 	{
+		var damage:Number;
+		
 		// Hit
 		if (target is GrayGoo)
 		{
@@ -2613,7 +2615,7 @@ function goozookaCannon(target:Creature):void
 			var heal:Number = target.HPMax() * 0.2;
 			if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
 			
-			var damage:Number = 5 * target.lustVuln;
+			damage = 5 * target.lustVuln;
 			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
@@ -2627,7 +2629,7 @@ function goozookaCannon(target:Creature):void
 		{
 			output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
 		
-			var damage:Number = 33 * target.lustVuln;
+			damage = 33 * target.lustVuln;
 			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 			output(teaseReactions(damage, target));

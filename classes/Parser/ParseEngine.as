@@ -144,7 +144,7 @@
 				else
 				{
 					if (lookupParserDebug) trace("No lookup found for", arg, " search result is: ", obj);
-					var msg:String = "!Unknown tag \"" + arg + "\"!";
+					msg = "!Unknown tag \"" + arg + "\"!";
 					trace("Warning: " + msg);
 					return "<b>" + msg + "</b>";
 				}
@@ -160,6 +160,7 @@
 			var argResult:String = null;
 
 			var thing:*;
+			var msg:String;
 
 			var argTemp:Array = inputArg.split(" ");
 			if (argTemp.length != 2)
@@ -206,7 +207,7 @@
 				}
 				else
 				{
-					var msg:String = "!Unknown aspect in two-word tag \"" + inputArg + "\"! ASCII Aspect = \"" + aspectLower + "\"";
+					msg = "!Unknown aspect in two-word tag \"" + inputArg + "\"! ASCII Aspect = \"" + aspectLower + "\"";
 					trace("Warning: " + msg);
 					return "<b>"+ msg +"</b>";
 				}
@@ -227,7 +228,7 @@
 			thing = this.getObjectFromString(this._ownerClass, descriptorArray[0]);
 			if (thing == null)		// Completely bad tag
 			{
-				var msg:String = "!Unknown subject in \"" + inputArg + "\"!"
+				msg = "!Unknown subject in \"" + inputArg + "\"!"
 				return "<b>"+ msg +"</b>";
 			}
 			if (thing.hasOwnProperty("getDescription") && subject.indexOf(".") > 0)
@@ -280,7 +281,7 @@
 			}
 
 			if (lookupParserDebug) trace("No lookup found for", inputArg, " search result is: ", thing);
-			var msg:String = "!Unknown subject in two-word tag \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\"";
+			msg = "!Unknown subject in two-word tag \"" + inputArg + "\"! Subject = \"" + subject + ", Aspect = " + aspect + "\"";
 			trace("Warning: " + msg);
 			return "<b>"+ msg +"</b>";
 			// return "<b>!Unknown tag \"" + arg + "\"!</b>";

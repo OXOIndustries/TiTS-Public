@@ -82,7 +82,7 @@ package classes.Characters
 			this.horns = 0;
 			this.hornType = 0
 			this.armType = GLOBAL.TYPE_CANINE;
-			this.gills = 0
+			this.gills = false;
 			this.legType = GLOBAL.TYPE_CANINE;
 			this.legCount = 2;
 			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
@@ -151,7 +151,8 @@ package classes.Characters
 			tCock.cLengthRaw = 8;
 			tCock.cThicknessRatioRaw = 1.5;
 			tCock.cType = GLOBAL.TYPE_FELINE;
-			tCock.flags = [GLOBAL.FLAG_KNOTTED];
+			tCock.cockFlags = [GLOBAL.FLAG_KNOTTED];
+			
 			tCock.cockColor;
 			tCock.knotMultiplier = 1.25;
 			tCock.flaccidMultiplier = 0.33;

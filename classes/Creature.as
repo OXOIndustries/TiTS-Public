@@ -1663,6 +1663,7 @@
 				trace("DUMBFUCK STATUS:" + statusEffectv1("Dumbfuck Orgasm Procced"));
 			}
 		}
+		
 		public function isNude(): Boolean {
 			if(hasStatusEffect("Temporary Nudity Cheat")) return true;
 			return (armor.shortName == "" && lowerUndergarment.shortName == "" && upperUndergarment.shortName == "");
