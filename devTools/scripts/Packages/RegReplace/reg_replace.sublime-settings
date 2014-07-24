@@ -105,6 +105,20 @@
             "literal": true,
             "greedy": true,
             "case": false
+        },
+        "strip_leading_out": {
+            "find" : "output(\"\\n\\n",
+            "replace": "",
+            "literal": true,
+            "greedy": true,
+            "case": false
+        },
+        "strip_trailing_out": {
+            "find" : "\");",
+            "replace": "",
+            "literal": true,
+            "greedy": true,
+            "case": false
         }
     },
 
