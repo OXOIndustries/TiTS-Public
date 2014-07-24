@@ -873,7 +873,7 @@
 			if (mainParserDebug) trace("Not an if statement")
 				// Match a single word, with no leading or trailing space
 			var singleWordTagRegExp:RegExp = /^[\w\.]+$/;
-			var doubleWordTagRegExp:RegExp = /^[\w\.]+\s[\w\.]+$/;
+			var doubleWordTagRegExp:RegExp = /^[\w\.]+\s[\w\.\-]+$/;
 
 			if (mainParserDebug) trace("string length = ", textCtnt.length);
 
