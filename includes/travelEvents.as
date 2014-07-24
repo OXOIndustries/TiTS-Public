@@ -24,10 +24,13 @@ public function flyToWrapper(destination:String):void
 public function tryProcTravelEvent():Function
 {
 	var possibleMessages:Array = new Array();
-	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level >= 3) possibleMessages.push(fallOfThePhoenixMessage);
+	if (flags["FALL OF THE PHOENIX STATUS"] == undefined && pc.level > 3) possibleMessages.push(fallOfThePhoenixMessage);
 	if (flags["RESCUE KIRO FROM BLUEBALLS"] == undefined) possibleMessages.push(rescueKiroMessage);
 	
-	if (possibleMessages.length > 0 && (debug || rand(4) == 0))
+	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):
+	// if debug, proc a random message
+	// otherwise 25% of an event
+	if (possibleMessages.length > 0 && (debug || rand(4) == 0) && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
 	{
 		return possibleMessages[rand(possibleMessages.length)];
 	}
