@@ -329,7 +329,7 @@ function takeYourShot(easy:Boolean = false):void
 	processTime(2);
 	pc.lust(3+rand(4));
 	clearMenu();
-	addButton(0,"Next",annoShootsResults);
+	addButton(0,"Next",annoShootsResults,easy);
 }
 
 function annoShootsResults(easy:Boolean = false):void
