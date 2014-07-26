@@ -487,7 +487,7 @@ package classes.TITSSaveEdit.Data
 		{
 			if (CONVERT_WING_TYPES[coc.wingType] != undefined)
 			{
-				tits.wingType = coc.wingType;
+				tits.wingType = CONVERT_WING_TYPES[coc.wingType];
 			}
 			
 			// There are no other available properties in TiTs to do anything with coc.wingDesc so whatevs!

@@ -13,7 +13,8 @@ package classes.TITSSaveEdit.Data
 	import classes.UIComponents.MainButton;
 	import flash.events.MouseEvent;
 	import flash.events.Event;
-	import org.osmf.net.httpstreaming.flv.FLVTagScriptDataObject;
+	import flash.net.registerClassAlias;
+	import classes.TITSSaveEdit.Data.CockTypesEnum;
 	
 	/**
 	 * ...
@@ -21,6 +22,10 @@ package classes.TITSSaveEdit.Data
 	 */
 	public class SEDataManager extends Sprite
 	{
+		{
+			registerClassAlias("CockTypesEnum", CockTypesEnum);
+		}
+		
 		private var _text:TextField;
 		private var _buttonTray:SEButtonTray;
 		
@@ -363,7 +368,7 @@ package classes.TITSSaveEdit.Data
 			}
 			
 			var notesT:String = "No notes available";
-			if (saveFile.notes == undefined)
+			if (saveFile.notes != null)
 			{
 				notesT = saveFile.notes;
 			}
