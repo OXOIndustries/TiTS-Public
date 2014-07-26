@@ -92,6 +92,7 @@ function approachAurora():void
 	//First meeting
 	if(flags["MET_AURORA"] == undefined)
 	{
+		flags["MET_AURORA"] = 1;
 		output("Standing in the clear space by the “door\", you wave down the small, dangling worker as she scurries about the rafters, quickly getting her attention. Two golden orbs surprisingly pierce the darkness as the girl turns to face you from across the room, pausing in place and causing her to rock back and forth from the sudden stop. She remains quiet for a length of time, long enough that you start to think you might have done something wrong - that is, until she comes bursting over. Zeroing onto you faster than you ever could in the same position, she dodges a tall shelf or two in the process, something made all the more impressive by the fact that she was upside down the entire time!");
 
 		output("\n\nThough, now that you can see her better, that was probably a given.");
@@ -125,7 +126,7 @@ function approachAurora():void
 	//After first time
 	else
 	{
-		output("\n\nStaying put in your safe bastion, you wave down the kid-mechanistic from whatever she was doing and she’s all to happy to comply, running along the rafters to dangle in front of you with a bright, fangy smile; <i>\"<b>Hello</b>!\"</i>");
+		output("Staying put in your safe bastion, you wave down the kid-mechanistic from whatever she was doing and she’s all to happy to comply, running along the rafters to dangle in front of you with a bright, fangy smile; <i>\"<b>Hello</b>!\"</i>");
 		output("\n\nFolding her wings and “hands\" in what you can only describe as a business formal fashion, despite those thick, pushed up welding goggles and bits of grease and mechanical filth dotting her fur. Aurora cocks her head to the side, <i>\"Whacha need?\"</i>");
 		processTime(1);
 	}
