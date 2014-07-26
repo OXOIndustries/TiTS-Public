@@ -743,7 +743,7 @@ function classConfirm(arg:int = 0):void {
 	this.addButton(1,"No",chooseClass);
 }
 
-function setClass(arg:int = 0):void {
+public function setClass(arg:int = 0):void {
 	pc.characterClass = arg;
 	if(arg == GLOBAL.CLASS_SMUGGLER) {
 		pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
@@ -773,12 +773,13 @@ function setClass(arg:int = 0):void {
 //Tutorial Skip Option
 function tutorialSkipOption():void {
 	clearOutput();
-	setLocation("TUTORIAL\nSKIP");
+	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
 	output("Would you like to play through the story and tutorial or skip to gameplay?");
-	output("\n\n(Skip option is not yet implemented.)");
 	//[Tutorial] [Skip]
 	this.clearMenu();
-	this.addButton(0,"Next",tutorialIntro);
+	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Tutorial", tutorialIntro);
+	else addDisabledButton(0, "Tutorial", "Do Tutorial", "You must have genitals available in order to play through the tutorial fight.");
+	addButton(1, "Skip", skipCeliseOption, undefined, "Skip Fight", "Skip the tutorial fight.");
 }
 
 //Death of a Great Man
@@ -929,6 +930,27 @@ function defeatCelise():void {
 	this.addButton(0,"Ignore Her",ignoreCelise);
 	this.addButton(1,"Feed Celise",takeCelise);
 }
+
+function skipCeliseOption():void
+{
+	clearOutput();
+	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
+	showBust("CELISE");
+	showName("\nCELISE");
+	output("What do you do with Celise? Ignore her, or take her on your crew?");
+	
+	clearMenu();
+	addButton(0, "Ignore Her", jackJillSkip);
+	addButton(1, "Take Her", takeCeliseSkip);
+}
+
+function takeCeliseSkip():void
+{
+	flags["RECRUITED_CELISE"] = 1;
+	flags["CELISE_ONBOARD"] = 1;
+	jackJillSkip();
+}
+
 //Ignore Celise
 function ignoreCelise():void {
 	clearOutput();
@@ -1058,11 +1080,23 @@ function getFoodAndDrink():void {
 	output("\n\n<i>“How about I bring out some hot buns with that for you to munch on. You can look over the menu while you snack.”</i> She doesn’t wait around for an answer, moving off to drop a single drink off at a nearby table on her way to the kitchens. With the lighting as dim as it is, it’s difficult to make out much about the individual. It looks human, but its shape eludes you as you sit down. There’s nothing else to do, so you ponder the nearby person... just what sex are they?");
 	//[Male] [Female]
 	this.clearMenu();
-	this.addButton(0,"Male",rivalSpillsTheBeans,1);
-	this.addButton(1,"Female",rivalSpillsTheBeans,3);	
+	this.addButton(0, "Male", function():void { setRivalGender(1); rivalSpillsTheBeans(); });
+	this.addButton(1, "Female", function():void { setRivalGender(3); rivalSpillsTheBeans(); } );	
 }
-//Rival Spills the Beans
-function rivalSpillsTheBeans(sex:int = 0) {
+
+function jackJillSkip():void
+{
+	clearOutput();
+	setLocation("ANON'S\nBAR", "TAVROS STATION", "SYSTEM: KALAS");
+	output("What gender is your rival?");
+	
+	clearMenu();
+	addButton(0, "Male", function():void { setRivalGender(1); ohShitGameStarts(); } );
+	addButton(1, "Female", function():void { setRivalGender(3); ohShitGameStarts(); } );
+}
+
+function setRivalGender(sex:int = 0):void
+{
 	if(sex == 1) {
 		chars["RIVAL"].short = "Jack";
 		chars["RIVAL"].cockVirgin = false;
@@ -1095,6 +1129,9 @@ function rivalSpillsTheBeans(sex:int = 0) {
 		chars["RIVAL"].hipRatingRaw += 2;
 		chars["RIVAL"].buttRatingRaw += 2;
 	}
+}
+//Rival Spills the Beans
+function rivalSpillsTheBeans() {
 	clearOutput();
 	
 	this.userInterface.showBust(chars["RIVAL"].short.toUpperCase());

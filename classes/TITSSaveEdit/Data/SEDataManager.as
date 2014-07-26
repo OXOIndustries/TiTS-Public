@@ -204,9 +204,45 @@ package classes.TITSSaveEdit.Data
 		 */
 		public function saveTiTsSave(slotNum:int):void
 		{
-			// Grab the file that the current character was loaded from
-			var origFile:SharedObject = SharedObject.getLocal("TiTs_" + _loadedFromSlot, "/");
-			var dataObject:Object = copyObject(origFile);
+			var dataObject:Object;
+			var origFile:SharedObject;
+			
+			if (_storedCharacter.flagNewFile == true)
+			{
+				_loadedFromSlot = -1;
+				
+				dataObject = {
+					minVersion: 6,
+					playerLocation: "CREATION",
+					shipLocation: "CREATION",
+					saveLocation: "New Character - Character Creation",
+					statTracking: { },
+					unlockedCodeEntries: [],
+					version: 14,
+					viewedCodexEntries: [],
+					flags: { },
+					gameOptions: {
+						bustFallbacks: true,
+						bustPriority: ["CHESHIRE", "GATS", "GATSOLD"],
+						bustsEnabled: true,
+						classInstance: "classes.GameData::GameOptions",
+						debugMode: false,
+						easyMode: false,
+						sillyMode: false
+					},
+					daysPassed: 0,
+					currentMinutes: 0,
+					currentHours: 0,
+					characters: {},
+					playerGender: "A"
+				};
+			}
+			else
+			{
+				// Grab the file that the current character was loaded from
+				origFile = SharedObject.getLocal("TiTs_" + _loadedFromSlot, "/");
+				dataObject = copyObject(origFile);
+			}
 			
 			try
 			{
@@ -247,6 +283,15 @@ package classes.TITSSaveEdit.Data
 			{
 				(parent as TiTsSE).saveFailed(slotNum);
 			}	
+		}
+		
+		public function newTitsSave():void
+		{
+			_loadedFromSlot = -1;
+			
+			var titsData:TiTsCharacterData = new TiTsCharacterData();
+			titsData.newCharacter();
+			(parent as TiTsSE).setTITSData(titsData);
 		}
 		
 		/**

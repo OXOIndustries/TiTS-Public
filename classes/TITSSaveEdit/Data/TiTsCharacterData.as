@@ -15,6 +15,8 @@ package classes.TITSSaveEdit.Data
 	
 	public class TiTsCharacterData
 	{
+		public var flagNewFile:Boolean;
+		
 		private var _backup:Object;
 		public function get backup():Object { return _backup; }
 		public function set backup(v:Object):void 
@@ -112,6 +114,9 @@ package classes.TITSSaveEdit.Data
 			"eyeType",
 			"eyeColor",
 			"cumMultiplierRaw",
+			"unspentStatPoints",
+			"unclaimedClassPerks",
+			"unclaimedGenericPerks"
 		];
 		
 		// General
@@ -121,6 +126,12 @@ package classes.TITSSaveEdit.Data
 		public var credits:int;
 		public var personality:int;
 		public var characterClass:int;
+		
+		public var unspentStatPoints:int;
+		public var unclaimedClassPerks:int;
+		public var unclaimedGenericPerks:int;
+		
+		public var loadLevel:int;
 		
 		// Core Stats
 		public var physiqueRaw:int;
@@ -238,6 +249,11 @@ package classes.TITSSaveEdit.Data
 		{
 			backup = null;
 			
+			loadLevel = 0;
+			unspentStatPoints = 0;
+			unclaimedClassPerks = 0;
+			unclaimedGenericPerks = 0;
+			
 			analVirgin = true;
 			
 			nippleColor = "pink";
@@ -295,7 +311,7 @@ package classes.TITSSaveEdit.Data
 			hairLength = 0;
 			
 			short = "Unnamed";
-			level = 0;
+			level = 1;
 			XPRaw = 0;
 			credits = 0;
 			personality = 50;
@@ -348,7 +364,27 @@ package classes.TITSSaveEdit.Data
 		
 		public function getSaveObject():Object
 		{
-			var newObj:Object = clone(backup);
+			if (level != loadLevel)
+			{
+				unspentStatPoints = level - loadLevel * 13;
+				unclaimedClassPerks = level - loadLevel;
+				unclaimedGenericPerks = level - loadLevel;
+			}
+			
+			var newObj:Object;
+			
+			if (flagNewFile)
+			{
+				newObj = {
+					classInstance: "classes.Characters::PlayerCharacter",
+					version: 1
+				};
+			}
+			else
+			{
+				newObj = clone(backup);
+			}
+			
 			
 			for each (var property:String in propertyNames)
 			{
@@ -396,8 +432,15 @@ package classes.TITSSaveEdit.Data
 			return newObj;
 		}
 		
+		public function newCharacter():void
+		{
+			flagNewFile = true;
+		}
+		
 		public function loadSaveObject(o:Object):void
 		{
+			flagNewFile = false;
+			
 			this.backup = clone(o);
 			
 			for each (var property:String in propertyNames)
@@ -458,6 +501,8 @@ package classes.TITSSaveEdit.Data
 					this[property] = o[property];
 				}
 			}
+			
+			loadLevel = level;
 		}
 		
 		public function resetToInitialState():void

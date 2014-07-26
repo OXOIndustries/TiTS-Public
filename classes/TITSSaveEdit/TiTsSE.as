@@ -73,6 +73,7 @@ package classes.TITSSaveEdit
 			ui = new SEUserInterface();
 			this.addChild(ui);
 			
+			ui.newButton.setData("New Save", newTitsSave, undefined, "Create New Save", "Create a new save game that will begin at the tutorial portion of the TiTs new game sequence.");
 			ui.loadButton.setData("Load Save", loadTitsSave, undefined, "Load TiTs Save", "Load a save file from the TiTs client.");
 			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
 			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
@@ -86,17 +87,9 @@ package classes.TITSSaveEdit
 
 			ui.output("\n\nSupports TiTs save files from TiTs " + GameVersion + " and up");
 			
-			ui.output("\n\n1. Load an existing TiTs save to make changes to the PlayerCharacter of.");
-			ui.output("\n- The TiTs save structure and required data is much more complex than CoC. To save a bunch of hassle until the this tool hits 1.0 it requires data from an existing save.");
-			ui.output("\n\n2. Make changes to settings for the player character in that save.");
-			ui.output("\n- You can reset data back to what you initially started with by hitting the reset button.");
-			ui.output("\n- Once a save has been loaded you can then attempt to import data from a CoC save. This will make a best-effort to translate CoC values into relevent TiTs values, but it won't be perfect, and will be limited based on the content that has been implemented in TiTs to date.");
-			ui.output("\n\n3. Save your changes by hitting the save button.");
-			
-			ui.output("\n\n" + good("OPTIONAL:") + " 4. Bitch at Geddy on the forums or Github bug reports about how badly fucked up your save is.");
-			
 			ui.buffRender();
 			
+			ui.newButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			ui.loadButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			ui.resetButton.addEventListener(MouseEvent.CLICK, buttonFunc);
 			ui.importButton.addEventListener(MouseEvent.CLICK, buttonFunc);
@@ -139,6 +132,14 @@ package classes.TITSSaveEdit
 			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			dataMan.showLoadMenu();
+		}
+		
+		private function newTitsSave():void
+		{
+			ui.hideAll();
+			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
+			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
+			dataMan.newTitsSave();
 		}
 		
 		public function showMain():void

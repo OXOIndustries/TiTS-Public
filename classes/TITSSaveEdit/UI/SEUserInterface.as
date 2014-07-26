@@ -21,6 +21,7 @@ package classes.TITSSaveEdit.UI
 		private var _loadTextDisplay:TextField;
 		private var _buff:String;
 		
+		public function get newButton():MainButton { return _leftBar.newButton; }
 		public function get loadButton():MainButton { return _leftBar.titsButton; }
 		public function get resetButton():MainButton { return _leftBar.resetButton; }
 		public function get importButton():MainButton { return _leftBar.importButton; }

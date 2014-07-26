@@ -82,6 +82,21 @@ package classes.TITSSaveEdit.Data
 			var totalNips:int = 0;
 			var totalBoobs:int = 0;
 			
+			
+			// Tit fluid conversion values
+			
+			// milking endurance
+			var lactEndurance:Number = 1.0;
+			var saLactEnd:Object = coc.getStatusAffect("Lactation Endurance");
+			if (saLactEnd != null) lactEndurance = saLactEnd.value1;
+			
+			// avg. lactation
+			var avgLactation:Number = 0.0;
+			
+			// effects
+			var hasFeeder:Boolean = (coc.getStatusAffect("Feeder") == null) ? false : true;
+			var hasQuadNips:Boolean = false;
+			
 			for (var i:int = 0; i < numRows; i++)
 			{
 				var titsRow:BreastRowClass = new BreastRowClass();
@@ -97,8 +112,10 @@ package classes.TITSSaveEdit.Data
 				totalBoobs += 2;
 				
 				totalNips += cocRow.nipplesPerBreast;
+				if (cocRow.nipplesPerBreast >= 4) hasQuadNips = true;
 				
-				titsRow.breastRatingLactationMod = cocRow.lactationMultiplier;
+				//titsRow.breastRatingLactationMod = cocRow.lactationMultiplier;
+				avgLactation += cocRow.lactationMultiplier;
 				titsRow.fullness = cocRow.milkFullness;
 				
 				if (cocRow.fuckable == true)
@@ -114,6 +131,7 @@ package classes.TITSSaveEdit.Data
 			tits.nipplesPerBreast = Math.floor(totalNips / totalBoobs);
 			if (tits.nipplesPerBreast < 1) tits.nipplesPerBreast = 1; // I don't think no-nips is possible in CoC like it (presumably - see Jade) is with TiTs.
 			
+			
 			// Try and gen default values for stuff
 			
 			// This makes an attempt to convert the nippleLength from CoC data to the ratios used in TiTs based on the
@@ -125,6 +143,33 @@ package classes.TITSSaveEdit.Data
 			tits.dickNippleMultiplier = 2;
 			tits.nippleColor = "pink";
 			tits.nipplesPerBreast = 1;
+			
+			// Do our mathmangling into TiTs values
+			
+			// Nomilky
+			if (avgLactation < 1)
+			{
+				tits.milkRate = 10;
+				tits.milkMultiplier = 0;
+				tits.milkFullness = 0;
+				tits.milkStorageMultiplier = 1;
+			}
+			// milky
+			else
+			{
+				tits.milkRate = 10 * (lactEndurance + (avgLactation / 10));
+				tits.milkMultiplier = 50 + (Math.max(0, Math.min(5, avgLactation)) * 10);
+				tits.milkStorageMultiplier = lactEndurance;
+				
+				if (hasFeeder) tits.milkStorageMultiplier += 0.5;
+				if (hasQuadNips) tits.milkStorageMultiplier += 0.5;
+				if (coc.faceType == CoCTypeDefs.FACE_COW_MINOTAUR) tits.milkStorageMultiplier += 0.25;
+				if (coc.earType == CoCTypeDefs.EARS_COW) tits.milkStorageMultiplier += 0.25;
+				if (coc.tailType == CoCTypeDefs.TAIL_TYPE_COW) tits.milkStorageMultiplier += 0.25;
+				if (coc.hornType == CoCTypeDefs.HORNS_COW_MINOTAUR) tits.milkStorageMultiplier += 0.25;
+				
+				tits.milkFullness = 11; // I think that's enough to ensure all of the lactation system works as appropriate?
+			}
 		}
 		
 		private static function convertCuntData(tits:TiTsCharacterData, coc:CoCCharacterData):void
@@ -211,6 +256,40 @@ package classes.TITSSaveEdit.Data
 				
 				//titsCock.cockColor = ???
 				// color is never explicitly mentioned in CoC afaik (outside of a few type assertions f.ex red puppy pecker or whatever maybe).
+			}
+			
+			// Cumstuff
+			if (tits.cocks.length > 0)
+			{
+				// Perk lookups
+				var hasBroBody:Boolean = (coc.getStatusAffect("Bro Body") == null) ? false : true;
+				var hasFertPlus:Boolean = (coc.getStatusAffect("Fertility+") == null) ? false : true;
+				var hasMessy:Boolean = (coc.getStatusAffect("Messy Orgasms") == null) ? false : true;
+				var hasOneTrack:Boolean = (coc.getStatusAffect("One Track Mind") == null) ? false : true;
+				
+				var hasProfractory:Boolean = (coc.getStatusAffect("Marae's Gift - Profractory") == null) ? false : true;
+				var hasStud:Boolean = (coc.getStatusAffect("Marae's Gift - Stud") == null) ? false : true;
+				var hasFerasAlpha:Boolean = (coc.getStatusAffect("Fera's Boon - Alpha") == null) ? false : true;
+				var hasFerasSeeder:Boolean = (coc.getStatusAffect("Fera's Boon - Seeder") == null) ? false : true;
+				var hasMagicVirility:Boolean = (coc.getStatusAffect("Magical Virility") == null) ? false : true;
+				
+				var cumMod:Number = 0.0;
+				if (hasBroBody) cumMod += 0.3;
+				if (hasFertPlus) cumMod += 0.5;
+				if (hasMessy) cumMod += 0.5;
+				if (hasOneTrack) cumMod += 0.2;
+				
+				var effMod:Number = 0.0;
+				if (hasProfractory) effMod += 3;
+				if (hasStud) effMod += 3.5;
+				if (hasFerasAlpha) effMod += 3.5;
+				if (hasMagicVirility) effMod += 2;
+				if (hasFerasSeeder) effMod += 10;
+				
+				tits.cumMultiplierRaw = 10 + (10 * ((1 + cumMod) / 4));
+				tits.ballEfficiency = 3 + (effMod * 2);
+				tits.refractoryRate = 3 + (effMod * 4);
+				tits.ballFullness = Math.max((coc.hoursSinceCum / 24) * 50, 100);
 			}
 		}
 		

@@ -14,11 +14,13 @@ package classes.TITSSaveEdit.UI
 	public class SELeftBar extends Sprite
 	{
 		private var _header:SEHeader;
+		private var _newButton:MainButton;
 		private var _loadTitsButton:MainButton;
 		private var _resetButton:MainButton;
 		private var _importCocButton:MainButton;
 		private var _saveChangesButton:MainButton;
 		
+		public function get newButton():MainButton { return _newButton; }
 		public function get titsButton():MainButton { return _loadTitsButton; }
 		public function get resetButton():MainButton { return _resetButton; }
 		public function get importButton():MainButton { return _importCocButton; }
@@ -48,10 +50,16 @@ package classes.TITSSaveEdit.UI
 			_header = new SEHeader();
 			this.addChild(_header);
 			
+			_newButton = new MainButton();
+			this.addChild(_newButton);
+			_newButton.x = 30;
+			_newButton.y = _header.y + _header.height + 20;
+			_newButton.setLightBlue();
+			
 			_loadTitsButton = new MainButton();
 			this.addChild(_loadTitsButton);
 			_loadTitsButton.x = 30;
-			_loadTitsButton.y = _header.y + _header.height + 20;
+			_loadTitsButton.y = _newButton.y + _newButton.height + 5;
 			_loadTitsButton.setLightBlue();
 			
 			_resetButton = new MainButton();

@@ -642,15 +642,27 @@
 			kGAMECLASS.userInterface.dataButton.Deactivate();
 			kGAMECLASS.userInterface.showPrimaryOutput();
 			
-			if (kGAMECLASS.currentLocation != "")
+			// *throws up in mouth a little*
+			kGAMECLASS.phoenixSetMapState();
+			
+			if (kGAMECLASS.currentLocation == "CREATION")
+			{
+				kGAMECLASS.currentLocation = "TAVROS HANGAR";
+				kGAMECLASS.shipLocation = "TAVROS HANGAR";
+				kGAMECLASS.pc.HP(kGAMECLASS.pc.HPMax());
+				kGAMECLASS.pc.shields(kGAMECLASS.pc.shieldsMax());
+				kGAMECLASS.pc.energy(kGAMECLASS.pc.energyMax());
+				kGAMECLASS.userInterface.hideMinimap();
+				kGAMECLASS.setClass(kGAMECLASS.pc.characterClass);
+				kGAMECLASS.updatePCStats();
+				return;
+			}
+			else if (kGAMECLASS.currentLocation != "")
 			{
 				kGAMECLASS.userInterface.setMapData(kGAMECLASS.mapper.generateMap(kGAMECLASS.currentLocation));
 				kGAMECLASS.userInterface.showMinimap();
 			}
-			
-			// *throws up in mouth a little*
-			kGAMECLASS.phoenixSetMapState();
-			
+						
 			kGAMECLASS.mainGameMenu();
 		}
 		

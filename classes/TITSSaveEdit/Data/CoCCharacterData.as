@@ -61,6 +61,8 @@ package classes.TITSSaveEdit.Data
 		public var cocks:Array;
 		public var vaginas:Array;
 		
+		public var statusAffects:Array;
+		
 		public function CoCCharacterData() 
 		{
 			short = "";
@@ -100,6 +102,20 @@ package classes.TITSSaveEdit.Data
 			breastRows = [new CoCBreastRowClass()];
 			cocks = [];
 			vaginas = [];
+			
+			statusAffects = [];
+		}
+		
+		public function getStatusAffect(name:String):Object
+		{
+			if (statusAffects.length == 0) return null;
+			
+			for (var i:int = 0; i < statusAffects.length; i++)
+			{
+				if (statusAffects[i].statusAffectName == name) return statusAffects[i];
+			}
+			
+			return null;
 		}
 		
 		public function loadSaveObject(o:Object):void
@@ -135,6 +151,9 @@ package classes.TITSSaveEdit.Data
 			this.clitLength = o.clitLength;
 			this.cumMultiplier = o.cumMultiplier;
 			this.earType = o.earType;
+			this.statusAffects = o.statusAffects;
+			
+			this.statusAffects = this.statusAffects.concat(o.perks);
 			
 			this.ass = new CoCAssClass();
 			this.ass.loadSaveObject(o.ass);
