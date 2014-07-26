@@ -161,6 +161,10 @@ package classes.TITSSaveEdit.Data
 				tits.milkMultiplier = 50 + (Math.max(0, Math.min(5, avgLactation)) * 10);
 				tits.milkStorageMultiplier = lactEndurance;
 				
+				if (tits.milkRate < 10) tits.milkRate = 10;
+				if (tits.milkMultiplier < 0) tits.milkMultiplier = 0;
+				if (tits.milkStorageMultiplier < 0) tits.milkStorageMultiplier = 0;
+				
 				if (hasFeeder) tits.milkStorageMultiplier += 0.5;
 				if (hasQuadNips) tits.milkStorageMultiplier += 0.5;
 				if (coc.faceType == CoCTypeDefs.FACE_COW_MINOTAUR) tits.milkStorageMultiplier += 0.25;
@@ -290,6 +294,12 @@ package classes.TITSSaveEdit.Data
 				tits.ballEfficiency = 3 + (effMod * 2);
 				tits.refractoryRate = 3 + (effMod * 4);
 				tits.ballFullness = Math.max((coc.hoursSinceCum / 24) * 50, 100);
+				
+				if (tits.cumMultiplierRaw < 1) tits.cumMultiplierRaw = 1;
+				if (tits.ballEfficiency < 1) tits.ballEfficiency = 1;
+				if (tits.refractoryRate < 1) tits.refractoryRate = 1;
+				if (tits.ballFullness < 0) tits.ballFullness = 0;
+				
 			}
 		}
 		

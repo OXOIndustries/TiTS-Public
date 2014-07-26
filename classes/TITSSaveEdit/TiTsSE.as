@@ -59,7 +59,7 @@ package classes.TITSSaveEdit
 			ui.newButton.setData("New Save", newTitsSave, undefined, "Create New Save", "Create a new save game that will begin at the tutorial portion of the TiTs new game sequence.");
 			ui.loadButton.setData("Load Save", loadTitsSave, undefined, "Load TiTs Save", "Load a save file from the TiTs client.");
 			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
-			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
+			ui.importButton.setData("Import CoC", importCoCData, true, "Import CoC Data", "Import character appearance data from a CoC save.");
 			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
 			
 			ui.output(title("TiTs Save Editor - " + String(EditorVersion)));
@@ -145,7 +145,7 @@ package classes.TITSSaveEdit
 				character = data;
 				fillUI();
 				ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
-				ui.importButton.setData("Import CoC", importCoCData, undefined, "Import CoC Data", "Import character appearance data from a CoC save.");
+				ui.importButton.setData("Import CoC", importCoCData, false, "Import CoC Data", "Import character appearance data from a CoC save.");
 				ui.saveButton.setData("Save Changes", saveChangedData, undefined, "Save changes", "Save changes that have been made to the current save slot.");
 			}
 			catch (error:DataError)
@@ -179,8 +179,9 @@ package classes.TITSSaveEdit
 		/**
 		 * CoC specific functions
 		 */
-		public function importCoCData():void
+		public function importCoCData(init:Boolean = false):void
 		{
+			if (init) newTitsSave();
 			ui.hideAll();
 			dataMan.showCoCMenu();
 		}
@@ -234,9 +235,9 @@ package classes.TITSSaveEdit
 			ui.output("Save succeeded to slot " + slotNum);
 			ui.buffRender();
 			
-			ui.resetButton.setDisabledData("Reset", "Reset Data", "Reset character data to the values present at load.");
-			ui.importButton.setDisabledData("Import CoC", "Import CoC character", "Import character data from a CoC save.");
-			ui.saveButton.setDisabledData("Save Changes", "Save changes", "Save changes that have been made to the current save slot.");
+			ui.resetButton.setData("Reset", resetCharacterData, undefined, "Reset Data", "Reset character data to the values present at load.");
+			ui.importButton.setData("Import CoC", importCoCData, false, "Import CoC Data", "Import character appearance data from a CoC save.");
+			ui.saveButton.setData("Save Changes", saveChangedData, undefined, "Save changes", "Save changes that have been made to the current save slot.");
 		}
 	}
 }
