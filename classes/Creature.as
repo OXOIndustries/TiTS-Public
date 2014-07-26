@@ -1029,7 +1029,7 @@
 		}
 		
 		public var nippleLengthRatio: Number = 1;
-		public function nippleLengthRatioUnlocked(newNippleLengthRatio:int):Boolean
+		public function nippleLengthRatioUnlocked(newNippleLengthRatio:Number):Boolean
 		{
 			return true;
 		}
@@ -1039,7 +1039,7 @@
 		}
 		
 		public var nippleWidthRatio: Number = 1;
-		public function nippleWidthRatioUnlocked(newNippleWidthRatio:int):Boolean
+		public function nippleWidthRatioUnlocked(newNippleWidthRatio:Number):Boolean
 		{
 			return true;
 		}

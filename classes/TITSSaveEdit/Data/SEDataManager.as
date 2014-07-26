@@ -120,16 +120,6 @@ package classes.TITSSaveEdit.Data
 				return (String(slotNum) + ": <b>EMPTY</b>\n\n");
 			}
 			
-			if (data.data.version < _supportedVersion)
-			{
-				return (String(slotNum) + ": <b>Requires upgrade in TiTS client</b>\n\n");
-			}
-			
-			if (data.data.version > _supportedVersion)
-			{
-				return (String(slotNum) + ": <b>Requires new version of the Editor</b>\n\n");
-			}
-			
 			returnString += slotNum;
 			returnString += ": <b>" + data.data.saveName + "</b>";
 			returnString += " - <i>" + data.data.saveNotes + "</i>\n";
@@ -149,8 +139,6 @@ package classes.TITSSaveEdit.Data
 		private function slotCompatible(dataFile:SharedObject):Boolean
 		{
 			if (dataFile.data.version == undefined)	return false;
-			if (dataFile.data.version < _supportedVersion) return false;
-			if (dataFile.data.verison > _supportedVersion) return false;
 			return true;
 		}
 		

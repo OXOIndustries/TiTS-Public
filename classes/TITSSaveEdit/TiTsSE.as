@@ -30,29 +30,12 @@ package classes.TITSSaveEdit
 		
 		/**
 		 * The version property in the save file structure.
-		 * 
-		 * I'm not replicating the data system to allow upgrades here too -- it's too much code and too much work
-		 * without having to refactor the main TiTs DataManager to no longer rely on kGAMECLASS.
-		 * 
-		 * Basically, the DataManager IS separable from the main game expect for its UX binding through kGAMECLASS.
-		 * At some point in the future I could rebuild DataManager and remove its reliance on kGAMECLASS to get
-		 * stuff back to the user, at which point it can pretty much slot straight into place over the "mini" version
-		 * in the save editor, and thus allow SaveUpgrading to take place here too. That would also require changes
-		 * to all of the classes that end up serialised too though, again, to remove the reliance on kGAMECLASS.
-		 * 
-		 * If one kGAMECLASS reference makes it into the save editor, it will include ALL of the actual game content.
-		 * 
-		 * This is why globals are bad juju.
-		 * 
-		 * In the short term, the Version value acts as a safeguard. If we fuck with the save structure in TiTs
-		 * enough to warrant a version bump, the editor will no longer work until it is also attended to. Effectively
-		 * a "hey dumbass fix me too" alarm.
 		 */
 		public var SupportedSaveVersion:int = 14;
 		
 		// Copying the TiTs version string.
 		public var GameVersion:String = "0.02.42";
-		public var EditorVersion:String = "0.01.01";
+		public var EditorVersion:String = "0.02.00";
 		
 		public function TiTsSE():void 
 		{
