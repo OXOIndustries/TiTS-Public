@@ -299,7 +299,6 @@ package classes.TITSSaveEdit.Data
 				if (tits.ballEfficiency < 1) tits.ballEfficiency = 1;
 				if (tits.refractoryRate < 1) tits.refractoryRate = 1;
 				if (tits.ballFullness < 0) tits.ballFullness = 0;
-				
 			}
 		}
 		

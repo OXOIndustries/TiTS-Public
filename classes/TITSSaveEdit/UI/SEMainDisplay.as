@@ -142,6 +142,16 @@ package classes.TITSSaveEdit.UI
 			_scrollPane.update();
 		}
 		
+		private function generateBackgroundElem():void
+		{
+			var bSprite:Sprite = new Sprite();
+			bSprite.graphics.beginFill(UIStyleSettings.gBackgroundColour);
+			bSprite.graphics.drawRect(0, 0, _content.width, _content.height);
+			bSprite.graphics.endFill();
+			
+			_content.addChildAt(bSprite, 0);
+		}
+		
 		private function BuildControls():void
 		{
 			// LEFT
@@ -210,6 +220,7 @@ package classes.TITSSaveEdit.UI
 			AddControl(_generalGender, RIGHT_COL);
 			_generalGender.name = "generalgender";
 			
+			generateBackgroundElem();
 		}
 	}
 }
