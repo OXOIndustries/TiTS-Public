@@ -1750,7 +1750,6 @@ function loseToCaptainKhorganBadEnd():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
 	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
@@ -1761,6 +1760,7 @@ function loseToCaptainKhorganBadEnd():void
 	{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
 	}
+	else output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{Combine, next para.}
 	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?\"</i>");
 	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die.");
