@@ -4246,24 +4246,6 @@ public function mimbraneMenu():void
 			addGhostButton(0, "Back", mimbraneMenu);
 		});
 
-		if (pc.statusEffectv1("Mimbrane Face") >= 4)
-		{
-			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
-
-			addGhostButton(12, "Lip Pc.Ing", function():void {
-				clearOutput2();
-				//userInterface.showBust("MIMBRANE");
-				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
-				output2("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
-				clearGhostMenu();
-				addGhostButton(0, "Back", mimbraneMenu);
-			});
-		}
-		else
-		{
-			addDisabledGhostButton(12, "Lip Pc.Ing");
-		}
-
 		output2("\n\nThe Mimbrane covering your face has offered to disguise itself to your liking.");
 		if (flags["MIMBRANE_FACE_APPEARANCE"] == undefined)
 		{
@@ -4285,6 +4267,23 @@ public function mimbraneMenu():void
 			output2("\nIt's eyes currently resemble a pair of lip piercings.");
 			output2("\nYou could ask it to hide itself as much as possible.");
 			output2("\nYou could also ask it to disguise its eyes as beauty marks.");
+		}
+		if (pc.statusEffectv1("Mimbrane Face") >= 4)
+		{
+			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
+
+			addGhostButton(12, "Lip Pc.Ing", function():void {
+				clearOutput2();
+				//userInterface.showBust("MIMBRANE");
+				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
+				output2("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
+				clearGhostMenu();
+				addGhostButton(0, "Back", mimbraneMenu);
+			});
+		}
+		else
+		{
+			addDisabledGhostButton(12, "Lip Pc.Ing");
 		}
 	}
 	else
