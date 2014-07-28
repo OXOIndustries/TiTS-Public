@@ -868,6 +868,17 @@
 		public var ballSizeRaw:Number = 1;
 		public var ballSizeMod:Number = 1;
 		
+		public function ballDiameter():Number
+		{
+			return ballSize()/3.14;
+		}
+
+		public function ballVolume():Number
+		{
+			var radius:Number = ballDiameter()/2;
+			return 4/3*3.14*radius*radius*radius;
+		}
+
 		public function ballSize(arg:Number = 0, apply:Boolean = false):Number
 		{
 			if (apply)
@@ -5516,16 +5527,17 @@
 			//size!
 			if (ballSize() > 1 && (this.rand(3) <= 1 || forceSize)) {
 				if (descripted > 0) desc += ", ";
-				if (ballSize() > 1 && ballSize() < 2) desc += "large";
-				if (ballSize() >= 2 && ballSize() < 3) desc += "baseball-sized";
-				if (ballSize() >= 3 && ballSize() < 4) desc += "apple-sized";
-				if (ballSize() >= 4 && ballSize() < 5) desc += "grapefruit-sized";
-				if (ballSize() >= 5 && ballSize() < 7) desc += "cantaloupe-sized";
-				if (ballSize() >= 7 && ballSize() < 9) desc += "soccerball-sized";
-				if (ballSize() >= 9 && ballSize() < 12) desc += "basketball-sized";
-				if (ballSize() >= 12 && ballSize() < 15) desc += "watermelon-sized";
-				if (ballSize() >= 15 && ballSize() < 18) desc += "beachball-sized";
-				if (ballSize() >= 18) desc += "hideously swollen and oversized";
+				if (ballDiameter() <= 1) {}
+				else if (ballDiameter() < 2) desc += "large";
+				else if (ballDiameter() < 3) desc += "baseball-sized";
+				else if (ballDiameter() < 4) desc += "apple-sized";
+				else if (ballDiameter() < 5) desc += "grapefruit-sized";
+				else if (ballDiameter() < 7) desc += "cantaloupe-sized";
+				else if (ballDiameter() < 9) desc += "soccerball-sized";
+				else if (ballDiameter() < 12) desc += "basketball-sized";
+				else if (ballDiameter() < 15) desc += "watermelon-sized";
+				else if (ballDiameter() < 18) desc += "beachball-sized";
+				else desc += "hideously swollen and oversized";
 				if (ballSize() > 1) descripted++;
 			}
 			//Uniball

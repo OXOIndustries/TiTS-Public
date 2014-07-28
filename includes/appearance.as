@@ -831,6 +831,10 @@ function appearance(target:Creature):void {
 			output2("  You estimate each of them to be about " + num2Text(Math.round(target.ballSize())) + " ");
 			if(Math.round(target.ballSize()) == 1) output2("inch");
 			else output2("inches");
+			var ballDisplayDiameter:Number = Math.round(target.ballDiameter()*10)/10;
+			output2(" around and " + ballDisplayDiameter);
+			if(ballDisplayDiameter != 1) output2(" inches");
+			else output2(" inch");
 			output2(" across.");
 		}	
 		//VAGOOZ
