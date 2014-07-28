@@ -1750,7 +1750,6 @@ function loseToCaptainKhorganBadEnd():void
 	author("Savin");
 	showBust("CAPTAIN_KHORGAN_NUDE");
 	showName("CAPTAIN\nKHORGAN");
-	output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{if PC loses in the Swordfight, via lust:}
 	if(foes[0] is CaptainKhorgan && pc.lust() >= pc.lustMax())
 	{
@@ -1761,6 +1760,7 @@ function loseToCaptainKhorganBadEnd():void
 	{
 		output("\n\nYou're losing ground. Even ignoring the sensual assault assailing your senses, the captain's still an amazing swordsman, and you're banged up after that fight against her mech. It's hard to keep standing, much less fighting. You can barely feel your hand by the time she easily bats your weapon from your hand... right before giving you a nasty right hook that plants you on the ground. With a smirk, the captain plants one of her boot on your chest, utterly asserting her dominance.");
 	}
+	else output("Laser bolts and rockets explode around you, hammering into your defenses, tearing through the steel platform around you. Suddenly, another bolt tears into your [pc.rangedWeapon], shredding your weapon and throwing you to the ground. You cough and struggle, trying to get on your [pc.feet], only to suddenly feel a crushing weight bearing down on your chest as the captain's mech suit lumbers up, pinning you down. The captain exits the suit, stepping out the cockpit amidst pneumatic hisses, and replaces her suit's great, heavy foot with her own.");
 	//{Combine, next para.}
 	output("\n\nGrinning fiercely, the captain says, <i>\"You're brave, Steele. Brave and strong. Not enough to defeat ME, of course, but still, those are admirable qualities among the thraggen. It would be such a waste to kill you... maybe I could make some use out of you, then. What do you say, Steele? Do you want to live?\"</i>");
 	output("\n\nYou nod. All thoughts of heroism, all ideals and hopes, your tough facade, it all breaks down when you feel her blade against your throat, her boot crushing down on your chest. You don't want to die.");
@@ -3100,8 +3100,8 @@ function payWithYourPlatinumPremiumCard():void
 	showBust("RIVAL","SHEKKA");
 	output("<i>\"How about this?\"</i> you ask while pulling out the chunk of platinum 190 you recovered. <i>\"Does that cover it?\"</i>");
 	output("\n\nShekka is a blur of activity, picking up the rock, peering at it, and grabbing various sensors from her workbench to point at it. It's difficult to keep up with her, but after a minute of such activity, she slows and stares at the shining lump in her palm. <i>\"This is platinum 190. This stuff is rarer than a busty raskvel.\"</i> Her tail quivers behind her. <i>\"I could probably buy two of these things with this. Sold!\"</i>");
-	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
-	output("\n\n[rival.name] and his bulky mercenary leave you with Shekka and your prize.");
+	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a " + chars["RIVAL"].mf("man","woman") + " of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
+	output("\n\n[rival.name] and [rival.his] bulky mercenary leave you with Shekka and your prize.");
 	pc.removeKeyItem("Platinum 190");
 	processTime(1);
 	clearMenu();
