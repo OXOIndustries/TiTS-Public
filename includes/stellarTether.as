@@ -3100,8 +3100,8 @@ function payWithYourPlatinumPremiumCard():void
 	showBust("RIVAL","SHEKKA");
 	output("<i>\"How about this?\"</i> you ask while pulling out the chunk of platinum 190 you recovered. <i>\"Does that cover it?\"</i>");
 	output("\n\nShekka is a blur of activity, picking up the rock, peering at it, and grabbing various sensors from her workbench to point at it. It's difficult to keep up with her, but after a minute of such activity, she slows and stares at the shining lump in her palm. <i>\"This is platinum 190. This stuff is rarer than a busty raskvel.\"</i> Her tail quivers behind her. <i>\"I could probably buy two of these things with this. Sold!\"</i>");
-	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
-	output("\n\n[rival.name] and his bulky mercenary leave you with Shekka and your prize.");
+	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a " + chars["RIVAL"].mf("man","woman") + " of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
+	output("\n\n[rival.name] and [rival.his] bulky mercenary leave you with Shekka and your prize.");
 	pc.removeKeyItem("Platinum 190");
 	processTime(1);
 	clearMenu();
