@@ -103,7 +103,7 @@ package classes.GameData.Pregnancy.Handlers
 			pData.pregnancyIncubation = 240 + rand(30);
 			target.bellyRatingRaw -= 14;
 			
-			if (pData.pregnancyQuantity == 0)
+			if (pData.pregnancyQuantity <= 0)
 			{
 				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
 				pData.reset();

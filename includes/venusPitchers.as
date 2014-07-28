@@ -1252,7 +1252,7 @@ public function rumblyInYourTummy():void
 	// 14 hours after fertilization
 	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
 
-	eventBuffer +="\n\nThe [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It's actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There's so much of the slick stuff that your crotch appears practically oiled with it.\n\n";
+	eventBuffer +="\n\nThe [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It's actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There's so much of the slick stuff that your crotch appears practically oiled with it.";
 
 	//Increase bellymod to 14 * amount
 	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
@@ -1265,7 +1265,7 @@ public function poppingSoonAlert1():void
 	//20 hours after fertilization
 	if (pc.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) return;
 
-	eventBuffer += "\n\nYou stroke your [pc.belly] happily as you feel the seeds taking root inside you, using your body's nutrients to accelerate their growth. Some of them must have little tendrils; you can see them pressing against the [pc.skin] of your middle from time to time. It won't be long now. You don't know how you know that, but it's true. In a few hours, you'll be giving birth to the most wonderful young. A compulsion to go somewhere wild and untamed seizes hold of you, propelled on whispery voices and full, velvet lips - a memory of a more pleasant time, perhaps.\n\n"
+	eventBuffer += "\n\nYou stroke your [pc.belly] happily as you feel the seeds taking root inside you, using your body's nutrients to accelerate their growth. Some of them must have little tendrils; you can see them pressing against the [pc.skin] of your middle from time to time. It won't be long now. You don't know how you know that, but it's true. In a few hours, you'll be giving birth to the most wonderful young. A compulsion to go somewhere wild and untamed seizes hold of you, propelled on whispery voices and full, velvet lips - a memory of a more pleasant time, perhaps."
 }
 
 public function poppingSoonAlert2():void
@@ -1325,7 +1325,6 @@ public function layFertilizedVenusPitcherEgg():void
 
 	output("\n\nWhen you come to a few minutes later, the little pod is still sitting there, its tendrils rooting around on the ground for a place to make its home. Someday, that's going to grow into a beautiful venus pitcher.");
 	
-	StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
 	StatTracking.track("pregnancy/venus pitcher seeds");
 	StatTracking.track("pregnancy/total births");
 
@@ -1347,6 +1346,8 @@ public function layFertilizedVenusPitcherEgg():void
 	if (currentLocation == "SHIP INTERIOR")
 	{
 		output("\n\nSince you're on your ship, you might as well send it off to your daycare.")
+		StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
+		StatTracking.track("pregnancy/total day care");
 		addButton(0, "Next", mainGameMenu);
 	}
 	else
@@ -1361,8 +1362,6 @@ public function layFertilizedVenusPitcherEgg():void
 			addButton(0, "Next", mainGameMenu);
 			
 			StatTracking.track("pregnancy/fertilized venus pitcher seeds/planted");
-			StatTracking.track("pregnancy/venus pitcher seeds");
-			StatTracking.track("pregnancy/total births");
 		});
 
 		addButton(1, "Send It Off", function():void {
@@ -1370,9 +1369,8 @@ public function layFertilizedVenusPitcherEgg():void
 			userInterface.author("Fenoxo");
 			output("The best place for the pod would be back in the daycare on Tavros Station. You call in a transit pod and place it inside along with as much soil as you can gather in hopes of seeing her bloom into a beautiful pitcher back on the station.");
 			
+
 			StatTracking.track("pregnancy/fertilized venus pitcher seeds/day care");
-			StatTracking.track("pregnancy/venus pitcher seeds");
-			StatTracking.track("pregnancy/total births");
 			StatTracking.track("pregnancy/total day care");
 			
 			clearMenu();

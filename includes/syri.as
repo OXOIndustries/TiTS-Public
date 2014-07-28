@@ -426,7 +426,7 @@ function pcLosesToSyriBettingHisAss():void {
 	//If PC is uber-tight:
 	if(pc.ass.looseness() < 2) output("\n\n<i>“O-oh shit you're tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
 	// if mid-tight: 
-	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the asuar girl pants, reaching up to stroke your hair.");
+	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that's right. Take every inch, little bitch,”</i>  the ausar girl pants, reaching up to stroke your hair.");
 	// if supah-loose: 
 	else {
 		output("\n\n<i>“Hoooly shit, [pc.name], what do you shove up here - people? God damn, I'm </i>hung<i> and there's enough room back here for two of me.”</i>  She swats your behind, trying to get you to tighten up for her. Her attention, though, goes to some of the bystanders to your sexual submission: <i>“Hey, that wasn't an invitation. This time. Avert your eyes.”</i>  And more quietly, just for you, she adds: <i>“You're loose enough for a few guests, huh? Maybe next time we'll wager you between all the regulars. That might just fill this [pc.asshole] of yours up, huh?”</i>");
