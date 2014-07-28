@@ -273,27 +273,30 @@ function jungleDeepEncounters():Boolean {
 		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
 		flags["JUNGLE_STEP"]++;
 	}
-	
-	//in this room and da chick awake.
-	if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
-		elderVenusPitcherEncounter();
-		flags["JUNGLE_STEP"] = 0;
-		flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
-		return true;
-	}
-	//in this room and da chick awake.
-	if(currentLocation == "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] == undefined) {
-		elderVenusPitcherEncounter();
-		flags["JUNGLE_STEP"] = 0;
-		flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
-		return true;
-	}
-	//in this room and da chick awake.
-	if(currentLocation == "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] == undefined) {
-		elderVenusPitcherEncounter();
-		flags["JUNGLE_STEP"] = 0;
-		flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
-		return true;
+	//Venus pitchers require you to have met a younger pitcher.
+	if(flags["TIMES_MET_VENUS_PITCHER"] != undefined)
+	{
+		//in this room and da chick awake.
+		if(currentLocation == "OVERGROWN ROCK 12" && flags["ROOM_80_VENUS_PITCHER_ASLEEP"] == undefined) {
+			elderVenusPitcherEncounter();
+			flags["JUNGLE_STEP"] = 0;
+			flags["ROOM_80_VENUS_PITCHER_ASLEEP"] = 1;
+			return true;
+		}
+		//in this room and da chick awake.
+		if(currentLocation == "VINED JUNGLE 3" && flags["ROOM_65_VENUS_PITCHER_ASLEEP"] == undefined) {
+			elderVenusPitcherEncounter();
+			flags["JUNGLE_STEP"] = 0;
+			flags["ROOM_65_VENUS_PITCHER_ASLEEP"] = 1;
+			return true;
+		}
+		//in this room and da chick awake.
+		if(currentLocation == "DEEP JUNGLE 2" && flags["ROOM_61_VENUS_PITCHER_ASLEEP"] == undefined) {
+			elderVenusPitcherEncounter();
+			flags["JUNGLE_STEP"] = 0;
+			flags["ROOM_61_VENUS_PITCHER_ASLEEP"] = 1;
+			return true;
+		}
 	}
 
 	var choices:Array = new Array();
