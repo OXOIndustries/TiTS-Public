@@ -72,8 +72,8 @@ package classes.GameData.Pregnancy.Handlers
 			// Do some outpootis.
 			kGAMECLASS.eventBuffer += "\n\nYour womb rumbles audibly as the plant-matter inside you reacts to something, and your [pc.belly] visibly swells.";
 			
-			if (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined) kGAMECLASS.eventBuffer += " Mmmm, another batch of pods are growing inside you.";
-			else kGAMECLASS.eventBuffer += " The stuff the venus pitcher put inside you... it's growing!";
+			if (kGAMECLASS.flags["LAID VENUS PITCHER SEEDS"] != undefined) kGAMECLASS.eventBuffer += " Mmmm, another batch of pods are growing inside you, fertilized by your latest tryst.";
+			else kGAMECLASS.eventBuffer += " The stuff the venus pitcher put inside you... it's growing! The latest pitcher must have done something to it... fertilized it, perhaps.";
 			
 			kGAMECLASS.eventBuffer += " A few droplets of pale-green slime leak from your lips";
 			
@@ -99,9 +99,9 @@ package classes.GameData.Pregnancy.Handlers
 			
 			var pData:PregnancyData	= target.getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
 			pData.pregnancyQuantity--;
-			pData.pregnancyBellyRatingContribution -= 14;
 			pData.pregnancyIncubation = 240 + rand(30);
-			target.bellyRatingRaw -= 14;
+			pData.pregnancyBellyRatingContribution -= 14;
+			target.bellyRatingMod -= 14;
 			
 			if (pData.pregnancyQuantity <= 0)
 			{

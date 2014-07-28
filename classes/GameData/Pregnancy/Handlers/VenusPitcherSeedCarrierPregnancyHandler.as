@@ -27,8 +27,8 @@ package classes.GameData.Pregnancy.Handlers
 			_canImpregnateButt = false;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
-			_pregnancyQuantityMinimum = 4;
-			_pregnancyQuantityMaximum = 9;
+			_pregnancyQuantityMinimum = 3;
+			_pregnancyQuantityMaximum = 7;
 			
 			onTryImpregnate = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnTryImpregnate;
 			onSuccessfulImpregnation = VenusPitcherSeedCarrierPregnancyHandler.seedCarrierOnSuccessfulImpregnation;

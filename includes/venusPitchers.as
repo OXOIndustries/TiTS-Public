@@ -329,7 +329,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		else output("\n\nAn unseen presence makes itself known: a spire of semi-rigid plant-flesh that drives itself through your cleavage without concern for how it jostles its siblings, slicking the valley between your boobs with its own lube, even though you were already soaked with the stuff. It surfaces between your [pc.chest], the big, green flare trembling as it drips everywhere. It pulls back, vanishing into your chesty crevasse with gusto. Your tits are bounced and jiggled by the weighty flora-cock as it uses you for its own pleasure, a fact confirmed by the lusty pants the woman in the center of it all is making while she strokes two similar vines.");
 	}
 	//{Preggo belly bonus}
-	if ((pc as PlayerCharacter).bellyRating() >= 30) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
+	if ((pc as PlayerCharacter).bellyRating() >= 30 && pc.hasPregnancy()) output("\n\nGrouping together around your [pc.belly], an obscene mass of tentacles begin to slide and rub all over it, gently caressing and massaging your motherly weight, slipping all over your [pc.skinFurScales]. Some of the hollow ones almost seem to kiss at it as they embrace your yet-to-be-born young.\n\n<i>“Mmm, mothers are always so nutritious. I hope you can feed all my mouths,”</i> the upside-down venus pitcher quips as she reaches down to feel your middle amongst her many tentacles. <i>“No harm will come to your young, but I hope you'll return to bear mine, someday.”</i>");
 	
 	//{Single cock}
 	if(pc.totalCocks() == 1) {
@@ -379,7 +379,7 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	//{Tentadick - cum in your mouth}
 	if(stamen) {
 		output("\n\nThe tentacle dong stuffed into your throat is the first to receive the heady payload. Pressure mounts against your lips when the sperm-packed bulge impacts your face, too large to fit inside in one huge squirt. Instead, the cock-slime slides through a constant, never-ending rope of jism, pumping straight down the back of your throat with such force that you can barely manage to swallow it, tasting the salty-sweet aftertaste of it on the back of your tongue. Eventually the bulge passes, and you get a chance to breathe. Then, another arrives, and you gulp anew, groaning around your burgeoning");
-		if(pc.bellyRating() > 30) output(", pregnancy enlarged");
+		if(pc.bellyRating() > 30 && pc.hasPregnancy()) output(", pregnancy enlarged");
 		output(" belly.");
 	}
 	//{Tentacunt - cum in mouth}
@@ -447,9 +447,27 @@ function tentacleJamTime(stamen:Boolean = true):void {
 		output(" wider inside you, sealing the next bursts of spunk into your passage so that the only thing to escape is your own secretions.");
 		if(pc.totalVaginas() && !pc.hasPregnancy()) output(" Your [pc.belly] bloats a little under the forceful insemination, rubbed tenderly by other trembling stalks as you’re filled.");
 	}
-	
-	if (pc.hasVagina()) pc.loadInCunt(chars["VENUSPITCHER"]);
-	
+	//0 = not knocked up. 1 = converted to carrier. 2 = fertilized.
+	var knockUpPass:int = 0;
+	if (pc.hasVagina()) 
+	{
+		//If Knock
+		if(pc.loadInCunt(chars["VENUSPITCHER"]))
+		{
+			//Seed carrier
+			if(pc.hasPregnancyOfType("VenusPitcherSeedCarrier"))
+			{
+				trace("Venus Pitcher unfertilized pregnancy started.");
+				knockUpPass = 1;
+			}
+			//Convert to fertilized carrier
+			else
+			{
+				trace("Venus Pitcher pregnancy upgraded to fertilized.");
+				knockUpPass = 2;
+			}
+		}
+	}
 	//{Pass out}
 	output("\n\nAt once, the strength goes out of the restraints holding you up, and you fall into a puddle of mixed sensual fluids, sore from [pc.nipples] to [pc.butt] and covered in ropes of plant cum that still fall on you from time to time. A vague thought that you should be alarmed by the situation surfaces, but it vanishes in a flash, disappearing in a tired sneeze. Your body is pushed, stroked and prodded gently, lifted into a more comfortable position.");
 	output("\n\nA female voice coos, <i>“Thanks for the meal. I’ll take care of your...”</i>");
@@ -457,10 +475,10 @@ function tentacleJamTime(stamen:Boolean = true):void {
 	pc.orgasm();
 	//[Next]
 	clearMenu();
-	addButton(0,"Next",tentacleJamAftermath);
+	addButton(0,"Next",tentacleJamAftermath,knockUpPass);
 }
 
-function tentacleJamAftermath():void {
+function tentacleJamAftermath(knockUpPass:Number = 0):void {
 	clearOutput();
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
@@ -478,7 +496,16 @@ function tentacleJamAftermath():void {
 			output(" Your breasts seem to be churning, making [pc.milk] faster than before.");
 		}
 	}
-	output(" The playful plant must be sleeping or hiding underground.");
+	if(knockUpPass == 1)
+	{
+		output(" More alarmingly, your belly is much larger than before the encounter, rounded as if gravid with young. <b>There's no doubt in your mind - you're pregnant with the floral waif's offspring.</b>");
+		//Laid either of them.
+		if(StatTracking.getStat("pregnancy/unfertilized venus pitcher seeds") + StatTracking.getStat("pregnancy/venus pitcher seeds") > 0)
+		{
+			output(" You shiver at the remembered pleasure and rub your [pc.belly] fondly. You're going to have a wonderful time with these....");
+		}
+	}
+	output("\n\nThe playful plant must be sleeping or hiding underground.");
 	output(" A slimy puddle on the ground holds your [pc.gear].");
 	pc.orgasm();
 	processTime(200+rand(60));

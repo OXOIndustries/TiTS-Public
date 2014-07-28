@@ -3060,37 +3060,141 @@
 		// Placeholder shit, sue me. Calling the ill excuse etc.
 		public function bellyDescript(): String {
 			var sBuilder:String = "";
-			
-			if (bellyRating() <= 10)
+
+			var belly:Number = bellyRating();
+			//Wide fat PCs got da belly
+			var toneMod:Number = thickness - tone;
+			//Prevent negatives for the uberfit:
+			if(toneMod < 0) toneMod = 0;
+			//Worst = 100. Scale down by factor of 5
+			toneMod /= 5;
+			//Add to our working belly amount for funtimes:
+			belly += toneMod;
+
+			var sizeDescripts:Array = new Array();
+			var pregDescripts:Array = new Array();
+
+			//engorged, swollen, stuffed
+			//cumflated only: cum-bloated (could even be wildcarded for honeycum or other things, depending on your tracking), cum-inflated, sloshing,
+			if(isPregnant())
 			{
-				sBuilder += "";
+				if(belly < 10) {}
+				else if(belly < 20)
+				{
+					pregDescripts[pregDescripts.length] = "fruitful";
+					pregDescripts[pregDescripts.length] = "fecund";
+				}
+				else
+				{
+					pregDescripts[pregDescripts.length] = "expectant";
+					pregDescripts[pregDescripts.length] = "pregnant";
+				}
+				if(belly >= 50)
+				{	
+					pregDescripts[pregDescripts.length] = "gravid";
+				}
 			}
-			else if (bellyRating() <= 20)
+			if (belly <= 5)
 			{
-				sBuilder += "large ";
+				if(tone >= 50) 
+				{
+					sizeDescripts[sizeDescripts.length] = "toned";
+					sizeDescripts[sizeDescripts.length] = "sculpted";
+				}
+				sizeDescripts[sizeDescripts.length] = "flat";
+				sizeDescripts[sizeDescripts.length] = "slim";
 			}
-			else if (bellyRating() <= 30)
+			else if (belly <= 10)
 			{
-				sBuilder += "paunched ";
+				sizeDescripts[sizeDescripts.length] = "soft";
+				sizeDescripts[sizeDescripts.length] = "cushy";
 			}
-			else if (bellyRating() <= 40)
+			else if (belly <= 15)
 			{
-				sBuilder += "distended ";
+				sizeDescripts[sizeDescripts.length] = "paunched";
+				sizeDescripts[sizeDescripts.length] = "pudgy";
 			}
-			else if (bellyRating() <= 50)
+			else if (belly <= 20)
 			{
-				sBuilder += "inflated ";
+				sizeDescripts[sizeDescripts.length] = "large";
+				sizeDescripts[sizeDescripts.length] = "hefty";
 			}
-			else if (bellyRating() <= 80)
+			else if (belly <= 30)
 			{
-				sBuilder += "over-inflated ";
+				sizeDescripts[sizeDescripts.length] = "considerable";
+				sizeDescripts[sizeDescripts.length] = "generous";
+				if(!isPregnant()) sizeDescripts[sizeDescripts.length] = "pregnant-looking";
+			}
+			else if (belly <= 40)
+			{
+				sizeDescripts[sizeDescripts.length] = "full";
+				sizeDescripts[sizeDescripts.length] = "round";
+				sizeDescripts[sizeDescripts.length] = "bulky";
+				
+			}
+			else if (belly <= 50)
+			{
+				sizeDescripts[sizeDescripts.length] = "spacious";
+				sizeDescripts[sizeDescripts.length] = "extensive";
+				sizeDescripts[sizeDescripts.length] = "expansive";
+			}
+			else if (belly <= 60)
+			{
+				sizeDescripts[sizeDescripts.length] = "inflated";
+				sizeDescripts[sizeDescripts.length] = "excessive";
+				sizeDescripts[sizeDescripts.length] = "whopping";
+				
+			}
+			else if (belly <= 70)
+			{
+				sizeDescripts[sizeDescripts.length] = "distended";
+				sizeDescripts[sizeDescripts.length] = "immense";
+				sizeDescripts[sizeDescripts.length] = "bloated";
+			}
+			else if (belly <= 80)
+			{
+				sizeDescripts[sizeDescripts.length] = "over-inflated";
+				sizeDescripts[sizeDescripts.length] = "jumbo-sized";
+			}
+			else if (belly <= 90)
+			{
+				sizeDescripts[sizeDescripts.length] = "very distended";
+				sizeDescripts[sizeDescripts.length] = "monumental";
+				sizeDescripts[sizeDescripts.length] = "massive";
 			}
 			else
 			{
-				sBuilder += "ginormous ";
+				sizeDescripts[sizeDescripts.length] = "ginormous";
+				sizeDescripts[sizeDescripts.length] = "over-inflated";
+				sizeDescripts[sizeDescripts.length] = "blimp-like";
+			}
+			//Bonus pregsizes
+			if(isPregnant() && belly > 50)
+			{
+				sizeDescripts[sizeDescripts.length] = "stuffed";
+				sizeDescripts[sizeDescripts.length] = "swollen";
+			}
+			//Size: 50%
+			if(rand(2) == 0)
+			{
+				sBuilder += sizeDescripts[rand(sizeDescripts.length)];
+				//Pregnant stuff & Size: 50% or 25% overall odds.
+				if(isPregnant() && rand(2) == 0)
+				{
+					sBuilder += ", ";
+					sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
+				}
+			}
+			//Pregnant Stuff - 25% chance (note there's a 25% chance of occurring with belly size for 50% total)
+			else if(isPregnant() && rand(2) == 0)
+			{
+				sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
 			}
 			
-			sBuilder += "belly";
+			//Noun selection:
+			if(belly < 10) sBuilder += "midriff";
+			else if(belly < 20 && rand(2) == 0) sBuilder += "middle";
+			else sBuilder += "belly";
 			
 			return sBuilder;
 		}
@@ -4772,7 +4876,7 @@
 			if(spe > 50) lithe++;
 			if(spe > 75) lithe++;
 			if(spe > 99) lithe++;
-			if(strong == 0) desc += "small muscles ";
+			if(strong == 0) desc += "small muscles";
 			if(strong == 1) desc += "average muscles ";
 			if(strong == 2) desc += "strong muscles ";
 			if(strong == 3) desc += "obvious muscles ";
@@ -8755,6 +8859,8 @@
 		}
 		public function hasPregnancy():Boolean { return isPregnant(); }
 		
+		//Argument is the same string as defined in the handler.
+		//Example: VenusPitcherSeedCarrier
 		public function hasPregnancyOfType(type:String):Boolean
 		{
 			for (var i:int = 0; i < pregnancyData.length; i++)

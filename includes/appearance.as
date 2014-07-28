@@ -510,10 +510,56 @@ function appearance(target:Creature):void {
 		else if (target.legType == GLOBAL.TYPE_PANDA) output2("  Two digitigrade legs grow downwards from your waist, ending in fluffy panda-paws. You even have sharp-looking claws growing from the tips of your short toes.");
 		
 		// CoC places the pregnancy output directly after leg output
-		if (target.isPregnant())
+		//Start a new paragraph with bellies if preggers, otherwise tack onto the end of the last one.
+		if (target.isPregnant()) output2("\n\n");
+		else output2(" ");
+
+		//Calculating actual belly size.
+		var tempBelly:Number = target.bellyRating();
+		//Wide fat PCs got da belly
+		var toneMod:Number = pc.thickness - pc.tone;
+		//Prevent negatives for the uberfit:
+		if(toneMod < 0) toneMod = 0;
+		//Worst = 100. Scale down by factor of 5
+		toneMod /= 5;
+		//Add to our working belly amount for funtimes:
+		tempBelly += toneMod;
+
+		//Display belly size
+		if (tempBelly <= 5)
 		{
-			output2("\n\n");
-			
+			if(pc.tone >= 75) output2("Your [pc.belly] is rock-hard, shaped by a good diet, steady conditioning, or both.") 
+			else if(pc.tone >= 50) output2("Your [pc.belly] is fairly well-toned.")
+			else output2("Your [pc.belly] is nice and smooth.");
+		}
+		else if (tempBelly <= 10) output2("Your [pc.belly] is fairly average in appearance.");
+		else if (tempBelly <= 15) output2("Your [pc.belly] would just barely push past the waistband of a pair of pants. It's a little bit of a muffin-top.");
+		else if (tempBelly <= 20) output2("Your [pc.belly] is pretty decent-sized. There's no real hiding it.");
+		else if (tempBelly <= 30) output2("Your [pc.belly] is impossible to miss. Wearing loose clothing wouldn't even help at this point.");
+		//full round bulky
+		else if (tempBelly <= 40) output2("Your [pc.belly] is big enough that passersby might think you pregnant at a glance.");
+		//expansive extensive spacious
+		else if (tempBelly <= 50) output2("Your [pc.belly] would look more at home on a woman in the later stages of her pregnancy than an adventuring rusher.");
+		//inflated excessive whopping
+		else if (tempBelly <= 60) output2("Your [pc.belly] is weighty enough to jiggle when you shift positions to suddenly, but still small enough for easy potability.");
+		//distended immense bloated
+		else if (tempBelly <= 70) output2("Your [pc.belly] sticks out very noticeably, wobbling slightly with your motions. It would look right at home on a reclining, full-time breeding servant.");
+		//over-inflated jumbo-sized
+		else if (tempBelly <= 80) output2("Your [pc.belly] is obscene testament to what the body can endure. When you look down, you have no hope of seeing your crotch, let alone your [pc.feet].");
+		//Very distended monumental massive
+		else if (tempBelly <= 90) 
+		{
+			output2("Your [pc.belly] is so big that it makes your [pc.skin] tight and shiny");
+			if(pc.skinType == GLOBAL.SKIN_TYPE_FUR || pc.skinType == GLOBAL.SKIN_TYPE_SCALES || pc.skinType == GLOBAL.SKIN_TYPE_CHITIN)
+				output2(" under your [pc.skinFurScales]");
+			output2(". Movement is a little impractical with the extra bulk.");
+		}
+		//ginormous over-inflated blimp-like
+		else output2("Your [pc.belly] protrudes obscenely from your form, hanging heavily. Getting around is a struggle with so much extra mass on you.");
+		
+		//Tack on preg flavor shit to the end of belly descripts.
+		if (target.isPregnant())
+		{	
 			// Fragments pass through the Creature class to get data from the individual pregnancy handlers.
 			// Creature -> Find largest pregnancy (based on pregData.contributedBellyRatingMod) ->
 			//    query preg manager for fragment -> preg manager finds target handler -> query handler for
@@ -521,8 +567,9 @@ function appearance(target:Creature):void {
 			
 			// A fragment is intended to range anywhere from a full scentence to a full paragraph, to be merged in with existing text
 			// or stand as their own paragraphs.
-			output2(target.pregBellyFragment());
+			output2(" " + target.pregBellyFragment());
 		}
+
 		
 		//Chesticles.
 		output2("\n\n");
