@@ -30,7 +30,7 @@ public function tryProcTravelEvent():Function
 	// If there's an available message, and the player has unlocked the second planet (ie had the fight with Dane):
 	// if debug, proc a random message
 	// otherwise 25% of an event
-	if (possibleMessages.length > 0 && (debug || rand(4) == 0) && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined)
+	if (possibleMessages.length > 0 && (debug || (rand(4) == 0) && flags["UNLOCKED_JUNKYARD_PLANET"] != undefined))
 	{
 		return possibleMessages[rand(possibleMessages.length)];
 	}

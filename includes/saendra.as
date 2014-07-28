@@ -1176,8 +1176,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	output(". You take a deep breath and try to relax as best you can as Saen’s probe slithers down your body, teasing its way down your supple curves, before holding itself rigid, looking like a giant silver tentacle that’s about to ream your ass. She leans in, her flared hips slowly inching towards you own until the wet, pointed tip of the probe brushes your [pc.asshole], sending an electric shiver of pleasure up your spine. Here it comes... ");
 
 	output("\n\nBut at the last moment, Saen lunges forward, cupping your cheek and pressing her lips to yours. You gasp, breath catching in your throat as Saen’s tongue slips between your lips, playing across your teeth. It takes a second to relax, finally easing into the unexpected kiss, wrapping your arms around Saen’s slender waist as she finally pushes her telescoping probe forward, bringing the rounded steel head through the circle of your sphincter. You groan into Saendra’s lips, but the penetration comes surprisingly easily, helped along by your long minutes of preparation and the tender, loving embrace of your red-maned lover. With the first inches inside your rectum, Saen breaks the kiss, smiling down at you with a deep, radiant warmth. She caresses your cheek, gently cupping it and bringing your head up for another quick kiss as she wiggles her hips, easing another few inches into you. You roll your head back and moan openly as her tentacle pushes in, stretching your rectal walls wider and wider as the slender steel thickens. Soon you’ve gone from her needle-like point to the grapefruit-sized rod of cold, unforgiving probe that’s now stretching your bum wide.");
-		pc.buttChange(saendra.cockVolume(0), true, true, false);
-		throw new Error("Cook up a proper cock volume value for saendras probe-cock-thinger.");
+		pc.buttChange(9.27, true, true, false); // 24 * 0.5
 
 	output("\n\n“<i>Oh, you’re a fine piece of ass, hero,</i>” Saen laughs. “<i>So fuckin’ glad I put sense strips on that probe... the tip’s soooo sensitive... I can feel every inch of your [pc.asshole] clamping down on me, fighting for every inch. Oh god....</i>”");
 
@@ -1400,7 +1399,7 @@ public function saendraTakesItUpDaButte():void
 	var selCock:int = pc.cockThatFits(saendra.analCapacity());
 	if (selCock == -1) selCock = pc.smallestCockIndex();
 
-	output("\n\nYou hook your hands around Saen’s thick hips and roll the towering beauty over onto her back. She gives a little gasp, silenced as you press your lips to hers, finding her big, bestial tongue eagerly awaiting your own. Your lover moans sensually, returning your kiss with her insatiable, fiery passion, hands grabbing your [pc.butt] and pulling you down hard atop her. Before you can recover, you feel a hot, soft warmth across your lower body, and a moment later your [pc.cock "+ selCock +"] is encircled by the fluffy embrace of one of Saen’s tails. The busty captain breaks the kiss, grinning at you as her prehensile appendage gently squeezes your manhood as it moves, slowly wrapping around your [pc.cock "+ selCock +"] from [pc.cockHead "+ selCock +"] to stem");
+	output("You hook your hands around Saen’s thick hips and roll the towering beauty over onto her back. She gives a little gasp, silenced as you press your lips to hers, finding her big, bestial tongue eagerly awaiting your own. Your lover moans sensually, returning your kiss with her insatiable, fiery passion, hands grabbing your [pc.butt] and pulling you down hard atop her. Before you can recover, you feel a hot, soft warmth across your lower body, and a moment later your [pc.cock "+ selCock +"] is encircled by the fluffy embrace of one of Saen’s tails. The busty captain breaks the kiss, grinning at you as her prehensile appendage gently squeezes your manhood as it moves, slowly wrapping around your [pc.cock "+ selCock +"] from [pc.cockHead "+ selCock +"] to stem");
 	if (pc.balls > 0) output(", the very tip coming to rest pressed against your [pc.balls], gently flicking across your " + pc.sackDescript(true));
 	output(".");
 
@@ -1414,7 +1413,7 @@ public function saendraTakesItUpDaButte():void
 	output("\n\nWhen you finally do break free, mumbling, “<i>G-gonna cum!</i>” Saen only smiles.");
 
 	output("\n\n“<i>Come on, a");
-	if (pc.cocks[selCock].length() < 5) output(" cute little");
+	if (pc.cocks[selCock].cLength() < 5) output(" cute little");
 	else output(" big, hung");
 	output(" [pc.race] like you’s gotta be able to cum twice... three times... before I wear you out. So come on, let it go, hero. Smear my thighs with your seed.</i>”");
 
@@ -1442,7 +1441,7 @@ public function saendraButteFuckeAnal():void
 	output("\n\nNow that’s an idea. You heft her up, getting the lusty slut on her knees, ass swaying happily as her silver arm reaches back, teasing her clit as she spreads her legs, an open invitation to use her to your heart’s content. With aplomb, Saen scoops up the seed smeared across her thighs and pushes it into her ass as lube, her well-trained ring offering no resistance to her powerful mechanical digits. She gives a little moan as she readies herself, coating her waiting anal walls with your first load of seed. Satisfied, she looks over her shoulder and gives you a wink. “<i>Don’t you dare be gentle, hero, I want it </i>rough<i>!</i>”");
 
 	output("\n\nShe asked for it. You give her a hard slap on that spankable ass of hers, setting her flesh to jiggling as you grab your cock and line it up with her tight little crack. Saen grins over her shoulder and shakes her booty for you, letting you pull her hand from her hole, leaving her ass agape and winking, stretched wide like a cunt and oh so inviting. Your hips slide forward, hotdogging her crack to get your rod nice and covered with your own seed still, smeared on her and hot as hellfire. The sensation of the steaming spunk on your tool has you hard again in moments, and with the barest motion your [pc.cock "+ selCock +"] slides in, gliding past the gaping, well-lubed ring of the horny whore’s asshole and into the warm, tight depths of her anus.");
-	pc.cockChange(true, true, false);
+	pc.cockChange(true, false);
 	
 	output("\n\nFor such a buttslut, Saendra’s tighter than a vice when she wants to be. You get the first few inches of your cum-slathered crank into her before she clenches down, making you gasp in pain and pleasure as her powerful muscles wring your prick for all its worth, squeezing and contracting rhythmically as you try to push in. You give her another harsh slap, and the sudden squeeze just about pushes you right back out - before she completely relaxes, and you nearly fall in, sinking right up to the groin");
 	if (pc.balls > 0) output(", balls slapping into the sodden mess of Saen’s dripping cunt");

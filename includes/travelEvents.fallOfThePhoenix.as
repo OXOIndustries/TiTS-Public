@@ -325,6 +325,7 @@ public function phoenixCargo():Boolean
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
 		output("The cargo bay is surprisingly large for the <i>Phoenix</i>'s size, a wide open berth in two floors that could easily hold several dozen pallets of goods. A metal walkway leads down from the crew decks down to the cargo bay proper; an elevator leads down from there to Engineering. The walls are still pock-marked with bullet holes and carbon scorches from laser shots, though some of them have been patched or painted over.");
+		return false;
 	}
 	else
 	{
