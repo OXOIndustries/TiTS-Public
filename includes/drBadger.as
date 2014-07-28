@@ -60,7 +60,6 @@ function repeatBadgerApproach():void
 	{
 		output("The Doctor looks up as you enter, currently busy pouring through another seemingly innocuous pile of mechanical trash. <i>“Well well, if it isn’t my only repeat customer!”</i> She pauses for a moment as she considers this. <i>“Wow, I have a really terrible business plan.”</i> For a moment, it looks like she might be genuinely concerned, but soon she shrugs and continues happily. <i>“Oh well. You gotta love what you do. So, here to do some more shopping? I’ve still got those little happy pills in stock. They can’t be beat if you want to live a little...”</i>");
 
-		output("The Doctor looks up at you, snorting with derision as you enter. “<i>Well well, if it isn’t the non-hero. Come to do some more shopping, have you? I’ve still got some of those little happy pills, if you decide you want to live a little for once...</i>”");
 		//[Buy Dumbfuck pills] [Leave]
 	}
 	//REPEAT GREETING BIMBOIFIED
