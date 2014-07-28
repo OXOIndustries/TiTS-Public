@@ -9014,12 +9014,12 @@
 					if (hole >= 0 && vaginalVirgin)
 					{
 						vaginalVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " vaginal virginity</b>");
+						output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity</b>");
 					}
 					else if (analVirgin)
 					{
 						analVirgin = false;
-						output("<b>, robbing them of " + mf("his", "her") + " anal virginity</b>");
+						output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity</b>");
 					}
 					output("<b>.</b>");
 				}
