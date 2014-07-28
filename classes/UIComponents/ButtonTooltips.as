@@ -11,6 +11,7 @@ package classes.UIComponents
 	import flash.text.AntiAliasType;
 	import flash.geom.Point;
 	import classes.GameData.TooltipManager;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -197,6 +198,10 @@ package classes.UIComponents
 			// If no overrides, check db
 			if (fn == null) fn = TooltipManager.getFullName(displayObj.buttonName);
 			if (tt == null) tt = TooltipManager.getTooltip(displayObj.buttonName);
+			
+			// This HAS to be a global ref to the parser
+			
+			if (tt != null) tt = kGAMECLASS.parser.recursiveParser(tt);
 			
 			// If we've got data, display
 			if (tt.length > 0)
