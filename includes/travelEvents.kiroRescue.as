@@ -672,7 +672,7 @@ public function kirosShipPostFirstFuck():void
 	}
 	else
 	{
-		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire one thousand credits here over to the " + pc.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
+		output("\n\n\"<i>Sounds about as fair as anything else out here in the void. Computer, wire two thousand credits here over to the " + pc.mf("man","woman") + "'s account,</i>\" Kiro boldly answers. The computer beeps and buzzes, chiming in a moment later to say, \"<i>Credit transfer completed.</i>\"");
 
 		pc.credits += 2000; 
 	}
