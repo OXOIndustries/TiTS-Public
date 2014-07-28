@@ -2381,6 +2381,7 @@
 			{
 				if(adjectives > 0) result += ", ";
 				result += lipColor;
+				adjectives++;
 			}
 			//Nouns
 			if(adjectives > 0) result += " ";

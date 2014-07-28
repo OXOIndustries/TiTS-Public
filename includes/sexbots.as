@@ -629,7 +629,7 @@ function malebotDefeatsMalePCs():void
 	//Loose/Wet:
 	if(pc.analCapacity() >= 40)
 	{
-		output(" It encounters few difficulties sliding into your slutty boypussy, and it is quickly able to find your prostrate, pumping your eager tunnel with long, sure strokes.");
+		output(" It encounters few difficulties sliding into your slutty boypussy, and it is quickly able to find your prostate, pumping your eager tunnel with long, sure strokes.");
 	}
 	//Tight/Dry:
 	else output(" You tighten up instinctively but the sexbot knows exactly what it is doing, gently probing you with the frictionless metal, soft, slow movements that progressively work you loose, pumping further and further into your tight tunnel, until it touches something deep which makes your trapped [pc.cock " + x + "] flex instinctively.");
