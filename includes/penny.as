@@ -1867,7 +1867,7 @@ function pennySexMenu(outputT:Boolean = true):void {
 		//if(penny.hasCock()) this.addButton(0,"Onahole Her",jackinPennyOffWithAnOnahole);
 		//else this.addDisabledButton(0,"Onahole Her");
 		//Needs dick or strap-on
-		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck,"OverDeskFuck","Bend Penny over the desk and go to town.");
+		if (pc.cockThatFits(penny.vaginalCapacity()) >= 0) this.addButton(1,"OverDeskFuck",pennyOverTheDeskRoughFuck,undefined,"OverDeskFuck","Bend Penny over the desk and go to town.");
 		else this.addDisabledButton(1,"OverDeskFuck","OverDeskFuck","You're too big to bend her over the desk and fuck her.");
 		if(penny.hasCock()) this.addButton(2,"Frottage",pennyFrottage,undefined,"Frottage","Grind dicks with Penny.");
 		else this.addDisabledButton(2,"Frottage","Frottage","This scene requires Penny to have a dick.");
