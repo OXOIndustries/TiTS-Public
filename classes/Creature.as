@@ -2470,14 +2470,16 @@
 			//0-10
 			if (femininity < 10) {
 				faceo = "a square chin";
-				if (!hasBeard()) faceo += " and chiseled jawline";
+				if(!hasBeard() && lipRating() > 2) faceo += ", " + pluralize(lipDescript(true)) + ", and chiseled jawline.";
+				else if (!hasBeard()) faceo += " and chiseled jawline";
 				else faceo += ", chiseled jawline, and " + beard();
 			}
 			//10+ -20
 			else if (femininity < 20) {
 				faceo = "a rugged looking " + face() + " ";
-				if (hasBeard()) faceo += "and " + beard();
-				faceo += "that's surely handsome";
+				if (hasBeard()) faceo += "and " + beard() + " that are";
+				else if(lipRating() > 2) faceo += "and " + pluralize(lipDescript(true)) + " that are";
+				else faceo += "that's surely handsome";
 			}
 			//21-28
 			else if (femininity < 28) faceo = "a well-defined jawline, a pair of " + pluralize(lipDescript(true)) + ", and a fairly masculine profile";
