@@ -2445,6 +2445,7 @@ function initializeRooms():void
 	rooms["295"].system = "SYSTEM: REDACTED";
 	rooms["295"].addFlag(GLOBAL.INDOOR);
     rooms["295"].addFlag(GLOBAL.COMMERCE);
+    rooms["295"].addFlag(GLOBAL.NOFAP);
 
 	rooms["301"] = new RoomClass(this);
 	rooms["301"].roomName = "THE\nMESS";

@@ -621,6 +621,7 @@
 		public static const QUEST:int								   = 8;
 		public static const OBJECTIVE:int						       = 9;
 		public static const HAZARD:int								   = 10;
+		public static const NOFAP:int 								   = 11;
 
 		//PLOT FLAGS
 		public static const RECRUITED_CELISE:int                       = 0;

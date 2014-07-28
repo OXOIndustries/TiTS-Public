@@ -131,6 +131,15 @@ function selectRandomFap(faps:Array):void
 function masturbateMenu(roundTwo:Boolean = false):void {
 	this.clearMenu();
 
+	//Masturbation prevention
+	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP))
+	{
+		clearOutput();
+		output("Masturbating here would be a bad idea.");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
 	// Get available faps
 	var faps:Array = availableFaps(roundTwo);
 	var btnOffset:int = 0;
