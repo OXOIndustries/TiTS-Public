@@ -59,37 +59,41 @@ public function phoenixRecRoom():void
 	clearOutput();
 	author("Savin");
 
-	// {Power has NOT been restored via Engineering}
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 0 || flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == undefined)
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
-		output("The recreational room of the <i>Phoenix</i> has been trashed thanks to your dynamic entry through the airlock. Most of the furniture is floating listlessly around, or is smashed against the walls. There's a computer, somehow still attached to the wall,");
-		if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) output(" currently blinking urgently");
-		else output(" though of course it's managed to short itself out");
-		output(".");
-	}
-	// {Power has been restored}
-	else
-	{
-		output("The recreational room of the <i>Phoenix</i> has been trashed thanks to your dynamic entry through the airlock. Most of the furniture is smashed against the floor now that gravity is back. With power on again, Valeria's avatar has flickered onto a holo-platform beside the shorted-out computer, desperately working on several different data windows. A casual glance tells you she's manually operating the ship's defenses, keeping the shields up against the pirate ship's bombardment.");
-	}
-	
-	if (flags["FALL OF THE PHOENIX BRIDGE ACCESSIBLE"] == 1) output("\n\nThe door leading to the bridge of the <i>Phoenix</i> is slightly ajar.");
-	else output("\n\nThere's an ominous red glow coming from an access panel adjacent to a door to the west.");
-
-	//[Computer]
-	if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) addButton(0, "Computer", phoenixRecRoomComputer);
-	
-	// Hooking into Phoenix Room stuff for post-arrival at Tavros
-	// See: Saendra.as
-	if (flags["SAENDRA GONNA GO GET A COCK"] == 2)
-	{
-		phoenixRecRoomAtTavros();
-	}
-	if (flags["SAENDRA GONNA GO GET A COCK"] >= 2)
-	{
+		output("The main room of the <i>Phoenix</i> looks like a cross between a seedy pub and an extranet cafe. A big pool table dominates the center, covered with enough dirty plates and beer bottles to make you think it spends more time acting as a dinner table than gaming space. A liquor cabinet is on the far wall, as is a refrigerator and food replicator, which both smell vaguely like pizza and Chinese take-out.");
+		
+		// Hooking into Phoenix Room stuff for post-arrival at Tavros
+		// See: Saendra.as
+		if (flags["SAENDRA GONNA GO GET A COCK"] == 2)
+		{
+			phoenixRecRoomAtTavros();
+		}
+		
 		addButton(7, "Exit", move, "TAVROS HANGAR");
 	}
-	
+	else
+	{
+		// {Power has NOT been restored via Engineering}
+		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 0 || flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == undefined)
+		{
+			output("The recreational room of the <i>Phoenix</i> has been trashed thanks to your dynamic entry through the airlock. Most of the furniture is floating listlessly around, or is smashed against the walls. There's a computer, somehow still attached to the wall,");
+			if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) output(" currently blinking urgently");
+			else output(" though of course it's managed to short itself out");
+			output(".");
+		}
+		// {Power has been restored}
+		else
+		{
+			output("The recreational room of the <i>Phoenix</i> has been trashed thanks to your dynamic entry through the airlock. Most of the furniture is smashed against the floor now that gravity is back. With power on again, Valeria's avatar has flickered onto a holo-platform beside the shorted-out computer, desperately working on several different data windows. A casual glance tells you she's manually operating the ship's defenses, keeping the shields up against the pirate ship's bombardment.");
+		}
+		
+		if (flags["FALL OF THE PHOENIX BRIDGE ACCESSIBLE"] == 1) output("\n\nThe door leading to the bridge of the <i>Phoenix</i> is slightly ajar.");
+		else output("\n\nThere's an ominous red glow coming from an access panel adjacent to a door to the west.");
+
+		//[Computer]
+		if (flags["FALL OF THE PHOENIX COMPUTER STATUS"] == 0 || flags["FALL OF THE PHOENIX COMPUTER STATUS"] == undefined) addButton(0, "Computer", phoenixRecRoomComputer);
+	}	
 }
 
 public function phoenixRecRoomComputer():void
@@ -132,36 +136,44 @@ public function phoenixBridge():void
 {
 	clearOutput();
 	author("Savin");
-	if (flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == undefined || flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == 0)
+	
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
-		flags["FALL OF THE PHOENIX BRIDGE ENTERED"] = 1;
-		output("At the A.I.'s behest, you float up to the western door and grab the hatch, bracing yourself for another decompression. Locking your mag-boots onto the deck, your twist the handle and take cover - sure enough, a huge gust of air sucks out of the cockpit, blasting some of the floating furniture in the rec room against the far wall. It only takes a moment to pass, and then you're able to swing yourself onto the bridge.");
-		output("\n\n");
+		output("The <i>Phoenix</i>'s bridge -- really more of a cramped cockpit -- is clearly a solo operation, with a single cushiony chair pulled up to a console with blinking lights and readout displays. A huge pair of fuzzy dice hang from the forward viewscreen. Several holo-discs are scattered around, some stacked up under a game controller, others are tucked where you might not notice them on first glance, showing quite a bit of skin on their covers. ");
 	}
-
-	//	{Power hasn't been restored}
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == undefined || flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 0)
-	{
-		output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen.");
-		output("\n\nThe captain clearly wasn't expecting company: there are several half-eaten bags of chips and cookies floating around in the zero-G");
-		
-		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(", along with a pair of holodisks obviously labeled <b>‘Horsecock Hell 2: A Tail of Two Twats’</b>");
-		
-		if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined) output(" and an oversized pink dildo shaped like an equine phallus, currently trapped under the headrest after the decompression sucked it out of... wherever she'd hidden it");
-		output(".");
-	}
-	// {Power has been restored, from the engineering deck}
 	else
 	{
-		output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen. With main power back on, the accumulated trash has fallen back onto the ground.");
-		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(" The porno holos are noticeably absent, and");
-		if (flags["FALL OF THE PHOENIX STATUS"] != 1) output(" Captain Saendra is slumped in her captain's chair, fiddling with the controls.");
-	}
+		if (flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == undefined || flags["FALL OF THE PHOENIX BRIDGE ENTERED"] == 0)
+		{
+			flags["FALL OF THE PHOENIX BRIDGE ENTERED"] = 1;
+			output("At the A.I.'s behest, you float up to the western door and grab the hatch, bracing yourself for another decompression. Locking your mag-boots onto the deck, your twist the handle and take cover - sure enough, a huge gust of air sucks out of the cockpit, blasting some of the floating furniture in the rec room against the far wall. It only takes a moment to pass, and then you're able to swing yourself onto the bridge.");
+			output("\n\n");
+		}
 
-	if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2) addButton(0, "Shields", phoenixBridgeShields);
-	if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) addButton(1, "Disks", phoenixBridgeDisks);
-	if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined || flags["FALL OF THE PHOENIX DILDO GET"] == 0) addButton(5, "Dildo", phoenixBridgeDildo);
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1 && flags["FALL OF THE PHOENIX STATUS"] != 1) addButton(7, "Saendra", phoenixBridgeCaptain);
+		//	{Power hasn't been restored}
+		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == undefined || flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 0)
+		{
+			output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen.");
+			output("\n\nThe captain clearly wasn't expecting company: there are several half-eaten bags of chips and cookies floating around in the zero-G");
+			
+			if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(", along with a pair of holodisks obviously labeled <b>‘Horsecock Hell 2: A Tail of Two Twats’</b>");
+			
+			if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined) output(" and an oversized pink dildo shaped like an equine phallus, currently trapped under the headrest after the decompression sucked it out of... wherever she'd hidden it");
+			output(".");
+		}
+		// {Power has been restored, from the engineering deck}
+		else
+		{
+			output("The <i>Phoenix</i>'s bridge is fairly cramped, clearly a solo operation. The captain's chair is large and plush, sitting in the shadow of the biggest pair of fuzzy dice you've ever seen, dangling from the top of the viewscreen. With main power back on, the accumulated trash has fallen back onto the ground.");
+			if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) output(" The porno holos are noticeably absent, and");
+			if (flags["FALL OF THE PHOENIX STATUS"] != 1) output(" Captain Saendra is slumped in her captain's chair, fiddling with the controls.");
+		}
+
+		if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2) addButton(0, "Shields", phoenixBridgeShields);
+		if (!pc.hasKeyItem("Holodisk: Horsecock Hell 2")) addButton(1, "Disks", phoenixBridgeDisks);
+		if (flags["FALL OF THE PHOENIX DILDO GET"] == undefined || flags["FALL OF THE PHOENIX DILDO GET"] == 0) addButton(5, "Dildo", phoenixBridgeDildo);
+		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] == 1 && flags["FALL OF THE PHOENIX STATUS"] != 1) addButton(7, "Saendra", phoenixBridgeCaptain);
+	}
 }
 
 public function phoenixBridgeCaptain():void
@@ -255,11 +267,22 @@ public function phoenixCrewQuarters():void
 {
 	clearOutput();
 	author("Savin");
-	output("The captain's quarters look more like a university girl's dorm than a ship captain's room. The bed is sloppily made and covered with several books, magazines, and clothes. There's a locker in one corner, hanging open to show a picture of a cat-eared girl with her arm around a kui-tan's shoulders, sticking their tongues out at the camera. With the locker open, you're also treated to a good look at several open drawers full of panties and bras, the latter clearly made for a well-endowed girl.");
+	
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
+	{
+		output("Saendra's cabin is more like a university girl's dorm than a ship captain's room. The bed is sloppily made and covered with several books, magazines, and piles of clothes. There's a locker in one corner, hanging open to show a picture of a Saendra with her arm around");
+		if (flags["RESCUE KIRO FROM BLUEBALLS"] == 1) output(" Kiro's");
+		else output(" a kui-tan girl's");
+		output(" shoulders, sticking their tongues out at the camera. With the locker open, you're also treated to a good look at several open drawers full of Saendra's bright pink panties and bras. A life-sized latex horse dildo is peeking its flared head out from under the bed.");
+	}
+	else
+	{
+		output("The captain's quarters look more like a university girl's dorm than a ship captain's room. The bed is sloppily made and covered with several books, magazines, and clothes. There's a locker in one corner, hanging open to show a picture of a cat-eared girl with her arm around a kui-tan's shoulders, sticking their tongues out at the camera. With the locker open, you're also treated to a good look at several open drawers full of panties and bras, the latter clearly made for a well-endowed girl.");
 
-	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] == 2) output( "One of the wall panels has been yanked off, giving you access to the wiring inside the bulkhead. A floppy, pink horsecock dildo is sticking out of it, blackened by electricity.");
+		if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] == 2) output( "One of the wall panels has been yanked off, giving you access to the wiring inside the bulkhead. A floppy, pink horsecock dildo is sticking out of it, blackened by electricity.");
 
-	if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2 && flags["FALL OF THE PHOENIX SHIELDS STATUS"] == 1) addButton(0, "Flux Coupl.", phoenixCrewQuartersFluxCouple)
+		if (flags["FALL OF THE PHOENIX FLUX COUPLING STATUS"] != 2 && flags["FALL OF THE PHOENIX SHIELDS STATUS"] == 1) addButton(0, "Flux Coupl.", phoenixCrewQuartersFluxCouple);
+	}
 }
 
 public function phoenixCrewQuartersFluxCouple():void
@@ -299,43 +322,50 @@ public function phoenixCargo():Boolean
 	clearOutput();
 	author("Savin");
 
-	if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2)
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
 	{
-		output("The door is sealed, though beyond it, you can hear the sounds of gunfire.");
-		if (flags["FALL OF THE PHOENIX TALKED TO AI"] == 1) output(" The A.I.");
-		else output(" A voice");
-		output(" announces, \"<i>Cargo doors are sealed while life forms are still inside and atmosphere is drained in the recreation room.</i>\"");
-
-		output("\n\nShit.");
-		currentLocation = "PHOENIX RECROOM";
-		return false;
-	}
-	else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)
-	{
-		output("\"<i>Okay, we're in. Atmosphere and pressure restoring in the damaged sections as we speak. I'm showing several life-signs in the cargo bay: it looks like they drilled in via assault pod. Captain en Illya's still alive, I think. Be ready for a fight.</i>\"");
-
-		output("\n\nYou nod, and kick open the cargo bay door. You find yourself overlooking the bay proper, walking out into a catwalk over the bay, two stairs leading downwards along the sides. Below, you can see several men in black, skintight spacesuits taking cover behind crates and barrels, trading gunfire with a lone figure sitting in a pool of her own blood, firing a heavy-looking Hammer pistol one-handed as she clutches her side. ");
-
-		output("\n\n\"<i>Saendra!</i>\" the A.I. gasps, seeing what you assume to be the captain badly wounded. \"<i>Quick, we have to help her!</i>\"");
-
-		output("\n\nDoesn't look like you have a choice. Her sudden outburst has drawn the attention of the pirates, who look up in shock to see you, leveling their weapons upward. Uh-oh. ");
-
-		output("\n\nYou dive into cover just in time as a volley of automatic weapons fire pummels into the catwalk, chewing through the thin metal until it looks like Swiss cheese. Unfortunately for you, the catwalk buckles under the hail of lead, and you have just enough time to scream before you go plummeting to the deck, smashing into the ground. Conveniently, you land in cover behind some chest-high crates.");
-
-		output("\n\n\"<i>Who the hell is that?</i>\" one of the pirates shouts, slamming a new magazine into a machine-pistol.");
-
-		output("\n\n\"<i>I don't fucking know! Just shoot 'em!</i>\"");
-
-		clearMenu();
-		addButton(0, "Fight", startPhoenixPirateFight);
-		return true;
+		output("The cargo bay is surprisingly large for the <i>Phoenix</i>'s size, a wide open berth in two floors that could easily hold several dozen pallets of goods. A metal walkway leads down from the crew decks down to the cargo bay proper; an elevator leads down from there to Engineering. The walls are still pock-marked with bullet holes and carbon scorches from laser shots, though some of them have been patched or painted over.");
 	}
 	else
 	{
-		output("The <i>Phoenix</i>'s cargo bay is spacious for its size, full of crates and barrels and other cargo. Several dead pirates are splattered on the deck, while others have been knocked out in the battle. Red emergency lights are active, now that the power is semi-out in secondary systems, and the floor is lousy with blood and shell-casings.");
-		
-		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) output("\n\nSaendra is slumped against the wall, using a first-aid kit to patch the hole up in her side.");
-		return false;
+		if (flags["FALL OF THE PHOENIX SHIELDS STATUS"] != 2)
+		{
+			output("The door is sealed, though beyond it, you can hear the sounds of gunfire.");
+			if (flags["FALL OF THE PHOENIX TALKED TO AI"] == 1) output(" The A.I.");
+			else output(" A voice");
+			output(" announces, \"<i>Cargo doors are sealed while life forms are still inside and atmosphere is drained in the recreation room.</i>\"");
+
+			output("\n\nShit.");
+			currentLocation = "PHOENIX RECROOM";
+			return false;
+		}
+		else if (flags["FALL OF THE PHOENIX DEFEATED PIRATES"] == undefined)
+		{
+			output("\"<i>Okay, we're in. Atmosphere and pressure restoring in the damaged sections as we speak. I'm showing several life-signs in the cargo bay: it looks like they drilled in via assault pod. Captain en Illya's still alive, I think. Be ready for a fight.</i>\"");
+
+			output("\n\nYou nod, and kick open the cargo bay door. You find yourself overlooking the bay proper, walking out into a catwalk over the bay, two stairs leading downwards along the sides. Below, you can see several men in black, skintight spacesuits taking cover behind crates and barrels, trading gunfire with a lone figure sitting in a pool of her own blood, firing a heavy-looking Hammer pistol one-handed as she clutches her side. ");
+
+			output("\n\n\"<i>Saendra!</i>\" the A.I. gasps, seeing what you assume to be the captain badly wounded. \"<i>Quick, we have to help her!</i>\"");
+
+			output("\n\nDoesn't look like you have a choice. Her sudden outburst has drawn the attention of the pirates, who look up in shock to see you, leveling their weapons upward. Uh-oh. ");
+
+			output("\n\nYou dive into cover just in time as a volley of automatic weapons fire pummels into the catwalk, chewing through the thin metal until it looks like Swiss cheese. Unfortunately for you, the catwalk buckles under the hail of lead, and you have just enough time to scream before you go plummeting to the deck, smashing into the ground. Conveniently, you land in cover behind some chest-high crates.");
+
+			output("\n\n\"<i>Who the hell is that?</i>\" one of the pirates shouts, slamming a new magazine into a machine-pistol.");
+
+			output("\n\n\"<i>I don't fucking know! Just shoot 'em!</i>\"");
+
+			clearMenu();
+			addButton(0, "Fight", startPhoenixPirateFight);
+			return true;
+		}
+		else
+		{
+			output("The <i>Phoenix</i>'s cargo bay is spacious for its size, full of crates and barrels and other cargo. Several dead pirates are splattered on the deck, while others have been knocked out in the battle. Red emergency lights are active, now that the power is semi-out in secondary systems, and the floor is lousy with blood and shell-casings.");
+			
+			if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) output("\n\nSaendra is slumped against the wall, using a first-aid kit to patch the hole up in her side.");
+			return false;
+		}
 	}
 }
 
@@ -567,14 +597,22 @@ public function phoenixEngineering():void
 {
 	clearOutput();
 	author("Savin");
-	output("The <i>Phoenix</i>'s engineering deck is massive, running more than half the length of the ship. It apparently also serves as a flight deck and garage, as there's a pair of hoverbikes and a cargo loader parked inside. More importantly, though, you can see the engines sitting idle, knocked offline by the first devastating volley of fire. ");
+	
+	if (flags["FALL OF THE PHOENIX STATUS"] == 1 && flags["SAENDRA AFFECTION"] != undefined)
+	{
+		output("The Engineering deck is largely dominated by a huge engine, currently idling and humming lowly. An instance of Valeria's avatar is sitting near the engines, carefully keeping an eye on several flickering readouts and sensor reports. A loading ramp is opposite the engines, with a heavy cargo lifter parked nearby, as well as a pair of hover bikes. ");
+	}
+	else
+	{
+		output("The <i>Phoenix</i>'s engineering deck is massive, running more than half the length of the ship. It apparently also serves as a flight deck and garage, as there's a pair of hoverbikes and a cargo loader parked inside. More importantly, though, you can see the engines sitting idle, knocked offline by the first devastating volley of fire. ");
 
-	output("\n\nNot far from the elevator shaft, a small holo-console is still on emergency power, showing Valeria's holo-avatar.");
+		output("\n\nNot far from the elevator shaft, a small holo-console is still on emergency power, showing Valeria's holo-avatar.");
 
-	// [Valeria] [Engines] [Cargo]
-	if (flags["FALL OF THE PHOENIX ENGINE STATUS"] == undefined && flags["FALL OF THE PHOENIX TALKED TO AI IN ENGINEERING"] == undefined) addButton(0, "Valeria", phoenixEngineeringValeria);
-	if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) addButton(1, "Engines", phoenixEngineeringEngines);
-	if (flags["FALL OF THE PHOENIX TAKEN SHIELD"] == undefined) addButton(5, "Cargo", phoenixEngineeringCargo);
+		// [Valeria] [Engines] [Cargo]
+		if (flags["FALL OF THE PHOENIX ENGINE STATUS"] == undefined && flags["FALL OF THE PHOENIX TALKED TO AI IN ENGINEERING"] == undefined) addButton(0, "Valeria", phoenixEngineeringValeria);
+		if (flags["FALL OF THE PHOENIX ENGINEERING STATUS"] != 1) addButton(1, "Engines", phoenixEngineeringEngines);
+		if (flags["FALL OF THE PHOENIX TAKEN SHIELD"] == undefined) addButton(5, "Cargo", phoenixEngineeringCargo);
+	}
 }
 
 public function phoenixEngineeringCargo():void
