@@ -213,6 +213,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["SAENDRA"] = new Saendra();
 	}
+	if (!justUpdate || (justUpdate && chars["AMMA"] == undefined))
+	{
+		chars["AMMA"] = new Amma();
+	}
 	// Check all characters have version information set
 	for (var prop in chars)
 	{

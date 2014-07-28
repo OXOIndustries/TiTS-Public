@@ -265,6 +265,7 @@ function shipMenu():Boolean {
 		setLocation("SHIP\nINTERIOR","MHEN'GA","SYSTEM: ARA ARA");
 	}
 	else if(shipLocation == "201") setLocation("SHIP\nINTERIOR","TARKUS","SYSTEM: REDACTED");
+	else if(shipLocation == "TEXAS CUSTOMS") setLocation("SHIP\nINTERIOR","NEW TEXAS","SYSTEM: NYE");
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.addButton(8,"Crew",crew);
@@ -290,7 +291,8 @@ function flyMenu():void {
 		else addDisabledButton(2,"Tarkus");
 	}
 	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
-
+	if(shipLocation != "TEXAS CUSTOMS") addButton(3,"New Texas",flyTo,"New Texas");
+	else addDisabledButton(3,"New Texas","New Texas","You're already there.");
 	this.addButton(14,"Back",mainGameMenu);
 }
 
@@ -331,7 +333,12 @@ function flyTo(arg:String):void {
 		output("\n\nSlow and steady, you guide your vessel through the asteroid field around the planet. Now that you're closer, though, those asteroids look more like debris than rock: hulls of space ships and ruined clumps of satellites mashed together over centuries of disuse now litter the upper atmosphere of Tarkus, making your approach difficult. More than once, a mass of space debris bounces off your shields, sending shudders through the hull. Finally, though, you break through, heat shields going up as you make the dive planetside.");
 		output("\n\nYour nav beacon guides you in most of the way, directing you towards what looks like a derelict capital ship in the middle of a great red wasteland, littered with debris from all manner of machines and vessels. This whole planet is little more than a junkyard, a once-ripe world ravished by the march of a civilization that has left little more than its garbage in its wake. You shudder at the sight of the ruined landscape as you're guided in toward an open docking bay on the side of the ancient-looking, monolithic ship, flying past a glowing hull plate reading NOVA. It looks vaguely like a human vessel, but not of a make or model you've ever seen, and it looks centuries old, a derelict of ancient days. How'd it get all the way out here? Benching the question for now, you loop around the broadside of the capsized capital ship, easing into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
 	}
-	
+	else if(arg == "New Texas") {
+		shipLocation = "TEXAS CUSTOMS";
+		currentLocation = "TEXAS CUSTOMS";
+		output("You fly to New Texas");
+		output(" and step out of your ship.");
+	}
 	processTime(600 + rand(30));
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -756,6 +763,7 @@ function lactationUpdateHourTick():void
 			if(pc.milkFullness < 0) pc.milkFullness = 0;
 		}
 	}
+	if(pc.milkMultiplier < 0) pc.milkMultiplier = 0;
 	//90
 	if(pc.milkMultiplier < 90 && originalMultiplier >= 90) eventBuffer += "\n\nYou're pretty sure that your lactation is starting to slow down a little bit. If you don't start milking yourself, you'll eventually stop producing.";
 	//80

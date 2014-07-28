@@ -118,9 +118,9 @@ function visitorDeskApproach():void
 	if(reahaIsCrew()) output("Damn, Reaha’s got nothing on the cows here....");
 
 	output("\n\n“<i>Sorry about the wait!</i>” the cow-girl says with a big smile. “<i>My name’s Amma, and I just need a few things from you before you can head on out to the fields. Trust me, you’re going to have so much fun!");
-	if(pc.mf("dude","") == "dude") output(" “<i>There’s plenty of girls just like me who’re going to be so happy to meet you!</i>”");
-	else if(pc.biggestTitSize() < 7) output("“<i>I think New Texas’s got just what you need to spice up your life, cutie!</i>”");
-	else output("“<i>You look like you’d fit right in here, miss! A couple days on New Texas and you won’t ever want to leave!</i>”");
+	if(pc.mf("dude","") == "dude") output(" There’s plenty of girls just like me who’re going to be so happy to meet you!</i>”");
+	else if(pc.biggestTitSize() < 7) output(" I think New Texas’s got just what you need to spice up your life, cutie!</i>”");
+	else output(" You look like you’d fit right in here, miss! A couple days on New Texas and you won’t ever want to leave!</i>”");
 
 	output("\n\nShe picks up a holo-slate with a few blanks on it and hands it over to you. “<i>Just sign the register here and you’re all set. Oh! And if you want the Treatment, just go to the gift shop in the ranch house. You can even get a delicious salad from the restaurant while you’re getting treated. Or a steak or something, I guess. Or you could go play with the " + pc.mf("studs","girls") + " in the barns: they’re always open to visitors!</i>”");
 	output("\n\nAs she’s speaking, you sign your name and ship ID. Once done, a green light flickers on the screen, and a banner announces that you’re done - welcome to New Texas! “<i>Great! All done, sugar! Just head on out through the door there, and have lots of fun. If you have any questions, Oggy and I are always here to answer ‘em.</i>”");

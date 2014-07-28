@@ -121,6 +121,7 @@
 		include "../includes/travelEvents.kiroRescue.as";
 		include "../includes/stellarTether.as";
 		include "../includes/saendra.as";
+		include "../includes/texas_new.as";
 		
 		include "../includes/lightsOut.as";
 			

@@ -2724,7 +2724,6 @@ function initializeRooms():void
 	rooms["364"].system = "SYSTEM: REDACTED";
 	rooms["364"].moveMinutes = 1;
 	rooms["364"].addFlag(GLOBAL.OUTDOOR);
-		
 
 	rooms["WIDGET WAREHOUSE"] = new RoomClass(this);
 	rooms["WIDGET WAREHOUSE"].roomName = "WIDGET\nWAREHOUSE";
@@ -2735,6 +2734,23 @@ function initializeRooms():void
 	rooms["WIDGET WAREHOUSE"].system = "SYSTEM: REDACTED";
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.COMMERCE);
+	
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//					NEW TEXAS ROOMS
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+	rooms["TEXAS CUSTOMS"] = new RoomClass(this);
+	rooms["TEXAS CUSTOMS"].roomName = "CUSTOMS\nOFFICE";
+	rooms["TEXAS CUSTOMS"].description = "";
+	rooms["TEXAS CUSTOMS"].runOnEnter = customsAndCheckInOnNewTexas;
+	//rooms["TEXAS CUSTOMS"].southExit = "211";
+	rooms["TEXAS CUSTOMS"].planet = "PLANET: NEW TEXAS";
+	rooms["TEXAS CUSTOMS"].system = "SYSTEM: NYE";
+	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.INDOOR);
+	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.NPC);
+	
 
 	// THE PHOENIX
 	rooms["PHOENIX RECROOM"] = new RoomClass(this);

@@ -2487,8 +2487,8 @@ function defeatKaska():void
 	}
 	else
 	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
-		addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
+		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
 	}
 	addButton(14,"Leave",leaveKaskaPostCombat);
 }
@@ -2527,8 +2527,8 @@ function approachUnfuckedKaska():void
 	}
 	else
 	{
-		addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that would fit in Kaska's vagina for this.");
-		addDisabledButton(1,"Cunnilingus","Cunnilingus","This scene requires you to have a vagina.");
+		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this.");
+		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this.");
 	}
 	addButton(14,"Leave",mainGameMenu);
 }
