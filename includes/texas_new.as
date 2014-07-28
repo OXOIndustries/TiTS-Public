@@ -247,7 +247,7 @@ function talkToOggyAbootTreatManz():void
 function oggysCurrentJob():void
 {
 	clearOutput();
-	output("\n\n“<i>So, tell me about what you do here.</i>”");
+	output("“<i>So, tell me about what you do here.</i>”");
 	output("\n\n“<i>Customs? C’mon, " + pc.mf("buddy","beautiful") + ", it’s the same shit as anywhere. ‘Oh, no, you can’t take that horribly poisonous Evaxi cactus here;’ ‘Please stop trying to take your power armor through the gate, you don’t need it here;’ ‘Yeah, we can all see you’ve got contraband stuffed up your ass. Drop trou, buddy. It’s Mr. Gloves time.’ Least NT’s pretty peaceful. Not a lot of scum try and come through, since all we’ve got is milk and the Treatment. Worst we have to worry about is the occasional slaver trying to steal our cows, but that’s Fleet’s problem most of the time.</i>”");
 	output("\n\nHe shrugs. “<i>Honestly, it’s pretty boring. At least compared to my old job. I remember digging through the ground levels of the biggest hive worlds, pulling security at planetary conventions... that was exciting. Even stopped an assassin, once. Head-butted her when she came ‘round a corner; went down like a </i>bitch<i>. Less getting shot at now, though. That’s pretty nice. Haven’t even had to draw down since I got the job.</i>”");
 	output("\n\n“<i>So what made you pick customs?</i>”");
@@ -329,7 +329,7 @@ function askOggyForSex():void
 		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
-	addButton(1,"ServiceOggy",worshipZeBullCawk,"Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
+	addButton(1,"ServiceOggy",worshipZeBullCawk, undefined, "Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 }
 
