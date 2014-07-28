@@ -593,11 +593,19 @@ function backAfterWreckingHanSoSosShit():void
 		flags["HAND_SOS_CONSOLE_EXPLODED"] = 1;
 		flags["SEXBOT_FACTORY_DISABLED"] = 1;
 		flags["SEXBOT_QUEST_STATUS"] = 2;
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		if(inCombat()) genericVictory();
+		else
+		{
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+		}
 		return;
 	}
-	if(inCombat()) genericVictory();
+	if(inCombat()) 
+	{
+		output("\n\n");
+		genericVictory();
+	}
 	else
 	{
 		mainGameMenu();
