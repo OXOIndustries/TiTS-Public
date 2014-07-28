@@ -937,6 +937,7 @@ function skipCeliseOption():void
 	setLocation("TUTORIAL\nSKIP", "TAVROS STATION", "SYSTEM: KALAS");
 	showBust("CELISE");
 	showName("\nCELISE");
+	chars["PC"].removeStatusEffect("In Creation");
 	output("What do you do with Celise? Ignore her, or take her on your crew?");
 	
 	clearMenu();
