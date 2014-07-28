@@ -1043,7 +1043,7 @@ function scanASexbot():void
 	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined) flags["SEXBOTS_SCANNED_FOR_COLENSO"] = 0;
 	flags["SEXBOTS_SCANNED_FOR_COLENSO"]++;
 	output("You pass the GPS scanner over the kneeling sexbot.  It vibrates a few times and then beeps satisfyingly.");
-	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) output(" Another one down.");
+	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) output(" Another one down.\n\n");
 	else output(" A red light appears on its front panel and it dings again, urgently.  On its radar screen it is displaying a small skeleton map of the wastelands with four lines drawn on it - all converging on a single point.  It looks like you’ve finally scanned enough of these things to work out where they’re coming from. <b>It's located in the iron ridges, to the south of the rust plains.\n\n");
 	variableRoomUpdateCheck();
 	genericVictory();

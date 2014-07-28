@@ -267,6 +267,7 @@ function defeatDatLapinara():void
 		output("\n\nYou aren't any where near horny enough to even consider the offer.\n\n");
 		clearMenu();
 		addButton(14,"Leave",genericVictory);
+		return;
 	}
 	clearMenu();
 	if(pc.hasCock()) 
