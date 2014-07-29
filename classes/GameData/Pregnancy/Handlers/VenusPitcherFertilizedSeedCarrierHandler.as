@@ -1,9 +1,10 @@
-package classes.GameData.Pregnancy.Handlers 
+﻿package classes.GameData.Pregnancy.Handlers 
 {
 	import classes.Creature;
 	import classes.GameData.Pregnancy.BasePregnancyHandler;
 	import classes.PregnancyData;
 	import classes.kGAMECLASS;
+	import classes.GLOBAL;
 	import classes.rand;
 	
 	/**
@@ -128,26 +129,31 @@ package classes.GameData.Pregnancy.Handlers
 			if (pData.pregnancyQuantity >= 8)
 			{
 				// Megafull
-				retString = "Your belly protrudes unnaturally far forward, the ovoid objects stuffed into your womb by the venus pitchers forming slight bulges in your [pc.skinFurScales]. ";
+				retString = "The ovoid objects stuffed into your womb by the venus pitchers form slight bulges in your [pc.skinFurScales]. ";
 			}
 			else if (pData.pregnancyQuantity >= 7)
 			{
 				// Full
-				retString = "Your belly is painfully distended by your pregnancy, the venus pitcher seed pods stuffing your womb to an uncomfortable degree. ";
+				retString = "The venus pitcher seed pods stuff your womb to an uncomfortable degree. ";
 			}
 			else if (pData.pregnancyQuantity >= 4)
 			{
-				retString = "Your belly is clearly distended by your pregnancy, the venus pitcher seed pods stuffing your womb to the brim. ";
+				retString = "The venus pitcher seed pods stuff your womb to the brim. ";
 			}
 			else if (pData.pregnancyQuantity >= 3)
 			{
 				// First one (minimum) is done, trepidation at the rest
-				retString = "Your belly is still clearly distended by your pregnancy, the venus pitcher seed pods stuffing your womb thoroughly. Birthing the pods is an arduous task, but some part of you looks forward to the next time you can experience the process. ";
+				retString = "The venus pitcher seed pods are still present in your womb. Birthing the pods is an arduous task, but some part of you looks forward to the next time you can experience the process. ";
+			}
+			else if (pData.pregnancyQuantity > 1)
+			{
+				// First one (minimum) is done, trepidation at the rest
+				retString = "At least two rounded pods are packed into your womb. A pleasant twinge runs through your body at the thought of passing another. ";
 			}
 			else if (pData.pregnancyQuantity == 1)
 			{
 				// Had fun, just one left....
-				retString = "Your belly has shrunken considerably since your initial impregnantion at the tentacle-tips of the venus pitchers, but you can still clearly make out a final pod residing deep within your womb. ";
+				retString = "Your uterine fullness has receded since your initial impregnantion at the tentacle-tips of the venus pitchers, but you can still clearly make out a final pod residing deep within your womb. ";
 			}
 			
 			if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished"))
@@ -155,15 +161,20 @@ package classes.GameData.Pregnancy.Handlers
 				// Eggs incubated and we're prepping to lay a new one
 				if (pData.pregnancyIncubation <= 60)
 				{
-					retString += "Your [pc.vagina] has grown wetter and eager once more, preparing itself for the coming task of birthing another of the venus pitchers seed pods.";
+					retString += "Your [pc.vagina " + slot + "] has grown wetter and eager once more, preparing itself for the coming task of birthing another of the venus pitchers seed pods.";
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "The [pc.skinFurScales] covering your belly occasionally writhes under the motions of the seed pods packed into your womb.";
+					retString += "The [pc.skinFurScales] covering your belly occasionally ";
+					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) retString += "writhe";
+					else retString += "writhes";
+					retString += " under the motions of the seed pod";
+					if(pData.pregnancyQuantity > 1) retString += "s";
+					retString += " packed into your womb.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{
-					retString += "Hints of slime are once again leaking down your thighs. Your [pc.vagina] must be preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
+					retString += "Hints of slime are once again leaking down your [pc.thighs]. Your [pc.vagina " + slot + "] must be preparing itself for the upcoming task the Venus Pitchers have burdened your womb with.";
 				}
 			}
 			else
@@ -171,15 +182,20 @@ package classes.GameData.Pregnancy.Handlers
 				// Eggs still incubating
 				if (pData.pregnancyIncubation <= 60)
 				{
-					retString += "You'll be laying soon, you're sure of it. Your [pc.vagina] has grown wetter and eager, birth-slime practically dripping out of you.";
+					retString += "You'll be laying soon, you're sure of it. Your [pc.vagina " + slot + "] has grown wetter and eager, birth-slime practically dripping out of you.";
 				}
 				else if (pData.pregnancyIncubation <= 120)
 				{
-					retString += "The [pc.skinFurScales] covering your belly occasionally writhes under the motions of the objects packed into your womb.";
+					retString += "The [pc.skinFurScales] covering your belly occasionally ";
+					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES) retString += "writhe";
+					else retString += "writhes";
+					retString += " under the motions of the object";
+					if(pData.pregnancyQuantity > 1) retString += "s";
+					retString += " packed into your womb.";
 				}
 				else if (pData.pregnancyIncubation <= 600)
 				{
-					retString += "Hints of slime leak down your thighs, your [pc.vagina] preparing itself for the upcoming task the venus pitchers have burdened your womb with.";
+					retString += "Hints of slime leak down your thighs, your [pc.vagina " + slot + "] preparing itself for the upcoming task the venus pitchers have burdened your womb with.";
 				}
 			}
 			return retString;

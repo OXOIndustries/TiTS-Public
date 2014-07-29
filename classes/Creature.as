@@ -2392,8 +2392,8 @@
 			nouns[nouns.length] = "lip";
 			nouns[nouns.length] = "lip";
 			//High libido sluttery
-			if(libido() >= 50 && lips >= 2) nouns[nouns.length] = "dick-sucker";
-			if(libido() >= 60 && lips >= 3) nouns[nouns.length] = "cock-sucker";
+			if(libido() >= 50 && lips >= 2 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "dick-sucker";
+			if(libido() >= 60 && lips >= 3 && (hasVagina() || femininity >= 75)) nouns[nouns.length] = "cock-sucker";
 			if(libido() >= 65 && lips >= 4) nouns[nouns.length] = "dick-pillow";
 			if(libido() >= 70 && lips >= 4) nouns[nouns.length] = "cock-pillow";
 			if(libido() >= 80 && lips >= 5) nouns[nouns.length] = "fuck-pillow";
@@ -5825,23 +5825,26 @@
 					else desc = "waspish ";
 				}
 			} else if (hipRating() < 20) {
-				rando = this.rand(3);
+				if(femininity > 50 || hasVagina()) rando = this.rand(3);
+				else rando = 0;
 				if (thickness < 40) {
 					if (this.rand(2) == 0) desc = "flared, ";
 					else desc = "waspish, ";
 				}
-				if (rando == 0) desc += "fertile ";
-				if (rando == 1) desc += "child-bearing ";
-				if (rando == 2) desc += "voluptuous ";
+				if (rando == 0) desc += "voluptuous ";
+				if (rando == 1) desc += "fertile ";
+				if (rando == 2) desc += "child-bearing ";
+				
 			} else if (hipRating() >= 20) {
+				if(femininity > 50 || hasVagina()) rando = this.rand(3);
+				else rando = rand(2);
 				if (thickness < 40) {
 					if (this.rand(2) == 0) desc = "flaring, ";
 					else desc = "incredibly waspish, ";
 				}
-				rando = this.rand(3);
-				if (rando == 0) desc += "broodmother-sized ";
+				if (rando == 0) desc += "inhumanly-wide ";
 				if (rando == 1) desc += "cow-like ";
-				if (rando == 2) desc += "inhumanly-wide ";
+				if (rando == 2) desc += "broodmother-sized ";
 			}
 			//Taurs
 			if (isTaur() && this.rand(3) == 0) desc += "flank";
