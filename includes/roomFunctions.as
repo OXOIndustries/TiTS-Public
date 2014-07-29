@@ -87,6 +87,10 @@ function debugMenus():void
 		//itemCollect(foundLootItems);
 	//});
 	
+	addButton(1, "Unlock Saen", function():void {
+		flags["FALL OF THE PHOENIX STATUS"] = 1;
+	});
+	
 	
 	addButton(7, "Test Nades", function():void {
 		

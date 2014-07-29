@@ -1527,7 +1527,10 @@ public function saendraRidesYouCowgirlStyle():void
 	saenHeader(true);
 
 	var selCock:int = pc.cockThatFits(saendra.analCapacity());
-	if (selCock == -1) pc.smallestCockIndex();
+	if (selCock == -1)
+	{
+		selCock = pc.smallestCockIndex();
+	}
 
 	output("You roll onto your back and tell Saen to take charge, that you’d love to leave yourself in her capable, experienced hands. Your lover smiles for the briefest moment, then pounces, leaping over you, straddlingyour waist, tugging at your [pc.gear] and quickly freeing [pc.eachCock]. You groan as she grips [pc.oneCock], quickly pumping it as she shifts her weight around, getting into position. Soon, her flared hips and big, gropable ass are hovering over your dick, so tantalizingly close that you can feel the intense, radiant warmth of her body on your [pc.cockHead "+ selCock +"]. But she holds steady over you, continuing to stroke you with fast, furious motions; before long, thick drops of slick pre are running down your length, staining Saen’s fur-clad fingers and making your [pc.cock "+ selCock +"] a slippery, sticky mess. Satisfied, Saen lets your cock go, bringing her pre-slick fingers up to her mouth and cleaning them off one by one, slipping each digit in and suckling on it like a tiny cock, making sure to get every last drop. ");
 	
