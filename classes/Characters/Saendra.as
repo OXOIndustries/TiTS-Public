@@ -117,6 +117,7 @@ package classes.Characters
 			this.fertilityRaw = 0;
 			this.clitLength = 0.5;
 			this.pregnancyMultiplierRaw = 1;
+			this.vaginalVirgin = false;
 			
 			// Breastrow 0 implicitly available
 			(this.breastRows[0] as BreastRowClass).breastRatingRaw = 8;
@@ -128,7 +129,8 @@ package classes.Characters
 			this.milkRate = 0;
 			
 			(this.ass as VaginaClass).wetnessRaw = 0;
-			(this.ass as VaginaClass).loosenessRaw = 1;
+			(this.ass as VaginaClass).loosenessRaw = 2;
+			this.analVirgin = false;
 			
 			this.minutesSinceCum = 3200;
 			this.timesCum = 487;

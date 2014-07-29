@@ -9102,39 +9102,45 @@
 				stretched = true;
 			}
 			//If virgin
-			if(holePointer.hymen || (hole < 0 && analVirgin) || (hole >= 0 && vaginalVirgin)) {
-				if (spacingsF) output(" ");
-				if (this is PlayerCharacter)
+			if (holePointer.hymen || (hole < 0 && analVirgin) || (hole >= 0 && vaginalVirgin)) {
+				if (display)
 				{
-					if(holePointer.hymen) output("<b>Your hymen is torn</b>");
-					else output("<b>You have been penetrated</b>");
-					if(hole >= 0 && vaginalVirgin) {
-						vaginalVirgin = false;
-						output("<b>, robbing you of your vaginal virginity</b>");
-					}
-					else if(analVirgin) {
-						output("<b>, robbing you of your anal virginity</b>");
-						analVirgin = false;
-					}
-					output("<b>.</b>");
-				}
-				else
-				{
-					if (holePointer.hymen) output("<b>" + short + "s hymen is torn</b>");
-					else output("<b>" + short + " has been penetrated</b>");
-					if (hole >= 0 && vaginalVirgin)
+					if (spacingsF) output(" ");
+					if (this is PlayerCharacter)
 					{
-						vaginalVirgin = false;
-						output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity</b>");
+						if (holePointer.hymen)
+						{
+							output("<b>Your hymen is torn</b>");
+							holePointer.hymen = false;
+						}
+						else output("<b>You have been penetrated</b>");
+						
+						if (hole >= 0 && vaginalVirgin) output("<b>, robbing you of your vaginal virginity</b>");
+						
+						else if (analVirgin) output("<b>, robbing you of your anal virginity</b>");
+						
+						output("<b>.</b>");
 					}
-					else if (analVirgin)
+					else
 					{
-						analVirgin = false;
-						output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity</b>");
+						if (holePointer.hymen)
+						{
+							output("<b>" + short + "s hymen is torn</b>");
+							holePointer.hymen = false;
+						}
+						else output("<b>" + short + " has been penetrated</b>");
+						
+						if (hole >= 0 && vaginalVirgin)	output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " vaginal virginity</b>");
+						
+						else if (analVirgin) output("<b>, robbing " + mf("him", "her") + " of " + mf("his", "her") + " anal virginity</b>");
+						
+						output("<b>.</b>");
 					}
-					output("<b>.</b>");
+					if(spacingsB) output(" ");
 				}
-				if(spacingsB) output(" ");
+				
+				if (hole >= 0 && vaginalVirgin) vaginalVirgin = false;
+				else if (analVirgin) analVirgin = false;
 				devirgined = true;
 			}
 			//Delay anti-stretching
