@@ -94,9 +94,13 @@
 		[Embed(source = "../../../assets/images/npcs/gats/Kelly_Nude.png", mimeType = "image/png")]
 		public var Bust_KELLY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/gats/Kaska.png", mimeType = "image/png")]
+		public var Bust_KASKA:Class;
+		[Embed(source = "../../../assets/images/npcs/gats/Kaska_Nude.png", mimeType = "image/png")]
+		public var Bust_KASKA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro.png", mimeType = "image/png")]
 		public var Bust_KIRO:Class;
-		
 		[Embed(source = "../../../assets/images/npcs/gats/Kiro_Nude.png", mimeType = "image/png")]
 		public var Bust_KIRONUDE:Class;
 
