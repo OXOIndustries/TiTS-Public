@@ -29,7 +29,7 @@ function customsAndCheckInOnNewTexas():Boolean
 		output(". Sometimes when she does so, Ogram will flick a button on his holo terminal, which immediately causes Amma to squirm in her seat.");
 		if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined) output(" What kind of game are they playing?");
 		addButton(0,"Ogram",repeatOgramApproach,undefined,"Ogram","Talk to the burly bull at the customs desk.");
-		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor's desk.")
+		addButton(5,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor's desk.")
 	}
 	return false;
 }
@@ -124,11 +124,11 @@ function visitorDeskApproach():void
 
 	output("\n\nShe picks up a holo-slate with a few blanks on it and hands it over to you. “<i>Just sign the register here and you’re all set. Oh! And if you want the Treatment, just go to the gift shop in the ranch house. You can even get a delicious salad from the restaurant while you’re getting treated. Or a steak or something, I guess. Or you could go play with the " + pc.mf("studs","girls") + " in the barns: they’re always open to visitors!</i>”");
 	output("\n\nAs she’s speaking, you sign your name and ship ID. Once done, a green light flickers on the screen, and a banner announces that you’re done - welcome to New Texas! “<i>Great! All done, sugar! Just head on out through the door there, and have lots of fun. If you have any questions, Oggy and I are always here to answer ‘em.</i>”");
-
+	flags["NEW_TEXAN_CUSTOMS_MET"] = 1;
 	processTime(10);
 	//[Talk] [Leave]
 	clearMenu();
-	addButton(0,"Talk",talkToOggy,undefined,"Talk","Talk with the chesty cow-gal.");
+	addButton(0,"Talk",talkToAmma,true,"Talk","Talk with the chesty cow-gal.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -190,7 +190,7 @@ function rearmAtOgram():void
 	clearOutput();
 	output("“<i>Alright, let’s see what we’ve got here,</i>” Ogram says, popping open the container behind his desk and pulling out your gear. He compares the bundle to the tag attached to it, checks something on his holo-terminal, and hands it over to you. “<i>Just sign here, and you’re all set.</i>”");
 	output("\n\nYou do so, and are promptly handed a bundle with your weapons in it. “<i>Cool. Take care out there, " + pc.mf("buddy","beautiful") + ".</i>”");
-	pc.removeStatuEffect("Disarmed");
+	pc.removeStatusEffect("Disarmed");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -325,7 +325,7 @@ function askOggyForSex():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.hasCockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
+		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
 		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
@@ -491,11 +491,11 @@ function sexChatWithAmma():void
 	clearMenu();
 	if(pc.hasCock())
 	{
-		if(pc.hasCockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
+		if(pc.cockThatFits(chars["AMMA"].vaginalCapacity(0)) >= 0) addButton(0,"Spit Roast",spitRoastAmmoOnYerDicks,undefined,"Spit Roast","Spitroast Amma. Ogrim gets her mouth, you get her pussy.");
 		else addDisabledButton(0,"Spit Roast","Spit Roast","You're too big to spitroast her.");
 	}
 	else addDisabledButton(0,"Spit Roast","Spit Roast","Spitroasting Amma requires you to have a penis of some kind.");
-	addButton(1,"ServiceOggy",worshipZeBullCawk,"Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
+	addButton(1,"ServiceOggy",worshipZeBullCawk,undefined,"Service Oggy","Help Amma orally service Ogram's dick. Really get in there and give it the worship it deserves.");
 	addButton(14,"Back",approachDatCowGalRepeat);
 }
 
@@ -506,7 +506,7 @@ function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
-	var x:int = pc.cockThatFits(chars["AMMO"].vaginalCapacity(0));
+	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("At the cow-girl’s invitation, your hands quickly find their way onto Amma’s hips, pulling the ditzy cow up against you. She gives a gasp of a moo, her spankable ass grinding into your [pc.crotch] while her long, slender tail wraps affectionately around one of your [pc.legs]. Your wandering hands sink into her fleshy figure, caressing her wide hips before slipping up under her blouse, tracing along her bare, hot flesh and up to the shirt-straining mounds of her milky tits.");
 	output("\n\nAmma’s breath catches as your fingers squeeze around her huge breasts. “<i>Aaah! You go right for it, don’t ya?</i>” she giggles as your fingers dig into her pliant titflesh, a slight moan escaping her lips, growing louder as you work your fingers into her bosom.");
@@ -574,7 +574,7 @@ function worshipZeBullCawk():void
 	if(9999 == 0) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
 	output(". Your mind is left with only one, overpowering and all-consuming thought: cock.");
 
-	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your {if PC is feminine: “<i>dainty “<i>}fingers circling around his apple-sized nads, gently cupping an hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");
+	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your " + pc.mf("","<i>dainty</i> ") + "fingers circling around his apple-sized nads, gently cupping an hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");
 
 	output("\n\n“<i>Take it easy down there, " + pc.mf("buddy","beautiful") + ",</i>” Og says, planting one of his huge, powerful hands atop your head");
 	if(pc.earType == GLOBAL.TYPE_FELINE || pc.earType == GLOBAL.TYPE_CANINE) 
@@ -611,7 +611,7 @@ function worshipZeBullCawk():void
 	output("\n\nYou’re not sure you can wait that long... but by God you’ll try. Anything is worth the sweet release of your bullish mate. He starts to thrust, fucking your mouth like an onahole, pounding you back into the soft buffer of his lover’s udders, her flesh rippling with every impact as his speed mounts. Faster and harder, each thrust carrying his titanic cock deeper inside you until you’re stomach feels like it’s bulging with his sheer length, your throat stretching like a well-trained pussy around him. You can feel every pulse of his heartbeat through his cock now, every shudder he makes as you pleasure him, the swelling of his member as your tight throat brings him to orgasm.");
 	output("\n\n“<i>Deep breath!</i>” he shouts, moments before he cums. You have just enough time to do so before he rams his cock down to the hilt and unloads, bypassing your mouth entirely and shooting his wad right into your gut. You gasp and gag, unable to breathe as he cums, bloating your belly with a monstrous load of seed. You’re all but seeing stars by the time he starts to withdraw, still spewing spunk into you from his visibly lightning balls. The tip pops out of your mouth just at the tail end of his climax, blasting your tongue with a thick spray, following by your face and Amma’s, marking you both as Ogram’s bitches. You both eagerly open wide for the bull’s load, happily accepting his seed as it sprays across your faces until you’re dripping with it.");
 	output("\n\nYou’d probably have collapsed if not for Amma behind you, gently rocking you as Ogram’s finishes with you. “<i>You did good, honey!</i>” she coos, her breath hot and heavy against your [pc.ear]. “<i>Oggy hasn’t shot a load like that in ages!</i>”");
-	output("\n\nHe chuckles. “<i>She’s being modest, " + pc.mf("buddy","beautiful") + ". But seriously: if you suck cock that good, you’re welcome back any time.");
+	output("\n\nHe chuckles. “<i>She’s being modest, " + pc.mf("buddy","beautiful") + ". But seriously: if you suck cock that good, you’re welcome back any time.\</i>”");
 	if(pc.hasCock()) 
 	{
 		output(" “<i>I might even share Amma with you, if you play your cards right.</i>”");
