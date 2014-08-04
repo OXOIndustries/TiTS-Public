@@ -69,7 +69,7 @@ function approachAuroraPostTarkusBoom():void
 	//bat is hangin’ out and waves when you approach, fukken bat god damn
 	else
 	{
-		output("“<i>As you approach, Aurora becomes much more lively. By the time you make it over to her, that peach treat she was gnawing on has completely disappeared! The bat-mechanist is all smiles, giving you her full attention. “<i>Hey! I’m just finishing up; what do you need?</i>”");
+		output("As you approach, Aurora becomes much more lively. By the time you make it over to her, that peach treat she was gnawing on has completely disappeared! The bat-mechanist is all smiles, giving you her full attention. “<i>Hey! I’m just finishing up; what do you need?</i>”");
 	}
 	//Menu calls show up already since this is called within the normal approachAurora
 }
