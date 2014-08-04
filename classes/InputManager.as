@@ -118,11 +118,25 @@
 		
 		public function BindCheatSequence(name:String, ... keyCodes):void
 		{
+			var keyCodeList:Array = [];
+			
+			if (keyCodes.length == 1 && keyCodes[0] is String && keyCodes[0].length > 0)
+			{
+				for (var ii:int = 0; ii < keyCodes[0].length; ii++)
+				{
+					keyCodeList.push(keyCodes[0].charCodeAt(ii) - 32); // lel
+				}
+			}
+			else
+			{
+				keyCodeList = keyCodes;
+			}
+			
 			for (var i:int = 0; i < _cheatControlMethods.length; i++)
 			{
 				if (_cheatControlMethods[i].shortName == name)
 				{
-					_cheatControlMethods[i].SetKeyChain(keyCodes);
+					_cheatControlMethods[i].SetKeyChain(keyCodeList);
 				}
 			}
 		}

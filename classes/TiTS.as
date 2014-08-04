@@ -605,6 +605,18 @@
 			this.userInterface.BufferPagePrevHandler();
 		}
 		
+		// Cheaty hooks for stuff
+		public function IsFunction(name:String):Boolean
+		{
+			if (this[name] != undefined) return true;
+			return false;
+		}
+		
+		public function ExecuteFunction(name:String):void
+		{
+			this[name]();
+		}
+		
 		public function get pc():*
 		{
 			// This is actually a legit sensible layer of indirection for the player object when we want to address it.

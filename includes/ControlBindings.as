@@ -199,8 +199,17 @@
 		},
 		true);
 		
+	inputManager.AddBindableControl(
+		"Scene Execute",
+		"Execute a target scene by function name.",
+		function():void {
+			Cheats.SceneExecute();
+		},
+		true);
+		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
-	inputManager.BindCheatSequence("Room Transport", 73, 68, 67, 76, 69, 86);
+	inputManager.BindCheatSequence("Room Transport", "idclev");
+	inputManager.BindCheatSequence("Scene Execute", "impulse");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);
