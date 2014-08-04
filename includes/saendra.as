@@ -190,7 +190,7 @@ public function saendraSexMenu():void
 
 	if (pc.hasCock())
 	{
-		addButton(5, "Cowgirl", saendraRidesYouCowgirlStyle, undefined, "Cowgirl Style", "Let Saendra ride your cock cowgirl style.");
+		addButton(5, "Cowgirl", saendraRidesYouCowgirlStyle, undefined, "Cowgirl Style", "Let Saendra stick your cock up her ass and ride it cowgirl style.");
 		addButton(6, "Fuck Her Ass", saendraTakesItUpDaButte, undefined, "Fuck Her Ass", "Fuck Saendras wonderous ass.");
 	}
 	else
