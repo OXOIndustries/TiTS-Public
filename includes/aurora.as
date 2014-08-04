@@ -36,6 +36,44 @@ Interior
     rooms["AURORA’S SHOP"].addFlag(GLOBAL.COMMERCE);
 */
 
+function auroroMessInRoomText():void
+{
+	if(flags["TARKUS_DESTROYED"] != undefined && flags["MET_AURORA"] != undefined)
+	{
+		output("\n\nIn a quiet corner of the too-large room you see a familiar dangling figure enjoying a peach. Looks like Aurora is about the same as ever.");
+		addButton(1,"Aurora",approachAurora);
+	}
+}
+
+function approachAuroraPostTarkusBoom():void
+{
+	clearOutput();
+	author("Magic Ted");
+	auroraBust();
+	//da first time
+	//yo yo she be hangin’ out wings snuggled around her gnawing away on a fuzzy peach man get a load of this bat so fukken kawaii
+	if(flags["AURORA_SEEN_AFTER_SPLOSION"] == undefined)
+	{
+		flags["AURORA_SEEN_AFTER_SPLOSION"] = 1;
+		output("Admittedly, you were a little worried about the bat");
+		if(pc.isAss()) output(", even if it was just out of curiosity");
+		output(". Any fears that you might have fostered were quickly abated by her dangling appearance in the mess - she is a clever little cookie. Honestly, Aurora is probably <i>used</i> to a few cataclysmic explosions here or there. Just maybe not to this scale.");
+		output("\n\nAurora looks just as perky as ever as she dangles off a ruined ceiling light while eagerly gorging herself on a particularly fuzzy-looking peach, unconcerned with the steady dripping mess that falls to the floor. She doesn’t even notice you, still far too engrossed in her tasty bit of fruit to so much as open her eyes. She’d always felt on ease on the <i>Novahome</i>; even if it is all there is now, there's no need to keep an literal eye out for trouble.");
+		output("\n\nAs you distract yourself you lose the chance to get the ‘jump’ on her. One of her ears twitches around her pressed-up goggles as she peeks a golden eye open, and then the other. The voracious bat is practically beaming around that fruit as she makes it disappear in a few hungry swipes down her maw, no longer taking the time to savor her lunch.");
+		output("\n\n<i>“<b>Hello!</b>”</i> She hasn’t lost her voice");
+		if(pc.isAss()) output("; regrettably");
+		output(". “You’re safe! That’s good. Things got a bit, er, different around here, huh.” Not even the world crumbling out beneath her would tarnish this girl’s eternal peppiness. Despite having her livelihood lost to a vacuum, she looks to be about the same - you can even see the tools strapped to her person from around her blanketing wings.");
+		output("\n\n<i>\"I gotta go get to work soon, but do you need something?”</i> Busy bat, huh.");
+	}
+	//Repeat
+	//bat is hangin’ out and waves when you approach, fukken bat god damn
+	else
+	{
+		output("“<i>As you approach, Aurora becomes much more lively. By the time you make it over to her, that peach treat she was gnawing on has completely disappeared! The bat-mechanist is all smiles, giving you her full attention. “<i>Hey! I’m just finishing up; what do you need?</i>”");
+	}
+	//Menu calls show up already since this is called within the normal approachAurora
+}
+
 function auroraBonus():Boolean
 {
 	output("The cavernous room is dimly lit with swaying, hanging lamps similar to a gloomy and moonlit night on a much more <i>habitable</i> world, still bright enough to make out vague details. The room isn’t a comfortable one, claustrophobic with the stacks of shelves, boxes and half-ruined devices haphazardly placed about with little rhyme or reason, or the signs of damaged hull that seem especially prevalent here, making it hard to get around. If that wasn’t enough to make you on edge, the thick, heady scent of char permeates the room, making your senses reel and head dizzy as you try to keep it all together.");
@@ -123,6 +161,11 @@ function approachAurora():void
 		output("\n\nNow you’ve met Aurora, one of the techies of Novahome.");
 		processTime(4);
 	}
+	//Tarkus boomed!
+	else if(flags["TARKUS_DESTROYED"] != undefined)
+	{
+		approachAuroraPostTarkusBoom();
+	}
 	//After first time
 	else
 	{
@@ -142,7 +185,12 @@ function auroraBaseMenu(disabledButton:int = -1):void
 	if(disabledButton == 1) addDisabledButton(1,"Talk");
 	else addButton(1,"Talk",auroraTalkMenu,undefined,"Talk","Ask Aurora a few questions.");
 	if(disabledButton == 2) addDisabledButton(2,"LookAround");
-	else addButton(2,"LookAround",lookAroundAurorasShop,undefined,"Look Around","Look around Aurora's shop for anything interesting.");
+	else 
+	{
+		
+		if(flags["TARKUS_DESTROYED"] != undefined) addDisabledButton(2,"LookAround","LookAround","Aurora's shop is gone. Any hope you had of scoping out her cool gadgets is gone along with her workshop.");
+		else addButton(2,"LookAround",lookAroundAurorasShop,undefined,"Look Around","Look around Aurora's shop for anything interesting.");
+	}
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -162,16 +210,31 @@ function talkToAurora():void
 function auroraTalkMenu(disabledButton:int = -1):void
 {
 	clearMenu();
-	if(disabledButton == 0) addDisabledButton(0,"About Her");
-	else addButton(0,"About Her",askAuroraAboutHerself);
-	if(disabledButton == 1) addDisabledButton(1,"About Work");
-	else addButton(1,"About Work",askAuroraAboutWork);
-	if(disabledButton == 2) addDisabledButton(2,"AboutRaskvel");
-	else addButton(2,"AboutRaskvel",askAuroraAboutRaskvel);
-	if(disabledButton == 3) addDisabledButton(3,"AboutSpecies");
-	else addButton(3,"AboutSpecies",askAuroraAboutHerSpecies);
-	if(disabledButton == 4) addDisabledButton(4,"AboutNovahome");
-	else addButton(4,"AboutNovahome",askAuroraAboutNovahome);
+	if(flags["TARKUS_DESTROYED"] == undefined)
+	{
+		if(disabledButton == 0) addDisabledButton(0,"About Her");
+		else addButton(0,"About Her",askAuroraAboutHerself);
+		if(disabledButton == 1) addDisabledButton(1,"About Work");
+		else addButton(1,"About Work",askAuroraAboutWork);
+		if(disabledButton == 2) addDisabledButton(2,"AboutRaskvel");
+		else addButton(2,"AboutRaskvel",askAuroraAboutRaskvel);
+		if(disabledButton == 3) addDisabledButton(3,"AboutSpecies");
+		else addButton(3,"AboutSpecies",askAuroraAboutHerSpecies);
+		if(disabledButton == 4) addDisabledButton(4,"AboutNovahome");
+		else addButton(4,"AboutNovahome",askAuroraAboutNovahome);
+		
+	}
+	else
+	{
+		if(disabledButton == 0) addDisabledButton(0,"HowAreYou?");
+		else addButton(0,"HowAreYou?",howIsAuroraPostSplosion,undefined,"HowAreYou?","You could ask her how she’s doing - her life had quite the upheaval recently.");
+		if(disabledButton == 1) addDisabledButton(1,"Survival");
+		else addButton(1,"Survival",howdAuroraSurviveSplosions,undefined,"Survival","Aurora had a practically outdoors workshop and spent plenty of time flying around the planet - how’d she make it back?");
+		if(disabledButton == 2) addDisabledButton(2,"Nova?");
+		else addButton(2,"Nova?",whatHappenedToZeShip,undefined,"How’s this bucket doing? You don’t recall her being space-capable.");
+		if(disabledButton == 3) addDisabledButton(3,"What Now?");
+		else addButton(3,"What Now?",whatNowBrownCow,undefined,"What are you going to do now?");
+	}
 	addButton(14,"Back",approachAurora);
 }
 
@@ -261,6 +324,81 @@ function askAuroraAboutNovahome():void
 	output("\n\nYou nod, curtly. By your gathering Aurora is pretty much the self-appointed chief engineer on this junk, if only because no one else has the skills for it. How <i>she</i> has the skills for it, though, is a mystery in of itself. Nonetheless, it sounds like she keeps her head out of other people’s affairs and just works on the ship, not having much to say for the various people in it. Which isn’t surprising coming from a kid.");
 	processTime(3);
 	auroraTalkMenu(4);
+}
+
+//====================
+//POST SPLOSION TALKS!
+//====================
+//How are you?
+//Tooltip: You could ask her how she’s doing - her life had quite the upheaval recently.
+function howIsAuroraPostSplosion():void
+{
+	clearOutput();
+	author("Magic_Ted");
+	showBust("AURORA");
+	showName("\nAURORA");
+	output("<i>\"I’m good!”</i> Aurora’s response is pretty much immediate, almost sounding trained in its efficiency. After a quiet moment between the two of you, the girl sheepishly continues, swaying from her lamp. <i>\"Um. I’m fine, really. I keep busy! There’s a lot of work to do and I’ve been using all the junk to make stuff work right! I got all the engines going earlier!”</i>");
+	output("\n\nThat’s... great, but what about <i>her</i>?");
+	output("\n\nThe girl’s childish energy becomes less pronounced, and she grows awkward, wiggling in place as she struggles to talk about herself. Or avoid it. <i>\"I’m fine. Really! I just went from selling stuff to not selling stuff... doing the same thing either way!”</i>");
+	output("\n\nIt’s pretty obvious she doesn’t want to go into any more detail about it and you’re in no position to press it. She probably lost people just like everyone else.");
+	processTime(4);
+	auroraTalkMenu(0);
+}
+
+//How’d you make it?
+//Tooltip; Aurora had a practically outdoors workshop and spent plenty of time flying around the planet - how’d she make it back?
+function howdAuroraSurviveSplosions():void
+{
+	clearOutput();
+	author("Magic_Ted");
+	showBust("AURORA");
+	showName("\nAURORA");
+	output("<i>”What, you doubted me?”</i> Right from the onset you knew Aurora was going to be pretty smug and prideful about this. The girl adopts a cheeky grin as she puffs her chest out. <i>\"Of course I got back! I’m clever and stuff! When the planet started shaking and crumbling I was outside with a few spare parts from a wrecked converter. I knew something was off cuz the wind was getting all weird and the junk felt way lighter so I darted home!”</i> Every so often Aurora pauses for a few seconds, trying to remember just how it went down. Or perhaps she’s making some stuff up here and there to embellish it. She is, like, twelve. That should be a given.");
+	output("\n\n<i>\"The sky got weird by the time I got back and the air was thin, like I was </i>wa-aaay<i> up. So I figured something had happened to the artificial tether and we were all doomed! So I hopped in the mini-pod that no one wanted and hid! I was scared. Then everything started getting sucked out of the workshop and the pod got flung out and was spinning around. Everything was terrible!\"</i>");
+	output("\n\n<i>”But the pod had fuel in it and worked, just like I said! So I got it turned on-”</i> Aurora’s intrepid retelling becomes a bit muted as she mumbles something about ‘eventually’, though like any good storytelling bard, her aside is brief, leaving her to continue boasting. <i>\"- and I flew to the </i>Novahome<i>! I even caught someone - she’s fine - and I crashed into one of the bays before the doors got shut.”</i>");
+	output("\n\nYou blink. That’s a bit dramatic. Actually, why didn’t she just run into the <i>Novahome</i> when she had the chance instead of hiding in the pod?");
+	output("\n\n“<i><b>Cuz</b>! It’s a piece of junk!”</i>");
+	output("\n\nOh. That’s fair.");
+	processTime(7);
+	auroraTalkMenu(1);
+}
+
+//What happened to the ship?
+//Tooltip: How’s this bucket doing? You don’t recall her being space-capable.
+function whatHappenedToZeShip():void
+{
+	clearOutput();
+	author("Magic_Ted");
+	showBust("AURORA");
+	showName("\nAURORA");
+	output("<i>\"<b>She wasn’t</b>! But we fixed her up really quick. </i>Really<i> quick.”</i>");
+	output("\n\nYou can imagine! Still, you’re curious about the details.");
+	output("\n\n<i>\"Well, bunch of us played a part. When the world started shaking and cracking everyone started freaking out.\"</i>");
+	//When rusties get </i>really<i> terrified it turns out they throw up! So they chucked up all that metal they were eating below deck, reinforcing the cheeseholes and conveniently sealing it off! It’s still not safe to go down there, but it doesn’t bow under pressure now.”</i>
+	//Mildly disgusting. 
+	output("\n\n<i>\"The raskvel work pretty fast, too! They always do. Everything got welded off and sealed up right by the time I got back in again! Little gremlins, I swear. The meteorite shields kept all the debris from doing any more damage, too, but we didn’t have any air-systems. So we worked on it! That scared-y dog-lady with the guns apparently had a bunch of blueprints about the ship on her and she shoved it on us when she was done screaming! Then she went back to screaming. I gave a bunch of the readouts she found to Colesno cuz he knows computers and stuff. I knew he’d do it, even if we never see each other - cuz he’s short, durr. He and Shekka got the power generator working and we found a bunch of backup life-support systems! So we have air and it’s warm and stuff! Comfier than before, even!”</i>");
+	output("\n\n<i>\"With all that important stuff done we hooked up the engines and thrusters properly and established a safe orbit! Still collecting junk floating around, too. She can’t really go fast and I don’t really feel safe with her being in space to begin with, but the </i>Novahome<i> is cruising just fine!”</i>");
+	output("\n\nYou’re rather surprised by their collective ingenuity and you find yourself happy for them. At least they can take care of themselves.");
+	processTime(6);
+	auroraTalkMenu(2);
+}
+
+//What now?
+//Tooltip: What are you going to do now?
+function whatNowBrownCow():void
+{
+	clearOutput();
+	author("Magic_Ted");
+	showBust("AURORA");
+	showName("\nAURORA");
+	output("<i>”Uh... I dunno.”</i> Surprised that she doesn’t have her usual gusto, you wait for the girl to collect her thoughts on the subject. <i>\"I don’t think this can last very long... They need a planet. And sun! And I wanna stretch my wings!”</i> Naturally, she does just that, threatening to clothesline a pair of unsuspecting patrons who are just tall enough to be in the way.");
+	output("\n\n<i>\"But my family is here! Even if some of them are gone now... so until they go, Imma stay! I don’t have anywhere else to go, after all!”</i> While her reservations about the idea are obvious in her tone, she seems pretty dedicated to it nonetheless.");
+	output("\n\nYou briefly muse over what could be done with the girl. She doesn’t have any real family beyond the community, but you figure they still take care of her just fine. She’s growing up, too. The thought of offering to take her under your wing - partly as a employee of Steele Tech, with all the junk she could ever want or even working aboard your ship - crosses your mind, but you squash the thought just as quickly. You don’t want a emotional then-teen to learn of your grisly involvement and have some kid mad-scientist after you. Besides, she said it herself; she didn’t want to leave.");
+	output("\n\nYou sigh. Maybe after this company-chasing business is actually over with you could do something about these people. Until then, though, you have an adventure to finish.");
+	output("\n\nMaybe with less fuckups.");
+	output("\n\nYou break out of your reverie with Aurora’s golden eyes staring you down, impatiently swaying side to side as she waits for you to snap to again.");
+	processTime(6);
+	auroraTalkMenu(3);
 }
 
 //Look around
@@ -376,6 +514,14 @@ function shopAtAuroras():void
 	clearOutput();
 	author("Magic Ted");
 	auroraBust();
+	if(flags["TARKUS_DESTROYED"] != undefined)
+	{
+		output("You realize how dumb that question is as Aurora just stares at you for a long moment, not even wiggling around to keep lively. Once she feels like you’ve felt an appropriate amount of shame - that is, after two seconds - she speaks in a deadpan tone; <i>\"Sell what, exactly? I don’t exactly have a supply anymore. Everything I get is for the </i>Novahome<i> now, weirdo.”</i>");
+		output("\n\nYou apologize quickly, and she goes back to her regular high spirits in no time.");
+		processTime(1);
+		auroraBaseMenu(0);
+		return;
+	}
 	output("Upon announcing your interest in her purchasable wares you practically have to avert your eyes from the ensuing adorable giddiness. Those golden eyes sparkle ");
 	if(silly) output("with the glow of <i>capitalism</i> ");
 	output("as her idle smile turned into a downright fangy beam, bouncing in place. <i>\"Good! I like getting money! It pays for things.\"</i>");
