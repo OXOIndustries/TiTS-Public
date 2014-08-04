@@ -133,7 +133,7 @@
 			this.vaginalVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 5;
-			this.vaginas[0].bonusCapacity = 25;
+			this.vaginas[0].bonusCapacity = 55;
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;

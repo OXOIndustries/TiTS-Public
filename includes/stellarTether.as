@@ -1589,7 +1589,7 @@ function youBeatUpAnOrcWaytoGo():void
 		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
 		if(pc.hasCock()) 
 		{
-			if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
+			if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
 			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn't handle what you're packing.");
 		}
 		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
@@ -1830,7 +1830,7 @@ function approachCaptainPostDefeat():void
 		else addDisabledButton(1,"Girly Fun","Girly Fun","This scene requires a vagina.");
 		if(pc.hasCock()) 
 		{
-			if(pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
+			if(pc.cockThatFits(chars["CAPTAINKHORGAN"].vaginalCapacity(0)) >= 0) addButton(0,"Dick Fuck",dickFuckDatThraggenCoochie,undefined,"Dick Fuck","Give her what she's asking for.");
 			else addDisabledButton(0,"Dick Fuck","Dick Fuck","Her body couldn't handle what you're packing.");
 		}
 		else addDisabledButton(0,"Dick Fuck","Dick Fuck","Unsurprisingly, this scene requires a phallus.");
