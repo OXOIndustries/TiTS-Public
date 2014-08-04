@@ -1519,6 +1519,7 @@
 					break;
 				case "he":
 				case "she":
+				case "heshe":
 					buffer = this.mf("he", "she");
 					break;
 				case "ey":
@@ -1526,6 +1527,7 @@
 					break;
 				case "himo":
 				case "hero":
+				case "himher":
 					buffer = this.mf("him", "her");
 					break;
 				case "em":
@@ -1533,6 +1535,7 @@
 					break;
 				case "hisa":
 				case "hera":
+				case "hisher":
 					buffer = this.mf("his", "her");
 					break;
 				case "eir":
@@ -1540,6 +1543,7 @@
 					break;
 				case "hisp":
 				case "hersp":
+				case "hishers":
 					buffer = this.mf("his", "hers");
 					break;
 				case "eirs":
@@ -1547,6 +1551,7 @@
 					break;
 				case "himself":
 				case "herself":
+				case "himselfherself":
 					buffer = this.mf("himself", "herself");
 					break;
 				case "emself":

@@ -19,7 +19,7 @@ function availableFaps(roundTwo:Boolean = false):Array
 		return null;
 	}
 	
-	if (pc.milkFullness >= 150 && pc.isLactating())
+	if (pc.milkFullness >= 150 && pc.isLactating() && !roundTwo)
 	{
 		milkturbation();
 		return null;
@@ -144,15 +144,15 @@ function masturbateMenu(roundTwo:Boolean = false):void {
 	var faps:Array = availableFaps(roundTwo);
 	var btnOffset:int = 0;
 	
-	if (roundTwo == true)
-	{
-		selectRandomFap(faps);
-		return;
-	}
-	
 	// If we got back a null array from the listing functor, it should have created the button for us.
 	if (faps == null)
 	{
+		return;
+	}
+	
+	if (roundTwo == true)
+	{
+		selectRandomFap(faps);
 		return;
 	}
 	
