@@ -12,7 +12,7 @@ public function startFallOfThePhoenix(destination:String):void
 
 	//[Move In] [Back off]
 	clearMenu();
-	addButton(0, "Move In", moveInToDaShip);
+	addButton(0, "Move In", moveInToDaShip, destination);
 	addButton(1, "Back Off", fuckThisShittyShip, destination);
 }
 
@@ -36,7 +36,7 @@ public function phoenixSetMapState():void
 	else rooms["PHOENIX RECROOM"].westExit = "PHOENIX BRIDGE";
 }
 
-public function moveInToDaShip():void
+public function moveInToDaShip(destination:String):void
 {
 	// Set the initial map state
 	phoenixSetMapState();
@@ -49,6 +49,7 @@ public function moveInToDaShip():void
 	output("\n\nSo, you've made it aboard ship. The next question is... how do you proceed? Opening the other doors would probably result in further air loss, and if you aren't johnny on the spot, you could decompress the entire ship. From where you're standing, there's a fore door to the bridge, and an aft one to the engineering and cargo decks; from the carbon scoring on the bulkheads, it looks like there was a running firefight thataway. There's also a console up against the starboard bulkhead that’s still blinking with power despite the lack of air. Hardy little computer.");
 
 	currentLocation = "PHOENIX RECROOM";
+	flags["STORED SHIP DESTINATION"] = destination;
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -193,7 +194,7 @@ public function phoenixBridgeCaptain():void
 	flags["FALL OF THE PHOENIX STATUS"] = 1;
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", flyToWrapper, flags["STORED SHIP DESTINATION"]);
 }
 
 public function phoenixBridgeDisks():void

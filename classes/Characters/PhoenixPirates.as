@@ -31,12 +31,12 @@ package classes.Characters
 			this.shield = new JoyCoPremiumShield();
 			
 			this.armor.longName = "black void armor";
-			this.armor.defense = 4;
+			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
 			
-			this.physiqueRaw = 19;
+			this.physiqueRaw = 17;
 			this.reflexesRaw = 15;
-			this.aimRaw = 18;
+			this.aimRaw = 16;
 			this.intelligenceRaw = 12;
 			this.willpowerRaw = 14;
 			this.libidoRaw = 20;
@@ -47,7 +47,7 @@ package classes.Characters
 			this.XPRaw = 250;
 			this.level = 4;
 			this.credits = 2500;
-			this.HPMod = 80;
+			this.HPMod = 60;
 			this.HPRaw = this.HPMax();
 			
 			this.createPerk("Multiple Attacks",0,0,0,0,"");
