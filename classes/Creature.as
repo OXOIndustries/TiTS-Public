@@ -1457,6 +1457,7 @@
 					break;
 				case "girlCumDescript":
 				case "girlCum":
+				case "girlcum":
 					buffer = girlCumDescript();
 					break;
 				case "cumNoun":
