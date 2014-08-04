@@ -5018,7 +5018,7 @@
 			}
 			
 			// Why is this a loop? Just mul the final thing by total minutes. If we were firing events off that needed to be queued, or if the calculation depended on a value the algo actually changes (ie ballFullness was a part of the calc) then yeah, cycle minutes would be the /simple/ way to do it.
-			cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * balls;
+			cumDelta = refractoryRate / 60 * (ballSize() + 1) / 4 * ((balls <= 0) ? 2 : balls); // No balls == replace with 2 for purposes of the calc
 			if(hasPerk("Breed Hungry")) cumDelta *= 2;
 			ballFullness += (cumDelta * minutes);
 			
