@@ -400,7 +400,9 @@ public function kirosShipChubnookiUpDaCooter():void
 	if (pc.tallness > kiro.tallness + 6) output(" First your [pc.feet] then hers touch down");
 	else if (pc.tallness < kiro.tallness - 6) output(" First her feet, then yours touch down");
 	else output(" Both her feet and your own touch down at roughly the same time");
-	output(", suddenly on solid ground once more. Having a sure, stable footing makes it all the easier for you to resume your pace, and you slap yourself in and out of her hot little holes with rampant, lusty strokes.");
+	output(", suddenly on solid ground once more. Having a sure, stable footing makes it all the easier for you to resume your pace, and you slap yourself in and out of her hot little hole");
+	if (pc.cockTotal() > 1) output("s");
+	output(" with rampant, lusty strokes.");
 
 	output("\n\n[pc.EachCock] is pulsating, trembling and twitching with need.");
 	if (pc.cockTotal() == 3) output(" Even the extra one is bobbing and bouncing, dripping all over itself and unable to contain its sympathetic lust.");
