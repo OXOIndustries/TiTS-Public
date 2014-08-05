@@ -1,4 +1,5 @@
 ﻿import classes.Characters.PlayerCharacter;
+import classes.Items.Apparel.AtmaArmor;
 import classes.Items.Apparel.UGCUniform;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
@@ -508,7 +509,22 @@ function mhengaVanaeAbandonedCamp():Boolean
 
 function mhengaSalvageFromCamp():void
 {
+	clearOutput();
 	
+	if (flags["SALVAGED VANAE CAMP"] == undefined)
+	{
+		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a lightly damaged container, you discover a set of some kind of augmented armor."); // Placeholder gtfo, I have no idea what this item is supposed to look like.
+		quickLoot([new AtmaArmor()]);
+		flags["SALVAGED VANAE CAMP"] = 1;
+		return;
+	}
+	else
+	{
+		output("You spend a couple of minutes scouting around the defunct camp, but find nothing further of interest. Seems like you've salvaged everything of use.");
+	}
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu); 
 }
 
 function anonsBarAddendums():Boolean {

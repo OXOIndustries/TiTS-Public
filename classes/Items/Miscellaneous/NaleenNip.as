@@ -10,7 +10,6 @@
 	
 	public class NaleenNip extends ItemSlotClass
 	{
-		
 		//constructor
 		public function NaleenNip()
 		{

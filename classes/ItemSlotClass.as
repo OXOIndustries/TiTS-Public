@@ -41,6 +41,7 @@
 		public var evasion:Number;
 		public var fortification:Number;
 		public var bonusResistances:Array;
+		public var bonusLustVuln:Number;
 		public var hardLightEquipped:Boolean;
 		
 		public var isUsable:Boolean;
