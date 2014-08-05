@@ -9,7 +9,7 @@ public function encounterVanae(isHuntress:Boolean):void
 		else flags["ENCOUNTERED VANAE MAIDEN"] = 1;
 
 		CodexManager.unlockEntry("Vanae");
-		
+
 		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
 		
 		output("\n\nYou look around you and see nothing. Is the codex malfunctioning? The device is equipped with short-range sensors, but there’s nothing as far as you can see.");
@@ -41,7 +41,7 @@ public function encounterVanae(isHuntress:Boolean):void
 			
 			output("\n\n“<i>Owww!</i>” You hear your attacker cry out pitifully. When she picks herself up, rubbing her head, you get a good look at her. She looks like a young humanoid woman, except for her tentacle hair, tail, and organic skirt. Her tendrils are pink and bioluminescent, while the rest of her is pale as snow. Her body is covered in gorgeous glowing pink swirls and patterns, just like her hair. ");
 			
-			output("\n\nThe other thing that immediately captures your attention are her small [vanaeMaiden.breastCupSize]s and [vanaeMaiden.milkyNipples]. She seems to be lactating a transparent pink liquid that is drooling down her [vanaeMaided.breasts]. ");
+			output("\n\nThe other thing that immediately captures your attention are her small [vanaeMaiden.breastCupSize]s and [vanaeMaiden.milkyNipples]. She seems to be lactating a transparent pink liquid that is drooling down her [vanaeMaiden.breasts]. ");
 			
 			output("\n\nAs you check her out, you also notice she’s holding a pointed spear in her webbed hands. They are visibly trembling - she doesn’t look terribly experienced at this kind of thing.");
 			
@@ -139,5 +139,27 @@ public function encounterVanae(isHuntress:Boolean):void
 	else
 	{
 		addButton(0, "Next", startCombat, "MAIDEN_VANAE");
+	}
+}
+
+function vanaeAI():void
+{
+	if (pc.lust() >= 60)
+	{
+		vanaeLustAttack();
+		return;
+	}
+	if (pc.HP() <= pc.HPMax() * 0.4)
+	{
+		vanaeHPAttack();
+	}
+
+	if (foes[0] is HuntressVanae)
+	{
+
+	}
+	else if (foes[0] is MaidenVanae)
+	{
+
 	}
 }

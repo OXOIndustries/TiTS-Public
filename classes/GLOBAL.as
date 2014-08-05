@@ -755,6 +755,7 @@
 			"Exotic bodyshapes like nagas and taurs",
 			"Baldness",
 			"Long hair",
+			"Neuters",
 			"ERROR ERROR ABORT ABORT"
 		];
 		

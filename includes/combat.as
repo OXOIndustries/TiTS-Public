@@ -1,4 +1,5 @@
 ﻿import classes.Characters.GrayGoo;
+import classes.Characters.MaidenVanae;
 import classes.Characters.Mimbrane;
 import classes.Characters.PhoenixPirates;
 import classes.Creature;
@@ -1931,6 +1932,8 @@ function tease(target:Creature, part:String = "chest"):void {
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_WETNESS);
 		if(pc.hasVagina() && pc.driestVaginalWetness() >= 4 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS) > 0) 
 			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_VAGINAL_DRYNESS);
+		if (!pc.hasCock() && !pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_NEUTER) > 0)
+			likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NEUTER);
 		clearOutput();
 		crotchTeaseText(target);
 	}
@@ -1961,6 +1964,13 @@ function tease(target:Creature, part:String = "chest"):void {
 				else output("doesn't");
 				output(" seem to care to care for your eroticly-charged display. (0)</b>\n");
 			}
+			else if (target is HuntressVanae || target is MaidenVanae)
+			{
+				output("\n");
+				output(teaseReactions(0, target));
+				output(" (0)\n");
+				teaseSkillUp(part);
+			}
 			else {
 				output("\n" + target.capitalA + target.short + " ");
 				if(target.plural) output("resist");
@@ -1982,9 +1992,6 @@ function tease(target:Creature, part:String = "chest"):void {
 			damage *= target.lustVuln;
 			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
-			if(damage <= 5) {
-
-			}
 
 			output("\n");
 			output(teaseReactions(damage,target));
@@ -2008,7 +2015,42 @@ function teaseSkillUp(part:String):void {
 
 function teaseReactions(damage:Number,target:Creature):String {
 	var buffer:String = "";
-	if (target.plural) {
+	var textRands:Array = [];
+	if (target is HuntressVanae)
+	{
+		if (damage == 0)
+		{
+			textRands = [
+				"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. “<i>All you're doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore >= 5) ? "[pc.race]" : "outsider") + "!</i>” she exclaims.",
+				"You utterly fail to entice the huntress. You barely dodge an attack that causes you to cease your efforts. You're going to have to do better, or try something else...",
+				"The alien huntress seems to be getting into it, moving towards you... only to swipe her spear at your head. You barely duck in time. Seems she didn't go for it at all!"
+			];
+			
+			buffer = textRands[rand(textRands.length)];
+		}
+		else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her [vanaeHunt.breasts], clearly titillated by your performance.";
+		else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
+		else if damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you're having an effect on her!"
+		else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
+	}
+	else if (target is MaidenVanae)
+	{
+		if (damage == 0)
+		{
+			textRands = [
+				"The young alien huntress jabs at you with her spear, forcing you to leap out of the way. “<i>Hey, this may be my first time, but I'm not </i>that<i> easy!</i>” she exclaims.",
+				"The virgin huntress quirks her head, clearly baffled by your actions. It seems you utterly failed to entice her....",
+				"The alien huntress fans her face with a webbed hand and moves closer to you. “<i>Oooh, I think I'm getting the vapors... </i>psyche<i>!</i>”",
+			];
+			
+			buffer = textRands[rand(textRands.length)];
+		}
+		else if (damage < 4) buffer = "The virgin huntress blushes and begins eagerly touching one of her [vanaeMaiden.nipples]. She's clearly aroused by your performance.";
+		else if (damage < 10) buffer = "The virgin huntress lets out a little moan and slips one of her webbed hands between her thighs. She awkwardly teases her glistening slit, getting all worked up.";
+		else if (damage < 20) buffer = "The young alien huntress places a hand over her loins and rubs her thighs together. She's desperately trying to hide her rather obvious arousal. The sweet scent of her arousal fills the air.";
+		else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
+	}
+	else if (target.plural) {
 		if (damage == 0) buffer = target.capitalA + target.short + " seem unimpressed.";
 		else if (damage < 4) buffer = target.capitalA + target.short + " look intrigued by what they see.";
 		else if (damage < 10) buffer = target.capitalA + target.short + " definitely seem to be enjoying the show.";
