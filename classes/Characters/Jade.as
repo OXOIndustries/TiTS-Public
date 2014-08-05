@@ -11,7 +11,7 @@
 		//constructor
 		public function Jade()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -51,6 +51,7 @@
 
 			this.inventory.push(new Pandaneen());
 			this.inventory.push(new PandaPro());
+			this.inventory.push(new KnotAProblem());
 			this.inventory.push(new HorsePill());
 			this.inventory.push(new AusarTreats());
 			this.typesBought[this.typesBought.length] = GLOBAL.PILL;
@@ -183,6 +184,9 @@
 		{
 			dataObject.inventory.push(new AusarTreats().getSaveObject());
 		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.inventory.push(new KnotAProblem().getSaveObject());
+		}
 	}
-
 }

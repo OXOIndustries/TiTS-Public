@@ -566,7 +566,8 @@ public function processTime(arg:int):void {
 			{
 				chars["ALISS"].lust(5);
 			}
-			chars["SHEKKA"].lust(15);
+			if(chars["SHEKKA"].lust() < 50) chars["SHEKKA"].lust(15);
+
 			//Lactation effect updates
 			lactationUpdateHourTick();
 			//Horse pill procs!

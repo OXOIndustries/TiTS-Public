@@ -391,16 +391,16 @@ function defeatTheSexBot():void
 	//Consentacles
 	//Requires: Vagina
 	if(pc.hasVagina() && pc.lust() >= 33) addButton(0,"Consentacles",consentaclesVictoryWithDannySexBot);
-	else addDisabledButton(0,"Consentacles");
+	else addDisabledButton(0,"Consentacles","Consentacles","You need at least 33 lust and a vagina for this scene.");
 	//Blowjob - req pc dick
 	if(pc.hasCock() && pc.lust() >= 33) addButton(1,"Get BJ",blowjobVictoryFromSexbot);
-	else addDisabledButton(1,"Get BJ");
+	else addDisabledButton(1,"Get BJ","Get BJ","You need a penis and at least 33 lust for this scene.");
 
 	//Dog E
 	//Requires: Female sexbot, dick
 	if(pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0 && foes[0].mf("","girl") == "girl")
 		addButton(2,"DoggyStyle",dogEStyleWithSexBots);
-	else addDisabledButton(2,"Doggystyle");
+	else addDisabledButton(2,"Doggystyle","Doggy Style","You need a penis that will fit inside the sexbot, to be feminine, and to have 33 or more lust for this scene.");
 	if((flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined || flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) && flags["SEXBOT_QUEST_STATUS"] == 1) addButton(4,"Scan",scanASexbot,undefined,"Scan","Scan the sexbot with the GPS triangulator Colenso provided.");
 	addButton(14,"Leave",genericVictory);
 }

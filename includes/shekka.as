@@ -793,7 +793,7 @@ function shekkaSexMenu():void
 	//Big Dick Ear Shenanigans
 	//big dick requirement in tandem with a minimum height requirement of around 5’6\"</i> (5-6 feet)
 	//Requires 500mLs fo cum
-	trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + pc.cumQ());
+	//trace("CURRENT CUM RESERVE AT SHEKKA'S SEX MENU: " + pc.currentCum() + " MAX CUM: " + pc.maxCum() + " FULLNESS: " + pc.ballFullness + " EJACULATION AMOUNT: " + pc.cumQ());
 	if(pc.hasCock() && pc.biggestCockVolume() > chars["SHEKKA"].vaginalCapacity() && pc.tallness >= 60 && pc.cumQ() >= 500) 
 		addButton(2,"Big Dick",hugeEarShekkaFaps,undefined,"Big Dick Shenanigans","Use your oversized member on the small mechanic. She's gotta have some way to please it, right?");
 	else addDisabledButton(2,"Big Dick","Big Dick Shenanigans","This scene requires a large dick, a height of above five feet, and large volume of cum.");
@@ -801,6 +801,13 @@ function shekkaSexMenu():void
 	//MilkQ over 1000
 	if(pc.milkQ() >= 1000 && pc.isLactating()) addButton(3,"FeedMilk",shekkaMilkDranking,undefined,"FeedMilk","Feed her some of the copious milk you're carrying around.");
 	else addDisabledButton(3,"FeedMilk","Feed Shekka Some Milk","You need to be lactating quite heavily to satisfy the little raskvel with your teats alone.");
+	//Upgraded sexbots time!
+	if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 5)
+	{
+		addButton(4,"Robots",shekkaSexbotsMarkTwo,undefined,"Robots","Shekka looks to have some upgraded the sexbots in her shop. You could see if she wants to ride them again.")
+	}
+	//Old saxbots
+	else addButton(4,"Robots",chooseShekkasSexBats,undefined,"Robots","There's some weird-looking robots sitting in her shop that definitely look built for sex. You could see about using them with Shekka.")
 }
 
 
@@ -1176,6 +1183,7 @@ function hugeEarShekkaFaps():void
 	else output("traumatized taint");
 	output(". You decide to leave her be and bask in the sizzling afterglow for a few moments.");
 	pc.orgasm();
+	chars["SHEKKA"].orgasm();
 	processTime(20);
 	clearMenu();
 	addButton(0,"Next",pageTwoOfShekkaStuffs);
@@ -1219,6 +1227,7 @@ function pageTwoOfShekkaStuffs():void
 	output("\n\nHer wailing tremors go on for some time beyond your powerful encore performance. It’s to be expected; the contumacious rabbit-lizard has spent most of her time teetering on the edge of euphoria. Each of her thrusts drop in intensity, the raskvel’s buzzing tail barely able to muster the strength to prod at her quivering cunt. The vice grip around your penis weakens. Soon, her entire body is limp against your twitching, spent soul. Just two pounding heartbeats are all that remain, laced with faint hums of satisfaction.");
 	output("\n\nThe afterglow is radiant. The warm soup of sexual fluids encased within the light yellow suit washes gently against your tender flesh. It’s hard to imagine a damp heat feeling all the more sweet. Shekka’s labored breathing hits your ears. The raskvel is overdosing on the aroma, you reckon. Freeing her would probably be the best next step, but your muscles don’t seem to willing to cooperate. So the two of you baste just a little longer.");
 	pc.orgasm();
+	chars["SHEKKA"].orgasm();
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",pageThreeOfShekkaStuffs);
@@ -1400,6 +1409,748 @@ function shekkaMilkDrankingPartII():void
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
 	fuckedShekka();
+	chars["SHEKKA"].orgasm();
 	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Shekka's fuckfest: you think this is a game!?
+//opening
+//choose [robots] from sex menu
+function chooseShekkasSexBats():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA");
+	showName("\nSHEKKA");
+	//First time
+	if(flags["SEEN_SHEKKAS_SEXBOTS"] == undefined)
+	{
+		flags["SEEN_SHEKKAS_SEXBOTS"] = 1;
+		output("<i>\"What are those?</i>” you ask, pointing to a pair of robotic bodies sitting in one of the corners. Shekka takes one look at them and rolls her eyes.");
+		output("\n\nShe walks over to the twin machines, pausing to wait for you to follow. When you get there, she pulls off a tarp that had been keeping the dust off their lower halves. The two robots appear to be well built, albeit with a relatively simple looking design and humanoid bodies. In place of hands, they have soft-looking suction cups. Between each of the robots legs is a cock-like appendage coated in bristly-looking hairs.");
+		output("\n\n<i>\"These things?”</i> Shekka snorts in derision. “<i>They’re a gift from the other raskvel, if you can call it that.”</i> There’s no hiding the look of derision on her face.");
+		output("\n\n“<i>You don’t sound real happy about it,</i>” you observe.");
+		output("\n\nThe wide-hipped mechanic puts her hands on her considerable hips and cocks her head at you. “<i>Why should I be?</i>” She pantomimes exaggeratedly, impersonating other raskvel. “<i>Oh, lets get Shekka some sexbots! She can’t have real eggs, so why not keep her busy with cheap androids!</i>”");
+		output("\n\nDid they really say that?");
+		output("\n\nDropping her arms, the little thing pouts. “<i>No... but they were thinking it. Normally they use these things as a kind of recreational method of dispute settlement. Two girls want to settle an argument over some sweet loot or a boy without coming to blows? Rig up two of these, and whoever cums first loses. Ostensibly, they gave them to gave them to me as a thank you for all the great work I’ve done here in Novahome, but they just don’t want me soaking up THEIR sperm.</i>” She scoffs. “<i>Little nymphomaniac sluts.</i>”");
+		output("\n\nYou chuckle.");
+		output("\n\nHesitantly, a smile tugs at the corner of her mouth. “<i>Did you want to try them?");
+		if(!pc.hasVagina()) output(" I know you don’t have a proper pussy or anything, but they’ll work on an ass if you want.");
+		output("</i>” Her skin darkens in a blush. “<i>I mean, if I’m going to use them, it might as well be an interested off-worlder. What better way to thumb my nose at those skanks than to get my rocks off with you instead of alone. That’ll really make their carburetors sputter.</i>” She wiggles her hips. “<i>So what do you say? Up for an old-fashioned, robotic fuck contest?</i>”");
+		processTime(2);
+		clearMenu();
+		addButton(0,"Yes",youBetIllSexbotWithYouShekka);
+		addButton(1,"No",nahNoSexbotsForMeShekka);
+	}
+	//repeat
+	else
+	{
+		output("You ask Shekka if she’d be up for another game with the robots. She smiles, her tail beginning to wag faster than normal. She rushes over to the game floor, ears chiming musically as she throws you your controller and gets ready for the game. The two of you undress and kneel before your respective robots, hands on the “GO/FORFEIT” buttons and ready to start.");
+		processTime(1);
+		clearMenu();
+		addButton(0,"Next",pressGoForFirstGenShekkaSaxbots,undefined,"Go","Start using Shekka's sexbots with her. It's a battle to the orgasm!");
+	}
+
+}
+//Nah
+function nahNoSexbotsForMeShekka():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA");
+	showName("\nSHEKKA");
+	output("You somehow manage to resist her temptations, telling her that maybe you’ll try out the machines some other time. Shekka pouts for a moment, but brings you back to the main part of the store.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//You bet
+function youBetIllSexbotWithYouShekka():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("<i>\"You’ve got yourself a game!”</i> you reply with a nod.");
+	output("\n\n<i>\"Awesome! I’ll get the controllers. I’m sure I left them somewhere near here,”</i> she says, turning and rummaging through a box of machine parts. Her tail wags excitedly, and her ear piercings chime constantly as she shifts through the container. Despite her previous indifference, she seems very excited to try out the robots with you.");
+	output("\n\n<i>\"Here they are!”</i> she says, pulling two wide remotes with what looks like eleven buttons each. You note that there are two rows of five smaller, multicolored buttons with one larger white button at the top. She tosses one to you and you catch it, looking it over. It’s not too heavy and looks simple enough to use, though you suppose it would have to be considering the circumstances of its use. Shekka gets down in front of the first robot, grinning at you as she pulls her jumpsuit down over her hips, pointing her butt toward the fuzzy-looking cock.");
+	output("\n\nYou reach out and brush the bristly-looking fuzz, only to find it pliant and soft to the touch. You kneel and ");
+	if(!pc.isNude()) output("pull away your [pc.gear] till there’s enough space for the robot and breathing room for you.");
+	else output("position your [pc.butt] in the robot’s path, steeling yourself for what’s to come in this “game.”");
+	output(" Shekka places her finger above the large white button, and you follow her lead, noticing some faded text beneath it labels it as the “GO/FORFEIT” button. This should be fun.");
+	clearMenu();
+	addButton(0,"Next",pressGoForFirstGenShekkaSaxbots,undefined,"Go","Start using Shekka's sexbots with her. It's a battle to the orgasm!");
+}
+/*		
+		Game mechanics
+
+		10 button choices, you choose 4 options and then the game ends. Whoever has the most lust buildup at the end loses. In case of a tie the pc wins if their combat lust was lower than 50 and loses if its above at the start.
+
+		Vibrate: causes 10 lust points, shekka chooses smooth
+		smooth: causes 5 lust points, shekka chooses hard
+		warm: causes 10 lust points, shekka chooses spin
+		tickle: causes 15 lust points, shekka chooses chill
+		chill: causes 5 lust points, shekka chooses warm
+		wet: causes 5 lust points, shekka chooses tickle
+		stimulate: causes 10 lust points, shekka chooses sticky
+		Spin/drill: causes 5 lust points, shekka chooses stimulate
+		hard: causes 10 lust points, shekka chooses wet
+		sticky: causes 5 lust points, shekka chooses vibrate
+		Forfiet: automatic loss whenever pressed.*/
+
+function sexBotMenu1(arg:int = 0):void
+{
+	clearMenu();
+	if(arg == 0) addDisabledButton(0,"Vibrate");
+	else addButton(0,"Vibrate",vibrateFirstGenSaxbots,undefined,"Vibrate","Activate the vibrate function on Shekka's 'bot.");
+	if(arg == 1) addDisabledButton(1,"Smooth");
+	else addButton(1,"Smooth",smoothSexbotFirstGen,undefined,"Smooth","Activate the smooth function on Shekka's 'bot.");
+	if(arg == 2) addDisabledButton(2,"Warm");
+	else addButton(2,"Warm",warmSexbotFirstGen,undefined,"Warm","Activate the warming function on Shekka's 'bot.");
+	if(arg == 3) addDisabledButton(3,"Tickle");
+	else addButton(3,"Tickle",sexbotTickleFirstGen,undefined,"Tickle","Activate the tickle function on Shekka's 'bot.");
+	if(arg == 4) addDisabledButton(4,"Chill");
+	else addButton(4,"Chill",chillOutShekkaFirstGen,undefined,"Chill","Activate the chill function on Shekka's 'bot.");
+	if(arg == 5) addDisabledButton(5,"Wet");
+	else addButton(5,"Wet",wetShekkaFirstGen,undefined,"Wet","Activate the wet function on Shekka's 'bot.");
+	if(arg == 6) addDisabledButton(6,"Stimulate");
+	else addButton(6,"Stimulate",stimulateShekkaWithFirstGenSaxbot,undefined,"Stimulate","Activate the electro-shock function on Shekka's 'bot.");
+	if(arg == 7) addDisabledButton(7,"Spin");
+	else addButton(7,"Spin",drillShekkaWithFirstGenSaxbot,undefined,"Spin","Activate the spin function on Shekka's 'bot.");
+	if(arg == 8) addDisabledButton(8,"Hard");
+	else addButton(8,"Hard",hardSexbotOnShekkaFirstGen,undefined,"Hard","Activate the firmness function on Shekka's 'bot.");
+	if(arg == 9) addDisabledButton(9,"Sticky");
+	else addButton(9,"Sticky",stickyUpShekkaFirstGen,undefined,"Sticky","Activate the sticky function on Shekka's 'bot.");
+	
+	addButton(14,"Forfiet",pcLosesToShekkasSaxbots,undefined,"Forfiet","Give up and cum right now.");
+	if(chars["SHEKKA"].lust() >= chars["SHEKKA"].lustMax())
+	{
+		clearMenu();
+		addButton(0,"Next",pcBeatsShekkaAtSexbots);
+	}
+	else if(pc.lust() >= pc.lustMax())
+	{
+		clearMenu();
+		addButton(0,"Next",pcLosesToShekkasSaxbots);
+	}
+}
+
+function sexbotRound(arg:int = 0):Number
+{
+	if(!pc.hasStatusEffect("Shekka_Sexbot_Round")) pc.createStatusEffect("Shekka_Sexbot_Round",0,0,0,0,true,"","",false,0);
+	else if(arg != 0) pc.addStatusValue("Shekka_Sexbot_Round",1,arg);
+	return pc.statusEffectv1("Shekka_Sexbot_Round");
+}
+
+//Press go
+function pressGoForFirstGenShekkaSaxbots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("<i>\"You ready over there?”</i> you ask, looking over to Shekka to make sure she’s all set. She nods, her finger positioned over the go button. You smile, returning your attention to your own remote. <i>\"Three. Two. One. Go!”</i>");
+	output("\n\nOn go, the both of you press your start buttons. You feel the robot’s suction cups attach snugly to your hips, shivering as it lines its mechanical cock up with your [pc.vagOrAss]. A stream of liquid washes over your backside. You assume its some kind of lube designed to compensate for potential unlubricated clients, ");
+	if(pc.wetness() < 2 || (!pc.hasVagina() && pc.ass.wetness() <= 2)) output("and you’re thankful for the feature.");
+	else output("not that you need it.");
+
+	output("\n\nThe robot penetrates you, beginning to hump rhythmically into your depths. You slowly let yourself acclimate to the thrusting. As it currently is, the robot seems to be sexing you in the least arousing way possible, assumedly so the game doesn’t end too quickly. You glance at Shekka and see her appraising her choice of buttons. If you want the first move you’d better decide quickly.");
+	if(pc.hasVagina()) pc.cuntChange(0,20,true,true,false);
+	pc.buttChange(20,true,true,false);
+	sexBotMenu1(-1);
+}
+
+//Vibrate: 
+function vibrateFirstGenSaxbots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you click the bright red button labeled “Vibrate.” You glance at Shekka to gauge her reaction. The red shortstack is gasping with pleasure, and you see her sexy hips begin to tremble. A soft buzzing emanates from behind her whenever the robotic dick is pulled back. Judging from her expression, the vibration must be rather effective. The momentary respite of it’s pulling out is replaced seconds later by the eye-crossing pleasure of the vibrating rod inside her.");
+	output("\n\n<i>\"So. That’s. How. You. Want. To. Play,”</i> she says between thrusts, pressing a button on her controller. You brace yourself, expecting a challenging fight to keep a cap on your lust. You’re both relieved – and slightly disappointed – when no such ordeal occurs. The cock simply becomes smoother and pistons a little faster. It feels better than the ordinary dicking you’d been getting, but still leaves a lot to be desired.");
+	output("\n\n<i>\"Aww. That’s. No fun,”</i> Shekka whines with a frown. She can’t hold up for long though, soon returning her attention to the feeling of her cunt being vibrated. Your [pc.vagOrAss] itches with what you can only imagine is jealousy of her “<i>good fortunes.</i>” One thing you can be sure of is that you came out on top, for this choice at least.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu1(0);
+}
+
+	//smooth:
+function smoothSexbotFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you choose the baby blue button labeled “<i>Smooth.</i>” Shekka looks as excited as the thought of her writhing on that robot makes you feel. Sadly, her eager smile fades. The chiming of her ears is the only cheery sound coming from her as she crosses her arms and gives you an incredulous look. You can see the robotic cock slapping into her, setting her hips to jiggling, but it doesn’t seem to be having as much of an effect as you’d hoped.");
+	output("\n\n<i>\"Was that supposed to be effective? Here, I’ll show you a good choice,”</i> she says, and you hardly have time to brace yourself before she hits her button. The cilia-covered cock pumping into you seems to have become nearly twice as thick and solid. You gasp to try and regain your breath as the diamond-hard rod fills you again and again. Your senses return slowly but surely as you adjust.");
+	output("\n\n<i>\"You win. This round!”</i> you slur between the massive pole’s poundings. She grins smugly as the cocks return to their unaided forms. The reset gives you a moment of rest before the next choice is made, and you’re glad for it. Another minute of that might’ve put you in a bad spot for the competition as a whole.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu1(1);
+}
+
+//warm: 
+function warmSexbotFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("This time you’re too slow to get the first move. As you decide which button to press, you hear Shekka shout triumphantly. You feel the machine’s thrusts slow as its cock begins to spin softly inside you. Either your machine is broken, or you’ve lucked out and got an easy setting. If it was moving a degree or two faster it might feel a bit better, but for now with the added slow pace it just feels nice and pleasent.");
+	output("\n\n<i>\"Aww, you’re supposed to be writhing in pleasure,”</i> she says with an obviously faked pout. You give her a whimsical smile and hit the button labeled “<i>Warm.</i>” The effects are immediate. The scarlet shortstack’s face flushes even redder than normal. Her fists clench as she falls to her elbows. You can see her eyes beginning to glaze over as she resists the temptation of cumming.");
+	output("\n\n<i>\"Ahhh. So h-hot,”</i> she says quietly, “<i>melting</i>” down to the floor and resting her face against the cool tiles. Her ears jingle softly against the metallic ground. You smile as the slowly spinning cock inside you rotates, but a part of you wants what she’s getting. After a moment, she recovers enough to be back up, searching her remote for an adequate revenge.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu1(2);
+}
+
+//tickle
+function sexbotTickleFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you decide to hit the heavily faded pink button labeled “<i>Tickle.</i>” The effects are immediately noticeable. Shekka shouts with pleasure, and for a second you think you might have won. She manages to calm down a little though, but with every thrust her breath gets a little heavier. You notice that every time the robotic cock enters her, the cilia play with both of her clits, brushing and rubbing them till she’s about ready to cry out.");
+	output("\n\nDespite her predicament she manages to hit a button on her remote. You gasp as the mechanical rod inside your [pc.vagOrAss] cools considerably. It’s not an unpleasant level of cold, but it manages to cool you off nicely. You feel alert and ready for what you’ll have to endure next, which you’re sure isn’t the reaction she was hoping for.");
+	output("\n\nShekka looks like she’s about to speak, but is forced to bite it back as the thrusting pole’s feelers tickle at her pair of clits. You grin, appraising your options for the next choice and waiting for the pleasant chill to wear off. Shekka barely manages to stay on her game, looking incredibly relieved when the machines revert to their normal setting.");
+	processTime(1);
+	chars["SHEKKA"].lust(15);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu1(3);
+}
+
+//chill: 
+function chillOutShekkaFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you choose to press the icy blue button labeled “<i>Chill.</i>” Shekka lets out a satisfied breath and snuggles back into the cock. That’s not quite the reaction you were hoping for. She lets her head rest on her hands, smiling thoughtfully at you from her spot. You’re sure she’s thinking about her victory, and that thought steels you for what’s to come.");
+	output("\n\nAt least until she presses her button. As soon as she lifts her finger your [pc.vagOrAss] is flooded with heat. You feel your [pc.legs] tense, leading to the eventual flush of your whole body as warmth surges through you. For a moment you feel like giving up on the spot, but recover quickly. The temperature feels good, but it’s not enough to drive you mad that easily. You smile at the peppy mechanic, giving her a determined stare.");
+	output("\n\n<i>\"I won’t give up that easily!”</i> you tell her with renewed resolve. She grins back, checking over her options. The chilly dicking seems to be giving her more time to think. Perhaps if you play the game again it might not be the best choice to use against her. You return your attention to your remote, hoping you won’t have another mistake like that.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu1(4);
+}
+//wet: 
+function wetShekkaFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you notice the wavy blue button labeled as “<i>Wet.</i>” You see Shekka coo softly as the robotic cock pistons into her a little faster, letting out splashes of juice with each slap of her child bearing hips. Her pert B-cups bounce beneath her as she’s fucked, and her long ears chink against the ground musically. Mesmerized by her eggplant-colored nipples, you lose your chance to be prepared for what’s coming.");
+	output("\n\nAt first you don’t notice much of a change, but soon you’re in a fight for your dignity with the effects of her choice. With every push and pull the tiny cilia tickle at the entrance to your [pc.vagOrAss]. Everything within reachable distance of your hole is caressed and lightly prodded, causing shocks of pleasure to run through your system. A burning need arises within you, but you somehow manage to stifle it.");
+	output("\n\n<i>\"Keep pressing buttons like that, and I’ll have this in the bag in no time,”</i> Shekka teases with a satisfied smile. You try to think of a retort, but are too busy holding back the itch in your loins. You manage to hold out until the cock reverts to its normal form, but for your victory’s sake you hope there aren’t any more buttons like that.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(15);
+	sexbotRound(1);
+	sexBotMenu1(5);
+}
+
+//stimulate: 
+function stimulateShekkaWithFirstGenSaxbot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you jab the button labeled “<i>Stimulate.</i>” Shekka practically jumps off the robot cock with a pleasurable yip, and you see her give a short moan every time it hilts inside her. Her body shivers and tenses oddly as she tries to adjust to whatever kind of “<i>stimulation</i>” is happening. Judging by her reaction, you guess it’s some kind of shock treatment. She fails the first couple times trying to press her button, fingers shot off course by errant muscle twitches.");
+	output("\n\nWhen she finally does, you feel the cock inside you take on a gooey feeling. When it tries to pull out, it pulls on you for a moment before sliding out. It seems to have become sticky. You can appreciate the thought on this one, but the machine doesn’t bring justice to the feeling. Maybe if an actual living thing had a dick like this it’d be worth it, but for now it just gives you a gladly accepted advantage.");
+	output("\n\n<i>\"You hanging in there?”</i> you tease the pint-sized mechanic. Shekka looks at you and sticks her tongue out as she jumps from the shock. You see her squeeze one of her B-cup breasts and tweak the nipple, her competitive smile temporarily turning to one of lust. If things keep going this way you might be able to win this game.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu1(6);
+}
+
+//drill: 
+function drillShekkaWithFirstGenSaxbot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" your finger lands on a swirly green button with “<i>Drill</i>” written underneath it. Shekka yips in surprise as the cock that’s pounding into her begins to rotate slowly. She tenses for a moment, but settles down quickly. If you didn’t know better, you’d assume she was disappointed at how unarousing this setting was for her.");
+	output("\n\n<i>\"I was hoping it’d start spinning faster, but I guess not...”</i> she says, perusing her remaining selection of buttons. She spins her finger slowly before letting it land on one of the choices. You gasp as lust runs through your body like a shock of energy. With every tap of the robots hips against your own, your [pc.vagOrAss] quakes in electric bliss. You doubt you could get used to something like this.");
+	output("\n\n<i>\’Thinkin’ of giving up yet?”</i> Shekka taunts playfully, gyrating her hips around the rotating cock inside her. What you wouldn’t give to have something easy like that at the moment. You reign in the coursing lust and appraise your remaining choices. One of these buttons has got to have the rosey scaled mechanic quivering in orgasm.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu1(7);
+}
+
+//hard: 
+function hardSexbotOnShekkaFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("Shekka takes the advantage for this round, hitting a button and focusing on you to make sure she can see the fruits of her decision. You feel a cool rush followed by a liquid slipperiness. Juicy splashes squirt from your passage as the robotic rod releases a watery liquid. You wait to see if anything fun happens before showing a little disappointment. If you had been the one to design this game, the thing would’ve at least released some kind of aphrodisiac.");
+	output("\n\nThe crimson cutie looks warily at you, tensing up to protect herself from your next choice. You wag your finger in an eeny-meeny-miny-mo motion over your selection, eventually settling on a granite-painted button labeled “<i>Hard.</i>” As the robot pulls out of Shekka’s tensed body, you see its cilia form together into a solid-looking covering. As it pistons forward, it shatters her wall of defenses, knocking the air from her lungs. She gasps and moans as the titanic rod tenderizes her pussy. ");
+	output("\n\n<i>\"Good! So g-good!”</i> she manages as she’s pounded again and again. If you keep this up, victory will be yours in no time. You wiggle your hips against the wet pole pistoning into you, surprised it hasn’t slipped out yet. The pint-sized repair-girl’s focus is broken, and she grips her remote tightly to stop herself from pushing it away. Looks like this round is your victory.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu1(8);
+}
+
+//sticky: 
+function stickyUpShekkaFirstGen():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" your attention lands on the button labeled “<i>Sticky.</i>” When you press it, Shekka gives an uncomfortable exclamation and looks at you. She appears to be being pulled with the robot as it humps, stuck to its dick like adhesive tape. She frowns, looking over her buttons to find payback. You lose a bit of your confidence when she seems to find what she’s looking for.");
+	output("\n\n<i>\"This is what you get for giving me the worst option of the bunch,”</i> she says with a mocked evil laugh. She hits a button that sends you into a world of pleasure. The robotic cock in your [pc.vagOrAss] begins vibrating rhythmically. The force is enough to set your [pc.butt] to ");
+	if(pc.tone > 50) output("shuddering");
+	else output("jiggling");
+	output(". You coo numbly as you are ravaged by a buzzing fuckstick.");
+	output("\n\nYou barely manage to pull yourself together and return your attention to the remote. You think you can hold on at least till this shivering pleasure cruise is over. The rosey scaled mechanic smiles smugly, jerking back and forth on her sticky fun trip. Hopefully your next choice is a little more effective, and you have time to choose before she’s ready.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu1(9);
+}
+
+//Pc wins
+function pcBeatsShekkaAtSexbots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("As you prepare the next button, you hear Shekka’s moans grow louder. A quick glance reveals that she has been reduced to hugging the remote to her chest, pressing it tightly against her pert B-cups. The act presses multiple buttons at once, and a small speaker instructs her to only press them one at a time. The words are lost on her, however, as she bucks her hips against the mechanical cock. Her well pierced ears jingle wildly as she reverse humps.");
+	output("\n\n<i>\"Ooooo. C-cumming!”</i> she shouts, her whole body tensing as the robot bottoms out inside her. You watch as her legs and toes splay out, the suction cups holding her butt in the air as it shudders with bliss. Her eyes roll back into her head, and her long tongue falls out of her mouth, followed by a number of moans and gasps.");
+	output("\n\n<i>\"I win!”</i> you exclaim before letting the ordeal get the better of you. You let out a satisfied victory moan as your [pc.vagOrAss] clamps tightly around the robotic cock");
+	if(pc.hasCock()) output(", [pc.eachCock] blasting the floor with a load of [pc.cum]");
+	output(". When the robots finally release the two of you, you crawl over to Shekka and give her a kiss that she returns weakly. You mention that you’ll have to try this again some time, and maybe next time she’ll win.");
+	output("\n\nShe punches you in the shoulder as you get up and gather your gear. You offer to help her clean up, but she says she’ll get it herself. Playing the game with her was help enough.");
+	processTime(4);
+	pc.removeStatusEffect("Shekka_Sexbot_Round");
+	pc.orgasm();
+	chars["SHEKKA"].orgasm();
+	fuckedShekka();
+	clearMenu();
+	StatTracking.track("contests/shekka sexoff wins");
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Pc loses
+function pcLosesToShekkasSaxbots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("You try to concentrate on the buttons, but all you can focus on is the pounding of your [pc.vagOrAss]. You hardly have time to say anything before your muscles clench in orgasm. You moan loudly as your [pc.vagOrAss] clenches tightly around the robotic cock inside you");
+	if(pc.hasCock()) output(", [pc.eachCock] blasting the floor with [pc.cumType] as it hits your prostate");
+	output(". You hear it slapping against your [pc.butt] as you cum, which only furthers the effect.");
+	output("\n\n<i>\"Yes!”</i> you hear shekka yell, throwing her arms up in victory before doubling over in an orgasm of her own. Her ears jingle musically as she’s humped into the heavens. She bites her lower lip and rides out the pleasure as you begin to lose focus. A few seconds later, you feel her lips against yours and kiss back as she helps you up.");
+	output("\n\nYou offer to help her clean up, but she replies that playing the game with her was help enough. She’ll clean it after she gets some work done. You gather your gear and head back to whatever you were planning to do before.");
+	processTime(4);
+	pc.removeStatusEffect("Shekka_Sexbot_Round");
+	pc.orgasm();
+	chars["SHEKKA"].orgasm();
+	fuckedShekka();
+	clearMenu();
+	StatTracking.track("contests/shekka sexoff losses");
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Fuckfest II: The fuckening
+//Opening
+//Choose [round 2] from sex menu.
+function shekkaSexbotsMarkTwo():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	//First time
+	if(flags["SEEN_SHEKKAS_NEW_SEXBOTS"] == undefined)
+	{
+		flags["SEEN_SHEKKAS_NEW_SEXBOTS"] = 1;
+		output("As you contemplate what to do, you notice 2 new robots in the back of the store. You give Shekka a questioning look and gesture to them. She averts her gaze slightly, a sheepish smile spreading on her lips.");
+		output("\n\n<i>\"Well I figured since we had so much fun with the last set, I’d better get the second set so we can try them out,”</i> she says as she gestures to the new bots. A cursory examination reveals that the cocks on this variety look to be made of liquid metal. The rods are perfectly round, and look more like classic dildos than actual penises. They lack the fuzzy cilia of the last variety, making you wonder what game these ones are designed for.");
+		output("\n\n<i>\"The first set was designed to use different textures of the same shape. This set adds different shapes to the mix, collected from various races around the universe. I hadn’t even heard of some of them till I looked at the remotes,”</i> she says as she hands you one of the two controllers. Unlike the last pair, these ones seem new and unblemished. The configuration is the same as last time, with the go button positioned above ten effect choices.");
+		output("\n\n<i>\"So " + pc.mf("Mr.","Ms.") + " Steele, are you up for another challenge?”</i> The over-eager engineer asks, giving you her best puppydog eyes. This time, the thought of declining doesn’t even cross your mind.");
+		output("\n\n<i>\"You know it,”</i> you reply as you ");
+		if(!pc.isNude()) output("begin to take off your [pc.gear] before moving to the sexbot");
+		else output("toss your equipment in a pile and move closer to the sexbot");
+		output(". These new bots are very much an improvement of the others, with humanoid heads and actual hands instead of suction cups. It makes you wonder how long Shekka had those old bots before you noticed them.");
+		output("\n\nYou watch as the raskvel repairwoman strips out of her hex-patterned suit, first uncovering her perky B-cups and then her broad egg laying hips. She steps out of the suit and walks to her robot, ears jingling as she kneels down before it. You get in place and prepare to start the game. This should be fun!");
+	}
+	//Repeat
+	else
+	{
+		output("You ask Shekka if she’s up for another challenge with the second set of robots. She enthusiastically accepts your challenge, rushing over to them and preparing herself. You follow, removing your [pc.gear] as you go, placing it in a pile next to the duelbots. You kneel in front of your robot and notice the raskvel technician doing the same. The two of you place your hands above the “GO/FORFEIT\" buttons and prepare to start.");
+	}
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",pressGoForUpgradedSexbots);
+}
+
+	/*Game mechanics
+
+	Same as first game mechanics wise, choose from the 10 options, after 4 choices whoever has the least points loses, tie results in victory if below 50 combat lust, loss if above.
+
+	Ausar: 10 lust points, shekka chooses caithrit
+	Tentacle: 10 lust points, shekka chooses anemone
+	Caithrit: 5 lust points, shekka chooses lizard
+	Human: 5 lust points, shekka chooses goo
+	Horse: 10 lust points, shekka chooses mendova
+	Anemone: 5 lust points, shekka chooses naleen
+	mendova: 5 points, shekka chooses tentacle
+	Naleen: 10 points, shekka chooses horse 
+	Lizard: 10 points, shekka chooses human
+	goo: 15 lust points, shekka chooses ausar*/
+function sexBotMenu2(arg:int = 0):void
+{
+	clearMenu();
+	if(arg == 0) addDisabledButton(0,"Ausar");
+	else addButton(0,"Ausar",giveDemAusarCocksAWhorlOnShekkasSexBawts,undefined,"Ausar","Activate the ausar function on Shekka's 'bot.");
+	if(arg == 1) addDisabledButton(1,"Tentacle");
+	else addButton(1,"Tentacle",tentacleShekkaSaxbotMkII,undefined,"Tentacle","Activate the tentacle function on Shekka's 'bot.");
+	if(arg == 2) addDisabledButton(2,"Kaithrit");
+	else addButton(2,"Kaithrit",kaithritShekkaSaxbot,undefined,"Kaithrit","Activate the kaithrit function on Shekka's 'bot.");
+	if(arg == 3) addDisabledButton(3,"Human");
+	else addButton(3,"Human",humanShekkaSaxbot,undefined,"Human","Activate the human function on Shekka's 'bot.");
+	if(arg == 4) addDisabledButton(4,"Horse");
+	else addButton(4,"Horse",horseShekkaSaxbot,undefined,"Horse","Activate the horse function on Shekka's 'bot.");
+	if(arg == 5) addDisabledButton(5,"Anemone");
+	else addButton(5,"Anemone",shekkaAnemoneBot,undefined,"Anemone","Activate the anemone function on Shekka's 'bot.");
+	if(arg == 6) addDisabledButton(6,"Mendova");
+	else addButton(6,"Mendova",mendovaShekkaBot,undefined,"Mendova","Activate the mendova function on Shekka's 'bot.");
+	if(arg == 7) addDisabledButton(7,"Naleen");
+	else addButton(7,"Naleen",naleenSexBotLetsGo,undefined,"Naleen","Activate the naleen function on Shekka's 'bot.");
+	if(arg == 8) addDisabledButton(8,"Lizard");
+	else addButton(8,"Lizard",lizardShekkaBot,undefined,"Lizard","Activate the lizard function on Shekka's 'bot.");
+	if(arg == 9) addDisabledButton(9,"Goo");
+	else addButton(9,"Goo",gooShekkaBot,undefined,"Goo","Activate the goo function on Shekka's 'bot.");
+	
+	addButton(14,"Forfiet",pcLosesToNewShekkaBots,undefined,"Forfiet","Give up and cum right now.");
+	if(chars["SHEKKA"].lust() >= chars["SHEKKA"].lustMax())
+	{
+		clearMenu();
+		addButton(0,"Next",pcWinsVsNewShekkaBots);
+	}
+	else if(pc.lust() >= pc.lustMax())
+	{
+		clearMenu();
+		addButton(0,"Next",pcLosesToNewShekkaBots);
+	}
+}
+
+
+//Press go
+function pressGoForUpgradedSexbots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("<i>\"You ready over there?”</i> you ask, looking over to Shekka to make sure she’s all set. She nods, her finger positioned over the go button. You smile, returning your attention to your own remote. <i>\"Three. Two. One. Go!”</i>");
+	output("\n\nOn go, the both of you press your start buttons. You feel humanoid hands grip your [pc.butt], feeling a lot better than the suction cups. The hands do feel softer than your average person, like clouds touching your [pc.skinFurScales]. A stream of liquid washes over your backside once the liquid metal cock is lined up with [pc.vagOrAss]. You assume its some kind of lube, designed to protect those with suboptimal natural lubrication, ");
+	if(pc.wetness() < 2 || (!pc.hasVagina() && pc.ass.wetness() <= 2)) output("and you’re thankful for the feature");
+	else output("not that you need it");
+	output(".");
+	output("\n\nThe robot penetrates you, beginning to hump rhythmically into your depths. You slowly let yourself acclimate to the thrusting. As it currently is, the robot seems to be sexing you in the least arousing way possible, assumedly so the game doesn’t end too quickly. You glance at Shekka and see her appraising her choice of buttons. If you want the first move you’d better decide quickly.");
+	if(pc.hasVagina()) pc.cuntChange(0,20,true,true,false);
+	pc.buttChange(20,true,true,false);
+	sexBotMenu2(-1);
+}
+
+//Ausar: 
+function giveDemAusarCocksAWhorlOnShekkasSexBawts():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you hit the button labeled “<i>Ausar</i>”. The red scaled mechanic gasps with pleasure, and she grunts as the robotic cock inside her expands to fit the shape of an ausar’s dog-cock. Shekka bites her bottom lip, and you can see the edge of a great metallic knot attempt to extract itself from her passage. It fails of course, simply tugging her along for the ride as she clenches her fists in resilience.");
+	output("\n\nShekka looks at her options, but before she can hit the one she’d planned to, she jerks off course and her finger lands on another option. She curses and weathers her own challenge. You feel the silvery dick inside your [pc.vagOrAss] begin to shift and change. When it ends, you feel tiny spines tugging at you when it pulls out. You have a feeling this must be a kaithrit impersonation. Without the warmth of a living cock, the spines are just uncomfortable.");
+	output("\n\nYou have no trouble resisting the spiny kitty-cock that tugs on your insides. The smooth tipped barbs aren’t painful, but they certainly aren’t winning any awards in the arousal department. You see your raskvel repairwoman partner look noticeably relieved as the cock inside her returns to the basic dildo shape. You feel yours revert a short time later, and resume your decision making for what to choose next.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu2(0);
+}
+
+
+//Tentacle: 
+function tentacleShekkaSaxbotMkII():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you press the “Tentacle” button. You’re not sure if it means a specific race, but tentacles are rather universal. The metallic cock inside Shekka elongates and thickens at the base. The robot stops its thrusts, simply letting the silvery tentacle do its magic on the scaly shortstack. The magic in question seems very effective indeed, as Shekka grits her teeth in concentration, her eyes struggling to stay focused.");
+	output("\n\nShe manages to keep it up long enough to press a button, and you feel smaller tendrils grow from the tip of the dildo-dick inside you. The thickness doesn’t change a lot, and you feel that something is missing from this equation. The tickling tendrils are alright, but nothing to write home about. Whatever race this is from, they’d better have something snazzy to accompany this shape.");
+	output("\n\nOnce again you’re reduced to watching the crimson engineer have fun. Part of you hopes she hits the tentacle button at some point during the game. The sight of her cooing as her hole is ravaged by a writhing coil of cock sends a shiver through your body. Once again she’s given you a free opportunity to make your choice.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu2(1);
+}
+
+//Kaithrit:
+function kaithritShekkaSaxbot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you click the button labeled “Kaithrit”, and wait eagerly for Shekka’s reaction. When it comes it isn’t quite the reaction you’d hoped for. She gives a yip of discomfort and looks at the robot, and then looks to you. Judging by her look the kittycock option wasn’t a hit for her.");
+	output("\n\n<i>\"Really? Is that the best you can do? All this feels is uncomfortable,</i>” the deflated technician sighs, resting her hands on her palms as she surveys her options, finally clicking one after building your anticipation. The chromed cock inside your [pc.vagOrAss] splits into two, not growing much, but expanding to twice its former thickness. Your mouth opens soundlessly as the newly formed twincock ravages your passage.");
+	output("\n\n<i>\"There! That’s what I want to be feeling right now,”</i> she says as you struggle to find your voice. When you finally find it, it comes out as a quiet moan, and your hands clench the sides of your remote. You survey your options, desperate to get to the next option before you lose the game.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu2(2);
+}
+
+//Human: 
+function humanShekkaSaxbot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("While you’re busy pondering your choices, Shekka takes the advantage and picks one first. The stannic dildo inside you grows for a moment, but instead of hardness you feel it soften. It still grows, however, feeling like liquid. You moan loudly as the morphing cock sloshes through your passage. No matter how hard your [pc.vagOrAss] clenches around it, it slides through you unhindered.");
+	output("\n\nYou scramble to find a button, hitting the “Human” one as an emergency effort. The raskvel technician smiles at you, looking pleased with herself as her robot pistons its hips against hers. She doesn’t appear to be anywhere near the same state you’re in from her choice. She laughs when she sees your look, as if reading your mind.");
+	output("\n\n<i>\"Human cocks are much better with the person attached. They’re kinda bland without it, especially at this size,”</i> she says as you weather the storming faux goo-cock inside you. You attempt a witty retort, but can’t talk with the flood of liquid metal sloshing through your [pc.vagOrAss]. You hope there aren’t any other buttons quite this tough to resist.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu2(3);
+}
+
+//Horse: 
+function horseShekkaSaxbot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you push the button labeled “Horse”. Your choice is a successful one, and you smile as you see the scarlet shortstack bite her bottom lip. Her long ears jingle musically as she’s pounded by the thick metallic horse-dick. Her egg-bearing hips twitch invitingly, each motion creating a new fantasy while you wait for her to press her button.");
+	output("\n\nShe manages to hold it together long enough to jam one, and you feel the single robo-dildo in your [pc.vagOrAss] split into a number of smaller thin tendrils. The mini-tentacles feel good, but you think they could stand to be a little thicker, or maybe a little more adventurous. The race this cock belongs to must have prehensile control over these things, or females with extraordinarily sensitive vaginas.");
+	output("\n\nFor now, you’re content to sit and listen to the chorus of moans and jingling ear jewelry coming from your partner. The pint-sized mechanic takes the thick, long rod like a champ. You stretch your muscles and yawn, working out the tension of being relatively still for so long. You peruse your choices as you wait for the current one to finish up.");
+	processTime(1);
+	chars["SHEKKA"].lust(12);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu2(4);
+}
+
+//Anemone: 
+function shekkaAnemoneBot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" your hand comes to the button labeled “Anemone”. While you wonder about whether it means the seafaring plant from tera, Shekka makes her move. She activates her remote before you can reach yours, and you feel the metal rod elongate and grow two bulbous portions along its length. They aren’t quite as thick as knots, so when they pass by the entrance to your [pc.vagOrAss] they pop out and back in, throwing you off balance when you expect to be pulled but slip back.");
+	output("\n\nYou hit your anemone button and hope that it’s something special. The contented look on the raskvel technicians face ruins your hopes. She smiles at you and moans softly, her ears sounding like wind chimes. She seems in complete control of what she’s feeling, which isn’t what you want in a competition that focuses on making the opponent lose themselves in lust.");
+	output("\n\n<i>\"What are you trying to do? Let me win?”</i> Shekka taunts as she watches you struggle. The knobby cock inside you is much better at its job, and you feel like if this dick had the warmth that it would have on a living thing you’d be a goner already. Your competitor squeezes one of her pert B-cups, rubbing the eggplant-colored nipple enticingly.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu2(5);
+}
+
+//Mendova: 
+function mendovaShekkaBot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you thumb the button labeled “Mendova”. Shekka gasps in pleasure, but her expression turns to a smile after a moment. This was the wrong choice for this game. The crimson tech wiz makes exaggerated moans in an attempt to coax extra feeling from you. As she does so she hits a button on her controller.");
+	output("\n\nYou grit your teeth as the metallic pole inside you becomes thicker at the base and lengthens. It becomes a chromed tentacle, churning both your insides and the thoughts in your head. Its hard to keep your thoughts straight as the offending tendril pounds ");
+	if(pc.hasVagina()) output("against your womb");
+	else output("deeper into [pc.ass]");
+	output(". If this keeps up for much longer you might be in trouble.");
+	output("\n\n<i>\"If you cant take it you should stop going easy on me with your choices,”</i> the rosey-scaled engineer says with a wink. You can only grunt and moan in reply, feeling haggard from the constant dicking. The warm embrace of orgasm looms on the horizon, looking quite inviting.");
+	processTime(1);
+	chars["SHEKKA"].lust(5);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu2(6);
+}
+
+//Naleen: 
+function naleenSexBotLetsGo():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you see the button labeled “Naleen”. You give Shekka a foolish grin, waving to her. When she notices you and begins to voice a question, you press the button. The scarlet-scaled shortstack’s voice catches in her throat, her question trailing off into pleasure addled mumbling. The now dually knobbed reptile cock in her cunt tugs at her slightly as the thicker portions pop in and out.");
+	output("\n\n<i>\"What’s the matter, cat got your tongue? Or I guess kitty-naga in this case,”</i> you tease playfully, eyeing your competition’s naked figure as it’s rammed by robotic meat. Shekka manages a laugh, hitting a button on her own remote. You gasp as your robot’s dick thickens and lengthens inside you, topping off with a flared tip. The ridges of the flare tickle at your walls, and the overall thickness doesn’t hurt in the least. It seems this time the both of you have chosen effective buttons.");
+	output("\n\nBoth of you ride out the pleasure together. Before your eyes haze with lust, you can see that the raskvel repairwoman’s are just as unfocused. For a moment, the room is filled with the sounds of both of your moans, the robo-flesh slapping against your butts, and the jingling of her ears.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(12);
+	sexbotRound(1);
+	sexBotMenu2(7);
+}
+
+//Lizard: 
+function lizardShekkaBot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you pick the button labeled “Lizard”, not sure what kind of lizard they’re referring to. Shekka gasps, and when her robot pulls out you see that its dildo-cock has become two shorter and thicker ones. The dual powered option seems to be effective, as the pint-sized engineer grunts and backs her hips further into them.");
+	output("\n\nHer pleasure doesn’t prevent her from choosing a button, and you feel the metallic rod in your [pc.vagOrAss] begin to morph shapes. When it ends, it hasn’t changed a lot. Her choice was a simple human dick. Maybe the lizard cock had a bigger effect on her than you had thought. You’re perfectly fine with this situation as it helps you keep your head in the game.");
+	output("\n\nA silly part of you wishes you had some popcorn to eat while watching the minute mechanic squirm in ecstasy. Her legs tense with every slap on her ample hips, the robots hands holding fast to her squishy tush. Her teeth clenched tightly shut as she resists as best she can. You wish the human dick came the the faculties of its origin race. Without the throbbing and pulsingm it’s not much better than a dildo.");
+	processTime(1);
+	chars["SHEKKA"].lust(10);
+	pc.lust(5);
+	sexbotRound(1);
+	sexBotMenu2(8);
+}
+
+//goo: 
+function gooShekkaBot():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	if(sexbotRound() <= 0) output("First,");
+	else if(rand(2) == 0) output("Next,");
+	else output("Then,");
+	output(" you push the button labeled “<i>Goo</i>”. At first Shekka smiles, but her grin melts after a few seconds, turning into a look of worry, then to one of lust. For a second you think you might have won, as the scaley shortstack collapses, moaning as the goo cock sloshes rapidly inside her. Her tongue lolls from her mouth as the chromed liquid massages both of her clits at once. How she manages to pull herself from the brink to hit her button, you’ll never know.");
+	output("\n\nYou feel the dick in your [pc.vagOrAss] hilt, and before you can wonder what’s happening, the base begins swelling until its stuck fast inside your hole. You gasp and moan as the robot attempts to tug its way out to no avail, bringing you along for the ride. The knotted cock feels wonderful, causing your muscles to begin tensing.");
+	output("\n\n<i>\"Is that all you’ve got? This is nothing,”</i> you taunt, somehow managing to bring yourself to a stable state of mind. The smooth-scaled technician recovers as well, but still appears to be having a little trouble as the poundings and massagings of the gooey member whither her defenses.");
+	processTime(1);
+	chars["SHEKKA"].lust(15);
+	pc.lust(10);
+	sexbotRound(1);
+	sexBotMenu2(9);
+}
+
+//Pc wins
+function pcWinsVsNewShekkaBots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("As you contemplate your next choice, you hear Shekka’s breathing become deeper and more lust-filled. You watch as she again clutches the controller against her, muscles locking up as orgasm rocks her body. Now that she’s lost, theres no harm in helping her along, right? You reach over between the cleft of her ass and tickle her rear clit with your forefingers. This sets her off again, her voice peaking in a shout as her legs splay out around the robot’s hips. Her tail beats against your forearm when it tries to wag");
+	output("\n\n<i>\"You just love letting me win, don’t you?”</i> you ask teasingly as you attend to her. She nods weakly as the spasms slow down enough for her to regain motor control. Suddenly, you remember your own pleasure, but it’s too late to keep a cap on it. You squeeze the rosey raskvel’s butt-cushions as you cum, ");
+	if(pc.hasCock() && pc.hasVagina()) output("[pc.girlCum] leaking from [pc.eachVagina] as [pc.eachCock] paints the floor [pc.cumColor]");
+	if(pc.hasCock()) output("splattering the floor as [pc.eachCock] blows a load beneath you");
+	else output("spattering the robot’s hips with your [pc.girlCum]");
+	output(".");
+
+	output("\n\nYou brush one of Shekka’s ears away from her face as you help her off her robot. Her legs shudder weakly, not quite ready to support her. You offer to help clean up the mess you’ve made, but she tells you not to worry about it. She’ll get it later. You gather your gear and return to your previous antics.");
+	processTime(4);
+	pc.removeStatusEffect("Shekka_Sexbot_Round");
+	pc.orgasm();
+	chars["SHEKKA"].orgasm();
+	fuckedShekka();
+	clearMenu();
+	StatTracking.track("contests/shekka sexoff wins");
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Pc loses
+function pcLosesToNewShekkaBots():void
+{
+	clearOutput();
+	author("Gardeford");
+	showBust("SHEKKA_NUDE");
+	showName("\nSHEKKA");
+	output("You try to Think of another button to press, but you are unable to blink away the rapidly encroaching haze of lust that creeps into your vision. Oh no! You attempt to hit a button at random, but miss the keypad as spasms rock your body. You cum hard, ");
+	if(pc.hasCock() && pc.hasVagina()) output("[pc.girlCum] leaking from [pc.eachVagina] when [pc.eachCock] paints the floor [pc.cumColor]");
+	else if(pc.hasCock()) output("splattering the floor when [pc.eachCock] blows a load beneath you");
+	else output("spattering the robot’s hips with your [pc.girlCum]");
+	output(".");
+	output("\n\n<i>\"Ooooh,”</i> is all you can manage while the muscles in your [pc.legs] clamp up, your [pc.vagOrAss] tightening like a vice around the robotic intruder. Shekka cheers in victory before letting herself fall to her own pleasure. She sighs as her toes curl, and her eyes roll back into her head. You both share a moment of mindless bliss before coming back to your senses.");
+	output("\n\n<i>\"Thanks for playing with me again. Sorry you had to lose,”</i> Shekka says once she’s recovered. She crawls over to you, giving you a kiss before helping you up and finding your gear for you. You offer to help her clean up, but she dismisses it, saying she’ll clean it up later. You equip your things, ready to go on your way.");
+	processTime(4);
+	pc.removeStatusEffect("Shekka_Sexbot_Round");
+	pc.orgasm();
+	chars["SHEKKA"].orgasm();
+	fuckedShekka();
+	clearMenu();
+	StatTracking.track("contests/shekka sexoff losses");
 	addButton(0,"Next",mainGameMenu);
 }
