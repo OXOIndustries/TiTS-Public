@@ -188,6 +188,8 @@ public function saendraSexMenu():void
 	if (!saendra.hasCock()) addButton(0, "Take Strapon", takeSaensStrappedyDappedyCock, undefined, "Take Strapon", "Saendra dons a strapon and goes to town on your ass.");
 	else addButton(0, "Get Buttfucked", takeSaensCompletelyReasonablyProportionedFutaCock, undefined, "Get Buttfucked", "Put Saendra's new cock to work on your ass.");
 
+	addButton(10, "Probe Sex", saendraProbesYourCuntWithHerMechaArm, undefined, "Probe Sex", "Saendra's mechanical arm has some interesting features...");
+	
 	if (pc.hasCock())
 	{
 		addButton(5, "Cowgirl", saendraRidesYouCowgirlStyle, undefined, "Cowgirl Style", "Let Saendra stick your cock up her ass and ride it cowgirl style.");
@@ -201,8 +203,6 @@ public function saendraSexMenu():void
 
 	if (pc.hasVagina())
 	{
-		addButton(10, "Probe Sex", saendraProbesYourCuntWithHerMechaArm, undefined, "Probe Sex", "Saendra's mechanical arm has some interesting features...");
-
 		if (saendra.hasCock())
 		{
 			addButton(11, "Ride Cock", saendraStuffsHerFutacockInYourCunt, undefined, "Ride Cock", "Well, you talked her into getting a cock. It'd only be fair to give her somewhere proper to stick it.");
@@ -214,8 +214,6 @@ public function saendraSexMenu():void
 	}
 	else
 	{
-		addDisabledButton(10, "Probe Sex", "Probe Sex", "Saendra's mechanical arm has some interesting features, but without a vagina there's not much you can do with them.");
-
 		if (saendra.hasCock())
 		{
 			addDisabledButton(11, "Ride Cock", "Ride Cock", "Without a vagina, there's only one hole Saendra can stuff her cock in.");
@@ -1169,7 +1167,9 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 	}
 	else
 	{
-		output("\n\nAs you suck Saen’s probe, the pretty fluffball slips down to you groin, her smooth, clawed hand running across your thighs, caressing your tender [pc.skin]. She leans her head against your [pc.leg], her hot breath searing across your womanhood. She takes a great, deep breath, exhaling with a groan of satisfaction. “<i>You smell incredible, hero. So strong, so potent... oh god it gets my heart racing,</i>” she says with a grin, running a knuckle around the lips of your womanhood before leaning in to plant a tender little kiss on the nub of your [pc.clit]. “<i>Maybe next time I’ll get to play with this hole, hmm?</i>” she adds, her long tongue flickering out and diving into your unprotected [pc.cunt]. You gasp at the sudden penetration, at the feeling of her slender tongue caressing your inner walls.");
+		if (pc.hasVagina()) output("\n\n");
+		output("As you suck Saen’s probe, the pretty fluffball slips down to you groin, her smooth, clawed hand running across your thighs, caressing your tender [pc.skin].");
+		if (pc.hasVagina()) output(" She leans her head against your [pc.leg], her hot breath searing across your womanhood. She takes a great, deep breath, exhaling with a groan of satisfaction. “<i>You smell incredible, hero. So strong, so potent... oh god it gets my heart racing,</i>” she says with a grin, running a knuckle around the lips of your womanhood before leaning in to plant a tender little kiss on the nub of your [pc.clit]. “<i>Maybe next time I’ll get to play with this hole, hmm?</i>” she adds, her long tongue flickering out and diving into your unprotected [pc.cunt]. You gasp at the sudden penetration, at the feeling of her slender tongue caressing your inner walls.");
 	}
 
 	output("\n\nThe foreplay continues for a few long, blissful minutes that blend into a symphony of pleasures as Saendra tends to your loins, getting you nice and ready for the main event. Gently, she retracts the probe from your mouth, leaving you feeling suddenly empty as the sultry redhead stands,");
