@@ -82,6 +82,7 @@
 
 			kGAMECLASS.clearOutput();
 			if(target is PlayerCharacter) {
+				kGAMECLASS.author("Savin");
 				kGAMECLASS.output("You pop the small, spherical red pill from the plastic container and into your palm. It's barely smaller than your little finger's nail, and has a slick, almost wet texture against your [pc.skinFurScales]. After a moment's consideration, you plant the pill on your tongue and swallow it down. It goes down easily enough, leaving a meaty taste lingering in your mouth that has you salivating. Surprisingly delicious!\n\nYou're left waiting for a few long, anxious minutes before ");
 
 				//if PC has no dicks, but has a clit
