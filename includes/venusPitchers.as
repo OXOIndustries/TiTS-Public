@@ -17,11 +17,10 @@ import classes.PregnancyData;
 function encounterRegularTentaclePitcherYouGay():void {
 	userInterface.showBust("VENUSPITCHER");
 	userInterface.showName("VENUS\nPITCHER");
+	CodexManager.unlockEntry("Venus Pitcher");
 	//*First Time
 	if(flags["TIMES_MET_VENUS_PITCHER"] == undefined)
-	{
-		CodexManager.unlockEntry("Venus Pitcher");
-		
+	{		
 		flags["TIMES_MET_VENUS_PITCHER"] = 1;
 		output("\n\nA gentle voice rises in greeting, drawing your attention to one side. A pale-skinned woman turns out to be the source of the fair voice. She's looking at you with an excited grin on her face while standing in a fairly disarming pose. In the darkness of the jungle, her whole body seems tinted a slightly viridian hue, except where a leafy green bra of foliage conceals her generous breasts. A large, creased leaf is pressed betwixt her thighs to conceal her womanly modesty. Most strikingly of all, her shining, shoulder-length hair reveals itself to be umbrageous fronds that shimmer in the dim light. It's almost entrancing the way it shimmers and sways whenever she shifts position, which is frequent.");
 		output("\n\nYou suddenly sneeze, which draws a high-pitched giggle from the nymph-like woman, the breathy exclamations of good humor jostling her curvy tits almost mesmerizingly. She beams a friendly smile and says, <i>“These jungles are stuffy, I know. I've been stuck here for like a whole day! My foot's stuck in some sap.”</i>  She leans and shudders a bit for emphasis, her breasts swaying beneath her outstretched torso like sexy pendulums. Her plump lower lip is drawn into her mouth, gently gnawed on as she struggles. <i>“A little help?”</i>");
@@ -518,9 +517,9 @@ function tentacleJamAftermath(knockUpPass:Number = 0):void {
 function elderVenusPitcherEncounter():void {
 	userInterface.showBust("VENUS_PITCHER_ELDER");
 	userInterface.showName("VENUS\nPITCHER");
+	CodexManager.unlockEntry("Venus Pitcher");
 	//*First Time
 	if (flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] == undefined) {
-		CodexManager.unlockEntry("Venus Pitcher");
 		flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] = 1;
 		output("\n\n“<i>Excuse me,</i>”  greets a melodious voice, pulling you towards it on invisible, auditory strings. You find the source of the beautifully enunciated words almost immediately - a tall woman with surprisingly pert E-cup breasts hanging bare in the breeze. Her hips flare wide enough for you to unconsciously think of them as “breeding hips.”  Sniffling uncomfortably, you realize that you’ve found another venus pitcher!");
 		output("\n\nSeeing your adopted stance, she soothingly pleads, “<i>Oh my, you look so tense.</i>”  Her hands rise up to cup the bottoms of her perky tits, rubbing her thumbs in slow circles around her nipples. “<i>I can help you relax, you know.”</i>");
