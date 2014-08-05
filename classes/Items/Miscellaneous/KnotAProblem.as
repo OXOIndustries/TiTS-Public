@@ -143,21 +143,15 @@
 					}
 					target.orgasm();
 				}
-				//No Effect 
 				else
 				{
-					kGAMECLASS.output("\n\nYou wait for several minutes, occasionally scratching at your ");
-					if(target.milkType != GLOBAL.FLUID_TYPE_CHOCOLATE_MILK || !target.canLactate()) kGAMECLASS.output("milkless ");
-					else kGAMECLASS.output("already chocolate-drooling ");
-					kGAMECLASS.output("teats, waiting for... something. Anything, really. Eventually, you sigh and grab something to wipe the dud cream off with. <b>Looks like you ");
-					if(target.milkType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) kGAMECLASS.output("already have the full effect of the drug</b>.");
-					else kGAMECLASS.output("might need to be lactating already for this mutagen to work</b>.");
+					kGAMECLASS.output("you sigh, finally accepting that the pill isn't having any effect on you. Maybe you need a dick for Knot a Problem to work.");
 				}
 			}
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the cream to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " eats the pill to no effect.");
 			}
 			return false;
 		}
