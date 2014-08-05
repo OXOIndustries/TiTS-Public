@@ -408,21 +408,21 @@
 						kGAMECLASS.output("\n\nA particularly pleasant pinch of your [pc.nipple] sends enough of a shock through you that you give out a little moan, back arching as your teats stiffen under the sudden assault. Once the floodgate opens, you're soon moaning and whimpering with every roaming touch. Your fingers go exploring, teasing and groping your [pc.chest]. Every pinch of squeeze elicits a gasp of pleasure from your lips as your lust rises, spreading like a heatwave from your tits through your chest and your");
 						if(target.hasCock()) 
 						{
-							kGAMECLASS.output("rapidly hardening cock");
+							kGAMECLASS.output(" rapidly hardening cock");
 							if(target.cockTotal() > 1) kGAMECLASS.output("s");
 						}
 						else if(target.hasVagina()) 
 						{
-							kGAMECLASS.output("quivering quim");
+							kGAMECLASS.output(" quivering quim");
 							if(target.vaginaTotal() > 1) kGAMECLASS.output("s");
 						}
-						else kGAMECLASS.output("tinging, faceless groin");
+						else kGAMECLASS.output(" tinging, faceless groin");
 						kGAMECLASS.output(". With a shudder, you slink down to your [pc.knees], spreading 'em wide as you lose yourself to your lust.");
 
-						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined.");
+						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined");
 						if(target.hasCock()) 
 						{
-							kGAMECLASS.output(" [pc.EachCock] sprays a thick load, hands-free as your grope yourself, splattered the ground with wasted seed");
+							kGAMECLASS.output(". [pc.EachCock] sprays a thick load, hands-free as your grope yourself, splattered the ground with wasted seed");
 							if(target.hasVagina()) kGAMECLASS.output("; y");
 						}
 						else if(target.hasVagina()) kGAMECLASS.output(". Y");
@@ -434,7 +434,7 @@
 						}
 						if(target.hasCock() || target.hasVagina()) kGAMECLASS.output(".");
 						kGAMECLASS.output(" You only just stop yourself from collapsing as your orgasm wracks your body, radiating from your [pc.chest] and groins as you continue to grope and caress yourself.");
-						kGAMECLASS.output("\n\nThe orgasm seems to last for ages, moments stretching to eternities as you succub to bliss and your own explosive arousal, only groping yourself harder as you reach your climax, and slowly come down. When it ends, you find yourself drenched in sweat");
+						kGAMECLASS.output("\n\nThe orgasm seems to last for ages, moments stretching to eternities as you succumb to bliss and your own explosive arousal, only groping yourself harder as you reach your climax, and slowly come down. When it ends, you find yourself drenched in sweat");
 						if(target.hasCock() || target.hasVagina())
 						{
 							kGAMECLASS.output(" and ");
