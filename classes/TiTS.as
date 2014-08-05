@@ -619,8 +619,6 @@
 		
 		public function get pc():*
 		{
-			// This is actually a legit sensible layer of indirection for the player object when we want to address it.
-			// Case in point; Urtaquest-like "swapping" of the controllable character.
 			return chars["PC"];
 		}
 		public function get monster():*
@@ -719,7 +717,7 @@
 		
 		public function get vanae():*
 		{
-			
+			return this.monster;
 		}
 		public function get vanaeMaiden():*
 		{

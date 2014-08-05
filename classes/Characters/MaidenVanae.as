@@ -29,7 +29,8 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			
-			this.long = "";
+			this.long = "Your opponent - a young vanae maiden - almost appears as if she's dancing as she fights you. Her [vanaeMaiden.hair] and short skirt, not to mention her tiny breasts, make her look almost girlish. The amazon's tentacles and body markings are [vanaeMaiden.hairColor] colored and bioluminescent. \n\nAs she swings her pointed spear around in her webbed hands, you can't help but notice her tiny boobs bouncing about. Her inverted nipples are lactating a transparent, [vanaeMaiden.milkColor] goo. Meanwhile her [vanaeMaiden.tail] whips around as she ‘dances’, another weapon in the alien girl's natural arsenal.\n\nHer eyes are closed. It's always a little weird fighting someone who doesn't even look at you.";
+
 			this.customDodge = "";
 			this.customBlock = "";
 			this.plural = false;
@@ -121,7 +122,13 @@ package classes.Characters
 		
 		override public function setDefaultSexualPreferences():void
 		{
-			
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION, GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS, GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_BREASTS, GLOBAL.KINDA_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_MULTIPLES, GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.KINDA_DISLIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
+			this.sexualPreferences.setPref(GLOBAL.SEXPREF_TAILGENITALS, GLOBAL.REALLY_DISLIKES_SEXPREF);
 		}
 		
 		override public function prepForCombat():void

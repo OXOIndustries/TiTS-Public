@@ -708,7 +708,7 @@
 		public static const SEXPREF_PUSSIES:int = 10;
 		public static const SEXPREF_BALLS:int = 11;
 		public static const SEXPREF_BIG_MALEBITS:int = 12;
-		public static const SEXPREF_SMALL_MALEBITS:int = 13; // Because Vladimir Snoutin' aka Savin would want dis!
+		public static const SEXPREF_SMALL_MALEBITS:int = 13;
 		public static const SEXPREF_MULTIPLES:int = 14;
 		public static const SEXPREF_HYPER:int = 15;
 		public static const SEXPREF_GAPE:int = 16;
@@ -721,8 +721,9 @@
 		public static const SEXPREF_EXOTIC_BODYSHAPE:int = 23;
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
+		public static const SEXPREF_NEUTER:int = 26
 		
-		public static const MAX_SEXPREF_VALUE:int = 26; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
 		// The two will have to forever be in the same order though, but I can probably rig up some better system.

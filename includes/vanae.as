@@ -5,6 +5,11 @@ public function encounterVanae(isHuntress:Boolean):void
 
 	if ((isHuntress && flags["ENCOUNTERED VANAE HUNTRESS"] == undefined) || (!isHuntress && flags["ENCOUNTERED VANAE MAIDEN"] == undefined))
 	{
+		if (isHuntress) flags["ENCOUNTERED VANAE HUNTRESS"] = 1;
+		else flags["ENCOUNTERED VANAE MAIDEN"] = 1;
+
+		CodexManager.unlockEntry("Vanae");
+		
 		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
 		
 		output("\n\nYou look around you and see nothing. Is the codex malfunctioning? The device is equipped with short-range sensors, but there’s nothing as far as you can see.");
