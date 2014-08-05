@@ -1315,6 +1315,12 @@
 				case "nipplesDescript":
 					buffer = nipplesDescript(arg2);
 					break;
+				case "milkyNipple":
+					buffer = nippleDescript(arg, false, true);
+					break;
+				case "milkyNipples":
+					buffer = nipplesDescript(arg2, true);
+					break;
 				case "nippleCockDescript":
 				case "nippleCock":
 				case "dickNipple":
@@ -1519,43 +1525,23 @@
 					break;
 				case "he":
 				case "she":
-				case "heshe":
+				case "heShe": // Shamelessly stole these from Alderbro. :3
+				case "ey":
 					buffer = this.mf("he", "she");
 					break;
-				case "ey":
-					buffer = this.mfn("he", "she", "ey");
-					break;
-				case "himo":
-				case "hero":
-				case "himher":
+				case "him":
+				case "himHer":
+				case "em":
 					buffer = this.mf("him", "her");
 					break;
-				case "em":
-					buffer = this.mfn("him", "her", "em"); // hero == "her objective"
-					break;
-				case "hisa":
-				case "hera":
-				case "hisher":
+				case "his":
+				case "hisHer":
+				case "eir":
 					buffer = this.mf("his", "her");
 					break;
-				case "eir":
-					buffer = this.mfn("his", "her", "eir");
-					break;
-				case "hisp":
-				case "hersp":
-				case "hishers":
-					buffer = this.mf("his", "hers");
-					break;
+				case "hisHers":
 				case "eirs":
-					buffer = this.mfn("his", "hers", "eirs"); // hisp == "his possessive pronoun"
-					break;
-				case "himself":
-				case "herself":
-				case "himselfherself":
-					buffer = this.mf("himself", "herself");
-					break;
-				case "emself":
-					buffer = this.mfn("himself", "herself", "eirself");
+					buffer = this.mf("his", "hers");
 					break;
 				case "skinTone":
 					buffer = this.skinTone;
@@ -6167,10 +6153,10 @@
 			//if(rando == 2) desc += "cheeks";
 			return desc;
 		}
-		public function nipplesDescript(rowNum = 0): String {
-			return nippleDescript(rowNum, true);
+		public function nipplesDescript(rowNum = 0, forceLactation:Boolean = false): String {
+			return nippleDescript(rowNum, true, forceLactation);
 		}
-		public function nippleDescript(rowNum: Number = 0, plural: Boolean = false): String {
+		public function nippleDescript(rowNum: Number = 0, plural: Boolean = false, forceLactation:Boolean = false): String {
 			//DEBUG SHIT!
 			if (rowNum > (breastRows.length - 1)) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
 			if (rowNum < 0) return "<B>Error: Invalid breastRows (" + rowNum + ") passed to nippleDescript()</b>";
@@ -6225,7 +6211,7 @@
 				descripted++;
 			}
 			//Milkiness/Arousal/Wetness Descriptors 33% of the time
-			if (this.rand(3) == 0 && descripted < 2) {
+			if ((this.rand(3) == 0 || forceLactation) && descripted < 2) {
 				//Fuckable chance first!
 				if (breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_FUCKABLE) {
 					if (descripted > 0) description += ", ";

@@ -755,7 +755,7 @@ public function saendraTalkInDC():void
 	output("\n\n“<i>Uh. Yeah, actually.</i>”");
 	
 	output("\n\nSera snorts. “<i>Called it. Hey, ease up. Girls with dicks are basically the new big tits fetish. Especially when they’ve got both, huh?</i>” she says, shifting slightly to emphasize her own ample bust. “<i>So what’s it gonna be, kitten? You want a big, thick cock to fuck your [pc.boy]friend here with?");
-	if (pc.hasCock()) output(" Maybe one so big that you’ll put [pc.hisp] to shame?");
+	if (pc.hasCock()) output(" Maybe one so big that you’ll put [pc.hisHers] to shame?");
 	output(" Or do you want a dainty little dick that everyone’s gonna want to suck on before they spread your legs and fuck you like a dirty whore? Maybe then the boys’ll finally be able to tell when you cum.</i>”");
 	
 	output("\n\nFlashing the demoness a grin, Saendra leans in and whispers, “<i>You’re just jealous that I don’t have to fake it.</i>”");
@@ -817,9 +817,9 @@ public function saenAndSeraMet():void
 
 	output("“<i>I take it you two know each other?</i>” you say, watching the two girls practically making out already.");
 	
-	output("\n\nSera eyes Saendra. “<i>What? You didn’t tell [pc.himher]?</i>”");
+	output("\n\nSera eyes Saendra. “<i>What? You didn’t tell [pc.himHer]?</i>”");
 	
-	output("\n\n“<i>T-tell [pc.himher] what?</i>” Saendra says, fidgeting.");
+	output("\n\n“<i>T-tell [pc.himHer] what?</i>” Saendra says, fidgeting.");
 	
 	output("\n\n“<i>That </i>somebody<i> sucked cock to get those big, bouncy meatbags on her chest.</i>”");
 	
@@ -885,7 +885,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\nSaen catches sight of your will breaking down and shoots you a wink. “<i>Missing out, hero!</i>” she jeers, just as Sera’s hips slam into her ass, both cocks buried to the hilt. “<i>More than enough cock to go around!</i>”");
 	
-	output("\n\n“<i>[pc.He] made [pc.hisa] choice, furball,</i>” Sera grunts, hips moving faster. “<i>Now clench that ass tighter before I see if I can fit my fist up there, too!</i>”");
+	output("\n\n“<i>[pc.HeShe] made [pc.hisHer] choice, furball,</i>” Sera grunts, hips moving faster. “<i>Now clench that ass tighter before I see if I can fit my fist up there, too!</i>”");
 	
 	output("\n\n“<i>Shut up and fuck me harder, pencil-dick!</i>” Saen laughs back, raising her tails and pushing her hips back against the demoness’s thrusting cocks. ");
 	

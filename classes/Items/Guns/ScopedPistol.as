@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a scoped pistol";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This pistol is equiped with a rather impressive scope of your own manufacture. It's quite accurate but low caliber.";
+			this.tooltip = "This compact laser pistol is equiped with a rather impressive scope and energy cell of your own manufacture. It is quite accurate but relatively low powered.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -39,7 +39,7 @@
 			this.basePrice = 350;
 			this.attack = 2;
 			this.damage = 4;
-			this.damageType = GLOBAL.KINETIC;
+			this.damageType = GLOBAL.LASER;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

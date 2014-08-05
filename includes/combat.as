@@ -1721,6 +1721,12 @@ function startCombat(encounter:String):void
 		case "Kaska":
 			chars["KASKA"].prepForCombat();
 			break;
+		case "HUNTRESS_VANAE":
+			chars["HUNTRESS_VANAE"].prepForCombat();
+			break;
+		case "MAIDEN_VANAE":
+			chars["MAIDEN_VANAE"].prepForCombat();
+			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");
 			break;

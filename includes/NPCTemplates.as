@@ -1,4 +1,6 @@
-﻿import classes.Characters.Kiro;
+﻿import classes.Characters.HuntressVanae;
+import classes.Characters.Kiro;
+import classes.Characters.MaidenVanae;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.GunTurrets;
 import classes.Characters.Saendra;
@@ -216,6 +218,14 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["AMMA"] == undefined))
 	{
 		chars["AMMA"] = new Amma();
+	}
+	if (!justUpdate || (justUpdate && chars["HUNTRESS_VANAE"] == undefined)
+	{
+		chars["HUNTRESS_VANAE"] = new HuntressVanae();
+	}
+	if (!justUpdate || (justUpdate && chars["MAIDEN_VANAE"] == undefined)
+	{
+		chars["MAIDEN_VANAE"] = new MaidenVanae();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)
