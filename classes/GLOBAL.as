@@ -135,6 +135,9 @@
 		public static const TYPE_SYDIAN:int 								   = 43;
 		public static const TYPE_LAPINARA:int 							   = 44;
 		public static const TYPE_BADGER:int 								   = 45;
+		public static const TYPE_VANAE:int									= 46;
+		public static const TYPE_VANAE_MAIDEN:int							= 47;
+		public static const TYPE_VANAE_HUNTRESS:int							= 48;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -180,6 +183,9 @@
 			"Sydian",
 			"Lapinara",
 			"Badger",
+			"Vanae",
+			"Vanae Maiden",
+			"Vanae Huntress",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -441,16 +447,17 @@
 		];
 				
 		//CUM & MILK TYPES
-		public static const FLUID_TYPE_MILK:int                                   = 0;
-		public static const FLUID_TYPE_HONEY:int                                  = 1;
-		public static const FLUID_TYPE_CUM:int                                    = 2;
-		public static const FLUID_TYPE_OIL:int                                    = 3;
-		public static const FLUID_TYPE_MILKSAP:int                                = 4;
-		public static const FLUID_TYPE_GIRLCUM:int                                = 5;
-		public static const FLUID_TYPE_CUMSAP:int								   = 6;
-		public static const FLUID_TYPE_CHOCOLATE_MILK:int 						   = 7;
-		public static const FLUID_TYPE_STRAWBERRY_MILK:int 					   = 8;
-		public static const FLUID_TYPE_SYDIAN_CUM:int 							   = 9;
+		public static const FLUID_TYPE_MILK:int                                 = 0;
+		public static const FLUID_TYPE_HONEY:int                                = 1;
+		public static const FLUID_TYPE_CUM:int                                  = 2;
+		public static const FLUID_TYPE_OIL:int                                  = 3;
+		public static const FLUID_TYPE_MILKSAP:int                              = 4;
+		public static const FLUID_TYPE_GIRLCUM:int                              = 5;
+		public static const FLUID_TYPE_CUMSAP:int								= 6;
+		public static const FLUID_TYPE_CHOCOLATE_MILK:int 						= 7;
+		public static const FLUID_TYPE_STRAWBERRY_MILK:int 					   	= 8;
+		public static const FLUID_TYPE_SYDIAN_CUM:int 							= 9;
+		public static const FLUID_TYPE_VANAE_MILK:int							= 10;
 		
 		public static const FLUID_TYPE_NAMES:Array = [
 			"Milk",
@@ -463,6 +470,7 @@
 			"Chocolate Milk",
 			"Strawberry Milk",
 			"Sydian Cum",
+			"Vanae Milk",
 		];
 		
 		public static const VALID_CUM_TYPES:Array = [
