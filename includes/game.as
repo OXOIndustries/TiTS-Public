@@ -357,7 +357,7 @@ function move(arg:String, goToMainMenu:Boolean = true):void {
 	var map:* = mapper.generateMap(currentLocation);
 	this.userInterface.setMapData(map);
 	
-	//trace("Printing map for " + currentLocation);
+	trace("Printing map for " + currentLocation);
 	//mapper.printMap(map);
 	//process time here, then back to mainGameMenu!
 	mainGameMenu();

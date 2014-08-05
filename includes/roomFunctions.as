@@ -441,6 +441,75 @@ function rustScytheGladeEncounters():Boolean {
 	return false;
 }
 
+function mhengaVanaeCombatZone():Boolean
+{
+	return false;
+}
+
+function mhengaThickMist2RoomFunc():Boolean
+{
+	clearOutput();
+	
+	output("The mist here is so thick you're having trouble seeing where you're going. If it wasn't for the blinking, multi-colored lichen lining the forest trees, you'd probably be lost. Moisture clings to your");
+	if (!pc.isNude()) output (" [pc.armor]");
+	else output(" [pc.skinFurScales]");
+	output(" as you trudge forth, utterly surrounded by a blanket of white.");
+
+	output("\n\nYou can feel something blocking your way east and it feels too tall to climb. Every other direction seems okay. Maybe. It's hard to tell.");
+	
+	output("<b>SPLICE IN ENCOUNTER SHIT GEDDY. DO IT FGT.</b>");
+	
+	return false;
+}
+
+function mhengaUthraBirch():Boolean
+{
+	if (flags["UTHRA HARVEST DAY"] == undefined || flags["UTHRA HARVEST DAY"] + 2 <= days)
+	{
+		output("\n\nEven worse, a obsidian sap is seeping gruesomely from wound-like gaps in the tree surface. Not a single glimmer of light reflects off the eerily black substance, contrasting violently with your misty white surrounds.");
+		
+		addButton(0, "Harvest", mhengaHarvestUthra, undefined, "Harvest Tree", "Harvest sap from the Uthra Tree");
+	}
+	else
+	{
+		output("\n\nYou have harvested the obsidian colored sap from the ugly tree and no more flows from its surface. You'll have to give it time to produce some more.");
+		
+		addDisabledButton(0, "Harvest", "You have recently harvested sap from the Uthra Tree and must allow it to regenerate.");
+	}
+	
+	output("\n\nThe roots of the deformed tree are large and pervasive, blocking passage in almost every direction. The only path left open to you is back down into the river lined gorge.");
+	
+	return false;
+}
+
+function mhengaHarvestUthra():void
+{
+	clearOutput();
+	flags["UTHRA HARVEST DAY"] = days;
+	
+	output("<b>FIND DIS CONTENT SHIT GEDDY.</b>");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function mhengaVanaeFernDamage():Boolean
+{
+	output("\n\ndo damage or some shit");
+	
+	return false;
+}
+
+function mhengaVanaeAbandonedCamp():Boolean
+{
+	addButton(0, "Salvage", mhengaSalvageFromCamp);
+	return false;
+}
+
+function mhengaSalvageFromCamp():void
+{
+	
+}
 
 function anonsBarAddendums():Boolean {
 	

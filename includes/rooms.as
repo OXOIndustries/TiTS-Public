@@ -877,11 +877,13 @@ function initializeRooms():void
 	//61. Deep\nJungle
 	rooms["DEEP JUNGLE 2"] = new RoomClass(this);
 	rooms["DEEP JUNGLE 2"].roomName = "DEEP\nJUNGLE";
-	rooms["DEEP JUNGLE 2"].description = "Bending here, the only opening in this incredibly overgrown vegetation arcs to the north and west. You doubt you could climb through the walls of plant-matter in the other direction if you tried. Besides, you have no idea just what kinds of carnivorous plants or animals live there. Small shafts of sunlight sometimes illuminate the odd patch of forest floor, but they are more like candles on a dark night than floodlights you desire.";
+	//rooms["DEEP JUNGLE 2"].description = "Bending here, the only opening in this incredibly overgrown vegetation arcs to the north and west. You doubt you could climb through the walls of plant-matter in the other direction if you tried. Besides, you have no idea just what kinds of carnivorous plants or animals live there. Small shafts of sunlight sometimes illuminate the odd patch of forest floor, but they are more like candles on a dark night than floodlights you desire.";
+	rooms["DEEP JUNGLE 2"].description = "At first this area looks like a bend, only allowing passage north or west. However, on second glance there is a tiny passage east through the incredibly overgrown vegetation. It hardly seems safe to squeeze through such a tight path, since it leaves you open to attack by carnivorous flora and fauna.\n\nSmall shafts of sunlight sometimes illuminate the odd patch of forest floor, but they are more like candles on a dark night than the floodlights you desire.";
 	rooms["DEEP JUNGLE 2"].planet = "PLANET: MHEN'GA";
 	rooms["DEEP JUNGLE 2"].system = "SYSTEM: ARA ARA";
 	rooms["DEEP JUNGLE 2"].northExit = "DEEP JUNGLE 1";
 	rooms["DEEP JUNGLE 2"].westExit = "FORKED DEEP JUNGLE 1";
+	rooms["DEEP JUNGLE 2"].eastExit = "A TURNING POINT";
 	rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["DEEP JUNGLE 2"].addFlag(GLOBAL.HAZARD);
 	rooms["DEEP JUNGLE 2"].runOnEnter = jungleDeepEncounters;
@@ -1271,9 +1273,297 @@ function initializeRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
 
-	// And this is why I want to kinda write a debugging area for game features :P
-	//rooms["WEST ESBETH 1"].westExit = "DEBUG1";
-	
+	// Vanae map additions
+	/*
+	rooms[""] = new RoomClass(this);
+	rooms[""].roomName = "";
+	rooms[""].description = "";
+	rooms[""].runOnEnter = mhengaVanaeCombatZone;
+	rooms[""].planet = "PLANET: MHEN'GA";
+	rooms[""].system = "SYSTEM: ARA ARA";
+	rooms[""].northExit = "";
+	rooms[""].eastExit = "";
+	rooms[""].southExit = "";
+	rooms[""].westExit = "";
+	rooms[""].addFlag(GLOBAL.OUTDOOR);
+	rooms[""].addFlag(GLOBAL.HAZARD);
+	*/
+
+	rooms["A TURNING POINT"] = new RoomClass(this);
+	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
+	rooms["A TURNING POINT"].description = "You are in a narrow passageway in the jungle. The vegetation curves in an arc heading from the west to the south. The south end dips on a slow descent. The temperature here is cool and moist. There is glowing bioluminescent lichen growing on the trees here.\n\nSouth looks a little misty. It might get a little hard to see if you head in that direction.";
+	rooms["A TURNING POINT"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["A TURNING POINT"].planet = "PLANET: MHEN'GA";
+	rooms["A TURNING POINT"].system = "SYSTEM: ARA ARA";
+	//rooms["A TURNING POINT"].northExit = "";
+	//rooms["A TURNING POINT"].eastExit = "";
+	rooms["A TURNING POINT"].southExit = "VALLEY DESCENT 1";
+	rooms["A TURNING POINT"].westExit = "DEEP JUNGLE 2";
+	rooms["A TURNING POINT"].addFlag(GLOBAL.OUTDOOR);
+	rooms["A TURNING POINT"].addFlag(GLOBAL.HAZARD);
+
+	rooms["VALLEY DESCENT 1"] = new RoomClass(this);
+	rooms["VALLEY DESCENT 1"].roomName = "VALLEY\nDESCENT";
+	rooms["VALLEY DESCENT 1"].description = "The path here heads directly north to south on a steep slant. The more you move south, the more you seem to descend into a natural valley. The trees here seem to be defying the incline, strangely growing taller and thicker the further the path descends.\n\nThis area is thin with mist. It seems to get thicker further down. Even then, you can still see the flickering of the luminous tree lichen.";
+	rooms["VALLEY DESCENT 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["VALLEY DESCENT 1"].planet = "PLANET: MHEN'GA";
+	rooms["VALLEY DESCENT 1"].system = "SYSTEM: ARA ARA";
+	rooms["VALLEY DESCENT 1"].northExit = "A TURNING POINT";
+	//rooms["VALLEY DESCENT 1"].eastExit = "";
+	rooms["VALLEY DESCENT 1"].southExit = "VALLEY DESCENT 2";
+	//rooms["VALLEY DESCENT 1"].westExit = "";
+	rooms["VALLEY DESCENT 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VALLEY DESCENT 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["VALLEY DESCENT 2"] = new RoomClass(this);
+	rooms["VALLEY DESCENT 2"].roomName = "VALLEY\nDESCENT";
+	rooms["VALLEY DESCENT 2"].description = "The foliage is thinner here than the rest of the jungle. In every direction there are thick, ancient looking trees, possibly centuries old. Their pale trunks are covered in bioluminescent lichen. This is rather helpful as the whole area is covered in dewy fog.\n\nThe path here continues north and upward, or south to what looks like the valley floor. The mist seems thinner to the north.";
+	rooms["VALLEY DESCENT 2"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["VALLEY DESCENT 2"].planet = "PLANET: MHEN'GA";
+	rooms["VALLEY DESCENT 2"].system = "SYSTEM: ARA ARA";
+	rooms["VALLEY DESCENT 2"].northExit = "VALLEY DESCENT 1";
+	//rooms["VALLEY DESCENT 2"].eastExit = "";
+	rooms["VALLEY DESCENT 2"].southExit = "VALLEY FLOOR";
+	//rooms["VALLEY DESCENT 2"].westExit = "";
+	rooms["VALLEY DESCENT 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VALLEY DESCENT 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["VALLEY FLOOR"] = new RoomClass(this);
+	rooms["VALLEY FLOOR"].roomName = "VALLEY\nFLOOR";
+	rooms["VALLEY FLOOR"].description = "You are standing at the bottom of a thick, misty valley, surrounded by colossal trees covered in luminous lichen. The pulsing colors light up the eerily thick mist. This doesn't feel like a safe place to be standing. The temperature here is very cold and wet.\n\nTo the north there is a path leading up and out of the fog filled valley. You seem free to move in any other direction, but the fog makes it hard to see what awaits you there.";
+	rooms["VALLEY FLOOR"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["VALLEY FLOOR"].planet = "PLANET: MHEN'GA";
+	rooms["VALLEY FLOOR"].system = "SYSTEM: ARA ARA";
+	rooms["VALLEY FLOOR"].northExit = "VALLEY DESCENT 2";
+	rooms["VALLEY FLOOR"].eastExit = "MISTY VALLEY 3";
+	rooms["VALLEY FLOOR"].southExit = "MISTY VALLEY 1";
+	rooms["VALLEY FLOOR"].westExit = "MISTY VALLEY 2";
+	rooms["VALLEY FLOOR"].addFlag(GLOBAL.OUTDOOR);
+	rooms["VALLEY FLOOR"].addFlag(GLOBAL.HAZARD);
+
+	rooms["MISTY VALLEY 1"] = new RoomClass(this);
+	rooms["MISTY VALLEY 1"].roomName = "MISTY\nVALLEY";
+	rooms["MISTY VALLEY 1"].description = "Gigantic, ghostly trees tower around you, looming within the pervasive mist. Flickering sparks which you know to be lichen wink at you from every direction, like a million glowing eyes staring at you from every direction.\n\nIt's hard to find your way here. There's mist in every direction, and the ground is flat and wet. Which way will you go?";
+	rooms["MISTY VALLEY 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["MISTY VALLEY 1"].planet = "PLANET: MHEN'GA";
+	rooms["MISTY VALLEY 1"].system = "SYSTEM: ARA ARA";
+	rooms["MISTY VALLEY 1"].northExit = "VALLEY FLOOR";
+	rooms["MISTY VALLEY 1"].eastExit = "THICK MIST 2";
+	rooms["MISTY VALLEY 1"].southExit = "DEEP MIST 1";
+	rooms["MISTY VALLEY 1"].westExit = "THICK MIST 1";
+	rooms["MISTY VALLEY 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["MISTY VALLEY 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["MISTY VALLEY 2"] = new RoomClass(this);
+	rooms["MISTY VALLEY 2"].roomName = "MISTY\nVALLEY";
+	rooms["MISTY VALLEY 2"].description = "Pale, monolithic trees loom all around you, like ancient gods watching your every move. You can't see the canopy at all, nor much of anything else through the thick fog that surrounds you. Bioluminescent lines run up each tree like arteries of light, blinking and pulsing.\n\nYou almost step into a small river to the north-east as you are blinded by the opaque mist. The only safe ways to walk seem to be east or south.";
+	rooms["MISTY VALLEY 2"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["MISTY VALLEY 2"].planet = "PLANET: MHEN'GA";
+	rooms["MISTY VALLEY 2"].system = "SYSTEM: ARA ARA";
+	//rooms["MISTY VALLEY 2"].northExit = "";
+	rooms["MISTY VALLEY 2"].eastExit = "VALLEY FLOOR";
+	rooms["MISTY VALLEY 2"].southExit = "THICK MIST 1";
+	//rooms["MISTY VALLEY 2"].westExit = "";
+	rooms["MISTY VALLEY 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["MISTY VALLEY 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["MISTY VALLEY 3"] = new RoomClass(this);
+	rooms["MISTY VALLEY 3"].roomName = "MISTY VALLEY";
+	rooms["MISTY VALLEY 3"].description = "Towering, titan-sized trees surround you from every direction, each one pale as death and lined with luminous lichen. The omnipresent mist has almost completely deprived you of sight - you can barely see five feet in front of you. \n\nInstead of vision, you are left with sounds of dripping water, rustling leaves, and clicking insects. It only looks safe to walk west or south; elsewhere the ground looks treacherous.";
+	rooms["MISTY VALLEY 3"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["MISTY VALLEY 3"].planet = "PLANET: MHEN'GA";
+	rooms["MISTY VALLEY 3"].system = "SYSTEM: ARA ARA";
+	//rooms["MISTY VALLEY 3"].northExit = "";
+	//rooms["MISTY VALLEY 3"].eastExit = "";
+	rooms["MISTY VALLEY 3"].southExit = "THICK MIST 2";
+	rooms["MISTY VALLEY 3"].westExit = "VALLEY FLOOR";
+	rooms["MISTY VALLEY 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["MISTY VALLEY 3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["THICK MIST 1"] = new RoomClass(this);
+	rooms["THICK MIST 1"].roomName = "THICK\nMIST";
+	rooms["THICK MIST 1"].description = "The mist is incredibly thick here, obscuring almost everything around you. Every noise seems sharper and more imposing as you crunch blindly about, occasionally knocking into a tree or branch. Your {[pc.armor]/[pc.skinFurScales]} are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...";
+	rooms["THICK MIST 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["THICK MIST 1"].planet = "PLANET: MHEN'GA";
+	rooms["THICK MIST 1"].system = "SYSTEM: ARA ARA";
+	rooms["THICK MIST 1"].northExit = "MISTY VALLEY 2";
+	rooms["THICK MIST 1"].eastExit = "MISTY VALLEY 1";
+	rooms["THICK MIST 1"].southExit = "DEEP MIST 2";
+	//rooms["THICK MIST 1"].westExit = "";
+	rooms["THICK MIST 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["THICK MIST 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["DEEP MIST 2"] = new RoomClass(this);
+	rooms["DEEP MIST 2"].roomName = "DEEP\nMIST";
+	rooms["DEEP MIST 2"].description = "Your visibility has been reduced to the point you can barely see your own hand in front of your [pc.face]. Even the luminous lichen are barely visible as you are completely surrounded by mist. There is a sharp chill to the air and you think you hear footsteps nearby.\n\nYou consult your Codex, and it tells you that you came from the north. Aided by your digital compass, all you can really do is retrace your steps.";
+	rooms["DEEP MIST 2"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["DEEP MIST 2"].planet = "PLANET: MHEN'GA";
+	rooms["DEEP MIST 2"].system = "SYSTEM: ARA ARA";
+	rooms["DEEP MIST 2"].northExit = "THICK MIST 1";
+	//rooms["DEEP MIST 2"].eastExit = "";
+	//rooms["DEEP MIST 2"].southExit = "";
+	//rooms["DEEP MIST 2"].westExit = "";
+	rooms["DEEP MIST 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP MIST 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["DEEP MIST 1"] = new RoomClass(this);
+	rooms["DEEP MIST 1"].roomName = "DEEP\nMIST";
+	rooms["DEEP MIST 1"].description = "The fog here is so thick you can barely see in front of your nose, and that's dangerous. You're not sure if your next step is going to meet solid ground, or be over the edge of a ravine. Given that you can't see where you're going, it seems smart to turn back.\n\nYou're pretty sure you came from the north. Thankfully, your Codex remembers which way that is.";
+	rooms["DEEP MIST 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["DEEP MIST 1"].planet = "PLANET: MHEN'GA";
+	rooms["DEEP MIST 1"].system = "SYSTEM: ARA ARA";
+	rooms["DEEP MIST 1"].northExit = "MISTY VALLEY 1";
+	//rooms["DEEP MIST 1"].eastExit = "";
+	//rooms["DEEP MIST 1"].southExit = "";
+	//rooms["DEEP MIST 1"].westExit = "";
+	rooms["DEEP MIST 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["DEEP MIST 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["THICK MIST 2"] = new RoomClass(this);
+	rooms["THICK MIST 2"].roomName = "THICK\nMIST";
+	rooms["THICK MIST 2"].description = "";
+	rooms["THICK MIST 2"].runOnEnter = mhengaThickMist2RoomFunc;
+	rooms["THICK MIST 2"].planet = "PLANET: MHEN'GA";
+	rooms["THICK MIST 2"].system = "SYSTEM: ARA ARA";
+	rooms["THICK MIST 2"].northExit = "MISTY VALLEY 3";
+	//rooms["THICK MIST 2"].eastExit = "";
+	rooms["THICK MIST 2"].southExit = "NARROW GORGE 1";
+	rooms["THICK MIST 2"].westExit = "MISTY VALLEY 1";
+	rooms["THICK MIST 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["THICK MIST 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["NARROW GORGE 1"] = new RoomClass(this);
+	rooms["NARROW GORGE 1"].roomName = "NARROW\nGORGE";
+	rooms["NARROW GORGE 1"].description = "The fog seems a bit thinner here. You're standing on the edge of a narrow gorge that runs from the east. You can hear a trickling at the bottom and can see an easy way down. There's also a fallen tree spanning  the gorge offering an easy way across.\n\nYou could follow the gorge to the east and downstream, or head north or south. The felled tree looks sturdy so you're fairly sure it will hold your weight. ";
+	rooms["NARROW GORGE 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["NARROW GORGE 1"].planet = "PLANET: MHEN'GA";
+	rooms["NARROW GORGE 1"].system = "SYSTEM: ARA ARA";
+	rooms["NARROW GORGE 1"].northExit = "THICK MIST 2";
+	rooms["NARROW GORGE 1"].eastExit = "NARROW GORGE 2";
+	rooms["NARROW GORGE 1"].southExit = "BLADED FERNS 1";
+	//rooms["NARROW GORGE 1"].westExit = "";
+	rooms["NARROW GORGE 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW GORGE 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["NARROW GORGE 2"] = new RoomClass(this);
+	rooms["NARROW GORGE 2"].roomName = "NARROW\nGORGE";
+	rooms["NARROW GORGE 2"].description = "This narrow gorge runs to the east with a small creek running through its center. It trickles down from the west where a small path leads up and out of the gorge. Walls of earth surround you on the other sides, looming like the sides of a massive grave.\n\nIt's hard to walk here without getting your [pc.feet] wet. The temperature is noticeably cooler, but at least there's less mist about. ";
+	rooms["NARROW GORGE 2"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["NARROW GORGE 2"].planet = "PLANET: MHEN'GA";
+	rooms["NARROW GORGE 2"].system = "SYSTEM: ARA ARA";
+	//rooms["NARROW GORGE 2"].northExit = "";
+	rooms["NARROW GORGE 2"].eastExit = "NARROW GORGE 3";
+	//rooms["NARROW GORGE 2"].southExit = "";
+	rooms["NARROW GORGE 2"].westExit = "NARROW GORGE 1";
+	rooms["NARROW GORGE 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW GORGE 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["NARROW GORGE 3"] = new RoomClass(this);
+	rooms["NARROW GORGE 3"].roomName = "NARROW\nGORGE";
+	rooms["NARROW GORGE 3"].description = "The sides of the chasm are quite high here and the canopy thick. Very little light reaches where you stand, making it hard to see about. Icy water splashes up and against your [pc.feet]. The creek running through the heart of the gorge runs quite fast here.\n\nYou can continue up or downstream. To the north, there is a root-lined break in the gorge you could use to climb up and out.";
+	rooms["NARROW GORGE 3"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["NARROW GORGE 3"].planet = "PLANET: MHEN'GA";
+	rooms["NARROW GORGE 3"].system = "SYSTEM: ARA ARA";
+	rooms["NARROW GORGE 3"].northExit = "UTHRA BIRCH";
+	//rooms["NARROW GORGE 3"].eastExit = "";
+	//rooms["NARROW GORGE 3"].southExit = "";
+	rooms["NARROW GORGE 3"].westExit = "NARROW GORGE 2";
+	rooms["NARROW GORGE 3"].addFlag(GLOBAL.OUTDOOR);
+	rooms["NARROW GORGE 3"].addFlag(GLOBAL.HAZARD);
+
+	rooms["UTHRA BIRCH"] = new RoomClass(this);
+	rooms["UTHRA BIRCH"].roomName = "UTHRA\nBIRCH";
+	rooms["UTHRA BIRCH"].description = "You are standing underneath a short, stubbly tree that looks positively squashed compared to its towering peers. The gnarled branches are warped and sickly looking, almost as if giant hands have molded it without a single care for aesthetics.";
+	rooms["UTHRA BIRCH"].runOnEnter = mhengaUthraBirch;
+	rooms["UTHRA BIRCH"].planet = "PLANET: MHEN'GA";
+	rooms["UTHRA BIRCH"].system = "SYSTEM: ARA ARA";
+	//rooms["UTHRA BIRCH"].northExit = "";
+	//rooms["UTHRA BIRCH"].eastExit = "";
+	rooms["UTHRA BIRCH"].southExit = "NARROW GORGE 3";
+	//rooms["UTHRA BIRCH"].westExit = "";
+	rooms["UTHRA BIRCH"].addFlag(GLOBAL.OUTDOOR);
+	rooms["UTHRA BIRCH"].addFlag(GLOBAL.HAZARD);
+
+	rooms["BLADED FERNS 1"] = new RoomClass(this);
+	rooms["BLADED FERNS 1"].roomName = "BLADED\nFERNS";
+	rooms["BLADED FERNS 1"].description = "The fog here has a thin but pervasive quality, shrouding everything in a layer of light white. You can pick up vague impressions of familiar shapes around you that you assume are trees and bushes.\n\nDue to the mist you almost brush against a mass of pale shrubs and ferns lined with silvery, blade-like leaves. You can see crimson blood smeared across a good portion of the razor edged foliage.\n\nThere seems to be gaps in the vicious vegetation to the north and south. Any other direction looks to be a death trap.";
+	rooms["BLADED FERNS 1"].runOnEnter = mhengaVanaeFernDamage;
+	rooms["BLADED FERNS 1"].planet = "PLANET: MHEN'GA";
+	rooms["BLADED FERNS 1"].system = "SYSTEM: ARA ARA";
+	rooms["BLADED FERNS 1"].northExit = "NARROW GORGE 1";
+	//rooms["BLADED FERNS 1"].eastExit = "";
+	rooms["BLADED FERNS 1"].southExit = "BLADED FERNS 2";
+	//rooms["BLADED FERNS 1"].westExit = "";
+	rooms["BLADED FERNS 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["BLADED FERNS 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["BLADED FERNS 2"] = new RoomClass(this);
+	rooms["BLADED FERNS 2"].roomName = "";
+	rooms["BLADED FERNS 2"].description = "Here the air is rife with mist and the ground littered with razor leaved shrubs and bushes. Only the glimmering of silver leaves warns you of impending danger; each step an exercise in extreme caution.\n\nIt seems like a natural defense against unprotected intruders. You spot the skeleton of a massive creature surrounded by the bladed ferns. You suspect they did not exercise the same level of prudence.\n\nThrough the maze-like foliage, you can see a path leading north and another west. Everywhere else is filled with painful looking thickets packed close together.";
+	rooms["BLADED FERNS 2"].runOnEnter = mhengaVanaeFernDamage;
+	rooms["BLADED FERNS 2"].planet = "PLANET: MHEN'GA";
+	rooms["BLADED FERNS 2"].system = "SYSTEM: ARA ARA";
+	rooms["BLADED FERNS 2"].northExit = "BLADED FERNS 1";
+	//rooms["BLADED FERNS 2"].eastExit = "";
+	//rooms["BLADED FERNS 2"].southExit = "";
+	rooms["BLADED FERNS 2"].westExit = "CLOUD FOREST 1";
+	rooms["BLADED FERNS 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["BLADED FERNS 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["CLOUD FOREST 1"] = new RoomClass(this);
+	rooms["CLOUD FOREST 1"].roomName = "";
+	rooms["CLOUD FOREST 1"].description = "You are surrounded by pale, majestic trees of impossible height that stretch skyward and out of view. The area is misty but in chunks, fog lining the ground like a blanket while other portions wrap intimately around the ancient monoliths.\n\nThis whole area seems peaceful and the air is crisp and cool. It feels oddly peaceful, unlike the rest of the Mhen'gan jungle. You're aware that appearances can be deceiving.\n\nA mess of tree roots to the north and south bar your path. Everywhere else seems fair game.";
+	rooms["CLOUD FOREST 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["CLOUD FOREST 1"].planet = "PLANET: MHEN'GA";
+	rooms["CLOUD FOREST 1"].system = "SYSTEM: ARA ARA";
+	//rooms["CLOUD FOREST 1"].northExit = "";
+	rooms["CLOUD FOREST 1"].eastExit = "BLADED FERNS 2";
+	//rooms["CLOUD FOREST 1"].southExit = "";
+	rooms["CLOUD FOREST 1"].westExit = "CLOUD FOREST 2";
+	rooms["CLOUD FOREST 1"].addFlag(GLOBAL.OUTDOOR);
+	rooms["CLOUD FOREST 1"].addFlag(GLOBAL.HAZARD);
+
+	rooms["CLOUD FOREST 2"] = new RoomClass(this);
+	rooms["CLOUD FOREST 2"].roomName = "";
+	rooms["CLOUD FOREST 2"].description = "Ancient Saole trees tower around you in every direction, each with countless branches weaving a tapestry of wood above you. Thick, ethereal fog slips through every gap the wooden spider web offers. A blanket of mist licks your [pc.feet] and steals them from view.\n\nThere is a jutting rock face here with water trickling down it. You can head either north or east.";
+	rooms["CLOUD FOREST 2"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["CLOUD FOREST 2"].planet = "PLANET: MHEN'GA";
+	rooms["CLOUD FOREST 2"].system = "SYSTEM: ARA ARA";
+	rooms["CLOUD FOREST 2"].northExit = "CAMP EDGE";
+	rooms["CLOUD FOREST 2"].eastExit = "CLOUD FOREST 1";
+	//rooms["CLOUD FOREST 2"].southExit = "";
+	//rooms["CLOUD FOREST 2"].westExit = "";
+	rooms["CLOUD FOREST 2"].addFlag(GLOBAL.OUTDOOR);
+	rooms["CLOUD FOREST 2"].addFlag(GLOBAL.HAZARD);
+
+	rooms["CAMP EDGE"] = new RoomClass(this);
+	rooms["CAMP EDGE"].roomName = "";
+	rooms["CAMP EDGE"].description = "The colossal Saole trees are further apart here, allowing for more light to stream down to the forest floor. Because of this, it is easy to spot the broken regional shield generator with a spear sticking out of it.\n\nGiven the trajectory of the spear, it seems to have been thrown from above into the device. There is a well worn path to the west of the device. On the other, it curves and fades off to the south.";
+	rooms["CAMP EDGE"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["CAMP EDGE"].planet = "PLANET: MHEN'GA";
+	rooms["CAMP EDGE"].system = "SYSTEM: ARA ARA";
+	//rooms["CAMP EDGE"].northExit = "";
+	//rooms["CAMP EDGE"].eastExit = "";
+	rooms["CAMP EDGE"].southExit = "CLOUD FOREST 2";
+	rooms["CAMP EDGE"].westExit = "ABANDONED CAMP";
+	rooms["CAMP EDGE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["CAMP EDGE"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ABANDONED CAMP"] = new RoomClass(this);
+	rooms["ABANDONED CAMP"].roomName = "";
+	rooms["ABANDONED CAMP"].description = "You walk into the remains of what was clearly a Xenogen research camp. The protective shield is down and the temporary habitation they were using has been wrecked. There are empty crates and bodies lying everywhere. Spears are jutting out of nearly everything.\n\nYou spot some empty cages that look as if they were designed for humanoid captives. Everything around here is utterly wrecked and you're not sure you'll find anything of value.";
+	rooms["ABANDONED CAMP"].runOnEnter = mhengaVanaeAbandonedCamp;
+	rooms["ABANDONED CAMP"].planet = "PLANET: MHEN'GA";
+	rooms["ABANDONED CAMP"].system = "SYSTEM: ARA ARA";
+	//rooms["ABANDONED CAMP"].northExit = "";
+	rooms["ABANDONED CAMP"].eastExit = "CAMP EDGE";
+	//rooms["ABANDONED CAMP"].southExit = "";
+	//rooms["ABANDONED CAMP"].westExit = "";
+	rooms["ABANDONED CAMP"].addFlag(GLOBAL.OUTDOOR);
+	rooms["ABANDONED CAMP"].addFlag(GLOBAL.HAZARD);
+
+	// Vanae map additions OVER!
+
 	//#1 Ship Hangar
 	rooms["201"] = new RoomClass(this);
 	rooms["201"].roomName = "SHIP\nHANGAR";
