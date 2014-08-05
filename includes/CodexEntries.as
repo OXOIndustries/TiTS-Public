@@ -32,6 +32,8 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Tarkus","Sydian",sydianCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Illegal Items","Dumbfuck",dumbfuckCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Core Worlds","Laquine",laquineCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Vanae", vanaeCodexEntry);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_RACE, "Ara Ara", "Vanae: History", vanaeHistoryCodexEntry);
 }
 
 public function codexHomeFunction():void
@@ -684,4 +686,152 @@ function naleenCodexEntry():void
 	outputCodex("Naleen are a strange hybrid race: feline predator from waist to neck with human-like faces and reptilian, slitted eyes. From the waist down, they're snake-like monopeds, slithering across the floor of the jungle. They possess razor-sharp claws and a venomous bite that can paralyze a victim, though the bite seems to be reserved for wounded targets on the brink of collapse, rather than a primary offense.");
 
 	CodexManager.viewedEntry("Naleen");
+}
+
+function vanaeCodexEntry():void
+{
+	// I'm temted to look into A bookmark movement around the codex view, to link between the headers with actual clickable links (all of the "See: <section>" things here. Considering the size of the Vanae codex entry, it seems like a good idea, and it could be extended to deal with jumping between entirely different codex entries.
+
+	clearOutputCodex();
+	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
+	outputCodex(header("The Vanae"));
+	outputCodex(blockHeader("\n - 'Vah-nay'"));
+	//Taxonym: Vanae
+	outputCodex("<b>Genders:</b> Female");
+	outputCodex("\n<b>Height:</b> 5'2\" - 5'6\"");
+	outputCodex("\n<b>Weight:</b> 55 - 62 kg");
+	outputCodex("\n<b>Skin:</b> Snow white with special markings of a single, bioluminescent color (Most to least common: Indigo, violet, pink, dark red, blue or black).");
+	outputCodex("\n<b>Hair:</b> Bioluminescent tentacle locks. Ear to butt length.");
+	outputCodex("\n<b>Eyes:</b> Vanae have vestigial eyes that are typically closed. Eye color is always the same as their unique body color (See skin).");
+	outputCodex("\n<b>Hands and Feet:</b> Five digits (as humans), but webbed. Flat suction cups, microscopic setae fibers.");
+	outputCodex("\n<b>Ears:</b> Finned and extremely sensitive to sound.");
+	outputCodex("\n<b>Organic Skirt:</b> Vanae have an organic \"hula skirt\" of colored tentacles protruding from their waist. Upper thigh to ankle length.");
+	outputCodex("\n<b>Tail:</b> Large tentacle tail, usually 4 to 6 feet long. Forms the back part of their organic skirt.");
+	outputCodex("\n<b>Breasts:</b> Two, anywhere from A to Q-cup depending on births. Colored breast and areolae patterns.");
+	outputCodex("\n<b>Clits:</b> Two.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Features"));
+	outputCodex("Vanae resemble female humanoids with an octopus-like appearance, often colloquially referred to as \"tree squids\". They have tentacle hair and an organic tentacle \"skirt\" protruding from their waistline. They also have a long, prehensile tentacle tail that makes up the back part of this skirt. It has a small linear slit at the tip.");
+	outputCodex("\n\nThe vanae have bioluminous tentacles, nipples, lips, and natural body markings that are all the same color. The most common colorations are indigo, violet, and pink; with others such as dark red, blue, and black being far rarer. The rest of their body is an extremely light version of the former. E.g. An exemplar vanae with blue markings would also typically feature a pale-blue skin pigmentation.");
+	outputCodex("\n\nWhile this skin color would naturally be a disadvantage for a predator, this is only their default coloration. Vanae have chameleon-like skin that allows them to match the pigmentation of objects they press against for a few seconds (See General Biology).");
+	outputCodex("\n\nVanae have two humanoid breasts that start at A-cup and grow each time they give birth (See Breeding & Hunting). Their nipples constantly lactate \"Vanae Milk\" - a gooey, colored, semi-transparent fluid (See Vanae Milk). Their breasts are typically covered by swirling luminescent body markings centered around their areolae.");
+	outputCodex("\n\nVanae are all born blind and rely on their super-sensitive finned ears and other methods to compensate. They are born with vestigial eyes that are almost always closed. On the rare occasions they open them, their eyes are the same luminous color as their body markings.");
+	outputCodex("\n\nThe vanae have webbed hands and feet. These have small, octopus-like suction cups that can lie flush in order not to hinder gripping or ground movement. The microscopic setae or \"fibers\" present on these cups allow them to stick to dry, rough surfaces such as tree bark, much like a gecko.");
+	outputCodex("\n\nVanae have a human-like vagina between their thighs, replete with two clits side to side. The inner walls of a vanae's vagina is lined with hundreds of silky feelers. Their legs are very toned, muscular, and flexible; what humans would refer to as \"dancers legs.\"");
+	outputCodex("\n\nVanae huntresses almost always carry a spear with a singular sharp point used to pierce fruit or the tough hides of zil and naleen predators. They prefer to use the blunt end of their spear or their milk when hunting prey, resorting to using the pointed end only as a last resort.");
+	outputCodex("\n\nVanae rarely wear clothes, preferring instead to showcase their unique body markings and the size of their breasts (See Society).");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("General Biology"));
+	outputCodex("Vanae have evolved to not rely on sight, but sound, using echolocation to hunt their prey. Emitted at higher frequencies than the human ear can perceive, vanae can \"see\" with sounds much like an earth bat. When the sound bounces back, two uniquely sensitive eardrums located at different heights in the inner ear pick up the delay and direction of returning sound. This allows them to not only determine direction, but also size, type, and other features of their prey and surroundings (much like a Terran Owl). It also allows them to move around despite the fact they are optically blind.");
+	outputCodex("\n\nA vanae's echolocation is created from the larynx and emitted from the mouth. Vanae may make noise anywhere between their normal and echolocation range, allowing them to sing at incredibly high pitches. This also allows them to speak to other members of their species without being overheard by predators, though this does nothing against a skilled lip reader.");
+	outputCodex("\n\nLike terran cephalopods, vanae have specialized skin cells capable of matching their surroundings in real time. When moving slowly or pressed flush against an object, they can transform their skin color and illumination levels to be nearly invisible. They cannot move very fast while doing this or risk becoming out of synch with their surroundings, thereby rendering their camouflage less or completely ineffective.");
+	outputCodex("\n\nVanae are essentially fruitarians, able to survive on fructose, tree nutrients, and water alone. They require large amounts of fructose in order to survive. They hunt this in the form of fruit and sexual fluids, the latter containing high amounts of fructose. They also require semen from other races to breed (See Breeding & Hunting). ");
+	outputCodex("\n\nVanae tentacles are uniquely designed to suck moisture and nutrients out of jungle trees. Their suckers are lined with millions of tiny satae that allow them to stick to trees and drain these out like microscopic needles. Vanae will often suck on trees in this fashion as they hunt for fructose.");
+	outputCodex("\n\nAn arboreal race, vanae have strong leg muscles designed for leaping from tree to tree. They also use their tentacle skirt and tail for balance and to feel nearby wind movements. A vanae can run along tree branches at speeds most mammals would fall out.");
+	outputCodex("\n\nVanae ankles are made of a spongy, shock absorbent substance. Whenever impacting a surface, such as falling, the shock is greatly reduced.  Vanae ankles are also more flexible than human ankles. A vanae can flex their feet so their toes touch the front of their lower leg, and thanks to this range of motion they rarely suffer sprained or twisted ankles from landing improperly. This is an invaluable quality for survival in Mhen'ga where a damaged ankle can be a death sentence.");
+	outputCodex("\n\nLike cats, vanae also instinctively spread out their surface area when falling to increase drag resistance. Their splayed tentacle dress creates a pseudo-chute, significantly reducing downwards velocity.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Vanae Milk"));
+	outputCodex("A great deal is known about vanae milk due both a commercial and underground interest in the tasty substance.");
+	outputCodex("\n\nVanae have a massive amount of milk-producing lobules in their breasts and a small amount in their tail-tip. The milk produced from them is sticky, semi-transparent, and always of a similar color to their body markings. E.g. A vanae with violet markings may produce light or dark violet milk, but it is always a shade of violet.");
+	outputCodex("\n\nVanae milk has a tasty, fruity flavor that varies depending on breast size and pregnancy. A non-pregnant vanae's milk has a citrusy taste, while a pregnant vanae's milk is quite sweet. The larger a vanae's breasts are, the fuller and more intense their breast milk tastes. In comparison, the milk secreted from their tail is rather bland and rarely consumed.");
+	outputCodex("\n\nVanae milk is a powerful aphrodisiac and psychoactive drug when splashed on or consumed by non-vanae. While being subjected to a small amount does little more than briefly enflame one's libido, the longer one is exposed and the larger the amount, the greater the effect.");
+	outputCodex("\n\nDocumented symptoms of high exposure include: debilitating arousal, hypersensitivity, impaired judgement, altered perception, euphoria, hyperactive cum production (Males), and increased vaginal wetness (Females).");
+	outputCodex("\n\nStudies have shown either being subjected to high concentrations or large volumes of vanae milk can cause lasting effects, such as an increase in cum production, testicle size, vaginal wetness, and vaginal squirting.");
+	outputCodex("\n\nVanae use their breast milk for hunting, defence, and feeding their young. They are capable of squirting it out at will, though they get more distance from actively squeezing their breasts. Depending on breast size, a huntress can horizontally shoot their milk anywhere from five to twenty feet.");
+	outputCodex("\n\nA vanae's breast size also affects the potency, flavor, and amounts of milk produced from them. A virgin vanae with tiny A-cups will only be able to produce a meagre amount of milk with low potency and a bad taste. In comparison, a vanae queen is capable of producing gallons of highly debilitating milk with mind blowing flavor.");
+	outputCodex("\n\nA vanae's tail gland does not produce anywhere near the same amount of milk, nor does it become significantly more potent over their life cycle. It is generally used for situations where a mature vanae's breast milk would be too potent and as a secondary weapon while hunting. ");
+	outputCodex("\n\nAll but the smallest breasted vanae have the ability to create a concentrated version of their milk from their breasts. They create this using forceful massage, a method not available to vanae with tiny busts. The milk produced is always opaque. This method is traditionally used when a vanae wants to splash the genitals of a non-vanae lover and make them yield more fructose.");
+	outputCodex("\n\nWhen pregnant, a vanae's milk is always opaque and at its highest level of concentration. For this reason, most predators know better than to attack a pregnant vanae, as their milk will be dangerously potent.");
+	outputCodex("\n\nExtremely potent vanae milk can act as a growth agent for certain plants and trees (See Environment).");
+	outputCodex("\n\nIn recent months, a number of corporations have shown interest in the commercial potential of vanae milk. For cultural reasons, vanae have always refused offers of trade and refused to deal with outsiders seeking to harvest and sell their milk. Part of this is the fact vanae lack a currency system and have no interest in trading for semen or fructose (See Religion & Law).");
+	outputCodex("\n\nThe unavailability of vanae milk, combined with its delicious taste and arousing qualities, has lead to number of enthusiasts and black market poachers hunting vanae for their breast milk. Hunting them down and taking them as \"cow slaves\", these activities have made most vanae distrustful and antagonistic towards outsiders.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Breeding & Hunting"));
+	outputCodex("Vanae lack two important things that they must constantly source; male semen, and fructose. Since both male and female ejaculate contains large amounts of fructose (with zil semen being especially sugary), vanae have evolved to be \"apex breeders\". When a vanae hunts a being for their juices there is very little that can stand in their way.");
+	outputCodex("\n\nVanae prefer to hunt for fructose alone, targeting just about anything with the capacity to provide them with it - be it a female, male, or herm. They track their prey camouflaged in the treetops, all the while feeding off tree nutrients and easily accessible fruit.");
+	outputCodex("\n\nWhen the time comes to strike - usually when the target is most vulnerable - vanae either spray their distinctive and powerful milk on the target, or attack them with the blunt end of their spear. This usually happens from the treetops above or from a nearby place of hiding. When the target is incapacitated from their milk or spear-blow, the vanae swoops in.");
+	outputCodex("\n\nThe huntress typically applies concentrated milk to the target's genitals, ensuring they get a higher yield of juice from them. They then proceed to sap it all out until the target is completely drained of ejaculate, no matter how many orgasms this takes. If the target is male, they will usually milk them for their semen using their vagina. Since they are an incredibly fertile race - as expected of an apex breeder - pregnancy is all but assured.");
+	outputCodex("\n\nWhen excess ejaculate is gathered, it is shared later among their sisters. They do this by smearing concentrated breast milk on their vaginal entrance and then carrying it back to their sisters. They then transfer it among each other via tribadism (\"Scissoring\") or cunnilingus. This is done starting with the queen, and working down the vanae hierarchy (See Society).");
+	outputCodex("\n\nPregnant vanae do not hunt and instead protect a tribe's territory from predators. Vanae territory is almost entirely protected by mature pregnant huntresses and brood mothers with their powerful milk. A vanae pregnancy lasts for six months, during which their breasts permanently grow by one cup size.");
+	outoutCodex("\n\nA vanae's breasts will never grow past a Q-cup no matter how many times they give birth. It is believed this is a biological safeguard against complete immobility.");
+	outputCodex("\n\nVanae always give birth to twins, without exception.  Since vanae are born in pairs, their direct sibling born at the same time are referred to as their \"breast sister\". Siblings and parents often share similar markings to a vanae, though their coloring is random. A vanae is traditionally very close to their breast sister and mother.");
+	outputCodex("\n\nVanae genes possess extremely dominant qualities. When breeding with any other race, a female vanae will always give birth to two female vanae instead of the fathering species. It is very rare that any qualities of the male parent are transferred on to the young. This has led to the belief that vanae only can give birth to other female vanae, which is not entirely true (See Religion & History).");
+	outputCodex("\n\nFemale-on-female intercourse is common and vanae have very few scruples with incest due to the small size of their tribal communities. Their numbers are largely culled by susceptibility to jungle diseases and parasites, as vanae lack any kind of medicinal knowledge, and apex predators such as the naleen. ");
+	outputCodex("\n\nThe life expectancy and maximum life span of vanae are very different. The general life expectancy of 50 per cent of vanae is a mere sixteen years. However, their maximum potential life span is 120. Vanae mature fast, reaching full adulthood at fourteen, and die young. The number one killer of young vanae are non-sapient arboreal predators (Mammal, insect, and plant).");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Environment"));
+	outputCodex("Vanae live in the deeper parts of Mhen'ga's jungles, usually in the tree tops. Vanae generally only descend to the forest floor when hunting for certain fruits or to ambush prey, preferring to stay out of the reach of ground predators. They also like to use their natural camouflage to remain largely unseen.");
+	outputCodex("\n\nVanae are tribal and live in communities revolving around a single vanae queen. These communities range anywhere between fifty to five hundred vanae, excluding breeding slaves (See Society). They live in gigantic trees known as sky homes. These trees tower high above Mhen'ga's jungle canopies and are often found in regions thick with fog.");
+	outputCodex("\n\nThe foundation of a sky home is not a natural process, but one that takes considerable effort by a vanae tribe. First, vanae pick out a young, healthy Saole tree, the thickest and largest trees that grow on Mhen'ga. They then place objects in its growing path and then make small bore holes lower down.");
+	outputCodex("\n\nA vanae queen or matriarch then pours her extremely concentrated milk into the holes, causing the tree to grow at an accelerated pace (See Vanae Milk). Using this process, they cause the tree to rapidly grow over a number of months instead of decades.");
+	outputCodex("\n\nOnce this process is complete, they are left with a tree at least three hundred feet tall filled with tunnels, nooks, and meeting places for the tribe to utilize. The tree is also incredibly hardy and can survive a light feeding by vanae young and elders.");
+	outputCodex("\n\nSaole trees are naturally found in areas thick with fog, typically humid valleys with high precipitation and low dew points. This makes them perfect for keeping vanae moist, providing nutrients to surrounding trees, and confounding potential flying threats such as the zil. These regions are typically very cold and wet.");
+	outputCodex("\n\nSince these regions in which Saole trees grow are usually thick with fog, its fruit and trunk are usually high in water content. The fruit of Saole trees do not provide adequate fructose, meaning vanae must hunt elsewhere for fruit or prey to secure vital nutrients.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Religion & History"));
+	outputCodex("A lot is known about the social structure and culture of this reclusive race due to the commercial interest in their drug-like milk. Xenogen alone has conducted several productive inquiries into the vanae. As such, more is known about the vanae than most of Mhen'ga's other native races.");
+	outputCodex("\n\nVanae are monotheistic, believing in an entity called the \"Sky Mother\" that lives in the clouds, looking out for their species and the forest. On completely cloudless days, vanae are often nowhere to be seen - refusing to venture out when the Sky Mother is not watching out for them. Vanae are spotted most often on rainy or foggy days.");
+	outputCodex("\n\nVanae believe the places where Saole trees grow, a realm shrouded in fog, are holy places and connected to the Sky Mother. To the vanae, rain falling from the sky is her breast milk sent down from above to feed her children and the trees. When she orgasms, lightning strikes from the sky. The vanae believe the Sky Mother plays with herself quite often.");
+	outputCodex("\n\nMost vanae pray to the Sky Mother for luck (typically before a hunt), thanks, and in times of strife (especially war). The Sky Mother does not typically judge and simply provides to all species. That said, the vanae and their sister race, the sacae, are her most beloved children.");
+	outputCodex("\n\nVanae have an origin story that both vanae and the sacae were born from the Sky Mother's womb. Two daughters - the first of each race - were delivered and fell down to Mhen'ga. The first sacae fell into the water and the vanae in the trees, making each their home. They believe the Sky Mother shows her love for her daughter's descendents by sending down rain that collects in the trees and flows into the rivers and seas.");
+	outputCodex("\n\nVanae believe when the Sky Mother gave birth to the world and before the vanae and sacae were born, she delivered the zil, naleen and other races. When she saw how much the zil and naleen females struggled to find nutrients she pitied them, and provided them with men to feed off of. The vanae and sacae instead received the Sky Mother's pride, needing no such gifts. This is why only already proven hunters can keep male breeding slaves, lest they shame the Sky Mother (See Society).");
+	outputCodex("\n\nThe queen is considered to be directly connected to the Sky Mother, closely followed by the matriarchs. It is maternity that allows them to be in concert with their goddess - the more children she has, the more spiritually attuned they are. For this reason, males are to be pitied and put in the same spiritual category as plants. In the vanae's eyes, a brood mother of any species is always worthy of respect.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Society & Laws"));
+	outputCodex("Vanae are a matriarchal society and they put significant emphasis on female superiority, much like the amazons of human legend. While they do not actively scorn males and herms, they believe anything with a phallus (or phalli) is meant to be used as nourishment or breeding stock and nothing else. To the vanae, only females are worth speaking to on equal terms - be they vanae or otherwise.");
+	outputCodex("\n\nFemale outsiders are still not welcome in their territory or near their sky home. Since vanae are accustomed to actively fighting off sentient and non-sentient predators seeking to kill or eat them, Vanae are fiercely protective of their land. Vanae poaching has also exacerbated this problem (see Vanae milk).  Most creatures are smart enough to know not to lurk too long in misty valleys on Mhen'ga, lest the vanae descend upon them and in great numbers.");
+	outputCodex("\n\nVanae are geared towards three things - breeding, hunting, and gathering. Young vanae are expected to collect fruit from the treetops and ground to hone their skills, vanae huntresses are in charge of hunting, and both adult and senior vanae are in charge of breeding. All pregnant vanae are expected to protect the sky home with their potent milk.");
+	outputCodex("\n\nWhile they are very task-focused, they are hardly unintelligent, with most being quite canny. A vanae queen and the matriarchs of a tribe are usually very sharp, a necessary requirement for surviving long enough on Mhen'ga to make it to their particular positions of status. Vanae respect and prize their elders, hunting food and semen for them instead of making them do it themselves. Because of this, vanae queens and matriarchs are almost unceasingly pregnant.");
+	outputCodex("\n\nYoung vanae are always striving to prove themselves and stand out from their sisters. Taught in great numbers, young vanae must either sink or swim - the savage jungles of Mhen'ga rarely offer a second chance. Since they are not apex predators, careless vanae do not survive long.");
+	outputCodex("\n\nBreeding capacity is closely linked to status in vanae society, and while females engage in loving, intimate relationships with each other, it is considered in poor form to mate exclusively with females. The larger the breasts the more sway and status they have. Because of this, breast envy is a widespread phenomenon.");
+	outputCodex("\n\nVanae queens are usually elected by breast size and by vote; the fact that a clan is usually comprised largely of her children usually sways election in her favor. It is very unusual for a vanae queen to not be the bustiest of the clan, but it is not unheard of. The queen has absolute authority over the entire clan, and once elected is usually in charge until death except under the most extreme circumstances.");
+	outputCodex("\n\nVanae that respect one another let them drink from their breasts. Drinking the breast milk of a vanae queen is considered a great honor and rarely, if ever, offered to outsiders.");
+	outputCodex("\n\nEspecially virile males are typically captured as breeding slaves, though only the queen and other breeding matriarchs of a vanae tribe are allowed to keep them. These breeding males are extra mouths to feed and are signs of status; only a huntress who no longer has to prove her worth has the right to own one.");
+	outputCodex("\n\nWhen a tribe grows too large, a vanae matriarch takes a number of tribe members and strikes out on her own to start a new tribe (Becoming a queen in her own right and founding a new Sky Home). A matriarch must have permission from the queen to leave. It is not unheard of for this to occur for other reasons, such a dissatisfaction with an existing queen's rule. In this case, the queen usually lets the matriarch and any dissatisfied tribe members leave to in order distance them from the tribe.");
+	outputCodex("\n\nOne of the greatest crimes a vanae can commit is to steal or extort semen or nutrients from another hunter that is not freely delivered (including non-vanae females). The penalty for this crime is severe by vanae standards; the sap of the Uthra birch is rubbed onto the offenders breasts, causing them to shrink and disappear. This leaves them shamed and without status. The only crime equal to this is the murder of a fellow vanae, or treason against the queen.");
+	outputCodex("\n\nTheft of any other kind is also looked down on, though not as severely as poaching another hunter's nutrients or semen. Other taboos are touching another warrior's weapons (no matter the race), cutting a tree for any reason other than grabbing fruit, sexual monogamy (turning down a sexual proposition is allowed if they dislike this person, but mating exclusively with one person or one gender is not), or maliciously harming a fellow vanae or sacae.");
+	outputCodex("\n\nThere is only one time that murdering a fellow vanae or sacae, or attacking a queen is allowed. That is when they are directly threatening the security of the entire tribe. Even a queen is subject to this law, and may not order the death of any sister for any other reason. If proof cannot be found that a vanae was acting to protect the interests of the tribe, she will be punished accordingly.");
+	outputCodex("\n\nOn average, maiden vanae has A to B-cups, vanae huntress have C to DD's, matrons E to HH, and matriarch to queens are J or larger.");
+	outputCodex("\n\n");
+
+	outputCodex(blockHeader("Other"));
+	outputCodex("Vanae have a fighting style that is a combination of dancing and fighting, known as Shak'tath. It requires supremely good balance, agility, and hearing. It is performed with a two-handed spear or staff, though it can technically be performed with any two handed melee weapon.");
+	if(flags["DiscoveredAncientData"] != undefined) outputCodex(" It is a derivative of an ancient octalian fighting style.");
+
+	outputCodex("\n\nShak'tath is a style that utilizes momentum, misdirection, and pinpoint accuracy to fight one's opponent. Attacks are performed in a single strike, utilizing a large lead up movement and strong thrust. During the lead up, Shak'tath users are trained to keep their bodies constantly moving in order to avoid being struck, \"flowing like water\".");
+	outputCodex("\n\nVanae are ideally suited towards practicing Shak'tath with their biological advantages (dancer’s legs, flexible ankles, balancing tentacles, and superior hearing). While another species could technically learn Shak'tath, vanae have never in their history taught an outsider this art - and with species like the zil and naleen as neighbours, why would they?");
+	if(flags["DiscoveredAncientData"] != undefined) outputCodex("\n\nThe fighting style Shak'tath is based on was originally developed to defend against shark-like predators on the Octalian homeworld. It was designed to evade lunging bites and strike vulnerable points such as the eyes and nose.");
+	outputCodex("\n\nYoung vanae are usually first taught how to fight by their mother and alongside their breast sister. Later on, they are taught more advanced techniques by the arms matron of the clan.");
+
+	CodexManager.viewedEntry("Vanae");
+}
+
+function vanaeHistoryCodexEntry():void
+{
+	clearOutputCodex();
+	userInterface.showBust("VANAE"); // Probably split this out into multiple types?
+	outputCodex(header("The Vanae"));
+	outputCodex(blockHeader("\n - 'Vah-nay'"));
+
+	outputCodex("\n\n");
+	outputCodex(blockHeader("Addendum: History"));
+
+	outputCodex("\n\nThe origin story of the vanae and sacae has a nugget of truth to it in that they did indeed \"fall from the sky\". Both species are not native inhabitants of Mhen'ga and actually come from a far-off world.");
+	outputCodex("\n\nBoth species started as a single race known as the octalia, originating from an oceanic planet in a neighbouring sector. The octalians had bodies adapted for living under extreme pressure and in almost pitch black darkness - the reason both races have white skin and bio-luminescence. The octalia hunted prey by luring them in the darkness.");
+	outputCodex("\n\nAt some point in the history of the octalia, a spacefaring mission was attempted. For unknown reasons the ship crashed on Mhen'ga. The male members were wiped out, leaving only the females to survive. The female crew, blind and struggling in the new environment, were raped by species such as the naleen.");
+	outputCodex("\n\nOctalian genes are incredibly dominant, and the gender chromosomes are only carried by the same gender of their race (Only males carry the octalian Y chromosome template). Without male octalia or a similarly strong male species to impregnate them, the female crew gave birth to only female octalian children.");
+	outputCodex("\n\nFor a very long time, the female crew and their descendants were bred forcibly, leaving a scathing opinion of males that would later define their descendant's social structure. They survived by either crawling into the burning, fresh waters of Mhen'gan lakes and swamps, or climbing up into the trees and feeding off of fruit.");
+	outputCodex("\n\nOver time, descendants of the octalia survivors split into two distinct subspecies - the water-dwelling sacae and the tree-dwelling vanae. Knowledge of their history was all but lost, grains of forgotten truths carried in their religious myths. ");
+	outputCodex("\n\nThe original treatment of the octalia survivors led to both species being male-wary, female-respecting, and survival-focused. Over the centuries, vanae and sacae have gone to war with the various species of Mhen'ga. They have endured diseases and parasites other native species have long become immune to, weighed down by their strong, slowly adapting genes.");
+	outputCodex("\n\nTo this day, vanae are still the most sickly of all the races of Mhen'ga. To compensate for this, natural selection has pushed those with superior breeding capacity to the fore.");
+
+	CodexManager.viewedEntry("Vanae: History");
 }
