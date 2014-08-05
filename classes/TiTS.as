@@ -716,5 +716,18 @@
 		{
 			return chars["SERA"];
 		}
+		
+		public function get vanae():*
+		{
+			
+		}
+		public function get vanaeMaiden():*
+		{
+			return chars["MAIDENVANAE"];
+		}
+		public function get vanaeHuntress():*
+		{
+			return chars["HUNTRESSVANAE"];
+		}
 	}
 }

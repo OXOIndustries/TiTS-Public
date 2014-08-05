@@ -104,7 +104,6 @@ package classes.Characters
 			this.timesCum = 0;
 			this.minutesSinceCum = 9999;
 			
-			
 			this.tailType = GLOBAL.TYPE_VANAE;
 			this.tailCount = 0;
 			this.tailFlags = [];
