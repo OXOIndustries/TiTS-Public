@@ -4,6 +4,20 @@ import classes.VaginaClass;
 public function encounterVanae(isHuntress:Boolean):void
 {
 	clearOutput();
+
+	if (isHuntress)
+	{
+		userInterface.showName("FIGHT:\n VANAE HUNTRESS");
+		userInterface.showBust("VANAE_HUNTRESS");
+	}
+	else
+	{
+		userInterface.showName("FIGHT:\n VANAE MAIDEN");
+		userInterface.showBust("VANAE_MAIDEN");
+	}
+
+	author("Jim T");
+
 	//First Encounter
 
 	if ((isHuntress && flags["ENCOUNTERED VANAE HUNTRESS"] == undefined) || (!isHuntress && flags["ENCOUNTERED VANAE MAIDEN"] == undefined))
@@ -128,7 +142,7 @@ public function encounterVanae(isHuntress:Boolean):void
 
 		output("\n\nThe pink-haired vanae quickly pulls herself to her feet, levelling her spear at you. “<i>S-stop right there, you! You're going to " + pc.mf("take my virginity - and you better be gentle!", "be my first - so I hope you like girls!") + "</i>”");
 
-		output("\n\nThe vanae maiden that attacked you is sporting a pair of [vanaeMaid.breastCupSize]s. This seems to be her first time hunting for a mate.");
+		output("\n\nThe vanae maiden that attacked you is sporting a pair of [vanaeMaiden.breastCupSize]s. This seems to be her first time hunting for a mate.");
 		}
 	}
 
@@ -147,16 +161,7 @@ public function encounterVanae(isHuntress:Boolean):void
 
 function vanaeAI():void
 {
-	if (foes[0] is HuntressVanae)
-	{
-		userInterface.showName("FIGHT:\n VANAE HUNTRESS");
-		userInterface.showBust("VANAE_HUNTRESS");
-	}
-	else if (foes[0] is MaidenVanae)
-	{
-		userInterface.showName("FIGHT:\n VANAE MAIDEN");
-		userInterface.showBust("VANAE_MAIDEN");
-	}
+	vanaeHeader("FIGHT:\nVANAE ");
 	
 	// SpearStrike:
 	//Effect: Light physical damage, stun chance. Extra damage against tripped or stunned opponents. Small crit chance - higher against tripped or stunned opponents.
@@ -495,126 +500,204 @@ function vanaeTFScene():void
 	output("\n\n");
 }
 
+function vanaeHeader(preName:String):void
+{
+	if (foes[0] is MaidenVanae)
+	{
+		userInterface.showBust("VANAE_MAIDEN");
+		userInterface.showName(preName + "MAIDEN");
+	}
+	else
+	{
+		userInterface.showBust("VANAE_HUNTRESS");
+		userInterface.showName(preName + "HUNTRESS");
+	}
+	author("Jim T");
+}
+
 function vanaePCVictory():void
 {
+	clearOutput();
+	vanaeHeader("VICTORY:\nVANAE ");
+
 	// HP WIN
+	if (foes[0].HP() <= 1)
+	{
+		output("You land the final blow on your opponent, sending her sprawling to the ground. She seems unable to continue the fight, coughing as she grabs her side. There is shock and fear written all over her face.");
 
-You land the final blow on your opponent, sending her sprawling to the ground. She seems unable to continue the fight, coughing as she grabs her side. There is shock and fear written all over her face.
+		if (foes[0] is HuntressVanae)
+		{
+			output("\n\n“<i>W-what manner of");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			else output(" creature");
+			output(" are you? I've never failed at an ambush before!</i>” the vanae huntress exclaims. Her spear is lying far away from her now. She's completely at your mercy...");
 
-// IF VANAE HUNTRESS
-{
+			output("\n\n“<i>... I guess that's that, then. You're going to kill me, right? Go right ahead. I'm ready.</i>”");
+		}
+		else
+		{
+			output("\n\n“<i>I-I-I lost! I can't believe it, I can't believe this is happening. I failed my first hunt, and now I'm going to die!</i>” the vanae maiden babbles, clearly in a state of panic. She then curls up into a ball and begins to rock gently back and forth.");
 
-"W-what manner of {if (pc.race = zil || pc.race = naleen) "[pc.race]"}{else: "creature"} are you? I've never failed at an ambush before!"/</i> the vanae huntress exclaims. Her spear is lying far away from her now. She's completely at your mercy...
+			output("\n\nHer spear is lying far away from her now. She's completely at your mercy. What will you do with her?");
+		}
+	}
+	else
+	{
+		if (foes[0] is HuntressVanae)
+		{
+			output("\n\nThe busty huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
 
-"... I guess that's that, then. You're going to kill me, right? Go right ahead. I'm ready." 
+			output("\n\n“<i>Oh sweet Sky Mother, I can't take it any longer");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" - I don't care if you are a [pc.race]");
+			output(". Please, just fuck me!</i>” she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is.");
+		}
+		else
+		{
+			output("\n\nThe virgin huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [monster.clits], gazing at you as she masturbates furiously.");
+
+			output("\n\n“<i>Oh sweet Sky Mother, I've never been so horny in all my life! Please, can you fuck me? I don't care where!</i>” she whimpers, madly fingering her unsullied snatch. She lewdly spreads her [monster.legs] just so you can see just how sopping wet she is. “<i>... Please?</i>”");
+		}
+
+		output("\n\nShe's so worked up right now, you're pretty sure you could get her to do just about anything.");
+	}
+
+	// MERGE ALL (HP & LUST)
+
+	output("\n\nDo you succumb to your darker, carnal desires and");
+	if (!pc.isAss()) output(" ask to");
+	output(" fuck the other-worldly");
+	if (foes[0] is HuntressVanae) output(" woman");
+	else output(" maiden");
+	output("? Or do you just leave her be?");
+
+	// VANAE HUNTRESS OPTIONS
+	clearMenu();
+	if (foes[0] is HuntressVanae)
+	{
+		addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal");
+		addButton(1, "Tit Fuck", vanaeVictorySexIntro, "titfuck");
+		addButton(2, "Nipplefuck", vanaeVictorySexIntro, "nipplefuck");
+		addButton(3, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk");
+		addButton(4, "Cunnilingus", vanaeVictorySexIntro, "cunnilingus");
+		addButton(5, "69 - BJ", vanaeVictorySexIntro, "69bj");
+		addButton(6, "69 - Cunni", vanaeVictorySexIntro, "69cunni");
+		addButton(7, "TentaSex - Vag", vanaeVictorySexIntro, "tentacunt");
+		addButton(8, "TentaSex - Ass", vanaeVictorySexIntro, "tentabutt");
+		addButton(9, "Milk Bath", vanaeVictorySexIntro, "milkbath");
+
+		// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
+		// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
+	}
+	else
+	{
+		if (pc.hasCock() && pc.cockThatFits(217) != -1)
+		{
+			addButton(0, "Cowgirl", vanaeVictorySexIntro, "maiden_virginity", "Cowgirl", "Pop her cherry by having her ride your cock, cowgirl style.");
+		}
+		else
+		{
+			if (!pc.hasCock()) addDisabledButton(0, "Cowgirl", "Cowgirl", "You'd need to a cock to allow the Vanae to ride you.");
+			else addDisabledButton(0, "Cowgirl", "Cowgirl", "Your cock is simply too big for the Vanae to take.");
+		}
+
+		addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
+	}
 }
 
-// IF VANAE MAIDEN
+
+function vanaeVictorySexIntro(scene:String):void
 {
-"I-I-I lost! I can't believe it, I can't believe this is happening. I failed my first hunt, and now I'm going to die!</i> the vanae maiden babbles, clearly in a state of panic. She then curls up into a ball and begins to rock gently back and forth.
-
-Her spear is lying far away from her now. She's completely at your mercy. What will you do with her?
-}
-
-
-// LUST WIN
-
-The {virgin/busty} huntress can't take it any longer, letting out a sweet cry as she falls to the ground. All the while she's stroking her [vanae.clits], gazing at you as she masturbates furiously. 
-
-// IF VANAE HUNTRESS
-{
-"Oh sweet Sky Mother, I can't take it any longer{if (pc.race = zil || pc.race = naleen) "- I don't care if you are a [pc.race]"}. Please, just fuck me!" she whimpers, plunging her index finger inside of her drooling snatch. She lewdly spreads her [vanaeHunt.legs] just so you can see just how sopping wet she is.
-}
-
-// IF VANAE MADEN
-{
-"Oh sweet Sky Mother, I've never been so horny in all my life! Please, can you fuck me--? I don't care where!</i> she whimpers, madly fingering her unsullied snatch. She lewdly spreads her [vanaeMaid.legs] just so you can see just how sopping wet she is. "... Please?"
-}
-
-She's so worked up right now, you're pretty sure you could get her to do just about anything. 
-
-// MERGE ALL (HP & LUST)
-
-Do you succumb to your darker, carnal desires and {not hard:ask to} fuck the other-worldly {maiden/woman}? Or do you just leave her be?
-
-// VANAE HUNTRESS OPTIONS
-
-[Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
-[Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
-
-
-// VANAE MAIDEN OPTIONS
-
-[Take Virginity, Bottom] [Cunni, Giving]
-
-}
-
-function vanaeVictorySexIntro():void
-{
-	Clicking on any Sex Option
-
-You can't help it, she is just too damn hot. There's no way you are going to just leave without {not hard: seeing if she's up for a tumble/else: hitting that}.
+	// Clicking on any Sex Option
+	clearOutput();
+	vanaeHeader()
+	output("You can't help it, she is just too damn hot. There's no way you are going to just leave without");
+	if (!pc.isAss()) output(" seeing if she's up for a tumble");
+	else output(" hitting that");
+	output(".");
 
 
 // if (HP DEFEAT)
+if (foes[0].HP() <= 1)
 {
-
-if (pc.nice)
-{
-You tell her you're not planning to kill her because you're just not that kind of person. Instead, you'd like to patch things up by having sex instead. You make sure to make it a request and not a demand, since you don't want to force her into anything.
-}
-
-if (pc.mischievous)
-
-{
-You tell her you're not going to kill her, but you <i>would</i> really like to fuck her. Seems like a fair enough trade since she did try to beat you senseless, after all. 
-	}
-if (pc != hard)
-{
-The {vanae.hairColor]}violet headed huntress appears completely floored. Instead of ending her life you are letting her live and, on top of that, politely asking to have sex with her. 
-
-// IF VANAE HUNTRESS
-{
-"Y-you want to breed with me willingly, after I tried to attack you? Um... sure!\</i> Her cheeks flush. Suddenly she's acting quite coy. "...{if (pc.race = zil || pc.race = naleen) "You're really strange, for a [pc.race]. You're quite different from others of your kind"}{else: "You really aren't from around here, are you? I've never met an off-worlder like you before"}.\</i>
-	}
-
-//IF VANAE MAIDEN
+	if (pc.isNice())
 	{
-"Y-you're serious? Really? You're not just messing with me?" The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. "... You're not a normal {{if (pc.race = zil || pc.race = naleen) "[pc.race]"/else: "off-worlder"}, are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something."
-}
-}
+		output("\n\nYou tell her you're not planning to kill her because you're just not that kind of person. Instead, you'd like to patch things up by having sex instead. You make sure to make it a request and not a demand, since you don't want to force her into anything.");
+	}
+	else if (pc.isMischievous())
+	{
+		output("\n\nYou tell her you’re not going to kill her, but you <i>would</i> really like to fuck her. Seems like a fair enough trade since she did try to beat you senseless, after all.");
+	}
+	if (!pc.isAss())
+	{
+		output("\n\nThe [monster.hairColor] headed huntress appears completely floored. Instead of ending her life you are letting her live and, on top of that, politely asking to have sex with her. ");
 
-if (pc.mischievous)
-{
-
-/// IF VANAE MAIDEN
-{
-You quip that it's still early, and there's plenty of time left to eat her. She giggles a little at the innuendo, clearly letting her guard down. In turn, you let down yours. You're pretty sure she's not going to try anything.
+		// IF VANAE HUNTRESS
+		if (foes[0] is HuntressVanae)
+		{
+			output("\n\n“<i>Y-you want to breed with me willingly, after I tried to attack you? Um... sure!</i>” Her cheeks flush. Suddenly she's acting quite coy. “<i>...");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You're really strange, for a [pc.race]. You're quite different from others of your kind");
+			else output(" You really aren't from around here, are you? I've never met an off-worlder like you before");
+			output(".</i>”");
+		}
+		//IF VANAE MAIDEN
+		else
+		{
+			output("\n\n“<i>Y-you're serious? Really? You're not just messing with me?</i>” The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. “<i>... You're not a normal");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			else output(" off-worlder");
+			output(", are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something.</i>”");
+		}
 	}
 
-// IF NOT VANAE MAIDEN
-{
-You quip that it's understandable, since you're one of a kind. She doesn't seem to get the joke, though. Your gut tells you she's not going to try anything funny, so it's okay to let your guard down.
-}
-}
+	if (pc.isMischievous())
+	{
+		// IF VANAE MAIDEN
+		if (foes[0] is MaidenVanae)
+		{
+			output("\n\nYou quip that it's still early, and there's plenty of time left to eat her. She giggles a little at the innuendo, clearly letting her guard down. In turn, you let down yours. You're pretty sure she's not going to try anything.");
+		}
+		else
+		// IF NOT VANAE MAIDEN
+		{
+			output("\n\nYou quip that it's understandable, since you're one of a kind. She doesn't seem to get the joke, though. Your gut tells you she's not going to try anything funny, so it's okay to let your guard down.");
+		}
+	}
 
-if (pc.hard)
-{
-You give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it. 
-	
-// IF VANAE HUNTRESS
-{
-The violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. "Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?" 
-}
+	if (pc.isAss())
+	{
+		output("\n\nYou give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it.");
+		
+		// IF VANAE HUNTRESS
+		{
+			output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?</i>”");
+		}
 
-// IF VANAE MAIDEN
-{
-The pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. "Y-you're serious? You're not going to eat me? What would you like me to do, then?" 
-}
+		// IF VANAE MAIDEN
+		{
+			output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you're serious? You're not going to eat me? What would you like me to do, then?</i>”");
+		}
 	}
 }
 
-You inform the conquered amazoness that you {hard: are going/else: would like} to {fuck her [vanae.pussy]/fuck her [vanae.breasts]/eat out her [vanae.pussy] while she returns the favor/have her fuck your {[pc.vagina]/[pc.ass]} with that tail of hers/}have her squirt her [vanae.milk] all over [pc.eachCock] and jerk you off with her tentacles/have her bathe you in her [vanae.milk]}{Maiden Only:take her virginity {Virgin Sex (Bottom):with her on top/Virgin Sex (Top):with her on bottom}. {LUST LOSS: "She seems to shiver with anticipation, clearly willing to {pc.hard: carry out your command}{else:fulfil your request}"}
+output("\n\nYou inform the conquered amazoness that you");
+if (pc.isAss()) output(" are going");
+else output(" would like");
+output(" to");
+
+var action:String = "";
+
+switch(scene)
+{
+	case "maiden_virginity":
+		action = "take her virginity with her on top";
+		break;
+	case "maiden_cunni":
+		action = "take her virginity with her on bottom";
+}
+
+output(" " + action);
+
+ {fuck her [vanae.pussy]/fuck her [vanae.breasts]/eat out her [vanae.pussy] while she returns the favor/have her fuck your {[pc.vagina]/[pc.ass]} with that tail of hers/}have her squirt her [vanae.milk] all over [pc.eachCock] and jerk you off with her tentacles/have her bathe you in her [vanae.milk]}{Maiden Only:/Virgin Sex (Top):with her on bottom}. {LUST LOSS: "She seems to shiver with anticipation, clearly willing to {pc.hard: carry out your command}{else:fulfil your request}"}
 
 // if Vanae Maiden & not 69 Cunni & not lust loss.
 {
