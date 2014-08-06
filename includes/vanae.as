@@ -1,3 +1,4 @@
+import classes.Characters.MaidenVanae;
 public function encounterVanae(isHuntress:Boolean):void
 {
 	clearOutput();
@@ -154,6 +155,16 @@ function vanaeAI():void
 		userInterface.showName("FIGHT:\n VANAE MAIDEN");
 		userInterface.showBust("VANAE_MAIDEN");
 	}
+	
+	// SpearStrike:
+	//Effect: Light physical damage, stun chance. Extra damage against tripped or stunned opponents. Small crit chance - higher against tripped or stunned opponents.
+	
+	// TailSwipe: 
+	// Effect: Small Damage if hit, trip if connect. Vanae always attempts either a grapple or a melee strike on a tripped opponent. Small crit chance.
+	
+	// Grapple
+	// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
+	// Note: Written assuming the PC is already either stunned or tripped etc.
 }
 
 function vanaeSpearStrike():void
@@ -189,8 +200,8 @@ function vanaeSpearStrike():void
 		}
 		
 		var damage:int = foes[0].meleeWeapon.damage + 8;
-		var rand:Number = (rand(10) + 90) / 100;
-		damage *= rand;
+		var randInf:Number = (rand(10) + 90) / 100;
+		damage *= randInf;
 		
 		if (isCrit)
 		{
@@ -206,28 +217,67 @@ function vanaeSpearStrike():void
 
 function vanaeTailSwipe():void
 {
-	The lithe huntress dances up towards you, her [vanae.hairColor], luminescent \"skirt\" twirling about her body. Suddenly she crouches and her [vanae.tail] sweeps at your [pc.feet] - it's a trip attack!
+	// Effect: Small Damage if hit, trip if connect. Vanae always attempts either a grapple or a melee strike on a tripped opponent. Small crit chance.
+	
+	output("The lithe huntress dances up towards you, her [monster.hairColor], luminescent ‘skirt’ twirling about her body. Suddenly she crouches and her [monster.tail] sweeps at your [pc.feet] - it's a trip attack!");
 
-[Miss]: You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.
-
-[Hit]: You're struck by her tail, falling to the ground. She gives a victorious grin, closing in on you. She's leading into a follow-up attack...
-
-[Crit]: You're struck by her tail, falling to the ground and hitting your head - hard. Your world spins as she closes in on you. You're too disoriented to do anything about it...
-
-Effect: Small Damage if hit, trip if connect. Vanae always attempts either a grapple or a melee strike on a tripped opponent. Small crit chance.
+	// [Miss]: 
+	if (combatMiss(foes[0], pc)) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");
+	else
+	{
+		var isCrit:Boolean = false;
+		var dMulti:Number = 1.0;
+		var critChance:int = 15;
+		
+		if (rand(100) > critChance)
+		{
+			// [Hit]: 
+			output(" You're struck by her tail, falling to the ground. She gives a victorious grin, closing in on you. She's leading into a follow-up attack...");
+		}
+		else
+		{
+			isCrit = true;
+			dMulti += 1;
+			
+			// [Crit]: 
+			output(" You're struck by her tail, falling to the ground and hitting your head - hard. Your world spins as she closes in on you. You're too disoriented to do anything about it...");
+		}
+		
+		var damage:int = foes[0].meleeWeapon.damage;
+		var randInf:Number = (rand(20) + 80) / 100;
+		damage *= randInf;
+		
+		pc.createStatusEffect("Trip", 0, 0, 0, 0, false, "DefenseDown", "You've been tripped, reducing your effective physique and reflexes by 4. You'll have to spend an action standing up.", true, 0);
+		
+		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+	}
+	processCombat();
 }
 
 function vanaeGrapple():void
 {
-	Sliding up to you as you are incapacitated, you feel her {maiden: " short"} tentacle skirt begin to {Maiden: " awkwardly"}wrap around your waist{Not Maiden:" and lower body"}. You can feel her suckers begin to stick to your skin - she's trying to pin you down!
+	output("Sliding up to you as you are incapacitated, you feel her");
+	if (foes[0] is MaidenVanae) output(" short");
+	output(" tentacle skirt begin to");
+	if (foes[0] is MaidenVanae) output(" awkwardly");
+	output(" wrap around your waist");
+	if (!(foes[0] is MaidenVanae)) output(" and lower body");
+	output(". You can feel her suckers begin to stick to your skin - she's trying to pin you down!");
+	
+	// [Failure]:
+	if (combatMiss(foes[0], pc)) output(" You forcibly shake her off of you; it's a close call. If she'd pinned you, who knows what would have happened!");
+	else
+	{
+		// [Success/Don't Struggle]: 
+		output(" You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [monster.breasts] are rubbing against you, coating you in her [monster.milk]...");
 
-[Failure]: You forcibly shake her off of you; it's a close call. If she'd pinned you, who knows what would have happened!
+		output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
 
-[Success/Don't Struggle]: You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [vanae.breasts] are rubbing against you, coating you in her [vanae.milk]...
-
-... You can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...
-
-Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
+		pc.createStatusEffect("Grappled", 30, 0, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
+	}
+	
+	processCombat();
+// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
 }
 
 function vanaeGrappleLubricate():void
