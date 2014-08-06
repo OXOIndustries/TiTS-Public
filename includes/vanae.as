@@ -590,7 +590,7 @@ function vanaePCVictory():void
 	}
 	else
 	{
-		if (pc.hasCock() && pc.cockThatFits(217) != -1)
+		if (pc.hasCock() && pc.cockThatFits(217) != -1 && (pc.genitalSpot == 0 || pc.genitalSpot == 1))
 		{
 			addButton(0, "Cowgirl", vanaeVictorySexIntro, "maiden_virginity", "Cowgirl", "Pop her cherry by having her ride your cock, cowgirl style.");
 		}
@@ -616,111 +616,267 @@ function vanaeVictorySexIntro(scene:String):void
 	output(".");
 
 
-// if (HP DEFEAT)
-if (foes[0].HP() <= 1)
-{
-	if (pc.isNice())
+	// if (HP DEFEAT)
+	if (foes[0].HP() <= 1)
 	{
-		output("\n\nYou tell her you're not planning to kill her because you're just not that kind of person. Instead, you'd like to patch things up by having sex instead. You make sure to make it a request and not a demand, since you don't want to force her into anything.");
-	}
-	else if (pc.isMischievous())
-	{
-		output("\n\nYou tell her you’re not going to kill her, but you <i>would</i> really like to fuck her. Seems like a fair enough trade since she did try to beat you senseless, after all.");
-	}
-	if (!pc.isAss())
-	{
-		output("\n\nThe [monster.hairColor] headed huntress appears completely floored. Instead of ending her life you are letting her live and, on top of that, politely asking to have sex with her. ");
+		if (pc.isNice())
+		{
+			output("\n\nYou tell her you're not planning to kill her because you're just not that kind of person. Instead, you'd like to patch things up by having sex instead. You make sure to make it a request and not a demand, since you don't want to force her into anything.");
+		}
+		else if (pc.isMischievous())
+		{
+			output("\n\nYou tell her you’re not going to kill her, but you <i>would</i> really like to fuck her. Seems like a fair enough trade since she did try to beat you senseless, after all.");
+		}
+		if (!pc.isAss())
+		{
+			output("\n\nThe [monster.hairColor] headed huntress appears completely floored. Instead of ending her life you are letting her live and, on top of that, politely asking to have sex with her. ");
 
-		// IF VANAE HUNTRESS
-		if (foes[0] is HuntressVanae)
-		{
-			output("\n\n“<i>Y-you want to breed with me willingly, after I tried to attack you? Um... sure!</i>” Her cheeks flush. Suddenly she's acting quite coy. “<i>...");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You're really strange, for a [pc.race]. You're quite different from others of your kind");
-			else output(" You really aren't from around here, are you? I've never met an off-worlder like you before");
-			output(".</i>”");
+			// IF VANAE HUNTRESS
+			if (foes[0] is HuntressVanae)
+			{
+				output("\n\n“<i>Y-you want to breed with me willingly, after I tried to attack you? Um... sure!</i>” Her cheeks flush. Suddenly she's acting quite coy. “<i>...");
+				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" You're really strange, for a [pc.race]. You're quite different from others of your kind");
+				else output(" You really aren't from around here, are you? I've never met an off-worlder like you before");
+				output(".</i>”");
+			}
+			//IF VANAE MAIDEN
+			else
+			{
+				output("\n\n“<i>Y-you're serious? Really? You're not just messing with me?</i>” The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. “<i>... You're not a normal");
+				if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+				else output(" off-worlder");
+				output(", are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something.</i>”");
+			}
 		}
-		//IF VANAE MAIDEN
-		else
+
+		if (pc.isMischievous())
 		{
-			output("\n\n“<i>Y-you're serious? Really? You're not just messing with me?</i>” The girly huntress lifts her head and releases her legs. You'd swear she was looking at you, but her eyelids are firmly closed. “<i>... You're not a normal");
-			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
-			else output(" off-worlder");
-			output(", are you? I mean, I don't have much experience to speak of, but I'm pretty sure this isn't normal. You're supposed to eat me or something.</i>”");
+			// IF VANAE MAIDEN
+			if (foes[0] is MaidenVanae)
+			{
+				output("\n\nYou quip that it's still early, and there's plenty of time left to eat her. She giggles a little at the innuendo, clearly letting her guard down. In turn, you let down yours. You're pretty sure she's not going to try anything.");
+			}
+			else
+			// IF NOT VANAE MAIDEN
+			{
+				output("\n\nYou quip that it's understandable, since you're one of a kind. She doesn't seem to get the joke, though. Your gut tells you she's not going to try anything funny, so it's okay to let your guard down.");
+			}
+		}
+
+		if (pc.isAss())
+		{
+			output("\n\nYou give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it.");
+			
+			// IF VANAE HUNTRESS
+			{
+				output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?</i>”");
+			}
+
+			// IF VANAE MAIDEN
+			{
+				output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you're serious? You're not going to eat me? What would you like me to do, then?</i>”");
+			}
 		}
 	}
 
-	if (pc.isMischievous())
-	{
-		// IF VANAE MAIDEN
-		if (foes[0] is MaidenVanae)
-		{
-			output("\n\nYou quip that it's still early, and there's plenty of time left to eat her. She giggles a little at the innuendo, clearly letting her guard down. In turn, you let down yours. You're pretty sure she's not going to try anything.");
-		}
-		else
-		// IF NOT VANAE MAIDEN
-		{
-			output("\n\nYou quip that it's understandable, since you're one of a kind. She doesn't seem to get the joke, though. Your gut tells you she's not going to try anything funny, so it's okay to let your guard down.");
-		}
-	}
+	output("\n\nYou inform the conquered amazoness that you");
+	if (pc.isAss()) output(" are going");
+	else output(" would like");
+	output(" to");
 
-	if (pc.isAss())
+	var action:String = "";
+	var functor:Function = null;
+
+	switch(scene)
 	{
-		output("\n\nYou give her a menacing stare and tell her you're not going to kill her, but she better make reparations for trying to brain you - sexually. And if she tries anything funny, you'll make damn sure she regrets it.");
+		case "maiden_virginity":
+			action = "take her virginity with her on top";
+			functor = vanaeMaidenTakeVirginity;
+			break;
 		
-		// IF VANAE HUNTRESS
-		{
-			output("\n\nThe violet headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you want to breed with me willingly, after I tried to attack you, off-worlder? Um... sure! W-what would you like me to do?</i>”");
-		}
+		case "maiden_cunni":
+			action = "take her virginity with her on bottom";
+			break;
+		
+		case "vagina":
+			action = "fuck her [monster.pussy]";
+			break;
 
-		// IF VANAE MAIDEN
+		case "nipplefuck":
+		case "titfuck":
+			action = "fuck her [monster.breasts]";
+			break;
+		
+		case "squirtnjerk":
+			action = "have her squirt her [monster.milk] all over [pc.eachCock] and jerk you off with her tentacles";
+			break;
+		
+		case "cunnilingus":
+			action = "do stuff"; // Placeholder, fuck off
+			break;
+
+		case "69bj":
+		case "69cunni":	
+			action = "eat out her [monster.pussy] while she returns the favor";
+			break;
+		
+		case "tentacunt":
+			action = "have her fuck your [pc.vagina] with that tail of hers";
+			break;
+		
+		case "tentabutt":
+			action = "have her fuck your [pc.ass] with that tail of hers";
+			break;
+		
+		case "milkbath":
+			action = "have her bathe you in her [monster.milk]";
+			break;
+		
+		default:
+			action = "Couldn't find action text for " + scene;
+			break;
+	}
+
+	output(" " + action);
+
+	if (monster.lust() >= monster.lustMax())
+	{
+		output(" She seems to shiver with anticipation, clearly willing to"); 
+		if (pc.isAss()) output(" carry out your command");
+		else output(" fulfil your request");
+		output(".");
+
+		// if Vanae Maiden & not 69 Cunni & not lust loss
+		if (foes[0] is MaidenVanae && scene != "69cunni")
 		{
-			output("\n\nThe pink headed huntress quivers as you stare at her. She seems glad that you're letting her live, but at the same time, terrified by the tone of your voice. “<i>Y-you're serious? You're not going to eat me? What would you like me to do, then?</i>”");
+			output("\n\n“<i>I’ve never done that sort of thing before. So be patient with me, okay?</i>” she meekly requests, looking you up and down. She seems uncertain how to proceed, hindered by her lack of experience. ");
 		}
 	}
+
+	// MERGE
+
+	if (!pc.isNude())
+	{
+		output("“<i>Um, you're wearing clothes... so I should...</i>” Her words trail off as you begin to strip off your [pc.gear], causing her to lose her train of thought.");
+		if (!(pc.armor is EmptySlot) || !(pc.upperUndergarment is EmptySlot)) output(" You expose yourself to her, momentarily holding your breath, waiting for her response. At the sight of your bare [pc.chest], her breathing grows shorter, heavier, and you can feel the warmth of her breath on your half-naked body.");
+
+		if (pc.hasCock() || pc.hasVagina())
+		{
+			output(" Even more blood rushes to her cheeks as");
+			if (pc.hasCock()) output(" [pc.eachCock]");
+			if (pc.hasCock() && pc.hasVagina()) output(" and");
+			if (pc.hasVagina()) output(" [pc.eachPussy]");
+			if (pc.hasCock() && pc.hasVagina() || pc.cocks.length > 1 || pc.vaginas.length > 1) output(" are");
+			else output(" is");
+			output(" exposed. Her [monster.lips] part with fervent anticipation, each breath heavy with");
+			if (foes[0] is MaidenVanae) output(" indescribable");
+			else output(" carnal");
+			output(" longing.");
+		}
+		else
+		{
+			output("\n\nWhen your [pc.groin] is exposed you can see she looks a little disappointed and more than a little confused. It’s clear she’s never come across someone like you before. ");
+
+			output("\n\nYou tell her that you’re going to enjoy her efforts even though you don’t have anything down there, and she seems to take your word for it.");
+		}
+	}
+
+	clearMenu();
+	addButton(0, "Next", functor);
 }
 
-output("\n\nYou inform the conquered amazoness that you");
-if (pc.isAss()) output(" are going");
-else output(" would like");
-output(" to");
-
-var action:String = "";
-
-switch(scene)
+function vanaeMaidenTakeVirginity():void
 {
-	case "maiden_virginity":
-		action = "take her virginity with her on top";
-		break;
-	case "maiden_cunni":
-		action = "take her virginity with her on bottom";
-}
+	clearOutput();
+	vanaeHeader("VICTORY:\nVANAE ");
 
-output(" " + action);
+	var selCock:int = pc.cockThatFits(217);
 
- {fuck her [vanae.pussy]/fuck her [vanae.breasts]/eat out her [vanae.pussy] while she returns the favor/have her fuck your {[pc.vagina]/[pc.ass]} with that tail of hers/}have her squirt her [vanae.milk] all over [pc.eachCock] and jerk you off with her tentacles/have her bathe you in her [vanae.milk]}{Maiden Only:/Virgin Sex (Top):with her on bottom}. {LUST LOSS: "She seems to shiver with anticipation, clearly willing to {pc.hard: carry out your command}{else:fulfil your request}"}
+	// Won fight
+	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
+	{
+		output("Getting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she’s ever felt a cock, let alone one like yours.");
 
-// if Vanae Maiden & not 69 Cunni & not lust loss.
+		output("“<i>...");
+		if (pc.cocks[selCock].cLength() <= 5) output(" It's smaller than I thought");
+		else if (pc.cocks[selCock].cLength() >= 10) output(" It feels so large");
+		else output(" It feels so soft");
+		output(" and so strangely shaped! I've never touched a male sex organ before.</i>” her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. “<i>... It moves?! Mine doesn't do that!</i>”");
+
+		output("\n\nYou tell her that it's perfectly normal, and she seems to settle down. She then begins to position herself above your [pc.cock " + selCock + "].You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.pussyNoun] and [monster.clits].");
+
+		output("\n\nSlowly crouching down on top of you, she grabs your [pc.cock " + selCock +"] with one hand and rubs it against her moist, virginal slit. Since she's rushed to put you inside of her, you're not hard enough, and your [pc.cockHead " + selCock + "] keeps refusing to press inside of her entrance.");
+
+		output("\n\n“<i>Um, it's not going in...?</i>” the virgin huntress questions you, clearly not getting the problem. After you explain you need to be more aroused first, she flushes harder. “<i>Oh! You're not aroused? Don't you find me attractive enough? What if I do this?</i>”");
+
+		output("\n\nShe leans forward and presses her [monster.breasts] against your [pc.face]. Her [monster.nipples] drag across the [pc.skinFurScales] of your cheek as she tries her hand at seduction. The floral aroma of her [monster.skin] fills your nostrils, innocently accompanied by the sweet scent of her arousal.");
+
+		output("\n\nHer silky unblemished skin and awkward attempts at arousal are cute and still have the desired effect, [pc.eachCock] becoming steadily more rigid. The amateur huntress lets out a delighted noise as you jerk and stiffen between her webbed fingers, her [monster.breasts] pressing eagerly against you.");
+
+		output("\n\n“<i>... Good! I knew I could be sexy, at least if I really tried.</i>” The young woman smiles triumphantly, your erect [pc.cockNoun " + selCock + "] gripped in her slender fingers. “<i>So... this bit I'm not so sure about.");
+		if (pc.cocks[selCock].cLength() <= 5) output(" But you're small enough, it should be okay...");
+		else if (pc.cocks[selCock].cLength() >= 10) output(" You're pretty big, I'm not sure you'll even fit...");
+		else output(" Be gentle, okay?");
+		output("</i>”");
+	}
+
+	// NOTE: Both Win and Loss versions of this scene are identical from this point on. When putting in the Loss Scene, merge here and take everything below this line.
+	output("\n\nThe virgin huntress descends nervously on your [pc.cock " + selCock + "] and presses your [pc.cockHead " + selCock + "] against her [monster.pussy]. You let out a low moan as you feel her narrow entrance slowly part around your");
+	if (pc.cocks[selCock].hasFlag(GLOBAL.FLAG_TAPERED) <= 5) output(" equally tiny");
+	else if (pc.cocks[selCock].hasFlag(GLOBAL.FLAG_FLARED) || pc.cocks[selCock].hasFlag(GLOBAL.FLAG_BLUNT)) output(" massive");
+	else output(" swollen");
+	output(" tip, kissing and squeezing your sensitive flesh.");
+	if (pc.cockVirgin == true) output(" It's a first for both of you.");
+	
+	// Virginity check.
+	pc.cockChange(true, false);
+
+	output("\n\nYour [pc.cockHead " + selCock + "] presses against her maidenhead, and you can see her wince.");
+	if (!pc.isAss()) output(" To make things easier, you grab her [monster.ass] and stroke it, distracting her from the pain. When you're sure she's ready, you ease your [pc.cockNoun " + selCock + "] forward and claim her womanhood. As gentle as you are, she still lets out a sharp cry");
+	else output(" You know she's going to feel pain either way, so you don't screw around. With a single thrust you claim her womanhood, causing her to let out a sharp cry");
+	output("."); 
+
+	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her [monster.arms] around your neck. “<i>It's okay - keep going. I can take it.</i>”");
+	if (!pc.isAss()) output(" At her insistence, you");
+	else output(" You");
+	output(" do just that, sliding your [pc.cock " + selCock + "] deeper into her virgin [monster.pussyNoun]. Her untraversed insides part around your swelling cock and mold freshly to your [pc.cockShape " + selCock + "] cocks shape.");
+	
+	// Note: Type means "equine", "terran", or maybe "knotted". Something along those lines. Hope that's the right parser. Maybe set it up?
+
+Her pussy is lined with hundreds of little bumps which pleasurably stroke your [pc.cockNoun] as you push further inside of her. Finally your [pc.cockHead] is resting against her deepest point. You swell with the knowledge you have completely deflowered and claimed her amazonian [vanaeMaid.pussyNoun], every inch now squeezing around your throbbing length. 
+
+<i>\"It stings a little, but at the same time, feels really good.</i> the young huntress breathily exclaims, wiggling her [vanaeMaid.ass] in your lap. Her movements cause your [pc.cock] to churn around deep inside of her [vanaeMaid.pussy], forcing a girlish moan from her [vanaeMaid.lips].
+
+All of a sudden there is a shifting sensation around your [pc.cock] and it feels as if it is being licked by hundreds of tiny tongues. You realise that her [vanaeMaid.pussy] is not lined with bumps, but feelers lying flush. Now awake for the first time, they lap eagerly at your length inside her incredibly narrow passage. As alien as it is, it feels <i>sooo good</i>. 
+
+You reel and wonder how after this you're ever going to {if pc.virgin "go back to sex with regular, terran women"}{else: "be able to use your hand to get off ever again"}. You're utterly hooked on her wriggling alien [vanaeMaid.pussyNoun]{Silly Mode: and now that you've gone vanae, you're not sure you'll ever keep away}!
+ 
+She seems just as excited by you as she grinds her hairless mound against your {[pc.sack]/[pc.base]/[pc.sheathe]}. Her juices excitedly dribble down your length, and her velvety soft feelers lick your length from point blank range. Meanwhile, she hugs your neck and presses her [vanaeMaid.breasts] excitedly against your [pc.face].
+
+Soon the inexperienced huntress is bouncing and wiggling madly on your lap, losing herself to pleasure as she rides your [pc.cock]. <i>\"I've never felt anything like this before, it feels as if I'm flying!</i> she whimpers.  All the while, her alien insides lash, clench, and drool excitedly around your length.
+
+In your mind, you can't believe an alien virgin is bouncing up and down on your [pc.cock], about to gush all over your throbbing length. The image of you spurting your [pc.cum] deep inside of her unclaimed [vanaeMaid.pussyNoun] gets you incredibly hot, and soon you find yourself utterly losing control.
+
+Your body moves on instinct as you seize her hips in your hands. Both of you frantically and feverishly grind against each other, pushing each other to even greater heights. She reaches the peak first, creaming herself in your lap as she shudders and jets her [vanaeMaid.girlCum] around your [pc.cock]. It's not long before you follow, shooting your load inside her unsullied, virgin depths and marking her insides with your [pc.cumNoun].
+
+You {splatter and spurt tiny dribbles/gloriously shoot spasmic jets/gloriously unload thick jets} of hot, [pc.cumVisc] jism deep inside of her, sullying her untouched womb with your [pc.cumNoun]. All the while she trembles in your lap and receives your spunk inside of her, feeling it spatter blissfully inside her inner walls.
+
+When she pulls away from you, you can see a definite glow to her features and a bright smile on her face. <i>\"... My first time... I never thought it would be so good. And because you came inside of me, I'm going to be pregnant!</i>
+
+// IF FIRST TIME
 {
-"I've never done that sort of thing before. So be patient with me, okay?" she meekly requests, looking you up and down. She seems uncertain how to proceed, hindered by her lack of experience. 
+The deflowered huntress rubs her belly and realization hits you like a ton of bricks. Pregnant?! Your Codex brings you up to speed.
+
+<i>\"Vanae breed by hunting males and engaging in vaginal intercourse, [Master] Steele. Due to their incredible fertility, pregnancy is almost always assured. A vanae maiden is exceptionally fertile compared to others of her species.\"</i>
+
+In other words, there's a ridiculously high chance that you just got her pregnant. Your Codex asks if you want it to add a name to the Steele family register.
+
+When you turn your attention back to the amazonian huntress, however, she's nowhere to be found. Did she take off when you weren't looking? You wonder if you'll ever see her again.
 }
 
-// MERGE
-
-if (pc.gear != null)
+// else
 {
-"Um, you're wearing clothes... so I should..." Her words trail off as you begin to strip off your [pc.gear], causing her to lose her train of thought. {PC has upper torso clothes: As your [pc.chest] {is/are} exposed her}{else: Her} breathing becomes quite ragged, clearly aroused by the sight of your half naked body. 
-
-if (pc.sex != neuter)
-(
-Even more blood rushes to her cheeks as {[pc.eachCock]} {if (pc.sex = herm) and} {pc.eachPussy] is exposed. Her [vanae.lips] part with fervent anticipation, each breath heavy with {Maiden: "indescribable/else: "carnal"} longing.
-)
-
-else
-{
-When your [pc.groin] is exposed you can see she looks a little disappointed and more than a little confused. It's clear she's never come across someone like you before. 
-
-You tell her that you're going to enjoy her efforts even though you don't have anything down there, and she seems to take your word for it. 
+Your Codex tentatively asks if you'd like to add <i>another</i> entry to the Steele family register. You chew it out for its sass, and when you look up you realise the amazonian huntress is nowhere to be seen. You wonder if you'll ever see her again.
 }
 
-}
 }

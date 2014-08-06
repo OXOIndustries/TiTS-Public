@@ -20,6 +20,7 @@
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
 	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Util.RandomInCollection;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -1549,6 +1550,10 @@
 				case "boy":
 				case "girl":
 					buffer = this.mf("boy", "girl");
+					break;
+				case "cockShape":
+				case "cockshape":
+					buffer = cockShape(arg2);
 					break;
 				default:
 					// error production is now done up-stream in the parser
@@ -7221,6 +7226,80 @@
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cockNounComplex()</b>";
 			return cockNoun(cocks[arg].cType, false);
 		}
+		
+		// Spit back a singular word related to the shape of the target cock, with the minimum
+		// of ambiguity. Basically describe a very clear feature of the cock, either its type or a flag.
+		// I didn't want to potentially fuck up an existing descriptor in the process, so I've opted to keep it separate.
+		public function cockShape(cockIndex:int):String
+		{
+			var cock:CockClass = cocks[cockIndex];
+			
+			var collection:Array = [];
+			
+			// main shapes
+			switch (cock.cType)
+			{
+				case GLOBAL.TYPE_HUMAN:
+					collection = ["terran"];
+					break;
+					
+				case GLOBAL.TYPE_CANINE:
+					collection = ["canine"];
+					break;					
+					
+				case GLOBAL.TYPE_VULPINE:
+					collection = ["vulpine"];
+					break;
+					
+				case GLOBAL.TYPE_EQUINE:
+					collection = ["equine"];
+					break;
+					
+				case GLOBAL.TYPE_DEMONIC:
+					collection = ["demonic", "nodule-laden"]
+					break;
+					
+				case GLOBAL.TYPE_TENTACLE:
+					collection = ["tentacle"];
+					break;
+					
+				case GLOBAL.TYPE_FELINE:
+					collection = ["feline", "barbed"];
+					break;
+					
+				case GLOBAL.TYPE_NAGA:
+				case GLOBAL.TYPE_SNAKE:
+					collection = ["snake", "reptilian"];
+					break;
+					
+				case GLOBAL.TYPE_DRACONIC:
+					collection = ["draconic"];
+					break;
+					
+				case GLOBAL.TYPE_BEE:
+					collection = ["zil"];
+					break;
+					
+				case GLOBAL.TYPE_KANGAROO:
+					collection = ["kangaroo"];
+					break;
+					
+				default:
+					trace("Fallback cock shape used in cockShape() for type: " + GLOBAL.TYPE_NAMES[cock.cType]);
+					collection = ["cock"];
+					break;
+			}
+			
+			// flag overrides
+			if (cock.hasFlag(GLOBAL.FLAG_KNOTTED)) collection.push("knotted");
+			if (cock.hasFlag(GLOBAL.FLAG_FLARED)) collection.push("flared");
+			if (cock.hasFlag(GLOBAL.FLAG_BLUNT)) collection.push("blunt");
+			if (cock.hasFlag(GLOBAL.FLAG_PREHENSILE)) collection.push("prehensile");
+			if (cock.hasFlag(GLOBAL.FLAG_TAPERED)) collection.push("tapered");
+			
+			return RandomInCollection(collection);
+		}
+		
 		//Cock nouns with a single, toggleable adjective. Used all over the place, yo.
 		public function cockNoun(type: Number, simple: Boolean = true, tail: Boolean = false): String {
 			var descript: String = "";
