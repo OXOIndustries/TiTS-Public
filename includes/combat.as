@@ -673,7 +673,7 @@ function combatMiss(attacker:Creature, target:Creature, overrideAttack:Number = 
 		return true;
 	}
 	//10% miss chance for lucky breaks!
-	if(target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
+	if (target.hasPerk("Lucky Breaks") && rand(100) <= 9) return true;
 	if(target.hasPerk("Melee Immune")) return true;
 	return false;
 }

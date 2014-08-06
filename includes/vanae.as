@@ -1,5 +1,6 @@
 import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
+import classes.VaginaClass;
 public function encounterVanae(isHuntress:Boolean):void
 {
 	clearOutput();
@@ -170,6 +171,9 @@ function vanaeAI():void
 	
 	// Milkspray
 	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
+	
+	// Effect: When she does this move, her dodge and hit rate increases. It lasts for three rounds, including the one used to activate it. If she uses this move when it is already active, the timer is refreshed.
+	// camoFunc(true) updates the effect, camoFunc(false) will apply it/refresh it
 }
 
 function vanaeSpearStrike():void
@@ -338,14 +342,13 @@ function vanaeMilkSquirtBreasts():void
 		{
 			// [Hit And Stun]: 
 			output(" You are splattered with her [monster.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...");
-			pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
+			pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
 		}
 		
 		pc.lustDamage(8 + rand(4));
 	}
 	
 	processCombat();
-
 	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
 }
 
@@ -359,52 +362,137 @@ function vanaeSpiralKick():void
 	if (combatMiss(foes[0], pc, -1, 3)) output(" The move is spectacular, but clearly telegraphed. You dart backwards as her [vanae.foot] whips past you, connecting with nothing but air. She lands and spins around, dissapointed that it didn't connect.");
 	else
 	{
-
-[Hit & Stun]: Her [vanae.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...
+		// [Hit & Stun]: 
+		output(" Her [monster.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...");
+		
+		var damage:int = foes[0].meleeWeapon.damage + 25;
+		var randInf:Number = (rand(20) + 80) / 100;
+		damage *= randInf;
+		
+		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		pc.createStatusEffect("Stunned", 2, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
+	}
 
 	// Effect: Low hit chance. On hit, does large damage and auto-stun (if PC can be stunned). 
 }
 
-function vanaeCamoflage():void
+function vanaeCamoflage(justUpdate:Boolean = true):void
 {
-	[Activate]: The octopus-like huntress stops and presses herself against the ground. Suddenly her [vanae.skin] starts shifting and she seems to slowly disappear. Her outline remains, but you have to concentrate to see it.
+	if (foes[0].hasStatusEffect("Camouflage"))
+	{
+		foes[0].addStatusValue("Camouflage", 1 -1);
+	}
+	
+	if (!justUpdate)
+	{
+		if (!foes[0].hasStatusEffect("Camouflage"))
+		{
+			// [Activate]: 
+			output("The octopus - like huntress stops and presses herself against the ground. Suddenly her [vanae.skin] starts shifting and she seems to slowly disappear. Her outline remains, but you have to concentrate to see it.");
+			
+			output("\n\nIt seems she's changed her skin to match her surroundings like instant camouflage. You can still see her, but while she's camouflaged it is going to be harder to hit her and dodge her attacks.");
+			
+			foes[0].createStatusEffect("Camouflage", 3, 0, 0, 0);
+			foes[0].reflexesMod += 8;
+			foes[0].aimMod += 8;
+		}
+		else
+		{
+			output("The octopus-like huntress takes a moment to stop and press against the ground, renewing her camouflage. Now she's back in synch with her surroundings.");
+			
+			foes[0].setStatusValue("Camouflage", 1, 3);
+		}
+	}
 
-It seems she's changed her skin to match her surroundings like instant camouflage. You can still see her, but while she's camouflaged it is going to be harder to hit her and dodge her attacks.
+	if (foes[0].hasStatusEffect("Camouflage"))
+	{
+		if (foes[0].statusEffectv1("Camouflage") < 0)
+		{
+			foes[0].removeStatusEffect("Camouflage");
+			foes[0].reflexesMod -= 8;
+			foes[0].aimMod -= 8;
+			
+			output("She's moved around too much, and suddenly her camouflage is useless. She seems to realise that as well, changing back to her usual skin tones. Now she'll be easier to hit and dodge!");
+		}
+	}
+	
+	if (!justUpdate) processCombat();
 
-[Already Active]: The octopus-like huntress takes a moment to stop and press against the ground, renewing her camouflage. Now she's back in synch with her surroundings.
-
-[Runs Out]: She's moved around too much, and suddenly her camouflage is useless. She seems to realise that as well, changing back to her usual skin tones. Now she'll be easier to hit and dodge!
-
-Effect: When she does this move, her dodge and hit rate increases. It lasts for three rounds, including the one used to activate it. If she uses this move when it is already active, the timer is refreshed.
+	// Effect: When she does this move, her dodge and hit rate increases. It lasts for three rounds, including the one used to activate it. If she uses this move when it is already active, the timer is refreshed.
 }
 
 function vanaeTFScene():void
 {
 	// These paragraphs are to be inserted wherever there is a part that says // (TF SCENE). Didn't want to keep copy and pasting it. Played in scenes where the Vanae would spray the PC's genitals with body altering amounts of her milk.
-// Does not play for Neuters.
+	if (!pc.hasCock() && !pc.hasVagina()) return;
+	// Does not play for Neuters.
 
-if (pc.hasCock)
-{
-Your [pc.groin] {tingle and throb/tingles and throbs}. Soon you feel an incredible pooling pressure in your loins becoming heavier and heavier and just aching to come out. You{r [pc.balls] swell with incredible weight as you} let out a deep guttural groan. When you can't hold it any longer, you cry out as {a small fountain of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurts/small fountains of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurt} uncontrollably from your [pc.cockHeads]. <b>Your cum production has increased!</b>
+	var options:Array = [];
+	
+	if (pc.hasCock()) options.push("cock");
+	if (pc.balls > 0) options.push("balls");
+	if (pc.hasVagina()) options.push("vagina");
+	
+	switch (options[rand(options.length)])
+	{
+		case "cock":
+			// Increase PC's ballEfficiency and cumMultiplier
+			if (pc.ballEfficiency < 5) pc.ballEfficiency += 0.1;
+			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.1;
+			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.1;
+			
+			if (pc.cumMultiplier < 3) pc.cumMultiplier += 0.1;
+			if (pc.cumMultiplier < 2) pc.cumMultiplier += 0.1;
+			if (pc.cumMultiplier < 1) pc.cumMultiplier += 0.1;
+			
+			output("Your [pc.cocks]");
+			if (pc.cocks.length > 1) output(" tingle and throb");
+			else output(" tingles and throbs");
+			output(". Soon you feel an incredible pooling pressure in your loins becoming heavier and heavier and just aching to come out. You");
+			if (pc.balls > 0) output("r [pc.balls] swell with incredible weight as you");
+			output(" let out a deep guttural groan. When you can't hold it any longer, you cry out as");
+			if (pc.cumQ() <= 200) output(" a small fountain of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurts");
+			else output(" small fountains of [pc.cumColor], [pc.cumVisc] [pc.cumNoun] spurt");
+			output(" uncontrollably from your [pc.cockHeads]. <b>Your cum production has increased!</b>");
+			
+			break;
+		
+		case "balls":
+			output("As the slick fluid seeps into the pores of your [pc.sack]. You can feel even more of your hot [pc.cumNoun] surging and churning inside. You can feel your [pc.balls] swelling and stretching to abnormal proportions to contain your fiercely broiling spunk.");
+	
+			// Increase ball size of PC and cancel trap pouch effect.
+			if (pc.hasStatusEffect("Uniball") && rand(3) == 0)
+			{
+				pc.removeStatusEffect("Uniball");
+				if (pc.ballSize < 3) pc.ballSize = 3;
+				pc.balls = 2;
+			}
+			
+			if (pc.ballSize < 6) pc.ballSize += 0.1;
+			if (pc.ballSize < 4) pc.ballSize += 0.1;
+			
+			output("The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
+			
+			break;
+			
+		case "vagina":
+			// Increase vaginal wetness of PC and make a squirter, if not already. If available, move wetness beyond squirter value and allow for collection/measurement like cum/milk.
+			
+			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCumColor] jump from your soppy slit");
+			if (pc.vaginas.length > 1) output("s");
+			output(". <b>Your vaginal wetness has increased"); 
+			if (!pc.isSquirter()) output(" and you are now a squirter");
+			output("!</b>");
 
-// Increase PC's ballEfficiency and cumMultiplier
-}
+			for (var i:int = 0; i < pc.vaginas.length; i++)
+			{
+				if ((pc.vaginas[i] as VaginaClass).wetnessRaw < 4) pc.vaginas[i].wetnessRaw = 4;
+				else pc.vaginas[i].wetnessRaw += 0.1;
+			}
 
-if (pc.hasBalls)
-{
-As the slick fluid seeps into the pores of your [pc.sack]. You can feel even more of your hot [pc.cumNoun] surging and churning inside. You can feel your [pc.balls] swelling and stretching to abnormal proportions to contain your fiercely broiling spunk. The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>
-
-// Increase ball size of PC and cancel trap pouch effect.
-}
-
-
-if (pc.hasPussy)
-{
-Deep inside of your [pc.pussies], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCumColor] jump from your soppy slit{s}. <b>Your vaginal wetness has increased {if pc.notasquirter: "and you are now a squirter"}!</b>
-
-// Increase vaginal wetness of PC and make a squirter, if not already. If available, move wetness beyond squirter value and allow for collection/measurement like cum/milk.
-}
-
+			break;
+	}
+	output("\n\n");
 }
 
 function vanaePCVictory():void
