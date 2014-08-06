@@ -2060,7 +2060,7 @@ function kaskaFutaLusts():void
 function tittyGrapple():void
 {
 	output("Kaska tosses a metallic sphere the size of a golfball between you. It hisses, releasing a cloud of smoke. You hold your breath, fearing poison, only to have a pair of caramel-colored tits part the smoke, pressing against either side of your head. The owner of the cushy mounds wraps surprisingly strong arms around you, pinning you in the middle of her more than ample cleavage, limiting your senses' input to the sight, smell, taste, and feel of her bosom.\n\n<b>You are grappled!</b>");
-	pc.createStatusEffect("Grappled",30,0,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
+	pc.createStatusEffect("Grappled",0,30,0,0,false,"Constrict","You're pinned in a grapple.",true,0);
 	processCombat();
 }
 

@@ -1,3 +1,4 @@
+import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
 public function encounterVanae(isHuntress:Boolean):void
 {
@@ -165,6 +166,10 @@ function vanaeAI():void
 	// Grapple
 	// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
 	// Note: Written assuming the PC is already either stunned or tripped etc.
+	// Continuing Effect: On failure or don't struggle, significant lust increase and stun/tripped period is extended. Success returns PC to normal (removes trip/stun effect).
+	
+	// Milkspray
+	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
 }
 
 function vanaeSpearStrike():void
@@ -256,74 +261,108 @@ function vanaeTailSwipe():void
 
 function vanaeGrapple():void
 {
-	output("Sliding up to you as you are incapacitated, you feel her");
-	if (foes[0] is MaidenVanae) output(" short");
-	output(" tentacle skirt begin to");
-	if (foes[0] is MaidenVanae) output(" awkwardly");
-	output(" wrap around your waist");
-	if (!(foes[0] is MaidenVanae)) output(" and lower body");
-	output(". You can feel her suckers begin to stick to your skin - she's trying to pin you down!");
+	// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
 	
-	// [Failure]:
-	if (combatMiss(foes[0], pc)) output(" You forcibly shake her off of you; it's a close call. If she'd pinned you, who knows what would have happened!");
+	if (!pc.hasStatusEffect("Grappled"))
+	{
+		output("Sliding up to you as you are incapacitated, you feel her");
+		if (foes[0] is MaidenVanae) output(" short");
+		output(" tentacle skirt begin to");
+		if (foes[0] is MaidenVanae) output(" awkwardly");
+		output(" wrap around your waist");
+		if (!(foes[0] is MaidenVanae)) output(" and lower body");
+		output(". You can feel her suckers begin to stick to your skin - she's trying to pin you down!");
+		
+		// [Failure]:
+		if (combatMiss(foes[0], pc)) output(" You forcibly shake her off of you; it's a close call. If she'd pinned you, who knows what would have happened!");
+		else
+		{
+			// [Success/Don't Struggle]: 
+			output(" You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [monster.breasts] are rubbing against you, coating you in her [monster.milk]...");
+
+			output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
+
+			pc.createStatusEffect("Grappled", 0, 30, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
+			pc.lustDamage(8 + rand(8));
+		}
+	}
 	else
 	{
-		// [Success/Don't Struggle]: 
-		output(" You can't shake her off you as she wraps around your lower body and [pc.hips], pulling herself flush against your [pc.skin]. Her [monster.breasts] are rubbing against you, coating you in her [monster.milk]...");
-
-		output("\n\nYou can feel your cheeks begin to flush. All of a sudden you start to lose the ability to move your limbs, but not the ability to feel what's happening to them. And what is happening feels <i>good</i>...");
-
-		pc.createStatusEffect("Grappled", 30, 0, 0, 0, false, "Constrict", "You're pinned in a grapple.", true, 0);
+		output("You are helpless as the vanae huntress rubs her [monster.breasts] up and down your body, smearing her wonderful breast milk all over your body. You feel like you're being lubed up by her");
+	if (foes[0] is MaidenVanae) output(" meager");
+	else output(" sizable");
+	output(" mounds, your [pc.groin] burning with arousal.");
+		pc.lustDamage(8 + rand(8));
 	}
 	
 	processCombat();
-// Effect: Grapple chance. Failure leads to nothing, success/don't struggle leads to target grappled and consecutive "lubricate" attacks until the pin is broken or victory occurs.
 }
 
-function vanaeGrappleLubricate():void
+function vanaeWaitWhilstGrappled():void
 {
-	You are helpless as the vanae huntress rubs her [vanae.breasts] up and down your body, smearing her wonderful breast milk all over your body. You feel like you're being lubed up by her {meager/sizable} mounds, your [pc.groin] burning with arousal.
-
-[Don't Struggle] You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [vanae.breasts] against you even more. "{Maiden:"Nice! Now just lie back and relax, and I promise we'll have good time - okay?"}</i>{Huntress:"...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...:}"
-
-[Failure To Escape]: You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!
-
-[Successful Escape]: You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!
-
-// IF VANAE HUNTRESS
-{
-The blind huntress picks up her spear once again. "By the Sky Mother; you're so slippery! You better be worth all the effort."
-}
-// IF VANAE MAIDEN
-{
-The blind huntress picks up her spear and stomps her foot. "Arghh, I was so close! Was I really that bad?"
+	// [Don't Struggle] 
+	output("You resign yourself, relaxing and enjoying her lube you up with her sensuous strokes. She senses your surrender and grins, enthusiastically rubbing her [monster.breasts] against you even more.");
+	if (foes[0] is MaidenVanae) output(" “<i>Nice! Now just lie back and relax, and I promise we'll have good time - okay?</i>”");
+	else output(" “<i>...Mmm, I like it when they give in. That means we can get to the fun bit that much faster...</i>”");
+	pc.lustDamage(16 + rand(8));
 }
 
-Effect: On failure or don't struggle, significant lust increase and stun/tripped period is extended. Success returns PC to normal (removes trip/stun effect).
+function vanaeEscapeGrapple():void
+{
+	// [Successful Escape]: 
+	output("You finally break free of her grasp, pushing her off and getting back up. You're positively dripping with her sticky violet goo. That was a close one!");
+
+	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. “<i>By the Sky Mother; you're so slippery! You better be worth all the effort.</i>”");
+	else output(" The blind huntress picks up her spear and stomps her foot. “<i>Arghh, I was so close! Was I really that bad?</i>”");
 }
 
 function vanaeMilkSquirtBreasts():void
 {
-	Suddenly, the {girlish/busty} huntress grabs the sides of her [vanae.breasts]. She squeezes them and squirts a stream of [vanae.milk] at you.
+	output("Suddenly, the");
+	if (foes[0] is MaidenVanae) output(" girlish");
+	else output(" busty");
+	output(" huntress grabs the sides of her [monster.breasts]. She squeezes them and squirts a stream of [monster.milk] at you.");
 
-[Miss]: You dodge the [vanae.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.
+	// [Miss]: 
+	if (combatMiss(foes[0], pc)) output(" You dodge the [monster.milk] as it shoots past your [pc.ear]. She steadies her spear, moving back into her fighting stance.");
+	else
+	{
+		var critChance:int = 33;
 
-[Hit]: You are splattered with her [vanae.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you start feeling quite aroused...
+		if (rand(100) > critChance)
+		{
+			// [Hit]: 
+			output(" You are splattered with her [monster.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you start feeling quite aroused...");
+		}
+		else
+		{
+			// [Hit And Stun]: 
+			output(" You are splattered with her [monster.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...");
+			pc.createStatusEffect("Stunned", 1, 0, 0, 0, false, "Stun", "You are stunned and cannot move until you recover!", true, 0);
+		}
+		
+		pc.lustDamage(8 + rand(4));
+	}
+	
+	processCombat();
 
-[Hit And Stun]: You are splattered with her [vanae.milk], unable to get it off. All of a sudden, your cheeks begin to flush and you lose control to your limbs, falling to the ground. She's leading into a follow-up attack...
-
-Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
+	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
 }
 
 function vanaeSpiralKick():void
 {
-	Suddenly, the lithe huntress is making a dash at you. Before you know what she's doing, she twirls and launches herself in the air like a sideways top - her foot arching at {if pc.height >= 80: your head}{else:your side} with an impressive spinning high kick!
+	output("Suddenly, the lithe huntress is making a dash at you. Before you know what she's doing, she twirls and launches herself in the air like a sideways top - her foot arching at");
+	if (pc.tallness <= 80) output(" your head");
+	else output(" your side");
+	output(" with an impressive spinning high kick!");
 
-[Miss]: The move is spectacular, but clearly telegraphed. You dart backwards as her [vanae.foot] whips past you, connecting with nothing but air. She lands and spins around, dissapointed that it didn't connect.
+	if (combatMiss(foes[0], pc, -1, 3)) output(" The move is spectacular, but clearly telegraphed. You dart backwards as her [vanae.foot] whips past you, connecting with nothing but air. She lands and spins around, dissapointed that it didn't connect.");
+	else
+	{
 
 [Hit & Stun]: Her [vanae.foot] connects with all the velocity of her wind up, striking your [pc.face] with incredible force. You see stars as you are knocked back, stunned by her blow. She's leading into a follow-up attack...
 
-Effect: Low hit chance. On hit, does large damage and auto-stun (if PC can be stunned). 
+	// Effect: Low hit chance. On hit, does large damage and auto-stun (if PC can be stunned). 
 }
 
 function vanaeCamoflage():void

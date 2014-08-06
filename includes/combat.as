@@ -1,4 +1,5 @@
 ﻿import classes.Characters.GrayGoo;
+import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
 import classes.Characters.Mimbrane;
 import classes.Characters.PhoenixPirates;
@@ -609,8 +610,9 @@ function grappleStruggle():void {
 	{
 		if(pc.reflexes() + rand(20) + 6 + pc.statusEffectv1("Grappled") * 5 > pc.statusEffectv2("Grappled"))
 		{
-			if(foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
-			else output("With a mighty heave, you tear your way out of the grappled and onto your [pc.feet].");
+			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
+			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
+			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
 	}
@@ -618,7 +620,8 @@ function grappleStruggle():void {
 	if(pc.hasStatusEffect("Grappled"))
 	{
 		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
-		else if(foes[0] is Kaska) failToStruggleKaskaBoobs();
+		else if (foes[0] is Kaska) failToStruggleKaskaBoobs();
+		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
@@ -656,9 +659,11 @@ function allFoesDefeated():Boolean
 	return true;
 }
 
-function combatMiss(attacker:Creature, target:Creature):Boolean 
+function combatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1):Boolean 
 {
-	if(rand(100) + attacker.physique()/5 + attacker.meleeWeapon.attack - target.reflexes()/5 < 10 && !target.isImmobilized()) 
+	if (overrideAttack == -1) overrideAttack = attacker.meleeWeapon.attack;
+	
+	if(rand(100) + attacker.physique()/5 + overrideAttack - target.reflexes()/5 < 10 * missModifier && !target.isImmobilized()) 
 	{
 		return true;
 	}
@@ -672,7 +677,7 @@ function combatMiss(attacker:Creature, target:Creature):Boolean
 	if(target.hasPerk("Melee Immune")) return true;
 	return false;
 }
-function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1):Boolean 
+function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Number = -1, missModifier:Number = 1):Boolean 
 {
 	if (overrideAttack == -1) overrideAttack = attacker.rangedWeapon.attack;
 	
@@ -680,7 +685,7 @@ function rangedCombatMiss(attacker:Creature, target:Creature, overrideAttack:Num
 	if (target.hasPerk("Ranged Immune")) return true;
 	
 	//Standard miss chance
-	if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 && !target.isImmobilized()) 
+	if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
 	{
 		return true;
 	}
@@ -1830,7 +1835,8 @@ function fantasize():void {
 function wait():void {
 	clearOutput();
 	output("You choose not to act.\n");
-	if(foes[0] is Kaska && pc.hasStatusEffect("Grappled")) doNothingWhileTittyGrappled();
+	if (foes[0] is Kaska && pc.hasStatusEffect("Grappled")) doNothingWhileTittyGrappled();
+	else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeWaitWhilstGrappled();
 	processCombat();
 }
 
