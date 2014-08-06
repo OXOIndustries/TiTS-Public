@@ -587,9 +587,9 @@ public function processTime(arg:int):void {
 					tightnessChanged = false;
 					if(this.chars["PC"].vaginas[x].loosenessRaw < 2) {}
 					else if(this.chars["PC"].vaginas[x].loosenessRaw <= 2 && this.chars["PC"].vaginas[x].shrinkCounter >= 200) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].loosenessRaw < 4 && this.chars["PC"].vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].loosenessRaw < 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
-					else if(this.chars["PC"].vaginas[0].loosenessRaw >= 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[x].loosenessRaw < 4 && this.chars["PC"].vaginas[x].shrinkCounter >= 150) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[x].loosenessRaw < 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 110) tightnessChanged = true;
+					else if(this.chars["PC"].vaginas[x].loosenessRaw >= 5 && this.chars["PC"].vaginas[x].shrinkCounter >= 75) tightnessChanged = true;
 					if(tightnessChanged) {
 						this.chars["PC"].vaginas[x].loosenessRaw--;
 						eventBuffer += "\n\n<b>Your </b>";
