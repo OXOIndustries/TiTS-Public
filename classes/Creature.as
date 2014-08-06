@@ -1553,6 +1553,8 @@
 					break;
 				case "cockShape":
 				case "cockshape":
+				case "cockType":
+				case "cocktype":
 					buffer = cockShape(arg2);
 					break;
 				default:
@@ -9109,7 +9111,7 @@
 			return holeChange(-1,volume,display,spacingsF,spacingsB);
 		}
 		
-		function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):void 
+		function cockChange(spacingsF:Boolean = true, spacingsB:Boolean = false):Boolean 
 		{
 			if (cockVirgin && hasCock())
 			{
@@ -9129,8 +9131,10 @@
 					output(" virginity.</b>");
 				}
 				
-				if(spacingsB) output(" ");
+				if (spacingsB) output(" ");
+				return true;
 			}
+			return false;
 		}
 		
 		protected function output(msg:String):void
