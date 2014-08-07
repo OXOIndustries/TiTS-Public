@@ -1673,15 +1673,29 @@ function vanaeHuntressPostVictoryScene():void
 
 function vanaeHuntressPCDefeat():void
 {
-	// HP
+	clearOutput();
+	vanaeHeader("DEFEAT:\nVANAE ");
 
-The pain is too much, and you fall on your back, unable to continue the fight. The vanae huntress slides up to you and strokes your aching wounds. She lets out a sympathetic noise. 
+	if (pc.HP() <= 1)
+	{
+		output("The pain is too much, and you fall on your back, unable to continue the fight. The vanae huntress slides up to you and strokes your aching wounds. She lets out a sympathetic noise.");
 
-<i>\"... Sorry, {if zil or naleen: "my pet"}{else: "off-worlder"}. If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,\"</i> she softly explains, kissing your tender [pc.skinFurScales]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk]. 
+		output("\n\n“<i>... Sorry,");
+		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my pet");
+		else output(" off-worlder");
+		output(". If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,</i>” she softly explains, kissing your tender [pc.skinFurScales]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk].");
 
-All of a sudden, the pain is gone. You also realise the feeling of her brushing along your [pc.skinFurScales] is causing your blood to boil. As she slowly drags her [monster.nipples] along your [pc.chest], blood rushes to your cheeks... among other places.
+		output("\n\nAll of a sudden, the pain is gone. You also realise the feeling of her brushing along your [pc.skinFurScales] is causing your blood to boil. As she slowly drags her [monster.nipples] along your [pc.chest], blood rushes to your cheeks... among other places.");
 
-<i>\"Oh, I see you're feeling better now? That's good. There's nothing worse than damaging prey, after all. I will be letting you go after this - but not before I get what I came for.\"</i> the busty huntress purrs, her tentacles wrapping around your lower body. <i>\"... Your {if (pc.hasCock = true || pc.sex = neuter) "virile cum belongs to me. You're my treasured prize, after all."}{else: "tasty girlcum, my dear, belongs to me. And I am <i>very</i> experienced in getting girls off - trust me."}\"</i> {if (pc.sex != neuter) "(pc.sex = male && pc.femininity =< 60 && pc.armor != null || if (pc.sex = female && pc.masculinity =< 60 && pc.armor != null) It seems despite being {masculine/feminine} in appearance she can "smell" your true gender.}"}
+		output("\n\n“<i>Oh, I see you're feeling better now? That's good. There's nothing worse than damaging prey, after all. I will be letting you go after this - but not before I get what I came for.</i>” the busty huntress purrs, her tentacles wrapping around your lower body. “<i>... Your");
+		if (pc.hasCock()) output(" virile cum belongs to me. You're my treasured prize, after all.");
+		else if (pc.hasVagina()) output(" tasty girlcum, my dear, belongs to me. And I am <i>very</i> experienced in getting girls off - trust me.");
+		output("</i>”");
+		if (pc.hasCock() || pc.hasVagina())
+		{
+			(pc.sex = male && pc.femininity =< 60 && pc.armor != null || if (pc.sex = female && pc.masculinity =< 60 && pc.armor != null)
+			It seems despite being {masculine/feminine} in appearance she can "smell" your true gender.}"
+}
 
 // Lust
 
