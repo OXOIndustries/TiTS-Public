@@ -1268,6 +1268,9 @@
 				case "cockNounSimple":
 					buffer = simpleCockNoun(arg2);
 					break;
+				case "cocksNounSimple":
+					buffer = simpleCocksNoun(arg2);
+					break;
 				case "cockColor":
 				case "dickColor":
 					buffer = cockColor(arg2);
@@ -1556,6 +1559,10 @@
 				case "cockType":
 				case "cocktype":
 					buffer = cockShape(arg2);
+					break;
+				case "vaginaColor":
+				case "pussyColor":
+					buffer = vaginaColor(arg2);
 					break;
 				default:
 					// error production is now done up-stream in the parser
@@ -6888,6 +6895,17 @@
 			}
 			return vag;
 		}
+		
+		public function vaginaColor(num:Number = 0):String
+		{
+			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
+			//If no vaginas back the fuck out
+			if (vaginas.length < 0) return "VAGINA ERROR";
+			
+			return vaginas[num].vaginaColor;
+		}
+		
 		//Vaginas + Descript
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
@@ -7223,6 +7241,17 @@
 		public function simpleCockNoun(arg: Number): String {
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for simpleCockNoun()</b>";
 			return cockNoun(cocks[arg].cType, true);
+		}
+		public function simpleCocksNoun():String {
+			var output:String = "";
+			
+			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for simpleCocksNoun()</b>";
+			if (hasSamecType()) output += cockNoun(cocks[0].cType, true);
+			else output += cockNoun(0, true);
+			
+			if (cocks.length > 1) output = pluralize(output);
+			
+			return output;
 		}
 		public function cockNounComplex(arg: Number): String {
 			if (cocks.length < 1) return "<b>ERROR: NO WANGS DETECTED for cockNounComplex()</b>";
