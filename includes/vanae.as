@@ -1736,89 +1736,134 @@ function vanaeHuntressPCDefeat():void
 function vanaeHuntressPCDefeatCuntFux():void
 {
 	// Must have Cock
-// Max girth 4 inches
-// Max Length 12 inches.
+	// Max girth 4 inches
+	// Max Length 12 inches.
 
-The exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. <i>\"... Today is a very good day for you, {if zil or naleen: "[pc.race]"}{else: "off-worlder"}. I'm fertile and raring to go.\"</i> 
+	output("\n\nThe exotic alien huntress purrs, sliding down your body and stripping off your [pc.gear]. “<i>... Today is a very good day for you,");
+	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+	else output(" off-worlder");
+	output(". I'm fertile and raring to go.</i>”");
 
-// If first time breeding with a Vanae huntress.
+	var selCock:int = pc.cockThatFits(217);
+
+	// If first time breeding with a Vanae huntress.
+	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
+	{
+		output("\n\nFertile... wait, is she going to breed with you? For some reason, the vanae huntress seems to be cupping her breasts instead. Her words and actions don’t seem to be matching up.");
+		
+		output("\n\n“<i>Vanae huntresses produce a euphoric and lust inducing liquid from their breasts. It also sharply increases a victim’s cum production when sprayed on the genitals,</i>” your codex enlightens you.");
+		
+		output("\n\n“<i>They also breed by capturing male prey and forcing them to fertilize them, [Master] Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.</i>”");
+		
+		output("\n\nGee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it’s talking. She doesn’t seem to care much for any of your gear - it seems she’s solely interested in your loins and not in looting you.");
+		
+		output("\n\nSomewhere in the back of your drug addled mind you wonder if you should use it to call for help. But would anyone come? By the time they arrive it will be too late - this octopus girl will have finished mating with you.");
+		
+		output("\n\nYour head swirls with indecision as the vanae huntress positions her [pc.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
+		
+		output("\n\nAs it touches your sensitive flesh, your [pc.cocks] swell");
+		if (pc.cocks.length == 1) output("s");
+		output(" rapidly and you let out a groan. Your loins feel as if they’re on fire, your pre-cum surging out and dribbling lazily down your shaft");
+		if (pc.cocks.length > 1) output("s");
+		output(". You try to buck your hips but can’t, utterly paralyzed by her transparent milk.");
+		
+		output("\n\nYour mind becomes");
+		if (pc.lust() >= pc.lustMax()) output(" even more");
+		output(" hazy and drug addled, filled with erotic thoughts. Suddenly you feel less opposed to the idea of breeding with her. Would it really be so bad to go through with it? Meanwhile, her druggy milk begins to take effect on your loins.");
+	}
+	// Repeat (Have bred with Vanae Huntress before.
+	else
+	{
+		output("\n\nYou can’t believe the same thing is happening to you <i>again</i>. You’ve already knocked up a huntress before; how many times are they going to make you breed with them before they’re satisfied?");
+		
+		output("\n\n... Still, the last time was a very pleasurable experience. [pc.EachCock] becomes engorged from the memory of your last encounter.");
+		
+		output("\n\nThe vanae huntress lets out a pleased noise as your [pc.cocksNoun] stand");
+		if (pc.cocks.length == 1) output("s");
+		output(" ready and raring to go. “<i>Ohh, you want to breed with me that badly? I guess there’s no helping it then - you’re going to be a daddy.</i>”");
+		
+		output("\n\nYou’re pretty sure you already are one, but you can’t bring yourself to speak. You simply lie back and take it as she positions her [pc.breasts] above your [pc.groin]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].");
+		
+		output("\n\nAs it touches your sensitive flesh, your [pc.cocks] swell");
+		if (pc.cocks.length == 1) output("s");
+		output(" rapidly, and you let out a groan. Your loins feel as if they’re on fire, your pre-cum surging out and dribbling lazily down your shaft. You try to buck your hips but can’t, utterly paralyzed by her transparent milk.");
+		
+		output("\n\nYour mind becomes");
+		if (pc.lust() >= pc.lustMax()) output(" even more");
+		output(" hazy and drug addled, filled with erotic thoughts. Suddenly you feel less opposed to the idea of breeding with her. Would it really be so bad to do it one more time? Meanwhile, her druggy milk begins to take effect on your loins.");
+	}
+
+	// MERGE
+	output("\n\n");
+	vanaeTFScene();
+
+	output("\n\nAs your [pc.cum] drools down your [pc.cocks], she stands up and plants her [monster.feet] on either side of your waist. When she spreads her organic tentacle skirt, you notice her [monster.pussy] looks very humanoid, with the exception of her [monster.clits].");
+
+	output("\n\nThe pale huntress then slowly descends on you in a squatting pose and rests her [monster.pussy] snugly against the underside of your [pc.cumVisc] member. She moans and slowly begins to rock back and forth, stroking off your [pc.cock " + selCock + "] with her [monster.vaginaNounSimple].");
+
+	output("\n\nAs her folds part around your [pc.cockHead] you feel your [pc.cock] being licked by hundreds of tiny feelers.");
+	pc.cockChange(true, false);
+	if (flags["VANAE_HUNTRESS_BRED"] == undefined) output(" It seems her pussy isn't so normal after all!");
+	else output(" Part of you has longed for this ever since the last tryst.");
+	output(" The unique and powerful sensation forces a low moan from your throat. As alien as it is, it feels <i>good</i>.");
+
+	output("\n\nWhen even more of your [pc.cumNoun] drools from your [pc.cockHeads], she reaches down and scoops it up - forbidding it to dribble down with the rest of your spilled seed.");
+
+ 	output("\n\n“<i>Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?</i>” she coos, lapping up your [pc.cumFlav] [pc.cumNoun] from her webbed fingers.");
+
+	output("\n\nYou nod drunkenly in response. Soon you feel her grabbing [pc.oneCock] and bringing it upward, lifting herself higher to hover over your [pc.cockHead " + selCock + "]. She then slowly lowers back down, sliding you into her otherworldly cooch.");
+
+	output("\n\nYou feel so wrong being violated by an alien woman who beat you down in the jungle. At the same time your [pc.cock " + selCock + "] twitches and throbs excitedly as she slides you inch by glorious inch into her muff, sheathing it inside of her. You keenly feel her velvety soft feelers licking your length from every angle.");
+
+	output("\n\nOnce you've mated with a pussy like this, you're not sure you'll <i>ever</i> be able to go back to having sex with a normal one. You might be ruined for life!");
+
+	output("\n\n“<i>Mmm, you're all the way in. How does it feel?</i>” she asks, her violet netherlips excitedly clinging to your [pc.cockNoun] as her insides lash at you.");
+	if (pc.balls > 0) output(" At the same time she gently rubs her hairless mound against your [pc.sack].");
+
+	output("\n\nYou moan out that it feels wonderful, your [pc.cockHead " + selCock + "] flexing inside of her. Grinning in response, she slowly begins rocking her waist in your lap. The busty huntress lets out a blissful moan as your [pc.cock " + selCock + "] wetly stirs around inside of her [pc.pussy], caressing her silky inner walls.");
  
-Fertile... wait, is she going to breed with you? For some reason, the vanae huntress seems to be cupping her breasts instead. Her words and actions don't seem to be matching up.
+	output("\n\n“<i>Fuck me harder. Shove your [pc.cock " + selCock + "] deep inside of me and fill my womb with your wonderful spunk. Breed me!</i>” she commands, bucking wildly against you. One of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge.");
 
-<i>\"Vanae huntresses produce a euphoric and lust inducing liquid from their breasts. It also sharply increases a victim's cum production when sprayed on the genitals,\"</i> your codex enlightens you.
+	output("\n\nOverwhelmed with sensation, you cum once more - this time inside her [monster.pussy]. Your [pc.hips] spasm shamefully as you batter her insides with your [pc.cum]. As your baby juice floods up inside of her, she lets out a sweet trembling cry, spastically creaming herself around your spurting [pc.cock " + selCock + "].");
 
-<i>\"They also breed by capturing male prey and forcing them to fertilize them, [Master] Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.\"</i> 
+	output("\n\nOnce you are finished, your vanae lover slides you out of her [monster.pussyNoun]. You can see your [pc.cum]");
+	if (pc.cumQ() <= 50) output(" dribbling");
+	else if (pc.cumQ() <= 600) output(" oozing");
+	else output(" gushing");
+	output(" from her fuck hole. [pc.EachCock] begins to stiffen and jerk at the glorious sight.");
 
-Gee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it's talking. She doesn't seem to care much for any of your gear - it seems she's solely interested in your loins and not in looting you. 
+	monster.loadInCunt(pc);
+	monster.loadInCunt(pc);
+	player.orgasm();
+	monster.orgasm();
 
-Somewhere in the back of your drug addled mind you wonder if you should use it to call for help. But would anyone come? By the time they arrive it will be too late - this octopus girl will have finished mating with you.
- 
-Your head swirls with indecision as the vanae huntress positions her [pc.breasts] above your [pc.loins]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].
- 
-As it touches your sensitive flesh, your [pc.cocks] swell{s} rapidly and you let out a groan. Your loins feel as if they're on fire, your pre-cum surging out and dribbling lazily down your shaft{s}. You try to buck your hips but can't, utterly paralyzed by her transparent milk.
- 
-Your mind becomes {if lust loss: even more} hazy and drug addled, filled with erotic thoughts. Suddenly you feel less opposed to the idea of breeding with her. Would it really be so bad to go through with it? Meanwhile, her druggy milk begins to take effect on your loins.
- 
-// Repeat (Have bred with Vanae Huntress before.
- 
-You can't believe the same thing is happening to you <i>again</i>. You've already knocked up a huntress before; how many times are they going to make you breed with them before they're satisfied?
+	// if First Time
+	if (flags["VANAE_HUNTRESS_BRED"] = undefined)
+	{
+		output("\n\n“<i>Keep some of that. We're not done yet by a long shot. I want to make </i>sure<i> that you've gotten me pregnant,</i>” she informs you, grinning and getting down on all knees. She licks the underside of your [pc.cock " + selCock + "], making your whole body tremble with joy. You relax back, giving yourself over to pleasure...");
+	}
 
-... Still, the last time was a very pleasurable experience. [pc.EachCock] becomes engorged from the memory of your last encounter.
- 
-The vanae huntress lets out a pleased noise as your [pc.cockNoun] stand ready and raring to go. <i>\"Ohh, you want to breed with me that badly? I guess there's no helping it then - you're going to be a daddy.\"</i>
- 
-You're pretty sure you already are one, but you can't bring yourself to speak. You simply lie back and take it as she positions her [pc.breasts] above your [pc.loins]. They are capped with perky violet nipples with beautiful swirls and patterns around them. She sensuously and forcefully massages her mammaries before dribbling her lube-like milk on your [pc.cockHeads].
- 
-As it touches your sensitive flesh, your [pc.cocks] swell{s} rapidly, and you let out a groan. Your loins feel as if they're on fire, your pre-cum surging out and dribbling lazily down your shaft. You try to buck your hips but can't, utterly paralyzed by her transparent milk.
- 
-Your mind becomes {if lust loss: even more} hazy and drug addled, filled with erotic thoughts. Suddenly you feel less opposed to the idea of breeding with her. Would it really be so bad to do it one more time? Meanwhile, her druggy milk begins to take effect on your loins.
- 
-// MERGE
+	output("\n\n... An hour later ...");
 
-// (TF SCENE)
+	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. Your [pc.cocks]");
+	if (pc.cocks.length == 1) output(" has");
+	else output(" have");
+	output(" been worked over in every way imaginable");
+	if (pc.balls > 0) output(" and your empty [pc.balls] are filled with a pleasurable ache.");
 
-As your [pc.cum] drools down your [pc.cocks], she stands up and plants her [monster.feet] on either side of your waist. When she spreads her organic tentacle skirt, you notice her [monster.pussy] looks very humanoid, with the exception of her [monster.clits].
+	output("\n\nMeanwhile, the vanae huntress is sitting in a pool of your [pc.cum], her [monster.pussy] utterly battered with it. She scoops up some of her [monster.milk] and rubs it along her lower lips, seemingly sealing in your spunk.");
 
-The pale huntress then slowly descends on you in a squatting pose and rests her [monster.pussy] snugly against the underside of your [pc.cumVisc] member. She moans and slowly begins to rock back and forth, stroking off your [pc.cock] with her [monster.pussyNoun].
+	output("“<i>Mmm, that's </i>more<i> than enough. I'm sure we'll give birth to some lovely daughters, don't you think?</i>” she purrs. “<i>I'll be sure to bring your [pc.cum] back to our Queen and matrons, so they can get enjoy it it too.</i>”");
 
-As her folds part around your [pc.cockHead] you feel your [pc.cock] being licked by hundreds of tiny feelers. {It seems her pussy isn't so normal after all!/Part of you has longed for this ever since the last tryst.} The unique and powerful sensation forces a low moan from your throat. As alien as it is, it feels <i>good</i>.
+	output("\n\nShe plants a single kiss on your");
+	if (pc.balls > 0) output(" [pc.balls]");
+	output(" [pc.cock " + selCock + "]");
+	output(" before retreating back into the Mhen'gan jungle, her tail and hips swaying all the while. It seems you're going to be the father of quite a few vanae daughters.");
 
-When even more of your [pc.cumNoun] drools from your [pc.cockHeads], she reaches down and scoops it up - forbidding it to dribble down with the rest of your spilled seed.
+	processTime(75+rand(25));
+	flags["VANAE_HUNTRESS_BRED"] = 1;
 
- <i>\"Uh uh, no more of that down there! You're going to give it to me in my pussy, understand?\"</i> she coos, lapping up your [pc.cumFlav] [pc.cumNoun] from her webbed fingers. 
-
-You nod drunkenly in response. Soon you feel her grabbing [pc.oneCock] and bringing it upward, lifting herself higher to hover over your [pc.cockHead]. She then slowly lowers back down, sliding you into her otherworldly cooch.
-
-You feel so wrong being violated by an alien woman who beat you down in the jungle. At the same time your [pc.cock] twitches and throbs excitedly as she slides you inch by glorious inch into her muff, sheathing it inside of her. You keenly feel her velvety soft feelers licking your length from every angle.
-
-Once you've mated with a pussy like this, you're not sure you'll <i>ever</i> be able to go back to having sex with a normal one. You might be ruined for life!
-
-<i>\"Mmm, you're all the way in. How does it feel?\"</i> she asks, her violet netherlips excitedly clinging to your [pc.cockNoun] as her insides lash at you.{ At the same time she gently rubs her hairless mound against your [pc.sack].}
-
-You moan out that it feels wonderful, your [pc.cockHead] flexing inside of her. Grinning in response, she slowly begins rocking her waist in your lap. The busty huntress lets out a blissful moan as your [pc.cock] wetly stirs around inside of her [pc.pussy], caressing her silky inner walls.
- 
-<i>\"Fuck me harder. Shove your [pc.cock] deep inside of me and fill my womb with your wonderful spunk. Breed me!\"</i> she commands, bucking wildly against you. One of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge. 
-
-Overwhelmed with sensation, you cum once more - this time inside her [monster.pussy]. Your [pc.hips] spasm shamefully as you batter her insides with your [pc.cum]. As your baby juice floods up inside of her, she lets out a sweet trembling cry, spastically creaming herself around your spurting [pc.cock].
-
-Once you are finished, your vanae lover slides you out of her [monster.pussyNoun]. You can see your [pc.cum] {dribbling/oozing/gushing} from her fuck hole. [pc.EachCock] begins to stiffen and jerk at the glorious sight. 
-
-// if First Time
-{
-<i>\"Keep some of that. We're not done yet by a long shot. I want to make </i>sure<i> that you've gotten me pregnant,\"</i> she informs you, grinning and getting down on all knees. She licks the underside of your [pc.cock], making your whole body tremble with joy. You relax back, giving yourself over to pleasure...
-}
-
-... An hour later ...
-
-Your mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. Your [pc.cocks] {has/have} been worked over in every way imaginable{ and your empty [pc.balls] are filled with a pleasurable ache}. 
-
-Meanwhile, the vanae huntress is sitting in a pool of your [pc.cum], her [monster.pussy] utterly battered with it. She scoops up some of her [monster.milk] and rubs it along her [pc.visc] lower lips, seemingly sealing in your spunk.
-
-<i>\"Mmm, that's </i>more<i> than enough. I'm sure we'll give birth to some lovely daughters, don't you think?\"</i> she purrs. <i>\"I'll be sure to bring your [pc.cum] back to our Queen and matrons, so they can get enjoy it it too.\"</i>
-
-She plants a single kiss on your {[pc.ballsNoun]/[pc.cockNoun]} before retreating back into the Mhen'gan jungle, her tail and hips swaying all the while. It seems you're going to be the father of quite a few vanae daughters.
-}
-
+	genericLoss();
 }
 
 function vanaeHuntressPCDefeatMilkbath():void
