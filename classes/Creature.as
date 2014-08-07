@@ -6294,16 +6294,16 @@
 					descripted++;
 				}
 				//Just lactating!
-				else if (isLactating()) {
+				else if (isLactating() && milkFullness > 50) {
 					if (descripted > 0) description += ", ";
 					//Light lactation
-					if (milkRate < 1) {
+					if (milkRate < 65) {
 						rando = this.rand(2);
 						if (rando == 0) description += "moistened";
 						if (rando == 1) description += "slightly lactating";
 					}
 					//Moderate lactation
-					else if (milkRate <= 2) {
+					else if (milkRate <= 85) {
 						rando = this.rand(3);
 						if (rando == 0) description += "lactating";
 						if (rando == 1) description += "milky";
