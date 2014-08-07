@@ -712,8 +712,8 @@ function appearance(target:Creature):void {
 				//dog cock flavor
 				else if(target.cocks[0].cType == GLOBAL.TYPE_CANINE) {
 					if(target.cocks[0].knotMultiplier > 1 && target.cocks[0].knotMultiplier < 1.4) output2("  A small knot of thicker flesh is near the base of your " + target.cockDescript(0) + ", ready to expand to help you lodge it inside a female.");
-					if(target.cocks[0].knotMultiplier >= 1.4 && target.cocks[0].knotMultiplier < 1.8) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(0) + ", to ensure it stays where it belongs during mating.");
-					if(target.cocks[0].knotMultiplier >= 1.8) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(0) + " looks almost too big for your cock.");
+					if(target.cocks[0].knotMultiplier >= 1.4 && target.cocks[0].knotMultiplier <= 2) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(0) + ", to ensure it stays where it belongs during mating.");
+					if(target.cocks[0].knotMultiplier > 2) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(0) + " looks almost too big for your cock.");
 					//List thickness
 					output2("  The knot is " + Math.round(target.cocks[0].thickness() * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
 				}
@@ -750,7 +750,14 @@ function appearance(target:Creature):void {
 				}
 				//Worm flavor
 				if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(0) + ", tasting the air like a snake's tongue.");		
-				//DONE WITH COCKS, moving on!
+				//Bonus flavor for non-canine dicks to have knots.
+				if(target.cocks[0].cType != GLOBAL.TYPE_CANINE && target.hasKnot(0)) {
+					if(target.cocks[0].knotMultiplier > 1 && target.cocks[0].knotMultiplier < 1.4) output2("  A small knot of thicker flesh is near the base of your " + target.cockDescript(0) + ", ready to expand to help you lodge it inside a female.");
+					if(target.cocks[0].knotMultiplier >= 1.4 && target.cocks[0].knotMultiplier <= 2) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(0) + ", to ensure it stays where it belongs during mating.");
+					if(target.cocks[0].knotMultiplier > 2) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(0) + " looks almost too big for your cock.");
+					//List thickness
+					output2("  The knot is " + Math.round(target.cocks[0].thickness() * target.cocks[0].knotMultiplier * 10)/10 + " inches wide when at full size.");
+				}
 			}
 			//MULTICOCKS!
 			else if(target.totalCocks() > 1)
@@ -844,7 +851,15 @@ function appearance(target:Creature):void {
 						output2("  The alien member you're packing has a much longer, stretchier foreskin than most terrans can pack. It also looks vaguely glossy, like you oiled it up just a moment ago.");
 					}
 					//Worm flavor
-					if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(temp) + ", tasting the air like a snake's tongue.");		
+					if(target.hasStatusEffect("infested")) output2("  Every now and again a slimy worm coated in spunk slips partway out of your " + target.cockDescript(temp) + ", tasting the air like a snake's tongue.");
+					//Bonus flavor for non-canine dicks to have knots.
+					if(target.cocks[temp].cType != GLOBAL.TYPE_CANINE && target.hasKnot(temp)) {
+						if(target.cocks[temp].knotMultiplier > 1 && target.cocks[temp].knotMultiplier < 1.4) output2("  A small knot of thicker flesh is near the base of your " + target.cockDescript(temp) + ", ready to expand to help you lodge it inside a female.");
+						if(target.cocks[temp].knotMultiplier >= 1.4 && target.cocks[temp].knotMultiplier <= 2) output2("  A large bulge of flesh nestles just above the bottom of your " + target.cockDescript(temp) + ", to ensure it stays where it belongs during mating.");
+						if(target.cocks[temp].knotMultiplier > 2) output2("  The obscenely swollen lump of flesh near the base of your " + target.cockDescript(temp) + " looks almost too big for your cock.");
+						//List thickness
+						output2("  The knot is " + Math.round(target.cocks[temp].thickness() * target.cocks[temp].knotMultiplier * 10)/10 + " inches wide when at full size.");
+					}	
 					temp++;
 					rando++
 					if(rando > 3) rando = 0;
