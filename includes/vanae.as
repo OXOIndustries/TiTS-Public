@@ -1691,31 +1691,46 @@ function vanaeHuntressPCDefeat():void
 		if (pc.hasCock()) output(" virile cum belongs to me. You're my treasured prize, after all.");
 		else if (pc.hasVagina()) output(" tasty girlcum, my dear, belongs to me. And I am <i>very</i> experienced in getting girls off - trust me.");
 		output("</i>”");
-		if (pc.hasCock() || pc.hasVagina())
-		{
-			(pc.sex = male && pc.femininity =< 60 && pc.armor != null || if (pc.sex = female && pc.masculinity =< 60 && pc.armor != null)
-			It seems despite being {masculine/feminine} in appearance she can "smell" your true gender.}"
-}
 
-// Lust
+	}
+	// Lust
+	else
+	{
+		output("You can’t hold out any longer,");
+		if (!pc.hasStatusEffect("Trip") && !pc.hasStatusEffect("Grapple") output(" falling on your back and panting lustily");
+		else output(" giving in at long last");
+		output(". You’re so freaking horny; all you want to do is get off!");
 
-You can't hold out any longer, {If not tripped/grappled: falling on your back and panting lustily}{else:giving in at long last}. You're so freaking horny; all you want to do is get off!
+		output("\n\nAs if to grant your wish, the vanae huntress rubs against your body. She strokes your sensitive [pc.skin], causing you to shiver with impotent longing. Blood rushes to your loins and you’re unable to relieve it. ");
 
-As if to grant your wish, the vanae huntress rubs against your body. She strokes your sensitive [pc.skin], causing you to shiver with impotent longing. Blood rushes to your loins and you're unable to relieve it. 
+		output("\n\nYour mind is spinning and you lose all sense of reason. If you don’t orgasm soon, you feel as if you’ll go mad! You’re surprised to hear your own voice begging her to help you cum.");
 
-Your mind is spinning and you lose all sense of reason. If you don't orgasm soon, you feel as if you'll go mad! You're surprised to hear your own voice begging her to help you cum.
+		output("\n\n“<i>... You want me to do what now? How naughty of you!</i>” The busty huntress kisses your [pc.chest] sending a spike of torturous pleasure shooting through your body. “<i>I was going to let you go, but now you want to stay. Are you sure?</i>”");
 
-<i>\"... You want me to do what now? How naughty of you!\"</i> The busty huntress kisses your [pc.chest] sending a spike of torturous pleasure shooting through your body. <i>\"I was going to let you go, but now you want to stay. Are you sure?\"</i>
+		output("\n\nYou aren’t going to be able to move like this as you’re stuck in a delirious, debilitating sense of lust. You plead for her not to leave, since you can’t just be left like this.");
 
-You aren't going to be able to move like this as you're stuck in a delirious, debilitating sense of lust. You plead for her not to leave, since you can't just be left like this.
+		output("\n\nShe hums and trails her webbed fingers along your cheek, considering your request. “<i>Well, I’m very kind. I’ll get you off, and then let you go, but only if you are a good " + pc.mf("boy", "girl") + " and give me all your wonderful");
+		if (pc.hasCock()) output(" cum");
+		else output(" girlcum");
+		output(", okay?</i>”");
+	}
 
-She hums and trails her webbed fingers along your cheek, considering your request. <i>\"Well, I'm very kind. I'll get you off, and then let you go, but only if you are a good [boy/girl] and give me all your wonderful {cum/girlcum}, okay?\"</i> {if sex != neuter "{if (pc.sex = male && pc.femininity =< 60 && pc.armor != null || if (pc.sex = female && pc.masculinity =< 60 && pc.armor != null) It seems despite being {masculine/feminine} in appearance she can "smell" your true gender.}"}
+	if (pc.hasCock() || pc.hasVagina())
+	{
+		if (!pc.isNude() && )pc.hasCock() && !pc.hasVagina() && pc.mf("m", "f") == "f") || (pc.hasVagina() && !pc.hasCock() && pc.mf("m", "f") == "m")))
+			output(" It seems despite being " + pc.mf("masculine", "feminine") + " in appearance she can 'smell' your true gender.");
 
-if (pc.sex != neuter)
-{
-You'd do just about anything to get off right now, so you earnestly promise to give her your {spunk/lady milk}. 
-}
+		output("\n\nYou'd do just about anything to get off right now, so you earnestly promise to give her your");
+		if (pc.hasCock()) output(" spunk");
+		else output(" lady milk");
+		output(".");
+	}
 
+	var options:Array = [];
+
+	if (pc.hasCock() && pc.cockThatFits(217) != -1) options.push(vanaeHuntressPCDefeatCuntFux);
+
+	options[rand(options.length)]();
 }
 
 function vanaeHuntressPCDefeatCuntFux():void
