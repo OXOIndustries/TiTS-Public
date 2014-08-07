@@ -233,6 +233,7 @@
 	inputManager.BindKeyToControl(38, "Scroll Up");            // case 38: upScrollText();
 	inputManager.BindKeyToControl(40, "Scroll Down");          // case 40: downScrollText();
 	inputManager.BindKeyToControl(34, "Page Down");            // case 34: this.pageDownScroll()
+	inputManager.BindKeyToControl(192,"Page Down");
 	inputManager.BindKeyToControl(33, "Page Up");              // case 33: this.pageUpScroll()
 	inputManager.BindKeyToControl(36, "Scroll To Start");      // case 36: this.homeButtonScroll()
 	inputManager.BindKeyToControl(35, "Scroll To End");        // case 35: this.endButtonScroll()
