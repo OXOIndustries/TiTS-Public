@@ -7573,6 +7573,14 @@
 				else if (rando == 1) descript += "gooey";
 				else descript += "slimy";
 			}
+			//Knot - 1/5 chance. Only specifically called out if dick isn't dog, since knot shows up with the
+			//canine nouns.
+			else if(rand(5) == 0 && cocks[cockNum].hasFlag(GLOBAL.FLAG_KNOTTED) && cocks[cockNum].cType != GLOBAL.TYPE_CANINE && cocks[cockNum].cType != GLOBAL.TYPE_SNAKE && cocks[cockNum].cType != GLOBAL.TYPE_NAGA)
+			{
+				if(rand(3) == 0)  descript += "knotted";
+				else if(rand(2) == 0) descript += "bulbous";
+				else descript += "knotty";
+			}
 			//Length 1/3 chance
 			else if (this.rand(3) == 0) {
 				if (cocks[cockNum].cLength() < 3) {
