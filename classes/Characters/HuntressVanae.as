@@ -133,7 +133,7 @@ package classes.Characters
 			var combatMaiden:HuntressVanae = this.makeCopy();
 			
 			kGAMECLASS.userInterface.showBust("HUNTRESS_VANAE");
-			kGAMECLASS.setLocation("FIGHT:\nVANAE HUNTRESS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
+			kGAMECLASS.setLocation("FIGHT: VANAE\nHUNTRESS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			combatMaiden.setDefaultSexualPreferences();
 			
 			// Slightly better chance to get a spear

@@ -1547,7 +1547,7 @@ function initializeRooms():void
 	rooms["CAMP EDGE"].southExit = "CLOUD FOREST 2";
 	rooms["CAMP EDGE"].westExit = "ABANDONED CAMP";
 	rooms["CAMP EDGE"].addFlag(GLOBAL.OUTDOOR);
-	rooms["CAMP EDGE"].addFlag(GLOBAL.OBJECTIVE);
+	rooms["CAMP EDGE"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ABANDONED CAMP"] = new RoomClass(this);
 	rooms["ABANDONED CAMP"].roomName = "";
@@ -1560,7 +1560,7 @@ function initializeRooms():void
 	//rooms["ABANDONED CAMP"].southExit = "";
 	//rooms["ABANDONED CAMP"].westExit = "";
 	rooms["ABANDONED CAMP"].addFlag(GLOBAL.OUTDOOR);
-	rooms["ABANDONED CAMP"].addFlag(GLOBAL.HAZARD);
+	rooms["ABANDONED CAMP"].addFlag(GLOBAL.OBJECTIVE);
 
 	// Vanae map additions OVER!
 

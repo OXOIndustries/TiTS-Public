@@ -923,7 +923,7 @@ function vanaeVictorySexIntro(scene:String):void
 	{
 		output("“<i>Um, you're wearing clothes... so I should...</i>” Her words trail off as you begin to strip off your [pc.gear], causing her to lose her train of thought. ");
 		//if (!(pc.armor is EmptySlot) || !(pc.upperUndergarment is EmptySlot)) output(" You expose yourself to her, momentarily holding your breath, waiting for her response. At the sight of your bare [pc.chest], her breathing grows shorter, heavier, and you can feel the warmth of her breath on your half-naked body.");
-		if(pc.chestGarbed())
+		if(pc.isChestGarbed())
 		{
  			output("As your [pc.chest]");
  			if(pc.biggestTitSize() >= 1 && (pc.breastRows.length > 1 || pc.breastRows[0].breasts > 1)) output(" are");
