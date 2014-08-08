@@ -722,11 +722,11 @@
 		}
 		public function get vanaeMaiden():*
 		{
-			return chars["MAIDENVANAE"];
+			return chars["MAIDEN_VANAE"];
 		}
 		public function get vanaeHuntress():*
 		{
-			return chars["HUNTRESSVANAE"];
+			return chars["HUNTRESS_VANAE"];
 		}
 	}
 }

@@ -1160,6 +1160,9 @@
 				case "armor":
 					buffer = armor.longName;
 					break;
+				case "weapon":
+					buffer = getWeaponName();
+					break;
 				case "meleeWeapon":
 					buffer = meleeWeapon.longName;
 					break;
@@ -1646,6 +1649,12 @@
 				}
 			}
 			return;
+		}
+		public function getWeaponName():String
+		{
+			if (!(rangedWeapon is EmptySlot)) return rangedWeapon.longName;
+			if (!(meleeWeapon is EmptySlot)) return meleeWeapon.longName;
+			return "fists";
 		}
 		public function orgasm(): void {
 			lustRaw = 0;
@@ -2468,7 +2477,7 @@
 			return description;
 		}
 		public function eyesDescript(): String {
-			return pluralize(earDescript());
+			return pluralize(eyeDescript());
 		}
 		public function tongueDescript(): String {
 			return "tongue";
@@ -8387,6 +8396,8 @@
 				else if (rand(2) == 0) return "botanical spunk";
 				else return "floral jism";
 			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
+				return "milk";
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MILK) {
 				return "milk";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";

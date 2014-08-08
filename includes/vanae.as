@@ -7,12 +7,12 @@ public function encounterVanae(isHuntress:Boolean):void
 
 	if (isHuntress)
 	{
-		userInterface.showName("FIGHT:\n VANAE HUNTRESS");
+		userInterface.showName("FIGHT: VANAE\nHUNTRESS");
 		userInterface.showBust("VANAE_HUNTRESS");
 	}
 	else
 	{
-		userInterface.showName("FIGHT:\n VANAE MAIDEN");
+		userInterface.showName("FIGHT: VANAE\nMAIDEN");
 		userInterface.showBust("VANAE_MAIDEN");
 	}
 
@@ -27,13 +27,13 @@ public function encounterVanae(isHuntress:Boolean):void
 
 		CodexManager.unlockEntry("Vanae");
 
-		output("\n\nAs you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
+		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
 		
 		output("\n\nYou look around you and see nothing. Is the codex malfunctioning? The device is equipped with short-range sensors, but there’s nothing as far as you can see.");
 		
 		output("\n\nYou ready your [pc.weapon], your [pc.eyes] carefully scanning your surroundings...");
 		
-		output("\n\n“<i>Data Retrieved! The vanae are an all-female race that can change their skin to match the color of their surroundings. They are also tree-dwelling, [Master] Steele,</i>” your codex informs you, and just in time. ");
+		output("\n\n“<i>Data Retrieved! The vanae are an all-female race that can change their skin to match the color of their surroundings. They are also tree-dwelling, "+ pc.mf("Master", "Mistress") +" Steele,</i>” your codex informs you, and just in time. ");
 
 		// IF VANAE HUNTRESS
 		if (isHuntress)
@@ -70,7 +70,7 @@ public function encounterVanae(isHuntress:Boolean):void
 		// MERGE
 		output("\n\nYour codex clues you in to what is going on.");
 		
-		output("\n\n“<i>Vanae have vestigial eyes, [Master] Steele, and exceptionally keen hearing. You’ll also want to avoid the liquid she sprays from her breasts; it incapacitates and arouses on contact.</i>”");
+		output("\n\n“<i>Vanae have vestigial eyes, "+ pc.mf("Master", "Mistress") +" Steele, and exceptionally keen hearing. You’ll also want to avoid the liquid she sprays from her breasts; it incapacitates and arouses on contact.</i>”");
 		
 		output("\n\nBest. Present. Ever.");
 
@@ -161,7 +161,7 @@ public function encounterVanae(isHuntress:Boolean):void
 
 function vanaeAI():void
 {
-	vanaeHeader("FIGHT:\nVANAE ");
+	vanaeHeader("FIGHT: VANAE\n");
 	var camoUsed:Boolean = false;
 	
 	if (pc.hasStatusEffect("Trip") || pc.hasStatusEffect("Grapple") || pc.hasStatusEffect("Stun"))
@@ -390,6 +390,9 @@ function vanaeEscapeGrapple():void
 
 	if (foes[0] is HuntressVanae) output(" The blind huntress picks up her spear once again. “<i>By the Sky Mother; you're so slippery! You better be worth all the effort.</i>”");
 	else output(" The blind huntress picks up her spear and stomps her foot. “<i>Arghh, I was so close! Was I really that bad?</i>”");
+	
+	pc.removeStatusEffect("Trip");
+	pc.removeStatusEffect("Stunned");
 }
 
 function vanaeMilkSquirtBreasts():void
@@ -585,7 +588,7 @@ function vanaeHeader(preName:String):void
 function vanaePCVictory():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	// HP WIN
 	if (foes[0].HP() <= 1)
@@ -639,10 +642,11 @@ function vanaePCVictory():void
 
 	// VANAE HUNTRESS OPTIONS
 	clearMenu();
+
 	if (foes[0] is HuntressVanae)
 	{
 		// Vaginal
-		if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal");
+		if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(0, "Vaginal Sex", vanaeVictorySexIntro, "vaginal", "Vaginal Sex", "Fuck the huntresses pussy.");
 		else
 		{
 			if (!pc.hasCock()) addDisabledButton(0, "Vaginal Sex", "Vaginal Sex", "You need a cock to fuck the huntresses vagina.");
@@ -651,7 +655,7 @@ function vanaePCVictory():void
 		}
 
 		// Tittyfuck
-		if (pc.hasCock() && pc.longestCockLength() >= 3) addButton(1, "Tit Fuck", vanaeVictorySexIntro, "titfuck");
+		if (pc.hasCock() && pc.longestCockLength() >= 3) addButton(1, "Tit Fuck", vanaeVictorySexIntro, "titfuck", "Tit Fuck", "Slide your cock between those juicy tits.");
 		else
 		{
 			if (!pc.hasCock()) addDisabledButton(1, "Tit Fuck", "Tit Fuck", "You need a cock to fuck the huntresses tits.");
@@ -661,48 +665,48 @@ function vanaePCVictory():void
 		// Requires one cock, any size.
 		// Must have Cock
 		// Must have front or mid genitals.
-		if (pc.hasCock() && pc.genitalSpot < 2) addButton(3, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk");
+		if (pc.hasCock() && pc.genitalSpot < 2) addButton(2, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk", "Squirt N Jerk", "Haver the huntress jerk you off with her tentacles whilst dribbling her milk all over you.");
 		else
 		{
-			if (!pc.hasCock()) addDisabledButton(3, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
-			else if (pc.genitalSpot >= 2) addDisabledButton(3, "Squirt n Jerk", "Squirt n Jerk", "Your cocks in the wrong place for a milky-jerkbath.");
+			if (!pc.hasCock()) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(2, "Squirt n Jerk", "Squirt n Jerk", "Your cocks in the wrong place for a milky-jerkbath.");
 		}
 		
 		// PC gets eaten out
-		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(4, "Cunnilingus", vanaeVictorySexIntro, "cunnilingus");
+		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(3, "Cunnilingus", vanaeVictorySexIntro, "cunnilingus", "Cunnilingus", "Have the huntress eat you out.");
 		else
 		{
-			if (!pc.hasVagina()) addDisabledButton(4, "Cunnilingus", "Cunnilingus", "You'd need a cunt if you want the huntress to eat you out.");
-			else if (pc.genitalSpot >= 2) addDisabledButton(4, "Cunnilingus", "Cunnilingus", "You'd need front-mounted genitals for the huntress to eat you out.");
+			if (!pc.hasVagina()) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You'd need a cunt if you want the huntress to eat you out.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(3, "Cunnilingus", "Cunnilingus", "You'd need front-mounted genitals for the huntress to eat you out.");
 		}
 
 		// 69 whilst gettin a blowjerb
 		// 4 * 12, min 6", spot 0
-		if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(5, "69 - BJ", vanaeVictorySexIntro, "69bj");
+		if (pc.hasCock() && pc.cockThatFits(217) != -1 && pc.genitalSpot < 2) addButton(4, "69 - BJ", vanaeVictorySexIntro, "69bj", "Blowjob 69", "Have the huntress suck your cock whilst you return the favor.");
 		else
 		{
-			if (!pc.hasCock()) addDisabledButton(5, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst recieving a blowjerb.");
-			else if (pc.cockThatFits(217) == -1) addDisabledButton(5, "69 - BJ", "69 - BJ", "Your cock is too big for the Vanae to handle.");
-			else if (pc.longestCockLength() < 6) addDisabledButton(5, "69 - BJ", "69 - BJ", "Your cock is too short for the Vanae to properly lavish it with the attention it requires.");
-			else if (pc.genitalSpot >= 2) addDisabledButton(5, "69 - BJ", "69 - BJ", "Your cock is in the wrong place to support 69 positions.");
+			if (!pc.hasCock()) addDisabledButton(4, "69 - BJ", "69 - BJ", "You need a cock to partake of a 69 whilst recieving a blowjerb.");
+			else if (pc.cockThatFits(217) == -1) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too big for the Vanae to handle.");
+			else if (pc.longestCockLength() < 6) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is too short for the Vanae to properly lavish it with the attention it requires.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(4, "69 - BJ", "69 - BJ", "Your cock is in the wrong place to support 69 positions.");
 		}
 
 		// 69 whilst gettin eaten out
-		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(6, "69 - Cunni", vanaeVictorySexIntro, "69cunni");
+		if (pc.hasVagina() && pc.genitalSpot < 2) addButton(5, "69 - Cunni", vanaeVictorySexIntro, "69cunni", "Cunnilingus 69", "Eat the huntress out whilst she returns the favor.");
 		else
 		{
-			if (!pc.hasVagina()) addDisabledButton(6, "69 - Cunni", "69 - Cunni", "You need a pussy to partake of a 69 whilst getting eaten out.");
-			else if (pc.genitalSpot >= 2) addDisabledButton(6, "69 - Cunni", "69 - Cunni", "Your pussy is in the wrong place to support 69 positions.");
+			if (!pc.hasVagina()) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "You need a pussy to partake of a 69 whilst getting eaten out.");
+			else if (pc.genitalSpot >= 2) addDisabledButton(5, "69 - Cunni", "69 - Cunni", "Your pussy is in the wrong place to support 69 positions.");
 		}
 
 		// Two scene versions like 69 - Vag or Anal. Must have Vag to choose Vag version. Female/Herm can choose either version.
 		// NOT vag or ass, so females/herms can get assplay.
 		// No size requisites. Size of tentacle is 2/3rds PC capacity (As she can use the tip or the base). If needed, max out at seven inches girth and 60 inches long.
-		if (pc.hasVagina()) addButton(7, "TentaSex - Vag", vanaeVictorySexIntro, "tentacunt");
-		else addDisabledButton(7, "TentaSex - Vag", "TentaSex - Vag", "You need a pussy in order to get it reamed with the huntresses tentacles.");
-		addButton(8, "TentaSex - Ass", vanaeVictorySexIntro, "tentabutt");
+		if (pc.hasVagina()) addButton(6, "TentaSex - Vag", vanaeVictorySexIntro, "tentacunt", "Vaginal Tentacle Sex", "Have her put those interesting looking tentacles to work on your pussy.");
+		else addDisabledButton(6, "TentaSex - Vag", "TentaSex - Vag", "You need a pussy in order to get it reamed with the huntresses tentacles.");
+		addButton(7, "TentaSex - Ass", vanaeVictorySexIntro, "tentabutt");
 
-		addButton(9, "Milk Bath", vanaeVictorySexIntro, "milkbath");
+		addButton(8, "Milk Bath", vanaeVictorySexIntro, "milkbath");
 
 		// [Vaginal Sex] [Tit Fuck] [Nipple Fuck] [Squirt & Jerk] [Cunnilingus] 
 		// [Sixty Nine - BJ] [Sixty Nine - Cunni] [Tenta Sex - Vag] [Tenta Sex - Anal] [Milk Bath]
@@ -725,14 +729,30 @@ function vanaePCVictory():void
 		// No requirements
 		addButton(1, "Cunnilingus", vanaeVictorySexIntro, "maiden_cunni", "Cunnilingus", "Claim her alien pussy with your mouth and eat her out.");
 	}
+	
+	addButton(14, "Leave", noThanksTentaSlutImOut);
 }
 
+function noThanksTentaSlutImOut():void
+{
+	clearOutput();
+	vanaeHeader("VICTORY: VANAE\n");
+	
+	output("You shake your head to clear the cobwebs out after your brief spat with the");
+	if (monster is MaidenVanae) output(" vanae maiden");
+	else output(" vanae huntress");
+	
+	output("\n\nYou scavenge through her dropped equippment, looking for anything that might be of use, before quickly and quietly leaving the area.");
+	
+	processTime(15 + rand(5));
+	genericVictory();
+}
 
 function vanaeVictorySexIntro(scene:String):void
 {
 	// Clicking on any Sex Option
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 	output("You can't help it, she is just too damn hot. There's no way you are going to just leave without");
 	if (!pc.isAss()) output(" seeing if she's up for a tumble");
 	else output(" hitting that");
@@ -946,7 +966,7 @@ function vanaeMaidenTakeVirginity():void
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
 	{
 		clearOutput();
-		vanaeHeader("VICTORY:\nVANAE ");
+		vanaeHeader("VICTORY: VANAE\n");
 
 		output("Getting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she’s ever felt a cock, let alone one like yours.");
 
@@ -1043,7 +1063,7 @@ function vanaeMaidenTakeVirginity():void
 	{
 		output("\n\nThe deflowered huntress rubs her belly and realization hits you like a ton of bricks. Pregnant?! Your Codex brings you up to speed.");
 
-		output("\n\n“<i>Vanae breed by hunting males and engaging in vaginal intercourse, [Master] Steele. Due to their incredible fertility, pregnancy is almost always assured. A vanae maiden is exceptionally fertile compared to others of her species.</i>”");
+		output("\n\n“<i>Vanae breed by hunting males and engaging in vaginal intercourse, "+ pc.mf("Master", "Mistress") +" Steele. Due to their incredible fertility, pregnancy is almost always assured. A vanae maiden is exceptionally fertile compared to others of her species.</i>”");
 
 		output("\n\nIn other words, there's a ridiculously high chance that you just got her pregnant. Your Codex asks if you want it to add a name to the Steele family register.");
 
@@ -1067,7 +1087,7 @@ function vanaeMaidenCunnilingus():void
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
 	{
 		clearOutput();
-		vanaeHeader("VICTORY:\nVANAE ");
+		vanaeHeader("VICTORY: VANAE\n");
 		output("You tell the virgin huntress to lie back on the ground and spread her [monster.thighs]. She meekly obeys your command, getting down and parting them as far as she can. She bashfully exposes the vulnerable pink-tinted skin of her inner loins to you, letting you drink it up with your hungry eyes. ");
 
 		output("\n\nHer webbed hands come down and part her short tentacle skirt. Her [monster.pussyNoun] is cute and pink, two tiny clits poking out from her puffy lips. You can see a glistening wetness on her unsullied flower, just begging to be licked off.");
@@ -1136,7 +1156,7 @@ function vanaeMaidenCunnilingus():void
 function vanaeHuntressVaginalSex():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	var selCock:int = pc.cockThatFits(217);
 
@@ -1238,7 +1258,7 @@ function vanaeHuntressVaginalSex():void
 function vanaeHuntressTitfuck():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	output("The exotic huntress gestures for you to seat yourself on a nearby rock. You sit down and spread your legs. As she walks over her [monster.breasts] sway and bounce, causing your [pc.cocks] to stiffen with delicious anticipation.");
 
@@ -1289,7 +1309,7 @@ function vanaeHuntressEatsPCCunt():void
 {
 	// PC must have pussy and front/mid genitals.
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	output("The exotic huntress gestures for you to seat yourself");
 	if (pc.isBiped()) output(" and spread your legs");
@@ -1436,7 +1456,7 @@ function vanaeHuntressTentaSex(selScene:String):void
 	isButt = !isCunt;
 
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	// Two scene versions like 69 - Vag or Anal. Must have Vag to choose Vag version. Female/Herm can choose either version.
 	// NOT vag or ass, so females/herms can get assplay.
@@ -1562,7 +1582,7 @@ function vanaeHuntressTentaSex(selScene:String):void
 function vanaeHuntressSquirNJerk():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 	
 	// Requires one cock, any size.
 	// Must have Cock
@@ -1628,7 +1648,7 @@ function vanaeHuntressSquirNJerk():void
 function vanaeHuntressMilkBath():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 	// Any gender, no requirements.
 
 	output("The exotic huntress gestures for you to lie down and you obediently do so. She stands a foot away from you. “<i>So, you want a nice bath? I can definitely do that.</i>” She purrs, the [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. “<i>I'm sure you'll enjoy it");
@@ -1702,7 +1722,7 @@ function vanaeHuntressMilkBath():void
 function vanaeHuntressPostVictoryScene():void
 {
 	clearOutput();
-	vanaeHeader("VICTORY:\nVANAE ");
+	vanaeHeader("VICTORY: VANAE\n");
 
 	if (pc.isAss())
 	{
@@ -1848,7 +1868,7 @@ function vanaeHuntressPCDefeatCuntFux():void
 		
 		output("\n\n“<i>Vanae huntresses produce a euphoric and lust inducing liquid from their breasts. It also sharply increases a victim’s cum production when sprayed on the genitals,</i>” your codex enlightens you.");
 		
-		output("\n\n“<i>They also breed by capturing male prey and forcing them to fertilize them, [Master] Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.</i>”");
+		output("\n\n“<i>They also breed by capturing male prey and forcing them to fertilize them, "+ pc.mf("Master", "Mistress") +" Steele. Since vanae are extremely fertile, pregnancy is almost certainly assured.</i>”");
 		
 		output("\n\nGee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it’s talking. She doesn’t seem to care much for any of your gear - it seems she’s solely interested in your loins and not in looting you.");
 		
@@ -1984,7 +2004,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 
 	if (flags["VANAE_MILKBATH_TIMES"] == undefined)
 	{
-		output("\n\n“<i>Vanae huntresses can produce a euphoric and lust inducing liquid from their breasts, [Master] Steele. It also sharply increases a victim's cum production when sprayed on the genitals.</i>” Your codex enlightens you from its position halfway in the brush.");
+		output("\n\n“<i>Vanae huntresses can produce a euphoric and lust inducing liquid from their breasts, "+ pc.mf("Master", "Mistress") +" Steele. It also sharply increases a victim's cum production when sprayed on the genitals.</i>” Your codex enlightens you from its position halfway in the brush.");
 
 		output("\n\nGee, thanks codex. You notice the vanae huntress seems to ignore your sophisticated device despite the fact it's talking. She doesn't seem to care much for any of your gear - it seems she's solely interested in your loins and not in looting you.");
 	}

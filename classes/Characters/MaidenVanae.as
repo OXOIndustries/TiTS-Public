@@ -39,7 +39,7 @@ package classes.Characters
 			
 			this.meleeWeapon = new VanaeSpear();
 			this.rangedWeapon;
-			this.armor = new NaleenArmor();
+			this.armor;
 			
 			this.physiqueRaw = 7;
 			this.reflexesRaw = 9;
@@ -51,7 +51,7 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 35;
-			this.resistances = [0, 0, 0, 0, 0, 0, 0, 0];
+			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
 			this.XPRaw = 50;
 			
 			this.level = 3;

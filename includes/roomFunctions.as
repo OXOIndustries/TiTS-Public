@@ -504,7 +504,7 @@ function mhengaUthraBirch():Boolean
 {
 	if (flags["UTHRA HARVEST DAY"] == undefined || flags["UTHRA HARVEST DAY"] + 2 <= days)
 	{
-		output("\n\nEven worse, a obsidian sap is seeping gruesomely from wound-like gaps in the tree surface. Not a single glimmer of light reflects off the eerily black substance, contrasting violently with your misty white surrounds.");
+		output("\n\nEven worse, a obsidian sap is seeping gruesomely from wound-like gaps in the tree surface. Not a single glimmer of light reflects off the eerily black substance, contrasting violently with your misty white surroundings.");
 		
 		addButton(0, "Harvest", mhengaHarvestUthra, undefined, "Harvest Tree", "Harvest sap from the Uthra Tree");
 	}
@@ -585,7 +585,7 @@ function mhengaSalvageFromCamp():void
 	
 	if (flags["SALVAGED VANAE CAMP"] == undefined)
 	{
-		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a lightly damaged container, you discover a set of some kind of augmented armor."); // Placeholder gtfo, I have no idea what this item is supposed to look like.
+		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a heavily damaged container, you discover a set of some kind of augmented armor."); // I have no idea what this item is supposed to look like.
 		quickLoot([new AtmaArmor()]);
 		flags["SALVAGED VANAE CAMP"] = 1;
 		return;
@@ -593,10 +593,9 @@ function mhengaSalvageFromCamp():void
 	else
 	{
 		output("You spend a couple of minutes scouting around the defunct camp, but find nothing further of interest. Seems like you've salvaged everything of use.");
+		clearMenu();
+		addButton(0, "Next", mainGameMenu); 
 	}
-	
-	clearMenu();
-	addButton(0, "Next", mainGameMenu); 
 }
 
 function anonsBarAddendums():Boolean {

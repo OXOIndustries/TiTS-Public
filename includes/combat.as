@@ -880,7 +880,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Set drone target
 	setDroneTarget(target);
 	if(!attacker.hasStatusEffect("Multiple Shots") && attacker == pc && special != 2) clearOutput();
-	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + "Attacker = PC? " + String(attacker == pc) + " special? " + special);
+	trace("Has multiple shots? " + String(!attacker.hasStatusEffect("Multiple Shots")) + " Attacker = PC? " + String(attacker == pc) + " special? " + special);
 	//Run with multiple attacks!
 	if (((attacker.hasPerk("Multiple Shots")) || (attacker.hasPerk("Shoot First") && attacker.statusEffectv1("Round") <= 1)) && special != 1 && special != 2) {
 		//Start up
@@ -953,7 +953,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			var sDamage:Array = new Array();
 			//Apply damage reductions
 			if(target.shieldsRaw > 0) {
-				sDamage = shieldDamage(target,damage,attacker.meleeWeapon.damageType);
+				sDamage = shieldDamage(target,damage,attacker.rangedWeapon.damageType);
 				//Set damage to leftoverDamage from shieldDamage
 				damage = sDamage[1];
 				if(attacker == pc) {
