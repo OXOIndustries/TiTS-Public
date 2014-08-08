@@ -197,8 +197,6 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
-			this.inputManager = new InputManager(stage, false);
-			this.setupInputControls();
 			
 			hours = 0;
 			minutes = 0;
@@ -248,16 +246,11 @@
 
 			flags = new Dictionary();
 
-			this.userInterface = new GUI(this, stage)
-
 			// Major class variable setup: ------------------------------------------------------------
 			initializeRooms();
 			
 			// dick about with mapper: ------------------------------------------------------------
 			mapper = new Mapper(this.rooms)
-
-			// set up the user interface: ------------------------------------------------------------
-			this.clearMenu();
 
 			//Lazy man shortcuts! Need reset after reinitialization of data.
 			//pc = chars[0];
@@ -265,6 +258,18 @@
 			this.chars["PC"] = new PlayerCharacter();
 			_perkDB = new Perks();
 			
+			this.addEventListener(Event.ADDED_TO_STAGE, init);
+		}
+		
+		private function init(e:Event):void
+		{
+			this.inputManager = new InputManager(stage, false);
+			this.setupInputControls();
+			
+			// set up the user interface: ------------------------------------------------------------
+			this.userInterface = new GUI(this, stage);
+			this.clearMenu();
+
 			this.addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
