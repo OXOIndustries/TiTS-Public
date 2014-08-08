@@ -50,17 +50,17 @@ package classes.Items.Miscellaneous
 				var changes:int = 0;
 				
 				kGAMECLASS.output("You stare at the ominous onyx sap that seems to suck out all the light around it.");
-				if (flags["CONSUMED_UTHRA_SAP"] == undefined)
+				if (kGAMECLASS.flags["CONSUMED_UTHRA_SAP"] == undefined)
 				{
-					flags["CONSUMED_UTHRA_SAP"] = 1;
+					kGAMECLASS.flags["CONSUMED_UTHRA_SAP"] = 1;
 					kGAMECLASS.output(" According to the Codex, it's not safe for consumption - you're going to have to smear it on your naked [pc.skinFurScales] if you want to see the effects.");
 				}
 				else kGAMECLASS.output(" You know from last time that you've got to smear it on your naked [pc.skinFurScales] to see the effects.");
 
 				kGAMECLASS.output("\n\nYou strip off your [pc.gear] and then thoroughly smear the sticky substance all over your [pc.chest] and loins. The entire experience feels very naughty as you rub the surprisingly cool sap all over your genitals. It's almost as if you're lubing yourself up for");
-				if (target.hasCock()) output(" a quick fap");
+				if (target.hasCock()) kGAMECLASS.output(" a quick fap");
 				else kGAMECLASS.output(" a quick frig");
-				output(".");
+				kGAMECLASS.output(".");
 
 				kGAMECLASS.output("\n\nYou really get into working the lewd liquid all over your");
 				if (target.hasCock())
@@ -108,7 +108,7 @@ package classes.Items.Miscellaneous
 							
 							if (i > 0 && target.breastRows[i].breastRatingRaw <= 0)
 							{
-								target.removeBreastRow(i);
+								target.removeBreastRow(i, 1);
 								removedTitRows++;
 							}
 						}
@@ -142,7 +142,7 @@ package classes.Items.Miscellaneous
 					kGAMECLASS.output("\n\nYou work");
 					if (target.cocks.length > 1) kGAMECLASS.output(" one of");
 					kGAMECLASS.output(" your slickened [pc.sheath]");
-					if (target.cocks.length > 1) kGAMECLASS > output("s");
+					if (target.cocks.length > 1) kGAMECLASS.output("s");
 					kGAMECLASS.output(" with one hand and fondle your [pc.balls] with the other. It's so easy to stroke yourself off with this sap; it feels as if it would be wrong <i>not</i> to. Your [pc.cumVisc] pre boils out from the tip of your [pc.cockHead] and mixes with the murky liquid. It forms glorious little spunk bubbles that explode and spill out your [pc.cumColor] love juice.");
 
 					kGAMECLASS.output("\n\nYou spread your [pc.thighs] and fiercely work your [pc.cock], now grabbing it with two hands. Fapping like there's no tomorrow, your senses are shamelessly seized in the rapturous heights of self pleasure. In a truly blissful instant you spill your [pc.cum] all around shooting [pc.vumVisc] ropes of [pc.cumColor] everywhere.");
@@ -185,8 +185,8 @@ package classes.Items.Miscellaneous
 				
 				kGAMECLASS.output("\n\nYou feel completely and utterly wiped when you stop orgasming at long last. You drag yourself to your feet with considerable effort and examine your");
 				if (moddedAnyTits > 0) kGAMECLASS.output(" [pc.milk]");
-				if (pc.hasCock() && moddedAnyTits > 0) kGAMECLASS.output(" and");
-				if (pc.hasCock()) kGAMECLASS.output(" [pc.cum]");
+				if (target.hasCock() && moddedAnyTits > 0) kGAMECLASS.output(" and");
+				if (target.hasCock()) kGAMECLASS.output(" [pc.cum]");
 				kGAMECLASS.output(" soaked body for changes.");
 				if (changes == 0) kGAMECLASS.output(" In the end, you didn't change at all. But what a rush!");
 				else kGAMECLASS.output(" What a rush!");

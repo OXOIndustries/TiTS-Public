@@ -1333,8 +1333,8 @@ function enemyAI(aggressor:Creature):void
 	else if(aggressor is RocketTurrets) rocketPodAI();
 	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
 	else if(aggressor is CaptainKhorgan) actualKhorganAI();
-	else if (aggressor is Kaska) kaskaFightAI();
-	else if (agressor is MaidenVanae || agressor is HuntressVanae) vanaeAI();
+	else if(aggressor is Kaska) kaskaFightAI();
+	else if(aggressor is MaidenVanae || aggressor is HuntressVanae) vanaeAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 

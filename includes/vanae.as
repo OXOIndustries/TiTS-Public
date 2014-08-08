@@ -27,7 +27,7 @@ public function encounterVanae(isHuntress:Boolean):void
 
 		CodexManager.unlockEntry("Vanae");
 
-		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
+		output("\n\nAs you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
 		
 		output("\n\nYou look around you and see nothing. Is the codex malfunctioning? The device is equipped with short-range sensors, but there’s nothing as far as you can see.");
 		

@@ -1482,7 +1482,7 @@ function initializeRooms():void
 	rooms["UTHRA BIRCH"].southExit = "NARROW GORGE 3";
 	//rooms["UTHRA BIRCH"].westExit = "";
 	rooms["UTHRA BIRCH"].addFlag(GLOBAL.OUTDOOR);
-	rooms["UTHRA BIRCH"].addFlag(GLOBAL.HAZARD);
+	rooms["UTHRA BIRCH"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["BLADED FERNS 1"] = new RoomClass(this);
 	rooms["BLADED FERNS 1"].roomName = "BLADED\nFERNS";
@@ -1547,7 +1547,7 @@ function initializeRooms():void
 	rooms["CAMP EDGE"].southExit = "CLOUD FOREST 2";
 	rooms["CAMP EDGE"].westExit = "ABANDONED CAMP";
 	rooms["CAMP EDGE"].addFlag(GLOBAL.OUTDOOR);
-	rooms["CAMP EDGE"].addFlag(GLOBAL.HAZARD);
+	rooms["CAMP EDGE"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["ABANDONED CAMP"] = new RoomClass(this);
 	rooms["ABANDONED CAMP"].roomName = "";
