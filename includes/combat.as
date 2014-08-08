@@ -1333,7 +1333,8 @@ function enemyAI(aggressor:Creature):void
 	else if(aggressor is RocketTurrets) rocketPodAI();
 	else if(aggressor is CaptainKhorganMech) khorganSuitAI();
 	else if(aggressor is CaptainKhorgan) actualKhorganAI();
-	else if(aggressor is Kaska) kaskaFightAI();
+	else if (aggressor is Kaska) kaskaFightAI();
+	else if (agressor is MaidenVanae || agressor is HuntressVanae) vanaeAI();
 	else enemyAttack(aggressor);
 }
 function victoryRouting():void 
@@ -1421,6 +1422,10 @@ function victoryRouting():void
 	{
 		defeatKaska();
 	}
+	else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae)
+	{
+		vanaePCVictory();
+	}
 	else genericVictory();
 }
 
@@ -1506,6 +1511,14 @@ function defeatRouting():void
 	else if(foes[0] is Kaska)
 	{
 		defeatedByKaska();
+	}
+	else if (foes[0] is MaidenVanae)
+	{
+		vanaeMaidenPCDefeat();
+	}
+	else if (foes[0] is HuntressVanae)
+	{
+		vanaeHuntressPCDefeat();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -2036,7 +2049,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 		}
 		else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her [vanaeHunt.breasts], clearly titillated by your performance.";
 		else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
-		else if damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you're having an effect on her!"
+		else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you're having an effect on her!"
 		else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
 	}
 	else if (target is MaidenVanae)

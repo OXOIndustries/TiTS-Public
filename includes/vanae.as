@@ -96,7 +96,7 @@ public function encounterVanae(isHuntress:Boolean):void
 			}
 
 			// If no cock & considered male, or no vag and considered fem, or no genitals
-			if (!player.hasCock() && gend == "male" || !player.hasVagina() && gend == "female" || !player.hasCock() && !player.hasVagina())
+			if (!pc.hasCock() && gend == "male" || !pc.hasVagina() && gend == "female" || !pc.hasCock() && !pc.hasVagina())
 			{
 				output(" You don't even have any to give!");
 			}
@@ -126,8 +126,8 @@ public function encounterVanae(isHuntress:Boolean):void
 		{
 			output("You're glad you moved first, because a vanae huntress lands right where you were standing with a thud. She just came out of nowhere!");
 
-			output("\n\n“<i>I missed? You're no ordinary"
-			if(pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
+			output("\n\n“<i>I missed? You're no ordinary");
+			if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" [pc.race]");
 			else output(" off-worlder");
 			output(".</i>” She looks completely perplexed at your ability to sense her beforehand. You're pretty sure she wouldn't get it even if you explained it to her.");
 
@@ -162,6 +162,72 @@ public function encounterVanae(isHuntress:Boolean):void
 function vanaeAI():void
 {
 	vanaeHeader("FIGHT:\nVANAE ");
+	var camoUsed:Boolean = false;
+	
+	if (pc.hasStatusEffect("Trip") || pc.hasStatusEffect("Grapple") || pc.hasStatusEffect("Stun"))
+	{
+		vanaeGrapple();
+	}
+	else if (rand(3) == 0)
+	{
+		camoUsed = true;
+		vanaeCamoflage(false);
+	}
+	else if (rand(5) == 0)
+	{
+		attack(monster, pc);
+	}
+	else
+	{
+		var options:Array = [];
+		
+		if (pc.lust() >= pc.lustMax() * 0.6)
+		{
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeMilkSquirtBreasts);
+			options.push(vanaeTailSwipe);
+			options.push(vanaeSpearStrike);
+		}
+		else if (pc.HP() <= pc.HPMax() * 0.4)
+		{
+			options.push(vanaeTailSwipe);
+			options.push(vanaeTailSwipe);
+			options.push(vanaeTailSwipe);
+			options.push(vanaeSpearStrike);
+			options.push(vanaeSpearStrike);
+			options.push(vanaeSpearStrike);
+			options.push(vanaeMilkSquirtBreasts);
+		}
+		else
+		{
+			if (monster is MaidenVanae)
+			{
+				options.push(vanaeTailSwipe);
+				options.push(vanaeTailSwipe);
+				options.push(vanaeTailSwipe);
+				options.push(vanaeTailSwipe);
+				options.push(vanaeSpearStrike);
+				options.push(vanaeSpearStrike);
+				options.push(vanaeSpearStrike);
+				options.push(vanaeSpearStrike);
+				options.push(vanaeMilkSquirtBreasts);
+			}
+			else if (monster is HuntressVanae)
+			{
+				options.push(vanaeTailSwipe);
+				options.push(vanaeSpearStrike);
+				options.push(vanaeMilkSquirtBreasts);
+			}
+		}
+		
+		options[rand(options.length)]();
+	}
+	
+	if (!camoUsed) vanaeCamoflage(true);
 	
 	// SpearStrike:
 	//Effect: Light physical damage, stun chance. Extra damage against tripped or stunned opponents. Small crit chance - higher against tripped or stunned opponents.
@@ -177,6 +243,7 @@ function vanaeAI():void
 	// Milkspray
 	// Effect: If Hit, Lust Increase. Medium stun chance. If stunned, follows with a grapple attack.
 	
+	// Camo
 	// Effect: When she does this move, her dodge and hit rate increases. It lasts for three rounds, including the one used to activate it. If she uses this move when it is already active, the timer is refreshed.
 	// camoFunc(true) updates the effect, camoFunc(false) will apply it/refresh it
 }
@@ -594,7 +661,7 @@ function vanaePCVictory():void
 		// Requires one cock, any size.
 		// Must have Cock
 		// Must have front or mid genitals.
-		if (pc.hasCock()) && pc.genitalSpot < 2) addButton(3, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk");
+		if (pc.hasCock() && pc.genitalSpot < 2) addButton(3, "Squirt n Jerk", vanaeVictorySexIntro, "squirtnjerk");
 		else
 		{
 			if (!pc.hasCock()) addDisabledButton(3, "Squirt n Jerk", "Squirt n Jerk", "You need a cock to get a milky-jerkbath.");
@@ -665,7 +732,7 @@ function vanaeVictorySexIntro(scene:String):void
 {
 	// Clicking on any Sex Option
 	clearOutput();
-	vanaeHeader()
+	vanaeHeader("VICTORY:\nVANAE ");
 	output("You can't help it, she is just too damn hot. There's no way you are going to just leave without");
 	if (!pc.isAss()) output(" seeing if she's up for a tumble");
 	else output(" hitting that");
@@ -777,7 +844,7 @@ function vanaeVictorySexIntro(scene:String):void
 		
 		case "cunnilingus":
 			action = "have her eat out your [pc.cunt]";
-			function = vanaeHuntressEatsPCCunt;
+			functor = vanaeHuntressEatsPCCunt;
 			break;
 
 		case "69bj":
@@ -965,8 +1032,8 @@ function vanaeMaidenTakeVirginity():void
 	else output(" gloriously unload thick jets");
 	output(" of hot, [pc.cumVisc] jism deep inside of her, sullying her untouched womb with your [pc.cumNoun]. All the while she trembles in your lap and receives your spunk inside of her, feeling it spatter blissfully inside her inner walls.");
 	
-	monster.loadInCunt(player);
-	player.orgasm();
+	monster.loadInCunt(pc);
+	pc.orgasm();
 	monster.orgasm();
 
 	output("\n\nWhen she pulls away from you, you can see a definite glow to her features and a bright smile on her face. “<i>... My first time... I never thought it would be so good. And because you came inside of me, I'm going to be pregnant!</i>”");
@@ -1042,7 +1109,7 @@ function vanaeMaidenCunnilingus():void
 		if (pc.hasCock()) output(" spastically shooting [pc.cum] from your [pc.cocks] and all over the ground");
 		if (pc.hasVagina()) output(", creaming yourself right there and then. You cry out as your [pc.pussies] spasm and your [pc.girlCum] gushes down your [pc.thighs]");
 		output(". You muffle your mouth inside of her spasming [monster.pussyNoun] as your face utterly drenched in her [monster.girlCum].");
-		player.orgasm();
+		pc.orgasm();
 		monster.orgasm();
 	}
 
@@ -1484,7 +1551,7 @@ function vanaeHuntressTentaSex(selScene:String):void
 	else output(" give your [pc.asshole] a thorough rimming");
 	output(", making sure it is slick and spotless.");
 
-	player.orgasm();
+	pc.orgasm();
 	monster.orgasm();
 	processTime(30+rand(10));
 
@@ -1550,7 +1617,7 @@ function vanaeHuntressSquirNJerk():void
 
 	output("\n\nAs you reel in post orgasmic bliss, the alien huntress crouches down and affectionately licks the underside of [pc.eachCock]. She makes sure to lap up every last drop of your [pc.cum] and her [monster.milk], making sure your loins are slick and spotless.");
 
-	player.orgasm();
+	pc.orgasm();
 	monster.orgasm();
 	processTime(30+rand(10));
 
@@ -1577,7 +1644,7 @@ function vanaeHuntressMilkBath():void
 	vanaeTFScene();
 
 	output("\n\n“<i>Feels good doesn't it? I'm just getting started.</i>” She splatters twin streams of her [monster.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
-	if (pc.isLactating() output(" Your [pc.milk] spurts out wildly all over your chest like a [pc.milkColor] bukkake shower.");
+	if (pc.isLactating()) output(" Your [pc.milk] spurts out wildly all over your chest like a [pc.milkColor] bukkake shower.");
 
 	output("\n\nYou can't hold out any longer as you madly stroke your [pc.groin]");
 	if (!pc.hasCock() && !pc.hasVagina()) output(" and play with your [pc.nipples]");
@@ -1623,7 +1690,7 @@ function vanaeHuntressMilkBath():void
 		output("\n\nAfter the very last of your orgasms subsides, you are utterly covered in her [monster.milk]. In an admirable effort, the alien huntress begins to clean you off. First she wipes you off with her webbed hands and tentacles and then licks you all over, lapping up her own intoxicating fluid in a lewd yet amorous display.");
 	}
 
-	player.orgasm();
+	pc.orgasm();
 	monster.orgasm();
 
 	processTime(30+rand(10));
@@ -1697,7 +1764,7 @@ function vanaeHuntressPCDefeat():void
 	else
 	{
 		output("You can’t hold out any longer,");
-		if (!pc.hasStatusEffect("Trip") && !pc.hasStatusEffect("Grapple") output(" falling on your back and panting lustily");
+		if (!pc.hasStatusEffect("Trip") && !pc.hasStatusEffect("Grapple")) output(" falling on your back and panting lustily");
 		else output(" giving in at long last");
 		output(". You’re so freaking horny; all you want to do is get off!");
 
@@ -1717,7 +1784,7 @@ function vanaeHuntressPCDefeat():void
 
 	if (pc.hasCock() || pc.hasVagina())
 	{
-		if (!pc.isNude() && )pc.hasCock() && !pc.hasVagina() && pc.mf("m", "f") == "f") || (pc.hasVagina() && !pc.hasCock() && pc.mf("m", "f") == "m")))
+		if (!pc.isNude() && ((pc.hasCock() && !pc.hasVagina() && pc.mf("m", "f") == "f") || (pc.hasVagina() && !pc.hasCock() && pc.mf("m", "f") == "m")))
 			output(" It seems despite being " + pc.mf("masculine", "feminine") + " in appearance she can 'smell' your true gender.");
 
 		output("\n\nYou'd do just about anything to get off right now, so you earnestly promise to give her your");
@@ -1862,11 +1929,11 @@ function vanaeHuntressPCDefeatCuntFux():void
 
 	monster.loadInCunt(pc);
 	monster.loadInCunt(pc);
-	player.orgasm();
+	pc.orgasm();
 	monster.orgasm();
 
 	// if First Time
-	if (flags["VANAE_HUNTRESS_BRED"] = undefined)
+	if (flags["VANAE_HUNTRESS_BRED"] == undefined)
 	{
 		output("\n\n“<i>Keep some of that. We're not done yet by a long shot. I want to make </i>sure<i> that you've gotten me pregnant,</i>” she informs you, grinning and getting down on all knees. She licks the underside of your [pc.cock " + selCock + "], making your whole body tremble with joy. You relax back, giving yourself over to pleasure...");
 	}
@@ -2019,7 +2086,7 @@ function vanaeHuntressPCDefeatTitfux():void
 			if (cockI.cLength() >= 3 && cockI.cLength() <= 12 && cockI.thickness() >= 0.5 && cockI.thickness() <= 4)
 			{
 				// Ideally I'd pass the cockindex into the function but I'm being lazy fuck off
-				if (foundCock == -1 || cockI.volume() > pc.cocks[foundCock].volume()) foundCock = i;
+				if (selCock == -1 || cockI.volume() > pc.cocks[selCock].volume()) selCock = i;
 			}
 		}
 	}
@@ -2065,7 +2132,7 @@ function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. Your [pc.cocks] {has/have} been worked over in every way imaginable{ and your empty [pc.balls] are filled with a pleasurable ache}.");
 
-	player.orgasm();
+	pc.orgasm();
 	monster.orgasm();
 
 	output("\n\nMeanwhile, the vanae huntress's breasts are utterly coated in your [pc.cum]. She patiently scoops up every drip of your");
@@ -2197,7 +2264,7 @@ function vanaeHuntressPCDefeatTentafux():void
 
 		output("\n\nYou do know one thing, though. For the rest of your life, you will never forget this single indelible moment. <b>You have lost your");
 		if (!isCunt) output(" anal")
-		output" virginity!</b>");
+		output (" virginity!</b>");
 
 		if (isCunt)
 		{
@@ -2356,7 +2423,7 @@ function vanaeMaidenPCDefeatTakeVirginity():void
 	output("\n\nGetting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she's ever felt a cock, let alone one like yours.");
 
 	output("\n\n“<i>");
-	if (pc.cocks[selCock.cLength() <= 3) output("It's smaller than I thought");
+	if (pc.cocks[selCock].cLength() <= 3) output("It's smaller than I thought");
 	if (pc.cocks[selCock].cLength() >= 10) output("It feels so large");
 	else output("It feels so hard");
 	output(" and so strangely shaped! I've never touched a male sex organ before.</i>” Her cheeks flush. “<i>I'm going to get you to stick this inside of me, but I'm a little nervous. It is my first time after all, and it looks pretty scary.</i>”");

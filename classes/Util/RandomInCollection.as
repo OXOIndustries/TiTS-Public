@@ -1,4 +1,4 @@
-package Util 
+package classes.Util 
 {
 	import classes.rand;
 	

@@ -219,11 +219,11 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	{
 		chars["AMMA"] = new Amma();
 	}
-	if (!justUpdate || (justUpdate && chars["HUNTRESS_VANAE"] == undefined)
+	if (!justUpdate || (justUpdate && chars["HUNTRESS_VANAE"] == undefined))
 	{
 		chars["HUNTRESS_VANAE"] = new HuntressVanae();
 	}
-	if (!justUpdate || (justUpdate && chars["MAIDEN_VANAE"] == undefined)
+	if (!justUpdate || (justUpdate && chars["MAIDEN_VANAE"] == undefined))
 	{
 		chars["MAIDEN_VANAE"] = new MaidenVanae();
 	}

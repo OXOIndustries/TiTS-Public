@@ -1275,7 +1275,7 @@
 					buffer = simpleCockNoun(arg2);
 					break;
 				case "cocksNounSimple":
-					buffer = simpleCocksNoun(arg2);
+					buffer = simpleCocksNoun();
 					break;
 				case "cockColor":
 				case "dickColor":
@@ -1326,7 +1326,7 @@
 					buffer = nipplesDescript(arg2);
 					break;
 				case "milkyNipple":
-					buffer = nippleDescript(arg, false, true);
+					buffer = nippleDescript(arg2, false, true);
 					break;
 				case "milkyNipples":
 					buffer = nipplesDescript(arg2, true);
@@ -1565,10 +1565,6 @@
 				case "cockType":
 				case "cocktype":
 					buffer = cockShape(arg2);
-					break;
-				case "vaginaColor":
-				case "pussyColor":
-					buffer = vaginaColor(arg2);
 					break;
 				default:
 					// error production is now done up-stream in the parser
@@ -6902,16 +6898,6 @@
 			return vag;
 		}
 		
-		public function vaginaColor(num:Number = 0):String
-		{
-			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
-			if (vaginaNum < 0) return "<B>Error: Invalid vaginaNum (" + vaginaNum + ") passed to vaginaDescript()</b>";
-			//If no vaginas back the fuck out
-			if (vaginas.length < 0) return "VAGINA ERROR";
-			
-			return vaginas[num].vaginaColor;
-		}
-		
 		//Vaginas + Descript
 		public function vaginaDescript(vaginaNum: Number = 0, forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if (vaginaNum > (vaginas.length - 1)) return "<B>Error: Invalid vagina number (" + vaginaNum + ") passed to vaginaDescript()</b>";
@@ -8372,7 +8358,12 @@
 				if (temp <= 4) return "chocolate";
 				else if(temp <= 7) return "creamy brown, chocolate";
 				else return "dark, chocolate";
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MILK) {
+				if (temp <= 4) return "pink";
+				else if (temp <= 7) return "milky-pink";
+				else return "milky-violet";
 			}
+			
 			return "ERROR, INVALID FLUID TYPE.";
 		}
 		public function fluidNoun(arg: int): String {

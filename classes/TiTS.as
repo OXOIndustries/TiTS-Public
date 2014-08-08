@@ -122,6 +122,7 @@
 		include "../includes/stellarTether.as";
 		include "../includes/saendra.as";
 		include "../includes/texas_new.as";
+		include "../includes/vanae.as";
 		
 		include "../includes/lightsOut.as";
 			

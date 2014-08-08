@@ -37,9 +37,9 @@ package classes.Characters
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon = VanaeSpear;
+			this.meleeWeapon = new VanaeSpear();
 			this.rangedWeapon;
-			this.armor = NaleenArmor;
+			this.armor = new NaleenArmor();
 			
 			this.physiqueRaw = 7;
 			this.reflexesRaw = 9;
@@ -90,10 +90,8 @@ package classes.Characters
 			this.milkMultiplier = 75;
 			this.milkRate = 15;
 			this.milkFullness = 50;
-			this.milkColor = "milky-pink";
 			this.milkType = GLOBAL.FLUID_TYPE_VANAE_MILK;
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
-			this.girlCumColor = "translucent-pink";
 			
 			this.vaginas = [new VaginaClass()];
 			(vaginas[0] as VaginaClass).vaginaColor = "pale pink";

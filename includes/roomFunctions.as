@@ -10,11 +10,13 @@ import classes.Items.Guns.ZKRifle;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Miscellaneous.TestHPBooster;
+import classes.Items.Miscellaneous.UthraSap;
 import classes.Items.Protection.DBGShield;
 import classes.Items.Protection.DecentShield;
 import classes.Items.Apparel.TSTArmor;
 import classes.Items.Accessories.JungleLure;
 import classes.Items.Accessories.JungleRepel;
+import classes.Util.RandomInCollection;
 
 function xenogenOutsideBlurb():Boolean
 {
@@ -444,6 +446,48 @@ function rustScytheGladeEncounters():Boolean {
 
 function mhengaVanaeCombatZone():Boolean
 {
+	if (flags["ENCOUNTERS_DISABLED"] != undefined) return false;
+	if (flags["JUNGLE_STEP"] == undefined) flags["JUNGLE_STEP"] = 1;
+	else
+	{
+		if(pc.accessory is JungleLure) flags["JUNGLE_STEP"]++;
+		flags["JUNGLE_STEP"]++;
+	}
+	
+	var opts:Array = [];
+	
+	if ((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(2) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(2) == 0)) 
+	{
+		//Reset step counter
+		flags["JUNGLE_STEP"] = 0;
+		
+		//Build possible encounters	
+		var MAIDEN:int = 0;
+		var HUNTRESS:int = 1;
+		var MIMBRANE:int = 3;
+		
+		var selected:int = RandomInCollection
+		(	
+			MAIDEN, MAIDEN,
+			HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS,
+			MIMBRANE,
+		);
+		
+		if (selected == MAIDEN)
+		{
+			encounterVanae(false);
+		}
+		else if (selected == HUNTRESS)
+		{
+			encounterVanae(true);
+		}
+		else
+		{
+			encounterMimbrane();
+		}
+		return true;
+	}
+	
 	return false;
 }
 
@@ -458,9 +502,7 @@ function mhengaThickMist2RoomFunc():Boolean
 
 	output("\n\nYou can feel something blocking your way east and it feels too tall to climb. Every other direction seems okay. Maybe. It's hard to tell.");
 	
-	output("<b>SPLICE IN ENCOUNTER SHIT GEDDY. DO IT FGT.</b>");
-	
-	return false;
+	return mhengaVanaeCombatZone();
 }
 
 function mhengaUthraBirch():Boolean
@@ -488,7 +530,11 @@ function mhengaHarvestUthra():void
 	clearOutput();
 	flags["UTHRA HARVEST DAY"] = days;
 	
-	output("<b>FIND DIS CONTENT SHIT GEDDY.</b>");
+	output("You gather what little of the sap leaking from the tree you can find into a small collection tube - a standard part of any rushers exploration kit - ensuring that you don't accidently get any on yourself in the process.");
+	if (flags["USED_UTHRA_SAP"] == undefined) output(" No telling what this stuff could do to you without some kind of analysis.");
+	else output(" Even safe in the knowledge that the substance isn't particularly dangerous, it'd be best not to accidently spread any around without intending to.");
+	
+	quickLoot(new UthraSap());
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -496,7 +542,35 @@ function mhengaHarvestUthra():void
 
 function mhengaVanaeFernDamage():Boolean
 {
-	output("\n\ndo damage or some shit");
+	var damage:int = rand(8);
+	if (pc.armor is EmptySlot) damage = 8;
+	else damage -= pc.armor.defense;
+	
+	if (damage < 0)
+	{
+		output("\n\nThe spiked ferns look pretty damn painful, but your thick armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
+	}
+	else if (damage < 2)
+	{
+		output("\n\nThe spiked ferns look pretty damn painful, but thankfully your armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legs] as you hike through the area. <b>(" + damage + ")</b>");
+		pc.HP( -damage);
+	}
+	else if (damage < 4)
+	{
+		output("\n\nThe spiked ferns look pretty damn painful, your armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legs]. <b>(" + damage + ")</b>");
+		pc.HP( -damage);
+	}
+	else if (damage < 8)
+	{
+		output("\n\nThe spiked ferns look pretty damn painful, and your armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
+		pc.HP( -damage);
+	}
+	else
+	{
+		output("\n\nYou're starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
+		pc.HP( -damage);
+		pc.energy( -damage);
+	}
 	
 	return false;
 }
