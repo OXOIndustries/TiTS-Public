@@ -24,8 +24,7 @@ package classes.Items.Apparel
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "something something";
-			
+			this.description = "a mark one suit of Xenogen's Atma Armor";
 			this.tooltip = "Xenogen Industries patented Atma Armor, Mark One. It is designed to auto-administer chemical suppressants when the wearer is subjected to arousing stimuli, aphrodisiacs, or pheromones. Guaranteed to reduce workplace sexual harassment claims.";
 			
 			this.attackVerb = "";

@@ -2340,6 +2340,7 @@ function vanaeMaidenPCDefeat():void
 	var options:Array = [];
 
 	if (pc.hasCock() && pc.genitalSpot < 2 && pc.cockThatFits(217) != -1) options.push(vanaeMaidenPCDefeatTakeVirginity);
+	options.push(vanaeMaidenPCDefeatCunnilingus);
 }
 
 function vanaeMaidenPCDefeatTakeVirginity():void

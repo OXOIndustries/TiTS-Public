@@ -80,6 +80,12 @@
 
 		//Lust vulnerability
 		public var lustVuln: Number = 1;
+		
+		public function lustDamageMultiplier():Number
+		{
+			if (lustVuln == 0) return 0;
+			return (lustVuln + meleeWeapon.bonusLustVuln + rangedWeapon.bonusLustVuln + armor.bonusLustVuln + upperUndergarment.bonusLustVuln + lowerUndergarment.bonusLustVuln + accessory.bonusLustVuln + shield.bonusLustVuln);
+		}
 
 		public var customDodge: String = "";
 		public var customBlock: String = "";
@@ -5040,8 +5046,8 @@
 			if (vaginas.length == 0) return 0;
 			var count: int = 0;
 			for (var x: int = 0; x++; x < vaginas.length) {
-				count += vaginas.clits;
 			}
+				count += vaginas.clits;
 			return count;
 		}
 		public function findFirstOfcType(type: Number = 0): Number {

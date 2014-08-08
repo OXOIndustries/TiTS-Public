@@ -983,7 +983,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			var lustDamage:int = 0;
 			var randomiser:Number = (rand(31) + 85) / 100;
 
-			if (target.lustVuln == 0)
+			if (target.lustDamageMultiplier() == 0)
 			{
 				output("\n<b>" + target.capitalA + target.short + " ");
 				if (target.plural) output("don’t");
@@ -994,7 +994,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			{
 				lustDamage += 15;
 				lustDamage *= randomiser;
-				lustDamage *= target.lustVuln;
+				lustDamage *= target.lustDamageMultiplier();
 
 				if (target.lust() + lustDamage > target.lustMax()) lustDamage = target.lustMax() - target.lust();
 				damage = Math.ceil(lustDamage);
@@ -1957,13 +1957,13 @@ function tease(target:Creature, part:String = "chest"):void {
 	if(!(target is Celise)) 
 	{
 		//Does the enemy resist?
-		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustVuln == 0)
+		if(target.willpower()/2 + rand(20) + 1 > pc.level * 2.5 * totalFactor + 10 + teaseCount/10 || target.lustDamageMultiplier() == 0)
 		{
 			if(target is HandSoBot)
 			{
 				output("\n\n“<i>An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,</i>” says So. She sounds genuinely interested. “<i>An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.</i>”\n");
 			}
-			else if(target.lustVuln == 0) 
+			else if(target.lustDamageMultiplier() == 0) 
 			{
 				output("\n<b>" + target.capitalA + target.short + " ");
 				if(target.plural) output("don't");
@@ -1995,7 +1995,7 @@ function tease(target:Creature, part:String = "chest"):void {
 			damage *= randomizer;
 			//Apply like adjustments
 			damage *= totalFactor;
-			damage *= target.lustVuln;
+			damage *= target.lustDamageMultiplier();
 			if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 
@@ -2237,7 +2237,7 @@ function hipsTeaseText():void {
 function sense(target:Creature):void {
 	clearOutput();
 	output("You try to get a feel for " + possessive(target.a + target.short) + " likes and dislikes!\n");
-	if(target.lustVuln == 0) output("You don't think sexuality can win this fight!\n");
+	if(target.lustDamageMultiplier() == 0) output("You don't think sexuality can win this fight!\n");
 	var buffer:String = "";
 	var PCBonus:Number = pc.intelligence()/2 + pc.libido()/20;
 	if(pc.hasPerk("Fuck Sense")) PCBonus = pc.libido();
@@ -2635,7 +2635,7 @@ function gasGrenade(target:Creature):void
 	var damage:Number = 14 + pc.level + rand(10);
 
 	//Any perks or shit go below here.
-	damage *= target.lustVuln;
+	damage *= target.lustDamageMultiplier();
 	if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 	damage = Math.ceil(damage);
 	output("\n");
@@ -2669,7 +2669,7 @@ function goozookaCannon(target:Creature):void
 			var heal:Number = target.HPMax() * 0.2;
 			if (target.HP() + heal > target.HPMax()) heal = target.HPMax() - target.HP();
 			
-			damage = 5 * target.lustVuln;
+			damage = 5 * target.lustDamageMultiplier();
 			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			
 			output("The Gray Goo absorbs her smaller twin on contact.");
@@ -2683,7 +2683,7 @@ function goozookaCannon(target:Creature):void
 		{
 			output("\n\nThe gray goo splatters across " + target.a + target.short + ", quickly congealing into a miniature googirl who quickly goes to work, attacking your enemy's most sensitive spots with gusto. ");
 		
-			damage = 33 * target.lustVuln;
+			damage = 33 * target.lustDamageMultiplier();
 			if (target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
 			damage = Math.ceil(damage);
 			output(teaseReactions(damage, target));
