@@ -29,16 +29,16 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			
-			this.long = "Your opponent - a busty vanae huntress - almost appears as if she's dancing as she fights you. Her [vanaeHuntress.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon's tentacles and body markings are [vanaeHuntress.hairColor] colored and bioluminescent.\n\nAs she swings her pointed spear around in her webbed hands, you can't help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [vanaeHuntress.milkColor] goo. Meanwhile her [vanaeHuntress.tail] whips around as she ‘dances’, another weapon in the alien girl's natural arsenal.\n\nHer eyes are closed. It's always a little weird fighting someone who doesn't even look at you.";
+			this.long = "Your opponent - a busty vanae huntress - almost appears as if she's dancing as she fights you. Her [monster.hair] and skirt, not to mention her sizable breasts, make her look incredibly feminine. The amazon's tentacles and body markings are [monster.hairColor] colored and bioluminescent.\n\nAs she swings her pointed spear around in her webbed hands, you can't help but notice her bare boobs bouncing about. Her inverted nipples are lactating a transparent, [monster.milkColor] goo. Meanwhile her [monster.tail] whips around as she ‘dances’, another weapon in the alien girl's natural arsenal.\n\nHer eyes are closed. It's always a little weird fighting someone who doesn't even look at you.";
 			
 			this.customDodge = "The busty vanae huntress gracefully dances out of the way of your attack, beautiful even in battle. These squid girls are hard to hit!";
 			this.customBlock = "The huntress brings her pointed spear up and parries your attack, redirecting your forceful strike instead of meeting it head on.";
 			this.plural = false;
 			this.lustVuln = 1;
 			
-			this.meleeWeapon;
+			this.meleeWeapon = VanaeSpear;
 			this.rangedWeapon;
-			this.armor;
+			this.armor = NaleenArmor;
 			
 			this.physiqueRaw = 11;
 			this.reflexesRaw = 14;
@@ -137,6 +137,9 @@ package classes.Characters
 			kGAMECLASS.userInterface.showBust("HUNTRESS_VANAE");
 			kGAMECLASS.setLocation("FIGHT:\nVANAE HUNTRESS", "PLANET: MHEN'GA", "SYSTEM: ARA ARA");
 			combatMaiden.setDefaultSexualPreferences();
+			
+			// Slightly better chance to get a spear
+			if (rand(10) <= 1) inventory.push(new VanaeSpear());
 			
 			kGAMECLASS.foes.push(combatMaiden);
 		}
