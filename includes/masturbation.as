@@ -929,7 +929,7 @@ function milkturbation():void
 		else if(pc.milkQ() <= 3000)
 		{
 			output("\n\nThe [pc.milk] forms into puddles between your [pc.feet] while you're still getting started, and as you settle into giving yourself a proper milking, they only get bigger. Streams of [pc.milkColor] spill down your forearms to your elbows before falling off in rivers. You groan in animal pleasure, unable to help yourself; there's just so much coming out of you, and it feels like such a relief. The human body wasn't made to gush like this, but isn't science wonderful?");
-			if(pc.biggestTitSize() >= 5) output(" Grabbing a teat, you lift it to your [pc.lips] for a sample and sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
+			if(pc.biggestTitSize() >= 5) output(" Grabbing a teat, you lift it to your [pc.lips] for a sample. The flow is strong enough to flood your cheeks in spite of your gluttonous swallowing. Eventually you have to let go. Streamers of [pc.milk] come out in a spray.");
 			else output(" Wishing you could lift a teat to your mouth to sample to, you tug with wild abandon, squeezing heavier and heavier flows from your body.");
 		}
 		//Middle: Express milk like a fucking cow

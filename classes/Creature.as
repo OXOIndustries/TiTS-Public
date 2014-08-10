@@ -1237,6 +1237,9 @@
 				case "lip":
 					buffer = lipDescript();
 					break;
+				case "lipColor":
+					buffer = lipColor;
+					break;
 				case "tongue":
 					buffer = tongueDescript();
 					break;
