@@ -417,7 +417,7 @@
 							if(target.vaginaTotal() > 1) kGAMECLASS.output("s");
 						}
 						else kGAMECLASS.output(" tinging, faceless groin");
-						kGAMECLASS.output(". With a shudder, you slink down to your [pc.knees], spreading 'em wide as you lose yourself to your lust.");
+						kGAMECLASS.output(". With a shudder, you sink down to your [pc.knees], spreading 'em wide as you lose yourself to your lust.");
 
 						kGAMECLASS.output("\n\nYour eyes flutter closed, mind slowly shutting down, overwhelmed by all the wonderful new boobflesh it has to play with. And play with it you do: minutes pass in blissful lust, exploring your [pc.chest] with increasing vigor, until you're panting and gasping, chest heaving as you find yourself building an intensive pressure behind your chest. You only have time to think the word <i>boobgasm</i> before it hits you like a brick. With a scream of ecstasy, you throw your head back and cum, harder than you would ever have imagined");
 						if(target.hasCock()) 
