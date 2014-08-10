@@ -974,7 +974,7 @@ function vanaeMaidenTakeVirginity():void
 		if (pc.cocks[selCock].cLength() <= 5) output(" It's smaller than I thought");
 		else if (pc.cocks[selCock].cLength() >= 10) output(" It feels so large");
 		else output(" It feels so soft");
-		output(" and so strangely shaped! I've never touched a male sex organ before.</i>” her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. “<i>... It moves?! Mine doesn't do that!</i>”");
+		output(" and so strangely shaped! I've never touched a male sex organ before.</i>” Her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. “<i>... It moves?! Mine doesn't do that!</i>”");
 
 		output("\n\nYou tell her that it's perfectly normal, and she seems to settle down. She then begins to position herself above your [pc.cock " + selCock + "].You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.pussyNoun] and [monster.clits].");
 
