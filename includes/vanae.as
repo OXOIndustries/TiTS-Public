@@ -1148,7 +1148,7 @@ function vanaeHuntressVaginalSex():void
 	{
 	output("\n\nAs she strokes your [pc.cock " + selCock + "] she lets out a surprised noise, touching it a few times to be certain. “<i>Um, this is it? This feels a little too small - that can’t be right.</i>” You flush furiously, telling her that <i>is</i> your cock. She coughs a little, apologising for her rudeness. “<i>I guess I’ve just never come across one this... cute and small.</i>”");
 	}
-	else if (pc.cocks[selCock].cLencth() < 7)
+	else if (pc.cocks[selCock].cLength() < 7)
 	{
 		output("\n\nAs the alien amazon touches your [pc.cock " + selCock +"] she lets out a pleased noise, stretching her webbed fingers around your [pc.sheath]. “<i>Mmm, I like this size. It should fit snugly in my [monster.vaginaNounSimple],</i>” she practically purrs. Clearly, she's a fan of your junk.");
 	}
@@ -2036,7 +2036,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 		if (pc.hasCock()) output(" [pc.cum]");
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.girlcum]");
-		output(" with her tentacles. She spoons it into her [pc.pussy] and then scoops up her [monster.milk], rubbing it along her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
+		output(" with her tentacles. She spoons it into her [monster.pussy] and then scoops up her [monster.milk], rubbing it along her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
 
 		output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
@@ -2105,7 +2105,9 @@ function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nPressing both hands against the sides of her [monster.breasts] and giving a pointed squeeze, thick, gooey ropes of her violet milk spurt out of her [monster.nipples]. Your [pc.cocks] and [pc.sack] are suddenly splashed in the sticky substance.");
 
-	output("\n\nLike a cow milking herself, she continues to press and squeeze her pale udders until your junk is utterly covered from tip to base. You bask in the sensation of her warm, slick liquid clinging to your sensitive rod{s} as your body begins to undergo some changes.");
+	output("\n\nLike a cow milking herself, she continues to press and squeeze her pale udders until your junk is utterly covered from tip to base. You bask in the sensation of her warm, slick liquid clinging to your sensitive rod");
+	if (pc.cocks.length > 1) output("s");
+	output(" as your body begins to undergo some changes.");
 
 	output("\n\n");
 	vanaeTFScene();
@@ -2141,7 +2143,7 @@ function vanaeHuntressPCDefeatTitfux():void
 	if (pc.hasCock()) output(" [pc.cum]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum]");
-	output(" with her tentacles and spoons it into her [pc.pussy]. She then rubs [monster.milk] on her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
+	output(" with her tentacles and spoons it into her [monster.pussy]. She then rubs [monster.milk] on her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
 
 	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
@@ -2357,7 +2359,7 @@ function vanaeHuntressPCDefeatTentafux():void
 	if (pc.hasCock()) output(" [pc.cum]");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" [pc.girlcum]");
-	output(" with her tentacles. She spoons it into her [pc.pussy] and then scoops up her [monster.milk], rubbing it along her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
+	output(" with her tentacles. She spoons it into her [monster.pussy] and then scoops up her [monster.milk], rubbing it along her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
 
 	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
 
