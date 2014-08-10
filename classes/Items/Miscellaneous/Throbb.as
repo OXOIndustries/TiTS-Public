@@ -101,7 +101,7 @@
 
 			//<= 25 libido get boosted by 10!
 			if(pc.libido() <= 25) {
-				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body's traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariable slip into sexual musings, wondering how horny this is going to make you or if you'll need to fuck six times a day just to function. The latter idea has more and more merit; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
+				kGAMECLASS.output("\n\nThe room tilts slightly on its axis, and you move your head to compensate, aware that the Throbb must be doing this but bound by your body's traitorous senses to experience it all the same. Your [pc.skin] flushes hotly a moment later, fed by the rapid-fire hammering of your accelerating heartbeat. A slow moan slips out between your lips as your thoughts invariably slip into sexual musings, wondering how horny this is going to make you or if you'll need to fuck six times a day just to function. The latter idea has more and more merit; you briefly consider injecting yourself with more when your better sense asserts itself. This stuff has you panting with lust and has undoubtedly supercharged your libido!");
 				pc.libido(10);
 				pc.lust(50+rand(10));
 				changes++;

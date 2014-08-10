@@ -987,7 +987,7 @@ function takeCelise():void {
 		output("\n\nCelise wails, <i>“Fuck me harder " + pc.short + "! Harder!”</i> She pulls her hand out of her cunt and grabs onto your arm as she pleads, <i>“Use me like I’m one big, cum-hungry cunny!”</i> Trickles of liquified goo run soak your " + pc.skinFurScales() + ", and a puddle of shining jade spreads around you both.");
 		output("\n\nYou’re too turned on to slow your pace, and you fuck faster and harder, the hot, wet slaps echoing in the metal-encased room as you do your damnedest to bring yourself off in the liquefying goo-girl. The texture inside grows sloppier and wetter, but her swirling caresses move faster and more forcefully, battering your dick");
 		if(pc.cockTotal() > 1) output("s");
-		output(" with soaking-wet pleasure. You groan as feel a tongue slide across your belly. Celise has pressed her face into you and is licking everything she can get to while you pump her tit.");
+		output(" with soaking-wet pleasure. You groan as you feel a tongue slide across your belly. Celise has pressed her face into you and is licking everything she can get to while you pump her tit.");
 		output("\n\nIn a violent lunge, Celise stretches up to your shoulders, wrapping her arms around your shoulders to suspend herself there. Your hands and dick");
 		if(pc.cockTotal() > 1) output("s");
 		output(" slide through her body down into the sopping, lube-leaking flower perched atop the goo mound, and her squeezing ripples grow more powerful. The goo-girl whimpers, <i>“Please, cum in me. I need it sooo bad!”</i> before mashing her lips against your own, the ball-like support beneath her rolling back and forth to slap wetly against you.");

@@ -1225,6 +1225,9 @@
 				case "hair":
 					buffer = hairDescript();
 					break;
+				case "hairColor":
+					buffer = hairColor;
+					break;
 				case "face":
 					buffer = face();
 					break;
