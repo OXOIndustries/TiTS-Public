@@ -6192,7 +6192,7 @@
 			} else if (rando == 13) desc += "rump";
 			else if (rando == 14) desc += "bottom";
 			else if (rando == 15) desc += "behind";
-			else if (rando == 16) desc += "kiester";
+			else if (rando == 16) desc += "keister";
 			else if (rando == 17) desc += mf("butt", "tush");
 			else if (rando == 18) desc += "rear end";
 			else if (rando == 19) desc += "heinie";
@@ -6505,7 +6505,7 @@
 				}
 				if (descripted > 0) descript += " ";
 				if (hairType == GLOBAL.HAIR_TYPE_TENTACLES && this.rand(2) == 0) descript += "tentacle-hair";
-				else if (hairType == GLOBAL.HAIR_TYPE_REGULAR && this.rand(2) == 0) descript += "plumage";
+				else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS && this.rand(2) == 0) descript += "plumage";
 				else descript += "hair";
 			}
 			return descript;
