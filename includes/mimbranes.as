@@ -1741,7 +1741,7 @@ public function mimbraneSleepEvents():void
 				output(" eyes. Your");
 				if (!bothFeet) output(" [pc.foot] has");
 				else output(" [pc.feet] have");
-				output(" been looking pretty swollen lately. It must be time to split off some offspring, you figure. Normally Mimbranes handle this when their hosts are snoozing away, but it would yours");
+				output(" been looking pretty swollen lately. It must be time to split off some offspring, you figure. Normally Mimbranes handle this when their hosts are snoozing away, but it would seem yours");
 				if (!bothFeet) output(" doesn’t");
 				else output(" don’t");
 				output(" mind the company.");
@@ -1780,7 +1780,7 @@ public function mimbraneSleepEvents():void
 				if (bothFeet) output("s");
 				output(" must be using it as a lubricant. It only takes a few more minutes of peeling, wiggling, sliding and contracting until you seemingly have a");
 				if (bothFeet) output(" pair of");
-				output(" [pc.skinadj] socks....");
+				output(" [pc.skinTone] socks....");
 				output("\n\nYour");
 				if (!bothFeet) output(" [pc.foot] flicks");
 				else output(" [pc.feet] flick");
