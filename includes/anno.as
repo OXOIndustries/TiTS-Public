@@ -737,7 +737,7 @@ function tellAnnoAboutSyri():void
 
 	flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] = 1;
 	//If PC has sex'd Anno:
-	if(annoSexed() == 0)
+	if(annoSexed() > 0)
 	{
 		output("\n\n<i>\"Hey... you're not trying to get some kind of weird sister-thing going on here, are you?\"</i> your ausar lover asks, eyes narrowing at you.");
 		output("\n\nYou quickly assure her you aren't. They're on different planets, after all.");
