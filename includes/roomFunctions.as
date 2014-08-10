@@ -9,6 +9,7 @@ import classes.Items.Guns.HoldOutPistol;
 import classes.Items.Guns.LaserPistol;
 import classes.Items.Guns.ScopedPistol;
 import classes.Items.Guns.ZKRifle;
+import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.PHAccess;
 import classes.Items.Miscellaneous.TestGrenade;
 import classes.Items.Miscellaneous.TestHPBooster;
@@ -618,6 +619,16 @@ function mhengaSalvageFromCamp():void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu); 
 	}
+}
+
+function mhengaThickMistRoom1():Boolean
+{
+	output("The mist is incredibly thick here, obscuring almost everything around you. Every noise seems sharper and more imposing as you crunch blindly about, occasionally knocking into a tree or branch. Your");
+	if (!pc.armor is EmptySlot) output(" [pc.armor]");
+	else output(" [pc.skinFurScales]");
+	output(" are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...");
+	
+	return mhengaVanaeCombatZone();
 }
 
 function anonsBarAddendums():Boolean {

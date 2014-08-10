@@ -41,6 +41,8 @@ package classes.Items.Miscellaneous
 		
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
+			kGAMECLASS.clearOutput();
+			
 			if (!(target is PlayerCharacter))
 			{
 				kGAMECLASS.output(target.capitalA + target.short + " drinks the sap to no effect.");
@@ -145,7 +147,7 @@ package classes.Items.Miscellaneous
 					if (target.cocks.length > 1) kGAMECLASS.output("s");
 					kGAMECLASS.output(" with one hand and fondle your [pc.balls] with the other. It's so easy to stroke yourself off with this sap; it feels as if it would be wrong <i>not</i> to. Your [pc.cumVisc] pre boils out from the tip of your [pc.cockHead] and mixes with the murky liquid. It forms glorious little spunk bubbles that explode and spill out your [pc.cumColor] love juice.");
 
-					kGAMECLASS.output("\n\nYou spread your [pc.thighs] and fiercely work your [pc.cock], now grabbing it with two hands. Fapping like there's no tomorrow, your senses are shamelessly seized in the rapturous heights of self pleasure. In a truly blissful instant you spill your [pc.cum] all around shooting [pc.vumVisc] ropes of [pc.cumColor] everywhere.");
+					kGAMECLASS.output("\n\nYou spread your [pc.thighs] and fiercely work your [pc.cock], now grabbing it with two hands. Fapping like there's no tomorrow, your senses are shamelessly seized in the rapturous heights of self pleasure. In a truly blissful instant you spill your [pc.cum] all around shooting [pc.cumVisc] ropes of [pc.cumColor] everywhere.");
 
 					target.orgasm();
 					

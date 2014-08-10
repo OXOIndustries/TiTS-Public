@@ -1293,6 +1293,7 @@
 					break;
 				case "vaginaColor":
 				case "cuntColor":
+				case "pussyColor":
 					buffer = vaginaColor(arg2);
 					break;
 				case "cockHead":
@@ -8389,10 +8390,14 @@
 				if (temp <= 4) return "chocolate";
 				else if(temp <= 7) return "creamy brown, chocolate";
 				else return "dark, chocolate";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK) {
 				if (temp <= 4) return "pink";
 				else if (temp <= 7) return "milky-pink";
-				else return "milky-violet";
+				else return "pink-marbled cream";
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
+				if (temp <= 4) return "violet";
+				else if (temp <= 7) return "milky-violet";
+				else return "violet-marbled cream";
 			}
 			
 			return "ERROR, INVALID FLUID TYPE.";

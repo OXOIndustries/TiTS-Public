@@ -90,7 +90,7 @@ package classes.Characters
 			this.milkMultiplier = 75;
 			this.milkRate = 15;
 			this.milkFullness = 50;
-			this.milkType = GLOBAL.FLUID_TYPE_VANAE_MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK;
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			
 			this.vaginas = [new VaginaClass()];

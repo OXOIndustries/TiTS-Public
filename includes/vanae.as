@@ -725,6 +725,8 @@ function noThanksTentaSlutImOut():void
 	
 	output("\n\nYou scavenge through her dropped equippment, looking for anything that might be of use, before quickly and quietly leaving the area.");
 	
+	output("\n\n");
+	
 	processTime(15 + rand(5));
 	genericVictory();
 }
@@ -1001,7 +1003,7 @@ function vanaeMaidenTakeVirginity():void
 	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her arms around your neck. “<i>It's okay - keep going. I can take it.</i>”");
 	if (!pc.isAss()) output(" At her insistence, you");
 	else output(" You");
-	output(" do just that, sliding your [pc.cock " + selCock + "] deeper into her virgin [monster.pussyNoun]. Her untraversed insides part around your swelling cock and mold freshly to your [pc.cockShape " + selCock + "] cocks shape.");
+	output(" do just that, sliding your [pc.cock " + selCock + "] deeper into her virgin [monster.pussyNoun]. Her untraversed insides part around your swelling cock and mold freshly to your [pc.cockShape " + selCock + "] cock's shape.");
 
 	output("\n\nHer pussy is lined with hundreds of little bumps which pleasurably stroke your [pc.cockNoun " + selCock + "] as you push further inside of her. Finally your [pc.cockHead " + selCock + "] is resting against her deepest point. You swell with the knowledge you have completely deflowered and claimed her amazonian [monster.pussyNoun], every inch now squeezing around your throbbing length.");
 
@@ -1058,6 +1060,8 @@ function vanaeMaidenTakeVirginity():void
 	StatTracking.track("characters/maiden vanae/cherrys popped");
 
 	processTime(30+rand(10));
+	
+	output("\n\n");
 	
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1) genericVictory();
 	else genericLoss();
@@ -1129,6 +1133,8 @@ function vanaeMaidenCunnilingus():void
 
 	output("\n\nYou are left with a gloriously light sensation running through your entire body and a face covered in alien girl juice.");
 
+	output("\n\n");
+	
 	processTime(30+rand(10));
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1) genericVictory();
 	else genericLoss();
@@ -1487,7 +1493,10 @@ function vanaeHuntressTentaSex(selScene:String):void
 		}
 	}
 
-	output("\n\nYou clench excitedly around her incredible length as it wiggles around and caresses your inner walls, teasing its way further inside of your [pc.vagOrAss]. You positively melt as it strokes and probes your");
+	output("\n\nYou clench excitedly around her incredible length as it wiggles around and caresses your inner walls, teasing its way further inside of your");
+	if (isCunt) output(" [pc.vagina]");
+	else output(" [pc.asshole]");
+	output(". You positively melt as it strokes and probes your");
 	if (isCunt) output(" slick");
 	else output(" dirty");
 	output(" insides, biting back a moan and pushing yourself against her rising hips.");
@@ -1735,6 +1744,8 @@ function vanaeHuntressPostVictoryScene():void
 		}
 	}
 
+	output("\n\n");
+	
 	processTime(5);
 	genericVictory();
 }
@@ -1751,7 +1762,7 @@ function vanaeHuntressPCDefeat():void
 		output("\n\n“<i>... Sorry,");
 		if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my pet");
 		else output(" off-worlder");
-		output(". If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,</i>” she softly explains, kissing your tender [pc.skinFurScales]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk].");
+		output(". If you hadn't dodged my first attack, I wouldn't have had to bruise you so much,</i>” she softly explains, kissing your tender [pc.skinFurScalesNoun]. You wince; damn, that smarts! You feel her rubbing her [monster.breasts] against your body, smearing your wounds with her [monster.milk].");
 
 		output("\n\nAll of a sudden, the pain is gone. You also realise the feeling of her brushing along your [pc.skinFurScales] is causing your blood to boil. As she slowly drags her [monster.nipples] along your [pc.chest], blood rushes to your cheeks... among other places.");
 
@@ -2208,7 +2219,12 @@ function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\n... An hour later ...");
 
-	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. Your [pc.cocks] {has/have} been worked over in every way imaginable{ and your empty [pc.balls] are filled with a pleasurable ache}.");
+	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times, your entire body feels impossibly heavy. Your [pc.cocks]");
+	if (pc.cocks.length == 1) output(" has");
+	else output(" have");
+	output(" been worked over in every way imaginable");
+	if (pc.balls > 0) output(" and your empty [pc.balls] are filled with a pleasurable ache");
+	output(".");
 
 	pc.orgasm();
 	monster.orgasm();

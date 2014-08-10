@@ -1382,8 +1382,8 @@ function initializeRooms():void
 
 	rooms["THICK MIST 1"] = new RoomClass(this);
 	rooms["THICK MIST 1"].roomName = "THICK\nMIST";
-	rooms["THICK MIST 1"].description = "The mist is incredibly thick here, obscuring almost everything around you. Every noise seems sharper and more imposing as you crunch blindly about, occasionally knocking into a tree or branch. Your {[pc.armor]/[pc.skinFurScales]} are damp from all the moisture in the air. Things are getting quite chilly.\n\nYou can hear a river to the west, which means you probably can't proceed that way. Everywhere else seems fine, you think...";
-	rooms["THICK MIST 1"].runOnEnter = mhengaVanaeCombatZone;
+	rooms["THICK MIST 1"].description = "";
+	rooms["THICK MIST 1"].runOnEnter = mhengaThickMistRoom1;
 	rooms["THICK MIST 1"].planet = "PLANET: MHEN'GA";
 	rooms["THICK MIST 1"].system = "SYSTEM: ARA ARA";
 	rooms["THICK MIST 1"].northExit = "MISTY VALLEY 2";

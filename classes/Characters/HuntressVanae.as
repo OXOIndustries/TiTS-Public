@@ -89,7 +89,7 @@ package classes.Characters
 			this.milkMultiplier = 100;
 			this.milkRate = 20;
 			this.milkFullness = 150;
-			this.milkType = GLOBAL.FLUID_TYPE_VANAE_MILK;
+			this.milkType = GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK;
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			
 			this.vaginas = [new VaginaClass()];
@@ -137,7 +137,14 @@ package classes.Characters
 			combatMaiden.setDefaultSexualPreferences();
 			
 			// Slightly better chance to get a spear
-			if (rand(10) <= 1) inventory.push(new VanaeSpear());
+			if (kGAMECLASS.debug)
+			{
+				combatMaiden.inventory.push(new VanaeSpear());
+			}
+			else
+			{
+				if (rand(10) <= 1) combatMaiden.inventory.push(new VanaeSpear());
+			}
 			
 			kGAMECLASS.foes.push(combatMaiden);
 		}
