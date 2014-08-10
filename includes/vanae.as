@@ -549,7 +549,6 @@ function vanaeTFScene():void
 
 			break;
 	}
-	output("\n\n");
 }
 
 function vanaeHeader(preName:String):void
@@ -999,7 +998,7 @@ function vanaeMaidenTakeVirginity():void
 	else output(" You know she's going to feel pain either way, so you don't screw around. With a single thrust you claim her womanhood, causing her to let out a sharp cry");
 	output("."); 
 
-	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her [monster.arms] around your neck. “<i>It's okay - keep going. I can take it.</i>”");
+	output("\n\nYou feel a warm trickle down your [pc.cock " + selCock + "] from her deflowering as she wraps her arms around your neck. “<i>It's okay - keep going. I can take it.</i>”");
 	if (!pc.isAss()) output(" At her insistence, you");
 	else output(" You");
 	output(" do just that, sliding your [pc.cock " + selCock + "] deeper into her virgin [monster.pussyNoun]. Her untraversed insides part around your swelling cock and mold freshly to your [pc.cockShape " + selCock + "] cocks shape.");
@@ -1720,7 +1719,7 @@ function vanaeHuntressPostVictoryScene():void
 	}
 	else
 	{
-		output("After she has finished, you make out with the amazonian woman. At first she is surprised, but soon she is wrapping her [monster.arms] around your neck and moaning into your lips. When you finally pull away she lets out a wistful noise, as if she wanted to kiss for quite a bit longer.");
+		output("After she has finished, you make out with the amazonian woman. At first she is surprised, but soon she is wrapping her arms around your neck and moaning into your lips. When you finally pull away she lets out a wistful noise, as if she wanted to kiss for quite a bit longer.");
 
 		if (pc.isMischievous())
 		{
@@ -1820,8 +1819,11 @@ function vanaeHuntressPCDefeat():void
 		}
 	}
 
-	// Squirt N Jerk -- Must have a cunt
-	options.push(vanaeHuntressPCDefeatSquirtNJerk);
+	// Squirt N Jerk
+	if (pc.hasCock()) options.push(vanaeHuntressPCDefeatSquirtNJerk);
+	
+	// Cunni
+	if (pc.hasVagina()) options.push(vanaeHuntressPCDefeatCunnilingus);
 
 	// Tentafuck -- vagOrAss enabled, but makes reference to bits so no neuters
 	if (pc.hasCock() || pc.hasVagina()) options.push(vanaeHuntressPCDefeatTentafux);
@@ -1980,7 +1982,7 @@ function vanaeHuntressPCDefeatMilkbath():void
 	output("\n\n“<i>I'm not going to even touch you,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my dear");
 	else output(" off-worlder");
-	output(". How would you like a nice bath?.</i>” The exotic huntress purrs, pulling herself off your body, and standing upright. The [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. “<i>I'm going to bathe you with my special milk for a bit, I'm sure you'll enjoy it. You'll be pumping out plenty of your delicious ");
+	output(". How would you like a nice bath?</i>” The exotic huntress purrs, pulling herself off your body, and standing upright. The [monster.milk] dribbling from her [monster.breasts] begins to turn a far richer hue. “<i>I'm going to bathe you with my special milk for a bit, I'm sure you'll enjoy it. You'll be pumping out plenty of your delicious ");
 	if (pc.hasVagina()) output("girl-");
 	output(" cream in no time.</i>”");
 
@@ -2071,6 +2073,78 @@ function vanaeHuntressPCDefeatMilkbath():void
 	genericLoss();
 }
 
+function vanaeHuntressPCDefeatSquirtNJerk():void
+{
+	// Must have Cock
+	// Min Girth 0.5 inch
+	// Min Length 1 inch
+
+	output("\n\nThe exotic alien huntress purrs, sliding down your body");
+	if (!pc.isNude()) output(" and stripping off your [pc.armor]");
+	else output(" and dragging her naked self along your [pc.skin]");
+	output(". You can feel her pointedly rubbing against [pc.eachCock]. “<i>How about I pleasure");
+	if (pc.cocks.length == 1) output(" this");
+	else output(" these");
+	output(" for you, hmm? But first, let's get you a little bit more prepared...</i>”");
+
+	output("\n\nYou like there helpless as she pulls away from you, cupping her [monster.breasts] with a mischievous smile. You marvel at how magnificent her fleshy peaks look as she pushes them up with her webbed hands, making them look even perkier. ");
+
+	output("\n\nShe squirts thick, gooey ropes of [monster.milk] from her [monster.nipples], dousing [pc.eachCock]. You let out a " + pc.mfn("masculine groan", "girlish moan", "breathy moan") + ", your slick staff");
+	if (pc.cocks.length > 1) output("s");
+	output(" titillated and twitching. Your aching flesh is completely covered in her violet fluid.");
+
+	output("\n\nAs it drools down your");
+	if (pc.balls > 0) output(" [pc.balls]");
+	else output(" buttocks");
+	output(" a delicious little shiver runs down your spine. Moving closer towards you, the alien female places her webbed hands on your shoulders, a cheeky smile playing on her [monster.lips]. She's lubing you up, but for what? Suddenly, your loins start tingling and undergo some changes.");
+
+	// (TF SCENE)
+	output("\n\n");
+	vanaeTFScene();
+
+	output("\n\n“<i>Mmm, I think I missed a few spots. How about I rub it in for you?</i>” she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocks]. Violet and ivory tentacles reach out and sensuously caress your [pc.cockHeads].");
+
+	output("\n\nAs one of her tenta-tips wiggle and dip into your sticky cock hole");
+	if (pc.cocks.length > 1) output("s");
+	output(" you shudder with delight, arching your back into her ministrations. She continues to tease your dilating tip");
+	if (pc.cocks.length > 1) output("s");
+	output(" and deliver torturous amounts of pleasure. ");
+
+	output("“<i>You really like my tentacles, don't you? I bet you'd just love it if I did this.</i>” She gives a wicked little smile, wrapping your [pc.cocks]");
+	if (pc.balls > 0) output(" and [pc.balls]");
+	output(" in a mass of her tentacles. Soon they are being deliciously squeezed, applying sticky friction to every inch of your length");
+	if (pc.cocks.length > 1) output("s");
+	output(". You whimper in delight, your [pc.hips] wiggling as you struggle to contain the rapidly rising explosion threatening to overtake your loins.");
+
+	output("\n\nHer coils utterly bombard your senses as they rub and writhe in different directions, a sticky, smacking noise filling the air. Soon her suckers are clamping onto your");
+	if (pc.balls > 0) output(" [pc.sack],");
+	output(" length");
+	if (pc.cocks.length > 1) output("s");
+	output(" and [pc.eachCockHead], tugging strongly at your sensitive flesh. It feels as if your genitals are being given a hundred hickeys from every angle. “<i>I think you're almost there. Just let it go, shoot it all out.</i>”");
+
+	output("\n\nPurringly coaxing you, the alien huntress speeds up her massage, vigorously jerking you off in an completely unpredictable way. You can't hold out against the sensations assaulting your [pc.cocks], crying out as you reach that inevitable peak. You groan long and low as you spasmically shoot your [pc.cum] into the writhing, violet mess.");
+
+	output("\n\nAs you deliciously shudder and spill your seed all over her tentacles she cups her [pc.breasts] once more, basting your [pc.cocks] once more in her nipple liquid. Your hot [pc.cumNoun] spurts point blank into her sticky boob milk, mixing in as she wrings your junk for every last drop. You groan long and low, knowing with this you have been utterly defeated by the alien huntress.");
+
+	output("\n\n... An hour later...");
+
+	output("\n\nYour mind is spinning in a deliciously delirious haze. Forced to orgasm countless times into her writhing tentacles, your entire body feels impossibly heavy. You are utterly covered in your own [pc.cum] in an embarrassing mess. She's sapped you dry, your love milk floating around in her luminescent ink. ");
+
+	pc.orgasm();
+	monster.orgasm();
+
+	output("\n\nMeanwhile, the vanae huntress patiently scoops up every drip of your");
+	if (pc.hasCock()) output(" [pc.cum]");
+	if (pc.hasCock() && pc.hasVagina()) output(" and");
+	if (pc.hasVagina()) output(" [pc.girlcum]"); 
+	output(" with her tentacles. She spoons it into her [monster.pussy] and then scoops up her [monster.milk], rubbing it along her slit to seal in the juices. What little dribbles she can't collect she laps up with her tongue in a lewd, amorous display.");
+
+	output("\n\nYou can taste it as she kisses you goodbye, thanking you for the meal. She then retreats into the Mhen'gan jungle and leaves you there, naked and spent.");
+
+	processTime(90+rand(25));
+	genericLoss();
+}
+
 function vanaeHuntressPCDefeatTitfux():void
 {
 	// Must have Cock
@@ -2151,7 +2225,7 @@ function vanaeHuntressPCDefeatTitfux():void
 	genericLoss();
 }
 
-function vanaeHuntressPCDefeatSquirtNJerk():void
+function vanaeHuntressPCDefeatCunnilingus():void
 {
 	// Must have Vagina
 
