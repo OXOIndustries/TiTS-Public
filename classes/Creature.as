@@ -3209,6 +3209,7 @@
 					sBuilder += ", ";
 					sBuilder += pregDescripts[rand(pregDescripts.length)] + " ";
 				}
+				else sBuilder += " ";
 			}
 			//Pregnant Stuff - 25% chance (note there's a 25% chance of occurring with belly size for 50% total)
 			else if(isPregnant() && rand(2) == 0)
