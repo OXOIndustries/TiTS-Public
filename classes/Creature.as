@@ -1278,6 +1278,7 @@
 					buffer = cockNounComplex(arg2);
 					break;
 				case "cockNounSimple":
+				case "cockNoun":
 					buffer = simpleCockNoun(arg2);
 					break;
 				case "cocksNounSimple":
