@@ -976,7 +976,7 @@ function vanaeMaidenTakeVirginity():void
 		else output(" It feels so soft");
 		output(" and so strangely shaped! I've never touched a male sex organ before.</i>” Her cheeks flush. As you begin to swell and stiffen she jumps back in surprise. “<i>... It moves?! Mine doesn't do that!</i>”");
 
-		output("\n\nYou tell her that it's perfectly normal, and she seems to settle down. She then begins to position herself above your [pc.cock " + selCock + "].You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.pussyNoun] and [monster.clits].");
+		output("\n\nYou tell her that it's perfectly normal, and she seems to settle down. She then begins to position herself above your [pc.cock " + selCock + "]. You can see right up her short tentacle skirt, getting an eyeful of her bald [monster.pussyNoun] and [monster.clits].");
 
 		output("\n\nSlowly crouching down on top of you, she grabs your [pc.cock " + selCock +"] with one hand and rubs it against her moist, virginal slit. Since she's rushed to put you inside of her, you're not hard enough, and your [pc.cockHead " + selCock + "] keeps refusing to press inside of her entrance.");
 
@@ -1024,7 +1024,7 @@ function vanaeMaidenTakeVirginity():void
 
 	output("\n\nHer pussy is lined with hundreds of little bumps which pleasurably stroke your [pc.cockNoun " + selCock + "] as you push further inside of her. Finally your [pc.cockHead " + selCock + "] is resting against her deepest point. You swell with the knowledge you have completely deflowered and claimed her amazonian [monster.pussyNoun], every inch now squeezing around your throbbing length.");
 
-	output("\n\n“<i>It stings a little, but at the same time, feels really good.</i>” the young huntress breathily exclaims, wiggling her [monster.ass] in your lap. Her movements cause your [pc.cock “<i> + selCock + “<i>] to churn around deep inside of her [monster.pussy], forcing a girlish moan from her [monster.lips].");
+	output("\n\n“<i>It stings a little, but at the same time, feels really good.</i>” the young huntress breathily exclaims, wiggling her [monster.ass] in your lap. Her movements cause your [pc.cock " + selCock + "] to churn around deep inside of her [monster.pussy], forcing a girlish moan from her [monster.lips].");
 
 	output("\n\nAll of a sudden there is a shifting sensation around your [pc.cock " + selCock + "] and it feels as if it is being licked by hundreds of tiny tongues. You realise that her [monster.pussy] is not lined with bumps, but feelers lying flush. Now awake for the first time, they lap eagerly at your length inside her incredibly narrow passage. As alien as it is, it feels <i>sooo good</i>.");
 
