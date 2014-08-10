@@ -265,7 +265,7 @@ function shipMenu():Boolean {
 		setLocation("SHIP\nINTERIOR","MHEN'GA","SYSTEM: ARA ARA");
 	}
 	else if(shipLocation == "201") setLocation("SHIP\nINTERIOR","TARKUS","SYSTEM: REDACTED");
-	else if(shipLocation == "TEXAS CUSTOMS") setLocation("SHIP\nINTERIOR","NEW TEXAS","SYSTEM: NYE");
+	else if(shipLocation == "500") setLocation("SHIP\nINTERIOR","NEW TEXAS","SYSTEM: NYE");
 	if(currentLocation == "SHIP INTERIOR") {
 		if(crew(true) > 0) {
 			this.addButton(8,"Crew",crew);
@@ -276,6 +276,13 @@ function shipMenu():Boolean {
 
 function flyMenu():void {
 	clearOutput();
+	if(pc.hasStatusEffect("Disarmed"))
+	{
+		output("<b>Your gear is still locked up in customs. You should go grab it before you jump out of system.");
+		clearMenu();
+		addButton(14,"Back",mainGameMenu);
+		return;
+	}
 	output("Where do you want to go?");
 	this.clearMenu();
 	if(shipLocation != "TAVROS HANGAR") 
@@ -291,7 +298,7 @@ function flyMenu():void {
 		else addDisabledButton(2,"Tarkus");
 	}
 	else addDisabledButton(2,"Locked","Locked","You need to find your father's probe on Mhen'ga to get this planet's coordinates.");
-	if(shipLocation != "TEXAS CUSTOMS") addButton(3,"New Texas",flyTo,"New Texas");
+	if(shipLocation != "500") addButton(3,"New Texas",flyTo,"New Texas");
 	else addDisabledButton(3,"New Texas","New Texas","You're already there.");
 	this.addButton(14,"Back",mainGameMenu);
 }
@@ -334,10 +341,9 @@ function flyTo(arg:String):void {
 		output("\n\nYour nav beacon guides you in most of the way, directing you towards what looks like a derelict capital ship in the middle of a great red wasteland, littered with debris from all manner of machines and vessels. This whole planet is little more than a junkyard, a once-ripe world ravished by the march of a civilization that has left little more than its garbage in its wake. You shudder at the sight of the ruined landscape as you're guided in toward an open docking bay on the side of the ancient-looking, monolithic ship, flying past a glowing hull plate reading NOVA. It looks vaguely like a human vessel, but not of a make or model you've ever seen, and it looks centuries old, a derelict of ancient days. How'd it get all the way out here? Benching the question for now, you loop around the broadside of the capsized capital ship, easing into your appointed docking bay - a hastily spray-painted square on the deck, surrounded by other explorers' ships.");
 	}
 	else if(arg == "New Texas") {
-		shipLocation = "TEXAS CUSTOMS";
-		currentLocation = "TEXAS CUSTOMS";
-		output("You fly to New Texas");
-		output(" and step out of your ship.");
+		shipLocation = "500";
+		currentLocation = "500";
+		landOnNewTexas();
 	}
 	processTime(600 + rand(30));
 	this.clearMenu();

@@ -1,4 +1,24 @@
-﻿//output("\n\nCustoms & Check-in");
+﻿//Landing on New Texas (First Time)
+function landOnNewTexas():void
+{
+	if(flags["LANDED_ON_TEXAS"] == undefined)
+	{
+		flags["LANDED_ON_TEXAS"] = 1;
+		CodexManager.unlockEntry("The Treatment");
+		output("A bright green world comes into view ahead: a planet of small, scattered oceans, rolling plains, and clear weather. At first glance, New Texas looks like a male paradise world, peaceful and idyllic. The space lanes around the planet are mostly clear, letting you punch in the auto-lander and sit back as your ship’s computers guide you down to the surface. The clouds roll past you as your ship cruises down toward the largest continent.");
+		output("\n\nYour auto-nav guides you down toward the most popular tourist spot on the planet, a particularly large ranch owned by the planetary governor. You bring up a few articles on the place: the extranet is full of holo-pics of busty, bovine-like human girls milling about the ranch, as well as reviews of an amazing barbeque joint and a something simply called the Treatment, which has all but made the planet what it is today. A whole planetary society based on gene mods... interesting.");
+		output("\n\nThe computer alerts you to imminent landing. You cast a glance out your viewscreen just in time to see a monolithic barn coming into view, easily the size of two city blocks back to back on each side. As you approach, the roof of the barn shudders and begins to split, separated by two massive hydraulic arms that create an opening wide enough for a frigate to pass through. Your ship slows, guided in by the automatic docking protocols as it passes between the raised slates of the barn-dock’s roof. Inside, you can see a handful smaller cargo haulers and touristy passenger ships docked below, each pulled into an oversized, self-contained “<i>stall.</i>” You feel a slight shudder in the deck as your ship lands on the hay-covered floor, quickly surrounded by several buff, burly dock workers, each with a pair of bull horns growing from his head. ");
+		output("\n\nA heavy loader latches onto your ship, dragging it into a stall as you gather your gear and prepare to head out. Your docking ramp touches down just as the suit releases your ship. Several of the buff, bovine men working nearby give you ");
+		if(pc.mf("dude","chick") == "dude") output("friendly nods");
+		else output("askance, hungry looks");
+		output(" as you disembark. A sign nearby points you to “<i>Customs and Visitor Check-in.</i>”");
+	}
+	else output("You fly to New Texas and step out of your ship.");
+}
+
+
+
+//output("\n\nCustoms & Check-in");
 //output("\n\nRoom Description");
 function customsAndCheckInOnNewTexas():Boolean
 {
@@ -29,7 +49,7 @@ function customsAndCheckInOnNewTexas():Boolean
 		output(". Sometimes when she does so, Ogram will flick a button on his holo terminal, which immediately causes Amma to squirm in her seat.");
 		if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined) output(" What kind of game are they playing?");
 		addButton(0,"Ogram",repeatOgramApproach,undefined,"Ogram","Talk to the burly bull at the customs desk.");
-		addButton(5,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor's desk.")
+		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor's desk.")
 	}
 	return false;
 }
@@ -575,7 +595,7 @@ function worshipZeBullCawk():void
 	if(9999 == 9999) output(", your sense of self and decency, all hints of civilized behavior from your former, pre-Treated life crumble away");
 	output(". Your mind is left with only one, overpowering and all-consuming thought: cock.");
 
-	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your " + pc.mf("","<i>dainty</i> ") + "fingers circling around his apple-sized nads, gently cupping an hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");
+	output("\n\nYour fingers brush across the hard, hot length of Ogram’s shaft, tracing down along the veiny tool until you find the thick, densely-packed mound of pubic hair surrounding its sheath and, below that, the meaty sacks of his balls. Og’s breath catches in a pleasured gasp as your " + pc.mf("","<i>dainty</i> ") + "fingers circle his apple-sized nads, gently cupping and hefting them. God, they’re so <i>full</i>... you can practically hear them sloshing with pent-up seed as you caress the swollen sack, gently rolling the heavy orbs between your worshipful fingers. With a grunt, Ogram slumps back against the desk, supporting himself as sensation washes across his rod and sack as both you and Amma explore the mass of cockflesh on offer. ");
 
 	output("\n\n“<i>Take it easy down there, " + pc.mf("buddy","beautiful") + ",</i>” Og says, planting one of his huge, powerful hands atop your head");
 	if(pc.earType == GLOBAL.TYPE_FELINE || pc.earType == GLOBAL.TYPE_CANINE) 
@@ -585,7 +605,7 @@ function worshipZeBullCawk():void
 		else output("feline");
 		output(" ears");
 	}
-	output(". It takes a moment to settle in just hor right that feels, you on your [pc.knees] before a towering male, worshipping at the aromatic altar of his manhood, his strong arm guiding you gently to your task; by now, it’s impossible to ignore just how ");
+	output(". It takes a moment to settle in just how right that feels, you on your [pc.knees] before a towering male, worshipping at the aromatic altar of his manhood, his strong arm guiding you gently to your task; by now, it’s impossible to ignore just how ");
 	if(pc.hasCock()) output("hard");
 	else if(pc.hasVagina()) output("wet");
 	else output("hot");
@@ -600,18 +620,18 @@ function worshipZeBullCawk():void
 	//if not Treated:
 	if(9999 == 0) output(" Is this what it’s like to be Treated? God, you almost want to find out....");
 
-	output("\n\nIt takes you minutes to work your way up to the crown of Ogram’s cock. Time blurs as you and Amma work, your bodies swaying like branches from the trunk of Og’s member as he guides you up and down his mammoth length, again and again until his crimson cockflesh is glistening with wetness, all but drooling as you and Amma slavishly shine him down. Only the sudden emptiness as your mouth closes around air breaks you out of your lusful trance, bringing you back to the realization that you’ve come to the pointed tip of Ogram’s manhood. You lock eyes with Amma for a split second, and get the cow’s approving nod. Looks like she really is willing to share her big ol’ bull with you! You  give her the biggest, dopiest smile you can manage through your cockhungry haze and lock your lips around the head of his cock.");
-	output("\n\n“<i>Just open wide and hold still, babe!</i>” Amma says, shifting behind you, her big milky tits pressing into your back, arms locking around you to hold you steady as Ogram begins to press his hips forward into your waiting [pc.lips]. Your gag reflexes cut in, nearly choking you on the incredibly lengthy cock being fucking into your mouth until ");
+	output("\n\nIt takes you minutes to work your way up to the crown of Ogram’s cock. Time blurs as you and Amma work, your bodies swaying like branches from the trunk of Og’s member as he guides you up and down his mammoth length, again and again until his crimson cockflesh is glistening with wetness, all but drooling as you and Amma slavishly shine him down. Only the sudden emptiness as your mouth closes around air breaks you out of your lustful trance, bringing you back to the realization that you’ve come to the pointed tip of Ogram’s manhood. You lock eyes with Amma for a split second, and get the cow’s approving nod. Looks like she really is willing to share her big ol’ bull with you! You  give her the biggest, dopiest smile you can manage through your cockhungry haze and lock your lips around the head of his cock.");
+	output("\n\n“<i>Just open wide and hold still, babe!</i>” Amma says, shifting behind you, her big milky tits pressing into your back, arms locking around you to hold you steady as Ogram begins to press his hips forward into your waiting [pc.lips]. Your gag reflexes cut in, nearly choking you on the incredibly lengthy cock being fucked into your mouth until ");
 	if(9999 == 9999) output("you desperately suppress it, too eager for a taste of Ogram’s seed to be deterred");
-	else output("until your Treated instincts kick in, and you suddenly relax at the masculine intrusion");
+	else output("your Treated instincts kick in, and you suddenly relax at the masculine intrusion");
 	output(". The sheer force of his insertion nearly pushes you back, but Amma’s quick to catch you, resting your head into her pillowy-soft chest, letting you ease back into the squishy cow-tits as Ogram spreads your throat wide on his cock.");
 
 	output("\n\n“<i>Nice and tight,</i>” he says with a grunt of approval as his hefty nads knock against your chin. “<i>Awesooome.</i>”");
 	output("\n\n“<i>[pc.He]’s pretty great, huh?</i>” Amma teases, shifting her tits around your head. “<i>Don’t hold on for me, Oggy! I can get a load any time, after all...</i>”");
 	output("\n\nHe laughs, and plants his big hands on your shoulders. “<i>So generous today. Alright, " + pc.mf("buddy","beautiful") + ", just stay still a minute more.</i>”");
-	output("\n\nYou’re not sure you can wait that long... but by God you’ll try. Anything is worth the sweet release of your bullish mate. He starts to thrust, fucking your mouth like an onahole, pounding you back into the soft buffer of his lover’s udders, her flesh rippling with every impact as his speed mounts. Faster and harder, each thrust carrying his titanic cock deeper inside you until you’re stomach feels like it’s bulging with his sheer length, your throat stretching like a well-trained pussy around him. You can feel every pulse of his heartbeat through his cock now, every shudder he makes as you pleasure him, the swelling of his member as your tight throat brings him to orgasm.");
-	output("\n\n“<i>Deep breath!</i>” he shouts, moments before he cums. You have just enough time to do so before he rams his cock down to the hilt and unloads, bypassing your mouth entirely and shooting his wad right into your gut. You gasp and gag, unable to breathe as he cums, bloating your belly with a monstrous load of seed. You’re all but seeing stars by the time he starts to withdraw, still spewing spunk into you from his visibly lightning balls. The tip pops out of your mouth just at the tail end of his climax, blasting your tongue with a thick spray, following by your face and Amma’s, marking you both as Ogram’s bitches. You both eagerly open wide for the bull’s load, happily accepting his seed as it sprays across your faces until you’re dripping with it.");
-	output("\n\nYou’d probably have collapsed if not for Amma behind you, gently rocking you as Ogram’s finishes with you. “<i>You did good, honey!</i>” she coos, her breath hot and heavy against your [pc.ear]. “<i>Oggy hasn’t shot a load like that in ages!</i>”");
+	output("\n\nYou’re not sure you can wait that long... but by God you’ll try. Anything is worth the sweet release of your bullish mate. He starts to thrust, fucking your mouth like an onahole, pounding you back into the soft buffer of his lover’s udders, her flesh rippling with every impact as his speed mounts. Faster and harder, each thrust carrying his titanic cock deeper inside you until your stomach feels like it’s bulging with his sheer length, your throat stretching like a well-trained pussy around him. You can feel every pulse of his heartbeat through his cock now, every shudder he makes as you pleasure him, the swelling of his member as your tight throat brings him to orgasm.");
+	output("\n\n“<i>Deep breath!</i>” he shouts, moments before he cums. You have just enough time to do so before he rams his cock down to the hilt and unloads, bypassing your mouth entirely and shooting his wad right into your gut. You gasp and gag, unable to breathe as he cums, bloating your belly with a monstrous load of seed. You’re all but seeing stars by the time he starts to withdraw, still spewing spunk into you from his visibly lightening balls. The tip pops out of your mouth just at the tail end of his climax, blasting your tongue with a thick spray, following by your face and Amma’s, marking you both as Ogram’s bitches. You both eagerly open wide for the bull’s load, happily accepting his seed as it sprays across your faces until you’re dripping with it.");
+	output("\n\nYou’d probably have collapsed if not for Amma behind you, gently rocking you as Ogram finishes with you. “<i>You did good, honey!</i>” she coos, her breath hot and heavy against your [pc.ear]. “<i>Oggy hasn’t shot a load like that in ages!</i>”");
 	output("\n\nHe chuckles. “<i>She’s being modest, " + pc.mf("buddy","beautiful") + ". But seriously: if you suck cock that good, you’re welcome back any time.\</i>”");
 	if(pc.hasCock()) 
 	{
