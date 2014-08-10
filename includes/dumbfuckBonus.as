@@ -53,7 +53,7 @@ public function goAheadAndDumbfuck():void
 	{
 		output("You pop the pill but don't really feel any different. The initial changes from the first dose were totally permanent, so unless you let yourself climax, it's no big deal. Your hands slowly stroke your ");
 		if(pc.balls > 0) output("[pc.balls]");
-		output("inner thighs");
+		else output("inner thighs");
 		output(" as you bite your lip and try to stop yourself. It's going to be a long, long day.");
 	}
 	//10 lust
