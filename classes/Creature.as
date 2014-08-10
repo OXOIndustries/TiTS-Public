@@ -3432,6 +3432,16 @@
 			}
 			return -1;
 		}
+		public function hasCombatStatusEffect(storageName: String):Boolean {
+			var array:Array = statusEffects;
+			var counter: Number = array.length;
+			if (array.length <= 0) return false;
+			while (counter > 0) {
+				counter--;
+				if (array[counter].storageName == storageName && array[counter].combatOnly) return true;
+			}
+			return false;
+		}
 		public function setStatusMinutes(storageName: String, newMinutes:int)
 		{
 			var counter: Number = statusEffects.length;

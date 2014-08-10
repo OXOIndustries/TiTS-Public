@@ -427,6 +427,19 @@ function equipItem(arg:ItemSlotClass):void {
 	
 	clearOutput();
 	output("You equip your " + arg.longName + ".");
+	//Clear disarm if appropriate.
+	if(pc.hasStatusEffect("Disarmed") && (arg.type == GLOBAL.MELEE_WEAPON || arg.type == GLOBAL.RANGED_WEAPON))
+	{
+		if(pc.hasCombatStatusEffect("Disarmed"))
+		{
+			output("<b> You are no longer disarmed!</b>");
+			pc.removeStatusEffect("Disarmed");
+		}
+		else
+		{
+			output("<b> Once you get your gear back, this will be equipped.</b>");
+		}
+	}
 	//Set the quantity to 1 for the equipping, then set it back to holding - 1 for inventory!
 	if(arg.type == GLOBAL.ARMOR || arg.type == GLOBAL.CLOTHING) 
 	{
