@@ -271,7 +271,7 @@ function buttfuckDefeatedZil():void {
 	userInterface.showBust("ZIL");
 	userInterface.showName("MALE\nZIL");
 	if(pc.isNice()) output("Chuckling happily, you tell the zil that you have every intention of playing with him for as long as possible.");
-	else if(pc.isMischievous()) output("Grinning mischieviously, you inform the poor zil that you're going to have quite a bit of fun with him.");
+	else if(pc.isMischievous()) output("Grinning mischievously, you inform the poor zil that you're going to have quite a bit of fun with him.");
 	else output("Lording a cruel smile over your latest prey, you let him know that you're going to have quite a lot of fun with him.");
 	output(" He looks up hopefully at your statement, but you grab him by his shoulders and spin him around, pushing him forward so that he's on his hands and knees, ass in the air.  His cute little ball-sack glistens with sweat from your recent exchange, connected by a narrow strip of soft taint to his tight, winking anus.  Combined with his well-filled foreskin, the male's softest, most vulnerable points are all lined up and displayed for you, one erotic line of pliant flesh sandwiched between the glossy, chitinous plates of his cheeks.");
 	
