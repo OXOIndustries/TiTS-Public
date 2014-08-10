@@ -970,7 +970,7 @@ function vanaeMaidenTakeVirginity():void
 
 		output("Getting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she’s ever felt a cock, let alone one like yours.");
 
-		output("“<i>...");
+		output(" “<i>...");
 		if (pc.cocks[selCock].cLength() <= 5) output(" It's smaller than I thought");
 		else if (pc.cocks[selCock].cLength() >= 10) output(" It feels so large");
 		else output(" It feels so soft");
