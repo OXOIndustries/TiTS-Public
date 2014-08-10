@@ -26,7 +26,8 @@ package classes.Items.Apparel
 			
 			this.description = "a mark one suit of Xenogen's Atma Armor";
 			this.tooltip = "Xenogen Industries patented Atma Armor, Mark One. It is designed to auto-administer chemical suppressants when the wearer is subjected to arousing stimuli, aphrodisiacs, or pheromones. Guaranteed to reduce workplace sexual harassment claims.";
-			
+			TooltipManager.addTooltip(this.shortName, this.tooltip);
+
 			this.attackVerb = "";
 			
 			this.bonusLustVuln = -0.3;

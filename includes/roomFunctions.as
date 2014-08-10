@@ -585,8 +585,8 @@ function mhengaSalvageFromCamp():void
 	
 	if (flags["SALVAGED VANAE CAMP"] == undefined)
 	{
-		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a heavily damaged container, you discover a set of some kind of augmented armor."); // I have no idea what this item is supposed to look like.
-		quickLoot([new AtmaArmor()]);
+		output("You find something of interest stashed in one of the many storage containers scattered around the camp. Gingerly lifting the lid of a heavily damaged container, you discover a set of some kind of augmented armor. "); // I have no idea what this item is supposed to look like.
+		quickLoot(new AtmaArmor());
 		flags["SALVAGED VANAE CAMP"] = 1;
 		return;
 	}

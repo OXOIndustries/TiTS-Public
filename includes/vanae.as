@@ -20,11 +20,8 @@ public function encounterVanae(isHuntress:Boolean):void
 
 	//First Encounter
 
-	if ((isHuntress && flags["ENCOUNTERED VANAE HUNTRESS"] == undefined) || (!isHuntress && flags["ENCOUNTERED VANAE MAIDEN"] == undefined))
+	if (!CodexManager.entryUnlocked("Vanae"))
 	{
-		if (isHuntress) flags["ENCOUNTERED VANAE HUNTRESS"] = 1;
-		else flags["ENCOUNTERED VANAE MAIDEN"] = 1;
-
 		CodexManager.unlockEntry("Vanae");
 
 		output("As you move through the jungle, your codex suddenly begins to beep out a warning. “<i>Vanae life-signs detected! Collecting all known extranet data on this species...</i>”");
@@ -114,7 +111,7 @@ public function encounterVanae(isHuntress:Boolean):void
 	// REPEAT SCENE
 	else
 	{
-		output("\n\nAs you move through the jungle, your Codex beeps out a warning. “<i>Vanae life-signs detected!</i>”");
+		output("As you move through the jungle, your Codex beeps out a warning. “<i>Vanae life-signs detected!</i>”");
 
 		output("\n\nYou instinctively leap back and ready your");
 		if (!(pc.rangedWeapon is EmptySlot)) output(" [pc.rangedWeapon]");
@@ -136,13 +133,13 @@ public function encounterVanae(isHuntress:Boolean):void
 		// IF MAIDEN VANAE
 		else
 		{
-		output("You're glad you moved first, because a vanae maiden lands right where you were standing. She hits the ground awkwardly, toppling over and very nearly braining herself.");
+			output("You're glad you moved first, because a vanae maiden lands right where you were standing. She hits the ground awkwardly, toppling over and very nearly braining herself.");
 
-		output("\n\n“<i>Owww! How’d you see me coming? That’s not fair!</i>” You hear your attacker cry out pitifully. She seems perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
+			output("\n\n“<i>Owww! How’d you see me coming? That’s not fair!</i>” You hear your attacker cry out pitifully. She seems perplexed at your ability to sense her beforehand. You’re pretty sure she wouldn’t get it even if you explained it to her.");
 
-		output("\n\nThe pink-haired vanae quickly pulls herself to her feet, levelling her spear at you. “<i>S-stop right there, you! You're going to " + pc.mf("take my virginity - and you better be gentle!", "be my first - so I hope you like girls!") + "</i>”");
+			output("\n\nThe pink-haired vanae quickly pulls herself to her feet, levelling her spear at you. “<i>S-stop right there, you! You're going to " + pc.mf("take my virginity - and you better be gentle!", "be my first - so I hope you like girls!") + "</i>”");
 
-		output("\n\nThe vanae maiden that attacked you is sporting a pair of [vanaeMaiden.breastCupSize]s. This seems to be her first time hunting for a mate.");
+			output("\n\nThe vanae maiden that attacked you is sporting a pair of [vanaeMaiden.breastCupSize]s. This seems to be her first time hunting for a mate.");
 		}
 	}
 
