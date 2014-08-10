@@ -263,7 +263,12 @@ function rideFollowerReahasStrapon():void {
 	if(flags["REAHA_FREE"] == 1) output("grins");
 	else output("nods obediently");
 	output(", slipping out of your arms to pull out a footlocker from under her bed, bending over as she does so and giving you a long look at her big, luscious ass; seeing that heart-shaped slab of cow-meat waving so invitingly in front of you is just too much to resist. You step up behind the bovine beauty, giving her a playful swat on the rear, leaving a hand-shaped red patch over her sailor's tattoo. Reaha gives a little yelp of surprise, but with the patches she wears, just about any touch is pleasurable: she wiggles her ass for you, grinding it back against your crotch and teasing your nose with the fluffy poof at the end of her slender tail. Grinning, you give the lusty cow another spank, sending her flesh jiggling");
-	if(pc.hasCock()) output(" around [pc.oneCock], teasing the flaccid length until your rising lust has it bulging against the seams of your [pc.armor], desperate to plunge into the wet, inviting warmth of Reaha's pussy, so close to your [pc.skin] that you can feel the heat billowing off her slick lower lips");
+	if(pc.hasCock()) 
+	{
+		output(" around [pc.oneCock], teasing the flaccid length until your rising lust has it bulging");
+	 	if(pc.armor.shortName != "") output(" against the seams of your [pc.armor]");
+	 	output(", desperate to plunge into the wet, inviting warmth of Reaha's pussy, so close to your [pc.skin] that you can feel the heat billowing off her slick lower lips");
+	}
 	output(". She gives you a teasing look over her shoulder, moving her hips rhythmically as you slap her tattooed ass again, grinding her slick slit against your [pc.leg] until she's trembling with pleasure.");
 
 	output("\n\nWith shaking hands, Reaha finally manages to find what she was looking for: a black leather set of crotchless underwear, with a harness holding a two-foot long double-ended dildo in place. <i>\"H-how about this?\"</i>  she asks, never missing a beat with those inhuman hips of hers, pressing even harder against your ");
