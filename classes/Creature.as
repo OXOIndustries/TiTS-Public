@@ -2178,6 +2178,8 @@
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
+			//No proper shield generator? NO SHIELD!
+			if(shield.shields == 0) temp = 0;
 			return temp;
 		}
 		public function sexiness(): Number {
