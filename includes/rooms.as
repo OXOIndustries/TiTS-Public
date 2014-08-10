@@ -3031,18 +3031,42 @@ function initializeRooms():void
 	//					NEW TEXAS ROOMS
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-
 	rooms["TEXAS CUSTOMS"] = new RoomClass(this);
 	rooms["TEXAS CUSTOMS"].roomName = "CUSTOMS\nOFFICE";
 	rooms["TEXAS CUSTOMS"].description = "";
 	rooms["TEXAS CUSTOMS"].runOnEnter = customsAndCheckInOnNewTexas;
-	//rooms["TEXAS CUSTOMS"].southExit = "211";
+	rooms["TEXAS CUSTOMS"].southExit = "501";
 	rooms["TEXAS CUSTOMS"].planet = "PLANET: NEW TEXAS";
 	rooms["TEXAS CUSTOMS"].system = "SYSTEM: NYE";
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.INDOOR);
 	rooms["TEXAS CUSTOMS"].addFlag(GLOBAL.NPC);
+
+	rooms["500"] = new RoomClass(this);
+	rooms["500"].roomName = "LANDING\nBARN";
+	rooms["500"].description = "The landing zone on T.'s Ranch in New Texas is as rustic as you could realistically make it: from the outside, the building looks like a monstrously large barn, complete with shingled roof and bright red paint job. From the inside, though, you can see it's clearly been designed as a landing zone for private starships: the roof retracts on a pair of powerful metal arms, opening and closing to allow access. The stalls where stallions or cows might be kept have been dramatically sized up like the rest of the barn, large enough to snugly house most commercial freighters and pleasure yachts. To the west, you can see several bull-men hefting crates and moving cargo from visiting ships.";
+	rooms["500"].runOnEnter = undefined;
+	rooms["500"].westExit = "501";
+	rooms["500"].planet = "PLANET: NEW TEXAS";
+	rooms["500"].system = "SYSTEM: NYE";
+	rooms["500"].addFlag(GLOBAL.INDOOR);
+	rooms["500"].addFlag(GLOBAL.SHIPHANGAR);
+
+	rooms["501"] = new RoomClass(this);
+	rooms["501"].roomName = "CARGO\nTHOROUGHFARE";
+	rooms["501"].description = "Naturally, next to the space dock you have the cargo deck. Here, crates full of offworld good and local produce are going back and forth on conveyer belts, overseen by several bull-men in overalls and caps. Most of the out-going produce is labeled \"milk,\" packaged in huge, temperature-controlled barrels. To the north. a small office has been set off from the rest of the barn with a big, friendly sign over the door labeled \"Customs.\" Your ship is parked back to the east.";
+	rooms["501"].runOnEnter = undefined;
+	rooms["501"].eastExit = "500";
+	rooms["501"].northExit = "TEXAS CUSTOMS";
+	rooms["501"].planet = "PLANET: NEW TEXAS";
+	rooms["501"].system = "SYSTEM: NYE";
+	rooms["501"].addFlag(GLOBAL.INDOOR);
 	
 
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//					SAENDRA QUEST!
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	// THE PHOENIX
 	rooms["PHOENIX RECROOM"] = new RoomClass(this);
 	rooms["PHOENIX RECROOM"].roomName = "PHOENIX:\nREC ROOM";
