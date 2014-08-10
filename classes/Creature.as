@@ -5070,8 +5070,8 @@
 			if (vaginas.length == 0) return 0;
 			var count: int = 0;
 			for (var x: int = 0; x++; x < vaginas.length) {
+				count += vaginas[x].clits;
 			}
-				count += vaginas.clits;
 			return count;
 		}
 		public function findFirstOfcType(type: Number = 0): Number {

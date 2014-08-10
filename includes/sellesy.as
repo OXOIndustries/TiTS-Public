@@ -717,7 +717,11 @@ function ladyType69WithSellesy():void
 			output(". “<i>Lick,</i>” you insist, echoing her earlier demand. Sellesy’s mumbled reply is inaudible through the [pc.butt] covering her head, but the pleasant vibrations do send a tingle to the base of your spine before she opens her lips and a wet muscle forces its way between your labia again. Her fingernails dig into your hips with such force that they ");
 			if(pc.skinType == GLOBAL.SKIN_TYPE_SKIN) output("mark the skin");
 			else output("would leave a mark on bare skin");
-			output(", and she stimulates your slit with a surprisingly long tongue, stroking the inside of your hole and darting out to pop your clitoris into her mouth like a cherry. The borderline abuse of your vagina by the re-energized Sellesy is enough to bring you to climax in minutes, and your pussy sputters out an orgasm");
+			output(", and she stimulates your slit with a surprisingly long tongue, stroking the inside of your hole and darting out to pop your clitoris into her mouth like a ");
+			if(pc.clitLength < 3) output("cherry");
+			else if(pc.clitLength < 5.5) output("small penis");
+			else output("throbbing phallus");
+			output(". The borderline abuse of your vagina by the re-energized Sellesy is enough to bring you to climax in minutes, and your pussy sputters out an orgasm");
 			if(pc.isSquirter()) output(" and a gob of [pc.girlCum] that lands right in Sellesy’s mouth. She coughs as you continue to drench her face with your ejaculation");
 			output(". Satisfied, you release Sellesy’s head.");
 			output("\n\nShe says nothing as you lay atop her, and you allow yourself to drift into a light sleep, expecting to find yourself alone when you awake.");
