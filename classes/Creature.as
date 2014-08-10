@@ -1417,6 +1417,8 @@
 					buffer = vaginaDescript(arg2);
 					break;
 				case "vaginaNounSimple":
+				case "vaginaNoun":
+				case "pussyNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
 				case "vaginas":
