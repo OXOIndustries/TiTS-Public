@@ -12,7 +12,7 @@
 		//constructor
 		public function Penny()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -140,9 +140,9 @@
 			this.vaginas[0].clits = 1;
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].loosenessRaw = 1;
-			this.vaginas[0].bonusCapacity = 0;
+			this.vaginas[0].bonusCapacity = 20;
 			//Goo is hyper friendly!
-			this.elasticity = 1;
+			this.elasticity = 3;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1;
 			this.clitLength = .5;
@@ -174,6 +174,12 @@
 			dataObject.aimRaw = 6;
 			dataObject.intelligenceRaw = 4;
 			dataObject.willpowerRaw = 3;
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			trace("PENNY UPGRADED");
+			dataObject.vaginas[0].bonusCapacity = 20;
+			dataObject.elasticity = 3;
 		}
 	}
 }
