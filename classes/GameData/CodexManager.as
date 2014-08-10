@@ -21,11 +21,13 @@ package classes.GameData
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_RACE] = "RACE";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_EVENT] = "EVENTS";
 			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_LOCATION] = "LOCATIONS";
+			CodexManager.CODEXCATEGORIES[CodexManager.CODEX_TYPE_ITEM] = "ITEMS";
 			
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_PERSON] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_RACE] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_EVENT] 		= new Object();
 			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_LOCATION] 	= new Object();
+			CodexManager.CODEXTREE[CodexManager.CODEX_TYPE_ITEM] 		= new Object();
 		}
 		
 		private static var ALWAYSUNLOCKEDENTRIES:Array;
@@ -40,6 +42,7 @@ package classes.GameData
 		public static const CODEX_TYPE_RACE:int 		= 2;
 		public static const CODEX_TYPE_EVENT:int 		= 3;
 		public static const CODEX_TYPE_LOCATION:int 	= 4;
+		public static const CODEX_TYPE_ITEM:int 		= 5;
 		
 		public static function addCodexEntry(codexType:int, treePosition:String, entryName:String, functor:Function, startsUnlocked:Boolean = false):void
 		{
