@@ -1,5 +1,7 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.Items.Apparel.AtmaArmor;
+import classes.Items.Apparel.NaleenArmor;
+import classes.Items.Apparel.TSTArmorMkII;
 import classes.Items.Apparel.UGCUniform;
 import classes.Items.Guns.EagleHandgun;
 import classes.Items.Guns.Goovolver;
@@ -75,23 +77,43 @@ function debugMenus():void
 	// Need the buttons back to test other stuff.
 	// NO END OF FUCKING COMPLAINTS I AM FUCKING CALLING IT NOW.
 	
-	addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
+	//addButton(0, "Lights Out", startLightsOut, testVictoryFunc);
 	
-	//addItemButton(0, new DBGShield(), function():void {
-		//output("\n\nDebug shield get.");
-		//
-		//var foundLootItems:Array = new Array();
-		//foundLootItems.push(new DBGShield());
-		//
-		//itemScreen = mainGameMenu;
-		//lootScreen = mainGameMenu;
-		//useItemFunction = mainGameMenu;
-		//
-		//itemCollect(foundLootItems);
-	//});
+	addItemButton(0, new AtmaArmor(), function():void {
+		output("\n\nAtmaArmor get.\n");
+		
+		var foundLootItems:Array = new Array();
+		foundLootItems.push(new AtmaArmor());
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
 	
-	addButton(1, "Unlock Saen", function():void {
-		flags["FALL OF THE PHOENIX STATUS"] = 1;
+	addItemButton(1, new NaleenArmor(), function():void {
+		output("\n\nNaleenscale Armor get.\n");
+		
+		var foundLootItems:Array = [new NaleenArmor];
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
+	});
+	
+	addItemButton(1, new TSTArmorMkII(), function():void {
+		output("\n\nNaleenscale Armor get.\n");
+		
+		var foundLootItems:Array = [new TSTArmorMkII];
+		
+		itemScreen = mainGameMenu;
+		lootScreen = mainGameMenu;
+		useItemFunction = mainGameMenu;
+		
+		itemCollect(foundLootItems);
 	});
 	
 	

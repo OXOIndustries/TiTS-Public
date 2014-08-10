@@ -84,7 +84,8 @@
 			this.critBonus = 0;
 			this.evasion = 0;
 			this.fortification = 0;
-			this.bonusResistances = new Array(0,0,0,0,0,0,0,0);
+			this.bonusResistances = new Array(0, 0, 0, 0, 0, 0, 0, 0);
+			this.bonusLustVuln = 0;
 			this.hardLightEquipped = false;
 		
 			this.isUsable = true;
@@ -153,6 +154,7 @@
 			compareString = mergeString(compareString, this.statDiff("sexiness",		"Sexiness",			this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shieldDefense",	"Shield Defense", 	this, oldItem));
 			compareString = mergeString(compareString, this.statDiff("shields", 		"Shields", 			this, oldItem));
+			compareString = mergeString(compareString, this.statDiff("bonusLustVuln",	"Lust Vulnerability",this, oldItem, true, true));
 			
 			// Damage Type & Bonus Resistances will be a pain in the cunt
 			
@@ -231,7 +233,7 @@
 		 * @param	oldItem				The item the "replacement" would displace
 		 * @return						Formatted HTML string
 		 */
-		private function statDiff(propertyName:String, displayAs:String, newItem:ItemSlotClass, oldItem:ItemSlotClass):String
+		private function statDiff(propertyName:String, displayAs:String, newItem:ItemSlotClass, oldItem:ItemSlotClass, asPercentage:Boolean = false, lowIsGood:Boolean = false):String
 		{
 			var resultString:String = "";
 			var closeFormatting:Boolean = false;
@@ -249,26 +251,56 @@
 				statDiff = newItemStat - oldItemStat;
 			}
 			
+			if (asPercentage)
+			{
+				statDiff = 100 * statDiff;
+				newItemStat = 100 * newItemStat;
+			}
+			
 			// Any stat with a difference, or A value
 			if (statDiff != 0 || newItemStat != 0)
 			{
-				resultString += displayAs + ": <b>" + newItemStat + "</b> ";
+				resultString += displayAs + ": <b>";
+				resultString += newItemStat;
+				if (asPercentage) resultString += "%";
+				resultString += "</b> ";
 				
-				// Figure out formatting shit
-				if (statDiff < 0)
+				if (!lowIsGood)
 				{
-					resultString += "<span class='bad'><b>(";
+					// Figure out formatting shit
+					if (statDiff < 0)
+					{
+						resultString += "<span class='bad'><b>(";
+					}
+					else if (statDiff > 0)
+					{
+						resultString += "<span class='good'><b>(+";
+					}
+					else if (statDiff == 0)
+					{
+						resultString += "<span class='words'><b>(";
+					}
 				}
-				else if (statDiff > 0)
+				else
 				{
-					resultString += "<span class='good'><b>(+";
-				}
-				else if (statDiff == 0)
-				{
-					resultString += "<span class='words'><b>(";
+					// Figure out formatting shit
+					if (statDiff > 0)
+					{
+						resultString += "<span class='bad'><b>(+";
+					}
+					else if (statDiff < 0)
+					{
+						resultString += "<span class='good'><b>(";
+					}
+					else if (statDiff == 0)
+					{
+						resultString += "<span class='words'><b>(";
+					}
 				}
 				
-				resultString += statDiff + ")</b></span>";
+				resultString += statDiff;
+				if (asPercentage) resultString += "%";
+				resultString += ")</b></span>";
 			}
 			
 			return resultString;
