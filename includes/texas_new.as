@@ -545,6 +545,7 @@ function spitRoastAmmoOnYerDicks():void
 	output("\n\n“<i>Definitely,</i>” Og chuckles. “<i>See you around, " + pc.mf("buddy","beautiful") + ".</i>”");
 
 	processTime(30+rand(15));
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
