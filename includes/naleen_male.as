@@ -18,6 +18,8 @@ Intro
 function naleenMaleEncounter():void
 {
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("FIGHT:\nNALEEN MALE");
 	if(flags["TIMES_MET_MALE_NALEEN"] == undefined)
 	{
 		output("\n\nAs you walk through the jungles, you do your best to keep alert, scanning for the danger that could come from any angle.  You are certain that you sense movement close to your [pc.feet]. You react as quickly as you can, falling into your combat stance and looking around, trying to establish just what it was that you sensed.");
@@ -64,6 +66,8 @@ Long hair: Kinda likes!
 
 function naleenMaleAI():void {
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("FIGHT:\nNALEEN MALE");
 	if(pc.hasStatusEffect("Naleen Coiled"))
 	{
 		//Req's PC constricted.
@@ -194,6 +198,8 @@ function dudeNaleenPounce():void {
 //Victory
 function defeatAMaleNaleen():void {
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	//Victory by HP
 	if(foes[0].HP() <= 0) {
 		output("The naleen struggles to lift his torso from the ground, too beaten to do anything but glare defiantly at you as he tries to slither away.");
@@ -227,6 +233,8 @@ function defeatAMaleNaleen():void {
 function leaveDefeatedDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	if(pc.isNice()) output("You’ve probably done enough already. You turn to leave, shooting him a victorious grin as you go.");
 	else if(pc.isMischievous()) output("Too bad you’re not really in the mood right now. He’s one lucky cat... or maybe not so lucky after all? You motion a small farewell to the prone naleen and move away.");
 	else output("You kick his tail away and tell him to scramble. You don’t have time to waste with wimps like him.\n\nThe naleen turns and slithers away as fast as he can, before you can change your mind.");
@@ -240,6 +248,8 @@ function leaveDefeatedDudeleen():void {
 function rideDudeleensWithAPussaaaaah():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	var x:int = pc.cuntThatFits(chars["NALEEN_MALE"].cockVolume(0));
 	if(x < 0) x = rand(pc.totalVaginas());
 	var y:int = -1;
@@ -440,6 +450,8 @@ function rideDudeleensWithAPussaaaaah():void {
 function releaseNaleenAfterLadyWins():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You roll him on his side, undoing his bindings and leaving him to pass out on the ground.");
 	output("\n\nSatisfied for the moment, you don your [pc.gear] and leave him lying on the jungle floor.");
 	output("\n\n");
@@ -450,6 +462,8 @@ function releaseNaleenAfterLadyWins():void {
 function leaveTheDudeNaleenAfterLadyWins():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("He’s a big kitty, he can take care of himself.");
 	output("\n\nYou put on your [pc.gear] and leave the naleen to fend for himself.");
 	output("\n\n");
@@ -461,6 +475,8 @@ function leaveTheDudeNaleenAfterLadyWins():void {
 function getBlownByDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("Looking between your would-be assailant and your crotch, you decide there's only one thing to do in this situation. Turnabout is fair play, after all, but first, you had better see about securing his hands. You don't want any nasty little surprises if he gets a second wind, after all. With plenty of nearby vines, finding something to bind his hands is as simple ");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("as a bodyguarding job");
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("as a borderworld smuggling run");
@@ -542,6 +558,8 @@ function getBlownByDudeleen():void {
 function ignoreDasNaga():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You simply shake your head and inform him that you won't. You'll cut him loose once you finish, you promise, but right now, this is your time. He should be a good little pet and get back to licking - the sooner you're done, the sooner he can go free.");
 	output("\n\nHe nods in understanding, closing his eyes and opening his mouth. His tongue extends like a landing pad, ready to receive you. You’re more than happy to oblige.");
 	output("\n\nYou clasp your hand around your shaft, stroking it a few times to ensure you are fully erect before aiming it at the naleen's open maw. Smoothly you brush it along his warm, wet tongue, gliding inside his welcoming mouth");
@@ -611,6 +629,8 @@ function ignoreDasNaga():void {
 function letThatNaleenBoyPussyGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You nod as you get off of him and roll him on his side so you can get to his bindings.");
 	output("\n\nYou’ve barely released him and the slut is already masturbating. The horny cat-snake wasted no time getting his paws around his peckers to pump himself to orgasm. Honestly, it’s kind of amusing, however you’ve no time to waste. You put on your [pc.gear] and leave the cat to his devices.");
 	output("\n\n");
@@ -621,6 +641,8 @@ function letThatNaleenBoyPussyGo():void {
 function refuseToLetTheNaleenGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You shake your head.");
 	output("\n\n<i>“What!? But I-”</i>");
 	output("\n\nYou silence him with a finger.");
@@ -635,6 +657,8 @@ function refuseToLetTheNaleenGo():void {
 function handjobThatDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("Well, since he's being so enthusiastic about it, you suppose it wouldn’t hurt to give him a hand. Reaching back behind you, your fingers close around one of the naleen's lizard-like pricks, feeling the lumps adorning his shaft against your palm as your hand encircles it and makes the first stroke.");
 	output("\n\nHe lets out a hiss of pure pleasure, idly humping your hands as you tease the soft swollen bulbs of one of his shafts.");
 	output("\n\nWith a smirk you squeeze just a little tighter, enough to be firm but not painful, and start to stroke again, languidly drifting up and down his length, your fingers locked around him all the while. <i>“Ah, yeah...”</i>  you hear him whisper airily. His hips move slowly, tentatively at first, before he begins to thrust at a desirable pace.");
@@ -674,6 +698,8 @@ function handjobThatDudeleen():void {
 function getTakenInTheAssByDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You look at the strange half-cat, half-snake humanoid and a wicked idea comes to mind. Reaching back, you squeeze the cheeks of your [pc.butt], spreading them apart to reveal your back passage, telling him that if he can reach it, you'll let him put it in.");
 	output("\n\nFurrowing his brows, he begins adjusting his coils, humping the air to get some leverage so he can bend far enough to align one of his cocks with your pucker.");
 	output("\n\nYou encourage him to keep at it, lust starting to grow as it becomes clear that he really can fuck you and suck you at the same time.");
@@ -760,6 +786,8 @@ function getTakenInTheAssByDudeleen():void {
 function cuntailOnDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("Well, this just seems like a perfect opportunity. Your [pc.cuntTail] writhes eagerly through the air behind you, its obscene tip opening up as you place it over one of his dripping shafts and start to greedily swallow it. You moan as the sensations hit your brain, feeling his long, rounded dick spreading your tail's pussy wide and plunging deep inside of you, pushing down and down until you have taken it all.");
 	output("\n\nHe yowls in pleasure, struggling against his bindings as he eagerly begins humping your tail end. A smirk of pleasure crosses your own lips, closing your eyes as you savor the feeling of fullness in your ever-hungry tail-cunt, squeezing down and slowly pumping up and down. You can feel your pre-cum drooling from your neglected [pc.cockBiggest] and open your eyes, time to put that mouth to good use.");
 	output("\n\nThe moment he opens his maw to moan in pleasure, you strike. With a powerful shove, you feed him half your cock");
@@ -815,6 +843,8 @@ function loseToDudeleenRouter():void {
 //If you don’t have a pussy, he just ass-fucks you. They’ll be largely similar for the most part.
 function loseToDudeleenSex(tailIntro:Boolean = false):void {
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	var x:int = -1;
 	var y:int = -1;
 	if(pc.hasVagina())
@@ -1059,6 +1089,8 @@ function loseToDudeleenSex(tailIntro:Boolean = false):void {
 function reverseFuckNaleenCuntTailGo():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("Lording over your ");
 	if(pc.HP() <= 0) output("beaten");
 	else output("lusty");
@@ -1102,6 +1134,8 @@ function reverseFuckNaleenCuntTailGo():void {
 function resistLossRape():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	output("You decide to resist your urges for the moment and see what the naleen has in store for you.");
 	//(Everything else play as a normal defeat rape.)
 	loseToDudeleenSex(true);
@@ -1111,6 +1145,8 @@ function resistLossRape():void {
 function feedYourCuntTailWithDudeleen():void {
 	clearOutput();
 	author("Lukadoc & QB");
+	showBust("NALEEN_MALE");
+	showName("NALEEN\nMALE");
 	if(pc.tailCount == 1)
 	{
 		output("Your tail writhes and squirms, thrashing free of the naleen's larger, clumsier coils. Like a biological whip it cracks out, pussy-orifice opening like a toothless maw and impaling itself on his topmost cock, greedily swallowing it almost to the hilt and making you cry out as the sensation of rough and hard penetration feeds back to you.");
