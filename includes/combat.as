@@ -1769,8 +1769,8 @@ function runAway():void {
 		output("You cannot run while you are immobilized!\n");
 		processCombat();
 	}
-	else if(pc.hasStatusEffect("Flee Disabled")) {
-		output("You cannot escape from this fight!\n");
+	else if(pc.hasStatusEffect("Flee Disabled") || foes[0].hasStatusEffect("Flee Disabled")) {
+		output("<b>You cannot escape from this fight!</b>\n");
 		processCombat();
 	}
 	else if(debug) {
