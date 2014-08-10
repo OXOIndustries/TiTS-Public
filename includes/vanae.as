@@ -74,30 +74,15 @@ public function encounterVanae(isHuntress:Boolean):void
 		// IF VANAE HUNTRESS
 		if (isHuntress)
 		{
-			output("\n\nMeanwhile, the vanae huntress looks a bit huffy. “<i>... I can’t believe I messed up my first strike. But I won’t make the same mistake twice your " + pc.mf("", "girl-") + "cum is mine!</i>”");
+			output("\n\nMeanwhile, the vanae huntress looks a bit huffy. “<i>... I can't believe I messed up my first strike. But I won't make the same mistake twice,");
+			if (pc.hasCock()) output(" your cum is mine");
+			else output(" your girl-cum is mine");
+			output("!</i>”"); 
 
-			output("\n\nWait, what?! She's after your ");
-
-			// Man this took some thinking. Writes had the usual abuse of apparent gender == actual gender
-			var gend:String = pc.mf("male", "female");
-
-			if (gend == "male")
-			{
-				if (pc.hasCock()) output("[pc.cumNoun]?");
-				else output(" cum?");
-			}
-			else if (gend == "female")
-			{
-				if (pc.hasVagina()) output("[pc.girlCumNoun]?");
-				else output(" girl-cum?");
-			}
-
-			// If no cock & considered male, or no vag and considered fem, or no genitals
-			if (!pc.hasCock() && gend == "male" || !pc.hasVagina() && gend == "female" || !pc.hasCock() && !pc.hasVagina())
-			{
-				output(" You don't even have any to give!");
-			}
-
+			output("\n\nWait, what?! She's after your");
+			if (pc.hasCock()) output(" [pc.cumNoun]?");
+			else if (pc.hasVagina()) output(" [pc.girlcumNoun]?");
+			else output(" girl-cum? You don't even have any to give!");
 			output(" Do you even get a choice in the matter?");
 		}
 		// ELSE IF MAIDEN VANAE
