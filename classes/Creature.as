@@ -1627,6 +1627,7 @@
 		public function inventorySlots(): int {
 			var slots:int = 10;
 			if(accessory.shortName == "Cargobot") slots += 2;
+			if(hasPerk("Hidden Loot")) slots += 2;
 			return slots;
 		}
 		public function hasItem(arg:ItemSlotClass,amount:int = 1):Boolean
@@ -2223,8 +2224,11 @@
 			temp += rangedWeapon.evasion;
 			temp += armor.evasion + upperUndergarment.evasion + lowerUndergarment.evasion + accessory.evasion + shield.evasion;
 			if (hasPerk("Agility")) {
-				if ((temp *= .2) < 2) temp += 2;
+				if ((temp *= .2) < 6) temp += 6;
 				else temp = Math.round(temp * 1.2);
+			}
+			if (hasPerk("Improved Agility")) {
+				temp += 6;
 			}
 			if (hasStatusEffect("Riposting"))
 			{

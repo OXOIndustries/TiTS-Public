@@ -1,4 +1,4 @@
-import classes.Characters.HuntressVanae;
+﻿import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
 import classes.VaginaClass;
 public function encounterVanae(isHuntress:Boolean):void

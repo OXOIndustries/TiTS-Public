@@ -111,8 +111,12 @@ function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, using
 			}
 		}
 	}
-	
-	processCombat();
+	if(pc.hasPerk("Quickdraw") && (item.type == GLOBAL.RANGED_WEAPON || item.type == GLOBAL.MELEE_WEAPON))
+	{
+		clearMenu();
+		addButton(0,"Next",combatInventoryMenu);
+	}
+	else processCombat();
 }
 
 function shop(keeper:Creature):void {
@@ -224,10 +228,16 @@ function sellItemGo(arg:ItemSlotClass):void {
 }
 
 function getSellPrice(keeper:Creature,basePrice:Number):Number {
-	return Math.round(basePrice * keeper.buyMarkdown * pc.sellMarkup);
+	var sellPrice:Number = basePrice * keeper.buyMarkdown * pc.sellMarkup;
+	if(pc.hasPerk("Supply And Demand")) sellPrice *= 1.1;
+	sellPrice = Math.round(sellPrice);
+	return sellPrice;
 }
 function getBuyPrice(keeper:Creature,basePrice:Number):Number {
-	return Math.round(basePrice * keeper.sellMarkup * pc.buyMarkdown);
+	var buyPrice:Number = basePrice * keeper.sellMarkup * pc.buyMarkdown;
+	if(pc.hasPerk("Supply And Demand")) buyPrice *= .95;
+	buyPrice = Math.round(buyPrice);
+	return buyPrice;
 }
 
 function generalInventoryMenu():void

@@ -233,7 +233,7 @@ package classes.GameData
 			agility.levelLimit = 4;
 			agility.autoGained = true;
 			agility.perkName = "Agility";
-			agility.perkDescription = "Increases evasion granted via items by 20%, or provides a flat 2% per equipped item, whichever is higher.";
+			agility.perkDescription = "Increases evasion granted via items by 20%, or provides a flat 6% evasion boost, whichever is higher.";
 			insertPerkData(agility);
 			
 			var sfGen:PerkData = new PerkData();
@@ -272,6 +272,75 @@ package classes.GameData
 			grenade.perkName = "Grenade";
 			grenade.perkDescription = "Grants the ability to throw a grenade designed to emit high levels of thermal radiation. Deals Thermal damage to all enemies in combat.";
 			insertPerkData(grenade);
+
+			//Level 6
+			//Passive: Supply and Demand: You gain a 5% discount on items bought in stores, and make 10% more from items sold.
+			var supplyAndDemand:PerkData = new PerkData();
+			supplyAndDemand.classLimit = GLOBAL.CLASS_SMUGGLER;
+			supplyAndDemand.levelLimit = 6;
+			supplyAndDemand.autoGained = true;
+			supplyAndDemand.perkName = "Supply And Demand";
+			supplyAndDemand.perkDescription = "Reduces shopkeeper markups by 5% and markdowns by 10%.";
+			insertPerkData(supplyAndDemand);
+			//Double Passive: Improved Agility: Increases base evasion even higher.
+			var improvedAgility:PerkData = new PerkData();
+			improvedAgility.classLimit = GLOBAL.CLASS_SMUGGLER;
+			improvedAgility.levelLimit = 6;
+			improvedAgility.autoGained = true;
+			improvedAgility.perkName = "Improved Agility";
+			improvedAgility.perkDescription = "Increases your evasion by an additional 6%.";
+			insertPerkData(improvedAgility);
+			
+			//1. Quickdraw: Changing weapons does not take your entire turn. 
+			var quickDraw:PerkData = new PerkData();
+			quickDraw.classLimit = GLOBAL.CLASS_SMUGGLER;
+			quickDraw.levelLimit = 6;
+			quickDraw.perkName = "Quickdraw";
+			quickDraw.perkDescription = "Equipping a new weapon no longer consumes your turn in combat.";
+			insertPerkData(quickDraw);
+			
+			//2. Leap Up: When you are knocked prone, you immediately stand back up at the start of your next turn. 
+			var leapUp:PerkData = new PerkData();
+			leapUp.classLimit = GLOBAL.CLASS_SMUGGLER;
+			leapUp.levelLimit = 6;
+			leapUp.perkName = "Leap Up";
+			leapUp.perkDescription = "Allows you to easily and freely leap to your feet after being knocked prone.";
+			insertPerkData(leapUp);
+
+			//Level 7
+			//Passive: Hidden Loot: You gain two additional inventory slots.
+			var hiddenLoot:PerkData = new PerkData();
+			hiddenLoot.classLimit = GLOBAL.CLASS_SMUGGLER;
+			hiddenLoot.levelLimit = 7;
+			hiddenLoot.autoGained = true;
+			hiddenLoot.perkName = "Hidden Loot";
+			hiddenLoot.perkDescription = "Increases inventory size by two slots.";
+			insertPerkData(hiddenLoot);
+			//Double Passive: +Sneak Attack/Backstab damage (every 6 levels, keeps them as DPS monsters we all know them to be)
+			var takeAdvantage:PerkData = new PerkData();
+			takeAdvantage.classLimit = GLOBAL.CLASS_SMUGGLER;
+			takeAdvantage.levelLimit = 7;
+			takeAdvantage.autoGained = true;
+			takeAdvantage.perkName = "Take Advantage";
+			takeAdvantage.perkDescription = "Increase sneak attack and aimed shot bonuses by 100%.";
+			insertPerkData(takeAdvantage);
+			
+			//1. Smuggled Stimulant: Gain 25 energy per round for 3 rounds, once per combat.
+			var smuggledStimulant:PerkData = new PerkData();
+			smuggledStimulant.classLimit = GLOBAL.CLASS_SMUGGLER;
+			smuggledStimulant.levelLimit = 7;
+			smuggledStimulant.perkName = "Smuggled Stimulant";
+			smuggledStimulant.perkDescription = "Allows you to gain 25 energy per round for 3 rounds, once per combat.";
+			insertPerkData(smuggledStimulant);
+			
+			//2. Burst of Energy: Gain 60 energy, once per combat.
+			var burstOfEnergy:PerkData = new PerkData();
+			burstOfEnergy.classLimit = GLOBAL.CLASS_SMUGGLER;
+			burstOfEnergy.levelLimit = 7;
+			burstOfEnergy.perkName = "Burst of Energy";
+			burstOfEnergy.perkDescription = "Allows you to recover 60 energy, once per combat.";
+			insertPerkData(burstOfEnergy);
+
 		}
 		
 		private function ConfigureEngineerPerks():void

@@ -298,6 +298,18 @@ function specialsMenu():void {
 			else addDisabledButton(offset, "Gas Grenade");	
 			offset++;
 		}
+		if(pc.hasPerk("Smuggled Stimulant"))
+		{
+			if(pc.hasStatusEffect("Used Smuggled Stimulant")) addDisabledButton(offset,"S.Stimulant","Smuggled Stimulant","You've already used your smuggled stimulant for this encounter.");
+			else addButton(offset,"S.Stimulant",struggledStimulant,undefined,"Smuggled Stimulant","Inject yourself with a smuggled stimulant, causing you to recover 25 energy a turn for three turns.");
+			offset++;
+		}
+		if(pc.hasPerk("Burst of Energy"))
+		{
+			if(pc.hasStatusEffect("Used Burst of Energy")) addDisabledButton(offset,"B.O. Energy","Burst of Energy","You've already used a burst of energy this encounter.");
+			else addButton(offset,"B.O. Energy",burstOfEnergy,undefined,"Burst of Energy","Get a burst of energy, recovering 60 energy.\n\nYou may only do this once per encounter.");
+			offset++;
+		}
 	}
 	
 	// Shared Specials!
@@ -352,8 +364,16 @@ function updateCombatStatuses():void {
 	{
 		if(rand(10) == 0) 
 		{
-			output("<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>")
+			output("<b>You abruptly go blind, perhaps an effect of the Quivering Quasar you drank.</b>\n")
 			pc.createStatusEffect("Blind",2,0,0,0,false,"Blind","You're blinded and cannot see! Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		}
+	}
+	if(pc.hasStatusEffect("Trip"))
+	{
+		if(pc.hasPerk("Leap Up"))
+		{
+			output("<b>You roll up onto your feet immediately thanks to your quick reflexes.</b>\n");
+			pc.removeStatusEffect("Trip");
 		}
 	}
 	if(pc.hasStatusEffect("Blind")) {
@@ -402,6 +422,12 @@ function updateCombatStatuses():void {
 			output("<b>Your shields are no longer regenerating!</b>\n");
 			pc.removeStatusEffect("Deflector Regeneration");
 		}
+	}
+	if(pc.statusEffectv1("Used Smuggled Stimulant") > 0)
+	{
+		pc.addStatusValue("Used Smuggled Stimulant",1,-1);
+		pc.energy(25);
+		output("<b>A rush of energy fills you as the struggled stimulant affects you.</b>\n");
 	}
 	if (pc.hasStatusEffect("Porno Hacked Drone"))
 	{
@@ -868,6 +894,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) {
 			output("\n<b>Sneak attack!</b>");
 			damage += attacker.level * 2;
+			if(attacker.hasStatusEffect("Take Advantage")) damage += attacker.level * 2;
 			if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
 		}
 		//Randomize +/- 15%
@@ -999,6 +1026,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 			if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
 				output("\n<b>Aimed shot!</b>");
 				damage += attacker.level * 2;
+				if(attacker.hasStatusEffect("Take Advantage")) damage += attacker.level * 2;
 				if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blind")) damage += attacker.level;
 			}
 			//Randomize +/- 15%
@@ -2769,6 +2797,24 @@ function secondWind():void
 	pc.HP(Math.round(pc.HPMax()/2));
 	pc.createStatusEffect("Used Second Wind",0,0,0,0,true,"","",true,0);
 	output("You draw on your innermost reserves of strength, taking a second wind!\n");
+	processCombat();
+}
+
+function burstOfEnergy():void
+{
+	clearOutput();
+	
+	pc.energy(60);
+	pc.createStatusEffect("Used Burst of Energy",0,0,0,0,true,"","",true,0);
+	output("You dig deep and find a reserve of energy from deep within yourself!\n");
+	processCombat();
+}
+
+function struggledStimulant():void
+{
+	clearOutput();
+	pc.createStatusEffect("Used Smuggled Stimulant",3,0,0,0,true,"","",true,0);
+	output("You inject yourself with a smuggled stimulant!\n");
 	processCombat();
 }
 
