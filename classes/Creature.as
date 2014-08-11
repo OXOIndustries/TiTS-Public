@@ -2002,6 +2002,9 @@
 			}
 			var currWill:int = willpowerRaw + willpowerMod;
 
+			//Level 7 Merc Perk
+			if(hasPerk("Iron Will")) currWill += Math.floor(physique()/5);
+			
 			if (currWill > willpowerMax())
 			{
 				return willpowerMax();
@@ -2138,8 +2141,22 @@
 		}
 		public function damage(melee: Boolean = true): Number {
 			var temp: int = 0;
-			if (melee) temp += meleeWeapon.damage;
-			else temp += rangedWeapon.damage;
+			if (melee) 
+			{
+				temp += meleeWeapon.damage;
+				if(hasPerk("Low Tech Solutions") && (meleeWeapon.damageType == GLOBAL.KINETIC || meleeWeapon.damageType == GLOBAL.SLASHING || meleeWeapon.damageType == GLOBAL.PIERCING)) 
+					temp += Math.ceil(meleeWeapon.damage * 0.2);
+				trace("MELEE DAMAGE: " + temp)
+			}
+			else 
+			{
+				temp += rangedWeapon.damage;
+				if(hasPerk("Heavy Weapons") && (rangedWeapon.damageType == GLOBAL.KINETIC || rangedWeapon.damageType == GLOBAL.SLASHING || rangedWeapon.damageType == GLOBAL.PIERCING)) 
+					temp += Math.ceil(rangedWeapon.damage * 0.2);
+				//Concentrated fire bonus!
+				temp += statusEffectv1("Concentrated Fire");
+				trace("Concentrated fire bonus applied: " + statusEffectv1("Concentrated Fire"));
+			}
 			temp += armor.damage + upperUndergarment.damage + lowerUndergarment.damage + accessory.damage + shield.damage;
 			return temp;
 		}
@@ -2231,6 +2248,7 @@
 			total += accessory.bonusResistances[type];
 			if((hasPerk("Tough") || hasStatusEffect("Harden")) && (type == GLOBAL.KINETIC || type == GLOBAL.SLASHING || type == GLOBAL.PIERCING)) 
 			{
+				if(hasPerk("Tough 2")) total -= 0.05;
 				total -= .1;
 			}
 			if(total < 0) total = 0;
@@ -3465,6 +3483,22 @@
 				}
 			}
 			trace("ERROR: Looking for status '" + storageName + "' to change minutes, and " + short + " does not have the status affect.");
+			return;
+		}
+		public function setStatusTooltip(storageName: String, newTooltip:String)
+		{
+			var counter: Number = statusEffects.length;
+			//Various Errors preventing action
+			if (statusEffects.length <= 0) return;
+			while (counter > 0) {
+				counter--;
+				//Find it, change it, quit out
+				if (statusEffects[counter].storageName == storageName) {
+					statusEffects[counter].tooltip = newTooltip;
+					return;
+				}
+			}
+			trace("ERROR: Looking for status '" + storageName + "' to change tooltip but couldn't find it.");
 			return;
 		}
 		public function addStatusMinutes(storageName: String, newMinutes:int)

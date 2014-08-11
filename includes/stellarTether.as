@@ -215,7 +215,7 @@ function laserSightShot():void
 	else
 	{
 		output("\n\nShe squeezes the trigger, and a bright bolt of laser fire slams right into you, nearly knocking you off your feet! Damn, she's a deadeye!");
-		var damage:int = foes[0].rangedWeapon.damage + foes[0].aim()/2;
+		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
 		//OVER CHAAAAAARGE
 		damage *= 2.2;
 		//Randomize +/- 15%

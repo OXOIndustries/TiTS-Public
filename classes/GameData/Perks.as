@@ -123,6 +123,60 @@ package classes.GameData
 			detCharge.perkName = "Detonation Charge";
 			detCharge.perkDescription = "Grants the ability to throw a focused detonation charge at an enemy for very high thermal damage. Focusing the charge restricts the blast radius to a single target.";
 			insertPerkData(detCharge);
+
+			//Level 6
+			//Passive: Tough 2: Increases Tough's effectiveness to 15%.
+			var tough2:PerkData = new PerkData();
+			tough2.classLimit = GLOBAL.CLASS_MERCENARY;
+			tough2.levelLimit = 6;
+			tough2.autoGained = true;
+			tough2.perkName = "Tough 2";
+			tough2.perkDescription = "Upgrades the \"Tough\" ability from 10 to 15%.";
+			insertPerkData(tough2);
+
+			var heavyWeapons:PerkData = new PerkData();
+			heavyWeapons.classLimit = GLOBAL.CLASS_MERCENARY;
+			heavyWeapons.levelLimit = 6;
+			heavyWeapons.perkName = "Heavy Weapons";
+			heavyWeapons.perkDescription = "Increases damage from kinetic, slashing, and piercing ranged weapons by 20%.";
+			insertPerkData(heavyWeapons);
+
+			var lowTechSolutions:PerkData = new PerkData();
+			lowTechSolutions.classLimit = GLOBAL.CLASS_MERCENARY;
+			lowTechSolutions.levelLimit = 6;
+			lowTechSolutions.perkName = "Low Tech Solutions";
+			lowTechSolutions.perkDescription = "Increases damage from kinetic, slashing, and piercing melee weapons by 20%.";
+			insertPerkData(lowTechSolutions);
+
+			//Level 7
+			//Passive: Iron Will: Your physical fortitude makes up when your mental fortitude fails. Gain a bonus to Willpower saves and checks based on Physique (5:1 ratio). 
+			var ironWill:PerkData = new PerkData();
+			ironWill.classLimit = GLOBAL.CLASS_MERCENARY;
+			ironWill.levelLimit = 7;
+			ironWill.autoGained = true;
+			ironWill.perkName = "Iron Will";
+			ironWill.perkDescription = "Allows your physical fortitude to contribute slightly to your willpower, granting one point of willpower for every five points of physique.";
+			insertPerkData(ironWill);
+
+			//1. Cleave: Your melee attacks do bonus damage against groups of enemies. 
+			var cleave:PerkData = new PerkData();
+			cleave.classLimit = GLOBAL.CLASS_MERCENARY;
+			cleave.levelLimit = 7;
+			cleave.perkName = "Cleave";
+			cleave.perkDescription = "Grants an extra, low-accuracy swing when fighting groups of enemies or \"plural\" type foes.";
+			insertPerkData(cleave);
+
+			//2. Concentrate Fire: When you land consecutive ranged attacks, you gain a slight bonus to damage. 
+			var concentrateFire:PerkData = new PerkData();
+			concentrateFire.classLimit = GLOBAL.CLASS_MERCENARY;
+			concentrateFire.levelLimit = 7;
+			concentrateFire.perkName = "Concentrate Fire";
+			concentrateFire.perkDescription = "Allows consecutive ranged attacks to gain a bonus to damage.";
+			insertPerkData(concentrateFire);
+
+			//3. (Replaces #1 if Power Strike Chosen) Wounding Strike: Upgrades power strike to increase damage dealt by 5 and place a status effect on the target. The status effect reduces healing and shield recovery by 50%.
+			//Leaving this one for Geddy!
+
 		}
 		
 		private function ConfigureSmugglerPerks():void

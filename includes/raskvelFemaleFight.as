@@ -179,7 +179,7 @@ function raskvelFemShotgun():void
 	else
 	{
 		output("\nYou are struck by the projectiles!");
-		var damage:int = foes[0].rangedWeapon.damage + foes[0].aim()/2;
+		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
 		//OVER CHAAAAAARGE
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;

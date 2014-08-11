@@ -24,6 +24,9 @@ function combatMainMenu():void
 		//Track round, expires on combat exit.
 		if(!pc.hasStatusEffect("Round")) pc.createStatusEffect("Round",1,0,0,0,true,"","",true,0);
 		else pc.addStatusValue("Round",1,1);
+
+		//If a round has passed since the last concentrated fire proc, clear the values as if a miss occurred.
+		if(pc.statusEffectv2("Concentrated Fire") + 1 < pc.statusEffectv1("Round")) concentratedFire(false);
 		
 		//Show what you're up against.
 		if(foes[0] == celise) this.userInterface.showBust("CELISE");
@@ -747,7 +750,41 @@ function playerAttack(target:Creature):void
 	attack(pc, target, true);
 	mimbraneHandBonusAttack(target);
 	playerMimbraneCloudAttack();
+	//Cleave only triggers off the last swing before round completion.
+	if(pc.hasPerk("Cleave") && (target.plural || foes[0].length > 1)) 
+	{
+		output("<b>Cleave!</b>\n");
+		attack(pc, target, true, 1);
+	}
 	processCombat();
+}
+
+function concentratedFire(hit:Boolean = true):void
+{
+	if(pc.hasPerk("Concentrate Fire"))
+	{
+		//Reset bonus damage if miss
+		if(!hit) 
+		{
+			pc.removeStatusEffect("Concentrated Fire");
+		}
+		//If a hit, add bonus damage
+		else 
+		{
+			//Create Concentrated Fire Status if not yet active.
+			if(!pc.hasStatusEffect("Concentrated Fire")) pc.createStatusEffect("Concentrated Fire",0,0,0,0,false,"OffenseUp","",true);
+			//Add up the new bonus.
+			var bonus:int = Math.round(pc.level/2) + pc.statusEffectv1("Concentrated Fire");
+			if(bonus > pc.level) bonus = pc.level;
+			trace("CONCENTRATED FIRE BONUS: " + bonus);
+			//Set updated bonus damage.
+			pc.setStatusValue("Concentrated Fire",1,bonus);
+			//Set status = to round counter - used to track if a round is skipped.
+			pc.setStatusValue("Concentrated Fire",2,pc.statusEffectv1("Round"));
+			//Update tooltip
+			pc.setStatusTooltip("Concentrated Fire","Shooting on target repeatedly is boosting your damage. Current ranged damage bonus: " + bonus);
+		}
+	}
 }
 
 function playerRangedAttack(target:Creature):void 
@@ -762,7 +799,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 	if (foes[0].short == "female zil") flags["HIT_A_ZILGIRL"] = 1;
 	if (attacker == pc)
 	{
-		if (!attacker.hasStatusEffect("Multiple Attacks") && !attacker.hasStatusEffect("Mimbrane Bonus Attack"))
+		if (!attacker.hasStatusEffect("Multiple Attacks") && !attacker.hasStatusEffect("Mimbrane Bonus Attack") && special == 0)
 		{
 			clearOutput();
 			if (attacker.hasPerk("Riposte")) attacker.createStatusEffect("Riposting", 0, 0, 0, 0, true, "", "", true, 0);
@@ -826,7 +863,7 @@ function attack(attacker:Creature, target:Creature, noProcess:Boolean = false, s
 		else if(!attacker.plural) output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " " + attacker.meleeWeapon.longName + "!");
 		else output(attacker.capitalA + attacker.short + " connect with their " + attacker.meleeWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = attacker.meleeWeapon.damage + attacker.physique()/2;
+		var damage:int = attacker.damage() + attacker.physique()/2;
 		//Bonus damage for "sneak attack perk!"
 		if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Sneak Attack")) {
 			output("\n<b>Sneak attack!</b>");
@@ -912,20 +949,32 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 	//Blind prevents normal dodginess & makes your attacks miss 90% of the time.
 	else if(rangedCombatMiss(attacker,target)) {
 		if(target.customDodge == "") {
-			if (attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+			if (attacker == pc) 
+			{
+				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+				concentratedFire(false);
+			}
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
 		}
 		else output(target.customDodge)
 	}
 	//Extra miss for blind
 	else if(attacker.hasStatusEffect("Blind") && rand(10) > 0) {
-		if(attacker == pc) output("None of your blind-fired shots manage to connect.");
+		if(attacker == pc) 
+		{
+			output("None of your blind-fired shots manage to connect.");
+			concentratedFire(false);
+		}
 		else output(attacker.capitalA + possessive(attacker.short) + " blinded shots fail to connect!");
 	}
 	//Additional Miss chances for if target isn't stunned and this is a special flurry attack (special == 1)
 	else if((special == 1 || special == 2) && rand(100) <= 45 && !target.isImmobilized()) {
 		if(target.customDodge == "") {
-			if(attacker == pc) output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+			if(attacker == pc) 
+			{
+				output("You " + pc.rangedWeapon.attackVerb + " at " + target.a + target.short + " with your " + pc.rangedWeapon.longName + ", but just can't connect.");
+				concentratedFire(false);
+			}
 			else output("You manage to avoid " + attacker.a + possessive(attacker.short) + " " + attacker.rangedWeapon.attackVerb + ".");
 		}
 		else output(target.customDodge);
@@ -943,7 +992,9 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 		if (!(attacker.rangedWeapon is Goovolver))
 		{
 			//Damage bonuses:
-			var damage:int = attacker.rangedWeapon.damage + attacker.aim()/2;
+			var damage:int = attacker.damage(false) + attacker.aim()/2;
+			//Now that damage values are grabbed, check for "Concentrated Fire" stuff
+			concentratedFire();
 			//Bonus damage for "sneak attack perk!"
 			if((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blind")) && attacker.hasPerk("Aimed Shot")) {
 				output("\n<b>Aimed shot!</b>");
@@ -2374,7 +2425,7 @@ function overcharge(target:Creature):void {
 		output("You <b>overcharge</b> your " + pc.rangedWeapon.longName + " and land a hit on " + target.a + target.short + "!");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.rangedWeapon.damage + pc.aim()/2;
+		var damage:int = pc.damage(false) + pc.aim()/2;
 		//OVER CHAAAAAARGE
 		damage *= 1.5;
 		//Randomize +/- 15%
@@ -2404,7 +2455,7 @@ function NPCOvercharge():void {
 	else {
 		output(foes[0].capitalA + foes[0].short + " connects with " + foes[0].mfn("his","her","its") + " <b>overcharged</b> " + foes[0].rangedWeapon.attackVerb + "!");
 		//Damage bonuses:
-		var damage:int = foes[0].rangedWeapon.damage + foes[0].aim()/2;
+		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
 		//OVER CHAAAAAARGE
 		damage *= 1.75;
 		//Randomize +/- 15%
@@ -2570,7 +2621,7 @@ function lowBlow(target:Creature):void {
 		output("You connect with your target!");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.meleeWeapon.damage + pc.physique()/2;
+		var damage:int = pc.damage() + pc.physique()/2;
 		//Randomize +/- 15%
 		var randomizer = (rand(31)+ 85)/100;
 		damage *= randomizer;
@@ -2755,7 +2806,7 @@ function powerStrike(target:Creature):void {
 		output("You <b>draw back</b> your " + pc.meleeWeapon.longName + " and land a hit on " + target.a + target.short + "!");
 		//else output(attacker.capitalA + attacker.short + " connects with " + attacker.mfn("his","her","its") + " <b>overcharged</b>" + attacker.rangedWeapon.longName + "!");
 		//Damage bonuses:
-		var damage:int = pc.meleeWeapon.damage + pc.physique()/2;
+		var damage:int = pc.damage() + pc.physique()/2;
 		//OVER CHAAAAAARGE
 		damage *= 2;
 		//Randomize +/- 15%
