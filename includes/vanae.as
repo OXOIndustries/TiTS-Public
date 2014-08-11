@@ -2513,6 +2513,8 @@ function vanaeMaidenPCDefeat():void
 
 	if (pc.hasCock() && pc.genitalSpot < 2 && pc.cockThatFits(217) != -1) options.push(vanaeMaidenPCDefeatTakeVirginity);
 	options.push(vanaeMaidenPCDefeatCunnilingus);
+	
+	options[rand(options.length)](); // How the fuck did I miss this??!
 }
 
 function vanaeMaidenPCDefeatTakeVirginity():void
