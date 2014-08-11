@@ -853,13 +853,13 @@ function vanaeVictorySexIntro(scene:String):void
 		case "69bj":
 			action = "eat out her [monster.pussy] while she returns the favor";
 			functor = vanaeHuntress69;
-			arg = "bj";
+			arg = "69bj";
 			break;
 
 		case "69cunni":
 			action = "eat out her [monster.pussy] while she returns the favor";
 			functor = vanaeHuntress69;
-			arg = "cunni";
+			arg = "69cunni";
 			break;
 		
 		case "tentacunt":
@@ -1338,8 +1338,20 @@ function vanaeHuntress69(selScene:String):void
 	var isBj:Boolean;
 	var isCunni:Boolean;
 
-	if (selScene == "69bj") isBj = true;
-	isCunni = !isBj;
+	if (selScene == "69bj")
+	{
+		isBj = true;
+		isCunni = false;
+	}
+	else if (selScene == "69cunni");
+	{
+		isCunni = true;
+		isBj = false;
+	}
+	else
+	{
+		trace("Vanae 69 scene called incorrectly.");
+	}
 
 	var selCock:int;
 
@@ -1349,10 +1361,7 @@ function vanaeHuntress69(selScene:String):void
 
 	output("The busty alien huntress lies back on the ground, spreading her [monster.thighs] wide. At the same time she parts her tenta-dress, exposing her [monster.pussy] to your lusty gaze. As you look at her, she flushes, coyly spreading her legs even further apart. Her [monster.clits] are poking out cutely from her puffy lips.");
 
-	output("\n\nSpurred forward by lust, you walk around and slink down, moving forward so that your loins are in each other's faces. You can see her [monster.pussy] even better up close, her puffy lips already moist. The sweet scent of her arousal wafts up, and you relish in it, pressing your");
-	if (isBj) output(" [pc.cocks]");
-	else output(" [pc.pussies]");
-	output(" against her face. From the satisfied moan you hear behind you and the rubbing against your sensitive flesh, you know she's doing exactly the same.");
+	output("\n\nSpurred forward by lust, you walk around and slink down, moving forward so that your loins are in each other's faces. You can see her [monster.pussy] even better up close, her puffy lips already moist. The sweet scent of her arousal wafts up, and you relish in it, pressing your face against her sodden cunt. From the satisfied moan you hear behind you and the rubbing against your sensitive flesh, you know she's doing exactly the same.");
 
 	output("\n\nEager to please you, you can feel her wet tongue pressing flush against your");
 	if (isBj) output(" [pc.cockHead " + selCock + "]");

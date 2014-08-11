@@ -2116,7 +2116,7 @@ function pcWinsVsNewShekkaBots():void
 	output("As you contemplate your next choice, you hear Shekka’s breathing become deeper and more lust-filled. You watch as she again clutches the controller against her, muscles locking up as orgasm rocks her body. Now that she’s lost, theres no harm in helping her along, right? You reach over between the cleft of her ass and tickle her rear clit with your forefingers. This sets her off again, her voice peaking in a shout as her legs splay out around the robot’s hips. Her tail beats against your forearm when it tries to wag");
 	output("\n\n<i>\"You just love letting me win, don’t you?”</i> you ask teasingly as you attend to her. She nods weakly as the spasms slow down enough for her to regain motor control. Suddenly, you remember your own pleasure, but it’s too late to keep a cap on it. You squeeze the rosey raskvel’s butt-cushions as you cum, ");
 	if(pc.hasCock() && pc.hasVagina()) output("[pc.girlCum] leaking from [pc.eachVagina] as [pc.eachCock] paints the floor [pc.cumColor]");
-	if(pc.hasCock()) output("splattering the floor as [pc.eachCock] blows a load beneath you");
+	else if(pc.hasCock()) output("splattering the floor as [pc.eachCock] blows a load beneath you");
 	else output("spattering the robot’s hips with your [pc.girlCum]");
 	output(".");
 

@@ -96,6 +96,8 @@ package classes.Characters
 			this.vaginas = [new VaginaClass()];
 			(vaginas[0] as VaginaClass).vaginaColor = "pale pink";
 			(vaginas[0] as VaginaClass).clits = 2;
+			(vaginas[0] as VaginaClass).type = GLOBAL.TYPE_VANAE;
+			(vaginas[0] as VaginaClass).wetnessRaw = 2;
 			this.clitLength = 0.5;
 			this.vaginalVirgin = true;
 			

@@ -5107,9 +5107,12 @@
 		public function totalClits(): Number {
 			if (vaginas.length == 0) return 0;
 			var count: int = 0;
-			for (var x: int = 0; x++; x < vaginas.length) {
+			
+			for (var x:int = 0; x < vaginas.length; x++)
+			{
 				count += vaginas[x].clits;
 			}
+			
 			return count;
 		}
 		public function findFirstOfcType(type: Number = 0): Number {
@@ -6923,7 +6926,7 @@
 			} else if (type == GLOBAL.TYPE_NAGA) {
 				if (!simple) {
 					temp = this.rand(16);
-					if (temp <= 1) vag += "raptilian gash";
+					if (temp <= 1) vag += "reptilian gash";
 					else if (temp <= 3) vag += "naleen-like slit";
 					else if (temp <= 5) vag += "snake-like cunt";
 					else if (temp <= 7) vag += "semi-concealed pussy";
@@ -6942,6 +6945,29 @@
 					else if (temp <= 13) vag += "pussy";
 					else if (temp <= 15) vag += "slit";
 					else vag += "slit";
+				}
+			} else if (type == GLOBAL.TYPE_VANAE) {
+				if (!simple) {
+					temp = this.rand(16);
+					if (temp <= 1) vag += "tentacle-laden gash";
+					else if (temp <= 3) vag += "writhing pussy";
+					else if (temp <= 5) vag += "human-like cunt";
+					else if (temp <= 7) vag += "vanae pussy";
+					else if (temp <= 9) vag += "supple pussy";
+					else if (temp <= 11) vag += "xeno-cunt";
+					else if (temp <= 13) vag += "alien pussy";
+					else vag += "silky twat";
+				} else {
+					temp = this.rand(18);
+					if (temp <= 1) vag += "vanae-cunt";
+					else if (temp <= 3) vag += "tenta-pussy";
+					else if (temp <= 5) vag += "box";
+					else if (temp <= 7) vag += "vanae-twat";
+					else if (temp <= 9) vag += "pussy";
+					else if (temp <= 11) vag += "xeno-cunt";
+					else if (temp <= 13) vag += "pussy";
+					else if (temp <= 15) vag += "twat";
+					else vag += "cunt";
 				}
 			} else {
 				if (!simple) {
