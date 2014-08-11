@@ -293,6 +293,11 @@ package classes.UIComponents.StatusEffectComponents
 			this.Resize();
 		}
 		
+		public function UpdateTooltip(tooltipText:String):void
+		{
+			this._bodyText.htmlText = "<span class='words'><p>" + tooltipText + "</p></span>";
+		}
+		
 		public function UpdateDurationText(remainingDuration:int):void
 		{
 			if (remainingDuration == 0)

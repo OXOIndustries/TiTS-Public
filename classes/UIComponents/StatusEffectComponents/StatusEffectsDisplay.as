@@ -361,11 +361,13 @@
 							if (_workElems[vecElem].name == statusEffects[seElem].storageName.toLowerCase())
 							{
 								_workElems[vecElem].durationRemaining = statusEffects[seElem].minutesLeft;
+								_workElems[vecElem].tooltipText = statusEffects[seElem].tooltip;
 								
 								// Force through an update of the timer if we're looking at the active tooltip element!
 								if (_workElems[vecElem] == _lastActiveElement)
 								{
 									_tooltipElement.UpdateDurationText(statusEffects[seElem].minutesLeft);
+									_tooltipElement.UpdateTooltip(statusEffects[seElem].tooltip);
 								}
 								
 								_childElements.push(_workElems[vecElem]);

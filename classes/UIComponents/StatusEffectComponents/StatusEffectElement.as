@@ -38,6 +38,7 @@ package classes.UIComponents.StatusEffectComponents
 		public function get durationRemaining():int { return _durationRemaining; }
 		
 		public function set durationRemaining(v:int):void { _durationRemaining = v; }
+		public function set tooltipText(v:String):void { _tooltipText = v; };
 		
 		/**
 		 * Given how constrained the usage of StatusEffectElements are, I can get away with doing a shitload of construction...
