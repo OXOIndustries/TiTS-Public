@@ -1343,7 +1343,7 @@ function vanaeHuntress69(selScene:String):void
 		isBj = true;
 		isCunni = false;
 	}
-	else if (selScene == "69cunni");
+	else if (selScene == "69cunni")
 	{
 		isCunni = true;
 		isBj = false;
