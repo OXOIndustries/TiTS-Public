@@ -5067,7 +5067,7 @@
 		public function isSquirter(arg: int = 0): Boolean {
 			if (!hasVagina()) return false;
 			if (arg < 0 || arg >= totalVaginas()) return false;
-			if (vaginas[arg].wetness >= 4) return true;
+			if (vaginas[arg].wetness() >= 4) return true;
 			return false;
 		}
 		public function totalClits(): Number {
@@ -7207,6 +7207,9 @@
 			return formatList();
 		}
 		public function crotchDescript():String {
+
+			clearList();
+			
 			//Nothing to talk about? K
 			if(!hasCock() && !hasVagina()) 
 			{
@@ -8424,7 +8427,7 @@
 				else return "floral jism";
 			} else if(arg == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) {
 				return "milk";
-			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MILK) {
+			} else if (arg == GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK || arg == GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) {
 				return "milk";
 			}
 			return "ERROR: NONVALID FLUID TYPE PASSED TO fluidNoun";

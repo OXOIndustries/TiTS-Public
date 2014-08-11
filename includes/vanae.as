@@ -540,7 +540,7 @@ function vanaeTFScene():void
 			output(". <b>Your vaginal wetness has increased"); 
 			if (!pc.isSquirter()) output(" and you are now a squirter");
 			output("!</b>");
-
+			
 			for (var i:int = 0; i < pc.vaginas.length; i++)
 			{
 				if ((pc.vaginas[i] as VaginaClass).wetnessRaw < 4) pc.vaginas[i].wetnessRaw = 4;
@@ -1252,7 +1252,7 @@ function vanaeHuntressTitfuck():void
 	output("\n\nApproaching you and getting on her knees, the busty amazon brings her webbed hands up to cup her [monster.breasts], making her already impressive cleavage stand out. Her [monster.nipples] drool her violet milk down her ample flesh, curling and dribbling down to her [monster.belly].  There is a distinctly feminine scent in the air mixed with a fruity aroma, the latter coming from her nipple milk.");
 
 	output("\n\nPressing both webbed hands against the sides of her [monster.breasts] and giving a pointed squeeze, thick, gooey ropes of her violet milk spurt out of her [monster.nipples]. Your [pc.cocks]");
-	if (pc.balls > 0) output(" [pc.balls]");
+	if (pc.balls > 0) output(" and [pc.balls]");
 	output(" are suddenly splashed in the sticky substance.");
 
 	output("\n\nLike a cow milking herself, she continues to press and squeeze her pale udders until your junk is utterly covered from tip to base. You bask in the sensation of her warm, slick liquid clinging to your sensitive rod");
@@ -2188,7 +2188,9 @@ function vanaeHuntressPCDefeatTitfux():void
 
 	output("\n\nThe busty amazoness pulls back and brings her webbed hands up to cup her [monster.breasts], making her already impressive cleavage stand out. Her [monster.nipples] drool her violet milk down her ample flesh, curling and dribbling down to her [monster.belly]. There is a distinctly feminine scent in the air mixed with a fruity aroma, the latter coming from her nipple milk.");
 
-	output("\n\nPressing both hands against the sides of her [monster.breasts] and giving a pointed squeeze, thick, gooey ropes of her violet milk spurt out of her [monster.nipples]. Your [pc.cocks] and [pc.sack] are suddenly splashed in the sticky substance.");
+	output("\n\nPressing both hands against the sides of her [monster.breasts] and giving a pointed squeeze, thick, gooey ropes of her violet milk spurt out of her [monster.nipples]. Your [pc.cocks]");
+	if (pc.balls > 0) output(" and [pc.sack]");
+	output(" are suddenly splashed in the sticky substance.");
 
 	output("\n\nLike a cow milking herself, she continues to press and squeeze her pale udders until your junk is utterly covered from tip to base. You bask in the sensation of her warm, slick liquid clinging to your sensitive rod");
 	if (pc.cocks.length > 1) output("s");
