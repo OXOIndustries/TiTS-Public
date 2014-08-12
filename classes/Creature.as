@@ -2132,11 +2132,29 @@
 				return 0;
 			}
 		}
+		public function hasEnergyWeapon():Boolean
+		{
+			if(hasMeleeEnergyWeapon()) return true;
+			if(hasRangedEnergyWeapon()) return true;
+			return false;
+		}
+		public function hasMeleeEnergyWeapon():Boolean
+		{
+			if(meleeWeapon.damageType > 2 && meleeWeapon.damageType != 8) return true;
+			return false;
+		}
+		public function hasRangedEnergyWeapon():Boolean
+		{
+			if(rangedWeapon.damageType > 2 && rangedWeapon.damageType != 8) return true;
+			return false;
+		}
 		//Item bonus stats!
 		public function attack(melee: Boolean = true): Number {
 			var temp: int = 0;
 			if (melee) temp += meleeWeapon.attack;
 			else temp += rangedWeapon.attack;
+			//Bonus to hit for Tech Specialists above level 7!
+			if(hasPerk("Fight Smarter")) temp += Math.round(intelligence()/7);
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
@@ -2145,14 +2163,17 @@
 			if (melee) 
 			{
 				temp += meleeWeapon.damage;
-				if(hasPerk("Low Tech Solutions") && (meleeWeapon.damageType == GLOBAL.KINETIC || meleeWeapon.damageType == GLOBAL.SLASHING || meleeWeapon.damageType == GLOBAL.PIERCING)) 
+				if(hasPerk("Low Tech Solutions") && !hasMeleeEnergyWeapon()) 
 					temp += Math.ceil(meleeWeapon.damage * 0.2);
-				trace("MELEE DAMAGE: " + temp)
+				if(hasPerk("Weapon Tweaks") && hasMeleeEnergyWeapon()) 
+					temp += Math.ceil(meleeWeapon.damage * 0.2);
 			}
 			else 
 			{
 				temp += rangedWeapon.damage;
-				if(hasPerk("Heavy Weapons") && (rangedWeapon.damageType == GLOBAL.KINETIC || rangedWeapon.damageType == GLOBAL.SLASHING || rangedWeapon.damageType == GLOBAL.PIERCING)) 
+				if(hasPerk("Heavy Weapons") && !hasMeleeEnergyWeapon()) 
+					temp += Math.ceil(rangedWeapon.damage * 0.2);
+				if(hasPerk("Gun Tweaks") && hasMeleeEnergyWeapon()) 
 					temp += Math.ceil(rangedWeapon.damage * 0.2);
 				//Concentrated fire bonus!
 				temp += statusEffectv1("Concentrated Fire");

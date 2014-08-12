@@ -248,6 +248,16 @@ function specialsMenu():void {
 			else addDisabledButton(offset, "G. Disrupt.");
 			offset++;
 		}
+		if(pc.hasPerk("Shield Hack"))
+		{
+			if(pc.energy() >= 25) addButton(offset,"S. Hack",attackRouter,shieldHack,"Shield Hack","Attempts to deal high damage to a target's shields.\n\nConsumes 25 energy.");
+			else addDisabledButton(offset,"S. Hack","Shield Hack","You do not have enough energy to use this attack.\n\nConsumes 25 energy.");
+		}
+		if(pc.hasPerk("Weapon Hack"))
+		{
+			if(pc.energy() >= 25) addButton(offset,"W. Hack",attackRouter,weaponHack,"Weapon Hack","Attempt to neutralize a foe's energy weapon.\n\nConsumes 20 energy.");
+			else addDisabledButton(offset,"W. Hack","Weapon Hack","You do not have enough energy to use this attack.\n\nConsumes 20 energy.");
+		}
 	}
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 	{
@@ -329,6 +339,12 @@ function specialsMenu():void {
 function updateCombatStatuses():void {
 	var temp:Number = 0;
 	//PC STATUSES!
+	if(pc.hasPerk("Shield Regen") && pc.shields() <= 0 && pc.shieldsMax() > 0 && !pc.hasStatusEffect("Used Shield Regen"))
+	{
+		output("<b>Your shields power back up at once quarter power. Now's your chance to turn this around!</b>\n");
+		pc.shields(Math.round(pc.shieldsMax()/4));
+		pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
+	}
 	if(pc.hasStatusEffect("Taking Cover")) pc.removeStatusEffect("Taking Cover");
 	if(pc.hasStatusEffect("Riposting")) pc.removeStatusEffect("Riposting");
 	if(pc.hasPerk("Juggernaught"))
@@ -404,7 +420,7 @@ function updateCombatStatuses():void {
 			pc.removeStatusEffect("Stealth Field Generator");
 		}
 		else {
-			output("<b>You are practically invisible thanks to your stealth field generator.</b>");
+			output("<b>You are practically invisible thanks to your stealth field generator.</b>\n");
 		}
 	}
 	if(pc.hasStatusEffect("Deflector Regeneration"))
@@ -455,13 +471,13 @@ function updateCombatStatuses():void {
 		{
 			if (mimbraneDebug) trace("Removing lust cloud effect from player");
 			pc.removeStatusEffect("Mimbrane Lust Cloud");
-			output("<b>The parasite’s noxious perspiration has faded away.</b>");
+			output("<b>The parasite’s noxious perspiration has faded away.</b>\n");
 		}
 		else
 		{
 			if (mimbraneDebug) trace("Lust cloud remains.");
 			pc.lust(5 + rand(10));
-			output("\n<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+			output("<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>\n");
 		}
 	}
 	//ENEMY STATUSES!
@@ -2897,5 +2913,48 @@ function detCharge(target:Creature):void
 	var damage:Number = Math.round(50 + rand(10));
 	genericDamageApply(damage,pc,target,GLOBAL.THERMAL);
 	output("\n");
+	processCombat();
+}
+
+function shieldHack(target:Creature):void 
+{
+	clearOutput();
+	pc.energy(-25);
+	if(target.shields() <= 0)
+	{
+		output("You attempt to hack the nonexistent shield protecting " + target.a + target.short + "! It doesn't work - <b>there's no shield there.</b>\n");
+		processCombat();
+		return;
+	}
+	output("You attempt to wirelessly hack the shield protecting " + target.a + target.short + "! ");
+	var damage:Number = Math.round(25 + pc.level*5);
+	var randomizer = (rand(31)+ 85)/100;
+	damage *= randomizer;
+	var sDamage:Array = new Array();
+	sDamage = shieldDamage(target,damage,GLOBAL.ELECTRIC);
+	if(target.shields() > 0)
+	{
+		if(target.plural) output(" " + target.a + possessive(target.short) + " shields crackle but hold. (<b>" + sDamage[0] + "</b>)");
+		else output(" " + target.a + possessive(target.short) + " shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
+	}
+	else
+	{
+		if(!target.plural) output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shield is breached. (<b>" + sDamage[0] + "</b>)");
+		else output(" There is a concussive boom and tingling aftershock of energy as " + target.a + possessive(target.short) + " shields are breached. (<b>" + sDamage[0] + "</b>)");
+	}
+	output("\n");
+	processCombat();
+}
+
+function weaponHack(target:Creature):void {
+	clearOutput();
+	pc.energy(-20);
+	if(target.hasStatusEffect("Disarm Immune")) output("You try to hack " + target.a + target.short + " but can't. <b>It's physically impossible!</b>\n");
+	else if(target.hasStatusEffect("Disarmed")) output("You try to hack " + target.a + target.short + " but can't. <b>You already did!</b>\n");
+	else if(!target.hasEnergyWeapon()) output("You try to hack " + target.a + target.short + " but there are no energy weapons to shut down!");
+	else {
+		output("You hack " + possessive(target.a + target.short) + " weapon, disarming them.\n");
+		target.createStatusEffect("Disarmed",4+rand(2),0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
+	}
 	processCombat();
 }

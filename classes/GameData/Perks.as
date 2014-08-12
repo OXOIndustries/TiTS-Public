@@ -436,7 +436,59 @@ package classes.GameData
 			tDisrupt.perkName = "Thermal Disruptor";
 			tDisrupt.perkDescription = "Grants the ability to deal Thermal damage to your foes. Deals higher base damage than Gravidic Disruptor, but some enemies may be resistant to Thermal damage.";
 			insertPerkData(tDisrupt);
+
+			//Level 6
+			//Passive: Shield Regen: Once per fight, regenerate 25% of shields the turn after they drop.
+			var shieldRegen:PerkData = new PerkData();
+			shieldRegen.classLimit = GLOBAL.CLASS_ENGINEER;
+			shieldRegen.levelLimit = 6;
+			shieldRegen.autoGained = true;
+			shieldRegen.perkName = "Shield Regen";
+			shieldRegen.perkDescription = "Builds a redundancy into your shields that can reactivate them at 25% capacity once per fight after they drop.";
+			insertPerkData(shieldRegen);
 			
+			//1. Gun Tweaks: Thanks to your after-market modifications, you do more damage with energy guns.
+			var gunTweaks:PerkData = new PerkData();
+			gunTweaks.classLimit = GLOBAL.CLASS_ENGINEER;
+			gunTweaks.levelLimit = 6;
+			gunTweaks.perkName = "Gun Tweaks";
+			gunTweaks.perkDescription = "Allows you to do 20% additional damage with energy guns thanks to after-market modifications.";
+			insertPerkData(gunTweaks);
+			
+			//2. Weapon Tweaks: Thanks to your after-market modifications, you do more damage with melee energy weapons.
+			var weaponTweaks:PerkData = new PerkData();
+			weaponTweaks.classLimit = GLOBAL.CLASS_ENGINEER;
+			weaponTweaks.levelLimit = 6;
+			weaponTweaks.perkName = "Weapon Tweaks";
+			weaponTweaks.perkDescription = "Allows you to do 20% additional damage with melee energy weapons thanks to after-market modifications.";
+			insertPerkData(weaponTweaks);
+
+			//Level 7
+			//Passive: Less Gay Passive: Precise Shot: Gain a bonus to ranged attack damage based off your Intelligence. (5:1 ratio maybe?)
+			//Or, Vital Strike: You can pick out weak points when enemies get up close. Intelligence is now used for melee attack accuracy, rather than Physique (though Physique still applies to damage). 
+			var fightSmarter:PerkData = new PerkData();
+			fightSmarter.classLimit = GLOBAL.CLASS_ENGINEER;
+			fightSmarter.levelLimit = 7;
+			fightSmarter.autoGained = true;
+			fightSmarter.perkName = "Fight Smarter";
+			fightSmarter.perkDescription = "Improves melee and ranged accuracy by a small portion of your intelligence.";
+			insertPerkData(fightSmarter);
+			
+			//Weapon Hack: Hack an enemy's energy weapons, locking them! {Inflicts Disarm. Obviously has no effect on kinetic-based foes.}
+			var weaponHack:PerkData = new PerkData();
+			weaponHack.classLimit = GLOBAL.CLASS_ENGINEER;
+			weaponHack.levelLimit = 7;
+			weaponHack.perkName = "Weapon Hack";
+			weaponHack.perkDescription = "Allows you to spend 15 energy to hack the enemy's energy weapons, preventing their use for four to five rounds";
+			insertPerkData(weaponHack);
+			
+			//Shield Hack: Hack an enemy's shields, weakening them! {Deals heavy damage to shields}
+			var shieldHack:PerkData = new PerkData();
+			shieldHack.classLimit = GLOBAL.CLASS_ENGINEER;
+			shieldHack.levelLimit = 7;
+			shieldHack.perkName = "Shield Hack";
+			shieldHack.perkDescription = "Allows you to spend 25 energy to hack an enemy's shield, dealing very high shield damage.";
+			insertPerkData(shieldHack);
 		}
 		
 		public function getPlayerClassPerksList():Vector.<PerkData>
