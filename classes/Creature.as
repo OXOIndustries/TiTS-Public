@@ -2709,8 +2709,9 @@
 			//Set skin words.
 			if (skinType == GLOBAL.SKIN_TYPE_SKIN || skin) {
 				temp = this.rand(10);
-				if (temp <= 8) output += "skin";
-				else output += "dermis";
+				//if (temp <= 8) 
+				output += "skin";
+				//else output += "dermis";
 			} else if (skinType == GLOBAL.SKIN_TYPE_FUR) {
 				temp = this.rand(10);
 				if (temp <= 7) output += "fur";
