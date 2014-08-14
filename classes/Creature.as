@@ -2134,9 +2134,7 @@
 		}
 		public function hasEnergyWeapon():Boolean
 		{
-			if(hasMeleeEnergyWeapon()) return true;
-			if(hasRangedEnergyWeapon()) return true;
-			return false;
+			reurn hasMeleeEnergyWeapon() || hasRangedEnergyWeapon();
 		}
 		public function hasMeleeEnergyWeapon():Boolean
 		{
