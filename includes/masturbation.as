@@ -156,6 +156,13 @@ function masturbateMenu(roundTwo:Boolean = false):void {
 		return;
 	}
 	
+	// If only one fap came back, just execute it
+	if (faps is Array && faps.length == 1)
+	{
+		faps[0].execute();
+		return;
+	}
+	
 	// If last is available, show repeat button
 	var showRepeat:Boolean = false;
 	
