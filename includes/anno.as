@@ -608,7 +608,7 @@ function sexWIthAnnoPostTease():void
 	author("Savin");
 	userInterface.showBust("ANNO");
 	userInterface.showName("\nANNO");
-	output("With Anno panting happily, bent over the counter with her ass in the air and tail waggily freely behind her, you figure the perky little ausar's in for a special treat.");
+	output("With Anno panting happily, bent over the counter with her ass in the air and tail wagging freely behind her, you figure the perky little ausar's in for a special treat.");
 	//[Face Fuck] [Get Slurped]
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Face Fuck",faceFuckAnno,undefined,"Face Fuck","You could use a blowjob, right? There's never a bad time for a blowjob.");

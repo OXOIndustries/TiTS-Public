@@ -443,7 +443,7 @@ function pcLosesToSyriBettingHisAss():void {
 
 	output("\n\nYour only reply is a low moan as she gently rocks her hips back, pulling her spent prick from your ass. <i>“Just be glad I didn't give you the knot, or we'd be here for hours. Of course, if that's what you really want, little bitch, I'm sure that can be arranged. ");
 	//If first time:
-	if(flags["TIMES_BUTTFUCKED_BY_SYRI"] == undefined) output("  We'd need somewhere more private for you to get a real taste of asaur cock, though. But then, you've got a ship, hmm?");
+	if(flags["TIMES_BUTTFUCKED_BY_SYRI"] == undefined) output("  We'd need somewhere more private for you to get a real taste of ausar cock, though. But then, you've got a ship, hmm?");
 	output("”</i>");
 
 	output("\n\nSyri chuckles as she pulls out, leaving your hole feeling empty and well-stretched; your stomach gurgles plaintively, churning as her thick cum drools throughout your bowels. Plenty of it leaks out your [pc.asshole], dripping onto the dusty floor. She steps back and pulls up her pants, giving you a playful swat on the [pc.butt] as she saunters away to the bar, high-fiving some of the other regulars who just watched you get thoroughly plowed. Red-faced and leaking, you gather your gear and stumble to the restroom to get cleaned up.");

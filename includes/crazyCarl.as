@@ -722,7 +722,7 @@ function suicideBullshit():void {
 			sDamage = shieldDamage(pc,damage,foes[0].meleeWeapon.damageType);
 			//Set damage to leftoverDamage from shieldDamage
 			damage = sDamage[1];
-			if(pc.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
+			if(pc.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 			else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 		}
 		if(damage >= 1) {

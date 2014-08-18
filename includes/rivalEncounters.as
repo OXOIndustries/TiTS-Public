@@ -36,7 +36,7 @@ function approachRivalOnMhenga():Boolean
 	}
 	else 
 	{
-		output("\n\n<b>You've already gotten the data from this pod. It was a set of coordinates to another plan, likely with its own pod.</b>");
+		output("\n\n<b>You've already gotten the data from this pod. It was a set of coordinates to another planet, likely with its own pod.</b>");
 		return false;
 	}
 }

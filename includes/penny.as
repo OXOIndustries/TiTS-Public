@@ -276,7 +276,7 @@ function getSpitRoastedForPenny():void {
 	else output("[pc.vagina] is stuffed full of rigid zil-cock");
 	output(". As the cock in your mouth withdraws, you are hilted; yellow balls slap against your butt. They saw into you, their athletic forms building speed. The aliens use you as little more than a sentient cock-sleeve. A thrill of pleasure runs through your body, feeling like a soft sex-toy just waiting to be turned into a double cum-dump.");
 	
-	output("\n\nIf the throbbing of their dicks is any indication, the zil are clearly enjoying dominating your submissive body. You rock back and forth, greedily gulping down pre-cum, desperately working your muscles to coax ever more from them. They don’t keep you waiting much longer. As one, they break their rhythm, and both cocks are rammed into you. The throbbing ballsacks grind against your [pc.skinFurScales], and a torrent of honeyed jism erupts into your mouth, flooding your cheeks. Diffirent from the syrupy pre, the zil’s cum is creamy and thick, satisfying a deep desire you didn’t even know you had until you started to swallow. You gulp it down with a blissful smile, feeling only wanton abandon at amber trails slopping out of the corners of your mouth and down your chin. At the same time, the yellow zil explodes in your [pc.vagOrAss], hot, thick spunk flooding your insides, jet after jet of it lancing deep into your ");
+	output("\n\nIf the throbbing of their dicks is any indication, the zil are clearly enjoying dominating your submissive body. You rock back and forth, greedily gulping down pre-cum, desperately working your muscles to coax ever more from them. They don’t keep you waiting much longer. As one, they break their rhythm, and both cocks are rammed into you. The throbbing ballsacks grind against your [pc.skinFurScales], and a torrent of honeyed jism erupts into your mouth, flooding your cheeks. Different from the syrupy pre, the zil’s cum is creamy and thick, satisfying a deep desire you didn’t even know you had until you started to swallow. You gulp it down with a blissful smile, feeling only wanton abandon at amber trails slopping out of the corners of your mouth and down your chin. At the same time, the yellow zil explodes in your [pc.vagOrAss], hot, thick spunk flooding your insides, jet after jet of it lancing deep into your ");
 	if(!pc.hasVagina()) output("bowels");
 	else if(!pc.isPregnant()) output("womb");
 	else output("passage");
@@ -830,7 +830,7 @@ function firstTimePennyShowerSex():void {
 		else output("dick");
 		output(" and over to another penis, allowing her to double the handjob. She works the [pc.cock " + y + "] with matched pumps, gleefully using your array of handholds to her advantage. ");
 	}
-	output("Plush breasts push up against your back, grinding against you as Penny’s eager handjob becomes more enthusiastic.She leans ");
+	output("Plush breasts push up against your back, grinding against you as Penny’s eager handjob becomes more enthusiastic. She leans ");
 	if(pc.tallness >= 72) output("under your arm");
 	else if(pc.tallness >= 55) output("around you");
 	else output("over top of you");

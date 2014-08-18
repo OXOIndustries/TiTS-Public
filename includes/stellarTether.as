@@ -106,7 +106,7 @@ function liftStationBonus():Boolean
 		showBust("TAMTAM")
 		author("Savin");
 		output("\n\nYou make your way to the lift station, sitting precariously on the side of the rift. A pair of glass double doors slide open automatically as you approach, admitting you entrance... right into the barrels of a dozen auto-turrets. Welp.");
-		output("\n\nFrom behind the welcome desk, a pink-haired kiathrit cat-girl pops up, a great big goofy grin on her face. <i>\"Surprise!\"</i> she announces as the turrets level on your chest. <i>\"I told your stupid sergeant not to mess with me, didn't I? Well, he should have listened... I'm more dangerous than I look, you know! Go get " + pc.mf("him","her") + ", boys!\"</i>");
+		output("\n\nFrom behind the welcome desk, a pink-haired kaithrit cat-girl pops up, a great big goofy grin on her face. <i>\"Surprise!\"</i> she announces as the turrets level on your chest. <i>\"I told your stupid sergeant not to mess with me, didn't I? Well, he should have listened... I'm more dangerous than I look, you know! Go get " + pc.mf("him","her") + ", boys!\"</i>");
 		output("\n\nShit! You dive aside as the turrets light up, blasting the space you occupied a second ago with a thousand rounds of ammo. The cat-girl herself joins in the fun, whipping out a laser pistol and firing a few shots after you as you tumble into cover behind a flimsy looking couch, which is quickly torn to shreds over you as you duck down beneath a hail of fire. A moment later, the gunfire dies down, and the kaithrit makes an audible huff. You poke your head up, [pc.rangedWeapon] ready.");
 		output("\n\n<i>\"Aww, you didn't die!\"</i> she pouts over the sound of her laser recharging. <i>\"Come on out and play already!\"</i>");
 		output("\n\nDoesn't look like you're getting out of this one too easy.");
@@ -662,7 +662,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 	output("<b>Months pass</b>");
 	output("\n\nYou can barely feel your extremities. The leather outfit is restraining, tight against your nude body, holding you onto ");
 	if(!pc.hasKnees()) output("your newly grown ");
-	output("knees and elbows. Mistress likes you nice and low, just like a real dog. You're slowly becoming more comfortable in your ne gait, able to hobble around after her despite the lack of access to your bound forelimbs. Today you find yourself scurrying along the corridor at Mistress's heels, quickly followed by Tam-wolf. A few of the pirate crew actually greet you as you wander past them, reaching down to play with your big puppy ears or grab your [pc.butt] through the thight leather of your bindings. Your drilled-in instincts kick in at their touches, causing your to wiggle your [pc.hips] ");
+	output("knees and elbows. Mistress likes you nice and low, just like a real dog. You're slowly becoming more comfortable in your new gait, able to hobble around after her despite the lack of access to your bound forelimbs. Today you find yourself scurrying along the corridor at Mistress's heels, quickly followed by Tam-wolf. A few of the pirate crew actually greet you as you wander past them, reaching down to play with your big puppy ears or grab your [pc.butt] through the thight leather of your bindings. Your drilled-in instincts kick in at their touches, causing your to wiggle your [pc.hips] ");
 	if(pc.tailCount > 0) output("and [pc.tails].");
 	else output(", which makes the fluffy tail plugged into your ass shake for them - and gives you an undeniable thrill of pleasure as the buttplug shifts inside you, unable to escape through the small hole in your suit no matter how much you used to try. Now, you can't imagine living without your constant, fluffy companion.");
 
@@ -724,7 +724,7 @@ function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 
 	output("\n\nYou whimper in terror as you hear Tam-wolfs metallic claws clanking across the deck, pacing up to you. You try and scamper away, but your suddenly-massive tits simply defy your strength, especially confined in what remains of your puppy-suit. Incapable of escape, all you can do is try not to panic as Tam-wolf sticks his stainless steels snout into the back of your pants, his exhaust vent blowing hot air into your cooch. You whimper at the sensation, trembling as his hot nose presses into your slit, almost threatening penetration... but that's completely unable to prepare you for the sudden rush of steel that follows. Tam-wolf lunges up onto you, his full weight crashing onto your back as the drone <i>mounts</i> you, his forelegs scrambling up your torso, gripping into the sheer leather gripping your wide, altered hips. With it, you can feel a huge, pointed, plastic tip bump against the lips of your ");
 	if(!pc.hasVagina()) output("new, virginal ");
-	output("womanhood. Oh, God, it's massive! You squeak in terror, struggling under the immense weight of your own boobs and the drone-dog atop you... to no avail. You're helpless, trapped by your restraints and overburdened breasts as Tam-wolf mounts up, hips powerful hips thrusting into your up-turned ass.");
+	output("womanhood. Oh, God, it's massive! You squeak in terror, struggling under the immense weight of your own boobs and the drone-dog atop you... to no avail. You're helpless, trapped by your restraints and overburdened breasts as Tam-wolf mounts up, his powerful hips thrusting into your up-turned ass.");
 
 	output("\n\nYour voice breaks into a high, wordless scream as a massive, hot rod of latex slams into your drooling sex");
 	if(!pc.hasVagina()) output(", piercing your new womanhood's hymen");
@@ -752,7 +752,7 @@ function bombAlertBonusFunction():Boolean
 		output("As you leave the KO'd cat-girl behind, you hear a faint beeping back in the control room. Looking over your shoulder, you see a tiny red \"INCOMING\" displaying on Tam-wolf's readout. A moment later, a holo-projector displays the face of a dark-skinned woman with a punked-out do, scowling at her transmitter.");
 		output("\n\n<i>\"Tam, where the fuck are you, you lazy slut? Pick up!\"</i>");
 		output("\n\nWhen no answer is forthcoming, the figure sighs and scowls. <i>\"I hope you're recording this. Four hours until detonation. You better have your shit packed and ready to go before then.\"</i>");
-		output("\n\nThe figure winks out as the transmission cuts. Three hours? Oh, shit....");
+		output("\n\nThe figure winks out as the transmission cuts. Four hours? Oh, shit....");
 		processTime(1);
 		//Fen note: START ZE TIMAH 180 minutes. AKA: Don't fuck around too long.
 		flags["TARKUS_BOMB_TIMER"] = 240;
@@ -1717,7 +1717,7 @@ function thraggenAreABunchOfGreenLesboSlutsGardefordToldMeSo():void
 	else output("but you imagine you have her howling in short notice.");
 
 	output("\n\nA final twitch of her clit is the only warning you get before the pirate captain's body fulminates in a planet-cracking orgasm. You hear a wet rip as her pants tear into two halves, freeing her legs to splay out in the air, letting your face nuzzle even deeper into her now fully exposed spasming cunt. A burst of femcum splatters over your face, dribbling down her stomach and back as you pull away. Her body leaves her no energy for shouting, so all the noise she can make is a soft moan as she rides out the euphoria. You gulp in a couple breaths of fresh air before returning your attentions to Khorgan.");
-	output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There's still something missing from this equation though. You haven’t actually gotten off yet, but you think you have the answer to that problem. You straddle the insensate amazons face, planting [pc.oneVagina] directly over her mouth.");
+	output("\n\nYour victory prize remains where you left her, still trying to recover as aftershocks of the orgasm you put her through occasionally send shudders through her body. There's still something missing from this equation though. You haven’t actually gotten off yet, but you think you have the answer to that problem. You straddle the insensate amazon's face, planting [pc.oneVagina] directly over her mouth.");
 	if(pc.isNice()) output("\n\n<i>“Come on, you gotta help me after that,”</i> you say with a smile, running your hand through her sweat slicked hair.");
 	else if(pc.isMischievous()) output("<i>“You can’t be done so soon,”</i> you chide teasingly.");
 	else output("<i>”Lick,”</i> you command with a grin.");

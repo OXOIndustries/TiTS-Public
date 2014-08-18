@@ -842,7 +842,7 @@ function finishNaleenSnuggles():void {
 	//Mean/Snarky/Nice: 
 	if(pc.isAss()) output("\n\n<i>“Could be worse, I guess,”</i>");
 	else if(pc.isMischievous()) output("\n\n<i>“I've had worse,”</i>");
-	else output("\n\n<i>“Delicious”</i>");
+	else output("\n\n<i>“Delicious,”</i>");
 	output(" you say approvingly, ripping off another bite.");
 	
 	output("\n\nThe naleen gives a gleeful, girlish squeal of delight, obviously happy that you're enjoying her cooking. She joins you, claws handily slicing up the ginder fish into strips for her to slurp down. She's certainly got an appetite, too: the naleen girl chews through the lion's share of the oversized fish before long, though you hardly end up starving, either. With a contented belch, you toss a tiny bone aside and pat your belly, snickering as the naleen licks some fish-grease from her furry fingertips. She grins bashfully, slithering around the embers of her fire to coil up beside you, head resting on your shoulder.");

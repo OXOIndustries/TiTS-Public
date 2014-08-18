@@ -1059,7 +1059,7 @@ function rangedAttack(attacker:Creature, target:Creature, noProcess:Boolean = fa
 					else output(" There is a concussive boom and tingling aftershock of energy as you disperse " + target.a + possessive(target.short) + " defenses. (<b>" + sDamage[0] + "</b>)");
 				}
 				else {
-					if(target.shieldsRaw > 0) output(" Your shield cracles but holds. (<b>" + sDamage[0] + "</b>)");
+					if(target.shieldsRaw > 0) output(" Your shield crackles but holds. (<b>" + sDamage[0] + "</b>)");
 					else output(" There is a concussive boom and tingling aftershock of energy as your shield is breached. (<b>" + sDamage[0] + "</b>)");
 				}
 			}
@@ -2559,7 +2559,7 @@ function flashGrenade(target:Creature):void {
 	pc.energy(-10);
 	clearOutput();
 	if(silly) output("With a cry of <i>\"Pocket sand!\"</i> you produce a handful of sand and throw it at " + target.a + target.short + ".");
-	else output("You produce one of your rechargible flash grenades and huck it in the direction of " + target.a + target.short + ".");
+	else output("You produce one of your rechargeable flash grenades and huck it in the direction of " + target.a + target.short + ".");
 	//Chance of bliiiiiiiind
 	if(pc.aim()/2 + rand(20) + 6 >= target.reflexes()/2 + 10 && !target.hasStatusEffect("Blind")) {
 		if(target.plural) output("\n<b>" + target.capitalA + target.short + " are blinded by </b>");
