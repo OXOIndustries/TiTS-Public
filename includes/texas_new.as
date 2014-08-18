@@ -435,7 +435,7 @@ function whosInCharge():void
 	if(flags["FUCKED_TEXAN_CUSTOMS"] == undefined)
 	{
 		output("\n\n“<i>Ex-excuse me. I need to, um.. bathroom...</i>” she mumbles, jumping up from her desk and scampering off, her bovine tail tucked tight.");
-		output("\n\nOgram grunts as she vanishes into the restroom. “<i>Bigger </i>that<i>, slut.</i>”}");
+		output("\n\nOgram grunts as she vanishes into the restroom. “<i>Bigger </i>that<i>, slut.</i>”");
 	}
 	//if sex’d:
 	else
@@ -443,7 +443,7 @@ function whosInCharge():void
 		output("\n\n“<i>O-oggy! Stop! It’s too... too much. Too much!</i>” Amma groans, biting her lip, trying not to just moan like a whore.");
 		output("\n\nOgram chuckles, “<i>Just a little more, slut. Hang in there....</i>”");
 		output("\n\n“<i>Aaaaah. Stopitstopitstopit,</i>” Amma moans, finally breaking down and crying out, her hand disappearing under her skirt. It doesn’t take much more before her voice reaches a crescendo and her tits erupt in a little squirt of milk that soaks right through her shirt, drenching her in her own lactic lust. With a grunt, Amma face-plants on her desk, her big, pillowy tits cushioning the fall. ");
-		output("\n\n“<i>Bigger </i>that<i>, slut,</i>” Ogram laughs as the cow-girl cums her brains out.}");
+		output("\n\n“<i>Bigger </i>that<i>, slut,</i>” Ogram laughs as the cow-girl cums her brains out.");
 		pc.lust(4);
 	}
 	processTime(6);
