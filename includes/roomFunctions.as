@@ -105,7 +105,7 @@ function debugMenus():void
 		itemCollect(foundLootItems);
 	});
 	
-	addItemButton(1, new TSTArmorMkII(), function():void {
+	addItemButton(2, new TSTArmorMkII(), function():void {
 		output("\n\nNaleenscale Armor get.\n");
 		
 		var foundLootItems:Array = [new TSTArmorMkII];
@@ -117,6 +117,12 @@ function debugMenus():void
 		itemCollect(foundLootItems);
 	});
 	
+	addButton(3, "Preggers Test", function():void {
+		processTime(800);
+		processTime(800);
+		
+		mainGameMenu();
+	});
 	
 	addButton(7, "Test Nades", function():void {
 		

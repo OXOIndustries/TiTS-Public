@@ -181,9 +181,11 @@ package classes.GameData.Pregnancy
 			
 			if (_debugTrace) trace("Incubation change of " + tMinutes + " * " + pData.pregnancyIncubationMulti + " = " + modTDelta);
 			
-			
 			var oldInc:int = pData.pregnancyIncubation;
 			var newInc:int = pData.pregnancyIncubation - modTDelta;
+		
+			// Catch potential repeated calls to updatePregnancyStage that could trip another onDurationEnd without having a chance to cleanup post-pregnancy data
+			if (oldInc < 0) return;
 			
 			if (_debugTrace) trace("New incubation value = " + newInc);
 			
@@ -201,7 +203,7 @@ package classes.GameData.Pregnancy
 				triggeredPSPs[i].execute();
 			}
 			
-			if (newInc <= 0)
+			if (newInc <= 0 && oldInc > 0)
 			{
 				if (_debugTrace) trace("Incubation expired");
 				if (_onDurationEnd != null)
@@ -214,10 +216,8 @@ package classes.GameData.Pregnancy
 					throw new Error("BasePregnancyHandler for type " + _handlesType + " doesn't have a defined onDurationEnd event handler.");
 				}
 			}
-			else
-			{
-				pData.pregnancyIncubation = newInc;
-			}
+			
+			pData.pregnancyIncubation = newInc;
 		}
 		
 		// Baseline data/interaction
