@@ -1375,7 +1375,7 @@ function vanaeHuntress69(selScene:String):void
 	if (isBj)
 	{
 		output("\n\nSoon her tongue tip is dipping sensuously into your slit, plumbing deliciously into your cock hole and forcing you to shudder with delight. As she tongue-fucks your [pc.cockHead " + selCock + "] her");
-		if (pc.balls > 0) output(" webbed hands wrap/} around your [pc.sheath] and [pc.balls]");
+		if (pc.balls > 0) output(" webbed hands wrap around your [pc.sheath] and [pc.balls]");
 		else output(" webbed hand wraps around your [pc.sheath]");
 		output(". You groan as she teases your dilating tip and jerking you off at the same time");
 		if (pc.balls > 0) output(", all the while gently and sensuously squeezing your [pc.sack]");

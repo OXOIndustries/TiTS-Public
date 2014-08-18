@@ -187,7 +187,7 @@ function checkOutBountyBoard():void
 	
 function barBackRoomBonus():Boolean
 {
-	if(flags["KELLY_MET"] == 1 && (hours > 17 || hours < 6)) kellyAtTheBar();
+	if(flags["KELLY_MET"] == 1 && (hours >= 17 || hours < 6)) kellyAtTheBar();
 	return false;
 }
 
