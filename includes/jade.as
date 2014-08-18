@@ -1074,6 +1074,7 @@ function boobToBoobSexathon():void {
 	else output("\n\nYou really need to be going. But you’d be lying if you said you’re not even a bit tired. Maybe a short nap oughta help. Yes, a nap sounds good....");
 	//[Next Page]
 	processTime(15+rand(10));
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",epilogueOfNippleOnNippleJadeSex);
 }

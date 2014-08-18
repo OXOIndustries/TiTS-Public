@@ -1282,7 +1282,7 @@ function vanaeHuntressTitfuck():void
 
 	output("\n\nYou see white as a shockwave seizes your [pc.groin], an explosion of awesome, broiling pleasure travelling along your [pc.cocks] and erupting all over her [monster.breasts]. Ridiculous amounts of [pc.cum] explode from your [pc.cockHeads] and splatter her [monster.skin] as you shiver in blissful release. At the same time she lets out a sweet cry and gushes her slick violet milk all over your [pc.belly], clenching your [pc.cocks] hard in the throes of her own shuddering orgasm.");
 
-	output("\n\nAs if on instinct, the alien huntress moans and wrings [pc.eachCock] between her [pc.breasts] even as you both cum, milking you for ever last drop of your hot jism. She doesn't stop until you are completely spent all over her fleshy swells and her [pc.skin] is utterly marked with your [pc.cumColor] spunk.");
+	output("\n\nAs if on instinct, the alien huntress moans and wrings [pc.eachCock] between her [vanae.breasts] even as you both cum, milking you for every last drop of your hot jism. She doesn't stop until you are completely spent all over her fleshy swells and her [pc.skin] is utterly marked with your [pc.cumColor] spunk.");
 
 	pc.orgasm();
 	monster.orgasm();
