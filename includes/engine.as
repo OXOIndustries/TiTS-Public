@@ -203,11 +203,11 @@ function updateNPCStats():void {
 		this.userInterface.monsterRace.values.text = StringUtil.toTitleCase(foes[0].originalRace);
 		if(foes[0].hasCock()) {
 			if(foes[0].hasVagina())	
-				this.userInterface.monsterSex.values.text = "Hermaphrodite";
+				this.userInterface.monsterSex.values.text = "Herm";
 			else this.userInterface.monsterSex.values.text = "Male";
 		}
 		else if(foes[0].hasVagina()) this.userInterface.monsterSex.values.text = "Female";
-		else this.userInterface.monsterSex.values.text = "????";
+		else this.userInterface.monsterSex.values.text = "???";
 		
 		this.userInterface.monsterStatusEffects = foes[0].statusEffects;
 	}
