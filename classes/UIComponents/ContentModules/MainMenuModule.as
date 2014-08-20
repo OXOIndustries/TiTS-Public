@@ -1,4 +1,4 @@
-package classes.UIComponents.ContentModules 
+﻿package classes.UIComponents.ContentModules 
 {
 	import classes.TiTS;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
@@ -25,19 +25,6 @@ package classes.UIComponents.ContentModules
 		private static var Warning_BG:Class;
 		
 		// Display elements
-		private var _mainMenuButtons:Vector.<MainMenuButton>;
-		
-		public function get mainMenuButtons():Array
-		{
-			var btnArray:Array = new Array();
-			
-			for (var i:int = 0; i < _mainMenuButtons.length; i++)
-			{
-				btnArray.push(_mainMenuButtons[i]);
-			}
-			
-			return btnArray;
-		}
 		
 		private var _titsLogo:DisplayObject;
 		private var _warningBackground:Sprite;
@@ -56,8 +43,6 @@ package classes.UIComponents.ContentModules
 			fullButtonTrayEnabled = true;
 			_moduleName = "MainMenu";
 			
-			_mainMenuButtons = new Vector.<MainMenuButton>();
-			
 			this.addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 		
@@ -67,7 +52,6 @@ package classes.UIComponents.ContentModules
 			
 			this.BuildGraphicsElements();
 			this.BuildTextElements();
-			this.BuildButtons();
 		}
 		
 		private function BuildGraphicsElements():void 
@@ -142,33 +126,6 @@ package classes.UIComponents.ContentModules
 			_warningText.height = 75;
 			_warningText.width = 655;
 			_warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
-		}
-		
-		private function BuildButtons():void
-		{
-			var posX:int = 10;
-			var posY:int = 518;
-			
-			for (var btnIdx:int = 0; btnIdx < 6; btnIdx++)
-			{
-				var newBtn:MainMenuButton = new MainMenuButton(); 
-				
-				if (btnIdx == 3)
-				{
-					posX -= 474;
-					posY += 50;
-				}
-				
-				posX += 158;
-				
-				this.addChild(newBtn);
-				
-				newBtn.x = posX;
-				newBtn.y = posY;
-				newBtn.mouseChildren = false;
-				
-				_mainMenuButtons.push(newBtn);
-			}
 		}
 	}
 }

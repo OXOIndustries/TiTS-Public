@@ -1,4 +1,4 @@
-package classes.UIComponents 
+﻿package classes.UIComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;

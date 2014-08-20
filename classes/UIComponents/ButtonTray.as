@@ -368,14 +368,17 @@
 		 * @param	ttHeader	Optional override for the tooltip title
 		 * @param	ttBody		Optional override for the tooltip main body text
 		 */
-		public function addButton(slot:int, caption:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
+		public function addButton(slot:int, caption:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, save:Boolean = true):void
 		{
 			if (slot <= 14)
 			{
 				_buttons[slot].setData(caption, func, arg, ttHeader, ttBody);
 			}
 			
-			_buttonData[slot].setData(caption, func, arg, ttHeader, ttBody);
+			if(save)
+			{
+				_buttonData[slot].setData(caption, func, arg, ttHeader, ttBody);
+			}
 			CheckPages();
 		}
 		

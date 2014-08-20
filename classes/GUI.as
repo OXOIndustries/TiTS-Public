@@ -297,51 +297,25 @@
 			
 			// Setup the Menu buttons
 			resetMenuButtons();
-			
-			var buttons:Array = mainMenuModule.mainMenuButtons;
-			
-			(buttons[1] as MainMenuButton).buttonName = "Data";
-			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, kGAMECLASS.dataManager.dataRouter);
-			
-			(buttons[2] as MainMenuButton).buttonName = "Options";
-			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, showOptions);
-						
-			(buttons[5] as MainMenuButton).buttonName = "Credits";
-			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
-			
-			(buttons[3] as MainMenuButton).buttonName = "Yes";
-			(buttons[3] as MainMenuButton).visible = false;
-			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
-			
-			(buttons[4] as MainMenuButton).visible = false;
 		}
 		
 		public function confirmNewCharacter():void
 		{
-			var buttons:Array = mainMenuModule.mainMenuButtons;
-			
-			(buttons[0] as MainMenuButton).buttonName = "No";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
-			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
-			
-			(buttons[3] as MainMenuButton).visible = true;
+			_buttonTray.addButton(0, "Yes", titsClassPtr.startCharacterCreation);
+			_buttonTray.addButton(1, "No", titsClassPtr.resetMenuButtons);
 		}
 		
 		public function resetMenuButtons(e:Event = null):void
 		{
-			var buttons:Array = mainMenuModule.mainMenuButtons;
-			
 			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
 			
-			(buttons[0] as MainMenuButton).buttonName = "New Game";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
-			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
-			
-			(buttons[3] as MainMenuButton).visible = false;
-			
+			_buttonTray.addButton(0, "New Game", titsClassPtr.creationRouter, null, null, null, false);
+			_buttonTray.addButton(1, "Data", kGAMECLASS.dataManager.dataRouter, null, null, null, false);
+			_buttonTray.addButton(2, "Options", showOptions, null, null, null, false);
+			_buttonTray.addButton(3, "Credits", creditsHandler, null, null, null, false);
 		}
 		
-		private function showOptions(e:Event):void
+		private function showOptions():void
 		{
 			this.showOptionsModule();
 		}
@@ -350,7 +324,7 @@
 		 * This is placeholder shit that I'll need to update when we build a Credits content module.
 		 * @param	e
 		 */
-		private function creditsHandler(e:Event):void
+		private function creditsHandler():void
 		{
 			//this.userInterface.hideMenus();
 			//clearOutput2();
@@ -513,8 +487,6 @@
 		public function showMainMenu():void
 		{
 			this.showModule("MainMenu");
-			
-			var buttons:Array = (_availableModules["MainMenu"] as MainMenuModule).mainMenuButtons;
 			
 			if (kGAMECLASS.pc.short.length > 0) this.mainMenuButton.Glow();
 			this.resetMenuButtons();
