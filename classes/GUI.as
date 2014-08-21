@@ -301,17 +301,17 @@
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
 			(buttons[1] as MainMenuButton).buttonName = "Data";
-			(buttons[1] as MainMenuButton).addEventListener(MouseEvent.CLICK, kGAMECLASS.dataManager.dataRouter);
+			(buttons[1] as MainMenuButton).func = kGAMECLASS.dataManager.dataRouter;
 			
 			(buttons[2] as MainMenuButton).buttonName = "Options";
-			(buttons[2] as MainMenuButton).addEventListener(MouseEvent.CLICK, showOptions);
+			(buttons[2] as MainMenuButton).func = showOptions;
 						
 			(buttons[5] as MainMenuButton).buttonName = "Credits";
-			(buttons[5] as MainMenuButton).addEventListener(MouseEvent.CLICK, creditsHandler);
+			(buttons[5] as MainMenuButton).func = creditsHandler;
 			
 			(buttons[3] as MainMenuButton).buttonName = "Yes";
 			(buttons[3] as MainMenuButton).visible = false;
-			(buttons[3] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.startCharacterCreation);
+			(buttons[3] as MainMenuButton).func = titsClassPtr.startCharacterCreation;
 			
 			(buttons[4] as MainMenuButton).visible = false;
 		}
@@ -321,8 +321,7 @@
 			var buttons:Array = mainMenuModule.mainMenuButtons;
 			
 			(buttons[0] as MainMenuButton).buttonName = "No";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, resetMenuButtons);
-			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
+			(buttons[0] as MainMenuButton).func = resetMenuButtons;
 			
 			(buttons[3] as MainMenuButton).visible = true;
 		}
@@ -334,14 +333,13 @@
 			mainMenuModule.warningText.htmlText = "This is an adult game meant to be played by adults. Do not play this game\nif you are under the age of 18, and certainly don't\nplay this if exotic and strange fetishes disgust you. <b>You've been warned!</b>";
 			
 			(buttons[0] as MainMenuButton).buttonName = "New Game";
-			(buttons[0] as MainMenuButton).addEventListener(MouseEvent.CLICK, titsClassPtr.creationRouter);
-			(buttons[0] as MainMenuButton).removeEventListener(MouseEvent.CLICK, resetMenuButtons);
+			(buttons[0] as MainMenuButton).func = titsClassPtr.creationRouter;
 			
 			(buttons[3] as MainMenuButton).visible = false;
 			
 		}
 		
-		private function showOptions(e:Event):void
+		private function showOptions():void
 		{
 			this.showOptionsModule();
 		}
@@ -350,7 +348,7 @@
 		 * This is placeholder shit that I'll need to update when we build a Credits content module.
 		 * @param	e
 		 */
-		private function creditsHandler(e:Event):void
+		private function creditsHandler():void
 		{
 			//this.userInterface.hideMenus();
 			//clearOutput2();
