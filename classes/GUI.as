@@ -51,6 +51,7 @@
 
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
+	import flash.display.DisplayObjectContainer;
 
 	//Build the bottom drawer
 	public class GUI extends MovieClip
@@ -582,6 +583,32 @@
 		{
 			this.showModule("LevelUpPerks");
 			(_currentModule as LevelUpPerksModule).setCreatureData(character);
+		}
+		
+		public function showBigMap(mapLink:MiniMap = null, allowInteraction:Boolean = true, container:DisplayObjectContainer = null):MiniMap
+		{
+			if(container == null) container = this.primaryOutputModule;
+			
+			var bigM:MiniMap = new MiniMap();
+			bigM.childSizeX = 24;
+			bigM.childSizeY = 24;
+			bigM.childSpacing = 12;
+			bigM.childNumY = 20;
+			bigM.childNumX = 20;
+			
+			var mapper:Mapper = new Mapper(kGAMECLASS.rooms, 20);
+			container.addChild(bigM);
+			bigM.setMapData(mapper.generateMap(kGAMECLASS.currentLocation));
+			
+			clearGhostMenu();
+			addGhostButton(14, "Back", removeBigMap, bigM);
+			
+			return bigM;
+		}
+		
+		public function removeBigMap(bigM:MiniMap):void {
+			bigM.parent.removeChild(bigM);
+			showPrimaryOutput();
 		}
 		
 		// Once this is all working, a lot of this should be refactored so that code external to GUI

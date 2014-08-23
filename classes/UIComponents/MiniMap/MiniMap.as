@@ -384,43 +384,45 @@
 			// obj for us in a way
 			
 			// Player is always currently on z=3 of the map
-			var zPos:int = 3;
+			var zPos:int = map.length / 2;
 			var xPos:int = 0;
 			var yPos:int = 0;
 			var roomFlags:int;
 			
 			// Room Linkages
-			for (xPos = 0; xPos < 6; xPos++)
+			for (xPos = 0; xPos < map.length - 1; xPos++)
 			{
-				for (yPos = 0; yPos < 7; yPos++)
+				for (yPos = 0; yPos < map.length; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];
 					var roomEast:int = map[xPos + 1][yPos][zPos];
 					
 					// East room
-					_childLinksX[xPos][6 - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
+					_childLinksX[xPos][(map.length - 1) - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
 				}
 			}
 			
-			for (xPos = 0; xPos < 7; xPos++)
+			for (xPos = 0; xPos < map.length; xPos++)
 			{
-				for (yPos = 0; yPos < 6; yPos++)
+				for (yPos = 0; yPos < map.length - 1; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];
 					var roomSouth:int = map[xPos][yPos + 1][zPos];
 					
 					// South room
-					_childLinksY[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
+					_childLinksY[xPos][(map.length - 2) - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
 				}
 			}
 			
+			if(map.length != 7) trace("starting " + map.length);
+			var blah:String = "";
 			// Primary room visibility
-			for (xPos = 0; xPos < 7; xPos++)
+			for (xPos = 0; xPos < map.length; xPos++)
 			{
-				for (yPos = 0; yPos < 7; yPos++)
+				for (yPos = 0; yPos < map.length; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];					
-					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
+					var tarSprite:MinimapRoom = _childElements[xPos][(map.length - 1) - yPos];
 					
 					// Room visibility
 					if (roomFlags & Mapper.room_present_mask)

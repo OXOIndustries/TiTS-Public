@@ -59,6 +59,15 @@
 				var classType:Class = getDefinitionByName(String(MiniMap.ICON_NAMES[i])) as Class;
 				_icons[i] = new classType();
 				_icons[i].name = String(MiniMap.ICON_NAMES[i]);
+				//Scale icon properly - base map size is 35
+				if(this.width != 35)
+				{
+					_icons[i].width *= this.width / 35
+				}
+				if(this.height != 35)
+				{
+					_icons[i].height *= this.height / 35
+				}
 				this.addChild(_icons[i]);
 				_icons[i].visible = false;
 			}
