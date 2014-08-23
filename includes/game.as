@@ -479,10 +479,41 @@ public function variableRoomUpdateCheck():void
 		//Add Kelly icon in the bar
 		if(!rooms["BURT'S BACK END"].hasFlag(GLOBAL.NPC)) rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
+
 	//Sexbot factory opeeeeeen.
 	if(flags["SEXBOTS_SCANNED_FOR_COLENSO"] != undefined && flags["SEXBOTS_SCANNED_FOR_COLENSO"] >= 4)
 	{
 		rooms["256"].southExit = "294";
+	}
+	
+	// Annos shop
+	if (!steeleTechTarkusShopAvailable())
+	{
+		rooms["303"].removeFlag(GLOBAL.NPC);
+	}
+	else
+	{
+		rooms["303"].addFlag(GLOBAL.NPC);
+	}
+	
+	// Deck 13 Reactor -> Databank room
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
+	{
+		rooms["DECK 13 REACTOR"].northExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].northExit = "DECK 13 SECONDARY REACTOR";
+	}
+
+	// Deck 13 Reactor -> Vents
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] != undefined)
+	{
+		rooms["DECK 13 REACTOR"].eastExit = undefined;
+	}
+	else
+	{
+		rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
 	}
 }
 

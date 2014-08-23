@@ -1,6 +1,21 @@
 ﻿import classes.Characters.PlayerCharacter;
 import classes.RoomClass;
 
+	// Room template for copypasta
+	/*
+	rooms[""] = new RoomClass(this);
+	rooms[""].roomName = "";
+	rooms[""].description = "";
+	rooms[""].runOnEnter = mhengaVanaeCombatZone;
+	rooms[""].planet = "PLANET: MHEN'GA";
+	rooms[""].system = "SYSTEM: ARA ARA";
+	rooms[""].northExit = "";
+	rooms[""].eastExit = "";
+	rooms[""].southExit = "";
+	rooms[""].westExit = "";
+	rooms[""].addFlag(GLOBAL.OUTDOOR);
+	rooms[""].addFlag(GLOBAL.HAZARD);
+	*/
 
 function initializeRooms():void 
 {
@@ -1274,20 +1289,7 @@ function initializeRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
 
 	// Vanae map additions
-	/*
-	rooms[""] = new RoomClass(this);
-	rooms[""].roomName = "";
-	rooms[""].description = "";
-	rooms[""].runOnEnter = mhengaVanaeCombatZone;
-	rooms[""].planet = "PLANET: MHEN'GA";
-	rooms[""].system = "SYSTEM: ARA ARA";
-	rooms[""].northExit = "";
-	rooms[""].eastExit = "";
-	rooms[""].southExit = "";
-	rooms[""].westExit = "";
-	rooms[""].addFlag(GLOBAL.OUTDOOR);
-	rooms[""].addFlag(GLOBAL.HAZARD);
-	*/
+
 
 	rooms["A TURNING POINT"] = new RoomClass(this);
 	rooms["A TURNING POINT"].roomName = "TURNING\nPOINT";
@@ -1694,8 +1696,8 @@ function initializeRooms():void
 	//#12 NOVAHOME
 	rooms["212"] = new RoomClass(this);
 	rooms["212"].roomName = "\nNOVAHOME";
-	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" sign hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.";
-	rooms["212"].runOnEnter = undefined;
+	rooms["212"].description = "You're definitely in the third of the ship closest to the fore. The tunnel is narrowing a little bit with every step to the west and broadening to the east. There's still plenty of room, though. Where you're standing, the immense chamber is at least eighty yards across and thirty-five feet tall - plenty of room for the short aliens to populate the area with a half-dozen buildings. A steady stream of raskvel are coming and going from inside a cavernous chamber to the north, clearly marked \"MESS\" in large, white letters. A pair of large windows on either side of the door are currently obstructed thanks to a pair of gigantic sandwich boards set up with some crudely-drawn caricatures of soups, sandwiches, and steaks beside prices in the local currency.";
+	rooms["212"].runOnEnter = steeleTechTarkusOutsideFunction;
 	rooms["212"].eastExit = "211";
 	rooms["212"].westExit = "213";
 	rooms["212"].northExit = "301";
@@ -2761,7 +2763,7 @@ function initializeRooms():void
 	rooms["303"] = new RoomClass(this);
 	rooms["303"].roomName = "STEELE\nTECH";
 	rooms["303"].description = "";
-	rooms["303"].runOnEnter = steeleTechBonusFunction;
+	rooms["303"].runOnEnter = steeleTechTarkusEntry;
 	rooms["303"].northExit = "212";
 	rooms["303"].planet = "PLANET: TARKUS";
 	rooms["303"].system = "SYSTEM: REDACTED";
@@ -3026,6 +3028,90 @@ function initializeRooms():void
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.INDOOR);
 	rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.COMMERCE);
 	
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//					NOVA: GHOST DECK
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+
+	rooms["DECK 13 AIRLOCK"] = new RoomClass(this);
+	rooms["DECK 13 AIRLOCK"].roomName = "DECK 13\nAIRLOCK";
+	rooms["DECK 13 AIRLOCK"].description = "The airlock on Deck 13 is just like any other airlock you've been in: cramped and claustrophobic, with several space suits bolted to one wall. Each proudly displays the <i>Nova</i>'s crest on the breast in faded, barely-legible fabric. A hatch to the north will take you deeper into the mysterious \"ghost deck.\"";
+	rooms["DECK 13 AIRLOCK"].runOnEnter = deck13AirlockFunc;
+	rooms["DECK 13 AIRLOCK"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 AIRLOCK"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 AIRLOCK"].northExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 AIRLOCK"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 SECURITY CHECKPOINT"] = new RoomClass(this);
+	rooms["DECK 13 SECURITY CHECKPOINT"].roomName = "DECK 13\nSECURITY";
+	rooms["DECK 13 SECURITY CHECKPOINT"].description = "This corridor has been repurposed as a barricade of sorts, with several crates and bits of equipment clogging the passage until you can only move through single-file. The remains of the errant security droids are scattered around the barricade, still crackling with electricity. To the north is a huge steel blast door. To the west, an elevator shaft. To the east, what looks like some kind of armory, if the cute picture of a gun on the side of the door is any indication.";
+	rooms["DECK 13 SECURITY CHECKPOINT"].runOnEnter = deck13SecurityFunc;
+	rooms["DECK 13 SECURITY CHECKPOINT"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 SECURITY CHECKPOINT"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 SECURITY CHECKPOINT"].northExit = "DECK 13 REACTOR";
+	rooms["DECK 13 SECURITY CHECKPOINT"].eastExit = "DECK 13 ARMOR";
+	rooms["DECK 13 SECURITY CHECKPOINT"].southExit = "DECK 13 AIRLOCK";
+	rooms["DECK 13 SECURITY CHECKPOINT"].westExit = "DECK 13 ELEVATOR SHAFT";
+	rooms["DECK 13 SECURITY CHECKPOINT"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 ARMORY"] = new RoomClass(this);
+	rooms["DECK 13 ARMORY"].roomName = "DECK 13\nARMORY";
+	rooms["DECK 13 ARMORY"].description = "The \"armory\" on Deck 13 is full of deactivated robots. Without some serious hardware and software on your end, they're likely to stay that way. Still, there's also a traditional armory with racks full of basic firearms meant for ship's security personnel.";
+	rooms["DECK 13 ARMORY"].runOnEnter = deck13ArmoryFunc;
+	rooms["DECK 13 ARMORY"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 ARMORY"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 ARMORY"].westExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 ARMORY"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 ELEVATOR SHAFT"] = new RoomClass(this);
+	rooms["DECK 13 ELEVATOR SHAFT"].roomName = "DECK 13\nLIFT";
+	rooms["DECK 13 ELEVATOR SHAFT"].description = "";
+	rooms["DECK 13 ELEVATOR SHAFT"].runOnEnter = deck13ElevatorFunc;
+	rooms["DECK 13 ELEVATOR SHAFT"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 ELEVATOR SHAFT"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 ELEVATOR SHAFT"].eastExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 ELEVATOR SHAFT"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 REACTOR"] = new RoomClass(this);
+	rooms["DECK 13 REACTOR"].roomName = "DECK 13\nREACTOR";
+	rooms["DECK 13 REACTOR"].description = "";
+	rooms["DECK 13 REACTOR"].runOnEnter = deck13ReactorRoomFunc;
+	rooms["DECK 13 REACTOR"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 REACTOR"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 REACTOR"].eastExit = "DECK 13 VENTS";
+	rooms["DECK 13 REACTOR"].southExit = "DECK 13 SECURITY CHECKPOINT";
+	rooms["DECK 13 REACTOR"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 VENTS"] = new RoomClass(this);
+	rooms["DECK 13 VENTS"].roomName = "DECK 13\nVENTS";
+	rooms["DECK 13 VENTS"].description = "";
+	rooms["DECK 13 VENTS"].runOnEnter = deck13VentAccessShaftFunc;
+	rooms["DECK 13 VENTS"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 VENTS"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 VENTS"].northExit = "DECK 13 SHIELD CONTROL";
+	rooms["DECK 13 VENTS"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 SHIELD CONTROL"] = new RoomClass(this);
+	rooms["DECK 13 SHIELD CONTROL"].roomName = "DECK 13\nSHIELDS";
+	rooms["DECK 13 SHIELD CONTROL"].description = "The Shield Control Station is a large room filled with primitive digital-display computers and pulsating power banks, faintly glowing in the flickering light. The bulkheads and deck are covered with smears of errant gray goo and the occasional bullet hole. An open hatch leads into the secondary reactor chamber to the west.";
+	rooms["DECK 13 SHIELD CONTROL"].runOnEnter = deck13ShieldControlFunc;
+	rooms["DECK 13 SHIELD CONTROL"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 SHIELD CONTROL"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 SHIELD CONTROL"].southExit = "DECK 13 VENTS";
+	rooms["DECK 13 SHIELD CONTROL"].westExit = "DECK 13 SECONDARY REACTOR";
+	rooms["DECK 13 SHIELD CONTROL"].addFlag(GLOBAL.INDOOR);
+
+	rooms["DECK 13 SECONDARY REACTOR"] = new RoomClass(this);
+	rooms["DECK 13 SECONDARY REACTOR"].roomName = "DECK 13\nDATABANK";
+	rooms["DECK 13 SECONDARY REACTOR"].description = "The secondary reactor bay is a huge room, easily taking up half the deck with thrumming power converters and a glowing fusion reactor dominating the center of the expansive room. Several wires lead directly from the reactor to dozens of computer banks, servers, and hard drives scattered all through the room, like half the computers aboard the ship were all pulled and clustered around the reactor.";
+	rooms["DECK 13 SECONDARY REACTOR"].runOnEnter = deck13SecondaryReactorFunc;
+	rooms["DECK 13 SECONDARY REACTOR"].planet = "PLANET: TARKUS";
+	rooms["DECK 13 SECONDARY REACTOR"].system = "SYSTEM: REDACTED";
+	rooms["DECK 13 SECONDARY REACTOR"].eastExit = "DECK 13 SHIELD CONTROL";
+	rooms["DECK 13 SECONDARY REACTOR"].southExit = "DECK 13 REACTOR";
+	rooms["DECK 13 SECONDARY REACTOR"].addFlag(GLOBAL.INDOOR);
+
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 	//					NEW TEXAS ROOMS

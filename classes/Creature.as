@@ -5575,6 +5575,17 @@
 			else if (isNaga()) race = "naga";
 			return race;
 		}
+		
+		public function isHuman():Boolean
+		{
+			return race() == "human";
+		}
+		
+		public function isHalfHuman():Boolean
+		{
+			if (race().indexOf("half-") != -1) return true;
+			return false;
+		}
 		//Placeholders
 		public function cowScore():int
 		{

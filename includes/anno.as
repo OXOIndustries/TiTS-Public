@@ -1,12 +1,53 @@
-﻿import classes.Items.Guns.Goovolver;
+import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
 //Steele Tech Shop (Tarkus)
 //Dogsloots 'r' Us
+
+// DECK13 Flags
+// DECK13_GRAY_PRIME_DECISION: PC choice on how to resolve Gray Prime shit. Undefined == not happend, 1 == Give Cyberware, 2 == Wipe Bots, 3 == Fought
+// ANNO_MISSION_OFFER: Stage of the Deck 13 quest. Undefined == Not started, 1 == Offered, 2 == In progress (Actually on Deck13), 3 == Gray Prime resolved
 
 function annoSexed(arg:int = 0):int {
 	if(flags["ANNO_SEXED"] == undefined) flags["ANNO_SEXED"] = 0;
 	if(arg != 0) flags["ANNO_SEXED"] += arg;
 	return flags["ANNO_SEXED"];
+}
+
+function steeleTechTarkusShopAvailable():Boolean
+{
+	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
+	return false;
+}
+
+function steeleTechTarkusOutsideFunction():Boolean
+{
+	variableRoomUpdateCheck();
+	if (steeleTechTarkusShopAvailable())
+	{
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a neon \"Steele Tech\" sign hangs above the door, the last \"e\" on your name flickering pitifully every few moments. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands: mostly old machine parts, though there are a few weapons and useful bits with glowing holographic price tags hovering over them.");
+	}
+	else
+	{
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although it's usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: \"CLOSED\".");
+	}
+	
+	return false;
+}
+
+function steeleTechTarkusEntry():Boolean
+{
+	if (steeleTechTarkusShopAvailable())
+	{
+		return steeleTechBonusFunction();
+	}
+	else
+	{
+		clearOutput();
+		output("<b>Steele Tech is currently closed. You'll have to come back later.</b>");
+		clearMenu();
+		addButton(0, "Next", move, "212");
+		return true;
+	}
 }
 
 //Outside Descriptor
@@ -675,6 +716,24 @@ function annoTalkMenu():void
 			addDisabledButton(5, "Gray Goo", "Gray Goo", "Maybe you could ask Anno about the Gray Goo Menace local to Tarkus if you had a sample of their microbots to hand.");
 		}
 	}
+
+	if (flags["ANNO_MISSION_OFFER"] == undefined)
+	{
+		if (flags["TARKUS_DESTROYED"] == undefined)
+		{
+			addButton(6, "Join Crew", joinCrewPlanetFineVersion, undefined, "Join Crew", "Offer Anno a new job working directly with yourself.");
+		}
+		else
+		{
+			addButton(6, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Offer Anno a new job working directly with yourself.");
+		}
+	}
+	else if (flags["ANNO_MISSION_OFFER"] == 1)
+	{
+		addButton(6, "Mission", annoTalkAboutDaMission, undefined, "The Mission", "Ask about this super secret mysterious mission Anno was talking about.");
+	}
+	
+
 	addButton(14,"Back",repeatAnnoApproach);
 }
 
@@ -1567,8 +1626,105 @@ function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	processTime(3);
 	//Join Crew or Hold Up
 	clearMenu();
-	addDisabledButton(0,"Join Crew","Join Crew","Whoah there, space cowboy! This encounter isn't coded yet.");
+	addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn't coded yet.");
+	addButton(0, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Invite Anno to join your crew.");
 	addButton(1,"Hold Up",holdOnAnno,undefined,"Hold Up","You aren't ready to take her on as crew just yet.")
+}
+
+function joinCrewPlanetCrackerVersion():void
+{
+	clearOutput();
+
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	output("“<i>So, you want off this rust bucket?</i>” you ask, leaning over the counter. ");
+	
+	output("\n\nAnno perks up, ears and tail twitching. “<i>W-what? Really?</i>”");
+	
+	output("\n\nYou nod. “<i>I could use an engineer of your caliber, you know.");
+	if (pc.isNice()) output(" And I feel bad about my dad’s company just leaving you here, even after the planet exploded and all.");
+	output(" Besides, you’re not doing the company much good in a shop nobody visits.</i>”");
+	
+	output("\n\n“<i>Hey, I-</i>” Anno starts to protest, stopping when you give her a knowing wink. “<i>... I guess you’re right! But I can’t get Corporate to approve my transfer requests, boss. I’d LOVE to come with you, but unless you’ve gotten the whole CEO thing sorted out, I’d lose my job. Not that I exactly have a high job satisfaction right now or anything, but I like not being homeless, too.</i>”");
+
+	clearMenu();
+	// [Nevermind] [Help Her] [She Wants It]
+	addButton(0, "Nevermind", annoMainMenu, undefined, "Nevermind", "Not right now.");
+	addButton(1, "Help Her", joinCrewPlanetCrackerVersionHelpHer, undefined, "Help Her", "You'll be CEO some day. You'll just give Anno her job back later - and better!");
+	addButton(2, "She Wants It", joinCrewPlanetCrackerVersionSheWantsIt, undefined, "She Wants It", "Play on Anno's desires. She wants off this rock, and you want the cute little ausar bitch aboard your ship. Everybody wins.");
+}
+
+function joinCrewPlanetCrackerVersionHelpHer():void
+{
+	clearOutput();
+
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+	
+	pc.addNice(1);
+
+	output("“<i>Hey, come on,</i>” you say with a smile. “<i>I’m going to be the C.E.O. of the whole damn company soon. I’ll just give you your job back when I finish Dad’s quest. In the meantime, you can stay on my ship.</i>”");
+	
+	output("\n\n“<i>R-really?</i>” she says, eyes lighting up. “<i>You mean it?</i>”");
+	
+	output("\n\nYou nod.");
+	if (pc.isNice()) output(" “<i>Cross my heart.</i>”");
+	
+	output("\n\nBefore you can blink, Anno’s lunged over the counter, arms wrapped around your neck. “<i>Thankyouthankyouthankyou!</i>” she cries, squeezing you tightly enough that you start to choke. “<i>Holy shit you’re the best boss ever!</i>” ");
+	
+	output("\n\nShe finally lets go before you start seeing stars, grinning from ear to ear. “<i>You won’t regret it! I promise! I’m going to get my things - I’ll meet you on the ship, alright?</i>”");
+	
+	output("\n\nYou nod as Anno vanishes, scurrying off to her quarters.");
+	
+	//{PC is put back in hall outside Steele Tech. Can no longer access shop.}
+	flags["ANNOS_SHOP_CLOSED"] = 1;
+	clearMenu();
+	addButton(0, "Next", move, "212");
+}
+
+function joinCrewPlanetCrackerVersionSheWantsIt():void
+{
+	clearOutput();
+
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	pc.addMischievous(1);
+
+	output("“<i>Come on, Anno,</i>” you say, smiling. “<i>You want off this rust bucket, don’t you?</i>”");
+	
+	output("\n\n“<i>Y-yeah, but-</i>”");
+	
+	output("\n\n“<i>Then what’s the problem? You’re not a slave to the company. You can do whatever you want. If you want to come with me on awesome adventures, then quit this stupid desk job and get your things.</i>” ");
+	
+	// PC hasn’t fucked Anno
+	if (!annoSexed())
+	{
+		output("\n\nShe thinks about it for a long moment, chewing her lip, tail tucked between her legs. Finally, she sighs. “<i>I... I can’t do that, [pc.name]. God, I want to, but... Victor put me here for a reason. I can’t just quit. Not after everything he’s done for me.</i>”");
+	
+		output("\n\nYou sigh, but nod your understanding. Maybe you need another approach.");
+		
+		// Back to talk menu
+		clearMenu();
+		addButton(0, "Next", annoTalkMenu);
+	}
+	else
+	{
+		// PC HAS fucked Anno
+		output("\n\nShe thinks about it for a long moment, chewing her lip, tail swishing faster with every passing moment. Finally, she grins up at you. “<i>For any other spacer, coming in here to sweep me off my feet, I’d tell ‘em to get fucked. For you... well, maybe you can get fucked too,</i>” she winks playfully, leaning in over the counter to give you a good look at her ample chest. ");
+		
+		output("\n\n“<i>Alright! Let’s do it, boss. You and me against the stars!</i>” Anno grins, extending a hand. You firmly shake it. “<i>I’ll go get my stuff, boss. Meet you ship-board!</i>”");
+		
+		output("\n\nYou nod as Anno vanishes, scurrying off to her quarters. ");
+		//{PC is put back in hall outside Steele Tech. Can no longer access shop.}
+		clearMenu();
+		flags["ANNOS_SHOP_CLOSED"] = 1;
+		addButton(0, "Next", move, "212");
+	}
 }
 
 //Hold On
@@ -1583,4 +1739,1373 @@ function holdOnAnno():void
 	output("\n\n<i>\"Shit. Nevermind me, boss. I'm a big girl, I'll take care of myself. Anyway, you came here for something, or just to check on me?\"</i>");
 	processTime(1);
 	annoMainMenu();
+}
+
+function joinCrewPlanetFineVersion():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	output("“<i>So, Anno,</i>” you say, leaning up against the counter. She looks");
+	if (player.tallness > anno.tallness + 6) output(" up");
+	else if (player.tallness < anno.tallness - 6) output(" down");
+	output(" at you, ears perking. “<i>What would you saying about leaving this rust bucket behind?</i>”");
+	
+	output("\n\n“<i>What do you mean?</i>” she asks, cocking her head to the side. “<i>Did Corporate finally approve my transfer request?</i>” ");
+	
+	output("\n\nYou chuckle. “<i>Not exactly. What I’m saying is: come with me. I’ve got room for one more on my ship, especially someone with your talents");
+	if (annoSexed()) output(", not to mention looks");
+	output("</i>”");
+	
+	output("\n\nShe grins. “<i>Ah, wish I could, boss. But that memo made it pretty clear that I can’t give you");
+	if (annoSexed()) output(" too much");
+	output(" special treatment. I certainly can’t just run away with you, romantic as that might be. I’d lose my job in a heartbeat. Besides, who’d man the shop - the interns?</i>”");
+	
+	output("\n\n“<i>You have interns?</i>”");
+	
+	output("\n\n“<i>Exactly!</i>”");
+	if (annoSexed())
+	{
+		output(" She sighs, rubbing her temples. “<i>Look, boss, I’d like to come with you. I really would. But Corporate would have my ass if I left, and I don’t feel like being out of a job - even a job here on a backwater shithole.</i>”");
+	
+		output("\n\n“<i>Ah,</i>” you say, a bit saddened by the rejection.");
+	
+		output("\n\nAnno blanches at your reaction, her ears and tail all tucking down as she frowns. A moment later, though, she gets a coy grin and leans in as if to whisper. “<i>Actually,</i>” she starts, voice seductive and dripping with sexuality. “<i>I’ve been doing some very delicate work. Classified work. But if you helped me finish, then... I’d have no reason to stick around on Tarkus, and Corporate might approve my transfer. To your ship.</i>”");
+	
+		output("\n\n“<i>Oh?</i>” ");
+	
+		output("\n\n“<i>Mmhm,</i>” she says, still grinning. “<i>Let me know if you’re interested, boss - but get your things in order first. It could be dangerous.</i>”");
+
+		if (pc.isMischievous() && pc.libido() >= 66) output("\n\n“<i>I love a dangerous woman.</i>”");
+		flags["ANNO_MISSION_OFFER"] = 1;
+	}
+	
+	// {Take player to talk menu proper. Add "Mission"}
+	clearMenu();
+	addButton(0, "Next", annoTalkMenu, undefined);
+}
+
+function annoTalkAboutDaMission():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	output("“<i>Alright,</i>” you say, leaning across the counter toward the eager ausar. “<i>Let’s talk about this work of yours.</i>” ");
+	
+	output("\n\n“<i>Alright! Now we’re talking!</i>” Anno beams, waving you around the counter and booting up her holoterminal. You step up beside Anno, and are greeted by the sight of a highly detailed 3D projection of what could only be the <i>Nova</i> itself. It truly is a massive ship, now that you can see it in full: longer than a Coalition dreadnought and twice as thick around. Anno’s rigged the display to show power distribution, heat spread, and other various technical minutiae");
+	if (pc.characterClass = GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
+	output(".");
+	
+	output("\n\n“<i>You see it, right?</i>” Anno says, jabbing a white-furred finger into the display, towards");
+	if (pc.characterClass = GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(" the");
+	output(" a");
+	output(" section of the ship that seems to be drawing an inordinate amount of power. “<i>Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.</i>”");
+	
+	output("\n\n“<i>A ghost deck?</i>”");
+	
+	output("\n\nShe nods, and presses a button that zooms your view close in on the deck, giving you a cross-section view of it. “<i>It’s an old, old Earth custom, I found out. Skipping floor 13 on buildings, decks on ship. Unlucky number. Nobody even noticed it wasn’t there: Deck 13 in the stair wells and elevators just leads to a mechanical closet, every time. Nothing to look at but old tools. But in the center of the deck? There’s something MASSIVE drawing power from all over the ship.</i>”");
+	
+	output("\n\n“<i>Alright. So what? What’s that got to do with your work?</i>”");
+	
+	output("\n\nAnno fidgets. “<i>Well... I don’t know, honestly. I don’t even know WHY I’m here, except that your dad wanted me here. But I can guess: this ship is human, very, very old, and very, very advanced for what it is. My best guess is that the </i>Nova<i> was a generation ship: basically what we all did before the warp gates came around. Load a bunch of people up in a ship with lots of supplies and catapult them towards a habitable star system. But where’s the crew? The </i>Nova<i> was a ghost ship before it crashed, as far as I can tell: no bodies, nothing. And every computer and databank on the ship is either deadlocked or wiped.");
+	
+	output("\n\n“<i>Something </i>happened<i> to the crew, boss. Something bad.</i>”");
+	
+	output("\n\nShe sighs and turns off the display. “<i>Listen. My girlfriend Kaede and I went poking around in a chunk of the </i>Nova<i> that broke off on impact. A big section of the ship. And there was... something inside it. Something alive, or close enough to it. I’ve got some theories, boss, but... I need to see what’s on that ghost deck to be sure. Help me get in there, and we’ll find out what really happened to the Nova. You in?</i>”");
+
+	//[I'm In] [Not Yet]
+	clearMenu();
+	addButton(0, "I'm In", annoMissionNotYet);
+	addButton(1, "Not Yet", )
+}
+
+function annoMissionNotYet():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	output("“<i>Not right now.</i>”");
+	
+	output("\n\n“<i>O-oh,</i>” Anno says, tail tucking downward. “<i>Right. Sure. No problem. Lemme know if you change your mind.</i>”");
+
+	clearMenu();
+	addButton(0, "Next", annoTalkMenu);
+}
+
+function annoMissionImIn():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("ANNO");
+	showName("\nANNO");
+
+	output("“<i>Alright. I’m in,</i>” you say, extending a hand to Anno.");
+	
+	output("\n\n“<i>Fuck yeah!</i>” she grins, shaking it. “<i>Come with me; I think I have a way in. Though it’ll be tricky.</i>”");
+	
+	output("\n\nAnno quickly gathers a few things before you leave: a compact little holdout pistol, which she tucks into her boot; a heavy-duty grappling gun and rope; and a small set of tools from under her desk. Loaded up like a proper adventurer, she gives you a thumbs up and leads the way out of the shop and up towards the hangar deck...");
+
+	flags["ANNO_MISSION_OFFER"] = 2;
+
+	// [NEXT]
+	clearMenu();
+	addButton(0, "Next", move, "DECK 13 AIRLOCK");
+}
+
+function annoBonusCombatAttackShit():void
+{
+	//Anno has the following attacks/abilities in all combats:
+
+Add to combat view:
+Anno's crouched just over an arm's length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks. 
+
+Holdout Pistol Shot
+//Basic ass attack. 10 base damage, plus mods
+Anno levels her holdout pistol and fires off a quick shot{, though she misses her target. // , landing a solid hit{ on one / on the goo}!"} {Her attack is super-effective while her target is incapacitated!}
+
+Target Computers
+//Increases player accuracy temporarily
+Anno levels her left wrist at {the / [enemy]} and taps a key on her tiny computer. A visible targeting reticle forms around your opponent{s}, linking up with your own equipment in the process. Accuracy increased!
+
+Health Boost
+//Restores 10 Health
+Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!
+
+Sneak Attack!
+//Requires enemy to be incapacitated, Anno deals bonus damage as per Smugglewaifus. 
+}
+
+function deck13AirlockFunc():Boolean
+{
+	if (flags["DECK13_AIRLOCK_ENTERED"] == undefined)
+	{
+		flags["DECK13_AIRLOCK_ENTERED"] = 1;
+
+		clearOutput();
+		author("Savin");
+		showBust("ANNO");
+		showName("\nANNO");
+
+		output("The grappling gun CLANGs against the outer hull, and a moment later you and Anno are rocketing up the side of the ship towards the mysterious Deck 13. You come to a stop level with an old, rusty airlock. It’s at just such an angle that it would be invisible from the surface, and small enough to not be spotted at range.");
+
+		output("\n\n“<i>I knew it,</i>” Anno says, pulling up her map of the ship on a wrist computer. “<i>Here we are. Deck 13, and nowhere near any of those maintenance closets. Something’s on the other side of this hatch, boss. Something that doesn’t want to be found.</i>”");
+
+		output("\n\nShe pulls a small wire from her wrist and plugs it into a dim readout beside the airlock. A moment later, the display flickers to life, beeping weakly as Anno restores power to it. “<i>Almost.... got it!</i>” she says, quickly followed by a pneumatic hiss as the hatch slides open. ");
+
+		output("\n\n“<i>Alright, we’re in!</i>” she cheers, leaping from the grappling gun’s rope and into the airlock. You follow close behind, soon finding yourself choking on centuries’ worth of kicked-up dust. You cover your mouth and wave your arms through the thick mist until it finally settles down. ");
+
+		output("\n\n“<i>Doesn’t look like anybody’s been this way for an age,</i>” Anno says. Even as she speaks, though, she draws the holdout from her boot and racks the slide. “<i>Come on. The power drain is coming from the north.</i>”");
+
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+
+		return true;
+	}
+	else
+	{
+		author("Savin");
+		showBust("ANNO");
+		showName("\nANNO");
+
+		if (flags["ANNO_MISSION_OFFER"] == 2)
+		{
+			output("\n\nAnno is poking around among the space suits, muttering to herself about the age of everything here.");
+
+			addButton(0, "Space Suits", annoSpaceSuits);
+		}
+		return false;
+	}
+}
+
+function annoSpaceSuits():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You lean in close to examine the space suits sitting idle on the side of the airlock. There's a dozen of them, all in pristine condition for their age. Each bears the <i>Nova</i>'s emblem proudly on its breast, as well as a smaller set of markings indicating that the spacers who would have worn these were citizens of the United States of America, sponsored by the Bell-Isle/Grunmann corporation.");
+
+	output("\n\n“<i>Either of those names sound familiar to you?</i>” Anno asks, squinting at the I.D. plates. “<i>I recognize the second one, at least: those gray-goo creatures outside. If you muck around in their programming, they insist they were made by Bell-Isle/Grunmann. Maybe... maybe they were part of the ship’s original cargo? But why the hell would anyone take gray-goo into space?</i>”");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function deck13SecurityFunc():void
+{
+	if (flags["DECK13_SECURITY_ENTERED"] == undefined)
+	{
+		clearOutput();
+		author("Savin");
+		flags["DECK13_SECURITY_ENTERED"] = 1;
+
+		output("As you make your way out of the airlock, you're suddenly blinded by a bright white light. You flinch, trying to regain your senses as a booming metallic voice shouts: \"<i><b>INTRUDERS DETECTED. PASSENGER REGISTRY: UNAVAILABLE. IDENTITIES UNCONFIRMED. LAY DOWN YOUR WEAPONS OR YOU WILL BE PURGED</i></b>.\"");
+
+		output("\n\nYour vision finally clears, revealing the unmistakable sight of security droids beneath an array of spotlights, each packing a laser pistol aimed right at you. \"<i>What the fuck?</i>\" Anno gasps, \"<i>How the... how the hell are a bunch of droids still functioning? Shit... looks like they're not kidding!</i>\"");
+
+		output("\n\nBefore you can react, Anno squeezes the trigger of her sidearm. An almost silent crack echoes through the corridor, and one of the droids crumples to its knees. The others instantly start squeezing their triggers, hurling red bolts of energy downrange at you! ");
+
+		clearMenu();
+		addButton(0, "Fight!", startCombat, "securitydroids");
+		return true;
+	}
+	else
+	{
+		author("Savin");
+		output("\n\nAnno is scanning the destroyed droids, salvaging what remains of their onboard systems for Steele Tech.")
+
+		return false;
+	}
+}
+
+function securityDroidAI():void
+{
+
+}
+
+function securityDroidLaserBarrage():void
+{
+//Laser Barrage
+//Lots of moderate laser attacks
+	Several of the drones lock onto you and let loose with a hail of laser bolts. 
+	Hit: One of the drones hits you!
+	Miss: One of the drones misses you!
+}
+
+function securityDroidChargeShot():void
+{
+Charge Shot
+//Two moderate laser shots (as above) + one HEAVY one
+	Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!
+	Hit: You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage! 
+	Miss: You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast{if silly: to the, uh, face}.
+}
+
+function securityDroidFlashbang():void
+{
+Flashbang
+//Blind, possibly Stun attack
+	One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!
+	Hit: You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>{ and <b>stunned</b>}!
+	Miss: You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!
+}
+
+function lossToSecurityDroid():void
+{
+PC and Anno Lose to the Droid
+You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.
+
+<i>ZAP</i>.
+
+<b>Game over.</b>
+}
+
+function victoryOverSecurityDroid():void
+{
+PC and Anno Wreck the Droids
+"FuckyoufuckyouFUCKYOU!" Anno screams while firing her gun again and again into the last droid standing. It shudders and stumbles back under the impacts as her shots blow through its armored skeleton. She fires until the gun clicks empty, and still keeps pulling the trigger of the empty handgun until the robotic aggressor finally collapses, utterly destroyed. 
+
+Hesitantly, you put a hand on Anno’s shoulder. She just about jumps out of her skin, and for a moment, you’re glad her gun’s run empty. Anno takes a deep breath and pulls you close, into a tight hug. "Fuck, [pc.name]. I didn't... holy shit, they were going to KILL us."
+
+"We got ‘em first, though," you answer, ruffling the hair between her perky ears. 
+
+"Yeah. We did," she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again. {if High int/Mercenary: For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.}
+}
+
+function deck13ArmoryFunc():void
+{
+	if (flags["DECK13_ARMORY_ENTERED"] == undefined)
+	{
+		clearOutput();
+		author("Savin");
+		output("“<i>An armory? I guess that makes sense on a big ship like this,</i>” Anno says as you approach the door. Unlike most doors on the ship - and across the galaxy - it doesn’t slide out of the way when you step up. You just about hit your face against it.");
+		
+		output("\n\n“<i>Must be bolted from the inside. Mechanical lock, not digital,</i>” she adds while poking at the console beside the door. It refuses to activate. “<i>Sorry, boss, forgot to bring my lockpicks with me. Hmm... hey, check it out,</i>” she says, pointing up.");
+		
+		output("\n\nYour eyes follow her up to the ceiling. And an air vent.");
+
+		clearMenu();
+		if (pc.tallness < 5 * 12 && !pc.isTaur())
+		{
+			output(" “<i>Think you can get through there, boss? I’ll give you a boost.</i>”");
+			addButton(0, "Get Boost", deck13GetBoosted);
+		}
+		else
+		{
+			output(" “<i>Think you could give me a boost up there, boss? I’m small enough; might be able to crawl through and hop down inside.</i>”");
+			addButton(0, "Boost Anno", deck13BoostAnno)
+		}
+
+		if (pc.characterClass = GLOBAL.CLASS_SMUGGLER)
+		{
+			addButton(1, "Pick Locks", deck13ArmoryPickLocks);
+		}
+		else
+		{
+			addDisabledButton(1, "Pick Locks", "Smugglers probably carry the kind of tools around for this kinda job...");
+		}
+
+		addButton(2, "Leave", move, "DECK 13 SECURITY CHECKPOINT");
+
+		return true;
+	}
+	else
+	{
+		author("Savin");
+
+		output("Anno is poking around in the robotic guards, murmuring to herself about their manufacture.");
+	}
+
+	if (flags["DECK13_TAKEN_PISTOL"] == undefined || flags["DECK13_TAKEN_RIFLE"] == undefined) addButton(0, "Weapon Racks", deck13WeaponRacks);
+	addButton(1, "Robots", deck13Robots);
+
+	return false;
+}
+
+function deck13ArmoryPickLocks():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("“<i>You might have forgotten,</i>” you say, pulling out your lockpicks. “<i>I don’t leave home without ‘em.</i>”");
+	
+	output("\n\n“<i>Oh. Well, uh, go ahead,</i>” Anno says, waving you forward. You crouch down in front of the lock and slide your picks home, moving them with expert skill born out of years of training in the U.G.C.’s underbelly. And you thought Dad making you get a job was dumb... ");
+	
+	output("\n\nThe lock clicks, and the door slides open. “<i>There we go!</i>” you announce, sliding your picks back into your pocket and stepping through.");
+
+	deck13ArmoryEntry();
+}
+
+function deck13BoostAnno():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("“<i>Alright,</i>” you say, locking your fingers just under the vent. “<i>Up you go.</i>”");
+	
+	output("\n\n“<i>Right. Glad I didn’t wear a skirt,</i>” she jests with a grin, stepping up into your hand and scrambling up to the vent. She quickly pulls the grating off, tosses it aside, and crawls in. The last thing you see is Anno’s feet and tail wriggling as she squirms her way into the vent.");
+	
+	output("\n\nA moment passes. A long moment. ");
+	
+	output("\n\nJust as you’re starting to get worried, yet hear a loud CLICK from the door, followed by loud rusty squeal as the old door slides open. Behind it, Anno’s beaming. “<i>Fuck yeah! Teamwork!</i>” she cheers, following up her exclamation with a high five.");
+
+	deck13ArmoryEntry();
+}
+
+function deck13GetBoosted():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("“<i>Alright, boost me,</i>” you say. Anno laces her fingers together and does so as soon as you hop up into her hand, lifting you up over her shoulder to the vent. She passes you up a screwdriver from her kit, which you’re able to use to handily remove the grate. With that gone, you slip up into the air vent. Cramped as it is, your slight build enables you to easily squirm through the claustrophobic, dusty vent; a minute later, you come to another grate leading straight down past the door. You shift forward, kick the grate out, and plummet to the ground. ");
+	
+	output("\n\nThe door’s right there, and is indeed bolted from this side. You pull the lock, and are instantly greeted by a rush of light from the corridor. “<i>Everything go alright, boss?</i>” Anno asks, looking at your now-dust-covered visage.");
+
+	deck13ArmoryEntry();
+}
+
+function deck13ArmoryEntry():void
+{
+	output("\n\nWith the door open, you turn your attention to what’s in the room as Anno flips the lights on. When they come on, you just about have a heart attack: there are a dozen robots in here, just like the ones from outside! ");
+	
+	output("\n\nBut they’re not moving. When the initial <i>oh shit</i> moment passes, you realize that they’re just shells: empty, deactivated droids hanging from what amounts to meat hooks from the ceiling, waiting for orders. Probably waiting for centuries. ");
+	
+	output("\n\n“<i>Hell of an armory,</i>” Anno says, poking at one of the dusty chrome husks. “<i>There are a few dozen of ‘em in here... don’t suppose you need a robot army, boss? Or, more accurately, I don’t suppose the </i>Nova<i> does? My guess is these shells are tied to the onboard computers. Basic white blood cells of a starship. Better keep them offline for now, unless you want another fight.</i>”");
+
+	//[NEXT] to room description
+	flags["DECK13_ARMORY_ENTERED"] = 1;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function deck13WeaponRacks():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You step up to the weapon racks at the back of the room. There are several weapons bolted to the wall, but a few are lying out, just ripe for the taking...");
+
+	clearMenu();
+	if (flags["DECK13_TAKEN_PISTOL"] == undefined)
+	{
+		addButton(0, "Nova Pistol", function():void
+		{
+			flags["DECK13_TAKEN_PISTOL"] = 1;
+			quickLoot([new NovaPistol()]);
+		});
+	}
+
+	if (flags["DECK13_TAKEN_RIFLE"] == undefined)
+	{
+		addButton(1, "Nova Rifle", function():void
+		{
+			flags["DECK13_TAKEN_RIFLE"] = 1;
+			quickLoot([new NovaRifle()]);
+		});
+	}
+
+	addButton(14, "Back", mainGameMenu);
+}
+
+function deck13Robots():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You step up to the squads of robotic guards on standby, hanging from the ceiling by hooks in their backs. The ship is probably supplying them with a bit of power; they seem to be functional and in great condition for their age, but are just... inactive. If you had some serious tech, you could probably reactivate them under your control: you’d need a secure long-range wireless network, an A.I. taskmaster, and more. <b>Well outside the scope of your work for now.</b>");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function deck13ElevatorFunc():void
+{
+	if (flags["DECK13_COMPLETE"] != undefined)
+	{
+		clearOutput();
+		output("You step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes. ");
+		
+		output("\n\n“<i>Someone must have done an override,</i>” Anno says with a shrug, peering into the elevator shaft. “<i>Keeps anybody from accidentally wandering through. I think this one goes right up to the docking bay... yeah, it goes right by the shop, too. Maybe we can hitch a ride when we’re done here -- I’m pretty good at getting around lockouts like this.</i>”");
+
+		clearMenu();
+		addButton(0, "Next", move, "DECK 13 SECURITY CHECKPOINT");
+		return true;
+	}
+	else
+	{
+		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>, or up to the docks.");
+		addButton(0, "Docks", move, "???"); // Need an elevator "room" to add near the docks -- there's words about a non-functional elevator up there
+		addButton(1, "Main Deck", move, "???"); // Dunno where this would shit you out.
+		return false;
+	}
+}
+
+function deck13ReactorRoomFunc():void
+{
+	variableRoomUpdateCheck();
+	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
+	{
+		output("\n\nNot far past the security checkpoint is a long tunnel marked “<i>Secondary Reactor Bay.</i>” The way forward, however, is sealed: a huge blast door has slid down, blocking your passage.");
+		
+		output("\n\n“<i>There’s a loose access panel over there,</i>” Anno says, pointing it out. “<i>Might be able to squeeze through there.</i>”");
+	}
+	else
+	{
+		output("\n\nThis corridor runs between the elevator checkpoint and the reactor deck below. The door is now open, allowing easy access between the two points of interest. ");
+	}
+	return false;
+}
+
+function deck13VentAccessShaftFunc():void
+{
+	//First time PC attempts access
+	output("\n\n“<i>Alright, let’s see what we’ve got here,</i>” Anno says, grabbing the loose panel hanging off of the hull. “<i>Might be able to squeeze through all the wires. Heh, reminds me of working on the warp gates back at Akkadi. For such huge fucking things, you’d be amazed how cramped they are. Wires everywhere, have to bend over all the time when you’re working. Not that I mind bending over for work, if you know what I mean,</i>” she says with a wink, yanking the panel off and tossing it up against the wall. It clangs and clatters as it drops, the sound echoing through the chamber. ");
+
+	output("\n\nAnno winces at the commotion, covering her big ears. When it finally dies down, she peeks into the shaft. “<i>Yeah, I think I can get through there. Let me just-</i>” she starts to say, before the back of the access panel explodes. You stumble back, covering your eyes as shrapnel goes flying and... and a great big fucking gray hand reaches up through the hole, grabs Anno by the head, and sucks her through like a noodle. She doesn’t even have time to scream.");
+
+	output("\n\nHoly fuck.");
+
+	clearMenu();
+	addButton(0, "Jump In", move, "DECK 13 SHIELD CONTROL");
+}
+
+function deck13ShieldControlFunc():void
+{
+	if (flags["DECK13_SHIELD_CONTROL_ENTERED"] == undefined)
+	{
+		flags["DECK13_SHIELD_CONTROL_ENTERED"] = 1;
+
+		output("Oh shit, oh shit, oh shit. “<i>ANNO!</i>” you scream, leaping through the hole in the bulkhead and into the darkness below...");
+		
+		output("\n\nYou land with a splash. You feel like you fell forever, that you should have splattered all over the deck below... but instead, you scramble up amid a floor full of... shit, you can’t see! The room’s pitch-black, but you <i>feel</i> something gel-like squirming around your [pc.feet], as if you’d landed in a pool full of gelatin. It’s only a few inches deep, though, and you’re able to stand without too much trouble despite being bit unsteady with this squirming goop all around you, below your [pc.feet]. ");
+		
+		output("\n\n“<i>Anno!</i>” you repeat, desperately flailing your hands around in the dark.");
+		
+		output("\n\n“<i>Here!</i>” the ausar answers from not that far away. The room echoes with your voices and the squelching sound of footsteps over the goop on the ground. “<i>This gooey shit broke my fall.... I’m alright, boss.</i>” ");
+		
+		output("\n\n“<i>Hey, who’re you calling shit?</i>” an indignant third voice pouts. ");
+		
+		output("\n\n{If Silly: “<i>Oh, shit,</i>” Anno says.}");
+		
+		output("\n\nSuddenly, the lights blast on full-force, nearly blinding you once again. As you squint and recoil, a silvery, goo-like girl drops down from the ceiling, plopping wetly onto the deck. {If PC has encounter Grey Goo before: “<i>You instantly recognize the familiar, silvery figure of a gray goo... but this one is different. More human. It stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real-looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.</i>”");
+		
+		output("\n\nelse, new para.");
+		
+		output("\n\n“<i>Gray goo!</i>” Anno snaps, drawing down on the feminine figure before you. You cock an eyebrow, also drawing your [ranged.Weapon]. “<i>They’re all over Tarkus, boss. Try and drain you dry of sex-juice. But they’re normally all big-titted bimbos. This one’s... different,</i>” she says, looking the creature up and down. ");
+		
+		output("\n\nIt stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.}");
+		
+		output("\n\n“<i>It’s almost human,</i>” Anno says, staring at the goo. Then, louder, “<i>Sorry sweetheart, we’ve got work to do. Go molest somebody else.</i>”");
+		
+		output("\n\n“<i>Almost human? Jeez, what’d I ever do to you...</i>” the goo scowls, crossing her arms under her rack; her whole body jiggles slightly as she takes a step forward. “<i>Now who the fuck are you, exactly?</i>”");
+		
+		output("\n\nAnno blinks. “<i>Anno Dorna. This is [pc.name] Steele. We’re looking into a power draw from this deck.</i>”");
+		
+		output("\n\n“<i>Ah,</i>” the goo says, her scowl softening into an almost-apologetic frown. “<i>Honestly, I’m surprised nobody noticed before now. It’s been an age.</i>”");
+		
+		output("\n\nShe sighs, reaching down into the sea of... of gray goo around your feet. So that’s what that was. From the gunk on the floor, the goo-girl draws a long, straight-edged saber as if from thin air, the goo around you forming into the weapon as she draws it. “<i>I’m sorry about this. Really, I am.</i>”");
+		
+		output("\n\nAnno doesn’t hesitate for a second. She squeezes the trigger of her handgun, sending a bullet straight through the goo’s head. It splatters like a watermelon, smearing across the bulkhead behind her in a wet rain of gooey brain-matter. The rest of her body staggers forward, slumps to its knees, and flops to the ground. In the blink of an eye, it dissolves into the goo on the deck. ");
+		
+		output("\n\n“<i>Bitch,</i>” Anno spits, starting toward the consoles flickering around the room. “<i>Fucking weird. I’ve never seen a goo act like that before. She was smart. Way smarter than the ones outside.</i>”");
+		
+		output("\n\n“<i>I’ll take that as a compliment,</i>” the goo’s voice says, as if from all around you. ");
+		
+		output("\n\nYou spin on a heel, coming face to face with the goo again as she rises from the sea of gray behind you, reforming with her head quite intact and a deadly look in her steel-gray eyes. ");
+		
+		output("\n\nUh-oh. ");
+
+		clearMenu();
+		addButton(0, "Fight!", startCombat, "grayprime");
+		return true;
+	}
+	else
+	{
+		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
+
+		addButton(0, "Goo Sample", deck13GooSample);
+		addButton(1, "Shields", deck13Shields);
+		addButton(2, "Breach", deck13Breach);
+		return false;
+	}
+}
+
+function grayPrimeAI():void
+{
+	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks. 
+}
+
+//Goo Sword
+function grayPrimeGooSword():void
+{
+//One heavy physical attack
+	The gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.
+	Hit: You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!
+	Miss: You duck back, evading the goo's sword strike. Before she can swing again, Anno gets a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once you're safely away. 
+}
+
+//Goo Grapple
+function grayPrimeGooGrapple():void
+{
+//Restrain attack. Inflicts Lust over time.
+	Suddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!
+	//Hit: Two of the tentacles wrap tightly around your wrists{, while two more grab your legs, lifting you up from the ground! //elseif taur// while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling}. Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole{s}. Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits. 
+	//Miss: Just as the tentacles are about to grab you, half of them explode in showers of goop as Anno levels her gun at them, firing dangerously close to your head. You duck as the others writhe and retreat under a hail of fire.
+
+	//PC Doesn't Escape: The tentacles around you tighten, their tips pressing through your lips and squirming through your [pc.gear]. One slips down and rubs its slippery, hard tip against the ring of your [pc.asshole], demanding entry. "Just relax," the goo-girl leers, content to watch for now. "This doesn't have to be so bad for you."
+	//PC doesn't Escape 2: You give a cry of pain as one of the tentacles slips into your ass, squirming through your anal ring and into the tightly clenched passage. Another tendril of gray slips between your [pc.legs], caressing your {[pc.cock] /andor/ [pc.cunt]}, rubbing against the tender flesh. "Don't struggle," the goo coos, "Just let it happen..."
+	//PC doesn't Escape 3: Fuuuuck! The tendril in your ass is going wild, squirming like mad through your sensitive passage as its twin{s} molest your sex{es}, {[one] wrapping around your cock like a forceful hand} {while another is} {slipping into your [pc.cunt], spreading you wide on the thick, gooey rod}. "There we go," the goo-girl says, hands planted on her hips. She moans softly as her tendrils fuck you. "Oh, that's good... just like that... give me all your juices. God, it's been so looong."
+	//PC doesn't Escape 4+: The tentacles continue to molest you, holding you tightly as they fuck you like a sex puppet!
+
+	//PC Escapes: Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. "Damn it. Why won't you just go down!" she shrieks. "I don't want to kill you, but if you won't surrender, then I swear I will! What I'm doing is too important!"
+}
+
+//Force Punch
+function grayPrimeForcePunch():void
+{
+	//One moderate physical, chance of knockdown
+	The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward you for what's going to be a world-rocking punch!
+	Hit: Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt! [PC is knocked down]
+	Miss: You knock her fist aside at the last moment, letting her momentum carry her through to the deck. Just when she tries to rise up, Anno leaps in with a roundhouse kick that takes the bitch's head clean off! Of course, she reforms a moment later across the room, looking no worse for wear. 
+}
+
+//Lustful Clones
+function grayPrimeLustfulClones():void
+{
+	//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
+	The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. "Why don't you just surrender? I could use a few tough new sources of lubricant..." she teases, shifting to emphasize her cleavage and jiggling it at you. As she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near-perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.
+
+{Add to Combat Descript: "There are X Lust Clones remaining, teasing you with their bountiful gray bodies, all but inviting you to just drop everything and submit to pleasures of the flesh!"}
+{Add button to menu: "Attack Clone"}
+}
+
+//Clone Tease Attack
+function grayPrimeCloneLustAttack():void
+{
+	One of the lust clones shakes her hips and titties at you, trying to entice you into sex! {You resist her advances! // +X Lust!}
+}
+
+//Attack Clone
+function grayPrimeAttackLustClone(target:Creature):void
+{
+You leap forward and punch one of the lust clones teasing you. She gives a terrified gasp as you attack her, though one hit is easily enough to splatter her brainpan across the deck. The lifeless goo corpse collapses into the sea of gray, absorbed back into the mass. 
+}
+
+//Attack on Anno
+function grayPrimeAttackAnno():void
+{
+//Chance to disable help from Anno for a turn
+	The goo turns her attention from you to your companion. Anno takes an unsure step back, leveling her gun at the goo and firing as it advances. The goo-girl dodges with inhuman ability, crumbling to dust where Anno shoots, only to reform inches from the ausar!
+	//Hit: The gray goo's hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno's hand. "Almost human, was it? I'LL SHOW YOU ALMOST HUMAN!"
+	//Miss: Anno leaps out of the way as the goo-girl lunges for her! "Bitch!" the goo shouts. "I'm not almost human! I'M MORE HUMAN THAN YOU ARE."
+	"I'm an ausar, you stupid cunt!"
+
+Anno Grappled:
+	Anno struggles against the gray goo's assault, trying to escape her death-grasp.
+
+Next Turn, Anno's action:
+	"Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\'s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. \"I\'m fine, I\'m fine!\" Anno groans, rubbing at her throat, now visibly bruising."
+}
+
+function victoryOverGrayPrime():void
+{
+	// HP Victory
+	if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2)
+	{
+		if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined) flags["GRAY_PRIME_DEFEATED_VIA_HP"] = 0;
+		flags["GRAY_PRIME_DEFEATED_VIA_HP"]++;
+		
+		clearOutput();
+		author("Savin");
+		showBust("GRAYPRIME");
+		showName("FIGHT:\nGRAY PRIME");
+
+		output("“<i>No,</i>” the goo groans, staggering back under your withering barrage of attacks the hail of bullets from Anno’s gun. “<i>No, I can’t... my work is too important. I’ve given everything for this... EVERYTHING. YOU WILL </i>NOT<i> STOP ME! YOU WILL </i>NOT<i>!</i>” the goo screams, suddenly finding her second wind. Goo wriggles forward from the floor and walls, adding itself to her mass, repairing the damage you’ve done to her. She looks as good as new in the blink of an eye.");
+		
+		output("\n\n“<i>I will not fall here. Not to you!</i>” the goo says, drawing her sword again.");
+		
+		output("\n\n“<i>You’ve got to be fucking kidding me!</i>” Anno says, ramming a new magazine into her gun. “<i>How do we kill this bitch!?</i>”");
+		
+		output("\n\nThe goo sneers. “<i>I am trillions upon trillions of machines... a thousand intelligences.... And you can’t kill what’s already dead.</i>”");
+		
+		output("\n\n“<i>Oh, shit.</i>”");
+
+		// {Goo returned to FULL HEALTH}
+		foes[0].HP(foes[0].HPMax());
+		addButton(0, "Next", combatMainMenu);
+	}
+	else if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 3)
+	{
+		clearOutput();
+		author("Savin");
+		showBust("GRAYPRIME");
+		showName("FIGHT:\nGRAY PRIME");
+
+		output("“<i>FUCKING DIE! DIE ALREADY!</i>” Anno screams, firing her gun again and again and again into the retreating mass of gray goo, blowing fist-sized holes through its body with every shot. Still, it doesn’t fall -- not for long. ");
+		
+		output("\n\n“<i>You’re good,</i>” the gray goo says in the momentary respite as Anno reloads. “<i>But I... I don’t want to die. Not when I’m so close... I will not...</i>”");
+		
+		output("\n\nBefore Anno can try and kill her again, the goo all throughout the room surges, lifting up and swirling around. You grab your companion and hit the deck as a room full to bursting with nanomachines comes alive, swirling into the shape of a giant fist connected to the gray goo. With it, she punches down the door in the side of the room and leaps out, into the reactor chamber and away from you.");
+		
+		output("\n\n“<i>What the...</i>” Anno breathes, struggling to her feet. “<i>What the hell was that thing?</i>”");
+		
+		output("\n\n“<i>I don’t know,</i>” you say, helping her up. “<i>But I don’t think we’ve seen the last of it.</i>”");
+
+		genericVictory();
+	}
+	// Lust victory
+	else if (foes[0].lust() >= foes[0].lustMax())
+	{
+		clearOutput();
+		author("Savin");
+		showBust("GRAYPRIME");
+		showName("FIGHT:\nGRAY PRIME");
+
+		output("“<i>No... stop...</i>” the goo groans as you continue to tease it. As you close the distance, you’re surprised to see her breasts, hips, and ass visibly enlarging, starting to fill out to the proportions of the “<i>regular</i>” gray goo. “<i>I don’t want to... I don’t want to become like them,</i>” the goo cries, stumbling back, clutching at her rack as if she could hold it in, restrain it from growing. ");
+		
+		output("\n\nBefore you can finish the job, she lunges at you, slamming her shoulder against you and throwing you back into Anno. The two of you go tumbling as the desperate goo-girl grabs the hatch to the reactor bay and leaps through it, fleeing from your sexual onslaught.");
+		
+		output("\n\n“<i>What did she mean ‘like them’?</i>” Anno mumbles as you help her up to her feet. “<i>What was that thing, even?</i>”");
+		
+		output("\n\n“<i>I don’t know,</i>” you say. “<i>But I don’t think we’ve seen the last of it.</i>”");
+
+		// [Room Menu Go]
+		genericVictory();
+	}
+}
+
+function lossToGrayPrime():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("GRAYPRIME");
+	showName("LOSS:\nGRAY PRIME");
+
+	output("“<i>What the hell!?</i>” Anno shouts beside you, firing again and again into the seemingly unstoppable goo-girl. Every bullet blows chunks out of the jiggling gray mass of her body, enough to kill any living thing outright; this monster just shrugs it off as her body reforms into perfect shape a moment later, as if she’d never been hit at all. “<i>She won’t go fucking down!</i>”");
+	
+	output("\n\nJust as Anno says that, though, one of her bullets blows the goo’s head off. The glistening gray body staggers forward, shudders, and collapses into the sea of goo at Anno’s feet. The ausar blinks, breathing hard. She stares at the locked-back slide of her empty gun. Behind her, the mass of gray goo squirms and rises, filling out into the shape of the unkillable goo. ");
+	
+	output("\n\nBefore you have a chance to warn her, Anno lets out a high scream as the gray goo surges around her to wrap around her with thick tentacles. Her arms and legs are grabbed first, splaying her out and lifting her off the ground. Another, more slender tentacle breaks off from the rest of the bunch so that it can slither up like a snake towards Anno’s face. She struggles, of course, and writhes in the tentacles’ grasp without finding purchase to escape. Her every movement is easily countermanded by the tentacles’ grasp. ");
+	
+	if (!(pc.meleeWeapon is EmptySlot()) && !(pc.meleeWeapon is Rock())) output("\n\nYou move to help, grabbing your [pc.meleeWeapon] and lunging at the tentacle mass growing from the deck");
+	else output("\n\nYou move to help and lunge at the tentacle mass growing from the deck");
+	output(" -- only for another gray vine to snap at you and throw you back against the far bulkhead. Your world spins, stars exploding in your vision as you slump down to the ground, barely conscious after the massive blow. Through the haze, though, you’re able -- if not forced -- to watch the tentacles drag Anno through the air, tearing at her catsuit until it’s nothing but shreds hanging from her writhing body. The slender one at her face presses against her lips, not waiting for her to relent but simply pouring through at the microscopic level and slowly forcing her mouth open from the inside. ");
+	
+	output("\n\nShe screams as more tentacles begin to molest her: grabbing at her breasts, squeezing the fleshy orbs, and planting their blunted heads to suck at her nipples. Others spread her legs wide and unceremoniously plunge into both her holes at once. Her voice is silenced by more tentacles clogging her throat, filling the ausar’s every hole with enough gray goo to stretch her to the breaking point. ");
+	
+	output("\n\nAs the goo fucks Anno, the gray girl herself reforms not more than an arm’s reach from you, rising out of the deck like a swimmer from a pool. She smiles as she materializes, taking one long-legged stride towards you. You weakly lift your [pc.rangedWeapon] towards her, but find your hand knocked aside by a tentacle that leaps up from the sea of goo around her. ");
+	
+	output("\n\n“<i>It’s a pity you found us,</i>” she says, almost a bit sadly as her tentacles wrap around your wrists, pulling you to your feet -- and further still, lifting you up off the deck. “<i>Hm. Some of us don’t want to kill you, it seems. Perhaps you can be still useful.</i>”");
+	
+	output("\n\nYou open your mouth to voice a question, but instead immediately are granted a taste of gray goo: one of the goo-girl’s tentacles rushes forward the moment your lips part, flooding into your mouth. You struggle against the probing tentacle of gray, but it’s relentless, squirming and shifting its shape to slide through no matter how tightly you squeeze your lips and throat. You can feel more tentacles rising, slithering up your [pc.legs], squirming through your [pc.gear], slowly stripping you down.");
+	if (!(pc.meleeWeapon is Rock()) && !(pc.rangedWeapon is Rock()) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
+	output(" You moan around the tentacle in your mouth as a");
+	if (pc.hasVagina() && pc.hasCock())
+	{
+		output(" writhing mass of tentacles reach up, eagerly probing and poking at your [pc.crotch] and [pc.asshole]. Several of the smaller ones wrap around [pc.eachCock], jerking and stroking and caressing every inch of your ample cockflesh. Other tentacles tease your womanhood");
+		if (pc.vaginas.length > 1) output("s");
+		output(", brushing and tickling your [pc.clits] until you’re too wet to prevent their entrance. Your ass, too, suffers the same fate as the rest of you: a single thick tentacle presses against it, so wet and so slender at the tip that you can’t clench hard enough to keep it in you. In the blink of an eye, you’re being speared from both ends, tendrils of gray goo writhing madly inside you.");
+	}
+	else if (pc.hasVagina() && !pc.hasCock())
+	{
+		if (pc.vaginas.length == 1) output(" pair of");
+		else output(" mass of");
+		output(" thick, drooling-wet tentacles squirm up your bare lower body, their destinations obvious. Instinctively, your body winces and clenches as the gooey probes find your holes. They press against you incessantly, shrinking down and pushing against you until you’re physically incapable of withstanding them. The tentacles wring a scream from you as they penetrate you, filling your holes with a flood of cold wetness that’s soon writhing inside you.");
+	}
+	else
+	{
+		output(" single long, slender tendril slithers between the cheeks of your [pc.butt], spreading you apart with alacrity. Oh, no.... You brace yourself as best you can as the cold, slippery goo-tentacle presses against your [pc.asshole]; it doesn’t take long to spread you open. You give a shrill, desperate cry as the tentacle squirms into you, writhing through your anal passage as more and more gray goo enters you.");
+	}
+
+	output("\n\n“<i>You’re lucky,</i>” the goo-girl coos as her tentacles fuck you and your ausar companion, filling every hole on offer. “<i>Lucky that gray goo needs a certain kind of lubrication to work right. Biological, warm, fresh. Nothing on Tarkus like it, even in this whole junkyard of a planet, except good old fashioned sex juice. Well, not unless you want to get deadly, anyway. But then you’re just a one-time meal, and where’s the use in that.... when we could have you forever?</i>” ");
+	
+	output("\n\nYour eyes go wide, but the goo surging into your mouth prevents you from speaking -- or doing much more than moan and gag as you’re viciously throat-fucked. Strangely, you’re not having any problem breathing around the gray tentacle rammed stomach-deep into you -- almost like you can breathe through it. You don’t have much time to consider the implications of that, though, before the tentacles around your lower half start really pumping, moving faster and faster into your spread-open hole");
+	if (pc.hasVagina()) output("s");
+	output(".");
+	
+	output("\n\nSlowly, the tentacles heft you and Anno through the air, moving your restrained limbs like puppets’ as you go -- which only serves to drive the hole-filling tendrils deeper as you’re dragged through a hatch, into the reactor bay. The reactor is thrumming noisily, surrounded by servers and hard-drives and computers that look like they’ve been ripped right out of the ship, or else harvested from the junkyard outside. You don’t have more than a moment to look at them, though, before your gaze is forcefully turned toward a huge vat at the edge of the chamber. ");
+	
+	output("\n\nA vat filled to the brim with gray goo. ");
+	
+	output("\n\n“<i>We need lubricants to keep functioning,</i>” your captor explains as she walks, followed closely by the pool of tentacle-rapey goo that’s holding you and Anno. “<i>Normally the wild raskvel outside, or the occasional sydian, are enough. Still, they’re a hassle to hunt down and fuck. Takes so much time out of the day... now that </i>you’re<i> here, well, maybe I can really get some work done. Waste not, want not.</i>”");
+	
+	output("\n\nThe tentacles inside you speed up, squirming and writhing in mad, worming motions that have your insides bulging in response, using your body like a well-trained whore’s. You’re physically dangled over the vat of goo as the gray girl wheels off the top, revealing a veritable ocean of the stuff. It gurgles and bubbles in response to the light -- and the dripping of your sexual fluids into it as the pounding tentacles lift you over it. An amorphous bubble of goop reaches up from the vat, squirming as you and your ausar companion draw near it. ");
+	
+	output("\n\nThe sea of goo binding you shifts up, and crawling up the wall of the vat to merge with its larger mirror. Oh, no.... You brace for impact, squeezing your eyes shut as you’re plunged bodily into the vat. The gray is soft as butter when you fall into it, the tentacles inside you merging with the surrounding host until you barely notice them as independent entities anymore: goo positively floods your body, pouring into you like water. You struggle, gasping for breath -- and finding it. After a moment, you have no trouble breathing at all, as if the goo is pumping oxygen into you. You manage to calm down once you catch your breath, blind and immobile in the vat, but still alive. You try and move your arm, but find yourself held fast, spread eager in the heart of the vat. You call out for Anno, and get no response -- you can’t hear anything, even if you actually managed to speak through the goo. ");
+	
+	output("\n\nSuddenly, you feel a rush of pleasure through your now-helpless body. An impossible, overwhelming shock of sensation assailing your every hole, filling you from the inside out as every inch of your body is tormented by the lusty micromachines. Your orgasm is as instantaneous as it is intense, pleasure driving your mind wild as you cum and cum and cum into your gooey prison, feeding the microbes that lube they so desperately seem to need. ");
+	
+	output("\n\nYou shudder as shockwaves of pleasure tear through you, pumping out every moment of orgasm from you that the goo possibly can, drawing your climax out... and out... and out... until you start to think it will never end. That the pumping goo inside you will keep you cumming and cumming forever, hours turning into days into weeks of unending orgasm.");
+	
+	output("\n\nThat’s exactly what they do.");
+
+
+	output("\n\n<b>GAME OVER</b>");
+
+	clearMenu();
+	addDisabledButton(0, "GAME OVER", "Game Over", "Roll end credits.");
+}
+
+function deck13Breach():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You look up to the great big hole in the overhead, through which you and Anno fell. Doesn’t look like there’s any way of getting back up there. ");
+
+	if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\n“<i>I'm surprised I didn't break a leg falling through,</i>” Anno muses. “<i>Wish I'd bothered to reload the stupid grappling gun when we came in.</i>”");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function deck13Shields():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You step up to the most important-looking console in the room, labeled “<i>Shield Control.</i>” There’s still some power to the console here.");
+
+	if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\n“<i>Hey, is this... the shields are still working? I guess that explains why the </i>Nova<i> didn’t burn up in atmo, but still. We should probably turn them on while we’re down here. Wouldn’t hurt, anyway, and if something happens... better safe than sorry, right?</i>”");
+
+	output("\n\nIt would just be a button press to route power to the shields. Do so?");
+
+	clearMenu();
+	addButton(0, "Yes", deck13TurnOnShields);
+	addButton(1, "Leave", mainGameMenu);
+}
+
+function deck13TurnOnShields():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("“<i>Bringing shields online,</i>” a soft computer voice says as you push the big ON button.");
+	
+	output("\n\nNothing really happens after that, other than the screen informing you that the shields are back online.");
+	
+	if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\n“<i>Guess we’ll just have to take it on faith. Hopefully we’ll never need ‘em anyway.</i>”");
+
+	flags["DECK13_SHIELDS_ON"] = 1;
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function deck13GooSample():void
+{
+	output("\n\n?????????????????????????????????????????")
+}
+
+function deck13SecondaryReactorFunc():Boolean
+{
+	author("Savin");
+
+	if (flags["DECK13_SECONDARY_ENTERED"] == undefined)
+	{
+		flags["DECK13_SECONDARY_ENTERED"] = 1;
+
+		deck13FinalFormIntro();
+
+		return true;
+	}
+	else
+	{
+		if (flags["DECK13_FINAL_FORM"] == undefined)
+		{
+			output("\n\nSeveral large vats and tubes along the edge of the room are filled to the brim with gray goo, sitting idle.")
+		}
+
+		return false;
+	}
+}
+
+function deck13FinalFormIntro():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("You and Anno approach the hatch leading into the secondary reactor. The snowy ausar readies her holdout and gives you a slight nod. Together, you shove the door open and charge in after the strange gray goo. ");
+	
+	output("\n\nShe isn’t hard to find.");
+	
+	output("\n\nThe reactor room you enter is monolithic, easily taking up half the deck with thrumming power converters and a glowing fusion reactor dominating the center of the expansive room, surrounded by vats and tubes filled with gray goo. Several wires lead directly from the reactor to dozens of computer banks, servers, and hard drives scattered all through the room, like half the computers aboard the ship were all pulled and clustered around the reactor. Every device is beeping and blinking rhythmically, drawing power right from the secondary reactor itself. The heat in the room is oppressive, almost overwhelming, with so many devices running on max and clustered together. You break out in a sweat almost immediately as the heat hits you like a brick wall. ");
+	
+	output("\n\nSlumped against the reactor control panel is the goo-girl, breathing hard after your encounter and surrounded by a writhing, swirling lake of bubbling gray goo at her feet. She spins around as you and Anno approach, her sword forming out of her hand as she does so. Anno raises her gun, but the goo doesn’t advance. Not yet, at least. ");
+
+	output("“<i>That’s close enough,</i>” the goo says, wincing");
+	if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 3) output(" as if in pain");
+	else output(" at her enlarged, lust-addled bust's heaving");
+	output(" and waving you back with her sword. ")
+
+	output("“<i>I’m sorry... I’m sorry I tried to kill you,</i>” she breathes, unsteadily rising to her feet, leaning heavily against the control panel. “<i>I didn’t... I... I panicked. But I can’t let you stop what I’m doing. I can’t let you.</i>”");
+	
+	output("\n\n“<i>And what is it you’re doing?</i>” you ask, reaching over and slowly lowering Anno’s gun for her. The ausar bristles, but doesn’t resist. ");
+	
+	output("\n\nShe hesitates a moment, then sighs. “<i>I’m trying to save my crew.</i>”");
+	
+	output("\n\nHer crew...?");
+
+	//Talk Menu:
+	deck13GrayPrimeTalkMenu();
+}
+
+function deck13GrayPrimeTalkMenu():void
+{
+	clearMenu();
+	addButton(0, "Her Crew", deck13GrayPrimeTalkCrew);
+	if (flags["DECK13_CREW_TALK"] != undefined)
+	{
+		addButton(1, "The Nova", deck13GrayPrimeTalkNova);
+		addButton(2, "Her Work", deck13GrayPrimeTalkWork);
+		addButton(3, "Gray Goo", deck13GrayPrimeTalkGoo);
+		addButton(4, "Done", deck13GrayPrimeTalkDone);
+	}
+	else
+	{
+		addDisabledButton(1, "The Nova", "The Nova", "Talk to the Gray Prime about her crew first.");
+		addDisabledButton(2, "Her Work", "Her Work", "Talk to the Gray Prime about her crew first.");
+		addDisabledButton(3, "Gray Goo", "Gray Goo", "Talk to the Gray Prime about her crew first.");
+		addDisabledButton(4, "Done", "Done", "Talk to the Gray Prime about her crew first.");
+	}
+}
+
+function deck13GrayPrimeTalkCrew():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	flags["DECK13_CREW_TALK"] = 1;
+
+	output("“<i>What do you mean, ‘your crew’?</i>” you ask, looking between the cybernetic girl and the myriad computers laid out around the reactor. ");
+	
+	output("\n\nThe gray goo waves her sword around the reactor bay. “<i>This is... this is all that’s left of them. The </i>Nova<i> carried thousands. Ten thousand, four hundred and twenty eight souls borne into the void. Deep space exploration, maybe colonization if she’d found a good planet. Something better than Tarkus, at least. We would have settled a world, another beacon of humanity in the stars, ready to wait for the next wave centuries later.</i>”");
+	
+	output("\n\n“<i>You said ‘we,’</i>” Anno says. “<i>Were you... part of the ship’s computer, I guess? Primitive doctor bots that had a loooong time to gain sentience?</i>” ");
+	
+	output("\n\nThe goo eyes Anno, a look of immense sadness crossing her eyes. “<i>No. I... we... are human.");
+	if (pc.isHuman() || pc.isHalfHuman()) output(" Just as human as you are.</i>”");
+	
+	output("\n\n“<i>What?</i>” you and Anno say at once, staring at the glistening metallic maiden. ");
+	
+	output("\n\nShe gives a wry chuckle under her breath and locks eyes with you. “<i>Did you ever notice that there were no bodies on the </i>Nova<i>? All those cryo beds, thousands and thousands of them... and not a single body.</i>” She sighs. “<i>There was a malfunction aboard the </i>Nova<i>, right out of the gate: a gas leak in the cryo system. We hadn’t even left Sol before the crew was dead. We were dust long before the old girl crashed here.</i>”");
+	
+	output("\n\nAnno turns to you. “<i>I... I think I believe it, boss. Old colony ships, they were fire and forget. Death sentences half the time, just load a bunch of people in a primitive starship and slingshot it into space. There are dozens of them still floating, even now that the gates are up, still looking for a habitable world. It wasn’t that uncommon for something to just... go wrong.</i>”");
+	
+	output("\n\n“<i>No, it wasn’t,</i>” the goo says. “<i>But we went anyway. Hundreds of ships, millions of souls eager to explore the galaxy. Who’d have thought we just needed to wait a couple centuries for you ausar to give us the gates?</i>” ");
+	
+	output("\n\n“<i>Maybe. But that doesn’t explain... well,</i>” Anno says, looking the gray woman up and down.");
+	
+	output("\n\nThe goo shrugs. “<i>We had an experimental tech with us. Courtesy of these bastards,</i>” she indicates the Bell-Isle/Grunmann patch on her shoulder. “<i>These little gray nanobots. Every one of us had an injection of them, supposed to keep us healthy and working when we got to... wherever we were going. They were also supposed to keep us </i>mentally<i> healthy, and that’s what got us. Every one of us died with a lace of grey bots copying our brains, just enough to fill a syringe. That was all that was left of us. But when this old bucket crashed, we woke up all the same.</i>”");
+	
+	output("\n\n“<i>Oh my god,</i>” Anno breathes.");
+	
+	output("\n\n“<i>So this is the crew. This clump of goo around us, plus databanks. It took us years to start uploading ourselves... to transfer from this fucking goo onto the network. But that’s worse. We humans, we can’t exist without a body... it’s suffering, just being digital. So now we’re making more goo. Digital platforms. Almost unkillable.</i>” ");
+	
+	output("\n\n“<i>And who were you?</i>” you ask, indicating the goo herself.");
+	
+	output("\n\n“<i>There... there is no ‘me.’</i>” she says. “<i>This body is made up of several thousand different intelligences working together. Most of the crew is synched through this platform. The ones not wandering around the ship net, or getting torn up as mind-numbing security bots trying to make you leave.</i>”");
+	
+	output("\n\nShe sighs. “<i>But I know what you meant. You’re seeing and hearing Captain Victoria Morrow. I, she, still leads us. I don’t even know if there is an ‘us’ anymore. It’s gotten so hard to think over the years. Individually, anyway. Like we’re all slowly melding into one. I becomes we, when there aren’t any barriers left.</i>”");
+	
+	output("\n\n“<i>A gestalt,</i>” Anno suggests.");
+	
+	output("\n\nThe goo nods. “<i>Maybe. For now, you can call us... me... Nova.</i>”");
+
+	deck13GrayPrimeTalkMenu();
+	removeButton(0);
+}
+
+function deck13GrayPrimeTalkNova():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("“<i>Tell me about the ship,</i>” you say, indicating the massive chamber around you.");
+	
+	output("\n\n“<i>I am the ship,</i>” Nova says simply. “<i>When we were... uploaded to the net, the crew became intrinsically tied to the ship’s internal network. I can </i>feel<i> it. Every deck, every sensor, every raskvel or sydian wandering its halls. The ship’s security net should have kept us safe, helped to direct and coordinate the crew. While I’m logged into the network, it’s so acute that it reminisces of touch and sound and smell. I could tell you anything about it, any bit of minutia. But what’s to tell? You know everything, I’m sure: she’s old, and she’s had her back broken. I don’t know what caused us to crash. We might have just flown right into the planet. The raskvel have done a good job fixing the old boat up, though; I’ll give them that. She might even be spaceworthy, if they found some way of launching the ship into orbit.</i>”");
+	
+	output("\n\nNova gives the reactor console an affectionate, almost motherly pat.");
+
+	deck13GrayPrimeTalkMenu();
+	removeButton(1);
+}
+
+function deck13GrayPrimeTalkWork():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("“<i>So what’s this work you didn’t want us to see?</i>”");
+	
+	output("\n\nNova sighs, turning from you to the mess of computers and hardware around. “<i>I’ve been trying to find a way out for centuries. Out of this... un-death. I don’t think we, the crew, will survive much longer like this, all jumbled together on the network and mixed together as primordial goo. We’re losing our sense of self. We needed new bodies, so we tried to take them: there were plenty of robots on Tarkus, but all too primitive to support a real human mind. ");
+	
+	output("\n\n“<i>So I’ve turned to the goo. We can make more of it, even if programming it is a nightmare. I wanted to make new bodies for the crew, one for every crewman, each with a strong enough network to host a living mind. It hasn’t entirely been a success, but I’m so close I can taste it. The goo on the planet are very nearly human. They just need a little more structural work, a little help in the right direction, and they’ll be ready.</i>”");
+	
+	output("\n\nShe smiles, ever so slightly. “<i>In short, I’m playing creator. To a whole new race on Tarkus.</i>”");
+	
+	output("\n\n“<i>Wait a minute,</i>” Anno says. “<i>I get that, but now that the U.G.C. is here, why not just ask for help? Cyber tech has come so far in the last few hundred years, and we’ve got rigs so advanced you’d think they’re human if nobody told you.</i>”");
+	
+	output("\n\nNova sighs. “<i>To be frank, we’ve been afraid. We don’t want some network analyst poking around in our brains, or worse, just getting dissected by the government the moment they realize what we are. We just want to live in peace.</i>”");
+	
+	output("\n\nAnno turns to you, leaning");
+	if (pc.tallness > anno.tallness + 6) output(" up");
+	else if (pc.tallness < anno.tallness - 6) output(" down");
+	else output(" over");
+	output(" to whisper in your ear. “<i>I know Steele Tech isn’t a cyberware company, but... we could help, couldn’t we? I’ve got enough pull in R&D to get the ball rolling, bring in some test rigs. It would take time, but it’s got to be better than... than this.</i>”");
+
+	deck13GrayPrimeTalkMenu();
+	removeButton(2);
+}
+
+function deck13GrayPrimeTalkGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("“<i>So, what’s the deal with the gray goo outside?</i>” you ask. ");
+	
+	output("\n\nAnno adds, “<i>They’re... nothing like you, that’s for sure.</i>” ");
+	
+	output("\n\n“<i>They were... accidents. Early experiments,</i>” Nova says. “<i>Gray goo operate by network intelligence. A host of very, very simple V.I.s link together to form a more coherent computer without taking up too much space. The ones you’ve seen outside were my first attempts to create new bodies for the crew. We created vats of gray goo, programmed them to assume human shapes, and then... then we realized that the network intelligence got smarter with size. It turned out that when we linked up enough new goo to form a body, the V.I.s powering them got almost as smart as people. Sentient, at any rate. Downloading into their bodies would kill the V.I., and we... we aren’t desperate enough to commit murder like that.</i>”");
+	
+	output("\n\n“<i>Except on us,</i>” Anno says, glowering. ");
+	
+	output("\n\nNova shrugs. “<i>Two people are a necessary evil. Ten thousand is unacceptable. We’ve been trying to find a way to keep the gray from networking, but every time we do, they refuse to form proper bodies. Just this sea of goop.</i>” She waves her hands around the pool at her feet.");
+	
+	output("\n\n“<i>But you’re in a body,</i>” you say, eyeing the captain’s silvery doppelganger. ");
+	
+	output("\n\n“<i>A body shared by the majority of the crew, taking thousands and thousands of us just to put together one functioning body. We’re all trapped in here together, until I can find us a way out... new bodies capable of supporting us.</i>”");
+
+	deck13GrayPrimeTalkMenu();
+	removeButton(3);
+}
+
+function deck13GrayPrimeTalkDone():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("“<i>I’ve heard enough.</i>”");
+	
+	output("\n\nNova nods, pushing herself up from the console, trying to stand on two feet again. “<i>Alright. What are you going to do then: will you help us?</i>”");
+	
+	output("\n\nLooking to you, Anno whispers, “<i>I’ll back you up whatever you decide, boss.</i>”");
+
+	clearMenu();
+	addButton(0, "Help: Bodies", deck13DecisionBodies, undefined, "Help: Bodies", "Agree to help Nova find new bodies for her crew. Steele Tech can get them started.");
+	addButton(1, "Help: GrayGoo", deck13DecisionGoo, undefined, "Help: GrayGoo", "Shout some sense into Nova. The gray goo aren't worth saving. Just download into goo bodies and be done with it.");
+	addButton(2, "Stop Her", deck13DecisionStopHer, undefined, "Stop Her", "Steele Tech could make a mint off the gray goo research she's done, and not have to pay a dime... if you kill the bitch.");
+	addButton(3, "Anno?", deck13DecisionAskAnno, undefined, "Ask Anno", "Ask Anno what she thinks.");
+	addButton(4, "Leave");
+}
+
+function deck13DecisionBodies():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	pc.addNice(5);
+
+	output("“<i>Alright, I’ll help you,</i>” you say, lowering your weapon. “<i>My Dad was a powerful man. Anno here works for his company’s Research and Development group. They’ll be able to help you.</i>” ");
+	
+	output("\n\nNova looks almost dumbfounded when you give your answer. “<i>R-really? You’d do that for us?</i>”");
+	
+	output("\n\nAnno nods. “<i>I’ll put in a call to R&D when I get back to the shop. They could be here in a matter of days, with at least a few cybernetic bodies. Advanced enough to hold onto your minds. If you’d be willing to share your research on the gray goo, we could probably work out a pay scheme to start fitting the whole crew with cyber bodies over the next year or so. With so many, it’s going to be a challenge, but... it’s doable. Definitely.</i>” ");
+	
+	output("\n\n“<i>I don’t know what to say... other than yes. And thank you!</i>” Nova smiles, for the first time. “<i>I never thought someone would be willing -- or able -- to help us like that. Not in a million years. Ten thousand cyber bodies has to be a fortune</i>”");
+	
+	if (pc.isMischievous())	output("\n\n“<i>Call it the company’s charity for the year. It’ll all come off on taxes anyway,</i>” you chuckle.");
+	else output("\n\n“<i>SteeleTech can afford it,</i>” you answer simply. “<i>Especially if we can find a way to monetize the gray goo.</i>”");
+	
+	output("\n\n“<i>I see,</i>” Nova says, still smiling. Her sword vanishes, disintegrating as she steps forward. “<i>Most... no, </i>all<i> of the crew would like to convey a message.</i>”");
+	
+	output("\n\nShe steps up, hesitant at first, then lunges forward, wrapping her arms around you and pulling you into a tight hug. You chuckle and return the gesture, feeling the slippery gray goo of her bosom squeeze and squish against your [pc.chest]. ");
+	
+	output("\n\n“<i>Alright, alright,</i>” Anno says, holstering her gun. “<i>C’mon, boss. Let’s call this in.</i>”");
+	
+	output("\n\nYou nod, and tell Nova to hold on: this nightmare is almost over. “<i>I’ll unlock the elevator for you,</i>” she adds finally. “<i>We’ll see you again, I hope.</i>”");
+
+	// {Return PC and Anno to Steele Tech shop}
+	flags["ANNO_MISSION_OFFER"] = 3;
+	flags["DECK13_GRAY_PRIME_DECISION"] = 1;
+	flags["DECK13_REACTOR_DOOR_OPEN"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", deck13BackAtTheShop);
+}
+
+function deck13DecisionGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	pc.addHard(5);
+
+	output("“<i>So you’re saying you’d rather have your crew sit here suffering while inflicting those brain-dead bimbos on the rest of the planet?</i>” you say, scowling at Nova. She visibly recoils. “<i>What the hell kind of captain were you?</i>”");
+	
+	output("\n\n“<i>It was a decision by all of us!</i>” she snaps. “<i>We signed up on this mission -- all of us! -- to create life. To spread the human race across the stars in peace, not to commit genocide.</i>”");
+	
+	output("\n\n“<i>Fucking hypocrite,</i>” you answer. “<i>You’d kill two living, breathing people just to keep your secret, but you’re afraid to press the ‘delete’ button on some soulless fucking robots?</i>”");
+	
+	if (pc.accessory is TamWolf || pc.accessory is TamWolfDamaged)
+	{
+		output("\n\n“<i>[pc.Master]?</i>” Tam-wolf whines.");
+	
+		output("\n\n“<i>Not you, boy.</i>”");
+	}
+	
+	output("\n\n“<i>So what, you think that’s it?</i>” Nova says, planting her hands on her hips. “<i>We have to pick between us and them? No. That’s why we’ve been doing this work... for so long. There has to be a better way.</i>”");
+	
+	output("\n\n“<i>Then where is it? You’ve had </i>centuries<i> to work on this, and what do you have to show for it?</i>”");
+	
+	output("\n\nNova winces. “<i>But we-</i>”");
+	
+	output("\n\n“<i>But nothing! If you want to save your crew, it’s time to help yourselves -- nobody else will.</i>”");
+	
+	output("\n\nNova shudders, gray flesh quivering as her arms wrap around herself. “<i>I don’t... then what does that make us? What kind of monsters would we be...?</i>”");
+	
+	output("\n\n“<i>The kind that saves their crew. That’s a captain’s duty, Nova.</i>”");
+	
+	output("\n\nShe hesitates a moment, then turns away from you. Back to the console. “<i>You’re right... I know that. I’ve just been deluding myself all this time. Too afraid to do what I have to do.</i>”");
+	
+	output("\n\nNova pauses again, her hand hovering over the console. As if to herself, she says, “<i>I am the CAPTAIN. I don’t care what any of you say: I’m making a decision. It’s final. I’m saving you bastards whether you like it or not.</i>” A moment passes in silence. Slowly, the captain’s hands descend on the console and begin working.");
+	
+	output("\n\nMoments later, the vats of gray goo begin churning, drooling out thick clumps of the stuff from a nozzle onto the deck. Bouncy gray girls begin forming, just like the creatures found outside Novahome: all with huge tits and asses bouncing around as they look about, surveying their new surroundings. When the first have finished coalescing from their composite goop, Nova steps away from the console and approaches them, reaching a hand out to the nearest gray goo-girl.");
+	
+	output("\n\n“<i>Hi!</i>” the first-made goo says, adopting a huge grin as Nova nears her, oblivious to her imminent fate. “<i>Wow! You’re super pretty! Are we going to be friends?</i>”"); // ;;;;;;_;;;;;;;
+	
+	output("\n\nNova merely reaches a hand out, and plants it on the gray’s chest. The bubbly goo-girl goes suddenly rigid, her eyes crossing as Nova uploads one of the crew to her. A mere second goes by, and it’s over. The gray girl shifts and shudders, reforming herself into the image of a tall, athletic man clad in a tight spacer uniform, bearing the Bell-Isle/Grunmann patches, just like Nova.");
+	
+	output("\n\n“<i>Captain,</i>” he says, a solemn grin on his face, extending a hand to Nova. ");
+	
+	output("\n\nShe takes it, shaking it vigorously. “<i>Good to have you back, Jameson.</i>” Turning to you, Nova says, “<i>That’s it, then. It works. It’ll take a long time, but... but the crew will have new bodies, now. I suppose I should thank you for talking me out of my cowardice.</i>” ");
+	
+	output("\n\n“<i>I think we’re done here, boss,</i>” Anno says, putting a hand on your shoulder. “<i>I got what I came for, and I think the crew here’s going to be okay.</i>”");
+	
+	output("\n\nNova nods. “<i>We will be. Hopefully we’ll be leaving soon. Start catching flights back... well, I don’t know if any of us have homes to go back to,</i>” she sighs. “<i>I’ll unlock the elevator for you.</i>”");
+	
+	output("\n\nYou nod, and follow Anno topside.");
+
+	// {Return PC and Anno to Steele Tech shop}
+	flags["ANNO_MISSION_OFFER"] = 3;
+	flags["DECK13_GRAY_PRIME_DECISION"] = 2;
+	flags["DECK13_REACTOR_DOOR_OPEN"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", deck13BackAtTheShop);
+}
+
+function deck13DecisionAskAnno():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nANNO");
+	showBust("ANNO");
+
+	output("“<i>Thoughts?</i>” you whisper, turning to Anno.");
+	
+	output("\n\nThe ausar girl shrugs. “<i>I don’t know, boss. They </i>did<i> try to kill us, but... God, can you imagine? Dying in your sleep, waking up centuries later as just a pile of goo. I’m amazed they’re not MORE crazy. We could help them. Steele Tech has the resources to provide cyberwear for them, though it’d be expensive. Could cut a deal with them for their gray goo tech, try and make a buck off of it in exchange. I could think of a dozen ways to use it, aside from just as mushy sexbots.");
+	
+	output("\n\n“<i>So yeah. Could make a deal about that, if you want. That’s what I’d do. To play devil’s advocate, though, you could take one from your uncle Max’s playbook and just steal their research. Would be a pretty big dick move, but Steele Tech would make a mint off it for nothing.</i>”");
+
+	removeButton(3);
+}
+
+function deck13DecisionStopHer():void
+{
+	clearOutput();
+	author("Savin");
+	showName("\nGRAY PRIME");
+	showBust("GRAYPRIME");
+
+	output("You level your [pc.rangedWeapon] at Nova. Anno follows suit, her holdout steady with the goo’s head. ");
+	
+	output("\n\n“<i>What... what’re you?</i>” she starts, raising her sword. “<i>I knew this would happen. Fine. Let’s finish this.</i>”");
+	
+	output("\n\nRather than charging at you, though, Nova spins on a heel and throws her sword behind her... right into the biggest vat of bubbling gray goo. The glass pane in front of it shatters, and goo comes spilling out like a tidal wave across the floor. Anno puts a round right through Nova’s head, but too late: her sea of goo and the new floor are already racing to meet one another. They merge, waves gray goo spilling across each other... and growing. The captain-facsimile reforms, larger now, growing by the second as more and more goo flows into her. You and Anno both take a step back as Nova grows giantesque, towering over you in a monolithic conglomerate of gray goo.");
+	
+	output("\n\n“<i>YOU WILL NOT STOP ME FROM SAVING MY CREW,</i>” Nova booms, her hand lashing out... and punching into the reactor. Immediately, the lights flash red as a thick, green gas begins pouring out, starting to fill the chamber you’re in.");
+	
+	output("\n\n“<i>Oh, shit. Boss, run!</i>” Anno snaps, grabbing you by the arm and booking it towards a personnel elevator in the back of the room, leading back up to the deck you came in on. You hit the UP button, just as gas starts to reach your feet. ");
+	
+	output("\n\n“<i>HAVE A LITTLE TASTE OF WHAT KILLED US,</i>” the mammoth Nova booms, stomping towards the lift. You and Anno raise your weapons as the giga-goo closes in.");
+
+	clearMenu();
+	addButton(0, "Next", startCombat, "gigagoo")
+}
+
+function gigaGooAI():void
+{
+
+}
+
+//Goo Punch
+function gigaGooPunch():void
+{
+//One moderate physical attack, no dodge chance. Chance to stun.
+	Nova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later. {<b>You’re stunned by the overwhelming force of the blow!</b>}
+}
+
+//Sword Thrust
+function gigaGooSwordThrust():void
+{
+//One MASSIVE physical hit.
+	Nova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!
+	Hit: You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease. 
+	Miss: You and Anno duck apart, letting the sword plunge into the wall between the two of you. The rising elevator cart quickly cuts it off of the mass and lets it pour off the sides... only to reform a moment later. 
+}
+
+//Cage Rattle
+function gigaGooCageRattle():void
+{
+//Several light physical attacks, chance of knockdown in failed Reflex save. 
+	Nova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down. {<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>}
+}
+
+function loseToGigaGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("GIGAGOO");
+	showName("LOSS:\nGIGA GOO");
+
+	output("“<i>YOU SHOULD HAVE LET US WORK,</i>” Nova roars, reaching through the elevator’s lips and grabbing you and Anno, squeezing you together in one of her massive fists. You can already feel the life being crushed out of you before the monolithic goo-girl throws you down to the deck below, ending your life as a crushed husk in a haze of poison gas.");
+	
+	output("\n\n<b>GAME OVER</b>");
+
+	clearMenu();
+	addDisabledButton(0, "Game Over", "GAME OVER", "Roll end credits etc.");
+}
+
+function victoryOverGigaGoo():void
+{
+	clearOutput();
+	author("Savin");
+	showBust("GIGAGOO");
+	showName("VICTORY:\nGIGA GOO");
+
+	output("Finally, the elevator locks into position and the huge blast door slides open. Still firing, Anno steps off the elevator, slowly stepping back as she unloads on the monstrous goo-girl. With a roar of rage, Nova rips the elevator cart aside and reaches her arm into the corridor, nearly knocking you off your [pc.feet]. You scramble back, Anno in tow as the goo adjusts her size, body deforming as she claws her way into the hall. ");
+	
+	output("\n\n“<i>Run! Elevator, now!</i>” Anno shouts before sprinting away. You follow, hurtling back down the hall where you came from. Behind you, a cloud of green gas rolls into the corridor, following the oversized gray arm reaching after you. Anno gets there a moment ahead of you. The ausar slams her fist against the call button before turning and firing over your head at the oncoming goo fist, blasting its fingers apart before they can close around you. The elevator door slides open onto an empty shaft: no cart. ");
+	
+	output("\n\n“<i>Leap of faith, boss. Let’s go!</i>” ");
+	
+	output("\n\nFuck. You give Anno a final nod and get a running start, leaping into the elevator shaft and grabbing onto the cable. You swing it back just enough to avoid Nova’s hand closing in on you. Her hand grabs the side of the door, pulling the rest of her body through the corridor until her face is pressed against the door. Nova opens wide, forcing her head through as if to bite right into you.");
+	
+	output("\n\n“<i>EAT THIS!</i>” Anno shouts, firing her gun at the door... and hitting a control panel on the inside of the shaft. The door slides closed with a WHOOSH, cleanly slicing the goo’s head off. With a cry, it plummets into the darkness below, vanishing into the lower decks.");
+	
+	output("\n\n“<i>Oh, shit.</i>” Anno sighs, holstering her gun and grabbing the cable with both hands. “<i>That was close. Hope you’re ready for a climb, boss.</i>”");
+
+	// {Back to Steele Tech}
+		// {Return PC and Anno to Steele Tech shop}
+	flags["ANNO_MISSION_OFFER"] = 3;
+	flags["DECK13_GRAY_PRIME_DECISION"] = 3;
+	flags["DECK13_REACTOR_DOOR_OPEN"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", deck13BackAtTheShop);
+}
+
+function deck13BackAtTheShop():void
+{
+	clearOutput();
+	author("Savin");
+	showName("DECK 13\nEPILOGUE");
+	showBust("ANNO");
+
+	output("<b>Some time later, you return to the Steele Tech outpost</b>... ");
+	
+	output("\n\nAnno sighs heavily as she all but stumbles through the door, wiping the sweat off her brow on the back of her sleeve. “<i>Holy shit, boss. That was... not was I was expecting,</i>” she says, shooting you a wry grin as she dumps her gun, remaining mags, and tools on the counter and zips down the front of what’s left of her half-shredded catsuit.");
+	
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 3)
+	{
+		output("\n\n“<i>Fucking bitch was crazy. Can you imagine, all those years cooped up as nothing more than a handful of gooey robots? I’d feel bad for them if not for the whole murder-rape-kill thing.</i>”");
+	}
+	else
+	{
+		output("\n\n“<i>I’m glad we were able to help those people... nobody deserves to spend an eternity like that. Even if they did try to kill us first.</i>”");
+	}
+	output(" Anno hits a button under the counter as she speaks, causing shutters to fall over the shop windows and the door to bolt. Once done, she shrugs completely out of her top, letting the material bunch around her waist. You watch with interest as the buxom ausar moves, bending to put her gear away as she talks. “<i>I’ll be interested to see their research data on the gray goo");
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 3) output(", once the gas clears off that deck, anyway");
+	output(". Could make the company a mint on the sex-bot market, if not elsewhere.");
+	if (flags["DECK13_GRAY_PRIME_DECISION"] == 1) output(" Easily enough to cover the cost of a few thousand civvie-model cyber bodies. Well, probably.");
+	output("</i>”");
+	
+	output("\n\nAnno locks her gun back under her workspace and, in the same motion, shimmies out of the rest of her clothes, letting the well-worn catsuit drop to the floor. “<i>We do good work, boss,</i>” she adds, walking over and planting a kiss on your cheek. “<i>I’m going to hit the showers before I call the company and tell them what happened.</i>”");
+	
+	output("\n\nHer hand trails across your hip as she turns and sashays toward the back door down to her quarters, hips a-sway and tail curling up as she walks. She stops in the doorframe, one arm on it, the other on her waist, and grins over her shoulder. “<i>You coming?</i>” ");
+
+	// [Yes] [No]
+
+	currentLocation = "303";
+	clearMenu();
+
+	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Yes" annoPostQuestSexytimes);
+	else addDisabledButton(0, "Yes", "Accept Offer", "You need some form of genitalia to accept Annos offer.");
+
+	addButton(1, "No", annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin);
+}
+
+function annoPostQuestSexytimes():void
+{
+	clearOutput();
+	author("Savin");
+	showName("DECK 13\nEPILOGUE");
+	showBust("ANNO");
+
+	output("\n\n“<i>Wouldn’t miss it,</i>” you grin,");
+	if (pc.tallness > 5 * 12) output(" sweeping Anno up off her feet and carrying the giggling, tail-wagging bundle of horny ausar down the stairs.");
+	else output(" rushing after the snowy ausar and grabbing a handful of her ass as you walk. She swishes her tail playfully across your face, letting it drape around your shoulders, holding you close as you slip into her apartment.");
+	
+	output("\n\nThe two of you stumble down the rest of the stairs, hands and lips all over each other. Anno’s back meets a bulkhead just beside her bathroom and her legs wrap around you. Meeting her desire, you kiss your way down her neck and then the full mounds of her tits to bring your lips around one of her stiffening teats. The canine-like girl moans, back arching when your [pc.tongue] laps over the pebbly ring of her areola. You pause there, slowly circling her nipple and lavishing it with your tongue until the little point is diamond-hard. Your hand drifts down her side, fingers teasing across the sensitive flesh of her inner thigh until her breath catches; Anno bites her lip, trying not to cry out. One hand grip slips between her legs to the sodden gulf of her sex, already slick with her excitement. Your fingers brush along her lower lips, sending a shiver up the horny ausar’s body. A low, husky moan reaches your ears, and Anno’s arms wrap around you to pull you tightly against her. You let go of her breast in acceptance of a tongue-filled kiss, punctuated by one of your fingers penetrating her sex and sliding into the wet channel of Anno’s pussy. ");
+	
+	output("\n\n“<i>Slow... slow down,</i>” she moans with fluttering eyelashes. Probing into her, you tease the tender inner walls of her cunt. Her muted protests are practically an invitation: you push another finger in and spread ‘em wide, letting the natural juice dribble down into the palm of your hand. Anno blushes and squirms as you tease her, leaving her neck open for you to kiss and nibble on. You drink deeply of her scent while you do; the heady mix of sex and sweat and her sweet, lavender hair leaves you breathless, desperate for more.");
+	if (pc.hasCock() && pc.isCrotchGarbed()) output(" [pc.EachCock] pulls desperately against your [pc.armor], swelling with your own mounting need. One of Anno’s hands brushes across it, gently cupping your turgid bulge and starting to tug you out of your gear.");
+	else if (pc.hasCock() && !pc.isCrotchGarbed())
+	{
+		output(" Your unclad [pc.cocksLight] swell");
+		if (pc.cocks.length == 1) output("s");
+		output(" with your own mounting need, hard and hot against Anno’s bare thigh, so close to penetration you can almost feel the heat welling off of her sultry sex. One of her hands wraps around your turgid member, gently stroking it as she pulls your [pc.gear] away.");
+	}
+	else if (pc.hasVagina()) output(" Your own [pc.cunts]");
+	if (pc.vaginas.length > 1) output(" are");
+	else output(" is");
+	output(" boiling with need, running slick with excitement as you drink in your lover’s scent. You give a little moan as Anno finally returns the favor, one of her white-clad hands brushing aside your [pc.gear] and tracing across the lips of your [pc.cunt].");
+	output(" Breathless, Anno desperately pulls your [pc.gear] off to let it clatter to the floor before giving you a push through the bathroom door. ");
+	
+	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and spreading your [pc.legs] apart. ");
+	
+	// Cockwielder Variant
+	if (pc.hasCock())
+	{
+		output("\n\nYou can’t suppress a groan as Anno’s fingers wrap around your dripping member, using the flowing water as lube to quickly pump up and down your swelling length and jacking your [pc.cock] until it’s nice and hard. Her cheek nuzzles against your [pc.crotch] while her tongue reaches out to caress");
+		if (pc.balls > 0) output(" your [pc.balls]");
+		else output(" the base of your [pc.cock]");
+		output(", one long lick carrying her along the long shaft of your cock and straight to the crown. Anno looks up and shoots you a grin before wrapping her lips around your cockhead");
+		// I'm intentionally trying to be as inclusive as possible here, I dunno if we wanna convert some of these to && etc.
+		if (pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_BARBED) || pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_FELINE) output(", brushing her tongue across the bumps and ridges of your feline-like member");
+		else if (pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_BLUNT) || pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE || pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_FLARED)) output(", her jaw straining to encompass your flared equine girth");
+		output(". One of your hands settles atop Anno’s head, stroking the mat of wet hair between her perky ears as she teases your crown, gently urging her onwards. ");
+		
+		output("\n\nShe resists for a long, obstinate moment, content to merely suckle from your turgid member and lavish its tip with her tongue. Her hand continues to pump your length, too, moving with such speed and skill that it isn’t long before Anno gets a nice, thick drop of pre right on her waiting tongue. She pulls herself off you, licking her lips as water cascades down over her face, and she cups the full mounds of her tits toward the shower head to let it get them nice and soaked. Winking at you, the ausar reaches up and grabs the little bar of soap from the dish and, squeezing her breasts together with her shoulders, starts to wash them down, scrubbing every inch of supple titflesh until they’re covered in suds and bubbles. As she works, her lips lock back around your crown, sliding down your slippery shaft; she’s not going to let you go soft while she gets ready! You’re treated to a spectacular view of Anno on her knees: her big blue eyes lock with yours as she sucks you off, her tits glistening beneath your length as she rubs them down. ");
+		
+		output("\n\nFinally satisfied that her chest is as slippery as can be, Anno gives you a sultry wink and leans up, dropping your [pc.cock] from her lips to her cleavage in one smooth motion. Her hands lock around her perfect mounds, squeezing them tightly around your wet-and-ready cock. “<i>Like it?</i>” she asks with a grin, not waiting for an answer before rocking her shoulders back and forth and letting your member slide through the slippery grasp of her cleavage. It nearly pops out but for her quick-acting fingers, which keep you nice and trapped in her heaving bosom. Her kneeling legs start to power her motions as she slowly rises and falls back, taking your cock with her as she moves, guiding it through every inch of her slippery, hot, soapy rack: your crown pokes out between them one moment, just long enough for her to kiss and lick your [pc.cockHead], before vanishing back into her sudsy tits again the next. ");
+		
+		output("\n\n“<i>The best thing about shower sex: the mess is self cleaning,</i>” she says, more than a hint of suggestion in her voice. She’s moving faster now, all but bouncing on her knees. Her eyes never leave yours, totally focused on you even as she starts moaning and panting, working hard to get you off. Trapped as you are between two hot, slick mounds of sexy ausar tit, you soon feel the rising heat of impending and inescapable pleasure welling in your loins. Anno sees it in your eyes and redoubles her efforts, pumping away at your desperately clenching [pc.cock] until you can’t hold back anymore. ");
+		
+		output("\n\n“<i>Come on, boss. Make a mess,</i>” Anno urges, leaving her mouth wide-open at that last syllable, just as you let loose the first jet of jizz through the gap between her boobs. That first ribbon of [pc.cumColor] doesn’t quite hit her mouth, instead splattering over her cheek -- and vanishing a moment later as the hot, still-liquid load is washed away by the powerful spray of the showerhead. Another jet of spunk sprays over her chin, then the next is caught between her tits, filling the valley of Anno’s cleavage with your hot, creamy seed as she continues to pump you, still moving all through your orgasm and using her tits to milk every last drop from you. ");
+		
+		output("\n\nWhen your climax passes, you’re left slumped against the shower stall’s wall and trying to catch your breath. Anno licks an errant bit of cum from her cheek as she stands, letting the water clear the rest for her. With a little wiggle of her hips, Anno makes her way to the front of the stall and plants her hands on the ceramic tiles, shifting her legs wide apart and raising her tail invitingly to give you a good look at the still-slightly parted lips of her sex. ");
+	}
+	else
+	// Cuntcommander Variant
+	{
+	output("\n\nAnno breathes out while she shimmies down, her chest rocking with an exhalation that lands hot and humid across your bare sex. You shiver with delight when the rush of warm air brushes across the water-slick lips of your [pc.cunt]. Slowly, she brings her cheek in to rest against your thigh, hands resting on your [pc.hips] to steady your body. You need it, too: you only notice how you’re shivering in anticipation when you’re suddenly stopped and forced to hold still in Anno’s firm grasp. ");
+	
+	output("\n\nWith tantalizing slowness, Anno lets her tongue loll out, the tip just grazing your thigh before making its way across the mound of your vulva and brushing along to just the crest of your clit before breaking off and starting again: damn tease! You stifle a moan as she does it again, this time just flicking across the lip of your buzzer’s hood to send an electric shock of pleasure through you that sets every nerve afire with desire. Your hand drifts instinctively to the wet mess of snowy hair atop Anno’s head, trying to guide her in; she resists for now, instead content to tickle and tease your thigh and lips while never quite making full contact. ");
+	
+	output("\n\nYou’re soon approaching your limit: your [pc.legs] are trembling, feeling like masses of jelly that quiver helplessly at Anno’s touch, ready to give at the slightest sexual stimulation. With a wolfish grin, Anno locks eyes with you and gives you a knowing wink before letting her tongue do the talking. A shock of pleasure surges through your body when Anno’s tongue finally gives you want you want -- what you need -- gliding across the full swell of your [pc.clit]. You can’t hold in a low, husky moan, squirming at the sensation of her oral assault; she answers with more licks across your blood-swollen buzzer. ");
+	
+	output("\n\nWithout Anno and the wall supporting you, you’re sure you’d collapse under the overwhelming pleasure. Despite that, the hand planted between Anno’s ears instinctively pulls her inward, mashing the ausar’s face against your [pc.cunt] to try getting more and more from her probing tongue. Gigging, Anno gives it to you: she traces her tongue from your clit down into the folds of your pussy, parting your lips and slipping in. Your head rolls back, eyes squeezed shut as Anno explores your [pc.cunt], licking across your tender walls, letting your muscles squeeze around her, happily lapping up your flowing excitement as she works. She’s relentless, slurping and lapping minute after minute, never giving you a moment’s respite. Her fingers dig into your [pc.hips], holding you fast as she delves into your sex with a long tongue that tastes your deepest recesses. Your free hand drifts upwards, {cupping one of your [pc.breasts] // caressing your flat chest} and pinching the [pc.nipple] there with a squeeze on the tender mound that’s just forceful enough that you can’t help but cry out. You’re desperate for pleasure now, hips bucking on Anno’s tongue. If she doesn’t back off soon, you won’t be able to stop yourself from cumming... ");
+	
+	output("\n\nThat seems to be Anno’s plan. You’re moaning like a bitch in heat now while your juices mix with the running water of the shower between your [pc.legs], trickling hot down your thighs between Anno’s rhythmical licks and kisses across your sex. You’re soon reaching your limit, voice breaking higher and higher into lusty moans and cries, even begging Anno for release. She’s eager to grant it, barely acknowledging your cries but for one look up at you to lock eyes with you and hold your gaze firmly, making you watch as she brings you to the brink of orgasm. ");
+	
+	output("\n\nFinally, you can take no more. With a shrill cry of feminine pleasure, you let your ausar lover bring you over the edge. Sexual bliss overtakes your every nerve, your body afire with desire while Anno feverishly eats you out with a tongue that moves faster and faster as you surrender to ecstasy. Shudders and shakes rock your body, their force nearly enough to make you go limp with exhaustion by the time your orgasm passes. Your prolonged moment of passion leaves Anno’s face awash with your juices -- which quickly wash away as the downpour continues from the shower head. With a little wiggle of her hips, Anno makes her way to the front of the stall and plants her hands on the ceramic tiles, shifting her legs wide apart and raising her tail invitingly to give you a good look at the still-slightly parted lips of her sex. ");
+	}
+	
+	// Combine for Great Ausar Rugmunching
+	output("\n\nHer intent is clear, and as the aftershocks of your climax pass, you figure you owe the lusty slut a reward for her efforts. You step after her, one short stride putting you right behind the drenched, dripping curl of her up-raised tail. You let your hands wander across her body: they start at her shoulders and slide slowly down, making sure to sensuously rub at the right spots as they go. Your fingers slip around her ribs and up her chest to cup the slippery mounds of her tits, giving them an affectionate little squeeze. Anno moans at this, her back arching and her hips squirming back against your [pc.crotch] while you massage her big breasts, letting your fingers sink into her soft, pliant flesh. Her nipples stiffen between your digits, and you feel your lover being wracked by a full-body shudder as you roll the twin points between your fingertips. Teasing and squeezing, you keep up the pressure on Anno’s breasts until her breath is coming out in shuddering gasps and her sodden figure is trembling at your every touch. You can only imagine the sultry gulf forming between her legs by now as the ausar’s plentiful excitement mixes with the hot water of the shower into a glistening, inviting delta. ");
+	
+	output("\n\nYou’re on your [pc.knees] before you know it, and hands reach out to grope an altogether different pair of soft mounds. You spread her cheeks apart, trying to ignore the flick of her tail across the bridge of your nose. With a squeeze of her ass, you earn a moan and a tail-wiggle from the ausar babe, ending with her back-end perched atop your head like a hat, finally giving you unimpeded access to her ample rear. More importantly, you’ve now got a straight shot to the slick slit of her sex and are able to see the glistening lips of Anno’s pussy beading with a mixture of water and her own ample juices. ");
+	
+	output("\n\n“<i>Fuuuck,</i>” Anno moans, voice low as you draw a pair of fingers along the lip of her cunt, only just stopping yourself from penetrating her again. You watch with glee as a thin trickle of lubricant runs from her hole and drools across your fingertips in answer to your constant teasing. You snatch the little bead up, acting before the shower can wash it away, and lick it from your fingertips. Your breath catches at the potent, sweet taste of your lover’s passion. That does it -- that one taste kicks your instincts into high gear and drives away the last of your restraint. You bury yourself between Anno’s plush cheeks to thrust your [pc.tongue] deep between her parted lips, desperate for more of that wonderful sweetness. ");
+	
+	output("\n\nAnno gasps and moans as you tongue-fuck your way into her, worming your way through her lips and into the slick, eager passage beyond them. Her walls squeeze around you, instinctively repelling you at first, but then seeming to urge you in deeper as you drive against them. You give the lusty slut everything you have to give, pushing in deep and lavishing her squirming walls with oral affection. You’re rewarded with Anno’s cute moans and an ever-increasing flow of her sweet nectar, beads of it rolling across your tongue and nose only to vanish into the running water. As you lick through the valley of her womanhood, Anno’s back slowly begins to arch. Her whole body slinks down the slick wall of the stall, bending over to let you delve ever deeper into her sex. ");
+	
+	output("\n\n“<i>Ah... I think we’re going to need </i>another<i> shower after this,</i>” Anno remarks with a grin, rocking her hips back against you and giving you a facefull of wet ass on top of everything. You give her big cheeks a playful squeeze, holding her back before you drown in her slippery backside. Anno coos happily as the new angle brings you deeper inside her, and even moreso when you let one of your hands slip from her behind to venture up between her legs and tease your fingertips across the bud of her stiff little clitty. Now <i>that</i> gets her going: a few minutes of that and her moans are reaching an ever-higher pitch. The movements of her hips become more desperate, frantic for your every touch. Her juices practically pour across your [pc.tongue] as her body prepares for a thick, knotty ausar cock that isn’t coming. You lap up every drop you can, sending waves of palpable pleasure through Anno’s quivering body until she’s practically a puddle of fuck on the shower floor that’s barely able to keep herself upright. ");
+	
+	output("\n\n“<i>Just a... just a little more, boss,</i>” Anno whines, slumping against the stall wall and cupping a breast while trying to wring out every bit of stimulation she can before she utterly succumbs to you. It isn’t long until she does: a few more moments pass before a sudden shiver takes her, starting with a vicious clamp around your tongue as her muscles contract and continuing with a hard squeeze once the first waves of orgasm pass through her. You keep licking all through it, giving the ausar a steady stream of consistent motions to ground herself on as she rides though a wet, hot climax that ends with her panting and gasping for breath, giggling all the while as you tease at her most sensitive spots. ");
+	
+	output("\n\nThe next few minutes are spent in quiet afterglow. The two of you help each other wash away the sweat and scent of sex. You take turns scrubbing all those hard-to-reach spots for each other, though that only ends with Anno pressed against the wall, your lips on hers as you blindly search for the shower handle. The water finally abates to leave you in a cloud of mist that clings to your bodies, keeping you nice and hot as you enjoy each other for a last few moments. ");
+	
+	output("\n\nFinally, though, you step out of the shower and towel down. When you’re done, Anno wraps hers around her hair and ears, in order to leave herself bare and on full display for you. “<i>Thanks, boss. I needed that,</i>” she says with a wink, leaning in to give you a peck on the cheek. “<i>I’m going to go put in my after-action report to Corporate. Pop into the shop whenever, and we’ll see what happens.</i>” ");
+	
+	output("\n\nWith that, Anno grabs a fresh catsuit out of her closet and slips out of sight, which leaves you to collect your scattered [pc.gear] and return topside.");
+}
+
+function annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin():void
+{
+	clearOutput();
+	author("Savin");
+	showName("DECK 13\nEPILOGUE");
+	showBust("ANNO");
+
+	output("“<i>Alright, suit yourself,</i>” Anno shrugs. “<i>I’ll be back in a few... hopefully with an approved transfer notice.</i>”");
+	
+	output("\n\nShe sashays off, disappearing down the stairs.");
+
+	processTime(30+rand(5));
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
