@@ -49,7 +49,9 @@
 			_miniMap.paddingTop = 5;
 			_miniMap.paddingBottom = 31;
 			
+			_miniMap.buttonMode = true;
 			_miniMap.addEventListener(MouseEvent.CLICK, function(e:Event){kGAMECLASS.userInterface.showBigMap(_miniMap)});
+			
 			this.addChild(_miniMap);
 		}
 		
