@@ -1,4 +1,4 @@
-package classes.UIComponents.ContentModuleComponents 
+﻿package classes.UIComponents.ContentModuleComponents 
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -65,7 +65,7 @@ package classes.UIComponents.ContentModuleComponents
 			_optsProperty = optsProperty;
 			
 			updateStateFromOptions();
-			_button.addEventListener(MouseEvent.CLICK, buttonClickHandler);
+			_button.func = buttonClickHandler;
 		}
 		
 		private function updateStateFromOptions():void
@@ -98,7 +98,7 @@ package classes.UIComponents.ContentModuleComponents
 			updateStateFromOptions();
 		}
 		
-		private function buttonClickHandler(e:MouseEvent):void
+		private function buttonClickHandler():void
 		{
 			if (_optsProperty in kGAMECLASS.gameOptions)
 			{
