@@ -22,6 +22,8 @@
 		private var _currIconId:int; 
 		private var _hazardMask:Sprite;
 		
+		public function get roomIcon():Sprite {return _roomIcon;}
+		
 		public function MinimapRoom(sizeX:int, sizeY:int) 
 		{
 			// Size information is used to figure out the "parent rooms" size without having to do bullshit like:

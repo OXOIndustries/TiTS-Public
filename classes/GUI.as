@@ -52,6 +52,8 @@
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
 	import flash.display.DisplayObjectContainer;
+	import classes.Characters.Naleen;
+	import flash.display.Sprite;
 
 	//Build the bottom drawer
 	public class GUI extends MovieClip
@@ -600,10 +602,94 @@
 			container.addChild(bigM);
 			bigM.setMapData(mapper.generateMap(kGAMECLASS.currentLocation));
 			
+			setupBigMapTooltips(bigM, 10, 9, kGAMECLASS.rooms[kGAMECLASS.currentLocation]);
+			
 			clearGhostMenu();
 			addGhostButton(14, "Back", removeBigMap, bigM);
 			
 			return bigM;
+		}
+		
+		//Is just want everyone to know that this took forever to figure out
+		//Because actionscript 3 doesn't make any sense
+		private function setupBigMapTooltips(bigM:MiniMap, coordX:int, coordY:int, room:*, completeRooms:Array = null):void
+		{
+			if(coordY < 0 || coordX < 0) return;
+			if(completeRooms == null) completeRooms = new Array();
+			if(completeRooms.indexOf(room) != -1) return;
+			completeRooms.push(room);
+			
+			//Makes sure the tooltip doesn't go out of the screen
+			var tipOffset:int = 5;
+			var tipX:int = coordX >= 10 ? -330 - tipOffset: 0 + tipOffset;
+			var tipY:int = coordY >= 17 ? -100 - tipOffset: 0 + tipOffset;
+			
+			var tooltip = new Sprite();
+			var tipHeader = new TextField();
+			var tipText = new TextField();
+			
+			//Border
+			tooltip.graphics.beginFill(UIStyleSettings.gHighlightColour, 1);
+			tooltip.graphics.drawRoundRect(tipX, tipY, 330, 100, 5);
+			tooltip.graphics.endFill();
+			
+			//Text background
+			tooltip.graphics.beginFill(UIStyleSettings.gIndoorRoomFlagColour, 1);
+			tooltip.graphics.drawRoundRect(tipX + 5, tipY + 5, 320, 90, 5);
+			tooltip.graphics.endFill();
+			tooltip.visible = false;
+			
+			//Where I fail starts here - bad visual design HOOOOOOOOO
+			tipHeader.x = tipX + 5;
+			tipHeader.y = tipY + 5;
+			tipHeader.width = 310;
+			tipHeader.defaultTextFormat = UIStyleSettings.gMapTooltipHeaderFormatter;
+			tipHeader.embedFonts = true;
+			tipHeader.multiline = false;
+			tipHeader.wordWrap = false;
+			tipHeader.mouseEnabled = false;
+			tipHeader.mouseWheelEnabled = false;
+			tipHeader.htmlText = "<b>" + room.roomName.replace("\n", " ") + "</b>";
+			tipHeader.height = tipHeader.textHeight;
+			
+			tipText.x = tipX + 5;
+			tipText.y = tipY + 5 + tipHeader.height;
+			tipText.width = 310;
+			tipText.height = 70;
+			tipText.defaultTextFormat = UIStyleSettings.gMapTooltipFormatter;
+			tipText.embedFonts = true;
+			tipText.multiline = true;
+			tipText.wordWrap = true;
+			tipText.mouseEnabled = false;
+			tipText.mouseWheelEnabled = false;
+			
+			var tip:String = room.description;
+			if(tip.length > 160)
+			{
+				tip = tip.substring(0, tip.lastIndexOf(" ", 159)) + "...";
+			}			
+			tipText.htmlText = tip;
+			
+			bigM.addChild(tooltip);
+			tooltip.addChild(tipHeader);
+			tooltip.addChild(tipText);
+			
+			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent)
+			{
+				tooltip.x = e.localX + bigM.childElements[coordX][coordY].x + bigM.childContainer.x;
+				tooltip.y = e.localY + bigM.childElements[coordX][coordY].y + bigM.childContainer.y;
+				tooltip.visible = true;
+			});
+			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent)
+			{
+				if(e.relatedObject == bigM.childElements[coordX][coordY].roomIcon) return;
+				tooltip.visible = false;
+			});
+			
+			if(room.northExit) setupBigMapTooltips(bigM, coordX, coordY - 1, kGAMECLASS.rooms[room.northExit], completeRooms);
+			if(room.southExit) setupBigMapTooltips(bigM, coordX, coordY + 1, kGAMECLASS.rooms[room.southExit], completeRooms);
+			if(room.westExit) setupBigMapTooltips(bigM, coordX - 1, coordY, kGAMECLASS.rooms[room.westExit], completeRooms);
+			if(room.eastExit) setupBigMapTooltips(bigM, coordX + 1, coordY, kGAMECLASS.rooms[room.eastExit], completeRooms);
 		}
 		
 		public function removeBigMap(bigM:MiniMap):void {

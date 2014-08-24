@@ -76,24 +76,28 @@
 		private var _hasMapRender:Boolean = false;
 		
 		// Access/Mutator shit so I can do funky observer-pattern bollocks later on
-		public function get childSizeX():int 	{ return _childSizeX; 	}
-		public function get childSizeY():int 	{ return _childSizeY; 	}
-		public function get childNumX():int 	{ return _childNumX; 	}
-		public function get childNumY():int 	{ return _childNumY; 	}
-		public function get childSpacing():int 	{ return _childSpacing; }
-		public function get padding():int		{ return _padding;		}
-		public function get paddingLeft():int	{ return _paddingLeft;	}
-		public function get paddingRight():int	{ return _paddingRight;	}
-		public function get paddingBottom():int	{ return _paddingBottom;}
-		public function get paddingTop():int	{ return _paddingTop;	}
-		public function get margin():int 		{ return _margin; 		}
-		public function get displayMode():int	{ return _displayMode;	}
-		public function get scaleMode():int		{ return _scaleMode;	}
+		public function get childSizeX():int 	                          { return _childSizeX;    }
+		public function get childSizeY():int 	                          { return _childSizeY;    }
+		public function get childNumX():int 	                          { return _childNumX; 	   }
+		public function get childNumY():int 	                          { return _childNumY; 	   }
+		public function get childSpacing():int 	                          { return _childSpacing;  }
+		public function get padding():int		                          { return _padding;	   }
+		public function get paddingLeft():int	                          { return _paddingLeft;   }
+		public function get paddingRight():int	                          { return _paddingRight;  }
+		public function get paddingBottom():int	                          { return _paddingBottom; }
+		public function get paddingTop():int	                          { return _paddingTop;	   }
+		public function get margin():int 		                          { return _margin; 	   }
+		public function get displayMode():int	                          { return _displayMode;   }
+		public function get scaleMode():int		                          { return _scaleMode;	   }
+		public function get childContainer():Sprite                       { return _childContainer;}
+		public function get childElements():Vector.<Vector.<MinimapRoom>> { return _childElements; }
+		public function get childLinksX():Vector.<Vector.<MinimapLink>>   { return _childLinksX;   }
+		public function get childLinksY():Vector.<Vector.<MinimapLink>>   { return _childLinksY;   }
 		
-		public function get targetHeight():int	{ return _targetHeight; }
-		public function get targetWidth():int 	{ return _targetWidth;  }
-		public function get targetX():int		{ return _targetX;		}
-		public function get targetY():int		{ return _targetY;		}
+		public function get targetHeight():int	                          { return _targetHeight;  }
+		public function get targetWidth():int 	                          { return _targetWidth;   }
+		public function get targetX():int		                          { return _targetX;	   }
+		public function get targetY():int		                          { return _targetY;	   }
 		
 		public function get hasMapRender():Boolean { return _hasMapRender; }
 		
@@ -414,8 +418,6 @@
 				}
 			}
 			
-			if(map.length != 7) trace("starting " + map.length);
-			var blah:String = "";
 			// Primary room visibility
 			for (xPos = 0; xPos < map.length; xPos++)
 			{
