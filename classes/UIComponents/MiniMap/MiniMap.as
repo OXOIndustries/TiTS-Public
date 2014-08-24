@@ -37,7 +37,7 @@
 		
 		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically... but the code I found to do it looks a) awful b) is russian... maybe later? maybe.
 		// Basically, this is the list of linkage class names for the icons symbols in the FLA's library, which we're going to use to build icons in the correct order -- you might notice that they're in the same order as the integer flags up ^ there... the integer flags are used as array indexes to find the proper classname.
-		public static const ICON_NAMES:Array = new Array("map_ship", "map_quest", "map_objective", "map_npc", "map_medical", "map_down", "map_up", "map_commerce", "map_bar");
+		public static const ICON_NAMES:Array = new Array("Map_Ship", "Map_Quest", "Map_Objective", "Map_NPC", "Map_Medical", "Map_Down", "Map_Up", "Map_Commerce", "Map_Bar");
 		
 		
 		/* Each room only deals with the links it has to neighbours in the East + South direction (Right + Down)
@@ -49,7 +49,7 @@
 		public static const LINK_LOCKED = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
 		public static const LINKS_MAX = 4;
 		
-		public static const LINK_NAMES:Array = new Array("map_passage", "map_oneway", "map_oneway_invert", "map_lock");
+		public static const LINK_NAMES:Array = new Array("Map_Passage", "Map_Oneway", "Map_Oneway_Invert", "Map_Lock");
 		public static const LINK_ROTATE:Array = new Array(true, true, true, false);
 		
 		// Display & Child object settings
@@ -513,6 +513,12 @@
 					}
 				}
 			}
+		}
+		
+		public function track(roomFrom:*, roomTo:*):void
+		{
+			if(roomFrom == roomTo) return;
+			
 		}
 	}
 }

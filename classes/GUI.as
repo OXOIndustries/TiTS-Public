@@ -601,7 +601,7 @@
 			container.addChild(bigM);
 			bigM.setMapData(mapper.generateMap(kGAMECLASS.currentLocation));
 			
-			setupBigMapTooltips(bigM, 10, 9, kGAMECLASS.rooms[kGAMECLASS.currentLocation]);
+			setupBigMapTooltips(bigM, 10, 9, kGAMECLASS.rooms[kGAMECLASS.currentLocation], allowInteraction);
 			
 			clearGhostMenu();
 			addGhostButton(14, "Back", removeBigMap, bigM);
@@ -611,7 +611,7 @@
 		
 		//Is just want everyone to know that this took forever to figure out
 		//Because actionscript 3 doesn't make any sense
-		private function setupBigMapTooltips(bigM:MiniMap, coordX:int, coordY:int, room:*, completeRooms:Array = null):void
+		private function setupBigMapTooltips(bigM:MiniMap, coordX:int, coordY:int, room:*, interact:Boolean, completeRooms:Array = null):void
 		{
 			if(coordY < 0 || coordX < 0) return;
 			if(completeRooms == null) completeRooms = new Array();
@@ -685,11 +685,15 @@
 				if(e.relatedObject == bigM.childElements[coordX][coordY].roomIcon) return;
 				tooltip.visible = false;
 			});
+			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.CLICK, function(e:MouseEvent)
+			{
+				bigM.track(kGAMECLASS.rooms[kGAMECLASS.currentLocation], room);
+			});
 			
-			if(room.northExit) setupBigMapTooltips(bigM, coordX, coordY - 1, kGAMECLASS.rooms[room.northExit], completeRooms);
-			if(room.southExit) setupBigMapTooltips(bigM, coordX, coordY + 1, kGAMECLASS.rooms[room.southExit], completeRooms);
-			if(room.westExit) setupBigMapTooltips(bigM, coordX - 1, coordY, kGAMECLASS.rooms[room.westExit], completeRooms);
-			if(room.eastExit) setupBigMapTooltips(bigM, coordX + 1, coordY, kGAMECLASS.rooms[room.eastExit], completeRooms);
+			if(room.northExit) setupBigMapTooltips(bigM, coordX, coordY - 1, kGAMECLASS.rooms[room.northExit], interact, completeRooms);
+			if(room.southExit) setupBigMapTooltips(bigM, coordX, coordY + 1, kGAMECLASS.rooms[room.southExit], interact, completeRooms);
+			if(room.westExit) setupBigMapTooltips(bigM, coordX - 1, coordY, kGAMECLASS.rooms[room.westExit], interact, completeRooms);
+			if(room.eastExit) setupBigMapTooltips(bigM, coordX + 1, coordY, kGAMECLASS.rooms[room.eastExit], interact, completeRooms);
 		}
 		
 		public function removeBigMap(bigM:MiniMap):void {
