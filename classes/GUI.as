@@ -52,7 +52,6 @@
 	import classes.StatBarSmall;
 	import classes.StatBarBig;
 	import flash.display.DisplayObjectContainer;
-	import classes.Characters.Naleen;
 	import flash.display.Sprite;
 
 	//Build the bottom drawer
@@ -642,7 +641,7 @@
 			//Where I fail starts here - bad visual design HOOOOOOOOO
 			tipHeader.x = tipX + 5;
 			tipHeader.y = tipY + 5;
-			tipHeader.width = 310;
+			tipHeader.width = 320;
 			tipHeader.defaultTextFormat = UIStyleSettings.gMapTooltipHeaderFormatter;
 			tipHeader.embedFonts = true;
 			tipHeader.multiline = false;
@@ -654,7 +653,7 @@
 			
 			tipText.x = tipX + 5;
 			tipText.y = tipY + 5 + tipHeader.height;
-			tipText.width = 310;
+			tipText.width = 320;
 			tipText.height = 70;
 			tipText.defaultTextFormat = UIStyleSettings.gMapTooltipFormatter;
 			tipText.embedFonts = true;
@@ -663,6 +662,7 @@
 			tipText.mouseEnabled = false;
 			tipText.mouseWheelEnabled = false;
 			
+			//Limits description to 160 characters
 			var tip:String = room.description;
 			if(tip.length > 160)
 			{
