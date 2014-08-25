@@ -683,6 +683,16 @@
 			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent)
 			{
 				if(e.relatedObject == bigM.childElements[coordX][coordY].roomIcon) return;
+				//If the room has a mask on it, just do a bounding box check
+				if(bigM.childElements[coordX][coordY].mask != null)
+				{
+					trace(e.localX + " " + e.localY);
+					if(e.localX > 0 && e.localY > 0 && e.localX < bigM.childElements[coordX][coordY].width && e.localY < bigM.childElements[coordX][coordY].height)
+					{
+						//Checks for corners
+						if(!(e.localX <= 4 && e.localY <= 4) && !(e.localX >= 22 && e.localY >= 22)) return;
+					}
+				}
 				tooltip.visible = false;
 			});
 			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.CLICK, function(e:MouseEvent)
