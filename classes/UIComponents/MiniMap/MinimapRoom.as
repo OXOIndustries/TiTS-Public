@@ -66,6 +66,7 @@
 				_icons[i].height *= this.height / 35
 				this.addChild(_icons[i]);
 				_icons[i].visible = false;
+				_icons[i].transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 			}
 			
 			// Redo the loop so we can get proper positioning values -- once all the objects are added, we'll have the proper max width/height to work with
