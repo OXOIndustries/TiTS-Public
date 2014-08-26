@@ -37,7 +37,7 @@
 		
 		// I've spied rumblings of a way to search through an SWF class definitions to build a list like this completely dynamically... but the code I found to do it looks a) awful b) is russian... maybe later? maybe.
 		// Basically, this is the list of linkage class names for the icons symbols in the FLA's library, which we're going to use to build icons in the correct order -- you might notice that they're in the same order as the integer flags up ^ there... the integer flags are used as array indexes to find the proper classname.
-		public static const ICON_NAMES:Array = new Array("map_ship", "map_quest", "map_objective", "map_npc", "map_medical", "map_down", "map_up", "map_commerce", "map_bar");
+		public static const ICON_NAMES:Array = new Array("Map_Ship", "Map_Quest", "Map_Objective", "Map_NPC", "Map_Medical", "Map_Down", "Map_Up", "Map_Commerce", "Map_Bar");
 		
 		
 		/* Each room only deals with the links it has to neighbours in the East + South direction (Right + Down)
@@ -49,7 +49,7 @@
 		public static const LINK_LOCKED = 3; // A "locked" type of link -- no engine support, but the map is configured for it... technically speaking.
 		public static const LINKS_MAX = 4;
 		
-		public static const LINK_NAMES:Array = new Array("map_passage", "map_oneway", "map_oneway_invert", "map_lock");
+		public static const LINK_NAMES:Array = new Array("Map_Passage", "Map_Oneway", "Map_Oneway_Invert", "Map_Lock");
 		public static const LINK_ROTATE:Array = new Array(true, true, true, false);
 		
 		// Display & Child object settings
@@ -76,24 +76,28 @@
 		private var _hasMapRender:Boolean = false;
 		
 		// Access/Mutator shit so I can do funky observer-pattern bollocks later on
-		public function get childSizeX():int 	{ return _childSizeX; 	}
-		public function get childSizeY():int 	{ return _childSizeY; 	}
-		public function get childNumX():int 	{ return _childNumX; 	}
-		public function get childNumY():int 	{ return _childNumY; 	}
-		public function get childSpacing():int 	{ return _childSpacing; }
-		public function get padding():int		{ return _padding;		}
-		public function get paddingLeft():int	{ return _paddingLeft;	}
-		public function get paddingRight():int	{ return _paddingRight;	}
-		public function get paddingBottom():int	{ return _paddingBottom;}
-		public function get paddingTop():int	{ return _paddingTop;	}
-		public function get margin():int 		{ return _margin; 		}
-		public function get displayMode():int	{ return _displayMode;	}
-		public function get scaleMode():int		{ return _scaleMode;	}
+		public function get childSizeX():int 	                          { return _childSizeX;    }
+		public function get childSizeY():int 	                          { return _childSizeY;    }
+		public function get childNumX():int 	                          { return _childNumX; 	   }
+		public function get childNumY():int 	                          { return _childNumY; 	   }
+		public function get childSpacing():int 	                          { return _childSpacing;  }
+		public function get padding():int		                          { return _padding;	   }
+		public function get paddingLeft():int	                          { return _paddingLeft;   }
+		public function get paddingRight():int	                          { return _paddingRight;  }
+		public function get paddingBottom():int	                          { return _paddingBottom; }
+		public function get paddingTop():int	                          { return _paddingTop;	   }
+		public function get margin():int 		                          { return _margin; 	   }
+		public function get displayMode():int	                          { return _displayMode;   }
+		public function get scaleMode():int		                          { return _scaleMode;	   }
+		public function get childContainer():Sprite                       { return _childContainer;}
+		public function get childElements():Vector.<Vector.<MinimapRoom>> { return _childElements; }
+		public function get childLinksX():Vector.<Vector.<MinimapLink>>   { return _childLinksX;   }
+		public function get childLinksY():Vector.<Vector.<MinimapLink>>   { return _childLinksY;   }
 		
-		public function get targetHeight():int	{ return _targetHeight; }
-		public function get targetWidth():int 	{ return _targetWidth;  }
-		public function get targetX():int		{ return _targetX;		}
-		public function get targetY():int		{ return _targetY;		}
+		public function get targetHeight():int	                          { return _targetHeight;  }
+		public function get targetWidth():int 	                          { return _targetWidth;   }
+		public function get targetX():int		                          { return _targetX;	   }
+		public function get targetY():int		                          { return _targetY;	   }
 		
 		public function get hasMapRender():Boolean { return _hasMapRender; }
 		
@@ -384,43 +388,43 @@
 			// obj for us in a way
 			
 			// Player is always currently on z=3 of the map
-			var zPos:int = 3;
+			var zPos:int = map.length / 2;
 			var xPos:int = 0;
 			var yPos:int = 0;
 			var roomFlags:int;
 			
 			// Room Linkages
-			for (xPos = 0; xPos < 6; xPos++)
+			for (xPos = 0; xPos < map.length - 1; xPos++)
 			{
-				for (yPos = 0; yPos < 7; yPos++)
+				for (yPos = 0; yPos < map.length; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];
 					var roomEast:int = map[xPos + 1][yPos][zPos];
 					
 					// East room
-					_childLinksX[xPos][6 - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
+					_childLinksX[xPos][(map.length - 1) - yPos].setLink(roomConnection(roomFlags, roomEast, Mapper.x_pos_exit_mask, Mapper.x_neg_exit_mask));
 				}
 			}
 			
-			for (xPos = 0; xPos < 7; xPos++)
+			for (xPos = 0; xPos < map.length; xPos++)
 			{
-				for (yPos = 0; yPos < 6; yPos++)
+				for (yPos = 0; yPos < map.length - 1; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];
 					var roomSouth:int = map[xPos][yPos + 1][zPos];
 					
 					// South room
-					_childLinksY[xPos][5 - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
+					_childLinksY[xPos][(map.length - 2) - yPos].setLink(roomConnection(roomFlags, roomSouth, Mapper.y_pos_exit_mask, Mapper.y_neg_exit_mask));
 				}
 			}
 			
 			// Primary room visibility
-			for (xPos = 0; xPos < 7; xPos++)
+			for (xPos = 0; xPos < map.length; xPos++)
 			{
-				for (yPos = 0; yPos < 7; yPos++)
+				for (yPos = 0; yPos < map.length; yPos++)
 				{
 					roomFlags = map[xPos][yPos][zPos];					
-					var tarSprite:MinimapRoom = _childElements[xPos][6 - yPos];
+					var tarSprite:MinimapRoom = _childElements[xPos][(map.length - 1) - yPos];
 					
 					// Room visibility
 					if (roomFlags & Mapper.room_present_mask)
@@ -509,6 +513,12 @@
 					}
 				}
 			}
+		}
+		
+		public function track(roomFrom:*, roomTo:*):void
+		{
+			if(roomFrom == roomTo) return;
+			
 		}
 	}
 }

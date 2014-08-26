@@ -22,6 +22,8 @@
 		private var _currIconId:int; 
 		private var _hazardMask:Sprite;
 		
+		public function get roomIcon():Sprite {return _roomIcon;}
+		
 		public function MinimapRoom(sizeX:int, sizeY:int) 
 		{
 			// Size information is used to figure out the "parent rooms" size without having to do bullshit like:
@@ -56,11 +58,15 @@
 			
 			for (i = 0; i < MiniMap.ICON_NAMES.length; i++)
 			{
-				var classType:Class = getDefinitionByName(String(MiniMap.ICON_NAMES[i])) as Class;
+				var classType:Class = MapIcons[String(MiniMap.ICON_NAMES[i])];
 				_icons[i] = new classType();
 				_icons[i].name = String(MiniMap.ICON_NAMES[i]);
+				//Scale icon properly - base map size is 35
+				_icons[i].width *= this.width / 35
+				_icons[i].height *= this.height / 35
 				this.addChild(_icons[i]);
 				_icons[i].visible = false;
+				_icons[i].transform.colorTransform = UIStyleSettings.gWhiteColourTransform;
 			}
 			
 			// Redo the loop so we can get proper positioning values -- once all the objects are added, we'll have the proper max width/height to work with
