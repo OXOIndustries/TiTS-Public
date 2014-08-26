@@ -1,8 +1,11 @@
-﻿import classes.Characters.GrayGoo;
+﻿import classes.Characters.GigaGoo;
+import classes.Characters.GrayGoo;
+import classes.Characters.GrayPrime;
 import classes.Characters.HuntressVanae;
 import classes.Characters.MaidenVanae;
 import classes.Characters.Mimbrane;
 import classes.Characters.PhoenixPirates;
+import classes.Characters.SecurityDroids;
 import classes.Creature;
 import classes.Items.Guns.Goovolver;
 import classes.Items.Miscellaneous.GrayMicrobots;
@@ -480,6 +483,29 @@ function updateCombatStatuses():void {
 			output("<b>The parasite's venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>\n");
 		}
 	}
+	
+	// Annoquest stuffs
+	
+	if (pc.hasStatusEffect("Sensor Link"))
+	{
+		pc.addStatusValue("Sensor Link", 1, -1);
+		if (pc.statusEffectv1("Sensor Link") <= 0)
+		{
+			pc.removeStatusEffect("Sensor Link");
+			pc.aimMod -= 5;
+			output("<b>Your equipments connection to Anno's wanes as combat draws on, your improved accuracy diminishing.</b>");
+		}
+	}
+	
+	if (pc.hasStatusEffect("HP Boost CD"))
+	{
+		pc.addStatusValue("HP Boost CD", 1, -1);
+		if (pc.statusEffectv1("HP Boost CD") <= 0)
+		{
+			pc.removeStatusEffect("HP Boost CD");
+		}
+	}
+	
 	//ENEMY STATUSES!
 	for(var x:int = 0; x < foes.length; x++)
 	{
@@ -601,6 +627,11 @@ function processCombat():void
 	if (pc.hasStatusEffect("Saendra Fights4Buttes") && combatStage == 1)
 	{
 		saendraInjuredHelperAI();
+	}
+	
+	if (pc.hasStatusEffect("Annoquest Helper AI") && combatStage == 1)
+	{
+		annoBonusCombatAttackShit();
 	}
 	
 	//If enemies still remain, do their AI routine.
@@ -1524,6 +1555,18 @@ function victoryRouting():void
 	{
 		vanaePCVictory();
 	}
+	else if (foes[0] is SecurityDroids)
+	{
+		victoryOverSecurityDroids();
+	}
+	else if (foes[0] is GrayPrime)
+	{
+		victoryOverGrayPrime();
+	}
+	else if (foes[0] is GigaGoo)
+	{
+		victoryOverGigaGoo();
+	}
 	else genericVictory();
 }
 
@@ -1617,6 +1660,18 @@ function defeatRouting():void
 	else if (foes[0] is HuntressVanae)
 	{
 		vanaeHuntressPCDefeat();
+	}
+	else if (foes[0] is SecurityDroids)
+	{
+		lossToSecurityDroids();
+	}
+	else if (foes[0] is GrayPrime)
+	{
+		lossToGrayPrime();
+	}
+	else if (foes[0] is GigaGoo)
+	{
+		loseToGigaGoo();
 	}
 	else {
 		output("You lost!  You rouse yourself after an hour and a half, quite bloodied.");
@@ -1843,6 +1898,15 @@ function startCombat(encounter:String):void
 			break;
 		case "MAIDEN_VANAE":
 			chars["MAIDEN_VANAE"].prepForCombat();
+			break;
+		case "securitydroids":
+			chars["SECURITYDROIDS"].prepForCombat();
+			break;
+		case "grayprime":
+			chars["GRAYPRIME"].prepForCombat();
+			break;
+		case "gigagoo":
+			chars["GIGAGOO"].prepForCombat();
 			break;
 		default:
 			throw new Error("Tried to configure combat encounter for '" + encounter + "' but couldn't find an appropriate setup method!");

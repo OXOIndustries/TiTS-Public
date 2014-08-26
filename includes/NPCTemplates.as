@@ -1,9 +1,12 @@
-﻿import classes.Characters.HuntressVanae;
+﻿import classes.Characters.GigaGoo;
+import classes.Characters.GrayPrime;
+import classes.Characters.HuntressVanae;
 import classes.Characters.Kiro;
 import classes.Characters.MaidenVanae;
 import classes.Characters.PhoenixPirates;
 import classes.Characters.GunTurrets;
 import classes.Characters.Saendra;
+import classes.Characters.SecurityDroids;
 public function initializeNPCs(justUpdate:Boolean = false):void 
 {
 	trace("initializeNPCs Called, just doing cleanup?", justUpdate)
@@ -226,6 +229,18 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	if (!justUpdate || (justUpdate && chars["MAIDEN_VANAE"] == undefined))
 	{
 		chars["MAIDEN_VANAE"] = new MaidenVanae();
+	}
+	if (!justUpdate || (justUpdate && chars["SECURITYDROIDS"] == undefined))
+	{
+		chars["SECURITYDROIDS"] = new SecurityDroids();
+	}
+	if (!justUpdate || (justUpdate && chars["GRAYPRIME"] == undefined))
+	{
+		chars["GRAYPRIME"] = new GrayPrime();
+	}
+	if (!justUpdate || (justUpdate && chars["GIGAGOO"] == undefined))
+	{
+		chars["GIGAGOO"] = new GigaGoo();
 	}
 	// Check all characters have version information set
 	for (var prop in chars)

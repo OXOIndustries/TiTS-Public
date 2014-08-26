@@ -3386,7 +3386,14 @@
 			removeStorage(statusEffects);
 		}
 		public function clearCombatStatuses(): void {
+			
 			//trace("Removing combat statuses.");
+			if (hasStatusEffect("Sensor Link"))
+			{
+				removeStatusEffect("Sensor Link");
+				aimMod -= 5;
+			}
+			
 			for (var x: int = statusEffects.length-1; x >= 0; x--) {
 				if (statusEffects[x].combatOnly)
 				{

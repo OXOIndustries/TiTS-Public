@@ -1898,25 +1898,82 @@ function annoMissionImIn():void
 
 function annoBonusCombatAttackShit():void
 {
-	//Anno has the following attacks/abilities in all combats:
+	//	Anno has the following attacks/abilities in all combats:
+	// Add to combat view:
+	output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.\n");
 
-Add to combat view:
-Anno's crouched just over an arm's length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks. 
+	// Targetting Computers
+	// Increases player accuracy temporarily
+	if (rand(4) == 0 && !pc.hasStatusEffect("Sensor Link"))
+	{
+		annoSensorLinkBuff();
+	}
+	// HP Boost
+	// Restores 10% HP.
+	else if (pc.HP()/pc.HPMax() <= 0.5 && !pc.hasStatusEffect("HP Boost CD"))
+	{
+		annoHPBoost();
+	}
+	// Sneak Attack
+	else if (foes[0].hasStatusEffect("Stunned") || foes[0].hasStatusEffect("Blind"))
+	{
+		var bonusDamage:int = anno.level * 2;
+		if (foes[0].hasStatusEffect("Stunned") && foes[0].hasStatusEffect("Blind"))
+		{
+			bonusDamage += anno.level;
+		}
 
-Holdout Pistol Shot
-//Basic ass attack. 10 base damage, plus mods
-Anno levels her holdout pistol and fires off a quick shot{, though she misses her target. // , landing a solid hit{ on one / on the goo}!"} {Her attack is super-effective while her target is incapacitated!}
+		annoRegularAttack(bonusDamage);
+	}
+	// Regular attack
+	else
+	{
+		annoRegularAttack();
+	}
+}
 
-Target Computers
-//Increases player accuracy temporarily
-Anno levels her left wrist at {the / [enemy]} and taps a key on her tiny computer. A visible targeting reticle forms around your opponent{s}, linking up with your own equipment in the process. Accuracy increased!
+function annoSensorLinkBuff():void
+{
+	output("\nAnno levels her left wrist at");
+	if (foes[0].plural) output(" one of");
+	else output(" the");
+	output(" " + foes[0].short + "and taps a key on her tiny computer. A visible targeting reticle forms around your opponent");
+	if (foes[0].plural) output("s");
+	output(", linking up with your own equipment in the process. <b>Accuracy increased!</b>\n");
 
-Health Boost
-//Restores 10 Health
-Anno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!
+	pc.createStatusEffect("Sensor Link", 5, 0, 0, 0, false, "Radio", "Anno has linked her equipments targetting systems with yours, improving your combat accuracy.", true, 0);
+}
 
-Sneak Attack!
-//Requires enemy to be incapacitated, Anno deals bonus damage as per Smugglewaifus. 
+function annoHPBoost():void
+{
+	output("\nAnno runs up to you and passes her wrist computer over your shoulder, uploading an advanced program to your onboard microsurgeons. Your wounds start to knit together in no time!");
+
+	var hpGained:int = pc.HPMax()*0.1;
+
+	output(" <b>Gained " + hpGained + " health!</b>\n");
+
+	pc.HP(hpGained);
+
+	pc.createStatusEffect("HP Boost CD", 5, 0, 0, 0, true, "", "", true, 0);
+}
+
+function annoRegularAttack(bonusDamage:int = 0):void
+{
+	output("\nAnno levels her holdout pistol and fires off a quick shot");
+
+	if (rangedCombatMiss(anno, foes[0]) output(", though she misses her target.");
+	else
+	{
+		output(", landing a solid hit");
+		if (foes[0] is GrayPrime || foes[0] is GigaGoo) output(" on the goo");
+		else output(" on one");
+		output("!");
+
+		if (bonusDamage > 0) output(" Her attack is super-effective while her target is incapacitated!");
+
+		genericDamageApply(14 + bonusDamage, anno, foes[0], GLOBAL.KINETIC);
+	}
+	output("\n");
 }
 
 function deck13AirlockFunc():Boolean
@@ -1989,6 +2046,7 @@ function deck13SecurityFunc():void
 		output("\n\nBefore you can react, Anno squeezes the trigger of her sidearm. An almost silent crack echoes through the corridor, and one of the droids crumples to its knees. The others instantly start squeezing their triggers, hurling red bolts of energy downrange at you! ");
 
 		clearMenu();
+		pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
 		addButton(0, "Fight!", startCombat, "securitydroids");
 		return true;
 	}
@@ -2299,6 +2357,7 @@ function deck13ShieldControlFunc():void
 		output("\n\nUh-oh. ");
 
 		clearMenu();
+		pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
 		addButton(0, "Fight!", startCombat, "grayprime");
 		return true;
 	}
@@ -2306,9 +2365,11 @@ function deck13ShieldControlFunc():void
 	{
 		if (flags["ANNO_MISSION_OFFER"] == 2) output("\n\nAnno is slumped against one of the bulkheads, catching her breath after the fight with the gray prime.");
 
-		addButton(0, "Goo Sample", deck13GooSample);
-		addButton(1, "Shields", deck13Shields);
-		addButton(2, "Breach", deck13Breach);
+		addButton(0, "Shields", deck13Shields);
+		addButton(1, "Breach", deck13Breach);
+
+		if (flags["DECK13_SAMPLES_TAKEN"] < 3) addButton(2, "Goo Sample", deck13GooSample);
+
 		return false;
 	}
 }
@@ -2576,7 +2637,15 @@ function deck13TurnOnShields():void
 
 function deck13GooSample():void
 {
-	output("\n\n?????????????????????????????????????????")
+	clearOutput();
+	author("Savin");
+
+	output("You look around at the mass of slick gray goo still splattered on the walls and identify a particularly large plot of it. You draw a small vial from your pack and take a sample of it -- could be useful later. <b>You acquired a Gray Goo sample!</b>");
+
+	if (flags["DECK13_SAMPLES_TAKEN"] == undefined) flags["DECK13_SAMPLES_TAKEN"] = 0;
+	flags["DECK13_SAMPLES_TAKEN"]++;
+
+	quickLoot([new GrayMicrobots()]);
 }
 
 function deck13SecondaryReactorFunc():Boolean
@@ -2930,6 +2999,7 @@ function deck13DecisionStopHer():void
 	output("\n\n“<i>HAVE A LITTLE TASTE OF WHAT KILLED US,</i>” the mammoth Nova booms, stomping towards the lift. You and Anno raise your weapons as the giga-goo closes in.");
 
 	clearMenu();
+	pc.createStatusEffect("Annoquest Helper AI", 0, 0, 0, 0, true, "", "", true, 0);
 	addButton(0, "Next", startCombat, "gigagoo")
 }
 

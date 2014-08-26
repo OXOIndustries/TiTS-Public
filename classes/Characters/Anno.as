@@ -12,7 +12,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -40,6 +40,8 @@
 			this.meleeWeapon.attackVerb = "punch";
 			this.meleeWeapon.longName = "fist";
 			this.meleeWeapon.hasRandomProperties = true;
+			
+			this.rangedWeapon = new HammerCarbine();
 			
 			this.armor.longName = "coat";
 			this.armor.defense = 1;
@@ -172,6 +174,11 @@
 			this.vaginas[0].bonusCapacity = 20;
 			
 			this._isLoading = false;
-		}		
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.rangedWeapon = new HammerCarbine().getSaveObject();
+		}
 	}
 }
