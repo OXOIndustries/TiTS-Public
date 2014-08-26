@@ -1572,7 +1572,7 @@ function victoryRouting():void
 	}
 	else if (foes[0] is SecurityDroids)
 	{
-		victoryOverSecurityDroids();
+		victoryOverSecurityDroid();
 	}
 	else if (foes[0] is GrayPrime)
 	{
@@ -1678,7 +1678,7 @@ function defeatRouting():void
 	}
 	else if (foes[0] is SecurityDroids)
 	{
-		lossToSecurityDroids();
+		lossToSecurityDroid();
 	}
 	else if (foes[0] is GrayPrime)
 	{
@@ -3044,6 +3044,6 @@ function aoeAttack(damage:int):void
 	// Add function to anything that does AOE damage so we can cheese shit
 	if (damage > 0)
 	{
-		if (target.hasStatusEffect("Gooclones")) target.removeStatusEffect("Gooclones");
+		if (foes[0].hasStatusEffect("Gooclones")) foes[0].removeStatusEffect("Gooclones");
 	}
 }

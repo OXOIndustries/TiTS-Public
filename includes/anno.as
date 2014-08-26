@@ -1755,8 +1755,8 @@ function joinCrewPlanetFineVersion():void
 	showName("\nANNO");
 
 	output("“<i>So, Anno,</i>” you say, leaning up against the counter. She looks");
-	if (player.tallness > anno.tallness + 6) output(" up");
-	else if (player.tallness < anno.tallness - 6) output(" down");
+	if (pc.tallness > anno.tallness + 6) output(" up");
+	else if (pc.tallness < anno.tallness - 6) output(" down");
 	output(" at you, ears perking. “<i>What would you saying about leaving this rust bucket behind?</i>”");
 	
 	output("\n\n“<i>What do you mean?</i>” she asks, cocking her head to the side. “<i>Did Corporate finally approve my transfer request?</i>” ");
@@ -1835,11 +1835,11 @@ function annoTalkAboutDaMission():void
 	output("“<i>Alright,</i>” you say, leaning across the counter toward the eager ausar. “<i>Let’s talk about this work of yours.</i>” ");
 	
 	output("\n\n“<i>Alright! Now we’re talking!</i>” Anno beams, waving you around the counter and booting up her holoterminal. You step up beside Anno, and are greeted by the sight of a highly detailed 3D projection of what could only be the <i>Nova</i> itself. It truly is a massive ship, now that you can see it in full: longer than a Coalition dreadnought and twice as thick around. Anno’s rigged the display to show power distribution, heat spread, and other various technical minutiae");
-	if (pc.characterClass = GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(", but one thing stands out immediately to you: there’s a huge energy draw coming from somewhere in the bowels of the ship");
 	output(".");
 	
 	output("\n\n“<i>You see it, right?</i>” Anno says, jabbing a white-furred finger into the display, towards");
-	if (pc.characterClass = GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(" the");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER || pc.IQ() >= 0.75) output(" the");
 	output(" a");
 	output(" section of the ship that seems to be drawing an inordinate amount of power. “<i>Nobody lives there. There’s nothing. It doesn’t even show up on any of the raskvel maps, and they’ve been just about everywhere. I had to crack open old hard-copy schematics from the bridge just to find power lines and air ducts going there, and reconstructed my digital layout from that. It’s a ghost deck, completely off the radar. Deck 13.</i>”");
 	
@@ -1857,8 +1857,8 @@ function annoTalkAboutDaMission():void
 
 	//[I'm In] [Not Yet]
 	clearMenu();
-	addButton(0, "I'm In", annoMissionNotYet);
-	addButton(1, "Not Yet", )
+	addButton(0, "I'm In", annoMissionImIn);
+	addButton(1, "Not Yet", annoMissionNotYet)
 }
 
 function annoMissionNotYet():void
@@ -1970,7 +1970,7 @@ function annoRegularAttack(bonusDamage:int = 0):void
 {
 	output("\nAnno levels her holdout pistol and fires off a quick shot");
 
-	if (rangedCombatMiss(anno, foes[0]) output(", though she misses her target.");
+	if (rangedCombatMiss(anno, foes[0])) output(", though she misses her target.");
 	else
 	{
 		output(", landing a solid hit");
@@ -2040,7 +2040,7 @@ function annoSpaceSuits():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13SecurityFunc():void
+function deck13SecurityFunc():Boolean
 {
 	if (flags["DECK13_SECURITY_ENTERED"] == undefined)
 	{
@@ -2173,7 +2173,7 @@ function victoryOverSecurityDroid():void
 	genericVictory();
 }
 
-function deck13ArmoryFunc():void
+function deck13ArmoryFunc():Boolean
 {
 	if (flags["DECK13_ARMORY_ENTERED"] == undefined)
 	{
@@ -2197,7 +2197,7 @@ function deck13ArmoryFunc():void
 			addButton(0, "Boost Anno", deck13BoostAnno)
 		}
 
-		if (pc.characterClass = GLOBAL.CLASS_SMUGGLER)
+		if (pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 		{
 			addButton(1, "Pick Locks", deck13ArmoryPickLocks);
 		}
@@ -2319,7 +2319,7 @@ function deck13Robots():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-function deck13ElevatorFunc():void
+function deck13ElevatorFunc():Boolean
 {
 	if (flags["DECK13_COMPLETE"] != undefined)
 	{
@@ -2341,7 +2341,7 @@ function deck13ElevatorFunc():void
 	}
 }
 
-function deck13ReactorRoomFunc():void
+function deck13ReactorRoomFunc():Boolean
 {
 	variableRoomUpdateCheck();
 	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
@@ -2370,7 +2370,7 @@ function deck13VentAccessShaftFunc():void
 	addButton(0, "Jump In", move, "DECK 13 SHIELD CONTROL");
 }
 
-function deck13ShieldControlFunc():void
+function deck13ShieldControlFunc():Boolean
 {
 	if (flags["DECK13_SHIELD_CONTROL_ENTERED"] == undefined)
 	{
@@ -2489,7 +2489,7 @@ function grayPrimeGooSword():void
 		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!");
 
 		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		damage *= (100 + (15-rand(30))/100;
+		damage *= (100 + (15-rand(30)))/100;
 		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
 }
@@ -2555,6 +2555,7 @@ function grayPrimeFailEscape():void
 				} 
 				if (pc.hasVagina()) output(" slipping into your [pc.cunt], spreading you wide on the thick, gooey rod");
 				output(". “<i>There we go,</i>” the goo-girl says, hands planted on her hips. She moans softly as her tendrils fuck you. “<i>Oh, that’s good... just like that... give me all your juices. God, it’s been so looong.</i>”");
+			}
 			break;
 
 		default:
@@ -2744,7 +2745,7 @@ function lossToGrayPrime():void
 	
 	output("\n\nBefore you have a chance to warn her, Anno lets out a high scream as the gray goo surges around her to wrap around her with thick tentacles. Her arms and legs are grabbed first, splaying her out and lifting her off the ground. Another, more slender tentacle breaks off from the rest of the bunch so that it can slither up like a snake towards Anno’s face. She struggles, of course, and writhes in the tentacles’ grasp without finding purchase to escape. Her every movement is easily countermanded by the tentacles’ grasp. ");
 	
-	if (!(pc.meleeWeapon is EmptySlot()) && !(pc.meleeWeapon is Rock())) output("\n\nYou move to help, grabbing your [pc.meleeWeapon] and lunging at the tentacle mass growing from the deck");
+	if (!(pc.meleeWeapon is EmptySlot) && !(pc.meleeWeapon is Rock)) output("\n\nYou move to help, grabbing your [pc.meleeWeapon] and lunging at the tentacle mass growing from the deck");
 	else output("\n\nYou move to help and lunge at the tentacle mass growing from the deck");
 	output(" -- only for another gray vine to snap at you and throw you back against the far bulkhead. Your world spins, stars exploding in your vision as you slump down to the ground, barely conscious after the massive blow. Through the haze, though, you’re able -- if not forced -- to watch the tentacles drag Anno through the air, tearing at her catsuit until it’s nothing but shreds hanging from her writhing body. The slender one at her face presses against her lips, not waiting for her to relent but simply pouring through at the microscopic level and slowly forcing her mouth open from the inside. ");
 	
@@ -2755,7 +2756,7 @@ function lossToGrayPrime():void
 	output("\n\n“<i>It’s a pity you found us,</i>” she says, almost a bit sadly as her tentacles wrap around your wrists, pulling you to your feet -- and further still, lifting you up off the deck. “<i>Hm. Some of us don’t want to kill you, it seems. Perhaps you can be still useful.</i>”");
 	
 	output("\n\nYou open your mouth to voice a question, but instead immediately are granted a taste of gray goo: one of the goo-girl’s tentacles rushes forward the moment your lips part, flooding into your mouth. You struggle against the probing tentacle of gray, but it’s relentless, squirming and shifting its shape to slide through no matter how tightly you squeeze your lips and throat. You can feel more tentacles rising, slithering up your [pc.legs], squirming through your [pc.gear], slowly stripping you down.");
-	if (!(pc.meleeWeapon is Rock()) && !(pc.rangedWeapon is Rock()) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
+	if (!(pc.meleeWeapon is Rock) && !(pc.rangedWeapon is Rock)) output(" Your weapons are tossed aside with a flick of a tentacle, contemptuously batted aside into the sea of goo, leaving you defenseless.");
 	output(" You moan around the tentacle in your mouth as a");
 	if (pc.hasVagina() && pc.hasCock())
 	{
@@ -3374,7 +3375,7 @@ function deck13BackAtTheShop():void
 	currentLocation = "303";
 	clearMenu();
 
-	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Yes" annoPostQuestSexytimes);
+	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Yes", annoPostQuestSexytimes);
 	else addDisabledButton(0, "Yes", "Accept Offer", "You need some form of genitalia to accept Annos offer.");
 
 	addButton(1, "No", annoPostQuestSexytimesRefusedWhatAreYouGayOrSomethin);
@@ -3417,7 +3418,7 @@ function annoPostQuestSexytimes():void
 		else output(" the base of your [pc.cock]");
 		output(", one long lick carrying her along the long shaft of your cock and straight to the crown. Anno looks up and shoots you a grin before wrapping her lips around your cockhead");
 		// I'm intentionally trying to be as inclusive as possible here, I dunno if we wanna convert some of these to && etc.
-		if (pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_BARBED) || pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_FELINE) output(", brushing her tongue across the bumps and ridges of your feline-like member");
+		if (pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_NUBBY) || pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_FELINE) output(", brushing her tongue across the bumps and ridges of your feline-like member");
 		else if (pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_BLUNT) || pc.cocks[pc.biggestCockIndex()].cType == GLOBAL.TYPE_EQUINE || pc.cocks[pc.biggestCockIndex()].hasFlag(GLOBAL.FLAG_FLARED)) output(", her jaw straining to encompass your flared equine girth");
 		output(". One of your hands settles atop Anno’s head, stroking the mat of wet hair between her perky ears as she teases your crown, gently urging her onwards. ");
 		
@@ -3471,7 +3472,7 @@ function annoPostQuestSexytimes():void
 	
 	output("\n\nWith that, Anno grabs a fresh catsuit out of her closet and slips out of sight, which leaves you to collect your scattered [pc.gear] and return topside.");
 
-	player.orgasm();
+	pc.orgasm();
 	anno.orgasm();
 
 	processTime(20+rand(5));
