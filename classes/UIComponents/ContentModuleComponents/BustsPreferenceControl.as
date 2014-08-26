@@ -1,4 +1,4 @@
-package classes.UIComponents.ContentModuleComponents 
+﻿package classes.UIComponents.ContentModuleComponents 
 {
 	import flash.display.Sprite;
 	import flash.geom.Point;
@@ -41,29 +41,29 @@ package classes.UIComponents.ContentModuleComponents
 		
 		private function Build():void
 		{
-			_noneButton = new MainMenuButton();
-			_noneButton.name = "none";
+			_noneButton = new MainMenuButton(false, buttonClickHandler);
+			_noneButton.name = _noneButton.arg = "none";
 			this.addChild(_noneButton);
 			_noneButton.buttonName = "None";
 			_noneButton.x = 780 - (_noneButton.width + 10);
 			_noneButton.y = 30;
 			
-			_cheshireButton = new MainMenuButton();
-			_cheshireButton.name = "CHESHIRE";
+			_cheshireButton = new MainMenuButton(false, buttonClickHandler);
+			_cheshireButton.name = _cheshireButton.arg = "CHESHIRE";
 			this.addChild(_cheshireButton);
 			_cheshireButton.buttonName = "Cheshire";
 			_cheshireButton.x = _noneButton.x - (_cheshireButton.width + 5);
 			_cheshireButton.y = 30;
 						
-			_gatsButton = new MainMenuButton();
-			_gatsButton.name = "GATS";
+			_gatsButton = new MainMenuButton(false, buttonClickHandler);
+			_gatsButton.name = _gatsButton.arg = "GATS";
 			this.addChild(_gatsButton);
 			_gatsButton.buttonName = "Gats";
 			_gatsButton.x = _cheshireButton.x - (_gatsButton.width + 5);
 			_gatsButton.y = 30;
 			
-			_gatsOldButton = new MainMenuButton();
-			_gatsOldButton.name = "GATSOLD";
+			_gatsOldButton = new MainMenuButton(false, buttonClickHandler);
+			_gatsOldButton.name = _gatsOldButton.arg = "GATSOLD";
 			this.addChild(_gatsOldButton);
 			_gatsOldButton.buttonName = "Old Gats";
 			_gatsOldButton.x = _gatsButton.x - (_gatsOldButton.width + 5);
@@ -88,11 +88,6 @@ package classes.UIComponents.ContentModuleComponents
 			
 			_descriptionText.width = _gatsButton.x - 10;
 			_descriptionText.height = _gatsButton.bodyHeight();
-			
-			_noneButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
-			_cheshireButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
-			_gatsButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
-			_gatsOldButton.addEventListener(MouseEvent.CLICK, buttonClickHandler);
 			
 			updateStateFromOptions();
 		}
@@ -136,9 +131,9 @@ package classes.UIComponents.ContentModuleComponents
 			updateStateFromOptions();
 		}
 		
-		private function buttonClickHandler(e:MouseEvent):void
+		private function buttonClickHandler(buttonName:String):void
 		{
-			var tName:String = e.target.name;
+			var tName:String = buttonName;
 			
 			kGAMECLASS.gameOptions.setBustPriority(tName, _prio);
 			
