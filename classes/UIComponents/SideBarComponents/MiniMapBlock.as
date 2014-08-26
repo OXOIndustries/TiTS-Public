@@ -1,4 +1,4 @@
-package classes.UIComponents.SideBarComponents 
+﻿package classes.UIComponents.SideBarComponents 
 {
 	import classes.UIComponents.MiniMap.MiniMap;
 	import flash.display.Sprite;
@@ -6,6 +6,8 @@ package classes.UIComponents.SideBarComponents
 	import flash.text.TextField;
 	import classes.UIComponents.UIStyleSettings;
 	import flash.text.AntiAliasType;
+	import flash.events.MouseEvent;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -46,6 +48,10 @@ package classes.UIComponents.SideBarComponents
 			_miniMap.paddingRight = 11;
 			_miniMap.paddingTop = 5;
 			_miniMap.paddingBottom = 31;
+			
+			_miniMap.buttonMode = true;
+			_miniMap.addEventListener(MouseEvent.CLICK, function(e:Event){kGAMECLASS.userInterface.showBigMap(_miniMap)});
+			
 			this.addChild(_miniMap);
 		}
 		
