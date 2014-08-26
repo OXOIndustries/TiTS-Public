@@ -2061,56 +2061,107 @@ function deck13SecurityFunc():void
 
 function securityDroidAI():void
 {
-
+	if (!pc.hasStatusEffect("Blind") && rand(5) == 0) securityDroidFlashbang();
+	else if (!foes[0].hasStatusEffect("Blind") && !foes[0].hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot();
+	else securityDroidLaserBarrage();
 }
 
 function securityDroidLaserBarrage():void
 {
-//Laser Barrage
-//Lots of moderate laser attacks
-	Several of the drones lock onto you and let loose with a hail of laser bolts. 
-	Hit: One of the drones hits you!
-	Miss: One of the drones misses you!
+	//Laser Barrage
+	//Lots of moderate laser attacks
+	output("\nSeveral of the drones lock onto you and let loose with a hail of laser bolts.");
+	
+	var attacks:int = 2 + rand(2);
+
+	for (var i:int = 0; i < attacks; i++)
+	{
+		rangedAttack(foes[0], pc, true, 1);
+	}
+	processCombat();
 }
 
 function securityDroidChargeShot():void
 {
-Charge Shot
-//Two moderate laser shots (as above) + one HEAVY one
-	Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!
-	Hit: You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage! 
-	Miss: You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast{if silly: to the, uh, face}.
+	//Charge Shot
+	//Two moderate laser shots (as above) + one HEAVY one
+	output("\nAmid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
+
+	rangedAttack(foes[0], pc, true, 1);
+	rangedAttack(foes[0], pc, true, 1);
+
+	// Heavy attack
+	if (rangedCombatMiss(foes[0], pc))
+	{
+		output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
+		if (silly) output(" to the, uh, face");
+		output(".");
+	}
+	else
+	{
+		output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
+
+		genericDamageApply(30, foes[0], pc, GLOBAL.LASER);
+	}
+
+	output("\n");
+	processCombat();
 }
 
 function securityDroidFlashbang():void
 {
-Flashbang
-//Blind, possibly Stun attack
-	One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!
-	Hit: You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>{ and <b>stunned</b>}!
-	Miss: You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!
+	// Flashbang
+	// Blind, possibly Stun attack
+	output("\nOne of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
+
+	if(foes[0].aim()/2 + rand(20) + 6 > pc.reflexes()/2 + 10 && !pc.hasStatusEffect("Blind"))
+	{
+		pc.createStatusEffect("Blind",3,0,0,0,false,"Blind","Accuracy is reduced, and ranged attacks are far more likely to miss.",true,0);
+		output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+	}
+	else
+	{
+		output(" You cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+	}
+	processCombat();
 }
 
 function lossToSecurityDroid():void
 {
-PC and Anno Lose to the Droid
-You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.
+	// PC and Anno Lose to the Droid
+	clearOutput();
+	author("Savin");
+	showName("LOSS:\nSEC. DROIDS");
+	showBust("SECURITYDROIDS");
 
-<i>ZAP</i>.
+	output("You hear a horrible scream to your side. You pause in your fight just long enough to look, and see Anno crumpled on the ground, motionless. Oh, no.... You turn back, grabbing your [pc.rangedWeapon] to take the murderous drones down... only to see one of their gun barrels leveled at your forehead.");
 
-<b>Game over.</b>
+	output("\n\n<i>ZAP</i>.");
+
+	output("\n\n<b>Game over.</b>");
+
+	clearMenu();
+	addDisabledButton(0, "Game Over", "Game Over", "Roll credits etc.");
 }
 
 function victoryOverSecurityDroid():void
 {
-PC and Anno Wreck the Droids
-"FuckyoufuckyouFUCKYOU!" Anno screams while firing her gun again and again into the last droid standing. It shudders and stumbles back under the impacts as her shots blow through its armored skeleton. She fires until the gun clicks empty, and still keeps pulling the trigger of the empty handgun until the robotic aggressor finally collapses, utterly destroyed. 
+	// PC and Anno Wreck the Droids
+	clearOutput();
+	author("Savin");
+	showName("VICTORY:\nSEC. DROIDS");
+	showBust("SECURITYDROIDS");
 
-Hesitantly, you put a hand on Anno’s shoulder. She just about jumps out of her skin, and for a moment, you’re glad her gun’s run empty. Anno takes a deep breath and pulls you close, into a tight hug. "Fuck, [pc.name]. I didn't... holy shit, they were going to KILL us."
+	output("“<i>FuckyoufuckyouFUCKYOU!</i>” Anno screams while firing her gun again and again into the last droid standing. It shudders and stumbles back under the impacts as her shots blow through its armored skeleton. She fires until the gun clicks empty, and still keeps pulling the trigger of the empty handgun until the robotic aggressor finally collapses, utterly destroyed.");
 
-"We got ‘em first, though," you answer, ruffling the hair between her perky ears. 
+	output("\n\nHesitantly, you put a hand on Anno’s shoulder. She just about jumps out of her skin, and for a moment, you’re glad her gun’s run empty. Anno takes a deep breath and pulls you close, into a tight hug. “<i>Fuck, [pc.name]. I didn’t... holy shit, they were going to KILL us.</i>”");
 
-"Yeah. We did," she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again. {if High int/Mercenary: For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.}
+	output("\n\n“<i>We got ‘em first, though,</i>” you answer, ruffling the hair between her perky ears. ");
+
+	output("\n\n“<i>Yeah. We did,</i>” she says, not quite smiling. Anno pulls a fresh magazine out and reloads her handgun before tucking it away again.");
+	if (pc.IQ() >= 0.75 || pc.characterClass == GLOBAL.CLASS_MERCENARY) output(" For such a little gun, it sure seemed to pack a punch... and was suppressed, too. Might be worth a look some time.");
+
+	genericVictory();
 }
 
 function deck13ArmoryFunc():void
@@ -2383,9 +2434,21 @@ function grayPrimeAI():void
 function grayPrimeGooSword():void
 {
 //One heavy physical attack
-	The gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.
-	Hit: You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!
-	Miss: You duck back, evading the goo's sword strike. Before she can swing again, Anno gets a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once you're safely away. 
+	output("\nThe gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.");
+
+	if (combatMiss(foes[0], pc))
+	{
+		output(" You duck back, evading the goo's sword strike. Before she can swing again, Anno gets a shot off, blasting the goo's sword into pieces... only for it to reform a moment later, once you're safely away.")
+	}
+	else
+	{
+		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!");
+
+		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
+		damage *= (100 + (15-rand(30))/100;
+		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+	}
+	processCombat();
 }
 
 //Goo Grapple
