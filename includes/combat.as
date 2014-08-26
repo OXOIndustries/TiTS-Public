@@ -74,6 +74,12 @@ function combatMainMenu():void
 		updateCombatStatuses();
 	}
 	
+	// Grayprime Gooclones
+	if (foes[0].hasStatusEffect("Gooclones"))
+	{
+		output("\nThere are " + foes[0].statusEffectv1("Gooclones") + " Lust Clones remaining, teasing you with their bountiful gray bodies, all but inviting you to just drop everything and submit to pleasures of the flesh!");
+	}
+	
 	//Stunned Menu
 	if (pc.hasStatusEffect("Stunned") || pc.hasStatusEffect("Paralyzed"))
 	{
@@ -128,6 +134,10 @@ function combatMainMenu():void
 		this.clearMenu();
 		this.addButton(0,"Attack",attackRouter,playerAttack,"Attack","Attack a single enemy with a melee strike. Damage is based on physique.");
 		this.addButton(1, upperCase(pc.rangedWeapon.attackVerb), attackRouter, playerRangedAttack, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
+		if (foes[0].hasStatusEffect("Gooclones"))
+		{
+			addButton(2, "Attack Clone", grayPrimeAttackLustClone, undefined, "Attack Goo Clone", "Attack one of the Gray Primes gooclones.");
+		}
 		this.addButton(3, "Inventory", inventory, undefined, "Inventory", "Use items in combat.");
 		this.addButton(4,"Specials",specialsMenu,undefined,"Specials","The special attacks you have available to you are listed in this menu.");
 		this.addButton(5,"Tease",attackRouter,teaseMenu,"Tease Menu","Opens up your menu of available lust targetting attacks. It is recommended that the \"Sense\" option be used beforehand.");
@@ -330,7 +340,7 @@ function specialsMenu():void {
 	{
 		if (!pc.hasItem(new GrayMicrobots()))
 		{
-			addDisabledButton(offset, "Goozooka", "Fire Goozooka", "You don't have any Gray Goo samples to use as ammunition for the Goozoka.");
+			addDisabledButton(offset, "Goozooka", "Fire Goozooka", "You don't have any Gray Goo samples to use as ammunition for the Goozooka.");
 		}
 		else
 		{
@@ -691,6 +701,7 @@ function grappleStruggle():void {
 		{
 			if (foes[0] is SexBot) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free the droid does not seem to know how to respond and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 			else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) vanaeEscapeGrapple();
+			else if (foes[0] is GrayPrime) grayPrimeEscapeGrapple();
 			else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 			pc.removeStatusEffect("Grappled");
 		}
@@ -701,6 +712,7 @@ function grappleStruggle():void {
 		if(foes[0] is SexBot) output("You struggle as hard as you can against the sexbot’s coils but the synthetic fibre is utterly unyielding.");
 		else if (foes[0] is Kaska) failToStruggleKaskaBoobs();
 		else if (foes[0] is MaidenVanae || foes[0] is HuntressVanae) output("You wriggle in futility, helpless as she lubes you up with her sensuous strokes. This is serious!");
+		else if (foes[0] is GrayPrime) grayPrimeFailEscape();
 		else output("You struggle madly to escape from the pin but ultimately fail. The pin does feel a little looser as a result, however.");
 		pc.addStatusValue("Grappled",1,1);
 	}
@@ -2969,6 +2981,7 @@ function carpetGrenades():void
 		if(foes[x].plural) genericDamageApply(damage*2,pc,foes[x],GLOBAL.THERMAL);
 		else genericDamageApply(damage,pc,foes[x],GLOBAL.THERMAL);
 	}
+	aoeAttack(damage);
 	output("\n");
 	processCombat();
 }
@@ -3024,4 +3037,13 @@ function weaponHack(target:Creature):void {
 		target.createStatusEffect("Disarmed",4+rand(2),0,0,0,false,"Disarmed","Cannot use normal melee or ranged attacks!",true,0);
 	}
 	processCombat();
+}
+
+function aoeAttack(damage:int):void
+{
+	// Add function to anything that does AOE damage so we can cheese shit
+	if (damage > 0)
+	{
+		if (target.hasStatusEffect("Gooclones")) target.removeStatusEffect("Gooclones");
+	}
 }

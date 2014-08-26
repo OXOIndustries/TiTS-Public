@@ -1898,37 +1898,46 @@ function annoMissionImIn():void
 
 function annoBonusCombatAttackShit():void
 {
-	//	Anno has the following attacks/abilities in all combats:
-	// Add to combat view:
-	output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.\n");
+	// If anno isn't grappled
+	if (!foes[0].hasStatusEffect("AnnoGrapple"))
+	{
+		//	Anno has the following attacks/abilities in all combats:
+		// Add to combat view:
+		output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.\n");
 
-	// Targetting Computers
-	// Increases player accuracy temporarily
-	if (rand(4) == 0 && !pc.hasStatusEffect("Sensor Link"))
-	{
-		annoSensorLinkBuff();
-	}
-	// HP Boost
-	// Restores 10% HP.
-	else if (pc.HP()/pc.HPMax() <= 0.5 && !pc.hasStatusEffect("HP Boost CD"))
-	{
-		annoHPBoost();
-	}
-	// Sneak Attack
-	else if (foes[0].hasStatusEffect("Stunned") || foes[0].hasStatusEffect("Blind"))
-	{
-		var bonusDamage:int = anno.level * 2;
-		if (foes[0].hasStatusEffect("Stunned") && foes[0].hasStatusEffect("Blind"))
+		// Targetting Computers
+		// Increases player accuracy temporarily
+		if (rand(4) == 0 && !pc.hasStatusEffect("Sensor Link"))
 		{
-			bonusDamage += anno.level;
+			annoSensorLinkBuff();
 		}
+		// HP Boost
+		// Restores 10% HP.
+		else if (pc.HP()/pc.HPMax() <= 0.5 && !pc.hasStatusEffect("HP Boost CD"))
+		{
+			annoHPBoost();
+		}
+		// Sneak Attack
+		else if (foes[0].hasStatusEffect("Stunned") || foes[0].hasStatusEffect("Blind"))
+		{
+			var bonusDamage:int = anno.level * 2;
+			if (foes[0].hasStatusEffect("Stunned") && foes[0].hasStatusEffect("Blind"))
+			{
+				bonusDamage += anno.level;
+			}
 
-		annoRegularAttack(bonusDamage);
+			annoRegularAttack(bonusDamage);
+		}
+		// Regular attack
+		else
+		{
+			annoRegularAttack();
+		}
 	}
-	// Regular attack
 	else
 	{
-		annoRegularAttack();
+		// Anno Escape Tiem.
+		if (foes[0].hasStatusEffect("AnnoEscape")) grayPrimeAnnoEscape();
 	}
 }
 
@@ -2377,15 +2386,19 @@ function deck13ShieldControlFunc():void
 		
 		output("\n\n“<i>Hey, who’re you calling shit?</i>” an indignant third voice pouts. ");
 		
-		output("\n\n{If Silly: “<i>Oh, shit,</i>” Anno says.}");
+		if (silly) output("\n\n“<i>Oh, shit,</i>” Anno says.");
 		
-		output("\n\nSuddenly, the lights blast on full-force, nearly blinding you once again. As you squint and recoil, a silvery, goo-like girl drops down from the ceiling, plopping wetly onto the deck. {If PC has encounter Grey Goo before: “<i>You instantly recognize the familiar, silvery figure of a gray goo... but this one is different. More human. It stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real-looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.</i>”");
+		output("\n\nSuddenly, the lights blast on full-force, nearly blinding you once again. As you squint and recoil, a silvery, goo-like girl drops down from the ceiling, plopping wetly onto the deck.");
+		if (flags["MET_GRAY_GOO"] != undefined)
+		{
+			output(" You instantly recognize the familiar, silvery figure of a gray goo... but this one is different. More human. It stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real-looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.");
+		}
+		else
+		{
+			output("\n\n“<i>Gray goo!</i>” Anno snaps, drawing down on the feminine figure before you. You cock an eyebrow, also drawing your [ranged.Weapon]. “<i>They’re all over Tarkus, boss. Try and drain you dry of sex-juice. But they’re normally all big-titted bimbos. This one’s... different,</i>” she says, looking the creature up and down. ");
 		
-		output("\n\nelse, new para.");
-		
-		output("\n\n“<i>Gray goo!</i>” Anno snaps, drawing down on the feminine figure before you. You cock an eyebrow, also drawing your [ranged.Weapon]. “<i>They’re all over Tarkus, boss. Try and drain you dry of sex-juice. But they’re normally all big-titted bimbos. This one’s... different,</i>” she says, looking the creature up and down. ");
-		
-		output("\n\nIt stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.}");
+			output("\n\nIt stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.");
+		}
 		
 		output("\n\n“<i>It’s almost human,</i>” Anno says, staring at the goo. Then, louder, “<i>Sorry sweetheart, we’ve got work to do. Go molest somebody else.</i>”");
 		
@@ -2427,13 +2440,44 @@ function deck13ShieldControlFunc():void
 
 function grayPrimeAI():void
 {
-	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks. 
+	//Basic combat routine: She focuses on her sword-swings at first. As she falls in HP or starts to build up lust, she'll proc Lust Clones and Tentacles more often, though still mostly relying on physical attacks.
+
+	var attackChance:int = 33;
+	attackChance += ((foes[0].HP()/foes[0].HPMax()) * 50);
+	attackChance -= ((foes[0].lust()/foes[0].lustMax()) * 50);
+
+	if (foes[0].hasStatusEffect("AnnoGrapple"))
+	{
+		grayPrimeAnnoGrapple();
+	}
+	else if (pc.hasStatusEffect("Trip"))
+	{
+		grayPrimeGooGrapple();
+	}
+	else if (rand(100) <= attackChance)
+	{
+		if (rand(3) == 0) grayPrimeForcePunch();
+		else if (rand(3) == 0) grayPrimeAttackAnno();
+		else grayPrimeGooSword();
+	}
+	else
+	{
+		grayPrimeLustfulClones();
+	}
+
+	// Tag on the gooclone stuff after the main gray prime attack text.
+	if (foes[0].hasStatusEffect("Gooclones"))
+	{
+		grayPrimeCloneLustAttack();
+	}
+
+	processCombat();
 }
 
 //Goo Sword
 function grayPrimeGooSword():void
 {
-//One heavy physical attack
+	//One heavy physical attack
 	output("\nThe gray goo adapts an almost-textbook duelist's pose before she lunges at you, her razor-sharp saber cutting through the air towards your neck! Her first thrust drives you and Anno apart, cutting neatly between the two of you. Even as Anno riddles the goo's back with bullets, the monstrous woman pirouettes and brings her blade back around at you.");
 
 	if (combatMiss(foes[0], pc))
@@ -2448,70 +2492,176 @@ function grayPrimeGooSword():void
 		damage *= (100 + (15-rand(30))/100;
 		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
-	processCombat();
 }
 
 //Goo Grapple
 function grayPrimeGooGrapple():void
 {
-//Restrain attack. Inflicts Lust over time.
-	Suddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!
-	//Hit: Two of the tentacles wrap tightly around your wrists{, while two more grab your legs, lifting you up from the ground! //elseif taur// while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling}. Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole{s}. Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits. 
-	//Miss: Just as the tentacles are about to grab you, half of them explode in showers of goop as Anno levels her gun at them, firing dangerously close to your head. You duck as the others writhe and retreat under a hail of fire.
+	//Restrain attack. Inflicts Lust over time.
+	output("\nSuddenly, the sea of gray erupts around you! A half dozen thick, squirming gray tentacles surge up from the deck, lashing out at your limbs!");
 
-	//PC Doesn't Escape: The tentacles around you tighten, their tips pressing through your lips and squirming through your [pc.gear]. One slips down and rubs its slippery, hard tip against the ring of your [pc.asshole], demanding entry. "Just relax," the goo-girl leers, content to watch for now. "This doesn't have to be so bad for you."
-	//PC doesn't Escape 2: You give a cry of pain as one of the tentacles slips into your ass, squirming through your anal ring and into the tightly clenched passage. Another tendril of gray slips between your [pc.legs], caressing your {[pc.cock] /andor/ [pc.cunt]}, rubbing against the tender flesh. "Don't struggle," the goo coos, "Just let it happen..."
-	//PC doesn't Escape 3: Fuuuuck! The tendril in your ass is going wild, squirming like mad through your sensitive passage as its twin{s} molest your sex{es}, {[one] wrapping around your cock like a forceful hand} {while another is} {slipping into your [pc.cunt], spreading you wide on the thick, gooey rod}. "There we go," the goo-girl says, hands planted on her hips. She moans softly as her tendrils fuck you. "Oh, that's good... just like that... give me all your juices. God, it's been so looong."
-	//PC doesn't Escape 4+: The tentacles continue to molest you, holding you tightly as they fuck you like a sex puppet!
+	if (combatMiss(foes[0], pc))
+	{
+		output(" Just as the tentacles are about to grab you, half of them explode in showers of goop as Anno levels her gun at them, firing dangerously close to your head. You duck as the others writhe and retreat under a hail of fire.");
+	}
+	else
+	{
+		output(" Two of the tentacles wrap tightly around your wrists");
+		if (pc.isBiped()) output(", while two more grab your legs, lifting you up from the ground!");
+		else if (pc.isTaur()) output(",  while the rest grapple your inhuman lower half, raising you up from the deck until your [pc.legs] are dangling ");
+		output(" Another tentacle emerges, squirming toward your mouth; others crawl across your body, seeking out your other hole");
+		if (pc.hasVagina()) output("s");
+		output(". Across the room, Anno is suffering the same fate, tendrils of gray wrapping around her limbs, tearing at her sheer catsuit to get at her pussy and tits.");
 
-	//PC Escapes: Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. "Damn it. Why won't you just go down!" she shrieks. "I don't want to kill you, but if you won't surrender, then I swear I will! What I'm doing is too important!"
+		pc.createStatusEffect("Grappled", 0, 35, 0, 0, false, "Constrict", "The Gray Primes tentacles are wound around your limbs, keeping you restrained!", true, 0);
+	}
+}
+
+function grayPrimeEscapeGrapple():void
+{
+	output("Finally, you tear yourself off the tentacles, flopping down onto the layer of gooey coating that covers the deck. The goo scowls, raising her sword again. “<i>Damn it. Why won’t you just go down!</i>” she shrieks. “<i>I don’t want to kill you, but if you won’t surrender, then I swear I will! What I’m doing is too important!</i>”");
+}
+
+function grayPrimeFailEscape():void
+{
+	switch (pc.statusEffectv1("Grappled"))
+	{
+		case 0:
+			output("The tentacles around you tighten, their tips pressing through your lips and squirming through your [pc.gear]. One slips down and rubs its slippery, hard tip against the ring of your [pc.asshole], demanding entry. “<i>Just relax,</i>” the goo-girl leers, content to watch for now. “<i>This doesn’t have to be so bad for you.</i>”");
+			break;
+
+		case 1:
+			output("You give a cry of pain as one of the tentacles slips into your ass, squirming through your anal ring and into the tightly clenched passage. Another tendril of gray slips between your [pc.legs], caressing your");
+			if (pc.hasCock()) output(" [pc.cock]");
+			if (pc.hasCock() && pc.hasVagina()) output(" and");
+			if (pc.hasVagina()) output(" [pc.cunt]");
+			output(", rubbing against the tender flesh. “<i>Don’t struggle,</i>” the goo coos, “<i>Just let it happen...</i>”");
+			break;
+
+		case 2:
+			output("Fuuuuck! The tendril in your ass is going wild, squirming like mad through your sensitive passage");
+			if (pc.hasVagina() || pc.hasCock())
+			{
+				output(" as its twin");
+				if (pc.hasVagina() && pc.hasCock() || pc.vaginas.length > 1) output("s");
+				output(" molest your sex");
+				if (pc.hasVagina() && pc.hasCock() || pc.vaginas.length > 1) output("es");
+				output(",");
+				if (pc.hasCock())
+				{
+					if (pc.hasVagina()) output(" one");
+					output(" wrapping around your cock like a forceful hand");
+					if (pc.hasVagina()) output(" while another is");
+				} 
+				if (pc.hasVagina()) output(" slipping into your [pc.cunt], spreading you wide on the thick, gooey rod");
+				output(". “<i>There we go,</i>” the goo-girl says, hands planted on her hips. She moans softly as her tendrils fuck you. “<i>Oh, that’s good... just like that... give me all your juices. God, it’s been so looong.</i>”");
+			break;
+
+		default:
+			output("The tentacles continue to molest you, holding you tightly as they fuck you like a sex puppet!");
+			break;
+	}
+
+	pc.lustDamage(10+rand(5));
 }
 
 //Force Punch
 function grayPrimeForcePunch():void
 {
 	//One moderate physical, chance of knockdown
-	The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward you for what's going to be a world-rocking punch!
-	Hit: Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt! [PC is knocked down]
-	Miss: You knock her fist aside at the last moment, letting her momentum carry her through to the deck. Just when she tries to rise up, Anno leaps in with a roundhouse kick that takes the bitch's head clean off! Of course, she reforms a moment later across the room, looking no worse for wear. 
+	output("The goo-girl leaps forward, her off-hand visibly enlarging and hardening as she hurtles toward you for what’s going to be a world-rocking punch!");
+
+	if (combatMiss(foes[0], pc))
+	{
+		output(" You knock her fist aside at the last moment, letting her momentum carry her through to the deck. Just when she tries to rise up, Anno leaps in with a roundhouse kick that takes the bitch’s head clean off! Of course, she reforms a moment later across the room, looking no worse for wear.");
+	}
+	else
+	{
+		output(" Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt!");
+
+		var damage:int = foes[0].damage(false) + foes[0].aim() / 2 + 20;
+		damage *= 100 + (15-rand(30))/100;
+		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+
+		// 25% of knockdown
+		if (rand(4) == 0)
+		{
+			output(" The blow hits you so hard you're seeing stars!");
+			pc.createStatusEffect("Trip");
+		}
+	}
 }
 
 //Lustful Clones
 function grayPrimeLustfulClones():void
 {
 	//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
-	The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. "Why don't you just surrender? I could use a few tough new sources of lubricant..." she teases, shifting to emphasize her cleavage and jiggling it at you. As she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near-perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.
+	output("\nThe goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. “<i>Why don’t you just surrender? I could use a few tough new sources of lubricant...</i>” she teases, shifting to emphasize her cleavage and jiggling it at you. As she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near-perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
 
-{Add to Combat Descript: "There are X Lust Clones remaining, teasing you with their bountiful gray bodies, all but inviting you to just drop everything and submit to pleasures of the flesh!"}
-{Add button to menu: "Attack Clone"}
+	var createClones:int = 1 + rand(4);
+	if (foes[0].hasStatusEffect("Gooclones"))
+	{
+		foes[0].addStatusValue("Gooclones", 1, createClones);
+	}
+	else
+	{
+		foes[0].createStatusEffect("Gooclones", createClones, 0, 0, 0, false, "", "", true, 0);
+	}
 }
 
 //Clone Tease Attack
 function grayPrimeCloneLustAttack():void
 {
-	One of the lust clones shakes her hips and titties at you, trying to entice you into sex! {You resist her advances! // +X Lust!}
+	output("\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
+	pc.lustDamage(foes[0].statusEffectv1("Gooclones"));
 }
 
 //Attack Clone
-function grayPrimeAttackLustClone(target:Creature):void
+function grayPrimeAttackLustClone():void
 {
-You leap forward and punch one of the lust clones teasing you. She gives a terrified gasp as you attack her, though one hit is easily enough to splatter her brainpan across the deck. The lifeless goo corpse collapses into the sea of gray, absorbed back into the mass. 
+	clearOutput();
+	output("You leap forward and punch one of the lust clones teasing you. She gives a terrified gasp as you attack her, though one hit is easily enough to splatter her brainpan across the deck. The lifeless goo corpse collapses into the sea of gray, absorbed back into the mass.\n");
+	
+	foes[0].addStatusValue("Gooclones", 1, -1);
+
+	if (foes[0].statusEffectv1("Gooclones") <= 0)
+	{
+		foes[0].removeStatusEffect("Gooclones")
+	}
+	processCombat();
 }
 
 //Attack on Anno
 function grayPrimeAttackAnno():void
 {
-//Chance to disable help from Anno for a turn
-	The goo turns her attention from you to your companion. Anno takes an unsure step back, leveling her gun at the goo and firing as it advances. The goo-girl dodges with inhuman ability, crumbling to dust where Anno shoots, only to reform inches from the ausar!
-	//Hit: The gray goo's hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno's hand. "Almost human, was it? I'LL SHOW YOU ALMOST HUMAN!"
-	//Miss: Anno leaps out of the way as the goo-girl lunges for her! "Bitch!" the goo shouts. "I'm not almost human! I'M MORE HUMAN THAN YOU ARE."
-	"I'm an ausar, you stupid cunt!"
+	//Chance to disable help from Anno for a turn
+	output("\nThe goo turns her attention from you to your companion. Anno takes an unsure step back, leveling her gun at the goo and firing as it advances. The goo-girl dodges with inhuman ability, crumbling to dust where Anno shoots, only to reform inches from the ausar!");
 
-Anno Grappled:
-	Anno struggles against the gray goo's assault, trying to escape her death-grasp.
+	if (combatMiss(foes[0], anno))
+	{
+		output(" Anno leaps out of the way as the goo-girl lunges for her! “<i>Bitch!</i>” the goo shouts. “<i>I’m not almost human! I’M MORE HUMAN THAN YOU ARE.</i>”");
+		output("\n\n“<i>I’m an ausar, you stupid cunt!</i>”");
+	}
+	else
+	{
+		output(" The gray goo’s hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno’s hand. “<i>Almost human, was it? I’LL SHOW YOU ALMOST HUMAN!</i>”");
 
-Next Turn, Anno's action:
-	"Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\'s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. \"I\'m fine, I\'m fine!\" Anno groans, rubbing at her throat, now visibly bruising."
+		foes[0].createStatusEffect("AnnoGrapple", 0, 0, 0, 0, true, "Constrict", "The Gray Prime has Anno in her clutches!", true, 0);
+	}	
+}
+
+function grayPrimeAnnoGrapple():void
+{
+	output("\nAnno struggles against the gray goo's assault, trying to escape her death-grasp.");
+
+	if (rand(3) == 0) foes[0].createStatusEffect("AnnoEscape");
+}
+
+function grayPrimeAnnoEscape():void
+{
+	output("\nAnno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. “<i>I’m fine, I’m fine!</i>” Anno groans, rubbing at her throat, now visibly bruising.");
+	foes[0].removeStatusEffect("AnnoGrapple");
+	foes[0].removeStatusEffect("AnnoEscape");
 }
 
 function victoryOverGrayPrime():void
@@ -3068,30 +3218,82 @@ function deck13DecisionStopHer():void
 
 function gigaGooAI():void
 {
-
+	if (rand(3) == 0)
+	{
+		attack(foes[0], pc);
+	}
+	else
+	{
+		if (pc.statusEffectv1("Round") % 3 == 0) gigaGooCageRattle();
+		else if (rand(4) == 0) gigaGooSwordThrust();
+		else gigaGooPunch();
+	}
+	
+	processCombat();
 }
 
 //Goo Punch
 function gigaGooPunch():void
 {
-//One moderate physical attack, no dodge chance. Chance to stun.
-	Nova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later. {<b>You’re stunned by the overwhelming force of the blow!</b>}
+	//One moderate physical attack, no dodge chance. Chance to stun.
+	output("\nNova rears her massive fist back and swings, a straight punch right into the face of the cart. Bits of her gooey fingers are shorn off as she slams herself through the slim bars around the elevator, smashing into you! You and Anno are slammed back against the wall by the force of the blow, drowning in a sea of gray bots as her fingers drip away, though they reform a moment later.");
+	
+	if (rand(4) == 0)
+	{
+		pc.createStatusEffect("Stunned", 3, 0, 0, 0, "Stun", "You are stunned and cannot act until you recover!", true, 0);
+		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
+	}
+
+	var damage:int = foes[0].damage(false) + foes[0].aim() / 2;
+	damage *= (100 + (15-rand(30)))/100;
+	genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 }
 
 //Sword Thrust
 function gigaGooSwordThrust():void
 {
-//One MASSIVE physical hit.
-	Nova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!
-	Hit: You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease. 
-	Miss: You and Anno duck apart, letting the sword plunge into the wall between the two of you. The rising elevator cart quickly cuts it off of the mass and lets it pour off the sides... only to reform a moment later. 
+	//One MASSIVE physical hit.
+	output("\nNova’s sword swings back, her whole body leaning into the blow as she lunges forward to drive the sword straight through the open face of the lift!");
+
+	if (combatMiss(foes[0], pc, -1, 2))
+	{
+		output(" You and Anno duck apart, letting the sword plunge into the wall between the two of you. The rising elevator cart quickly cuts it off of the mass and lets it pour off the sides... only to reform a moment later.")
+	}
+	else
+	{
+		output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
+
+		var damage:int = foes[0].damage(false) + foes[0].aim() + foes[0].reflexes() + 25;
+		damage *= (100 + (25-rand(50)))/100;
+		genericDamageApply(damage, foes[0], pc, GLOBAL.PIERCING);
+	}
 }
 
 //Cage Rattle
 function gigaGooCageRattle():void
 {
-//Several light physical attacks, chance of knockdown in failed Reflex save. 
-	Nova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down. {<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>}
+	//Several light physical attacks, chance of knockdown in failed Reflex save. 
+	output("\nNova reaches up and grabs the top of the elevator to hold it in place and push downward, trying to drive you into the rising cloud of gas below. The car shakes and shudders as she fights against the motor to hold you down.");
+
+	var totalDamage:int = 0;
+
+	for (var i:int = 0; i < 7; i++)
+	{
+		var damage:int = 5;
+		damage *= (100+(15-rand(30)))/100;
+		
+		if (!combatMiss(foes[0], pc, -1, 2))
+		{
+			totalDamage += damage;
+			genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
+		}
+	}
+
+	if (rand(50) <= totalDamage)
+	{
+		output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
+		pc.createStatusEffect("Trip");
+	}
 }
 
 function loseToGigaGoo():void
