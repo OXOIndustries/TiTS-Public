@@ -674,6 +674,7 @@
 			tooltip.addChild(tipHeader);
 			tooltip.addChild(tipText);
 			
+			bigM.childElements[coordX][coordY].buttonMode = true;
 			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent)
 			{
 				tooltip.x = e.localX + bigM.childElements[coordX][coordY].x + bigM.childContainer.x;
