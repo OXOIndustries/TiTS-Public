@@ -4,9 +4,6 @@
 	import flash.events.Event;
 	import flash.utils.getDefinitionByName;
 	import classes.Resources.MapIcons;
-	import flash.geom.ColorTransform;
-	import classes.UIComponents.UIStyleSettings;
-
 	/**
 	 * ...
 	 * @author Gedan
@@ -17,7 +14,6 @@
 		private var _currLinkId:int;
 		
 		private var _linkIcons:Array;
-		private var _lastColor:ColorTransform;
 		
 		public function MinimapLink(rotated:Boolean) 
 		{
@@ -77,25 +73,6 @@
 				_linkIcons[_currLinkId].visible = false;
 				
 			_currLinkId = linkType;
-			
-			setColour(UIStyleSettings.gMapIndoorRoomFlagColourTransform);
-		}
-		
-		public function setColour(color:ColorTransform):void
-		{
-			this.transform.colorTransform = color;
-			this._lastColor = color;
-		}
-		
-		public function setGhostColour(color:ColorTransform):void
-		{
-			this.transform.colorTransform = color;
-		}
-		
-		public function resetColor():void
-		{
-			if(_lastColor == null) return;
-			this.transform.colorTransform = this._lastColor;
 		}
 		
 	}

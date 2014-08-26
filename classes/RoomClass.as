@@ -38,23 +38,8 @@
 		public var inText:String = "In";
 		public var outExit:String = "";
 		public var outText:String = "Out";
-		
-		public function get exits():Array 
-		{
-			var re:Array = new Array();
-			if(northExit) re.push(titsClassPtr.rooms[northExit]);
-			if(southExit) re.push(titsClassPtr.rooms[southExit]);
-			if(eastExit) re.push(titsClassPtr.rooms[eastExit]);
-			if(westExit) re.push(titsClassPtr.rooms[westExit]);
-			return re;
-		}
 
 		public var canSaveInRoom:Boolean = true;
-		
-		public function get isCurrentLocation():Boolean
-		{
-			return this == kGAMECLASS.rooms[kGAMECLASS.currentLocation];
-		}
 		
 
 		//Functions
@@ -71,10 +56,6 @@
 			for(var x:int = 0; x <= roomFlags.length; x++) {
 				if(arg == roomFlags[x]) roomFlags.splice(x,1);
 			}
-		}
-		public function toString():String
-		{
-			return "[Object RoomClass] " + roomName.replace("\n", " ") + " : " + description/*.substr(0, description.length > 15 ? 14 : description.length - 1)*/;
 		}
 	}
 }
