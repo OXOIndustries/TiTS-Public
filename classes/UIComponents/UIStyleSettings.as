@@ -1,4 +1,4 @@
-﻿package classes.UIComponents 
+package classes.UIComponents 
 {
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
@@ -715,38 +715,6 @@
 				_gSaveEditorCenteredLabelTextFormat.font = "Lato";
 			}
 			return UIStyleSettings._gSaveEditorCenteredLabelTextFormat;
-		}
-		
-		private static var _gMapTooltipHeaderFormatter:TextFormat;
-		public static function get gMapTooltipHeaderFormatter():TextFormat
-		{
-			if (UIStyleSettings._gMapTooltipHeaderFormatter == null)
-			{
-				UIStyleSettings._gMapTooltipHeaderFormatter = new TextFormat();
-				UIStyleSettings._gMapTooltipHeaderFormatter.size = 20;
-				UIStyleSettings._gMapTooltipHeaderFormatter.color = UIStyleSettings.gBlueBindColour;
-				UIStyleSettings._gMapTooltipHeaderFormatter.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gMapTooltipHeaderFormatter.leading = 0;
-				UIStyleSettings._gMapTooltipHeaderFormatter.kerning = true;
-				UIStyleSettings._gMapTooltipHeaderFormatter.font = "Univers UltraCondensed";
-			}
-			return UIStyleSettings._gMapTooltipHeaderFormatter;
-		}
-		
-		private static var _gMapTooltipFormatter:TextFormat;
-		public static function get gMapTooltipFormatter():TextFormat
-		{
-			if (UIStyleSettings._gMapTooltipFormatter == null)
-			{
-				UIStyleSettings._gMapTooltipFormatter = new TextFormat();
-				UIStyleSettings._gMapTooltipFormatter.size = 16;
-				UIStyleSettings._gMapTooltipFormatter.color = 0xFFFFFF;
-				UIStyleSettings._gMapTooltipFormatter.align = TextFormatAlign.CENTER;
-				UIStyleSettings._gMapTooltipFormatter.leading = 0;
-				UIStyleSettings._gMapTooltipFormatter.kerning = false;
-				UIStyleSettings._gMapTooltipFormatter.font = "Univers UltraCondensed";
-			}
-			return UIStyleSettings._gMapTooltipFormatter;
 		}
 		
 		// Glows

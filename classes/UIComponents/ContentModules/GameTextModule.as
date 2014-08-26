@@ -1,4 +1,4 @@
-﻿package classes.UIComponents.ContentModules 
+package classes.UIComponents.ContentModules 
 {
 	import classes.UIComponents.ContentModule;
 	import fl.controls.UIScrollBar;
