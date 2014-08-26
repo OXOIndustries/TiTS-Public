@@ -21,6 +21,7 @@
 		private var _icons:Array;
 		private var _currIconId:int; 
 		private var _hazardMask:Sprite;
+		private var _lastColor:ColorTransform;
 		
 		public function get roomIcon():Sprite {return _roomIcon;}
 		
@@ -81,6 +82,12 @@
 		public function setColour(ct:ColorTransform):void
 		{
 			_roomIcon.transform.colorTransform = ct;
+			_lastColor = ct;
+		}
+		
+		public function setGhostColour(ct:ColorTransform):void
+		{
+			_roomIcon.transform.colorTransform = ct;
 		}
 		
 		public function setIcon(iconId:int):void
@@ -102,6 +109,11 @@
 				_icons[_currIconId].visible = false;
 				
 			_currIconId = iconId;
+		}
+		
+		public function resetColor():void
+		{
+			this.transform.colorTransform = this._lastColor;
 		}
 		
 		public function showHazard():void

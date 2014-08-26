@@ -601,7 +601,7 @@
 			container.addChild(bigM);
 			bigM.setMapData(mapper.generateMap(kGAMECLASS.currentLocation));
 			
-			setupBigMapTooltips(bigM, 10, 9, kGAMECLASS.rooms[kGAMECLASS.currentLocation], allowInteraction);
+			setupBigMapTooltips(bigM, 10, 9, kGAMECLASS.rooms[kGAMECLASS.currentLocation], (allowInteraction ? mapLink : null));
 			
 			clearGhostMenu();
 			addGhostButton(14, "Back", removeBigMap, bigM);
@@ -611,7 +611,7 @@
 		
 		//Is just want everyone to know that this took forever to figure out
 		//Because actionscript 3 doesn't make any sense
-		private function setupBigMapTooltips(bigM:MiniMap, coordX:int, coordY:int, room:*, interact:Boolean, completeRooms:Array = null):void
+		private function setupBigMapTooltips(bigM:MiniMap, coordX:int, coordY:int, room:*, link:MiniMap = null, completeRooms:Array = null):void
 		{
 			if(coordY < 0 || coordX < 0) return;
 			if(completeRooms == null) completeRooms = new Array();
@@ -674,6 +674,7 @@
 			tooltip.addChild(tipHeader);
 			tooltip.addChild(tipText);
 			
+			bigM.childElements[coordX][coordY].buttonMode = true;
 			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.MOUSE_MOVE, function(e:MouseEvent)
 			{
 				tooltip.x = e.localX + bigM.childElements[coordX][coordY].x + bigM.childContainer.x;
@@ -686,7 +687,6 @@
 				//If the room has a mask on it, just do a bounding box check
 				if(bigM.childElements[coordX][coordY].mask != null)
 				{
-					trace(e.localX + " " + e.localY);
 					if(e.localX > 0 && e.localY > 0 && e.localX < bigM.childElements[coordX][coordY].width && e.localY < bigM.childElements[coordX][coordY].height)
 					{
 						//Checks for corners
@@ -695,15 +695,22 @@
 				}
 				tooltip.visible = false;
 			});
-			bigM.childElements[coordX][coordY].addEventListener(MouseEvent.CLICK, function(e:MouseEvent)
+			tooltip.addEventListener(MouseEvent.MOUSE_OVER, function(e:Event) {tooltip.visible = false});
+			if(link != null)
 			{
-				bigM.track(kGAMECLASS.rooms[kGAMECLASS.currentLocation], room);
-			});
+				bigM.childElements[coordX][coordY].addEventListener(MouseEvent.CLICK, function(e:MouseEvent)
+				{
+					var path:Array = bigM.track(kGAMECLASS.rooms[kGAMECLASS.currentLocation], room);
+					if(path == null) return;
+					bigM.lightUpPath(path, UIStyleSettings.gMinimapTrackerColorTransform, true);
+					link.lightUpPath(path, UIStyleSettings.gMinimapTrackerColorTransform);
+				});
+			}
 			
-			if(room.northExit) setupBigMapTooltips(bigM, coordX, coordY - 1, kGAMECLASS.rooms[room.northExit], interact, completeRooms);
-			if(room.southExit) setupBigMapTooltips(bigM, coordX, coordY + 1, kGAMECLASS.rooms[room.southExit], interact, completeRooms);
-			if(room.westExit) setupBigMapTooltips(bigM, coordX - 1, coordY, kGAMECLASS.rooms[room.westExit], interact, completeRooms);
-			if(room.eastExit) setupBigMapTooltips(bigM, coordX + 1, coordY, kGAMECLASS.rooms[room.eastExit], interact, completeRooms);
+			if(room.northExit) setupBigMapTooltips(bigM, coordX, coordY - 1, kGAMECLASS.rooms[room.northExit], link, completeRooms);
+			if(room.southExit) setupBigMapTooltips(bigM, coordX, coordY + 1, kGAMECLASS.rooms[room.southExit], link, completeRooms);
+			if(room.westExit) setupBigMapTooltips(bigM, coordX - 1, coordY, kGAMECLASS.rooms[room.westExit], link, completeRooms);
+			if(room.eastExit) setupBigMapTooltips(bigM, coordX + 1, coordY, kGAMECLASS.rooms[room.eastExit], link, completeRooms);
 		}
 		
 		public function removeBigMap(bigM:MiniMap):void {
