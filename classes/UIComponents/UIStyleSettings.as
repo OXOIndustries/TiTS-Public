@@ -968,6 +968,17 @@
 			return UIStyleSettings._gPerkButtonTakenColorTransform;
 		}
 		
+		private static var _gMinimapTrackerColorTransform:ColorTransform;
+		public static function get gMinimapTrackerColorTransform():ColorTransform
+		{
+			if(UIStyleSettings._gMinimapTrackerColorTransform == null)
+			{
+				UIStyleSettings._gMinimapTrackerColorTransform = new ColorTransform();
+				UIStyleSettings._gMinimapTrackerColorTransform.color = 0x00F58F;
+			}
+			return UIStyleSettings._gMinimapTrackerColorTransform;
+		}
+		
 		// CSS Style Sheet to apply to "large" text blocks
 		private static var _gMainTextCSSStyleSheet:StyleSheet;
 		public static function get gMainTextCSSStyleSheet():StyleSheet

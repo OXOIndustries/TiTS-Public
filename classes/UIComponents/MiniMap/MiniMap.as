@@ -7,6 +7,7 @@
 	import classes.Mapper;
 	import flash.geom.ColorTransform;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.kGAMECLASS;
 	
 	/**
 	 * ...
@@ -74,6 +75,10 @@
 		private var _targetY:int		= 0;
 		
 		private var _hasMapRender:Boolean = false;
+		
+		private var _trackerBool:Boolean;
+		private var _trackerData:*;
+		private var _trackerRooms:Object;
 		
 		// Access/Mutator shit so I can do funky observer-pattern bollocks later on
 		public function get childSizeX():int 	                          { return _childSizeX;    }
@@ -513,12 +518,138 @@
 					}
 				}
 			}
+			
+			if(_trackerData != null) 
+			{
+				if(_trackerData == kGAMECLASS.rooms[kGAMECLASS.currentLocation])
+				{
+					_trackerData = null;
+					return;
+				}
+				var path:Array = track(kGAMECLASS.rooms[kGAMECLASS.currentLocation], _trackerData);
+				lightUpPath(path, UIStyleSettings.gMinimapTrackerColorTransform, _trackerBool);
+			}
 		}
 		
-		public function track(roomFrom:*, roomTo:*):void
+		public function track(roomFrom:*, roomTo:*):Array
 		{
+			if(roomFrom == roomTo) return null;
+			this._trackerRooms = new Object();
+			pathFind(roomFrom, roomTo, 0);
+			//If the room is unreachable, end
+			if(!_trackerRooms[roomTo]) return null;
+			var path:Array = findPath(roomFrom, roomTo, new Array());
+			path.splice(0, 0, roomFrom);
+			return path;
+		}
+		
+		//Finds all paths
+		private function pathFind(roomFrom:*, roomTo:*, num:int):void
+		{
+			_trackerRooms[roomFrom] = num;
 			if(roomFrom == roomTo) return;
+			for each(var room:* in roomFrom.exits)
+			{
+				if(_trackerRooms[room] === undefined) pathFind(room, roomTo, num + 1);
+				else if(_trackerRooms[room] > num + 1) pathFind(room, roomTo, num + 1);
+			}
+		}
+		
+		//Finds shortest path
+		private function findPath(roomFrom:*, roomTo:*, path:Array):Array
+		{
+			path.push(roomTo);
+			var nearestRoom:*;
+			var distance:int = -1;
+			for each(var room:* in roomTo.exits)
+			{
+				if(_trackerRooms[room] !== undefined && (distance == -1 || _trackerRooms[room] < distance))
+				{					
+					nearestRoom = room;
+					distance = _trackerRooms[room];
+				}
+			}
 			
+			if(nearestRoom == roomFrom) return path.reverse();
+			return findPath(roomFrom, nearestRoom, path);
+		}
+		
+		//Doesn't work for starting locations other than current location, sorry!
+		//Also, no clue why I need this extraBool, but I'll figure it out later
+		public function lightUpPath(path:Array, color:ColorTransform = null, extraBool:Boolean = false):void
+		{
+			this._trackerData = path[path.length - 1];
+			this._trackerBool = extraBool;
+			
+			if(color == null) color = UIStyleSettings.gMinimapTrackerColorTransform;
+			var j:int = 1;
+			if(!path[0].isCurrentLocation)
+			{
+				for(var i:int = 0; i < path.length; i++)
+				{
+					if(path[i].isCurrentLocation)
+					{
+						j = i + 1;
+						break;
+					}
+				}
+			}
+			
+			var coordX:int = this._childNumX / 2;
+			var coordY:int = this._childNumY / 2;
+			if(extraBool) coordY--;
+			
+			for(; j < path.length; j++)
+			{
+				var nextRoom:* = path[j];
+				if(nextRoom == kGAMECLASS.rooms[path[j - 1].northExit])
+				{
+					lightUpVerticalLink(coordX, coordY - 1, UIStyleSettings.gMinimapTrackerColorTransform);
+					coordY--;
+				}
+				if(nextRoom == kGAMECLASS.rooms[path[j - 1].southExit])
+				{
+					lightUpVerticalLink(coordX, coordY, UIStyleSettings.gMinimapTrackerColorTransform);
+					coordY++;
+				}
+				if(nextRoom == kGAMECLASS.rooms[path[j - 1].eastExit])
+				{
+					lightUpHorizontalLink(coordX, coordY, UIStyleSettings.gMinimapTrackerColorTransform);
+					coordX++;
+				}
+				if(nextRoom == kGAMECLASS.rooms[path[j - 1].westExit])
+				{
+					lightUpHorizontalLink(coordX - 1, coordY, UIStyleSettings.gMinimapTrackerColorTransform);
+					coordX--;
+				}
+			}
+			
+			if(nextRoom == path[path.length - 1])
+			{
+				if(coordX >= 0 && coordX <= this._childNumX && coordY >= 0 && coordY <= this._childNumY) _childElements[coordX][coordY].setGhostColour(UIStyleSettings.gMinimapTrackerColorTransform);
+			}
+		}
+		
+		public function lightUpHorizontalLink(coordX:int, coordY:int, color:ColorTransform):void
+		{
+			if(coordX < 0 || coordX >= childLinksX.length || coordY < 0 || coordY >= childLinksX[0].length) return;
+			lightUpLink(_childLinksX[coordX][coordY], color);
+		}
+		
+		public function lightUpVerticalLink(coordX:int, coordY:int, color:ColorTransform):void
+		{
+			if(coordX < 0 || coordX >= childLinksY.length || coordY < 0 || coordY >= childLinksY[0].length) return;
+			lightUpLink(_childLinksY[coordX][coordY], color);
+		}
+		
+		public function lightUpLink(link:MinimapLink, color:ColorTransform):void
+		{
+			link.setGhostColour(color);
+		}
+		
+		public function lightUpRoom(room:MinimapRoom, color:ColorTransform):void
+		{
+			room.setGhostColour(color);
 		}
 	}
 }
