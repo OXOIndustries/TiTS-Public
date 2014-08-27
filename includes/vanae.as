@@ -531,7 +531,7 @@ function vanaeTFScene():void
 				if (pc.ballSize < 4) pc.ballSize += 0.5;
 			}
 			
-			output("The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
+			output(" The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
 			
 			break;
 			

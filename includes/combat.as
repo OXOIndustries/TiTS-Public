@@ -836,7 +836,7 @@ function playerAttack(target:Creature):void
 	mimbraneHandBonusAttack(target);
 	playerMimbraneCloudAttack();
 	//Cleave only triggers off the last swing before round completion.
-	if(pc.hasPerk("Cleave") && (target.plural || foes[0].length > 1)) 
+	if(pc.hasPerk("Cleave") && (target.plural || foes.length > 1)) 
 	{
 		output("<b>Cleave!</b>\n");
 		attack(pc, target, true, 1);

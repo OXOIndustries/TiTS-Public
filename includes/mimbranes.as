@@ -2055,7 +2055,7 @@ public function mimbraneFaceReproduction():void
 
 	//[Talk to subconscious] [Orgy] [Find Follower] [Find Victor] [Fly in Space]
 	clearMenu();
-	addButton(0, "Talk to Subc.", mimbraneFaceReproductionGo, true);
+	addButton(0, "Talk to Subc.", mimbraneFaceReproductionGo, true, "Talk to your subconscious", "Talk to your subconscious mind.");
 	addButton(1, "Orgy", mimbraneFaceReproductionGo, true);
 	addButton(2, "Find Follower", mimbraneFaceReproductionGo, true);
 	addButton(3, "Find Victor", mimbraneFaceReproductionGo, true);
@@ -4277,14 +4277,21 @@ public function mimbraneMenu():void
 		{
 			output2("\nIt's also offered to disguise itself as a set of lip piercings.");
 
-			addGhostButton(12, "Lip Pc.Ing", function():void {
-				clearOutput2();
-				//userInterface.showBust("MIMBRANE");
-				flags["MIMBRANE_FACE_APPEARANCE"] = 2;
-				output2("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
-				clearGhostMenu();
-				addGhostButton(0, "Back", mimbraneMenu);
-			});
+			if (flags["MIMBRANE_FACE_APPEARANCE"] != 2)
+			{
+				addGhostButton(12, "Lip Pc.Ing", function():void {
+					clearOutput2();
+					//userInterface.showBust("MIMBRANE");
+					flags["MIMBRANE_FACE_APPEARANCE"] = 2;
+					output2("You ask the Mimbrane surrounding your noggin to change its eye bumps to resemble a metal piercing.");
+					clearGhostMenu();
+					addGhostButton(0, "Back", mimbraneMenu);
+				});
+			}
+			else
+			{
+				addDisabledGhostButton(12, "Lip Pc.Ing");
+			}
 		}
 		else
 		{
