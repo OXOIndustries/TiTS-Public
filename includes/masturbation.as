@@ -863,7 +863,7 @@ function milkturbation():void
 	{
 		output(" Looking around to ");
 		if(pc.libido() >= 75) output("make sure you've got an audience");
-		else output("make sure noone is looking too closely");
+		else output("make sure no one is looking too closely");
 	}
 	else output(" Setting comfortably in a quiet corner");
 	output(", you grab your [pc.chest] and squeeze, rubbing gently towards your [pc.nipples] to coax yourself into letting down. The lactating flesh feels wonderful in your hands, and you shudder with barely suppressed delight at how good it feels to get yourself ready.");

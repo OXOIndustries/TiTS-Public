@@ -3042,14 +3042,14 @@ function useYourCocksOnCumSluttyPenny():void {
 	output("Grinning, you hurriedly get your equipment out of the way, leaving the both of you completely naked. Penny by now is simply drooling; her mind so addled by lust she doesn't even think to suck her own cock - she's merely waiting passively to be used. You have every intention of obliging her; ");
 	if(pc.isTaur()) output("positioning yourself carefully, then ");
 	output("working your [pc.cock " + x + "] over eagerly. It's not long before you feel your body begin to respond - her performance so far has done more than enough to put you in the mood, and her absolute lust for this serves to spur you on even further. Within moments you feel your body tensing, your hips thrusting reflexively as your [pc.cock " + x + "] spasms, ");
-	if(pc.cockTotal() > 2 && pc.hasVagina()) output("other cocks and [pc.vaginas]");
-	else if(pc.cockTotal() > 1) 
+	
+	if(pc.cockTotal() > 1) 
 	{
 		output("your ");
 		if(pc.cockTotal() == 2) output("other cock");
 		else output("other cocks");
 	}
-	else if(pc.hasVagina()) output("[pc.vaginas]");
+	else if(pc.hasVagina()) output("your [pc.vaginas]");
 	if(pc.cockTotal() > 1 || pc.hasVagina()) output(" soon joining in sympathetically, and ");
 	output("your [pc.cumColor] cum spurting out to land on her face.");
 	//MODERATE LEVEL OF CUM PRODUCTION

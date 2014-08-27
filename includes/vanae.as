@@ -538,7 +538,7 @@ function vanaeTFScene():void
 		case "vagina":
 			// Increase vaginal wetness of PC and make a squirter, if not already. If available, move wetness beyond squirter value and allow for collection/measurement like cum/milk.
 			
-			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCumColor] jump from your soppy slit");
+			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCum] jump from your soppy slit");
 			if (pc.vaginas.length > 1) output("s");
 			output(". <b>Your vaginal wetness has increased"); 
 			if (!pc.isSquirter()) output(" and you are now a squirter");
@@ -1533,12 +1533,13 @@ function vanaeHuntressTentaSex(selScene:String):void
 	if (isCunt) output(" [pc.pussy]");
 	else output(" [pc.asshole]");
 	output(" with her [monster.tail], holding you fast with her suckling skirt. Her tendrils wrap around your [pc.thighs]");
-	if (pc.hasVagina()) output(" and tease your [pc.clits]");
+	if (pc.totalClits() > 0) output(" and tease your [pc.clits]");
 	else if (pc.hasCock()) output(" and tease your [pc.cockHeads]");
 	else output(" and tease your [pc.groin]");
 	output(", making you squirm with pleasure.");
 	if (isCunt) output(" You gush around her [monster.tail]");
-	else if (pc.hasVagina()) output(" Your [pc.pussies] are glistening wet");
+	else if (pc.vaginas.length == 1) output(" Your [pc.pussies] are glistening wet");
+	else if (pc.vaginas.legth == 2) output(" Your [pc.cunt] is glistening wet");
 	else if (pc.hasCock()) output(" Pre-cum dribbles from your [pc.cocks]");
 	else output(" You swoon");
 	output(" as she teases and screws you with her assorted tentacles.");
@@ -2419,7 +2420,7 @@ function vanaeHuntressPCDefeatTentafux():void
 
 	output("\n\nSlowly she begins to plumb your");
 	if (isCunt) output(" [pc.pussy]");
-	else output(" [pc.ass]");
+	else output(" [pc.asshole]");
 	output(" with her [monster.tail], holding you fast with her suckling skirt. Her tendrils wrap around your [pc.thighs]");
 	if (pc.totalClits() > 0) output(" and tease your [pc.clits]");
 	else if (pc.hasCock()) output(" and tease your [pc.cockHeads]");
@@ -2431,8 +2432,8 @@ function vanaeHuntressPCDefeatTentafux():void
 		if (pc.vaginas.length == 1) output(" Your [pc.cunt] is sopping wet");
 		else output(" Your [pc.cunts] are sopping wet");
 	}
-	else output(" Even more [pc.cum] dribbles from your [pc.cocks]");
-	output(" as she teases and screws you with her assorted tentacles.");
+	if (pc.hasCock()) output("as even more [pc.cum] dribbles from your [pc.cocks].");
+	else output(" as she teases and screws you with her assorted tentacles.");
 
 	output("\n\nNever have you felt so complete as being fucked right now by this amazon huntress, pleasure coursing through your body in crashing waves. You positively drown in ecstasy, pressing your [pc.hips] needily against her own.");
 

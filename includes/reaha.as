@@ -534,7 +534,8 @@ function ReahaBrothelSexMenu():void
 	else
 	{
 		addDisabledButton(0,"Vaginal");
-		addDisabledButton(1,"Ride Strapon");
+		addDisabledButton(1, "Ride Strapon");
+		addButton(14,"Leave",mainGameMenu);
 	}
 }
 

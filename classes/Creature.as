@@ -7050,8 +7050,15 @@
 			//Color super low chance!
 			if (adjectives && !forceAdjectives && rand(15) == 0)
 			{
-				descripted++;
-				vag += vaginas[vaginaNum].vaginaColor;
+				if (vaginas[vaginaNum].vaginaColor.length > 0)
+				{
+					descripted++;
+					vag += vaginas[vaginaNum].vaginaColor;
+				}
+				else
+				{
+					trace("Vagina doesn't have a color set!");
+				}
 			}
 			//low chance of size descriptor
 			if (((adjectives && this.rand(100) <= 25 + bonus) || forceAdjectives)) {

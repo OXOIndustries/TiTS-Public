@@ -2224,7 +2224,7 @@ function teaseReactions(damage:Number,target:Creature):String {
 			
 			buffer = textRands[rand(textRands.length)];
 		}
-		else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her [vanaeHunt.breasts], clearly titillated by your performance.";
+		else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her [monster.breasts], clearly titillated by your performance.";
 		else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
 		else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you're having an effect on her!"
 		else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
