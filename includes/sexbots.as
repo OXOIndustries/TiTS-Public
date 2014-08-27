@@ -398,9 +398,12 @@ function defeatTheSexBot():void
 
 	//Dog E
 	//Requires: Female sexbot, dick
-	if(pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0 && foes[0].mf("","girl") == "girl")
-		addButton(2,"DoggyStyle",dogEStyleWithSexBots);
-	else addDisabledButton(2,"Doggystyle","Doggy Style","You need a penis that will fit inside the sexbot, to be feminine, and to have 33 or more lust for this scene.");
+	if (foes[0].mf("", "girl") == "girl")
+	{
+		if (pc.hasCock() && pc.lust() >= 33 && pc.cockThatFits(foes[0].vaginalCapacity(0)) >= 0) addButton(2, "DoggyStyle", dogEStyleWithSexBots);
+		else addDisabledButton(2, "DoggyStyle", "Doggy Style", "You need a cock that will fit inside the sexbot and be sufficiently lusty.");
+	}
+	
 	if((flags["SEXBOTS_SCANNED_FOR_COLENSO"] == undefined || flags["SEXBOTS_SCANNED_FOR_COLENSO"] < 4) && flags["SEXBOT_QUEST_STATUS"] == 1) addButton(4,"Scan",scanASexbot,undefined,"Scan","Scan the sexbot with the GPS triangulator Colenso provided.");
 	addButton(14,"Leave",genericVictory);
 }
@@ -1017,7 +1020,7 @@ function dogEStyleWithSexBots():void
 	output(" gently aching. The robot is still until its hum finally calms down to its regular frequency, before turning back to its kneeling position by reversing the same exact movements it used to bend over.");
 	if(pc.cocks[x].cLength() >= 16) output(" Its latex abdomen bulges and makes stressed creaking noises. You grin at the evidence of your sheer potency.");
 	output(" Behind it there is a dripping sound and looking over its shoulder, you see its tentacles are now fully dilated, busily engaged in discharging what you just pumped into it.");
-	if(silly) output("\n\nIt stares at you silently, and it takes you a moment to remember.\n\n“<i>Unmute.</i>”");
+	if(!silly) output("\n\nIt stares at you silently, and it takes you a moment to remember.\n\n“<i>Unmute.</i>”");
 
 	output("\n\n“<i>Thank you for using this unit, insert name here,</i>” it says. Splurt. You’re probably imagining it but you reckon there is just the slightest, tiniest hint of pleased contentment in its tone. “<i>I hope we can have fun again soon.</i>” Splurt....");
 

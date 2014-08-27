@@ -836,7 +836,7 @@ function syriReverseCowgirlConsensualization():void {
 
 	//if knotty PC: 
 	if(pc.hasKnot(x)) output(", coming down on your cock hard enough to finally take your engorged knot");
-	output(". Her ass clamps down hard on your prick, nearly choking your rod as she cums. Your body's eager to join her, and soon you're letting loose a wave of [pc.cumColor] seed deep in her bowels as Syri's prick shoots a wad hard enough to splatter on the door half across the room.");
+	output(". Her ass clamps down hard on your prick, nearly choking your rod as she cums. Your body's eager to join her, and soon you're letting loose a wave of [pc.cumColor] seed deep in her bowels as Syri's prick shoots a wad hard enough to splatter on the door halfway across the room.");
 	//If Anno's in the crew, 10% chance:
 	if(9999 == 0) output(" Just as the first shot of ausar seed smears your cabin door, you hear Anno calling out, <i>“Sis, are you in here? I thought I heard-”</i>  and then, just as Syri's sister takes a step through your door, she's treated to a steaming hot shot of ausar cum. The startled tech cries out, flailing at her eyes before slamming the door closed, shouting something about coming back later. Syri laughs maniacally, though her tail curls up between her legs all the same.");
 

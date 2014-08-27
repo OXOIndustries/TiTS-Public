@@ -1460,7 +1460,8 @@ function numbPussyFuck(dick:Boolean = true):void {
 		output("slide your ");
 		if(x >= 0) output("[pc.cock " + x + "]");
 		else output("[pc.clit]");
-		//[tailcock]} into her
+		//[tailcock]}
+		output(" into her");
 	}
 	//lift her leg and slide her onto your nipple-cock
 	output(". Her hips shake lazily, perhaps trying to afford her some control of the fuck, but the zil is completely your plaything as you begin to thrust in her. When she realizes she’s completely unable to get any response from her leaden cunt, a low, frustrated, moan rolls out of her throat.");

@@ -858,7 +858,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\n“<i>My ass!</i>” Saen cries, “<i>Fuck my ass! Fuck my ass, Sera!</i>”");
 	
-	output("\n\nSera reaches forward, grabbing the scruff of Saen’s neck and pulling her back, hard enough to get the halfbreed to look at her. “<i>There. Was that so hard, slut?</i>” she says, her tongue languidly reaching out to lick the side of Saen’s face, the over-long appendage dragging slowly from chin to where her a human’s ears might have been. Saen shivers, her tails tucking in around Sera’s fingers buried in her cunt. The succubus roughly pulls them back out of the way, keeping the fluffy twins well away from her prize. ");
+	output("\n\nSera reaches forward, grabbing the scruff of Saen’s neck and pulling her back, hard enough to get the halfbreed to look at her. “<i>There. Was that so hard, slut?</i>” she says, her tongue languidly reaching out to lick the side of Saen’s face, the over-long appendage dragging slowly from chin to where a human’s ears might have been. Saen shivers, her tails tucking in around Sera’s fingers buried in her cunt. The succubus roughly pulls them back out of the way, keeping the fluffy twins well away from her prize. ");
 	
 	output("\n\nThe demon-girl releases Saendra’s head, shifting her grip to her own foot-long manhood and guiding her glans down to the ring of the halfbreed’s pucker. “<i>Woah, what’ve you been putting back here, slut? Could fit a fucking tuna can in you,</i>” Sera sneers, apparently having no trouble sliding her purple schlong right into Saendra’s ass. Saen grimaces, biting her lip as she takes the lengthy member. You watch as her gut visibly distends, a little lump forming in her belly as the crown of Sera’s demonic dong pushes against her innards; opposite that, Sera’s heavy nuts bop into Saendra’s backside, resting against the lips of her drooling gash. ");
 	saendra.buttChange(sera.cockVolume(0), false, false, false);
@@ -867,7 +867,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\n“<i>You’re fucking nuts, slut,</i>” Sera laughs. “<i>Alright, let’s see how you like this.</i>”");
 	
-	output("\n\nSera’s demonic tail swings around one of her legs, the cock-like appendage on its tip reaching up to join its owner’s other manhood. Just like the first, Sera takes her tail-cock and guides it to the now-gaping hole of Saendra’s ass, pressing the crown into the space between her footlong as the top of Saen’s hole. The halfbreed gives a muted gasp as the tail-cock pushes in, spreading Saen wide open between the two of them.");
+	output("\n\nSera’s demonic tail swings around one of her legs, the cock-like appendage on its tip reaching up to join its owner’s other manhood. Just like the first, Sera takes her tail-cock and guides it to the now-gaping hole of Saendra’s ass, pressing the crown into the space between her footlong and the top of Saen’s hole. The halfbreed gives a muted gasp as the tail-cock pushes in, spreading Saen wide open between the two of them.");
 	saendra.buttChange(sera.cockVolume(0) + sera.cockTailVolume(), false, false, false);
 	
 	output("\n\n“<i>Feel it now, bitch?</i>” Sera sneers, slapping Saen’s ass. ");
@@ -876,7 +876,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\nYou lean back against the far wall, a small smirk playing across your face as Sera starts to thrust her hips into the halfbreed’s backside, ripple of flesh quaking through her big behind as the succubus pounds her twin lengths into Saendra’s clenching hole. The fluffy slut lets out a cry of pleasure as the demoness goes to work on her, and you suddenly become very aware of the heat spreading through your own loins, turned on by the rigorous assfucking on display. You let a hand snake down");
 	if (!(pc.lowerUndergarment is EmptySlot)) output(" to your [pc.crotch]");
-	else output(" your [pc.underwear] to your [pc.crotch]");
+	else output(" your [pc.lowerUndergarment] to your [pc.crotch]");
 	output(", running your fingers across your");
 	if (pc.hasCock()) output(" [pc.cock]");
 	else if (pc.hasVagina()) output(" [pc.cunt]");
@@ -1049,7 +1049,7 @@ public function doTheCockingDeed():void
 	else output(" picks you right up");
 	output(" and plants a kiss on your lips. This one’s more passionate than usual, almost fervent as she pulls you in tight, desperate. When she breaks it, her feline eyes open slowly, and she flashes you a smile. “<i>I read over the instructions. I think... I think I’m ready when you are.</i>”");
 	
-	output("\n\nYou nod and lead your lover into her cabin, planting her in the bed and helping her undress. Saen’s eager to be rid of her clothes, stripping out of her vest and unbuttoning her shirt. She’s a little slower when it comes to her pants, wiggling out of her jeans and spreading her legs, feet planted on the edge of the bed. You stand between then like a gynecologist, eyes fixed on the slick slit of Saendra’s sex; her silver fingers run across her lips, teasing the hood of her clit even as she pulls the tip off the hypospray. ");
+	output("\n\nYou nod and lead your lover into her cabin, planting her in the bed and helping her undress. Saen’s eager to be rid of her clothes, stripping out of her vest and unbuttoning her shirt. She’s a little slower when it comes to her pants, wiggling out of her jeans and spreading her legs, feet planted on the edge of the bed. You stand between them like a gynecologist, eyes fixed on the slick slit of Saendra’s sex; her silver fingers run across her lips, teasing the hood of her clit even as she pulls the tip off the hypospray. ");
 	
 	output("\n\n“<i>Okay. I just need to set the dial on the tip here to the size I want... there we go. Let’s see... do I want balls? Eeehhhh.... I guess. Would look weird without them. I mean, where would the cum come from? Oooh! Wait! I’m gonna have a prostate now, aren’t I? Maybe this won’t be so bad after all... having a cock is just going to make anal even better! I like the sound of that.... Alright, balls for sure, let’s go for, uh, eight on dick length? I don’t exactly have anything to compensate for... but let’s dial up the thickness a little. Trust me, that’s what gets you. Length is nice, but I </i>love<i> a good stretching.</i>”");
 	

@@ -933,7 +933,7 @@ function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		}
 		output("\n\nYou go limp, your ardor spent, but your knot");
 		if(knots) output("s hold");
-		else output("holds");
+		else output(" holds");
 		output(" you secure inside of her, giving you time to appreciate the outlines of her shoulderblades and the natural fragrance of her feathery hair.");
 	}
 	//No knot for you, come back next year.

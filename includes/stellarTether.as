@@ -2562,7 +2562,7 @@ function victoryKaskaDicksex():void
 	if(pc.biggestCockLength() >= 12) output("most of ");
 	output("your road with an even coat of pirate spit.");
 
-	output("\n\nAfter a few minutes of this, you Kaska's technique improves, and you start to get dangerously hard. It'd be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You're forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.");
+	output("\n\nAfter a few minutes of this, Kaska's technique improves, and you start to get dangerously hard. It'd be easy to forget her earlier reluctance with the way her tongue wraps around the midpoint of your shaft, sliding up and down in sync with her lips. You're forced to push her off, lest you blow your load early, leaving Kaska breathing heavily while pre-cum runs unhindered from her cock, rolling across her knuckles on the way.");
 	output("\n\n<i>\"Please, let me fuck you,\"</i> she begs. Sweat beads on her brow. <i>\"I need it. My balls are so full!\"</i>");
 
 	output("\n\nYou smile and hook your hands under her armpits, lifting her up to her feet. <i>\"");
@@ -3083,7 +3083,7 @@ function bidVariable(arg:Number = 20000):void
 		else output("you");
 		output(". <i>\"You're the best!\"</i>");
 	}
-	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a man of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
+	output("\n\nSniffing disdainfully, your cousin gives you a sly look. <i>\"You're less of a penniless " + pc.mf("bum","tramp") + " than I thought. Very well, I'll see you at your next destination. It shouldn't be hard for a "+ rival.mf("man", "woman") +" of my resources to keep track of a gnat like you, after all.\"</i> [rival.He] pauses at the doorway. <i>\"Next time, the prize will be mine. Come on, Dane.\"</i>");
 	output("\n\n[rival.name] and [rival.his] bulky mercenary leave you with Shekka and your prize.");
 	pc.credits -= arg;
 	processTime(1);

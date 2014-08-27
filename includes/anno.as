@@ -2634,6 +2634,7 @@ function grayPrimeAttackLustClone():void
 	{
 		foes[0].removeStatusEffect("Gooclones")
 	}
+	
 	processCombat();
 }
 

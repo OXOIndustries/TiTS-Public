@@ -494,13 +494,13 @@ function vanaeTFScene():void
 	{
 		case "cock":
 			// Increase PC's ballEfficiency and cumMultiplier
-			if (pc.ballEfficiency < 5) pc.ballEfficiency += 0.1;
-			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.1;
-			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.1;
+			if (pc.ballEfficiency < 5) pc.ballEfficiency += 0.25;
+			if (pc.ballEfficiency < 4) pc.ballEfficiency += 0.25;
+			if (pc.ballEfficiency < 3) pc.ballEfficiency += 0.25;
 			
-			if (pc.cumMultiplier < 3) pc.cumMultiplier += 0.1;
-			if (pc.cumMultiplier < 2) pc.cumMultiplier += 0.1;
-			if (pc.cumMultiplier < 1) pc.cumMultiplier += 0.1;
+			if (pc.cumMultiplier < 3) pc.cumMultiplier += 0.25;
+			if (pc.cumMultiplier < 2) pc.cumMultiplier += 0.25;
+			if (pc.cumMultiplier < 1) pc.cumMultiplier += 0.25;
 			
 			output("Your [pc.cocks]");
 			if (pc.cocks.length > 1) output(" tingle and throb");
@@ -525,8 +525,11 @@ function vanaeTFScene():void
 				pc.balls = 2;
 			}
 			
-			if (pc.ballSize < 6) pc.ballSize += 0.1;
-			if (pc.ballSize < 4) pc.ballSize += 0.1;
+			if (pc.ballSize < 8)
+			{
+				if (pc.ballSize < 6) pc.ballSize += 0.1;
+				if (pc.ballSize < 4) pc.ballSize += 0.5;
+			}
 			
 			output("The new weight catches you by surprise as they hang lower and larger than before. <b>The size of your [pc.balls] has increased!</b>");
 			
@@ -888,7 +891,7 @@ function vanaeVictorySexIntro(scene:String):void
 
 	if (monster.lust() >= monster.lustMax())
 	{
-		output(" She seems to shiver with anticipation, clearly willing to"); 
+		output(". She seems to shiver with anticipation, clearly willing to"); 
 		if (pc.isAss()) output(" carry out your command");
 		else output(" fulfil your request");
 		output(".");
@@ -2423,7 +2426,11 @@ function vanaeHuntressPCDefeatTentafux():void
 	else output(" and tease your [pc.groin]");
 	output(", making you squirm with pleasure.");
 	if (isCunt) output(" You gush around her [monster.tail]");
-	if (!isCunt && pc.hasVagina()) output(" Your [pc.cunts] are sopping wet");
+	else if (!isCunt && pc.hasVagina())
+	{
+		if (pc.vaginas.length == 1) output(" Your [pc.cunt] is sopping wet");
+		else output(" Your [pc.cunts] are sopping wet");
+	}
 	else output(" Even more [pc.cum] dribbles from your [pc.cocks]");
 	output(" as she teases and screws you with her assorted tentacles.");
 
