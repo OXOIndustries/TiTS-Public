@@ -669,9 +669,42 @@ function BonusFunction210():Boolean
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" Shafts of outside light cut into the artificial brilliance of the tunnel's lamps to the west, indicating a way outside.");
 	return false;
 }
+
 function bonusFunction213():Boolean
 {
 	if(flags["TARKUS_DESTROYED"] == undefined) output(" An enclosed bulkhead to the south houses a narrow entryway of some kind. Black marks around the perimeter of the door indicate at least one explosion has gone off on the other side.");
 	else output(" A solid metal plate has been welded over a charred doorway to the south and a bright red \'X\' spraypainted across it.");
+	return false;
+}
+
+function novaShipHangarElevator():Boolean
+{
+	if (flags["DECK13_COMPLETE"] == undefined)
+	{
+		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
+	}
+	else
+	{
+		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
+		
+		addButton(0, "Main Deck", move, "NOVA MAIN DECK ELEVATOR");
+		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	}
+	return false;
+}
+
+function novaMainDeckElevator():Boolean
+{
+	if (flags["DECK13_COMPLETE"] == undefined)
+	{
+		output("\n\nYou step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes.");
+	}
+	else
+	{
+		output("\n\nYou step up to the elevator and press the call button. Seconds later the doors slide open to reveal the interior of a large, albeit rusted and well worn cargo elevator.");
+		addButton(0, "Hangar Deck", move, "NOVA SHIP DECK ELEVATOR");
+		addButton(1, "Deck 13", move, "DECK 13 ELEVATOR SHAFT");
+	}
+	
 	return false;
 }

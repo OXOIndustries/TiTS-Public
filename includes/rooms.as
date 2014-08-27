@@ -1571,11 +1571,33 @@ function initializeRooms():void
 	rooms["201"].roomName = "SHIP\nHANGAR";
 	rooms["201"].description = "You're in the main dock of Novahome, the starship wreckage that currently serves as the raskvel home city. Several dozen of the little scaly creatures are running around, helping to load or offload other ships as they come and go from the Nova's dock. Most of them are heading east across the suitably massive hangar; you'll have to walk for some time to traverse the whole of it. Distantly, you can make out a service corridor next to a broken-down cargo-elevator. That'd be your ticket anywhere.";
 	rooms["201"].runOnEnter = firstTimeOnTarkusBonus;
+	rooms["201"].northExit = "NOVA SHIP DECK ELEVATOR";
 	rooms["201"].eastExit = "202";
 	rooms["201"].planet = "PLANET: TARKUS";
 	rooms["201"].system = "SYSTEM: REDACTED";
 	rooms["201"].addFlag(GLOBAL.INDOOR);
 	rooms["201"].addFlag(GLOBAL.SHIPHANGAR);
+	
+	rooms["NOVA SHIP DECK ELEVATOR"] = new RoomClass(this);
+	rooms["NOVA SHIP DECK ELEVATOR"].roomName = "NOVA:\nHANGAR DECK";
+	rooms["NOVA SHIP DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
+	rooms["NOVA SHIP DECK ELEVATOR"].runOnEnter = novaShipHangarElevator;
+	rooms["NOVA SHIP DECK ELEVATOR"].southExit = "201";
+	rooms["NOVA SHIP DECK ELEVATOR"].planet = "PLANET: TARKUS";
+	rooms["NOVA SHIP DECK ELEVATOR"].system = "SYSTEM: REDACTED";
+	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
+	// Temp flag so I don't have to clobber fla with changes atm
+	rooms["NOVA SHIP DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
+	
+	rooms["NOVA MAIN DECK ELEVATOR"] = new RoomClass(this);
+	rooms["NOVA MAIN DECK ELEVATOR"].roomName = "NOVA:\MAIN DECK";
+	rooms["NOVA MAIN DECK ELEVATOR"].description = "You approach the doors of an immensely large cargo elevator, clearly designed to shift monsterously huge equipment around the interior of the Nova.";
+	rooms["NOVA MAIN DECK ELEVATOR"].runOnEnter = novaMainDeckElevator;
+	rooms["NOVA MAIN DECK ELEVATOR"].southExit = "210";
+	rooms["NOVA MAIN DECK ELEVATOR"].planet = "PLANET: TARKUS";
+	rooms["NOVA MAIN DECK ELEVATOR"].system = "SYSTEM: REDACTED";
+	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.INDOOR);
+	rooms["NOVA MAIN DECK ELEVATOR"].addFlag(GLOBAL.LIFT);
 
 	//#2 Eastern Hangar
 	rooms["202"] = new RoomClass(this);
@@ -1676,6 +1698,7 @@ function initializeRooms():void
 	rooms["210"].runOnEnter = BonusFunction210;
 	rooms["210"].eastExit = "207";
 	rooms["210"].westExit = "211";
+	rooms["210"].northExit = "NOVA MAIN DECK ELEVATOR";
 	rooms["210"].planet = "PLANET: TARKUS";
 	rooms["210"].system = "SYSTEM: REDACTED";
 	rooms["210"].addFlag(GLOBAL.INDOOR);
@@ -3050,7 +3073,7 @@ function initializeRooms():void
 	rooms["DECK 13 SECURITY CHECKPOINT"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 SECURITY CHECKPOINT"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 SECURITY CHECKPOINT"].northExit = "DECK 13 REACTOR";
-	rooms["DECK 13 SECURITY CHECKPOINT"].eastExit = "DECK 13 ARMOR";
+	rooms["DECK 13 SECURITY CHECKPOINT"].eastExit = "DECK 13 ARMORY";
 	rooms["DECK 13 SECURITY CHECKPOINT"].southExit = "DECK 13 AIRLOCK";
 	rooms["DECK 13 SECURITY CHECKPOINT"].westExit = "DECK 13 ELEVATOR SHAFT";
 	rooms["DECK 13 SECURITY CHECKPOINT"].addFlag(GLOBAL.INDOOR);
@@ -3072,6 +3095,7 @@ function initializeRooms():void
 	rooms["DECK 13 ELEVATOR SHAFT"].system = "SYSTEM: REDACTED";
 	rooms["DECK 13 ELEVATOR SHAFT"].eastExit = "DECK 13 SECURITY CHECKPOINT";
 	rooms["DECK 13 ELEVATOR SHAFT"].addFlag(GLOBAL.INDOOR);
+	rooms["DECK 13 ELEVATOR SHAFT"].addFlag(GLOBAL.LIFT);
 
 	rooms["DECK 13 REACTOR"] = new RoomClass(this);
 	rooms["DECK 13 REACTOR"].roomName = "DECK 13\nREACTOR";
@@ -3098,7 +3122,6 @@ function initializeRooms():void
 	rooms["DECK 13 SHIELD CONTROL"].runOnEnter = deck13ShieldControlFunc;
 	rooms["DECK 13 SHIELD CONTROL"].planet = "PLANET: TARKUS";
 	rooms["DECK 13 SHIELD CONTROL"].system = "SYSTEM: REDACTED";
-	rooms["DECK 13 SHIELD CONTROL"].southExit = "DECK 13 VENTS";
 	rooms["DECK 13 SHIELD CONTROL"].westExit = "DECK 13 SECONDARY REACTOR";
 	rooms["DECK 13 SHIELD CONTROL"].addFlag(GLOBAL.INDOOR);
 

@@ -40,9 +40,11 @@ package classes.Characters
 			this.meleeWeapon = new GooeyPsuedopod();
 			(this.meleeWeapon as GooeyPsuedopod).attack = 3;
 			(this.meleeWeapon as GooeyPsuedopod).damage = 12;
+			(this.meleeWeapon as GooeyPsuedopod).hasRandomProperties = true;
 			
 			this.armor = new GooeyCoverings();
 			(this.armor as GooeyCoverings).defense = 3;
+			(this.armor as GooeyCoverings).hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
 			

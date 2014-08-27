@@ -39,7 +39,7 @@ package classes.Items.Guns
 			
 			//Information
 			this.basePrice = 2000;
-			this.attack = 0;
+			this.attack = 2;
 			this.damage = 14;
 			this.damageType = GLOBAL.LASER;
 			this.defense = 0;

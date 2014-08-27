@@ -632,6 +632,9 @@
 		public static const OBJECTIVE:int						       = 9;
 		public static const HAZARD:int								   = 10;
 		public static const NOFAP:int 								   = 11;
+		
+		// Temp flag alias whilst the asset gets introduced
+		public static const LIFT:int = OBJECTIVE;
 
 		//PLOT FLAGS
 		public static const RECRUITED_CELISE:int                       = 0;

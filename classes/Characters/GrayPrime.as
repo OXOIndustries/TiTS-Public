@@ -40,9 +40,11 @@ package classes.Characters
 			this.meleeWeapon = new GooeyPsuedopod();
 			(this.meleeWeapon as GooeyPsuedopod).attack = 2;
 			(this.meleeWeapon as GooeyPsuedopod).damage = 11;
+			(this.meleeWeapon as GooeyPsuedopod).hasRandomProperties = true;
 			
 			this.armor = new GooeyCoverings();
 			(this.armor as GooeyCoverings).defense = 3;
+			(this.armor as GooeyCoverings).hasRandomProperties = true;
 			
 			this.rangedWeapon = new EmptySlot();
 			
@@ -55,7 +57,7 @@ package classes.Characters
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
 			this.lustRaw = 15;
-			this.resistances = [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8];
+			this.resistances = [1, 1, 1, 1, 1, 1, 1, 1];
 			this.XPRaw = 250;
 			this.level = 5;
 			this.credits = 0;

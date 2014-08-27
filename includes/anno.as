@@ -13,6 +13,12 @@ function annoSexed(arg:int = 0):int {
 	return flags["ANNO_SEXED"];
 }
 
+function haveFuckedAnno():Boolean
+{
+	if (flags["ANNO_SEXED"] == undefined) return false;
+	return true;
+}
+
 function steeleTechTarkusShopAvailable():Boolean
 {
 	if (flags["ANNOS_SHOP_CLOSED"] == undefined || flags["ANNOS_SHOP_CLOSED"] == 0) return true;
@@ -29,7 +35,7 @@ function steeleTechTarkusOutsideFunction():Boolean
 	}
 	else
 	{
-		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although it's usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: \"CLOSED\".");
+		output("\n\nSet into the wall of the main corridor through the <i>Nova</i> is a smallish shop bearing your name: a broken neon \"Steele Tech\" sign hangs above the door, although it's usual garish glow is absent, having been turned off. A dusty window set in side of the shop shows stacks of salvaged tech from the now-lost wastelands, along with a much smaller sign in the door: ‘CLOSED’.");
 	}
 	
 	return false;
@@ -1633,7 +1639,7 @@ function firstTimeBackAfterPlanetSplosionsButMetAnnoBefore():void
 	clearMenu();
 	// addDisabledButton(0, "Join Crew", "Join Crew", "Whoah there, space cowboy! This encounter isn't coded yet.");
 	addButton(0, "Join Crew", joinCrewPlanetCrackerVersion, undefined, "Join Crew", "Invite Anno to join your crew.");
-	addButton(1, "Hold Up",holdOnAnno,undefined,"Hold Up","You aren't ready to take her on as crew just yet.")
+	addButton(1, "Hold Up", holdOnAnno,undefined,"Hold Up","You aren't ready to take her on as crew just yet.")
 }
 
 function joinCrewPlanetCrackerVersion():void
@@ -1708,7 +1714,7 @@ function joinCrewPlanetCrackerVersionSheWantsIt():void
 	output("\n\n“<i>Then what’s the problem? You’re not a slave to the company. You can do whatever you want. If you want to come with me on awesome adventures, then quit this stupid desk job and get your things.</i>” ");
 	
 	// PC hasn’t fucked Anno
-	if (!annoSexed())
+	if (!haveFuckedAnno())
 	{
 		output("\n\nShe thinks about it for a long moment, chewing her lip, tail tucked between her legs. Finally, she sighs. “<i>I... I can’t do that, [pc.name]. God, I want to, but... Victor put me here for a reason. I can’t just quit. Not after everything he’s done for me.</i>”");
 	
@@ -1772,7 +1778,7 @@ function joinCrewPlanetFineVersion():void
 	output("\n\n“<i>You have interns?</i>”");
 	
 	output("\n\n“<i>Exactly!</i>”");
-	if (annoSexed())
+	if (haveFuckedAnno())
 	{
 		output(" She sighs, rubbing her temples. “<i>Look, boss, I’d like to come with you. I really would. But Corporate would have my ass if I left, and I don’t feel like being out of a job - even a job here on a backwater shithole.</i>”");
 	
@@ -1790,7 +1796,7 @@ function joinCrewPlanetFineVersion():void
 	
 	// {Take player to talk menu proper. Add "Mission"}
 	clearMenu();
-	addButton(0, "Next", annoTalkMenu, undefined);
+	annoTalkMenu();
 }
 
 function joinCrewMissionComplete():void
@@ -1903,7 +1909,7 @@ function annoBonusCombatAttackShit():void
 	{
 		//	Anno has the following attacks/abilities in all combats:
 		// Add to combat view:
-		output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.\n");
+		output("\nAnno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.");
 
 		// Targetting Computers
 		// Increases player accuracy temporarily
@@ -1959,7 +1965,7 @@ function annoHPBoost():void
 
 	var hpGained:int = pc.HPMax()*0.1;
 
-	output(" <b>Gained " + hpGained + " health!</b>\n");
+	output(" <b>Gained " + hpGained + " health!</b>");
 
 	pc.HP(hpGained);
 
@@ -1982,7 +1988,6 @@ function annoRegularAttack(bonusDamage:int = 0):void
 
 		genericDamageApply(14 + bonusDamage, anno, foes[0], GLOBAL.KINETIC);
 	}
-	output("\n");
 }
 
 function deck13AirlockFunc():Boolean
@@ -1993,8 +1998,6 @@ function deck13AirlockFunc():Boolean
 
 		clearOutput();
 		author("Savin");
-		showBust("ANNO");
-		showName("\nANNO");
 
 		output("The grappling gun CLANGs against the outer hull, and a moment later you and Anno are rocketing up the side of the ship towards the mysterious Deck 13. You come to a stop level with an old, rusty airlock. It’s at just such an angle that it would be invisible from the surface, and small enough to not be spotted at range.");
 
@@ -2014,9 +2017,7 @@ function deck13AirlockFunc():Boolean
 	else
 	{
 		author("Savin");
-		showBust("ANNO");
-		showName("\nANNO");
-
+		
 		if (flags["ANNO_MISSION_OFFER"] == 2)
 		{
 			output("\n\nAnno is poking around among the space suits, muttering to herself about the age of everything here.");
@@ -2284,7 +2285,7 @@ function deck13WeaponRacks():void
 	clearOutput();
 	author("Savin");
 
-	output("You step up to the weapon racks at the back of the room. There are several weapons bolted to the wall, but a few are lying out, just ripe for the taking...");
+	output("You step up to the weapon racks at the back of the room. There are several weapons bolted to the wall, but a few are lying out, just ripe for the taking...\n\n");
 
 	clearMenu();
 	if (flags["DECK13_TAKEN_PISTOL"] == undefined)
@@ -2292,7 +2293,7 @@ function deck13WeaponRacks():void
 		addButton(0, "Nova Pistol", function():void
 		{
 			flags["DECK13_TAKEN_PISTOL"] = 1;
-			quickLoot([new NovaPistol()]);
+			quickLoot(new NovaPistol());
 		});
 	}
 
@@ -2301,7 +2302,7 @@ function deck13WeaponRacks():void
 		addButton(1, "Nova Rifle", function():void
 		{
 			flags["DECK13_TAKEN_RIFLE"] = 1;
-			quickLoot([new NovaRifle()]);
+			quickLoot(new NovaRifle());
 		});
 	}
 
@@ -2321,7 +2322,7 @@ function deck13Robots():void
 
 function deck13ElevatorFunc():Boolean
 {
-	if (flags["DECK13_COMPLETE"] != undefined)
+	if (flags["DECK13_COMPLETE"] == undefined)
 	{
 		clearOutput();
 		output("You step up to the elevator and press the call button. Immediately, the doors slide open, but no car comes. ");
@@ -2335,8 +2336,8 @@ function deck13ElevatorFunc():Boolean
 	else
 	{
 		output("You're in the central elevator shaft, looking out into the empty security checkpoint. This can take you back up to the main floor of the <i>Nova</i>, or up to the docks.");
-		addButton(0, "Docks", move, "???"); // Need an elevator "room" to add near the docks -- there's words about a non-functional elevator up there
-		addButton(1, "Main Deck", move, "???"); // Dunno where this would shit you out.
+		addButton(0, "Docks", move, "NOVA SHIP DECK ELEVATOR"); // Need an elevator "room" to add near the docks -- there's words about a non-functional elevator up there
+		addButton(1, "Main Deck", move, "NOVA MAIN DECK ELEVATOR"); // Dunno where this would shit you out.
 		return false;
 	}
 }
@@ -2346,7 +2347,7 @@ function deck13ReactorRoomFunc():Boolean
 	variableRoomUpdateCheck();
 	if (flags["DECK13_REACTOR_DOOR_OPEN"] == undefined)
 	{
-		output("\n\nNot far past the security checkpoint is a long tunnel marked “<i>Secondary Reactor Bay.</i>” The way forward, however, is sealed: a huge blast door has slid down, blocking your passage.");
+		output("Not far past the security checkpoint is a long tunnel marked “<i>Secondary Reactor Bay.</i>” The way forward, however, is sealed: a huge blast door has slid down, blocking your passage.");
 		
 		output("\n\n“<i>There’s a loose access panel over there,</i>” Anno says, pointing it out. “<i>Might be able to squeeze through there.</i>”");
 	}
@@ -2357,10 +2358,10 @@ function deck13ReactorRoomFunc():Boolean
 	return false;
 }
 
-function deck13VentAccessShaftFunc():void
+function deck13VentAccessShaftFunc():Boolean
 {
 	//First time PC attempts access
-	output("\n\n“<i>Alright, let’s see what we’ve got here,</i>” Anno says, grabbing the loose panel hanging off of the hull. “<i>Might be able to squeeze through all the wires. Heh, reminds me of working on the warp gates back at Akkadi. For such huge fucking things, you’d be amazed how cramped they are. Wires everywhere, have to bend over all the time when you’re working. Not that I mind bending over for work, if you know what I mean,</i>” she says with a wink, yanking the panel off and tossing it up against the wall. It clangs and clatters as it drops, the sound echoing through the chamber. ");
+	output("“<i>Alright, let’s see what we’ve got here,</i>” Anno says, grabbing the loose panel hanging off of the hull. “<i>Might be able to squeeze through all the wires. Heh, reminds me of working on the warp gates back at Akkadi. For such huge fucking things, you’d be amazed how cramped they are. Wires everywhere, have to bend over all the time when you’re working. Not that I mind bending over for work, if you know what I mean,</i>” she says with a wink, yanking the panel off and tossing it up against the wall. It clangs and clatters as it drops, the sound echoing through the chamber. ");
 
 	output("\n\nAnno winces at the commotion, covering her big ears. When it finally dies down, she peeks into the shaft. “<i>Yeah, I think I can get through there. Let me just-</i>” she starts to say, before the back of the access panel explodes. You stumble back, covering your eyes as shrapnel goes flying and... and a great big fucking gray hand reaches up through the hole, grabs Anno by the head, and sucks her through like a noodle. She doesn’t even have time to scream.");
 
@@ -2368,6 +2369,8 @@ function deck13VentAccessShaftFunc():void
 
 	clearMenu();
 	addButton(0, "Jump In", move, "DECK 13 SHIELD CONTROL");
+	
+	return true;
 }
 
 function deck13ShieldControlFunc():Boolean
@@ -2395,7 +2398,7 @@ function deck13ShieldControlFunc():Boolean
 		}
 		else
 		{
-			output("\n\n“<i>Gray goo!</i>” Anno snaps, drawing down on the feminine figure before you. You cock an eyebrow, also drawing your [ranged.Weapon]. “<i>They’re all over Tarkus, boss. Try and drain you dry of sex-juice. But they’re normally all big-titted bimbos. This one’s... different,</i>” she says, looking the creature up and down. ");
+			output("\n\n“<i>Gray goo!</i>” Anno snaps, drawing down on the feminine figure before you. You cock an eyebrow, also drawing your [pc.rangedWeapon]. “<i>They’re all over Tarkus, boss. Try and drain you dry of sex-juice. But they’re normally all big-titted bimbos. This one’s... different,</i>” she says, looking the creature up and down. ");
 		
 			output("\n\nIt stands on two long, well-formed legs that run from a pair of tall boots up into a knee-length skirt of goo it’s grown around itself, with a tight blouse tucked into it -- also made of goo -- that strains against a pair of perky, large breasts that aren’t nearly as comically over-stated as her sisters’ are. Her hair is almost real looking, with fully textured individual strands running down her back in a tight ponytail. If it weren’t for the swirling, moving gray sheen that makes up her entire body, she could easily pass for a human woman, maybe twenty five years of age. Young, tall, athletic, almost grave.");
 		}
@@ -2488,8 +2491,8 @@ function grayPrimeGooSword():void
 	{
 		output(" You duck back just in time, turning what might have been a mortal blow into a stinging graze. She isn't playing around!");
 
-		var damage:int = foes[0].damage(false) + foes[0].aim()/2;
-		damage *= (100 + (15-rand(30)))/100;
+		var damage:int = foes[0].damage(true) + foes[0].aim()/2;
+		damage *= ((100 + (15-rand(30)))/100);
 		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 	}
 }
@@ -2580,8 +2583,8 @@ function grayPrimeForcePunch():void
 	{
 		output(" Her fist slams into you like a freighter, cracking into your face and sending you plummeting to the ground. Oh, fuck, that hurt!");
 
-		var damage:int = foes[0].damage(false) + foes[0].aim() / 2 + 20;
-		damage *= 100 + (15-rand(30))/100;
+		var damage:int = foes[0].damage(true) + foes[0].aim() / 2 + 20;
+		damage *= ((100 + (15-rand(30)))/100);
 		genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 
 		// 25% of knockdown
@@ -2597,7 +2600,8 @@ function grayPrimeForcePunch():void
 function grayPrimeLustfulClones():void
 {
 	//The Gray Prime creates 1d4+1 stripper clones. Each makes a light lust attack each turn until destroyed. Basically Mirror Image but worse. 
-	output("\nThe goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. “<i>Why don’t you just surrender? I could use a few tough new sources of lubricant...</i>” she teases, shifting to emphasize her cleavage and jiggling it at you. As she does so, several mounds of gray goo arise from the deck, slowly forming into new goo-girls. Each is a near-perfect clone of the first, though butt-naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
+	output("The goo-girl takes a step back from you and Anno, dropping her sword and instead moving her fingers up to the buttons on her blouse, pulling them apart with a flourish to let her ample rack bounce free: two perfectly formed, glistening wet orbs of nanomachine flesh that look too good to not squeeze and grope. “<i>Why don’t you just surrender? I could use a few tough new sources of lubricant...</i>” she teases, shifting to emphasize her cleavage and jiggling it at you.");
+	output("\n\nAs she does so, several mounds of gray goo arise from the deck, slowly forming into new goo - girls. Each is a near - perfect clone of the first, though butt - naked and with greatly overstated busts, hips, and asses, all of which are almost cartoonishly big. The new girls smile and shake what their programmer gave them, wiggling their hips and cupping their tits at you.");
 
 	var createClones:int = 1 + rand(4);
 	if (foes[0].hasStatusEffect("Gooclones"))
@@ -2613,7 +2617,7 @@ function grayPrimeLustfulClones():void
 //Clone Tease Attack
 function grayPrimeCloneLustAttack():void
 {
-	output("\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
+	output("\n\nOne of the lust clones shakes her hips and titties at you, trying to entice you into sex!");
 	pc.lustDamage(foes[0].statusEffectv1("Gooclones"));
 }
 
@@ -2641,11 +2645,11 @@ function grayPrimeAttackAnno():void
 	if (combatMiss(foes[0], anno))
 	{
 		output(" Anno leaps out of the way as the goo-girl lunges for her! “<i>Bitch!</i>” the goo shouts. “<i>I’m not almost human! I’M MORE HUMAN THAN YOU ARE.</i>”");
-		output("\n\n“<i>I’m an ausar, you stupid cunt!</i>”");
+		output("\n\n“<i>I’m an ausar, you stupid cunt!</i>”\n");
 	}
 	else
 	{
-		output(" The gray goo’s hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno’s hand. “<i>Almost human, was it? I’LL SHOW YOU ALMOST HUMAN!</i>”");
+		output(" The gray goo’s hand lashes out, grabbing Anno by the neck and slamming your companion up against the bulkhead, choking her. Anno thrashes out, punching the goo square in the face... only for its face to deform around her fist, letting it pass straight through and hardening around it, trapping Anno’s hand. “<i>Almost human, was it? I’LL SHOW YOU ALMOST HUMAN!</i>”\n");
 
 		foes[0].createStatusEffect("AnnoGrapple", 0, 0, 0, 0, true, "Constrict", "The Gray Prime has Anno in her clutches!", true, 0);
 	}	
@@ -2653,14 +2657,14 @@ function grayPrimeAttackAnno():void
 
 function grayPrimeAnnoGrapple():void
 {
-	output("\nAnno struggles against the gray goo's assault, trying to escape her death-grasp.");
+	output("Anno struggles against the gray goo's assault, trying to escape her death-grasp.\n");
 
 	if (rand(3) == 0) foes[0].createStatusEffect("AnnoEscape");
 }
 
 function grayPrimeAnnoEscape():void
 {
-	output("\nAnno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. “<i>I’m fine, I’m fine!</i>” Anno groans, rubbing at her throat, now visibly bruising.");
+	output("Anno finally brings her gun to bear and fires, pumping her entire magazine into the goo\’s tits. The gray body explodes in a rain of goop, only to reform a moment later across the room as Anno slams a new mag into her holdout. “<i>I’m fine, I’m fine!</i>” Anno groans, rubbing at her throat, now visibly bruising.\n");
 	foes[0].removeStatusEffect("AnnoGrapple");
 	foes[0].removeStatusEffect("AnnoEscape");
 }
@@ -2668,7 +2672,7 @@ function grayPrimeAnnoEscape():void
 function victoryOverGrayPrime():void
 {
 	// HP Victory
-	if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2)
+	if (foes[0].HP() <= 1 && (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined || flags["GRAY_PRIME_DEFEATED_VIA_HP"] < 2))
 	{
 		if (flags["GRAY_PRIME_DEFEATED_VIA_HP"] == undefined) flags["GRAY_PRIME_DEFEATED_VIA_HP"] = 0;
 		flags["GRAY_PRIME_DEFEATED_VIA_HP"]++;
@@ -2689,10 +2693,12 @@ function victoryOverGrayPrime():void
 		output("\n\n“<i>Oh, shit.</i>”");
 
 		// {Goo returned to FULL HEALTH}
+		showNPCStats();
 		foes[0].HP(foes[0].HPMax());
+		clearMenu();
 		addButton(0, "Next", combatMainMenu);
 	}
-	else if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 3)
+	else if (foes[0].HP() <= 1 && flags["GRAY_PRIME_DEFEATED_VIA_HP"] == 2)
 	{
 		clearOutput();
 		author("Savin");
@@ -2707,7 +2713,7 @@ function victoryOverGrayPrime():void
 		
 		output("\n\n“<i>What the...</i>” Anno breathes, struggling to her feet. “<i>What the hell was that thing?</i>”");
 		
-		output("\n\n“<i>I don’t know,</i>” you say, helping her up. “<i>But I don’t think we’ve seen the last of it.</i>”");
+		output("\n\n“<i>I don’t know,</i>” you say, helping her up. “<i>But I don’t think we’ve seen the last of it.</i>”\n\n");
 
 		genericVictory();
 	}
@@ -2725,7 +2731,7 @@ function victoryOverGrayPrime():void
 		
 		output("\n\n“<i>What did she mean ‘like them’?</i>” Anno mumbles as you help her up to her feet. “<i>What was that thing, even?</i>”");
 		
-		output("\n\n“<i>I don’t know,</i>” you say. “<i>But I don’t think we’ve seen the last of it.</i>”");
+		output("\n\n“<i>I don’t know,</i>” you say. “<i>But I don’t think we’ve seen the last of it.</i>”\n\n");
 
 		// [Room Menu Go]
 		genericVictory();
@@ -2859,7 +2865,7 @@ function deck13GooSample():void
 	if (flags["DECK13_SAMPLES_TAKEN"] == undefined) flags["DECK13_SAMPLES_TAKEN"] = 0;
 	flags["DECK13_SAMPLES_TAKEN"]++;
 
-	quickLoot([new GrayMicrobots()]);
+	quickLoot(new GrayMicrobots());
 }
 
 function deck13SecondaryReactorFunc():Boolean
@@ -3245,7 +3251,7 @@ function gigaGooPunch():void
 		output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 	}
 
-	var damage:int = foes[0].damage(false) + foes[0].aim() / 2;
+	var damage:int = foes[0].damage(true) + foes[0].aim() / 2;
 	damage *= (100 + (15-rand(30)))/100;
 	genericDamageApply(damage, foes[0], pc, GLOBAL.KINETIC);
 }
@@ -3264,7 +3270,7 @@ function gigaGooSwordThrust():void
 	{
 		output(" You cry out in pain as the immense goo-sword strikes you, tearing through the ancient steel of the elevator cart with ease.");
 
-		var damage:int = foes[0].damage(false) + foes[0].aim() + foes[0].reflexes() + 25;
+		var damage:int = foes[0].damage(true) + foes[0].aim() + foes[0].reflexes() + 25;
 		damage *= (100 + (25-rand(50)))/100;
 		genericDamageApply(damage, foes[0], pc, GLOBAL.PIERCING);
 	}
@@ -3388,7 +3394,7 @@ function annoPostQuestSexytimes():void
 	showName("DECK 13\nEPILOGUE");
 	showBust("ANNO");
 
-	output("\n\n“<i>Wouldn’t miss it,</i>” you grin,");
+	output("“<i>Wouldn’t miss it,</i>” you grin,");
 	if (pc.tallness > 5 * 12) output(" sweeping Anno up off her feet and carrying the giggling, tail-wagging bundle of horny ausar down the stairs.");
 	else output(" rushing after the snowy ausar and grabbing a handful of her ass as you walk. She swishes her tail playfully across your face, letting it drape around your shoulders, holding you close as you slip into her apartment.");
 	
