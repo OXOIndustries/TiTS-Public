@@ -7136,7 +7136,7 @@
 					if (temp <= 2) vag += "drooling";
 					else if (temp <= 5) vag += "dripping";
 					else vag += "lube-leaking";
-				} else if (vaginas[vaginaNum].wetness() <= 5) {
+				} else {
 					temp = this.rand(12);
 					if (temp <= 2) vag += "slavering";
 					else if (temp <= 5) vag += "slobbering";

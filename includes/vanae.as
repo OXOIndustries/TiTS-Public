@@ -947,12 +947,16 @@ function vanaeVictorySexIntro(scene:String):void
 function vanaeMaidenTakeVirginity():void
 {
 	var selCock:int = pc.cockThatFits(217);
-
+	var pcWonFight:Boolean = false;
+	
+	
 	// Won fight
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
 	{
 		clearOutput();
 		vanaeHeader("VICTORY: VANAE\n");
+		
+		pcWonFight = true;
 
 		output("Getting down on all fours, the youthful huntress reaches down and tentatively touches [pc.oneCock]. She lets out a surprised noise as her slender fingers dance along your length. It is clearly the first time she’s ever felt a cock, let alone one like yours.");
 
@@ -1066,16 +1070,21 @@ function vanaeMaidenTakeVirginity():void
 	
 	output("\n\n");
 	
-	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1) genericVictory();
+	if (pcWonFight) genericVictory();
 	else genericLoss();
 }
 
 function vanaeMaidenCunnilingus():void
 {
+	var pcWonFight:Boolean = false;
+	
 	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1)
 	{
 		clearOutput();
 		vanaeHeader("VICTORY: VANAE\n");
+		
+		pcWonFight = true;
+		
 		output("You tell the virgin huntress to lie back on the ground and spread her [monster.thighs]. She meekly obeys your command, getting down and parting them as far as she can. She bashfully exposes the vulnerable pink-tinted skin of her inner loins to you, letting you drink it up with your hungry eyes. ");
 
 		output("\n\nHer webbed hands come down and part her short tentacle skirt. Her [monster.pussyNoun] is cute and pink, two tiny clits poking out from her puffy lips. You can see a glistening wetness on her unsullied flower, just begging to be licked off.");
@@ -1139,7 +1148,8 @@ function vanaeMaidenCunnilingus():void
 	output("\n\n");
 	
 	processTime(30+rand(10));
-	if (foes[0].lust() >= foes[0].lustMax() || foes[0].HP() <= 1) genericVictory();
+	
+	if (pcWonFight) genericVictory();
 	else genericLoss();
 }
 
