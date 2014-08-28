@@ -1957,6 +1957,7 @@ function annoSensorLinkBuff():void
 	output(", linking up with your own equipment in the process. <b>Accuracy increased!</b>\n");
 
 	pc.createStatusEffect("Sensor Link", 5, 0, 0, 0, false, "Radio", "Anno has linked her equipments targetting systems with yours, improving your combat accuracy.", true, 0);
+	pc.aimMod += 5;
 }
 
 function annoHPBoost():void
