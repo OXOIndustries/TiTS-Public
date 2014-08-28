@@ -3411,10 +3411,14 @@ function annoPostQuestSexytimes():void
 		if (pc.cocks.length == 1) output("s");
 		output(" with your own mounting need, hard and hot against Anno’s bare thigh, so close to penetration you can almost feel the heat welling off of her sultry sex. One of her hands wraps around your turgid member, gently stroking it as she pulls your [pc.gear] away.");
 	}
-	else if (pc.hasVagina()) output(" Your own [pc.cunts]");
-	if (pc.vaginas.length > 1) output(" are");
-	else output(" is");
-	output(" boiling with need, running slick with excitement as you drink in your lover’s scent. You give a little moan as Anno finally returns the favor, one of her white-clad hands brushing aside your [pc.gear] and tracing across the lips of your [pc.cunt].");
+	else if (pc.hasVagina())
+	{
+		output(" Your own [pc.cunts]");
+		if (pc.vaginas.length > 1) output(" are");
+		else output(" is");
+		output(" boiling with need, running slick with excitement as you drink in your lover’s scent. You give a little moan as Anno finally returns the favor, one of her white-clad hands brushing aside your [pc.gear] and tracing across the lips of your [pc.cunt].");
+	}
+	
 	output(" Breathless, Anno desperately pulls your [pc.gear] off to let it clatter to the floor before giving you a push through the bathroom door. ");
 	
 	output("\n\nYou all but tumble into the shower stall, and a blind, snow-furred hand clumsily reaches out towards the dial, cranking the water on around you. You gasp as the first gout of hot water splashes over you, only to find yourself shoved up against the wall of the stall as Anno frees herself from your grasp and takes charge, slipping down to her knees and spreading your [pc.legs] apart. ");
