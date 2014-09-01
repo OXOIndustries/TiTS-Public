@@ -9,11 +9,17 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/aliss.png", mimeType = "image/png")]
 		public var Bust_ALISS:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/cheshire/Carl.png", mimeType = "image/png")]
+		public var Bust_CARL:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Cunt_Snake.png", mimeType = "image/png")]
 		public var Bust_CUNTSNAKE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/Dr_Haswell.png", mimeType = "image/png")]
+		public var Bust_DR_HASWELL:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
@@ -32,6 +38,12 @@ package classes.Resources.Busts
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/milodanmale.png", mimeType = "image/png")]
 		public var Bust_MILODANMALE:Class;
+		
+		[Embed(source = "../../../assets/images/npcs/cheshire/Naleen_Female.png", mimeType = "image/png")]
+		public var Bust_NALEEN:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/Naleen_Male.png", mimeType = "image/png")]
+		public var Bust_NALEEN_MALE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/cheshire/Penny.png", mimeType = "image/png")]
 		public var Bust_PENNY:Class;
