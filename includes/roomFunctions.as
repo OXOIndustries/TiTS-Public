@@ -708,3 +708,25 @@ function novaMainDeckElevator():Boolean
 	
 	return false;
 }
+
+function newTexasRoadFirstTime():Boolean
+{
+	//First time:
+	if(flags["SEEN_TEXAS_SURFACE"] == undefined)
+	{
+		output("So this is New Texas, the pastoral paradise, huh? With the seemingly endless blue sky, rustic-looking structures, and rolling fields of grass and grain, you can see where it got its name. Presently you've stepped out onto a bumpy dirt road; it's fortunate the locals rely on hover-based transit over primitive wheel systems, or they'd need to invest a little more heavily into their infrastructure. A huge barn looms over you to the south. Just inside the doors, you know there's a customs checkpoint and more ships than you bother to count. To the north sits a ranch house, the kind with a big, elevated porch that would normally house a farmer and his extended family. This one is dressed up with a bit of extra flair. Signs declare it to be the official visitor's center.");
+		flags["SEEN_TEXAS_SURFACE"] = 1;
+	}
+	//Repeat
+	else
+	{
+		output("You recognize this spot on the dusty country road. It's where you got your first real look at New Texas' so-called pastoral paradise. The whole place is built up in the style of old terran farms. The hangar is designed to resemble a gigantic barn, despite its contents being made of gleaming metal instead of flesh. Off to the northeast is a fancy ranch house, replete with a fenced-in porch, rocking chairs, and a dazzlingly white coat of paint. In other directions are fenced off fields.");
+	}
+	return false;
+}
+
+function manMilkerRoomBonusFunc():Boolean
+{
+	addButton(0,"Use Milker",useDaMilkar,undefined,"Use Milker","Use the male milker. It looks to function based off of prostate stimulation.");
+	return false;
+}
