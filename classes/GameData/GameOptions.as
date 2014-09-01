@@ -15,6 +15,7 @@ package classes.GameData
 			bustFallbacks = true;
 			easyMode = false;
 			debugMode = false;
+			fontSize = 18;
 		}
 		
 		public function setBustPriority(artist:String, priority:int):void
@@ -70,6 +71,11 @@ package classes.GameData
 		
 		// Silly
 		public var sillyMode:Boolean;
+		
+		// Text Settings
+		
+		// FontSize
+		public var fontSize:int;
 		
 	}
 

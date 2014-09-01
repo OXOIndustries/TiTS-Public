@@ -4,6 +4,7 @@ package classes.UIComponents.ContentModules
 	import classes.UIComponents.ContentModuleComponents.BustsPreferenceControl;
 	import classes.UIComponents.ContentModuleComponents.MainMenuButton;
 	import classes.UIComponents.ContentModuleComponents.OptionsControlToggle;
+	import classes.UIComponents.ContentModuleComponents.OptionsTextSizeControl;
 	import fl.containers.ScrollPane;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -67,6 +68,8 @@ package classes.UIComponents.ContentModules
 			addToggleControl("Toggle silly mode game content.", "Silly Mode", "sillyMode");
 			
 			addBustPreferenceControl();
+			
+			addFontSizeControl();
 		}
 		
 		/**
@@ -99,6 +102,16 @@ package classes.UIComponents.ContentModules
 				if (_pC != null) bpC.y = _pC.y + _pC.height;
 				_pC = bpC;
 			}
+		}
+		
+		private function addFontSizeControl():void
+		{
+			var fsC:OptionsTextSizeControl = new OptionsTextSizeControl();
+			_controls.push(fsC);
+			_controlsContainer.addChild(fsC);
+			
+			if (_pC != null) fsC.y = _pC.y + _pC.height + 10;
+			_pC = fsC;
 		}
 		
 		public function updateDisplay():void

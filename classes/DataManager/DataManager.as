@@ -646,6 +646,9 @@
 			// *throws up in mouth a little*
 			kGAMECLASS.phoenixSetMapState();
 			
+			// Trigger an attempt to update display font size
+			kGAMECLASS.refreshFontSize();
+			
 			if (kGAMECLASS.currentLocation == "CREATION")
 			{
 				kGAMECLASS.currentLocation = "TAVROS HANGAR";

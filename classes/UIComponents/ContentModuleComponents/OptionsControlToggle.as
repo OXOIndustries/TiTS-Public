@@ -36,7 +36,6 @@
 			_button.x = 780 - (_button.width + 10);
 			
 			_descriptionText = new TextField();
-			_descriptionText = new TextField();
 			_descriptionText.border = false;
 			_descriptionText.background = false;
 			_descriptionText.multiline = true;
@@ -45,7 +44,7 @@
 			_descriptionText.antiAliasType = AntiAliasType.ADVANCED;
 			_descriptionText.x = 5;
 			_descriptionText.y = 0;
-			_descriptionText.styleSheet = UIStyleSettings.gMainTextCSSStyleSheet;
+			_descriptionText.styleSheet = UIStyleSettings.gSharedStyleSheet;
 			_descriptionText.name = "text";
 			_descriptionText.htmlText = "<span class='words'><p>Descriptive words about an option. Shocking!</p></span>";
 			this.addChild(_descriptionText);

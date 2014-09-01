@@ -503,6 +503,11 @@
 			userInterface.addDisabledButton(slot);
 		}
 		
+		public function refreshFontSize():void
+		{
+			userInterface.refreshFontSize(gameOptions.fontSize);
+		}
+		
 		public function showCodex():void
 		{
 			this.userInterface.showCodex();

@@ -1029,6 +1029,98 @@ package classes.UIComponents
 			return UIStyleSettings._gMainTextCSSStyleSheet;
 		}
 		
+		private static var _gSharedStyleSheet:StyleSheet;
+		public static function get gSharedStyleSheet():StyleSheet
+		{
+			if (UIStyleSettings._gSharedStyleSheet == null)
+			{
+				UIStyleSettings._gSharedStyleSheet = new StyleSheet();
+				
+				var defaultFormat = { 
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FFFFFF",
+					marginRight: 5
+				};
+				
+				var good = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#00CCFF", 
+					marginRight: 5 
+				};
+				
+				var bad = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#CC3300", 
+					marginRight: 5 
+				};
+				
+				var indifferent = { 
+					fontFamily: "Lato", 
+					fontSize: 18, 
+					color: "#FFFFFF", 
+					marginRight: 5 
+				};
+				
+				var header = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 72,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
+				var blockHeader = {
+					fontFamily: "Univers UltraCondensed",
+					fontSize: 28,
+					color: "#FFFFFF",
+					marginRight: 5
+				}
+				
+				var lockedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#CC3300",
+					marginRight: 0
+				}
+				
+				var newCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#CCBC14",
+					marginRight: 0
+				}
+				
+				var viewedCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#FFFFFF",
+					marginRight: 0
+				}
+				
+				var activeCodexEntry = {
+					fontFamily: "Lato",
+					fontSize: 18,
+					color: "#00CCFF",
+					marginRight: 0,
+					fontWeight: "bold"
+				}
+				
+				UIStyleSettings._gSharedStyleSheet.setStyle(".words", defaultFormat);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".good", good);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".bad", bad);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".nothing", indifferent);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".header", header);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".blockHeader", blockHeader);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".locked", lockedCodexEntry);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".new", newCodexEntry);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".viewed", viewedCodexEntry);
+				UIStyleSettings._gSharedStyleSheet.setStyle(".active", activeCodexEntry);
+			}
+			return UIStyleSettings._gSharedStyleSheet;
+		}
+		
 		// Util methods
 		public static function cfgLabel(obj:TextField):void
 		{
