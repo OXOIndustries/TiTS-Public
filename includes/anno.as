@@ -3083,7 +3083,6 @@ function deck13GrayPrimeTalkDone():void
 	addButton(1, "Help: GrayGoo", deck13DecisionGoo, undefined, "Help: GrayGoo", "Shout some sense into Nova. The gray goo aren't worth saving. Just download into goo bodies and be done with it.");
 	addButton(2, "Stop Her", deck13DecisionStopHer, undefined, "Stop Her", "Steele Tech could make a mint off the gray goo research she's done, and not have to pay a dime... if you kill the bitch.");
 	addButton(3, "Anno?", deck13DecisionAskAnno, undefined, "Ask Anno", "Ask Anno what she thinks.");
-	addButton(4, "Leave");
 }
 
 function deck13DecisionBodies():void

@@ -12,8 +12,14 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/Celise.png", mimeType = "image/png")]
 		public var Bust_CELISE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cheshire/Cunt_Snake.png", mimeType = "image/png")]
+		public var Bust_CUNTSNAKE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Flahne.png", mimeType = "image/png")]
 		public var Bust_FLAHNE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/Kelly.png", mimeType = "image/png")]
+		public var Bust_KELLY:Class;
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Lapinara.png", mimeType = "image/png")]
 		public var Bust_LAPINARA:Class;
@@ -36,6 +42,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/cheshire/sellesy.png", mimeType = "image/png")]
 		public var Bust_SELLESY:Class;
 
+		[Embed(source = "../../../assets/images/npcs/cheshire/Syri.png", mimeType = "image/png")]
+		public var Bust_SYRI:Class;
+
 		[Embed(source = "../../../assets/images/npcs/cheshire/Venus_Pitcher.png", mimeType = "image/png")]
 		public var Bust_VENUSPITCHER:Class;
 
@@ -44,6 +53,9 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Female.png", mimeType = "image/png")]
 		public var Bust_ZILFEMALE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/cheshire/Zil_Male.png", mimeType = "image/png")]
+		public var Bust_ZIL:Class;
 	}
 
 }

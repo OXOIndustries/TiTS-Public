@@ -433,7 +433,7 @@ function singleDickFap():void {
 		else if(pc.cumQ() <= 150) output(" A single droplet of pre beads from your cumsit, but it turns out to be the first of many when that droplet turns into a river of lubricating cockslime. You gather up the musky, sexual efflux and smear it over your shaft in a lubricating layer.");
 		else output(" Fat droplets of pre roll out of your cumslit one after another, so fast that your crotch soon becomes sticky with the leaking sexual stuff. You gather up a handful of the stuff and smear it over your shaft, lubricating yourself for your playful fingertips.");
 		//Precum finisher
-		output(" The sound of your masturabtion takes on a decidedly moist quality, schlicking hard and fast as you rise towards your peak.");
+		output(" The sound of your masturbation takes on a decidedly moist quality, schlicking hard and fast as you rise towards your peak.");
 		if(pc.balls > 0) {
 			output(" Grabbing your [pc.balls] with one hand, you gently rub and caress your [pc.sack], massaging it to make yourself even harder, even more erect.");
 			if(pc.balls == 1) output(" It churns");
