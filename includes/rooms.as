@@ -177,6 +177,7 @@ function initializeRooms():void
 	rooms["SHIP HANGAR"] = new RoomClass(this);
 	rooms["SHIP HANGAR"].roomName = "SHIP\nHANGAR";
 	rooms["SHIP HANGAR"].description = "Though dubbed a hangar, this suspended platform is little more than an exposed landing pad. It's a hexagonal, steelcrete plate, one of dozens that ring the central elevator spire. Blinking lights ring the edges to guide you when taking off or landing, and to keep other ships from clipping the platform when seeking their own. An elevator door hangs open to the south, waiting for you to press the button that will take you back to the ground, while your ship remains parked here, ready to be entered.";
+	rooms["SHIP HANGAR"].runOnEnter = mhengaShipHangarFunc;
 	rooms["SHIP HANGAR"].planet = "PLANET: MHEN'GA";
 	rooms["SHIP HANGAR"].system = "SYSTEM: ARA ARA";
 	rooms["SHIP HANGAR"].outExit = "SPACEPORT ELEVATOR";

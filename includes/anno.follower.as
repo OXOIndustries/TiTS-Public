@@ -142,11 +142,12 @@ function annoFollowerMenu():void
 	clearMenu();
 	addButton(0, "Buy", annoFollowerBuyMenu);
 	addButton(1, "Sell", annoFollowerSellMenu);
-	addButton(2, "Special Gear");
+	addButton(2, "Special Gear", annoFollowerSpecialGear, undefined, "Special Equipment", "Talk to Anno about any special equipment she might be able to build or buy for you.");
 
-	addButton(5, "Talk");
+	addButton(5, "Talk", annoFollowerTalkMenu);
 	addButton(6, "EarScritch", annoFollowerEarScritches, undefined, "Ear Scritches", "Give Anno an affectionate little pet.");
-	addButton(7, "Sex");
+	if (pc.lust() >= 33) addButton(7, "Sex", annoFollowerSexMenu);
+	else addDisabledButton(7, "Sex", "Sex", "Gotta get fired up before you can approach the snowy ausar for some 'entertainment'.")
 
 	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
 	{
@@ -162,7 +163,7 @@ function annoFollowerMenu():void
 	}
 	addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
-	addButton(10, "Appearance");
+	if (haveFuckedAnno()) addButton(10, "Appearance", annoFollowerAppearance);
 	
 	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
 	else addDisabledButton(13, "Evict", "Evict from Ship", "You can't bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
@@ -481,6 +482,7 @@ function annoFollowerInventoryCheck():void
 		// Check for the presence of a unique item, if not there, add all
 		if (!anno.hasItem(new LaserCarbine()))
 		{
+			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new LaserCarbine());
 			anno.inventory.push(new EMPGrenade());
 			anno.inventory.push(new NovaRifle());
@@ -496,6 +498,7 @@ function annoFollowerInventoryCheck():void
 	{
 		if (!anno.hasItem(new HammerCarbine()))
 		{
+			anno.inventory.push(new GrayMicrobots());
 			anno.inventory.push(new HammerCarbine());
 			anno.inventory.push(new FlashGrenade());
 			anno.inventory.push(new JoyCoPremiumShield());
@@ -1604,4 +1607,315 @@ function annoFollowerShowerSex():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerSpecialGear():void
+{
+	clearMenu();
+
+	// Merc/Smuggler + Quest Done
+	if ((pc.characterClass == GLOBAL.CLASS_SMUGGLER || pc.characterClass == GLOBAL.CLASS_MERCENARY) && flags["ANNO_MISSION_OFFER"] == 3)
+	{
+		addButton(0, "Her Gun", annoFollowerSpecialGearHerGun, "Her Gun", "Ask Anno about her personal gun. That didn't seem like a stock model.")
+	}
+
+	if (pc.hasItem(new GrayMicrobots()) && !player.hasKeyItem("Goozooka"))
+	{
+		addButton(1, "Gray Goo", annoFollowerSpecialGearGrayGoo, "Gray Microbots", "Ask Anno about the samples of Gray Microbots.");
+	}
+	else
+	{
+		if (!pc.hasItem(new GrayMicrobots())) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You need to have a sample of Gray Microbots to hand.");
+		if (player.hasKeyItem("Goozooka")) addDisabledButton(1, "Gray Goo", "Gray Microbots", "You've already wrangled an upgraded version of the Goovolver out of Anno.");
+	}
+
+	addButton(14, "Back", annoFollowerMenu);
+}
+
+function annoFollowerSpecialGearHerGun():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>That’s a pretty awesome gun you’ve got there,</i>” you say, nodding to Anno’s belt. Since your adventure on Deck 13, her handgun’s migrated from her boot to a holster on the back of her belt, tucked almost invisibly under the base of her tail. ");
+	
+	output("\n\n“<i>Like it?</i>” she asks, drawing it and setting it on her desk. “<i>I custom built it, actually. I know, I know, ‘Anno, how do you have so many varied and awesome skills?’ Well, gunsmithing got a lot easier with 3D replication tech, let met tell you. I took your standard holdout rig, pulled in an integrated silencer pattern for the barrel I might have stolen from a German, plus redesigned the feed for a new bullet Steele Tech was working on. Ended up canning the project, but I snagged the replication code for ‘em, so I can fabricate my own rounds. ");
+	
+	output("\n\n“<i>For a little gun, it’s as quiet as the click of the hammer, and punches clear through most armor. I originally made it to fend off pesky security bots after one went rogue in a lab I was working in. Drilled a couple scientists before we could throw enough acid on it to shut it down. Turns out it’s pretty good against armored people and cyborgs, too. All-around handy little package.</i>” ");
+	
+	output("\n\n“<i>Where do I get one?</i>” you ask, admiring the little ass-kicker.");
+	
+	output("\n\nAnno chuckles. “<i>It’s a one-and-only, but... toss a couple thousand credits my way, and I might be able to find those replication codes somewhere.</i>”");
+
+	if (!anno.hasItem(new HoldoutHP()))
+	{
+		anno.inventory.push(new HoldoutHP());
+	}
+}
+
+function annoFollowerSpecialGearGrayGoo():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>Hey, you’re pretty techie, right?</i>” you say by way of opening as you dig into your pack.");
+	
+	output("\n\nAnno shrugs. “<i>Literal rocket scientist here, so... kinda? Whatcha need?</i>”");
+	
+	output("\n\nYou pull out the vial of gray goo extracted from one of the lusty mecha-babes and hand it over to Anno. “<i>Think you could do something with this?</i>”");
+	
+	output("\n\n“<i>Gray goo?</i>” she asks quizzically, looking the sample over. “<i>Uh... I can toss it in my cold storage for you. I’ve got enough of them stowed away to last me forever.");
+	if (flags["ANNO_MISSION_OFFER"] == 3) output(" Especially since Steele Tech’s starting to mass-produce them now.");
+	output("</i>”");
+	
+	output("\n\n“<i>Something </i>useful<i>,</i>” you correct, planting a defensive hand on the sample before she can toss it in the freezer. ");
+	
+	output("\n\nShe shrugs. “<i>Oh. Well... let me think. Uh, I guess I could try and refactor a goo-launcher to shoot grey goo. Would need to build a custom AI-reset in, something to reprogram the sample into crawling up something’s cooch when you fire it. Plus I’d have to rebuild the barrel, or just kajigger it to fire right from the vial. Tell you what, boss: gimme a goo-gun -- I sell them, but can’t give it to you for free, sorry -- and a thousand credits for spare parts and I could probably whip something together.");
+
+	processTime(1);
+
+	clearMenu();
+
+	var pGoovolver:Goovolver = new Goovolver();
+	
+	if (pc.hasItem(pGoovolver) || pc.rangedWeapon is Goovolver)
+	{
+		if (pc.credits >= 1000)
+		{
+			addButton(0, "Upgrade", annoFollowerSpecialGearGoozooka, false, "Upgrade", "Pay 1000 credits to upgrade your Goovolver into a Goozooka.");
+		}
+		else
+		{
+			addDisabledButton(0, "Upgrade", "Upgrade", "You need at least a thousand credits to upgrade your Goovolver.");
+		}
+	}
+	else
+	{
+		var pGooCost:int = pGoovolver.basePrice * anno.sellMarkup * pc.buyMarkdown;
+		
+		if (pc.credits >= pGooCost + 1000)
+		{
+			addButton(0, "Upgrade", annoFollowerSpecialGearGoozooka, true, "Upgrade", "Pay " + String(pGooCost + 1000) + " credits to buy a Goovolver and pay for the parts Anno needs to upgrade it.");
+		}
+		else
+		{
+			addDisabledButton(0, "Upgrade", "Upgrade", "You need " + String(pGooCost + 1000) + " credits to buy a Goovolver and pay for the parts Anno needs to upgrade it.");
+		}
+	}
+	
+	addButton(1, "Nope", annoMainMenu);
+}
+
+function annoFollowerSpecialGearGoozooka(buyGoovolverToo:Boolean = false):void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>Alright! Now we’re in business!</i>” Anno grins as you hand over the goo-slinging revolver and the spare credits. “<i>Just gimme a few minutes to do the work, alright?</i>”");
+	
+	output("\n\nYou nod and wander back out to the common room. Soon, you can hear the clanking and buzzing of her at work in her quarters, though the minutes begin to drag on and on before she finally returns, carting what might, once, have been a goovolver. Now, though, it looks more like a grenade launcher with a hugely oversized barrel and a break-action rather than a cylinder. A flickering computer has been bolted onto the side of the gun next to the trigger, with several flashing LED screens allowing you to program your gooey projectiles. ");
+	
+	output("\n\n“<i>Try this on for size,</i>” Anno smirks, handing the heavy weapon over. “<i>Just make sure you actually have enough gray goo canisters, boss. This thing can’t shoot galotian charges anymore.");
+	
+	if (silly)
+	{
+		output("\n\n“<i>Where did the ones already loaded in there go?</i>” she asks, pre-empting your question. “<i>Don’t ask questions.</i>”");
+
+		output("\n\n“<i>Shh. No questions now. Only dreams.</i>”");
+	}
+
+	// [Try on Anno] [Leave]
+	var pGoovolver:Goovolver = new Goovolver();
+	
+	if (buyGoovolverToo == false)
+	{
+		pc.credits -= 1000;
+		if (pc.hasItem(pGoovolver)) pc.destroyItem(pGoovolver, 1);
+		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
+	}
+	else
+	{
+		var pGooCost:int = pGoovolver.basePrice * anno.sellMarkup * pc.buyMarkdown;
+		pc.credits -= (pGooCost + 1000);
+	}
+	
+	pc.destroyItem(new GrayMicrobots());
+
+	pc.createKeyItem("Goozooka", 0, 0, 0, 0, "This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy's most sensitive spots. Consumes a vial of gray goo per shot!");
+	output("\n\n<b>(Key Item Gained: Goozooka -</b> This modified Goovolver was built by the ausar tech specialist Anno Dorna for you. Rather than normal galotians, this heavy cannon fires vials of gray goo at your enemies, re-programmed to go straight for an enemy's most sensitive spots. Consumes a vial of gray goo per shot!<b>)</b>");
+	
+	processTime(15);
+	
+	//[Try on Anno] [Leave]
+	clearMenu();
+	
+	// I'm implying that Anno left the sample you gave her loaded into the thing
+	addButton(0, "Try on Anno", annoFollowerGoozookaTesting);
+	addButton(1, "Leave", mainGameMenu);
+}
+
+function annoFollowerGoozookaTesting():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	pc.addMischievous(1);
+
+	output("When Anno turns to get back to work, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno’s hind end and flick the button on the computer beside the trigger.");
+	
+	output("\n\nHearing the little “<i>click</i>”, Anno turns to look at you... just in time to see you pull the trigger. There’s a loud pneumatic hiss as the gun discharges, sending a big gray blob straight at Anno’s ass. She shrieks as she’s slammed up against the wall by the impact, and then again as a tiny gray googirl coalesces right on the little bubble of her butt sticking back through her");
+	if (anno.armor is AnnosCatsuit) output(" catsuit");
+	else output(" jeans");
+	output(".");
+	
+	output("\n\nA tiny voice cheers, “<i>Oooh! You’re cute... wanna fuck?</i>” before the gray goo drills her way through the ass of Anno’s pants and vanishes from sight. Anno immediately goes rigid, eyes wide and tail sticking straight out as the little goo finds something sensitive under");
+	if (anno.armor is AnnosCatsuit) output(" that suit of hers");
+	else output(" her pants");
+	output(" and gets to work. You lean back and enjoy the show as Anno desperately wiggles her way out of her");
+	if (anno.armor is AnnosCatsuit) output(" uniform’s");
+	output(" top, and is still trying to get out of her bottom when you  <i>see</i> the blob of a googirl squirming around her hip and into her pussy. There’s a momentary pause before Anno goes cross-eyed and flops down onto the bed, helpless but to moan and wiggle her hips as the goo takes advantage of her. ");
+
+	pc.lust(10);
+
+	processTime(2);
+	
+	output("\n\nOh yeah. This is gonna be fun. ");
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerFirstTimeOnMhenga():void
+{
+	clearOutput();
+	annoFollowerHeader();
+	showBust("ANNO", "SYRI");
+
+	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
+	if (anno.armor is AnnosCatsuit) output(" latex");
+	else output(" cloth");
+	output("-clad tits pressing into your back. “<i>Hey, isn’t this... yeah, Mhen’ga!</i>” Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth. ");
+	
+	output("\n\n“<i>You know, my sister works here,</i>” Anno says, taking her arms off you to flip on her wrist computer. “<i>Let me see if I can give her a call. Might as well say hi while I’m here, right? God, it’s been AGES since I talked to Syri...</i>” ");
+	
+	output("\n\nShe pushes a holographic button hovering over her wrist and the display vanishes. It’s replaced by a hovering 3D photo of");
+	if (flags["MET_SYRI"] != undefined) output(" Syri");
+	else output(" a dark-haired ausar girl in what looks like a military-issue long coat");
+	output(". A ringing sound comes from the computer for a few moments before giving way to a gruff feminine voice as her sister answers. The 3D photo shimmers out, replaced with a living model of the same figure, dressed exactly the same.");
+	
+	output("\n\n“<i>Anno!?</i>”");
+	if (flags["MET_SYRI"] == undefined) output(" the figure");
+	else output(" Syri");
+	output(" says, visibly surprised. “<i>Holy shit, sis, what’re you doing here?</i>”");
+	
+	output("\n\nAnno giggles, “<i>Glad to see you too, Syri! Victor’s "+ pc.mf("son", "daughter") +" and I just landed on planet. I thought you and I could get together and-</i>”");
+	
+	if (flags["MET_SYRI"] != undefined)
+	{
+		output("\n\n“<i>Steele!?</i>” Syri says, trying to look past Anno on the holo-cam. “<i>Hey! How’s it going, Steele?</i>”");
+		
+		output("\n\n“<i>Could be worse,</i>” you say, stepping into frame. “<i>How’re you?</i>”");
+		
+		output("\n\nShe grins. “<i>Good! Long time no see. Yeah, you two should definitely come by the bar. I’ve got some free time right now, if you want.</i>”");
+	}
+	else
+	{
+		output("\n\n“<i>Vic’s kid? Seriously, Anno... man, that’s fucked up. I know he just passed away, but...</i>”");
+	
+		output("\n\n“<i>But [pc.heShe]’s right here,</i>” Anno says, cutting her sister off. “<i>Do you want us to stop by or don’t you?</i>”");
+	
+		output("\n\nSyri shrugs. “<i>Sure, I guess. I’m hanging out at the bar right now -- it’s just a couple of blocks east of the spaceport; you can’t miss it.</i>”");
+	}
+	
+	output("\n\n“<i>Sounds good,</i>” Anno says, beaming at her sister. “<i>See you in a few, sis!</i>”");
+	
+	output("\n\nAnno cuts the call off and breathes a little sigh. “<i>That went better than expected. The last time we talked face-to-face was... well, anyway, you coming?</i>” she asks, offering you her arm.");
+	
+	output("\n\nYou take it, and follow Anno down towards the bar.");
+
+	processTime(5+rand(2));
+
+	clearMenu();
+	addButton(0, "Next", annoFollowerFirstTimeOnMhengaPartII);
+}
+
+function annoFollowerFirstTimeOnMhengaPartII():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>Hey! Over here!</i>” you hear, just as soon as you and Anno walk into “<i>Burt’s Badass Meadhall.</i>” Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
+	
+	if (flags["MET_SYRI"] != undefined) output("\n\n“<i>Hey! Sis, Steele!</i>” she barks, grabbing you both into a fierce hug. Anno giggles as her powerfully strong sister squeezes the both of you tight before ushering you into the stools beside her own.");
+	else output("\n\n“<i>Hey, Sis!</i>” Syri says, grabbing Anno and pulling her sister into a fierce hug. They might be the same size, but Syri seems to tower over her slighter sister, wrapping the nerdy scientist in her muscular arms. ");
+	
+	output("\n\nShe turns to you with a wolfish grin that shows off her pointed teeth. “<i>So you’re the one who pulled my sister off that rust bucket on Tarkus, huh? Name’s Syri,</i>” she says, giving you a vigorous handshake.");
+	
+	output("\n\n“<i>Steele. [pc.name] Steele,</i>” you answer, returning it before she ushers you and Anno into the empty seats.");
+	
+	output("\n\n“<i>God damn, it’s been ages,</i>” Syri says after a long swig of her beer. “<i>How’ve you been, Anno?</i>”");
+	
+	output("\n\n“<i>Was touch-and-go for a little bit,</i>” Anno says with a laugh, opening her drink. “<i>But thanks to [pc.name] here, I’m a </i>lot<i> better now.</i>”");
+	if (haveFuckedAnno())
+	{
+		output(" Anno leans against you, her fluffy tail batting against your [pc.butt].");
+		if (flags["FUCKED_SYRI_COUNT"] != undefined) output("Syri’s eyes widen noticeably as she realizes what’s going on.");
+	
+		output("\n\nShe recovers quickly, saying, ");
+	}
+	else output("\n\n");
+	output("“<i>Good to hear. I’ve been worried about you,");
+	if (flags["TARKUS_DESTROYED"] == undefined) output(" all the way off on Tarkus. Frontier’s no place for a squishy lil’ scientist.");
+	else output(" especially when you </i>didn’t write after the whole fucking planet blew itself up.”");
+	
+	output("\n\n“<i>Hey,</i>” Anno protests, scowling at her sister. “<i>I can take care of myself, you know.</i>”");
+	
+	output("\n\nSyri shrugs.");
+	if (flags["TARKUS_DESTROYED"] != undefined) output(" “<i>You could have at least written to say you’re okay, you know.</i>”");
+	else output(" “<i>Yeah, yeah, I know. Doesn’t meant I don’t worry about ya, though.</i>”");
+	output(" She sighs and takes another drink. ");
+	
+	output("\n\n“<i>Anyway, Steele,</i>” Syri says,");
+	if (flags["MET_SYRI"] != undefined) output(" “<i>you guys sticking around for a while? Not saying I miss ya or anything, but... you know. Would be nice to hang out with you and Anno for a while.</i>”");
+	else output(" “<i>if you’re sticking around on Mhen’ga here, you should stop by the bar sometime later. I’m here most afternoons over on that console next to the screen. If you’re into hologames, you should definitely check it out.</i>”");
+	
+	output("\n\nYou nod, and tell the ravenette ausar you’ll think about it. She grins, and buys you both another round. The next couple hours go by pleasantly, with Anno and Syri regaling you with the misadventures of their youth, their various petty rivalries and in-jokes. Finally, several beers later, a slightly-inebriated, companionable silence falls over the trio of you. You excuse yourself then, leaving the two ausars to privately catch up.");
+
+	processTime(120+rand(30));
+
+	// Booze!
+	pc.createStatusEffect("Crabbst",0,5,0,0,false,"Icon_DizzyDrunk","Makes you stronger but at what cost?",false,180);
+		pc.physiqueMod += 5;
+		pc.reflexesMod -= 5;
+		pc.aimMod -= 5;
+		pc.intelligenceMod -= 5;
+		pc.willpowerMod -= 5;
+		pc.lust(25);
+
+	currentLocation = "BURT'S MAIN HALL";
+
+	flags["ANNOxSYRI_EVENT"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerAppearance():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("\n\nAnno Dorna is a six-foot-tall ausar girl with long, snow-white hair and a pair of huge, perky wolf ears perched atop her head. Though she is distinctly humanoid in face and form, the silky fur on her arms and legs, along with the swishing, bushy tail, give her a playfully alien appearance, more like a perky little puppy than a fearsome predator. She’s wearing");
+	if (anno.armor is AnnosCatsuit) output(" the distinctive Steele Tech field uniform: an ultra-sheer black and yellow catsuit that hugs her frame and accentuates her curves in all the right places, supporting her ample bust so that it looks almost impossibly perky for its size.");
+	else output(" a civilian outfit, relatively simple compared to her usual slick catsuit: she’s got a pair of jeans, a button-up blouse, and a pair of tall work boots on. She’s not wearing a bra that you can see, which means you can get a nice look at her ample titflesh through the sheet fabric of her shirt.");
+	output(" Thanks to the")
+	if (anno.armor is AnnosCatsuit) output(" catsuit");
+	else output(" tight, curve-hugging outfit she’s wearing");
+	output(", you can see the full expanse of her fleshy body: a big, bouncy butt only barely hidden by her tail, a sizable rack, and a pair of long, toned legs. ");
+	
+	output("\n\nAnno has a pair of full DD-cup breasts, big and bouncy and oh so soft, each tipped with a big, sensitive nipple that’s perfect to tug and squeeze.");
+	
+	output("\n\nBetween her legs, Anno has a tight little pussy. Naturally stretchier and so much wetter than a human’s, her sex is perfect for taking thick knots and great big cocks with ease. It’s topped with a trimmed landing strip of downy white fuzz. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
+
+	removeButton(10);
 }
