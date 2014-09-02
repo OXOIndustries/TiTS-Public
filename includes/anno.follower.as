@@ -140,7 +140,7 @@ function annoFollowerApproach():void
 function annoFollowerMenu():void
 {
 	clearMenu();
-	addButton(0, "Buy");
+	addButton(0, "Buy", annoFollowerBuyMenu);
 	addButton(1, "Sell");
 	addButton(2, "Special Gear");
 
@@ -455,4 +455,47 @@ function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerBuyMenu():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	//Note to Fen/Geddy: Anno has three Inventory tiers: Tarkus, Steele Tech, and Black Market. She'll always have access to the Tarkus inventory; Steele Tech or Black Market depends on whether or not you completed AnnoQuest or not.
+
+	annoFollowerInventoryCheck();
+
+	shopKeep = anno;
+	anno.keeperBuy = "“<i>Want something from my stock, boss?</i>” Anno asks, picking up a datapad and handing it over to you. “<i>Here’s what’s in inventory at the moment.";
+	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperBuy += " Steele Tech’s still supplying us with top-tier equipment, and plenty of it.</i>”";
+	else anno.keeperBuy += "My contacts might be a </i>little<i> more seedy these days, but the equipment they’re hooking me up with isn’t too far behind Steele Tech’s gear.</i>”";
+	buyItem();
+}
+
+// Updates and configures Annos inventory depending on how she ended up on the players ship
+function annoFollowerInventoryCheck():void
+{
+	if (flags["ANNO_MISSION_OFFER"] == 3)
+	{
+		// Check for the presence of a unique item, if not there, add all
+		if (!anno.hasItem(new LaserCarbine()))
+		{
+			anno.inventory.push(new LaserCarbine());
+			anno.inventory.push(new EMPGrenade());
+			anno.inventory.push(new NovaRifle());
+			anno.inventory.push(new NovaPistol());
+			anno.inventory.push(new SteeletechSuit());
+		}
+	}
+	else
+	{
+		if (!anno.hasItem(new HammerCarbine()))
+		{
+			anno.inventory.push(new HammerCarbine());
+			anno.inventory.push(new FlashGrenade());
+			anno.inventory.push(new JoyCoPremiumShield());
+			anno.inventory.push(new SteeletechSuit());
+		}
+	}
 }
