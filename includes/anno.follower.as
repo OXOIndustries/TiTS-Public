@@ -1,6 +1,23 @@
+import classes.Util.InCollection;
+
+// Anno has been recruited and is currently on the players ship.
 function annoIsCrew():Boolean
 {
 	if (flags["ANNO_CREWMEMBER"] == 1) return true;
+	return false;
+}
+
+// Annos recruitment process hasn't yet been completed
+function annoNotRecruited():Boolean
+{
+	if (flags["ANNO_CREWMEMBER"] == undefined) return true;
+	return false;
+}
+
+// Anno has been recruited but isn't currently on the players ship
+function annoNotCrew():Boolean
+{
+	if (flags["ANNO_CREWMEMBER"] == 2) return true;
 	return false;
 }
 
@@ -81,6 +98,8 @@ function returnToShipAfterRecruitingAnno():Boolean
 		currentLocation = "SHIP INTERIOR";
 		flags["ANNO_CREWMEMBER_INITIALSCENE"] = 1;
 
+		processTime(5+rand(3));
+
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 
@@ -94,7 +113,7 @@ function annoFollowerApproach():void
 	clearOutput();
 	annoFollowerHeader();
 
-	if (hours >= 6 && hours <= 11 || hours >= 14 && hours <= 20) crewMessages += output("You give a light rap on Anno’s door, and are quickly let in. “<i>Hey, boss!</i>” she says with a smile, ushering you in. ")
+	if (hours >= 6 && hours <= 11 || hours >= 14 && hours <= 20) output("You give a light rap on Anno’s door, and are quickly let in. “<i>Hey, boss!</i>” she says with a smile, ushering you in. ")
 	else if (hours >= 12 || hours <= 13)
 	{
 		output("“<i>[pc.name]!</i>” she shouts over the din of a loud pop jam blaring from her computer, “<i>I didn’t see you there. I hope you didn’t mind my singing. It's a new one from " + RandomInCollection("Touch Fluffy Tail", "The Beagles", "Playing Poker", "Buried Treasure") + " that I haven’t been able to get out of my head.</i>”");
@@ -102,7 +121,7 @@ function annoFollowerApproach():void
 	}
 	else output("You give a light rap on Anno’s door, which rocks back on its hinges, unlocked. Anno's sleeping face-down on her desk. You give her a little poke, which quickly has her jerking her head up and rubbing the sleep from her eyes. “<i>Oh, shit. What time is it?</i>”");
 
-	if (!haveSexedAnno()) output("\n\n“<i>So what’s up? You need anything?</i>”");
+	if (!haveFuckedAnno()) output("\n\n“<i>So what’s up? You need anything?</i>”");
 	else
 	{
 		output("\n\nAnno plops down on the side of her bed, arms spread back to support her... which has the added bonus of thrusting her chest out against");
@@ -112,6 +131,8 @@ function annoFollowerApproach():void
 		if (pc.lust() >= pc.lustMax() * 0.8) output(" Maybe a little stress relief?");
 		output("</i>”");
 	}
+
+	processTime(2);
 
 	annoFollowerMenu();
 }
@@ -126,12 +147,13 @@ function annoFollowerMenu():void
 	addButton(5, "Talk");
 	addButton(6, "EarScritch");
 	addButton(7, "Sex");
+
 	if (flags["ANNO_SLEEPWITH_INTRODUCED"] != undefined)
 	{
-		if (haveSexedAnno())
+		if (haveFuckedAnno())
 		{
 			if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") addButton(8, "No Sleep W.", annoSleepToggleOff, "Don't Sleep With", "Tell Anno you'd like to sleep without her for now.");
-			else addButton(8, "Sleep With", AnnoSleepToggleOn, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
+			else addButton(8, "Sleep With", annoSleepToggleOn, "Sleep With", "Tell Anno you'd like her to sleep with you in the evenings.");
 		}
 		else
 		{
@@ -141,7 +163,10 @@ function annoFollowerMenu():void
 	addDisabledButton(8, "Sleep With", "Sleep With", "A nice rest sounds good... maybe Anno might pay you a vist of her own accord in the process.");
 	
 	addButton(10, "Appearance");
-	addButton(13, "Evict");
+	
+	if (InCollection(shipLocation, "TAVROS HANGAR", "SHIP HANGAR", "201", "500")) addButton(13, "Evict", annoFollowerBootOff, "Evict from Ship", "Tell Anno to get off the ship. You might break her heart a little, but you'll probably be able to pick her up again later.");
+	else addDisabledButton(13, "Evict", "Evict from Ship", "You can't bring yourself to kick Anno off your ship here. Head back to a mainline planet or station first.");
+
 	addButton(14, "Back", crew);
 }
 
@@ -153,6 +178,8 @@ function annoSleepWithIntroduce():void
 	output("Just as you’re getting ready for bed, you hear a knock on your cabin door. When you tell your visitor to enter, the door slides open and Anno steps through. She’s ditched her usual outfit, and is instead wrapped up in a loose white bathrobe that her hair seamlessly blends into. ");
 
 	output("\n\n“<i>Hey, boss,</i>” she says, the corner of her mouth turning up into a slight grin. Even then, you can’t ignore the touch of nervousness in her voice. “<i>So I was thinking... you know, we’ve, uh, we’ve done the deed. And now we’re basically living on the same ship. So, you know, I thought maybe... maybe you and I could share a bed?</i>”");
+
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Yes", annoSleepWithSureICanDealWithDogslootFurAllInMyMouthInTheMorning);
@@ -169,6 +196,8 @@ function annoSleepWithPlsNoDogslootsInMyBedIDontWantDogslootFurAllUpInMyShit():v
 	output("\n\n“<i>Ah,</i>” Anno says simply, shoulders slumping under her robe. “<i>Well, uh, never hurts to ask, right? Lemme know if you change your mind.</i>” ");
 
 	output("\n\nWith that, she quickly retreats from your cabin, letting you get to bed.");
+
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Next", sleep)
@@ -189,6 +218,8 @@ function annoSleepWithSureICanDealWithDogslootFurAllInMyMouthInTheMorning():void
 
 	flags["CREWMEMBER_SLEEP_WITH"] = "ANNO";
 
+	processTime(2);
+
 	clearMenu();
 	addButton(0, "Next", sleep);
 }
@@ -206,6 +237,8 @@ function annoSleepToggleOn():void
 
 	flags["CREWMEMBER_SLEEP_WITH"] = "ANNO";
 
+	processTime(2);
+
 	clearMenu();
 	addButton(0, "Next", annoFollowerMenu);
 }
@@ -219,6 +252,8 @@ function annoSleepToggleOff():void
 	else output("“<i>Stay in your own bed tonight.</i>”");
 
 	output("\n\n“<i>Oh,</i>” Anno says, ears tucking down. “<i>Uh, yeah, sure boss. Whatever you want. I was thinking of pulling an all-nighter anyway...</i>”");
+
+	processTime(2);
 
 	clearMenu();
 	addButton(0, "Next", annoFollowerMenu);
@@ -240,8 +275,9 @@ function annoSleepSexyTimes():void
 	if (pc.isMischievous()) output(" yourself");
 	output(",</i>” you answer, slipping an arm around Anno’s shoulders and pulling her close. Her tail wiggles happily as she snuggles up, head resting on your [pc.chest]. You softly stroke your lover’s perky ears and long, silky smooth hair as she nuzzles up to you, settling in after a few playful minutes.");
 
-	// Anno's wake-up scene only accounts for players with a cock, so just skip the event (for now)
-	if (pc.hasCock()) flags["ANNO_SLEEPWITH_DOMORNING"] = 1;
+	flags["ANNO_SLEEPWITH_DOMORNING"] = 1;
+
+	processTime(3);
 
 	clearMenu();
 	addButton(0, "Next", sleep, false);
@@ -251,7 +287,8 @@ function annoMorningRouter():void
 {
 	flags["ANNO_SLEEPWITH_DOMORNING"] = undefined;
 
-	if (pc.hasCock()) annoMorningHandy();
+	if (pc.hasCock() && rand(2) == 0) annoMorningHandy();
+	annoMorningShower();
 }
 
 function annoMorningHandy():void
@@ -293,6 +330,129 @@ function annoMorningHandy():void
 
 	pc.orgasm();
 
+	processTime(20);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoMorningShower():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	// What the fuck is this? WHAT THE FUCK IS THIS
+	author("Gedan");
+
+	output("You sleepily toss and turn in your bed, but you can't quite shake the feeling that something is missing. It takes a few minutes for your brain to actually kick back in to gear, slowly beginning to wake up, but you can't quite figure out what it is that’s wrong. You keep trying to wrap your arm around something that just isn't there, trying to snuggle in against a body that, for some reason, you expect to be tucked up against your [pc.chest].");
+
+	output("\n\nYou shoot upright when you realise somebodies missing- an empty spot on your matress, still warm from the heat of a body recently occupying it.");
+
+	output("\n\n“<i>Oh hey [pc.name],</i>” echos a greeting from your side. You turn to look to find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. “<i>Sorry, I'm kind of an early riser- you don't mind me using your shower right?</i>”");
+
+	output("\n\nShe takes a step out in to your quarters, the towel wrapped around her body parting down the side of her leg to frame a glistening view of ausar thigh, and you can’t muster anything other than an appreciative grunt. You certainly don't mind her using your shower; especially if one of the perks is getting to wake up to this kind of view.");
+
+	output("\n\n“<i>Down " + pc.mf("boy", "girl") + "!,</i>” she responds whilst quickly stepping back to the bathroom, closing the door behind her. She keeps talking loud enough for you to hear her clearly, “<i>I've only just got myself dry- do you know how hard it is to dry fur? I'm not getting all sweaty and messy right after I've </i>just<i> got myself clean.</i>”");
+
+	output("\n\nYou fall back down to the matress, still half asleep and now a little warm under the collar thanks to Anno’s impromptu skin-show. You must have drifted back to sleep, as it seems like only seconds later the telltale hiss of door hydraulics signal the white haired ausars departure from the bathroom, this time clad in her");
+	if (anno.armor is AnnosCatsuit) output(" deliciously tight catsuit");
+	else output(" regular clothes");
+	output(" rather than one of your towels.");
+
+	output("\n\n“<i>All yours Steele!</i>” she says, before bounding towards the main door to your quarters. “<i>See you later, yeah?</i>”");
+
+	output("\n\nDid- did she blow you a kiss on her way out? The tease....")
+
+	pc.lust(10);
+
+	processTime(15);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerBootOff():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("Looking at the eager-eyed ausar, you slowly spell out that you don’t want her on the ship anymore. It’s time to pack up and head out. ");
+	
+	output("\n\n“<i>But... what?</i>” Anno says, dumbfounded. She stares at you with wide eyes, her ears and tail curling close to her body as you tell her to leave. “<i>But I... but why? What’d I do wrong? I thought we were doing great...</i>”");
+	
+	output("\n\nShe bites her lip and lets out a pitiful little whine. “<i>Nevermind. It’s fine. I’ll, uh,");
+	if (shipLocation != "TAVROS HANGAR") output(" I’ll hitch a ride to");
+	else output(" stay here on");
+	output(" Tavros, then. Kaede’s got a place up on the higher rings; I can just crash there for a while.</i>”");
+	
+	output("\n\nYou nod, and watch as Anno hurriedly collects her belongings. You get the distinct sense she’s trying not to cry as she scurries off your ship.");
+
+	flags["ANNO_CREWMEMBER"] = 2;
+	if (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+
+	processTime(15);
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoAtAnonsAddendum():void
+{
+	output("\n\nAnno is sitting at the bar, nursing a whiskey and working on a glowing datapad.");
+	addButton(8, "Anno", annoFindingALostPooch);
+}
+
+function annoFindingALostPooch():void
+{
+	clearOutput();
+	annoFollowerHeader();
+	
+	output("“<i>Hey, you,</i>” you say, planting a hand on Anno’s head. She spins around on her barstool, all but shrieking when you grab her. When she sees whom it is, though, her cry turns into one of barely contained excitement. She leaps up into your arms, squeezing you so tightly that you think you hear something crack.");
+
+	output("\n\n“<i>Boss! You came back!</i>” she squeals, still hugging you. “<i>What's the plan, [pc.name]?</i>” she adds hopefully.");
+
+	processTime(2);
+	
+	//[Come Aboard] [Not Now]
+	clearMenu();
+	addButton(0, "Come Aboard", annoFollowerLetThePoochShitUpYourShowerWithFurAgain);
+	addButton(1, "Not Now", annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur);
+}
+
+function annoFollowerNoThanksIActuallyQuiteLikeMyShowerNotBeingFullOfDogfur():void
+{
+	clearOutput();
+	annoFollowerHeader();
+	
+	output("Patting Anno on the head, you tell the eager puppy that you’re not quite ready for her to rejoin your crew. Her excitement bleeds off immediately.");
+
+	output("\n\n“<i>Oh. Yeah, sure. No worries,</i>” she says, rubbing at her neck. “<i>I'm actually making good progress on my book, so no rush. Plenty of stuff to do around here.</i>”");
+
+	output("\n\nYou give the girl a final scratch between the ears as she returns to her drink.");
+	
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+function annoFollowerLetThePoochShitUpYourShowerWithFurAgain():void
+{
+	clearOutput();
+	annoFollowerHeader();
+	
+	output("“<i>Ready to come home?</i>” you ask, scratching her between the ears.");
+
+	output("\n\nShe grins, “<i>You know it. I missed you, boss.</i>”");
+
+	output("\n\nA quick trip to her girlfriend’s apartment to collect her things, and you’re ready to go. Hand in hand, you guide Anno back aboard your ship. She settles in like she'd never been gone.");
+
+	output("\n\n<b>Anno has joined your crew!</b>");
+	
+	currentLocation = "SHIP INTERIOR";
+	
+	processTime(30);
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

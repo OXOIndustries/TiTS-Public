@@ -647,6 +647,7 @@ function anonsBarAddendums():Boolean {
 	anonsBarWaitressAddendum();
 	alexManHermIntro();
 	ShellyBlurb();
+	annoAtAnonsAddendum();
 	
 	return false;
 }

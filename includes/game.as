@@ -259,9 +259,9 @@ function sleep(outputs:Boolean = true):void {
 			celiseOffersToBeYourBedSenpai();
 			return;
 		}
-		else if (annoIsCrew() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
+		else if (annoIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
 		{
-			annoSleepySexyTimes();
+			annoSleepSexyTimes();
 			return;
 		}
 		
