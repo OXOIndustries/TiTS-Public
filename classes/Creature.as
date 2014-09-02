@@ -1732,7 +1732,7 @@
 		public function isAss(): Boolean {
 			return (personality > 66);
 		}
-		//Placeholders for when i rework the personality system soon-ish.
+		//Placeholders for when i rework the personality system soon-ish."
 		public function addHard(arg:Number):void
 		{
 			personality += arg;

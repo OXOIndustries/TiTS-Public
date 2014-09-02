@@ -182,6 +182,17 @@ function crew(counter:Boolean = false):Number {
 			crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
 		}
 	}
+	if (annoIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			addButton(count - 1, "Anno", annoFollowerApproach);
+			if (hours >= 6 && hours <= 7 || hours >= 19 && hours <= 20) crewMessages += "\n\nAnno is walking about in her quarters, sorting through her inventory and organizing some of her equipment.";
+			else if (hours >= 12 || hours <= 13) crewMessages += "\n\nAnno's busy doing a quick workout in her quarters to the beat of some fast-paced ausar heavy metal. “<i>Gotta keep in shape!</i>” she says.";
+			else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she's splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
+		}
+	}
 	if(!counter) {
 		if(count > 0) {
 			output("Who of your crew do you wish to interact with?" + crewMessages);
@@ -209,6 +220,7 @@ function rest():void {
 }
 
 function sleep(outputs:Boolean = true):void {
+	
 	//Turn encounters back on.
 	flags["ENCOUNTERS_DISABLED"] = undefined;
 	
@@ -217,6 +229,13 @@ function sleep(outputs:Boolean = true):void {
 	if(outputs) 
 	{
 		clearOutput();
+		
+		// Anno interjection
+		if (flags["ANNO_SLEEPWITH_INTRODUCED"] == undefined && annoIsCrew())
+		{
+			annoSleepWithIntroduce();
+			return;
+		}
 		
 		if ((pc.XPRaw >= pc.XPMax()) && pc.level < 7 && flags["LEVEL_UP_AVAILABLE"] == undefined)
 		{
@@ -235,23 +254,34 @@ function sleep(outputs:Boolean = true):void {
 		}
 		
 		//CELISE NIGHT TIME BEDTIMEZ
-		if(celiseIsCrew() && rand(3) == 0)
+		if(celiseIsCrew() && rand(3) == 0 && flags["CREWMEMBER_SLEEP_WITH"] == undefined)
 		{
 			celiseOffersToBeYourBedSenpai();
 			return;
 		}
+		else if (annoIsCrew() && flags["CREWMEMBER_SLEEP_WITH"] == "ANNO")
+		{
+			annoSleepySexyTimes();
+			return;
+		}
+		
 		output("You lie down and sleep for about " + num2Text(Math.round(minutes/60)) + " hours.");
 	}
-	if(this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) {
+	
+	if (this.chars["PC"].HPRaw < this.chars["PC"].HPMax()) 
+	{
 		this.chars["PC"].HP(Math.round(this.chars["PC"].HPMax()));
 	}
-	if(this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax()
+	
+	if (this.chars["PC"].energy() < this.chars["PC"].energyMax()) this.chars["PC"].energyRaw = this.chars["PC"].energyMax();
+	
 	processTime(minutes);
 
 	mimbraneSleepEvents();
 	
 	this.clearMenu();
-	this.addButton(0,"Next",mainGameMenu);
+	if (flags["ANNO_SLEEPWITH_DOMORNING"] != undefined) this.addButton(0, "Next", annoMorningRouter);
+	else this.addButton(0,"Next",mainGameMenu);
 }
 
 function shipMenu():Boolean {
