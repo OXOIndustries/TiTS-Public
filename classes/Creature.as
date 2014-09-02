@@ -1128,8 +1128,8 @@
 
 		public function buysType(arg: int): Boolean {
 			for (var x: int = 0; x < typesBought.length; x++) {
-				if (arg == typesBought[x]) return true;
 				if (typesBought[x] == GLOBAL.ALL) return true;
+				if (arg == typesBought[x]) return true;
 			}
 			return false;
 		}

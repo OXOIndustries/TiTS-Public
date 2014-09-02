@@ -141,7 +141,7 @@ function annoFollowerMenu():void
 {
 	clearMenu();
 	addButton(0, "Buy", annoFollowerBuyMenu);
-	addButton(1, "Sell");
+	addButton(1, "Sell", annoFollowerSellMenu);
 	addButton(2, "Special Gear");
 
 	addButton(5, "Talk");
@@ -346,20 +346,20 @@ function annoMorningShower():void
 
 	output("You sleepily toss and turn in your bed, but you can't quite shake the feeling that something is missing. It takes a few minutes for your brain to actually kick back in to gear, slowly beginning to wake up, but you can't quite figure out what it is that’s wrong. You keep trying to wrap your arm around something that just isn't there, trying to snuggle in against a body that, for some reason, you expect to be tucked up against your [pc.chest].");
 
-	output("\n\nYou shoot upright when you realise somebodies missing- an empty spot on your matress, still warm from the heat of a body recently occupying it.");
+	output("\n\nYou shoot upright when you realise somebody’s missing - an empty spot on your mattress, still warm from the heat of a body recently occupying it.");
 
-	output("\n\n“<i>Oh hey [pc.name],</i>” echos a greeting from your side. You turn to look to find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. “<i>Sorry, I'm kind of an early riser- you don't mind me using your shower right?</i>”");
+	output("\n\n“<i>Oh hey [pc.name],</i>” echos a greeting from your side. You turn to look and find Anno having just stepped out of your shower. She’s stood in the doorway to your bathroom, a towel wrapped around her body and another balled up around her hair. “<i>Sorry, I'm kind of an early riser - you don't mind me using your shower right?</i>”");
 
-	output("\n\nShe takes a step out in to your quarters, the towel wrapped around her body parting down the side of her leg to frame a glistening view of ausar thigh, and you can’t muster anything other than an appreciative grunt. You certainly don't mind her using your shower; especially if one of the perks is getting to wake up to this kind of view.");
+	output("\n\nShe takes a step out into your quarters, the towel wrapped around her body parting down the side of her leg to frame a view of glistening ausar thigh, and you can’t muster anything other than an appreciative grunt. You certainly don't mind her using your shower; especially if one of the perks is getting to wake up to this kind of view.");
 
-	output("\n\n“<i>Down " + pc.mf("boy", "girl") + "!,</i>” she responds whilst quickly stepping back to the bathroom, closing the door behind her. She keeps talking loud enough for you to hear her clearly, “<i>I've only just got myself dry- do you know how hard it is to dry fur? I'm not getting all sweaty and messy right after I've </i>just<i> got myself clean.</i>”");
+	output("\n\n“<i>Down " + pc.mf("boy", "girl") + "!</i>” she responds whilst quickly stepping back into the bathroom, closing the door behind her. She keeps talking loud enough for you to hear her clearly, “<i>I've only just got myself dry - do you know how hard it is to dry fur? I'm not getting all sweaty and messy right after I've </i>just<i> got clean.</i>”");
 
-	output("\n\nYou fall back down to the matress, still half asleep and now a little warm under the collar thanks to Anno’s impromptu skin-show. You must have drifted back to sleep, as it seems like only seconds later the telltale hiss of door hydraulics signal the white haired ausars departure from the bathroom, this time clad in her");
+	output("\n\nYou fall back down onto the mattress, still half asleep and now a little warm under the collar thanks to Anno’s impromptu skin-show. You must have drifted back to sleep, as it seems like only seconds later the telltale hiss of door hydraulics signals the white-haired ausar’s departure from the bathroom, this time clad in her");
 	if (anno.armor is AnnosCatsuit) output(" deliciously tight catsuit");
 	else output(" regular clothes");
 	output(" rather than one of your towels.");
 
-	output("\n\n“<i>All yours Steele!</i>” she says, before bounding towards the main door to your quarters. “<i>See you later, yeah?</i>”");
+	output("\n\n“<i>All yours, Steele!</i>” she says, before bounding towards the main door to your quarters. “<i>See you later, yeah?</i>”");
 
 	output("\n\nDid- did she blow you a kiss on her way out? The tease....")
 
@@ -487,6 +487,10 @@ function annoFollowerInventoryCheck():void
 			anno.inventory.push(new NovaPistol());
 			anno.inventory.push(new SteeletechSuit());
 		}
+
+		// Buy/Sell markups
+		anno.sellMarkup = 0.85;
+		anno.buyMarkdown = 1.0;
 	}
 	else
 	{
@@ -497,5 +501,333 @@ function annoFollowerInventoryCheck():void
 			anno.inventory.push(new JoyCoPremiumShield());
 			anno.inventory.push(new SteeletechSuit());
 		}
+
+		anno.sellMarkup = 1.1;
+		annm.buyMarkdown = 0.85;
 	}
+
+	// Set her up so she can buy/sell everything
+	anno.typesBought = [GLOBAL.ALL];
+}
+
+function annoFollowerSellMenu():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	annoFollowerInventoryCheck();
+
+	shopKeep = anno;
+	anno.keeperSell = "“<i>Got something weighing you down, boss? I can";
+	if (flags["ANNO_MISSION_OFFER"] == 3) anno.keeperSell += " send just about anything back to Steele Tech for a good profit. Perks of being a field merchant!";
+	else anno.keeperSell += " fence just about anything through my friends. Just give me the word!";
+	sellItem();
+}
+
+function annoFollowerTalkMenu(doOut:Boolean = true):void
+{
+	if (doOut)
+	{
+		clearOutput();
+		annoFollowerHeader();
+
+		output("“<i>Got a few minutes to chat?</i>” you ask before leaning against Anno’s desk.");
+		
+		output("\n\nShe smiles. “<i>Sure, boss. What’s on your mind?</i>”");
+	}
+
+	clearMenu();
+	addButton(0, "Akkadi R&D", annoFollowerTalkAkkadi, undefined, "Akkadi Research & Development", "Ask Anno about her work before joining Steele Tech.");
+	addButton(1, "Family", annoFollowerTalkFamily, undefined, "Annos Family", "Ask Anno about her family.");
+	addButton(2, "Victor", annoFollowerTalkVictor, undefined, "Victor Steele", "Ask Anno about your father.");
+	addButton(3, "Studies", annoFollowerTalkStudies, undefined, "Annos Studies", "Ask Anno about her education.");
+	addButton(4, "Relationships", annoFollowerTalkRelationships, undefined, "Relationships", "Ask Anno about her love life.");
+	addButton(5, "Steele Tech", annoFollowerTalkSteeleTech, undefined, "Steele Tech", "Ask Anno about her career at Steele Tech.");
+	addButton(6, "Entertainment", annoFollowerTalkEntertainment, undefined, "Entertainment", "Ask Anno about her tastes in entertainment.");
+	
+	if (flags["ANNO_MISSION_OFFER"] == 3)
+	{
+		if (anno.armor is AnnosCatsuit) addButton(7, "Uniform", annoFollowerRemoveUniform, undefined, "Steele Tech Uniform", "Tell Anno she doesn’t need to wear her uniform all the time.");
+		else addButton(7, "Uniform", annoFollowerWearUniform, undefined, "Steele Tech Uniform", "Tell Anno she should put her uniform back on. It’s pretty sexy looking, after all.");
+	}
+	else
+	{
+		addDisabledButton(7, "Uniform", "Steele Tech Uniform", "Anno would need to have her uniform still to change into it!");
+	}
+
+	if (flags["ANNO_MISSION_OFFER"] != 3)
+	{
+		addButton(8, "Contacts", annoFollowerTalkContacts, undefined, "Shady Contacts", "Ask Anno about her shady contacts in the black market.");
+	}
+	else
+	{
+		addDisabledButton(8, "Contacts", "Shady Contacts", "Anno doesn't have need of her shady black market contacts whilst still employed by Steele Tech.");
+	}
+}
+
+function annoFollowerTalkAkkadi():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>Mind telling me a little about your old job?</i>”");
+	
+	output("\n\nAnno’s lips purse in thought. “<i>You mean Akkadi - the Warp Gates and all that? Sure, if you don’t mind a bit of a lecture. I may get carried away on the topic. I’ve written books on it, you know.</i>”");
+	
+	output("\n\nYou urge her to continue. ");
+	
+	output("\n\n“<i>Alright, so you know the ausar invented the Warp Gates. Took us centuries of slow-boating between the star-kingdoms to finally get it working, and may or may not have invented interstellar war immediately afterwards. But it was still a huge breakthrough, no matter how much we abused it. I’m proud to say that one of my ancestors, Cyreon Dorna, was one of the project leaders at Akkadi when the Gates were created. Science runs strong in the Dorna family. Or at least being a nerd does, if you believe my sister.</i>”");
+	
+	output("\n\nAnno chuckles, leaning against the bulkhead as she talks. “<i>So yeah. After that, Akkadi became THE ausar science group, and has been ever since. Thanks to the family name, I got fast-tracked into Akkadi Research and Development during college, before I even had my doctorate.</i>” She shrugs, her smile fading somewhat. “<i>I can’t say I’m proud of the why of getting my job there, but you don’t turn down a job in the galaxy’s biggest technology firm, especially when your invitation comes from the desk of the king of Ausaril.</i>”");
+	
+	output("\n\n“<i>So I ended up working at Akkadi at the tender age of twenty two. I got pushed into the FutureTech group pretty quickly, and from there to working on military projects. Advanced shield generators for starships, the next generation hover-tank for the army, even reverse-engineering some primitive powered exoskeleton prototypes. But my real passion was the Warp Gates: I published my doctoral thesis from inside Akkadi, all about advancing Gate tech. That got somebody’s attention, and pretty soon I had my own lab and team to work with.</i>”");
+	
+	output("\n\nAnno grins at that. “<i>Fun times. Definitely made my folks proud. Anyway, did you know that Gate tech’s basically been static for the last fifteen hundred years? Once we got them working, that was pretty much it for Gate tech. Sure, we make the casings that float around in space sturdier, update the software from time to time, but the amazing fucking technology that shoots you across the galaxy in the blink of an eye? Nah, it works, let’s leave it alone. Hell, the gates in the core are basically running off computers and hardware that haven’t been updated in a millennium -- you better hope to God if they break, somebody in-system knows how to fix it.</i>” She chuckles, shaking her head at the thought. “<i>So, anyway, I rustled some feathers with my paper about starting to update and expand on the core tech powering the Gates. ");
+	
+	output("\n\n“<i>First step: micro-ize the tech. There’s no reason for the Gates to be so damn big, right? Maybe a thousand years ago we needed capital-ship sized platforms for the tech, but nowadays it’s all about microchips so small you can’t even see them, plus holo and hardlight mechanisms. So we spent about a year working to miniaturize the Gates, with a little help from the Joint Ausar Fleet’s R&D, who immediately saw the potential for transmat on the individual scale: imagine being able to invade a planet from orbit, but completely bypassing the planet’s air-to-ground defenses. You just truck into orbit and warp your troops and material behind enemy lines. It could have revolutionized warfare, much less personal travel and planetary transportation. God, imagine standing on Ausaril, then just stepping through a door frame and onto Terra? We could have changed the </i>galaxy!<i>.</i>”");
+	
+	output("\n\nWow. “<i>What happened?</i>” you ask.");
+	
+	output("\n\nShe shrugs and sighs. “<i>We done fucked up. The Fleet pushed us to biological testing too quickly, before we had a complete sample pool. My team got bullied into trying a field test way before we were ready to go: tried to warp a special forces squad into a hostage scenario. One of the King’s kids had been taken by religious fanatics pissed that she’d ditched her dying body for cyberware. Threatening to execute her on live extranet feed. You might have seen it on the news, maybe four years ago? We tried to put six operators in, ended up getting two on the ground, both fucked up pretty badly. No idea where the other four even went. Probably dead.");
+	
+	output("\n\n“<i>At least the princess managed to get out in the confusion. Scared the shit out of the bastards, bought a few seconds -- enough time for our ground team to kick the door in and put them down.");
+	
+	if (syriFriendsWithBenefits())
+	{
+		output("</i>”");
+
+		output("\n\n“<i>That’s... not what Syri told me.</i>”");
+	
+		output("\n\n“<i>Syri wasn’t involved until after. Some son of a bitch in the Admiralty thought we’d sort the problem out in a hurry if it was my sister going through next time. Turns out that no, science doesn’t work that way. Assholes. At least she </i>survived<i>, unlike the other guy that went through in the second test.</i>” Anno rubs her temples, sighing. “<i>I got out right after that.");
+	}
+
+	output(" Your dad helped me out of a tough spot after that... I was in a pretty bad place. Gave me a chance to come work for his company, to work without... </i>that<i> hanging over me, without brass breathing down my neck about my projects.</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(0);
+	processTime(10+rand(5));
+}
+
+function annoFollowerTalkFamily():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>My family?</i>” Anno asks when you broach the topic. “<i>Well, there’s me, my sister, and our parents. I’ve got a pretty big extended family, too, especially on my dad’s side. More cousins, aunts, and uncles than I can count. But they’re not who you’re asking about, are they?</i>”");
+	
+	output("\n\nShe chuckles at that. “<i>Right, so uh, my dad’s big into business. Holds a lot of shares in Akkadi, JoyCo, even Steele Tech. You know the type, I’m sure: wealthy socialite, throws the annual charity ball at year’s end for all the other wealthy socialites. He might not be the bad-ass adventurer your dad was, but mine’s still a good guy. Kind, always telling us how proud he is. The kind of man who spends more time thinking up ways to give things away then being a ruthless businessman. Pretty much the opposite of my mom: she’s the business hound of the family. Pulled herself up by the bootstraps. Definitely the one Syri took after. Tough as nails, always pushing us to do better. Pushed </i>hard<i> to get me into a good school, then Akkadi.");
+	
+	output("\n\n“<i>You’d like them,</i>” she adds with a smile. “<i>I couldn’t have asked for better parents.</i>”");
+	
+	output("\n\nShe lets out a long breath and leans back, resting her head in her hands. “<i>And then you have my sister, Syri. There’s a good Terran expression for her... black sheep! I can’t imagine her turning out any more... not how our parents wanted. She got the same full ride to the Ausaril School of Technology that I did, and she immediately threw it in their faces and enlisted in the Fleet.</i>” Anno shakes her head, exasperated. “<i>You know, I can see where she was coming from. I still don’t know how I feel about letting the family name carry me through school and all, but didn’t exactly feel the need to tell my folks to get fucked, either.");
+	
+	output("\n\n“<i>But that’s Syri for you. She gets so worked up about things. ‘Passionate,’ dad called her,</i>” Anno says with a laugh. “<i>For twins, we really couldn’t be more different. She’s a scary, angry marine lady; I’m a laid-back desk jockey... but I love her to pieces.");
+	if (syriIsCrew()) output(" I’m glad we’ve had a chance to get closer here on the ship. I’ve missed her the last couple of years");
+	else output("“<i>I wish we hadn’t grown apart so much the last couple of years. But that’s what you get for working on different sides of the galaxy, I guess");
+	output(".</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(1);
+	processTime(5+rand(3));
+}
+
+function annoFollowerTalkVictor():void
+{
+	clearOutput();
+	annoFollowerHeader();
+	
+	output("“<i>Think you could tell me a little about my Dad?</i>” you ask, remembering Anno’s... experience with your father.");
+	
+	output("\n\nShe grins. “<i>Sure, [pc.name]. I didn’t know him </i>that<i> well, though. Mostly through work, to be honest, though he kept close tabs on me while I was getting settled in at Steele Tech R&D. He was a good guy... you could see the kindness in his eyes. And the age. Have you ever looked an elephant in the eye? Your dad had that same look, like he’d seen eternity and just smiled as it passed him by.</i>” ");
+	
+	output("\n\nAnno smiles, sliding her hand over yours. “<i>You know, he helped me out in a pretty bad time in my life. I was between jobs, basically living off convention speeches and my folks putting me up. He listened to one lecture I gave, not half an hour in a smoky hotel con room with maybe half a dozen washed-up eggheads in it, altogether. I guess he saw something in me. Or my work, anyway. Bought me a drink after my speech and, by night’s end, I had a ship ticket and a job waiting for me on Verdure at the R&D labs. I didn’t even realize until my first day on the job whom the hell I’d met.</i>” ");
+	
+	output("\n\n{if PC is Kind: “<i>You’re a lot like him, you know. You have that same kindness in your eyes.</i>” elseif Mischievous: “<i>He always had this amazing humor. That cunning way he’d talk, always circling around you, weaving words around you like a duelist feints.</i>” if Hard: “<i>He was a good man. I’ll never forget that. But he always had this hardness to him, like he was made of iron beneath that smile of his. You always had this impression it wouldn’t make him break a sweat to completely destroy you.</i>”}");
+	
+	output("\n\nAnno shrugs and smiles, slipping a comforting arm around your waist. “<i>I miss him too, [pc.name].</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(2);
+	processTime(5+rand(3));
+}
+
+function annoFollowerTalkStudies():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>So, where’d you go to school?</i>” you ask.");
+	
+	output("\n\nAnno beams. “<i>Ausaril Tech. Go Jackals, whooo!</i>” she cheers, half sarcastically. “<i>It was the best school for science on the homeworld, so that’s where I went. I was lucky enough to get into the military-sponsored program... kind of like the Terran-Space Coalition’s ‘officer candidate school,’ though it didn’t end up with me doing a tour of duty or anything. Mostly just reservist training, and helped get me military-grade clearance for later when I went to work at Akkadi.</i>”");
+	
+	output("\n\nShe takes a moment to flex her arm muscles in a mock bodybuilder’s pose. “<i>Also helped me get in shape, too. I was a pudgy little shit before, and now look at me -- I cut a pretty impressive figure, if I do say so myself!</i>” She gives you a playful wink before she resumes. ");
+	
+	output("\n\n“<i>Anyway, school. We ausar have always valued technology. Comes from living on a shitty desert planet that’s always trying to kill us. Tech made it possible for us to beat Mother Nature. Or at least escape her and find planets that sucked less. Ausaril Tech was the biggest and best technology academy, and I worked my ass off while I was there. Had my bachelor’s before I was twenty, ended up teaching a few lower-level theory courses a couple of years later.</i>”");
+	
+	output("\n\nShe smiles, her eyes faraway and reminiscing. “<i>That’s where I met my girlfriend, too. She was a cute little thing, fresh off the galactic rim, just looking to get her pilot’s license and having the damnedest time with all the high-level math. ‘I have computers for all this,’ she was always saying. Good thing I wanted some extra spending money and ended up tutoring on the side. That’s how we actually got together, me and Kaede. Man, I was a real party girl back then, too, always dragging her to games and frat shit. I don’t know how I had time to do any studying, much less </i>work<i>... actually, I do know: by not sleeping ever. I was pretty much a walking pharmacy of stims and caffeine by the time I turned in my last bits of doctoral work. Ended up fainting right in the professor’s office. Plop! Down I went the second I handed it off.</i>”");
+	
+	output("\n\nAnno laughs at herself: a good, hearty laugh from the gut. “<i>I had fun, though. Kind of miss it, honestly... I wouldn’t mind teaching again");
+	if (flags["ANNO_MISSION_OFFER"] == 3) output(" if I ever get tired of working for you, boss... not that that’ll ever happen,</i>” she giggles, giving you a knowing wink.");
+	else output(" now that I’m between jobs again. Steele Tech was nice and all, but maybe I’m not cut out for the whole research thing after all. I’ve done more than enough, you know?");
+	output("</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(3);
+	processTime(5+rand(3));
+}
+
+function annoFollowerTalkRelationships():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	if (!haveFuckedAnno()) output("“<i>That’s a bit personal,</i>” Anno says, eyeing you suspiciously... before breaking out into a little grin. “<i>But for you, I guess I can spill the beans. Think you can keep a girl’s secrets?");
+	else output("“<i>As long as you’re not the jealous type, boss, I don’t mind sharing!");
+	output(" After all, I’m pretty invested in the whole polyamory idea, which necessitates a certain measure of sexual openness, doesn’t it?</i>”");
+
+	output("\n\nShe grins. “<i>For the sake of conciseness, let’s just say I like having multiple relationships at once. A lot of my love life happens long-distance, you know, and it gets sooo lonely,</i>” she teases, pressing herself up against you. Giggling, she continues, “<i>But seriously, I don’t want to make a big deal out of it. I just... like a lot of people, and it’s impossible to pick just one that I want to be with. A lot of ausar work like I do, when it comes to love. We have a hard time with the whole monogamy thing, I guess - just too much love to go around!");
+
+	output("\n\n“<i>So let’s see,</i>” Anno says, pulling herself up onto her desk and dangling her legs over the edge. “<i>Just before you showed up on Tarkus, I got back in touch with my college sweetheart, and we’ve sort of started up again. Kaede’s a great big sweetie when you get to know her, but she’s shy as all get-out. I have to drag her out of her comfort zone sometimes, you know? I swear she’d just sit in her cockpit playing vidya and eating ice cream if I didn’t make her go out and do things.</i>”");
+
+	output("\n\nAnno pauses to think for a moment. “<i>Kaede’s my only really steady lover right now");
+	if (haveFuckedAnno()) output(", aside from you, of course");
+	output(". Doesn’t mean I’m not gonna try and find a date whenever we pull into port, but aside from");
+	if (!haveFuckedAnno()) output(" her");
+	else output(" you two");
+	output(", I haven’t had much luck lately. Not like college, where I could pick up girls with a smile and a wink,</i>” she giggles.");
+
+	if (flags["ANNOxSYRI_WINCEST"] != undefined)
+	{
+		output("\n\nAnno sighs, then gives a wry little chuckle. “<i>Then there’s this whole thing with Syri we’ve got going on now. I don’t </i>even<i> know what to feel about that. I love her with all my heart, but... I don’t know, it almost feels like masturbating, you know? She’s my twin sister, for fuck’s sake. What am I even going to tell our </i>parents<i>? They’re going to have a fit if they find out.</i>”");
+
+		output("\n\nShe rubs her temples, groaning with frustration. After a moment, though, she manages a little grin and adds, “<i>Wouldn’t trade it for the world, though.</i>”");
+	}
+
+	annoFollowerTalkMenu(false);
+	removeButton(4);
+	processTime(5+rand(3));
+}
+
+function annoFollowerTalkSteeleTech():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>So, care to tell me a little bit about your");
+	if (flags["ANNO_MISSION_OFFER"] != 3) output(" old");
+	output(" job?</i>”");
+	
+	output("\n\nAnno’s ears perk up. “<i>You mean at Steele Tech? Sure, boss,</i>” she says, hopping up onto her desk and letting her long legs dangle. ");
+	
+	output("\n\n“<i>So you know your dad hired me, of course. Picked me up himself after a convention speech, gave me a job working in Steele Tech’s R&D at corporate headquarters. It was an amazing job, you know: all the resources and expertise of my government-sponsored lab at Akkadi, but half the regulations and red-tape, not to mention no government spooks breathing down my neck. Of course I couldn’t work on warp tech like I’d wanted to -- Steele doesn’t have any of the contracts or patents related to the Gates -- but it was still an awesome gig.</i>”");
+	
+	output("\n\nShe smiles a bit, her gaze wandering far away. “<i>Especially when Vic gave me my own lab and team right out of the gate. Even Akkadi didn’t do that. I always got the feeling that he trusted me... had faith in me. I don’t know why; I mean, all he had to go on was one shitty lecture I gave and talking over drinks after.</i>” Anno’s smile grows, though it takes on an unmistakably sad quality as she speaks. “<i>While I worked there, I could have sworn... I was certain he was grooming me to take over R&D. I only worked there a couple years, but Vic still gave me more and more responsibility, more teams to oversee, more important projects, entire labs even. Honestly, I’d figured that by now that I would be the head of Applied Sciences or one of the other big divisions.</i>”");
+	
+	output("\n\nAnno chuckles, “<i>Who’d have thought your dad’s last project for me would be tossing me out of R&D and to some fucking planetary branch post. I mean, what the hell? Let’s just take one of our best scientists and put her in the middle of bumfuck nowhere to run a store. That makes sense, doesn’t it?</i>” She runs a hand through her snowy hair and sighs. “<i>I still don’t know what I did to deserve that. I MUST have fucked up somewhere, I just... I just can’t see where.");
+	
+	output("\n\n“<i>Oh well,</i>” Anno says with a shrug. “<i>I’m out of there now, so I guess I shouldn’t complain. I do miss my lab, though. It had the most amazing view of the forests of Verdure...</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(5);
+	processTime(5+rand(3));
+}
+
+function annoFollowerTalkEntertainment():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>So, what do you do for fun?</i>” ");
+	
+	if (haveFuckedAnno())
+	{
+		output("\n\n“<i>I think you know,</i>” Anno teases, reaching around to grab your [pc.butt].");
+	
+		output("\n\n“<i>Aside from that,</i>” you say, mock-rolling your eyes.");
+	}
+	
+	output("\n\nAnno grins at you, saying, “<i>Well, I’m not exactly the party girl I used to be, but I’d like to think I still know how to have fun. If you think reading technical manuals and scientific journals is fun. Uh, alright, maybe not that fun, but that’s what I burn most of my free time doing these days. I don’t really have any hobbies outside of my field, you know? I do a little gunsmithing on the side, though: I’ve always liked messing around with weapons, custom designing them for myself. Figure if I ever get tired of blinding bitches with science, I could just open up a gun store. Heh, my sister would love that.</i>”");
+	
+	output("\n\nShe chuckles to herself. “<i>Let’s see... uh... man, why do you have to ask hard questions. Come on, ask me about warp theory or quantum mechanics or light drives - pitch me an easy question, [pc.name].</i>” When you decline, she groans in exasperation and slides down into her chair, legs crossed. “<i>God damn, I’m uninteresting. Well, uh, I watch a lot of TV I guess. Especially </i>Steph Irson<i>, James Farmer’s </i>Forty-Eight Hours<i> - oh, and </i>Magical Space Princess Lyota<i>.</i>”");
+	
+	output("\n\n“Magical Space Princess Lyota<i>...?</i>”");
+	
+	output("\n\nAnno blinks. “<i>What? It’s a great show!</i>” she says, a little too defensively. “<i>Any, uh, anyway. I’m pretty into music, I guess. Mostly rock and metal from the homeworlds, though I guess");
+	if (pc.isHuman()) output(" you");
+	output(" humans have some pretty decent jams, too. Tend to be a little heavier on the screams and growls than I like, but nothing beats a Terran death metal group if you just want to bang your head around and punch something.");
+	
+	output("\n\n“<i>You know, I actually used to play the bass way back,</i>” Anno adds, a hint of pride in her voice. “<i>I wasn’t </i>great<i> or anything, but it’s the fucking bass guitar, right? Used to play with some of the other rockers back at Akkadi after work, but nobody wanted to hang out at Steele Tech. Probably because I was their boss. That’d be a hell of a thing: ‘Oh, you missed practice last night? Well you can miss work today, too! Bwahaha I’m so evil hahaha.’ Not that I would actually do that or anything.</i>”");
+
+	annoFollowerTalkMenu(false);
+	removeButton(6);
+	processTime(5+rand(3));
+}
+
+function annoFollowerRemoveUniform():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>Hey, you know you don’t have to wear that uniform, right?</i>” you say, indicating Anno’s skin-tight company catsuit.");
+	
+	output("\n\nShe cocks an eyebrow at you. “<i>Huh? Oh, this old thing,</i>” she chuckles, poking at the tight material stretched over her thigh. “<i>I’ve been wearing it so long... I barely even notice it anymore. It’s practically a part of me.</i>”");
+	
+	output("\n\n“<i>Still,</i>” you say, “<i>I run a casual ship. You don’t have to wear it.</i>”");
+	
+	output("\n\nAnno shrugs at that and gives you a slight grin. “<i>Well, if you put it that way... I guess it wouldn’t hurt to wear something that breathes a little better. At least while I’m not planetside moving product.</i>”");
+	
+	output("\n\nAnno pulls down her zipper and shrugs out of the catsuit, making a little show of shimmying out of her sleeves and pants. She bends way over as she removes her suit to give you an unobstructed view of her big, squishy butt - that’s an opportunity you can’t help but take advantage of, and you give the shameless ausar a little smack for her trouble. She answers with a girlish squeal and a wiggle of her hips... before balling up her catsuit and tossing it in your face, giving you an almost-overpowering whiff of her musk as she scampers out of your grasp and into her wardrobe.");
+	
+	output("\n\nBy the time you disentangle yourself from the catsuit, Anno’s slipped on a button-up shirt from her dresser and is halfway through buttoning it up. She winks and sticks her tongue out at you in playful retaliation for your spank, though her bare tail is wagging happily behind her and her still-bare slit is glistening with the beginnings of her arousal. You watch with appreciation as your lover dresses, finishing with her shirt before finding a pair of jeans and boots to go with it. By the time she’s finished, you’d barely recognize Anno on the street: without her catsuit, she looks like a whole new woman.");
+	
+	output("\n\nSeeing you eyeing her, Anno sashays over to you and presses herself tightly against you. “<i>Like what you see, babe? Good... now, how’s about you tear these off me?</i>”");
+
+	processTime(5+rand(3));
+	anno.armor = new AnnosBlouse();
+
+	//{sex menu}
+	annoFollowerSexMenu();
+}
+
+function annoFollowerWearUniform():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>So, any chance of you putting that sexy catsuit back on?</i>”");
+	
+	output("\n\nAnno grins");
+	if (pc.tallness > anno.tallness + 6) output(" up");
+	else if (pc.tallness < anno.tallness - 6) output(" down");
+	output(" at you. “<i>Maaaaaybe,</i>” she teases, already starting to work the buttons on her shirt. “<i>To be honest, I kind of missed it. I always felt so... so </i>sexy<i> in it. I just loved the way it hugged all my curves.</i>”");
+	
+	output("\n\nYou gulp as Anno slides out of her shirt to reveal the full swells of her double-D cups. She indicates the dresser behind you, and you quickly pull out one of several neatly folded catsuits tucked into the top drawer. When you turn back to her, she’s already bare naked, standing on a pile of her jeans and shirt with her hands on her hips. You hand over the catsuit, so that your lover can make a bit of a show of stepping into it and drawing the sheer, skin-hugging suit up around her waist and zipping up its front. She pauses as she nears her bust, giving a little gasp as her tits are slowly drawn into the tight embrace of her uniform, finally disappearing beneath the black and yellow material. ");
+	
+	output("\n\nFinally, you’ve got your good old Anno back, complete with her skin-hugging suit that does the most wonderful things for her figure... ");
+	
+	output("\n\nSeeing you eyeing her, Anno sashays over to you, pressing herself tight against you. “<i>Like what you see, babe? Good... now, how’s about you tear this off me?</i>”");
+
+	processTime(5+rand(3));
+	anno.armor = new AnnosCatsuit();
+
+	//{sex menu}
+	annoFollowerSexMenu();
+}
+
+function annoFollowerTalkContacts():void
+{
+	clearOutput();
+	annoFollowerHeader();
+
+	output("“<i>What can you tell me about these... contacts of yours,</i>” you ask, nodding towards the small stockpile of weapons and equipment sitting around Anno’s quarters. ");
+	
+	output("\n\n“<i>Well,</i>” she drawls playfully, resting her chin on a fingertip, “<i>I can’t give you any specifics - for everyone’s sake, you know. But I’ve got a lot of friends in the Joint Ausar Fleet, some who </i>were<i> in the J.A.F. and now do some private contracting work, plus plenty of people in Akkadi and Steele Tech willing to pass me a little this-and-that. Perks of being friendly, I guess! I can get a lot of excess inventory from a lot of places for just a smile and a consignment contract. Doesn’t help anybody if all this junk’s sitting in some corporate warehouse, or shelved by the Fleet because it’s point-two watts underpowered than the normal model. You’d amazed how much stuff big corps and the like just leave sitting around that nobody misses when it goes missing.</i>”");
+	
+	output("\n\nAnno gives you a conspiratorial wink as she says those last few words, but refuses to elaborate further on her contacts or their... less than legal methods of supplying her. “<i>Still,</i>” she adds, “<i>at least I’ve got an income this way. Shady as it may be. Would I rather be blinding bitches with science? Sure. But this isn’t bad, and since you move around so much, I’ve always got new inventory coming and going, and new customers getting in contact with me. I could do a lot worse, you know?</i>”");
+	
+	output("\n\nThat, at least, is good to hear.");
+
+	annoFollowerTalkMenu(false);
+	removeButton(7);
+	processTime(5+rand(3));
 }

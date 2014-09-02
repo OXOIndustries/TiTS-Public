@@ -15,6 +15,10 @@ function showSyriName():void
 	else userInterface.showName("\nSYRI");
 }
 
+function syriIsCrew():Boolean {
+	return false;
+}
+
 function syriGamesStart():void {
 	clearOutput();
 	userInterface.showBust("SYRI");
