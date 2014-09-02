@@ -1158,10 +1158,11 @@ function faceFuckAnno():void
 	processTime(15+rand(10));
 	annoSexed(1);
 	pc.orgasm();
+	
 	clearMenu();
 	if(pc.cockThatFits(chars["ANNO"].vaginalCapacity(0)) >= 0)
 	{
-		if(pc.lust() >= 33 || pc.libido() >= 80) addButton(0,"Fuck Her",fuckAnnoAfterBeeJay,undefined,"Fuck Her","Fuck Anno. You've got another round in you, right?");
+		if(pc.libido() >= 80 || rand(pc.libido()) >= 15) addButton(0,"Fuck Her",fuckAnnoAfterBeeJay,undefined,"Fuck Her","Fuck Anno. You've got another round in you, right?");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a libido of 80 or 33 minimum lust in order to keep it up for another go-round.");
 	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","There's no way you're going to fit yourself in a hole that small.");
